@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-162804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7AFA79D81
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:57:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A62F2A79D8F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:01:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D334C188566D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:56:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DAA17A5612
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399A62405EB;
-	Thu,  3 Apr 2025 07:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFA9241676;
+	Thu,  3 Apr 2025 08:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bonBzEVS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dX+70bHi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D561A23B9;
-	Thu,  3 Apr 2025 07:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5919C23F296;
+	Thu,  3 Apr 2025 08:01:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743666985; cv=none; b=DUnITqdE8/inz9iYcrP5BZVSs4arfmcz6J05TRE/V8+npyZhV0zrb0anxo+yYCWC+OQoJe+7GrVCrg2shUD7+/RLk9OP+NJCILtu0Rs3XcVDxOtOqRAZh1s13y4c8rlBrNjBgaLDczTZAvjp7p+Q0i6KNXcGe0qRnivch0c1/YI=
+	t=1743667268; cv=none; b=Vro9oyP7GzgCFzGWZ2uS2TwOTpoTPI+BJ2fQXz/lFZRzArLh+mTpmsNz1YkJW3/crFd9s33MjdelNXU6hxpjKzfkAXKRpo63D5t45+4pNaSuAygrIKCWOkVEkNk9AL98uJ1Ahf7J9lDAs2RZ64PV5jdI6jIYS0J7G+M+1dZuCpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743666985; c=relaxed/simple;
-	bh=cVRFaKCtW9EkxwJD2YpJ360jCAHaYC2eciW066lxdFU=;
+	s=arc-20240116; t=1743667268; c=relaxed/simple;
+	bh=5iTwQ2CHLhS07UhYM4odxUwSxPkxU41/IhkP/RM0hX0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qYwohDRKon6kXd49lwvWXctJzwuCwzg2w9XZsf0fU7b5wNHHkZwadUZ2gMd3I/h7z+FkQL2SihbRCFenPk9Sw1Fimp80Q5OpH9BJz7siPIF7n08+rFGxTXPmJC7RlHMBE8defxqG3VGnuKL6Y8LZYL47g3hhYRjlPSW/eWkhCG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bonBzEVS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6476C4CEE3;
-	Thu,  3 Apr 2025 07:56:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lg3hlgO1/2AC6JpwnhSkewyEwKXkPmpEYS42z/NGjXDbry1r8txPh4gk0u4fS8xHXrh9A2zIHezSeLE4UemaBzXL9tN/AviIR5UHH0EMOuNomtzcWWTPRajo0tO2t3umBbhveE65rEtiHZCeK6Rll2yhoLo2v+5oUYRzS2RXSDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dX+70bHi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6F6DC4CEE3;
+	Thu,  3 Apr 2025 08:01:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743666984;
-	bh=cVRFaKCtW9EkxwJD2YpJ360jCAHaYC2eciW066lxdFU=;
+	s=k20201202; t=1743667267;
+	bh=5iTwQ2CHLhS07UhYM4odxUwSxPkxU41/IhkP/RM0hX0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bonBzEVSVoBnVEgQWRYoKgknAKOUDADEaP47hbMlx+5WcwMJ649KOoRA2gk3LfZoA
-	 5mDLoNayTSzruS4RnCJFX6Ujgwvo62L0hdP/0g9S3YpTiSPU81tJLXKrO2EXWXVu37
-	 l1bE3BG6FYS2485SguDHiPVsoo34iO59KPXVQH5yKXTqtq4TQ8+SezxnXz850RctYf
-	 2QnQJSmCmSYMjolKn9vEdjuKgzi7qka6xsGa6Z7+jfAHaL0zywqQM4WwMuYoFmlDh0
-	 4EnItzhew47vLwDaN/I2385VP1S5sp43OrY1TqWH4kI2FC1H4D0FhaX9dN0YQ26Phh
-	 yzxNM/UsKwxBQ==
-Message-ID: <28f4a7e5-ff96-4c7f-9eab-6bf358f19007@kernel.org>
-Date: Thu, 3 Apr 2025 09:56:18 +0200
+	b=dX+70bHi615ZyGyOLQtsOnlS8iiQ1MDFkI86v3B7xq9ECPFnpk8hUtyYewI6avAGQ
+	 ODl2n7JJY4x31pfhDAaSNhnHmiOJBWQl8xHZTSzMVpGftHrw/PPveVM/Hkycq9bOGu
+	 bcdIL8Flrc+3KaqVl2flQmUwJBjEIkuixQHXkvGJeHRjHqdggXoPtTc2XphRelgpgc
+	 Bnw4w6EmP+f61bMFKgYlWIP3rFzHZBMRWc2NBTr+O/zQ9Zqk1DiYkmsrBSZz2NctfA
+	 uHjf0/fNOJv3V0UbByNJUtgEajc+DCgEf7+dyfgijvMsYrjRpYs7N+ngvWPS3GjFD4
+	 /m4ewmjqyRPFA==
+Message-ID: <ba5f79a0-be46-4f17-90f7-1342a6310048@kernel.org>
+Date: Thu, 3 Apr 2025 10:00:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/5] iio: chemical: add support for winsen MHZ19B CO2
- sensor
-To: Gyeyoung Baek <gye976@gmail.com>, jic23@kernel.org
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, lars@metafoo.de,
- gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20250403053225.298308-1-gye976@gmail.com>
- <20250403053225.298308-5-gye976@gmail.com>
+Subject: Re: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
+ TCPM
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Sebastian Reichel <sre@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
+ Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
+ <20250313-determined-wild-seahorse-f7871a@krzk-bin>
+ <914a0df4-96d0-4cd4-ac87-3826fa9c1440@google.com>
+ <3f65fe16-56f8-4887-bb91-994b181ce5a9@kernel.org>
+ <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
+ <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
+ <7c7cff17-2c53-4dcd-8760-50c72760de5b@google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,123 +116,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250403053225.298308-5-gye976@gmail.com>
+In-Reply-To: <7c7cff17-2c53-4dcd-8760-50c72760de5b@google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/04/2025 07:32, Gyeyoung Baek wrote:
-> Add support for winsen MHZ19B CO2 sensor.
+On 03/04/2025 05:41, Amit Sunil Dhamne wrote:
 > 
-> Datasheet:
-> https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
+> On 3/21/25 12:51 AM, Krzysztof Kozlowski wrote:
+>> On 20/03/2025 22:11, Amit Sunil Dhamne wrote:
+>>> On 3/16/25 9:52 AM, Krzysztof Kozlowski wrote:
+>>>> On 15/03/2025 01:49, Amit Sunil Dhamne wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> Thanks for the review!
+>>>>>
+>>>>> On 3/13/25 1:50 AM, Krzysztof Kozlowski wrote:
+>>>>>> On Wed, Mar 12, 2025 at 04:42:00PM -0700, Amit Sunil Dhamne wrote:
+>>>>>>> Support for Battery Status & Battery Caps messages in response to
+>>>>>>> Get_Battery_Status & Get_Battery_Cap request is required by USB PD devices
+>>>>>>> powered by battery, as per "USB PD R3.1 V1.8 Spec", "6.13 Message
+>>>>>>> Applicability" section. This patchset adds support for these AMSes
+>>>>>>> to achieve greater compliance with the spec.
+>>>>>> Which board uses it? I would be happy to see that connection between
+>>>>>> batteries and USB connector on the schematics of some real device. How
+>>>>>> does it look like?
+>>>>> Any board that uses a USB Type-C connector that supplies power into or
+>>>> If you keep responding like this, you will got nowhere, so let me
+>>>> re-iterate:
+>>>>
+>>>> Which upstream DTS (or upstream supported hardware) is going to use this
+>>>> binding, so I can see how you are going to implement it there in the
+>>>> entire system?
+>>> This is for maxim,max33359 Type-C controller.
+>> Stop deflecting the questions. max33359 is not a board. I already asked
+>> two times.
+>>
+>> Apparently admitting "no upstream users" is impossible, so let's state
+>> the obvious:
+>>
+>> There are no upstream users of this.
 > 
-> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
-> ---
->  drivers/iio/chemical/Kconfig  |  10 +
->  drivers/iio/chemical/Makefile |   1 +
->  drivers/iio/chemical/mhz19b.c | 386 ++++++++++++++++++++++++++++++++++
->  3 files changed, 397 insertions(+)
->  create mode 100644 drivers/iio/chemical/mhz19b.c
-> 
-> diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-> index 330fe0af946f..bb4dfe3986f6 100644
-> --- a/drivers/iio/chemical/Kconfig
-> +++ b/drivers/iio/chemical/Kconfig
-> @@ -108,6 +108,16 @@ config IAQCORE
->  	  iAQ-Core Continuous/Pulsed VOC (Volatile Organic Compounds)
->  	  sensors
-> 
-> +config MHZ19B
+> max33359 controller has an upstream user i.e., gs101-oriole (Pixel 6) 
+> board. Totally agree that at the moment there are no upstream 
+> devices/drivers for the Fuel Gauge (that my patchset has a dependency 
+> on) in gs101-oriole board. gs101-oriole uses max77759 fuel gauge device. 
+> I see that there's an effort for upstreaming it 
+> (https://lore.kernel.org/all/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be/). 
+> I will mark my patches as dependent on it + demonstrate the relationship 
+> of the devices in the gs101-oriole board. Hope that's okay?
 
-probably WINSEN_MHZ19B
-
-> +	tristate "MHZ19B CO2 sensor"
-
-Similarly here
-
-> +	depends on SERIAL_DEV_BUS
-> +	help
-> +	  Say Y here to build Serdev binterface support for the MHZ19B
-
-Typo, interface
-
-> +	  CO2 sensor.
-> +
-> +	  To compile this driver as a module, choose M here: the module will
-> +	  be called mhz19b.
-> +
->  config PMS7003
->  	tristate "Plantower PMS7003 particulate matter sensor"
->  	depends on SERIAL_DEV_BUS
-> diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-> index 4866db06bdc9..c63daebf39ac 100644
-> --- a/drivers/iio/chemical/Makefile
-> +++ b/drivers/iio/chemical/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_ENS160) += ens160_core.o
->  obj-$(CONFIG_ENS160_I2C) += ens160_i2c.o
->  obj-$(CONFIG_ENS160_SPI) += ens160_spi.o
->  obj-$(CONFIG_IAQCORE)		+= ams-iaq-core.o
-> +obj-$(CONFIG_MHZ19B) += mhz19b.o
->  obj-$(CONFIG_PMS7003) += pms7003.o
->  obj-$(CONFIG_SCD30_CORE) += scd30_core.o
->  obj-$(CONFIG_SCD30_I2C) += scd30_i2c.o
-> diff --git a/drivers/iio/chemical/mhz19b.c b/drivers/iio/chemical/mhz19b.c
-> new file mode 100644
-> index 000000000000..f8f06c01623f
-> --- /dev/null
-> +++ b/drivers/iio/chemical/mhz19b.c
-> @@ -0,0 +1,386 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * mh-z19b co2 sensor driver
-> + *
-> + * Copyright (c) 2025 Gyeyoung Baek <gye976@gmail.com>
-> + *
-> + * Datasheet:
-> + * https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
-> + *
-> + * TODO:
-> + *  - vin supply regulator
-> + */
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/completion.h>
-> +#include <linux/device.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/serdev.h>
-> +#include <linux/unaligned.h>
-> +
-> +struct mhz19b_state {
-> +	struct serdev_device *serdev;
-> +
-> +	/* TO DO, nothing for now.*/
-> +	struct regulator *vin_supply;
-
-Drop. Don't add dead code.
-
-> +
-> +	/* serdev receive buffer.
-> +	 * When data is received from the MH-Z19B,
-> +	 * the 'mhz19b_receive_buf' callback function is called and fills this buffer.
-> +	 */
-> +	char buf[9];
-> +	int buf_idx;
-> +
-> +	/* must wait the 'buf' is filled with 9 bytes.*/
-> +	struct completion buf_ready;
-> +
-> +	/* protect access to mhz19b_state */
-> +	struct mutex lock;
-
-mhz19b_receive_buf() does not need any locking?
-
+Then please send the DTS for GS101 Oriole using this binding. I don't
+understand the point of adding binding for some user and in the same
+time not doing anything for that user.
 
 Best regards,
 Krzysztof
