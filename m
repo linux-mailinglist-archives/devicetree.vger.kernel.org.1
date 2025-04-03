@@ -1,112 +1,109 @@
-Return-Path: <devicetree+bounces-162916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA13A7A2B8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:22:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0212A7A2E3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:31:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C765A1896511
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:21:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D50DB3B76B1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:30:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F6024DFFB;
-	Thu,  3 Apr 2025 12:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFD424E4AF;
+	Thu,  3 Apr 2025 12:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q8/TYGYP"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="7MZU4EmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFC724CEFD;
-	Thu,  3 Apr 2025 12:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF5A24CEFC;
+	Thu,  3 Apr 2025 12:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743682881; cv=none; b=WxR/QFVYxGbT0dXoqOZZu0UuT1Ni6s9PIqf5XtPislWvPorLAl/rKLtWwfg/buOPeTaUoUxmPgA5zXr0jOmulz9awvCqO+YyNsZLyl7/DmpnL7IXbs6UtauJu7Q4ZXENKmXx5A2f8xgCuitzYft2+/8UeC62kgxEVVyBLP7gjGI=
+	t=1743683434; cv=none; b=O7qjKq2pXDI4TmlxIiHOHTNsO5/71Qi6XnNlFh2uxKN3ZLiPUAys7G9K11uL6GhuvwgAAu8EzQ9UWgH71zvfQh8LL+197W5xKn0zdwNTQZ/f5OBYzQ0cpv7tnJR76TKrGcKOY6VorA8Hs3HvLSq2AW/J+E1x4noS9VEMXo4XHr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743682881; c=relaxed/simple;
-	bh=L1M9+DqEkPWzAH4mbo5Bdwgh/m7vQ9ylF1u193HM9eo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ISzEKM+B3b6icQJ//2t2aVfrulmyaHjrh0tZnu/D1XNds0NIE/HSY5wEZVlqaUkgKO5mQ2lJqytC3DFsaYGEbmTVMb8Y9LZUTAg6bYrR6Liq4FN14BFEyK/2ynVoi4Lz4baNglJ3SUOthM4jtSrINVWDRnOY/MyrKFNNHhdGtjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Q8/TYGYP; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 745AF43231;
-	Thu,  3 Apr 2025 12:21:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743682875;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b5DITWvhtq18VMzVSHOCV2iIg0K0B/BD1nLhgl2nuEI=;
-	b=Q8/TYGYPKz5AUooLVdQNonVxTWZy1BMPqYD2MsAiksQVAHgsa5fwrzPmIds7d0DloXNqld
-	w2LOtGQL/xdB2C1V9TAEV+yyNBYSt6OxzUCqRgRj6cyKyzCtP/y488NwRSFFElQ5YdcEOy
-	DDLbZBFjyJ03/1BJGieXIAoXbRYTQqOnc+alJM5KCfPM5g1KK45SXU1ITh5MtyUNuC2qIw
-	bCT66HELUv3NwVpBl04bBWsKkNUTiTx/b6DTSpGOsVlVH5DHNqZibE3wntoAmuaT7CCLKf
-	aegJO4TlaZLsSJxVQaufMbQpUp4yNV99x9VDUp9gf/gdJ4TeUao7O4BkohfgJQ==
-Date: Thu, 3 Apr 2025 14:21:14 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 1/3] i2c: core: Follow i2c-parent when retrieving an
- adapter from node
-Message-ID: <20250403142114.2ca6722a@bootlin.com>
-In-Reply-To: <Z-5u5bAnY8Y1DmFz@shikoro>
-References: <20250205173918.600037-1-herve.codina@bootlin.com>
-	<20250205173918.600037-2-herve.codina@bootlin.com>
-	<Z-5O3-FSsHbn27lW@shikoro>
-	<20250403125050.22db0349@bootlin.com>
-	<Z-5u5bAnY8Y1DmFz@shikoro>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1743683434; c=relaxed/simple;
+	bh=5T1OA4ChThqSNaJTyIFUJ3NJ+R7Nkp6/f3hl+GpY33w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AyqjqWxPhfeYdp8fdxGohrZR0/yAGleCuU1TK5PlfbTg3MJAo3b5r6+7vLm//N19pQPOq6qUn9mayKJ50oXVqW6SW6wcq/FjEhKHZy3BigEvjgZW24WV6bIjXdH5wQf+ugqCX5cAhAISA6HRKqD8FbywoiIVGRQzCAORwa3MRf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=7MZU4EmF; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 533BPk0D024168;
+	Thu, 3 Apr 2025 14:30:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=Von8b2NXYZkvBjVDvYrnhA
+	S11Wz/rmPhDLEso1JFGD8=; b=7MZU4EmFiq0v96ExZQ1gVFyPx9cBkUF/xFf3SD
+	CMpkWWEXlqYGH6hy5XOBlvYtUmxXNYBz9fRiKON4qj4TrsoCVa/f59cf40HA00xP
+	gYbOIx+EhPHxk73lZ80AfWQE8Q4IgjaehUnaMTaVZMIjVWTt2bdV000oXiSDz4Og
+	e+FoxM00NzCSMlAJWZBRZvS/MIRlCBkCC3x77kM5nM9wNFpF7uWemvgmsKR/cqjv
+	Mhe6olkO439rjpENRsCQ1HSHH9ZncnLEUAipEpHjMVj7yD/1y1PFNJ/F8NKv1ZcX
+	Mmw2e2TnJpgYxsYfpjizVWAsec81hpm4w0xaXYdZiMYMveEA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45s2c7eeya-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 03 Apr 2025 14:30:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 52ED740048;
+	Thu,  3 Apr 2025 14:29:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 303088EEC9C;
+	Thu,  3 Apr 2025 14:28:26 +0200 (CEST)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Apr
+ 2025 14:28:25 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <maz@kernel.org>, <tglx@linutronix.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH 0/3] Add ST STM32MP2 GICv2 quirk for EOI split mode
+Date: Thu, 3 Apr 2025 14:28:02 +0200
+Message-ID: <20250403122805.1574086-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeekheehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
- hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhm
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-03_05,2025-04-02_03,2024-11-22_01
 
-Hi Wolfram,
+When using GIC EOI split mode, GICC_DIR fails to deactivate the interrupt,
+leading to a WFI freeze. On ST MP2, GIC cpu interface is limitted to 4K,
+thus GICC_DIR register is reachable with a 0x10000 remapping
 
-On Thu, 3 Apr 2025 13:20:05 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+When using GIC EOI split mode, the GICC_DIR fails to deactivate the
+interrupt, causing core freeze on WFI. On the ST MP2, the GIC CPU interface
+is limited to 4K, so the GICC_DIR register can be accessed remapping the
+register to a 0x10000 offset.
 
-> > The debug message can be interesting when things went wrong and we want
-> > to investigate potential issue with i2c-parent chain from the last device
-> > up to the adapter.  
-> 
-> I thought so but couldn't estimate how often this is useful in reality.
-> I agree that introducing 'dev' is too much hazzle, yet I think the
-> message should have some id to disitnguish potential different adapter
-> chains. Either that, or...
-> 
-> > I don't have a strong opinion about the need of this message and I can
-> > simply remove it.  
-> 
-> ... we just remove it and let people add their debug stuff while
-> developing.
+Christian Bruel (3):
+  dt-bindings: interrupt-controller: arm,gic: Add
+    st,stm32mp2-cortex-a7-gic
+  irqchip/gic: Use 0x10000 offset to access GICC_DIR
+  arm64: dts: st: add st,stm32mp2-cortex-a7-gic in intc node in
+    stm32mp251.dtsi
 
-I agree.
+ .../interrupt-controller/arm,gic.yaml         |  1 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  2 +-
+ drivers/irqchip/irq-gic.c                     | 47 ++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 2 deletions(-)
 
-> 
-> > What is your preference ?  
-> 
-> A tad more 'removing'.
-> 
+-- 
+2.34.1
 
-Will be removed.
-
-Hervé
 
