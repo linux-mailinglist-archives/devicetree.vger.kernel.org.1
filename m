@@ -1,131 +1,109 @@
-Return-Path: <devicetree+bounces-162978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F25A7A80E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:36:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998B8A7A82B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:48:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 949AF3B1D0C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:36:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63755174E84
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADBB624E00C;
-	Thu,  3 Apr 2025 16:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4ACE2512EA;
+	Thu,  3 Apr 2025 16:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dp5Lf/I8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="I3i1n9Mw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76ADA23F403;
-	Thu,  3 Apr 2025 16:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8DE2512CB
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 16:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743698212; cv=none; b=DOztxTyuzCUZ1Wn9i4O3PokES67FtvHUUtniJtIfHdOLyDmOn1DEEbQ5F4PcjYCpLbgh41ykuSp85FSHHZCLwzrm8K2R2mBJxVIe18niKC6R3WQc5AEPQ9ApLDIKZmYwc7JRp1gHjvVOCHnHVjfsauxSJ0MlN2jp40LvfAOFDsg=
+	t=1743698893; cv=none; b=tmtn465xY7/ZwUH/BhEXtcnJjOoNWvt7/NmPoU55i4AGoF3oH5lSrL1FZJxTGwHE/zBzHyjAavSRgzuybMsnOo3AIxNcx2+SEdrc6TmJG5ShINxdoCZJu5bIrdqOdXFnUStu6ULjBtH4ErKjvbtcQfijL+UEB/iFJ/bqIiRgd/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743698212; c=relaxed/simple;
-	bh=rHQvrTRD9lw8HQVLfGzOcqqcO/H5rWQHLFBLB0wZyD4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FoknYX7C61TNeRoo10i/WqJYU5MO9b2APzp9viCWsZUMeSw66qBpolotMzrXAy6ediY5eYaQeZ6nHJTwYlNfa+l16RxeLmCG4KX2kS7EinyL1WPPFlSI94gXJ3WPXzY4awGz3NXmILZwg7l0DtliPl7pO5LCQ8wnyj6czpaJA24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dp5Lf/I8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24F0C4CEE3;
-	Thu,  3 Apr 2025 16:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743698211;
-	bh=rHQvrTRD9lw8HQVLfGzOcqqcO/H5rWQHLFBLB0wZyD4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dp5Lf/I8Vwz/fTu+t0VA6NfWBk+w+7i+KnuEgYHWSaCRIpVBxETkf1HyJ0Gww5BaI
-	 Ro4nvDrTvMjuAk9L/42vbvWA13shG6KWzcK0aSwPpPlhQhbE+30BUPCyauCqTqll0P
-	 CjiGxCSAFse68HUBO53jquvUQBe1Eo71FjPSjH3QYlE+GkOcEiV69OiGoGmAEovnKm
-	 unsRq+GDuEJG8jhTUvhNBUjOSf0VfMAnBJBzR8CPYBuO54t7jQHGDWmr6AQLjGnhkc
-	 pnzAq6q3f8hxEdtVanG0X86dPOp+ydmpD14TiBotwUHFvXYHnFCTq0AiW5Q07T2WNH
-	 UQjwhVu/iqovQ==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5eb92df4fcbso2126941a12.0;
-        Thu, 03 Apr 2025 09:36:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUl3aGOV2WxAqD+DRd6XI+rPsw0uuSGfEze4493c8rr9bwNICBE9Da4osgOrFn445GsmLaxdhanYY8t0wlR@vger.kernel.org, AJvYcCW5NrOZcxUoF0tbY+EGQHKmJ6glBsfjn1JJf8Q3agNt63TUUWeIergGVUnt30eTWQZhu4ce4S51dtus9g==@vger.kernel.org, AJvYcCXlB1vRaXmg8sJF1aqQUQDWwONSLiLZIwvvI4QOUy9HKHEAm0ayzbzaGXNjK7fZzSmYCUrir/yo9BlYueUuR2w=@vger.kernel.org, AJvYcCXxi/eFDSqVKEsq2ied1QZzB1T64u2J/TRVWfE0ANDdiKXx7nuqRlUWyJErmHQGBnOezwPZDMt1PTkh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbFyOJe13hoQkcn2PDjG4RS0+0Fop9WY7pw/jcKqoHcZ/ndU0N
-	b06GldlL1LkD/LnBflcywHZq9Bp6v4F5yzFcbfq9pKORC7TZ6tBqmXmG2XS4GX5QQmccVsc1Qsf
-	3l/k2o3CCUAle9eXHAXl1ERQCdg==
-X-Google-Smtp-Source: AGHT+IHon+pzrhvNsXMZduvE26T67ozKBFRk7/vc4tDRAuvWWErTIylHENbrBF1kJZB7zR9IjvY91WWEDmvpGtA682M=
-X-Received: by 2002:a17:907:7e8f:b0:ac7:cfe0:3014 with SMTP id
- a640c23a62f3a-ac7d1914808mr23737166b.25.1743698210484; Thu, 03 Apr 2025
- 09:36:50 -0700 (PDT)
+	s=arc-20240116; t=1743698893; c=relaxed/simple;
+	bh=4wuv9Dt/9rj9cF2a6+xai4em1wNvUS1HPV5q6UbrWUc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M8RLobzNAYctKsE2LtlkfXdW6vwtelPdFSlgd8qcpf0J5ssWpUhPwbBQFyh/hUDpwbu0tsJDlF0yI9BVxAvLAi5mJY00HEcQTVUJP9VgZdX8E2UmEgZhTqrpfoEJoyeeh4HpZGTpnP7zljgjQcLHz8RtgqznkxO5SokOObvzw0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=I3i1n9Mw; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-72c0987bc4fso459146a34.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 09:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743698890; x=1744303690; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YSC+FUFy0d9lpIsypY5Nl8Mx6gi/Bcekgwf80nw84HU=;
+        b=I3i1n9MwCbrlxICsFt+cvK6O+W9NjVOn+9VoukT2RXByhIBHiCtcZ23dCHs0WUzMwf
+         fokR4pphQR0FTr+wpqfty3N0QwMNau8SwRYJMPT39egB/8aIXvl6HuRk4qAAt1L5j08J
+         2+wt73oTEvRjlo/2e7Wrd+z3bTlOTXBLwRDHG9C6sMnfN613s/KEhc3D1zHl26yKz59K
+         Vqzp2YWHIzJWI5eD1QrWmZhqAs39Wi0/Wgc1V+ppEl4AC4uo6GQtnswEtt+CzaNTjiLE
+         3FTOlhsW+7ECI+p8evg66aC6ezgw6B78+gzUqW8RtUnXTX6BoIp+ZDNWPZ3a509rKBvr
+         XqcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743698891; x=1744303691;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YSC+FUFy0d9lpIsypY5Nl8Mx6gi/Bcekgwf80nw84HU=;
+        b=lqE4pdTNltg33v6+5CCM6TgLJlgAhogdftr7a0uzL6HcYdcwJ0JVbjP9Nt4TQLG0uM
+         6sUt66fR3VweetjZwSia9qy1c5m/6FaDNSenJt9HaBLk5zmOBhceT/kh+6cL97Idecj4
+         PASjH+i9MR6JlF6fquYbzv7pE1A16zCOHkI0VwXSlTrIFpA+XRUcpCUrKlMN4AGVNDv4
+         P6eriogVQH3NjLirl1QzTJIYDOJURawTwnsREEFTuOqcxd5Ii2G88SuJznE3prl30i0l
+         Nyri2YXNMghbfPyTkm4rqf5di0d7i4yN72a419eYSMvqvpH042Z6XlLWK4UMfvRvzr/p
+         8NHw==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Ew9WxMJBXIvxGgL3EaZ9L/OWxcp0YTCQw8ELPCsUY5juUDlz8bxUMZgWvCv0W3/r815xhTDug493@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGcqKVsp11rjlq+ZdKrTS1LwWpGn28Q39NQ/1BYAVNnn9i+vmF
+	p0zhtgzdOMehknn/e0s6SrD4XzoKlq/gNs1rl6tRJ/61N4gfJYlulawexTjNSA4=
+X-Gm-Gg: ASbGncuo/7CDN4osydQo5JjQIvLABejUF3eSWZBCz7cRTjUtfWXfufMml0kGaDStqjJ
+	wS1da/DlNh5QNwZDQ4shgX9dYmxpD6PzAJk208GHIXLK8oxvJgZa2sFdJS8RmeMT5KXYQjkoRUq
+	kNZCbx4cRrZFq8Pm9mWfv8Y854O8VyprfnjuEKx2oh0FeVhWDENr8TO5mg+4yXzp5hrKKj1tX4z
+	7jnzaFbA/jUlkAAT6AHmVaiGUuUlly47UUw3JBulD0Rg0TwVjpXoL+h+mwZXPvHLMFV3+1tcK2W
+	c8uAE72wsdnq8F4QdYi6tMV9TU91vcP40j8D57LGjGDh7liyVq6XC5H308pGn+78378iW4+OPyj
+	KQ9M52g==
+X-Google-Smtp-Source: AGHT+IHMO8mKj7XI4u0FpdUX8+XWGlKjBQ/8BZn9Gd3V/HfCKgUeXNkn3/hksONPqG77YFoErY/6nA==
+X-Received: by 2002:a05:6830:4987:b0:72a:1d2a:4acf with SMTP id 46e09a7af769-72e3696f946mr147011a34.17.1743698890734;
+        Thu, 03 Apr 2025 09:48:10 -0700 (PDT)
+Received: from [192.168.0.113] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72e30511237sm281580a34.15.2025.04.03.09.48.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Apr 2025 09:48:10 -0700 (PDT)
+Message-ID: <c146175f-6a21-4039-8c81-5933a9ef5ef6@baylibre.com>
+Date: Thu, 3 Apr 2025 11:48:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-4-remo@buenzli.dev>
- <Z-UPJyD41LOMM3o2@smile.fi.intel.com> <CAL_Jsq+tJvGsbw1dGdgmBM8+cL4vN71OMTvX9tkmBLNk=6T9KQ@mail.gmail.com>
- <Z-60LwRrw30cq4YE@smile.fi.intel.com>
-In-Reply-To: <Z-60LwRrw30cq4YE@smile.fi.intel.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 3 Apr 2025 11:36:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
-X-Gm-Features: ATxdqUHrR9f-M9Rc-icD8gFeAJeiwgk4wmkSQ4eYZoRilCIetdjLrpjtMC9KT6E
-Message-ID: <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
-Subject: Re: [PATCH 03/10] device property: Add fwnode_property_read_int_array()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Remo Senekowitsch <remo@buenzli.dev>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] iio: ad7606: add SPI offload support
+To: Angelo Dureghello <adureghello@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 3, 2025 at 11:15=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Apr 03, 2025 at 11:04:32AM -0500, Rob Herring wrote:
-> > On Thu, Mar 27, 2025 at 3:41=E2=80=AFAM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > >
-> > > On Wed, Mar 26, 2025 at 06:13:42PM +0100, Remo Senekowitsch wrote:
-> > > > The rust bindings for reading device properties has a single
-> > > > implementation supporting differing sizes of integers. The fwnode C=
- API
-> > > > already has a similar interface, but it is not exposed with the
-> > > > fwnode_property_ API. Add the fwnode_property_read_int_array() wrap=
-per.
->
-> ...
->
-> > > > +EXPORT_SYMBOL_GPL(fwnode_property_read_int_array);
-> > >
-> > > I'm not sure about this. We have a lot of assumptions in the code tha=
-t the
-> > > arrays beneath are only represented by the selected number of integer=
- types.
-> > > This opens a Pandora's box, e.g., reading in u24, which is not suppor=
-ted by
-> > > the upper layers..
-> >
-> > We can probably drop the export if it is just that which you object to.
->
-> Yes, this is main point, but dropping it does not prevent from still usin=
-g in
-> the complied-in code. Is it possible to hide it better?
+On 4/3/25 11:19 AM, Angelo Dureghello wrote:
+> Add SPI offload support for the ad7606 ADC.
+> 
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
 
-Don't put any declaration in the header and declare it in the rust
-code? But lack of declaration generates warnings.
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
-Also, all the backends will reject an arbitrary size. So your worry
-about u24 or other odd sizes isn't really valid. But if you want to be
-doubly paranoid for when we add a new firmware backend (shoot me now),
-you could move this from the swnode implementation to the fwnode
-implementation:
-
-        if (!is_power_of_2(elem_size) || elem_size > sizeof(u64))
-                return -ENXIO;
-
-Rob
 
