@@ -1,90 +1,144 @@
-Return-Path: <devicetree+bounces-162765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F4CA79C3F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:44:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D70ACA79C5C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:51:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F86618944AD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:44:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C3F13B302A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896BF1A23A1;
-	Thu,  3 Apr 2025 06:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09E91F4627;
+	Thu,  3 Apr 2025 06:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAJ64pjt"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="WbCGvL+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5CD2A8D0;
-	Thu,  3 Apr 2025 06:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1FF206F03;
+	Thu,  3 Apr 2025 06:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743662653; cv=none; b=ceF5kbhUjpws3m4nKNFieiryPYY0QfR3DemPCO93HPuYcIlKqeAK4mTQdwpySpv5BpjmJxbXFUmsTJLzQmpg6tNOPstICEXtjgqQnC5ButDTqxLijbaj0CCzL98VSMT8AcnozZDtGWg0OMKJz9CIM7Au77lg6/XRUqocfpMd8X4=
+	t=1743663050; cv=none; b=ke7rW4qRxSgEAlLIi67t3HBep4Vg7JjqvnkVkpgn7c0hDyagg3uarOdIkZspLFx8DDlLT3EbFmsl/m2V0tq8BvbfLrU77z01fOGigUNCJcTJk6URPfd+1ERyay0dS/uLyXFKXJPKPhsYU0TrmE+1bKFxxkXT3J0VOVHvPzE7gFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743662653; c=relaxed/simple;
-	bh=mUtzj5WoIbjsNCfhOOafE3B6C8E+N69MbFu/E7H+GXM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bk7i4K4JsdYnZ2PVcvJc3zPG9gzmC1yZYiw5AVHFv4HOinZFKs/YsmRcc26oDYtDUbvyNmPs2ObVEdBS2TrizgB9vtoEclzZj6MQPV7sNCVNNPjGstJIgQirwbfzzZVtC5hZ1Me/k/m2L+ezTuo4TEvsfcr+lvCL/Ct0yhhSDiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAJ64pjt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5C5AC4CEE3;
-	Thu,  3 Apr 2025 06:44:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743662652;
-	bh=mUtzj5WoIbjsNCfhOOafE3B6C8E+N69MbFu/E7H+GXM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BAJ64pjtk2dFYzxaleMs00auuHOrjMfza6g0McmsPNOuybIW0/vHvLgxVLN5EsWoK
-	 fHjQJH9q1yZP5Mt2hQZb6Em4DN0H4fpY1EENoaPsE1wdG/dUbdiK+JB2Gmi9KqYM4d
-	 UfTgJLqurLOrbKsUgzd9SHxSTkGGSfAXAMg/WWsLc/bx5wjjJIXCtWjItdCeu1A0NG
-	 0ArZiUXCUTG+vElBqzncKo1M9gaHoPENlyx1IE9vaZrFfu0Z2lrxVNijDktxkS+wiz
-	 Xp84y43L7nYJuydAkfaU2hR/2VtvuBw1VnrAssdi+wIl6qmn6a+OwWpW6qjU2MgW6+
-	 cHQntue65Lugw==
-Date: Thu, 3 Apr 2025 08:44:09 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: dac: Add adi,ad3530r.yaml
-Message-ID: <20250403-ebony-coua-of-tornado-71d4ad@krzk-bin>
-References: <20250403-togreg-v3-0-d4b06a4af5a9@analog.com>
- <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
+	s=arc-20240116; t=1743663050; c=relaxed/simple;
+	bh=NFq5MdVkeEC3JGmDCriNI4BhC93MRdZYpm7N/k1kvck=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Hu/B1wH/ni6KdY+X8uW/2Y41pXueOE+ckjMKGxhD6OrRN5NCSDuwXcMo85k8JWkjYZ2JKvlWUvF++QMhETH8hgZCInNDoJKCkeTlRo/8N8ult3MHCl6Kpy6GBr7kXh20AfB1O3tQEg2uWfMbIviDMdenaqObQ72XWYKSmAPfdmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=WbCGvL+R; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f1a2f04e105711f08eb9c36241bbb6fb-20250403
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QDJ27iW4X63WdVZOkwgFkljRednxU+tqzHABvD19+JY=;
+	b=WbCGvL+RZiolFP4pFPm4S3d977RHOkvCRefveBKOtha+ABg8whoQo8c1SE3dDZ2rqFS2hFcNT8HrdkqAcA6fKTVUpcW+ZvKlebf4uPorD2WC21ldWsTVXx5z2eepk2bl5XVxLO5h3bIEuO4A9wXbHnRotxegT1muiSs2accJamk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:9ffc742e-f57d-4dfc-982f-ed94c4d5a6ec,IP:0,UR
+	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-25
+X-CID-META: VersionHash:0ef645f,CLOUDID:5a22e94a-a527-43d8-8af6-bc8b32d9f5e9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: f1a2f04e105711f08eb9c36241bbb6fb-20250403
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <crystal.guo@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 378322673; Thu, 03 Apr 2025 14:50:35 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Thu, 3 Apr 2025 14:50:33 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Thu, 3 Apr 2025 14:50:33 +0800
+From: Crystal Guo <crystal.guo@mediatek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Crystal Guo
+	<crystal.guo@mediatek.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4 0/2] Add an interface to get current DDR data rate
+Date: Thu, 3 Apr 2025 14:48:46 +0800
+Message-ID: <20250403065030.22761-1-crystal.guo@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Thu, Apr 03, 2025 at 01:33:56PM +0800, Kim Seer Paller wrote:
-> Document the AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel)
-> low-power, 16-bit, buffered voltage output DACs with software-
-> programmable gain controls. They provide full-scale output spans of 2.5V
-> or 5V for reference voltages of 2.5V. These devices operate on a single
-> 2.7V to 5.5V supply and are guaranteed to be monotonic by design.
-> The "R" variants include a 2.5V, 5ppm/=C2=B0C internal reference, which is
-> disabled by default.
->=20
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad3530r.yaml   | 99 ++++++++++++++++=
-++++++
->  MAINTAINERS                                        |  7 ++
->  2 files changed, 106 insertions(+)
+This series is based on linux-next, tag: next-20250402.
 
-You got report about error in v2, which you did not respond to.
+Vcore DVFS feature need know the current DDR data rate.
+Add MediaTek DRAMC driver to provide an interface that can
+obtain current DDR data rate.
 
-You send v3... with same error. I don't understand this.
+---
+Changes in v4:
+- Rename "mediatek,dramc.yaml" to "mediatek,mt8196-dramc.yaml";
+- Refine Kconfig for MediaTek memory controller by removing the
+  redundant explanation;
+- Move the function 'read_reg_field()' to before mtk_dramc_probe();
+- Rename struct 'mtk_dramc_dev_t' to 'mtk_dramc';
+- Align the comments to kerneldoc;
+- Simplify the function 'mtk_dramc_get_data_rate' by removing the
+  redundant error handling process.
 
-Best regards,
-Krzysztof
+---
+Changes in v3:
+- Move register offset, register mask and other SoC-dependent variables
+  to the platform data;
+- Correct the spelling error.
+
+Link to v3:
+https://patchwork.kernel.org/patch/14029756
+
+---
+Changes in v2:
+- Remove pr_info and pr_err, use dev_err or dev_err_probe to print
+  error message;
+- Replace module_init by module_platform_driver;
+- Remove unnecessary global variables;
+- Change fmeter-verison to platform data;
+- Remove mtk-dramc.h;
+- Refine compatible to "mediatek,mt8196-dramc";
+- Refine CONFIG name to MEDIATEK_MC;
+- Fix yaml build errors, remove unnecessary properties on yaml file.
+
+Link to v2:
+https://patchwork.kernel.org/patch/13964208
+
+Crystal Guo (2):
+  dt-bindings: memory-controllers: Add MediaTek DRAM controller
+    interface
+  memory/mediatek: Add an interface to get current DDR data rate
+
+ .../mediatek,mt8196-dramc.yaml                |  44 ++++
+ drivers/memory/Kconfig                        |   1 +
+ drivers/memory/Makefile                       |   1 +
+ drivers/memory/mediatek/Kconfig               |  20 ++
+ drivers/memory/mediatek/Makefile              |   2 +
+ drivers/memory/mediatek/mtk-dramc.c           | 223 ++++++++++++++++++
+ 6 files changed, 291 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,mt8196-dramc.yaml
+ create mode 100644 drivers/memory/mediatek/Kconfig
+ create mode 100644 drivers/memory/mediatek/Makefile
+ create mode 100644 drivers/memory/mediatek/mtk-dramc.c
+
+-- 
+2.18.0
 
 
