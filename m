@@ -1,145 +1,109 @@
-Return-Path: <devicetree+bounces-162961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E38A7A673
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 17:26:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A95EA7A6F4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 17:34:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4284B179611
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:23:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 412D63AA4C9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8497250BF5;
-	Thu,  3 Apr 2025 15:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2AB524EF7A;
+	Thu,  3 Apr 2025 15:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AhroqBEX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7Zra+8K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDAD24C080
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 15:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07DD188A3A;
+	Thu,  3 Apr 2025 15:29:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743693681; cv=none; b=VhhJT8alVbWqJ/yDYWYmzkgoWmdJnSm5oT56wrves8KvzFyjkJKWtYhmeRkWb9rBHAKQGde3AODuXCUvnnBYtAWy4vjoaYzpwL9V9eWyK94PkZ9ZEa4kcYdAZfPmLtEcWsg3v4jWnG4+Cy8mi4Y0bYpJav8xvTEIFmWXR0b3Uwg=
+	t=1743694167; cv=none; b=t9bPHbTEgTDLSJJo1KWghFzV8Sr4SSuaGFx47bbw5raQiX/hCp9nmN8tlhl9ASBJak/ztseGfzulUpGbZXwouj4sfNaDm5H8D3cgq/ASAhUy6xZwRp3tmwmyGKbFzHVWCCY+uOhw7JVbWWT44yRiWBAtXfYcNbrO0ExqnG6tTaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743693681; c=relaxed/simple;
-	bh=7BYAU7FWqgp7VAH8vNjlWZeSog6QTqHnJvWr0crzcfg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l8vwm3Hbtxa7N7MOgEi3VAwxFd6OC7m9+CokXHdJphiAkPyBPt65VNdv4aJOK+vreIYF1KGGe21jOny8GPqClXbLo1jV1NGQ1IEzjMzoCLOBwHzj8AQIrsXL0rq72Fr4OP9pYwBhX8mNeIZz3ZPzUry1FWa7iRlmmNPWORA/XFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AhroqBEX; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39ac9aea656so924356f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 08:21:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743693678; x=1744298478; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LLzRxbLbGYqFEY7hyGVV9DDJqGfYqDcrqrelLGxLjeg=;
-        b=AhroqBEXbCFTlHKBfAgoMN0g5OWIMnoaPsVMASuHluxkFNWXLBthuR1n8IGtRLzwmQ
-         IYZl6Aex2c1DIvMtdWdYNMyegFPg0r6llYdXu2TuUba5pstb5B5lIdWcPWI51ydVG3qm
-         YwrcMNWiX0wKD3UqfpbZwm7tXG573ZrEpQWOzgu6b8qIHdOGfynIjgC0G5cD0QwfVrsg
-         yifvAude2NCcnH3FYyq+TeI1ipIfSZk2plZr8qyPg6rZFTWGYRbjK5HEmPqBu9pzwUhx
-         HvDDl/Ah6KgmQlkDpEag+86mZKjisQ1CG5OD5ClW58q80y2sA4+x8HEOzwjEo3ZJoAt3
-         PIvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743693678; x=1744298478;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LLzRxbLbGYqFEY7hyGVV9DDJqGfYqDcrqrelLGxLjeg=;
-        b=N3doyhRwv6huBdYts9E1fVyrRm2Vltc9dMH59s7odE8L5ZTY1mrvEzGb3SZGsidc7r
-         xYRWHKwlaimhkMjUwEOIx+/iTeNphn8iz4rbelZUdRT0v197x9Eu9dCtIL5X7ky0IK16
-         CxNJ31SamGdhKtEUdpdCINp5MNAYVJFT7UzBVBIvPsfpm4St/PsxEBQU/LsMLvb7cjBM
-         Z8O1CUijb3IPUol0qvQv/AAcJyBqgMLnQcY8+iworSX03i+pC1+xuItJLNDDBD63vyt0
-         cy69RDOVyArKzws6PBOSpVUPt1ocuKJB3RZxQsrxUXU0CPhc1uJENgjYVR6J5MNY6TcL
-         GyKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhhd3aYQVFLvcj/BD3YmdEnycQav0SBHdjR5tWOk6933ID3Cq22M35gp+ZSgtDGdHNjZ4CeLJ+0PwN@vger.kernel.org
-X-Gm-Message-State: AOJu0YysbbnniSJUcGPPIVrhqBJQg4iWWH3FrrKzW031Sp2fVcVU3alc
-	HYoYxFDjsSAMRQqWzqIPbplEC8z2EZb0I4c3WN/kFxmS5PZDu6eT1gfY4zJIrws=
-X-Gm-Gg: ASbGncs+ISGkqouB14UefW6ZJw4X1qq4MHRaMZJavPcv0Pjl56NU60OSqWVHzRlpjJb
-	k9vJlw5AhnJMVQ5GFKEDoSyFJc9hZ534Th0MgwyaKv51CEzfruOZZ0yLN5Sea2bIJmPopJAUwGJ
-	k1wyFPifarjAJPxjgArN5FAdkc2cOR9ZgTfVEXfS8zEijROTB+DLer0muqWYJTe0gy7fZ7EH/iy
-	SEm/Erp1jWoyIYfEcpoojY3eFah/SajOW1gWmLXlzDFUpMvKpNglWye0s31slT/URhyxd14gG6q
-	4IpbKcn5cdrteI8fobttgNM0Z1YUT9o0/FhNSQL6BAjUjZixYRHP8Tnnohy97VGw3PuSJK+4RO7
-	172MexNer
-X-Google-Smtp-Source: AGHT+IGw5ghzd9cHyGdFKWQ5WVPa7dVeNteHj1/e+hjpE89/v7AeOKF8SPeYMkbL/YLt+h17xVXsbA==
-X-Received: by 2002:a5d:5c84:0:b0:39c:1efd:ed8f with SMTP id ffacd0b85a97d-39c1efdedbemr11060254f8f.50.1743693678287;
-        Thu, 03 Apr 2025 08:21:18 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43ec34bbd9csm21302405e9.20.2025.04.03.08.21.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Apr 2025 08:21:17 -0700 (PDT)
-Message-ID: <67daf656-0e08-471d-afce-22ba8f2fa1f2@linaro.org>
-Date: Thu, 3 Apr 2025 17:21:16 +0200
+	s=arc-20240116; t=1743694167; c=relaxed/simple;
+	bh=Bgq41wO06U/uAv1x2bdgMUv74XXWVKv/4GQnQMRuXSM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=hNqFIveRd6BPJr5QiSWewEHAIw005KMtf0Nact9Sby5AxpU8EmfVmZn2877O29DoWqAfPBuwv80Fg5dH0aklMwL+zjSOxEmfdxi2oZg1DVS/uwKyTvNY3+W6PmLfxJdY1DqQ75k+DX9t+JLJD3FhR0S0CXBGlv5gy8nd4UT19DU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7Zra+8K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0976C4CEE3;
+	Thu,  3 Apr 2025 15:29:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743694167;
+	bh=Bgq41wO06U/uAv1x2bdgMUv74XXWVKv/4GQnQMRuXSM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=i7Zra+8KODyTzoQfJUyH1kWy2yTZ61f20dK6Eqb25GYQq6h9Ak9jIQWMdpwHcThU3
+	 Zln7ZWPtrsEna2ZvwDnef6Yqu5aon7pxRrgqBFOuKl/r684TyR+vU9vNnKbz91ygVS
+	 xjoQT5wApv/lTcO+3JvK14/e3RrrPEvPl9iXfp5wFvovlnYwu26GV0/CUUgfs85llO
+	 Nba2d61UvNrBo/5ZZMFE+R/97zZVg01lNcYbxkY5iEpFM9FpuqeL6yxs4Sh1XWYQDp
+	 8iCE7WWlgEUvh0U5MBV2SzBNZOt6axEUlyky77eKmeZ0Rw/EUdtnyCWpLZkd8M+ktn
+	 Zc9LSEPl557Gg==
+Date: Thu, 03 Apr 2025 10:29:25 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: Add NXP System Timer Module
-To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, tglx@linutronix.de
-Cc: linux-kernel@vger.kernel.org, thomas.fossati@linaro.org,
- Larisa.Grigore@nxp.com, ghennadi.procopciuc@nxp.com,
- krzysztof.kozlowski@linaro.org, S32@nxp.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-stm32@st-md-mailman.stormreply.com>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
-References: <20250402090714.3548055-1-daniel.lezcano@linaro.org>
- <20250402090714.3548055-2-daniel.lezcano@linaro.org>
- <2503deb2-b993-7fd1-adf3-cafa1e7bd2f4@oss.nxp.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <2503deb2-b993-7fd1-adf3-cafa1e7bd2f4@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: konradybcio@kernel.org, jarkko.nikula@linux.intel.com, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, andersson@kernel.org, conor+dt@kernel.org, 
+ linux-i3c@lists.infradead.org, krzk+dt@kernel.org, 
+ alexandre.belloni@bootlin.com
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <20250403134644.3935983-2-quic_msavaliy@quicinc.com>
+References: <20250403134644.3935983-1-quic_msavaliy@quicinc.com>
+ <20250403134644.3935983-2-quic_msavaliy@quicinc.com>
+Message-Id: <174369416594.2973751.10281214414907199841.robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: i3c: Add support for Qualcomm I3C
+ controller
 
-On 03/04/2025 08:33, Ghennadi Procopciuc wrote:
-> On 4/2/2025 12:07 PM, Daniel Lezcano wrote:
-> [ ... ]
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    timer@4011c000 {
->> +        compatible = "nxp,s32g2-stm";
->> +        reg = <0x4011c000 0x3000>;
->> +        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->> +        clocks = <&clks 0x3b>;
->> +    };
+
+On Thu, 03 Apr 2025 19:16:42 +0530, Mukesh Kumar Savaliya wrote:
+> Add device tree bindings for the Qualcomm I3C controller. This includes
+> the necessary documentation and properties required to describe the
+> hardware in the device tree.
 > 
-> The S32G reference manual specifies two clocks for the STM module: one
-> for the registers and another for the counter itself. Shouldn't both
-> clocks be represented in the bindings?
+> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> ---
+>  .../bindings/i3c/qcom,geni-i3c.yaml           | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml
+> 
 
-AFAICS, there are two clocks as described in the documentation for the 
-s32g2 page 843, section 23.7.3 Timer modules.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-The module and the register clock are fed by the XBAR_DIV3_CLK which is 
-an system clock always-on.
+yamllint warnings/errors:
 
-page 1994, 40.5.4 Clocking, the documentation says: "This module has no 
-clocking considerations."
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml: ignoring, error in schema: properties: compatible
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml: properties:compatible: ['qcom,geni-i3c'] is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml: properties:compatible: ['qcom,geni-i3c'] is not of type 'object', 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Documentation/devicetree/bindings/i3c/qcom,geni-i3c.example.dtb: /example-0/i3c@884000: failed to match any schema with compatible: ['qcom,geni-i3c']
 
- From my understanding, we should not describe the XBAR_DIV3_CLK as it 
-is a system clock.
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250403134644.3935983-2-quic_msavaliy@quicinc.com
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
