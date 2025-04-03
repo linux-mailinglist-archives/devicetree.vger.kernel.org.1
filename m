@@ -1,142 +1,142 @@
-Return-Path: <devicetree+bounces-162924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DA7A7A329
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:54:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CCC6A7A359
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:06:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E54A13B5021
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:54:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB68D1739AE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED72C24E019;
-	Thu,  3 Apr 2025 12:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11AC24E004;
+	Thu,  3 Apr 2025 13:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QbO8ZoUg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB0224E007
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F91425776;
+	Thu,  3 Apr 2025 13:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743684852; cv=none; b=g5O/xeKvJiZoq2uc7ajYkmNNlgT+WbNZS4gX4lHk48sWScMT7CeK4PMRB0eMOVynRAzaUxhyPxr2eC39/aI8qvSdAH6ehdt2YmFwO+lhuc4ZF5rt4yjmY1+7F+DgWgucBoBgw1sEeoPT9LhVkJ5OBJWUlu/QOx0XQB9HzVa6keE=
+	t=1743685564; cv=none; b=p0UEQEFAxRg9X7bywVc02CEGqWgzAORg7oG2DTti/Qg8klGpZ+x8HjvSjacb9arx/KqA4PNMayDrinodUJOGbzW3JcS04KUxgPVrdYzYt9Q3yLhlyzOBrM5Nz5dd9/O36JL+KRNlJStH+ZPK4aMIS9d+i3o0ZDMay6InD/96u0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743684852; c=relaxed/simple;
-	bh=ypmiH/puGa4EAcldjZXT1WNtw2ksYWeUqQ7AXlx3nWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bsj0UqorM7BNCNWEs1NRMj9J6iPc0fKXt89LgsepNmiD8HR4wKodwIv5BI4mMMIOOuQv/RTUfj0qU5KVrsb/1SW5tEJYNBrWmONmgbZcvO3m/mvpAtVRTkOmeWOslyTGTGmuFESixZhsGS2YFiNN7no0tmlhtmFaj/S3WMP8Iig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 123E015A1
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 05:54:13 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 326FF3F63F
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 05:54:10 -0700 (PDT)
-Date: Thu, 3 Apr 2025 13:53:47 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	"Rob Herring (Arm)" <robh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 3/9] dt-bindings: gpu: mali-valhall-csf: Document
- optional reset
-Message-ID: <Z-6E262OIoJC5aC3@e110455-lin.cambridge.arm.com>
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-4-marex@denx.de>
+	s=arc-20240116; t=1743685564; c=relaxed/simple;
+	bh=lsJeZZZY/2URMCsjtrIPjM8KEvccXHmoZdYqAmsM62o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FZSs6zqByylJkocrCp6FgwLOzOHQPLxDXXpaYB2lfi7ZxCvH2MlJB7JYHlGZJtbQsCvojLIptubkQMz0BQymr+TYZcwiu12mH06OgAB4VWvwPYwX5ccFj45R/zBjydMbPhk6xOfNbBq500kbfVTmxvQOFfqX0JVDObHMTGoJpew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QbO8ZoUg; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86feb84877aso414474241.3;
+        Thu, 03 Apr 2025 06:06:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743685562; x=1744290362; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lsJeZZZY/2URMCsjtrIPjM8KEvccXHmoZdYqAmsM62o=;
+        b=QbO8ZoUgyWjiul967SmErDlE55XLGMpg++wYws+DKbqbc805ZcJfEO1sFdxAJNA/HG
+         WQmIoBlWuvBkyuRXsa5jQTsROKkmlvKq5GT1XgdcsIe35XJEmrI3RK37zY6g63LZO3Vq
+         +2EquwSUU5Zq2/C5gKCErh6/R/+sLwmOdEKdYYCXQHX/1gmE7v26wleCIeW0h+YGOpl0
+         Kugiz0RWtMY0PJzOIFo93LYKTJ5FzUJgj2o3xlwdGQc3zrBMhqHy4yE8UrI0/TpDfEpj
+         PZA/EWCDbzHc2HysIKD2E/m9rReuQX86/57V5Wxlts66d17y8bePDYBUbYkplt4PlbZv
+         ARgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743685562; x=1744290362;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lsJeZZZY/2URMCsjtrIPjM8KEvccXHmoZdYqAmsM62o=;
+        b=WqhFTKf7qWy8Y58gapIhusBMzdoWiZhoQTUAtiFFTQtW9WMOApRNSUSYzfVfm7bl2i
+         mMkRFZ5oYGwDeU+IiH1FPu7DCJLVXkvhhIYnJDBLznqa9l3ZA5drOSI+rh8N75cPBLDC
+         XHk+RQXN+cDHN8qaNpt3HVMVHmU3k+t7MgKdkzykZyl544H8TiGsMkCnuFB76Wkc1bl6
+         03Gu9VoOl0XmYybxXpDc/DQKmFHcMPAZhmzKgwRNQbGFwsv0D2YNtKSB3LeAqY4NLFmO
+         B3O2n/gmPyTCNYmoLJyFMQNnUCqaBUlJvDiYnhOQEEJMl4ykwTCGOTER1LKfwsw7tm7J
+         fGAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0MpY33EHPwxKB8ufzzPqy2uU14FhF0Vh/xM5iOJGNNqWTVpq7nsCIURl+PFZYiUIzFbC9DQEjVJC0Y27p@vger.kernel.org, AJvYcCV1jQ2c9ByItYNAyi7UcX1B9Yalztir7ZtHMZFWAXq5+Mzqjl6JZIgOA/GSdTJyxIdaSRm8KSlUlzEkVck=@vger.kernel.org, AJvYcCVTcCP5ZjYVFTnRlJbZXmwP+x7OgvgiffBhggP4wDga8qJ+m9NgmP6isiDu8CkJv32rgyKS+TBTDSY=@vger.kernel.org, AJvYcCWkM545kr+u4ePkBHTbMPNXcDSsLCNWYyTneR6Xzz+uXMZA7Z4+ZlUnJiNwpEIoIiQe9tzG0SQwTMa3Vwl6Ug67mmE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YybgLmHSz3F9sEhHAvOYCByA+W8+OReJp5qqab+82aDxX8W0+qb
+	Me6Hg9s4KqZDd5/PUNQPKeXP75FhE7G+N4MM2OemRBzCJZF1JNnXdGC75r5jNEpwCLDgh1WxgdY
+	A6X3o2/jptOlmLzMOOovX9Hc+ego=
+X-Gm-Gg: ASbGncuWBVN4S9UU4z4qF1VHzkh1qOBW0jpDYhEgGM6eEGRNp4A3gIM423fIQPEs0z0
+	tC5TA4+xUnr1talaXDiJ4neertAl/r+fXrqk4xJbo5pABOxxsIDl6bcDKZOAaNSU3YVJno0jLSI
+	pOh/AaGfLDr/J8xfTSII2NO+rrLg==
+X-Google-Smtp-Source: AGHT+IEzDE80EE6cbpeTM2EC/NmVx7bAKo2MiBYm9Z2gGy1h1pAWOHdYS27tRyPRKUwbhW2DvGquTwMOzOZsv1SPcGw=
+X-Received: by 2002:a05:6122:91a:b0:50b:e9a5:cd7b with SMTP id
+ 71dfb90a1353d-52758ecb40emr1666317e0c.9.1743685561913; Thu, 03 Apr 2025
+ 06:06:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250321200625.132494-4-marex@denx.de>
+References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <49b12329-87d8-4f6f-8498-0ff7430e31e6@ideasonboard.com>
+In-Reply-To: <49b12329-87d8-4f6f-8498-0ff7430e31e6@ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 3 Apr 2025 13:05:35 +0000
+X-Gm-Features: ATxdqUGr8IaAK5c_xkyz_zr7rT2-bUSRn-Mh8kf-15JIdRrzS-lrWmVXghuwU2A
+Message-ID: <CA+V-a8uW0sqOCqwpK2J3P9_MOaonpz8uA_CbOjqUiBxwPuXFEQ@mail.gmail.com>
+Subject: Re: [PATCH 00/17] Add support for DU and DSI on the Renesas RZ/V2H(P) SoC
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 21, 2025 at 09:05:53PM +0100, Marek Vasut wrote:
-> The instance of the GPU populated in Freescale i.MX95 does require
-> release from reset by writing into a single GPUMIX block controller
-> GPURESET register bit 0. Document support for one optional reset.
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Hi Tomi,
 
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+On Thu, Apr 3, 2025 at 12:52=E2=80=AFPM Tomi Valkeinen
+<tomi.valkeinen+renesas@ideasonboard.com> wrote:
+>
+> Hi,
+>
+> On 31/03/2025 00:06, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Hi All,
+> >
+> > This patch series adds support for the Display Unit (DU) and MIPI DSI
+> > interface on the Renesas RZ/V2H(P) SoC. The inital patches add PLLDSI
+> > clocks and reset entries for the DSI and LCDC and the later patches add
+> > support for the DU and DSI drivers. The DU block is similar to the
+> > RZ/G2L SoC, but the DSI interface is slightly different. The patches
+> > include updates to the device tree bindings, clock and reset
+> > controllers, and the DU driver to accommodate these changes.
+> >
+> > Note, my initail intention was to split the clock patches and the DU/DS=
+I
+> > driver patches into two separate series. However, I found that sending
+> > them together will make it easier for the reviewers to understand clock
+> > related changes.
+> >
+> > Note, the clock patches aplly on top of the following patch series:
+> > - https://lore.kernel.org/all/20250228202655.491035-1-prabhakar.mahadev=
+-lad.rj@bp.renesas.com/
+> > - https://lore.kernel.org/all/20250328200105.176129-1-prabhakar.mahadev=
+-lad.rj@bp.renesas.com/
+>
+> This is missing dri-devel list from the to/cc. Did you use
+> scripts/get_maintainer.pl?
+>
+Apologies, I did use get_maintainer.pl but must have missed dri-devel.
+Thanks for pointing this out.
 
-Best regards,
-Liviu
-
-> ---
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: - Add RB from Frank
->     - Add AB from Rob
-> ---
->  .../devicetree/bindings/gpu/arm,mali-valhall-csf.yaml          | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> index a5b4e00217587..0efa06822a543 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> @@ -61,6 +61,9 @@ properties:
->      minItems: 1
->      maxItems: 5
->  
-> +  resets:
-> +    maxItems: 1
-> +
->    sram-supply: true
->  
->    "#cooling-cells":
-> -- 
-> 2.47.2
-> 
-
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Cheers,
+Prabhakar
 
