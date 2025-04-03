@@ -1,238 +1,245 @@
-Return-Path: <devicetree+bounces-162733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2EBCA79AAD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 05:56:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F353BA79AE3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00B4617153F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 03:55:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 499C91889C92
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 04:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276A619340D;
-	Thu,  3 Apr 2025 03:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299DE19ABBB;
+	Thu,  3 Apr 2025 04:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rTSlV94Q"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XbkYFrlG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4B82581
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 03:55:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98CB1448E3
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 04:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743652550; cv=none; b=CGcwo0/lCWMqhSaTWcr+94jMPQwoEP3JKQCTBIkXHxtVT9YYkIox57O9QPacZDMtpRR1oSll82RZXvjQIP16f/hq/oSg80FtS1GTMacmoBgadJSdiqSRmLu77AI3lv1JFCYM2b6okHR42TO+KMhFVdhog+XEOCOxJlcAB24Cbso=
+	t=1743655462; cv=none; b=OlUV2V7WUKXiy4OkJWItmzan2LoTbLRFrduqy93Fby9FR5kmsHGGrMmSebRIO/laaoG9VS9+m3Oe86UvW5Xmgdm8vF76ebOTeCIIbEG0CJOS1Sa6NeMiO3uQRIj16I7+XRtX1le6aSeYqh2nhhpz+SFjKUX2owkZwKLuFV/k4B0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743652550; c=relaxed/simple;
-	bh=nqVB5uOqiFKCdpWccwDNjTPjd4j3yLd4tllbjZgjjLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
-	 Content-Type:References; b=q2AAkVZAIioRWxl6/yHxCXNQB+ETAUujMgCv3Z/j70gTx/2EukGj3AZGOa+s4tYicff7ZbuHQSL8SBK3MqjrvoujVAqbww3r30pLE7w7xv5KAIV/CLQnNqY9IUhUY5n9bFsAf8eRPNXLszN43m/JB0+l7XBGpDTJ7Jz2A5Sfvr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rTSlV94Q; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250403035544epoutp01852639fde8812aff577d8cdce7885603~yssBaovoE3044830448epoutp01P
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 03:55:44 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250403035544epoutp01852639fde8812aff577d8cdce7885603~yssBaovoE3044830448epoutp01P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1743652545;
-	bh=Ej6k3ZLWQF+05g7feuaoptHbKWegrmPgWjF8rs/7NXY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rTSlV94QRiaBjdMyRMI6WMQNRVVqeSCgMnBhmnBKB5ZENFjdIngWy9b98jCYPn6fh
-	 A4uZUjHHheJ8WzwPFlhlscNxGVzYH43TUj5FB+feDHNLLxsmVq1wul4FCHm01bcDKx
-	 Kdrdy2Av+9paiVxwqCfzc+iIfl3oqDOtkr7tAiPA=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250403035544epcas2p3c55ebdc995a32e86804f8b0b2caaf468~yssA2RRGP2105821058epcas2p3P;
-	Thu,  3 Apr 2025 03:55:44 +0000 (GMT)
-Received: from epsmgec2p1.samsung.com (unknown [182.195.36.100]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZSnvg4Yzkz3hhT8; Thu,  3 Apr
-	2025 03:55:43 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8E.F1.09780.FB60EE76; Thu,  3 Apr 2025 12:55:43 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250403035542epcas2p2da512aa29b7d9c68ad698399264e0d05~ysr-MEXyv2358523585epcas2p2o;
-	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250403035542epsmtrp11d576aabebb09abda82ace4d6ca4cbaf~ysr-KwEhN2942429424epsmtrp1t;
-	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
-X-AuditID: b6c32a43-9b7fe70000002634-99-67ee06bf3b1c
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	78.8C.08766.EB60EE76; Thu,  3 Apr 2025 12:55:42 +0900 (KST)
-Received: from perf (unknown [10.229.95.91]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250403035542epsmtip1b91f8b8759e4cc8898b6b6c78a09a97e~ysr_6KM960228602286epsmtip1g;
-	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
-Date: Thu, 3 Apr 2025 12:59:57 +0900
-From: Youngmin Nam <youngmin.nam@samsung.com>
-To: William McVicker <willmcvicker@google.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
-	<will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>, Tudor Ambarus
-	<tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
-	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim
-	Akhtar <alim.akhtar@samsung.com>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, Saravana
-	Kannan <saravanak@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, Will Deacon
-	<willdeacon@google.com>, Youngmin Nam <youngmin.nam@samsung.com>
-Subject: Re: [PATCH v1 4/6] arm64: dts: exynos: gs101: Add
- 'local-timer-stop' to cpuidle nodes
-Message-ID: <Z+4Hve9pQoLeh9sZ@perf>
+	s=arc-20240116; t=1743655462; c=relaxed/simple;
+	bh=pX3TOEkMVOu9UUOiX4XaUtgFr246gpwx4sz1hPNE5/I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BAVQcBkDxn7mOfEaIc0x0dBnYf61C43zxrkZphX2T8OABvfzrkuT8sZtr/SGGrMQHPdaJqnLlnmIVdk0juHRQvoqOjsAdi2IAZO6R5nGuCmLd7kyV9LfaEh1zZ/re4MJuAddcqKsmR+iTZKkSkde3cdjASBDk2K/DQIR5c6UEPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XbkYFrlG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5333mkWv011579
+	for <devicetree@vger.kernel.org>; Thu, 3 Apr 2025 04:44:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pX3TOEkMVOu9UUOiX4XaUtgFr246gpwx4sz1hPNE5/I=; b=XbkYFrlGKTw92IHN
+	ZXV0YoBN9LqG+Scptjmk8o26+AVGTJgkwRgolAY8LreC21qiA+rnm62AM22Vwzcm
+	XUqAS8lb/h+79odo7K9nCH6VWTeTyViQQ9sJ0q5Hm/lvu8ZH2UNSrIH8y92wDejt
+	YJhd1AZKbsrIvO6saX1piAgF6jtsNyTXkU+8+by5SSLql0Ol28tY0cbVZeebmqDS
+	MExppfpG+TXz9ZhVnIkpqFPTAeZ1znRe69aNRxD78SeK8md/MpAmEbtbjinCjm0j
+	EONPZ/eAI0DGMDP5eD46rBs8vS6DbTZkmhPLPwgOm/PoblxkMqdtylKyyKKMt0x5
+	xZcGhg==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45sc2yrvfm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 04:44:18 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff854a2541so449912a91.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 21:44:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743655457; x=1744260257;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pX3TOEkMVOu9UUOiX4XaUtgFr246gpwx4sz1hPNE5/I=;
+        b=lPQ/MHibwARMhFfvIXjMozGh1mdcb4hztnttNevbZ/3WnYUeJRLY8UwecMNmCBaIw0
+         yHhqK+B2dI3YgNqPBeWH9VdKDg2gzfjA3bWK3apkTWQeS3tmW+tmvFXnpF1dZHdp4Uxe
+         R4uiXBOEt2ezgCBSe9mLpQyHUhyBXYvIQnPbIHyt5vvbO1nu+SkNhtKFmNcgwSBIDgqP
+         9kNI6GPrJsNiYF0TWrRM/2NOp4GrFZf8MdKKFvcQdzJ/g1TToSLJamwqDZCdk7/QJF5P
+         ZfCZXR3dumJLFxUeQPy6pQURwi8u96y24LkOCH27ccQPDSu7/b0ndMB02Wk2pxTWshMW
+         opfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXczhqZUJa8h1G1Fz2+UyFMfdm0qAgpFsMJ8Gdb1gMFNw+yHX2DQJ3oEumVTUvjQa9hlb4Ns1v1PUkX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp9vbZuUdNlzwtbBdtwWix+neHXv7vo73ru+PsInNZBuWKvn9j
+	ItmOzmh2th8KGLyWPwEbT3L6K1QEgQr7a+7aa0Gp+HTki7pH9GIizQCUVb5k8OBukyS0CXWZksZ
+	JkvWqTWm4+FOndfpGD05P+OwH5KB6ar82RSa3OMKilYY1utG3S7ERkymAZGip
+X-Gm-Gg: ASbGncvuHuWVNZMLkk4akXLEACi1x5s0KS3OZsMmhoflgXJHtxvVktlep8QI4iRluUN
+	EU/+GVr2YjHOCvyGAWN+2W6B5BzHRq96LdxHy3DdrTS70DOpNLo53y0Sf+NtNRXKecJlkCMG2TT
+	x933Py9td/aq9cr5HoYuE56mZYDnX3Hp5cX5CiPqnBGRqHkefWfRdIkJPtCcCGTILVjQnEXv2ar
+	F8L812hHtnNlBHRnFenJOSdYhLdSPwNDWSQLTZNeO1F7KI9sL6lET7fuublvUCa5o/D5KwW4MS6
+	kE0uS4bY8g+DAj0J4N9nIDG72cGXFZhi4DYVnKj6
+X-Received: by 2002:a17:90b:50cf:b0:2fe:ba7f:8032 with SMTP id 98e67ed59e1d1-3057cbf6453mr2168297a91.9.1743655457081;
+        Wed, 02 Apr 2025 21:44:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFURruLAolWkOQKsQ1bALqNS/8BOoY/s1w8nLZO+Mu5Q1KYq91vpBymSAhfkYOYqUKT2i9PoQ==
+X-Received: by 2002:a17:90b:50cf:b0:2fe:ba7f:8032 with SMTP id 98e67ed59e1d1-3057cbf6453mr2168270a91.9.1743655456662;
+        Wed, 02 Apr 2025 21:44:16 -0700 (PDT)
+Received: from [10.204.65.49] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866e2b6sm4731025ad.191.2025.04.02.21.44.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 21:44:16 -0700 (PDT)
+Message-ID: <bfa29a76-f89a-4398-b6b3-1be7ae6cf8b3@oss.qualcomm.com>
+Date: Thu, 3 Apr 2025 10:14:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <Z-2zQ-PcvxFTBc6M@google.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf0xTVxTHd/teX1/R6hsyvWGDsMfCBhmlRaAXoUQjP+rmHyRblm0o0LVv
-	LWlpS18LssTJJhOpG8IU0YYUHDAdMnEFShXBpZDA3KgjW2Ajjun8EagburIZRAtrebr43+ec
-	+/3ec88995JY+C9EJFlisDBmg1JPE2G4azgeJV4i5jWS824aXXO4CNTr68HR3S8/Bahr0MtD
-	joUo1DLi5SN3fwSas88QyHljko9+utBMoONXhnjo3PFlHK1cdAuQzRMgUI+zEUP+6UJUfTUV
-	1Ty4g6NO/wpAbd/6BVsjFK4BF1/R5egCilanVeHsrCUUVycvEop5r1eg6Gnfp6jr7QSKBWd0
-	vvBdXaaWUaoZcwxjUBnVJQaNnH79jaLtRalpEmmiNB3J6BiDspSR09k78xNzS/TBruiYcqXe
-	GkzlK1mWTsrKNButFiZGa2QtcpoxqfUmmUnMKktZq0EjNjCWLVKJJDk1KCzWaTv8Dbjp16g9
-	Cw92V4H7m2yAJCGVAq+4C2wgjAyn3AAunFjkc4EfQN/ElMAGhMHgPoCOWvMTQ1NAw2kGAfx4
-	aJDHBdcBPP+PAwsZcOolaHPdIUJMUInQNbYMQuYISgwffbInpMeoOT6sc82CkGYDVQwnhnz8
-	EIuoWNj8hZ/g+Fn43YmbeIiFVAL87VETCJkhNUtCn61n1QCpbHh4fITH8QboG+0VcBwJ5w4f
-	eMwsrPp9GuPM1QBenprFuIXN0H67ZvUUGKWFrmsTGNdmLByZxrn0OnhwOCDg0iJ48EA454yD
-	S0fPAY5fgANtpx/vqIB9Ky6Cu5QAgN9/8xCrB9H2p/qxP1WN41dh64CfsAdLYNTz8NQyyWE8
-	7L6Q1Ar4nWAjY2JLNYwq2ST9f7wqY6kTrD7xhO1u8HPLstgDeCTwAEhidISoLOEvTbhIraz8
-	gDEbi8xWPcN6QGpwOA1Y5HMqY/CPGCxF0pR0SUpamlSWnCqR0ZtEnr9vacIpjdLC6BjGxJif
-	+HikMLKKl5FmF93LKz+082561o8Sf/ylk+m5vMWKwEq1bFBEyq2LyYP98/va6u/pZIXOJDtR
-	836Bs6/2lSN5Hc3r+zdP3soOHMstbP8o8NnwM853dhQf2zKrut43HCj7M/brioeVom2qxu5F
-	+RE8J2djx9tzayQnp9ZWlGTERXkv94mLDuF5r/0QtvZme1ymsCFrvLpgfq9OUyleChuLq3Ps
-	cAhbG2+fbmz50JdztgCs7Goor19TfjZrf9TM1ow/0Hqc9+KbdflTZ6rYM1FhevM69UKTN/ut
-	vdHjL9e3qkfz/zWdQkdndnWTnqVAuXXs8/2ewq9wcWGatWwRvndjW/WEWNA8Cty7aZzVKqUJ
-	mJlV/gddt0+8awQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAIsWRmVeSWpSXmKPExsWy7bCSnO4+tnfpBi/eSVk8mLeNzWLLq80s
-	Fu+X9TBarNl7jsli3mdZi/lHzrFa7NguYvFy1j02i02Pr7FaXN41h81ixvl9TBYbZvxjsfi/
-	Zwe7Rdehv2wWmzdNZbb4dCvOouWOqUX7z9csFqs+/We0WHzgE7uDiMe23dtYPdbMW8PosWBT
-	qcemVZ1sHneu7WHzeHfuHLvH5iX1Hn1bVjF6fN4kF8AZxWWTkpqTWZZapG+XwJWx/OZStoKZ
-	0hXdf46wNTCeF+1i5OCQEDCRmP43vYuRi0NIYDejxMy9J9m6GDmB4jISt1deZoWwhSXutxxh
-	hSi6zyjxbOp9FpAEi4CKRNe212ANbAK6EttO/GMEGSoioCfxp7UCpJ5Z4DOrxNaOo8wgNcIC
-	CRKXOm4zgdi8AsoScxZ9YoMY+p9R4uXdPVAJQYmTM5+ALWAW0JK48e8lE8hQZgFpieX/OEDC
-	nEDhu3+mM05gFJiFpGMWko5ZCB0LGJlXMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIE
-	R6KW5g7G7as+6B1iZOJgPMQowcGsJMJbqPU2XYg3JbGyKrUoP76oNCe1+BCjNAeLkjiv+Ive
-	FCGB9MSS1OzU1ILUIpgsEwenVAMTa0723LM2WRcbVtzZz71RTCcrROzgC2azaxddOV6kvg+e
-	2ROhdfP0fXtZn7JLP/ucrjccf5PxbUb8pc/nqp1eLzc++lZq1kbbWabS7dsFlBgUkyUvb4k6
-	cLqENytlRcgpTzNVtodz39rt0G9qVJlb82Lu1LsMN3svpq7e/CfvQsuE1fdNHn+7fy2r7ki3
-	c6Wrxjf1r7O4qw1u/39fmrCpb0LnW+4pyzLrPnRMr1/WdeXttPl9xRUvqlLa2UT4+7cUT74g
-	ETWjr/pImUcXe2DL0llTc4QjPukfPRjrP9WZgT0s2bShV/bK9T2cf1JezPKrtLLQsLNKimE3
-	np3QlHD1/Ez32d8mcGZPcjrwtnmjEktxRqKhFnNRcSIAx5ywPTMDAAA=
-X-CMS-MailID: 20250403035542epcas2p2da512aa29b7d9c68ad698399264e0d05
-X-Msg-Generator: CA
-Content-Type: multipart/mixed;
-	boundary="----JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250331230151epcas2p486a7c6d7153737f4168cfef74249742f
-References: <20250331230034.806124-1-willmcvicker@google.com>
-	<CGME20250331230151epcas2p486a7c6d7153737f4168cfef74249742f@epcas2p4.samsung.com>
-	<20250331230034.806124-5-willmcvicker@google.com> <Z+y4zxfifkQqLxKF@perf>
-	<Z-2zQ-PcvxFTBc6M@google.com>
-
-------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-
-On Wed, Apr 02, 2025 at 02:59:31PM -0700, William McVicker wrote:
-> Hi Youngmin,
-> 
-> On 04/02/2025, Youngmin Nam wrote:
-> > On Mon, Mar 31, 2025 at 04:00:26PM -0700, Will McVicker wrote:
-> > > From: Will Deacon <willdeacon@google.com>
-> > > 
-> > > In preparation for switching to the architected timer as the primary
-> > > clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
-> > > property to indicate that an alternative clockevents device must be
-> > > used for waking up from the "c2" idle state.
-> > > 
-> > > Signed-off-by: Will Deacon <willdeacon@google.com>
-> > > [Original commit from https://android.googlesource.com/kernel/gs/+/a896fd98638047989513d05556faebd28a62b27c]
-> > > Signed-off-by: Will McVicker <willmcvicker@google.com>
-> > > ---
-> > >  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > > index 3de3a758f113..fd0badf24e6f 100644
-> > > --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > > +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > > @@ -155,6 +155,7 @@ ananke_cpu_sleep: cpu-ananke-sleep {
-> > >  				idle-state-name = "c2";
-> > >  				compatible = "arm,idle-state";
-> > >  				arm,psci-suspend-param = <0x0010000>;
-> > > +				local-timer-stop;
-> > >  				entry-latency-us = <70>;
-> > >  				exit-latency-us = <160>;
-> > >  				min-residency-us = <2000>;
-> > > @@ -164,6 +165,7 @@ enyo_cpu_sleep: cpu-enyo-sleep {
-> > >  				idle-state-name = "c2";
-> > >  				compatible = "arm,idle-state";
-> > >  				arm,psci-suspend-param = <0x0010000>;
-> > > +				local-timer-stop;
-> > >  				entry-latency-us = <150>;
-> > >  				exit-latency-us = <190>;
-> > >  				min-residency-us = <2500>;
-> > > @@ -173,6 +175,7 @@ hera_cpu_sleep: cpu-hera-sleep {
-> > >  				idle-state-name = "c2";
-> > >  				compatible = "arm,idle-state";
-> > >  				arm,psci-suspend-param = <0x0010000>;
-> > > +				local-timer-stop;
-> > >  				entry-latency-us = <235>;
-> > >  				exit-latency-us = <220>;
-> > >  				min-residency-us = <3500>;
-> > > -- 
-> > > 2.49.0.472.ge94155a9ec-goog
-> > > 
-> > Hi Will.
-> > 
-> > Are you using this property in production?
-> > If so, have you noticed any performance improvements?
-> 
-> On Pixel 6, I have only recently switched to using the arch_timer as the
-> default clocksource. I haven't noticed any major perf improvements to the main
-> benchmarks, but also haven't seen any regressions. Based on the ChromeOS perf
-> analysis in [1,2], there was a significant perf difference found.
-> 
-> [1] https://lore.kernel.org/linux-samsung-soc/CAJFHJrrgWGc4XGQB0ysLufAg3Wouz-aYXu97Sy2Kp=HzK+akVQ@mail.gmail.com/
-> [2] https://lore.kernel.org/linux-samsung-soc/CAASgrz2Nr69tpfC8ka9gbs2OvjLEGsvgAj4vBCFxhsamuFum7w@mail.gmail.com/
-> 
-> If it helps, I found that Pixel 8 and 9 devices (didn't check Pixel 7)
-> are already using the arch_timer with this 'local-timer-stop' as the default
-> clocksource in the production kernel.
-> 
-> Thanks,
-> Will
-> 
-> [...]
-> 
-
-Hi Will,
-
-Thanks for sharing the status of Pixel devices.
-
-I agree that using the arch_timer as a clock source device brings significant benefits.
-The links you shared are definitely related to that.
-
-However, I would also like to know whether arch_timer is used as a clock event device in Pixel production.
-
-Thanks,
-Youngmin
-
-------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, amahesh@qti.qualcomm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
+        quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-3-quic_lxu5@quicinc.com>
+ <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
+ <qhriqbm6fcy5vcclfounaaepxcvnck2lb7k2gcpbtrojqzehua@khv5lwdgbysc>
+ <9962c517-5c0e-4d46-ac0c-2a7bab550156@linaro.org>
+ <412fe24e-ce70-4733-ace5-d3fbe43476c4@oss.qualcomm.com>
+ <c27a97ed-c765-421a-a48c-3abbae3bac93@oss.qualcomm.com>
+Content-Language: en-US
+From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+In-Reply-To: <c27a97ed-c765-421a-a48c-3abbae3bac93@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=AMoviu7M c=1 sm=1 tr=0 ts=67ee1222 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=LwNrBaKUNq3Cb3izIMUA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: s91RsZn0ewxVbnJ8uw0TBUs5afq6kxgD
+X-Proofpoint-ORIG-GUID: s91RsZn0ewxVbnJ8uw0TBUs5afq6kxgD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-03_01,2025-04-02_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 priorityscore=1501 malwarescore=0 mlxscore=0 impostorscore=0
+ clxscore=1015 spamscore=0 phishscore=0 mlxlogscore=999 adultscore=0
+ suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504030023
 
 
-------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_--
+
+On 4/2/2025 2:12 PM, Dmitry Baryshkov wrote:
+> On 02/04/2025 11:38, Ekansh Gupta wrote:
+>>
+>>
+>> On 3/21/2025 5:53 PM, Srinivas Kandagatla wrote:
+>>>
+>>>
+>>> On 20/03/2025 18:43, Dmitry Baryshkov wrote:
+>>>> On Thu, Mar 20, 2025 at 05:11:20PM +0000, Srinivas Kandagatla wrote:
+>>>>>
+>>>>>
+>>>>> On 20/03/2025 09:14, Ling Xu wrote:
+>>>>>> The fastrpc driver has support for 5 types of remoteprocs. There are
+>>>>>> some products which support GPDSP remoteprocs. Add changes to support
+>>>>>> GPDSP remoteprocs.
+>>>>>>
+>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>>>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>>>>>> ---
+>>>>>>     drivers/misc/fastrpc.c | 10 ++++++++--
+>>>>>>     1 file changed, 8 insertions(+), 2 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>>>>>> index 7b7a22c91fe4..80aa554b3042 100644
+>>>>>> --- a/drivers/misc/fastrpc.c
+>>>>>> +++ b/drivers/misc/fastrpc.c
+>>>>>> @@ -28,7 +28,9 @@
+>>>>>>     #define SDSP_DOMAIN_ID (2)
+>>>>>>     #define CDSP_DOMAIN_ID (3)
+>>>>>>     #define CDSP1_DOMAIN_ID (4)
+>>>>>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>>>>> +#define GDSP0_DOMAIN_ID (5)
+>>>>>> +#define GDSP1_DOMAIN_ID (6)
+>>>>>
+>>>>> We have already made the driver look silly here, Lets not add domain ids for
+>>>>> each instance, which is not a scalable.
+>>>>>
+>>>>> Domain ids are strictly for a domain not each instance.
+>>>>
+>>>> Then CDSP1 should also be gone, correct?
+>>> Its already gone as part of the patch that I shared in this discussion.
+>>>
+>>> I will send a proper patch to list once Ling/Ekansh has agree with it.
+>>>
+>> Thanks, Srini, for sharing this clean-up patch. It looks proper to
+>> me, but I was thinking if we could remove the domain_id dependency
+>> from the fastrpc driver. The addition of any new DSP will frequently
+>> require changes in the driver. Currently, its usage is for creating
+>> different types of device nodes and transferring memory ownership to
+>> SLPI when a memory region is added.
+>>
+>> The actual intention behind different types of device nodes can be
+>> defined as follows:
+>>
+>> fastrpc-xdsp-secure: Used for signed (privileged) PD offload and for daemons.
+>> fastrpc-xdsp: Should be used only for unsigned (less privileged) PD offload.
+>>
+>> The reason for this constraint is to prevent any untrusted process
+>> from communicating with any privileged PD on DSP, which poses a security risk.
+>> The access to different device nodes can be provided/restricted based on UID/GID
+>> (still need to check more on this; on Android-like systems, this is controlled by
+>> SELinux).
+>>
+>> There is already a qcom,non-secure-domain device tree property[1] which doesn't
+>> have a proper definition as of today. The actual way to differentiate between
+>> secure and non-secure DSP should be based on its ability to support unsigned PD.
+>>
+>> One way to remove the domain_id dependency that I can think of is to use this
+>> property to create different types of device nodes. Essentially, if unsigned PD
+>> is supported (e.g., CDSP, GPDSP), we add this property to the DT node and create
+>> both types of device nodes based on this. Otherwise, only the secure device node
+>> is created.
+>
+> This sounds like breaking backwards compatibility on the userspace side. You can not do that.
+Okay, I thought if the property is added for all older platforms, that will ensure backward
+compatibility is maintained for old built applications.
+
+From userspace, the expected device open sequence is to try with the secure device node and
+fallback to the default/non-secure node if the secure node is not available/accessible.
+I understand the ABI cannot be broken, and this expectation should be added for new
+applications/platforms.
+
+This is still a security issue that needs to be fixed in some way. I'll try to find out if any other
+approach can address this.
+
+That being said, I'm fine with Srini's change for domain name clean-up.
+
+I would request Ling to test the patch.
+
+--Ekansh
+
+>
+>>
+>> This raises the question of backward compatibility, but I see that on most older
+>> platform DTs, this property is already added, so both device nodes will be created
+>> there, and applications will work as expected. If any old DT DSP node lacks this
+>> property, we can add it there as well.
+>>
+>> Going forward, the qcom-non-secure-property should be added only if unsigned PD
+>> is supported. This way, we can clean up the driver completely to remove the
+>> domain_id dependency.
+>>
+>> If this sounds good, I can work on this design and send out a patch.
+>>
+>> [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml#n44
+>>
+>> --Ekansh
+>>
+>>> --srini
+>>>>
+>>>
+>>
+>
+>
+
 
