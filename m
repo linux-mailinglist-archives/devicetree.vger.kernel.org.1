@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-163002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11AEA7AE36
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 22:24:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DDDEA7AE15
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 22:20:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F06533B6960
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:19:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCC457A1D18
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBAD201021;
-	Thu,  3 Apr 2025 19:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80522201249;
+	Thu,  3 Apr 2025 19:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ti7K4rIS"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hsA8ykcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9191FFC4F
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 19:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00961FFC69
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 19:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743707789; cv=none; b=IviXHGLpud+R9ebpg0Sjv4OMXGlxSCk31ZE4/3XmWA8mCv3AFmvFi5VZVoV8Y1Pi//2OUYHelNiCbXjKTTkCudrkJkPbUOZiNAfzCqD2dDM7HQWRwTpwpUjDh+EGMRRMZHehGfnJUwuJVn8Rcejc0MQHZIndR2WBoAO4Rg806Ws=
+	t=1743707790; cv=none; b=cWHPjN2VJFBBLt2ujANLxA7F/grynPX2lcbbri97gfIH6g9GLwb0mQcN981NwaQsS6W3EovQpHBYPXFHCLFhTFwBvIHGHeSIJhrPkeTxik1xN6FPpKmUgV1EbiCv0aLBqhAFNDfx8Ngdrty6WqWuEAELl0m6lRWpY103W3etUBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743707789; c=relaxed/simple;
-	bh=OOu5uUVRp5bNrm10Y7Elq88mwpICvefQHhKqbDlAYuk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HsnDNN+wvfnsex14zMzJ7kERS2lTFlE1D9oRkNSv70BaO+bmZEXcVHherNsH6+9H6khe7OGki6DI7gfmLSS+YfJavrFFsQX0J/4AZdzd/iFUUEH5F6dY1Y5QO2Sp72qIO4sEqMzH/HLx9nPmtrEwq9vmD/4XF3GrqSrJnsISBJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Ti7K4rIS; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1743707790; c=relaxed/simple;
+	bh=uYdW8UWkO7Lkj0/PLTSMCHmI2BhYM1Fy016gz/jcaNo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=aOKVav3tSvLEIXe+P0ooMF0Is1axnZtq+cXVrVIMe+Dk6aLzkzBbpR00DY/2AKJY1XbSmDUrsk4Ly5svrg5BSlk5YVnbc3cUoU4fgzKBLcXoJfZtuy8mpGMMwGAV8Wf1B3KvVf89rYgLAjUl6vRu1RSnuqJOpwj4ic+pBH6KiKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hsA8ykcF; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54b166fa41bso1343796e87.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 12:16:25 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-549946c5346so1464040e87.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 12:16:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1743707784; x=1744312584; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dZyzJh3mfyCoTqN5jp6PExNK9PmJ9vF6+zZHPXer6SU=;
-        b=Ti7K4rISjY6mhIQl+zP5GZy5YPbxtfCe6iavRQPGqdPKc5uzi2nZuciqu/iSLRBDVw
-         ZbWFw4knoE4i5JOm5ULBMG5OYQKPwdFI91cnQQiA7V2Ww+A95w8FQGjAoKwU0FRTA800
-         QPFS++f9v32o1JpsDpt71asE+Bf2Cfwd2RqMw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743707784; x=1744312584;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=chromium.org; s=google; t=1743707785; x=1744312585; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dZyzJh3mfyCoTqN5jp6PExNK9PmJ9vF6+zZHPXer6SU=;
-        b=e3N4JAKlVz6s0VM1i0OCCfo5tOnnVtV7XZm1PuIey2yaWgyr5aHo1YZhj0pDU4xO+1
-         K3DQ72xNciabQi+apcX05+s0CT3UrZ7lc6Q5vaTwBrqYTE4B+7XWNw9v9kgHY3Hp38R8
-         uooIPfpmjalERRDj+BczwUmxZvhWJDM9OB/KLPWBUA0VN/H542sInEDzQ1kBW42D6pvl
-         I0TvfFbuTnM2LDsUe4e3GepVIlAy1RIrkK+HOotu83cuBb+u3DUJy1CqHeWB8nEHUcxb
-         q39yXBTaQXU8a1bgIj1slPd/KgqTYcUYnM+T/v88Bxf4/ZZFxC48ouFZdIGn6jBfD7TQ
-         pqpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXS9ljYZs0RQE/hZM383UKEnK1SeNw7MkqlRwHMRSQJd+F/gaBRNutavPCmuIQ9LHGx8zWsoil9UTXJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7tR6nVqydb3IP6z+gQNsV0idfHl8QU6sMnDA8z888cAQu6LcO
-	W2sRCDXLSqyOXrEfbPddWsu13u7iGiTLoL+NTe4ff5D8NYy1j43qlqzFsJPsXA==
-X-Gm-Gg: ASbGncva8rXlIZ6EKWZdAHWH+/21nYnZBgtU8AMISaPtq/A8wBXL2V67PYYPdf/KWmh
-	jZ2PgEG+udi497oPgm3JtyTOTvNWzAUvkNdqk1CJIglM5duqTXvcplbyJrcoZIpQUxwgF16OMsM
-	GSYqwQTGkNLn/QEg/7NAe6q692hgHyfZa6xFXj1EXJY73xJ7t8tgc0FtSRFKA61touBS1ppoThl
-	3NU5WBz4SCNJcWBFNJoueaLXa98eX2bK0SCKhSnWX829O7tdNIDME+ht8EMhYX+Yo/OcN/LBi9+
-	rHniv4uKCqrWCK8wIdkVPaVsbv2m+OQt3MS+esbKx8x9H9sjAz3HRp24COCGFRmyptTACVN+/Yx
-	NGWGsImRyzyfRqhvl712ED+nY
-X-Google-Smtp-Source: AGHT+IHifPA8y75Uvt8/h5dkWWov6ic9+zVOw/bPq0NuxszaJoiYbn+TCyRg03Rw66ZLpx8pcdWWfA==
-X-Received: by 2002:a05:6512:1389:b0:54a:cc11:b55f with SMTP id 2adb3069b0e04-54c22785246mr117481e87.22.1743707783922;
-        Thu, 03 Apr 2025 12:16:23 -0700 (PDT)
+        bh=IFGb4OSmEELjX3L+UUTsl617UgttQGz/GrFW7lOnFds=;
+        b=hsA8ykcFMc2t6vy9DIiQOxfpKQ+jowvmwUZKpp9Wx/5Nh/ejujC792sJeY/bUgMZRb
+         ydQ/8xMVBA1Wpa49DoIJ+3RNSYbny+tjii1aklXIq2qDg+IKSBHYfTfTxG0IZYEv5D/K
+         Cbjbw+Q9xFOLDRO0/Nrfm9IgaIaDgrZ7p9rRQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743707785; x=1744312585;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IFGb4OSmEELjX3L+UUTsl617UgttQGz/GrFW7lOnFds=;
+        b=p0ZRz/9JUcnuMSQkGV0HlrJuTTfexlonKKGdzutrb40gi9csZSc9awSbbrkchyyPLo
+         T8y4hS/T79FVfw/0tlkv4vjHY+L3+V4SeYYcVL2+DqFLMZJA2NHypF9EPu3LBxokTbwd
+         yYgct3HmK5WYRIvNz+7jNOdW/GCYn1xnbuSAnXKRt9m0cCjJopjTrrd19UypTMbGleZW
+         RD5GiiMbhWo2nkduxJSerF20RZq2OuBTf3j2t8tj+kEF2Lf+TEqSeZ0LNGfTzVt8FOrX
+         2/3It4y6lVAPhkIELXKLqA2fHLfKobxZva8tH0Gt4vabSMG5dKxbooU+GWmmqLSnxFUL
+         LmMw==
+X-Forwarded-Encrypted: i=1; AJvYcCX5PV+9g5ZQCI/ii4F1wC3rnxbRs6BycD8vHYIHzhfbUfWZGf7czcIX3kALi6zQO19Q2mD3AjriAEYQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtAPmdJsfmHvYr3QV4X+vVQKf/BWrvIBYyD07aw5j+HFokJId4
+	DLwVkJgL0Z5w+L0Ajwwu7f7KtP3rnWMMMvmj3fDaXe6wmwNvqkO2qNRcktrk+A==
+X-Gm-Gg: ASbGncsKIeQd9NFwZ/LYaTDvSSibFlIO2i+3hsWlptlFevBo9IjixYRGmmglIy0SyWy
+	Twnyc9IPH6WMXimWB7d6XxcYatak7y6tpiVQGoBCfKJTmUD4EH+1yQQJHZDQrNgCNQ8YzbZBWg8
+	RR/mRDiZ+oDzlRP5/oOHKdA0VgO6ENpLvz05YWEoa5DQWdeqAwYkvQiK1U5aQRgegfKGI7F056j
+	Gsc5U2OKpgI/zOWrXhus2Ymt4WXXbUtEFx7OjvsijryTzRJnmP/VubM/6puj6fkRZKuPnBEehkW
+	uJB3cZnIBNrwA/7d+GqUxI5/eDbzR/UbTBEzh+/Ybj56AGMgMtpjHhfHW7mZXODxWrrxOm3ABSi
+	59AcOEUCKpS/oZaBBC0pZN74s
+X-Google-Smtp-Source: AGHT+IHlTjBkC/TNKA88/1+phuhgnK0El1kOI/FDaapJX6tSIZfWFhb6k+73fZ8xYXGiKrRLbFD6xg==
+X-Received: by 2002:a05:6512:15a8:b0:54b:117c:8ef3 with SMTP id 2adb3069b0e04-54c22800e8dmr78511e87.54.1743707784704;
+        Thu, 03 Apr 2025 12:16:24 -0700 (PDT)
 Received: from ribalda.c.googlers.com (216.148.88.34.bc.googleusercontent.com. [34.88.148.216])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e65d6b1sm230142e87.194.2025.04.03.12.16.23
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e65d6b1sm230142e87.194.2025.04.03.12.16.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 12:16:23 -0700 (PDT)
+        Thu, 03 Apr 2025 12:16:24 -0700 (PDT)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Subject: [PATCH 0/8] media: uvcvideo: Add support for
- V4L2_CID_CAMERA_SENSOR_ORIENTATION
-Date: Thu, 03 Apr 2025 19:16:11 +0000
-Message-Id: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
+Date: Thu, 03 Apr 2025 19:16:12 +0000
+Subject: [PATCH 1/8] media: uvcvideo: Fix deferred probing error
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,10 +81,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHve7mcC/x2MQQqAIBAAvyJ7TjBLor4SHUzX2ouFmgTR31s6D
- szMAxkTYYZJPJCwUqYjMrSNALfbuKEkzwxaaaN61cmrOnlwEost7EoThtCO3hrrV+DqTBjo/o/
- z8r4fZe88mGEAAAA=
-X-Change-ID: 20250403-uvc-orientation-5f7f19da5adb
+Message-Id: <20250403-uvc-orientation-v1-1-1a0cc595a62d@chromium.org>
+References: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
+In-Reply-To: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
  Hans de Goede <hdegoede@redhat.com>, 
  Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -101,46 +100,96 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  stable@vger.kernel.org, Douglas Anderson <dianders@chromium.org>
 X-Mailer: b4 0.14.2
 
-The ACPI has ways to annotate the location of a USB device. Wire that
-annotation to a v4l2 control.
+uvc_gpio_parse() can return -EPROBE_DEFER when the GPIOs it depends on
+have not yet been probed. This return code should be propagated to the
+caller of uvc_probe() to ensure that probing is retried when the required
+GPIOs become available.
 
-To support all possible devices, add a way to annotate USB devices on DT
-as well. The original binding discussion happened here:
-https://lore.kernel.org/linux-devicetree/20241212-usb-orientation-v1-1-0b69adf05f37@chromium.org/
+Currently, this error code is incorrectly converted to -ENODEV,
+causing some internal cameras to be ignored.
 
-This set includes a couple of patches that are "under review" but
-conflict.
+This commit fixes this issue by propagating the -EPROBE_DEFER error.
 
+Cc: stable@vger.kernel.org
+Fixes: 2886477ff987 ("media: uvcvideo: Implement UVC_EXT_GPIO_UNIT")
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
-Ricardo Ribalda (8):
-      media: uvcvideo: Fix deferred probing error
-      media: uvcvideo: Use dev_err_probe for devm_gpiod_get_optional
-      media: v4l: fwnode: Support acpi devices for v4l2_fwnode_device_parse
-      media: ipu-bridge: Use v4l2_fwnode_device_parse helper
-      dt-bindings: usb: usb-device: Add orientation
-      media: uvcvideo: Factor out gpio functions to its own file
-      media: uvcvideo: Add support for V4L2_CID_CAMERA_ORIENTATION
-      media: uvcvideo: Do not create MC entities for virtual entities
+ drivers/media/usb/uvc/uvc_driver.c | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
 
- .../devicetree/bindings/usb/usb-device.yaml        |   5 +
- drivers/media/pci/intel/ipu-bridge.c               |  32 +----
- drivers/media/usb/uvc/Makefile                     |   3 +-
- drivers/media/usb/uvc/uvc_ctrl.c                   |  21 +++
- drivers/media/usb/uvc/uvc_driver.c                 | 159 +++++----------------
- drivers/media/usb/uvc/uvc_entity.c                 |  11 ++
- drivers/media/usb/uvc/uvc_fwnode.c                 |  73 ++++++++++
- drivers/media/usb/uvc/uvc_gpio.c                   | 123 ++++++++++++++++
- drivers/media/usb/uvc/uvcvideo.h                   |  21 +++
- drivers/media/v4l2-core/v4l2-fwnode.c              |  58 +++++++-
- include/linux/usb/uvc.h                            |   3 +
- 11 files changed, 349 insertions(+), 160 deletions(-)
----
-base-commit: 4e82c87058f45e79eeaa4d5bcc3b38dd3dce7209
-change-id: 20250403-uvc-orientation-5f7f19da5adb
+diff --git a/drivers/media/usb/uvc/uvc_driver.c b/drivers/media/usb/uvc/uvc_driver.c
+index 107e0fafd80f54ec98c9657e5d58d17a6ed8c02f..25e9aea81196e0eddba6de74951a46a97ae0bdb8 100644
+--- a/drivers/media/usb/uvc/uvc_driver.c
++++ b/drivers/media/usb/uvc/uvc_driver.c
+@@ -2232,13 +2232,16 @@ static int uvc_probe(struct usb_interface *intf,
+ #endif
+ 
+ 	/* Parse the Video Class control descriptor. */
+-	if (uvc_parse_control(dev) < 0) {
++	ret = uvc_parse_control(dev);
++	if (ret < 0) {
++		ret = -ENODEV;
+ 		uvc_dbg(dev, PROBE, "Unable to parse UVC descriptors\n");
+ 		goto error;
+ 	}
+ 
+ 	/* Parse the associated GPIOs. */
+-	if (uvc_gpio_parse(dev) < 0) {
++	ret = uvc_gpio_parse(dev);
++	if (ret < 0) {
+ 		uvc_dbg(dev, PROBE, "Unable to parse UVC GPIOs\n");
+ 		goto error;
+ 	}
+@@ -2264,24 +2267,32 @@ static int uvc_probe(struct usb_interface *intf,
+ 	}
+ 
+ 	/* Register the V4L2 device. */
+-	if (v4l2_device_register(&intf->dev, &dev->vdev) < 0)
++	ret = v4l2_device_register(&intf->dev, &dev->vdev);
++	if (ret < 0)
+ 		goto error;
+ 
+ 	/* Scan the device for video chains. */
+-	if (uvc_scan_device(dev) < 0)
++	if (uvc_scan_device(dev) < 0) {
++		ret = -ENODEV;
+ 		goto error;
++	}
+ 
+ 	/* Initialize controls. */
+-	if (uvc_ctrl_init_device(dev) < 0)
++	if (uvc_ctrl_init_device(dev) < 0) {
++		ret = -ENODEV;
+ 		goto error;
++	}
+ 
+ 	/* Register video device nodes. */
+-	if (uvc_register_chains(dev) < 0)
++	if (uvc_register_chains(dev) < 0) {
++		ret = -ENODEV;
+ 		goto error;
++	}
+ 
+ #ifdef CONFIG_MEDIA_CONTROLLER
+ 	/* Register the media device node */
+-	if (media_device_register(&dev->mdev) < 0)
++	ret = media_device_register(&dev->mdev);
++	if (ret < 0)
+ 		goto error;
+ #endif
+ 	/* Save our data pointer in the interface data. */
+@@ -2315,7 +2326,7 @@ static int uvc_probe(struct usb_interface *intf,
+ error:
+ 	uvc_unregister_video(dev);
+ 	kref_put(&dev->ref, uvc_delete);
+-	return -ENODEV;
++	return ret;
+ }
+ 
+ static void uvc_disconnect(struct usb_interface *intf)
 
-Best regards,
 -- 
-Ricardo Ribalda <ribalda@chromium.org>
+2.49.0.504.g3bcea36a83-goog
 
 
