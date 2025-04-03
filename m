@@ -1,133 +1,197 @@
-Return-Path: <devicetree+bounces-162857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C94CA79F3C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:02:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E29E2A79F9C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CD417A6107
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:01:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E406176D9E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4977324EF6C;
-	Thu,  3 Apr 2025 08:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1060243364;
+	Thu,  3 Apr 2025 09:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sKCadj3y"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YOKoqQ16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5C524CEF9
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 08:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE366245017
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 09:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743670769; cv=none; b=trR7IvYJFrnJkNuqjdAa/pibsCpP79miOU9n/62gF4X1XXo1lr8+eOts1K999JRH4XGrfGYVTb5sGNfO1LnFl9LR94PLf/rKmugVCPRwJQLOFFB+FcpAfkC/cW7KrYCPRvcGdK7Xtf2j7paw3YaYTDrZPgI0rh2XqpqHFMoHY+U=
+	t=1743671019; cv=none; b=jE4QczoSWvd1y8etCL9tHZ03SMotkguvn5FwwCFrXtCGqaGLHjmlHHts9BD+ehPnqG/rItnBXc2H+/pi8XxVtQW/B3GB5FSg3bd2zAJucqn6N2GxwXVlRrh3amgru8vk4Tv16Oy7zEEzYbKmigSK2ymnBDTTFwSDcrnIek9fC5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743670769; c=relaxed/simple;
-	bh=+fAAJ/+/3MbgFo3bOsjQzn5S6tmp2xnmlCT4juP9rJM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gZmh3Eu/4G4YSo7yTstGDYgJ825xB5klAcZBRAwZ8auokqA+sz/g1sjd0d4UPdov01yz9nTueHRcQP+Twif3b7wvRT/xucxd6Ylm9Mb/7FCpPA12V0tVF0O0zQex5RbaVBkj61QeM6XxXq1nxxCxkpdLAf21uKvDs42amSDJdfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sKCadj3y; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso3172054a12.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 01:59:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743670759; x=1744275559; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IvD3NPE37fI+ZqUrH7EmoQBagetQaG70If7tawsO/t4=;
-        b=sKCadj3yJo3JCJcQbG8ljCh98ao0jmPNWJjFoo/83PbHsIxh1WRJrXCyEFNnjHnnaE
-         dUnPsC5DCafvc49EySVtc6597ytJncgH42PRCo04bQmbkSfbIK8oOz1gxmGqWtISnEP9
-         Y81Do0JzErnbwsdNRiAub5aQmyDszrvT6IHnEJrMu+1HIThiYzIVbUWrNYO/s0sU7+qz
-         K+J2UMlFbL96hqJRIuonbrQU/oO/dJBnij6zsYA7161bz6kXiOSV0cWg/KcDTunezmP2
-         ZrjZDHF2uyeROZ/8ugTOmcsHo+sKLhOhcfPy82/jB/eKIoaIUD0ra9VN+O58Y+igJE2w
-         fdYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743670759; x=1744275559;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IvD3NPE37fI+ZqUrH7EmoQBagetQaG70If7tawsO/t4=;
-        b=I+QPeLZxe5qZKQilBFXHpb6+Zh2r37co9ZnxYpGiXWhee3j8G2HSwzRzlj00KW74Gb
-         ZogyWSLP0N2sLV9rSesEkyViLaFVHBGMb2TAVYwhCN/Z7eBv91zk4EcaI2utcJ2yJ347
-         aKkqRDFSYT83dIIKd8r/7oxysNYj0qx95rwSRSIp8wOZlHfAuf+oxNQBbDNjkoM4YBqV
-         bnK7zf0sCADMC2kITv0ziKlq+KZ0UHII+6LXEA9ExwQnS78eNNxeIDq42tF+TiQMZqgd
-         /fRHhMw9tbv3rmYtA0AqHHltBB68abl22z4FexESQvZgrhzS7eY8bSHZM/R0wtQMsBpf
-         SrJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXzBg8QSDqL0Owjx0Fy48iWsE38r5mK9M872TLToVLjKA3zvK19Y37RT9MbC705h0I+YDD5ox9jXHV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4spB3KLefrKvZSues/KX+ZA/Q7IUJgZXN+6hQwx4gNJsmYYAn
-	KgIuvA3u6+gukDtVp6rTsafeEUiqptvziAlAt1W76uC2zvJ/SE0haprOlWZxAS4=
-X-Gm-Gg: ASbGncvPeEzzl/nQor3lOpYTv29ApenP4gicpMCqZhS6RAKccPzz0CTTjcjXmtNghqE
-	ZqBijNHgYeKl7TlKlLv2SwstQ1UNw8bQRaX5W46lfpfxqA0RUh3jbKTH/x4oIAoTwH/8/45jTeW
-	VmpzJIeA/xm4GDB2mVHxFq2kX3Lf7P3byRXG833OMa5Ql43mCu764kqbg1+c0RFK/Str4g01xlj
-	WPsoua4O3EQkDMIjUN48nCEy3DBaaaMLbDU9iM/75li95Sqf7U/F51ofBaWBQ7Dc8jfD5FREsr7
-	TFARYT83AQm8dsPZXZpzc3rrftalqpVy11DU32DwcBC7U+VpZodvQ5dSUKuUY5eUqTT1XB6ZgiJ
-	xpP2Bjts8BsRsmhc1PoMpyGcISFbv7vVuEp0j+4Y=
-X-Google-Smtp-Source: AGHT+IFW856PFsje+adb2s76FgPUdBl97yj4uiiEZ9rOztAG85/+V2CgHnNshHz2zvEqYifTEoo+Rw==
-X-Received: by 2002:a05:6402:1d55:b0:5ed:5cf6:e168 with SMTP id 4fb4d7f45d1cf-5f084177cb9mr2170046a12.9.1743670759408;
-        Thu, 03 Apr 2025 01:59:19 -0700 (PDT)
-Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f0880a535fsm637614a12.80.2025.04.03.01.59.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 01:59:19 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Thu, 03 Apr 2025 09:59:24 +0100
-Subject: [PATCH v3 32/32] MAINTAINERS: add myself as reviewer for Samsung
- S2M MFD
+	s=arc-20240116; t=1743671019; c=relaxed/simple;
+	bh=qpQuP7aJIpBc+ziv8rKOH8KUF+cK15F9uJSNbo1YcKM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ATRNPsB9EHicxH2dldzrDoACnrApbpiTs1IOMhwP6U0M2mGPU/aARj7oxXGUNfL/S9wTvWwLK7/GW1/7iEZXnNfeIztj8pH3PnARgq8GL7qtW2Y1nHwlrNshsD6BPTsp71Dm5TZIUvLKCiPTs37cz4rZ/qGOdRAc7q3+8XKxVYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YOKoqQ16; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=3h+3
+	XYPl+tcNEfQHM9GEv4E2JWrUtW/fBGgb/yLhisg=; b=YOKoqQ16rBBcIkqTQBWK
+	qAYr07P0UM9F8ETKKwFDodhdAd9vfnebEJlUIDDoUaR8xMnpNSmZb1XNKD538PfM
+	v5T2ookcaEQwVIVbH06TYzSEi1BcWslQtSEhB+q3o7+wNQXQrUeabsjQVgoioSSb
+	loBRJPY+8abrGZ8cL5gTS001jYrloSwiubOly7cRNcWpUZ5YQWPEqUalud/RBm/r
+	Azb0xtRC7X9dSHLe28z21FE/c1KeTY3BR0dAlZAYkBVbrXTtkRLH7zPWR+DmayAG
+	h8QWZaAcCDqabVmbLc76EYIM5kJd9d0DN6KH+Eln63PLpzuw/efZfHTeF4a2Zg/N
+	8g==
+Received: (qmail 2310687 invoked from network); 3 Apr 2025 11:03:28 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Apr 2025 11:03:28 +0200
+X-UD-Smtp-Session: l3s3148p1@VGsHC9wxFMYgAwDPXwaqAEtIN5mYkFJw
+Date: Thu, 3 Apr 2025 11:03:27 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 1/3] i2c: core: Follow i2c-parent when retrieving an
+ adapter from node
+Message-ID: <Z-5O3-FSsHbn27lW@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+ <20250205173918.600037-2-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250403-s2mpg10-v3-32-b542b3505e68@linaro.org>
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
-In-Reply-To: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="U3h06jO4XCyQwGmf"
+Content-Disposition: inline
+In-Reply-To: <20250205173918.600037-2-herve.codina@bootlin.com>
 
-I'm working on a Samsung device which includes this MFD and would like
-to be Cc'ed to further contributions and help on reviewing them. Add me
-as reviewer.
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+--U3h06jO4XCyQwGmf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4d577b54d798938b7a8ff0c2bdbd0b61f87650f..9f05af52b062d8cab0f8b48b2625432108604c3e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21397,6 +21397,7 @@ F:	drivers/platform/x86/samsung-laptop.c
- 
- SAMSUNG MULTIFUNCTION PMIC DEVICE DRIVERS
- M:	Krzysztof Kozlowski <krzk@kernel.org>
-+R:	André Draszik <andre.draszik@linaro.org>
- L:	linux-kernel@vger.kernel.org
- L:	linux-samsung-soc@vger.kernel.org
- S:	Maintained
 
--- 
-2.49.0.472.ge94155a9ec-goog
+> Extend i2c_find_adapter_by_fwnode() to perform the walking from the
+> given fwnode through i2c-parent references up to the adapter.
 
+Even with the review of the schema going on, here are some comments
+already.
+
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  drivers/i2c/i2c-core-base.c | 43 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 42 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
+> index 5546184df05f..cb7adc5c1285 100644
+> --- a/drivers/i2c/i2c-core-base.c
+> +++ b/drivers/i2c/i2c-core-base.c
+> @@ -1827,14 +1827,55 @@ static int i2c_dev_or_parent_fwnode_match(struct =
+device *dev, const void *data)
+>   */
+>  struct i2c_adapter *i2c_find_adapter_by_fwnode(struct fwnode_handle *fwn=
+ode)
+>  {
+> +	struct fwnode_reference_args args;
+> +	struct fwnode_handle *adap_fwnode;
+>  	struct i2c_adapter *adapter;
+>  	struct device *dev;
+> +	int err;
+> =20
+>  	if (!fwnode)
+>  		return NULL;
+> =20
+> -	dev =3D bus_find_device(&i2c_bus_type, NULL, fwnode,
+> +	adap_fwnode =3D fwnode_handle_get(fwnode);
+> +
+> +	/* Walk extension busses (through i2c-parent) up to the adapter node */
+> +	while (fwnode_property_present(adap_fwnode, "i2c-parent")) {
+> +		/*
+> +		 * A specific case exists for the i2c demux pinctrl. The i2c bus
+> +		 * node related this component (the i2c demux pinctrl node
+> +		 * itself) has an i2c-parent property set. This property is used
+> +		 * by the i2c demux pinctrl component for the demuxing purpose
+> +		 * and is not related to the extension bus feature.
+> +		 *
+> +		 * In this current i2c-parent walking, the i2c demux pinctrl
+> +		 * node has to be considered as an adapter node and so, if
+> +		 * the adap_fwnode node is an i2c demux pinctrl node, simply
+> +		 * stop the i2c-parent walking.
+> +		 */
+> +		if (fwnode_property_match_string(adap_fwnode, "compatible",
+> +						 "i2c-demux-pinctrl") >=3D 0)
+> +			break;
+
+I understand the unlikeliness of another demux driver showing up, yet
+relying on compatible-values here is too easy to get stale. What about
+checking if the i2c-parent property has more than one entry? That should
+be only true for demuxers.
+
+> +
+> +		/*
+> +		 * i2c-parent property available in a i2c bus node means that
+> +		 * this node is an extension bus node. In that case,
+> +		 * continue i2c-parent walking up to the adapter node.
+> +		 */
+> +		err =3D fwnode_property_get_reference_args(adap_fwnode, "i2c-parent",
+> +							 NULL, 0, 0, &args);
+> +		if (err)
+> +			break;
+> +
+> +		pr_debug("Find adapter for %pfw, use parent: %pfw\n", fwnode,
+> +			 args.fwnode);
+
+Is this useful when creating the overlays? I tend to ask you to remove
+it one RFC phase is over. If it is useful, it should be at least
+dev_dbg?
+
+> +
+> +		fwnode_handle_put(adap_fwnode);
+> +		adap_fwnode =3D args.fwnode;
+> +	}
+> +
+> +	dev =3D bus_find_device(&i2c_bus_type, NULL, adap_fwnode,
+>  			      i2c_dev_or_parent_fwnode_match);
+> +	fwnode_handle_put(adap_fwnode);
+>  	if (!dev)
+>  		return NULL;
+> =20
+> --=20
+> 2.47.1
+>=20
+
+--U3h06jO4XCyQwGmf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfuTtsACgkQFA3kzBSg
+KbYfVQ/9G27Iyj9jcvQ3xDFK3Bn1ABTFAiX24F9Tgio5mv2gijX1Z/uTDv5+0ZPJ
+iHWRA+UYz38UnirzIoTdq+0Xb4wdjaLS8oC1N17yitM6fgvmXXrpNTYWM4/qThMP
+3twQOfu5tD3g6KICVKjaxG+iuJNz3m4E2YpiltALvjo2mrIOa0eBAH3FZJH8whUr
+KJF+q6umhJ8QQCw/+xpj2F9PWEhW9l2lotwfpVZr5cjWpXt4nrdT7DHh1YSTChC6
+srL6TZdcIXgNiKZEqlTlU2DAPcKUpBhWuvBCnuRFnF+DVYeCgwZJvv6LoQXYJSFm
+PzuuoOTKLMHmThPBfQqb+Dq/GLuLRz0pANiie/bXX9NQkGyET3rpVxKZ382s4I41
+du6Yufi/lYsTMgdk8D1JtMrafgjzbT2EKkO9HLlBgjPUnnFvjVgKjYMZrOrUcyYk
+6Y0vXNmODy4belvRWIeIfokp7+gHLqAFTHSrePILn7s69cm61lPxxYI9Ml9wC70z
+/Q0yVL9DYrsEIk3F36dvXZ8MspeRYROourZJXMMR2dt2DAL8ifAeG+kumX9/LYgz
+aO602J8xtSIG8wi53tgICILdYKgtcKPIms2IzamGncj7WSpEy3NqK9StWH61glNK
+lo4Uu+PacwVVcRWJsFyRPW/LxlXGbIkRQNTT2I8nvVGKXR13+8c=
+=Eryw
+-----END PGP SIGNATURE-----
+
+--U3h06jO4XCyQwGmf--
 
