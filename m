@@ -1,175 +1,112 @@
-Return-Path: <devicetree+bounces-162915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54387A7A2AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:20:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA13A7A2B8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06970172E31
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:20:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C765A1896511
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEFB24CEFC;
-	Thu,  3 Apr 2025 12:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F6024DFFB;
+	Thu,  3 Apr 2025 12:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gIy51LpP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q8/TYGYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7429824291C
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFC724CEFD;
+	Thu,  3 Apr 2025 12:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743682803; cv=none; b=qJfOniZpUDGt4PjdKZ26G1pLO/ZY8kPwfptZ78NBb0oIy7WqXYA3oRg5Dru9QdOwOwXLjzzhWgiF8XYoGp8WKHg5XLhfPW+a4g/mB+zcDaool8UOSuONyggqfpxJYv3zs9T6xBPgbkgpclS2A9XfS8SNC2zfje2zCP0cN5XRcCg=
+	t=1743682881; cv=none; b=WxR/QFVYxGbT0dXoqOZZu0UuT1Ni6s9PIqf5XtPislWvPorLAl/rKLtWwfg/buOPeTaUoUxmPgA5zXr0jOmulz9awvCqO+YyNsZLyl7/DmpnL7IXbs6UtauJu7Q4ZXENKmXx5A2f8xgCuitzYft2+/8UeC62kgxEVVyBLP7gjGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743682803; c=relaxed/simple;
-	bh=NaAZ4b2SEwl0UDAk3zyED6YV3zE+9mKyjBO0BPkluHM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nq9cUU6ysKYG1zggt+1vkiO0fVDTG0M/hs9HGpVfQvpP3p2+JXPbbQY9hQosws+2wy3FbG67FNZvmqfG2iM/StSXrYEdUeZcB6YLulI99yATHaofo4bHvA8SijJJjFFahSnZBc0/rrOMiOqhn+yVHlo5vXOJfqXRV43GXkDWVx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gIy51LpP; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cf0d787eeso7753075e9.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 05:20:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743682799; x=1744287599; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Do7g5ZIFeFFdRvHgyZdqL62w5VJxx0jLniscRb1wlqg=;
-        b=gIy51LpPKVP+MTrTt0usZrWlF50YaUlux1rK2OWyLbyKeNavbvrSLDRJgt+jBki0/B
-         Zw/lQO6lDOsZ07skNj9GiT4+uOGNbL6aYpCOE1D8ls1zwte53LC0//I0+zPbb7MeI5SQ
-         vNuN+Dy2MlcEqnNEJwevfeGQkSJJqfL+HAI7v6xx8MkitSyP26jwKqF1/aI2zwiY5wWV
-         bOxzm7tDzhg+UpwxKhhrfMzDjij5dTgDpBKOEzGqCwcTqt63bhjFHb8vaJCVDVyi4DOu
-         KEhue9jmeauAFDVVyJ2YpoyD+aae3bkgK6PoStxR8sa17odD4BBnHYBbvQFCo9+wE089
-         dZXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743682799; x=1744287599;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Do7g5ZIFeFFdRvHgyZdqL62w5VJxx0jLniscRb1wlqg=;
-        b=ejf5t3abla81Sa9qbSyj1a65uoHqYW05Su+KCGYlaDSaOrXiipoA1bg4eAuHlyHDl/
-         GY9WiMw5ZR0SuvdsZ46TUmf4PB1ITSagaVkdkK/SunTOCHstKm243baxfQqzRBSOa59A
-         dmI8AjRt72R6WTiZ/13tmpIvT8j+MyTRP9Y8R1A+zET08WTmN+zFWFo0Y9J0Mr9sK/yW
-         6kOZBAUbfFDOb/Trh0oBzNiSabE1x0zwPgnmZeF3wVA51p/hRfW+awLxF6x+gagiFMU1
-         gl07Cl/Ed9r1g/aZRB5xYC7BZctxfMvK03VM8gImHPIME4iRvgGw2c3stCZoWe+H3qt0
-         AzWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdnbKwZ+hkfu4W59pCS8kPa9EHzTujQk5asbUWZVuGFN2EdObpxTDJzkYe3IeY1nU60bql/NfqPxzX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWwoKwl0pOJlubzB1SabhjOE6BCX2IOwxwkVnVvbYx+Bk37OQ9
-	pP4t1dE/uTD+96MnFX6zmzqF2atYZGG7WlOqNUGwYnTiizFdkct3Dykv0tNsigU=
-X-Gm-Gg: ASbGncsaQHlptinDrw/71lyZY0N0b8TVRNLZJjtAjj5ynKCDRTywd5OV8xVJzxxjQW9
-	KlYV8hFlXG2fgW82jFLhnQIUORMj0M3B6QT7b+pgVyjL1LEBWmWNSiEQolMVeBGju3SJf0TNoa3
-	lHfpBgfkj1lK2XkO6FmaR4NpSCuPzvVe1gq6UT+lWwYsmJXApoa65m6MT2MLMOLggGETB15P7Dr
-	Pq0t9mVKJH9qzaeiUvh2nH/zV2LjtXld1UhfiCBnlgsjRs0xY8GFX6i6yLKy2bMM6krHj4wR6HU
-	sLxFZGqctekKGSWi73rIFOt/3ZlpsXEjymWAIg3DXEf6rKULQYtc4zNZejQuw+A=
-X-Google-Smtp-Source: AGHT+IHYXVxVN/xLoKK1v9Nlhe06FvQtwGVbb6msfL6zmA7WaejsGqkzo/0fvzRlouUTsIjQ6pcmjA==
-X-Received: by 2002:a05:600c:468c:b0:43d:83a:417d with SMTP id 5b1f17b1804b1-43db622a42emr214509885e9.12.1743682798706;
-        Thu, 03 Apr 2025 05:19:58 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43ec34be2ffsm16874945e9.22.2025.04.03.05.19.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Apr 2025 05:19:58 -0700 (PDT)
-Message-ID: <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
-Date: Thu, 3 Apr 2025 13:19:57 +0100
+	s=arc-20240116; t=1743682881; c=relaxed/simple;
+	bh=L1M9+DqEkPWzAH4mbo5Bdwgh/m7vQ9ylF1u193HM9eo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ISzEKM+B3b6icQJ//2t2aVfrulmyaHjrh0tZnu/D1XNds0NIE/HSY5wEZVlqaUkgKO5mQ2lJqytC3DFsaYGEbmTVMb8Y9LZUTAg6bYrR6Liq4FN14BFEyK/2ynVoi4Lz4baNglJ3SUOthM4jtSrINVWDRnOY/MyrKFNNHhdGtjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Q8/TYGYP; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 745AF43231;
+	Thu,  3 Apr 2025 12:21:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1743682875;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=b5DITWvhtq18VMzVSHOCV2iIg0K0B/BD1nLhgl2nuEI=;
+	b=Q8/TYGYPKz5AUooLVdQNonVxTWZy1BMPqYD2MsAiksQVAHgsa5fwrzPmIds7d0DloXNqld
+	w2LOtGQL/xdB2C1V9TAEV+yyNBYSt6OxzUCqRgRj6cyKyzCtP/y488NwRSFFElQ5YdcEOy
+	DDLbZBFjyJ03/1BJGieXIAoXbRYTQqOnc+alJM5KCfPM5g1KK45SXU1ITh5MtyUNuC2qIw
+	bCT66HELUv3NwVpBl04bBWsKkNUTiTx/b6DTSpGOsVlVH5DHNqZibE3wntoAmuaT7CCLKf
+	aegJO4TlaZLsSJxVQaufMbQpUp4yNV99x9VDUp9gf/gdJ4TeUao7O4BkohfgJQ==
+Date: Thu, 3 Apr 2025 14:21:14 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 1/3] i2c: core: Follow i2c-parent when retrieving an
+ adapter from node
+Message-ID: <20250403142114.2ca6722a@bootlin.com>
+In-Reply-To: <Z-5u5bAnY8Y1DmFz@shikoro>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+	<20250205173918.600037-2-herve.codina@bootlin.com>
+	<Z-5O3-FSsHbn27lW@shikoro>
+	<20250403125050.22db0349@bootlin.com>
+	<Z-5u5bAnY8Y1DmFz@shikoro>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/6] ASoC: codecs: wcd938x: add mux control support for
- hp audio mux
-To: Johan Hovold <johan@kernel.org>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
- krzk+dt@kernel.org, ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
- zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com,
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- johan+linaro@kernel.org, Christopher Obbard <christopher.obbard@linaro.org>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
- <20250327100633.11530-6-srinivas.kandagatla@linaro.org>
- <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeekheehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Wolfram,
 
+On Thu, 3 Apr 2025 13:20:05 +0200
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
 
-On 02/04/2025 10:12, Johan Hovold wrote:
-> On Thu, Mar 27, 2025 at 10:06:32AM +0000, Srinivas Kandagatla wrote:
->> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>
->> On some platforms to minimise pop and click during switching between
->> CTIA and OMTP headset an additional HiFi mux is used. Most common
->> case is that this switch is switched on by default, but on some
->> platforms this needs a regulator enable.
->>
->> move to using mux control to enable both regulator and handle gpios,
->> deprecate the usage of gpio.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+> > The debug message can be interesting when things went wrong and we want
+> > to investigate potential issue with i2c-parent chain from the last device
+> > up to the adapter.  
 > 
->> @@ -3261,11 +3276,26 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
->>   		return dev_err_probe(dev, wcd938x->reset_gpio,
->>   				     "Failed to get reset gpio\n");
->>   
->> -	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
->> -						GPIOD_OUT_LOW);
->> -	if (IS_ERR(wcd938x->us_euro_gpio))
->> -		return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
->> -				     "us-euro swap Control GPIO not found\n");
->> +	wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
+> I thought so but couldn't estimate how often this is useful in reality.
+> I agree that introducing 'dev' is too much hazzle, yet I think the
+> message should have some id to disitnguish potential different adapter
+> chains. Either that, or...
 > 
-Thanks Johan,
-> Running with this patch on the CRD I noticed that this now prints an
-> error as there is no optional mux (or gpio) defined:
+> > I don't have a strong opinion about the need of this message and I can
+> > simply remove it.  
 > 
-> 	wcd938x_codec audio-codec: /audio-codec: failed to get mux-control (0)
+> ... we just remove it and let people add their debug stuff while
+> developing.
 
-This is not from codec driver, mux control is throwing up this.
+I agree.
 
 > 
-> You need to suppress that error in mux_get() to allow for optional muxes
-> to be looked up like this.
-I have a plan for this,
-
-I proposed some changes to mux api for exclusive apis at 
-https://lkml.org/lkml/2025/3/26/955
-
-This should also allow us to easily add an optional api, which I plan to 
-do once i get some feedback on this patch.
-
---srini
-
+> > What is your preference ?  
 > 
->> +	if (IS_ERR(wcd938x->us_euro_mux)) {
->> +		if (PTR_ERR(wcd938x->us_euro_mux) == -EPROBE_DEFER)
->> +			return -EPROBE_DEFER;
->> +
->> +		/* mux is optional and now fallback to using gpio */
->> +		wcd938x->us_euro_mux = NULL;
->> +		wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro", GPIOD_OUT_LOW);
->> +		if (IS_ERR(wcd938x->us_euro_gpio))
->> +			return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
->> +					     "us-euro swap Control GPIO not found\n");
->> +	} else {
->> +		ret = mux_control_try_select(wcd938x->us_euro_mux, wcd938x->mux_state);
->> +		if (ret) {
->> +			dev_err(dev, "Error (%d) Unable to select us/euro mux state\n", ret);
->> +			wcd938x->mux_setup_done = false;
->> +			return ret;
->> +		}
->> +		wcd938x->mux_setup_done = true;
->> +	}
+> A tad more 'removing'.
 > 
-> Johan
+
+Will be removed.
+
+Hervé
 
