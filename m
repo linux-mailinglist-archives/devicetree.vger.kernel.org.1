@@ -1,110 +1,134 @@
-Return-Path: <devicetree+bounces-162921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721E8A7A313
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:45:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B8E1A7A31D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:49:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9C14188FE6B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:45:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D54D8172A30
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7E324CED7;
-	Thu,  3 Apr 2025 12:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48121F4620;
+	Thu,  3 Apr 2025 12:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M891MY8V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RT/jr3C0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0E82E3385;
-	Thu,  3 Apr 2025 12:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41EBF33981;
+	Thu,  3 Apr 2025 12:49:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743684329; cv=none; b=Jffhq6O15CkEpw5anamRVFxfCIX5sBcqY2Vxan0zjWdAgQ9tBiy2lTg6hglff/O9sM18Ihf0ayKfUGvNFJLPDSUlu+9hCe7lfXmkpMRvaEmNQicUTl5ofQJTln6nh/2p7x/K5jiwp5rRfXfLtiGoYJM6cD8AgPm7k3YG9hRRFUI=
+	t=1743684565; cv=none; b=X8BZxhbjKxD71NwTGvnPxKyvWdptKtfhCIEU+uGwR/TQ9AbfgqcMLNeHUK2oeCBViUSLYE3b55eM3wP6w430ZcYra6W6TqpjvP4bc8UR1IkDynojgE+UHirGUq2yM+2n8RfPSKYWlupTtONjXdputHYgwTK2LjKXmDN2dKixNTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743684329; c=relaxed/simple;
-	bh=DmmRXnc+C+5Qzrcx7mTkzVCPDCYNLp85kXYxa6U1GHs=;
+	s=arc-20240116; t=1743684565; c=relaxed/simple;
+	bh=RxMLz6M+rqNa78DbwQakLvxhMZ+1yEief3w4mMeOKag=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oh3wzPO7Q9UbnU1HaoFdY0U0v0W3erpea5VvO+ZB2ewSmghh9ZklOQF4IuNFpvWNprvortewmEjWGJL9TfcSjaDngdCAnoh36bKf+Q27+ifdkXb63+Sz6m7I5bC6SbbJoDP0tCJPA9Im2Z1U1vkcAw3mwHqhZJGtmpcNAFoNDKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M891MY8V; arc=none smtp.client-ip=209.85.216.45
+	 To:Cc:Content-Type; b=iGSk7qcBPYOB/a3qIrLUrvKQlTsugxjQYSkUaTk7maWdCW4Mb11UWbhXw5cPL1GW62yk2HARz8GUywnCHHb5YJseHQ/XalZ/pfT6J4luC9yz8GvS0NSEYS3K0QEBK4SgkWpDYekd+Jb5LK0FEXKtfpayfI+EvuIDCbF4Ytzx+Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RT/jr3C0; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ff784dc055so778241a91.1;
-        Thu, 03 Apr 2025 05:45:28 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2ff784dc055so781243a91.1;
+        Thu, 03 Apr 2025 05:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743684327; x=1744289127; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1743684563; x=1744289363; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DmmRXnc+C+5Qzrcx7mTkzVCPDCYNLp85kXYxa6U1GHs=;
-        b=M891MY8VT8uIpMV3ljY9tR0eoN5FR6LdKRkseV8v23zcbctU0vNaoS6G2NKplE5b75
-         P0tHkQSBP4STzelUj1WzuEtyAjPzzObkvpZgZr6SQfm0zSZ6Nd1bMZ8Ax0qYjgYeaPG1
-         S60EdccZkVR9X9BXHM1nM7LavSwoMip4TX59GhQ5M1Jv1Hbsm/WQIZmtC/qssLj9hXBt
-         8w2v6x9AQ+UziwC+9r6DCIG40epIaMv44ols6tLQqEB0jpV1N/jPSOCzd/Gdn71CPWLE
-         TEDQeDX980gqhwfB+0weisGTsy55qPpp0G3ziXfZiwvuAOKnveIqDsYbxgmdckvtFukg
-         10Kg==
+        bh=br0qzftHCKz3sbr3SzuiqhOwZoMQzE2LZ4g8CLoOd0Y=;
+        b=RT/jr3C0cNFjxcLOQZRBy2npcuO8nzHhGaHuROWvF2DwG2ZWcfgm5IRQ2/9OaYMkhs
+         MPWhVyHrUwuJp8BkkFQOu2XkRk3VKQH7p0sSyf6cWvvoAIcAPixDqyZpTcBxHKMBAiDd
+         cRsHu73bszNO4nJUjFK+X+xSlLt5EbavTnpuRPN6EhXHBAuJC9AqxSQJbVnE7jzJzk0r
+         edry5LHdg8pOnpounkzQ2s0UKBoOsLx0q0vnEMUeN+ohdU9FgFyQoS2M+LTchIgCdYiX
+         6fT6lsYgYsLy8HmMS1PtO4HrdTgB4MJ4o9ZRT4HXKXalq7cobFEw+/tfhGvigJ0PknOd
+         /HsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743684327; x=1744289127;
+        d=1e100.net; s=20230601; t=1743684563; x=1744289363;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DmmRXnc+C+5Qzrcx7mTkzVCPDCYNLp85kXYxa6U1GHs=;
-        b=m8Wr8R5/P2sHw+jGyUnJLZ8sEFPOoDBWBii1jqqppKIHLLn5ve583WsgldVJLNIHJO
-         GEZipfu0oI53JRc4LSOe3hWNnVQyQ3qIa0tGnm6UsWMI14OSZ6UEmCvDZEn1ZYsSrcZP
-         zJeYq3MwL63idbEfLmv/lKA/Bo5oYaA0hUVOPgzKXg+kvIZwTe+RhlbHQCujxROtn2wE
-         p1EaJmt71KpHa9DozeBJp6K0m2tzPEP2tpY9UBYlTjLhK5bkhO9/jwsk+IP1z3H+2raL
-         R/5DuuUMbV03f/8qr0Gar7lm/SPqM0S5GXY2FvV8QrswU3QHnW2xpd+QqoHHZ81IRhfD
-         m3fA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1lXxn3z8GTj1R6UAw6oXlzpsvPS99yphUdcs1Y+ch/HuzuhVCHPQlDoBwQieBTjjQggc2qljPoi1c@vger.kernel.org, AJvYcCXa8HbhX7FYp6G8SDHhNB286ik3NYXuqKPH5DRDP5bEyrz140dhKlb0tAZeGBG2auoml/VpgVXB5WDA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPdGiVN00yYT7+tXxgSSyC9r2yOWbaLQlzD5tdb2hL20SbubdC
-	xOA3r//b45cR/h6/ukVTWLOwcnWJiG3es9SysjKAqq62nIQ79NSVv6fYBOR4vhomY3saBxlIzch
-	KcREo0/IgyVWFhZaWaxinp1/cmH8=
-X-Gm-Gg: ASbGncuzaLXCMBVSuX6ExZ6pgWWE5ZRTxDDxxqEqlYMVyhjbr4cPcAAnMorg1Gge7cr
-	LtGqaBB8JCEd7avd+bvpq9osQ3iAVd3vi6OAufCXiowuJ+14g9k4EY0Xz5bH+ac75SCfszn6JRo
-	DMMp73vGELaCW2s+vGjJZmzmAGERk=
-X-Google-Smtp-Source: AGHT+IFvf9rTGXfqht4dwY3ke3q4cj6dPEN1J6ApkK+0CgI8Yg8YgwSCCxtscvyZM8lxZ3myJ7t4zKek6684uuFOSUc=
-X-Received: by 2002:a17:90b:5347:b0:2ff:570d:88c5 with SMTP id
- 98e67ed59e1d1-3056ee3151bmr8782674a91.9.1743684327564; Thu, 03 Apr 2025
- 05:45:27 -0700 (PDT)
+        bh=br0qzftHCKz3sbr3SzuiqhOwZoMQzE2LZ4g8CLoOd0Y=;
+        b=Ngs/PHTjL64+trMBS0YYwEtXF03CqJ7gFW0anKf/hIKQFJXvN3AZ+vKrr81Q3hpfPw
+         Fx+d/rQEo1JHdvg1NHiUp4+NseSmGkgalMf0oYZGecw2kgIl3k0ziUCHJCS3pdwkPxMm
+         z+/QyiJV7lVGEw6HBNjn2HbzywQUrBO1i9pGqvZarEgIfmErebh1PLYi6M953M1FeInJ
+         AAcrSFLwQkkhSspfXYTvoWgSuNbt8NV2Qul+VjOk9fmoyam0nMZ7ZtviEAW/MvrParbq
+         KOGovhdGxqDFJvnV/2lGUMihFVJTkQZfOhLE2pKBCJoblJxq3vf6rsa8Jx1nzrGi3qJX
+         IcxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGg2bKNZIaPP8FYi3ikptr7a3EGJyAqmxM3ODtV51PWSDdBLBDQR/Vkd7U/eyxeJefIHdt6ZIL6CGvwiuZ@vger.kernel.org, AJvYcCViRp+CqmCGvuSAEI1qb0WQwBYoZsvLcAWLVDZ10fPWowzE88qyyDYDBefCJgghoMXvE4zP+YvH0WiR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeXlW7EMLcFX/5kbnNJ3L6ESllt4QYYxkhOr7z1fAm6drwAeS1
+	JEggyPRfj3N8WtNM7P10TI/wrHOBpm8lF5a24Buh3gWCM0CndBekjDBKzG7v40DM7j1DDXnHDBM
+	dHOnKA6bQgkTKKVuKO/IOh4jWHpU=
+X-Gm-Gg: ASbGncs4AUuUDeDqs8ypAgeB+jl6CH30oNT/3EZ2FElfa1Tusv7+wRd1J768hcWY1Dw
+	lcTWHrqjxUMQSQlAwXfQnOuL6FCWMH3awdSoINiFSLcJwRbgGmOeiYfn4HSRACQwZiXgdgA1Abh
+	eEXVhc6yop+wl0hhV1EDG5ME0=
+X-Google-Smtp-Source: AGHT+IFYW9MnslIX+WD/W4yqFkahfmkMt3j4de0kYP5osy79qxqlNhQHimSlJ+WSDyjW98VqmFgbjK1vYEjgozBE86s=
+X-Received: by 2002:a17:90b:2644:b0:2ea:a9ac:eee1 with SMTP id
+ 98e67ed59e1d1-3056ee3148fmr8807692a91.10.1743684563426; Thu, 03 Apr 2025
+ 05:49:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403053225.298308-1-gye976@gmail.com> <20250403053225.298308-2-gye976@gmail.com>
- <537287ab-4b10-405b-a539-bf3a68a6f4b8@kernel.org>
-In-Reply-To: <537287ab-4b10-405b-a539-bf3a68a6f4b8@kernel.org>
-From: gyeyoung <gye976@gmail.com>
-Date: Thu, 3 Apr 2025 21:45:15 +0900
-X-Gm-Features: AQ5f1JrFk8CidTrs9kosL7PSIvpX99enjDuLupdAPZHVSjiCui5VoEZ-WdCeE_c
-Message-ID: <CAKbEznuB0+yE-9HXjMjO5fGMcEt+HwR2sC-KG=Zs_qd-8Cg4qg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: add winsen to the vendor prefixes
+References: <20250402-initial_display-v4-0-9f898838a864@gocontroll.com>
+ <20250402-initial_display-v4-3-9f898838a864@gocontroll.com> <f75fb67a-91ac-4e3d-8ce7-5e0c6c2bb2cb@kernel.org>
+In-Reply-To: <f75fb67a-91ac-4e3d-8ce7-5e0c6c2bb2cb@kernel.org>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 3 Apr 2025 15:50:47 +0300
+X-Gm-Features: AQ5f1JpOn26KtD3CJ794gf42_16EcVqDVeshPu-zxnT2qzP-_yIum74GI60JHY4
+Message-ID: <CAEnQRZC9Exfb5FL+gpMuwU6jLP8vO9hjrxm1+OHQBeLy0J1Wsg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/9] MAINTAINERS: add maintainer for the Ka-Ro
+ tx8p-ml81 COM module
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	lars@metafoo.de, gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: maudspierings@gocontroll.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Krzysztof, thank you for the review.
-
-On Thu, Apr 3, 2025 at 4:48=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
+On Thu, Apr 3, 2025 at 10:45=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> On 03/04/2025 07:32, Gyeyoung Baek wrote:
-> > Add winsen to the vendor prefixes.
+> On 02/04/2025 09:07, Maud Spierings via B4 Relay wrote:
+> > From: Maud Spierings <maudspierings@gocontroll.com>
 > >
-> > Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+> > Add GOcontroll as unofficial maintainers of the Ka-Ro tx8p-ml81 COM
+> > module bindings.
+> >
+> > This support is not officially done by Ka-Ro electronics, if they at
+> > some point will supporting mainline, this should be changed to them.
+> >
+> > Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> > ---
+> >  MAINTAINERS | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 322ee00547f6e494a96d2495092f72148da22bd0..4b3864a9852f9fca2be4898=
+7d383c0671e668336 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -12752,6 +12752,13 @@ S:   Maintained
+> >  F:   Documentation/hwmon/k8temp.rst
+> >  F:   drivers/hwmon/k8temp.c
+> >
+> > +KA-RO TX8P COM MODULE
+> > +M:   Maud Spierings <maudspierings@gocontroll.com>
+> > +L:   devicetree@vger.kernel.org
 >
-> I am pretty sure you sent v1, so this is v2. And if this is anyhow
-> confusing, then just use standard tools - b4 - which would do this right.
+> Drop
 >
-Yes, actually this is v2. I did it manually, so there was a mistake.
-Thank you for the tips.
+> > +L:   imx@lists.linux.dev
+>
+> I would say this as well, but not my subsystem to worry.
 
-Thanks,
-Gyeyoung Baek
+We don't actually mind to gather all i.MX based boards development on
+this mailinglist.
 
