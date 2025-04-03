@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-162909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBF4A7A263
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:03:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF576A7A269
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:04:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93DE6189114A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:03:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4153B7A60B9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7FF24CED5;
-	Thu,  3 Apr 2025 12:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B3124CED6;
+	Thu,  3 Apr 2025 12:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ti22W0JT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qp2kJ4GZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E615018DB10
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6006524C66C
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743681813; cv=none; b=T3eJe1dFqWuDx12uZp7dKE5w+YK2Np4N3Wu1MtlbCH+1Z58HHS/CHlCuibPEbLLJcm2/DZ1GKmCsftEYfvnRP3aa0HoDc1riuRB8qGqmFR89r2WDHlDz3Lj0W+w6+A/nPaFmhGKH0zYQEKQrKNWweNyPb37Jtag4Dfw91z/2T9Q=
+	t=1743681820; cv=none; b=pSL6TIIkR6klhYumGi0ppe4rHndDC4vdnB5aiFearCc1sc4BXxG68eQ0uGZZ5RulRDCsysJEjhxpT66bgx7/bQmQ9k1XflIdqQ9yitXhfKdKN8OcsoWO1/tYMinxRLSBZL8pWXQJVkpykp3Ha2J35lVC1ZVPF/jdO+gEu41iOxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743681813; c=relaxed/simple;
-	bh=s1AZRq0Ro0z/JSNtKFowYleaKwidfQ27IMmAxHeDf6s=;
+	s=arc-20240116; t=1743681820; c=relaxed/simple;
+	bh=XwZi7SYJIYv+5H5DHSRbphfyWXnhLBZIgjdvfOw2XTY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GUjq0UHNXddOM+eKMdiW+eXUA/JrNNZxLori2yff2kQQQS/QSCwaO1vVDyZDTyOEGLBlip52UwxvgsmZ/MuUI8vqTJFZJLcmIEPLEFnRsjGMDtBklVbbKt8d8Eh5DXR/3C9hBFsmMwgkfX6HuM9TRowQsS6xKbH+xBmgfBVGIrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ti22W0JT; arc=none smtp.client-ip=205.220.168.131
+	 MIME-Version; b=i8Z6h9E2qItkjWhe01GcHwFqTzU6/d7TpcI2jb74+43e3RASNVL/DnT7j6irSnm5BycKivC1SRh5zGWUS/pJJ8PrmGR8JPpyB2Uq1Q1guefaufOy2zXR9jqTxHwpPGdz+TpSovyy6Pym2HKdIN0+Haf+mf1jExd2ee9KFyCGyJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qp2kJ4GZ; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5339sE4r029964
-	for <devicetree@vger.kernel.org>; Thu, 3 Apr 2025 12:03:31 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5339sHwt010258
+	for <devicetree@vger.kernel.org>; Thu, 3 Apr 2025 12:03:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=OiVyJ9HIT+J
-	y3t8ULO00gMydZY0WULMCQbUZhY1u9Bo=; b=Ti22W0JTt5aIsloU0iHse+0YvOs
-	IsKwgPLCZMUZP+dtuu8wovxzI7pA3f7U01dHxhlj59ugCYLCMEhgCVU1br3uvrRy
-	uDpWSPFHGF9fxXEHvGQXNFb6Hb+kKKuR6KxHgoIA/2oy8HzKH8tLd9lSvNpfcW0p
-	yCoImNNr1qya3Ep2iSr8fBMRt2Ys78p3cuDZGU3i5d/DfbeMGuJlvoZQ5AfZ4qnf
-	tx7mZUnlrX++6JFshvnjnN5QmxJLzv4GkChnwsriodI9vcFcYY89V6HpnlLl9vyW
-	i3J3ZSayQcGDHDqGR9HsI89yw2Blvi9cQBR3ufOHgIfTtveeUBeLA5SpFSw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45rbpyypd1-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=Lk87R3h5+QU
+	rraNSevkVcU9olZdNWSd6Up1jGf4VOTc=; b=Qp2kJ4GZgsIqCKGXqk8xtr1eKDa
+	qpuqG8DfdxUj1h0z+ttlqXR1w7G3v0mQtNtnwccSKsT6zDUBOpoWPeanT+S++rZN
+	EReG8qJU7BgzSJ+sAFkwEtCuU4DBZv0llCtbLEidUpTluy1JVO4pF7mv7NNiRXEQ
+	XcMiF3KwNVpyzKf9/CmBwK4FgZXqNAiSg3hSTFRrAZtt/00O5a2HAurkL5oH9ecd
+	QZOird0HD4V6f07E2z62THWkU+T2D9P9nj3grXmr8NtL/bc3peB7aRvrp3SCFA0b
+	/zX8J2gQo8Kj8rWjTSwL2MGjQfuQWE1qUCajWJociY3B5bTKeRWIfIg5ScQ==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45se4g1s3j-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 12:03:31 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3032f4eca83so825139a91.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 05:03:31 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 12:03:38 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2ff53a4754aso1176701a91.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 05:03:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743681810; x=1744286610;
+        d=1e100.net; s=20230601; t=1743681817; x=1744286617;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OiVyJ9HIT+Jy3t8ULO00gMydZY0WULMCQbUZhY1u9Bo=;
-        b=Ykbp2ZLShw5+Euh65SiBBOKEIFXFWAWLYrTndUb/rIhZuELEDxBYsO4ayRiSarGoB8
-         DHFlRRYSTNXyeyICDxiwnh2jx/1tdEV4loFQ3h2Vsl3LQWMgHh3Pm/vIzz4wpGZ57zGw
-         +9l7wEtRZcxrD/ysNtw/a7y5UpxsEBS+ZyaLHHcOk1fQMRl6bigAMgG/M1ETV66AUlAy
-         544ZAZ4pUEwklV+oWorNwn6lDQZaef8HynlYIF3MvQWnUKUD905G3BZXwIV9rQu8FFqU
-         NjECnhaHRcEFlKXJsP+rj93euEDk6CSfjmxi7HGG8VaEsim6CO5C4NgLQpvQXR3FQN56
-         KgDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbKOPmiFMC6YM/wtvHRYuJgNLo+7nXbekVdEknZckgGODisjpelM3B2Gc6w7pkFd/M0j7jhqW1FrDY@vger.kernel.org
-X-Gm-Message-State: AOJu0YznA9GdEBdPW9x7QD7JxKH4TAIAycJP1Mpmt654JEUMFCukiG8O
-	9JppKh8Xf1rSrfgNdS0yb5GKNHWtMxNJ9gJ19HJyUejiUhJ5BbYdGBdqNrUvMZCTtbswLEbuIQB
-	nqHRmJXQ1augZA4IT43B8FzcuBRjYjp03UTlA6REMBR7ceMO683N2yUDJuugdknA6OaeQ
-X-Gm-Gg: ASbGncuqJt0u6jJtuGhwFfLEr3N0coq0o9F/TyK2LdlI72/iCWq3wnoB2C5SUXZa1Aj
-	aDNye28JHTpMQu2C1E5RaFGw1oSwfxZ5aHQqSTwyBEpWicK8sMomErz7iVirTBIKPLjZx+6j1OS
-	7qQAEbFmaWZOiYgthvNzakzKcYvGS9IhF8E++YguR7obm6Cv5Iw3tnYYuZtBIKOF3M/dd9FbKPW
-	VLJAiQgKm7vx+IXRUQ4/wvebB6UUYzwW/fHariX+1viUCG/SqilJTxBsEkHA2u1LWBtv9K0e3qf
-	kDTT0wMHbVrGxTVlLZQh2JJ0ZU+el31ejrio+6Fd4LnTwKAndPW3czXmJbhueb1QrA/7PvwINHn
-	GzMBCn0EPMWqYsYpLdmigH5pvbv6zgQJt5oXHcTM=
-X-Received: by 2002:a17:90b:2f10:b0:2ea:37b4:5373 with SMTP id 98e67ed59e1d1-3057cbf53bemr3901090a91.10.1743681810016;
-        Thu, 03 Apr 2025 05:03:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGvrjvKoKHjNYELBa0Lyp30V3YrB0+CCYX2FVzgm+S7OA9G+72hJaGlN9YK8gFhNZxziDFw3A==
-X-Received: by 2002:a17:90b:2f10:b0:2ea:37b4:5373 with SMTP id 98e67ed59e1d1-3057cbf53bemr3901045a91.10.1743681809590;
-        Thu, 03 Apr 2025 05:03:29 -0700 (PDT)
+        bh=Lk87R3h5+QUrraNSevkVcU9olZdNWSd6Up1jGf4VOTc=;
+        b=xQGZY729I5jceoZE5lOeJ2y2EkvByzbUnxZg6K1Dp+rSPBd2pXLsO5BOVO8FFj3/dO
+         PaDVp04jUDEjuRPWmfRy3KIKB/PBy4S5iNgl6+BeoSHwZM//wRPxdpvmHiAtIL57cUth
+         fkALnUIxWOokfl6GNo/Wtjm1szoosXOxKEaos4yd3Nz/IoNf8JqmdLRIKcclMMaWhb3f
+         UuftfDZHwasujUz2yRM5n/Wnebewtww8kcLiA0i5Ac+1F5vHn/dXZh+aAdAieyJ9i+Al
+         CClnWm2nHq2K+18b3A8miAJa1p8fCsYJG7p7JSQj7EGJ0UDZDRN4MqJ1YBrkGuJxYWHh
+         btag==
+X-Forwarded-Encrypted: i=1; AJvYcCXYxMip87yipXgvDdLqFoCqDE5HPUj99gOskqDyAlDB4Lel3hzg1vVL9CWVATyWKAn2kebUbhecTA4N@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxmThLqQ2xQXe+4FX9n98Lqnx6Ir1ncg10CsqBAAdQJCofoUJK
+	CXb4ZFbEi+tHZz4q8vEtzV5Vf3DPvscSmJ8RpohS7cBZgvINQpERakRCxizi+VojAPO/FnY2ybJ
+	rEnXZZMOlPOfo19J0vcEdGL/YIaswNL/eZLDJeHMz222OtOdWRotv8tjKJfYM
+X-Gm-Gg: ASbGncs1pfA94Cz6hPMJxiErNtJJfI0OyWchPcWeVZQzKOoqd7j8Dnkn76P5ckT53uA
+	g/izRg9csqfEKm4F6Xg/nBO22MH0H+pM8Ri4+XF90hLsbHL7X67rzGwp2q9cnm9H1gGTAT8xTWP
+	WCp5DQVUiuwwidulKrvu241NdW2OmSsFif9i1XZn+PpBIQUNUX2446ti4LdKPqCNmW04IBIKHSb
+	OXCMwnYBpWcw02utxX4FslfI7ivJJ0FzFqFJ1qs/bH+eaMlZQc15FMK1SXI6Xc1NUd/D7KOYdHA
+	TvvmHYdbqvfsXv0MO4kCpKLYEKtmhvjOToHBbemMXazHJgCb5DYlMUUfqrViYwycgEj21wBLp7J
+	rV1E5yyzD/9MX/UX6PBO2MuszRLQ2QisahVkuhqs=
+X-Received: by 2002:a17:90b:1f91:b0:2ff:693a:7590 with SMTP id 98e67ed59e1d1-305321705f1mr34406109a91.33.1743681817378;
+        Thu, 03 Apr 2025 05:03:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHK9xeWNHarlA36QHY1+b0NkGZhOIFrZcHxPmeU579TwcdNGMz+Lr8i4rUwtboStx7zHjXIbg==
+X-Received: by 2002:a17:90b:1f91:b0:2ff:693a:7590 with SMTP id 98e67ed59e1d1-305321705f1mr34406062a91.33.1743681817012;
+        Thu, 03 Apr 2025 05:03:37 -0700 (PDT)
 Received: from hu-gokulsri-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-305827d710csm1285799a91.10.2025.04.03.05.03.26
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-305827d710csm1285799a91.10.2025.04.03.05.03.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 05:03:29 -0700 (PDT)
+        Thu, 03 Apr 2025 05:03:36 -0700 (PDT)
 From: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>
 To: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
         krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
@@ -87,9 +87,9 @@ To: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
         linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
 Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com,
         gokul.sriram.p@oss.qualcomm.com
-Subject: [PATCH V4 5/8] remoteproc: qcom: add support for Q6 device-tree loading
-Date: Thu,  3 Apr 2025 17:33:01 +0530
-Message-Id: <20250403120304.2345677-6-gokul.sriram.p@oss.qualcomm.com>
+Subject: [PATCH V4 7/8] arm64: dts: qcom: ipq5424: add nodes to bring up q6
+Date: Thu,  3 Apr 2025 17:33:03 +0530
+Message-Id: <20250403120304.2345677-8-gokul.sriram.p@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250403120304.2345677-1-gokul.sriram.p@oss.qualcomm.com>
 References: <20250403120304.2345677-1-gokul.sriram.p@oss.qualcomm.com>
@@ -100,279 +100,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: dARgQxQXltPLRBrlnlbtt6JTaGbYO8kD
-X-Proofpoint-ORIG-GUID: dARgQxQXltPLRBrlnlbtt6JTaGbYO8kD
-X-Authority-Analysis: v=2.4 cv=ZNLXmW7b c=1 sm=1 tr=0 ts=67ee7913 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=aTtrrYsn2t972Xo9M2sA:9 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-GUID: uEJvOrXYALGVWHIJudykIra8ujA8sf7d
+X-Authority-Analysis: v=2.4 cv=a8Iw9VSF c=1 sm=1 tr=0 ts=67ee791a cx=c_pps a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=Chduei3-CDLOMEben-gA:9 a=RVmHIydaz68A:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: uEJvOrXYALGVWHIJudykIra8ujA8sf7d
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-03_05,2025-04-02_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 mlxscore=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 bulkscore=0 mlxlogscore=788 malwarescore=0 spamscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2504030050
 
-In IPQ5332 and IPQ5424 SoCs, Q6 requires separate device-tree.
+Enable nodes required for q6 remoteproc bring up.
 
 Signed-off-by: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>
 ---
- drivers/remoteproc/qcom_q6v5_wcss_sec.c | 147 ++++++++++++++++++++++--
- 1 file changed, 137 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi | 87 ++++++++++++++++++++++++++-
+ 1 file changed, 86 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/remoteproc/qcom_q6v5_wcss_sec.c b/drivers/remoteproc/qcom_q6v5_wcss_sec.c
-index 30422c6c982d..e4cc7caebd7c 100644
---- a/drivers/remoteproc/qcom_q6v5_wcss_sec.c
-+++ b/drivers/remoteproc/qcom_q6v5_wcss_sec.c
-@@ -10,9 +10,12 @@
- #include <linux/io.h>
- #include <linux/mailbox_client.h>
- #include <linux/mailbox/tmelcom-qmp.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/of_reserved_mem.h>
- #include <linux/platform_device.h>
-+#include <linux/regmap.h>
- #include <linux/soc/qcom/mdt_loader.h>
-+#include <linux/soc/qcom/smem.h>
+diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+index 5d6ed2172b1b..26c297ffb602 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+@@ -3,7 +3,7 @@
+  * IPQ5424 device tree source
+  *
+  * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+- * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
  
- #include "qcom_common.h"
- #include "qcom_q6v5.h"
-@@ -34,6 +37,18 @@ struct wcss_sec {
- 	phys_addr_t mem_reloc;
- 	void *mem_region;
- 	size_t mem_size;
-+
-+	const char *dtb_firmware_name;
-+	const struct firmware *dtb_firmware;
-+	phys_addr_t dtb_mem_phys;
-+	phys_addr_t dtb_mem_reloc;
-+	void *dtb_mem_region;
-+	size_t dtb_mem_size;
-+	struct regmap *tcsr_map;
-+	u32 dtb_low_offset;
-+	u32 dtb_high_offset;
-+	u32 machid_offset;
-+
- 	const struct wcss_data *desc;
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -149,6 +149,16 @@ smem@8a800000 {
  
- 	struct mbox_client mbox_client;
-@@ -46,6 +61,7 @@ struct wcss_data {
- 	u32 pasid;
- 	const char *ss_name;
- 	bool auto_boot;
-+	const char *dtb_firmware_name;
- 	bool tmelcom;
+ 			hwlocks = <&tcsr_mutex 3>;
+ 		};
++
++		q6_region: wcss@8a900000 {
++			reg = <0x0 0x8a900000 0x0 0x2800000>;
++			no-map;
++		};
++
++		q6_dtb_region: wcss-dtb@8d100000 {
++			reg = <0x0 0x8d100000 0x0 0x2000>;
++			no-map;
++		};
+ 	};
+ 
+ 	soc@0 {
+@@ -541,6 +551,57 @@ dwc_0: usb@8a00000 {
+ 			};
+ 		};
+ 
++		apcs_glb: mailbox@f400004 {
++			compatible = "qcom,ipq5424-apcs-apps-global",
++				     "qcom,ipq6018-apcs-apps-global";
++			reg = <0 0xf400004 0 0x6000>;
++			#clock-cells = <1>;
++			#mbox-cells = <1>;
++		};
++
++		tmel_qmp: qmp@32090000 {
++			compatible = "qcom,ipq5424-tmel";
++			reg = <0 0x32090000 0 0x2000>;
++			interrupts = <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>;
++			mboxes = <&apcs_glb 20>;
++			#mbox-cells = <1>;
++		};
++
++		q6v5_wcss: remoteproc@d100000 {
++			compatible = "qcom,ipq5424-wcss-sec-pil";
++			reg = <0 0x0d100000 0 0x4040>;
++			firmware-name = "ath12k/IPQ5424/hw1.0/q6_fw0.mbn",
++					"ath12k/IPQ5424/hw1.0/qdsp6sw_dtb.mbn";
++			interrupts-extended = <&intc GIC_SPI 508 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_wcss_in 0 0>,
++					      <&smp2p_wcss_in 1 0>,
++					      <&smp2p_wcss_in 2 0>,
++					      <&smp2p_wcss_in 3 0>;
++			interrupt-names = "wdog",
++					  "fatal",
++					  "ready",
++					  "handover",
++					  "stop-ack";
++
++			mboxes = <&tmel_qmp 0>;
++			qcom,smem-states = <&smp2p_wcss_out 1>,
++					   <&smp2p_wcss_out 0>;
++			qcom,smem-state-names = "stop",
++						"shutdown";
++
++			memory-region = <&q6_region>, <&q6_dtb_region>;
++			qcom,q6-dtb-info = <&tcsr 0x1f004 0x1f008 0x1f00c>;
++
++			status = "okay";
++
++			glink-edge {
++				interrupts = <GIC_SPI 500 IRQ_TYPE_EDGE_RISING>;
++				label = "rtr";
++				qcom,remote-pid = <1>;
++				mboxes = <&apcs_glb 8>;
++			};
++		};
++
+ 		timer@f420000 {
+ 			compatible = "arm,armv7-timer-mem";
+ 			reg = <0 0xf420000 0 0x1000>;
+@@ -724,4 +785,28 @@ timer {
+ 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
+ 			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
+ 	};
++
++	wcss: smp2p-wcss {
++		compatible = "qcom,smp2p";
++		qcom,smem = <435>, <428>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <GIC_SPI 501 IRQ_TYPE_EDGE_RISING>;
++
++		mboxes = <&apcs_glb 9>;
++
++		qcom,local-pid = <0>;
++		qcom,remote-pid = <1>;
++
++		smp2p_wcss_out: master-kernel {
++			qcom,entry-name = "master-kernel";
++			#qcom,smem-state-cells = <1>;
++		};
++
++		smp2p_wcss_in: slave-kernel {
++			qcom,entry-name = "slave-kernel";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
  };
- 
-@@ -137,8 +153,45 @@ static int wcss_sec_load(struct rproc *rproc, const struct firmware *fw)
- {
- 	struct wcss_sec *wcss = rproc->priv;
- 	struct device *dev = wcss->dev;
-+	u32 machid;
- 	int ret;
- 
-+	if (wcss->dtb_firmware_name) {
-+		ret = request_firmware(&wcss->dtb_firmware, wcss->dtb_firmware_name, wcss->dev);
-+		if (ret) {
-+			dev_err(wcss->dev, "request_firmware failed for %s: %d\n",
-+				wcss->dtb_firmware_name, ret);
-+			return ret;
-+		}
-+
-+		ret = qcom_mdt_load_no_init(wcss->dev, wcss->dtb_firmware,
-+					    wcss->dtb_firmware_name, 0, wcss->dtb_mem_region,
-+					    wcss->dtb_mem_phys, wcss->dtb_mem_size,
-+					    &wcss->dtb_mem_reloc);
-+		if (ret)
-+			goto release_dtb_firmware;
-+
-+		ret = qcom_smem_get_machid(&machid);
-+		if (ret) {
-+			pr_err("machid get failed, ret = %d\n", ret);
-+			goto release_dtb_firmware;
-+		}
-+
-+		ret = regmap_write(wcss->tcsr_map, wcss->dtb_low_offset,
-+				   wcss->dtb_mem_phys & 0xFFFFFFFF);
-+		if (ret)
-+			goto release_dtb_firmware;
-+
-+		ret = regmap_write(wcss->tcsr_map, wcss->dtb_high_offset,
-+				   wcss->dtb_mem_phys & (0xFFFFFFFF << 31));
-+		if (ret)
-+			goto release_dtb_firmware;
-+
-+		ret = regmap_write(wcss->tcsr_map, wcss->machid_offset, machid);
-+		if (ret)
-+			goto release_dtb_firmware;
-+	}
-+
- 	if (!IS_ERR_OR_NULL(wcss->mbox_chan)) {
- 		wcss->metadata = qcom_mdt_read_metadata(fw, &wcss->metadata_len,
- 							rproc->firmware, wcss->dev);
-@@ -146,26 +199,33 @@ static int wcss_sec_load(struct rproc *rproc, const struct firmware *fw)
- 			ret = PTR_ERR(wcss->metadata);
- 			dev_err(wcss->dev, "error %d reading firmware %s metadata\n",
- 				ret, rproc->firmware);
--			return ret;
-+			goto release_dtb_firmware;
- 		}
- 
- 		ret = qcom_mdt_load_no_init(wcss->dev, fw, rproc->firmware, wcss->desc->pasid,
- 					    wcss->mem_region, wcss->mem_phys, wcss->mem_size,
- 					    &wcss->mem_reloc);
--		if (ret) {
--			kfree(wcss->metadata);
--			return ret;
--		}
-+		if (ret)
-+			goto release_metadata;
- 	} else {
- 		ret = qcom_mdt_load(dev, fw, rproc->firmware, wcss->desc->pasid, wcss->mem_region,
- 				    wcss->mem_phys, wcss->mem_size, &wcss->mem_reloc);
- 		if (ret)
--			return ret;
-+			goto release_dtb_firmware;
- 	}
- 
- 	qcom_pil_info_store("wcss", wcss->mem_phys, wcss->mem_size);
- 
- 	return 0;
-+
-+release_metadata:
-+	if (!IS_ERR_OR_NULL(wcss->mbox_chan))
-+		kfree(wcss->metadata);
-+release_dtb_firmware:
-+	if (wcss->dtb_firmware_name)
-+		release_firmware(wcss->dtb_firmware);
-+
-+	return ret;
- }
- 
- static unsigned long wcss_sec_panic(struct rproc *rproc)
-@@ -282,6 +342,33 @@ static int wcss_sec_alloc_memory_region(struct wcss_sec *wcss)
- 		return -ENOMEM;
- 	}
- 
-+	if (!wcss->dtb_firmware_name)
-+		return 0;
-+
-+	node = of_parse_phandle(dev->of_node, "memory-region", 1);
-+	if (!node) {
-+		dev_err(dev, "can't find dtb memory-region\n");
-+		return -EINVAL;
-+	}
-+
-+	rmem = of_reserved_mem_lookup(node);
-+	of_node_put(node);
-+
-+	if (!rmem) {
-+		dev_err(dev, "unable to resolve dtb memory-region\n");
-+		return -EINVAL;
-+	}
-+
-+	wcss->dtb_mem_phys = rmem->base;
-+	wcss->dtb_mem_reloc = rmem->base;
-+	wcss->dtb_mem_size = rmem->size;
-+	wcss->dtb_mem_region = devm_ioremap_wc(dev, wcss->dtb_mem_phys, wcss->dtb_mem_size);
-+	if (!wcss->dtb_mem_region) {
-+		dev_err(dev, "unable to map dtb memory region: %pa+%pa\n",
-+			&rmem->base, &rmem->size);
-+		return -ENOMEM;
-+	}
-+
- 	return 0;
- }
- 
-@@ -291,6 +378,9 @@ static int wcss_sec_probe(struct platform_device *pdev)
- 	struct wcss_sec *wcss;
- 	struct clk *sleep_clk;
- 	const char *fw_name = NULL;
-+	const char *dtb_fw_name = NULL;
-+	struct of_phandle_args args;
-+	int args_cell_cnt = 3;
- 	const struct wcss_data *desc = of_device_get_match_data(&pdev->dev);
- 	int ret;
- 
-@@ -310,6 +400,33 @@ static int wcss_sec_probe(struct platform_device *pdev)
- 	wcss->dev = &pdev->dev;
- 	wcss->desc = desc;
- 
-+	if (desc->dtb_firmware_name) {
-+		ret = of_property_read_string_index(pdev->dev.of_node, "firmware-name",
-+						    1, &dtb_fw_name);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (dtb_fw_name)
-+			wcss->dtb_firmware_name = dtb_fw_name;
-+
-+		ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node, "qcom,q6-dtb-info",
-+						       args_cell_cnt, 0, &args);
-+		if (ret < 0) {
-+			dev_err(&pdev->dev, "failed to parse qcom,q6-dtb-info\n");
-+			return ret;
-+		}
-+
-+		wcss->tcsr_map = syscon_node_to_regmap(args.np);
-+		of_node_put(args.np);
-+		if (IS_ERR(wcss->tcsr_map))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(wcss->tcsr_map),
-+					     "unable to get syscon regmap\n");
-+
-+		wcss->dtb_low_offset = args.args[0];
-+		wcss->dtb_high_offset = args.args[1];
-+		wcss->machid_offset = args.args[2];
-+	}
-+
- 	ret = wcss_sec_alloc_memory_region(wcss);
- 	if (ret)
- 		return ret;
-@@ -336,18 +453,26 @@ static int wcss_sec_probe(struct platform_device *pdev)
- 		wcss->mbox_client.knows_txdone = true;
- 		wcss->mbox_client.tx_block = true;
- 		wcss->mbox_chan = mbox_request_channel(&wcss->mbox_client, 0);
--		if (IS_ERR(wcss->mbox_chan))
--			return dev_err_probe(wcss->dev, PTR_ERR(wcss->mbox_chan),
--					     "mbox chan for IPC is missing\n");
-+		if (IS_ERR(wcss->mbox_chan)) {
-+			ret = dev_err_probe(&pdev->dev, PTR_ERR(wcss->mbox_chan),
-+					    "mbox chan for IPC is missing\n");
-+			goto remove_subdevs;
-+		}
- 	}
- 
- 	ret = devm_rproc_add(&pdev->dev, rproc);
- 	if (ret)
--		return ret;
-+		goto remove_subdevs;
- 
- 	platform_set_drvdata(pdev, rproc);
- 
- 	return 0;
-+
-+remove_subdevs:
-+	qcom_remove_glink_subdev(rproc, &wcss->glink_subdev);
-+	qcom_remove_ssr_subdev(rproc, &wcss->ssr_subdev);
-+
-+	return ret;
- }
- 
- static void wcss_sec_remove(struct platform_device *pdev)
-@@ -364,11 +489,13 @@ static void wcss_sec_remove(struct platform_device *pdev)
- static const struct wcss_data wcss_sec_ipq5332_res_init = {
- 	.pasid = MPD_WCSS_PAS_ID,
- 	.ss_name = "q6wcss",
-+	.dtb_firmware_name = "qdsp6sw_dtb.mbn",
- };
- 
- static const struct wcss_data wcss_sec_ipq5424_res_init = {
- 	.pasid = MPD_WCSS_PAS_ID,
- 	.ss_name = "q6wcss",
-+	.dtb_firmware_name = "qdsp6sw_dtb.mbn",
- 	.tmelcom = true,
- };
- 
 -- 
 2.34.1
 
