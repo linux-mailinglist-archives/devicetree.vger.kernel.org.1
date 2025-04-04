@@ -1,188 +1,179 @@
-Return-Path: <devicetree+bounces-163303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19EBA7C433
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 21:52:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935F0A7C4A6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 22:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A699D1B61889
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:52:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BBCD165BC3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 20:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCE3256C73;
-	Fri,  4 Apr 2025 19:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1FD221DA6;
+	Fri,  4 Apr 2025 20:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEXeT+q2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X1P4/7F0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0933256C6D;
-	Fri,  4 Apr 2025 19:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E176E567;
+	Fri,  4 Apr 2025 20:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743795785; cv=none; b=g5xgEPhiDZHprkfiGBWLnCsIGcvcwF0IRjUCBFzI7oJTZ+HxQ+s/5dKu+Cr4957qJPiHE8eD4obnqdXINqNZ79M99BxZkrslAhAnJR6lC48FqEtC+AOOobmBbWl1DQbelZduZVFyTuOKiqC9dOp0uj+44/qQmTdlZkJ0OIGfg1c=
+	t=1743796829; cv=none; b=FWa9e8BBPIrGJMk8ELDbgKUPSQwU8bpjpe55Kbu7icPRZJeZ+2PVlHGWZ43QyLAjgqinbZwhzSyOPvHSjqMvFrK7wpHMFkicGqxUAcS8KFRcimx7ubbu5uCKs2UGE2Fzj95/d4xI/bSPHThUI7SrdmrQzk7bfTMHIWqDO/MFDps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743795785; c=relaxed/simple;
-	bh=xjRClgk0ru5HG2bIkVaucZvG6Qpe+4PE/utI54oaEgk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UPr9mWA56x6AufNLQOju/Lr6MaLks7YaDMb6LzE2pbRsD+OuzyDYgZROfWDHEpW15ObBCY5Bqr4qzKwuDrc0x/o8K7XAJOT5VbXzXkz8HvMz8n5KpsCx+fIeqv2LRKLr0MBpAYIdASLYpYKJ5LmF7F0MV70g2HyFV28qtA74wYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEXeT+q2; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1743796829; c=relaxed/simple;
+	bh=CdUvOQYTxjNTsDyHeUAwsW2erk3aVAGihloUjioHLbE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IOCW+ZO3bZEHBK9EcXKjuIj5B11SM4t4BxBLc7A5D11XAdcDibpSew53R57q3kOAFTJT+Ohi98Sd0rLgCvJdRqJNACU6HfqrQkdjC8H9WTe1Jlhdn4U3nezETRJyMbzBiV8WjlkOkDAOFQvyorBJM2zp/Nt8Pn9ml5CmctEijbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X1P4/7F0; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22403cbb47fso26170385ad.0;
-        Fri, 04 Apr 2025 12:43:03 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30de488cf81so24584381fa.1;
+        Fri, 04 Apr 2025 13:00:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743795783; x=1744400583; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aCdihjYQTCflyJxm6dwPDa7f9mrC1RNKPnkAQB9Cuvo=;
-        b=MEXeT+q2YrSdSAErSjL6AimNp3RbMgaQJHOul0TGkTAyqsbrjkQHS9vC6LvvveZrAv
-         c1jIyQRlYzkFEx8Or2HSRTPEOwXEZsQMUisvaBPX3EpfV655N0idvCGrvtqxGnPZ3tNY
-         SO7KdNJSsCFryUlE+xE2T1GbibyHnVTew/OEMHspkTLLpYfONZ4xz5lVDnBG1/Cz4sHW
-         j9g87Z25KjH1ie5/IW5s0GcvAIQIMNP/FaUTWMpypWOrC5TBK6qjzipEVhlvljb4fchx
-         5lHrq36teg6qjgfUJbA1OTPs1JRHWZpi4/gK1NR4R9OgSMBtOUurtd96WWP66lDA7fPH
-         HoSw==
+        d=gmail.com; s=20230601; t=1743796824; x=1744401624; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NGnSFRzuoAQP7JbKLfcQWzVzDu4XKirqs+YYRbjcXCs=;
+        b=X1P4/7F0v7aaaZ9jRpmpy/OHxTMYR/IapBAH13+VRB5Bg9RcxxnnDVp7TEh1biLtue
+         SSHrdMzKWzenGzXOb54e4KerrWXFZz4acPgAtMMqLpfkvoZf/KbOvv36G/aSuxRtbpQJ
+         5RR5PA448ww9RpxoGlFy1BkAB9feBoP2e+GbrJ4wjjppfPBXHZd7HfIEXneUXufXt3i6
+         oUNNaXKeg1CF9glQdSKTdoAU5b/T9TZmcK/dzcHDoCObalk5w3dN5r2ig2bc5Yk/TeKm
+         u8VGps9h2eftZdOmqUYkzv+iZy4LZ7W724W4ry4VW/UhsjdiCVGvRK3ULIJ0SZG+smDI
+         /cCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743795783; x=1744400583;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aCdihjYQTCflyJxm6dwPDa7f9mrC1RNKPnkAQB9Cuvo=;
-        b=ANkTr8PlaM+Bh9lKdcvLcRZQ2UYo6+RDl/thi+0p+soK6Z1lPfJnb6z8UmozmNS0JY
-         0fflDJ96wClAqTPMUuWosqdXReIvb0ceEJeZ6XrXxyjoXiZXi3xo1b7l7kD6aI1C9OJW
-         j+T0F5jXQ6j/G8tHRPdme7L1E7GY/awuNUNTai4iXsqNQb9YIRcNUuCHI69YzTv7HxYR
-         4ZHMwNWnKW3biBB7GkcZIQYkQjDYdJk3Rn/WVG7gt19sJGtlHC5Th8weSr2KTTp0WoIE
-         dIAdUsweYxf2JKsg6EJp/c30jMXjhEfrlt9nfqEGp7cRLase3U449JRBQvJxp1hbFSEL
-         ypIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYDYYhSRWsW5V1XtDhuNWlToYWALBSONMz7CKdGEzx6DrjRDKFQD4AX9EJFVN2ZiHrapzu0SMs9AHE@vger.kernel.org, AJvYcCWtgc5UExuTgjww+U8h70MIu6JakOdl4CAgZj+yaGVsjyGzkeYamDwyYjmbBM7y2WiT+VA5vl/CKLKo5NTL@vger.kernel.org, AJvYcCXExxJcIySipaN0U1R13/B1wj/L+G5TzDDLWgJE5GLQos+D8cXWcZ6DIbB00RnDTQpMcGJUdvmydBhs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7Uvi3r7Jg5P+lVmf8WXZqPrhyOkp9/TJw1rxwzbCovIJkmoQ0
-	jok5MHhdC46svATV1eMUpt7vYhWo1s4mmf0c581j+AB/OsYgW7oOSmX2qrrn
-X-Gm-Gg: ASbGnctAhAL6ikhozniO2w/7yMyfy2TF8vwq8ltrLqA+xaP36XE0pu7FB6HyFYcwtSX
-	NhO/GZ5pcCgHGOQYgf8Ya+FiDJ6ebJF422+t2YMJTHrjF0nyhNRdVWTXZXokjgvoRU+h0XR4Bf0
-	IhtCzkOY0TrG644UrJA43r0fBokguVgIsDzFZZRRVDLcA70OdyddStV1/cbcqn3rSMv1yNgOdQn
-	V5L2xXMewONxfIrVzk5gAuU3RIH6hywo/PeuIZvYCV0aZ7AvsldrKG6dwEeatltk6bEP9o2iVsN
-	071V78roDgWe3xDk9W7vtWN3LROuEFKe/jgST6C8wmZPWaXBnsl8as+kB2VqkR81+V5G4exjqrH
-	4PJmbL43/VNfw5NXw9mCesBlI
-X-Google-Smtp-Source: AGHT+IGmSZQUmzN4kMPir1/3DwusZurNYkOuuU+RMXFG9BLfGYFc6j2Dj8c8UT3R/eHzPGq0z3D8Xw==
-X-Received: by 2002:a17:903:3baf:b0:215:b9a6:5cb9 with SMTP id d9443c01a7336-22a8a85a244mr65443215ad.5.1743795782746;
-        Fri, 04 Apr 2025 12:43:02 -0700 (PDT)
-Received: from ?IPV6:2409:4080:1197:5c59:9640:d38a:951e:d202? ([2409:4080:1197:5c59:9640:d38a:951e:d202])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866e1b4sm36482985ad.181.2025.04.04.12.42.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 12:43:02 -0700 (PDT)
-Message-ID: <299e033b-05d6-4d85-8d01-2d7d0167432f@gmail.com>
-Date: Sat, 5 Apr 2025 01:12:56 +0530
+        d=1e100.net; s=20230601; t=1743796824; x=1744401624;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NGnSFRzuoAQP7JbKLfcQWzVzDu4XKirqs+YYRbjcXCs=;
+        b=OOgtFfTmcQbVZQAkz59xRB0mq7F6yzRyp3R3ig8WNM1r6Tm+R7XSRLjIy/D7cU91m2
+         dUJCBghHl0mnKf1Rdi36vJ/BSY6yJL0GGXOIip5gvCfU42ZVLuLtJymF12K77DXZMnpU
+         3eZmxLtNyH4TuUrCpUFmet8KVIbpqb/Fil0Cwct8s8TZ/mJ5X0XY27KH6Ee1FoegayBG
+         gMKS7/RJISsT2XAZqm+yYFxuuhRbpu8nFc11bq0nPZdqn2FvdHAFKU3FGXqf9GKuQWqy
+         h5O/r2jKi/IDJw1KNahprBhD1FWeTnqPX/IhSfMz78Jro0M+InX1GsCOR3Q2tzvHvzqL
+         +tPg==
+X-Forwarded-Encrypted: i=1; AJvYcCV78f0L3iWwLj4Qf9NN9u+koxXIsmKW9qpA0xlnYKi8GbEAG3Zb95Ray2FG5Y3uDsqIMdISfQ2hefxs@vger.kernel.org, AJvYcCXKCQiM0qbX23eTOTLlnyJp8ml2k9bqoWLUOzvJ7mfwd3kQ/Xxbe/jRLzl3PJm90Cb1Ih5cGqpcGOOLoq2I@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxePembcCKtCoYbJqXxYECV611/YKhBa1WMGa3RFZzVIBJqPsS
+	guO3JpKd+ZhrP1/53mlsPQ5ozmPQkmJ71mvQUiExg6qFQf2XtL2B
+X-Gm-Gg: ASbGnctQuUx9/H9VQ0DlOOzYwCzTe0h6QZeWip/oPRvuw2bX9LnM5OzCXAJr7A6KL9N
+	tY/b7Galgu/s5qKBOoGSV8q5P1uL/J9yPntUufGdgl0TY5XGQ19N5Q9c2+WQJDgFPL1apKlgzEb
+	T+xbYvOusSkb4Q/ki+g2IDvWPP8YUAhk605LWb/mnoLyhaJbyFg0rY8y7UR/pIC/zbC5zrcJaxR
+	BXJ3CZPfEZ6zqAvoQgkLMmW6KdK0zfups2xPCNboUxVx59HxbaHUc1h9QB9QizYrkaK/OTTzB5m
+	PLnJoOLRX169L073EUO9MFyFi/qDzcia1NmfDPAFtDQTS84RHNDgUPis0E+HNoxvnCfa/OG0K+u
+	3GaA0tA==
+X-Google-Smtp-Source: AGHT+IEEDhNz2RLU0cU7UeS/zJmcHV5Dl+HcylWgqmeC/Yvy6JjRimOfReWDSNO1EN6tnir9PBbWUg==
+X-Received: by 2002:a05:651c:30c1:b0:30b:b956:53bd with SMTP id 38308e7fff4ca-30f164eb958mr2440851fa.4.1743796824081;
+        Fri, 04 Apr 2025 13:00:24 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f031bd00csm6479541fa.66.2025.04.04.13.00.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 13:00:23 -0700 (PDT)
+Date: Fri, 4 Apr 2025 22:00:21 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add Sitronix ST7571 panel
+Message-ID: <Z_A6VXPLuOfk9HPL@gmail.com>
+References: <20250404-st7571-v2-0-4c78aab9cd5a@gmail.com>
+ <20250404-st7571-v2-1-4c78aab9cd5a@gmail.com>
+ <d2ffca88-6773-4e40-b737-65a451ba1d01@kernel.org>
+ <e1a7c9d6-9c14-48d3-ac2e-c6e0df04bbbf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com,
- piotr.wojtaszczyk@timesys.com, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250312122750.6391-1-purvayeshi550@gmail.com>
- <76ovkshf4dr6egh72uiigsugdqsin6zwy3skksldhhh2goer6x@gsp3qkhqdtev>
-Content-Language: en-US
-From: Purva Yeshi <purvayeshi550@gmail.com>
-In-Reply-To: <76ovkshf4dr6egh72uiigsugdqsin6zwy3skksldhhh2goer6x@gsp3qkhqdtev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="C7W91j7lgF/0CeRL"
+Content-Disposition: inline
+In-Reply-To: <e1a7c9d6-9c14-48d3-ac2e-c6e0df04bbbf@kernel.org>
 
-On 03/04/25 16:11, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Wed, Mar 12, 2025 at 05:57:50PM +0530, Purva Yeshi wrote:
->> Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
->> YAML schema (`nxp,lpc3220-pwm.yaml`).
->>
->> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
->>
->> Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
-> 
-> I suggest the following commit log:
-> 
->      dt-bindings: pwm: Convert lpc32xx-pwm.txt to yaml format
-> 
->      Convert the existing plain text binding documentation for
->      nxp,lpc3220-pwm devices to a YAML schema.
-> 
->      The value #pwm-cells wasn't specified before, set it to 3 to match the
->      usual value for PWMs.
-> 
 
-Hello,
+--C7W91j7lgF/0CeRL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thank you for the suggestion. I'll update the commit log accordingly in 
-the next revision.
+Hi Krzysztof,
 
->> diff --git a/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
->> new file mode 100644
->> index 000000000..432a5e9d4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
->> @@ -0,0 +1,38 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/nxp,lpc3220-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: LPC32XX PWM controller
->> +
->> +maintainers:
->> +  - Vladimir Zapolskiy <vz@mleia.com>
->> +  - Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
->> +
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: nxp,lpc3220-pwm
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#pwm-cells":
->> +    const: 3
-> 
-> The PWMs defined in arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi also have a
-> clocks property and in the driver it's not optional. Can you please add
-> it (here, in the list of required properties and the commit log)?
+On Fri, Apr 04, 2025 at 07:36:12PM +0200, Krzysztof Kozlowski wrote:
+> On 04/04/2025 19:30, Krzysztof Kozlowski wrote:
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/gpio/gpio.h>
+> >> +   =20
+> >> +    i2c {
+> >> +        #address-cells =3D <1>;
+> >> +        #size-cells =3D <0>;
+> >> +
+> >> +        display@3f {
+> >=20
+> > Not much improved. How is this called in every other binding? panel.
+>=20
+> Hmmm, unless this is not a panel, but it looks like a panel and
+> description partially suggests it. Other sitronix devices are split
+> between these two, but OTOH your driver is more complex than just simple
+> panel.
 
-Thank you for the review. I’ll add the clocks property, update the list 
-of required properties, and adjust the commit log accordingly in the 
-next revision.
+I've counted this as a display, but the border is not crystal
+clear, and, as you say, other Sitronix devices are split between the two.
+It is a controller/driver for a LCD panel.
 
-> 
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    pwm@4005c000 {
->> +        compatible = "nxp,lpc3220-pwm";
->> +        reg = <0x4005c000 0x4>;
->> +        #pwm-cells = <3>;
->> +    };
-> 
-> Best regards
-> Uwe
+>=20
+> Your commit msg is one sentence and binding description is basically
+> non-existing, so not sure how to help. You need to describe the hardware
+> so people understand what this device is.
+
+I've prepared this description for the next version of the patch:
+
+description:
+  Sitronix ST7571 is a driver and controller for up to 4-level gray
+  scale dot-matrix LCD panels.
+  It drives 128 segment outputs and 128+1 common outputs.
+  It provides several system interfaces like SPI, I2C and 8-bit parallel bu=
+s.
+
+But still, it is not obvious if I should move it to panel or not.
+
+>=20
+> Best regards,
+> Krzysztof
 
 Best regards,
-Purva Yeshi
+Marcus Folkesson
 
+--C7W91j7lgF/0CeRL
+Content-Type: application/pgp-signature; name=signature.asc
 
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmfwOlAACgkQiIBOb1ld
+UjIxkw/+IYMZdy49mNky3ZxLZOHPj6jfpICZtwU3QV7hHQtccjTrAxO58wKk14U7
+0NLdVZY3VN9Tjr2ASKebQRgEbesEiKdZQJ2ZKu7z5tpj0WrImU0+jYIAKAPhO66f
+NtfwOD++IQJX0ZoX0oTfC8aMTD3qUN/vZ0NM+fvlSpu0+GEhZClA/yU2P5pVN66X
+B3i6COv/Bu7WWuJ/z6widLqqMf/ru6u1iOfhg4NJ4Bg6WiOazVnjLY72iQNreVho
+UQy7KJfCbT8aFptnaGPDZPtELCrxDNCifRmOhk1jylIiteWpEgjkdAFGCfjHXGm+
+ZsuH0ZhCHjEIfiqR0hG5IP33fP30d2dzmSBOS5nO0FldZIMGyC61VJ78MNoaleYl
+bivx5fsKvzJqgLL9kn2CaJKqEkZXePudspz0wTwcwNfSaTGBKBB9fzHcscnbGB2H
+hajQauJM6+ntV7QRqAhBhrP/A7eyNg/CUWY4K0eJridwQwSSXVKGhhYROoOsDCC+
+OABuvYbVIPt74NNgKXq5AJpdAZedMwPUYIptWBWirToYJ59zzAlE67lTmKU3MjTH
+Hzo0EKqEq0x+m6x85naY3ytm9FcLX8dKmsh5Zpo6TCaO5bdzd4yNunMTRekkjBc2
+KeGYDxA3g9UR00GSS3ib9DoGMpHWrQjCbIBhe9h4KuQtYmaFpPs=
+=HeD4
+-----END PGP SIGNATURE-----
+
+--C7W91j7lgF/0CeRL--
 
