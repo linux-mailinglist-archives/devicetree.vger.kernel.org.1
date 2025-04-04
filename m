@@ -1,137 +1,176 @@
-Return-Path: <devicetree+bounces-163236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219EBA7C00B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:56:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 453FFA7C02B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:04:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42C2E1899599
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:56:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7B83B5086
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE7A1F4C86;
-	Fri,  4 Apr 2025 14:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB8A1F3FD3;
+	Fri,  4 Apr 2025 15:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYq0Ahwk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O60FUz4o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D769B1F4631;
-	Fri,  4 Apr 2025 14:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786671DFD96;
+	Fri,  4 Apr 2025 15:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743778566; cv=none; b=OWXEAmgpiSwmmpmIiML/lezMxcwNKfHMjh0cprm2+lSaCAu+kaMXf9IU6JASs4AIh0rZTwjzjshGUapMCSHjaBVi6j4GPvBJcbnK/Wt6NsqIzBAuWv6Y0k3h9CuOU+F4Elk9k5XsI3XkC2W1ax/f3zWwEufxqgL+a5nSPuRprCs=
+	t=1743779043; cv=none; b=iKKQ/pouTzVnd4NLsPbZDVL7OKqSa9dzFN24agfRIodgzR2NaKmFB7zxyKHjkY3/CwmvLqkQwk0LlVEcLPi8EcjA0H1diKM7pq94GwbfShDuMAr4PVz9IQvILqaf44/uzYP8J7eWrjudcAxbXtQVrSXqP5sEHMZ3JKeY0QUdjBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743778566; c=relaxed/simple;
-	bh=ZKC9yGDKP7ZL9SggbwEVntc6h66l9cUcpFwGsLIdwyU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=lKA+zS0UMD6zZOeNFxnjNMCj9R6nqI9DB9yYT46K135ebojv/CpfWMZZjyAm3PiM6tP++k5i0URBuAKoodnyryACCX2RV0QPeJmZYimrisqd+8cqOCQYHtIjC6dI27WYKYVA/atlrQ5DYc7oSJb8xA95dGU02h5EcLp8OMcrLWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYq0Ahwk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F3BC4CEDD;
-	Fri,  4 Apr 2025 14:56:05 +0000 (UTC)
+	s=arc-20240116; t=1743779043; c=relaxed/simple;
+	bh=QPrHjyTmnw1oxbazLvOfezLw+h3xmJo0djczSohsNGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XhBKM587kQzBIb22FvDb2Du1tcmgDCVFEWkp7CAEfkQCaaEkb/wLtyRt7HOeyxYXm1bV8Slh+iaZE1/2C72X6UVysmizPpBa1YE9DmjePIG6bbt462IzITsTepj4k/DRO9rKSQXjb8XPF722dxPpgOccwLlCgFLIubLSEncMLu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O60FUz4o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5ABC4CEDD;
+	Fri,  4 Apr 2025 15:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743778565;
-	bh=ZKC9yGDKP7ZL9SggbwEVntc6h66l9cUcpFwGsLIdwyU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=lYq0AhwkZcTUWyVwicaZ1vvM7sdLhXVWb88uIIREKJeM4f4dFtPRR+5YtBnIQ3+8S
-	 4rmWfDWxmKz8BkutmGYcsQCbqBKQsOpb3vKdZoOj3zlMzyIr63+JtEno2kDqBxKGaL
-	 uSpnRzGTivLPzIQSa2vlGQgFkEoHK4Djr247EPkB1MI0mgoQqCboWVbZe1YDRxstNw
-	 XL6TPr4SJ3ntriVvow1CY9ZhW/TaC9VWQaFtDYXQkEycuv4vNUekj/x3m4CmjcWhg8
-	 J/6CXGfE842P8cqvOhDfI5vtBqXZj1W2sAP8ubZBZr4Jve8ltlaLGaw/5ccWSyVqKq
-	 iX0gZX5BzPDSQ==
-Date: Fri, 04 Apr 2025 09:56:03 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1743779043;
+	bh=QPrHjyTmnw1oxbazLvOfezLw+h3xmJo0djczSohsNGg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O60FUz4ou2nv3ARuxUkzieRZBAB/V5prNyCqWNzm7R7FEqTB7G7HjaZAAgbXu/iE5
+	 kXTtDMaRU8KY9AKE57lrSehhTusQLTSmA7imwwbAigIusWY0mML9kDG8vYtCpbiB4B
+	 kaXqDduVUt0wy5gjzystflZrEsiT3IqqY0onCryI/wNhwOK5PZXbdKsnZZsb8vCneb
+	 vIkb3KXXC7s5Mfhy92zxfCuKij6tnjUSghRLRUUdu6kx0KW9NtmKOGGtcuOve4VDdU
+	 3nnqBnPxalvDT1M+NHFbMXwu+5MEw7PPowlhDnmWAsk9p5auK4fT41P1a/s+GAn9G1
+	 8FArP7ZNdaTcQ==
+Date: Fri, 4 Apr 2025 16:03:57 +0100
+From: Mark Brown <broonie@kernel.org>
+To: cy_huang@richtek.com
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
+Message-ID: <4e966f68-527e-4e2c-9043-0795ff094031@sirena.org.uk>
+References: <cover.1743774849.git.cy_huang@richtek.com>
+ <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor@kernel.org>, linux-rockchip@lists.infradead.org, 
- Daniel Machon <daniel.machon@microchip.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- UNGLinuxDriver@microchip.com, Jerome Brunet <jbrunet@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, linux-sunxi@lists.linux.dev, 
- Liviu Dudau <liviu.dudau@arm.com>, linux-arm-kernel@lists.infradead.org, 
- Fabio Estevam <festevam@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Stephen Boyd <sboyd@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Vincenzo Frascino <vincenzo.frascino@arm.com>, 
- linux-renesas-soc@vger.kernel.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Viresh Kumar <vireshk@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, zhouyanjie@wanyeetech.com, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Heiko Stuebner <heiko@sntech.de>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, linux-pm@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>, 
- linux-mips@vger.kernel.org, imx@lists.linux.dev, 
- Samuel Holland <samuel@sholland.org>, Sudeep Holla <sudeep.holla@arm.com>, 
- Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- linux-arm-msm@vger.kernel.org, Nicolas Ferre <nicolas.ferre@microchip.com>, 
- linux-amlogic@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Steen Hegelund <Steen.Hegelund@microchip.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-In-Reply-To: <20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org>
-Message-Id: <174377856145.1313232.11316769002552655294.robh@kernel.org>
-Subject: Re: [PATCH 14/19] dt-bindings: arm/cpus: Add schemas for
- "enable-method" dependencies
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9628Pw6gulXwsFcV"
+Content-Disposition: inline
+In-Reply-To: <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
+X-Cookie: You will soon forget this.
 
 
-On Thu, 03 Apr 2025 21:59:35 -0500, Rob Herring (Arm) wrote:
-> Replace the prose for properties dependent on specific "enable-method"
-> values with schemas defining the same requirements.
-> 
-> Both "qcom,acc" and "qcom,saw" properties appear to be required for any
-> of the Qualcomm enable-method values, so the schema is a bit simpler
-> than what the text said. The references to arm/msm/qcom,saw2.txt and
-> arm/msm/qcom,kpss-acc.txt are out of date, so just drop them.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 82 +++++++++++++++----------
->  1 file changed, 49 insertions(+), 33 deletions(-)
-> 
+--9628Pw6gulXwsFcV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Fri, Apr 04, 2025 at 10:22:12PM +0800, cy_huang@richtek.com wrote:
 
-yamllint warnings/errors:
+> +static int rt9123_enable_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
+> +			       int event)
+> +{
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.example.dtb: cpu@0: 'qcom,acc' is a required property
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	snd_soc_component_write_field(comp, RT9123_REG_AMPCTRL, RT9123_MASK_AMPON, enable);
+> +
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/translations/ja_JP/process/submit-checklist.rst references a file that doesn't exist: Documentation/translations/ja_JP/SubmitChecklist
-Documentation/translations/ja_JP/process/submit-checklist.rst: Documentation/translations/ja_JP/SubmitChecklist
+What's going on with the runtime PM stuff here?  Especially for the DAPM
+widget usually the ASoC core will be able to keep devices runtime PM
+enabled so long as they are in use so I'd expect this not to have any
+impact.  Why not just use a normal DAPM widget?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250403-dt-cpu-schema-v1-14-076be7171a85@kernel.org
+> +static int rt9123_xhandler_get(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
+> +	struct device *dev = comp->dev;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (rt9123_kcontrol_name_comp(kcontrol, "SPK Gain Volume") == 0)
+> +		ret = snd_soc_get_volsw(kcontrol, ucontrol);
+> +	else
+> +		ret = snd_soc_get_enum_double(kcontrol, ucontrol);
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+This is even more unusual - it'll runtime PM enable the device every
+time we write to a control, even if the device is idle.  The driver does
+implement a register cache so it's especially confusing, we'll power up
+the device, resync the cache, write to the hardware then power the
+device off again.  Usually you'd just use the standard operations and
+then let the register writes get synced to the cache whenever it gets
+enabled for actual use.  Again, why not just use standard controls?
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +static const struct snd_kcontrol_new rt9123_controls[] = {
+> +	SOC_SINGLE_TLV("Master Volume", RT9123_REG_VOLGAIN, 2, 511, 1, dig_tlv),
+> +	SOC_SINGLE_EXT_TLV("SPK Gain Volume", RT9123_REG_AMPCTRL, 0, 10, 0, rt9123_xhandler_get,
+> +			   rt9123_xhandler_put, ana_tlv),
 
-pip3 install dtschema --upgrade
+Speaker Volume.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> +static const struct regmap_config rt9123_regmap_config = {
+> +	.name			= "rt9123",
+> +	.reg_bits		= 8,
+> +	.val_bits		= 16,
+> +	.val_format_endian	= REGMAP_ENDIAN_BIG,
+> +	.readable_reg		= rt9123_readable_reg,
+> +	.writeable_reg		= rt9123_writeable_reg,
+> +	.volatile_reg		= rt9123_volatile_reg,
+> +	.cache_type		= REGCACHE_RBTREE,
+> +	.num_reg_defaults_raw	= RT9123_REG_COMBOID + 1,
+> +};
 
+Generally _MAPLE is a better cache type for most devices - unless you
+have a strong reason to use _RBTREE it's preferred.
+
+> +	/* Trigger RG reset before regmap init cache */
+> +	ret = i2c_smbus_write_word_data(i2c, RT9123_REG_AMPCTRL, RT9123_MASK_SWRST);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to trigger RG reset\n");
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &rt9123_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
+> +
+> +	ret = regmap_read(regmap, RT9123_REG_COMBOID, &venid);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to read vendor-id\n");
+> +
+> +	if ((venid & RT9123_MASK_VENID) != RT9123_FIXED_VENID)
+> +		return dev_err_probe(dev, -ENODEV, "Incorrect vendor-id 0x%04x\n", venid);
+
+It seems nicer to verify the device ID before doing the reset in case
+anything went wrong.  Who knows what some other device did with the
+reset?
+
+--9628Pw6gulXwsFcV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfv9N0ACgkQJNaLcl1U
+h9CpLAf+PrLvvo9HrBkAxc7COS0E+N3WeNtfmUpPtg64UCe9Ht5ZF4yPXcV110lf
+cQ2G/vvou3f1jiEMX8QW2Yvr8flocvlq9YtHoZNdpNDro4Maq0EaANv9M4p8xYeu
+PG4S6ddAea6mH8JQ54fjIcHkwjX2OFPdhoLuqQ+zDnKWCFxoFdn81CJ9OKALwxAX
++RkbO5/ck/0ZjVuBKUaMQgYKx5V/JatGUR5oZlClXVCJrioXzJGy4Xm6lhZK/vIt
+vnEQkd/oY2rI5vwF5zmogQ0pbAxMUmEsDz1nEbXRmtJX8uB0UXllopMlMIoh3dhG
+wVroyGzwdiI7xJgAWLCta79eJMSAbw==
+=TRlR
+-----END PGP SIGNATURE-----
+
+--9628Pw6gulXwsFcV--
 
