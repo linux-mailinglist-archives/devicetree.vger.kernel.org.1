@@ -1,115 +1,117 @@
-Return-Path: <devicetree+bounces-163222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F46A7BEC7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:13:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E756CA7BF27
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C69A0179E34
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:13:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9544617AEC4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C201F2BAE;
-	Fri,  4 Apr 2025 14:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9451F3BA4;
+	Fri,  4 Apr 2025 14:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYTpW7l1"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="rfO4hfjY";
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="TF7X/YOc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DB61EF0B9;
-	Fri,  4 Apr 2025 14:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9A81A238C;
+	Fri,  4 Apr 2025 14:27:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743775992; cv=none; b=cEF7/LjYaXgfBaiZubJA+ddrf5TwlsQsnv1iqFfM4Wg5K97+F6IeK5xSJjAUbAx6H+gzhQnHx3GvDRPBBCRBUllQ1iCWvyp/mNf5Q1b1LgsS0Bfu1ZazkGqNggkb5SHcV+1YoKLbz3YE+lYPVeiQkb+Tr3kvRrJgKsG+aw6gbL0=
+	t=1743776826; cv=none; b=ZokEVLISfET2pA8UthtH1+WC5c1UFcJU9nLff2y6ijVzRDN3SsKy8EGDK3fe9hUiD9OLUFWc6TofsKGJ04j/Y7z0VgkzCD2O4iyhxmmBMPS6VDTRy9z43t5H9MSkbBh+iEG8IVAFQkhhgtgalt/dHaEPXY0ijfb4y9gevkePrf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743775992; c=relaxed/simple;
-	bh=EL7oi2/m85Kv7csUQ8MDtG6477di5KZ8Vv1tGjjgOBk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TUvxtV9YCLK91l91aZ+EfWw6kIHXVi2HrdPYBeLoeQL6A2e4r4esrfCHcpdg5GVoolEPwnuKe5kTXhIEvxsD11qFXJSikgkL+k1DqENSxhbpYPLVDYKGRfbgePcA/OMljoark77Avnf4tBh5/KlP1CJTI3D2ht/c8jI7bIFc8Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYTpW7l1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD78C4CEE8;
-	Fri,  4 Apr 2025 14:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743775990;
-	bh=EL7oi2/m85Kv7csUQ8MDtG6477di5KZ8Vv1tGjjgOBk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dYTpW7l1losml3CYXnM2+/9RTN+kRplk1y1a+MLfSztD2vBz0JGqTjsUHrAm3qTpz
-	 A3oxqJtMqrcbJaDjSBG6PYQ6pWPuh5kQVOo8QlCV+OYOKFPNew31NLD+Z2Ra8ojz9u
-	 BVq2zY28+eBq3tuFTEYxZu6zAF42xZL7V7GhwF6xotOfLtJ1bsYffVovtgDwg8ybHO
-	 KoiSa7GTvIlg/xbf7mUb3Ik7lr4M4iFjRr7RCnZGZP6pTUgYCn8BRDd0CaQjPIu6lb
-	 zVEjaunh98vLcoRJhNVcDxx1qWs8yiwZ9rRz5bxx4p73M0NkHQRgQjRuZD5qCtrC5g
-	 7mM8WqP0Po0PQ==
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2963dc379so339171566b.2;
-        Fri, 04 Apr 2025 07:13:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU8VBboLnPzk4EOJmRJV7MeZOK/9SAC3ZnfQKR4q9A3ktIsJkJt52NsD2mKci6wGqX2+aqD20q+dG9DHXjB@vger.kernel.org, AJvYcCULfWe0VpviVdkArRXIfiAhY8X7i6MgcrNbKQ7OmRaV4OxJLZrbyeUBrnbm3P0hVxPCPUvjTrnz4Ggt@vger.kernel.org, AJvYcCV5YtuFaru7WD8omqHAE7ajBL9Pzf+T3MCS7I+6psRH/ok3tF9tEqN10VB+/zyUFupfnsPxFbrFXq/n8A==@vger.kernel.org, AJvYcCX2hCbStwCHBhH+ZEJjVldDFESVlRLQhe5iM0G9WAkrmswJLRFlxRM1rCDL6OXVIXmCZ6SPpmkC5JC+KZyko0o=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdP1F2ohfZ3kY4FfyJi386Vd9g7xEtWvGLIepYsN3AcFMxjdyt
-	ESIsUhl/igkt3APp3Lbs9ZSb0uNIxi96i4uCvgdvaR9nC2H7jEW4s/VteIw7vfrLpLdV5iu2ssh
-	6NB4JvFE74F50bwuBqxzxBxrYww==
-X-Google-Smtp-Source: AGHT+IH2xZciNnrePOn7PFRsdNZCfWkEZWTMbMOOyl4q4+IVMO9VZ6AF2DruwUbn9tSbS4OBxTe5eyCs5VZiI6Ii+E4=
-X-Received: by 2002:a17:907:1b08:b0:abf:a387:7e35 with SMTP id
- a640c23a62f3a-ac7d19f4f50mr368734866b.53.1743775989309; Fri, 04 Apr 2025
- 07:13:09 -0700 (PDT)
+	s=arc-20240116; t=1743776826; c=relaxed/simple;
+	bh=BinFXEu5xJ5P6GQ2tSNl4s/I+Bg9wAd2jeLycIJNcGE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hAP9laUln9+JgZR1o4OmD0RA3w4V+bUDRDgx+mhe7wZiq0nkfL1qcVL+GFXyu3EWr7Hbi3jbAAzosPTwl4DI3MB3KmCIshCC1VAcuyi4e8jUJIRr0YLBB54VLRfccwU6uzh5FPp5FEjHjJFXrQQUZ2gmjzv8SBtiXx/Q65bYJ24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=rfO4hfjY; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=TF7X/YOc; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1743776821;
+	bh=lKHyVuep4L/EA1oyYLoYQ61TnGK9fi+8Aheuj8YJrdY=; l=1004;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=rfO4hfjYwgQw1JFYd6QWp/MDWJEL+aPGD5iz8pT3rc8TxnjIZEXDDcGSgLNANT4UB
+	 H7nU21AsXU7AX/0CXn8lZqD6JDxlVii0h2bGR/+lB2Y+GTdCeD+INPydl7xKEDF1EE
+	 ib1ERPxlq5wZRnfxVadec86MPlOMuJooQOAYmRcLy5zSGNiHXJkyIcrVKWOFxxWll+
+	 JPe9TGRt0GuG+BG5ijkOMRXHBcNl2mN+FacCTog82qvKkNhGeWyuaDORH375vc1hI8
+	 FdK8JM0hycyLzlSuA21nYhS99XWPEo5kjH8LvQFlTut8yzCHCck7TgqnPw0TvVhSoe
+	 w/BVOFFnfAwJA==
+Received: from 192.168.8.21
+	by mg.richtek.com with MailGates ESMTP Server V3.0(1128086:0:AUTH_RELAY)
+	(envelope-from <prvs=11846F16CF=cy_huang@richtek.com>); Fri, 04 Apr 2025 22:26:58 +0800 (CST)
+X-MailGates: (compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1743776818;
+	bh=lKHyVuep4L/EA1oyYLoYQ61TnGK9fi+8Aheuj8YJrdY=; l=1004;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=TF7X/YOchb44Ls5Vgdrd7PnEPXBldCfrecLaiopuMxpkuyr0++bnv4z0lNqFd0rkl
+	 nL2ijOjM32OmAMomO4EhbowKIFXiCJv8TuUzbPihJwoTqUYUCaHbacjIAcHnJa2SlR
+	 xxH9faEzalCZYovHLgk69NadlE5m/9HCc1Rl+SCniMKArJ7KNdiKLsa1tM/oQfHXJf
+	 5QQCNjGnFvoEIU14BkDlpuiIvqH3sSuxmaWi+0w5lbt+ngx0rYi9YcvznboXB46QCp
+	 TbsDXYFhQq07sa5zLTIaOml9sgf5fu9VeSmlJJEfLEeIPUQ4A6sRqmQDZsfZBFCtTv
+	 GrSkVhZJX1Y3w==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(1629328:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Fri, 04 Apr 2025 22:21:09 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Fri, 4 Apr
+ 2025 22:21:08 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Fri, 4 Apr 2025 22:21:08 +0800
+From: <cy_huang@richtek.com>
+To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, ChiYuan
+ Huang <cy_huang@richtek.com>, Otto lin <otto_lin@richtek.com>, Allen Lin
+	<allen_lin@richtek.com>, <devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] ASoC: Add Richtek rt9123 and rt9123p support
+Date: Fri, 4 Apr 2025 22:22:10 +0800
+Message-ID: <cover.1743774849.git.cy_huang@richtek.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-4-remo@buenzli.dev>
- <Z-UPJyD41LOMM3o2@smile.fi.intel.com> <CAL_Jsq+tJvGsbw1dGdgmBM8+cL4vN71OMTvX9tkmBLNk=6T9KQ@mail.gmail.com>
- <Z-60LwRrw30cq4YE@smile.fi.intel.com> <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
- <Z-7LcXoGw7uNWBUE@smile.fi.intel.com> <CAL_JsqLCa8AjwsUpS-N9FWymG67w7DjmmBZCKW7G7BAfY78vWw@mail.gmail.com>
- <CANiq72=iD5ogB2Qjn=WNbghouuER5ypND9=Y_wFiTDfPC2NgFA@mail.gmail.com> <Z--7vN1h0jwgLUyF@smile.fi.intel.com>
-In-Reply-To: <Z--7vN1h0jwgLUyF@smile.fi.intel.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 4 Apr 2025 09:12:57 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+S6=k4+Y4rcOsgtrSHC0AtSPx_8B8TMW-rm0YsrjoaXA@mail.gmail.com>
-X-Gm-Features: ATxdqUHdrvIjuE8QyPUip-zFccUDXruULn0BP0ZVUYyWnPCy_seCxXopQlF_ly4
-Message-ID: <CAL_Jsq+S6=k4+Y4rcOsgtrSHC0AtSPx_8B8TMW-rm0YsrjoaXA@mail.gmail.com>
-Subject: Re: [PATCH 03/10] device property: Add fwnode_property_read_int_array()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
-	Remo Senekowitsch <remo@buenzli.dev>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Apr 4, 2025 at 6:00=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Apr 03, 2025 at 10:36:40PM +0200, Miguel Ojeda wrote:
-> > On Thu, Apr 3, 2025 at 8:48=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
-> > >
-> > > Looks there are RUST_BINDGEN or __BINDGEN__ define which could be use=
-d
-> > > here. Don't need a header, just wrap the declaration. No idea which
-> > > one would be preferred as there's exactly 1 use of each. Miguel?
-> >
-> > If you mean bcachefs' `RUST_BINDGEN`, then I think that one comes from
-> > bcachefs-tools, i.e. we don't define it.
->
-> But is there a way to have a function that is not really exported to be u=
-sed in
-> Rust only code?
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-#ifdef __BINDGEN__
-int fwnode_property_read_int_array(const struct fwnode_handle *fwnode,
-const char *propname,
-                                unsigned int elem_size, void *val, size_t n=
-val);
-#endif
+This patch series adds Richtek rt9123 and rt9123p support.
+It's a 3.2W mono Class-D audio amplifier.
 
-Rob
+ChiYuan Huang (4):
+  ASoC: dt-bindings: Add bindings for Richtek rt9123
+  ASoC: codecs: Add support for Richtek rt9123
+  ASoC: dt-bindings: Add bindings for Richtek rt9123p
+  ASoC: codecs: Add support for Richtek rt9123p
+
+ .../bindings/sound/richtek,rt9123.yaml        |  56 ++
+ .../bindings/sound/richtek,rt9123p.yaml       |  50 ++
+ sound/soc/codecs/Kconfig                      |  15 +
+ sound/soc/codecs/Makefile                     |   4 +
+ sound/soc/codecs/rt9123.c                     | 484 ++++++++++++++++++
+ sound/soc/codecs/rt9123p.c                    | 171 +++++++
+ 6 files changed, 780 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/richtek,rt9123.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/richtek,rt9123p.yaml
+ create mode 100644 sound/soc/codecs/rt9123.c
+ create mode 100644 sound/soc/codecs/rt9123p.c
+
+
+base-commit: a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11
+-- 
+2.34.1
+
 
