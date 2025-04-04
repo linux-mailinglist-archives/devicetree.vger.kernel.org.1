@@ -1,137 +1,133 @@
-Return-Path: <devicetree+bounces-163122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3DEA7B958
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:53:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0C85A7B97D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B93B7A6AF5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA0B2178E09
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A031A0731;
-	Fri,  4 Apr 2025 08:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04FA31AE876;
+	Fri,  4 Apr 2025 09:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="phXjCmqz"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="GmlLRHqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DDB19E804;
-	Fri,  4 Apr 2025 08:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E24519E97B
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 09:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743756813; cv=none; b=T55ssZYPaC5PfuWxSDQbkUQBSDZg24qY8QdwlRO+j8t0tUE/HY9oJxv4fOyvRqZN2WvjGSWTGroHVNr0lzH1v8jSzMtoiMd7zHm5guIeVna2AKlnW8g2QGM+qvwLnzESFPzp7xkxR6l/ge3a6VY19WY39fhjCVg5dGSTY5ASiUI=
+	t=1743757287; cv=none; b=ehqs7Hr+982r0Vtf4f0vCEshjisERGluCOlZtaKYa9vTrrOqCR/1MpDeWxwYveoIdNBL9qMZRRAqhxi4QWxWVtndYOP5Lt5bfPcSuaGcClqLG1nRqV5cb3GHLKkb+VtJNxEWbhn3GW86TmsTmOmh/zIq68MYAJDt+VEOGETghiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743756813; c=relaxed/simple;
-	bh=BR4v9jaduHHtjHDAkP3DcqrljwwGoF2ygLOcD1RaNR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lKLzkeZRKoX01zWz0kxXXx5QULS0coRH2wYLFgPyKmnQz/A4heXlrf83Fwn1vInkKPeona0WTjCn1OCnM3g8EVaZtpUiXmwP0oxu5AluZ2V/SO0UksBgyXAuHXQz5WPoCgfDYdPU7GPBkrQzYBivvq8bdceBeUnxMehGrMQOvy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=phXjCmqz; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7FA204340C;
-	Fri,  4 Apr 2025 08:53:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743756804;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SZTRJDBNNgYDkCBY6upcyYXVnBhkGlf/cu+m+M/6vIQ=;
-	b=phXjCmqzZZKxxuJwruXaetuuVy5P0E2DyGB/9ihDxzLCq+CQn5d1CAbwfZaZ+Fmg9BRjus
-	7Q5NWpzcI5e6Iwg39kYruOE98vGmVxUWb92md2uia83KBMDgVaDpZD9qfsncjO9bloHYL0
-	5LW158MhgkQiGj/JRR4z4HNiKF/TIGimyBmXrN32dWWPehyS1tRmaxMY/ADDmnMiJ2JMXK
-	+jXcXkkKQxqOLY710F/sL0n/tx69yrVl2R2/wb7aZ+nBlIIbwoOt1WeP41torkK7+dYjWX
-	yZhckxdHE9b9jL60QvNPVyUM1Vvk86wzB9MlfLJgNsMswfGXXzhKQMTmz9R48g==
-Date: Fri, 4 Apr 2025 10:53:22 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, NXP S32 Linux <s32@nxp.com>,
-	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>
-Subject: Re: [PATCH v9 3/4] arm64: defconfig: add S32G RTC module support
-Message-ID: <2025040408532288b38dea@mail.local>
-References: <20250403103346.3064895-1-ciprianmarian.costea@oss.nxp.com>
- <20250403103346.3064895-4-ciprianmarian.costea@oss.nxp.com>
- <c4a80c1f-56a0-4cdf-afbd-cb2c13cc0b8b@kernel.org>
- <6ebb8c15-9ff1-4bf3-bbf3-c91aa387d873@oss.nxp.com>
- <dec769ad-5144-4503-9714-d9c83a4c242c@kernel.org>
- <b7d82f31-05d1-4331-809b-e865d21c958c@oss.nxp.com>
+	s=arc-20240116; t=1743757287; c=relaxed/simple;
+	bh=oMFXT7wDxJmhYbK2LVrzIZ9SDu54LMiMUroCgY/pOvo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YrlSVxLYna3oeIDgY2tNVOcOmrKf6P6MV1AEuVUONDl3pvoGdS1EwgM3kz+aEn4n8QqadBe9viGbFBZ+WaoHDjYqvQb7CoPcZ2ed0zDorpZxmWckqkKNDNFTl3QKuDBBzmsVLAWr05kwPahVt0bDLAgMqN38cYgIiPz2cmZqDto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=GmlLRHqU; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2A7083F887
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 09:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1743757274;
+	bh=p2qZoCK71oV2fwf4XZQYjbzwqdq/m06Zg0K4kksLDZg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
+	b=GmlLRHqUutdHqPuBn7sFsyxs+4REd8sW+x4NAxZdVOELlKKLGYw3sxVuYHk6DXz8I
+	 pRcxqTQV0XAMsCLq7fPIvXkT7zjQIZpdTkouR3LfRT5eXnvJSj5mVn5LpDyr4mnP3V
+	 XYxD4rnqrEXLBgzY6sIGCMPCxo4BzAzTTTy2aJjQ+GIEsuuND9Vwti5cy7TEeK8oEW
+	 h3djoXoe3stTC3Si7CFZZhn//dkUwToHAV9FF7mqyvyomg1u2+XUw4iCYWEi2slVM2
+	 2M4xFPfuZNJ+DrxvZX8KENw4PmvDD5ecTSGKb+bBnmyiw91lB4eDHNL5wE7lun8t8V
+	 Cy3FOkyJQRDwA==
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-43d08915f61so9652275e9.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 02:01:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743757270; x=1744362070;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p2qZoCK71oV2fwf4XZQYjbzwqdq/m06Zg0K4kksLDZg=;
+        b=YIr4yPKhalDDih6mbrX1gD0CwUt/zkH9hS2tbcRlzZQgV7u1NxST7nhMSPyNzEaMAA
+         T5grDFVXx0/nPruLu8yuFgaYXc+BhO+zc13jGQtCjAHc1pdcbLslaqaN/yK7PcvSkI2G
+         MIqETDThf7fB/ZM4CvrQSHuCGDYJ7fFcr+sOY7pZp1/fJT22VvDAT3LclLY0PztZhjhV
+         QFWG35rZQXs3LeFoMORmyK4BW0sLvkcuuOhdsUizwxjmysBI8ciRPmi/eyr9jn1/6dKI
+         F4ukmHO+rmUgOD54x6GqDNW7FepXKnVOqPVUUiADQIu3t0czlVg9X1uULifi2T2oMpcP
+         D/EA==
+X-Forwarded-Encrypted: i=1; AJvYcCWDCsDTN/oBO7UWBVpyGiRx2ZiesYU+82w6mj8U/exyyaUhHVHYl/SmZSoUtmmzhpeEFmb+2NBQ/rdt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4zsGHyKzEfxY8+a5ZbsrSARykq31cfenrfsgT5YjYE9Lrs7YY
+	33r/x8Hr9ioSg2Av37Rg9fjCQZoSnjHSqBDucgSjNIA0Ml1ikPwhds8GU33tX/WWnFEH7fAGIHI
+	ZHIJzWZWnI3qZDNdlm3kTarsmW0RsBDTIH8/v4poXFWCpoka9YzUXzTTZ6ewLXR/1DV29/arADW
+	w=
+X-Gm-Gg: ASbGncsYNkPZSHd+N6AmkzGU1MRRXXJt+JV1Lvx7pTftOUXllwXvT6zlEHNKShMoNiO
+	iotzTlaiG2qJjFhRRRuI29uIaQleNN++yS4A3i9MaHpQUC6T76dwjwHfaDIaoVpiac4GLR0uml6
+	nEuE3x8Lye9qy1dca6KA8BdvusxruCPg5aTtBwMEg0rhUaglZbjWSb1wXbZLXPmk4fbkrcp9DQg
+	FHovce1DuxQq89tNwYL8DZMF1U1Yo5h6S0f6ytyHSmj9llqJHzoPq+dDp1Tnj4b7l5Uw2AXHTxO
+	wU1DzbmcaR2DD8vhlpW5EktWkIium1gLBYs/zJlOwjL8GMRHcYau9kP6X4m4
+X-Received: by 2002:a05:600c:4513:b0:43c:fa3f:8e5d with SMTP id 5b1f17b1804b1-43ed0b5e246mr15971915e9.2.1743757270369;
+        Fri, 04 Apr 2025 02:01:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGzljYwBBG2flhsp4g06fLXYGNWjZnWdtzlqJrb2YqtEnZEwXUq1n7mizwccKsgCu4tf7h/sA==
+X-Received: by 2002:a05:600c:4513:b0:43c:fa3f:8e5d with SMTP id 5b1f17b1804b1-43ed0b5e246mr15971565e9.2.1743757270049;
+        Fri, 04 Apr 2025 02:01:10 -0700 (PDT)
+Received: from localhost (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec1794efesm44078085e9.28.2025.04.04.02.01.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 02:01:09 -0700 (PDT)
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] HP EliteBook Ultra G1q support
+Date: Fri,  4 Apr 2025 11:01:05 +0200
+Message-ID: <20250404090108.3333211-1-juerg.haefliger@canonical.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b7d82f31-05d1-4331-809b-e865d21c958c@oss.nxp.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduledutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetlhgvgigrnhgurhgvuceuvghllhhonhhiuceorghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeeiudeuteehhfekgeejveefhfeiudejuefhgfeljefgjeegkeeujeeugfehgefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtoheptghiphhrihgrnhhmrghrihgrnhdrtghoshhtvggrsehoshhsrdhngihprdgtohhmpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtt
- hhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhmpdhrtghpthhtohepfihilhhlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrthgtsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-On 04/04/2025 10:19:56+0300, Ciprian Marian Costea wrote:
-> On 4/4/2025 10:15 AM, Krzysztof Kozlowski wrote:
-> > On 04/04/2025 08:24, Ciprian Marian Costea wrote:
-> > > On 4/4/2025 9:17 AM, Krzysztof Kozlowski wrote:
-> > > > On 03/04/2025 12:33, Ciprian Costea wrote:
-> > > > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > > > > 
-> > > > > The RTC hardware module present on S32G based SoCs tracks clock time
-> > > > > during system suspend and it is used as a wakeup source on S32G2/S32G3
-> > > > > architecture.
-> > > > Which boards are using it? I don't see any DTS (nowhere), so I do not
-> > > > see single reason for this patch.
-> > > > 
-> > > > Best regards,
-> > > > Krzysztof
-> > > 
-> > > The RTC module is used by all the currently supported S32G2/S32G3
-> > > boards, so currently they are: S32G274A-EVB, S32G274A-RDB2, S32G399A-RDB3.
-> > 
-> > I don't think so. I looked at these DTS and there is no RTC.
-> > 
-> > > I do see your point in the fact that this driver should be enabled as
-> > > module only after platforms are actually using it.
-> > 
-> > No, post the user. I don't see the point of sending defconfig patch with
-> > RTC patchset anyway. That's different subsystem.
-> > 
-> > > 
-> > > So, would it be better for me to send a V10 in this series with the DTS
-> > > patch added ?
-> > 
-> > No, separate patchsets.
-> 
-> Ok. I will send out a V10 in which I will drop this current patch from the
-> patchset. Also, I will send the DTS patch which adds S32G274A-EVB,
-> S32G274-RDB2 and S32G399A-RDB3 usage of the RTC after this patchset gets
-> accepted.
-> 
+Add support for the HP EliteBook Ultra G1q 14" AI laptop.
 
-I don't need V10, I can apply V9 without 3/4 and 4/4
+Based on HWINFO64 and APCI tables, it seems to be the same HW as the
+HP OmniBook X 14.
 
-> Best Regards,
-> Ciprian
-> 
-> > 
-> > Best regards,
-> > Krzysztof
-> 
+This is the first time I'm fiddling with device trees so this is likely not
+correct :-|
+
+[1] https://www.hp.com/us-en/shop/pdp/hp-elitebook-ultra-14-inch-g1q-notebook-ai-pc
+[2] https://github.com/aarch64-laptops/build/pull/135
+
+Juerg Haefliger (3):
+  arm64: dts: qcom: x1e80100-hp-omnibook-x14: Create and include a dtsi
+  arm64: dts: qcom: x1e80100-hp-elitebook-ultra-g1q: DT for HP EliteBook
+    Ultra G1q
+  dt-bindings: arm: qcom: Document HP EliteBook Ultra G1q
+
+ .../devicetree/bindings/arm/qcom.yaml         |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ .../qcom/x1e80100-hp-elitebook-ultra-g1q.dts  |   36 +
+ .../dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1554 +---------------
+ .../dts/qcom/x1e80100-hp-omnibook-x14.dtsi    | 1557 +++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c              |    1 +
+ 6 files changed, 1597 insertions(+), 1553 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtsi
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.43.0
+
 
