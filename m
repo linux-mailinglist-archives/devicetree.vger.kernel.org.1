@@ -1,144 +1,130 @@
-Return-Path: <devicetree+bounces-163190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFBFA7BCA2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:29:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 034F0A7BCA9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2DB43B3014
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:29:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 883F13B5276
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9351DF962;
-	Fri,  4 Apr 2025 12:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="lcrV7mf+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2AF91E51FB;
+	Fri,  4 Apr 2025 12:30:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5865F1A238C;
-	Fri,  4 Apr 2025 12:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5091F1EB5DA;
+	Fri,  4 Apr 2025 12:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743769773; cv=none; b=PcrMSdAH1NLOFBC6qZ1+okrnN/v5xQDc6CMHCFCLdlpjD5toKoi5pJe4LWnr762dXBLKNy0TbTd2ZbiTBkVD0Celtqhrk1UCupIWBraX19hEnXFPzdTolEFEU53Vlc05IoXgQefDf9G1gbub8zClzV/YBa/w2WdX4lYgl2C/dpU=
+	t=1743769811; cv=none; b=fWXgeWURqcScdDz3YU7J4GTvchGtNTUvwhtFS8eMvMt/D7EoRtpPDJ3m5l+JvrpIrYZe/98NdKojRKZULH4/aKQmBg0zaeuDIaogqU8TJwgozDmXmTBaZXfzqcH3GlfH6gNJhA7vrW17W31MUX33XI0e8wlFJQdomDeyGdv+UJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743769773; c=relaxed/simple;
-	bh=Vglg3cinDLeA9fqr89u4b8HJQ4PJ6C0jehJ/9mZQw5M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=um3bXhkt8h3Tpo22QEQrynqNyC0ul6QMnDLtf9TiGtNhgqbiX3rnRHUnESLtk6XWv7Kx23wnx8O+kPjjDOx2lBZflhCJOcJkgv5l8f3vdFWuUSMvmOyUie0Ztu/EJLhv9v0Yuus2BiKuioFiuzDkDD1wGgZmI6lQf0zQOA7iDck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=lcrV7mf+; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 534C4rlN019849;
-	Fri, 4 Apr 2025 14:29:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	PX8HMUoBjUQH8f441S3m5UlI1PDj19al//F5PjyAvQM=; b=lcrV7mf+1aKq4ncl
-	X8GicNvEeYlQ/YXrV0GF6CfEDJZ4e54+tzxPwNPxc9K+vJ0Pi2X5FNqGgk3SF+JR
-	g/zPMpVGG/gzuaV3WyQoxz6s43dC0qmMMxRiNXOpCmFsitUwX879JKy1nO+kVm79
-	7OOoKw+iNatnKMlQXzinmcLXU4B+h4vNSb90nJ0UBGv0JmymYdMn4jxXOhV4XKOZ
-	8Jsakge7t/zKLrhJuD7oukXtTO9POx8Nfaw7WT90zE5lOrfADgneki4xDBespZOg
-	GsEMTjFoLpVk2wB407H2FDitZiapJGyJ+pyiVrfijsdP5PoYDyA81o2f0KTszkmD
-	k4BS2Q==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45t2cqk4sw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 04 Apr 2025 14:29:18 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2C8CD4002D;
-	Fri,  4 Apr 2025 14:28:20 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 976A79234AD;
-	Fri,  4 Apr 2025 14:27:33 +0200 (CEST)
-Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 4 Apr
- 2025 14:27:33 +0200
-Message-ID: <6e2b1717-6189-4115-ab55-01227a5a1d5a@foss.st.com>
-Date: Fri, 4 Apr 2025 14:25:14 +0200
+	s=arc-20240116; t=1743769811; c=relaxed/simple;
+	bh=JeuacFG/T5IzwJvxG1MoFQp4VLhHpIBovq2dABSnT4Q=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=i2d6hGBLw65LDTos2czsqJjy1qaZoYghZywtvOMjy+uRRZ67e6tKoSMscQCF0caS5j9IUyWBMbB/UhO+oaKDAGEvXBjAzNOQOXY4/9b1M+TOk7G4w1KJ98SogOLbfOrG9LzynL0aXWJpPFCeYyzP/nx4Gx6vQYBw48zc8tRChCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZTdGh1m1wz9s3R;
+	Fri,  4 Apr 2025 14:30:04 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] irqchip/gic: Use 0x10000 offset to access GICC_DIR on
- STM32MP2
-To: Thomas Gleixner <tglx@linutronix.de>, <maz@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20250403122805.1574086-1-christian.bruel@foss.st.com>
- <20250403122805.1574086-3-christian.bruel@foss.st.com> <87mscxuu6f.ffs@tglx>
-From: Christian Bruel <christian.bruel@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <87mscxuu6f.ffs@tglx>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-04_05,2025-04-03_03,2024-11-22_01
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 04 Apr 2025 14:29:56 +0200
+Message-Id: <D8XUSXKGAPBL.HFZUETKB6YQ1@buenzli.dev>
+Cc: "Daniel Scally" <djrscally@gmail.com>, "Heikki Krogerus"
+ <heikki.krogerus@linux.intel.com>, "Sakari Ailus"
+ <sakari.ailus@linux.intel.com>, "Dirk Behme" <dirk.behme@de.bosch.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>, "Saravana
+ Kannan" <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex
+ Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary
+ Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
+ "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
+ <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ <linux-kernel@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH 03/10] device property: Add
+ fwnode_property_read_int_array()
+From: "Remo Senekowitsch" <remo@buenzli.dev>
+To: "Rob Herring" <robh@kernel.org>, "Andy Shevchenko"
+ <andriy.shevchenko@linux.intel.com>
+References: <20250326171411.590681-1-remo@buenzli.dev>
+ <20250326171411.590681-4-remo@buenzli.dev>
+ <Z-UPJyD41LOMM3o2@smile.fi.intel.com>
+ <D8WA3WIHEQRN.3LQS84K8Z46OW@buenzli.dev>
+ <Z-6NG7fSfyKH-vW_@smile.fi.intel.com>
+ <CAL_JsqLPZc1LB09auMOJp90hbhJin75Yaa09h12ziZZgExSsBg@mail.gmail.com>
+In-Reply-To: <CAL_JsqLPZc1LB09auMOJp90hbhJin75Yaa09h12ziZZgExSsBg@mail.gmail.com>
 
-Hello Thomas,
+On Thu Apr 3, 2025 at 6:08 PM CEST, Rob Herring wrote:
+> On Thu, Apr 3, 2025 at 8:29=E2=80=AFAM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+>>
+>> On Wed, Apr 02, 2025 at 06:04:13PM +0200, Remo Senekowitsch wrote:
+>> > On Thu Mar 27, 2025 at 9:41 AM CET, Andy Shevchenko wrote:
+>> > > On Wed, Mar 26, 2025 at 06:13:42PM +0100, Remo Senekowitsch wrote:
+>> > >> The rust bindings for reading device properties has a single
+>> > >> implementation supporting differing sizes of integers. The fwnode C=
+ API
+>> > >> already has a similar interface, but it is not exposed with the
+>> > >> fwnode_property_ API. Add the fwnode_property_read_int_array() wrap=
+per.
+>>
+>> ...
+>>
+>> > >> +EXPORT_SYMBOL_GPL(fwnode_property_read_int_array);
+>> > >
+>> > > I'm not sure about this. We have a lot of assumptions in the code th=
+at the
+>> > > arrays beneath are only represented by the selected number of intege=
+r types.
+>> > > This opens a Pandora's box, e.g., reading in u24, which is not suppo=
+rted by
+>> > > the upper layers..
+>> > >
+>> > >> +int fwnode_property_read_int_array(const struct fwnode_handle *fwn=
+ode, const char *propname,
+>> > >> +                             unsigned int elem_size, void *val, si=
+ze_t nval);
+>> >
+>> > Here's an alternative approach using a macro to map each integer type =
+explicitly
+>> > to its corresponding read function. There are some additional changes =
+that will
+>> > be necessary to make the rest work, but this is the gist of it.
+>>
+>> I don;'t know Rust to tell anything about this, but at least it feels mu=
+ch
+>> better approach.
+>
+> I know a little Rust and it is much worse. It is implementing the same
+> code 8 times instead of 1 time just to work-around the C API.
 
-thanks for your comments.
-After Marc's suggestion we found a better solution. So dropping this 
-patch set.
+Can you please elaborate on this concern?
 
-Christian
+The previous approach uses generics, which means the function is also
+"copy-pasted" for each concrete type it is used with at compile time,
+just like with a macro. So using a macro wouldn't be worse than generics
+if binary size is the concern.
 
-On 4/3/25 17:43, Thomas Gleixner wrote:
-> On Thu, Apr 03 2025 at 14:28, Christian Bruel wrote:
-> 
->> When GIC_4KNOT64K bit in the GIC configuration register is
->> 0 (64KB), address block is modified in such a way than only the
-> 
-> s/than/that/
-> 
->> first 4KB of the GIC cpu interface are accessible with default
->> offsets.
->> With this bit mapping GICC_DIR register is accessible at
-> 
-> What's 'this bit mapping' ? This sentence does not parse.
-> 
->> offset 0x10000 instead of 0x1000, thus remap accordingly
-> 
-> ...
-> 
->> +/*
->> + * 8kB GICC range is not accessible with the default 4kB translation
->> + * granule. 0x1000 offset is accessible at 64kB translation.
->> + */
-> 
-> I have a hard time to map this comment to the change log, which suggests
-> to me that this is the other way round.
-> 
->> +static bool gic_8kbaccess(void *data)
->> +{
->> +	struct gic_chip_data *gic = data;
->> +	void __iomem *alt;
->> +
->> +	if (!is_hyp_mode_available())
->> +		return false;
->> +
->> +	alt = ioremap(gic->cpu_phys_base, GIC_STM32MP2_CPU_DEACTIVATE + 4);
->> +	if (!alt) {
->> +		pr_err("Unable to remap GICC_DIR register\n");
->> +		return false;
-> 
-> That's a hack because in case that the remap fails, this leaves the
-> thing enabled, but disfunctional.
-> 
-> Thanks,
-> 
->          tglx
+If the concern is about readability, I have managed to move all logic
+outside the macro body, all that remains is the association between type
+and `*_read_array` function.
+
+Remo
 
