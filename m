@@ -1,120 +1,82 @@
-Return-Path: <devicetree+bounces-163253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1DEA7C12D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:01:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 481BBA7C136
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 362D57A8085
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:00:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4392F188B71E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3013D205E28;
-	Fri,  4 Apr 2025 16:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E4E20299F;
+	Fri,  4 Apr 2025 16:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=hoffmanne.cfd header.i=@hoffmanne.cfd header.b="VIe6UJuB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dHMecoa0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hoffmanne.cfd (unknown [147.189.135.34])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC21205E15
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 16:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=147.189.135.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892FA8F40;
+	Fri,  4 Apr 2025 16:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743782433; cv=none; b=krzyInzFwD9cDOQ1kGVOTNanVlru6TEICjR6nwLIriuEwtws+LD0Ivq3BDGsJyCJyez8o6crK8CTrZOMnUESrrbeuBZ3ZshwUBv34DejAPnfl8ZlkrlwNjlXwBnjHRG+ob28y7UEtONVvg+e312IQYNLeoxLLvfpVLBsZ+7y6c4=
+	t=1743782599; cv=none; b=gOC1h4XyaPiPaaDvMpiFZXoAJ22rNLBErj/vdxHdvRtpE83CHZldp0Q+MaQdp7tRtyxASvrAmSAGp1TfvMnpV31Dkaht6isQPAUs8sgupQWhBiwheorrJ/ag7q6AJ7pa+A6NZJDK2VvTFsb1Ns7EGSrYiSOUGK2D8U3XdkDuMvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743782433; c=relaxed/simple;
-	bh=IYxbeICQK8e2rRZhAXLSgrOhCXi0BW/Z9s7H62TtSp8=;
-	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=jDtgDVy1O+RGz60nabEk4DTTdcEMigsdZuLA8jq01y1n1HKTV8mNHS1sD/GneLiStFWqlyO8nXC82GGXZpejxM1lRZyoT+4Oflprj6EpbQgN0X9GVuQ3/mp3RxxaMjSVWtQ/m5r2N8ASVIAyYaXoyMep16p2VMk+3hSsH5uplGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hoffmanne.cfd; spf=pass smtp.mailfrom=hoffmanne.cfd; dkim=pass (1024-bit key) header.d=hoffmanne.cfd header.i=@hoffmanne.cfd header.b=VIe6UJuB; arc=none smtp.client-ip=147.189.135.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hoffmanne.cfd
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hoffmanne.cfd
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=hoffmanne.cfd; s=mail; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=L0iZFvOKRdneMjTr1bK7C14Y6R2q3ZPrgaxVOTVD8QI=; b=VIe6UJuBya7EVUjdb4TiBWgY2t
-	XGdFLpeMzSquqcTRszd9Q0VymqQ25izlMtjEFhKMajUiyvzJza7nEzAifRXbrVRJcyXsDIZAT4t0S
-	y9lASqoCY+63Uv1xx149U/uopWRzxXAnVOPlHGprn9HyK7KDajDN+xwiQuc9bRknvIu0=;
-Received: from admin by hoffmanne.cfd with local (Exim 4.90_1)
-	(envelope-from <support@hoffmanne.cfd>)
-	id 1u0jT4-000OR4-NN
-	for devicetree@vger.kernel.org; Fri, 04 Apr 2025 16:00:30 +0000
-To: devicetree@vger.kernel.org
-Subject: Re WTS
-Date: Fri, 4 Apr 2025 16:00:30 +0000
-From: Exceptional One PC <support@hoffmanne.cfd>
-Reply-To: sales@exceptionalonepc.com
-Message-ID: <f7d0299b3864eaf3d8fd2b84648d587d@hoffmanne.cfd>
+	s=arc-20240116; t=1743782599; c=relaxed/simple;
+	bh=ZeKtbccKAfskNRA51l4MhLz7OC60VEzIqp0CWNxqyYQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HAYq4dl0PZiUHBQ/I5e2XO1OHSTv5uiTXULEsfpO1mFYbSt73N5EO5MDoG/Iba0gTt4eeIwDUO77UJxK7yljxl9DLO/qfb28TtIwcHvrUYtz/7MFfhUgR3/invVbkL5hgG/QcNs73G9uABRp9KYqXxR66BI6zPmZnMEH/a672z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dHMecoa0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C565FC4CEDD;
+	Fri,  4 Apr 2025 16:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743782596;
+	bh=ZeKtbccKAfskNRA51l4MhLz7OC60VEzIqp0CWNxqyYQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dHMecoa01reZDsWeYeRFKDoHvfVdjbITR0YQzM9FrxVMiEBb8fao+AwhSbaSskVdY
+	 tn0O84nyZ8Ca2Fex9WdB6BYhFs2swRBStq71ki/yVyokwEFe8WlW4tLe/B4GvwuKkW
+	 KXiBsNQb/KGDDsUE2NUCLFgwPjTmc5ROnyzx8piq1J95K4PXQ2/Zzd28jVcs5UON0V
+	 T0QAhQ2musAtZT4tcLK3iUVLfqepa3x8C0c+HemmeScwze3y2i1GvvF/zsJhiKb+1X
+	 cncYm1oRwoWq06MZTqN+5Mr8AjHFD+nof9k3F4euGkmwVE4n80vfvjQTMjO09HT8Q5
+	 WfvYqpksKft6Q==
+Date: Fri, 4 Apr 2025 11:03:14 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mattijs Korpershoek <mkorpershoek@kernel.org>
+Cc: devicetree@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-input@vger.kernel.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mediatek,mt6779-keypad: Update Mattijs'
+ email address
+Message-ID: <174378259415.1509225.11221231406789658607.robh@kernel.org>
+References: <20250401-mattijs-dts-korg-v1-1-0f8d96bf8a99@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-Hello ,
-These are available for sale. If you’re interested in purchasing these, please email me
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250401-mattijs-dts-korg-v1-1-0f8d96bf8a99@kernel.org>
 
 
-brand new and original
-Brand New ST8000NM017B  $70 EA
-Brand New ST20000NM007D   $100 EACH
-Brand New ST4000NM000A   $30 EA
-Brand New WD80EFPX   $60 EA
- Brand New WD101PURZ    $70 EA
+On Tue, 01 Apr 2025 15:30:37 +0200, Mattijs Korpershoek wrote:
+> Update Mattijs Korpershoek's email address to @kernel.org.
+> 
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
- 8TB 7.2K RPM SATA 6Gbps 512   2500pcs/$70 each
-
- 
-
-SK Hynix 48GB 2RX8 PC5 56008 REO_1010-XT
-PH HMCGY8MG8RB227N AA
-QTY 239 $50 EACH
-
-
-
-Brand New CISCO C9300-48UXM-E
-Available 5
-$21800 EACH
-
- 
-
-Intel Xeon Gold 5418Y Processors
-QTY28 $780 each
-
-
-Brand New C9200L-48T-4X-E  
-$1000 EAC
-QTY4
-
- 
-
-
- Brand New N9K-C93108TC-FX-24 Nexus
-9300-FX w/ 24p 100M/1/10GT & 6p 40/100G
-Available 4
-$3000 each
-
- 
-
-Brand New NVIDIA GeForce RTX 4090 Founders
-Edition 24GB - QTY: 56 - $700 each
-
- Refurbished Grade A
-Dell Latitude 5430 Intel i7 1255U 1.70GHz 
-16GB RAM 256GB SSD 14" Win 11 Pro
-QTY63 $139 EA
-
-
-Refurbished Grade A
-HP EliteBook 840 G7 i7-10610U 16GB RAM 512GB
-SSD Windows 11 Pro TOUCH Screen
-QTY 237 USD 80 each
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
