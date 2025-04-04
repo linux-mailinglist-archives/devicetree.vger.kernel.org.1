@@ -1,205 +1,176 @@
-Return-Path: <devicetree+bounces-163310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD7F0A7C4ED
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 22:31:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC784A7C4F2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 22:32:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B84FB3AFD5C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 20:31:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F43C189EE7B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 20:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975EC21D3E2;
-	Fri,  4 Apr 2025 20:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B408421D5A9;
+	Fri,  4 Apr 2025 20:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="iduL/geD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iz052oQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A642F189905
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 20:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECA11F416A
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 20:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743798690; cv=none; b=KAm8jGrDhIRxYkppC/ctAFTfyrnsFZ4Beb15QsogWynpUV4mp7Td4MtR4K48ZbCjyVMet92NLOkugvkUyVmmGkS0wEOC7s8T+rYcW3azaET1uEVoQXnvXQ2EF1erIPcB2ozIpqXMchXw31CUjfdVlnJrhRzX+DIhXq3Zqp5BuP0=
+	t=1743798768; cv=none; b=FQsIbI4hVKEYj+yVpN8a+MswvPDlsXGqiGh6ZiC4BWdyF5ezylJLTzaPEzxiOFPpJUCaZBhA6PRjRCHmKz0/BA50NxFZIcvo4E49IiOivTn9VqRBdlW+Aa0vn/7pRMC9wP11XLzopUPhl8p8Y/j1oFg9t/UiBBnMNwCkKPgpK3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743798690; c=relaxed/simple;
-	bh=K+GdwcY2qpId+FVrrOCPmblpwWNGwzjXOxhMwE/cWk0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XS3+9DW654ipMxupg+9j1lEzIsunWPkcBy/cjexm3K3y6X0mLnQeYEDK64PcIRbK7a3DOf4Y3mJTPsHAQoy0bQjFA7n3e9rXow0jMdObC734eUih+4fpk/r+jyneqHURiOQYImpBeLZ06uBFGcw9F0hVwsZW14h7jaQJc1nr4DU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=iduL/geD; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5497590ffbbso2537132e87.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 13:31:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1743798686; x=1744403486; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IJt1e+3GaxJCHQhJ/qyD9KJwcLWIhx1/tmMP/uk1paM=;
-        b=iduL/geDtNhnNwIb7WEcM4W7vQ0wLp0am2vOCzUMojdjzrk1dc2FIlGXjGVNOdjxDz
-         ZQrSliwsMk8lK3ocdqJCMtyUpilI/f0IY4sKx1ebiqumQmn2OjYImjaScTZDcOFiZ5Lr
-         qaLaQ+iTEcrRCc0DlROEmIE8Q2clcq+NgxjG8=
+	s=arc-20240116; t=1743798768; c=relaxed/simple;
+	bh=LElVHAM9xf/Dy7ylzvkbDBQA7o1vD7xD955A5P8xnEA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QElSsgwaMB2ucPtt5EHaHAmnFDZskIKJEF116I2jSIpLbmjv8D9PtCq2JeQLXp+oZRrj7+blS4qODMSuJrg6VIBrBIhASE1TqfYqH7OK+p5y7S1wC6fT39vMslHNsbb9B36BVSu/fHmTSh13nGJ6W037BFrYtrVs18kA8grvc28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iz052oQg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 534JF27W015306
+	for <devicetree@vger.kernel.org>; Fri, 4 Apr 2025 20:32:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wOAnLBAJdmL2Wb3sULNUowgzyt+Uj1UkgtRMWgKYGwY=; b=iz052oQgLnMJGQPP
+	CErBkb5+kMai2wmrL1VN6aYCv2tNSjmEdIrfLe2CSQfXGDiEFb4OXZOEkTaYZbPR
+	s2oHMwQzXNhmk6SUZYgDGSHI+F+YBm/87r/DJurVf0ZzFNC4ot67mrIvW7zyGbGr
+	tZrwmJjCSh2aBcHFo9OGDPtXHHuXRis1nGLi6+/UB7OHXPrcGPX//U63Ls94UkLt
+	dND0Ti+J34F+JtMUGdIBWvVSCJdsUwwGmSZ9Vhqq7H6+HJDbJf5Oev3LOX3sgkS9
+	B71WuA92ekAKJCQDQ2Sp7sD/yQWdIFKTjhAd6eBWWM+UflUROy303DyuHyl4dUJb
+	sT2VVQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45t2datwdx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 20:32:46 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c555d4ad75so36276185a.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 13:32:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743798686; x=1744403486;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IJt1e+3GaxJCHQhJ/qyD9KJwcLWIhx1/tmMP/uk1paM=;
-        b=COk+VbdLxmPDE0RX6uhV0QHkQtKViW0rM+WsHVBgdFcpGH8J2pHkmfR9dJcLNHEjaf
-         +nGqtRUC9xm8rEOBBla+belx4QzvLOhwUfAocx9xgSWh9kGnSppHrKw32lKNQm7LK75W
-         OdH2p37khtYVTJWmI0wmn/Z9Mkm/wVOuBagPPJZDrWu8WJomDRVKR68klIpGJpfYk+P8
-         nYHcTn/zVyHjSuOy0X4BktKPJdyVfak2SUJLtfbMDDJOQqHnayel5fwTR3hja5YIRt2E
-         atGVcyLtMmJC0xLcWgwnmM+wFeeXh57T/6ZS8Ot7TtiMSpcVj6Qffs8Lvyis9PJcbTZD
-         PALA==
-X-Forwarded-Encrypted: i=1; AJvYcCV4ztjr9P8g/PaBBH326/8U0dlf4dYCx19IdSFQkAhH0VedcWOpVjkN2nPsIDIIpjL8C+WClhkVjC9r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJNQ3YToZXha0WGe6ZnSPus/Ml6kHBmzmGm/YTZ9G44PPvE4T6
-	Yy9HFb2GsisaMglqD5cfI0YyOL1yYK2Ufu/1S1pw/h76ctqvjgStDtARqVZIb1KehlXucS9QCwo
-	=
-X-Gm-Gg: ASbGncs5Vl7u2VIcMmCt2LZshh+IXqTRqa4EGkx2P2f06UrJ/TJemZzq2ALh9gdYICE
-	9exhAxQroUnSN1i7InXIuFhuKWynyC/R/xor2X5nV1TSgeFMDIkJ06EMK/q8q3kfUhuRq2RuFo4
-	L0na37cgJVHdayR3BZFWc0uVGvEmEILcYJsGKB81SNas7OITNfL/sDy1g3GIyoQSqHLPXPkWxpq
-	KZYdOXs33VvsShpBJjVIojLz6DNZm82isqV8FO8LRYAgN5ULT0xaagKrQIJQarmHc1zYprdy8jf
-	EyCCF/BWF8n0ucX4IiQNixkOfaFkdbLcixIbDLL092T0wCPg8juqQRBNZTvFgqj8nTFm3IB0i9q
-	5QoyyBzZBy6MmySFzcXm4PQ==
-X-Google-Smtp-Source: AGHT+IGxgC85S8CglkIrKysi6gAUpecoadOWXo2t7F4Xk+mSOcvcFpr6Ma6SvZQDfimzhhMNIU9SZw==
-X-Received: by 2002:a05:6512:114f:b0:54c:a49:d3f4 with SMTP id 2adb3069b0e04-54c230c6598mr1428550e87.0.1743798686495;
-        Fri, 04 Apr 2025 13:31:26 -0700 (PDT)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e5c1ca9sm518490e87.76.2025.04.04.13.31.25
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1743798765; x=1744403565;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wOAnLBAJdmL2Wb3sULNUowgzyt+Uj1UkgtRMWgKYGwY=;
+        b=tEYROPoZyK2l/CH/tkDPKT+U7U0hPsB6whMRBfepdcE4gWHpnPbvPsOip5kK4P6HOp
+         HzTWvbTyZjbQuEL1OHi+Mw6EQ7fNg5JPV1zlwFo1nCKYpWM91gEKXvYam9Ek0cbulW/P
+         4T5obaS204IyyuqenvKXiTAupuwcaB9HmAKeEUkqI42pCmnLhHImnF9ZM1R80GRmzvxb
+         qY3vZHjWySgo/Yq6hfWiHgITsbOBn2W6uhHzUlYx+ijrCgAEDM3EPGPuGJtyxBeHZhFJ
+         pGOJ+r0oSwCArBAokmTHksF6VcKiFgv/px9zAWBJN3Hl659s4h+wex8f6Hcu1TH+7f1A
+         rhcg==
+X-Gm-Message-State: AOJu0YyuBZEotTzHLNo8CqaSsK/R0dyES4UlUpkSKvRuCiNEdCpHRpGA
+	KoViT+KXCljYbw2Dt1xaLXAv/fB4Jyp07d+i7RTcrEdVXhSZNyRQZqboL97L6UPPqqwJKdcaZKi
+	r6+6ulywAMl0vvva7peOck+bzWPhvVsTfzrlFIMRHUKiP58vrx0dLigAJeMiN
+X-Gm-Gg: ASbGncveFznT69KtFtQciriHMC4nDWEAIl42ODOJ8/MNAlWi3nHIeJydzcu+1nVpy8S
+	oQ8SIDJKcoaaUCsOT9gJuBmX//zoC9L8H0O0fMPTStMhg9sxlLFT53vPcMD09GQYeb1KJV6F+GV
+	BEmRepUja6317ffzuAQlRYI9V80EVOPEV2BmjxL6/Lk/KO+a/IGufFqZcNzpTh8gm7yyMoWigkZ
+	bUUeN3i3xV9cWJBu4PrJh0qh6Fjo4N0ElJIcnY6FE31NBni+34EkNwjtDdrHHxxg5rXbsgt5Sht
+	uvfRx+H7u8RMpmJpvyUErbpunQct+vBIQaZgLh+Z8Lra1gOMCenjCPGIcBPj5MHSRyBLJw==
+X-Received: by 2002:a05:620a:40c5:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7c774dc4185mr209774485a.10.1743798765317;
+        Fri, 04 Apr 2025 13:32:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEszusUf9J+0IEkVjsuj8Y1FnlY8CMQ4G+oamdYonxr6PB4E4ScKqwKTkVXQqlueNvC6p0Aaw==
+X-Received: by 2002:a05:620a:40c5:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7c774dc4185mr209772185a.10.1743798764979;
+        Fri, 04 Apr 2025 13:32:44 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f0880a405fsm2902483a12.75.2025.04.04.13.32.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 13:31:26 -0700 (PDT)
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30c44a87b9cso19472691fa.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 13:31:25 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVmu9YCd5hIn/bY2S0J/Rtmi9llRDzcdzZ7Cg/j6PwWA1Uinp9OXtCEmmiZ0pvg5mZe01QHj7vDpmmk@vger.kernel.org
-X-Received: by 2002:a05:651c:1581:b0:30d:7c12:5725 with SMTP id
- 38308e7fff4ca-30f0c064658mr16422321fa.33.1743798685456; Fri, 04 Apr 2025
- 13:31:25 -0700 (PDT)
+        Fri, 04 Apr 2025 13:32:42 -0700 (PDT)
+Message-ID: <d3592f32-e29c-4b40-b045-7267795a9617@oss.qualcomm.com>
+Date: Fri, 4 Apr 2025 22:32:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
- <20250403-uvc-orientation-v1-5-1a0cc595a62d@chromium.org> <20250404193655.GA158858-robh@kernel.org>
-In-Reply-To: <20250404193655.GA158858-robh@kernel.org>
-From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 4 Apr 2025 22:31:11 +0200
-X-Gmail-Original-Message-ID: <CANiDSCuD=vR7xT41sdyHU4Sci+q27_5cEYUsAOT3jmHBMOfixA@mail.gmail.com>
-X-Gm-Features: ATxdqUGWjyuS5jbxrI5_afZO8VPXlqKA2MK8tNbiaf5xCWtDa_Llt0RuBZ7yskM
-Message-ID: <CANiDSCuD=vR7xT41sdyHU4Sci+q27_5cEYUsAOT3jmHBMOfixA@mail.gmail.com>
-Subject: Re: [PATCH 5/8] dt-bindings: usb: usb-device: Add orientation
-To: Rob Herring <robh@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Hans de Goede <hdegoede@redhat.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/19] arm64: dts: qcom: msm8992-lg-h815: Fix CPU node
+ "enable-method" property dependencies
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        "Rob Herring (Arm)" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        "Rafael J. Wysocki"
+ <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
+        Conor Dooley <conor@kernel.org>,
+        Nicolas Ferre
+ <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
+        imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Alexander Reimelt <alexander.reimelt@posteo.de>
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-7-076be7171a85@kernel.org>
+ <470e2155-7145-44ab-9d6d-117a2d98d7f8@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <470e2155-7145-44ab-9d6d-117a2d98d7f8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: IAS4kM9NQJ8Bi_GTrgmBtskhbQq187-g
+X-Authority-Analysis: v=2.4 cv=MqFS63ae c=1 sm=1 tr=0 ts=67f041ee cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=vHGDO5lFCXZzE5S5F1YA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: IAS4kM9NQJ8Bi_GTrgmBtskhbQq187-g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-04_09,2025-04-03_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 mlxlogscore=669 clxscore=1015 mlxscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504040140
 
-Hi Rob
+On 4/4/25 10:30 PM, Konrad Dybcio wrote:
+> On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
+>> The "spin-table" enable-method requires "cpu-release-addr" property,
+>> so add a dummy entry. It is assumed the bootloader will fill in the
+>> correct values.
+>>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> ---
+> 
+> This looks good to me without knowing any better about the specifics
+> of this device..
+> 
+> +Alexander - does the bootloader you use take care of this? Otherwise
+> we can just do what Sony devices do and stop on removing the psci node
 
-On Fri, 4 Apr 2025 at 21:36, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Apr 03, 2025 at 07:16:16PM +0000, Ricardo Ribalda wrote:
-> > For some devices, such as cameras, the OS needs to know where they are
-> > mounted.
->
-> Do you have a usecase that's not a camera?
+I failed to add Alexander to Cc, second time's the charm..
 
-I personally do not have other use cases, but I suspect that it could
-be useful for more people.
-
-The original proposal was more generic and "inspired" in _PLD:
-https://lore.kernel.org/linux-devicetree/20241212-usb-orientation-v1-1-0b69adf05f37@chromium.org/
-
-You suggested using the camera's orientation.
-
-
->
-> >
-> > ACPI has a property for this purpose, which is parsed by
-> > acpi_get_physical_device_location():
-> > https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration/Device_Configuration.html#pld-physical-location-of-device
-> >
-> > In DT we have similar property for video-interface-devices called
-> > orientation:
-> > Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> >
-> > Add a new property orientation for usb-devices that matches the already
-> > existing orientation property of video-interface-devices.
-> >
-> > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> > ---
-> >  Documentation/devicetree/bindings/usb/usb-device.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > index da890ee60ce6e71a11910c565b6f805470782e4f..bbcda28ec7d5695307efa797f57180044afda77f 100644
-> > --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
->
-> This is a binding for *all* USB devices. This property should only be
-> added for devices where it makes sense.
-
-Can you provide some examples of how I can do this?
-
-
->
-> > @@ -42,6 +42,10 @@ properties:
-> >        port to which this device is attached. The range is 1-255.
-> >      maxItems: 1
-> >
-> > +  orientation:
-> > +    description: If present, specifies the orientation of the usb device.
-> > +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
->
-> Reference the schema from the top level and drop
-> '/properties/orientation'.
->
-> What about 'rotation'? Seems like you'd want that too.
-
-At this moment I do not have a usecase for that. But sure, once I need
-it I will add it the same way.
-
-In the last thread I proposed Sakari to use:
-
-+      image-sensor:
-+        description: Video interface properties associated to USB cameras,
-+          typically UVC compliant.
-+        allOf:
-+          - $ref: /schemas/media/video-interface-devices.yaml#
-+
-
-But he preferred to add orientation instead. Either ways work for me.
-
-
->
-> > +
-> >    "#address-cells":
-> >      description: should be 1 for hub nodes with device nodes,
-> >        should be 2 for device nodes with interface nodes.
-> > @@ -101,6 +105,7 @@ examples:
-> >          device@2 {
-> >              compatible = "usb123,4567";
-> >              reg = <2>;
-> > +            orientation = <0>;
-> >          };
-> >
-> >          device@3 {
-> >
-> > --
-> > 2.49.0.504.g3bcea36a83-goog
-> >
-
-
-
--- 
-Ricardo Ribalda
+Konrad
 
