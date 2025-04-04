@@ -1,265 +1,138 @@
-Return-Path: <devicetree+bounces-163219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1C3A7BE95
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:01:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EA0A7BEAA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42A4B17AFE7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:59:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AA1317351D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4271F152A;
-	Fri,  4 Apr 2025 13:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CFB1EFF90;
+	Fri,  4 Apr 2025 14:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jClldfDB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nCGf3I9t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227771F1523;
-	Fri,  4 Apr 2025 13:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88CDDF49;
+	Fri,  4 Apr 2025 14:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743775162; cv=none; b=acCbxZJVvDPiajb8697aYnwkNEW1e/B3ioUQCZ+loVAUzEUPDW9JoOs6F/sQWeB3uC0lKkja+CzYsF0CHrPdmGgyVNHDQb0Fvmt/4ZZC+7JjsMctiD9+A2HCsMwyICO8BBmV+5FCchw8V4IlOEta+MhA5b+/0/uwUz3UplHuRw4=
+	t=1743775515; cv=none; b=bfGJWspo00jZbTmRtiloJRWM5x0o4/QWvuEFOnj+KdnykVyu6CoBxIu/XIxNJ59g1XYVftvRc+x3Jr99VCbt6vkUh7QcgSQioQvCLhHve/1Nq5uSLjJkoTtMJSkKzKYnTDQmE8Fy3A3YCgXp9+2WTYPKnUNfGJWlDjlSnkF0NO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743775162; c=relaxed/simple;
-	bh=39/o4k002+zvT8GpmdpsEwxxkrT+dek11qloLHAFarg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t2Eh+69CKyvLg71b+QD6D3ja3jqh2tthG5xW6XOLRI48V/Fmdkssn1HIbr2QXzlwESuT/Vz+O18ZCmSkneW6FE6qGAG6V59ZXma96wXH5A377LTJlCH7+gJAvrcw5USHidHLquPhdnmCmGqCQmpVMx3l+3u0NGxcHbE5BF8jt7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jClldfDB; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so14168405e9.1;
-        Fri, 04 Apr 2025 06:59:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743775158; x=1744379958; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K7WQ85ZwzaG+oLmFcTwxrBQ9U7/3N21t4CiCD3HZPOo=;
-        b=jClldfDBPfLk4T8OzO4PzrRuSsUwyxBDJrQmKmRtmCzVQRton/nUJI2dLe4T8+QAot
-         v+w7Xdhb9MYoCBGDVI6TutTDwJ/Rg9UddcVC3Dr3yPPQSKOGx+NFkHxw2L4iDp9wTK0+
-         5m3MgcE8GJK9ntGCQLhp0+mqFF8E0TeiORgM97DfnoH6rCMiNh4OA1E/vHnl94UEKTWW
-         J0M0e/DvGkrtb18JWo4tYf8WKZnkw5GseTdP5WwIACwrwV5+6ozgLzHEouGPvDblS68q
-         ie3KIos3nmk4okc5DuZwvymqRLZab02ZXkYGIYAcqb/uCKuldO9bFpQwsXpDmB30o9qA
-         Fjgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743775158; x=1744379958;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K7WQ85ZwzaG+oLmFcTwxrBQ9U7/3N21t4CiCD3HZPOo=;
-        b=tiWwVr1do205VnDwWZ7BR4gvIe1txaunYgqZe6I5nYOsb2SSyfbzt+D2Pb7rd03ImE
-         Mf2/zFTWJY+QnJVVcFH2H2x7WldOrarxzuiwCJQUE5dYUCXErXgAI9OwK3MTpKZugG71
-         EYzaAdURXhIFaM0SEVlRCflF/uwixsb70U+Gbb6CDWwtvhyWTAaGGynL0cCEd6sr+7vo
-         0AO5SBBOTCm25ZNp+YE/pHk69wCs31seOG7N48ioByjzQU7iSAN3KQgghoueSwv2VJ2c
-         x4fB7EIwsyxLKgTsUx0mS82adogL00R1KZzRN/RKGZLc+LbGqjfSIQr9S7fex+3vspcB
-         PVlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhP58LdGl+OnzN5DYwEFfBOr8zIzqDMSAbWYXl7yUgGtW2ED6yexVmRsH90ZqF7ufSTbf7KyJ/onFyqX09@vger.kernel.org, AJvYcCWzJh3+vDaigo3dTUWnudo/Ykt7Zth/wNxKQcsRg6FU095uN5RWoqBz+RGkT/T48TZl0ckRAGKAhew+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBvkECtN7S/dEKmQ6VS0mZOA/6niQUYB8DkPazwXpcxKd01DAd
-	tCRF3yKJzluQhTO2hpNttJLxsSZ0zhaJsoIefOBUN2VX8YR0Oebv
-X-Gm-Gg: ASbGncs0ZHR6ZlvoozfBgo+IN0NNmF2WffeITESENfAX7t3mtrzMbZcjpKJNgwfwlbo
-	USA6I3wHkOQpg+DqE1hSA5p0qyjpFeleNbDVZVIrLd22gZcwdBmufy70DE6jJ7kdWu3w+uS473y
-	k8uqslF8+jiao7XrCge5FeyDzLT2NFsfOhoKNkOF+lO0DGE9FEVFx8+eE0jy8V89ac5PZ5aqgHt
-	6DzyjiRli1oo/ug5PyrJ8E0UAi750LRlOpSgJAJ9FCZK8lXEq2amuvH6xsL4V1HD2xT+k/BXmMU
-	zM80VENZ/tH2QAxixPKPh293ExheJGZ7l40aMKe+KhWV2m8RQg2VBdemDvpqlG7XQKNU5ltQLA=
-	=
-X-Google-Smtp-Source: AGHT+IFMDjr8Pj3/DFumk8gQPXeQjRro++AUyJw2sQrTBIk2T7ULhdgksQGfttKQv2KG2mJ8OoPW5w==
-X-Received: by 2002:a05:600c:4513:b0:43c:fa3f:8e5d with SMTP id 5b1f17b1804b1-43ed0b5e246mr26591995e9.2.1743775157969;
-        Fri, 04 Apr 2025 06:59:17 -0700 (PDT)
-Received: from [192.168.1.132] ([82.79.237.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34bb7bfsm45945005e9.17.2025.04.04.06.59.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 06:59:17 -0700 (PDT)
-Message-ID: <793d6a31-e3f9-456d-98cb-1622c48e6f38@gmail.com>
-Date: Fri, 4 Apr 2025 16:59:15 +0300
+	s=arc-20240116; t=1743775515; c=relaxed/simple;
+	bh=sXc59e9oCS1JyARzmEkCFC/sWd+6b3k5Zd9xARKgKhU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=scQwsL74DJ9i8ZLDmSbqb/IsDF5s0KRrVcQA6rC+d/2eEjitOggss8bzUrnBrDoNSfp/5nq0ji4xjFW87GKYMphDMvCy208g882mwp5Fafapr5jOY/1icgQcA53ye/b8TmYYHDTO1CTYryg8OR8WfvtC2n4whhIC5HolPeXZP1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nCGf3I9t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209A1C4CEDD;
+	Fri,  4 Apr 2025 14:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743775515;
+	bh=sXc59e9oCS1JyARzmEkCFC/sWd+6b3k5Zd9xARKgKhU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=nCGf3I9tEmCSvB0E76/BUXH6Nk1Q786Smv1KYQf7QmCCD9o9Vf7Jhiuw+t0LRBV69
+	 fCQDUgY4uJnXj9Qtye3sGi5fSmLjQJjXNRK/EEEdrFO4FIOnMma7eAkGuyZRmfOSfg
+	 hldrIX+bb9WXeeI5iiR1rh1rVUuQqiXwgbhatKkxVl4shFjEMD6B/1hgd5VDxXk3s1
+	 2GLoeerZIcXyrkvsszXm+iKisJa7hv/VYq64834LR35wmHqQST9N7TujpLPgk8EdVT
+	 UcAJ9djGAUQ/qu7XPoq1vjZ58Lh+q8niDbtBdREOB9J7EnKo65uRZQ9qCRO90Gcjnk
+	 R08WFLmx941ew==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e6ff035e9aso4063969a12.0;
+        Fri, 04 Apr 2025 07:05:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU2zrgHEjqwRrk4VXO36IPQmUmdER/8GZEVHa43SWCov61RXGD24EBs9evYOqa8yra/7F28qQtc6ysEXOUZ@vger.kernel.org, AJvYcCU45wrw8nqttRz5PGcXQUAXucqrGzoTQ09xhlLy6tCjBUR2hsChEkwzZw/NsPHYl4TCY84+JnDU6nqbSw==@vger.kernel.org, AJvYcCUDT6aJqNRpGmWR2MDxiAJR3V8TYjdYaY3HuXmxESGCv1h8cz3fqKp3BrM0eql3rhdtvv99j06Y+BEO@vger.kernel.org, AJvYcCXfejW4WlIQOZ2wvbtvBUAr63p5knnISrwyByDANPqXmUclKeojJIHcezJQpVrAxsfkvndERgjyPYnmEGVxFg==@vger.kernel.org, AJvYcCXkxbntwdHCtE9dJD2l/SuN126GkpHAnQ3RlfOyGwYaK+TpOC22n01ZbV1OWn8cOK+Abyvy2KnlsKSNGtH0CtkkGcE=@vger.kernel.org, AJvYcCXliRt5smrn9iCUHiiSnlgpFOaTv0MgB9Ju8WjWTQ1fQXjFGZTtLV9IGTEn9r/NinbMIXhsgnHql5c=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlpcDNlrtUWN9LHNAO7w3tOOqlzydZCTLDt/SVzBgkaHtO7p6S
+	DI+295zicmM5UwERhi1Wb6fF3YZvEnUW5bcDaqSrmuLO1tZ6BWM+7U6g/66RQwM2+kQx3I/0/hC
+	E+V21n4DYGGZqfh62t61OdOfGYA==
+X-Google-Smtp-Source: AGHT+IGvjzmo+S0oZ7wclO731FKO/yFH3v6rfa52+MwQrSf/9tdEEQ9A/kWSXMLtJKL4wmLWRjaXPrcr+vGPnUPbJIE=
+X-Received: by 2002:a05:6402:5112:b0:5e7:8be5:d189 with SMTP id
+ 4fb4d7f45d1cf-5f0b3b62317mr2699905a12.4.1743775513430; Fri, 04 Apr 2025
+ 07:05:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] bus: add driver for IMX AIPSTZ bridge
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
- <shengjiu.wang@nxp.com>, Frank Li <Frank.li@nxp.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Marc Kleine-Budde <mkl@pengutronix.de>, linux-arm-kernel@lists.infradead.org
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250401154404.45932-1-laurentiumihalcea111@gmail.com>
- <20250401154404.45932-4-laurentiumihalcea111@gmail.com>
- <12639974.O9o76ZdvQC@steina-w>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <12639974.O9o76ZdvQC@steina-w>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-9-076be7171a85@kernel.org> <CAPDyKFoEEp8AZ7aJ8-wwp8=n+T4gbij15oYaCNhF1Bd-E1nMbg@mail.gmail.com>
+In-Reply-To: <CAPDyKFoEEp8AZ7aJ8-wwp8=n+T4gbij15oYaCNhF1Bd-E1nMbg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 4 Apr 2025 09:05:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLB7SpVNTVruAb98YEPC5sRpssjsSP=NkqdON6qP+74fw@mail.gmail.com>
+X-Gm-Features: ATxdqUGVc4_Mt0PqKKmf21CRVRmw-a_zuqLCxbME19ZuBODzSy1GgUUs6hNAKo0
+Message-ID: <CAL_JsqLB7SpVNTVruAb98YEPC5sRpssjsSP=NkqdON6qP+74fw@mail.gmail.com>
+Subject: Re: [PATCH 09/19] arm: dts: qcom: sdx55/sdx65: Fix CPU power-domain-names
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
+	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
+	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
+	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 4/3/2025 11:30 AM, Alexander Stein wrote:
-> Hi,
+On Fri, Apr 4, 2025 at 5:31=E2=80=AFAM Ulf Hansson <ulf.hansson@linaro.org>=
+ wrote:
 >
-> Am Dienstag, 1. April 2025, 17:44:01 CEST schrieb Laurentiu Mihalcea:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> The secure AHB to IP Slave (AIPSTZ) bus bridge provides access control
->> configurations meant to restrict access to certain peripherals.
->> Some of the configurations include:
->>
->> 	1) Marking masters as trusted for R/W. Based on this
->> 	(and the configuration of the accessed peripheral), the bridge
->> 	may choose to abort the R/W transactions issued by certain
->> 	masters.
->>
->> 	2) Allowing/disallowing write accesses to peripherals.
->>
->> Add driver for this IP. Since there's currently no framework for
->> access controllers (and since there's currently no need for having
->> flexibility w.r.t the configurations) all this driver does is it
->> applies a relaxed, "default" configuration, in which all masters
->> are trusted for R/W.
->>
->> Note that some instances of this IP (e.g: AIPSTZ5 on i.MX8MP) may be tied
->> to a power domain and may lose their configuration when the domain is
->> powered off. This is why the configuration has to be restored when the
->> domain is powered on.
->>
->> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
->> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  drivers/bus/Kconfig      |  6 +++
->>  drivers/bus/Makefile     |  1 +
->>  drivers/bus/imx-aipstz.c | 92 ++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 99 insertions(+)
->>  create mode 100644 drivers/bus/imx-aipstz.c
->>
->> diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
->> index ff669a8ccad9..fe7600283e70 100644
->> --- a/drivers/bus/Kconfig
->> +++ b/drivers/bus/Kconfig
->> @@ -87,6 +87,12 @@ config HISILICON_LPC
->>  	  Driver to enable I/O access to devices attached to the Low Pin
->>  	  Count bus on the HiSilicon Hip06/7 SoC.
->>  
->> +config IMX_AIPSTZ
->> +	tristate "Support for IMX Secure AHB to IP Slave bus (AIPSTZ) bridge"
->> +	depends on ARCH_MXC
->> +	help
->> +	  Enable support for IMX AIPSTZ bridge.
->> +
->>  config IMX_WEIM
->>  	bool "Freescale EIM DRIVER"
->>  	depends on ARCH_MXC || COMPILE_TEST
->> diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
->> index cddd4984d6af..8e693fe8a03a 100644
->> --- a/drivers/bus/Makefile
->> +++ b/drivers/bus/Makefile
->> @@ -15,6 +15,7 @@ obj-$(CONFIG_FSL_MC_BUS)	+= fsl-mc/
->>  
->>  obj-$(CONFIG_BT1_APB)		+= bt1-apb.o
->>  obj-$(CONFIG_BT1_AXI)		+= bt1-axi.o
->> +obj-$(CONFIG_IMX_AIPSTZ)	+= imx-aipstz.o
->>  obj-$(CONFIG_IMX_WEIM)		+= imx-weim.o
->>  obj-$(CONFIG_INTEL_IXP4XX_EB)	+= intel-ixp4xx-eb.o
->>  obj-$(CONFIG_MIPS_CDMM)		+= mips_cdmm.o
->> diff --git a/drivers/bus/imx-aipstz.c b/drivers/bus/imx-aipstz.c
->> new file mode 100644
->> index 000000000000..44db40dae71b
->> --- /dev/null
->> +++ b/drivers/bus/imx-aipstz.c
->> @@ -0,0 +1,92 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright 2025 NXP
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regmap.h>
->> +
->> +#define IMX_AIPSTZ_MPR0 0x0
->> +
->> +struct imx_aipstz_config {
->> +	u32 mpr0;
->> +};
->> +
->> +static void imx_aipstz_apply_default(void __iomem *base,
->> +				     const struct imx_aipstz_config *default_cfg)
->> +{
->> +	writel(default_cfg->mpr0, base + IMX_AIPSTZ_MPR0);
->> +}
->> +
->> +static int imx_aipstz_probe(struct platform_device *pdev)
->> +{
->> +	const struct imx_aipstz_config *default_cfg;
->> +	void __iomem *base;
->> +
->> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
->> +	if (IS_ERR(base))
->> +		return dev_err_probe(&pdev->dev, -ENOMEM,
->> +				     "failed to get/ioremap AC memory\n");
->> +
->> +	default_cfg = of_device_get_match_data(&pdev->dev);
-> Shouldn't you use the configuration setup by trusted firmware (TF-A)?
-
-
-not sure I see the value in doing that? the TF-A configuration will be overriden
-anyways if an AC API is ever introduced in Linux. Also, for AIPSTZ5, you'd need to:
-
-1) Make sure the AUDIOMIX domain is not power cycled before latching on to the
-TF-A configuration otherwise you'll lose it.
-
-2) Add an extra step in which you actually configure the bridge's AC from TF-A since
-it's not ATM.
-
-I'm not sure why you'd want to do that when you can just set the configuration directly
-from Linux?
-
-
+> On Fri, 4 Apr 2025 at 05:02, Rob Herring (Arm) <robh@kernel.org> wrote:
+> >
+> > "rpmhpd" is not documented nor used anywhere. As the enable-method is
+> > "psci" use "psci" for the power-domain name.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 2 +-
+> >  arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts=
+/qcom/qcom-sdx55.dtsi
+> > index 39530eb580ea..64d9858b4248 100644
+> > --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+> > +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+> > @@ -57,7 +57,7 @@ cpu0: cpu@0 {
+> >                         enable-method =3D "psci";
+> >                         clocks =3D <&apcs>;
+> >                         power-domains =3D <&rpmhpd SDX55_CX>;
+> > -                       power-domain-names =3D "rpmhpd";
+> > +                       power-domain-names =3D "psci";
 >
->> +
->> +	imx_aipstz_apply_default(base, default_cfg);
->> +
->> +	dev_set_drvdata(&pdev->dev, base);
->> +
->> +	pm_runtime_set_active(&pdev->dev);
->> +	devm_pm_runtime_enable(&pdev->dev);
->> +
->> +	return devm_of_platform_populate(&pdev->dev);
->> +}
->> +
->> +static int imx_aipstz_runtime_resume(struct device *dev)
->> +{
->> +	const struct imx_aipstz_config *default_cfg;
->> +	void __iomem *base;
->> +
->> +	base = dev_get_drvdata(dev);
->> +	default_cfg = of_device_get_match_data(dev);
->> +
->> +	/* restore potentially lost configuration during domain power-off */
->> +	imx_aipstz_apply_default(base, default_cfg);
-> Shouldn't you store the configuration at suspend and restore that one
-> instead of this fixed one?
-
-you're only using the fixed configuration here and you're not modifying it anywhere
-so no need to save it during suspend.
-
+> As I understand it, this isn't for cpu-power-mgmt but for
+> cpu-performance-scaling.
 >
-> What's going to happen if trusted firmware decides that Cortex-A53 domain
-> is not allowed to access AIPSTZ?
+> I have been thinking of adding a common power-domain-name for this,
+> but never reached to do it. I think the last one we added was the
+> Airoha SoC [1] which uses "perf", which seems to be the most common
+> one. Still I don't see that being documented.
 
-then you'll get a bus fault and will have to model AIPSTZ as just AIPS via the devicetree
-(like we do for AIPSTZ1-AIPSTZ4 right now)
+It's all a mess and abuse of the power-domains binding...
+
+"perf" is documented. I can add "rpmhpd" I suppose, but I don't see
+anything using the name. Or I can remove it.
+
+Rob
 
