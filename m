@@ -1,454 +1,183 @@
-Return-Path: <devicetree+bounces-163172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47064A7BBBF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:52:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C00D2A7BBD9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 306473B23DD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:51:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 009767A677F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:55:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD381DF721;
-	Fri,  4 Apr 2025 11:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313FE1E51E5;
+	Fri,  4 Apr 2025 11:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DJRuhY5A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6288A51C5A;
-	Fri,  4 Apr 2025 11:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340AD51C5A;
+	Fri,  4 Apr 2025 11:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743767525; cv=none; b=KNst1w2ObW4NtHjCkUpRwVYdDlz3UPcBqkTXsN132hVm9LJA7JVtnsQRsZBpi+EsGcwaNCPhbDD3u7jbmZRsfNCimnApywdgsw48IuXXm+hwLgTr/0rp7H6KSL5h5lemo8mOZDpNmueaw2D+wLWBtnT5Y9ZZ0wBO+hgs/+7lkPc=
+	t=1743767775; cv=none; b=SdfplQo693QtDwWcahg2wB8gHsiTIa0N87Ml/9GgSYjle0CoJ3/JnlfYQeYl4cy/30U8GX2frJfGArvIZb+5Tvr/GM96khOyUlYV/C6Qqgkz27crnOTXkYJ1bW4duWcEfRJDRcUhfv0y8tmrcjSxkfq1zPZ8rY1biTYx5SgJA3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743767525; c=relaxed/simple;
-	bh=GewaFzJ1kJk6EUQQDKJbiGSqmzw6Hr7YwKv5nyEyGr8=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S/ghqPjqC6WDfyOKUyifqrwFWcg4dUzOTfqqTX+V5VydMOlNl8zYP2M5Jt1e3F1mWj95ZEgbIGhWH79g8xG1hj+JICMdryAFcjv9Jeslxp0oYCVzhx8/F6xE73UM7ppe5D4TxWpZ6JCIhFj9/y+8Rm29JPT9JQr8Yi4iLhh8A3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZTcLS1bfbz6M4Px;
-	Fri,  4 Apr 2025 19:48:16 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id EBE5514080B;
-	Fri,  4 Apr 2025 19:51:57 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Apr
- 2025 13:51:57 +0200
-Date: Fri, 4 Apr 2025 12:51:55 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Gyeyoung Baek <gye976@gmail.com>
-CC: <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <lars@metafoo.de>, <gustavograzs@gmail.com>,
-	<javier.carrasco.cruz@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH v1 4/5] iio: chemical: add support for winsen MHZ19B CO2
- sensor
-Message-ID: <20250404125155.0000738d@huawei.com>
-In-Reply-To: <20250403053225.298308-5-gye976@gmail.com>
-References: <20250403053225.298308-1-gye976@gmail.com>
-	<20250403053225.298308-5-gye976@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1743767775; c=relaxed/simple;
+	bh=8E65pfwqDLoAFjeqxMb/Wu1QFitlB0SNCIyH+fLpw3s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pvHtCUldkSvXLTLCEDrVirHk1CeCqDhZmL/ZMNyQhC1B9VCMgiriYBomt+nsQyTusuXPEkUPDP1SUTIZ3EFn59iWQ7pi8+Q2W8TuRn2xES+5UKw/TvAZ6WkMrYd+TG76FxAdl10gQoNOKqURNAJcKm3x3+Y2L63jkNMcFb9oO1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DJRuhY5A; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 534899RH006480;
+	Fri, 4 Apr 2025 11:55:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Ri9UqNiAHV/8oOvW2WwNOLjf1SeK01rF6vQ
+	VFdvqCvA=; b=DJRuhY5AYwauIGUYXCDqrO4M67Mvg1gK6RwtPPQIE8YzDATX1y1
+	Xir3wudfN6jJzcGG9cVOKdhkHMIMRuk4BEFwWkKekHS3KdtJsbkPiFFoyc3hx4yj
+	fmWEs6TsWLL0FEKEnJ27sMKkYX8P8A2fYqmfMKMWZQ7DBEJz599Ih1SvI+Sh+Vzx
+	BLpV9gXmfEdcXgEPolAdNHtphCcUWYbL5H7acny29jTIM+f1qLYVToGcmy+DJQqR
+	8I6WtZi+s6dJQ8JkeUUXcKQavCceb1fR0TS7zZUZa/ZH+nA0FiC/z4VFMv74j8+l
+	9M9dMj8efxP8BVhVLxtvffIVTdS1Zh/IVkw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45tbnkrh03-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Apr 2025 11:55:49 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 534BtjGX016527;
+	Fri, 4 Apr 2025 11:55:45 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 45p9xmaej2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Apr 2025 11:55:45 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 534BtjUA016500;
+	Fri, 4 Apr 2025 11:55:45 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 534BtiSi016494
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Apr 2025 11:55:45 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
+	id 24F7B58A; Fri,  4 Apr 2025 17:25:44 +0530 (+0530)
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: [PATCH v3 00/10] Add DSI display support for SA8775P target
+Date: Fri,  4 Apr 2025 17:25:29 +0530
+Message-Id: <20250404115539.1151201-1-quic_amakhija@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tSATyzKEJKVlxRgKYaSjoEoN551JYM0Z
+X-Proofpoint-GUID: tSATyzKEJKVlxRgKYaSjoEoN551JYM0Z
+X-Authority-Analysis: v=2.4 cv=X9xSKHTe c=1 sm=1 tr=0 ts=67efc8c6 cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=ujnruDPweMBSjgDv7-sA:9 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-04_05,2025-04-03_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0 suspectscore=0
+ spamscore=0 adultscore=0 bulkscore=0 mlxscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504040082
 
-On Thu,  3 Apr 2025 14:32:24 +0900
-Gyeyoung Baek <gye976@gmail.com> wrote:
+This series enables the support for DSI to DP bridge ports
+(labled as DSI0 and DSI1) of the Qualcomm's SA8775P Ride platform.
 
-> Add support for winsen MHZ19B CO2 sensor.
-> 
-> Datasheet:
-> https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
-> 
-> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
-Hi.
+SA8775P SoC has DSI controller v2.5.1 and DSI PHY v4.2.
+The Ride platform is having ANX7625 DSI to DP bridge chip from Analogix.
 
-Various comments inline,
+---
+This patch depends on following series:
+https://lore.kernel.org/linux-arm-msm/20250127-dts-qcom-dsi-phy-clocks-v1-0-9d8ddbcb1c7f@linaro.org/
+(ARM / arm64: dts: qcom: Use the header with DSI phy clock IDs)
 
-Thanks,
+Changes in v3: Fixed review comments from Dmitry and Krzysztof
+    - Added qcom,sa8775p-dsi-ctrl compatible based on the set of clocks
+      which are associated with it in patch 2. [Krzysztof]
+    - Drop the blank line and add contains instead of items in pattern
+      properties of dsi ctrl and phy in patch 3. [Krzysztof]
+    - Updated the node name from anx7625@58 to bridge@58 for anx7625
+      dsi-dp bridge in patch 7. [Dmitry/Krzysztof]
+    - Updated endpoint label name for input output ports of analogix bridge chip in patch 7. 
+    - Check the DP or eDP confiuration based on the aux node in patch 9. [Dmitry]
+    - Link to v2 : https://lore.kernel.org/all/20250311122445.3597100-1-quic_amakhija@quicinc.com/
 
-Jonathan
+Changes in v2: Fixed review comments from Rob, konard, Dmitry and Krzysztof
+    - Added additionalProperities in dsi and phy patternProperties in patch 3. [Rob's bot]
+    - Updated example in qcom,sa8775p-mdss.yaml of patch 3:
+        - Added port1 and port2 inside mdss0 ports.
+        - Renamed dsi ports from mdss_dsi0_in to mdss0_dsi0_in and mdss_dsi1_in to mdss0_dsi1_in.
+    - Updated the init load value for vdds supply of DSI PHY from
+      150000uA to 48000uA as per chipset power grid in patch 4. [Dmitry]
+    - Updated the init load value for vdda supply for DSI ctrl
+      from 30100uA to 8300uA as per chipset power grid in patch 5.[Dmitry]
+    - Rebase the series to use the header with DSI phy clock IDs to make code more
+      readable in patch 6. [konard]
+    - Added the interrupts-extended in patch 7. [konard]
+    - Fixed the warning from DT checker against DT binding in patch 7. [Krzysztof]
+    - Changed the connector node name from dsi0-connector to dp-dsi0-connector and dsi1-connector to dp-dsi1-connector
+      respectively in patch 7. [Dmitry]
+    - Added the vph_pwr for anx7625 vdda10, vdds18 and vdda33 supply to fix the warnings from DT checker in
+      patch 7. [Rob's bot]
+    - Addressed device tree comments in patch 7. [Konard]
+    - Squash the DT patch 8 into DT patch 7. [Dmitry]
+    - Added hpd_enable() and hpd_disable() bridge funcs in patch 9. [Dmitry]
+    - Update hpd detection bridge op flags logic based on eDP connector in patch 10. [Dmitry]
+    - Link to v1 : https://lore.kernel.org/linux-arm-msm/20250225121824.3869719-1-quic_amakhija@quicinc.com/
 
-> diff --git a/drivers/iio/chemical/mhz19b.c b/drivers/iio/chemical/mhz19b.c
-> new file mode 100644
-> index 000000000000..f8f06c01623f
-> --- /dev/null
-> +++ b/drivers/iio/chemical/mhz19b.c
-> @@ -0,0 +1,386 @@
+---
 
-> +struct mhz19b_state {
-> +	struct serdev_device *serdev;
-> +
-> +	/* TO DO, nothing for now.*/
-> +	struct regulator *vin_supply;
+Ayushi Makhija (10):
+  dt-bindings: display: msm-dsi-phy-7nm: document the SA8775P DSI PHY
+  dt-bindings: msm: dsi-controller-main: document the SA8775P DSI CTRL
+  dt-bindings: display: msm: document DSI controller and phy on SA8775P
+  drm/msm/dsi: add DSI PHY configuration on SA8775P
+  drm/msm/dsi: add DSI support for SA8775P
+  arm64: dts: qcom: sa8775p: add Display Serial Interface device nodes
+  arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to DP bridge nodes
+  drm/bridge: anx7625: enable HPD interrupts
+  drm/bridge: anx7625: update bridge_ops and sink detect logic
+  drm/bridge: anx7625: change the gpiod_set_value API
 
-Unlikely you need this here. Look at the
-devm regulator calls.
+ .../display/msm/dsi-controller-main.yaml      |   2 +
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |   1 +
+ .../display/msm/qcom,sa8775p-mdss.yaml        | 183 ++++++++++++++-
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi    | 208 +++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 186 +++++++++++++++-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     |  34 ++-
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c             |  18 ++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h             |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     |  27 +++
+ 11 files changed, 650 insertions(+), 13 deletions(-)
 
-> +
-> +	/* serdev receive buffer.
-
-Fix comment syntax as mentioned below.
-
-> +	 * When data is received from the MH-Z19B,
-> +	 * the 'mhz19b_receive_buf' callback function is called and fills this buffer.
-> +	 */
-> +	char buf[9];
-> +	int buf_idx;
-> +
-> +	/* must wait the 'buf' is filled with 9 bytes.*/
-> +	struct completion buf_ready;
-> +
-> +	/* protect access to mhz19b_state */
-
-Be more specific. What and why?  It's not protecting the regulator.
-
-> +	struct mutex lock;
-> +};
-> +
-> +/*
-> + * commands have following format:
-> + *
-> + * +------+------+-----+------+------+------+------+------+-------+
-> + * | 0xFF | 0x01 | cmd | arg0 | arg1 | 0x00 | 0x00 | 0x00 | cksum |
-> + * +------+------+-----+------+------+------+------+------+-------+
-> + *
-> + * The following commands are defined in the datasheet.
-> + * https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
-> + */
-> +#define MHZ19B_CMD_SIZE 9
-> +
-> +/* ABC logic in MHZ19B means auto calibration.
-One line comment so move the */ up to end of this line.
-
-> + */
-
-> +
-> +static int mhz19b_serdev_cmd(struct iio_dev *indio_dev,
-> +	int cmd, void *arg)
-> +{
-> +	int ret = 0;
-Move declaraton to the scope where it is used.
-Then it will be obcious that it is alaway set.
-
-> +	struct mhz19b_state *st = iio_priv(indio_dev);
-> +	struct serdev_device *serdev = st->serdev;
-> +	struct device *dev = &indio_dev->dev;
-> +
-> +	/* commands format is described above. */
-> +	uint8_t cmd_buf[MHZ19B_CMD_SIZE] = {
-> +		0xFF, 0x01, cmd,
-> +	};
-> +
-> +	switch (cmd) {
-> +	case MHZ19B_ABC_LOGIC_CMD: {
-> +		bool enable = *((bool *)arg);
-> +
-> +		cmd_buf[3] = enable ? 0xA0 : 0x00;
-> +		break;
-> +	} case MHZ19B_SPAN_POINT_CMD: {
-> +		uint16_t ppm = *((uint16_t *)arg);
-> +
-> +		put_unaligned_be16(ppm, &cmd_buf[3]);
-> +		break;
-> +	} case MHZ19B_DETECTION_RANGE_CMD: {
-> +		uint16_t range = *((uint16_t *)arg);
-> +
-> +		put_unaligned_be16(range, &cmd_buf[3]);
-> +		break;
-> +	} default:
-> +		break;
-> +	}
-> +	cmd_buf[MHZ19B_CMD_SIZE - 1] = mhz19b_get_checksum(cmd_buf);
-> +
-> +	scoped_guard(mutex, &st->lock) {
-> +		/* write buf to uart ctrl syncronously */
-> +		ret = serdev_device_write(serdev, cmd_buf, MHZ19B_CMD_SIZE, 0);
-> +		if (ret != MHZ19B_CMD_SIZE) {
-> +			dev_err(dev, "write err, %d bytes written", ret);
-> +			return -EINVAL;
-> +		}
-> +
-> +		switch (cmd) {
-> +		case MHZ19B_READ_CO2_CMD:
-> +			ret = wait_for_completion_interruptible_timeout(&st->buf_ready,
-> +				MHZ19B_SERDEV_TIMEOUT);
-> +			if (ret < 0)
-> +				return ret;
-> +			if (!ret)
-> +				return -ETIMEDOUT;
-> +
-> +			ret = mhz19b_get_checksum(st->buf);
-> +			if (st->buf[MHZ19B_CMD_SIZE - 1] != mhz19b_get_checksum(st->buf)) {
-> +				dev_err(dev, "checksum err");
-> +				return -EINVAL;
-> +			}
-> +
-> +			ret = get_unaligned_be16(&st->buf[2]);
-			return get_unaligned_be16()
-
-> +			return ret;
-> +		default:
-> +			/* no response commands. */
-> +			return 0;
-> +		}
-> +	}
-> +}
-
-
-Cache the ones that aren't a one time thing then (such as this one).
-
-> +
-> +static ssize_t calibration_auto_enable_store(struct device *dev,
-> +	struct device_attribute *attr,
-> +	const char *buf, size_t len)
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	bool enable;
-> +
-> +	int ret = kstrtobool(buf, &enable);
-As below. Either have this in the declaration block or not. This
-sort of half and half with extra blank lines is unusual.
-
-
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = mhz19b_serdev_cmd(indio_dev, MHZ19B_ABC_LOGIC_CMD, &enable);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return len;
-> +}
-> +static IIO_DEVICE_ATTR_WO(calibration_auto_enable, 0);
-> +
-> +/* write 0		: zero point calibration_auto_enable
-> + *	(make sure the sensor had been worked under 400ppm for over 20 minutes.)
-> + *
-> + * write 1000-5000	: span point calibration:
-> + *	(make sure the sensor had been worked under a certain level co2 for over 20 minutes.)
-> + */
-> +static ssize_t calibration_forced_value_store(struct device *dev,
-> +	struct device_attribute *attr,
-> +	const char *buf, size_t len)
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	uint16_t ppm;
-> +	int cmd;
-The line break here is odd.  I'd define
-	int ret, cmd;
-
-	ret = kstrou16()
-
-> +
-> +	int ret = kstrtou16(buf, 10, &ppm);
-> +
-This blank line is also then unnecessary.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* at least 1000ppm */
-> +	if (ppm) {
-> +		if (ppm < 1000 || ppm > 5000) {
-> +			dev_dbg(&indio_dev->dev,
-> +				"span point ppm should be 1000~5000");
-> +			return -EINVAL;
-> +		}
-> +
-> +		cmd = MHZ19B_SPAN_POINT_CMD;
-> +	} else {
-> +		cmd = MHZ19B_ZERO_POINT_CMD;
-> +	}
-> +
-> +	ret = mhz19b_serdev_cmd(indio_dev, cmd, &ppm);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return len;
-> +}
-> +static IIO_CONST_ATTR(calibration_forced_value_available,
-> +	"0 1000-5000");
-
-Check the syntax for available attributes. We don't have a good
-way to describe this particular set of ranges. So best option
-may unfortunately be to not describe it at all.
-Anyone calibrating this device is going to be reading the datasheet
-anyway so should know what is possible.
-
-> +static IIO_DEVICE_ATTR_WO(calibration_forced_value, 0);
-> +
-> +/* MH-Z19B supports a measurement range adjustment feature.
-/*
- * MH-Z...
-
-> + * It can measure up to 2000 ppm or up to 5000 ppm.
-> + */
-> +static ssize_t co2_range_store(struct device *dev,
-As per comments on ABI docs patch, I don't think we need custom ABI for this.
-
-> +	struct device_attribute *attr,
-> +	const char *buf, size_t len)
-Except on very long lines, align parameters with just after ( rather.
-
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	int ret;
-> +	uint16_t range;
-> +
-> +	ret = kstrtou16(buf, 10, &range);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Detection Range should be 2000 or 5000 */
-> +	if (!(range == 2000 || range == 5000)) {
-> +		dev_dbg(&indio_dev->dev, "detection range should be 2000 or 5000");
-> +		return -EINVAL;
-> +	}
-> +
-No need for more than one blank line.
-> +
-> +	ret = mhz19b_serdev_cmd(indio_dev, MHZ19B_DETECTION_RANGE_CMD, &range);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return len;
-> +}
-> +static IIO_CONST_ATTR(co2_range_available,
-> +	"2000 5000");
-> +static IIO_DEVICE_ATTR_WO(co2_range, 0);
-> +
-> +static struct attribute *mhz19b_attrs[] = {
-> +	&iio_const_attr_calibration_forced_value_available.dev_attr.attr,
-> +	&iio_const_attr_co2_range_available.dev_attr.attr,
-> +	&iio_dev_attr_calibration_auto_enable.dev_attr.attr,
-> +	&iio_dev_attr_calibration_forced_value.dev_attr.attr,
-> +	&iio_dev_attr_co2_range.dev_attr.attr,
-> +	NULL
-> +};
-
-> +
-> +static const struct iio_chan_spec mhz19b_channels[] = {
-> +	{
-> +		.type = IIO_CONCENTRATION,
-> +		.channel2 = IIO_MOD_CO2,
-> +		.modified = 1,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-
-I'm curious. We have a range control in your custom ABI, but no scale.
-So what units is this in?
-
-> +	},
-> +};
-
-> +
-> +/* The 'serdev_device_write' function returns -EINVAL if the 'write_wakeup' member is NULL,
-> + * so it must be mandatory.
-
-Answering that in review was fine. No need for comment
-(which is formatted wrong for IIO that uses
-/*
- * The ...
-
-
-> + */
-> +static void mhz19b_write_wakeup(struct serdev_device *serdev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(&serdev->dev);
-
-There was still an open question on that where I asked
-if a standard existing callback was the correct minimal thing to do.
-
-> +
-> +	dev_dbg(&indio_dev->dev, "mhz19b_write_wakeup");
-> +}
-> +
-> +static const struct serdev_device_ops mhz19b_ops = {
-> +	.receive_buf = mhz19b_receive_buf,
-> +	.write_wakeup = mhz19b_write_wakeup,
-> +};
-> +
-> +static int mhz19b_probe(struct serdev_device *serdev)
-> +{
-> +	int ret;
-> +	struct device *dev = &serdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct mhz19b_state *st;
-> +
-> +	serdev_device_set_client_ops(serdev, &mhz19b_ops);
-> +
-> +	ret = devm_serdev_device_open(dev, serdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = serdev_device_set_baudrate(serdev, 9600);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* void type func, no return */
-
-No need for comment then! I was wrong in previous review.
-
-> +	serdev_device_set_flow_control(serdev, false);
-> +
-> +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct mhz19b_state));
-> +	if (indio_dev == NULL)
-
-For simple pointer validity checks.
-
-	if (!indio_dev) is probably more common than checking if NUL.
-
-> +		return ret;
-> +	dev_set_drvdata(dev, indio_dev);
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->serdev = serdev;
-> +
-> +	init_completion(&st->buf_ready);
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* TO DO:
-> +	 *  - vin supply
-
-The code is very simple to just turn on the power supply
-at driver load and off at unload. Simpler to do that from the start than
-end up with it being added later.
-
-> +	 */
-> +
-> +	indio_dev->name = "mh-z19b";
-> +	indio_dev->channels = mhz19b_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(mhz19b_channels);
-> +	indio_dev->info = &mhz19b_info;
-> +	ret = devm_iio_device_register(dev, indio_dev);
-
-return devm_iio_device_register();
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-
-> 
+-- 
+2.34.1
 
 
