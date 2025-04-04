@@ -1,182 +1,118 @@
-Return-Path: <devicetree+bounces-163169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A2B4A7BBAE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:39:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6612AA7BBB2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 832233ADD83
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:38:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D81E3B5F08
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCB61DE2A1;
-	Fri,  4 Apr 2025 11:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183911DE4D3;
+	Fri,  4 Apr 2025 11:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O8sWvlmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08CAF146588;
-	Fri,  4 Apr 2025 11:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBA0146588;
+	Fri,  4 Apr 2025 11:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743766747; cv=none; b=U5hjQvbG+mNfl02Ly6xapGcnrsBjkLcNPY774teUwrifYHZoPmzUG+lHJ3gDXWxqP3qWxIBlrJnGthl1FA06FiOMGfgjhq7Dh9NVdPRuqKSEEI0F0plBmbdOBeqExPggZabLHe4Ys0SoUhgxlYBXRVw9lXqcOADLHphcpR2cLyc=
+	t=1743766822; cv=none; b=sEGXQA4ZArJBC4YSPAX63fvgTyyX2hmFAjo59C7BWFn7wg6QQlHl6G0Mjyja+7XgrkgZMHFytOIRjTxJ5q5b8QLxOayE0y57xUwQu0+ovHJjPmX8hRfkwr7wDhTQO0FhRsGMG4MPeojvb4SuU0a8ysdVRPYAJ2mrq1MWrld2Wq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743766747; c=relaxed/simple;
-	bh=Imp8bBBQ90xiZPwnn6Zjy6tbA7FK0TIXZrW0accwr+U=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KPLxe4lbaaOvjpj3GQwVKMegcyODtuxGCUw297pSx+eNCVONOsanh47soDVUdmVYqJ3m0Nkj13mCed3OXo2xnW7jbUeQo60reWSl2KZzuFl53AkFXy5KNMhNLQCJ5xAphIOIbAwT++Nvp6t98PO4OuYArK+coOUmhL3/JmA/bt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZTc3X1jsXz6M4NZ;
-	Fri,  4 Apr 2025 19:35:20 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id EB63614080B;
-	Fri,  4 Apr 2025 19:39:01 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Apr
- 2025 13:39:01 +0200
-Date: Fri, 4 Apr 2025 12:39:00 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: gyeyoung <gye976@gmail.com>
-CC: Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <lars@metafoo.de>, <gustavograzs@gmail.com>,
-	<javier.carrasco.cruz@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH 1/3] iio: chemical: add support for winsen MHZ19B CO2
- sensor
-Message-ID: <20250404123900.00003147@huawei.com>
-In-Reply-To: <CAKbEznv9hRhto2tF5zwrGJ=7zfT=VKq2POdWKCRgY1UjgP6pUg@mail.gmail.com>
-References: <20250329164905.632491-1-gye976@gmail.com>
-	<20250329164905.632491-2-gye976@gmail.com>
-	<20250330150410.23b148da@jic23-huawei>
-	<CAKbEznv9hRhto2tF5zwrGJ=7zfT=VKq2POdWKCRgY1UjgP6pUg@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1743766822; c=relaxed/simple;
+	bh=9b45S75utZYYfge2O1DXivXuvb2z6jJYNv6lm027wpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qv7NOQogsYIZkuhlcOxZW6C/cTa56jm6OlJOOiZF6fpeh1DdMf+xwee348mYS5kO4dnmc1O/eogC832C4rE99NPdXxMoOSEXCELbC4MKHz6iCSkA0ii0Q4ayv0PvRrD34Z/1WgqrtyEhe1kRrFG0pHmh0QV961FeUG3/7Y68nvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O8sWvlmo; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743766820; x=1775302820;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9b45S75utZYYfge2O1DXivXuvb2z6jJYNv6lm027wpM=;
+  b=O8sWvlmod9x2mFSW2C1eXFUtIv0+ovKqZQjaI2m8NhcPkJC+zzzrBmYe
+   LNipD9bwG6P0j569Z2eZJli0tc7BGRFF7G4fELnyiwTPRBRQc21tZREQf
+   g2GETdnBtIP1ks1+Fr85QMUq1Iw4dtVcoIDnJyMeFcFBieFn7rQwLLtu6
+   Rf6Umpz8rEuinjeyntuP1VvFaKqXztILDVmvd05mVoiFuK99YFugQZDLY
+   o99e2LjKQEkBFWFnSdXnohSE2E+8mYNV9F/mRXvrqd0l3s39YCpspSr20
+   04sM1u6tiYXsadIOGWVpuEeXelVs6p0OLED8MZ1Kl8hWfoit86vJ9ADDK
+   Q==;
+X-CSE-ConnectionGUID: 7OLiZnOcTouz5HzNZOEUNA==
+X-CSE-MsgGUID: XKbOjzzdT/iZj1uFCiFyfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="56190944"
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; 
+   d="scan'208";a="56190944"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 04:40:19 -0700
+X-CSE-ConnectionGUID: SOL4dQJCTMi8nBpfVI+NLw==
+X-CSE-MsgGUID: 9zq669XaQguh4n9RfXZa6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; 
+   d="scan'208";a="127586898"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 04 Apr 2025 04:40:16 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u0fPC-0001Cd-25;
+	Fri, 04 Apr 2025 11:40:14 +0000
+Date: Fri, 4 Apr 2025 19:39:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Matthias Fend <matthias.fend@emfend.at>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH 2/2] media: i2c: add Himax HM1246 image sensor driver
+Message-ID: <202504041952.OcJvDWaM-lkp@intel.com>
+References: <20250403-hm1246-v1-2-30990d71bc42@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250403-hm1246-v1-2-30990d71bc42@emfend.at>
 
-On Mon, 31 Mar 2025 23:36:17 +0900
-gyeyoung <gye976@gmail.com> wrote:
+Hi Matthias,
 
-> Hello Jonathan, thank you for the review.
-> Sorry for the late response.
-> 
-> > > +
-> > > +             /* at least 1000ppm */
-> > > +             if (ppm < 1000 || ppm > 5000) {
-> > > +                     dev_dbg(&indio_dev->dev, "span point ppm should be 1000~5000");
-> > > +                     return -EINVAL;
-> > > +             }
-> > > +
-> > > +             cmd_buf[3] = ppm / 256;
-> > > +             cmd_buf[4] = ppm % 256;  
-> >
-> > That's an elaborate way of doing
-> >                 unaligned_put_be16()
-> > so use that instead as it's also clearly documenting what is going on.  
-> 
-> Since I couldn't find a function like 'unaligned_put_be16',
-> but I found a function like 'be16_to_cpu', so I will use that.
+kernel test robot noticed the following build errors:
 
-You can't. An array of u8 is not guaranteed to be aligned so in
-some cases be16_to_cpu() will fail.
+[auto build test ERROR on a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11]
 
-I was half asleep :(
-put_unaligned_be16() is what you are looking for.
-https://elixir.bootlin.com/linux/v6.13.7/source/include/linux/unaligned.h#L61
+url:    https://github.com/intel-lab-lkp/linux/commits/Matthias-Fend/media-dt-bindings-i2c-add-Himax-HM1246-image-sensor/20250403-165139
+base:   a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11
+patch link:    https://lore.kernel.org/r/20250403-hm1246-v1-2-30990d71bc42%40emfend.at
+patch subject: [PATCH 2/2] media: i2c: add Himax HM1246 image sensor driver
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20250404/202504041952.OcJvDWaM-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250404/202504041952.OcJvDWaM-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504041952.OcJvDWaM-lkp@intel.com/
 
-> > > +static void mhz19b_write_wakeup(struct serdev_device *serdev)
-> > > +{
-> > > +     struct iio_dev *indio_dev;
-> > > +
-> > > +     indio_dev = dev_get_drvdata(&serdev->dev);
-> > > +
-> > > +     dev_dbg(&indio_dev->dev, "mhz19b_write_wakeup");  
-> >
-> > This doesn't do anything which makes me suspicious. Would
-> > using serdev_device_write_wakeup() as the callback make
-> > sense?  I'm not that familiar with serial drivers but I can
-> > see that a number of other drivers do that.
-> >  
-> 
-> 'serdev_device_write_wakeup' member function is mandatory.
-> If this function is not set and remains NULL, the
-> 'serdev_device_write' function will just return -EINVAL.
-> 
-> The following is a part of serdev_device_write().
-> ------------
-> ssize_t serdev_device_write(struct serdev_device *serdev, const u8 *buf,
->    size_t count, long timeout)
-> {
-> struct serdev_controller *ctrl = serdev->ctrl;
-> size_t written = 0;
-> ssize_t ret;
-> 
-> if (!ctrl || !ctrl->ops->write_buf || !serdev->ops->write_wakeup)
-> return -EINVAL;
-> .
-> .
-> .
-> ------------
+All errors (new ones prefixed by >>):
 
-Ok. So why not serdev_device_write_wakeup()?
+   m68k-linux-ld: drivers/media/i2c/hm1246.o: in function `hm1246_calc_pll.constprop.0':
+>> hm1246.c:(.text+0x956): undefined reference to `__udivdi3'
+   m68k-linux-ld: drivers/media/i2c/hm1246.o: in function `hm1246_update_controls.isra.0':
+>> hm1246.c:(.text+0xd1e): undefined reference to `__divdi3'
 
-> 
-> > > +}
-> > > +
-> > > +static const struct serdev_device_ops mhz19b_ops = {
-> > > +     .receive_buf = mhz19b_receive_buf,
-> > > +     .write_wakeup = mhz19b_write_wakeup,
-> > > +};  
->
-> > > +static int mhz19b_probe(struct serdev_device *serdev)
-> > > +{
-> > > +     int ret;
-> > > +
-> > > +     struct device *dev;
-> > > +
-> > > +     dev = &serdev->dev;
-> > > +     serdev_device_set_client_ops(serdev, &mhz19b_ops);
-> > > +
-> > > +     ret = devm_serdev_device_open(dev, serdev);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > > +     serdev_device_set_baudrate(serdev, 9600);
-> > > +     serdev_device_set_flow_control(serdev, false);
-> > > +     ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-> > > +     if (ret < 0)
-> > > +             return ret;  
-> >
-> > Why check return value from this call but not the previous two?
-> > I'm not immediately able to see a reason this is more likely to fail.  
-> 
-> 'serdev_device_set_flow_control' is a void function.
-> and as far as I know, 'serdev_device_set_baudrate' does not return an error.
-> but I'll check again.
-
-Ah I missed that. No problem not checking it.
-
-Jonathan
-
-> 
-> I'll revise it considering your overall coding style guide.
-> 
-> Thanks,
-> Gyeyoung Baek
-> 
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
