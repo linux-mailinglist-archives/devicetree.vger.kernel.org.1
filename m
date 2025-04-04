@@ -1,139 +1,95 @@
-Return-Path: <devicetree+bounces-163161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B6CA7BB7D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:25:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFB99A7BB7F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 850D13B8C11
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:25:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A10F189E845
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EA41DACB8;
-	Fri,  4 Apr 2025 11:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6014B1A315C;
+	Fri,  4 Apr 2025 11:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IRwgl0jF"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="XkqPD76m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3411A315C;
-	Fri,  4 Apr 2025 11:25:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489A518EFD4
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 11:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743765948; cv=none; b=HPDkhhXP12vZiCRIlNyOIkoYRCXP73YOVWQkxyKVjueGxXG5fpe1GrItMTEY3XiD8muAZJDw7+liPIGBhAAue/+M08IC+u6euEVYNoPKOUb5QjkgZZ8k6N7psdXoNWbzwTUMAREO39PmdQGbczDGOua6TURPMpeyCesxJdt6INY=
+	t=1743766087; cv=none; b=BpUW+8uBZhdCQmVmgdWvMF8J/SkF62HAZJfNLXachsNnPkZBOJ77CpoZmIQfKHeDIBgOgI+EH5CADrMqKkX3ym8L5pUJ4Qh9ZxfaPIp2fPjR6BYbn8kGra3i6MPFZ1tJvndCHsbvCkZlXP5tNRvn+bPCe0XWr6u7RuSwuvrjMb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743765948; c=relaxed/simple;
-	bh=0tQ/t1mzdr6retFmDkrkFsBJ3Zo6UBCaL1vFCtbj47w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ErHXJL1yykwi0hCyqGS8C7zFfLAzl3vk3RmmcK/ATRYRObIQrXj2P99ezXoS2c2Tdjp7cIUYPuJgJJEusfvD4U/4afd9e1MF0+ogyXcUEY/cnuaMjzXvWvuqfbr1kSZS3SAaRX4+y78xI2+NHbyiytCPdCRZCpG7ZMjFmyIDefk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IRwgl0jF; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-30332dfc821so1430689a91.3;
-        Fri, 04 Apr 2025 04:25:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743765946; x=1744370746; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2H82D3ceyz7r5Ot6awJCahu6BBXmvQb/jfXpvl9UcwY=;
-        b=IRwgl0jFR5dGjZEHfeCXxhL4LlAMro0cUVm6WMebNxBEfbNN65ZyT3wZ4VmbEWfNtl
-         /r9HVYXDbevo7Ec9utKWUj6gWJwnran+XCkcgbsb3WlY+5T1aVEIKTZiegoRuL2x3URa
-         UuCe71EgMD58a9J2Hzke4HnuSk9iqwoR+CNIfG9Ec7IjmB1dhsL/mUFt321ydfZRgof9
-         +UaqoSwqFX86EjIh3fH50qZuMjs5HNg947CWuJ5zIGn2D9pvBfGhL4HFt8XSKJmZX9kI
-         WDOzjrmJEU+nwsp96u/PDLsLG6DmFRwvz65+n+oWbo7F7Ui1CF+tuiWdepuD04GcBvPg
-         mAjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743765946; x=1744370746;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2H82D3ceyz7r5Ot6awJCahu6BBXmvQb/jfXpvl9UcwY=;
-        b=wrFMlptRApT7cjJFWluSz2gAztkcSZm8pUDBynJZnYYcggL8TW+NeYMM6FU8ksRfI8
-         TmUVUDv6u4Msh6ZdSrYkaGY5xd9c8yDn7Kj0pRSERSqnN6wAJ4MZfBivHUu8phNkIHxZ
-         PFCIxkMNn7KSiMEMUYCpwrh8mYPupz3psMNatk+YWIxuQI9GMeDCXnp4AH0cwUizc9CO
-         uaWDN5hnBCX9wb5qBAb6ppaPCifZeZe8PikXhig221J7RWkHqlZKnXDzrLNH5xEKWxdT
-         hXf9P7+ziyEOC6EiVzZfNrrAG1qrZWJ8aOh8apVApjasjzPSAWctUMQTzHcAHaSLx5qI
-         JevQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUm60JdVzsfnIQ5eugdG0IAilJscznIn1rPtWYDQGmN6fH2cvIqxWsWSHhxKAtqOMvDy0OUCmz4/Wx5TFra@vger.kernel.org, AJvYcCVE7LRsw8bXx2e+pM85WtTeGnMVtw/EpJ3ZGKGy4329sMkfJqRKHVoZ0MPA6kLasm4VTTtC6z2EctBz@vger.kernel.org
-X-Gm-Message-State: AOJu0YznbyAfhZ40ezKDuSzCXIbydhcnxxzqpvQwcCl/5bRq3xEHaxb2
-	wyBIuQZO74Jm+JufdwPpPMVAvro6ZJ/kttY5bU3Dan0UKMz0dMYzgdkx1FDpDy3FDxs3zIa8W18
-	lyrSEZ0MGSYhhxh+FHMLG9Fcq/8I=
-X-Gm-Gg: ASbGnctSMVLV1t/3QPvgfMSAou9IjrUWVOvtaiF+0iJ2MBtsMgmAfF2j/XRRLO36ewQ
-	cauD7wEOX7SmFOUI1at5J9G91KFlWcNS+yDSmJwQeggor18iB8kZgzjDBm+WTw+RJAwCuJ9IPY1
-	0dW+UNaZsby0unYtDoM+LWmtE=
-X-Google-Smtp-Source: AGHT+IHzfIJRZpdeONCKC1hscbpEHgL+eOok3ABpVp7t0jI5xsF+h571shGT73MMq7pH/ucoJCkY3wGkF1YG+WPKcMw=
-X-Received: by 2002:a17:90b:5443:b0:2ff:796b:4d05 with SMTP id
- 98e67ed59e1d1-306a485edb0mr4690761a91.11.1743765945929; Fri, 04 Apr 2025
- 04:25:45 -0700 (PDT)
+	s=arc-20240116; t=1743766087; c=relaxed/simple;
+	bh=jMifiJvw5h0LZZCJFIsKFts25KfasHg8feUQEbjGfMQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l3luNvNawfE5GhsIZZyavZ2cN0NQtbhXepBdrvJpaViBstMJ2S1rBSrM7WW38oTsqJMLEfBzIch46amo6ap80KAzb9c7SFC39erLM3XTVVqHywCDv/kNfSDMXrirM1kZJUp+xwmxAFWiv8dkFxcv9kd6GSY7nRHsfc5e60Zoz58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XkqPD76m; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=6x83gL/65MaXsh
+	ed1MGHV1G/Bw0QFznUQR/GQF+fLak=; b=XkqPD76mdJ00JpoIehCMiNifODzMbD
+	9cRf8okGwgcSYvgpRDvKrjaEO7fOOizPDK33erHXYQaU0NmxtImlcOYUz0GjWjz9
+	ZzeG7w7X7Hn3F5P29ZG5PLKtTngl7ivnbqmad2sGNxVsg3/Fy9xEHXpkBKUGaKc/
+	zTFjS4JX3o9XFeW+A7mCjplDEj1vJ5vam92fdkPVMFg0I/V0W8ywaTSEg76SFWEh
+	VZc0jdORHiX1Tsd9Rio+1zl71u1Bj7Uh9US7rOla+Ofo+swMiyWSJUbUNrbCsQVy
+	imO4AyWG2Unc95z6GsVHxlLcC1sohBnUzgzQvLWy3VP+X36KilM6N34Q==
+Received: (qmail 2751198 invoked from network); 4 Apr 2025 13:27:52 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Apr 2025 13:27:52 +0200
+X-UD-Smtp-Session: l3s3148p1@Q9xNLfIxNOQgAwDPXxG/ACep4iRxujz/
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: at91: usb_a9263: fix GPIO for Dataflash chip select
+Date: Fri,  4 Apr 2025 13:27:43 +0200
+Message-ID: <20250404112742.67416-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250404105359.18632-1-ivitro@gmail.com> <20250404105359.18632-2-ivitro@gmail.com>
-In-Reply-To: <20250404105359.18632-2-ivitro@gmail.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Fri, 4 Apr 2025 14:27:31 +0300
-X-Gm-Features: AQ5f1Jo_vwVCsJBIV6IqomEQgPPhk2OrizKxFzdzrwjdmKaE32nMnNYDWv9ZEsk
-Message-ID: <CAEnQRZAkPJJRit7qrxHc4KtaR8Xej9qBZYgYTukWtKM6fwTSnw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] arm64: dts: freescale: add Toradex SMARC iMX8MP
-To: Vitor Soares <ivitro@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vitor Soares <vitor.soares@toradex.com>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Hiago De Franco <hiago.franco@toradex.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 4, 2025 at 1:56=E2=80=AFPM Vitor Soares <ivitro@gmail.com> wrot=
-e:
->
-> From: Vitor Soares <vitor.soares@toradex.com>
->
-> Add DT support for Toradex SMARC iMX8MP SoM and Toradex SMARC Development
-> carrier board.
->
-> Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-im=
-x-8m-plus
-> Link: https://www.toradex.com/products/carrier-board/smarc-development-bo=
-ard-kit
-> Co-developed-by: Hiago De Franco <hiago.franco@toradex.com>
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |    1 +
->  .../freescale/imx8mp-toradex-smarc-dev.dts    |  297 ++++
->  .../dts/freescale/imx8mp-toradex-smarc.dtsi   | 1288 +++++++++++++++++
->  3 files changed, 1586 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-de=
-v.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dt=
-si
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
-/freescale/Makefile
-> index b6d3fe26d621..8106dbeffd3e 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -221,6 +221,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw73xx-2x.d=
-tb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw74xx.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw75xx-2x.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-venice-gw82xx-2x.dtb
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-toradex-smarc-dev.dtb
+Dataflash did not work on my board. After checking schematics and using
+the proper GPIO, it works now. Also, make it active low to avoid:
 
-I think here we should go in alphabetical order. So move this in the
-proper place.
+flash@0 enforce active low on GPIO handle
 
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-dahlia.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-dev.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mp-verdin-nonwifi-ivy.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts b=
-/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
+Fixes: 2432d201468d ("ARM: at91: dt: usb-a9263: add dataflash support")
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ arch/arm/boot/dts/microchip/usb_a9263.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/microchip/usb_a9263.dts b/arch/arm/boot/dts/microchip/usb_a9263.dts
+index ebaf198e1bc4..8e1a3fb61087 100644
+--- a/arch/arm/boot/dts/microchip/usb_a9263.dts
++++ b/arch/arm/boot/dts/microchip/usb_a9263.dts
+@@ -58,7 +58,7 @@ usb1: gadget@fff78000 {
+ 			};
+ 
+ 			spi0: spi@fffa4000 {
+-				cs-gpios = <&pioB 15 GPIO_ACTIVE_HIGH>;
++				cs-gpios = <&pioA 5 GPIO_ACTIVE_LOW>;
+ 				status = "okay";
+ 				flash@0 {
+ 					compatible = "atmel,at45", "atmel,dataflash";
+-- 
+2.47.2
+
 
