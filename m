@@ -1,141 +1,150 @@
-Return-Path: <devicetree+bounces-163112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112E1A7B821
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:12:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E29D0A7B829
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B95BF176C07
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 07:12:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C697F178400
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 07:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9687818C031;
-	Fri,  4 Apr 2025 07:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE591990C4;
+	Fri,  4 Apr 2025 07:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="CG8dWdLM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIWWKlYU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DA318C034
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 07:12:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32A217A31F;
+	Fri,  4 Apr 2025 07:15:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743750729; cv=none; b=HileVsKQFhpROMrLr/86qYG572wg17hQsiMma/GtwLQGf6tVy94BQDBjm/KMqhppadfmJyGhAJzWXb7U3rO9vYIXz521o7I7sDSyT5yB6t2neqD+GPpf6Jo7PRhD8KpMa37KnWjeBEO4Xmycl0z74nQmozJU1by0Qxprm9rwyOE=
+	t=1743750920; cv=none; b=ogGmm2RicdkBL2mddKsr2xsHW+VAZlasEY5pnCF9XVmhJ+S3gjZW/AOdhRsqNlaMvm5vPK3SXjpifoOiktKOGeMCIl9uJ0WiHQVhlqMelLJGFEho2wUU6BMPmliLTZIFSeXAvwE/oYy3MYE7pGgc67mkqWZ+y/uAqvGcpCRDmcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743750729; c=relaxed/simple;
-	bh=U23hVQDvBPnjEz1wdi+mc/GNtiHL10BsAGjmKYpM6TA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=KEPYZfHmMVR8e3E1U+aTT1tdWhmMenwdQGSc2rV/g3ZMBwPeeZkTacs9gqncdu0QuanHMt2mgisEsNRwCEY+zgjSi4svdkskE3P3YUGt4INrgq+re4RAM+LlqDEQgt2rvID+e1IJ31YNfdzZqzX7KB/K6tUGytRc9a4u9VXf7tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=CG8dWdLM; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2bb7ca40bso308801066b.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 00:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1743750725; x=1744355525; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U23hVQDvBPnjEz1wdi+mc/GNtiHL10BsAGjmKYpM6TA=;
-        b=CG8dWdLMsTxbZTBlmZmH7+lJRcBpTSOrE+yAZKODTsIQQQ7rCx/hwFYGwe86eUjrsf
-         GoKSsBFpx/os0Fam6hkuRVwJm9m8l/Tpm/KCYCEKz7ia2DyiuYBvEpNySIom/2PzrDW1
-         C6qwjki37n/PeMyxr+bR2l1hQ5fYv0ktARX/AtWMZYOoLuO78LBTRv2QqoPzgHPChDHO
-         4PM/4VX6jScS17JYmp1kjhefgcm8tjRmOO86D97FlGQbFjQx4tvrCuCXM0Gykjsw/dIe
-         719KxaKA4s41OxaU3Gn0OIm2d18PB/x6pThlrcf8bF9KMXzZj3DJcORg2Gn2fJr9BY8Y
-         PFuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743750725; x=1744355525;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=U23hVQDvBPnjEz1wdi+mc/GNtiHL10BsAGjmKYpM6TA=;
-        b=jgD8ld2QLs4/lKM8h7pJCw8ZU67nqbNzg0OBM8HElrNlRKjCyq4S47mlvpQbY0PVlC
-         TrmyJgE74PHPIvO3NoHdeRbqMLwt2ahO71R5dVpih7dwSfatERQNsU/dzYxl9GdU+ll9
-         K5uCY0tzCynImDNJTQ+a/oEP25fdlSnhjId2Yl7m9tRCb0Tq6X+dzr2i/ZmbpNNrA1x9
-         oRmxEdzUgUMlAHyShB/bQIK45vo3LMJHjU8oVTKi+uXqQ4R41E+t8zHB6XSCH4erpyKs
-         ZEKhI8FlzEwe+hoSXg9dJuhsmpg8aLi8LGvbwzkavMsG9vRPnD9QRLPoAp5aT7U/CwsL
-         J8fQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVxCxrQQzD2BTfQ1J68btB8goDWp4TTXJzs/kqDumupXmCf4SSPHo5znN8DdMxXjIxJe4hA6ucAqBWc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWxyWQ39GoL95wr/G41HAtIInsKs7XA4v/brkGXtiyubanuEJl
-	uGNgd7jbCgHm7DX4/7YWLSwGRKenLndLClo+NAb+/0QxRdo/YLQxQupYQgjHAc4=
-X-Gm-Gg: ASbGncvYUFArqlYZISMrOAnneRRORZEgVYizLTr4kKJZAt9HBXbz5tjrKBJVZi08B6Q
-	M4MYoMAcFkVFHvTJhrUINYH2b8B1YJcmisv2EVsEXX/ES37St/V/Uu+K09AoolBDyIR6UUFPj5e
-	jOM8pRlT55fWbaFjV1JA4jtyH8g9USP04HlDxPwSeL+1C7GecjFw/0AkVc9sJDvJ6hUgAJXBJbR
-	OZ25WY4Nm5nv14jC7o6QSWXkIPYrkqmb/c5QHm4r2K3ChYx5hDCJsO+A5p5Qs50VFEL1lgLyaSZ
-	96Y6IKIxsvySngYWfr7v4B0bvanTvoYV5/sQupVrn3GgR71cfY6GVJ7w+jBrN4hRUwx5qMlKlXG
-	MuHclXDNZhiX2Tw==
-X-Google-Smtp-Source: AGHT+IFN6J+KZNpV9GFYn4RUt9e/peo9TpSfWt8AYxwIXQxs3kWCtPSeLrpO1q1TafhsMbSbK20xMA==
-X-Received: by 2002:a17:907:da6:b0:ac3:4487:6a99 with SMTP id a640c23a62f3a-ac7d1c39469mr190978066b.47.1743750724902;
-        Fri, 04 Apr 2025 00:12:04 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe5d44dsm209663066b.13.2025.04.04.00.12.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 00:12:04 -0700 (PDT)
+	s=arc-20240116; t=1743750920; c=relaxed/simple;
+	bh=/UpxN/IV6CnOEIBlbI0ffYS7dArnWseLk+2bNfTK68I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BZGOwEqqUKphrRiIMfAjqKVpfwygYEQNUI5lBh3v1lN5BLrtmTAXki2DslploYmKsJBPKZe6akZn7jpLNOk+prtFyzWAUoPsd84Sfj+jSnXO6dJeCup5SM5gOm7HMb0W1acJpBjHK4Rek9Shi2FRahI4E84npVyO0TkBzmYl+m4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIWWKlYU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 811C5C4CEE5;
+	Fri,  4 Apr 2025 07:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743750919;
+	bh=/UpxN/IV6CnOEIBlbI0ffYS7dArnWseLk+2bNfTK68I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CIWWKlYUBOJfX/oc3iuG2UDo7pMsxP4WA6O+ITlXHRFmcoNpFZJjxiAXpoiGCGQ4h
+	 0iEi8YksQCuIDibbXsTF6BhggJd9MnRwZXGzB9Lj+ZqII3CoQpDWTYdtpKuo3B9C0w
+	 YY9SwRSajQtkw4C8i1UhCLiKI8OjlKpPdzztVnhGXYWaTQYgrGvpJnerIyLr3KpgEf
+	 +jDhlcfUphrF2aAeHjlr+bHpVegvYL0C0sY1HcH77H3ipwWAlFBxkk5YWyGnGYvINY
+	 4ODWwVtDnQ7AZjSGbmNj35k9KrJww+eU4KCKa3EFMh85PWZD2DFOWkUWXXL4XD5L2q
+	 kQvrZRRSirShQ==
+Message-ID: <dec769ad-5144-4503-9714-d9c83a4c242c@kernel.org>
+Date: Fri, 4 Apr 2025 09:15:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/4] arm64: defconfig: add S32G RTC module support
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>
+References: <20250403103346.3064895-1-ciprianmarian.costea@oss.nxp.com>
+ <20250403103346.3064895-4-ciprianmarian.costea@oss.nxp.com>
+ <c4a80c1f-56a0-4cdf-afbd-cb2c13cc0b8b@kernel.org>
+ <6ebb8c15-9ff1-4bf3-bbf3-c91aa387d873@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <6ebb8c15-9ff1-4bf3-bbf3-c91aa387d873@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 04 Apr 2025 09:12:04 +0200
-Message-Id: <D8XO1JU37NEV.YN595H7NEOU7@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Prasad Kumpatla"
- <quic_pkumpatl@quicinc.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-Cc: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <kernel@oss.qualcomm.com>, "Mohammad Rafi Shaik" <quic_mohs@quicinc.com>
-Subject: Re: [PATCH v1 3/8] arm64: dts: qcom: qcs6490-rb3gen2: Modify WSA
- and VA macro clock nodes for audioreach solution
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250317054151.6095-1-quic_pkumpatl@quicinc.com>
- <20250317054151.6095-4-quic_pkumpatl@quicinc.com>
- <4c27d6b9-781b-4106-8165-97c9750cf99f@oss.qualcomm.com>
-In-Reply-To: <4c27d6b9-781b-4106-8165-97c9750cf99f@oss.qualcomm.com>
+Content-Transfer-Encoding: 7bit
 
-Hi Konrad,
+On 04/04/2025 08:24, Ciprian Marian Costea wrote:
+> On 4/4/2025 9:17 AM, Krzysztof Kozlowski wrote:
+>> On 03/04/2025 12:33, Ciprian Costea wrote:
+>>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>>
+>>> The RTC hardware module present on S32G based SoCs tracks clock time
+>>> during system suspend and it is used as a wakeup source on S32G2/S32G3
+>>> architecture.
+>> Which boards are using it? I don't see any DTS (nowhere), so I do not
+>> see single reason for this patch.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> The RTC module is used by all the currently supported S32G2/S32G3 
+> boards, so currently they are: S32G274A-EVB, S32G274A-RDB2, S32G399A-RDB3.
 
-On Tue Apr 1, 2025 at 6:05 PM CEST, Konrad Dybcio wrote:
-> On 3/17/25 6:41 AM, Prasad Kumpatla wrote:
->> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->>=20
->> Modify and enable WSA, VA and lpass_tlmm clock properties.
->> For audioreach solution mclk, npl and fsgen clocks
->> are enabled through the q6prm clock driver.
->>=20
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> ---
->
-> Instead, put the inverse changes in sc7280-chrome-common.dtsi please
+I don't think so. I looked at these DTS and there is no RTC.
 
-How are we going to handle other sc7280-based platforms, such as my
-QCM6490 Fairphone 5 needing to use q6afecc instead of q6prmcc which gets
-used in this patchset?
+> I do see your point in the fact that this driver should be enabled as 
+> module only after platforms are actually using it.
 
-One solution might be to put q6afecc into the base sc7280.dtsi file,
-then we have a sc7280-audioreach.dtsi which overwrites q6afecc with
-q6prmcc which then gets included by boards using audioreach.
+No, post the user. I don't see the point of sending defconfig patch with
+RTC patchset anyway. That's different subsystem.
 
-I also don't think we can split this across sc7280 vs qcm6490 vs sm7325,
-there seems to be any combination possible on any of these SoCs -
-depending on the firmware shipped with it.
+> 
+> So, would it be better for me to send a V10 in this series with the DTS 
+> patch added ?
 
-So somewhat similar to the current sc7280-chrome-common.dtsi but just
-for audioreach.
+No, separate patchsets.
 
-Regards
-Luca
-
->
-> Konrad
-
+Best regards,
+Krzysztof
 
