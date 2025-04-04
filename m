@@ -1,493 +1,142 @@
-Return-Path: <devicetree+bounces-163278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3BDA7C2CE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:49:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C2B6A7C354
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 20:55:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FF727A989E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:47:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 757B3177BD7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98471214230;
-	Fri,  4 Apr 2025 17:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CB221CA04;
+	Fri,  4 Apr 2025 18:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hs2AZ0EN"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="DOLIei0e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3A7149E00
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 17:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F361E1DE5
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 18:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743788918; cv=none; b=am+pDyMfKbvzwGYVSOTKpVrri1LwAeFGy+qfuQqb+tdIlpFzprrxK4TXyYLlMfFyaPjwlFToiOaU313Y7kzHCf6vJSWEdjmGLunGBdLhAkW0uG7B4QaBpLpRh1QSzS6ZpkTS9VYWblDHmyIiQkm+dzp+JRsR/H/QNaq7BVcXAYw=
+	t=1743792923; cv=none; b=LQEKQ2/qC3gjFtpu0psDmQL8EXEy1AXB2uisqhTT7jLfnBZCL9Ib0M8unVFsZ0Npn8TGZ0UXJu2J4IJ5znb2NfLTj9R+NEkPn7CyZtP2qRrF9L3Gi9jScDkiF+yQ7Lwa6zUokbLeUf0/1XATEODT0gNgIZvFYgyIg9A/MujpGNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743788918; c=relaxed/simple;
-	bh=a7gWH2nkFeOsDGvRh7sMqCcn7di8a5/TuweiIDdEAJM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OKqCko+Kd7rOiLalR3jB+849K0QsHHBflQPf/VnXx9ygH0Zu++jq+v98xawBzI/o5GSw+DcdhzGSdqbH10TfM2ORhiXs6Xd29Ic5LWtPGKGXmW61T3ftWZpltP+qNnd9PQx4sxEwkmvha05Ue+qGh2KHvt4ca9JXZPQx6FZOdr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hs2AZ0EN; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3feaedb39e9so652350b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 10:48:36 -0700 (PDT)
+	s=arc-20240116; t=1743792923; c=relaxed/simple;
+	bh=VfeedzAG7UGtPpSXuBMYVnF8aSHrgVbQjdxnN8frKgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iRBF/hadlmed3aMsxu21m06NLA7hmmudwbLX2f/cALeHLCG38/hsf4IcYf+btW/Iy9IFcY4KYyJ0AGDk9wKrXlTITq7Ty73vVioanPW6p8FFXo1XkTYzIpRYYFhEKuIvbXTXXwIdSYTv9sZ3jiqTUQDq4ROSlIxBS6Gyg9fLiMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=DOLIei0e; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-227b650504fso23565115ad.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 11:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743788915; x=1744393715; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AvY/WWNlUB6k/evBE4GY6Felovk+eaQUcXiraaY6y74=;
-        b=hs2AZ0ENN8R6LMo7idEt9/okS+usW6gqmZ/KjwBIiPQtTDCIZtXVPOblAXo1rO+Ey5
-         P+di0LWGRc0NL/q4nMb+X6su/YS/NavZ9E+afnTxFZKFfvQURYhQEEUg2aQ5oc2FumFw
-         ggC+0klEcjCkonyTCzcL9BQ/S0wTzGwW8pQpmRy1+rWq7fbHnajWQgNQYXqvqhcT7f4j
-         fRuTOXNWf7xYJzGtKb52E1ArGeOeC4ZJFzUrhjyhiJIg2ug0Uv5/OXFkE4t0Ae3bKIl5
-         Fl1ws/Ku0cS0PyRkmFDnTUOzCg2BR45FXF0ymOl5dmHXvhMQAN3pL5tle4QhPCaXWZG6
-         xwpQ==
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1743792921; x=1744397721; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=32troSjWvB/PDlVrpO70BnGFukXnYd/0VAcsVL2VxIE=;
+        b=DOLIei0ecBYGFmicWeKfI87N/P67NqV9YEsJR1Nc7HvTZqxxIhVEpIo1lsB0YKg5qa
+         L/BxUwXOuJvF0/LV5vxUjG30mMi5XHqiGguC8u3bg0d+HOF6ADEbYnPaOqf/HRrnLxCj
+         hy/9t4Of0LEas01mlWuodDDJnqlZIIO2/y56CPaiob5Fh8d4n/GbIAYC/p1WMfKuvsZy
+         wqk4VaAbqlD0luES9CaXDhDNG/56ytgbPBUENTxl/585/D7g1OfoHu52dH9YCSBCwSy4
+         2Zcm/8hWDjlUMpQ8ms/Zl3BtPFrgChehC7iirN3Ej0iZ8EqQS4QPpPOE7aoNHvNrIys/
+         IM8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743788915; x=1744393715;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AvY/WWNlUB6k/evBE4GY6Felovk+eaQUcXiraaY6y74=;
-        b=EVZBlHFa+DDqGSgTWaxO5tpfMfXu9klolUSiMFOBGCaZdbpJ2DF3KF5Pfq+SlYgHdM
-         TMjlPKDkEphKIQ/4gKK2yUAUT03zCbG+7ZXSFnK/MtuP8PnCLVGj/lmqPqysj3i2ASZK
-         UkCoylP5BFPAJZrGWFBOk1KvpNXxa7eLSGqgxNhw7crmJHCqpgGF5cn2yfJ6anPF4Gii
-         EhRTBkc/H4Jul3ETlEQ0UxiYBe1AdoNtFPG6wYjFr4y3GLY0DlFcBHY7UkO7XFy6r4q1
-         tLNALztRs9pHpEEahL8dOtQvcVzN6txrHZrq9bUJLvBR92PmnGLmOkCizm2Tj272Qj3C
-         4OZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKR4bomppH90OGtLWbsBOF5apo3/1m1X9Yd4IvRY9lTQuavFpQSzqzJ9jFFKC9M8l1hpH+8v3C7xnt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9oCPBCymIFQyR+owXEt4wrEksEQoISTQNy7nVDTMkcWqrfnrp
-	UkSQe9i4IE1p7zmDcGQCDEaExk6/HQr4QleB71hYomiY/fKJRaTs1px6WC0vHRg=
-X-Gm-Gg: ASbGncslpJGyKo/zCuIgCEjtws0vxLHltxtRWAIlsR47zRy9dvFF/rTBfjHde4H+g3U
-	MlnqY4klQsZ85IhKrY6PQzMva5g/RpnAQmmC/YK7jOsX1YQpjg0CbqBqkzmuHDQcUHcw1bWUG3d
-	QZg6BF0TUZYtAs7RaYUWdLSL/nygwgTl5SspUSm4xXCB0OGv4ZCk1XJJlHg7ld1Dl0iEdpyBg94
-	GQxjN+wuP9LRhEvhv8DGUIahwrUOZz0QwtaUHu6qt9vgUEtgDRbM5w7sLGWqsbLHN1j85opIvxy
-	QE09tzw1UjRXKEJcQK3t+uPNLSoP37a/uky0wrcKs765bDrxcbHwbohpL05T7O6i9meSqhb0W0O
-	JPad1yw==
-X-Google-Smtp-Source: AGHT+IHqN/zEntunmQti7QvdnI+zzlxqeFja7+5qeHzwZxJcenPeVZY1WnD3J92Ab5TIEbOJlcUA3g==
-X-Received: by 2002:a05:6808:199c:b0:3fa:51c5:d9a7 with SMTP id 5614622812f47-400455970b9mr1550054b6e.10.1743788915363;
-        Fri, 04 Apr 2025 10:48:35 -0700 (PDT)
-Received: from [192.168.0.113] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4003ff99759sm686880b6e.21.2025.04.04.10.48.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 10:48:33 -0700 (PDT)
-Message-ID: <fd2116bd-b0e2-4db4-97ff-1a1e88545413@baylibre.com>
-Date: Fri, 4 Apr 2025 12:48:32 -0500
+        d=1e100.net; s=20230601; t=1743792921; x=1744397721;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=32troSjWvB/PDlVrpO70BnGFukXnYd/0VAcsVL2VxIE=;
+        b=n2y3G0Jb+lQ7vQv1FaHLNUXw3EG1rUu8pwoE52OScS9bWF1YMwsIfbGF7Lch5V0Ejy
+         u2tfuT6wkuwp3X8MrjBkzchqgKKfmKjkujj7VIz1yTyRsOnKfCcAqKk1RB/hJXzrMaZP
+         6+ccFRkgX1SYWYoQdlBD+UpRLHqsZjDQmY3jIrT9klbkRFqNzi9njtIcuZQbwGhG2i+e
+         o4tuOQGR+c/I21egG93IrahD++F49AH3djSsYyaZBhhyEpzNzCgZB1mlgW/ZbNCbPXeX
+         H77B7PutE7XeHnuaoZE/VosvLjjiYtnRAwRCclX+hqq71v4Tj1gxXF5RaatHG/jizXVO
+         9HvA==
+X-Forwarded-Encrypted: i=1; AJvYcCVA/dI4/nGcVzwosh7uWgkG/JpGW6Nav9pvL2AadHVR19hqHU4RDI1Fmv/ZbkF5rOGaJM7Jj5Lilj4m@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOvOIEYMeSomKNx9V8u7R/GzPQwn+PX16v99+/fBo3VCXYB3fZ
+	eE2ohOaivgM6xi/bh7OycIHvN3oYDHYErYytqGJixkr5w59r57cxveCMpQgdviA=
+X-Gm-Gg: ASbGncu9yXyNDXk22E0p96SxfLR/FX3Pn1021v9ySyVpOpzbX0i+ZuCrExmSMdBDp8z
+	lgkBtrtktyYSqmbgJp9YSAL4++Bf2//aIkuUbtdJcVCawQJfuXx/oU6N5CQmzMYJv4gLb7APZWv
+	2+PdKstXBU/ccEDkayPTDrilVSQbD5bq3VQ4PifWUyu0SrDgTJ+5r0fXPHvKTQ/nS9g88DKlESd
+	QcxPcRLY6r1vUw5xURsSBrfLFmCglSaRC9W1fnuN7+2laYrjtwUWwCsPc4a9RIHWkKfUC0GQWO9
+	0QD0LCNCVYUJFss7PBvKBntzvF/7fJuJk7s=
+X-Google-Smtp-Source: AGHT+IECmYP3SjonjrfaeQPGWit3y+M9U7cHmSeJkMMAtjCbnPOJUL/PaAkD08+LqlcqZzBhgLpMMw==
+X-Received: by 2002:a17:902:ef10:b0:216:53fa:634f with SMTP id d9443c01a7336-22a8a1d4617mr66236245ad.48.1743792921190;
+        Fri, 04 Apr 2025 11:55:21 -0700 (PDT)
+Received: from x1 ([97.115.235.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866e4c2sm35763515ad.199.2025.04.04.11.55.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 11:55:20 -0700 (PDT)
+Date: Fri, 4 Apr 2025 11:55:17 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+	Conor Dooley <conor@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	jszhang@kernel.org, ulf.hansson@linaro.org,
+	m.szyprowski@samsung.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 5/5] riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
+Message-ID: <Z/ArFVx6l5Urh9KV@x1>
+References: <20250311171900.1549916-1-m.wilczynski@samsung.com>
+ <CGME20250311172035eucas1p104dcbae706bec735194a1dc4a30db969@eucas1p1.samsung.com>
+ <20250311171900.1549916-6-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-To: Kim Seer Paller <kimseer.paller@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250403-togreg-v3-0-d4b06a4af5a9@analog.com>
- <20250403-togreg-v3-3-d4b06a4af5a9@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250403-togreg-v3-3-d4b06a4af5a9@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250311171900.1549916-6-m.wilczynski@samsung.com>
 
-On 4/3/25 12:33 AM, Kim Seer Paller wrote:
-> The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are
-> low-power, 16-bit, buffered voltage output DACs with software-
-> programmable gain controls, providing full-scale output spans of 2.5V or
-> 5V for reference voltages of 2.5V. These devices operate from a single
-> 2.7V to 5.5V supply and are guaranteed monotonic by design. The "R"
-> variants include a 2.5V, 5ppm/°C internal reference, which is disabled
-> by default.
+On Tue, Mar 11, 2025 at 06:19:00PM +0100, Michal Wilczynski wrote:
+> T-Head SoCs feature separate power domains (power islands) for major
+> components like the GPU, Audio, and NPU. To manage the power states of
+> these components effectively, the kernel requires generic power domain
+> support.
 > 
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> This commit enables `CONFIG_PM_GENERIC_DOMAINS` for T-Head SoCs,
+> allowing the power domain driver for these components to be compiled and
+> integrated. This ensures proper power management and energy efficiency
+> on T-Head platforms.
+> 
+> By selecting `PM_GENERIC_DOMAINS`, we provide the necessary framework
+> for the power domain drivers to function correctly on RISC-V
+> architecture with T-Head SoCs.
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
+>  arch/riscv/Kconfig.socs | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index 1916cf7ba450..83833ded8908 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -53,6 +53,7 @@ config ARCH_THEAD
+>  	bool "T-HEAD RISC-V SoCs"
+>  	depends on MMU && !XIP_KERNEL
+>  	select ERRATA_THEAD
+> +	select PM_GENERIC_DOMAINS if PM
+>  	help
+>  	  This enables support for the RISC-V based T-HEAD SoCs.
+>  
+> -- 
+> 2.34.1
+> 
 
-...
+Reviewed-by: Drew Fustini <drew@pdp7.com>
 
-> +#define AD3530R_INTERFACE_CONFIG_A		0x00
-> +#define AD3530R_OUTPUT_OPERATING_MODE_0		0x20
-> +#define AD3530R_OUTPUT_OPERATING_MODE_1		0x21
-> +#define AD3530R_OUTPUT_CONTROL_0		0x2A
-> +#define AD3530R_REFERENCE_CONTROL_0		0x3C
-> +#define AD3530R_SW_LDAC_TRIG_A			0xE5
-> +#define AD3530R_INPUT_CH(c)			(2 * (c) + 0xEB)
-> +
-> +#define AD3531R_SW_LDAC_TRIG_A			0xDD
-> +#define AD3531R_INPUT_CH(c)			(2 * (c) + 0xE3)
-> +
-> +#define AD3530R_SW_LDAC_TRIG_MASK		BIT(7)
-> +#define AD3530R_OUTPUT_CONTROL_MASK		BIT(2)
-> +#define AD3530R_REFERENCE_CONTROL_MASK		BIT(0)
-> +#define AD3530R_REG_VAL_MASK			GENMASK(15, 0)
-> +
-> +#define AD3530R_SW_RESET			(BIT(7) | BIT(0))
-> +#define AD3530R_MAX_CHANNELS			8
-> +#define AD3531R_MAX_CHANNELS			4
-> +#define AD3530R_CH(c)				(c)
-> +#define AD3530R_32KOHM_POWERDOWN_MODE		3
-> +#define AD3530R_INTERNAL_VREF_MV		2500
-> +#define AD3530R_LDAC_PULSE_US			100
-> +
-> +struct ad3530r_chan {
-> +	unsigned int powerdown_mode;
+Conor - would you be able to take this Kconfig.socs patch?
 
-IMHO, code would be easier to understand if this was an enum.
-
-> +	bool powerdown;
-> +};
-> +
-> +struct ad3530r_chip_info {
-> +	const char *name;
-> +	const struct iio_chan_spec *channels;
-> +	int (*input_ch_reg)(unsigned int c);
-> +	const int iio_chan;
-> +	unsigned int num_channels;
-> +	unsigned int sw_ldac_trig_reg;
-> +	bool internal_ref_support;
-> +};
-> +
-> +struct ad3530r_state {
-> +	struct regmap *regmap;
-> +	/* lock to protect against multiple access to the device and shared data */
-> +	struct mutex lock;
-> +	struct ad3530r_chan chan[AD3530R_MAX_CHANNELS];
-> +	const struct ad3530r_chip_info *chip_info;
-> +	struct gpio_desc *ldac_gpio;
-> +	int vref_mv;
-> +	u8 ldac;
-> +	bool range_multiplier;
-
-nit: call this has_range_multiplier or change to u8 and save the actual multipler value here.
-
-> +};
-> +
-
-...
-
-> +static ssize_t ad3530r_set_dac_powerdown(struct iio_dev *indio_dev,
-> +					 uintptr_t private,
-> +					 const struct iio_chan_spec *chan,
-> +					 const char *buf, size_t len)
-> +{
-> +	struct ad3530r_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +	unsigned int mask, val;
-> +	bool powerdown;
-> +
-> +	ret = kstrtobool(buf, &powerdown);
-> +	if (ret)
-> +		return ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +	switch (chan->channel) {
-> +	case AD3530R_CH(0) ... AD3530R_CH(AD3531R_MAX_CHANNELS - 1):
-
-Switch seems hard to read and not needed since there aren't any gaps.
-
-	if (chan->channel < AD3531R_MAX_CHANNELS)
-
-shoud work, no?
-
-
-> +		mask = GENMASK(chan->channel * 2 + 1, chan->channel * 2);
-
-Could use the chan->address field to hide the calucation a bit.
-
-> +		val = (powerdown ? st->chan[chan->channel].powerdown_mode : 0)
-> +		      << (chan->channel * 2);
-
-I saw a series that proposed a non-const field_prep function recently. Not sure
-that made it through the bikeshedding though. Could be nice to hide some of this
-in a macro for readability if that isn't available.
-
-> +
-> +		ret = regmap_update_bits(st->regmap,
-> +					 AD3530R_OUTPUT_OPERATING_MODE_0,
-> +					 mask, val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->chan[chan->channel].powerdown = powerdown;
-> +		return len;
-> +	case AD3530R_CH(AD3531R_MAX_CHANNELS) ...
-> +	     AD3530R_CH(AD3530R_MAX_CHANNELS - 1):
-> +		mask = GENMASK((chan->channel - 4) * 2 + 1,
-> +			       (chan->channel - 4) * 2);
-> +		val = (powerdown ? st->chan[chan->channel].powerdown_mode : 0)
-> +		      << ((chan->channel - 4) * 2);
-> +
-> +		ret = regmap_update_bits(st->regmap,
-> +					 AD3530R_OUTPUT_OPERATING_MODE_1,
-> +					 mask, val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->chan[chan->channel].powerdown = powerdown;
-> +		return len;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad3530r_trigger_hw_ldac(struct gpio_desc *ldac_gpio)
-> +{
-> +	gpiod_set_value_cansleep(ldac_gpio, 1);
-> +	fsleep(AD3530R_LDAC_PULSE_US);
-> +	gpiod_set_value_cansleep(ldac_gpio, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad3530r_dac_write(struct ad3530r_state *st, unsigned int chan,
-> +			     unsigned int val)
-> +{
-> +	int ret;
-> +	__be16 reg_val;
-> +
-> +	guard(mutex)(&st->lock);
-> +	reg_val = cpu_to_be16(val);
-> +
-> +	ret = regmap_bulk_write(st->regmap, st->chip_info->input_ch_reg(chan),
-> +				&reg_val, sizeof(reg_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (st->ldac_gpio)
-> +		return ad3530r_trigger_hw_ldac(st->ldac_gpio);
-> +
-> +	return regmap_update_bits(st->regmap, st->chip_info->sw_ldac_trig_reg,
-> +				  AD3530R_SW_LDAC_TRIG_MASK,
-> +				  FIELD_PREP(AD3530R_SW_LDAC_TRIG_MASK, 1));
-
-Can be simplifed with regmap_set_bits().
-
-
-> +}
-> +
-> +static int ad3530r_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int *val, int *val2, long info)
-> +{
-> +	struct ad3530r_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +	__be16 reg_val;
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = regmap_bulk_read(st->regmap,
-> +				       st->chip_info->input_ch_reg(chan->channel),
-> +				       &reg_val, sizeof(reg_val));
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val = FIELD_GET(AD3530R_REG_VAL_MASK, be16_to_cpu(reg_val));
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = st->vref_mv;
-> +		*val2 = 16;
-
-This needs to take into account the range multipler.
-
-> +
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-...
-
-> +static const struct iio_chan_spec_ext_info ad3530r_ext_info[] = {
-> +	AD3530R_CHAN_EXT_INFO("powerdown", 0, IIO_SEPARATE,
-> +			      ad3530r_get_dac_powerdown,
-> +			      ad3530r_set_dac_powerdown),
-> +	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &ad3530r_powerdown_mode_enum),
-> +	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
-> +			   &ad3530r_powerdown_mode_enum),
-> +	{ },
-
-iio style is no trailing comma on sentinil  
-
-	{ }
-
-> +};
-> +
-
-...
-
-> +static int ad3530r_setup(struct ad3530r_state *st)
-> +{
-> +	const struct ad3530r_chip_info *chip_info = st->chip_info;
-> +	struct device *dev = regmap_get_device(st->regmap);
-> +	struct gpio_desc *reset_gpio;
-> +	int i, ret;
-> +
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> +				     "Failed to get reset GPIO\n");
-> +
-> +	if (reset_gpio) {
-> +		/* Perform hardware reset */
-> +		fsleep(1000);
-> +		gpiod_set_value_cansleep(reset_gpio, 0);
-> +	} else {
-> +		/* Perform software reset */
-> +		ret = regmap_update_bits(st->regmap, AD3530R_INTERFACE_CONFIG_A,
-> +					 AD3530R_SW_RESET, AD3530R_SW_RESET);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	fsleep(10000);
-> +
-> +	/* Set operating mode to normal operation. */
-> +	ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_0, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (chip_info->num_channels > AD3531R_MAX_CHANNELS) {
-> +		ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_1, 0);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	for (i = 0; i < chip_info->num_channels; i++)
-> +		st->chan[i].powerdown_mode = AD3530R_32KOHM_POWERDOWN_MODE;
-> +
-> +	st->ldac_gpio = devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(st->ldac_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->ldac_gpio),
-> +				     "Failed to get ldac GPIO\n");
-> +
-> +	if (device_property_present(dev, "adi,double-output-range")) {
-
-This is not documented in the DT bindings.
-
-This could instead be implemented by making the out_voltage_scale attribute
-writeable.
-
-If we really do need it in the devicetree because we want to protect against
-someone accidentally setting it too high, then the property should be the
-actual multipler value with an enum specifier of 1, 2 and a default of 1
-rather than a flag (e.g. adi,output-multipler).
-
-> +		st->range_multiplier = true;
-> +
-> +		return regmap_update_bits(st->regmap, AD3530R_OUTPUT_CONTROL_0,
-> +					  AD3530R_OUTPUT_CONTROL_MASK,
-> +					  FIELD_PREP(AD3530R_OUTPUT_CONTROL_MASK, 1));
-
-nit: can be simplified with regmap_set_bits().
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct regmap_config ad3530r_regmap_config = {
-> +	.reg_bits = 16,
-> +	.val_bits = 8,
-
-Should have at least a .max_register.
-
-.reg_read and .reg_write tables can make debuging easier too.
-
-> +};
-> +
-> +static const struct iio_info ad3530r_info = {
-> +	.read_raw = ad3530r_read_raw,
-> +	.write_raw = ad3530r_write_raw,
-> +	.debugfs_reg_access = &ad3530r_reg_access,
-
-nit: style is not consistent - can omit &.
-
-> +};
-> +
-> +static int ad3530r_probe(struct spi_device *spi)
-> +{
-> +	static const char * const regulators[] = { "vdd", "iovdd" };
-> +	const struct ad3530r_chip_info *chip_info;
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad3530r_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->regmap = devm_regmap_init_spi(spi, &ad3530r_regmap_config);
-> +	if (IS_ERR(st->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
-> +				     "Failed to init regmap");
-> +
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip_info = spi_get_device_match_data(spi);
-> +	if (!chip_info)
-> +		return -ENODEV;
-> +
-> +	st->chip_info = chip_info;
-
-nit: local variable isn't that useful since st->chip_info is short enough.
-
-> +
-> +	ret = ad3530r_setup(st);
-> +	if (ret)
-> +		return ret;
-
-Setting up the chip before turning on power would not work well if the
-regulators are actually controlled. :-)
-
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(regulators),
-> +					     regulators);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
-> +
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "ref");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return ret;
-> +
-> +	if (chip_info->internal_ref_support && ret == -ENODEV) {
-> +		/* Internal reference. */
-> +		ret = regmap_update_bits(st->regmap, AD3530R_REFERENCE_CONTROL_0,
-> +					 AD3530R_REFERENCE_CONTROL_MASK,
-> +					 FIELD_PREP(AD3530R_REFERENCE_CONTROL_MASK, 1));
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->vref_mv = st->range_multiplier ?
-> +			      2 * AD3530R_INTERNAL_VREF_MV :
-> +			      AD3530R_INTERNAL_VREF_MV;
-> +	} else {
-> +		st->vref_mv = st->range_multiplier ? 2 * ret / 1000 : ret / 1000;
-
-ret can be -ENODEV here if !chip_info->internal_ref_support
-
-> +	}> +
-> +	indio_dev->name = chip_info->name;
-> +	indio_dev->info = &ad3530r_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = chip_info->channels;
-> +	indio_dev->num_channels = chip_info->num_channels;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-> +
+Thanks,
+Drew
 
