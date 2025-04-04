@@ -1,277 +1,170 @@
-Return-Path: <devicetree+bounces-163241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D597A7C075
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:20:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C28A7C085
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:27:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F6E3B9177
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:19:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B937B172962
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610AE1F5616;
-	Fri,  4 Apr 2025 15:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261A01F4E27;
+	Fri,  4 Apr 2025 15:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="TEdwwrAv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H/y5A/vF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5491F5420
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 15:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8853D6F;
+	Fri,  4 Apr 2025 15:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743779979; cv=none; b=Bt0+ywZrtkz1jJYX8oEIVBl/K8TzxuvnCei7Nk673ETf091Ub3mTCHA43iaHDJrR89NQ+Kjktc19lfsyMOGPIVULZ7ifIkA5AHr6V//AUt2ELVr3Qb02fs0qK6eILEpRzEUXrQKQ41IeXU5IRYLuhUnvPOM7lnOSz7R5QJfar3o=
+	t=1743780467; cv=none; b=qgYdn7rOV58BV16P8e6mKrxQ8uIOZAGPPTQCHP1EbQfwh0trFE5U9RIkZkDvp1DuCi0DCdF2LVWhp8gh/eDgYCeV0ysYQdDQZTsXQk+nPzZLB+groWS9Hl/BVbUpEYPi3OVdPb6i6hcY+8pHbzSGrOo6ptj5zrw7XGmo5//HXlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743779979; c=relaxed/simple;
-	bh=eBQ9nNxE6lSXQIeYzj1Cau9JY6Jgqp7mRdU8CLlxMig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f/TboGuHsSiq5RZxiQLUrkwSu9tW1xMaiF95OQxJgA5HDd+6VZ7iwWq4qPmT1u6dfp5+icpFxp5/s5/cr3fidWwecGFG/8Gz9fj6ggmLtODhKEyzJwZkIbKR/omAKJtV+Na/0Sz2jGH8ndwuNT41M9oJSMiO8jtN8+TZeEwocs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=TEdwwrAv; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <c9a69eda-e066-49e1-979a-b6ec5ef115ba@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1743779964;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UWX0HTz4vZa+tHFvj8jM2lcjDzCYW7m/OUMpzGk+52s=;
-	b=TEdwwrAv1AvChzcWpwOAmY9TNVC9ryZeMsF2AhYAiE/SgE2zWcHO8rgoiPlQPfmHpm4vZJ
-	Y1GrWAgWka1x006GeZk12ELJxehJ/BhINMU6qRe05vINZ1hdeBV6jC6Y4yd516v/7ToMd2
-	6HZ7ZSJdudDFrdTfrWqn+5cOVYysmC8=
-Date: Fri, 4 Apr 2025 11:19:18 -0400
+	s=arc-20240116; t=1743780467; c=relaxed/simple;
+	bh=ppAMMplcwEnqZltZtKemeDu3pyGJ/eqR5B0fpfCJImc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mGXfN7N3ubyxf6sOnCLma8LHFFpOonnV8JJtrGrwL1+LTGHUltaNna4sBRayw7seMNyWG0ecPSDZet3R4DUW/iOXP4pacFvaecVzpKOnTZvzKle6NC76SEBjgmynhdmNfhRlJcwjDiflUF4LgRv4f0yu8xIlq5yS9sxGn+F9k5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H/y5A/vF; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-523dc190f95so1099239e0c.1;
+        Fri, 04 Apr 2025 08:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743780464; x=1744385264; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tyHcTgEvmYhoTiQmPYplgxNdtkYfEagU+yWLnPX7X2E=;
+        b=H/y5A/vFa1Elt59ac6oZAsaaOljMWPqzqEuXMGy8zYiEhqGteg2QeVKmQYhZAxLrxp
+         hNf28dRy4Fq0fgYWJtSWAUw68Vw1JuLqzeHVOWZJ3aRneNy/9/fakivmVwF0qO5C3BQi
+         4osnxyz97P1OSGiSqHAOZfe5SyTH4PBEcOlhYgkeJerPXP9crrzR7uLll5Yv6prWzlPj
+         wb9018DbksQB0cdxweTPrfF5bu4mGC4HuJBVhuy+3dF1GLV7WkqprQNcJ5ZnQwuuLHBE
+         e2v05amyHHP7YoMv5C5IOI70/aNVQn+AUAKlInNf3YuW/WhdbRZcFUX9DsjvNoQDMe9n
+         X6+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743780464; x=1744385264;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tyHcTgEvmYhoTiQmPYplgxNdtkYfEagU+yWLnPX7X2E=;
+        b=nD95gX+bClAx/Cw+NGcFKsu7JmUqwTHk8dGUiAR2Kxvjifm+8oyxL+WzE1bJspRZ5O
+         GWKCCKjwOltL1cRLh6r9tQfepSt6J7CUDy1Or79lJ+3k+bjggUioc0fFoaQJD90zJjGU
+         HG7fN5eiZU7xNGDa3Xx6ncq9L/xFifxwWTTqdVvCC8DZdKPWm2JKxcBIwEbMIyduLejh
+         njEPHr7MwXfFanmqsfFAkiIEQlHZHg3STGg4beSqn55/hhyqxYUVRveb6eZ54vH5j6Hs
+         MfMqFPG9lhjoTI3cTIFxNfN1ba4PJ76zr8EcCJwbrqfkDIi6RqxyCuaz3zMiykCuJtd5
+         JYWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXWjGCuOQ+9rr+syKXO+fqRPKK+NKUuG5pQiP6jaaZA4xyqRSvxSY24yLzXbkvV3gNbThOTuxsX4pj@vger.kernel.org, AJvYcCVFNJcrNEFadGxgw8unZiNM0nxS/L3p/Z4cYgcb/itVcGKF8gQyWL1HfwFJN8OjtrO5ATCSmqiW+Hl9Yuy6ZAfltPw=@vger.kernel.org, AJvYcCVKtHUldYcL9E+dTwNFDW7eR9vZtrt9z/BGrG2en0DJlrRQNvs8bMHlyi8urrJ7uvScdcyUKgkslNXl@vger.kernel.org, AJvYcCXTT0t4dwT24IEDP68koAARWNNwMTwYxFj2w1EM9EGyZEpFHyp8KE/Q5PlccU+v8buee93Fo278sptDqpw=@vger.kernel.org, AJvYcCXd0kjQNexPOoYuiGJOT49EpHY+b5/qhZrYwHrTx3m7IrtfS4st2Bf/hgew8K+yaNFbIRmGN2Pfwfjfx5kT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJlOisDwUZrdiN+ObJwz57zFa1wcXScV5gej53l0T/cNfVO8bK
+	gU8z6EgMCDONZ5hN9RMTHXsOWaL/nTEsteMUMO46jxM/6BxBv+9Ku7yPNbyfEcSV93KcxRq+/q8
+	GVNVhkhXOAXqtScXttyPG7xnInsQ=
+X-Gm-Gg: ASbGncv/fzDDm9mwrdxlIWinVdQ3VIsmEfxtUmYTuk6DZy5i6WJZPR5mmMXn0OJSoK5
+	+w6ntXZLtxhIg0DPQFULyX+P+jMHfyDmPJr5L0SAJxhrAKlD0fdZ5pCx/4oKOUfCKYeVTtI8zWA
+	MOQp5u3q8LZ7W1WtO7CMAZ79piESc2At+mDWDtwzshrCYiKgOoP2Qgj/DfwQ==
+X-Google-Smtp-Source: AGHT+IHpqWWi0yrluNQOEGHLp4cKuInHusdtDoz8SY57TW+X7L6P0CcJUrQKzkaOgTZejZMvuGJzRc+ba/iZfntk+2Q=
+X-Received: by 2002:a05:6122:3212:b0:527:67c6:faff with SMTP id
+ 71dfb90a1353d-52767c6fe95mr2008321e0c.4.1743780464136; Fri, 04 Apr 2025
+ 08:27:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [RFC net-next PATCH 01/13] dt-bindings: net: Add binding for
- Xilinx PCS
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-kernel@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
- upstream@airoha.com, Heiner Kallweit <hkallweit1@gmail.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Rob Herring <robh@kernel.org>, Robert Hancock <robert.hancock@calian.com>,
- devicetree@vger.kernel.org
-References: <20250403181907.1947517-1-sean.anderson@linux.dev>
- <20250403181907.1947517-2-sean.anderson@linux.dev>
- <20250404-tench-of-heavenly-beauty-fb4ed1@shite>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20250404-tench-of-heavenly-beauty-fb4ed1@shite>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250330210717.46080-18-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB1134665BB606FE66E50FA372986AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB1134665BB606FE66E50FA372986AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 4 Apr 2025 16:27:18 +0100
+X-Gm-Features: ATxdqUH3IKmpyUumzvpmcjCBEPPgLqRzYOAqAiEDLuje-X9Xwf8ve80bPV3Fv90
+Message-ID: <CA+V-a8ufhkKEAMTjKhV8HO8Z+hLVvBfRc_q9=+O93FFK55yvFA@mail.gmail.com>
+Subject: Re: [PATCH 17/17] drm: renesas: rz-du: mipi_dsi: Add support for
+ RZ/V2H(P) SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	"laurent.pinchart" <laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/4/25 06:37, Krzysztof Kozlowski wrote:
-> On Thu, Apr 03, 2025 at 02:18:55PM GMT, Sean Anderson wrote:
->> This adds a binding for the Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII
-> 
-> Incomplete review, since this is an RFC.
+Hi Biju,
 
-Only an RFC due to netdev's rules. I consider this patchset complete.
+Thank you for the review.
 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
-> A nit, subject: drop second/last, redundant "binding for". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
->> LogiCORE IP. This device is a soft device typically used to adapt
->> between GMII and SGMII or 1000BASE-X (possbilty in combination with a
->> serdes). pcs-modes reflects the modes available with the as configured
->> when the device is synthesized. Multiple modes may be specified if
->> dynamic reconfiguration is supported.
->> 
->> One PCS may contain "shared logic in core" which can be connected to
->> other PCSs with "shared logic in example design." This primarily refers
->> to clocking resources, allowing a reference clock to be shared by a bank
->> of PCSs. To support this, if #clock-cells is defined then the PCS will
->> register itself as a clock provider for other PCSs.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
->> ---
->> 
->>  .../devicetree/bindings/net/xilinx,pcs.yaml   | 129 ++++++++++++++++++
->>  1 file changed, 129 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/net/xilinx,pcs.yaml b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
->> new file mode 100644
->> index 000000000000..56a3ce0c4ef0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
->> @@ -0,0 +1,129 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/xilinx,pcs.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE IP
->> +
->> +maintainers:
->> +  - Sean Anderson <sean.anderson@seco.com>
->> +
->> +description:
->> +  This is a soft device which implements the PCS and (depending on
->> +  configuration) PMA layers of an IEEE Ethernet PHY. On the MAC side, it
->> +  implements GMII. It may have an attached SERDES (internal or external), or
->> +  may directly use LVDS IO resources. Depending on the configuration, it may
->> +  implement 1000BASE-X, SGMII, 2500BASE-X, or 2.5G SGMII.
->> +
->> +  This device has a notion of "shared logic" such as reset and clocking
->> +  resources which must be shared between multiple PCSs using the same I/O
->> +  banks. Each PCS can be configured to have the shared logic in the "core"
->> +  (instantiated internally and made available to other PCSs) or in the "example
->> +  design" (provided by another PCS). PCSs with shared logic in the core are
->> +  reset controllers, and generally provide several resets for other PCSs in the
->> +  same bank.
->> +
->> +allOf:
->> +  - $ref: ethernet-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    contains:
-> 
-> From where did you get such syntax? What do you want to express?
+On Wed, Apr 2, 2025 at 7:27=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+>
+> Hi Prabhakar,
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: 30 March 2025 22:07
+> > Subject: [PATCH 17/17] drm: renesas: rz-du: mipi_dsi: Add support for R=
+Z/V2H(P) SoC
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add DSI support for Renesas RZ/V2H(P) SoC.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 450 ++++++++++++++++++
+> >  .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  40 ++
+> >  2 files changed, 490 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/g=
+pu/drm/renesas/rz-
+> > du/rzg2l_mipi_dsi.c
+> > index 26ec0f5d065a..3a70f479d473 100644
+> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > @@ -5,6 +5,7 @@
+> >   * Copyright (C) 2022 Renesas Electronics Corporation
+> >   */
+> >  #include <linux/clk.h>
+> > +#include <linux/clk/renesas-rzv2h-dsi.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/io.h>
+> >  #include <linux/iopoll.h>
+> > @@ -30,6 +31,9 @@
+<snip>
+> > +
+> > +#define PHYC1R                               0x034
+> > +
+> > +#define PHYC2R                               0x038
+> > +
+> > +#define PHYC3R                               0x03c
+>
+> Looks the above 3 macros unused.
+>
+> Maybe either use #define PHYCR(x)       (0x030 + (x) * 4) where x =3D {0,=
+3}
+>
+> Or
+>
+> Drop the unused macros.
+>
+I'll drop them.
 
-The compatible should contain this value, but we don't really care what else it
-contains. This aligns with how the kernel matches drivers to devices.
-
->> +      const: xilinx,pcs-16.2
-> 
-> What does the number mean?
-
-It's the version of the IP. 
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#clock-cells":
->> +    const: 0
->> +    description:
->> +      Register a clock representing the clocking resources shared with other
->> +      PCSs.
-> 
-> Drop description, redundant.
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description:
->> +          The reference clock for the PCS. Depending on your setup, this may be
->> +          the gtrefclk, refclk, clk125m signal, or clocks from another PCS.
->> +
->> +  clock-names:
->> +    const: refclk
->> +
->> +  done-gpios:
->> +    maxItems: 1
->> +    description:
->> +      GPIO connected to the reset-done output, if present.
->> +
->> +  interrupts:
->> +    items:
->> +      - description:
->> +          The an_interrupt autonegotiation-complete interrupt.
->> +
->> +  interrupt-names:
->> +    const: an
->> +
->> +  pcs-modes:
->> +    description:
->> +      The interfaces that the PCS supports.
->> +    oneOf:
->> +      - const: sgmii
->> +      - const: 1000base-x
->> +      - const: 2500base-x
->> +      - items:
->> +          - const: sgmii
->> +          - const: 1000base-x
-> 
-> This is confusing. Why fallbacks? Shouldn't this be just enum? And
-> where is the type or constraints about number of items?
-
-As stated in the commit message, multiple modes may be specified if
-dynamic reconfiguration is supported. So I want to allow
-
-	pcs-modes = "sgmii"
-	pcs-modes = "1000base-x"
-	pcs-modes = "2500base-x"
-	pcs-modes = "sgmii", "1000base-x"
-
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +    description:
->> +      GPIO connected to the reset input.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - pcs-modes
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    mdio {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        pcs0: ethernet-pcs@0 {
->> +            #clock-cells = <0>;
-> 
-> Follow DTS coding style. clock-cells are never the first property.
-
-Where is this documented?
-
->> +            compatible = "xlnx,pcs-16.2";
->> +            reg = <0>;
->> +            clocks = <&si570>;
->> +            clock-names = "refclk";
->> +            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
->> +            interrupt-names = "an";
->> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
->> +            done-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
->> +            pcs-modes = "sgmii", "1000base-x";
->> +        };
->> +
->> +        pcs1: ethernet-pcs@1 {
->> +            compatible = "xlnx,pcs-16.2";
->> +            reg = <1>;
->> +            clocks = <&pcs0>;
->> +            clock-names = "refclk";
->> +            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
->> +            interrupt-names = "an";
->> +            reset-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
->> +            done-gpios = <&gpio 8 GPIO_ACTIVE_HIGH>;
->> +            pcs-modes = "sgmii", "1000base-x";
-> 
-> Drop example, basically the same as previous.
-> 
-> Best regards,
-> Krzysztof
-> 
+Cheers,
+Prabhakar
 
