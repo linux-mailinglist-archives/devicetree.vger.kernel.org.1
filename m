@@ -1,153 +1,179 @@
-Return-Path: <devicetree+bounces-163120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6241A7B8F1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:32:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE2FA7B91D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21151792E3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:32:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F197C1899964
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FCF19995D;
-	Fri,  4 Apr 2025 08:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C298D19D886;
+	Fri,  4 Apr 2025 08:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EoJdBzYi"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="RZz9MmEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C131C68F
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 08:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C312519ABC2
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 08:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743755568; cv=none; b=NCQuIo27uFTld+pkk1wiEq/nFCMOM4nIVKtz7N4EybRcjd68BAc/d4iIozpkveOfc3oMisR8RvJrY6UX6HZYLrbQamZVSslh6WDTjcAsEAGyPlNtCS383paSs0eZGkd5Ki/hWu2CSB2K1VoS346wvfQ2+p7qCX+J/AZZ910eVyg=
+	t=1743756149; cv=none; b=EVzoCBg8Yd365wEmZ59ZuZ4w9C1DyMwKnYCkH1pJrNScPB7U11VInV2vWQShjsNC16rp5llhxSkaJVJPhCDjAovF74Ru1xGxVhavOc/gSGl8J1cwZ5hTLTCc3/dT8SrSN6rRMpmD8CFoHVpKCtd9MpEq8O/qymEavuNohQ2nLWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743755568; c=relaxed/simple;
-	bh=8mgiLfeOJH6U7WSgzeIIiX8jgYIFd8sgDdNUQ1WgpFw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h/J1oY51gDNFkBeLW3iusIJSovLz+fIc/xIRqI9SW6tgRk0ENfj/0fKPu0DpQBf4TjekmnLV08bRp10J0A8HsKCV0YPur0Dk9Vrk7pIZiEbZXlYlklF/Yr7Iu3ygQeriawugAXVqfTCPJn+tlcC7N+h9L0CDqcJe5WXN8ZUl4Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=EoJdBzYi; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1743755565;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1g2+hk0RrD47BYHCyQjMK8prZh3qSBoec7bPqHaAsFs=;
-	b=EoJdBzYiYp9MYGehCfR9QjNcbro0K5MXskljZu4rMTZwlfLfyZ8MGu2RH1ysE/iVRE4fnN
-	54b0G2d4jVoPhcBvOkRtt+lXIEsC4CcniLSQhZZHFbncGvUf61kTSRPQ+k0tiVbz/FtbwS
-	rgfUnWOSc9ecFQJVBDoZKxRWY3HQZBE=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-312-je4kPQZGNPmIZ6d9qRnYdw-1; Fri, 04 Apr 2025 04:32:43 -0400
-X-MC-Unique: je4kPQZGNPmIZ6d9qRnYdw-1
-X-Mimecast-MFC-AGG-ID: je4kPQZGNPmIZ6d9qRnYdw_1743755563
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-43cf44b66f7so13546405e9.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 01:32:43 -0700 (PDT)
+	s=arc-20240116; t=1743756149; c=relaxed/simple;
+	bh=MS7WaIMkq20DORNXyXmGMCpiPauFYp4ukxiNJ1OFdIk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Pei4+AarmbNVUkxHYrYqvAvNgJ/fWPTXbXQFRWtYYZxJHNoDOWO1oiwRlWdRRkSXPrQW2FQosaxlkKj9kX2vBehUTco3MSB6ygG0NIj2IBZ9rJ2mbVAtAXuQbv4ZehFTKTBfr/MczQXahc2TaY9+4AzdQbaVkKz1dkEznQFAyWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=RZz9MmEM; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ab78e6edb99so260212466b.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 01:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1743756146; x=1744360946; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EvpxFOAMjGbDEHBzr8d3BstbBwgEQIKMSe6Zjgd2RsE=;
+        b=RZz9MmEMnTgfc4/W7G43u7gvKWnEbMjqTmmHJJxQOj//rWl/peRlGenjLYOwZP8fjb
+         090TUTc3c0Hgr9k+jINC6jPeNgYJTfwVTkpw3HmJ9EvnjtGPpU0NHHkMJElch1QrMBEU
+         HmXIx2r2Sh+yeMmm5dgfGDZujDmCeM4BPZ3bQz0YOPPl4MStkoTaixub/0dXLVz8Srq2
+         qk3YoBI3wCaD2zau50uc6G65wLG9pvLZaIA55TLGfv9gOOimz9M5ikcA+47t0mI04ppb
+         /igZ8hBxIKdjOHsRNYU9LropLM4HUO+gcVteXMeGVea/BKTbuOtU9xSwiDraPKzyu0Y8
+         bwmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743755562; x=1744360362;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1g2+hk0RrD47BYHCyQjMK8prZh3qSBoec7bPqHaAsFs=;
-        b=DaSh4Lhkyur02wYr9aiUlSgeUURsbQ2Z269z2bwDCBzTsyxoGYpLnuMtQMOCUBEbWS
-         RUHN6T9dF/InL0G8NIV9uHN7P9FpsAWbgcZN97IskSyMVKk58CT8znmWowTqzhUfN6Hb
-         Z1imJCdjo7z0ES6IbkXGvOOa46SuBnt55I2NypP1094z5lm/fpXy4EVC7E0VNlMDwq9A
-         3UjcFoYhxGATQsS7OEhuXpTxFG0B1iP7zEiuE7hEdtCNLIa4K9ZkPt0dnU/643jFnP6u
-         ySoqLD/CDdbUyZctrAlXjK0oXtZ3697lNpgxMv9QSeN1mgWAqWErlHW4znesb3WwV3Zw
-         U1Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCW2WosdK+tmfb5qsBQcLpjCxioe1iOASlhWeVP7a8iHGvqoO6vP2/w2XJiNCgjCNk+E1GbZSyStE7yv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWbbYkiYRSHCoNreVW7O6rqho+6E9fBxMuwGmhgU5sLZWR5GQJ
-	kRJv1UMfPQMqLmE3+HBF/J0vL8Mov5vd4gLAeeWnyWMra2Gq7V3m9Fl97j4mP6KBZ5/sDzvaIWZ
-	/3qvg+mIMjKV6ZRmaYwn6J6TE2yfgyp9DtFTsuZImM/0n5lggwNdk66iMXgA=
-X-Gm-Gg: ASbGnctGGlr/LYenSi9oZ394mESN+CdIUqHGm5LD+wKVKTleZQs8vQioVXrMDMwjzV+
-	FOrY8t18+0C1+y2xoZlO60BWFtmaLJmGS3PqwJ1drw3zZgdeQz8jGOKGM6PqqNwYgH+tfMl1At/
-	2kgbFglWuvjxvLWC4eGAVLWngAWMwlk56sgyr/Hj/pKptRhqYC7Vvukk7thDDUs8J8buuqjnIad
-	B0OZJWgylrs0Bpu3bLXAHjEh6Gm4gau1b+wQ90224ZvZdoO4x92SFdgeOs1cfmiHjs7N7dLMaed
-	pEcMGIO/5A==
-X-Received: by 2002:a05:600c:4713:b0:43c:e2dd:98ea with SMTP id 5b1f17b1804b1-43ecf9c7731mr16261055e9.22.1743755562664;
-        Fri, 04 Apr 2025 01:32:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFJ0IdRaSckdVORex2b1FgzPZdidXCh6submJTDHordJMQojyupjfXYrJLLNpoFtr3Ssc7f6Q==
-X-Received: by 2002:a05:600c:4713:b0:43c:e2dd:98ea with SMTP id 5b1f17b1804b1-43ecf9c7731mr16260785e9.22.1743755562294;
-        Fri, 04 Apr 2025 01:32:42 -0700 (PDT)
-Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec364d071sm39036635e9.32.2025.04.04.01.32.40
+        d=1e100.net; s=20230601; t=1743756146; x=1744360946;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EvpxFOAMjGbDEHBzr8d3BstbBwgEQIKMSe6Zjgd2RsE=;
+        b=gPsm3J74OaM9/M3ya/JzC9NapTFdTlHXb5kgXfpLweyGF4UfPsUnqbrioeXe7YChnL
+         g4yy8E7TroHnQIx5m1vfPXqkuQoDWLMuq7WkUsYllAQ4zQbdoPlMeQZvwv+efTi6dQN9
+         QgeuBYxy4cM3tVz5LWKoqVgdnAHY0qUzduv8OxThvv11esEd0HOsu82EyT/CBerKhMGG
+         WRsPoBDkH00HwHp+AzUJzjJnWrXPXj5IYlsyuOLI8LjH7bGWy7bnDR28xs1wia2SXR+e
+         Vf04tu44tep9raBFdhUDzkzaeu6fIR48CtjBS3sTrxMLKHRqHhvQH9XBuONZ6mLrc3g2
+         kYfw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkMDhASf7Cvsn7n5u3VjIIyQ3o+SWgvURszatqUqGubtXnMebt3Rmh4Mq88ppf2wn5LlRmUNDCLl+a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzqu8tyW2C1LusuO7IiUVuNEBzPdUEUJSFoBsdzOMalJyRpOZQc
+	1YxZ1+9dN1jUpUGN4bufpTBaRC4/SsZPilFWocTUCHOKG03ZpYVWwL3YnN93PuQ=
+X-Gm-Gg: ASbGncufX1wC1PMoY7/B+RRSgt8KKlkIzAz0H8n9lXKWZM2k7uWHx0MhWO4XDPG1dez
+	z2RcdBuTJcdf68fvOKD3w6pzws2b5PlwKVwAhe2L8oGLSvmgavCDchHFxjjseTVNuVHuZXKu+/p
+	9aGNqBtELPDX5RpP//TBWWJZVG/QNr4AmRc4QM+dtx+ka0ORJnCqJsLtqJnpYdQqzwdk0zfD1US
+	Kq4WOXrZqIQnxyrCFmfeMS+t1DkD+qLYjcLpKBFH4vogMJghzWci9k2hIp+OlBsqqmWKZdDTERv
+	n3ZOYnJpJnw6wMiSQe7Fj7EBMxrgyEL4+TJJ0zZqz5VyuxVlpk7Q3hjuw7a1tQsW8tFeHkyd8P4
+	kd4zmcjCP9q89l9T2oYm4Bw==
+X-Google-Smtp-Source: AGHT+IHEpr1vauJBb+ztZ4BIYo4Rg69oVqKkkjWVKPc8XrGwoUcb7kFowBPp4QCiSvew91CEsHvqag==
+X-Received: by 2002:a17:907:3d9f:b0:ac2:cae8:e153 with SMTP id a640c23a62f3a-ac7d6c9fa0emr181343366b.4.1743756145955;
+        Fri, 04 Apr 2025 01:42:25 -0700 (PDT)
+Received: from [172.16.240.58] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7c0185e15sm217465566b.132.2025.04.04.01.42.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 01:32:41 -0700 (PDT)
-Date: Fri, 4 Apr 2025 04:32:39 -0400
-From: "Michael S. Tsirkin" <mst@redhat.com>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
-	Claire Chang <tientzu@chromium.org>,
-	linux-devicetree <devicetree@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
-	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-	graf@amazon.de
-Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
- of SWIOTLB bounce buffers
-Message-ID: <20250404043016-mutt-send-email-mst@kernel.org>
-References: <20250402112410.2086892-1-dwmw2@infradead.org>
- <20250402112410.2086892-2-dwmw2@infradead.org>
- <Z-43svGzwoUQaYvg@infradead.org>
- <148a3c8ee53af585b42ec025c2c7821ad852c66c.camel@infradead.org>
- <Z-46TDmspmX0BJ2H@infradead.org>
- <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
- <Z-99snVF5ESyJDDs@infradead.org>
- <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
- <20250404040838-mutt-send-email-mst@kernel.org>
- <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+        Fri, 04 Apr 2025 01:42:25 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Fri, 04 Apr 2025 10:42:22 +0200
+Subject: [PATCH] arm64: dts: qcom: sc7280: Stop setting dmic01 pinctrl for
+ va-macro
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250404-sc7280-va-dmic01-v1-1-2862ddd20c48@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAG2b72cC/x3MQQ5AMBBA0as0szbJtIpyFbGgBrNQ0iYiEXfXW
+ L7F/w8kjsIJOvVA5EuSHCFDFwr8NoaVUeZsMGQqsmQx+cY4wmvEeRdPGuuprdlpcqX1kLMz8iL
+ 3v+yH9/0AtWv9t2IAAAA=
+X-Change-ID: 20250404-sc7280-va-dmic01-6b96e810834c
+To: cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
 
-On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
-> On Fri, 2025-04-04 at 04:09 -0400, Michael S. Tsirkin wrote:
-> > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse wrote:
-> > > What's annoying is that this should work out of the box *already* with
-> > > virtio-mmio and a `restricted-dma-pool` — for systems which aren't
-> > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
-> > 
-> > 
-> > That specifically would be just a driver bugfix then?
-> 
-> I actually think it works out of the box and there isn't even a bug to
-> fix. Haven't tested yet.
-> 
-> The sad part is that the system does it all automatically *if* it has
-> CONFIG_DMA_RESTRICTED_POOL (e.g. Linux) and the driver never even
-> notices that the dma_ops it's using are the swiotlb ops using the
-> provided buffer.
-> 
-> Which is *kind* of nice... except that when on a guest OS which *isn't*
-> Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore the
-> `restricted-dma-pool` node and try DMA to system memory anyway, which
-> will fail.
+There's devices that don't have a DMIC connected to va-macro, so stop
+setting the pinctrl in sc7280.dtsi, but move it to the devices that
+actually are using it.
 
-I mean, it's easy to misconfigure Linux, this is why we love it ;) Why
-is this such a concern?
+No change in functionality is expected, just some boards with disabled
+va-macro are losing the pinctrl (herobrine-r1, villager-r0, zombie*).
 
-> That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB feature, so
-> that the device side can refuse, if the guest *isn't* agreeing to use
-> the bounce buffer in the situations where it must do so.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi     | 3 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                         | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                             | 3 ---
+ 4 files changed, 6 insertions(+), 3 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+index a90c70b1b73ea042af3c5509dccc60844f599acc..0e07429982bd69a5f2455d5fcb7bb03bdeb32fab 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+@@ -139,6 +139,7 @@ &lpass_va_macro {
+ 	vdd-micb-supply = <&pp1800_l2c>;
+ 	pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
+ 			<&lpass_dmic23_data>;
++	pinctrl-names = "default";
+ 
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
+index 020ef666e35fc676fcc4e4ae8aa65e5ba4f42d98..ce48e4cda1708798f40e792620de96034f093472 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-wcd9385.dtsi
+@@ -141,6 +141,9 @@ &lpass_tx_macro {
+ };
+ 
+ &lpass_va_macro {
++	pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>;
++	pinctrl-names = "default";
++
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 7370aa0dbf0e3f9e7a3e38c3f00686e1d3dcbc9f..90e5b9ab5b847edc447111825999f73f6453b33a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -412,6 +412,8 @@ &lpass_tx_macro {
+ &lpass_va_macro {
+ 	status = "okay";
+ 	vdd-micb-supply = <&vreg_bob>;
++	pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>;
++	pinctrl-names = "default";
+ };
+ 
+ &pcie1 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index ec96c917b56b4a077b45ac0186da6aaedb899dbe..7fba3c6e2b04f18295b7c63dcb83978b2c6049ca 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2617,9 +2617,6 @@ lpass_va_macro: codec@3370000 {
+ 			compatible = "qcom,sc7280-lpass-va-macro";
+ 			reg = <0 0x03370000 0 0x1000>;
+ 
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>;
+-
+ 			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>;
+ 			clock-names = "mclk";
+ 
 
-OTOH then setting this feature and if you make the device force it,
-you are breaking guests restricted-dma-pool which worked previously, no?
+---
+base-commit: a4cda136f021ad44b8b52286aafd613030a6db5f
+change-id: 20250404-sc7280-va-dmic01-6b96e810834c
 
+Best regards,
 -- 
-MST
+Luca Weiss <luca.weiss@fairphone.com>
 
 
