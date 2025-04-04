@@ -1,163 +1,195 @@
-Return-Path: <devicetree+bounces-163259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1313A7C161
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:15:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB495A7C16F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:21:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 213AD1887431
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:16:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AE01178F02
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F59720A5E4;
-	Fri,  4 Apr 2025 16:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BB720ADC0;
+	Fri,  4 Apr 2025 16:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="Oz9k30J3"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IPxQ45rl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52003.amazon.com (smtp-fw-52003.amazon.com [52.119.213.152])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BE73C38;
-	Fri,  4 Apr 2025 16:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F313C38;
+	Fri,  4 Apr 2025 16:20:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743783347; cv=none; b=LgkQjcKNfd25rjCeVh5gPWFt4mcXdJfDiUQbYtsV5ebTlgTnuDpVssPOgGk+c4PKD49TAeCqE1k7BymjIcUjcOO3IAx6XNup7rnzYeWSLhPRdVxg8Brxw39O4f3a9rkWJthTyWmai0WtW8vgm6S8Vlu/wwjpK+/Ap7+gb4ecIdc=
+	t=1743783661; cv=none; b=j0Yzecq4IFYDVbxV7zkb1KvOSa626d5N7y/R/elzTgPRYOHIQuw2fvioSRMqLRYsi/sBgHfgTkQZeVRadRNxAFi1KogVZsGB1X9CqV/vgSpvYkbAZ2fj+H+3zra7X6pI8CAT5IJLYLRrgszHTyz3PCN+H4ofoDqM82aWC46gIcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743783347; c=relaxed/simple;
-	bh=dmVtZM5UK8m+VA8tUcL/fjto9wQk0qaLwDUp7HO3HWk=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Mpsbn0yUnKxp9aDE8WeD33ReLJvklEBSe94XFNf5+Vx6SWQc6LP9zDYcA9wxKd9e8GDUr2ALtW7s1DyTXamHtmvtxt+Kda8NgqgaMYVgXifqy2qn5fpmm9Z8nWXJQ9aXlaJWwRzCFY1cutQwqnUWF5rAmijYoOCNJvD2JDFN3FI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=Oz9k30J3; arc=none smtp.client-ip=52.119.213.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1743783345; x=1775319345;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=PR+81n/7PE5GFJ2G42uL7koHAi23tz/7cZC1Tr5YEZ8=;
-  b=Oz9k30J3lERgdz+rdh3uVGNhDNLQfxrlkAXHaUeVe45I4U8ba6vYGGJ8
-   92cvJrux54dwdPE3pY9qGTGSKwFjtOs6xwEWkXnuZoHsijXPLzu3tcc7G
-   yJJ5kOFqVCAprakIbpu/ZYO/2CElP1W6ROqrWu2/ShNqwZ6cGeZhtmMzs
-   E=;
-X-IronPort-AV: E=Sophos;i="6.15,188,1739836800"; 
-   d="scan'208";a="80882244"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-52003.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 16:15:38 +0000
-Received: from EX19MTAUWA001.ant.amazon.com [10.0.21.151:44551]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.21.195:2525] with esmtp (Farcaster)
- id 199298bd-9d18-4877-a617-13ac25876d15; Fri, 4 Apr 2025 16:15:37 +0000 (UTC)
-X-Farcaster-Flow-ID: 199298bd-9d18-4877-a617-13ac25876d15
-Received: from EX19D020UWA003.ant.amazon.com (10.13.138.254) by
- EX19MTAUWA001.ant.amazon.com (10.250.64.204) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Fri, 4 Apr 2025 16:15:29 +0000
-Received: from EX19MTAUEA002.ant.amazon.com (10.252.134.9) by
- EX19D020UWA003.ant.amazon.com (10.13.138.254) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Fri, 4 Apr 2025 16:15:29 +0000
-Received: from email-imr-corp-prod-iad-all-1a-6ea42a62.us-east-1.amazon.com
- (10.43.8.2) by mail-relay.amazon.com (10.252.134.34) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
- 15.2.1544.14 via Frontend Transport; Fri, 4 Apr 2025 16:15:28 +0000
-Received: from dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com [172.19.91.144])
-	by email-imr-corp-prod-iad-all-1a-6ea42a62.us-east-1.amazon.com (Postfix) with ESMTP id 9DB8140530;
-	Fri,  4 Apr 2025 16:15:28 +0000 (UTC)
-Received: by dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id 59B05157A; Fri,  4 Apr 2025 16:15:28 +0000 (UTC)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Mike Rapoport <rppt@kernel.org>
-CC: Jason Gunthorpe <jgg@nvidia.com>, Changyuan Lyu <changyuanl@google.com>,
-	<linux-kernel@vger.kernel.org>, <graf@amazon.com>,
-	<akpm@linux-foundation.org>, <luto@kernel.org>, <anthony.yznaga@oracle.com>,
-	<arnd@arndb.de>, <ashish.kalra@amd.com>, <benh@kernel.crashing.org>,
-	<bp@alien8.de>, <catalin.marinas@arm.com>, <dave.hansen@linux.intel.com>,
-	<dwmw2@infradead.org>, <ebiederm@xmission.com>, <mingo@redhat.com>,
-	<jgowans@amazon.com>, <corbet@lwn.net>, <krzk@kernel.org>,
-	<mark.rutland@arm.com>, <pbonzini@redhat.com>, <pasha.tatashin@soleen.com>,
-	<hpa@zytor.com>, <peterz@infradead.org>, <robh+dt@kernel.org>,
-	<robh@kernel.org>, <saravanak@google.com>,
-	<skinsburskii@linux.microsoft.com>, <rostedt@goodmis.org>,
-	<tglx@linutronix.de>, <thomas.lendacky@amd.com>, <usama.arif@bytedance.com>,
-	<will@kernel.org>, <devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory preservation
-In-Reply-To: <Z-_kSXrHWU5Bf3sV@kernel.org>
-References: <20250320015551.2157511-1-changyuanl@google.com>
-	<20250320015551.2157511-10-changyuanl@google.com>
-	<mafs05xjmqsqc.fsf@amazon.de> <20250403114209.GE342109@nvidia.com>
-	<Z-6UA3C1TPeH_kGL@kernel.org> <20250403142438.GF342109@nvidia.com>
-	<Z--sUYCvP3Q8nT8e@kernel.org> <20250404124729.GH342109@nvidia.com>
-	<Z-_kSXrHWU5Bf3sV@kernel.org>
-Date: Fri, 4 Apr 2025 16:15:28 +0000
-Message-ID: <mafs0cydrq4wv.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1743783661; c=relaxed/simple;
+	bh=6+63ujJr+8nttY08AbevyHO47yB6QM9GVzRI584XxxY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=nwMrTRVaXU+JxLXGRuo7MY/KdWlL3b3SbU81NP+6kRRxhcsfIN1FC0lBou5tTIC/K4QHCsdDx28pm+g5yIkIxK4dOQY7wlCguuI/5tXle67Av5NgCaPArHfbgL5K4YHVS+D/4SP0YnlBjail4hmySzClH6Tew22hP3eQC4HA8U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=IPxQ45rl; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 534C4qNv029984;
+	Fri, 4 Apr 2025 18:20:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	1NKt9MGk7ZEOtW9yl+h4WTA3wA9CpVLn+mNMcHfKAhU=; b=IPxQ45rlu7+o8yi4
+	P4i53sGBKbLIQeId/7GJJNo4duzK01pjiygyNrVSkEFNErmTGQWnepIKgiu1yFdX
+	ui77G8b6N46xs1K4kkoylKxUISjZKFYqjabB5QqZI5i2LsW86hKRBHUUJiI2Cxst
+	XeIUM+GBJk/4qtMDVtGk+djcIX/lE+2hvO6DWlcYPyh+Zr6JEC5bDuvqMY1E2b7R
+	V0ufWH6OSmpVL7/pS7P2cJXwJUK2evuoeqUmLLCyVnpnqXyFTichVnxWlCmO0+v9
+	/nvW4kWhtrB3ZrNJdhbBB0l8pfo/6WHV4bOxSgXYZ+VmekajmANSP2mR4CzecLm2
+	/XSbLg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45t2ct4368-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Apr 2025 18:20:45 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 85F5040053;
+	Fri,  4 Apr 2025 18:19:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 89DA09645B9;
+	Fri,  4 Apr 2025 18:18:51 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 4 Apr
+ 2025 18:18:50 +0200
+Message-ID: <ddfc03e2-d4a6-460f-aafd-933019751dbf@foss.st.com>
+Date: Fri, 4 Apr 2025 18:18:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH 2/3] irqchip/gic: Use 0x10000 offset to access GICC_DIR on
+ STM32MP2
+To: Marc Zyngier <maz@kernel.org>
+CC: <tglx@linutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20250403122805.1574086-1-christian.bruel@foss.st.com>
+ <20250403122805.1574086-3-christian.bruel@foss.st.com>
+ <8734epyw17.wl-maz@kernel.org>
+ <1213dbfb-821a-4534-947b-acc4eac9da81@foss.st.com>
+ <87y0wgxd4j.wl-maz@kernel.org>
+Content-Language: en-US
+In-Reply-To: <87y0wgxd4j.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-04_07,2025-04-03_03,2024-11-22_01
 
-Hi Mike,
 
-On Fri, Apr 04 2025, Mike Rapoport wrote:
 
-[...]
-> As for the optimizations of memblock reserve path, currently it what hurts
-> the most in my and Pratyush experiments. They are not very representative,
-> but still, preserving lots of pages/folios spread all over would have it's
-> toll on the mm initialization. And I don't think invasive changes to how
-> buddy and memory map initialization are the best way to move forward and
-> optimize that. Quite possibly we'd want to be able to minimize amount of
-> *ranges* that we preserve.
->
-> So from the three alternatives we have now (xarrays + bitmaps, tables +
-> bitmaps and maple tree for ranges) maple tree seems to be the simplest and
-> efficient enough to start with.
+On 4/4/25 15:36, Marc Zyngier wrote:
+> On Fri, 04 Apr 2025 13:15:05 +0100,
+> Christian Bruel <christian.bruel@foss.st.com> wrote:
+>>
+>>
+>>
+>> On 4/3/25 19:50, Marc Zyngier wrote:
+>>> On Thu, 03 Apr 2025 13:28:04 +0100,
+>>> Christian Bruel <christian.bruel@foss.st.com> wrote:
+>>>>
+>>>> When GIC_4KNOT64K bit in the GIC configuration register is
+>>>> 0 (64KB), address block is modified in such a way than only the
+>>>> first 4KB of the GIC cpu interface are accessible with default
+>>>> offsets.
+>>>> With this bit mapping GICC_DIR register is accessible at
+>>>> offset 0x10000 instead of 0x1000, thus remap accordingly
+>>>
+>>> And I'm pretty sure the whole of the GICC range is correctly
+>>> accessible at offset 0xF000, giving you the full 8kB you need. That's
+>>> because each page of the GIC is aliased over two 64kB blocks, as per
+>>> the integration guidelines so that MMU isolation can be provided on a
+>>> 64kB boundary.
+>>
+>> Thanks a lot for this explanation, indeed this works like a charm.
+>>
+>>>
+>>> Funnily enough, all it takes is to adjust GICC region. You can either:
+>>>
+>>> - make it 128kB wide, and the driver will take care of it (details in
+>>>     gic_check_eoimode()). On one of my boxes that is similarly
+>>>     configured, I get:
+>>>
+>>>     [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+>>>     [    0.000000] GIC: Adjusting CPU interface base to 0x00000000780af000
+>>>     [    0.000000] Root IRQ handler: gic_handle_irq
+>>>     [    0.000000] GIC: Using split EOI/Deactivate mode
+>>>
+>>>     See below for what I expect to be the correct fix.
+>>>     - make it 8kB wide from offset 0xF000.
+>>
+>> I checked both and they work. I will go for the former to show real
+>> 8kB size to be exposed in the DT. And there are a few other
+>> platforms that use this alias
+> 
+> I think 8kB the wrong option. The GIC *is* supposed to be integrated
+> over 128kB on arm64 platforms (there was some documentation about that
+> back in the days, but it has become impossible to search anything on
+> ARM's stupidly broken website.  My recollection is that it was bundled
+> with the GICv2m "specification" (only half a page!). >
+> Furthermore, you are supposed to describe the HW. Not your
+> interpretation of it. Correctly written SW targeting arm64 know about
+> this anyway.
 
-But you'd need to somehow serialize the maple tree ranges into some
-format. So you would either end up going back to the kho_mem ranges we
-had, or have to invent something more complex. The sample code you wrote
-is pretty much going back to having kho_mem ranges.
+greping other platforms there are a bunch 0xf000 offset 8KB mapped:
 
-And if you say that we should minimize the amount of ranges, the table +
-bitmaps is still a fairly good data structure. You can very well have a
-higher order table where your entire range is a handful of bits. This
-lets you track a small number of ranges fairly efficiently -- both in
-terms of memory and in terms of CPU. I think the only place where it
-doesn't work as well as a maple tree is if you want to merge or split a
-lot ranges quickly. But if you say that you only want to have a handful
-of ranges, does that really matter?
+  amd/amd-seattle-soc.dtsi
+  arm/corstone1000.dtsi
+  arm/foundation-v8-gicv3.dtsi
+  arm/juno-base.dtsi
+  mediatek/mt8516.dtsi
 
-Also, I think the allocation pattern depends on which use case you have
-in mind. For hypervisor live update, you might very well only have a
-handful of ranges. The use case I have in mind is for taking a userspace
-process, quickly checkpointing it by dumping its memory contents to a
-memfd, and restoring it after KHO. For that, the ability to do random
-sparse allocations quickly helps a lot.
+but, looking at the stm32mp25 memory map (1)
 
-So IMO the table works well for both sparse and dense allocations. So
-why have a data structure that only solves one problem when we can have
-one that solves both? And honestly, I don't think the table is that much
-more complex either -- both in terms of understanding the idea and in
-terms of code -- the whole thing is like 200 lines.
+0x4AC22000 - 0x4AC3FFFF 120 Reserved -
+0x4AC20000 - 0x4AC21FFF 8   GICC
 
-Also, I think changes to buddy initialization _is_ the way to optimize
-boot times. Having maple tree ranges and moving them around into
-memblock ranges does not really scale very well for anything other than
-a handful of ranges, and we shouldn't limit ourselves to that without
-good reason.
+I can know guess that the  Reserved 120kB is for aliasing the 64kB 
+blocks. Thus describing the GICC range at 128kB makes sense
 
->  
-> Preserving folio orders with it is really straighforward and until we see
-> some real data of how the entire KHO machinery is used, I'd prefer simple
-> over anything else.
+similarly 4 kB + 120 Reserved for GICH and 8kB + 120 Reserved for GICV
 
--- 
-Regards,
-Pratyush Yadav
+(1) 
+https://www.st.com/resource/en/reference_manual/rm0457-stm32mp25xx-advanced-armbased-3264bit-mpus-stmicroelectronics.pdf
+
+
+> 
+>>> Unless the ST HW folks have been even more creative, none of this
+>>> overly complicated stuff should be necessary. Just describe the HW
+>>> correctly.
+>>
+>> I was unable to find this information in the GIC-400 trm
+>> (https://developer.arm.com/documentation/ddi0471/b/programmers-model/gic-400-register-map). Now
+>> I also prefer to use GICC alias at
+>> offset 0xf000 as suggested rather than the quirk solution
+> 
+> Again, this isn't a quirk. It's the one true way for 64bit platforms
+> that can use pages bigger than 4kB. That's the purpose of the 4Kn64K
+> parameter in the integration, dropping bits [15:12] from the PA
+> presented to the CPU interface.
+
+sorry, misunderstanding, I was referring about my dropped quirk that I 
+now dropped, not your options
+
+thanks
+
+Christian
+> 
+> 	M.
+> 
 
