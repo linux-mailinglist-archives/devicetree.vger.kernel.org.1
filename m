@@ -1,342 +1,1485 @@
-Return-Path: <devicetree+bounces-163128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E83CA7B99B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:07:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32BAA7B9B4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA006188832C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:07:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3DC53B69E6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8591A2860;
-	Fri,  4 Apr 2025 09:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDEC1A2630;
+	Fri,  4 Apr 2025 09:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Wfui/rJX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AqAvUDgE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24BC1A23BC;
-	Fri,  4 Apr 2025 09:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973D817A300;
+	Fri,  4 Apr 2025 09:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743757633; cv=none; b=pWjv2YpKwuyPtyorvp3KHAeFn5c31XarZKjtxTbzKbrPjYckS4f6P5/Rr3570Rj1FDQ539NHFZM96U0wtiB06Wu4gwQuhPEBJOtKrvW8rQDFm+RAmm15a1hzrmpszsjlfeF8oEw+v5c1J5+6CQC2l+4Fs6cg2gwrTs5KIrRPovI=
+	t=1743758347; cv=none; b=REAilF/nZoJ5IpKPIDuUp/5Z8G7qA+qgS/EYDvJGTTNU63nBdxvGx4DnPSKo/FFU45WvwHqtrRv+WIyiULjwqekpGOtNVNFvh5dVGqV4ZmLq8pwGReu6htVs09XP+toX97FAbWpiNVKKNKkQHzu7zvghh/ZnrWVqfbcqjbJnvDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743757633; c=relaxed/simple;
-	bh=oT0xGefRN2yfCOOTBwl15RJqY1xRmGN76leFdFfO1Ds=;
+	s=arc-20240116; t=1743758347; c=relaxed/simple;
+	bh=/sCDiT7KRAoIbFy0qxS0bab8StKzHPbG8DUo7lwKW1M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WfyTTqurKBEyu4Pis5TSlsg2irrTgRVxkFaNVxKpJR6pCAYcyK+k1h2QWmzOIuEIFoMwtojZoSKZWf6Gku9fs7clwrFL7BEX0gpL9CdufQmvDMJdRAGiJ5wFkjjOTasPG9Y3RLMjEEhBooGI6Gzsd5VXFdIZ54byvIEaQrAfHAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Wfui/rJX; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1743757629; x=1775293629;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oT0xGefRN2yfCOOTBwl15RJqY1xRmGN76leFdFfO1Ds=;
-  b=Wfui/rJXKXfxG+BUvJJp3Berq5CwTvXYEMxkJD071MRZhSGskXaLo8k1
-   X3Dpv0Kv9iRPokMEY90870R9kTSadEQCgZ7TV49juq7n+aCO8ZswtZYbK
-   QuVVjIiFrCGwwnM6V15K56jJ4v/MnjjACqOwx0r+LCRKUUtu9eNHBoZXz
-   WKAcvr2KrQSTL4XhD37EtfA1SeZ+I6Y7fyWqE/d2xC5aqMHfVHhpuxzCu
-   nrCMh7RRAHNu5AyOOEfV5nUa9MLN2UPI5o1kQzVMX4gBbovg8jeXKgquP
-   UQQDlBKwURmL9Y7qllEN4KmIvtdTbpb/J314anhrCsNVH6BliWlj9OC8u
-   w==;
-X-CSE-ConnectionGUID: Lwf78ZNkTziNo+DXmNdPFQ==
-X-CSE-MsgGUID: OdwV/wEDQNeee+y7Q/aUSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="67663294"
-X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; 
-   d="scan'208";a="67663294"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 02:07:08 -0700
-X-CSE-ConnectionGUID: +nQSbk4hRaW2eZ/sUVYIHw==
-X-CSE-MsgGUID: Nt7dQJ1kRHOwU4ksMw1Dtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; 
-   d="scan'208";a="127066899"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 04 Apr 2025 02:07:04 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u0d0v-000175-1x;
-	Fri, 04 Apr 2025 09:07:01 +0000
-Date: Fri, 4 Apr 2025 17:06:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andy Yan <andyshrk@163.com>, dmitry.baryshkov@oss.qualcomm.com,
-	heiko@sntech.de
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, hjc@rock-chips.com,
-	mripard@kernel.org, naoki@radxa.com, stephen@radxa.com,
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org,
-	Laurent.pinchart@ideasonboard.com, yubing.zhang@rock-chips.com,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, robh@kernel.org,
-	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v3 3/9] drm/rockchip: Add RK3588 DPTX output support
-Message-ID: <202504041655.rA3EV7B8-lkp@intel.com>
-References: <20250403033748.245007-4-andyshrk@163.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=G9AmWrSJGWLSgtVZgPxNwmc2VWAyVL9TjrBqrecsvpxT8edCIU8RPhEiVxKQAjGZWc805WSbZzjTH3LP9OU7td5YLmjsAQ0QwieZneib9rtKoHnbvZY0oCDQPyUlczRYaLOlom2JorbhblWpq6rdjENOlU2iLz4WQbDqN1MmI3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AqAvUDgE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A175AC4CEDD;
+	Fri,  4 Apr 2025 09:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743758346;
+	bh=/sCDiT7KRAoIbFy0qxS0bab8StKzHPbG8DUo7lwKW1M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AqAvUDgEEshLsfSO7oNnweg3B4ebblDPakqOmAJrL1F2XrMopeV5s2zVgRdCY/qLg
+	 FRg6IikCmoa2iIT41pFYVa+QT19oFFbd7mkXhaEVoh69kqSCBSM0T/TxHUxey6sOxj
+	 M3nNec5h7CbUFOURFGcHr4W2H4gh1YIH4rAZYKumKfWcF+Muzsm8po40pahmOJ8mvT
+	 acprEcj0esmbIj24Sj+tOkeoj4rNT4zjlgopquc4Biu7ADX6Bn5pLVe9VEnqsXZ88z
+	 PWcnWbCq1qIP9o3SzR6xUoGvp/de6A1an4ypah4qBwMlpnEK6EYOyhyWg5Cspu3wy1
+	 5Oxlp2r6oGtLQ==
+Date: Fri, 4 Apr 2025 10:18:58 +0100
+From: Lee Jones <lee@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 09/32] mfd: sec: add support for S2MPG10 PMIC
+Message-ID: <20250404091858.GA43241@google.com>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+ <20250403-s2mpg10-v3-9-b542b3505e68@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250403033748.245007-4-andyshrk@163.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250403-s2mpg10-v3-9-b542b3505e68@linaro.org>
 
-Hi Andy,
+On Thu, 03 Apr 2025, André Draszik wrote:
 
-kernel test robot noticed the following build errors:
+> Add support for Samsung's S2MPG10 PMIC, which is a Power Management IC
+> for mobile applications with buck converters, various LDOs, power
+> meters, RTC, clock outputs, and additional GPIOs interfaces.
+> 
+> Contrary to existing Samsung S2M series PMICs supported, communication
+> is not via I2C, but via the Samsung ACPM firmware.
+> 
+> This commit adds the core driver.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> 
+> ---
+> Checkpatch suggests to update MAINTAINERS, but the new file is covered
+> already due to using a wildcard.
+> 
+> v3:
+> * use an enum for struct sec_acpm_bus_context::type
+> * consistent name space for all functions sec_pmic_acpm_... to be
+>   similar to i2c and consistent in this file
+> 
+> v2:
+> * update to using devm_acpm_get_by_node() instead of
+>   devm_acpm_get_by_phandle() as this is now expected to be a child of
+>   the ACPM node
+> * use c-type file header
+> * updates to error messages
+> * drop s2mpg10_rtc_wr_table as everything in RTC is writeable
+> * rename s2mpg10_volatile_registers -> s2mpg10_rtc_volatile_registers
+> * fix incorrect regmap range in common block
+> * add comments to regmap ranges
+> * add all registers to header for all IP blocks
+> ---
+>  drivers/mfd/Kconfig                 |  17 ++
+>  drivers/mfd/Makefile                |   1 +
+>  drivers/mfd/sec-acpm.c              | 465 ++++++++++++++++++++++++++++++++++++
+>  drivers/mfd/sec-core.c              |  16 ++
+>  drivers/mfd/sec-irq.c               |  68 ++++++
+>  include/linux/mfd/samsung/core.h    |   1 +
+>  include/linux/mfd/samsung/irq.h     | 103 ++++++++
+>  include/linux/mfd/samsung/rtc.h     |  37 +++
+>  include/linux/mfd/samsung/s2mpg10.h | 454 +++++++++++++++++++++++++++++++++++
+>  9 files changed, 1162 insertions(+)
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 62565dc89ec6d58611bbc1f31c65f757343b6453..e146b28240e731557f34ebe6dea99016b6d19f6b 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1296,6 +1296,23 @@ config MFD_SEC_CORE
+>  	select MFD_CORE
+>  	select REGMAP_IRQ
+>  
+> +config MFD_SEC_ACPM
+> +	tristate "Samsung Electronics S2MPG1x PMICs"
+> +	depends on EXYNOS_ACPM_PROTOCOL
+> +	depends on OF
+> +	select MFD_SEC_CORE
+> +	help
+> +	  Support for the Samsung Electronics PMICs with ACPM interface.
+> +	  This is a Power Management IC for mobile applications with buck
+> +	  converters, various LDOs, power meters, RTC, clock outputs, and
+> +	  additional GPIOs interfaces.
+> +	  This driver provides common support for accessing the device;
+> +	  additional drivers must be enabled in order to use the functionality
+> +	  of the device.
+> +
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called sec-acpm.
+> +
+>  config MFD_SEC_I2C
+>  	tristate "Samsung Electronics S2MPA/S2MPS1X/S2MPU/S5M series PMICs"
+>  	depends on I2C=y
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index ab6c4b17a391946d4c88f52ccbfee5424b4fb2d2..b617782eca436e34084a9cd24c309801c5680390 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -229,6 +229,7 @@ obj-$(CONFIG_MFD_RK8XX_I2C)	+= rk8xx-i2c.o
+>  obj-$(CONFIG_MFD_RK8XX_SPI)	+= rk8xx-spi.o
+>  obj-$(CONFIG_MFD_RN5T618)	+= rn5t618.o
+>  obj-$(CONFIG_MFD_SEC_CORE)	+= sec-core.o sec-irq.o
+> +obj-$(CONFIG_MFD_SEC_ACPM)	+= sec-acpm.o
+>  obj-$(CONFIG_MFD_SEC_I2C)	+= sec-i2c.o
+>  obj-$(CONFIG_MFD_SYSCON)	+= syscon.o
+>  obj-$(CONFIG_MFD_LM3533)	+= lm3533-core.o lm3533-ctrlbank.o
+> diff --git a/drivers/mfd/sec-acpm.c b/drivers/mfd/sec-acpm.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..39dbb968086ac835b96ed3e4efa68868fda63429
+> --- /dev/null
+> +++ b/drivers/mfd/sec-acpm.c
+> @@ -0,0 +1,465 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright 2020 Google Inc
+> + * Copyright 2025 Linaro Ltd.
+> + *
+> + * Samsung S2MPG1x ACPM driver
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/device.h>
+> +#include <linux/firmware/samsung/exynos-acpm-protocol.h>
+> +#include <linux/mfd/samsung/core.h>
+> +#include <linux/mfd/samsung/rtc.h>
+> +#include <linux/mfd/samsung/s2mpg10.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include "sec-core.h"
+> +
+> +#define ACPM_MAX_BULK_DATA   8
+> +
+> +struct sec_pmic_acpm_platform_data {
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on robh/for-next drm-exynos/exynos-drm-next linus/master v6.14 next-20250404]
-[cannot apply to drm/drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This isn't platform data.  It's driver data.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Yan/dt-bindings-display-rockchip-Add-schema-for-RK3588-DPTX-Controller/20250403-114203
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20250403033748.245007-4-andyshrk%40163.com
-patch subject: [PATCH v3 3/9] drm/rockchip: Add RK3588 DPTX output support
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250404/202504041655.rA3EV7B8-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250404/202504041655.rA3EV7B8-lkp@intel.com/reproduce)
+Platform data is passed in, driver data is derived.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504041655.rA3EV7B8-lkp@intel.com/
+See how the other drivers do this:
 
-All errors (new ones prefixed by >>):
+  $ git grep ddata -- drivers/mfd
 
->> drivers/gpu/drm/bridge/synopsys/dw-dp.c:1599:3: error: call to undeclared function 'drm_dp_link_power_down'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1599 |                 drm_dp_link_power_down(&dp->aux, dp->link.revision);
-         |                 ^
->> drivers/gpu/drm/bridge/synopsys/dw-dp.c:1617:8: error: call to undeclared function 'drm_dp_link_power_up'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1617 |         ret = drm_dp_link_power_up(&dp->aux, dp->link.revision);
-         |               ^
->> drivers/gpu/drm/bridge/synopsys/dw-dp.c:1790:19: error: incompatible function pointer types initializing 'void (*)(struct drm_bridge *, struct drm_bridge_state *)' with an expression of type 'void (struct drm_bridge *, struct drm_atomic_state *)' [-Wincompatible-function-pointer-types]
-    1790 |         .atomic_enable = dw_dp_bridge_atomic_enable,
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/synopsys/dw-dp.c:1791:20: error: incompatible function pointer types initializing 'void (*)(struct drm_bridge *, struct drm_bridge_state *)' with an expression of type 'void (struct drm_bridge *, struct drm_atomic_state *)' [-Wincompatible-function-pointer-types]
-    1791 |         .atomic_disable = dw_dp_bridge_atomic_disable,
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   4 errors generated.
+> +	int device_type;
+> +
+> +	unsigned int acpm_chan_id;
+> +	u8 speedy_channel;
+> +
+> +	const struct regmap_config *regmap_cfg_common;
+> +	const struct regmap_config *regmap_cfg_pmic;
+> +	const struct regmap_config *regmap_cfg_rtc;
+> +	const struct regmap_config *regmap_cfg_meter;
+> +};
+> +
+> +static const struct regmap_range s2mpg10_common_registers[] = {
+> +	regmap_reg_range(0x00, 0x02), /* CHIP_ID_M, INT, INT_MASK */
+> +	regmap_reg_range(0x0a, 0x0c), /* speedy control */
+> +	regmap_reg_range(0x1a, 0x2a), /* debug */
 
+Nit: I like comments to start with an upper-case char.
 
-vim +1790 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+> +};
+> +
+> +static const struct regmap_range s2mpg10_common_ro_registers[] = {
+> +	regmap_reg_range(0x00, 0x01),
+> +	regmap_reg_range(0x28, 0x2a),
 
-d366451bed980ac Andy Yan 2025-04-03  1593  
-d366451bed980ac Andy Yan 2025-04-03  1594  static void dw_dp_link_disable(struct dw_dp *dp)
-d366451bed980ac Andy Yan 2025-04-03  1595  {
-d366451bed980ac Andy Yan 2025-04-03  1596  	struct dw_dp_link *link = &dp->link;
-d366451bed980ac Andy Yan 2025-04-03  1597  
-d366451bed980ac Andy Yan 2025-04-03  1598  	if (dw_dp_hpd_detect(dp))
-d366451bed980ac Andy Yan 2025-04-03 @1599  		drm_dp_link_power_down(&dp->aux, dp->link.revision);
-d366451bed980ac Andy Yan 2025-04-03  1600  
-d366451bed980ac Andy Yan 2025-04-03  1601  	dw_dp_phy_xmit_enable(dp, 0);
-d366451bed980ac Andy Yan 2025-04-03  1602  
-d366451bed980ac Andy Yan 2025-04-03  1603  	phy_power_off(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1604  
-d366451bed980ac Andy Yan 2025-04-03  1605  	link->train.clock_recovered = false;
-d366451bed980ac Andy Yan 2025-04-03  1606  	link->train.channel_equalized = false;
-d366451bed980ac Andy Yan 2025-04-03  1607  }
-d366451bed980ac Andy Yan 2025-04-03  1608  
-d366451bed980ac Andy Yan 2025-04-03  1609  static int dw_dp_link_enable(struct dw_dp *dp)
-d366451bed980ac Andy Yan 2025-04-03  1610  {
-d366451bed980ac Andy Yan 2025-04-03  1611  	int ret;
-d366451bed980ac Andy Yan 2025-04-03  1612  
-d366451bed980ac Andy Yan 2025-04-03  1613  	ret = phy_power_on(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1614  	if (ret)
-d366451bed980ac Andy Yan 2025-04-03  1615  		return ret;
-d366451bed980ac Andy Yan 2025-04-03  1616  
-d366451bed980ac Andy Yan 2025-04-03 @1617  	ret = drm_dp_link_power_up(&dp->aux, dp->link.revision);
-d366451bed980ac Andy Yan 2025-04-03  1618  	if (ret < 0)
-d366451bed980ac Andy Yan 2025-04-03  1619  		return ret;
-d366451bed980ac Andy Yan 2025-04-03  1620  
-d366451bed980ac Andy Yan 2025-04-03  1621  	ret = dw_dp_link_train(dp);
-d366451bed980ac Andy Yan 2025-04-03  1622  
-d366451bed980ac Andy Yan 2025-04-03  1623  	return ret;
-d366451bed980ac Andy Yan 2025-04-03  1624  }
-d366451bed980ac Andy Yan 2025-04-03  1625  
-d366451bed980ac Andy Yan 2025-04-03  1626  static void dw_dp_bridge_atomic_enable(struct drm_bridge *bridge,
-d366451bed980ac Andy Yan 2025-04-03  1627  				       struct drm_atomic_state *state)
-d366451bed980ac Andy Yan 2025-04-03  1628  {
-d366451bed980ac Andy Yan 2025-04-03  1629  	struct dw_dp *dp = bridge_to_dp(bridge);
-d366451bed980ac Andy Yan 2025-04-03  1630  	struct drm_connector *connector;
-d366451bed980ac Andy Yan 2025-04-03  1631  	struct drm_connector_state *conn_state;
-d366451bed980ac Andy Yan 2025-04-03  1632  	int ret;
-d366451bed980ac Andy Yan 2025-04-03  1633  
-d366451bed980ac Andy Yan 2025-04-03  1634  	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-d366451bed980ac Andy Yan 2025-04-03  1635  	if (!connector) {
-d366451bed980ac Andy Yan 2025-04-03  1636  		dev_err(dp->dev, "failed to get connector\n");
-d366451bed980ac Andy Yan 2025-04-03  1637  		return;
-d366451bed980ac Andy Yan 2025-04-03  1638  	}
-d366451bed980ac Andy Yan 2025-04-03  1639  
-d366451bed980ac Andy Yan 2025-04-03  1640  	conn_state = drm_atomic_get_new_connector_state(state, connector);
-d366451bed980ac Andy Yan 2025-04-03  1641  	if (!conn_state) {
-d366451bed980ac Andy Yan 2025-04-03  1642  		dev_err(dp->dev, "failed to get connector state\n");
-d366451bed980ac Andy Yan 2025-04-03  1643  		return;
-d366451bed980ac Andy Yan 2025-04-03  1644  	}
-d366451bed980ac Andy Yan 2025-04-03  1645  
-d366451bed980ac Andy Yan 2025-04-03  1646  	set_bit(0, dp->sdp_reg_bank);
-d366451bed980ac Andy Yan 2025-04-03  1647  
-d366451bed980ac Andy Yan 2025-04-03  1648  	ret = dw_dp_link_enable(dp);
-d366451bed980ac Andy Yan 2025-04-03  1649  	if (ret < 0) {
-d366451bed980ac Andy Yan 2025-04-03  1650  		dev_err(dp->dev, "failed to enable link: %d\n", ret);
-d366451bed980ac Andy Yan 2025-04-03  1651  		return;
-d366451bed980ac Andy Yan 2025-04-03  1652  	}
-d366451bed980ac Andy Yan 2025-04-03  1653  
-d366451bed980ac Andy Yan 2025-04-03  1654  	ret = dw_dp_video_enable(dp);
-d366451bed980ac Andy Yan 2025-04-03  1655  	if (ret < 0) {
-d366451bed980ac Andy Yan 2025-04-03  1656  		dev_err(dp->dev, "failed to enable video: %d\n", ret);
-d366451bed980ac Andy Yan 2025-04-03  1657  		return;
-d366451bed980ac Andy Yan 2025-04-03  1658  	}
-d366451bed980ac Andy Yan 2025-04-03  1659  }
-d366451bed980ac Andy Yan 2025-04-03  1660  
-d366451bed980ac Andy Yan 2025-04-03  1661  static void dw_dp_reset(struct dw_dp *dp)
-d366451bed980ac Andy Yan 2025-04-03  1662  {
-d366451bed980ac Andy Yan 2025-04-03  1663  	int val;
-d366451bed980ac Andy Yan 2025-04-03  1664  
-d366451bed980ac Andy Yan 2025-04-03  1665  	disable_irq(dp->irq);
-d366451bed980ac Andy Yan 2025-04-03  1666  	regmap_update_bits(dp->regmap, DW_DP_SOFT_RESET_CTRL, CONTROLLER_RESET,
-d366451bed980ac Andy Yan 2025-04-03  1667  			   FIELD_PREP(CONTROLLER_RESET, 1));
-d366451bed980ac Andy Yan 2025-04-03  1668  	udelay(10);
-d366451bed980ac Andy Yan 2025-04-03  1669  	regmap_update_bits(dp->regmap, DW_DP_SOFT_RESET_CTRL, CONTROLLER_RESET,
-d366451bed980ac Andy Yan 2025-04-03  1670  			   FIELD_PREP(CONTROLLER_RESET, 0));
-d366451bed980ac Andy Yan 2025-04-03  1671  
-d366451bed980ac Andy Yan 2025-04-03  1672  	dw_dp_init_hw(dp);
-d366451bed980ac Andy Yan 2025-04-03  1673  	regmap_read_poll_timeout(dp->regmap, DW_DP_HPD_STATUS, val,
-d366451bed980ac Andy Yan 2025-04-03  1674  				 FIELD_GET(HPD_HOT_PLUG, val), 200, 200000);
-d366451bed980ac Andy Yan 2025-04-03  1675  	regmap_write(dp->regmap, DW_DP_HPD_STATUS, HPD_HOT_PLUG);
-d366451bed980ac Andy Yan 2025-04-03  1676  	enable_irq(dp->irq);
-d366451bed980ac Andy Yan 2025-04-03  1677  }
-d366451bed980ac Andy Yan 2025-04-03  1678  
-d366451bed980ac Andy Yan 2025-04-03  1679  static void dw_dp_bridge_atomic_disable(struct drm_bridge *bridge,
-d366451bed980ac Andy Yan 2025-04-03  1680  					struct drm_atomic_state *state)
-d366451bed980ac Andy Yan 2025-04-03  1681  {
-d366451bed980ac Andy Yan 2025-04-03  1682  	struct dw_dp *dp = bridge_to_dp(bridge);
-d366451bed980ac Andy Yan 2025-04-03  1683  
-d366451bed980ac Andy Yan 2025-04-03  1684  	dw_dp_video_disable(dp);
-d366451bed980ac Andy Yan 2025-04-03  1685  	dw_dp_link_disable(dp);
-d366451bed980ac Andy Yan 2025-04-03  1686  	bitmap_zero(dp->sdp_reg_bank, SDP_REG_BANK_SIZE);
-d366451bed980ac Andy Yan 2025-04-03  1687  	dw_dp_reset(dp);
-d366451bed980ac Andy Yan 2025-04-03  1688  }
-d366451bed980ac Andy Yan 2025-04-03  1689  
-d366451bed980ac Andy Yan 2025-04-03  1690  static bool dw_dp_hpd_detect_link(struct dw_dp *dp)
-d366451bed980ac Andy Yan 2025-04-03  1691  {
-d366451bed980ac Andy Yan 2025-04-03  1692  	int ret;
-d366451bed980ac Andy Yan 2025-04-03  1693  
-d366451bed980ac Andy Yan 2025-04-03  1694  	ret = phy_power_on(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1695  	if (ret < 0)
-d366451bed980ac Andy Yan 2025-04-03  1696  		return false;
-d366451bed980ac Andy Yan 2025-04-03  1697  	ret = dw_dp_link_parse(dp);
-d366451bed980ac Andy Yan 2025-04-03  1698  	phy_power_off(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1699  
-d366451bed980ac Andy Yan 2025-04-03  1700  	return !ret;
-d366451bed980ac Andy Yan 2025-04-03  1701  }
-d366451bed980ac Andy Yan 2025-04-03  1702  
-d366451bed980ac Andy Yan 2025-04-03  1703  static enum drm_connector_status dw_dp_bridge_detect(struct drm_bridge *bridge)
-d366451bed980ac Andy Yan 2025-04-03  1704  {
-d366451bed980ac Andy Yan 2025-04-03  1705  	struct dw_dp *dp = bridge_to_dp(bridge);
-d366451bed980ac Andy Yan 2025-04-03  1706  
-d366451bed980ac Andy Yan 2025-04-03  1707  	if (!dw_dp_hpd_detect(dp))
-d366451bed980ac Andy Yan 2025-04-03  1708  		return connector_status_disconnected;
-d366451bed980ac Andy Yan 2025-04-03  1709  
-d366451bed980ac Andy Yan 2025-04-03  1710  	if (!dw_dp_hpd_detect_link(dp))
-d366451bed980ac Andy Yan 2025-04-03  1711  		return connector_status_disconnected;
-d366451bed980ac Andy Yan 2025-04-03  1712  
-d366451bed980ac Andy Yan 2025-04-03  1713  	return connector_status_connected;
-d366451bed980ac Andy Yan 2025-04-03  1714  }
-d366451bed980ac Andy Yan 2025-04-03  1715  
-d366451bed980ac Andy Yan 2025-04-03  1716  static const struct drm_edid *dw_dp_bridge_edid_read(struct drm_bridge *bridge,
-d366451bed980ac Andy Yan 2025-04-03  1717  						     struct drm_connector *connector)
-d366451bed980ac Andy Yan 2025-04-03  1718  {
-d366451bed980ac Andy Yan 2025-04-03  1719  	struct dw_dp *dp = bridge_to_dp(bridge);
-d366451bed980ac Andy Yan 2025-04-03  1720  	const struct drm_edid *edid;
-d366451bed980ac Andy Yan 2025-04-03  1721  	int ret;
-d366451bed980ac Andy Yan 2025-04-03  1722  
-d366451bed980ac Andy Yan 2025-04-03  1723  	ret = phy_power_on(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1724  	if (ret)
-d366451bed980ac Andy Yan 2025-04-03  1725  		return NULL;
-d366451bed980ac Andy Yan 2025-04-03  1726  
-d366451bed980ac Andy Yan 2025-04-03  1727  	edid = drm_edid_read_ddc(connector, &dp->aux.ddc);
-d366451bed980ac Andy Yan 2025-04-03  1728  
-d366451bed980ac Andy Yan 2025-04-03  1729  	phy_power_off(dp->phy);
-d366451bed980ac Andy Yan 2025-04-03  1730  
-d366451bed980ac Andy Yan 2025-04-03  1731  	return edid;
-d366451bed980ac Andy Yan 2025-04-03  1732  }
-d366451bed980ac Andy Yan 2025-04-03  1733  
-d366451bed980ac Andy Yan 2025-04-03  1734  static u32 *dw_dp_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-d366451bed980ac Andy Yan 2025-04-03  1735  						    struct drm_bridge_state *bridge_state,
-d366451bed980ac Andy Yan 2025-04-03  1736  						    struct drm_crtc_state *crtc_state,
-d366451bed980ac Andy Yan 2025-04-03  1737  						    struct drm_connector_state *conn_state,
-d366451bed980ac Andy Yan 2025-04-03  1738  						    unsigned int *num_output_fmts)
-d366451bed980ac Andy Yan 2025-04-03  1739  {
-d366451bed980ac Andy Yan 2025-04-03  1740  	struct dw_dp *dp = bridge_to_dp(bridge);
-d366451bed980ac Andy Yan 2025-04-03  1741  	struct dw_dp_link *link = &dp->link;
-d366451bed980ac Andy Yan 2025-04-03  1742  	struct drm_display_info *di = &conn_state->connector->display_info;
-d366451bed980ac Andy Yan 2025-04-03  1743  	struct drm_display_mode mode = crtc_state->mode;
-d366451bed980ac Andy Yan 2025-04-03  1744  	const struct dw_dp_output_format *fmt;
-d366451bed980ac Andy Yan 2025-04-03  1745  	u32 i, j = 0;
-d366451bed980ac Andy Yan 2025-04-03  1746  	u32 *output_fmts;
-d366451bed980ac Andy Yan 2025-04-03  1747  
-d366451bed980ac Andy Yan 2025-04-03  1748  	*num_output_fmts = 0;
-d366451bed980ac Andy Yan 2025-04-03  1749  
-d366451bed980ac Andy Yan 2025-04-03  1750  	output_fmts = kcalloc(ARRAY_SIZE(dw_dp_output_formats), sizeof(*output_fmts), GFP_KERNEL);
-d366451bed980ac Andy Yan 2025-04-03  1751  	if (!output_fmts)
-d366451bed980ac Andy Yan 2025-04-03  1752  		return NULL;
-d366451bed980ac Andy Yan 2025-04-03  1753  
-d366451bed980ac Andy Yan 2025-04-03  1754  	for (i = 0; i < ARRAY_SIZE(dw_dp_output_formats); i++) {
-d366451bed980ac Andy Yan 2025-04-03  1755  		fmt = &dw_dp_output_formats[i];
-d366451bed980ac Andy Yan 2025-04-03  1756  
-d366451bed980ac Andy Yan 2025-04-03  1757  		if (fmt->bpc > conn_state->max_bpc)
-d366451bed980ac Andy Yan 2025-04-03  1758  			continue;
-d366451bed980ac Andy Yan 2025-04-03  1759  
-d366451bed980ac Andy Yan 2025-04-03  1760  		if (!(fmt->color_format & di->color_formats))
-d366451bed980ac Andy Yan 2025-04-03  1761  			continue;
-d366451bed980ac Andy Yan 2025-04-03  1762  
-d366451bed980ac Andy Yan 2025-04-03  1763  		if (fmt->color_format == DRM_COLOR_FORMAT_YCBCR420 &&
-d366451bed980ac Andy Yan 2025-04-03  1764  		    !link->vsc_sdp_supported)
-d366451bed980ac Andy Yan 2025-04-03  1765  			continue;
-d366451bed980ac Andy Yan 2025-04-03  1766  
-d366451bed980ac Andy Yan 2025-04-03  1767  		if (fmt->color_format != DRM_COLOR_FORMAT_YCBCR420 &&
-d366451bed980ac Andy Yan 2025-04-03  1768  		    drm_mode_is_420_only(di, &mode))
-d366451bed980ac Andy Yan 2025-04-03  1769  			continue;
-d366451bed980ac Andy Yan 2025-04-03  1770  
-d366451bed980ac Andy Yan 2025-04-03  1771  		if (!dw_dp_bandwidth_ok(dp, &mode, fmt->bpp, link->lanes, link->rate))
-d366451bed980ac Andy Yan 2025-04-03  1772  			continue;
-d366451bed980ac Andy Yan 2025-04-03  1773  
-d366451bed980ac Andy Yan 2025-04-03  1774  		output_fmts[j++] = fmt->bus_format;
-d366451bed980ac Andy Yan 2025-04-03  1775  	}
-d366451bed980ac Andy Yan 2025-04-03  1776  
-d366451bed980ac Andy Yan 2025-04-03  1777  	*num_output_fmts = j;
-d366451bed980ac Andy Yan 2025-04-03  1778  
-d366451bed980ac Andy Yan 2025-04-03  1779  	return output_fmts;
-d366451bed980ac Andy Yan 2025-04-03  1780  }
-d366451bed980ac Andy Yan 2025-04-03  1781  
-d366451bed980ac Andy Yan 2025-04-03  1782  static const struct drm_bridge_funcs dw_dp_bridge_funcs = {
-d366451bed980ac Andy Yan 2025-04-03  1783  	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-d366451bed980ac Andy Yan 2025-04-03  1784  	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-d366451bed980ac Andy Yan 2025-04-03  1785  	.atomic_reset = drm_atomic_helper_bridge_reset,
-d366451bed980ac Andy Yan 2025-04-03  1786  	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
-d366451bed980ac Andy Yan 2025-04-03  1787  	.atomic_get_output_bus_fmts = dw_dp_bridge_atomic_get_output_bus_fmts,
-d366451bed980ac Andy Yan 2025-04-03  1788  	.atomic_check = dw_dp_bridge_atomic_check,
-d366451bed980ac Andy Yan 2025-04-03  1789  	.mode_valid = dw_dp_bridge_mode_valid,
-d366451bed980ac Andy Yan 2025-04-03 @1790  	.atomic_enable = dw_dp_bridge_atomic_enable,
-d366451bed980ac Andy Yan 2025-04-03  1791  	.atomic_disable = dw_dp_bridge_atomic_disable,
-d366451bed980ac Andy Yan 2025-04-03  1792  	.detect = dw_dp_bridge_detect,
-d366451bed980ac Andy Yan 2025-04-03  1793  	.edid_read = dw_dp_bridge_edid_read,
-d366451bed980ac Andy Yan 2025-04-03  1794  };
-d366451bed980ac Andy Yan 2025-04-03  1795  
+Why describe some, but not all ranges?
+
+> +};
+> +
+> +static const struct regmap_range s2mpg10_common_nonvolatile_registers[] = {
+> +	regmap_reg_range(0x00, 0x00),
+> +	regmap_reg_range(0x02, 0x02),
+> +	regmap_reg_range(0x0a, 0x0c),
+> +};
+> +
+> +static const struct regmap_range s2mpg10_common_precious_registers[] = {
+> +	regmap_reg_range(0x01, 0x01),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_common_wr_table = {
+> +	.yes_ranges = s2mpg10_common_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_common_registers),
+> +	.no_ranges = s2mpg10_common_ro_registers,
+> +	.n_no_ranges = ARRAY_SIZE(s2mpg10_common_ro_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_common_rd_table = {
+> +	.yes_ranges = s2mpg10_common_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_common_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_common_volatile_table = {
+> +	.no_ranges = s2mpg10_common_nonvolatile_registers,
+> +	.n_no_ranges = ARRAY_SIZE(s2mpg10_common_nonvolatile_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_common_precious_table = {
+> +	.yes_ranges = s2mpg10_common_precious_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_common_precious_registers),
+> +};
+> +
+> +static const struct regmap_config s2mpg10_regmap_config_common = {
+> +	.name = "common",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = S2MPG10_COMMON_SPD_DEBUG4,
+> +	.wr_table = &s2mpg10_common_wr_table,
+> +	.rd_table = &s2mpg10_common_rd_table,
+> +	.volatile_table = &s2mpg10_common_volatile_table,
+> +	.precious_table = &s2mpg10_common_precious_table,
+> +	.num_reg_defaults_raw = S2MPG10_COMMON_SPD_DEBUG4 + 1,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +static const struct regmap_range s2mpg10_pmic_registers[] = {
+> +	regmap_reg_range(0x00, 0xf6),
+> +};
+> +
+> +static const struct regmap_range s2mpg10_pmic_ro_registers[] = {
+> +	regmap_reg_range(0x00, 0x05), /* INTx */
+> +	regmap_reg_range(0x0c, 0x0f), /* STATUSx PWRONSRC OFFSRC */
+> +	regmap_reg_range(0xc7, 0xc7), /* GPIO input */
+> +};
+> +
+> +static const struct regmap_range s2mpg10_pmic_nonvolatile_registers[] = {
+> +	regmap_reg_range(0x06, 0x0b), /* INTxM */
+> +};
+> +
+> +static const struct regmap_range s2mpg10_pmic_precious_registers[] = {
+> +	regmap_reg_range(0x00, 0x05), /* INTx */
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_pmic_wr_table = {
+> +	.yes_ranges = s2mpg10_pmic_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_pmic_registers),
+> +	.no_ranges = s2mpg10_pmic_ro_registers,
+> +	.n_no_ranges = ARRAY_SIZE(s2mpg10_pmic_ro_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_pmic_rd_table = {
+> +	.yes_ranges = s2mpg10_pmic_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_pmic_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_pmic_volatile_table = {
+> +	.no_ranges = s2mpg10_pmic_nonvolatile_registers,
+> +	.n_no_ranges = ARRAY_SIZE(s2mpg10_pmic_nonvolatile_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_pmic_precious_table = {
+> +	.yes_ranges = s2mpg10_pmic_precious_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_pmic_precious_registers),
+> +};
+> +
+> +static const struct regmap_config s2mpg10_regmap_config_pmic = {
+> +	.name = "pmic",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = S2MPG10_PMIC_LDO_SENSE4,
+> +	.wr_table = &s2mpg10_pmic_wr_table,
+> +	.rd_table = &s2mpg10_pmic_rd_table,
+> +	.volatile_table = &s2mpg10_pmic_volatile_table,
+> +	.precious_table = &s2mpg10_pmic_precious_table,
+> +	.num_reg_defaults_raw = S2MPG10_PMIC_LDO_SENSE4 + 1,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +static const struct regmap_range s2mpg10_rtc_registers[] = {
+> +	regmap_reg_range(0x00, 0x2b), /* RTC */
+> +};
+> +
+> +static const struct regmap_range s2mpg10_rtc_volatile_registers[] = {
+> +	regmap_reg_range(0x01, 0x01), /* RTC_UPDATE */
+> +	regmap_reg_range(0x05, 0x0c), /* time / date */
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_rtc_rd_table = {
+> +	.yes_ranges = s2mpg10_rtc_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_rtc_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_rtc_volatile_table = {
+> +	.yes_ranges = s2mpg10_rtc_volatile_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_rtc_volatile_registers),
+> +};
+> +
+> +static const struct regmap_config s2mpg10_regmap_config_rtc = {
+> +	.name = "rtc",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.reg_stride = 1,
+> +	.max_register = S2MPG10_RTC_OSC_CTRL,
+> +	.rd_table = &s2mpg10_rtc_rd_table,
+> +	.volatile_table = &s2mpg10_rtc_volatile_table,
+> +	.num_reg_defaults_raw = S2MPG10_RTC_OSC_CTRL + 1,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +static const struct regmap_range s2mpg10_meter_registers[] = {
+> +	regmap_reg_range(0x00, 0x21), /* meter config */
+> +	regmap_reg_range(0x40, 0x8a), /* meter data */
+> +	regmap_reg_range(0xee, 0xee), /* offset */
+> +	regmap_reg_range(0xf1, 0xf1), /* trim */
+> +};
+> +
+> +static const struct regmap_range s2mpg10_meter_ro_registers[] = {
+> +	regmap_reg_range(0x40, 0x8a),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_meter_wr_table = {
+> +	.yes_ranges = s2mpg10_meter_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_meter_registers),
+> +	.no_ranges = s2mpg10_meter_ro_registers,
+> +	.n_no_ranges = ARRAY_SIZE(s2mpg10_meter_ro_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_meter_rd_table = {
+> +	.yes_ranges = s2mpg10_meter_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_meter_registers),
+> +};
+> +
+> +static const struct regmap_access_table s2mpg10_meter_volatile_table = {
+> +	.yes_ranges = s2mpg10_meter_ro_registers,
+> +	.n_yes_ranges = ARRAY_SIZE(s2mpg10_meter_ro_registers),
+> +};
+> +
+> +static const struct regmap_config s2mpg10_regmap_config_meter = {
+> +	.name = "meter",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.reg_stride = 1,
+> +	.max_register = S2MPG10_METER_BUCK_METER_TRIM3,
+> +	.wr_table = &s2mpg10_meter_wr_table,
+> +	.rd_table = &s2mpg10_meter_rd_table,
+> +	.volatile_table = &s2mpg10_meter_volatile_table,
+> +	.num_reg_defaults_raw = S2MPG10_METER_BUCK_METER_TRIM3 + 1,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +struct sec_pmic_acpm_shared_bus_context {
+> +	const struct acpm_handle *acpm;
+> +	unsigned int acpm_chan_id;
+> +	u8 speedy_channel;
+> +};
+> +
+> +enum sec_pmic_acpm_accesstype {
+> +	SEC_PMIC_ACPM_ACCESSTYPE_COMMON = 0x00,
+> +	SEC_PMIC_ACPM_ACCESSTYPE_PMIC = 0x01,
+> +	SEC_PMIC_ACPM_ACCESSTYPE_RTC = 0x02,
+> +	SEC_PMIC_ACPM_ACCESSTYPE_METER = 0x0a,
+> +	SEC_PMIC_ACPM_ACCESSTYPE_WLWP = 0x0b,
+> +	SEC_PMIC_ACPM_ACCESSTYPE_TRIM = 0x0f,
+> +};
+> +
+> +struct sec_pmic_acpm_bus_context {
+> +	struct sec_pmic_acpm_shared_bus_context *shared;
+> +	enum sec_pmic_acpm_accesstype type;
+> +};
+> +
+> +static int sec_pmic_acpm_bus_write(void *context, const void *data,
+> +				   size_t count)
+
+Nit: You can tidy this, and similar line-feeds, up by using 100-chars here.
+
+> +{
+> +	struct sec_pmic_acpm_bus_context *ctx = context;
+> +	const struct acpm_handle *acpm = ctx->shared->acpm;
+> +	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
+> +	u8 reg;
+> +
+> +	if (count < 2 || count > (ACPM_MAX_BULK_DATA + 1))
+
+2 because?  Either comment or define magic numbers please.
+
+> +		return -EINVAL;
+> +
+> +	reg = *(u8 *)data;
+
+No API to conduct this raw read for you?  readl(), *_to_cpu() or similar?
+
+> +	++data;
+> +	--count;
+> +
+> +	return pmic_ops->bulk_write(acpm, ctx->shared->acpm_chan_id,
+> +				    ctx->type, reg,
+> +				    ctx->shared->speedy_channel, count, data);
+> +}
+> +
+> +static int sec_pmic_acpm_bus_read(void *context, const void *reg_buf,
+> +				  size_t reg_size, void *val_buf,
+> +				  size_t val_size)
+> +{
+> +	struct sec_pmic_acpm_bus_context *ctx = context;
+> +	const struct acpm_handle *acpm = ctx->shared->acpm;
+> +	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
+> +	u8 reg;
+> +
+> +	if (reg_size != 1 || !val_size || val_size > ACPM_MAX_BULK_DATA)
+> +		return -EINVAL;
+> +
+> +	reg = *(u8 *)reg_buf;
+> +
+> +	return pmic_ops->bulk_read(acpm, ctx->shared->acpm_chan_id,
+> +				   ctx->type, reg,
+> +				   ctx->shared->speedy_channel,
+> +				   val_size, val_buf);
+> +}
+> +
+> +static int sec_pmic_acpm_bus_reg_update_bits(void *context, unsigned int reg,
+> +					     unsigned int mask,
+> +					     unsigned int val)
+> +{
+> +	struct sec_pmic_acpm_bus_context *ctx = context;
+> +	const struct acpm_handle *acpm = ctx->shared->acpm;
+> +	const struct acpm_pmic_ops *pmic_ops = &acpm->ops.pmic_ops;
+> +
+> +	return pmic_ops->update_reg(acpm, ctx->shared->acpm_chan_id,
+> +				    ctx->type, reg & 0xff,
+> +				    ctx->shared->speedy_channel, val, mask);
+> +}
+> +
+> +static const struct regmap_bus sec_pmic_acpm_regmap_bus = {
+> +	.write = sec_pmic_acpm_bus_write,
+> +	.read = sec_pmic_acpm_bus_read,
+> +	.reg_update_bits = sec_pmic_acpm_bus_reg_update_bits,
+> +	.max_raw_read = ACPM_MAX_BULK_DATA,
+> +	.max_raw_write = ACPM_MAX_BULK_DATA,
+> +};
+> +
+> +static struct regmap *
+> +sec_pmic_acpm_regmap_init(struct device *dev,
+
+Place both of these on the same line please.
+
+> +			  struct sec_pmic_acpm_shared_bus_context *shared_ctx,
+> +			  enum sec_pmic_acpm_accesstype type,
+> +			  const struct regmap_config *cfg, bool do_attach)
+> +{
+> +	struct sec_pmic_acpm_bus_context *ctx;
+> +	struct regmap *regmap;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	ctx->shared = shared_ctx;
+> +	ctx->type = type;
+> +
+> +	regmap = devm_regmap_init(dev, &sec_pmic_acpm_regmap_bus, ctx, cfg);
+> +	if (IS_ERR(regmap))
+> +		return ERR_PTR(dev_err_probe(dev, PTR_ERR(regmap),
+
+dev_err_cast_probe()
+
+> +					     "regmap init (%s) failed\n",
+> +					     cfg->name));
+> +
+> +	if (do_attach) {
+> +		int ret;
+> +
+> +		ret = regmap_attach_dev(dev, regmap, cfg);
+> +		if (ret)
+> +			return ERR_PTR(dev_err_probe(dev, ret,
+
+dev_err_ptr_probe()
+
+> +						     "regmap attach (%s) failed\n",
+> +						     cfg->name));
+> +	}
+> +
+> +	return regmap;
+> +}
+> +
+> +static void sec_pmic_acpm_mask_common_irqs(void *regmap_common)
+> +{
+> +	regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK,
+> +		     S2MPG10_COMMON_INT_SRC);
+
+Single line.  And others like it.
+
+> +}
+> +
+> +static int sec_pmic_acpm_probe(struct platform_device *pdev)
+> +{
+> +	struct regmap *regmap_common, *regmap_pmic, *regmap;
+> +	const struct sec_pmic_acpm_platform_data *pdata;
+> +	struct sec_pmic_acpm_shared_bus_context *shared_ctx;
+> +	const struct acpm_handle *acpm;
+> +	struct device *dev;
+> +	int ret, irq;
+> +
+> +	dev = &pdev->dev;
+
+You can do this during the declaration.
+
+> +	pdata = device_get_match_data(dev);
+> +	if (!pdata)
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "unsupported device type\n");
+> +
+> +	acpm = devm_acpm_get_by_node(dev, pdev->dev.parent->of_node);
+
+You have 'dev' now.  Please use it.
+
+> +	if (IS_ERR(acpm))
+> +		return dev_err_probe(dev, PTR_ERR(acpm),
+> +				     "failed to get acpm (2)\n");
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	shared_ctx = devm_kzalloc(dev, sizeof(*shared_ctx), GFP_KERNEL);
+> +	if (!shared_ctx)
+> +		return -ENOMEM;
+> +
+> +	shared_ctx->acpm = acpm;
+> +	shared_ctx->acpm_chan_id = pdata->acpm_chan_id;
+> +	shared_ctx->speedy_channel = pdata->speedy_channel;
+> +
+> +	regmap_common = sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> +						  SEC_PMIC_ACPM_ACCESSTYPE_COMMON,
+> +						  pdata->regmap_cfg_common, false);
+> +	if (IS_ERR(regmap_common))
+> +		return PTR_ERR(regmap_common);
+> +
+> +	/* Mask all interrupts from 'common' block, until successful init */
+> +	ret = regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK,
+> +			   S2MPG10_COMMON_INT_SRC);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to mask common block interrupts\n");
+> +
+> +	regmap_pmic = sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> +						SEC_PMIC_ACPM_ACCESSTYPE_PMIC,
+> +						pdata->regmap_cfg_pmic, false);
+> +	if (IS_ERR(regmap_pmic))
+> +		return PTR_ERR(regmap_pmic);
+> +
+> +	regmap = sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> +					   SEC_PMIC_ACPM_ACCESSTYPE_RTC,
+> +					   pdata->regmap_cfg_rtc, true);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	regmap = sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> +					   SEC_PMIC_ACPM_ACCESSTYPE_METER,
+> +					   pdata->regmap_cfg_meter, true);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	ret = sec_pmic_probe(dev, pdata->device_type, irq, regmap_pmic, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (device_property_read_bool(dev, "wakeup-source"))
+> +		devm_device_init_wakeup(dev);
+> +
+> +	/*
+> +	 * Unmask PMIC interrupt from 'common' block, now that everything is in
+> +	 * place.
+> +	 */
+> +	ret = regmap_clear_bits(regmap_common, S2MPG10_COMMON_INT_MASK,
+> +				S2MPG10_COMMON_INT_SRC_PMIC);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to unmask PMIC interrupt\n");
+> +
+> +	/* Mask all interrupts from 'common' block on shutdown */
+> +	ret = devm_add_action_or_reset(dev, sec_pmic_acpm_mask_common_irqs,
+> +				       regmap_common);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static void sec_pmic_acpm_shutdown(struct platform_device *pdev)
+> +{
+> +	sec_pmic_shutdown(&pdev->dev);
+
+sec_pmic_shutdown() takes a pointer to i2c_client (unless you changed it
+somewhere else).  If the later is true, then why not make it take a
+pointer to platform_device and omit this abstraction?
+
+> +}
+> +
+> +static const struct sec_pmic_acpm_platform_data s2mpg10_data = {
+> +	.device_type = S2MPG10,
+> +	.acpm_chan_id = 2,
+> +	.speedy_channel = 0,
+> +	.regmap_cfg_common = &s2mpg10_regmap_config_common,
+> +	.regmap_cfg_pmic = &s2mpg10_regmap_config_pmic,
+> +	.regmap_cfg_rtc = &s2mpg10_regmap_config_rtc,
+> +	.regmap_cfg_meter = &s2mpg10_regmap_config_meter,
+> +};
+> +
+> +static const struct of_device_id sec_pmic_acpm_of_match[] = {
+> +	{ .compatible = "samsung,s2mpg10-pmic", .data = &s2mpg10_data, },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, sec_pmic_acpm_of_match);
+> +
+> +static struct platform_driver sec_pmic_acpm_driver = {
+> +	.driver = {
+> +		.name = "sec-pmic-acpm",
+> +		.pm = pm_sleep_ptr(&sec_pmic_pm_ops),
+> +		.of_match_table = sec_pmic_acpm_of_match,
+> +	},
+> +	.probe = sec_pmic_acpm_probe,
+> +	.shutdown = sec_pmic_acpm_shutdown,
+> +};
+> +module_platform_driver(sec_pmic_acpm_driver);
+> +
+> +MODULE_AUTHOR("André Draszik <andre.draszik@linaro.org>");
+> +MODULE_DESCRIPTION("ACPM driver for the Samsung S2MPG1x");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/mfd/sec-core.c b/drivers/mfd/sec-core.c
+> index bb664e052bf5198f2fc83a86bd6e1e72364fb8df..c4b7abe511090d8f5ff2eb501f325cc8173b9bf5 100644
+> --- a/drivers/mfd/sec-core.c
+> +++ b/drivers/mfd/sec-core.c
+> @@ -36,6 +36,14 @@ static const struct mfd_cell s2dos05_devs[] = {
+>  	{ .name = "s2dos05-regulator", },
+>  };
+>  
+> +static const struct mfd_cell s2mpg10_devs[] = {
+> +	MFD_CELL_NAME("s2mpg10-meter"),
+> +	MFD_CELL_NAME("s2mpg10-regulator"),
+> +	MFD_CELL_NAME("s2mpg10-rtc"),
+> +	MFD_CELL_OF("s2mpg10-clk", NULL, NULL, 0, 0, "samsung,s2mpg10-clk"),
+> +	MFD_CELL_OF("s2mpg10-gpio", NULL, NULL, 0, 0, "samsung,s2mpg10-gpio"),
+> +};
+> +
+>  static const struct mfd_cell s2mps11_devs[] = {
+>  	{ .name = "s2mps11-regulator", },
+>  	{ .name = "s2mps14-rtc", },
+> @@ -90,6 +98,10 @@ static void sec_pmic_dump_rev(struct sec_pmic_dev *sec_pmic)
+>  {
+>  	unsigned int val;
+>  
+> +	/* For s2mpg1x, the revision is in a different regmap */
+
+Nice, thanks for that.
+
+> +	if (sec_pmic->device_type == S2MPG10)
+> +		return;
+> +
+>  	/* For each device type, the REG_ID is always the first register */
+>  	if (!regmap_read(sec_pmic->regmap_pmic, S2MPS11_REG_ID, &val))
+>  		dev_dbg(sec_pmic->dev, "Revision: 0x%x\n", val);
+> @@ -188,6 +200,10 @@ int sec_pmic_probe(struct device *dev, unsigned long device_type,
+>  		sec_devs = s2mpa01_devs;
+>  		num_sec_devs = ARRAY_SIZE(s2mpa01_devs);
+>  		break;
+> +	case S2MPG10:
+> +		sec_devs = s2mpg10_devs;
+> +		num_sec_devs = ARRAY_SIZE(s2mpg10_devs);
+> +		break;
+>  	case S2MPS11X:
+>  		sec_devs = s2mps11_devs;
+>  		num_sec_devs = ARRAY_SIZE(s2mps11_devs);
+> diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
+> index 4d49bb42bd0d109263f485c8b58e88cdd8d598d9..bf86281401ac6ff05c90c2d71c84744709ed79cb 100644
+> --- a/drivers/mfd/sec-irq.c
+> +++ b/drivers/mfd/sec-irq.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/irq.h>
+>  #include <linux/mfd/samsung/core.h>
+>  #include <linux/mfd/samsung/irq.h>
+> +#include <linux/mfd/samsung/s2mpg10.h>
+>  #include <linux/mfd/samsung/s2mps11.h>
+>  #include <linux/mfd/samsung/s2mps14.h>
+>  #include <linux/mfd/samsung/s2mpu02.h>
+> @@ -20,6 +21,60 @@
+>  #include <linux/regmap.h>
+>  #include "sec-core.h"
+>  
+> +static const struct regmap_irq s2mpg10_irqs[] = {
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRONF, 0, S2MPG10_IRQ_PWRONF_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRONR, 0, S2MPG10_IRQ_PWRONR_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_JIGONBF, 0, S2MPG10_IRQ_JIGONBF_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_JIGONBR, 0, S2MPG10_IRQ_JIGONBR_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_ACOKBF, 0, S2MPG10_IRQ_ACOKBF_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_ACOKBR, 0, S2MPG10_IRQ_ACOKBR_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRON1S, 0, S2MPG10_IRQ_PWRON1S_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_MRB, 0, S2MPG10_IRQ_MRB_MASK),
+> +
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTC60S, 1, S2MPG10_IRQ_RTC60S_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTCA1, 1, S2MPG10_IRQ_RTCA1_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTCA0, 1, S2MPG10_IRQ_RTCA0_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTC1S, 1, S2MPG10_IRQ_RTC1S_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR_COLDRST, 1, S2MPG10_IRQ_WTSR_COLDRST_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR, 1, S2MPG10_IRQ_WTSR_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_WRST, 1, S2MPG10_IRQ_WRST_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_SMPL, 1, S2MPG10_IRQ_SMPL_MASK),
+> +
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_120C, 2, S2MPG10_IRQ_INT120C_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_140C, 2, S2MPG10_IRQ_INT140C_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_TSD, 2, S2MPG10_IRQ_TSD_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PIF_TIMEOUT1, 2, S2MPG10_IRQ_PIF_TIMEOUT1_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PIF_TIMEOUT2, 2, S2MPG10_IRQ_PIF_TIMEOUT2_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_PARITY_ERR, 2, S2MPG10_IRQ_SPD_PARITY_ERR_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_ABNORMAL_STOP, 2, S2MPG10_IRQ_SPD_ABNORMAL_STOP_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PMETER_OVERF, 2, S2MPG10_IRQ_PMETER_OVERF_MASK),
+> +
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B1M, 3, S2MPG10_IRQ_OCP_B1M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B2M, 3, S2MPG10_IRQ_OCP_B2M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B3M, 3, S2MPG10_IRQ_OCP_B3M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B4M, 3, S2MPG10_IRQ_OCP_B4M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B5M, 3, S2MPG10_IRQ_OCP_B5M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B6M, 3, S2MPG10_IRQ_OCP_B6M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B7M, 3, S2MPG10_IRQ_OCP_B7M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B8M, 3, S2MPG10_IRQ_OCP_B8M_MASK),
+> +
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B9M, 4, S2MPG10_IRQ_OCP_B9M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B10M, 4, S2MPG10_IRQ_OCP_B10M_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_WLWP_ACC, 4, S2MPG10_IRQ_WLWP_ACC_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_SMPL_TIMEOUT, 4, S2MPG10_IRQ_SMPL_TIMEOUT_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR_TIMEOUT, 4, S2MPG10_IRQ_WTSR_TIMEOUT_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_SRP_PKT_RST, 4, S2MPG10_IRQ_SPD_SRP_PKT_RST_MASK),
+> +
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH0, 5, S2MPG10_IRQ_PWR_WARN_CH0_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH1, 5, S2MPG10_IRQ_PWR_WARN_CH1_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH2, 5, S2MPG10_IRQ_PWR_WARN_CH2_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH3, 5, S2MPG10_IRQ_PWR_WARN_CH3_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH4, 5, S2MPG10_IRQ_PWR_WARN_CH4_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH5, 5, S2MPG10_IRQ_PWR_WARN_CH5_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH6, 5, S2MPG10_IRQ_PWR_WARN_CH6_MASK),
+> +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH7, 5, S2MPG10_IRQ_PWR_WARN_CH7_MASK),
+> +};
+> +
+>  static const struct regmap_irq s2mps11_irqs[] = {
+>  	[S2MPS11_IRQ_PWRONF] = {
+>  		.reg_offset = 0,
+> @@ -320,6 +375,16 @@ static const struct regmap_irq s5m8767_irqs[] = {
+>  	},
+>  };
+>  
+> +static const struct regmap_irq_chip s2mpg10_irq_chip = {
+> +	.name = "s2mpg10",
+> +	.irqs = s2mpg10_irqs,
+> +	.num_irqs = ARRAY_SIZE(s2mpg10_irqs),
+> +	.num_regs = 6,
+> +	.status_base = S2MPG10_PMIC_INT1,
+> +	.mask_base = S2MPG10_PMIC_INT1M,
+> +	/* all interrupt sources are read-to-clear */
+
+TOUPPER(a);
+
+Comments usually go on-top of the thing they're commenting on.
+
+> +};
+> +
+>  static const struct regmap_irq_chip s2mps11_irq_chip = {
+>  	.name = "s2mps11",
+>  	.irqs = s2mps11_irqs,
+> @@ -402,6 +467,9 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
+>  	case S2MPA01:
+>  		sec_irq_chip = &s2mps14_irq_chip;
+>  		break;
+> +	case S2MPG10:
+> +		sec_irq_chip = &s2mpg10_irq_chip;
+> +		break;
+>  	case S2MPS11X:
+>  		sec_irq_chip = &s2mps11_irq_chip;
+>  		break;
+> diff --git a/include/linux/mfd/samsung/core.h b/include/linux/mfd/samsung/core.h
+> index 8a4e660854bbc955b812b4d61d4a52a0fc2f2899..c1102324172a9b6bd6072b5929a4866d6c9653fa 100644
+> --- a/include/linux/mfd/samsung/core.h
+> +++ b/include/linux/mfd/samsung/core.h
+> @@ -39,6 +39,7 @@ enum sec_device_type {
+>  	S5M8767X,
+>  	S2DOS05,
+>  	S2MPA01,
+> +	S2MPG10,
+>  	S2MPS11X,
+>  	S2MPS13X,
+>  	S2MPS14X,
+> diff --git a/include/linux/mfd/samsung/irq.h b/include/linux/mfd/samsung/irq.h
+> index 978f7af66f74842c4f8dd62c0f58a7a45aba7c34..b4805cbd949bd605004bd88cf361109d1cbbc3bf 100644
+> --- a/include/linux/mfd/samsung/irq.h
+> +++ b/include/linux/mfd/samsung/irq.h
+> @@ -57,6 +57,109 @@ enum s2mpa01_irq {
+>  #define S2MPA01_IRQ_B24_TSD_MASK	(1 << 4)
+>  #define S2MPA01_IRQ_B35_TSD_MASK	(1 << 5)
+>  
+> +enum s2mpg10_irq {
+> +	/* PMIC */
+> +	S2MPG10_IRQ_PWRONF,
+> +	S2MPG10_IRQ_PWRONR,
+> +	S2MPG10_IRQ_JIGONBF,
+> +	S2MPG10_IRQ_JIGONBR,
+> +	S2MPG10_IRQ_ACOKBF,
+> +	S2MPG10_IRQ_ACOKBR,
+> +	S2MPG10_IRQ_PWRON1S,
+> +	S2MPG10_IRQ_MRB,
+> +#define S2MPG10_IRQ_PWRONF_MASK		BIT(0)
+> +#define S2MPG10_IRQ_PWRONR_MASK		BIT(1)
+> +#define S2MPG10_IRQ_JIGONBF_MASK	BIT(2)
+> +#define S2MPG10_IRQ_JIGONBR_MASK	BIT(3)
+> +#define S2MPG10_IRQ_ACOKBF_MASK		BIT(4)
+> +#define S2MPG10_IRQ_ACOKBR_MASK		BIT(5)
+> +#define S2MPG10_IRQ_PWRON1S_MASK	BIT(6)
+> +#define S2MPG10_IRQ_MRB_MASK		BIT(7)
+> +
+> +	S2MPG10_IRQ_RTC60S,
+> +	S2MPG10_IRQ_RTCA1,
+> +	S2MPG10_IRQ_RTCA0,
+> +	S2MPG10_IRQ_RTC1S,
+> +	S2MPG10_IRQ_WTSR_COLDRST,
+> +	S2MPG10_IRQ_WTSR,
+> +	S2MPG10_IRQ_WRST,
+> +	S2MPG10_IRQ_SMPL,
+> +#define S2MPG10_IRQ_RTC60S_MASK		BIT(0)
+> +#define S2MPG10_IRQ_RTCA1_MASK		BIT(1)
+> +#define S2MPG10_IRQ_RTCA0_MASK		BIT(2)
+> +#define S2MPG10_IRQ_RTC1S_MASK		BIT(3)
+> +#define S2MPG10_IRQ_WTSR_COLDRST_MASK	BIT(4)
+> +#define S2MPG10_IRQ_WTSR_MASK		BIT(5)
+> +#define S2MPG10_IRQ_WRST_MASK		BIT(6)
+> +#define S2MPG10_IRQ_SMPL_MASK		BIT(7)
+> +
+> +	S2MPG10_IRQ_120C,
+> +	S2MPG10_IRQ_140C,
+> +	S2MPG10_IRQ_TSD,
+> +	S2MPG10_IRQ_PIF_TIMEOUT1,
+> +	S2MPG10_IRQ_PIF_TIMEOUT2,
+> +	S2MPG10_IRQ_SPD_PARITY_ERR,
+> +	S2MPG10_IRQ_SPD_ABNORMAL_STOP,
+> +	S2MPG10_IRQ_PMETER_OVERF,
+> +#define S2MPG10_IRQ_INT120C_MASK		BIT(0)
+> +#define S2MPG10_IRQ_INT140C_MASK		BIT(1)
+> +#define S2MPG10_IRQ_TSD_MASK			BIT(2)
+> +#define S2MPG10_IRQ_PIF_TIMEOUT1_MASK		BIT(3)
+> +#define S2MPG10_IRQ_PIF_TIMEOUT2_MASK		BIT(4)
+> +#define S2MPG10_IRQ_SPD_PARITY_ERR_MASK		BIT(5)
+> +#define S2MPG10_IRQ_SPD_ABNORMAL_STOP_MASK	BIT(6)
+> +#define S2MPG10_IRQ_PMETER_OVERF_MASK		BIT(7)
+> +
+> +	S2MPG10_IRQ_OCP_B1M,
+> +	S2MPG10_IRQ_OCP_B2M,
+> +	S2MPG10_IRQ_OCP_B3M,
+> +	S2MPG10_IRQ_OCP_B4M,
+> +	S2MPG10_IRQ_OCP_B5M,
+> +	S2MPG10_IRQ_OCP_B6M,
+> +	S2MPG10_IRQ_OCP_B7M,
+> +	S2MPG10_IRQ_OCP_B8M,
+> +#define S2MPG10_IRQ_OCP_B1M_MASK	BIT(0)
+> +#define S2MPG10_IRQ_OCP_B2M_MASK	BIT(1)
+> +#define S2MPG10_IRQ_OCP_B3M_MASK	BIT(2)
+> +#define S2MPG10_IRQ_OCP_B4M_MASK	BIT(3)
+> +#define S2MPG10_IRQ_OCP_B5M_MASK	BIT(4)
+> +#define S2MPG10_IRQ_OCP_B6M_MASK	BIT(5)
+> +#define S2MPG10_IRQ_OCP_B7M_MASK	BIT(6)
+> +#define S2MPG10_IRQ_OCP_B8M_MASK	BIT(7)
+> +
+> +	S2MPG10_IRQ_OCP_B9M,
+> +	S2MPG10_IRQ_OCP_B10M,
+> +	S2MPG10_IRQ_WLWP_ACC,
+> +	S2MPG10_IRQ_SMPL_TIMEOUT,
+> +	S2MPG10_IRQ_WTSR_TIMEOUT,
+> +	S2MPG10_IRQ_SPD_SRP_PKT_RST,
+> +#define S2MPG10_IRQ_OCP_B9M_MASK		BIT(0)
+> +#define S2MPG10_IRQ_OCP_B10M_MASK		BIT(1)
+> +#define S2MPG10_IRQ_WLWP_ACC_MASK		BIT(2)
+> +#define S2MPG10_IRQ_SMPL_TIMEOUT_MASK		BIT(5)
+> +#define S2MPG10_IRQ_WTSR_TIMEOUT_MASK		BIT(6)
+> +#define S2MPG10_IRQ_SPD_SRP_PKT_RST_MASK	BIT(7)
+> +
+> +	S2MPG10_IRQ_PWR_WARN_CH0,
+> +	S2MPG10_IRQ_PWR_WARN_CH1,
+> +	S2MPG10_IRQ_PWR_WARN_CH2,
+> +	S2MPG10_IRQ_PWR_WARN_CH3,
+> +	S2MPG10_IRQ_PWR_WARN_CH4,
+> +	S2MPG10_IRQ_PWR_WARN_CH5,
+> +	S2MPG10_IRQ_PWR_WARN_CH6,
+> +	S2MPG10_IRQ_PWR_WARN_CH7,
+> +#define S2MPG10_IRQ_PWR_WARN_CH0_MASK	BIT(0)
+> +#define S2MPG10_IRQ_PWR_WARN_CH1_MASK	BIT(1)
+> +#define S2MPG10_IRQ_PWR_WARN_CH2_MASK	BIT(2)
+> +#define S2MPG10_IRQ_PWR_WARN_CH3_MASK	BIT(3)
+> +#define S2MPG10_IRQ_PWR_WARN_CH4_MASK	BIT(4)
+> +#define S2MPG10_IRQ_PWR_WARN_CH5_MASK	BIT(5)
+> +#define S2MPG10_IRQ_PWR_WARN_CH6_MASK	BIT(6)
+> +#define S2MPG10_IRQ_PWR_WARN_CH7_MASK	BIT(7)
+> +
+> +	S2MPG10_IRQ_NR,
+> +};
+> +
+>  enum s2mps11_irq {
+>  	S2MPS11_IRQ_PWRONF,
+>  	S2MPS11_IRQ_PWRONR,
+> diff --git a/include/linux/mfd/samsung/rtc.h b/include/linux/mfd/samsung/rtc.h
+> index 0204decfc9aacbf4bc93d98a256f1d956bbcd19c..51c4239a1fa6f28155711a0756b0e071b010d848 100644
+> --- a/include/linux/mfd/samsung/rtc.h
+> +++ b/include/linux/mfd/samsung/rtc.h
+> @@ -72,6 +72,37 @@ enum s2mps_rtc_reg {
+>  	S2MPS_RTC_REG_MAX,
+>  };
+>  
+> +enum s2mpg10_rtc_reg {
+> +	S2MPG10_RTC_CTRL,
+> +	S2MPG10_RTC_UPDATE,
+> +	S2MPG10_RTC_SMPL,
+> +	S2MPG10_RTC_WTSR,
+> +	S2MPG10_RTC_CAP_SEL,
+> +	S2MPG10_RTC_MSEC,
+> +	S2MPG10_RTC_SEC,
+> +	S2MPG10_RTC_MIN,
+> +	S2MPG10_RTC_HOUR,
+> +	S2MPG10_RTC_WEEK,
+> +	S2MPG10_RTC_DAY,
+> +	S2MPG10_RTC_MON,
+> +	S2MPG10_RTC_YEAR,
+> +	S2MPG10_RTC_A0SEC,
+> +	S2MPG10_RTC_A0MIN,
+> +	S2MPG10_RTC_A0HOUR,
+> +	S2MPG10_RTC_A0WEEK,
+> +	S2MPG10_RTC_A0DAY,
+> +	S2MPG10_RTC_A0MON,
+> +	S2MPG10_RTC_A0YEAR,
+> +	S2MPG10_RTC_A1SEC,
+> +	S2MPG10_RTC_A1MIN,
+> +	S2MPG10_RTC_A1HOUR,
+> +	S2MPG10_RTC_A1WEEK,
+> +	S2MPG10_RTC_A1DAY,
+> +	S2MPG10_RTC_A1MON,
+> +	S2MPG10_RTC_A1YEAR,
+> +	S2MPG10_RTC_OSC_CTRL,
+> +};
+> +
+>  #define RTC_I2C_ADDR		(0x0C >> 1)
+>  
+>  #define HOUR_12			(1 << 7)
+> @@ -124,10 +155,16 @@ enum s2mps_rtc_reg {
+>  #define ALARM_ENABLE_SHIFT	7
+>  #define ALARM_ENABLE_MASK	(1 << ALARM_ENABLE_SHIFT)
+>  
+> +/* WTSR & SMPL registers */
+>  #define SMPL_ENABLE_SHIFT	7
+>  #define SMPL_ENABLE_MASK	(1 << SMPL_ENABLE_SHIFT)
+>  
+>  #define WTSR_ENABLE_SHIFT	6
+>  #define WTSR_ENABLE_MASK	(1 << WTSR_ENABLE_SHIFT)
+>  
+> +#define S2MPG10_WTSR_COLDTIMER	GENMASK(6, 5)
+> +#define S2MPG10_WTSR_COLDRST	BIT(4)
+> +#define S2MPG10_WTSR_WTSRT	GENMASK(3, 1)
+> +#define S2MPG10_WTSR_WTSR_EN	BIT(0)
+> +
+>  #endif /*  __LINUX_MFD_SEC_RTC_H */
+> diff --git a/include/linux/mfd/samsung/s2mpg10.h b/include/linux/mfd/samsung/s2mpg10.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..778ff16ef6668ded514e8dc7242f369cb9c2d0e6
+> --- /dev/null
+> +++ b/include/linux/mfd/samsung/s2mpg10.h
+> @@ -0,0 +1,454 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Copyright 2015 Samsung Electronics
+> + * Copyright 2020 Google Inc
+> + * Copyright 2025 Linaro Ltd.
+> + */
+> +
+> +#ifndef __LINUX_MFD_S2MPG10_H
+> +#define __LINUX_MFD_S2MPG10_H
+> +
+> +/* Common registers (type 0x000) */
+> +enum s2mpg10_common_reg {
+> +	S2MPG10_COMMON_CHIPID,
+> +	S2MPG10_COMMON_INT,
+> +	S2MPG10_COMMON_INT_MASK,
+> +	S2MPG10_COMMON_SPD_CTRL1 = 0x0a,
+> +	S2MPG10_COMMON_SPD_CTRL2,
+> +	S2MPG10_COMMON_SPD_CTRL3,
+> +	S2MPG10_COMMON_MON1SEL = 0x1a,
+> +	S2MPG10_COMMON_MON2SEL,
+> +	S2MPG10_COMMON_MONR,
+> +	S2MPG10_COMMON_DEBUG_CTRL1,
+> +	S2MPG10_COMMON_DEBUG_CTRL2,
+> +	S2MPG10_COMMON_DEBUG_CTRL3,
+> +	S2MPG10_COMMON_DEBUG_CTRL4,
+> +	S2MPG10_COMMON_DEBUG_CTRL5,
+> +	S2MPG10_COMMON_DEBUG_CTRL6,
+> +	S2MPG10_COMMON_DEBUG_CTRL7,
+> +	S2MPG10_COMMON_DEBUG_CTRL8,
+> +	S2MPG10_COMMON_TEST_MODE1,
+> +	S2MPG10_COMMON_TEST_MODE2,
+> +	S2MPG10_COMMON_SPD_DEBUG1,
+> +	S2MPG10_COMMON_SPD_DEBUG2,
+> +	S2MPG10_COMMON_SPD_DEBUG3,
+> +	S2MPG10_COMMON_SPD_DEBUG4,
+> +};
+> +
+> +/* for S2MPG10_COMMON_INT and S2MPG10_COMMON_INT_MASK */
+
+TOUPPER(f), etc.
+
+> +#define S2MPG10_COMMON_INT_SRC       GENMASK(7, 0)
+> +#define S2MPG10_COMMON_INT_SRC_PMIC  BIT(0)
+> +
+> +/* PMIC registers (type 0x100) */
+> +enum s2mpg10_pmic_reg {
+> +	S2MPG10_PMIC_INT1,
+> +	S2MPG10_PMIC_INT2,
+> +	S2MPG10_PMIC_INT3,
+> +	S2MPG10_PMIC_INT4,
+> +	S2MPG10_PMIC_INT5,
+> +	S2MPG10_PMIC_INT6,
+> +	S2MPG10_PMIC_INT1M,
+> +	S2MPG10_PMIC_INT2M,
+> +	S2MPG10_PMIC_INT3M,
+> +	S2MPG10_PMIC_INT4M,
+> +	S2MPG10_PMIC_INT5M,
+> +	S2MPG10_PMIC_INT6M,
+> +	S2MPG10_PMIC_STATUS1,
+> +	S2MPG10_PMIC_STATUS2,
+> +	S2MPG10_PMIC_PWRONSRC,
+> +	S2MPG10_PMIC_OFFSRC,
+> +	S2MPG10_PMIC_BU_CHG,
+> +	S2MPG10_PMIC_RTCBUF,
+> +	S2MPG10_PMIC_COMMON_CTRL1,
+> +	S2MPG10_PMIC_COMMON_CTRL2,
+> +	S2MPG10_PMIC_COMMON_CTRL3,
+> +	S2MPG10_PMIC_COMMON_CTRL4,
+> +	S2MPG10_PMIC_SMPL_WARN_CTRL,
+> +	S2MPG10_PMIC_MIMICKING_CTRL,
+> +	S2MPG10_PMIC_B1M_CTRL,
+> +	S2MPG10_PMIC_B1M_OUT1,
+> +	S2MPG10_PMIC_B1M_OUT2,
+> +	S2MPG10_PMIC_B2M_CTRL,
+> +	S2MPG10_PMIC_B2M_OUT1,
+> +	S2MPG10_PMIC_B2M_OUT2,
+> +	S2MPG10_PMIC_B3M_CTRL,
+> +	S2MPG10_PMIC_B3M_OUT1,
+> +	S2MPG10_PMIC_B3M_OUT2,
+> +	S2MPG10_PMIC_B4M_CTRL,
+> +	S2MPG10_PMIC_B4M_OUT1,
+> +	S2MPG10_PMIC_B4M_OUT2,
+> +	S2MPG10_PMIC_B5M_CTRL,
+> +	S2MPG10_PMIC_B5M_OUT1,
+> +	S2MPG10_PMIC_B5M_OUT2,
+> +	S2MPG10_PMIC_B6M_CTRL,
+> +	S2MPG10_PMIC_B6M_OUT1,
+> +	S2MPG10_PMIC_B6M_OUT2,
+> +	S2MPG10_PMIC_B7M_CTRL,
+> +	S2MPG10_PMIC_B7M_OUT1,
+> +	S2MPG10_PMIC_B7M_OUT2,
+> +	S2MPG10_PMIC_B8M_CTRL,
+> +	S2MPG10_PMIC_B8M_OUT1,
+> +	S2MPG10_PMIC_B8M_OUT2,
+> +	S2MPG10_PMIC_B9M_CTRL,
+> +	S2MPG10_PMIC_B9M_OUT1,
+> +	S2MPG10_PMIC_B9M_OUT2,
+> +	S2MPG10_PMIC_B10M_CTRL,
+> +	S2MPG10_PMIC_B10M_OUT1,
+> +	S2MPG10_PMIC_B10M_OUT2,
+> +	S2MPG10_PMIC_BUCK1M_USONIC,
+> +	S2MPG10_PMIC_BUCK2M_USONIC,
+> +	S2MPG10_PMIC_BUCK3M_USONIC,
+> +	S2MPG10_PMIC_BUCK4M_USONIC,
+> +	S2MPG10_PMIC_BUCK5M_USONIC,
+> +	S2MPG10_PMIC_BUCK6M_USONIC,
+> +	S2MPG10_PMIC_BUCK7M_USONIC,
+> +	S2MPG10_PMIC_BUCK8M_USONIC,
+> +	S2MPG10_PMIC_BUCK9M_USONIC,
+> +	S2MPG10_PMIC_BUCK10M_USONIC,
+> +	S2MPG10_PMIC_L1M_CTRL,
+> +	S2MPG10_PMIC_L2M_CTRL,
+> +	S2MPG10_PMIC_L3M_CTRL,
+> +	S2MPG10_PMIC_L4M_CTRL,
+> +	S2MPG10_PMIC_L5M_CTRL,
+> +	S2MPG10_PMIC_L6M_CTRL,
+> +	S2MPG10_PMIC_L7M_CTRL,
+> +	S2MPG10_PMIC_L8M_CTRL,
+> +	S2MPG10_PMIC_L9M_CTRL,
+> +	S2MPG10_PMIC_L10M_CTRL,
+> +	S2MPG10_PMIC_L11M_CTRL1,
+> +	S2MPG10_PMIC_L11M_CTRL2,
+> +	S2MPG10_PMIC_L12M_CTRL1,
+> +	S2MPG10_PMIC_L12M_CTRL2,
+> +	S2MPG10_PMIC_L13M_CTRL1,
+> +	S2MPG10_PMIC_L13M_CTRL2,
+> +	S2MPG10_PMIC_L14M_CTRL,
+> +	S2MPG10_PMIC_L15M_CTRL1,
+> +	S2MPG10_PMIC_L15M_CTRL2,
+> +	S2MPG10_PMIC_L16M_CTRL,
+> +	S2MPG10_PMIC_L17M_CTRL,
+> +	S2MPG10_PMIC_L18M_CTRL,
+> +	S2MPG10_PMIC_L19M_CTRL,
+> +	S2MPG10_PMIC_L20M_CTRL,
+> +	S2MPG10_PMIC_L21M_CTRL,
+> +	S2MPG10_PMIC_L22M_CTRL,
+> +	S2MPG10_PMIC_L23M_CTRL,
+> +	S2MPG10_PMIC_L24M_CTRL,
+> +	S2MPG10_PMIC_L25M_CTRL,
+> +	S2MPG10_PMIC_L26M_CTRL,
+> +	S2MPG10_PMIC_L27M_CTRL,
+> +	S2MPG10_PMIC_L28M_CTRL,
+> +	S2MPG10_PMIC_L29M_CTRL,
+> +	S2MPG10_PMIC_L30M_CTRL,
+> +	S2MPG10_PMIC_L31M_CTRL,
+> +	S2MPG10_PMIC_LDO_CTRL1,
+> +	S2MPG10_PMIC_LDO_CTRL2,
+> +	S2MPG10_PMIC_LDO_DSCH1,
+> +	S2MPG10_PMIC_LDO_DSCH2,
+> +	S2MPG10_PMIC_LDO_DSCH3,
+> +	S2MPG10_PMIC_LDO_DSCH4,
+> +	S2MPG10_PMIC_LDO_BUCK7M_HLIMIT,
+> +	S2MPG10_PMIC_LDO_BUCK7M_LLIMIT,
+> +	S2MPG10_PMIC_LDO_LDO21M_HLIMIT,
+> +	S2MPG10_PMIC_LDO_LDO21M_LLIMIT,
+> +	S2MPG10_PMIC_LDO_LDO11M_HLIMIT,
+> +	S2MPG10_PMIC_DVS_RAMP1,
+> +	S2MPG10_PMIC_DVS_RAMP2,
+> +	S2MPG10_PMIC_DVS_RAMP3,
+> +	S2MPG10_PMIC_DVS_RAMP4,
+> +	S2MPG10_PMIC_DVS_RAMP5,
+> +	S2MPG10_PMIC_DVS_RAMP6,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL1,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL2,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL3,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL4,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL5,
+> +	S2MPG10_PMIC_DVS_SYNC_CTRL6,
+> +	S2MPG10_PMIC_OFF_CTRL1,
+> +	S2MPG10_PMIC_OFF_CTRL2,
+> +	S2MPG10_PMIC_OFF_CTRL3,
+> +	S2MPG10_PMIC_OFF_CTRL4,
+> +	S2MPG10_PMIC_SEQ_CTRL1,
+> +	S2MPG10_PMIC_SEQ_CTRL2,
+> +	S2MPG10_PMIC_SEQ_CTRL3,
+> +	S2MPG10_PMIC_SEQ_CTRL4,
+> +	S2MPG10_PMIC_SEQ_CTRL5,
+> +	S2MPG10_PMIC_SEQ_CTRL6,
+> +	S2MPG10_PMIC_SEQ_CTRL7,
+> +	S2MPG10_PMIC_SEQ_CTRL8,
+> +	S2MPG10_PMIC_SEQ_CTRL9,
+> +	S2MPG10_PMIC_SEQ_CTRL10,
+> +	S2MPG10_PMIC_SEQ_CTRL11,
+> +	S2MPG10_PMIC_SEQ_CTRL12,
+> +	S2MPG10_PMIC_SEQ_CTRL13,
+> +	S2MPG10_PMIC_SEQ_CTRL14,
+> +	S2MPG10_PMIC_SEQ_CTRL15,
+> +	S2MPG10_PMIC_SEQ_CTRL16,
+> +	S2MPG10_PMIC_SEQ_CTRL17,
+> +	S2MPG10_PMIC_SEQ_CTRL18,
+> +	S2MPG10_PMIC_SEQ_CTRL19,
+> +	S2MPG10_PMIC_SEQ_CTRL20,
+> +	S2MPG10_PMIC_SEQ_CTRL21,
+> +	S2MPG10_PMIC_SEQ_CTRL22,
+> +	S2MPG10_PMIC_SEQ_CTRL23,
+> +	S2MPG10_PMIC_SEQ_CTRL24,
+> +	S2MPG10_PMIC_SEQ_CTRL25,
+> +	S2MPG10_PMIC_SEQ_CTRL26,
+> +	S2MPG10_PMIC_SEQ_CTRL27,
+> +	S2MPG10_PMIC_SEQ_CTRL28,
+> +	S2MPG10_PMIC_SEQ_CTRL29,
+> +	S2MPG10_PMIC_SEQ_CTRL30,
+> +	S2MPG10_PMIC_SEQ_CTRL31,
+> +	S2MPG10_PMIC_SEQ_CTRL32,
+> +	S2MPG10_PMIC_SEQ_CTRL33,
+> +	S2MPG10_PMIC_SEQ_CTRL34,
+> +	S2MPG10_PMIC_SEQ_CTRL35,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL1,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL2,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL3,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL4,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL5,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL6,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL7,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL8,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL9,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL10,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL11,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL12,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL13,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL14,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL15,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL16,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL17,
+> +	S2MPG10_PMIC_OFF_SEQ_CTRL18,
+> +	S2MPG10_PMIC_PCTRLSEL1,
+> +	S2MPG10_PMIC_PCTRLSEL2,
+> +	S2MPG10_PMIC_PCTRLSEL3,
+> +	S2MPG10_PMIC_PCTRLSEL4,
+> +	S2MPG10_PMIC_PCTRLSEL5,
+> +	S2MPG10_PMIC_PCTRLSEL6,
+> +	S2MPG10_PMIC_PCTRLSEL7,
+> +	S2MPG10_PMIC_PCTRLSEL8,
+> +	S2MPG10_PMIC_PCTRLSEL9,
+> +	S2MPG10_PMIC_PCTRLSEL10,
+> +	S2MPG10_PMIC_PCTRLSEL11,
+> +	S2MPG10_PMIC_PCTRLSEL12,
+> +	S2MPG10_PMIC_PCTRLSEL13,
+> +	S2MPG10_PMIC_DCTRLSEL1,
+> +	S2MPG10_PMIC_DCTRLSEL2,
+> +	S2MPG10_PMIC_DCTRLSEL3,
+> +	S2MPG10_PMIC_DCTRLSEL4,
+> +	S2MPG10_PMIC_DCTRLSEL5,
+> +	S2MPG10_PMIC_DCTRLSEL6,
+> +	S2MPG10_PMIC_DCTRLSEL7,
+> +	S2MPG10_PMIC_GPIO_CTRL1,
+> +	S2MPG10_PMIC_GPIO_CTRL2,
+> +	S2MPG10_PMIC_GPIO_CTRL3,
+> +	S2MPG10_PMIC_GPIO_CTRL4,
+> +	S2MPG10_PMIC_GPIO_CTRL5,
+> +	S2MPG10_PMIC_GPIO_CTRL6,
+> +	S2MPG10_PMIC_GPIO_CTRL7,
+> +	S2MPG10_PMIC_B2M_OCP_WARN,
+> +	S2MPG10_PMIC_B2M_OCP_WARN_X,
+> +	S2MPG10_PMIC_B2M_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B2M_OCP_WARN_Z,
+> +	S2MPG10_PMIC_B3M_OCP_WARN,
+> +	S2MPG10_PMIC_B3M_OCP_WARN_X,
+> +	S2MPG10_PMIC_B3M_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B3M_OCP_WARN_Z,
+> +	S2MPG10_PMIC_B10M_OCP_WARN,
+> +	S2MPG10_PMIC_B10M_OCP_WARN_X,
+> +	S2MPG10_PMIC_B10M_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B10M_OCP_WARN_Z,
+> +	S2MPG10_PMIC_B2M_SOFT_OCP_WARN,
+> +	S2MPG10_PMIC_B2M_SOFT_OCP_WARN_X,
+> +	S2MPG10_PMIC_B2M_SOFT_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B2M_SOFT_OCP_WARN_Z,
+> +	S2MPG10_PMIC_B3M_SOFT_OCP_WARN,
+> +	S2MPG10_PMIC_B3M_SOFT_OCP_WARN_X,
+> +	S2MPG10_PMIC_B3M_SOFT_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B3M_SOFT_OCP_WARN_Z,
+> +	S2MPG10_PMIC_B10M_SOFT_OCP_WARN,
+> +	S2MPG10_PMIC_B10M_SOFT_OCP_WARN_X,
+> +	S2MPG10_PMIC_B10M_SOFT_OCP_WARN_Y,
+> +	S2MPG10_PMIC_B10M_SOFT_OCP_WARN_Z,
+> +	S2MPG10_PMIC_BUCK_OCP_EN1,
+> +	S2MPG10_PMIC_BUCK_OCP_EN2,
+> +	S2MPG10_PMIC_BUCK_OCP_PD_EN1,
+> +	S2MPG10_PMIC_BUCK_OCP_PD_EN2,
+> +	S2MPG10_PMIC_BUCK_OCP_CTRL1,
+> +	S2MPG10_PMIC_BUCK_OCP_CTRL2,
+> +	S2MPG10_PMIC_BUCK_OCP_CTRL3,
+> +	S2MPG10_PMIC_BUCK_OCP_CTRL4,
+> +	S2MPG10_PMIC_BUCK_OCP_CTRL5,
+> +	S2MPG10_PMIC_PIF_CTRL,
+> +	S2MPG10_PMIC_BUCK_HR_MODE1,
+> +	S2MPG10_PMIC_BUCK_HR_MODE2,
+> +	S2MPG10_PMIC_FAULTOUT_CTRL,
+> +	S2MPG10_PMIC_LDO_SENSE1,
+> +	S2MPG10_PMIC_LDO_SENSE2,
+> +	S2MPG10_PMIC_LDO_SENSE3,
+> +	S2MPG10_PMIC_LDO_SENSE4,
+> +};
+> +
+> +/* Meter registers (type 0xa00) */
+> +enum s2mpg10_meter_reg {
+> +	S2MPG10_METER_CTRL1,
+> +	S2MPG10_METER_CTRL2,
+> +	S2MPG10_METER_CTRL3,
+> +	S2MPG10_METER_CTRL4,
+> +	S2MPG10_METER_BUCKEN1,
+> +	S2MPG10_METER_BUCKEN2,
+> +	S2MPG10_METER_MUXSEL0,
+> +	S2MPG10_METER_MUXSEL1,
+> +	S2MPG10_METER_MUXSEL2,
+> +	S2MPG10_METER_MUXSEL3,
+> +	S2MPG10_METER_MUXSEL4,
+> +	S2MPG10_METER_MUXSEL5,
+> +	S2MPG10_METER_MUXSEL6,
+> +	S2MPG10_METER_MUXSEL7,
+> +	S2MPG10_METER_LPF_C0_0,
+> +	S2MPG10_METER_LPF_C0_1,
+> +	S2MPG10_METER_LPF_C0_2,
+> +	S2MPG10_METER_LPF_C0_3,
+> +	S2MPG10_METER_LPF_C0_4,
+> +	S2MPG10_METER_LPF_C0_5,
+> +	S2MPG10_METER_LPF_C0_6,
+> +	S2MPG10_METER_LPF_C0_7,
+> +	S2MPG10_METER_PWR_WARN0,
+> +	S2MPG10_METER_PWR_WARN1,
+> +	S2MPG10_METER_PWR_WARN2,
+> +	S2MPG10_METER_PWR_WARN3,
+> +	S2MPG10_METER_PWR_WARN4,
+> +	S2MPG10_METER_PWR_WARN5,
+> +	S2MPG10_METER_PWR_WARN6,
+> +	S2MPG10_METER_PWR_WARN7,
+> +	S2MPG10_METER_PWR_HYS1,
+> +	S2MPG10_METER_PWR_HYS2,
+> +	S2MPG10_METER_PWR_HYS3,
+> +	S2MPG10_METER_PWR_HYS4,
+> +	S2MPG10_METER_ACC_DATA_CH0_1 = 0x40,
+> +	S2MPG10_METER_ACC_DATA_CH0_2,
+> +	S2MPG10_METER_ACC_DATA_CH0_3,
+> +	S2MPG10_METER_ACC_DATA_CH0_4,
+> +	S2MPG10_METER_ACC_DATA_CH0_5,
+> +	S2MPG10_METER_ACC_DATA_CH0_6,
+> +	S2MPG10_METER_ACC_DATA_CH1_1,
+> +	S2MPG10_METER_ACC_DATA_CH1_2,
+> +	S2MPG10_METER_ACC_DATA_CH1_3,
+> +	S2MPG10_METER_ACC_DATA_CH1_4,
+> +	S2MPG10_METER_ACC_DATA_CH1_5,
+> +	S2MPG10_METER_ACC_DATA_CH1_6,
+> +	S2MPG10_METER_ACC_DATA_CH2_1,
+> +	S2MPG10_METER_ACC_DATA_CH2_2,
+> +	S2MPG10_METER_ACC_DATA_CH2_3,
+> +	S2MPG10_METER_ACC_DATA_CH2_4,
+> +	S2MPG10_METER_ACC_DATA_CH2_5,
+> +	S2MPG10_METER_ACC_DATA_CH2_6,
+> +	S2MPG10_METER_ACC_DATA_CH3_1,
+> +	S2MPG10_METER_ACC_DATA_CH3_2,
+> +	S2MPG10_METER_ACC_DATA_CH3_3,
+> +	S2MPG10_METER_ACC_DATA_CH3_4,
+> +	S2MPG10_METER_ACC_DATA_CH3_5,
+> +	S2MPG10_METER_ACC_DATA_CH3_6,
+> +	S2MPG10_METER_ACC_DATA_CH4_1,
+> +	S2MPG10_METER_ACC_DATA_CH4_2,
+> +	S2MPG10_METER_ACC_DATA_CH4_3,
+> +	S2MPG10_METER_ACC_DATA_CH4_4,
+> +	S2MPG10_METER_ACC_DATA_CH4_5,
+> +	S2MPG10_METER_ACC_DATA_CH4_6,
+> +	S2MPG10_METER_ACC_DATA_CH5_1,
+> +	S2MPG10_METER_ACC_DATA_CH5_2,
+> +	S2MPG10_METER_ACC_DATA_CH5_3,
+> +	S2MPG10_METER_ACC_DATA_CH5_4,
+> +	S2MPG10_METER_ACC_DATA_CH5_5,
+> +	S2MPG10_METER_ACC_DATA_CH5_6,
+> +	S2MPG10_METER_ACC_DATA_CH6_1,
+> +	S2MPG10_METER_ACC_DATA_CH6_2,
+> +	S2MPG10_METER_ACC_DATA_CH6_3,
+> +	S2MPG10_METER_ACC_DATA_CH6_4,
+> +	S2MPG10_METER_ACC_DATA_CH6_5,
+> +	S2MPG10_METER_ACC_DATA_CH6_6,
+> +	S2MPG10_METER_ACC_DATA_CH7_1,
+> +	S2MPG10_METER_ACC_DATA_CH7_2,
+> +	S2MPG10_METER_ACC_DATA_CH7_3,
+> +	S2MPG10_METER_ACC_DATA_CH7_4,
+> +	S2MPG10_METER_ACC_DATA_CH7_5,
+> +	S2MPG10_METER_ACC_DATA_CH7_6,
+> +	S2MPG10_METER_ACC_COUNT_1,
+> +	S2MPG10_METER_ACC_COUNT_2,
+> +	S2MPG10_METER_ACC_COUNT_3,
+> +	S2MPG10_METER_LPF_DATA_CH0_1,
+> +	S2MPG10_METER_LPF_DATA_CH0_2,
+> +	S2MPG10_METER_LPF_DATA_CH0_3,
+> +	S2MPG10_METER_LPF_DATA_CH1_1,
+> +	S2MPG10_METER_LPF_DATA_CH1_2,
+> +	S2MPG10_METER_LPF_DATA_CH1_3,
+> +	S2MPG10_METER_LPF_DATA_CH2_1,
+> +	S2MPG10_METER_LPF_DATA_CH2_2,
+> +	S2MPG10_METER_LPF_DATA_CH2_3,
+> +	S2MPG10_METER_LPF_DATA_CH3_1,
+> +	S2MPG10_METER_LPF_DATA_CH3_2,
+> +	S2MPG10_METER_LPF_DATA_CH3_3,
+> +	S2MPG10_METER_LPF_DATA_CH4_1,
+> +	S2MPG10_METER_LPF_DATA_CH4_2,
+> +	S2MPG10_METER_LPF_DATA_CH4_3,
+> +	S2MPG10_METER_LPF_DATA_CH5_1,
+> +	S2MPG10_METER_LPF_DATA_CH5_2,
+> +	S2MPG10_METER_LPF_DATA_CH5_3,
+> +	S2MPG10_METER_LPF_DATA_CH6_1,
+> +	S2MPG10_METER_LPF_DATA_CH6_2,
+> +	S2MPG10_METER_LPF_DATA_CH6_3,
+> +	S2MPG10_METER_LPF_DATA_CH7_1,
+> +	S2MPG10_METER_LPF_DATA_CH7_2,
+> +	S2MPG10_METER_LPF_DATA_CH7_3,
+> +	S2MPG10_METER_DSM_TRIM_OFFSET = 0xee,
+> +	S2MPG10_METER_BUCK_METER_TRIM3 = 0xf1,
+> +};
+> +
+> +/* S2MPG10 regulator IDs */
+> +enum s2mpg10_regulators {
+> +	S2MPG10_LDO1,
+> +	S2MPG10_LDO2,
+> +	S2MPG10_LDO3,
+> +	S2MPG10_LDO4,
+> +	S2MPG10_LDO5,
+> +	S2MPG10_LDO6,
+> +	S2MPG10_LDO7,
+> +	S2MPG10_LDO8,
+> +	S2MPG10_LDO9,
+> +	S2MPG10_LDO10,
+> +	S2MPG10_LDO11,
+> +	S2MPG10_LDO12,
+> +	S2MPG10_LDO13,
+> +	S2MPG10_LDO14,
+> +	S2MPG10_LDO15,
+> +	S2MPG10_LDO16,
+> +	S2MPG10_LDO17,
+> +	S2MPG10_LDO18,
+> +	S2MPG10_LDO19,
+> +	S2MPG10_LDO20,
+> +	S2MPG10_LDO21,
+> +	S2MPG10_LDO22,
+> +	S2MPG10_LDO23,
+> +	S2MPG10_LDO24,
+> +	S2MPG10_LDO25,
+> +	S2MPG10_LDO26,
+> +	S2MPG10_LDO27,
+> +	S2MPG10_LDO28,
+> +	S2MPG10_LDO29,
+> +	S2MPG10_LDO30,
+> +	S2MPG10_LDO31,
+> +	S2MPG10_BUCK1,
+> +	S2MPG10_BUCK2,
+> +	S2MPG10_BUCK3,
+> +	S2MPG10_BUCK4,
+> +	S2MPG10_BUCK5,
+> +	S2MPG10_BUCK6,
+> +	S2MPG10_BUCK7,
+> +	S2MPG10_BUCK8,
+> +	S2MPG10_BUCK9,
+> +	S2MPG10_BUCK10,
+> +	S2MPG10_REGULATOR_MAX,
+> +};
+> +
+> +#endif /* __LINUX_MFD_S2MPG10_H */
+> 
+> -- 
+> 2.49.0.472.ge94155a9ec-goog
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Lee Jones [李琼斯]
 
