@@ -1,163 +1,108 @@
-Return-Path: <devicetree+bounces-163249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99F5A7C0C9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:44:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4464EA7C0F2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F710189D212
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:44:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D536017BA4F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975781F5413;
-	Fri,  4 Apr 2025 15:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A66B1F3B92;
+	Fri,  4 Apr 2025 15:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="trg3FmI6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWM0w+9n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8931F3D52;
-	Fri,  4 Apr 2025 15:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E491282EB;
+	Fri,  4 Apr 2025 15:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743781440; cv=none; b=XCCIo4l878lo9Ge0DvIu8GKzz2+lAItj4qva6BnmYQs4ernDCsB2EcPSi2sMs2JJnvsvG3+H1B6qqUNC+cOaKxUZRvsRsPKJIx1UBZRlpKyaSawdV/7UDQoimzuv6j7/J1sAlMP1OKliv7d8SlsvOb3XC1SbGkASGIYeC094lqM=
+	t=1743781930; cv=none; b=o23HYfD1R1gxk+AtqGcysZ0ZxzzPxk7Lt0iNgOlhnG0MCXLAX23I0zZ60+unLqEC1vuVn2KaWplzrsasRtThocULc2fwgZPJ3ScprsnkzJMsRKlHVctfROLg/m7jgkVaETSXbcMaM/ISAWAziISeYTmYpL8g4nM2UPyG0G+/AbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743781440; c=relaxed/simple;
-	bh=DW/wqyJx+YCqSUOlSSVG9BIY+e2C7Nv89wJzyiuMFP4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pgWqXP/y2yJitQXgyjlGyESQ01VAH6+VTgB8LMx7NsrNHI9/9V4CyAk1OHJC9tKXYYtFC0ChWae/VUVrLFRRjQKsWX7Eslkc8jNwUAfofshcoY/YOl2d+EIZIlv7UlAfQVxY+b454HBsuvTWwdR2dioD4gWkhWfNPQEJIc8s2bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=trg3FmI6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FDDEC4CEDD;
-	Fri,  4 Apr 2025 15:43:57 +0000 (UTC)
+	s=arc-20240116; t=1743781930; c=relaxed/simple;
+	bh=g4Iysgwpe8lGdu8CwXjRXHZRqni06iQGyaV8tJgj1mw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nanykjT1LHqT5bXKEIZNLB/jW17ojfjO9iU3mpv/FNtUI9PSn69NzCkBvAo7cmK7EzJzqprQDJcvjyXY+WW8cx1UMlrtzMKR4t2Pu/1NMdKcnmwRYrRlvlc6XmqBSNdc/yR4yv1iRcBKI5Tm8xd73tpi52UV6/09k7fVBR5kvbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWM0w+9n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A26CEC4CEDD;
+	Fri,  4 Apr 2025 15:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743781439;
-	bh=DW/wqyJx+YCqSUOlSSVG9BIY+e2C7Nv89wJzyiuMFP4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=trg3FmI6Wtd7AGBLlZJiY+YpmOckUsjSwyLuGpkTgcrTcUlRrIqH9mUdL7RBI4kXA
-	 wGg4FYp4SHCgXtuiFYAz2U407PN0c9OQNL+oTy/3PVdBqym1lQfeimc/809LwsN5pY
-	 54uBZOaqQyUhkt+tCFuwE+JFaeywtH+MayBetTBPjHh0fyDdPZF/njcRQUbZQjvJJg
-	 Wv0SlBsF5tQ4E40ku16kf7gNvizK9MQIGeDXzoPzpLRq6gEt7PqA3B4Kn22FoXXkxq
-	 qq3lpDzU8KnGfpu0Hmj/EXVMpACBGSlYL9/umM9do0lebsPx5Be6NvbHxknxevlOBT
-	 hu56/JLLiiNew==
-Date: Fri, 4 Apr 2025 16:43:55 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
-Message-ID: <20250404154355.GH372032@google.com>
-References: <cover.1742802856.git.mazziesaccount@gmail.com>
+	s=k20201202; t=1743781929;
+	bh=g4Iysgwpe8lGdu8CwXjRXHZRqni06iQGyaV8tJgj1mw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=IWM0w+9n1mJzwuTylNJzmBUUiLekMIoCRiVa4GNEeexutWetJISjSaElQqzRMPXj/
+	 q0vUUWYR++aIX5QQPmFNllRtv3YrU9bs6q9L1F6eEuf9IHTGchcSolmrceb+jAtP2R
+	 XD15ALHk7cSrnlxZIeQV83DNrH3tUZeDkvn/UNQh7Kf9YwLMgHLxNAucpiE0fQTnNw
+	 tTrDVtoLQRdX40tq+Np3iHF9F1yGDUvQX1mFsZnZ3yQJpjhpPO/ve53pG09jF1WMcA
+	 pu/1AOFxohcdaQyVwjtFaaLP4QQS6wKe4d95HVAabPlfZZE5X6II5iip2/0lKjgUjA
+	 XLkZbjBNUeH1w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BBECC36010;
+	Fri,  4 Apr 2025 15:52:09 +0000 (UTC)
+From: Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
+Subject: [PATCH 0/2] iio: imu: inv_icm42600: switch to use generic name irq
+ get
+Date: Fri, 04 Apr 2025 17:52:01 +0200
+Message-Id: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-0-72ed5100da14@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1742802856.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACIA8GcC/x2NwQ6CMBAFf4Xs2U1qK6L+CvGAZcUX05ZsKZoQ/
+ t3G48xhZqMsCsl0azZSWZGRYoXjoSH/GuIkjLEyWWNb42zLQGKEwogrw4eTPRvDKp+k7+oWUS3
+ zwiUjThyHIJkf7tp5GTt7cS3V7qzyxPf/7O/7/gOFo0kXgwAAAA==
+X-Change-ID: 20250325-iio-imu-inv-icm42600-rework-interrupt-using-names-b397ced72835
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1743781928; l=1064;
+ i=jean-baptiste.maneyrol@tdk.com; s=20240923; h=from:subject:message-id;
+ bh=g4Iysgwpe8lGdu8CwXjRXHZRqni06iQGyaV8tJgj1mw=;
+ b=TIiNFxaOUvvI94XEv0fEIFpl7os48WSsLvDqHC/Y90wC0sNKrGzsJaKW8hxSY8oFarfIY5Xfo
+ rAQy4lJtgEQASAfcS6FPC21sCgXoPcukzntnHP5rYY9dO9NdD6t50CO
+X-Developer-Key: i=jean-baptiste.maneyrol@tdk.com; a=ed25519;
+ pk=bRqF1WYk0hR3qrnAithOLXSD0LvSu8DUd+quKLxCicI=
+X-Endpoint-Received: by B4 Relay for
+ jean-baptiste.maneyrol@tdk.com/20240923 with auth_id=218
+X-Original-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Reply-To: jean-baptiste.maneyrol@tdk.com
 
-On Mon, 24 Mar 2025, Matti Vaittinen wrote:
+The purpose of this series is to switch to fwnode_irq_get_by_name()
+in the core module instead of using irq from the bus parsing.
+Add interrupt naming and support only INT1.
 
-> Support ROHM BD96802, BD96805 and BD96806 PMICs
-> 
-> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
-> to the digital interface. Main difference is voltage tuning range.
-> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
-> able to differentiate the PMICs (done based on the devicetree
-> compatible) and then providing separate voltage tables.
-> 
-> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
-> provide more capacity on systems where the BD96801 alone is not
-> sufficient. Startup sequence of these PMICs can be synchronized in
-> hardware level, and there seems to be some mechanisms which allow
-> delivering the companion PMIC (BD96802) status to the main PMIC
-> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
-> individual PMICs and allows using them from software point of view as a
-> stand alone ICs. From the digital point of view, the BD96802 is a subset
-> of BD96801, providing only buck1 and buck2 regulators. Please see the
-> data sheet
-> 
-> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
-> provide different voltage tuning ranges.
-> 
-> This series adds basic voltage monitoring and control as well as a
-> watchdog support for these PMICs using the BD96801 drivers.
-> 
-> Similarly to the BD96801, these PMICs too have a few configurations
-> which can only be done when the PMIC is in STBY state. Similarly to the
-> BD96801, doing these configurations isn't supported by the driver. The
-> original BD96801 RFC [5] driver should be able to cover those
-> configurations, if modified to support these models.
-> 
-> [1]: ROHM BD96801 data sheet:
-> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
-> [2]: ROHM BD96805 data sheet:
-> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
-> [3]: ROHM BD96802 data sheet:
-> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
-> [4]: ROHM BD96806 data sheet:
-> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
-> [5]: Original BD96801 RFC:
-> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
-> 
-> Revision history:
-> 
-> v1 => v2: MFD driver changes after review by Lee
->  - Use enum for chip type instead of picking the data directly from the
->    of_match_data.
->  - rename "chip data" variable 'cd' to more widely used 'ddata'.
->  link to v1:
->   https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
-> 
-> ---
-> 
-> Matti Vaittinen (14):
->   dt-bindings: regulator: Add ROHM BD96802 PMIC
->   dt-bindings: mfd: Add ROHM BD96802 PMIC
->   dt-bindings: mfd: bd96801: Add ROHM BD96805
->   dt-bindings: mfd: bd96802: Add ROHM BD96806
->   mfd: rohm-bd96801: Add chip info
->   mfd: bd96801: Drop IC name from the regulator IRQ resources
->   regulator: bd96801: Drop IC name from the IRQ resources
->   mfd: rohm-bd96801: Support ROHM BD96802
->   regulator: bd96801: Support ROHM BD96802
->   mfd: bd96801: Support ROHM BD96805
->   regulator: bd96801: Support ROHM BD96805 PMIC
->   mfd: bd96801: Support ROHM BD96806
->   regulator: bd96801: Support ROHM BD96806 PMIC
->   MAINTAINERS: Add BD96802 specific header
+Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+---
+Jean-Baptiste Maneyrol (2):
+      dt-bindings: iio: imu: icm42600: add interrupt naming support
+      iio: imu: inv_icm42600: switch to use generic name irq get
 
-Adding support for 3 new devices in one set!
+ .../devicetree/bindings/iio/imu/invensense,icm42600.yaml    |  8 ++++++++
+ drivers/iio/imu/inv_icm42600/inv_icm42600.h                 |  2 +-
+ drivers/iio/imu/inv_icm42600/inv_icm42600_core.c            | 13 +++++++++++--
+ drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c             |  2 +-
+ drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c             |  2 +-
+ 5 files changed, 22 insertions(+), 5 deletions(-)
+---
+base-commit: f8ffc92ae9052e6615896052f0c5b808bfc17520
+change-id: 20250325-iio-imu-inv-icm42600-rework-interrupt-using-names-b397ced72835
 
-You don't like making things easy for yourself (or us) do you!  =:-)
-
->  .../bindings/mfd/rohm,bd96801-pmic.yaml       |  10 +-
->  .../bindings/mfd/rohm,bd96802-pmic.yaml       | 101 ++++
->  .../regulator/rohm,bd96802-regulator.yaml     |  44 ++
->  MAINTAINERS                                   |   1 +
->  drivers/mfd/rohm-bd96801.c                    | 565 ++++++++++++++----
->  drivers/regulator/bd96801-regulator.c         | 447 ++++++++++++--
->  include/linux/mfd/rohm-bd96801.h              |   2 +
->  include/linux/mfd/rohm-bd96802.h              |  74 +++
->  include/linux/mfd/rohm-generic.h              |   3 +
->  9 files changed, 1065 insertions(+), 182 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
->  create mode 100644 include/linux/mfd/rohm-bd96802.h
-
-The MFD stuff looks okay to me now.
-
-Let me know when everything else is ready to go.
-
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+
+
 
