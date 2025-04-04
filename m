@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-163096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04679A7B787
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:02:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4FEA7B7AF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:17:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5097177730
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 06:02:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F63C3B4003
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 06:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376241494A9;
-	Fri,  4 Apr 2025 06:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C35B1624C9;
+	Fri,  4 Apr 2025 06:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QjLrGbxa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OvzoC6dq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02F9101F2;
-	Fri,  4 Apr 2025 06:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46E8C2E62D4;
+	Fri,  4 Apr 2025 06:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743746572; cv=none; b=eHSKISnkSbuxNjtSvHbESvmAuushNCmkXkObQWJIVZKH8lyPcC2yQLBX8weJC7w0/cjhh9g8EWzD1nU8MJ9CEYADDfZmm0UKQZBSL5A1Sj6DWXuIL6l308b3KZsERF22fzS/yXMisRyrujaq5c7y89slFwG9SclSoU9yCvkNxx0=
+	t=1743747445; cv=none; b=K9YxU3etUbgkQCvD3rGcE+O/eNnQZeLqLsleIeX32wdDU13GUvXHCvbaNAI9E+Rx0s8byBYlad9Hc2Kxvh1Sf+tAq6PVGEkoekOxIWIaBmsdG5fpFGntXP83yan47yZB8mljhaXXha4nc118T4np15C9XeHl67jeGDSfUwuLK1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743746572; c=relaxed/simple;
-	bh=IRMiqdgFfuR7YhdJiN5QWoj4YDPH4E1FMu5HHkdtHiE=;
+	s=arc-20240116; t=1743747445; c=relaxed/simple;
+	bh=zzuIoIHMmboa56JX2clz3G2WJCX1g9JFwev72MAeTDU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WMYeUKM475WiJioDAUMpozxNMWEd25uVQ/JmOcurHHsNsb9QB27QKmUHwze763eZLuh/RIYfTMtlnANgs3UjYfJrCuquaioHm2SXfiZEBFsmzfnf+m1sc9gm7Xl6wfHbmSttqLdKuK9ytNQbOGskcqklQVaX1aqQSJkwxPQgRKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QjLrGbxa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 884B6C4CEDD;
-	Fri,  4 Apr 2025 06:02:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Sj7xA+89jDEFpYmB2cKMOlt7Ex208cYToQhaECXjAhsAbM7ZdduNcEm8Qrq4uVBVth9Ho+nNPnVwoJVXDmlMo3E3o9IQZDBBOF7owTYoD2P151y80s3pKz3UQCiva+QYirBflZlONCzjUQ8zkGOBr9zwjt1mtEP3P21Lh11fzUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OvzoC6dq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA084C4CEE9;
+	Fri,  4 Apr 2025 06:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743746571;
-	bh=IRMiqdgFfuR7YhdJiN5QWoj4YDPH4E1FMu5HHkdtHiE=;
+	s=k20201202; t=1743747444;
+	bh=zzuIoIHMmboa56JX2clz3G2WJCX1g9JFwev72MAeTDU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QjLrGbxacrlxnEDINOoGe5zW/1gRvzVUB0eEu2DckGZX07yoz1LdqMxMHV0LvgY5N
-	 XFu3hkroT0jzKNwM6yxxysCUOJ8+tzfd4am01efTd3+15QnbAvpNsZdGLev2eqyJk1
-	 vD+BXsbgqgP47020tukOf1SJbQEa60oQGOjcDGGa5YQ6TpOlPDxB6GXlqtV+mba5vX
-	 Zy0fFGrVfmC3viPWmKFNr4WUPKCaz1cM5y6PjUsgFpWEOjvvccgG8rRhxa3lGzDGkd
-	 k5cY//rzcrWtCHV4vZbaPke68UAgDhCvftw3hYRpt1tSAggbx34smVGx7KjY6wEGDU
-	 7Rm+oUrTk7bfA==
-Message-ID: <ef25c226-6801-48b4-8347-3362415d9de3@kernel.org>
-Date: Fri, 4 Apr 2025 08:02:41 +0200
+	b=OvzoC6dqqE/7J7Uqq1TsdbtKi+Wqhb1nEqTLFdGHJXKabmUrvtQEsBazV3ZwM9Dpf
+	 kYA+uBGwiC/nkJ3SPQLKz65cSUPla9vaD2msoJg6tsLiV1VPY4wRY131572PrcVsAA
+	 4uJ6UZyYyXqp+CrHVtEsn7KMiCz+dvxyocKbcJW5ZsZdHcN1XAOScHmqraf3S2Jh98
+	 s3aeiGR/RCntwrxrB83czJ3rbjKuGT5UF9h36Y1lWxYUO4lOlfLZwU9Syz4dNrSDRd
+	 dPUy7mlKuFMtUh9mj7s4VrhAtYQgPQEVhUArlrLEINkf05Vxy/ciEf+KzL/MOANVu6
+	 3b3nN4Pl+CmgQ==
+Message-ID: <c4a80c1f-56a0-4cdf-afbd-cb2c13cc0b8b@kernel.org>
+Date: Fri, 4 Apr 2025 08:17:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Add module support for Arm64 Exynos MCT driver
-To: Youngmin Nam <youngmin.nam@samsung.com>,
- Will McVicker <willmcvicker@google.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Saravana Kannan
- <saravanak@google.com>, Donghoon Yu <hoony.yu@samsung.com>,
- kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, semen.protsenko@linaro.org
-References: <CGME20250402233425epcas2p479285add99d27dc18aabd2295bfcbdc8@epcas2p4.samsung.com>
- <20250402233407.2452429-1-willmcvicker@google.com> <Z+8xrLbya9/oFg7y@perf>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v9 3/4] arm64: defconfig: add S32G RTC module support
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>
+References: <20250403103346.3064895-1-ciprianmarian.costea@oss.nxp.com>
+ <20250403103346.3064895-4-ciprianmarian.costea@oss.nxp.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -112,56 +108,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z+8xrLbya9/oFg7y@perf>
+In-Reply-To: <20250403103346.3064895-4-ciprianmarian.costea@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/04/2025 03:11, Youngmin Nam wrote:
->>
->> -- 
->> 2.49.0.472.ge94155a9ec-goog
->>
->>
+On 03/04/2025 12:33, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > 
-> Hi Will.
-> 
-> I tested this series on a E850-96(Exynos3830 based) board and it's working as a moudle.
-
-Hi,
-
-On which kernel did you apply these patches for testing?
-
-> 
-> # dmesg | grep mct
-> [7.376224] clocksource: mct-frc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 73510017198 ns
-> 
-> # lsmod | grep exynos_mct
-> exynos_mct             12288  0
-> 
-> # cat /sys/devices/system/clocksource/clocksource0/current_clocksource
-> arch_sys_counter
-> # cat /sys/devices/system/clockevents/clockevent0/current_device
-> arch_sys_timer
-> 
-> # cat /proc/interrupts 
->         CPU0    CPU1    CPU2    CPU3    CPU4    CPU5    CPU6    CPU7
->  12:    2566    2752    2467    4026    3372    2822    2115    3227 GIC-0  27 Level     arch_timer
-> ...
->  77:       0       0       0       0       0       0       0       0 GIC-0 235 Level     mct_comp_irq
->  78:       0       0       0       0       0       0       0       0 GIC-0 239 Level     mct_tick0
->  79:       0       0       0       0       0       0       0       0 GIC-0 240 Level     mct_tick1
->  80:       0       0       0       0       0       0       0       0 GIC-0 241 Level     mct_tick2
->  81:       0       0       0       0       0       0       0       0 GIC-0 242 Level     mct_tick3
->  82:       0       0       0       0       0       0       0       0 GIC-0 243 Level     mct_tick4
->  83:       0       0       0       0       0       0       0       0 GIC-0 244 Level     mct_tick5
->  84:       0       0       0       0       0       0       0       0 GIC-0 245 Level     mct_tick6
->  85:       0       0       0       0       0       0       0       0 GIC-0 246 Level     mct_tick7
-> 
-> Reviewed-by: Youngmin Nam <youngmin.nam@samsung.com>
-
-This means you reviewed *every* patch.
-
-> Tested-by: Youngmin Nam <youngmin.nam@samsung.com>
+> The RTC hardware module present on S32G based SoCs tracks clock time
+> during system suspend and it is used as a wakeup source on S32G2/S32G3
+> architecture.
+Which boards are using it? I don't see any DTS (nowhere), so I do not
+see single reason for this patch.
 
 Best regards,
 Krzysztof
