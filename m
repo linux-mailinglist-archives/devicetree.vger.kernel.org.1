@@ -1,117 +1,101 @@
-Return-Path: <devicetree+bounces-163102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F950A7B7D4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:36:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D39BA7B7E6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AFC9178984
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 06:35:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 863FC7A84A6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 06:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02B8188580;
-	Fri,  4 Apr 2025 06:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EE8190477;
+	Fri,  4 Apr 2025 06:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="yMLAmrTe"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="aeiW6mLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C48F17F4F6;
-	Fri,  4 Apr 2025 06:35:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855FC155C82;
+	Fri,  4 Apr 2025 06:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743748533; cv=none; b=Tvckfn8K1rNnrOq2EIZJOADrG/wjoHtttbhZn9tyYiqNHviLkh62km/a9HnyAV4vOZhrxmvGIaNoJN4LznLf0Qmudfu2laMHaWUAFjyrgdUUcvCwmDeV8PZfKD09Yvkmh+mN8FnruArgXUsnOnCcmcH3seaO0K4HtqBc6xPY4AQ=
+	t=1743748756; cv=none; b=euc8wtletLe5w2gS5+ilwxPYMkShT4k5Gv0BaZoMwF/BsPljmLSXKIwP20t6YEchq9vLBq2cdzCGI3QWgIVQOOLjohYvdHhcVyepQdKN5dhA3uQHDq7jI1DU8xXlmiIvrjhznDosBJtTB0nkx6by6+mAe5UQ+5cAS+1CPFR9ZB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743748533; c=relaxed/simple;
-	bh=f5UIYiHZr8F8zpMCKNp8y/OGEA3xHGIo+nLug8tZ04o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BzW3aFjjI5w0/ihkIRj5T6lUxpqHAXR9GDPMbknTlmT2ZKPCyi+LSt/aAUjkzLl1PYLaz6Rq2uCG5ZddExhDjYCsMnFreVo4OQqwK5PDYQAN1egL7L/xEnCwA2hIs5l90ZrFMMuhrBY+HLwIH9m8Yx/DTBd6XsJpi7KVYj0o0Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=yMLAmrTe; arc=none smtp.client-ip=198.137.202.133
+	s=arc-20240116; t=1743748756; c=relaxed/simple;
+	bh=Nv+OpjzguYHw8XX/aCtXEwUOx0sT55RlHRNmpfHLPmA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=lZEoqE0KqQmsnFkIrC1JyJD5l1kzp71vNwbVVmjmierZ8HxEmK55c3tsatqXS1yxJWWCAyQUS3l3FSiYrt/qYutHlFDXM8TlFBRMCbYaVOGhYKSI9gOGMPH+CIxQAnsRukjgPozasMXUQH0lPYxdxOY5LOPlsWRuPI/rjyJrihY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=aeiW6mLi; arc=none smtp.client-ip=90.155.92.199
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=oRL0tdJAjPV+G5hvzUicbBcc4clC5hezIULcGYZrejk=; b=yMLAmrTerlCYoA+aZjVyTxFk7c
-	/ODMdcEzGnEXoNZfxHBGocpOAS6S5WWdpfJJ/VeXkrszrn/2k7BclSgztw1iRnkALPnx632SU7Wfl
-	01XHHIZbz1cJeyP5Cxyuosnyf38KscTeVlmBTaUPwRJTdE49XYIz3jn8XVuY128BjrxhNx+Cn09lX
-	Xfgs4/mE0vq+8HD7VOLB1H3qdhTmZy3/vQonUGAOiLNKV0d/JU/PSZb/FCiqoMSpdV5SZrLoEHJF6
-	BodJBDnDcgfOf8VB9R0OgXQYFYrupaGYA3/qIiMSg/Lfh9UWcePY5aGGY2noFwUuwvbQdw+MExcfi
-	EdEc7xXg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0aeI-0000000AtBZ-2zlI;
-	Fri, 04 Apr 2025 06:35:30 +0000
-Date: Thu, 3 Apr 2025 23:35:30 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
-	mst@redhat.com, Claire Chang <tientzu@chromium.org>,
-	linux-devicetree <devicetree@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
-	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-	graf@amazon.de
-Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
- of SWIOTLB bounce buffers
-Message-ID: <Z-99snVF5ESyJDDs@infradead.org>
-References: <20250402112410.2086892-1-dwmw2@infradead.org>
- <20250402112410.2086892-2-dwmw2@infradead.org>
- <Z-43svGzwoUQaYvg@infradead.org>
- <148a3c8ee53af585b42ec025c2c7821ad852c66c.camel@infradead.org>
- <Z-46TDmspmX0BJ2H@infradead.org>
- <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=09/sMJVzkrCgnCZOfO14brnFLODw8EPJdyTc6baTauI=; b=aeiW6mLin63+aKhEBweeImngwy
+	bFAaWHqMM0Vo7RccW0yfzqoBXyBsR4tuIv/bWPuIM6lCIjieZvbGwh7cRTdzhv2IQlx5UMvvw3dcM
+	scZNdo+FqpQe5hghh09cjc0rSab9wr3qSngC2zIcpXWL6i5xiLrfrVq+il2UwNfry4ZPdNUP4AsiZ
+	46IIFYWJ30ZQ0AIGirq0d2OCw72zo+WtMBrkoIGkt/f2mU7yFRO2fZuSZWZGiGzjLYuAA2V0skwZq
+	3NGfska2rPaDXNXCcLCEzTw8tHQEwUGAdpS9hU9WfOIG2sJB09FWN0bxPCdxUuLI6KhwTsKYiwwpG
+	EhRPlnAg==;
+Received: from [2001:8b0:10b:5:5fcd:596f:f785:8906] (helo=[IPv6:::1])
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0ahi-00000007JAJ-0gsd;
+	Fri, 04 Apr 2025 06:39:02 +0000
+Date: Fri, 04 Apr 2025 07:39:02 +0100
+From: David Woodhouse <dwmw2@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
+CC: "Michael S. Tsirkin" <mst@redhat.com>, virtio-comment@lists.linux.dev,
+ Claire Chang <tientzu@chromium.org>,
+ linux-devicetree <devicetree@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg_Roedel?= <joro@8bytes.org>,
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/3=5D_content=3A_Add_VIRTIO=5FF=5FSWIO?=
+ =?US-ASCII?Q?TLB_to_negotiate_use_of_SWIOTLB_bounce_buffers?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <Z-98Lqpq4mZN545Y@infradead.org>
+References: <20250402111901-mutt-send-email-mst@kernel.org> <6b3b047f1650d91abe5e523dd7f862c6f7ee6611.camel@infradead.org> <20250402114757-mutt-send-email-mst@kernel.org> <965ccf2f972c5d5f1f4edacb227f03171f20e887.camel@infradead.org> <20250402124131-mutt-send-email-mst@kernel.org> <eaef09ab218900a53347987a62fee1787283d9ed.camel@infradead.org> <Z-44wXdyia4RC6Cr@infradead.org> <06465bcf4422d088df2a0ce9cdb09767dac83118.camel@infradead.org> <Z-47O3vkyIf0mzdw@infradead.org> <cdd979bca2b8cc4ff170442d968b63f2b3f0ccd6.camel@infradead.org> <Z-98Lqpq4mZN545Y@infradead.org>
+Message-ID: <488D32C6-77FA-4CC8-988F-CD4D14548D4B@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
-On Thu, Apr 03, 2025 at 09:06:37AM +0100, David Woodhouse wrote:
-> You are right, in theory, that (2b) is the job of ACPI or DT to
-> communicate. But virtio is presented as just another PCI device,
-> indistinguishable by the guest from other PCI devices which *are*
-> actually able to do DMA through the hardware's two-stage IOMMU.
+On 4 April 2025 07:29:02 BST, Christoph Hellwig <hch@infradead=2Eorg> wrote=
+:
+>On Thu, Apr 03, 2025 at 09:10:41AM +0100, David Woodhouse wrote:
+>> Thanks=2E I'll take a closer look at handling that=2E I think it's
+>> reasonable for the negotiation of the VIRTIO_F_SWIOTLB feature to be
+>> the thing that switches *all* addresses to be on-device, and the on-
+>> device buffer can't be accessed unless VIRTIO_F_SWIOTLB has been
+>> negotiated=2E
+>>=20
+>> Which neatly sidesteps the original thing I was trying to clarify
+>> anyway=2E
+>
+>Switching all addressing does not sound like a good idea=2E  The main
+>thing these indirect buffers are used for is as a staging points for
+>P2P DMA, in which case they often are only used for some transfers or
+>even parts of a transfer=2E  At least for physical virtio devices P2P
+>is probably not far off with the current GPU craze, and I wouldn't
+>be surprised if people found uses for paravirt P2P as well=2E
 
-Then the virtual device should be behind a different IOMMU (or no IOMMU
-at all) to clearly differciate them for the assigned hardware devices.
+That isn't the original use case I had for it in virtio but that's useful =
+input, thanks=2E
 
-> To my knowledge there isn't a clean way, across platforms, to tell an
-> operating system that a certain device just *can't* do DMA at all. 
-
-Well, it's part of the device specific if it can do DMA or not.  We
-had a bunch of early PCI (and a lot of ISA) device that could not
-do P2P.  Even on PCIe there might be weirdo device that just expose
-a bar or have some bitbanged i2c or similar.
-
-Now if you mean virtio devices - yes there's no way currently as virtio
-is a quite fundamentally DMA based model.
-
-> And
-> even if there was, why offer a device model that could *theoretically*
-> do DMA, just to tell the guest through some other channel that it
-> can't?
-
-That would be the normal way.  Because virtio devices fundamentally can
-do DMA.  It's just your guest specification doesn't want them to.
-
-> What's wrong with a simple option to indicate, in the device model that
-> the system designer chooses to build for the guest, that it can't do
-> DMA?
-
-As stated above I suspect you still are asking the wrong question and
-have the wrong mental model.  Virtio fundamentally can do DMA, you just
-don't want it to.  And based on the other subthread I also suspect you'd
-actually be much better off with your bounce buffer in the virtual host
-memory instead of coming up with this particularly odd case, but even
-if not it's the system description that matters here, not the device
-model.
-
+Plumbing a 65th address space bit through all descriptors seems impractica=
+l=2E Would it suffice for the driver to *specify* the location in the devic=
+e's DMA address space that the on-device buffer appears, to allow it to avo=
+id conflicts with system memory addresses? Better ideas?
 
