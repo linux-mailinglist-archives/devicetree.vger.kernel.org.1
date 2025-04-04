@@ -1,113 +1,110 @@
-Return-Path: <devicetree+bounces-163165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AE4A7BB93
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:33:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B240A7BB9B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:34:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B67733B9917
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:32:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 483441B6109B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09041E5B96;
-	Fri,  4 Apr 2025 11:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DpZaC4An"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024921DDA14;
+	Fri,  4 Apr 2025 11:33:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284E61E1DE7;
-	Fri,  4 Apr 2025 11:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1561DB34C;
+	Fri,  4 Apr 2025 11:33:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743766339; cv=none; b=LDgeT+kez1JFseljPwmiyxYgiv2Y51BqBaU6Be18vURHZp7NsR6Zl2l2i7vR0aYBtUJBXdvBxhW2Gl/1BpMhc3aNrlrY8N4FOVOF9r/gZDB8lGlQ/xGaJNByYdoZtM8nDXPjK25c8H3VIEdJvaTRlyPWdMmELxwi+GbcPBmooNs=
+	t=1743766395; cv=none; b=CnxsDhqSz6tdO3fRvpM0cK1YcM0YwhF8p4rfkoErnopFxagZHw37qWLlYpzHRT6/ppTMHfU+Vbu0rZPJmPfiAkndvjBurbs7lWH2ZuKxt9sguVqLzwDEN/h6CuAMu1ZhTk8vx9jRIQZttstkCWHM+Tb1LlODKLtZfllec5QfM4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743766339; c=relaxed/simple;
-	bh=7ro02tI4QOXGzdStpWGlX+ZgeJtEMwipR1RCkON1Law=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oQ8b7BS6Rd1YbufTK3QZ7ifznAi4C7Vw8FFkquFvSdLNb2J9noNz6BazdIBJiwhJxPJGNfdkGBhx0GI/VwJQDrbc+MwaPLqJm6CpbmZicsH4n1uMDkNlsB872G8FlTPnTW0Wu+uOhpdcby+JFox0AN8lmsRrMKhpQ1YmpE762BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DpZaC4An; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743766335;
-	bh=7ro02tI4QOXGzdStpWGlX+ZgeJtEMwipR1RCkON1Law=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DpZaC4Ang2pBxxjmTz68g2C7ibpYHZpQh6M1Vf54ldz6Gdj74ETP0av4qGoCb/ZLE
-	 Nd8AggnN0xOivQCv3RRa6fUi4tBVfF2x3DzzzOGG2grt8rNvhOOkHge7mFCFX+t6Za
-	 PVEwNsWgnGUJqEYiXE1bkFT7+QLm1lXuCtguq+z0aersqXj/R9Nwm7q/Lh60UJifPD
-	 fvkkpnRm7HihkIPmz7RoHJFMHc6n9qkvDcTDSk8+gNG2xtpCfoGo+Ve20jQIiWIbSZ
-	 OhtlgUsxflfecAZAqNlLv6M6uBpC9jDo/tSHTaNjFijVjLM1CyXO+HY82Ey/eXajOU
-	 E2bLKaqY9B3rA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 27B6717E0FC3;
-	Fri,  4 Apr 2025 13:32:13 +0200 (CEST)
-Message-ID: <236b31a6-3602-4705-9d04-48bdff719cc2@collabora.com>
-Date: Fri, 4 Apr 2025 13:32:12 +0200
+	s=arc-20240116; t=1743766395; c=relaxed/simple;
+	bh=Vr/dgQUKtxPOzkS4b3b681oYLIy6EF0mAL1Hy8UKmKY=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=b6XxYKGHbpYsRuHbX60xzyHeoeU9opOXRd3zgG3KFWjYGvv1MVocuahdbcZYAD7sujNyF6MsQRcAe01OOrEiJdyOVOofLCOkfAL1aAS1wL6ri5J3LACp2Bv6d6Dq6PgYG1xNDR2iEnUDPCPIbVkn40zuzas/6NAD+SPBBitHVb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZTc0D23XVz6L4wP;
+	Fri,  4 Apr 2025 19:32:28 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 7C25B1400D3;
+	Fri,  4 Apr 2025 19:33:10 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Apr
+ 2025 13:33:09 +0200
+Date: Fri, 4 Apr 2025 12:33:08 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Gyeyoung Baek <gye976@gmail.com>
+CC: <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <lars@metafoo.de>, <gustavograzs@gmail.com>,
+	<javier.carrasco.cruz@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+Subject: Re: [PATCH v1 3/5] ABI: iio: add new ABI doc for mhz19b
+Message-ID: <20250404123308.00003d72@huawei.com>
+In-Reply-To: <20250403053225.298308-4-gye976@gmail.com>
+References: <20250403053225.298308-1-gye976@gmail.com>
+	<20250403053225.298308-4-gye976@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/19] dt-bindings: cpufreq: Drop redundant Mediatek
- binding
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
- Conor Dooley <conor@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-19-076be7171a85@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250403-dt-cpu-schema-v1-19-076be7171a85@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Il 04/04/25 04:59, Rob Herring (Arm) ha scritto:
-> The Mediatek CPUFreq binding document just describes properties from
-> the CPU node which the driver uses. This is redundant as all the
-> properties are described in the arm/cpus.yaml schema.
+On Thu,  3 Apr 2025 14:32:23 +0900
+Gyeyoung Baek <gye976@gmail.com> wrote:
+
+> Add support for winsen MHZ19B CO2 sensor.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> new file mode 100644
+> index 000000000000..6cdfd34be016
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> @@ -0,0 +1,7 @@
+> +What:		/sys/bus/iio/devices/co2_range
+> +Date:		April 2025
+> +KernelVersion:	6.14
+> +Contact:	Gyeyoung Baek <gye976@gmail.com>
+> +Description:
+> +		Writing a value adjust maximum measurable PPM.
+> +		should be 2000 or 5000.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I haven't checked but assume this also results in a scaling of the
+measure _raw values?  If so the control should be via the standard
+ABI scale.  If you need to be able to establish the range, provide
+the _available for the _raw via the read_avail() callback and setting
+appropriate bit in info_mask_separate_available
 
+General rule is don't introduce new ABI unless it is impossible to
+provide the same information via existing interfaces.  The decision
+to use scale rather than range info to control channel scaling was
+made a very long time ago and having a mixture of the two would
+make for very complex userspace code.
+
+Jonathan
+
+> --
+> 2.34.1
+> 
+> 
 
 
