@@ -1,116 +1,87 @@
-Return-Path: <devicetree+bounces-163197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBFDA7BCE8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:49:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78C6A7BCEC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4544B3B5421
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:48:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7E8189F896
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D891DEFDB;
-	Fri,  4 Apr 2025 12:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CE41E00A0;
+	Fri,  4 Apr 2025 12:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3geZInS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891FC2E62B6;
-	Fri,  4 Apr 2025 12:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0BF2E62B6;
+	Fri,  4 Apr 2025 12:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743770949; cv=none; b=jpDgVUXsD6QzzOtrmdcXDPmvXq2GEYMU64Un73AF7u/vgReRw9PxuuMpg9UyXPhhmgyemrh3BhShqvtyOioRbeVyp2o7g8JSaqlSJs3pN//IqOzZAB29vY+25dA3UX1lq+TQVg9PkV/rEbrWf1xSXsfnAJW4ALBrAUhjcHtsXSE=
+	t=1743770987; cv=none; b=ukWdgZGHpZMx5C7aM0kuKWci3gZSQuVajTuiG7WO5/hwnUKEsKA2TJBhdmspOXY3AGREnhzD0As6btPVZgm6Vj0BjQNBh3Tul/z9Va56Wcpeu/Y36reopZVkSjAgn0afEJWFy4l7Ucni5AV7yFf4A5vlzo2H4saqKKVaiWUn6vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743770949; c=relaxed/simple;
-	bh=CEYtds7W6FcLLrM6Q6AVfowOXuAzfO5skyhiJ0Y81MA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=H93CJfG7+F1IxsNXrgx+Jm47SktureHJSVHocCv83bsKK/7wNvHY+tDrYAoYWImDfJNYOjxjeQ0XKexj0PbCjxRwySsIYuOk0q/oHU5NF5fjobmnizV4wRm95P8dRqeOrKTq1KvhCEkumQ7XCWe/QmBcFbmXSyEOKoGWvv6YQpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp102.mailbox.org (unknown [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ZTdhT5NWYz9tkP;
-	Fri,  4 Apr 2025 14:48:57 +0200 (CEST)
+	s=arc-20240116; t=1743770987; c=relaxed/simple;
+	bh=EeLqqJ6DT2lADn0IeVVIkvThc5qK5gAKvLEOpACZaDM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=modN30GIsT04m8wwV0xzLS1hkONw/bIzWNfXLdP6SzfRj2XKqWxdi0W3WVdh7iaqhhXMhzAwg3wCoh8nSl8eT1PEkZ40wv1SVAmhdpcpO4w4vdnq0HhsOcvk4D2v3swtMzSfIoRUt+7HJCEd3q1n092gi6bxwCbA17bdOJ2Wl2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3geZInS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9A78C4CEE9;
+	Fri,  4 Apr 2025 12:49:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743770986;
+	bh=EeLqqJ6DT2lADn0IeVVIkvThc5qK5gAKvLEOpACZaDM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=a3geZInSexjWvt5mjvpsTem3QIeTOEQvGxa+rSJfzwcDwtvuL344224B7EhMp+BtR
+	 3ZM7U366kVPL42fwYQK024Jk6NGAflVpPbDmR7At66URbC2mRYr9lhBZ7pvUrT2Gdz
+	 kZbxFqyFWBLghgBqFmvoxPxljT9Yb0FLPKZIubJLubouFP4xwcAWpl9FeeXY5Z3uTS
+	 5tkHwNywh5MZkTnvlFDXZdyar0lWUcZBQCkXEukZZGPaWuPf0t/+eVNB5sMQHJNO63
+	 YNCW2C+3V5I8ZrW01L2ZyT9sJx8Qy0OCMaT3aNT2t/8vuUmCIf9YKtWTelFo0/xBMg
+	 1LKCHzuYpmXSQ==
+From: Lee Jones <lee@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Georgi Djakov <djakov@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
+ David Heidelberg <david@ixit.cz>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, coresight@lists.linaro.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20250318-fix-nexus-4-v2-5-bcedd1406790@oss.qualcomm.com>
+References: <20250318-fix-nexus-4-v2-0-bcedd1406790@oss.qualcomm.com>
+ <20250318-fix-nexus-4-v2-5-bcedd1406790@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v2 05/10] dt-bindings: mfd: syscon: add
+ qcom,apq8064-mmss-sfpb
+Message-Id: <174377098243.316090.8544403801957208673.b4-ty@kernel.org>
+Date: Fri, 04 Apr 2025 13:49:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 04 Apr 2025 14:48:53 +0200
-Message-Id: <D8XV7FTGG0EC.K6P4J4IMUJAO@buenzli.dev>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>, "Daniel Scally"
- <djrscally@gmail.com>, "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
- "Sakari Ailus" <sakari.ailus@linux.intel.com>, "Dirk Behme"
- <dirk.behme@de.bosch.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Danilo Krummrich" <dakr@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- <linux-kernel@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH 01/10] rust: Move property_present to property.rs
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250326171411.590681-2-remo@buenzli.dev>
- <20250326205106.GB2787672-robh@kernel.org>
-In-Reply-To: <20250326205106.GB2787672-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-510f9
 
-On Wed Mar 26, 2025 at 9:51 PM CET, Rob Herring wrote:
-> On Wed, Mar 26, 2025 at 06:13:40PM +0100, Remo Senekowitsch wrote:
->>
->> +impl Device {
->> +    /// Obtain the fwnode corresponding to the device.
->> +    fn fwnode(&self) -> &FwNode {
->> +        // SAFETY: `self` is valid.
->> +        let fwnode_handle =3D unsafe { bindings::dev_fwnode(self.as_raw=
-()) };
->> +        if fwnode_handle.is_null() {
->> +            panic!("fwnode_handle cannot be null");
->
-> It's usually not a good idea to panic the kernel especially with=20
-> something a driver calls as that's probably recoverable.
->
-> Users/drivers testing fwnode_handle/of_node for NULL is pretty common.=20
-> Though often that's a legacy code path, so maybe not allowing NULL is=20
-> fine for now.
+On Tue, 18 Mar 2025 15:21:58 +0200, Dmitry Baryshkov wrote:
+> Add compat string for Qualcomm MultiMedia SubSystem System FPB.
+> 
+> 
 
-Just to be clear on this, should I keep this as is, or return a result?
-In the latter case, all the duplicated methods on `Device` that just
-call `self.fwnode().same_method()` would have a result in their function
-signatur as well. That includes `property_present`, `read_property`
-and `children`.
+Applied, thanks!
 
->> +        }
->> +        // SAFETY: `fwnode_handle` is valid. Its lifetime is tied to `&=
-self`. We
->> +        // return a reference instead of an `ARef<FwNode>` because `dev=
-_fwnode()`
->> +        // doesn't increment the refcount.
->> +        unsafe { &*fwnode_handle.cast() }
->> +    }
->> +
->> +    /// Checks if property is present or not.
->> +    pub fn property_present(&self, name: &CStr) -> bool {
->> +        self.fwnode().property_present(name)
->> +    }
->> +}
->
-> The C developer in me wants to put this after the FwNode stuff since=20
-> this uses it.
+[05/10] dt-bindings: mfd: syscon: add qcom,apq8064-mmss-sfpb
+        commit: 8a5d347da6ab0208ca348c91d598070bf763fcab
 
-Is that just a comment or a call to action? :-)
+--
+Lee Jones [李琼斯]
 
-Remo
 
