@@ -1,156 +1,111 @@
-Return-Path: <devicetree+bounces-163209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AABA7BDFE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:36:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F028A7BE47
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EA3817CF43
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:36:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C5CC177279
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446DF1E9B06;
-	Fri,  4 Apr 2025 13:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B9E1F099F;
+	Fri,  4 Apr 2025 13:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhepgBww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="USi10D+n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF671B07AE;
-	Fri,  4 Apr 2025 13:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885101EE7B1;
+	Fri,  4 Apr 2025 13:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743773773; cv=none; b=VY2R4XnvfrbRJgy7McYuHRndMq+jJ1Qyczh4tmPcGixZ9YrmD4oZslp/wQwUfxsAozpVMLVHz63Tls6VqFM9vDWlsb85U1DZdkcHtO6Gd5K6bN8+QApp1SJ6Ng/lDaT7KNNw91n2EP/hMULoWVXaCLdXW5WCxNc/LCvdRfnRS58=
+	t=1743774587; cv=none; b=YnIbFiUWRnno4nUWaeuQARUTk5BUiP6bTUqQjSs8UYSoCFl8HND+QIEsIXEzMcICjgyj/FUGEV6of1EYfoBKh5SH8QE8rsulBPcsl1Ejy56Dn3K7iioccT6yS9ouwtwslVDM8ZIpqV/Hpsxss/75onMkZQtnfNiOzfnH7zemdpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743773773; c=relaxed/simple;
-	bh=nB8hhdyLpxbnHmC76tdnlII8bmXVnl4tnHoovM2c5PY=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZSDT4yCZNVNGmoDD7AUD5rCOFPdfdjLSnKt2XtgqlEIBGpZGS4nuyuBR8Nd8RcydpH0Q0jjaqX/zy/TrJ6cMsOQ5ZywPCb31vEfv5thCX7T8mBl+0oLYPXnsTHdMAA5erwbMhzBw8HgFXzsEqf3TQMExlegO+Wvqml0nzDu1BFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhepgBww; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8456CC4CEE8;
-	Fri,  4 Apr 2025 13:36:12 +0000 (UTC)
+	s=arc-20240116; t=1743774587; c=relaxed/simple;
+	bh=InZ0uos7yT9Kf1hkWBsUYLcrp43412OOZl/bw7DO4Uw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s96M4KrC64Vco9R1GnQka/0yUFW4lJcJRJ7l9XubQCQGHC0s1xlC/bG4ktNYOBb/LogqNTfYRvWcmSegS04rFbO12+3V/6fTg9uCqwGt8Ht/gLnCXoe93+Yz8gZZwHnf9ddTRlT+7DKN4q9V82Mfw4+i3huUJdYxSF5ZVbLlztU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=USi10D+n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86E89C4CEDD;
+	Fri,  4 Apr 2025 13:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743773772;
-	bh=nB8hhdyLpxbnHmC76tdnlII8bmXVnl4tnHoovM2c5PY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DhepgBwwFIvXZHbUMKM6Z7vGdvaQmPijJDmhV19O+I1M0ZdFEu2fueSyoE8kTsVlq
-	 QB7na3fopG9hU3MLcBAsuBQ1yb5RDdQ6K2w0u2PTq+UWKGVwofVOaT+4OTS2Se0GwN
-	 K1SYCPhlHXaKToLzvai9weta93C65b4IOdxe+sd3xL/PpqgfTKvXttTFDX17BEqBjL
-	 WbiR/01P9QCvdCu6d1Sqgm8xbzqM6SFUAWzbLfm7pMvehEOMQlGTb/FCYuhiAfjrkS
-	 3EbxVGnguxBB447dXDYSUflq0TIyRJ97nJ8y7ura9MScmqtCFS6YZ0n/x4IVNcE9C4
-	 mi7/60ib4Jwtg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1u0hDO-002MP1-Hr;
-	Fri, 04 Apr 2025 14:36:10 +0100
-Date: Fri, 04 Apr 2025 14:36:12 +0100
-Message-ID: <87y0wgxd4j.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: <tglx@linutronix.de>,
-	<robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<mcoquelin.stm32@gmail.com>,
-	<alexandre.torgue@foss.st.com>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH 2/3] irqchip/gic: Use 0x10000 offset to access GICC_DIR on STM32MP2
-In-Reply-To: <1213dbfb-821a-4534-947b-acc4eac9da81@foss.st.com>
-References: <20250403122805.1574086-1-christian.bruel@foss.st.com>
-	<20250403122805.1574086-3-christian.bruel@foss.st.com>
-	<8734epyw17.wl-maz@kernel.org>
-	<1213dbfb-821a-4534-947b-acc4eac9da81@foss.st.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1743774586;
+	bh=InZ0uos7yT9Kf1hkWBsUYLcrp43412OOZl/bw7DO4Uw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=USi10D+naSHmsOpLEbclvvoUV8OCZArB3n9xpGD99on1UMZaLkaUh+brOpqRUHjUM
+	 z0XibKT/P/RSxfymt/L40cXSF8H9LKoNMf1OFTMr2U3NQCMAR2Ux6Hm3enCUZmWiNX
+	 3VMeGo/FM5zIrC468kOaLBCkZyOEsCxCJ1pPuSBWPFOVfilk0ZeJkRltCqUO5YRa0R
+	 4uhZNjLKNaCACgVmbORjBmkJlsqgdEBlTEA1QHIUiVg/sY8PhuaW1352AymUDAS/jD
+	 TIwikh2QEHHjedoxXiB3TpY2lpVaofO50dMmp1j9XakRekMytpGDUvOeLbL8RA9l7S
+	 F9qLsRuerEHMw==
+Date: Fri, 4 Apr 2025 14:49:38 +0100
+From: Will Deacon <will@kernel.org>
+To: Atish Patra <atishp@rivosinc.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Anup Patel <anup@brainfault.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Subject: Re: [PATCH v5 11/21] RISC-V: perf: Restructure the SBI PMU code
+Message-ID: <20250404134937.GA29394@willie-the-truck>
+References: <20250327-counter_delegation-v5-0-1ee538468d1b@rivosinc.com>
+ <20250327-counter_delegation-v5-11-1ee538468d1b@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: christian.bruel@foss.st.com, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250327-counter_delegation-v5-11-1ee538468d1b@rivosinc.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Fri, 04 Apr 2025 13:15:05 +0100,
-Christian Bruel <christian.bruel@foss.st.com> wrote:
+On Thu, Mar 27, 2025 at 12:35:52PM -0700, Atish Patra wrote:
+> With Ssccfg/Smcdeleg, we no longer need SBI PMU extension to program/
+> access hpmcounter/events. However, we do need it for firmware counters.
+> Rename the driver and its related code to represent generic name
+> that will handle both sbi and ISA mechanism for hpmcounter related
+> operations. Take this opportunity to update the Kconfig names to
+> match the new driver name closely.
 > 
+> No functional change intended.
 > 
-> 
-> On 4/3/25 19:50, Marc Zyngier wrote:
-> > On Thu, 03 Apr 2025 13:28:04 +0100,
-> > Christian Bruel <christian.bruel@foss.st.com> wrote:
-> >> 
-> >> When GIC_4KNOT64K bit in the GIC configuration register is
-> >> 0 (64KB), address block is modified in such a way than only the
-> >> first 4KB of the GIC cpu interface are accessible with default
-> >> offsets.
-> >> With this bit mapping GICC_DIR register is accessible at
-> >> offset 0x10000 instead of 0x1000, thus remap accordingly
-> > 
-> > And I'm pretty sure the whole of the GICC range is correctly
-> > accessible at offset 0xF000, giving you the full 8kB you need. That's
-> > because each page of the GIC is aliased over two 64kB blocks, as per
-> > the integration guidelines so that MMU isolation can be provided on a
-> > 64kB boundary.
-> 
-> Thanks a lot for this explanation, indeed this works like a charm.
-> 
-> > 
-> > Funnily enough, all it takes is to adjust GICC region. You can either:
-> > 
-> > - make it 128kB wide, and the driver will take care of it (details in
-> >    gic_check_eoimode()). On one of my boxes that is similarly
-> >    configured, I get:
-> > 
-> >    [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-> >    [    0.000000] GIC: Adjusting CPU interface base to 0x00000000780af000
-> >    [    0.000000] Root IRQ handler: gic_handle_irq
-> >    [    0.000000] GIC: Using split EOI/Deactivate mode
-> > 
-> >    See below for what I expect to be the correct fix.
-> >    - make it 8kB wide from offset 0xF000.
-> 
-> I checked both and they work. I will go for the former to show real
-> 8kB size to be exposed in the DT. And there are a few other
-> platforms that use this alias
+> Reviewed-by: Clément Léger <cleger@rivosinc.com>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> ---
+>  MAINTAINERS                                       |   4 +-
+>  arch/riscv/include/asm/kvm_vcpu_pmu.h             |   4 +-
+>  arch/riscv/include/asm/kvm_vcpu_sbi.h             |   2 +-
+>  arch/riscv/kvm/Makefile                           |   4 +-
+>  arch/riscv/kvm/vcpu_sbi.c                         |   2 +-
+>  drivers/perf/Kconfig                              |  16 +-
+>  drivers/perf/Makefile                             |   4 +-
+>  drivers/perf/{riscv_pmu.c => riscv_pmu_common.c}  |   0
+>  drivers/perf/{riscv_pmu_sbi.c => riscv_pmu_dev.c} | 214 +++++++++++++---------
 
-I think 8kB the wrong option. The GIC *is* supposed to be integrated
-over 128kB on arm64 platforms (there was some documentation about that
-back in the days, but it has become impossible to search anything on
-ARM's stupidly broken website.  My recollection is that it was bundled
-with the GICv2m "specification" (only half a page!).
+I'm still against this renaming churn. It sucks for backporting and
+you're also changing the name of the driver, which could be used by
+scripts in userspace (e.g. module listings, udev rules, cmdline options)
 
-Furthermore, you are supposed to describe the HW. Not your
-interpretation of it. Correctly written SW targeting arm64 know about
-this anyway.
-
-> > Unless the ST HW folks have been even more creative, none of this
-> > overly complicated stuff should be necessary. Just describe the HW
-> > correctly.
-> 
-> I was unable to find this information in the GIC-400 trm
-> (https://developer.arm.com/documentation/ddi0471/b/programmers-model/gic-400-register-map). Now
-> I also prefer to use GICC alias at
-> offset 0xf000 as suggested rather than the quirk solution
-
-Again, this isn't a quirk. It's the one true way for 64bit platforms
-that can use pages bigger than 4kB. That's the purpose of the 4Kn64K
-parameter in the integration, dropping bits [15:12] from the PA
-presented to the CPU interface.
-
-	M.
-
--- 
-Jazz isn't dead. It just smells funny.
+Will
 
