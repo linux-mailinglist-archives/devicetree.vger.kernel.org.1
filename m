@@ -1,209 +1,277 @@
-Return-Path: <devicetree+bounces-163240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC40A7C06D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:19:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D597A7C075
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:20:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4FC53B4AFB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:18:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F6E3B9177
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE1E1F462E;
-	Fri,  4 Apr 2025 15:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610AE1F5616;
+	Fri,  4 Apr 2025 15:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpRIytWN"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="TEdwwrAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230A3D6F;
-	Fri,  4 Apr 2025 15:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5491F5420
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 15:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743779944; cv=none; b=hwbWD8Ri6WMOVm2RzxN3iZIdJVBYFOmEA6hC2Zp25fAWrH73wb2mE5RVcEcerH65EQKtutqzxg+XPQTQKkfH4+a6hEmEs+KU7STtEi94x0DvhbmU+ijqJQQeFHCHr6F+A89cCsklJIAa8DbSZdQnVtwCSbbj06lrw2K8zpnTh2E=
+	t=1743779979; cv=none; b=Bt0+ywZrtkz1jJYX8oEIVBl/K8TzxuvnCei7Nk673ETf091Ub3mTCHA43iaHDJrR89NQ+Kjktc19lfsyMOGPIVULZ7ifIkA5AHr6V//AUt2ELVr3Qb02fs0qK6eILEpRzEUXrQKQ41IeXU5IRYLuhUnvPOM7lnOSz7R5QJfar3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743779944; c=relaxed/simple;
-	bh=EVLGz+q4eHgiZJTmh6liMRUu1PEh0/5UBRB7uM4oz9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MuUnh+86E9MIoxLtroDOyjbkObKJxq8+TvNzwoGQ/BQWM4ubpreOL3MsHTPBFVZ7ckrvs1CB2+HENRJ5iCS32BJ3zIxV/Zjw/mTi9l0h2Q7Oq5sG+cQCa2DiS8ZyDTkowsIVlspsBt4Y27JAEutddFLfuDZyKTTuAAJU4DYwhIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpRIytWN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1575C4CEDD;
-	Fri,  4 Apr 2025 15:19:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743779944;
-	bh=EVLGz+q4eHgiZJTmh6liMRUu1PEh0/5UBRB7uM4oz9k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZpRIytWNGh6xPU4sOx6hAWTom1hqbV5uX++DNde2vD6oYf4O57B8N4WQJdyXQUYVh
-	 CMRngFfHBGK/dNj8YlHPQMDFX807gVo2IUlbgZ1nDbGkubQSR8Zwzej/iy9/jJaOam
-	 UkhPdGX7i8TZ0jBElK6byNxoN9oYamwf3kTQWr0Cammv2gBJ4+Kak7/79RWw/7eLGd
-	 dLhJBqs3/8OdQefF+8o1N263dkx10qK03cqlrXExc+6IoRj1RhrjG0vl9gwytDdVu2
-	 0/gqzN6B0olfmSlQBoapfHfQa2JyiR9YGf5HAOlk1bW8NBip67S7fBZiQxKcKJs483
-	 RrSajqF/Tt91g==
-Date: Fri, 4 Apr 2025 10:19:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Andreas Kemnade <andreas@kemnade.info>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: clock: ti: Convert to yaml
-Message-ID: <20250404151902.GA1400262-robh@kernel.org>
-References: <20250404014500.2789830-1-sbellary@baylibre.com>
- <20250404014500.2789830-2-sbellary@baylibre.com>
+	s=arc-20240116; t=1743779979; c=relaxed/simple;
+	bh=eBQ9nNxE6lSXQIeYzj1Cau9JY6Jgqp7mRdU8CLlxMig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f/TboGuHsSiq5RZxiQLUrkwSu9tW1xMaiF95OQxJgA5HDd+6VZ7iwWq4qPmT1u6dfp5+icpFxp5/s5/cr3fidWwecGFG/8Gz9fj6ggmLtODhKEyzJwZkIbKR/omAKJtV+Na/0Sz2jGH8ndwuNT41M9oJSMiO8jtN8+TZeEwocs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=TEdwwrAv; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <c9a69eda-e066-49e1-979a-b6ec5ef115ba@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1743779964;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UWX0HTz4vZa+tHFvj8jM2lcjDzCYW7m/OUMpzGk+52s=;
+	b=TEdwwrAv1AvChzcWpwOAmY9TNVC9ryZeMsF2AhYAiE/SgE2zWcHO8rgoiPlQPfmHpm4vZJ
+	Y1GrWAgWka1x006GeZk12ELJxehJ/BhINMU6qRe05vINZ1hdeBV6jC6Y4yd516v/7ToMd2
+	6HZ7ZSJdudDFrdTfrWqn+5cOVYysmC8=
+Date: Fri, 4 Apr 2025 11:19:18 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250404014500.2789830-2-sbellary@baylibre.com>
+Subject: Re: [RFC net-next PATCH 01/13] dt-bindings: net: Add binding for
+ Xilinx PCS
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
+ linux-kernel@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+ upstream@airoha.com, Heiner Kallweit <hkallweit1@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Rob Herring <robh@kernel.org>, Robert Hancock <robert.hancock@calian.com>,
+ devicetree@vger.kernel.org
+References: <20250403181907.1947517-1-sean.anderson@linux.dev>
+ <20250403181907.1947517-2-sean.anderson@linux.dev>
+ <20250404-tench-of-heavenly-beauty-fb4ed1@shite>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250404-tench-of-heavenly-beauty-fb4ed1@shite>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, Apr 03, 2025 at 06:44:57PM -0700, Sukrut Bellary wrote:
-> Covert TI autoidle clock txt binding to yaml.
-
-Convert
-
-2 patches in the series have the exact same subject. Really, nothing in 
-all of the git history should ever repeat a subject. After all, you 
-can't make the same change twice.
-
+On 4/4/25 06:37, Krzysztof Kozlowski wrote:
+> On Thu, Apr 03, 2025 at 02:18:55PM GMT, Sean Anderson wrote:
+>> This adds a binding for the Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII
 > 
-> AutoIdle clock is not an individual clock; it is always a
-> derivate of some basic clock like a gate, divider, or fixed-factor.
-> This binding will be referred in ti,divider-clock.yaml, and
-> ti,fixed-factor-clock.yaml.
-> 
-> As all clocks don't support the autoidle feature e.g.,
-> in DRA77xx/AM57xx[1], dpll_abe_x2* and dpll_per_x2 don't have
-> autoidle, remove required properties from the binding.
-> Clean up the example to meet the current standards.
-> 
-> Add the creator of the original binding as a maintainer.
-> 
-> [1] https://www.ti.com/lit/ug/spruhz6l/spruhz6l.pdf
-> 
-> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
-> ---
->  .../devicetree/bindings/clock/ti/autoidle.txt | 37 --------------
->  .../bindings/clock/ti/ti,autoidle.yaml        | 49 +++++++++++++++++++
->  2 files changed, 49 insertions(+), 37 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti/autoidle.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,autoidle.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/ti/autoidle.txt b/Documentation/devicetree/bindings/clock/ti/autoidle.txt
-> deleted file mode 100644
-> index 05645a10a9e3..000000000000
-> --- a/Documentation/devicetree/bindings/clock/ti/autoidle.txt
-> +++ /dev/null
-> @@ -1,37 +0,0 @@
-> -Binding for Texas Instruments autoidle clock.
-> -
-> -This binding uses the common clock binding[1]. It assumes a register mapped
-> -clock which can be put to idle automatically by hardware based on the usage
-> -and a configuration bit setting. Autoidle clock is never an individual
-> -clock, it is always a derivative of some basic clock like a gate, divider,
-> -or fixed-factor.
-> -
-> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -Required properties:
-> -- reg : offset for the register controlling the autoidle
-> -- ti,autoidle-shift : bit shift of the autoidle enable bit
-> -- ti,invert-autoidle-bit : autoidle is enabled by setting the bit to 0
-> -
-> -Examples:
-> -	dpll_core_m4_ck: dpll_core_m4_ck {
-> -		#clock-cells = <0>;
-> -		compatible = "ti,divider-clock";
-> -		clocks = <&dpll_core_x2_ck>;
-> -		ti,max-div = <31>;
-> -		ti,autoidle-shift = <8>;
-> -		reg = <0x2d38>;
-> -		ti,index-starts-at-one;
-> -		ti,invert-autoidle-bit;
-> -	};
-> -
-> -	dpll_usb_clkdcoldo_ck: dpll_usb_clkdcoldo_ck {
-> -		#clock-cells = <0>;
-> -		compatible = "ti,fixed-factor-clock";
-> -		clocks = <&dpll_usb_ck>;
-> -		ti,clock-div = <1>;
-> -		ti,autoidle-shift = <8>;
-> -		reg = <0x01b4>;
-> -		ti,clock-mult = <1>;
-> -		ti,invert-autoidle-bit;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,autoidle.yaml b/Documentation/devicetree/bindings/clock/ti/ti,autoidle.yaml
-> new file mode 100644
-> index 000000000000..c995dae65cd6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/ti/ti,autoidle.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/ti/ti,autoidle.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI autoidle clock
-> +
-> +maintainers:
-> +  - Tero Kristo <kristo@kernel.org>
-> +  - Sukrut Bellary <sbellary@baylibre.com>
-> +
-> +description: |
+> Incomplete review, since this is an RFC.
 
-Don't need '|' if no formatting to preserve.
+Only an RFC due to netdev's rules. I consider this patchset complete.
 
-> +  In TI SoC, some of the clocks support autoidle feature.
-> +  It assumes a register mapped clock which can be put to idle automatically
-> +  by hardware based on the usage and a configuration bit setting.
-> +  Autoidle clock is never an individual clock, it is always a derivative
-> +  of some basic clock like a gate, divider or fixed-factor.
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+> A nit, subject: drop second/last, redundant "binding for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
+>> LogiCORE IP. This device is a soft device typically used to adapt
+>> between GMII and SGMII or 1000BASE-X (possbilty in combination with a
+>> serdes). pcs-modes reflects the modes available with the as configured
+>> when the device is synthesized. Multiple modes may be specified if
+>> dynamic reconfiguration is supported.
+>> 
+>> One PCS may contain "shared logic in core" which can be connected to
+>> other PCSs with "shared logic in example design." This primarily refers
+>> to clocking resources, allowing a reference clock to be shared by a bank
+>> of PCSs. To support this, if #clock-cells is defined then the PCS will
+>> register itself as a clock provider for other PCSs.
+>> 
+>> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>> ---
+>> 
+>>  .../devicetree/bindings/net/xilinx,pcs.yaml   | 129 ++++++++++++++++++
+>>  1 file changed, 129 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/xilinx,pcs.yaml b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+>> new file mode 100644
+>> index 000000000000..56a3ce0c4ef0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+>> @@ -0,0 +1,129 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/xilinx,pcs.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE IP
+>> +
+>> +maintainers:
+>> +  - Sean Anderson <sean.anderson@seco.com>
+>> +
+>> +description:
+>> +  This is a soft device which implements the PCS and (depending on
+>> +  configuration) PMA layers of an IEEE Ethernet PHY. On the MAC side, it
+>> +  implements GMII. It may have an attached SERDES (internal or external), or
+>> +  may directly use LVDS IO resources. Depending on the configuration, it may
+>> +  implement 1000BASE-X, SGMII, 2500BASE-X, or 2.5G SGMII.
+>> +
+>> +  This device has a notion of "shared logic" such as reset and clocking
+>> +  resources which must be shared between multiple PCSs using the same I/O
+>> +  banks. Each PCS can be configured to have the shared logic in the "core"
+>> +  (instantiated internally and made available to other PCSs) or in the "example
+>> +  design" (provided by another PCS). PCSs with shared logic in the core are
+>> +  reset controllers, and generally provide several resets for other PCSs in the
+>> +  same bank.
+>> +
+>> +allOf:
+>> +  - $ref: ethernet-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    contains:
+> 
+> From where did you get such syntax? What do you want to express?
 
-Is this 3 1 sentence paragraphs or 1 paragraph with odd line wrapping? 
-Blank line between paragraphs or re-wrap at 80 char. I prefer the latter 
-as 1 sentence paragraphs doesn't make much sense.
+The compatible should contain this value, but we don't really care what else it
+contains. This aligns with how the kernel matches drivers to devices.
 
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ti,autoidle-shift:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      bit shift of the autoidle enable bit for the clock
-> +    maximum: 31
-> +    default: 0
-> +
-> +  ti,invert-autoidle-bit:
-> +    type: boolean
-> +    description:
-> +      autoidle is enabled by setting the bit to 0
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      clock@1b4 {
-> +        reg = <0x01b4>;
-> +        ti,autoidle-shift = <8>;
-> +        ti,invert-autoidle-bit;
-> +      };
-> +    };
-> -- 
-> 2.34.1
+>> +      const: xilinx,pcs-16.2
+> 
+> What does the number mean?
+
+It's the version of the IP. 
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#clock-cells":
+>> +    const: 0
+>> +    description:
+>> +      Register a clock representing the clocking resources shared with other
+>> +      PCSs.
+> 
+> Drop description, redundant.
+> 
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description:
+>> +          The reference clock for the PCS. Depending on your setup, this may be
+>> +          the gtrefclk, refclk, clk125m signal, or clocks from another PCS.
+>> +
+>> +  clock-names:
+>> +    const: refclk
+>> +
+>> +  done-gpios:
+>> +    maxItems: 1
+>> +    description:
+>> +      GPIO connected to the reset-done output, if present.
+>> +
+>> +  interrupts:
+>> +    items:
+>> +      - description:
+>> +          The an_interrupt autonegotiation-complete interrupt.
+>> +
+>> +  interrupt-names:
+>> +    const: an
+>> +
+>> +  pcs-modes:
+>> +    description:
+>> +      The interfaces that the PCS supports.
+>> +    oneOf:
+>> +      - const: sgmii
+>> +      - const: 1000base-x
+>> +      - const: 2500base-x
+>> +      - items:
+>> +          - const: sgmii
+>> +          - const: 1000base-x
+> 
+> This is confusing. Why fallbacks? Shouldn't this be just enum? And
+> where is the type or constraints about number of items?
+
+As stated in the commit message, multiple modes may be specified if
+dynamic reconfiguration is supported. So I want to allow
+
+	pcs-modes = "sgmii"
+	pcs-modes = "1000base-x"
+	pcs-modes = "2500base-x"
+	pcs-modes = "sgmii", "1000base-x"
+
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +    description:
+>> +      GPIO connected to the reset input.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - pcs-modes
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    mdio {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        pcs0: ethernet-pcs@0 {
+>> +            #clock-cells = <0>;
+> 
+> Follow DTS coding style. clock-cells are never the first property.
+
+Where is this documented?
+
+>> +            compatible = "xlnx,pcs-16.2";
+>> +            reg = <0>;
+>> +            clocks = <&si570>;
+>> +            clock-names = "refclk";
+>> +            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "an";
+>> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
+>> +            done-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
+>> +            pcs-modes = "sgmii", "1000base-x";
+>> +        };
+>> +
+>> +        pcs1: ethernet-pcs@1 {
+>> +            compatible = "xlnx,pcs-16.2";
+>> +            reg = <1>;
+>> +            clocks = <&pcs0>;
+>> +            clock-names = "refclk";
+>> +            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "an";
+>> +            reset-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
+>> +            done-gpios = <&gpio 8 GPIO_ACTIVE_HIGH>;
+>> +            pcs-modes = "sgmii", "1000base-x";
+> 
+> Drop example, basically the same as previous.
+> 
+> Best regards,
+> Krzysztof
 > 
 
