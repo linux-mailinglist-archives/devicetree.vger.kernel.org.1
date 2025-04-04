@@ -1,213 +1,280 @@
-Return-Path: <devicetree+bounces-163143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A575AA7BA74
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:13:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C87A7BA79
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 956697A21FC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:11:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12C311775FB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D2A1B0434;
-	Fri,  4 Apr 2025 10:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4461F1C84DD;
+	Fri,  4 Apr 2025 10:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CBGbEIDJ"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Pna6zNuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5083A1624C9;
-	Fri,  4 Apr 2025 10:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FB510E9;
+	Fri,  4 Apr 2025 10:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743761571; cv=none; b=iPjWrgn+EJlp4yIiI0u7btTRI9WbuG/aWXT0uJHZbmLDmKTlp2tY34iHeIxUZA5SuusATDs4BciSZMRLDmmEm7svHA3FEG8Xr9jAn+IQV7ioTExU+VnBVrMmA/WWqEuZkx645GvYpVuKvepoLKq/A6fnMQqHOxNSl5e/riRdypQ=
+	t=1743761740; cv=none; b=PdciVEZJ2sJhNVaAxEh1tcl58WtaGTFozpA3meTNbSjLPEPUEo2SZqJA+xhjDucLnBRIm1o5i3Jb8HyajvfGB8Qz8zXZU8jD41EgkEraTmr2unpkGQC6/3W/XHE6LPSxPAAOHIFVdCxue29waYHppZIiK4WqH4yYirbzaI9o1go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743761571; c=relaxed/simple;
-	bh=NxwVvZZDyOiRdG/tnZiX1ueoKdKHoYeMpk9LYgqApIM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FVM0oxHjlU8TjmCJLTFrKd8fb2q3YktICruVinkgM1oVQmoz+Qor5RhQM7B9mYqyETmLJI/RGNZISviJOOh8yxYTit0jWBa+Q/dh98EQtGrtZhFgK44aep9VORIr8x196zhBPJwGDKix0eauoj0ed/fcdGMn66dEwOPakRqIu1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CBGbEIDJ; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso13448995e9.0;
-        Fri, 04 Apr 2025 03:12:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743761567; x=1744366367; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qrnOAx1Z42gXuu4NUkGGkg//gH1o3Mdb+pyo1hDqScI=;
-        b=CBGbEIDJSDgJJ5EGzfyDCibMT28v66AlJVmYWcKLKxUQxt7DHoroROCZao6mQ5GkcT
-         vec38sCnq901vimlkiOsHrdOVHixMj1QSxc6jAOPh1qrF/lI1FV1rrGrXOl4h2m0O5ua
-         pdiDFiST51yNwyAIQET/goZTa8XArbQcRfx905O0rYQ7XRG1IoA0eP0eJTDrWpBn507F
-         it6avN2r7hnYo6I5P7npiGDkscfcc5BnHDT4zbVMJhMi0YzaHN0EB9hE+ydZ2e7HW7iZ
-         GvAa9Ms0nnGs7uHo7FmKI24IhodSBVjTYUzK/3vhl4oXW2LwFsRlJ4/RNvGa470hdCD3
-         0zFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743761567; x=1744366367;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qrnOAx1Z42gXuu4NUkGGkg//gH1o3Mdb+pyo1hDqScI=;
-        b=pt0Dk+SO6EjCU23I5QIXCvFieA8DtqXM3gVfsIdRP9Or7QSVkTydeOqE12NIEMlhZz
-         yEs20wKofB633eeGfPn0dqCRHApLsCbdwSLeyYQbRtmEKuNZl0b9iXf25HMzvvcWQQnc
-         tJrDHaWlctnVM3zMlf9aewRHV3bR6C9/h/xwbMAtzLYc1WYBBL5neuOisFzz0W6i+RyH
-         SNzBS/k+AOhqAJ8QNeNzZUI9It8bta9iFeazYNm9Nk83GzkqIVHiJGrB/dIGgvPidBnX
-         rM1fsgtZmMweWN+m5qtWp8WSUANCrQ6/nv6D9qsBpRlSMNzMUnjvnQ8vYeUnh+aL7lTq
-         W2cA==
-X-Forwarded-Encrypted: i=1; AJvYcCV0bqnBGvESpxKO6TsCrAQB4dAPPThw/HOJckgIimHjps3ACkAiIkXs3KjtzYN8bg8d4lykM2YUzoWVGezo@vger.kernel.org, AJvYcCXE8MCgVadtbcTNAkPEIZisiR/kElduyoI0Fa/a9kDegjFA4z8v7xUvLLSBQoDZ6ldP2Nf1FIDh5pJO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkHZK+8qgrqrBFKVSeVBFjF9LAWVBm67BR+wiNDHeue0r3fxGS
-	T73efQKwhxTwqCM3HSAG1ShQdLYD/hbPC5sQLOwrHi9bh0JY+zyy
-X-Gm-Gg: ASbGncuzm0gPpMLx3TZgO1kLTQQcHmBZcqp4yZwlGWFUmWomvJZGbcaqRwISAL+pGKl
-	/N3aLyW/M/gAWa6lEkUkmJdwVkHXUKCsovNdzxj5GFmgX8d83Zf/uDIa/NpkwxUnzf9zfLRTlES
-	DNRkjbUdbhSOjz9WCFmwmmyM65KTfaybpehl8Cp/PuqfUK+vauV+GxY9VvDe2sp9ptcnFeqjN7A
-	Wo5g0wPpwEuo3Rfr/wMYGu0w+Uru7bEiDm4nWZ/RJJCZD6VjhqqVrMn0x505uM6uCKYC9ID5grJ
-	oq2GCqpc+8PruXofngat8I6yqp+W5mWncGoXO2qfRvkOmIWf9nAm6HwI5kXW+T6/8pCNRJjrxss
-	JPqH0RSdLwvEmwrDo
-X-Google-Smtp-Source: AGHT+IGn5zQjckVMr5yj5RkLrkNmEYqXiyrId5H4BjH0hkHpDWBOU4XybvpfkaZInnb7fcnChm8sLg==
-X-Received: by 2002:a05:600c:198b:b0:43c:fae1:5151 with SMTP id 5b1f17b1804b1-43ecf9fed70mr18873905e9.25.1743761567394;
-        Fri, 04 Apr 2025 03:12:47 -0700 (PDT)
-Received: from partp-nb.corp.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec1f27a55sm43732995e9.2.2025.04.04.03.12.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 03:12:46 -0700 (PDT)
-From: Parth Pancholi <parth105105@gmail.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Parth Pancholi <parth.pancholi@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4-main: Enable ACSPCIE outputs for PCIe interfaces
-Date: Fri,  4 Apr 2025 12:12:34 +0200
-Message-Id: <20250404101234.2671147-1-parth105105@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1743761740; c=relaxed/simple;
+	bh=FIhdnMy1wVCQl+snoKJDk1zz7zUQjIeLWe8MEZU/l88=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ht933p39//9PKzwUsNLpZHQo2cXCWbhCtELbR8qcLq5QsMHPhB6O/QBd5ddgabD1Sv3GWmov4R6gIyGJMn2tzOvhylnwUCfRU6rdwcw43rPxSoVrwOLCE6Bjzhl5ANCfimH/l/95rXoweyyNe/PUjfUHwRCP3w5JNAh/eESxOMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=Pna6zNuo; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=FIhdnMy1wVCQl+snoKJDk1zz7zUQjIeLWe8MEZU/l88=; b=Pna6zNuozP37PPqW/6nfYt0ElJ
+	f9/JDraDU6IiDT3H4fDSgHExqb5UH2OaqbbOzHMd8+lW2zMS3p1I0ZTjmQNTluYrOfPMG9HIKnHO8
+	NoMc4TgNzEYYXi8w/rOTGfUCXF+R3C9MQvFJJRqbeepiH5qZBrz0nzEr6OQv9nIYRRwuoqeVsdyKv
+	EC7P9VtWwF80OINIhJF2D/Jk7oBbJ8lfOfzsrnQkbEfu7rVvbl17q5eFDYLvaY+hI98rVnNQC7lK8
+	1zJnWwqWdD7J/1NwAAPeSqC0BwD5ytnxORdQ12rIJBavtcOd4R+69ph6nyHccR8pkriWfJ/mRN8hI
+	6IdMDeTQ==;
+Received: from [193.117.214.244] (helo=u09cd745991455d.ant.amazon.com)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0e5G-00000007Nzp-1oJn;
+	Fri, 04 Apr 2025 10:15:34 +0000
+Message-ID: <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+From: David Woodhouse <dwmw2@infradead.org>
+To: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev, 
+ Claire Chang <tientzu@chromium.org>, linux-devicetree
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>, 
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Date: Fri, 04 Apr 2025 11:15:33 +0100
+In-Reply-To: <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+References: <20250402112410.2086892-1-dwmw2@infradead.org>
+	 <20250402112410.2086892-2-dwmw2@infradead.org>
+	 <Z-43svGzwoUQaYvg@infradead.org>
+	 <148a3c8ee53af585b42ec025c2c7821ad852c66c.camel@infradead.org>
+	 <Z-46TDmspmX0BJ2H@infradead.org>
+	 <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+	 <Z-99snVF5ESyJDDs@infradead.org>
+	 <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+	 <20250404040838-mutt-send-email-mst@kernel.org>
+	 <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+	 <20250404043016-mutt-send-email-mst@kernel.org>
+	 <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
+	boundary="=-LpiL4yUyZM4+bvlzehPS"
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
-From: Parth Pancholi <parth.pancholi@toradex.com>
 
-TI J784S4-based devices, such as the AM69 SoC, provide PCIE_REFCLK outputs
-from the SoC, which can be used to clock external PCIe endpoint devices.
-Each PCIE_REFCLK output is enabled via the corresponding ACSPCIE clock
-buffer, with each buffer supporting two PADs to provide reference clocks
-for two associated PCIe instances. The mappings are as follows:
-        - PCIe0 -> ACSPCIE1 PAD0
-        - PCIe1 -> ACSPCIE0 PAD0
-        - PCIe2 -> ACSPCIE1 PAD1
-        - PCIe3 -> ACSPCIE0 PAD1
+--=-LpiL4yUyZM4+bvlzehPS
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This patch enables each ACSPCIE module and its corresponding PADs to ensure
-that all PCIE_REFCLK outputs are functional.
+On Fri, 2025-04-04 at 10:27 +0100, David Woodhouse wrote:
+> On 4 April 2025 09:32:39 BST, "Michael S. Tsirkin" <mst@redhat.com>
+> wrote:
+> > On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
+> > > On Fri, 2025-04-04 at 04:09 -0400, Michael S. Tsirkin wrote:
+> > > > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse
+> > > > wrote:
+> > > > > What's annoying is that this should work out of the box
+> > > > > *already* with
+> > > > > virtio-mmio and a `restricted-dma-pool` =E2=80=94 for systems whi=
+ch
+> > > > > aren't
+> > > > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
+> > > >=20
+> > > >=20
+> > > > That specifically would be just a driver bugfix then?
+> > >=20
+> > > I actually think it works out of the box and there isn't even a
+> > > bug to
+> > > fix. Haven't tested yet.
+> > >=20
+> > > The sad part is that the system does it all automatically *if* it
+> > > has
+> > > CONFIG_DMA_RESTRICTED_POOL (e.g. Linux) and the driver never even
+> > > notices that the dma_ops it's using are the swiotlb ops using the
+> > > provided buffer.
+> > >=20
+> > > Which is *kind* of nice... except that when on a guest OS which
+> > > *isn't*
+> > > Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore
+> > > the
+> > > `restricted-dma-pool` node and try DMA to system memory anyway,
+> > > which
+> > > will fail.
+> >=20
+> > I mean, it's easy to misconfigure Linux, this is why we love it ;)
+> > Why
+> > is this such a concern?
+>=20
+> Because it's incompatible. In the DT world, perhaps this new *non-
+> optional* feature/restriction should have come with a new
+> "compatible" string such as "virtio-mmio-restricted-dma".
+>=20
+> Adding it without backwards compatibility wasn't ideal.
+>=20
+> > > That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB
+> > > feature, so
+> > > that the device side can refuse, if the guest *isn't* agreeing to
+> > > use
+> > > the bounce buffer in the situations where it must do so.
+> >=20
+> >=20
+> > OTOH then setting this feature and if you make the device force it,
+> > you are breaking guests restricted-dma-pool which worked
+> > previously, no?
+>=20
+> Yes. So a platform offering virtio-mmio with restricted DMA, if the
+> driver doesn't accept the offered VIRTIO_F_SWIOTLB, may want to
+> accept that negotiation anyway, and *hope* that the driver/OS are
+> going to use the buffer anyway.
+>=20
+> I just didn't want to make that same mistake again when formalising
+> and documenting this, and especially when attempting to extend it to
+> PCI.
 
-This change have been tested on an AM69-based custom hardware platform,
-where all four PCIe instances (PCIe0, PCIe1, PCIe2, and PCIe3) with the
-internal PCIE_REFCLK are utilized with various endpoint devices such as
-a WiFi card, NVMe SSD, and PCIe-to-USB bridge.
+Of course, the beauty of the restricted-dma-pool as supported by DT is
+that it's a *system* memory buffer, which is actually OK as long as
+it's reserved address space and not just part of normal system memory
+that an unsuspecting guest might use for general purposes. So the
+trusted part of the hypervisor (e.g. pKVM) can *allow* the VMM access
+to that space.
 
-Link: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1484211/am69-pcie-refclk-out-and-acspcie-mappings
-Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
----
-This change depends on https://lore.kernel.org/all/20241209085157.1203168-1-s-vadapalli@ti.com/
-v2: set ti,syscon-acspcie-proxy-ctrl mask to 0x3 for all PCIe instances to prevent unintended overrides.
-v1: https://lore.kernel.org/all/20250320122259.525613-1-parth105105@gmail.com/
----
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi    | 12 +++++++++---
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi           | 10 ++++++----
- 2 files changed, 15 insertions(+), 7 deletions(-)
+It doesn't *have* to be on-device. That just seemed like the more
+natural way to do it for PCI.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 591609f3194c..d82d5cb5607e 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -132,6 +132,11 @@ acspcie0_proxy_ctrl: clock-controller@1a090 {
- 			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
- 			reg = <0x1a090 0x4>;
- 		};
-+
-+		acspcie1_proxy_ctrl: clock-controller@1a094 {
-+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-+			reg = <0x1a094 0x4>;
-+		};
- 	};
- 
- 	main_ehrpwm0: pwm@3000000 {
-@@ -1067,11 +1072,12 @@ pcie0_rc: pcie@2900000 {
- 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
- 		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
- 		max-link-speed = <3>;
- 		num-lanes = <4>;
- 		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 332 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 332 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
-@@ -1111,7 +1117,7 @@ pcie1_rc: pcie@2910000 {
- 		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
- 			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
--		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
- 		status = "disabled";
- 	};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 0160fe0da983..ebbc315649d0 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -34,8 +34,8 @@ pcie2_rc: pcie@2920000 {
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 334 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 334 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 334 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
-@@ -45,6 +45,7 @@ pcie2_rc: pcie@2920000 {
- 		dma-coherent;
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
- 		ti,syscon-pcie-ctrl = <&pcie2_ctrl 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
- 		status = "disabled";
- 	};
- 
-@@ -63,8 +64,8 @@ pcie3_rc: pcie@2930000 {
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 335 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 335 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 335 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
-@@ -74,6 +75,7 @@ pcie3_rc: pcie@2930000 {
- 		dma-coherent;
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
- 		ti,syscon-pcie-ctrl = <&pcie3_ctrl 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
- 		status = "disabled";
- 	};
- 
--- 
-2.34.1
+I suppose we *could* allow for the virtio-pci transport to do it the
+same way as virtio-mmio though. The VIRTIO_PCI_CAP_SWIOTLB capability=C2=B9
+could reference a range of system memory space, just like the
+`restricted-dma-pool` property does.
 
+It's a weird abstraction especially for a physical PCI device to do
+that because the system memory space is outside its ownership. But in a
+physical device it could be writable, and you could consider it the
+responsibility of the system firmware to configure it appropriately, in
+accordance with the IOMMU and other DMA restrictions of the platform.
+
+That does solve it for the CoCo case without addressing the P2P staging
+case that Christoph mentions, though.
+
+
+=C2=B9 I will rename it, Christoph, if it survives at all. Probably
+VIRTIO_F_RESTRICTED_DMA and VIRTIO_PCI_CAP_RESTRICTED_DMA but of course
+it depends on the semantics we conclude it should have.
+
+--=-LpiL4yUyZM4+bvlzehPS
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
+ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
+AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
+BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
+MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
+a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
+jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
+GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
+aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
+nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
+8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
+HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
+IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
+KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
+BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
+QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
+QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
+ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
+/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
+uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
+xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
+W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
+c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
+VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
+NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
+DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
+sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
+w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
+i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
+kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
+0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
+ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
+blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
+hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
+VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
+HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
+ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
+AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
+cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
+cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
+AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
+aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
+hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
+iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
+8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
+JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
+xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
+EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
+B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
+MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
+KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
+Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
+nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
+WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
+W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
+nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
+g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
+9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
+9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
+sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
+a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
+ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
+AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
+dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
+MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
+YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
+4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
+6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
+QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
+nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
+MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
+VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
+ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDQwNDEwMTUz
+M1owLwYJKoZIhvcNAQkEMSIEIAMhrHLxtL1DfO48u1RVbVg+bCuZb81p3mVzhtuCHUcHMGQGCSsG
+AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
+cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
+VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
+cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIARpy0evJlT77M
+YhhfuXyYU1ygnnyZbEDAgujHdYaRDr+IEPrY6F6snRzMQGa8iHB/KuP6h1omDAKJxTwS6jm6jhwR
+Vw4iRW92+BhcYjZJMem9OtkZbZ1FWbUaEo5Zp4U7Dz61aTq1l0PpyERSQo3I3UMzSlK+9barn7zy
+iQC04taPIigw8deX3NQaz9G0LP4X3SEAvWrxMwpZn8MR2/iSbfYMC3A83n9FYHmiHHMAhaxoYMGS
+yZTrEbaYhlkWm2mou4Fa9c0jE9+XQXxFVprv8qJDKluQQ8xAo6ZFGghwu7h5XWyMXbGGlrMnndEo
+yG6z7kFF4mbyKPiRSSoC1w6bxEv15i1GxBrizz/kbiRKeOBZGYMBMVY7hka8LP54rMWvcjp5z5Sr
+soMbMH7sDUbyWvlzBmUddYajrjwa4WLDm8N+FVFSE9dleWvCW8Pf/WqMDY7h8OY5By4jskNpwfU2
+Wu9KxKkhcd9cXPDtxrxAWPRPW65Iq0r8gd/Z9o+SPRso7jVwEHwT//2WhCuKJoX473DyYUPkcfp1
+IQwLx2XJYtYmQHII62VQc9Mmlmbd6VQ8gyreb0i5GOslycJ6HefYaZ7/txFcOIntnsSoKAIVGH+R
+arBwRae0VIeC1TmrlQHWWjnym+6HHGH8X+jw6UR7jU1U0lE2MYJqOwHilIOBJEwAAAAAAAA=
+
+
+--=-LpiL4yUyZM4+bvlzehPS--
 
