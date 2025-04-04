@@ -1,168 +1,152 @@
-Return-Path: <devicetree+bounces-163272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 038FAA7C243
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:18:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BAB1A7C252
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 904441B6089E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:18:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9E5A7A63CB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAD420C004;
-	Fri,  4 Apr 2025 17:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B536920E70F;
+	Fri,  4 Apr 2025 17:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BfD+If7p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9C11D9A79;
-	Fri,  4 Apr 2025 17:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882E613D539;
+	Fri,  4 Apr 2025 17:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743787105; cv=none; b=t7K/YSkGK6GNOXJ6kthwU/6fn89kzmj9ERT+NzAN6lhIGDl1nEJaCjqN1elskaV6+1+iv6iFHylo4gqtwJ8lO3FSpSXrXXPhTcjKC76jqbkH5RMv+Da3WQjWz9o/9V7+Wo1iZ6YuKMSuH1YGV5wGhLMDT7CZgx7IkVO6sSeQiiU=
+	t=1743787278; cv=none; b=HiUFp4G2Bq12p5CXlJrnJ/fG3Miv5GnR9fDZQw1QHeHHS4npZp1ToD/lLOzlpTg8QdcYHVyzURHDXtIbBw75Kebx9JYO/qzI1F2TB6gC3ZXxn76SY0L7m86bgBKipZdLiTsJZch1BFPnA7CRpIOw4lmvvwWAavJYBpUa4gGZomw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743787105; c=relaxed/simple;
-	bh=Rt41I0mzz8tXTxW+b2Zg2LkNB5uLygFHxSEy52L5pPY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=efSchbxTwA2MA8SJNgJCstNSOFs0z+yqIce3p2QwnKPuDj8H5knZewYu1Rh2gMlf2VTUMdvMRDMz4lOFHUPs0gKMGoJIBP76et9Db0BsJiBmTjoWDVB1RRT4XCJlUxMqB9+W6BVWWIy/gqlqPLjOthNBh5tPBSG1TlseZt/8ZC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZTlfT3g9jz6L51l;
-	Sat,  5 Apr 2025 01:17:37 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 77CEC1407F5;
-	Sat,  5 Apr 2025 01:18:20 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Apr
- 2025 19:18:19 +0200
-Date: Fri, 4 Apr 2025 18:18:18 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Jean-Baptiste Maneyrol via B4 Relay
-	<devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
-CC: <jean-baptiste.maneyrol@tdk.com>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: imu: inv_icm42600: switch to use generic name
- irq get
-Message-ID: <20250404181818.000051ad@huawei.com>
-In-Reply-To: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-2-72ed5100da14@tdk.com>
-References: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-0-72ed5100da14@tdk.com>
-	<20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-2-72ed5100da14@tdk.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1743787278; c=relaxed/simple;
+	bh=P3cPhH84HUJ6qxrN+BqVgk0FMB+z2MGzFpRpVOoSXUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cpotkNFlHa/zMDehzBZQqTZ67rW3HyODwXRXSnMwOLslwHBe9Tt6BJONzpOvi3eL+oHG473aEJtMidJli4KZxcXpR/FGHeWjPYVLO4EF4P58xE6AKXljUnBiOVGB346PYb+u3UWcU+ienmALeud+jLxK6tYvTPRTyPSCMff9ugI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BfD+If7p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8C6C4CEDD;
+	Fri,  4 Apr 2025 17:21:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743787277;
+	bh=P3cPhH84HUJ6qxrN+BqVgk0FMB+z2MGzFpRpVOoSXUE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BfD+If7pcXqHtEGjYIIuxM9MhgbhibGVkpY0WsSzRS/TbVgiFYLWW3BXyQyj5U4it
+	 VTZOoPKjlpz1PITrav1awFjKiARG3PTe2TLOpPKkl+zgILQDGXDNgmliWNKrAnd1HW
+	 cCUEJeNjx/nOSDOUOg8M5kaCtX4dWUwrq5BTcUFK6kwsh6NPZGjnz9MH0Iutuq2DXB
+	 FuniR37SciHc18J5HJ/E7lq7uMYD3IMN19Vr2y0u9nz+YIOav2xvUSrvU/ylmKvJoi
+	 /O5bAddU/KpO8uZtpYKxASBIGEPnUFedOsBBsRcQVZo3RUrOWQFadNNxr7uvVWFvok
+	 ujMiMpOui6dEQ==
+Message-ID: <6012032b-d202-430f-9077-0869be27b481@kernel.org>
+Date: Fri, 4 Apr 2025 19:21:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: icm42600: add interrupt naming
+ support
+To: Conor Dooley <conor@kernel.org>, jean-baptiste.maneyrol@tdk.com
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-0-72ed5100da14@tdk.com>
+ <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-1-72ed5100da14@tdk.com>
+ <20250404-entering-rebel-fee1d02020b3@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250404-entering-rebel-fee1d02020b3@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- frapeml500008.china.huawei.com (7.182.85.71)
 
-On Fri, 04 Apr 2025 17:52:03 +0200
-Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org> wrote:
+On 04/04/2025 18:53, Conor Dooley wrote:
+> On Fri, Apr 04, 2025 at 05:52:02PM +0200, Jean-Baptiste Maneyrol via B4 Relay wrote:
+>> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+>>
+>> Add interrupt-names field for specifying interrupt used.
+>> Only INT1 is supported by the driver currently.
 
-> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+
+Please run scripts/checkpatch.pl and fix reported warnings. After that,
+run also `scripts/checkpatch.pl --strict` and (probably) fix more
+warnings. Some warnings can be ignored, especially from --strict run,
+but the code here looks like it needs a fix. Feel free to get in touch
+if the warning is not clear.
+
+>> ---
+>>  .../devicetree/bindings/iio/imu/invensense,icm42600.yaml          | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+>> index 7e4492bbd0278a336587dc5ac04da7153453da29..f19cdfd7450e04e7c984dc987f3c23f5ad89a248 100644
+>> --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+>> @@ -41,6 +41,12 @@ properties:
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> +  interrupt-names:
+>> +    enum:
+>> +      - INT1
 > 
-> Use generic fwnode_irq_get_byname() for getting interrupt pin using
-> interrupt name.
-> Only INT1 is supported by the driver currently.
-> ---
->  drivers/iio/imu/inv_icm42600/inv_icm42600.h      |  2 +-
->  drivers/iio/imu/inv_icm42600/inv_icm42600_core.c | 13 +++++++++++--
->  drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c  |  2 +-
->  drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c  |  2 +-
->  4 files changed, 14 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600.h b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-> index 18787a43477b89db12caee597ab040af5c8f52d5..f893dbe6996506a33eb5d3be47e6765a923665c9 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-> @@ -426,7 +426,7 @@ int inv_icm42600_set_temp_conf(struct inv_icm42600_state *st, bool enable,
->  int inv_icm42600_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
->  			     unsigned int writeval, unsigned int *readval);
->  
-> -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-> +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
->  			    inv_icm42600_bus_setup bus_setup);
->  
->  struct iio_dev *inv_icm42600_gyro_init(struct inv_icm42600_state *st);
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-> index ef9875d3b79db116f9fb4f6d881a7979292c1792..bfdd7cd5fafae87ad7c6204f6dd3bef17935b3f9 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-> @@ -683,12 +683,13 @@ static void inv_icm42600_disable_pm(void *_data)
->  	pm_runtime_disable(dev);
->  }
->  
-> -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-> +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
->  			    inv_icm42600_bus_setup bus_setup)
->  {
->  	struct device *dev = regmap_get_device(regmap);
->  	struct inv_icm42600_state *st;
-> -	int irq_type;
-> +	struct fwnode_handle *fwnode;
-> +	int irq, irq_type;
->  	bool open_drain;
->  	int ret;
->  
-> @@ -697,6 +698,14 @@ int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
->  		return -ENODEV;
->  	}
->  
-> +	/* get INT1 only supported interrupt */
-> +	fwnode = dev_fwnode(dev);
-> +	if (!fwnode)
-> +		return -ENODEV;
-> +	irq = fwnode_irq_get_byname(fwnode, "INT1");
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");
-This needs to 'then' - possibly with a dev_info() - fallback to
-using 
-	fwnode_irq_get(fwnode, 0);
-to get what would have previously been in spi->irq , i2c->irq etc
-as I assume there is DT out in the wild without the names provided.
+> An enum with one entry is just a const.
 
-Jonathan
+It's not one entry and that's the problem. Instead it should be items
+with one const.
 
-> +
->  	irq_type = irq_get_trigger_type(irq);
->  	if (!irq_type)
->  		irq_type = IRQF_TRIGGER_FALLING;
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-> index 04e440fe023aa3869529b0f0be003ea0544bfb8d..38cc0d7834fcb96dabc401f29d613cf9fc75b8f5 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-> @@ -67,7 +67,7 @@ static int inv_icm42600_probe(struct i2c_client *client)
->  	if (IS_ERR(regmap))
->  		return PTR_ERR(regmap);
->  
-> -	return inv_icm42600_core_probe(regmap, chip, client->irq,
-> +	return inv_icm42600_core_probe(regmap, chip,
->  				       inv_icm42600_i2c_bus_setup);
->  }
->  
-> diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-> index 2bd2c4c8e50c3fe081e882aca6c64736510b474c..f40a09c4cbfc673e76922d13d61a3634785300ec 100644
-> --- a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-> +++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-> @@ -64,7 +64,7 @@ static int inv_icm42600_probe(struct spi_device *spi)
->  	if (IS_ERR(regmap))
->  		return PTR_ERR(regmap);
->  
-> -	return inv_icm42600_core_probe(regmap, chip, spi->irq,
-> +	return inv_icm42600_core_probe(regmap, chip,
->  				       inv_icm42600_spi_bus_setup);
->  }
->  
-> 
 
+
+Best regards,
+Krzysztof
 
