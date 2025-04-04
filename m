@@ -1,118 +1,109 @@
-Return-Path: <devicetree+bounces-163170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6612AA7BBB2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:40:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC5BA7BBBC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:51:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D81E3B5F08
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:40:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5975D3B2394
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183911DE4D3;
-	Fri,  4 Apr 2025 11:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29E01B6CEF;
+	Fri,  4 Apr 2025 11:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O8sWvlmo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iljuvQh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBA0146588;
-	Fri,  4 Apr 2025 11:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8685D51C5A;
+	Fri,  4 Apr 2025 11:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743766822; cv=none; b=sEGXQA4ZArJBC4YSPAX63fvgTyyX2hmFAjo59C7BWFn7wg6QQlHl6G0Mjyja+7XgrkgZMHFytOIRjTxJ5q5b8QLxOayE0y57xUwQu0+ovHJjPmX8hRfkwr7wDhTQO0FhRsGMG4MPeojvb4SuU0a8ysdVRPYAJ2mrq1MWrld2Wq8=
+	t=1743767490; cv=none; b=C2zQ2br4jtxJhgNPI14gK39lZZpgqLVBq7FxKwqSMgib30aqY39M9VCQ+mA9jtAUk0iteguc5qoO+6FobQLJzWVI5mwr9x6ErBxBv74ijIs9mZITx0lkUVa0a8Mvtvxd+D//FKiQIY+fy79q2F8FcITI/IubClj880M636KRXsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743766822; c=relaxed/simple;
-	bh=9b45S75utZYYfge2O1DXivXuvb2z6jJYNv6lm027wpM=;
+	s=arc-20240116; t=1743767490; c=relaxed/simple;
+	bh=mPF9dNqIO0IVwlNHVDTJ/mOCbUxdzAJZwR3p/NziPHo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qv7NOQogsYIZkuhlcOxZW6C/cTa56jm6OlJOOiZF6fpeh1DdMf+xwee348mYS5kO4dnmc1O/eogC832C4rE99NPdXxMoOSEXCELbC4MKHz6iCSkA0ii0Q4ayv0PvRrD34Z/1WgqrtyEhe1kRrFG0pHmh0QV961FeUG3/7Y68nvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O8sWvlmo; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1743766820; x=1775302820;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9b45S75utZYYfge2O1DXivXuvb2z6jJYNv6lm027wpM=;
-  b=O8sWvlmod9x2mFSW2C1eXFUtIv0+ovKqZQjaI2m8NhcPkJC+zzzrBmYe
-   LNipD9bwG6P0j569Z2eZJli0tc7BGRFF7G4fELnyiwTPRBRQc21tZREQf
-   g2GETdnBtIP1ks1+Fr85QMUq1Iw4dtVcoIDnJyMeFcFBieFn7rQwLLtu6
-   Rf6Umpz8rEuinjeyntuP1VvFaKqXztILDVmvd05mVoiFuK99YFugQZDLY
-   o99e2LjKQEkBFWFnSdXnohSE2E+8mYNV9F/mRXvrqd0l3s39YCpspSr20
-   04sM1u6tiYXsadIOGWVpuEeXelVs6p0OLED8MZ1Kl8hWfoit86vJ9ADDK
-   Q==;
-X-CSE-ConnectionGUID: 7OLiZnOcTouz5HzNZOEUNA==
-X-CSE-MsgGUID: XKbOjzzdT/iZj1uFCiFyfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="56190944"
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; 
-   d="scan'208";a="56190944"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 04:40:19 -0700
-X-CSE-ConnectionGUID: SOL4dQJCTMi8nBpfVI+NLw==
-X-CSE-MsgGUID: 9zq669XaQguh4n9RfXZa6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; 
-   d="scan'208";a="127586898"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 04 Apr 2025 04:40:16 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u0fPC-0001Cd-25;
-	Fri, 04 Apr 2025 11:40:14 +0000
-Date: Fri, 4 Apr 2025 19:39:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Matthias Fend <matthias.fend@emfend.at>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <202504041952.OcJvDWaM-lkp@intel.com>
-References: <20250403-hm1246-v1-2-30990d71bc42@emfend.at>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ec0jxIgM96GSOA8q0RzFsDJPcz34QUyP6LKAenWXxqdJhq2G0vc34Z6R3zu7CZYqUsb1Z5dW9QVy9fT8HEj7watrZPaMa+2NpEr6YIW9ECM94YCfiB+ivjC5lf6icfU2ty+4/zDeBMqXpUjZP2c1fRYTrW5sPB0PEhyXDyECUjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iljuvQh5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B522C4CEDD;
+	Fri,  4 Apr 2025 11:51:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743767489;
+	bh=mPF9dNqIO0IVwlNHVDTJ/mOCbUxdzAJZwR3p/NziPHo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iljuvQh5K1ESqANxabdCrgUqmU1PuS2khRE2CNkXIks4yPW5XYrx9C/loJKzMVA/T
+	 qv2Sk1bm9f1sx3nUCKteHI0Gthn9SDJrQht5YzBDFFwBB/3VCGC6oXinTnZ0xO9tK6
+	 Y87+fQ38ZHd+Iko+m8oRIOjHN4NbPj1w+AHio2XQu//gJc337/i7N9NAIrQKs8x1ue
+	 Y2uxXWnRn98RaVVKYMvt+LHoChT5ILbViSSAIVWUd5zpYazXPL2MLRL8mEZecHtn+T
+	 ys3Q51WCk1mSOhSFVqYPUD/TX0clFZJiDRo07dbN02AwA6ODOMmgPfMK3aQX+n+4bz
+	 1FjRdH1VNqYOg==
+Date: Fri, 4 Apr 2025 12:51:25 +0100
+From: Mark Brown <broonie@kernel.org>
+To: "Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] regulator: adp5055: Add driver for adp5055
+Message-ID: <b01583e1-dc95-49ef-99fe-1eedbe48cadd@sirena.org.uk>
+References: <20250403-upstream-adp5055-v3-0-8eb170f4f94e@analog.com>
+ <20250403-upstream-adp5055-v3-2-8eb170f4f94e@analog.com>
+ <360c60a4-d1ba-47bf-b65d-c6889801703f@sirena.org.uk>
+ <PH0PR03MB63517B73D2E5F9B46FAA6D41F1A92@PH0PR03MB6351.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NtdN+vd/FtMOcBIh"
+Content-Disposition: inline
+In-Reply-To: <PH0PR03MB63517B73D2E5F9B46FAA6D41F1A92@PH0PR03MB6351.namprd03.prod.outlook.com>
+X-Cookie: You will soon forget this.
+
+
+--NtdN+vd/FtMOcBIh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250403-hm1246-v1-2-30990d71bc42@emfend.at>
 
-Hi Matthias,
+On Fri, Apr 04, 2025 at 02:33:27AM +0000, Torreno, Alexis Czezar wrote:
 
-kernel test robot noticed the following build errors:
+> > This is absolutely standard enable GPIO support, just let the core handle
+> > everything.  Otherwise this looks fine.
 
-[auto build test ERROR on a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11]
+> May I ask which core function is the suggested to use here?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthias-Fend/media-dt-bindings-i2c-add-Himax-HM1246-image-sensor/20250403-165139
-base:   a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11
-patch link:    https://lore.kernel.org/r/20250403-hm1246-v1-2-30990d71bc42%40emfend.at
-patch subject: [PATCH 2/2] media: i2c: add Himax HM1246 image sensor driver
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20250404/202504041952.OcJvDWaM-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250404/202504041952.OcJvDWaM-lkp@intel.com/reproduce)
+> I assume I need to change the line in ops:
+> -> .is_enabled = adp5055_is_enabled,
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504041952.OcJvDWaM-lkp@intel.com/
+> Not sure which function handles both GPIO and registers since as far as I
+> understand 'regulator_is_enabled_regmap()' only handles software/registers and
+> 'regulator_is_enabled()' only checks the gpio?
 
-All errors (new ones prefixed by >>):
+The core handles GPIOs separately to the enable function, this is a very
+standard feature even things that actually need custom enable functions
+can make use of it.
 
-   m68k-linux-ld: drivers/media/i2c/hm1246.o: in function `hm1246_calc_pll.constprop.0':
->> hm1246.c:(.text+0x956): undefined reference to `__udivdi3'
-   m68k-linux-ld: drivers/media/i2c/hm1246.o: in function `hm1246_update_controls.isra.0':
->> hm1246.c:(.text+0xd1e): undefined reference to `__divdi3'
+--NtdN+vd/FtMOcBIh
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfvx7wACgkQJNaLcl1U
+h9DSTAf+PSVWwSnav1WgAb+SgTPLt/DLQCSH+e+wzfkq7K+B1PByoh1xres04Yk2
+TwaV/z9/N1SpJHgebQdticw0uKfZtz6lpbUpa8lJpjTJe0aKKkS+cGNTq96RPzsY
+NxzhuEcXwejwjsHTsAIpE5XwlqEf4FeAZ1ea911YatCGGKWs6VIIPo3OSvzwOAp5
+9cy6qbm/XSRlku0U6JnqdU/vp2FBrEV0mNarW9cyIAG4iPQ/EDyxF3aSFkWFyY3e
+CxH/N2iedoGh8T5DEy958mMZPwR1sM/L7ZvXh09B1EYP1I65MuYBIv4RmXRnFHFb
+JLRumw5iO5u7UsVHGnmwlyIsZq6B/w==
+=LPyq
+-----END PGP SIGNATURE-----
+
+--NtdN+vd/FtMOcBIh--
 
