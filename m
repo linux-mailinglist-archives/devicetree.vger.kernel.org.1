@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-163274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A69A7C255
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD99A7C266
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:30:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BF707A6828
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:21:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65B3C7A5DA3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D7F211A23;
-	Fri,  4 Apr 2025 17:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE432080D2;
+	Fri,  4 Apr 2025 17:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nyxzCXgE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gy9pOQrl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D2413D539;
-	Fri,  4 Apr 2025 17:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75EFF1E1C29;
+	Fri,  4 Apr 2025 17:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743787325; cv=none; b=D6W9CBE2S68Kh1GO5W3zfrLNFoY5AFSMZgmmN721N8sLuLtgyFx6NmrZs9bZMNN3WGM9L95r7fUVXGhDfKw7g1Ws92FBWytxZZHju8Kml5pqOAbTUfU8fkVHYi8E6usivtPSd6TVqyOSd566Ieph14SDiu2B02f59MliPchFH64=
+	t=1743787820; cv=none; b=iXMAMYvA9lm7MtCgI16PX0KkkzDfwQ+NMdRoiAvDKw9nbgFSOFXwKwVfVI5Gj/xQ5ZnmqW7NV5s9VaQ+TQWa3q+16u8rfkCqFaeXNvp4ubhA3T+/IJQzBh7d/CQBv/v/Febut0SZfaE/6HiMSt5LeXGgNtE7MLoA9lgcHjtnWh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743787325; c=relaxed/simple;
-	bh=Y9XxofYqasuo0zueCm8YR/pkUi2kYgS91APGyJHgwpM=;
+	s=arc-20240116; t=1743787820; c=relaxed/simple;
+	bh=7mXI0zUWmkLg5JnS8/AH5K/69KTjGd1f1uUnxPdnQbE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V5dzopNwsmP+O7gZyJJ6NVG5X6XPKFIVjo5Lb4PEvlCz3zLmiA5DPVQlD4vJANJLshRM/u3cHjA3auf0879duCcLX2wonnuQCv2KmAiB7if1Z2xix702efkKpmsngD2cyKnk2uMRF1hrRQZOy6d6GMoLRnFVBfvpn0GB9WNDK7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nyxzCXgE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2636C4CEDD;
-	Fri,  4 Apr 2025 17:22:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uFHyeEqPMaccU2YvDqm4AtPNe0j9tJL/IBGpDvR9DUFNuWdGS16/hB0zNVIEasV5EisGg/aHS0i1+d2cNU3QMIHp6515qvbbl+Xlc80LssRv9p5N9t0Tun8fms/zN1BjqBpj4hb2nvVObK+C2EjlDycyTm2LsCxiIZCpZ/0Z634=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gy9pOQrl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07136C4CEDD;
+	Fri,  4 Apr 2025 17:30:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743787324;
-	bh=Y9XxofYqasuo0zueCm8YR/pkUi2kYgS91APGyJHgwpM=;
+	s=k20201202; t=1743787819;
+	bh=7mXI0zUWmkLg5JnS8/AH5K/69KTjGd1f1uUnxPdnQbE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nyxzCXgE2s8Zhnayugacd0XLFgX4a+oIOzX+4s7WZ9ikZgU3i6dAHU+0LpQvLNjVK
-	 tFRBqPNymcgcR9WCdf9xKS1S9hN75azXjb/uHCx4RkgVILpwuE9WyAC9Nkivd0n+LT
-	 /IaAUezTl7WG1gfMG1VLOXkgjoV4lFTB1fAjuU0S1FDGMXb8VjMKCsA/ShGwtbWW70
-	 5va3/uMd83ImYb03gRkCr/Kb2dFxvtynevh2nGzQdMwg0DPT+qrBYg+96BqtF3+0xk
-	 nNIL5DSlClKGxbw1R3P5vBCfWNFq6xlePbsz/tCM+6vzRYekVXRdDwZy6bmK/PIEnk
-	 7pxEVdfjdCQXg==
-Message-ID: <7962134d-6380-44a6-8d1e-02aafa510531@kernel.org>
-Date: Fri, 4 Apr 2025 19:22:00 +0200
+	b=gy9pOQrlOtg/5RdGZcG/y23aCnQc9/97NZfyeL2/X415kEUILtVXTDDf/TixkT1tt
+	 AocwmqEa/D18Q8gsgwhsvmQXuWg2qYa82g6wsp8MipI40x6sy0oopQRT7+0rS9FsAI
+	 9aPM0spBLeuM2baeBc1D54SmS57CaIKRjPRhHLwsrvPWA9NecqhrfnvGSNonujYZxD
+	 76PaUjZUc06DtwkcieBVdNinYXyyf2dI77jnnorSHDz8c3rSE2v1W7dOy3joHMuYDd
+	 OM3mKZkdQNa10gcS0cV745c/eJwxWXNHvIjPAUIF2jcYx+GuCc7rfm03AAKHYTH+HS
+	 guF2bmL8ryFhQ==
+Message-ID: <d2ffca88-6773-4e40-b737-65a451ba1d01@kernel.org>
+Date: Fri, 4 Apr 2025 19:30:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: imu: inv_icm42600: switch to use generic name
- irq get
-To: jean-baptiste.maneyrol@tdk.com, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add Sitronix ST7571 panel
+To: Marcus Folkesson <marcus.folkesson@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-0-72ed5100da14@tdk.com>
- <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-2-72ed5100da14@tdk.com>
+References: <20250404-st7571-v2-0-4c78aab9cd5a@gmail.com>
+ <20250404-st7571-v2-1-4c78aab9cd5a@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,21 +106,106 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-2-72ed5100da14@tdk.com>
+In-Reply-To: <20250404-st7571-v2-1-4c78aab9cd5a@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/04/2025 17:52, Jean-Baptiste Maneyrol via B4 Relay wrote:
->  
-> +	/* get INT1 only supported interrupt */
-> +	fwnode = dev_fwnode(dev);
-> +	if (!fwnode)
-> +		return -ENODEV;
-> +	irq = fwnode_irq_get_byname(fwnode, "INT1");
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");
+On 04/04/2025 15:50, Marcus Folkesson wrote:
+> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>  .../bindings/display/sitronix,st7571.yaml          | 73 ++++++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7571.yaml b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..11575b820c59c5ada427fbb6b015c331215c8db6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/sitronix,st7571.yaml#
 
-That's an ABI break.
+Why isn't this in panels directory?
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sitronix ST7571 Display Panels
+> +
+> +maintainers:
+> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
+> +
+> +description:
+> +  This binding is for display panels using a Sitronix ST7571 controller in I2C
+
+Do not explain for a binding that it is a binding. Redundant. Instead
+describe the hardware.
+
+> +  mode.
+> +
+> +allOf:
+> +  - $ref: panel/panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sitronix,st7571
+> +
+> +  reg: true
+> +  reset-gpios: true
+> +  width-mm: true
+> +  height-mm: true
+> +
+> +  panel-timing:
+> +    $ref: panel/panel-timing.yaml#
+
+Drop, already part of panel.
+
+> +    description: |
+> +      The panel-timing node specifies the display resolution and timing
+> +      parameters. The hactive and vactive properties are mandatory.
+> +      The vback-porch property specifies the start line of the display.
+> +      The other properties should be set to zero.
+
+Drop description as well.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - width-mm
+> +  - height-mm
+> +  - panel-timing
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        display@3f {
+
+Not much improved. How is this called in every other binding? panel.
+
+> +          compatible = "sitronix,st7571";
+
+Messed indentation.
+
+> +          reg = <0x3f>;
+> +          reset-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
+> +          width-mm = <37>;
+> +          height-mm = <27>;
+> +
+> +            panel-timing {
+
+And here is even more confusing.
 
 Best regards,
 Krzysztof
