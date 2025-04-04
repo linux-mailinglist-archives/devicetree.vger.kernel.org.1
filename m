@@ -1,182 +1,128 @@
-Return-Path: <devicetree+bounces-163193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70236A7BCD1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:41:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1FDA7BCDD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:45:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2E17189DE97
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:41:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9828F17521F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7FC1DF99D;
-	Fri,  4 Apr 2025 12:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16FAF1DF993;
+	Fri,  4 Apr 2025 12:45:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dat10KXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBCA1DB363;
-	Fri,  4 Apr 2025 12:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7E31DC1A7;
+	Fri,  4 Apr 2025 12:45:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743770469; cv=none; b=po1iB3a4WTKm1jZJkxuzara899KRRNduo/D6MGAzjWeq614NUK6+oD3OiezraDHoyCxQiwdh6bhmxFP7fcozPUL6UFbH7jz5nB8lHu26fLr2OiwM+tMFMf5seMmgjeb79bwM2DFphN9oyT5USqyjYNZe/qYCw5XfRfmdOpN4h1k=
+	t=1743770712; cv=none; b=aH2CliDn9mDpk7qxZwNFEnDa6DuZnPibo1fKq6JxvpHEx8VxoxJ7EprHov3PIVh7LWrrRfwnWPNf+06Cijm7P19yL89n0/AvjjHrkk7G0U14GrsMOmBWDHmP5W8mp3g0MpVfNHrhEj9Ij25mOW2Hx7kDq6OltOyfEe77Mz0tiXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743770469; c=relaxed/simple;
-	bh=iY1p6+npB+bD9BrO1Sg5lKvxjiUurx93mXmSO4ERzEc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t9c45BdoxF1MPfDuk6ktwePTMHImdOzEL8fVrVErXLJ2Z9O+3FMVkOU+J9QcNawKvTVcIPuY8/rKFxmK25MuRS972okxWrJRIHFhzBzWfU0/ELlGFr948mefJ+jHXbTcYn1yuB/EqC0+jk/xQFmcp19EWhTWNP8YQIS0pBMQEIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39AA31515;
-	Fri,  4 Apr 2025 05:41:02 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF7A53F59E;
-	Fri,  4 Apr 2025 05:40:53 -0700 (PDT)
-Date: Fri, 4 Apr 2025 13:39:58 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael
- J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Vincenzo Frascino
- <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Sudeep
- Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd
- <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, Conor Dooley
- <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
- Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Heiko Stuebner <heiko@sntech.de>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
- imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/19] arm64: dts: allwinner: h5/h6: Drop spurious
- 'clock-latency-ns' properties
-Message-ID: <20250404133958.5361be95@donnerap.manchester.arm.com>
-In-Reply-To: <20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
-	<20250403-dt-cpu-schema-v1-1-076be7171a85@kernel.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1743770712; c=relaxed/simple;
+	bh=+f9bptQzXW02fg/r/Fn12knWGTzQttrVy41KB2g3QZ4=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=X3PrFs0fwGonCshCSwfH1ORqGeHOeey0O2R32ui5nHd/ffNTzGntbrBRgOF+ProfiZRwinT0YxrK3aCDsr+ICHSXN5uCu0GdkVATcerQw9EAi/CVVGwlwV5yLqTg4FmPBw6c7zjNdJaNFyom+DoML0LTVh1wz70G7QR5bO6+Uh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dat10KXg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AFC4C4CEDD;
+	Fri,  4 Apr 2025 12:45:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743770711;
+	bh=+f9bptQzXW02fg/r/Fn12knWGTzQttrVy41KB2g3QZ4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=dat10KXg8qGBRc6wGr53pYS2oCTMA1VLmxkoVxpX7r9er25pw4MdWL04Hy1t+FRn0
+	 WvanxZFRMN0ABsf8CwgkBg7gqlnepiYF75sXDI7vaDepE0LKLRib2BhfcAaOil1Xbu
+	 1WUEK7IMvBY9QSX2qyr/uFjkct2AYFoL0FLzf969RVdpPn66mrYlBmRhteMQyz05HY
+	 4leuNuDOZvtElIeFwz/8qQhSjkQcxZrZiZP9ayeF75uNQ5clm/SLcn8MOOlExX2S0u
+	 XUtpWC5GICfNvbfbiRpuopV99cvd0gxQEV7eTgSZ/q/ah2HfvunyBscvuBxnR79dAC
+	 MVOO3KkpueQYg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1u0gQ0-002LQk-R4;
+	Fri, 04 Apr 2025 13:45:09 +0100
+Date: Fri, 04 Apr 2025 13:45:11 +0100
+Message-ID: <87zfgwxfhk.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: <tglx@linutronix.de>,
+	<robh@kernel.org>,
+	<krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>,
+	<mcoquelin.stm32@gmail.com>,
+	<alexandre.torgue@foss.st.com>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH 3/3] arm64: dts: st: add st,stm32mp2-cortex-a7-gic in intc node in stm32mp251.dtsi
+In-Reply-To: <1c9a49cb-35a1-4bcc-abd5-b14a49d4d094@foss.st.com>
+References: <20250403122805.1574086-1-christian.bruel@foss.st.com>
+	<20250403122805.1574086-4-christian.bruel@foss.st.com>
+	<874iz5yx2c.wl-maz@kernel.org>
+	<1c9a49cb-35a1-4bcc-abd5-b14a49d4d094@foss.st.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: christian.bruel@foss.st.com, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Thu, 03 Apr 2025 21:59:22 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
-
-Hi,
-
-> 'clock-latency-ns' is not a valid property for CPU nodes. It belongs in
-> OPP table (which has it). Drop them from the CPU nodes.
-
-Looks alright, only affects H5 and H6, and they indeed have it in their
--cpu-opp.dtsi:
-
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 4 ----
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 4 ----
->  2 files changed, 8 deletions(-)
+On Fri, 04 Apr 2025 13:17:08 +0100,
+Christian Bruel <christian.bruel@foss.st.com> wrote:
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> index d3caf27b6a55..48802bf02f3b 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> @@ -16,7 +16,6 @@ cpu0: cpu@0 {
->  			reg = <0>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -26,7 +25,6 @@ cpu1: cpu@1 {
->  			reg = <1>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -36,7 +34,6 @@ cpu2: cpu@2 {
->  			reg = <2>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  
-> @@ -46,7 +43,6 @@ cpu3: cpu@3 {
->  			reg = <3>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index 2301c59b41b1..73e8604315c5 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -27,7 +27,6 @@ cpu0: cpu@0 {
->  			reg = <0>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -44,7 +43,6 @@ cpu1: cpu@1 {
->  			reg = <1>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -61,7 +59,6 @@ cpu2: cpu@2 {
->  			reg = <2>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
-> @@ -78,7 +75,6 @@ cpu3: cpu@3 {
->  			reg = <3>;
->  			enable-method = "psci";
->  			clocks = <&ccu CLK_CPUX>;
-> -			clock-latency-ns = <244144>; /* 8 32k periods */
->  			#cooling-cells = <2>;
->  			i-cache-size = <0x8000>;
->  			i-cache-line-size = <64>;
 > 
+> 
+> On 4/3/25 19:27, Marc Zyngier wrote:
+> > On Thu, 03 Apr 2025 13:28:05 +0100,
+> > Christian Bruel <christian.bruel@foss.st.com> wrote:
+> >> 
+> >> Add st,stm32mp2-cortex-a7-gic to enable the GICC_DIR register remap
+> >> 
+> >> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> >> ---
+> >>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >> 
+> >> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> >> index f3c6cdfd7008..030e5da67a7e 100644
+> >> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> >> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> >> @@ -115,7 +115,7 @@ scmi_vdda18adc: regulator@7 {
+> >>   	};
+> >>     	intc: interrupt-controller@4ac00000 {
+> >> -		compatible = "arm,cortex-a7-gic";
+> >> +		compatible = "st,stm32mp2-cortex-a7-gic", "arm,cortex-a7-gic";
+> > 
+> > What nonsense is this? This is an *arm64* machine, with I expect a
+> > GIC400. Where is this A7 compat coming from?
+> 
+> Probably historical, as the first port was for aarch32. I will fix
+> this separately. thanks for the head up!
 
+Then while you're at it, you may want to consider removing the
+"always-on" property in the timer, because I'm pretty sure the
+comparator goes down in low power mode on A53 and A35, and loses its
+value.
+
+In general, only VMs can make use of this property.
+
+	M.
+
+-- 
+Jazz isn't dead. It just smells funny.
 
