@@ -1,154 +1,115 @@
-Return-Path: <devicetree+bounces-163221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3E6A7BEB9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:10:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F46A7BEC7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E66F3BA993
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:10:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C69A0179E34
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303591F193D;
-	Fri,  4 Apr 2025 14:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C201F2BAE;
+	Fri,  4 Apr 2025 14:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MhXqLqpa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYTpW7l1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0DA1F0E33;
-	Fri,  4 Apr 2025 14:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DB61EF0B9;
+	Fri,  4 Apr 2025 14:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743775832; cv=none; b=rlUJPj3OKROTl7DVSgDnA1X52xaoYnrMHCQdK+EWQ9F/wDITqd7oICnKi6dSPnquMbKIj4DC3s/RpkI8D3mIhMZkl6q32erhexdu9IPx0A1qBmIjc7FZYP1dKn4kK9QjrFGRqVZwi/qEx2cwpMYKPY96ZzdD+wOHtqSFM2QTvDA=
+	t=1743775992; cv=none; b=cEF7/LjYaXgfBaiZubJA+ddrf5TwlsQsnv1iqFfM4Wg5K97+F6IeK5xSJjAUbAx6H+gzhQnHx3GvDRPBBCRBUllQ1iCWvyp/mNf5Q1b1LgsS0Bfu1ZazkGqNggkb5SHcV+1YoKLbz3YE+lYPVeiQkb+Tr3kvRrJgKsG+aw6gbL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743775832; c=relaxed/simple;
-	bh=l2lzsNRrga+hAwlZPw2hZyVI7hOngQ48zjWgc72CGr4=;
+	s=arc-20240116; t=1743775992; c=relaxed/simple;
+	bh=EL7oi2/m85Kv7csUQ8MDtG6477di5KZ8Vv1tGjjgOBk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uiChbc9rbv0oAZYXxsogvYs5aVUgEs0rbX+lxzlKrd8DAD6mm9JAQSIBkMf4XMIkZcHfR+Z1f81agX0MBuFQmF0F96aSPmOFQ+B2NTmRC9yGE2GXF/mc+cmlUZp38vE5w0nUNONnCUkT12TYBDVCP15p53grUQuOUX1Kz5/kOBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MhXqLqpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB8FC4CEEA;
-	Fri,  4 Apr 2025 14:10:31 +0000 (UTC)
+	 To:Cc:Content-Type; b=TUvxtV9YCLK91l91aZ+EfWw6kIHXVi2HrdPYBeLoeQL6A2e4r4esrfCHcpdg5GVoolEPwnuKe5kTXhIEvxsD11qFXJSikgkL+k1DqENSxhbpYPLVDYKGRfbgePcA/OMljoark77Avnf4tBh5/KlP1CJTI3D2ht/c8jI7bIFc8Q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYTpW7l1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD78C4CEE8;
+	Fri,  4 Apr 2025 14:13:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743775831;
-	bh=l2lzsNRrga+hAwlZPw2hZyVI7hOngQ48zjWgc72CGr4=;
+	s=k20201202; t=1743775990;
+	bh=EL7oi2/m85Kv7csUQ8MDtG6477di5KZ8Vv1tGjjgOBk=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MhXqLqpa43mJjzUE+SiXJTbXwmVJ/HY6gBTctJU9FfRezIv1qLjartTS85rOgNg9a
-	 ZhN4HzOepVa85NDLlDWJODei3AOF6LINQBifXsj/9vcNkRNTNwOPyODWr//oY7SEXN
-	 pqbYfSz27XnI8DD+h0GaWdbcrDerOqpp+11Vuj4JYUOWKhgGITX67L3hbAOFtsPvzb
-	 xSZsVs/S+Pr54A87UysNCn/RkaXJaFv8XaW0L8BHyTXXNGj+g0awaZqTwq7UI8BMyg
-	 xtscO/vdTlk2M4zdjpWE5iml8FERUp0D7y1vv/91pL6IP0dkPhJrxNVtmC/K/73oRz
-	 naujA3WQObjpA==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e8be1c6ff8so3930496a12.1;
-        Fri, 04 Apr 2025 07:10:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU/HYiGx+FtNlR0TJnhe7+dbJvVvv7BYPCwwZZo9fMVyvGbkX9tfWUnNX9BRkWoEprg6QftNlycD/s5TKXbgA==@vger.kernel.org, AJvYcCUos1Wh+k96Mi1ay6x95OdBl2SSUiCVU6x1cIGINxc6URxwBLL27rGQN1VpTyTRXHqw/spppzw0BZvgka7M@vger.kernel.org, AJvYcCVXPYNlFRTU02+YVTQxTRvhY5j2eViWk+Ovzog7Ace3rtWp7gqtkEIJ52spXoszvWLm/2RLVBt7TXAhOA==@vger.kernel.org, AJvYcCWNuIi+rmAmwcOj9DrGjyfQmNW/qTFhmN+spqonpP2xpoqWsllRlFQtmOp5Ii2+ZmcJJiQ+/LGok3Y=@vger.kernel.org, AJvYcCXtyMtivy0pcEqlmg0HQOgccg+nhvSVoIcPCPep5ZVvMwJNavu7fEFoLrq4aHHe2K9thFum/xrdpHNDLrAP7g/kq/I=@vger.kernel.org, AJvYcCXwxksWcrYmHTidxE/WhYC+nvwzz2VVYWJY2GQhpxm64w/jlm5iRi9UkZtIrUwFbjkfzqhHcMdmYPuH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwplwxXZQtHN5Tufv1r0UvtwQjoAVFhjReRqL4FlNwQErvoQ07w
-	vCfAQb3Qh0Dn4NUnMZCpw+BvMbvyf36umQj8+Y/4wtF5vRYr1eNWx2gJVX41k5hdVw3IWZxN6AO
-	3NsIg60Bo42Ay0iiFS8/F0ExQKw==
-X-Google-Smtp-Source: AGHT+IGYXjl+q1G3Ghk1zMOjaKXndZfqYp9hiiK7OTWs/zAZNM/+0QVdqEQQ+zuW4YRtKHDm+WaT1WT3knVA25eifPc=
-X-Received: by 2002:a05:6402:3481:b0:5ed:921a:ded6 with SMTP id
- 4fb4d7f45d1cf-5f0b657862emr2694084a12.18.1743775830233; Fri, 04 Apr 2025
- 07:10:30 -0700 (PDT)
+	b=dYTpW7l1losml3CYXnM2+/9RTN+kRplk1y1a+MLfSztD2vBz0JGqTjsUHrAm3qTpz
+	 A3oxqJtMqrcbJaDjSBG6PYQ6pWPuh5kQVOo8QlCV+OYOKFPNew31NLD+Z2Ra8ojz9u
+	 BVq2zY28+eBq3tuFTEYxZu6zAF42xZL7V7GhwF6xotOfLtJ1bsYffVovtgDwg8ybHO
+	 KoiSa7GTvIlg/xbf7mUb3Ik7lr4M4iFjRr7RCnZGZP6pTUgYCn8BRDd0CaQjPIu6lb
+	 zVEjaunh98vLcoRJhNVcDxx1qWs8yiwZ9rRz5bxx4p73M0NkHQRgQjRuZD5qCtrC5g
+	 7mM8WqP0Po0PQ==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2963dc379so339171566b.2;
+        Fri, 04 Apr 2025 07:13:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU8VBboLnPzk4EOJmRJV7MeZOK/9SAC3ZnfQKR4q9A3ktIsJkJt52NsD2mKci6wGqX2+aqD20q+dG9DHXjB@vger.kernel.org, AJvYcCULfWe0VpviVdkArRXIfiAhY8X7i6MgcrNbKQ7OmRaV4OxJLZrbyeUBrnbm3P0hVxPCPUvjTrnz4Ggt@vger.kernel.org, AJvYcCV5YtuFaru7WD8omqHAE7ajBL9Pzf+T3MCS7I+6psRH/ok3tF9tEqN10VB+/zyUFupfnsPxFbrFXq/n8A==@vger.kernel.org, AJvYcCX2hCbStwCHBhH+ZEJjVldDFESVlRLQhe5iM0G9WAkrmswJLRFlxRM1rCDL6OXVIXmCZ6SPpmkC5JC+KZyko0o=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdP1F2ohfZ3kY4FfyJi386Vd9g7xEtWvGLIepYsN3AcFMxjdyt
+	ESIsUhl/igkt3APp3Lbs9ZSb0uNIxi96i4uCvgdvaR9nC2H7jEW4s/VteIw7vfrLpLdV5iu2ssh
+	6NB4JvFE74F50bwuBqxzxBxrYww==
+X-Google-Smtp-Source: AGHT+IH2xZciNnrePOn7PFRsdNZCfWkEZWTMbMOOyl4q4+IVMO9VZ6AF2DruwUbn9tSbS4OBxTe5eyCs5VZiI6Ii+E4=
+X-Received: by 2002:a17:907:1b08:b0:abf:a387:7e35 with SMTP id
+ a640c23a62f3a-ac7d19f4f50mr368734866b.53.1743775989309; Fri, 04 Apr 2025
+ 07:13:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-6-076be7171a85@kernel.org> <Z-_K2XDEcbtcCMVM@linaro.org>
- <CAL_JsqJT-0gwvJnMb63izy6WwJpBVsswkauL8OMLCrF08q9HYQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqJT-0gwvJnMb63izy6WwJpBVsswkauL8OMLCrF08q9HYQ@mail.gmail.com>
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-4-remo@buenzli.dev>
+ <Z-UPJyD41LOMM3o2@smile.fi.intel.com> <CAL_Jsq+tJvGsbw1dGdgmBM8+cL4vN71OMTvX9tkmBLNk=6T9KQ@mail.gmail.com>
+ <Z-60LwRrw30cq4YE@smile.fi.intel.com> <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
+ <Z-7LcXoGw7uNWBUE@smile.fi.intel.com> <CAL_JsqLCa8AjwsUpS-N9FWymG67w7DjmmBZCKW7G7BAfY78vWw@mail.gmail.com>
+ <CANiq72=iD5ogB2Qjn=WNbghouuER5ypND9=Y_wFiTDfPC2NgFA@mail.gmail.com> <Z--7vN1h0jwgLUyF@smile.fi.intel.com>
+In-Reply-To: <Z--7vN1h0jwgLUyF@smile.fi.intel.com>
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 4 Apr 2025 09:10:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDkoj4d-aKvZ92kZ1mikqjJV4J4w=-3eNk3z6q6g0ssw@mail.gmail.com>
-X-Gm-Features: ATxdqUGgk50-VgqfiN2r-WHP1-0cyp1Dem4hGHbf6672N4-b5gggSNdLRbwnjDg
-Message-ID: <CAL_JsqJDkoj4d-aKvZ92kZ1mikqjJV4J4w=-3eNk3z6q6g0ssw@mail.gmail.com>
-Subject: Re: [PATCH 06/19] arm64: dts: qcom: msm8939: Fix CPU node
- "enable-method" property dependencies
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Viresh Kumar <vireshk@kernel.org>, 
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
-	Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
-	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Date: Fri, 4 Apr 2025 09:12:57 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+S6=k4+Y4rcOsgtrSHC0AtSPx_8B8TMW-rm0YsrjoaXA@mail.gmail.com>
+X-Gm-Features: ATxdqUHdrvIjuE8QyPUip-zFccUDXruULn0BP0ZVUYyWnPCy_seCxXopQlF_ly4
+Message-ID: <CAL_Jsq+S6=k4+Y4rcOsgtrSHC0AtSPx_8B8TMW-rm0YsrjoaXA@mail.gmail.com>
+Subject: Re: [PATCH 03/10] device property: Add fwnode_property_read_int_array()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Remo Senekowitsch <remo@buenzli.dev>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 4, 2025 at 8:18=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+On Fri, Apr 4, 2025 at 6:00=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
-> On Fri, Apr 4, 2025 at 7:04=E2=80=AFAM Stephan Gerhold
-> <stephan.gerhold@linaro.org> wrote:
-> >
-> > On Thu, Apr 03, 2025 at 09:59:27PM -0500, Rob Herring (Arm) wrote:
-> > > The "qcom,acc" and "qcom,saw" properties aren't valid with "spin-tabl=
-e"
-> > > enable-method nor are they used on 64-bit kernels, so they can be
-> > > dropped.
+> On Thu, Apr 03, 2025 at 10:36:40PM +0200, Miguel Ojeda wrote:
+> > On Thu, Apr 3, 2025 at 8:48=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
 > > >
+> > > Looks there are RUST_BINDGEN or __BINDGEN__ define which could be use=
+d
+> > > here. Don't need a header, just wrap the declaration. No idea which
+> > > one would be preferred as there's exactly 1 use of each. Miguel?
 > >
-> > The bootloader we currently use on these devices reads these properties
-> > to set up the spin-table, so removing these will break booting secondar=
-y
-> > CPU cores.
-> >
-> > The motivation for implementing it that way was that 32-bit vs 64-bit
-> > kernel shouldn't be relevant for the describing the hardware blocks in
-> > the device tree. The code in the bootloader is generic and handles
-> > different SoCs (e.g. msm8916 with 4 cores and msm8939 with 8 cores, the
-> > enable sequences are identical).
-> >
-> > Can we keep this in somehow? To be fair, I'm not sure what property we
-> > could match on to check if these properties are allowed ...
+> > If you mean bcachefs' `RUST_BINDGEN`, then I think that one comes from
+> > bcachefs-tools, i.e. we don't define it.
 >
-> Yes, we can keep them. We'll have to allow them with "spin-table" and
-> "psci" I guess.
+> But is there a way to have a function that is not really exported to be u=
+sed in
+> Rust only code?
 
-I came up with something like this instead:
-
-- if:
-  # 2 Qualcomm platforms bootloaders need qcom,acc and qcom,saw yet use
-  # "spin-table" or "psci" enable-methods. Disallowing the properties for
-  # all other CPUs is the best we can do as there's not any way to
-  # distinguish these Qualcomm platforms.
-    properties:
-      compatible:
-        not:
-          const: arm,cortex-a53
-  then:
-    properties:
-      qcom,acc: false
-      qcom,saw: false
-
-Not ideal as there are lots of A53s, but better than enabling for
-every 64-bit platform.
-
-
-Also, is adding the cpu-release-addr fine? It could trip up a
-bootloader tests if the property is already present and doesn't update
-it in that case.
+#ifdef __BINDGEN__
+int fwnode_property_read_int_array(const struct fwnode_handle *fwnode,
+const char *propname,
+                                unsigned int elem_size, void *val, size_t n=
+val);
+#endif
 
 Rob
 
