@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-163237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453FFA7C02B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8E8A7C039
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A7B83B5086
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:03:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05F713B508D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB8A1F3FD3;
-	Fri,  4 Apr 2025 15:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23BE1F3BA8;
+	Fri,  4 Apr 2025 15:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O60FUz4o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WIVwUz30"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786671DFD96;
-	Fri,  4 Apr 2025 15:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFFC1A3172;
+	Fri,  4 Apr 2025 15:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743779043; cv=none; b=iKKQ/pouTzVnd4NLsPbZDVL7OKqSa9dzFN24agfRIodgzR2NaKmFB7zxyKHjkY3/CwmvLqkQwk0LlVEcLPi8EcjA0H1diKM7pq94GwbfShDuMAr4PVz9IQvILqaf44/uzYP8J7eWrjudcAxbXtQVrSXqP5sEHMZ3JKeY0QUdjBk=
+	t=1743779231; cv=none; b=GSlGkutS9gKK21rtwRu8gOEa4hAdaMfk7SKLck3M5q+d+PySDwh1I6U1LLy3rfmkGcWj/fK3JQYojvfTyThucfqvJRssOd2olIatrfUUNCL9lfzB2uIw8eNJ+/U4GpbLO7WdiZfMB4qVsoXYwcdeNyIdkMtc0yBkiFZ2tDEtp6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743779043; c=relaxed/simple;
-	bh=QPrHjyTmnw1oxbazLvOfezLw+h3xmJo0djczSohsNGg=;
+	s=arc-20240116; t=1743779231; c=relaxed/simple;
+	bh=PApck01QYV/Gm3ye6uMvwA27Rqmi2H7xw7efZ8WzdfU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XhBKM587kQzBIb22FvDb2Du1tcmgDCVFEWkp7CAEfkQCaaEkb/wLtyRt7HOeyxYXm1bV8Slh+iaZE1/2C72X6UVysmizPpBa1YE9DmjePIG6bbt462IzITsTepj4k/DRO9rKSQXjb8XPF722dxPpgOccwLlCgFLIubLSEncMLu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O60FUz4o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5ABC4CEDD;
-	Fri,  4 Apr 2025 15:04:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dtnegNKTcbQEPMIJlVwQ8J/Tw4Vf56E9IQTbtw1GSmcBczn1EUXTNvjTr/lF/5ezMeaIdC+isQekZdGPp+a0f7tmMLB2imz0RE/9QRqGHKZeb4mTiiaKtg5+BxNqHTOuunkAe5/mdlw7IhjWqRO+XySO8Pf51pOM1cARoX2KUFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WIVwUz30; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93ED5C4CEDD;
+	Fri,  4 Apr 2025 15:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743779043;
-	bh=QPrHjyTmnw1oxbazLvOfezLw+h3xmJo0djczSohsNGg=;
+	s=k20201202; t=1743779229;
+	bh=PApck01QYV/Gm3ye6uMvwA27Rqmi2H7xw7efZ8WzdfU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O60FUz4ou2nv3ARuxUkzieRZBAB/V5prNyCqWNzm7R7FEqTB7G7HjaZAAgbXu/iE5
-	 kXTtDMaRU8KY9AKE57lrSehhTusQLTSmA7imwwbAigIusWY0mML9kDG8vYtCpbiB4B
-	 kaXqDduVUt0wy5gjzystflZrEsiT3IqqY0onCryI/wNhwOK5PZXbdKsnZZsb8vCneb
-	 vIkb3KXXC7s5Mfhy92zxfCuKij6tnjUSghRLRUUdu6kx0KW9NtmKOGGtcuOve4VDdU
-	 3nnqBnPxalvDT1M+NHFbMXwu+5MEw7PPowlhDnmWAsk9p5auK4fT41P1a/s+GAn9G1
-	 8FArP7ZNdaTcQ==
-Date: Fri, 4 Apr 2025 16:03:57 +0100
-From: Mark Brown <broonie@kernel.org>
-To: cy_huang@richtek.com
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
-Message-ID: <4e966f68-527e-4e2c-9043-0795ff094031@sirena.org.uk>
-References: <cover.1743774849.git.cy_huang@richtek.com>
- <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
+	b=WIVwUz30QNkraC8Xbe2q5/YV+CRnzJXgiz5dfbAw/VNjgtceqvuhvaQfe/3Tu4/7W
+	 7NX6rriinaFRtTk+uq5VcbmM8sd1ZYAHSt1dceBtZZxK+II7I1aeSAfrJvHW4Rapff
+	 l13UNnkHR4aV+DryGxG2GXlzocwwzL/FSakfnwayYbDyhbOWqHk+PEos94TiVntBLj
+	 fZPblxb4W1XZFj4wYrCL6eth6KPYjbhde+GGVPqNxZ+Zkj2D8TVOfrfxJduZZFd6Da
+	 imfLRsiyftRIRtblv2qnh00VdRN/gg+jo1j/TngHM2gNDqKOVA3gl8ZyheRm7AybpZ
+	 7e93sDPzqX4EA==
+Date: Fri, 4 Apr 2025 17:07:06 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: lee@kernel.org, alexandre.torgue@foss.st.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jic23@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de, 
+	robh@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
+	devicetree@vger.kernel.org, wbg@kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, olivier.moysan@foss.st.com
+Subject: Re: [PATCH v4 5/8] pwm: stm32-lp: add support for stm32mp25
+Message-ID: <biwwcmsjatsmjdsgeiz27rfukeidkz64nfxdtdajpfp7ace4j7@5d5b5mvfoy43>
+References: <20250314171451.3497789-1-fabrice.gasnier@foss.st.com>
+ <20250314171451.3497789-6-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,115 +61,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9628Pw6gulXwsFcV"
+	protocol="application/pgp-signature"; boundary="5sewg2xfq5x3bxnf"
 Content-Disposition: inline
-In-Reply-To: <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
-X-Cookie: You will soon forget this.
+In-Reply-To: <20250314171451.3497789-6-fabrice.gasnier@foss.st.com>
 
 
---9628Pw6gulXwsFcV
-Content-Type: text/plain; charset=us-ascii
+--5sewg2xfq5x3bxnf
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 5/8] pwm: stm32-lp: add support for stm32mp25
+MIME-Version: 1.0
 
-On Fri, Apr 04, 2025 at 10:22:12PM +0800, cy_huang@richtek.com wrote:
+Hello,
 
-> +static int rt9123_enable_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
-> +			       int event)
-> +{
+On Fri, Mar 14, 2025 at 06:14:48PM +0100, Fabrice Gasnier wrote:
+> Add support for STM32MP25 SoC. A new compatible has been added to the
+> dt-bindings. It represents handle new features, registers and bits
+> diversity.
+> It isn't used currently in the driver, as matching is done by retrieving
+> MFD parent data.
+>=20
+> New dedicated capture/compare channels has been added: e.g. a new compare
+> register for channel 2. Some controls (polarity / cc channel enable) are
+> handled in CCMR register on this new variant (instead of wavepol bit).
+>=20
+> So, Low-power timer can now have up to two PWM outputs. Use device data
+> from the MFD parent to configure the number of PWM channels e.g. 'npwm'.
+>=20
+> Update current get_state() and apply() ops to support either:
+> - one PWM channel (as on older revision, or LPTIM5 on STM32MP25)
+> - two PWM channels (e.g. LPTIM1/2/3/4 on STM32MP25 that has the full
+>   feature set)
+> Introduce new routines to manage common prescaler, reload register and
+> global enable bit.
+>=20
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	snd_soc_component_write_field(comp, RT9123_REG_AMPCTRL, RT9123_MASK_AMPON, enable);
-> +
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
+I didn't do an in-depth review, but the patch looks fine to me.
+It's ok for me if Lee picks this up for v6.16-rc1, so:
 
-What's going on with the runtime PM stuff here?  Especially for the DAPM
-widget usually the ASoC core will be able to keep devices runtime PM
-enabled so long as they are in use so I'd expect this not to have any
-impact.  Why not just use a normal DAPM widget?
+Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
 
-> +static int rt9123_xhandler_get(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
-> +	struct device *dev = comp->dev;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (rt9123_kcontrol_name_comp(kcontrol, "SPK Gain Volume") == 0)
-> +		ret = snd_soc_get_volsw(kcontrol, ucontrol);
-> +	else
-> +		ret = snd_soc_get_enum_double(kcontrol, ucontrol);
+Best regards
+Uwe
 
-This is even more unusual - it'll runtime PM enable the device every
-time we write to a control, even if the device is idle.  The driver does
-implement a register cache so it's especially confusing, we'll power up
-the device, resync the cache, write to the hardware then power the
-device off again.  Usually you'd just use the standard operations and
-then let the register writes get synced to the cache whenever it gets
-enabled for actual use.  Again, why not just use standard controls?
-
-> +static const struct snd_kcontrol_new rt9123_controls[] = {
-> +	SOC_SINGLE_TLV("Master Volume", RT9123_REG_VOLGAIN, 2, 511, 1, dig_tlv),
-> +	SOC_SINGLE_EXT_TLV("SPK Gain Volume", RT9123_REG_AMPCTRL, 0, 10, 0, rt9123_xhandler_get,
-> +			   rt9123_xhandler_put, ana_tlv),
-
-Speaker Volume.
-
-> +static const struct regmap_config rt9123_regmap_config = {
-> +	.name			= "rt9123",
-> +	.reg_bits		= 8,
-> +	.val_bits		= 16,
-> +	.val_format_endian	= REGMAP_ENDIAN_BIG,
-> +	.readable_reg		= rt9123_readable_reg,
-> +	.writeable_reg		= rt9123_writeable_reg,
-> +	.volatile_reg		= rt9123_volatile_reg,
-> +	.cache_type		= REGCACHE_RBTREE,
-> +	.num_reg_defaults_raw	= RT9123_REG_COMBOID + 1,
-> +};
-
-Generally _MAPLE is a better cache type for most devices - unless you
-have a strong reason to use _RBTREE it's preferred.
-
-> +	/* Trigger RG reset before regmap init cache */
-> +	ret = i2c_smbus_write_word_data(i2c, RT9123_REG_AMPCTRL, RT9123_MASK_SWRST);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to trigger RG reset\n");
-> +
-> +	regmap = devm_regmap_init_i2c(i2c, &rt9123_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-> +
-> +	ret = regmap_read(regmap, RT9123_REG_COMBOID, &venid);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read vendor-id\n");
-> +
-> +	if ((venid & RT9123_MASK_VENID) != RT9123_FIXED_VENID)
-> +		return dev_err_probe(dev, -ENODEV, "Incorrect vendor-id 0x%04x\n", venid);
-
-It seems nicer to verify the device ID before doing the reset in case
-anything went wrong.  Who knows what some other device did with the
-reset?
-
---9628Pw6gulXwsFcV
+--5sewg2xfq5x3bxnf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfv9N0ACgkQJNaLcl1U
-h9CpLAf+PrLvvo9HrBkAxc7COS0E+N3WeNtfmUpPtg64UCe9Ht5ZF4yPXcV110lf
-cQ2G/vvou3f1jiEMX8QW2Yvr8flocvlq9YtHoZNdpNDro4Maq0EaANv9M4p8xYeu
-PG4S6ddAea6mH8JQ54fjIcHkwjX2OFPdhoLuqQ+zDnKWCFxoFdn81CJ9OKALwxAX
-+RkbO5/ck/0ZjVuBKUaMQgYKx5V/JatGUR5oZlClXVCJrioXzJGy4Xm6lhZK/vIt
-vnEQkd/oY2rI5vwF5zmogQ0pbAxMUmEsDz1nEbXRmtJX8uB0UXllopMlMIoh3dhG
-wVroyGzwdiI7xJgAWLCta79eJMSAbw==
-=TRlR
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfv9ZcACgkQj4D7WH0S
+/k53Pwf/Zw3MFYpS7c/OdBkw9qirsB7YS6C3Y3MBc/vAYhYrhcxBpVevHbyFLsyW
+yLhfba05+l6U2GOdtWltJUqVwzdVX8kt7J61y1jtQnRDTAExxJDwjTH+rfKSv7wO
+3ZtQ9/BEO41/8sLLrZ8/eBxhG2SYgK4xBi46yR/b0Hx0/hGGPW82036L/xjxR3Cp
+N5+q3kjLaDYxUIBGy/dJ5N500yM1fizFEK+ejjfR18yhcYR3bWXLoMGHsXSChnZw
+3GnD89vE8w1ciehkBpbUWvjBXlFj0Qs+AUQmLAOBENriiX1OoH6+LI+qW9kqlef8
+58L7lQyOAj2g1DyQ0B20iXRaCCxtCg==
+=lIiW
 -----END PGP SIGNATURE-----
 
---9628Pw6gulXwsFcV--
+--5sewg2xfq5x3bxnf--
 
