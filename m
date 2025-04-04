@@ -1,183 +1,163 @@
-Return-Path: <devicetree+bounces-163248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52A8A7C0BC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A99F5A7C0C9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44F54189EC5D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:39:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F710189D212
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 15:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94921F4E59;
-	Fri,  4 Apr 2025 15:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975781F5413;
+	Fri,  4 Apr 2025 15:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="CciH7axc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="trg3FmI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0B61F4E48;
-	Fri,  4 Apr 2025 15:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=72.21.196.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8931F3D52;
+	Fri,  4 Apr 2025 15:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743781167; cv=none; b=P+voKCBmS1N4klphBNE9vhMKXofbK4c/JKTG67Vb2bhAaK+hp2KsXONy4yY0JWPkRFPqxnpob0k9tv3koVA71DAFwiD9NkX2AtZX5M2KF76gu+1zmyHRt6L7USBSC4vw1T0MK2AC0dYMJhAy8EdtBNoMqEwUu5k4wVk4S4AUm3o=
+	t=1743781440; cv=none; b=XCCIo4l878lo9Ge0DvIu8GKzz2+lAItj4qva6BnmYQs4ernDCsB2EcPSi2sMs2JJnvsvG3+H1B6qqUNC+cOaKxUZRvsRsPKJIx1UBZRlpKyaSawdV/7UDQoimzuv6j7/J1sAlMP1OKliv7d8SlsvOb3XC1SbGkASGIYeC094lqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743781167; c=relaxed/simple;
-	bh=wVNqZSO1DhcP50PY+Ru8p/FpgZ6gvr1EYo02/t5zIhY=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=sES+f8tvT3TiNI5hPUY4h+sM7exLgYdxTTyVRR3SQCfVuh2u8uhqcblpuc9b351ID9WeOikLZH2mmYsYfeK4gwcrGErHWD+/uF/NDJwJjZJJUjQtcX7pwuvJiPR0Ek7NFHA0L3MeyGPuNaq0g5DOpQ2TZlDToMwmFylQmht3DwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=CciH7axc; arc=none smtp.client-ip=72.21.196.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1743781166; x=1775317166;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=dYSO4GIkP5mEnRMwoEieSemMGmNulVoN4UaB4qKT8KA=;
-  b=CciH7axcyNkuhcllVhV4sW3MN9uQiUfWTVFRSku+L1w0p1Hh/GJ/EYQ8
-   Q8QttUjbZn12x3UyAyBk7Hp935gnizpdlgyDMvwwmcnKfuiFqfnetHsSZ
-   XRHdoyWKBgKCRrfylW+SNE6jiqtbjHYMG9HnklFt0eGvfWo9sC/rghwHg
-   M=;
-X-IronPort-AV: E=Sophos;i="6.15,188,1739836800"; 
-   d="scan'208";a="480423186"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 15:39:20 +0000
-Received: from EX19MTAUWA002.ant.amazon.com [10.0.21.151:13293]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.49.222:2525] with esmtp (Farcaster)
- id 83d3bfe4-40f1-416b-8ad0-21163f094fcc; Fri, 4 Apr 2025 15:39:19 +0000 (UTC)
-X-Farcaster-Flow-ID: 83d3bfe4-40f1-416b-8ad0-21163f094fcc
-Received: from EX19D020UWA002.ant.amazon.com (10.13.138.222) by
- EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Fri, 4 Apr 2025 15:39:16 +0000
-Received: from EX19MTAUWC002.ant.amazon.com (10.250.64.143) by
- EX19D020UWA002.ant.amazon.com (10.13.138.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Fri, 4 Apr 2025 15:39:16 +0000
-Received: from email-imr-corp-prod-iad-all-1a-93a35fb4.us-east-1.amazon.com
- (10.25.36.210) by mail-relay.amazon.com (10.250.64.149) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
- 15.2.1544.14 via Frontend Transport; Fri, 4 Apr 2025 15:39:16 +0000
-Received: from dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com [172.19.91.144])
-	by email-imr-corp-prod-iad-all-1a-93a35fb4.us-east-1.amazon.com (Postfix) with ESMTP id 8865A4034B;
-	Fri,  4 Apr 2025 15:39:15 +0000 (UTC)
-Received: by dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id 454F452B6; Fri,  4 Apr 2025 15:39:15 +0000 (UTC)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Jason Gunthorpe <jgg@nvidia.com>
-CC: Changyuan Lyu <changyuanl@google.com>, <linux-kernel@vger.kernel.org>,
-	<graf@amazon.com>, <akpm@linux-foundation.org>, <luto@kernel.org>,
-	<anthony.yznaga@oracle.com>, <arnd@arndb.de>, <ashish.kalra@amd.com>,
-	<benh@kernel.crashing.org>, <bp@alien8.de>, <catalin.marinas@arm.com>,
-	<dave.hansen@linux.intel.com>, <dwmw2@infradead.org>,
-	<ebiederm@xmission.com>, <mingo@redhat.com>, <jgowans@amazon.com>,
-	<corbet@lwn.net>, <krzk@kernel.org>, <rppt@kernel.org>,
-	<mark.rutland@arm.com>, <pbonzini@redhat.com>, <pasha.tatashin@soleen.com>,
-	<hpa@zytor.com>, <peterz@infradead.org>, <robh+dt@kernel.org>,
-	<robh@kernel.org>, <saravanak@google.com>,
-	<skinsburskii@linux.microsoft.com>, <rostedt@goodmis.org>,
-	<tglx@linutronix.de>, <thomas.lendacky@amd.com>, <usama.arif@bytedance.com>,
-	<will@kernel.org>, <devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-mm@kvack.org>, <x86@kernel.org>
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory preservation
-In-Reply-To: <20250404125421.GI342109@nvidia.com>
-References: <20250320015551.2157511-1-changyuanl@google.com>
-	<20250320015551.2157511-10-changyuanl@google.com>
-	<mafs01pu9qm6r.fsf@amazon.de> <20250403161001.GG342109@nvidia.com>
-	<mafs0tt75p2nx.fsf@amazon.de> <20250404125421.GI342109@nvidia.com>
-Date: Fri, 4 Apr 2025 15:39:15 +0000
-Message-ID: <mafs0h634os0s.fsf@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1743781440; c=relaxed/simple;
+	bh=DW/wqyJx+YCqSUOlSSVG9BIY+e2C7Nv89wJzyiuMFP4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgWqXP/y2yJitQXgyjlGyESQ01VAH6+VTgB8LMx7NsrNHI9/9V4CyAk1OHJC9tKXYYtFC0ChWae/VUVrLFRRjQKsWX7Eslkc8jNwUAfofshcoY/YOl2d+EIZIlv7UlAfQVxY+b454HBsuvTWwdR2dioD4gWkhWfNPQEJIc8s2bY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=trg3FmI6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FDDEC4CEDD;
+	Fri,  4 Apr 2025 15:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743781439;
+	bh=DW/wqyJx+YCqSUOlSSVG9BIY+e2C7Nv89wJzyiuMFP4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=trg3FmI6Wtd7AGBLlZJiY+YpmOckUsjSwyLuGpkTgcrTcUlRrIqH9mUdL7RBI4kXA
+	 wGg4FYp4SHCgXtuiFYAz2U407PN0c9OQNL+oTy/3PVdBqym1lQfeimc/809LwsN5pY
+	 54uBZOaqQyUhkt+tCFuwE+JFaeywtH+MayBetTBPjHh0fyDdPZF/njcRQUbZQjvJJg
+	 Wv0SlBsF5tQ4E40ku16kf7gNvizK9MQIGeDXzoPzpLRq6gEt7PqA3B4Kn22FoXXkxq
+	 qq3lpDzU8KnGfpu0Hmj/EXVMpACBGSlYL9/umM9do0lebsPx5Be6NvbHxknxevlOBT
+	 hu56/JLLiiNew==
+Date: Fri, 4 Apr 2025 16:43:55 +0100
+From: Lee Jones <lee@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
+Message-ID: <20250404154355.GH372032@google.com>
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1742802856.git.mazziesaccount@gmail.com>
 
-On Fri, Apr 04 2025, Jason Gunthorpe wrote:
+On Mon, 24 Mar 2025, Matti Vaittinen wrote:
 
-> On Thu, Apr 03, 2025 at 05:37:06PM +0000, Pratyush Yadav wrote:
->
-[...]
->> > This should be more like:
->> >
->> > union {
->> >       void *table;
->> >       phys_addr_t table_phys;
->> > };
->> >
->> > Since we are not using the low bits right now and it is alot cheaper
->> > to convert from va to phys only once during the final step. __va is
->> > not exactly fast.
->> 
->> The descriptor is used on _every_ level of the table, not just the
->> top.
->
-> Yes
->
->> So if we use virtual addresses, at serialize time we would have to walk
->> the whole table and covert all addresses to physical.
->
-> Yes
->
->> And __va() does
->> not seem to be doing too much. On x86, it expands to:
->> 
->>     #define __va(x)			((void *)((unsigned long)(x)+PAGE_OFFSET))
->> 
->> and on ARM64 to:
->> 
->>     #define __va(x)			((void *)__phys_to_virt((phys_addr_t)(x)))
->>     #define __phys_to_virt(x)	((unsigned long)((x) - PHYS_OFFSET) | PAGE_OFFSET)
->
-> Hmm, I was sure sparsemem added a bunch of stuff to this path, maybe
-> I'm thinking of page_to_phys
+> Support ROHM BD96802, BD96805 and BD96806 PMICs
+> 
+> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
+> to the digital interface. Main difference is voltage tuning range.
+> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
+> able to differentiate the PMICs (done based on the devicetree
+> compatible) and then providing separate voltage tables.
+> 
+> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
+> provide more capacity on systems where the BD96801 alone is not
+> sufficient. Startup sequence of these PMICs can be synchronized in
+> hardware level, and there seems to be some mechanisms which allow
+> delivering the companion PMIC (BD96802) status to the main PMIC
+> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
+> individual PMICs and allows using them from software point of view as a
+> stand alone ICs. From the digital point of view, the BD96802 is a subset
+> of BD96801, providing only buck1 and buck2 regulators. Please see the
+> data sheet
+> 
+> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
+> provide different voltage tuning ranges.
+> 
+> This series adds basic voltage monitoring and control as well as a
+> watchdog support for these PMICs using the BD96801 drivers.
+> 
+> Similarly to the BD96801, these PMICs too have a few configurations
+> which can only be done when the PMIC is in STBY state. Similarly to the
+> BD96801, doing these configurations isn't supported by the driver. The
+> original BD96801 RFC [5] driver should be able to cover those
+> configurations, if modified to support these models.
+> 
+> [1]: ROHM BD96801 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
+> [2]: ROHM BD96805 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
+> [3]: ROHM BD96802 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
+> [4]: ROHM BD96806 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
+> [5]: Original BD96801 RFC:
+> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
+> 
+> Revision history:
+> 
+> v1 => v2: MFD driver changes after review by Lee
+>  - Use enum for chip type instead of picking the data directly from the
+>    of_match_data.
+>  - rename "chip data" variable 'cd' to more widely used 'ddata'.
+>  link to v1:
+>   https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
+> 
+> ---
+> 
+> Matti Vaittinen (14):
+>   dt-bindings: regulator: Add ROHM BD96802 PMIC
+>   dt-bindings: mfd: Add ROHM BD96802 PMIC
+>   dt-bindings: mfd: bd96801: Add ROHM BD96805
+>   dt-bindings: mfd: bd96802: Add ROHM BD96806
+>   mfd: rohm-bd96801: Add chip info
+>   mfd: bd96801: Drop IC name from the regulator IRQ resources
+>   regulator: bd96801: Drop IC name from the IRQ resources
+>   mfd: rohm-bd96801: Support ROHM BD96802
+>   regulator: bd96801: Support ROHM BD96802
+>   mfd: bd96801: Support ROHM BD96805
+>   regulator: bd96801: Support ROHM BD96805 PMIC
+>   mfd: bd96801: Support ROHM BD96806
+>   regulator: bd96801: Support ROHM BD96806 PMIC
+>   MAINTAINERS: Add BD96802 specific header
 
-Yep, page_to_phys for sparsemem is somewhat expensive, but __va() seems
-to be fine.
+Adding support for 3 new devices in one set!
 
-    #define __page_to_pfn(pg)					\
-    ({	const struct page *__pg = (pg);				\
-            int __sec = page_to_section(__pg);			\
-            (unsigned long)(__pg - __section_mem_map_addr(__nr_to_section(__sec)));	\
-    })
+You don't like making things easy for yourself (or us) do you!  =:-)
 
->
->> >> +struct kho_mem_track {
->> >> +	/* Points to L4 KHOMEM descriptor, each order gets its own table. */
->> >> +	struct xarray orders;
->> >> +};
->> >
->> > I think it would be easy to add a 5th level and just use bits 63:57 as
->> > a 6 bit order. Then you don't need all this stuff either.
->> 
->> I am guessing you mean to store the order in the table descriptor
->> itself, instead of having a different table for each order.
->
-> Not quite, I mean to index the per-order sub trees by using the high
-> order bits. You still end up with N seperate bitmap trees, but instead
-> of using an xarray to hold their top pointers you hold them in a 5th
-> level.
->
->> Though now that I think of it, it is probably much simpler to just use
->> khomem_desc_t orders[NR_PAGE_ORDERS] instead of the xarray.
->
-> Which is basically this, but encoding the index to orders in the address
+>  .../bindings/mfd/rohm,bd96801-pmic.yaml       |  10 +-
+>  .../bindings/mfd/rohm,bd96802-pmic.yaml       | 101 ++++
+>  .../regulator/rohm,bd96802-regulator.yaml     |  44 ++
+>  MAINTAINERS                                   |   1 +
+>  drivers/mfd/rohm-bd96801.c                    | 565 ++++++++++++++----
+>  drivers/regulator/bd96801-regulator.c         | 447 ++++++++++++--
+>  include/linux/mfd/rohm-bd96801.h              |   2 +
+>  include/linux/mfd/rohm-bd96802.h              |  74 +++
+>  include/linux/mfd/rohm-generic.h              |   3 +
+>  9 files changed, 1065 insertions(+), 182 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
+>  create mode 100644 include/linux/mfd/rohm-bd96802.h
 
-I think this is way easier to wrap your head around compared to trying
-to encode orders in address. That doesn't even work that well since
-address has pretty much no connection to order. So a page at address say
-0x100000 might be any order. So we would have to encode the order into
-the address, and then decode it when doing table operations. Just having
-a separate table indexed separately by orders is way simpler.
+The MFD stuff looks okay to me now.
+
+Let me know when everything else is ready to go.
 
 -- 
-Regards,
-Pratyush Yadav
+Lee Jones [李琼斯]
 
