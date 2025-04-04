@@ -1,332 +1,371 @@
-Return-Path: <devicetree+bounces-163159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56445A7BB56
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:11:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50ADBA7BB61
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:16:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5956189CCCA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:11:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 325963B5840
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C781D7E26;
-	Fri,  4 Apr 2025 11:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1631A3149;
+	Fri,  4 Apr 2025 11:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nIGPRwcg"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Lrvmbi7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DF51BEF87;
-	Fri,  4 Apr 2025 11:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A5D1922FA;
+	Fri,  4 Apr 2025 11:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743765067; cv=none; b=rHV7KXyvCGn0QWrfLl6Jhhv8xRjKL/BpteqDApv5qYUKZ3nhBdQ59jXDBLhdf/rEaY6myq28tNCrDcddTfT7uS1t/0vya0ZMLA8Xcu+hIgSxW0djgdZ5mIM7L+utJvYf+I8oxiCJnUEQymQ1pipxqpHjy0VCwscvM2sTWQXVsRQ=
+	t=1743765358; cv=none; b=FjL9DItfHRwAuENFNJxfhnNGjDU71bTZGMdV+sUGdtjgSQuL9gTxoIGkseAjUG2WxtpMSKGZz2OFSV15R5YlrIcMRKWDbZTZcnkIvQRvX3v3I8IF2uGsk6R5a/q/7oHazD8hZDB7hwJbW765l3XUpNGcHlesxPdjJIqDGXLByjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743765067; c=relaxed/simple;
-	bh=PxW9C9uE2sPn+4J3bcvgkKgFGQt0vPUOZGSNVIJBhW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kTbz0bGdz1Hlo5jN/Qr+ajWLhOnhdZ1SXvgcTXJkbgIuiPIaoye+fdYEO6sWvfUBiUcgLhIh6/Hq/qR05BeAerS9xAuq5pDPs1MbxL2/xGhdFuGcOXK0DUzg1rPbN6GiP1MVWeScxyhgYy9Ka2SzWttxtNjLN8czis23g9axT30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nIGPRwcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEEDEC4CEDD;
-	Fri,  4 Apr 2025 11:11:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743765066;
-	bh=PxW9C9uE2sPn+4J3bcvgkKgFGQt0vPUOZGSNVIJBhW0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nIGPRwcgNe+LrpmucRUeB6TYyfDmOz4zcF22kG1wiCAB2TN0wSlTet7gWXtbvEUHn
-	 OcgwRKO3f7e8yxYG52oo+CES6+qfbKq9C2T/Vnk0Qzuv9p1QQhpyKuzHLPc6qSEbNX
-	 aX0VuYPEf53boA40M1uDh1TgGlpevRp/LH4lxqdmMgqWP4E4bLUgFM39z+aQprf9rE
-	 HWS44gbSipCCMkdj5mTaiV0fiS2hL8CyVy1wIujogU/TDhRliGhgO7rZ3wZfj3620g
-	 ojYKfzKlqBCq1L2SbghpU4s+z7KgYHlwZr7dHx475APcyleKPcyvAxih3r7arSaWbq
-	 dLw9Xusgebqkg==
-Date: Fri, 4 Apr 2025 13:11:03 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Crystal Guo <crystal.guo@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4 2/2] memory/mediatek: Add an interface to get current
- DDR data rate
-Message-ID: <20250404-soft-pumpkin-bettong-09abfc@shite>
-References: <20250403065030.22761-1-crystal.guo@mediatek.com>
- <20250403065030.22761-3-crystal.guo@mediatek.com>
+	s=arc-20240116; t=1743765358; c=relaxed/simple;
+	bh=bYRo3EIM40Fz8EMmf1PkpWWLvxuKBj2tqbBayDFeRsI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lhBfPr0cQuixDdRnyVMLsc/9idwdwpBzVh4wPYeyN4nb2sJDWQ1plsyX0x1DDVh13vW1BUEnLANNIVMuTkO4o0V0mvQqwn1fS0+9yj/PR9YqMPYdD/uXNK/S2f0QnTsh2u3xdLXeCdP3Ft7MFDLjp+nIL2aaKa5j6hmjyv0aE40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=Lrvmbi7/; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=bYRo3EIM40Fz8EMmf1PkpWWLvxuKBj2tqbBayDFeRsI=; b=Lrvmbi7/FOdWkx6Jr3SdschV5R
+	RZ+leOE1h0/l2+04h+9WiaWCwIh8QBgxzNHuVQdoLB+VKjKrCgblDwU/lsXVVVuvMR+xr8hPtAWq4
+	zdFUdMi6tLOiHanZgE9l6gZ1b30cDx2agczmPPbxnz8aa8+VGhWD3ji12Pj9W2QlBcTf3A1OTBXMT
+	P1NkGpH3SuP0H+Wbis6qskXC8hU0lJhtn4QsqOxYaQX5oH5ARPTOh6XfiOHha303OoPXCQpOr0y/m
+	d0P5ufEUnTnTyp3Y0kyHmuW3Q2m3U0now/GazMoW62udZ4Ak6Apebq1yXyjczums00ChigxU0BOgr
+	q6OmDQNQ==;
+Received: from [193.117.214.244] (helo=u09cd745991455d.ant.amazon.com)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0f1d-00000007OPS-1eee;
+	Fri, 04 Apr 2025 11:15:53 +0000
+Message-ID: <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+From: David Woodhouse <dwmw2@infradead.org>
+To: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev, 
+ Claire Chang <tientzu@chromium.org>, linux-devicetree
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>, 
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Date: Fri, 04 Apr 2025 12:15:52 +0100
+In-Reply-To: <20250404062409-mutt-send-email-mst@kernel.org>
+References: <148a3c8ee53af585b42ec025c2c7821ad852c66c.camel@infradead.org>
+	 <Z-46TDmspmX0BJ2H@infradead.org>
+	 <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+	 <Z-99snVF5ESyJDDs@infradead.org>
+	 <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+	 <20250404040838-mutt-send-email-mst@kernel.org>
+	 <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+	 <20250404043016-mutt-send-email-mst@kernel.org>
+	 <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+	 <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+	 <20250404062409-mutt-send-email-mst@kernel.org>
+Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
+	boundary="=-I5Ft7d1drvT8B/fLmD1B"
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250403065030.22761-3-crystal.guo@mediatek.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+--=-I5Ft7d1drvT8B/fLmD1B
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-memory: mediatek:
+On Fri, 2025-04-04 at 06:37 -0400, Michael S. Tsirkin wrote:
+> On Fri, Apr 04, 2025 at 11:15:33AM +0100, David Woodhouse wrote:
+> > On Fri, 2025-04-04 at 10:27 +0100, David Woodhouse wrote:
+> > > On 4 April 2025 09:32:39 BST, "Michael S. Tsirkin" <mst@redhat.com>
+> > > wrote:
+> > > > On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
+> > > > > On Fri, 2025-04-04 at 04:09 -0400, Michael S. Tsirkin wrote:
+> > > > > > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse
+> > > > > > wrote:
+> > > > > > > What's annoying is that this should work out of the box
+> > > > > > > *already* with
+> > > > > > > virtio-mmio and a `restricted-dma-pool` =E2=80=94 for systems=
+ which
+> > > > > > > aren't
+> > > > > > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
+> > > > > >=20
+> > > > > >=20
+> > > > > > That specifically would be just a driver bugfix then?
+> > > > >=20
+> > > > > I actually think it works out of the box and there isn't even a
+> > > > > bug to
+> > > > > fix. Haven't tested yet.
+> > > > >=20
+> > > > > The sad part is that the system does it all automatically *if* it
+> > > > > has
+> > > > > CONFIG_DMA_RESTRICTED_POOL (e.g. Linux) and the driver never even
+> > > > > notices that the dma_ops it's using are the swiotlb ops using the
+> > > > > provided buffer.
+> > > > >=20
+> > > > > Which is *kind* of nice... except that when on a guest OS which
+> > > > > *isn't*
+> > > > > Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore
+> > > > > the
+> > > > > `restricted-dma-pool` node and try DMA to system memory anyway,
+> > > > > which
+> > > > > will fail.
+> > > >=20
+> > > > I mean, it's easy to misconfigure Linux, this is why we love it ;)
+> > > > Why
+> > > > is this such a concern?
+> > >=20
+> > > Because it's incompatible. In the DT world, perhaps this new *non-
+> > > optional* feature/restriction should have come with a new
+> > > "compatible" string such as "virtio-mmio-restricted-dma".
+> > >=20
+> > > Adding it without backwards compatibility wasn't ideal.
+> > >=20
+> > > > > That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB
+> > > > > feature, so
+> > > > > that the device side can refuse, if the guest *isn't* agreeing to
+> > > > > use
+> > > > > the bounce buffer in the situations where it must do so.
+> > > >=20
+> > > >=20
+> > > > OTOH then setting this feature and if you make the device force it,
+> > > > you are breaking guests restricted-dma-pool which worked
+> > > > previously, no?
+> > >=20
+> > > Yes. So a platform offering virtio-mmio with restricted DMA, if the
+> > > driver doesn't accept the offered VIRTIO_F_SWIOTLB, may want to
+> > > accept that negotiation anyway, and *hope* that the driver/OS are
+> > > going to use the buffer anyway.
+> > >=20
+> > > I just didn't want to make that same mistake again when formalising
+> > > and documenting this, and especially when attempting to extend it to
+> > > PCI.
+> >=20
+> > Of course, the beauty of the restricted-dma-pool as supported by DT is
+> > that it's a *system* memory buffer, which is actually OK as long as
+> > it's reserved address space and not just part of normal system memory
+> > that an unsuspecting guest might use for general purposes. So the
+> > trusted part of the hypervisor (e.g. pKVM) can *allow* the VMM access
+> > to that space.
+> >=20
+> > It doesn't *have* to be on-device. That just seemed like the more
+> > natural way to do it for PCI.
+> >=20
+> > I suppose we *could* allow for the virtio-pci transport to do it the
+> > same way as virtio-mmio though. The VIRTIO_PCI_CAP_SWIOTLB capability=
+=C2=B9
+> > could reference a range of system memory space, just like the
+> > `restricted-dma-pool` property does.
+> >=20
+> > It's a weird abstraction especially for a physical PCI device to do
+> > that because the system memory space is outside its ownership. But in a
+> > physical device it could be writable, and you could consider it the
+> > responsibility of the system firmware to configure it appropriately, in
+> > accordance with the IOMMU and other DMA restrictions of the platform.
+> >=20
+> > That does solve it for the CoCo case without addressing the P2P staging
+> > case that Christoph mentions, though.
+> >=20
+> >=20
+> > =C2=B9 I will rename it, Christoph, if it survives at all. Probably
+> > VIRTIO_F_RESTRICTED_DMA and VIRTIO_PCI_CAP_RESTRICTED_DMA but of course
+> > it depends on the semantics we conclude it should have.
+>=20
+> OK. So basically, all this does, is a promise by driver to only
+> DMA into a range of memory?
 
-On Thu, Apr 03, 2025 at 02:48:48PM GMT, Crystal Guo wrote:
-> Add MediaTek DRAMC driver to provide an interface that can
-> obtain current DDR data rate.
-> 
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> ---
->  drivers/memory/Kconfig              |   1 +
->  drivers/memory/Makefile             |   1 +
->  drivers/memory/mediatek/Kconfig     |  20 +++
->  drivers/memory/mediatek/Makefile    |   2 +
->  drivers/memory/mediatek/mtk-dramc.c | 223 ++++++++++++++++++++++++++++
->  5 files changed, 247 insertions(+)
->  create mode 100644 drivers/memory/mediatek/Kconfig
->  create mode 100644 drivers/memory/mediatek/Makefile
->  create mode 100644 drivers/memory/mediatek/mtk-dramc.c
-> 
-> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
-> index c82d8d8a16ea..b1698549ff81 100644
-> --- a/drivers/memory/Kconfig
-> +++ b/drivers/memory/Kconfig
-> @@ -227,5 +227,6 @@ config STM32_FMC2_EBI
->  
->  source "drivers/memory/samsung/Kconfig"
->  source "drivers/memory/tegra/Kconfig"
-> +source "drivers/memory/mediatek/Kconfig"
+Basically, yes.
 
-m goes before s, so this goes before samsung source.
+> This part, I get. I wouldn't put it in a capability, just in config
+> space then.
 
->  
->  endif
-> diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
-> index d2e6ca9abbe0..c0facf529803 100644
-> --- a/drivers/memory/Makefile
-> +++ b/drivers/memory/Makefile
-> @@ -27,6 +27,7 @@ obj-$(CONFIG_STM32_FMC2_EBI)	+= stm32-fmc2-ebi.o
->  
->  obj-$(CONFIG_SAMSUNG_MC)	+= samsung/
->  obj-$(CONFIG_TEGRA_MC)		+= tegra/
-> +obj-$(CONFIG_MEDIATEK_MC)	+= mediatek/
->  obj-$(CONFIG_TI_EMIF_SRAM)	+= ti-emif-sram.o
->  obj-$(CONFIG_FPGA_DFL_EMIF)	+= dfl-emif.o
->  
-> diff --git a/drivers/memory/mediatek/Kconfig b/drivers/memory/mediatek/Kconfig
-> new file mode 100644
-> index 000000000000..eadc11ec0f1c
-> --- /dev/null
-> +++ b/drivers/memory/mediatek/Kconfig
-> @@ -0,0 +1,20 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config MEDIATEK_MC
-> +	bool "MediaTek Memory Controller support"
-> +	default y
+Sure... but how? There are some things which are defined to be at fixed
+locations in config space, like the vendor/device IDs, COMMAND, STATUS,
+BARs, etc..
 
-Why this has to be enabled for every compile test build? Look how other
-platforms do it.
+And for the rest of the optional things which might be in config space
+of a given device... isn't that exactly what capabilities are for?
 
-I'll fix the tegra.
+> What I don't get, is what does the *device* want, exactly?
 
+The device wants to know that a driver won't try to use it without
+understanding the restriction. Because otherwise the driver will just
+give it system addresses for DMA and be sad, without any coherent
+error/failure report about why.
 
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	help
-> +	  This option allows to enable MediaTek memory controller drivers,
-> +	  which may include controllers for DRAM or others.
-> +
-> +if MEDIATEK_MC
-> +
-> +config MTK_DRAMC
-> +	tristate "MediaTek DRAMC driver"
-> +	default y
+(You could ask the same question about what the *device* wants with
+VIRTIO_F_ACCESS_PLATFORM, and the answer is much the same).
 
-This matters less, could stay or could be also ARCH_MDIATEK.
+Or maybe not the *device* per se, but the *system integrator* wants to
+know that only operating systems which understand the restriction
+described above, will attempt to drive the device in question.
 
-> +	help
-> +	  This driver is for the DRAM Controller found in MediaTek SoCs
-> +	  and provides a sysfs interface for reporting the current DRAM
-> +	  data rate.
-> +
-> +endif
+We could achieve that by presenting the device with a completely new
+PCI device/vendor ID so that old drivers don't match, or in the DT
+model you could make a new "compatible" string for it. I chose to use a
+VIRTIO_F_ bit for it instead, which seemed natural and allows the
+device model (under the influence of the system integrator) to *choose*
+whether a failure to negotiate such bit is fatal or not.
 
-...
+> Here's a vague idea to explain the question:
+>=20
+> some embedded devices can have addressing restrictions, such
+> as the number of bits of an address.
+> In another example, the legacy balloon device only supports addresses
+> up to 48 bit.
+> These can still be useful if driver does not use the inaccessible
+> addresses.
+>=20
+>=20
+>=20
+> So far so good? Does this look like a generalization of your idea?
 
-> +
-> +static unsigned int read_reg_field(void __iomem *base, unsigned int offset, unsigned int mask)
-> +{
-> +	unsigned int val = readl(base + offset);
-> +	unsigned int shift = __ffs(mask);
-> +
-> +	return (val & mask) >> shift;
-> +}
-> +
-> +static int mtk_dramc_probe(struct platform_device *pdev)
+Makes sense.
 
-Weird ordering. probe() is one of the last functions. Only other driver
-struct functions (like remove, suspend/resume) go after, not some
-regular code.
+> Now, a question: DMA API under linux at least, can actually work
+> around device limitations using a bounce buffer. It does, however,
+> need to know what to work around.
+> So, maybe the device needs to expose a range?
+> But what is the range in your case?
 
-> +{
-> +	struct mtk_dramc *dramc;
-> +	const struct mtk_dramc_pdata *pdata;
-> +
-> +	dramc = devm_kzalloc(&pdev->dev, sizeof(struct mtk_dramc), GFP_KERNEL);
-> +	if (!dramc)
-> +		return dev_err_probe(&pdev->dev, -ENOMEM, "Failed to allocate memory\n");
-> +
-> +	pdata = of_device_get_match_data(&pdev->dev);
-> +	if (!pdata)
-> +		return dev_err_probe(&pdev->dev, -EINVAL, "No platform data available\n");
+The main thing in the CoCo case is that the range in question must not
+contain any memory which an unenlightened guest might treat as normal
+system RAM (because it has to be accessible by the VMM, and that would
+make it insecure if it's being used a general-purpose RAM).
 
-Just return. That's impossible condition, so no need for printing errors.
+So on x86 it might be an e820-reserved region for example.
 
-> +
-> +	dramc->pdata = pdata;
+I don't think we want the guest OS just *assuming* that there's usable
+memory in that e820-reserved region, just because some device says that
+it's actually capable of DMA to those addresses.
 
-Why do you need pdata variable in the first place? Make this code
-simple, not complicated.
+So it would probably want a separate object, like the separate
+`restricted-dma-pool` in DT, which explicitly identifies that range as
+a DMA bounce-buffer pool. We probably *can* do that even in ACPI with a
+PRP0001 device today, using a `restricted-dma-pool` compatible
+property.
 
-> +
-> +	dramc->anaphy_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dramc->anaphy_base))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(dramc->anaphy_base),
-> +				     "Unable to map ANAPHY base\n");
-> +
-> +	dramc->ddrphy_base = devm_platform_ioremap_resource(pdev, 1);
-> +	if (IS_ERR(dramc->ddrphy_base))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(dramc->ddrphy_base),
-> +				     "Unable to map DDRPHY base\n");
-> +
-> +	platform_set_drvdata(pdev, dramc);
-> +	return 0;
-> +}
-> +
-> +static unsigned int mtk_fmeter_v1(struct mtk_dramc *dramc)
-> +{
-> +	const struct mtk_dramc_pdata *pdata = dramc->pdata;
-> +	unsigned int shu_level, pll_sel, offset;
-> +	unsigned int sdmpcw, posdiv, clkdiv, fbksel, sopen, async_ca, ser_mode;
-> +	unsigned int prediv_freq, posdiv_freq, vco_freq;
-> +	unsigned int final_rate;
-> +
-> +	shu_level = read_reg_field(dramc->ddrphy_base, pdata->regs[DRAMC_DPHY_DVFS_STA],
-> +				   pdata->masks[DRAMC_DPHY_DVFS_SHU_LV]);
+Then the OS would need to spot this range in the config space, and say
+"oh, I *do* have a swiotlb pool this device can reach", and use that.
 
-Don't creat your own wrappers. Use existing FIELD_PREP stuff.
+Which is slightly less pretty than the DT model where the device's node
+explicitly references the handle of the `restricted-dma-pool` node, but
+I think that's OK. And it does kind of keep "device" capability
+separate from "system" properties, in a comprehensible way.
 
-> +	pll_sel = read_reg_field(dramc->ddrphy_base, pdata->regs[DRAMC_DPHY_DVFS_STA],
-> +				 pdata->masks[DRAMC_DPHY_DVFS_PLL_SEL]);
-> +	offset = pdata->shuffle_offset * shu_level;
-> +
-> +	sdmpcw = read_reg_field(dramc->anaphy_base,
-> +				((pll_sel == 0) ?
-> +				pdata->regs[DRAMC_APHY_SHU_PHYPLL2] :
-> +				pdata->regs[DRAMC_APHY_SHU_CLRPLL2]) + offset,
-> +				pdata->masks[DRAMC_APHY_PLL2_SDMPCW]);
-> +	posdiv = read_reg_field(dramc->anaphy_base,
-> +				((pll_sel == 0) ?
-> +				pdata->regs[DRAMC_APHY_SHU_PHYPLL3] :
-> +				pdata->regs[DRAMC_APHY_SHU_CLRPLL3]) + offset,
-> +				pdata->masks[DRAMC_APHY_PLL3_POSDIV]);
-> +	fbksel = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_SHU_PHYPLL4] + offset,
-> +				pdata->masks[DRAMC_APHY_PLL4_FBKSEL]);
-> +	sopen = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_ARPI0] + offset,
-> +			       pdata->masks[DRAMC_APHY_ARPI0_SOPEN]);
-> +	async_ca = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_CA_ARDLL1] + offset,
-> +				  pdata->masks[DRAMC_APHY_ARDLL1_CK_EN]);
-> +	ser_mode = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_B0_TX0] + offset,
-> +				  pdata->masks[DRAMC_APHY_B0_TX0_SER_MODE]);
-> +
-> +	clkdiv = (ser_mode == 1) ? 1 : 0;
-> +	posdiv &= ~(pdata->posdiv_purify);
-> +
-> +	prediv_freq = pdata->ref_freq_mhz * (sdmpcw >> pdata->prediv);
-> +	posdiv_freq = (prediv_freq >> posdiv) >> 1;
-> +	vco_freq = posdiv_freq << fbksel;
-> +	final_rate = vco_freq >> clkdiv;
-> +
-> +	if (sopen == 1 && async_ca == 1)
-> +		final_rate >>= 1;
-> +
-> +	return final_rate;
-> +}
-> +
-> +/**
-> + * mtk_dramc_get_data_rate - Calculate the current DRAM data rate
-> + * @dev: Device pointer
-> + *
-> + * Return: DRAM Data Rate in Mbps or negative number for error
-> + */
-> +static unsigned int mtk_dramc_get_data_rate(struct device *dev)
-> +{
-> +	struct mtk_dramc *dramc = dev_get_drvdata(dev);
-> +
-> +	if (dramc->pdata->fmeter_version == 1)
+> Maybe the new registers list the range of addresses device can access,
+> and driver promises to be within that range by negotiating the
+> feature bit?
 
-Drop, it's not possible to have other case.
-
-> +		return mtk_fmeter_v1(dramc);
-> +
-> +	dev_err(dev, "Frequency meter version %u not supported\n", dramc->pdata->fmeter_version);
-> +	return -EINVAL;
-> +}
-> +
-> +static ssize_t dram_data_rate_show(struct device *dev,
-> +				   struct device_attribute *attr, char *buf)
-
-No ABI doc.
-
-Why existing interconnect interface is not suitable here?  This should
-be an interconnect, otherwise what is the point of this driver? What do
-you exactly configure here?
+That should work for the CoCo use case, yes.
 
 
-> +{
-> +	return snprintf(buf, PAGE_SIZE, "DRAM data rate = %u\n",
-> +			mtk_dramc_get_data_rate(dev));
-> +}
-> +
-> +static DEVICE_ATTR_RO(dram_data_rate);
-> +
-> +static struct attribute *mtk_dramc_attrs[] = {
-> +	&dev_attr_dram_data_rate.attr,
-> +	NULL
-> +};
-> +ATTRIBUTE_GROUPS(mtk_dramc);
-> +
-> +static const struct mtk_dramc_pdata dramc_pdata_mt8196 = {
-> +	.fmeter_version = 1,
-> +	.ref_freq_mhz = 26,
-> +	.regs = mtk_dramc_regs_mt8196,
-> +	.masks = mtk_dramc_masks_mt8196,
-> +	.posdiv_purify = BIT(2),
-> +	.prediv = 7,
-> +	.shuffle_offset = 0x700,
-> +};
-> +
-> +static const struct of_device_id mtk_dramc_of_ids[] = {
-> +	{ .compatible = "mediatek,mt8196-dramc", .data = &dramc_pdata_mt8196 },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_dramc_of_ids);
-> +
-> +static struct platform_driver mtk_dramc_driver = {
-> +	.probe = mtk_dramc_probe,
-> +	.driver = {
-> +		.name = "mtk-dramc",
-> +		.of_match_table = mtk_dramc_of_ids,
-> +		.dev_groups = mtk_dramc_groups,
-> +	},
-> +};
-> +module_platform_driver(mtk_dramc_driver);
-> +
-> +MODULE_AUTHOR("Crystal Guo <crystal.guo@mediatek.com>");
-> +MODULE_DESCRIPTION("MediaTek DRAM Controller Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.18.0
-> 
+--=-I5Ft7d1drvT8B/fLmD1B
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
+ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
+AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
+BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
+MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
+a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
+jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
+GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
+aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
+nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
+8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
+HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
+IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
+KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
+BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
+QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
+QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
+ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
+/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
+uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
+xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
+W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
+c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
+VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
+NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
+DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
+sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
+w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
+i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
+kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
+0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
+ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
+blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
+hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
+VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
+HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
+ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
+AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
+cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
+cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
+AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
+aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
+hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
+iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
+8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
+JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
+xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
+EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
+B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
+MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
+KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
+Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
+nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
+WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
+W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
+nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
+g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
+9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
+9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
+sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
+a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
+ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
+AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
+dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
+MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
+YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
+4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
+6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
+QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
+nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
+MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
+VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
+ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDQwNDExMTU1
+MlowLwYJKoZIhvcNAQkEMSIEIDTgsSC59W8Ao3Z9O5y3sUIFmV2KICZcZJK5RnQYHsImMGQGCSsG
+AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
+cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
+VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
+cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIAO4LuPoao+T1g
+LZlaBCbbw7BHUduqAcp193rQ3NhqAuzDGx4RM8m0bKHwnhlXXZFIR49KsWn9jIMnMf2WmI739DXF
+Urb9Ub95cviYOrfrLbuP2HbuD4JhW3K0aKVT7VjIDsZNNvq2EaA2kyCO5JNeBCTbpyfESe015yyB
+D3bEpnLFz+7E+AFTFXCdsmlRuMRw3m6sI0OD2D7wlmBE4TUWTTu465oQSqKwKTg4RPPGEdeWmLaK
+ZrR3ufQF7c4C06wBy6oj9395THdA/82zFUMCOwDBanpQ53Ky0zWdMm5MG0FAkOeuz8e4i4CCgpGn
+3M5+vLdy2l0supjR+BdA0DcpCyM8Gsotx2JcEPUz6zWwJKz+tFwxm0axvKu9AJwftbCMlhgPxQHe
+puJAHluRS8gvTl/SYG6CbAXbev+OGGu55/00vbpGMSIgLOoRpnB8x1ot69xD3ijoor46L1l3TjGd
+6wQ1k5yNuxneZevn4QaTRwodTur+GEwxlS+ahrgTSnAR7hvK+07xn2SMNVZN5YI7ttc6ZZsryglW
+AIa0ucyfT2S/LyYF6nfoRcjnzJ4fUKiY6ueQDJbGcqWvByeG99//x/HqJ2m/c+KwrRJ7tFoaup+k
+lkS7sBkfhk3Mh7scM6dG/OrXyPmGvvMz67wOLd3R0ppgnXohW4tJ6uvjVqEkw+gAAAAAAAA=
+
+
+--=-I5Ft7d1drvT8B/fLmD1B--
 
