@@ -1,95 +1,175 @@
-Return-Path: <devicetree+bounces-163162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB99A7BB7F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:28:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D779A7BB84
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 13:32:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A10F189E845
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:28:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B3C2178982
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6014B1A315C;
-	Fri,  4 Apr 2025 11:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CA41DC185;
+	Fri,  4 Apr 2025 11:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="XkqPD76m"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nJwsmtKf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489A518EFD4
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 11:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8701A83E2;
+	Fri,  4 Apr 2025 11:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743766087; cv=none; b=BpUW+8uBZhdCQmVmgdWvMF8J/SkF62HAZJfNLXachsNnPkZBOJ77CpoZmIQfKHeDIBgOgI+EH5CADrMqKkX3ym8L5pUJ4Qh9ZxfaPIp2fPjR6BYbn8kGra3i6MPFZ1tJvndCHsbvCkZlXP5tNRvn+bPCe0XWr6u7RuSwuvrjMb8=
+	t=1743766335; cv=none; b=QYt2E/Ei081rBRzs1f6jYIkICI1bB5u2nBtHpn9b6ORuEPBv30Om06QyT47gdS7ETvrOohUgABV1+9KRoEHuJsOc3xpQMDmzhWSUPSCeLBvxfIPXELv+2v+WFyASExXH+La9unwsaXo33K0CjEoRxqLSDUCSxT8yq/4Awn53q4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743766087; c=relaxed/simple;
-	bh=jMifiJvw5h0LZZCJFIsKFts25KfasHg8feUQEbjGfMQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l3luNvNawfE5GhsIZZyavZ2cN0NQtbhXepBdrvJpaViBstMJ2S1rBSrM7WW38oTsqJMLEfBzIch46amo6ap80KAzb9c7SFC39erLM3XTVVqHywCDv/kNfSDMXrirM1kZJUp+xwmxAFWiv8dkFxcv9kd6GSY7nRHsfc5e60Zoz58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XkqPD76m; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=6x83gL/65MaXsh
-	ed1MGHV1G/Bw0QFznUQR/GQF+fLak=; b=XkqPD76mdJ00JpoIehCMiNifODzMbD
-	9cRf8okGwgcSYvgpRDvKrjaEO7fOOizPDK33erHXYQaU0NmxtImlcOYUz0GjWjz9
-	ZzeG7w7X7Hn3F5P29ZG5PLKtTngl7ivnbqmad2sGNxVsg3/Fy9xEHXpkBKUGaKc/
-	zTFjS4JX3o9XFeW+A7mCjplDEj1vJ5vam92fdkPVMFg0I/V0W8ywaTSEg76SFWEh
-	VZc0jdORHiX1Tsd9Rio+1zl71u1Bj7Uh9US7rOla+Ofo+swMiyWSJUbUNrbCsQVy
-	imO4AyWG2Unc95z6GsVHxlLcC1sohBnUzgzQvLWy3VP+X36KilM6N34Q==
-Received: (qmail 2751198 invoked from network); 4 Apr 2025 13:27:52 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Apr 2025 13:27:52 +0200
-X-UD-Smtp-Session: l3s3148p1@Q9xNLfIxNOQgAwDPXxG/ACep4iRxujz/
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: at91: usb_a9263: fix GPIO for Dataflash chip select
-Date: Fri,  4 Apr 2025 13:27:43 +0200
-Message-ID: <20250404112742.67416-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1743766335; c=relaxed/simple;
+	bh=mKsqKGG/7YSKHNxFBBuOvn0Q62p5t5UmUS+Llf4Xv+o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e02NuQgBwSns7iLsI+JSlfb9mQ+Dr+fMhSQ2PFgBlxkTOQaPvSdJh8pVpcK6n3ExHjSKPbQSgpaRWq3tONEM0tjisRA6mt+S9BbzAl20YffOawAYcJaTWUQOi1eXexMeMGTBE+9g9MjpAVcZIGlJm2KeWqgV4SpBdzvh1QgCbWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nJwsmtKf; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1743766330;
+	bh=mKsqKGG/7YSKHNxFBBuOvn0Q62p5t5UmUS+Llf4Xv+o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nJwsmtKfCOFaRLtdheNLsrNXHau0c/Rn80fSu9DFp9dqh0mpVplJjf/RJDWsDppZj
+	 K1nRgU79IM9C/BB+INNLF9qPLoZM7FIfqo2dV2MHBZUrapbHXtTlVoq7Ee9D1ZuTvA
+	 8qMfMD5BzgJZ3gmloXl2Iny0cRXUy6qQFCGB+CGeaUn3O6T65csyfoVewC2Of83ZOo
+	 DuOsYQX6Qzp1rE1hL6kbztBjhtqz9ZmJEip0zPfqu9MltVplyd30pOV4KbwFUoQRBU
+	 iTCF9mpsJt0L86KQv1XekkmXzJkOvzzXy+fkz+jnQl6cJXvttX+etNTWbve4UriaIw
+	 PY8YN9NjjTqAA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 17A6A17E0865;
+	Fri,  4 Apr 2025 13:32:08 +0200 (CEST)
+Message-ID: <2a12c4e7-7df7-49c7-8abe-1c5ee769cfcc@collabora.com>
+Date: Fri, 4 Apr 2025 13:32:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/19] dt-bindings: arm/cpus: Add missing properties
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
+ Conor Dooley <conor@kernel.org>, Nicolas Ferre
+ <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <20250403-dt-cpu-schema-v1-17-076be7171a85@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250403-dt-cpu-schema-v1-17-076be7171a85@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dataflash did not work on my board. After checking schematics and using
-the proper GPIO, it works now. Also, make it active low to avoid:
+Il 04/04/25 04:59, Rob Herring (Arm) ha scritto:
+> The Arm CPU schema is missing a number of properties already in use.
+> This has gone unnoticed as extra properties have not been restricted.
+> Add a missing reference to cpu.yaml, and add all the missing properties.
+> 
+> As "clock-latency" and "voltage-tolerance" are related to opp-v1, add
+> those properties to the opp-v1.yaml schema.
+> 
+> With this, other properties can be prevented from creeping in with
+> 'unevaluatedProperties: false'.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/arm/cpus.yaml   | 46 ++++++++++++++++++++++-
+>   Documentation/devicetree/bindings/opp/opp-v1.yaml | 16 ++++++++
+>   2 files changed, 61 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index 3d2b6286efb8..6f74ebfd38df 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -299,6 +299,16 @@ properties:
+>   
+>         where voltage is in V, frequency is in MHz.
+>   
+> +  interconnects:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  nvmem-cells:
+> +    maxItems: 1
+> +
+> +  nvmem-cell-names:
+> +    const: speed_grade
+> +
+>     performance-domains:
+>       maxItems: 1
+>   
+> @@ -317,6 +327,31 @@ properties:
+>         corresponding to the index of an SCMI performance domain provider, must be
+>         "perf".
+>   
+> +  resets:
+> +    maxItems: 1
+> +
+> +  arm-supply:
+> +    deprecated: true
+> +    description: Use 'cpu-supply' instead
+> +
+> +  cpu0-supply:
+> +    deprecated: true
+> +    description: Use 'cpu-supply' instead
+> +
+> +  mem-supply: true
+> +
+> +  proc-supply:
+> +    deprecated: true
+> +    description: Use 'cpu-supply' instead
+> +
+> +  sram-supply:
+> +    deprecated: true
+> +    description: Use 'mem-supply' instead
+> +
+> +  mediatek,cci:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Link to Mediatek Cache Coherent Interconnect
 
-flash@0 enforce active low on GPIO handle
+s/Mediatek/MediaTek/g please :-)
 
-Fixes: 2432d201468d ("ARM: at91: dt: usb-a9263: add dataflash support")
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- arch/arm/boot/dts/microchip/usb_a9263.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Anyway:
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/arch/arm/boot/dts/microchip/usb_a9263.dts b/arch/arm/boot/dts/microchip/usb_a9263.dts
-index ebaf198e1bc4..8e1a3fb61087 100644
---- a/arch/arm/boot/dts/microchip/usb_a9263.dts
-+++ b/arch/arm/boot/dts/microchip/usb_a9263.dts
-@@ -58,7 +58,7 @@ usb1: gadget@fff78000 {
- 			};
- 
- 			spi0: spi@fffa4000 {
--				cs-gpios = <&pioB 15 GPIO_ACTIVE_HIGH>;
-+				cs-gpios = <&pioA 5 GPIO_ACTIVE_LOW>;
- 				status = "okay";
- 				flash@0 {
- 					compatible = "atmel,at45", "atmel,dataflash";
--- 
-2.47.2
 
 
