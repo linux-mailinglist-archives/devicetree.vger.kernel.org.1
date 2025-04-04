@@ -1,128 +1,137 @@
-Return-Path: <devicetree+bounces-163132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D2DA7B9E6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:27:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C18BA7B9F0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 11:28:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 399263AC63F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:27:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83411189BEB6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 09:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94881A5BAA;
-	Fri,  4 Apr 2025 09:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340DA1ACEDD;
+	Fri,  4 Apr 2025 09:27:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="N+NHRUbB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2mNmYL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF60A28E8;
-	Fri,  4 Apr 2025 09:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F100A1AA7BF;
+	Fri,  4 Apr 2025 09:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743758842; cv=none; b=AyCa2INVylD8+P06liArv9j3q2zBusVz+BamDUo56Bp/zAzUpXDUNnHoxgXPKfIWoPLaW6s2WvKM8Ut4ETScIEGRBN1nHC9dox0ml0Ob/J7YHutSzWRLNknPpc07ZCGi1zajPd1qg71FHzQht+vPBeZsSwHE9xdrwseNTaRzoIc=
+	t=1743758871; cv=none; b=EKrehvC+OdtoQp1XBHciDMeHTXSKwHk3aIUa6mgcxla1hIXRcNYfzk33CJdd5TBPGTqVOngmpwuo/ze1n75dyRNChewASorAHHryZiKxixMx+6+aRTENqXN9oEefrXuH0Ym9IuaIEOCL4lqMW3b6eU7cwVZo7OAEOYfCH9Q5NLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743758842; c=relaxed/simple;
-	bh=20zTP1BPk5EAL7QuTWd2YLpnkd6fEIQ55GBI3002LQ8=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=DqbmQeuwTHwpkxnzogW38nFUVyeUEUolWnesRm5jM0UpvXsITJ0tokhLYN9YnVzt2cGzDPmnPXmU8FUGGTGROTnecRBSaQeL5ydtfrBfzT91bqv69NFVGbv0pIj9onxRnZC2le3RLXVrUA3w+0WlISoReoINc/zaPT8SG0HuZAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=N+NHRUbB; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=20zTP1BPk5EAL7QuTWd2YLpnkd6fEIQ55GBI3002LQ8=; b=N+NHRUbBrlE5yrA/oNsBeufvYg
-	UK+k/rfEE6xbQ65RVeoz9S71QsQ6nDHxSO+MIgtMxe8c0qUHcr9h9FF5fJpwAV1dy53lVZOfAfWEU
-	+VVsGp6N7A7N/9wTONMAOxIuUj7PuiQCKHd/fOAi6h8HkJm5+y8eWEvH/5VITvZSQOtqsGs1UVKM0
-	hoP9+n8BlQhJhjdIXYv6b+atyNAvChZMixant3yuREhcqlDQc5ZoKEMl0kieqd4PwXrzIuZBSOWZJ
-	OAiwpWz/PcnrOKlru/EEijQBC4PaywHZu53smZrAjxn87Gj2Y5E4ps+fOSOTj6r+PNzhbV42JpXtW
-	nZwKX8MQ==;
-Received: from [2a00:23ee:2958:8b7d:331a:3a2:4a31:884] (helo=[IPv6:::1])
-	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0dKT-00000007NAn-35dA;
-	Fri, 04 Apr 2025 09:27:14 +0000
-Date: Fri, 04 Apr 2025 10:27:13 +0100
-From: David Woodhouse <dwmw2@infradead.org>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-CC: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
- Claire Chang <tientzu@chromium.org>,
- linux-devicetree <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- =?ISO-8859-1?Q?J=F6rg_Roedel?= <joro@8bytes.org>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- graf@amazon.de
-Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/3=5D_content=3A_Add_VIRTIO=5FF=5FSWIO?=
- =?US-ASCII?Q?TLB_to_negotiate_use_of_SWIOTLB_bounce_buffers?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250404043016-mutt-send-email-mst@kernel.org>
-References: <20250402112410.2086892-1-dwmw2@infradead.org> <20250402112410.2086892-2-dwmw2@infradead.org> <Z-43svGzwoUQaYvg@infradead.org> <148a3c8ee53af585b42ec025c2c7821ad852c66c.camel@infradead.org> <Z-46TDmspmX0BJ2H@infradead.org> <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org> <Z-99snVF5ESyJDDs@infradead.org> <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org> <20250404040838-mutt-send-email-mst@kernel.org> <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org> <20250404043016-mutt-send-email-mst@kernel.org>
-Message-ID: <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+	s=arc-20240116; t=1743758871; c=relaxed/simple;
+	bh=j0RVHsK+8Z70siy6KizMbeUUMr7khc2n2FyBiYwSGY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h2enPROEcpLQDFT/BM1U29E630eWjNFskIAxHssr6h7oBuD/Gf8d5qerBxVOrHITQ39rYP/YddA0nb4LaaCj3LBGayG7lrA5w7QNsuyfTK6H/vy4QlzlUjdikTIHUJZ2bqgKh/7W7jasHyhafrDwXstyVRY1DzFz5JMDXoCE7ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2mNmYL+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41D4DC4CEDD;
+	Fri,  4 Apr 2025 09:27:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743758870;
+	bh=j0RVHsK+8Z70siy6KizMbeUUMr7khc2n2FyBiYwSGY0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k2mNmYL+Tn1jkYo6pbOKWN+sdTq6/m14DMgEi0eE9QfpMdbwetp53Q1//RfKRHqfJ
+	 2a8UyNCncTI5cIVqNggzKoCvtwGmhBscLRlfO2qSRbvjhTD+0jCwLIeonWZaHheBuv
+	 yXi7owlf6dD2e9L1gA5Iu28WHOv/F4mvVTGUnRwgQ44MOB4cqizdCNs1uwfBWA8yAW
+	 LGdA+Q7J2ngW0r3OMnnjFVbZA7lCnxyV9NsQs7q9F9trZ5DQDm7fV1H2/FR6JVzBaV
+	 yLHAMQVYISyQdLymipvLBbT7uCjf+438NTx0U0kSMJxiqOfGtwA9fNFmEzqrrkD4vz
+	 9Pi8tJCQTKGwQ==
+Date: Fri, 4 Apr 2025 10:27:43 +0100
+From: Lee Jones <lee@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 11/32] mfd: sec: fix open parenthesis alignment
+ (multiple)
+Message-ID: <20250404092743.GC43241@google.com>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+ <20250403-s2mpg10-v3-11-b542b3505e68@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250403-s2mpg10-v3-11-b542b3505e68@linaro.org>
 
-On 4 April 2025 09:32:39 BST, "Michael S=2E Tsirkin" <mst@redhat=2Ecom> wro=
-te:
->On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
->> On Fri, 2025-04-04 at 04:09 -0400, Michael S=2E Tsirkin wrote:
->> > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse wrote:
->> > > What's annoying is that this should work out of the box *already* w=
-ith
->> > > virtio-mmio and a `restricted-dma-pool` =E2=80=94 for systems which=
- aren't
->> > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms=2E
->> >=20
->> >=20
->> > That specifically would be just a driver bugfix then?
->>=20
->> I actually think it works out of the box and there isn't even a bug to
->> fix=2E Haven't tested yet=2E
->>=20
->> The sad part is that the system does it all automatically *if* it has
->> CONFIG_DMA_RESTRICTED_POOL (e=2Eg=2E Linux) and the driver never even
->> notices that the dma_ops it's using are the swiotlb ops using the
->> provided buffer=2E
->>=20
->> Which is *kind* of nice=2E=2E=2E except that when on a guest OS which *=
-isn't*
->> Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore the
->> `restricted-dma-pool` node and try DMA to system memory anyway, which
->> will fail=2E
->
->I mean, it's easy to misconfigure Linux, this is why we love it ;) Why
->is this such a concern?
+On Thu, 03 Apr 2025, André Draszik wrote:
 
-Because it's incompatible=2E In the DT world, perhaps this new *non-option=
-al* feature/restriction should have come with a new "compatible" string suc=
-h as "virtio-mmio-restricted-dma"=2E
+> checkpatch complains about unexpected alignment issues in this file -
 
-Adding it without backwards compatibility wasn't ideal=2E
+Fine, but either call it by it's name 'Checkpatch' or the command 'checkpatch.pl'.
 
->> That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB feature, so
->> that the device side can refuse, if the guest *isn't* agreeing to use
->> the bounce buffer in the situations where it must do so=2E
->
->
->OTOH then setting this feature and if you make the device force it,
->you are breaking guests restricted-dma-pool which worked previously, no?
+> update the code accordingly.
 
-Yes=2E So a platform offering virtio-mmio with restricted DMA, if the driv=
-er doesn't accept the offered VIRTIO_F_SWIOTLB, may want to accept that neg=
-otiation anyway, and *hope* that the driver/OS are going to use the buffer =
-anyway=2E
+This phrasing and grammar is odd.  How about?
 
-I just didn't want to make that same mistake again when formalising and do=
-cumenting this, and especially when attempting to extend it to PCI=2E
+  Subject: mfd: sec-common: Fix multiple trivial whitespace issues
 
+  Rectify a couple of alignment problems reported by Checkpatch.
+
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> 
+> ---
+> v2:
+> * make new alignment more readable (Krzysztof)
+> ---
+>  drivers/mfd/sec-common.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/mfd/sec-common.c b/drivers/mfd/sec-common.c
+> index 782dec1956a5fd7bf0dbb2159f9d222ad3fea942..1a6f14dda825adeaeee1a677459c7399c144d553 100644
+> --- a/drivers/mfd/sec-common.c
+> +++ b/drivers/mfd/sec-common.c
+> @@ -149,9 +149,9 @@ sec_pmic_parse_dt_pdata(struct device *dev)
+>  		return ERR_PTR(-ENOMEM);
+>  
+>  	pd->manual_poweroff = of_property_read_bool(dev->of_node,
+> -						"samsung,s2mps11-acokb-ground");
+> +						    "samsung,s2mps11-acokb-ground");
+>  	pd->disable_wrstbi = of_property_read_bool(dev->of_node,
+> -						"samsung,s2mps11-wrstbi-ground");
+> +						   "samsung,s2mps11-wrstbi-ground");
+>  	return pd;
+>  }
+>  
+> @@ -264,8 +264,8 @@ void sec_pmic_shutdown(struct device *dev)
+>  		 * ignore the rest.
+>  		 */
+>  		dev_warn(sec_pmic->dev,
+> -			"Unsupported device %lu for manual power off\n",
+> -			sec_pmic->device_type);
+> +			 "Unsupported device %lu for manual power off\n",
+> +			 sec_pmic->device_type);
+>  		return;
+>  	}
+>  
+> 
+> -- 
+> 2.49.0.472.ge94155a9ec-goog
+> 
+
+-- 
+Lee Jones [李琼斯]
 
