@@ -1,114 +1,130 @@
-Return-Path: <devicetree+bounces-163155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DFEA7BB26
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:46:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE688A7BB43
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 543E2188F823
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:46:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5646717315A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97969199E84;
-	Fri,  4 Apr 2025 10:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6770A1C6FF0;
+	Fri,  4 Apr 2025 10:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzR7Seko"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTYZ4saZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693AA7485;
-	Fri,  4 Apr 2025 10:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6E11D95B4;
+	Fri,  4 Apr 2025 10:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743763591; cv=none; b=E8SkJjLSxIXkdoS0y6N3LP6wl4hGl4UCT3a4SDbtWP4DBndnvpR+gFnE9qqyrJldNISIRXbJn72txXWN52botadhy+6mNMm2ccfC3i+GIZpZPkp151Y95cEBTjwzLl+Hi1F3uhRHvEiHuayuTwyKH+aqRbtDzKIgz3/NzKjZkHU=
+	t=1743764140; cv=none; b=YXdBiXBybvrEzvHRsdwtuxvRPLhRO0qLcfMKEHVb5o/Sj4y0QU0XBzn+kdaZm2jWW+iD4vyDmoOgcmifpEpm2Z9Mh/Th5nBd0gIxArwJq+vwtXyCTDqxRe+ZPzAI4Oz+XSB9ct9FIdOo0BYg+87nkbM6kw+99G/GA4hpanq4a6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743763591; c=relaxed/simple;
-	bh=3IO+zfldDM8piydemhzVywsi9TuDxbhhUONjscTHv5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GLCKknw72+vV47SQaa+XVJe+EmkQd+kdJ4LLK2kTbraR6LTGBKOX1Md2WdJp9AbMX5V77j5y4gtOfIeluf4XKDmzZrz15WK0iLQBjJ0UqfksP1vyH5bhMQGPZ4PMkjbjeXz1eCUIdBC5Jvotx4ht43I/Yk547dliKC7Ei+L5TCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzR7Seko; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C848C4CEDD;
-	Fri,  4 Apr 2025 10:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743763590;
-	bh=3IO+zfldDM8piydemhzVywsi9TuDxbhhUONjscTHv5E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WzR7SekoWAMQxBqTVkP944qa9r0NJ4oLMuHgB05Ku4AgLDIpm/qeAC2Rqxd42F3Hs
-	 IhHcJ41Fo4ZKEcl7l55k7gtqUzXE+Qh4iV6JvCgf8lqZKUF7rNOpM7FevM4NSh6c4w
-	 yFDDsmB6G0QyP9btt8em9FynkuV9zVjgNkRTsnZxRCcY5AzoEuxh3ho5TIBrm+Uehg
-	 G80ObbGy5neHmgRM8x718z+bncKLKEBPSOeyw3YZMDuSyN9X8ai9GAXJQ78BHOCiwi
-	 pp1S4cD9odvpEvS9OoqsHPPHSaq1tjIep0aVcUG0pMxyFRx6EFkkJvgWEAknRv61u7
-	 c1fE1Ezo9kZ9A==
-Date: Fri, 4 Apr 2025 12:46:28 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tero Kristo <kristo@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Andreas Kemnade <andreas@kemnade.info>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: clock: ti: Convert to yaml
-Message-ID: <20250404-tangible-reindeer-of-penetration-ae9ca3@shite>
-References: <20250404014500.2789830-1-sbellary@baylibre.com>
- <20250404014500.2789830-3-sbellary@baylibre.com>
+	s=arc-20240116; t=1743764140; c=relaxed/simple;
+	bh=vVdmnFtLy/tw7aRM7sEWapxfTjOFIN1E2HeyTK+L92I=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=JApiGN5uD6e+oVPaA7W3iQGc+vx9ZrhC8gL9x0X+GXJ+P1xaX1gvchI2KDlmDCYGXttwtrtraBaAOrZ1dZVylFoRcG+YgHUULsPkyab/bOtb5SJtysE/IdeoRnpA/tE06kCUHmiOKIvQpCkXPFo+zlAnVTRLA62S58UnOtqGtYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UTYZ4saZ; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39c31e4c3e5so1007846f8f.0;
+        Fri, 04 Apr 2025 03:55:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743764137; x=1744368937; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1NoCVEHwihQ1loXx0nSFlkGqZPVNcZeJYP1pFpVRK6w=;
+        b=UTYZ4saZSaN4IIUzoE4SObmNJsO6vomVwADShigMCCHY1GHcHPpN0Jd2FYYyZm0Upt
+         w6o99VquMrHRIcgFFTQe4bich06lEmRK85kkDkw4SOY7vdrC3Bn5LpiiQHKzavH0cHLP
+         JtjzHQTUW3PtOKTEm6QVuGag7xc7P6cw4ZHJSXpbMhE3NawyqhHDFc2ZXzRe4TMAupxV
+         WkCc0rAqmHHy/+wSqpugcGcwqjR6fOINban923yZUZDwmbGT1cu+X3Zucyx8QY3fz5Hm
+         CvG7kqo6eyy2b93o8znNWXVkuvdqiif8lGr4Hy7Uvu9R8S/4mIrJpIcgWTZIBkbj++Iw
+         eDEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743764137; x=1744368937;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1NoCVEHwihQ1loXx0nSFlkGqZPVNcZeJYP1pFpVRK6w=;
+        b=To8yFUFU+A0u0OT67THtsAVBC0V4lHCA+6zTkrP3Xa084F64ppD3iXsdVsX5U4gT0N
+         EUtEKuK2CbhZvOnHfLDW0xkS+l2r872pPJcn92wTfOqqRiUD1EbynKMy46sQZUVJfBNl
+         2D6tmeBGw+sTH73u55oEaggvaS2Cpp1PF2gbLD1h/o9w61WS0YTjQw+PwpYoK8izsHt5
+         BIV635htgTvkZQwY5P+TkdZTrXh3JDgRz9Txv4ChERSkk8LQ6wN9co/XIYr9G5PVL1+k
+         eTVeBUoh48K5NCanMJQO596kO/a94LjlH4JiP0zeobKVsYf5Wk1pjcYc6lJlskB7IJ37
+         5cOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUH2GZ3rA1DeV8Dk2e50pUuICefOnza3iaQHr15a9Htig+PfmIlbfephAwhSAWOllZ78LgNL9XyAqb8@vger.kernel.org, AJvYcCUj5IUDKIBDqHXHA6zK+us31OkgEiGBahhS0BWxZsMgOCdRFnN0JtWt2R3gYzn1KL+5x0dvkQMgNKW64jMx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRm/BLq3nCyPS16XenV+Kp03bKYFDvbY3Z4/IefE5Gd2eT24cc
+	yTgp4NzcZM95OsAsnkJkhQddLK/B6JwQHVbj6CS2NMbCQjK6VM2bMf4DAA==
+X-Gm-Gg: ASbGnctRghlRtgJMylY1QySwBHiiH5iMMgt5P0NYtapiobh9dUVPvcD/DUPq1Qa7Ghm
+	9o1coyh4F8FQsbvEMJTUHhSa/ab1LZ/+eXWVSz1yZxL4Hop//MPzYWaNKYXsg8FhEU8lIagDnFm
+	0gFyUdLAyvVQm+qOGZmTySDvfyNBZ8jfWBggLs29ihx+05t99y47ERluE2M2w6mgorZneu0wGrB
+	HV7jE25LcxrKSNwtnn06JPm/ioJtI5Wub6OilZpHo83IvK0q78mx3hkQbLY6MjubNwhFSljpXI9
+	tBgYWFz/IB5WY2yyWqNwMDUjoCljTf4MC9k/MWdF
+X-Google-Smtp-Source: AGHT+IFo7tlkl/+wMvwXptBvJkGXJEA8uG7yhSuxj7cy+rmK6b6ptf9ozqOVK6DTf/eox0u5cbJ7JA==
+X-Received: by 2002:a5d:64aa:0:b0:391:2f71:bbb3 with SMTP id ffacd0b85a97d-39cba9332f2mr2428269f8f.46.1743764136576;
+        Fri, 04 Apr 2025 03:55:36 -0700 (PDT)
+Received: from vitor-nb.. ([2001:8a0:e602:d900:7d1:e192:9339:cacd])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c3020d938sm4078097f8f.65.2025.04.04.03.55.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 03:55:36 -0700 (PDT)
+From: Vitor Soares <ivitro@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ivitro@gmail.com
+Subject: [PATCH v1 1/2] dt-bindings: arm: fsl: add Toradex SMARC iMX8MP SoM and carrier
+Date: Fri,  4 Apr 2025 11:53:58 +0100
+Message-Id: <20250404105359.18632-1-ivitro@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250404014500.2789830-3-sbellary@baylibre.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Apr 03, 2025 at 06:44:58PM GMT, Sukrut Bellary wrote:
-> +maintainers:
-> +  - Tero Kristo <kristo@kernel.org>
-> +  - Sukrut Bellary <sbellary@baylibre.com>
-> +
-> +description: |
+From: Vitor Soares <vitor.soares@toradex.com>
 
-Do not need '|' unless you need to preserve formatting.
+Add DT compatible strings for Toradex SMARC iMX8MP SoM and
+Toradex SMARC Development carrier board.
 
-> +  Every clock on TI SoC belongs to one clockdomain. For specific clocks, the
-> +  parent clockdomain has to be controlled when the clock is enabled/disabled.
-> +  This binding doesn't define a new clock binding type, it is used to group
-> +  the existing clock nodes under hardware hierarchy.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,clockdomain
-> +
-> +  clocks:
-> +    description:
-> +      Clocks within this domain
+Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-imx-8m-plus
+Link: https://www.toradex.com/products/carrier-board/smarc-development-board-kit
+Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Missing constraints.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b90870958a2..daba8ba8c95f 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1176,6 +1176,12 @@ properties:
+           - const: polyhex,imx8mp-debix-som-a       # Polyhex Debix SOM A
+           - const: fsl,imx8mp
+ 
++      - description: Toradex Boards with SMARC iMX8M Plus Modules
++        items:
++          - const: toradex,smarc-imx8mp-dev # Toradex SMARC iMX8M Plus on Toradex SMARC Development Board
++          - const: toradex,smarc-imx8mp     # Toradex SMARC iMX8M Plus Module
++          - const: fsl,imx8mp
++
+       - description: Toradex Boards with Verdin iMX8M Plus Modules
+         items:
+           - enum:
+-- 
+2.34.1
 
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    l3init_clkdm: l3init_clkdm {
-
-Follow DTS coding style. Also drop unused label.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +        compatible = "ti,clockdomain";
-> +        clocks = <&dpll_usb_ck>;
-> +    };
-> -- 
-> 2.34.1
-> 
 
