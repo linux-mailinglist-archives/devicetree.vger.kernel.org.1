@@ -1,54 +1,89 @@
-Return-Path: <devicetree+bounces-163119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BABA7B8C0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:23:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6241A7B8F1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 10:32:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3474A7A3B13
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:22:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21151792E3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 08:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88B0190696;
-	Fri,  4 Apr 2025 08:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FCF19995D;
+	Fri,  4 Apr 2025 08:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="z1jZ0J1z"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EoJdBzYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E2018BBB0;
-	Fri,  4 Apr 2025 08:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C131C68F
+	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 08:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743755009; cv=none; b=sTB8vVW474Hhm28JA7excoR778riZLgmwRv0ZIami8QCjuUVW/0YH6qD6gDfKinWtdF6a7ngorC/st+PrBnPoPba4iLMLZBk4VBeWIANKdTTge/PBl4TCAjNsy3oIzJqKMPEZwg797OsIJ8qk0cUXCU1VoZ2oXnIZy6Us0lvbmo=
+	t=1743755568; cv=none; b=NCQuIo27uFTld+pkk1wiEq/nFCMOM4nIVKtz7N4EybRcjd68BAc/d4iIozpkveOfc3oMisR8RvJrY6UX6HZYLrbQamZVSslh6WDTjcAsEAGyPlNtCS383paSs0eZGkd5Ki/hWu2CSB2K1VoS346wvfQ2+p7qCX+J/AZZ910eVyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743755009; c=relaxed/simple;
-	bh=exXncdCnC5w1jj9sp8tR3J47I5LVIscXdi7WvgXh54A=;
+	s=arc-20240116; t=1743755568; c=relaxed/simple;
+	bh=8mgiLfeOJH6U7WSgzeIIiX8jgYIFd8sgDdNUQ1WgpFw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W77IEbUYhVQ+xh9ObkrijAzJWu/uuLXMZh5SBFAaQmcOedWmLr/tQL26LZp+ITHOmGQImR9cFhqfq/uFK/gr29sWkHobBJqdge7XgLjln6ruE/lgLivPYX3OljiOzL1iOUYWRP13oQ6wl9iW0HGEl8GcezWLkgIDnIjtLzAANTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=z1jZ0J1z; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Transfer-Encoding
-	:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=aQkPpwhCuI74t8MvuOuCVkLaOjb2i8DMN08lsw+64Yk=; b=z1jZ0J1zwZHjfaKPGV0j2opMuJ
-	1UxXGv3TWNtATD3MXhjaBzoKspO2fkpnX28XVvY1gxrDDPVrZPyUNore5FQJzuFwgqWQ3h6fd7Xlm
-	4WVCv+H4aJ1TXYjUxrg307a3DQ9xSf2IQb5W+M69EmiJ3zI+EJrMgbuPgb2G7qkUgEZQXZ1twp2L/
-	23Lbrgd5lJdOeapzQPloEJ+xNNkp8SbGdxhTMOa2+zaqajeVZ0pGfh1dmgIsjMbIre5hc//EDcVBs
-	1FkbtB/bzQkS7Hd8TsCVM0n6uTFVDeEpAIuOnzbj3H3vwV+jYSsqvaQQW88pzU9SMikJGmgRcRX4L
-	Dyz6l5Uw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u0cKi-0000000B7qt-0v53;
-	Fri, 04 Apr 2025 08:23:24 +0000
-Date: Fri, 4 Apr 2025 01:23:24 -0700
-From: Christoph Hellwig <hch@infradead.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h/J1oY51gDNFkBeLW3iusIJSovLz+fIc/xIRqI9SW6tgRk0ENfj/0fKPu0DpQBf4TjekmnLV08bRp10J0A8HsKCV0YPur0Dk9Vrk7pIZiEbZXlYlklF/Yr7Iu3ygQeriawugAXVqfTCPJn+tlcC7N+h9L0CDqcJe5WXN8ZUl4Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=EoJdBzYi; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1743755565;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1g2+hk0RrD47BYHCyQjMK8prZh3qSBoec7bPqHaAsFs=;
+	b=EoJdBzYiYp9MYGehCfR9QjNcbro0K5MXskljZu4rMTZwlfLfyZ8MGu2RH1ysE/iVRE4fnN
+	54b0G2d4jVoPhcBvOkRtt+lXIEsC4CcniLSQhZZHFbncGvUf61kTSRPQ+k0tiVbz/FtbwS
+	rgfUnWOSc9ecFQJVBDoZKxRWY3HQZBE=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-312-je4kPQZGNPmIZ6d9qRnYdw-1; Fri, 04 Apr 2025 04:32:43 -0400
+X-MC-Unique: je4kPQZGNPmIZ6d9qRnYdw-1
+X-Mimecast-MFC-AGG-ID: je4kPQZGNPmIZ6d9qRnYdw_1743755563
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-43cf44b66f7so13546405e9.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 01:32:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743755562; x=1744360362;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1g2+hk0RrD47BYHCyQjMK8prZh3qSBoec7bPqHaAsFs=;
+        b=DaSh4Lhkyur02wYr9aiUlSgeUURsbQ2Z269z2bwDCBzTsyxoGYpLnuMtQMOCUBEbWS
+         RUHN6T9dF/InL0G8NIV9uHN7P9FpsAWbgcZN97IskSyMVKk58CT8znmWowTqzhUfN6Hb
+         Z1imJCdjo7z0ES6IbkXGvOOa46SuBnt55I2NypP1094z5lm/fpXy4EVC7E0VNlMDwq9A
+         3UjcFoYhxGATQsS7OEhuXpTxFG0B1iP7zEiuE7hEdtCNLIa4K9ZkPt0dnU/643jFnP6u
+         ySoqLD/CDdbUyZctrAlXjK0oXtZ3697lNpgxMv9QSeN1mgWAqWErlHW4znesb3WwV3Zw
+         U1Dg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2WosdK+tmfb5qsBQcLpjCxioe1iOASlhWeVP7a8iHGvqoO6vP2/w2XJiNCgjCNk+E1GbZSyStE7yv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWbbYkiYRSHCoNreVW7O6rqho+6E9fBxMuwGmhgU5sLZWR5GQJ
+	kRJv1UMfPQMqLmE3+HBF/J0vL8Mov5vd4gLAeeWnyWMra2Gq7V3m9Fl97j4mP6KBZ5/sDzvaIWZ
+	/3qvg+mIMjKV6ZRmaYwn6J6TE2yfgyp9DtFTsuZImM/0n5lggwNdk66iMXgA=
+X-Gm-Gg: ASbGnctGGlr/LYenSi9oZ394mESN+CdIUqHGm5LD+wKVKTleZQs8vQioVXrMDMwjzV+
+	FOrY8t18+0C1+y2xoZlO60BWFtmaLJmGS3PqwJ1drw3zZgdeQz8jGOKGM6PqqNwYgH+tfMl1At/
+	2kgbFglWuvjxvLWC4eGAVLWngAWMwlk56sgyr/Hj/pKptRhqYC7Vvukk7thDDUs8J8buuqjnIad
+	B0OZJWgylrs0Bpu3bLXAHjEh6Gm4gau1b+wQ90224ZvZdoO4x92SFdgeOs1cfmiHjs7N7dLMaed
+	pEcMGIO/5A==
+X-Received: by 2002:a05:600c:4713:b0:43c:e2dd:98ea with SMTP id 5b1f17b1804b1-43ecf9c7731mr16261055e9.22.1743755562664;
+        Fri, 04 Apr 2025 01:32:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJ0IdRaSckdVORex2b1FgzPZdidXCh6submJTDHordJMQojyupjfXYrJLLNpoFtr3Ssc7f6Q==
+X-Received: by 2002:a05:600c:4713:b0:43c:e2dd:98ea with SMTP id 5b1f17b1804b1-43ecf9c7731mr16260785e9.22.1743755562294;
+        Fri, 04 Apr 2025 01:32:42 -0700 (PDT)
+Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec364d071sm39036635e9.32.2025.04.04.01.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Apr 2025 01:32:41 -0700 (PDT)
+Date: Fri, 4 Apr 2025 04:32:39 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
 To: David Woodhouse <dwmw2@infradead.org>
 Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
-	mst@redhat.com, Claire Chang <tientzu@chromium.org>,
+	Claire Chang <tientzu@chromium.org>,
 	linux-devicetree <devicetree@vger.kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
@@ -56,7 +91,7 @@ Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
 	graf@amazon.de
 Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
  of SWIOTLB bounce buffers
-Message-ID: <Z--W_JagTSyhYqzk@infradead.org>
+Message-ID: <20250404043016-mutt-send-email-mst@kernel.org>
 References: <20250402112410.2086892-1-dwmw2@infradead.org>
  <20250402112410.2086892-2-dwmw2@infradead.org>
  <Z-43svGzwoUQaYvg@infradead.org>
@@ -65,6 +100,8 @@ References: <20250402112410.2086892-1-dwmw2@infradead.org>
  <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
  <Z-99snVF5ESyJDDs@infradead.org>
  <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+ <20250404040838-mutt-send-email-mst@kernel.org>
+ <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,33 +111,43 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
 
-On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse wrote:
-> I do agree, this is fundamentally a system issue. In a CoCo model, it's
-> non-trivial for the system to allow *virtual* devices to do "DMA"
-> because that actually means allowing the VMM to access arbitrary guest
-> memory.
+On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
+> On Fri, 2025-04-04 at 04:09 -0400, Michael S. Tsirkin wrote:
+> > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse wrote:
+> > > What's annoying is that this should work out of the box *already* with
+> > > virtio-mmio and a `restricted-dma-pool` — for systems which aren't
+> > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
+> > 
+> > 
+> > That specifically would be just a driver bugfix then?
+> 
+> I actually think it works out of the box and there isn't even a bug to
+> fix. Haven't tested yet.
+> 
+> The sad part is that the system does it all automatically *if* it has
+> CONFIG_DMA_RESTRICTED_POOL (e.g. Linux) and the driver never even
+> notices that the dma_ops it's using are the swiotlb ops using the
+> provided buffer.
+> 
+> Which is *kind* of nice... except that when on a guest OS which *isn't*
+> Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore the
+> `restricted-dma-pool` node and try DMA to system memory anyway, which
+> will fail.
+
+I mean, it's easy to misconfigure Linux, this is why we love it ;) Why
+is this such a concern?
+
+> That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB feature, so
+> that the device side can refuse, if the guest *isn't* agreeing to use
+> the bounce buffer in the situations where it must do so.
 
 
-> So "for the emulated devices, just use a device model that doesn't do
-> arbitrary DMA to system memory" is a nice simple answer, and keeps the
-> guest support restricted to its *own* standalone driver.
+OTOH then setting this feature and if you make the device force it,
+you are breaking guests restricted-dma-pool which worked previously, no?
 
-It's also one that completely breaks the abstraction.  I still don't
-understand what the problem is with having the paravirtualized devices
-on a different part of the virtual PCIe topology so that the stage2
-IOMMU isn't used for them, but instead just the direct mapping or a
-stub viommu that blocks all access.
-
-> What's annoying is that this should work out of the box *already* with
-> virtio-mmio and a `restricted-dma-pool` — for systems which aren't
-> afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
-
-Yes.  And the fix is to get the equivalent to restricted-dma-pool into
-UEFI/ACPI.  That gives you a portable and device-independent way to
-describe this limitation, which is much better than hacking around it
-using an odd device model.
+-- 
+MST
 
 
