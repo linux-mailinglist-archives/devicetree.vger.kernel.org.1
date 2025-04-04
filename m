@@ -1,156 +1,243 @@
-Return-Path: <devicetree+bounces-163300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A99A7C3F3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 21:39:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A799A7C440
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 21:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B45AD189F238
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:39:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 122DF17C1E9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D749921D3E2;
-	Fri,  4 Apr 2025 19:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4627D22E3E1;
+	Fri,  4 Apr 2025 19:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hgsx9n2/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXGaQw9e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FA511E1DE9;
-	Fri,  4 Apr 2025 19:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDCC22DFAF;
+	Fri,  4 Apr 2025 19:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743795548; cv=none; b=It3sMTa8pME0vkVCQ1jdPlppMka3HCFAvX2hNV/YVQS4WNBl+i/KAnphSEOazUGSMUIe7d1d0ObMNiKqGzz1N5s8h14ooYJu+WT+WpD8Zdr9HwrWc12ifHhyGyRuTuSEg43BaSzTyytFMESGDVONU7PqJUyMGez6Hcc0wRR8tjs=
+	t=1743795648; cv=none; b=Vcw5KuzjRIpqRIA9qYwSxPWcoznJlrGmqNGo8FenMcs8wYyfg5SEH/TMW1oJvASDGjKEqhH2s3q44dz0UqfvIGeXBXaHKHV3WUB13uQOWmnFS0AATtl+ma5R8cLbr3mHqOomMS4rEYpxq4OzAAfNOPEhbwU3GggUaoUHvOUOdCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743795548; c=relaxed/simple;
-	bh=VpfAjJAGyn2iFrsTDI2qa/oAK+7uNraImYwiQTOK1X4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=feV7EVtlYsQJVxXJZ0T1QfriqfC0cmRUzq7cMjVoUR2Vkgq0Peo7c4nx2OSUamaMZQ0pCao+GrAwIVy5KO9r11P5fWmcpQT3t3HU/dj9anJ5GcXAL9uHzjSIfwV5jV0SkUpk0joFFsWNnhOBdw4DSnfOCJ+qy33eLSkOYGbdxLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hgsx9n2/; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22580c9ee0aso28234295ad.2;
-        Fri, 04 Apr 2025 12:39:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743795546; x=1744400346; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NQGNgVHxDhs7mBk3RqbeX6683p63yLHOISx5dQxLR50=;
-        b=Hgsx9n2/C17rlqum5/A4dc6mhszR+2cT+f4YbN93mqI/EhoE9043xB5QedBmxdJFFG
-         jMIqcLhWHk3q0xwti9aC1WRsjX98Ju6LC1gi1gEoxXyaOnVaLa/kEnDHogD/MuB5T532
-         NigoFE7VCAGRN3m1PH8q5yTFUeDF9ovT+ox6S9Ln4x31z9OskoOnKFvvbUu4TljnPiqv
-         ZuxNkd7/Xt7gWoqP72fGQrYfmiMlS38RujDr9dNoujcsrDztFnFQyGS32RVuxLpAMHpO
-         LZk8W8ktJgur1JLxaHYesMNqiW4ZGSu+y+mlPppbLfkxqQXTXoGERIM2SAJ5cJNuRRwF
-         pH2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743795546; x=1744400346;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NQGNgVHxDhs7mBk3RqbeX6683p63yLHOISx5dQxLR50=;
-        b=ORUNrFChe6OF+PbWktXV69fQiovjNYjIRQ93IzABNR1zofGCkhvFc96CHpMSnpuA4I
-         uDEaTngE5ig16GY2d5jJLyNzAndDJ7QNrRj7SzsN1HqSC7g0WQOMuf4OB0WGb+0Cjk+4
-         eUrvMn0kS9MdQ5Rm1PLS+4NXmFn260oJr7KlECsKXVEZqmxuAPUIw8UgP6tM/lRkzIaQ
-         GyhlNRGtQFufTgwmbIrbcZ8yE9hr00wJOH4rUsN1og/wrejpGhr9r9tUVH9CEQueVL+S
-         IDrtZRk4xpVXCWX2aRtUrDPplsmENCEQ1SwlK2JxkJtWX3MFKP+CiWzkvJl1Yw015WHj
-         tS9w==
-X-Forwarded-Encrypted: i=1; AJvYcCVHRlUbvoPhiQFs4bm0f42lM0w3zoMiE5vWw8/tk6SkjcO0n1u4c3vW9Br5fGKszm8W24hYWcVsbnlJzPKv@vger.kernel.org, AJvYcCXJErSbt4d889Os9T9zs0EQ5zmng1zaHXG/bOrBQNIFLfwNty2ti6MdKl+yqq5xRZAIBf4fnsoy//tR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQY+CN5C5b6BIr4dVqyxKgHdR277p9ZwKyUgJQeBW1L/awCeLz
-	jLAq3WoQOP121af6UnWFBuJMDIRkWtdkOo+6vCOjirbcX6R/wVZr
-X-Gm-Gg: ASbGncs3Sis8aVhlYqgIqRzkzBwWSD3GCDBJ+2jibC/kmTwSv4qoHPbeFV0fSlNvsvr
-	Zapxle6G1hvEpkZn5ujMgazqxyRllNAFC6YwhdV06wKZwJBLt8BYdvnMiMKhOpoHPVCPnntr6I7
-	/amm+rn97OWVaW2pZJcfEivkFGJIxWgVf9XWTvux8dRGVb7hRMcG+ky4PdOPcZmudEBgn2sOVWt
-	/iJ45/DMdPQez28sFhoXKs56BvkufQBKLDQA8fanSSxOfrC9iLMXmrYKhq/BhzPojgR00yIV+5P
-	gOMET4ObLLtKjNBdsTOhWEklfWkKWxw0eQoddE43OWQ8RN8IyRychvwXaFrXsgSyTpglUOgPyLV
-	DoVIxiXR0wVjHHTs707S5M5hV
-X-Google-Smtp-Source: AGHT+IFe4mjpRg7zowmOKrRZGt9tbXvtfVX38ovvOh6lKYhx4xIePXLNWeuaoRutkTmWr1rWPnCrtw==
-X-Received: by 2002:a17:902:d4c7:b0:220:ec62:7dc8 with SMTP id d9443c01a7336-22a8a85a18dmr57542845ad.2.1743795546267;
-        Fri, 04 Apr 2025 12:39:06 -0700 (PDT)
-Received: from ?IPV6:2409:4080:1197:5c59:9640:d38a:951e:d202? ([2409:4080:1197:5c59:9640:d38a:951e:d202])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866e242sm36279755ad.164.2025.04.04.12.39.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Apr 2025 12:39:05 -0700 (PDT)
-Message-ID: <b493166b-5d1b-4228-82a0-ee7efcdd03e6@gmail.com>
-Date: Sat, 5 Apr 2025 01:08:59 +0530
+	s=arc-20240116; t=1743795648; c=relaxed/simple;
+	bh=X60ncpChgW8F3t+APBZl1n9z8FKQTuNx+IytCXpYTTg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u964A6hcYFXmfL5vHrv5ZjIr2DbaRVF2+/8MpNZy6FVCRinJvyxSG9o3XUh0PL8zyAtvxRPsRJwxHn4ltn3ZL6gPySgpyzgnmkmB333u6Ol5V/o5VXLvzIgE61FZqcVndrQA/sN3QXEkI2rwvQshD7FzkeDeQkSEA0ysDvFmGc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXGaQw9e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA12C4CEDD;
+	Fri,  4 Apr 2025 19:40:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743795648;
+	bh=X60ncpChgW8F3t+APBZl1n9z8FKQTuNx+IytCXpYTTg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aXGaQw9eGa9ezTPA5PgsIXdzB7oQMT71L0vuBTzpaaFdX5XE8QNRrqsYDdxgGDXT+
+	 MJ+W9gUNQW0Dr2XYPE26I3Dqgij1Niueiqj/iUMSsk8mv2q3cpuMI3zIFi0Qm90VFc
+	 QTWYgql2GrWle78Vu09/5d42P633QX9NQozLs0jmjVY+ASJwyRFEumzha4GdeegUgi
+	 8iCSq9XSZnX4hXVf70v+juQwthGzv2fCxfJ5BTlVgtKkJYlBFvbCOGwwUDwYfntP9K
+	 RqP6Ka/YYYRh/z+KEjcx9Nde7qv4F32TqbwNm5tJxMrSO3OD0NffBEqXbVSMu4i9bx
+	 FMw9l2Fr/TiSw==
+Date: Fri, 4 Apr 2025 14:40:46 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sukrut Bellary <sbellary@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Andreas Kemnade <andreas@kemnade.info>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: clock: ti: Convert fixed-factor-clock
+ to yaml
+Message-ID: <20250404194046.GA167370-robh@kernel.org>
+References: <20250404014500.2789830-1-sbellary@baylibre.com>
+ <20250404014500.2789830-4-sbellary@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-To: Krzysztof Kozlowski <krzk@kernel.org>, ukleinek@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com,
- piotr.wojtaszczyk@timesys.com
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250312122750.6391-1-purvayeshi550@gmail.com>
- <b2f6a357-a468-4526-a1b6-69ab2c643b2c@kernel.org>
- <61b1e302-98ad-4dda-8c03-18315d432512@gmail.com>
- <023b7e98-58ef-4752-9ef4-6fe699188b2f@kernel.org>
-Content-Language: en-US
-From: Purva Yeshi <purvayeshi550@gmail.com>
-In-Reply-To: <023b7e98-58ef-4752-9ef4-6fe699188b2f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250404014500.2789830-4-sbellary@baylibre.com>
 
-On 02/04/25 12:03, Krzysztof Kozlowski wrote:
-> On 01/04/2025 19:32, Purva Yeshi wrote:
->> On 13/03/25 16:34, Krzysztof Kozlowski wrote:
->>> On 12/03/2025 13:27, Purva Yeshi wrote:
->>>> Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
->>>> YAML schema (`nxp,lpc3220-pwm.yaml`).
->>>>
->>>> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
->>>>
->>>> Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
->>>> ---
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>>
->>> ---
->>>
->>> <form letter>
->>> This is an automated instruction, just in case, because many review tags
->>> are being ignored. If you know the process, you can skip it (please do
->>> not feel offended by me posting it here - no bad intentions intended).
->>> If you do not know the process, here is a short explanation:
->>>
->>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->>> of patchset, under or above your Signed-off-by tag, unless patch changed
->>> significantly (e.g. new properties added to the DT bindings). Tag is
->>> "received", when provided in a message replied to you on the mailing
->>> list. Tools like b4 can help here. However, there's no need to repost
->>> patches *only* to add the tags. The upstream maintainer will do that for
->>> tags received on the version they apply.
->>>
->>> Full context and explanation:
->>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>> </form letter>
->>>
->>> Best regards,
->>> Krzysztof
->>
->> Hello!
->>
->> I wanted to follow up on the patch I submitted. I was wondering if you
->> had a chance to review it and if there are any comments or feedback.
+On Thu, Apr 03, 2025 at 06:44:59PM -0700, Sukrut Bellary wrote:
+> Convert TI fixed-factor-clock binding to yaml.
 > 
-> And what did you quote? What's there? Did you read it before replying?
+> This uses the ti,autoidle.yaml for clock autoidle support.
+> Clean up the example to meet the current standards.
 > 
-> Please avoid pinging during the merge window.
+> Add the creator of the original binding as a maintainer.
 > 
+> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+> ---
+>  .../bindings/clock/ti/fixed-factor-clock.txt  | 42 ----------
+>  .../clock/ti/ti,fixed-factor-clock.yaml       | 77 +++++++++++++++++++
+>  2 files changed, 77 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
 > 
-> Best regards,
-> Krzysztof
+> diff --git a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+> deleted file mode 100644
+> index dc69477b6e98..000000000000
+> --- a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Binding for TI fixed factor rate clock sources.
+> -
+> -This binding uses the common clock binding[1], and also uses the autoidle
+> -support from TI autoidle clock [2].
+> -
+> -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -[2] Documentation/devicetree/bindings/clock/ti/autoidle.txt
+> -
+> -Required properties:
+> -- compatible : shall be "ti,fixed-factor-clock".
+> -- #clock-cells : from common clock binding; shall be set to 0.
+> -- ti,clock-div: fixed divider.
+> -- ti,clock-mult: fixed multiplier.
+> -- clocks: parent clock.
+> -
+> -Optional properties:
+> -- clock-output-names : from common clock binding.
+> -- ti,autoidle-shift: bit shift of the autoidle enable bit for the clock,
+> -  see [2]
+> -- reg: offset for the autoidle register of this clock, see [2]
+> -- ti,invert-autoidle-bit: autoidle is enabled by setting the bit to 0, see [2]
+> -- ti,set-rate-parent: clk_set_rate is propagated to parent
+> -
+> -Example:
+> -	clock {
+> -		compatible = "ti,fixed-factor-clock";
+> -		clocks = <&parentclk>;
+> -		#clock-cells = <0>;
+> -		ti,clock-div = <2>;
+> -		ti,clock-mult = <1>;
+> -	};
+> -
+> -	dpll_usb_clkdcoldo_ck: dpll_usb_clkdcoldo_ck {
+> -		#clock-cells = <0>;
+> -		compatible = "ti,fixed-factor-clock";
+> -		clocks = <&dpll_usb_ck>;
+> -		ti,clock-div = <1>;
+> -		ti,autoidle-shift = <8>;
+> -		reg = <0x01b4>;
+> -		ti,clock-mult = <1>;
+> -		ti,invert-autoidle-bit;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
+> new file mode 100644
+> index 000000000000..f597aedbad05
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/ti/ti,fixed-factor-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI fixed factor rate clock sources
+> +
+> +maintainers:
+> +  - Tero Kristo <kristo@kernel.org>
+> +  - Sukrut Bellary <sbellary@baylibre.com>
+> +
+> +description: |
 
-Hello Krzysztof,
+Don't need '|'.
 
-Apologies for the unnecessary follow-up. I’ll avoid pinging during the 
-merge window.
+> +  This consists of a divider and a multiplier used to generate
+> +  a fixed rate clock. This also uses the autoidle support from
+> +  TI autoidle clock.
+> +
+> +allOf:
+> +  - $ref: /schemas/clock/ti/ti,autoidle.yaml#
+
+You can drop '/schemas/clock/ti/'
+
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,fixed-factor-clock
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ti,clock-div:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Fixed divider
+
+Constraints?
+
+> +
+> +  ti,clock-mult:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Fixed multiplier
+
+Constraints?
+
+> +
+> +  clocks:
+
+       maxItems: 1
+
+> +    description:
+> +      Link to phandle of parent clock.
+
+Drop the description
+
+> +
+> +  clock-output-names:
+
+       maxItems: 1
+
+> +    description:
+> +      From common clock binding
+
+Drop
+
+> +
+> +  ti,set-rate-parent:
+> +    description:
+> +      Propagate to parent clock
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - "#clock-cells"
+> +  - ti,clock-mult
+> +  - ti,clock-div
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus{
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        clock@1b4 {
+> +            compatible = "ti,fixed-factor-clock";
+> +            reg = <0x1b4>;
+> +            clocks = <&dpll_usb_ck>;
+> +            #clock-cells = <0>;
+> +            ti,clock-mult = <1>;
+> +            ti,clock-div = <1>;
+> +            ti,autoidle-shift = <8>;
+> +            ti,invert-autoidle-bit;
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
 
