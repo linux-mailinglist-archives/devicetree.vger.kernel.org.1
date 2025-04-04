@@ -1,267 +1,97 @@
-Return-Path: <devicetree+bounces-163185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F34A7BC3B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:05:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D5B9A7BC56
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 14:09:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92B8D189FFD5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:05:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D673ACDCD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 12:08:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBAF199FC1;
-	Fri,  4 Apr 2025 12:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698CC1DDA2D;
+	Fri,  4 Apr 2025 12:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OlzvRF2w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IFLqO46q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2481B413D
-	for <devicetree@vger.kernel.org>; Fri,  4 Apr 2025 12:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6E81B413D;
+	Fri,  4 Apr 2025 12:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743768291; cv=none; b=NavXGgf2iWQMB7oNZI19TUCyapE2qtwGCy9ZIRG2C+LPtOPKi+eIeVtuJ54jNdgewxIatU1Ld1FxNKC8TNwsc77fw8JI5guLR12JTzjHiXv4KHhYjj4+uWX30kXD938JNPCJ+xzCw6nqNgpGq9S58PnkRdu2+ej3h370PJ4Pip8=
+	t=1743768518; cv=none; b=U+Eho6Fwh+DtUi+09Z19qk0PoosweQIlWgaU7SGAn2RJpIE6qtuA9cubcy2JTkCrWpbcqC7KWwmPyxVwjWjIpJL8pVJ0d0MI866JLCysHR3lcm875/l0NvFGT9tUxygSnwB6cE1DzH/ZdEu295OgMQN540Av9MJQRGnhZkiEPKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743768291; c=relaxed/simple;
-	bh=9RyY0I8TiFgdM5iAY/w+YHb5uz0XrHApT93/HZJ374M=;
+	s=arc-20240116; t=1743768518; c=relaxed/simple;
+	bh=YdHMq7LpSxnzaV5xFDzRfBdfqAFUXaB87w78k1Zf55k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V/Asn21YsiX1I1anLjXGY90D+VAC8jApqE6HHqe5nILhroOwZDYWmWkR8s2YChLK3d1EkLI2XsXl5cx/5dVspdz6VRgEg30zB2wchxzxFSqbqDz5O1GaoxA6wC88/aJOlfbLj9VzD5sgX3dpd/dSmqzoP3ADKG+wsoAsfCAloko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OlzvRF2w; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e686d39ba2so3760564a12.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Apr 2025 05:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743768288; x=1744373088; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ksgi80fBLzSJaAEI7Zj6pS0brYRqc/LQPT3hzVLK7xU=;
-        b=OlzvRF2wWkTMKWKCYOBCqeHUhAV5feM0KvIGv+8ZH4WyR3Ngm1giRrjEBxeCp32Icf
-         RooKuJt2h0kBh5PiPP+Q48+9fICaiphid2LHzhs6d6D0iI7MoQJj85A10xKNowWWy0N4
-         WmaTDw89azI2mNqUkgJCkdk1HWFrZieLQjp81dB3tm68+XcINnePkkh/7adm1FxAL0DW
-         37vHoYDeuDd7bY9Zz8IfxnFhJ+GdH9sP3c8TnHt2B3SCG+zis4D2Ht882Lmd4nWbQDX0
-         nbO9wyWozadqWwji+bSr8U7S9j2CSy5PT7LF++DPxYkEEKOK16zJSbHpfZaAeydUXJr4
-         9/bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743768288; x=1744373088;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ksgi80fBLzSJaAEI7Zj6pS0brYRqc/LQPT3hzVLK7xU=;
-        b=FijgHDdjxQP8NmgRlQ55dM3hWUw00r3NNpYt5iyxmL6bd5Z9PM56d7qqKHh7CjkJXu
-         5JPY67X2jsl/p9O2Sc0scQWpfXTu1A8d8Zh0tMwTmn7db0hraOCejL/YdN8YzKgd0AZY
-         luGKZdwfek0i8Tkb43C2Gn9k1JVf1fmCyZDxD+wJm3btHf5+4CvRYSaEpqV2sAHcSufK
-         Y3phQQO17zp5q+Ash5W7zfNRqMAC7wZfqLsENNX2Z2jWvCOo1cn2cU9eeERhrBP6Btru
-         hO0i7hK+MewtuUpuGXGPjUMMdzLrNEcr/g3iQAJQauozxe7DiURCrEaPhJPNBBcBdvZK
-         QPxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXEDukixc38P7SJtDEqr+ymzt8gC2x6wP3F4JGW+bay9F/Tim3fUdRLlk/viTOo71mr0q/fgH38YZmy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1UxkIwNgi/kGCJ4k2Wh1uX94JCRw37gJ+PPJmbd38dxbAcLGe
-	KHrvAVPXtz+zugzlaxceDXXT5YpbNI7kSP4kTY3ARtvFhlFDqfaU0VSjjy1Qybj5yEeqeXV1rxo
-	oBRU=
-X-Gm-Gg: ASbGncvBvPyQ1gL2WnIBy4y/g7AiQXvmVPknC27vU53NWZN+7Oa/xNTLsfTY8n7qitY
-	AmMMViRuKCuKl9IWRttjpJ07xphxYIQibGmGSAP83wVCfsHp3SIh6aGLNwQOJN9WcJvgk39I91R
-	8A0bVXZFKnXHwApTxTZ/Ay18xPTSfqAWv1vmkE4ITsMeAUbmC7Q0ZfZPMo20HKz+wd2mw63/60I
-	785rAaGjHifBk5+ZwXQ+KTokbpmZFmEDcd5GZKjenhA328J0IKwwZ0HHZ9h61l1W5rhF0Q1fT7F
-	o1omM8um1A672pWzjYKGnRCCnap2lzX0HXV+rO0ZOSUvAfoy/NzqSomg
-X-Google-Smtp-Source: AGHT+IH5Ij+fmf2Cv6jAlPmeJCCy1hd8btt4BuhHv/bD/os6ByinB+7Aq8sAGgjUE/8mRPndj8Zo0g==
-X-Received: by 2002:a05:6402:2708:b0:5f0:9eb3:8e71 with SMTP id 4fb4d7f45d1cf-5f0b3e34eafmr2516192a12.27.1743768287658;
-        Fri, 04 Apr 2025 05:04:47 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:e124:1321:48a4:8c63])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f0880a458csm2276353a12.69.2025.04.04.05.04.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 05:04:47 -0700 (PDT)
-Date: Fri, 4 Apr 2025 14:04:41 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Conor Dooley <conor@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-mips@vger.kernel.org, imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 06/19] arm64: dts: qcom: msm8939: Fix CPU node
- "enable-method" property dependencies
-Message-ID: <Z-_K2XDEcbtcCMVM@linaro.org>
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-6-076be7171a85@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=V456ISxWYDSiFXN7+7/a8psOMKLXWDa3ytNQv4IZPyeHXmoH+6sMF+9ZVJWgOPw422zbgaI03yAQ80GJAx706SvnTaJ576b9f0GAMZjhFf5kNF6MelTVoelndA9XTk7Lucbhl9KNiOEos9Iz10vzdbW79Bbvzr6WpTdAA5nWPu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IFLqO46q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 092C8C4CEE4;
+	Fri,  4 Apr 2025 12:08:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743768517;
+	bh=YdHMq7LpSxnzaV5xFDzRfBdfqAFUXaB87w78k1Zf55k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IFLqO46qB/dwPEQryEUhMXWB/7rpUbc5qxcg2PrUg3KYQ9v9JwLFDlE45GE/zWqYJ
+	 +yUElDSQZZA8Xrv9WO8oCfMBSOlPAJSQhON1twit6A3QLxwn6JIE09aT4/c45juiLu
+	 4sezB90vsOW2oe1m2bY7y1l5vQ9kGZHnJxw1sVYhYW1WdwJeQag9sPANRXrwuGV8J1
+	 h/muXqstxLALLhO0y34ZakGJVGzfFBQBYDkp+sfaVlJBM24nWVZ2t7e8J5JuQOh7ST
+	 qIKlR1jFoQ0OWe9wQwztolfAzZYUN28q9KFGAYX4XZt/Jm4w61rY8z2p3dn7orPzS1
+	 2aRyNjTNqQyLg==
+Date: Fri, 4 Apr 2025 14:08:34 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 01/32] dt-bindings: mfd: samsung,s2mps11: add s2mpg10
+Message-ID: <20250404-fanatic-numbat-of-vastness-3afc8e@shite>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+ <20250403-s2mpg10-v3-1-b542b3505e68@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250403-dt-cpu-schema-v1-6-076be7171a85@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250403-s2mpg10-v3-1-b542b3505e68@linaro.org>
 
-On Thu, Apr 03, 2025 at 09:59:27PM -0500, Rob Herring (Arm) wrote:
-> The "qcom,acc" and "qcom,saw" properties aren't valid with "spin-table"
-> enable-method nor are they used on 64-bit kernels, so they can be
-> dropped.
-> 
+On Thu, Apr 03, 2025 at 09:58:53AM GMT, Andr=C3=A9 Draszik wrote:
+> The Samsung S2MPG10 PMIC is similar to the existing PMICs supported by
+> this binding.
+>=20
+> It is a Power Management IC for mobile applications with buck
+> converters, various LDOs, power meters, RTC, clock outputs, and
+> additional GPIOs interfaces.
+>=20
+> Unlike other Samsung PMICs, communication is not via I2C, but via the
+> Samsung ACPM firmware, it therefore doesn't need a 'reg' property but
+> needs to be a child of the ACPM firmware node instead.
+>=20
+> S2MPG10 can also act as a system power controller allowing
+> implementation of a true cold-reset of the system.
+>=20
+> Support for the other components like regulators and power meters will
+> be added in subsequent future patches.
+>=20
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
-The bootloader we currently use on these devices reads these properties
-to set up the spin-table, so removing these will break booting secondary
-CPU cores.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The motivation for implementing it that way was that 32-bit vs 64-bit
-kernel shouldn't be relevant for the describing the hardware blocks in
-the device tree. The code in the bootloader is generic and handles
-different SoCs (e.g. msm8916 with 4 cores and msm8939 with 8 cores, the
-enable sequences are identical).
+Best regards,
+Krzysztof
 
-Can we keep this in somehow? To be fair, I'm not sure what property we
-could match on to check if these properties are allowed ...
-
-Thanks,
-Stephan
-
-> The "spin-table" enable-method requires "cpu-release-addr" property,
-> so add a dummy entry. It is assumed the bootloader will fill in the
-> correct values.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8939.dtsi | 24 ++++++++----------------
->  1 file changed, 8 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> index 7cd5660de1b3..36f2ba3fb81c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> @@ -46,10 +46,9 @@ cpu0: cpu@100 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x100>;
->  			next-level-cache = <&l2_1>;
-> -			qcom,acc = <&acc0>;
-> -			qcom,saw = <&saw0>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs1_mbox>;
->  			#cooling-cells = <2>;
-> @@ -64,10 +63,9 @@ cpu1: cpu@101 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x101>;
->  			next-level-cache = <&l2_1>;
-> -			qcom,acc = <&acc1>;
-> -			qcom,saw = <&saw1>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs1_mbox>;
->  			#cooling-cells = <2>;
-> @@ -77,10 +75,9 @@ cpu2: cpu@102 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x102>;
->  			next-level-cache = <&l2_1>;
-> -			qcom,acc = <&acc2>;
-> -			qcom,saw = <&saw2>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs1_mbox>;
->  			#cooling-cells = <2>;
-> @@ -90,10 +87,9 @@ cpu3: cpu@103 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x103>;
->  			next-level-cache = <&l2_1>;
-> -			qcom,acc = <&acc3>;
-> -			qcom,saw = <&saw3>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs1_mbox>;
->  			#cooling-cells = <2>;
-> @@ -103,9 +99,8 @@ cpu4: cpu@0 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x0>;
-> -			qcom,acc = <&acc4>;
-> -			qcom,saw = <&saw4>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs0_mbox>;
->  			#cooling-cells = <2>;
-> @@ -121,10 +116,9 @@ cpu5: cpu@1 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x1>;
->  			next-level-cache = <&l2_0>;
-> -			qcom,acc = <&acc5>;
-> -			qcom,saw = <&saw5>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs0_mbox>;
->  			#cooling-cells = <2>;
-> @@ -134,10 +128,9 @@ cpu6: cpu@2 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x2>;
->  			next-level-cache = <&l2_0>;
-> -			qcom,acc = <&acc6>;
-> -			qcom,saw = <&saw6>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs0_mbox>;
->  			#cooling-cells = <2>;
-> @@ -147,10 +140,9 @@ cpu7: cpu@3 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			enable-method = "spin-table";
-> +			cpu-release-addr = /bits/ 64 <0>;
->  			reg = <0x3>;
->  			next-level-cache = <&l2_0>;
-> -			qcom,acc = <&acc7>;
-> -			qcom,saw = <&saw7>;
->  			cpu-idle-states = <&cpu_sleep_0>;
->  			clocks = <&apcs0_mbox>;
->  			#cooling-cells = <2>;
-> 
-> -- 
-> 2.47.2
-> 
 
