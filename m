@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-163268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110F4A7C1E6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 18:56:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC64A7C202
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 19:01:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6A863BC89E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 16:55:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41D431899B7F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Apr 2025 17:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4E620E70F;
-	Fri,  4 Apr 2025 16:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB31C20ADC9;
+	Fri,  4 Apr 2025 17:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULRTN/uZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oh/N3wqR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831891F181F;
-	Fri,  4 Apr 2025 16:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20A41F4C9F;
+	Fri,  4 Apr 2025 17:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743785743; cv=none; b=tPlBbiLmXeNsOyxGXzmRFpZT1CnYVgRzaVQMPgHBYJvQt0G/LuBQnonlR56WhejIihdKQ3qEqCpZIUsfNy35PpdK7xTm4OYFvoYCcY22MLZDuDPIsx3YszST/Ijgsqo/XtO1q23euf+1DlA1i1TstMzpC2TvyjpvOzbh44ykMWg=
+	t=1743786071; cv=none; b=Hp5un9k+F/7GJgdhi6NwyImGRU71Ct7UHCGoOBKrgCvBGbEZHEnNiqXXJBGKaZSsH6gOgDORguWmrxk4g2GPnSjLHrpZOV/J9n4sIgOiOWMAmYoEurmDp1YjzXD+ZvfXblKnK2raawNSVG7zHVnJpmxLft9/8W892O7PV693jPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743785743; c=relaxed/simple;
-	bh=ThNXk6gQmRSG91uTwe+RSVnkgKn9o9HMxBFyge/Vpio=;
+	s=arc-20240116; t=1743786071; c=relaxed/simple;
+	bh=sHdcmXIXtpmvHQJ+EnU+MSmzNnepwGHCsSwlCicQsao=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkpwfTe1MkUu9GJW9W57rALUFRW7/GHsT8JXMBhN8ZQCKoE8PAuQkC8E3ROh5Pi6TEizHsHbfWut5/bLY6MT1yzKpimuVlIEWgwTzCQsBxuN6chdj4g+LyypjwmLzR5Cwi5jBUZlN+55XrtbPqU2MXsERy/FgNsh3IfZkLg4NIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ULRTN/uZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AC06C4CEDD;
-	Fri,  4 Apr 2025 16:55:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dnumWf9p9Yamcb9hvuWIuNbVh/QkLe2aKcVFka5/ZXeBFsqhHSBlCFmO0Ed2DXm/C77Gk3/QJeIsAyftVb00qQA/SCTf8FGtMDBZn3iNVoZ4HgrJQINtU2bIQOfZXtUeNUD2GP3rUb2cZuh1ZpW1/Ngj0f6+alOklajHKycepdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oh/N3wqR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFCAAC4CEDD;
+	Fri,  4 Apr 2025 17:01:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743785743;
-	bh=ThNXk6gQmRSG91uTwe+RSVnkgKn9o9HMxBFyge/Vpio=;
+	s=k20201202; t=1743786071;
+	bh=sHdcmXIXtpmvHQJ+EnU+MSmzNnepwGHCsSwlCicQsao=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ULRTN/uZrtDIdGK0Npe+J/IFBIzHTvgqz6iAT15uYWKsSOXxe13+WDcf32RPw2DGz
-	 2qupFztV7yAlvr4Twq9o+Ibw9PxelQdMhITs714Z0FAhvJDiyYS59oyZZPhFGwSNP6
-	 ia8BVA+4hqmPN2rnjJVqPMaloPNr7M02l7BQA2hH0HS7B3UBrX7z4hDy/GY+ez4btn
-	 kj10SJ71bWqSkB0k6nlLEhQl/TZeh47PhlqnC1pjCH2anFUwYE1sLDqK6DpD3tztEQ
-	 M1cvsZDT9UELKrX5lqDmR3kddMeunMWD0xZDQf3Qz+s7J5qafA0lkHmlGSuRq4A5lk
-	 YVJ2IOSiA/tHw==
-Date: Fri, 4 Apr 2025 17:55:38 +0100
+	b=Oh/N3wqRebmbffUw+LNY/J1qQEjtrRwzzBxFPazjXofJDmbm9zuY5wWHJTfXbTcUr
+	 YRxI20PKmV5ldLd+xfpCMnHKnXs3yndij5r+R6RKf8Wt0xO7g5BP+nyTHyc/iRQqlf
+	 kH/2i6ktNFUCJdpvz44L98qHMnw5I/xOmXI+WcivUa0nd7yq5xA64CFod+ZsJKWdX4
+	 B7Ya8X0T3v8aRV7gu2JcfPT5yxFcqKfe52I/jB+tMxBxoH7L8Irwpnq+JSn8umQM8Z
+	 Ey77k70SB7llEfZroCfGUorvFTz3lEaF+/biNSNE83fB/xccbb7+R4197TOypn3qMB
+	 1jEZT+muboJrA==
+Date: Fri, 4 Apr 2025 18:01:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add Sitronix ST7571 panel
-Message-ID: <20250404-railway-croon-288f2943928d@spud>
-References: <20250404-st7571-v2-0-4c78aab9cd5a@gmail.com>
- <20250404-st7571-v2-1-4c78aab9cd5a@gmail.com>
+To: Vitor Soares <ivitro@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add Toradex SMARC iMX8MP
+ SoM and carrier
+Message-ID: <20250404-breeching-flatly-91ba9bae3759@spud>
+References: <y>
+ <20250404105359.18632-1-ivitro@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,71 +60,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qzsnKKKTsOCiJ2gz"
+	protocol="application/pgp-signature"; boundary="0FGlMtFg0OyEXee7"
 Content-Disposition: inline
-In-Reply-To: <20250404-st7571-v2-1-4c78aab9cd5a@gmail.com>
+In-Reply-To: <20250404105359.18632-1-ivitro@gmail.com>
 
 
---qzsnKKKTsOCiJ2gz
+--0FGlMtFg0OyEXee7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 04, 2025 at 03:50:32PM +0200, Marcus Folkesson wrote:
-> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
+On Fri, Apr 04, 2025 at 11:53:58AM +0100, Vitor Soares wrote:
+> From: Vitor Soares <vitor.soares@toradex.com>
 >=20
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
->  .../bindings/display/sitronix,st7571.yaml          | 73 ++++++++++++++++=
-++++++
->  1 file changed, 73 insertions(+)
+> Add DT compatible strings for Toradex SMARC iMX8MP SoM and
+> Toradex SMARC Development carrier board.
 >=20
-> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7571.ya=
-ml b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..11575b820c59c5ada427fbb6b=
-015c331215c8db6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/sitronix,st7571.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sitronix ST7571 Display Panels
-> +
-> +maintainers:
-> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
-> +
-> +description:
-> +  This binding is for display panels using a Sitronix ST7571 controller =
-in I2C
-> +  mode.
-> +
-> +allOf:
-> +  - $ref: panel/panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sitronix,st7571
-> +
-> +  reg: true
+> Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-im=
+x-8m-plus
+> Link: https://www.toradex.com/products/carrier-board/smarc-development-bo=
+ard-kit
+> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 
-You need to constrain this, so maxItems: 1.
-Otherwise, seems okay.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---qzsnKKKTsOCiJ2gz
+--0FGlMtFg0OyEXee7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/APCgAKCRB4tDGHoIJi
-0jFaAP94txS1od9FB9n4WU+erJN/I8jN9X+7sbHfsWd5TswTLAD/b05lLr3/b6yz
-+nYXOZDzWEmbmlxEz43LbhhqbWDX2gA=
-=QZbK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/AQUwAKCRB4tDGHoIJi
+0gJ+AQCGEcrxxmfA8goYFrTQgrh/3wHIbrbK590i9nv8z05oqwEA8g016Xt7u4/V
+yv3kaqnwg2EknqDzGU8cxfUVcGJLXg4=
+=+XnQ
 -----END PGP SIGNATURE-----
 
---qzsnKKKTsOCiJ2gz--
+--0FGlMtFg0OyEXee7--
 
