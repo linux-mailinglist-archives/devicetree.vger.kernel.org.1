@@ -1,174 +1,132 @@
-Return-Path: <devicetree+bounces-163363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E169A7C969
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 15:45:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295DFA7C96D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 15:48:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7D693BAA04
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 13:45:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE2C6189713B
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 13:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4804A1EE7BD;
-	Sat,  5 Apr 2025 13:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B22B1DED53;
+	Sat,  5 Apr 2025 13:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q3YKwXA3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RD+XYm7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBA11DDC1E
-	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 13:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954D12E62CA;
+	Sat,  5 Apr 2025 13:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743860744; cv=none; b=KY/svxNsBliWVAEycJ5x9C5y04jW5LtcoGfL5J0IEiSLk8NHJA1m7J986spaJCE9qhLwa0gM5Ew7jX6agp88R56wEaKiLQlvmqnpwZaou1oM7VYo1IIdslR3ZoMD5sw8FC1QpOSyTIKuN8yKYjzYZeNSh3lhfjxQIJrAuXjOfnI=
+	t=1743860878; cv=none; b=OFFfF3kNdzbwSA+CEM+SAD0T9qBiDi5paB4VJVI3dBfCHxMnlxr+rVqVztjopSI4XBjXxISrqsRwDpLSSW+Orp8qo1iLZm5sOiX9OeqTdcSeLJlZZltAIyzLxF3VhclWM796JmOt8jbD55KzGCctTvwESJWda53GP2iKOArPZo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743860744; c=relaxed/simple;
-	bh=EsTBeulLpNgdTBepVvvBFd58E6zfqSCfffzBCv2HDaM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=k3HB/ujLSFHZTflJK8SDlQDIqIThbMwcS1MLmWe/RTKQfGZzH6HO1Lj+Mi3CD3F9iFrNaTMcHbqMxJUFDEnsbYX10SgxI7eBD1HB33c4MS5kNmpNXHpg93mBexa9qzezl46KoLlJCGI5LAawDraatVqYR8BotPdiiy+b2PSY5fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q3YKwXA3; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-391342fc0b5so2326091f8f.3
-        for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 06:45:41 -0700 (PDT)
+	s=arc-20240116; t=1743860878; c=relaxed/simple;
+	bh=R3SS/7aKzngxLnEPEAm3IeSAEnjCHF6zNAkjT/gnKk4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TAnG181NDSKCPAKciXAjNRneKiLrYXd96xA1NcI0CVYINXBLUVoM7QLHAefgicHNDhm+KEb8D9Zshkvi5yozVqtIVWUQ23McLr4BQ6u/zdoDOTHmxcz+00SGes43HWf/GdO5DG+Ngn9gxbDTNEmkNbXHvFMWAFOZTyzTOsYTgnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RD+XYm7Z; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-afc857702d1so784012a12.3;
+        Sat, 05 Apr 2025 06:47:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743860740; x=1744465540; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LL3Fsx5eUxzUjpXw1rSTcpeo7oV1xwNF/0+QoaOG4Ac=;
-        b=q3YKwXA3tlVtUZYN4H/pUMFarbIA8SQ8VpyWzdqucSVn2DuFZZIHKFibfmubD7/w+I
-         9XFne3N3ZuPsCRE8oxpBQId3bbnU3ndXQxCXEOw1P5xcrvyAh4wudAs3pZlBr85yinId
-         +Bw0bVFRq11DjiBkEvMwNPyQ9o5uapuH0cktyGJvm9B/w0XqPV6NFDgLXiUb3JgcpbM9
-         07oEEk2yq5VL+OAZojTS103lZpXpEb4Wx0bfhpaj801Nq8icRMp0ERh51DpLky5GAGoB
-         0JsfvUJO+YPOtIrudO3Iu7F3wnJ/6maMS8sME9kj5taXUKp/BXW//npb1Hf+UGQW6wP1
-         LRIQ==
+        d=gmail.com; s=20230601; t=1743860877; x=1744465677; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YzKfVOqqIvV0aKanDKbv6KWJG/SxwneBexDSwiQq5Bc=;
+        b=RD+XYm7Zz/focjUfZL9LtSyKJSzUb3fDIWAKxCO96TXIsawvHfTEAu1GZQMazoqWrA
+         X457jci0buyQf64hOfV8Akl+avaM+RDCoHt2YsgBeWoMEkaW+YD5JJomolNu1QIdWmCS
+         ElVp04clda7VlyQeWMtVw2CI5Hk2jPq2mp6u/O2kc45pidXGBD+ZpkW88UY5a8+y/Blw
+         DxNg11sYlSYYIlsaiHikNNjaxOTz3N46OWpyYxfuFDSRG4iqd3IreszXj+2xcehLlOXX
+         MHXh+9bGac4J5YXoPZuW3MoqL+8rjLZAe9RI/WO+m3l9YOqRZVGX02zVqtdeiV+O8TFl
+         NtOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743860740; x=1744465540;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LL3Fsx5eUxzUjpXw1rSTcpeo7oV1xwNF/0+QoaOG4Ac=;
-        b=CPC6z0NTv1el8+VXe0F3g5urwyDSzQK/5Zfums9sY/MMCxWtNkiqMaTFyCHS8U5dvB
-         QhodM8JtPh/AogvoxUA+332LnxbYxp8JrFeNHXepQGmIqTnVzDFMUvibKJEQvCtFJAOG
-         YQTCr8hPwtZwuTxbVKFjU9pN8NyBMLWEPlqn9cNoIenrMN3KBFBZwFW/0DQDiObLKfZo
-         4k8PlE0hY5IAkyEgBH7FwtN7FIvBzYgJ2le+IbJUkauik5JDR7pF24QCFfQR7doDpUFa
-         6nPbcnkoMy6HAnyK7ngO4yxxWbpsf+4LokUsAcaAWtG1E3CtsboBEQjil4n32+D6KdR5
-         SPCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMwZRSsY+nNhdjbEVBz8Vsb7WqRzw07mymULPt7ahR4GF/V13shz1ucF+HkPf6wNNbFRbik1F5MWQM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+hCFPAY73gnahcwshmwd0JkqTWOg5J8mceDKERK9b7GsvIw05
-	EvnnnSxUuwkCaUPGj3gb07RT8VhO0urajqnzfLfChaHD1xlwOtsINioJdQogW+M=
-X-Gm-Gg: ASbGncvhz6ZgshYCrUdPD2kZ/sXUaa0Qs8i+YX/MJTX86dUfcHs7KocrgKtkZwzOKTl
-	73iKE2lw9/RLnR8rvOd6eyJhuiBkr55e3CQ3qqA9ZcYS24FI8t+0c0WjicBGGCswlnmgjZlo26S
-	yLFVX5yOqW2Kfl8zE89fX6WX9tw752tan8tGP6YWNHdav83ghVp6icJP9P4m1wys4yOSTU4dWYM
-	5wFdRnaFAjkSpFHwUbqnxw1su9z9L0j42QXW2qnR0vzAHeS2QYf6Atr9mnFrLBDBraopLU+ZQCg
-	G+8rjH/LTNO5719NM44PWtnCxWPCjNEXMUhTlYSZRlgBRhMx
-X-Google-Smtp-Source: AGHT+IFIrE80vYu3YH4Ih/F6/gPGXeytXrp/n0l7rEzhE9ST0HxKzD27qJymP07gALKPmymTgWitJQ==
-X-Received: by 2002:a05:6000:2410:b0:391:2e7:67ff with SMTP id ffacd0b85a97d-39cb36b2972mr5950841f8f.10.1743860740427;
-        Sat, 05 Apr 2025 06:45:40 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30096ed7sm6770756f8f.8.2025.04.05.06.45.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Apr 2025 06:45:40 -0700 (PDT)
-Message-ID: <932d245b63abbcb96611715e8b234138087d84db.camel@linaro.org>
-Subject: Re: [PATCH v3 10/32] mfd: sec: merge separate core and irq modules
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
- <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
- <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon	 <will@kernel.org>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sat, 05 Apr 2025 14:45:40 +0100
-In-Reply-To: <20250404092131.GB43241@google.com>
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
-	 <20250403-s2mpg10-v3-10-b542b3505e68@linaro.org>
-	 <20250404092131.GB43241@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-1 
+        d=1e100.net; s=20230601; t=1743860877; x=1744465677;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YzKfVOqqIvV0aKanDKbv6KWJG/SxwneBexDSwiQq5Bc=;
+        b=Wm3Bh6t+8vDRphfqr/fE4SMhh6/ep0OuVVVmsNZ76v58Dheaf26BVso/tP8mIAClsv
+         WID25ajBbBV+8YZ6UQ9Vi66ouqtr/krDJlHtcw63wbf9snSsCEKilRZTmGcSqYHZ77gT
+         Ys1A65+/HTXLlc6nVxSnW1ImNOn34Yv1ezUwDDd2SkYXZasfabssGzV1rG0m8LFq6Qp+
+         MmXWmfDt8959VNtIK5L5n+GVUT6VxfKzNo6wxK+q0zs4L18NuwVhFZl9xX1sBOrrvQi1
+         dEiNkk577gSFuiQo/qjxCnFODgk0GojwKySkwJIjBJqmaoCuoUUCdzcD5w7QjsmnBg4W
+         fnvg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAJXS/W5VPizHLMwdtaOTkVRBRVQfoIIFKJl68fAtNVuQwX3NYnqjdnsaW5mRHR8JEvrpvM3JJcM3p@vger.kernel.org, AJvYcCVbRh0TI7ek8UIoU3l3vFHOKVuwWqayTY4JbxyYJ9JeCp699MFKr1/AgXT1ZIA4wJR+wfKxLX+ne3Xs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYAPQqII9nHZi3/bRCTfp9WO7WM9MqfitahXyDUCHCB7eBeig6
+	R7E8wqkPXwC5lAC1lABtFDLl9IP7lCw4i4weYVYQBy1oryKcyAGotnjlE26k282HUruIeWbQ3cR
+	57YzIZX/LqjyY9W+OkosYbB5vC9Y=
+X-Gm-Gg: ASbGnctRyxsklWu7TNJuU9H3iH5f1v/b2xPQbrRZHskeB5AtOMcvXQdwi+/yke75Cd6
+	oKu4F3RXHrpywdIRKilYluo42Ywiw3ETHMHsKrzV8w4JbBsxvL2OhUSKqmpFUWhcXor2iJvSJqu
+	6OYBp1kiGHIlpzFhXr2ZBpI/GlPcY=
+X-Google-Smtp-Source: AGHT+IFxjIKOj7rBO2LZ+V990HxR8M+mx19eZnkrf+6BFl9L+5CYDRa6VyginUxntHqxmYkK+iY29c1Vuu2PVCqShxU=
+X-Received: by 2002:a17:90b:524b:b0:305:2d28:c8fd with SMTP id
+ 98e67ed59e1d1-306af7b825dmr4055719a91.24.1743860876798; Sat, 05 Apr 2025
+ 06:47:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250403053225.298308-1-gye976@gmail.com> <20250403053225.298308-4-gye976@gmail.com>
+ <20250404123308.00003d72@huawei.com>
+In-Reply-To: <20250404123308.00003d72@huawei.com>
+From: gyeyoung <gye976@gmail.com>
+Date: Sat, 5 Apr 2025 22:47:45 +0900
+X-Gm-Features: ATxdqUFQIKzNIA-1SGYiCnMzXS2djdZHfOrCwY-ILBi5fZNGkcj__QhKgjC5J6k
+Message-ID: <CAKbEznsozpnfFgy3Giamv3XJvf_XqPQ8ZF3TSZHPGfQhm+baFA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/5] ABI: iio: add new ABI doc for mhz19b
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	lars@metafoo.de, gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2025-04-04 at 10:21 +0100, Lee Jones wrote:
-> On Thu, 03 Apr 2025, Andr=C3=A9 Draszik wrote:
->=20
-> > There is no reason to have these two kernel modules separate. Having
-> > them merged into one kernel module also slightly reduces memory
-> > consumption and module load times a little.
-> >=20
-> > mapped size (lsmod):
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 before:=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 after:
-> > =C2=A0=C2=A0=C2=A0 sec_core=C2=A0=C2=A0 20480=C2=A0=C2=A0=C2=A0 sec_cor=
-e=C2=A0=C2=A0 24576
-> > =C2=A0=C2=A0=C2=A0 sec_irq=C2=A0=C2=A0=C2=A0 16384
-> > =C2=A0=C2=A0=C2=A0 ----------------
-> > =C2=A0=C2=A0=C2=A0 total=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 36864
-> >=20
-> > Section sizes (size -A):
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 before:=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 after:
-> > =C2=A0=C2=A0=C2=A0 sec_core=C2=A0=C2=A0=C2=A0 6780=C2=A0=C2=A0=C2=A0 se=
-c_core=C2=A0=C2=A0 13239
-> > =C2=A0=C2=A0=C2=A0 sec_irq=C2=A0=C2=A0=C2=A0=C2=A0 8046
-> > =C2=A0=C2=A0=C2=A0 ----------------
-> > =C2=A0=C2=A0=C2=A0 Total=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 14826
-> >=20
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > ---
-> > Checkpatch suggests to update MAINTAINERS, but the new file is covered
-> > already due to using a wildcard.
-> > ---
-> > =C2=A0drivers/mfd/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 3 ++-
-> > =C2=A0drivers/mfd/{sec-core.c =3D> sec-common.c} | 2 ++
->=20
-> Okay, but why the name change?
+Hello Jonathan, thank you for the review.
 
-Because I wanted to keep sec-core.ko. But with kbuild, you can't generate
-sec-core.ko from sec-core.c and additional files. Either just one file,
-sec-core.c, or multiple files none of which may be called sec-core.c
+> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b b/=
+Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> > new file mode 100644
+> > index 000000000000..6cdfd34be016
+> > --- /dev/null
+> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> > @@ -0,0 +1,7 @@
+> > +What:                /sys/bus/iio/devices/co2_range
+> > +Date:                April 2025
+> > +KernelVersion:       6.14
+> > +Contact:     Gyeyoung Baek <gye976@gmail.com>
+> > +Description:
+> > +             Writing a value adjust maximum measurable PPM.
+> > +             should be 2000 or 5000.
+>
+> I haven't checked but assume this also results in a scaling of the
+> measure _raw values?  If so the control should be via the standard
+> ABI scale.  If you need to be able to establish the range, provide
+> the _available for the _raw via the read_avail() callback and setting
+> appropriate bit in info_mask_separate_available
+>
 
->=20
-> > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-9 ---------
-> > =C2=A03 files changed, 4 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index b617782eca436e34084a9cd24c309801c5680390..8f315298b32a2a9ee114ed5=
-e49e760bd8f930aee 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -228,7 +228,8 @@ obj-$(CONFIG_MFD_RK8XX)		+=3D rk8xx-core.o
-> > =C2=A0obj-$(CONFIG_MFD_RK8XX_I2C)	+=3D rk8xx-i2c.o
-> > =C2=A0obj-$(CONFIG_MFD_RK8XX_SPI)	+=3D rk8xx-spi.o
-> > =C2=A0obj-$(CONFIG_MFD_RN5T618)	+=3D rn5t618.o
-> > -obj-$(CONFIG_MFD_SEC_CORE)	+=3D sec-core.o sec-irq.o
-> > +sec-core-objs			:=3D sec-common.o sec-irq.o
-> > +obj-$(CONFIG_MFD_SEC_CORE)	+=3D sec-core.o
+In this device, changing the measurement range does not affect the
+unit or scaling.
+As far as I know, increasing the range just leads to a decrease in accuracy=
+.
 
-Unless I'm missing some trick.
+> General rule is don't introduce new ABI unless it is impossible to
+> provide the same information via existing interfaces.  The decision
+> to use scale rather than range info to control channel scaling was
+> made a very long time ago and having a mixture of the two would
+> make for very complex userspace code.
 
-Cheers,
-Andre'
+I=E2=80=99ve reviewed the sysfs-bus-iio documentation, I think there is
+no suitable interface for this case. So I'll drop this option.
 
+Thanks,
+Gyeyoung
 
