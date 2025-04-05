@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-163368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FDAA7C9A2
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 16:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41BCEA7C9B1
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 16:42:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FEC31895E43
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 14:29:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC01318989C1
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 14:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7CE1F3D30;
-	Sat,  5 Apr 2025 14:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398DC1F0E5B;
+	Sat,  5 Apr 2025 14:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dl0xft0C"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="kpKTySCR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958191EFF90
-	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 14:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C0AC8CE
+	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 14:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743863352; cv=none; b=i5L7X5q6t7CV4UNQiCflabh1b4SDSLyHCYYyx1YezJUsCOinI++OO65m7JUiwRIXFJwzyW2ISYjpHbK6mEWoojeSLwMlF1s0YkV2iMdnHnbT2Le5PVn0zJQwM6XVU4A5LDOeVAAv2JrriWTDz4DEzkvBNIumDjz0DjsFFE2M3ok=
+	t=1743864158; cv=none; b=GlgbK2bvz39VUiBj8P9Zb06qvWRxOPqN9wwCwB88x543H1AczzcYVAD9YkC5bhWE8y4n6vSHunUdppg5WNXXh4RH8O5pim8YYic9avsB5YjGMhU7yOi3/+zPlcTez8zngFPPiZIppmnrFzRffCmgzv3MPxfQDy5y3WKwmGeVy68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743863352; c=relaxed/simple;
-	bh=GiHxnNFMXpNIIyTnynX7IxDP/p9NCTJMguIsJZ7Y6h0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fNujs0BCz99COMaOQF4nf0UCQPfjd/DEEUZ15CO14TXtsN7+qhf2Qa+h3/B7Z9lHJT64d2agAu8Tsnqd2yLTnxUjagWCdypej52rEgmOTWrQv1uZj/XfVyXf7asqkjyOmnqy8S0NlX5c7FtFYslgK9V3QFOknct3wBq91b+JK5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dl0xft0C; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so20099455e9.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 07:29:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743863349; x=1744468149; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GiHxnNFMXpNIIyTnynX7IxDP/p9NCTJMguIsJZ7Y6h0=;
-        b=Dl0xft0C1X6gds1VaxF4D5yQc5Q88d18FDmfNNaoHDAeEbBFisYX9phxnpr1nP/Gxj
-         8QEoy+ztXWcQ9J2mbRIfa4u8GkQf0qP+xsm7bfceb5+HGS6QG8SuJ18Bc8VXUvaQJiKY
-         s6yC/lmUCLL8sndZj7Ts/n3mOClo8tclwSL6dUQubk2xc5Qpt61Xs0C9mzzhIm9VNmhA
-         0o4FMCDxMN8x094tEbzL4bQP6/fLF65CYZ76CUVLCF/HtfURT0eWs5fNCKBTKPFRzUbM
-         KFCF0tWTOKc01yLQVVmzaGoK5NLzZfLS/Jzfs5iUk9VHJf8a7SF0h19/6yx1d8tLwrHO
-         Lcbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743863349; x=1744468149;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GiHxnNFMXpNIIyTnynX7IxDP/p9NCTJMguIsJZ7Y6h0=;
-        b=nQzrln8WYbfxHNxWLGw733h+WSLO+QE9R2CqZKFJNcw+mjRxBGm8QWFyP9XdCKYAI3
-         EiYlyeORvyxbdnMxw9lhzxYaXHzqP0/+tBeEbutciaEUrYl+jFKJqxlxD0OvayB+yOip
-         /ycC0V/jES/ewK7JQAaemmq4K1ZVFU+vbhG0eZVos2hFRz3kqLy6CXQiNwRcTFm+J6D9
-         F7mP1HLYc/9j+RlIMOS0rHAhkd7po0zywP8Ab8LE8ECBWcA6H7zlV7W1ZFLNPTlC2iwt
-         hF15SEKQZb6t+2cb5FPZqeY8I6W/lyJV650BOglQekXtVSCmV7LZpq4tCSJ6ymPPp+8b
-         QOeg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWIZkMPcM+4Op22mwnzTMiTlk8VvKdL2dzhrdj1K5Ap1LAM+AXyfE9AimbZiauTzj2f708loHf8Ycl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkU3oH2MltAwhpBNAaEQuvXat63IhwjWshE+5Gj91DC3Y4pOLJ
-	fDoZYQSL9Zw+58ZVS94BRkCmpI8iMzo1T5Eq64J3wKrhXCnsppHSHNSeX2RXDGY=
-X-Gm-Gg: ASbGncuzcR2+gIUsxy7i8LpyTYMgfQuZ0bxqwEzS02QD4KmmNIRO6LGzWFGiDIOUIyO
-	sAwFYJ1p+Z9l6Cz731fC8o58mrqWwWSi1mS+h8UK0gs3xz1klY+LaPb5OBPnjuz6ZhtIMZvNIM/
-	cVaCzq7vJlnyyHrY+4wTbgdiv9WI2qRaNF/lG1a0l53+UUQOnF6Idt2xshEPe5WNB4re5jC+S1E
-	tq3E91ItFkKznBSkSMzzGcrGk7ylq56O4olhH5Tl3scp17R2nxUsfhPi9i7sCnquXEjlUj9jMS/
-	eSPf2q4BhKBGnY1cD1hbBYBt77B3E0a1iDGjH3mw/xKyeOXB
-X-Google-Smtp-Source: AGHT+IG+Z0ir3xm5RCrAq1SN4ZDlwjVRgFNS1Hr6WM6JjZY4zAku9AfXOB4reUpFaHMAVqmVf3D7Rw==
-X-Received: by 2002:a5d:6d8a:0:b0:39a:cc34:2f9b with SMTP id ffacd0b85a97d-39d6fc291b3mr2358345f8f.16.1743863348783;
-        Sat, 05 Apr 2025 07:29:08 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c3020d63csm7230344f8f.69.2025.04.05.07.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Apr 2025 07:29:08 -0700 (PDT)
-Message-ID: <73d99b656c405a19f75633796b696cc1aae71b90.camel@linaro.org>
-Subject: Re: [PATCH v3 00/32] Samsung S2MPG10 PMIC MFD-based drivers
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
- <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
- <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon	 <will@kernel.org>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker	
- <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sat, 05 Apr 2025 15:29:06 +0100
-In-Reply-To: <20250404093035.GD43241@google.com>
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
-	 <20250404093035.GD43241@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-1 
+	s=arc-20240116; t=1743864158; c=relaxed/simple;
+	bh=XfnEVi3ovC/zw6g3a+nScy1RtngEkEo5Aoq+dlPJPpk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=S+RAVpoxNpZqlPgw/ESe17A+xjCfwYJ0sFVyCM7NjHGzxKQYMkn3uztWsfSaIgqgJ7427eUueAGD6bfC1FfuR2bFCoPC5RIeIOKhiuieCcgx93s3cAZe+C+cvKW15BVCVZhkQfycVuwiHDs6e3CSW7K0XTSlLDRZaKXIiLtmGGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=kpKTySCR; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 89E5F240101
+	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 16:42:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1743864148; bh=XfnEVi3ovC/zw6g3a+nScy1RtngEkEo5Aoq+dlPJPpk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type:Autocrypt:OpenPGP:From;
+	b=kpKTySCR9tVzJeZkrRR96FmaI5z2uTfS1UgZ1LpQ3uiZDUhk5hZl1Wg7atK7sF7Py
+	 t2asO+qjhckqLWTAXxzO0qKwssbnQJVHhCap2/Ttyl5qFKDRg6KUJBn1mT57NZN74A
+	 U2yd4Y81VINm50wKMQoE5w5YEKYFNIWFZlwKMcZMeKWKbJuW5GTkUsl3J5sqBlokOe
+	 HlMB62MvRhv1jhGOhOHSSQuYMBXt7PXHJVTolJDFbkwv334aH2+ZC//yE6KFT/KF6+
+	 fWFBhnGyRrDLlxlIWTNnqZLWzpqSPXXxc6mO/SFGpd74DILF9X3KADVWBTc4IBkgvM
+	 JBCaAeSLwoOlg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4ZVJ8s527hz9rxK;
+	Sat,  5 Apr 2025 16:42:21 +0200 (CEST)
+From: Alexander Reimelt <alexander.reimelt@posteo.de>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
+ Conor Dooley <conor@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org,
+ imx@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Subject:
+ Re: [PATCH 07/19] arm64: dts: qcom: msm8992-lg-h815: Fix CPU node
+ "enable-method" property dependencies
+Date: Sat, 05 Apr 2025 14:42:21 +0000
+Message-ID: <4999945.OV4Wx5bFTl@stinkpad>
+In-Reply-To: <d3592f32-e29c-4b40-b045-7267795a9617@oss.qualcomm.com>
+References:
+ <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
+ <470e2155-7145-44ab-9d6d-117a2d98d7f8@oss.qualcomm.com>
+ <d3592f32-e29c-4b40-b045-7267795a9617@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+Autocrypt: addr=alexander.reimelt@posteo.de;
+  keydata=xjMEZg0fSRYJKwYBBAHaRw8BAQdAIcaNTdj3NWDe5HQPCUs6oYyQygAJWP9LCzhr+C7RwMrNG2Fs
+  ZXhhbmRlci5yZWltZWx0QHBvc3Rlby5kZcKZBBMWCgBBFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIF
+  AmYNH0kCGwMFCQWjo9cFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQHqi3OKk8uRJ8ogD9
+  EVg4zgfmC2SqXCgms6LETAzVX4CrAS8yMhyd7Md921cA/R8lhm9B96RYgA7MvFPFJb1T6JFY75Jg
+  QLXrtIE5llwHzjgEZg0fSRIKKwYBBAGXVQEFAQEHQBGDuxZLOTvppxyM4G18fSR6xzT0xkkPOia7
+  Bh6L1vAAAwEIB8J+BBgWCgAmFiEEM+Wy6sI/mP5S0zIFHqi3OKk8uRIFAmYNH0kCGwwFCQWjo9cA
+  CgkQHqi3OKk8uRIa1wD8CZDdCAKXstgXY96eeSSP7MecEF5TBdmWOiVgjlEIpoEA/RnGuDaj06B1
+  F51wyGAjYXSmn5qFoNHu3yXyLUkFz1ME
+OpenPGP: url=https://posteo.de/keys/alexander.reimelt@posteo.de.asc
 
-On Fri, 2025-04-04 at 10:30 +0100, Lee Jones wrote:
-> On Thu, 03 Apr 2025, Andr=C3=A9 Draszik wrote:
->=20
-> > This series adds initial support for the Samsung S2MPG10 PMIC using the
-> > MFD framework. This is a PMIC for mobile applications and is used on
-> > the Google Pixel 6 and 6 Pro (oriole / raven).
->=20
-> When you resubmit these, please note that MFD subjects take the form:
->=20
-> =C2=A0 mfd: <file>: Succinct change description starting with an uppercas=
-e char
+> On 4/4/25 10:30 PM, Konrad Dybcio wrote:
+> > On 4/4/25 4:59 AM, Rob Herring (Arm) wrote:
+> >> The "spin-table" enable-method requires "cpu-release-addr" property,
+> >> so add a dummy entry. It is assumed the bootloader will fill in the
+> >> correct values.
+> >> 
+> >> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >> ---
+> > 
+> > This looks good to me without knowing any better about the specifics
+> > of this device..
+> > 
+> > +Alexander - does the bootloader you use take care of this? Otherwise
+> > we can just do what Sony devices do and stop on removing the psci node
 
-I've followed your suggestion regarding the prefix when patches touch just =
-one
-file, but for patches that touch multiple files, I've kept the 'mfd: sec:'
-prefix, e.g. in patch 18.
+I currently can't test this, but the bootloader (lk2nd) will set it.
 
-Hope that's OK.
+Alexander
 
-
-Cheers,
-Andre'
 
 
