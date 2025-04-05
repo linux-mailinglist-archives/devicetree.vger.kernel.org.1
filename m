@@ -1,160 +1,130 @@
-Return-Path: <devicetree+bounces-163358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F388A7C713
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 02:18:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947A7A7C71F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 02:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42E953BDCC4
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 00:17:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91A92189FBE7
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 00:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C34F190664;
-	Sat,  5 Apr 2025 00:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26617483;
+	Sat,  5 Apr 2025 00:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xOAgztZe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Cd7MLgxn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBED517A2E5;
-	Sat,  5 Apr 2025 00:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393FA4C62;
+	Sat,  5 Apr 2025 00:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743812141; cv=none; b=aB899e6wbjI08Z+tEq3QX07ixCSZuo6MNkwC+XHaQTYwXPPWs5jsEuAwIaxsAFGOud0NA54FKnEsF1Ts4FUexxln6JBClOXxwmkEVkEbl3Qo/k4PD+jcjUNthlIFGEw2OSX1C3Oaf1awcvJiamdcimjVNjUFAOlNQjUEa7jl5wA=
+	t=1743813388; cv=none; b=ifx/4t3E9incxAvlqaaLFhMy1jNNSE33I31NzPfyV9xGna89hvjHexaYxr6efDLVYc0CkgLE3QAq/pKE2BRKUUs+vOT+4tdg1z8TT1MDeOb60NFwf0dpcevJ2HEIUQasKton5nxq8vqCR2eZDMLe5vuIj3ctNloLqLEsc4VXf2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743812141; c=relaxed/simple;
-	bh=/gDqjyJoVjgQ+S4Kg1uFXudcEbZNcFups73llq8NASE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eIhv5yOPgFIL4fABONvRBBngLG5WVqf4MRtw1oFgLrM+dufw9iuUZ6jGByQna5cibS1e6pKFZz7KgzNGPm4AtZM1zm6whq5IZo6BKT26xqG07ejXN7/+9sUat2k7actWoMPB9rtb7yhHQ5ODz7HxM5SDEvANGA4miNzyeuXWTZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xOAgztZe; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5350FJS8464798
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 4 Apr 2025 19:15:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743812119;
-	bh=+kbMmR2tIQt85OejEztUOpNk2QJKMnsU0zN6RrSPaRc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xOAgztZekWbAPxN6egfSA7+BCXEasNCMnAP0BknLn3wKS36bdLZI2gAhi7mMsh0o0
-	 el2VX+ZeIHnhuZUJn6dPtX2fBpjsKMcGJCkirKSKdDDcGuB/3yBf5RVbFmBT3tDlEw
-	 9Nm4BVwtjru49xoCt9sjM0FxjuCAniT2Ql/rRpKI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5350FJsV092676
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 4 Apr 2025 19:15:19 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 4
- Apr 2025 19:15:19 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 4 Apr 2025 19:15:19 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5350FI5k065952;
-	Fri, 4 Apr 2025 19:15:19 -0500
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Padhi <b-padhi@ti.com>, Andrew Davis <afd@ti.com>,
-        Markus Schneider-Pargmann
-	<msp@baylibre.com>
-Subject: [PATCH v6 11/11] arm64: dts: ti: k3-am64: Reserve timers used by MCU FW
-Date: Fri, 4 Apr 2025 19:15:18 -0500
-Message-ID: <20250405001518.1315273-12-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250405001518.1315273-1-jm@ti.com>
-References: <20250405001518.1315273-1-jm@ti.com>
+	s=arc-20240116; t=1743813388; c=relaxed/simple;
+	bh=D04GQjJVTbdj0EI/o3qCLXYgkzKbBu3RBBIdJTEG6Dg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rQGdBiFerUdSSEAaUFt/p8MNxnhODi18zkNKG6lAE1L0jiAQFSN3hgKNMMUVH4/wmRp/gR1XjiKbkMm26ZDcmIi1y5VPbVjY5r+A6GvEVlsLbqlaUvKBPTGi3ex3/tKxaOEB3loCydLs7onNF82ax7nkJYcwaAK1MYQ70T7LSSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Cd7MLgxn; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743813386; x=1775349386;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=D04GQjJVTbdj0EI/o3qCLXYgkzKbBu3RBBIdJTEG6Dg=;
+  b=Cd7MLgxn7uFUaxrrH3YCCuyNqSSDYWaMKtH0MuNO8B01xqrhTo0yXr0F
+   lSvfoqvT1bvJZs4UOnOTCGWBeErbXe/C7ds4iQuTfzQ+OIy1l6qQVwLHZ
+   em2JvQMvSrlDSWiEOr7tcIIDQgftQJ/9Rtz08naXvd0Usqud3Z3PmnpCa
+   qyhAmBlWDrBGV88Tz/m3X/tKuJ9Ht3SwOLbWuF6VtJvV1BqJ8tJ+cE3Mv
+   hyBf7e6Z41iyXEjPN4PjMPqGIKvBzg7exxjT1B/vxlKnxFNprn8eQGLzq
+   ME6BuzHv3KO1N06tcU4FaKgwy1tMbVBTh8ZesplFmJEOPEknxfVCGlwlY
+   w==;
+X-CSE-ConnectionGUID: SailAoeyS5qlSAf/RVx3Bg==
+X-CSE-MsgGUID: 8NyNoBeQQ0eIlhHL2aJ7Aw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="55901698"
+X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; 
+   d="scan'208";a="55901698"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2025 17:36:25 -0700
+X-CSE-ConnectionGUID: 5BF7QoSpT1CL0i0rilUFFA==
+X-CSE-MsgGUID: R95ij1hERPy+PpOJt1Ockg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; 
+   d="scan'208";a="131593006"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 04 Apr 2025 17:36:21 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u0rWF-0001hT-0p;
+	Sat, 05 Apr 2025 00:36:19 +0000
+Date: Sat, 5 Apr 2025 08:36:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Vidya Sagar <vidyas@nvidia.com>
+Cc: oe-kbuild-all@lists.linux.dev, Frank Li <Frank.li@nxp.com>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: Remove obsolete .txt docs
+Message-ID: <202504050824.95rb99r8-lkp@intel.com>
+References: <20250404221559.552201-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250404221559.552201-1-robh@kernel.org>
 
-From: Hari Nagalla <hnagalla@ti.com>
+Hi Rob,
 
-AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
-main domain timers as tick timers in these firmwares. Hence keep them
-as reserved in the Linux device tree.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 17 +++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 17 +++++++++++++++++
- 2 files changed, 34 insertions(+)
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus linus/master v6.14 next-20250404]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index f8ec40523254b..68bd6b806f8f0 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -796,6 +796,23 @@ &mcu_m4fss {
- 	status = "okay";
- };
- 
-+/* main_timers 8-11 are used by TI MCU FW */
-+&main_timer8 {
-+	status = "reserved";
-+};
-+
-+&main_timer9 {
-+	status = "reserved";
-+};
-+
-+&main_timer10 {
-+	status = "reserved";
-+};
-+
-+&main_timer11 {
-+	status = "reserved";
-+};
-+
- &serdes_ln_ctrl {
- 	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 33e421ec18abb..07fbdf2400d23 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -710,6 +710,23 @@ &mcu_m4fss {
- 	status = "okay";
- };
- 
-+/* main_timers 8-11 are used by TI MCU FW */
-+&main_timer8 {
-+	status = "reserved";
-+};
-+
-+&main_timer9 {
-+	status = "reserved";
-+};
-+
-+&main_timer10 {
-+	status = "reserved";
-+};
-+
-+&main_timer11 {
-+	status = "reserved";
-+};
-+
- &ecap0 {
- 	status = "okay";
- 	/* PWM is available on Pin 1 of header J3 */
+url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/dt-bindings-PCI-Remove-obsolete-txt-docs/20250405-061754
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20250404221559.552201-1-robh%40kernel.org
+patch subject: [PATCH] dt-bindings: PCI: Remove obsolete .txt docs
+reproduce: (https://download.01.org/0day-ci/archive/20250405/202504050824.95rb99r8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504050824.95rb99r8-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
+   Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`tc<../../networking/netlink_spec/tc>`
+   Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`tc<../../networking/netlink_spec/tc>`
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+>> Warning: Documentation/devicetree/bindings/virtio/pci-iommu.yaml references a file that doesn't exist: Documentation/devicetree/bindings/pci/pci.txt
+   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
+   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
+   Warning: Documentation/translations/ja_JP/process/submit-checklist.rst references a file that doesn't exist: Documentation/translations/ja_JP/SubmitChecklist
+   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
