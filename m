@@ -1,134 +1,174 @@
-Return-Path: <devicetree+bounces-163362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AE5DA7C8CC
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 12:58:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E169A7C969
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 15:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2ABA175950
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 10:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7D693BAA04
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 13:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B171C8FD6;
-	Sat,  5 Apr 2025 10:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4804A1EE7BD;
+	Sat,  5 Apr 2025 13:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UvWuAQ8D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q3YKwXA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23372E62CA;
-	Sat,  5 Apr 2025 10:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBA11DDC1E
+	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 13:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743850709; cv=none; b=aMbVMDGAw+5VmT23pKe4KIt7Lm9PK63JiCqpbpLbM0V7FKY0WiqK9gnY5DCJnEPzmIjWAkji/TOAN4KQcKCUjiiYht3iemVZUkxUAULgTKobr/tHzSSoZoEORvG1/fleqbxBXEWaVIwSPl+yWAELmuXaux5IEoJR2Xw35WYHv6Y=
+	t=1743860744; cv=none; b=KY/svxNsBliWVAEycJ5x9C5y04jW5LtcoGfL5J0IEiSLk8NHJA1m7J986spaJCE9qhLwa0gM5Ew7jX6agp88R56wEaKiLQlvmqnpwZaou1oM7VYo1IIdslR3ZoMD5sw8FC1QpOSyTIKuN8yKYjzYZeNSh3lhfjxQIJrAuXjOfnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743850709; c=relaxed/simple;
-	bh=hn3ijweSUP10Lc68j0Rqm0YPnr2gWcKjhnttPj2jdFo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UVANhn7f9ixiDXc1sOXP9wvbYtafUd51FXwcNhU7v9K6k/ahniPfzAGQpRjLOeVRGhXAdHHcyFYo10elXVJI3qrnuPTgBi9nWolVBk3shecN2p7u1y9D9vClTU1EHMU/v+LVw4SAmygDx3QmT9cX+daGXG8r5xc1pfDDtnlIfzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UvWuAQ8D; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22403cbb47fso30119165ad.0;
-        Sat, 05 Apr 2025 03:58:27 -0700 (PDT)
+	s=arc-20240116; t=1743860744; c=relaxed/simple;
+	bh=EsTBeulLpNgdTBepVvvBFd58E6zfqSCfffzBCv2HDaM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=k3HB/ujLSFHZTflJK8SDlQDIqIThbMwcS1MLmWe/RTKQfGZzH6HO1Lj+Mi3CD3F9iFrNaTMcHbqMxJUFDEnsbYX10SgxI7eBD1HB33c4MS5kNmpNXHpg93mBexa9qzezl46KoLlJCGI5LAawDraatVqYR8BotPdiiy+b2PSY5fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q3YKwXA3; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-391342fc0b5so2326091f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 06:45:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743850707; x=1744455507; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rsaT924pTJDfpd3Bgj5M/bUiptaYWBKJB7exQxV4oxE=;
-        b=UvWuAQ8Dr6MG6COfgZF3d/D/xy/K9NTH/GmJAZhcE5GsCQFa+hVRK+tsTeKi1hiBUo
-         rkLNzwUdqj3jyVF2Z/3MjoDHOziMlC17uQS6C/YcykXU68JY0MkQG2E/nR/kwFm9xGuI
-         m0pxHE1raN116RM3UrBJs26xWg7VTJcApAcrvT84LvsiLCJTjpi90xTZrRkUhXyOi7HZ
-         2dQ51lNoP0HgZqzzO4p9uW5cBeAl/vRAtq4WdHAHngkKyEL/hKddynLxIZcgZb9cwfbA
-         G5QNsKyO4hbA8v16Twl2eGJYAoftmFW8qP8eTFbyOZJZVyhpP0+qEyWxl76Q4ALIOGnj
-         Ot3Q==
+        d=linaro.org; s=google; t=1743860740; x=1744465540; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=LL3Fsx5eUxzUjpXw1rSTcpeo7oV1xwNF/0+QoaOG4Ac=;
+        b=q3YKwXA3tlVtUZYN4H/pUMFarbIA8SQ8VpyWzdqucSVn2DuFZZIHKFibfmubD7/w+I
+         9XFne3N3ZuPsCRE8oxpBQId3bbnU3ndXQxCXEOw1P5xcrvyAh4wudAs3pZlBr85yinId
+         +Bw0bVFRq11DjiBkEvMwNPyQ9o5uapuH0cktyGJvm9B/w0XqPV6NFDgLXiUb3JgcpbM9
+         07oEEk2yq5VL+OAZojTS103lZpXpEb4Wx0bfhpaj801Nq8icRMp0ERh51DpLky5GAGoB
+         0JsfvUJO+YPOtIrudO3Iu7F3wnJ/6maMS8sME9kj5taXUKp/BXW//npb1Hf+UGQW6wP1
+         LRIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743850707; x=1744455507;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rsaT924pTJDfpd3Bgj5M/bUiptaYWBKJB7exQxV4oxE=;
-        b=Ld/ZWWKFIxVMz2+p5+YhPRKppOV9pBDih48SiyagkVSCrkXScoi0CmbQFxq72+lLDp
-         dpOScW/6eHKQDtvLZsgf4J7M4UCoZc4EyZDQEeMMSA1hG/256Q7LMnX6rGJvpBF8kECO
-         e18BrX2gUH+e+a0EV8mNmXCQ/2Kjoh+IsBdo+KxocANTurklmOJsaj/6kwarn93yuanV
-         /BiPxTLneuZPTY0Sik6D88xhRIS0auK6TUq7gBAIrYCDltZVX+Gmu452b3lmxRVszKfe
-         f/v2vrYmNa3Ikn1RKYQrwTv0hE+g0L6pzrqYHqtGhsyKsTbkYC+wFzij4JByDpGiTyER
-         F6pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSJ351DLl877p3MHSgHT6h8a/jrH1s9tRTiXDo+kyOsQBPOf1S2w6TNAWcpb0RhO7m8JhDixYuCJTr@vger.kernel.org, AJvYcCVcO8M8VN554MqrMmvJtOhhNMYToHwdNZdYhnL7z/i0yMfy6QIBqewzjgbwgi8F2NWQqyTyOPbVRdpZxho65Q==@vger.kernel.org, AJvYcCX0DLkBY4twpJ3kzVLDPlmaa88u5/Euy8CS4Nx7qNxzpl2gHuljkZzdw/a70jzWu8dPD9BXVD40IMQmldd6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxpEVW1rmJ2/9iRwr8uE6zG8eRps8MoXbhnzR0gM5+xlMyDYs/
-	aX4Dp1NB3VyK9iD4n1s8lCi6UfrYyQUZqbTuME2DB8DWZzcLMb0I
-X-Gm-Gg: ASbGncuuPsJOMdNRqnn3DUXAKwjfcXHa0N9RHhfpFt7v5ZNByMmj/ilEl4wK41GrB9B
-	MLYTDhQ6R9k333ps0XNVN8Bfl4sF13S1oOvUa4TmSG3QqendShOukrdDsw91vtsDUpYGsC3phIl
-	fSZVdDJd+UEVGhpfu9XHqwUtjlBQfgYGcQ0PCAv3KyHRGu6t8toFpaxDlat1xTEvsouwQ/rjFcE
-	8uX3U88YNaxwEdgdYbU8e6A3Hbo1gqjr+30RZlvU6VVxj7FHzu/WC0sU6tNNWbnjxg9aqsnCd0h
-	d1XN8oHE5V5X2pHEdVlUTU80zS9kCgVBLVJ0Z6eKN6w=
-X-Google-Smtp-Source: AGHT+IFTjNaDBcoW6j/uyQCgyHlR6o9SYOPibOgWLB1TYSr/11Z54hMAKMbT7P1O0Fgly5kEML2Wpg==
-X-Received: by 2002:a17:903:283:b0:224:c47:b6c3 with SMTP id d9443c01a7336-22a8a8592a6mr58840115ad.6.1743850706951;
-        Sat, 05 Apr 2025 03:58:26 -0700 (PDT)
-Received: from nuvole.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22978772704sm47234925ad.219.2025.04.05.03.58.20
+        d=1e100.net; s=20230601; t=1743860740; x=1744465540;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LL3Fsx5eUxzUjpXw1rSTcpeo7oV1xwNF/0+QoaOG4Ac=;
+        b=CPC6z0NTv1el8+VXe0F3g5urwyDSzQK/5Zfums9sY/MMCxWtNkiqMaTFyCHS8U5dvB
+         QhodM8JtPh/AogvoxUA+332LnxbYxp8JrFeNHXepQGmIqTnVzDFMUvibKJEQvCtFJAOG
+         YQTCr8hPwtZwuTxbVKFjU9pN8NyBMLWEPlqn9cNoIenrMN3KBFBZwFW/0DQDiObLKfZo
+         4k8PlE0hY5IAkyEgBH7FwtN7FIvBzYgJ2le+IbJUkauik5JDR7pF24QCFfQR7doDpUFa
+         6nPbcnkoMy6HAnyK7ngO4yxxWbpsf+4LokUsAcaAWtG1E3CtsboBEQjil4n32+D6KdR5
+         SPCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMwZRSsY+nNhdjbEVBz8Vsb7WqRzw07mymULPt7ahR4GF/V13shz1ucF+HkPf6wNNbFRbik1F5MWQM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+hCFPAY73gnahcwshmwd0JkqTWOg5J8mceDKERK9b7GsvIw05
+	EvnnnSxUuwkCaUPGj3gb07RT8VhO0urajqnzfLfChaHD1xlwOtsINioJdQogW+M=
+X-Gm-Gg: ASbGncvhz6ZgshYCrUdPD2kZ/sXUaa0Qs8i+YX/MJTX86dUfcHs7KocrgKtkZwzOKTl
+	73iKE2lw9/RLnR8rvOd6eyJhuiBkr55e3CQ3qqA9ZcYS24FI8t+0c0WjicBGGCswlnmgjZlo26S
+	yLFVX5yOqW2Kfl8zE89fX6WX9tw752tan8tGP6YWNHdav83ghVp6icJP9P4m1wys4yOSTU4dWYM
+	5wFdRnaFAjkSpFHwUbqnxw1su9z9L0j42QXW2qnR0vzAHeS2QYf6Atr9mnFrLBDBraopLU+ZQCg
+	G+8rjH/LTNO5719NM44PWtnCxWPCjNEXMUhTlYSZRlgBRhMx
+X-Google-Smtp-Source: AGHT+IFIrE80vYu3YH4Ih/F6/gPGXeytXrp/n0l7rEzhE9ST0HxKzD27qJymP07gALKPmymTgWitJQ==
+X-Received: by 2002:a05:6000:2410:b0:391:2e7:67ff with SMTP id ffacd0b85a97d-39cb36b2972mr5950841f8f.10.1743860740427;
+        Sat, 05 Apr 2025 06:45:40 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30096ed7sm6770756f8f.8.2025.04.05.06.45.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Apr 2025 03:58:26 -0700 (PDT)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Pengyu Luo <mitltlatltl@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8650: add the missing l2 cache node
-Date: Sat,  5 Apr 2025 18:55:28 +0800
-Message-ID: <20250405105529.309711-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.49.0
+        Sat, 05 Apr 2025 06:45:40 -0700 (PDT)
+Message-ID: <932d245b63abbcb96611715e8b234138087d84db.camel@linaro.org>
+Subject: Re: [PATCH v3 10/32] mfd: sec: merge separate core and irq modules
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
+ <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
+ <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon	 <will@kernel.org>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker	
+ <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Sat, 05 Apr 2025 14:45:40 +0100
+In-Reply-To: <20250404092131.GB43241@google.com>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+	 <20250403-s2mpg10-v3-10-b542b3505e68@linaro.org>
+	 <20250404092131.GB43241@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Only two little a520s share the same L2, every a720 has their own L2
-cache.
+On Fri, 2025-04-04 at 10:21 +0100, Lee Jones wrote:
+> On Thu, 03 Apr 2025, Andr=C3=A9 Draszik wrote:
+>=20
+> > There is no reason to have these two kernel modules separate. Having
+> > them merged into one kernel module also slightly reduces memory
+> > consumption and module load times a little.
+> >=20
+> > mapped size (lsmod):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 before:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 after:
+> > =C2=A0=C2=A0=C2=A0 sec_core=C2=A0=C2=A0 20480=C2=A0=C2=A0=C2=A0 sec_cor=
+e=C2=A0=C2=A0 24576
+> > =C2=A0=C2=A0=C2=A0 sec_irq=C2=A0=C2=A0=C2=A0 16384
+> > =C2=A0=C2=A0=C2=A0 ----------------
+> > =C2=A0=C2=A0=C2=A0 total=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 36864
+> >=20
+> > Section sizes (size -A):
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 before:=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 after:
+> > =C2=A0=C2=A0=C2=A0 sec_core=C2=A0=C2=A0=C2=A0 6780=C2=A0=C2=A0=C2=A0 se=
+c_core=C2=A0=C2=A0 13239
+> > =C2=A0=C2=A0=C2=A0 sec_irq=C2=A0=C2=A0=C2=A0=C2=A0 8046
+> > =C2=A0=C2=A0=C2=A0 ----------------
+> > =C2=A0=C2=A0=C2=A0 Total=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 14826
+> >=20
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > ---
+> > Checkpatch suggests to update MAINTAINERS, but the new file is covered
+> > already due to using a wildcard.
+> > ---
+> > =C2=A0drivers/mfd/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 3 ++-
+> > =C2=A0drivers/mfd/{sec-core.c =3D> sec-common.c} | 2 ++
+>=20
+> Okay, but why the name change?
 
-Fixes: d2350377997f ("arm64: dts: qcom: add initial SM8650 dtsi")
-Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Because I wanted to keep sec-core.ko. But with kbuild, you can't generate
+sec-core.ko from sec-core.c and additional files. Either just one file,
+sec-core.c, or multiple files none of which may be called sec-core.c
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index a2b3d97ab..f47f29ec8 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -187,7 +187,7 @@ cpu3: cpu@300 {
- 			power-domain-names = "psci";
- 
- 			enable-method = "psci";
--			next-level-cache = <&l2_200>;
-+			next-level-cache = <&l2_300>;
- 			capacity-dmips-mhz = <1792>;
- 			dynamic-power-coefficient = <238>;
- 
-@@ -203,6 +203,13 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 					 &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 
- 			#cooling-cells = <2>;
-+
-+			l2_300: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&l3_0>;
-+			};
- 		};
- 
- 		cpu4: cpu@400 {
--- 
-2.49.0
+>=20
+> > =C2=A0drivers/mfd/sec-irq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
+9 ---------
+> > =C2=A03 files changed, 4 insertions(+), 10 deletions(-)
+> >=20
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index b617782eca436e34084a9cd24c309801c5680390..8f315298b32a2a9ee114ed5=
+e49e760bd8f930aee 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -228,7 +228,8 @@ obj-$(CONFIG_MFD_RK8XX)		+=3D rk8xx-core.o
+> > =C2=A0obj-$(CONFIG_MFD_RK8XX_I2C)	+=3D rk8xx-i2c.o
+> > =C2=A0obj-$(CONFIG_MFD_RK8XX_SPI)	+=3D rk8xx-spi.o
+> > =C2=A0obj-$(CONFIG_MFD_RN5T618)	+=3D rn5t618.o
+> > -obj-$(CONFIG_MFD_SEC_CORE)	+=3D sec-core.o sec-irq.o
+> > +sec-core-objs			:=3D sec-common.o sec-irq.o
+> > +obj-$(CONFIG_MFD_SEC_CORE)	+=3D sec-core.o
+
+Unless I'm missing some trick.
+
+Cheers,
+Andre'
 
 
