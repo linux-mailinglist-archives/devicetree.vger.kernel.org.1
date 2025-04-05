@@ -1,188 +1,196 @@
-Return-Path: <devicetree+bounces-163379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FAA4A7CAEF
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 19:27:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8778A7CAFA
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 19:30:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129491892D46
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 17:28:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7296172CBD
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 17:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D63199931;
-	Sat,  5 Apr 2025 17:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450AE19ADBA;
+	Sat,  5 Apr 2025 17:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X1QBDPTC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImfPRnbD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF960156F20
-	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 17:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159E55695;
+	Sat,  5 Apr 2025 17:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743874074; cv=none; b=D3cdpb5fLyUquEZp8FNFkLXKqvie4nYvx2tP7sJYAjb02bTuWtQDLtCDSF29wAW2FIveiEaR57ZhgJDd/hBubuAr6JygofVQL6CtcGD10vowjWCFlnn245bmYIV4ynehPIg8BZmv9rDMVoIAYd+5FbAFsPOZAZWmA6/AolWigm8=
+	t=1743874197; cv=none; b=VGZdBEGTGeAKdrBOA3KXuPEPSfTR7M7PRhuRNG6Es5U9EjVLOwqSnf1cI+nia0f+fCUZ/LyXUK2VOFXX/LBRyfAVvccPDhB3pebcoUHFfclqHCS7BKUuFSQL2bYGWMw8q40z2ojE2rJWXGz37sCuTbv4uLuAA1h2+x51w0o6b40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743874074; c=relaxed/simple;
-	bh=WzPNIG8S7EkLyB4wTk65d9ihG81GOrOkBB58wKZnCyo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qxIE1KhV/FatSnxniTF3tIcUCChYNFcdOXunNH61GPB46lLJ3imwz2KsaEnBqUdjJEtRWjYF2w3kb+MBl1gtfE6kKkXtNOEz1tZEdmRv+VJao8smHr5lIqVzLBzlnnYUj5fIygX3e8KdIVuMEN8sQIG891E/z0hy0cbO37DnOgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X1QBDPTC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 535BArwY029411
-	for <devicetree@vger.kernel.org>; Sat, 5 Apr 2025 17:27:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	C5UrBqYYL10LEBTum6m4Xhl+Wzvt7NLtyyRegDCKdfw=; b=X1QBDPTCvrcB4Uzf
-	nvoFTh9+7tiHbmPvw0HjUvUEMEljd+Oz/kM4lfoP2eJZe4IhLEBU872mub6V7AHK
-	/Ewp64+Mx4MjcB1eUYnq4K3L9D/Aj+i6QKFek5jcTjmSns09bQ90uzE2Ue0Vy5f1
-	I+JPnjomlG+V6ZdphbPjNnVPMegL+QFVMszxT64z+MsYMz3VE//rrfHM2hfguR9v
-	WJjRwGkyBGi71VMTt2LwL3mEG11nSiMjjgCDZR3sbOhA+BZqx+kxXZSZfSaVXLVo
-	CpeTojgQRMJWNpyuXMlUP7E4jyghOVen222GQrqXnaxBs24//c/I7HEQmqQilCYc
-	8mrl/g==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbe0t8w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 17:27:51 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c543ab40d3so457705785a.2
-        for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 10:27:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743874070; x=1744478870;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C5UrBqYYL10LEBTum6m4Xhl+Wzvt7NLtyyRegDCKdfw=;
-        b=Gux1M1nRuaibqqo/280eT4jKN42bPcETf8S6SffuYoRIpQk8WlzeTD0hUIIvy/sDpu
-         L+0ypvJTD6vnCg5yjHd9nsJvSCsmf69Su0gF0IHGNJALAQkFX4AA83NJHGLnYbDd6sNZ
-         Ykxn4tHmvkndyis6/SP3D53v5bBmSofzUgbxYSNHQ39RuEU4dXeOiuSqDusGXj18nyoE
-         6n3olH9MvsBDPuKFIjQWXGuu7aIHz5BFI3iwqlnwB8eewMvAZ8TLKPp+HWBpdkbBvYYp
-         tWUkTI9MNcbsZXM48jqr0a3Je1tT5Uya572tFK3zYSwpfu3rHCUr4kKz/2Ij0Zv162tE
-         elWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXtGm6E7DPe3J8gi6LNhe+O/2eSVG3RSHzyn18DO4JTY6adkHGySTP8FkrS5ZzfBxk17cyWulx5AstY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwW2ow7D/SxHLcL0hwIFwNWmUv48UjTEolyxFLLYRyOzwIEu/8D
-	+8nV2MGcPNIlzWJnDzcmEKR7cEk98wxd0lFx9pIEAQfe/iY1AABsnPAmxjjqW1OR7SSirJd5D2P
-	FOybe3rDQyNBqFTR4Ctept0p6QZHXKuv9c8ewcVrYUCrT1aGuaRo4jvsCkzx8
-X-Gm-Gg: ASbGncv3zVMV3ipB2tvGeRbzj0zoJsoUEmX8HHJ5cbWyXPQJ3HoYX+KKd6bTb+2DpLJ
-	InEgURoK8SV4eDwy9WlP+9WawvcoJbIzA2Nq+kHCslyUKfjAZnJGBS4nMooRyqUhwhiJB3wCIQt
-	xgnPzvsIsolpDX3z/KA5bR2ZW7N/7v25Y40gwvi39IG4ObGF98Q08ZJRv7rjIy5EsLPovcc9bLW
-	f/e1T7hN1CN+uPZwWM82ebXDndGy+K/AJVpY8nf45tOTAZLcToXIVEJmy5ZmWKhXPCPvCoUnPdb
-	9THEdGeN0h/sEERLTdGwiJoO7Jm6Sxv8W3CrRyU/YerBCnas5YaOL8zGtYDgMWRxCFm0
-X-Received: by 2002:a05:620a:440f:b0:7c5:4711:dc56 with SMTP id af79cd13be357-7c77de01d44mr567519785a.48.1743874070511;
-        Sat, 05 Apr 2025 10:27:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHafMbZ8BW3LW+4OJQutAKH0ZMvi8+bi8/F+SD5nICOagJ0fwxXZbQOXQE2zRrHoVp4J93XJA==
-X-Received: by 2002:a05:620a:440f:b0:7c5:4711:dc56 with SMTP id af79cd13be357-7c77de01d44mr567515885a.48.1743874070163;
-        Sat, 05 Apr 2025 10:27:50 -0700 (PDT)
-Received: from [10.160.109.143] (87-95-81-170.bb.dnainternet.fi. [87.95.81.170])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f0313f2desm9387941fa.28.2025.04.05.10.27.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Apr 2025 10:27:49 -0700 (PDT)
-Message-ID: <6e135e55-b5e4-4ead-85ba-29c2cd6aa7a2@oss.qualcomm.com>
-Date: Sat, 5 Apr 2025 20:27:47 +0300
+	s=arc-20240116; t=1743874197; c=relaxed/simple;
+	bh=tzXibo8LLKtevA8p4RlDqCPis5OweDdf/jmNMoHM7LI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E2mmbdbhXDFv8VHPbOkUvrb/H5hPWqzJJUUnRIe3w8pfBPqKT8aifnPaRrxoGQF/YnO4A+amxQ4FXf00l07NEakYsKa224zFyIq/D1biwww711i0xOaS4Dt+a+TYTZL8MHBt+AR/PKjHuFDyIGbsVwzcPPtO6CyNsAydJRTmjNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImfPRnbD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C8DCC4CEE4;
+	Sat,  5 Apr 2025 17:29:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743874196;
+	bh=tzXibo8LLKtevA8p4RlDqCPis5OweDdf/jmNMoHM7LI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ImfPRnbDGl4DRxtqt4CsGc8D4PavM3/4rRJA1EPwTmLvhWNyTtpOgT88HnOLuukc0
+	 59FuvV+7OfdyZ8A9cD/P6fAxKzSc2wYfh5HewKdjNWxjB4T21+wF8KpYrefUSCOR2B
+	 /rcnTWkS6X1945uuLDZN31pZr/oxL/eSg22liQctWmDP6wM9NzEH6UZbHhdwyK2mo2
+	 yi83Ab+tCzUEUvy1QHfCTSYAJbLIo0Q/4UYRczwda7CPJC1bbA0twKyFFzLkB2vU78
+	 Hw3em3g6cy9xrPC5v8iFZb4DV9TxPyDVuN+4+E8rpPttQ8IbVXNmz97E2aaeskwo14
+	 WazXAoYhuXigA==
+Date: Sat, 5 Apr 2025 18:29:47 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Javier
+ Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] iio: adc: ti-adc128s052: Simplify using
+ be16_to_cpu()
+Message-ID: <20250405182947.06d5e67f@jic23-huawei>
+In-Reply-To: <1189b539-adb4-46f9-9783-c6577b57a304@gmail.com>
+References: <cover.1743573284.git.mazziesaccount@gmail.com>
+	<feeabbfd3d3916c7497dfd94423ff83ef5f654f1.1743573284.git.mazziesaccount@gmail.com>
+	<4c3e0d23-2582-4acf-8e90-542c8f8c385f@baylibre.com>
+	<1189b539-adb4-46f9-9783-c6577b57a304@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/6] ASoC: codecs: wcd938x: add mux control support for
- hp audio mux
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Johan Hovold <johan@kernel.org>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
-        krzk+dt@kernel.org, ivprusov@salutedevices.com,
-        luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
-        paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
-        conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
-        tiwai@suse.com, linux-sound@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, johan+linaro@kernel.org,
-        Christopher Obbard <christopher.obbard@linaro.org>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
- <20250327100633.11530-6-srinivas.kandagatla@linaro.org>
- <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
- <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 4vhxNEFO_1vGzNCHH6voQ23Zwt8_F0e6
-X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f16817 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=YfwyiRVFF7VR29Me/gQaHA==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=D19gQVrFAAAA:8 a=gjPlNVnwJrpBRyZBAVEA:9 a=lqcHg5cX4UMA:10
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=ImwWUX5h3JJ3gRE9moBe:22 a=z2U-W3hJrleVIN9YIjzO:22 a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22 a=W4TVW4IDbPiebHqcZpNg:22
-X-Proofpoint-ORIG-GUID: 4vhxNEFO_1vGzNCHH6voQ23Zwt8_F0e6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-05_07,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=893 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504050112
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 03/04/2025 15:19, Srinivas Kandagatla wrote:
-> 
-> 
-> On 02/04/2025 10:12, Johan Hovold wrote:
->> On Thu, Mar 27, 2025 at 10:06:32AM +0000, Srinivas Kandagatla wrote:
->>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>
->>> On some platforms to minimise pop and click during switching between
->>> CTIA and OMTP headset an additional HiFi mux is used. Most common
->>> case is that this switch is switched on by default, but on some
->>> platforms this needs a regulator enable.
->>>
->>> move to using mux control to enable both regulator and handle gpios,
->>> deprecate the usage of gpio.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
->>
->>> @@ -3261,11 +3276,26 @@ static int wcd938x_populate_dt_data(struct 
->>> wcd938x_priv *wcd938x, struct device
->>>           return dev_err_probe(dev, wcd938x->reset_gpio,
->>>                        "Failed to get reset gpio\n");
->>> -    wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
->>> -                        GPIOD_OUT_LOW);
->>> -    if (IS_ERR(wcd938x->us_euro_gpio))
->>> -        return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
->>> -                     "us-euro swap Control GPIO not found\n");
->>> +    wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
->>
-> Thanks Johan,
->> Running with this patch on the CRD I noticed that this now prints an
->> error as there is no optional mux (or gpio) defined:
->>
->>     wcd938x_codec audio-codec: /audio-codec: failed to get mux-control 
->> (0)
-> 
-> This is not from codec driver, mux control is throwing up this.
-> 
->>
->> You need to suppress that error in mux_get() to allow for optional muxes
->> to be looked up like this.
-> I have a plan for this,
-> 
-> I proposed some changes to mux api for exclusive apis at https:// 
-> lkml.org/lkml/2025/3/26/955
-> 
-> This should also allow us to easily add an optional api, which I plan to 
-> do once i get some feedback on this patch.
+On Thu, 3 Apr 2025 08:16:43 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-I'd rather suggest an API to switch the state without deselecting the 
-the mux.
+> On 03/04/2025 00:04, David Lechner wrote:
+> > On 4/2/25 1:09 AM, Matti Vaittinen wrote:  
+> >> The register data is 12-bit big-endian data. Use be16_to_cpu() to do
+> >> the conversion, and simple bitwise AND for masking to make it more
+> >> obvious.
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> ---
+> >> Revision history:
+> >> v1 => v2:
+> >>   - Fix commit msg to reflect the fact there was no bug
+> >>   - Drop Fixes tag
+> >>   - Use union for rx / tx buffer to avoid casting
+> >>   - Keep the shared message protected by the mutex
+> >> ---
+> >>   drivers/iio/adc/ti-adc128s052.c | 18 ++++++++++--------
+> >>   1 file changed, 10 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+> >> index a456ea78462f..3e69a5fce010 100644
+> >> --- a/drivers/iio/adc/ti-adc128s052.c
+> >> +++ b/drivers/iio/adc/ti-adc128s052.c
+> >> @@ -28,32 +28,34 @@ struct adc128 {
+> >>   	struct regulator *reg;
+> >>   	struct mutex lock;
+> >>   
+> >> -	u8 buffer[2] __aligned(IIO_DMA_MINALIGN);
+> >> +	union {
+> >> +		__be16 rx_buffer;
+> >> +		u8 tx_buffer[2];
+As below. Maybe
+		__be16 buffer16;
+		u8 buffer[2];
+
+> >> +	} __aligned(IIO_DMA_MINALIGN);
+> >>   };
+> >>   
+> >>   static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+> >>   {
+> >>   	int ret;
+> >> +	char *msg = &adc->tx_buffer[0];
+> >>   
+> >>   	mutex_lock(&adc->lock);
+> >>   
+> >> -	adc->buffer[0] = channel << 3;
+> >> -	adc->buffer[1] = 0;
+> >> +	msg[0] = channel << 3;
+> >> +	msg[1] = 0;
+> >>   
+> >> -	ret = spi_write(adc->spi, &adc->buffer, 2);
+> >> +	ret = spi_write(adc->spi, msg, sizeof(adc->tx_buffer));
+
+I'd get rid of msg as it's now just confusing given we are
+using the sizeof() here.
+
+> >>   	if (ret < 0) {
+> >>   		mutex_unlock(&adc->lock);
+> >>   		return ret;
+> >>   	}
+> >>   
+> >> -	ret = spi_read(adc->spi, &adc->buffer, 2);
+> >> -
+> >> +	ret = spi_read(adc->spi, &adc->rx_buffer, 2);
+
+sizeof(adc->rx_buffer)
+
+> >>   	mutex_unlock(&adc->lock);
+> >> -
+> >>   	if (ret < 0)
+> >>   		return ret;
+> >>   
+> >> -	return ((adc->buffer[0] << 8 | adc->buffer[1]) & 0xFFF);
+> >> +	return be16_to_cpu(adc->rx_buffer) & 0xFFF;  
+> > 
+> > 
+> > The cast isn't exactly beautiful, but this would save a lot of
+> > lines of diff and a few lines of code by avoiding the need for
+> > the union and the local msg variable.
+> > 
+> > 	return be16_to_cpup((__be16 *)adc->buffer) & 0xFFF;  
+
+The cast only works because we have forced the alignment for DMA safety.
+That to me is a little fragile.
+
+You could do get_unaligned_be16() which doesn't need the cast then carry
+on using the original buffer.  
 
 > 
-> --srini
+> Thanks again for the review David :)
 > 
->>
+> I am unsure which way to go. I kind of like having the __be16 in the 
+> struct, as it immediately yells "data from device is big-endian". OTOH, 
+> I've never loved unions (and, it silences the above "yelling" quite a 
+> bit). I still think this might be the first time I really see a valid 
+> use-case for an union :) And, you're right this adds more lines, 
+> besides, the cast doesn't look that ugly to me. Yet, I originally had a 
+> cast probably as simple as this (and I also had the __be16 in the 
+> struct), and Jonathan suggested using union to avoid it...
+> 
+> At the end of the day, I suppose I am Okay with any of these 3 
+> approaches. Original cast, union or this cast you suggest. Jonathan, any 
+> preferences on your side?
 
--- 
-With best wishes
-Dmitry
+Majority of the diff is really about renaming buffer to tx_buffer.
+Could just not bother doing that and instead have buffer and buffer16
+as the two union elements. With msg gone as suggested above, then the diff
+becomes only a few lines and you get to keep the nicety of it being either
+a pair of u8s or a __be16.
+
+Jonathan
+
+> 
+> >   
+> >>   }
+> >>   
+> >>   static int adc128_read_raw(struct iio_dev *indio_dev,  
+> >   
+> 
+> Yours,
+> 	-- Matti
+> 
+
 
