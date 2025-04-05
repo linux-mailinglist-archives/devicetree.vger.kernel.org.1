@@ -1,188 +1,154 @@
-Return-Path: <devicetree+bounces-163371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAD3A7C9BD
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 16:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60293A7C9CF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 17:13:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A77C63B9D80
-	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 14:48:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22D3A3BAC43
+	for <lists+devicetree@lfdr.de>; Sat,  5 Apr 2025 15:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD8B6A8D2;
-	Sat,  5 Apr 2025 14:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4276376026;
+	Sat,  5 Apr 2025 15:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ic6VdYU9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gdZShphc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E893D3C463
-	for <devicetree@vger.kernel.org>; Sat,  5 Apr 2025 14:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3CBDDCD;
+	Sat,  5 Apr 2025 15:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743864544; cv=none; b=fF3bJyR59GAaRf8tvtkM0CnG49ZE+qecNXYQxFfTWPVo7GVldZF3U4BOFXf1AIM13cET0kh8CKGUHN/XbacbdiJrc0eOEEhwtO2xrU6B6pqp2c3Xc2tW0adrVkVcUz1MLEi09iCYu89rQh15a8zCDIM6JMklAoQO5HjTEdolS64=
+	t=1743866017; cv=none; b=qS5NadQp7NK7mC3PmkBlcX9aQNMsVLo2zPyfAcQnO7H/Gmg5SS6VKTqvk/R/QkSyAyUei8AoMalcfbMHMQlt8FRKQgt2tiA8agtFKpxES/fhnpFPwlyt3M45WLqXzC5x+JfLBlWDxYIvyd//LyrqYFwoKqEyfiR3pD9771Oprwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743864544; c=relaxed/simple;
-	bh=cMQjM++Dxc5Sp0/UX+qLKMmSrpRpvoeH0ZmSjyYi0+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gmw1U0NjbRGp+FwlfdUOlbtiE1b9izGWkg6/9w69Vjzitwnvi7qa5kdVixpPxPWvKfsumWBZeEZUt0EzmhsFoIZgBsJL12w6T873SHHlMIVotTGkIJJPez7FsTE84lnF5/xRum3RxLxoFmm5rnkzJiEu5uIj53AhIC8omrUH+gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ic6VdYU9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 535BkeJF001644
-	for <devicetree@vger.kernel.org>; Sat, 5 Apr 2025 14:49:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	M+PEihR5tW26XOtjKkNuGBixh9BPxadJqebcLYBJWDI=; b=ic6VdYU9A10z6CuU
-	UoeHanu6cMwKCA3TYWexR5qTJ25J0UdLeur+q3ttTzYaSW7ZluL176OQnn4oVhHq
-	gWLON3KUFtL/3wSgg2l1cZvhGmMf0XZ5vCmAt+rm8c6ocgs+CgM0QAAkXROW/w9T
-	MnldOjyiloX1KHqp1vVYrHAEBztXepmsN/bBYxYnMz47POU+S0u+lYPLfBXv4uu2
-	mbYwjABSSw4yNJrodffY33eItMuDT84Yu2sMSsQGuogry0bUx+bZrBAEWCXLxmc2
-	gm1q4eDi4c98BrKVYETAk1wQBnXta6dhcghRP4r4UZn8m8XGYRsr/fzb13oaNucL
-	VbrA7w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twft8kph-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 14:49:01 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c760637fe5so516686985a.0
-        for <devicetree@vger.kernel.org>; Sat, 05 Apr 2025 07:49:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743864540; x=1744469340;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M+PEihR5tW26XOtjKkNuGBixh9BPxadJqebcLYBJWDI=;
-        b=cag2iJGBfy6rmA84/omauy/jfF9sqeEh9QWrjznMkHo0RYUmw6oEeEaPuLe4R3+FlP
-         ggGnNkij2/d7LXsfs/Bz+EULBiTZaUNrH2lZCfhXWzJi2fwXzk5432ifjle3eZxVbrnz
-         y9Yvw2QV1yq8l6KGcq/YPuAsWK3dS4xTupxXlPSTO/gj5XJGOZMyPRaQw440gwSkTCtl
-         KEwgeb5fOFJX+Amb7e1zH80yhxUE66v0s2gXp8CAg75WPSsNQwmb82jLvRlD1vI/bQ5j
-         HE9tiDQKv8A58lGyMsHyV/89tnSz9siZYisXCh90fol569p5UIqogNyKZlK4OrGALXuo
-         jOcg==
-X-Forwarded-Encrypted: i=1; AJvYcCWX6QhkWLf5ilF2zvv09f9BqIV6hRWZ7pVuXMRF69OL7u/oZs/GWp+RdDbjpwGVhAIiDUOSJ4GRWoa7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3UC3aFhKMUbsXuQVzykTyUjGDvyTCIoOSWHQR2hWo2OjQ3wEJ
-	MtOlxSelil0UFu+TBBJePiscP3YQL34YITTD/EqfbOSMlzLobInPgUgh5f/ddNCM9Bg80tkjLUX
-	i7/kNVueK2sDtQSCxC1Xosqi9YNkmC/F1pd5P/b87++vEfqLyFgmGId8cVkPQ
-X-Gm-Gg: ASbGncvaPPs+5b1YDxVu76m2l1UIZ2TH1G/KDYbZIiEV8cWJXVCGkZRMgO6vORfth8X
-	N2d7XDp0/4z3Vxj0VZeYNqkKjg0KjF2DDGqKLXQ7ausVKiHZfUb4rQXfcUxURrHzUaHXPzlmYRG
-	6NZEZkGqvWy5/X0wezTg9pUobr+wOfx4ey4pXuxQYTkMVQ+yNsSNHm8Fo+8mfW5ARtSxCUe3M87
-	UPLvCfF/NNN4BRI+kQhjOqQ3mJWkTvKQrAGcIANR1Wrvh7vNUM3NNrkUO4zJrCWEDtNTqw6YHLW
-	k8oMYkdc0BLDfBgrKqHZ7q8yTyGzf9mRA8RniHJJSVCgH1JPEoRNVuH4fSYktJ4lIhIWuEkbkEH
-	ol4h/7RB0qNgfu7HfjqfHoWfNSJWUGEE9m0RIfIAElT9yqXxjaFHaPBx5UH0s5nXxnUkv
-X-Received: by 2002:a05:620a:28ca:b0:7c5:d72b:1a00 with SMTP id af79cd13be357-7c77dd61ac1mr391249385a.15.1743864540354;
-        Sat, 05 Apr 2025 07:49:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEutc1kNv9JQea/tmH5cHUtkD2IZVayC2pgcE7eKc+f/LQTGUDJVkqGd0AbWMhRe0FcVGQgsg==
-X-Received: by 2002:a05:620a:28ca:b0:7c5:d72b:1a00 with SMTP id af79cd13be357-7c77dd61ac1mr391246485a.15.1743864539939;
-        Sat, 05 Apr 2025 07:48:59 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:c4:a6bd:f097:4050:9ce6:5d7f? (2001-14bb-c4-a6bd-f097-4050-9ce6-5d7f.rev.dnainternet.fi. [2001:14bb:c4:a6bd:f097:4050:9ce6:5d7f])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e670d1bsm730472e87.214.2025.04.05.07.48.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Apr 2025 07:48:59 -0700 (PDT)
-Message-ID: <bdd47a5a-c9d3-484e-b2ff-2167c54dfb20@oss.qualcomm.com>
-Date: Sat, 5 Apr 2025 17:48:57 +0300
+	s=arc-20240116; t=1743866017; c=relaxed/simple;
+	bh=exAiWMVcVghnujtvzA2RVuKbjqWm3hf7kt/Likz2WQQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbYZittmkqYV72/igV3YNTkz+JXgrSCCBlWvcuLwnpxOwRXiIgb/Fr1FSOlhj02Cb6d1KFsphRnjkfjQR6ibCME/BEHFiI7aDto5SRrY4RARh8qBMi0xJrTK66uDXk2y/I3c8u76NKHJ8UTz3zVuk0dm6IYWHI+Hrslvu+iUK08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gdZShphc; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743866015; x=1775402015;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=exAiWMVcVghnujtvzA2RVuKbjqWm3hf7kt/Likz2WQQ=;
+  b=gdZShphcTgnxsCsPBfG28QLK81F9aBdURZzJB9/0G/svronP66qQCHs6
+   LZSupYZDSWM07O3epBsgwWbIEZfWwPfz81452q+VPoLTCUN+puL0lKE7z
+   COfupvblyL5vEi8RBUhFDJDEvwxlw+XuzJ3cuKrxJi6B8WqvDZmd8sCEd
+   qGRguqWjZQa+q1Uxb7aSmJ/F6W90wZdGCHa51x6kLnN1WSw1XBMyddPhu
+   YHe+UyBJa5tl/TbodIXN2gUR7dFHYAjuJI5I5DxUIIRoYbIZI25FX3F69
+   CJNFP/Tt5UORuc6C4IKop8UDeVgw7kbFnZVP7wr5HT4DdbvlPk0V9A4Z8
+   g==;
+X-CSE-ConnectionGUID: MDnlRLpuR2S0LoHO5EtL5A==
+X-CSE-MsgGUID: uJY8+XQATUGv6AnFTNOBYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11395"; a="45014094"
+X-IronPort-AV: E=Sophos;i="6.15,191,1739865600"; 
+   d="scan'208";a="45014094"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2025 08:13:35 -0700
+X-CSE-ConnectionGUID: 95EZI4G0TZOmXHh6xGe3nQ==
+X-CSE-MsgGUID: IRo0FDanT9qEpCbFSvqdgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,191,1739865600"; 
+   d="scan'208";a="132688010"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 05 Apr 2025 08:13:30 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u15D6-00026t-2E;
+	Sat, 05 Apr 2025 15:13:28 +0000
+Date: Sat, 5 Apr 2025 23:13:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: cy_huang@richtek.com, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	ChiYuan Huang <cy_huang@richtek.com>,
+	Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
+Message-ID: <202504052244.bgS5yxev-lkp@intel.com>
+References: <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] Reup: SM8350 and SC8280XP venus support
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
-References: <20250304-b4-linux-media-comitters-sc8280xp-venus-v1-0-279c7ea55493@linaro.org>
- <8cfaeb25-2657-9df4-5cea-018aad62f579@quicinc.com>
- <it3njgklhnedjzojafuxpjy3o5zfulgdclweyobv7kjgtpjmzx@6opje7yms4yg>
- <1dd6e03d-09be-4853-741a-4fb47b7619a0@quicinc.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <1dd6e03d-09be-4853-741a-4fb47b7619a0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=B5+50PtM c=1 sm=1 tr=0 ts=67f142dd cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=fIlTlRh94wJvY906GsMA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: J4-gUdgBi_nteNIqsGkd6tyS9-nn6mUG
-X-Proofpoint-ORIG-GUID: J4-gUdgBi_nteNIqsGkd6tyS9-nn6mUG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-05_06,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504050093
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
 
-On 04/04/2025 08:24, Vikash Garodia wrote:
-> Hi Dmitry,
-> 
-> On 4/3/2025 10:28 PM, Dmitry Baryshkov wrote:
->> On Wed, Mar 05, 2025 at 08:49:37AM +0530, Vikash Garodia wrote:
->>>
->>> On 3/4/2025 6:37 PM, Bryan O'Donoghue wrote:
->>>> This series is a re-up of Konrad's original venus series for sc8280xp and
->>>> sm8350.Why this is enabled on venus driver ? Why not iris driver ? This needs an
->>> explanation on was this even tried to bring up on iris driver.
->>>
->>> How different is this from sm8250 which is already enabled on iris driver ?
->>
->> As far as I remember, SM8250 support in Iris did not reach
->> feature-parity yet. So in my opinion it is fine to add new platforms to
->> the Venus driver, that will later migrate to the Iris driver.
-> I would say, from decoder side all codecs are there now on Iris. H264 merged,
-> while h265 and VP9 dec are posted as RFC, there is one compliance failure which
-> is under debug to post them as regular patches.
-> If we are mainly looking for decode usecases, then we should be on Iris.
+Hi,
 
-No, we are not limited to the decode use case.
+kernel test robot noticed the following build errors:
 
-> Preference would be to stay on Iris, otherwise we would have that extra ask to
-> port it later from venus to iris.
+[auto build test ERROR on a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11]
 
-Yes, but that would (hopefully) be easy to handle.
+url:    https://github.com/intel-lab-lkp/linux/commits/cy_huang-richtek-com/ASoC-dt-bindings-Add-bindings-for-Richtek-rt9123/20250404-223054
+base:   a2cc6ff5ec8f91bc463fd3b0c26b61166a07eb11
+patch link:    https://lore.kernel.org/r/cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang%40richtek.com
+patch subject: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
+config: powerpc64-randconfig-003-20250405 (https://download.01.org/0day-ci/archive/20250405/202504052244.bgS5yxev-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250405/202504052244.bgS5yxev-lkp@intel.com/reproduce)
 
->>
->> Otherwise users of SC8280XP either have to use external patchsets (like
->> this one) or a non-full-featured driver (and still possibly external
->> patchsets, I didn't check if these two platforms can use
->> qcom,sm8250-venus as a fallback compat string).
-> It should, atleast from the hardware spec perspective, AFAIK.
->>
->> Bryan, Konrad, in my opinion, let's get these patches merged :-)
->>
->>>
->>>> Link: https://lore.kernel.org/all/20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org/
->>>>
->>>> The main obstacle to merging that series at the time was the longstanding
->>>> but invalid usage of "video-encoder" and "video-decoder" which is a
->>>> driver level configuration option not a description of hardware.
->>>>
->>>> Following on from that discussion a backwards compatible means of
->>>> statically selecting transcoder mode was upstreamed
->>>>
->>>> commit: 687bfbba5a1c ("media: venus: Add support for static video encoder/decoder declarations")
->>>>
->>>> Reworking this series from Konrad to incorporate this simple change
->>>>
->>
-> Regards,
-> Vikash
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504052244.bgS5yxev-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+>> sound/soc/codecs/rt9123.c:476:17: error: use of undeclared identifier 'rt9123_dev_pm_ops'; did you mean 'rt9123_dai_ops'?
+     476 |                 .pm = pm_ptr(&rt9123_dev_pm_ops),
+         |                               ^~~~~~~~~~~~~~~~~
+         |                               rt9123_dai_ops
+   include/linux/pm.h:471:53: note: expanded from macro 'pm_ptr'
+     471 | #define pm_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM), (_ptr))
+         |                                                     ^
+   include/linux/kernel.h:48:38: note: expanded from macro 'PTR_IF'
+      48 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                            ^
+   sound/soc/codecs/rt9123.c:293:37: note: 'rt9123_dai_ops' declared here
+     293 | static const struct snd_soc_dai_ops rt9123_dai_ops = {
+         |                                     ^
+>> sound/soc/codecs/rt9123.c:476:9: error: incompatible pointer types initializing 'const struct dev_pm_ops *' with an expression of type 'const struct snd_soc_dai_ops *' [-Werror,-Wincompatible-pointer-types]
+     476 |                 .pm = pm_ptr(&rt9123_dev_pm_ops),
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/pm.h:471:22: note: expanded from macro 'pm_ptr'
+     471 | #define pm_ptr(_ptr) PTR_IF(IS_ENABLED(CONFIG_PM), (_ptr))
+         |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/kernel.h:48:27: note: expanded from macro 'PTR_IF'
+      48 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +476 sound/soc/codecs/rt9123.c
+
+   470	
+   471	static struct i2c_driver rt9123_i2c_driver = {
+   472		.driver = {
+   473			.name = "rt9123",
+   474			.of_match_table = of_match_ptr(rt9123_device_id),
+   475			.acpi_match_table = ACPI_PTR(rt9123_acpi_match),
+ > 476			.pm = pm_ptr(&rt9123_dev_pm_ops),
+   477		},
+   478		.probe	= rt9123_i2c_probe,
+   479	};
+   480	module_i2c_driver(rt9123_i2c_driver);
+   481	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
