@@ -1,45 +1,51 @@
-Return-Path: <devicetree+bounces-163482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AB2A7D08D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4416BA7D09C
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 23:13:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1973188D07A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:55:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B3E188822E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 21:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F6B1B6D08;
-	Sun,  6 Apr 2025 20:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80C31B3934;
+	Sun,  6 Apr 2025 21:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="7w4oGq+H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQQRNjNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE51189BAC;
-	Sun,  6 Apr 2025 20:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEE326289;
+	Sun,  6 Apr 2025 21:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743972930; cv=none; b=I0+KC+xNpNafGRVxML+eTF6zM3pSJvoKfIj17EWMPjEm7mL68tqyNOJrTXttc/kZZnSfgV2U09Uzxx8J/towXI66YOXbf67GDW9zkGxx2Ar62WNovOTUKt3aRXmlyAOU9+xMXJCMpsnG9zxerozGxV9y4leVjpS2liqTnfbfFaw=
+	t=1743973999; cv=none; b=PwDpUoIQ0UQzEjxZ+7cFFuJnPgDCx1QQHj/NLgyDThezA+vaikB+vbX2hmejbLJyO2tX+Mzxns9IPXR/OgDF1H2Du+cDrxYufo8dbUwuDvlZkO9ymQ785+573ZEYvPKoRCwh4ZIZ4jz+jxRrCXiJ/nYwpbMgFPMdlvrBXC2wB/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743972930; c=relaxed/simple;
-	bh=GYQDKxQYPeumdjpCWFzmT/BFYkqlpiumCHjzhGY3a/I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iikk1VsVP0rauxNWKG50W7BIuH7ZuXvnXQFnnB2U5jMeOmcHrQWgwDYFP5GVgpQCwEd7CDWM7sFxYQYCFKOPAw0nExL6D5MmySmi9YHdsVFPogRvidgahFp5fD5QIvuCidEWcdG8PUDR2cXLui92ceC/NDZtyRhLcHKUKPvI8VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=7w4oGq+H; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1743972926; bh=GYQDKxQYPeumdjpCWFzmT/BFYkqlpiumCHjzhGY3a/I=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=7w4oGq+H+b6MbgG4oSCp8yrzLQHtRTTLN8U2pbRKfqcb3Jc1ynW4HfhfBc492CW6q
-	 E7G8QLuq9qvchlYL188PiKSmm6KQONBYb5Nz8yxd2RBhiUaPBGr0Bdb+i55hh4rW9z
-	 zhqWgHp3J/I9NG6NeE5yzabU6WdYQU6cINs9Qpik=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Sun, 06 Apr 2025 22:55:04 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8953: Add interconnects
+	s=arc-20240116; t=1743973999; c=relaxed/simple;
+	bh=bulRqcr47jc7VqE5WNZPcSb0IokI8W+YVgaj7tbjxrc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tHit7Qjhrh9ELZB+enUatMnEPPBwf6tyfJwcKNO5TVNXpv7oucWxOsGUalc+T8UNpguPPkAsdmX7RRBV+aNK2GU0tW63fGjKaKpGbLl4pyvKInE3LqGhULt+DuU62VLetZATTmYJo2iB2JA8hl7Apo5kIdB/y6IU5/ujbnwjOec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQQRNjNL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D5478C4CEE3;
+	Sun,  6 Apr 2025 21:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743973998;
+	bh=bulRqcr47jc7VqE5WNZPcSb0IokI8W+YVgaj7tbjxrc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=HQQRNjNLbDsEIf9G1ZxTGJbHEtDd70z+KepTyIlisqUP964c9zpUwE3GDFojA7jAG
+	 0s3OlEK0fQOUmfdEu60E5pyZgdPsjgjCq6D0oeOh+WgJFys/QqE1yEwIvQCJTTc4ZK
+	 7ypVofjrR6RAy3YBeedeN+AkTv47vAro4TbDb/AVbCRUP4zq1MD6ZUCELC1RimxiSE
+	 inI57rfzM4kiRDF/84gvSqfaK6ndzEnEvpvAhV89hF0iFOFwpMhdyfTPP4cBergqkH
+	 DNnoZ6VL0eSzIbxJPEmc2jWWqhEyyS37Zp+baOwn7f7tfskIQy/HFDh3+UEGSTiwAc
+	 vSCLP6rvUOrrA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C27BBC36002;
+	Sun,  6 Apr 2025 21:13:18 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Date: Sun, 06 Apr 2025 16:12:43 -0500
+Subject: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,321 +54,171 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250406-msm8953-interconnect-v1-2-a23e22e236e0@lucaweiss.eu>
-References: <20250406-msm8953-interconnect-v1-0-a23e22e236e0@lucaweiss.eu>
-In-Reply-To: <20250406-msm8953-interconnect-v1-0-a23e22e236e0@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Vladimir Lypak <vladimir.lypak@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@lucaweiss.eu>
+Message-Id: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAEru8mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwMT3ZLU9KJE3YLikvyiVF3TpNQU4zRzI0NjSwMloJaCotS0zAqwcdG
+ xtbUAA397DF4AAAA=
+X-Change-ID: 20250404-tegra-pstore-5bed3f721390
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Aaron Kling <webgeek1234@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8564; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=9ktMphiDY7XwX/inEIMXs+LhqzzNNoazAkIIZJrkXKg=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBn8uo8VRx5k5lFLWc/sZAtRJHoRQ9Ivwq0PlI3i
- 2BLqzjQBG+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ/LqPAAKCRBy2EO4nU3X
- Vs62D/46FF04VEtCjUPVZ3L0DJ4AyXJI5QNJ3kkzSpYn8YY3R6xzkOkgeVisINfxJFq7eBoEtTO
- 2/CwEMAA1bKK0Sq/yBKgm+JWGFAeyfXN0Wm2ZqPm1N0XP4hpDe1ec9FmjBzBrJms7xfHzrk/LxF
- X5+wkLzMOzG94ZXnlhHhnlSzqz73sUa3FCmoSGRSICHjTf/9sdlHZv5n4P8phrlKIoO63q0k+kQ
- VxUqD3S4cf3m7dIGNUSYIUBooJW9XXpMVCwKnm5EvutFf/x8pwKcoqsEaXbXiTODkpuBTAfFt/w
- yeuvKs2LKp3rna2jUtVOYBl7E2uv7UEabEeA9NgTWd0m1vRsZnf9qoJdgi9sqaA6GitewAFpNEY
- d/j8XG1IjI+dMLaG5XfpJ84S/Wgsqiu0oTkBBZhgQSe0P1Hn8LNanPRp17IfUiQuolAwsZ2dWQ7
- LSWpNkrlNugt5N/YQ2sYJBQI2dnvc9eCToEYMVTDOjRPMipQ8+ma7ZVb3R47QLtzWR3HSUAXJIK
- JnQkSIfWYi1SZHbTgt8y7g3zDUwff+gHDo7i8Weba0hQjtY3J6KXDm9VU/3x9HI988U6hJMMsnz
- A66tF/5YC3w4uVz1hLjJyjgmEYQutc54CuimuZ3NA1k/QjM/Q8kx/CsTd+OSbs1G0CthOlAOsje
- vtJZb8E3/2HHB0g==
-X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1743973998; l=4405;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=8+6obcSKfeNBlTaNefo4ySU2Kjh+Hx6xO5b9LE4VbJk=;
+ b=Wma2bTDlc+b7ZVz6L59OvUcBddv6u31glDElqK3rt0iOwTPWBcDzQOuD1ooZRx+zEPh8hi3Lk
+ sPHdAr4G41UDYqlvejaX92VClrwW9ziwuvPWa57miDebehCn7LFNdPr
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-From: Vladimir Lypak <vladimir.lypak@gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
 
-Add the nodes for the bimc, pcnoc, snoc and snoc_mm. And wire up the
-interconnects where applicable.
+This allows using pstore on all such platforms. There are some
+differences per arch:
 
-Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-[luca: Prepare patch for upstream submission]
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+* Tegra132: Flounder does not appear to enumerate pstore and I do not
+  have access to norrin, thus Tegra132 is left out of this commit.
+* Tegra210: Does not support ramoops carveouts in the bootloader, instead
+  relying on a dowstream driver to allocate the carveout, hence this
+  hardcodes a location matching what the downstream driver picks.
+* Tegra186 and Tegra194 on cboot: Bootloader fills in the address and
+  size in a node specifically named /reserved-memory/ramoops_carveout,
+  thus these cannot be renamed.
+* Tegra194 and Tegra234 on edk2: Bootloader looks up the node based on
+  compatible, however the dt still does not know the address, so keeping
+  the node name consistent on Tegra186 and newer.
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 96 +++++++++++++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
+ 4 files changed, 61 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index af4c341e2533ef2cca593e0dc97003334d3fd6b7..bc75c0bd67a27d0b2437e1bd29498f45a4822c08 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -4,6 +4,8 @@
- #include <dt-bindings/clock/qcom,gcc-msm8953.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,msm8953.h>
-+#include <dt-bindings/interconnect/qcom,rpm-icc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,apr.h>
-@@ -44,6 +46,8 @@ cpu0: cpu@0 {
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -54,6 +58,8 @@ cpu1: cpu@1 {
- 			reg = <0x1>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -64,6 +70,8 @@ cpu2: cpu@2 {
- 			reg = <0x2>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -74,6 +82,8 @@ cpu3: cpu@3 {
- 			reg = <0x3>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_0>;
- 			#cooling-cells = <2>;
- 		};
-@@ -84,6 +94,8 @@ cpu4: cpu@100 {
- 			reg = <0x100>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -94,6 +106,8 @@ cpu5: cpu@101 {
- 			reg = <0x101>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -104,6 +118,8 @@ cpu6: cpu@102 {
- 			reg = <0x102>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -114,6 +130,8 @@ cpu7: cpu@103 {
- 			reg = <0x103>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
-+			interconnects = <&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>;
- 			next-level-cache = <&l2_1>;
- 			#cooling-cells = <2>;
- 		};
-@@ -470,6 +488,13 @@ rng@e3000 {
- 			clock-names = "core";
- 		};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e42dd03f5a1da5079971dc 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -2051,6 +2051,22 @@ pmu-denver {
+ 		interrupt-affinity = <&denver_0 &denver_1>;
+ 	};
  
-+		bimc: interconnect@400000 {
-+			compatible = "qcom,msm8953-bimc";
-+			reg = <0x00400000 0x5a000>;
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
-+			#interconnect-cells = <2>;
++		ramoops_carveout {
++			compatible = "ramoops";
++			size = <0x0 0x200000>;
++			record-size = <0x00010000>;
++			console-size = <0x00080000>;
++			alignment = <0x0 0x10000>;
++			alloc-ranges = <0x0 0x0 0x1 0x0>;
++			no-map;
 +		};
++	};
 +
- 		tsens0: thermal-sensor@4a9000 {
- 			compatible = "qcom,msm8953-tsens", "qcom,tsens-v2";
- 			reg = <0x004a9000 0x1000>, /* TM */
-@@ -486,6 +511,29 @@ restart@4ab000 {
- 			reg = <0x004ab000 0x4>;
- 		};
+ 	sound {
+ 		status = "disabled";
  
-+		pcnoc: interconnect@500000 {
-+			compatible = "qcom,msm8953-pcnoc";
-+			reg = <0x00500000 0x12080>;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index 33f92b77cd9d9e530eae87a4bb8ba61993ceffeb..90ffea161a57a8986c2493573c73e3cf9e2c43c0 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -3105,6 +3105,22 @@ psci {
+ 		method = "smc";
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
-+			clocks = <&gcc GCC_PCNOC_USB3_AXI_CLK>;
-+			clock-names = "pcnoc_usb3_axi";
-+
-+			#interconnect-cells = <2>;
++		ramoops_carveout {
++			compatible = "ramoops";
++			size = <0x0 0x200000>;
++			record-size = <0x00010000>;
++			console-size = <0x00080000>;
++			alignment = <0x0 0x10000>;
++			alloc-ranges = <0x0 0x0 0x1 0x0>;
++			no-map;
 +		};
++	};
 +
-+		snoc: interconnect@580000 {
-+			compatible = "qcom,msm8953-snoc";
-+			reg = <0x00580000 0x16080>;
+ 	tcu: serial {
+ 		compatible = "nvidia,tegra194-tcu";
+ 		mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_SM TEGRA_HSP_SM_RX(0)>,
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index b6c84d195c0ef9ae90721fada09ffd46a9c11fa3..00ae127e8b8af3fe3b95d8ce5986d937a4fc6325 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -2025,6 +2025,19 @@ pmu {
+ 				      &{/cpus/cpu@2} &{/cpus/cpu@3}>;
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
-+			#interconnect-cells = <2>;
-+
-+			snoc_mm: interconnect-snoc {
-+				compatible = "qcom,msm8953-snoc-mm";
-+
-+				#interconnect-cells = <2>;
-+			};
++		ramoops@b0000000 {
++			compatible = "ramoops";
++			reg = <0x0 0xb0000000 0x0 0x200000>;
++			record-size = <0x00010000>;
++			console-size = <0x00080000>;
 +		};
++	};
 +
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,msm8953-pinctrl";
- 			reg = <0x01000000 0x300000>;
-@@ -849,6 +897,13 @@ mdss: display-subsystem@1a00000 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
+ 	sound {
+ 		status = "disabled";
  
-+			interconnects = <&snoc_mm MAS_MDP RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_DISP_SS_CFG RPM_ACTIVE_TAG>;
-+			interconnect-names = "mdp0-mem",
-+					     "cpu-cfg";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 2601b43b2d8cadeb0d1f428018a82b144aa79392..36f35c6dc774d42aca8871dbfa0e0a16414cb860 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -5723,6 +5723,22 @@ psci {
+ 		method = "smc";
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
- 			clocks = <&gcc GCC_MDSS_AHB_CLK>,
- 				 <&gcc GCC_MDSS_AXI_CLK>,
- 				 <&gcc GCC_MDSS_VSYNC_CLK>,
-@@ -1065,6 +1120,11 @@ gpu: gpu@1c00000 {
- 				      "alwayson";
- 			power-domains = <&gcc OXILI_GX_GDSC>;
- 
-+			interconnects = <&bimc MAS_OXILI RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_GPU_CFG RPM_ACTIVE_TAG>;
++		ramoops_carveout {
++			compatible = "ramoops";
++			size = <0x0 0x200000>;
++			record-size = <0x00010000>;
++			console-size = <0x00080000>;
++			alignment = <0x0 0x10000>;
++			alloc-ranges = <0x0 0x0 0x1 0x0>;
++			no-map;
++		};
++	};
 +
- 			iommus = <&gpu_iommu 0>;
- 			operating-points-v2 = <&gpu_opp_table>;
- 
-@@ -1302,6 +1362,12 @@ usb3: usb@70f8800 {
- 					  <&gcc GCC_USB30_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <133330000>;
- 
-+			interconnects = <&pcnoc MAS_USB3 RPM_ALWAYS_TAG
-+					 &bimc SLV_EBI RPM_ALWAYS_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_USB3 RPM_ACTIVE_TAG>;
-+			interconnect-names = "usb-ddr", "apps-usb";
-+
- 			power-domains = <&gcc USB30_GDSC>;
- 
- 			qcom,select-utmi-as-pipe-clk;
-@@ -1354,6 +1420,11 @@ sdhc_1: mmc@7824900 {
- 				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			clock-names = "iface", "core", "xo";
- 
-+			interconnects = <&pcnoc MAS_SDCC_1 RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_SDCC_1 RPM_ACTIVE_TAG>;
-+
- 			power-domains = <&rpmpd MSM8953_VDDCX>;
- 			operating-points-v2 = <&sdhc1_opp_table>;
- 
-@@ -1374,26 +1445,36 @@ sdhc1_opp_table: opp-table-sdhc1 {
- 
- 				opp-25000000 {
- 					opp-hz = /bits/ 64 <25000000>;
-+					opp-peak-kBps = <200000>, <100000>;
-+					opp-avg-kBps = <65360>, <32768>;
- 					required-opps = <&rpmpd_opp_low_svs>;
- 				};
- 
- 				opp-50000000 {
- 					opp-hz = /bits/ 64 <50000000>;
-+					opp-peak-kBps = <400000>, <200000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
-+					opp-peak-kBps = <400000>, <400000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-192000000 {
- 					opp-hz = /bits/ 64 <192000000>;
-+					opp-peak-kBps = <800000>, <600000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
- 				opp-384000000 {
- 					opp-hz = /bits/ 64 <384000000>;
-+					opp-peak-kBps = <800000>, <800000>;
-+					opp-avg-kBps = <261438>, <300000>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 			};
-@@ -1414,6 +1495,11 @@ sdhc_2: mmc@7864900 {
- 				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
- 			clock-names = "iface", "core", "xo";
- 
-+			interconnects = <&pcnoc MAS_SDCC_2 RPM_ACTIVE_TAG
-+					 &bimc SLV_EBI RPM_ACTIVE_TAG>,
-+					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-+					 &pcnoc SLV_SDCC_2 RPM_ACTIVE_TAG>;
-+
- 			power-domains = <&rpmpd MSM8953_VDDCX>;
- 			operating-points-v2 = <&sdhc2_opp_table>;
- 
-@@ -1430,26 +1516,36 @@ sdhc2_opp_table: opp-table-sdhc2 {
- 
- 				opp-25000000 {
- 					opp-hz = /bits/ 64 <25000000>;
-+					opp-peak-kBps = <200000>, <100000>;
-+					opp-avg-kBps = <65360>, <32768>;
- 					required-opps = <&rpmpd_opp_low_svs>;
- 				};
- 
- 				opp-50000000 {
- 					opp-hz = /bits/ 64 <50000000>;
-+					opp-peak-kBps = <400000>, <400000>;
-+					opp-avg-kBps = <130718>, <65360>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
-+					opp-peak-kBps = <800000>, <400000>;
-+					opp-avg-kBps = <130718>, <130718>;
- 					required-opps = <&rpmpd_opp_svs>;
- 				};
- 
- 				opp-177770000 {
- 					opp-hz = /bits/ 64 <177770000>;
-+					opp-peak-kBps = <600000>, <600000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 
- 				opp-200000000 {
- 					opp-hz = /bits/ 64 <200000000>;
-+					opp-peak-kBps = <800000>, <800000>;
-+					opp-avg-kBps = <261438>, <130718>;
- 					required-opps = <&rpmpd_opp_nom>;
- 				};
- 			};
+ 	tcu: serial {
+ 		compatible = "nvidia,tegra234-tcu", "nvidia,tegra194-tcu";
+ 		mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_SM TEGRA_HSP_SM_RX(0)>,
 
+---
+base-commit: 91e5bfe317d8f8471fbaa3e70cf66cae1314a516
+change-id: 20250404-tegra-pstore-5bed3f721390
+
+Best regards,
 -- 
-2.49.0
+Aaron Kling <webgeek1234@gmail.com>
+
 
 
