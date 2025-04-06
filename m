@@ -1,128 +1,155 @@
-Return-Path: <devicetree+bounces-163434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E182A7CE40
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 15:54:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD215A7CE76
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 16:49:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3070F188E89F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 13:54:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AEEC3B0501
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 14:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3884620E6FD;
-	Sun,  6 Apr 2025 13:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C64B1AAE28;
+	Sun,  6 Apr 2025 14:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/O92oZG"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="En8A0ggU";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="jq/4MFd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D2217C220;
-	Sun,  6 Apr 2025 13:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2698A20330;
+	Sun,  6 Apr 2025 14:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743947682; cv=none; b=SBCpDo7QJCzlO8NzJ1PFIPknL/XU2IZ+utpbjZFXBuqmze1HMfxb6DkG+cCs+nRslVe6Ns+c49OujVCNFvqOyvCin4y3Fwx4xgjFLt1jXXVfVddCM324dUKKsbEDJED8DoLe4VlkiaTMK/E8S7TLRvHgvsXMvddJE2rPbK5a7Z4=
+	t=1743950953; cv=none; b=pWcsF9iAkoApjA9G2NIJKypAxEuHJKUHpkWYjMX6lSmnoDeITnNMsb04fRIOOhKJ5BTrkU7Hbe0c5eazKbVloOpjgD6vpDJBDfG/sPguun3/chDuhilLufjmiI2qHpkb/2c3G9lq9lIO/zQ4hmPoRlSgB1p23K5soM8ienv/USk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743947682; c=relaxed/simple;
-	bh=9skXj/Ea5NQxFShtPwK//mmHvrgmhq2AlIHi2HeIhWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=agVIJ3dKl6SVKlKePxRZdacZvxeUFIyfOFAgWiGGltfRiYME2ugE+Caj87oS6xSOzQGttjvQ2l8f1s7EG25V39GHxGZRfqikp7R0bF8f+SrsccB5RzK/h6wULPpGZGfvP7aO/zxmToESmN3MMAurnMOekl0XLhO2qDERTWSX+3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u/O92oZG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8924C4CEE9;
-	Sun,  6 Apr 2025 13:54:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743947680;
-	bh=9skXj/Ea5NQxFShtPwK//mmHvrgmhq2AlIHi2HeIhWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u/O92oZGFOvmQnRZSwYi8OFBj/1193yyYgXFPgPAKkHnpbDJ3AwUjCUZdVhkUtAYI
-	 UDdyMZB44uA+G2arBmuMYXo8L/mBERymK08hAHY3AqkGi4iXLCSV8SnfXZNlKcchDB
-	 KVuCCs3xO0NCIrAOKvg0bUqdsbVGxbF9PuQLSYYCvXdmnoM9D0YrM/64aKfK+6UiN0
-	 minCnPANjZ+CdQP+BBOEVmHI4PbqcMI+ce/bUnU0wSlcUc8hJAf3y/YwYP2vCSZu8q
-	 ofbCNff4PnyBsLu82LIDmoZ+XtuDpCzBoSVRO90H5sDoZy6BU5ArLoRfrMbmx5HTHq
-	 J0kWyUYtLkCwQ==
-Message-ID: <0dc9dd32-8522-4d08-8278-8cd1a7f37ee7@kernel.org>
-Date: Sun, 6 Apr 2025 15:54:34 +0200
+	s=arc-20240116; t=1743950953; c=relaxed/simple;
+	bh=tE3lC9OPXGFWS1kwcJCk6bHYTeEZVn7wMLR8hYx4LE4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jHWCioms7fEMRbVMx87N34CDKv+g+34JsFz+C5PNVwDzOZnjpYvwBHHFsSBYduBMHk5uNO4sJSeqpykvf2nWu1yIRflsRZ8Z2KazopvcdPv0pNcZxos98NC2ydl/+1daS0BDXwz5EFQzx/fl+b/PhZK5c5os0kNolB4wceeWHRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=En8A0ggU; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=jq/4MFd9; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ZVwG64vF5z9tLv;
+	Sun,  6 Apr 2025 16:49:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1743950942;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ouSo7FlRFCn9kPXMwokD5Qs7NISOOu4zypPQBTuY4SI=;
+	b=En8A0ggUjT68sKruXxIgdm+Wz8dunHe0VfBFuXmWyLucfLQ+4d460RH9NVBkGAmF0ss6x/
+	SA8b//Pq0IqtceVtV5pdZmPf3YL8GydKDOnAjq81ABbJJnbpIdvqpWS+ExknfFEaY+B3m+
+	WxWbUnRY1/9YrfTfrnLMOWSN1ujPUOJ/rLu5sz3aHHLJWpAcvCPCAxK3hCyl2wilfSuU8E
+	dVfbxdK2Q9j+WK8YGNamEe8O3ZFt+aqBtGdgdqZCMTQoRhoF0BgC1drcBIJXgTmXhq40GR
+	3ir2rbk5dpSMdIJbEamfI4LkADhP+X3TjjVgdJIw2IQClVB9euPG66ncdbb2Dg==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1743950940;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ouSo7FlRFCn9kPXMwokD5Qs7NISOOu4zypPQBTuY4SI=;
+	b=jq/4MFd9ypv83vVVduk1mXXb3uryRPKi9/b5jFpbp9qkvPYXxnytlXwldOu5il0GNzKFtl
+	ZzTxuhT/1jYuFbfD4n6Peg6EgZxnskuW5rwvAC+GsDsbk8Rc9iSZbJYEPwRq+O6WDj8Cb0
+	7M4+aICSNYep3EF1I8WMlG/7V3gvqWO3HPxD9QF4kzTj0WyMZG/vOd8hlC+Obr4ShvdCAD
+	88msxmiX6dzBPR1Ru0mCH7t7k00UBQ13SXLIPCr3LFvznC08U7cR355Q5py8mcNN57pZ8H
+	7F+Q3mT0JomFWGHlzZTf3e88CwLB50sswgwFeDuCr71NXCCEheVlnSovwLc6Rg==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/4] arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support
+Date: Sun,  6 Apr 2025 16:45:20 +0200
+Message-ID: <20250406144822.21784-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm632-fairphone-fp3: Add AW8898
- amplifier
-To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Weidong Wang <wangweidong.a@awinic.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250406-aw8898-v1-0-58a2d554693f@lucaweiss.eu>
- <20250406-aw8898-v1-3-58a2d554693f@lucaweiss.eu>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250406-aw8898-v1-3-58a2d554693f@lucaweiss.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: x5etaarnsacp4g3atghkao78dekbpsoz
+X-MBO-RS-ID: cce39108303713c226b
 
-On 06/04/2025 15:03, Luca Weiss wrote:
-> Add a node for the amplifier found on Fairphone 3, receiving sound via
-> I2S from the SoC and being connected to the speaker.
-> 
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
-> ---
+Add Retronix R-Car V4H Sparrow Hawk board based on Renesas R-Car V4H ES3.0
+(R8A779G3) SoC. This is a single-board computer with single gigabit ethernet,
+DSI-to-eDP bridge, DSI and two CSI2 interfaces, audio codec, two CANFD ports,
+micro SD card slot, USB PD supply, USB 3.0 ports, M.2 Key-M slot for NVMe SSD,
+debug UART and JTAG.
 
+The board uses split clock for PCIe controller and device, which requires
+slight extension of rcar-gen4-pci-host.yaml DT schema, to cover this kind
+of description. The DWC PCIe controller driver already supports this mode
+of clock operation, hence no driver change is needed.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Marek Vasut (4):
+  dt-bindings: PCI: rcar-gen4-pci-host: Document optional aux clock
+  dt-bindings: vendor-prefixes: Add Retronix Technology Inc.
+  dt-bindings: soc: renesas: Document Retronix R-Car V4H Sparrow Hawk
+    board support
+  arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk
+    board support
 
-Best regards,
-Krzysztof
+ .../bindings/pci/rcar-gen4-pci-host.yaml      |   9 +-
+ .../bindings/soc/renesas/renesas.yaml         |   7 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/renesas/Makefile          |   4 +
+ .../r8a779g3-sparrow-hawk-fan-pwm.dtso        |  43 ++
+ .../dts/renesas/r8a779g3-sparrow-hawk.dts     | 685 ++++++++++++++++++
+ 6 files changed, 747 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+
+---
+Cc: "Krzysztof Wilczyński" <kw@linux.com>
+Cc: "Rafał Miłecki" <rafal@milecki.pl>
+Cc: Aradhya Bhatia <a-bhatia1@ti.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Junhao Xie <bigfoot@classfun.cn>
+Cc: Kever Yang <kever.yang@rock-chips.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-pci@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+
+-- 
+2.47.2
+
 
