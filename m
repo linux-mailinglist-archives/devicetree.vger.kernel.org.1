@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-163451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6379CA7CEB5
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 17:35:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6587A7CEAF
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 17:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87A6B3B16FF
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 15:33:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAFEE188E433
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 15:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72B72206A9;
-	Sun,  6 Apr 2025 15:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1201C221576;
+	Sun,  6 Apr 2025 15:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c3vnlhS1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FdQJV2zU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E7B17BD6
-	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 15:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F818221561
+	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 15:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743953581; cv=none; b=aS6dm5tOQOZNx24JiSGomjE1O9YrgxUI4GJQ/CQDF6TFO8eYMWRviQ95W6Rmw0xmOvrDwtVTyUl7Ij/ND+Dspml5jxBEBW08ZUVzgY6IyfpaPQ3RWz9VfyGFc10slFhtyrK5f57iH163LBQJPZVvE5OI5xhUYxhwZwepXlLmkh0=
+	t=1743953583; cv=none; b=qylyuSH/nLlPf/DbaqXI8Asz1+sGiQdOW2d5YAlefQNJdtBjcrQBhlfChUPWtuFVIT0n9osgSK3h9Ri3irkf4Rm3A2+Z5WjZgprpmNevSZxisxaRODKjEKMY9acOHW0giJSLcoA4ydF7NZXODoA9Fjkipc7X6kAyEpc1sOw8CxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743953581; c=relaxed/simple;
-	bh=iDJZCjvYOzGe5r3HFMTMpjyfglcpGzdhxbjudlT68uo=;
+	s=arc-20240116; t=1743953583; c=relaxed/simple;
+	bh=aYm9pJ0yw8fxLGuQnA0ss/Do3w9mXBof0NpAKAqi9mY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lG2w23Itv+2ppjrCsalWmN5YqUqqWQ5LTEkND2eJ0OBZe8yykG60m/8wRIeoz2+QwuPAVuTeBVyM+fdvZABtcMxSPgFltY+c3Ld8ScWbc1OL/wTZXat4TAMabV5azUFW1gJV89LUE0o35zD9nmue5NpbVyv3CKzwmbkaHSOUVGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c3vnlhS1; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:To:Cc; b=esKfDtsO2R7rjdkjaKkJ8454i9F4EQgl2wy5Ln/nByEsay94qb1lB1gLxl5n810eC5cNcJO5Qjvt89CMUZ3gSO5nC4N4dOTUV0zcw1LtRx5taN9QJIsovc4bGRibFujOTZk1jvkuRIRcIQmHN1Bg4y5UJXhn9+/u1miTA82HddM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FdQJV2zU; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54acc04516fso3331163e87.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 08:32:59 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30bf7d0c15eso34379761fa.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 08:33:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743953578; x=1744558378; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1743953579; x=1744558379; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Rfw29M1YC9XFEM8I1QgE6Co5IiNp1ynpZsURBnbzUc8=;
-        b=c3vnlhS1KNSRKHwBQ1twX1N5XDi9wzeKDm1meXBLFC4f6/KsRMZ+zWrdt1YmbRNmKk
-         4qq2eL2p6C4daFtLopS60qA9IIz53XP6RdpczBhQpTcH7BiAq6VTevv66HABNY4zdOlC
-         8Akq/dzbSdGqQeJHJs6I7u15B/t4ixII5B0ew8xL39bBKdRUjl7rue4VvBrU+1yUAoxs
-         xJraWqXn/BxYIzVo+507JI1rUdNSY1+esCgU652bdq/9NUeXuA8HVCyzyzZTHS/Ya3fX
-         4yeA0ZU/vgpHD78qQ5sIp6Y4vbJabQTPBaGoC5L726Cmz9uX1Kcus/SC2GpkJumSRhfr
-         7iPA==
+        bh=NqWHGfBlgpXur5ymKn164EkhRYyd9ouy+P4Dy70Bi6o=;
+        b=FdQJV2zU6yuLvofjNe6hrSgshuE4/4CndajZFLrzH3joGVjC8M9BhWNxIqGxmyXdOS
+         WS0aLrTZ8JkSgbUNtKn1VbG6/DFaZqgNoXKSgbSsEBuRj+4h3qKu9GUKiZg6+nZdXA/b
+         sYtVvEh+tuqamqonhnyp41wXTNpGBQxg0fWX38WAYXcROJqsc2TKq+oO5X8jKjzBWH9d
+         zfjsYLh65s+Iny05KCBGkcBaWL4Q1WbCw05czRGqBvspMZcJ9UZc25WDmKj0W1Rk2Gy7
+         HsmuzyWxDj3iTonvwGF1+HucitGK/iwhLKx/GoFZALTcVWoozVNFCLCOi98AXpxstROk
+         Kxmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743953578; x=1744558378;
+        d=1e100.net; s=20230601; t=1743953579; x=1744558379;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Rfw29M1YC9XFEM8I1QgE6Co5IiNp1ynpZsURBnbzUc8=;
-        b=PmlrE/T+wHaeZQv0EiB8hTzv8JgvnEk2yZcEosturWVF5V6MI080hQ55EiwbkLEy77
-         nEedCvJovjDcLO4I7CyH6qjah+E4xLhJD3ReyBlTom3tHr6zjaiF984vADvY0PERNGGa
-         116x/+C8eWeGpRe8NptaglViz2rc3Z355/7ab58rVmoKlyDJxqM/bspnkE2Qs16OHbp4
-         rDS4DfblPSGELSRyuSAW+ARhHT/dU10dKDlBP7oNgk+H7+RP4oRkaWLaZBxnzVXpHRey
-         JzK9FHVp3zg78I7F/eEH0APyWrwhaMKcimWlC4AkLl9CQgjB72sxi7cehsqPhigeXjZY
-         EJmA==
-X-Gm-Message-State: AOJu0YzJkEUM5MKjNC9M070wpkzki3Ce38okCLZ2rYT6kOTbBfuoSYAZ
-	KHkamrEXcfpvHq22IgKzRrN3AT0Cyuwe6F/dXSZms8Phz/SvMTTwvyiA6aFhWh0=
-X-Gm-Gg: ASbGncu0Lml7xjZEDi1s1zoT57ImGXcLf4JfUIBG+lu3MnEynXG2O88uFfXw4BOCKNW
-	FeBjyPSXS4q0r4OVTSe644Ys8cPWd1wQ8pqDLkzKQrP8z2ZMVjNBOtmm6k5Zy6/GH/UxC7ZeVUl
-	++kU/ptXDyBz9YxDOnUUNLD/TYQQ9IoWoQzXMvXfDmYRuPH82+rIXj8JQvHx9VcKKDGwdeui1U+
-	fdI7MjnqDxMo7fYXcPc6Y9FyKeb+xUzaGnWRvfmVovmXLtew38RPU5pknJ64dJeK3j3ykU+C8fJ
-	zVWJxcSQAK7SsvEJ5+sJLCBAPA/+dRbB/XqpM6fsn7kO1TcsVzHh3Efl96XaxkRuuQ==
-X-Google-Smtp-Source: AGHT+IEUkyzkL0J7M5KnLMNvYFvrvh0lK6hSoUd1fasgJ+0yTB0AYLW6EM3ZZUL9Y1uNKBF2MJkRiA==
-X-Received: by 2002:a05:6512:3b93:b0:549:b28b:17ca with SMTP id 2adb3069b0e04-54c23346dbemr2379200e87.37.1743953578087;
-        Sun, 06 Apr 2025 08:32:58 -0700 (PDT)
+        bh=NqWHGfBlgpXur5ymKn164EkhRYyd9ouy+P4Dy70Bi6o=;
+        b=Rj+krI5irACvxbPCsdskMU6iyvuQ6XUo1kfnE0q5RXVrTXOnbZ6+dnvlPHpkipm1Nq
+         YgDhO/vvNIe14pj5Y7GKd/XddF/OjkU/ZnVJTxrHtr/K9kKqR7z7CXH0mp3p0NcHYi3/
+         HydLFAvZtCieCxVWQ57xb/TG0Sis6ByInAX8DX0WOPCGIFzCM4wxNaNmUDqbb9VrbaWr
+         EhoPBgDmlJNriYItMDX/Ms9JKKyGqGhlvnLyZNdpymX/r+ZTR4M9qeZMBfd5CEFQGga8
+         h4fPPayiW5UKWGhuzGKpTJMfmMY1ckfaYw3RqCFGpxiUSnw/Ey7d3Hdm1GR5q6x0Yrun
+         DEjw==
+X-Gm-Message-State: AOJu0Yz6MffZGUDLK8CxqZt/TIeoMVrogcGAfAs8HArmT0pQbwdXP+Dm
+	w/FoM2hUQSiz6Mjkk5QjE0NfXVA9c42+1nmB7sO2kWHXQq8j1OqUiXN6PFCyoFw=
+X-Gm-Gg: ASbGncvVpQMSmXzhKgiGYzoAISk9uue2qSKiRGXFBNNBlaGMmW+uIbEfkEorvuLzO6f
+	YpXnVWC/55DURQRR3JQksj3Bhl8aWAgayZRm1iSMmujzeAushuay3sUkiYiBo0yzetW8+Vzas05
+	VrrRe7iZlgK6kr+Gy9AOHZFYhQsw81BsRRXEEZPctWUugJmYoBkW/dn9M+Hqgzwh+8oFcg7BOCm
+	FJgayKtLXfv8i6Hi5IDvJ77ChLYueXgNVmqs/Lg4HZ0E+zmb8iKVieZYs/CZJeUuUPcfDJbHSnA
+	H9rRkllT1r1Hw2kfYJbWUb3qOlo2rpyRyMeCX/3T4Cy9psN1TkOkCno=
+X-Google-Smtp-Source: AGHT+IFo5lWlWrnONMPOJWYo5IqaTUomJD3tTkColMtGFQSw4EBGsjCL9oTTcbzR1eqoW0CXn95OVg==
+X-Received: by 2002:a05:6512:2387:b0:54b:1055:f4b1 with SMTP id 2adb3069b0e04-54c22692d91mr2732914e87.0.1743953579057;
+        Sun, 06 Apr 2025 08:32:59 -0700 (PDT)
 Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e671fa8sm989747e87.218.2025.04.06.08.32.56
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e671fa8sm989747e87.218.2025.04.06.08.32.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Apr 2025 08:32:57 -0700 (PDT)
+        Sun, 06 Apr 2025 08:32:58 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 06 Apr 2025 17:32:51 +0200
-Subject: [PATCH v2 11/12] ARM64: dts: bcm6858: Add BCMBCA peripherals
+Date: Sun, 06 Apr 2025 17:32:52 +0200
+Subject: [PATCH v2 12/12] ARM64: dts: bcm63158: Add BCMBCA peripherals
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250406-bcmbca-peripherals-arm-v2-11-22130836c2ed@linaro.org>
+Message-Id: <20250406-bcmbca-peripherals-arm-v2-12-22130836c2ed@linaro.org>
 References: <20250406-bcmbca-peripherals-arm-v2-0-22130836c2ed@linaro.org>
 In-Reply-To: <20250406-bcmbca-peripherals-arm-v2-0-22130836c2ed@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -102,32 +102,43 @@ X-Mailer: b4 0.14.2
 
 All the BCMBCA SoCs share a set of peripherals at 0xff800000,
 albeit at slightly varying memory locations on the bus and
-with varying IRQ assignments. ARM64 SoCs have additional
-peripherals at 0xff858000. On BCM6858 the PERF window was
+with varying IRQ assignments. On BCM63158 the PERF window was
 too big so adjust it down to its real size (0x3000).
 
 Add the watchdog, GPIO blocks, RNG, LED, second UART and DMA
-blocks for the BCM6858 based on the vendor files 6858_map_part.h
-and 6858_intr.h from the "bcmopen-consumer" code drop.
+blocks for the BCM63158 based on the vendor files 63158_map_part.h
+and 63158_intr.h from the "bcmopen-consumer" code drop.
 
-Curiously, on the BCM6858, the PL081 DMA block is separate
-from the two peripheral groups PERF and PERF1, so we put it
-in its own bus in the device tree to translate the fourcell
-addresses.
+The DTSI file has clearly been authored for the B0 revision of
+the SoC: there is an earlier A0 version, but this has
+the UARTs in the legacy PERF memory space, while the B0
+has opened a new peripheral window at 0xff812000 for the
+three UARTs. It also has a designated AHB peripheral area
+at 0xff810000 where the DMA resides, so we create new windows
+for these two peripheral group reflecting the internal
+structure of the B0 SoC.
 
 This SoC has up to 256 possible GPIOs due to having 8
 registers with 32 GPIOs in each available.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi | 127 ++++++++++++++++++++++-
- 1 file changed, 126 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi | 150 +++++++++++++++++++++-
+ 1 file changed, 147 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-index caeaf428dc15db3089bf4dc62c4a272782c22c3f..38331305e6da8eec39d02aeb0e02f3b45e2f5c4d 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-@@ -111,11 +111,12 @@ gic: interrupt-controller@1000 {
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
+index 48d618e75866452a64adfdc781ac0ea3c2eff3e8..a47c5d6d034a7ae56803a651636148383acb8cc9 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
+  * Copyright 2022 Broadcom Ltd.
++ * This DTSI is for the B0 and later revision of the SoC
+  */
+ 
+ #include <dt-bindings/interrupt-controller/irq.h>
+@@ -119,11 +120,107 @@ gic: interrupt-controller@1000 {
  		};
  	};
  
@@ -136,15 +147,9 @@ index caeaf428dc15db3089bf4dc62c4a272782c22c3f..38331305e6da8eec39d02aeb0e02f3b4
  		compatible = "simple-bus";
  		#address-cells = <1>;
  		#size-cells = <1>;
--		ranges = <0x0 0x0 0xff800000 0x62000>;
+-		ranges = <0x0 0x0 0xff800000 0x800000>;
 +		ranges = <0x0 0x0 0xff800000 0x3000>;
- 
- 		twd: timer-mfd@400 {
- 			compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
-@@ -136,6 +137,86 @@ watchdog@28 {
- 			};
- 		};
- 
++
 +		/* GPIOs 0 .. 31 */
 +		gpio0: gpio@500 {
 +			compatible = "brcm,bcm6345-gpio";
@@ -225,21 +230,6 @@ index caeaf428dc15db3089bf4dc62c4a272782c22c3f..38331305e6da8eec39d02aeb0e02f3b4
 +			status = "disabled";
 +		};
 +
- 		uart0: serial@640 {
- 			compatible = "brcm,bcm6345-uart";
- 			reg = <0x640 0x18>;
-@@ -145,6 +226,29 @@ uart0: serial@640 {
- 			status = "disabled";
- 		};
- 
-+		uart1: serial@660 {
-+			compatible = "brcm,bcm6345-uart";
-+			reg = <0x660 0x18>;
-+			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&periph_clk>;
-+			clock-names = "refclk";
-+			status = "disabled";
-+		};
 +
 +		leds: led-controller@800 {
 +			#address-cells = <1>;
@@ -254,27 +244,27 @@ index caeaf428dc15db3089bf4dc62c4a272782c22c3f..38331305e6da8eec39d02aeb0e02f3b4
 +			reg = <0xb80 0x28>;
 +			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
 +		};
-+
+ 
  		hsspi: spi@1000 {
  			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -171,4 +275,25 @@ nandcs: nand@0 {
+@@ -150,14 +247,61 @@ nandcs: nand@0 {
+ 				reg = <0>;
  			};
  		};
- 	};
++	};
 +
-+	/* This is NOT in the PERF1 Peripheral group on this SoC! */
-+	bus@ff859000 {
++	/* B0 AHB Peripherals */
++	bus@ff810000 {
 +		compatible = "simple-bus";
 +		#address-cells = <1>;
 +		#size-cells = <1>;
-+		ranges = <0x0 0x0 0xff859000 0x1000>;
++		ranges = <0x0 0x0 0xff810000 0x2000>;
 +
-+		pl081_dma: dma-controller@0 {
++		pl081_dma: dma-controller@1000 {
 +			compatible = "arm,pl081", "arm,primecell";
 +			// The magic B105F00D info is missing
 +			arm,primecell-periphid = <0x00041081>;
-+			reg = <0x0 0x1000>;
++			reg = <0x1000 0x1000>;
 +			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
 +			memcpy-burst-size = <256>;
 +			memcpy-bus-width = <32>;
@@ -283,6 +273,43 @@ index caeaf428dc15db3089bf4dc62c4a272782c22c3f..38331305e6da8eec39d02aeb0e02f3b4
 +			#dma-cells = <2>;
 +		};
 +	};
++
++	/* B0 ARM UART Peripheral block */
++	bus@ff812000 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x0 0x0 0xff812000 0x3000>;
+ 
+-		uart0: serial@12000 {
++		uart0: serial@0 {
+ 			compatible = "arm,pl011", "arm,primecell";
+-			reg = <0x12000 0x1000>;
++			reg = <0x0 0x1000>;
+ 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&uart_clk>, <&uart_clk>;
+ 			clock-names = "uartclk", "apb_pclk";
+ 			status = "disabled";
+ 		};
++
++		uart1: serial@1000 {
++			compatible = "arm,pl011", "arm,primecell";
++			reg = <0x1000 0x1000>;
++			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&uart_clk>, <&uart_clk>;
++			clock-names = "uartclk", "apb_pclk";
++			status = "disabled";
++		};
++
++		uart2: serial@2000 {
++			compatible = "arm,pl011", "arm,primecell";
++			reg = <0x2000 0x1000>;
++			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&uart_clk>, <&uart_clk>;
++			clock-names = "uartclk", "apb_pclk";
++			status = "disabled";
++		};
+ 	};
  };
 
 -- 
