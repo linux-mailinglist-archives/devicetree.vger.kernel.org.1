@@ -1,212 +1,151 @@
-Return-Path: <devicetree+bounces-163430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2C1A7CE2E
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 15:43:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60ED6A7CE39
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 15:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22E7E1889E42
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 13:43:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F6FA171CD6
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 13:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E82218ADE;
-	Sun,  6 Apr 2025 13:42:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9CB1B0409;
+	Sun,  6 Apr 2025 13:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WyVbZWmx"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="S0T6TwBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EEAC20F09C
-	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 13:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35AFF128819;
+	Sun,  6 Apr 2025 13:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743946979; cv=none; b=DNr6l6aMYP6gB5r36KatvnDswwQNZ/JgXQVrATiETpLFr+C/HkjyjPm2q1+0otMC+UDd1TFZt99wjKNIuQSnX8Ql+OymrDyY4r4sCqfL3Kvhim00CJ17tu5p31IucRVgQ4VhhRu1kP1v6ItPkIG8V28udkqGzS1+am1/1BqkiBs=
+	t=1743947567; cv=none; b=RTjWlXbeBQXyYf0hwxwZgY3VG5Vshaz+OHkr351Vw7o2B7cDNREZEV66UHDgJycIfNbeC/eSYEg6Kd/CoerZpZ7s4/ZqAPfw2JdyjD5EWJ5EmbfHexMj9sobuVdOLs7suvspIR/+ZxXm99lZhMpCDH1GMBs1sAbCRQ1KKdVBq7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743946979; c=relaxed/simple;
-	bh=PD9GNIrrnrt2kMfBmhXn7JrpnwAp6se47WiAoF1e78g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dmPe/woOm5N9/KMsgQUMGU8TadS/f4FWZHF7v77mNJjy1bhC4uTuZwTDfcr/ASU/SBfWe0kPyxrB/PEQa4iRZdClFgElvlfqGUITM8BGCqAscVbuUkqCZ5PRkFpouhA8ARdWZrGhWsFXSKXJbjIqeM6MyjdN9O9xsSljGsjYcQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WyVbZWmx; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso38026135e9.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 06:42:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743946975; x=1744551775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eKSh/Lkr7vxqs+CQ/v3pTweJchjYC4e1pzyu9PYjl1w=;
-        b=WyVbZWmxpopzV59+JmmxRf4FhPw1bbZi2wpxhj7nBV3jfPbs2ffgDy/uKrAjc4ceVr
-         8q1t9jmWtlCpj9BjbTDyjSd6roO3do/JASDaY0U+oW/jzZrf7Lluwy8hwss9hloXxtEE
-         6SoHKtyur+iguKqYaPwk7fX9H17k3nXrZWFzUmFG+Pm7VH8CfCTgds2tgFGQvMUsx9VY
-         zhRNZgRjSTy8TaYHxkgmDbQr4/++JLGrsvviWRafFejbCMs9OhJwcYFy6ugIvh0whavX
-         LYv58WMCLZ0cpvJyqIvs6DZR3oGNvJpw7ArOHWwOJPASxs9tYssM/ij7m4g/+9Ydtw0K
-         m5jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743946975; x=1744551775;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eKSh/Lkr7vxqs+CQ/v3pTweJchjYC4e1pzyu9PYjl1w=;
-        b=VpKVijkib74ANbyHjyiOxs0uSTshNmev9J3g0pHxANSBVr/IKGzlVb09hYialTYP2s
-         K+f6GgB0iwZNm8f01ytP/rCqunUbS9WR1s1ouQ3mGrWtTK0yNv2Ungth3iZqogy/nRrF
-         9nYuMy678IcKfWTnAqu/no/SUMJc4x9CksnkeP11pTsVbCwduwGwpP2zgxYiIWfAGB8U
-         9cIiAx2tortQgZNkSviM8Jrp/mZxacjb4eD8W8GVpVuRsTy94ivln62/Jp42qQqVEUH0
-         bg35i2uR6edUs84yCZVgMRrKxmmsqNe4UWyyxfLQOqh9w2XGRV777bHRj8YwNOZHib2n
-         NWUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVIidhTy73v0eh/BrT5GSONU48REtsu876oLGNi3/QKI/XOVRPMh0jARKzUM6KzQSwPNgG5HRG1/FZr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyipvAQBfv7mqT3mjcF6CGOT/VdYe775KeZg+Byt/wwy/FzjzRG
-	Sw7E6fUlImjHYesKqTNMVKUMWuWmAk8lcfONQ04FP5jy/bG1ffXeVm+sfnrQ1xZ9cb+yOrkfMwY
-	LhN8=
-X-Gm-Gg: ASbGncv8nQZ864cP4HPy+BzG91j1GNDbE1J1CxNCNxvWw+Ez+iVmhJFcOFvuEDquICm
-	BngCsSv62BB+0HxXNrxENQMLuxay+awMbS1dqV/kEfweTid96BE1k3lifwj/SHGB53jPKByJMqr
-	srlxfcI2JqH+swaxq0wLPZ051F8x1hBGhq/1tAJBKpnPPcQk6XlRl8erfTfE/6Nmiwr6Yh/XFHy
-	xikKZGgcR9JbhTDE04tXdJ9h69NMTHLqyaEZybQYHP5Hrt7+egGarOFCpeVl8le/XX3vA0EQ+F6
-	I5a7lzm0Of820FY0ZtxP4TNsj2uWeSm31l71umSVES3HQ56fJJlD7ab8eZ+FpLcm8AK8mB2FjsO
-	phLetDrpfuw==
-X-Google-Smtp-Source: AGHT+IENivBk2jsjBaWq+wSNsl1e7Aq00Uqgt50LmnMarcev0yDMmtMA3gEheom2v6QN12Lg/N3F2g==
-X-Received: by 2002:a05:600c:350b:b0:43c:eeee:b713 with SMTP id 5b1f17b1804b1-43ed0d6b07cmr67764825e9.20.1743946974670;
-        Sun, 06 Apr 2025 06:42:54 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ea8d16d35sm117529675e9.0.2025.04.06.06.42.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Apr 2025 06:42:53 -0700 (PDT)
-Message-ID: <ae06a3a3-bf7b-41ba-9c2c-8754c5c7c8a2@linaro.org>
-Date: Sun, 6 Apr 2025 14:42:52 +0100
+	s=arc-20240116; t=1743947567; c=relaxed/simple;
+	bh=ygpZXMmw+ffqg9whjNZRRdHxV50dkG23lRvv9fZH0Oo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=hgx5TMLxOjiaF5S9rGLe6y9iD/b+mad5DrI3/vLRetoooR+rntXfbm6u+bnw3tV9DY2OBLv6qf8MwWvV7m8BdfK+W5DWbCqkBS312G5xnho2jA0rN4NhQwc7ninvf/H28ZuasE2uMn5QxJlqiYK92cm57ypIReuO92npw3Mq67c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=S0T6TwBW; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1743947563; bh=ygpZXMmw+ffqg9whjNZRRdHxV50dkG23lRvv9fZH0Oo=;
+	h=From:Date:Subject:To:Cc;
+	b=S0T6TwBWaDbl/avFw74ECVwyUnL4ZbHcfBod5pwQhDnGIS6bYR9KC1OEBbBx/zZvj
+	 q0LRDO2R9veEClft9c8cWcQXHenM+TCwuKMR9sBwDDx5IVTW58LU69dJNoK6lXwPaW
+	 5rM3MJ6K/YrSZxIlAZD4ho5C7RWNkANjhuEEHXtw=
+From: Luca Weiss <luca@lucaweiss.eu>
+Date: Sun, 06 Apr 2025 15:52:02 +0200
+Subject: [PATCH] arm64: dts: qcom: msm8953: Add uart_5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] media: platform: qcom/iris: introduce optional
- controller_rst_tbl
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org>
- <BvlsGF1XePEGyPlecg4xIRy_z4TPBsWUwm6cTT4NIsOjkxTILIsopQ5js4omlx--7OLkNHUDehSVQ36pGvhkyA==@protonmail.internalid>
- <20250305-topic-sm8x50-iris-v10-v2-4-bd65a3fc099e@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250305-topic-sm8x50-iris-v10-v2-4-bd65a3fc099e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250406-msm8953-uart_5-v1-1-7e4841674137@lucaweiss.eu>
+X-B4-Tracking: v=1; b=H4sIAAGH8mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwMz3dziXAtLU2Pd0sSiknhT3TQzM+PU1BQzMwMTQyWgpoKi1LTMCrC
+ B0bG1tQCe8n9eYAAAAA==
+X-Change-ID: 20250406-msm8953-uart_5-f663eed66041
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Felix Kaechele <felix@kaechele.ca>, 
+ Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2017; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=sY1dlhOD+AOX05Avg9WD5isESSfn1Anr8cj+Q664BQE=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBn8ocqHA4ugnabrbuLYIy4qJaqJiP2ZdIHX1hzf
+ J+biE/58XiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ/KHKgAKCRBy2EO4nU3X
+ VpiIEACJd7VMoHa/8ejn3+GtFDb28fUwdVjvTcCAdVs6n3c86adn4wJFK7Gk/7VxTH81GSScwXs
+ kOieJS/YH3NmMWnnOAwMj30TEvGK/sgoycKMvoATKeotCgK2YovADUcdHYgAmT6larp5sUb+XUT
+ MVP+Z6O2COKmGcWf+KbVhHC7qvyinmG8nxoZdWjne9QLysmiOVNgZaubgE51Dp9VeeGE6Hin8ks
+ tKJEBCl+PwRchxtV4GbNfXoYeglpl4Kg9TMNqGn57dkjrq3WaBl+Rl4sPccJywrLleuAxvavrCT
+ ZFAiJG+FC3nN3PLbQaTCZVrbdPb4kViPL38xtmhP8XkaZTGiz/5M4EQi548vPIUXI2K6po1UBK0
+ IbQhio+CHWPDUwTGUAWKlX1Mao/X7tajunlSN+MqEZGIu8zAlmqyMkjtdaowX/y7Ao/Gr7uezpk
+ 9FTGIu6xYl6hQUN4Rx7F5DkUhY7ZJ1ooK/JdSQMNfUL5gtHjPmty6xs/Fs1c2sMnLjQRbQzoBlD
+ ya0XkPN04YzV7j6fQycDTaCXmxladvnVRn9A5XMNk4Rp3tGgtarVVZq9UQjGbVxWiPejt3BgtSq
+ //ywfKbf/rAPTmT3hVKbmHctFK7NXi5bikZIfzivzWDVBo2QFIsD8eT6nd9wXlwfSVJS05SJgKp
+ vApoGDalhj1mfKQ==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-On 05/03/2025 19:05, Neil Armstrong wrote:
-> Introduce an optional controller_rst_tbl use to store reset lines
-> used to reset part of the controller.
-> 
-> This is necessary for the vpu3 support, when the xo reset line
-> must be asserted separately from the other reset line
-> on power off operation.
-> 
-> Factor the iris_init_resets() logic to allow requesting
-> multiple reset tables.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   drivers/media/platform/qcom/iris/iris_core.h       |  1 +
->   .../platform/qcom/iris/iris_platform_common.h      |  2 ++
->   drivers/media/platform/qcom/iris/iris_probe.c      | 39 +++++++++++++++-------
->   3 files changed, 30 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
-> index 37fb4919fecc62182784b4dca90fcab47dd38a80..78143855b277cd3ebdc7a1e7f35f6df284aa364c 100644
-> --- a/drivers/media/platform/qcom/iris/iris_core.h
-> +++ b/drivers/media/platform/qcom/iris/iris_core.h
-> @@ -82,6 +82,7 @@ struct iris_core {
->   	struct clk_bulk_data			*clock_tbl;
->   	u32					clk_count;
->   	struct reset_control_bulk_data		*resets;
-> +	struct reset_control_bulk_data		*controller_resets;
->   	const struct iris_platform_data		*iris_platform_data;
->   	enum iris_core_state			state;
->   	dma_addr_t				iface_q_table_daddr;
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index f6b15d2805fb2004699709bb12cd7ce9b052180c..fdd40fd80178c4c66b37e392d07a0a62f492f108 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -156,6 +156,8 @@ struct iris_platform_data {
->   	unsigned int clk_tbl_size;
->   	const char * const *clk_rst_tbl;
->   	unsigned int clk_rst_tbl_size;
-> +	const char * const *controller_rst_tbl;
-> +	unsigned int controller_rst_tbl_size;
->   	u64 dma_mask;
->   	const char *fwname;
->   	u32 pas_id;
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index aca442dcc153830e6252d1dca87afb38c0b9eb8f..4f8bce6e2002bffee4c93dcaaf6e52bf4e40992e 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -91,25 +91,40 @@ static int iris_init_clocks(struct iris_core *core)
->   	return 0;
->   }
-> 
-> -static int iris_init_resets(struct iris_core *core)
-> +static int iris_init_reset_table(struct iris_core *core,
-> +				 struct reset_control_bulk_data **resets,
-> +				 const char * const *rst_tbl, u32 rst_tbl_size)
->   {
-> -	const char * const *rst_tbl;
-> -	u32 rst_tbl_size;
->   	u32 i = 0;
-> 
-> -	rst_tbl = core->iris_platform_data->clk_rst_tbl;
-> -	rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
-> -
-> -	core->resets = devm_kzalloc(core->dev,
-> -				    sizeof(*core->resets) * rst_tbl_size,
-> -				    GFP_KERNEL);
-> -	if (!core->resets)
-> +	*resets = devm_kzalloc(core->dev,
-> +			       sizeof(struct reset_control_bulk_data) * rst_tbl_size,
-> +			       GFP_KERNEL);
-> +	if (!*resets)
->   		return -ENOMEM;
-> 
->   	for (i = 0; i < rst_tbl_size; i++)
-> -		core->resets[i].id = rst_tbl[i];
-> +		(*resets)[i].id = rst_tbl[i];
-> +
-> +	return devm_reset_control_bulk_get_exclusive(core->dev, rst_tbl_size, *resets);
-> +}
-> +
-> +static int iris_init_resets(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_init_reset_table(core, &core->resets,
-> +				    core->iris_platform_data->clk_rst_tbl,
-> +				    core->iris_platform_data->clk_rst_tbl_size);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!core->iris_platform_data->controller_rst_tbl_size)
-> +		return 0;
-> 
-> -	return devm_reset_control_bulk_get_exclusive(core->dev, rst_tbl_size, core->resets);
-> +	return iris_init_reset_table(core, &core->controller_resets,
-> +				     core->iris_platform_data->controller_rst_tbl,
-> +				     core->iris_platform_data->controller_rst_tbl_size);
->   }
-> 
->   static int iris_init_resources(struct iris_core *core)
-> 
-> --
-> 2.34.1
-> 
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+From: Felix Kaechele <felix@kaechele.ca>
+
+Add the node and pinctrl for uart_5 found on the MSM8953 SoC.
+
+Signed-off-by: Felix Kaechele <felix@kaechele.ca>
+[luca: Prepare patch for upstream submission]
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+---
+ arch/arm64/boot/dts/qcom/msm8953.dtsi | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index af4c341e2533ef2cca593e0dc97003334d3fd6b7..3d6ab83cbce4696a8eb54b16fdb429e191f44637 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -767,6 +767,20 @@ spi_6_sleep: spi-6-sleep-state {
+ 				bias-disable;
+ 			};
+ 
++			uart_5_default: uart-5-default-state {
++				pins = "gpio16", "gpio17", "gpio18", "gpio19";
++				function = "blsp_uart5";
++				drive-strength = <16>;
++				bias-disable;
++			};
++
++			uart_5_sleep: uart-5-sleep-state {
++				pins = "gpio16", "gpio17", "gpio18", "gpio19";
++				function = "gpio";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
+ 			wcnss_pin_a: wcnss-active-state {
+ 
+ 				wcss-wlan2-pins {
+@@ -1592,6 +1606,24 @@ blsp2_dma: dma-controller@7ac4000 {
+ 			qcom,controlled-remotely;
+ 		};
+ 
++		uart_5: serial@7aef000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x07aef000 0x200>;
++			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP2_UART1_APPS_CLK>,
++				 <&gcc GCC_BLSP2_AHB_CLK>;
++			clock-names = "core",
++				      "iface";
++			dmas = <&blsp2_dma 0>, <&blsp2_dma 1>;
++			dma-names = "tx", "rx";
++
++			pinctrl-0 = <&uart_5_default>;
++			pinctrl-1 = <&uart_5_sleep>;
++			pinctrl-names = "default", "sleep";
++
++			status = "disabled";
++		};
++
+ 		i2c_5: i2c@7af5000 {
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			reg = <0x07af5000 0x600>;
+
+---
+base-commit: a4cda136f021ad44b8b52286aafd613030a6db5f
+change-id: 20250406-msm8953-uart_5-f663eed66041
+
+Best regards,
+-- 
+Luca Weiss <luca@lucaweiss.eu>
+
 
