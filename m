@@ -1,162 +1,174 @@
-Return-Path: <devicetree+bounces-163476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B325A7D04D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:31:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B8BA7D054
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:33:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17FCD16D527
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9773AE0AE
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489E21B423E;
-	Sun,  6 Apr 2025 20:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABAC119DF48;
+	Sun,  6 Apr 2025 20:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nbQm2k1D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ImTvZbGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5861A9B29
-	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 20:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE80D2E62C
+	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 20:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743971468; cv=none; b=gdruwUgNCe0ORDcY1ujbwtBDsP/SKHPgr9TRpjt/ypZ6aRGYDqfmSIpBq37RIsMCawc3lbeGINMWtqAgtpJZ5NSSrpCr8hAxAGoL5flKpNtupLQdtXImsemhSyjv9XnscoVdLFytczsmZQMqGIfqSuk7o2n4XPT+wHA3S17ZzzA=
+	t=1743971621; cv=none; b=VaQbXgOj4PNw8eV6ZXsCJ0dwF+1W7J+vOU8hxgVY7pmFOldhV2K8ajeOKQyiU04ycGQJSV0xIuX1otMCdWBEzdyuCckHOH4qWFM4EeQPF4AydnGNMWsSQx3AxPfq3hDHqzYocRh3icU8PnPuYQJBOi8NZACimZcclz2ba7CN9Ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743971468; c=relaxed/simple;
-	bh=0dJzKedoDUjfyYan4DVIZtP6ZwALUN7Ce6VUy4c7Hmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XQDAV1Fe7DVXE+NStKwRaqrr0NAhTp4oAoUMKVCxNwzTer9LSmE/l3VTxJqmjMCOgVrb+hhMF0TLz49yA7QqIqvdfuPrtCtrYv4KSza+3ULxnIV1SvRAdlxfYg7GDFxJTzcHYMPzk+hnRCRKtyyiwzOk4Gxe2NGbSFxk+8J+OM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nbQm2k1D; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 536JoI6f005445
-	for <devicetree@vger.kernel.org>; Sun, 6 Apr 2025 20:31:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=D3SL3RFEF7ExCpjlHS1MAW+1
-	sKINZb/uEY7WG2e/dtQ=; b=nbQm2k1DHVgO9JyDnG/Cu3Htvankzz/CS2tae7sC
-	KDwdAl5lhABX2+aeuKLhea7GRdFldmwz12BGRLczfzFCJ5eYdHnpqyXtjKY15L1M
-	FRMOotG9L4ujTKWHcjmfWodCc6Cia5h4JPtwFBT14Ul4bW7DQApKgs2iYOUPTlRW
-	Q2LlZaz3cW89OCRvGNIQmc8DVXYzP1/mM+AY1/lLydAKRxpELBInQmsAc1/nnYOL
-	xLDum9ZNVG0pJoStxEAYIVNVf4QeOkPKtP0M3+fNe2EZD75vwH0Ztd4gxki0MaqO
-	dNvr4XpxUjw5uX6kuVleWAC+mifBGqolKjtIU3L5gmFiRQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twcyt9xk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 20:31:04 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c543ab40d3so564461685a.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 13:31:04 -0700 (PDT)
+	s=arc-20240116; t=1743971621; c=relaxed/simple;
+	bh=DWya8jh2xYXaCJnsy7kqSiKaD73itXYuK6UFzHlZibY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iNx9Rdwso7DuDgpjXbya53imdDj8X0CUpE4gj+WG43Mx2MChpOg7tqHV9Yz44dkHwHWzPCfykNyKZSAkgUHiw9ilDPei27DFSkDlmUJhTBTfVAQWesl/Xcv9wook1PkVNwzlmkzIwoNFVsSXb3E2xG3F52ZhROag9DTE8FPjIpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ImTvZbGc; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3912d2c89ecso3244689f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 13:33:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743971618; x=1744576418; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VCGCDpg/t2fUSVKec7gttoFuR8UXHlXhKq+zwaUKf+Y=;
+        b=ImTvZbGcmN2jdytwRlcqg8IlmbaQNmT9jBtN0b9qDXUoG4kHr+NdVepnEtHsG4eSpf
+         s8R74LMKTUJRp+RDeGEPiemjUwE8rxrnJpoV1mFVOqWtgThh2L/Tn8JzRu+Ht2t0FDi2
+         cr4IyptAaRwmgy0pNZHZKAMxpJzAGXBY9oDFUEnn05D3rqpy6rdB+3i6wqwcmMBJ6FIo
+         DS0TbyRhzo64s5DH3+fWYEyKecHTca3MKKMJL1DFcnns9MwRsKXMMyxQEcFpIeOL4njB
+         zc4vfkY3VNcIH+vjNLNO21AW5OzOq2s7QK10PstJ96FIZKfKEZrQcI/PbjV1b6m++ZnX
+         0fSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743971463; x=1744576263;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D3SL3RFEF7ExCpjlHS1MAW+1sKINZb/uEY7WG2e/dtQ=;
-        b=N3Iy6L35H+cT7zxZ5Dbx+1zz+u1xqRUG65zF+eZFXymlLwAGFboNXATSNqbufRyNGG
-         Ui3Yb1wEG15/YvgpQTa31JcpliQkdO7aOHEUUujT+SOoh2DNyB5wfgTBTdJ25RM3hHKe
-         l8/PHqxsRGLqkcHI1eGHPMGqpfsC64z4pA8EUTYxQE30kfxEX6ce5dEAFEb0spj5qega
-         eRMG9dxQe/uubkhc1NGs3RKbWgZN2NBkGKKTTlGy70e4FUGl0MGNmzV9YhkR8EZAvkk4
-         7LSjqHNa9RxYDekS5VLXPmOzwP/CsR+nEMelbA127VxzDLm8sAxLa1F0Gasf3c6qOdDl
-         k0SQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKvsLwF+tQNRO+kW/1dpV5B7sWCQFJ9XDHt2hMp1iC0BK2osbbyU/NtqEUn7xnPGXp/7u8DM6Qms2F@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAuRiHVIjUK8Kz5W0mpT/TYfLmyJPKD2jJSh+VS0ZliXGGP7NU
-	ktuvrTymhMNbciFLwbCWYswT9F/aTrO23HIyNmNGDvqvQgywOzBuLngls2wXc9kBif8DjdrikyK
-	vyGTvJu+D9BKJqoF/t6a89pCgM6yh0ofb7Hcgvjh1M/Cndr5s5tD28mQqKjTdDVY5RB+O
-X-Gm-Gg: ASbGncv6tfs+VDJ0s4rutOxE/vo3gNN2D8hl9RbpNdbXd6j0MgkLfIx3PsExo7w6LWI
-	YC+BaAq/9pcfj4mdrMzWS3d5VLl7uaqGxW9qNrOMYmWrXWS606Eam0cm+Hf2soxQY9PPkCT4B7t
-	EnGfTBXeIELv7fSgqjnOa6xcWfomjrgzUETJdCneli9+yt+sBfjFTnJuJjtnruy3CUpJCenpZxO
-	StZeM21Zyz3JAZ/JbO7sXJUeAXdGreLefmlkS4auQAGoUvqtXffsdwDYXMNFwSQD+MFLdB6RaxM
-	gFkfmghTZeLKnzRPmPTi3tEF+VKD7QvDm3YokBsa2DHthqj6HZy3rSqELPO9chWpMCnUypZLq9G
-	y9E8=
-X-Received: by 2002:a05:620a:2891:b0:7c5:57b2:2cb9 with SMTP id af79cd13be357-7c77dda1c09mr772035885a.26.1743971462518;
-        Sun, 06 Apr 2025 13:31:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF3veInaAbq3I1bKUD5eq/cfgw6MPpVDuHnLn0g2UE+IdMIGdhBMtA+oqNpUDXsimNCO2y84A==
-X-Received: by 2002:a05:620a:2891:b0:7c5:57b2:2cb9 with SMTP id af79cd13be357-7c77dda1c09mr772033685a.26.1743971462156;
-        Sun, 06 Apr 2025 13:31:02 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f0314b908sm13667311fa.55.2025.04.06.13.31.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Apr 2025 13:31:01 -0700 (PDT)
-Date: Sun, 6 Apr 2025 23:30:59 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH] phy: qualcomm: phy-qcom-eusb2-repeater: rework reg
- override handler
-Message-ID: <v6cra77j7q7gwwqcdylrp6eegdkcgtlhxbtvehfxhvdnaahp6q@emcwrbbzhyyf>
-References: <20250405174319.405975-1-mitltlatltl@gmail.com>
+        d=1e100.net; s=20230601; t=1743971618; x=1744576418;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VCGCDpg/t2fUSVKec7gttoFuR8UXHlXhKq+zwaUKf+Y=;
+        b=be/M7Oc8FA0l7l5xYGmjKVN555B0usExne1xXQ+98IOho+EVSrXSWxV0OkBMmCiGzx
+         L12fW7sIVNDRgrD77jCmI4jLOmCzZl2ouA/3yc39bOPXRgXhemJs339eOH2OyYaxOVm4
+         cn9PZ80dFtx3wEn2Mb4R3YPfEOCvvp03TX6ZaiG8SYavBRz0HstFBMEoL28szxykiqrE
+         7Du0LZ1IgXua5aorU2Sw7jd+c7babQwaWPcHnWSIri/IQ6WHrtzQylZhnD4hQY8Ktzh/
+         N6sWHt/fcBUmA8eBFYOl8ioKh4i0PJcms9TUZOHjUVIPszui63G0X7QBZOSfttzaaHNm
+         uh9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUUkH+BGXNMJe0U49kmSBblfO+1n1mhAVhgc8r0hnPLu3PWQw7v1aMbjgxQvNSp3/cJI+1n8Un0tgkV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYQOHgiWKX5uxTtgTetKxVYlUqFBoQAR+2NLNSeKDJgPBXZuyu
+	zHnmAURvGjU+3X5TNKvgrZpzQVi5cCMKUq/kXUxJGU78DCXNaAsH7WRoQ/eYNN8=
+X-Gm-Gg: ASbGncu3uDfY/xV7Z97Y7E2q01Yu997Ts3/fDqQYPXBQipn5mpoJEXSTHbgnFNGX3NX
+	c8EIRL7jTKbUJbCZkCoCJA3EmoqWEX4MhyDQWvSLev26QyNMQQYrDGBKSRygW/pvu7/tfRDiqdH
+	PiCSyI/ojJNRpb/HuMvTdeoS4H09CJThfY69OKh9xqYVbdFOdBCJKpNmTj3WolVlfVhuXmliZNc
+	oIoifjB9ybg5d5/dYuRmRqbb0cfxSX00AXvn6WXzfkW4RvN44YmRouH1QszKIw9V6rHbYIQjyYf
+	gHxbIG1gWqPFI+ZqK16MovnmrrocBgqOGsk64lPL5+JF7ad/s5mIsD1I/JzlNiPwS5k94EZu8AQ
+	MZl38QRKCqwnnExGU+S0=
+X-Google-Smtp-Source: AGHT+IESJ8Rxdp/XXpq92L2e0M83vsXuVGRWnHDL4atp/VFNNs1LmSeanqZA4fRos5yy9QpaMq7APw==
+X-Received: by 2002:a05:6000:178c:b0:391:45e9:face with SMTP id ffacd0b85a97d-39d14662fc6mr8760585f8f.54.1743971617976;
+        Sun, 06 Apr 2025 13:33:37 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39c301a6a60sm10022277f8f.29.2025.04.06.13.33.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Apr 2025 13:33:36 -0700 (PDT)
+Message-ID: <60132403-d849-47a7-a11c-e829ffefc7a9@linaro.org>
+Date: Sun, 6 Apr 2025 22:33:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250405174319.405975-1-mitltlatltl@gmail.com>
-X-Proofpoint-ORIG-GUID: dbliS5vHxm3iQ3qASVriWQrp3yBDJ1TB
-X-Authority-Analysis: v=2.4 cv=Q4vS452a c=1 sm=1 tr=0 ts=67f2e488 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=MVnmeVZX-4zFk2mnhQcA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: dbliS5vHxm3iQ3qASVriWQrp3yBDJ1TB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-06_06,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 phishscore=0
- bulkscore=0 adultscore=0 malwarescore=0 mlxscore=0 suspectscore=0
- mlxlogscore=895 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504060150
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
+ Timer
+To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
+ thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ Vincent Guittot <vincent.guittot@linaro.org>
+References: <20250402154942.3645283-1-daniel.lezcano@linaro.org>
+ <20250402154942.3645283-2-daniel.lezcano@linaro.org>
+ <64b6d599-fe67-586a-e4b0-73d9b73499de@oss.nxp.com>
+ <c570c99d-53f5-4f77-a730-42e5a2016dc5@linaro.org>
+ <93d83df2-d3bc-e32d-70a6-158571504275@oss.nxp.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <93d83df2-d3bc-e32d-70a6-158571504275@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Apr 06, 2025 at 01:43:18AM +0800, Pengyu Luo wrote:
-> In downstream tree, many registers need to be overrided, it varies
-> from devices and platforms, not only HS trasmit amplitude(0x51),
-> HS disconnect threshold(0x53), Tx pre-emphasis tuning(0x57).
+On 04/04/2025 08:35, Ghennadi Procopciuc wrote:
+> On 4/3/2025 6:10 PM, Daniel Lezcano wrote:
+>> On 03/04/2025 08:19, Ghennadi Procopciuc wrote:
+>>> On 4/2/2025 6:49 PM, Daniel Lezcano wrote:
+>>> [ ... ]
+>>>> +examples:
+>>>> +  - |
+>>>> +    watchdog@0x40100000 {
+>>>> +        compatible = "nxp,s32g2-swt";
+>>>> +        reg = <0x40100000 0x1000>;
+>>>> +        clocks = <&clks 0x3a>;
+>>>> +        timeout-sec = <10>;
+>>>> +    };
+>>>
+>>> The S32G reference manual specifies two clocks for the SWT module: one
+>>> for the registers and another for the counter itself. Shouldn't both
+>>> clocks be represented in the bindings?
+>>
+>> AFAICS, there are two clocks as described in the documentation for the
+>> s32g2 page 846, section 23.7.3.3 SWT clocking.
 > 
-> The device I plan to upstream also uses it, so I write the patch for
-> it (Oneplus Pad Pro / Oneplus Pad 2, sm8650-mtp based).
+> This diagram illustrates the module clocks and their connections to the
+> S32GS system clocks. From the module's perspective, there are three
+> clocks: MODULE_CLOCK, REG_INTF, and COUNTER_CLOCK. Specifically, on
+> S32G2 SoCs, the first two are connected to XBAR_DIV3_CLK, while the
+> counter clock is linked to FIRC_CLK. Based on my understanding of the
+> device tree, this configuration should be listed as follows:
 > 
-> In upstream, only Sony Xperia 1 V is using this, so fixing it for sony,
-> in downstream, some crd, mtp, htk devices also use it, I have no
-> such device, don't set it for them.
+> clocks = <&clks XBAR_DIV3_CLK>, <&clks XBAR_DIV3_CLK>, <&clks FIRC_CLK>;
+> clock-names = "module", "reg", "counter";
 > 
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> ---
->  .../qcom/sm8550-sony-xperia-yodo-pdx234.dts   |  5 +-
->  .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 86 +++++++++++++++----
->  2 files changed, 72 insertions(+), 19 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> index d90dc7b37..99f5fd32c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-> @@ -673,9 +673,8 @@ cam_pwr_a_cs: cam-pwr-a-cs-state {
->  };
->  
->  &pm8550b_eusb2_repeater {
-> -	qcom,tune-usb2-disc-thres = /bits/ 8 <0x6>;
-> -	qcom,tune-usb2-amplitude = /bits/ 8 <0xf>;
-> -	qcom,tune-usb2-preem = /bits/ 8 <0x7>;
-> +	qcom,param-override-seq = <0x51 0x08 0x53 0x06 0x57 0x07>;
-> +	qcom,host-param-override-seq = <0x51 0x08 0x53 0x06 0x57 0x07>;
+> Configuring it this way allows flexibility to reuse the same clocking
+> scheme for other SoCs where the integration is performed differently. It
+> is possible that the 'module' and 'reg' clocks could be linked to two
+> distinct system clocks.
 
-Other than Krzysztof's comments: In upstream we describe invididual
-properties / overrides rather than just dumping the whole register
-sequence. So, using a single 'seq' property is not acceptable.
+That is something we can handle when the other SoC will be in the 
+process of being upstream, no ?
 
->  	vdd18-supply = <&pm8550_l15>;
->  	vdd3-supply = <&pm8550_l5>;
->  };
+I don't see how that can help with the current hardware we are 
+describing. What is the benefit ?
+
+I would prefer to stick to what is needed today
+
+>> The module and the register clock are fed by the XBAR_DIV3_CLK which is
+>> an system clock always-on.
+> 
+> XBAR_DIV3_CLK is not an always-on clock, meaning it is not available
+> during suspend, if that is what you mean by always-on. The SIRC can be
+> considered the only always-on clock on this device.
+> 
+>>
+>> The counter is fed by the FIRC_CLK which described as "FIRC_CLK is the
+>> default clock for the entire system at power-up."
+>>
+>>  From my understanding, we should not describe the XBAR_DIV3_CLK as it is
+>> a system clock.
+>>
+>> And the FIRC_CLK is only there to get the clock rate in the driver.
+>>
+> 
+
 
 -- 
-With best wishes
-Dmitry
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
