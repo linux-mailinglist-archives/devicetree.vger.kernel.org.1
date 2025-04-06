@@ -1,103 +1,109 @@
-Return-Path: <devicetree+bounces-163479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA37EA7D05F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D47A7D084
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84049188C3C8
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:39:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87990188880D
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750E51A3147;
-	Sun,  6 Apr 2025 20:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13FD91991C9;
+	Sun,  6 Apr 2025 20:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="C8qbSjl1"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="SG3AWJGl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B921487F6;
-	Sun,  6 Apr 2025 20:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332472A8C1;
+	Sun,  6 Apr 2025 20:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743971939; cv=none; b=GzpigS2DlsszuKfgaki6gkeb3jocFhxqrhh/mjINMA2/t/O3aAHxrJwb9DPrO6lyPfPIB3d3wsrZSBZ8xb4sFBLH35UYRblwPJf6YFkB261rjZMyN8sD/lSZnVIj2d4MsI6iSAV5fUDP0Y9AQO+oORsxaViQNyKMc2wAcKqOiWc=
+	t=1743972930; cv=none; b=j92a2s7N4IPj5gmoK+kjzUyfWFRjJjJ3ljPL5mtI5Sda9wBlYXitbnLmxzlmXVKBvd3aoNhgtchNAXMQWA1b3czY88kSvjfALla0D6iND6VBSWFh9ge9iG59kIdposlZZnXvYw3WkLzmMtKvq/hOQQDxliCc8G7i10dl5Trmc8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743971939; c=relaxed/simple;
-	bh=NI1/kyy0gTrSMXMDeYc9TiMNCu+lNoTvc7HFd6GFVr8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H+n/BOXv1IKaRg9LOxDGYniT0IHu+SCYQjV65nGBXMsfzE5x7jD63I/bXVKryCz8rVPP81c2lTZrXmkkqjv+3u61YZz9jp2fFFtKp5FyYNNhTivDYQVMbbzEKJE4OCvtjdjXX6sr/yesG5oNvdfomo6gQXW0/WZbDQTw+HvPHao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=C8qbSjl1; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-223fd89d036so40654815ad.1;
-        Sun, 06 Apr 2025 13:38:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1743971937; x=1744576737; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ydwO1JyYbeugO8yOiEfHx3MM3FsXIUg1LfWXi3rj/4M=;
-        b=C8qbSjl1w73HTPnPSeQN6y3Q2za9i09nDD+6K5A8qppvqKxkW8ei4SRDbDkNJ7bykU
-         Dd2EKkPVECsyydhJzVcGw01i0k3XnC7+kpWhbc0MMITnSdg8Gb80X+QoRHvP2+kGq0Z+
-         B+z3FiqQmZ8GaD1ElgMiXaHInea1JAIQNbI3dtGQU09F15+w9PTMvGGXwVcNLxtgqe+D
-         sGFWHBNnJaXknjSxZjS4zOsfTboG6IO1eXHg8Q/D2468L9roosulC/+IZ9ujPvJJbXP+
-         1a0T4BA87JzLSSu8Y5mUxDGT11yDMZRx0p2BHyAejB/DsRcoEvrVf/VSl7XSMMHLg5Lh
-         nk6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743971937; x=1744576737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ydwO1JyYbeugO8yOiEfHx3MM3FsXIUg1LfWXi3rj/4M=;
-        b=Dhgl0/Pzncv+UTIolytm8XX7Vs+wiNGgZzIl2qfPJGy2waUvJ/yjB1NeUzScrLdsDp
-         fTeeKABCv0U/4oOJvk6R8/jm7iLxnsE0f5Ydh8TLfzPsTXMiXAE03mQIJZaw3VM/ItcT
-         cT1knUPy4RK3GLgxOjGewAzTK4mIJGxuCTlMZvGtgdnqatK64/HmwO8OpHSmFYx+9t5b
-         XzGUEeqFNQWTaHbdI8YIs8hJ3CF1dZuOvnN+dyTmwb/UU741UwhG993JO4k0dKyxgl9u
-         Nz3F7RGSUC5JqgHDZrx7ukWZH/F3DSUNRStZrrRXMrX4xVKvmRi4WKHa+RHrAvpqDCwg
-         U3Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCVG95vaJlo3OUbMiDDgiGKBGCNgmpQazqROrFvwdj9JpwD42xLiBuvfSdsPX8Ai8yyzV+AmR72tBieb@vger.kernel.org, AJvYcCVSNrI4MNA+/ml5uhWG26joZccThljyyZrf7AhUITJuqSOYQ5yNyEcLy3HiS5/+83kAMwonbGFa3+kTI0uCvBQ=@vger.kernel.org, AJvYcCX5EmEK/2tbaFjTWr2dxLOdSAvU3vwc6FctsiJ2Xhr5Ou/JnmOZ0U01HW9UgLHGR3tm0lJahP0jQaFL@vger.kernel.org, AJvYcCXPZjfMTilyV6evsZkt498oSO2t9j4qg/uovX7AhhO9doHKWjHLXJWKqtxhW2HiQvY22WRCGerHxm6QL73k@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAK3qgBBm7O7hKhlQxD4JpBK4f5ItYyKGtL0dLMT9qKoxgsZi4
-	SOmVorRF1nVpj/h27yGqZgUgEIzaXWfJyQeLmeaX/f9PvYmkUhLTosXJ6s8VH3+RkmdKxX86wFc
-	zVlwhmtBreQVdMkZKBdclteke//s=
-X-Gm-Gg: ASbGncuVsaH6GpPzGy+uE6j0yX2ZhHzhWoUYHaWBUMtzXPwbVaeIV1uUStNDXW1YckU
-	dEBOzAttB6Md/hbmM0i15L10C7ylZwFE9dDlxpD/7pydqQIzOcZjycKhOlGhTRdCENpbzQYCwzH
-	EySvXKtGyA1UXrb5eKZuuY1KG/vfAb3Y3Q3NTD4vtA
-X-Google-Smtp-Source: AGHT+IGDuS2E1gbvf+gLEVGC9aXsTzLI97TA0L4xSj8FjsSjT4qJXWhbv3i5QpV5K5VBN+QeBy8RRJfKYOEPI2TztGs=
-X-Received: by 2002:a17:903:2ec5:b0:216:6283:5a8c with SMTP id
- d9443c01a7336-22a8a0a3599mr145741465ad.39.1743971937401; Sun, 06 Apr 2025
- 13:38:57 -0700 (PDT)
+	s=arc-20240116; t=1743972930; c=relaxed/simple;
+	bh=jWdQxL4tiW+qSHnkQphZb/Zp5cQSwhzY2xtPrVC3GWE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ltg/+hVboJpX164MDlCWvj0E90t9PKeeap3F2yxGejsITQaQG3SlMZ81h0Fzv6S6rhuZfqlT0VMWL50R0AEzxQBvFgDzYKeAA6wnSKS575zyf6L0ldSDPe9gciHUIep2yhk6ZFPBbs34bbIdv3vIzzA8oAujr8s/koxHwFWj3JU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=SG3AWJGl; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1743972926; bh=jWdQxL4tiW+qSHnkQphZb/Zp5cQSwhzY2xtPrVC3GWE=;
+	h=From:Subject:Date:To:Cc;
+	b=SG3AWJGl4UCZj5poyNEUtGVzmPjS8Z1uAjvISmrjipNFyRUrxiheXaZS2YBGXywek
+	 fDwAi242mk0UGaCCJzO5I3kDNd1Wkt7V6AI47kLUdZwQY6Ptnq0vzKCTEkFaq9z35f
+	 LfPSFol1Nj0SUTyV5Y6xiqWDMwqJ/U3Zr2D0zybQ=
+From: Luca Weiss <luca@lucaweiss.eu>
+Subject: [PATCH 0/2] Add interconnect nodes and paths for MSM8953 SoC
+Date: Sun, 06 Apr 2025 22:55:02 +0200
+Message-Id: <20250406-msm8953-interconnect-v1-0-a23e22e236e0@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net> <20250403-rtl-onboard-v1-1-10ca9a6a4ee0@posteo.net>
-In-Reply-To: <20250403-rtl-onboard-v1-1-10ca9a6a4ee0@posteo.net>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 6 Apr 2025 22:38:46 +0200
-X-Gm-Features: ATxdqUHvsyKfKqx08asuwFCr7vofQGUcWxylj7FIDVyn6z9dRxtd3LDG4d6Z8JE
-Message-ID: <CAFBinCADBn2uUvdL9he0LZEZx4Kt=qPqrhifw_MUn4=BxLeJFw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: Add Realtek RTL8188 USB WiFi
-To: j.ne@posteo.net
-Cc: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?Si4gTmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>, 
-	Matthias Kaehlcke <mka@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jes Sorensen <Jes.Sorensen@gmail.com>, linux-wireless@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACbq8mcC/x3Myw5AMBBG4VeRWWsyrsGriAX1l1kY0opIxLtrL
+ L/FOQ8FeEGgLnnI45Igu0ZkaUJ2HXWBkTmacs4rLrk2W9iatiqM6Alvd1XY08Bxxi0ah2mimB4
+ eTu5/2w/v+wGr+7Q9ZgAAAA==
+X-Change-ID: 20250406-msm8953-interconnect-ef0109e8febb
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Vladimir Lypak <vladimir.lypak@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=707; i=luca@lucaweiss.eu;
+ h=from:subject:message-id; bh=jWdQxL4tiW+qSHnkQphZb/Zp5cQSwhzY2xtPrVC3GWE=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBn8uoq9h70vV5OPX88cyIjjjTYTKq8XihZFUn/x
+ YI2zhndcQ6JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ/LqKgAKCRBy2EO4nU3X
+ Vv9sD/kBgKhGOAV/rOtwBE55cyyss3AFX+12gXgk/vGNsEBtS56Nj9aZF2q7+WOcTC/wEGJZWRE
+ 2d57t6D1RLgwAbxGncXLLp/xU0yRsNqJ80DrIuygHN/EkTnNwPUz6LDwN2WlQfJ69o5uGm9doxh
+ Jgrtyd2c+IzQLi5WqM+pWxvxPnvbt4Qyko6fU9UO4+HloUmReNUgYBb6ET2kQZ4JfRZsTWqLBxA
+ O7AP5Hu6W7rqe1eEbg0nQ72OilBBDdLo+gNmFXHLAZTaAoSoccyYZ+pKSYzc8/myWCsk6+qWQCi
+ DOAogTHNxphbWAuMjFIn8OZ+W5y97Jq9Ool1/ByGn8obrO3pzPaNovyU5Ne06aYSyIvQRJescZg
+ oemCGCAkxTPRwQqrh0u0KZ+5qHiP8nMsXkXxDXyy9gttlKd6/XbJx8Eqq8yKym63m9kCnmYO9fY
+ RBV+hz3xe8+M69oPITMOvgMpaZknp3lvTEVpHdBPASYBr1TmpXIfdDpI1hueoyrvC3mvUyLwstw
+ vNVkWNrTwVUMAvQPJyiE2AIKoLbfwL7hVVKXj1qu+0QMtaZqmY1XEcAwmvYhfpNpWfcoHOwl1Eh
+ 3px23JBHzKVnIRUA46sZfMiNoQ72yspWOEWr/NR6vB0pht7+T2q7QCTq7IKaNiwZTeDXrnrKmAB
+ Szpw2uC+nQ17smQ==
+X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-On Thu, Apr 3, 2025 at 4:07=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
-<devnull+j.ne.posteo.net@kernel.org> wrote:
-[...]
-> +description:
-> +  The Realtek RTL8188 is a USB-connected 2.4 GHz WiFi module.
-> +  TODO- website or soemthing
-When you re-send this patch (to update the email address) please
-delete the TODO (a website is not strictly necessary)
+Since the interconnect driver for msm8953 is already upstream, let's add
+the nodes which are required for it to enable interconnect on MSM8953.
+
+Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+---
+Luca Weiss (1):
+      dt-bindings: msm: qcom,mdss: Document interconnect paths
+
+Vladimir Lypak (1):
+      arm64: dts: qcom: msm8953: Add interconnects
+
+ .../devicetree/bindings/display/msm/qcom,mdss.yaml | 12 +++
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              | 96 ++++++++++++++++++++++
+ 2 files changed, 108 insertions(+)
+---
+base-commit: 3bcfefea9711deb32db207977d531d720d32a0a5
+change-id: 20250406-msm8953-interconnect-ef0109e8febb
+
+Best regards,
+-- 
+Luca Weiss <luca@lucaweiss.eu>
+
 
