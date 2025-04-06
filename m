@@ -1,94 +1,105 @@
-Return-Path: <devicetree+bounces-163472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C98A7D006
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 21:59:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4591A7D020
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:13:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13ED31888FB9
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 19:59:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90E7216E0AE
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86ABA1A2622;
-	Sun,  6 Apr 2025 19:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B00E1A5BAA;
+	Sun,  6 Apr 2025 20:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="r3kq5Ee+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e2c5c0C+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE6941C71
-	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 19:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDEA13D62B
+	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 20:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743969546; cv=none; b=lNRzdrwTL/c2ShoGNvZRx1OYG+1uusQSTSbDpmZa9FFOsa/fnpwb26kEmCQ+2RpZdYn9/WI1Aqjp0oL3LWwUW5HaHiZDt8b3wG+/58AUWqCTcTi0L1KjYFUa90qGAByz5FLSPXfbLoDeRGjESjHZSzgcvISiVDLee8o6PRQZfKg=
+	t=1743970381; cv=none; b=VReABPNqayNsmRb8Ij0aLSIry5RqQ92DkfH9WFYcc5wI2RpuL9BgrJOQtgaxB1hnAlMLxHrTy/f88CA5aKzRUT7YX3JSRSdShCQTla8EPLMskaow2ZJ9nkrr3TB82fzG9JC39TF9kZwm5GM2EavBd9dYqi4PEqawrrJdyfmCPFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743969546; c=relaxed/simple;
-	bh=DUla9+p5r8C0yNX9gzDL4CLbxH7aHNhbKcNDbGisa+4=;
+	s=arc-20240116; t=1743970381; c=relaxed/simple;
+	bh=fn3XIv374GafpmFsN99R+3aPdYkl1Tqj8epH+8kLyrw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DTI4iNcjN3pwO2CN//iCQxBfH4FYxW4SANhrV79gwhieJAev6K18dVEvKEfsJIqHK2U/VK+6jC0cv2smi77fxT+1z7duDQ84qPnl+iubGEuRUe5fLHClpzM1XKz+ELQoCduMn48h1k8gPPRd/jR8cnriozRN6VCp/rw81NfX5a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=r3kq5Ee+; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2ff799d99dcso3481310a91.1
-        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 12:59:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1743969544; x=1744574344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cSV5brJCU8FRwDjADDTtVWC1mi4xZgKh3TRBBKKlcb0=;
-        b=r3kq5Ee+SM40UUg1BYtsIRai96rsutbIE/EZp7Ry8PRsFoCOLiYOlZiLTv09uGlpS0
-         6rlPEzCN80LwP7qqO0GWLncoe5SByqQ0XfJmFGsZCkNGidboKoeGZPxTpHYfukGJ7Bx/
-         bBS39UkA1ZEnOg+8s4sJH8kUmyL52SEQCUmSKvY2a1ykFpLMa4oFd7/I8bd/1rLGp90o
-         6sYEpNqhB8mk6/U4RcE/owo6GY/QbbnyDzo6XZV3pbR+RhL8yJCisQLsjgPjjW8vhTVr
-         Qo7Xds3PvRIO+XYjpzLbNJyZIRoYTiZ2KwpLXDlRDQR+ZUXaAjyGyua0JL63V5CVN88J
-         qvxw==
+	 Content-Type:Content-Disposition:In-Reply-To; b=Thye3tCXst+L3LidHe4gu8oQ2xao87lERmus/DZJYIaz5gikpbD/EucHMAhcuCt0IQcL650IpX26OMLOT3WSBSGzhr2eBPRfdkachWM4klfFEu1mS+E/XVR/XdtPRvnZZ9B1u/18mSAn2Gi8hLBLlzFf+emRnO42+AmNvIe5Ad4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e2c5c0C+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 536K02dq007782
+	for <devicetree@vger.kernel.org>; Sun, 6 Apr 2025 20:12:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=CF/FhaEsCR/+W8yHZpCK1Z4y
+	/u8MKd7X9wwGafUA/ZE=; b=e2c5c0C+A1QJkl1S8mBqKwwsXeYpNYXuiqKDhhRp
+	YucyENyy7sfSIHbVDqqSSOqMQ3NOs2VZ2QKzrLQchP6LSuSd2aHFSSZqMBaF2wpH
+	Ugk3adWn+40XqIoQ5nRb9MDAyk2z/r5T8dOOdGlELdZpJftxVqyj0Dr1+t7YlvTh
+	xnM0n25HBfHsxElkhYaDHqcPv1vMupQtsiT47m2pnSuAHdIJ0C06lqrlr1zKzyrn
+	3IeIi7ZwkY3mdMZSFgP1x4YPfOn6pHX5bdOQk1+PpLrRQ+JgFuRhA+hYwnCTSyWF
+	hyfeJbKFS6KOZ3I0PubyMy/nTqcKq7q8pWDTBKynleZOvA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twpm28j4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 20:12:57 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c3c5e92d41so616574585a.1
+        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 13:12:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743969544; x=1744574344;
+        d=1e100.net; s=20230601; t=1743970376; x=1744575176;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cSV5brJCU8FRwDjADDTtVWC1mi4xZgKh3TRBBKKlcb0=;
-        b=XJ9hbwHUd99OIBuOdC8BdyctUOYk41e7eMZGyJBNzYZHRjgUqNNOJ741mebCDN/UWy
-         1DwMAo1Z3Ulw2pfxk271Y2gTAOZDRhzOdeKg1yOL7KrnDOyjEUvhwWnFVp8cqEURXnFu
-         /QlVripcDvIjWF8dySGYvXIumE5HaFmCiyXjyMnGHwjYr1SuAk3mdzXFeGHZ6RbiFNyu
-         CG7pEoSd0M37GHIzznusJWpRBcQgu6BWy7qWq/K0dYF6xNmrXEK9rkSZ78spJ8L9Lo2o
-         f9wLhvjJVJk9WG7uIqrlkFX43tW6yhDiHkppchCxksX5FsosfQ2sw13cCmMF5uXHDfQ6
-         YI3A==
-X-Forwarded-Encrypted: i=1; AJvYcCV+AsRS1ffZMCCjnfoBTWicNUo7T99/7RnmafzKkpj1UVu5wrCaCr3SBeXRCzenSfZ4DMdLw7F547Sn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxinAUemBQhv5X6p5k7Re+L7Uh3ghEMsiPtU1EdAdCudyb+nBLp
-	nUi0Ys4yPvXgLP4AaUyR8t4ngi6SHQ+saU9xwMOKLvmkOnjH5rBPFE2GC2aAcRs=
-X-Gm-Gg: ASbGncuOjSHVofr/1NlgohxIgR0Nk5kNVs1mWT0craoMbiM3cFnwECSXLzFMetU11jI
-	0Tvox4mjDb8yX+LuRcofVxv9ESEFVFchWNfiBotmD5t9lE5LxXgAKEfhrJJsDy4mzuMPV9cgTfY
-	/yPgP2+OTTrmoW9a8N3jsI/izyHhpGHNWRbwZsBOrOH8xc+qFpg+0+d+CgkUbT82iDWks2C571e
-	4oIV3Znln4X0I0p30tl/VM4dlAV1liYwWHvzvH+hHx0T8iqgJevltQB0L9LjLEPHV00z/giLm8M
-	x0y/yz0KZPcrOjivKVQEn2TK
-X-Google-Smtp-Source: AGHT+IFHfOOl6mZeB5Mp3Yf4a024PZQ1azNnZAt0Xlq5r9Sp57KSEDZ9mlf7RbY8QgX4UurEi2QyFw==
-X-Received: by 2002:a17:90b:274c:b0:2fe:a545:4c85 with SMTP id 98e67ed59e1d1-306a6268598mr13951024a91.27.1743969544093;
-        Sun, 06 Apr 2025 12:59:04 -0700 (PDT)
-Received: from x1 ([97.115.235.21])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057ca47ec7sm8413268a91.15.2025.04.06.12.59.03
+        bh=CF/FhaEsCR/+W8yHZpCK1Z4y/u8MKd7X9wwGafUA/ZE=;
+        b=dSnQfLq73y757tAMp59Z3gJwO9ONmq7h0HUFqufqYF6rv7zbEYJGHbKVqRgsmf9paM
+         sltD8OuSTbcbhB1UxyEroBy8wRlI0Bc6vXM5opxqFKAJTKjJ/MNZxIjTNuTundO26PzV
+         0T7i31cSBghe+7F6Vrnk/J5HZVGtC/SFSVzEPKac7BmH36JgpKVh0iLBeO/TZCZIp82F
+         10EO3zipk101Em9gNr9vAbt8iKW5uTb6413gYOu75tp4p/w+BE18k3mFUTJEO4A3c9mR
+         oJ2XCtsJWPGXBE5oaYLia+Hklm2BuMf8FQ6r/272UKbkB7Dkcd1BkcwTYpWk3aUHfp5w
+         Oi+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWdYk4oeCd0a0ea5RdSaYwQlpOKr6RmsSKNEAQMXQiVXuzRFd1XSYLEPyR8PdJ4dNW2hQolJiNV0Q56@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6lvl+TwVQsHqgc0cj6qvvKjsA5AMhu7O4VYUHQAOUuKO4beKL
+	X6Gdc9sJNdDluHPm9lVZ7S1yDmOf43wPhPAdmY1eMir1FZd4dbPIW8QtXaWGi7RZdqow2Cnt2ux
+	isHE09pgvua5Q29vLxwD0FVy/+hJc5ujJxwaSR8VG0kURrV6+AJ4gnilnIxii
+X-Gm-Gg: ASbGncs2GxW6YdpGVDB8z01zCLxUdIzwhu+0a6bm/C3UsSQruIwVuZVkoFZdGDyMUj7
+	F14/A5rpVQGRkVRnGwZd4AiUvsvfwjTY3FfnxEt9Z8GUdkC8ZXfrkTnDHe+2TmQGhQntdyDPv+K
+	Op3/oj8z9YPXvQ/bXt6QKKa4yYisO81crdaFuRykLkeqJ8KdNJ+gxsnLR1ZTLffRcaMwKQw2itV
+	bUFEQOSxWoklsihX8qmyLf+9elcfYkqc2ZOGsAD3GZkVv/Qzk5+pqfG+O06zsnSd5tAz/02KZXX
+	m1hy/d2X71Ywpzbw+S93d9xpmV6lq1BKbyDAcmFO5YIWCmYR2BJWCuiDKu/Ev7PPR8i/ZsCFdqR
+	zZU4=
+X-Received: by 2002:a05:620a:c4d:b0:7c5:4c6d:7f95 with SMTP id af79cd13be357-7c77dddd504mr1034345485a.48.1743970375702;
+        Sun, 06 Apr 2025 13:12:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8HcuVy420ofuMxKjaap5079mCf5g49f9eFhqlYXviEaGsK9bqA0z16b86EzmKh4ysjdA81w==
+X-Received: by 2002:a05:620a:c4d:b0:7c5:4c6d:7f95 with SMTP id af79cd13be357-7c77dddd504mr1034343085a.48.1743970375372;
+        Sun, 06 Apr 2025 13:12:55 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f03124530sm13925971fa.9.2025.04.06.13.12.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Apr 2025 12:59:03 -0700 (PDT)
-Date: Sun, 6 Apr 2025 12:59:01 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org,
-	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 1/3] dt-bindings: clock: thead: Add TH1520 VO clock
- controller
-Message-ID: <Z/LdBTtAj2+J5nbb@x1>
-References: <20250403094425.876981-1-m.wilczynski@samsung.com>
- <CGME20250403094431eucas1p21412dff1c24aae077fdfeef08e0f802b@eucas1p2.samsung.com>
- <20250403094425.876981-2-m.wilczynski@samsung.com>
+        Sun, 06 Apr 2025 13:12:54 -0700 (PDT)
+Date: Sun, 6 Apr 2025 23:12:52 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: Re: [PATCH v3 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
+ to DP bridge nodes
+Message-ID: <nxnqwh2mzvnxv5ytwjsyulxr6ct6mhv3z3v6q4ojrjhhclwv2i@55nb56hnwi3y>
+References: <20250404115539.1151201-1-quic_amakhija@quicinc.com>
+ <20250404115539.1151201-8-quic_amakhija@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,121 +108,290 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250403094425.876981-2-m.wilczynski@samsung.com>
+In-Reply-To: <20250404115539.1151201-8-quic_amakhija@quicinc.com>
+X-Proofpoint-GUID: 9R5mHc2Syo8V-gJXWk7KmM_8JS17V8DO
+X-Proofpoint-ORIG-GUID: 9R5mHc2Syo8V-gJXWk7KmM_8JS17V8DO
+X-Authority-Analysis: v=2.4 cv=MpRS63ae c=1 sm=1 tr=0 ts=67f2e049 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=DHtXK5enkGFnJ6Jc3mUA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-06_06,2025-04-03_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=888 clxscore=1015 priorityscore=1501 impostorscore=0
+ spamscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504060147
 
-On Thu, Apr 03, 2025 at 11:44:23AM +0200, Michal Wilczynski wrote:
-> Add device tree bindings for the TH1520 Video Output (VO) subsystem
-> clock controller. The VO sub-system manages clock gates for multimedia
-> components including HDMI, MIPI, and GPU.
+On Fri, Apr 04, 2025 at 05:25:36PM +0530, Ayushi Makhija wrote:
+> Add anx7625 DSI to DP bridge device nodes.
 > 
-> Document the VIDEO_PLL requirements for the VO clock controller, which
-> receives its input from the AP clock controller. The VIDEO_PLL is a
-> Silicon Creations Sigma-Delta (integer) PLL typically running at 792 MHz
-> with maximum FOUTVCO of 2376 MHz.
-> 
-> This binding complements the existing AP sub-system clock controller
-> which manages CPU, DPU, GMAC and TEE PLLs.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
 > ---
->  .../bindings/clock/thead,th1520-clk-ap.yaml   | 17 ++++++++--
->  .../dt-bindings/clock/thead,th1520-clk-ap.h   | 34 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 208 ++++++++++++++++++++-
+>  1 file changed, 207 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> index 0129bd0ba4b3..9d058c00ab3d 100644
-> --- a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> @@ -8,7 +8,8 @@ title: T-HEAD TH1520 AP sub-system clock controller
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 175f8b1e3b2d..8e784ccf4138 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -28,6 +28,13 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
 >  
->  description: |
->    The T-HEAD TH1520 AP sub-system clock controller configures the
-> -  CPU, DPU, GMAC and TEE PLLs.
-> +  CPU, DPU, GMAC and TEE PLLs. Additionally the VO subsystem configures
-> +  the clock gates for the HDMI, MIPI and the GPU.
->  
->    SoC reference manual
->    https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
-> @@ -20,14 +21,24 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: thead,th1520-clk-ap
-> +    enum:
-> +      - thead,th1520-clk-ap
-> +      - thead,th1520-clk-vo
->  
->    reg:
->      maxItems: 1
->  
->    clocks:
->      items:
-> -      - description: main oscillator (24MHz)
-> +      - description: |
-> +          One input clock:
-> +          - For "thead,th1520-clk-ap": the clock input must be the 24 MHz
-> +            main oscillator.
-> +          - For "thead,th1520-clk-vo": the clock input must be the VIDEO_PLL,
-> +            which is configured by the AP clock controller. According to the
-> +            TH1520 manual, VIDEO_PLL is a Silicon Creations Sigma-Delta PLL
-> +            (integer PLL) typically running at 792 MHz (FOUTPOSTDIV), with
-> +            a maximum FOUTVCO of 2376 MHz.
->  
->    "#clock-cells":
->      const: 1
-> diff --git a/include/dt-bindings/clock/thead,th1520-clk-ap.h b/include/dt-bindings/clock/thead,th1520-clk-ap.h
-> index a199784b3512..09a9aa7b3ab1 100644
-> --- a/include/dt-bindings/clock/thead,th1520-clk-ap.h
-> +++ b/include/dt-bindings/clock/thead,th1520-clk-ap.h
-> @@ -93,4 +93,38 @@
->  #define CLK_SRAM3		83
->  #define CLK_PLL_GMAC_100M	84
->  #define CLK_UART_SCLK		85
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
 > +
-> +/* VO clocks */
-> +#define CLK_AXI4_VO_ACLK		0
-> +#define CLK_GPU_MEM			1
-> +#define CLK_GPU_CORE			2
-> +#define CLK_GPU_CFG_ACLK		3
-> +#define CLK_DPU_PIXELCLK0		4
-> +#define CLK_DPU_PIXELCLK1		5
-> +#define CLK_DPU_HCLK			6
-> +#define CLK_DPU_ACLK			7
-> +#define CLK_DPU_CCLK			8
-> +#define CLK_HDMI_SFR			9
-> +#define CLK_HDMI_PCLK			10
-> +#define CLK_HDMI_CEC			11
-> +#define CLK_MIPI_DSI0_PCLK		12
-> +#define CLK_MIPI_DSI1_PCLK		13
-> +#define CLK_MIPI_DSI0_CFG		14
-> +#define CLK_MIPI_DSI1_CFG		15
-> +#define CLK_MIPI_DSI0_REFCLK		16
-> +#define CLK_MIPI_DSI1_REFCLK		17
-> +#define CLK_HDMI_I2S			18
-> +#define CLK_X2H_DPU1_ACLK		19
-> +#define CLK_X2H_DPU_ACLK		20
-> +#define CLK_AXI4_VO_PCLK		21
-> +#define CLK_IOPMP_VOSYS_DPU_PCLK	22
-> +#define CLK_IOPMP_VOSYS_DPU1_PCLK	23
-> +#define CLK_IOPMP_VOSYS_GPU_PCLK	24
-> +#define CLK_IOPMP_DPU1_ACLK		25
-> +#define CLK_IOPMP_DPU_ACLK		26
-> +#define CLK_IOPMP_GPU_ACLK		27
-> +#define CLK_MIPIDSI0_PIXCLK		28
-> +#define CLK_MIPIDSI1_PIXCLK		29
-> +#define CLK_HDMI_PIXCLK			30
+>  	vreg_conn_1p8: vreg_conn_1p8 {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vreg_conn_1p8";
+> @@ -128,6 +135,30 @@ dp1_connector_in: endpoint {
+>  			};
+>  		};
+>  	};
 > +
->  #endif
+> +	dp-dsi0-connector {
+> +		compatible = "dp-connector";
+> +		label = "DSI0";
+> +		type = "full-size";
+> +
+> +		port {
+> +			dp_dsi0_connector_in: endpoint {
+> +				remote-endpoint = <&dsi2dp_bridge0_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	dp-dsi1-connector {
+> +		compatible = "dp-connector";
+> +		label = "DSI1";
+> +		type = "full-size";
+> +
+> +		port {
+> +			dp_dsi1_connector_in: endpoint {
+> +				remote-endpoint = <&dsi2dp_bridge1_out>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -517,9 +548,135 @@ &i2c11 {
+>  
+>  &i2c18 {
+>  	clock-frequency = <400000>;
+> -	pinctrl-0 = <&qup_i2c18_default>;
+> +	pinctrl-0 = <&qup_i2c18_default>,
+> +		    <&io_expander_intr_active>,
+> +		    <&io_expander_reset_active>;
+
+These pinctrl entries should go to the IO expander itself.
+
+>  	pinctrl-names = "default";
+> +
+>  	status = "okay";
+> +
+> +	io_expander: gpio@74 {
+> +		compatible = "ti,tca9539";
+> +		reg = <0x74>;
+> +		interrupts-extended = <&tlmm 98 IRQ_TYPE_EDGE_BOTH>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +
+> +		gpio2-hog {
+
+This needs a huuge explanation in the commit message. Otherwise I'd say
+these pins should likely be used by the corresponding anx bridges.
+
+> +			gpio-hog;
+> +			gpios = <2 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "dsi0_int_pin";
+> +		};
+> +
+> +		gpio3-hog {
+> +			gpio-hog;
+> +			gpios = <3 GPIO_ACTIVE_LOW>;
+> +			output-high;
+> +			line-name = "dsi0_cbl_det_pin";
+> +		};
+> +
+> +		gpio10-hog {
+> +			gpio-hog;
+> +			gpios = <10 GPIO_ACTIVE_HIGH>;
+> +			input;
+> +			line-name = "dsi1_int_pin";
+> +		};
+> +
+> +		gpio11-hog {
+> +			gpio-hog;
+> +			gpios = <11 GPIO_ACTIVE_LOW>;
+> +			output-high;
+> +			line-name = "dsi1_cbl_det_pin";
+> +		};
+> +	};
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9543";
+> +		#address-cells = <1>;
+> +
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +
+> +		i2c@0 {
+> +			reg = <0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			bridge@58 {
+> +				compatible = "analogix,anx7625";
+> +				reg = <0x58>;
+> +				interrupts-extended = <&io_expander 2 IRQ_TYPE_EDGE_FALLING>;
+> +				enable-gpios = <&io_expander 1 GPIO_ACTIVE_HIGH>;
+> +				reset-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
+> +				vdd10-supply = <&vph_pwr>;
+> +				vdd18-supply = <&vph_pwr>;
+> +				vdd33-supply = <&vph_pwr>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						dsi2dp_bridge0_in: endpoint {
+> +							remote-endpoint = <&mdss0_dsi0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +
+> +						dsi2dp_bridge0_out: endpoint {
+> +							remote-endpoint = <&dp_dsi0_connector_in>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		i2c@1 {
+> +			reg = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			bridge@58 {
+> +				compatible = "analogix,anx7625";
+> +				reg = <0x58>;
+> +				interrupts-extended = <&io_expander 10 IRQ_TYPE_EDGE_FALLING>;
+> +				enable-gpios = <&io_expander 9 GPIO_ACTIVE_HIGH>;
+> +				reset-gpios = <&io_expander 8 GPIO_ACTIVE_HIGH>;
+> +				vdd10-supply = <&vph_pwr>;
+> +				vdd18-supply = <&vph_pwr>;
+> +				vdd33-supply = <&vph_pwr>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						dsi2dp_bridge1_in: endpoint {
+> +							remote-endpoint = <&mdss0_dsi1_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +
+> +						dsi2dp_bridge1_out: endpoint {
+> +							remote-endpoint = <&dp_dsi1_connector_in>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>  };
+>  
+>  &mdss0 {
+> @@ -566,6 +723,40 @@ &mdss0_dp1_phy {
+>  	status = "okay";
+>  };
+>  
+> +&mdss0_dsi0 {
+> +	vdda-supply = <&vreg_l1c>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dsi0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	remote-endpoint = <&dsi2dp_bridge0_in>;
+> +};
+> +
+> +&mdss0_dsi0_phy {
+> +	vdds-supply = <&vreg_l4a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dsi1 {
+> +	vdda-supply = <&vreg_l1c>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&mdss0_dsi1_out {
+> +	data-lanes = <0 1 2 3>;
+> +	remote-endpoint = <&dsi2dp_bridge1_in>;
+> +};
+> +
+> +&mdss0_dsi1_phy {
+> +	vdds-supply = <&vreg_l4a>;
+> +
+> +	status = "okay";
+> +};
+> +
+>  &pmm8654au_0_gpios {
+>  	gpio-line-names = "DS_EN",
+>  			  "POFF_COMPLETE",
+> @@ -714,6 +905,21 @@ ethernet0_mdio: ethernet0-mdio-pins {
+>  		};
+>  	};
+>  
+> +	io_expander_intr_active: io-expander-intr-active-state {
+> +		pins = "gpio98";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	io_expander_reset_active: io-expander-reset-active-state {
+> +		pins = "gpio97";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-high;
+> +	};
+> +
+>  	qup_uart10_default: qup-uart10-state {
+>  		pins = "gpio46", "gpio47";
+>  		function = "qup1_se3";
 > -- 
 > 2.34.1
 > 
 
-Reviewed-by: Drew Fustini <drew@pdp7.com>
-
-I think this makes sense and dt_binding_check looks clean.
-
-Thanks,
-Drew
+-- 
+With best wishes
+Dmitry
 
