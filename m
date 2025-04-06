@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-163420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3880AA7CDD1
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 14:13:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D308EA7CDD9
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 14:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C87291886584
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 12:13:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F8903B185A
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 12:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F7621766A;
-	Sun,  6 Apr 2025 12:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1777A20E6E4;
+	Sun,  6 Apr 2025 12:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YaG4Hxsp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxAgbCgK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE5A20E6FD;
-	Sun,  6 Apr 2025 12:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEAC14A4F9;
+	Sun,  6 Apr 2025 12:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743941594; cv=none; b=kcgsdJzq23FSPXSX/HkQZ7iYAMJEsGRiudLIUIdQ0G7RB/g/3jURA4gF5kfsirw6TZUplH1r9eCh04I2aj5R1e8M+qDlxAni82yVqrjUcBejATt1JaN/P990kkVqhi1D9KbRS1YQIgrBYF/jbKZ0fkFeu4CXEdnQaFlgnIiSTBg=
+	t=1743942113; cv=none; b=a69K13wVM25LKsqo1cF3CnXR3xJGDfH9bfIePbXVYGL8TgRVCznr9Ao5aF0UXthlCIziOz+LfYJ7IncJmjxciwrZqCnbFBxejfwfNlNYT9+8Z9o7dlKjY84D4k0HU4752UR9NobC6ChJSL8E3g5tE+X6xjGTl2EyqaaemZokts0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743941594; c=relaxed/simple;
-	bh=xZzrqfASVG7xF2GB9rUYr1LIUP1qsSLaKh0AMWmh1Rw=;
+	s=arc-20240116; t=1743942113; c=relaxed/simple;
+	bh=AY+s8uk+3zEBzpGaOEXfbqJ8aK9Dqgyl5lmPlL0ivo0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B2y0JKj+36ytcdTd1HZgrgrNUuH7AQ6M8F/fuNO8BirwzA/zwWTTwlHVp5ldC2J5v2sDNOrxLo+lhm3bQtCNN3MYn1QnC0nUNqNmiAq0tSsvmLevXznTPrcylMX9t69em2zt0nOMIXAhMac+mzb5row1PXlqZD8jiX2p9bwAAd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YaG4Hxsp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E6AC4CEE3;
-	Sun,  6 Apr 2025 12:13:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Tt1D/qgykNq/I/y8b3hS97o8EYqQNulTFYHVquaS1Gi+wvCkTfzWFbbTBNbboSPLHHKlpxLwnlGbxC56Lj9PpKos5e1bCHdI3Ejsfz0a0szGYzLYIg908J9fRBzlvUUb+4J/eBKNrpbmpJBgZdIZ8eUhLY26oXzmI0QqyQ6V96M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxAgbCgK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EFBBC4CEE3;
+	Sun,  6 Apr 2025 12:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743941593;
-	bh=xZzrqfASVG7xF2GB9rUYr1LIUP1qsSLaKh0AMWmh1Rw=;
+	s=k20201202; t=1743942112;
+	bh=AY+s8uk+3zEBzpGaOEXfbqJ8aK9Dqgyl5lmPlL0ivo0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YaG4HxspfHnyCoHLsMiRwfrJcZilrf+WruMMWLzgVRlv23zqUOv+x9or+nGJYrjFl
-	 drWVa5dKuqx+BB6Ms1bL7NtVNrmD5mR7aExmh1VGqaouWw8EzPaReN/FnW+WsN9Owq
-	 +wW1sj6qvnecajg3R5OtnofX3MP3LoYPvU8Jf4VRWB15QpUtReaCk8RNJh6Z6geReE
-	 n8LUmAkVDLecS2IlZUVJfUdry5GojMVYESQvawTUKWGReNuj2ImPWZF/1KlCatMGx8
-	 fqrHYtwBYiFEAaVPqwhyIWaNNTsmr3PY3jUnte8GJGYXOE1I59OtqApRgPPZqjTLfG
-	 uoFQMXMzMv8mg==
-Message-ID: <a162ce6f-bb69-4fa3-a67b-5d38ffb9e2ef@kernel.org>
-Date: Sun, 6 Apr 2025 14:13:08 +0200
+	b=dxAgbCgKK6t2H0SjxgshKRvESDJ/4Ei3MdI607sU1vcJ9AD0evVsZiBSZALE0e26q
+	 5ONvSMDnFP1Sw2/SU/utMb19AGK5K/ttSkC4Z6x3VGfLiXYkeHl1b8sZAZm1Mc+FnX
+	 rPayO2jn0Tooxbmd6dmW6Pd0UdRJjjcdrkS2jahZwT2hc5dg4hhCBUnQ7JLXjvTkK/
+	 Nq3WGSWE8Ow9ZjErtWc9ZRMrI4uR0wI96ErLydk6od7MJDKJoOVTHVFL2gjoKhyLO4
+	 /XHZZpoAAVrDsrNOoOiBpZoKgfp5AkLKMDH1LNhMIWqbhu+QlHRHvGQNacI7t90nYP
+	 jYkEs+4xsuBAg==
+Message-ID: <e9265770-784a-4682-b3b3-bace88aef36c@kernel.org>
+Date: Sun, 6 Apr 2025 14:21:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add vcp driver
-To: =?UTF-8?B?WGlhbmd6aGkgVGFuZyAo5ZSQ55u45b+XKQ==?=
- <Xiangzhi.Tang@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?SGFpbG9uZyBGYW4gKOiMg+a1t+m+mSk=?= <Hailong.Fan@mediatek.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>
-References: <20250402092134.12293-1-xiangzhi.tang@mediatek.com>
- <ca8d93e1-ea75-42b3-b7a5-a12cb509890c@kernel.org>
- <4981f87ea9d86fb8633278ab31f7341ec0a9ad74.camel@mediatek.com>
+Subject: Re: [PATCH] phy: qualcomm: phy-qcom-eusb2-repeater: rework reg
+ override handler
+To: Pengyu Luo <mitltlatltl@gmail.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250405174319.405975-1-mitltlatltl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,41 +105,86 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <4981f87ea9d86fb8633278ab31f7341ec0a9ad74.camel@mediatek.com>
+In-Reply-To: <20250405174319.405975-1-mitltlatltl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/04/2025 10:05, Xiangzhi Tang (唐相志) wrote:
-> On Wed, 2025-04-02 at 12:31 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 02/04/2025 11:19, Xiangzhi Tang wrote:
->>> Add support MediaTek's Video Companion Processor(VCP) host driver
->>> to
->>> control the MediaTek VCP Risc-V coprocessor.
->>> The VCP host driver using rproc mechanism to load vcm firmware
->>> from filesystem, and using SMC services to request ATF to setting
->>> vcp boot sequence, and Host communicated with VCP FW depends on VCP
->>> IPC interfaces
->>>
->>> This series patches dependent on:
->>> [1]
->>>
-> https://lore.kernel.org/all/20250307032942.10447-1-guangjie.song@mediatek.com/
->>
->> They should not depend. It blocks your patch. I suggest decoupling
->> from
->> dependencies.
->> I run test "make dt_binding_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/mediatek,m
-> t8196-vcp.yaml", And, I have to cherry-pick first "
+On 05/04/2025 19:43, Pengyu Luo wrote:
+> In downstream tree, many registers need to be overrided, it varies
+> from devices and platforms, not only HS trasmit amplitude(0x51),
+> HS disconnect threshold(0x53), Tx pre-emphasis tuning(0x57).
 > 
+> The device I plan to upstream also uses it, so I write the patch for
+> it (Oneplus Pad Pro / Oneplus Pad 2, sm8650-mtp based).
+> 
+> In upstream, only Sony Xperia 1 V is using this, so fixing it for sony,
+> in downstream, some crd, mtp, htk devices also use it, I have no
+> such device, don't set it for them.
+> 
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> ---
+>  .../qcom/sm8550-sony-xperia-yodo-pdx234.dts   |  5 +-
+>  .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 86 +++++++++++++++----
 
-How is this related? Did you read my message? You should not depend and
-you answer "I added dependency". Great, so your patch won't get accepted
-and won't get tested. Lack of testing will result in lack of review.
+DTS is always separate patch.
+
+>  2 files changed, 72 insertions(+), 19 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> index d90dc7b37..99f5fd32c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> @@ -673,9 +673,8 @@ cam_pwr_a_cs: cam-pwr-a-cs-state {
+>  };
+>  
+>  &pm8550b_eusb2_repeater {
+> -	qcom,tune-usb2-disc-thres = /bits/ 8 <0x6>;
+> -	qcom,tune-usb2-amplitude = /bits/ 8 <0xf>;
+> -	qcom,tune-usb2-preem = /bits/ 8 <0x7>;
+> +	qcom,param-override-seq = <0x51 0x08 0x53 0x06 0x57 0x07>;
+> +	qcom,host-param-override-seq = <0x51 0x08 0x53 0x06 0x57 0x07>;
+
+There are no such properties.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+>  	vdd18-supply = <&pm8550_l15>;
+>  	vdd3-supply = <&pm8550_l5>;
+>  };
+
+
+...
+
+> +
+>  static int eusb2_repeater_init_vregs(struct eusb2_repeater *rptr)
+>  {
+>  	int num = rptr->cfg->num_vregs;
+> @@ -127,20 +189,12 @@ static int eusb2_repeater_init_vregs(struct eusb2_repeater *rptr)
+>  static int eusb2_repeater_init(struct phy *phy)
+>  {
+>  	struct eusb2_repeater *rptr = phy_get_drvdata(phy);
+> -	struct device_node *np = rptr->dev->of_node;
+>  	struct regmap *regmap = rptr->regmap;
+>  	const u32 *init_tbl = rptr->cfg->init_tbl;
+> -	u8 tune_usb2_preem = init_tbl[TUNE_USB2_PREEM];
+> -	u8 tune_hsdisc = init_tbl[TUNE_HSDISC];
+> -	u8 tune_iusb2 = init_tbl[TUNE_IUSB2];
+>  	u32 base = rptr->base;
+>  	u32 val;
+>  	int ret;
+>  
+> -	of_property_read_u8(np, "qcom,tune-usb2-amplitude", &tune_iusb2);
+> -	of_property_read_u8(np, "qcom,tune-usb2-disc-thres", &tune_hsdisc);
+> -	of_property_read_u8(np, "qcom,tune-usb2-preem", &tune_usb2_preem);
+
+NAK, that's an ABI break.
 
 
 Best regards,
