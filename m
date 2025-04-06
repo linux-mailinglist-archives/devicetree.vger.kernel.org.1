@@ -1,129 +1,188 @@
-Return-Path: <devicetree+bounces-163415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CDCBA7CDB6
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 13:26:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCEB5A7CDC5
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 14:00:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FCBA16BC55
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 11:26:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD163AF123
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 11:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284261A5BBB;
-	Sun,  6 Apr 2025 11:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D370A202C24;
+	Sun,  6 Apr 2025 12:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKgje2hp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b84bkGUX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2ABD2AEF5;
-	Sun,  6 Apr 2025 11:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22FA2AEF5;
+	Sun,  6 Apr 2025 11:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743938797; cv=none; b=NH2Ia31nCH+V5r4H9FfoAKedNl5j76tZp+645mCKBIEvM/DwlV1DMZrGJd5m36VuFtY9VCdOXmF44Z3AK/9sb0t/bUD0V/mv4of465Ph0KMarwAKOg3I9eG1NjZT4zSjsZBdZlExMQFVOJiXwonzn4pD2Y+oBwfwFiVEttB46qU=
+	t=1743940800; cv=none; b=QUYL1KqNlZT1ZCJAaxVxauVMm2KwFAXab71jDkVRQxxmBYorII4caEISYEjQezkzJt6QVa9TOsbDk7iUKJdJJy1VXIh3cF82sXzGX0R0RsomWQsmgg3+k97NiieGasTl5fuo0E02Vsn51wACx38V58JKst1HJ2LuF0QiagLekiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743938797; c=relaxed/simple;
-	bh=jL/8D2qCZPKTmwi777Tx43TnzWuJu6d9pmmYBT1sfe0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=beNXHvVZSB5cwyqBilDl8Ai6rtofX6wSrZ5RQGpURF4dnXOO6ZYPXhUH7dnyocst5OO3hoErcDDextPrt/aTsXHJM/xbB9WDSV8onCL6oEs+bDfmxFfBoRdBUyJSByogVdHqKJ6GZFV6o6ONmk5tg9Szx0VAsan/6paIVnfOFCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKgje2hp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 458EEC4CEE3;
-	Sun,  6 Apr 2025 11:26:31 +0000 (UTC)
+	s=arc-20240116; t=1743940800; c=relaxed/simple;
+	bh=7N8oo4TYDHzNq/47YKx06MEKsPixGmEO4o/eFLqLlI0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GsEjb61lZOTgvIUiDj20YLuGx7gKzu8OeyzcC3MUgS0X0ol5NVUgbQQGfOF2NrDbm4zqMH0b+C6HjYrYqCtcytE+ABifH++ISYX6G9A2B+ZaqmZgD5nBBlaE14wNtnV5IVvoAXynMXgaHgGSkvXuRp7CdInXwUAYUpbfzAWLS2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b84bkGUX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41BCC4CEE3;
+	Sun,  6 Apr 2025 11:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743938796;
-	bh=jL/8D2qCZPKTmwi777Tx43TnzWuJu6d9pmmYBT1sfe0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mKgje2hprWREMBbm/vS7rpVOjWc173idvFeLKlPCYzOg+jR+Gy+xUh6irF0BA8a6o
-	 M+7/0vpCyp7YkjNoyFuDIGy7L4ipSr9M6BJf3lIR8Kgmb80UJ8w0cyr0nk9msbTXzQ
-	 3Fc5lG3FIgvIFoHxZYk+TASuuUxRrZsuEYQ3wBU6IPbNNYyHXvyo0ltpQDu04lGujB
-	 aL//m5mDBnW3Z998fp9VXWpeyFD0pGAWfA2GTZAaZiQyefSWju1O4mH4WU2ixKXOa5
-	 ChOSI1uvVTCIhmWKTDeMH6vYdVIZE+Owep9mJ3z6zu2Nok+HUhWRfqXkVEf8LflC+s
-	 cdNOzpWb7G07Q==
-Date: Sun, 6 Apr 2025 12:26:28 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: gyeyoung <gye976@gmail.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, lars@metafoo.de,
- gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 3/5] ABI: iio: add new ABI doc for mhz19b
-Message-ID: <20250406122628.7511e1b0@jic23-huawei>
-In-Reply-To: <20250406122048.3d59c2b5@jic23-huawei>
-References: <20250403053225.298308-1-gye976@gmail.com>
-	<20250403053225.298308-4-gye976@gmail.com>
-	<20250404123308.00003d72@huawei.com>
-	<CAKbEznsozpnfFgy3Giamv3XJvf_XqPQ8ZF3TSZHPGfQhm+baFA@mail.gmail.com>
-	<20250406122048.3d59c2b5@jic23-huawei>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1743940798;
+	bh=7N8oo4TYDHzNq/47YKx06MEKsPixGmEO4o/eFLqLlI0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b84bkGUXWuf2i+9SG9VAZtN98oUGA2lCRaS7DtWPegeH3fTiM2V+zCKZA5AB6U2LI
+	 v1mtAjSe9GqOei3PGMoPv24maEPjVselu8dfCLVAtt/yDU4feSCgVsVV4BABmBuTAA
+	 sqF5K7If3fWNICE4vRxcoic6+oTZLgXhU5YSq6NyD66JwJ9d8logz0BHZjQXNYrg4J
+	 s6RjN1pRU8gnZwnTGuVmfEFl77qLs2E776VzwIOzGQnwK656p6+iTbcRUnJp6Y2mgm
+	 wdzpwjYi2VqDDi5A30s2XbVmeC2fQ1vfsKIwxr7ksmjdzClyS5A0B84sGdky9idlay
+	 fGFaupSMYHZlQ==
+Message-ID: <eac877d0-2fd3-44cf-8917-910042cdcec9@kernel.org>
+Date: Sun, 6 Apr 2025 13:59:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] dt-bindings: leds: add TI/National Semiconductor
+ LP5812 LED Driver
+To: Nam Tran <trannamatk@gmail.com>, pavel@kernel.org, lee@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250405183246.198568-1-trannamatk@gmail.com>
+ <20250405183246.198568-2-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250405183246.198568-2-trannamatk@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Sun, 6 Apr 2025 12:20:48 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+On 05/04/2025 20:32, Nam Tran wrote:
+> +properties:
+> +  compatible:
+> +    const: ti,lp5812
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      I2C slave address
+> +      lp5812/12- 0x1b
 
-> On Sat, 5 Apr 2025 22:47:45 +0900
-> gyeyoung <gye976@gmail.com> wrote:
->=20
-> > Hello Jonathan, thank you for the review.
-> >  =20
-> > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19=
-b b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
-> > > > new file mode 100644
-> > > > index 000000000000..6cdfd34be016
-> > > > --- /dev/null
-> > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
-> > > > @@ -0,0 +1,7 @@
-> > > > +What:                /sys/bus/iio/devices/co2_range
-> > > > +Date:                April 2025
-> > > > +KernelVersion:       6.14
-> > > > +Contact:     Gyeyoung Baek <gye976@gmail.com>
-> > > > +Description:
-> > > > +             Writing a value adjust maximum measurable PPM.
-> > > > +             should be 2000 or 5000.   =20
-> > >
-> > > I haven't checked but assume this also results in a scaling of the
-> > > measure _raw values?  If so the control should be via the standard
-> > > ABI scale.  If you need to be able to establish the range, provide
-> > > the _available for the _raw via the read_avail() callback and setting
-> > > appropriate bit in info_mask_separate_available
-> > >   =20
-> >=20
-> > In this device, changing the measurement range does not affect the
-> > unit or scaling.
-> > As far as I know, increasing the range just leads to a decrease in accu=
-racy. =20
->=20
-> That's unusual but fair enough.  hardwaregain is perhaps appropriate
-> as this doesn't really map to calibscale which is the other thing close
-> to this.
->=20
-Actually - any idea what the gain is doing?  Is it adjusting a analog
-amplfier, or messing with the integration time (I have little idea
-how these sensors work!)=20
+Drop description, redundant.
 
-Jonathan
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^led@[0-9a-b]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 0xb
+> +
+> +      chan-name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description: LED channel name
+
+Isn't this existing label property? Or node name? You don't need this
+and instead whatever currently LED subsystem is expecting (label got
+discouraged so maybe there is something else now).
 
 
-> >  =20
-> > > General rule is don't introduce new ABI unless it is impossible to
-> > > provide the same information via existing interfaces.  The decision
-> > > to use scale rather than range info to control channel scaling was
-> > > made a very long time ago and having a mixture of the two would
-> > > make for very complex userspace code.   =20
-> >=20
-> > I=E2=80=99ve reviewed the sysfs-bus-iio documentation, I think there is
-> > no suitable interface for this case. So I'll drop this option.
-> >=20
-> > Thanks,
-> > Gyeyoung =20
->=20
+There is no multi-led support in the device? Datasheet this can work as
+matrix and as direct drive of 4 LEDs, so binding looks incomplete. Not
+sure what you exactly miss here - check other recent devices with
+similar features.
 
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@1b {
+> +            compatible = "ti,lp5812";
+> +            reg = <0x1b>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            led@0 {
+> +                    reg = <0x0>;
+> +                    chan-name = "a0";
+
+Mixed up indentation.
+
+
+Best regards,
+Krzysztof
 
