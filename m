@@ -1,136 +1,231 @@
-Return-Path: <devicetree+bounces-163461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB7BA7CF78
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4379A7CF85
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDC0D16F040
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 18:22:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9113416ACE3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 18:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942DE19AD5C;
-	Sun,  6 Apr 2025 18:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F4E19D060;
+	Sun,  6 Apr 2025 18:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+dl7Ude"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Io2/pkMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4ED1CA81;
-	Sun,  6 Apr 2025 18:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6B0158D80
+	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 18:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743963735; cv=none; b=AjFCfqDPunRSo4Z1CfylYuyz7lv7y+5Td+xpzoKuAUIq4GSeHxHm5/0b0VdHu5phMuUDqNsQ6J9BJTN1NI5QdlUA9xXWQIEFC2+DqNkqEYs30O0LFi8QKqD1fUUWO7cB0srOnor/SgdK2zpvhmtePd2xOuz+tyr2ROduUWk9Xks=
+	t=1743964098; cv=none; b=ut3eClUgfCUmF1iTz5TqLs6wE7g+KyK+ovCS22w/pgcplcKtDKHmsidjsU56seiu2h+ScgoX+0dobuqRbnKX1A9UiuAE3K0Ww1Z/FzGpeba/8kHq828AlyfKU6oA2zhr0IPqMpaOmI/hoULcRBlph2iXCyLrXIcFzaq41vqR78A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743963735; c=relaxed/simple;
-	bh=g2RETw/Z4oprQEQecoLsQYOib0vL9w+4xAUlZqp5lSg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lf9LyOHAJWjIPgZ/ZG5aXXgAdkOaK43scqyz2Y+9cHkS0Shk+jDWyc0VbCU6L5wanFXaUGqGioynC259I7+0jSgbUW0lP3DyVaKfap42D2oGjhf9X9LpHBtsLSECpyDaz7hhU5NZSKFCYkzKIEFZsHAuCouHLHTQo0Okz6zXPFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+dl7Ude; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AFB0C4CEE3;
-	Sun,  6 Apr 2025 18:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743963734;
-	bh=g2RETw/Z4oprQEQecoLsQYOib0vL9w+4xAUlZqp5lSg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V+dl7Udemgbo0GBnmy06bawFgYyaMF/GMgvalYuTCkdbTPkqSt/SGX98lZn3QeeFo
-	 q9vlk8lTyD8r0m9KYYwuQvXuu8Mmv0v0cet/5B6sqAqN/3CPbdTv+IYHycmujY7iIp
-	 ZQjnKWE3ki1SPSPyvMYfxbh7dYILC4Wnyu1sM0hiN5dENLAE+ahBGu63nGHETZbju9
-	 R1xHi2cwTiJvtSCUmGrX7Gj4lmnXkb0O91rqenFIowywc3dPvQaw/kZ9K795ruJLLE
-	 1CxSqILC2tX63droV/SiEoJRy6KoebiuCiei+E53MkoU5kzTI81rKgqwDhyUIrQn2z
-	 vh8war2ShlBaQ==
-Message-ID: <3b00b19b-729c-48f9-b069-124272778ac0@kernel.org>
-Date: Sun, 6 Apr 2025 20:22:07 +0200
+	s=arc-20240116; t=1743964098; c=relaxed/simple;
+	bh=QO4YgeSl0i5WYqse9b0k2XDA2qWOnb5rpKGHL35a7NE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cdbd2AIoorvGLUZRmXEA5CNz+62v39G09TDgXZp8nyG7nE1apc+Bok1rOUVPtd+tDNMvFItF0Ezy5v+ipGB02SjmcY68zmvi4oPDQNCTKcnbdb4JkSTI5kd1BdE0SOzp4e0emJvcj4gWz3tmivBbEr+WFZfyNZ3HC3S12DSBt4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Io2/pkMG; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1743964095;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kUpzOoybZCjV/WY+gmOrQcMd2Tvg8+iKrIdRhgWrjew=;
+	b=Io2/pkMGoJ4prYpo96KOo+pPNU678gYsFiGMKzdRdvGsgsMgqBvmc/bY+Sl/NHXt6xvBEY
+	i/ef0K8i8DxrwXEPi4hDtaMp/rNxYMitDDBsbHZyGs3RVH+mqdNym2qgv/TvodpLXJwZRa
+	H+eX286jS4y2uzZ+RlRdVJKg+AUt4Qc=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-652-mDyOkYEON6eCYIx7SK_C6Q-1; Sun, 06 Apr 2025 14:28:14 -0400
+X-MC-Unique: mDyOkYEON6eCYIx7SK_C6Q-1
+X-Mimecast-MFC-AGG-ID: mDyOkYEON6eCYIx7SK_C6Q_1743964093
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-43d733063cdso29298915e9.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 11:28:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743964093; x=1744568893;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kUpzOoybZCjV/WY+gmOrQcMd2Tvg8+iKrIdRhgWrjew=;
+        b=vCmViud8wtY3STWP0xHATNbgRPJ9LX8i28luYGwCAhGtduyF0Lw/oqL/XxUd81qZW2
+         6dGkww3cZTj5pTEs+fFSTY9CHJT53UnUjwlZCjGiusoeBjyKwAs3yrL/DfUKhMBs4DLW
+         p3khejkFv08YO1DvjDXhWEPyY/v4FG29IobfW4Q9r7592kywmXCBimx9f41KWbvlO97k
+         Sf8AgwzAQHzNLRRHCr3OIjey1AJMgenWyVi7kmlHXEiNuN/qbi5m3aToNQf7lr92JQQX
+         GFEegsHs+UdGugi68e34foq4i26nkyLe/UjxmdUmg+oCrWcFSfaR90P/9mQRCiT49Uy+
+         mENg==
+X-Forwarded-Encrypted: i=1; AJvYcCUabxXL8SCyfoIm9LMWfdBjnOmE71OUHPzP9sSHtq2mYC4Sbv5m/8/Ib0ZWQOD/SicxCzLCBo+ojqx1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyUCi6t20Ayt8GDkiOmKmGWaRQpIYQFxNZoHSzAr39juEEEv7v
+	H9iwcN4HpHInM5OQ6wUmlD7f/oh93N6onHqHNYaEkqx9Sz8v/mI+Q1AcVMS058ggHrmgBuvk+so
+	s41iU2bLxxJ9HQwK7B/b5CerqLnqqhb3czrlhRL/o4GUYB/kRidckEZkBgiI=
+X-Gm-Gg: ASbGnct5oXdqXrkl0JMRXCN4HnPG1EvC4I+8EGR/36gkplkFnXmm7ZmnAwfouN5Sk14
+	fXtcTV3srx72oOieSFjkUkmnSU7pljo6HlY0v06NLPgmywem0ZrIRxFuuX3GyHtyIqIgDvv5MYx
+	9FUCXhpqtWSs0sXw1xFyEiOS5fG6FcjsQs782XsffszQCTGGITL/RuEkclSD+fOY3Sx8m9HEAbm
+	Vsbrdt+YQEJupO0SNHskN++Tl+GN2RJ5tZpxhjTNYfrsVKjFz5RlrUue26zAtzQB1MptaoqgE8K
+	xF4BViqvpw==
+X-Received: by 2002:a05:600c:2157:b0:43c:f87c:24d3 with SMTP id 5b1f17b1804b1-43ee0878e6emr38603405e9.20.1743964093108;
+        Sun, 06 Apr 2025 11:28:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEFFNEz0BaTWmqRTlho9bh/h+LO78mwXJbiMmvuhqlDLyW02fPdmXPDwKzB0L/AQ+PSp6rbHQ==
+X-Received: by 2002:a05:600c:2157:b0:43c:f87c:24d3 with SMTP id 5b1f17b1804b1-43ee0878e6emr38603325e9.20.1743964092759;
+        Sun, 06 Apr 2025 11:28:12 -0700 (PDT)
+Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30096b9csm10093725f8f.13.2025.04.06.11.28.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Apr 2025 11:28:11 -0700 (PDT)
+Date: Sun, 6 Apr 2025 14:28:08 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
+	Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <20250406114130-mutt-send-email-mst@kernel.org>
+References: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+ <Z-99snVF5ESyJDDs@infradead.org>
+ <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+ <20250404040838-mutt-send-email-mst@kernel.org>
+ <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+ <20250404043016-mutt-send-email-mst@kernel.org>
+ <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+ <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+ <20250404062409-mutt-send-email-mst@kernel.org>
+ <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 17/32] mfd: sec: rework platform data and regmap
- instantiating
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
- <20250403-s2mpg10-v3-17-b542b3505e68@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250403-s2mpg10-v3-17-b542b3505e68@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
 
-On 03/04/2025 10:59, André Draszik wrote:
-> Instead of a large open-coded switch statement, just add both regmap
-> config and device type to the OF match data. This allows us to have all
-> related information in one place, and avoids a long switch() statement.
+On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
+> On Fri, 2025-04-04 at 06:37 -0400, Michael S. Tsirkin wrote:
+> > On Fri, Apr 04, 2025 at 11:15:33AM +0100, David Woodhouse wrote:
+> > > On Fri, 2025-04-04 at 10:27 +0100, David Woodhouse wrote:
+> > > > On 4 April 2025 09:32:39 BST, "Michael S. Tsirkin" <mst@redhat.com>
+> > > > wrote:
+> > > > > On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote:
+> > > > > > On Fri, 2025-04-04 at 04:09 -0400, Michael S. Tsirkin wrote:
+> > > > > > > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse
+> > > > > > > wrote:
+> > > > > > > > What's annoying is that this should work out of the box
+> > > > > > > > *already* with
+> > > > > > > > virtio-mmio and a `restricted-dma-pool` — for systems which
+> > > > > > > > aren't
+> > > > > > > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms.
+> > > > > > > 
+> > > > > > > 
+> > > > > > > That specifically would be just a driver bugfix then?
+> > > > > > 
+> > > > > > I actually think it works out of the box and there isn't even a
+> > > > > > bug to
+> > > > > > fix. Haven't tested yet.
+> > > > > > 
+> > > > > > The sad part is that the system does it all automatically *if* it
+> > > > > > has
+> > > > > > CONFIG_DMA_RESTRICTED_POOL (e.g. Linux) and the driver never even
+> > > > > > notices that the dma_ops it's using are the swiotlb ops using the
+> > > > > > provided buffer.
+> > > > > > 
+> > > > > > Which is *kind* of nice... except that when on a guest OS which
+> > > > > > *isn't*
+> > > > > > Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ignore
+> > > > > > the
+> > > > > > `restricted-dma-pool` node and try DMA to system memory anyway,
+> > > > > > which
+> > > > > > will fail.
+> > > > > 
+> > > > > I mean, it's easy to misconfigure Linux, this is why we love it ;)
+> > > > > Why
+> > > > > is this such a concern?
+> > > > 
+> > > > Because it's incompatible. In the DT world, perhaps this new *non-
+> > > > optional* feature/restriction should have come with a new
+> > > > "compatible" string such as "virtio-mmio-restricted-dma".
+> > > > 
+> > > > Adding it without backwards compatibility wasn't ideal.
+> > > > 
+> > > > > > That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB
+> > > > > > feature, so
+> > > > > > that the device side can refuse, if the guest *isn't* agreeing to
+> > > > > > use
+> > > > > > the bounce buffer in the situations where it must do so.
+> > > > > 
+> > > > > 
+> > > > > OTOH then setting this feature and if you make the device force it,
+> > > > > you are breaking guests restricted-dma-pool which worked
+> > > > > previously, no?
+> > > > 
+> > > > Yes. So a platform offering virtio-mmio with restricted DMA, if the
+> > > > driver doesn't accept the offered VIRTIO_F_SWIOTLB, may want to
+> > > > accept that negotiation anyway, and *hope* that the driver/OS are
+> > > > going to use the buffer anyway.
+> > > > 
+> > > > I just didn't want to make that same mistake again when formalising
+> > > > and documenting this, and especially when attempting to extend it to
+> > > > PCI.
+> > > 
+> > > Of course, the beauty of the restricted-dma-pool as supported by DT is
+> > > that it's a *system* memory buffer, which is actually OK as long as
+> > > it's reserved address space and not just part of normal system memory
+> > > that an unsuspecting guest might use for general purposes. So the
+> > > trusted part of the hypervisor (e.g. pKVM) can *allow* the VMM access
+> > > to that space.
+> > > 
+> > > It doesn't *have* to be on-device. That just seemed like the more
+> > > natural way to do it for PCI.
+> > > 
+> > > I suppose we *could* allow for the virtio-pci transport to do it the
+> > > same way as virtio-mmio though. The VIRTIO_PCI_CAP_SWIOTLB capability¹
+> > > could reference a range of system memory space, just like the
+> > > `restricted-dma-pool` property does.
+> > > 
+> > > It's a weird abstraction especially for a physical PCI device to do
+> > > that because the system memory space is outside its ownership. But in a
+> > > physical device it could be writable, and you could consider it the
+> > > responsibility of the system firmware to configure it appropriately, in
+> > > accordance with the IOMMU and other DMA restrictions of the platform.
+> > > 
+> > > That does solve it for the CoCo case without addressing the P2P staging
+> > > case that Christoph mentions, though.
+> > > 
+> > > 
+> > > ¹ I will rename it, Christoph, if it survives at all. Probably
+> > > VIRTIO_F_RESTRICTED_DMA and VIRTIO_PCI_CAP_RESTRICTED_DMA but of course
+> > > it depends on the semantics we conclude it should have.
+> > 
+> > OK. So basically, all this does, is a promise by driver to only
+> > DMA into a range of memory?
 > 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Basically, yes.
 > 
-> ---
-> v2: fix typo in platform data for "samsung,s2mps14-pmic"
-> ---
+> > This part, I get. I wouldn't put it in a capability, just in config
+> > space then.
+> 
+> Sure... but how? There are some things which are defined to be at fixed
+> locations in config space, like the vendor/device IDs, COMMAND, STATUS,
+> BARs, etc..
+> 
+> And for the rest of the optional things which might be in config space
+> of a given device... isn't that exactly what capabilities are for?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+Sorry I am unclear. Not the pci config space. The virtio config space.
+After admin_queue_num ?
+
 
