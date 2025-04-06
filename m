@@ -1,230 +1,217 @@
-Return-Path: <devicetree+bounces-163471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D00BA7CFCA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:47:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C98A7D006
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 21:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 052D6188D188
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 18:48:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13ED31888FB9
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 19:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA941607AC;
-	Sun,  6 Apr 2025 18:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86ABA1A2622;
+	Sun,  6 Apr 2025 19:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="B+/Us6MC"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="r3kq5Ee+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC4026289;
-	Sun,  6 Apr 2025 18:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE6941C71
+	for <devicetree@vger.kernel.org>; Sun,  6 Apr 2025 19:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743965270; cv=none; b=GRHOMvjrLmZ3W1buPYc0r7Dqp4w13/Rezfi96wrSIu+KIAqpQ8K9OJkrmAZzVM5IOxtDpj+cccDw0uGmU2eyl2Xia60KimfCZtlhFLHrTR3AJYqW1V5AGEZHYh+dKif9Fk9esqkzNbhzkj8TFWC/oKZd3Aerdwox6a8w8NXLFLY=
+	t=1743969546; cv=none; b=lNRzdrwTL/c2ShoGNvZRx1OYG+1uusQSTSbDpmZa9FFOsa/fnpwb26kEmCQ+2RpZdYn9/WI1Aqjp0oL3LWwUW5HaHiZDt8b3wG+/58AUWqCTcTi0L1KjYFUa90qGAByz5FLSPXfbLoDeRGjESjHZSzgcvISiVDLee8o6PRQZfKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743965270; c=relaxed/simple;
-	bh=sC8ADKYE4LqMAZaGEZtrB+odLVH2dvbkCgo4ZplTpWQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=OEmciL7ddtXGSEYUrBpcwM0qIWSEJCbKeuxlL7pkOReaY2P/JthKFiXJK71Kmrs0JyZQ6BKxk++gLU0MoPfi7CAlwVn2OJ3TGJYrjeTfZwj3OqsPxjVc1wrv8h/8zUi/Xu0qeApwR2RhK+Xzh801Q9qRk4yd/clU/Z9iYESsq/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=B+/Us6MC; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=sC8ADKYE4LqMAZaGEZtrB+odLVH2dvbkCgo4ZplTpWQ=; b=B+/Us6MCeUgYl2NwHEtiElsvWm
-	PYVq06rNiUiv1p9pE2QIZoBZKalePjQ8rFBUsPHciBhKxUZMjo2Yx1Gn99dHCIs00s7UW94zmhGqT
-	a5ui1ysD5U4EFjhSCsn1S+gevP/ja8lYJaK2u6ROk1+3t8SpoGeRC2T6eaDiz9s+oJgPwvoRTEjQ7
-	ssELgvXZJIFehmvLTigMOm+ZSx6GMEKV1dJ7B8fgZcJx0krBzDmhgqCKPfczdqPbFlnYu6NmQbTPv
-	21qsVSwsfrmghCoM82sgetD0r8SAcdvEXA2jjtTl0fWDQU8tYdQonKvjvX+ywRNInTOE3G6pfPS7r
-	DTOtjcHw==;
-Received: from [172.31.31.142] (helo=[127.0.0.1])
-	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u1V1v-00000007lun-10GC;
-	Sun, 06 Apr 2025 18:47:39 +0000
-Date: Sun, 06 Apr 2025 19:47:41 +0100
-From: David Woodhouse <dwmw2@infradead.org>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-CC: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
- Claire Chang <tientzu@chromium.org>,
- linux-devicetree <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- =?ISO-8859-1?Q?J=F6rg_Roedel?= <joro@8bytes.org>,
- iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
- graf@amazon.de
-Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/3=5D_content=3A_Add_VIRTIO=5FF=5FSWIO?=
- =?US-ASCII?Q?TLB_to_negotiate_use_of_SWIOTLB_bounce_buffers?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250406114130-mutt-send-email-mst@kernel.org>
-References: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org> <Z-99snVF5ESyJDDs@infradead.org> <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org> <20250404040838-mutt-send-email-mst@kernel.org> <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org> <20250404043016-mutt-send-email-mst@kernel.org> <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org> <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org> <20250404062409-mutt-send-email-mst@kernel.org> <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org> <20250406114130-mutt-send-email-mst@kernel.org>
-Message-ID: <A6E92E4B-488D-4D01-9D87-48DA81050AC2@infradead.org>
+	s=arc-20240116; t=1743969546; c=relaxed/simple;
+	bh=DUla9+p5r8C0yNX9gzDL4CLbxH7aHNhbKcNDbGisa+4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DTI4iNcjN3pwO2CN//iCQxBfH4FYxW4SANhrV79gwhieJAev6K18dVEvKEfsJIqHK2U/VK+6jC0cv2smi77fxT+1z7duDQ84qPnl+iubGEuRUe5fLHClpzM1XKz+ELQoCduMn48h1k8gPPRd/jR8cnriozRN6VCp/rw81NfX5a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=r3kq5Ee+; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2ff799d99dcso3481310a91.1
+        for <devicetree@vger.kernel.org>; Sun, 06 Apr 2025 12:59:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1743969544; x=1744574344; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cSV5brJCU8FRwDjADDTtVWC1mi4xZgKh3TRBBKKlcb0=;
+        b=r3kq5Ee+SM40UUg1BYtsIRai96rsutbIE/EZp7Ry8PRsFoCOLiYOlZiLTv09uGlpS0
+         6rlPEzCN80LwP7qqO0GWLncoe5SByqQ0XfJmFGsZCkNGidboKoeGZPxTpHYfukGJ7Bx/
+         bBS39UkA1ZEnOg+8s4sJH8kUmyL52SEQCUmSKvY2a1ykFpLMa4oFd7/I8bd/1rLGp90o
+         6sYEpNqhB8mk6/U4RcE/owo6GY/QbbnyDzo6XZV3pbR+RhL8yJCisQLsjgPjjW8vhTVr
+         Qo7Xds3PvRIO+XYjpzLbNJyZIRoYTiZ2KwpLXDlRDQR+ZUXaAjyGyua0JL63V5CVN88J
+         qvxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743969544; x=1744574344;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cSV5brJCU8FRwDjADDTtVWC1mi4xZgKh3TRBBKKlcb0=;
+        b=XJ9hbwHUd99OIBuOdC8BdyctUOYk41e7eMZGyJBNzYZHRjgUqNNOJ741mebCDN/UWy
+         1DwMAo1Z3Ulw2pfxk271Y2gTAOZDRhzOdeKg1yOL7KrnDOyjEUvhwWnFVp8cqEURXnFu
+         /QlVripcDvIjWF8dySGYvXIumE5HaFmCiyXjyMnGHwjYr1SuAk3mdzXFeGHZ6RbiFNyu
+         CG7pEoSd0M37GHIzznusJWpRBcQgu6BWy7qWq/K0dYF6xNmrXEK9rkSZ78spJ8L9Lo2o
+         f9wLhvjJVJk9WG7uIqrlkFX43tW6yhDiHkppchCxksX5FsosfQ2sw13cCmMF5uXHDfQ6
+         YI3A==
+X-Forwarded-Encrypted: i=1; AJvYcCV+AsRS1ffZMCCjnfoBTWicNUo7T99/7RnmafzKkpj1UVu5wrCaCr3SBeXRCzenSfZ4DMdLw7F547Sn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxinAUemBQhv5X6p5k7Re+L7Uh3ghEMsiPtU1EdAdCudyb+nBLp
+	nUi0Ys4yPvXgLP4AaUyR8t4ngi6SHQ+saU9xwMOKLvmkOnjH5rBPFE2GC2aAcRs=
+X-Gm-Gg: ASbGncuOjSHVofr/1NlgohxIgR0Nk5kNVs1mWT0craoMbiM3cFnwECSXLzFMetU11jI
+	0Tvox4mjDb8yX+LuRcofVxv9ESEFVFchWNfiBotmD5t9lE5LxXgAKEfhrJJsDy4mzuMPV9cgTfY
+	/yPgP2+OTTrmoW9a8N3jsI/izyHhpGHNWRbwZsBOrOH8xc+qFpg+0+d+CgkUbT82iDWks2C571e
+	4oIV3Znln4X0I0p30tl/VM4dlAV1liYwWHvzvH+hHx0T8iqgJevltQB0L9LjLEPHV00z/giLm8M
+	x0y/yz0KZPcrOjivKVQEn2TK
+X-Google-Smtp-Source: AGHT+IFHfOOl6mZeB5Mp3Yf4a024PZQ1azNnZAt0Xlq5r9Sp57KSEDZ9mlf7RbY8QgX4UurEi2QyFw==
+X-Received: by 2002:a17:90b:274c:b0:2fe:a545:4c85 with SMTP id 98e67ed59e1d1-306a6268598mr13951024a91.27.1743969544093;
+        Sun, 06 Apr 2025 12:59:04 -0700 (PDT)
+Received: from x1 ([97.115.235.21])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057ca47ec7sm8413268a91.15.2025.04.06.12.59.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Apr 2025 12:59:03 -0700 (PDT)
+Date: Sun, 6 Apr 2025 12:59:01 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org,
+	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: clock: thead: Add TH1520 VO clock
+ controller
+Message-ID: <Z/LdBTtAj2+J5nbb@x1>
+References: <20250403094425.876981-1-m.wilczynski@samsung.com>
+ <CGME20250403094431eucas1p21412dff1c24aae077fdfeef08e0f802b@eucas1p2.samsung.com>
+ <20250403094425.876981-2-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250403094425.876981-2-m.wilczynski@samsung.com>
 
-On 6 April 2025 19:28:08 BST, "Michael S=2E Tsirkin" <mst@redhat=2Ecom> wro=
-te:
->On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
->> On Fri, 2025-04-04 at 06:37 -0400, Michael S=2E Tsirkin wrote:
->> > On Fri, Apr 04, 2025 at 11:15:33AM +0100, David Woodhouse wrote:
->> > > On Fri, 2025-04-04 at 10:27 +0100, David Woodhouse wrote:
->> > > > On 4 April 2025 09:32:39 BST, "Michael S=2E Tsirkin" <mst@redhat=
-=2Ecom>
->> > > > wrote:
->> > > > > On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote=
-:
->> > > > > > On Fri, 2025-04-04 at 04:09 -0400, Michael S=2E Tsirkin wrote=
-:
->> > > > > > > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse
->> > > > > > > wrote:
->> > > > > > > > What's annoying is that this should work out of the box
->> > > > > > > > *already* with
->> > > > > > > > virtio-mmio and a `restricted-dma-pool` =E2=80=94 for sys=
-tems which
->> > > > > > > > aren't
->> > > > > > > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms=
-=2E
->> > > > > > >=20
->> > > > > > >=20
->> > > > > > > That specifically would be just a driver bugfix then?
->> > > > > >=20
->> > > > > > I actually think it works out of the box and there isn't even=
- a
->> > > > > > bug to
->> > > > > > fix=2E Haven't tested yet=2E
->> > > > > >=20
->> > > > > > The sad part is that the system does it all automatically *if=
-* it
->> > > > > > has
->> > > > > > CONFIG_DMA_RESTRICTED_POOL (e=2Eg=2E Linux) and the driver ne=
-ver even
->> > > > > > notices that the dma_ops it's using are the swiotlb ops using=
- the
->> > > > > > provided buffer=2E
->> > > > > >=20
->> > > > > > Which is *kind* of nice=2E=2E=2E except that when on a guest =
-OS which
->> > > > > > *isn't*
->> > > > > > Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ig=
-nore
->> > > > > > the
->> > > > > > `restricted-dma-pool` node and try DMA to system memory anywa=
-y,
->> > > > > > which
->> > > > > > will fail=2E
->> > > > >=20
->> > > > > I mean, it's easy to misconfigure Linux, this is why we love it=
- ;)
->> > > > > Why
->> > > > > is this such a concern?
->> > > >=20
->> > > > Because it's incompatible=2E In the DT world, perhaps this new *n=
-on-
->> > > > optional* feature/restriction should have come with a new
->> > > > "compatible" string such as "virtio-mmio-restricted-dma"=2E
->> > > >=20
->> > > > Adding it without backwards compatibility wasn't ideal=2E
->> > > >=20
->> > > > > > That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB
->> > > > > > feature, so
->> > > > > > that the device side can refuse, if the guest *isn't* agreein=
-g to
->> > > > > > use
->> > > > > > the bounce buffer in the situations where it must do so=2E
->> > > > >=20
->> > > > >=20
->> > > > > OTOH then setting this feature and if you make the device force=
- it,
->> > > > > you are breaking guests restricted-dma-pool which worked
->> > > > > previously, no?
->> > > >=20
->> > > > Yes=2E So a platform offering virtio-mmio with restricted DMA, if=
- the
->> > > > driver doesn't accept the offered VIRTIO_F_SWIOTLB, may want to
->> > > > accept that negotiation anyway, and *hope* that the driver/OS are
->> > > > going to use the buffer anyway=2E
->> > > >=20
->> > > > I just didn't want to make that same mistake again when formalisi=
-ng
->> > > > and documenting this, and especially when attempting to extend it=
- to
->> > > > PCI=2E
->> > >=20
->> > > Of course, the beauty of the restricted-dma-pool as supported by DT=
- is
->> > > that it's a *system* memory buffer, which is actually OK as long as
->> > > it's reserved address space and not just part of normal system memo=
-ry
->> > > that an unsuspecting guest might use for general purposes=2E So the
->> > > trusted part of the hypervisor (e=2Eg=2E pKVM) can *allow* the VMM =
-access
->> > > to that space=2E
->> > >=20
->> > > It doesn't *have* to be on-device=2E That just seemed like the more
->> > > natural way to do it for PCI=2E
->> > >=20
->> > > I suppose we *could* allow for the virtio-pci transport to do it th=
-e
->> > > same way as virtio-mmio though=2E The VIRTIO_PCI_CAP_SWIOTLB capabi=
-lity=C2=B9
->> > > could reference a range of system memory space, just like the
->> > > `restricted-dma-pool` property does=2E
->> > >=20
->> > > It's a weird abstraction especially for a physical PCI device to do
->> > > that because the system memory space is outside its ownership=2E Bu=
-t in a
->> > > physical device it could be writable, and you could consider it the
->> > > responsibility of the system firmware to configure it appropriately=
-, in
->> > > accordance with the IOMMU and other DMA restrictions of the platfor=
-m=2E
->> > >=20
->> > > That does solve it for the CoCo case without addressing the P2P sta=
-ging
->> > > case that Christoph mentions, though=2E
->> > >=20
->> > >=20
->> > > =C2=B9 I will rename it, Christoph, if it survives at all=2E Probab=
-ly
->> > > VIRTIO_F_RESTRICTED_DMA and VIRTIO_PCI_CAP_RESTRICTED_DMA but of co=
-urse
->> > > it depends on the semantics we conclude it should have=2E
->> >=20
->> > OK=2E So basically, all this does, is a promise by driver to only
->> > DMA into a range of memory?
->>=20
->> Basically, yes=2E
->>=20
->> > This part, I get=2E I wouldn't put it in a capability, just in config
->> > space then=2E
->>=20
->> Sure=2E=2E=2E but how? There are some things which are defined to be at=
- fixed
->> locations in config space, like the vendor/device IDs, COMMAND, STATUS,
->> BARs, etc=2E=2E
->>=20
->> And for the rest of the optional things which might be in config space
->> of a given device=2E=2E=2E isn't that exactly what capabilities are for=
-?
->
->
->Sorry I am unclear=2E Not the pci config space=2E The virtio config space=
-=2E
->After admin_queue_num ?
->
->
+On Thu, Apr 03, 2025 at 11:44:23AM +0200, Michal Wilczynski wrote:
+> Add device tree bindings for the TH1520 Video Output (VO) subsystem
+> clock controller. The VO sub-system manages clock gates for multimedia
+> components including HDMI, MIPI, and GPU.
+> 
+> Document the VIDEO_PLL requirements for the VO clock controller, which
+> receives its input from the AP clock controller. The VIDEO_PLL is a
+> Silicon Creations Sigma-Delta (integer) PLL typically running at 792 MHz
+> with maximum FOUTVCO of 2376 MHz.
+> 
+> This binding complements the existing AP sub-system clock controller
+> which manages CPU, DPU, GMAC and TEE PLLs.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  .../bindings/clock/thead,th1520-clk-ap.yaml   | 17 ++++++++--
+>  .../dt-bindings/clock/thead,th1520-clk-ap.h   | 34 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> index 0129bd0ba4b3..9d058c00ab3d 100644
+> --- a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> @@ -8,7 +8,8 @@ title: T-HEAD TH1520 AP sub-system clock controller
+>  
+>  description: |
+>    The T-HEAD TH1520 AP sub-system clock controller configures the
+> -  CPU, DPU, GMAC and TEE PLLs.
+> +  CPU, DPU, GMAC and TEE PLLs. Additionally the VO subsystem configures
+> +  the clock gates for the HDMI, MIPI and the GPU.
+>  
+>    SoC reference manual
+>    https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+> @@ -20,14 +21,24 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: thead,th1520-clk-ap
+> +    enum:
+> +      - thead,th1520-clk-ap
+> +      - thead,th1520-clk-vo
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    clocks:
+>      items:
+> -      - description: main oscillator (24MHz)
+> +      - description: |
+> +          One input clock:
+> +          - For "thead,th1520-clk-ap": the clock input must be the 24 MHz
+> +            main oscillator.
+> +          - For "thead,th1520-clk-vo": the clock input must be the VIDEO_PLL,
+> +            which is configured by the AP clock controller. According to the
+> +            TH1520 manual, VIDEO_PLL is a Silicon Creations Sigma-Delta PLL
+> +            (integer PLL) typically running at 792 MHz (FOUTPOSTDIV), with
+> +            a maximum FOUTVCO of 2376 MHz.
+>  
+>    "#clock-cells":
+>      const: 1
+> diff --git a/include/dt-bindings/clock/thead,th1520-clk-ap.h b/include/dt-bindings/clock/thead,th1520-clk-ap.h
+> index a199784b3512..09a9aa7b3ab1 100644
+> --- a/include/dt-bindings/clock/thead,th1520-clk-ap.h
+> +++ b/include/dt-bindings/clock/thead,th1520-clk-ap.h
+> @@ -93,4 +93,38 @@
+>  #define CLK_SRAM3		83
+>  #define CLK_PLL_GMAC_100M	84
+>  #define CLK_UART_SCLK		85
+> +
+> +/* VO clocks */
+> +#define CLK_AXI4_VO_ACLK		0
+> +#define CLK_GPU_MEM			1
+> +#define CLK_GPU_CORE			2
+> +#define CLK_GPU_CFG_ACLK		3
+> +#define CLK_DPU_PIXELCLK0		4
+> +#define CLK_DPU_PIXELCLK1		5
+> +#define CLK_DPU_HCLK			6
+> +#define CLK_DPU_ACLK			7
+> +#define CLK_DPU_CCLK			8
+> +#define CLK_HDMI_SFR			9
+> +#define CLK_HDMI_PCLK			10
+> +#define CLK_HDMI_CEC			11
+> +#define CLK_MIPI_DSI0_PCLK		12
+> +#define CLK_MIPI_DSI1_PCLK		13
+> +#define CLK_MIPI_DSI0_CFG		14
+> +#define CLK_MIPI_DSI1_CFG		15
+> +#define CLK_MIPI_DSI0_REFCLK		16
+> +#define CLK_MIPI_DSI1_REFCLK		17
+> +#define CLK_HDMI_I2S			18
+> +#define CLK_X2H_DPU1_ACLK		19
+> +#define CLK_X2H_DPU_ACLK		20
+> +#define CLK_AXI4_VO_PCLK		21
+> +#define CLK_IOPMP_VOSYS_DPU_PCLK	22
+> +#define CLK_IOPMP_VOSYS_DPU1_PCLK	23
+> +#define CLK_IOPMP_VOSYS_GPU_PCLK	24
+> +#define CLK_IOPMP_DPU1_ACLK		25
+> +#define CLK_IOPMP_DPU_ACLK		26
+> +#define CLK_IOPMP_GPU_ACLK		27
+> +#define CLK_MIPIDSI0_PIXCLK		28
+> +#define CLK_MIPIDSI1_PIXCLK		29
+> +#define CLK_HDMI_PIXCLK			30
+> +
+>  #endif
+> -- 
+> 2.34.1
+> 
 
-Makes sense=2E Let me knock up a second RFC based on that, and test using =
-PRP0001 as a vehicle for `restricted-dma-pool` in an ACPI-afflicted guest=
-=2E
+Reviewed-by: Drew Fustini <drew@pdp7.com>
+
+I think this makes sense and dt_binding_check looks clean.
+
+Thanks,
+Drew
 
