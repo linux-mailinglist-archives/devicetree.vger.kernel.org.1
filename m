@@ -1,224 +1,277 @@
-Return-Path: <devicetree+bounces-163483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4416BA7D09C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 23:13:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E316A7D0AC
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 23:24:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00B3E188822E
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 21:13:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6F4C16FED3
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 21:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80C31B3934;
-	Sun,  6 Apr 2025 21:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CB0205E34;
+	Sun,  6 Apr 2025 21:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQQRNjNL"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="hXR1Cj6J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEE326289;
-	Sun,  6 Apr 2025 21:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA0F14831E;
+	Sun,  6 Apr 2025 21:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743973999; cv=none; b=PwDpUoIQ0UQzEjxZ+7cFFuJnPgDCx1QQHj/NLgyDThezA+vaikB+vbX2hmejbLJyO2tX+Mzxns9IPXR/OgDF1H2Du+cDrxYufo8dbUwuDvlZkO9ymQ785+573ZEYvPKoRCwh4ZIZ4jz+jxRrCXiJ/nYwpbMgFPMdlvrBXC2wB/w=
+	t=1743974689; cv=none; b=rLxCUTqLAV8sh6KDL1fQinEmSMF0vH3YxmY69Ev+zwS365lxIJKseKoss+verSZDOvaF/P75PCm3HO2+ADBbWLK2as4pF/gvJUtVGvBcLayJ70Iv4FXcfSI3a98rRchLcC6oXFxADRvAm5AYmqjIK+Thv8MYC/yjZCNu67A2k2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743973999; c=relaxed/simple;
-	bh=bulRqcr47jc7VqE5WNZPcSb0IokI8W+YVgaj7tbjxrc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=tHit7Qjhrh9ELZB+enUatMnEPPBwf6tyfJwcKNO5TVNXpv7oucWxOsGUalc+T8UNpguPPkAsdmX7RRBV+aNK2GU0tW63fGjKaKpGbLl4pyvKInE3LqGhULt+DuU62VLetZATTmYJo2iB2JA8hl7Apo5kIdB/y6IU5/ujbnwjOec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQQRNjNL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D5478C4CEE3;
-	Sun,  6 Apr 2025 21:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743973998;
-	bh=bulRqcr47jc7VqE5WNZPcSb0IokI8W+YVgaj7tbjxrc=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=HQQRNjNLbDsEIf9G1ZxTGJbHEtDd70z+KepTyIlisqUP964c9zpUwE3GDFojA7jAG
-	 0s3OlEK0fQOUmfdEu60E5pyZgdPsjgjCq6D0oeOh+WgJFys/QqE1yEwIvQCJTTc4ZK
-	 7ypVofjrR6RAy3YBeedeN+AkTv47vAro4TbDb/AVbCRUP4zq1MD6ZUCELC1RimxiSE
-	 inI57rfzM4kiRDF/84gvSqfaK6ndzEnEvpvAhV89hF0iFOFwpMhdyfTPP4cBergqkH
-	 DNnoZ6VL0eSzIbxJPEmc2jWWqhEyyS37Zp+baOwn7f7tfskIQy/HFDh3+UEGSTiwAc
-	 vSCLP6rvUOrrA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C27BBC36002;
-	Sun,  6 Apr 2025 21:13:18 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Sun, 06 Apr 2025 16:12:43 -0500
-Subject: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+	s=arc-20240116; t=1743974689; c=relaxed/simple;
+	bh=kcLBmHUDELpVIjBDW7WOFfPs229RgQceNLXEbd1UJOY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CkEwiZbNGMWan3r+1lMGGL135ZwVVgLnwG38t4K/Aeisqa0B+xKhXxwoq08Q0IvWAQE5eyOEetLmr3fqF1grENGYd0TUl9QhTXhiKS1JNPqkGI8kOvzJYQeOxsw1Vqi8Ylofj4CU1kkstMfocd5FpgTJ6CucRi61aSwuGvwVdBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=hXR1Cj6J; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 941EA103B92CE;
+	Sun,  6 Apr 2025 23:24:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1743974677; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=AmDn6RQJ+QRV6q6JMcajnOpUP8bbZFJKY8h5RYYtrj0=;
+	b=hXR1Cj6JiEpHHtfFp5082ABIz3Ak8Om151NMhGXcN0eH+00EcXMRaWfTWSG4ICuq8+a6kk
+	PTS24XASiBCImp0rsWts4wT8v0c/Slugz744qxWJRN1sbi4+u6/4baMRPLwQd8522KXcNN
+	qo6OUWirQp7OJ3ZJHc2xC4X1VvNfUh6/Iu+Ex2LIK4o87Y2dDRieYlvDaDdFdMsh9eytzY
+	3R5MwONrRpoDy+r/VhjddzNeqj92p2pnTavGmB7kWO2N0y0/DerCac0yZShc+CzNarlZ5U
+	QfHW1q0jnpXP0b7+2htYYXjI4A1eYZZ4f1hJfC+v0s1Y6ANJ7Ahmt3nDB87Jvw==
+Date: Sun, 6 Apr 2025 23:24:31 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 4/4] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250406232431.48e837e0@wsk>
+In-Reply-To: <8f431197-474e-4cd5-9c3e-d573c3f3e6b5@lunn.ch>
+References: <20250331103116.2223899-1-lukma@denx.de>
+	<20250331103116.2223899-5-lukma@denx.de>
+	<8f431197-474e-4cd5-9c3e-d573c3f3e6b5@lunn.ch>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAEru8mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDEwMT3ZLU9KJE3YLikvyiVF3TpNQU4zRzI0NjSwMloJaCotS0zAqwcdG
- xtbUAA397DF4AAAA=
-X-Change-ID: 20250404-tegra-pstore-5bed3f721390
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1743973998; l=4405;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=8+6obcSKfeNBlTaNefo4ySU2Kjh+Hx6xO5b9LE4VbJk=;
- b=Wma2bTDlc+b7ZVz6L59OvUcBddv6u31glDElqK3rt0iOwTPWBcDzQOuD1ooZRx+zEPh8hi3Lk
- sPHdAr4G41UDYqlvejaX92VClrwW9ziwuvPWa57miDebehCn7LFNdPr
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Content-Type: multipart/signed; boundary="Sig_/ACv8R=knW+t0ni5QKQO7U2=";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Aaron Kling <webgeek1234@gmail.com>
+--Sig_/ACv8R=knW+t0ni5QKQO7U2=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-This allows using pstore on all such platforms. There are some
-differences per arch:
+Hi Andrew,
 
-* Tegra132: Flounder does not appear to enumerate pstore and I do not
-  have access to norrin, thus Tegra132 is left out of this commit.
-* Tegra210: Does not support ramoops carveouts in the bootloader, instead
-  relying on a dowstream driver to allocate the carveout, hence this
-  hardcodes a location matching what the downstream driver picks.
-* Tegra186 and Tegra194 on cboot: Bootloader fills in the address and
-  size in a node specifically named /reserved-memory/ramoops_carveout,
-  thus these cannot be renamed.
-* Tegra194 and Tegra234 on edk2: Bootloader looks up the node based on
-  compatible, however the dt still does not know the address, so keeping
-  the node name consistent on Tegra186 and newer.
+> > +static void read_atable(struct switch_enet_private *fep, int index,
+> > +			unsigned long *read_lo, unsigned long
+> > *read_hi) +{
+> > +	unsigned long atable_base =3D (unsigned long)fep->hwentry;
+> > +
+> > +	*read_lo =3D readl((const void *)atable_base + (index << 3));
+> > +	*read_hi =3D readl((const void *)atable_base + (index << 3)
+> > + 4); +}
+> > +
+> > +static void write_atable(struct switch_enet_private *fep, int
+> > index,
+> > +			 unsigned long write_lo, unsigned long
+> > write_hi) +{
+> > +	unsigned long atable_base =3D (unsigned long)fep->hwentry;
+> > +
+> > +	writel(write_lo, (void *)atable_base + (index << 3));
+> > +	writel(write_hi, (void *)atable_base + (index << 3) + 4);
+> > +} =20
+>=20
+> It would be nice to have the mtip_ prefix on all functions.
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
- 4 files changed, 61 insertions(+)
+Ok.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e42dd03f5a1da5079971dc 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -2051,6 +2051,22 @@ pmu-denver {
- 		interrupt-affinity = <&denver_0 &denver_1>;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ramoops_carveout {
-+			compatible = "ramoops";
-+			size = <0x0 0x200000>;
-+			record-size = <0x00010000>;
-+			console-size = <0x00080000>;
-+			alignment = <0x0 0x10000>;
-+			alloc-ranges = <0x0 0x0 0x1 0x0>;
-+			no-map;
-+		};
-+	};
-+
- 	sound {
- 		status = "disabled";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 33f92b77cd9d9e530eae87a4bb8ba61993ceffeb..90ffea161a57a8986c2493573c73e3cf9e2c43c0 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -3105,6 +3105,22 @@ psci {
- 		method = "smc";
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ramoops_carveout {
-+			compatible = "ramoops";
-+			size = <0x0 0x200000>;
-+			record-size = <0x00010000>;
-+			console-size = <0x00080000>;
-+			alignment = <0x0 0x10000>;
-+			alloc-ranges = <0x0 0x0 0x1 0x0>;
-+			no-map;
-+		};
-+	};
-+
- 	tcu: serial {
- 		compatible = "nvidia,tegra194-tcu";
- 		mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_SM TEGRA_HSP_SM_RX(0)>,
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index b6c84d195c0ef9ae90721fada09ffd46a9c11fa3..00ae127e8b8af3fe3b95d8ce5986d937a4fc6325 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -2025,6 +2025,19 @@ pmu {
- 				      &{/cpus/cpu@2} &{/cpus/cpu@3}>;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ramoops@b0000000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xb0000000 0x0 0x200000>;
-+			record-size = <0x00010000>;
-+			console-size = <0x00080000>;
-+		};
-+	};
-+
- 	sound {
- 		status = "disabled";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 2601b43b2d8cadeb0d1f428018a82b144aa79392..36f35c6dc774d42aca8871dbfa0e0a16414cb860 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -5723,6 +5723,22 @@ psci {
- 		method = "smc";
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ramoops_carveout {
-+			compatible = "ramoops";
-+			size = <0x0 0x200000>;
-+			record-size = <0x00010000>;
-+			console-size = <0x00080000>;
-+			alignment = <0x0 0x10000>;
-+			alloc-ranges = <0x0 0x0 0x1 0x0>;
-+			no-map;
-+		};
-+	};
-+
- 	tcu: serial {
- 		compatible = "nvidia,tegra234-tcu", "nvidia,tegra194-tcu";
- 		mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_SM TEGRA_HSP_SM_RX(0)>,
+>=20
+> > +static int mtip_open(struct net_device *dev)
+> > +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	int ret, port_idx =3D priv->portnum - 1;
+> > +
+> > +	if (fep->usage_count =3D=3D 0) {
+> > +		clk_enable(fep->clk_ipg);
+> > +		netif_napi_add(dev, &fep->napi, mtip_rx_napi);
+> > +
+> > +		ret =3D mtip_alloc_buffers(dev);
+> > +		if (ret)
+> > +			return ret; =20
+>=20
+> nitpick: You might want to turn the clock off before returning the
+> error.
 
----
-base-commit: 91e5bfe317d8f8471fbaa3e70cf66cae1314a516
-change-id: 20250404-tegra-pstore-5bed3f721390
+Ok.
+
+>=20
+> > +	}
+> > +
+> > +	fep->link[port_idx] =3D 0;
+> > +
+> > +	/* Probe and connect to PHY when open the interface, if
+> > already
+> > +	 * NOT done in the switch driver probe (or when the device
+> > is
+> > +	 * re-opened).
+> > +	 */
+> > +	ret =3D mtip_mii_probe(dev);
+> > +	if (ret) {
+> > +		mtip_free_buffers(dev); =20
+>=20
+> I've not checked. Does this do the opposite of netif_napi_add()?
+
+No, the netif_napi_add() is required here as well.
+
+>=20
+> > +static void mtip_set_multicast_list(struct net_device *dev)
+> > +{
+> > +	unsigned int i, bit, data, crc;
+> > +
+> > +	if (dev->flags & IFF_PROMISC) {
+> > +		dev_info(&dev->dev, "%s: IFF_PROMISC\n",
+> > __func__); =20
+>=20
+> You can save one level of indentation with a return here.
+
+Ok.
+
+>=20
+> > +	} else {
+> > +		if (dev->flags & IFF_ALLMULTI) {
+> > +			dev_info(&dev->dev, "%s: IFF_ALLMULTI\n",
+> > __func__); =20
+>=20
+> and other level here.
+
+Ok.
+
+>=20
+> > +		} else {
+> > +			struct netdev_hw_addr *ha;
+> > +			u_char *addrs;
+> > +
+> > +			netdev_for_each_mc_addr(ha, dev) {
+> > +				addrs =3D ha->addr;
+> > +				/* Only support group multicast
+> > for now */
+> > +				if (!(*addrs & 1))
+> > +					continue; =20
+>=20
+> You could pull there CRC caluclation out into a helper. You might also
+> want to search the tree and see if it exists somewhere else.
+>=20
+
+The ether_crc_le(ndev->addr_len,=C2=B7ha->addr); could be the replacement.
+
+However, when I look on the code and compare it with fec_main.c's
+set_multicast_list() - it looks like a dead code.
+
+The calculated hash is not used at all (in fec_main.c it is written to
+some registers).
+
+I've refactored the code to do similar things, but taking into account
+already set switch setup (promisc must be enabled from the outset).
+
+> > +
+> > +				/* calculate crc32 value of mac
+> > address */
+> > +				crc =3D 0xffffffff;
+> > +
+> > +				for (i =3D 0; i < 6; i++) { =20
+>=20
+> Is 6 the lengh of a MAC address? There is a #define for that.
+
+This is not needed and can be replaced with already present function.
+
+>=20
+> > +					data =3D addrs[i];
+> > +					for (bit =3D 0; bit < 8;
+> > +					     bit++, data >>=3D 1) {
+> > +						crc =3D (crc >> 1) ^
+> > +						(((crc ^ data) &
+> > 1) ?
+> > +						CRC32_POLY : 0);
+> > +					}
+> > +				}
+> > +			}
+> > +		}
+> > +	}
+> > +}
+> > + =20
+>=20
+> > +struct switch_enet_private *mtip_netdev_get_priv(const struct
+> > net_device *ndev) +{
+> > +	if (ndev->netdev_ops =3D=3D &mtip_netdev_ops)
+> > +		return netdev_priv(ndev);
+> > +
+> > +	return NULL;
+> > +}
+> > + =20
+>=20
+> > +static int __init mtip_switch_dma_init(struct switch_enet_private
+> > *fep) +{
+> > +	struct cbd_t *bdp, *cbd_base;
+> > +	int ret, i;
+> > +
+> > +	/* Check mask of the streaming and coherent API */
+> > +	ret =3D dma_set_mask_and_coherent(&fep->pdev->dev,
+> > DMA_BIT_MASK(32));
+> > +	if (ret < 0) {
+> > +		dev_warn(&fep->pdev->dev, "No suitable DMA
+> > available\n"); =20
+>=20
+> Can you recover from this? Or should it be dev_err()?
+>=20
+
+It was my mistake - of course there shall be dev_err().
+
+> More later...
+>=20
+> 	Andrew
+
 
 Best regards,
--- 
-Aaron Kling <webgeek1234@gmail.com>
 
+Lukasz Majewski
 
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/ACv8R=knW+t0ni5QKQO7U2=
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfy8Q8ACgkQAR8vZIA0
+zr2K6gf+IeVFnsg+cnEFsWjR/QZHoQEjkMHlOs/vdNba2jlurd4lPwjLvpxs75Lw
+o6ISVIdS1JlB/6kmNCSiL8Ktz0H77nfuz1IpJju2duk9TPTwq0/qoHbQqWaxWGVg
+1++fPBxV4EYRfR2I4JXTHTGuPVoREgsCTGcd2sF1JUX5RLxjYg8phEd+LV7TpZnT
+aIyh6gBIDZKfZ3hTpS73Dzkb+FIqt3EhRuPBX49Gq8ch69mXgEC9PXe0JTe5Xoww
+W1P9HKOuUptjr/i+g6V1sQ9t8IGzMxaVme2Ya/TlR4S11+uX4mLZUJGg3Bbi6wVT
+tKRaF1x3+3vfVWuSkSY+NiPr5q3aLw==
+=eAzq
+-----END PGP SIGNATURE-----
+
+--Sig_/ACv8R=knW+t0ni5QKQO7U2=--
 
