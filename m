@@ -1,131 +1,230 @@
-Return-Path: <devicetree+bounces-163470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE77BA7CFB6
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:35:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D00BA7CFCA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 20:47:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADA907A310B
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 18:34:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 052D6188D188
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 18:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDF7189B84;
-	Sun,  6 Apr 2025 18:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA941607AC;
+	Sun,  6 Apr 2025 18:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lwVimBnD"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="B+/Us6MC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B3051C5A;
-	Sun,  6 Apr 2025 18:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC4026289;
+	Sun,  6 Apr 2025 18:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743964551; cv=none; b=c/Xkwqa/qNlsNzGWZSU2lKxSLyaV7izuWTeMFpTtkTJ6iK5ZcJZ5P+JrN9m0XmPCE27dHqDhYxhgNoSiv6OkcuxNfFQzZ93jhJXDxufKlt5Ji5zQGsTkjHJOpZQ84hBUch746i2GvXtijo41flp48IJD4S78KRFPXGAqwuXjMwk=
+	t=1743965270; cv=none; b=GRHOMvjrLmZ3W1buPYc0r7Dqp4w13/Rezfi96wrSIu+KIAqpQ8K9OJkrmAZzVM5IOxtDpj+cccDw0uGmU2eyl2Xia60KimfCZtlhFLHrTR3AJYqW1V5AGEZHYh+dKif9Fk9esqkzNbhzkj8TFWC/oKZd3Aerdwox6a8w8NXLFLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743964551; c=relaxed/simple;
-	bh=rrw6C9PxD3dEvPohcjb1eyJDWWnjgkEsQK+28Yte3ck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QS7h4BidAPagOYD/TlbIgNMS8hcEcX4XX5Fzx+Av/qk/WS6E3Xp10xLUl6glTjNuU+3LdBZRZ6RGZK13MrnzaMtHBwPAw0tnq/CZx14l9r6362naBBwSLZLHBZO7nQ7cbLP82LrZqdA3qWpLf19/VlQNVggMpDy0dc3V/WYi7AA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lwVimBnD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B4CFC4CEE3;
-	Sun,  6 Apr 2025 18:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743964551;
-	bh=rrw6C9PxD3dEvPohcjb1eyJDWWnjgkEsQK+28Yte3ck=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lwVimBnDyzmabhTpR2luPs9LR0LS7Q2uJKf615xRwIpGJpSbPBVlZ4bDfalaROpFE
-	 B634jly0rS3iBPNm/lcpTTI4QqcayvPJ/FpSCkbDEAANk2vYL53LAZlRvcVRbWCEPE
-	 9spcEK4p0G58SMzNCp+KCSuoMR/cXYlT1/1AtJp0sBl+a0basDfQT/Z5UK8ds7yZib
-	 kOw+nDJtoro4T4PA2h9omS3cYOGYY0GTMWdQvRMyGsXLDAWjrO9rOt8JgnTzcZuTFl
-	 y0bMR5Jyer4fOL/qPNP1BafmRQ7F8fPtLpt0HH2pYj5aCeehTarh8NhUTqg3SCCI8Z
-	 t8uS/iCeRPLSA==
-Message-ID: <453f4691-d581-4187-be34-f0b004a856ba@kernel.org>
-Date: Sun, 6 Apr 2025 20:35:44 +0200
+	s=arc-20240116; t=1743965270; c=relaxed/simple;
+	bh=sC8ADKYE4LqMAZaGEZtrB+odLVH2dvbkCgo4ZplTpWQ=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=OEmciL7ddtXGSEYUrBpcwM0qIWSEJCbKeuxlL7pkOReaY2P/JthKFiXJK71Kmrs0JyZQ6BKxk++gLU0MoPfi7CAlwVn2OJ3TGJYrjeTfZwj3OqsPxjVc1wrv8h/8zUi/Xu0qeApwR2RhK+Xzh801Q9qRk4yd/clU/Z9iYESsq/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=B+/Us6MC; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=sC8ADKYE4LqMAZaGEZtrB+odLVH2dvbkCgo4ZplTpWQ=; b=B+/Us6MCeUgYl2NwHEtiElsvWm
+	PYVq06rNiUiv1p9pE2QIZoBZKalePjQ8rFBUsPHciBhKxUZMjo2Yx1Gn99dHCIs00s7UW94zmhGqT
+	a5ui1ysD5U4EFjhSCsn1S+gevP/ja8lYJaK2u6ROk1+3t8SpoGeRC2T6eaDiz9s+oJgPwvoRTEjQ7
+	ssELgvXZJIFehmvLTigMOm+ZSx6GMEKV1dJ7B8fgZcJx0krBzDmhgqCKPfczdqPbFlnYu6NmQbTPv
+	21qsVSwsfrmghCoM82sgetD0r8SAcdvEXA2jjtTl0fWDQU8tYdQonKvjvX+ywRNInTOE3G6pfPS7r
+	DTOtjcHw==;
+Received: from [172.31.31.142] (helo=[127.0.0.1])
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u1V1v-00000007lun-10GC;
+	Sun, 06 Apr 2025 18:47:39 +0000
+Date: Sun, 06 Apr 2025 19:47:41 +0100
+From: David Woodhouse <dwmw2@infradead.org>
+To: "Michael S. Tsirkin" <mst@redhat.com>
+CC: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
+ Claire Chang <tientzu@chromium.org>,
+ linux-devicetree <devicetree@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg_Roedel?= <joro@8bytes.org>,
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/3=5D_content=3A_Add_VIRTIO=5FF=5FSWIO?=
+ =?US-ASCII?Q?TLB_to_negotiate_use_of_SWIOTLB_bounce_buffers?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20250406114130-mutt-send-email-mst@kernel.org>
+References: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org> <Z-99snVF5ESyJDDs@infradead.org> <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org> <20250404040838-mutt-send-email-mst@kernel.org> <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org> <20250404043016-mutt-send-email-mst@kernel.org> <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org> <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org> <20250404062409-mutt-send-email-mst@kernel.org> <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org> <20250406114130-mutt-send-email-mst@kernel.org>
+Message-ID: <A6E92E4B-488D-4D01-9D87-48DA81050AC2@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 30/32] rtc: s5m: replace regmap_update_bits with
- regmap_clear/set_bits
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
- <20250403-s2mpg10-v3-30-b542b3505e68@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250403-s2mpg10-v3-30-b542b3505e68@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
-On 03/04/2025 10:59, André Draszik wrote:
-> The regmap_clear_bits() and regmap_set_bits() helper macros state the
-> intention a bit more obviously.
-> 
-> Use those.
+On 6 April 2025 19:28:08 BST, "Michael S=2E Tsirkin" <mst@redhat=2Ecom> wro=
+te:
+>On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
+>> On Fri, 2025-04-04 at 06:37 -0400, Michael S=2E Tsirkin wrote:
+>> > On Fri, Apr 04, 2025 at 11:15:33AM +0100, David Woodhouse wrote:
+>> > > On Fri, 2025-04-04 at 10:27 +0100, David Woodhouse wrote:
+>> > > > On 4 April 2025 09:32:39 BST, "Michael S=2E Tsirkin" <mst@redhat=
+=2Ecom>
+>> > > > wrote:
+>> > > > > On Fri, Apr 04, 2025 at 09:16:44AM +0100, David Woodhouse wrote=
+:
+>> > > > > > On Fri, 2025-04-04 at 04:09 -0400, Michael S=2E Tsirkin wrote=
+:
+>> > > > > > > On Fri, Apr 04, 2025 at 08:50:47AM +0100, David Woodhouse
+>> > > > > > > wrote:
+>> > > > > > > > What's annoying is that this should work out of the box
+>> > > > > > > > *already* with
+>> > > > > > > > virtio-mmio and a `restricted-dma-pool` =E2=80=94 for sys=
+tems which
+>> > > > > > > > aren't
+>> > > > > > > > afflicted by UEFI/ACPI/PCI as their discovery mechanisms=
+=2E
+>> > > > > > >=20
+>> > > > > > >=20
+>> > > > > > > That specifically would be just a driver bugfix then?
+>> > > > > >=20
+>> > > > > > I actually think it works out of the box and there isn't even=
+ a
+>> > > > > > bug to
+>> > > > > > fix=2E Haven't tested yet=2E
+>> > > > > >=20
+>> > > > > > The sad part is that the system does it all automatically *if=
+* it
+>> > > > > > has
+>> > > > > > CONFIG_DMA_RESTRICTED_POOL (e=2Eg=2E Linux) and the driver ne=
+ver even
+>> > > > > > notices that the dma_ops it's using are the swiotlb ops using=
+ the
+>> > > > > > provided buffer=2E
+>> > > > > >=20
+>> > > > > > Which is *kind* of nice=2E=2E=2E except that when on a guest =
+OS which
+>> > > > > > *isn't*
+>> > > > > > Linux with CONFIG_DMA_RESTRICTED_POOL, the guest will just ig=
+nore
+>> > > > > > the
+>> > > > > > `restricted-dma-pool` node and try DMA to system memory anywa=
+y,
+>> > > > > > which
+>> > > > > > will fail=2E
+>> > > > >=20
+>> > > > > I mean, it's easy to misconfigure Linux, this is why we love it=
+ ;)
+>> > > > > Why
+>> > > > > is this such a concern?
+>> > > >=20
+>> > > > Because it's incompatible=2E In the DT world, perhaps this new *n=
+on-
+>> > > > optional* feature/restriction should have come with a new
+>> > > > "compatible" string such as "virtio-mmio-restricted-dma"=2E
+>> > > >=20
+>> > > > Adding it without backwards compatibility wasn't ideal=2E
+>> > > >=20
+>> > > > > > That's why my proposal adds the negotiated VIRTIO_F_SWIOTLB
+>> > > > > > feature, so
+>> > > > > > that the device side can refuse, if the guest *isn't* agreein=
+g to
+>> > > > > > use
+>> > > > > > the bounce buffer in the situations where it must do so=2E
+>> > > > >=20
+>> > > > >=20
+>> > > > > OTOH then setting this feature and if you make the device force=
+ it,
+>> > > > > you are breaking guests restricted-dma-pool which worked
+>> > > > > previously, no?
+>> > > >=20
+>> > > > Yes=2E So a platform offering virtio-mmio with restricted DMA, if=
+ the
+>> > > > driver doesn't accept the offered VIRTIO_F_SWIOTLB, may want to
+>> > > > accept that negotiation anyway, and *hope* that the driver/OS are
+>> > > > going to use the buffer anyway=2E
+>> > > >=20
+>> > > > I just didn't want to make that same mistake again when formalisi=
+ng
+>> > > > and documenting this, and especially when attempting to extend it=
+ to
+>> > > > PCI=2E
+>> > >=20
+>> > > Of course, the beauty of the restricted-dma-pool as supported by DT=
+ is
+>> > > that it's a *system* memory buffer, which is actually OK as long as
+>> > > it's reserved address space and not just part of normal system memo=
+ry
+>> > > that an unsuspecting guest might use for general purposes=2E So the
+>> > > trusted part of the hypervisor (e=2Eg=2E pKVM) can *allow* the VMM =
+access
+>> > > to that space=2E
+>> > >=20
+>> > > It doesn't *have* to be on-device=2E That just seemed like the more
+>> > > natural way to do it for PCI=2E
+>> > >=20
+>> > > I suppose we *could* allow for the virtio-pci transport to do it th=
+e
+>> > > same way as virtio-mmio though=2E The VIRTIO_PCI_CAP_SWIOTLB capabi=
+lity=C2=B9
+>> > > could reference a range of system memory space, just like the
+>> > > `restricted-dma-pool` property does=2E
+>> > >=20
+>> > > It's a weird abstraction especially for a physical PCI device to do
+>> > > that because the system memory space is outside its ownership=2E Bu=
+t in a
+>> > > physical device it could be writable, and you could consider it the
+>> > > responsibility of the system firmware to configure it appropriately=
+, in
+>> > > accordance with the IOMMU and other DMA restrictions of the platfor=
+m=2E
+>> > >=20
+>> > > That does solve it for the CoCo case without addressing the P2P sta=
+ging
+>> > > case that Christoph mentions, though=2E
+>> > >=20
+>> > >=20
+>> > > =C2=B9 I will rename it, Christoph, if it survives at all=2E Probab=
+ly
+>> > > VIRTIO_F_RESTRICTED_DMA and VIRTIO_PCI_CAP_RESTRICTED_DMA but of co=
+urse
+>> > > it depends on the semantics we conclude it should have=2E
+>> >=20
+>> > OK=2E So basically, all this does, is a promise by driver to only
+>> > DMA into a range of memory?
+>>=20
+>> Basically, yes=2E
+>>=20
+>> > This part, I get=2E I wouldn't put it in a capability, just in config
+>> > space then=2E
+>>=20
+>> Sure=2E=2E=2E but how? There are some things which are defined to be at=
+ fixed
+>> locations in config space, like the vendor/device IDs, COMMAND, STATUS,
+>> BARs, etc=2E=2E
+>>=20
+>> And for the rest of the optional things which might be in config space
+>> of a given device=2E=2E=2E isn't that exactly what capabilities are for=
+?
+>
+>
+>Sorry I am unclear=2E Not the pci config space=2E The virtio config space=
+=2E
+>After admin_queue_num ?
+>
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Makes sense=2E Let me knock up a second RFC based on that, and test using =
+PRP0001 as a vehicle for `restricted-dma-pool` in an ACPI-afflicted guest=
+=2E
 
