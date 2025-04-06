@@ -1,181 +1,257 @@
-Return-Path: <devicetree+bounces-163410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5771FA7CD62
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 11:07:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06644A7CD98
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 12:49:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09D593A8936
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 09:07:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 847C0188B89A
+	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 10:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E19019D07C;
-	Sun,  6 Apr 2025 09:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C347019E7FA;
+	Sun,  6 Apr 2025 10:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="RCiVDabu"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ciAvouRs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93F3186E20;
-	Sun,  6 Apr 2025 09:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5512AE66;
+	Sun,  6 Apr 2025 10:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743930466; cv=none; b=GdhcfWK/keNuwJB48yF7zNYYYXfoL952y0cvqphPN/bmHu/1/JZJfKL53/uvXCY59ae8rcZAfp+WummRsgvM3FkvA07DS2Uh7b/zwTmRqW2kMB+pzPfw3J4gN1vJhgmktyQTa/73FbIaoe8oFvRAXY9xehVuU+0FNYLO4y+nwak=
+	t=1743936551; cv=none; b=b8JQZzkKY47/nPaZgF0iV5r0rxtyRwlQ+Qm5CDZsEU6O3giuw/yiGpIeBo4TvU4ordAI52fXQT/UrTTGUs2KvZK/uHA3RhRqS2Q8yfsScRLCxB7rwp5SB5xUqb49+r89yRmc+7gEr5ABV9FXsXvlAi+Q2JZ1Uckqd2M8fVwi9TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743930466; c=relaxed/simple;
-	bh=+PWWCS63/CbxJpONq3AEhtxPWS3WKuwnVusvHLRtnAw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J4PaXMyOkRavowha/7v+vY0GJJ3DLFhxbQDDykvzRsDwntBXrVUftWYbS4SBXPvfvqvTsKsdL0qBaUAhyWWoSMAVgkJDvVH/2JnEQRKHZFCuZNfWGOMYKLNq6o0aG9rvsjveEz7y57jrCIDtSqt694rUT2IW7qwMG43H1c1RX3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=RCiVDabu; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=mhp6ovL8zavoyaSxkv5HYHmsZacM5L2V4hmeVvMF4l4=; b=RCiVDabuoQ59c0QZCA399+Bwv6
-	5ORzt0YRL5HT1GFyd264QOsg6XJ3+8FLBUZh7So2Iu9wGw0tBNqM3Na2YGTaTDHcTgprycmR5Q/WJ
-	UnUKlYZDcsOWKSK1NrTn3F+LOjinv3T0KFJqO+kCoi7kzTpNEigCSYXmyHOXKBPfa+qzVhmXOaXgw
-	wXNOvjqew3x9s55pyh3v2SAzCTCN/RxUWtPqObMOX+m110Ei6y+ST96ngSaFLCz4kP+qoSdspNLC3
-	wzxgoccsTY0xa79rikNuTNzyzkvFd0eBIchyvugd8KRbVuaYgorWG70U4SGvJ4vuaKHf5zU/cgZsk
-	g7CjKDbw==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1u1LbB-000MBB-2l;
-	Sun, 06 Apr 2025 10:43:25 +0200
-Received: from [31.220.115.242] (helo=mail.your-server.de)
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1u1LbB-000LS7-1S;
-	Sun, 06 Apr 2025 10:43:25 +0200
-Date: Sun, 6 Apr 2025 10:43:23 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lars@metafoo.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
-	subhajit.ghosh@tweaklogic.com, muditsharma.info@gmail.com,
-	arthur.becker@sentec.com, ivan.orlov0322@gmail.com
-Subject: Re: [PATCH 2/3] iio: light: add support for veml6046x00 RGBIR color
- sensor
-Message-ID: <Z_I-qwzUrTNz1DZp@mail.your-server.de>
-References: <20250316113131.62884-1-ak@it-klinger.de>
- <20250316113131.62884-3-ak@it-klinger.de>
- <20250317115005.72a539a0@jic23-huawei>
+	s=arc-20240116; t=1743936551; c=relaxed/simple;
+	bh=494c0ISnHCeFKQx/wB17nPBOe6V1ke7jMKsUxQ+P/gs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U87k91M2sXAr1wubE9tq1dHuAhDNEU3EMeds9xlVCET+dP6f0X/R6UuviOlt+ln7vnP/pPJotUL/gika3Vue4Vv4QAzC0rWf0E1znNZR0UTvnsWj8gXNwPaNMSFfyRFAOFsCYUkX07sv+Bw52YDFhh5Lm/S+nRKDAARb+9K3Boc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ciAvouRs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78306C4CEE3;
+	Sun,  6 Apr 2025 10:49:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743936550;
+	bh=494c0ISnHCeFKQx/wB17nPBOe6V1ke7jMKsUxQ+P/gs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ciAvouRs2+BcILKzdeZpnj8Za1Hdcnlo7D0Kr593zBiu6fGA5J59cVTeVWlGlJrcn
+	 9Q8fU6IkVXqJMf37K2yA9arnDsQao9lfcn+WUOanR39fzGcI5TktgxyRSdZGSArdZ9
+	 QO0CrJlxAUsbolSf1Q37HH7b73tmw/Johe/1YOB686T128cPuU6qhGJhKFEnS6JfXF
+	 iAxBPRc/8lwV9LWNkp15L+nN0UTwFdxh8fOv9eNOYzURltrkkwj5cn3bCpMZ9hOdXX
+	 T+/D8b0FUv4rEbPVIIdiMC/hklrdzkiwh0Q+mcT3X2kdUDMFQ2+5o09HvU+WPsAABY
+	 93cipIMCs9wnA==
+Date: Sun, 6 Apr 2025 11:49:01 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <jonath4nns@gmail.com>
+Cc: 20250308135620.3c95b951@jic23-huawei.smtp.subspace.kernel.org,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl,
+	lgirdwood@gmail.com, broonie@kernel.org, dlechner@baylibre.com,
+	marcelo.schmitt1@gmail.com, Pop Paul <paul.pop@analog.com>
+Subject: Re: [PATCH v4 16/17] iio: adc: ad7768-1: add filter type and
+ oversampling ratio attributes
+Message-ID: <20250406114901.0e3c885d@jic23-huawei>
+In-Reply-To: <Z+swyCusIwl8zixt@JSANTO12-L01.ad.analog.com>
+References: <cover.1741268122.git.Jonathan.Santos@analog.com>
+	<3586a75e3b7bf09c271a44390b2fed9f1ffc8565.1741268122.git.Jonathan.Santos@analog.com>
+	<20250308135620.3c95b951@jic23-huawei>
+	<Z+swyCusIwl8zixt@JSANTO12-L01.ad.analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OfXP2FohRUruAtNP"
-Content-Disposition: inline
-In-Reply-To: <20250317115005.72a539a0@jic23-huawei>
-X-Authenticated-Sender: ak@it-klinger.de
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27599/Sat Apr  5 10:34:42 2025)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 31 Mar 2025 21:18:16 -0300
+Jonathan Santos <jonath4nns@gmail.com> wrote:
 
---OfXP2FohRUruAtNP
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 03/08, Jonathan Cameron wrote:
+> > On Thu, 6 Mar 2025 18:04:24 -0300
+> > Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+> >   
+> > > Separate filter type and decimation rate from the sampling frequency
+> > > attribute. The new filter type attribute enables sinc3, sinc3+rej60
+> > > and wideband filters, which were previously unavailable.
+> > > 
+> > > Previously, combining decimation and MCLK divider in the sampling
+> > > frequency obscured performance trade-offs. Lower MCLK divider
+> > > settings increase power usage, while lower decimation rates reduce
+> > > precision by decreasing averaging. By creating an oversampling
+> > > attribute, which controls the decimation, users gain finer control
+> F> > over performance.
+> > > 
+> > > The addition of those attributes allows a wider range of sampling
+> > > frequencies and more access to the device features. Sampling frequency
+> > > table is updated after every digital filter paramerter change.
+> > > 
+> > > Co-developed-by: Pop Paul <paul.pop@analog.com>
+> > > Signed-off-by: Pop Paul <paul.pop@analog.com>
+> > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > > ---
+> > > v4 Changes:
+> > > * Sampling frequency table is dinamically updated after every  
+> > 
+> > Good to spell check. Dynamically
+> >   
+> > >   filter configuration.  
+> > 
+> > Currently this runs into the potential race conditions we get with
+> > read_avail callbacks.  If we update the avail values in parallel
+> > with consumer code in a kernel driver reading them we can get tearing.
+> > So better if possible to do it all before those interfaces are exposed
+> > and just pick from a set of static arrays.
+> >   
+> I understand the problem, but the number of possible sampling
+> frequencies is quite large because of the decimation/OSR:
+> 
+> -> For wideband there are 6 decimations available.
+> -> For Sinc5 there are 8 decimations.
+> -> For sinc3 (here's the problem) we have up to 5119 decimation options.  
+> From x32 to x163,840 (mclk_div = 2) with a 32 step.
+> 
+> BTW, that's why we use ranges for `oversampling_ratio_available`
+> attribute.
 
-Hi Jonathan,
+Ah, understood now.  Another case where I guess we need to fix up in the long
+term.  Short term not a problem as I don't think any consumers yet read the filter
+parameters anyway.
 
-I need to pick up the meaning of scale once again for clarification.
+> 
+> To reflect all sampling frequencies combinations (fref/(mclk_div *
+> OSR)), we would need a considerably large array. We did not have this
+> problem before because we were not supporting the sinc3 filter.
+> 
+> > > +static struct iio_chan_spec_ext_info ad7768_ext_info[] = {
+> > > +	IIO_ENUM("filter_type", IIO_SHARED_BY_ALL, &ad7768_flt_type_iio_enum),
+> > > +	IIO_ENUM_AVAILABLE("filter_type", IIO_SHARED_BY_ALL, &ad7768_flt_type_iio_enum),
+> > > +	{ },  
+> > 
+> > No trailing comma on a terminating entry as we don't want it to be easy
+> > to accidentally add stuff after this.
+> >   
+> > > +};  
+> > 
+> >   
+> > > +static int ad7768_configure_dig_fil(struct iio_dev *dev,
+> > > +				    enum ad7768_filter_type filter_type,
+> > > +				    unsigned int dec_rate)
+> > > +{
+> > > +	struct ad7768_state *st = iio_priv(dev);
+> > > +	unsigned int dec_rate_idx, dig_filter_regval;
+> > > +	int ret;
+> > > +
+> > > +	switch (filter_type) {
+> > > +	case AD7768_FILTER_SINC3:
+> > > +		dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_SINC3);
+> > > +		break;
+> > > +	case AD7768_FILTER_SINC3_REJ60:
+> > > +		dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_SINC3_REJ60);
+> > > +		break;
+> > > +	case AD7768_FILTER_WIDEBAND:
+> > > +		/* Skip decimations 8 and 16, not supported by the wideband filter */
+> > > +		dec_rate_idx = find_closest(dec_rate, &ad7768_dec_rate_values[2],
+> > > +					    ARRAY_SIZE(ad7768_dec_rate_values) - 2);
+> > > +		dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_WIDEBAND) |
+> > > +				    AD7768_DIG_FIL_DEC_RATE(dec_rate_idx);
+> > > +		/* Correct the index offset */
+> > > +		dec_rate_idx += 2;
+> > > +		break;
+> > > +	case AD7768_FILTER_SINC5:
+> > > +		dec_rate_idx = find_closest(dec_rate, ad7768_dec_rate_values,
+> > > +					    ARRAY_SIZE(ad7768_dec_rate_values));
+> > > +
+> > > +		/*
+> > > +		 * Decimations 8 (idx 0) and 16 (idx 1) are set in the
+> > > +		 * FILTER[6:4] field. The other decimations are set in the
+> > > +		 * DEC_RATE[2:0] field, and the idx need to be offsetted by two.
+> > > +		 */
+> > > +		if (dec_rate_idx == 0)
+> > > +			dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_SINC5_X8);
+> > > +		else if (dec_rate_idx == 1)
+> > > +			dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_SINC5_X16);
+> > > +		else
+> > > +			dig_filter_regval = AD7768_DIG_FIL_FIL(AD7768_FILTER_REGVAL_SINC5) |
+> > > +					    AD7768_DIG_FIL_DEC_RATE(dec_rate_idx - 2);
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	ret = regmap_write(st->regmap, AD7768_REG_DIGITAL_FILTER, dig_filter_regval);
+> > > +	if (ret)
+> > >  		return ret;
+> > >  
+> > > -	/* A sync-in pulse is required every time the filter dec rate changes */
+> > > +	st->filter_type = filter_type;
+> > > +	/*
+> > > +	 * The decimation for SINC3 filters are configured in different
+> > > +	 * registers
+> > > +	 */
+> > > +	if (filter_type == AD7768_FILTER_SINC3 ||
+> > > +	    filter_type == AD7768_FILTER_SINC3_REJ60) {
+> > > +		ret = ad7768_set_sinc3_dec_rate(st, dec_rate);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +	} else {
+> > > +		st->oversampling_ratio =  ad7768_dec_rate_values[dec_rate_idx];  
+> > 
+> > Looks like an extra space after =
+> >   
+> 
+> Sorry about that
+> 
+> > > +	}
+> > > +
+> > > +	ad7768_fill_samp_freq_tbl(st);  
+> > 
+> > This is opens a potentially complex race condition if we have the an
+> > in kernel consumer reading the data in this array as it is being updated
+> > (currently we can't stop that happening though solutions to that problem
+> > have been much discussed). 
+> > 
+> > There aren't that many oversampling ratios so perhaps it is better
+> > to precalculate all the potential available values as an array indexed  
+> 
+> As I said above, unfortunately there are many OSR options.
+> 
+> > by oversampling ratio.  That way all the data is const, it's just possible
+> > to get stale pointer to the wrong entry which can always happen anyway
+> > if the read vs update happen in different entities.
+> >   
+> > > +
+> > > +	/* A sync-in pulse is required after every configuration change */
+> > >  	return ad7768_send_sync_pulse(st);
+> > >  }  
+> >   
+> > >  
+> > > +static int ad7768_write_raw(struct iio_dev *indio_dev,
+> > > +			    struct iio_chan_spec const *chan,
+> > > +			    int val, int val2, long info)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret = iio_device_claim_direct_mode(indio_dev);  
+> > 
+> > update to use if (!iio_device_claim_direct())
+> >   
+> 
+> OK!
+> 
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = __ad7768_write_raw(indio_dev, chan, val, val2, info);
+> > > +	iio_device_release_direct_mode(indio_dev);
+> > > +
+> > > +	return ret;
+> > > +}  
+> >   
 
-Jonathan Cameron <jic23@kernel.org> schrieb am Mo, 17. M=C3=A4r 11:50:
-> On Sun, 16 Mar 2025 12:31:30 +0100
-> Andreas Klinger <ak@it-klinger.de> wrote:
->=20
-> > +static int veml6046x00_get_scale(struct veml6046x00_data *data,
-> > +				 int *val, int *val2)
->=20
-> How is this related to integration time?  I'd normally expect
-> to see that read in here somewhere as well as doubling integration
-> time tends to double scale.
-
-In the documentation file "sysfs-bus-iio" it says:
-"
-What:           /sys/.../iio:deviceX/in_illuminanceY_raw
-[...]
-Description:
-                Illuminance measurement, units after application of scale
-                                and offset are lux.
-"
-
-This means that the scale should be the real factor and not the gain multip=
-lied
-by photodiode size (PDDIV) as i implemented it so far.
-
-This means also that doubling integration time should halve the scale. The
-higher raw value should lead to the same lux value.
-
-The documentation of the sensor (veml6046x00.pdf) provides us the calculati=
-on
-between raw green values and lux.
-Wouldn't it be better to give the user the real factor to be able to get lu=
-x?
-
-The fact that only the green channel can be used for calculation could be
-documented in the driver.
-
-Then i found the "in_illuminance_hardwaregain" property. It seems that this=
- is
-exactly what the combination of gain and PDDIV is used for.
-
-So what is the scale at the moment could become the hardwaregain and the sc=
-ale
-the factor from raw value to lux.
-
-
-To sum up the suggested interface under /sys/bus/iio/devices/iio\:deviceX w=
-ould
-be something like:
-
-in_illuminance_hardwaregain --> set and get gain and PDDIV on the sensor
-
-integration_time            --> set and get integration time on the sensor
-
-integration_time_available  --> show available integration time values
-
-scale                       --> (only) get real calculation value, taken fr=
-om
-                                sensor documenation, e.g. 1.3440
-
-scale_available             --> not existing anymore
-
-
-What do you think?
-
-Andreas
-
-
---OfXP2FohRUruAtNP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmfyPqsACgkQyHDM+xwP
-AVGLqwv/baxRfp2PxoUBztYueZOw/nCf/0TWvxbwS+onIe8CUgUsJsyeV24ij/Ff
-XUhfyo1PZZqYCSfoJ2T353NAP5e2htqrhJmZ49Mj9MOh82bXxORBuUc0pyRFlzIJ
-C4bwFG2tU5ToIMRMWI3S9nZJDpKyyVK2A4xYwfZ4CXdg9rRrh6SEJll6AyL/huTA
-RwqTBlJgz7r62ZW+Zh3LYLQ5FUcVh4Rald4F+SO0r4H2xT92xvs1PhoDMNh4w+jK
-goLmmMYtsV6PuRgWCqotl1+9tdMnQh6O49VMa3I57mQlD8naQNDVDq7x+yBbPrS0
-JlJFQyVoM/s3OSmpw8Et6TyjJn848klSEIdiZpPk0Yea2/g0ez0IO+eDZk32TzJM
-3xviaZcDNa678t42Xzxkxb6OxFNiSfVmo5glD8Iq7DDp3mdwpNqd9vdROsPV0aOx
-ZpSwDiMUTWsn8OXLzpLtbE56o5RcmsvK6ZE/tjhl6EdrYxOhAJfcCqZBVYjenF3P
-N7YJRdJq
-=wPB5
------END PGP SIGNATURE-----
-
---OfXP2FohRUruAtNP--
 
