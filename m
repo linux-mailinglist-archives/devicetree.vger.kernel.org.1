@@ -1,99 +1,107 @@
-Return-Path: <devicetree+bounces-164081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C4BA7F112
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:36:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50094A7F16C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E86C61777E0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:36:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F11377A215C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D066022B585;
-	Mon,  7 Apr 2025 23:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0ED22B59C;
+	Mon,  7 Apr 2025 23:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SzaKwUlf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8Z86gJo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BF822AE6B;
-	Mon,  7 Apr 2025 23:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0951922B597;
+	Mon,  7 Apr 2025 23:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744068943; cv=none; b=eaRacJXjr+e4Fs4IW6OFwxOYjtuoFhyEJw+M0i02Yf0OMCugsGDunxp+9tQjS8DNdtxxzkZEfulWgkTye1v/ZeD2lYLbdpPyoK33yLFlUHavtBb8FMYiFdKHatmQxXAjZ92TI8Jn06NiwFi2C1ZWDDGA2pwHp69JT/SkfZf0SAw=
+	t=1744069695; cv=none; b=IJSQxx3d450TmlmDgmc6HKi3bfbbv+ws30Ql3ZUCgXAP+oQDOIfYHgU0nBQTHiYLuBz3neOAcvUkKdxd3tBU7GPNFceH8O5g6KInB1Pxog4I8P+dpZWhr6HCxAyf+e6fxBVjUgUhpysz/qGvRNehrnLf5wKmwynQGJbcNE4SJmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744068943; c=relaxed/simple;
-	bh=HPi8HtckWZx8UQwFm0nMJPZTaRI9QJIG08RLF6cjt1c=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=EejO2D5XfdNGB89qNBwKeuVaDaTRggGKllWuFwcQZFYkbxQj5Ite8Mu/qULdX0ZY8kZ37vehFv+BI+ys4/mTG5z5fP1iqLGyQs9R65EMcLZCTrrzWFbGjfOFd61IM5wrJ6vfZKH6QquAgFp2yy9DJ6cbykdi+WqroOVKYtC81PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SzaKwUlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03B28C4CEE8;
-	Mon,  7 Apr 2025 23:35:41 +0000 (UTC)
+	s=arc-20240116; t=1744069695; c=relaxed/simple;
+	bh=61FySSGCFmYcaDfbgWfsvj/rq0z+27TihchOLygJZyk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0szJ4Pv1iFlUOrR6ycD0ugm6bHWP1VwAB4veF+VpX40SH+z53xJEcSrGjPGZovet2XxVx3xfRYumixSirI3PT0sPE4mX4nsrCAj7CLGIArYrFXFvUrqaVKPgXZ2E6Swbw2TbRXXUpWTE/ov7l/KekPGlvEEuyFnzMaQboPk0kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8Z86gJo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A2EAC4CEDD;
+	Mon,  7 Apr 2025 23:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744068943;
-	bh=HPi8HtckWZx8UQwFm0nMJPZTaRI9QJIG08RLF6cjt1c=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=SzaKwUlfsazgiJipXGrE3lZvvfi+u5rUO57axM3HIs8YxP1Mh6jCXShlj60vHwyuY
-	 0c//P85T5Y1bgoEXml5l0Ecotfdw9oK9bLouWyStRWFCtdMbNHXkwL2F14prZT2WzI
-	 BWy7dE6SkKS+hdlpLDoSbJsZutP3x4SWbaE5NPh2qBfJqwJg4BbTqXzSgEKm2p3VIP
-	 ik+stEoTe5Bzx/pQzUjfW07jHpUoisoYwKLYw0wl+NuvKjHkU4OcY770VFPNxxrdvR
-	 /xVhsJibSacQu70C8w5qQGppOHLnB5wA6OaFsttN846J3mOr09+Fmgh4y2iScyOtLp
-	 f0sqj4ox3dEtQ==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20250328021339.1593635-1-shengjiu.wang@nxp.com>
-References: <20250328021339.1593635-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: fsl,mqs: Reference common DAI
- properties
-Message-Id: <174406894173.1337819.7850470508605306315.b4-ty@kernel.org>
-Date: Tue, 08 Apr 2025 00:35:41 +0100
+	s=k20201202; t=1744069694;
+	bh=61FySSGCFmYcaDfbgWfsvj/rq0z+27TihchOLygJZyk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r8Z86gJojkJUri5K0AWxvKlU4zjP2gmuFhQCGbJJmxFyihKwvvFO2IAaHOb/0bNdE
+	 kfHzhAJ1AWCxi/DIZyppPOBls8mrv/D68nZDU041XdNOBYZnH4wmyMQ7jLJY1vyA37
+	 iamK6ikTJoTmU1a5w7jxK60NIJIgKZzT4rvKqRGyRUoEKkQLLSEG5k8rF/SYG2P04Q
+	 VnooibXuzPc7+YQhHahs+2glJGfTyZyaPiah8itex2xNcm7DkaBdT4sQJxv4SMf1L7
+	 FyQNSiSz/m0l31nbQaAstYp5b1G02XyZmcYcsa9b7uJU/RHjVyYV+BcO/dJVdlxcEn
+	 6p1n/baAFJIaA==
+Date: Mon, 7 Apr 2025 18:48:13 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: jernej.skrabec@gmail.com, krzk@kernel.org, agx@sigxcpu.org,
+	linux-kernel@vger.kernel.org, robert.chiras@nxp.com,
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	tzimmermann@suse.de, devicetree@vger.kernel.org, mripard@kernel.org,
+	andrzej.hajda@intel.com, jonas@kwiboo.se,
+	Laurent.pinchart@ideasonboard.com, neil.armstrong@linaro.org,
+	rfoss@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+	airlied@gmail.com
+Subject: Re: [PATCH RESEND V2 1/1] dt-bindings: display: nwl-dsi: Allow
+ 'data-lanes' property for port@1
+Message-ID: <174406969099.171841.8161329634639318848.robh@kernel.org>
+References: <20250407150442.2778299-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250407150442.2778299-1-Frank.Li@nxp.com>
 
-On Fri, 28 Mar 2025 10:13:39 +0800, Shengjiu Wang wrote:
-> Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
-> "sound-name-prefix' to be used.
+
+On Mon, 07 Apr 2025 11:04:42 -0400, Frank Li wrote:
+> This controller support scalable data lanes from 1 to 4. Add the
+> 'data-lanes' property to configure the number of MIPI display panel lanes
+> selected for boards.
 > 
+> Change $ref of port@1 from 'port' to 'port-base' and add 'endpoint'
+> property referencing video-interfaces.yaml. Allow 'data-lanes' values
+> 1, 2, 3, and 4 for port@1.
+> 
+> Fix below CHECK_DTB warnings:
+> arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtb:
+>  dsi@30a00000: ports:port@1:endpoint: Unevaluated properties are not allowed ('data-lanes' was unexpected)
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Missed v6.15 merge windows.
+> 
+> This one elimiate last two lines warning under arm64: dts/freescale
+> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> Resend V2: include Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> tags.
+> 
+> Original v2 thread:
+> https://lore.kernel.org/imx/c5y6mocsd77wj5lah6n47vtteqc5ekcrbdod6z5vtcnxhleudw@kfhpyoiylqqp/
+> 
+> Change from v1 to v2
+> - Add the reason why need 'data-lanes' property in commit message.
+> ---
+>  .../bindings/display/bridge/nwl-dsi.yaml       | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: dt-bindings: fsl,mqs: Reference common DAI properties
-      commit: 5a4c3ce480031c4654ea8ee6c5cb4621819973f3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Applied, thanks!
 
 
