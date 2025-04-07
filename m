@@ -1,172 +1,147 @@
-Return-Path: <devicetree+bounces-163728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2486A7DDCF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:37:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCE3A7DDEF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:42:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BFE1886C93
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:36:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6714C1764FE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1A922FF44;
-	Mon,  7 Apr 2025 12:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wPhcHSfk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8AD24889B;
+	Mon,  7 Apr 2025 12:39:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E047C227BB5;
-	Mon,  7 Apr 2025 12:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF1423AE64;
+	Mon,  7 Apr 2025 12:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744029384; cv=none; b=Kac50nt3lkBfszMe+VlT0XPOUGBT0YuB6s6yT/MmO3wMNtn0Elf+hhRErAfoTBq7dX/mYlWUERxCtSrDc3vSux9vj/90NbMSaOVF7iFdRps+5sPDXhacc3U2s68ONIZ/iLXgv4qU5yCS9ATTLC6L/64QYjFZGdE2MIm+zLemhGQ=
+	t=1744029587; cv=none; b=C7qy4qS6qtLS5oSsDg3Y/nS8LKQ/wX85CGnT5yPkm7+LF4/4ckKfGmUEmUa+tJIyTndhgN+Ofu0ru2OmeWqkmcehZKwW9b6XX8bUc9W6Fq8jZxlSY9WVEf+TxY9dxtzZtLaC1zPLAHhAroZ278SNeoqHQAlN+sAk6sq2Shw1eHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744029384; c=relaxed/simple;
-	bh=1su1RVr9WJ58wLxVjeeErnWvxQCpntRQJD3KfQYta8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qMYKuRq4BiFDb3Fw9I1qTGvZmSyHXskg/ksYyzdnPO7Fsat2DzBJanBRQTkIsmfCOUuxJSiRQI7zi0vuTouVXIg3uhtEZ5/PLKwtWly7grpWsPneST3iM1NYHZjJEbff6UhuyATvFDpGMd7T4UA3AVhWfHKC4rM1uFwnSLbVL1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wPhcHSfk; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537CZwPw915930
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 7 Apr 2025 07:35:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744029358;
-	bh=ZIqra39FwyGHX2IBVRB5giqoWceascBFIqyv6tet87s=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=wPhcHSfkvXDW05Uv+Wg56S8G1rDINJtfYXmbcnaxa1Oi8f+UyxXNbiJmRvSpAzxAO
-	 7gp7cepdfvoGd1X3Zx71ysgd4sCOv+R40T0ciAhqs99x4CffV6iwmpDMiB5C40khlQ
-	 57Hz4oBrRIWyPOviRdoBA+MiGgf0dyYV0PCVaBX0=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537CZwqV113614
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 7 Apr 2025 07:35:58 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Apr 2025 07:35:57 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Apr 2025 07:35:57 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537CZvmS006892;
-	Mon, 7 Apr 2025 07:35:57 -0500
-Message-ID: <956c0598-9934-4295-87af-ef86f4eabd94@ti.com>
-Date: Mon, 7 Apr 2025 07:35:57 -0500
+	s=arc-20240116; t=1744029587; c=relaxed/simple;
+	bh=guydDGrxtfiF0QxuG+IbBP1EBPIlelU7O0fNN/qWZUY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JuffQdnJOzfpv1k5sPMgyfP/GC4UEQs6vQJIFIKF/1gc0NQQprb9itneTY2SEnTiMEPybQCQUiri15PN7JMybXK/x0nzrLQCe8XXUD9CL6SuEmqD1khb8T5CBHfCrVO+CFt9ZNf3HST4paBnBfVjnZZHDOmYz7moFpAd2siNV3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [27.18.106.237])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 10ef566e5;
+	Mon, 7 Apr 2025 20:39:25 +0800 (GMT+08:00)
+From: Ze Huang <huangze@whut.edu.cn>
+Subject: [PATCH 0/7] Add USB3.0 PHY and host controller support for
+ SpacemiT K1 SoC
+Date: Mon, 07 Apr 2025 20:38:45 +0800
+Message-Id: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 11/11] arm64: dts: ti: k3-am64: Reserve timers used by
- MCU FW
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Padhi <b-padhi@ti.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-References: <20250405001518.1315273-1-jm@ti.com>
- <20250405001518.1315273-12-jm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250405001518.1315273-12-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIAFbH82cC/3WOQW6DMBBFr4K87iB77MGAqoiseoaqysLAlFgJ0
+ NgENYpy97pkneUb6f03dxE5eI6izu4i8Oqjn6cE6i0T3dFNA4PvEwuUSNJIC62Bk4JrbDWsGhB
+ UUaJzpkKiSiTrJ/C3/90Wvw5PDny5puHleRStiwzdPI5+qbO1yBVB6NS/O3KMbkvW2ftW1LJQl
+ izJHNGUMvWOfDvz5G6N6TGfw7B7IWKJSqLWuZLWSk2ggM89hyb42MXFhTy98EJGLJSiiix8fO4
+ NkSybgadlnnfi8Hj8AT3ztXI0AQAA
+X-Change-ID: 20250407-b4-k1-usb3-v3-2-1682aa492559
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Ze Huang <huangze@whut.edu.cn>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744029565; l=3284;
+ i=huangze@whut.edu.cn; s=20250325; h=from:subject:message-id;
+ bh=guydDGrxtfiF0QxuG+IbBP1EBPIlelU7O0fNN/qWZUY=;
+ b=Ghi1yoX13LsL5SLUgC8pQHW4O7dQb14bN9AeNv91Q+HWvOJWXFbLeEsB2kpBYQQlEISEzAiFr
+ zTTHHmy28hhD9VK+mM5N7b4F11BN+cuWUUXYa2rT4UkbdGbiiSbzdB+
+X-Developer-Key: i=huangze@whut.edu.cn; a=ed25519;
+ pk=C3zfn/kH6oMJickaXBa8dxTZO68EBiD93F+tAenboRA=
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHR4dVh0fGBpNQkNOQkhMGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJTFVKQ1VKS01VSUhMWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
+	Y+
+X-HM-Tid: 0a961043447103a1kunm10ef566e5
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OCo6Aww5HzIMIUwtOBU3GjQt
+	KBwwChJVSlVKTE9PS0lCTkxJQk9CVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
+	TFVKQ1VKS01VSUhMWVdZCAFZQU5KQ0M3Bg++
 
-On 4/4/25 7:15 PM, Judith Mendez wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
-> main domain timers as tick timers in these firmwares. Hence keep them
-> as reserved in the Linux device tree.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 17 +++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 17 +++++++++++++++++
->   2 files changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> index f8ec40523254b..68bd6b806f8f0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> @@ -796,6 +796,23 @@ &mcu_m4fss {
->   	status = "okay";
->   };
->   
-> +/* main_timers 8-11 are used by TI MCU FW */
+This patch series introduces support for the USB on the SpacemiT K1 SoC,
+including DWC3 host controller, PCIe/USB3.0 combo PHY and the USB2.0 PHY.
+The implementation has been tested on the Milk-V Jupiter and BananaPi-f3.
 
-Can you make this comment per-core and explain which core
-each timer is reserved for? Makes it easier on me in Zephyr
-to point out why we use the timers that we do, something
-like:
+USB3.0 PHY for usb2 is shared with PCIe port A, meaning that only one of
+these interfaces (PCIe or USB3.0) can be active at a given time.
 
-/* main_timer8 is reserved for mcu_r5fss0_core0 */
+Overview of USB controllers on K1 SoC[1]:
 
-Andrew
+Link: https://developer.spacemit.com/documentation?token=AjHDwrW78igAAEkiHracBI9HnTb#part5 [1]
+---
+Ze Huang (7):
+      dt-bindings: phy: spacemit: add K1 USB2 PHY
+      dt-bindings: phy: spacemit: add K1 PCIe/USB3 combo PHY
+      dt-bindings: usb: add SpacemiT K1 DWC3 glue
+      phy: spacemit: support K1 USB2.0 PHY controller
+      phy: spacemit: add USB3 support for K1 PCIe/USB3 combo PHY
+      usb: dwc3: add spacemit dwc3 glue layer driver
+      riscv: dts: spacemit: add usb3.0 support for K1
 
-> +&main_timer8 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer9 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer10 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer11 {
-> +	status = "reserved";
-> +};
-> +
->   &serdes_ln_ctrl {
->   	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
->   };
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> index 33e421ec18abb..07fbdf2400d23 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> @@ -710,6 +710,23 @@ &mcu_m4fss {
->   	status = "okay";
->   };
->   
-> +/* main_timers 8-11 are used by TI MCU FW */
-> +&main_timer8 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer9 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer10 {
-> +	status = "reserved";
-> +};
-> +
-> +&main_timer11 {
-> +	status = "reserved";
-> +};
-> +
->   &ecap0 {
->   	status = "okay";
->   	/* PWM is available on Pin 1 of header J3 */
+ .../bindings/phy/spacemit,k1-combphy.yaml          |  53 +++++
+ .../devicetree/bindings/phy/spacemit,usb2-phy.yaml |  40 ++++
+ .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  |  78 +++++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  55 +++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  52 +++++
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/spacemit/Kconfig                       |  20 ++
+ drivers/phy/spacemit/Makefile                      |   3 +
+ drivers/phy/spacemit/phy-k1-combphy.c              | 229 +++++++++++++++++++++
+ drivers/phy/spacemit/phy-k1-usb2.c                 | 132 ++++++++++++
+ drivers/usb/dwc3/Kconfig                           |   7 +
+ drivers/usb/dwc3/Makefile                          |   1 +
+ drivers/usb/dwc3/dwc3-spacemit.c                   | 127 ++++++++++++
+ 14 files changed, 799 insertions(+)
+---
+base-commit: 64e9fdfc89a76fed38d8ddeed72d42ec71957ed9
+change-id: 20250407-b4-k1-usb3-v3-2-1682aa492559
+prerequisite-message-id: <20250306175750.22480-2-heylenay@4d2.org>
+prerequisite-patch-id: e0f9037d659502b7f10588f15b80505724eb9e35
+prerequisite-patch-id: 4414e37b16b1bc0039239f07da8c35935efb1601
+prerequisite-patch-id: 1e65bc4c0c0d41baef743819c311ad53f6696094
+prerequisite-patch-id: 43ef72522e30620f0244e0e22bd844884d89b0cd
+prerequisite-patch-id: 73008ee7c04e90cd4e825a3f5bd2e44ec24d8ad3
+prerequisite-message-id: <20250328210233.1077035-1-elder@riscstar.com>
+prerequisite-patch-id: 9b026005eb6ee1430ab7ca67edfc21de85a19dd2
+prerequisite-patch-id: 8ee238181e50c76d92458b149b72fa4909e0fede
+prerequisite-patch-id: 66f3ee8eb1cc016112dace699bce292b617a3186
+prerequisite-patch-id: c2deec49fc0308a08908fd9badadc10f921af348
+prerequisite-patch-id: 99afc2efdffc0fffe47a31e7b07b72af9d1d2e18
+prerequisite-patch-id: d06e8cd0fae4c405dbb56832a1fe48bfaa4e0fab
+prerequisite-patch-id: 5f53f8bf16fb067628092daebc4831293261aa01
+prerequisite-message-id: <20250226115957-GYA45508@gentoo>
+prerequisite-patch-id: 82dd2631d36c3fafb82768d3d89022ed956020c6
+prerequisite-patch-id: 5cc63738ba2d463e1840a91a94357f43199bd68f
+prerequisite-patch-id: f44247679d46a51c242703eca370ce0e3db2e61f
+prerequisite-patch-id: 9d4cd8be42a37798815d0aaae21d3c022f815414
+
+Best regards,
+-- 
+Ze Huang <huangze@whut.edu.cn>
+
 
