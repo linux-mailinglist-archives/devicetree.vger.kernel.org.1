@@ -1,221 +1,151 @@
-Return-Path: <devicetree+bounces-163719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6309A7DD5E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:13:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AA9A7DD7C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A63B189354C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:12:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06F8D178036
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023722512D7;
-	Mon,  7 Apr 2025 12:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C072459E0;
+	Mon,  7 Apr 2025 12:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="QBe9XOC9"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="c6D5FcEJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A4724EF8E;
-	Mon,  7 Apr 2025 12:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E4A22F155
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 12:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744027882; cv=none; b=dS/dvwQAKIyqrYunqYYymvLKgHPkcw3aCAYOl33RoOZqx/+Pzg1LyYqtUlYNrBFz0IGZN/NTN5WqKHF+i2PAL1LqHeu4prcvhP+wO4IHZFDR79kodWSLCY9M94opNqxQTsoxuXeRFN5j3ZDfRDjYc/H89W6PXGI3lOBsNer8nkQ=
+	t=1744028089; cv=none; b=NCxa/BGJvgHOpT5Mwijp4uty0GhB0/1CvDYY8Q2sltylfWd4LIKZHp7Uw1Xt49BgMFWYTyfwEIkmQwDmZrhkcsK59Qjl/K8WeLYUwvPqlLCfNX6SCN9uj3uuW25b75naBHkez1ILd/f0WjfEumkXtCfomdMJgXTfmfNL62w5rzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744027882; c=relaxed/simple;
-	bh=oGpnu5Y7EnY5P9X1AiW9ING7v/3dxT5f+8RiP8Atz6U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TjHFBYchBeDJafFES8eBc2eCv9ps9V7wyF+00pxryodI5sXOdF+/V6NQt902YpUIvrvtIRzsYGxsAzjxal0YF6SrGchCle/jr4dx16nGzpKyjtlWKdtR9jQXUrBvOGoyRaeK5O4/PhJa/8Z5xx6GIKHgmG65thj8uRs0E3k3eEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=QBe9XOC9; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 67e5d95c13a911f08eb9c36241bbb6fb-20250407
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=JAbvFEC9Kt8P81+V2sHCH2GZ+SfpkGkZ983AinyulB0=;
-	b=QBe9XOC9EKl3dXzsG+QhTOASN2pIL0YXHLka+8q3B+WxciMlFgS93GrdghqknIpkZZnShrtKpz/bbje5AgvpmKLd/NwIWk7lE12HunsAmfUp565JKwqcr9xjZWro65WzndLR1o8YzQIEd6+RKkf2RFwDLiFL1ZbgW/FUEdgRHkw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:fd415e5c-a356-43b6-985c-d494dd762da9,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:0ef645f,CLOUDID:cff20a4b-a527-43d8-8af6-bc8b32d9f5e9,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:11|83|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 67e5d95c13a911f08eb9c36241bbb6fb-20250407
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <darren.ye@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 126983391; Mon, 07 Apr 2025 20:11:16 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 7 Apr 2025 20:11:14 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 7 Apr 2025 20:11:14 +0800
-From: Darren.Ye <darren.ye@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Linus
- Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>, Darren Ye
-	<darren.ye@mediatek.com>
-Subject: [PATCH v2 11/11] ASoC: dt-bindings: mediatek,mt8196-mt6681: add mt8196-mt6681 document
-Date: Mon, 7 Apr 2025 20:06:35 +0800
-Message-ID: <20250407120708.26495-12-darren.ye@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250407120708.26495-1-darren.ye@mediatek.com>
-References: <20250407120708.26495-1-darren.ye@mediatek.com>
+	s=arc-20240116; t=1744028089; c=relaxed/simple;
+	bh=SJloMABJ9TFapxZzUuoSPn8M6mfm+kJt9tZS7KDLG1g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uoAxwSXbDD+PAr9W6ZkLkIFITyFxOa2scOWuy16MVQsYTlGRMOqbE+Vgo/kc9BDArm53JtkLD++MbTJKf1ln39xYqcPmoieJ3l5KAfjCeq8BUY1fYSFEQc2y60QKcVcBTRlCbS9hP4gUIn3MHtZl7vTGetDQopu84ncvQEwNSiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=c6D5FcEJ; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744028086;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hQ0sePM8qDTqbXQLkavIPlwoEXkE0hK7tfvWemHOezo=;
+	b=c6D5FcEJNMC3NAEZ6R5jMZ2MZGZVBZTCVePnAr2Bi+uDdJLA2Q8SRDpbcqJ2PEg7403e3I
+	WPspHaZkGYfQQEm5dI1NzOeelKftfkd0qtJpv9jG/OLgYR32pfdBq6GfEtBsmGmIrmBo4C
+	Bb0G5dt+37qN4r+sIb3aMaaNqnXjdAg=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-43-ydEh9gCeMEa40QVI_pLzqQ-1; Mon, 07 Apr 2025 08:14:45 -0400
+X-MC-Unique: ydEh9gCeMEa40QVI_pLzqQ-1
+X-Mimecast-MFC-AGG-ID: ydEh9gCeMEa40QVI_pLzqQ_1744028084
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-3913aaf1e32so2594294f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 05:14:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744028084; x=1744632884;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hQ0sePM8qDTqbXQLkavIPlwoEXkE0hK7tfvWemHOezo=;
+        b=LQSTdctRIl+OrZ3psPPS++P+bOVNoyFYb79CmGut519o+EyKoRNQ7BQje4qvzAVg0x
+         W4/8+PJbzmXv0xRql+7TegBjsNmVHKH0xWGkt6A4kWbeinMlfVFEP1Lyg8Y1z77HGmk2
+         Dlc3o8aB0uJ5y8E7/XPejghh3ObJNoxxUjx7ZT9D1wokC7+pRv+zx1tMQN/90hdn/swa
+         xeitNEouI48jtNPpliXfCoKDs/kLAA2BFJQOyv9p20MHpAfhLaITJdzJkidfc9c7lY4H
+         MeG8OGhHr8dtQ9iHHZMwWsLJBjiE5WhowUjEz6nCGilVGdZiIwQ9fSooP8v1vhkkaWZB
+         yopw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1d9GmkiSB6sxhdklMODutYWxduBis1NyLbEylVQUBT+mIsnnwRBrgBoSSAXnpqX7tLuY3OlvVpCYJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0ogsICg6Xjbbfvto3dfWkNffzrnu59k/Ei/Nnn8y7COb28LL7
+	IJW7LJXidbPB8zpKt6xyjc8oDgAVOId6K/knDsGYdqnmsoGqHg9m1k8PQFVW3GnQaZElXzVr6U2
+	Afp9A3v5EJB+h7apODYxqjkkCBGAeuHrJtRpz10YeQHkha3FrShHdZmKTDX0=
+X-Gm-Gg: ASbGnctOn93T03/bty0GTB/n4dJLEmWAC9kKheLoLhUbXK0qoo4wb4YHvuqFK3xy6Uw
+	MSIL1PF26YvjPZCEvDNUqy6PKXw4zqtUkrlbM5ycvSm9KMtg14+9AO3oXhQjmuWsSEFzGPtJlVJ
+	qXmjKqMbdxy2OSnPule8ulrn+t2EsYg3+GK1AEXUmHmNhtyWoxODd+kO332kJwOWstzSoVrcQ1l
+	u2Ovdpd3Ta/0iJ5bM6cjGGapGW3IDSohHC/IemOBKG+7QMxsBylKk0lkjZNhqo4vb/zKP2kK6yo
+	EOkUknQAxA==
+X-Received: by 2002:a05:6000:2407:b0:39c:1efb:ee8a with SMTP id ffacd0b85a97d-39d0de67a97mr9877462f8f.38.1744028084298;
+        Mon, 07 Apr 2025 05:14:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFSEq8KBA9rhmZRWPej572rfLMWFkXKUPOcxbVa6ScLXY4TTA4hiqQZurNAgf4uQ4V5gUn8iQ==
+X-Received: by 2002:a05:6000:2407:b0:39c:1efb:ee8a with SMTP id ffacd0b85a97d-39d0de67a97mr9877441f8f.38.1744028083951;
+        Mon, 07 Apr 2025 05:14:43 -0700 (PDT)
+Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30226a07sm11678907f8f.84.2025.04.07.05.14.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 05:14:43 -0700 (PDT)
+Date: Mon, 7 Apr 2025 08:14:40 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Christoph Hellwig <hch@infradead.org>, virtio-comment@lists.linux.dev,
+	Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <20250407081110-mutt-send-email-mst@kernel.org>
+References: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+ <Z-99snVF5ESyJDDs@infradead.org>
+ <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+ <20250404040838-mutt-send-email-mst@kernel.org>
+ <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+ <20250404043016-mutt-send-email-mst@kernel.org>
+ <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+ <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+ <20250404062409-mutt-send-email-mst@kernel.org>
+ <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
 
-From: Darren Ye <darren.ye@mediatek.com>
+On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
+> > What I don't get, is what does the *device* want, exactly?
+> 
+> The device wants to know that a driver won't try to use it without
+> understanding the restriction. Because otherwise the driver will just
+> give it system addresses for DMA and be sad, without any coherent
+> error/failure report about why.
+> 
+> (You could ask the same question about what the *device* wants with
+> VIRTIO_F_ACCESS_PLATFORM, and the answer is much the same).
+> 
+> Or maybe not the *device* per se, but the *system integrator* wants to
+> know that only operating systems which understand the restriction
+> described above, will attempt to drive the device in question.
+> 
+> We could achieve that by presenting the device with a completely new
+> PCI device/vendor ID so that old drivers don't match, or in the DT
+> model you could make a new "compatible" string for it. I chose to use a
+> VIRTIO_F_ bit for it instead, which seemed natural and allows the
+> device model (under the influence of the system integrator) to *choose*
+> whether a failure to negotiate such bit is fatal or not.
 
-Add document for mt8196 board with mt6681.
+Let's focus on the mmio part, for simplicity.
+So IIUC there's a devicetree attribute restricted dma, that
+guests currently simply ignore.
+You want to fix it in the guest, but you also want to find a clean way
+to detect that it's fixed. Right?
 
-Signed-off-by: Darren Ye <darren.ye@mediatek.com>
----
- .../sound/mediatek,mt8196-mt6681.yaml         | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8196-mt6681.yaml
+And if so, my question is, why this specific bug especially?
+There likely are a ton of bugs, some more catastrophic than just
+crashing the guest, like data corruption.
+Is it because we were supposed to add it to the virtio spec but
+did not?
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8196-mt6681.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8196-mt6681.yaml
-new file mode 100644
-index 000000000000..2c1b0df05c27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8196-mt6681.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt8196-mt6681.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT8196 ASoC sound card
-+
-+maintainers:
-+  - Darren Ye <darren.ye@mediatek.com>
-+
-+allOf:
-+  - $ref: sound-card-common.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - mediatek,mt8196-mt6681-sound
-+          - mediatek,mt8196-nau8825-sound
-+          - mediatek,mt8196-rt5682s-sound
-+          - mediatek,mt8196-rt5650-sound
-+
-+  audio-routing:
-+    description:
-+      Valid names could be the input or output widgets of audio components,
-+      power supplies, MicBias of codec and the software switch.
-+
-+  mediatek,platform:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of MT8188 ASoC platform.
-+
-+  mediatek,adsp:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The phandle of the MT8188 ADSP platform, which is the optional Audio DSP
-+      hardware that provides additional audio functionalities if present.
-+      The AFE will link to ADSP when the phandle is provided.
-+
-+patternProperties:
-+  "^dai-link-[0-9]+$":
-+    type: object
-+    description:
-+      Container for dai-link level properties and CODEC sub-nodes.
-+
-+    properties:
-+      link-name:
-+        description:
-+          This property corresponds to the name of the BE dai-link to which
-+          we are going to update parameters in this node.
-+        items:
-+          enum:
-+            - TDM_DPTX_BE
-+            - I2SOUT6_BE
-+            - I2SIN6_BE
-+            - I2SOUT4_BE
-+            - I2SOUT3_BE
-+
-+      codec:
-+        description: Holds subnode which indicates codec dai.
-+        type: object
-+        additionalProperties: false
-+        properties:
-+          sound-dai:
-+            minItems: 1
-+            maxItems: 2
-+        required:
-+          - sound-dai
-+
-+      dai-format:
-+        description: audio format.
-+        items:
-+          enum:
-+            - i2s
-+            - right_j
-+            - left_j
-+            - dsp_a
-+            - dsp_b
-+
-+      mediatek,clk-provider:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: Indicates dai-link clock master.
-+        items:
-+          enum:
-+            - cpu
-+            - codec
-+
-+    additionalProperties: false
-+
-+    required:
-+      - link-name
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+    sound {
-+        compatible = "mediatek,mt8196-mt6681-sound";
-+        model = "mt8196-mt6681";
-+        mediatek,platform = <&afe>;
-+        dai-link-0 {
-+            link-name = "I2SOUT6_BE";
-+            dai-format = "i2s";
-+            mediatek,clk-provider = "cpu";
-+            codec {
-+                sound-dai = <&nau8825>;
-+            };
-+        };
-+    };
-+
 -- 
-2.45.2
+MST
 
 
