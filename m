@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-163498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650B8A7D112
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 00:37:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F23A7D157
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 02:43:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 376A27A3E51
-	for <lists+devicetree@lfdr.de>; Sun,  6 Apr 2025 22:36:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F15763A845A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 00:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86CD22206AB;
-	Sun,  6 Apr 2025 22:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 404AF2F56;
+	Mon,  7 Apr 2025 00:43:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DCgHd3s2"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="gW6vBpVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB746191461;
-	Sun,  6 Apr 2025 22:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62717A50;
+	Mon,  7 Apr 2025 00:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743979047; cv=none; b=EC02aKT+SHINmx3mFLn+pN++f5tev2g3rbUaUDVHe3W5A6yjfLCA0QuktCmZX7C698uahWlHryAUNq0tjpuoriZ+ZAzBdf/+kQVqveLtn7SZECgki39o/g3BD2Qm8L11NRGPCGiJOjRSybu1T9YzRrZ7HCsQHMl6bDTN24W1CWM=
+	t=1743986609; cv=none; b=GzOnO8usdug7QyX/g4RI1gu8hsDDuS67wvc+WblwwQIwc8IzRouJB6eZQeXpKel64bhWmzh9aZMHFebWA2Xcn5pZVJYR6+EDzcJJYNiKt+1VSCpApnJmM+ZTOKVfEFMbl5bsvXJHI1yrQ5FF+9cKluGCrqb+E++jVYQOjNzc7Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743979047; c=relaxed/simple;
-	bh=BEZuxW/tPkj0TNRpDw+niTh+GANp78QImBZ+kCA3ghE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ir3rcOt+u/lWGy/lSwDFRLMMCQS7M8cd/5//vjFunNV+3DgzRkjGGj/fdg8O/l0YPGQ9tfs0nCzDov5zZfsuuHrPdRGzrA6gPd0+jX74j/0Hv4VTj06lAuhfmnCJ0FZLFzqy4sVJkcqB7rAS8vAv5D2rBqye+TiuEYMYYB7Jhrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DCgHd3s2; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac73723b2d5so790810966b.3;
-        Sun, 06 Apr 2025 15:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743979043; x=1744583843; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WHqUPfV6WMZ2X/rA9+CQ7dYZUn1Zy97wM7iX0HT+Yec=;
-        b=DCgHd3s28Vvnh+c9coJWRoHifVeGW0XquS/eDLC3+67SpGB8SxZoyENSFvBuSuVCoh
-         xJTHs1I/I3t4nxtKQ22ML4PUqMk6wSQWbkNKThLjmZpWV2sC4Y61AWIAoifAj4rL9LOi
-         UiBYQwbGIhrVcP4lAaMRSIa/v7OuMhAXUO8ZPoDevkpxo+g5K34QbuyASYj42YMuoyzU
-         YzF0VXW/X5vKhdIVtVNRFG1c+wM+QjHgXt+k2PSnqqIBDKmYaZvhFQXnGV+xk1v06Oi9
-         OY+VbtFQrRwvcZAw3arEjXzj84myXPkl2alQv5TCs0tPmzro6zgOOJvQgDfXmfbmSoCo
-         0Aww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743979043; x=1744583843;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WHqUPfV6WMZ2X/rA9+CQ7dYZUn1Zy97wM7iX0HT+Yec=;
-        b=FJsmo8JSW3Xg9Gaouvocu57KM1AzB7Xk6dWj2vR5VydtE58KBxhcge8Xt9hZSxkd0Z
-         CTZKPfSXvun0QcqsOKij0SD8Tz5Y+kd9nFQe6ys13j9HnJW6LTsXbmkpGx7T6d33+PJ7
-         kXxrlz1UwQfBYbc7yiCIgsZBejY2/IC/HTOI90qBedUTsjHQUxqiunt9PuDigH9wH+4K
-         ZgD1cAwT0RdaM/jFsB/cQThrq9X/5xxqTStEbyZtmucCNc33L8EOz0xbik4u77y9Nf/t
-         Kb7m58MvecxJsJkDW/dVFBYiVTtoBVqkVE2zoIGBnGqs1zURDWIPszCErnKS64GkdU0b
-         AzQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjAcJuoqJpcQet9hVzDsnpRYiqGqTzjllSZsHbzxvt05fkF/hlZ4XYYQ6xzXHBo9Hu7kHIS7+846u3Bqyv@vger.kernel.org, AJvYcCWQEBJj8DCLwvv27d+TFslkmLdUV55rUnSZyNjNuD8I1anqslh33Ks2yk/D+ckYg2o92YN35euxbXcK@vger.kernel.org, AJvYcCXF/w/73U+Ibh3d8TRWHI2uiQkw/+Qe1hOKb8WQOngqqTrfgHatLRtB+KRVAoZb1nF/e4oWRxfH1SELwyibJV0=@vger.kernel.org, AJvYcCXZdXf7/S43yyVfs5C4f/mt4G7SV/FfQ9GzCsMs5xPEKCBk5BotlNRvrn47T0b2GYtJW3L9cNLM/+Rh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0kNv1mGo/KTgkmUWC/pub/wZc7aiEgn26v5AqtxJsKRLnnvPe
-	N4Nln0y0yjfIk4Kbr8sjzqTsG5K1gKIiDlwKuXWLzA2yg64ZhI4j
-X-Gm-Gg: ASbGncs5eLSiyCje8etqDpdiid0mOE+VDXOg6b9XsQyhsDC3QSousVKelhowGF9FPnL
-	Jp+g98ono87On/p0UW7HfD3jb75x7hAOtevXIO2pXW11J6aayF1NTMIxVlxdu19tgXWEbtNSH06
-	DXFX3iodpi/RQln0Wx6rzb4bffBLf3NgaJyVoZ0R7P8cluYyfGazJPqPF1/dGtw1TIWzLmbR+Rj
-	OxaXIyvEb95XnDmjR9I+TfO+VVZ/858nRWaVzKDQYAiWV1DnJNaI57en90YSKgSexUIo7uvv7wM
-	J/R0GbfJRlTYy+2R9ov/QJzqQbNAmg2tqG4GPtwEYwJo5DRhlOi2/Q==
-X-Google-Smtp-Source: AGHT+IGH/JCb2haLK8M6Hg83Hl1Ir/URcGcMma3Wfc+3EBUya5WF+wecNHln934OF3SpETZoePDA2Q==
-X-Received: by 2002:a17:906:c110:b0:abf:607b:d0d with SMTP id a640c23a62f3a-ac7e71b25e7mr739510166b.16.1743979042671;
-        Sun, 06 Apr 2025 15:37:22 -0700 (PDT)
-Received: from [192.168.0.50] ([79.119.240.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe5c804sm649423466b.15.2025.04.06.15.37.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Apr 2025 15:37:22 -0700 (PDT)
-Message-ID: <14513d89-1ee3-4d90-bd26-1d761714a8a9@gmail.com>
-Date: Mon, 7 Apr 2025 01:37:17 +0300
+	s=arc-20240116; t=1743986609; c=relaxed/simple;
+	bh=p9NytWO0mULRdNCJ00IB6qyxeTZJcG7uIqZsDWxCJ2c=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nRNHEQ6TaKCnBtS69TI0BR5Aluq6w8zxFvrrcqTOIKCtlbSIrrLmx0zyEvOPASwxDYrSiCAXzvzV58E3dlPJAIiqAcTiAy0gkCqfiwe/iVT/8EMq0jRGNMZrxkbPcHALh7GlpOI/AbV/3IMspwBqjVxN1lo4/zZwKlqGS4TAAWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=gW6vBpVX; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1743986597;
+	bh=ctQ5BeWFduCso2EqpSK1oiHVVvZyXOtZqETIq5/So0k=; l=2212;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=gW6vBpVXUF08awMY3zxXLSuq+2Fud0fidgroc+fovMTXFQQF93jA4EZsBp1SpN0+K
+	 CbRUjo58IuTPcq/0k2+A5xG7p6zSJttWncv1aouLxVI8f9kw/rAe8b2vdsi13T4sjr
+	 l77iFuljj3tWgPtZJ+tdYrl2yhfITQjs1R2d/7TwiTWIkJK48SOkn6VedeYDJ5YCHU
+	 ye8OFVZgLPMGRvWH/scL21XeJRwLwphxzaPjkeSF9v6wAq3JdXZSKeQMTGQG1CE63A
+	 7nDr0CVKcmgXUQXgp5a009QpgcHUKMlrfpQOfyKlxC/Ixh3cJUNDTGqisoBcJFB8vv
+	 Bp4GPspxyWlmw==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(1629322:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 07 Apr 2025 08:42:45 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 7 Apr
+ 2025 08:42:44 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Mon, 7 Apr 2025 08:42:44 +0800
+Date: Mon, 7 Apr 2025 08:44:05 +0800
+From: ChiYuan Huang <cy_huang@richtek.com>
+To: Mark Brown <broonie@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, Otto lin <otto_lin@richtek.com>, Allen Lin
+	<allen_lin@richtek.com>, <devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
+Message-ID: <Z/Mf1VQ1Ay/Fw3kh@git-send.richtek.com>
+References: <cover.1743774849.git.cy_huang@richtek.com>
+ <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
+ <4e966f68-527e-4e2c-9043-0795ff094031@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Bitterblue Smith <rtl8821cerfe2@gmail.com>
-Subject: Re: [PATCH 0/2] Onboard USB device support for RTL8188 2.4GHz USB
- WiFi module
-To: j.ne@posteo.net, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?J=2E_Neusch=C3=A4fer?=
- <j.neuschaefer@gmx.net>, Matthias Kaehlcke <mka@chromium.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jes Sorensen <Jes.Sorensen@gmail.com>, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net>
-Content-Language: en-US
-In-Reply-To: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <4e966f68-527e-4e2c-9043-0795ff094031@sirena.org.uk>
 
-On 03/04/2025 17:07, J. Neuschäfer via B4 Relay wrote:
-> This patchset adds rtl8188 (usbbda,179) to the onboard_usb_dev driver.
+On Fri, Apr 04, 2025 at 04:03:57PM +0100, Mark Brown wrote:
+> On Fri, Apr 04, 2025 at 10:22:12PM +0800, cy_huang@richtek.com wrote:
+> 
+> > +static int rt9123_enable_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
+> > +			       int event)
+> > +{
+> 
+> > +	ret = pm_runtime_resume_and_get(dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	snd_soc_component_write_field(comp, RT9123_REG_AMPCTRL, RT9123_MASK_AMPON, enable);
+> > +
+> > +	pm_runtime_mark_last_busy(dev);
+> > +	pm_runtime_put_autosuspend(dev);
+> 
+> What's going on with the runtime PM stuff here?  Especially for the DAPM
+> widget usually the ASoC core will be able to keep devices runtime PM
+> enabled so long as they are in use so I'd expect this not to have any
+> impact.  Why not just use a normal DAPM widget?
+> 
+That's because The RG 0x01 'RT9123_REG_AMPCTRL' is mixed with other volatile
+status bitfield like as 'SW_RST', 'SYS_STATE'. That's why I use pm_runtime to
+make sure the RG can really be accessed at that time. Actually, the
+mixed RG bitfield  for 'RW' and 'RO' is a bad design.
+> > +static int rt9123_xhandler_get(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
+> > +{
+> > +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
+> > +	struct device *dev = comp->dev;
+> > +	int ret;
+> > +
+> > +	ret = pm_runtime_resume_and_get(dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (rt9123_kcontrol_name_comp(kcontrol, "SPK Gain Volume") == 0)
+> > +		ret = snd_soc_get_volsw(kcontrol, ucontrol);
+> > +	else
+> > +		ret = snd_soc_get_enum_double(kcontrol, ucontrol);
+> 
+> This is even more unusual - it'll runtime PM enable the device every
+> time we write to a control, even if the device is idle.  The driver does
+> implement a register cache so it's especially confusing, we'll power up
+> the device, resync the cache, write to the hardware then power the
+> device off again.  Usually you'd just use the standard operations and
+> then let the register writes get synced to the cache whenever it gets
+> enabled for actual use.  Again, why not just use standard controls?
+> 
+Same as the last one.
 
-RTL8188 could mean at least five different chips (C, E, F, G).
-Should you use a more specific name like RTL8188EU?
+........
 
-> It is found in a set-top box called "Fernsehfee 3.0".
-> 
-> As a side note, this device is currently marked untested in the RTL8XXXU
-> driver. In my experience it works (tested with a WPA2 home network).
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
-> J. Neuschäfer (2):
->       dt-bindings: net: wireless: Add Realtek RTL8188 USB WiFi
->       usb: misc: onboard_dev: Add Realtek RTL8188 WiFi (0bda:0179)
-> 
->  .../bindings/net/wireless/realtek,rtl8188.yaml     | 51 ++++++++++++++++++++++
->  drivers/usb/misc/onboard_usb_dev.c                 |  1 +
->  drivers/usb/misc/onboard_usb_dev.h                 |  8 ++++
->  3 files changed, 60 insertions(+)
-> ---
-> base-commit: 38fec10eb60d687e30c8c6b5420d86e8149f7557
-> change-id: 20250403-rtl-onboard-f38354f0b14b
-> 
-> Best regards,
+Others will be modified in v2.
 
+Thanks.
 
