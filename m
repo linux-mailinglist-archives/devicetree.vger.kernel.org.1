@@ -1,161 +1,189 @@
-Return-Path: <devicetree+bounces-163979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69A1A7EBD8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 21:02:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC59A7EC50
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 21:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C17223BF383
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:56:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D7F31883726
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4414E27E1CF;
-	Mon,  7 Apr 2025 18:21:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843B9223714;
+	Mon,  7 Apr 2025 18:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="gzPe++zm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/S7fgZq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BCCB25A2A9
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 18:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571852236FC;
+	Mon,  7 Apr 2025 18:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744050087; cv=none; b=NOV4rn1xZm1/IgsbnrWG92/6k1NjKlkz+JBsYrEu0g0zfxLO/Rqz4PA8OA+UmwOpj40Lb71p9RXKikMhPn7MSvO+YtMFre5Q0NgveWGMuS65TPt1CNxV2fO33qAfsPkHljjl7M0n+ohRiLsygpSKi3Rrtt7CuueYVn5N8Bz4808=
+	t=1744051480; cv=none; b=o3lbufi/CcBNY3E29Oz+bVANl5gNJt3B94IaxB0JCS1bdqP/wxxxNd39aZLjkxCjasH6POJjrnPPtRA79WTT/WPoRa6oMfs8WkEKpkMf2hkLb/5LAboEf14b92/axLlvPiAPVAs0xzTJqw0/HguZeHedp5nRd4vBIGypqmwiBT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744050087; c=relaxed/simple;
-	bh=k1/9lyFJSiqegBG9DyQcR/UywbSI25i+yvmVs8N1+BI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fyJbzxOyyg/LLBrqVfEUs5lTijytqd6isQuXZBVU22rH5K5RCt69R0xhx49SJPFfmP7FhPPSV7pg6ISmzRzXsqSGiAi0hAu/eo6OzkhlDfEqr5UZvVDgoJE0CKniKLovbXWQgaP4mTb77Id1RgIKC8avQjMK9G9XYDktH0VmHqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=gzPe++zm; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2295d78b45cso60553215ad.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 11:21:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1744050083; x=1744654883; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y1Xymma/bXOddjzuMPc0uNib0InwbFB+6iU+FgAga1I=;
-        b=gzPe++zm+JekE18C9GWD3KIiM7mEP8NenmYMUF+gK/4JTHHwB8hPvY/OC7opILkV33
-         PwoSQDnrLlCAn1jUABQSloGyDUKSbHE9g+ESY4cdpHhznOKRUapg7120/VsvVL1V8B+Z
-         5NLmIAITW7+0Mx/TLbQT6mjgpFNoBk4eSSAJaKxwcHIrd9UZ2/c5NzY/pT7HiJgF3c3G
-         k96yOjWuCUDqUyDNnwg12ZfcO+bf2TU3loxYAbqUpf4/RrmXf5o3uUpB70op1QBsdUNu
-         JFayC2+98G1rcD6n7ehDXjmVBG+7IAlgvV9rPnfHtyoueGgRbTRYP/mhRtMLU1GaU0K0
-         QW5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744050083; x=1744654883;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y1Xymma/bXOddjzuMPc0uNib0InwbFB+6iU+FgAga1I=;
-        b=uSDJ6Emxb7I/3r+xWJ1s0hjlWKTwwKSrvEOM4xG0CpJcavdc1bLr/RX8mz0Yd3B1fW
-         E0iSxBkbHo8AEKGhQpcdPn7AA4ToTU4BWEibXOsvy8ut3oxJKgX2WXB1x5Syrt7Wc3k9
-         cURnnQm/TVjs6CzANAbo2chfc7O4JO6ZB7KRmYF8/MuXO4BmCNwgIIRB16q8XKbkcZ5z
-         NZ/YI/6EsAk3RIVGLg95YeRxeYlf14QIXA87zrllq5FdIlOZG/CEhQVVX+s3+aUrikVu
-         BPX4Ku1eFDpeiU3q5pAc/W1XLexNU5MklS2s8pSNoYIyI1LA7TGIpsNcdySFaf7dOe0e
-         G6Tg==
-X-Forwarded-Encrypted: i=1; AJvYcCWBBU8/Oj6fS9gfjQ3XNkHy/i2wx9ipU3hlWxhlovtQmRN/pz+izbb5dPMTA0Rxx1L/VhyLrOr3nLPe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBypikaax4j5coXm0QbxpTeceoNuo2yOlEokJdpw4yW3ZXjcaW
-	XoYkFISKUSPhsn88pn1zAc4hzujw7lhAvGgLbHVbu3Z80BlK51VfCpxydbZdInE=
-X-Gm-Gg: ASbGncsm5ku3WYA9tsLgvQ3uIyLNASNLAxgYa4YAoWaSEY16udHXic3txxlAonbjYyW
-	xdxtgSaggvMtHf6LHDoEe03SLGs6cIKDvSlDD9ETSIbP/Fzh1jmD2Yo0PM1ATTm8JNOi+zwO9lS
-	+lnTSfm2v3JxhnOPSseKySsc/LOsxqKLhkl814PMa55Knf1X7toFVr8GjFZesRQnCCkgoTAIiLL
-	9Y4gm3ULHf+splJtrC/vmvu4lhI/VGT2jsmhLw/z5ISG0XDU1h2gDUfHF7WTXHQEGshE7iyuGIt
-	B60e8/6jMpYVHj6Df5FUF3B7
-X-Google-Smtp-Source: AGHT+IH4N8/3oA4wTPg2n7e91UEX+RmIscvqAqA1lYwbrZipQb/yeKPrP5GdySfDb3Kadj7CbVN/Yg==
-X-Received: by 2002:a17:902:d4c2:b0:21f:74ec:1ff0 with SMTP id d9443c01a7336-22a8a0a3892mr142523725ad.32.1744050083610;
-        Mon, 07 Apr 2025 11:21:23 -0700 (PDT)
-Received: from x1 ([97.115.235.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866e612sm84407055ad.200.2025.04.07.11.21.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 11:21:23 -0700 (PDT)
-Date: Mon, 7 Apr 2025 11:21:21 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org,
-	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
- controller
-Message-ID: <Z/QXofChW/HeJ7DJ@x1>
-References: <20250403094425.876981-1-m.wilczynski@samsung.com>
- <CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
- <20250403094425.876981-4-m.wilczynski@samsung.com>
- <Z/BoQIXKEhL3/q50@x1>
- <17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+	s=arc-20240116; t=1744051480; c=relaxed/simple;
+	bh=RqSC3Srh3U89lKqqWS+lHg9U3+jo4ZP+CbHYE7BdyKA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lJLw1ptgNl4/dbj6urMBNb+3ebWkLpr3UrQ7idjDfy1KD+lU87A40oorsu0B1NKVxlW9ETuxTWs0Lx01hO27S2JldDqekn+jIX3ohynO+c967BOSJQ1U8Kape1gT0WX9WgeejJ5WRDl+m7miSmG1dFd5JH6OdGLzXZ9WA5OL/Jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/S7fgZq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18E64C4CEDD;
+	Mon,  7 Apr 2025 18:44:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744051479;
+	bh=RqSC3Srh3U89lKqqWS+lHg9U3+jo4ZP+CbHYE7BdyKA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=n/S7fgZqKKuR9mnct7HEK/26N+EKZzoPoPB80PH2Cs9Fk+i/WyY8uHyR3gHuWO/zM
+	 mXjjay9eDCstWsPcyaIrwoMnWXO1sEJkD9znKBxZFjUpzsFAqHwGfSbkGYkGBj+JdP
+	 LJC16/Gl/7Wd+ZzyipXzgGF6tXMrMKwUJC0lFMpMzOVCvkbXsXNBRxwDK4cq3X4xfW
+	 0LKoF7gIxNh0RTfG0K1iMw61TWhrAPjBTPuBUIlQWghoZl+qg5SgrIn7PrQyKfXAUP
+	 UC5Uj+9+aUlf3csIY9Yo8Olw0kKLtLFe3KKg+nfv9K/3lxW6hSEihFiEWOAOtl7Q60
+	 4M0d8ASqeheGg==
+Date: Mon, 7 Apr 2025 19:44:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
+ <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
+ Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] iio: adc: ti-adc128s052: Support ROHM BD79104
+Message-ID: <20250407194431.44b03a77@jic23-huawei>
+In-Reply-To: <99d1d972-d9a5-4ca3-811a-b22083bea4e6@gmail.com>
+References: <cover.1742474322.git.mazziesaccount@gmail.com>
+	<8e10f2d82362ca7c207324a5a97bb1759581acea.1742474322.git.mazziesaccount@gmail.com>
+	<20250331122247.05c6b09d@jic23-huawei>
+	<a35ab4b1-4d6a-4b95-963a-96b2ab4c05e9@gmail.com>
+	<20250405184346.3c4b1234@jic23-huawei>
+	<99d1d972-d9a5-4ca3-811a-b22083bea4e6@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 07, 2025 at 05:30:43PM +0200, Michal Wilczynski wrote:
-> 
-> 
-> On 4/5/25 01:16, Drew Fustini wrote:
-> > On Thu, Apr 03, 2025 at 11:44:25AM +0200, Michal Wilczynski wrote:
-> >> VO clocks reside in a different address space from the AP clocks on the
-> >> T-HEAD SoC. Add the device tree node of a clock-controller to handle
-> >> VO address space as well.
+On Mon, 7 Apr 2025 09:10:05 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> On 05/04/2025 20:43, Jonathan Cameron wrote:
+> > On Tue, 1 Apr 2025 15:33:15 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >> On 31/03/2025 14:22, Jonathan Cameron wrote:  
+> >>> On Mon, 31 Mar 2025 11:03:58 +0300
+> >>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >>>      
+> >>>> The ROHM BD79104 ADC has identical SPI communication logic as the
+> >>>> ti-adc128s052. Eg, SPI transfer should be 16 clk cycles, conversion is
+> >>>> started when the CS is pulled low, and channel selection is done by
+> >>>> writing the channel ID after two zero bits. Data is contained in
+> >>>> big-endian format in the last 12 bits.  
+> >>>
+> >>> Nicely found match.  Sometimes these are tricky to spot.
+> >>>      
+> >>>>
+> >>>> The BD79104 has two input voltage pins. Data sheet uses terms "vdd" and
+> >>>> "iovdd". The "vdd" is used also as an analog reference voltage. Hence
+> >>>> the driver expects finding these from the device-tree, instead of having
+> >>>> the "vref" only as TI's driver.
+> >>>>
+> >>>> NOTE: The TI's data sheet[1] does show that the TI's IC does actually
+> >>>> have two voltage inputs as well. Pins are called Va (analog reference)
+> >>>> and Vd (digital supply pin) - but I keep the existing driver behaviour
+> >>>> for the TI's IC "as is", because I have no HW to test changes, and
+> >>>> because I have no real need to touch it.
+> >>>>
+> >>>> NOTE II: The BD79104 requires SPI MODE 3.
+> >>>>
+> >>>> NOTE III: I used evaluation board "BD79104FV-EVK-001" made by ROHM. With
+> >>>> this board I had to drop the SPI speed below the 20M which is mentioned
+> >>>> in the data-sheet [2]. This, however, may be a limitation of the EVK
+> >>>> board, not the component itself.
+> >>>>
+> >>>> [1]: https://www.ti.com/lit/ds/symlink/adc128s052.pdf
+> >>>>
+> >>>> [2]:
+> >>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/data_converter/dac/bd79104fv-la-e.pdf
+> >>>>     
+> >>> Prefer Datasheet tags with # [1]
+> >>> after them for the cross references.
+> >>>
+> >>> Those belong here in the tag block (no blank lines)  
+> >>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>  
+> >>>
+> >>> One request for an additional cleanup precursor patch given you are
+> >>> touching the relevant code anyway.   It's a small one that you can
+> >>> test so hope you don't mind doing that whilst here.
+> >>>
+> >>> I'm relying on the incredibly small chance anyone has a variable
+> >>> regulator wired up to the reference that they are modifying at runtime.
+> >>> I have seen that done (once long ago on a crazy dev board for a really
+> >>> noisy humidity sensor) when the reference was VDD but not on a separate
+> >>> reference pin.  That means we almost certainly won't break the existing
+> >>> parts and can't have a regression on your new one so we should be fine
+> >>> to make the change.  
 > >>
-> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> >> ---
-> >>  arch/riscv/boot/dts/thead/th1520.dtsi | 7 +++++++
-> >>  1 file changed, 7 insertions(+)
+> >> The change you ask for is indeed small. I have no real objections
+> >> against implementing it (and I actually wrote it already) - but I am
+> >> still somewhat hesitant. As you say, (it seems like) the idea of the
+> >> original code is to allow changing the vref at runtime. It looks to me
+> >> this might've been intentional choice. I am not terribly happy about
+> >> dropping the working functionality, when the gained simplification isn't
+> >> particularly massive.  
+> > 
+> > Hmm. I suspect this was added at my request (or copied from where I requested
+> > it)  Back when we did this there was no advantage in doing it at probe
+> > as it was just a question of store a value or store a pointer we had
+> > to get anyway.  So I tended to advocate what I now think was a bit silly,
+> > that someone elses board might have it changing...
+> > 
+> > User space wise, what code checks for random scaling changes?  So it
+> > was best effort at best anyway!  
+> 
+> Ah, right. I suppose this should've been accompanied with scale setting 
+> which could've changed the regulator voltage - and I have no idea if 
+> such hardware would make any sense.
+
+In theory possible but I suspect expensive as a controllable precision
+reference would be needed (a DAC probably wouldn't have enough current?)
+
+> 
+> The slim chance I can imagine is that the reference voltage can't be 
+> set/known at probe time.
+
+Agreed. It can in theory happen and did on one ancient board I had
+where the reference voltage was wired to a pair of devices and one
+had a higher minimum voltage than the other. That was pre DT times though
+and I suspect now we'd just put the voltage that works for both in DT.
+
+> 
+> >> Because of this, I am thinking of adding the patch dropping the
+> >> functionality as an RFC. Leaving that floating on the list for a while
+> >> would at least have my ass partially covered ;)
 > >>
-> >> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> >> index 527336417765..d4cba0713cab 100644
-> >> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> >> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> >> @@ -489,6 +489,13 @@ clk: clock-controller@ffef010000 {
-> >>  			#clock-cells = <1>;
-> >>  		};
-> >>  
-> >> +		clk_vo: clock-controller@ffef528050 {
-> >> +			compatible = "thead,th1520-clk-vo";
-> >> +			reg = <0xff 0xef528050 0x0 0xfb0>;
+> >> I'd rather not delayed the support for the BD79104 though. So - would it
+> >> be okay if I didn't implement the clean-up as a precursory patch, but
+> >> did it as a last patch of the series? That will make it a tad more
+> >> complex to review, but it'd allow taking the BD79104 changes in while
+> >> leaving the RFC to float on a list. (Also, I'm not sure if you can push
+> >> an RFC in next without taking it in for the cycle?)  
 > > 
-> > Thanks for your patch. It is great to have more of the clocks supported
-> > upstream.
-> > 
-> > The TH1520 System User Manual shows 0xFF_EF52_8000 for VO_SUBSYS on page
-> > 205. Is there a reason you decided to use 0xFF_EF52_8050 as the base?
-> > 
-> > I see on page 213 that the first register for VO_SUBSYS starts with
-> > VOSYS_CLK_GATE at offset 0x50. I figure you did this to have the
-> > CCU_GATE macros use offset of 0x0 instead 0x50.
-> > 
-> > I kind of think the reg property using the actual base address
-> > (0xFF_EF52_8000) makes more sense as that's a closer match to the tables
-> > in the manual. But I don't have a strong preference if you think think
-> > using 0xef528050 makes the CCU_GATE macros easier to read.
+> > I'll probably just merge it even as an RFC :)  That way it's my
+> > fault if we break someone and they shout!  
 > 
-> Thank you for your comment.
-> 
-> This was discussed some time ago. The main issue was that the address
-> space was fragmented between clocks and resets. Initially, I proposed
-> using syscon as a way to abstract this, but the idea wasn't particularly
-> well received.
-> 
-> So at the start of the 0xFF_EF52_8000 there is a reset register GPU_RST_CFG
-> I need for resetting the GPU.
-> 
-> For reference, here's the earlier discussion: [1]
-> 
-> [1] - https://lore.kernel.org/all/1b05b11b2a8287c0ff4b6bdd079988c7.sboyd@kernel.org/
+> That's fine for me. Well, doing it this way around (as a last patch) 
+> should ease reverting, should it be needed.
+Absolutely.
 
-Thanks for the explanation.
-
-Reviewed-by: Drew Fustini <drew@pdp7.com>
+> 
+> Yours
+> 	-- Matti
 
 
