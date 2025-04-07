@@ -1,111 +1,172 @@
-Return-Path: <devicetree+bounces-163727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E22B2A7DDB7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:34:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2486A7DDCF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 297E217153F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:34:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BFE1886C93
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12EDD244EAB;
-	Mon,  7 Apr 2025 12:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1A922FF44;
+	Mon,  7 Apr 2025 12:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTTA0U/S"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wPhcHSfk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E7E23BCED;
-	Mon,  7 Apr 2025 12:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E047C227BB5;
+	Mon,  7 Apr 2025 12:36:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744029275; cv=none; b=EI4dxaG+Ipdmrxj2t8LDCF53nfsxHHrKUBBrw8W9TeVvtHfCAO2hIIA3vgH2SWEUH8PjJMwpLbvMgbW5IP5lmE9DvPDEZvNtFkxNuEz9c7nG7ssj35J6Zod4eMaszDXPY6LH2WOffenNDNrYtO7M4IaAzhXbup/gBcn/xL4tXdQ=
+	t=1744029384; cv=none; b=Kac50nt3lkBfszMe+VlT0XPOUGBT0YuB6s6yT/MmO3wMNtn0Elf+hhRErAfoTBq7dX/mYlWUERxCtSrDc3vSux9vj/90NbMSaOVF7iFdRps+5sPDXhacc3U2s68ONIZ/iLXgv4qU5yCS9ATTLC6L/64QYjFZGdE2MIm+zLemhGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744029275; c=relaxed/simple;
-	bh=81O8Kfs9Kl3ByB4JJQKPJiUtwEnEXTyQvJsxew6T6zU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G5Pe+X8S7C+JXfhHV6d88iNv4Ui8sxUUPbwyfng+gzxEuMCL0tFtdFpZCw5qsN4Qkp+VPU3NcOB0S0qR/1WGA2mxTbzaZlFFSdKXfCsroCrHCQ7cO4LOEisC8TYXqP8mgfHD7lvFHAI9vw32YaBSnEi+qHuq/pFEOLntSdVsDvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTTA0U/S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A674C4CEDD;
-	Mon,  7 Apr 2025 12:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744029274;
-	bh=81O8Kfs9Kl3ByB4JJQKPJiUtwEnEXTyQvJsxew6T6zU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UTTA0U/SG+M07Ucyfn5N8gZvwdgX4P7wb8qIjF4F4TnPKQmqRWhlcXm+QqfwW0zCQ
-	 CEdL14aGClRpBViIchPbJn7Vhi8oy4aqrwT0bEuFT4xRr6pLlLJAdPJC9V33251/Au
-	 TN2xd7bD20Dhrue2eArrIUqSo5+feEWgpprFerM6pGR26hgL/mncFz0KaAYGBVl/9F
-	 bNBeVXEin9qDjWqzW0hZUBz3laHUtIw8ULxejyxa9dyXZmzl8rAnfUMTYAWsn6S3Wb
-	 56uV2mgjR5gv1+uhYLbH/UNjCo/iUTa3s8KvJ5aYvYk5vo0I+Sye9LOvbz+NPssmCJ
-	 cFtNGNwypn2Lg==
-Date: Mon, 7 Apr 2025 13:34:29 +0100
-From: Mark Brown <broonie@kernel.org>
-To: ChiYuan Huang <cy_huang@richtek.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] ASoC: codecs: Add support for Richtek rt9123
-Message-ID: <17e8e4a6-135f-46b4-89d8-3ea0d3bf6e76@sirena.org.uk>
-References: <cover.1743774849.git.cy_huang@richtek.com>
- <cff65757c4665a81397ef5f559b277f96d4236c3.1743774849.git.cy_huang@richtek.com>
- <4e966f68-527e-4e2c-9043-0795ff094031@sirena.org.uk>
- <Z/Mf1VQ1Ay/Fw3kh@git-send.richtek.com>
+	s=arc-20240116; t=1744029384; c=relaxed/simple;
+	bh=1su1RVr9WJ58wLxVjeeErnWvxQCpntRQJD3KfQYta8w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qMYKuRq4BiFDb3Fw9I1qTGvZmSyHXskg/ksYyzdnPO7Fsat2DzBJanBRQTkIsmfCOUuxJSiRQI7zi0vuTouVXIg3uhtEZ5/PLKwtWly7grpWsPneST3iM1NYHZjJEbff6UhuyATvFDpGMd7T4UA3AVhWfHKC4rM1uFwnSLbVL1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wPhcHSfk; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537CZwPw915930
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 7 Apr 2025 07:35:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744029358;
+	bh=ZIqra39FwyGHX2IBVRB5giqoWceascBFIqyv6tet87s=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=wPhcHSfkvXDW05Uv+Wg56S8G1rDINJtfYXmbcnaxa1Oi8f+UyxXNbiJmRvSpAzxAO
+	 7gp7cepdfvoGd1X3Zx71ysgd4sCOv+R40T0ciAhqs99x4CffV6iwmpDMiB5C40khlQ
+	 57Hz4oBrRIWyPOviRdoBA+MiGgf0dyYV0PCVaBX0=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537CZwqV113614
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 7 Apr 2025 07:35:58 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Apr 2025 07:35:57 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Apr 2025 07:35:57 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537CZvmS006892;
+	Mon, 7 Apr 2025 07:35:57 -0500
+Message-ID: <956c0598-9934-4295-87af-ef86f4eabd94@ti.com>
+Date: Mon, 7 Apr 2025 07:35:57 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bv6CX8lyqjhHM+CU"
-Content-Disposition: inline
-In-Reply-To: <Z/Mf1VQ1Ay/Fw3kh@git-send.richtek.com>
-X-Cookie: Meester, do you vant to buy a duck?
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 11/11] arm64: dts: ti: k3-am64: Reserve timers used by
+ MCU FW
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
+        Beleswar
+ Padhi <b-padhi@ti.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+References: <20250405001518.1315273-1-jm@ti.com>
+ <20250405001518.1315273-12-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250405001518.1315273-12-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+On 4/4/25 7:15 PM, Judith Mendez wrote:
+> From: Hari Nagalla <hnagalla@ti.com>
+> 
+> AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
+> main domain timers as tick timers in these firmwares. Hence keep them
+> as reserved in the Linux device tree.
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 17 +++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 17 +++++++++++++++++
+>   2 files changed, 34 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index f8ec40523254b..68bd6b806f8f0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -796,6 +796,23 @@ &mcu_m4fss {
+>   	status = "okay";
+>   };
+>   
+> +/* main_timers 8-11 are used by TI MCU FW */
 
---bv6CX8lyqjhHM+CU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Can you make this comment per-core and explain which core
+each timer is reserved for? Makes it easier on me in Zephyr
+to point out why we use the timers that we do, something
+like:
 
-On Mon, Apr 07, 2025 at 08:44:05AM +0800, ChiYuan Huang wrote:
-> On Fri, Apr 04, 2025 at 04:03:57PM +0100, Mark Brown wrote:
+/* main_timer8 is reserved for mcu_r5fss0_core0 */
 
-> > What's going on with the runtime PM stuff here?  Especially for the DAPM
-> > widget usually the ASoC core will be able to keep devices runtime PM
-> > enabled so long as they are in use so I'd expect this not to have any
-> > impact.  Why not just use a normal DAPM widget?
+Andrew
 
-> That's because The RG 0x01 'RT9123_REG_AMPCTRL' is mixed with other volatile
-> status bitfield like as 'SW_RST', 'SYS_STATE'. That's why I use pm_runtime to
-> make sure the RG can really be accessed at that time. Actually, the
-> mixed RG bitfield  for 'RW' and 'RO' is a bad design.
-
-You need some comments explaining what's going on here.  If the volatile
-fields are read only shouldn't you be OK, so long as the register is not
-cached you should be able to do a read modify write fine?  Unless the
-status bits are clear on read.
-
---bv6CX8lyqjhHM+CU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfzxlQACgkQJNaLcl1U
-h9Bj8wf+MuvOpgGLzuxJ2zgFZYqQIWbkfQ/xyJKwdXkIab8aukkw5vy9JzFozl4n
-wjbf5U+oaNzMzXUHJ9Ky5FRc6pz1W3KEHuowYJY/tho+5V/RMDL1Nju3IWuNqy0f
-KTOG5cHyKSR6F5IesQ8PQQnnUl9amHHGuwIgHigYIiX7C9GsREIswNPdBVjYoZxU
-eryX9WMVvdJR+dsrl6J4T+CtVhmScR5dR51TdZpROdh2km0cSvrQjx1hntpf6ImM
-q53PwCzcxRvVcDAHwNk//8/1aYRMbkNuaz7eNo4CfJGe5vyDXnGtKAJjuphLb7b6
-LL6zcDVeJbvvUPYA7Fdehfh9pWxtjg==
-=CXgY
------END PGP SIGNATURE-----
-
---bv6CX8lyqjhHM+CU--
+> +&main_timer8 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer9 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer10 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer11 {
+> +	status = "reserved";
+> +};
+> +
+>   &serdes_ln_ctrl {
+>   	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
+>   };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> index 33e421ec18abb..07fbdf2400d23 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> @@ -710,6 +710,23 @@ &mcu_m4fss {
+>   	status = "okay";
+>   };
+>   
+> +/* main_timers 8-11 are used by TI MCU FW */
+> +&main_timer8 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer9 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer10 {
+> +	status = "reserved";
+> +};
+> +
+> +&main_timer11 {
+> +	status = "reserved";
+> +};
+> +
+>   &ecap0 {
+>   	status = "okay";
+>   	/* PWM is available on Pin 1 of header J3 */
 
