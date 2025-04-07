@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-164083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBAD6A7F17B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:51:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACD0A7F184
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:53:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9374D189A1B3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11841178CE1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3AB226548;
-	Mon,  7 Apr 2025 23:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D2A229B21;
+	Mon,  7 Apr 2025 23:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sParGlAF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdTVhS5Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52A021C9E0;
-	Mon,  7 Apr 2025 23:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95736225419;
+	Mon,  7 Apr 2025 23:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744069760; cv=none; b=fwhSuwaKgAynMx+FZPKSfs3qv3hOa8XEuKD2SQ6/7bwwb3ynfrYgrDsa60urIPrqTvnZblt/STGlYr0ODsAEKObZFm2BUdGUL8wf5LBtTggYWVhvfQVV3St2sY5gWExe6+GcuWdGwvum2h3o4/Lbs/z3HII/LQ/A8gcjn0lgcVk=
+	t=1744069834; cv=none; b=QjXenET8smcAVcueH9VvKLOGXwSPrnT/EXWoiUj9XyAFJ2cwGHvyRFsFXI3WCHOpBlVg0tDGeCpxR/cfAtODw25Vugj7ueT7dIR+vvAfLFeFXeqLgp/2SYRMv9CzsNsIK18zczvzs1KvBmBvUEWGjwS3RxH9Z7sDR0Ec8v3DB9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744069760; c=relaxed/simple;
-	bh=lhBh96Tt0XBn5MJW07XyKOmhZaJEZITuhyymLnJBTJY=;
+	s=arc-20240116; t=1744069834; c=relaxed/simple;
+	bh=C91TU6EiUXUNu4pLkJLVbWTW2q/Tk5LKELt/9k63UA4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iO1egsjxgF1325Snq0ndBtrYKvkeGiSrU6evC3Boz4ZQiOfucnBMEn/r2sToeEWdJWsA2MNa2F3EHHD0QcO66p/4NkwpsXb6KO0tP3Sezi1r2ppsIv9L2f8Y3lIaavHcInKyRY0PqeaEm6d2zqlL8SCOkXSD03/TRJ7P7T5p34k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sParGlAF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E47C4CEDD;
-	Mon,  7 Apr 2025 23:49:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aHfSN6OMtFIRt8i95aSKWUm8fPnzE0zZsH8LsQ5mMsdTFjdrD17WEssRPBYpWGDgRQkb0q0oMw76qgXqLaEhj4VsacPnIgJIW5jHR01NN+cTk0oJMXfX1rYaJU+zHS1p0JMmzkzj0/Gifu+A40sZE0m44ca4sG5cYOrp2iG/IXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdTVhS5Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA1E8C4CEDD;
+	Mon,  7 Apr 2025 23:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744069760;
-	bh=lhBh96Tt0XBn5MJW07XyKOmhZaJEZITuhyymLnJBTJY=;
+	s=k20201202; t=1744069834;
+	bh=C91TU6EiUXUNu4pLkJLVbWTW2q/Tk5LKELt/9k63UA4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sParGlAFQzCtCuQnpKwZdM5tSc0mAmGI7xfISckeWvjLvM/A1wTtcKK9r5DpLfym9
-	 SsLQH9oIqNIsro+CMAKRAIRtH2jIWljFkIaFSgw9ox6NV3jWmHMJgiavsCytyHDx3J
-	 HkmK80dNQzbzm8HyBa78evrqZA5eh/8BSRA3u4gIDL5gOU5STNd/zXsGGGHVI4MEod
-	 +7scuDYMctNpW4CjPdYhCR5+Pd9El9uk2NxNkq4cSDKZZ4qM3/WXM8BovWe8J2hVhH
-	 /BTCsoabt/3CIRlQqwnwD1m+ROuC3sVfLWZ1pTa2IIgBvqtGfzKd1yyJ/B8fgLeKCK
-	 B+J8dhsuyfodQ==
-Date: Mon, 7 Apr 2025 18:49:19 -0500
+	b=rdTVhS5ZF/q6VWszeFbbLbHPed6Ap/IcFPv6CxsDSjmCGcUNsMcss9fMKz35lKM4r
+	 gUYc8CUOwsFMhpig1Pib33mNQ489qn1dxjZxElN87LCE/M0k5SjHwWevgNGtIN08kW
+	 OL/s1N7bZNiBZaI4T83DibO+THYU/FHWHoOc1avJ7EOcqBnLTxjmTgNDc0DF414qP5
+	 aFU3+h2P05ujvoagU9cgbYofsebjs52hkmGYDvS6QBgeDY2MfuU2RAfZbcIFwm+b5O
+	 CgHcrdXvHIKYSNGrotA7bG7FGZbgln3w7Rxlo7f3ZI+PaojoncZyjuihh/dTYfqSJX
+	 wDRsljzjVTS4g==
+Date: Mon, 7 Apr 2025 18:50:32 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Frank Li <Frank.Li@nxp.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH RESEND v1 1/1] dt-bindings: interrupt-controller:
- fsl,irqsteer: Add i.MX94 support
-Message-ID: <174406975830.179803.11954380681060629156.robh@kernel.org>
-References: <20250407151552.2779343-1-Frank.Li@nxp.com>
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Joy Zou <joy.zou@nxp.com>, dmaengine@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: dma: fsl-edma: increase maxItems of
+ interrupts and interrupt-names
+Message-ID: <174406980425.184285.7437048033861841180.robh@kernel.org>
+References: <20250407-edma_err-v2-0-9d7e5b77fcc4@nxp.com>
+ <20250407-edma_err-v2-1-9d7e5b77fcc4@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,22 +66,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407151552.2779343-1-Frank.Li@nxp.com>
+In-Reply-To: <20250407-edma_err-v2-1-9d7e5b77fcc4@nxp.com>
 
 
-On Mon, 07 Apr 2025 11:15:52 -0400, Frank Li wrote:
-> Add compatible string "fsl,imx94-irqsteer" for the i.MX94 chip, which is
-> backward compatible with "fsl,imx-irqsteer".
+On Mon, 07 Apr 2025 12:46:35 -0400, Frank Li wrote:
+> From: Joy Zou <joy.zou@nxp.com>
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> The edma controller support optional error interrupt, so update interrupts
+> and interrupt-names's maxItems.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> RESEND: collect Conor's ack tag
-> ---
->  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/dma/fsl,edma.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
-Applied, thanks!
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+
 
 
