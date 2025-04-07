@@ -1,168 +1,112 @@
-Return-Path: <devicetree+bounces-163784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D26A7DFF7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:50:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FBBA7E031
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 343BE1886BAB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:45:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A655B1898B53
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962051AC88B;
-	Mon,  7 Apr 2025 13:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30BE1ACEAC;
+	Mon,  7 Apr 2025 13:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ENLxtRZ9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHOGmumx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61C8155300;
-	Mon,  7 Apr 2025 13:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DD32557C;
+	Mon,  7 Apr 2025 13:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744033543; cv=none; b=ubY5/FogeXKnj3GOoXFkBaO89RFjdDBP+D2SBGBe8SkJUb/OMMPGSWNXlK6SNszfYXQe0u1lJyXkb/uIme5WUx+dkBAKE4+dNXVve9jWEqGH3ljsNOhtNgp9jVK5Ruhip432ia8A5D4Wwzxg79RtvhhdSQiqBR9nb9IGrHzhruI=
+	t=1744033872; cv=none; b=fvTomc7Agv2277Kw71gVZJqC0mHJrX0GcREyYq4ce7WiHmKdoNqqpcxOK8FAFtG4G3Im9hZNY0Tav9DRmHUEtxJkS9jDExIhWvYHlwUjtED1mGObzr6XhSra08wYy2q34qLiCKdUbDYRmahEhgNT6zdjI/WlVwSjt10C4ePQHCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744033543; c=relaxed/simple;
-	bh=C1MRPkayNHZSxKUpmDmlE2pYdFoYQzh2BmeC3d8tEmM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kaYyPf+evjFmIB8soEwKOZm9a8drzujxXU5pKZU7UM/raF51Lwt3/Cu87TMQkuUtAMQMbj83PUW1ipoPYHfM/QTzUowqqlk1ndjhXg8vFsRrJfZD/fiNPKBBfzef8Ppbmaz+bQA/nKyBwgBI2KxgFrl/n6lQnKbhTp5ijtN4ZjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ENLxtRZ9; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537DjOcN876172
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 7 Apr 2025 08:45:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744033524;
-	bh=2GQwEgiAttJX3GwlNjWhEsbQtnapbNdqmpn8qGs7ss4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ENLxtRZ94j61maAHe48uROtOKdjM4x1ieddeC2aDqAL+COIKjV7HGW02z6orjyN8f
-	 TSGSCvDlbgWmIJ8YY9g6H9I2peqh00VmGwJvs9PVSqQ8F2p1BERiNs5XjPMArhHojJ
-	 nZ9sa+8jQXcpXIDy+42rQm/n9vnHvVpw8yZlSFfE=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537DjN1c028869
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 7 Apr 2025 08:45:23 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Apr 2025 08:45:23 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Apr 2025 08:45:23 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537DjNfZ091617;
-	Mon, 7 Apr 2025 08:45:23 -0500
-Date: Mon, 7 Apr 2025 08:45:23 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <jai.luthra@linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: Re: [PATCH 3/5] arm64: dts: ti: k3-j721e-sk: Fix dtbs_check warnings
- in IMX219 overlay
-Message-ID: <20250407134523.d56rjpydflmkw2ze@privatize>
-References: <20250401114053.229534-1-y-abhilashchandra@ti.com>
- <20250401114053.229534-4-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1744033872; c=relaxed/simple;
+	bh=/4UbHHj3ELGJgxeyuvL3Ow2/535NK31HYifR4a3PlBs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=n2weSyWOFJ/0+KrXn0RUL4DeWKeVAcG1qdKwiJM03fGjN/qz2637d+r+reDWjufQ7d2HbO8bDedGezjisOEjbiSsz1z5luE7CCpmS6XDj4coEetyds062uYksyTt7MEGl0CIBaYdE8Yh3DIkiLAGiHFk6VPH6F7jlqN54hWy/rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHOGmumx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00E29C4CEDD;
+	Mon,  7 Apr 2025 13:51:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744033872;
+	bh=/4UbHHj3ELGJgxeyuvL3Ow2/535NK31HYifR4a3PlBs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=FHOGmumxpjPbtEi02dw/UrPdWcSj6OgVNu6Z8djsSYXGGSTMmRhcgg5/PykumAhsv
+	 APr0UaT7wm3hFEbsV1rDGljw+MBpEUbbrbEWzeS9Yna+/e/uZyh53/K2YsaaygIFYR
+	 2vE5s10Pyfnd+64WVGjRoz1X/CDgBdwa6w5Z8es7NCv1mkOeLJF51nNQkHqjlnwYb1
+	 p5on6oAEc+pP3a04MEjATgKT7y6GrmmLJ48YopCT25JZFz5qoGSUhX/+EB8waTwp7x
+	 JuqjPRCX7JL4Kq9Docq7y/FtN3nm96Q/s37qiegOdSnj50bF1yqu+sqkrE+MQXkI0y
+	 eiPqC1t9YA/Ow==
+Date: Mon, 07 Apr 2025 08:51:10 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250401114053.229534-4-y-abhilashchandra@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ linux-phy@lists.infradead.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+To: Ze Huang <huangze@whut.edu.cn>
+In-Reply-To: <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
+ <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+Message-Id: <174403387085.2155711.16403180293126338183.robh@kernel.org>
+Subject: Re: [PATCH 3/7] dt-bindings: usb: add SpacemiT K1 DWC3 glue
 
-$subject - the patch adds description for the supplies for the sensor.
-Please fix the description.
 
-On 17:10-20250401, Yemike Abhilash Chandra wrote:
-> The device tree bindings mandate three regulator nodes for the IMX219
-> sensor: VANA (analog), VDIG (digital core), and VDDL (digital I/O). Add the
-> necessary regulator nodes in the device tree overlay and also the device
-> tree bindings do not include a clock-names property. Remove the incorrectly
-> added clock-names entry to avoid dtbs_check warnings.
+On Mon, 07 Apr 2025 20:38:48 +0800, Ze Huang wrote:
+> Add support for SpacemiT DWC3 glue driver, which manages interrupt,
+> reset and clock resource.
 > 
-> Fixes: f767eb918096 ("arm64: dts: ti: k3-j721e-sk: Add overlay for IMX219")
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
 > ---
->  .../dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso  | 35 +++++++++++++++++--
->  1 file changed, 33 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso b/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-> index 47bb5480b5b0..4eb3cffab032 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso
-> @@ -19,6 +19,33 @@ clk_imx219_fixed: imx219-xclk {
->  		#clock-cells = <0>;
->  		clock-frequency = <24000000>;
->  	};
-> +
-> +	reg_2p8v: regulator-2p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "2P8V";
-> +		regulator-min-microvolt = <2800000>;
-> +		regulator-max-microvolt = <2800000>;
-> +		vin-supply = <&vdd_sd_dv>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_1p8v: regulator-1p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "1P8V";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vdd_sd_dv>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_1p2v: regulator-1p2v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "1P2V";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		vin-supply = <&vdd_sd_dv>;
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &csi_mux {
-> @@ -34,7 +61,9 @@ imx219_0: imx219-0@10 {
->  		reg = <0x10>;
->  
->  		clocks = <&clk_imx219_fixed>;
-> -		clock-names = "xclk";
-> +		VANA-supply = <&reg_2p8v>;
-> +		VDIG-supply = <&reg_1p8v>;
-> +		VDDL-supply = <&reg_1p2v>;
->  
->  		port {
->  			csi2_cam0: endpoint {
-> @@ -56,7 +85,9 @@ imx219_1: imx219-1@10 {
->  		reg = <0x10>;
->  
->  		clocks = <&clk_imx219_fixed>;
-> -		clock-names = "xclk";
-> +		VANA-supply = <&reg_2p8v>;
-> +		VDIG-supply = <&reg_1p8v>;
-> +		VDDL-supply = <&reg_1p2v>;
->  
->  		port {
->  			csi2_cam1: endpoint {
-> -- 
-> 2.34.1
+>  .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 78 ++++++++++++++++++++++
+>  1 file changed, 78 insertions(+)
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@c0a00000 (spacemit,k1-dwc3): '#address-cells', '#size-cells' do not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@c0a00000 (spacemit,k1-dwc3): usb@0:reg: [[0, 0], [0, 65536]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@0 (snps,dwc3): reg: [[0, 0], [0, 65536]] is too long
+	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
