@@ -1,96 +1,95 @@
-Return-Path: <devicetree+bounces-163791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E745A7E094
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:10:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F17DA7E0B1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635BF189BB27
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:03:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7E253B0D4E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4A71C5D58;
-	Mon,  7 Apr 2025 14:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562B21C84B5;
+	Mon,  7 Apr 2025 14:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDPGs8hh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lm9MTLWM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50E91B87CE;
-	Mon,  7 Apr 2025 14:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8BA156886;
+	Mon,  7 Apr 2025 14:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744034568; cv=none; b=UJ3G2awKvqRSVZUkzS9U3drJ4sUa6l77124dW6G0DN5OuQmbFwQotiVbeoIs5WfPrBOrXw7jIJsUi56yktfPozX8YLFYG+rYrQ9KSd008rBX8hKv9RPM6oPkf4JDqGRO+i47v7wZ7gSbBDBEIszly0jVnmsHtQ535pCIdyXjPZw=
+	t=1744034662; cv=none; b=AQ5OhTDSZ1stOdpJ65RVl/BOdOJy88ggnU/UJtAIcgzA24XlhfKTOilUKRX4V8fdEas27FVaZpYWil46KSrOHU4OYR77nshuUZPssJWhKIZttTAvWnLIhYpltPpBElY4Xt1u6z2qrn4FYUn+eXALFyjiUse5p7DRwT/BWlY9y9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744034568; c=relaxed/simple;
-	bh=VlnB1YXWS5O4F3ARNUCiMdlsg4JVJ9h2WQuVh6h1KeM=;
+	s=arc-20240116; t=1744034662; c=relaxed/simple;
+	bh=9XG8FxASO50Sf5GWUZAuiznC1VGVDHHjVjUYicIPg0c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cJgg91K7K0Rruli8BVBR7HDkhPSBkmac3V6Y9UblkFGZsI3icQN8spmMl3ndOrVk4Z4gs7m4RsztCenWVpDDQQR599DpYU9hxQKwkSnedDHW2bovSGf/ohkwxD+e9bhXs64P9rdMLA7IaVwnEQEnI+5sG+HOEI1HeulbBMlBPyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDPGs8hh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 727E4C4CEE7;
-	Mon,  7 Apr 2025 14:02:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5LAt4bCjgGPn8J0UeN2+l1wdkGtGwA7ODlQOX7fWE5Y2GfFRrUML2eD4zw1xVAXAe5SIOpr7eZK0XYdi7An8pBjzFn1wfPn7LVwLKnZ7/Paa2KMG16j+pAKrLg43a+OOSqQT/6TQJgfWzn22jyV3dN6mdceh3EGPe3FLiQ5NOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lm9MTLWM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3A14C4CEE7;
+	Mon,  7 Apr 2025 14:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744034568;
-	bh=VlnB1YXWS5O4F3ARNUCiMdlsg4JVJ9h2WQuVh6h1KeM=;
+	s=k20201202; t=1744034662;
+	bh=9XG8FxASO50Sf5GWUZAuiznC1VGVDHHjVjUYicIPg0c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QDPGs8hhPWPp7SZy2qJI4GyM6iu8eJWJKPRzhkf0Wyo3/9U1TFc1XMP9ISn1+GptU
-	 wWYdUpmWjEtXD2mc/ANf6f245z3zhapUvlVcySFN6htJPBSAdu2xDZ7/N6o4/dfPrE
-	 i57miIGPYI8yvAbeEQRY5pcpx9AXWqjMb2LZKqeFAbFAWy+MzesopqIlXUPnHLWL1N
-	 Zsc12Hz7+ZwYa2kihEuTxTBREFsBV70LmAY9DitzwobRBiSf1SXAlGHIUSQ29foCtK
-	 Rl5ArISqbP97JTn/wxscP0H8vRQ+BijQJqyqyAOyVWAdbY585xWfSDMRbib+K6t8kb
-	 JehuuDjyx7tTQ==
-Date: Mon, 7 Apr 2025 15:02:43 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	b=Lm9MTLWM98znlU9G5vV2Xo5NhFHRhWUWVzbOpr/5eS8fxUIvzqxS9in87kTfpRtKv
+	 WlIzspzrZPd36MSFuzEInhkiI04F0htNcjJQHWJWzQEjKFWDvvk+Xv4hvJoZzH1FxT
+	 pk0kFhUOeK0bGUPJJciBAE5vDKXxf8DZSfBQpy9moR/hcwfd0IlDU2CVOFharyugdv
+	 ymAtSu9pJQsqkfMSNx4eRKhLOPETJcNq9BwLY9PCJe1nCJH0uKpUd4GcRr+JhP2YXo
+	 xTDuKmcmfdT6KQSK3Q9NnkY0MfcwxMkQ1wzEnWBJTAzsCR6tBmciOVpO9Flp136l0D
+	 xnDDfDRzdzBVw==
+Date: Mon, 7 Apr 2025 09:04:20 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, sophgo@lists.linux.dev,
+	Thomas Gleixner <tglx@linutronix.de>, ghost <2990955050@qq.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor+dt@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Chao Wei <chao.wei@sophgo.com>, linux-i2c@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/2] Add support for ADP5055 triple buck regulator.
-Message-ID: <f970a0ae-18db-4506-9f92-d4484ac079f0@sirena.org.uk>
-References: <20250407-upstream-adp5055-v4-0-61dd82369ff2@analog.com>
+	Jean Delvare <jdelvare@suse.com>, Yixun Lan <dlan@gentoo.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Longbin Li <looong.bin@gmail.com>, linux-hwmon@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>
+Subject: Re: [PATCH 8/9] dt-bindings: riscv: sophgo: Add SG2044 compatible
+ string
+Message-ID: <174403464532.2172777.7350680687448047256.robh@kernel.org>
+References: <20250407010616.749833-1-inochiama@gmail.com>
+ <20250407010616.749833-9-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RMLSE6u+AWDcZBYs"
-Content-Disposition: inline
-In-Reply-To: <20250407-upstream-adp5055-v4-0-61dd82369ff2@analog.com>
-X-Cookie: Meester, do you vant to buy a duck?
-
-
---RMLSE6u+AWDcZBYs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20250407010616.749833-9-inochiama@gmail.com>
 
-On Mon, Apr 07, 2025 at 12:07:49PM +0800, Alexis Czezar Torreno wrote:
 
-> Changes in v4:
-> - adp5055-regulator.c
->    - Removed custom adp5055_is_enabled function and let core handle it
+On Mon, 07 Apr 2025 09:06:13 +0800, Inochi Amaoto wrote:
+> Add compatible string for the Sophgo SG2044 SoC and the SRD3-10
+> board.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/sophgo.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-The custom enable and disable functions are still there?
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
---RMLSE6u+AWDcZBYs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfz2wMACgkQJNaLcl1U
-h9CTiAf8DTjZx0ncV61oGe2IKc0tYtsQNqyC/XL5thlQABIU0uk5KpETiUNpjKYf
-Gvx0SnBr15FjSV61QxfCB8pOiGWDvET9Ak7GLrUKn8zFSpZVqgUOsFiiqqFIhmZ2
-zBFTpZ++P6oqfFPFmOUh4fwAUzm8MlIyV4Btlt83FPqTP2nfgqGEUnpFBPdO9jjE
-M/xGL2/Loq9dzyc0lCelx0UmlB0zVc1+5NaToqKYT9yWI4An+3Va+DUYIBUFgOhD
-qVFzZHilUte7tV2WlY7/lvABEldJ4UYPlekAfh2bu5vIqABErsXZpjUkOz5g6sGN
-8efx4tGD4drZFKTdsHP38LIlaI0+nA==
-=MCrc
------END PGP SIGNATURE-----
-
---RMLSE6u+AWDcZBYs--
 
