@@ -1,48 +1,82 @@
-Return-Path: <devicetree+bounces-163805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A57BA7E261
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:45:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A7BA7E282
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:49:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B327D440CB3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:37:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84AAF189D236
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA40A1F4632;
-	Mon,  7 Apr 2025 14:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B5C1E572A;
+	Mon,  7 Apr 2025 14:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZszCh9tA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ignIfY8m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6DA1F461A;
-	Mon,  7 Apr 2025 14:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2D61DE2B2;
+	Mon,  7 Apr 2025 14:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744036285; cv=none; b=ICK3HyjonBeTjX2A4D2TCeQXsqOybY3MLaGNVfhkJu7eS8QnJ6FrUGC1KUVp8DVrPNzg/4K4eNvRdhww1WLcINWvmWJvZWGn49og8yrG29kimXIOYTwNB6b9aWAPrVdhZSBl0WG0/xeplei+7jX0ln5RnsosUYT0O0Sq7xL+xa8=
+	t=1744036576; cv=none; b=Q8CNCM9ks2JDxSs+yovLMXFdHQ+S5GaKDHmbTb4uArXxODoVvou/LJFdSyfgAJ79HlFb3HYoJ0J9GABRPuYsIwUxVZAtH9/kbWJh7b1ctmvdsbg4NMsX47K87eQwNnnzRbK8RJkJJgzQMb7MHLmrPgmTkkHkVxxXYAk5GI7DWPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744036285; c=relaxed/simple;
-	bh=zmG+WoiwkUCuBe9DZidtoGv6whGm/dOIb2tKqTnPHCo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QeXVlPzk6SAOXsYveTqcqI62u9uK2sejWAQJyz+kDyt3zxvOpJiWXDoq1Y74OjzYNSWyzXUbYbewqZYFpbOdwjs4yKgnzJw8UyuuaL/8O5g9yOEDwXz11SOLFtS5oQ32ThV9exd/clW6gEw/On7Neq0ujTuFcphnadFBO5dWYYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZszCh9tA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0A8FC4CEDD;
-	Mon,  7 Apr 2025 14:31:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744036285;
-	bh=zmG+WoiwkUCuBe9DZidtoGv6whGm/dOIb2tKqTnPHCo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZszCh9tAu6wD27hvttJjNDFtg9psZ/tTYx8jBK+4cw369xBNIyk7GfcxBux1+2UZj
-	 RtszRrzBxnD1iZXymhmCHCWnfCxOfZOSAPDHEFJAQl/GqeQyuntbBt065pLPMSjGf8
-	 Nx/9Jlqxt3QA8HI8tCusKkAyRJDU7HLA3EC7L124d83aXlwC8Wcu8J3IA2cqsAdVpg
-	 T7pGCv38OoJFzv7OhjkJh+dHrzDOv2MptqYfgqmkB9oMcRi3jJbFt1gF9FiDe1e3Tv
-	 VgiT80PMv60Z08ZphcnddEkjr1dAHXPubigJQBWQTBZKY3UdkgSSO1HYcSHZbIiEr0
-	 KJuQMZu3IxAag==
-Message-ID: <45ec17f3-37e8-4af8-8bb3-463e3f26e112@kernel.org>
-Date: Mon, 7 Apr 2025 16:31:20 +0200
+	s=arc-20240116; t=1744036576; c=relaxed/simple;
+	bh=XUA0zVWrHlZO+FF4p78x85Zq2L2yWcFCnii0eC5/hF8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=qcPLvC7XxJ0xRuukNffuQi/Ks2OzURFACSHzOnbgBAGfTHSx69m2sSdF1QPoUg02QMKJq2VsE7x+Cu6oqCYJl30kqlmv1kA70KKy7/asYIKcosTD0zGR8jUxmxa/+Z8Z/h7MV5NGm9dhqr5A8FDddB34s8ScZIxjzMvg53mCzn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ignIfY8m; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-227b828de00so42683525ad.1;
+        Mon, 07 Apr 2025 07:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744036573; x=1744641373; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:to:from:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=JCoVDc3K2m9XDolRJ94jmRluAJx7CvSqbnmFjmwERaA=;
+        b=ignIfY8miD9iRRO9vomDU8GiDOGpuzVrPo3aDPJdZB3L3DXxaNZfl261oCOAzNsz+8
+         KrKLPcYyPP8pMrz1pCVD0ZXdbYz5vTw4pd+9sNCE5/4ksQxR43yFVbqMHSGipuM32wnJ
+         lOuqqWybX8jqvLTABnJDgNuPAe/W7VbGKNyDQmP0z/AkZyv1N5tY4PsK/n+k1bZrV3P4
+         TPv0tjJrqbgwG9fPEgDbwdk9hwMWZJ+eVxb/EH1OjNPMciTbemBIJY575HGxI3vr4VGy
+         6qTbG2ksMDwPA/pU2HU2ZIeFBxsVQvDcS7pxEcR+21lukYDXDHEHJmj/9crgcP1vxeGg
+         gB6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744036573; x=1744641373;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:to:from:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JCoVDc3K2m9XDolRJ94jmRluAJx7CvSqbnmFjmwERaA=;
+        b=ndybVmiWu7QUahl+J12pWvqeQafEQCQdLMYLQtoAoGKYVQawUIHOAmEX6OjgqWo620
+         w33RBEJM5GQ3o8a5yrIylg5jbUvGv8xPB59bxzrDfZlMI0qRQ19Tsb0z7vN3cbwb8B3M
+         fGMWO0bi9sELqDRZy/JKuvL7OXDzOANhiwIuRQkFOVNX0GNWNDJyMTpwZzhGLihx+0M6
+         bmpOrjZGetrR2R+SUK7DAUYX0nq1o4DAKil+wMHUcfCclDvy5HouuLHXkJ0X1UX/I3Nf
+         6aiVOQvdqFSiK2ort+iL35n3Qr8unfz9hBmojyB9duXWXXi+neonBwimLsv9l7JTqJd1
+         aQ3A==
+X-Forwarded-Encrypted: i=1; AJvYcCV8v1jOGDRqO2lqIRo+okQ62LzoXI3LI+Oq3W9hQqM5uCKLs28Blesp+h6L53URNqwGB5UeGX61NHXC@vger.kernel.org, AJvYcCX3L+mKzvEUsgKar0k21yQ3KTnKCI2ydTgmrsp2Xrsg1nl8Ayv5HAe0DAkLkihOoa5drD/NOMvnd6c05Ro=@vger.kernel.org, AJvYcCXE6D+6n7kb+oOsaHsbbhmIodSFhikgRIsO50bIzBVp+Wn1gzOztdrf6k5GOmZ4kEs63ns06OfHpOmm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpfkqNz4Moyyykt/k1fFblgxHBvL2z3sYGiuDqkE0u0oaRPIqS
+	dOMBWgluyWQBHeT2wmZCWkfd1f6UaJWX1OAhTeojcI8hovbPyhgb
+X-Gm-Gg: ASbGncskp4TIbVNXodfTEjqESALdyeJpttCyTRwFES2vYHtTqn7YK2/blgQQ4/b0cre
+	k60yeTz7pXBCl8jEjYYMUwAyZ453qyH6obO87rBQieQfwseoH2CrTrXQWtx33xOTR6Dkksyt0i8
+	1P+IWNXqrq3C5snpGYy7fAFzobiJPdmL1mIp3yeaYJMKfMFxK9R3BzggZxa8uiwJIEtxM2GXoO3
+	N2D+3MyfKkSkseoHVRtvBodFnhIMBQdUaj6ke32llaCr+zHXy4CDfGXHw5fgaHvZFonYOuvNo4o
+	NStJKH2nLvgMGkCJ+wrfnmwbbHOpXWfGbiLmppwDjamyAK9AEWEwQIydkaSaDHNTOC63lUfVPrQ
+	tOzfdbXTKk1MxHu1Ifw==
+X-Google-Smtp-Source: AGHT+IH6zo5xaWpF7/mtxzqx1NNSKJcxMdANrUcYYb7Ay3K0hHtZkvliqWIO6H6tnx5F50lntr6Ueg==
+X-Received: by 2002:a17:903:1665:b0:223:35cb:e421 with SMTP id d9443c01a7336-22a955a19e8mr135805225ad.49.1744036573372;
+        Mon, 07 Apr 2025 07:36:13 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-229787778c7sm81757545ad.255.2025.04.07.07.36.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Apr 2025 07:36:12 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3df0bfff-413d-4ad5-a3a8-39a7bb7a90ba@roeck-us.net>
+Date: Mon, 7 Apr 2025 07:36:10 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,106 +84,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] riscv: dts: andes: add Voyager board device tree
-To: Ben Zong-You Xie <ben717@andestech.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tglx@linutronix.de, daniel.lezcano@linaro.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com
-References: <20250407104937.315783-1-ben717@andestech.com>
- <20250407104937.315783-9-ben717@andestech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: Update driver xdpe152c4.c
+From: Guenter Roeck <linux@roeck-us.net>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Shirley.Lin@infineon.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net,
+ patrick.rudolph@9elements.com, bhelgaas@google.com, ninad@linux.ibm.com,
+ festevam@denx.de, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Mills.Liu@infineon.com,
+ Ashish.Yadav@infineon.com, Ian.Fang@infineon.com
+References: <3f7d0644a1f844b8b3ee9b3139b85339@infineon.com>
+ <Z_NteUAIeuDdDPls@shikoro>
+ <69c8cf7c-b334-4f13-ba36-a2248686b419@roeck-us.net>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250407104937.315783-9-ben717@andestech.com>
-Content-Type: text/plain; charset=UTF-8
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <69c8cf7c-b334-4f13-ba36-a2248686b419@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 07/04/2025 12:49, Ben Zong-You Xie wrote:
-> Introduce the device tree support for Voyager development board.
+On 4/7/25 07:01, Guenter Roeck wrote:
+> On 4/6/25 23:15, Wolfram Sang wrote:
+>>
+>>> Please help to review the attached Linux Kernel patch for xdpe152xx driver.
+>>
+>> To shorten things, you could return -EAGAIN as an error code, then the
+>> I2C core will retry the message for you. Within the configured limits
+>> for the controller.
+>>
 > 
-> Currently only support booting into console with only uart,
-> other features will be added later.
+> The patch neglects to state the _reason_ for the change.
 > 
-> Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
-> ---
->  arch/riscv/boot/dts/Makefile                |  1 +
->  arch/riscv/boot/dts/andes/Makefile          |  2 ++
->  arch/riscv/boot/dts/andes/qilai-voyager.dts | 19 +++++++++++++++++++
->  3 files changed, 22 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/andes/Makefile
->  create mode 100644 arch/riscv/boot/dts/andes/qilai-voyager.dts
+> I'd like to know what causes the problem before applying a change like this.
+> I suspect that the chip needs either a delay between accesses or a delay
+> after a write. Both are supported by the PMBus core.
 > 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index 64a898da9aee..3b99e91efa25 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  subdir-y += allwinner
-> +subdir-y += andes
->  subdir-y += canaan
->  subdir-y += microchip
->  subdir-y += renesas
-> diff --git a/arch/riscv/boot/dts/andes/Makefile b/arch/riscv/boot/dts/andes/Makefile
-> new file mode 100644
-> index 000000000000..c833e041c220
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/andes/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_ANDES) += qilai-voyager.dtb
-> \ No newline at end of file
 
-You have patch warnings.
+And this is a complete no-go:
 
-> diff --git a/arch/riscv/boot/dts/andes/qilai-voyager.dts b/arch/riscv/boot/dts/andes/qilai-voyager.dts
-> new file mode 100644
++	if (ret < 0)
++		pr_warn("PMBUS READ ERROR:%d\n", ret);
 
+It isn't even dev_warn(), and I am not going to accept patches which will
+clog the kernel log for every single error return. Just imagine how the
+kernel log would look like if every driver would log errors like this.
 
-Best regards,
-Krzysztof
+Guenter
+
 
