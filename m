@@ -1,489 +1,169 @@
-Return-Path: <devicetree+bounces-163890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CBA5A7E6DF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:39:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAAE4A7E6FA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:42:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20FE844465C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:30:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9703F3AA7BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A654A20DD4D;
-	Mon,  7 Apr 2025 16:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B762020896C;
+	Mon,  7 Apr 2025 16:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tHYLFz9r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="emyn0LK2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0FD20D50E;
-	Mon,  7 Apr 2025 16:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB732054EE;
+	Mon,  7 Apr 2025 16:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744043360; cv=none; b=Ot4hzMRKnnSh/sIL8P0CMv403KPlVOsG7y+PYyco6v4rAmua2XtLVYEPxuJyufgoIH34P4VKQg5SE+3ijPtAYZcWnsjmHE/b8/GnigTeBtjbOZzDrlLlIf9iS1ukWBD5cmtTWTZh5Db4qGoWkoaCOeSW4kMWRoYEMKNj34y1GwA=
+	t=1744043496; cv=none; b=qAyvwLSI8G3tRq/KBzbuKPgmcRJKJmLMmoR1d6f7fRt5A/PQW8uH3fVWblVWJeROHL8V855LZtJ7XLst64IcMHuxUEFYO+T6iQFD99wTRQED/yqQu7KwsLtTZOS9Z0j3qRb6agyGKAFTbQHEDHxkg9JLb2FP1oB4iZCiswplDIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744043360; c=relaxed/simple;
-	bh=y9uUCO5LiRtQLj6Fsm+YQo4CsMyHiN/s5Cd299WnI0c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bx7kZWxZ2VZbooyRyKZChVHq64mgBOJ/HrJHSkC3pbzThRYZxO5H7wieTk52HcbewubtwfhvmmH20p1Mt3ATJgIPfA78x9XMlQuSYv+76jwPN3cDQ9JlPo2HQOWTCGMq/0FhYL8McIbyRwn+4heXSc73Ju935k+6I5/iEdsKqaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tHYLFz9r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF99C4CEE9;
-	Mon,  7 Apr 2025 16:29:19 +0000 (UTC)
+	s=arc-20240116; t=1744043496; c=relaxed/simple;
+	bh=RSrEtdAd5F0XISIgryvTa6dXc7w7kiCKmtOkNhqhQY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aMpnO9HNfFSqcgWYWnnlk9up2QIlOFzkyeqPAD2FSJ1Ozpf1iI3GFONtKoqrKVg/A9qEzlOOBcF9gRlnmzxqPMSOmUZpFfLm2fqqhbj+w0WWpPrf14gXzFH3hO7uBjJlfyyrrQFyifnZXRLRVQMO3n7y4m9xDoBGWEZujaUnIjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=emyn0LK2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF58BC4CEE7;
+	Mon,  7 Apr 2025 16:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744043360;
-	bh=y9uUCO5LiRtQLj6Fsm+YQo4CsMyHiN/s5Cd299WnI0c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=tHYLFz9rTubs/OO1rSbWuQiYtjhxuhCajimdG5YHCHpwUUjZsKuMXqtGzKk0Mh+ah
-	 JiIMYPsBMEOCpTVrnAtYyID7kI8tELiAOEocYVmqjMOXlQ+MYql+mMvvu1s0IIYPyD
-	 tJXzY7H4j0Fytgm74jDgE8xj+GWsXMkCVD2z+Ia/fIlXND7xMehBcn2HRWEz/YBP3Q
-	 HARczcsYzspU6CxUN33TZEvWY8jbvyBARWu55dS4THt33pRfy38nfKCPo96cgyGTjK
-	 1lh5XfrGVnO4C+hIoxv7t1EEDs/w7yUjFOfIGAs/kPZ1ZgxIOu4AShT8K6aNrMZtMk
-	 N3Z6NspnhN3OQ==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Mon, 07 Apr 2025 18:29:08 +0200
-Subject: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for reserved
- memory
+	s=k20201202; t=1744043496;
+	bh=RSrEtdAd5F0XISIgryvTa6dXc7w7kiCKmtOkNhqhQY4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=emyn0LK28d026GSydKtLRNImtQcKaVGWuubapwQw0jgJSGeLE5R2eeOSv137XDl3d
+	 CRE6SAkRmJJ6fuqdxPGsBEwpoGUyk2nJ+cCMro9SKEIpCuTV22Y4irttl8KmvnpW+t
+	 ASgvQIJ+iHZ4T8QGM5ojHf64XQOwrwYleiDfDYDnKOTK9JEGxfONsvownLtzOuo3sQ
+	 k6INQAfxDoqrAwvYTjxaakaCIMonB4iKTjRBeZqcF5nBamTvZ9KPNomR7kRXmWvd+P
+	 v9dwmHgbbNKIWeWf2WLuU6ZGalf7SJ8/U9NcRa0+LmvbIG5Q8nGeTtztIne8hQDdkW
+	 /RgKrAd25BcHg==
+Date: Mon, 7 Apr 2025 19:31:21 +0300
+From: Mike Rapoport <rppt@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Pratyush Yadav <ptyadav@amazon.de>,
+	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
+	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
+	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
+	saravanak@google.com, skinsburskii@linux.microsoft.com,
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
+ preservation
+Message-ID: <Z_P92UCbNCV0TbiA@kernel.org>
+References: <mafs05xjmqsqc.fsf@amazon.de>
+ <20250403114209.GE342109@nvidia.com>
+ <Z-6UA3C1TPeH_kGL@kernel.org>
+ <20250403142438.GF342109@nvidia.com>
+ <Z--sUYCvP3Q8nT8e@kernel.org>
+ <20250404124729.GH342109@nvidia.com>
+ <Z-_kSXrHWU5Bf3sV@kernel.org>
+ <20250404143031.GB1336818@nvidia.com>
+ <Z_KnovvW7F2ZyzhX@kernel.org>
+ <20250407141626.GB1557073@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
-References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
-In-Reply-To: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
- "T.J. Mercier" <tjmercier@google.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10813; i=mripard@kernel.org;
- h=from:subject:message-id; bh=y9uUCO5LiRtQLj6Fsm+YQo4CsMyHiN/s5Cd299WnI0c=;
- b=owGbwMvMwCX2+D1vfrpE4FHG02pJDOmf/4b/+cT3WHj+BuZIo5cfDwVylwQf73MImN3+peeT6
- sv0zL/vOkpZGMS4GGTFFFlihM2XxJ2a9bqTjW8ezBxWJpAhDFycAjCR3acYGV492WRU77v46Iae
- XjmP/1r2x7MTchVqfQ/vMtngsHmevhzDP+0FF4s9/xukzbmhsCZ64jauJn3zzKe7Ny2ernB/03s
- RRn4A
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250407141626.GB1557073@nvidia.com>
 
-Some reserved memory regions might have particular memory setup or
-attributes that make them good candidates for heaps.
+On Mon, Apr 07, 2025 at 11:16:26AM -0300, Jason Gunthorpe wrote:
+> On Sun, Apr 06, 2025 at 07:11:14PM +0300, Mike Rapoport wrote:
+> > > > > We know what the future use case is for the folio preservation, all
+> > > > > the drivers and the iommu are going to rely on this.
+> > > > 
+> > > > We don't know how much of the preservation will be based on folios.
+> > > 
+> > > I think almost all of it. Where else does memory come from for drivers?
+> > 
+> > alloc_pages()? vmalloc()?
+> 
+> alloc_pages is a 0 order "folio". vmalloc is an array of 0 order
+> folios (?)
 
-Let's provide a heap type that will create a new heap for each reserved
-memory region flagged as such.
+According to current Matthew's plan [1] vmalloc is misc memory :)
+ 
+> > How about we find some less ambiguous term? Using "folio" for memory
+> > returned from kmalloc is really confusing. And even alloc_pages() does not
+> > treat all memory it returns as folios.
+> > 
+> > How about we call them ranges? ;-)
+> 
+> memdescs if you want to be forward looking. It is not ranges.
+>
+> The point very much is that they are well defined allocations from the
+> buddy allocator that can be freed back to the buddy allocator. We
+> provide an API sort of like alloc_pages/folio_alloc to get the pointer
+> back out and that is the only way to use it.
+> 
+> KHO needs to provide a way to give back an allocated struct page/folio
+> that can be freed back to the buddy alloactor, of the proper
+> order. Whatever you call that function it belongs to KHO as it is
+> KHO's primary responsibility to manage the buddy allocator and the
+> struct pages.
+> 
+> Today initializing the folio is the work required to do that.
+ 
+Ok, let's stick with memdesc then. Put aside the name it looks like we do
+agree that KHO needs to provide a way to preserve memory allocated from
+buddy along with some of the metadata describing that memory, like order
+for multi-order allocations.
 
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/dma-buf/heaps/Kconfig         |   8 +
- drivers/dma-buf/heaps/Makefile        |   1 +
- drivers/dma-buf/heaps/carveout_heap.c | 360 ++++++++++++++++++++++++++++++++++
- 3 files changed, 369 insertions(+)
+The issue I see with bitmaps is that there's nothing except the order that
+we can save. And if sometime later we'd have to recreate memdesc for that
+memory, that would mean allocating a correct data structure, i.e. struct
+folio, struct slab, struct vmalloc maybe.
 
-diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..c6981d696733b4d8d0c3f6f5a37d967fd6a1a4a2 100644
---- a/drivers/dma-buf/heaps/Kconfig
-+++ b/drivers/dma-buf/heaps/Kconfig
-@@ -1,5 +1,13 @@
-+config DMABUF_HEAPS_CARVEOUT
-+	bool "Carveout Heaps"
-+	depends on DMABUF_HEAPS
-+	help
-+	  Choose this option to enable the carveout dmabuf heap. The carveout
-+	  heap is backed by pages from reserved memory regions flagged as
-+	  exportable. If in doubt, say Y.
-+
- config DMABUF_HEAPS_SYSTEM
- 	bool "DMA-BUF System Heap"
- 	depends on DMABUF_HEAPS
- 	help
- 	  Choose this option to enable the system dmabuf heap. The system heap
-diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
-index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f449106748160258e372f153df2 100644
---- a/drivers/dma-buf/heaps/Makefile
-+++ b/drivers/dma-buf/heaps/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)	+= carveout_heap.o
- obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
- obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
-diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..f7198b781ea57f4f60e554d917c9277e9a716b16
---- /dev/null
-+++ b/drivers/dma-buf/heaps/carveout_heap.c
-@@ -0,0 +1,360 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/dma-buf.h>
-+#include <linux/dma-heap.h>
-+#include <linux/genalloc.h>
-+#include <linux/highmem.h>
-+#include <linux/of_reserved_mem.h>
-+
-+struct carveout_heap_priv {
-+	struct dma_heap *heap;
-+	struct gen_pool *pool;
-+};
-+
-+struct carveout_heap_buffer_priv {
-+	struct mutex lock;
-+	struct list_head attachments;
-+
-+	unsigned long num_pages;
-+	struct carveout_heap_priv *heap;
-+	dma_addr_t daddr;
-+	void *vaddr;
-+	unsigned int vmap_cnt;
-+};
-+
-+struct carveout_heap_attachment {
-+	struct list_head head;
-+	struct sg_table table;
-+
-+	struct device *dev;
-+	bool mapped;
-+};
-+
-+static int carveout_heap_attach(struct dma_buf *buf,
-+				struct dma_buf_attachment *attachment)
-+{
-+	struct carveout_heap_buffer_priv *priv = buf->priv;
-+	struct carveout_heap_attachment *a;
-+	struct sg_table *sgt;
-+	unsigned long len = priv->num_pages * PAGE_SIZE;
-+	int ret;
-+
-+	a = kzalloc(sizeof(*a), GFP_KERNEL);
-+	if (!a)
-+		return -ENOMEM;
-+	INIT_LIST_HEAD(&a->head);
-+	a->dev = attachment->dev;
-+	attachment->priv = a;
-+
-+	sgt = &a->table;
-+	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
-+	if (ret)
-+		goto err_cleanup_attach;
-+
-+	sg_dma_address(sgt->sgl) = priv->daddr;
-+	sg_dma_len(sgt->sgl) = len;
-+
-+	mutex_lock(&priv->lock);
-+	list_add(&a->head, &priv->attachments);
-+	mutex_unlock(&priv->lock);
-+
-+	return 0;
-+
-+err_cleanup_attach:
-+	kfree(a);
-+	return ret;
-+}
-+
-+static void carveout_heap_detach(struct dma_buf *dmabuf,
-+				 struct dma_buf_attachment *attachment)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+	struct carveout_heap_attachment *a = attachment->priv;
-+
-+	mutex_lock(&priv->lock);
-+	list_del(&a->head);
-+	mutex_unlock(&priv->lock);
-+
-+	sg_free_table(&a->table);
-+	kfree(a);
-+}
-+
-+static struct sg_table *
-+carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
-+			  enum dma_data_direction direction)
-+{
-+	struct carveout_heap_attachment *a = attachment->priv;
-+	struct sg_table *table = &a->table;
-+	int ret;
-+
-+	ret = dma_map_sgtable(a->dev, table, direction, 0);
-+	if (ret)
-+		return ERR_PTR(-ENOMEM);
-+
-+	a->mapped = true;
-+
-+	return table;
-+}
-+
-+static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
-+					struct sg_table *table,
-+					enum dma_data_direction direction)
-+{
-+	struct carveout_heap_attachment *a = attachment->priv;
-+
-+	a->mapped = false;
-+	dma_unmap_sgtable(a->dev, table, direction, 0);
-+}
-+
-+static int
-+carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
-+				       enum dma_data_direction direction)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+	struct carveout_heap_attachment *a;
-+	unsigned long len = priv->num_pages * PAGE_SIZE;
-+
-+	mutex_lock(&priv->lock);
-+
-+	if (priv->vmap_cnt > 0)
-+		invalidate_kernel_vmap_range(priv->vaddr, len);
-+
-+	list_for_each_entry(a, &priv->attachments, head) {
-+		if (!a->mapped)
-+			continue;
-+
-+		dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
-+	}
-+
-+	mutex_unlock(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static int
-+carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
-+				     enum dma_data_direction direction)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+	struct carveout_heap_attachment *a;
-+	unsigned long len = priv->num_pages * PAGE_SIZE;
-+
-+	mutex_lock(&priv->lock);
-+
-+	if (priv->vmap_cnt > 0)
-+		flush_kernel_vmap_range(priv->vaddr, len);
-+
-+	list_for_each_entry(a, &priv->attachments, head) {
-+		if (!a->mapped)
-+			continue;
-+
-+		dma_sync_sgtable_for_device(a->dev, &a->table, direction);
-+	}
-+
-+	mutex_unlock(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static int carveout_heap_mmap(struct dma_buf *dmabuf,
-+			      struct vm_area_struct *vma)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+	unsigned long len = priv->num_pages * PAGE_SIZE;
-+	struct page *page = virt_to_page(priv->vaddr);
-+
-+	return remap_pfn_range(vma, vma->vm_start, page_to_pfn(page),
-+			       len, vma->vm_page_prot);
-+}
-+
-+static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+
-+	mutex_lock(&priv->lock);
-+
-+	iosys_map_set_vaddr(map, priv->vaddr);
-+	priv->vmap_cnt++;
-+
-+	mutex_unlock(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
-+{
-+	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-+
-+	mutex_lock(&priv->lock);
-+
-+	priv->vmap_cnt--;
-+	mutex_unlock(&priv->lock);
-+
-+	iosys_map_clear(map);
-+}
-+
-+static void carveout_heap_dma_buf_release(struct dma_buf *buf)
-+{
-+	struct carveout_heap_buffer_priv *buffer_priv = buf->priv;
-+	struct carveout_heap_priv *heap_priv = buffer_priv->heap;
-+	unsigned long len = buffer_priv->num_pages * PAGE_SIZE;
-+
-+	gen_pool_free(heap_priv->pool, (unsigned long)buffer_priv->vaddr, len);
-+	kfree(buffer_priv);
-+}
-+
-+static const struct dma_buf_ops carveout_heap_buf_ops = {
-+	.attach		= carveout_heap_attach,
-+	.detach		= carveout_heap_detach,
-+	.map_dma_buf	= carveout_heap_map_dma_buf,
-+	.unmap_dma_buf	= carveout_heap_unmap_dma_buf,
-+	.begin_cpu_access	= carveout_heap_dma_buf_begin_cpu_access,
-+	.end_cpu_access	= carveout_heap_dma_buf_end_cpu_access,
-+	.mmap		= carveout_heap_mmap,
-+	.vmap		= carveout_heap_vmap,
-+	.vunmap		= carveout_heap_vunmap,
-+	.release	= carveout_heap_dma_buf_release,
-+};
-+
-+static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
-+					      unsigned long len,
-+					      u32 fd_flags,
-+					      u64 heap_flags)
-+{
-+	struct carveout_heap_priv *heap_priv = dma_heap_get_drvdata(heap);
-+	struct carveout_heap_buffer_priv *buffer_priv;
-+	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
-+	struct dma_buf *buf;
-+	dma_addr_t daddr;
-+	size_t size = PAGE_ALIGN(len);
-+	void *vaddr;
-+	int ret;
-+
-+	buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
-+	if (!buffer_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&buffer_priv->attachments);
-+	mutex_init(&buffer_priv->lock);
-+
-+	vaddr = gen_pool_dma_zalloc(heap_priv->pool, size, &daddr);
-+	if (!vaddr) {
-+		ret = -ENOMEM;
-+		goto err_free_buffer_priv;
-+	}
-+
-+	buffer_priv->vaddr = vaddr;
-+	buffer_priv->daddr = daddr;
-+	buffer_priv->heap = heap_priv;
-+	buffer_priv->num_pages = size >> PAGE_SHIFT;
-+
-+	/* create the dmabuf */
-+	exp_info.exp_name = dma_heap_get_name(heap);
-+	exp_info.ops = &carveout_heap_buf_ops;
-+	exp_info.size = size;
-+	exp_info.flags = fd_flags;
-+	exp_info.priv = buffer_priv;
-+
-+	buf = dma_buf_export(&exp_info);
-+	if (IS_ERR(buf)) {
-+		ret = PTR_ERR(buf);
-+		goto err_free_buffer;
-+	}
-+
-+	return buf;
-+
-+err_free_buffer:
-+	gen_pool_free(heap_priv->pool, (unsigned long)vaddr, len);
-+err_free_buffer_priv:
-+	kfree(buffer_priv);
-+
-+	return ERR_PTR(ret);
-+}
-+
-+static const struct dma_heap_ops carveout_heap_ops = {
-+	.allocate = carveout_heap_allocate,
-+};
-+
-+static int __init carveout_heap_setup(struct device_node *node)
-+{
-+	struct dma_heap_export_info exp_info = {};
-+	const struct reserved_mem *rmem;
-+	struct carveout_heap_priv *priv;
-+	struct dma_heap *heap;
-+	struct gen_pool *pool;
-+	void *base;
-+	int ret;
-+
-+	rmem = of_reserved_mem_lookup(node);
-+	if (!rmem)
-+		return -EINVAL;
-+
-+	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
-+	if (!pool) {
-+		ret = -ENOMEM;
-+		goto err_cleanup_heap;
-+	}
-+	priv->pool = pool;
-+
-+	base = memremap(rmem->base, rmem->size, MEMREMAP_WB);
-+	if (!base) {
-+		ret = -ENOMEM;
-+		goto err_release_mem_region;
-+	}
-+
-+	ret = gen_pool_add_virt(pool, (unsigned long)base, rmem->base,
-+				rmem->size, NUMA_NO_NODE);
-+	if (ret)
-+		goto err_unmap;
-+
-+	exp_info.name = node->full_name;
-+	exp_info.ops = &carveout_heap_ops;
-+	exp_info.priv = priv;
-+
-+	heap = dma_heap_add(&exp_info);
-+	if (IS_ERR(heap)) {
-+		ret = PTR_ERR(heap);
-+		goto err_cleanup_pool_region;
-+	}
-+	priv->heap = heap;
-+
-+	return 0;
-+
-+err_cleanup_pool_region:
-+	gen_pool_free(pool, (unsigned long)base, rmem->size);
-+err_unmap:
-+	memunmap(base);
-+err_release_mem_region:
-+	gen_pool_destroy(pool);
-+err_cleanup_heap:
-+	kfree(priv);
-+	return ret;
-+}
-+
-+static int __init carveout_heap_init(void)
-+{
-+	struct device_node *rmem_node;
-+	struct device_node *node;
-+	int ret;
-+
-+	rmem_node = of_find_node_by_path("/reserved-memory");
-+	if (!rmem_node)
-+		return 0;
-+
-+	for_each_child_of_node(rmem_node, node) {
-+		if (!of_property_read_bool(node, "export"))
-+			continue;
-+
-+		ret = carveout_heap_setup(node);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+module_init(carveout_heap_init);
+I'm not sure we are going to preserve slabs at least at the foreseeable
+future, but vmalloc seems like something that we'd have to address.
+  
+> > I did and experiment with preserving 8G of memory allocated with randomly
+> > chosen order. For each order (0 to 10) I've got roughly 1000 "folios". I
+> > measured time kho_mem_deserialize() takes with xarrays + bitmaps vs maple
+> > tree based implementation. The maple tree outperformed by factor of 10 and
+> > it's serialized data used 6 times less memory.
+> 
+> That seems like it means most of your memory ended up contiguous and
+> the maple tree didn't split nodes to preserve order. :\
+
+I was cheating to some extent but not that much. I preserved order in
+kho_mem_info_t and if the folios next to each other were of different
+orders they were not merged into a single maple tree node. But in case all
+memory is free and not fragmented my understanding is that buddy will
+allocate folios of the same order next to each other and so they could be
+merged in the maple tree.
+
+> Also the bitmap scanning to optimize the memblock reserve isn't
+> implemented for xarray.. I don't think this is representative..
+
+I believe that even with optimization of bitmap scanning maple tree would
+perform much better when the memory is not fragmented. And when it is
+fragmented both will need to call memblock_reserve() similar number of
+times and there won't be real difference. Of course maple tree will consume
+much more memory in the worst case.
+
+[1] https://kernelnewbies.org/MatthewWilcox/Memdescs
+ 
+> Jason
+> 
 
 -- 
-2.49.0
-
+Sincerely yours,
+Mike.
 
