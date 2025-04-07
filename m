@@ -1,189 +1,127 @@
-Return-Path: <devicetree+bounces-164029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13FA8A7EE50
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 22:04:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECF5A7EE51
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 22:04:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C28A21895E3D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:02:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 096567A5B29
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FA8244EAB;
-	Mon,  7 Apr 2025 19:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC96221727;
+	Mon,  7 Apr 2025 20:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="lWCFu5Oa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTDEVXji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-16.smtpout.orange.fr [80.12.242.16])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D6923BD1C;
-	Mon,  7 Apr 2025 19:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3844D2206B6;
+	Mon,  7 Apr 2025 20:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744055986; cv=none; b=XlnabX7sUIWjlAocoGMetOc3tmekbFSHNYbPx5i81Ub7z+CuIJLcWNlBax1hW3HvKNkP0UgMpCMmx0y79mgvv89/BsDifMFvkZq5KHVmummXPb8XMKKRKi1q3vQSFAghyE2gisAp5JKxdCDklUrtFvH1g/SyZOZXpZ6Ax1vMsdA=
+	t=1744056197; cv=none; b=ki0MiJN2JmuKNh+1PITDewnSqc00blkW4/0Yvw+6kKfo/89o8rMM5g01gRzl4ywPUSWN1KxZTkgRQHOce7VWpzaWHgO/VpTW4yQTzRMyXD3peT+2qjj6TDmk30pLgbT0AO4sVNPov3oH4XPC88227cMQh6f4yg+PLPDRu1NxyCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744055986; c=relaxed/simple;
-	bh=h1VyZ44tkwkZ9BYMdSWJcuMFfRfJlNycn1ZZ3RGmpfU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=inc3QkwPV7TDdHBLCS0/kCncOP3tz/bop2U1e7geh+5PltD3Ii6Kp/QeDs6bSqGagZUlLq61Oj5JN3+Cu4LCVCMbuGyPNQhWkb/p61Z8fs8/j4jfWGrrtULZsYp7Jxxx1/ZrOTNMDcKkC7PctPm3ViUGLNowiN6uALhP5AFTFuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=lWCFu5Oa; arc=none smtp.client-ip=80.12.242.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id 1sciuA5a8cIMB1sclu6ec5; Mon, 07 Apr 2025 21:59:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1744055957;
-	bh=/4c4JTnHqkb3zAW3+wg0tavQK5en0rFfkh7J4+tv+sc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=lWCFu5OavlE5trg+UvMOzz+qTahIlH8ly+lu9DnV5SFyUN9JBa+k4E1gwjnpvsMTE
-	 qkc6TslmAHIKtMvwXyHkE0nqTsR+E19w/iJOj1i2/xK7F5IE8yZKjz+M6d+Ilv+j1E
-	 4F336AkWsyQlmlndReYSE5VF63nOtY5lHA7UmqRx5o2TfZZOUgGCCrl0FVRM0OYCOc
-	 coNE4OF4C9owj0NlCJ7CIRlL8gT+vmniz0e+bqAOQDygwoAh9hVJ0qtdJcznH0N3lm
-	 fX9KkDqN0eCbDvSX0aLzEZ/hi99m9k7bGokzQ9n+Xb7KSiV9YloFt9HH4DHpngbnJG
-	 WXi9zihNrnCgw==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Mon, 07 Apr 2025 21:59:17 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <525551ae-fab0-40df-9190-81701f3480e8@wanadoo.fr>
-Date: Mon, 7 Apr 2025 21:59:31 +0200
+	s=arc-20240116; t=1744056197; c=relaxed/simple;
+	bh=3EKCRIQbwtBUlUpec8gu+1qG8QcOMBPBU2NPHsauFtM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=GL+orTKJhXN97UAvC/sgDjV9dMvLacD2Y2pYC/XiEcBM/fDV0g7ShqjdaTaUhFnSqqsxLysboQ9L7/+1cEBx00t8RyJuUcl91sbmdSeVZyprKmnVVEMnYOxMuxUPH3w16iri7/qo8UnnnnfPVGY5XgA49uRls86mPlYUY87knF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTDEVXji; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B5DDDC4CEE9;
+	Mon,  7 Apr 2025 20:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744056196;
+	bh=3EKCRIQbwtBUlUpec8gu+1qG8QcOMBPBU2NPHsauFtM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=tTDEVXjiTaRg82h666TCev6oxyYBA3yNSMqXz9fKJ9VD03cxgpQxeGWjDbEc/fWX0
+	 A4LdGH2kXT+I/jyDDQn5jBVg94xPRluaFfFX/m4gSGfOgGO91DWgCMIKE4QswKfUGJ
+	 F0tmdkY9HEsHjuJikB9RcjIZ36qoe6affu/v+EAFEhkVcERilMPidqWFul/o9QJZjY
+	 rjtVSYNE6xjcxfqLZ3bU4DoHze5QBMhDKuOqzhO97aSXZwOnm7jP+BceLLo102j1Q2
+	 A14dfkCCCeEm6rz7TRHAKdrY/Hfq45WHdiaK7wo4/jvQ73dXep+Z7e+9L4wy/VfISZ
+	 wDGguTS8N9QCA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0EB2C369A1;
+	Mon,  7 Apr 2025 20:03:16 +0000 (UTC)
+From: =?utf-8?q?Duje_Mihanovi=C4=87_via_B4_Relay?= <devnull+duje.mihanovic.skole.hr@kernel.org>
+Date: Mon, 07 Apr 2025 22:02:12 +0200
+Subject: [PATCH v15 1/4] dt-bindings: marvell: Document PXA1908 SoC and
+ samsung,coreprimevelte
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- mchehab@kernel.org, robh@kernel.org, sakari.ailus@linux.intel.com,
- sylvain.petinot@foss.st.com
-References: <20250404-b4-vd55g1-v5-0-98f2f02eec59@foss.st.com>
- <20250404-b4-vd55g1-v5-2-98f2f02eec59@foss.st.com>
- <33abd6fc-9ab3-497e-b421-0816a32b8141@wanadoo.fr>
- <27a0989a-8cb6-4b21-b94b-8cec86f2c6d1@foss.st.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <27a0989a-8cb6-4b21-b94b-8cec86f2c6d1@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20250407-pxa1908-lkml-v15-1-e83ef101f944@skole.hr>
+References: <20250407-pxa1908-lkml-v15-0-e83ef101f944@skole.hr>
+In-Reply-To: <20250407-pxa1908-lkml-v15-0-e83ef101f944@skole.hr>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ soc@lists.linux.dev, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1205;
+ i=duje.mihanovic@skole.hr; s=20240706; h=from:subject:message-id;
+ bh=0HZYngyzaREGDzMJHsAvgTM3SsJmtfsUf/jVpOGt2SA=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDOlf9Bu3P7002btD6MyP5Ezu7c0/nsW96K749Oy29v7ki
+ JX++8sedJSyMIhxMciKKbLk/ne8xvtZZOv27GUGMHNYmUCGMHBxCsBEgmIZGY58lVa8/3Plnflb
+ NBbGLr9zMr+3THq/ONOCa+eXfdpSf6GZkeGgwoNX0o/Zvt9efsbgkG5E1+rZ4hkfpaTCDbzmFd6
+ 7t4gXAA==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+X-Endpoint-Received: by B4 Relay for duje.mihanovic@skole.hr/20240706 with
+ auth_id=191
+X-Original-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Reply-To: duje.mihanovic@skole.hr
 
-Le 07/04/2025 à 11:07, Benjamin Mugnier a écrit :
-> Hi Christophe
-> 
-> Thank you for your review.
-> 
-> On 4/4/25 18:09, Christophe JAILLET wrote:
->> Le 04/04/2025 à 16:50, Benjamin Mugnier a écrit :
->>> The VD55G1 is a monochrome global shutter camera with a 804x704 maximum
->>> resolution with RAW8 and RAW10 bytes per pixel.
->>> The driver supports :
->>> - Auto exposure from the sensor, or manual exposure mode
->>> - HDR subtraction mode, allowing edge detection and background removal
->>> - Auto exposure cold start, using configuration values from last stream
->>> to start the next one
->>> - LED GPIOs for illumination
->>> - Most standard camera sensor features (hblank, vblank, test patterns,
->>> again, dgain, hflip, vflip, auto exposure bias, etc.)
->>> Add driver source code to MAINTAINERS file.
->>
->> Hi, a few nitpicks below, should they make sense.
->>
->> ...
->>
->>> +static int vd55g1_prepare_clock_tree(struct vd55g1 *sensor)
->>> +{
->>> +    struct i2c_client *client = sensor->i2c_client;
->>> +    /* Double data rate */
->>> +    u32 mipi_freq = sensor->link_freq * 2;
->>> +    u32 sys_clk, mipi_div, pixel_div;
->>> +    int ret = 0;
->>> +
->>> +    if (sensor->xclk_freq < 6 * HZ_PER_MHZ ||
->>> +        sensor->xclk_freq > 27 * HZ_PER_MHZ) {
->>> +        dev_err(&client->dev,
->>> +            "Only 6Mhz-27Mhz clock range supported. Provided %lu MHz\n",
->>> +            sensor->xclk_freq / HZ_PER_MHZ);
->>> +        return -EINVAL;
->>> +    }
->>> +
->>> +    if (mipi_freq < 250 * HZ_PER_MHZ ||
->>> +        mipi_freq > 1200 * HZ_PER_MHZ) {
->>> +        dev_err(&client->dev,
->>> +            "Only 250Mhz-1200Mhz link frequency range supported.
->>> Provided %lu MHz\n",
->>> +            mipi_freq / HZ_PER_MHZ);
->>> +        return -EINVAL;
->>> +    }
->>> +
->>> +    if (mipi_freq <= 300 * HZ_PER_MHZ)
->>> +        mipi_div = 4;
->>> +    else if (mipi_freq <= 600 * HZ_PER_MHZ)
->>> +        mipi_div = 2;
->>> +    else
->>> +        mipi_div = 1;
->>> +
->>> +    sys_clk = mipi_freq * mipi_div;
->>> +
->>> +    if (sys_clk <= 780 * HZ_PER_MHZ)
->>> +        pixel_div = 5;
->>> +    else if (sys_clk <= 900 * HZ_PER_MHZ)
->>> +        pixel_div = 6;
->>> +    else
->>> +        pixel_div = 8;
->>> +
->>> +    sensor->pixel_clock = sys_clk / pixel_div;
->>> +    /* Frequency to data rate is 1:1 ratio for MIPI */
->>> +    sensor->data_rate_in_mbps = mipi_freq;
->>> +
->>> +    return ret;
->>
->> Could be return 0, and ret could be removed.
-> 
-> Yes, I replaced all valid return paths by return 0.
-> 
->>
->>> +}
->>
->> ...
->>
->>> +static int vd55g1_enable_streams(struct v4l2_subdev *sd,
->>> +                 struct v4l2_subdev_state *state, u32 pad,
->>> +                 u64 streams_mask)
->>> +{
->>> +    struct vd55g1 *sensor = to_vd55g1(sd);
->>> +    struct i2c_client *client = v4l2_get_subdevdata(&sensor->sd);
->>> +    int ret = 0;
->>
->> Un-needed init, it is set just the line after.
-> 
-> I always wonder if it is worth removing the initialization if it is
-> redundant. I find myself spending time debugging issues happening
-> because I modified the flow of a function and now the return value
-> needs to be initialized.
+From: Duje Mihanović <duje.mihanovic@skole.hr>
 
-On obvious cases, like this one, personally I prefer omitting the 
-initialization, as already done in vd55g1_new_format_change_controls() 
-or vd55g1_init_state() below.
+Add dt bindings for the Marvell PXA1908 SoC and the Samsung Galaxy Core
+Prime VE LTE phone (model number SM-G361F) using the SoC.
 
-But time is more important than these few bytes that will be optimized 
-by the compiler anyway.
+The SoC comes with 4 Cortex-A53 cores clocked up to ~1.2GHz and a
+Vivante GC7000UL GPU. The phone also has a 4.5" 480x800 touchscreen, 8GB
+eMMC and 1GB of LPDDR3 RAM.
 
-So if it may save some of your time, I think that consistently 
-initializing it is certainly the way to go.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+ Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Just my 2c.
+diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+index 4c43eaf3632e4ec8e7d9aeac62f7204e2af4405a..f73bb8ec3a1a1b9594eb059b72d95dcbf8c87c6b 100644
+--- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
++++ b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+@@ -35,6 +35,11 @@ properties:
+           - enum:
+               - dell,wyse-ariel
+           - const: marvell,mmp3
++      - description: PXA1908 based boards
++        items:
++          - enum:
++              - samsung,coreprimevelte
++          - const: marvell,pxa1908
+ 
+ additionalProperties: true
+ 
 
-CJ
+-- 
+2.49.0
 
-> You're absolutely correct in these initializations being unnecessary
-> though, and I removed them for v6, but I'll gladly take your thinking on
-> my comment :)
-> 
 
 
