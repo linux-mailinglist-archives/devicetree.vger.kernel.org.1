@@ -1,187 +1,98 @@
-Return-Path: <devicetree+bounces-163786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723AAA7E02F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:58:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B886A7E063
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6B7F17E96E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:53:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 068D3188B01E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90201BE86E;
-	Mon,  7 Apr 2025 13:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDF01ADC83;
+	Mon,  7 Apr 2025 13:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MP2N10Qg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HXG8+zHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FBB18309C;
-	Mon,  7 Apr 2025 13:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275C7846D;
+	Mon,  7 Apr 2025 13:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744033964; cv=none; b=Rx9nXlcDkKmhcIcIy6Xs8VRr3rbG39pfCb5hp+mF6CVMmjU9jpvPwbYiS5TOcI4m4fQ9ST24BU36y/mxJ5bg4FZrffpQSp8PMVMG/Kb4p71LUwE0bWhB5VdolFdK4lnZRDXnn7XXPo26iHuny9qS6BmClBCSVmgww9UjX9/sh74=
+	t=1744034366; cv=none; b=AD7+6xIM+Vlz+C6ur7MAbqUXYOvLPxoaGaOeX4x9PjwkRrVGCKhpiWT7rl6pWP3wHLCtg1ekF5mVr5YXpZxoX3l35MQot7uVEfWMwY87r8y32w9hkpjgJJfcWiZ29coV+J5K2LLNl9yBYjpvuMTb5FzSwt7gMwYQERC4UZJ41yQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744033964; c=relaxed/simple;
-	bh=pa83JoLiOPU6QvFW/d1z/pQEvJXRucrMVpIOQJycOlM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Np0eGMyQcBCYvDlBXQLyEuWOIrg8WeDInGZ0e0FSw7a+/KPFk1S/mrsx79MC/0UHd8YSnBgg7+y+an2tGbnXwXdP19sUHpNrmxMNtvwLkYDIaJIbS5abPDL0ydvH+5VD830aUTBdrj7/7EuRWOkQFGwMzcCuB7kV3KSExi8q0B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MP2N10Qg; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac34257295dso892409066b.2;
-        Mon, 07 Apr 2025 06:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744033961; x=1744638761; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sc9bjfbFTJWsLLxoFhUmoW8tGe7xoApEt1z4G7mllw8=;
-        b=MP2N10QgGXWd3kkXsPM+GcA/RxKH6QcT04IgRcYuXYvRcubi34Y3Fs6WKp0wQ0LLWb
-         2VvDIhueMt/suFbenGjX40q+YTjSbRsdR3cYWwE/5Uo3EgHF8QijNvMpQw776+uv0bl2
-         cxAjjduw4+XGM/iBVxdO4OhmwyL/N7rBmtWxs3pT6ZUTSbnVFeFvYxmZ74LbaHk1ZVDe
-         0RaPuAn5qbbVE5bwoQp4xJpVKtJ27lZNTT8T+zT4qTMsgp3cEwcQO/izyHw25tAWnKzt
-         KV5Jm6vn4Dx55L3YDN9atUkIw9dw1wtNemqpyzNuyPGov2G9/EQVriXgUXkJvKX7/6Ut
-         VLcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744033961; x=1744638761;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sc9bjfbFTJWsLLxoFhUmoW8tGe7xoApEt1z4G7mllw8=;
-        b=ht+RHdTtYC2mWvpVfUUYAA9onl7SDmjVjuIg5JVZc3rHMDu5EXkYEAEppsQpxxK1Qh
-         +SaxROTrCcYV74iSQUYzB0Ja5LWdQjdMj7wzxYEZwGTlQ/E6mJtbd/Onk+RQwxjEYsTk
-         K8+nQKeAR/aG393GU7Xq05vGOwwLFYHQwC0qkfznHE67cPBP2OJFVKkVzZySABnDoJf4
-         nSOQZyVS5fN3Yn/qlV5jiuyUz1584ZuEmGcKI4ZadNpdxQ4lV4JClvykmhypex/Yj2og
-         k98xoQzrHBMWcPMPd4fktzQ8OMuWdSkD3OrJTkVTG5J4J6ix8sJlm6RPwMG0ZPD7cjVP
-         mZDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUV/qqcz6FCxBKxFAwg9w/ycLgi/A5stqb2noT3pTFZ3qZJ8Liy3aIRkCpzlcy4ECOJVNHsLqqTPXyJMax/@vger.kernel.org, AJvYcCUjU/tots9yfLBfrBAXLd7o4rhkMktUe4HcfIcTLfSXkHKQWL2Js9qe3Yap9M3FORC/tuETZ4MMghmM@vger.kernel.org, AJvYcCWNnQH4XbIp4P77AR8Cq2GXDaXlJe6nfbCsWi1U2u8tMT6EX2n4dAk6MFU6TW6jrhqHyAdI66LKGwtj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz22Q3c8GVFo4diyQZqfpUlFbBOrFs3tCHM4/8FEQv/8F8ttyTa
-	hqb/1f83cqKpFy6TsvWllA6+pXCVJQlWbKB0ITrfgGeze8DtY3vle+rnFRg6p2q6MZzlR81KORK
-	NH9Zf+LkaTw1YW0C+f4qR/GLuyUY=
-X-Gm-Gg: ASbGnct47dNItmHOQjG5NsvwOoWJ82yYo4/N9YU5vi5obQrkcmpWaPEkkWSxHlu82KI
-	9D15tG8ydorhT4sV0hSRNt3kTw3I+/mC/x1/Gj60r6PkN/j+Uhsetsc5ZlJFm9xyfgAxu8mbOPm
-	1lF3GH5BWu2spKRKxI5STlDl5oUMCz2U/Pgj0=
-X-Google-Smtp-Source: AGHT+IE1K4KGssIOLmHorIy1oCMgGcf7x4fMQ+kzwtl7JUPWt1uEuI2jriF2sy5AIG+moU2mpDY/XKHdVul9jZaECm8=
-X-Received: by 2002:a17:907:7ea1:b0:ac7:b363:862c with SMTP id
- a640c23a62f3a-ac7d6d7f0a5mr1097419366b.34.1744033960765; Mon, 07 Apr 2025
- 06:52:40 -0700 (PDT)
+	s=arc-20240116; t=1744034366; c=relaxed/simple;
+	bh=8s2WBNabZQFxBl7Vpsud+lJ/8w8F8nDe+peMa/6CfYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYzJXc+tTJiyN9YYSV/sUkLVC5EEFTqeGC00XtkizI/w8DNjJg/i19ETMtk8aYR4s9s2nOsSmlzCMH7ArsTqBDPhYHH0wfkHh/5tYM5KQ6tRVbe2SyT0U07cbMQwYs12cx6jCykp/O8Ld+MK+swnrR0jyzcYuHcKFKG8MjZGhRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HXG8+zHj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55286C4CEDD;
+	Mon,  7 Apr 2025 13:59:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744034365;
+	bh=8s2WBNabZQFxBl7Vpsud+lJ/8w8F8nDe+peMa/6CfYw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HXG8+zHjOCj+V48R59reR4E1O9Q2qp21nTZlonWp9Xyp0ycMi0V/9lST8jdTr0JrB
+	 dwa44fh0Om/zzKA0zGhuyNwgJ0BTsdSwrk6QZp8p3UGwoHZA0O0dLZiodAr4W829ZG
+	 TUxObNX6z/efLUgEv34gVPOMdySNc0fUQDCPZe7b4T3sGHYDcLThD8icihBOG8/kN+
+	 uTKEbi0PwlM+9+WH5COIS7hYG+6oEuN2nvg/YVU5dAjKKt/kHkgWwePWd4N/KkT1kq
+	 zDWY70pHKi3qVH9AjH7qXgKhX0cG6jwP/4slFVjbxAE6EyzKWkS5OHwpfyF+1fNF7s
+	 t2QGiCC2GYohQ==
+Date: Mon, 7 Apr 2025 08:59:24 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-hwmon@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Yixun Lan <dlan@gentoo.org>, sophgo@lists.linux.dev,
+	Chao Wei <chao.wei@sophgo.com>, Longbin Li <looong.bin@gmail.com>,
+	linux-i2c@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	ghost <2990955050@qq.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-mmc@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH 5/9] dt-bindings: hwmon: Add Sophgo SG2044 external
+ hardware monitor support
+Message-ID: <174403436377.2164588.13246068752333809704.robh@kernel.org>
+References: <20250407010616.749833-1-inochiama@gmail.com>
+ <20250407010616.749833-6-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250221090918.1487689-1-j2anfernee@gmail.com> <20250222152537.2a24d80f@jic23-huawei>
-In-Reply-To: <20250222152537.2a24d80f@jic23-huawei>
-From: Yu-Hsian Yang <j2anfernee@gmail.com>
-Date: Mon, 7 Apr 2025 21:51:41 +0800
-X-Gm-Features: ATxdqUFpGtpfSv-jv-HNzINZS8uIB_7m0tbvAuk-oq0i06yBUK38wFK3X9HpdrU
-Message-ID: <CA+4VgcJL7pi6y55N6QaUKNkOTqTKkF8dAo+5syvRCbx7gW+ehQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] iio: adc: add Nuvoton NCT7201 ADC driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com, 
-	andriy.shevchenko@linux.intel.com, gstols@baylibre.com, 
-	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, tgamblin@baylibre.com, 
-	matteomartelli3@gmail.com, marcelo.schmitt@analog.com, alisadariana@gmail.com, 
-	joao.goncalves@toradex.com, thomas.bonnefille@bootlin.com, 
-	ramona.nechita@analog.com, herve.codina@bootlin.com, 
-	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
-	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250407010616.749833-6-inochiama@gmail.com>
 
-Dear Jonathan,
 
-Thanks again for the review
+On Mon, 07 Apr 2025 09:06:10 +0800, Inochi Amaoto wrote:
+> The MCU device on SG2044 exposes the same interface as SG2042, which is
+> already supported by the kernel.
+> 
+> Add compatible string for monitor device of SG2044.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  .../devicetree/bindings/hwmon/sophgo,sg2042-hwmon-mcu.yaml  | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2025=E5=B9=B42=E6=9C=8822=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8811:25=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> On Fri, 21 Feb 2025 17:09:16 +0800
-> Eason Yang <j2anfernee@gmail.com> wrote:
->
-> Hi Eason,
->
-> Not sure if I asked this before, but this is a device that seems
-> to be typically used for hardware monitoring and there are a number
-> of similar sounding device in drivers/hwmon/
->
-> That raises a couple of questions:
-> 1) Is it compatible with any of those existing drivers?
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-No, we need a new driver to do the ADC conversion for NCT7201/NCT7202.
-
-> 2) Why IIO rather than HWMON?
-
-A driver for NCT7201 with more functionality is available in the iio
-adc subsystem.
-If the chip is used for hardware monitoring, the iio->hwmon bridge
-should be used.
->
-> There isn't normally a problem with having a hardware monitoring
-> related device supported by IIO, it is just good to know if your
-> usecase makes that a good idea.  We have the iio-hwmon bridge
-> driver to solve the problem of a device than can be used either
-> as a generic ADC or as a hwmon type monitoring device (which tends
-> to have more alarms etc)
-
-Yes, we also verify the iio-hwmon bridge.
-
->
-> Jonathan
->
->
-> > Change since version 4:
-> >  - Fix comments
-> >  - Add interrupts and reset-gpios to the DT example
-> >  - Use the FIELD_PREP and FIELD_GET
-> >  - Add use_single_write in regmap_config
-> >  - Use regmap_access_table
-> >
-> > Change since version 3:
-> >  - Fix comments
-> >  - Don't put nct720"x" in the name, just call it nct7201
-> >  - Remove differential inputs until conversions are finished
-> >  - Add NCT7201_ prefix in all macros and avoid the tables
-> >  - Correct event threshold values in raw units
-> >  - Add with and without interrupt callback function to have the event
-> >    config part and one that doesn't
-> >  - Remove print an error message if regmap_wirte failed case
-> >
-> > Change since version 2:
-> >  - Remvoe read-vin-data-size property, default use read word vin data
-> >  - Use regmap instead of i2c smbus API
-> >  - IIO should be IIO_CHAN_INFO_RAW and _SCALE not _PROCESSED
-> >  - Use dev_xxx_probe in probe function and dev_xxx in other functions
-> >  - Use devm_iio_device_register replace of iio_device_register
-> >  - Use guard(mutex) replace of mutex_lock
-> >  - Use get_unaligned_le16 conversion API
-> >
-> > Changes since version 1:
-> >  - Add new property in iio:adc binding document
-> >  - Add new driver for Nuvoton NCT720x driver
-> >
-> > Eason Yang (2):
-> >   dt-bindings: iio: adc: add NCT7201 ADCs
-> >   iio: adc: add support for Nuvoton NCT7201
-> >
-> >  .../bindings/iio/adc/nuvoton,nct7201.yaml     |  57 ++
-> >  MAINTAINERS                                   |   2 +
-> >  drivers/iio/adc/Kconfig                       |  11 +
-> >  drivers/iio/adc/Makefile                      |   1 +
-> >  drivers/iio/adc/nct7201.c                     | 487 ++++++++++++++++++
-> >  5 files changed, 558 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,n=
-ct7201.yaml
-> >  create mode 100644 drivers/iio/adc/nct7201.c
-> >
->
 
