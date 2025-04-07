@@ -1,132 +1,155 @@
-Return-Path: <devicetree+bounces-163865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10327A7E58C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9530EA7E582
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:02:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0741B3B0876
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE223B3BE4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BAF204F98;
-	Mon,  7 Apr 2025 15:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCDBE2066D9;
+	Mon,  7 Apr 2025 15:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xe5YDho2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IzM0GHCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581BD1C1AD4;
-	Mon,  7 Apr 2025 15:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18872063F7
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 15:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744041047; cv=none; b=fs52c0DURvosjwLf0JvMFNHnPmCR/sutT7PmROlohjwk8QJ5gZQ2DCiJD3gv/a3GpHOUDhRaAtcFhrNGlWmIbibVwKL8WDTPwV4fEksTMjFlNtvKcQs8UgkesPOLUqCLUuOFIrm937nBcMiOAaoizm9CMk4YgyhKBQL8EjfSdVw=
+	t=1744041141; cv=none; b=Fjf81rsrPeJjVMaAMt5aQo4d1IGkXFP8kap2VOQJ/+NVKPsFSRpfZT0hlrqEwJANTsaXRLLr5QH243G0IBiN1yS4gF6C5VxrObTe7sikpmsuDHbe0qwiTsbS/S/9YXUH56+C9rLVrijQEmCgFQ/RUbFMwFNU+C9r3TGjG9EVcuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744041047; c=relaxed/simple;
-	bh=HOVDM5euQFPEYRsSiD6INj8UKBND48N799jToiiUcwM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X4CfPnv//IKJR0zv8QvCQ2qgP5XW36ItgYCh8iv8s1IS5nElA7FTI1KPS5FzGThKe6Y9O/rKyrMsC1ymM2WGlYN1FIhGQgVX6cF+kgNGScIGLESImikURyga+L4g+fS7FJD9jRgeJetSafqqxPShVn+hWqI8rMHp2nQ/U8xjti4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xe5YDho2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D89AAC4CEE9;
-	Mon,  7 Apr 2025 15:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744041047;
-	bh=HOVDM5euQFPEYRsSiD6INj8UKBND48N799jToiiUcwM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xe5YDho20tt0siJerFzpmq9NDCAWHIYtVGUro+LhqodieEuMdX1pzUrpO+VGSpNOq
-	 vdkCmy6gSbV1u6JVxZzIBd/IMiO8VXy/kkLE9hdndv16ribWcRslGQvqz5SK1Po17Y
-	 393sKyBd68Uy7PNdkAfil3fYnhm1ipP67KyqsrZc0KryQ5IbSz30kcVHVn+svRpveX
-	 x9iRGix2zt2ssYZuEo1SQ56H7fTRcmyfab/94gClr6VDZ6lQTM6v0UeWORPDMGsUeH
-	 Pru+qlgwBH5BYsS+JLfEp2YLGcYygCaOnl0FQ8vLyiU2GbSmEMYzmdASdyauQjw8zl
-	 euhgED/iB1JQQ==
-Date: Mon, 7 Apr 2025 16:50:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Drew Fustini <drew@pdp7.com>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org,
-	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
-	ulf.hansson@linaro.org, m.szyprowski@samsung.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 5/5] riscv: Enable PM_GENERIC_DOMAINS for T-Head SoCs
-Message-ID: <20250407-synergy-staff-b1cec90ffe72@spud>
-References: <20250311171900.1549916-1-m.wilczynski@samsung.com>
- <CGME20250311172035eucas1p104dcbae706bec735194a1dc4a30db969@eucas1p1.samsung.com>
- <20250311171900.1549916-6-m.wilczynski@samsung.com>
- <Z/ArFVx6l5Urh9KV@x1>
+	s=arc-20240116; t=1744041141; c=relaxed/simple;
+	bh=5Y1kkD63GffpokSvoVSgAXKIhsTTpE6ldnuA2Z/5/+4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BoGZfvDRIEzmppI2gv94MklgNSzkoMC793SjPRHZQsa97mLP1JyaDAK/9f0+PlwAzsAadFwx7raEsDiHTkckzZTmaZ0rMVxV36Lp19yhaMXY+hIqo/wHhU9MqHafQmE0osKJTR6pge52ioB3jUuL2LRq3oEvY5xpPMLNk3WNcQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IzM0GHCg; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso24965945e9.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 08:52:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744041136; x=1744645936; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JKXVpHnQ9UfB3mcq/Ytnee0VY/Oh+/K5y49jt5/yJQg=;
+        b=IzM0GHCgX+u095Jd6i7+yevvOfA93QfXrYiF2RWJIuW7ZHX6t3HTYZx/WxYLHbOJgg
+         +P1g+QRWkD5CGvuT04VaK5ZjwjUj0FwicAuKcqz9XfN80dzhSGnSGzwNpaSZHQuaDzau
+         6tXbD0KibM4XmL9WTM3NbJtWhJe0hE0S0KC5NLZOrQDUqY25s/sye61ZsMmO/TlJ/KmJ
+         V1oGkwpyOu2bc94hPAi1zziHTap/bR+MLgQpHT1ubMczNDnkEen271jf2p6OStz9rgHA
+         GN7ZyWFgUCLdNoOfvt1P86IMeT2x7RpgkZmAhOvP2wd2Sk23D0/A7IWlGU48o0flETcA
+         RtSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744041136; x=1744645936;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JKXVpHnQ9UfB3mcq/Ytnee0VY/Oh+/K5y49jt5/yJQg=;
+        b=cPmGFgNGHEknB0KyWIxb2Nao1rlEXDjcEVb2/tjj0IpFvD6/2NQOmiW7A9kxDjMTKl
+         DvAPeDUsvvtMqpVGcrBIXnFtlk8Q5DPp5Lw3sYXcquLMkdhZknQ9dGgknhzW6qW7avZn
+         zdiAHRzJneusR9IHe11KYD9EJLbfT8gu5Cl8JzfarOoW04T12VjAhqCTJldW9yeKFI7J
+         7zDv6Xk0jSVFznUbLF9BkMGMk9mNVmS3aOWscM/IIgXAcKXNu+nAwo/Wrctqs3Cc4vFZ
+         ZijXYk8Dqya6c4PcW5OwMxWn42dpkF5nEWZI8n/3DI58vi8mn9laICNLaQAPdW1iDwuR
+         QhVw==
+X-Forwarded-Encrypted: i=1; AJvYcCXwBaQstV3GtyKa1Y3HyHSJ2Ag7PkEMrYkhSVfYbYhkLPsZS6P856ZF/Ops16atuZGhHwl+vKpoWh2+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTYE17wFDeKIJqZg2ep/arUoD+MXok/3uEAJyIWN0g2I+1MK86
+	6b062/WSYjgrl3Q/3kKw/kz2B/65DyQ3xeMUVjfXrtgYadjAkjohnTmQhJmLo7k=
+X-Gm-Gg: ASbGncv2kBCY+z5xxL2YVQZfwdxaG6dfWwi8ulQVUkbBF2cTBjEG7cZ64C2G0ilPZYm
+	icPtwxFHyQqnSMCL1tbBGYcJO0R+coi8rCjcA1l4RiED3b7kuvSdqP65lZ4DFbizM0aixYoOp5v
+	JGXocZRvy0UK5zKNTJjPXAowW+cWzZBzQmONbXHCLCk+om2ljttP7Qd2Si/QlWvy+ToghhZg2Ao
+	E7MD7SFWgf14ou+RUOQUpyIryDrMHFfPZwqUeSm065j1lgbVRTUm5kSZ2UKaLLGw1Xw5WEwZcF0
+	Ta4ACvIXXevwcvFefRxTZ7kXqATeJGL0dytbJrgiYPO8tyywXP23uL65w9HXbrlfX/MUa+kILUx
+	ZKxBQq95sow==
+X-Google-Smtp-Source: AGHT+IFbrdnI0bm3X3wXVKLHpcb20gRsAzFE7lNyp40eyc5wEc6nf7w8wnTgwtpWKtCfdc480jt9mA==
+X-Received: by 2002:a05:600c:4fd6:b0:43b:c5a3:2e1a with SMTP id 5b1f17b1804b1-43ee0616f6fmr94548555e9.2.1744041136210;
+        Mon, 07 Apr 2025 08:52:16 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34be2e6sm133750525e9.18.2025.04.07.08.52.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Apr 2025 08:52:15 -0700 (PDT)
+Message-ID: <ecb193d1-2bf1-4d99-b9c6-9b5cde1e936e@linaro.org>
+Date: Mon, 7 Apr 2025 16:52:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1GHzjvTYK5Cechhc"
-Content-Disposition: inline
-In-Reply-To: <Z/ArFVx6l5Urh9KV@x1>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] media: platform: qcom/iris: add sm8650 support
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org>
+ <6zCwYEsWlyaz8z8Elw573sfjWDZBB46nc0IA4Eu_-pKdy3O1WzYh2sr0jdSPRr0uBHqfgMaK3WC5d9sN6-O6cA==@protonmail.internalid>
+ <20250407-topic-sm8x50-iris-v10-v3-5-63569f6d04aa@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250407-topic-sm8x50-iris-v10-v3-5-63569f6d04aa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 07/04/2025 16:24, Neil Armstrong wrote:
+> Add support for the SM8650 platform by re-using the SM8550
+> definitions and using the vpu33 ops.
+> 
+> The SM8650/vpu33 requires more reset lines, but the H.284
+
+h264.
+
+> decoder capabilities are identical.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   .../platform/qcom/iris/iris_platform_common.h      |  1 +
+>   .../platform/qcom/iris/iris_platform_sm8550.c      | 64 ++++++++++++++++++++++
+>   drivers/media/platform/qcom/iris/iris_probe.c      |  4 ++
+>   3 files changed, 69 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> index fdd40fd80178c4c66b37e392d07a0a62f492f108..6bc3a7975b04d612f6c89206eae95dac678695fc 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> @@ -35,6 +35,7 @@ enum pipe_type {
+> 
+>   extern struct iris_platform_data sm8250_data;
+>   extern struct iris_platform_data sm8550_data;
+> +extern struct iris_platform_data sm8650_data;
+> 
+>   enum platform_clk_type {
+>   	IRIS_AXI_CLK,
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> index 35d278996c430f2856d0fe59586930061a271c3e..d0f8fa960d53367023e41bc5807ba3f8beae2efc 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> @@ -144,6 +144,10 @@ static const struct icc_info sm8550_icc_table[] = {
+> 
+>   static const char * const sm8550_clk_reset_table[] = { "bus" };
+> 
+> +static const char * const sm8650_clk_reset_table[] = { "bus", "core" };
+> +
+> +static const char * const sm8650_controller_reset_table[] = { "xo" };
 
 
---1GHzjvTYK5Cechhc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+At the risk of asking a stupid question, where are these resets in your 
+dts ?
 
-On Fri, Apr 04, 2025 at 11:55:17AM -0700, Drew Fustini wrote:
-> On Tue, Mar 11, 2025 at 06:19:00PM +0100, Michal Wilczynski wrote:
-> > T-Head SoCs feature separate power domains (power islands) for major
-> > components like the GPU, Audio, and NPU. To manage the power states of
-> > these components effectively, the kernel requires generic power domain
-> > support.
-> >=20
-> > This commit enables `CONFIG_PM_GENERIC_DOMAINS` for T-Head SoCs,
-> > allowing the power domain driver for these components to be compiled and
-> > integrated. This ensures proper power management and energy efficiency
-> > on T-Head platforms.
-> >=20
-> > By selecting `PM_GENERIC_DOMAINS`, we provide the necessary framework
-> > for the power domain drivers to function correctly on RISC-V
-> > architecture with T-Head SoCs.
-> >=20
-> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> > ---
-> >  arch/riscv/Kconfig.socs | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> > index 1916cf7ba450..83833ded8908 100644
-> > --- a/arch/riscv/Kconfig.socs
-> > +++ b/arch/riscv/Kconfig.socs
-> > @@ -53,6 +53,7 @@ config ARCH_THEAD
-> >  	bool "T-HEAD RISC-V SoCs"
-> >  	depends on MMU && !XIP_KERNEL
-> >  	select ERRATA_THEAD
-> > +	select PM_GENERIC_DOMAINS if PM
-> >  	help
-> >  	  This enables support for the RISC-V based T-HEAD SoCs.
-> > =20
-> > --=20
-> > 2.34.1
-> >=20
->=20
-> Reviewed-by: Drew Fustini <drew@pdp7.com>
->=20
-> Conor - would you be able to take this Kconfig.socs patch?
+You're missing core here ?
 
-I can I suppose, sure.
+20250407-topic-sm8x50-upstream-iris-8550-dt-v1-1-1f7ab3083f49@linaro.org
 
---1GHzjvTYK5Cechhc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/P0UQAKCRB4tDGHoIJi
-0iqrAP98LTJtRIOeY8UUUHZUC78KX8XxI12BXLyp4jgDxClmsgEA0QO0tJ0PHxnZ
-yruNFvb0b0zbXqoxQUCkKLMZmgOsDQM=
-=bAyp
------END PGP SIGNATURE-----
-
---1GHzjvTYK5Cechhc--
+---
+bod
 
