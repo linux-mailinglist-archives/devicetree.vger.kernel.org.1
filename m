@@ -1,159 +1,219 @@
-Return-Path: <devicetree+bounces-163813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892BFA7E2FB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE601A7E329
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:07:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2BA17D5DF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:53:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 985F816F587
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924021F6694;
-	Mon,  7 Apr 2025 14:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062B91F4C93;
+	Mon,  7 Apr 2025 14:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="PjLEvA/u"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AEfocUA/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAB91F462B;
-	Mon,  7 Apr 2025 14:52:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E88A1EFF9E;
+	Mon,  7 Apr 2025 14:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744037555; cv=none; b=gQ6aiKq5hopdDEKSMqbdqxRUzJHer4iWOHzseONEwMC6NuLVepBl1n2xrlF7nZUTksjuD60yuUAQjnW9jGHQmt4ozJbcrZKKd7lXHFzubv678nYh59hu7n/jybcCQyeNGijFwHZYvut99flEIahD5pbBl2RWk1bR+71ZDkBKdoU=
+	t=1744037764; cv=none; b=EAjjI02sn+wG7l+5fCpEoyWoVeGwYIn6v87wyz8KaNBe07j+ott7JOX/WeYVAlWBoAeHGV/9vCeuYvV7Y/XdS7/59JkhFzbz0tyEqpUw8vpywGqKAKdzCnKI6PmK5McfWQD+3gNC14JJMUO1LbMp5dFtiMyi56HF6rKrAODpF8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744037555; c=relaxed/simple;
-	bh=R+nIWcWX77DJgNRg7FJpUjVWPR4BsTfaYK2n0ZXLNGI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m6PbxHNtupXaEj53B3IDCbQSd1q+qhYUDnySkfztrflWfzOYO6zznsv0jENq8aKwwiNFHA1HPzcLxLrPsvBSPreqlwiC720uYQnJLuNxsvF1VIzMSSYzlad8X2djWk1fpQNqajTT/LEyPaA89das5YGCL/VNPU4Qj7Csu03nmyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=PjLEvA/u; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A0693102EBA59;
-	Mon,  7 Apr 2025 16:52:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1744037552; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=9hQC8vrHx8N83M87KFCVLR8GsI2ltS0sa0EK/tes2cU=;
-	b=PjLEvA/uZUZS7dLRl31QVnzKPhVLsLVVzHyv+MDK3E54ix+H1HkmK99srbhgRGFhxc4r8P
-	rW64LhjCgZ5BverbwAzGhedyTVRf70p0y/gxp0KPUKRm85ytYZ2piW76GxMmFF5a0WVNUN
-	OWxSfv1J3ecjHaBddSfYrs+1pSsI/4tusJpWh+YjGspKHDSd9uxax5iv1HUUTxfrVxNX5a
-	aX9aM3ZBSspe/R37y/KSIa87dpD49FXtsSR8YWeFfq3GCGavPIzPsypgldNMJqwhlvB6or
-	GIn7ZNSQz7rEFdH8I3LLr8MtUJseQWQYRyoK/A9tYWDrMIstfrhmGtTi649NPw==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	s=arc-20240116; t=1744037764; c=relaxed/simple;
+	bh=3dIv9KA8LuHWus0/gPfXpZGDmk0o22eeLSJ/w1PnhmM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RlXX/oZFtMc7OYLwpzWaZay3wwz/twg5Xn09WmPke12HkAbR15sDvAE1tx+r0B+39UQAf5nWfY++myCsA3zOmFMHNoc3c/Qa09cdZ7MU1UPiD7BQT1LXjCHcKk3RdWBcijKSctaI4ZwH81VG7K9KuiXh5gAjeIeciDyJ5sO9rnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AEfocUA/; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id C7B0644333;
+	Mon,  7 Apr 2025 14:55:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744037759;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=BVPT0CFkqtX/ZcwT+Cc/lDNZWWWi2vq+Tcz4vrmiE6g=;
+	b=AEfocUA/21kPxWHKfw8jxdyA1UpdsBAP2ARoRqUIV44X1+NtGaOs+mvc5hbx7lGRON38EG
+	8EdRiyVXfjngizQzKPYdcaoIkLVFz70gC8PVdJCxKkx7FgLTqC3sd/CrhJaI+Xp52nJqj+
+	ydQYj8PltIX9XZVYmYg3meK3XegIY2trYNfqr3z81pTiQbi8IjUTml8T3avDvXlvrMbQBL
+	G9X7PgxgRXA2igkfN4KsY8oCmQz6/dG3FxctKN1x/XkM4eBr4N6QB5WZaA8Jw7c5Qppqnt
+	jW0ctNrXD66wH0yXieSqK0E8TaJhuS+4xX6VZuluZQQkb9Q9IvUCOgGdnAYhBg==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Mark Brown <broonie@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
 	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v4 5/5] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Mon,  7 Apr 2025 16:51:57 +0200
-Message-Id: <20250407145157.3626463-6-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250407145157.3626463-1-lukma@denx.de>
-References: <20250407145157.3626463-1-lukma@denx.de>
+	linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 00/16] lan966x pci device: Add support for SFPs
+Date: Mon,  7 Apr 2025 16:55:29 +0200
+Message-ID: <20250407145546.270683-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddtgeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeelteduffeltddvtdffgedugfejffeggeekheejiefggfeivefhkeffheehheeiueenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeguddprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvr
+ hesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehfvghsthgvvhgrmhesghhmrghilhdrtghomhdprhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-This patch enables support for More Than IP switch available on some
-imx28[7] devices.
+Hi,
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
----
-Changes for v4:
-- New patch
----
- arch/arm/configs/mxs_defconfig | 14 +++-----------
- 1 file changed, 3 insertions(+), 11 deletions(-)
+This series add support for SFPs ports available on the LAN966x PCI
+device. In order to have the SFPs supported, additional devices are
+needed such as clock controller and I2C.
 
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index d8a6e43c401e..4dc4306c035f 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -32,11 +32,10 @@ CONFIG_INET=y
- CONFIG_IP_PNP=y
- CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
--# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
--# CONFIG_INET_XFRM_MODE_TUNNEL is not set
--# CONFIG_INET_XFRM_MODE_BEET is not set
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -45,7 +44,6 @@ CONFIG_MTD=y
- CONFIG_MTD_CMDLINE_PARTS=y
- CONFIG_MTD_BLOCK=y
- CONFIG_MTD_DATAFLASH=y
--CONFIG_MTD_M25P80=y
- CONFIG_MTD_SST25L=y
- CONFIG_MTD_RAW_NAND=y
- CONFIG_MTD_NAND_GPMI_NAND=y
-@@ -56,11 +54,11 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
- CONFIG_REALTEK_PHY=y
--CONFIG_SMSC_PHY=y
- CONFIG_CAN_FLEXCAN=m
- CONFIG_USB_USBNET=y
- CONFIG_USB_NET_SMSC95XX=y
-@@ -77,13 +75,11 @@ CONFIG_SERIAL_AMBA_PL011=y
- CONFIG_SERIAL_AMBA_PL011_CONSOLE=y
- CONFIG_SERIAL_MXS_AUART=y
- # CONFIG_HW_RANDOM is not set
--# CONFIG_I2C_COMPAT is not set
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_MXS=y
- CONFIG_SPI=y
- CONFIG_SPI_GPIO=m
- CONFIG_SPI_MXS=y
--CONFIG_GPIO_SYSFS=y
- # CONFIG_HWMON is not set
- CONFIG_WATCHDOG=y
- CONFIG_STMP3XXX_RTC_WATCHDOG=y
-@@ -138,10 +134,6 @@ CONFIG_PWM_MXS=y
- CONFIG_NVMEM_MXS_OCOTP=y
- CONFIG_EXT4_FS=y
- # CONFIG_DNOTIFY is not set
--CONFIG_NETFS_SUPPORT=m
--CONFIG_FSCACHE=y
--CONFIG_FSCACHE_STATS=y
--CONFIG_CACHEFILES=m
- CONFIG_VFAT_FS=y
- CONFIG_TMPFS=y
- CONFIG_TMPFS_POSIX_ACL=y
+As a reminder, the LAN966x PCI device driver use a device-tree overlay
+to describe devices available on the PCI board. Adding support for SFPs
+ports consists in adding more devices in the already existing
+device-tree overlay.
+
+With those devices added, the device-tree overlay is more complex and
+some consumer/supplier relationship are needed in order to remove
+devices in correct order when the LAN966x PCI driver is removed.
+
+Those links are typically provided by fw_devlink and we faced some
+issues with fw_devlink and overlays.
+
+This series gives the big picture related to the SFPs support from
+fixing issues to adding new devices. Of course, it can be split if
+needed.
+
+The first part of the series (patch 1, 2 and 3) fixes fw_devlink when it
+is used with overlay. Patches 1 and 3 were previously sent by Saravana
+[0]. I just rebased them on top of v6.15-rc1 and added patch 2 in order
+to take into account feedback received on the series sent by Saravana.
+
+Those modification were not sufficient in our case and so, on top of
+that, patch 4 and 5 fix some more issues related to fw_devlink.
+
+Patches 6 and 7 are related also to fw_devlink but specific to PCI and
+the device-tree nodes created during enumeration.
+
+Patches 8, 9 and 10 are related fw_devlink too but specific to I2C
+muxes. Patches purpose is to correctly set a link between an adapter
+supplier and its consumer. Indeed, an i2c mux adapter's parent is not
+the i2c mux supplier but the adapter the i2c mux is connected to. Adding
+a new link between the adapter supplier involved when i2c muxes are used
+avoid a freeze observed during device removal.
+
+Patch 11 adds support for fw_delink on x86. fw_devlink is needed to have
+the consumer/supplier relationship between devices in order to ensure a
+correct device removal order. Adding fw_devlink support for x86 has been
+tried in the past but was reverted [1] because it broke some systems.
+Instead of disabling fw_devlink on *all* x86 system, use a finer grain
+and disable it only on system which could be broken.
+
+Patches 12 and 13 allow to build clock and i2c controller used by the
+LAN966x PCI device when the LAN966x PCI device is enabled.
+
+The next 2 patches (patches 14 and 15) update the LAN966x device-tree
+overlay itself to have the SPF ports and devices they depends on
+described.
+
+The last patch (patch 16) adds new drivers in the needed driver list
+available in the Kconfig help to keep this list up to date with the
+devices described in the device-tree overlay.
+
+Once again, this series gives the big picture and can be split if
+needed. Let me know.
+
+[0] https://lore.kernel.org/lkml/20240411235623.1260061-1-saravanak@google.com/
+[1] https://lore.kernel.org/lkml/3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de/
+
+Best regards,
+Hervé
+
+Herve Codina (14):
+  driver core: Rename get_dev_from_fwnode() wrapper to
+    get_device_from_fwnode()
+  driver core: Avoid warning when removing a device while its supplier
+    is unbinding
+  bus: simple-pm-bus: Populate child nodes at probe
+  PCI: of: Set fwnode.dev of newly created PCI device nodes
+  PCI: of: Remove fwnode_dev_initialized() call for a PCI root bridge
+    node
+  i2c: core: Introduce i2c_get_adapter_supplier()
+  i2c: mux: Set adapter supplier
+  i2c: mux: Create missing devlink between mux and adapter supplier
+  of: property: Allow fw_devlink device-tree support for x86
+  clk: lan966x: Add MCHP_LAN966X_PCI dependency
+  i2c: busses: at91: Add MCHP_LAN966X_PCI dependency
+  misc: lan966x_pci: Fix dtso nodes ordering
+  misc: lan966x_pci: Add dtso nodes in order to support SFPs
+  misc: lan966x_pci: Add drivers needed to support SFPs in Kconfig help
+
+Saravana Kannan (2):
+  Revert "treewide: Fix probing of devices in DT overlays"
+  of: dynamic: Fix overlayed devices not probing because of fw_devlink
+
+ drivers/base/core.c           |  93 ++++++++++++---
+ drivers/bus/imx-weim.c        |   6 -
+ drivers/bus/simple-pm-bus.c   |  23 ++--
+ drivers/clk/Kconfig           |   2 +-
+ drivers/i2c/busses/Kconfig    |   2 +-
+ drivers/i2c/i2c-core-base.c   |  16 +++
+ drivers/i2c/i2c-core-of.c     |   5 -
+ drivers/i2c/i2c-mux.c         |  21 ++++
+ drivers/misc/Kconfig          |   5 +
+ drivers/misc/lan966x_pci.dtso | 206 ++++++++++++++++++++++++++--------
+ drivers/of/dynamic.c          |   1 -
+ drivers/of/overlay.c          |  15 +++
+ drivers/of/platform.c         |   5 -
+ drivers/of/property.c         |   2 +-
+ drivers/pci/of.c              |   8 +-
+ drivers/spi/spi.c             |   5 -
+ include/linux/fwnode.h        |   1 +
+ include/linux/i2c.h           |   3 +
+ 18 files changed, 318 insertions(+), 101 deletions(-)
+
 -- 
-2.39.5
+2.49.0
 
 
