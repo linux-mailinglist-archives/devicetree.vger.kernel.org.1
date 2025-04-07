@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-163800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F49FA7E0F8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74042A7E166
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB4F7178AA1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:17:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 630DF16AC9F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6E31CCEF0;
-	Mon,  7 Apr 2025 14:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88A41DC074;
+	Mon,  7 Apr 2025 14:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbKPtiIz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OmKPTvNK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CF717AE11;
-	Mon,  7 Apr 2025 14:17:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858651D0E2B;
+	Mon,  7 Apr 2025 14:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744035429; cv=none; b=my3sMWJY4oJLNS7AIKLfiPE+adGPL6XLuY4soU4IJ/P3oGhzh/asuLoF1h7H9D4tz4dcouuFaeigTMkhN3Ilc9OQp2cLtwkyAJ3wwJJzanyUlY2kas3vuJhGenOSjiUiKuRDAsi2KeSVtBLMf/rExLnzQb+60xac5z3/WkXpeZA=
+	t=1744035539; cv=none; b=eHSR2CXo4HsF+/xyrCW5QDvnKd78gA1qLMnJMPPSxsZi1TR+nGttL6UUNGqYt0AD+aXKPrzvChM2P/vWnvhWkx/vZv8oGvri1n7JU9ZaUfW7cLPeDoTljvjduMsMohRa82G4ucI6DFB/NBU8jIejgZtIzUUfZt5fHRqvYEfq4vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744035429; c=relaxed/simple;
-	bh=Ou7KZNj8MSOzjom14ZDyBWFOBTkkVIoMAGHEMYI9KJw=;
+	s=arc-20240116; t=1744035539; c=relaxed/simple;
+	bh=GolMPkoFdH8ez2BCh2rarCfeNX23XY2yQI7bA6iqZKQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CEalrnQBCpSzLf1e+z2dmcxVNLD3/tE2n0E0QnzbvOVo8t+uWIAJ3WdV+5WJoll+Al1nXtCnHDzYNE+hJtS6IDPVb7sZms13AXBmOs5wwhqC8vIi94wOpCEu3w5mAEZEVH3VVa70vhpSsS30AK1hzCY96hUM1wg637d8rM9wlz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbKPtiIz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B0BC4CEDD;
-	Mon,  7 Apr 2025 14:17:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BGTswYXA7qiKjsoMYUQfUP+6rv6C2e3PyRWFbb7wa6hKhfIYnKaEbSDkHVesKFIXqfaVQyuYVX9gpNGskwWo2+DEWrehjIOhFDdxLyRhLc9jZVW1VBQzPe6ZWxfiJFTGj1tDE2zxIAQ8XqPg45+WDuOZH1oCOVpQgsQEqPTfIQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OmKPTvNK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA2DDC4CEE7;
+	Mon,  7 Apr 2025 14:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744035429;
-	bh=Ou7KZNj8MSOzjom14ZDyBWFOBTkkVIoMAGHEMYI9KJw=;
+	s=k20201202; t=1744035536;
+	bh=GolMPkoFdH8ez2BCh2rarCfeNX23XY2yQI7bA6iqZKQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RbKPtiIzsOuPBHNzuq5ufz2iufQKkuB9EK+/OAL+g0p9lSxjdzqYL1rOeHmmf/KQ9
-	 gHwcM6q5NYcSK1KMYu09RsHfmIzebugWAtJxh1bbCPvczaae8+wW+FLeStDjmEYxTJ
-	 WelSfYDKcPX08Jdx9E7hOXRSDJWKbSy9b093oOU4ZX2QbnbaKLgxqt6UbVlHT8l3WR
-	 w2eXNgqNI0gCR/QI/LyqYUOUzqmdtrzwkGwSk97ViL5gvw5xQvEGpGoGqzGDZgfGE8
-	 tJtlDrv18RiNfOh+K5mzuv6oTsvOkBsjlPv20G+XrOknMSg6UbU0hUWJCcpDW5+mTk
-	 KpvGBULMyd3sA==
-Date: Mon, 7 Apr 2025 09:17:08 -0500
+	b=OmKPTvNKo7GH841Ti6r12nXy0r591k3cCRhCheNVDeGjMLe7DE1T7RrIltDkwUISM
+	 HmSPJhvd8shdr77+OT3M9ObmjOznvTxdAv973uZ8R4yWn235nHN1dUbEUUJrNzMz3c
+	 /1HL3yjjEUHKMig9/ZJ85XPBjT7Wsxel76i7thVSJFr8loqm+QLyelvtQ72d5IyR73
+	 c6oee/XjjzuFiAv1ECR3WewFHG90oPEE5TLQn0/f6nlc9REetB6OUEAaHG3g4mgZin
+	 HuBH3d4uVxRdzfgATFW6uifZg8EW8MeVbzV/gpqljNoriCd4oThWx5TI1FaiiVY1Li
+	 v+N0KNmU9xIbg==
+Date: Mon, 7 Apr 2025 09:18:54 -0500
 From: Rob Herring <robh@kernel.org>
 To: Ben Zong-You Xie <ben717@andestech.com>
 Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
@@ -50,11 +50,10 @@ Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
 	krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
 	daniel.lezcano@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
 	tim609@andestech.com
-Subject: Re: [PATCH 4/9] dt-bindings: interrupt-controller: add Andes
- machine-level software interrupt controller
-Message-ID: <20250407141708.GA2250717-robh@kernel.org>
+Subject: Re: [PATCH 5/9] dt-bindings: timer: add Andes machine timer
+Message-ID: <20250407141854.GA2277442-robh@kernel.org>
 References: <20250407104937.315783-1-ben717@andestech.com>
- <20250407104937.315783-5-ben717@andestech.com>
+ <20250407104937.315783-6-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,43 +62,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407104937.315783-5-ben717@andestech.com>
+In-Reply-To: <20250407104937.315783-6-ben717@andestech.com>
 
-On Mon, Apr 07, 2025 at 06:49:32PM +0800, Ben Zong-You Xie wrote:
-> Add the DT binding documentation for Andes machine-level software
-> interrupt controller.
+On Mon, Apr 07, 2025 at 06:49:33PM +0800, Ben Zong-You Xie wrote:
+> Add the DT binding documentation for Andes machine timer.
 > 
-> In the Andes platform such as QiLai SoC, the PLIC module is instantiated a
-> second time with all interrupt sources tied to zero as the software
-> interrupt controller (PLICSW). PLICSW can generate machine-level software
-> interrupts through programming its registers.
+> The RISC-V architecture defines a machine timer that provides a real-time
+> counter and generates timer interrupts. Andes machiner timer (PLMT0) is
+> the implementation of the machine timer, and it contains memory-mapped
+> registers (mtime and mtimecmp). This device supports up to 32 cores.
 > 
 > Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 > ---
->  .../andestech,plicsw.yaml                     | 48 +++++++++++++++++++
+>  .../bindings/timer/andestech,plmt0.yaml       | 42 +++++++++++++++++++
 >  MAINTAINERS                                   |  1 +
->  2 files changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+>  2 files changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml b/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+> diff --git a/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml b/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 > new file mode 100644
-> index 000000000000..5432fcfd95ed
+> index 000000000000..e0ea3ce86b76
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
-> @@ -0,0 +1,48 @@
+> +++ b/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
+> @@ -0,0 +1,42 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/andestech,plicsw.yaml#
+> +$id: http://devicetree.org/schemas/timer/andestech,plmt0.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Andes machine-level software interrupt controller
-> +
-> +description:
-> +  In the Andes platform such as QiLai SoC, the PLIC module is instantiated a
-> +  second time with all interrupt sources tied to zero as the software interrupt
-> +  controller (PLIC_SW). PLIC_SW can generate machine-level software interrupts
-> +  through programming its registers.
+> +title: Andes machine timer
 > +
 > +maintainers:
 > +  - Ben Zong-You Xie <ben717@andestech.com>
@@ -108,11 +100,10 @@ On Mon, Apr 07, 2025 at 06:49:32PM +0800, Ben Zong-You Xie wrote:
 > +  compatible:
 > +    items:
 > +      - enum:
-> +          - andestech,qilai-plicsw
-> +      - const: andestech,plicsw
+> +          - andestech,qilai-aclint-mtimer
+> +      - const: andestech,plmt0
 
-Drop the fallback. If you have another implementation that's compatible, 
-then andestech,qilai-plicsw will be the fallback.
+Drop the fallback.
 
 > +
 > +  reg:
@@ -120,7 +111,12 @@ then andestech,qilai-plicsw will be the fallback.
 > +
 > +  interrupts-extended:
 > +    minItems: 1
-> +    maxItems: 15872
+> +    maxItems: 32
+
+Here and in the plicsw, it would be good to describe what determines how 
+many interrupts there are and what's the mapping (index 0 is ???, index 
+1 is ???).
+
 > +
 > +additionalProperties: false
 > +
@@ -131,26 +127,26 @@ then andestech,qilai-plicsw will be the fallback.
 > +
 > +examples:
 > +  - |
-> +    interrupt-controller@400000 {
-> +      compatible = "andestech,qilai-plicsw", "andestech,plicsw";
-> +      reg = <0x400000 0x400000>;
-> +      interrupts-extended = <&cpu0intc 3>,
-> +                            <&cpu1intc 3>,
-> +                            <&cpu2intc 3>,
-> +                            <&cpu3intc 3>;
+> +    interrupt-controller@100000 {
+> +      compatible = "andestech,qilai-aclint-mtimer", "andestech,plmt0";
+> +      reg = <0x100000 0x100000>;
+> +      interrupts-extended = <&cpu0intc 7>,
+> +                            <&cpu1intc 7>,
+> +                            <&cpu2intc 7>,
+> +                            <&cpu3intc 7>;
 > +    };
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index a0ccac1cca29..645d7137cb07 100644
+> index 645d7137cb07..d1e1b98dfe7b 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -20728,6 +20728,7 @@ F:	include/linux/irqchip/riscv-imsic.h
->  RISC-V ANDES SoC Support
->  M:	Ben Zong-You Xie <ben717@andestech.com>
+> @@ -20730,6 +20730,7 @@ M:	Ben Zong-You Xie <ben717@andestech.com>
 >  S:	Maintained
-> +F:	Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
 >  F:	Documentation/devicetree/bindings/riscv/andes.yaml
+> +F:	Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 >  
 >  RISC-V ARCHITECTURE
+>  M:	Paul Walmsley <paul.walmsley@sifive.com>
 > -- 
 > 2.34.1
 > 
