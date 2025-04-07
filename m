@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-163619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850B3A7D935
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:15:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8314A7D940
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:16:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C2733B7F62
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:13:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DB38177075
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E9922FF22;
-	Mon,  7 Apr 2025 09:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B0E230D11;
+	Mon,  7 Apr 2025 09:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dUS4EoLY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="glDWs8VL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEDF22B8B0;
-	Mon,  7 Apr 2025 09:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780FA230251;
+	Mon,  7 Apr 2025 09:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744017225; cv=none; b=DGbY2eNmIdN3ZsPLhsc7JMm/jodU0UhCDwTqog81w2nIr1Vv9Ax5uTv50EBQ9eZGjtJAhtj0BzkwulCMuy3aToCF7nCYGSKcrtK5zsXWtt228KPbbh3qc8HY9EypheGS8Tr+YJ5nOMQsKfKWDsQVrw2HJv7OGwMKcP+w0H7864w=
+	t=1744017234; cv=none; b=jA27UOwJ+3cOs0/kdvCef0/K1NT/lnnSaTcWGhdnqPEV6xC5jaW9fGLpNGXc3Lvv6nc0FRTEz+45wlfn6xwmIoJTmIjSdWs2ayVc7ptsO25qQ+ZTDyH1cv2joOpRbz2g0GTXnmfaQXvpxtJs+BWvKb4LLKN51XUaLGDGoAjGV9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744017225; c=relaxed/simple;
-	bh=oU2Moh3QffPmlHMSpG5pGGNUhLzA2yz3MKAJRal6uJc=;
+	s=arc-20240116; t=1744017234; c=relaxed/simple;
+	bh=5o6M6HM77Ypm9iWSbgwhIBjs8LrS18zfEPaa2ATuhLM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=da+F05YegfaJ2SkiCmfXi/qWF3MsUqKbBtTShLhFW+owW1cpNVlRrf5/S0U8wJrXMDjVJLS2fl/iI9PjChz52TADqh6ndIuDBBD+H3LYL/My38FSEBfmWbKIPNl3RsKdY2HAioIXMISHStdsIKR6kr0Ih46h7NnD/Pgx5aDpavI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dUS4EoLY; arc=none smtp.client-ip=209.85.208.50
+	 In-Reply-To:Content-Type; b=baWRDwkGk3QwvlmWHk/Y1ZFwj+6hJAs5BOmVdeu7YsChI54c8mR8gtEpAJax97QApmoCNnpqktAH2cNXvn+W2edtIRfiNIIbm/83C3j3pyMY3rZjmth0C6ixVIiho1GQBJ+9hlJ6UaWL2Rb9oPIgO2CPn0V8LmdHFRs+v1quEwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=glDWs8VL; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e5dce099f4so5280445a12.1;
-        Mon, 07 Apr 2025 02:13:43 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e5cd420781so7108444a12.2;
+        Mon, 07 Apr 2025 02:13:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744017222; x=1744622022; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744017231; x=1744622031; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=D0KYQ2tFa3w2DTAF5hUEDnA1JlQaAuS5xymaBqtHqi0=;
-        b=dUS4EoLYiTAfThy97KXoLCZIOMQ84DBQyd5BfZDOEe/VJwauwlutxIlVzeImJjCnJe
-         WGFglUgIzCkTK5SXv2GrSKolXEJDXLwxUjQlcnioA3XOFm+ixTPP03dKA1civ8ZffiDt
-         8xg9Ei3VxREet2NwWpywW6AQLibyDQKu0CtkUQNklPptv7WTpa8o9sTTiDh4LR4+6VjC
-         9M3pf5kSTOsNLu8hlaxnYMfnggenNsZBuuZOB8RBl774op4I3yPgWJTSorBwTtRZAEYl
-         /k7S06b27EhG9Ecdso4ieceprExTItgHt5tRI1MMMWDi7yjHix5Oy7LR7cL3mcM+GkgI
-         ODNg==
+        bh=P1Uk4aOu80S83390MO9VGJ4kqxev3EQy2D7fW7X8p3w=;
+        b=glDWs8VLEJOIbMbpZ+r2e596BwhCsMgOsNvaNdmnE6mVDFO+D91Grjgt6wJmPDOor2
+         AEXei+Qq6R9WhktKPSQEPOwekG4GfSlk9j6pmfx+YMipEI1aEia54rKamSVl3mgq5Rr2
+         3IKbgWjgefxKwXFyYhDro8+T2vBUJjNkceHozy9McqVqj3jU2hw1N7Bk9GoHdr4KwNiv
+         jZz/rlc79iEF4mWRKK2LWg0a+ebvLYbcLknsQAu8aUBDfjbB/Z4Wp9etLO0rWtk6Aowx
+         kU2WzNVmEsM9TIxlimZCqFrqhry/ym3jO5ToqG0JkZmrOFnKa2BJH40pkfppInoPpOG+
+         kJxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744017222; x=1744622022;
+        d=1e100.net; s=20230601; t=1744017231; x=1744622031;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D0KYQ2tFa3w2DTAF5hUEDnA1JlQaAuS5xymaBqtHqi0=;
-        b=Hzfi7kFiNtDyIY9/kkM/fRaAGR/KNQqmRRSwLNa96Uao4G1zcwSCToNgr2ZRj+IdWf
-         KW/itWcoGNg/dY1RoP0KfU8t1GXfOs3AowuJTd+CWS9Op8zfmaVTrXEuybNMk8wej+LL
-         D4OfCf/vuwyr7g71o1XRKTcMm9vSXawqcSlbVxLQz2Pwe/JQ0ocuqCMXEZk5VeSkUkF+
-         GyrfOJhUQzjnEvmdnsXbd4nbIMzhRqwIpGOT2HTEiC5ctzokfun7T+5EGcYqM/YmqEYG
-         4OmXAqde8SDo6Cup2dR9H/mXS9RzEzt59wghWV9snsxiIr/zctsZgDEOlur4Hlg8/XxC
-         7esA==
-X-Forwarded-Encrypted: i=1; AJvYcCUM9aHa8huH8kKPThJ4kkQEQawMR7mFOjFqDIl/L8Qe68uTV2Oj0egjjWpCzhJuSFFFJTEn8v8RSPPbr/k=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7J0H15UNA0hLSp48wIIoPM2blsXUJ53tU9c0e6iY6dMUo4f1H
-	gD+7zodpbv9VCi4uhUjfvih41fDP1jmYqi3C837u8bqrAZKwratA
-X-Gm-Gg: ASbGncutWK75kKdwAHdpZAyi6ju1boHv7U0xw83BAG1SCgiuqhcQqWuU4Me9wJkJu06
-	2b9CaAZZ8akjUdAm21A9+sJLb/W4zeO8ozcKzDHHhMcmOPDTEIZqn4c5Ef1bKWsHm5a65ADPHIF
-	/1PAMdzhn8BWMAus91qsLSpbZ0LtKC20jHqZY+pEX9SzrU1OAoTK6muAwTSVWyfwkANnr4z/4/C
-	vHbscvXhPb1ogLA24OR4xjf36DeI7Gc2EAlH5qLtpeVVbJNatOlaU6stGaTUOnsc9NykhNjaWCS
-	tE2TNG5kRAqXcIC+ouCtOIMVEkOmOEbBHAoarChL50ttJiAvIZq8HZ1hTIXpl2hu
-X-Google-Smtp-Source: AGHT+IFLEKdWvnBmRUhayjVFBjdSoDku9nD5apBp0tQe4zi9UIOqkrzqina5ESL46GQbMQWmO6yF3Q==
-X-Received: by 2002:a05:6402:51c7:b0:5e8:bf8b:4396 with SMTP id 4fb4d7f45d1cf-5f0b658917cmr10306073a12.13.1744017221603;
-        Mon, 07 Apr 2025 02:13:41 -0700 (PDT)
+        bh=P1Uk4aOu80S83390MO9VGJ4kqxev3EQy2D7fW7X8p3w=;
+        b=otqFFU1P1h6uVjU7xS4PCY+KpEjiXC56VrdXk/jQ9e9m6ibZJ28sdQio/59mx8ulhC
+         ZW7HcUa/7zS9FmCWwsuNT/Q6yDYoJ7OqIcfABl4wzJgcf+6Vwoza/tGXIhqmMG007FrH
+         HO95963OBIOu4+ibTtdiL/25Lm3Sn1EbJ8LovZSbmKq5Ik4mYSYHsydhB/NcthHBRKJG
+         Z7bVneJ7QCs3PwDKogrO86m4QY/faiDcAt993SYQvQyS1wo6kB3ygmRhxy3S+OLnjKfp
+         vGhdgiGyFF9CG5tzDspoNqWzqlg1u//ExGzlg5yNNG1uxG2hRE8bseT+8syjRVZWcz7Q
+         olgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpNT35yWEItalG92wQ1t6mSVEhfjxdZDdiMXixfuHgzfbeNCOYOXrGMtwJX/B3RY/w1pCtuqZVnHYoZEg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAD9Psxr/67bUbS0sLHY13CzfRhdblwz+ijhsCI/IJpA5ZZh5N
+	CwTJw8bCPWPaWzkd4+/wJvdDaACU2SoTyPxLB58Yq9Y5+LEUtJZE
+X-Gm-Gg: ASbGncttEsO5wz0ZykXTpQjOslcA1lOWib0P6jQuVaX8kNSDXlDEF4Hhg2+rxgDFrMo
+	c6xvr1lkGamnY5hsWbtVGFsIrma0Ze0miQqYqMOVP/mF+fGkAp1Yy1CAl/P7SsltOKjERduoIMb
+	JIj6gVIIzpob5x4sYAcvqsQdMMHCyZEGYsf/wcLt5Brg4tOsuNHc+7SUzw3ZW6NK8vV1utuLTOx
+	2gMyHGbUNJlSpFHxIyLxFCFuiRLfc2kx2d3OHUXhycVAU73pMjBo6QblnVDrcSVxEXI6ip/1GvM
+	9Z0Mp4VCY4bFghQvaLyxRHNMTc5LwgDElYhcymk8dxmOsHBE05ZfEA==
+X-Google-Smtp-Source: AGHT+IFT3ocNy0hfSa6LZN537JBXUdT2MD+recEeiEmTsR3iPDKF8z5UKZctlOPeKBh/G3Xz3E5JQA==
+X-Received: by 2002:a05:6402:501f:b0:5eb:9673:183f with SMTP id 4fb4d7f45d1cf-5f0db8352a7mr7676899a12.20.1744017230310;
+        Mon, 07 Apr 2025 02:13:50 -0700 (PDT)
 Received: from [192.168.1.130] ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f0880a405fsm6504365a12.75.2025.04.07.02.13.40
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f08771a1c6sm6490830a12.11.2025.04.07.02.13.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Apr 2025 02:13:41 -0700 (PDT)
-Message-ID: <3d2c74f0-72bc-425a-9333-86addfe85dd2@gmail.com>
-Date: Mon, 7 Apr 2025 11:13:39 +0200
+        Mon, 07 Apr 2025 02:13:50 -0700 (PDT)
+Message-ID: <020081ff-9393-42b2-b0e1-67eed9220aa1@gmail.com>
+Date: Mon, 7 Apr 2025 11:13:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,15 +81,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add Ultratronik
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: stm32: Document Ultratronik's
+ Fly board DT binding
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20250326094429.2397365-1-goran.radni@gmail.com>
- <20250326094429.2397365-2-goran.radni@gmail.com>
+ <20250326094429.2397365-3-goran.radni@gmail.com>
 Content-Language: en-US
 From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <20250326094429.2397365-2-goran.radni@gmail.com>
+In-Reply-To: <20250326094429.2397365-3-goran.radni@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -101,26 +105,29 @@ Best regards
 Goran
 
 On 26.03.25 10:44, Goran Rađenović wrote:
-> Ultratronik GmbH is a German electronics company:
-> https://www.ultratronik-ems.de/
+> This commit documents ultra-fly-sbc devicetree binding based on
+> STM32MP157 SoC.
 >
 > Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
 > ---
->   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->   1 file changed, 2 insertions(+)
+>   Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 5079ca6ce1d1..91285296dbd3 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1597,6 +1597,8 @@ patternProperties:
->       description: Universal Scientific Industrial Co., Ltd.
->     "^usr,.*":
->       description: U.S. Robotics Corporation
-> +  "^ultratronik,.*":
-> +    description: Ultratronik GmbH
->     "^utoo,.*":
->       description: Aigo Digital Technology Co., Ltd.
->     "^v3,.*":
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index b6c56d4ce6b9..c1cb54ffb210 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -175,6 +175,11 @@ properties:
+>             - const: phytec,phycore-stm32mp157c-som
+>             - const: st,stm32mp157
+>   
+> +      - description: Ultratronik STM32MP1 SBC based Boards
+> +        items:
+> +          - const: ultratronik,stm32mp157c-ultra-fly-sbc
+> +          - const: st,stm32mp157
+> +
+>         - description: ST STM32MP257 based Boards
+>           items:
+>             - enum:
 
