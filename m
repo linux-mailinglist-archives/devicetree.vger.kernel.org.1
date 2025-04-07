@@ -1,153 +1,646 @@
-Return-Path: <devicetree+bounces-163612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BCFA7D880
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:51:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84199A7D8C3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C1E9173230
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:50:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 122EB18860E7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F2C228CBE;
-	Mon,  7 Apr 2025 08:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0B922A1C0;
+	Mon,  7 Apr 2025 08:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CVVDZL/g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ypu/Nfye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C415212B14
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 08:50:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DCC228CBE
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 08:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744015803; cv=none; b=RTvF4ybi2LlzLq1GlNCEnkLtXVkIt1EsF57ow00bSRKhjYqhcuSm4rT6QB1gJ+pHxOc9SSUkG2d/ETQYJeC8qYcUQ4N7Y1HbUJH38gRe/tRKtqrJ6VVaiRCPSvEipgOstsrWo/+t7pYY6jgsi3xmTaZIYlJt2ICf25O/tpz63EE=
+	t=1744016151; cv=none; b=A+a/Y0WN7W3uk2ZZRFdWFqm4Z9sHCRNH5KnrVCbn8yiLHfIDxh352BGlXNaIIrDqBU2o/5kZmrV982s35PlZYVW9CQg4JDRKvdN5F70B/+vqczX8tC1HAVDaQUG+1cU9TsTtMpxlPzZvPGHH+hhEZrk4k9/ZTuOStEizlWi0LIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744015803; c=relaxed/simple;
-	bh=0dysb/j8QCvtqSojYzmzZc4MuE8IlG7SThXAVqAXz34=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZVE4YYtot58hOP0/JhuoOuoKOMPOlrZo7WOtIoAxZV7kiUj1WbZ5W53f/UbmCqjlfSQtDSyOTz3QfCpmdOoozG2+HIM26J8/tqSiimChm4mpGDfi9IVw1wf8QpuwHpNorRF5Xa01npM2kcjZZufjI1wPshseUtlMJxMOJhL2bk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CVVDZL/g; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5378dmvO015493
-	for <devicetree@vger.kernel.org>; Mon, 7 Apr 2025 08:50:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	A7W/suLq2UM8HkanTs1604dpOyHgBjMoRJIiCRyj9+s=; b=CVVDZL/gws/Rm+jT
-	YWCrTw9nhBzrno64L/nvG3wxIxarrWOLWV/RhmuPrTZ4uA/GkKdNvaDa25pR5lVT
-	WIi1R+8kUyxISodhlpcpZwEVdKIGZTbOCjNoM1bWOTznfU1IaBj7lNsy1ecjOnTB
-	wMv+bUs4AM/UyiLPhVuvWE3xV9VXuCFGhgkSWYdvGscXy1oGaoT5Pd4D55dGoyrq
-	OwkC/NYXb/HZ5nWb3bBxknxfBtzRjwy6Nub+5Zvz9dTMiABGhd3lxUpKGLeqEl4y
-	MDxoOChXlFyEhwHTM7OskUXKfWQTreg851nWAjUkGAgBDWAsxYIPdwgaABaG0Lqr
-	LYHTmQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbe3ndd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 08:50:01 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6eeb8a269a7so12195536d6.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 01:50:01 -0700 (PDT)
+	s=arc-20240116; t=1744016151; c=relaxed/simple;
+	bh=0OLQI/RJjtpMhMe/e1bBeJkkny0qk2ULECSY66zw7uc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TgQzwGOGt7zPVHHE89vKgISvm043U/eKGkAkTHzOYjp+qqyBTdqlkFqT3WdZx1VAqqp8CuEzZhl8Ux6dEXl/6aEHknxJouw+PLNLyh8o5+oGUCOpcq+9YmbJyBznwWAj5LTNWlAhJYjmdwRW4r6F48W2zQUgatLyL544aYdWHc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ypu/Nfye; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso21148515e9.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 01:55:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744016147; x=1744620947; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=usZvs6KCLTgjGr0SVDdV9KkJaypefAlDD3xqFkv+Ahk=;
+        b=ypu/Nfye5uU362Pwj3xMxkcDcidtsFIQWXRAdVZWYkJLeLUHU0Z6lpz8XfcPgRnf/8
+         gLwStplfK/9nR6L2DYKaNjwGEnX1xlE9grY9sm0b+ioiw4ML3TzcDaH/E5WI2KeKnyvF
+         JTaRzOEJVTVbxvdZ3D2sZma7L7hgTTjpxWVN7wwXMGzQKm/FBRjPwnZlef4nUneTWv2J
+         lJBlOMLH/tnh8py2T38/4yqoodu+TiIoXjpNvfxIZlqntGiXeX4u0FWAd1KVm2vM9NGI
+         Br8GCWqfbggdwVPzV8LTNOJtYkb1+UvY0UEwKNDt0CNRtUYKiYV2vnauRF79pK2EXnpy
+         a2Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744015800; x=1744620600;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A7W/suLq2UM8HkanTs1604dpOyHgBjMoRJIiCRyj9+s=;
-        b=Cr5FHbOPbvA+MKyn7RL7drWtaXEemEYJfTwM0Hmx/Y66HCt70CgBAT+h4eRc6Ffczz
-         L+n4M5OxRy2zowbMxbZDSUjwKwCheB4SQInZtf29Wl26hFUjC6EkhcB75prZIv4yWPjk
-         0CuHT0H5mF0EwIkn7wsmXFg1U9HMMqzVwfRgncNYH8qyEq+CHFwIJOR9kLjR/t6UFEs8
-         KRNfy9KI0T7crB6eFQs2Ha0uSYzOl6IqM46es5Cn7amSbX2LyhRNsBUFAW670332pHBz
-         nXg0MAWgZkoqrP5hlaoB5rMJoDpKnQxX8i0C2E2ORJOQkdlhl/wld7QXmCBwYLipfdl0
-         28qg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7NFf7MKG1ZANGB70pnCqiuBnqqbHW88rsGPkax55Y/OV1+9T/THWiTej9Il6F+mSSzqpuFtQqBX0a@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0rLXsrVXolg1SxdHaKXPsv9hCrbwqQpoFC1GfvecJLYRrwQsP
-	DuhUVsT2zOKzisAJM2/pTUFxAPm0Dltey0NZjEZZnZb4ncbD7ulrdzMIC15IL4J/DuFKaJeh6Ua
-	rZInfChRPMkkjPr9G2wfpfyIfGd7wjdso11fO7k3F+GW51xfRB8iQHwMyjUI1
-X-Gm-Gg: ASbGncs5EacBNDqJYvz1RuhF/c8EJ1hwINLm+eDPvbxdgzGvYnI5JTfDXLDgCU39lgy
-	Y9VmRXTgyNep/XveuTZ7p/UYVi9Ws3PFS7X1UMX71QLbu9iTTFA2UM3a60kifO/acXuYBTqstHh
-	okDpFkDGf5IVL4ncgJPE5ADW4/9HrFukFjg0xodqjid7rgTZn8Z3VQA+n4lvO8WWObgEqrXTVHk
-	Y+1JybI4OBfsiKVuIZPDUIXs6yBgbaXaE4gbMGm/hG8EJqDxZBfIFAfFI7JSlpdkI7qAN6zA/n2
-	yKxJ7br4p2ywUAmoeDBP1YPe010tzPxl+GGChVo6bbjU3qEtjT6uQuK1vWfKprMsaQWBnA==
-X-Received: by 2002:a05:620a:454e:b0:7c0:c42a:707d with SMTP id af79cd13be357-7c774def534mr617003485a.15.1744015800132;
-        Mon, 07 Apr 2025 01:50:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHM3ImiIeUKkCnXzozuTunhbkQzhWJNYwKRsFjSxrcYnNZn6j0yjPM2Ovp2gCk1ymCBdM3FPw==
-X-Received: by 2002:a05:620a:454e:b0:7c0:c42a:707d with SMTP id af79cd13be357-7c774def534mr617000985a.15.1744015799813;
-        Mon, 07 Apr 2025 01:49:59 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f0880a55aasm6468304a12.78.2025.04.07.01.49.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Apr 2025 01:49:59 -0700 (PDT)
-Message-ID: <9583f74f-2dce-4535-bdff-92b1da1566b5@oss.qualcomm.com>
-Date: Mon, 7 Apr 2025 10:49:55 +0200
+        d=1e100.net; s=20230601; t=1744016147; x=1744620947;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=usZvs6KCLTgjGr0SVDdV9KkJaypefAlDD3xqFkv+Ahk=;
+        b=qWayvHilwohg3arDCcv6f1jIsWaL/d3UyRNyyr3nPL1Wc41E7Izs7XqwaCyRrpfbdy
+         9pGTDxOCRLa+Afo/niQ5cWf/CUJwMfF7OUrs0yfuI565NK3hgKyVSEXmm5QUkRVQaDQg
+         okjIm+lX1SpK7J/EwpzX6OveQ/djW3WXloGak4AmA5Fg8mXi6jwTEBGrAz57jX+26woh
+         Vu3sNFV6joFijc3heY/paFvLUsUNF8RwVYv8hoPnq1yB1XzQbeqn+xaOs+e86VRK0osa
+         EBTW5BJV/mGtHWrcCkulHtTCJ9Rk6U8kJOiqK68RwmvdT7+mVkBIzBAQpnRE/twi9MgH
+         JrhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWjsoCIIY4VmR18UB8FyfOS4Y3tuG2SUdnzh5/L2vqIgh9hUa1lFX3QKyFzj2RihCZt3pMFusvOR/f6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZud2SLxERdIrERhxL4rGRcuZ7fnZnlVSvY+5Nuc29oW2n3cho
+	yugBc7qj/X/xfVEi0Y0Ib2aCEpMzgAgREOu10+tJbMhvdvUZO0ArmGtO1f6PiO4=
+X-Gm-Gg: ASbGncukS0ysIyp319DDM7ZLQPheL9VgNQdH5vwLKedbCdbJlcu1iT165730RBQDRi7
+	urxQnbv6usiLg2gDQH/DnYYQhRThMBUo02auhTpefiooK+sei1VsCyGX0DgY+ACkuc/xgcP3sjL
+	+81QvGwgd9OHYi1nQJDNywu9LpVXgYugdVebpQKhzVOHaDJivEJq5AKA/CkFnWoWBeHhw7Wy8tC
+	xAaHIVl8tf/3B8kRPW2c51QCh9w5/yf0WcSrWmUPMsvGTxh5Diwz2NvgCy07IlsLhBPSbGYKy/a
+	L6jDMHA55obe0GJLkvgivxXT6BQWIZ9zpmGpGyyWiR/1cv3l
+X-Google-Smtp-Source: AGHT+IHkOpZ5UWfNCm7D0PZAZL/ZLHhBDc6m6mb4xiPQsIW15234vRHFYT+yvby5B9w2sdj4Hzpxzg==
+X-Received: by 2002:a05:600c:3489:b0:43c:f0ae:da7 with SMTP id 5b1f17b1804b1-43ee0617025mr74208375e9.7.1744016147044;
+        Mon, 07 Apr 2025 01:55:47 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec163107csm127864145e9.3.2025.04.07.01.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 01:55:46 -0700 (PDT)
+Message-ID: <0a1f45f3221f74fdde0f388b3693e51c771bb307.camel@linaro.org>
+Subject: Re: [PATCH v3 09/32] mfd: sec: add support for S2MPG10 PMIC
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
+ <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
+ <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon	 <will@kernel.org>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker	
+ <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Date: Mon, 07 Apr 2025 09:55:45 +0100
+In-Reply-To: <20250404091858.GA43241@google.com>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+	 <20250403-s2mpg10-v3-9-b542b3505e68@linaro.org>
+	 <20250404091858.GA43241@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8953: Add interconnects
-To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250406-msm8953-interconnect-v1-0-a23e22e236e0@lucaweiss.eu>
- <20250406-msm8953-interconnect-v1-2-a23e22e236e0@lucaweiss.eu>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250406-msm8953-interconnect-v1-2-a23e22e236e0@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: Mg3nOQZGYygokuRUdssCGRSjAlPtlR1R
-X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f391b9 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=dlmhaOwlAAAA:8 a=Dw-YgVe96UOjDrfUO-cA:9 a=QZKuY7mROTJmt8fO:21
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=y4cfut4LVr_MrANMpYTh:22
-X-Proofpoint-ORIG-GUID: Mg3nOQZGYygokuRUdssCGRSjAlPtlR1R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_02,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504070062
 
-On 4/6/25 10:55 PM, Luca Weiss wrote:
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> 
-> Add the nodes for the bimc, pcnoc, snoc and snoc_mm. And wire up the
-> interconnects where applicable.
-> 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> [luca: Prepare patch for upstream submission]
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
-> ---
+Hi,
+
+Thanks Lee for your review!
+
+On Fri, 2025-04-04 at 10:18 +0100, Lee Jones wrote:
+> On Thu, 03 Apr 2025, Andr=C3=A9 Draszik wrote:
 
 [...]
 
-> +			interconnects = <&snoc_mm MAS_MDP RPM_ACTIVE_TAG
-> +					 &bimc SLV_EBI RPM_ACTIVE_TAG>,
-> +					<&bimc MAS_APPS_PROC RPM_ACTIVE_TAG
-> +					 &pcnoc SLV_DISP_SS_CFG RPM_ACTIVE_TAG>;
+> > diff --git a/drivers/mfd/sec-acpm.c b/drivers/mfd/sec-acpm.c
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..39dbb968086ac835b96ed3e=
+4efa68868fda63429
+> > --- /dev/null
+> > +++ b/drivers/mfd/sec-acpm.c
+> > @@ -0,0 +1,465 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright 2020 Google Inc
+> > + * Copyright 2025 Linaro Ltd.
+> > + *
+> > + * Samsung S2MPG1x ACPM driver
+> > + */
+> > +
+> > +#include <linux/array_size.h>
+> > +#include <linux/device.h>
+> > +#include <linux/firmware/samsung/exynos-acpm-protocol.h>
+> > +#include <linux/mfd/samsung/core.h>
+> > +#include <linux/mfd/samsung/rtc.h>
+> > +#include <linux/mfd/samsung/s2mpg10.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regmap.h>
+> > +#include "sec-core.h"
+> > +
+> > +#define ACPM_MAX_BULK_DATA=C2=A0=C2=A0 8
+> > +
+> > +struct sec_pmic_acpm_platform_data {
+>=20
+> This isn't platform data.=C2=A0 It's driver data.
+>=20
+> Platform data is passed in, driver data is derived.
 
-RPM_ACTIVE_TAG is akin to QCOM_ICC_TAG_ACTIVE_ONLY, keep it on the CPUs
-and on the cpu-cfg paths, use RPM_ALWAYS_TAG otherwise
+This is the match data from of_device_id::data, it is passed in
+via device_get_match_data().
 
-Konrad
+>=20
+> See how the other drivers do this:
+>=20
+> =C2=A0 $ git grep ddata -- drivers/mfd
+
+I had followed the example of drivers/mfd/rk8xx-i2c.c
+
+I can rename it to struct sec_pmic_acpm_chip_data if you prefer or
+something like that, but the rk8xx driver also calls this platform
+data.
+
+ddata in drivers/mfd/ generally seems used for dynamically allocated
+runtime driver data. That's not the case here.
+
+> > +	int device_type;
+> > +
+> > +	unsigned int acpm_chan_id;
+> > +	u8 speedy_channel;
+> > +
+> > +	const struct regmap_config *regmap_cfg_common;
+> > +	const struct regmap_config *regmap_cfg_pmic;
+> > +	const struct regmap_config *regmap_cfg_rtc;
+> > +	const struct regmap_config *regmap_cfg_meter;
+> > +};
+> > +
+> > +static const struct regmap_range s2mpg10_common_registers[] =3D {
+> > +	regmap_reg_range(0x00, 0x02), /* CHIP_ID_M, INT, INT_MASK */
+> > +	regmap_reg_range(0x0a, 0x0c), /* speedy control */
+> > +	regmap_reg_range(0x1a, 0x2a), /* debug */
+>=20
+> Nit: I like comments to start with an upper-case char.
+
+OK
+
+>=20
+> > +};
+> > +
+> > +static const struct regmap_range s2mpg10_common_ro_registers[] =3D {
+> > +	regmap_reg_range(0x00, 0x01),
+> > +	regmap_reg_range(0x28, 0x2a),
+>=20
+> Why describe some, but not all ranges?
+
+They're all covered above. I'll duplicate them here and elsewhere.
+
+> > +struct sec_pmic_acpm_shared_bus_context {
+> > +	const struct acpm_handle *acpm;
+> > +	unsigned int acpm_chan_id;
+> > +	u8 speedy_channel;
+> > +};
+> > +
+> > +enum sec_pmic_acpm_accesstype {
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_COMMON =3D 0x00,
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_PMIC =3D 0x01,
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_RTC =3D 0x02,
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_METER =3D 0x0a,
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_WLWP =3D 0x0b,
+> > +	SEC_PMIC_ACPM_ACCESSTYPE_TRIM =3D 0x0f,
+> > +};
+> > +
+> > +struct sec_pmic_acpm_bus_context {
+> > +	struct sec_pmic_acpm_shared_bus_context *shared;
+> > +	enum sec_pmic_acpm_accesstype type;
+> > +};
+> > +
+> > +static int sec_pmic_acpm_bus_write(void *context, const void *data,
+> > +				=C2=A0=C2=A0 size_t count)
+>=20
+> Nit: You can tidy this, and similar line-feeds, up by using 100-chars her=
+e.
+
+Will do.
+
+> > +{
+> > +	struct sec_pmic_acpm_bus_context *ctx =3D context;
+> > +	const struct acpm_handle *acpm =3D ctx->shared->acpm;
+> > +	const struct acpm_pmic_ops *pmic_ops =3D &acpm->ops.pmic_ops;
+> > +	u8 reg;
+> > +
+> > +	if (count < 2 || count > (ACPM_MAX_BULK_DATA + 1))
+>=20
+> 2 because?=C2=A0 Either comment or define magic numbers please.
+>=20
+> > +		return -EINVAL;
+> > +
+> > +	reg =3D *(u8 *)data;
+>=20
+> No API to conduct this raw read for you?=C2=A0 readl(), *_to_cpu() or sim=
+ilar?
+
+This is just regmap, passing a buffer. First byte(s) contains the reg
+address, depending on the regmap_config used during creation, and remainder
+the values starting from that address. This is not an I/O read as such, it'=
+s
+only extracting the register address. See e.g. regmap_parse_8().
+
+I'll reflow it a little.
+
+>=20
+> > +	++data;
+> > +	--count;
+> > +
+> > +	return pmic_ops->bulk_write(acpm, ctx->shared->acpm_chan_id,
+> > +				=C2=A0=C2=A0=C2=A0 ctx->type, reg,
+> > +				=C2=A0=C2=A0=C2=A0 ctx->shared->speedy_channel, count, data);
+> > +}
+> > +
+> > +static int sec_pmic_acpm_bus_read(void *context, const void *reg_buf,
+> > +				=C2=A0 size_t reg_size, void *val_buf,
+> > +				=C2=A0 size_t val_size)
+> > +{
+> > +	struct sec_pmic_acpm_bus_context *ctx =3D context;
+> > +	const struct acpm_handle *acpm =3D ctx->shared->acpm;
+> > +	const struct acpm_pmic_ops *pmic_ops =3D &acpm->ops.pmic_ops;
+> > +	u8 reg;
+> > +
+> > +	if (reg_size !=3D 1 || !val_size || val_size > ACPM_MAX_BULK_DATA)
+> > +		return -EINVAL;
+> > +
+> > +	reg =3D *(u8 *)reg_buf;
+> > +
+> > +	return pmic_ops->bulk_read(acpm, ctx->shared->acpm_chan_id,
+> > +				=C2=A0=C2=A0 ctx->type, reg,
+> > +				=C2=A0=C2=A0 ctx->shared->speedy_channel,
+> > +				=C2=A0=C2=A0 val_size, val_buf);
+> > +}
+> > +
+> > +static int sec_pmic_acpm_bus_reg_update_bits(void *context, unsigned i=
+nt reg,
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int mask,
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int val)
+> > +{
+> > +	struct sec_pmic_acpm_bus_context *ctx =3D context;
+> > +	const struct acpm_handle *acpm =3D ctx->shared->acpm;
+> > +	const struct acpm_pmic_ops *pmic_ops =3D &acpm->ops.pmic_ops;
+> > +
+> > +	return pmic_ops->update_reg(acpm, ctx->shared->acpm_chan_id,
+> > +				=C2=A0=C2=A0=C2=A0 ctx->type, reg & 0xff,
+> > +				=C2=A0=C2=A0=C2=A0 ctx->shared->speedy_channel, val, mask);
+> > +}
+> > +
+> > +static const struct regmap_bus sec_pmic_acpm_regmap_bus =3D {
+> > +	.write =3D sec_pmic_acpm_bus_write,
+> > +	.read =3D sec_pmic_acpm_bus_read,
+> > +	.reg_update_bits =3D sec_pmic_acpm_bus_reg_update_bits,
+> > +	.max_raw_read =3D ACPM_MAX_BULK_DATA,
+> > +	.max_raw_write =3D ACPM_MAX_BULK_DATA,
+> > +};
+> > +
+> > +static struct regmap *
+> > +sec_pmic_acpm_regmap_init(struct device *dev,
+>=20
+> Place both of these on the same line please.
+>=20
+> > +			=C2=A0 struct sec_pmic_acpm_shared_bus_context *shared_ctx,
+> > +			=C2=A0 enum sec_pmic_acpm_accesstype type,
+> > +			=C2=A0 const struct regmap_config *cfg, bool do_attach)
+> > +{
+> > +	struct sec_pmic_acpm_bus_context *ctx;
+> > +	struct regmap *regmap;
+> > +
+> > +	ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> > +	if (!ctx)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	ctx->shared =3D shared_ctx;
+> > +	ctx->type =3D type;
+> > +
+> > +	regmap =3D devm_regmap_init(dev, &sec_pmic_acpm_regmap_bus, ctx, cfg)=
+;
+> > +	if (IS_ERR(regmap))
+> > +		return ERR_PTR(dev_err_probe(dev, PTR_ERR(regmap),
+>=20
+> dev_err_cast_probe()
+>=20
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0 "regmap init (%s) failed\n",
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0 cfg->name));
+> > +
+> > +	if (do_attach) {
+> > +		int ret;
+> > +
+> > +		ret =3D regmap_attach_dev(dev, regmap, cfg);
+> > +		if (ret)
+> > +			return ERR_PTR(dev_err_probe(dev, ret,
+>=20
+> dev_err_ptr_probe()
+
+Thanks! I had forgotten about those two.
+
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 "regmap attach (%s) failed\n",
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 cfg->name));
+> > +	}
+> > +
+> > +	return regmap;
+> > +}
+> > +
+> > +static void sec_pmic_acpm_mask_common_irqs(void *regmap_common)
+> > +{
+> > +	regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0 S2MPG10_COMMON_INT_SRC);
+>=20
+> Single line.=C2=A0 And others like it.
+>=20
+> > +}
+> > +
+> > +static int sec_pmic_acpm_probe(struct platform_device *pdev)
+> > +{
+> > +	struct regmap *regmap_common, *regmap_pmic, *regmap;
+> > +	const struct sec_pmic_acpm_platform_data *pdata;
+> > +	struct sec_pmic_acpm_shared_bus_context *shared_ctx;
+> > +	const struct acpm_handle *acpm;
+> > +	struct device *dev;
+> > +	int ret, irq;
+> > +
+> > +	dev =3D &pdev->dev;
+>=20
+> You can do this during the declaration.
+>=20
+> > +	pdata =3D device_get_match_data(dev);
+> > +	if (!pdata)
+> > +		return dev_err_probe(dev, -ENODEV,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "unsupported device type\n");
+> > +
+> > +	acpm =3D devm_acpm_get_by_node(dev, pdev->dev.parent->of_node);
+>=20
+> You have 'dev' now.=C2=A0 Please use it.
+>=20
+> > +	if (IS_ERR(acpm))
+> > +		return dev_err_probe(dev, PTR_ERR(acpm),
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to get acpm (2)\n");
+> > +
+> > +	irq =3D platform_get_irq(pdev, 0);
+> > +	if (irq < 0)
+> > +		return irq;
+> > +
+> > +	shared_ctx =3D devm_kzalloc(dev, sizeof(*shared_ctx), GFP_KERNEL);
+> > +	if (!shared_ctx)
+> > +		return -ENOMEM;
+> > +
+> > +	shared_ctx->acpm =3D acpm;
+> > +	shared_ctx->acpm_chan_id =3D pdata->acpm_chan_id;
+> > +	shared_ctx->speedy_channel =3D pdata->speedy_channel;
+> > +
+> > +	regmap_common =3D sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> > +						=C2=A0 SEC_PMIC_ACPM_ACCESSTYPE_COMMON,
+> > +						=C2=A0 pdata->regmap_cfg_common, false);
+> > +	if (IS_ERR(regmap_common))
+> > +		return PTR_ERR(regmap_common);
+> > +
+> > +	/* Mask all interrupts from 'common' block, until successful init */
+> > +	ret =3D regmap_write(regmap_common, S2MPG10_COMMON_INT_MASK,
+> > +			=C2=A0=C2=A0 S2MPG10_COMMON_INT_SRC);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to mask common block interrupts\n=
+");
+> > +
+> > +	regmap_pmic =3D sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> > +						SEC_PMIC_ACPM_ACCESSTYPE_PMIC,
+> > +						pdata->regmap_cfg_pmic, false);
+> > +	if (IS_ERR(regmap_pmic))
+> > +		return PTR_ERR(regmap_pmic);
+> > +
+> > +	regmap =3D sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> > +					=C2=A0=C2=A0 SEC_PMIC_ACPM_ACCESSTYPE_RTC,
+> > +					=C2=A0=C2=A0 pdata->regmap_cfg_rtc, true);
+> > +	if (IS_ERR(regmap))
+> > +		return PTR_ERR(regmap);
+> > +
+> > +	regmap =3D sec_pmic_acpm_regmap_init(dev, shared_ctx,
+> > +					=C2=A0=C2=A0 SEC_PMIC_ACPM_ACCESSTYPE_METER,
+> > +					=C2=A0=C2=A0 pdata->regmap_cfg_meter, true);
+> > +	if (IS_ERR(regmap))
+> > +		return PTR_ERR(regmap);
+> > +
+> > +	ret =3D sec_pmic_probe(dev, pdata->device_type, irq, regmap_pmic, NUL=
+L);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (device_property_read_bool(dev, "wakeup-source"))
+> > +		devm_device_init_wakeup(dev);
+> > +
+> > +	/*
+> > +	 * Unmask PMIC interrupt from 'common' block, now that everything is =
+in
+> > +	 * place.
+> > +	 */
+> > +	ret =3D regmap_clear_bits(regmap_common, S2MPG10_COMMON_INT_MASK,
+> > +				S2MPG10_COMMON_INT_SRC_PMIC);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to unmask PMIC interrupt\n");
+> > +
+> > +	/* Mask all interrupts from 'common' block on shutdown */
+> > +	ret =3D devm_add_action_or_reset(dev, sec_pmic_acpm_mask_common_irqs,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regmap_common);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void sec_pmic_acpm_shutdown(struct platform_device *pdev)
+> > +{
+> > +	sec_pmic_shutdown(&pdev->dev);
+>=20
+> sec_pmic_shutdown() takes a pointer to i2c_client (unless you changed it
+> somewhere else).=C2=A0 If the later is true, then why not make it take a
+> pointer to platform_device and omit this abstraction?
+
+I changed it earlier indeed to support both I2C and ACPM transports, simila=
+r
+to drivers/mfd/rk*. The I2C driver doesn't have a struct platform_device,
+but it has struct i2c_client::dev, hence I'm passing struct device to the
+common code, like in the rk8xx example.
+
+[...]
+
+>=20
+> > diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
+> > index 4d49bb42bd0d109263f485c8b58e88cdd8d598d9..bf86281401ac6ff05c90c2d=
+71c84744709ed79cb 100644
+> > --- a/drivers/mfd/sec-irq.c
+> > +++ b/drivers/mfd/sec-irq.c
+> > @@ -11,6 +11,7 @@
+> > =C2=A0#include <linux/irq.h>
+> > =C2=A0#include <linux/mfd/samsung/core.h>
+> > =C2=A0#include <linux/mfd/samsung/irq.h>
+> > +#include <linux/mfd/samsung/s2mpg10.h>
+> > =C2=A0#include <linux/mfd/samsung/s2mps11.h>
+> > =C2=A0#include <linux/mfd/samsung/s2mps14.h>
+> > =C2=A0#include <linux/mfd/samsung/s2mpu02.h>
+> > @@ -20,6 +21,60 @@
+> > =C2=A0#include <linux/regmap.h>
+> > =C2=A0#include "sec-core.h"
+> > =C2=A0
+> > +static const struct regmap_irq s2mpg10_irqs[] =3D {
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRONF, 0, S2MPG10_IRQ_PWRONF_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRONR, 0, S2MPG10_IRQ_PWRONR_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_JIGONBF, 0, S2MPG10_IRQ_JIGONBF_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_JIGONBR, 0, S2MPG10_IRQ_JIGONBR_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_ACOKBF, 0, S2MPG10_IRQ_ACOKBF_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_ACOKBR, 0, S2MPG10_IRQ_ACOKBR_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWRON1S, 0, S2MPG10_IRQ_PWRON1S_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_MRB, 0, S2MPG10_IRQ_MRB_MASK),
+> > +
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTC60S, 1, S2MPG10_IRQ_RTC60S_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTCA1, 1, S2MPG10_IRQ_RTCA1_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTCA0, 1, S2MPG10_IRQ_RTCA0_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_RTC1S, 1, S2MPG10_IRQ_RTC1S_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR_COLDRST, 1, S2MPG10_IRQ_WTSR_COLDRST_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR, 1, S2MPG10_IRQ_WTSR_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_WRST, 1, S2MPG10_IRQ_WRST_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_SMPL, 1, S2MPG10_IRQ_SMPL_MASK),
+> > +
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_120C, 2, S2MPG10_IRQ_INT120C_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_140C, 2, S2MPG10_IRQ_INT140C_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_TSD, 2, S2MPG10_IRQ_TSD_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PIF_TIMEOUT1, 2, S2MPG10_IRQ_PIF_TIMEOUT1_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PIF_TIMEOUT2, 2, S2MPG10_IRQ_PIF_TIMEOUT2_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_PARITY_ERR, 2, S2MPG10_IRQ_SPD_PARITY_=
+ERR_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_ABNORMAL_STOP, 2, S2MPG10_IRQ_SPD_ABNO=
+RMAL_STOP_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PMETER_OVERF, 2, S2MPG10_IRQ_PMETER_OVERF_=
+MASK),
+> > +
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B1M, 3, S2MPG10_IRQ_OCP_B1M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B2M, 3, S2MPG10_IRQ_OCP_B2M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B3M, 3, S2MPG10_IRQ_OCP_B3M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B4M, 3, S2MPG10_IRQ_OCP_B4M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B5M, 3, S2MPG10_IRQ_OCP_B5M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B6M, 3, S2MPG10_IRQ_OCP_B6M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B7M, 3, S2MPG10_IRQ_OCP_B7M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B8M, 3, S2MPG10_IRQ_OCP_B8M_MASK),
+> > +
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B9M, 4, S2MPG10_IRQ_OCP_B9M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_OCP_B10M, 4, S2MPG10_IRQ_OCP_B10M_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_WLWP_ACC, 4, S2MPG10_IRQ_WLWP_ACC_MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_SMPL_TIMEOUT, 4, S2MPG10_IRQ_SMPL_TIMEOUT_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_WTSR_TIMEOUT, 4, S2MPG10_IRQ_WTSR_TIMEOUT_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_SPD_SRP_PKT_RST, 4, S2MPG10_IRQ_SPD_SRP_PK=
+T_RST_MASK),
+> > +
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH0, 5, S2MPG10_IRQ_PWR_WARN_CH0_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH1, 5, S2MPG10_IRQ_PWR_WARN_CH1_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH2, 5, S2MPG10_IRQ_PWR_WARN_CH2_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH3, 5, S2MPG10_IRQ_PWR_WARN_CH3_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH4, 5, S2MPG10_IRQ_PWR_WARN_CH4_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH5, 5, S2MPG10_IRQ_PWR_WARN_CH5_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH6, 5, S2MPG10_IRQ_PWR_WARN_CH6_=
+MASK),
+> > +	REGMAP_IRQ_REG(S2MPG10_IRQ_PWR_WARN_CH7, 5, S2MPG10_IRQ_PWR_WARN_CH7_=
+MASK),
+> > +};
+> > +
+> > =C2=A0static const struct regmap_irq s2mps11_irqs[] =3D {
+> > =C2=A0	[S2MPS11_IRQ_PWRONF] =3D {
+> > =C2=A0		.reg_offset =3D 0,
+> > @@ -320,6 +375,16 @@ static const struct regmap_irq s5m8767_irqs[] =3D =
+{
+> > =C2=A0	},
+> > =C2=A0};
+> > =C2=A0
+> > +static const struct regmap_irq_chip s2mpg10_irq_chip =3D {
+> > +	.name =3D "s2mpg10",
+> > +	.irqs =3D s2mpg10_irqs,
+> > +	.num_irqs =3D ARRAY_SIZE(s2mpg10_irqs),
+> > +	.num_regs =3D 6,
+> > +	.status_base =3D S2MPG10_PMIC_INT1,
+> > +	.mask_base =3D S2MPG10_PMIC_INT1M,
+> > +	/* all interrupt sources are read-to-clear */
+>=20
+> TOUPPER(a);
+>=20
+> Comments usually go on-top of the thing they're commenting on.
+
+This comment is where .ack_base would usually be specified, but I'll move i=
+t.
+
+[...]
+
+> > diff --git a/include/linux/mfd/samsung/s2mpg10.h b/include/linux/mfd/sa=
+msung/s2mpg10.h
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..778ff16ef6668ded514e8dc=
+7242f369cb9c2d0e6
+> > --- /dev/null
+> > +++ b/include/linux/mfd/samsung/s2mpg10.h
+> > @@ -0,0 +1,454 @@
+> > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > +/*
+> > + * Copyright 2015 Samsung Electronics
+> > + * Copyright 2020 Google Inc
+> > + * Copyright 2025 Linaro Ltd.
+> > + */
+> > +
+> > +#ifndef __LINUX_MFD_S2MPG10_H
+> > +#define __LINUX_MFD_S2MPG10_H
+> > +
+> > +/* Common registers (type 0x000) */
+> > +enum s2mpg10_common_reg {
+> > +	S2MPG10_COMMON_CHIPID,
+> > +	S2MPG10_COMMON_INT,
+> > +	S2MPG10_COMMON_INT_MASK,
+> > +	S2MPG10_COMMON_SPD_CTRL1 =3D 0x0a,
+> > +	S2MPG10_COMMON_SPD_CTRL2,
+> > +	S2MPG10_COMMON_SPD_CTRL3,
+> > +	S2MPG10_COMMON_MON1SEL =3D 0x1a,
+> > +	S2MPG10_COMMON_MON2SEL,
+> > +	S2MPG10_COMMON_MONR,
+> > +	S2MPG10_COMMON_DEBUG_CTRL1,
+> > +	S2MPG10_COMMON_DEBUG_CTRL2,
+> > +	S2MPG10_COMMON_DEBUG_CTRL3,
+> > +	S2MPG10_COMMON_DEBUG_CTRL4,
+> > +	S2MPG10_COMMON_DEBUG_CTRL5,
+> > +	S2MPG10_COMMON_DEBUG_CTRL6,
+> > +	S2MPG10_COMMON_DEBUG_CTRL7,
+> > +	S2MPG10_COMMON_DEBUG_CTRL8,
+> > +	S2MPG10_COMMON_TEST_MODE1,
+> > +	S2MPG10_COMMON_TEST_MODE2,
+> > +	S2MPG10_COMMON_SPD_DEBUG1,
+> > +	S2MPG10_COMMON_SPD_DEBUG2,
+> > +	S2MPG10_COMMON_SPD_DEBUG3,
+> > +	S2MPG10_COMMON_SPD_DEBUG4,
+> > +};
+> > +
+> > +/* for S2MPG10_COMMON_INT and S2MPG10_COMMON_INT_MASK */
+>=20
+> TOUPPER(f), etc.
+
+Still getting used to this, sorry I missed them
+
+Thanks Lee!
+
+Andre'
+
 
