@@ -1,177 +1,272 @@
-Return-Path: <devicetree+bounces-163827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F23B1A7E3C3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:16:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3E9A7E3A6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F629423C44
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:01:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1131C189FF45
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0BF12010F2;
-	Mon,  7 Apr 2025 14:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78BE31F76B5;
+	Mon,  7 Apr 2025 14:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jJzg6auM"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="bJ7edHze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DFC200114
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 14:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F86A1DFE12;
+	Mon,  7 Apr 2025 14:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744037792; cv=none; b=lANoTc4sjoTr0m+28E/TrH4c+77rxAep+9s/M1lMF/V/YlXgnmPRvOMAJKD82Bc8s3yhHsfBsxKUT0F0HAQNK4MfX/rYZIcQJ8d7jN7yk7R2+ssoOc/MFDVNB0/vpWsIQp4xzgQg4ko8InL9e61Nu7r3uhIe9mmg/+LvgCeTGJQ=
+	t=1744037953; cv=none; b=i4bCT3pHT+dEHxyI3T1dhhA6QzyPbd4Oy9aWipBrlnkzNCo4PNOQESOQC0k85rPZjY1GWIOTg+rEdj/TtlFs+o/JCSmhatm5x8fSbm+/TQ70uiqPhqunGnQyREJca8Sf7bssgO66CcA+4vf9q1hEYxl9Ny11Bx//GuWEAIU5JrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744037792; c=relaxed/simple;
-	bh=6UI8aTSGakazrUFNzW5IKqoV8tYrfyR5sEwM2oYBLHk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E77YGveaCEPrBpk/CXLBeW1s6IfbmBbGqyBXbVezabN6UCEXruetxjkAt6PUBKtqnKNBpObLe0/TM5J3PjRcbCbmNws1HfFJHVHllRHOS8lq9Uto48O7LM20uVq6w//i1lbvjgcpT9rzBqT6Nyn2DzA3S0xLN9qi2lmtuTM011s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jJzg6auM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5378dloE010417
-	for <devicetree@vger.kernel.org>; Mon, 7 Apr 2025 14:56:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qRGNZAniSs5NZThUUphmKckVn/8FyduJRn3s7xrxAng=; b=jJzg6auMLy6ZGL3C
-	OO48Xsr57ST5aCLvbCvYpkQEXLZeAKMKh73T1D8ee0cQMT+DckqzWoAWD0pkcili
-	zNF+cva8sR1eQpePT4r+jNYqeKlVxbLUcLjCuL0yng4/wtO0kjYrI7rzxgTlACuK
-	TM7AZUPp8vQnd/LhsFYAy0NAX6YcCv2wC+xA7AiqkvBlTh+0PN0wMMtYzBKFvaEg
-	HpAKumfYcng89nZpn4Z2c/8on9Tj3oX6l+zymYKxVWQXi2b7T1g5vtCvciqNyMz6
-	Oh1m6Q/Mp/Sw64zBg7RetyZJiwZHBVCIx4Tc91zzdWwi9c+7TBnZCnLZKaenCsbx
-	Smvh2Q==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd2mm4r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 14:56:30 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e913e1cf4aso125728646d6.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 07:56:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744037789; x=1744642589;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qRGNZAniSs5NZThUUphmKckVn/8FyduJRn3s7xrxAng=;
-        b=V3zLcZq7bAC1v+8KpOAF3ucfmRa05KNdVf/yKin5Di6S1w9or3sysaBZyUcGY3RGeO
-         3SG/SxTwwcNF0XU0LOvsEDoIMEN3Xo0EOAo+Xl7LmTwG/1T9Is71unXfIlqtOYduMxJa
-         BsiiteaM5h0TiL//YRbAV4anTpsikGeEStGcHQS+4YbMnTJ8p7QBHE9FZ1dZuBZVdzWi
-         +7JibD2jczaCx1K3drGC/ls2zzhVkBGCtN5QqsvOd3i86URjN/fWeTqvIC5AVA3Fhl4a
-         mQYj0R05CW+kdTXoGUIyIBlrhOoIyaaZsLTLE4qf45UOBXBiXwp0y9zsLuBBorKl1L3E
-         9Fmg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0sdFtBloXNm1w1o80i+bmtWDPQS5jvZ94G9mc4iKDTVgrwiK6zan6sX2ydQE2E0izpy6NhXKMnunX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxN+/Tr1+tCcXG6oAN0rZJ5ZdJ78O+8Gj8frEb41b61Dq/fVF4
-	qFmYZQ5ie9OmeYiIUsn/lRgAnxZ8wRLKrd7U5rT6UDh/BHSOmRlvlbDAdEvbIlSXF19m9lYwniv
-	u2lFHeHDZtx4V9uiNbjJWdaHnTjQBaJ7M/WgpmG8P2rZKQtWVQHJxVJ6SOiZgQ73lNZlKINmV1z
-	44FVdrMSH9Se0q8zAfuiPdFZk0Hau8+66SobI=
-X-Gm-Gg: ASbGncvb6f/6ICPIszz65OjbKgVf4XOC5Spzj51PGjfDC348XTwCIf5Sw/5GDfQWyFi
-	BZEJMoNf/y7KWZaY+Pk3VeByBINxBWA8dWs4VV1yMax9OdWLl8Gy7/A/ojpzc7drvKhg6tYNxoA
-	==
-X-Received: by 2002:ad4:4eed:0:b0:6d4:238e:35b0 with SMTP id 6a1803df08f44-6f00df142femr201961596d6.17.1744037788738;
-        Mon, 07 Apr 2025 07:56:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG4SQlydFr98Bm6VBMKgIf9NDsCokLLolwi3oBO7+k07Ojtak4FpJLuBR1jtlpxKmPcYNpI7RYCVG3JueZAlDE=
-X-Received: by 2002:ad4:4eed:0:b0:6d4:238e:35b0 with SMTP id
- 6a1803df08f44-6f00df142femr201961116d6.17.1744037788258; Mon, 07 Apr 2025
- 07:56:28 -0700 (PDT)
+	s=arc-20240116; t=1744037953; c=relaxed/simple;
+	bh=AhPmjpq0qyhSX5vVWXOFVA58oUUgjHy5WEesBT7EWSk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZFLCxzR3JtK3k2652kbbV5HnXVfgp2V5NfZnyv92lFAk/5S0XibkZIjoz8SBIBPjHR+9Yw1oRj45XIC7ZBFwFqDmLP33wVwhcyBBYCHhULUAFNefWI3kVbtmI7YRMDPC0btJh2fOmK40q187GvtQSDGN+TOsk3+VG+w/c0x57Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=bJ7edHze; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=fiiz6N2vHALzfLWvzDVyDHebS2Xevm6nKgKnzMNpz7g=; b=bJ7edHzelD2Hsp+1NHmyJdTD1i
+	JN99fdUcBrz1nYgxuUoK4IMU/uXjriMcP5nyms1Bh62lV7NLEZiMKZrkHshX0PjGAaaqQjgoiyjIA
+	yCwpe5qmQLz/5ret7QENZN/T2Nii6mURvouuHYghHtRFQManmD01sMvxxei9KmaeMJkkHgjQrf2lk
+	L98HLpOIlHLdXP57eYbtQTBS/sarJZzjTvvSysBeEFLS0iAAqdPZW/XlObKIq+IIpLCLg39PXJKWT
+	CxbZkLmNe2e3jotSYKBS58gkXlSA+z3X3pUWz65h1VnGKMRITpqHACzf3/bH9vbDuM+VZLHQ/6Nga
+	AnaguazQ==;
+Received: from [172.31.31.145] (helo=u09cd745991455d.ant.amazon.com)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u1nwF-0000000801w-11UA;
+	Mon, 07 Apr 2025 14:59:03 +0000
+Message-ID: <dec21a7dd4ba0f095009f9bf4657c5e8c0a4d9da.camel@infradead.org>
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+From: David Woodhouse <dwmw2@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>, virtio-comment@lists.linux.dev, 
+ Claire Chang <tientzu@chromium.org>, linux-devicetree
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>, 
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Date: Mon, 07 Apr 2025 15:59:03 +0100
+In-Reply-To: <Z_Pb3PPIJNp4ZTjY@infradead.org>
+References: <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+	 <20250404043016-mutt-send-email-mst@kernel.org>
+	 <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+	 <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+	 <20250404062409-mutt-send-email-mst@kernel.org>
+	 <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
+	 <Z_N_DNXq9VbPvTfA@infradead.org>
+	 <f54f46399aa2d0066231d95ef9e98526cf217115.camel@infradead.org>
+	 <Z_OVbRNHU1LXU368@infradead.org>
+	 <c08d3fd2bdae1b0fa629ecd9261a5ca9549ce9aa.camel@infradead.org>
+	 <Z_Pb3PPIJNp4ZTjY@infradead.org>
+Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
+	boundary="=-X4Wvl5Dn79Iwla08Tm8+"
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403102256.101217-1-loic.poulain@oss.qualcomm.com>
- <0YH8BNtmMcywwRXI3xHiLyB_zFED-XbjzCyyI1Vc4184BPadVJ-GWj23lpEwaXEHqDPiMiraMsWlOd1qA_hiog==@protonmail.internalid>
- <20250403102256.101217-2-loic.poulain@oss.qualcomm.com> <1b649ead-f6d6-4fb0-b5ac-02cf2dba92ca@linaro.org>
-In-Reply-To: <1b649ead-f6d6-4fb0-b5ac-02cf2dba92ca@linaro.org>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Mon, 7 Apr 2025 16:56:17 +0200
-X-Gm-Features: ATxdqUFoj_14tfAA0QF2440EoTKH1_UsUUPGa4p8KbJPghjTxaKhuKJn2FcgfCg
-Message-ID: <CAFEp6-2kamY6m_vzE0gMi-QKCRYf42RjMd7f2ud6bte=aL9mRA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm2290: Add CCI node
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+
+
+--=-X4Wvl5Dn79Iwla08Tm8+
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: xEFS0dNtYFgqK0vPawjSX1nZWiH4KAe7
-X-Proofpoint-GUID: xEFS0dNtYFgqK0vPawjSX1nZWiH4KAe7
-X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f3e79e cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=TG6dkdRgwK_m5Qx8Nx4A:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_04,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=943 clxscore=1015 phishscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504070104
 
-Hi Bryan,
+On Mon, 2025-04-07 at 07:06 -0700, Christoph Hellwig wrote:
+> On Mon, Apr 07, 2025 at 11:09:54AM +0100, David Woodhouse wrote:
+> > > should be usable for all devices bar actual addressing limits that ar=
+e
+> > > handled in the dma layer already.=C2=A0 The only things you need is:
+> > >=20
+> > > =C2=A0a) a way to declare one or more pools
+> > > =C2=A0b) a way to destinguish between devices behind a two stage IOMM=
+U vs not
+> > > =C2=A0=C2=A0=C2=A0 to figure out if they need to use a pool
+> >=20
+> > I'm not averse to that, but it's different to the `restricted-dma-pool`
+> > model that's defined today which has explicit matching. So I'd like to
+> > reconcile them =E2=80=94 and preferably literally use PRP0001 to expose
+> > `restricted-dma-pool` even under ACPI.
+>=20
+> A per-device flag is probably fine and easier for some things like
+> pool sizing.=C2=A0 It also would be worse for other things like eventuall=
+y
+> implementing percpu pools.
+
+What exactly are you thinking of when you say a 'per-device' flag?
+
+> > Maybe it's as simple as a flag/property on the `restricted-dma-pool`
+> > node which declares that it's a 'catch-all', and that *all* devices
+> > which aren't explicitly bound to an IOMMU or other DMA operations (e.g.
+> > explicitly bound to a different restricted-dma-pool) should use it?
+>=20
+> Yeah.=C2=A0 Similar what we do with the generic shared-dma-pool.
+
+Yeah, I was trying to work that one out, and it looks like I'm almost
+describing the 'linux,dma-default' property. Except that seems to be
+only for coherent allocations on the `shared-dma-pool`.
+
+Maybe it makes sense for 'linux,dma-default' on a restricted-dma-pool
+to mean that it should be used as a swiotlb for *all* DMA?
+
+I don't much like the "linux," prefix but can live with that if that's
+the precedent.
+
+> > Either way, we'd still ideally want a virtio feature bit to say "don't
+> > touch me if you don't understand my DMA restrictions", to prevent older
+> > drivers (on older operating systems) from failing.
+>=20
+> As said before they really need system level awareness of a coco host.
+> That's not something to be hacked into virtio drivers.
+
+Nah. As long as they use the IOMMU they're offered, guests don't need
+any awareness at all that they're running in an environment where the
+VMM can't access all their memory. There is precisely *zero* enablement
+required in the guest for that.
+
+The only problem is virtual devices which are provided by that VMM.
+
+If the guests *do* have system level awareness of the particular
+variant of CoCo host they're running on, then sure, they can explicitly
+manage sharing/encryption/whatever with a system-specific set of DMA
+operations and the problem goes away. But that's a long way off.
+
+How does this sound as a plan...
+
+ 1. Define 'linux,dma-default' on a 'restricted-dma-pool' object to
+    mean that it should be used as a fallback SWIOTLB for *all* devices
+    (basically, as if each device explicitly referenced it as they do
+    today).
+
+ 2. Provide a way to represent `restricted-dma-pool` in ACPI (which
+    ought to work naturally as PRP0001 and it's mostly a matter of
+    untangling it from OF-specific code on the guest side).
+
+ 3. Add a VIRTIO_F_RESTRICTED_DMA feature to virtio, so that devices
+    which *know* they have such a limitation can gracefully decline
+    to operate with a driver which doesn't support it.
+
+ 4. Add a way for a virtio-pci device to explicitly reference a given
+    `restricted-dma-pool` like virtio-mmio devices can today. And it
+    probably makes sense for a virtio-pci device which requires the
+    VIRTIO_F_RESTRICTED_DMA feature to explicitly reference such a
+    pool even if that pool has the `linux,dma-default' property?
+
+With #1 and #2 we provide this facility even for passthrough PCI
+devices. And with #3 and #4 we make it work *better* for virtio, which
+is the more important use case (since those two-stage IOMMUs *do* exist
+in the cases of CoCo-supporting hardware; it's just that they don't
+enable *virtual* devices).
 
 
-On Fri, Apr 4, 2025 at 2:10=E2=80=AFPM Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> On 03/04/2025 11:22, Loic Poulain wrote:
-> > Add Camera Control Interface (CCI), supporting two I2C masters.
-> >
-> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> > ---
-> >   v2: Reorder commits; Update dts properties order and style
-> >   v3: No change for this patch
-> >
-> >   arch/arm64/boot/dts/qcom/qcm2290.dtsi | 50 ++++++++++++++++++++++++++=
-+
-> >   1 file changed, 50 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dt=
-s/qcom/qcm2290.dtsi
-> > index 7fb5de92bc4c..43fcb4f40a8c 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-> > @@ -557,6 +557,20 @@ qup_uart4_default: qup-uart4-default-state {
-> >                               bias-disable;
-> >                       };
-> >
-> > +                     cci0_default: cci0-default-state {
-> > +                             pins =3D "gpio22", "gpio23";
-> > +                             function =3D "cci_i2c";
-> > +                             drive-strength =3D <2>;
-> > +                             bias-disable;
-> > +                     };
-> > +
-> > +                     cci1_default: cci1-default-state {
-> > +                             pins =3D "gpio29", "gpio30";
-> > +                             function =3D "cci_i2c";
-> > +                             drive-strength =3D <2>;
-> > +                             bias-disable;
-> > +                     };
-> > +
-> >                       sdc1_state_on: sdc1-on-state {
-> >                               clk-pins {
-> >                                       pins =3D "sdc1_clk";
-> > @@ -1603,6 +1617,42 @@ adreno_smmu: iommu@59a0000 {
-> >                       #iommu-cells =3D <2>;
-> >               };
-> >
-> > +             cci: cci@5c1b000 {
-> > +                     compatible =3D "qcom,qcm2290-cci", "qcom,msm8996-=
-cci";
-> > +                     reg =3D <0x0 0x5c1b000 0x0 0x1000>;
-> > +
-> > +                     interrupts =3D <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>=
-;
-> > +
-> > +                     clocks =3D <&gcc GCC_CAMSS_TOP_AHB_CLK>, <&gcc GC=
-C_CAMSS_CCI_0_CLK>;
-> > +                     clock-names =3D "camss_top_ahb", "cci";
->
-> do you not need an axi clock GCC_CAMSS_AXI_CLK ?
+--=-X4Wvl5Dn79Iwla08Tm8+
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
 
-AFAIU AXI is not involved for CCI.
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
+ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
+AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
+BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
+MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
+a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
+jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
+GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
+aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
+nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
+8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
+HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
+IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
+KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
+BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
+QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
+QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
+ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
+/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
+uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
+xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
+W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
+c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
+VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
+NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
+DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
+sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
+w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
+i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
+kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
+0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
+ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
+blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
+hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
+VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
+HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
+ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
+AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
+cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
+cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
+AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
+aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
+hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
+iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
+8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
+JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
+xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
+EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
+B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
+MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
+KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
+Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
+nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
+WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
+W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
+nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
+g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
+9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
+9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
+sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
+a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
+ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
+AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
+dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
+MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
+YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
+4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
+6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
+QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
+nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
+MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
+VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
+ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDQwNzE0NTkw
+M1owLwYJKoZIhvcNAQkEMSIEIP6sJUbRW0GlvzpC/r6n5S7LEcPHMgaCvQmD6qegYObbMGQGCSsG
+AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
+cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
+VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
+cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIAeOgGgm5JHwbM
+nmZwyFimIefatdf+PWA7USobHXrEOkohFkDzhGqp4zeBtlYoncqPyfULjG2ByZMq0ynNTaXc1eTZ
+ECGIz6aowG4rXmShUUBgIm8kIPrXUhwx/5DTatJ2p7VmnEYMV3gK419yCQemZv6gRzRjykXgEq36
+jz24SNGRXk/VNnosmpLGiiqAadXLHeXFSTw4ApW0JLKEdXi0MUqNV/4LuqF0xP0XViQ9uNaRBche
+8c9wzBEM1FM8urMCo3Gw+BpkhFP2eVBClPiBUH8qdOY/7GBwVcqgqtgjBxcDh7rXA+Qxt5xqZM0t
+URHArlZHAfO6YDBP00accu689qliy9jMeytCe+QeISZXVGvDF0n9lxg6FPNfKvspduVorfuZqovo
+2NK1T9Kfd84wQHfnKDEiQzaIb+GaZf0PH5v8Kz9zxMthp9yBhAZW0okSgFFLdq/m1371yqXpooiY
+1DXpgNoJY0g/yssjFz1K0HqjW5LuQkwxeA0odWtU3zccmCTw23Q1LOwyC+rGNEVqEYNju74/p2xh
+FA32fQOItxUNMpBNik0id/e2lc+tqPIws4i458eZJ11E87N3IuCMMgGEVMBtXhmMoFRiUDGfo3Of
+AG6car0INyNwhgrj9Q1IRNdYbfCaI5yLuxVaqBurGV1ZTVQaRm3kvt7E2oETDWQAAAAAAAA=
+
+
+--=-X4Wvl5Dn79Iwla08Tm8+--
 
