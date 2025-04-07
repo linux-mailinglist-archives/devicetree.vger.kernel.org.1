@@ -1,149 +1,195 @@
-Return-Path: <devicetree+bounces-163599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CD79A7D660
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:43:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F43EA7D65B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D01C2189776A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:38:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 286807A7752
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A0822836C;
-	Mon,  7 Apr 2025 07:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7789C225771;
+	Mon,  7 Apr 2025 07:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cu7WTj0T"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Uh1FIZEH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A43227B95
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 07:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42343188A0E
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 07:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744011481; cv=none; b=j9qwQxAx+1XUND8wW5xjITUNUPXC+i5+ZqlVEGLiRQTWGhOTUDe/tiQl88h7/ioZ1ps1mV2CHCQEZ+vz4quTf19B6vC0afwxp6G6S6BsRaakulBwOhRtjWE8g6Wmym8n+MkDX09GTK4XBfZdgt0MNxJyybLDoylmh6cpjvCOwXo=
+	t=1744011770; cv=none; b=WCpuhePytIspmvQIR56EDXF+wwX2602Fq3u9ngnC5hCqR1YyUzFRpIjjatyXOv+5FCDv0YNot/njysZEw+t7+g+dxKdRYMS2J/wfoyvhCM0D4bSt5V14HQl6T5eCmnub2Dj10N0Ck9SsTcybW6T0l4sE/IZa6PN72kycLrDjA7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744011481; c=relaxed/simple;
-	bh=wbpn05YOBnvAIAEQiPQ/6y1/bXax+ql2ksAKoSkC61U=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AlNaHYo4NzdORxSpFbWuO30BRzM7WxJ6Arj6AYBgshg5Eqc38rlpPIrUhoQWA5Tl2nkBeWKmLMkeVwIjCK7HMQBlJoLEB+vQlXiMRzShUWPUFS8D09WnkaDGEjYxH6jjMbZJT3WovF0E6TLlwVtkivzPFBiRr2ciWG6fGtu4ZhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cu7WTj0T; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4394a823036so36433605e9.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 00:37:58 -0700 (PDT)
+	s=arc-20240116; t=1744011770; c=relaxed/simple;
+	bh=TT2CwatyE3PScxA6aGzLKHWl9XyGLFx6ZMSmhaOgntY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FwVA7ywPiseghKs6IlymTTIKuj6AQiS921AcXZlFQgYbGDyWTgLMtc5RxY+HxM1fT+fZgf9YrPaUoQZo715JeGQAh2f7KZ+iFfZ2B8EX0c1zTL8yHgfki2LZrr1f4Z7+PJslAnllB2lSoa/NTdWoIzAj13HyQP5NmMuEfBriZTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Uh1FIZEH; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf257158fso27008075e9.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 00:42:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744011477; x=1744616277; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T/iUB0JBxFkjp2l/okcxobSe1sYUcwQcPDba5DDM9oY=;
-        b=cu7WTj0TyOdy/bX5huGIqakvw0r0K0p8nILUQIvdPL0NMfGUh9pr7nXyBwnybLQNIW
-         IHlHvcpJmsj4QIh3PS9ywIjVv/yMMOk3d8mSurbEhcNYUKKlUz4xwtU7AhpifzdZlnoL
-         SxhOSCMVOEqvxNlMp6RD8N/vK9LxLVL455DWLjyvrf3ZjwjpBGr3uQwbSMXTZeFLnL7z
-         S/B6UcoEBjkEwB+pfEXJcqy3M8/OEG3Gd1ppLzGovVWyIQgfzfDaB29A4C5RwtCARb3m
-         mUdjMuS6cZWWEG7evG9jVf0I5MUlJ04Ki0S+uabYlQEYapWsi7sJNkO2+fN6JYkai4lj
-         j+QA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744011765; x=1744616565; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+SH50cqVXDjMtrk7e8ugGB2VmAlt5N0M4eNdMhk4w28=;
+        b=Uh1FIZEHmLO0ydh4g3L1wDcEVKdGWwgWXtbRPV/o+Oj0BJqWxxkySgzxioEXA952tN
+         piNPrlYHsPuQrSqhi2xn75UocRDQWCrvy8Ne4q6+V+FIKf8+9zMItUcK5M/ObxggDXmv
+         AOAK3h/yzTGb76Ma/1SmYr17oDYo5CYTDZm8eFip5o7WN1bRgcXERAhKm1In8/Z1T22H
+         HR8bTogDpOw19JMVITLhPd4FOL6fZaPMYnYIyzKSAuqBbXFT2JTus6h20i8Lc7w6Z6Xo
+         VS/VkYtqO01JKldyu82WcqHTaDn5kyOQ9vqYYpfWofh/Xcf2ow609LpulSCLEy9+VYPi
+         19yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744011477; x=1744616277;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T/iUB0JBxFkjp2l/okcxobSe1sYUcwQcPDba5DDM9oY=;
-        b=UBfl/HKbzWugSClcGVwfGybNHhGgXk84Qep/Xsom6cP27eP/KUxA+QCZCbAKfd12Al
-         LgHgESEdMVxGVjC2NH1Tflaxg/fAzmKpNoLjyCWYanathf29xv7iZSpkWMbJVnyX9GDR
-         MywL7uh+DifJTXwoU8gefShuLV2ZIX/3BlG6Oms+9J4zgrq0eqpc1E8Oo1OwqjKI5KiQ
-         4rOc1gFyQVs+Xn9eLXNUpmMiBlfuBead8Zntz2oFlynPWs6bm8WKIVxb0vBTUXMQtgCu
-         TZ32pgFeE/DP8Be4t1wXrX1sYPHpxtF4k5kNtVLZMREN2S0NL+CjRpPy1lurzIb9UYPj
-         W+dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXseVG+XGiEYYL9rd4nRNOKZFybvFz4EMEnE7ZrOxSjG8wJuanNWCh9zoE15bOjXSvzqmw6eIFQwOt5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKW6WapqiYana4DYq6QnU+WSeFicXTWmSJfz9QMr2jqS0gCB7t
-	VbunypI7nIMxKjZIQDCYyYtZbblb3Cy6WglotXKvN6BUSvq/GZBOgUjBDu414vI=
-X-Gm-Gg: ASbGnctPvJrqZJFFY/zfqNxflMazGVjbn1V+5PyJtGpC2bEQpR3BG2fTD8HyXenJ0j7
-	kaC8ASPY+ZcwLeWSLhHB2MQsuuNU8D4rGqCc4Y4yeSpjiNq1mo0sUwRlwnF6Y7bUraO/zM0/sg1
-	70l6FktWC2S0ZlKoc0plFvC+hzichVXqAGh7pjepdDWzL9COJC8EJhvt5/M1i8qZF3GBE2IMIlw
-	wBsdrOFA7ylyudIjJuIo1GpAd7itVA+brpD158K05akMmeByJJ7yF7kEmm66409UH2VzxD+OJe9
-	M878n9TwFxgJpTzF41vWNYo7QnyvuS8ilEMo8COiZyO3PmGM37Ya/eXg9wtMMSvf16EzzrhbhiB
-	93NTF2gef
-X-Google-Smtp-Source: AGHT+IEDc/bRsFcizrk4e4TwMWtU8c1AL1TwXJ0IcJRIR1rjn42XqoKfWILEntbQHzwjOQZAQgc+Vg==
-X-Received: by 2002:a05:600c:1e27:b0:43c:fc04:6d35 with SMTP id 5b1f17b1804b1-43ee0615d04mr74241945e9.4.1744011477415;
-        Mon, 07 Apr 2025 00:37:57 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43ec1692ba4sm123138995e9.16.2025.04.07.00.37.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Apr 2025 00:37:56 -0700 (PDT)
-Message-ID: <c14389a1-1904-450f-98c5-a55351518ed7@linaro.org>
-Date: Mon, 7 Apr 2025 09:37:56 +0200
+        d=1e100.net; s=20230601; t=1744011765; x=1744616565;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+SH50cqVXDjMtrk7e8ugGB2VmAlt5N0M4eNdMhk4w28=;
+        b=BmnU60afkLZRecIXu+l8IAudiIDe60XVa7GC/RdnwAjwY20ZS35wfaZZzeIgE4gTR7
+         xPXuMg32t7JSZRoMUx5GEblaGkoVJyj5YYGtJYhgwHPX92pyMkbgtM6BHWpaqt+JjMlS
+         DN6OYuBJgieT+vOu8VSvRJwvFAZZLewkENbBWRwXPhZZ2b22zDM1ilYBPjC3On2zHvpg
+         2THU1aYvz0BMYxH07rxEnzbO2SHVcOre83XSH7tZJ6speH5DGyvqfVzzuIwwKCjbPH1b
+         SFpMSxxv3tezcEh/TyTXnRvNX9+crTHUsMV5iUGToL7cdiy1yhBF+QI2aq7OF9+812JE
+         /tXg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2THNl7Xer6I1hW/ILLwUSwXdckFpamIEIwvAe7HNTGnR0YkTuyzMgT2wTr45YDTo3UZra0UnyJi06@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7LcpWGlGh4kP+5Z5wxlfB8q+E1pL4ASvJuwnYWkjl/NLVXUtF
+	LG0HIKK3A0Ex0knS9FKqNaiERZWlJVhy10FpEn9biiCry6fLD7yf6fxfaD68YSE=
+X-Gm-Gg: ASbGncvwCPytz0iusswcEJ84onCZ2x9zR+rgicVvwuzHSbWi2Y5hKkdJZy5zM2ensm/
+	4s5uXh1SWHFJr7xjUhipdsS2N79fu6xRTcMVF5XbcLEn5CvbhBSxp++6xvHnsCHwGgx12kpYoMi
+	Wau3yAKIU2sy8FnUnUBHO7j+ZlDTMPeBn7NJamobEACB28MT1HSHRi6USiv4LG6aQKJpxGYgWKw
+	QUmU4Vphmd40U3htEYPi68vCOary+0LIjxNBETfVSkkPGMDeERkT4F7cnHWXICA5BBGYJ5Nfbiq
+	LhNcLAB5yUKnMuW12z39hX/wxKw6bXzzv5+Lo0uB9l4ipvCnvO9LAehx+g3mBay+ozSo5leSOik
+	YrEtrwu8lmPMTWZxM
+X-Google-Smtp-Source: AGHT+IGj4oFOpbFlCSYKH70mEMH5XLqpGaZABBghjAnvaw9bAjEggbo9aAX8vuvntuy/p28yBQRuZQ==
+X-Received: by 2002:a05:600c:4f46:b0:43d:db5:7b1a with SMTP id 5b1f17b1804b1-43ecf86a5f9mr108047395e9.12.1744011765391;
+        Mon, 07 Apr 2025 00:42:45 -0700 (PDT)
+Received: from archlinux (host-87-15-70-119.retail.telecomitalia.it. [87.15.70.119])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec1630de9sm124012395e9.1.2025.04.07.00.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 00:42:44 -0700 (PDT)
+Date: Mon, 7 Apr 2025 09:41:32 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/3] iio: adc: ad7606: add SPI offload support
+Message-ID: <vjxnpbxvvh2vdjsamdznhrmrwwfwt5tjhugqik3ktueopajv6l@wmehdnowjvjq>
+References: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
+ <20250403-wip-bl-spi-offload-ad7606-v1-3-1b00cb638b12@baylibre.com>
+ <20250405164041.7d2e586b@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: Add NXP System Timer Module
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, tglx@linutronix.de
-Cc: linux-kernel@vger.kernel.org, thomas.fossati@linaro.org,
- Larisa.Grigore@nxp.com, ghennadi.procopciuc@nxp.com,
- krzysztof.kozlowski@linaro.org, S32@nxp.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-stm32@st-md-mailman.stormreply.com>,
- "moderated list:ARM/STM32 ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
-References: <20250402090714.3548055-1-daniel.lezcano@linaro.org>
- <20250402090714.3548055-2-daniel.lezcano@linaro.org>
- <2503deb2-b993-7fd1-adf3-cafa1e7bd2f4@oss.nxp.com>
- <67daf656-0e08-471d-afce-22ba8f2fa1f2@linaro.org>
-Content-Language: en-US
-In-Reply-To: <67daf656-0e08-471d-afce-22ba8f2fa1f2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250405164041.7d2e586b@jic23-huawei>
 
-On 03/04/2025 17:21, Daniel Lezcano wrote:
-> On 03/04/2025 08:33, Ghennadi Procopciuc wrote:
->> On 4/2/2025 12:07 PM, Daniel Lezcano wrote:
->> [ ... ]
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +
->>> +    timer@4011c000 {
->>> +        compatible = "nxp,s32g2-stm";
->>> +        reg = <0x4011c000 0x3000>;
->>> +        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->>> +        clocks = <&clks 0x3b>;
->>> +    };
->>
->> The S32G reference manual specifies two clocks for the STM module: one
->> for the registers and another for the counter itself. Shouldn't both
->> clocks be represented in the bindings?
+Hi Jonathan,
+
+On 05.04.2025 16:40, Jonathan Cameron wrote:
+> On Thu, 03 Apr 2025 18:19:06 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
 > 
-> AFAICS, there are two clocks as described in the documentation for the 
-> s32g2 page 843, section 23.7.3 Timer modules.
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add SPI offload support for this family.
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> Hi Angelo,
 > 
-> The module and the register clock are fed by the XBAR_DIV3_CLK which is 
-> an system clock always-on.
+> Code looks fine, but there is a TODO I'd like to know more about
+> as it sounds 'ominous'. 
 > 
-> page 1994, 40.5.4 Clocking, the documentation says: "This module has no 
-> clocking considerations."
+> Otherwise this needs a dt review for patch 1 before I queue it up.
 > 
->  From my understanding, we should not describe the XBAR_DIV3_CLK as it 
-> is a system clock.
+> Jonathan
+> > diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
+> > index b2b975fb7fea4d1af6caef59e75ca495501bc140..b086122497eb22042171580878160334f56baa23 100644
+> > --- a/drivers/iio/adc/ad7606_spi.c
+> > +++ b/drivers/iio/adc/ad7606_spi.c
+> 
+> > +static int ad7606_spi_offload_probe(struct device *dev,
+> > +				    struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad7606_state *st = iio_priv(indio_dev);
+> > +	struct spi_device *spi = to_spi_device(dev);
+> > +	struct spi_bus_data *bus_data;
+> > +	struct dma_chan *rx_dma;
+> > +	struct spi_offload_trigger_info trigger_info = {
+> > +		.fwnode = dev_fwnode(dev),
+> > +		.ops = &ad7606_offload_trigger_ops,
+> > +		.priv = st,
+> > +	};
+> > +	int ret;
+> > +
+> > +	bus_data = devm_kzalloc(dev, sizeof(*bus_data), GFP_KERNEL);
+> > +	if (!bus_data)
+> > +		return -ENOMEM;
+> > +	st->bus_data = bus_data;
+> > +
+> > +	bus_data->offload = devm_spi_offload_get(dev, spi,
+> > +						 &ad7606_spi_offload_config);
+> > +	ret = PTR_ERR_OR_ZERO(bus_data->offload);
+> > +	if (ret && ret != -ENODEV)
+> > +		return dev_err_probe(dev, ret, "failed to get SPI offload\n");
+> > +	/* Allow main ad7606_probe function to continue. */
+> > +	if (ret == -ENODEV)
+> > +		return 0;
+> > +
+> > +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "failed to register offload trigger\n");
+> > +
+> > +	bus_data->offload_trigger = devm_spi_offload_trigger_get(dev,
+> > +		bus_data->offload, SPI_OFFLOAD_TRIGGER_DATA_READY);
+> > +	if (IS_ERR(bus_data->offload_trigger))
+> > +		return dev_err_probe(dev, PTR_ERR(bus_data->offload_trigger),
+> > +				     "failed to get offload trigger\n");
+> > +
+> > +	/* TODO: PWM setup should be ok, done for the backend. PWM mutex ? */
+> 
+> I don't understand this todo. Perhaps some more details?
+>
+it was just an initial comment i did, when i started the things
+was not clear.
+Let me know if you can remove it, or i can send a v2.
 
-Can you clarify for the STM if you still want to change the binding ?
+Thanks a lot.
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+angelo
+ 
+> > +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev,
+> > +							     bus_data->offload);
+> > +	if (IS_ERR(rx_dma))
+> > +		return dev_err_probe(dev, PTR_ERR(rx_dma),
+> > +				     "failed to get offload RX DMA\n");
+> > +
+> > +	ret = devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev,
+> > +		rx_dma, IIO_BUFFER_DIRECTION_IN);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, PTR_ERR(rx_dma),
+> > +				     "failed to setup offload RX DMA\n");
+> > +
+> > +	/* Use offload ops. */
+> > +	indio_dev->setup_ops = &ad7606_offload_buffer_setup_ops;
+> > +
+> > +	st->offload_en = true;
+> > +
+> > +	return 0;
+> > +}
+> 
+> 
 
