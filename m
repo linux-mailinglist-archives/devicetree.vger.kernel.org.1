@@ -1,203 +1,102 @@
-Return-Path: <devicetree+bounces-163863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A91A7E54C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:56:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76029A7E564
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:58:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4E513A5136
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7EED179554
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C14F204F70;
-	Mon,  7 Apr 2025 15:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3EC2054E5;
+	Mon,  7 Apr 2025 15:49:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4872046BE;
-	Mon,  7 Apr 2025 15:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4FF204F87;
+	Mon,  7 Apr 2025 15:49:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744040925; cv=none; b=btOVmjAZwQfDFLRoCOiQOlNUM9n786vI2fsR2FFcjosLePk65v/jhN4fuqmXJBP12VlX+yuhm5Tombzjo4Iidl8UAieX6Fhh9Q68JsGucbnQDyt3O6kQLEobRjvNIz+I4jgXMLZG8twCCjur1u5bUAB+BSsDPKiNAT2580IrLuk=
+	t=1744040971; cv=none; b=r2I0tiBtJ+PE7BG8pnzHCh89H1JSgyTiNjf2+f0kKIodM1kLrRhtGUZoNq+d84ZFj1MM5KnwR3ZwzAFlSkQB+IBvGlZGlzlykIeWeV0QUVspeWQOC+wO2dO56GyNsnQSTJ9odyYj7suyEC+wfbbU2kCjZXeu58sUe1WUNWYbJ5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744040925; c=relaxed/simple;
-	bh=GyPgyzHA5L8IKTlTgHkfyXtKVYHVaIGZCOvC3tTIRk8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5I4z437D0teXja8GnemTpdOS7XRuf7DG5fwPRIIXnUVPTzlPkx+aj8Gy5+5f0T/jFfncu6DmYnvojK/gJvHAkQ6GyHUCZofX83Lb8lE8wwbHC/1QXoO1LV9VrcGyqI5YJAAY0vEHvi8R1wizru4L4GcUExYrHLQdb5mEgX/vcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D79204328B;
-	Mon,  7 Apr 2025 15:48:27 +0000 (UTC)
-Message-ID: <cc314da6-8755-4037-846b-01a20b3c68e1@ghiti.fr>
-Date: Mon, 7 Apr 2025 17:48:27 +0200
+	s=arc-20240116; t=1744040971; c=relaxed/simple;
+	bh=z1Vo+dwaof12v9FJV1zldoq4gxlfm8goG7zQDI0UfYg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=QQcSCpEr/dkk9E9jxqMv/UZC4HJPDW8lQ28tdpkhnBQfUT/GGV2f9Dulx4Bu0aoHHBkbRm9JchE08GbEHkNqCRsIMK4KIDJTe/05435WSr3nRaE2pjGLam64RNYG8mYShMpdTxxOvtoqSFshM185pwUeouPriKtjH59ZmooJoSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824D1C4CEDD;
+	Mon,  7 Apr 2025 15:49:31 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id C8D385F9F2;
+	Mon,  7 Apr 2025 23:49:28 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, linux-watchdog@vger.kernel.org, 
+ Thomas Gleixner <tglx@linutronix.de>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-phy@lists.infradead.org
+In-Reply-To: <20250307005712.16828-1-andre.przywara@arm.com>
+References: <20250307005712.16828-1-andre.przywara@arm.com>
+Subject: Re: (subset) [PATCH v3 00/15] arm64: dts: allwinner: Add basic
+ Allwinner A523 support
+Message-Id: <174404096879.829294.8545896192881134098.b4-ty@csie.org>
+Date: Mon, 07 Apr 2025 23:49:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 03/28] riscv: zicfiss / zicfilp enumeration
-Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-3-e51202b53138@rivosinc.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-3-e51202b53138@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddtheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedthfelfeejgeehveegleejleelgfevhfekieffkeeujeetfedvvefhledvgeegieenucfkphepudejiedrudegjedrudeghedrgeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepudejiedrudegjedrudeghedrgeegpdhhvghloheplgduledvrdduieekrddurdduheefngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeegledprhgtphhtthhopeguvggsuhhgsehrihhvohhsihhntgdrtghomhdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehmihhnghhosehrvgguhhgrthdrtghomhdprhgtphhtthhopegsphesrghlihgvnhekrdguvgdprhgtphhtthhopegurghvvgdrhhgrnhhsvghnsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepgiekieeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhpr
- gesiiihthhorhdrtghomhdprhgtphhtthhopegrkhhpmheslhhinhhugidqfhhouhhnuggrthhiohhnrdhorhhg
-X-GND-Sasl: alex@ghiti.fr
+X-Mailer: b4 0.14.2
 
+On Fri, 07 Mar 2025 00:56:57 +0000, Andre Przywara wrote:
+> this in an update to the series introducing the basic DT support for the
+> Allwinner A523 SoC. It now comes with DTs for three boards, using
+> slightly different packages of that SoC.[1]
+> Functionality-wise it relies on the pinctrl[2] and clock[3] support
+> series, though there are no direct code dependency series between the
+> series. Two binding patches from there are required to pass dtbs_check,
+> git put their patch IDs in the footer below.
+> Compared to v2 only small fixes in the NMI controller driver: renaming
+> the struct to better reflect its new usage, add adding the DS pin to
+> the eMMC pingroup list. Adding accrued tags on the way, many thanks to
+> the diligent reviewers! More detailed changelog below.
+> 
+> [...]
 
-On 14/03/2025 22:39, Deepak Gupta wrote:
-> This patch adds support for detecting zicfiss and zicfilp. zicfiss and
-> zicfilp stands for unprivleged integer spec extension for shadow stack
-> and branch tracking on indirect branches, respectively.
->
-> This patch looks for zicfiss and zicfilp in device tree and accordinlgy
-> lights up bit in cpu feature bitmap. Furthermore this patch adds detection
-> utility functions to return whether shadow stack or landing pads are
-> supported by cpu.
->
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->   arch/riscv/include/asm/cpufeature.h | 13 +++++++++++++
->   arch/riscv/include/asm/hwcap.h      |  2 ++
->   arch/riscv/include/asm/processor.h  |  1 +
->   arch/riscv/kernel/cpufeature.c      | 13 +++++++++++++
->   4 files changed, 29 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
-> index 569140d6e639..69007b8100ca 100644
-> --- a/arch/riscv/include/asm/cpufeature.h
-> +++ b/arch/riscv/include/asm/cpufeature.h
-> @@ -12,6 +12,7 @@
->   #include <linux/kconfig.h>
->   #include <linux/percpu-defs.h>
->   #include <linux/threads.h>
-> +#include <linux/smp.h>
->   #include <asm/hwcap.h>
->   #include <asm/cpufeature-macros.h>
->   
-> @@ -137,4 +138,16 @@ static __always_inline bool riscv_cpu_has_extension_unlikely(int cpu, const unsi
->   	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
->   }
->   
-> +static inline bool cpu_supports_shadow_stack(void)
-> +{
-> +	return (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
-> +		riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICFISS));
+Applied to dt-for-6.16 in git@github.com:linux-sunxi/linux-sunxi.git, thanks!
 
+[08/15] arm64: dts: allwinner: Add Allwinner A523 .dtsi file
+        commit: 35ac96f796649346c9b0440413dc6c5138249b3e
+[09/15] dt-bindings: vendor-prefixes: Add YuzukiHD name
+        commit: acf5b947cff1b991ceb7fa53c66555242ff4c87b
+[10/15] dt-bindings: arm: sunxi: Add new board names for A523 generation
+        commit: f9d55227839199e928a41574e41089288a43a2d6
+[11/15] arm64: dts: allwinner: a523: add Avaota-A1 router support
+        commit: 3a1883f32b9b5083883624f9b39a3c6edfa6d490
+[12/15] arm64: dts: allwinner: a523: add X96Q-Pro+ support
+        commit: 66611715c473a9820b65322c94401a367711acd7
+[13/15] arm64: dts: allwinner: a523: add Radxa A5E support
+        commit: 80e0fb4e491b4994434e42c33c1387a46b7986bc
+[14/15] dt-bindings: arm: sunxi: Add YuzukiHD Chameleon board name
+        commit: 7273c0e2e4229bca42c70e6f3c33f1756902301a
+[15/15] arm64: dts: allwinner: h616: add YuzukiHD Chameleon support
+        commit: 6d1cb8de157382facedf50f1a80ee033243b8494
 
-I would use riscv_has_extension_unlikely() instead of the cpu specific 
-variant, that would remove the need for #include <linux/smp.h>. Unless 
-you have a good reason to do that?
-
-
-> +}
-> +
-> +static inline bool cpu_supports_indirect_br_lp_instr(void)
-> +{
-> +	return (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
-> +		riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICFILP));
-> +}
-> +
->   #endif
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 869da082252a..2dc4232bdb3e 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -100,6 +100,8 @@
->   #define RISCV_ISA_EXT_ZICCRSE		91
->   #define RISCV_ISA_EXT_SVADE		92
->   #define RISCV_ISA_EXT_SVADU		93
-> +#define RISCV_ISA_EXT_ZICFILP		94
-> +#define RISCV_ISA_EXT_ZICFISS		95
->   
->   #define RISCV_ISA_EXT_XLINUXENVCFG	127
->   
-> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-> index 5f56eb9d114a..e3aba3336e63 100644
-> --- a/arch/riscv/include/asm/processor.h
-> +++ b/arch/riscv/include/asm/processor.h
-> @@ -13,6 +13,7 @@
->   #include <vdso/processor.h>
->   
->   #include <asm/ptrace.h>
-> +#include <asm/hwcap.h>
->   
->   #define arch_get_mmap_end(addr, len, flags)			\
->   ({								\
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index c6ba750536c3..82065cc55822 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -150,6 +150,15 @@ static int riscv_ext_svadu_validate(const struct riscv_isa_ext_data *data,
->   	return 0;
->   }
->   
-> +static int riscv_cfi_validate(const struct riscv_isa_ext_data *data,
-> +			      const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_RISCV_USER_CFI))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
->   static const unsigned int riscv_zk_bundled_exts[] = {
->   	RISCV_ISA_EXT_ZBKB,
->   	RISCV_ISA_EXT_ZBKC,
-> @@ -333,6 +342,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->   	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicboz, RISCV_ISA_EXT_ZICBOZ, riscv_xlinuxenvcfg_exts,
->   					  riscv_ext_zicboz_validate),
->   	__RISCV_ISA_EXT_DATA(ziccrse, RISCV_ISA_EXT_ZICCRSE),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicfilp, RISCV_ISA_EXT_ZICFILP, riscv_xlinuxenvcfg_exts,
-> +					  riscv_cfi_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicfiss, RISCV_ISA_EXT_ZICFISS, riscv_xlinuxenvcfg_exts,
-> +					  riscv_cfi_validate),
->   	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
->   	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
->   	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
->
-
-With the above comment fixed, you can add:
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
 
