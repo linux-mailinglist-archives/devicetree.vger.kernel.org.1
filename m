@@ -1,219 +1,109 @@
-Return-Path: <devicetree+bounces-163607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03148A7D7EC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F99BA7D831
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:40:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E53A863E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:31:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23E933B57C6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B08227B88;
-	Mon,  7 Apr 2025 08:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B854F226CF1;
+	Mon,  7 Apr 2025 08:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0RJNziIm";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3BiFjLea";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0RJNziIm";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3BiFjLea"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="LHYmZFDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5334B23A6
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 08:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAE81A8F93;
+	Mon,  7 Apr 2025 08:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744014676; cv=none; b=YfwfgKVlGSCc6/SzOiz1AGnqFHGGWL6cIY6V4ZB7xOS3OtGqs7Q6+gMxqn7ZNa8buxrWRoXkwVd4+z30JTZEElZOeWzsteuaFPuuzOwRVBy5IupyL5Fnxc34F/fBqIqL9ECD2LI8D2NcybvAetmq4kdbId9zl2EoGbO9X2hj068=
+	t=1744015179; cv=none; b=lbyz+iHsrobuuK2Z99HdMt0rlJlpVS4NEFCpW8mNMTqVB1pTXpqrWLrQcuJNDDA357ZWuNrAfmxRJTP/0w9TsMKmXEwKQlKQwo+l8JHbffHOnt5ZTfEzTgMQX1pBIuBA5AamildkFbBzGuugKnRUI1UVJ0pxy8DGaEHANTvo5ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744014676; c=relaxed/simple;
-	bh=z9NSYQ9/spWX/hV/BJtbmRQy6HwxBHDuqH25V8Xe3iY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rOzu+ceqU+7ycHLIoLgcG6o37LMSi/1fcUWDR3k0478NCbXXMO5I+1sgWqcZKYQ6CSIio14VZZ/rre7twcc9TrRewL1hyiyWhPGSNI/Zo0RniXoqOFxYahMscKEdrSacH4NhxZOx+QFPxDSSwGiQ/GcTzTAx88s9R0MfXDAUqyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0RJNziIm; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3BiFjLea; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0RJNziIm; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3BiFjLea; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 6884421134;
-	Mon,  7 Apr 2025 08:31:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1744014672; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=1aOMpn7X33tom+bcDGhQUGrFQSnD+9ZnNoK0jFavZkA=;
-	b=0RJNziImOZGPJVIQ5CJ58KvV2m6LlqM6IuJC2qJdyyVf3AFrENUfqVq3YPF3EySRCToKm8
-	XXFdkmDZQHcusPKUGXl90iiBXHa3Vdpq/47ALzEKI0qUWIHDFlozJmNWN56warxk3LPMsi
-	YqAF52UwtssqKVTZF3Ej38rNyngVXBk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1744014672;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=1aOMpn7X33tom+bcDGhQUGrFQSnD+9ZnNoK0jFavZkA=;
-	b=3BiFjLea5O5mUq1h0GOLOBo0coFOx1QbIMUl+cC0R+8axcMYTqCOJIINEqSFt60UQ6933M
-	YYo/evEHD0lyDUAA==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=0RJNziIm;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=3BiFjLea
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1744014672; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=1aOMpn7X33tom+bcDGhQUGrFQSnD+9ZnNoK0jFavZkA=;
-	b=0RJNziImOZGPJVIQ5CJ58KvV2m6LlqM6IuJC2qJdyyVf3AFrENUfqVq3YPF3EySRCToKm8
-	XXFdkmDZQHcusPKUGXl90iiBXHa3Vdpq/47ALzEKI0qUWIHDFlozJmNWN56warxk3LPMsi
-	YqAF52UwtssqKVTZF3Ej38rNyngVXBk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1744014672;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=1aOMpn7X33tom+bcDGhQUGrFQSnD+9ZnNoK0jFavZkA=;
-	b=3BiFjLea5O5mUq1h0GOLOBo0coFOx1QbIMUl+cC0R+8axcMYTqCOJIINEqSFt60UQ6933M
-	YYo/evEHD0lyDUAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 20C1613691;
-	Mon,  7 Apr 2025 08:31:12 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id YrmiBlCN82dpLgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 07 Apr 2025 08:31:12 +0000
-Message-ID: <0789ef01-bc92-4fae-aac3-70e9995482b2@suse.de>
-Date: Mon, 7 Apr 2025 10:31:11 +0200
+	s=arc-20240116; t=1744015179; c=relaxed/simple;
+	bh=0z/KT8TLIee1h3yP3HPJiOBL7ZOWc8WaVvSDGwnLOdE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y4rbIdeVcpLhJU4bO48mNdM33G2xRAOwknxApyaWgzr/267Fs7lEJciyFHygQM+uKEhJNtOXQnlCdWT/F0lGl67/3CE9RZ2ZfaOlF1Ig5YfpXxMghvzEA2riyRNvqvTlm84v9bYNxztJ0szyBNyAKEuokDycv2yHBtjzA4AWCU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=LHYmZFDc; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5378d75g030209;
+	Mon, 7 Apr 2025 10:39:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=M4fDmZRN7yquUeZo8bSMP2
+	LmovWfrpFiqUhwN/ePUVc=; b=LHYmZFDc7FLDVSArv6RpKwZQLAukYgWXCJIpgv
+	errUQg9s9rqoLZJK/t/p/2MPeJQVpXwmiZpphYN4LjeZWJUY+huriQB9Zgc2jC2L
+	kvauvSrXFld++hAtUey0VbDCZKd6r54aanX+BRhlm544Lc1P2jlf0g8aKvF72el/
+	sn0w/n0cs4Ku7q+dQm2WkacdoJb6CBaBAVPBCoETHHXX4e+8pdU8qlV6yCaPVjzw
+	XbWtAUlIau2H2DWh3dEQ9N0JcG3nl/bGWuTvHyFDJc1zHdKeuae9eP3rM6/hh1mP
+	vrqYvwn06bHdTyu8wVGZcNGvUaHH9id+iO3/q5sDsmD/1LDQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45tw6e6hvt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Apr 2025 10:39:10 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6F4164006A;
+	Mon,  7 Apr 2025 10:38:11 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B94F693C4C2;
+	Mon,  7 Apr 2025 10:35:41 +0200 (CEST)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 7 Apr
+ 2025 10:35:41 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <maz@kernel.org>, Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH 1/2] arm64: dts: st: Adjust interrupt-controller for aarch64
+Date: Mon, 7 Apr 2025 10:35:12 +0200
+Message-ID: <20250407083513.2072434-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] MAINTAINERS: add antry for Sitronix ST7571 LCD
- controller
-To: Marcus Folkesson <marcus.folkesson@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250404-st7571-v2-0-4c78aab9cd5a@gmail.com>
- <20250404-st7571-v2-3-4c78aab9cd5a@gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20250404-st7571-v2-3-4c78aab9cd5a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 6884421134
-X-Spam-Level: 
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	TO_DN_SOME(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:email,suse.de:dkim,suse.de:mid]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -3.01
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-07_02,2025-04-03_03,2024-11-22_01
 
+Use gic-400 compatible and remove address-cells = <1>.
 
+Fixes: 5d30d03aaf785 ("arm64: dts: st: introduce stm32mp25 SoCs family")
+Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+---
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Am 04.04.25 um 15:50 schrieb Marcus Folkesson:
-> Add MAINTAINERS entry for the Sitronix ST7571 dot matrix LCD
-> controller.
->
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->   MAINTAINERS | 6 ++++++
->   1 file changed, 6 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 889bd4a59551c9bc125f94944a6e1c7e3ef2de83..eeae24fda846b9f63400ebb08c3fa7f02f3f4b19 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7572,6 +7572,12 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->   F:	Documentation/devicetree/bindings/display/sitronix,st7586.txt
->   F:	drivers/gpu/drm/tiny/st7586.c
->   
-> +DRM DRIVER FOR SITRONIX ST7571 PANELS
-> +M:	Marcus Folkesson <marcus.folkesson@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-> +F:	drivers/gpu/drm/tiny/st7571-i2c.c
-> +
->   DRM DRIVER FOR SITRONIX ST7701 PANELS
->   M:	Jagan Teki <jagan@amarulasolutions.com>
->   S:	Maintained
->
-
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index f3c6cdfd7008..379e290313dc 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -115,9 +115,8 @@ scmi_vdda18adc: regulator@7 {
+ 	};
+ 
+ 	intc: interrupt-controller@4ac00000 {
+-		compatible = "arm,cortex-a7-gic";
++		compatible = "arm,gic-400";
+ 		#interrupt-cells = <3>;
+-		#address-cells = <1>;
+ 		interrupt-controller;
+ 		reg = <0x0 0x4ac10000 0x0 0x1000>,
+ 		      <0x0 0x4ac20000 0x0 0x2000>,
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.34.1
 
 
