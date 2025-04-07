@@ -1,87 +1,124 @@
-Return-Path: <devicetree+bounces-163596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB335A7D631
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B91FCA7D61D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:35:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C96A3189444D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:34:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D345189030D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196FC22A4E3;
-	Mon,  7 Apr 2025 07:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57C1227BA5;
+	Mon,  7 Apr 2025 07:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="USsmhKH6"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="I16D+JR3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07B922B8A9;
-	Mon,  7 Apr 2025 07:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7B52248A8;
+	Mon,  7 Apr 2025 07:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744010792; cv=none; b=DzN4NxXgV7a4VN/y/2QVMo+5OZHyqEb5V6Cy4cYyZHy1DnucUnNvW6A7pt1n0oQEmV6h1YyP9YoVcMI9/CfGhc77rFEKZIL3WA0nJnoyOWLeglKBOR/zZFyHQdXzCyAFpp5VdT7JyjIQUgbpk9Xy8dzi8qvg+PSCOKSW7lCM1ls=
+	t=1744011022; cv=none; b=VV7/ZAiJLK1jbg2Fr9AIuTIZ0JrNHlj2/DECKUel+Q3ivJ19QrIgeWO1SRq9+F5u4ieH5oHI8bYzIeSR5jHioNS7z4Q3lybgolLqhCh1WnpPFzJuZfZg1fuXNkHiiwGObq9CLiadi81OH036u6lOQ2Ci1qhajl9bDxph1c2eomw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744010792; c=relaxed/simple;
-	bh=scrnhWy6rMUlkpUpOweP3I5fA6E5KfGFiyvMFOn9mn8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bN7O7D4bzcu+JvtHtytMw4suPx1iVJ7JYdqllSuOH64dlyF2wbsJEQMCRIn15l4ev2veN+/9grXbmLtxMiGU0817EMZeLYLoggyTHCeKrE4fpPKZVBwz2c/y3SuhLctXKIammHEl7/P5hHLEMVjrfyJNSOKzxIh+Kaxd/nGDnUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=USsmhKH6; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744010788;
-	bh=scrnhWy6rMUlkpUpOweP3I5fA6E5KfGFiyvMFOn9mn8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=USsmhKH6wjFeUKz++3U5jar4ryLBzBg/8KQNbXR5VJRu2VnDNyuVrqH+2Jx2zogT+
-	 B7qwPw34h5WHQAtkonY/ZFb/g1pWSxd5RVdvsLExVka9X9JhGeeupsmid7pSAEDG3T
-	 k2dns+2USd0dQSS7KB1keIqYoG0Onid5kfqKNiYKGLEwJ5HMc6s46Dboc9dyoDmLNd
-	 L8TSR2VROM8zw7xnJWyU6U2OewadfgdM4XucDPTB7Ql2Gxa8wsRxmyM027bHvqzqZs
-	 iRV6NvUInGUvHRqz9jNfVaSgqbaZME5BffHybfPWxhnABmFrYoJiwEKFQGIPSccaJZ
-	 F+176LzuwrdnQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 60C9317E0CBE;
-	Mon,  7 Apr 2025 09:26:27 +0200 (CEST)
-Message-ID: <6d2462ee-1303-4325-a244-6d3408f4d749@collabora.com>
-Date: Mon, 7 Apr 2025 09:26:27 +0200
+	s=arc-20240116; t=1744011022; c=relaxed/simple;
+	bh=AAZcUqXMOFsje6qKA1exvPZ8ClNtHmZch9/SRqveXNE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dKYajFu7cuLTMp725PslVJ3SMuBFsUrmlKz66sbee9RhAxtMhzu+KKD8z+AoOmBGfb/vKTPVFXqZbdkXqMbgkNefSjZeDx9ucYPXPrAOqtISe2Czt0A+ySpUG8bVtJc8ajJDJFBOyDzx6QJgao2oYVJaZVqJqkUMnEycolfmzoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=I16D+JR3; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=7QLSDYF/qFsisVzcMe52X4dQZr863YZYqA6KQWyqRw4=; b=I16D+JR3LpCvmmaAr5UMkL2BoX
+	T8MkXyt83aiSPS9CsFXIfSWMsbmic8u4PsukHfRdAkYTGWPXMeZK6chvnx77WfoRa+MlFGxYiFiY/
+	8yiS1tsbjEdei8aBP1QAFGiD21dm+xzI+vm1zcmR9/1IJHzcSdOQvem5iLJ4RX5xaao4Rt3K57lYa
+	NSC19E7DauEoXFUY0dvht4WbdMAtYmYWNcjOrdv/2eHqjuE4WHgJOaj81CzmhwqvhYgP2LIKaQA/5
+	13ZKI0P09gIuihwzPoiMm6eeShJ66nebVhRW2Z7NxWQQymGPmw6LJlhtSgQt7bnHupHKLMqiL6kxP
+	77dRvohw==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u1gw0-0000000Gma7-21xa;
+	Mon, 07 Apr 2025 07:30:20 +0000
+Date: Mon, 7 Apr 2025 00:30:20 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>,
+	Christoph Hellwig <hch@infradead.org>,
+	virtio-comment@lists.linux.dev, Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <Z_N_DNXq9VbPvTfA@infradead.org>
+References: <05abb68286dd4bc17b243130d7982a334503095b.camel@infradead.org>
+ <Z-99snVF5ESyJDDs@infradead.org>
+ <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+ <20250404040838-mutt-send-email-mst@kernel.org>
+ <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+ <20250404043016-mutt-send-email-mst@kernel.org>
+ <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+ <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+ <20250404062409-mutt-send-email-mst@kernel.org>
+ <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt8395-nio-12l: Add scp
- firmware-name
-To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Ben Lok <ben.lok@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250404-mt8395-scp-fw-v1-0-bb8f20cd399d@collabora.com>
- <20250404-mt8395-scp-fw-v1-1-bb8f20cd399d@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250404-mt8395-scp-fw-v1-1-bb8f20cd399d@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-Il 04/04/25 15:53, Julien Massot ha scritto:
-> Set the scp firmware name to the default location.
+On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
+> We could achieve that by presenting the device with a completely new
+> PCI device/vendor ID so that old drivers don't match, or in the DT
+> model you could make a new "compatible" string for it. I chose to use a
+> VIRTIO_F_ bit for it instead, which seemed natural and allows the
+> device model (under the influence of the system integrator) to *choose*
+> whether a failure to negotiate such bit is fatal or not.
+
+Stop thinking about devices.  Your CoCo VM will have that exact same
+limitation for all devices, because none of them can DMA into random
+memory.  The solution to the compatibility problem is to just not boot
+an OS aware of the exact CoCo scheme into a CoCo VM.  Bonus points
+for figuring out something clever at the system level that let's the
+boot fail gracefully early on for that case.
+
+> The main thing in the CoCo case is that the range in question must not
+> contain any memory which an unenlightened guest might treat as normal
+> system RAM (because it has to be accessible by the VMM, and that would
+> make it insecure if it's being used a general-purpose RAM).
+
+Yes.
+
+> So on x86 it might be an e820-reserved region for example.
+
+Hasn't e820 replaced with something more "elaborate" for UEFI systems
+anyway?
+
+> I don't think we want the guest OS just *assuming* that there's usable
+> memory in that e820-reserved region, just because some device says that
+> it's actually capable of DMA to those addresses.
 > 
-> Fixes: 96564b1e2ea4 ("arm64: dts: mediatek: Introduce the MT8395 Radxa NIO 12L board")
+> So it would probably want a separate object, like the separate
+> `restricted-dma-pool` in DT, which explicitly identifies that range as
+> a DMA bounce-buffer pool. We probably *can* do that even in ACPI with a
+> PRP0001 device today, using a `restricted-dma-pool` compatible
+> property.
 > 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> Then the OS would need to spot this range in the config space, and say
+> "oh, I *do* have a swiotlb pool this device can reach", and use that.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+Yes, that's largely how it should work.
 
 
