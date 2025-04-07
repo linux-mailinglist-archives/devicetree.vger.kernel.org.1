@@ -1,404 +1,287 @@
-Return-Path: <devicetree+bounces-163643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAFC7A7DAA7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:03:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DB3A7DABF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA8CB16B320
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:03:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98AE67A48BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AA322FE1F;
-	Mon,  7 Apr 2025 10:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD0A22F388;
+	Mon,  7 Apr 2025 10:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gBMUvYk4"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="T4zbsC15"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4D6204F94;
-	Mon,  7 Apr 2025 10:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9033D218AC4;
+	Mon,  7 Apr 2025 10:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744020184; cv=none; b=OATMTHQnJwfzpahEOszMW0tPFxhMcER0D8PD0o/00j0HfloG9Xr7nHe4b/BtW/hzWnC9wtYRYyFMKDQmzx6qj07PtMo96N6vsnxSNacd1Yh0BijgeOOPK04pRz/ZiXvXFd4D1ZRvd/fvf8zLJ52Ay9KCspcRt939RymrrybZ0b0=
+	t=1744020599; cv=none; b=Inigdz0BiuyNyULsRaQ7RcDjtiZqgAoEZeKqlS/wevipkUooV++1kMh10UhwHCv3meHcDlK7mCrTgjsR1r6H8Q3l643WzHUHYqxjaCU4kiYbTXEhsF83tV6CuwbT7ostvD4XEjvnUxayLmmay0cBdPs/Ne0B9Ln6mPlvb70lUZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744020184; c=relaxed/simple;
-	bh=w78LXxApCj4OTSgjgaM64oKrRjxrGY8VBQ8Wzi/jdr0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GbSVzExHjat/XuXSvxqxqN/V6QqT6YeaZkMp/15OSF99m2AdyNmmSeKKQfHHjveHwpfZQd4MBT/oXtY+/m4RGlDPcdpuGxL9+nQrtp2GA+8Zm8r+Aq69AieDqCVyqBkQsgQkDlN1H8E3ZtmHTkN5XT5qnC72wCZJZFaqekBhBGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gBMUvYk4; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-736c3e7b390so3547108b3a.2;
-        Mon, 07 Apr 2025 03:03:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744020181; x=1744624981; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RACmTc9Rgs7JJUW7G658o4PTbUfl18GoBK9O7BQsyEY=;
-        b=gBMUvYk4Src6BikFjggOsV5Jo8l+ndhF05fKNqfStz2Ofr3tsZijwKOeT/bk8nKkBh
-         dVuvkkLhcQYbj9VqvCQogXOXfDC83/S8UfMikMTka09JdbKu2LsIDG7WLzTyr13Nfvli
-         6E2pWU5VC5w516zNOnwN9MnIGFQfQDSy+LTciKWLEHqNJFrzvPxZNBnOFmMjgI9/k7RY
-         R/ONPySuIj6TuxlpTrPQaYJ2d+XlsLfVPl+Y0bu1BHJyc06Kq0THJkPs0Z9IIGX1s2WH
-         IF7mnyfrQsltNiNA1oxdVt+dePVR6SjtrVFN3PuDQSUO4JgbFZiV+6Q6hozrM339L9Wb
-         vEgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744020181; x=1744624981;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RACmTc9Rgs7JJUW7G658o4PTbUfl18GoBK9O7BQsyEY=;
-        b=YSCdpByEdMoCOgy9eMt5TbB6KRNGggWOrZplnVTbjAURUx5M4ieWj+p4czZmlQdJ+9
-         SVU/O7E9XviCzaMHohgz96whIorT9elxmWqHZJeoW+Ba9CoWsRNMONlCCkwhXxWWm4f4
-         C7zY1+Ow6o6dYUhgTqG3q9u2v+YE8Rr0oOGUEN5NUoq/EzeLWXJME1zzSSWfVXWkq1D6
-         uQfEqnid7bl1XBbJbP6TIBVC9nk6eiuhOy+HYpl1iv9coMtZqwyoqI79An7+CJYURRk4
-         OaMea9oOW+M9yD6bjJvEIQYrMoXryanZaiqHtqdbeeA9WUV07hRPBfvVy56nZE0qBRyu
-         Syyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUKS8ssAZTMfy48n3RZ/3cpxdxwPS1b90flyf3KX+/m1UVyqhNJqiZf1nFNQeRrcmCoKg3vz52iGzM7@vger.kernel.org, AJvYcCUgv/pWCBA6d4ijXlZIZxrcnzfRSWMLODbHtislYEMws/hnaX9dNiOX+He4BGyA6AyNkRgyVyxrOf67@vger.kernel.org, AJvYcCX8l8e3FeqzgLWM9W+Zyc99lAdPHx1CnVfwfI+y4meAIp+SE/12YfZVNJJAwN0ttaq1+x4w48YaXd3Q3aLC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+TzC2O3/W0ThX9uv1TP/9uKlgLiEqRCIhIqqlkh94tka49rXf
-	/uwxoXKCAh5qni3JyZIpTsBBbURz1WPMVBWdJfw/+Gk4qJFH8n+b
-X-Gm-Gg: ASbGnctBDY5a38OTQhpilifjbUIDHillaPfRMZ3EtpcWlRGT+Bs7uSeq0L5v42QRsJr
-	vGD2T8+pWewyNsiKcrtzihaCraoLgwAMlB2ArFtuOlYaMnDhKmm7zTtaKYUIVRZ5qPLVmZHD1ma
-	80O93AoR+8rb+C6suHxbPrVkN0gl4z9xG+mISMSR6gLTPtd9uhLAHIB9wB2qfDlPgAnFcdbquUy
-	xx++94fcEGFvr3s+6bR3gVRNNlzzbGAtH6qPGleMLUKcbROyzY69Mljeny2zvXugYg92p4szzbC
-	N71kHNsiJ9xK3AZ/AXWHb/7E7s1+En7h/ldtNMKU1ko9qg==
-X-Google-Smtp-Source: AGHT+IGoAl7RP6vz9q7ZNLerCe+QiTDOPUWcDP8mG3WjvZ3rSUZqx0QcgAvTWNBxY4h5EHMN4sK3VA==
-X-Received: by 2002:a05:6a00:179e:b0:735:d89c:4b9f with SMTP id d2e1a72fcca58-739e6e6fb3cmr13738787b3a.0.1744020181171;
-        Mon, 07 Apr 2025 03:03:01 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-739da0b45b4sm8086532b3a.151.2025.04.07.03.03.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 03:03:00 -0700 (PDT)
-Date: Mon, 7 Apr 2025 18:02:57 +0800
-From: Longbin Li <looong.bin@gmail.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/2] pwm: sophgo: add driver for SG2044
-Message-ID: <jd46vvxgrmpk7dhaogio6wsut4l7keshhujw6k3kw2enodgwiw@wtaxbwgaykrr>
-References: <20250407072056.8629-1-looong.bin@gmail.com>
- <20250407072056.8629-3-looong.bin@gmail.com>
- <jnvlo3su4xzsvzte2s3noosycxae5uxhi3vusefpgq462ymqst@jgta6xxmcbtd>
+	s=arc-20240116; t=1744020599; c=relaxed/simple;
+	bh=M6WnzkYenlIn57uFafdO38TmD6Yh8ssUEMKXuiqGTuI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Bg4EB58BXO2eO76i4paKrlpYweCDguf50qJVIZmz//HgJwh+APg9EPxiURiNW4l+L0qhHlWRAstIsdx/ahXIGKOEODgja/PIiTWjG5Ti+jVxSlVa+CE6aZGG1PWLLIH0vz6zph+HfoSvmYQwsK+w0rRT2ISwbfPYkY0RtFtOZtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=T4zbsC15; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=M6WnzkYenlIn57uFafdO38TmD6Yh8ssUEMKXuiqGTuI=; b=T4zbsC156torLTTTwAKsNOwDno
+	as2bWDS4arlz9nNVJx0V/AQqcboL2Jzm+Up9C25Fq1lYfxLX/MMLUqC2gZX/ViBwZxbr0SUt4BaXg
+	sWz6CZPSF8/aQLWK5+yfbugji3jQqGhW0MuXeKJTZDN10FwyPs1LgCiPDxRh2GK9P2NlGvSeHWTjL
+	j2ZUQ2xcUMUXQcO8ZoSvGSZWVN0sBL2mx9mQ1GXoATmBrA78jA0tgeF8kZZCqoQIAYMSG0tZ9n7Xw
+	zQ0LwjQe0YGISXNaSzmF7cLL8qpRD676iZWZ84xm/YB703NBJwxzHWISjI+EpAn8n4VZMDnYORCua
+	/V64inhg==;
+Received: from [172.31.31.145] (helo=u09cd745991455d.ant.amazon.com)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u1jQQ-00000007uTt-3CKQ;
+	Mon, 07 Apr 2025 10:09:55 +0000
+Message-ID: <c08d3fd2bdae1b0fa629ecd9261a5ca9549ce9aa.camel@infradead.org>
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+From: David Woodhouse <dwmw2@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>, virtio-comment@lists.linux.dev, 
+ Claire Chang <tientzu@chromium.org>, linux-devicetree
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ =?ISO-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>, 
+ iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+ graf@amazon.de
+Date: Mon, 07 Apr 2025 11:09:54 +0100
+In-Reply-To: <Z_OVbRNHU1LXU368@infradead.org>
+References: <fb7ea3ee5bf970fa36b012e16750f533b72903a0.camel@infradead.org>
+	 <20250404040838-mutt-send-email-mst@kernel.org>
+	 <67bd998bfe385088ef863342b9f8714754585476.camel@infradead.org>
+	 <20250404043016-mutt-send-email-mst@kernel.org>
+	 <F30D33D5-38CC-4397-8DC8-9EE1B0FEF40D@infradead.org>
+	 <5cc2f558b0f4d387349c3a2936ff00430804536d.camel@infradead.org>
+	 <20250404062409-mutt-send-email-mst@kernel.org>
+	 <7fd789b61a586417add2115f6752ebec5e7b81bf.camel@infradead.org>
+	 <Z_N_DNXq9VbPvTfA@infradead.org>
+	 <f54f46399aa2d0066231d95ef9e98526cf217115.camel@infradead.org>
+	 <Z_OVbRNHU1LXU368@infradead.org>
+Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
+	boundary="=-hlQ3IWlfGR23wGSd2PXd"
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <jnvlo3su4xzsvzte2s3noosycxae5uxhi3vusefpgq462ymqst@jgta6xxmcbtd>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
-On Mon, Apr 07, 2025 at 11:38:27AM +0200, Uwe Kleine-König wrote:
-> On Mon, Apr 07, 2025 at 03:20:39PM +0800, Longbin Li wrote:
-> > From: ghost <2990955050@qq.com>
-> 
-> Huh, is that a real name?
->
 
-My fault,i will change it.
- 
-> > Add PWM controller for SG2044.
-> > 
-> > Signed-off-by: Longbin Li <looong.bin@gmail.com>
-> > ---
-> >  drivers/pwm/pwm-sophgo-sg2042.c | 162 +++++++++++++++++++++++++++-----
-> >  1 file changed, 138 insertions(+), 24 deletions(-)
-> > 
-> > diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg2042.c
-> > index ff4639d849ce..c62e8c758d87 100644
-> > --- a/drivers/pwm/pwm-sophgo-sg2042.c
-> > +++ b/drivers/pwm/pwm-sophgo-sg2042.c
-> 
-> The Limitations paragraph needs updating. E.g. SG2044 seems to support
-> polarity while SG2042 doesn't.
-> 
+--=-hlQ3IWlfGR23wGSd2PXd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,i will add that.
+On Mon, 2025-04-07 at 02:05 -0700, Christoph Hellwig wrote:
+> On Mon, Apr 07, 2025 at 08:54:46AM +0100, David Woodhouse wrote:
+> > On Mon, 2025-04-07 at 00:30 -0700, Christoph Hellwig wrote:
+> > > On Fri, Apr 04, 2025 at 12:15:52PM +0100, David Woodhouse wrote:
+> > > > We could achieve that by presenting the device with a completely ne=
+w
+> > > > PCI device/vendor ID so that old drivers don't match, or in the DT
+> > > > model you could make a new "compatible" string for it. I chose to u=
+se a
+> > > > VIRTIO_F_ bit for it instead, which seemed natural and allows the
+> > > > device model (under the influence of the system integrator) to *cho=
+ose*
+> > > > whether a failure to negotiate such bit is fatal or not.
+> > >=20
+> > > Stop thinking about devices.=C2=A0 Your CoCo VM will have that exact =
+same
+> > > limitation for all devices, because none of them can DMA into random
+> > > memory.
+> >=20
+> > Nah, most of them are just fine because they're actual passthrough PCI
+> > devices behind a proper 2-stage IOMMU.
+>=20
+> Except for all virtual devices.
 
-> > @@ -26,20 +26,22 @@
-> >  #include <linux/pwm.h>
-> >  #include <linux/reset.h>
-> > 
-> > -/*
-> > - * Offset RegisterName
-> > - * 0x0000 HLPERIOD0
-> > - * 0x0004 PERIOD0
-> > - * 0x0008 HLPERIOD1
-> > - * 0x000C PERIOD1
-> > - * 0x0010 HLPERIOD2
-> > - * 0x0014 PERIOD2
-> > - * 0x0018 HLPERIOD3
-> > - * 0x001C PERIOD3
-> > - * Four groups and every group is composed of HLPERIOD & PERIOD
-> > - */
-> > -#define SG2042_PWM_HLPERIOD(chan) ((chan) * 8 + 0)
-> > -#define SG2042_PWM_PERIOD(chan) ((chan) * 8 + 4)
-> > +#define REG_HLPERIOD		0x0
-> > +#define REG_PERIOD		0x4
-> > +#define REG_GROUP		0x8
-> 
-> REG_GROUP belongs to a different category than REG_PERIOD. So please use
-> a different schema to name it (or drop it, see below).
-> 
+Yes, that's what I'm saying.
 
-I will improve it.
+And that's also why it's reasonable to have a solution which handles
+this for virtio devices, without necessarily having to handle it for
+*arbitrary* emulated PCI devices across the whole system, and without
+having to change core concepts of DMA handling across all operating
+systems.
 
-> > +#define REG_POLARITY		0x40
-> > +
-> > +#define REG_PWMSTART		0x44
-> > +#define REG_PWMUPDATE		0x4C
-> > +#define REG_SHIFTCOUNT		0x80
-> > +#define REG_SHIFTSTART		0x90
-> 
-> REG_SHIFTCOUNT and REG_SHIFTSTART are unused.
-> 
+This isn't just about Linux guests, and especially not just about Linux
+guests running running 6.16+ kernels.
 
-I will drop it.
+A solution which can live in a device driver is a *lot* easier to
+actually get into the hands of users. Not just Windows users, but even
+the slower-moving Linux distros.
 
-> > +#define REG_PWM_OE		0xD0
-> 
-> Actually I liked the old prefix better. E.g. "REG_POLARITY" looks more
-> generic that it actually is.
-> 
+> > > > Then the OS would need to spot this range in the config space, and =
+say
+> > > > "oh, I *do* have a swiotlb pool this device can reach", and use tha=
+t.
+> > >=20
+> > > Yes, that's largely how it should work.
+> >=20
+> > The problem in ACPI is matching the device to that SWIOTLB pool. I
+> > think we can expose a `restricted-dma-pool` node via PRP0001 but then
+> > we need to associate a particular device (or set of devices) to that
+> > pool. In DT we do that by referencing it from a `memory-region` node of
+> > the device itself.
+>=20
+> I don't think you actually _need_ to have an explicity device vs pool
+> match.=C2=A0 All pools in host memory (assuming there is more than one)
+> should be usable for all devices bar actual addressing limits that are
+> handled in the dma layer already.=C2=A0 The only things you need is:
+>=20
+> =C2=A0a) a way to declare one or more pools
+> =C2=A0b) a way to destinguish between devices behind a two stage IOMMU vs=
+ not
+> =C2=A0=C2=A0=C2=A0 to figure out if they need to use a pool
 
-I will reconsider that.
+I'm not averse to that, but it's different to the `restricted-dma-pool`
+model that's defined today which has explicit matching. So I'd like to
+reconcile them =E2=80=94 and preferably literally use PRP0001 to expose
+`restricted-dma-pool` even under ACPI.
 
-> > +
-> > +#define PWM_REG_NUM		0x80
-> 
-> This is unused?
-> 
+Maybe it's as simple as a flag/property on the `restricted-dma-pool`
+node which declares that it's a 'catch-all', and that *all* devices
+which aren't explicitly bound to an IOMMU or other DMA operations (e.g.
+explicitly bound to a different restricted-dma-pool) should use it?
 
-I will drop it,thanks!
+That's actually what of_dma_configure_id() does today even with the
+existing `restricted-dma-pool` which *is* explicitly matched to a
+device; the pool still only gets used if of_configure_iommu() doesn't
+find a better option.
 
-> > +
-> > +#define PWM_POLARITY_MASK(n) BIT(n)
-> > +#define PWM_HLPERIOD(chan) ((chan) * REG_GROUP + REG_HLPERIOD)
-> > +#define PWM_PERIOD(chan) ((chan) * REG_GROUP + REG_PERIOD)
-> 
-> ((chan) * 8 + 0) is IMHO better. I guess this is subjective because at
-> least the *8 is repeated several times, but the advantage of not using a
-> define for 8 (and 0 and 4) is that by looking at
-> 
-> 	#define SG2042_PWM_HLPERIOD(chan) ((chan) * 8 + 0)
-> 
-> you immediatly see the offsets of the HLPERIOD register, while for
-> 
-> 	#define PWM_HLPERIOD(chan) ((chan) * REG_GROUP + REG_HLPERIOD)
-> 
-> you have to lookup two additional symbols.
-> 
-> Also PWM is a prefix that is too generic.
-> 
+But I would also be entirely OK with following the existing model and
+having the virtio device itself provide a reference to the restricted-
+dma-pool. Either by its address, or by some other handle/reference.
 
-I will reconsider that.
+Referencing it by address, which is what Michael and I were discussing,
+is simple enough. And in this model it *is* a device restriction =E2=80=94 =
+that
+virtio device knows full well that it can only perform DMA to that
+range of addresses.
 
-> >  #define SG2042_PWM_CHANNELNUM	4
-> > 
-> > @@ -51,6 +53,12 @@
-> >  struct sg2042_pwm_ddata {
-> >  	void __iomem *base;
-> >  	unsigned long clk_rate_hz;
-> > +	struct mutex lock;
-> 
-> What does this lock protect? Note that there is a chip lock that is held
-> when .apply() is called, to serialize apply calls for a single chip. I
-> guess this can and should be dropped.
-> 
+And it also allows for a standalone device driver to go check for the
+corresponding ACPI device, claim that memory and set up the bounce
+buffering for *itself*, in operating systems which don't support it.
+Although I suppose a standalone device driver can do the same even in
+the 'catch-all' model.
 
-I will retest it, and if possible i will drop it, thanks.
+Either way, we'd still ideally want a virtio feature bit to say "don't
+touch me if you don't understand my DMA restrictions", to prevent older
+drivers (on older operating systems) from failing.
 
-> > +};
-> > +
-> > +struct sg2042_chip_data {
-> > +	const struct pwm_ops ops;
-> > +	bool atomic;
-> >  };
-> > 
-> >  /*
-> > @@ -62,8 +70,8 @@ static void pwm_sg2042_config(struct sg2042_pwm_ddata *ddata, unsigned int chan,
-> >  {
-> >  	void __iomem *base = ddata->base;
-> > 
-> > -	writel(period_ticks, base + SG2042_PWM_PERIOD(chan));
-> > -	writel(hlperiod_ticks, base + SG2042_PWM_HLPERIOD(chan));
-> > +	writel(period_ticks, base + PWM_PERIOD(chan));
-> > +	writel(hlperiod_ticks, base + PWM_HLPERIOD(chan));
-> 
-> The register renaming adds really quite some noise that is actually
-> unrelated to this patch. If you really think the register defines need
-> renaming, do that in a separate patch (and justify it well).
-> 
+(I know you say that's a 'restriction' not a 'feature', but that's just
+fine. That's why it's a *negotiation* not simply the device advertising
+optional features which the driver may choose to use, or ignore, as it
+sees fit.)
 
-Sorry, i will modify here.
+--=-hlQ3IWlfGR23wGSd2PXd
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
 
-> >  }
-> > 
-> >  static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > @@ -104,8 +112,8 @@ static int pwm_sg2042_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> >  	u32 hlperiod_ticks;
-> >  	u32 period_ticks;
-> > 
-> > -	period_ticks = readl(ddata->base + SG2042_PWM_PERIOD(chan));
-> > -	hlperiod_ticks = readl(ddata->base + SG2042_PWM_HLPERIOD(chan));
-> > +	period_ticks = readl(ddata->base + PWM_PERIOD(chan));
-> > +	hlperiod_ticks = readl(ddata->base + PWM_HLPERIOD(chan));
-> > 
-> >  	if (!period_ticks) {
-> >  		state->enabled = false;
-> > @@ -123,13 +131,112 @@ static int pwm_sg2042_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> >  	return 0;
-> >  }
-> > 
-> > -static const struct pwm_ops pwm_sg2042_ops = {
-> > -	.apply = pwm_sg2042_apply,
-> > -	.get_state = pwm_sg2042_get_state,
-> > +static void pwm_sg2044_config(struct sg2042_pwm_ddata *ddata, struct pwm_device *pwm, bool enabled)
-> > +{
-> > +	u32 pwm_value;
-> > +
-> > +	pwm_value = readl(ddata->base + REG_PWMSTART);
-> > +
-> > +	if (enabled)
-> > +		writel(pwm_value | BIT(pwm->hwpwm), ddata->base + REG_PWMSTART);
-> > +	else
-> > +		writel(pwm_value & ~BIT(pwm->hwpwm), ddata->base + REG_PWMSTART);
-> > +}
-> > +
-> > +static void pwm_sg2044_set_outputenable(struct sg2042_pwm_ddata *ddata, struct pwm_device *pwm,
-> > +					bool enabled)
-> > +{
-> > +	u32 pwm_value;
-> > +
-> > +	pwm_value = readl(ddata->base + REG_PWM_OE);
-> > +
-> > +	if (enabled)
-> > +		writel(pwm_value | BIT(pwm->hwpwm), ddata->base + REG_PWM_OE);
-> > +	else
-> > +		writel(pwm_value & ~BIT(pwm->hwpwm), ddata->base + REG_PWM_OE);
-> > +}
-> > +
-> > +static int pwm_sg2044_set_polarity(struct sg2042_pwm_ddata *ddata, struct pwm_device *pwm,
-> > +				   const struct pwm_state *state)
-> > +{
-> > +	enum pwm_polarity polarity;
-> > +	u32 pwm_value;
-> > +
-> > +	pwm_value = readl(ddata->base + REG_POLARITY);
-> > +
-> > +	polarity = state->polarity;
-> > +
-> > +	if (polarity == PWM_POLARITY_NORMAL)
-> > +		pwm_value &= ~BIT(pwm->hwpwm);
-> > +	else
-> > +		pwm_value |= BIT(pwm->hwpwm);
-> > +
-> > +	writel(pwm_value, ddata->base + REG_POLARITY);
-> 
-> I like this idiom better than the one used in
-> pwm_sg2044_set_outputenable() and pwm_sg2044_config(). However drop the
-> local variable polarity.
-> 
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
+ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
+AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
+BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
+MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
+a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
+jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
+GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
+aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
+nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
+8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
+HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
+IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
+KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
+BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
+QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
+QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
+ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
+/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
+uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
+xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
+W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
+c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
+VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
+NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
+DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
+sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
+w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
+i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
+kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
+0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
+ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
+blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
+hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
+VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
+HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
+ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
+AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
+cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
+cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
+AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
+aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
+hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
+iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
+8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
+JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
+xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
+EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
+B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
+MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
+KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
+Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
+nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
+WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
+W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
+nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
+g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
+9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
+9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
+sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
+a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
+ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
+AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
+dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
+Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
+MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
+YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
+4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
+6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
+QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
+nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
+MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
+VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
+ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDQwNzEwMDk1
+NFowLwYJKoZIhvcNAQkEMSIEIMbVRkU829NnMrSc3/aoLCl4hTaB0+7exKxiO34xN7R0MGQGCSsG
+AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
+cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
+VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
+cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIACFjzbfpLQT+g
+/nOQ0PMQticz/FHqyngzbr/z4hCwSAaP23PfN6jLdx8OMMxccH18yY60SCOnIVdz6oK2/oor8zOK
+7LJyPa4sc3T9Pm/x6Ad/ynaBlNAu2+gcTJ8yTXrDyIdm2zJlFD1KnEmpCw4VwOxEHAoaMTlhGflk
+bLgbhWxC64V87LJkf5ev/cTXUaO09zDq3cuP1CngCdJuyLVqcQqFPMrASoGRrneLIrT8s2xvTwfU
+s3Uf+I9CGdRfVFMn5Aye9j1fYcFZdSrreUCpy4tIexiFjNRv9ZmJQGp+OpRbXb1PKg+2vcgF/sJZ
+XWv+uo4zlRzJ5f4LLbMVll/EyhfJgMI7faslHhpedbFllnGStx7XAyqkrkzVqEGbUdzbsN/4argb
+HsLbq4sB/qDNYd687Kisf9w5HA8XA8KQVc8706SPjk0UxZLN4m2rOYar2kEQYvX+kdUB7NK92M21
+1MvxEB01UwqD149OgEL4UG1/taKMA0gsopk7GJbHZGCKqbYB63/KEfzbGoAGzMgZsGMrzap1gSpw
+vX2lvMD1YrqVBvzJYnRLlkrGsGgGFhQV8auWYBMtqG7s+xh8pqlqvaTEGXNRhZPGZOAI5UU1TLrX
+5HqMCt1U2KCGTvzW5qcKPtJp3Lebp99WVC7Ng/FP+EnudYKB0WGAY7ASryG+zzUAAAAAAAA=
 
-I will modify that, thanks.
 
-> > +	return 0;
-> > +}
-> > +
-> > +static int pwm_sg2044_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > +			    const struct pwm_state *state)
-> > +{
-> > +	struct sg2042_pwm_ddata *ddata = pwmchip_get_drvdata(chip);
-> > +	u32 hlperiod_ticks;
-> > +	u32 period_ticks;
-> > +
-> > +	if (!state->enabled) {
-> > +		pwm_sg2044_config(ddata, pwm, false);
-> > +		return 0;
-> > +	}
-> > +
-> > +	pwm_sg2044_set_polarity(ddata, pwm, state);
-> > +
-> > +	/*
-> > +	 * Duration of High level (duty_cycle) = HLPERIOD x Period_of_input_clk
-> > +	 * Duration of One Cycle (period) = PERIOD x Period_of_input_clk
-> > +	 */
-> > +	period_ticks = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period,
-> > +					       NSEC_PER_SEC), U32_MAX);
-> > +	hlperiod_ticks = min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->duty_cycle,
-> > +						 NSEC_PER_SEC), U32_MAX);
-> 
-> This is the same calculation as for sg2042. I think I'd put that in a
-> function that is used by both variants.
-> 
-
-Thanks, i will modify that.
-
-> > +	dev_dbg(pwmchip_parent(chip), "chan[%u]: PERIOD=%u, HLPERIOD=%u\n",
-> > +		pwm->hwpwm, period_ticks, hlperiod_ticks);
-> 
-> Now that there are more register values, please add them all to the
-> debug output.
-> 
-
-I will, thanks.
-
-> > +	pwm_sg2042_config(ddata, pwm->hwpwm, period_ticks, hlperiod_ticks);
-> > +
-> > +	guard(mutex)(&ddata->lock);
-> > +
-> > +	/*
-> > +	 * re-enable PWMSTART to refresh the register period
-> > +	 */
-> > +	pwm_sg2044_config(ddata, pwm, false);
-> 
-> pwm_sg2044_config() is conceptually different to pwm_sg2042_config().
-> This is irritating, so please find a better name.
-> 
-
-I will modify that, thanks.
-
-> > +	pwm_sg2044_set_outputenable(ddata, pwm, true);
-> > +	pwm_sg2044_config(ddata, pwm, true);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct sg2042_chip_data sg2042_chip_data = {
-> > +	.ops = {
-> > +		.apply = pwm_sg2042_apply,
-> > +		.get_state = pwm_sg2042_get_state,
-> > +	},
-> > +	.atomic = true,
-> > +};
-> > +
-> > +static const struct sg2042_chip_data sg2044_chip_data = {
-> > +	.ops = {
-> > +		.apply = pwm_sg2044_apply,
-> > +		.get_state = pwm_sg2042_get_state,
-> > +	},
-> > +	.atomic = false,
-> 
-> If you drop the mutex don't forget to drop this one, too.
-> 
-
-I will, thanks for your reminder.
-
-> >  };
-> 
-> Best regards
-> Uwe
-
-Best regards
-Longbin Li
+--=-hlQ3IWlfGR23wGSd2PXd--
 
