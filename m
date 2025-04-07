@@ -1,91 +1,223 @@
-Return-Path: <devicetree+bounces-163757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DEBA7DEDD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:22:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49603A7DF0F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:26:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C11A7A3FAD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:20:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFD773AC25A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11865253B4B;
-	Mon,  7 Apr 2025 13:21:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617B7253B68;
+	Mon,  7 Apr 2025 13:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEa/Ibsv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTl/s9Pn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C6B248886;
-	Mon,  7 Apr 2025 13:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FC82459CF;
+	Mon,  7 Apr 2025 13:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744032118; cv=none; b=UdExGfoWOiE5CgJg6S3uL3JHV11gBsc1zXf7G1uWDXXUOKImmtv/mNVC4ZBKL7PoLDMgMJbWLqTxb3v7LNm0Qe/WRmzQLIFV0OjxDukzU913ihG5ieSgq0EwXejXnPCWrUSx/oDj3JlGMEXKhra1Ssm/BNZbVWyoYAP3x+pzFec=
+	t=1744032165; cv=none; b=Ew6Y2MzXw7PyJ5+KM7TRmVhVOic175bggdMpxcZ5dbpAGp0iCKm4Jwt/or2Ve2Iz4q3Qg8K09XmjDoBRQPkPC0uzMryQwGOH7z62zI/VmwSP0R4LeFIHisJOUosTYbxQ9c0iNts809GLAk6mcLmaHoRFFn+i8fBwe9nW66fXFN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744032118; c=relaxed/simple;
-	bh=V/kH4k91TKPs+AzEORJvwkcToawBFh+wxqDR82wVnZM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kISIM5bl5bxX12g9ONyZrg5g0eqp+tyKfxl8epw12ty4RrbpXpSEYdongYOgTM5rfoqUIGOFqAdanzq1U0P/Qif/McbQtxfy4QZ8EX7Auoi9C3d+7lTk7oxGRGOcgIjvPCMgO6xeFWcru5ImVA/IBXXGM85kkIWpxIJ7Ef0KwGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEa/Ibsv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28A95C4CEDD;
-	Mon,  7 Apr 2025 13:21:57 +0000 (UTC)
+	s=arc-20240116; t=1744032165; c=relaxed/simple;
+	bh=jQI55o6gDq6Ihy8UgZ0aKohlSxN7HHUG5gb5QI2QUiQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JpxgV0jY9I8e6++hHMQrTVW5m8gq/ogbvzjW7sAoy1OHTAd2lhNOB3l/2Rjh4NhCOtfKcE5ZBD7NMcpv1B+3HfLBQ/lHOQhI+2mvjYW/CJivBI9ZWjmXZy3DJFSv2awiJ3t7eABP5MbBDqZ2MZgvbWCYUslz9AJLdX1t7xom8O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XTl/s9Pn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62FCFC4CEDD;
+	Mon,  7 Apr 2025 13:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744032117;
-	bh=V/kH4k91TKPs+AzEORJvwkcToawBFh+wxqDR82wVnZM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kEa/Ibsvs0y65fDo6FRf6d/Z6DvEaCgPX75o320p0x1gN1UDi663BMUrP+LX3o4P8
-	 E0drx8PxP71ibevpOOVbs/7fWBR9H5vca3ZvIUfmB5uitcTzDO3eNEEiz3I3r4c+xp
-	 ty6kBWupB99nxopCK6AMgIPEb5/cjlAl5QozeExpfndxdB54ot7wzQGcl9rfdyO4Uz
-	 FPXR6VwvAAhf6ireSe7fhlCh+MVomMQ1qfpO5QYQ3hsXrh50J3GFFnKkulw1rgbYis
-	 XBmGhOI6lIkKwDoe/0DA9JF2JdI0pmqure3y3PLDmILwi4iSmxgknwJMFgtGJEj1PK
-	 wxZRMumRBum+w==
-Date: Mon, 7 Apr 2025 08:21:56 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-	Conor Dooley <conor+dt@kernel.org>, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: adi,ad7606: add SPI offload
- properties
-Message-ID: <174403211547.1955434.17881089530676144254.robh@kernel.org>
-References: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
- <20250403-wip-bl-spi-offload-ad7606-v1-1-1b00cb638b12@baylibre.com>
+	s=k20201202; t=1744032164;
+	bh=jQI55o6gDq6Ihy8UgZ0aKohlSxN7HHUG5gb5QI2QUiQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XTl/s9Pned0E+A720LhQLzbDpBCBrEN1RqNlogeq/jQRWknu1x7fdRRwpHHmG/yQs
+	 8QSml85zXlo1DNF2+uDZHI/I9GASi3+RkWFi30VmRi4GiI4Y4SGympAdXQJd+89188
+	 GR42DXT1JxbAsmEVWMq2IT7LZ+iOqIwVT7/RccS+E7k/nWX/9Vb2FSEotXnQI42uFj
+	 Rs+I5EBtYgQshajW/epixhGi/6UTK2aDZlvGml8W0KeLIiHS4+q9DqulHu1XeaHPkc
+	 lYuz95BqL0mIufgjmrtIU/euubFEZcoyKf6yWI4londUvWobksHoe0LnQ7Tq2tVZ3h
+	 jjRAGEADnivvg==
+Message-ID: <ac9fd6b3-2184-4d75-83e5-6caee4f3758d@kernel.org>
+Date: Mon, 7 Apr 2025 15:22:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403-wip-bl-spi-offload-ad7606-v1-1-1b00cb638b12@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] dt-bindings: usb: add SpacemiT K1 DWC3 glue
+To: Ze Huang <huangze@whut.edu.cn>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
+ <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 03 Apr 2025 18:19:04 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
+On 07/04/2025 14:38, Ze Huang wrote:
+> Add support for SpacemiT DWC3 glue driver, which manages interrupt,
+> reset and clock resource.
 > 
-> Add #trigger-source-cells property to allow the BUSY output to be
-> used as a SPI offload trigger source to indicate when a sample is ready
-> to be read.
-> 
-> Macros are added to adi,ad7606.h for the cell values to help with
-> readability since they are arbitrary values.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
 > ---
->  Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml | 8 ++++++++
->  include/dt-bindings/iio/adc/adi,ad7606.h                  | 9 +++++++++
->  2 files changed, 17 insertions(+)
+>  .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 78 ++++++++++++++++++++++
+>  1 file changed, 78 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Combining 3 subsystems into one patchset is a poor idea.
 
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..40ce3fd1330d5f371ec69155c237e10a65a9d8f4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SpacemiT K1 SuperSpeed DWC3 USB SoC Controller Glue
+> +
+> +maintainers:
+> +  - Ze Huang <huangze@whut.edu.cn>
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-dwc3
+> +
+> +  ranges:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interconnects:
+
+Missing maxItems
+
+> +    description:
+> +      On SpacemiT K1, USB performs DMA through bus other than parent DT node.
+> +      The 'interconnects' property explicitly describes this path, ensuring
+> +      correct address translation.
+> +
+> +  interconnect-names:
+> +    const: dma-mem
+> +
+> +  # optional
+
+Drop, Don't repeat constraints in free form text.
+
+> +  vbus-supply:
+> +    description: A phandle to the regulator supplying the VBUS voltage.
+> +
+> +patternProperties:
+> +  '^usb@':
+> +    $ref: snps,dwc3.yaml#
+
+No, rather fold child into the parent.
+
+> +
+> +additionalProperties: false
+
+This goes after required:, always.
+
+> +
+> +required:
+> +  - compatible
+> +  - ranges
+> +  - clocks
+> +  - resets
+> +  - interrupts
+> +  - interconnects
+> +  - interconnect-names
+> +
+> +examples:
+> +  - |
+> +    usb@c0a00000 {
+> +        compatible = "spacemit,k1-dwc3";
+> +        clocks = <&syscon_apmu 16>;
+> +        interrupts = <149>;
+> +        interconnects = <&dram_range0>;
+> +        interconnect-names = "dma-mem";
+> +        ranges = <0x0 0xc0a00000 0x10000>;
+> +        resets = <&syscon_apmu 8>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        status = "disabled";
+
+Nope, drop.
+
+
+
+Best regards,
+Krzysztof
 
