@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-163556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A4DA7D3CD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:05:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653D8A7D3D5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E71553AC4BE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 06:04:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA303188A158
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 06:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BD82248B0;
-	Mon,  7 Apr 2025 06:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190452248BD;
+	Mon,  7 Apr 2025 06:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLHkWsYj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ql55X4yx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C398122423A;
-	Mon,  7 Apr 2025 06:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210B4DDD3;
+	Mon,  7 Apr 2025 06:10:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744005902; cv=none; b=Z+ZABvSh+3fW/q7o9ysrbOvzWCjKkL73ooP3OJVMo8/69xtajlk9r4aZcd0roAK1PykYHS5kRX7OZ/xntCQ2jlBWdf+sQyQl9BqDTbayLnz4wR+pEqnHY5hxlBbx3pDRY6IsBInuMRI5H/vQP7AZyc4SjF+k4ODeoqS2/C39R9s=
+	t=1744006212; cv=none; b=mLq48o+IExLT/n9J5NcW1uewiqz7gVl5q8XIdyrP/F+c81ieY8SSFFwVKIDgvC/8d9z2sr4XCUVJjcUH2xVW0Ecy9eZtcIA1BWbRLman2o/LhxlUtHEyf4OQZtmuU1g1aNEVDTb2hOPPlfZkjx8JCFpG3g7jj/QftauSs33YEeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744005902; c=relaxed/simple;
-	bh=QdlPTuGFDzHLTqGSHvpyqeL+wyYF1szxTKJZUAoSyAs=;
+	s=arc-20240116; t=1744006212; c=relaxed/simple;
+	bh=WHptMty8/X/ube0FQL8nrBNpTd+8qRvV8oDKOCjRJ/Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PM/cnrdzoURnsgkt53FSwMe5AaY5y69EFbuh4bf2Bv9iEDgL8LQ0RZq9CUA1vbaAutoj+xaIddVJSWw+Hd3T3y0SO0n3OC/0j3QE4kTEZ64N2txgiBIU80UDUPJGQxPFaVg2OtVaPPjHfo4Qu9hooXy4LZn0efsQPlBzfB2qvsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLHkWsYj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A1E6C4CEDD;
-	Mon,  7 Apr 2025 06:04:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744005902;
-	bh=QdlPTuGFDzHLTqGSHvpyqeL+wyYF1szxTKJZUAoSyAs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lLHkWsYj5spzqNUuH90Xd8qyXgoOZloNmjJ0gHK4EvJvTCrNLAwG+3nIJ1Y0l7CuZ
-	 8mUzIFqjh6IqSYAnZFL1cUspFhtUhYFTsJ7Dja2j9XI2Gg20dwN9Dyx2uxZrv1fQRZ
-	 2gcqVR2csGTopegBDIC3qjkr4RVCKJOGV4m/9voKS8eYYavf86BKA7FFRwKTnKznK2
-	 /rDyDVzfe/HHv7a42+Iuw4CxJRwpkRSe3JU8w96H5SsHCwSHvGktXSzNUeEwdWC63c
-	 w9V+Q4gQkFmABRMbrJbUEiNiHKAR8X4QFDRjrgiQOswgD1hY1YXbrtt+okKtKsU7gn
-	 oCjUqy44ya8Kg==
-Message-ID: <befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
-Date: Mon, 7 Apr 2025 08:04:57 +0200
+	 In-Reply-To:Content-Type; b=ssJibcDNM3aZDhWuOBYZBrauhkfJqLsRd8wL/mSAMaKAluMu65sEHMjF8l03JzDM9ZPMJ8QnIWLv7MssHO4AV1Jlk/B0l7X7J8igEJ9Re4sAIxeosaVDiIGMBtp/gUYHuM5gVGxsxepujaUXfrtHjdVmoBzxN3alrhnIfHqNMpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ql55X4yx; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54954fa61c9so1492947e87.1;
+        Sun, 06 Apr 2025 23:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744006208; x=1744611008; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8tQt3XJvixzCS8l8Xq4o4BtUJ6YS65Te0LIUOY4NnHk=;
+        b=Ql55X4yxHd/gwcN9Ai2a5moMPA0InDNCJI2WPgH7REoyAnUbusstFrD5xyzKquh7Kh
+         k4vFlfG8rB5fUcjkfQcyTDFY/a1x5RGi0If8BL6vUtzRCBBFI3wBkbf5OHzuMCyM6cAu
+         okrjVfqokEcLKDpROiVtLShrzL+GnEMhvPMDHW8KLd4KnNC1qZ5p2Gc6RWMc5mFI41xv
+         JYmHBNXr8Cq+0zu1RGmfJrA2ERDJjGVu5cTm8WCzADfvdITgfBjqk89FfUx+U1IXQbbX
+         f2KIctMU/y2Y/HbBKXpZH1dBLkKXjntD+deYmhePUEQd5UCquoT9A/IBKKlyFT91J1k2
+         V9AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744006208; x=1744611008;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8tQt3XJvixzCS8l8Xq4o4BtUJ6YS65Te0LIUOY4NnHk=;
+        b=PsXvrhXlbBeZIq7A8o0XeRqZtKMKxbyVTRYW67veBORtCtgZQFX9x00+Ta+cbaz58M
+         jvlMAI1IzZL9sNzDq+gfOBEUplAaT+OkOXbreMKRix15jkamYtwh7Etqr4q3nyYMsBmF
+         790qSE4Vfi+HuRYDORn9In/3MmfCg1o0NOrxt4quciwY63uQpPoQvdANqb3SLRr1aMci
+         f08hh6nz6p4jCczJjS1AVkJNyPYDA/kqVnprRZtBRkp/IwG4OyU63OjJ1ET9r0nPAbtN
+         5cXz76wSkEEDNgDHZkw+JxKVO2JoJg3H8+L4eq6ZumLqhndlRmNrzXdjX0c7KRpOdWFj
+         YvJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwsaFkX9f+pa9vQeus47O/aFzmJxcxMaSZ1jsKXEJnV45OG3dUv+V47M/N6irBD37FWc4R6ij8aAob@vger.kernel.org, AJvYcCWK6c9eg+5F6IPzmTHs28PHfnFhoF3ueZvaWqV7asBmyRLkoGQzUrEfzCaNH+vgdhkHRy0m5lyyOT9R@vger.kernel.org, AJvYcCXPNAYsKPoCDqAoMAR8Tp9Y0gKfAO9G/VhxRe3imm+4HYBSAk9C8VD9xYyMPXWtHV39PhYBnRFUDv6ig5u3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsAOcMLdKUNzLZ+BCG6l3zn4lZwP3X8n6IkEieRW1MVGH4xWFg
+	Hv9oryGhezXv/2nJwX9EuazlM76n6YJmrjhfjcL5YD+iZfhZu4GN
+X-Gm-Gg: ASbGncs2CTp29OrdwJXpEGziLvfbKXWDHSypMzQFVrl/VorFJ+q46CUmsMGAAMyyk1s
+	wow6unLFe4YpmpweNuLSClnEG2d1cqj8CwSOV0AGeaWWru1p9v0y/AyHj3O9TOZRpRB30pNZT+I
+	gaSw9yw84KGZggiJytrTTROeydIcKDZVF2EoiSaBQvk7o4oeoaoX8i61KsJJfNHOxW97gXzs7oN
+	LzoRrzlbG9aNs7nBoXN/+80qGuuFHdpz3qWoWjXrYIdrkbQv263vGdnSbkcYbRS5h5C9zG6xrpW
+	uOKWydHBwziAA+jzVpktOyQOGhk0fUKrIUf5ZZ9z0yaNmHFtb3f2xR/Olvq7l0uo3U4JHYHd5CV
+	Ikfxu9eJh4HWkFXpdKAvIzF9yFQ==
+X-Google-Smtp-Source: AGHT+IGQciRZD1LR83G4S8zlR0hZxoK4W9ubK7Hlcuv4dP4RJxWWqZW4WXzMhLTpCHd17H+HQihVkw==
+X-Received: by 2002:a05:6512:e9a:b0:54a:cc75:3d81 with SMTP id 2adb3069b0e04-54c22769a54mr2960657e87.4.1744006207979;
+        Sun, 06 Apr 2025 23:10:07 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e5c2158sm1138523e87.93.2025.04.06.23.10.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Apr 2025 23:10:06 -0700 (PDT)
+Message-ID: <99d1d972-d9a5-4ca3-811a-b22083bea4e6@gmail.com>
+Date: Mon, 7 Apr 2025 09:10:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,102 +82,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
-To: Faraz Ata <faraz.ata@samsung.com>, alim.akhtar@samsung.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- rosa.pila@samsung.com, dev.tailor@samsung.com, suyash.bitti@samsung.com
-References: <CGME20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80@epcas5p3.samsung.com>
- <20250318075635.3372599-1-faraz.ata@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250318075635.3372599-1-faraz.ata@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 6/6] iio: adc: ti-adc128s052: Support ROHM BD79104
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1742474322.git.mazziesaccount@gmail.com>
+ <8e10f2d82362ca7c207324a5a97bb1759581acea.1742474322.git.mazziesaccount@gmail.com>
+ <20250331122247.05c6b09d@jic23-huawei>
+ <a35ab4b1-4d6a-4b95-963a-96b2ab4c05e9@gmail.com>
+ <20250405184346.3c4b1234@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250405184346.3c4b1234@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 18/03/2025 08:56, Faraz Ata wrote:
-> +
-> +		usi_17: usi@10d800c0 {
+On 05/04/2025 20:43, Jonathan Cameron wrote:
+> On Tue, 1 Apr 2025 15:33:15 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 31/03/2025 14:22, Jonathan Cameron wrote:
+>>> On Mon, 31 Mar 2025 11:03:58 +0300
+>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>>    
+>>>> The ROHM BD79104 ADC has identical SPI communication logic as the
+>>>> ti-adc128s052. Eg, SPI transfer should be 16 clk cycles, conversion is
+>>>> started when the CS is pulled low, and channel selection is done by
+>>>> writing the channel ID after two zero bits. Data is contained in
+>>>> big-endian format in the last 12 bits.
+>>>
+>>> Nicely found match.  Sometimes these are tricky to spot.
+>>>    
+>>>>
+>>>> The BD79104 has two input voltage pins. Data sheet uses terms "vdd" and
+>>>> "iovdd". The "vdd" is used also as an analog reference voltage. Hence
+>>>> the driver expects finding these from the device-tree, instead of having
+>>>> the "vref" only as TI's driver.
+>>>>
+>>>> NOTE: The TI's data sheet[1] does show that the TI's IC does actually
+>>>> have two voltage inputs as well. Pins are called Va (analog reference)
+>>>> and Vd (digital supply pin) - but I keep the existing driver behaviour
+>>>> for the TI's IC "as is", because I have no HW to test changes, and
+>>>> because I have no real need to touch it.
+>>>>
+>>>> NOTE II: The BD79104 requires SPI MODE 3.
+>>>>
+>>>> NOTE III: I used evaluation board "BD79104FV-EVK-001" made by ROHM. With
+>>>> this board I had to drop the SPI speed below the 20M which is mentioned
+>>>> in the data-sheet [2]. This, however, may be a limitation of the EVK
+>>>> board, not the component itself.
+>>>>
+>>>> [1]: https://www.ti.com/lit/ds/symlink/adc128s052.pdf
+>>>>
+>>>> [2]:
+>>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/data_converter/dac/bd79104fv-la-e.pdf
+>>>>   
+>>> Prefer Datasheet tags with # [1]
+>>> after them for the cross references.
+>>>
+>>> Those belong here in the tag block (no blank lines)
+>>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>>
+>>> One request for an additional cleanup precursor patch given you are
+>>> touching the relevant code anyway.   It's a small one that you can
+>>> test so hope you don't mind doing that whilst here.
+>>>
+>>> I'm relying on the incredibly small chance anyone has a variable
+>>> regulator wired up to the reference that they are modifying at runtime.
+>>> I have seen that done (once long ago on a crazy dev board for a really
+>>> noisy humidity sensor) when the reference was VDD but not on a separate
+>>> reference pin.  That means we almost certainly won't break the existing
+>>> parts and can't have a regression on your new one so we should be fine
+>>> to make the change.
+>>
+>> The change you ask for is indeed small. I have no real objections
+>> against implementing it (and I actually wrote it already) - but I am
+>> still somewhat hesitant. As you say, (it seems like) the idea of the
+>> original code is to allow changing the vref at runtime. It looks to me
+>> this might've been intentional choice. I am not terribly happy about
+>> dropping the working functionality, when the gained simplification isn't
+>> particularly massive.
+> 
+> Hmm. I suspect this was added at my request (or copied from where I requested
+> it)  Back when we did this there was no advantage in doing it at probe
+> as it was just a question of store a value or store a pointer we had
+> to get anyway.  So I tended to advocate what I now think was a bit silly,
+> that someone elses board might have it changing...
+> 
+> User space wise, what code checks for random scaling changes?  So it
+> was best effort at best anyway!
 
-Messed order. Keep nodes sorted by unit address (see DTS coding style).
+Ah, right. I suppose this should've been accompanied with scale setting 
+which could've changed the regulator voltage - and I have no idea if 
+such hardware would make any sense.
 
-> +			compatible = "samsung,exynosautov920-usi",
-> +				     "samsung,exynos850-usi";
-> +			reg = <0x10d800c0 0x20>;
-> +			samsung,sysreg = <&syscon_peric1 0x1040>;
-> +			samsung,mode = <USI_V2_UART>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +			clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
-> +				 <&cmu_peric1 CLK_DOUT_PERIC1_USI17_USI>;
-> +			clock-names = "pclk", "ipclk";
-> +			status = "disabled";
-> +
-> +			serial_17: serial@10d80000 {
-> +				compatible = "samsung,exynosautov920-uart",
-> +					     "samsung,exynos850-uart";
-> +				reg = <0x10d80000 0xc0>;
-> +				interrupts = <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&uart17_bus>;
-> +				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
-> +					 <&cmu_peric1 CLK_DOUT_PERIC1_USI17_USI>;
-> +				clock-names = "uart", "clk_uart_baud0";
-> +				samsung,uart-fifosize = <64>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
->  		pwm: pwm@109b0000 {
->  			compatible = "samsung,exynosautov920-pwm",
->  				     "samsung,exynos4210-pwm";
+The slim chance I can imagine is that the reference voltage can't be 
+set/known at probe time.
 
+>> Because of this, I am thinking of adding the patch dropping the
+>> functionality as an RFC. Leaving that floating on the list for a while
+>> would at least have my ass partially covered ;)
+>>
+>> I'd rather not delayed the support for the BD79104 though. So - would it
+>> be okay if I didn't implement the clean-up as a precursory patch, but
+>> did it as a last patch of the series? That will make it a tad more
+>> complex to review, but it'd allow taking the BD79104 changes in while
+>> leaving the RFC to float on a list. (Also, I'm not sure if you can push
+>> an RFC in next without taking it in for the cycle?)
+> 
+> I'll probably just merge it even as an RFC :)  That way it's my
+> fault if we break someone and they shout!
 
-Best regards,
-Krzysztof
+That's fine for me. Well, doing it this way around (as a last patch) 
+should ease reverting, should it be needed.
+
+Yours
+	-- Matti
 
