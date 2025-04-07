@@ -1,126 +1,194 @@
-Return-Path: <devicetree+bounces-163917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAC1A7E7B0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:03:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D808A7E7BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:06:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C38D31888BE3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:57:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BC9716CD97
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09640214A75;
-	Mon,  7 Apr 2025 16:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDBD207A3B;
+	Mon,  7 Apr 2025 17:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pYgofEh3"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="X97KDpLR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7AC71F4289;
-	Mon,  7 Apr 2025 16:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786C92153EF;
+	Mon,  7 Apr 2025 17:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744044974; cv=none; b=eDSj5Yc7tUa86YzunmhsMPPOA/fJ7e29XWTGdPdl0Buj3K2C/Z5XTZi4VIDxtqCgpMD4Jm2AIG6L6+o9WL8nZGF+gUhYSuD2/LergjBjHLoZZiBF+YUhqXsVryczVBDXz81art/HSQzKAO+3v3gg7xGqk88qM8cmnFtgLoXcjFU=
+	t=1744045258; cv=none; b=XKE0ujri2J+aOKXw0QVtRccS583ntKJ7gxUbxelbJMWvvV0fO7AFO5qe7F8CimjYfwajiGyVKeCN1SUlkGo6ugjJ1PdaC2yt7yZEcX4JqfDJC/Hmw3pRgnu+w4gZnI4mGbEr8jX3eOmobjZISEO4QEpTYhafYFRYYYLH/CmHQvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744044974; c=relaxed/simple;
-	bh=ymohgFDi4LwP6+Gv1CbYrCj/hTTJ8VYbtY7mVpem+4I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eZYS+S3lF0YjE3WUe2vTD41sQdhTW4TPIQH06aoOrUXIKA0ESvE5SwEB4NViQIJgS9ICut6KKvQGRO96V38jTTa71s0ubFbJFKB0epEgJMDfDmsaxZh+QLphTUuaLPFkXZ0cRfefRFcl1TGnQYu8II+NwZD9RgKhltcSte4pdeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pYgofEh3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2712CC4CEDD;
-	Mon,  7 Apr 2025 16:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744044974;
-	bh=ymohgFDi4LwP6+Gv1CbYrCj/hTTJ8VYbtY7mVpem+4I=;
-	h=From:To:Cc:Subject:Date:From;
-	b=pYgofEh3AKidigQiwzejSdSQLNcVkNiLqs1Jia4hB1g8iPGht4pKtBvKEie3ph6Sd
-	 tSAvqQviln4Vz7K/7QG98uQiIMrDex6OJlzU11WhZT6HXOuTP+K77RPQUndUS2eJwm
-	 qLtv3r2BJi1AKxHzspdtxHCu1BhQi66xvj/DUOQ9SrLzpTcyPYOC9LRuIDjen1kEZw
-	 ZrjfbroFM2LCB0dT1J8EzKX45Dpkbtj7/4r/YoiAuwsdKHx8ygLx0cBbS4/YNKBCV9
-	 JJFIYHO6XOv+NXJHhaEXwcnohZB89tg6AfP56DxdKM81pd+/xNyTZmkxgOWYKc4g8v
-	 Idf/+cd1WnqAA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Zhang Yubing <yubing.zhang@rock-chips.com>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: phy: rockchip: Add missing "phy-supply" property
-Date: Mon,  7 Apr 2025 11:56:06 -0500
-Message-ID: <20250407165607.2937088-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1744045258; c=relaxed/simple;
+	bh=8EEyvQc+5pIBnE2p/7oYhHwo0mC7KQRRPdeL6ZI6qiw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OpQAj6788TDffSia/B3yjRPi6y8nrWxm9/rZYcQwBxN7bZCDP9y/c9q29RfJ+1f6iVQJQXMcUFNxNQ72gGXRglbLswnJI3VbkBo7fQtUDBKDI6BJn2J8V5TGJJHbHRNnGDNZw8AwXgYwmuDwRXJnAyswbo+Wvms0LKpvP3pxsh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=X97KDpLR; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <1aec6dab-ed03-4ca3-8cd1-9cfbb807be10@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1744045243;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oLDAmjclRasSVpfEYONAaYZO702FQiJJq0bMQnxY2As=;
+	b=X97KDpLRfMghEYf9sxoBxmw793lbUNyIZX2MhCZr0epog6FScf9fPv/rbXMCRI4WlxGsF1
+	ACaKep6rqwnu785TYkn30Pqnpl9BJRWA+kOGZfrTVeDuXFPVxZz98GZ//C62FkDo4bfBee
+	qs640GM1x6TnhIGk7qK8bfPHB7/TZxI=
+Date: Mon, 7 Apr 2025 13:00:34 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [RFC net-next PATCH 00/13] Add PCS core support
+To: "Christian Marangi (Ansuel)" <ansuelsmth@gmail.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, netdev@vger.kernel.org,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+ upstream@airoha.com, Heiner Kallweit <hkallweit1@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Clark Wang <xiaoning.wang@nxp.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Joyce Ooi <joyce.ooi@intel.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Li Yang <leoyang.li@nxp.com>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Michal Simek <michal.simek@amd.com>,
+ Naveen N Rao <naveen@kernel.org>, Nicholas Piggin <npiggin@gmail.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Robert Hancock <robert.hancock@calian.com>,
+ Saravana Kannan <saravanak@google.com>, Shawn Guo <shawnguo@kernel.org>,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Wei Fang <wei.fang@nxp.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-doc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linuxppc-dev@lists.ozlabs.org
+References: <20250403181907.1947517-1-sean.anderson@linux.dev>
+ <20250407182738.498d96b0@kmaincent-XPS-13-7390>
+ <720b6db8-49c5-47e7-98da-f044fc38fc1a@linux.dev>
+ <CA+_ehUyAo7fMTe_P0ws_9zrcbLEWVwBXDKbezcKVkvDUUNg0rg@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <CA+_ehUyAo7fMTe_P0ws_9zrcbLEWVwBXDKbezcKVkvDUUNg0rg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Several Rockchip PHYs use the "phy-supply" property, but don't
-document it. Add it to the current known users.
+On 4/7/25 12:46, Christian Marangi (Ansuel) wrote:
+> Il giorno lun 7 apr 2025 alle ore 18:33 Sean Anderson
+> <sean.anderson@linux.dev> ha scritto:
+>>
+>> On 4/7/25 12:27, Kory Maincent wrote:
+>> > On Thu,  3 Apr 2025 14:18:54 -0400
+>> > Sean Anderson <sean.anderson@linux.dev> wrote:
+>> >
+>> >> This series adds support for creating PCSs as devices on a bus with a
+>> >> driver (patch 3). As initial users,
+>> >>
+>> >> - The Lynx PCS (and all of its users) is converted to this system (patch 5)
+>> >> - The Xilinx PCS is broken out from the AXI Ethernet driver (patches 6-8)
+>> >> - The Cadence MACB driver is converted to support external PCSs (namely
+>> >>   the Xilinx PCS) (patches 9-10).
+>> >>
+>> >> The last few patches add device links for pcs-handle to improve boot times,
+>> >> and add compatibles for all Lynx PCSs.
+>> >>
+>> >> Care has been taken to ensure backwards-compatibility. The main source
+>> >> of this is that many PCS devices lack compatibles and get detected as
+>> >> PHYs. To address this, pcs_get_by_fwnode_compat allows drivers to edit
+>> >> the devicetree to add appropriate compatibles.
+>> >
+>> > I don't dive into your patch series and I don't know if you have heard about it
+>> > but Christian Marangi is currently working on fwnode for PCS:
+>> > https://lore.kernel.org/netdev/20250406221423.9723-1-ansuelsmth@gmail.com
+>> >
+>> > Maybe you should sync with him!
+>>
+>> I saw that series and made some comments. He is CC'd on this one.
+>>
+>> I think this approach has two advantages:
+>>
+>> - It completely solves the problem of the PCS being unregistered while the netdev
+>>   (or whatever) is up
+>> - I have designed the interface to make it easy to convert existing
+>>   drivers that may not be able to use the "standard" probing process
+>>   (because they have to support other devicetree structures for
+>>   backwards-compatibility).
+>>
+> 
+> I notice this and it's my fault for taking too long to post v2 of the PCS patch.
+> There was also this idea of entering the wrapper hell but I scrapped that early
+> as I really feel it's a workaround to the current problem present for
+> PCS handling.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-v2:
- - Drop maxItems
----
- .../devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml   | 3 +++
- Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml  | 3 +++
- Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml  | 3 +++
- 3 files changed, 9 insertions(+)
+It's no workaround. The fundamental problem is that drivers can become
+unbound at any time, and we cannot make consumers drop their references.
+Every subsystem must deal with this reality, or suffer from
+user-after-free bugs. See [1-3] for discussion of this problem in
+relation to PCSs and PHYs, and [4] for more discussion of my approach.
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-index 888e6b2aac5a..3e101c3c5ea9 100644
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-@@ -42,6 +42,9 @@ properties:
-       - const: phy
-       - const: apb
- 
-+  phy-supply:
-+    description: Single PHY regulator
-+
-   rockchip,enable-ssc:
-     type: boolean
-     description:
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-index b42f1272903d..8b7059d5b182 100644
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-+++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-@@ -47,6 +47,9 @@ properties:
-       - const: pcs_apb
-       - const: pma_apb
- 
-+  phy-supply:
-+    description: Single PHY regulator
-+
-   rockchip,dp-lane-mux:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     minItems: 2
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-index ba67dca5a446..d7de8b527c5c 100644
---- a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
-@@ -46,6 +46,9 @@ properties:
-   reset-names:
-     const: phy
- 
-+  phy-supply:
-+    description: Single PHY regulator
-+
-   rockchip,phy-grf:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: phandle to the syscon managing the phy "general register files"
--- 
-2.47.2
+[1] https://lore.kernel.org/netdev/YV7Kp2k8VvN7J0fY@shell.armlinux.org.uk/
+[2] https://lore.kernel.org/netdev/20220816163701.1578850-1-sean.anderson@seco.com/
+[3] https://lore.kernel.org/netdev/9747f8ef-66b3-0870-cbc0-c1783896b30d@seco.com/
+[3] https://lpc.events/event/17/contributions/1627/
 
+> And the real problem IMHO is that currently PCS handling is fragile and with too
+> many assumptions. With Daniel we also discussed backwards-compatibility.
+> (mainly needed for mt7621 and mt7986 (for mediatek side those are the 2
+> that slipped in before it was correctly complained that things were
+> taking a bad path)
+> 
+> We feel v2 permits correct support of old implementations.
+> The ""legacy"" implementation pose the assumption that PCS is never removed
+> (unless the MAC driver is removed)
+> That fits v2 where a MAC has to initially provide a list of PCS to
+> phylink instance.
+
+And what happens when the driver is unbound from the device and suddenly
+a PCS on that list is free'd memory but is in active use by a netdev?
+
+> With this implementation, a MAC can manually parse whatever PCS node structure
+> is in place and fill the PCS.
+> 
+> As really the "late" removal/addition of a PCS can only be supported with fwnode
+> implementation as dedicated PCS driver will make use of that.
+
+I agree that a "cells" approach would require this, but
+
+- There are no in-tree examples of where this is necessary
+- I think this would be easy to add when necessary
+
+> I honestly hope we can skip having to enter the wrapper hell.
+
+Unfortunately, this is required by the kernel driver model :l
+
+> Anyway I also see you made REALLY GOOD documentation.
+
+Thanks. One of my peeves is subsystems that have zero docs...
+
+> Would be ideal to
+> collaborate for that. Anyway it's up to net maintainers on what path to follow.
+> 
+> Just my 2 cent on the PCS topic.
+
+--Sean
 
