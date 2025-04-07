@@ -1,348 +1,1012 @@
-Return-Path: <devicetree+bounces-163605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD7DA7D733
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:07:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBB3A7D7E8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 10:32:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DA72188C023
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6E723BB91F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38957221DB9;
-	Mon,  7 Apr 2025 08:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64233227EBB;
+	Mon,  7 Apr 2025 08:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="EbME2Rmi"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="h5uRR/hc";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="vB+RD+kD";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="h5uRR/hc";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="vB+RD+kD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11A7F10FD;
-	Mon,  7 Apr 2025 08:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744013249; cv=fail; b=mF9ZNmsoQ3yD/LkLpHFleeqalqmOAJAvvDf5yz13xWWb6A3Q/F9U/QVb2hKwFx7LPhqZRbKIQvUCgasxWl2t4WgM0+0Z5m7tRLn8a4EpJmUBBKFFwt79iaEXNzjCjZaWS+GzsAyyFu96ZbgoSegqZV8c3T97RiGC+Fg3ZHaZ2fs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744013249; c=relaxed/simple;
-	bh=0NXjtFz+PXnpFcySSQvo11SiWyWZtq21X0dvZHk8/sI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ZmQMDgnG1ZFCCal0goQ6jZdNCt253DVMi45D3ydkGbB+i+y/vSR+dOKvwRWZWek7o46DJnFujgjm65IdoA/7F3gAqOjSREU8vZSrlUCXMPGxzifHC9lhs2qFe7NnfQ3znv6lyJG9I2ElhhtGuSTmiskGlbHv/is67S6TS3HW/AM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=EbME2Rmi; arc=fail smtp.client-ip=148.163.139.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375854.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5377lTDx011706;
-	Mon, 7 Apr 2025 04:07:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=0NXjt
-	Fz+PXnpFcySSQvo11SiWyWZtq21X0dvZHk8/sI=; b=EbME2RmifrnRvcwzR8x7c
-	7X2uDpQm7IfDdVFiQnnHZfqYUduii1DtSezKFx6Yy3VzUZVL29rSZ8vzuzSkm4Tq
-	lIaKu/xOB7LSz9WJwUZnPEZGSCJuWkp54OIS8daRqbakO+JxxCOa9tAbV7902BJa
-	3PEidS8EDxmnBuoAd8QPDwztrBISCjP55M+WU2pndeQwbkz0Xvly5RmI+9JuvJaJ
-	hBZ/iW9rN1iwVbrTU9qG4X/fdNl5fvfbIGbt9aOgAPSWsKlwgruyN1YZV15cNhz3
-	m4d/3DLpRPzrzSOwVTjaAp549SOZ+bRAfH34ztGDJTlHQmc4HdvY4l9M1mVioIXR
-	g==
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2042.outbound.protection.outlook.com [104.47.66.42])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 45upjhkt4p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Apr 2025 04:07:11 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iJTbRde5JtwISFL0OssAMV04rFfztnkrOv+2kLh3ZpRo/9FxB7el6jroTC3ohQPQivpcceWtSztaYfA5movjmbmh68J55h0iyu3NX9gNgUIhggrh4KWsBeZTF6ILinFb4VqVu3lcdlSBt7+uMeB1lcvi9Zft5QA1sbUYZ72lZqid/ovKolEdqwoAfISYORrm5p00iyRTVQ4X7LpsyCnQ4XgNosM0VOsi5aTPH8wKF5lQdYUtujCxesK+vWuOVsAJiVHnF3bHX+e4HEUUkeyOUAgHstpOfNbWix7m4CwEk9t7swfQZMMt/ZliJLbrwXBTXy4Cj1PdwgfeCI/i4REe/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0NXjtFz+PXnpFcySSQvo11SiWyWZtq21X0dvZHk8/sI=;
- b=qWln4Srih4jWLDR5JVo4C2aRRN4I5h8N3SQplGQySJFNyKfJxM00RGYLGMwJ7Gz6X1GQs9iNvB5Qj3LwHkiRhrXXKNNNm6Kecji6utyBDftgO2/jh/mSCkUBMqxIyUVuO1zwSmARKwRhHsdQJ54cI6KrICpPeB24fKnS84jcKevYU7qXBfkntxisd9UWfAnmYsrwJ4v1JVUEzoNCqSxQeCzS+Ph44Gu81icuybIAozIF78uOrEICmRWu3wRttSSmLtnn+BpO6AyfwTydi6JJMnaeeOSD5dgASn3bYf5WR6ldOv3yxj90kekhMpx3EeRef4aRxkI83da/wBFMcTFw9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Received: from PH0PR03MB7141.namprd03.prod.outlook.com (2603:10b6:510:296::20)
- by CH1PR03MB8141.namprd03.prod.outlook.com (2603:10b6:610:2b1::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.33; Mon, 7 Apr
- 2025 08:07:08 +0000
-Received: from PH0PR03MB7141.namprd03.prod.outlook.com
- ([fe80::c559:3d31:1af3:b01]) by PH0PR03MB7141.namprd03.prod.outlook.com
- ([fe80::c559:3d31:1af3:b01%4]) with mapi id 15.20.8606.029; Mon, 7 Apr 2025
- 08:07:08 +0000
-From: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael"
-	<Michael.Hennerich@analog.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v3 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Thread-Topic: [PATCH v3 3/3] iio: dac: ad3530r: Add driver for AD3530R and
- AD3531R
-Thread-Index: AQHbpFodVQ0K5gQpPUCv8ilGKsClk7OVQjGAgAKc51A=
-Date: Mon, 7 Apr 2025 08:07:08 +0000
-Message-ID:
- <PH0PR03MB714102E85132F30477EE7680F9AA2@PH0PR03MB7141.namprd03.prod.outlook.com>
-References: <20250403-togreg-v3-0-d4b06a4af5a9@analog.com>
-	<20250403-togreg-v3-3-d4b06a4af5a9@analog.com>
- <20250405171155.091edbae@jic23-huawei>
-In-Reply-To: <20250405171155.091edbae@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR03MB7141:EE_|CH1PR03MB8141:EE_
-x-ms-office365-filtering-correlation-id: bde5b188-d151-4544-9175-08dd75ab3172
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?eXZTdTBoWmhPQjZzVkNLcWswN0plc0lWNmx6TmIxcTNnZWYyQ0ZDRVI1NDRh?=
- =?utf-8?B?MS9MNDM3Q0VrY1d3S0FJUUtXM2ptcmpEYktPVW5YM2Y2dGpmbDI4M0diYWVE?=
- =?utf-8?B?ZkJGYzM1NGlSbUlMVEczNEtaMEM2RkJBTHBQSmxiVyt4NGU4SDZ3THlXWFls?=
- =?utf-8?B?cjB6YnNrSmdpTVdEaFVyLzl3VzYrcHJYL3RQSmpUNytGdElnYUFRWHlmYlI3?=
- =?utf-8?B?c3NxNy9tcFhqV0tHb1JDL01ZK2lWaUovb0tSSmpaai9GOCtTYXBrQVFvYThX?=
- =?utf-8?B?YTFuWHMxTlkzR0VQUENKZzFNeHpmMXVnU1ZNVENWOFJzRFF4UHU4ajV0eGhR?=
- =?utf-8?B?NER6MTBCeklZT2d5MDlXMnEyUmJpa011Ry8wUCtGLzJsN0g5MEtyNUI4YVJR?=
- =?utf-8?B?a0ljcENsZUMzMzg5MmVKT0lWV2YySFZ4T0tsRklsN1ZpUUdkcDMrdWhHNFUx?=
- =?utf-8?B?ZXlEeDdDeXh2cFVrZUN5WkQ3TFlYaVlaNlFFcDVhMjlSdUxERXhRS0U3bElo?=
- =?utf-8?B?Z21Va1JrVnF3UUE1MTZWYXdld0xkcmFYWkowMWJOZzZTcVIyN0FaQk5qKzZJ?=
- =?utf-8?B?dGRDekNzdHhScEtQYUxLSkw2eG9EN1RlK0tKeDBjeGlkWmRLU0N5anBsUWNm?=
- =?utf-8?B?bGp6OW41V0ZFYzEzczJMMGs4OVU5ZEdaMEJsNTFzNDhPS2sxTENOZDFmOEhZ?=
- =?utf-8?B?OVBNU0NaY2cwTmRjczVESzVhUWwxYTFIdlEzNVJBWVNZODU4b3F4SFhmKy85?=
- =?utf-8?B?RFVNQnA4azJQbW1yNFNIamIrZC9IcFc3c0NVTEI4bXM2S1NKb2l6eHlvejdN?=
- =?utf-8?B?SDVrakorQzJKQXgya0RWT2F5RVNBemZSR25mcTd0VWpIRVVBa0srMFNHU0Mx?=
- =?utf-8?B?TkZ2TUlucithZ2czWGFrcGdCdGtiSmE4bWpoSmpDVWFncUNuN2hIVHgrS3hM?=
- =?utf-8?B?YVhxZlcyRTZrWnNnNDZNZ1dsbWw0YmNiNUZmV2RkL2lFSWpnK21HdEdVZkcv?=
- =?utf-8?B?OS8zR2RYdXZaRVRZQ1o4eGZPQThESWFvT2g3aFhKRHlYeHpJWFdGbnlmTzQ2?=
- =?utf-8?B?WXlKMG9vQmt5Ty8vRXE1Y2JkdW5HN0RhcWVPMklxZ085L2lrNnU3NWxmZ1NZ?=
- =?utf-8?B?U0JaU1hYY3IxeThHbVdXN3IyNXZHeitSRURwQVR0UlhLQldvbTB6NjBjYzFr?=
- =?utf-8?B?YXpKWXBoZG5Kam55d1BoQlpyemJudG92Um9iWERDcnlWUVBtUGcyNVF2b05o?=
- =?utf-8?B?ZExaSnhnS2ttd21LeWxndmQvK3VIUGpQTGFnNXZVMkpUM3owZytSQjVDeE51?=
- =?utf-8?B?b0JaRTFJN1FEU3E4OEdTUG5QeGZIU1l1Sy9rcEYxOEZFVExEQndaL0pvU08z?=
- =?utf-8?B?bWtqWXNUNi9icWozT0ZNY3VFNkN2ZlBKL3crbW9hckdXTWNRT1ljN1RTV3dG?=
- =?utf-8?B?L3R4UDludWtMSjQzYW5Ud0JCMG9URmd0d2ZmNlBBdTJTTTYvVEYvRlNiVmlL?=
- =?utf-8?B?YXN4TzI2UkNndmVCSkxxZXIzK0wzcndKN0JLVzN3VmcwOXgvNTNIc2JkV3d5?=
- =?utf-8?B?UFJYUWRlYm9OZk05THdxemt5eGZaQnBCdUQ1OTlTZ3d5cjcwWUZ0QlBsTmxz?=
- =?utf-8?B?dE1Oa3YvK3RRS2dreDZVbmxueE41NUtNcFUvY3ZlVCs0UDJDaTM1SVFaeXZu?=
- =?utf-8?B?aXdURVZBaHZJOHE3ZmRjc1BQVmk1L0pWV0NhQjlOS2MwSUhMY0R4eHErMnNm?=
- =?utf-8?B?YjRwdlFSc2ZyRkNNVDQ2NWpjajNGT0tHcVRLdUVmMExCT1o4bTJIWnVKVlpp?=
- =?utf-8?B?RmN2R1hZejBKMU82c3Q2a0hKeVdWWnZJbitEdmExeW1qd3B3NlB6VlBBVFRF?=
- =?utf-8?B?V01WQVVqd3N2YlZXWkxCQ3R0N2J1M2haOWc4TUFDTlhVcWIyOUdjS0N5Smhy?=
- =?utf-8?B?bERnZlVIYXQ2S1dNZlZ2TGZhQnRQK0lCUW9jcXVFOHRQZ04zOW1KaFdmVlE5?=
- =?utf-8?Q?ktlRi2pSwNXTRMgC8WHuOOauIIjmNo=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB7141.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?dXJaUnh1ZXU4RlF3YVUzdTdnbnBxcFozcDBNOVRrMWhWL21ZS3V5b0JkNGEz?=
- =?utf-8?B?aDVvaWcxaElIc2I5NVU5S1E5V2ZWeXJTd3VKaUxzczZXSEdnN0xRa2kxbThQ?=
- =?utf-8?B?NWg3T0hKaTBTWjJsdlRtRHF5YXNqa0M5NmU3ZWp4ajZrNkwzV1pNdzJvczFa?=
- =?utf-8?B?bGIvWlhPUGRyZ2R2NytSODZ1aVprTVkvWmU1VmJQeFA3Mys3a1ZMcXVObFJV?=
- =?utf-8?B?YmJMUFZiUVhoUyszSmpSM3FiL0h5anZ3OUk0ZHFoUFJXeVZJSExWTFg4bGRp?=
- =?utf-8?B?cmVDUXNBWTZKc2tMOTBqWUlMdXoyY0kreWdsVmFFdUhXczNseDlrRjB5bkxu?=
- =?utf-8?B?cWJuM21GUENHVnFhWHFMaG8vK3hQeTdaS0ZlZlliWHozWENTMzMxSkpnUjRY?=
- =?utf-8?B?OVBBNkdSc0Mwdlpxc3NmdVFFbE8zUnBCbXZXcDhGdTV2QnRLYld3ZC93SmZN?=
- =?utf-8?B?dEdDK1p5cFE2SWJ6aGFxR0QySXpYNFpXNnJJZzNaMGQ0Rlk4ZlFhLytZMngx?=
- =?utf-8?B?QU5naUsxd0hYalBzbXF3enpnRmJmNUd2KzYxc1FTbEtJUjJXUE03cFZYZkVk?=
- =?utf-8?B?YzZad0R5OHhrbE1acnFMMmZoSTRqYjA1Mnc1YmY2Wm8yc1k0QjMrcUdFNkV4?=
- =?utf-8?B?a0hVMmdadGx4TVB4U2NSL0lwVEErRHRDZ2ltNXdVTm9RSXc3L2hLeWxoK013?=
- =?utf-8?B?Ym1FbmdXNC9EUXpvemo3K2hMa085WkFtaGVEMXh1Q2IzSUswV2J1WXo2aUFx?=
- =?utf-8?B?ZWpsV012TE92SHNBNFhMZ1RSWGRCdGlaS0FPODEyZURvU2djM2xuK2RyRXpX?=
- =?utf-8?B?WUZnTUpaQU1YRVJjN0wwZ0pJcmdTSFYrZkpTbC9SMTN4QnpueGtHdXBWS2gx?=
- =?utf-8?B?dE01d0hpQVpCMFNJWEhxZzlPSVlmeUsvZ0x3RnpoOGhRVzhQQTZuc2QzeU1j?=
- =?utf-8?B?Y0Q5N3VCcGE4SU5iREE4VHViMFZ5ZGJvQnVwYUFuSGhLSnNaUllCUC9xRktE?=
- =?utf-8?B?NEhhaU81RGIvRUh2cHJpZklnZE5Rbmd6ZzJJY2drTWhhRFVVWXlZaGpQYUV4?=
- =?utf-8?B?WExMUjY2NzRJRDVwdFhqNW9mNkRDMk1BbzU5ZjZ4Zmc5ZktKcHRjZ0NReERM?=
- =?utf-8?B?V0R6NE9odXdYYlJuL1NNMUJpSXk4Vi9CS0hiOVRFK0NpMytRU00vYTNzY1dT?=
- =?utf-8?B?OC82S3NDM1J5a09STTJldE5uL0ZBdTAyTFE1SVdwOWpaTXc5OTZJQXhtNkpM?=
- =?utf-8?B?YnBOMDlFZTFOVWVVWUVuMzM5T2o3VXdjckVmejA0TW1SeDNERnA0SWZUU2t0?=
- =?utf-8?B?MXl0dVR2NUUrYVJCNTZta29VNE1TNzFWZ083TTJDd2hwNXVjakZuYkNLdWJI?=
- =?utf-8?B?UjFXTWR6MDQ2ZkprYU5wVlVORlR5QkpXek9uMTNzSXVpUmFKZVZjd0ZBOGlx?=
- =?utf-8?B?UzN5UzVCZWNsb0ZhU1kvdWhyaEdkMmEzS1ZBcTVsMTNLb3FYRThES0FzbVdI?=
- =?utf-8?B?eVM0Y2N2Z0xPbGxvZlZkT3hjT1NLR1Z2Z2VTRXhmeVZqa3BPcTlPRVpBeUNS?=
- =?utf-8?B?V0R4T21sL1ZIWm9kZW9tM0pyQXNmZzM1Z2J5MEJqSS9aeFVTL0hpTXlTRkox?=
- =?utf-8?B?VVBWTWt3WGFNTFJSejNDTGRTeEFiSzRzU3RmaGx6Y2RwRDA3MjNpbzJiNitR?=
- =?utf-8?B?UjdpTTNjQVY5blByN01Nci96Uzk5RVBuQithN3RQSlo2L01CTnpkdng2RXhy?=
- =?utf-8?B?d2hqSHJUaGN1SjRvTVRLUmwzZlNqVEZ0NTlDbldYTmdjTWVnV1JqT1QwZkpU?=
- =?utf-8?B?T0ZjU2VjNDZyZVJlMThJUWtQbWhmWi8xMmxPRmxpR2oxVW5xNE5XRXEweWsw?=
- =?utf-8?B?a3kwWHRIUURNc21ZTHBtREdxVEd5N09DbXViNWpkbGFXMmJaUitvOHphN2g1?=
- =?utf-8?B?bXp1MFR6TmpDNkpDeFVoY2FvZUlId3JvbVF1UkdLMyt5ZXc4R0puQUpxZTRK?=
- =?utf-8?B?akNDTFNqSEVVNDFGYXdBQ1JxM3U4SmZqRTlVOTFQVVVXbTU3dW5QRVZ3VXpj?=
- =?utf-8?B?MDhnbCtzbFYrZVZBeXY3S0dGYXEvbHFEbk1VaWx4ZFYyQkFCMVZPeHdGcXNF?=
- =?utf-8?Q?Lex0M+6MbM7p5XLBmQA2F4Lji?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB2B211A33
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 08:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744014633; cv=none; b=JhnmGPP49D8YF99PTZlGaoS7qItdXG111CvlAlSeSp8aSB3BTr6QTjrQG1fH8bxZmnwEwnloYqnpoCraQHfc5GwnuJfch2f/zEkFRRiNzaBcMHaKwRI7anqPT8+op+SuUyI1+N3BuzEEnx+9N9knQHxxO6dFQdnGClUYqQaxvhU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744014633; c=relaxed/simple;
+	bh=+/vZCbDn4qaF8EcODS0Qf9uJFKdy1CmZ209NIQrqjCo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rpjNq3fsjM8m6xFGQCPcfaTFTGQiMAI1vXdwIo/WsMZRomOoWPrtLVe8bEPKDqQEfaWkMmwKpUHVEHjqGIzKwCp6tMOnNdOAqF0N00kPm7znGnuHjnvFcenQXX04IUp3hnHSVpYd2bXLmZ6g66PsTSpxzs1T594ruTB4Q/LpL14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=h5uRR/hc; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=vB+RD+kD; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=h5uRR/hc; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=vB+RD+kD; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id C851C21134;
+	Mon,  7 Apr 2025 08:30:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1744014628; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=+S72FquM0uA8yDzqysmbVgWBtdqLizikAR6qibld/+Y=;
+	b=h5uRR/hc5S4c/dm5ZqcxCdW/Zk9soFPoqzbFAyPaWUbk+F5kBNq4FrK/JPDNRhgvWI323A
+	9iIqA7uuGAD1xLBNJSoEZ4BI0oO489UDrIkcmjby1XJ4O3uwLDY/JKsML7YVevDQtlOTMq
+	l6BNyttgti6mAbZdWfIaCYvj6yCfNhk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1744014628;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=+S72FquM0uA8yDzqysmbVgWBtdqLizikAR6qibld/+Y=;
+	b=vB+RD+kDdtqM/SvrAYR2Ihde1Vn6HwdbQoxm4JKZGaqvcGj5w56atvt98dzyr7X7Zn1s/s
+	dXEawdwu8BPVV/AQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1744014628; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=+S72FquM0uA8yDzqysmbVgWBtdqLizikAR6qibld/+Y=;
+	b=h5uRR/hc5S4c/dm5ZqcxCdW/Zk9soFPoqzbFAyPaWUbk+F5kBNq4FrK/JPDNRhgvWI323A
+	9iIqA7uuGAD1xLBNJSoEZ4BI0oO489UDrIkcmjby1XJ4O3uwLDY/JKsML7YVevDQtlOTMq
+	l6BNyttgti6mAbZdWfIaCYvj6yCfNhk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1744014628;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=+S72FquM0uA8yDzqysmbVgWBtdqLizikAR6qibld/+Y=;
+	b=vB+RD+kDdtqM/SvrAYR2Ihde1Vn6HwdbQoxm4JKZGaqvcGj5w56atvt98dzyr7X7Zn1s/s
+	dXEawdwu8BPVV/AQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7E85813691;
+	Mon,  7 Apr 2025 08:30:28 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id bUVNHSSN82cYLgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Mon, 07 Apr 2025 08:30:28 +0000
+Message-ID: <f9312b61-4fe2-4fd6-a7f5-b20392c7c338@suse.de>
+Date: Mon, 7 Apr 2025 10:30:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB7141.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bde5b188-d151-4544-9175-08dd75ab3172
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2025 08:07:08.5366
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Bb+0TUVeLSp7MA2BUxxIcHeMtl6jo6W6iFd4SV+UY6V0hjzzwH713RugflwZoxCnW2eLggyKVksdJI1adSwiVMRZSL/FJ0uWDJ6FD96GGE4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR03MB8141
-X-Proofpoint-GUID: rqPe6xr4s8RDIOVAIIJWh0wfUHBZ-qSh
-X-Authority-Analysis: v=2.4 cv=T4+MT+KQ c=1 sm=1 tr=0 ts=67f387af cx=c_pps a=ZuQraZtzrhlqXEa35WAx3g==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=HeZXJEnYFMCuh-TCqK0A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: rqPe6xr4s8RDIOVAIIJWh0wfUHBZ-qSh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_02,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
- malwarescore=0 adultscore=0 priorityscore=1501 clxscore=1015 phishscore=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0 suspectscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504070057
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] drm/st7571-i2c: add support for Sitronix ST7571
+ LCD controller
+To: Marcus Folkesson <marcus.folkesson@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250404-st7571-v2-0-4c78aab9cd5a@gmail.com>
+ <20250404-st7571-v2-2-4c78aab9cd5a@gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20250404-st7571-v2-2-4c78aab9cd5a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+	ARC_NA(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -2.80
+X-Spam-Flag: NO
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSm9uYXRoYW4gQ2FtZXJv
-biA8amljMjNAa2VybmVsLm9yZz4NCj4gU2VudDogU3VuZGF5LCBBcHJpbCA2LCAyMDI1IDEyOjEy
-IEFNDQo+IFRvOiBQYWxsZXIsIEtpbSBTZWVyIDxLaW1TZWVyLlBhbGxlckBhbmFsb2cuY29tPg0K
-PiBDYzogTGFycy1QZXRlciBDbGF1c2VuIDxsYXJzQG1ldGFmb28uZGU+OyBIZW5uZXJpY2gsIE1p
-Y2hhZWwNCj4gPE1pY2hhZWwuSGVubmVyaWNoQGFuYWxvZy5jb20+OyBSb2IgSGVycmluZyA8cm9i
-aEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mDQo+IEtvemxvd3NraSA8a3J6aytkdEBrZXJuZWwub3Jn
-PjsgQ29ub3IgRG9vbGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsgbGludXgtDQo+IGlpb0B2Z2Vy
-Lmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdl
-ci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjMgMy8zXSBpaW86IGRhYzogYWQz
-NTMwcjogQWRkIGRyaXZlciBmb3IgQUQzNTMwUiBhbmQNCj4gQUQzNTMxUg0KPiANCj4gW0V4dGVy
-bmFsXQ0KPiANCj4gT24gVGh1LCAzIEFwciAyMDI1IDEzOjMzOjU3ICswODAwDQo+IEtpbSBTZWVy
-IFBhbGxlciA8a2ltc2Vlci5wYWxsZXJAYW5hbG9nLmNvbT4gd3JvdGU6DQo+IA0KPiBIaSBLaW0s
-DQo+ID4gVGhlIEFEMzUzMC9BRDM1MzBSICg4LWNoYW5uZWwpIGFuZCBBRDM1MzEvQUQzNTMxUiAo
-NC1jaGFubmVsKSBhcmUNCj4gPiBsb3ctcG93ZXIsIDE2LWJpdCwgYnVmZmVyZWQgdm9sdGFnZSBv
-dXRwdXQgREFDcyB3aXRoIHNvZnR3YXJlLQ0KPiA+IHByb2dyYW1tYWJsZSBnYWluIGNvbnRyb2xz
-LCBwcm92aWRpbmcgZnVsbC1zY2FsZSBvdXRwdXQgc3BhbnMgb2YgMi41Vg0KPiA+IG9yIDVWIGZv
-ciByZWZlcmVuY2Ugdm9sdGFnZXMgb2YgMi41Vi4gVGhlc2UgZGV2aWNlcyBvcGVyYXRlIGZyb20g
-YQ0KPiA+IHNpbmdsZSAyLjdWIHRvIDUuNVYgc3VwcGx5IGFuZCBhcmUgZ3VhcmFudGVlZCBtb25v
-dG9uaWMgYnkgZGVzaWduLiBUaGUgIlIiDQo+ID4gdmFyaWFudHMgaW5jbHVkZSBhIDIuNVYsIDVw
-cG0vwrBDIGludGVybmFsIHJlZmVyZW5jZSwgd2hpY2ggaXMgZGlzYWJsZWQNCj4gPiBieSBkZWZh
-dWx0Lg0KPiANCj4gDQo+IEFzIGJlbG93LiBHaXZlbiB0aGUgYmluZGluZ3MgcHJvdmlkZSBmb3Ig
-dXNlIHdpdGggYW4gZXh0ZXJuYWwgQURDIHRvIHJlYWQgYQ0KPiB3aWRlIHJhbmdlIG9mIHNpZ25h
-bHMsIGlmIGludGVudCBpcyBub3QgdG8gcHJvdmlkZSB0aGF0IHN1cHBvcnQgJ3lldCcNCj4gKHdo
-aWNoIGlzIGZpbmUpIHRoZW4gYWRkIGEgcGFyYWdyYXBoIGhlcmUgdG8gc2F5IHRoYXQuDQo+IA0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogS2ltIFNlZXIgUGFsbGVyIDxraW1zZWVyLnBhbGxlckBh
-bmFsb2cuY29tPg0KPiANCj4gDQo+IEEgZmV3IGFkZGl0aW9uYWwgY29tbWVudHMgZnJvbSBtZSBp
-bmxpbmUuICBQYXJ0aWN1bGFyIGZ1biBpcyB0aGUgbG9uZyBydW5uaW5nDQo+IFNQSSByZWdtYXAg
-RE1BIHNhZmV0eSBhc3N1bXB0aW9ucyBxdWVzdGlvbi4NCj4gRm9yIG5vdyBJIHRoaW5rIHdlIGhh
-dmUgdG8gYXNzdW1lIGJ1bGsgcmVhZC93cml0ZSBzdGlsbCBuZWVkIGEgRE1BIHNhZmUNCj4gYnVm
-ZmVyLg0KPiANCj4gSm9uYXRoYW4NCj4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2Rh
-Yy9hZDM1MzByLmMgYi9kcml2ZXJzL2lpby9kYWMvYWQzNTMwci5jIG5ldw0KPiA+IGZpbGUgbW9k
-ZSAxMDA2NDQgaW5kZXgNCj4gPg0KPiAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
-MDAwMDAwLi40Yjc1N2UxOWYwYzgzNDk5OTlmNzJlDQo+IDUzYWJiMQ0KPiA+IGE0ZjQ4M2E0NGVi
-Mg0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9kcml2ZXJzL2lpby9kYWMvYWQzNTMwci5j
-DQo+ID4gQEAgLTAsMCArMSw1MTQgQEANCj4gDQo+ID4gKw0KPiA+ICsjZGVmaW5lIEFEMzUzMFJf
-SU5URVJGQUNFX0NPTkZJR19BCQkweDAwDQo+ID4gKyNkZWZpbmUgQUQzNTMwUl9PVVRQVVRfT1BF
-UkFUSU5HX01PREVfMAkJMHgyMA0KPiA+ICsjZGVmaW5lIEFEMzUzMFJfT1VUUFVUX09QRVJBVElO
-R19NT0RFXzEJCTB4MjENCj4gPiArI2RlZmluZSBBRDM1MzBSX09VVFBVVF9DT05UUk9MXzAJCTB4
-MkENCj4gPiArI2RlZmluZSBBRDM1MzBSX1JFRkVSRU5DRV9DT05UUk9MXzAJCTB4M0MNCj4gPiAr
-I2RlZmluZSBBRDM1MzBSX1NXX0xEQUNfVFJJR19BCQkJMHhFNQ0KPiA+ICsjZGVmaW5lIEFEMzUz
-MFJfSU5QVVRfQ0goYykJCQkoMiAqIChjKSArIDB4RUIpDQo+ID4gKw0KPiA+ICsjZGVmaW5lIEFE
-MzUzMVJfU1dfTERBQ19UUklHX0EJCQkweEREDQo+ID4gKyNkZWZpbmUgQUQzNTMxUl9JTlBVVF9D
-SChjKQkJCSgyICogKGMpICsgMHhFMykNCj4gDQo+IEknZCBhZGQgYSBkZWZpbmUgZm9yIHRoZSBm
-aXJzdCBjaGFubmVsIGFuZCB0aGVuIGp1c3QgaGF2ZSB0aGUgcmVzdCBvZiB0aGlzIGluIHRoZQ0K
-PiBkZXZpY2Ugc3BlY2lmaWMgZnVuY3Rpb24gdGhhdCB1c2VzIGl0Lg0KPiANCj4gPiArDQo+ID4g
-KyNkZWZpbmUgQUQzNTMwUl9TV19MREFDX1RSSUdfTUFTSwkJQklUKDcpDQo+ID4gKyNkZWZpbmUg
-QUQzNTMwUl9PVVRQVVRfQ09OVFJPTF9NQVNLCQlCSVQoMikNCj4gPiArI2RlZmluZSBBRDM1MzBS
-X1JFRkVSRU5DRV9DT05UUk9MX01BU0sJCUJJVCgwKQ0KPiA+ICsjZGVmaW5lIEFEMzUzMFJfUkVH
-X1ZBTF9NQVNLCQkJR0VOTUFTSygxNSwgMCkNCj4gPiArDQo+ID4gKyNkZWZpbmUgQUQzNTMwUl9T
-V19SRVNFVAkJCShCSVQoNykgfCBCSVQoMCkpDQo+ID4gKyNkZWZpbmUgQUQzNTMwUl9NQVhfQ0hB
-Tk5FTFMJCQk4DQo+ID4gKyNkZWZpbmUgQUQzNTMxUl9NQVhfQ0hBTk5FTFMJCQk0DQo+ID4gKyNk
-ZWZpbmUgQUQzNTMwUl9DSChjKQkJCQkoYykNCj4gDQo+IFRoaXMgc2VlbXMgYSBsaXR0bGUgdW5u
-ZWNlc3NhcnkuLi4NCj4gR2l2ZW4gaXQgaXMgb25seSBjYWxsZWQgaW4gZGV2aWNlIHNwZWNpZmlj
-IGZ1bmN0aW9ucyBJJ2QganVzdCBlbmNvZGUgdGhhdCB0aGVyZS4NCj4gDQo+ID4gKyNkZWZpbmUg
-QUQzNTMwUl8zMktPSE1fUE9XRVJET1dOX01PREUJCTMNCj4gPiArI2RlZmluZSBBRDM1MzBSX0lO
-VEVSTkFMX1ZSRUZfTVYJCTI1MDANCj4gPiArI2RlZmluZSBBRDM1MzBSX0xEQUNfUFVMU0VfVVMJ
-CQkxMDANCj4gDQo+ID4gK3N0YXRpYyBpbnQgYWQzNTMwcl9kYWNfd3JpdGUoc3RydWN0IGFkMzUz
-MHJfc3RhdGUgKnN0LCB1bnNpZ25lZCBpbnQgY2hhbiwNCj4gPiArCQkJICAgICB1bnNpZ25lZCBp
-bnQgdmFsKQ0KPiA+ICt7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsJX19iZTE2IHJlZ192YWw7DQo+
-ID4gKw0KPiA+ICsJZ3VhcmQobXV0ZXgpKCZzdC0+bG9jayk7DQo+ID4gKwlyZWdfdmFsID0gY3B1
-X3RvX2JlMTYodmFsKTsNCj4gPiArDQo+ID4gKwlyZXQgPSByZWdtYXBfYnVsa193cml0ZShzdC0+
-cmVnbWFwLCBzdC0+Y2hpcF9pbmZvLQ0KPiA+aW5wdXRfY2hfcmVnKGNoYW4pLA0KPiA+ICsJCQkJ
-JnJlZ192YWwsIHNpemVvZihyZWdfdmFsKSk7DQo+IA0KPiBBcyBiZWxvdy4gcmVnbWFwX2J1bGtf
-d3JpdGUoKSBzaG91bGRuJ3QgYXNzdW1lIHRoZSBidWZmZXIgaXMgYm91bmNlZCBzbw0KPiBuZWVk
-cyBhIERNQSBzYWZlIGJ1ZmZlci4NCj4gDQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCXJldHVybiBy
-ZXQ7DQo+ID4gKw0KPiA+ICsJaWYgKHN0LT5sZGFjX2dwaW8pDQo+ID4gKwkJcmV0dXJuIGFkMzUz
-MHJfdHJpZ2dlcl9od19sZGFjKHN0LT5sZGFjX2dwaW8pOw0KPiA+ICsNCj4gPiArCXJldHVybiBy
-ZWdtYXBfdXBkYXRlX2JpdHMoc3QtPnJlZ21hcCwgc3QtPmNoaXBfaW5mby0NCj4gPnN3X2xkYWNf
-dHJpZ19yZWcsDQo+ID4gKwkJCQkgIEFEMzUzMFJfU1dfTERBQ19UUklHX01BU0ssDQo+ID4gKw0K
-PiBGSUVMRF9QUkVQKEFEMzUzMFJfU1dfTERBQ19UUklHX01BU0ssIDEpKTsgfQ0KPiA+ICsNCj4g
-PiArc3RhdGljIGludCBhZDM1MzByX3JlYWRfcmF3KHN0cnVjdCBpaW9fZGV2ICppbmRpb19kZXYs
-DQo+ID4gKwkJCSAgICBzdHJ1Y3QgaWlvX2NoYW5fc3BlYyBjb25zdCAqY2hhbiwNCj4gPiArCQkJ
-ICAgIGludCAqdmFsLCBpbnQgKnZhbDIsIGxvbmcgaW5mbykgew0KPiA+ICsJc3RydWN0IGFkMzUz
-MHJfc3RhdGUgKnN0ID0gaWlvX3ByaXYoaW5kaW9fZGV2KTsNCj4gPiArCWludCByZXQ7DQo+ID4g
-KwlfX2JlMTYgcmVnX3ZhbDsNCj4gPiArDQo+ID4gKwlzd2l0Y2ggKGluZm8pIHsNCj4gPiArCWNh
-c2UgSUlPX0NIQU5fSU5GT19SQVc6DQo+ID4gKwkJcmV0ID0gcmVnbWFwX2J1bGtfcmVhZChzdC0+
-cmVnbWFwLA0KPiA+ICsJCQkJICAgICAgIHN0LT5jaGlwX2luZm8tPmlucHV0X2NoX3JlZyhjaGFu
-LQ0KPiA+Y2hhbm5lbCksDQo+ID4gKwkJCQkgICAgICAgJnJlZ192YWwsIHNpemVvZihyZWdfdmFs
-KSk7DQo+IA0KPiBTbyB0aGlzIHJ1bnMgaW50byB0aGUgb2xkIHF1ZXN0aW9uIG9mIHdoZXRoZXIg
-d2UgbmVlZCBhIERNQSBzYWZlIGJ1ZmZlciBmb3IgYQ0KPiByZWdtYXBfYnVsa19yZWFkIHdoZW4g
-dGhlIGJ1cyBpcyBTUEkuICBJbiBwcmFjdGljZSB3ZSBwcm9iYWJseSBkb24ndCBiZWNhdXNlDQo+
-IG9mIGludGVybmFsIGRldGFpbHMgb2YgdGhlIHJlZ21hcCBidXQgSSBiZWxpZXZlIG5vdGhpbmcg
-aGFzIGNoYW5nZWQgb24gdGhlDQo+IGd1aWRhbmNlIHRvIG5vdCBhc3N1bWUgdGhhdCBpbiBkcml2
-ZXJzLiAgU28gdGhpcyByZWd2YWwgc2hvdWxkIGJlIERNQSBzYWZlLg0KPiBFYXNpZXN0IG9wdGlv
-biBpcyBhDQo+IF9fYmUxNiB2YWwgX19hbGlnbmVkKElJT19ETUFfTUlOQUxJR04pIGF0IHRoZW4g
-ZW5kIG9mIHRoZSBzdCBzdHJ1Y3R1cmUNCj4gdGhvdWdoIHdlIHdpbGwgYWxzbyBuZWVkIHRvIHRh
-a2UgYSBtdXRleCB0byBwcmV2ZW50IG11bHRpcGxlIHVzZXMgb2YgdGhhdA0KPiBidWZmZXIuDQo+
-IA0KPiBNYXliZSB3ZSBzaG91bGQgcmV2aXNpdCB0aGlzIHdpdGggTWFyay4gSSBjaGVja2VkIGJy
-aWVmbHkgYW5kICd0aGluaycNCj4gdGhlcmUgaXMgYWx3YXlzIGEgY29weS4NCj4gDQo+ID4gKwkJ
-aWYgKHJldCkNCj4gPiArCQkJcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKwkJKnZhbCA9IEZJRUxE
-X0dFVChBRDM1MzBSX1JFR19WQUxfTUFTSywNCj4gYmUxNl90b19jcHUocmVnX3ZhbCkpOw0KPiA+
-ICsNCj4gPiArCQlyZXR1cm4gSUlPX1ZBTF9JTlQ7DQo+ID4gKwljYXNlIElJT19DSEFOX0lORk9f
-U0NBTEU6DQo+ID4gKwkJKnZhbCA9IHN0LT52cmVmX212Ow0KPiA+ICsJCSp2YWwyID0gMTY7DQo+
-ID4gKw0KPiA+ICsJCXJldHVybiBJSU9fVkFMX0ZSQUNUSU9OQUxfTE9HMjsNCj4gPiArCWRlZmF1
-bHQ6DQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gKwl9DQo+ID4gK30NCj4gDQo+ID4gKw0K
-PiA+ICsjZGVmaW5lIEFEMzUzMFJfQ0hBTl9FWFRfSU5GTyhfbmFtZSwgX3doYXQsIF9zaGFyZWQs
-IF9yZWFkLCBfd3JpdGUpIHsNCj4gCVwNCj4gPiArCS5uYW1lID0gKF9uYW1lKSwJCQkJCQlcDQo+
-ID4gKwkucmVhZCA9IChfcmVhZCksCQkJCQkJXA0KPiA+ICsJLndyaXRlID0gKF93cml0ZSksCQkJ
-CQkJXA0KPiA+ICsJLnByaXZhdGUgPSAoX3doYXQpLAkJCQkJCVwNCj4gPiArCS5zaGFyZWQgPSAo
-X3NoYXJlZCksCQkJCQkJXA0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0
-IGlpb19jaGFuX3NwZWNfZXh0X2luZm8gYWQzNTMwcl9leHRfaW5mb1tdID0gew0KPiA+ICsJQUQz
-NTMwUl9DSEFOX0VYVF9JTkZPKCJwb3dlcmRvd24iLCAwLCBJSU9fU0VQQVJBVEUsDQo+ID4gKwkJ
-CSAgICAgIGFkMzUzMHJfZ2V0X2RhY19wb3dlcmRvd24sDQo+ID4gKwkJCSAgICAgIGFkMzUzMHJf
-c2V0X2RhY19wb3dlcmRvd24pLA0KPiBBcyB0aGVyZSBpcyBvbmx5IG9uZSBkb24ndCB1c2UgYSBt
-YWNyby4NCj4gDQo+IA0KPiAJew0KPiAJCS5uYW1lID0gInBvd2VyZG93biIsDQo+IAkJLnNoYXJl
-ZCA9IElJT19TRVBBUkFURSwNCj4gCQkucmVhZCA9IC4uLg0KPiAJCS53cml0ZT0gLi4uDQo+IAl9
-LA0KPiANCj4gPiArCUlJT19FTlVNKCJwb3dlcmRvd25fbW9kZSIsIElJT19TRVBBUkFURSwNCj4g
-JmFkMzUzMHJfcG93ZXJkb3duX21vZGVfZW51bSksDQo+ID4gKwlJSU9fRU5VTV9BVkFJTEFCTEUo
-InBvd2VyZG93bl9tb2RlIiwgSUlPX1NIQVJFRF9CWV9UWVBFLA0KPiA+ICsJCQkgICAmYWQzNTMw
-cl9wb3dlcmRvd25fbW9kZV9lbnVtKSwNCj4gPiArCXsgfSwNCj4gPiArfTsNCj4gPiArDQo+ID4g
-KyNkZWZpbmUgQUQzNTMwUl9DSEFOKF9jaGFuKSB7DQo+IAlcDQo+ID4gKwkudHlwZSA9IElJT19W
-T0xUQUdFLAkJCQkJCVwNCj4gPiArCS5pbmRleGVkID0gMSwJCQkJCQkJXA0KPiA+ICsJLmNoYW5u
-ZWwgPSBfY2hhbiwJCQkJCQlcDQo+ID4gKwkub3V0cHV0ID0gMSwJCQkJCQkJXA0KPiA+ICsJLmlu
-Zm9fbWFza19zZXBhcmF0ZSA9IEJJVChJSU9fQ0hBTl9JTkZPX1JBVykgfA0KPiAJXA0KPiA+ICsJ
-CQkgICAgICBCSVQoSUlPX0NIQU5fSU5GT19TQ0FMRSksCQkJXA0KPiA+ICsJLmV4dF9pbmZvID0g
-YWQzNTMwcl9leHRfaW5mbywJCQkJCVwNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0
-IHN0cnVjdCBpaW9fY2hhbl9zcGVjIGFkMzUzMHJfY2hhbm5lbHNbXSA9IHsNCj4gDQo+IEhtbS4g
-WW91IG9ubHkgaGF2ZSBvdXRwdXQgY2hhbm5lbHMgYnV0IHdlIGhhdmUgdGhlIHN0dWZmIHRvIHJl
-YWQgdGhlIG11eA0KPiB2YWx1ZSBvbiBhIHBpbi4gIChOdW5vIG1lbnRpb25lZCB0aGlzIGFzIHdl
-bGwpLg0KPiBJZiB0aGF0IGlzIGVuYWJsZWQgSSdkIGV4cGVjdCB0byBzZWUgYWxsIHRoZSBpbnB1
-dCBjaGFubmVscyB0byByZWZsZWN0IHdoYXQgd2UNCj4gbWlnaHQgcmVhZCBieSBwdXR0aW5nIGl0
-IG9uIHRoYXQgcGluIGFuZCByZWFkaW5nIGl0IHdpdGggYW4gQURDIHdlIGFyZQ0KPiBjb25zdW1l
-ci4NCj4gDQo+IEknbSBmaW5lIGlmIHdlIG1ha2UgdGhhdCBhIGpvYiBmb3IgYW5vdGhlciBkYXkg
-dGhvdWdoIGp1c3Qgc3RhdGUgdGhhdCByZWFsbHkNCj4gY2xlYXJseSBpbiB0aGUgcGF0Y2ggZGVz
-Y3JpcHRpb24uDQoNClRoYW5rIHlvdSBmb3IgdGhlIGZlZWRiYWNrLiBJIGFncmVlIHRvIG5vdCBz
-dXBwb3J0IHRoaXMgZm9yIG5vdywgYXMgSSBuZWVkIHRvDQpmdXJ0aGVyIHVuZGVyc3RhbmQgdGhl
-IGltcGxlbWVudGF0aW9uIG9uIG15IGVuZC4gSSdsbCBzdGF0ZSB0aGlzIGxpbWl0YXRpb24NCmlu
-IHRoZSBwYXRjaCBkZXNjcmlwdGlvbi4NCg0KPiA+ICsJQUQzNTMwUl9DSEFOKDApLA0KPiA+ICsJ
-QUQzNTMwUl9DSEFOKDEpLA0KPiA+ICsJQUQzNTMwUl9DSEFOKDIpLA0KPiA+ICsJQUQzNTMwUl9D
-SEFOKDMpLA0KPiA+ICsJQUQzNTMwUl9DSEFOKDQpLA0KPiA+ICsJQUQzNTMwUl9DSEFOKDUpLA0K
-PiA+ICsJQUQzNTMwUl9DSEFOKDYpLA0KPiA+ICsJQUQzNTMwUl9DSEFOKDcpLA0KPiA+ICt9Ow0K
-PiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpaW9fY2hhbl9zcGVjIGFkMzUzMXJfY2hh
-bm5lbHNbXSA9IHsNCj4gPiArCUFEMzUzMFJfQ0hBTigwKSwNCj4gPiArCUFEMzUzMFJfQ0hBTigx
-KSwNCj4gPiArCUFEMzUzMFJfQ0hBTigyKSwNCj4gPiArCUFEMzUzMFJfQ0hBTigzKSwNCj4gPiAr
-fTsNCg0K
+Hi
+
+Am 04.04.25 um 15:50 schrieb Marcus Folkesson:
+> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
+> The controller has a SPI, I2C and 8bit parallel interface, this
+> driver is for the I2C interface only.
+>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+
+Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
+
+I have a few points below, but it's all minor details. The driver looks 
+good overall.
+
+> ---
+>   drivers/gpu/drm/tiny/Kconfig      |  11 +
+>   drivers/gpu/drm/tiny/Makefile     |   1 +
+>   drivers/gpu/drm/tiny/st7571-i2c.c | 720 ++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 732 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+> index 94cbdb1337c07f1628a33599a7130369b9d59d98..6c711f4b799e05a8edc8e5fd68de0542d9cb6cab 100644
+> --- a/drivers/gpu/drm/tiny/Kconfig
+> +++ b/drivers/gpu/drm/tiny/Kconfig
+> @@ -232,6 +232,17 @@ config TINYDRM_ST7586
+>   
+>   	  If M is selected the module will be called st7586.
+>   
+> +config TINYDRM_ST7571_I2C
+
+Nit: we don't call anything TINYDRM_ any longer; just DRM_.
+
+> +	tristate "DRM support for Sitronix ST7571 display panels (I2C)"
+> +	depends on DRM && I2C
+
+> +	select DRM_KMS_HELPER
+> +	select DRM_GEM_SHMEM_HELPER
+
+Alphabetical sorting please
+
+> +	select REGMAP_I2C
+> +	help
+> +	  DRM driver for Sitronix ST7571 panels controlled over I2C.
+> +
+> +	  if M is selected the module will be called st7571-i2c.
+
+Is there a reason why it is called _i2c? There's another interface, I 
+assume?
+
+> +
+>   config TINYDRM_ST7735R
+>   	tristate "DRM support for Sitronix ST7715R/ST7735R display panels"
+>   	depends on DRM && SPI
+> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+> index 60816d2eb4ff93b87228ed8eadd60a0a33a1144b..ed767dd9d22b3bb98f50fa2007cad7fb3f3d95e4 100644
+> --- a/drivers/gpu/drm/tiny/Makefile
+> +++ b/drivers/gpu/drm/tiny/Makefile
+> @@ -15,5 +15,6 @@ obj-$(CONFIG_TINYDRM_ILI9486)		+= ili9486.o
+>   obj-$(CONFIG_TINYDRM_MI0283QT)		+= mi0283qt.o
+>   obj-$(CONFIG_TINYDRM_REPAPER)		+= repaper.o
+>   obj-$(CONFIG_TINYDRM_SHARP_MEMORY)	+= sharp-memory.o
+> +obj-$(CONFIG_TINYDRM_ST7571_I2C)	+= st7571-i2c.o
+>   obj-$(CONFIG_TINYDRM_ST7586)		+= st7586.o
+>   obj-$(CONFIG_TINYDRM_ST7735R)		+= st7735r.o
+> diff --git a/drivers/gpu/drm/tiny/st7571-i2c.c b/drivers/gpu/drm/tiny/st7571-i2c.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..196ecd662c73dfaa9940fc601a656305c81a1619
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tiny/st7571-i2c.c
+> @@ -0,0 +1,720 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Driver for Sitronix ST7571, a 4 level gray scale dot matrix LCD controller
+> + *
+> + * Copyright (C) 2025 Marcus Folkesson <marcus.folkesson@gmail.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <drm/clients/drm_client_setup.h>
+> +#include <drm/drm_atomic.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_connector.h>
+> +#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_damage_helper.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_encoder.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_fbdev_shmem.h>
+> +#include <drm/drm_fourcc.h>
+> +#include <drm/drm_framebuffer.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+> +#include <drm/drm_gem_shmem_helper.h>
+> +#include <drm/drm_modeset_helper_vtables.h>
+> +#include <drm/drm_module.h>
+> +#include <drm/drm_plane.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +#include <video/display_timing.h>
+> +#include <video/of_display_timing.h>
+> +
+> +#define ST7571_COMMAND_MODE			(0x00)
+> +#define ST7571_DATA_MODE			(0x40)
+> +
+> +/* Normal mode command set */
+> +#define ST7571_DISPLAY_OFF			(0xae)
+> +#define ST7571_DISPLAY_ON			(0xaf)
+> +#define ST7571_OSC_ON				(0xab)
+> +#define ST7571_SET_COLUMN_LSB(c)		(0x00 | ((c) & 0xf))
+> +#define ST7571_SET_COLUMN_MSB(c)		(0x10 | ((c) >> 4))
+> +#define ST7571_SET_COM0_LSB(x)			((x) & 0x7f)
+> +#define ST7571_SET_COM0_MSB			(0x44)
+> +#define ST7571_SET_COM_SCAN_DIR(d)		(0xc0 | (((d) << 3) & 0x8))
+> +#define ST7571_SET_CONTRAST_LSB(c)		((c) & 0x3f)
+> +#define ST7571_SET_CONTRAST_MSB			(0x81)
+> +#define ST7571_SET_DISPLAY_DUTY_LSB(d)		((d) & 0xff)
+> +#define ST7571_SET_DISPLAY_DUTY_MSB		(0x48)
+> +#define ST7571_SET_ENTIRE_DISPLAY_ON(p)		(0xa4 | ((p) & 0x1))
+> +#define ST7571_SET_LCD_BIAS(b)			(0x50 | ((b) & 0x7))
+> +#define ST7571_SET_MODE_LSB(m)			((m) & 0xfc)
+> +#define ST7571_SET_MODE_MSB			(0x38)
+> +#define ST7571_SET_PAGE(p)			(0xb0 | (p))
+> +#define ST7571_SET_POWER(p)			(0x28 | ((p) & 0x7))
+> +#define ST7571_SET_REGULATOR_REG(r)		(0x20 | ((r) & 0x7))
+> +#define ST7571_SET_REVERSE(r)			(0xa6 | ((r) & 0x1))
+> +#define ST7571_SET_SEG_SCAN_DIR(d)		(0xa0 | ((d) & 0x1))
+> +#define ST7571_SET_START_LINE_LSB(l)		((l) & 0x3f)
+> +#define ST7571_SET_START_LINE_MSB		(0x40)
+> +
+> +/* Extension command set 3 */
+> +#define ST7571_COMMAND_SET_3			(0x7b)
+> +#define ST7571_SET_COLOR_MODE(c)		(0x10 | ((c) & 0x1))
+> +#define ST7571_COMMAND_SET_NORMAL		(0x00)
+> +
+> +
+> +/* hactive is fixed to 128 */
+> +#define ST7571_HACTIVE				(128)
+> +
+> +#define DRIVER_NAME "st7571"
+> +#define DRIVER_DESC "ST7571 DRM driver"
+> +#define DRIVER_MAJOR 1
+> +#define DRIVER_MINOR 0
+> +
+> +enum st7571_color_mode {
+> +	ST7571_COLOR_MODE_GRAY = 0,
+> +	ST7571_COLOR_MODE_BLACKWHITE = 1,
+> +};
+> +
+> +#define drm_to_st7571(_dev) container_of(_dev, struct st7571_device, dev)
+> +
+> +struct st7571_device {
+> +	struct drm_plane primary_plane;
+> +	struct drm_connector connector;
+> +	struct drm_display_mode mode;
+> +	struct drm_encoder encoder;
+> +	struct drm_device dev;
+> +	struct drm_crtc crtc;
+
+I suggest to visually group this to make it a bit easier to understand. 
+Something like this:
+
+{
+  drm_device
+
+  plane
+  crtc
+  encoder
+  connector
+
+   display_mode
+   ...
+}
+
+The DRM device is just a device, the block in the middle it the 
+modesetting pipeline. The display mode is something between pipeline and 
+hardware state.
+
+> +
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+> +	bool ignore_nak;
+> +
+> +	struct gpio_desc *reset;
+> +
+> +	u32 width_mm;
+> +	u32 height_mm;
+> +	u32 nlines;
+> +	u32 startline;
+> +};
+> +
+> +static int st7571_regmap_write(void *context, const void *data, size_t count)
+> +{
+> +	struct i2c_client *client = context;
+> +	struct st7571_device *st7571 = i2c_get_clientdata(client);
+> +	int ret;
+> +
+> +	struct i2c_msg msg = {
+> +		.addr = st7571->client->addr,
+> +		.flags = st7571->ignore_nak ? I2C_M_IGNORE_NAK : 0,
+> +		.len = count,
+> +		.buf = (u8 *)data
+> +	};
+> +
+> +	ret = i2c_transfer(st7571->client->adapter, &msg, 1);
+> +	/*
+> +	 * This is a workaround for the ST7571, which sometimes fails to acknowledge
+> +	 *
+> +	 * Unfortunately, there is no way to check if the transfer failed because of
+> +	 * a NAK or something else as I2C bus drivers use different return values for NAK.
+> +	 *
+> +	 * However, if the transfer fails and ignore_nak is set, we know it is an error.
+> +	 */
+> +	if (ret < 0 && st7571->ignore_nak)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_regmap_read(void *context, const void *reg_buf,
+> +			       size_t reg_size, void *val_buf, size_t val_size)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static int st7571_send_command_list(struct st7571_device *st7571,
+> +				    const u8 *cmd_list, size_t len)
+> +{
+> +	int ret;
+> +
+> +	for (int i = 0; i < len; i++) {
+> +		ret = regmap_write(st7571->regmap, ST7571_COMMAND_MODE, cmd_list[i]);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static inline u8 st7571_transform_xy(const char *p, int x, int y)
+> +{
+> +	int xrest = x % 8;
+> +	u8 result = 0;
+> +
+> +	/*
+> +	 * Transforms an (x, y) pixel coordinate into a vertical 8-bit
+> +	 * column from the framebuffer. It calculates the corresponding byte in the
+> +	 * framebuffer, extracts the bit at the given x position across 8 consecutive
+> +	 * rows, and packs those bits into a single byte.
+> +	 *
+> +	 * Return an 8-bit value representing a vertical column of pixels.
+> +	 */
+> +	x = x / 8;
+> +	y = (y / 8) * 8;
+> +
+> +	for (int i = 0; i < 8; i++) {
+> +		int row_idx = y + i;
+> +		u8 byte = p[row_idx * 16 + x];
+> +		u8 bit = (byte >> (xrest)) & 1;
+> +
+> +		result |= (bit << i);
+> +	}
+> +
+> +	return result;
+> +}
+> +
+> +static int st7571_set_position(struct st7571_device *st7571, int x, int y)
+> +{
+> +	u8 cmd_list[] = {
+> +		ST7571_SET_COLUMN_LSB(x),
+> +		ST7571_SET_COLUMN_MSB(x),
+> +		ST7571_SET_PAGE(y / 8),
+> +	};
+> +
+> +	return st7571_send_command_list(st7571, cmd_list, ARRAY_SIZE(cmd_list));
+> +}
+> +
+> +static int st7571_fb_blit_rect(struct drm_framebuffer *fb,
+> +			       const struct iosys_map *vmap,
+> +			       struct drm_rect *rect)
+> +{
+> +	struct st7571_device *st7571 = drm_to_st7571(fb->dev);
+> +	int bpp = fb->format->format == DRM_FORMAT_C1 ? 1 : 2;
+> +	char *pixel = vmap->vaddr;
+> +	int x1 = rect->x1 * bpp;
+> +	int x2 = rect->x2 * bpp;
+> +	char row[256];
+> +
+> +	for (int y = rect->y1; y < rect->y2; y += 8) {
+> +		for (int x = x1; x < x2; x++)
+> +			row[x] = st7571_transform_xy(pixel, x, y);
+> +
+> +		st7571_set_position(st7571, rect->x1, y);
+> +
+> +		/* TODO: Investige why we can't write multiple bytes at once */
+> +		for (int x = x1; x < x2; x++)
+> +			regmap_bulk_write(st7571->regmap, ST7571_DATA_MODE, row + x, 1);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_set_color_mode(struct st7571_device *st7571, enum st7571_color_mode  mode)
+> +{
+> +	u8 cmd_list[] = {
+> +		ST7571_COMMAND_SET_3,
+> +		ST7571_SET_COLOR_MODE(mode),
+> +		ST7571_COMMAND_SET_NORMAL,
+> +	};
+> +
+> +	return st7571_send_command_list(st7571, cmd_list, ARRAY_SIZE(cmd_list));
+> +}
+> +
+> +static int st7571_set_pixel_format(struct st7571_device *st7571,
+> +				   u32 pixel_format)
+> +{
+> +	switch (pixel_format) {
+> +	case DRM_FORMAT_C1:
+> +		return st7571_set_color_mode(st7571, ST7571_COLOR_MODE_BLACKWHITE);
+> +	case DRM_FORMAT_C2:
+> +		return st7571_set_color_mode(st7571, ST7571_COLOR_MODE_GRAY);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int st7571_connector_get_modes(struct drm_connector *conn)
+> +{
+> +	struct st7571_device *st7571 = drm_to_st7571(conn->dev);
+> +
+> +	return drm_connector_helper_get_modes_fixed(conn, &st7571->mode);
+> +}
+> +
+> +static const struct drm_connector_helper_funcs st7571_connector_helper_funcs = {
+> +	.get_modes = st7571_connector_get_modes,
+> +};
+> +
+> +static const uint32_t st7571_primary_plane_formats[] = {
+> +	DRM_FORMAT_C1,
+> +	DRM_FORMAT_C2,
+> +};
+
+I assume that you only get fbcon output for now. Some ancient X11window 
+managers might also work. Today's GUIs usually need something like XRGB 
+to work. We do have DRM helpers to convert from XRGB to Cn, but they 
+currently don't support formats with multiple pixels per byte. It's on 
+my TODO list and you driver could add XRGB support at some point.
+
+> +
+> +static const uint64_t st7571_primary_plane_fmtmods[] = {
+> +	DRM_FORMAT_MOD_LINEAR,
+> +	DRM_FORMAT_MOD_INVALID
+> +};
+> +
+> +static int st7571_primary_plane_helper_atomic_check(struct drm_plane *plane,
+> +						 struct drm_atomic_state *state)
+> +{
+> +	struct drm_plane_state *new_plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct drm_crtc *new_crtc = new_plane_state->crtc;
+> +	struct drm_crtc_state *new_crtc_state = NULL;
+> +
+> +	if (new_crtc)
+> +		new_crtc_state = drm_atomic_get_new_crtc_state(state, new_crtc);
+> +
+> +	return drm_atomic_helper_check_plane_state(new_plane_state, new_crtc_state,
+> +						   DRM_PLANE_NO_SCALING,
+> +						   DRM_PLANE_NO_SCALING,
+> +						   false, false);
+> +}
+> +
+> +static void st7571_primary_plane_helper_atomic_update(struct drm_plane *plane,
+> +						   struct drm_atomic_state *state)
+> +{
+> +	struct drm_plane_state *old_plane_state = drm_atomic_get_old_plane_state(state, plane);
+> +	struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
+> +	struct drm_shadow_plane_state *shadow_plane_state = to_drm_shadow_plane_state(plane_state);
+> +	struct drm_framebuffer *fb = plane_state->fb;
+> +	struct drm_atomic_helper_damage_iter iter;
+> +	struct drm_device *dev = plane->dev;
+> +	struct drm_rect damage;
+> +	struct st7571_device *st7571 = drm_to_st7571(plane->dev);
+> +	int ret, idx;
+> +
+> +	if (!fb)
+> +		return; /* no framebuffer; plane is disabled */
+> +
+> +	ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
+> +	if (ret)
+> +		return;
+> +
+> +	if (!drm_dev_enter(dev, &idx))
+> +		return;
+> +
+> +	ret = st7571_set_pixel_format(st7571, fb->format->format);
+> +	if (ret) {
+> +		dev_err(dev->dev, "Failed to set pixel format: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	drm_atomic_helper_damage_iter_init(&iter, old_plane_state, plane_state);
+> +	drm_atomic_for_each_plane_damage(&iter, &damage) {
+> +		st7571_fb_blit_rect(fb, &shadow_plane_state->data[0], &damage);
+> +	}
+> +
+> +	drm_dev_exit(idx);
+> +	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+> +}
+> +
+> +static const struct drm_plane_helper_funcs st7571_primary_plane_helper_funcs = {
+> +	DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
+> +	.atomic_check = st7571_primary_plane_helper_atomic_check,
+> +	.atomic_update = st7571_primary_plane_helper_atomic_update,
+> +};
+> +
+> +static const struct drm_plane_funcs st7571_primary_plane_funcs = {
+> +	.update_plane = drm_atomic_helper_update_plane,
+> +	.disable_plane = drm_atomic_helper_disable_plane,
+> +	.destroy = drm_plane_cleanup,
+> +	DRM_GEM_SHADOW_PLANE_FUNCS,
+> +};
+> +
+> +/*
+> + * CRTC
+> + */
+> +
+> +static const struct drm_crtc_helper_funcs st7571_crtc_helper_funcs = {
+> +	.atomic_check = drm_crtc_helper_atomic_check,
+> +};
+> +
+> +static const struct drm_crtc_funcs st7571_crtc_funcs = {
+> +	.reset = drm_atomic_helper_crtc_reset,
+> +	.destroy = drm_crtc_cleanup,
+> +	.set_config = drm_atomic_helper_set_config,
+> +	.page_flip = drm_atomic_helper_page_flip,
+> +	.atomic_duplicate_state = drm_atomic_helper_crtc_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_crtc_destroy_state,
+> +};
+> +
+> +/*
+> + * Encoder
+> + */
+> +
+> +static const struct drm_encoder_funcs st7571_encoder_funcs = {
+> +	.destroy = drm_encoder_cleanup,
+> +};
+> +
+> +/*
+> + * Connector
+> + */
+> +
+> +static const struct drm_connector_funcs st7571_connector_funcs = {
+> +	.reset = drm_atomic_helper_connector_reset,
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.destroy = drm_connector_cleanup,
+> +	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+> +static enum drm_mode_status st7571_mode_config_mode_valid(struct drm_device *dev,
+> +						       const struct drm_display_mode *mode)
+> +{
+> +	struct st7571_device *st7571 = drm_to_st7571(dev);
+> +
+> +	return drm_crtc_helper_mode_valid_fixed(&st7571->crtc, mode, &st7571->mode);
+> +}
+> +
+> +static const struct drm_mode_config_funcs st7571_mode_config_funcs = {
+> +	.fb_create = drm_gem_fb_create_with_dirty,
+> +	.mode_valid = st7571_mode_config_mode_valid,
+> +	.atomic_check = drm_atomic_helper_check,
+> +	.atomic_commit = drm_atomic_helper_commit,
+> +};
+> +
+> +static struct drm_display_mode st7571_mode(struct st7571_device *st7571)
+> +{
+> +	struct drm_display_mode mode = {
+> +		DRM_SIMPLE_MODE(ST7571_HACTIVE, st7571->nlines,
+> +				st7571->width_mm, st7571->height_mm),
+> +	};
+> +
+> +	return mode;
+> +}
+> +
+> +static int st7571_mode_config_init(struct st7571_device *st7571)
+> +{
+> +	struct drm_device *dev = &st7571->dev;
+> +	int ret;
+> +
+> +	ret = drmm_mode_config_init(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev->mode_config.min_width = ST7571_HACTIVE;
+> +	dev->mode_config.min_height = 1;
+> +	dev->mode_config.max_width = ST7571_HACTIVE;
+> +	dev->mode_config.max_height = 128;
+> +	dev->mode_config.preferred_depth = 1;
+> +	dev->mode_config.funcs = &st7571_mode_config_funcs;
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_plane_init(struct st7571_device *st7571)
+> +{
+> +	struct drm_plane *primary_plane = &st7571->primary_plane;
+> +	struct drm_device *dev = &st7571->dev;
+> +	int ret;
+> +
+> +	ret = drm_universal_plane_init(dev, primary_plane, 1,
+> +				       &st7571_primary_plane_funcs,
+> +				       st7571_primary_plane_formats,
+> +				       ARRAY_SIZE(st7571_primary_plane_formats),
+> +				       st7571_primary_plane_fmtmods,
+> +				       DRM_PLANE_TYPE_PRIMARY, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_plane_helper_add(primary_plane, &st7571_primary_plane_helper_funcs);
+> +	drm_plane_enable_fb_damage_clips(primary_plane);
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_crtc_init(struct st7571_device *st7571)
+> +{
+> +	struct drm_plane *primary_plane = &st7571->primary_plane;
+> +	struct drm_crtc *crtc = &st7571->crtc;
+> +	struct drm_device *dev = &st7571->dev;
+> +	int ret;
+> +
+> +	ret = drm_crtc_init_with_planes(dev, crtc, primary_plane, NULL,
+> +					&st7571_crtc_funcs, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_crtc_helper_add(crtc, &st7571_crtc_helper_funcs);
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_encoder_init(struct st7571_device *st7571)
+> +{
+> +	struct drm_encoder *encoder = &st7571->encoder;
+> +	struct drm_crtc *crtc = &st7571->crtc;
+> +	struct drm_device *dev = &st7571->dev;
+> +	int ret;
+> +
+> +	ret = drm_encoder_init(dev, encoder, &st7571_encoder_funcs, DRM_MODE_ENCODER_NONE, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	encoder->possible_crtcs = drm_crtc_mask(crtc);
+> +
+> +	return 0;
+> +}
+> +
+> +static int st7571_connector_init(struct st7571_device *st7571)
+> +{
+> +	struct drm_connector *connector = &st7571->connector;
+> +	struct drm_encoder *encoder = &st7571->encoder;
+> +	struct drm_device *dev = &st7571->dev;
+> +	int ret;
+> +
+> +	ret = drm_connector_init(dev, connector, &st7571_connector_funcs,
+> +				 DRM_MODE_CONNECTOR_Unknown);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_connector_helper_add(connector, &st7571_connector_helper_funcs);
+> +
+> +	return drm_connector_attach_encoder(connector, encoder);
+> +}
+> +
+> +DEFINE_DRM_GEM_FOPS(st7571_fops);
+> +
+> +static const struct drm_driver st7571_driver = {
+> +	.driver_features = DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
+> +
+> +	.name		 = DRIVER_NAME,
+> +	.desc		 = DRIVER_DESC,
+> +	.major		 = DRIVER_MAJOR,
+> +	.minor		 = DRIVER_MINOR,
+> +
+> +	.fops		 = &st7571_fops,
+> +	DRM_GEM_SHMEM_DRIVER_OPS,
+> +	DRM_FBDEV_SHMEM_DRIVER_OPS,
+> +};
+> +
+> +static const struct regmap_bus st7571_regmap_bus = {
+> +	.read = st7571_regmap_read,
+> +	.write = st7571_regmap_write,
+> +};
+> +
+> +static const struct regmap_config st7571_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.use_single_write = true,
+> +};
+> +
+> +static int st7571_parse_dt(struct st7571_device *st7571)
+> +{
+> +	struct device *dev = &st7571->client->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct display_timing dt;
+> +	int ret;
+> +
+> +	ret = of_get_display_timing(np, "panel-timing", &dt);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get display timing from DT\n");
+> +		return ret;
+> +	}
+> +
+> +	of_property_read_u32(np, "width-mm", &st7571->width_mm);
+> +	of_property_read_u32(np, "height-mm", &st7571->height_mm);
+> +
+> +	st7571->startline = dt.vfront_porch.typ;
+> +	st7571->nlines = dt.vactive.typ;
+> +
+> +	if (dt.hactive.typ != ST7571_HACTIVE) {
+> +		dev_err(dev, "Invalid timing configuration (hactive != %i).\n",
+> +			ST7571_HACTIVE);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (st7571->width_mm == 0 || st7571->height_mm == 0) {
+> +		dev_err(dev, "Invalid panel dimensions.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (st7571->startline + st7571->nlines > 128) {
+> +		dev_err(dev, "Invalid timing configuration.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	st7571->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(st7571->reset))
+> +		return PTR_ERR(st7571->reset);
+> +
+> +	return 0;
+> +}
+> +
+> +static void st7571_reset(struct st7571_device *st7571)
+> +{
+> +	gpiod_set_value_cansleep(st7571->reset, 1);
+> +	udelay(20);
+> +	gpiod_set_value_cansleep(st7571->reset, 0);
+> +}
+> +
+> +static int st7571_lcd_init(struct st7571_device *st7571)
+> +{
+> +	/*
+> +	 * Most of the initialization sequence is taken directly from the
+> +	 * referential initial code in the ST7571 datasheet.
+> +	 */
+> +	u8 commands[] = {
+> +		ST7571_DISPLAY_OFF,
+> +		ST7571_SET_MODE_MSB,
+> +
+> +		ST7571_SET_MODE_LSB(0x94),
+> +		ST7571_SET_SEG_SCAN_DIR(0),
+> +		ST7571_SET_COM_SCAN_DIR(1),
+> +
+> +		ST7571_SET_COM0_MSB,
+> +		ST7571_SET_COM0_LSB(0x00),
+> +
+> +		ST7571_SET_START_LINE_MSB,
+> +		ST7571_SET_START_LINE_LSB(st7571->startline),
+> +
+> +		ST7571_OSC_ON,
+> +		ST7571_SET_REGULATOR_REG(5),
+> +		ST7571_SET_CONTRAST_MSB,
+> +		ST7571_SET_CONTRAST_LSB(0x33),
+> +		ST7571_SET_LCD_BIAS(0x04),
+> +		ST7571_SET_DISPLAY_DUTY_MSB,
+> +		ST7571_SET_DISPLAY_DUTY_LSB(st7571->nlines),
+> +
+> +
+> +		ST7571_SET_POWER(0x4),	/* Power Control, VC: ON, VR: OFF, VF: OFF */
+> +		ST7571_SET_POWER(0x6),	/* Power Control, VC: ON, VR: ON, VF: OFF */
+> +		ST7571_SET_POWER(0x7),	/* Power Control, VC: ON, VR: ON, VF: ON */
+> +
+> +		ST7571_SET_REVERSE(0),
+> +		ST7571_SET_ENTIRE_DISPLAY_ON(0),
+> +
+> +		ST7571_DISPLAY_ON,
+> +	};
+> +
+> +	/* Perform a reset before initializing the controller */
+> +	st7571_reset(st7571);
+> +
+> +	return st7571_send_command_list(st7571, commands, ARRAY_SIZE(commands));
+> +}
+> +
+> +
+> +static int st7571_probe(struct i2c_client *client)
+> +{
+> +	struct st7571_device *st7571;
+> +	struct drm_device *dev;
+> +	int ret;
+> +
+> +	st7571 = devm_drm_dev_alloc(&client->dev, &st7571_driver,
+> +				    struct st7571_device, dev);
+> +	if (IS_ERR(st7571))
+> +		return PTR_ERR(st7571);
+> +
+> +	dev = &st7571->dev;
+> +	st7571->client = client;
+> +	i2c_set_clientdata(client, st7571);
+> +
+> +	ret = st7571_parse_dt(st7571);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st7571->mode = st7571_mode(st7571);
+> +
+> +	/*
+> +	 * The chip nacks some messages but still works as expected.
+> +	 * If the adapter does not support protocol mangling do
+> +	 * not set the I2C_M_IGNORE_NAK flag at the expense * of possible
+> +	 * cruft in the logs.
+> +	 */
+> +	if (i2c_check_functionality(client->adapter, I2C_FUNC_PROTOCOL_MANGLING))
+> +		st7571->ignore_nak = true;
+> +
+> +	st7571->regmap = devm_regmap_init(&client->dev, &st7571_regmap_bus,
+> +					   client, &st7571_regmap_config);
+> +	if (IS_ERR(st7571->regmap)) {
+> +		dev_err(&client->dev, "Failed to initialize regmap\n");
+> +		return PTR_ERR(st7571->regmap);
+> +	}
+> +
+> +	ret = st7571_lcd_init(st7571);
+> +	if (ret)
+> +		return ret;
+> +
+
+
+> +	ret = st7571_mode_config_init(st7571);
+> +	if (ret) {
+> +		dev_err(&client->dev, "Failed to initialize mode config\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = st7571_plane_init(st7571);
+> +	if (ret) {
+> +		dev_err(dev->dev, "Failed to initialize primary plane\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = st7571_crtc_init(st7571);
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to initialize CRTC\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = st7571_encoder_init(st7571);
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to initialize encoder\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = st7571_connector_init(st7571);
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to initialize connector\n");
+> +		return ret;
+> +	}
+> +
+> +	drm_mode_config_reset(dev);
+
+No need for all these individual _init functions. For such simple 
+drivers, it might be easier to put all pipeline setup here. Or put 
+everything including (drm_mode_config_reset()) into 
+st7571_mode_config_init(). Just an advise; your choice.
+
+> +
+> +	ret = drm_dev_register(dev, 0);
+> +	if (ret) {
+> +		dev_err(dev->dev, "Failed to register DRM device\n");
+> +		return ret;
+> +	}
+> +
+> +	drm_client_setup(dev, NULL);
+> +	return 0;
+> +}
+> +
+> +static void st7571_remove(struct i2c_client *client)
+> +{
+> +	struct st7571_device *st7571 = i2c_get_clientdata(client);
+> +
+> +	drm_dev_unplug(&st7571->dev);
+
+> +	drm_atomic_helper_shutdown(&st7571->dev);
+
+This would disable the mode-setting pipeline. But as the device has been 
+unplugged already, it won't really do anything. You can leave it out.
+
+Best regards
+Thomas
+
+
+> +}
+> +
+> +static const struct of_device_id st7571_of_match[] = {
+> +	{ .compatible = "sitronix,st7571" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, st7571_of_match);
+> +
+> +
+> +static const struct i2c_device_id st7571_id[] = {
+> +	{ "st7571", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, st7571_id);
+> +
+> +static struct i2c_driver st7571_i2c_driver = {
+> +	.driver = {
+> +		.name = "st7571",
+> +		.of_match_table = st7571_of_match,
+> +	},
+> +	.probe = st7571_probe,
+> +	.remove = st7571_remove,
+> +	.id_table = st7571_id,
+> +};
+> +
+> +module_i2c_driver(st7571_i2c_driver);
+> +
+> +MODULE_AUTHOR("Marcus Folkesson <marcus.folkesson@gmail.com>");
+> +MODULE_DESCRIPTION("DRM Driver for Sitronix ST7571 LCD controller");
+> +MODULE_LICENSE("GPL");
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
 
