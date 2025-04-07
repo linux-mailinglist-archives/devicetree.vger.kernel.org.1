@@ -1,106 +1,121 @@
-Return-Path: <devicetree+bounces-163914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCB5A7E794
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:00:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FA1A7E765
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 125803BEB1D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:55:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACAFE7A3415
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B18215165;
-	Mon,  7 Apr 2025 16:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E892153C9;
+	Mon,  7 Apr 2025 16:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AGxz1xm1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQVL1rTf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0514721506B;
-	Mon,  7 Apr 2025 16:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A712139CB;
+	Mon,  7 Apr 2025 16:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744044831; cv=none; b=JzKqaNXbwOhq45dULnFNBIBj2GCNXiEr5grymYEBjIGWW2ukV+VHtwhqR6PqWAOb/nN9axglXbifbbCEZ5eD55pm13/xwL3AxLWYHhYpxixdlpuMEW4bq+77f4d5uHrv0dCYVDo52UyqcgMb114duMxd9y5VoUzqdFdJPIaknDA=
+	t=1744044940; cv=none; b=PJBEqKpXIQoD6+NYCr4MfnEsK5qTTWesE/+FSK4QxApuRdDkAjakS46JwWPjkwcv3wVMiOkcY/q/LAKyyn/g0n+F7hhqwBepnOf0A1XBE+6+t+BnsqdyFjE9PRLL236nFkPUS1bjqF3qSGDqKVm3p0lKeC/4m7lDo+Vg7c/rO+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744044831; c=relaxed/simple;
-	bh=/63x5XDI05YRGMeuJSFJUfvCJJOQJc/pdKltFQW7xlk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qOnTrk+y8scecB/l3oX5GivgtkqmnHrYzRS/55DMpsjwkEh/jzfizVf5pvI9Zo3EdzRCFpsLEY6faNfdlWqne/Wd65wReX54B93ulXl1dI4hCbFTRtZi+9Yux5lq0Ds0AX/r1qfJvDchC62t0i/RPqscP1DVJBnEd2upZDr8ipg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AGxz1xm1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34788C4CEE7;
-	Mon,  7 Apr 2025 16:53:50 +0000 (UTC)
+	s=arc-20240116; t=1744044940; c=relaxed/simple;
+	bh=c2MKD/XKzSiKwW1/i7FUqEHwziXv/iFw3B4sgnw+bVs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rGvwC1iWRdpDdxAiQqISWK2Pf1eZPnT0iHKTunFhzqvobsNTLHZxiVb6rK/Qf+GX9D0unhSQfIdEHcVqbTVJoLAhwfoFXPB4t2vywz9tsx7jaMVNCmK0H3VpUqokoSViN4hgPL9cHqZ/WW4Xg2DCeV4tu0h1wrRI6SQCSWCQItM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQVL1rTf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 711ACC4CEDD;
+	Mon,  7 Apr 2025 16:55:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744044830;
-	bh=/63x5XDI05YRGMeuJSFJUfvCJJOQJc/pdKltFQW7xlk=;
-	h=From:To:Cc:Subject:Date:From;
-	b=AGxz1xm1r9Hnp21PIbxWn9dhEJ5yxy+JfQ6hNVs4UlorrT8nR5Eq6yQAPmc+YGhhL
-	 V0hAB53Kas2yj1BFVtkhmXu4bZi2JraRpvpigfERGeSX/sG6LuDvgVcu/BzavHztpf
-	 eDtvMX6wVirlNs2UY9LHRXgHJ3DiJ8DTpnOkvnMYk/HozJkR/w3XiEPn56DNQNFLmr
-	 wppJA2LDZ1hRIiQKYQrIBlo7o4g/GSnl6FXNHoR3AeeZe3GgKqAdBLe/pSgqpwBh6P
-	 h7RCr40kvLFjokBWK1qjwGckcu/Ra+wUZqnYZDnQZKADgcjAnTXcMVztF6u0IUswZC
-	 pwNvarCY3UB1w==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Michael S. Tsirkin" <mst@redhat.com>,
-	Jason Wang <jasowang@redhat.com>,
-	Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
-	=?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc: virtualization@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: virtio: pci-iommu: Add ref to pci-device.yaml
-Date: Mon,  7 Apr 2025 11:53:40 -0500
-Message-ID: <20250407165341.2934499-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=k20201202; t=1744044940;
+	bh=c2MKD/XKzSiKwW1/i7FUqEHwziXv/iFw3B4sgnw+bVs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KQVL1rTftG/IrWL4PFKeSt7oXv+clC6wbH1FSt6Bj77JqHtLrM/hnt7aWZmW4wXon
+	 HLJRMDdpXpLLwDKLl5UmTY4SGrRs47B77ktvFr5gDteoMJ9uNcFaUYQiaJkJDAi7MB
+	 zQPS/cg3YmSmHJZ1saJtvolhumMVX4njdRpx/JGlN5XJ4uOQwPD5EhQIZfK3RiLS70
+	 2bWFDwAhmT4wHItUiPJqIX4PRsgTPgR33opXSGJzH2ki2V3lewuHLDt4E/pmtwQjee
+	 Mbc82pPT5RNDvOWbjufOcRjlS5i6OdcS5N3Fjv+E3fhlkDsXoNlFS563wCLkudZ+px
+	 2d81T/08DtAIw==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2c663a3daso870057166b.2;
+        Mon, 07 Apr 2025 09:55:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU5lTIA3t7z/hmjvTQXKrkrrxPMsxtswK5bNrNUKH40XPPwyHUQnzKU8w6iFheZ1HzMvTGlDK6dklmen/s=@vger.kernel.org, AJvYcCUFXTi5moF+eSUr9Om5pt7NOcYPBx26Ye9Z3R8z82B++Do66MFTAVdnUldvrvKPyUa2zbbjhhWUlv9Q@vger.kernel.org, AJvYcCVYnNiiuqALmXyBCL7C4AYWx2Mhtt1O5zGFSsk+0aD9VKhcLehPM8J/Bns7d4JC75vrUFL997WHBRY+za7c@vger.kernel.org, AJvYcCVmfvcII28cpv57NN7ejB3RBU3nWATfnHFx8ju22qEP/gxyPEQ2lUKmqg16Cu/z6iy9LGY7LpQAX6PS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRp2YXTNz1yA8uBTLrJRss6lKPS3uN/0x8XSI9FPcPwOvaMamb
+	BfFvdq/ypvZN1grqtaqjj0rEBt9ygs8+NhYc7iHFxFR2whL+apSZJXKKq2FFg+h9KGsDQ9ukGNr
+	w1V7Cquw1T1dwTWYNDQiIDzV/1Q==
+X-Google-Smtp-Source: AGHT+IEd0KrgFqiXEguYCKaGod1w87MoHOUslXzG8mwe6sn3+lvNHY/R8wCVUd9TUz9Kf+cBq/nGYese5yv4O8hDda0=
+X-Received: by 2002:a17:907:a4d:b0:ac7:3456:7ece with SMTP id
+ a640c23a62f3a-ac7d1b28752mr1313800366b.46.1744044939101; Mon, 07 Apr 2025
+ 09:55:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250404221559.552201-1-robh@kernel.org> <174380891321.749968.3085053836966154334.robh@kernel.org>
+In-Reply-To: <174380891321.749968.3085053836966154334.robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 7 Apr 2025 11:55:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL+i012pE2vrSWc-Tro58aAEZY4xe5n-LcoqN1RWES6RQ@mail.gmail.com>
+X-Gm-Features: ATxdqUFAzIqfYAmbp0OPypTNYKPyZk-fHySvRwAg51LjL3xBt7FwP5p8N5-z_nU
+Message-ID: <CAL_JsqL+i012pE2vrSWc-Tro58aAEZY4xe5n-LcoqN1RWES6RQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: Remove obsolete .txt docs
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Vidya Sagar <vidyas@nvidia.com>, Frank Li <Frank.li@nxp.com>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-pci@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The virtio pci-iommu is a PCI device, so it should have a reference to
-the pci-device.yaml schema. The pci-device.yaml schema defines the 'reg'
-format as a schema, so the text description for 'reg' can be dropped.
+On Fri, Apr 4, 2025 at 6:21=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
+wrote:
+>
+>
+> On Fri, 04 Apr 2025 17:15:57 -0500, Rob Herring (Arm) wrote:
+> > The content in these files has been moved to the schemas in dtschema.
+> > pci.txt is covered by pci-bus-common.yaml and pci-host-bridge.yaml.
+> > pci-iommu.txt is covered by pci-iommu.yaml. pci-msi.txt is covered in
+> > msi-map property in pci-host-bridge.yaml.
+> >
+> > Cc: Frank Li <Frank.li@nxp.com>
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  .../bindings/pci/nvidia,tegra194-pcie-ep.yaml |   2 +-
+> >  .../devicetree/bindings/pci/pci-iommu.txt     | 171 --------------
+> >  .../devicetree/bindings/pci/pci-msi.txt       | 220 ------------------
+> >  Documentation/devicetree/bindings/pci/pci.txt |  84 -------
+> >  4 files changed, 1 insertion(+), 476 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/pci/pci-iommu.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pci/pci-msi.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pci/pci.txt
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+>
+>
+> doc reference errors (make refcheckdocs):
+> Warning: Documentation/devicetree/bindings/virtio/pci-iommu.yaml referenc=
+es a file that doesn't exist: Documentation/devicetree/bindings/pci/pci.txt
+> Documentation/devicetree/bindings/virtio/pci-iommu.yaml: Documentation/de=
+vicetree/bindings/pci/pci.txt
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../devicetree/bindings/virtio/pci-iommu.yaml          | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+I've fixed this with this[1] patch.
 
-diff --git a/Documentation/devicetree/bindings/virtio/pci-iommu.yaml b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
-index 972a785a42de..8bd6ad72ac7a 100644
---- a/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
-+++ b/Documentation/devicetree/bindings/virtio/pci-iommu.yaml
-@@ -20,6 +20,9 @@ description: |
-   virtio-iommu node doesn't have an "iommus" property, and is omitted from
-   the iommu-map property of the root complex.
- 
-+allOf:
-+  - $ref: /schemas/pci/pci-device.yaml#
-+
- properties:
-   # If compatible is present, it should contain the vendor and device ID
-   # according to the PCI Bus Binding specification. Since PCI provides
-@@ -33,12 +36,7 @@ properties:
-           - const: pci1af4,1057
- 
-   reg:
--    description: |
--      PCI address of the IOMMU. As defined in the PCI Bus Binding
--      reference, the reg property is a five-cell address encoded as (phys.hi
--      phys.mid phys.lo size.hi size.lo). phys.hi should contain the device's
--      BDF as 0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be
--      zero. See Documentation/devicetree/bindings/pci/pci.txt
-+    maxItems: 1
- 
-   '#iommu-cells':
-     const: 1
--- 
-2.47.2
+Rob
 
+[1] https://lore.kernel.org/r/20250407165341.2934499-1-robh@kernel.org
 
