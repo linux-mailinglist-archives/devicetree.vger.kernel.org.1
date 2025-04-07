@@ -1,161 +1,158 @@
-Return-Path: <devicetree+bounces-163562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68624A7D40F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:32:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C63A7D43B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:35:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05FF93A934E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 06:32:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80251886DE6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 06:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A5D2253B7;
-	Mon,  7 Apr 2025 06:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B60C225387;
+	Mon,  7 Apr 2025 06:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVrhxln9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MpnaFRpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9721225390;
-	Mon,  7 Apr 2025 06:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8FEB221F3C;
+	Mon,  7 Apr 2025 06:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744007552; cv=none; b=tSmgvJxOSmmrmbna8sk0H7BZIpM+ivHSfdMlnfSDZUcQOqYHOuGybWddfhSJkTq7C3/EBZa0E0k72IzwRZdGpK/8U9FJKY+61KtOj0kKHb6227Bcj4oMSoaVWn7zM8MeFDZKSKtVaz6NOpsLXSlf+7hKm2sKXj3bt869BKulmRE=
+	t=1744007722; cv=none; b=Q+G/oRvcVI7h93lneFik16Fdngdyn/k3FJXtC/+b1uO7K5HpkQ2HnY+JSm1AGfwIoMBCKwUYadeJrLaMdqWlO0Xfi3NS9Ris65Mo9eW75IA+/SpkBT2GzDNfIG/KrfluKddxF64Sg4hZWedwi2lNB6hnl/ITlpaqUjxxqKU683Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744007552; c=relaxed/simple;
-	bh=gTratXnbj5KxD1AOYDpsXH7eQtuPd31z5buflZddPPQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gNQSQL5tZQ5BUr4NN108eowNdVM1Jm4VSWOqlwTibkNtdqny4ro1Xw/DEq/nHm5v0KAl1SCeNy0HY3JVUX3cCXAbrapMu7O372tLrV4BXRfkL/K6ap7Vksp/EjOvaLXcGFgho9z+sXHCBm3SG+CBNp4CftZIYjvOGZZ+AkLbhks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVrhxln9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90442C4CEDD;
-	Mon,  7 Apr 2025 06:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744007551;
-	bh=gTratXnbj5KxD1AOYDpsXH7eQtuPd31z5buflZddPPQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FVrhxln96ar4ccBf9aqcKxCUYPpKe69ZckpMZPum6jh0GXI8Jvtvmf6fIVbqpbSva
-	 BXZIzI84EbfZho5tzD9bNd7imnZ5nSa/8pvQBsQWd5Bw1k/BsSCzvfyWY/nbURndL8
-	 SGhd8G0I4Sm/0F9Dcr7lOuKYTRZtMrQqJmg8XcJG9J9REJoJAitnrZ9yMA8QCZZpqj
-	 WyGiopnhAvcekHJHxd6IX0LFuPeI7m/32FwVbSbo7y7+9tjNR3pBmoSq70gU+Q7iL/
-	 a09pX6nd/NABqdwTv5nJB6APX2Z+lqLg7EW33X38WKt5cC/UPE1j5uazgd7nrrCbvQ
-	 gbE4XXK559STA==
-Message-ID: <4dcbcf57-de98-4bdd-a688-6156d5eba98c@kernel.org>
-Date: Mon, 7 Apr 2025 08:32:25 +0200
+	s=arc-20240116; t=1744007722; c=relaxed/simple;
+	bh=PrUQRbB1c+rJuvNmtq5sRl5XHonz7LhulE1jv95UeZM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YTi5a9zBHeRMrP2o2x8XL4KafWZErkzsUTBJEW8G6JigP8h0orDWqrsDJupc/RAHybeqXufqoDH5nBs4/FVgLkYz+h/VQ1mGKm5QJTdFSe/BOtzyUCX8UmoJApuy/n9kTbSmvHw0x4W18HwMCK/cNlQWSQjlqmM0o8nz6fQ11o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MpnaFRpj; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-af5139ad9a2so2558303a12.1;
+        Sun, 06 Apr 2025 23:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744007719; x=1744612519; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nUKnCXni+ZS+V5rei8asTaXf4mmG/ra2/KlqUzUvNL8=;
+        b=MpnaFRpjcU4UjbMww+9pqRtasa/ZZi1c2XcgzLI9XTv8oWwf0Z5cQ6qo9CAyUukMA0
+         8sx40iRy9OuSdN5PwWZZ9dMRThLERmY4l126QUJ4LxKwRaK5W5gRCyoen8K5iTxyqP/f
+         6DG1ymzM5MU2Evw9K1+zVlgG7YMNGSlpwzZVh3xGKDVO5512JDf412r9g43n7dfhqU2e
+         JeMCGoUcOMMZpvIsgQqDK4K2QkGjURaGjHIsS+eFJXhFPtyZgvzYcekh3F3ag3DCDyeZ
+         VWnwWSVxAY3WRLZNkdpWv0sRyB0wmnuL5Jd/CKDMbqu2C0o+ASBE9CkXmzkUi3eDKBmJ
+         yvEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744007719; x=1744612519;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nUKnCXni+ZS+V5rei8asTaXf4mmG/ra2/KlqUzUvNL8=;
+        b=Divh8gJgOwxlkWfM0QHd8M6jsRpJqstwbPxZF+J2DG3t6NcscBnX4jnTee98/VCZub
+         ocvi1dds6vjJYavngbjfZjwAEUx2FOmURc1WkW8yxC4tfvmpMLMSye0jOQSoJ6aNRzwS
+         7GoLj8r87/w/QNFrq3IZJwhzFbqxs3XiltfWjWRQVYvPQrQU5p3mJeAbARI3mgNd0ckK
+         l90dsmQdBtR4/O8pRmJJmIrx6TiUIOSNfX9ymDer1RBAaLggefn9XpCmXg1tSCTVYxmj
+         NZDDpsHJXaeZ1tR0sffaejPhXQZUrzx2QZXlNp9S69GDqJ+NTsxN98JOwHxU9OxlNQgb
+         u9Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCWn+xABwicHq4X/sgJ29ANv7jgUYrkPYYIMKyPcQLD1Rowvq3gIzygL+ICYx/PQFnTUMqWiqLtQ1LEL@vger.kernel.org, AJvYcCXLtbBA20gyyC3cNDlTBI7/ZsMrEye/R0Ky/NzjI5l6DsndimFVjd7p1zKg8qFsCRBGNGhvtsC1/P9FWOQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRCs6L4G6ejEiSy4g1lYX3cW3CjQSNhIIS+2jr4BdUl2N4LcIG
+	lA5rrrnWScUl+wlwHq7noShss31k1z5/F8rw2YZmXleH8gzBUr6y
+X-Gm-Gg: ASbGncuM50CYAgBtbFzarqk/f0vWpFilEldvKJszPBWXW1AjY6P4gcqn+qjwfkfYBWC
+	OvASt9TEjNwFUuzTR/lhlvx6sRqA03Hy7ANt/8A6O5jHKiZyXlxCAMES4zYEEl4Pfn8Ao0d668k
+	/kuUk0F6xg/dUfGeSURkQLmLuexwHcfjFQ5fJ5DqwAbPGTxu7GtD9hwDrTOCI3GYbPDRwnSNmbs
+	kRzg826HbFr/8wyKh2SFQ1+1QfwoWxdzpSiAGn0Z/6sNQGSv67ir8uqwqzogS0YSOtJtO48NmOg
+	xTc8Kqd4dTvirO7uXM7RG2LWv7JeynJRFk2Q
+X-Google-Smtp-Source: AGHT+IGRG2C26zGOmhoXFbiYCUXmZOta5ZKasjUrRKCZwa8ZEA1iM0n9fmVIC+YnuIVVcjAsIQP16Q==
+X-Received: by 2002:a17:90b:5190:b0:2ff:62f8:9a12 with SMTP id 98e67ed59e1d1-306a62134c9mr12842046a91.23.1744007718706;
+        Sun, 06 Apr 2025 23:35:18 -0700 (PDT)
+Received: from [127.0.0.1] ([2001:250:5800:1000::610c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-305983da691sm8048044a91.47.2025.04.06.23.35.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Apr 2025 23:35:18 -0700 (PDT)
+From: Zixian Zeng <sycamoremoon376@gmail.com>
+Subject: [PATCH v4 0/2] Add basic SPI support for SG2042 SoC
+Date: Mon, 07 Apr 2025 14:35:11 +0800
+Message-Id: <20250407-sfg-spi-v4-0-30ac949a1e35@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND,V1,01/12] dt-bindings: mediatek: Add mediatek,
- mt8196-jpgdec compatible
-To: =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
- "tzungbi@chromium.org" <tzungbi@chromium.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kyrie.wu@mediatek.corp-partner.google.com"
- <kyrie.wu@mediatek.corp-partner.google.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20250110012749.30072-1-kyrie.wu@mediatek.com>
- <20250110012749.30072-2-kyrie.wu@mediatek.com>
- <e6019aea-b097-4a24-afd2-e1d638a5a8a7@kernel.org>
- <545fcf458d79e1ad1e4a9f1b6b81f32504a6886a.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <545fcf458d79e1ad1e4a9f1b6b81f32504a6886a.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB9y82cC/3XMTQ7CIBCG4as0rMXAQCu48h7GBbRDS2J/AoZom
+ t5d2k2NxuU3meedScTgMZJzMZOAyUc/DnnIQ0HqzgwtUt/kTYBByQAUja6lcfIUhQODtWHaWJK
+ /p4DOP7fS9ZZ35+NjDK8tnPh6/W0kTjm1WmmDjZaa80vbG38/1mNP1kaCPw6yU9Y6EFaVDcNvJ
+ 3YnuNidoIxipSoJJ8GlhU+3LMsbN/KdLQ4BAAA=
+X-Change-ID: 20250228-sfg-spi-e3f2aeca09ab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Mark Brown <broonie@kernel.org>, 
+ Inochi Amaoto <inochiama@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
+ sophgo@lists.linux.dev, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, 
+ dlan@gentoo.org, Zixian Zeng <sycamoremoon376@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744007713; l=1831;
+ i=sycamoremoon376@gmail.com; s=20250113; h=from:subject:message-id;
+ bh=PrUQRbB1c+rJuvNmtq5sRl5XHonz7LhulE1jv95UeZM=;
+ b=+Go8UegZSi0E77pZKJXd0DldPDvqti7TxLG0uptVeWXzxZduvooGHEgeSM4M2YYM6pATGfmqi
+ JNh79RwI3F1B23p/37XeiAocKXBVwsXHOPhGKqqgwGevMOI5xoQHKvL
+X-Developer-Key: i=sycamoremoon376@gmail.com; a=ed25519;
+ pk=OYfH6Z2Nx3aU1r0UZdvhskmddV6KC6V1nyFjsQQt4J8=
 
-On 07/04/2025 08:24, Kyrie Wu (吴晗) wrote:
-> On Fri, 2025-01-10 at 08:40 +0100, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 10/01/2025 02:27, kyrie.wu wrote:
->>> Add mediatek,mt8196-jpgdec compatible to binding document.
->>>
->>> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
->>> ---
->>
->> No, why are you resending without improving anything here?
->>
->> You got comments. Respond to them, implement them, not resend same
->> stuff.
->>
->> NAK
->>
->> Best regards,
->> Krzysztof
-> 
-> Dear Krzysztof,
-> 
-> Thanks for your kind reminder. I made a mistake in the V1, so I
-> resended it. I will correct all the comments in the V2.
+Implemented basic SPI support for SG2042 SoC[1] using 
+the upstreamed Synopsys DW-SPI IP.
 
-You got review within 30 minutes on v1. You did not respond and the
-*next* day (or after some hours) you resent it ignoring that review, so
-you totally ignored it.
+This is tested on milkv-pioneer board on bus level. Using 
+driver/spi/spidev.c for creating virtual /dev/spidevX.Y and 
+tools/spi/spidev_test for testing functionality.
 
-All this was 3 months ago.
+Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+---
+Changes in v4:
+- Adjust the order of spi nodes
+- Place the binding after Renesas
+- Fix the description issues of patches
+- Link to v3: https://lore.kernel.org/r/20250313-sfg-spi-v3-0-e686427314b2@gmail.com
+
+Changes in v3:
+- Remove the spi status on sg2042-milkv-pioneer board
+- Remove remove clock GATE_CLK_SYSDMA_AXI from spi[2]
+- Create dt-binding of compatible property
+- Replace the general compatible property with SoC-specific in dts
+- Link to v2: https://lore.kernel.org/r/20250228-sfg-spi-v2-1-8bbf23b85d0e@gmail.com
+
+Changes in v2:
+- Rebase v1 to sophgo/master(github.com/sophgo/linux.git).
+- Order properties in device node.
+- Remove unevaluated properties `clock-frequency`.
+- Set default status to disable.
+- Link to v1: https://lore.kernel.org/r/20250228-sfg-spi-v1-1-b989aed94911@gmail.com
+
+[1] https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/SPI.rst
+[2] https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/clock.rst#clock-tree
+
+---
+Zixian Zeng (2):
+      spi: dt-bindings: snps,dw-apb-ssi: Add compatible for SOPHGO SG2042 SoC
+      riscv: sophgo: dts: Add spi controller for SG2042
+
+ .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml   |  4 ++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi             | 26 ++++++++++++++++++++++
+ 2 files changed, 30 insertions(+)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250228-sfg-spi-e3f2aeca09ab
 
 Best regards,
-Krzysztof
+-- 
+Zixian Zeng <sycamoremoon376@gmail.com>
+
 
