@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-163964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD57AA7E93E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:01:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E2DA7E94F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:06:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D17178836
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:01:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F354F1886068
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBAD218E83;
-	Mon,  7 Apr 2025 18:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EE6218EA7;
+	Mon,  7 Apr 2025 18:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DL1kOCSa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kQ0lTDne"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BF5214A7C;
-	Mon,  7 Apr 2025 18:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A0618C31;
+	Mon,  7 Apr 2025 18:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744048893; cv=none; b=P6V3nddE9DgKoN9yORXIvFEAn8XZ2Pj1wLpjotEY6bhEmOttFi1MdY3FUA9vuZ+Xons7PNrK4aayU0hVqD/a5QYVfRp0TT4CYhr6JKb+YsuyyygquDnv9MpMU6bzlkps7uwnvEx12AJ9SlKqaU6XI21SQsHhp6HcywB5YkbVNM8=
+	t=1744049076; cv=none; b=OhWTNH5TmsoHkV18cS8btEOUivrXMfcdAgIlijcT3wbW5G6LpJccv+fIv1TOVKj0j/Gh84+rOYgYP7rfO/y8np577BZX2iaAaRcyJU+1DQvNdb8qqHJLjBx/SSGJcY2pNgmIaklK8WnieVQCCx4YlHq7IKayoWukhpwr8/Rw3bA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744048893; c=relaxed/simple;
-	bh=AUXsGZjrzl+9uecU7aWyoMTviryGOEav0GotuZj779s=;
+	s=arc-20240116; t=1744049076; c=relaxed/simple;
+	bh=qq406OyfbZqR5Lr+xDNdCNLUQZRFdKMk4sWTOaf5174=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qhy1Wjj8fJupahN66QcRAltVX41E0RNhRXC2VGSLPdbQqvl9WAXAJtziiBZFd/iAynauCTF3umOPfTPJrCW36klU39aleZZy3AXvr/1gn6/ubPKwoDtceBb0by3R1hvgU/wghxpg69uKEthqdETuh4ka5Mvt0ClBkf2oX1T4eog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DL1kOCSa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3B72C4CEDD;
-	Mon,  7 Apr 2025 18:01:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kweoC5wzAscP8XxwZD+yEQ7mh+vs5kX8GUnFP0QAfRfX4zDAaoBlZfsUs0D7SzGHhWByVdX7/rXbuPx4qtYiAzcvC+D2r1rSBbwoycj7kpjRPlLbwsgxHQAbu3RCJrS4Qg+oJdLcR+oS6Iqugf3h4g31kD0Jp+dNK8oPYxNSc3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kQ0lTDne; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0A6BC4CEDD;
+	Mon,  7 Apr 2025 18:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744048892;
-	bh=AUXsGZjrzl+9uecU7aWyoMTviryGOEav0GotuZj779s=;
+	s=k20201202; t=1744049075;
+	bh=qq406OyfbZqR5Lr+xDNdCNLUQZRFdKMk4sWTOaf5174=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DL1kOCSad7g7MNV8DsE7AIC7tK4dQRwqxjyv4JZHCEr6rKczG77O6kU3eUTM3oBI6
-	 JFkG4r+0MksLamtd+dr1/1qAOE7Eq9FzOIpxp9bQuolXrz/Hw8UiTZtTvoYoDysnMn
-	 32lpDFOGsquZHgsSgsS5m6qe3wKiPrGsZyrgslyVICNYC82i0HC2czmCWzhX2+fbZ1
-	 HPPrvV/lgsEIvKIudDkOso+vGACWt3RPbKkaaoa2uBVKanlACdv61sEdjQqbSQio9T
-	 ucAAZbUWUvEMqCYBpqBP584bo21W4PNuf4cJ2io/+zDQsPNJgbNuMlbxLv0IdKwL0n
-	 BQdr9RoG5iiJg==
-Message-ID: <74172acd-e649-4613-a408-d1f61ceeba8b@kernel.org>
-Date: Mon, 7 Apr 2025 20:01:27 +0200
+	b=kQ0lTDne9D49aDkh9A9qwERQUxh+8Xo4iGd4MwsqlgEePOgiRt3YYobySLETN+q2D
+	 nYQNNnkynDiwcOby6oaqtuhuQDhxI3OATYkcIYB2ewy1an6i6PsN1ue5b/U9IZtA4x
+	 DVdD+2ySmX1rxmkOubnbghRW/2FNeHe3Hr8+wucENlcUmAHCltOo2Yh5uABQGj3mio
+	 GcblCAg9XUkiZQaRUdWrlBJlTHc4oaJJbC0mrnEzi2aIDG3inVmGF96igAhkzfvP6O
+	 FOYlNOm1l2R19ZAiQC1GcKMoA30hV7zlZYa8NmHQRAlhZHmDXpIKjbOhBPZNajd2aP
+	 3nmSQHMNFwV4Q==
+Message-ID: <7dfede37-2434-4892-8c8d-4d005fa1072b@kernel.org>
+Date: Mon, 7 Apr 2025 20:04:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/28] dt-bindings: dpll: Add device tree bindings for
- DPLL device and pin
+Subject: Re: [PATCH 16/28] dt-bindings: dpll: Add support for Microchip
+ Azurite chip family
 To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
 Cc: Michal Schmidt <mschmidt@redhat.com>,
  Vadim Fedorenko <vadim.fedorenko@linux.dev>,
@@ -64,7 +64,7 @@ Cc: Michal Schmidt <mschmidt@redhat.com>,
  <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
 References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407173149.1010216-6-ivecera@redhat.com>
+ <20250407173149.1010216-7-ivecera@redhat.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,248 +110,106 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250407173149.1010216-6-ivecera@redhat.com>
+In-Reply-To: <20250407173149.1010216-7-ivecera@redhat.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/04/2025 19:31, Ivan Vecera wrote:
-> This adds DT bindings schema for DPLL (device phase-locked loop)
+> This adds DT bindings schema for Microchip Azurite DPLL chip family.
 
 Please do not use "This commit/patch/change", but imperative mood. See
 longer explanation here:
 https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-A nit, subject: drop second/last, redundant "device tree bindings for".
-The "dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> These bindings are used by zl3073x driver and specifies this device
+> that can be connected either to I2C or SPI bus.
 
-> device and associated pin. The schema follows existing DPLL core API
-
-What is core API in terms of Devicetree?
-
-> and should be used to expose information that should be provided
-> by platform firmware.
-> 
-> The schema for DPLL device describe a DPLL chip that can contain
-> one or more DPLLs (channels) and platform can specify their types.
-> For now 'pps' and 'eec' types supported and these values are mapped
-> to DPLL core's enums.
-
-Describe entire hardware, not what is supported.
+Bindings are for hardware, not driver. Explain the hardware.
 
 > 
-> The DPLL device can have optionally 'input-pins' and 'output-pins'
-> sub-nodes that contain pin sub-nodes.
+> The schema inherits existing dpll-device and dpll-pin schemas.
 > 
-> These pin sub-nodes follows schema for dpll-pin and can contain
-> information about the particular pin.
 
-Describe the hardware, not the schema. We can read the contents of
-patch. What we cannot read is the hardware and why you are making all
-these choices.
+Do not explain what schema does - we see  it. Explain the hardware which
+we do not see here, because we (or to be precise: I) know nothing about.
 
-> 
-> The pin contains the following properties:
-> * reg - pin HW index (physical pin number of given type)
-> * label - string that is used as board label by DPLL core
-> * type - string that indicates pin type (mapped to DPLL core pin type)
-> * esync-control - boolean that indicates whether embeddded sync control
->                   is allowed for this pin
-> * supported-frequencies - list of 64bit values that represents frequencies
->                           that are allowed to be configured for the pin
-
-Drop. Describe the hardware.
-
-
-> 
 > Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
-
-Did this really happen?
-
 > Signed-off-by: Ivan Vecera <ivecera@redhat.com>
 > ---
->  .../devicetree/bindings/dpll/dpll-device.yaml | 84 +++++++++++++++++++
->  .../devicetree/bindings/dpll/dpll-pin.yaml    | 43 ++++++++++
->  MAINTAINERS                                   |  2 +
->  3 files changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
->  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
-
-Filenames matching compatibles... unless this is common schema, but
-commit description did not mention it.
-
+>  .../bindings/dpll/microchip,zl3073x.yaml      | 74 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl3073x.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl3073x.yaml
 > new file mode 100644
-> index 0000000000000..e6c309abb857f
+> index 0000000000000..38a6cc00bc026
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> @@ -0,0 +1,84 @@
+> +++ b/Documentation/devicetree/bindings/dpll/microchip,zl3073x.yaml
+> @@ -0,0 +1,74 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/dpll/dpll-device.yaml#
+> +$id: http://devicetree.org/schemas/dpll/microchip,zl3073x.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Digital Phase-Locked Loop (DPLL) Device
+> +title: Microchip Azurite DPLL device
 > +
 > +maintainers:
 > +  - Ivan Vecera <ivecera@redhat.com>
 > +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  Digital Phase-Locked Loop (DPLL) device are used for precise clock
-> +  synchronization in networking and telecom hardware. The device can
-> +  have one or more channels (DPLLs) and one or more input and output
-> +  pins. Each DPLL channel can either produce pulse-per-clock signal
-> +  or drive ethernet equipment clock. The type of each channel is
-> +  indicated by dpll-types property.
-> +
 > +properties:
-> +  $nodename:
-> +    pattern: "^dpll(@.*)?$"
-> +
-> +  "#address-cells":
-> +    const: 0
-> +
-> +  "#size-cells":
-> +    const: 0
+> +  compatible:
+> +    enum:
+> +      - microchip,zl3073x-i2c
+> +      - microchip,zl3073x-spi
 
-Why do you need these cells?
+1. No, you do not get two compatibles. Only one.
+2. What is 'x'? Wildcard? If so, drop and use specific compatibles.
+
 
 > +
-> +  num-dplls:
-> +    description: Number of DPLL channels in this device.
-
-Why this is not deducible from compatible?
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +
-> +  dpll-types:
-> +    description: List of DPLL types, one per DPLL instance.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    items:
-> +      enum: [pps, eec]
-
-Why this is not deducible from compatible?
-
-> +
-> +  input-pins:
-> +    type: object
-> +    description: DPLL input pins
-> +    unevaluatedProperties: false
-
-So this is all for pinctrl? Or something else? Could not figure out from
-commit msg. This does not help me either.
-
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-
-Why?
-
-> +      "#size-cells":
-> +        const: 0
-
-Why? I don't see these being used.
-
-> +
-> +    patternProperties:
-> +      "^pin@[0-9]+$":
-> +        $ref: /schemas/dpll/dpll-pin.yaml
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
-> +  output-pins:
-> +    type: object
-> +    description: DPLL output pins
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^pin@[0-9]+$":
-> +        $ref: /schemas/dpll/dpll-pin.yaml
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
-> +dependentRequired:
-> +  dpll-types: [ num-dplls ]
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
-> new file mode 100644
-> index 0000000000000..9aea8ceabb5af
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dpll/dpll-pin.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DPLL Pin
-> +
-> +maintainers:
-> +  - Ivan Vecera <ivecera@redhat.com>
-> +
-> +description: |
-> +  Schema for defining input and output pins of a Digital Phase-Locked Loop (DPLL).
-> +  Each pin can have a set of supported frequencies, label, type and may support
-> +  embedded sync.
-> +
-> +properties:
 > +  reg:
-> +    description: Hardware index of the pin.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
 > +
-> +  esync-control:
-> +    description: Indicates whether the pin supports embedded sync functionality.
-> +    type: boolean
-> +
-> +  label:
-> +    description: String exposed as the pin board label
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
-> +  supported-frequencies:
-> +    description: List of supported frequencies for this pin, expressed in Hz.
-> +    $ref: /schemas/types.yaml#/definitions/uint64-array
-
-Use common property suffixes and drop ref.
-
-> +
-> +  type:
-> +    description: Type of the pin
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ext, gnss, int, mux, synce]
-> +
-> +
-
-Just one blank line
-
-
-I bet that half of my questions could be answered with proper hardware
-description which is missing in commit msg and binding description.
-Instead your commit msg explains schema which makes no sense - I
-mentioned, we can read the schema.
 > +required:
+> +  - compatible
 > +  - reg
+> +
+> +allOf:
+> +  - $ref: /schemas/dpll/dpll-device.yaml
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      dpll@70 {
+> +        compatible = "microchip,zl3073x-i2c";
+
+> +        #address-cells = <0>;
+> +        #size-cells = <0>;
+
+Again, why do you need them if you are not using these two?
+
+> +        reg = <0x70>;
+> +        status = "okay";
+
+Drop
+
+Also, follow DTS coding style and order properties properly.
+
+> +
+> +        num-dplls = <2>;
+> +        dpll-types = "pps", "eec";
+> +
+
+
+
+
 Best regards,
 Krzysztof
 
