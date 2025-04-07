@@ -1,137 +1,189 @@
-Return-Path: <devicetree+bounces-164026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A19A7EE3D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 22:02:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13FA8A7EE50
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 22:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 077D21896D8E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:00:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C28A21895E3D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 20:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2B822172C;
-	Mon,  7 Apr 2025 19:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FA8244EAB;
+	Mon,  7 Apr 2025 19:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bX/D3wCq"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="lWCFu5Oa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-16.smtpout.orange.fr [80.12.242.16])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C14FE221D8B;
-	Mon,  7 Apr 2025 19:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D6923BD1C;
+	Mon,  7 Apr 2025 19:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744055846; cv=none; b=SzE6Qre1QpP1YPJMhotFh0TLFc+0d1Q4jMPybWzlnEovAwLHnd6HrlhvAvXCCS9MnQza539S9bUCXbv4P3AocPwi9dIuNAP68YY//rY320A3mw0rpUZZrSfw19TMhDXMjmzCxtawKYeP9Hdtu0c4LKifHJuIv4+Y9W0aT3bcy9M=
+	t=1744055986; cv=none; b=XlnabX7sUIWjlAocoGMetOc3tmekbFSHNYbPx5i81Ub7z+CuIJLcWNlBax1hW3HvKNkP0UgMpCMmx0y79mgvv89/BsDifMFvkZq5KHVmummXPb8XMKKRKi1q3vQSFAghyE2gisAp5JKxdCDklUrtFvH1g/SyZOZXpZ6Ax1vMsdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744055846; c=relaxed/simple;
-	bh=v2/siHg09DAwKeiG3+f0sOCRkbEBkCscfOp3SQnO1lQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=moC7XmvvzlfDJFXtuo6p4QmWSqVxddW5bg5KIds3eaTvnV8fuCKNJSU4Q92e88gFqIZD09zkSy3jtbNKZ09sdanE0er9WqAnsVnx8i3sCl9jJYg8Wi8gSR2mhi8UUyAKlnPnc87T3bxviGokjlV12kAC9W2KmvMsjFrgXP5B0R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bX/D3wCq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 55824C4CEE9;
-	Mon,  7 Apr 2025 19:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744055846;
-	bh=v2/siHg09DAwKeiG3+f0sOCRkbEBkCscfOp3SQnO1lQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=bX/D3wCq3syWtbi8PgRt/VPCt4EnMKJTe+WYXPsJ7kryGNQ/66c7pDWQbYcfSxfWs
-	 1zg1q9pm9NmeB5/TtO77Qoa8BWZKkJpgKoC8N49JZ8GLVrQlyy7nqMvBrryKxplEPN
-	 ulVOBTlaosXp1yTvCzxnm/fG4ucAWRs+SM8nen70I1g2nDdRguOtRBbkp4bVh+CqXv
-	 XjoGEJ3aPpbcjA7j3zFGMtecVfNxWclQ5wGySTNg4M+K4dve4/nJprd1CWHNrifF3S
-	 xXs2yUEyunWgJ+bh9sfcEfLpTpiF5Xn3E8k6ntZnStVPuO5JznjFGg6kJ853Sy769O
-	 weBSHszpV0x4w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4046FC36018;
-	Mon,  7 Apr 2025 19:57:26 +0000 (UTC)
-From: Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
-Date: Mon, 07 Apr 2025 21:57:16 +0200
-Subject: [PATCH v2 1/2] dt-bindings: iio: imu: icm42600: add interrupt
- naming support
+	s=arc-20240116; t=1744055986; c=relaxed/simple;
+	bh=h1VyZ44tkwkZ9BYMdSWJcuMFfRfJlNycn1ZZ3RGmpfU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=inc3QkwPV7TDdHBLCS0/kCncOP3tz/bop2U1e7geh+5PltD3Ii6Kp/QeDs6bSqGagZUlLq61Oj5JN3+Cu4LCVCMbuGyPNQhWkb/p61Z8fs8/j4jfWGrrtULZsYp7Jxxx1/ZrOTNMDcKkC7PctPm3ViUGLNowiN6uALhP5AFTFuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=lWCFu5Oa; arc=none smtp.client-ip=80.12.242.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id 1sciuA5a8cIMB1sclu6ec5; Mon, 07 Apr 2025 21:59:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1744055957;
+	bh=/4c4JTnHqkb3zAW3+wg0tavQK5en0rFfkh7J4+tv+sc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=lWCFu5OavlE5trg+UvMOzz+qTahIlH8ly+lu9DnV5SFyUN9JBa+k4E1gwjnpvsMTE
+	 qkc6TslmAHIKtMvwXyHkE0nqTsR+E19w/iJOj1i2/xK7F5IE8yZKjz+M6d+Ilv+j1E
+	 4F336AkWsyQlmlndReYSE5VF63nOtY5lHA7UmqRx5o2TfZZOUgGCCrl0FVRM0OYCOc
+	 coNE4OF4C9owj0NlCJ7CIRlL8gT+vmniz0e+bqAOQDygwoAh9hVJ0qtdJcznH0N3lm
+	 fX9KkDqN0eCbDvSX0aLzEZ/hi99m9k7bGokzQ9n+Xb7KSiV9YloFt9HH4DHpngbnJG
+	 WXi9zihNrnCgw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Mon, 07 Apr 2025 21:59:17 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <525551ae-fab0-40df-9190-81701f3480e8@wanadoo.fr>
+Date: Mon, 7 Apr 2025 21:59:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250407-iio-imu-inv-icm42600-rework-interrupt-using-names-v2-1-c278acf587b2@tdk.com>
-References: <20250407-iio-imu-inv-icm42600-rework-interrupt-using-names-v2-0-c278acf587b2@tdk.com>
-In-Reply-To: <20250407-iio-imu-inv-icm42600-rework-interrupt-using-names-v2-0-c278acf587b2@tdk.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744055845; l=1747;
- i=jean-baptiste.maneyrol@tdk.com; s=20240923; h=from:subject:message-id;
- bh=1qQnOijHkXW1Hp6AoL8pvONp5bnvT1kXFXKqEP9j4Mk=;
- b=rQ4NkV5spC2UdhZNwqF+1M9qINLIg72QUnqO0x/jde1Cheat9cnvpclLdIuncJYC7fuN/SeRn
- okKLyYxUAiFAQ5dt4TUpcNTVNqGud+ERBZtpPjFEJ6I1YmCiUxXMxT8
-X-Developer-Key: i=jean-baptiste.maneyrol@tdk.com; a=ed25519;
- pk=bRqF1WYk0hR3qrnAithOLXSD0LvSu8DUd+quKLxCicI=
-X-Endpoint-Received: by B4 Relay for
- jean-baptiste.maneyrol@tdk.com/20240923 with auth_id=218
-X-Original-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Reply-To: jean-baptiste.maneyrol@tdk.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ mchehab@kernel.org, robh@kernel.org, sakari.ailus@linux.intel.com,
+ sylvain.petinot@foss.st.com
+References: <20250404-b4-vd55g1-v5-0-98f2f02eec59@foss.st.com>
+ <20250404-b4-vd55g1-v5-2-98f2f02eec59@foss.st.com>
+ <33abd6fc-9ab3-497e-b421-0816a32b8141@wanadoo.fr>
+ <27a0989a-8cb6-4b21-b94b-8cec86f2c6d1@foss.st.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <27a0989a-8cb6-4b21-b94b-8cec86f2c6d1@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Le 07/04/2025 à 11:07, Benjamin Mugnier a écrit :
+> Hi Christophe
+> 
+> Thank you for your review.
+> 
+> On 4/4/25 18:09, Christophe JAILLET wrote:
+>> Le 04/04/2025 à 16:50, Benjamin Mugnier a écrit :
+>>> The VD55G1 is a monochrome global shutter camera with a 804x704 maximum
+>>> resolution with RAW8 and RAW10 bytes per pixel.
+>>> The driver supports :
+>>> - Auto exposure from the sensor, or manual exposure mode
+>>> - HDR subtraction mode, allowing edge detection and background removal
+>>> - Auto exposure cold start, using configuration values from last stream
+>>> to start the next one
+>>> - LED GPIOs for illumination
+>>> - Most standard camera sensor features (hblank, vblank, test patterns,
+>>> again, dgain, hflip, vflip, auto exposure bias, etc.)
+>>> Add driver source code to MAINTAINERS file.
+>>
+>> Hi, a few nitpicks below, should they make sense.
+>>
+>> ...
+>>
+>>> +static int vd55g1_prepare_clock_tree(struct vd55g1 *sensor)
+>>> +{
+>>> +    struct i2c_client *client = sensor->i2c_client;
+>>> +    /* Double data rate */
+>>> +    u32 mipi_freq = sensor->link_freq * 2;
+>>> +    u32 sys_clk, mipi_div, pixel_div;
+>>> +    int ret = 0;
+>>> +
+>>> +    if (sensor->xclk_freq < 6 * HZ_PER_MHZ ||
+>>> +        sensor->xclk_freq > 27 * HZ_PER_MHZ) {
+>>> +        dev_err(&client->dev,
+>>> +            "Only 6Mhz-27Mhz clock range supported. Provided %lu MHz\n",
+>>> +            sensor->xclk_freq / HZ_PER_MHZ);
+>>> +        return -EINVAL;
+>>> +    }
+>>> +
+>>> +    if (mipi_freq < 250 * HZ_PER_MHZ ||
+>>> +        mipi_freq > 1200 * HZ_PER_MHZ) {
+>>> +        dev_err(&client->dev,
+>>> +            "Only 250Mhz-1200Mhz link frequency range supported.
+>>> Provided %lu MHz\n",
+>>> +            mipi_freq / HZ_PER_MHZ);
+>>> +        return -EINVAL;
+>>> +    }
+>>> +
+>>> +    if (mipi_freq <= 300 * HZ_PER_MHZ)
+>>> +        mipi_div = 4;
+>>> +    else if (mipi_freq <= 600 * HZ_PER_MHZ)
+>>> +        mipi_div = 2;
+>>> +    else
+>>> +        mipi_div = 1;
+>>> +
+>>> +    sys_clk = mipi_freq * mipi_div;
+>>> +
+>>> +    if (sys_clk <= 780 * HZ_PER_MHZ)
+>>> +        pixel_div = 5;
+>>> +    else if (sys_clk <= 900 * HZ_PER_MHZ)
+>>> +        pixel_div = 6;
+>>> +    else
+>>> +        pixel_div = 8;
+>>> +
+>>> +    sensor->pixel_clock = sys_clk / pixel_div;
+>>> +    /* Frequency to data rate is 1:1 ratio for MIPI */
+>>> +    sensor->data_rate_in_mbps = mipi_freq;
+>>> +
+>>> +    return ret;
+>>
+>> Could be return 0, and ret could be removed.
+> 
+> Yes, I replaced all valid return paths by return 0.
+> 
+>>
+>>> +}
+>>
+>> ...
+>>
+>>> +static int vd55g1_enable_streams(struct v4l2_subdev *sd,
+>>> +                 struct v4l2_subdev_state *state, u32 pad,
+>>> +                 u64 streams_mask)
+>>> +{
+>>> +    struct vd55g1 *sensor = to_vd55g1(sd);
+>>> +    struct i2c_client *client = v4l2_get_subdevdata(&sensor->sd);
+>>> +    int ret = 0;
+>>
+>> Un-needed init, it is set just the line after.
+> 
+> I always wonder if it is worth removing the initialization if it is
+> redundant. I find myself spending time debugging issues happening
+> because I modified the flow of a function and now the return value
+> needs to be initialized.
 
-Add interrupt-names field for specifying interrupt used. Only INT1
-is supported by the driver currently.
+On obvious cases, like this one, personally I prefer omitting the 
+initialization, as already done in vd55g1_new_format_change_controls() 
+or vd55g1_init_state() below.
 
-Add minItems 1 for interrupts since interrupt is mandatory for the driver.
+But time is more important than these few bytes that will be optimized 
+by the compiler anyway.
 
-Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
- .../devicetree/bindings/iio/imu/invensense,icm42600.yaml    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+So if it may save some of your time, I think that consistently 
+initializing it is certainly the way to go.
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-index 7e4492bbd0278a336587dc5ac04da7153453da29..707f2169ce9a3ca41d81560bed15786fe010109e 100644
---- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-@@ -41,6 +41,17 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  interrupt-names:
-+    minItems: 1
-+    maxItems: 1
-+    items:
-+      enum:
-+        - INT1
-+        - INT2
-+    description: |
-+      choose chip interrupt pin to be used as interrupt input, beware that the
-+      only support interrupt pin is INT1 for the moment.
-+
-   drive-open-drain:
-     type: boolean
- 
-@@ -76,6 +87,7 @@ examples:
-             reg = <0x68>;
-             interrupt-parent = <&gpio2>;
-             interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-names = "INT1";
-             vdd-supply = <&vdd>;
-             vddio-supply = <&vddio>;
-         };
-@@ -95,6 +107,7 @@ examples:
-             spi-cpol;
-             interrupt-parent = <&gpio1>;
-             interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-names = "INT1";
-             vdd-supply = <&vdd>;
-             vddio-supply = <&vddio>;
-         };
+Just my 2c.
 
--- 
-2.49.0
+CJ
 
+> You're absolutely correct in these initializations being unnecessary
+> though, and I removed them for v6, but I'll gladly take your thinking on
+> my comment :)
+> 
 
 
