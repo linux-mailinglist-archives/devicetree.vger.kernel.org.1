@@ -1,148 +1,134 @@
-Return-Path: <devicetree+bounces-163858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D83DA7E511
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:45:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8020A7E526
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:49:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B7F016D18D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:40:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 447953AA52F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314BF201253;
-	Mon,  7 Apr 2025 15:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F160A204090;
+	Mon,  7 Apr 2025 15:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aBxrsI2W"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ObF23tKu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0117F200BB3;
-	Mon,  7 Apr 2025 15:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365C12036F6;
+	Mon,  7 Apr 2025 15:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744040372; cv=none; b=ruFPVXY2idlpM8ZSu6GWuaAjA5OLBqYhOncQHGzkNbjrB0ID7DWhYlKQeiB8mLiX5Cs084p8NNOqc3xxPqBHUjNzemPfvXAXo+MdNNlQs2ZnD10cctD3a7FCDCWIaEz2xuY0qACeAhWx1WiFFCtE1ydzVSuXpmrq4y3xzto2Q0I=
+	t=1744040590; cv=none; b=Tk5CiLVoZ3N2RtKIY26VPvhNw+1Zf9ul80ncFwuVNTJiQAinevd+7DS4t5OFzxmnCMl5wMs7l8rACfVOJR1gNte54dv3Y8Wxz5Yj8YFp5+We3KR5Bf/pirUoIpykLemgAs3VKj/gF8DFj+b6ZUan0qajhuATGVy920uJED9ueBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744040372; c=relaxed/simple;
-	bh=M3y8hJh48p4El0IfUM4vjOfPCS0bV3egS3RqF+kA6FE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g1ZxwabH3npwJKr/2nzN0lJQWmbB4qSNTmXLSy07+MQXRCvmrBfQePnwoADO2xXNSfHh9mNQ7N86ibHP28xn/nE17zAII0KojcaV5JFroirjEIYyqldo3knBYY8WM/oAB76OZCo1dpCFM4PQEbrK79rxVeZKFxv+YRN/X/3ZmgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aBxrsI2W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85A8FC4CEDD;
-	Mon,  7 Apr 2025 15:39:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744040371;
-	bh=M3y8hJh48p4El0IfUM4vjOfPCS0bV3egS3RqF+kA6FE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aBxrsI2W50l74Pn58A5m09CxNRjYDxThYlA4abxzg1FuCkQLDYCef4ag7qNVKeB2q
-	 n+/KNjBJIssz7yA7e0Ieog2KN+tRSmsFZIfWa8Mj2c8yuTgw7E6hz75Nw/R+4tAOZi
-	 W435MIUXI+JJrfusrjiVxUvWoSCFUzlrNKpA1yEarvidLHwyPmuclXz/kc75tYBkFi
-	 jgxMLeI7Zj7fNBoDSdJGiskOBrYUwFV7Ccv7lJ6I2Nz0OmXsq34Gdoacw668icvxy4
-	 3H5sAdM69wef4rmbPYWGJFWf9aCf9Yf1qory0BOxvQmA96BnHPwZ+iTTfkd2xqoiha
-	 UL9F3Sg0MeyWA==
-Message-ID: <6f11921a-4ee8-4f40-9131-529f548f681a@kernel.org>
-Date: Mon, 7 Apr 2025 16:39:26 +0100
+	s=arc-20240116; t=1744040590; c=relaxed/simple;
+	bh=+bfBlrTODZYu3pKVpWowUt5ekRSxDmvofhdH7JASR9A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J3tvhLyVBwbIPtPcnp+TknVTco7awDS74FLwG20VMpBeboqt9TyHscyfclKcgIFF9lSJrsHAWK5X/XpI8zxmBE2LQd1RDOUKQLAm7CCUSxbEimY+XaAkYlCdQLS+JFCAVwxuJv93Es4G1OYZQUNMCDEBAwqaH5U9EJKT/riGANo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ObF23tKu; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744040589; x=1775576589;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+bfBlrTODZYu3pKVpWowUt5ekRSxDmvofhdH7JASR9A=;
+  b=ObF23tKuc/zre5XJ4WY+l+jeR96cvn6oIPxB73mjHaEtfLIcbVExqYSj
+   RrNiueqan2eaYsISKgL/2aCTqI1jhdSkHBewTsneywly28qHO8NRc1AZk
+   /IB25SCEyjxXgyQnMv2KAfiwMGoNCAY+8wfqUUuwsjUH9IVuwMk6m7HOK
+   DwQ81f7axn/3NQyU5CwKDP3MPRBtBZlLpchgtvEqA7Yql9r1T5nj2QY93
+   CeyYHD6TTcl1rPnj7E2g4hb8lua48/PBaVdJwV3iTz3h80pcDnJVIcY10
+   jPKlztFOPRKdHurfpY0Zdscy/WZverE2dI0dNhuNtYsY/1kIz+xeIfj3E
+   w==;
+X-CSE-ConnectionGUID: vaRHodjPQselcu6sB0bpMw==
+X-CSE-MsgGUID: PGolypC6TUOar++ZLZ/hUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="56096639"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; 
+   d="scan'208";a="56096639"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2025 08:43:08 -0700
+X-CSE-ConnectionGUID: z2HD4fT+SiaRoL9kWQVDJQ==
+X-CSE-MsgGUID: +KOv1CCeSF2YtmEZIw2xfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; 
+   d="scan'208";a="133195403"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2025 08:42:59 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u1och-0000000A75j-0ycM;
+	Mon, 07 Apr 2025 18:42:55 +0300
+Date: Mon, 7 Apr 2025 18:42:55 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 13/16] i2c: busses: at91: Add MCHP_LAN966X_PCI dependency
+Message-ID: <Z_PyfyBq5cDeIQwS@smile.fi.intel.com>
+References: <20250407145546.270683-1-herve.codina@bootlin.com>
+ <20250407145546.270683-14-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/4] media: venus: pm_helpers: use opp-table for the
- frequency
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Renjiang Han <quic_renjiang@quicinc.com>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
- <20241219-add-venus-for-qcs615-v6-2-e9a74d3b003d@quicinc.com>
- <fde279ad-27ed-4947-a408-23139bcd270a@oss.qualcomm.com>
- <351a9654-ffa1-4727-b772-95d4ed113c81@quicinc.com>
- <ac145c57-1db3-4747-88e2-02825f958d5a@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bod@kernel.org>
-In-Reply-To: <ac145c57-1db3-4747-88e2-02825f958d5a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250407145546.270683-14-herve.codina@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 09/01/2025 13:05, Konrad Dybcio wrote:
-> On 2.01.2025 6:38 AM, Renjiang Han wrote:
->>
->> On 12/23/2024 10:17 PM, Konrad Dybcio wrote:
->>> On 19.12.2024 6:41 AM, Renjiang Han wrote:
->>>> The frequency value in the opp-table in the device tree and the freq_tbl
->>>> in the driver are the same.
->>>>
->>>> Therefore, update pm_helpers.c to use the opp-table for frequency values
->>>> for the v4 core.
->>>> If getting data from the opp table fails, fall back to using the frequency
->>>> table.
->>>>
->>>> Signed-off-by: Renjiang Han<quic_renjiang@quicinc.com>
->>>> ---
->>>>    drivers/media/platform/qcom/venus/pm_helpers.c | 53 +++++++++++++++++++-------
->>>>    1 file changed, 39 insertions(+), 14 deletions(-)
->>>>
->>>> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c b/drivers/media/platform/qcom/venus/pm_helpers.c
->>>> index 33a5a659c0ada0ca97eebb5522c5f349f95c49c7..b61c0ad152878870b7223efa274e137d3636433b 100644
->>>> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
->>>> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
->>>> @@ -43,14 +43,20 @@ static int core_clks_enable(struct venus_core *core)
->>>>        const struct venus_resources *res = core->res;
->>>>        const struct freq_tbl *freq_tbl = core->res->freq_tbl;
->>>>        unsigned int freq_tbl_size = core->res->freq_tbl_size;
->>>> +    struct device *dev = core->dev;
->>>> +    struct dev_pm_opp *opp;
->>>>        unsigned long freq;
->>>>        unsigned int i;
->>>>        int ret;
->>>>    -    if (!freq_tbl)
->>>> -        return -EINVAL;
->>>> -
->>>> -    freq = freq_tbl[freq_tbl_size - 1].freq;
->>>> +    opp = dev_pm_opp_find_freq_ceil(dev, &freq);
->>>> +    if (IS_ERR(opp)) {
->>>> +        if (!freq_tbl)
->>>> +            return -EINVAL;
->>>> +        freq = freq_tbl[freq_tbl_size - 1].freq;
->>>> +    } else {
->>>> +        dev_pm_opp_put(opp);
->>>> +    }
->>> I'm not super convinced how this could have ever worked without
->>> scaling voltage levels, by the way. Perhaps this will squash some
->>> random bugs :|
->>>
->>> Konrad
->>   Thanks for your comment.
->>   The default value of freq is 0, and then dev_pm_opp_find_freq_ceil is
->>   used to match freq to the maximum value in opp-table that is close to
->>   0. The frequency values ​​in opp-table and freq_tbl are the same, and
->>   dev_pm_opp_find_freq_ceil is used to assign the minimum value in
->>   opp-table to freq. So the logic is the same as before. I'm not sure if
->>   I've answered your concern.
+On Mon, Apr 07, 2025 at 04:55:42PM +0200, Herve Codina wrote:
+> The AT91 I2C driver depends on ARCH_AT91.
 > 
-> We talked offline, but for the record: my concern here was about
-> clk_set_rate() not scaling RPM/h voltage corners, which this patch
-> fixes
-> 
-> Konrad
+> This I2C controller can be used by the LAN966x PCI device and so
+> it needs to be available when the LAN966x PCI device is enabled.
 
-Konrad is this an RB from you, do you have any other concerns with this 
-code ?
+...
 
-Dikshita, Vikash ?
+>  config I2C_AT91
+>  	tristate "Atmel AT91 I2C Two-Wire interface (TWI)"
+> -	depends on ARCH_AT91 || COMPILE_TEST
+> +	depends on ARCH_AT91 || MCHP_LAN966X_PCI || COMPILE_TEST
 
-I'll give it a test myself ASAP but any other comments or R/B would be 
-helpful.
+I would drop it altogether in similar way as suggested for the clock driver.
 
----
-bod
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
