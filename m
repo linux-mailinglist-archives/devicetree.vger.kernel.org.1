@@ -1,139 +1,165 @@
-Return-Path: <devicetree+bounces-163742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BBB2A7DE2F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:50:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6860EA7DE61
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA61B172D2B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:49:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DF947A1FF5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFC524EA84;
-	Mon,  7 Apr 2025 12:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8EF235BF9;
+	Mon,  7 Apr 2025 12:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qK15qn+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkVFA2sG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CA224888D;
-	Mon,  7 Apr 2025 12:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB42D229B1A;
+	Mon,  7 Apr 2025 12:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744030162; cv=none; b=rBIcdq3FZyRiY2cntIolExl5MmQjiEczOu9aOhwMcFBv43jLl6hR0TP9hdBRzLyPS6UKnODueLeCmJ5VxQaE5Tc5mHEyWgu05rHWuFrUg+9NB5L7Tyl2XauPATAIo3GyJPT5/79dYzeUN7Sh9qNYOrjniSc8ooYeCz54VVz0GzM=
+	t=1744030799; cv=none; b=h3gpBZxguosOnkRjCTnevZ3K1yllX5crpJoRAdJrMGbxzUIDI1qDK6Vgwm1rzCaS3URYTtx1MnEOd5IlmJXVMAyYolipv5wTYxc6VIpURwhLMqdK5GS7rvLgKVy93FYcLJKbWzien5H/X/R7HJCvO41AEqbWVDL21UkVPl4xGpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744030162; c=relaxed/simple;
-	bh=+B7zKeUdb4vhO3I+2ufYAN6NeJofvMlAuG64Ted7aW4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=baNs5PO/pZgXFLU8VFb1Ef4qPRX47S2VwwzpKCKncyuPKHZKLaSpbGvfzfvuUifz72ox0/WrNK9ZFJ8w5Di7BKiPSYFqZ0dSNa1sK9Yn7GkxXDfMXRl58H0UapMki+hAjJ0AjbkjcGYiaDAut1/bhs0UFtTCT2S6TYjhnbKiYPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qK15qn+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 915FBC4CEF3;
-	Mon,  7 Apr 2025 12:49:22 +0000 (UTC)
+	s=arc-20240116; t=1744030799; c=relaxed/simple;
+	bh=v8IAuqV5wkBcgNFMmZjFzNR8M0rrleIX8ED+VLMbG8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c+sD0CNiTTLQa2zJUxb2gPnF3p2mwok9Fot2UyJuGbB2Ki09F3cvCiw+gEU2IIHtDhbP6sJDk3j+ezlCPfiZG4g3C4Yn6+ZMdWo2sGpb8Wr9NX/NWaa945z7xuSSLoS2ApvJeVStpoh6R11N+fkJS0SANJnyUNj7FtsZrHZwpMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XkVFA2sG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B46EC4CEDD;
+	Mon,  7 Apr 2025 12:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744030162;
-	bh=+B7zKeUdb4vhO3I+2ufYAN6NeJofvMlAuG64Ted7aW4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qK15qn+4XDBux6uFbNeNhwEi2hTl9qrQlhxa+iPQu3pfCNYk0TGSpt6kV7em1bTJM
-	 vUljZeXsRzR7Jj8NuzkMZTYi/9u3Yh2lORMvrA2WvRMeyyoBzIohPTgjigRudqmNPN
-	 WCmBlDx+nk5sKJyfK9ktF0xU8btt+NV60wmriw/nmO6i89bCszDcDKQbX7pX1j6TC0
-	 Xd/3FGyHAth4HgZCQUn37Zqh6wg+Ro8M103g9aum/kNYd1KAOExeFkxcGRv+EeHVZ3
-	 0RBql7KPbo+Oc3mCIikCkfjSG2W2lDAgrpUCmM33RaND4LwR3y6IonYd3dKod/jNWr
-	 FKe526FHkDDIA==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aaecf50578eso694862266b.2;
-        Mon, 07 Apr 2025 05:49:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU/qKQw6RNCFaZk9vtB6ZqHQx72sFrPat3RMBElSgAdR3sAaXHajezRSTOm5C+HdCxzff7Oj50cSstlf6KgN85LB5M=@vger.kernel.org, AJvYcCUbGZGLeVhhuYQayEE+YYxV+/A6T93w+BFmVwJzKKDEKJgJTVlG3ThwMuXiMHrw4ILltyl1PLj9plwxw09V8w==@vger.kernel.org, AJvYcCVZlj3c41QNNOPXQGcbSTHDjcISgpBK1ad9JASV1e8kLshMv2G4f14ZeXzTO2PSBY0KTQ+jZr/Bnig=@vger.kernel.org, AJvYcCVkoXNZI4C9Nu1HRKFmI3VSSDgjOXHznQuysWuSneY4Fo/pUIuzJQMsPcLHIawW3k1N7qsBTq2T/gCoSw==@vger.kernel.org, AJvYcCX1oML6q5iGI8a88sRAP+7kSx3UftJHpou6Qio9Dga6KXkBto9ETjRPuIIAhviOMgp6bqn/fp9ZRRFUdaHW@vger.kernel.org, AJvYcCXBu35nCMFofo17fU+eE9IiDFldYrnFPEcvlpxgfrZ77QtBb2byHawe6C1S+NeNCqT2KFgUE+8AvlHJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+0ZCi7Su+ce0Yz1INh3SW9BV3pFz5Eru4yFvJG7jYAg3EhnDy
-	0JqxEEbD+UzXPyOyuJ2YLo+FehX/duJM/BbyVOok2YEotxWvlBHLcM/ecEbpiznSnVPlWD13IZp
-	6d+kpKccae6bsnhhr1Dn4MX8JIw==
-X-Google-Smtp-Source: AGHT+IHDXKnPQLm3ONu11Ll77borMYreC4A7vgRQSv5YVZin37244aX9wUO7LUzP2WcSyOBSKvvGgd7SCFS9hjbiqWA=
-X-Received: by 2002:a17:907:7f0f:b0:ac7:3323:cfdc with SMTP id
- a640c23a62f3a-ac7e7120321mr823783266b.10.1744030161025; Mon, 07 Apr 2025
- 05:49:21 -0700 (PDT)
+	s=k20201202; t=1744030799;
+	bh=v8IAuqV5wkBcgNFMmZjFzNR8M0rrleIX8ED+VLMbG8U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XkVFA2sG0IHj9v/NgEct9rTcrS/61S1LRYEcMJO8LjxKDWX21L52QMmX/As5bKSt4
+	 QskYgX15cfbkm4Z5M7/qGByY25tiKWqaXoHdtxLand8aoBdROCtNh4WZmtGbclkTf9
+	 lzB15Vd9ibRb3ojGZbdv99alT99VSL++/NhbG2DKLTdqJHuGPjfsJjARkVc/e3cO3x
+	 vebWShzzHqgY/kBs3I1yroEh3ANNlvyD5DTaoWGa8ySeILJ41ALd8MT/hMNqbuZlCA
+	 kmk7rYXQuDVT1uJcYDPS4810j8I+8Wi/tZWQ1C/kC2lMKdkZuizEweQrP1iMCoDQ8y
+	 xY6aZLlF0qU/A==
+Message-ID: <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org>
+Date: Mon, 7 Apr 2025 14:59:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403-dt-cpu-schema-v1-0-076be7171a85@kernel.org>
- <20250403-dt-cpu-schema-v1-18-076be7171a85@kernel.org> <CAPDyKFrFRrPVJ_t0JrAE1VTbS02hwr=L-EHtqb7CQiWzB1MnQg@mail.gmail.com>
- <20250407-aloof-fox-of-relaxation-62963a@sudeepholla>
-In-Reply-To: <20250407-aloof-fox-of-relaxation-62963a@sudeepholla>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 7 Apr 2025 07:49:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+6GG3j3_S94SYLwdGN7x8fjf5WuGL4uHfmgW-fFb=dKQ@mail.gmail.com>
-X-Gm-Features: ATxdqUG97FKlHBXmze0JeAjms2C3uLqc9HHI86LZOz8ldRdp0AMtBpiWM_qROsw
-Message-ID: <CAL_Jsq+6GG3j3_S94SYLwdGN7x8fjf5WuGL4uHfmgW-fFb=dKQ@mail.gmail.com>
-Subject: Re: [PATCH 18/19] dt-bindings: arm/cpus: Add power-domains constraints
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
-	zhouyanjie@wanyeetech.com, Conor Dooley <conor@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
-	UNGLinuxDriver@microchip.com, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mips@vger.kernel.org, 
-	imx@lists.linux.dev, linux-rockchip@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 7, 2025 at 7:30=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com> =
-wrote:
->
-> On Fri, Apr 04, 2025 at 12:36:33PM +0200, Ulf Hansson wrote:
-> > On Fri, 4 Apr 2025 at 05:06, Rob Herring (Arm) <robh@kernel.org> wrote:
-> > >
-> > > The "power-domains" and "power-domains-names" properties are missing =
-any
-> > > constraints. Add the constraints and drop the generic descriptions.
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/cpus.yaml | 8 ++------
-> > >  1 file changed, 2 insertions(+), 6 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Docume=
-ntation/devicetree/bindings/arm/cpus.yaml
-> > > index 6f74ebfd38df..5bd5822db8af 100644
-> > > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > @@ -313,19 +313,15 @@ properties:
-> > >      maxItems: 1
-> > >
-> > >    power-domains:
-> > > -    description:
-> > > -      List of phandles and PM domain specifiers, as defined by bindi=
-ngs of the
-> > > -      PM domain provider (see also ../power_domain.txt).
-> > > +    maxItems: 1
-> >
-> > There are more than one in some cases. The most is probably three, I th=
-ink.
-> >
->
-> +1, there are users using "perf" and "psci" together now.
+On 06/04/2025 23:12, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+> 
+> This allows using pstore on all such platforms. There are some
+> differences per arch:
+> 
+> * Tegra132: Flounder does not appear to enumerate pstore and I do not
+>   have access to norrin, thus Tegra132 is left out of this commit.
+> * Tegra210: Does not support ramoops carveouts in the bootloader, instead
+>   relying on a dowstream driver to allocate the carveout, hence this
+>   hardcodes a location matching what the downstream driver picks.
+> * Tegra186 and Tegra194 on cboot: Bootloader fills in the address and
+>   size in a node specifically named /reserved-memory/ramoops_carveout,
+>   thus these cannot be renamed.
+> * Tegra194 and Tegra234 on edk2: Bootloader looks up the node based on
+>   compatible, however the dt still does not know the address, so keeping
+>   the node name consistent on Tegra186 and newer.
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
+>  4 files changed, 61 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e42dd03f5a1da5079971dc 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> @@ -2051,6 +2051,22 @@ pmu-denver {
+>  		interrupt-affinity = <&denver_0 &denver_1>;
+>  	};
+>  
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ramoops_carveout {
 
-Where? That's just wrong.
+Please follow DTS coding style for name, so this is probably only ramoops.
 
-Rob
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+Best regards,
+Krzysztof
 
