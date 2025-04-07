@@ -1,79 +1,188 @@
-Return-Path: <devicetree+bounces-163754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B75A7DEDE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:22:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC57A7DEF6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 15:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11AAE189484D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:20:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9377716501A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBF9253B65;
-	Mon,  7 Apr 2025 13:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F670253F30;
+	Mon,  7 Apr 2025 13:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPWATTfz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/yNomVj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EAEC223706;
-	Mon,  7 Apr 2025 13:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF8F253F21;
+	Mon,  7 Apr 2025 13:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744031978; cv=none; b=Qxl51cXz9147vm2W1bSQwjaz0fO3mPe99QHvjGuPNJyGzZXD1tQ4TXAsDEJDkNrGwNP+j1HCDVLQrk8rC6O/T0yZh5j/mrXIut36rwjh76Yz50/VoiGtA4KI52ApZlFw2MLc5uEv+7Bgyf2F/rYCpdKr6iT7NzicYb/Cvvv5SJI=
+	t=1744032020; cv=none; b=hLoeeL+nwKQVTZQwNPyp58VbS+5DTUpIqdQxw1eSc9LlJISwvcNP/163NI2G+sJhELOVNpqywYKi5BhmsOM3y0BzCzF1oLZvbbAQ0ddrsD+LXrYsFikbq9aXvEhzyxzuBbrCOosFA+8KRRfOdFwHw5JaqwbJTsIyj7ghh4SiNF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744031978; c=relaxed/simple;
-	bh=gozt7pD50Tk+cO//aXwr2QRJY1Km3OTojfAu0/L94IM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoRzU8zmea1a+wcSpLeVKeiHvYqkxhK/TA9g2pEPmwLk6Quwbp+emS6vftE1fR2JdV7wdpRYPdv1OiA+QqP7pHZL8En8O2R3OTVEiXS6N3iyK8mNqjBIfbxz2JEkeziYhBq3nfPCjBoUGorBiG3jI+LR48T2PchluEIMFbjumQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPWATTfz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8809C4CEDD;
-	Mon,  7 Apr 2025 13:19:37 +0000 (UTC)
+	s=arc-20240116; t=1744032020; c=relaxed/simple;
+	bh=filjrS06rqZ0ew/T3d0sXhHExTLXZr6chgbI6OChQmE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JKDGKNFMpXP4ncYVXavxyBXHsnMcZ5MfTjco9YSCuRw2fdYckqkh3nUDQUsLVrVcOWT16zjjm3y7VzLyR/f8dHR8vqYygqoDoPKGw3+ecJzX4/WDMMJFx62IyVgbfcpM2LsmEbTr0GYGTKKROpjzCq3j+kCTN6rCwYjmRPOyuA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/yNomVj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A3DC4CEDD;
+	Mon,  7 Apr 2025 13:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744031978;
-	bh=gozt7pD50Tk+cO//aXwr2QRJY1Km3OTojfAu0/L94IM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qPWATTfzjFGuXz4rp2r9Zf5Wj9gpZaUoP8yln6POzkLf745TNvXBqR7vQn8QkbvBU
-	 MzNqUqrtocPvgFiSFwafJFL4Y/CaEULp+KxofVX9gOI2Z6DaaHFx2DIJDrD/1n6N+6
-	 lQQ0PDKUXOTBLmvvpV0nHtWgCgSboLBp9G2GjZ0n4UHAVAxQBAA6NG187FUHtF0rYC
-	 no0kKjmgdV+7e8U6Ke/ssxzG7GRr0eNwqpEuo/CuywokACG1B6Fi+BS0eEvwtCRPkF
-	 E93Ku0h24cWGSwuB/nxOz5EW1kGaiFKKEt/hByc2Tnh+DE3BFwps9zt1Q5ZcTR523F
-	 7QDMFnUd0da6g==
-Date: Mon, 7 Apr 2025 08:19:36 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: linux-media@vger.kernel.org, bsp-development.geo@leica-geosystems.com,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: i2c: add Himax HM1246 image
- sensor
-Message-ID: <174403197634.1932928.13155513755703081221.robh@kernel.org>
-References: <20250403-hm1246-v1-0-30990d71bc42@emfend.at>
- <20250403-hm1246-v1-1-30990d71bc42@emfend.at>
+	s=k20201202; t=1744032018;
+	bh=filjrS06rqZ0ew/T3d0sXhHExTLXZr6chgbI6OChQmE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=a/yNomVjn7s86TOYejdygiH1sC/wzPEjFMGUQTb/FZ1Kp1Zl0AskZHojDh37MF9rp
+	 bVsVNviFb0fNioBtNNKl5Qq8c/9wspSr2td0bwJyaguUsxdPW8ZTbkSYFWHsNnULib
+	 01PqflKsNQuGb9+g2G9hcOCuB0TGRF6VvkQUFTm/lIwh0C4bC7bHqAOJ3wGtx1wf7q
+	 rOYYVwDiq0EggDefaSeE+ksRKj8pXAEa7P/EpyGfDGwPHJ5wP2rh557lUjvSKWXXwr
+	 iGVB64MxsWkbcKf2kU90a2BQ/ypR1cygnM95c4lcfUjQr/mciUjN+twBapFbDRWUqA
+	 NuJP3LfCJg5Pg==
+Message-ID: <74bb9d27-fd6f-4332-9965-e967c3a31c63@kernel.org>
+Date: Mon, 7 Apr 2025 15:20:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403-hm1246-v1-1-30990d71bc42@emfend.at>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] dt-bindings: phy: spacemit: add K1 PCIe/USB3 combo
+ PHY
+To: Ze Huang <huangze@whut.edu.cn>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
+ <20250407-b4-k1-usb3-v3-2-v1-2-bf0bcc41c9ba@whut.edu.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250407-b4-k1-usb3-v3-2-v1-2-bf0bcc41c9ba@whut.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 03 Apr 2025 10:07:35 +0200, Matthias Fend wrote:
-> Add YAML device tree binding for Himax HM1246 image sensor.
+On 07/04/2025 14:38, Ze Huang wrote:
+> Introduce support for SpacemiT K1 PCIe/USB3 combo PHY controller.
 > 
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> PCIe portA and USB3 controller share this phy, only one of them can work
+> at any given application scenario.
+> 
+> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
 > ---
->  .../bindings/media/i2c/himax,hm1246.yaml           | 111 +++++++++++++++++++++
->  1 file changed, 111 insertions(+)
+>  .../bindings/phy/spacemit,k1-combphy.yaml          | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/spacemit,k1-combphy.yaml b/Documentation/devicetree/bindings/phy/spacemit,k1-combphy.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..450157b65410b27129603ea1f3523776a1b0a75e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/spacemit,k1-combphy.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/spacemit,k1-combphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Spacemit K1 PCIe/USB3 PHY
+> +
+> +maintainers:
+> +  - Ze Huang <huangze@whut.edu.cn>
+> +
+> +description:
+> +  Combo PHY on SpacemiT K1 SoC.PCIe port A and USB3 controller share this
+> +  phy, only one of PCIe port A and USB3 port can work at any given application
+> +  scenario.
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-combphy
+> +
+> +  reg:
+> +    maxItems: 2
+
+List and describe the items instead
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: phy_ctrl
+
+drop phy_
+
+> +      - const: phy_sel
+
+ditto
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 1
+
+What is the cell argument?
+
+Also no supplies?
+
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
+Best regards,
+Krzysztof
 
