@@ -1,128 +1,123 @@
-Return-Path: <devicetree+bounces-163873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0ED3A7E5A5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:07:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0BB3A7E5DD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:14:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EBBB7A2034
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:06:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 389B63BFD2A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886CD2080DD;
-	Mon,  7 Apr 2025 16:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A60208960;
+	Mon,  7 Apr 2025 16:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kcS6x+aT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EWvwPlYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7E62080CB
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 16:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CAC2080C9
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 16:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744041900; cv=none; b=gJk2LIHIn8o4BAIzEYOukh+63xxo27dbNUhZOSUZwmK1lL+SJIknwIFcCMeYGzUUPNyuKkJDOQCCy6d/VVM4S52TuUW8MlzOte3ORenWfKU0ka7A8ofcoUOjqT9GPS8AoVQcoRDA16u0K7MTwNX8pSs0FnsHIFa88kwBBJt/fTU=
+	t=1744041906; cv=none; b=VVMdk2W1TQ7Fc/ECHw1EEW4yEuMqRy/jI/afQyTEnTXEmslkpg20tnVv1+nye+TG88BCc2b6G+zJopCFh3SgDtaBz7jztaDqlRL75ETjhaaV89IfPhZ1kpXBpDs6bDOXPXsEktn23bpbfuKHcXc7eMZvKfOg+kyKw4JADHpzN30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744041900; c=relaxed/simple;
-	bh=EsyAkb+E/Vx2Pf5QNAmePM6Wum91PuEAZobvU/Trbwo=;
+	s=arc-20240116; t=1744041906; c=relaxed/simple;
+	bh=CzhGNQOmqbt6ZreL9SgDiADX5hgQoThZrl7pTv9rBpI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KCbNx8gchyXOt7+y9a/0pH11nUXcVUU8pjrSdw2NpEs4bvPOcBMucWewJalj/nKJHflMnEqTaPMVMqC8EW0XsGpDnADDttQuyt8VTCgsBadwLdJJd/sgYa8l6TDoYrWsl70Qei4Ckolw9Y7gnVg3rdebwl2hSLMu4jKUV7lsHq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kcS6x+aT; arc=none smtp.client-ip=209.85.128.180
+	 To:Cc:Content-Type; b=Dk/JgcW8FCJlfmoc3jmvgh4VVKE9IVAbpxmjBb34ANI6z93w0WZLiGTcOccbVzNTM09OftEcEAUoGmTP2khbqbIUv63BEbHuITp6vAiZko5UsyYR2nHbV8k20voXm2mHVa05vIxtlDcOW+1ho93f9i8C1jx/82PhSPv2CMbsak8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EWvwPlYH; arc=none smtp.client-ip=209.85.128.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6f47ed1f40dso34171697b3.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 09:04:57 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6feab7c5f96so42940067b3.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 09:05:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744041896; x=1744646696; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1744041902; x=1744646702; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PRtsR6xVM6ZICvsMHRTNEQJgU7qZB7aRP4KnHCrPc+w=;
-        b=kcS6x+aTkHj/AVvOgI2CTNrRZAoECZtH0huKHm5sGQYXCgKKbHgKJUu7xUdHmJsPXw
-         kqnncFElGFcyq7YSWVENNY3waCz7ZLqPwziALeSa5vNgSVfN+D3N3fqS0Ym4ITVgZQcn
-         I4MyRy2MiE06UqJFk7hSQ/Z8V1mxx6wJHRN/8/Gny0rETsUQ5ju9Xb04FNZOQe0Lcu5E
-         hGHeGQHDWhh5ayhTIEfSvWnwYscPFOTi4d7VofxvjxKieaEYQcxxoxsi1umVqaVw0oWk
-         VLDmLgF6ocM3s5Jxy+25dvnD53ZvYBxSOAMkD8JJrEPDQEiDyJ/RtoGQ22A2MdBSxL4W
-         69AQ==
+        bh=A0QGJ/98UjXJ4a82WsY8C5O3bLdEhkcOxRTFuuyhgXU=;
+        b=EWvwPlYHa8i9RHio2cp70Ik8l3sNnYi5NY8tPLbBm4QSdC47IZ1VB68swwpzhm+Af3
+         Qxh73ECEgZaJps7xkl8ROUg74l4GL8tNcfh4hnj5TR2EgcgMQCIm2h2+XD0exCNrdImE
+         kIkEGcKG/Rcw/scP4S+3yYsV1YvcGyXpszm75VVzu9BKfdql54DlW8B2TxCijv4lwe5r
+         ecV0R4+wkqwiDuOQh14AHVvNx/BKtSVNeAsc/xxznk50ahOGrtbuBsIesR+5YqkNkbww
+         V2CFXrOn0Xz/Tz6FeIe3KJW1wUdUd8YfOS0bF9jZqr3mbxPo1GEFT0EtXl3i1maSM/WA
+         z1rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744041896; x=1744646696;
+        d=1e100.net; s=20230601; t=1744041902; x=1744646702;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PRtsR6xVM6ZICvsMHRTNEQJgU7qZB7aRP4KnHCrPc+w=;
-        b=W/dZXjFPEfrNKcNTuZ5XLzjVtxdMKXENaaqlrAbwa4F+T9tMr3dlruJ8E8vgRVIthe
-         9ZvHQL6JFD11qCdRnYyXMfxrVpZh6Idq/o4g3YMW/iyXSLTB2Gd31wSLmNxZCvq2dUc2
-         hewC2KGJxXeX4rlo/sPGf+E3/ZZTAvaCZhfqriJQ8yKuLN+o0RdqpIZ5Vyakg+m5SoID
-         FFRrMs7H2SMfqUnrdPLY8/HomXqswfkjENn0JJ5+u1/v3738raD0ycIiHjel07FIqYM3
-         NuYolqZL+W1nMIW6taSaWnLBz8/8fuZDb22ldQGkcE/WJKKeAxPGBqDl0OXNSFzKwmo2
-         74vw==
-X-Forwarded-Encrypted: i=1; AJvYcCX117U1i2hH7qpZVXseDmyn5RVH+xg1Y3hX9iC67oCYY2TqVJL1jGGGZovViIznmYoA1Md71lGPSEHT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzhQq/GjIFl0+RCvONvY6Gyqg9EWqn7r+RNs5RUMhJrpvzYAYd
-	1puH7+HcJyx5mhA7O4N7uHsU1DiDZJj0JbBjr8+nVhTvgVZlUh5Dz0JaIe18dko2GkbMY6JRiBA
-	rLDKFe9i6aDBxwU0A6Zs1aTanNrgjCe71gLSNBg==
-X-Gm-Gg: ASbGnctgIE/P6sOFcp6ThKdsGv2Nxjb1Lp4C3Rab2/iLisvYu6gpNxpz9tNYF2cG2oj
-	DkEXdvmbeTXujfcDFonzc5k68WO6LJ9SITwckfsFUjhabonjOHIq7jVduV11r2f8QUbYqP3pT8y
-	CoGm7E4n2y3i3FEn5g1iEh6kQtPX8=
-X-Google-Smtp-Source: AGHT+IEgtyhHcw5Jpgfae/63h0KNZCvI+qxXPeZypusFjvmWFk+cO1XtdFw/5d+hW1tCksobHOcrVkCj/XZ7Ug4xyF0=
-X-Received: by 2002:a05:690c:3686:b0:703:ac44:d37e with SMTP id
- 00721157ae682-703f42fc111mr168754697b3.37.1744041896281; Mon, 07 Apr 2025
- 09:04:56 -0700 (PDT)
+        bh=A0QGJ/98UjXJ4a82WsY8C5O3bLdEhkcOxRTFuuyhgXU=;
+        b=pyROSYkmgYXsWfV/zELOJlrXudAchnVUEKUQEMw38XSLwpedjNFza8QYxegQCeDaUv
+         ADSKz/vMs1A3tnKxUQW7rgN1gfZmOeqjcSJBbBQBkEovm2ta9arOh824IRoVraLSnS3T
+         kwnNXTkODJrgLYasUUMEDWWOyerj7nbYSQ6J0OYUVYLXXJBID7j+JbPZcdWx4LwGcjD0
+         gw6Fy/bMTWdVNTTb7lD9r08rTgzGk90/qo/j1jyY7xcof5cFfdwdYHlJwMEL3L4GNKLu
+         UuO9xO3jXEBq5i8wv2Byq/z81B5p4lZOxJSbfgklnxaKhVsA4BxdbadT0FipzJdU+4cF
+         bf9w==
+X-Forwarded-Encrypted: i=1; AJvYcCWZqJ65UdZI0qDBpkGh9bC6CMKdVrehaMQx0TcL68alyitPzxl13XqjvMpJIR38fErW7dncJTg/S6Ya@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5s6LT9Dhti5rz0l4c/g4sMRHmGIZaEvyhSAOwVSbjSMC0pphh
+	24D7lIGOe4txVPoW984d9zaIgWCRjvkr2VjMZQDbThigbG38faVjAnkjpX1L7IY59Ch+Qi7CbmU
+	if0LiGSPEEXQfX86wxzTEn6qANGxXMX3fZwIgYg==
+X-Gm-Gg: ASbGncvlA91yN3T7KhUwXyrhHBtPN6ciNPcoLgkUikNEg33D4i9/lIXSGJetT/8jsgN
+	1ty0f/NR8camMomcnwAJ9crkopT0kr01r+DbL8AS+KfOoK3M5WCqSdAFL02PmNzKgMOXS9XS4t9
+	K8JTLHFDqihTghb1a4urO/t5LEJfQ=
+X-Google-Smtp-Source: AGHT+IHANCkxzh+wubRAXgSFUnOAzH7wDOb2nf26ksZRKOBL2l6Zndanfaex8MrUBtCadQw25RKQniC/QrxXxgjj7mc=
+X-Received: by 2002:a05:690c:3508:b0:6ef:9e74:c09b with SMTP id
+ 00721157ae682-703e1646ca9mr235838577b3.33.1744041902031; Mon, 07 Apr 2025
+ 09:05:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250320211922.1135669-1-robh@kernel.org>
-In-Reply-To: <20250320211922.1135669-1-robh@kernel.org>
+References: <20250320-dt-marvell-mmc-v1-0-e51002ea0238@kernel.org>
+In-Reply-To: <20250320-dt-marvell-mmc-v1-0-e51002ea0238@kernel.org>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 7 Apr 2025 18:04:19 +0200
-X-Gm-Features: ATxdqUH-tbXCaf4ePanPkHh6DiK3ftNM3BoL1J4Avf3yLjwSBSY2qumPHOTnSI8
-Message-ID: <CAPDyKFpzxK3AaEPsWjkgmPCjCO6u8NeWdZiStWst_Uzdda9MBA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Remove redundant sdhci.txt
+Date: Mon, 7 Apr 2025 18:04:25 +0200
+X-Gm-Features: ATxdqUFdrsufXNsqF_X2LZ9XFXfOuIM3sa9Ny1cJzNnThlBQWgB4lSpSK4o_xFc
+Message-ID: <CAPDyKFpchK3nV36MTJR71OuzaeFk2ktDAJrbEdd-oowOtg-0og@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: mmc: marvell,xenon-sdhci: Fix several
+ validation warnings
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Hu Ziji <huziji@marvell.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 20 Mar 2025 at 22:19, Rob Herring (Arm) <robh@kernel.org> wrote:
+On Thu, 20 Mar 2025 at 22:36, Rob Herring (Arm) <robh@kernel.org> wrote:
 >
-> The properties in sdhci.txt are documented in sdhci-common.yaml, too.
-> Remove the txt binding.
+> This small series fixes several validation warnings caused by the
+> marvell,xenon-sdhci binding:
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> marvell: mmc@6e0000: clocks: [[4, 4]] is too short
+> marvell: mmc@6e0000: clock-names: ['core'] is too short
+> marvell: mmc@780000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+> marvell: mmc@780000: Unevaluated properties are not allowed ('dma-coherent', 'iommus' were unexpected)
+> marvell: mmc@d0000: Unevaluated properties are not allowed ('sdhci-caps-mask' was unexpected)
+>
+> Signed-off-by: "Rob Herring (Arm)" <robh@kernel.org>
+> ---
+> Rob Herring (Arm) (3):
+>       dt-bindings: mmc: marvell,xenon-sdhci: Allow "dma-coherent" and "iommus"
+>       dt-bindings: mmc: marvell,xenon-sdhci: Add reference to sdhci-common.yaml
+>       dt-bindings: mmc: marvell,xenon-sdhci: Drop requiring 2 clocks
+>
+>  .../bindings/mmc/marvell,xenon-sdhci.yaml          | 27 +++++-----------------
+>  1 file changed, 6 insertions(+), 21 deletions(-)
+> ---
+> base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+> change-id: 20250320-dt-marvell-mmc-443bd0060974
+>
+> Best regards,
+> --
+> Rob Herring (Arm) <robh@kernel.org>
+>
 
 Applied for next, thanks!
 
 Kind regards
 Uffe
-
-
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci.txt | 13 -------------
->  1 file changed, 13 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci.txt
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci.txt b/Documentation/devicetree/bindings/mmc/sdhci.txt
-> deleted file mode 100644
-> index 0e9923a64024..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sdhci.txt
-> +++ /dev/null
-> @@ -1,13 +0,0 @@
-> -The properties specific for SD host controllers. For properties shared by MMC
-> -host controllers refer to the mmc[1] bindings.
-> -
-> -  [1] Documentation/devicetree/bindings/mmc/mmc.txt
-> -
-> -Optional properties:
-> -- sdhci-caps-mask: The sdhci capabilities register is incorrect. This 64bit
-> -  property corresponds to the bits in the sdhci capability register. If the bit
-> -  is on in the mask then the bit is incorrect in the register and should be
-> -  turned off, before applying sdhci-caps.
-> -- sdhci-caps: The sdhci capabilities register is incorrect. This 64bit
-> -  property corresponds to the bits in the sdhci capability register. If the
-> -  bit is on in the property then the bit should be turned on.
-> --
-> 2.47.2
->
 
