@@ -1,140 +1,106 @@
-Return-Path: <devicetree+bounces-164062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29767A7EF8B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:09:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33716A7EFC5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:34:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E50F518933CD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 21:09:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0279618975C3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 21:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985252222B4;
-	Mon,  7 Apr 2025 21:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58FA21147C;
+	Mon,  7 Apr 2025 21:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="K7ghY3cr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GEQfehUG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0651F1EF0A1;
-	Mon,  7 Apr 2025 21:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5084515B554;
+	Mon,  7 Apr 2025 21:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744060166; cv=none; b=G6TNGdVbeSU7uVDY6lM+PbwTaJHrBy67gj+YyYiRp0p/iQ563pLXCo2DJSFpqo2Bwu4Oe4J1Z7QxZzhvnwCNQfe/5PW824UmK/jfJYkh8sltYVRPxr9YAqXYS8iSyPpFKmvATed4Pw5la5uaqqROReObdV5oE8TCC0BngDs2CCw=
+	t=1744061678; cv=none; b=Dgzpo0GhImVeYOuk6GopXgmDfGpS7M9S/t7OofU+W5yaOM+uDYCfEDjpBnxUliVwYLaeifZ4dhYib+DFS+0/U1MZnInU3ih1LoXU9vaJYmvlEuOFT7L1KQfBCyYIUsU56BGFWZWewPuEPsGPpEgzi2QgN8XbKEYUaqNRE/je23w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744060166; c=relaxed/simple;
-	bh=wUocLj4Fyt1h9daFXhG7uB7c0V0HiExXAxXLAZEYlB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ucVTainy3/zeAj6eIqoP9MuDEGmRLkkebnrDyG5CzQ4ScK8lwVl3n+9akwjmpUithYYwbageHb+wX3+fzJwTTev+2OAZ1oZ6Ow0drHkx5WJvwKIOw0nLjiUBmC0LIK0vYhVOOWDiAENw8tqROxj5CO5mXbKTvwDFSRwoj+670qE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=K7ghY3cr; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=w/GtE5xw2y5Msi3kroTiKAeUWr169xRkWtJLd0TQeUk=; b=K7ghY3crjNSJIkM6o1sa3rxtGA
-	nvKkNkAIVALxvgqfvDSfCRlp4PdgFRfnleQXWgGmGxk3V76MD8wKAowkP7XGN/4DoMNA/0Sz64RQJ
-	b130NZlQpqQAgfuMbh/vQcY6LY/6qLcjKhZkOQpXVaek4GXkH4OqKNH2gXECbG7d5xy0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u1tiU-008J3u-0W; Mon, 07 Apr 2025 23:09:14 +0200
-Date: Mon, 7 Apr 2025 23:09:13 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 05/28] mfd: zl3073x: Add components versions register defs
-Message-ID: <a5d2e1eb-7b98-4909-9505-ec93fe0c3aac@lunn.ch>
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407172836.1009461-6-ivecera@redhat.com>
+	s=arc-20240116; t=1744061678; c=relaxed/simple;
+	bh=diYSXx9lBmoAqlgbO65iylXkx2XNDbAAYunEOK8li2o=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tw/FNuMCSjYN0sbQHtd9HV6cOpG4RjGXel3yfmECh0rDxyCAPH3JniYKzr4neKfuBmHj0VHwKpFFqDF+BxEuh3diMEDQImSxsPfDyafiVDTABBlQACmTKXCcK1QcBo6QtATWuPeBP1zXDPIi6hq9+nk2BLGcKMpnO1lX03RhI6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GEQfehUG; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537LYRec1024896
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 7 Apr 2025 16:34:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744061667;
+	bh=eYWazmmfD/ANxoGU9LJS/ciQ9FZGln7uKvv9Wh4ZZrw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=GEQfehUG3BYjl1WUo1gBNftT/qaJEGcrPyaodQ8+yWcuZLE4taqN3rJUd4GFpuJGG
+	 wPdyuJzcgBAhLawpXMK3YuO2HkWoxsckBGq1ygmY8mqAD/yeARsJFJWQvg0dMnKORu
+	 4NgRWggKwCZjzmHgOYaH7Zu9JjR5A7KKeXzX/wE8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537LYRWZ027597
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 7 Apr 2025 16:34:27 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Apr 2025 16:34:26 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Apr 2025 16:34:27 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537LYQSA015167;
+	Mon, 7 Apr 2025 16:34:26 -0500
+Date: Mon, 7 Apr 2025 16:34:26 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am62l: add initial
+ infrastructure
+Message-ID: <20250407213426.gkhes7oh5f7vg36q@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20250407-am62lx-v4-0-ce97749b9eae@ti.com>
+ <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
+ <20250407174648.exd57yivoj4rvson@going>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20250407172836.1009461-6-ivecera@redhat.com>
+In-Reply-To: <20250407174648.exd57yivoj4rvson@going>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Apr 07, 2025 at 07:28:32PM +0200, Ivan Vecera wrote:
-> Add register definitions for components versions and report them
-> during probe.
+On April  7, 2025 thus sayeth Nishanth Menon:
+> On 10:34-20250407, Bryan Brattlof wrote:
+> [..]
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+> > new file mode 100644
+> > index 0000000000000..697181c2e7f51
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+> > @@ -0,0 +1,672 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only or MIT
+> > +/*
+> > + * Device Tree file for the AM62L main domain peripherals
+> > + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
 > 
-> Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
->  drivers/mfd/zl3073x-core.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
-> index 39d4c8608a740..b3091b00cffa8 100644
-> --- a/drivers/mfd/zl3073x-core.c
-> +++ b/drivers/mfd/zl3073x-core.c
-> @@ -1,10 +1,19 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  
-> +#include <linux/bitfield.h>
->  #include <linux/module.h>
->  #include <linux/unaligned.h>
->  #include <net/devlink.h>
->  #include "zl3073x.h"
->  
-> +/*
-> + * Register Map Page 0, General
-> + */
-> +ZL3073X_REG16_DEF(id,			0x0001);
-> +ZL3073X_REG16_DEF(revision,		0x0003);
-> +ZL3073X_REG16_DEF(fw_ver,		0x0005);
-> +ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
-> +
->  /*
->   * Regmap ranges
->   */
-> @@ -159,10 +168,36 @@ EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
->  
->  int zl3073x_dev_init(struct zl3073x_dev *zldev)
->  {
-> +	u16 id, revision, fw_ver;
->  	struct devlink *devlink;
-> +	u32 cfg_ver;
-> +	int rc;
->  
->  	devm_mutex_init(zldev->dev, &zldev->lock);
->  
-> +	scoped_guard(zl3073x, zldev) {
+> Fix the copyright year please. We are in 2025.
 
-Why the scoped_guard? The locking scheme you have seems very opaque.
+Ah thanks, time flies. I'll update that.
 
-> +		rc = zl3073x_read_id(zldev, &id);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_revision(zldev, &revision);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_fw_ver(zldev, &fw_ver);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_custom_config_ver(zldev, &cfg_ver);
-> +		if (rc)
-> +			return rc;
-
-Could a parallel operation change the ID? Upgrade the firmware
-version?
-
-	Andrew
+~Bryan
 
