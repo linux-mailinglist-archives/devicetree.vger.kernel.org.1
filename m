@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-163555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E857A7D3AA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A4DA7D3CD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 08:05:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01BFA3AC320
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 05:52:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E71553AC4BE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 06:04:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943A9224889;
-	Mon,  7 Apr 2025 05:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BD82248B0;
+	Mon,  7 Apr 2025 06:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VSElE8Sh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLHkWsYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD4F224235;
-	Mon,  7 Apr 2025 05:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C398122423A;
+	Mon,  7 Apr 2025 06:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744005138; cv=none; b=oFRjmNpkE0Wlael/F3MyiPQ+62Obau0iCRrus5M+mh+ueSB58uf9V2Mq4AEELSxcYHnJ4MhYUxeuHw8Jc2qja2H7lx712HTtKfdlnCFPYZ7YpAXS7dED0n8DCuch98iAbaTXsbJ60YOL4+qV0ehhmwgyAndspG9Em5cbHCE3fKY=
+	t=1744005902; cv=none; b=Z+ZABvSh+3fW/q7o9ysrbOvzWCjKkL73ooP3OJVMo8/69xtajlk9r4aZcd0roAK1PykYHS5kRX7OZ/xntCQ2jlBWdf+sQyQl9BqDTbayLnz4wR+pEqnHY5hxlBbx3pDRY6IsBInuMRI5H/vQP7AZyc4SjF+k4ODeoqS2/C39R9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744005138; c=relaxed/simple;
-	bh=jBaeYUzJAGugTJHPn0N6Y2WgGPRzJv8LCxUPcOYqkZg=;
+	s=arc-20240116; t=1744005902; c=relaxed/simple;
+	bh=QdlPTuGFDzHLTqGSHvpyqeL+wyYF1szxTKJZUAoSyAs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7C4rcUzAuVDstvLGawSL+DLbLzpvD5I4rCIqyDCybjHD1h9L1Jr6m4q7QhkuQSPyMzH3zAe3BY2zF+MPlVo1BULc9+5tMtWD8rnGLZRUsIZ8kDSIocDTyqjzQ83uTe2gEYKQFJZRDf4BGuN9mTpnNko9SyDOtS3stKuLPt3GiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VSElE8Sh; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54b166fa41bso4369190e87.0;
-        Sun, 06 Apr 2025 22:52:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744005135; x=1744609935; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1x9OzLiUk0YHaHOhzgSUQSq/4r9AGAfSiHxrDKxb61s=;
-        b=VSElE8ShoXyvb9X2GtO+rKG3JQ8P45VtKPW8GSmwZ3Zl8aOc1020dIEh87y48x7qFv
-         um8baY6soJy+CdKkXQUnUH+DL57sTiC/EN+S4C7WFI/4n/8kYqfTlhMUyuA/Hr+i2ymn
-         16pSHD0CC63JU6AYxFsCuW9X2UyslU6dGctPJUG6jyJb7bciToyCqnsXYUZiEaoaI0FI
-         h2iJxjOYLjXM+19+KqLt1XkGjJMEKeTFWkk7ebaVBgfQBZpLEqM2/fzSUnfPEZ3pK7me
-         GBIs1XNUsou7Bz9Yw6zeMFnFDiYrk2HuRudLX/LQtrjAROkRX5BFDJcGGl2K+oImCjwo
-         SWIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744005135; x=1744609935;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1x9OzLiUk0YHaHOhzgSUQSq/4r9AGAfSiHxrDKxb61s=;
-        b=NGTeX0QCjfP/UiOs9XU+/MgGcLUkkZoTjiEsLmRHdIrxjkxEo89Lp+dyeMRJU+hpFY
-         lrphQXLrl5usnhqYTlIe6w4BR91bSTK6JQaQXh8UJE+K36Ps+Y4HQEm9pmd6fsMkgyEm
-         TpSHQ67TzHtXyCxMyMfcQVZaXfwPoEXxDKoThx7h6Jo4BaOlYSOlsKd4UqAS9zb0NdSA
-         vKnxnKMuLwiKAhzPnwlev4TK+ETRRAivg+63TswrkeypFrUBYIkcECu49YlilkMpIgdZ
-         D3oiH3JvbYbmFKQ9eWGvC2/HiyJi9TEym/giyUtdgb1t8vcn0GIZlPMqeJoatSho2kKo
-         8sug==
-X-Forwarded-Encrypted: i=1; AJvYcCX4DkGo9fSwCpwGGxi+GWNyVWBjHLEGwUpexC9ahbW56AxVi0uh9KZv42bIw9ZvXcDgjqGOiHsQ0GVV@vger.kernel.org, AJvYcCXV4VGyK09QQqRVek1qzRHSICvrjv5zNyOHFBImFfrgqnsOLBKKP6Mlvq3ZwYxQ4GXEXXfrvE2SITIv@vger.kernel.org, AJvYcCXhV0s622/MBZUQmMtdIQISIWEoMydci3EP38zRDr6TAfOtfd509AOOnKWmVPsU8CRZRemHCY0/aro/DKdw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTKl0pFWVwDuCW/Af7v6i7srTSvxPhghLLFV+q/f0qhsEM4/Rq
-	WRJQLv92pBWGBOxnBKfWULZRa2h44FsJ0eckLk4rUxp1osQBLWMc
-X-Gm-Gg: ASbGncs3WTHNeM+W/H5u6jVqFBPPs2NhzyQbHc+7pziw4i1M5eZEREHLnKLTd/Nb3E+
-	H+UjFOWZpoZ1AQijleqJahD2mVueVyigIGbOqRrn6iQYRvYepHt9T+HpnrqloHd4YNRECLUfs8c
-	SfDsOhQ/r4BwsOL0e7cUoQvEuutpAL2w0J8eZAwaMt4DOsG4tVv0tnKrM6zOsc9CMx3Muiuex44
-	5GaP8t4+L+rHQ7Q0QDEHh3Qhq4Kma/0f4jZIxpETpzwfdOSWejqDO1iu6vJCwrJVKWlAvNzhQXP
-	5S/4HouVnB7tOJhactmk3WIysVDBtWnsMtUkwN+uOKf0WrPGFAeJya+88s20mhgoVyBLRSQ3tAG
-	kf2zQcLCujMq5MIzY/aB/iMG2aw==
-X-Google-Smtp-Source: AGHT+IGnaYMdNKDkJ9NFjy01KX8Te8EQ1pIMZ50jtMW/2GYwNw8hqmck+TBwlME8jZTEY4rV0FFhYw==
-X-Received: by 2002:a05:6512:138f:b0:54b:117c:a06e with SMTP id 2adb3069b0e04-54c2335e5ecmr2960739e87.55.1744005134439;
-        Sun, 06 Apr 2025 22:52:14 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f0314b87fsm14683621fa.57.2025.04.06.22.52.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Apr 2025 22:52:13 -0700 (PDT)
-Message-ID: <ecb2844c-feb5-47d4-b4db-12171380a9cb@gmail.com>
-Date: Mon, 7 Apr 2025 08:52:12 +0300
+	 In-Reply-To:Content-Type; b=PM/cnrdzoURnsgkt53FSwMe5AaY5y69EFbuh4bf2Bv9iEDgL8LQ0RZq9CUA1vbaAutoj+xaIddVJSWw+Hd3T3y0SO0n3OC/0j3QE4kTEZ64N2txgiBIU80UDUPJGQxPFaVg2OtVaPPjHfo4Qu9hooXy4LZn0efsQPlBzfB2qvsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLHkWsYj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A1E6C4CEDD;
+	Mon,  7 Apr 2025 06:04:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744005902;
+	bh=QdlPTuGFDzHLTqGSHvpyqeL+wyYF1szxTKJZUAoSyAs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lLHkWsYj5spzqNUuH90Xd8qyXgoOZloNmjJ0gHK4EvJvTCrNLAwG+3nIJ1Y0l7CuZ
+	 8mUzIFqjh6IqSYAnZFL1cUspFhtUhYFTsJ7Dja2j9XI2Gg20dwN9Dyx2uxZrv1fQRZ
+	 2gcqVR2csGTopegBDIC3qjkr4RVCKJOGV4m/9voKS8eYYavf86BKA7FFRwKTnKznK2
+	 /rDyDVzfe/HHv7a42+Iuw4CxJRwpkRSe3JU8w96H5SsHCwSHvGktXSzNUeEwdWC63c
+	 w9V+Q4gQkFmABRMbrJbUEiNiHKAR8X4QFDRjrgiQOswgD1hY1YXbrtt+okKtKsU7gn
+	 oCjUqy44ya8Kg==
+Message-ID: <befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
+Date: Mon, 7 Apr 2025 08:04:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,155 +50,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: light: add support for veml6046x00 RGBIR color
- sensor
-To: Jonathan Cameron <jic23@kernel.org>, Andreas Klinger <ak@it-klinger.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- subhajit.ghosh@tweaklogic.com, muditsharma.info@gmail.com,
- arthur.becker@sentec.com, ivan.orlov0322@gmail.com
-References: <20250316113131.62884-1-ak@it-klinger.de>
- <20250316113131.62884-3-ak@it-klinger.de>
- <20250317115005.72a539a0@jic23-huawei> <Z_I-qwzUrTNz1DZp@mail.your-server.de>
- <20250406120825.41b2575c@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250406120825.41b2575c@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
+To: Faraz Ata <faraz.ata@samsung.com>, alim.akhtar@samsung.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rosa.pila@samsung.com, dev.tailor@samsung.com, suyash.bitti@samsung.com
+References: <CGME20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80@epcas5p3.samsung.com>
+ <20250318075635.3372599-1-faraz.ata@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250318075635.3372599-1-faraz.ata@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 06/04/2025 14:08, Jonathan Cameron wrote:
-> On Sun, 6 Apr 2025 10:43:23 +0200
-> Andreas Klinger <ak@it-klinger.de> wrote:
-> 
->> Hi Jonathan,
->>
->> I need to pick up the meaning of scale once again for clarification.
->>
->> Jonathan Cameron <jic23@kernel.org> schrieb am Mo, 17. Mär 11:50:
->>> On Sun, 16 Mar 2025 12:31:30 +0100
->>> Andreas Klinger <ak@it-klinger.de> wrote:
->>>    
->>>> +static int veml6046x00_get_scale(struct veml6046x00_data *data,
->>>> +				 int *val, int *val2)
->>>
->>> How is this related to integration time?  I'd normally expect
->>> to see that read in here somewhere as well as doubling integration
->>> time tends to double scale.
->>
->> In the documentation file "sysfs-bus-iio" it says:
->> "
->> What:           /sys/.../iio:deviceX/in_illuminanceY_raw
->> [...]
->> Description:
->>                  Illuminance measurement, units after application of scale
->>                                  and offset are lux.
->> "
->>
->> This means that the scale should be the real factor and not the gain multiplied
->> by photodiode size (PDDIV) as i implemented it so far.
->>
->> This means also that doubling integration time should halve the scale. The
->> higher raw value should lead to the same lux value.
-> 
-> Sounds correct.
+On 18/03/2025 08:56, Faraz Ata wrote:
+> +
+> +		usi_17: usi@10d800c0 {
 
-I was CC'd due to the GTS (gain-time-scale)-helpers. The above is the 
-beef of those helpers - which, attempt to aid drivers to convert the 
-impact of the hardware gain + integration time into a single scale 
-value. This approach has some caveats, but the goal is to fulfill the 
-expectations of those user-space apps which expect only scale to change 
-the gain, while also need to have the integration time controllable (for 
-example to reduce the measurement time for one reason or another).
+Messed order. Keep nodes sorted by unit address (see DTS coding style).
 
-Problem is that, especially when there are multiple channels with 
-separate gain control but common integration time, there will be some 
-situations where the integration time change _will_ cause changes to 
-"total gain (E.g. scale)" too. There may also be cases where some scale 
-values can be met only with certain integration times, or where a scale 
-for a channel can't be met maintaining the scale for other channels etc.
+> +			compatible = "samsung,exynosautov920-usi",
+> +				     "samsung,exynos850-usi";
+> +			reg = <0x10d800c0 0x20>;
+> +			samsung,sysreg = <&syscon_peric1 0x1040>;
+> +			samsung,mode = <USI_V2_UART>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +			clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
+> +				 <&cmu_peric1 CLK_DOUT_PERIC1_USI17_USI>;
+> +			clock-names = "pclk", "ipclk";
+> +			status = "disabled";
+> +
+> +			serial_17: serial@10d80000 {
+> +				compatible = "samsung,exynosautov920-uart",
+> +					     "samsung,exynos850-uart";
+> +				reg = <0x10d80000 0xc0>;
+> +				interrupts = <GIC_SPI 803 IRQ_TYPE_LEVEL_HIGH>;
+> +				pinctrl-names = "default";
+> +				pinctrl-0 = <&uart17_bus>;
+> +				clocks = <&cmu_peric1 CLK_MOUT_PERIC1_NOC_USER>,
+> +					 <&cmu_peric1 CLK_DOUT_PERIC1_USI17_USI>;
+> +				clock-names = "uart", "clk_uart_baud0";
+> +				samsung,uart-fifosize = <64>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+>  		pwm: pwm@109b0000 {
+>  			compatible = "samsung,exynosautov920-pwm",
+>  				     "samsung,exynos4210-pwm";
 
-All in all, I am not sure if the 'unchangeable hardware gain' approach 
-makes things as simple as possible - but as long as we want to have it, 
-the GTS helpers may be of use :) There are couple of drivers using them 
-- feel free to take a look. "git grep gts_ drivers/iio/light/" should 
-point you the current users.
 
->> The documentation of the sensor (veml6046x00.pdf) provides us the calculation
->> between raw green values and lux.
->> Wouldn't it be better to give the user the real factor to be able to get lux?
-> 
-> Absolutely.  That's the expectation if we are providing illuminance_raw and
-> illuminance_scale.
-> 
->>
->> The fact that only the green channel can be used for calculation could be
->> documented in the driver.
-> 
-> Ah. One of these devices.  Hmm. Why do people pretend they can get from
-> Green to illuminance.  That has to assume 'white light'.
-> I get grumpy about this, but if it is the best we can do I guess we have
-> to live with it (I might not be consistent on this).
-> 
->>
->> Then i found the "in_illuminance_hardwaregain" property. It seems that this is
->> exactly what the combination of gain and PDDIV is used for.
->>
->> So what is the scale at the moment could become the hardwaregain and the scale
->> the factor from raw value to lux.
-> 
-> If it is useful to export it separately that works, however it's not typically
-> the control attribute - those tend to be read only because, without access to
-> datasheets simple software has no idea how to control them.
-> 
-> The alternative is the GTS helpers that attempt to figure out the best
-> way to meet the user requirements in setting the integration time and amplifier
-> gain when a scale is requested.
-> 
-> +CC Matti who is the expert on those.
-
-Seems it doesn't take much to be an expert XD
-
-I have understood that the simplest way to go is to always use the 
-maximum integration time which provides the required scale. This should 
-probably result the most accurate readings. If users for some reason 
-want to explicitly set a shorter time, then the GTS helpers might be useful.
-
->> To sum up the suggested interface under /sys/bus/iio/devices/iio\:deviceX would
->> be something like:
->>
->> in_illuminance_hardwaregain --> set and get gain and PDDIV on the sensor
-> 
-> This is usually the read only one as it reflects things that aren't
-> easy for a userspace program / user to tune.  They typically want to control
-> integration time because it reflects noise level and scale because they want
-> to avoid saturation etc and because we need it to get to the actual value
-> in lux.
-> 
->>
->> integration_time            --> set and get integration time on the sensor
-> driving these directly is fine.
->>
->> integration_time_available  --> show available integration time values
->>
->> scale                       --> (only) get real calculation value, taken from
->>                                  sensor documenation, e.g. 1.3440
-> This should remain a main control attribute.
->>
->> scale_available             --> not existing anymore
-> This gets tricky but the GTS helpers will calculate it for you I think.
-
-The GTS helpers can (or, at least should be able to) calculate the 
-available_scales. AFAIR they offer two approaches for this. First one is 
-listing _all_ scales which can be achieved by changing both the 
-integration time and the hardware gain. The second one lists only the 
-scales which can be set with the currently selected integration time.
-
-I think that all of the current GTS users use this first approach of 
-listing all the values, so the 'per time tables' - approach is not very 
-thoroughly tested. Please, let me know if you hit to any hiccups.
-
-Yours,
-	-- Matti
+Best regards,
+Krzysztof
 
