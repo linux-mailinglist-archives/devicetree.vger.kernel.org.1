@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-163796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7AAAA7E0F3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AC0A7E104
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37A043A3EB0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:13:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B8043A9F22
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0CE1CAA79;
-	Mon,  7 Apr 2025 14:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3AC1D14FF;
+	Mon,  7 Apr 2025 14:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Osk59fOa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GHYom3BS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C259D1CAA70;
-	Mon,  7 Apr 2025 14:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66A11CF5E2;
+	Mon,  7 Apr 2025 14:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744035230; cv=none; b=p5NZdgUTT6bPBGu6Q6h9kA/NS3jF3fOwy8iyH/FHYReVRVddz8D/egQngDb83oSefTIAZNfcpPYYHCUx9LCmLp1d5Db/NFv7wFNFWLP0dUkdviJhWgxamLjnzLGsJhf3UgvHrIuCTxCPv4v5Xdj99JpnSCBZYQDPvqOKga5RFcY=
+	t=1744035248; cv=none; b=fDWAWlEw9KLabbyJNlpzGfocpVMne62XrJMNfURx3Sd3KhoWVbcbN4HOZC5l0CyTI7mHfBFzI5he8PD+fTxEt0smMjdWpnEtTgPXoModvNqi5Y27M7QVH8wkMsptArGxqKsMp8+LJ85QPEWmHK9Dd5m32qCGz+9meCmWYtBmUTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744035230; c=relaxed/simple;
-	bh=ahGOKRGJmVuL3rnUqzbdjyTJAQIanf1NZjaOE+zSZes=;
+	s=arc-20240116; t=1744035248; c=relaxed/simple;
+	bh=eE3M8z7vIEzEzXYZWugQbudz1ajq2YdJpDuNX1B+lQA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IAnpJRwW4yt6wvq2aUc8MwY5SiaFgD/N13H7MLJpTNlks1mwXUnpaV7AqKAdmyzwRDypMJCXMrjzb1tVHasC/5qfSpa2dYdBye0pGfodeAa3SzQDz0nzMFRrvgpb/y8LAxaNWVW7MgZT4l5dwBRHc5s0NIsDhvlXojnTfit+4PA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Osk59fOa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61733C4CEE7;
-	Mon,  7 Apr 2025 14:13:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hkzbdpwn4XfStQb9RQn/lFjqhgv5R7kc/hfRTAmgppb7MiAFlQlDRfLQOJDbx4p3PBdTxHuoHtzgfHmiK/mcA4vXpcrveElrLyU6b3Re1SkKrCVkE1/ig625vC9ykmGryUjBDsdnnp6emQ0seemvlXTivtCil0A3qG3H2gLZtHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GHYom3BS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BDABC4CEDD;
+	Mon,  7 Apr 2025 14:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744035230;
-	bh=ahGOKRGJmVuL3rnUqzbdjyTJAQIanf1NZjaOE+zSZes=;
+	s=k20201202; t=1744035248;
+	bh=eE3M8z7vIEzEzXYZWugQbudz1ajq2YdJpDuNX1B+lQA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Osk59fOafMhVKJyIc3lhaBtEhZ1E+eyNpYibhPmolxY9yHL6hdpODTieP4Q9XtglN
-	 bkfRhuGlDD+9zzCPjs3oIQUlH9L/kjmKdDBRmKbMxUwREyiELDmQrdH720kZTyxBQu
-	 UDMf8rg7ZM4u3436PtEPaHWmJIUiuW0t5RxZ6LzKooGc6mB0VmR+iiW+4QnLic91U8
-	 VRXAe4rgJmkZ231me51Y+r4EgW5S5JASYmaaK5Endvt1HJlUpLpZJTnGffYYAx6JQB
-	 Vtk2QO7tOpoBRvbBRXvLJdMXStl8+kuWOOWSivNXTzjrZnsLXwITp/zvZMeRhrKsem
-	 GoN4v7FDE44Gw==
-Date: Mon, 7 Apr 2025 09:13:49 -0500
+	b=GHYom3BSDj1J5/Cj56P29FDzbB/dIJRMbX7QMPZ3vhcXj9PIbNFTahQ84BBwJD6nF
+	 hsiT7tbV0eJsILYj5dUq3Zc3+1vICgZFGQbtovQYozzofsFXptcNIfkwxpaVWw2SDI
+	 pUQ1eCXOJHul2F7i2GfdqK7YrUAKM777EntgEZtQv4c+FU5NSYLRwD1uvhuONOYoj2
+	 Sp9mO4zS8hyNf5OkUGsWf3uS2x8x8r0JwEIHDyaTTzYMT63eQbT9XeO9kGKPosBkmp
+	 g4PyCNXKdAwbKnmSVrevNVXdE1my7WBiAOq4X/NRYAUshIFiNUieNnuxwgi00iu0nJ
+	 qBFj8f82Gg4Jg==
+Date: Mon, 7 Apr 2025 09:14:07 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, krzk+dt@kernel.org,
-	alex@ghiti.fr, aou@eecs.berkeley.edu, tim609@andestech.com,
-	daniel.lezcano@linaro.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: riscv: add Andes QiLai SoC and the
- Voyager board bindings
-Message-ID: <174403522889.2246903.6406254978033445523.robh@kernel.org>
+Cc: palmer@dabbelt.com, alex@ghiti.fr, conor+dt@kernel.org,
+	linux-riscv@lists.infradead.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, paul.walmsley@sifive.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	aou@eecs.berkeley.edu, krzk+dt@kernel.org, tim609@andestech.com,
+	tglx@linutronix.de, daniel.lezcano@linaro.org
+Subject: Re: [PATCH 3/9] dt-bindings: interrupt-controller: add Andes QiLai
+ PLIC
+Message-ID: <174403524699.2250131.15335040346348626283.robh@kernel.org>
 References: <20250407104937.315783-1-ben717@andestech.com>
- <20250407104937.315783-3-ben717@andestech.com>
+ <20250407104937.315783-4-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +63,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407104937.315783-3-ben717@andestech.com>
+In-Reply-To: <20250407104937.315783-4-ben717@andestech.com>
 
 
-On Mon, 07 Apr 2025 18:49:30 +0800, Ben Zong-You Xie wrote:
-> Add DT binding documentation for the Andes QiLai SoC and the
-> Voyager development board.
+On Mon, 07 Apr 2025 18:49:31 +0800, Ben Zong-You Xie wrote:
+> Add a new compatible string for Andes QiLai PLIC.
 > 
 > Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 > ---
->  .../devicetree/bindings/riscv/andes.yaml      | 25 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++++
->  2 files changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/andes.yaml
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
