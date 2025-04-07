@@ -1,530 +1,181 @@
-Return-Path: <devicetree+bounces-163673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4BFA7DC1B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:22:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D95A7DC40
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:29:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D20B1709FE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:22:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25F0416F9E1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D430023AE8D;
-	Mon,  7 Apr 2025 11:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD7E23BF99;
+	Mon,  7 Apr 2025 11:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mphIwRKR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VdRiM1KN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F60224FD;
-	Mon,  7 Apr 2025 11:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0D9228CA3
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 11:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744024921; cv=none; b=Bkm7WyXz6rPPQOSv62K2VeA8cF1xEGnruEOAPoMT2j9hJz/d2zVW7nWUz6ahusbutBkw8dxOhPJFRMPZNmqrwKaX2sZOUi7pbzbY17KIHRJMS77tgZ/zGXUJp1s/7kxNukrvsi8hZxrx1Fe7CtZCj1mindmo/x1o8tIw6xgzIYQ=
+	t=1744025354; cv=none; b=Hs4kTyMlW3E6rkY1MEsnVgPQzAqGRMOEzpraYPLXvX2AiOR6b1ZO6mdeQ2Lcu72VauzLrLGqD0wC1PPvwGaILl0NuMKb6MjfSA4hlknpljFk6i8vX7skwsNTVN37XvdTtGnfUEIhN4ga/dAAMPynA36uD5RocsuOQtTU95root4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744024921; c=relaxed/simple;
-	bh=InYRaHKWOHxttF52iLZ6voOabDb+8Rvvpi9YZpkXZkQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RpQk+eLBdaqiy8G6NBbq/2Mt4VzkSbYmFhyAEx0kmvrShYqYhFZ4gpbqthDwvkI5PG2ZT9f5n4WX3QD/q7wR7pWYDyhdoh2taWwAC/Q7vfKftc0GBGIFlHy5XkHZGwrkC5RFOmDeGTR8R8MfOY+YEfo0CSwVP6cRI7gZIQoQwO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mphIwRKR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F58DC4CEEB;
-	Mon,  7 Apr 2025 11:22:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744024921;
-	bh=InYRaHKWOHxttF52iLZ6voOabDb+8Rvvpi9YZpkXZkQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mphIwRKRA2A7eDIvH50kaGJgc0gnAuZD9LFa7GPk7N6mIQ/xOyb7shBG0bHicDVf9
-	 AD3blD/2t8eqwwmJR1fMQFJFYzftd0M3XcA2arHvZ07qOCS+b/1w293Zdr+T1zS1jN
-	 sXhw8mE76f2oJ66g+eK+Qr7mQqj6wg2CvxflLiNrcUVNVtmYq9yHbVERxtIBuqNHMu
-	 Gu4ScVgq3LEzAhFgQgVxdwl8JkRQTWIKyF8++6lyvbJ5qRv5rVXkSfafJ00lI02wEk
-	 iUaCPL/DoTb4wvJ61otDHZYZEf6Iqz894SUQ0wbN9MEQ+/tKuFg05Qt28t0QE7et1A
-	 yhcPxkdSazdPQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F1A4C369A3;
-	Mon,  7 Apr 2025 11:22:01 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Mon, 07 Apr 2025 13:21:52 +0200
-Subject: [PATCH v9 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
+	s=arc-20240116; t=1744025354; c=relaxed/simple;
+	bh=H2FKZXIS+hwA9vu7ou/PvLDYV8ymkbl31adVzvN6naI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=b4/utQ3YVYKGLCbeiVmOBlYk3dGupxnL23MWdsSq776yvFSUjAlKqLTlvKGiBIb815ooUAzse0Vv2O75ahcnoWPSEG8M3wHlPJPH67xWp8nhURvf2irHZVEKPqEWnqkit344lwNEL+sgGkS8MQ8+gBBnXpfWWG8Gp6L8fF+BHuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VdRiM1KN; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso27238385e9.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 04:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744025351; x=1744630151; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3ERzJBk8IPAt2EVC29UOPORnzeO9/Agn8egECrfbp4E=;
+        b=VdRiM1KN3k56gGv/Zn79b5fCDlcQnSqwuAhYuoSvXBRIu6mnFsgKHzQ9kEmZmIc5An
+         4njIiXTw+v+rksLV9lmeVw4YJefwPUVP3fsBg8Rnk6gE/WrYz39iuzXTUBqc+O5wKeco
+         qEM/sm5CxxLpuewRsjDZfFIYyNnbZacJbcFIt5NlkVltPvCsQZAWBahAZMGeoNq5ox3R
+         9F6EsKzj0KXcj7s+NsHGAqUtCDWx+jKjVqtfRqHOartUyR31qFdGR+ty4ZdnfKrgVj+i
+         yozKtOON4+el+vX50KES/fgGIktrZLzduPXMfMRzYtS/YGdXmFDAsOby2gz25nwTwli+
+         R9kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744025351; x=1744630151;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3ERzJBk8IPAt2EVC29UOPORnzeO9/Agn8egECrfbp4E=;
+        b=sI6d+4uPyTccrZkDLDqNWCgjVJI4swBAaPF4dSQf9p6lUq6/b3yMCDsEnzwTl/kVTS
+         B8HfKuDQwhgfayqf1VE9ir86YqyxZezcfVCQIy2ptzfC08aftJivUIo83dk4mqHQY5YM
+         sHUs+PcuHH8APPzZCdSZuqSIHDXpmbu1RP/XeVBw5G4dxfEoASVJUBlyEey/kCAgKI0z
+         Idp4LZ5D5leMe+hvBLk+/OaFjXtMjO5jcpt6nl1ewyhH/OJSu+IRDfh9V6xsMR2NTQiG
+         l+7Kt0GrQd9B6KbvqNcj3QIDScOFJYWw2r0Vg9vKHsQF84n8wKo2m+nfFhmFqWdW6L0G
+         BoOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXN23qUKwlkmx8m1RTP5qkKrgq/8rHtZjJqNbwUSMRWJBQXL/7qheH/5ANCnc4jOHLUzdWQa+3mI0oX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGzbNM2xtm9eyp6z7upDf/C9z6PNrkfHRbklhUKCE2GzsV1K1U
+	zJcMnboIKBiwEYCnvV33e5doXQvmk+sAS3PVKh8L6zWIK2PWzzbVHg1klHXrwRs=
+X-Gm-Gg: ASbGnctHNIKN3jkPhbxYhvydYsGmNGIap0P7MoInWYz3nMMTJcBvcaihNQbcVpUXBod
+	kVjon1mLTvPLu0iAbQeMgKncHkFJR3n1XQ2EQGu7r4eixq1vSYOE48IRdj7pG7vHtaGhJXA+qtW
+	ldCsPOlUCQ6gm1HfUAvZRBX2TFV9+dIDGIuenAge4WzvWR1STY7TxaLDcT1iSkqtbQOvlEbF1HL
+	DScQ0/vIKQPYuMOTRNpoCPYKl0NlM9SoHJ968XcbzByddL1n9KRD8lL4tF63fji/rzWlSJpq6Co
+	9TPjdRFYeZ+LSCA3vT1bvcVRzICJcef1PgbD3X2Yl8J5kU/36g==
+X-Google-Smtp-Source: AGHT+IHtEoJKmUalkAqnYfLWQZZGYmoLGxJQg28JsvyBQ+EeaUcWAKIPYLpm04Je/UzWyzE9mqSY3Q==
+X-Received: by 2002:a05:600c:4e8f:b0:43b:cb12:ba6d with SMTP id 5b1f17b1804b1-43ecf81be20mr130447345e9.3.1744025350842;
+        Mon, 07 Apr 2025 04:29:10 -0700 (PDT)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c301a79bfsm12098345f8f.36.2025.04.07.04.29.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 04:29:10 -0700 (PDT)
+Message-ID: <9264729152cb70ec910b391ab4ced82dc62f953c.camel@linaro.org>
+Subject: Re: [PATCH v2 1/4] power: supply: add support for max77759 fuel
+ gauge
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	t.antoine@uclouvain.be
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau
+ <dima.fedrau@gmail.com>, Catalin Marinas	 <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, 	linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-samsung-soc@vger.kernel.org
+Date: Mon, 07 Apr 2025 12:29:09 +0100
+In-Reply-To: <ocx5n42h25ztwo5twlir5zoajavpcxce2ra5jjyl6ae4qg6c3e@akhc3dylsprm>
+References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
+	 <20250102-b4-gs101_max77759_fg-v2-1-87959abeb7ff@uclouvain.be>
+	 <ocx5n42h25ztwo5twlir5zoajavpcxce2ra5jjyl6ae4qg6c3e@akhc3dylsprm>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250407-mc33xs2410-v9-2-57adcb56a6e4@liebherr.com>
-References: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
-In-Reply-To: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744024920; l=13817;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=N7KZpoUGwKZXgj0cSl+IePd1RIEv1DKYHkr228hHnXA=;
- b=ReNW8CeCwH6/O3+1BA4HWRKcKe9/1+b2EON4YYWRnXUjESF7uxFc4yh9ePxvHkG0rwb4AuZ8U
- B6zzyV5GMgYAlWrEbt55/NkhVmmbX1jh/iW0dzfSrdiVZ237WneDJKJ
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Hi Sebastian,
 
-The MC33XS2410 is a four channel high-side switch. Featuring advanced
-monitoring and control function, the device is operational from 3.0 V to
-60 V. The device is controlled by SPI port for configuration.
+On Wed, 2025-01-15 at 22:30 +0100, Sebastian Reichel wrote:
+> Hi,
+>=20
+> On Thu, Jan 02, 2025 at 12:15:03PM +0100, Thomas Antoine via B4 Relay wro=
+te:
+> > From: Thomas Antoine <t.antoine@uclouvain.be>
+> >=20
+> > The interface of the Maxim max77759 fuel gauge has a lot of common with=
+ the
+> > Maxim max1720x. The major difference is the lack of non-volatile memory
+> > slave address. No slave is available at address 0xb of the i2c bus, whi=
+ch
+> > is coherent with the following driver from google: line 5836 disables
+> > non-volatile memory for m5 gauge.
+> >=20
+> > Link: https://android.googlesource.com/kernel/google-modules/bms/+/1a68=
+c36bef474573cc8629cc1d121eb6a81ab68c/max1720x_battery.c
+> >=20
+> > Other differences include the lack of V_BATT register to read the batte=
+ry
+> > level and a difference in the way to identify the chip (the same regist=
+er
+> > is used but not the same mask).
+> >=20
+> > Add support for the max77759 by allowing to use the non-volatile
+> > memory or not based on the chip. Also add the V_CELL regsister as a
+> > fallback to read voltage value in the case where read of V_BATT fails.
+> >=20
+> > The cast is necessary to avoid an overflow when the value of the regist=
+er
+> > is above 54975 (equivalent to a voltage around 4.29 V).
+> >=20
+> > The regmap of the max77759 will lead the read to fail for V_BATT and to
+> > correctly use V_CELL instead. This regmap was proposed by Andr=C3=A9 Dr=
+aszik in
+> >=20
+> > Link: https://lore.kernel.org/all/d1bade77b5281c1de6b2ddcb4dbbd033e455a=
+116.camel@linaro.org/
+> >=20
+> > Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> > ---
+>=20
+> Please add output from to the cover letter to allow easily verifying
+> that all values are correctly scaled.
+>=20
+> ./tools/testing/selftests/power_supply/test_power_supply_properties.sh
+>=20
+> > +static const struct regmap_access_table max77759_write_table =3D {
+> > +	.yes_ranges =3D max77759_registers,
+> > +	.n_yes_ranges =3D ARRAY_SIZE(max77759_registers),
+> > +	.no_ranges =3D max77759_ro_registers,
+> > +	.n_no_ranges =3D ARRAY_SIZE(max77759_ro_registers),
+> > +};
+>=20
+> Drop the yes_range from the write table. It is wrong and confusing.
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/pwm/Kconfig          |  12 ++
- drivers/pwm/Makefile         |   1 +
- drivers/pwm/pwm-mc33xs2410.c | 391 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 404 insertions(+)
+Can you please clarify why having yes_ranges is wrong? Without yes_ranges,
+all registers not in no_ranges are allowed to be written to.
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index ead63f9d0c7314e9f87f4f453e2ec834bbd831cc..046e01a24949448d3e546e517d92c5897182afff 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -423,6 +423,18 @@ config PWM_LPSS_PLATFORM
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-lpss-platform.
- 
-+config PWM_MC33XS2410
-+	tristate "MC33XS2410 PWM support"
-+	depends on OF
-+	depends on SPI
-+	help
-+	  NXP MC33XS2410 high-side switch driver. The MC33XS2410 is a four
-+	  channel high-side switch. The device is operational from 3.0 V
-+	  to 60 V. The device is controlled by SPI port for configuration.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-mc33xs2410.
-+
- config PWM_MESON
- 	tristate "Amlogic Meson PWM driver"
- 	depends on ARCH_MESON || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index e52d0940b2473c7eed22591bcac624de63fb77fa..86e07844a93361f59978eacb20a72bb6f3d513dc 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
- obj-$(CONFIG_PWM_LPSS)		+= pwm-lpss.o
- obj-$(CONFIG_PWM_LPSS_PCI)	+= pwm-lpss-pci.o
- obj-$(CONFIG_PWM_LPSS_PLATFORM)	+= pwm-lpss-platform.o
-+obj-$(CONFIG_PWM_MC33XS2410)	+= pwm-mc33xs2410.o
- obj-$(CONFIG_PWM_MESON)		+= pwm-meson.o
- obj-$(CONFIG_PWM_MEDIATEK)	+= pwm-mediatek.o
- obj-$(CONFIG_PWM_MICROCHIP_CORE)	+= pwm-microchip-core.o
-diff --git a/drivers/pwm/pwm-mc33xs2410.c b/drivers/pwm/pwm-mc33xs2410.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..a1ac3445ccdb4709d92e0075d424a8abc1416eee
---- /dev/null
-+++ b/drivers/pwm/pwm-mc33xs2410.c
-@@ -0,0 +1,391 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Liebherr-Electronics and Drives GmbH
-+ *
-+ * Reference Manual : https://www.nxp.com/docs/en/data-sheet/MC33XS2410.pdf
-+ *
-+ * Limitations:
-+ * - Supports frequencies between 0.5Hz and 2048Hz with following steps:
-+ *   - 0.5 Hz steps from 0.5 Hz to 32 Hz
-+ *   - 2 Hz steps from 2 Hz to 128 Hz
-+ *   - 8 Hz steps from 8 Hz to 512 Hz
-+ *   - 32 Hz steps from 32 Hz to 2048 Hz
-+ * - Cannot generate a 0 % duty cycle.
-+ * - Always produces low output if disabled.
-+ * - Configuration isn't atomic. When changing polarity, duty cycle or period
-+ *   the data is taken immediately, counters not being affected, resulting in a
-+ *   behavior of the output pin that is neither the old nor the new state,
-+ *   rather something in between.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/math64.h>
-+#include <linux/minmax.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pwm.h>
-+
-+#include <linux/spi/spi.h>
-+
-+#define MC33XS2410_GLB_CTRL			0x00
-+#define MC33XS2410_GLB_CTRL_MODE		GENMASK(7, 6)
-+#define MC33XS2410_GLB_CTRL_MODE_NORMAL		FIELD_PREP(MC33XS2410_GLB_CTRL_MODE, 1)
-+
-+#define MC33XS2410_PWM_CTRL1			0x05
-+/* chan in { 1 ... 4 } */
-+#define MC33XS2410_PWM_CTRL1_POL_INV(chan)	BIT((chan) + 1)
-+
-+#define MC33XS2410_PWM_CTRL3			0x07
-+/* chan in { 1 ... 4 } */
-+#define MC33XS2410_PWM_CTRL3_EN(chan)		BIT(4 + (chan) - 1)
-+
-+/* chan in { 1 ... 4 } */
-+#define MC33XS2410_PWM_FREQ(chan)		(0x08 + (chan) - 1)
-+#define MC33XS2410_PWM_FREQ_STEP		GENMASK(7, 6)
-+#define MC33XS2410_PWM_FREQ_COUNT		GENMASK(5, 0)
-+
-+/* chan in { 1 ... 4 } */
-+#define MC33XS2410_PWM_DC(chan)			(0x0c + (chan) - 1)
-+
-+#define MC33XS2410_WDT				0x14
-+
-+#define MC33XS2410_PWM_MIN_PERIOD		488282
-+/* step in { 0 ... 3 } */
-+#define MC33XS2410_PWM_MAX_PERIOD(step)		(2000000000 >> (2 * (step)))
-+
-+#define MC33XS2410_FRAME_IN_ADDR		GENMASK(15, 8)
-+#define MC33XS2410_FRAME_IN_DATA		GENMASK(7, 0)
-+#define MC33XS2410_FRAME_IN_ADDR_WR		BIT(7)
-+#define MC33XS2410_FRAME_IN_DATA_RD		BIT(7)
-+#define MC33XS2410_FRAME_OUT_DATA		GENMASK(13, 0)
-+
-+#define MC33XS2410_MAX_TRANSFERS		5
-+
-+static int mc33xs2410_write_regs(struct spi_device *spi, u8 *reg, u8 *val,
-+				 unsigned int len)
-+{
-+	u16 tx[MC33XS2410_MAX_TRANSFERS];
-+	int i;
-+
-+	if (len > MC33XS2410_MAX_TRANSFERS)
-+		return -EINVAL;
-+
-+	for (i = 0; i < len; i++)
-+		tx[i] = FIELD_PREP(MC33XS2410_FRAME_IN_DATA, val[i]) |
-+			FIELD_PREP(MC33XS2410_FRAME_IN_ADDR,
-+				   MC33XS2410_FRAME_IN_ADDR_WR | reg[i]);
-+
-+	return spi_write(spi, tx, len * 2);
-+}
-+
-+static int mc33xs2410_read_regs(struct spi_device *spi, u8 *reg, u8 flag,
-+				u16 *val, unsigned int len)
-+{
-+	u16 tx[MC33XS2410_MAX_TRANSFERS];
-+	u16 rx[MC33XS2410_MAX_TRANSFERS];
-+	struct spi_transfer t = {
-+		.tx_buf = tx,
-+		.rx_buf = rx,
-+	};
-+	int i, ret;
-+
-+	len++;
-+	if (len > MC33XS2410_MAX_TRANSFERS)
-+		return -EINVAL;
-+
-+	t.len = len * 2;
-+	for (i = 0; i < len - 1; i++)
-+		tx[i] = FIELD_PREP(MC33XS2410_FRAME_IN_DATA, flag) |
-+			FIELD_PREP(MC33XS2410_FRAME_IN_ADDR, reg[i]);
-+
-+	ret = spi_sync_transfer(spi, &t, 1);
-+	if (ret < 0)
-+		return ret;
-+
-+	for (i = 1; i < len; i++)
-+		val[i - 1] = FIELD_GET(MC33XS2410_FRAME_OUT_DATA, rx[i]);
-+
-+	return 0;
-+}
-+
-+static int mc33xs2410_write_reg(struct spi_device *spi, u8 reg, u8 val)
-+{
-+	return mc33xs2410_write_regs(spi, &reg, &val, 1);
-+}
-+
-+static int mc33xs2410_read_reg(struct spi_device *spi, u8 reg, u16 *val, u8 flag)
-+{
-+	return mc33xs2410_read_regs(spi, &reg, flag, val, 1);
-+}
-+
-+static int mc33xs2410_read_reg_ctrl(struct spi_device *spi, u8 reg, u16 *val)
-+{
-+	return mc33xs2410_read_reg(spi, reg, val, MC33XS2410_FRAME_IN_DATA_RD);
-+}
-+
-+static int mc33xs2410_modify_reg(struct spi_device *spi, u8 reg, u8 mask, u8 val)
-+{
-+	u16 tmp;
-+	int ret;
-+
-+	ret = mc33xs2410_read_reg_ctrl(spi, reg, &tmp);
-+	if (ret < 0)
-+		return ret;
-+
-+	tmp &= ~mask;
-+	tmp |= val & mask;
-+
-+	return mc33xs2410_write_reg(spi, reg, tmp);
-+}
-+
-+static u8 mc33xs2410_pwm_get_freq(u64 period)
-+{
-+	u8 step, count;
-+
-+	/*
-+	 * Check which step [0 .. 3] is appropriate for the given period. The
-+	 * period ranges for the different step values overlap. Prefer big step
-+	 * values as these allow more finegrained period and duty cycle
-+	 * selection.
-+	 */
-+
-+	switch (period) {
-+	case MC33XS2410_PWM_MIN_PERIOD ... MC33XS2410_PWM_MAX_PERIOD(3):
-+		step = 3;
-+		break;
-+	case MC33XS2410_PWM_MAX_PERIOD(3) + 1 ... MC33XS2410_PWM_MAX_PERIOD(2):
-+		step = 2;
-+		break;
-+	case MC33XS2410_PWM_MAX_PERIOD(2) + 1 ... MC33XS2410_PWM_MAX_PERIOD(1):
-+		step = 1;
-+		break;
-+	case MC33XS2410_PWM_MAX_PERIOD(1) + 1 ... MC33XS2410_PWM_MAX_PERIOD(0):
-+		step = 0;
-+		break;
-+	}
-+
-+	/*
-+	 * Round up here because a higher count results in a higher frequency
-+	 * and so a smaller period.
-+	 */
-+	count = DIV_ROUND_UP((u32)MC33XS2410_PWM_MAX_PERIOD(step), (u32)period);
-+	return FIELD_PREP(MC33XS2410_PWM_FREQ_STEP, step) |
-+	       FIELD_PREP(MC33XS2410_PWM_FREQ_COUNT, count - 1);
-+}
-+
-+static u64 mc33xs2410_pwm_get_period(u8 reg)
-+{
-+	u32 doubled_freq, code, doubled_steps;
-+
-+	/*
-+	 * steps:
-+	 *   - 0 = 0.5Hz
-+	 *   - 1 = 2Hz
-+	 *   - 2 = 8Hz
-+	 *   - 3 = 32Hz
-+	 * frequency = (code + 1) x steps.
-+	 *
-+	 * To avoid losing precision in case steps value is zero, scale the
-+	 * steps value for now by two and keep it in mind when calculating the
-+	 * period that the frequency had been doubled.
-+	 */
-+	doubled_steps = 1 << (FIELD_GET(MC33XS2410_PWM_FREQ_STEP, reg) * 2);
-+	code = FIELD_GET(MC33XS2410_PWM_FREQ_COUNT, reg);
-+	doubled_freq = (code + 1) * doubled_steps;
-+
-+	/* Convert frequency to period, considering the doubled frequency. */
-+	return DIV_ROUND_UP(2 * NSEC_PER_SEC, doubled_freq);
-+}
-+
-+/*
-+ * The hardware cannot generate a 0% relative duty cycle for normal and inversed
-+ * polarity. For normal polarity, the channel must be disabled, the device then
-+ * emits a constant low signal.
-+ * For inverted polarity, the channel must be enabled, the polarity must be set
-+ * to normal and the relative duty cylce must be set to 100%. The device then
-+ * emits a constant high signal.
-+ */
-+static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+				const struct pwm_state *state)
-+{
-+	struct spi_device *spi = pwmchip_get_drvdata(chip);
-+	u8 reg[4] = {
-+			MC33XS2410_PWM_FREQ(pwm->hwpwm + 1),
-+			MC33XS2410_PWM_DC(pwm->hwpwm + 1),
-+			MC33XS2410_PWM_CTRL1,
-+			MC33XS2410_PWM_CTRL3
-+		    };
-+	u64 period, duty_cycle;
-+	int ret, rel_dc;
-+	u16 rd_val[2];
-+	u8 wr_val[4];
-+	u8 mask;
-+
-+	period = min(state->period, MC33XS2410_PWM_MAX_PERIOD(0));
-+	if (period < MC33XS2410_PWM_MIN_PERIOD)
-+		return -EINVAL;
-+
-+	ret = mc33xs2410_read_regs(spi, &reg[2], MC33XS2410_FRAME_IN_DATA_RD, rd_val, 2);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Frequency */
-+	wr_val[0] = mc33xs2410_pwm_get_freq(period);
-+	/* Continue calculations with the possibly truncated period */
-+	period = mc33xs2410_pwm_get_period(wr_val[0]);
-+
-+	/* Duty cycle */
-+	duty_cycle = min(period, state->duty_cycle);
-+	rel_dc = div64_u64(duty_cycle * 256, period) - 1;
-+	if (rel_dc >= 0)
-+		wr_val[1] = rel_dc;
-+	else if (state->polarity == PWM_POLARITY_NORMAL)
-+		wr_val[1] = 0;
-+	else
-+		wr_val[1] = 255;
-+
-+	/* Polarity */
-+	mask = MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm + 1);
-+	if (state->polarity == PWM_POLARITY_INVERSED && rel_dc >= 0)
-+		wr_val[2] = rd_val[0] | mask;
-+	else
-+		wr_val[2] = rd_val[0] & ~mask;
-+
-+	/* Enable */
-+	mask = MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm + 1);
-+	if (state->enabled &&
-+	    !(state->polarity == PWM_POLARITY_NORMAL && rel_dc < 0))
-+		wr_val[3] = rd_val[1] | mask;
-+	else
-+		wr_val[3] = rd_val[1] & ~mask;
-+
-+	return mc33xs2410_write_regs(spi, reg, wr_val, 4);
-+}
-+
-+static int mc33xs2410_pwm_get_state(struct pwm_chip *chip,
-+				    struct pwm_device *pwm,
-+				    struct pwm_state *state)
-+{
-+	struct spi_device *spi = pwmchip_get_drvdata(chip);
-+	u8 reg[4] = {
-+			MC33XS2410_PWM_FREQ(pwm->hwpwm + 1),
-+			MC33XS2410_PWM_DC(pwm->hwpwm + 1),
-+			MC33XS2410_PWM_CTRL1,
-+			MC33XS2410_PWM_CTRL3,
-+		    };
-+	u16 val[4];
-+	int ret;
-+
-+	ret = mc33xs2410_read_regs(spi, reg, MC33XS2410_FRAME_IN_DATA_RD, val,
-+				   ARRAY_SIZE(reg));
-+	if (ret < 0)
-+		return ret;
-+
-+	state->period = mc33xs2410_pwm_get_period(val[0]);
-+	state->polarity = (val[2] & MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm + 1)) ?
-+			  PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-+	state->enabled = !!(val[3] & MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm + 1));
-+	state->duty_cycle = DIV_ROUND_UP_ULL((val[1] + 1) * state->period, 256);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops mc33xs2410_pwm_ops = {
-+	.apply = mc33xs2410_pwm_apply,
-+	.get_state = mc33xs2410_pwm_get_state,
-+};
-+
-+static int mc33xs2410_reset(struct device *dev)
-+{
-+	struct gpio_desc *reset_gpio;
-+
-+	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR_OR_NULL(reset_gpio))
-+		return PTR_ERR_OR_ZERO(reset_gpio);
-+
-+	/* Wake-up time */
-+	fsleep(10000);
-+
-+	return 0;
-+}
-+
-+static int mc33xs2410_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct pwm_chip *chip;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, 4, 0);
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	spi->bits_per_word = 16;
-+	spi->mode |= SPI_CS_WORD;
-+	ret = spi_setup(spi);
-+	if (ret < 0)
-+		return ret;
-+
-+	pwmchip_set_drvdata(chip, spi);
-+	chip->ops = &mc33xs2410_pwm_ops;
-+
-+	/*
-+	 * Deasserts the reset of the device. Shouldn't change the output signal
-+	 * if the device was setup prior to probing.
-+	 */
-+	ret = mc33xs2410_reset(dev);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Disable watchdog and keep in mind that the watchdog won't trigger a
-+	 * reset of the machine when running into an timeout, instead the
-+	 * control over the outputs is handed over to the INx input logic
-+	 * signals of the device. Disabling it here just deactivates this
-+	 * feature until a proper solution is found.
-+	 */
-+	ret = mc33xs2410_write_reg(spi, MC33XS2410_WDT, 0x0);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to disable watchdog\n");
-+
-+	/* Transition to normal mode */
-+	ret = mc33xs2410_modify_reg(spi, MC33XS2410_GLB_CTRL,
-+				    MC33XS2410_GLB_CTRL_MODE,
-+				    MC33XS2410_GLB_CTRL_MODE_NORMAL);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to transition to normal mode\n");
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to add pwm chip\n");
-+
-+	return 0;
-+}
-+
-+static const struct spi_device_id mc33xs2410_spi_id[] = {
-+	{ "mc33xs2410" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, mc33xs2410_spi_id);
-+
-+static const struct of_device_id mc33xs2410_of_match[] = {
-+	{ .compatible = "nxp,mc33xs2410" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mc33xs2410_of_match);
-+
-+static struct spi_driver mc33xs2410_driver = {
-+	.driver = {
-+		.name = "mc33xs2410-pwm",
-+		.of_match_table = mc33xs2410_of_match,
-+	},
-+	.probe = mc33xs2410_probe,
-+	.id_table = mc33xs2410_spi_id,
-+};
-+module_spi_driver(mc33xs2410_driver);
-+
-+MODULE_DESCRIPTION("NXP MC33XS2410 high-side switch driver");
-+MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
-+MODULE_LICENSE("GPL");
+Here, max77759_registers already specifies all the registers that exist
+(and is also used in the max77759_read_table), and for write-access this is
+further limited by the read-only registers in no_ranges.
 
--- 
-2.39.5
+As an example, register 0x50 doesn't exist, and without yes_ranges this
+would allow write access to it.
 
+If yes_ranges was dropped, all the information about non-existing registers
+would have to be duplicated into no_ranges by inversing max77759_registers.
+We already know the non-existing registers, and inversing that list just to
+add to no_ranges seems non-ideal, error-prone, and just duplicated informat=
+ion.
+
+
+Cheers,
+Andre'
 
 
