@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-163578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B63FA7D56E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:20:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5511A7D592
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E5BA7A625D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:19:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 330C23AFDAA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 07:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC10122CBC7;
-	Mon,  7 Apr 2025 07:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D2F22B8AC;
+	Mon,  7 Apr 2025 07:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0titYTkD"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HUC/jHK8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3865A22B8CE;
-	Mon,  7 Apr 2025 07:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2F322AE68;
+	Mon,  7 Apr 2025 07:18:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744010285; cv=none; b=f320DJ1iXXK5lcAvFIqSo6AclbKWnmfacujaRzt2g+shDO0tYMpOkPHnnow8QbJ8Z2neyxZqPrV9AK7w2Xlp+py6Ja+gUTNEj/3uzSNmI2yvf5ug531QbZRPW5yo0HudTbp3VIpZ+4lBPOqS0TyRyRyFCkjtbgKByDkurx7D994=
+	t=1744010283; cv=none; b=MFtpy7b1U/E0CR0aZo51QR0VRVNo374MHk2cLyrYFF3CtZsUFM57o/TR331ztpdqat8Zemi47lHz4BKwt8tBcHNd/5qZW3tjHN7+N1OXVaLp5eITXbZkkyx5A3R9UeExL8mO6vee6JreTHJqwS1YIHtmLGzNxckkAtLMoYL6j2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744010285; c=relaxed/simple;
-	bh=C403OQ+m823DK01/9mwZnbhQwWB3bMp6kAoRCCmwXiE=;
+	s=arc-20240116; t=1744010283; c=relaxed/simple;
+	bh=ccE5e48+JeVlXnRwwYcDOPr4CJxZzvtrZbKeQV867vk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I1vt97W7ow2Tu22rEk/Gqoo1ft8TLsLEPtG8O0HiDmaxFGMdvJ+/2jw1iXMJxfEZ5E9FZdmc1yEaaQfL35mnwBWj4jb1SHWR+tTmgpbOUtPYlFIJ7xd9jtMFlKJ2gXO101Hs6f6ktyL6t4TM8G+EpuV7zyQoxaBvz7MLoAVfoNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0titYTkD; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=Oyhu8zOsJKL89ckJm0wLbZ+hbdGdJw+Ggy4buKFae2rxToGJ6lPRHUmMCzj56juIAH3DPRR9+2VHtPPo5oUocY8X6M0bpLWb12QjTqqaw9EDj1atXS4tl2nODw/IIL3FKjYKxgMo0e/pIE+SFKJpalndKRsu7yQCAJR1q8WgEjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HUC/jHK8; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -36,34 +36,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=1JjkQbWY/HnPp5mgL4PyI7UmyjOUB6NOpVVT766uZ7M=; b=0titYTkDoxaYelZsph46XGJIsw
-	MPqXxVEmr2+oK/6jc1wOBx0xJ3EWYSUY6MDQUFF8OkLjm/aBxnqx20eco1CAiUAqjzMMKUd2yFVPZ
-	1v6jaVhAoqis+uX7ZelcAeA3jm+DPWFj/2u1nv+wE6hNiKpoFdtspe5djqLV2si4avIjEDvtSl9Wg
-	KTgQB14K3WPERh50xu5k0u92785ScWt49Daql1c3DTG3/ZiSyGouBUdLbLKq10+Yok1RYnUA5xYmS
-	60gWwsiB80IKmCZWZ4e93bZahbNyZanyjoAtTJ4siokgxNPB3xB22HM5dcPNZKXdB5nBxxXXi3hhB
-	s59kFcNQ==;
+	bh=2HsI7Mvqhlkg1D4i/gRhR4oTLdzatJEvGabIM6WMsGo=; b=HUC/jHK8rkiyZZglx3C3N65Ku7
+	uc0G3l3HH+hpj8E658nWnEgQLfrXbpASIBJPvqD3lL7KQieTfGwGFT83Y+ugEJ/6F/Shiw/xqV/nW
+	nY9sZgww2KpuODcaWifcbE/z0S3yJwUwiMkkElBDEFlXYqllReELfIOhDNeWGchiwbZX8OJV6bmBk
+	q7FgijtxRKioiUHymz6yQjTFjfParmu7YxB9LlQnvW14rzaqzpe9YOnnkT0EstyHX/bBY/7uqMbOr
+	fDKyXASGegdgpCuzMM8antOk/DWgIg4sdu9svyFDdcWVkeIMyT/jI/l7CcPi0t1Tk1YMPaPbLg+LR
+	F4r0LLEg==;
 Received: from i53875b95.versanet.de ([83.135.91.149] helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1u1gjv-0000tP-2Q; Mon, 07 Apr 2025 09:17:51 +0200
+	id 1u1gjw-0000tP-3F; Mon, 07 Apr 2025 09:17:52 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
+To: linux-rockchip@lists.infradead.org,
+	Dragan Simic <dsimic@manjaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	inux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH] ARM: dts: rockchip: Add aliases for MMC devices
-Date: Mon,  7 Apr 2025 09:17:39 +0200
-Message-ID: <174401024396.372530.9920450693183884709.b4-ty@sntech.de>
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	stable@vger.kernel.org,
+	Alexey Charkov <alchark@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Remove overdrive-mode OPPs from RK3588J SoC dtsi
+Date: Mon,  7 Apr 2025 09:17:41 +0200
+Message-ID: <174401024394.372530.11791471652987821644.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250324125215.160616-1-andyshrk@163.com>
-References: <20250324125215.160616-1-andyshrk@163.com>
+In-Reply-To: <eeec0d30d79b019d111b3f0aa2456e69896b2caa.1742813866.git.dsimic@manjaro.org>
+References: <eeec0d30d79b019d111b3f0aa2456e69896b2caa.1742813866.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,16 +76,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 24 Mar 2025 20:52:11 +0800, Andy Yan wrote:
-> Add aliases for the MMC devices so that after the system starts up,
-> they will all have fixed device numbers.
+On Mon, 24 Mar 2025 12:00:43 +0100, Dragan Simic wrote:
+> The differences in the vendor-approved CPU and GPU OPPs for the standard
+> Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J variant [2]
+> come from the latter, presumably, supporting an extended temperature range
+> that's usually associated with industrial applications, despite the two SoC
+> variant datasheets specifying the same upper limit for the allowed ambient
+> temperature for both variants.  However, the lower temperature limit is
+> specified much lower for the RK3588J variant. [1][2]
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: rockchip: Add aliases for MMC devices
-      commit: d15d8d234248d6575b2d4efc14731d0a623f89d0
+[1/1] arm64: dts: rockchip: Remove overdrive-mode OPPs from RK3588J SoC dtsi
+      commit: e0bd7ecf6b2dc71215af699dffbf14bf0bc3d978
 
 Best regards,
 -- 
