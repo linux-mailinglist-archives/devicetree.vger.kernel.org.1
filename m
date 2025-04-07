@@ -1,94 +1,104 @@
-Return-Path: <devicetree+bounces-163956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD8BCA7E8FD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:52:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D009A7E8F6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87371188B1AE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:46:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5986C17D1A5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB98221B9E5;
-	Mon,  7 Apr 2025 17:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21B321146F;
+	Mon,  7 Apr 2025 17:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rU9Zo7xu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q34nmnxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5A31A3147;
-	Mon,  7 Apr 2025 17:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFC0217663;
+	Mon,  7 Apr 2025 17:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744047889; cv=none; b=r1Mg21ZGrlPdLtfNZer318OCZhMhqT8V+K6al4kcy5KL2SxQcjbtFyZfS+srufVhKNpMhSmmJdnrcPa2dMpbeZPq9Pqra+euboDKTqqVfc6f3WPrUh2vv8DSi/n1eB76JvuA0dxrRyactQEIuALvwVF2x+/rVfO64pncK7sTGsc=
+	t=1744048017; cv=none; b=SYtNmqUr3SghSlIA2vsP7SvCeS0arCjc4Ojwu8v50bMzkmIUqG6thNpi5jYgvIY4LCP8oiEUYNUsr9RvBvNhSDLFFX2HyiAZN9uE/ddqb84DtdJMC3cn4PcGOR2LmIkzyeXUCUMHTT3sS0mKTty5/sR0c9S5gpZlb3i/wqxnVIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744047889; c=relaxed/simple;
-	bh=xxHjDP+NyHgWQ2jb/v9uMp+G1hNt7hQcpSlTqvAxzE4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EDxKt91l9rjak8EbXmKRpLozf+geUtvkDCFQnLYdOEulrmzEIlUd63ZfARLvpNOyCmMb/cm7ytAvhUCGzypIgygSmIbqir8PZdwjDbY+nqRkc0rabWQSbevIwyyoGPuYuibKm8qpT6e4Cwmrh2pRYXt7rwRtlpPEAvzQdjOvbJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rU9Zo7xu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C23C4CEDD;
-	Mon,  7 Apr 2025 17:44:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744047889;
-	bh=xxHjDP+NyHgWQ2jb/v9uMp+G1hNt7hQcpSlTqvAxzE4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rU9Zo7xuCU1GBu8ICWZkzwDdIy9JRjkUCAis5IdHL5kK6hev+J2xF9tbUUYJfMJzb
-	 EezmqeGNreOqRpIz+xYQ6Ah4ZhPosPCbLjcb5F0zDUWVrY2kR+nz8l8pEemNiDZc+8
-	 V9I7LLlItTJfExgcXSmsuI1zV+QRxtU6EZfGYOM3+8OEsL7tzsTwvJXyqQiYG8jMKk
-	 I2vTcXm5in4biyuNSWi01hMrjmxQXGcVboly/Ryl2y2I6l4CCacxKAwN31+FuX+8mi
-	 J8nqdG7l4ohdEmGdQg5fiWLIJcHpXqYfchMmeCmhzxo7RGfZSmPjNDw26rzep1J/UQ
-	 Bs9i3oQ1J8LMA==
-Date: Mon, 7 Apr 2025 10:44:47 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, "Russell
- King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro
- <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro
- <fabrizio.castro.jz@renesas.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v5 0/3] Add GBETH glue layer driver for Renesas
- RZ/V2H(P) SoC
-Message-ID: <20250407104447.072449cd@kernel.org>
-In-Reply-To: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1744048017; c=relaxed/simple;
+	bh=3eN6/YjifecY2HB/tUwnGoB4rpyuQ8SNs7xbMNOujKw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ve0nIjTI9gv2YsvrPQImO1/gzLrRy+lF5V66oHJLOQQUaVVoj6oAZ1aqZ3xMEDUalIyL/o2Xh6DmNfLF+wn5WdGG8JMoDHCMtMaPeWH8Qg4QL7ZMeJ1YPOnYkuPj90GZJiPRhSLK3ht1IeLRhcZ0ELGTj6MfNilSqfoeJyRV/EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q34nmnxa; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537HkmVB433156
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 7 Apr 2025 12:46:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744048008;
+	bh=9NeDdgCH1H4EeC0G6DnpevkoDIVJiaLovnZau5WGOP0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Q34nmnxaMZ1CS2wyY/kvpvY7APtq9bRgRKyMojLXwf+y8Oe2wXpBU2yoz5nU0mNtp
+	 he4X6tYoXu70yXDFSni2VVptH6W25q6/4rcO/b89JCyZUPNRencgfBh30RYvJ90ZLV
+	 2imXYtQOCLwy1AXg6/L5FWtFCRrT4Q3r89/VoNAI=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537HkmaF102999
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 7 Apr 2025 12:46:48 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
+ Apr 2025 12:46:48 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 7 Apr 2025 12:46:48 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537HkmYQ124236;
+	Mon, 7 Apr 2025 12:46:48 -0500
+Date: Mon, 7 Apr 2025 12:46:48 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Bryan Brattlof <bb@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am62l: add initial
+ infrastructure
+Message-ID: <20250407174648.exd57yivoj4rvson@going>
+References: <20250407-am62lx-v4-0-ce97749b9eae@ti.com>
+ <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon,  7 Apr 2025 13:03:14 +0100 Prabhakar wrote:
-> This patch series adds support for the GBETH (Gigabit Ethernet) glue layer
-> driver for the Renesas RZ/V2H(P) SoC. The GBETH IP is integrated with
-> the Synopsys DesignWare MAC (version 5.20). The changes include updating
-> the device tree bindings, documenting the GBETH bindings, and adding the
-> DWMAC glue layer for the Renesas GBETH.
+On 10:34-20250407, Bryan Brattlof wrote:
+[..]
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+> new file mode 100644
+> index 0000000000000..697181c2e7f51
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
+> @@ -0,0 +1,672 @@
+> +// SPDX-License-Identifier: GPL-2.0-only or MIT
+> +/*
+> + * Device Tree file for the AM62L main domain peripherals
+> + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
 
-This was posted prior to the "net-next is OPEN" announcement:
-https://lore.kernel.org/all/20250407055403.7a8f40df@kernel.org/
+Fix the copyright year please. We are in 2025.
 
-In the interest of fairness towards those who correctly wait 
-for the tree to be open I will ask you to repost this again,
-in a couple of days.
-
-Thanks!
 -- 
-pw-bot: defer
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
