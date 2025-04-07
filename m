@@ -1,120 +1,147 @@
-Return-Path: <devicetree+bounces-163887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2E2A7E6BA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA0CA7E6C5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 18:36:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 577FD188B480
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:29:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DF21188C642
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 16:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D18420E02B;
-	Mon,  7 Apr 2025 16:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5EA20A5D5;
+	Mon,  7 Apr 2025 16:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="CJjPujMh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hkw3eI6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF193205AB5
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 16:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A082080F6;
+	Mon,  7 Apr 2025 16:29:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744043271; cv=none; b=rr+3LBoe5rr3a6GcuiPL9iQiScvrKsCQyVHSu5GQXEWYgolTcvsEyTcXRI2BO3WwjvTM53xo5aUD7gQNuBbi6Adr9/TJ+I/CEwY5+RvUTvZjT20w0CAitACWcSTpY6Gqnpugv++c9/6z7cHNiPdPpJYILvl2Hnsicz6MGZebcWg=
+	t=1744043355; cv=none; b=aN1lSUC411oFsXwYxyjo/ydoxvfEHFeE7f8SJWzOc0WUBvfV7EahQhk7Z5odVOzjRTOQXCNstkqI9r3a5r9KeGevD+zOrJPB+1b0ILdqZqSJFGWzHZKw5Mgvyed3ANeuJF05yMUnXvhVHwrD+Emzn0k9L/KQEYmJOidE8noNVGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744043271; c=relaxed/simple;
-	bh=ixu4OFoJwzg1v+1wl51xk03lO5q8ieoco/QoCpn/be4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cIQ0DvNnYYEKEcmn95ms8ist/F/xB3cK4lbHw9Ej3HTioSqXFUIXuvQ7QpUQsejPvtX8KOIjh6QL5D+csMn6x5wohH9qwdYYXfLGx8w//4INp649xeuH/0w6W/NNQvS01qfzFPyoUinN7keBHSusFUwfnBcMUORDXLEpBY6Hh1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=CJjPujMh; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39727fe912cso2027897f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 09:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744043267; x=1744648067; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gmt4HX/iSNiSTqkD3t3ALwtpmvWnuIuBQoVi+iO2Lmc=;
-        b=CJjPujMhKpR8Ka2qInFujzInJVSRNAgpGLfDvBTxTRZtTXaVur3Y4xK68UyceaFHh7
-         7pPcqYdXqsa3XhfsWV0/OCq8L0m2LkA13N9k2HWQ9jFAGeXSB3ShLkhRFB6HOSZxDa1N
-         N3vu0K0ProzdEcBTfluMRCpfE2vYHJqpcrTdHD+QqbFa/H9bVk3kuPHNgRg7wysgFu/4
-         y6vYEbehUyBMWDRBATOJszi25NbagcmcvmZvcbey2LB0VhWms1V8dCnMC8FWLkLR3ngM
-         5UoAxTaM4V7MkSez7t41faMXV+SGO2jr+azrbjVPwet8CIgtQIsDNWfklXQ3PNVnnltN
-         aSkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744043267; x=1744648067;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gmt4HX/iSNiSTqkD3t3ALwtpmvWnuIuBQoVi+iO2Lmc=;
-        b=A4qzD03/FmbaULtvULsdKo8F5R1j6XEl+rRcfm67KQox4NkKiYhQ0KU9jUTkcVSAun
-         i+YtzSeP/qmOqdSdBD+mZmkYVr8LiE5AOx3m67v2vxTVfwsMsiA2tjiSMc9s1C58hc1C
-         Vk4UKHtr+C3xZ419mEv6dOar83LgvdeJDjW0soaJMgRswx5lHnLFeeaSjjsyk/0YLF+o
-         CATMlcSttj7foOyOrqTWnu9YlGoPthZfGminhVPcFTzQuDZ7r7h5Yg51nap5Af6Pypna
-         +gQjPDQnhqYu/RyDbgh2LaBfBgv+gG9LCaeieBWk3Nkr4u/U/W7CYX1FFnOTuu2lSWZ7
-         ax3w==
-X-Forwarded-Encrypted: i=1; AJvYcCXFwsLgP9p9YXRfC4Qi+1dzy0faZUj/7ZmedhTeRniidse3L+Vptm4Z0i8pRCE0TDi3UhoGbcUr1NsM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0wRPVfm0l9vmfNgfwznEbP9aOPr2p2tyiu/AxWj29TkjwrDEQ
-	KPv2SxWBMP+rFY6oAPxaE2ofies7rweqP5mmoUkiQsUFmyqJzfQ5OCICDksRoeo=
-X-Gm-Gg: ASbGncscqY/vKzjhBr6Csqwne8SOLifhD/x8XBwaDKueQMVRAMhwKmrEPESM2O3iS1a
-	IVSDwNJysZdGrRjdEQkmsFHkrfdynyIHMusGqNohdlZ4nDCdISPyVLrZY3XQ5v7WbOTuJ8Mi/tg
-	rQf3/WI1DUKmbtQEtbXZkrIap/zIKVzIYAG71sQCgFC15wTIizr959+bgNE1+JZczF7dY4zM4Fh
-	RS9K+pGi1jb4Yn0t2aaCJI0gHqlcTbNHevD8487Qe8pzEVtsqY8pn3gdcoUXDhGtr/d7ME+D1r9
-	AUWaj27MxVkHftdeYheXFaM7gOijl2IHT+8aGsqWTecKEi9xrdP4/CH5/f/9RcCyzww8LO9PZ1B
-	nfD+jEA9IJc7CgMKgVqjOlqunJIA=
-X-Google-Smtp-Source: AGHT+IG8J3er1iyXQBPMxITzMvfz9EFr3jDi7ygtRVXk9vTgIkpVU04qGBBpxMY6//a+NXkI/WoaMA==
-X-Received: by 2002:a05:6000:1786:b0:39c:1f02:449f with SMTP id ffacd0b85a97d-39d6fc00d2dmr6036975f8f.2.1744043267049;
-        Mon, 07 Apr 2025 09:27:47 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34a92desm134263455e9.14.2025.04.07.09.27.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 09:27:46 -0700 (PDT)
-Date: Mon, 7 Apr 2025 17:27:44 +0100
-From: Daniel Thompson <daniel@riscstar.com>
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: Jianhua Lu <lujianhua000@gmail.com>, Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH 2/4] backlight: ktz8866: add slave handler
-Message-ID: <Z_P9AEGq2sBYShgv@aspen.lan>
-References: <20250407095119.588920-1-mitltlatltl@gmail.com>
- <20250407095119.588920-3-mitltlatltl@gmail.com>
+	s=arc-20240116; t=1744043355; c=relaxed/simple;
+	bh=3b8VOVmMJmDs0QpE3iKQtkDExxkK0Dq6HU5GYSoisSE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fWaoFYTbNNDXgJwZBA5kcdMB8BxtQYH+p16+EOH5Pinn3peYRW7gwHjtMvhD4XL78vwL/RRNEXL3s3aKHsKy5qSsYhXXsTJGz9kVUQxqcTSHi6nCHzqwueDskMU7sKYF6DXJLZyJ+7LA4JvQZE75o3as7odb6CsWOAfEiwzxlEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hkw3eI6v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DF55C4CEDD;
+	Mon,  7 Apr 2025 16:29:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744043354;
+	bh=3b8VOVmMJmDs0QpE3iKQtkDExxkK0Dq6HU5GYSoisSE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Hkw3eI6vj91noQE6GzOxEKcYtFf4tYUyPwWSmOv3fL+C1AyrFvVxvJnf+eewKVJEo
+	 35LSz+uz+4gD9QGRe9myNBx5GfKu+P76lSmrbo390mYbgQq7B923EwL19f969vWe1C
+	 7DzEVzmEIjarW038+yn0RJ0OBF9/tcAOqgo/O6Zh4aTSo4Pf7fBS3Or11nzqKooRmJ
+	 vtF+iFB8MhjXG3npGaON056hS7pRL5wIOgRau4yGXGuS1Ek7DhXLv7zz5j71CcaXNk
+	 l7j3JWVTOeHJlf2IuBrcftbR68L15gqObiksS8y2WCffYbOLWS6VjZ3O4eX2fPwuvw
+	 4OdKsL13RlF7Q==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v3 0/2] dma-buf: heaps: Support carved-out heaps
+Date: Mon, 07 Apr 2025 18:29:06 +0200
+Message-Id: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250407095119.588920-3-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFL982cC/33NQQrCMBCF4auUrB2ZSROxrryHuEiTaRvUtiQal
+ NK7mxZcCOLyfzDfTCJy8BzFoZhE4OSjH/oc5aYQtjN9y+BdbiFRKtSkwd0M1I8G2Fro2Iwg96Y
+ kctJWikU+GwM3/rmSp3Puzsf7EF7rh0TL+gdLBAha2bp2qCpNdLxw6Pm6HUIrFi3Jj6BRIf0QZ
+ BZQlY1D3BkyzZcwz/MbLVRT7fMAAAA=
+X-Change-ID: 20240515-dma-buf-ecc-heap-28a311d2c94e
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+ "T.J. Mercier" <tjmercier@google.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2571; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=3b8VOVmMJmDs0QpE3iKQtkDExxkK0Dq6HU5GYSoisSE=;
+ b=owGbwMvMwCX2+D1vfrpE4FHG02pJDOmf/4bdq3o6g8vi0aM649iXBvdOlHe49D5oixSo6e3pv
+ HbtbeCXjlIWBjEuBlkxRZYYYfMlcadmve5k45sHM4eVCWQIAxenAEzk5hOGvzLaO15/1z99YI1M
+ 6UOx5G+/RSxj9tsvVty1Ze7ix+n+H2IYGVqsl5l+nWdgyd+UNftMVPL+jfPFFc87tjGa13v5my/
+ azAgA
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 
-On Mon, Apr 07, 2025 at 05:51:17PM +0800, Pengyu Luo wrote:
-> Kinetic ktz8866, found in many android devices, nowadays, some oem use
-> dual ktz8866 to support a larger panel and  higher brightness, original
-> driver would only handle half backlight region on these devices,
-> registering it twice is unreasonable, so adding the slave handler to
-> support it.
+Hi,
 
-Is there anything unique about KTZ8866 that allows it to be used like
-this? I think it would be better to add support for secondary backlight
-controllers into the backlight framework, rather than having to
-implement driver specific hacks for every backlight controller that
-appears in a primary/secondary configuration.
+This series is the follow-up of the discussion that John and I had some
+time ago here:
 
-Also, the kernel seeks to avoid adding new instances of master/slave
-terminology. See the coding style doc for suggested alternatives:
-https://www.kernel.org/doc/html/latest/process/coding-style.html#naming
+https://lore.kernel.org/all/CANDhNCquJn6bH3KxKf65BWiTYLVqSd9892-xtFDHHqqyrroCMQ@mail.gmail.com/
 
+The initial problem we were discussing was that I'm currently working on
+a platform which has a memory layout with ECC enabled. However, enabling
+the ECC has a number of drawbacks on that platform: lower performance,
+increased memory usage, etc. So for things like framebuffers, the
+trade-off isn't great and thus there's a memory region with ECC disabled
+to allocate from for such use cases.
 
-Daniel.
+After a suggestion from John, I chose to first start using heap
+allocations flags to allow for userspace to ask for a particular ECC
+setup. This is then backed by a new heap type that runs from reserved
+memory chunks flagged as such, and the existing DT properties to specify
+the ECC properties.
+
+After further discussion, it was considered that flags were not the
+right solution, and relying on the names of the heaps would be enough to
+let userspace know the kind of buffer it deals with.
+
+Thus, even though the uAPI part of it has been dropped in this second
+version, we still need a driver to create heaps out of carved-out memory
+regions. In addition to the original usecase, a similar driver can be
+found in BSPs from most vendors, so I believe it would be a useful
+addition to the kernel.
+
+I submitted a draft PR to the DT schema for the bindings used in this
+PR:
+https://github.com/devicetree-org/dt-schema/pull/138
+
+Let me know what you think,
+Maxime
+
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v3:
+- Reworked global variable patch
+- Link to v2: https://lore.kernel.org/r/20250401-dma-buf-ecc-heap-v2-0-043fd006a1af@kernel.org
+
+Changes in v2:
+- Add vmap/vunmap operations
+- Drop ECC flags uapi
+- Rebase on top of 6.14
+- Link to v1: https://lore.kernel.org/r/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org
+
+---
+Maxime Ripard (2):
+      dma-buf: heaps: system: Remove global variable
+      dma-buf: heaps: Introduce a new heap for reserved memory
+
+ drivers/dma-buf/heaps/Kconfig         |   8 +
+ drivers/dma-buf/heaps/Makefile        |   1 +
+ drivers/dma-buf/heaps/carveout_heap.c | 360 ++++++++++++++++++++++++++++++++++
+ drivers/dma-buf/heaps/system_heap.c   |   3 +-
+ 4 files changed, 370 insertions(+), 2 deletions(-)
+---
+base-commit: fcbf30774e82a441890b722bf0c26542fb82150f
+change-id: 20240515-dma-buf-ecc-heap-28a311d2c94e
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
+
 
