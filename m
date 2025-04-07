@@ -1,127 +1,363 @@
-Return-Path: <devicetree+bounces-163629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41893A7D9C3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:35:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C2DA7D9D3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FE0716AF57
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:35:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 301C916C31A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20EB22B8BD;
-	Mon,  7 Apr 2025 09:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD46226CEE;
+	Mon,  7 Apr 2025 09:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uTZvzowo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s9R4+8vZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81562248BA
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 09:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46CE5224B1F;
+	Mon,  7 Apr 2025 09:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744018500; cv=none; b=AemM6NsHXUQSm7yaW8ZAFTP7aBNwNdGFrp3cQoJraPcYitAD0B8QNfzheoFRnetPoTWxZnHbiFlf8rWnWhlJsdm3gHWY+cGdjo+rmNLkW8if1pZGMNQcx00rBFUuGS3oRdwuRaYivt8kdTxevO5Oooo2UsZwOj8W3r39JwTci/k=
+	t=1744018712; cv=none; b=Wejmt547k6ERvKa6HEOU8ufy58YuuA7y1O8iOOBH7C3CPofXE680om5YJR6qiVjMLwV8MRVghMxVO8Y/c8M5CmIqeMg/aqzFKmq5HeK4L0oOETgB9u2TpruXkMz6v8qiE43WFW9c3wEPO4sEDhbqVkmeqe8RPPJ+XeQXiXvd0/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744018500; c=relaxed/simple;
-	bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=P0R6O3LOSfHX1YW6ycMjaRZLsIWOdzN6xYOf3acE8lndo7+xIpr2N7l8MftKI4U0JcQhyzZIZd+Ds9hmskco0vdbYxLbV9r5ez9tdVx+KAg3OVb/3C8zMZ3D5h367fF/JGYz7Qff1bQnpq0v6DjxwiP5tgpKjpQ5QEdKhigJ6c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uTZvzowo; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39ac56756f6so3505509f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 02:34:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744018497; x=1744623297; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
-        b=uTZvzowoocuBhurdncvrklh8cm6VOJJcEIQSRLbT+JGtoypeC6dMvlfj0mc8wZU7I5
-         GyrRjkKf2AE/n8NApqIRK5yf5sUDv6SkkdUQk5Y1v3JAdo4/vUs0MpVkdQOaBEbrCvno
-         9xwcYUmjMDtS3xRbrMK3s6cOK03cLKKW5aK+EpFFk/Ds5xsPLUCQc98cH9poXIQMrzz5
-         BZFhHInzrACnCEhR68cMq5z8Jf8kDYV333FTnQUjigevbuBS3JARVdAfD2WSx+2AF+89
-         Vid59EjqbCNvhYtEByIRuyLU9p/dim9hoQjOWRXYIjifXG19IKdXNvRHa4+t4k7QRloZ
-         Apdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744018497; x=1744623297;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
-        b=UWzAL51cMbsFL7TOKhYA+A6do022EXkIcYA1rzLiCgB36tUGEGAEWND5A8YTIvCA6d
-         KZM9TuWcaI5BHrBuPf6wqoH+boskbNqkvTHe4ejlAJ1911Y4jkDhAFpHAfVBbYPhJ5jB
-         /LrHemcmOK+AdMepW7VjdGyKwastIT4iaqmmxZ9AAoSCs77GF5TO8s7rpfEAOrAVmLY6
-         xyliGMDg4KImJDjcvR6dWTFfnQ7i9kx3iLZc5d1zmm+o5firTqj/LC/EPmY34y5wLu+7
-         qzkogW7hZjcyFL8ABOtDSHfHMQ7Vr69OsZL05qZ8sAOB9RqPYz1XSl09HAKdHa5al7eT
-         PsWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzexqg8uH6gty6UV2pED6RzM/IrGV61ictstewrnEQwVdYbIxf22HMyV9XDkMlNhdyjnR2sK8s3uqX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxWnbWiLkwqdpe3liN/2xZ8RUA131fI9N5WdiqZpikX75xMv9I
-	hMhkkzGysioOX+HwvAp4opT/iIhIRhbzileo3H67ePk6O0EFEGjXWRRsVAwlmUg=
-X-Gm-Gg: ASbGncsYSpIa3s6NVoTIXk4mTDhH48bNenyVgCa4u2AreELS7KE8MhTv8Pbo/3vfW4F
-	UDGegfxiTNZ2z0d/Dnodfn8qR5oQH31c+6/+gIXjhA4y71yghFEtkKIB7hzr+pO+yK5JCKkqIcR
-	Fel9DNxdn01DlyOTPdcwKiUni1WdEKWI52MGbRu1uRBzAp5OyQY2+fKdJ5CN4gdp9gXyKGY7Lxn
-	Gv34FBs0Q0EHvxZHQu2vzsoJ+if/i6OdMRctAJkDYLT62qiP0yMMWk4/5NLT7NHCOagrvtEBUp0
-	bPSit5HVMo15d8Vxo+yRI8kd+5d7ZehXfRh2IqctM1tIx/5y
-X-Google-Smtp-Source: AGHT+IEK2ylsj8A3zv5KP41r85GTG06Mj0FN2K9Pnsar54qT+bII0+ur9gb54xnBI0cqR8Dv4CuOpw==
-X-Received: by 2002:a05:6000:4282:b0:39a:c9b3:e1d7 with SMTP id ffacd0b85a97d-39cba93ca51mr9835262f8f.29.1744018497031;
-        Mon, 07 Apr 2025 02:34:57 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43eda4662a0sm85615765e9.36.2025.04.07.02.34.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 02:34:56 -0700 (PDT)
-Message-ID: <305582d4a9c0fc8f34f997a697081409dd2df273.camel@linaro.org>
-Subject: Re: [PATCH v3 27/32] rtc: s5m: add support for S2MPG10 RTC
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
- Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sylwester
- Nawrocki	 <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- Alim Akhtar	 <alim.akhtar@samsung.com>, Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Catalin Marinas	 <catalin.marinas@arm.com>, Will
- Deacon <will@kernel.org>, Alexandre Belloni	 <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rtc@vger.kernel.org
-Date: Mon, 07 Apr 2025 10:34:51 +0100
-In-Reply-To: <5e91005a-28b0-4508-b576-5406f3e048e0@kernel.org>
-References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
-	 <20250403-s2mpg10-v3-27-b542b3505e68@linaro.org>
-	 <5e91005a-28b0-4508-b576-5406f3e048e0@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-1 
+	s=arc-20240116; t=1744018712; c=relaxed/simple;
+	bh=6w3eFSHcGfr21TV3uewsU0b1m9Ul2CRPKvz+z6S4aBg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CmRPonia2ma52d/AvN+JPftZp4jEHzEW/zNNqE4d+RoyLnQ/YBZfGcreo38+lKxKaY3sRJJwpVYyyZnZIRmmGGhRZH4ykKWkVOzTKW+F2q8qR/Q+QAiIjzaHIXMiuu7RHxdlo5oMfmZErkOE1CFs3DaltLoWqy4ZTGpH+Cqrg5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s9R4+8vZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B23C4CEDD;
+	Mon,  7 Apr 2025 09:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744018710;
+	bh=6w3eFSHcGfr21TV3uewsU0b1m9Ul2CRPKvz+z6S4aBg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s9R4+8vZCq6IlmhaWl2Jy5wcRcJzMrxa2CdIvPMkG4H6ckvCj9a6pjxNzeGtcsk1u
+	 KSQXBY7lsEhi+aJA/Kd4qs5+Ii99z7jkRfyhSJNXtsOGNdn0NWPPmOTx2BgsF1OaBv
+	 pWceKRJPm0VGpIR1figoCYaMDBtXHetoCjzKVL2Grl4EuKpUpJ0Mw1+6Dp4d9PJCnE
+	 wfXTo8LJ6CA/UAg1wDmiMj51Vpq6dmUyPxlR2jIlmcNYfccBHFN1b9bTHmgXgw6AJz
+	 +cMTAmdHkr+bFlocUSMgBoYkoSUSc46t6vFHgzDEIgI3MXlz6vf4oPhkkPmbUrtR16
+	 dkdeqG1mCKT6Q==
+Date: Mon, 7 Apr 2025 11:38:27 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Longbin Li <looong.bin@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, ghost <2990955050@qq.com>, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/2] pwm: sophgo: add driver for SG2044
+Message-ID: <jnvlo3su4xzsvzte2s3noosycxae5uxhi3vusefpgq462ymqst@jgta6xxmcbtd>
+References: <20250407072056.8629-1-looong.bin@gmail.com>
+ <20250407072056.8629-3-looong.bin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pdievs2tczsk2og6"
+Content-Disposition: inline
+In-Reply-To: <20250407072056.8629-3-looong.bin@gmail.com>
 
-On Sun, 2025-04-06 at 20:33 +0200, Krzysztof Kozlowski wrote:
-> You just sorted the MFD headers in other patch, but here you break the
-> sorting.
+
+--pdievs2tczsk2og6
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] pwm: sophgo: add driver for SG2044
+MIME-Version: 1.0
+
+On Mon, Apr 07, 2025 at 03:20:39PM +0800, Longbin Li wrote:
+> From: ghost <2990955050@qq.com>
+
+Huh, is that a real name?
+
+> Add PWM controller for SG2044.
 >=20
-> For me patches resorting the addresses (as a separate patch) is churn,
-> but sure. If you do this however, it means you really believe that it is
-> worth to sort them, so you must keep that standard for all your further
-> patches in that series.
-
-Definitely. Not sure how that happened :-(
-
+> Signed-off-by: Longbin Li <looong.bin@gmail.com>
+> ---
+>  drivers/pwm/pwm-sophgo-sg2042.c | 162 +++++++++++++++++++++++++++-----
+>  1 file changed, 138 insertions(+), 24 deletions(-)
 >=20
-> Rest is fine, so with this fixed:
+> diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg2=
+042.c
+> index ff4639d849ce..c62e8c758d87 100644
+> --- a/drivers/pwm/pwm-sophgo-sg2042.c
+> +++ b/drivers/pwm/pwm-sophgo-sg2042.c
+
+The Limitations paragraph needs updating. E.g. SG2044 seems to support
+polarity while SG2042 doesn't.
+
+> @@ -26,20 +26,22 @@
+>  #include <linux/pwm.h>
+>  #include <linux/reset.h>
 >=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> -/*
+> - * Offset RegisterName
+> - * 0x0000 HLPERIOD0
+> - * 0x0004 PERIOD0
+> - * 0x0008 HLPERIOD1
+> - * 0x000C PERIOD1
+> - * 0x0010 HLPERIOD2
+> - * 0x0014 PERIOD2
+> - * 0x0018 HLPERIOD3
+> - * 0x001C PERIOD3
+> - * Four groups and every group is composed of HLPERIOD & PERIOD
+> - */
+> -#define SG2042_PWM_HLPERIOD(chan) ((chan) * 8 + 0)
+> -#define SG2042_PWM_PERIOD(chan) ((chan) * 8 + 4)
+> +#define REG_HLPERIOD		0x0
+> +#define REG_PERIOD		0x4
+> +#define REG_GROUP		0x8
 
-Thanks Krzysztof!
+REG_GROUP belongs to a different category than REG_PERIOD. So please use
+a different schema to name it (or drop it, see below).
 
-Cheers,
-Andre'
+> +#define REG_POLARITY		0x40
+> +
+> +#define REG_PWMSTART		0x44
+> +#define REG_PWMUPDATE		0x4C
+> +#define REG_SHIFTCOUNT		0x80
+> +#define REG_SHIFTSTART		0x90
 
+REG_SHIFTCOUNT and REG_SHIFTSTART are unused.
+
+> +#define REG_PWM_OE		0xD0
+
+Actually I liked the old prefix better. E.g. "REG_POLARITY" looks more
+generic that it actually is.
+
+> +
+> +#define PWM_REG_NUM		0x80
+
+This is unused?
+
+> +
+> +#define PWM_POLARITY_MASK(n) BIT(n)
+> +#define PWM_HLPERIOD(chan) ((chan) * REG_GROUP + REG_HLPERIOD)
+> +#define PWM_PERIOD(chan) ((chan) * REG_GROUP + REG_PERIOD)
+
+((chan) * 8 + 0) is IMHO better. I guess this is subjective because at
+least the *8 is repeated several times, but the advantage of not using a
+define for 8 (and 0 and 4) is that by looking at
+
+	#define SG2042_PWM_HLPERIOD(chan) ((chan) * 8 + 0)
+
+you immediatly see the offsets of the HLPERIOD register, while for
+
+	#define PWM_HLPERIOD(chan) ((chan) * REG_GROUP + REG_HLPERIOD)
+
+you have to lookup two additional symbols.
+
+Also PWM is a prefix that is too generic.
+
+>  #define SG2042_PWM_CHANNELNUM	4
+>=20
+> @@ -51,6 +53,12 @@
+>  struct sg2042_pwm_ddata {
+>  	void __iomem *base;
+>  	unsigned long clk_rate_hz;
+> +	struct mutex lock;
+
+What does this lock protect? Note that there is a chip lock that is held
+when .apply() is called, to serialize apply calls for a single chip. I
+guess this can and should be dropped.
+
+> +};
+> +
+> +struct sg2042_chip_data {
+> +	const struct pwm_ops ops;
+> +	bool atomic;
+>  };
+>=20
+>  /*
+> @@ -62,8 +70,8 @@ static void pwm_sg2042_config(struct sg2042_pwm_ddata *=
+ddata, unsigned int chan,
+>  {
+>  	void __iomem *base =3D ddata->base;
+>=20
+> -	writel(period_ticks, base + SG2042_PWM_PERIOD(chan));
+> -	writel(hlperiod_ticks, base + SG2042_PWM_HLPERIOD(chan));
+> +	writel(period_ticks, base + PWM_PERIOD(chan));
+> +	writel(hlperiod_ticks, base + PWM_HLPERIOD(chan));
+
+The register renaming adds really quite some noise that is actually
+unrelated to this patch. If you really think the register defines need
+renaming, do that in a separate patch (and justify it well).
+
+>  }
+>=20
+>  static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> @@ -104,8 +112,8 @@ static int pwm_sg2042_get_state(struct pwm_chip *chip=
+, struct pwm_device *pwm,
+>  	u32 hlperiod_ticks;
+>  	u32 period_ticks;
+>=20
+> -	period_ticks =3D readl(ddata->base + SG2042_PWM_PERIOD(chan));
+> -	hlperiod_ticks =3D readl(ddata->base + SG2042_PWM_HLPERIOD(chan));
+> +	period_ticks =3D readl(ddata->base + PWM_PERIOD(chan));
+> +	hlperiod_ticks =3D readl(ddata->base + PWM_HLPERIOD(chan));
+>=20
+>  	if (!period_ticks) {
+>  		state->enabled =3D false;
+> @@ -123,13 +131,112 @@ static int pwm_sg2042_get_state(struct pwm_chip *c=
+hip, struct pwm_device *pwm,
+>  	return 0;
+>  }
+>=20
+> -static const struct pwm_ops pwm_sg2042_ops =3D {
+> -	.apply =3D pwm_sg2042_apply,
+> -	.get_state =3D pwm_sg2042_get_state,
+> +static void pwm_sg2044_config(struct sg2042_pwm_ddata *ddata, struct pwm=
+_device *pwm, bool enabled)
+> +{
+> +	u32 pwm_value;
+> +
+> +	pwm_value =3D readl(ddata->base + REG_PWMSTART);
+> +
+> +	if (enabled)
+> +		writel(pwm_value | BIT(pwm->hwpwm), ddata->base + REG_PWMSTART);
+> +	else
+> +		writel(pwm_value & ~BIT(pwm->hwpwm), ddata->base + REG_PWMSTART);
+> +}
+> +
+> +static void pwm_sg2044_set_outputenable(struct sg2042_pwm_ddata *ddata, =
+struct pwm_device *pwm,
+> +					bool enabled)
+> +{
+> +	u32 pwm_value;
+> +
+> +	pwm_value =3D readl(ddata->base + REG_PWM_OE);
+> +
+> +	if (enabled)
+> +		writel(pwm_value | BIT(pwm->hwpwm), ddata->base + REG_PWM_OE);
+> +	else
+> +		writel(pwm_value & ~BIT(pwm->hwpwm), ddata->base + REG_PWM_OE);
+> +}
+> +
+> +static int pwm_sg2044_set_polarity(struct sg2042_pwm_ddata *ddata, struc=
+t pwm_device *pwm,
+> +				   const struct pwm_state *state)
+> +{
+> +	enum pwm_polarity polarity;
+> +	u32 pwm_value;
+> +
+> +	pwm_value =3D readl(ddata->base + REG_POLARITY);
+> +
+> +	polarity =3D state->polarity;
+> +
+> +	if (polarity =3D=3D PWM_POLARITY_NORMAL)
+> +		pwm_value &=3D ~BIT(pwm->hwpwm);
+> +	else
+> +		pwm_value |=3D BIT(pwm->hwpwm);
+> +
+> +	writel(pwm_value, ddata->base + REG_POLARITY);
+
+I like this idiom better than the one used in
+pwm_sg2044_set_outputenable() and pwm_sg2044_config(). However drop the
+local variable polarity.
+
+> +	return 0;
+> +}
+> +
+> +static int pwm_sg2044_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct sg2042_pwm_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> +	u32 hlperiod_ticks;
+> +	u32 period_ticks;
+> +
+> +	if (!state->enabled) {
+> +		pwm_sg2044_config(ddata, pwm, false);
+> +		return 0;
+> +	}
+> +
+> +	pwm_sg2044_set_polarity(ddata, pwm, state);
+> +
+> +	/*
+> +	 * Duration of High level (duty_cycle) =3D HLPERIOD x Period_of_input_c=
+lk
+> +	 * Duration of One Cycle (period) =3D PERIOD x Period_of_input_clk
+> +	 */
+> +	period_ticks =3D min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->per=
+iod,
+> +					       NSEC_PER_SEC), U32_MAX);
+> +	hlperiod_ticks =3D min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->d=
+uty_cycle,
+> +						 NSEC_PER_SEC), U32_MAX);
+
+This is the same calculation as for sg2042. I think I'd put that in a
+function that is used by both variants.
+
+> +	dev_dbg(pwmchip_parent(chip), "chan[%u]: PERIOD=3D%u, HLPERIOD=3D%u\n",
+> +		pwm->hwpwm, period_ticks, hlperiod_ticks);
+
+Now that there are more register values, please add them all to the
+debug output.
+
+> +	pwm_sg2042_config(ddata, pwm->hwpwm, period_ticks, hlperiod_ticks);
+> +
+> +	guard(mutex)(&ddata->lock);
+> +
+> +	/*
+> +	 * re-enable PWMSTART to refresh the register period
+> +	 */
+> +	pwm_sg2044_config(ddata, pwm, false);
+
+pwm_sg2044_config() is conceptually different to pwm_sg2042_config().
+This is irritating, so please find a better name.
+
+> +	pwm_sg2044_set_outputenable(ddata, pwm, true);
+> +	pwm_sg2044_config(ddata, pwm, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct sg2042_chip_data sg2042_chip_data =3D {
+> +	.ops =3D {
+> +		.apply =3D pwm_sg2042_apply,
+> +		.get_state =3D pwm_sg2042_get_state,
+> +	},
+> +	.atomic =3D true,
+> +};
+> +
+> +static const struct sg2042_chip_data sg2044_chip_data =3D {
+> +	.ops =3D {
+> +		.apply =3D pwm_sg2044_apply,
+> +		.get_state =3D pwm_sg2042_get_state,
+> +	},
+> +	.atomic =3D false,
+
+If you drop the mutex don't forget to drop this one, too.
+
+>  };
+
+Best regards
+Uwe
+
+--pdievs2tczsk2og6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfznREACgkQj4D7WH0S
+/k5IGQgAuKXpR7T10Khnr9B2l20fU/CYqEoy5dSxjYN0+CoYrIAQuN06iXb2kGk7
+L62b9E0X9INBEJZClH5a6BpNVCOhkcDc+rs2XYL7Aq8248jVS74ybVoZByyRqi/b
+B5sKVoGbh+cHPJjmtVxzvUr83hedydWfqNt43tUfjhjsa5zUPmk+zUvsZ6qh2Jzw
+wH9jLYMmMH13kGrEo0szGFqM3DLI6UldaTIUBueFnZjHHxxct5cxFUwdLWGNoUvK
+xwmykjwSxOKLWqT0kQuot0gG9bxZFsd6O3s0Y9SADPcaUMYckc0uptjWaaQNifr5
+miGS4qqA5OBH+ZCZlche16tmPnzvxw==
+=xehm
+-----END PGP SIGNATURE-----
+
+--pdievs2tczsk2og6--
 
