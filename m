@@ -1,285 +1,126 @@
-Return-Path: <devicetree+bounces-163953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24338A7E89B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:42:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3FB0A7E8CE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 19:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F7D179685
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52A2E17CE33
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1282561CA;
-	Mon,  7 Apr 2025 17:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B0122155B;
+	Mon,  7 Apr 2025 17:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="J54luC52"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="DK9a5CGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D81F2561AC
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 17:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F53218AD2;
+	Mon,  7 Apr 2025 17:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744047246; cv=none; b=j8180eoD6xX1LgsJnLkqdfQYK3zQYr5VqjGuC1AgWOFm8+r7NaWJ0wD85Wg5Zfwc0YAi6sGZRQSK32to0nugXtMowOW0yzcSoWO2eb9Teze9RkUqypyddMvPINWGTSVlMh+yVPoRA9INlFSSYB1jfj0EvErEvYlE2AG6uOnGbjw=
+	t=1744047662; cv=none; b=LwG6kaAm6WQX9XLvVW8iDm4DeYCisDpOB8L0dST77z/cduXKnCsgKRSbxmNeauB5mQVhRGA963mTCMIBWGcTsYSyl85iis2do6FuMiOczYTm2BE4V/oXcn5JbhtVvzS/CMK6eaQiP5CAK3SACEJ+Nej3h7EVQWIqM4faY6akENc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744047246; c=relaxed/simple;
-	bh=0eoyesuUJ7nZXFehU0rjs/Slq1sdsdIs1Ek+4VMektQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oAsQo1JZtcck44hu3P4PfpSoWttle2XI4Lg0IG/dQUg9J6vnU+ZCbKvz0A92md1revJmiwHOYpyQjSCY/29KOkL6/CFq4nfvQxzWjReA4Wa7zRP4DrIKa910dqPaliyaBZdHKWzvTC8H5Q10Mg0QZPIGN3KLzL4Y0asx2Zzz/wI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=J54luC52; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744047243;
+	s=arc-20240116; t=1744047662; c=relaxed/simple;
+	bh=4dpy4CCXBZ160IpiheubjMEcEqckuALRGNKKOE3oDQY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jpFK1eGaxzd46sbocIe96h2lnS8t8SOALiy3btoUdZSVwaBNn3NlyUTvGvmTb6Mp6/Ac0Mp16KZAijPxlfFlm7BT6GcJuAZ00qVZF8NvdCn2h9SIi+xap+GaishD4FMuZ0kB3NZrxCW//czbpQEKlSbMkSLT2yeDHtuGh1fRf2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=DK9a5CGf; arc=none smtp.client-ip=95.215.58.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <ed5990bd-e671-4f96-bec8-543de3b48712@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1744047656;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ixTjOYCWUZvSMYGAAMcSYpU49kgLEmCLWZmPx1x/04U=;
-	b=J54luC52XzP0NVkGP5BZGRDKHXfcTSM0CDNP+4bAO+W6Noi+SE9ZEC8V+IOY393CacfXA2
-	afJSqxywpYS464E5V8MGUWFGMfVm7wS1sc3QeJLMeR+bjjATCbZ9eNkedsOvLAffkO6wRe
-	gKzWMWpjVdj0Ask3LvB+6mPY7Ay8ejk=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-591-aWG3WrrmMMebsZvXhkGbgg-1; Mon,
- 07 Apr 2025 13:33:59 -0400
-X-MC-Unique: aWG3WrrmMMebsZvXhkGbgg-1
-X-Mimecast-MFC-AGG-ID: aWG3WrrmMMebsZvXhkGbgg_1744047237
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7388018001F8;
-	Mon,  7 Apr 2025 17:33:57 +0000 (UTC)
-Received: from p16v.luc.cera.cz (unknown [10.44.32.4])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 51F9F180B488;
-	Mon,  7 Apr 2025 17:33:52 +0000 (UTC)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: Michal Schmidt <mschmidt@redhat.com>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: [PATCH 28/28] dpll: zl3073x: Add support to get fractional frequency offset on input pins
-Date: Mon,  7 Apr 2025 19:33:01 +0200
-Message-ID: <20250407173301.1010462-9-ivecera@redhat.com>
-In-Reply-To: <20250407172836.1009461-1-ivecera@redhat.com>
-References: <20250407172836.1009461-1-ivecera@redhat.com>
+	bh=++KpZ5uwY1Janf+N2PmBTtktOp7tWbX3i2J7W2ip/E4=;
+	b=DK9a5CGfgWrjLUaQxeq3ptm/moAts7IV3ci0gsTJzHJivLe+sJaFymatq0QIC6jWTCNwMu
+	Q99N888ii24jACU37tbV8TN2AH/EV9OfsoMU0BFj8NRJZh5cUxFBUwwkPmdN5RROHGw35w
+	0Rl++5YUu0v1A2j5dPo8wVs5LvznUIk=
+Date: Mon, 7 Apr 2025 13:40:45 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Subject: Re: [RFC net-next PATCH 00/13] Add PCS core support
+To: Daniel Golle <daniel@makrotopia.org>,
+ "Christian Marangi (Ansuel)" <ansuelsmth@gmail.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, netdev@vger.kernel.org,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+ upstream@airoha.com, Heiner Kallweit <hkallweit1@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Clark Wang <xiaoning.wang@nxp.com>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Claudiu Manoil <claudiu.manoil@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ Ioana Ciornei <ioana.ciornei@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Joyce Ooi <joyce.ooi@intel.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Li Yang <leoyang.li@nxp.com>, Madalin Bucur <madalin.bucur@nxp.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Michal Simek <michal.simek@amd.com>,
+ Naveen N Rao <naveen@kernel.org>, Nicholas Piggin <npiggin@gmail.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Robert Hancock <robert.hancock@calian.com>,
+ Saravana Kannan <saravanak@google.com>, Shawn Guo <shawnguo@kernel.org>,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ Wei Fang <wei.fang@nxp.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-doc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linuxppc-dev@lists.ozlabs.org
+References: <20250403181907.1947517-1-sean.anderson@linux.dev>
+ <20250407182738.498d96b0@kmaincent-XPS-13-7390>
+ <720b6db8-49c5-47e7-98da-f044fc38fc1a@linux.dev>
+ <CA+_ehUyAo7fMTe_P0ws_9zrcbLEWVwBXDKbezcKVkvDUUNg0rg@mail.gmail.com>
+ <1aec6dab-ed03-4ca3-8cd1-9cfbb807be10@linux.dev>
+ <CA+_ehUzeMBFrDEb7Abn3UO3S7VVjMiKc+2o=p5RGjPDkfLPVtQ@mail.gmail.com>
+ <Z_QKl-4563l05WB3@makrotopia.org>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <Z_QKl-4563l05WB3@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-This adds support to get fractional frequency offset for input pins.
-Implement the appropriate callback that performs reference frequency
-measurement and reports the frequency offset between the DPLL and
-the reference.
+On 4/7/25 13:25, Daniel Golle wrote:
+> On Mon, Apr 07, 2025 at 07:21:38PM +0200, Christian Marangi (Ansuel) wrote:
+>> Il giorno lun 7 apr 2025 alle ore 19:00 Sean Anderson
+>> > I agree that a "cells" approach would require this, but
+>> >
+>> > - There are no in-tree examples of where this is necessary
+>> > - I think this would be easy to add when necessary
+>> >
+>> 
+>> There are no in-tree cause only now we are starting to support
+>> complex configuration with multiple PCS placed outside the MAC.
+>> 
+>> I feel it's better to define a standard API for them now before
+>> we permit even more MAC driver to implement custom property
+>> and have to address tons of workaround for compatibility.
+> 
+> Qualcomm's PCS driver will require offering multiple phylink_pcs by a
+> single device/of_node. So while it's true that there is currently no
+> in-tree user for that, that very user is already knocking on our doors.
+> 
+> See
+> https://patchwork.kernel.org/project/netdevbpf/list/?series=931658&state=*
 
-Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
-Co-developed-by: Prathosh Satish <Prathosh.Satish@microchip.com>
-Signed-off-by: Prathosh Satish <Prathosh.Satish@microchip.com>
-Signed-off-by: Ivan Vecera <ivecera@redhat.com>
----
- drivers/dpll/dpll_zl3073x.c | 110 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 109 insertions(+), 1 deletion(-)
+OK, but I still think this is quite easy to add.
 
-diff --git a/drivers/dpll/dpll_zl3073x.c b/drivers/dpll/dpll_zl3073x.c
-index e1d7f6d4c3d57..f5a58c3bab382 100644
---- a/drivers/dpll/dpll_zl3073x.c
-+++ b/drivers/dpll/dpll_zl3073x.c
-@@ -36,12 +36,31 @@ ZL3073X_REG8_IDX_DEF(dpll_refsel_status,	0x130, ZL3073X_NUM_CHANNELS, 1);
- #define DPLL_REFSEL_STATUS_STATE_ACQUIRING	3
- #define DPLL_REFSEL_STATUS_STATE_LOCK		4
- 
-+ZL3073X_REG32_IDX_DEF(ref_freq,			0x144,
-+						ZL3073X_NUM_INPUT_PINS, 4);
-+
- /*
-  * Register Map Page 4, Ref
-  */
- ZL3073X_REG8_DEF(ref_phase_err_read_rqst,	0x20f);
- #define REF_PHASE_ERR_READ_RQST_RD		BIT(0)
- 
-+ZL3073X_REG8_DEF(ref_freq_meas_ctrl,		0x21c);
-+#define REF_FREQ_MEAS_CTRL_LATCH		GENMASK(1, 0)
-+#define REF_FREQ_MEAS_CTRL_LATCH_REF_FREQ	1
-+#define REF_FREQ_MEAS_CTRL_LATCH_REF_FREQ_OFF	2
-+#define REF_FREQ_MEAS_CTRL_LATCH_DPLL_FREQ_OFF	3
-+
-+ZL3073X_REG8_DEF(ref_freq_meas_mask_3_0,	0x21d);
-+#define REF_FREQ_MEAS_MASK_3_0(_ref)		BIT(_ref)
-+
-+ZL3073X_REG8_DEF(ref_freq_meas_mask_4,		0x21e);
-+#define REF_FREQ_MEAS_MASK_4(_ref)		BIT((_ref) - 8)
-+
-+ZL3073X_REG8_DEF(dpll_meas_ref_freq_ctrl,	0x21f);
-+#define DPLL_MEAS_REF_FREQ_CTRL_EN		BIT(0)
-+#define DPLL_MEAS_REF_FREQ_CTRL_IDX		GENMASK(6, 4)
-+
- ZL3073X_REG48_IDX_DEF(ref_phase,		0x220,
- 						ZL3073X_NUM_INPUT_PINS, 6);
- 
-@@ -140,6 +159,7 @@ struct zl3073x_dpll_pin_info {
-  * @esync_control: embedded sync is controllable
-  * @pin_state: last saved pin state
-  * @phase_offset: last saved pin phase offset
-+ * @freq_offset: last saved fractional frequency offset
-  */
- struct zl3073x_dpll_pin {
- 	struct dpll_pin			*dpll_pin;
-@@ -149,6 +169,7 @@ struct zl3073x_dpll_pin {
- 	bool				esync_control;
- 	enum dpll_pin_state		pin_state;
- 	s64				phase_offset;
-+	s64				freq_offset;
- };
- 
- /**
-@@ -498,6 +519,79 @@ zl3073x_dpll_input_pin_esync_set(const struct dpll_pin *dpll_pin,
- 	return rc;
- }
- 
-+static int
-+zl3073x_dpll_input_pin_ffo_get(const struct dpll_pin *dpll_pin, void *pin_priv,
-+			       const struct dpll_device *dpll, void *dpll_priv,
-+			       s64 *ffo, struct netlink_ext_ack *extack)
-+{
-+	struct zl3073x_dpll *zldpll = dpll_priv;
-+	struct zl3073x_dev *zldev = zldpll->mfd;
-+	struct zl3073x_dpll_pin *pin = pin_priv;
-+	u8 dpll_meas_ref_freq_ctrl, ref_id;
-+	u8 ref_freq_meas_ctrl, ref_mask;
-+	s32 freq_offset;
-+	int rc;
-+
-+	/* Take device lock */
-+	guard(zl3073x)(zldev);
-+
-+	/* Get index of the pin */
-+	ref_id = zl3073x_dpll_pin_index_get(pin);
-+
-+	/* Wait for being ready */
-+	rc = zl3073x_wait_clear_bits(zldev, ref_freq_meas_ctrl,
-+				     REF_FREQ_MEAS_CTRL_LATCH);
-+	if (rc)
-+		return rc;
-+
-+	/* Select channel index in the mask and enable freq measurement */
-+	dpll_meas_ref_freq_ctrl =
-+		DPLL_MEAS_REF_FREQ_CTRL_EN |
-+		FIELD_PREP(DPLL_MEAS_REF_FREQ_CTRL_IDX, zldpll->id);
-+
-+	rc = zl3073x_write_dpll_meas_ref_freq_ctrl(zldev,
-+						   dpll_meas_ref_freq_ctrl);
-+	if (rc)
-+		return rc;
-+
-+	/* Set reference mask
-+	 * REF0P,REF0N..REF3P,REF3N are set in ref_freq_meas_mask_3_0 register
-+	 * REF4P and REF4N are set in ref_freq_meas_mask_4 register
-+	 */
-+	if (ref_id < 8) {
-+		ref_mask = REF_FREQ_MEAS_MASK_3_0(ref_id);
-+		rc = zl3073x_write_ref_freq_meas_mask_3_0(zldev, ref_mask);
-+	} else {
-+		ref_mask = REF_FREQ_MEAS_MASK_4(ref_id);
-+		rc = zl3073x_write_ref_freq_meas_mask_4(zldev, ref_mask);
-+	}
-+	if (rc)
-+		return rc;
-+
-+	/* Request a reading of the frequency offset between the DPLL and
-+	 * the reference
-+	 */
-+	ref_freq_meas_ctrl = REF_FREQ_MEAS_CTRL_LATCH_DPLL_FREQ_OFF;
-+	rc = zl3073x_write_ref_freq_meas_ctrl(zldev, ref_freq_meas_ctrl);
-+	if (rc)
-+		return rc;
-+
-+	/* Wait for the command to actually finish */
-+	rc = zl3073x_wait_clear_bits(zldev, ref_freq_meas_ctrl,
-+				     REF_FREQ_MEAS_CTRL_LATCH);
-+	if (rc)
-+		return rc;
-+
-+	/* Read the frequency offset between DPLL and reference */
-+	rc = zl3073x_read_ref_freq(zldev, ref_id, &freq_offset);
-+	if (rc)
-+		return rc;
-+
-+	*ffo = freq_offset;
-+
-+	return rc;
-+}
-+
- static int
- zl3073x_dpll_input_pin_frequency_get(const struct dpll_pin *dpll_pin,
- 				     void *pin_priv,
-@@ -1778,6 +1872,7 @@ static const struct dpll_pin_ops zl3073x_dpll_input_pin_ops = {
- 	.direction_get = zl3073x_dpll_pin_direction_get,
- 	.esync_get = zl3073x_dpll_input_pin_esync_get,
- 	.esync_set = zl3073x_dpll_input_pin_esync_set,
-+	.ffo_get = zl3073x_dpll_input_pin_ffo_get,
- 	.frequency_get = zl3073x_dpll_input_pin_frequency_get,
- 	.frequency_set = zl3073x_dpll_input_pin_frequency_set,
- 	.phase_offset_get = zl3073x_dpll_input_pin_phase_offset_get,
-@@ -2484,9 +2579,9 @@ zl3073x_dpll_periodic_work(struct kthread_work *work)
- 	 * are constant.
- 	 */
- 	for (i = 0; i < ZL3073X_NUM_INPUT_PINS; i++) {
-+		s64 freq_offset, phase_offset;
- 		struct zl3073x_dpll_pin *pin;
- 		enum dpll_pin_state state;
--		s64 phase_offset;
- 		bool pin_changed;
- 
- 		/* Input pins starts are stored after output pins */
-@@ -2513,6 +2608,12 @@ zl3073x_dpll_periodic_work(struct kthread_work *work)
- 		if (rc)
- 			goto out;
- 
-+		rc = zl3073x_dpll_input_pin_ffo_get(pin->dpll_pin, pin,
-+						    zldpll->dpll_dev, zldpll,
-+						    &freq_offset, NULL);
-+		if (rc)
-+			goto out;
-+
- 		if (state != pin->pin_state) {
- 			dev_dbg(zldev->dev,
- 				"INPUT%u state changed to %u\n",
-@@ -2527,6 +2628,13 @@ zl3073x_dpll_periodic_work(struct kthread_work *work)
- 			pin->phase_offset = phase_offset;
- 			pin_changed = true;
- 		}
-+		if (freq_offset != pin->freq_offset) {
-+			dev_dbg(zldev->dev,
-+				"INPUT%u frequency offset changed to %llu\n",
-+				pin->index, freq_offset);
-+			pin->freq_offset = freq_offset;
-+			pin_changed = true;
-+		}
- 
- 		if (pin_changed)
- 			dpll_pin_change_ntf(pin->dpll_pin);
--- 
-2.48.1
-
+--Sean
 
