@@ -1,186 +1,171 @@
-Return-Path: <devicetree+bounces-163808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C922A7E305
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FD7A7E332
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 17:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 444E9421D05
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:43:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2361B3A5F67
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A217D1F583E;
-	Mon,  7 Apr 2025 14:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4111E833B;
+	Mon,  7 Apr 2025 14:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vyVRcrtD"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="iFa0jpRR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DABF1E8352;
-	Mon,  7 Apr 2025 14:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE7E1E51F0;
+	Mon,  7 Apr 2025 14:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744036734; cv=none; b=D2UddRnpltL3iyp+fho1awMhCLifM7ROmKv000pqCKs5bbwOTzrndJdXWIBmD4yezhSC3ASvSvJilEtEM6zvk0ZdYVzYKeg9DN5XmN0r2gbsGNwMOzUuX7mPM4GETvz9LzTkzrm8pgzZYlwBG6bUJ+fqzKF6fGjlaO3XNLUWrBw=
+	t=1744037547; cv=none; b=RNEAyPh/XTziw0IB1T1IkdbJraa7NSzIn4Idc6YYvlv0y6zGChD6LJUjTH62Ptv6CO7br1AAOlQvI6vhTTNRtHREumnOZR0uuY8Z3NRencyNuGhI5fZS5zVH5WFMuZ6PBbxkN3rBZkPhD2r79nAApKQGOTNn0bYpnbmiwP79lsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744036734; c=relaxed/simple;
-	bh=ecPuob8sNYqZVvV1h+fY77LO2Awi2+Th0hCMGUR6dNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a0h1IRSLofkOTWa/6rhraEgbzrm/RJjAZVPYJE7CpzcaAwfOkOe5rTeU5GGn2D52ZwaVit/B5bzjstgmcjC+v2WensVf3uhDF4N3lJiKRgQIah8J0u7vq7vfl2hF1itGaMtnxw89MCAOSCHFLhqbZwUqYbrR2mdU5k6Nv1drxzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vyVRcrtD; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 537EcjNv385036
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 7 Apr 2025 09:38:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744036725;
-	bh=nySQPps4T2a0FRio8EjYlEXOxTgZnY6kE2ly05mdvsU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=vyVRcrtD3xjOIAXPPd1J9sovyIHHufJymNRSCBZUw0E/1fmoZQkym040c60IfRVGX
-	 xA2MKUwcN2xWAJ/WXQkHjFlfdk1bClxvWTHnc1JNGVs+2CPRYQXfQXWKN7d2SKcVHl
-	 ZKs5QnMngiP2eUaLAVFZz4q8ZfJfqAYspm9Zcnr0=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 537EcjIH065068
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 7 Apr 2025 09:38:45 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 7
- Apr 2025 09:38:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 7 Apr 2025 09:38:44 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 537Eciuh037344;
-	Mon, 7 Apr 2025 09:38:44 -0500
-Message-ID: <dab7c2ae-2ce9-4fdc-933c-35a4fd92a8e5@ti.com>
-Date: Mon, 7 Apr 2025 09:38:44 -0500
+	s=arc-20240116; t=1744037547; c=relaxed/simple;
+	bh=yYroXKKtoX+wkq3hBAqIfvmFTIzepSA8ADEKA/LNwI0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=O54k85OuidQIoBh4eaGpul/VFb+R8EjcJH1a4hKApaFmXhlhd9f0No/tiYbBXvHw/JSzWYIbDB0I/fTYWhX8Ocw2YgR2JGqKbyHgjEWRazOiIPoM/prPy6gTvA2x6mnEOE6P7Rw6ni8y4VpwV/3jirgCsc5m6ReM296NnnCGIPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=iFa0jpRR; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 575EF102EB9FB;
+	Mon,  7 Apr 2025 16:52:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1744037541; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=7aXt2koPsf4jatl2BEaDbyBltL8GupCo0peGOg+vXXs=;
+	b=iFa0jpRR+XykMU6AK6AhSCuqS6EhaK8e0fGvWfzxnF4aNWS3SpeeQTftCC0y1DY4FWCDT/
+	zGJ1UogWEXjz5e7YM4uOUBCY3nYyaCJR28BpBRXBhOUmqxED1mQJNq3YyinFyUya85ny+d
+	GU7TcGs1KLPjfJJooWNCDI3jaDFQWQtKhHkmEL0eZCay6or3IuaTtsrbetLP/rngyCdba5
+	KVIgww5Fk9c3bmMFZ4aZj5w2E01sJZ/PYzJw/NTc/IY3VfS0CU/khwBUJfeAuJnV4+EVbP
+	ReXEEyeX4tGl916NRzibF5Y+8Mzq2EEH801jTHhguzRl6aqBvxjSttgddyxP8g==
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [net-next v4 0/5] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Mon,  7 Apr 2025 16:51:52 +0200
+Message-Id: <20250407145157.3626463-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 11/11] arm64: dts: ti: k3-am64: Reserve timers used by
- MCU FW
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Padhi <b-padhi@ti.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-References: <20250405001518.1315273-1-jm@ti.com>
- <20250405001518.1315273-12-jm@ti.com>
- <956c0598-9934-4295-87af-ef86f4eabd94@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <956c0598-9934-4295-87af-ef86f4eabd94@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Andrew,
+This patch series adds support for More Than IP's L2 switch driver embedded
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-On 4/7/25 7:35 AM, Andrew Davis wrote:
-> On 4/4/25 7:15 PM, Judith Mendez wrote:
->> From: Hari Nagalla <hnagalla@ti.com>
->>
->> AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
->> main domain timers as tick timers in these firmwares. Hence keep them
->> as reserved in the Linux device tree.
->>
->> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am642-evm.dts | 17 +++++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 17 +++++++++++++++++
->>   2 files changed, 34 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts 
->> b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> index f8ec40523254b..68bd6b806f8f0 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> @@ -796,6 +796,23 @@ &mcu_m4fss {
->>       status = "okay";
->>   };
->> +/* main_timers 8-11 are used by TI MCU FW */
-> 
-> Can you make this comment per-core and explain which core
-> each timer is reserved for? Makes it easier on me in Zephyr
-> to point out why we use the timers that we do, something
-> like:
-> 
-> /* main_timer8 is reserved for mcu_r5fss0_core0 */
+In the past there has been performed some attempts to upstream this driver:
 
-Sure, I can do that. Will wait for [0] conversation to close and then
-respin the series with this change
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
 
-[0] 
-https://lore.kernel.org/linux-devicetree/f42607f5-e39d-48a1-89c0-11d4982a2426@ti.com/
+All three approaches were not accepted as eligible for upstreaming.
 
-~ Judith
+The driver from this series has floowing features:
 
-> 
-> Andrew
-> 
->> +&main_timer8 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer9 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer10 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer11 {
->> +    status = "reserved";
->> +};
->> +
->>   &serdes_ln_ctrl {
->>       idle-states = <AM64_SERDES0_LANE0_PCIE0>;
->>   };
->> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts 
->> b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> index 33e421ec18abb..07fbdf2400d23 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
->> @@ -710,6 +710,23 @@ &mcu_m4fss {
->>       status = "okay";
->>   };
->> +/* main_timers 8-11 are used by TI MCU FW */
->> +&main_timer8 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer9 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer10 {
->> +    status = "reserved";
->> +};
->> +
->> +&main_timer11 {
->> +    status = "reserved";
->> +};
->> +
->>   &ecap0 {
->>       status = "okay";
->>       /* PWM is available on Pin 1 of header J3 */
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+
+Lukasz Majewski (5):
+  dt-bindings: net: Add MTIP L2 switch description
+  ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2 switch description
+  ARM: dts: nxp: mxs: Adjust XEA board's DTS to support L2 switch
+  net: mtip: The L2 switch driver for imx287
+  ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2
+    switch
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  126 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/nxp/mxs/imx28-xea.dts       |   54 +
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |    8 +-
+ arch/arm/configs/mxs_defconfig                |   14 +-
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    3 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 1970 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  782 +++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  122 +
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  449 ++++
+ 13 files changed, 3537 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
+
+-- 
+2.39.5
 
 
