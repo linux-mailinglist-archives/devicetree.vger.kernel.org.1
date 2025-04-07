@@ -1,161 +1,127 @@
-Return-Path: <devicetree+bounces-163628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DFD3A7D991
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41893A7D9C3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:35:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4439D16EE15
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:22:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FE0716AF57
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9544123236A;
-	Mon,  7 Apr 2025 09:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20EB22B8BD;
+	Mon,  7 Apr 2025 09:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="WIuUMTLG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uTZvzowo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16CB8232363
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 09:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81562248BA
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 09:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744017691; cv=none; b=p1+w9a2DeBeXQv55rbS23jatA77R5Qe5aIgninVhlBd7phC023uQO52HHZJb8BJH8Tq7bgV7/2Gkd7/xLYrxnhUsxJDGOJ/n5MDikN43wGMX70ZRxNtJ4w4FflXWSw/h418Je6eG2XHLGzZjKE8+PbTKWkkO+LmDDaz2OYzS2aQ=
+	t=1744018500; cv=none; b=AemM6NsHXUQSm7yaW8ZAFTP7aBNwNdGFrp3cQoJraPcYitAD0B8QNfzheoFRnetPoTWxZnHbiFlf8rWnWhlJsdm3gHWY+cGdjo+rmNLkW8if1pZGMNQcx00rBFUuGS3oRdwuRaYivt8kdTxevO5Oooo2UsZwOj8W3r39JwTci/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744017691; c=relaxed/simple;
-	bh=iSlSsIy8a8fjMFvyVm2tJ7hdd5DE5BK0cDXC7vabG8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I3clRxpF1GC52q9zHt2kXDfdwMJva0hFMxtdT5AnvvouJ4FAqOOHS5mEkXOkAEWUla0S5smzbaR9UJcmr2sEWlr5+mBZiOw5j9q8WdwZ9wdF9M+QYhBRBUqCyOFm+0yMaS7p+ERzamTM6ZNH4Ahmdaim+RRvlxtTXqpJkS8tF6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=WIuUMTLG; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 547C83F342
-	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 09:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1744017688;
-	bh=HEaLDYOXOEmeBww1pBLiPCAb16rSoW8x0h/ino16yYg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type;
-	b=WIuUMTLGpRNmBVTi2DEEHlyZ8A2QvCOQWbbsGFmuLYqIBZh2e9FRYRaJrRBLTKfw6
-	 UE2fSkSBJWt0nnRwQl24YzMG5uwCIH48j9zADGa4HM2c7SNjXm1QC/jrLkH7qe3T5v
-	 VMNF/rFebHSa0twMcFJ8sTEeoxV9lLcFn61kQGqFlinW9S3yjG4bWAEzaXEoGXpTSM
-	 YEy5oVfmFLJgvaJw62i2UT4rQDhT9EpDBKWcJEUjbA84Q1+VNBAWf6cQdiB8WWLNYS
-	 zt1qlJ/L73RLKmTjFvwPwi22Qw/8K0+WPmMMDX2ZQvJwbKaGQLHer//ifwi+j6/oMT
-	 W6pZV1aalPnMA==
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-ac2aa3513ccso352174966b.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 02:21:28 -0700 (PDT)
+	s=arc-20240116; t=1744018500; c=relaxed/simple;
+	bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=P0R6O3LOSfHX1YW6ycMjaRZLsIWOdzN6xYOf3acE8lndo7+xIpr2N7l8MftKI4U0JcQhyzZIZd+Ds9hmskco0vdbYxLbV9r5ez9tdVx+KAg3OVb/3C8zMZ3D5h367fF/JGYz7Qff1bQnpq0v6DjxwiP5tgpKjpQ5QEdKhigJ6c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uTZvzowo; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39ac56756f6so3505509f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 02:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744018497; x=1744623297; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
+        b=uTZvzowoocuBhurdncvrklh8cm6VOJJcEIQSRLbT+JGtoypeC6dMvlfj0mc8wZU7I5
+         GyrRjkKf2AE/n8NApqIRK5yf5sUDv6SkkdUQk5Y1v3JAdo4/vUs0MpVkdQOaBEbrCvno
+         9xwcYUmjMDtS3xRbrMK3s6cOK03cLKKW5aK+EpFFk/Ds5xsPLUCQc98cH9poXIQMrzz5
+         BZFhHInzrACnCEhR68cMq5z8Jf8kDYV333FTnQUjigevbuBS3JARVdAfD2WSx+2AF+89
+         Vid59EjqbCNvhYtEByIRuyLU9p/dim9hoQjOWRXYIjifXG19IKdXNvRHa4+t4k7QRloZ
+         Apdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744017688; x=1744622488;
-        h=mime-version:organization:references:in-reply-to:message-id:subject
-         :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HEaLDYOXOEmeBww1pBLiPCAb16rSoW8x0h/ino16yYg=;
-        b=BcsFaYHZGlQDH+GKZw2yun7oKcTip8DqA0I4AMwtZUm+6bNwGA8DrSD0cl4WRd9fwP
-         b4qG/uRzL7Dwfbh+C4nLYJzD3Rbc2ylO57KZcFDuMS0z4Uq4FJUUFMxZGryF2YQd9YYC
-         NBN5jZEO4e+IMFQ8BCYIx6J4efg99JakjDejaHY0SzUPRasM0jH3mbZ3gNJrpp0/X2lO
-         4ySTI2a358Bt7EZQxzRKsDDRJIqLw4V96JX//OunVHR+rx1z+6UT8TU0gDXIzR80yYUG
-         15fW6uqnSabYf2WSNeZAWhrP4unEW9tzTcdVe7si+FTHGMxNs4BgTJAUqQa+9oeoaQAP
-         vjdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYK58rN58bWs/cnDTvXsJjtOPSI9YQdLtCXkO2Ph4P/r64HGoeJ8Ij+eY9+wEqiXm9c4hr0/dukEc2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE52pKndTt1di1IERTzv5pj+bhL9uPoDnynnLRK5XAgPgQ+jy5
-	qHzCgwGozD9spi0A21XrpAWjK8ObTnQ9T2aGTTLMosQ3QkqI4qkBzh42P6hAY7Ef2baewkccy48
-	4JmVOF7jQmT8OSzCKKB2iuTfxe4RxEz7Z+JC0Yezg8jve0cEqsbVCOtMUXMqa+gRZvaIQ/JAm1Q
-	o=
-X-Gm-Gg: ASbGncsqgY428ya1CCW3uwFriIAqg2C7C5sMttbjruSEef1Iw4DA32vuPjVyQZDVvIE
-	jAbdGNsvusXA3uAzDnNNYwoDgnQzIYuwg7xJECX/ZBOw3TYkE6Q6BmpX+4hIEPJFP0Fvn6ZWTgU
-	DYi4aP7NPYFgHJMAD5Ho6gUJBErrnnkTUEzQZlheBsuY04PcAwuMg+N105Ad8vw8YPNKBQMhU+o
-	oNFFrA9UCPZWUeVHnUObyQ/FiTwAH8O8+yfMeA8hjNVuHHWvQbMZll20DQN76inhPodz/QLPUgj
-	L+tjVwhC2oXgXtG2tVK72yq9GMUD4uqegnM3eUeG8JKOzSp6jpq6YctW
-X-Received: by 2002:a17:907:da6:b0:ac3:24bb:f1ca with SMTP id a640c23a62f3a-ac7e71704b1mr706494466b.7.1744017687890;
-        Mon, 07 Apr 2025 02:21:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFyEZWiuDaF2JJ5GJs6D6+FEn383IkKkAsNepFXIH0X3u6o9dK8jmGaIJRw6XAhqqRc3z+sng==
-X-Received: by 2002:a17:907:da6:b0:ac3:24bb:f1ca with SMTP id a640c23a62f3a-ac7e71704b1mr706493566b.7.1744017687557;
-        Mon, 07 Apr 2025 02:21:27 -0700 (PDT)
-Received: from gollum (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe986a4sm714636166b.39.2025.04.07.02.21.26
+        d=1e100.net; s=20230601; t=1744018497; x=1744623297;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sY8de/adKxVx84s/9OXx6B8gB3VJnbWZllFUS1NDxPo=;
+        b=UWzAL51cMbsFL7TOKhYA+A6do022EXkIcYA1rzLiCgB36tUGEGAEWND5A8YTIvCA6d
+         KZM9TuWcaI5BHrBuPf6wqoH+boskbNqkvTHe4ejlAJ1911Y4jkDhAFpHAfVBbYPhJ5jB
+         /LrHemcmOK+AdMepW7VjdGyKwastIT4iaqmmxZ9AAoSCs77GF5TO8s7rpfEAOrAVmLY6
+         xyliGMDg4KImJDjcvR6dWTFfnQ7i9kx3iLZc5d1zmm+o5firTqj/LC/EPmY34y5wLu+7
+         qzkogW7hZjcyFL8ABOtDSHfHMQ7Vr69OsZL05qZ8sAOB9RqPYz1XSl09HAKdHa5al7eT
+         PsWg==
+X-Forwarded-Encrypted: i=1; AJvYcCVzexqg8uH6gty6UV2pED6RzM/IrGV61ictstewrnEQwVdYbIxf22HMyV9XDkMlNhdyjnR2sK8s3uqX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxWnbWiLkwqdpe3liN/2xZ8RUA131fI9N5WdiqZpikX75xMv9I
+	hMhkkzGysioOX+HwvAp4opT/iIhIRhbzileo3H67ePk6O0EFEGjXWRRsVAwlmUg=
+X-Gm-Gg: ASbGncsYSpIa3s6NVoTIXk4mTDhH48bNenyVgCa4u2AreELS7KE8MhTv8Pbo/3vfW4F
+	UDGegfxiTNZ2z0d/Dnodfn8qR5oQH31c+6/+gIXjhA4y71yghFEtkKIB7hzr+pO+yK5JCKkqIcR
+	Fel9DNxdn01DlyOTPdcwKiUni1WdEKWI52MGbRu1uRBzAp5OyQY2+fKdJ5CN4gdp9gXyKGY7Lxn
+	Gv34FBs0Q0EHvxZHQu2vzsoJ+if/i6OdMRctAJkDYLT62qiP0yMMWk4/5NLT7NHCOagrvtEBUp0
+	bPSit5HVMo15d8Vxo+yRI8kd+5d7ZehXfRh2IqctM1tIx/5y
+X-Google-Smtp-Source: AGHT+IEK2ylsj8A3zv5KP41r85GTG06Mj0FN2K9Pnsar54qT+bII0+ur9gb54xnBI0cqR8Dv4CuOpw==
+X-Received: by 2002:a05:6000:4282:b0:39a:c9b3:e1d7 with SMTP id ffacd0b85a97d-39cba93ca51mr9835262f8f.29.1744018497031;
+        Mon, 07 Apr 2025 02:34:57 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43eda4662a0sm85615765e9.36.2025.04.07.02.34.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 02:21:26 -0700 (PDT)
-Date: Mon, 7 Apr 2025 11:21:25 +0200
-From: Juerg Haefliger <juerg.haefliger@canonical.com>
-To: Rob Herring <robh@kernel.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: x1e80100-hp-omnibook-x14: Create
- and include a dtsi
-Message-ID: <20250407112125.65f22dd8@gollum>
-In-Reply-To: <20250404153339.GA1463808-robh@kernel.org>
-References: <20250404090108.3333211-1-juerg.haefliger@canonical.com>
-	<20250404090108.3333211-2-juerg.haefliger@canonical.com>
-	<20250404153339.GA1463808-robh@kernel.org>
-Organization: Canonical Ltd
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+        Mon, 07 Apr 2025 02:34:56 -0700 (PDT)
+Message-ID: <305582d4a9c0fc8f34f997a697081409dd2df273.camel@linaro.org>
+Subject: Re: [PATCH v3 27/32] rtc: s5m: add support for S2MPG10 RTC
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sylwester
+ Nawrocki	 <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Alim Akhtar	 <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Catalin Marinas	 <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Alexandre Belloni	 <alexandre.belloni@bootlin.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org
+Date: Mon, 07 Apr 2025 10:34:51 +0100
+In-Reply-To: <5e91005a-28b0-4508-b576-5406f3e048e0@kernel.org>
+References: <20250403-s2mpg10-v3-0-b542b3505e68@linaro.org>
+	 <20250403-s2mpg10-v3-27-b542b3505e68@linaro.org>
+	 <5e91005a-28b0-4508-b576-5406f3e048e0@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/axXhoG65m197/2vTrG.U=7j";
- protocol="application/pgp-signature"; micalg=pgp-sha512
 
---Sig_/axXhoG65m197/2vTrG.U=7j
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, 4 Apr 2025 10:33:39 -0500
-Rob Herring <robh@kernel.org> wrote:
-
-> On Fri, Apr 04, 2025 at 11:01:06AM +0200, Juerg Haefliger wrote:
-> > Create a dtsi for the HP OmniBook so it can be reused for the HP EliteB=
-ook
-> > which seems to be the same HW.
-> >=20
-> > Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
-> > ---
-> >  .../dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1554 +---------------
-> >  .../dts/qcom/x1e80100-hp-omnibook-x14.dtsi    | 1557 +++++++++++++++++=
- =20
+On Sun, 2025-04-06 at 20:33 +0200, Krzysztof Kozlowski wrote:
+> You just sorted the MFD headers in other patch, but here you break the
+> sorting.
 >=20
-> Just include x1e80100-hp-omnibook-x14.dts where you need it. There is no=
-=20
-> rule against including .dts files.
+> For me patches resorting the addresses (as a separate patch) is churn,
+> but sure. If you do this however, it means you really believe that it is
+> worth to sort them, so you must keep that standard for all your further
+> patches in that series.
 
-Ah that makes it easier. Thanks.
-
-...Juerg
-
+Definitely. Not sure how that happened :-(
 
 >=20
-> Rob
+> Rest is fine, so with this fixed:
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Thanks Krzysztof!
 
---Sig_/axXhoG65m197/2vTrG.U=7j
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Cheers,
+Andre'
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmfzmRUACgkQD9OLCQum
-QrcITA//YRlVT5IeMhh8Va/712MvwiTgJtdw+bN4W88wwrIt/RuZ/q+KWNx6kN7U
-JvFeBZ5lOY3A9ncxWmoGO9b7vX3lqdqVbvDzsSyEUQi6feuMRgIY7SAaY2uSH6lB
-C6HdmuhczWpYyWfkzSHV3A+LBXXnY2joO17fEWsHnEDa3zQOgmpUJ9to7ZF8jjSH
-zVXDkpPw+GJSPDaiEHKicnzzf87i4hETEa0KB5kbGxNfzhCpmjpdFv2anvt9Hj2J
-iYzK0guG7yZTpQWrilOdkVuhbyG2ZLRu2xn2VF7QtvJ3kpRkKQFmUUEovnWSyEdk
-OLAzOG69frF/FN42VpSJb9pYvniWEPi5EvrluBZRK3L8G5S2F6kDucnWTnjBWw3/
-P+1sUu7bTYsE3f2dF0dNluKy75a4d5f5GKlMO5luFCJ+hfunyESdfG35j6EcbgJ3
-xnNecFC3c9CDIZi7UcdO+voQjaZGRd0e4riyq2b0VzVyOyFmgapkmim82e/C+5Np
-CdrOjF5rlPN1xqdd7lRPKNIJfQ+zjRUngP5nYy85aDDdJF/YVxjMNuTAPeWKC2W7
-o4B/6MWWsCxDkbee0QovnKRt0pT0raj75OinNE19hj+10PriZRVOTAvgSqGuowUr
-HtChUgr5t2NMaE0xToNIl5IgShS981+YEZpvbjRa4/Kjr2q3eTA=
-=rZfb
------END PGP SIGNATURE-----
-
---Sig_/axXhoG65m197/2vTrG.U=7j--
 
