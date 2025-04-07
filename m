@@ -1,301 +1,131 @@
-Return-Path: <devicetree+bounces-163703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF06A7DCE1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 13:52:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3635CA7DD00
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 14:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E0307A4E0E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:51:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C5D3AC9BA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 12:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3DC24C079;
-	Mon,  7 Apr 2025 11:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B5124337D;
+	Mon,  7 Apr 2025 12:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="D4PyGRg7"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="TOZJpPZ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC868245033;
-	Mon,  7 Apr 2025 11:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6E32343C0
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 12:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744026597; cv=none; b=JLMZVNumzyDY91cI4nk8em2HA14Tsot8r6mbbc7AndqsYEgPqes/zTV7cgUbYgWvYx9llf4ljLcZ75AXvygCq2wNKdqv4PcAGZDfPzX+6C7LaS85Z4s7tgQ/J+6h9g7nk9wW8vNAT2TCTTUX/27Zy/7tQSxDSDEF7E0JxebAvrU=
+	t=1744027332; cv=none; b=j2GfoZvJgTnrKHlUGNCtTEtxfDB3cSospBK4iNeiVyiIhsXizrbyRBk55eboQs00d3nadIEASB2n5kvy7QbmE1FtfIWkzDOyMezV3lx/xsc6dmW8Ent0jYayqoH+2LT8haMYmBJqqBo6h9SnI+4qQU/4rBSTuK54+EPpbWYWcIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744026597; c=relaxed/simple;
-	bh=csLriWO2+XLkdCPaqGXZjhRUaOBU2yrk3lcSTqZgE/Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ND+PqXDYqekVqAuuuzB2VOyxXfPZrFU3Z7EiV6g8B4ZqOwKBVFLkAfu12dZLe5koSuaWHINE/OnnxWMoTdyU5IxdrkCxb111GFap00VwI1YrvW1y8pHQWZCdVqY4xe8C03TFbqDNnUxo8WdXMe1crKzcsRETnXQsrfuKZ46RqLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=D4PyGRg7; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id D97971FC2D;
-	Mon,  7 Apr 2025 13:49:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1744026593;
-	bh=rCiPsC+vVOS+/aYj7VaKLA5x7Mrjmc5bupY3BCVpqN0=; h=From:To:Subject;
-	b=D4PyGRg7YN759oFlzGrAdZyZX4Hf8BstRS2HpqYoKyLUEiehqUygcVHtVNyvDjTCY
-	 STJr08vPQjerL3H2QFq/rCuIGeM2ANdSIcRfkfqGJXmBa7MZjdKswWkKtFFi50X3O9
-	 VzURF+y3CmMhof4wB/dAI+o899fINriQrgl/IAPWOsoLEn8/FoJP0A6kM75hcqPYFq
-	 H29tLPqSlBiKqvLIjgKsNHuY6DBAAH5aEUDnUc3dupFlTdTHNT7rLAn85cnFno2kCp
-	 qNU1YCsIktbXNgeoPNbmTy7+pQYfUXfsqn1LNp2p824iZsh5SQvA2X2oIYbmM1d3Kd
-	 6Pxk933PmDP5A==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1744027332; c=relaxed/simple;
+	bh=++rBUctgo7WqhcGy75JwrymHZEqQIqCCai4AuvewSxI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DrZGUdkG+rZ4gl6Nb/DYSdiiHvmDmLtkB78UlcbrBAVO84vkBucmQfzXNWbEeeSwlfNhvx91Vh7l2uNadhXslm3dV88sNswbP7H833NpEhTC/5FQLnOn/Sa27JE0DXAixRvfyE2G/5oBIkVVg7dyohqPp7hCV08ycBl5OXFJruU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=TOZJpPZ/; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39c1ee0fd43so3589691f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 05:02:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1744027328; x=1744632128; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1pnqaorkLrZEV4we2FcGB2lZ+lYdMYMSEtj/n+/qjUU=;
+        b=TOZJpPZ/V+tKdKYgAUy8fLQNl9nNG5fzYXL2EK2oyNZHSufY2tlJBlEevjxKm10cfw
+         RucL3DxI21acif7DuKu08UusDS/HVgpMEeT4a1IyOq71m5nZAd/61/TVzUQGmSMy7N8u
+         FwU4N94D4wjQTu8cW3sxivJYEBRZH2EM3ZtFjdGFdkmlW0/I6EIxOKtBU72Nky1HCNlS
+         Bkcpp84uz5Y1m0qsYaZW7fm4LS65qOWz8ULx6qU618j61NIluGAmKIk5M0eRArXZRlkg
+         IKJcr3C1wiQ33PrgtdhTyFF8xtgBZrArOn2ZQB2nF033iulm5QYT50E2TVvheznkTM2z
+         IUxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744027328; x=1744632128;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1pnqaorkLrZEV4we2FcGB2lZ+lYdMYMSEtj/n+/qjUU=;
+        b=W5quLulD6z/77EkzqBJVd/KxNxHUFcvRIyGtU+Qh8zYK0wErddyZun0X2C0W5hEKeo
+         9snvV68m2c/Evy9RBoAi/4dWUlKf5HtgOys+CXy6oM2t70WFK8i9QNhrNrs2WwuO5mao
+         H8ngL/I/j+ka8+GhBt0hltRTR7unX/1SuBsegBTqtKZc6PBXkRvs7I5As17Rt3o1vKKH
+         5pJEaWtxXeW3NUXQth5YrnP2VhUoLV31TFWECsyRrFCH2a7SPE2ip20BZ5GnUqhPhOfB
+         9sNUOwinX/tlGg9/CDA/JuY6YJyH+SGsA77Nf9Q3FnoKd5V5kc4Ajkhsk8cQzMbTAvLn
+         uNcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVLFgL+F/cXmQ5mJuZTpoYZYhaoVuLOYpeJCeBvW/0ihibyWikK1NdissD5CpTi/WW/5WTVrmDzmNBd@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywrd0P4lPqIg+Jt+a47Ev8/XuHVLQWL0OEGjd0wcBR1kQFPqe49
+	Pvz/7iQwepM12nB8ngKp969iM6/fOy5ul2cM6KKBTdplXR6+YY9VVWHP9pRONP0=
+X-Gm-Gg: ASbGncsizQDitbZg4MmD0FsgQm6cN0Qky9zrXhLEC2bcojkSSuRafJYhPuFcmc13k3n
+	tDrPyH3tozrXR6ZtIAjrFg/xAduSixJYeNiYLWDV/ZxID2Vs2WmnErWQfniWB2S/wT2a5NiLUBR
+	10pLg7U57kt5lGS83D6ibQMJ/6rcgSFGV75JXXbktDxQkJ+e6fDxHM6mineHvknYRFR2TKT3myP
+	pSHIGj/sPGX6qY3B6XQr5tLvacLznXXgFwMHXzkG2TBmcu7gFYsifwQsqWLX5k0KWFXd1QWzh72
+	npGZXxGlIoNJWHHBgA3ZyFSHzeROWi9IxAZDoSVdpUv4
+X-Google-Smtp-Source: AGHT+IHQzfBlcrdH5SeBUOUhvSnbXFRgYmEUvgyqEtRbmlRwoKeao0pvP22bOvClSu4BfKDmGCcmaw==
+X-Received: by 2002:a05:6000:1788:b0:38d:d666:5457 with SMTP id ffacd0b85a97d-39cba982600mr9594792f8f.42.1744027328186;
+        Mon, 07 Apr 2025 05:02:08 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:8c64:734d:705a:39a7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c301a6796sm12061650f8f.31.2025.04.07.05.02.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 05:02:07 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	James Cowgill <james.cowgill@blaize.com>,
+	Matt Redfearn <matthew.redfearn@blaize.com>,
+	Neil Jones <neil.jones@blaize.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] power: reset: add Toradex Embedded Controller
-Date: Mon,  7 Apr 2025 13:49:47 +0200
-Message-Id: <20250407114947.41421-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250407114947.41421-1-francesco@dolcini.it>
-References: <20250407114947.41421-1-francesco@dolcini.it>
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/3] Add support for Blaize BLZP1600 GPIO driver
+Date: Mon,  7 Apr 2025 14:02:05 +0200
+Message-ID: <174402729978.46356.11201188338288043335.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250327-kernel-upstreaming-add_gpio_support-v2-0-bbe51f8d66da@blaize.com>
+References: <20250327-kernel-upstreaming-add_gpio_support-v2-0-bbe51f8d66da@blaize.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Toradex SMARC iMX8MP and SMARC iMX95 SoM modules use a small Embedded
-Controller (EC) to manage power and reset functions and related SMARC
-signals.
 
-This driver implements power-off and reboot handlers, communicating with
-the EC via I2C to issue the appropriate power management commands.
+On Thu, 27 Mar 2025 11:27:03 +0000, Nikolaos Pasaloukos wrote:
+> This patchset adds a GPIO driver for the VeriSilicon APB v0.2
+> hardware. This controller is used in the Blaize BLZP1600
+> SoC for its GPIO interface. It is essential for upstream
+> support since it is used to provide signals for the
+> Ethernet, USB, SD and many other interfaces.
+> 
+> Adds the GPIO interface to the Blaize BLZP1600 SoC devicetree.
+> 
+> [...]
 
-During probe, the driver logs the Embedded Controller ID (unique ID for
-each SMARC board supported) in hex format along with the firmware version.
+Applied, thanks!
 
-Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- MAINTAINERS                           |   1 +
- drivers/power/reset/Kconfig           |  13 +++
- drivers/power/reset/Makefile          |   1 +
- drivers/power/reset/tdx-ec-poweroff.c | 150 ++++++++++++++++++++++++++
- 4 files changed, 165 insertions(+)
- create mode 100644 drivers/power/reset/tdx-ec-poweroff.c
+[1/3] dt-bindings: Document Blaize BLZP1600 GPIO driver
+      https://git.kernel.org/brgl/linux/c/5de6156a402b2d2432767478fe75c40f9755232f
+[2/3] gpio: Enable Blaize BLZP1600 GPIO support
+      https://git.kernel.org/brgl/linux/c/52eafd817651d44ab006c83ebd98f5dd687df2d3
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e6903d2bb741..c6966ced8cea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24411,6 +24411,7 @@ M:	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
- M:	Francesco Dolcini <francesco@dolcini.it>
- S:	Maintained
- F:	Documentation/devicetree/bindings/power/reset/toradex,smarc-ec.yaml
-+F:	drivers/power/reset/tdx-ec-poweroff.c
- 
- TORTURE-TEST MODULES
- M:	Davidlohr Bueso <dave@stgolabs.net>
-diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 60bf0ca64cf3..e71f0af4e378 100644
---- a/drivers/power/reset/Kconfig
-+++ b/drivers/power/reset/Kconfig
-@@ -216,6 +216,19 @@ config POWER_RESET_ST
- 	help
- 	  Reset support for STMicroelectronics boards.
- 
-+config POWER_RESET_TORADEX_EC
-+	tristate "Toradex Embedded Controller power-off and reset driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This driver supports power-off and reset for SMARC Toradex SoMs,
-+	  for example the SMARC iMX8MP and SMARC iMX95, using Toradex
-+	  Embedded Controller (EC).
-+
-+	  Say Y here if you have a Toradex SMARC SoM.
-+
-+	  If unsure, say N.
-+
- config POWER_RESET_TPS65086
- 	bool "TPS65086 restart driver"
- 	depends on MFD_TPS65086
-diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 10782d32e1da..1b9b63a1a873 100644
---- a/drivers/power/reset/Makefile
-+++ b/drivers/power/reset/Makefile
-@@ -24,6 +24,7 @@ obj-$(CONFIG_POWER_RESET_QNAP) += qnap-poweroff.o
- obj-$(CONFIG_POWER_RESET_REGULATOR) += regulator-poweroff.o
- obj-$(CONFIG_POWER_RESET_RESTART) += restart-poweroff.o
- obj-$(CONFIG_POWER_RESET_ST) += st-poweroff.o
-+obj-$(CONFIG_POWER_RESET_TORADEX_EC) += tdx-ec-poweroff.o
- obj-$(CONFIG_POWER_RESET_TPS65086) += tps65086-restart.o
- obj-$(CONFIG_POWER_RESET_VERSATILE) += arm-versatile-reboot.o
- obj-$(CONFIG_POWER_RESET_VEXPRESS) += vexpress-poweroff.o
-diff --git a/drivers/power/reset/tdx-ec-poweroff.c b/drivers/power/reset/tdx-ec-poweroff.c
-new file mode 100644
-index 000000000000..3302a127fce5
---- /dev/null
-+++ b/drivers/power/reset/tdx-ec-poweroff.c
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Toradex Embedded Controller driver
-+ *
-+ * Copyright (C) 2025 Toradex
-+ *
-+ * Author: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/reboot.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+
-+#define EC_CHIP_ID_REG                  0x00
-+#define EC_CHIP_ID_SMARC_IMX95          0x11
-+#define EC_CHIP_ID_SMARC_IMX8MP         0x12
-+
-+#define EC_VERSION_REG_MAJOR            0x01
-+#define EC_VERSION_REG_MINOR            0x02
-+#define EC_ID_VERSION_LEN               3
-+
-+#define EC_CMD_REG                      0xD0
-+#define EC_CMD_POWEROFF                 0x01
-+#define EC_CMD_RESET                    0x02
-+
-+#define EC_REG_MAX                      0xD0
-+
-+static const struct regmap_range volatile_ranges[] = {
-+	regmap_reg_range(EC_CMD_REG, EC_CMD_REG),
-+};
-+
-+static const struct regmap_access_table volatile_table = {
-+	.yes_ranges	= volatile_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(volatile_ranges),
-+};
-+
-+static const struct regmap_range read_ranges[] = {
-+	regmap_reg_range(EC_CHIP_ID_REG, EC_VERSION_REG_MINOR),
-+};
-+
-+static const struct regmap_access_table read_table = {
-+	.yes_ranges	= read_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(read_ranges),
-+};
-+
-+static const struct regmap_config regmap_config = {
-+	.reg_bits	= 8,
-+	.val_bits	= 8,
-+	.max_register	= EC_REG_MAX,
-+	.cache_type	= REGCACHE_RBTREE,
-+	.rd_table	= &read_table,
-+	.volatile_table = &volatile_table,
-+};
-+
-+static int tdx_ec_cmd(struct regmap *regmap, u8 cmd)
-+{
-+	int err = regmap_write(regmap, EC_CMD_REG, cmd);
-+
-+	if (err)
-+		dev_err(regmap_get_device(regmap), "Failed to send command 0x%02X: %d\n", cmd, err);
-+
-+	return err;
-+}
-+
-+static int tdx_ec_power_off(struct sys_off_data *data)
-+{
-+	struct regmap *regmap = data->cb_data;
-+	int err;
-+
-+	err = tdx_ec_cmd(regmap, EC_CMD_POWEROFF);
-+
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_restart(struct sys_off_data *data)
-+{
-+	struct regmap *regmap = data->cb_data;
-+	int err;
-+
-+	err = tdx_ec_cmd(regmap, EC_CMD_RESET);
-+
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_register_power_off_restart(struct device *dev, struct regmap *regmap)
-+{
-+	int err;
-+
-+	err = devm_register_sys_off_handler(dev, SYS_OFF_MODE_RESTART,
-+					    SYS_OFF_PRIO_FIRMWARE,
-+					    tdx_ec_restart, regmap);
-+	if (err)
-+		return err;
-+
-+	return devm_register_sys_off_handler(dev, SYS_OFF_MODE_POWER_OFF,
-+					     SYS_OFF_PRIO_FIRMWARE,
-+					     tdx_ec_power_off, regmap);
-+}
-+
-+static int tdx_ec_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	u8 reg_val[EC_ID_VERSION_LEN];
-+	struct regmap *regmap;
-+	int err;
-+
-+	regmap = devm_regmap_init_i2c(client, &regmap_config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	err = regmap_bulk_read(regmap, EC_CHIP_ID_REG, &reg_val, EC_ID_VERSION_LEN);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot read id and version registers\n");
-+
-+	dev_info(dev, "Toradex Embedded Controller id %x - Firmware %u.%u\n",
-+		 reg_val[0], reg_val[1], reg_val[2]);
-+
-+	err = tdx_ec_register_power_off_restart(dev, regmap);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot register system restart handler\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused of_tdx_ec_match[] = {
-+	{ .compatible = "toradex,smarc-ec" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_tdx_ec_match);
-+
-+static struct i2c_driver tdx_ec_driver = {
-+	.probe			= tdx_ec_probe,
-+	.driver			= {
-+		.name		= "toradex-smarc-ec",
-+		.of_match_table = of_tdx_ec_match,
-+	},
-+};
-+module_i2c_driver(tdx_ec_driver);
-+
-+MODULE_AUTHOR("Emanuele Ghidoli <emanuele.ghidoli@toradex.com>");
-+MODULE_DESCRIPTION("Toradex SMARC Embedded Controller driver");
-+MODULE_LICENSE("GPL");
+Best regards,
 -- 
-2.39.5
-
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
