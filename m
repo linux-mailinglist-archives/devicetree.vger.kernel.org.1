@@ -1,408 +1,197 @@
-Return-Path: <devicetree+bounces-163615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7126CA7D90A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACDA1A7D921
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 11:13:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66DC016BED0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:09:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4559D3AAB64
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 09:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0EC22E406;
-	Mon,  7 Apr 2025 09:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C4422F388;
+	Mon,  7 Apr 2025 09:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="AmSThOXL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lUvL0iM+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2660B23AD;
-	Mon,  7 Apr 2025 09:09:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABBD222B8B0
+	for <devicetree@vger.kernel.org>; Mon,  7 Apr 2025 09:13:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744016963; cv=none; b=NkLcqiotTaf+qlPL1U08ew+Q3bTjn9w6HwmtjutEQiNJosE9fC7X8Gr4O5JR4dt7RdtGmCX9+tJUJvyBzqB3C3v4E9FwzTyJYvC9Fd77CJckv1VhuFMP2ItpFYdzt0VAEOvPrYsz6conjq9P1h8r+ncLBzw67gMzv1bdd+5u8+g=
+	t=1744017193; cv=none; b=Nl+hcB0Z3b1X0oHkey0Lbdnh+b3tzAU/UP2cCoSGDcJ/PZLRtE03Rh0JunDPOLof3BSUPtohw8zJYlFjuxwUxDQ+BPCtRSq5We7edagO1QIbmooxPtW9rIlBNn89UNxAfEtcCPb760ZT9dH/mAeZjunTAmTW1S764rWt/tbK760=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744016963; c=relaxed/simple;
-	bh=dliYsE7n5323VjM9vSoaOnrWvaPOVFyyEVRVGf9LVqw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=S7Bl1SplWGiN7RAy/S2kFUA6tWLmXiGtLXmTwSBGFDG2D6jNPbZdHBBTEyumRfjPdcnpFWUeyjSCPrCiDg7XtdLaXF/ObI22EtwqFmboskzVkKFQdFD0X6uTBkTsFTvL4rEvrfVD2rXCzxbIeqfyAOyd3jbvY+rp4YKvHtkCu/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=AmSThOXL; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5377sk6W008420;
-	Mon, 7 Apr 2025 11:09:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	yjNTI6HpbR/Krk2pbRd+sNgVSbqvShHKCwB5LTuynic=; b=AmSThOXLdL1mNC3f
-	qy5xwe9b5rljXeWNuilXxT/CFlL6b93QYb84NMZJH4cZRnWdVRy/E7G5Q9WW3JBE
-	dUeAtmdZEdUH0Liu5ixwyr86tnxRMaHFAApgoxERvPjx/ztnxhRkDA7jORpdPvHw
-	nRAl5t0fBGbNOd4mJ75LTFVmeDOxb0O1X2o3gZVFmWHhg/PmVxG7xWR1AIX8gtUo
-	t+2TL1ytxfvqHHvNx6zRIsxUkEUYtVKKBelTaG9qBKyw7y2BcKz1ODF53/DHaiJP
-	zVJ4iFZ08SzhZ1IghXM+yZ4XtrG8DPwnss124cf7mIX/PBjYfMbAax0nUFjDwVIZ
-	SVpdKw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45ue33vmeu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Apr 2025 11:09:10 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F2D8340046;
-	Mon,  7 Apr 2025 11:08:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A30CC94635E;
-	Mon,  7 Apr 2025 11:07:42 +0200 (CEST)
-Received: from [10.252.1.150] (10.252.1.150) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 7 Apr
- 2025 11:07:41 +0200
-Message-ID: <27a0989a-8cb6-4b21-b94b-8cec86f2c6d1@foss.st.com>
-Date: Mon, 7 Apr 2025 11:07:40 +0200
+	s=arc-20240116; t=1744017193; c=relaxed/simple;
+	bh=6uWV+g7N5su9OFmdeI+lP8L8Ldpf4kulO+15GfFQz/o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DRkxcjqhdfWUvM2bVJ+zV5feq+kjniUhtbTNZNXs2tfWdv1Ti5A2PqCnD7iPJo92jX5qe6wGytmi6Fqev6vomuDYdaDXDNgGLnguAuc4P8QK4qfp2BTc/DyR8Udth7ZaAMLMsmuYIH5GmKlUl9N7cc3eFgZxY5Zayy/h3Sfs8W8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lUvL0iM+; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4394a823036so37319605e9.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 02:13:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744017190; x=1744621990; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SVbDA/2mS9MORuf/xQExeEtd3aJn8U1HPFMZTbDcqto=;
+        b=lUvL0iM+apEM7/gCVBfOq5UCsLd41h7Eg27jMUA4mTMrPQuLTNxF8rmUKOIoPRaJXX
+         a4NTOLBIuVb/kq4m/h2vIqGQ86+BKPQl0FxSRil0vCqMp1Jx51f4ekJntW7lbKya6QSO
+         oGHApeKkg3tW1SKdC8rWSJ0rYGB7gMJ+puPJz18SUq1xuwozxQ3yjXmGQ5CjL+/4m/Sz
+         vauihjBoJpBzKNztYydrH6UWjY95Ib6eCG5aFqsX4Jp0NGadAeZpR+mQ6W0JjWxU+U23
+         vHEBKxFGZLjB2DtMpEnge8Yb5vzFQtO+AAtffjbHEUNjI5qczMsxEyGESvqWhYlvJPzJ
+         HOOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744017190; x=1744621990;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SVbDA/2mS9MORuf/xQExeEtd3aJn8U1HPFMZTbDcqto=;
+        b=unKcXa0dpkkF3l+Ujql0rrl3ecvCacIhCyNlyx3oDL4aIzq9vOEQ0WPWC57/SjIePx
+         E1vf9VtUV0sK+RS7oO7cMS0AEuzMUZlkOpMLOyngoYrb17VE0hZ3rvacemIT5TcYKu+i
+         Iv3KYzm2pByPd0ZCMZFVroxLETWJ5OtPJ/Fj03Q7I/XUe7pWbR+bhiPnzn9+lXGy3AP0
+         eWtyja/Y4Jlb6NTEOa3DXBWXhLn0uhcqfgC7OjU+yhFPqaZ8BlAWH8UWfACAV8OUF7B4
+         62P35OXNRG5n4fZ2jqsyNLIP4hWJjRqkqGdk9qMjSlYgg4zRvuykjmtChcwWMHnKHKLA
+         uWgg==
+X-Forwarded-Encrypted: i=1; AJvYcCXlEQXeoDrvvZe/4GJsM5uFrhoDV920fKLXsw5RBTtRBn3+rh3s8i6947ZjHeO2VUfELbAI1rBHlnqm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTYkp+rb+h99kOVSe2RtwQQqaSbgJrTEc6u7QaJIqsA42kylyr
+	tMqXOrq3TlkuFPDl4I266byzKcrguv5a/5tc1fBF0k5KVDneCgtIIfuWAIYgaKI=
+X-Gm-Gg: ASbGncuK+JGxRDeGYIussDlT1JnAJjpuISkRtOEZdDZbUCzgcQS8WpdNQ0MuP+qOgUW
+	vMCLt+VWCXN2kWlVnNkRBrrvfM9rRVnzP0cg0MMREsI+rNiOk9uhzPa09oReJql7BcVSasIeEh2
+	nbnqanJ+lMMpc+RBYzDFtlrTDZpRm5+WOdH8TGsIRYqNzkSuTwn0isSqqPJWiVqCYc/kh4rn0Hw
+	KygcYzNPSujDT0XZ1lb20hC+86EfQXGWIPhqV6PUAmFBVdkwy2EaulKcUew0NjwmTEQVQeAAFJ+
+	vSNAiT2yKQQ1O4FN60Jelz/8ST6maUi0jgtQuyhIlyKk0lubPfg+HczcaaD1NErqYaxrP7feLsE
+	OK2q1Y1gJLyOnVVd+YI6g
+X-Google-Smtp-Source: AGHT+IG7htZPOEG/i9EQjeBgOIcKlUSu0J2NP0fWj0LgVCpdiugldJ0d4EalifYLMaVt+msVg5hx2w==
+X-Received: by 2002:a05:6000:1447:b0:39c:30c9:815 with SMTP id ffacd0b85a97d-39d6fc49b7bmr5240754f8f.21.1744017189903;
+        Mon, 07 Apr 2025 02:13:09 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c301a9bcfsm11673977f8f.33.2025.04.07.02.13.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 02:13:09 -0700 (PDT)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 0/2] Import IPU6 ov02e10 sensor driver and enable OF
+ usage of it
+Date: Mon, 07 Apr 2025 10:13:06 +0100
+Message-Id: <20250407-b4-media-comitters-next-25-03-13-ov02e10-v4-0-211e3e6fae90@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Subject: Re: [PATCH v5 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <krzk+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>,
-        <sakari.ailus@linux.intel.com>, <sylvain.petinot@foss.st.com>
-References: <20250404-b4-vd55g1-v5-0-98f2f02eec59@foss.st.com>
- <20250404-b4-vd55g1-v5-2-98f2f02eec59@foss.st.com>
- <33abd6fc-9ab3-497e-b421-0816a32b8141@wanadoo.fr>
-Content-Language: en-US
-In-Reply-To: <33abd6fc-9ab3-497e-b421-0816a32b8141@wanadoo.fr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_02,2025-04-03_03,2024-11-22_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACKX82cC/53OQW7CMBAF0KsgrzvI9jjGZsU9KhaJPYGRSozsy
+ KJCuTsOmxZ1g7r8I/335y4KZaYi9pu7yFS5cJpaMB8bEc79dCLg2LLQUncS1Q4GAxeK3ENIF55
+ nygUmus2gO5AICiFVqUlJ0EjWodzFznnRuGumkW/Pqc9jy2cuc8rfz+Wq1us/RqoCCUP02lg0g
+ 3P+8MVTn9M25ZNYV6r+Jbf6+7JusokesQ8ujKP9I+OPbFr3fRnXn1HGznq0zoUXeVmWB/utncG
+ VAQAA
+X-Change-ID: 20250317-b4-media-comitters-next-25-03-13-ov02e10-23e68307d589
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue <bod@kernel.org>, 
+ Hans de Goede <hansg@kernel.org>
+Cc: Jingjing Xiong <jingjing.xiong@intel.com>, Hao Yao <hao.yao@intel.com>, 
+ Jim Lai <jim.lai@intel.com>, You-Sheng Yang <vicamo.yang@canonical.com>, 
+ Alan Stern <stern@rowland.harvard.edu>, Hans de Goede <hdegoede@redhat.com>, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi Christophe
+v4:
+- Fixes checkpatch splat missed by my b4 prep --check
+- Link to v3: https://lore.kernel.org/r/20250403-b4-media-comitters-next-25-03-13-ov02e10-v3-0-b30d5693688c@linaro.org
 
-Thank you for your review.
+v3:
+- Various newline and indentation fixes - Saraki, Bryan
+- to_pixel_rate() left as is:
+  Discussed with Sakari and Hans and the current caluclation will do
+  unless/until we add in binning.
+- Kept cci_write(ov02e10->regmap, OV02E10_REG_COMMAND_UPDATE,
+		 OV02E10_COMMAND_HOLD, NULL);
+  Experimented by removing and gain broke - Sakari
+- Check on v4l2_ctrl_handler_init dropped - Sakari
+- Use v4l2_link_freq_to_bitmap - Sakari
+- pm_runtime_setu_suspend - took code from ov02c10 - Sakari, Hans
+- Fixed various release errors in probe taking fixes from ov02c10 again -
+  Sakari, Hans
+- Trap and return __v4l2_ctrl_modify_range() error - Sakari
+- Trap and return __v4l2_ctrl_s_ctrl() - Sakari
+- Switch to v4l2_subdevice with embedded lock pointer
+  Dropped incoming mutex - took code from ov02c10 again - Sakari, Hans
+- ov02e10_open replaced with ov02e10_init + callback hook - Sakari
+- {enable,disable}_streams instead of set_stream
+  Sakari suggest, took code from ov02c10 v10 - Sakari, Hans
+- Compared ov0c10 v7 and v10 took various fixes from there
+  which obviously should apply to ov02e10:
+- Use of DEFINE_RUNTIME_DEV_PM_OPS + pm_sleep_ptr
+- Reverse Christmas tree init_controls declaration list - Bryan
+- Extends properties for orientation and rotation - Bryan
 
-On 4/4/25 18:09, Christophe JAILLET wrote:
-> Le 04/04/2025 à 16:50, Benjamin Mugnier a écrit :
->> The VD55G1 is a monochrome global shutter camera with a 804x704 maximum
->> resolution with RAW8 and RAW10 bytes per pixel.
->> The driver supports :
->> - Auto exposure from the sensor, or manual exposure mode
->> - HDR subtraction mode, allowing edge detection and background removal
->> - Auto exposure cold start, using configuration values from last stream
->> to start the next one
->> - LED GPIOs for illumination
->> - Most standard camera sensor features (hblank, vblank, test patterns,
->> again, dgain, hflip, vflip, auto exposure bias, etc.)
->> Add driver source code to MAINTAINERS file.
-> 
-> Hi, a few nitpicks below, should they make sense.
-> 
-> ...
-> 
->> +static int vd55g1_prepare_clock_tree(struct vd55g1 *sensor)
->> +{
->> +    struct i2c_client *client = sensor->i2c_client;
->> +    /* Double data rate */
->> +    u32 mipi_freq = sensor->link_freq * 2;
->> +    u32 sys_clk, mipi_div, pixel_div;
->> +    int ret = 0;
->> +
->> +    if (sensor->xclk_freq < 6 * HZ_PER_MHZ ||
->> +        sensor->xclk_freq > 27 * HZ_PER_MHZ) {
->> +        dev_err(&client->dev,
->> +            "Only 6Mhz-27Mhz clock range supported. Provided %lu MHz\n",
->> +            sensor->xclk_freq / HZ_PER_MHZ);
->> +        return -EINVAL;
->> +    }
->> +
->> +    if (mipi_freq < 250 * HZ_PER_MHZ ||
->> +        mipi_freq > 1200 * HZ_PER_MHZ) {
->> +        dev_err(&client->dev,
->> +            "Only 250Mhz-1200Mhz link frequency range supported.
->> Provided %lu MHz\n",
->> +            mipi_freq / HZ_PER_MHZ);
->> +        return -EINVAL;
->> +    }
->> +
->> +    if (mipi_freq <= 300 * HZ_PER_MHZ)
->> +        mipi_div = 4;
->> +    else if (mipi_freq <= 600 * HZ_PER_MHZ)
->> +        mipi_div = 2;
->> +    else
->> +        mipi_div = 1;
->> +
->> +    sys_clk = mipi_freq * mipi_div;
->> +
->> +    if (sys_clk <= 780 * HZ_PER_MHZ)
->> +        pixel_div = 5;
->> +    else if (sys_clk <= 900 * HZ_PER_MHZ)
->> +        pixel_div = 6;
->> +    else
->> +        pixel_div = 8;
->> +
->> +    sensor->pixel_clock = sys_clk / pixel_div;
->> +    /* Frequency to data rate is 1:1 ratio for MIPI */
->> +    sensor->data_rate_in_mbps = mipi_freq;
->> +
->> +    return ret;
-> 
-> Could be return 0, and ret could be removed.
+- Link to v2: https://lore.kernel.org/r/20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-0-4d933ac8cff6@linaro.org
 
-Yes, I replaced all valid return paths by return 0.
+v2:
+- Squashes previous progressive series into one patch
+- Adds yaml description - bod
+- Sets GPIOD_OUT_HIGH on reset line - Hans
+- Optionally sets the reset line on power_off only if gpio valid mirroring
+  power-on - bod
+- Adds Hans, Alan and myself as MODULE_AUTHOR - bod
+- Adds a MAINTAINERS entry
 
-> 
->> +}
-> 
-> ...
-> 
->> +static int vd55g1_enable_streams(struct v4l2_subdev *sd,
->> +                 struct v4l2_subdev_state *state, u32 pad,
->> +                 u64 streams_mask)
->> +{
->> +    struct vd55g1 *sensor = to_vd55g1(sd);
->> +    struct i2c_client *client = v4l2_get_subdevdata(&sensor->sd);
->> +    int ret = 0;
-> 
-> Un-needed init, it is set just the line after.
+This patch has been tested with the x1e8100 Dell Inspiron 14 plus 7441 and
+I believe also by Alan Stern on an IPU6 system.
 
-I always wonder if it is worth removing the initialization if it is
-redundant. I find myself spending time debugging issues happening
-because I modified the flow of a function and now the return value
-needs to be initialized.
-You're absolutely correct in these initializations being unnecessary
-though, and I removed them for v6, but I'll gladly take your thinking on
-my comment :)
+Link working Dell tree:  https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/x1e80100-6.14-rc6-dell-xps-inspirion14-lenovo-slim7x-t14s-camss-sound-wip?ref_type=heads
+Link to v1: https://lore.kernel.org/r/20250317-b4-media-comitters-next-25-03-13-ov02e10-v1-0-bd924634b889@linaro.org
 
-> 
->> +
->> +    ret = pm_runtime_resume_and_get(&client->dev);
->> +    if (ret < 0)
->> +        return ret;
->> +
->> +    vd55g1_write(sensor, VD55G1_REG_EXT_CLOCK, sensor->xclk_freq, &ret);
->> +
->> +    /* configure output */
->> +    vd55g1_write(sensor, VD55G1_REG_MIPI_DATA_RATE,
->> +             sensor->data_rate_in_mbps, &ret);
->> +    vd55g1_write(sensor, VD55G1_REG_OIF_CTRL, sensor->oif_ctrl, &ret);
->> +    vd55g1_write(sensor, VD55G1_REG_ISL_ENABLE, 0, &ret);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    ret = vd55g1_set_framefmt(sensor);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    /* Setup default GPIO values; could be overridden by V4L2 ctrl
->> setup */
->> +    ret = vd55g1_update_gpios(sensor, GENMASK(VD55G1_NB_GPIOS - 1, 0));
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    ret = vd55g1_apply_cold_start(sensor);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    /* Apply settings from V4L2 ctrls */
->> +    ret = __v4l2_ctrl_handler_setup(&sensor->ctrl_handler);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    /* Also apply settings from read-only V4L2 ctrls */
->> +    ret = vd55g1_ro_ctrls_setup(sensor);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    /* Start streaming */
->> +    vd55g1_write(sensor, VD55G1_REG_STBY, VD55G1_STBY_START_STREAM,
->> &ret);
->> +    vd55g1_poll_reg(sensor, VD55G1_REG_STBY, 0, &ret);
->> +    vd55g1_wait_state(sensor, VD55G1_SYSTEM_FSM_STREAMING, &ret);
->> +    if (ret)
->> +        goto err_rpm_put;
->> +
->> +    vd55g1_lock_ctrls(sensor, true);
->> +
->> +    return ret;
-> 
-> return 0?
-> 
->> +
->> +err_rpm_put:
->> +    pm_runtime_put(&client->dev);
->> +    return ret;
->> +}
-> 
-> 
-> ...
-> 
->> +static int vd55g1_check_csi_conf(struct vd55g1 *sensor,
->> +                 struct fwnode_handle *endpoint)
->> +{
->> +    struct i2c_client *client = sensor->i2c_client;
->> +    struct v4l2_fwnode_endpoint ep = { .bus_type =
->> V4L2_MBUS_CSI2_DPHY };
->> +    u8 n_lanes;
->> +    int ret = 0;
-> 
-> Un-needed init, it is set just the line after.
-> 
->> +
->> +    ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep);
->> +    if (ret)
->> +        return -EINVAL;
->> +
->> +    /* Check lanes number */
->> +    n_lanes = ep.bus.mipi_csi2.num_data_lanes;
->> +    if (n_lanes != 1) {
->> +        dev_err(&client->dev, "Sensor only supports 1 lane, found %d\n",
->> +            n_lanes);
->> +        ret = -EINVAL;
->> +        goto done;
->> +    }
->> +
->> +    /* Clock lane must be first */
->> +    if (ep.bus.mipi_csi2.clock_lane != 0) {
->> +        dev_err(&client->dev, "Clock lane must be mapped to lane 0\n");
->> +        ret = -EINVAL;
->> +        goto done;
->> +    }
->> +
->> +    /* Handle polarities in sensor configuration */
->> +    sensor->oif_ctrl = (ep.bus.mipi_csi2.lane_polarities[0] << 3) |
->> +               (ep.bus.mipi_csi2.lane_polarities[1] << 6);
->> +
->> +    /* Check the link frequency set in device tree */
->> +    if (!ep.nr_of_link_frequencies) {
->> +        dev_err(&client->dev, "link-frequency property not found in
->> DT\n");
->> +        ret = -EINVAL;
->> +        goto done;
->> +    }
->> +    if (ep.nr_of_link_frequencies != 1) {
->> +        dev_err(&client->dev, "Multiple link frequencies not
->> supported\n");
->> +        ret = -EINVAL;
->> +        goto done;
->> +    }
->> +    sensor->link_freq = ep.link_frequencies[0];
->> +
->> +done:
->> +    v4l2_fwnode_endpoint_free(&ep);
->> +
->> +    return ret;
->> +}
-> ...
-> 
->> +static int vd55g1_parse_dt(struct vd55g1 *sensor)
->> +{
->> +    struct i2c_client *client = sensor->i2c_client;
->> +    struct device *dev = &client->dev;
->> +    struct fwnode_handle *endpoint;
->> +    int ret;
->> +
->> +    endpoint = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
->> 0);
->> +    if (!endpoint) {
->> +        dev_err(dev, "Endpoint node not found\n");
-> 
-> The usage of trailing \n with dev_err() and dev_err_probe() is not
-> consistant in this driver.
-> 
-> I would go for \n everywhere, but some people argue that it is no more
-> necessary.
+v1:
 
-I prefer \n everywhere too. Added.
+Similar to Hans' progressive series on ov02c10 I've picked up via Hans the
+IPU6 driver with some additional fixes from Alan Stern.
 
-> 
->> +        return -EINVAL;
->> +    }
->> +
->> +    ret = vd55g1_check_csi_conf(sensor, endpoint);
->> +    fwnode_handle_put(endpoint);
->> +    if (ret)
->> +        return ret;
->> +
->> +    return vd55g1_parse_dt_gpios(sensor);
->> +}
->> +
->> +static int vd55g1_subdev_init(struct vd55g1 *sensor)
->> +{
->> +    struct i2c_client *client = sensor->i2c_client;
->> +    int ret;
->> +
->> +    /* Init sub device */
->> +    sensor->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->> +    sensor->sd.internal_ops = &vd55g1_internal_ops;
->> +
->> +    /* Init source pad */
->> +    sensor->pad.flags = MEDIA_PAD_FL_SOURCE;
->> +    sensor->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
->> +    ret = media_entity_pads_init(&sensor->sd.entity, 1, &sensor->pad);
->> +    if (ret) {
->> +        dev_err(&client->dev, "Failed to init media entity : %d", ret);
-> 
-> Unneeded space before : (to be consitant with code below)
+https://lore.kernel.org/linux-media/20250313184314.91410-1-hdegoede@redhat.com
 
-My french betrays me. Thank you.
+I've made a number of initial changes to this driver sufficient to get it
+working on the Dell Inspiron 14 Plus 7441 with the Qualcomm X Elite
+x1e80100 SoC and its CAMSS stack.
 
-> 
->> +        return ret;
->> +    }
->> +
->> +    sensor->sd.state_lock = sensor->ctrl_handler.lock;
->> +    ret = v4l2_subdev_init_finalize(&sensor->sd);
->> +    if (ret) {
->> +        dev_err(&client->dev, "Subdev init error: %d", ret);
->> +        goto err_ctrls;
->> +    }
->> +
->> +    /*
->> +     * Initiliaze controls after v4l2_subdev_init_finalize() to make
->> sure
-> 
-> Initialize?
+link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/x1e80100-6.14-rc6-inspirion14-slim7x-camss?ref_type=heads
 
-Nice catch.
+This is a first pass which adds in the minimum to get the sensor going on
+the Qualcomm platform. What would be nice would be someone on the IPU6 side
+giving it a test.
 
-> 
->> +     * default values are set.
->> +     */
->> +    ret = vd55g1_init_ctrls(sensor);
->> +    if (ret) {
->> +        dev_err(&client->dev, "Controls initialization failed %d", ret);
->> +        goto err_media;
->> +    }
->> +
->> +    return ret;
-> 
-> return 0?
-> 
->> +
->> +err_ctrls:
->> +    v4l2_ctrl_handler_free(sensor->sd.ctrl_handler);
->> +
->> +err_media:
->> +    media_entity_cleanup(&sensor->sd.entity);
->> +    return ret;
->> +}
-> 
-> ...
-> 
-> CJ
-> 
+A big TBD here is the YAML for this file but, I'd like to make sure nothing
+has broken for IPU6/IPU7 with the modifications before diving into
+Documentation.
 
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (1):
+      media: dt-bindings: Add OmniVision OV02E10
+
+Jingjing Xiong (1):
+      media: i2c: ov02e10: add OV02E10 image sensor driver
+
+ .../bindings/media/i2c/ovti,ov02e10.yaml           | 113 +++
+ MAINTAINERS                                        |   9 +
+ drivers/media/i2c/Kconfig                          |  10 +
+ drivers/media/i2c/Makefile                         |   1 +
+ drivers/media/i2c/ov02e10.c                        | 969 +++++++++++++++++++++
+ 5 files changed, 1102 insertions(+)
+---
+base-commit: f2151613e040973c868d28c8b00885dfab69eb75
+change-id: 20250317-b4-media-comitters-next-25-03-13-ov02e10-23e68307d589
+
+Best regards,
 -- 
-Regards,
-Benjamin
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
