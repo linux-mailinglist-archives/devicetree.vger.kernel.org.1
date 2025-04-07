@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-164082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50094A7F16C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:49:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBAD6A7F17B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:51:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F11377A215C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:48:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9374D189A1B3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Apr 2025 23:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0ED22B59C;
-	Mon,  7 Apr 2025 23:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3AB226548;
+	Mon,  7 Apr 2025 23:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8Z86gJo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sParGlAF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0951922B597;
-	Mon,  7 Apr 2025 23:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52A021C9E0;
+	Mon,  7 Apr 2025 23:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744069695; cv=none; b=IJSQxx3d450TmlmDgmc6HKi3bfbbv+ws30Ql3ZUCgXAP+oQDOIfYHgU0nBQTHiYLuBz3neOAcvUkKdxd3tBU7GPNFceH8O5g6KInB1Pxog4I8P+dpZWhr6HCxAyf+e6fxBVjUgUhpysz/qGvRNehrnLf5wKmwynQGJbcNE4SJmY=
+	t=1744069760; cv=none; b=fwhSuwaKgAynMx+FZPKSfs3qv3hOa8XEuKD2SQ6/7bwwb3ynfrYgrDsa60urIPrqTvnZblt/STGlYr0ODsAEKObZFm2BUdGUL8wf5LBtTggYWVhvfQVV3St2sY5gWExe6+GcuWdGwvum2h3o4/Lbs/z3HII/LQ/A8gcjn0lgcVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744069695; c=relaxed/simple;
-	bh=61FySSGCFmYcaDfbgWfsvj/rq0z+27TihchOLygJZyk=;
+	s=arc-20240116; t=1744069760; c=relaxed/simple;
+	bh=lhBh96Tt0XBn5MJW07XyKOmhZaJEZITuhyymLnJBTJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o0szJ4Pv1iFlUOrR6ycD0ugm6bHWP1VwAB4veF+VpX40SH+z53xJEcSrGjPGZovet2XxVx3xfRYumixSirI3PT0sPE4mX4nsrCAj7CLGIArYrFXFvUrqaVKPgXZ2E6Swbw2TbRXXUpWTE/ov7l/KekPGlvEEuyFnzMaQboPk0kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8Z86gJo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A2EAC4CEDD;
-	Mon,  7 Apr 2025 23:48:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iO1egsjxgF1325Snq0ndBtrYKvkeGiSrU6evC3Boz4ZQiOfucnBMEn/r2sToeEWdJWsA2MNa2F3EHHD0QcO66p/4NkwpsXb6KO0tP3Sezi1r2ppsIv9L2f8Y3lIaavHcInKyRY0PqeaEm6d2zqlL8SCOkXSD03/TRJ7P7T5p34k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sParGlAF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E47C4CEDD;
+	Mon,  7 Apr 2025 23:49:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744069694;
-	bh=61FySSGCFmYcaDfbgWfsvj/rq0z+27TihchOLygJZyk=;
+	s=k20201202; t=1744069760;
+	bh=lhBh96Tt0XBn5MJW07XyKOmhZaJEZITuhyymLnJBTJY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r8Z86gJojkJUri5K0AWxvKlU4zjP2gmuFhQCGbJJmxFyihKwvvFO2IAaHOb/0bNdE
-	 kfHzhAJ1AWCxi/DIZyppPOBls8mrv/D68nZDU041XdNOBYZnH4wmyMQ7jLJY1vyA37
-	 iamK6ikTJoTmU1a5w7jxK60NIJIgKZzT4rvKqRGyRUoEKkQLLSEG5k8rF/SYG2P04Q
-	 VnooibXuzPc7+YQhHahs+2glJGfTyZyaPiah8itex2xNcm7DkaBdT4sQJxv4SMf1L7
-	 FyQNSiSz/m0l31nbQaAstYp5b1G02XyZmcYcsa9b7uJU/RHjVyYV+BcO/dJVdlxcEn
-	 6p1n/baAFJIaA==
-Date: Mon, 7 Apr 2025 18:48:13 -0500
+	b=sParGlAFQzCtCuQnpKwZdM5tSc0mAmGI7xfISckeWvjLvM/A1wTtcKK9r5DpLfym9
+	 SsLQH9oIqNIsro+CMAKRAIRtH2jIWljFkIaFSgw9ox6NV3jWmHMJgiavsCytyHDx3J
+	 HkmK80dNQzbzm8HyBa78evrqZA5eh/8BSRA3u4gIDL5gOU5STNd/zXsGGGHVI4MEod
+	 +7scuDYMctNpW4CjPdYhCR5+Pd9El9uk2NxNkq4cSDKZZ4qM3/WXM8BovWe8J2hVhH
+	 /BTCsoabt/3CIRlQqwnwD1m+ROuC3sVfLWZ1pTa2IIgBvqtGfzKd1yyJ/B8fgLeKCK
+	 B+J8dhsuyfodQ==
+Date: Mon, 7 Apr 2025 18:49:19 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Frank Li <Frank.Li@nxp.com>
-Cc: jernej.skrabec@gmail.com, krzk@kernel.org, agx@sigxcpu.org,
-	linux-kernel@vger.kernel.org, robert.chiras@nxp.com,
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	tzimmermann@suse.de, devicetree@vger.kernel.org, mripard@kernel.org,
-	andrzej.hajda@intel.com, jonas@kwiboo.se,
-	Laurent.pinchart@ideasonboard.com, neil.armstrong@linaro.org,
-	rfoss@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
-	airlied@gmail.com
-Subject: Re: [PATCH RESEND V2 1/1] dt-bindings: display: nwl-dsi: Allow
- 'data-lanes' property for port@1
-Message-ID: <174406969099.171841.8161329634639318848.robh@kernel.org>
-References: <20250407150442.2778299-1-Frank.Li@nxp.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH RESEND v1 1/1] dt-bindings: interrupt-controller:
+ fsl,irqsteer: Add i.MX94 support
+Message-ID: <174406975830.179803.11954380681060629156.robh@kernel.org>
+References: <20250407151552.2779343-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,41 +60,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407150442.2778299-1-Frank.Li@nxp.com>
+In-Reply-To: <20250407151552.2779343-1-Frank.Li@nxp.com>
 
 
-On Mon, 07 Apr 2025 11:04:42 -0400, Frank Li wrote:
-> This controller support scalable data lanes from 1 to 4. Add the
-> 'data-lanes' property to configure the number of MIPI display panel lanes
-> selected for boards.
+On Mon, 07 Apr 2025 11:15:52 -0400, Frank Li wrote:
+> Add compatible string "fsl,imx94-irqsteer" for the i.MX94 chip, which is
+> backward compatible with "fsl,imx-irqsteer".
 > 
-> Change $ref of port@1 from 'port' to 'port-base' and add 'endpoint'
-> property referencing video-interfaces.yaml. Allow 'data-lanes' values
-> 1, 2, 3, and 4 for port@1.
-> 
-> Fix below CHECK_DTB warnings:
-> arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtb:
->  dsi@30a00000: ports:port@1:endpoint: Unevaluated properties are not allowed ('data-lanes' was unexpected)
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> Missed v6.15 merge windows.
-> 
-> This one elimiate last two lines warning under arm64: dts/freescale
-> ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> 
-> Resend V2: include Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> tags.
-> 
-> Original v2 thread:
-> https://lore.kernel.org/imx/c5y6mocsd77wj5lah6n47vtteqc5ekcrbdod6z5vtcnxhleudw@kfhpyoiylqqp/
-> 
-> Change from v1 to v2
-> - Add the reason why need 'data-lanes' property in commit message.
+> RESEND: collect Conor's ack tag
 > ---
->  .../bindings/display/bridge/nwl-dsi.yaml       | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
