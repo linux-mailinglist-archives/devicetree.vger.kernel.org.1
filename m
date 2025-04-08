@@ -1,149 +1,171 @@
-Return-Path: <devicetree+bounces-164510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CA5A814E2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 20:43:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E91FA81542
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:01:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166913A9A6F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:42:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 981247A9E3C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D007B23ED56;
-	Tue,  8 Apr 2025 18:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7EA1E8348;
+	Tue,  8 Apr 2025 19:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hsi8Wk6u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IT4ocMvV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A6323E355;
-	Tue,  8 Apr 2025 18:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEC2158553;
+	Tue,  8 Apr 2025 19:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744137765; cv=none; b=hHQDYPZPIGwl9atMbxyJ2tuPPeh+2zJQ1oisciqkg3ptUEnZo3bUggyaWEkfyFBbVeTUEPObbRsKRumdlbkBZeBYTp+Lrb/EArFmy/P8AjiIwCClqozeuDiMKGa7enq/4gLakb/nvWZs52BMrMcaebtuNz79AsTAPyd2u5bfhkY=
+	t=1744138861; cv=none; b=QZXSCsMKXKpPIHIbRTKNCr+w9rSYrAxHTzEx/oJDPXx/Kxh6Ntzq0oSEhXmZYYOad430mpCYn0mdecY2J98kAIxFKSjifJxrCY/tbJ58bLIkEJx64ejHclRCldz006usjJxggzJWqSiZlxsSl4rtV3i6EUPxsv+TDj2DNzmMtro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744137765; c=relaxed/simple;
-	bh=YAgqRithVyY3WHQIEjhHjL9JMo9LeuXpLlPLDW59PXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MOhoDKK5HfXFfgGIPE/a3/jCQh//gkUfeaoDmDoc5lnEjZNy6/VizXcmPYF12bnzaxNAoLf6yKnySOwuORUsQBll3f59d2tkcuI/kHSI3NlBH5YdCJdD5uwC7drXDzlttaEA/J8hyLvVq9a+4vFYrQNv+SL8+Cg54X0aMQtJ9Vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hsi8Wk6u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ADBAC4CEE5;
-	Tue,  8 Apr 2025 18:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744137765;
-	bh=YAgqRithVyY3WHQIEjhHjL9JMo9LeuXpLlPLDW59PXM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hsi8Wk6uHYDwF2x4BJdkzBQiHeYtefy8cDI/NyXaZN4WX9+mVgbDLzdyfLcfjF6ov
-	 GXAcNARpSAFDCfUeCfJcoAXf2MMwqk5HLXvENj9o4fIKy0OXkbgATGGMXR5Qao8Tgr
-	 lkjM3fGsm0XDv3UUhAOFgxaCKrFstcKFFzO1ObQGjxmQHZUFauytGLtZ2dGwkEd1Fo
-	 ts1OQpeUB3BYoGLuXyn6wpfX26eZCBHF5h7tJn7udp8bknsvd+XvpkkKAgYCPBgtL0
-	 lM8EfWhY1m7LGdusZ0BeOXYlDOYX64DIVIdfb02QmMB8mrzCHUc7EkC0vZ8PlIAaCl
-	 qKB0MkhVL3lSQ==
-Message-ID: <a654d62e-502a-4a47-96c4-a44c14860e54@kernel.org>
-Date: Tue, 8 Apr 2025 20:42:37 +0200
+	s=arc-20240116; t=1744138861; c=relaxed/simple;
+	bh=3XZrPac3Hw5S3fai1epjOKmznTRQIETE0iMgnKYeJK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mTI7w8e25olQxVvtcgtYCNvmSIfHpSTtyRWu3B7d87DXRSU9Do+bw2mJevSdVY5iaiG5HFJM8luGP8A6O13lTVll4NnDNNKZFrCU0B3wfSVBFLr+q+bJqi7MnIjN7EJBQU3rGmZviQohMygZLC/6QRYC7ScQaE6Fr51Ez7juSkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IT4ocMvV; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac297cbe017so1511066b.0;
+        Tue, 08 Apr 2025 12:00:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744138858; x=1744743658; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=86qWtNJK63V7fbnn92M5Wwej+llSZGxK/013fMMqHeY=;
+        b=IT4ocMvV7MxY11Uiv0mv0vYxtYc08v8d/4c+7D5mApihMYXvAbKq3+Up5faSdvWwz5
+         tFNVdKayd74tAhR0dLHrKCfVOqCByOnPapQAbm7lbi6V+XZc6yveeM5Wc4yOrp45iHXl
+         3aoE/ITYgf5ugaT2m7iNX4wIuSV5uc2V9doaQvY+GcSXZZwrR5JieCcASAvmVqeYRrXv
+         1aKE5FWSfEBD32aDaz1Z8JJmR2/ff6xUvylEYPv3ZV6QojQjASh0OYhneWsmPef592bM
+         B5/LK0x5iw/0FQxTVGqKcIe1MIlzCXGeVK3pBXb/Mz48gcjyjbvWMBRFsLLKdGSe2ZeU
+         N0TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744138858; x=1744743658;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=86qWtNJK63V7fbnn92M5Wwej+llSZGxK/013fMMqHeY=;
+        b=ry4reHhG1g/mRXJPqTgozScwYABFdR6W+6MOQtJRoZKN6snQuPxhUUVs+3EVGZOZCo
+         r8rEaCvjNN69+PqSFR/LD30YSmMSgAk+n/Qd+CmUHJSJBWXo2n+wvkHbcdM9bMxGYCcA
+         HJnTMOH2XKA+YENCKbgcgzZsJxcdKjIVoojiS4WFrjhCkXkgl+ChTd+8GnrzF8wH15jo
+         RyR9caBMxyFRZDFyFaIrYpxpG3/BR+JVmyvNockjrLw8F9UlZfItrYQOUi4FiKCMYqon
+         S8xLm0hDIbryVukh9yHsOvwaNtNBrmfcnDuJE2JxiFtp4uoRv/Ns8ImJSmMiwcVVW1mV
+         q5Dg==
+X-Forwarded-Encrypted: i=1; AJvYcCUlHrGXPsVyWBMcSqHE9eQpLdUB4lBGjULZ4zXjIA2cMpfTOq6bVrg1dKPw5Jk/0aSiMYIOxA3iOBiw1KfE@vger.kernel.org, AJvYcCWYJJOxSDdUC8nwW9AhlG+57IQ55ugO+GkUxFqp5T4HxleYDrA3hIGuSRMoFjoKggQBNhiPjN3d5gkH@vger.kernel.org, AJvYcCX6ecMV8zzM3VpEumN4MS8Nfhuk94Wre0fOgEQZC7zTP0lV+HW7Ou7yXpw7U6BeY3TxZoRgUARYLunh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS/OsRjOeXAQCFYBwzKNetqRip28pOu0xpzTwxfNP/NQJpHGfD
+	od3nIk78uKQvjuWXIWb9rh8xCQ/JvnQwV5eIJIsL8c5kik1C1krn
+X-Gm-Gg: ASbGncu8+bKqSX9/D98wAYkN33Di143CGdWO5TqrVc85KDdhccVSelnVmSRBxF0qUyO
+	Xk6FeLboBeMVH1msDAmfvZF38ZG5m+B0SFDhOH81hlYqJRFjenRTqjDjGuy57o4xY7kEXZTQjvW
+	fqmPgddVv2K+3e7HKkSpA9RzSsBD+/5hdMLxv0w6SLOm+s7VSrqzBaHKVAMHCd9/1FFOABQIzcl
+	Xj0rs0h6Z0dpCE+0iYZHk/AO+ako2B0hlVSt8nJJ4OIb3ekvfHGHyirgZ3iBeAmf8Y384EC9gB3
+	Ld2CWZs0QjS5DYCDI/o7X96CWePhDrVXs2KsFE0SXlvDF0XHOGjsFsNjRPAYlzqMryHFvCkPUJh
+	KzrF6FdXTnHEAKw==
+X-Google-Smtp-Source: AGHT+IG3OUU8/aAdVJYCK6TAljVtxnmldcMJAlzz9XYOf3SCmOSD/fkTD3Wz1wCPcAqWw1fhUjtzJg==
+X-Received: by 2002:a17:907:7f0b:b0:ac7:b8d3:df9c with SMTP id a640c23a62f3a-aca9bfb1039mr16449566b.1.1744138857536;
+        Tue, 08 Apr 2025 12:00:57 -0700 (PDT)
+Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.161.107.101])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe5d46esm976543366b.19.2025.04.08.12.00.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 12:00:56 -0700 (PDT)
+Date: Tue, 8 Apr 2025 21:00:27 +0200
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: alexandre.belloni@bootlin.com
+Subject: Re: [PATCH 2/3] rtc: pcf85063: add support for RV8063
+Message-ID: <20250408190027.4odmg77f2f33i5f5@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+References: <20250407193521.634807-1-apokusinski01@gmail.com>
+ <20250407193521.634807-3-apokusinski01@gmail.com>
+ <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/10] dt-bindings: display: msm: document DSI
- controller and phy on SA8775P
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Ayushi Makhija <quic_amakhija@quicinc.com>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, robdclark@gmail.com,
- dmitry.baryshkov@linaro.org, sean@poorly.run, marijn.suijten@somainline.org,
- andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org,
- krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
- quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
- quic_jesszhan@quicinc.com
-References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
- <20250311122445.3597100-4-quic_amakhija@quicinc.com>
- <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
- <654d409e-2325-46e7-a064-ed9e64277e69@quicinc.com>
- <a168a473-c363-4041-8e3e-84fa44e92b10@kernel.org>
- <zpmr6cpiixyu2sj7r7oqpqsge6dcqw6xszldf7ugznmcrxqsme@efiwnggcn5qx>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <zpmr6cpiixyu2sj7r7oqpqsge6dcqw6xszldf7ugznmcrxqsme@efiwnggcn5qx>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
 
-On 08/04/2025 13:44, Dmitry Baryshkov wrote:
-> On Tue, Apr 08, 2025 at 01:03:53PM +0200, Krzysztof Kozlowski wrote:
->> On 08/04/2025 12:38, Ayushi Makhija wrote:
->>>>> +    properties:
->>>>> +      compatible:
->>>>> +        items:
->>>>
->>>> contains
->>>>
->>>>> +          - const: qcom,sa8775p-dsi-ctrl
->>>>> +          - const: qcom,mdss-dsi-ctrl
->>>>
->>>> Drop fallback
->>>>
->>>  
->>> Hi Krzysztof,
->>>
->>> I couldn't understand the meaning of "Drop fallback", could please elaborate it ?
->> Look at SM8750 example on the lists. Keep only front compatible.
+On Tue, Apr 08, 2025 at 08:14:36AM +0200, Krzysztof Kozlowski wrote:
+> On 07/04/2025 21:35, Antoni Pokusinski wrote:
+> > Microcrystal RV8063 is a real-time clock with SPI interface. Its
+> > functionality is very similar to the RV8263 rtc.
+> > 
+> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+> > ---
+> >  drivers/rtc/Kconfig        | 21 ++++++-----
+> >  drivers/rtc/rtc-pcf85063.c | 74 +++++++++++++++++++++++++++++++++++++-
+> >  2 files changed, 85 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> > index 838bdc138ffe..1b9be96faa13 100644
+> > --- a/drivers/rtc/Kconfig
+> > +++ b/drivers/rtc/Kconfig
+> > @@ -483,15 +483,6 @@ config RTC_DRV_PCF8523
+> >  	  This driver can also be built as a module. If so, the module
+> >  	  will be called rtc-pcf8523.
+> >  
+> > -config RTC_DRV_PCF85063
+> > -	tristate "NXP PCF85063"
+> > -	select REGMAP_I2C
+> > -	help
+> > -	  If you say yes here you get support for the PCF85063 RTC chip
+> > -
+> > -	  This driver can also be built as a module. If so, the module
+> > -	  will be called rtc-pcf85063.
+> > -
+> >  config RTC_DRV_PCF85363
+> >  	tristate "NXP PCF85363"
+> >  	select REGMAP_I2C
+> > @@ -971,6 +962,18 @@ config RTC_DRV_PCF2127
+> >  	  This driver can also be built as a module. If so, the module
+> >  	  will be called rtc-pcf2127.
+> >  
+> > +config RTC_DRV_PCF85063
 > 
-> Why?
+> Why? This breaks the order.
+>
+I moved this config entry to the "SPI and I2C RTC drivers" section,
+because the driver supports now both I2C and SPI devices.
 
-To make things simpler and shorter.
+> > +	tristate "NXP PCF85063"
+> > +	depends on RTC_I2C_AND_SPI
+> > +	select REGMAP_I2C if I2C
+> > +	select REGMAP_SPI if SPI_MASTER
+> > +	help
+> > +	  If you say yes here you get support for the PCF85063 and RV8063
+> > +	  RTC chips.
+> > +
+> > +	  This driver can also be built as a module. If so, the module
+> > +	  will be called rtc-pcf85063.
+> > +
+> 
+> 
+> ...
+> 
+> >  module_exit(pcf85063_exit);
+> > @@ -740,3 +811,4 @@ module_exit(pcf85063_exit);
+> >  MODULE_AUTHOR("Søren Andersen <san@rosetechnology.dk>");
+> >  MODULE_DESCRIPTION("PCF85063 RTC driver");
+> >  MODULE_LICENSE("GPL");
+> > +MODULE_ALIAS("spi:rv8063");
+> 
+> Drop and use proper ID tables.
+> 
+Will fix that in v2, thanks.
+> 
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
+Kind regards,
+Antoni
+
 
