@@ -1,151 +1,171 @@
-Return-Path: <devicetree+bounces-164525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C19AA81609
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:51:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C500A8160F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC8C61BA61B1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:51:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00EF54A273C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40529245012;
-	Tue,  8 Apr 2025 19:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0130242914;
+	Tue,  8 Apr 2025 19:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ns76dayi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n/xbRt6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A567A2505AA
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 19:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27D122171B;
+	Tue,  8 Apr 2025 19:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744141863; cv=none; b=CAgeQyOeLxQ1zTYM8djYgLkN37kiFeuhM5sfkesaeDepaaG0yx7JpIL8A+htfrSJAvkHgF6RzFGR+8QUmDfPC3nnN8/PzJMCSuLWoDfDjuIcLkPzHPPLIlM88oK9sHuUH7oX3AzccMTIlUJiQx7rlM1HDn06Wkzgp5sCLOFB32M=
+	t=1744141936; cv=none; b=fHsPauTyiv8X7vKD4Elwyf7Cz7PQBNUKUl/Kk8KnKmAolZYWF2jg7FaWc+HXfrc7TApLuOtOdTADP3klvKjtULwxmddTmpAE8ukPgaduuqW5H1CRM9jg9d2TXth4Iyefj5GodfaIbU6S3J3WwG6WuURSwZR+eyiNU4yHUSixSeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744141863; c=relaxed/simple;
-	bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X7YHRN+Hr3zsEcx0S9ONbUTibuW29B5i2Z1sUkerZ4TK3vrItH5BG7DYDRum9e4R4Pj1SwOsDtk+ypK5kekYt6LscF+w+V27axpHFaFPqFCsBN8SIfsaaPwzQkhuY4Eeq2Tl6os7oHxKb94kGIZ3gLZxPyrQ9Kf2m09wAUtK1Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ns76dayi; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-af6b02d9e5eso4165882a12.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1744141861; x=1744746661; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
-        b=ns76dayi9FfsOOgzwJ0t1uyR+Mx/iowxQxn1f26XcVcx9qFDZodfmFmj3i6Be/Idzw
-         TeHExO0zxK/GQ4plC46NTxhzlT9rB/MMT58gCixw1lFbMnN/epRcV11ux5eb3mvHq/2L
-         vTXnTUufXTtH2t9OwsL4EVqUSQ2xB/tNUWCZ5t/hHzlhWe0rgzI89xO4jvuiaYanqiPN
-         rqofdshqQ2gXZLJzQa/gMQlhPncWWI179QslDblAmBmzgTVIJfoRYvscpiQLetklMKTd
-         woixp8w7D+vB2JQo3OTQbMboXgC14nVDXUFvWU66f7AosrVdtH+6/VERfVEI5ulcOWqp
-         p9og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744141861; x=1744746661;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
-        b=oF47eBjcKb5JvMYmLq2M4M2DNxvnCvFxkTsWM1eR9baJCeUV+cLNIA94DDD850vRJ2
-         /hL6tgALyZplF3RdnZ8zNZv10Nv7eO4S4+MibstiafUenreGaKj3qV6a/ok4f+qw98FO
-         1139K8XXvcDPQlJFf7EY2DqqVm6bWUmP/AWH/w1Yjrv4U4vxdOcQ8mhhXmMLSgRNDI4r
-         3a70DvHAggpgmkVQsCDzIslwsFdEc/X+wMV4guLVkquU1ofUJGc4t091EVKroooVbv/m
-         Lxg9PZtIFy1YLtFP4EcuYbviQjz9tH2DywuWB19SdADW188MyKDB71Sjg7aWWBWicA06
-         uQhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWK4vNCmYeT1FSP2A2xlmzkiKwFV1ABcku4qkGGSmStV2EOs7gnDh0O9QOY/W6QLkGWtJGeXVglkbdl@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRR7fr4fXC4fu572sVm59dX8FcXkHxlg9gdi8fVxprkCUjW+v0
-	MTLoKvkobJl2xb7ZV2QP4Rob6s9cKe2hTOFqJMSqqZ2ouALkR0C2oP/wvMksBVtrWVjt+tmMz/h
-	jokeX
-X-Gm-Gg: ASbGncsqIYnpCRqVrjWnKL4VMNm/MP2Y2l+89QPX3V6Dnj3Ew+5Ung0tZ1ER7nhLu+w
-	k3zvCo99/a2FEM3Xk4b4L4gBExU2YrDJkeHzi9Fo1d2XZSk5N2Rkaf4q6EX2gXjHYBSepGpvVLD
-	v1++n57prhtr+Pi5o+x4HpZPlvEqLYsNd7xmjX+QEEJafW+FJ8q8YMgsAxOtoSxRe9xFLr0YVkA
-	L3r6mbAM8Ebjnl+nIgxOTkJdzHyKsuPccOsfLQsHPnXy3b+ClXuPwNUzlEVMUPdfA/BFrBiXUSB
-	EVOugLwdx20+awDioz1h6dcKxjeCnwe6PtCyEavikLLpCbRSmWLqBdE7A5KVFAN2ZNFVFh+6tpD
-	9laTJhMA2XitAc2cI/gn9UXMKzxWPL+iyWaKuXhSJbl0=
-X-Google-Smtp-Source: AGHT+IE8D0yj/1izPqnhy7CnkrKCfihVPNUd7hh5oantY3ye/eMd0x6P1EKKg9jiwP4mfC+LMAEAyg==
-X-Received: by 2002:a17:90b:51c3:b0:2f4:434d:c7f0 with SMTP id 98e67ed59e1d1-306dbb948d6mr770818a91.12.1744141860732;
-        Tue, 08 Apr 2025 12:51:00 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:4da8:81cb:274b:fff0? ([2a00:79e0:2e14:7:4da8:81cb:274b:fff0])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb5a7d8sm11701509a91.38.2025.04.08.12.50.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 12:51:00 -0700 (PDT)
-Message-ID: <d6a33a0c-f24c-470a-97bf-ee50ee7a82b5@google.com>
-Date: Tue, 8 Apr 2025 12:50:58 -0700
+	s=arc-20240116; t=1744141936; c=relaxed/simple;
+	bh=HKS7Ar6A7lqn1suRVTzjHjNCIc9YBZ0PeKtU7mMeSjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jpsLjUKHIHJ3ihwTq2vh5QYGFcFnQiyi2uBhXudvIxWJNaty4XZv2s0H0cXoHzr4wcxu61w87tsWCK6P+WQ1iSV7nzerw79+VMk5fGAQ73j6bJV/qvvXOlaz5NhU59AaIEOmGZD/GcjXf+P74eeOeK7STe3q8nY7eaEQAkXjj9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n/xbRt6S; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744141935; x=1775677935;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HKS7Ar6A7lqn1suRVTzjHjNCIc9YBZ0PeKtU7mMeSjc=;
+  b=n/xbRt6S/iAO3eMSQ4VqqKLzQ57lI+WUvOCF2YQ72EI89wL71Kf1XFzq
+   AC1GIbrPh/nogeaZ33CZpwB3t5/apoGZfu6+aKEwOoFv2bssDMW8pSBCK
+   w/NAHV6g9101HGk52hAdMAf/fQjjP05EUj+05T7chRQklU+oyFISWTUhE
+   ovvb6+wllvCoa+J5NKwxUR18t0vtyAlEghdRWq3EeHh0PmNN9HSSRB+Hj
+   CXeqQqixq8v4Mef+NuGZz/uvyCoGvS2QmKAXTMOZ2EaaY0E12Gr3qxcgl
+   jK49+p6NKrmNHKtLJ9f4SoVeqO3ZIL8WD9RjECFEbGXan9Juvfkqcn8B7
+   A==;
+X-CSE-ConnectionGUID: ywXs7NTsRPaeV9vZQBIIQQ==
+X-CSE-MsgGUID: ssQ00d/FRPS0Laa7sn6OPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45757239"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; 
+   d="scan'208";a="45757239"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2025 12:52:14 -0700
+X-CSE-ConnectionGUID: YnWkD9miTgWM1NW6d+qmSw==
+X-CSE-MsgGUID: 0ueH4Z0qS3aoF+VRoFZPeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; 
+   d="scan'208";a="159351547"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2025 12:52:11 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u2EzQ-0000000AVLG-2SJ1;
+	Tue, 08 Apr 2025 22:52:08 +0300
+Date: Tue, 8 Apr 2025 22:52:08 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Alex Elder <elder@riscstar.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com,
+	u.kleine-koenig@baylibre.com, lkundrak@v3.sk,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] serial: 8250_of: add support for an optional bus
+ clock
+Message-ID: <Z_V-aKBOFHt-0RKz@smile.fi.intel.com>
+References: <20250408175146.979557-1-elder@riscstar.com>
+ <20250408175146.979557-3-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
- TCPM
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
- <20250313-determined-wild-seahorse-f7871a@krzk-bin>
- <914a0df4-96d0-4cd4-ac87-3826fa9c1440@google.com>
- <3f65fe16-56f8-4887-bb91-994b181ce5a9@kernel.org>
- <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
- <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
- <7c7cff17-2c53-4dcd-8760-50c72760de5b@google.com>
- <ba5f79a0-be46-4f17-90f7-1342a6310048@kernel.org>
- <07e4478d-569e-46d5-aad7-882e52ef3cac@kernel.org>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <07e4478d-569e-46d5-aad7-882e52ef3cac@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250408175146.979557-3-elder@riscstar.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Tue, Apr 08, 2025 at 12:51:43PM -0500, Alex Elder wrote:
+> The SpacemiT UART requires a bus clock to be enabled, in addition to
+> it's "normal" core clock.  Look up the core clock by name, and if
+> that's found, look up the bus clock.  If named clocks are used, both
+> are required.
+> 
+> Supplying a bus clock is optional.  If no bus clock is needed, the clocks
+> aren't named and we only look up the first clock.
+
+Code and description are not aligned. And What you are described above make
+more sense to me than what's done below.
+
+Also can we simply not not touch this conditional at all, but just add
+a new one before? Like
+
+	/* Get clk rate through clk driver if present */
+
+	/* Try named clock first */
+	if (!port->uartclk) {
+		...
+	}
+
+	/* Try unnamed core clock */
+// the below is just an existing code.
+	if (!port->uartclk) {
+		...
+	}
+
+...
+
+>  	/* Get clk rate through clk driver if present */
+>  	if (!port->uartclk) {
+> -		info->clk = devm_clk_get_enabled(dev, NULL);
+> +		info->clk = devm_clk_get_optional_enabled(dev, "core");
+>  		if (IS_ERR(info->clk)) {
+> -			ret = dev_err_probe(dev, PTR_ERR(info->clk), "failed to get clock\n");
+> +			ret = dev_err_probe(dev, PTR_ERR(info->clk),
+> +					    "failed to get core clock\n");
+
+Can be still one line.
+
+>  			goto err_pmruntime;
+>  		}
+>  
+> +		/* If we got the core clock, look for a bus clock */
+> +		if (info->clk) {
+> +			info->bus_clk = devm_clk_get_enabled(dev, "bus");
+> +			if (IS_ERR(info->bus_clk)) {
+> +				ret = dev_err_probe(dev, PTR_ERR(info->bus_clk),
+> +					    "failed to get bus clock\n");
+
+Something with indentation happened here and below.
+
+> +				goto err_pmruntime;
+> +			}
+> +		} else {
+> +			/* Fall back to getting the one unnamed clock */
+> +			info->clk = devm_clk_get_enabled(dev, NULL);
+> +			if (IS_ERR(info->clk)) {
+> +				ret = dev_err_probe(dev, PTR_ERR(info->clk),
+> +						"failed to get clock\n");
+> +				goto err_pmruntime;
+> +			}
+> +		}
+> +
+>  		port->uartclk = clk_get_rate(info->clk);
+>  	}
+
+> +
+
+Stray change.
+
+>  	/* If current-speed was set, then try not to change it. */
+>  	if (of_property_read_u32(np, "current-speed", &spd) == 0)
+>  		port->custom_divisor = port->uartclk / (16 * spd);
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-On 4/3/25 1:02 AM, Krzysztof Kozlowski wrote:
-> On 03/04/2025 10:00, Krzysztof Kozlowski wrote:
->>>>>> Which upstream DTS (or upstream supported hardware) is going to use this
->>>>>> binding, so I can see how you are going to implement it there in the
->>>>>> entire system?
->>>>> This is for maxim,max33359 Type-C controller.
->>>> Stop deflecting the questions. max33359 is not a board. I already asked
->>>> two times.
->>>>
->>>> Apparently admitting "no upstream users" is impossible, so let's state
->>>> the obvious:
->>>>
->>>> There are no upstream users of this.
->>> max33359 controller has an upstream user i.e., gs101-oriole (Pixel 6)
->>> board. Totally agree that at the moment there are no upstream
->>> devices/drivers for the Fuel Gauge (that my patchset has a dependency
->>> on) in gs101-oriole board. gs101-oriole uses max77759 fuel gauge device.
->>> I see that there's an effort for upstreaming it
->>> (https://lore.kernel.org/all/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be/).
->>> I will mark my patches as dependent on it + demonstrate the relationship
->>> of the devices in the gs101-oriole board. Hope that's okay?
->> Then please send the DTS for GS101 Oriole using this binding. I don't
->> understand the point of adding binding for some user and in the same
->> time not doing anything for that user.
->
-> ... and just a reminder: DTS goes to separate patchset (!) from USB
-> drivers one, with lore link in changelog or cover letter to the binding.
-
-Sure thing!
-
-Thanks
-
->
-> Best regards,
-> Krzysztof
 
