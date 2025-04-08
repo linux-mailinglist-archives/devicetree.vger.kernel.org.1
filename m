@@ -1,475 +1,145 @@
-Return-Path: <devicetree+bounces-164422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA3AA80F60
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 774D0A80F80
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:15:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42D7518858FF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E59D1889BD0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3BB219A7D;
-	Tue,  8 Apr 2025 15:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F025722A4F2;
+	Tue,  8 Apr 2025 15:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cuHTRlSN"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Z6TsN5TX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D191E1A3F;
-	Tue,  8 Apr 2025 15:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D7C1DA612;
+	Tue,  8 Apr 2025 15:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744124840; cv=none; b=T4uClrl/aoXIbcMRKFzIZ5TypHi7USPJfhE+snP+cW0qT5qGqrt7tKny3aHlj3NUmRRlsOnNyp2rVU07I+83ANTIg0sS0P4penY+l9hyWIV2nSIIrMlcU2EEdqh/WTWJhzxM5li3de8WfZhcUbhTssW6qVQfQH0gRXJXVxIpGYo=
+	t=1744125026; cv=none; b=DrSHqY0sTcYDZHEXA29fqq5lgKWuK/qXUgU1jqfccCGQaSeX6jx8D2o0nwgCy0lW+HF6Bc1XhOk157SXtBpDYVfdKIu6UZBAtZ38w32Bn5JOHsD+0wMhw+qYre0780tP6Bmpfenr+QWvzmu+MwdaFO33hTP2MMxAEumW6sOjf3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744124840; c=relaxed/simple;
-	bh=wMg5XAYS5Ue9LFWXjx2IR5jI6P/jMDyVcMX8CkFKn/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J4QHwIQ1CGGZma5YcMcywzV0wIDfYe5GwNcqfrR6gZo7OvbRxK6BH/ns/KN8X0xdwkqCn2pEbGYyEm+TndOR4jm5+a7Om58wZZgOvQb8Iv6ZGpZbULtUooxb9XQEAyGqXFd60bCSJ0mxpPzF2E7u/BqW0A9quqZZNstwa8lfUdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cuHTRlSN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAD87C4CEE7;
-	Tue,  8 Apr 2025 15:07:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744124839;
-	bh=wMg5XAYS5Ue9LFWXjx2IR5jI6P/jMDyVcMX8CkFKn/Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cuHTRlSN6xWgk6zhuOcrznR0t1juLwh4KFsmFKqJNCRWIhGCtIVt2wtzyn9V2WLwA
-	 vQ6DNiQqJYxN1tbi15Qw21rOFirEjWZjizTYEPVIw2HuTNRg36z5n50TgawaH5CiCf
-	 /VSmkSv4a6DCKip0flaC0H1Ir3dFZuFQIjHAluX8xLQkCRtSPxXIDky4Zm1UFoF0mS
-	 Hjjnn1DFn4tV2Sm1Yv5aiU6Fhw4CrGrpv+I1U4K4HzsXZ0AD48m34uMj26PVZ8MbJc
-	 woPax5R2w9iZkSgaQwF+/4fysPatAYAt4j8LuNjHQZjoJN/VX06qGAhLXplsjsQmiA
-	 Zq6gyNfrSuqyA==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac2bdea5a38so950363066b.0;
-        Tue, 08 Apr 2025 08:07:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWHT/8aScvdFKhl1EqWovacpQTbaf6afiqND5IGF/on1UIhF2XdFNEbXfK5JNlFfDgUewJRudbHTzz2CByg@vger.kernel.org, AJvYcCXQ4Gc8v1skb+lwsWwCvio9s7s+hauotbvGtZIxk6Uqm3f3eK+4U573Qm6OYF5rHJlRgt340iuy5CDY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIws3G7+PnPkbUizbsrFF2pRGhoAOJcYDNVmcV/fJ36S7ea/OK
-	co+ew1leCGb93ltpdwpY3ELxatg0/CRmt078K89rFU1665DUjCcZx8BbSw5LWOmyyL3CjxI4pr1
-	pSyqWfuC/Y9Om0TFH9QdmxH0J+g==
-X-Google-Smtp-Source: AGHT+IEP7ABpPIQdO8H8RyEHYVU63Q3MwoK0hM8KHlStNGC654Orad7UQLkeqSUYIZscq2kvCFu1vgulPjVcVGos0p0=
-X-Received: by 2002:a17:907:9301:b0:ac1:ea29:4e63 with SMTP id
- a640c23a62f3a-ac7d6d53ea2mr1330958966b.26.1744124838155; Tue, 08 Apr 2025
- 08:07:18 -0700 (PDT)
+	s=arc-20240116; t=1744125026; c=relaxed/simple;
+	bh=GudziAjvRjhdTl3T1GFT2vjHAMhpb5UxWzvHyhPg32U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=axwAURVro/HDmgsBdJhN4eIeKWKjVQ1/guhdQyCBGBmFGE7P1J9Ue6p3ARPJJrBiM7kbFXnAzJ7FmoBYoF+QDOIzyvQ6hmEFXQPt9X8n21KsOCzqrsSk9cti6FX47inL2qpKH7AqjAG/A6oB+fE+1teiWFgTSOceWvdZaPES2/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Z6TsN5TX; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <73faa3c8-70b9-4c95-b42a-5932249881e9@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1744125020;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=W4XCug/ybuLX9M5/EBwxp5KiEtgoov6beXctF05fO7o=;
+	b=Z6TsN5TXUZpLuZqqmNh9SZXNkgo3yaezRlUh/ImoVbMAO0eqYoGnAKYx1/p2+iT6QjcFz0
+	gKzIcfBmhBf3qCtoZCNtE22cCRDwwZAbfPwkfqYJ35cT9UaYfmcw3MHjxDhcjHYQQc1OJh
+	WFT/4dCbmuR0pd9P6JKp9m1eaAItijc=
+Date: Tue, 8 Apr 2025 11:10:15 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org> <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
-In-Reply-To: <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 8 Apr 2025 10:07:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLQTOae6pdUXdqT=agoXMs4Z83Fintk=DxMRmTET_UTgA@mail.gmail.com>
-X-Gm-Features: ATxdqUHwbIr_Bw5wOIyAJag6mOXehANay1M-UBTXmZKzJ6qjc51ZdtClpSFWu98
-Message-ID: <CAL_JsqLQTOae6pdUXdqT=agoXMs4Z83Fintk=DxMRmTET_UTgA@mail.gmail.com>
-Subject: Re: [PATCH 01/24] Documentation: devicetree: bindings: Add GICv5 DT bindings
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] device property: Add
+ fwnode_property_get_reference_optional_args
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ devicetree@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>, linux-kernel@vger.kernel.org,
+ Danilo Krummrich <dakr@kernel.org>, linux-acpi@vger.kernel.org
+References: <20250407223714.2287202-1-sean.anderson@linux.dev>
+ <20250407223714.2287202-3-sean.anderson@linux.dev>
+ <Z_Tg1v0rlrnjs0mt@smile.fi.intel.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <Z_Tg1v0rlrnjs0mt@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Apr 8, 2025 at 5:50=E2=80=AFAM Lorenzo Pieralisi <lpieralisi@kernel=
-.org> wrote:
->
+On 4/8/25 04:39, Andy Shevchenko wrote:
+> On Mon, Apr 07, 2025 at 06:37:14PM -0400, Sean Anderson wrote:
+>> Add a fwnode variant of of_parse_phandle_with_optional_args to allow
+>> nargs_prop to be absent from the referenced node. This improves
+>> compatibility for references where the devicetree might not always have
+>> nargs_prop.
+> 
+> ...
+> 
+>> +/**
+>> + * fwnode_property_get_reference_optional_args() - Find a reference with optional arguments
+>> + * @fwnode:	Firmware node where to look for the reference
+>> + * @prop:	The name of the property
+>> + * @nargs_prop:	The name of the property telling the number of
+> 
+> Use space instead of TAB as it's already too long to make it aligned with the
+> rest.
+> 
+>> + *		arguments in the referred node.
+>> + * @index:	Index of the reference, from zero onwards.
+>> + * @args:	Result structure with reference and integer arguments.
+>> + *		May be NULL.
+>> + *
+>> + * Obtain a reference based on a named property in an fwnode, with
+>> + * integer arguments. If @nargs_prop is absent from the referenced node, then
+>> + * number of arguments is be assumed to be 0.
+>> + *
+>> + * The caller is responsible for calling fwnode_handle_put() on the returned
+>> + * @args->fwnode pointer.
+>> + *
+>> + * Return: %0 on success
+>> + *	    %-ENOENT when the index is out of bounds, the index has an empty
+>> + *		     reference or the property was not found
+>> + *	    %-EINVAL on parse error
+>> + */
+>> +int fwnode_property_get_reference_optional_args(const struct fwnode_handle *fwnode,
+>> +						const char *prop,
+>> +						const char *nargs_prop,
+>> +						unsigned int index,
+>> +						struct fwnode_reference_args *args)
+>> +{
+>> +	int ret;
+> 
+>> +	if (IS_ERR_OR_NULL(fwnode))
+>> +		return -ENOENT;
+> 
+> This is incorrect most likely, see below.
+> 
+>> +	ret = fwnode_call_int_op(fwnode, get_reference_args, prop, nargs_prop,
+>> +				 0, index, args);
+>> +	if (ret == 0)
+>> +		return ret;
+>> +
+>> +	if (IS_ERR_OR_NULL(fwnode->secondary))
+>> +		return ret;
+> 
+> Here no such error code shadowing, and TBH I do not like the shadowing without
+> real need.
 
-No need to say DT bindings twice in the subject line. Follow the
-subsystem conventions.
+I don't understand the objection. First, this logic is identical to
+fwnode_property_get_reference_args. Second, the process seems clear to
+me:
 
-dt-bindings: interrupt-controller: Add Arm GICv5
+- If we have a primary fwnode, try it otherwise return -ENOENT
+- If we have a secondary fwnode and the first failed, try it otherwise
+  return the original error code
 
-> The GICv5 interrupt controller architecture is composed of:
->
-> - one or more Interrupt Routing Service (IRS)
-> - zero or more Interrupt Translation Service (ITS)
-> - zero or more Interrupt Wire Bridge (IWB)
->
-> Describe a GICv5 implementation by specifying a top level node
-> corresponding to the GICv5 system component.
->
-> IRS nodes are added as GICv5 system component children.
->
-> An ITS is associated with an IRS so ITS nodes are described
-> as IRS children - use the hierarchy explicitly in the device
-> tree to define the association.
->
-> IWB nodes are described as GICv5 system component children - to make it
-> explicit that are part of the GICv5 system component; an IWB is
-> connected to a single ITS but the connection is made explicit through
-> the msi-parent property and therefore is not required to be explicit
-> through a parent-child relationship in the device tree.
->
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  .../bindings/interrupt-controller/arm,gic-v5.yaml  | 268 +++++++++++++++=
-++++++
->  MAINTAINERS                                        |   7 +
->  2 files changed, 275 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,g=
-ic-v5.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic=
--v5.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..5c78375c298a0115c55872f43=
-9eb04d4171c4381
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.y=
-aml
-> @@ -0,0 +1,268 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/arm,gic-v5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Generic Interrupt Controller, version 5
-> +
-> +maintainers:
-> +  - Lorenzo Pieralisi <lpieralisi@kernel.org>
-> +  - Marc Zyngier <maz@kernel.org>
-> +
-> +description: |
-> +  The GICv5 architecture defines the guidelines to implement GICv5
-> +  compliant interrupt controllers for AArch64 systems.
-> +
-> +  The GICv5 specification can be found at
-> +  https://developer.arm.com/documentation/aes0070
-> +
-> +  The GICv5 architecture is composed of multiple components:
-> +    - one or more IRS (Interrupt Routing Service)
-> +    - zero or more ITS (Interrupt Translation Service)
-> +    - zero or more IWB (Interrupt Wire Bridge)
-> +
-> +  The architecture defines:
-> +    - PE-Private Peripheral Interrupts (PPI)
-> +    - Shared Peripheral Interrupts (SPI)
-> +    - Logical Peripheral Interrupts (LPI)
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,gic-v5
-> +
-> +  interrupt-controller: true
-> +
-> +  "#address-cells":
-> +    enum: [ 1, 2 ]
+The purpose of a secondary fwnode is to allow supplying missing
+properties absent from the primary fwnode. Which part of the above do
+you dislike?
 
-blank line
-
-> +  "#size-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +  "#interrupt-cells":
-> +    description: |
-> +      Specifies the number of cells needed to encode an interrupt source=
-.
-> +      Must be a single cell with a value 3.
-
-Drop this paragraph. The first sentence is just describing a common
-property. The 2nd is expressed as schema already.
-
-> +
-> +      The 1st cell corresponds to the INTID.Type field in the INTID; 1 f=
-or PPI,
-> +      3 for SPI. LPI interrupts must not be described in the bindings si=
-nce
-> +      they are allocated dynamically by the software component managing =
-them.
-> +
-> +      The 2nd cell contains the interrupt INTID.ID field.
-> +
-> +      The 3rd cell is the flags, encoded as follows:
-> +      bits[3:0] trigger type and level flags.
-> +
-> +        1 =3D low-to-high edge triggered
-> +        2 =3D high-to-low edge triggered
-> +        4 =3D active high level-sensitive
-> +        8 =3D active low level-sensitive
-> +
-> +      Cells 4 and beyond are reserved for future use and must have a val=
-ue
-> +      of 0 if present.
-
-Drop. You can't have 4 or more cells because only 3 is allowed:
-
-> +    const: 3
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt source of the VGIC maintenance interrupt.
-
-Drop "Interrupt source of ".
-
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +
-> +patternProperties:
-> +  "^irs@[0-9a-f]+$":
-> +    type: object
-> +    description:
-> +      GICv5 has one or more Interrupt Routing Services (IRS) that are
-> +      responsible for handling IRQ state and routing.
-> +
-> +    additionalProperties: false
-
-blank line
-
-> +    properties:
-> +      compatible:
-> +        const: arm,gic-v5-irs
-> +
-> +      "#address-cells":
-> +        enum: [ 1, 2 ]
-
-blank line
-
-> +      "#size-cells":
-> +        enum: [ 1, 2 ]
-> +
-> +      ranges: true
-> +
-> +      dma-noncoherent:
-> +        description:
-> +          Present if the GIC IRS permits programming shareability and
-> +          cacheability attributes but is connected to a non-coherent
-> +          downstream interconnect.
-> +
-> +      reg:
-> +        minItems: 1
-> +        items:
-> +          - description: IRS control frame
-> +          - description: IRS setlpi frame
-> +
-> +      cpus:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-
-Already has a type, drop.
-
-> +        description:
-> +          Should be a list of phandles to CPU nodes (as described in
-> +          Documentation/devicetree/bindings/arm/cpus.yaml) corresponding=
- to
-> +          CPUs managed by the IRS.
-
-The actual cpu binding is outside the scope of this binding. Just
-'CPUs managed by the IRS.' is enough.
-
-Is there a maximum number of CPUs?
-
-> +
-> +      arm,iaffids:
-> +        $ref: /schemas/types.yaml#/definitions/uint16-array
-> +        description:
-> +          Should be a list of u16 values representing IAFFID IDs associa=
-ted
-
-The type says it is 'a list of u16 values', so don't repeat that here.
-IAFFID needs to be defined somewhere. Is the 2nd 'ID' redundant?
-
-> +          with the CPU whose CPU node phandle is at the same index in th=
-e
-> +          cpus array.
-> +
-> +    patternProperties:
-> +      "^msi-controller@[0-9a-f]+$":
-> +        type: object
-> +        description:
-> +          GICv5 has zero or more Interrupt Translation Services (ITS) th=
-at are
-> +          used to route Message Signalled Interrupts (MSI) to the CPUs. =
-Each
-> +          ITS is connected to an IRS.
-> +        additionalProperties: false
-
-blank line
-
-> +        properties:
-> +          compatible:
-> +            const: arm,gic-v5-its
-> +
-> +          dma-noncoherent:
-> +            description:
-> +              Present if the GIC ITS permits programming shareability an=
-d
-> +              cacheability attributes but is connected to a non-coherent
-> +              downstream interconnect.
-> +
-> +          msi-controller: true
-> +
-> +          "#msi-cells":
-> +            description:
-> +              The single msi-cell is the DeviceID of the device which wi=
-ll
-> +              generate the MSI.
-> +            const: 1
-> +
-> +          reg:
-> +            items:
-> +              - description: ITS control frame
-> +              - description: ITS translate frame
-> +
-> +        required:
-> +          - compatible
-> +          - msi-controller
-> +          - "#msi-cells"
-> +          - reg
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - cpus
-> +      - arm,iaffids
-> +
-> +  "^interrupt-controller@[0-9a-f]+$":
-> +    type: object
-> +    description:
-> +      GICv5 has zero or more Interrupt Wire Bridges (IWB) that are respo=
-nsible
-> +      for translating wire signals into interrupt messages to the ITS.
-
-I wonder if this should be a separate schema and not a child of the
-GIC? Seems like these would be implemented standalone (even if the
-arch doesn't define that) at arbitrary addresses that aren't within
-the GIC's address range. To put it another way, there's nothing here
-it is getting from the parent node.
-
-> +
-> +    additionalProperties: false
-> +    properties:
-> +      compatible:
-> +        const: arm,gic-v5-iwb
-> +
-> +      interrupt-controller: true
-> +
-> +      "#address-cells":
-> +        const: 0
-> +
-> +      "#interrupt-cells":
-> +        description: |
-> +          Specifies the number of cells needed to encode an interrupt so=
-urce.
-> +          Must be a single cell with a value 2.
-
-Drop
-
-> +
-> +          The 1st cell corresponds to the IWB wire.
-> +
-> +          The 2nd cell is the flags, encoded as follows:
-> +          bits[3:0] trigger type and level flags.
-> +
-> +          1 =3D low-to-high edge triggered
-> +          2 =3D high-to-low edge triggered
-> +          4 =3D active high level-sensitive
-> +          8 =3D active low level-sensitive
-> +
-> +          Cells 3 and beyond are reserved for future use and must have a=
- value
-> +          of 0 if present.
-
-Drop
-
-> +        const: 2
-> +
-> +      reg:
-> +        items:
-> +          - description: IWB control frame
-> +
-> +      msi-parent: true
-
-maxItems: 1
-
-Because the common definition allows any number of parents.
-
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - msi-parent
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    interrupt-controller {
-> +      compatible =3D "arm,gic-v5";
-> +      #interrupt-cells =3D <3>;
-> +      #address-cells =3D <2>;
-> +      #size-cells =3D <2>;
-> +      ranges;
-> +
-> +      interrupt-controller;
-> +
-> +      interrupts =3D <1 25 4>;
-> +
-> +      irs@2f1a0000 {
-> +        compatible =3D "arm,gic-v5-irs";
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +        ranges;
-> +
-> +        reg =3D <0x0 0x2f1a0000 0x0 0x10000>;  // IRS_CONFIG_FRAME for N=
-S
-> +
-> +        arm,iaffids =3D /bits 16 <0 1 2 3 4 5 6 7>;
-> +        cpus =3D <&{/cpus/cpu@0}>, <&{/cpus/cpu@100}>, <&{/cpus/cpu@200}=
->,
-> +               <&{/cpus/cpu@300}>, <&{/cpus/cpu@10000}>, <&{/cpus/cpu@10=
-100}>,
-> +               <&{/cpus/cpu@10200}>, <&{/cpus/cpu@10300}>;
-
-Use labels instead of paths.
-
-> +
-> +        msi-controller@2f120000 {
-> +          compatible =3D "arm,gic-v5-its";
-> +
-> +          msi-controller;
-> +          #msi-cells =3D <1>;
-> +
-> +          reg =3D <0x0 0x2f120000 0x0 0x10000    // ITS_CONFIG_FRAME for=
- NS
-> +                 0x0 0x2f130000 0x0 0x10000>;  // ITS_TRANSLATE_FRAME
-> +        };
-> +      };
-> +
-> +      interrupt-controller@2f000000 {
-> +        compatible =3D "arm,gic-v5-iwb";
-> +        #address-cells =3D <0>;
-> +
-> +        interrupt-controller;
-> +        #interrupt-cells =3D <2>;
-> +
-> +        reg =3D <0x0 0x2f000000 0x0 0x10000>;
-> +
-> +        msi-parent =3D <&its0 64>;
-> +      };
-> +    };
-> +
-> +    device@0 {
-
-Drop. We don't put consumers in provider examples and vice-versa.
-
-> +      reg =3D <0 4>;
-> +      interrupts =3D <3 115 4>;
-> +    };
-> +
-> +...
+--Sean
 
