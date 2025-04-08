@@ -1,174 +1,121 @@
-Return-Path: <devicetree+bounces-164190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDCDDA7F833
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:45:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E751BA7F843
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:47:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFCD2189CAE7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:42:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBF5917D8E5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D866A2641F7;
-	Tue,  8 Apr 2025 08:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3602263F47;
+	Tue,  8 Apr 2025 08:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="egXKRSzI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LBs+n2N8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB052641DB;
-	Tue,  8 Apr 2025 08:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80F12185B8;
+	Tue,  8 Apr 2025 08:43:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744101684; cv=none; b=KN2CwfWZ7z697iLwOW0BjGxZDAPchTLmA3faevt/pcl9MFdxWzG3wGfcnZbVeJqnsfOgWfsvvyqpf3NfS39lLIP+5mYbQnCwo1xfbeGmdgGlB/UO55dJABC6F1rmvhsAbzVXOV8Y5tY9/pt3vAQCM4SIuyAX9/AAWhzXodFLQaI=
+	t=1744101837; cv=none; b=QSGnSQpUzmB1NwT1Emxy2MpZ1niKxVLkXtNv5XGY3sdkzMqFVEhithPmb7Tcm3zk6F45wneInJhfaEzNU5eOmG/MYHq+aqJRwt+rGxxfXze9ml/eohc1X5AJ9CQdUvdjd1JYhwWGOmuDbVe5+6+xaLixcO6erKR3hnRDsyfxM/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744101684; c=relaxed/simple;
-	bh=Iqee5RrWEeGxdk7646RRwu+1jLljC0WdgOXwKzC+Dqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b3hONeo3G5niQyeIi0t/K8vfTvmutqnWnfYhsH3fquMYNtggZyWaDTIZ70BtTArFiijtBdOpdXG4vxNMS0SnVpDlA0dslcd0u27sSSGnPphvd5kE8pjSg5kOCbl9ha0dITk5TJhYhiw9Ba7nWvMU9B75H1qRnCRlop82w7ka/wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=egXKRSzI; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5499614d3d2so6094835e87.3;
-        Tue, 08 Apr 2025 01:41:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744101681; x=1744706481; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ACIOIbm0p+1PTv9P9JIta3dAyYPe2LdYdKxjKYYTx9Y=;
-        b=egXKRSzIn7DrQCDrhuW2GfGrNKVQWDRZLaVRui5PyJm1wUZYMCtnua2vBg65aFC+hb
-         OrTS8KFBWpJeUNuLe8lq1CZX9yNVEtvF09WlhnhR+KHNbb7kqTUFpBdyammxrsXSWWcd
-         EmybE/tgYzX1AFVEMaAZfxrnw70Z5lxbQGIoV9M/paTG3zJe6bRIKr2u89BErR1hJQq/
-         73B69UCRiGRJg03QwBVvCtC8Cj948QnJz/T8MZk0XlyeLj5Fv9LYEMfGYglK1V8k6JuK
-         WxeLDsLH1Qp9wxSyxweeTHGISJtJPOZLUybjVwW866AK3mOQgdyxvxDi3770ES6Pvir3
-         +Zjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744101681; x=1744706481;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ACIOIbm0p+1PTv9P9JIta3dAyYPe2LdYdKxjKYYTx9Y=;
-        b=bYNKrsUgykKNU7mbyAzFSwUt6o0VshY6POnwzWrAiVCC5xmN+0KfQiRhApIyEFKS+i
-         vPkZMKFnig1BEux/zh5FhaWfWoGaGriXPY2/vj3uX6DPRJYO+ueXDSy0JX9Hdp/8Ns8s
-         mxMsVrcXaEuHXftsyGuMmFEfWnRtGYU319Qdr6Ej6v/oA1PbJQlkEveILm0nvmctOtSl
-         NZSSOiU2P6MHWXDrryOSqQQkqnOD2cUGerg4s5kv/xrKdv5Co8JoE5SEhtPfr9z8siEZ
-         fhskv7HzBX09zw6pKIhHxRL/BXAwg0Mnt1rrwD10bUz5oMzdzQoMmogq2sUS4JOQT0bx
-         h82A==
-X-Forwarded-Encrypted: i=1; AJvYcCVfjk2k9lADtRoTo5J/GqVEf5w66nt8qs4UDZUBoK0QEe1jwEklRCBDO101B+PkXW52suZwmEd2kINxM6hf@vger.kernel.org, AJvYcCVkBSTBfMNkvuyadC4np93tS2piqvzudqAHbYAQ3L21Shl33jaoehef1xHMw5Xh014TQh5Y5fWj7Sbr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9U5pnsVZ2vywad+Y6rs6XDx2kUsVQg4uK8wcANvonJDU2NZT6
-	3FXCnXqtuG5Ig9D+QyJMupUAl1EoA/5qxYMxV85QGf+qOZ3G/iTQ/bxukw==
-X-Gm-Gg: ASbGncva/uGR/3evh0p72YnaVNk+Tn5g5yEJ18i2BwZHmjUMHPOhMaOxYCZRMazZJ/v
-	/gRmrSasB7vCGIkTP0biEoCigyIi6J+Y+BaecjteD1rKuJrUPH1cild15zMhIBg3F0mVLrYZVY8
-	erouIhDWSVcDNZiUCu1Z+zSAs/WXtxorFJuVEdZiNf0m/gKIqHHkkqfRTdmRVquT6e+rE/i96BO
-	pxw/p5GiUqYisJNODzndPFweX1i4MAYuaWvCfkI/joQt2vqXlFSiyTdkg5jcW+x5P4PF1s8peDH
-	ADGgLSKq9WkZL2WxpWbTRZ+WCB1h49GSetG0yDUvv26q++Rx9m51TLBQEg==
-X-Google-Smtp-Source: AGHT+IEm21EBbYmNkyzRDOFs9TzsbgYse65RwBYM1gdJbCrrwjvMVZPVowKwrXwUH3ajBMGduDYe1Q==
-X-Received: by 2002:a05:6512:3b98:b0:549:7145:5d28 with SMTP id 2adb3069b0e04-54c232f7744mr3502276e87.25.1744101680828;
-        Tue, 08 Apr 2025 01:41:20 -0700 (PDT)
-Received: from mva-rohm ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e635bd6sm1475351e87.157.2025.04.08.01.41.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 01:41:19 -0700 (PDT)
-Date: Tue, 8 Apr 2025 11:41:16 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 03/14] dt-bindings: mfd: bd96801: Add ROHM BD96805
-Message-ID: <f49addee698b683a071c12808f06a56509152f5c.1744090658.git.mazziesaccount@gmail.com>
-References: <cover.1744090658.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1744101837; c=relaxed/simple;
+	bh=P5m3QFVw+X3gs9ohqO7sbUbfBw2sYBlUeGNDal0H9Pk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=JJVDXcjAuCEdOkjvnwhXWVg+nrBYfe+3ZCXnVNeTPRk5FIKt7yHaXCxPfugKQYu/oloXirLcgi/mBJ0KGI1jnIlnB9bVTBtP7F2dzPNN50024ZEY5EG2P6mWnlEM2Y4zRxbXkI6hcXMRNgRVwbvPNbc5sROq3hS8GssHDiR+fmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LBs+n2N8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E712C4CEE5;
+	Tue,  8 Apr 2025 08:43:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744101837;
+	bh=P5m3QFVw+X3gs9ohqO7sbUbfBw2sYBlUeGNDal0H9Pk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=LBs+n2N8NhUFecbrk3bW0GlDry7rkHeoLfO826D1eGVSyfoN/ElHkzLrmJ20wp6Jx
+	 jBogmLGexOMxSaIsDPVritZvZJQAjMjTOmQjiDtXw6zrM3LwXtm2nooVwLnhf/Qk96
+	 IJ6Ct9w6y+SmRa93zcfqibRoYnHAqDZu48oNQfIo79kc0mxYDmHqxcXdOV2SQsAvUr
+	 QtwAWD7HB3jNGJVs55zgGIOsY54i/WZrE3mAQrk6Ae8eTmeloA71vbZaXUjVNjncKH
+	 vLBO5NkPRl+Le+38fOD4ljoM7uvLGfDUSKOcscXFeUllb4ZqRV6+I+h2zTP9MvrC2d
+	 cn9DpIhxSMlYw==
+From: Mattijs Korpershoek <mkorpershoek@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
+ John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v3 1/2] dma-buf: heaps: system: Remove global variable
+In-Reply-To: <20250407-dma-buf-ecc-heap-v3-1-97cdd36a5f29@kernel.org>
+References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
+ <20250407-dma-buf-ecc-heap-v3-1-97cdd36a5f29@kernel.org>
+Date: Tue, 08 Apr 2025 10:43:53 +0200
+Message-ID: <875xjf11rq.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5+V+aybW6NeMgsZb"
-Content-Disposition: inline
-In-Reply-To: <cover.1744090658.git.mazziesaccount@gmail.com>
+Content-Type: text/plain
 
+Hi Maxime,
 
---5+V+aybW6NeMgsZb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch.
 
-The ROHM BD96805 is very similar to the BD96801. The differences visible
-to the drivers is different tune voltage ranges.
+On lun., avril 07, 2025 at 18:29, Maxime Ripard <mripard@kernel.org> wrote:
 
-Add compatible for the ROHM BD96805 PMIC.
+> The system heap is storing its struct dma_heap pointer in a global
+> variable but isn't using it anywhere.
+>
+> Let's move the global variable into system_heap_create() to make it
+> local.
+>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
 
----
-Revision history:
- v1 =3D> :
-  - No changes
----
- .../devicetree/bindings/mfd/rohm,bd96801-pmic.yaml     | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml b=
-/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
-index efee3de0d9ad..0e06570483ae 100644
---- a/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml
-@@ -4,19 +4,21 @@
- $id: http://devicetree.org/schemas/mfd/rohm,bd96801-pmic.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
-=20
--title: ROHM BD96801 Scalable Power Management Integrated Circuit
-+title: ROHM BD96801/BD96805 Scalable Power Management Integrated Circuit
-=20
- maintainers:
-   - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-=20
- description:
--  BD96801 is an automotive grade single-chip power management IC.
--  It integrates 4 buck converters and 3 LDOs with safety features like
-+  BD96801 and BD96805 are automotive grade, single-chip power management I=
-Cs.
-+  They both integrate 4 buck converters and 3 LDOs with safety features li=
-ke
-   over-/under voltage and over current detection and a watchdog.
-=20
- properties:
-   compatible:
--    const: rohm,bd96801
-+    enum:
-+      - rohm,bd96801
-+      - rohm,bd96805
-=20
-   reg:
-     maxItems: 1
---=20
-2.49.0
-
-
---5+V+aybW6NeMgsZb
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmf04SwACgkQeFA3/03a
-ocX2xwgAgBu1xyqzQgr2AzTACxbU95p5svkRVMluMGTMKIYZUN19lxZ+sJN3dHV8
-Yru7ncEpOv7GQzCyADm1BfatTu4sANYRVfvU9TzyihEEZCLXsWyt1a+q4kIAO8Ga
-3N8ysIgZgU7X2HO5rta3yM+wYgExwol+4br2emQhZO9Ebf26hJWp1SbA5uirnOoD
-bbfhYlCA8EMOyYAgapzxAMBDtNg+mnrdDuveKMoOoT+SPjMc1JwBtj5CsS8ZTzJd
-mQNgqLTgtYTbuIfP9A9LQc4MYv6UyR4R3HDapMr1Fn8iaTbt4boTN9v5TPy0mHO+
-DK7tGrB3hqOuA/jPIocv/z2eJbv4EA==
-=uCOW
------END PGP SIGNATURE-----
-
---5+V+aybW6NeMgsZb--
+> ---
+>  drivers/dma-buf/heaps/system_heap.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/dma-buf/heaps/system_heap.c b/drivers/dma-buf/heaps/system_heap.c
+> index 26d5dc89ea1663a0d078e3a5723ca3d8d12b935f..82b1b714300d6ff5f3e543059dd8215ceaa00c69 100644
+> --- a/drivers/dma-buf/heaps/system_heap.c
+> +++ b/drivers/dma-buf/heaps/system_heap.c
+> @@ -19,12 +19,10 @@
+>  #include <linux/module.h>
+>  #include <linux/scatterlist.h>
+>  #include <linux/slab.h>
+>  #include <linux/vmalloc.h>
+>  
+> -static struct dma_heap *sys_heap;
+> -
+>  struct system_heap_buffer {
+>  	struct dma_heap *heap;
+>  	struct list_head attachments;
+>  	struct mutex lock;
+>  	unsigned long len;
+> @@ -422,10 +420,11 @@ static const struct dma_heap_ops system_heap_ops = {
+>  };
+>  
+>  static int __init system_heap_create(void)
+>  {
+>  	struct dma_heap_export_info exp_info;
+> +	struct dma_heap *sys_heap;
+>  
+>  	exp_info.name = "system";
+>  	exp_info.ops = &system_heap_ops;
+>  	exp_info.priv = NULL;
+>  
+>
+> -- 
+> 2.49.0
 
