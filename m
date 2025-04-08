@@ -1,158 +1,196 @@
-Return-Path: <devicetree+bounces-164224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8853DA7F8FE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:08:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAEB5A7F90C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:13:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 523843A905D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:03:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D87188F8EA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CB02638B0;
-	Tue,  8 Apr 2025 09:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB50E2641E9;
+	Tue,  8 Apr 2025 09:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FIrF3yHz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GrSGcBuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15D22620EE
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 09:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00FFD846C;
+	Tue,  8 Apr 2025 09:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744103004; cv=none; b=Qh44v7DpHjY1o+9QcQx1hdTrQ85oRa+lutI9bPTMdbFU/8mGtkRKdH1hMUZrS7xUee3YavqiO5PaUbZuWR4Z1Ib5KTU3K9Ac/rSOUA0ywa6ROSESR7JFsKWB9tpZfXsVeGpe6oH4x092WcnUGlatRQ9v+YU/XOFttbrj7zCfpvE=
+	t=1744103595; cv=none; b=vF+iOJcuvQO6YvQs61ns1l6V9qpCzEZEnXTmAiQC5O539nRZLkBhVnOK0nkoCDj3iGd2P4WX8Hu6gi5uz260sDWLN/Uo3mudWfH2MDi2A58LYWuplxm0/Z1hJCGkaoSAJ/JByjf+xS1i5baOCD51jmQidTecJExSPyf09KT13Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744103004; c=relaxed/simple;
-	bh=jyNWNielaFZNC8x7ge6GPxBZUjXlMnqCK7elcflhkqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qep7UkoK4MTuKGzrkwErWfDMsD5/ivHpe/0SBCzzNs0uCJKfonT7hy9hQUaDj6qiJQRe95uP+1HXXH7cRn3OH/oHh7ZCz+uRk8RfI7i4Q+q1Aci3v8YUbbiCslLSB77i3cMyeZImf4NAWCIzTitFBYz3qEvH7FzE9bZA1cLeWW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FIrF3yHz; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43690d4605dso35624645e9.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 02:03:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744103001; x=1744707801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v65PC4QNaexxwzfjQafXjEr0ZPne6aP7FPOvE5lZvcA=;
-        b=FIrF3yHzOYrwO3qD/MQ1xznKAMcCMrkUSkkzQ4PzwlmfqV2JHENVqpwDvPFs/RVbX3
-         fUcdzVgdMnwe5qhg0DE6sQJ1IaKBJ/th6P+YqvRkOpmv2z+7Bbcht6l3EkFYWHnNVIcH
-         uSBbh1eZTjOvL6D1T8sjzOgW3P5CEV1mrZ4xDu34y/s6wtKpdNj2V3++krMiSl+pA9KU
-         ZMf26delNyJd+suj1qJ2pqcxgnsVon1O30ROsjePprAGitx6C37I5rLjXBgVu13okS3q
-         /73HBjJz4HWmehlEcscv6uyShy/7b+THMthq9aP5xebXg/IXHxnM49drxSprIJQd+e24
-         rdUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744103001; x=1744707801;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v65PC4QNaexxwzfjQafXjEr0ZPne6aP7FPOvE5lZvcA=;
-        b=STJ+EpxwVskTUdgWCu+aOAzPkDeOJAPZk43LHrtoAz3LV4vtOd8xo5d+3SlwKhRdMr
-         s3FmLyYJdlZh/ZoyvAxB4+XBCxRDk0itpgEDYiV7RGourU9+u9K+xrS+C9A4P6X8G46x
-         0yturXEV8eO6J8kiFqt7IiUz8F0TDiqnX4nY1w4TWARZ8Qkxbr8ylSvh0Mtorw62FGAh
-         wXOQkoAlLFNMrXPxDPGSCXYZ6o4CczSnw8nKEZ2Ri8PiegRlKzh7N8amFJsd2WrifM9M
-         i8GhvoTzI8R5bMbF/vVkeqzmDkmJK4UyJhS2IWmQIZNGFarhND8Ed2ycHcJAGkxPTk3m
-         vj5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUJpidko4oJ42yo9gxfHAIBDi1i6NoBSvWl+RTUc2bdxt1aAKaEf0zSUwJ9KEil9ELtO4V8JKq+ZsGp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxK846A47oWJB17xO1Pb3//zJ6VQZP/8vxJVAJhNZLswhOChcp0
-	AMpAAr30Pza+YzIMAa2rafJhd4vqqXKh0nfDIVoRTlAzhSjG8cQ0RQ8/S8XIrO4=
-X-Gm-Gg: ASbGncsBVsV6cZXWo5siPCRdugjkW2QHt9rgIpue4LjGtopY8EanoBlnM8q5E7WfH/B
-	G730Vij3vm5bHR3nf0n40WpBvrOLT8ImQnW+wHMPfcV77Y+pCcPeAozVaucACzVEAvdgfJmGXIN
-	kOInYozY8wEdeFExObg/3TLHgeFGGIfctgE3V0j2xxOmx3qzWgtqqlwTjnkLDsd4+yx61USGsrq
-	q0enBJ8wUnykrTOfj4o7kE8tKuQah811SjWlOuLiaWMAvNWJT3K2tYxKLUVf7uAvO717HPFd5CN
-	ScEV0DXEH6QE+uRG7QsYwb3noWrbODIPE+8f9dw9ZWZc/oz8y3axXY5ijiGqRF3QPELjdn73+h6
-	r24Q95XO/
-X-Google-Smtp-Source: AGHT+IF59mR/Y3gCWpGgqEsAY2RKfJDBH8CAcpxTKw2Uqi3PNlCOWS3dudcLSJmJZMiC+3LMt4kLng==
-X-Received: by 2002:a05:600c:500c:b0:43d:bb9:ad00 with SMTP id 5b1f17b1804b1-43ecf8cf6b2mr177755405e9.15.1744103000892;
-        Tue, 08 Apr 2025 02:03:20 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39d75ac6d66sm8004445f8f.14.2025.04.08.02.03.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 02:03:20 -0700 (PDT)
-Message-ID: <1e3d9e34-133d-451c-9ce6-6c974a781305@linaro.org>
-Date: Tue, 8 Apr 2025 11:03:19 +0200
+	s=arc-20240116; t=1744103595; c=relaxed/simple;
+	bh=i5r7oEjgWUA+b1HeF5u5uITYjMNQ7s1rA/YNBB2iQpY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kqCODrhvMs9zAUwJhC1cV/xDktfP2JV7f9IPWoM9JbJaujRfXMk4rndTes0y4TBhGR7vxw2L4l8AmhC5aQCEcJBZtzMs/hdzj4MtaXCbza99+GDbdukkeWM05cFatKE4KhVjrEUu3kaIXVMpH6CXbrKNNv/XoPYzUAOISilGh88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GrSGcBuZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5382GOxE019576;
+	Tue, 8 Apr 2025 09:13:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4q6CZVNRIYMvOjmxxY5bMBaX+Eq4LizsiRo2GNXuV3Q=; b=GrSGcBuZkGwpzYJs
+	qUafz4j+VCpJs/cvxqJmQ1BsNfpdSpQj/yuLzyzJak8445QgF6DG2D5XgJMArpZJ
+	ocT2Hz6m9ydghHNYH63gZvG1QD2B3oKzdmvqPHBKULeJdyfEBu3UzgZyMszPqMFL
+	LB9QpiZ39OsBd4f28wg4wqyBy3lwSUxlTY3JNRDG1bUp5MVMgcHmhiK2U1asraKd
+	pflMCI/keZ5ucyrvz9UIBU/DGrNF7ndMypp3+NafyEKgaQqcxIKjCaYHTNiyEv3j
+	N3UYmf3Hssyy/k+a5qfBXtSDw0otNebFcCQKFqICV1/W14RgjI5M2GvzdivPAl5z
+	82V6TQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twg3f61v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Apr 2025 09:13:08 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5389D7ZU014835
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 8 Apr 2025 09:13:07 GMT
+Received: from [10.204.100.69] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Apr 2025
+ 02:13:03 -0700
+Message-ID: <ba4c5c09-2303-35c9-5b68-45321aff09bf@quicinc.com>
+Date: Tue, 8 Apr 2025 14:43:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
- Timer
-To: Krzysztof Kozlowski <krzk@kernel.org>, wim@linux-watchdog.org
-Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
- linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
- thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20250407160318.936142-1-daniel.lezcano@linaro.org>
- <20250407160318.936142-2-daniel.lezcano@linaro.org>
- <094855d6-a99b-4ca5-bc8f-ab6faccfd332@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v6 2/4] media: venus: pm_helpers: use opp-table for the
+ frequency
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <094855d6-a99b-4ca5-bc8f-ab6faccfd332@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Bryan O'Donoghue <bod@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>,
+        Renjiang Han <quic_renjiang@quicinc.com>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
+ <20241219-add-venus-for-qcs615-v6-2-e9a74d3b003d@quicinc.com>
+ <fde279ad-27ed-4947-a408-23139bcd270a@oss.qualcomm.com>
+ <351a9654-ffa1-4727-b772-95d4ed113c81@quicinc.com>
+ <ac145c57-1db3-4747-88e2-02825f958d5a@oss.qualcomm.com>
+ <6f11921a-4ee8-4f40-9131-529f548f681a@kernel.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <6f11921a-4ee8-4f40-9131-529f548f681a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: LEMQU5laDtNjuqy3a2qTkGCbluFRdns9
+X-Proofpoint-ORIG-GUID: LEMQU5laDtNjuqy3a2qTkGCbluFRdns9
+X-Authority-Analysis: v=2.4 cv=I/9lRMgg c=1 sm=1 tr=0 ts=67f4e8a4 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=NXlXLHYT93F4r1eCyugA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-08_03,2025-04-07_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
+ clxscore=1015 malwarescore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504080065
 
-On 08/04/2025 10:21, Krzysztof Kozlowski wrote:
-> On 07/04/2025 18:03, Daniel Lezcano wrote:
->> +
->> +allOf:
->> +  - $ref: watchdog.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - const: nxp,s32g2-swt
->> +      - items:
->> +          - const: nxp,s32g3-swt
->> +          - const: nxp,s32g2-swt
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Counter clock
->> +      - description: Module clock
->> +      - description: Register clock
->> +    minItems: 1
+
+On 4/7/2025 9:09 PM, Bryan O'Donoghue wrote:
+> On 09/01/2025 13:05, Konrad Dybcio wrote:
+>> On 2.01.2025 6:38 AM, Renjiang Han wrote:
+>>>
+>>> On 12/23/2024 10:17 PM, Konrad Dybcio wrote:
+>>>> On 19.12.2024 6:41 AM, Renjiang Han wrote:
+>>>>> The frequency value in the opp-table in the device tree and the freq_tbl
+>>>>> in the driver are the same.
+>>>>>
+>>>>> Therefore, update pm_helpers.c to use the opp-table for frequency values
+>>>>> for the v4 core.
+>>>>> If getting data from the opp table fails, fall back to using the frequency
+>>>>> table.
+>>>>>
+>>>>> Signed-off-by: Renjiang Han<quic_renjiang@quicinc.com>
+>>>>> ---
+>>>>>    drivers/media/platform/qcom/venus/pm_helpers.c | 53
+>>>>> +++++++++++++++++++-------
+>>>>>    1 file changed, 39 insertions(+), 14 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c
+>>>>> b/drivers/media/platform/qcom/venus/pm_helpers.c
+>>>>> index
+>>>>> 33a5a659c0ada0ca97eebb5522c5f349f95c49c7..b61c0ad152878870b7223efa274e137d3636433b 100644
+>>>>> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
+>>>>> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
+>>>>> @@ -43,14 +43,20 @@ static int core_clks_enable(struct venus_core *core)
+>>>>>        const struct venus_resources *res = core->res;
+>>>>>        const struct freq_tbl *freq_tbl = core->res->freq_tbl;
+>>>>>        unsigned int freq_tbl_size = core->res->freq_tbl_size;
+>>>>> +    struct device *dev = core->dev;
+>>>>> +    struct dev_pm_opp *opp;
+>>>>>        unsigned long freq;
+>>>>>        unsigned int i;
+>>>>>        int ret;
+>>>>>    -    if (!freq_tbl)
+>>>>> -        return -EINVAL;
+>>>>> -
+>>>>> -    freq = freq_tbl[freq_tbl_size - 1].freq;
+>>>>> +    opp = dev_pm_opp_find_freq_ceil(dev, &freq);
+>>>>> +    if (IS_ERR(opp)) {
+>>>>> +        if (!freq_tbl)
+>>>>> +            return -EINVAL;
+>>>>> +        freq = freq_tbl[freq_tbl_size - 1].freq;
+>>>>> +    } else {
+>>>>> +        dev_pm_opp_put(opp);
+>>>>> +    }
+>>>> I'm not super convinced how this could have ever worked without
+>>>> scaling voltage levels, by the way. Perhaps this will squash some
+>>>> random bugs :|
+>>>>
+>>>> Konrad
+>>>   Thanks for your comment.
+>>>   The default value of freq is 0, and then dev_pm_opp_find_freq_ceil is
+>>>   used to match freq to the maximum value in opp-table that is close to
+>>>   0. The frequency values ​​in opp-table and freq_tbl are the same, and
+>>>   dev_pm_opp_find_freq_ceil is used to assign the minimum value in
+>>>   opp-table to freq. So the logic is the same as before. I'm not sure if
+>>>   I've answered your concern.
+>>
+>> We talked offline, but for the record: my concern here was about
+>> clk_set_rate() not scaling RPM/h voltage corners, which this patch
+>> fixes
+>>
+>> Konrad
 > 
-> Why clocks are flexible? The SoC does not change between boards. It
-> should be a fixed list - block receives that number of clocks or does
-> not... unless you meant that different instances of the block have
-> different clocks?
+> Konrad is this an RB from you, do you have any other concerns with this code ?
+> 
+> Dikshita, Vikash ?
+I have reviewed this change and it looks good to me. It was mainly the
+dependencies to videocc for qcs615 which was keeping the change on hold.
 
-The documentation describe the watchdog module with a clock for the 
-counter, a clock for the register and the last one for the module.
-
-IIUC, these clocks are enabled when the system is powered-on or exits 
-suspend.
-
-The driver does not have a control on them.
-
-The only usage of the clock is to retrieve the rate of the counter in 
-order to compute the maximum timeout. So only one is needed.
-
-However Ghennadi would like to describe the register and the module 
-clocks in case there is SoC variant where it is possible to have control 
-on them [1]
-
-The goal is to give the description the flexibility to describe just one 
-because the other ones are not needed for this s32g2/3 platform.
-
-
-[1] 
-https://lore.kernel.org/all/93d83df2-d3bc-e32d-70a6-158571504275@oss.nxp.com/
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+Vikash
+> 
+> I'll give it a test myself ASAP but any other comments or R/B would be helpful.
+> 
+> ---
+> bod
 
