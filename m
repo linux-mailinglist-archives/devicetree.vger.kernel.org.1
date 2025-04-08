@@ -1,196 +1,223 @@
-Return-Path: <devicetree+bounces-164225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAEB5A7F90C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:13:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5AD6A7F90F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:14:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D87188F8EA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:13:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6BE916F90D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB50E2641E9;
-	Tue,  8 Apr 2025 09:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F9A264A84;
+	Tue,  8 Apr 2025 09:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GrSGcBuZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mr6Ho6Oq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00FFD846C;
-	Tue,  8 Apr 2025 09:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DBD21ADC4;
+	Tue,  8 Apr 2025 09:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744103595; cv=none; b=vF+iOJcuvQO6YvQs61ns1l6V9qpCzEZEnXTmAiQC5O539nRZLkBhVnOK0nkoCDj3iGd2P4WX8Hu6gi5uz260sDWLN/Uo3mudWfH2MDi2A58LYWuplxm0/Z1hJCGkaoSAJ/JByjf+xS1i5baOCD51jmQidTecJExSPyf09KT13Lc=
+	t=1744103618; cv=none; b=ei6zsPOnc9rIWLtMHlidTMzbeSk8G7+EetbwgpPOcO48kHnXq/qCZ5OV35FK3SJn6bLIBcuT+K87KWaosUdMEJdAMbkAgcZUbSKlG3FbYyJDmjZtAxEETdbP2x3G+bCJxpZvZQYSXLAoYbsl7Zvm6CFQJGDUc8JayEbIZ51Jg0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744103595; c=relaxed/simple;
-	bh=i5r7oEjgWUA+b1HeF5u5uITYjMNQ7s1rA/YNBB2iQpY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kqCODrhvMs9zAUwJhC1cV/xDktfP2JV7f9IPWoM9JbJaujRfXMk4rndTes0y4TBhGR7vxw2L4l8AmhC5aQCEcJBZtzMs/hdzj4MtaXCbza99+GDbdukkeWM05cFatKE4KhVjrEUu3kaIXVMpH6CXbrKNNv/XoPYzUAOISilGh88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GrSGcBuZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5382GOxE019576;
-	Tue, 8 Apr 2025 09:13:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4q6CZVNRIYMvOjmxxY5bMBaX+Eq4LizsiRo2GNXuV3Q=; b=GrSGcBuZkGwpzYJs
-	qUafz4j+VCpJs/cvxqJmQ1BsNfpdSpQj/yuLzyzJak8445QgF6DG2D5XgJMArpZJ
-	ocT2Hz6m9ydghHNYH63gZvG1QD2B3oKzdmvqPHBKULeJdyfEBu3UzgZyMszPqMFL
-	LB9QpiZ39OsBd4f28wg4wqyBy3lwSUxlTY3JNRDG1bUp5MVMgcHmhiK2U1asraKd
-	pflMCI/keZ5ucyrvz9UIBU/DGrNF7ndMypp3+NafyEKgaQqcxIKjCaYHTNiyEv3j
-	N3UYmf3Hssyy/k+a5qfBXtSDw0otNebFcCQKFqICV1/W14RgjI5M2GvzdivPAl5z
-	82V6TQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twg3f61v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Apr 2025 09:13:08 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5389D7ZU014835
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 8 Apr 2025 09:13:07 GMT
-Received: from [10.204.100.69] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Apr 2025
- 02:13:03 -0700
-Message-ID: <ba4c5c09-2303-35c9-5b68-45321aff09bf@quicinc.com>
-Date: Tue, 8 Apr 2025 14:43:00 +0530
+	s=arc-20240116; t=1744103618; c=relaxed/simple;
+	bh=lX374fK7hl8i0okOxSeURBAL+h/slCG4NEZH1QURphg=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SQifCV0MZ9A53Sgy50ZarN6zh954JTO0Yb44U9HvHHXL9dG/tNNNmATkG3v4YgfWyG92WkT9nYE7YyQM+RDt49495oNEsZRsf+QyGM1hCZYbkok4STtl8MXQCQ/O2fiVHC1kTqjJ2tSPSRzrKOk24a05zSXTK9bg9myD1TLEhpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mr6Ho6Oq; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3913b539aabso3082577f8f.2;
+        Tue, 08 Apr 2025 02:13:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744103615; x=1744708415; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HU3jlfHL29/51vRr+ClhtWxfhwAXBGkQarZA/yxGO2g=;
+        b=mr6Ho6Oqs9HEtEHWngAfA6l8rUC5KVjd7alUG+aMC9r3CDjPV1esuFHbDnY6zSllvq
+         yVBwnNaV0LFwqWR8cKFGAXxlRm6CKowYV+DCKph5AFqD+m63pcMgjDOdYiN8PLKjCU08
+         UP9siElT+3BD6J+zv0LugXZT0YLBgm/gLsnFcej3WjVfXbV/Ih73YweVk7rqiFDBWKRN
+         FlvBa8y02gWa8MGQoUFf7JmgQXTbpgsANSL1OzFrruGcAaBlbqRca+XoGWoxH2BZJlUe
+         sFExaAjwijUcP6p2GqeT8rOVAxSTKO+zmP5Hegn5DdC9yQDw+Fr1p9Kn86/iYlapKJZd
+         cUkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744103615; x=1744708415;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HU3jlfHL29/51vRr+ClhtWxfhwAXBGkQarZA/yxGO2g=;
+        b=YbB4VwWiexxwoQybo4GWAIcg4VxEqjFKSG2TMOgP4iiiZlOjKbMLclDrsWljVhi7iO
+         3tL3z3v+tA4XQ4+JBkGtN1WaGI53frQmgTrfwhmHAaYVbHvadbFbE9vQgkRAJoBE9vd4
+         /n8x2M1ajF5fv6tdlTQKw8AeIrNNst8vMo2m93dGcHSsqZC5HwQyNpK8U0h9vm6ykS5p
+         2DWZ+iZKA02Jm6C2sqDbiazn0/DkqhQ1EkZyddDNkAzeR8Z6WMG/mvSb/+mS4xUpim4L
+         7RwleerV9lOTeD7NpB6TxyO0PHCd3ullCmh495xE1jBWW1ubfVkxKOGmveGe2ECy2AI4
+         /rnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUG75vxQ6Pw4BkNw/MGYeQOOn6yAemZLYE3hCBiJRG2ksrArG3u08GP+Kg5x4v7pfVl3gxYgM8fL59j@vger.kernel.org, AJvYcCXk43BLS65v/6AuuLxrb5Wuuj4VCjWDOj6MRmtkBEF7feAa3hCxndc1nfeGvU5Z2fkMk5+ch4Sc@vger.kernel.org, AJvYcCXyfBSz2QhhMS8IIqpzwSKoi9pbNHwQ7USp3UiNeaFudhd46jsZqCQAIsZ7V+mhKGEMKBjQbZsABLzGF7YU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyia38hePRBfzh1jchxKL3/4NZ4s46duKqNseyD0wxQLLELaEQL
+	thn8z5zV7XSilnBv3EBGm+ywLnBCcyaZBF7//xiNgB6/AQNzDYqK
+X-Gm-Gg: ASbGncsPAf2xGd9ZK6QgFJ7vESr1i+smBWpkxeZuOZS6BZwPxgD6OwEi8Gkm6xF2Vfk
+	g4/frkrZwio/wOFzBSp+QAXSJjR8JFAk8vVs6LTu0V4FGj09z68q3rrca99i7NLxJy1m6TC7P8d
+	ARns+ZFfxJfrNlxNF7neDqBjFSl9fKupMgftYyhxDYMc5IejxcX36AoyaX9J4HmJqqW2Whdm6Z5
+	ZNRo2jGwf4IspZKxW3BjQGw6i6sS9AcM5JNbT35oqcR/Zo5VSkkWUzxfCLbr2meG/3umsB3rg2S
+	X/ls/VxwmAncVIOeo9bTR8dgd3e3/Jt7BQgXg2Ty9hBtZ/QjJWAI1YtUnmStFhqmS5mbWFyINTq
+	9
+X-Google-Smtp-Source: AGHT+IFmpUD3WDEfYZdyJZMlUcmM3Uz/pG9KD9AKQWX9zm9kiZbZimr4FaqPmFNyWRNVcwv9d/OHeA==
+X-Received: by 2002:a5d:64ce:0:b0:39c:1257:c7a2 with SMTP id ffacd0b85a97d-39cba93d0aemr12569839f8f.58.1744103614388;
+        Tue, 08 Apr 2025 02:13:34 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c301b72d5sm14132111f8f.47.2025.04.08.02.13.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 02:13:33 -0700 (PDT)
+Message-ID: <67f4e8bd.df0a0220.369157.fb3d@mx.google.com>
+X-Google-Original-Message-ID: <Z_ToufQVD2WfPA5t@Ansuel-XPS.>
+Date: Tue, 8 Apr 2025 11:13:29 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v13 13/14] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+References: <20250315154407.26304-1-ansuelsmth@gmail.com>
+ <20250315154407.26304-14-ansuelsmth@gmail.com>
+ <20250318151540.4rmw6jj5hh2rp4b4@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v6 2/4] media: venus: pm_helpers: use opp-table for the
- frequency
-Content-Language: en-US
-To: Bryan O'Donoghue <bod@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Renjiang Han <quic_renjiang@quicinc.com>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
- <20241219-add-venus-for-qcs615-v6-2-e9a74d3b003d@quicinc.com>
- <fde279ad-27ed-4947-a408-23139bcd270a@oss.qualcomm.com>
- <351a9654-ffa1-4727-b772-95d4ed113c81@quicinc.com>
- <ac145c57-1db3-4747-88e2-02825f958d5a@oss.qualcomm.com>
- <6f11921a-4ee8-4f40-9131-529f548f681a@kernel.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <6f11921a-4ee8-4f40-9131-529f548f681a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LEMQU5laDtNjuqy3a2qTkGCbluFRdns9
-X-Proofpoint-ORIG-GUID: LEMQU5laDtNjuqy3a2qTkGCbluFRdns9
-X-Authority-Analysis: v=2.4 cv=I/9lRMgg c=1 sm=1 tr=0 ts=67f4e8a4 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=NXlXLHYT93F4r1eCyugA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-08_03,2025-04-07_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- phishscore=0 suspectscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
- clxscore=1015 malwarescore=0 adultscore=0 priorityscore=1501
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504080065
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318151540.4rmw6jj5hh2rp4b4@skbuf>
+
+On Tue, Mar 18, 2025 at 05:15:40PM +0200, Vladimir Oltean wrote:
+> On Sat, Mar 15, 2025 at 04:43:53PM +0100, Christian Marangi wrote:
+> > +/* Similar to MT7530 also trap link local frame and special frame to CPU */
+> > +static int an8855_trap_special_frames(struct an8855_priv *priv)
+> > +{
+> > +	int ret;
+> > +
+> > +	/* Trap BPDUs to the CPU port(s) and egress them
+> > +	 * VLAN-untagged.
+> > +	 */
+> > +	ret = regmap_update_bits(priv->regmap, AN8855_BPC,
+> > +				 AN8855_BPDU_BPDU_FR | AN8855_BPDU_EG_TAG |
+> > +				 AN8855_BPDU_PORT_FW,
+> > +				 AN8855_BPDU_BPDU_FR |
+> > +				 FIELD_PREP(AN8855_BPDU_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				 FIELD_PREP(AN8855_BPDU_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Trap 802.1X PAE frames to the CPU port(s) and egress them
+> > +	 * VLAN-untagged.
+> > +	 */
+> > +	ret = regmap_update_bits(priv->regmap, AN8855_PAC,
+> > +				 AN8855_PAE_BPDU_FR | AN8855_PAE_EG_TAG |
+> > +				 AN8855_PAE_PORT_FW,
+> > +				 AN8855_PAE_BPDU_FR |
+> > +				 FIELD_PREP(AN8855_PAE_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				 FIELD_PREP(AN8855_PAE_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Trap frames with :01 MAC DAs to the CPU port(s) and egress
+> > +	 * them VLAN-untagged.
+> > +	 */
+> > +	ret = regmap_update_bits(priv->regmap, AN8855_RGAC1,
+> > +				 AN8855_R01_BPDU_FR | AN8855_R01_EG_TAG |
+> > +				 AN8855_R01_PORT_FW,
+> > +				 AN8855_R01_BPDU_FR |
+> > +				 FIELD_PREP(AN8855_R01_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				 FIELD_PREP(AN8855_R01_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Trap frames with :02 MAC DAs to the CPU port(s) and egress
+> > +	 * them VLAN-untagged.
+> > +	 */
+> > +	ret = regmap_update_bits(priv->regmap, AN8855_RGAC1,
+> > +				 AN8855_R02_BPDU_FR | AN8855_R02_EG_TAG |
+> > +				 AN8855_R02_PORT_FW,
+> > +				 AN8855_R02_BPDU_FR |
+> > +				 FIELD_PREP(AN8855_R02_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				 FIELD_PREP(AN8855_R02_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Trap frames with :03 MAC DAs to the CPU port(s) and egress
+> > +	 * them VLAN-untagged.
+> > +	 */
+> > +	ret = regmap_update_bits(priv->regmap, AN8855_RGAC1,
+> > +				 AN8855_R03_BPDU_FR | AN8855_R03_EG_TAG |
+> > +				 AN8855_R03_PORT_FW,
+> > +				 AN8855_R03_BPDU_FR |
+> > +				 FIELD_PREP(AN8855_R03_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				 FIELD_PREP(AN8855_R03_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Trap frames with :0E MAC DAs to the CPU port(s) and egress
+> > +	 * them VLAN-untagged.
+> > +	 */
+> > +	return regmap_update_bits(priv->regmap, AN8855_RGAC1,
+> > +				  AN8855_R0E_BPDU_FR | AN8855_R0E_EG_TAG |
+> > +				  AN8855_R0E_PORT_FW,
+> > +				  AN8855_R0E_BPDU_FR |
+> > +				  FIELD_PREP(AN8855_R0E_EG_TAG, AN8855_VLAN_EG_UNTAGGED) |
+> > +				  FIELD_PREP(AN8855_R0E_PORT_FW, AN8855_BPDU_CPU_ONLY));
+> > +}
+> 
+> Is there a way in which you could group the registers a bit more?
+> The function occupies 2 screens :-/
+>
+
+I will use local variable and pack it.
+
+> There are 4 read-modify-write operations in succession to the RGAC1
+> register. Maybe you can converge them into a single regmap_update_bits()
+> call.
+> 
+> Also, for packets which reach the CPU via a trap, we shouldn't set
+> skb->offload_fwd_mark = 1. In other words, if the bridge layer wants to
+> forward them in software (including to other an8855 ports), let it do so.
+> The common example given in commit 515853ccecc6 ("bridge: allow
+> forwarding some link local frames") is 802.1X PAE (01-80-C2-00-00-03).
+> 
+> I notice mtk_tag_rcv() calls dsa_default_offload_fwd_mark() with no
+> pre-condition. Do you know whether there exists any bit in the RX tag
+> which signifies whether the packet was received because of a trap
+> (or if it was autonomously forwarded by the switch to the other bridge
+> ports as well)? The offload_fwd_mark bit should be set based on
+> something like that.
 
 
-On 4/7/2025 9:09 PM, Bryan O'Donoghue wrote:
-> On 09/01/2025 13:05, Konrad Dybcio wrote:
->> On 2.01.2025 6:38 AM, Renjiang Han wrote:
->>>
->>> On 12/23/2024 10:17 PM, Konrad Dybcio wrote:
->>>> On 19.12.2024 6:41 AM, Renjiang Han wrote:
->>>>> The frequency value in the opp-table in the device tree and the freq_tbl
->>>>> in the driver are the same.
->>>>>
->>>>> Therefore, update pm_helpers.c to use the opp-table for frequency values
->>>>> for the v4 core.
->>>>> If getting data from the opp table fails, fall back to using the frequency
->>>>> table.
->>>>>
->>>>> Signed-off-by: Renjiang Han<quic_renjiang@quicinc.com>
->>>>> ---
->>>>>    drivers/media/platform/qcom/venus/pm_helpers.c | 53
->>>>> +++++++++++++++++++-------
->>>>>    1 file changed, 39 insertions(+), 14 deletions(-)
->>>>>
->>>>> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c
->>>>> b/drivers/media/platform/qcom/venus/pm_helpers.c
->>>>> index
->>>>> 33a5a659c0ada0ca97eebb5522c5f349f95c49c7..b61c0ad152878870b7223efa274e137d3636433b 100644
->>>>> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
->>>>> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
->>>>> @@ -43,14 +43,20 @@ static int core_clks_enable(struct venus_core *core)
->>>>>        const struct venus_resources *res = core->res;
->>>>>        const struct freq_tbl *freq_tbl = core->res->freq_tbl;
->>>>>        unsigned int freq_tbl_size = core->res->freq_tbl_size;
->>>>> +    struct device *dev = core->dev;
->>>>> +    struct dev_pm_opp *opp;
->>>>>        unsigned long freq;
->>>>>        unsigned int i;
->>>>>        int ret;
->>>>>    -    if (!freq_tbl)
->>>>> -        return -EINVAL;
->>>>> -
->>>>> -    freq = freq_tbl[freq_tbl_size - 1].freq;
->>>>> +    opp = dev_pm_opp_find_freq_ceil(dev, &freq);
->>>>> +    if (IS_ERR(opp)) {
->>>>> +        if (!freq_tbl)
->>>>> +            return -EINVAL;
->>>>> +        freq = freq_tbl[freq_tbl_size - 1].freq;
->>>>> +    } else {
->>>>> +        dev_pm_opp_put(opp);
->>>>> +    }
->>>> I'm not super convinced how this could have ever worked without
->>>> scaling voltage levels, by the way. Perhaps this will squash some
->>>> random bugs :|
->>>>
->>>> Konrad
->>>   Thanks for your comment.
->>>   The default value of freq is 0, and then dev_pm_opp_find_freq_ceil is
->>>   used to match freq to the maximum value in opp-table that is close to
->>>   0. The frequency values ​​in opp-table and freq_tbl are the same, and
->>>   dev_pm_opp_find_freq_ceil is used to assign the minimum value in
->>>   opp-table to freq. So the logic is the same as before. I'm not sure if
->>>   I've answered your concern.
->>
->> We talked offline, but for the record: my concern here was about
->> clk_set_rate() not scaling RPM/h voltage corners, which this patch
->> fixes
->>
->> Konrad
-> 
-> Konrad is this an RB from you, do you have any other concerns with this code ?
-> 
-> Dikshita, Vikash ?
-I have reviewed this change and it looks good to me. It was mainly the
-dependencies to videocc for qcs615 which was keeping the change on hold.
+I did some simulation checking the full tag and also yesterday Airoha
+confirmed that those register doesn't affect the CPU tag.
 
-Regards,
-Vikash
-> 
-> I'll give it a test myself ASAP but any other comments or R/B would be helpful.
-> 
-> ---
-> bod
+There is an entry in the TAG that signal some kind of packet but it
+doesn't react. From what I can see it only comunicate when fdb or other
+really special thing.
+
+-- 
+	Ansuel
 
