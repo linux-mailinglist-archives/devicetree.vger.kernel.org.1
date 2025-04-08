@@ -1,88 +1,85 @@
-Return-Path: <devicetree+bounces-164229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B4EA7F953
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:23:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2FBA7F9A4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC10E18933E1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:23:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC1F3BF27C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872A1264F8A;
-	Tue,  8 Apr 2025 09:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7473D26561A;
+	Tue,  8 Apr 2025 09:31:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="G1t1zwKH"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="erkJfk6J";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="iGXz8xae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F39264A9E
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 09:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C634264FBA;
+	Tue,  8 Apr 2025 09:31:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744104202; cv=none; b=VuTpEDRqpAeHMWYRYw6Gtwmgeu5v9Tj0b3RBaglCJS+wS+Fmx+u8C77BndQgaBR1Vtvuv2vpjCaXe2y6MAOv0s5hZbH+DQ3gq1yuN5OtPP0HVyyfRsbVge+pylp6SU/B73YezEo0NhY7/9ymA9zN5U0oM81ODZmi3OQL2weHYXU=
+	t=1744104684; cv=none; b=V3swIJtbl69vHRPpyqk9vdbaKXthuoLBAj4IDO8qo+JsyV428cl7m8T4M4lJaS9s7u2ccEFbNOCZ1MTWa8dFtduao/jZHdQCRvvmTjKSdNYICEtfkOtymFk1BphqzBmqaFMG4A8hM4KqdzJoe9d2nXd7GsnHXEdUpkvuxDiYVkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744104202; c=relaxed/simple;
-	bh=bdnFDgVEI5AOqZfbKX9QQbECCPESHem01GmKSzkyHbE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XJo5gPfQsvJ2NPruOWTOniBHu0LXgR5Q+LSplrXqm/SZfo4LK37Sb6drgjFDpXa0AbTKUSvKOriVMAYc2Er5D9KWmHBytJlpSsj7iKPxq6AW0v2K6YXVEODrI+QjCncQ1s0KX/tHrg/wrmcIxdNPA/54n0R0ZmNxc8V/+uO5mY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=G1t1zwKH; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-227c7e57da2so44715145ad.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 02:23:20 -0700 (PDT)
+	s=arc-20240116; t=1744104684; c=relaxed/simple;
+	bh=wC8duU7ueJdkTcf2vS0xCtC5Q42ZMxKgl7gVcUJwfF0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nwy6gGRhrcy3ZDiGaLqoB2XdeWXQneZBSjyF4tNNHXz1UgwNiD2X80fy3ToqfQwJ9qQZ8jLdn9AmQVDYpPHlIIZrVJUjeKvcO78Yd2ldnNZxWbPrwYIG9eHnZi0J+Ug8/7fpvJb4XaVRWpFlR/VcsoRKZjFnbd0LjZiKsfqnz6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=erkJfk6J; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=iGXz8xae reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1744104200; x=1744709000; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DNUnjAwr3K7/bh0YQuGEFB/xa4tI2s8atXnUMP1mg7g=;
-        b=G1t1zwKHcBaPUVCJs4l/312aX70OROcWJzXZ1oIy7/S0peYjPesBrBeVgwDWro/epG
-         5dsKXfsxIJvfDK5+85594bIu9dcSq7ViuWBVmvt7sKfTg9hs0H4AzMrFx00bY5ZdA174
-         cFxc3hmyFCFXiUhaRzmmcrb0Uudq43XlEd4Wo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744104200; x=1744709000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DNUnjAwr3K7/bh0YQuGEFB/xa4tI2s8atXnUMP1mg7g=;
-        b=QC1574vqHUdCaLx0jxXKltMUjsIo6QVPe1Q8qXHDuwQpmmtFBVa0tPkk5gvJnqdSrJ
-         f4bbzWypK3+S8qmGc6FwuehkHGtvKn2TfOmPNFBG6mF4Mtj8HtNieoeIlMm1Ku41ZzUf
-         653PZz7PhQLkRvXwMp9VSsBhpvlaFLg2XKsXjt9s62xZXTey9LQp/80BeHCTSPNAEyvp
-         nFcVRSLLnbAAeGN1R6d8VD3ELhGkF+R1Mn1yPwZc7MdsLSzD2+y3CLr0lnJz3sdhcGLo
-         WY/NEfgIacxoLVI/XyTRf2g5dOD3tOcyJokmxeRtxo9k5HjW7/AE6xnLry8utaBFvpHl
-         rUtA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBZVzLHX6Mro/Ex1OBtp1F3/u97SOheEZSinqg/4lPpwhEP05gYMKf8VGJfoYdOG+WxmXxHh5HSQYb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/UbXL61KPxBClYPVooYrE+RtprsUVFSfxq3gvpNeWKF5F4rkY
-	phsvF7tUL9WYavuUHsHOQgMUIicXv3PLToZ6lTqzIfScE0Xpx6H++o0FPRmAdKNRbvo0oKAz3/k
-	=
-X-Gm-Gg: ASbGncs9TMSCIWzxFn/kVaOI68ZIhTxz4PBoKjVUmGM09zIP3uh4c+4J2Gg8s1aUaGQ
-	/63BysmOqGg83aHsR72PAoubUSJMA4/cyBpY8TLNdkYWWuS80q6kzYZSu7jfVDtxvHSokmo3VJ9
-	0OS5wWUlm6PiCQWW5+aS2hAxH/TOScFkDM9NV/xvNB4zAWVOoxlnmi1P/1q9MMmun+wumHdqhYh
-	8xOPiP0Keu2/hclmDy5tUHa44BTob+ykGqIAmzB85io8Av2tk97ZpaqTWVLyE7+ntkg39k/szaU
-	YlzwqlvTnu3qKeTpNB75OHg1e2CxnlVSlC3StlyfqHjeLhogcYIWJRqvBjt1iQo=
-X-Google-Smtp-Source: AGHT+IGPhkSRb5R3PVNGCzYv1a6SJZoNU3t0aIi0QTJm3JWsa/HB1uZ+jzdpdKOIXFpq6puPuDXpRQ==
-X-Received: by 2002:a17:902:da85:b0:224:f12:3735 with SMTP id d9443c01a7336-22a8a06b38dmr169101945ad.31.1744104200152;
-        Tue, 08 Apr 2025 02:23:20 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:79d9:c941:96f6:ac1c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297865e477sm95651655ad.122.2025.04.08.02.23.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 02:23:19 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1744104680; x=1775640680;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h0s4IqDHUQpz6TfVrnkRbMHalEDSFjPrTCmzN+0kbD4=;
+  b=erkJfk6JgoXpb/nvKe+D77MXihotwK9sihTz85veVDvDQcOo6en41gGQ
+   5mZOvIk51eAa3svOc2mgKjFgt1PdIj8qUgEmwwPLUcJtGoKOXNOYSs3ud
+   0xS4Rd5js+HypetJJqwTlTiNqhWjjaL24vM/ian3e7DJ1X8vZG84CPBy/
+   ijM77trLEWycljH9SQfCVEqxr18RPkbW+4k7IKlW4WSa6jN0+1IM6v4j4
+   s6LXbeSokXmY51uPz5+txakLqIjSNuHMTdukpii6WA3ZiNs/485rWwEWg
+   kNFzlzZop7gMHAageMJ9+r/eUkAP3z8MqIbld/6MGvms4fZXh5WKkQviz
+   Q==;
+X-CSE-ConnectionGUID: Ymv1WK9lSly4UKeBKvybJA==
+X-CSE-MsgGUID: HWgAOVYaRLCxkl4aLQqe3g==
+X-IronPort-AV: E=Sophos;i="6.15,197,1739833200"; 
+   d="scan'208";a="43397353"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 08 Apr 2025 11:31:16 +0200
+X-CheckPoint: {67F4ECE4-5A-F35B2447-E1635CDE}
+X-MAIL-CPID: 96E221BC38795281C901158DDE387570_1
+X-Control-Analysis: str=0001.0A006375.67F4ECDF.0015,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A08A169020;
+	Tue,  8 Apr 2025 11:31:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1744104671;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=h0s4IqDHUQpz6TfVrnkRbMHalEDSFjPrTCmzN+0kbD4=;
+	b=iGXz8xae2/wlseztSWhSU6whTtTSf8ioEbT7mfr7TRKJyPMmeecP6L8AC0bS9TQnBn9DZB
+	2vlbySxAwLnEmM13PhtILfn6Pvvb01fQiJJFuweYoYucwuTbMzaHMxdGyASdc4QA2xAo2q
+	NkYnjf+GbVPFoU6dgsCalSelPncnE4JW+HxComIWC9+kS753cVGHNLzfy+IQrwcgixtay1
+	1bIT22tmQikU8uIacV/81aI0DEz67bxk/71lHz/p7/4BVSGdSbHx1EeP1JZ3TSSWyhLX3R
+	lZv9y0Emz6euI9WWVygnzUfmYsbn3WmlAYy+3VryBX9ivOiffAhdcsuYG4YeQg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	"Chengci . Xu" <chengci.xu@mediatek.com>,
-	Yong Wu <yong.wu@mediatek.com>,
-	Robin Murphy <robin.murphy@arm.com>
-Subject: [PATCH] arm64: dts: mediatek: mt8188: Fix IOMMU device for rdma0
-Date: Tue,  8 Apr 2025 17:23:02 +0800
-Message-ID: <20250408092303.3563231-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.49.0.504.g3bcea36a83-goog
+	imx@lists.linux.dev
+Subject: [PATCH v2 0/7] TQMLS102xA: New display overlays and small fixes
+Date: Tue,  8 Apr 2025 11:30:47 +0200
+Message-ID: <20250408093059.551700-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,44 +87,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Based on the comments in the MT8188 IOMMU binding header, the rdma0
-device specifies the wrong IOMMU device for the IOMMU port it is
-tied to:
+Hi,
 
-    This SoC have two MM IOMMU HWs, this is the connected information:
-    iommu-vdo: larb0/2/5/9/10/11A/11C/13/16B/17B/19/21
-    iommu-vpp: larb1/3/4/6/7/11B/12/14/15/16A/17A/23/27
+this series adds several display overlays for HDMI, LVDS and RGB displays.
+Additionally it fixes the license header and updates the sound card model
+name similar to i.MX based platforms by TQ.
 
-rdma0's endpoint is M4U_PORT_L1_DISP_RDMA0 (on larb1), which should use
-iommu-vpp, but it is currently tied to iommu-vdo.
+Changes in v2:
+* Collected Frank's R-b
+* Improved commit message on patch 4
+* CC'ed imx@lists.linux.dev as well
 
-Somehow this went undetected until recently in Linux v6.15-rc1 with some
-IOMMU subsystem framework changes that caused the IOMMU to no longer
-work. The IOMMU would fail to probe if any devices associated with it
-could not be successfully attached. Prior to these changes, only the
-end device would be left without an IOMMU attached.
+Best regards,
+Alexander
 
-Fixes: 7075b21d1a8e ("arm64: dts: mediatek: mt8188: Add display nodes for vdosys0")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8188.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Alexander Stein (7):
+  ARM: dts: ls1021a-tqmals1021a: Fix license
+  ARM: dts: ls1021a-tqmals1021a: Add vcc-supply for spi-nor
+  ARM: dts: ls1021a-tqmals1021a: Add HDMI overlay
+  ARM: dts: ls1021a-tqmals1021a: Add LVDS overlay for Tianma TM070JVGH33
+  ARM: dts: ls1021a-tqmals1021a: Add overlay for CDTech FC21 RGB display
+  ARM: dts: ls1021a-tqmals1021a: Add overlay for CDTech DC44 RGB display
+  ARM: dts: ls1021a-tqmals1021a: change sound card model name
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-index 69a8423d3858..29d35ca94597 100644
---- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-@@ -2579,7 +2579,7 @@ rdma0: rdma@1c002000 {
- 			reg = <0 0x1c002000 0 0x1000>;
- 			clocks = <&vdosys0 CLK_VDO0_DISP_RDMA0>;
- 			interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
--			iommus = <&vdo_iommu M4U_PORT_L1_DISP_RDMA0>;
-+			iommus = <&vpp_iommu M4U_PORT_L1_DISP_RDMA0>;
- 			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
- 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x2000 0x1000>;
- 
+ arch/arm/boot/dts/nxp/ls/Makefile             |  9 +++
+ .../ls/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso | 32 +++++++++++
+ ...tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso | 47 ++++++++++++++++
+ ...-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso | 55 ++++++++++++++++++
+ ...-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso | 56 +++++++++++++++++++
+ .../nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts   |  5 +-
+ .../boot/dts/nxp/ls/ls1021a-tqmls1021a.dtsi   |  3 +-
+ 7 files changed, 204 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-hdmi.dtso
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso
+ create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
+
 -- 
-2.49.0.504.g3bcea36a83-goog
+2.43.0
 
 
