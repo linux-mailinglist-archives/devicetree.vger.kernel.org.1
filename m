@@ -1,202 +1,107 @@
-Return-Path: <devicetree+bounces-164561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C18FDA81769
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 23:09:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE07A8179A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 23:29:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E0E33A99CD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:08:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7CBD4C557B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743D225484B;
-	Tue,  8 Apr 2025 21:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464A3254B17;
+	Tue,  8 Apr 2025 21:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IlTUpTVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ky3+e52e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C3D253F23;
-	Tue,  8 Apr 2025 21:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15DB622D4FF;
+	Tue,  8 Apr 2025 21:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744146502; cv=none; b=dM2FbZ2bil6E01Thcvj9tCfEyNUREzFcUAdPP4nbdehynL9iuLBuqrcUHvZZU8iFwtOsgGHb8r6DOoPUSDIVyCTHUPsdZDBk1ZhFufz2ki/xUnCcdxdmmDwU1NRSL97k36Qp0oGCd+2KMguowrnpiwBG3CXIXZdnKd0bVjeQyAw=
+	t=1744147752; cv=none; b=l6OqymsybFA/6YAL54DWIDGMiXIApFCO6+69EgBHAKUP5Q2WKwrmS0DDlKFWKNPD+ytIQW77t7iXnJwAXpaVMBPu8MySDAo9JcoUNQChPxPyeL7upCfoUHDkx2HvrVXmwDwV6PD0awdHZiVXWSEP9NoDVOvFKt5monukYao1bm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744146502; c=relaxed/simple;
-	bh=btv7qpy1infRfUdBialPoFlIqUVev+DgGGoAYqlmeoA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ndMzdyBocGL0xBJnQ4l8jurzIEzCutk+pjbETy61LzCCQ/H8uv7ros1GJoiWvZWydih4yQ+mupg8JrGVMEanPKIC9CxFGUyrPS4hgmC//isjOupHp9hU/4roDo6+hVvOT7jFJEfQrIBohGcQrfB6GjdM12zLiIbUlbOT8zfDki8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IlTUpTVu; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744146498;
-	bh=btv7qpy1infRfUdBialPoFlIqUVev+DgGGoAYqlmeoA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=IlTUpTVuDoSHh8D2w8BBHEwqNEthjw8u8veSmEE5tDglQdaxC8deyyDC84l6LTV5K
-	 MIyLlFJn8iMsLrDc4SbEPwO0wdetGq10/OCMXH2RdISAEZL0TnNihDvTHFpK9o92Nk
-	 5U9OYg6mE5ROd6aSczX1fx0NePLlG0Ui5jSmTv2r1W7PnL0YzExT2ACE0SnCmwaZ8X
-	 wG57b4tguLmc0piw0nAqPUMlMMG4yrCpWLnRdygjnMCdjfvAeRL6tjJr//aE25X/Sg
-	 0y4lqvrzteQGXlxXgNZqJoe6fbmZ116euundZtaq50/KHorTFNLl+ZCiu4+Q9afkJS
-	 GQDq7NOGwGH8Q==
-Received: from [IPv6:2606:6d00:11:e976::5ac] (unknown [IPv6:2606:6d00:11:e976::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A01F517E0EB8;
-	Tue,  8 Apr 2025 23:08:14 +0200 (CEST)
-Message-ID: <fd471fe44a57e1b0c74505f2a7122b62241809d5.camel@collabora.com>
-Subject: Re: [PATCH v4 1/6] media: v4l2: Add NV15 and NV20 pixel formats
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Diederik de Haas <didi.debian@cknow.org>, Detlev Casanova
-	 <detlev.casanova@collabora.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner	
- <heiko@sntech.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Hans
- Verkuil <hverkuil@xs4all.nl>, Andrzej Pietrasiewicz
- <andrzej.p@collabora.com>, Jonas Karlman	 <jonas@kwiboo.se>, Sebastian
- Reichel <sebastian.reichel@collabora.com>,  Niklas Cassel
- <cassel@kernel.org>, Alexey Charkov <alchark@gmail.com>, Dragan Simic
- <dsimic@manjaro.org>,  Jianfeng Liu <liujianfeng1994@gmail.com>, Jacopo
- Mondi <jacopo.mondi@ideasonboard.com>, Sakari Ailus	
- <sakari.ailus@linux.intel.com>, Kieran Bingham
- <kieran.bingham@ideasonboard.com>,  Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Umang Jain
- <umang.jain@ideasonboard.com>, Naushir Patuck	 <naush@raspberrypi.com>,
- Jean-Michel Hautbois	 <jeanmichel.hautbois@ideasonboard.com>, Dmitry
- Perchanov	 <dmitry.perchanov@intel.com>, Tomi Valkeinen
- <tomi.valkeinen@ideasonboard.com>, 	devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-staging@lists.linux.dev,
- kernel@collabora.com, 	linux-kernel@vger.kernel.org
-Date: Tue, 08 Apr 2025 17:08:13 -0400
-In-Reply-To: <D8SA0W2ZEAQ3.3BO4NMONFJCRC@cknow.org>
-References: <20250325213303.826925-1-detlev.casanova@collabora.com>
-	 <20250325213303.826925-2-detlev.casanova@collabora.com>
-	 <D8SA0W2ZEAQ3.3BO4NMONFJCRC@cknow.org>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.0 (3.56.0-1.fc42) 
+	s=arc-20240116; t=1744147752; c=relaxed/simple;
+	bh=xMVLzNRDQS5jU7k6dRei5Ha252MS5+pr4YTv/gJK1ic=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=mr9gE5yb21hsLSUHd+kUUi0lSyc65eNdJGHuDM9WauThhSBQ9hb0r9iIuGSJPUwDoyACE5vd/a/DvbWSeUCgna9IYI6EQHgWUh6MEY2kYU+/HkEYL4t7OKLb9Y5z0Kty3B6oZ8o55FF00IRkwUVQI6SeDgwuFiAmohpScNKTa2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ky3+e52e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F0FBC4CEE5;
+	Tue,  8 Apr 2025 21:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744147750;
+	bh=xMVLzNRDQS5jU7k6dRei5Ha252MS5+pr4YTv/gJK1ic=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ky3+e52eN01VZrS7y4UubhVQOvj7dZJEL+IolLCUIPVj4pLLvfWqkNdKhFWICW/Nq
+	 j3a3xcT9sbpIsgNaJUSG+HitK7uyD/q2092eU4LwzbvLGvdbSJ5n5KwiAJo7afoFnm
+	 jLrO6SFtpyD6eXCiC8S+kzeTCvtij73xdDHrhxnficXvziSu3prp3T/FAeWXApMsdW
+	 6B4DipVWUrgEWAPUxgLa59C3DTo3VsL34icej09linsY4A7esLwEry3EvG2pv4Mqoi
+	 g9njBA3XRdJWZ+Yxc7hcfGCxDczbmo9xZ7KkhVVZyb9CEGITFdoEVxVepGsAnpnXs3
+	 TdPNoW6OvVEAQ==
+Date: Tue, 08 Apr 2025 16:29:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-media@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ devicetree@vger.kernel.org, Jonathan Hunter <jonathanh@nvidia.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Aaron Kling <webgeek1234@gmail.com>
+In-Reply-To: <20250408-tegra-cec-v2-1-2f004fdf84e8@gmail.com>
+References: <20250408-tegra-cec-v2-0-2f004fdf84e8@gmail.com>
+ <20250408-tegra-cec-v2-1-2f004fdf84e8@gmail.com>
+Message-Id: <174414774921.2842816.8049997021161543075.robh@kernel.org>
+Subject: Re: [PATCH v2 1/4] media: dt-bindings: Document Tegra186 and
+ Tegra194 cec
 
-Le samedi 29 mars 2025 à 00:09 +0100, Diederik de Haas a écrit :
-> Hi Detlev,
-> 
-> On Tue Mar 25, 2025 at 10:22 PM CET, Detlev Casanova wrote:
-> > From: Jonas Karlman <jonas@kwiboo.se>
-> > 
-> > Add NV15 and NV20 pixel formats used by the Rockchip Video Decoder for
-> > 10-bit buffers.
-> > 
-> > NV15 and NV20 is 10-bit 4:2:0/4:2:2 semi-planar YUV formats similar to
-> > NV12 and NV16, using 10-bit components with no padding between each
-> > component. Instead, a group of 4 luminance/chrominance samples are
-> > stored over 5 bytes in little endian order:
-> > 
-> > YYYY = UVUV = 4 * 10 bits = 40 bits = 5 bytes
-> > 
-> > The '15' and '20' suffix refers to the optimum effective bits per pixel
-> > which is achieved when the total number of luminance samples is a
-> > multiple of 8 for NV15 and 4 for NV20.
-> > 
-> > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> > Tested-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > Tested-by: Christopher Obbard <chris.obbard@collabora.com>
-> > ---
-> >  .../media/v4l/pixfmt-yuv-planar.rst           | 128 ++++++++++++++++++
-> >  drivers/media/v4l2-core/v4l2-common.c         |   2 +
-> >  drivers/media/v4l2-core/v4l2-ioctl.c          |   2 +
-> >  include/uapi/linux/videodev2.h                |   2 +
-> >  4 files changed, 134 insertions(+)
-> > 
-> > diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > index b788f69338554..22cad8c9726bf 100644
-> > --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> > @@ -79,6 +79,13 @@ All components are stored with the same number of bits per component.
-> >        - Cr, Cb
-> >        - Yes
-> >        - Linear
-> > +    * - V4L2_PIX_FMT_NV15
-> > +      - 'NV15'
-> > +      - 10
-> > +      - 4:2:0
-> > +      - Cb, Cr
-> > +      - Yes
-> > +      - Linear
-> 
-> In your cover letter you mentioned:
-> Imported improvements from [1]
-> [1]: https://lore.kernel.org/linux-media/20250225-rkvdec_h264_high10_and_422_support-v7-2-7992a68a4910@collabora.com/
-> 
-> The changelog of "media: rkvdec: Add H.264 High 10 and 4:2:2 profile
-> support" v7 had this:
-> - Move V4L2_PIX_FMT_NV15/V4L2_PIX_FMT_NV20 documentation as suggested
-> 
-> Following a comment on v6 of that series.
-> 
-> But it seems these blocks are now placed at the location as it was in
-> the v6 series, thus NOT importing its improvements?
 
-The other series have been partially accepted into media-commiters next
-branch, including this patch. Meaning you can simply remove that patch
-in your next submission.
+On Tue, 08 Apr 2025 15:29:58 -0500, Aaron Kling wrote:
+> These are already used in device trees, so describe them here. As the
+> driver only declares up through Tegra210, these must use a fallback
+> compatible of tegra210-cec.
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  .../bindings/media/cec/nvidia,tegra114-cec.yaml           | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
+> 
 
-regards,
-Nicolas
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> 
-> >      * - V4L2_PIX_FMT_NV12M
-> >        - 'NM12'
-> >        - 8
-> > @@ -172,6 +179,13 @@ All components are stored with the same number of bits per component.
-> >        - Cr, Cb
-> >        - Yes
-> >        - Linear
-> > +    * - V4L2_PIX_FMT_NV20
-> > +      - 'NV20'
-> > +      - 10
-> > +      - 4:2:2
-> > +      - Cb, Cr
-> > +      - Yes
-> > +      - Linear
-> >      * - V4L2_PIX_FMT_NV16M
-> >        - 'NM16'
-> >        - 8
-> 
-> The same thing seemed to have happened here?
-> 
-> Cheers,
->   Diederik
-> 
-> > @@ -302,6 +316,57 @@ of the luma plane.
-> >        - Cr\ :sub:`11`
-> >  
-> >  
-> > +.. _V4L2-PIX-FMT-NV15:
-> > +
-> > +NV15
-> > +----
-> > +
-> > +Semi-planar 10-bit YUV 4:2:0 format similar to NV12, using 10-bit components
-> > +with no padding between each component. A group of 4 components are stored over
-> > +5 bytes in little endian order.
-> > +
-> > +.. flat-table:: Sample 4x4 NV15 Image (1 byte per cell)
-> > +    :header-rows:  0
-> > +    :stub-columns: 0
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+./Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml:25:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
--- 
-Nicolas Dufresne
-Principal Engineer at Collabora
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250408-tegra-cec-v2-1-2f004fdf84e8@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
