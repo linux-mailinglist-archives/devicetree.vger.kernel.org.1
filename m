@@ -1,122 +1,88 @@
-Return-Path: <devicetree+bounces-164096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310E3A7F276
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 03:50:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F395FA7F308
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0138F1894E53
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 01:50:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FFFF1893356
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 03:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C561F949;
-	Tue,  8 Apr 2025 01:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F002E253B47;
+	Tue,  8 Apr 2025 03:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M0iJ76x8"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="IJ/S2HHv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973177.qiye.163.com (mail-m1973177.qiye.163.com [220.197.31.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D77801;
-	Tue,  8 Apr 2025 01:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68E44A1E
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 03:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744077007; cv=none; b=kRuSCjWjTgqNhSTwLp6kTVP4zTDhkIow3+8DDXK6S/dub5vxmhxyjTTJDWk/mKfghGYIkoh93ofze9PJ+PXUrQ9gHeZFONH/9i9rmBj5r6Lrs3WqDiOQ3UyQ/kGjBPrfNeTMx4OYAihFg9ovzGwD0p7BWMgvYqGy/6pNyB7A8Bc=
+	t=1744081611; cv=none; b=IryDXWuJFUeWccKepAYVHvnAbosHpNk6iih96htshQZQyRp8ImGaXLb3KrZUpDNypSG8vebEnRD+l1xLD1yu2DBE9W9lUjFqi519Ri5a1dvEHM8k4CBABSbY3/ZQ6ik3wfkCgiBX92JnDn5pT7dpq8WWCAPpVW1N9lULw7U9jyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744077007; c=relaxed/simple;
-	bh=prcFP3cBCSl+6AOIebN1d9RvItjmT67etGz0szTiOs8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qzL0tOegosKUI5ai40LfBQ4YwICYnib2ZoHZ1PuLST5dtlVqmX37/jOH5o7iN2G+TgGOG/XUVrm9oPvg453d8W9AEMuQtbOwIzyZn773KqLrhfqaHtVb3Gg9ZM2LTfcyOAMMIdPuLcms1Z7qFFJx7suoWQJVaupNBLB+auD+S/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M0iJ76x8; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6e900a7ce55so75680726d6.3;
-        Mon, 07 Apr 2025 18:50:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744077005; x=1744681805; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wA0C35qf2r5ulHhjFJvznSvn1eaLA3vowI+Z+27d7UI=;
-        b=M0iJ76x83Uc9cD94QuV9f2WOzH+AToJOQJ+hEpZtTAmuclj4JDlO28NzrAf2/GLoUr
-         aXIpjxU+Vp6DFZYDsLToj9mc1tqdSUPlb0nCY8Q5EVWoHTfYMuN1VyYTC4186uKr91gD
-         rkJ3ohkZApz8nwj7hjqbLN5h8oIsEBbFe9mwDL38pV3OUdKSSwbBTpPSVhCprEsv2jtj
-         8JTZsNgYz6GZwMJX7MDQ/agcT7cku/n9w3c2pyj1DA3h9C2a8RUjZx9m7OiUBMLQGS8Q
-         S3s0Nq0KtLFCWpXSayHRWdd/DBkDZMTB/BtmqGp6j9WE6Zeda6ahd1tjJG4iDrk83XfT
-         nFvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744077005; x=1744681805;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wA0C35qf2r5ulHhjFJvznSvn1eaLA3vowI+Z+27d7UI=;
-        b=vLc44uabvYUCzzJ1VyvUBATH/N5DD28tUUjI0pbbHUFvfNpFh8Pnj3PfN/wofzNlHv
-         BOfr02zfIDf5rqhioddpUC1V8sNHF170C1YFEyKLIhgva4wHGx/Mk1O8b19afJRTLtAM
-         jPo72f5uHJMxpEGWvZpTrtkDwDPuq6yQf8mjBsEsINdPMCQhSV+z5bf9rB24MWiDdSm9
-         ixB14c++k3Qdcgctq4iOQx3fZhUwCY72F/Z+rj1OdnVSamZkvWoQiVP3g8NKBUvG6CNj
-         w9XrbyT5XrYy/pG7TJMwunI6a4LVX2uFxS3/nqv/7L1jMp2LvE7kGDIPaDn4uzvWOQhu
-         b7pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXDjR2R4d4Jh6wgcx+aOEtS5Dt90w1mSBl4saAGpIF4UIw8uOG4GbdTNazgQZ/yMVkVTkSn4GholBK+wqAi@vger.kernel.org, AJvYcCXEM/8H3eQo7j+lbqqC0iDGCxHEwAG/Bd9DNonH3WHhMhM3BRORTzjArRLlNfo+cNp86fW1Hsz6sxA5@vger.kernel.org, AJvYcCXgEy5z9NdcTkso+nF2nd2lfYiGJIb1RjPG0p+H8rhbDU/kihJbRMfsFidbf3+VcaZQ4r9yPo8mviFG@vger.kernel.org, AJvYcCXy5BGNrzLCTmrD9E/DpCFHpIKa7z8uv1gnMje7GM/D9SJ/3KqLkq5wazwLbvAcxc4hgjbN1emMEhW0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyza2U+qF8kOxy0/Rqv4YBs22bTqrL69cx399f9nyiLf1U0HiVB
-	GKhkrA0iUawdvNl+nvPcSApDh1IdEpkk0/UHYWZgfENGOqJbfb/G
-X-Gm-Gg: ASbGncv7dcy6xym5JU/HM0o5UjIyUItmL1ns2C25i2EOB+rfNgUcmrp7A+7UGEHO5m+
-	1bBgGuUBcfxU2yZKlu9bQCFncdjq1rZteVB/yNF3in5xh0Os2ksQ9V2UoZPbcOkTuuAGsfMCn8v
-	io81o3M5hyGATPuaHbuWosBigJ1V6qQCfZAJhHI56+y4JzAdtUIS+iUnMlHwlaMRsZ8P2BbMkS2
-	ztXvy0vRzXciNmH9tUOk3A3J29MpMd14ZIEEv6pnDq6C2RaV/WnjwUT1hVLQV8D1xCBdk6vLFkm
-	N44moXWPYQdvp8dgNRbGfJIhHxD9Bgs=
-X-Google-Smtp-Source: AGHT+IGKXt940d2WnT5dZ67Npfj4M6ycvJnxt5e+7ElGZNZ74lDTPp7xT9blL1C5HT5rNhqMbcc+BA==
-X-Received: by 2002:a05:6214:21a6:b0:6ea:d388:dc09 with SMTP id 6a1803df08f44-6f00de70533mr215421436d6.8.1744077005257;
-        Mon, 07 Apr 2025 18:50:05 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6ef0efc060asm66725596d6.1.2025.04.07.18.50.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 18:50:04 -0700 (PDT)
-Date: Tue, 8 Apr 2025 09:49:28 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, ghost <2990955050@qq.com>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Jisheng Zhang <jszhang@kernel.org>, 
-	Chao Wei <chao.wei@sophgo.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 9/9] riscv: dts: sophgo: Add initial device tree of
- Sophgo SRD3-10
-Message-ID: <4fhs7v3m7qdyfpqxllm5mbxqnr5i2sa4jkqnwkwnuagky7ql3l@q6o6ohvpgu4h>
-References: <20250407010616.749833-1-inochiama@gmail.com>
- <20250407010616.749833-10-inochiama@gmail.com>
- <MA0P287MB22628DD45C86FAD169AEAB15FEB52@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1744081611; c=relaxed/simple;
+	bh=oEXxAuWB2Y19YiE4fHvh1FqDyhDZHz1iEUI/R16/L5k=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=q/RlLMzUjLC1Tc/K1lIRI/9aUbPsCH2f5KjPXkcvB4BVGxml+lNvzhzILsIeGeNDR8UlVdNvo8Mi5Gp40GqB4SRU54SDFQc+icASgmwt0OPSUyyDv/kbc5o38bxriaTzcGPdai2dk1/H5mF1gqrSk+We/ehWzCP9cQ0b85ubx9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=IJ/S2HHv; arc=none smtp.client-ip=220.197.31.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 10ffa4d61;
+	Tue, 8 Apr 2025 10:31:20 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH] arm64: dts: rockchip: Rename vcc3v3_pcie0 to vcc3v3_pcie1 for rk3576-evb1-v10
+Date: Tue,  8 Apr 2025 10:31:15 +0800
+Message-Id: <1744079475-211962-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxpLGVYfT0oZTB9NTkhKHx1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a96133ce71d09cckunm10ffa4d61
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nhg6GBw5HzIDTEMBQyxMOU0o
+	PTIKCQhVSlVKTE9PS0xCT0NKTU9DVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpJTU83Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=IJ/S2HHvGZKP1BjYxVvgn5nMII4ps47pjF4LaS5xD7nB+m1wgKfTiaKRLx/+yPW70I9pdCMtUnC5Y4+48+vEKNUY8jxd0NOs8mH9t3pX0PP+sVMogha7IlJz0mu+jPPoM8pYnzoHtLPxOChoI1/zuZQ7hE65LhRUneUibaBlnW0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=gCtSicSZgeSysBZm1uaYwpPZagFKxkwDTECWnoliX5Y=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MA0P287MB22628DD45C86FAD169AEAB15FEB52@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 
-On Tue, Apr 08, 2025 at 09:40:53AM +0800, Chen Wang wrote:
-> Hi,
-> 
-> I see reset ID in sg2044-reset.h is continous, can we move this file to
-> include/dt-bindings/reset ?
-> 
-> Chen
-> 
+It's for pcie1, correct the name.
 
-I do not prefer to move, although the id is continous, it describes the
-hardware abi not the software one.
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-Regards,
-Inochi
+ arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+index 08c1884..ac397ac 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+@@ -128,7 +128,7 @@
+ 		vin-supply = <&vcc_3v3_s0>;
+ 	};
+ 
+-	vcc3v3_pcie0: regulator-vcc3v3-pcie0 {
++	vcc3v3_pcie1: regulator-vcc3v3-pcie1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3_pcie1";
+ 		regulator-min-microvolt = <3300000>;
+-- 
+2.7.4
+
 
