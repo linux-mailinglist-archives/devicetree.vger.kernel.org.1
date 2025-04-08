@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-164418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2682A80F1E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:02:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862F8A80F42
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E66E1895E42
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:59:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 813F819E2E4B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B338120CCD8;
-	Tue,  8 Apr 2025 14:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nl0emsqp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C47522B8DB;
+	Tue,  8 Apr 2025 15:02:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A841DF749;
-	Tue,  8 Apr 2025 14:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79CFC22ACDF
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 15:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744124340; cv=none; b=hWk8GPgugMMf/ODsABj3ka0vkMhKxKpvJdJK2rv+c96CPXmAkOXNO+4zWJa4aXeGi1oCsgc1xfM1pEiuAQQ4NnF0NthLeMNVjyKUYhunYz+rBIT8noBgzHMtXILbo23MJ+61E0iHqlg41CrWdVfkT1IZ61DK6aFiwXhS19ggdsM=
+	t=1744124562; cv=none; b=hXC4mYqKUxP0Mw2FxajMm2+gjjMTMZnhC8fKptL0VQouj5LNBCZxnZrM+3Dn3Mspmk2JbDj7yfLgEjuJGPC/koLDIT6c02urlVLqJir3vnB+yH1zM1rjBQzZMhidrrTVjNITgmRsgghFbG4iHH+jbD+2vyGGp6vbkz9xtlcmyFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744124340; c=relaxed/simple;
-	bh=YvdHl1/Z4vQg1X2njDEqwyEHsxKugzx7tWbrj/mGuto=;
+	s=arc-20240116; t=1744124562; c=relaxed/simple;
+	bh=HAeZ3Bog+4YMf9IhhAyXeuG17F+LI3itmc8xpJJVdHI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UGGZJOmKsAAr0bnBPFxOG7qWtv0RPnuiVDx+LnnpmcFdFxEuIpWlgxTjEybYr78KTu6rCGktWqooKz6rnQ+O8jhx7UMup6QSVrji8eDyhLWt9WZywLW+S4cpKaqZEa1H5wYLeobZ5dot/cI9n7ci/2ftP2ZaQI782fjULyl6xwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nl0emsqp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0970C4CEE5;
-	Tue,  8 Apr 2025 14:58:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744124339;
-	bh=YvdHl1/Z4vQg1X2njDEqwyEHsxKugzx7tWbrj/mGuto=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nl0emsqpUJ0D+aADf9ENV/mLocPn8KFDil18e0TyKmPCQ6PGjlZ2x+d3+7TSj8CQ0
-	 qgEUx2j2jv3lZo2G+SKJBfWwkkp8N/fOT9+TDG+xXsuEwbp4w2sBnHIGAvv8CpMFCM
-	 buMpRieSWXok7HFoLlUk/HFsiKaqbVMkLcXTuA7d5vKf+DMny8hIRFK24AKKwSs146
-	 1gq8QsXfx2ir1fR1TpkHGqKgWJwzdppxbe7MuTsK7ZTkIiUyrmORQBest5MMCf8PVx
-	 D0jG6462EwGU8W9Yy4feQm27Olp1ANlMfouSLrcjdZQvIf3ZhSbxow9z4zpUS6sj66
-	 FclbqQBHQLFJA==
-Date: Tue, 8 Apr 2025 16:58:54 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Will Deacon <will@kernel.org>, Timothy Hayes <timothy.hayes@arm.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=a2Sn7GLtmTF9JV848a5DwCNEPc5lURigqgy/M/wL7X5UmqOS7ZKAGR7rFcZ1TkCX4O1M+UhAcVHyqp3vqNWbw8FtLYUSkWbWAnmJPiZLpEXr1ssl3LM7xSfm0a3a/p5GRUbJkchNdVbiS0POEJk6UevBzoynlT2NKkI3ie8RrY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u2ASz-00062H-Mm; Tue, 08 Apr 2025 17:02:21 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u2ASz-003wys-1A;
+	Tue, 08 Apr 2025 17:02:21 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u2ASz-006bVt-0n;
+	Tue, 08 Apr 2025 17:02:21 +0200
+Date: Tue, 8 Apr 2025 17:02:21 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 01/24] Documentation: devicetree: bindings: Add GICv5 DT
- bindings
-Message-ID: <Z/U5rvfU9CWUpYCc@lpieralisi>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
- <174411521311.1639476.6777663294037851144.robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de,
+	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH 3/3] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <Z_U6fUGbOV2SdO_C@pengutronix.de>
+References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
+ <20250408-clk-cdce6214-v1-3-bd4e7092a91f@pengutronix.de>
+ <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,77 +67,155 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <174411521311.1639476.6777663294037851144.robh@kernel.org>
+In-Reply-To: <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Apr 08, 2025 at 07:26:53AM -0500, Rob Herring (Arm) wrote:
+On Tue, Apr 08, 2025 at 04:27:23PM +0200, Krzysztof Kozlowski wrote:
+> On 08/04/2025 14:00, Sascha Hauer wrote:
+> > +
 > 
-> On Tue, 08 Apr 2025 12:50:00 +0200, Lorenzo Pieralisi wrote:
-> > The GICv5 interrupt controller architecture is composed of:
-> > 
-> > - one or more Interrupt Routing Service (IRS)
-> > - zero or more Interrupt Translation Service (ITS)
-> > - zero or more Interrupt Wire Bridge (IWB)
-> > 
-> > Describe a GICv5 implementation by specifying a top level node
-> > corresponding to the GICv5 system component.
-> > 
-> > IRS nodes are added as GICv5 system component children.
-> > 
-> > An ITS is associated with an IRS so ITS nodes are described
-> > as IRS children - use the hierarchy explicitly in the device
-> > tree to define the association.
-> > 
-> > IWB nodes are described as GICv5 system component children - to make it
-> > explicit that are part of the GICv5 system component; an IWB is
-> > connected to a single ITS but the connection is made explicit through
-> > the msi-parent property and therefore is not required to be explicit
-> > through a parent-child relationship in the device tree.
-> > 
-> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  .../bindings/interrupt-controller/arm,gic-v5.yaml  | 268 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   7 +
-> >  2 files changed, 275 insertions(+)
-> > 
+> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+> prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> yamllint warnings/errors:
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,cdce6214
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: priref
+> > +      - const: secref
 > 
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dts:43.27-28 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
-> make: *** [Makefile:248: __sub-make] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+> So one input is optional?
 
-Validated the bindings, not the example within, that caused this to trigger,
-apologies.
+The chip has two clock inputs and to be operational it needs at least
+one clock, could be priref or secref or both.
 
-Already fixed it - please review the bindings though, feedback on them
-appreciated, thanks.
+Is there a proper way to express this situation?
 
-Lorenzo
+
+> > +  "^clk@[2-9]$":
+> > +    type: object
+> > +    description: |
+> > +      optional child node that can be used to specify output pin parameters.  The reg
+> > +      properties match the CDCE6214_CLK_* defines.
+> > +
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          clock output identifier.
+> > +        minimum: 2
+> > +        maximum: 9
+> > +
+> > +      ti,lphcsl:
+> > +        type: boolean
+> > +        description: |
+> > +          If true enable LP-HCSL output mode for this clock
+> > +
+> > +      ti,lvds:
+> > +        type: boolean
+> > +        description: |
+> > +          If true enable LVDS output mode for this clock
+> > +
+> > +      ti,cmosp:
+> > +        type: boolean
+> > +        description: |
+> > +          If true enable CMOSP output for this clock
+> > +
+> > +      ti,cmosn:
+> > +        type: boolean
+> > +        description: |
+> > +          If true enable CMOSN output for this clock
+> 
+> Looks the same here. Anyway having these as subnodes is too much. You
+> have fixed number of clocks, so you need one or two array properties in
+> top-level.
+
+There are several properties I haven't yet modeled, like
+
+- 1.8V / 2.5V output
+- sync_delay
+- LVDS common-mode trim increment/decrement
+- differential buffer BIAS trim
+- slew rate
+- BIAS current setting for XTAL mode
+- load capacity for XTAL mode
+
+I don't know which of them will ever be supported, but I thought having a
+node per pin would add a natural place to add these properties. Do you
+still think arrays would be more appropriate?
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - "#clock-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/ti,cdce6214.h>
+> 
+> This file does not exist. Something is odd in this example.
+
+It is added in the driver patch. Should it come with the binding patch
+instead?
+
+> 
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        clock-generator@67 {
+> > +            compatible = "ti,cdce6214";
+> > +            reg = <0x67>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            #clock-cells = <1>;
+> > +            clocks = <&clock_ref25m>;
+> > +            clock-names = "priref";
+> > +
+> > +            clk@CDCE6214_CLK_SECREF {
+> 
+> That's not a valid unit address. Use simple numbers, see DT spec and DTS
+> coding style.
+
+CDCE6214_CLK_SECREF is a macro added in dt-bindings/clock/ti,cdce6214.h
+and it expands to a simple number (1 in this case). While I haven't
+found any examples of someone using macros for the unit address / reg
+property I thought I'd give it a try as it nicely shows how it is used.
+
+I can switch to plain numbers if you prefer that though.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
