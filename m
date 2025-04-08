@@ -1,99 +1,162 @@
-Return-Path: <devicetree+bounces-164284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEDEA7FB7D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:17:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 915FEA7FBBA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:26:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B28E1677F1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4749A3B3D61
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB93326A1DA;
-	Tue,  8 Apr 2025 10:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5DF426770C;
+	Tue,  8 Apr 2025 10:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QbKB7Hnu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U54G7KM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5107269CF2;
-	Tue,  8 Apr 2025 10:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15047266EEB;
+	Tue,  8 Apr 2025 10:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744107006; cv=none; b=JIiIB8rufqTcTB2hHkiMoS0vwOtGQsJwEjCvVgDwFyl/pCRWBPBLJ/4XOc/2osFAYdpyIR2IL39BsZjsOmxe8p7Y0e70QpwJui8yIFWaIQ4YArEU6x4d1VDOiJnEpzCXsnpNeQnPwIRBL8Js5JZu1Z8seXItSLHlCb3PLwXhsxw=
+	t=1744107357; cv=none; b=cn+zijFNFDm6tAErk9OWTMiFXcq0B75fRv1YUXu16nt4JUPvhaB5e0PaO5pWp0gcxKI1bxvXFor/5E3UHjhMYzMUcqOrVivYqyXVd25qi5f+PLSc+g/901Dgb14JfSoZRJy7zReJ0pr3k7yEAPVfTBURbhAb0sj4cQlGZKXtSvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744107006; c=relaxed/simple;
-	bh=zKoPiYcz99Nz4xf/JHPeWfzhs+Akk0ORk8KQJztJIxQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eEkdBxYHHi6DdipbJ8BK9ILqr1iXfhM64269Tnzdqbt9c8fydyoefFXDT6xTb25H5kZGHhBIEKOPpJsgjal1QbYfLIn94RzBe5wRDN4j1vWpgbT+LnuoNzBZNtTX3XCDlBAKXCL/B1fLrFJ7fIDiK7FmB6yGZg9ROkeQkyy0H/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QbKB7Hnu; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744106995;
-	bh=zKoPiYcz99Nz4xf/JHPeWfzhs+Akk0ORk8KQJztJIxQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QbKB7Hnuj7ZBKkSBv3cR7rUneJAWMFXGUNA2RlvgRAAa1CE/eyVhw+cTMS9R2St27
-	 SY+aAKK7+tpi2H2knNvVcHXpaHtcmrs6uAShV4d/FuBat2tnGJN6tWO85BPStSNJ7j
-	 JteOu1GtkRGekbkzFGq5oBg5/E6qzWLhfdos8uTCNTti9FheqrOxphMDfwhhTI4Ceq
-	 DF2CsyyTHpEerv9N7B1HfZr0pjHcRtHhFXY4op4H9xERbyo3Q36zT7BIG04l7UsScx
-	 6qiqVNloHKIJGsn/jxOyaPjHMNGR5YBeX0kQ67wcH75tMHgVfELm/JF9aJdocanaOX
-	 lUjWERyst7HVw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 147C517E0F9E;
-	Tue,  8 Apr 2025 12:09:55 +0200 (CEST)
-Message-ID: <ae6b9a80-c8b6-48dc-9229-da4e8c102551@collabora.com>
-Date: Tue, 8 Apr 2025 12:09:54 +0200
+	s=arc-20240116; t=1744107357; c=relaxed/simple;
+	bh=F5jgsqXwGSznc/ks79mQwm/auTZ55zbs/7FmfTPKs4k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Otrh0heJ4iCNKp7unYO0y+rNhALhveqEIO+MOQC40mJ6x4WNzi7v7WFouW3+uBxkPtjFN2Qjj9m31IcKGiDb07BlSG8b41AePg7Ct8qtvqlqpCU67P3I01qZZxR1NRyor9HeezRwSSl3EOslc08XgpxGPe58ukCpEnhx721Yhr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U54G7KM3; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c554d7dc2aso887143085a.3;
+        Tue, 08 Apr 2025 03:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744107354; x=1744712154; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=I9Ppw8vR47G47P1j9HJc/DVvecueKLo2E/NHI0ohsC8=;
+        b=U54G7KM3MKzyVKjpeEKX3xfDzuKHc59R2lm5HVtqhBhemnYsnG88GfzqnjX97OP9Sv
+         DoAnmxVxuKGZexlqz49LNreiFf9ZxXOZ8KsRkO/M82PBcAfZLHcXhweaMqpVwvMXTkn1
+         b6WurudsMh64NxjekVovpEgju2SXcHsNhj05UbpQGmNKlQvyF8ibJueedy38I0Yd5NMC
+         fwBYBuI/ljz4oRuQypDF4956FTiEVUoe4DB8c61Mk6O6Hv89o7Wt64EKXyvlDXSiM5BQ
+         iBJXhR9jjTCuouKxQXPhRpB4i+UWP64DG/weG7BCCQzOKvXWn3mXkjUWz1bnSnfjxtVV
+         RaVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744107354; x=1744712154;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I9Ppw8vR47G47P1j9HJc/DVvecueKLo2E/NHI0ohsC8=;
+        b=Es33uBTtCZuiD3hUacxDw1m52lfHpN5P32biWn2k+RQsLb1qdoEIAEO7DYeiS/YQbW
+         HiA7Aj5c+lcIp22Xdcaq4q0Iwue9sdtSHL53jEbQKMfkPYkfrXITNAXFJsbKOLf/A4p1
+         UFMjHsnH4JowckiRAEB2rWxXruTRolQdCIF11TN9f6PAjuDEU6+yAHTr7R0LKE8rkbGo
+         zVKaTKaam2j3FksyF3V2kG8Id5b22Hl2H/C8pnY7F2CW7s0K6vfrgVokVbvqE3vjSoA0
+         /5oA2Rl4Jy6dhh8Uh0/V7SMWugv8UhSRMzp1UVnnN+QAzq4NIonkPCSrUc3807icBtIp
+         kN+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVW1dSLqWNbUDLBx4esGxF0C8J+XlKHsuBl8oFzXh2DniKiLa+kDGcsOBR3mJpzSGN3rKSUOkwhnAXOnuzn@vger.kernel.org, AJvYcCVs7/5lcVv0CwY5N6t5lxd5UVxPCJQogxAJ81oBB2Hp3CgQ0IeNk3qJfS3069+7YDroAWJHnh8sR4bU@vger.kernel.org, AJvYcCVt3KcoGdQBzZYtajkFWQDzjO8oGBI4GsB6iNvIx/mzM/YUOHSicB7oy8DqiDfuDrTUgyoXf0CTWRfj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2Av2G7/7nLfpY1E4ojXrOzpJmQIAARFD21+6w0kLHQYl5y8DJ
+	zwWhwnN83rqbCeowYZc+LxmuZ5CUPm6dou5X8HglEXLY3XFveIy/
+X-Gm-Gg: ASbGncutJDXZpla2J0CV6bNElBKhnaMKhvN7ck23io92aqMWbmDXwF+j+6jVHPYKETs
+	bRFRfvgvEAfUsmYLA1cN48KILbrrIX8+rXkRiBNmGvOBufdLhmJYpS0zOTKYoUrsM7kLbk23V2+
+	tHYX/07AGFtctE226oRpSUDVHZsOSRGcILfTEtQEwsM8G/bsfyLjI0OxoH6z/eMh1Fa4Px31RaB
+	whuWpNIVVugseAEJOAiqoFK+70gzQXnINb0K8oYVxXbaBIrPDM5KdoSVAFo7VIUWyZeS01YN6Uy
+	es0bzom03fRRGtv3WSUJZMm0tpIhLXo=
+X-Google-Smtp-Source: AGHT+IH23+fBypf9fr3Elpk3n1gRkPJVqS8WHxAKtFVO5CG6iIAA5fMRsI1J8HrPQnuK8Bsg9SUsHw==
+X-Received: by 2002:a05:620a:318f:b0:7c5:6a66:5c1e with SMTP id af79cd13be357-7c774dfcc5dmr2575493785a.58.1744107353738;
+        Tue, 08 Apr 2025 03:15:53 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c76e96e611sm735194785a.62.2025.04.08.03.15.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 03:15:52 -0700 (PDT)
+Date: Tue, 8 Apr 2025 18:15:16 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	unicorn_wang@outlook.com, dlan@gentoo.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+Message-ID: <laanxdjx2bd5zgxftefyjhfcih4mx54qzscnoavzosqvib463h@pclt37x4zomr>
+References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
+ <20240501083242.773305-3-qiujingbao.dlmu@gmail.com>
+ <k6jbdbhkgwthxwutty6l4q75wds2nilb3chrv7n4ccycnzllw4@yubxfh5ciahr>
+ <D8Z4GLQZGKKS.37TDZ7QBN4V4N@bootlin.com>
+ <j74t2zqvoslo5fgmea4kp434tafgchkncytofj65zbbt7ivcqy@auboc3pkdiz3>
+ <D913G6I023M1.NLMLJDZ1PYSA@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8188: Fix IOMMU device for rdma0
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "Chengci . Xu" <chengci.xu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Robin Murphy <robin.murphy@arm.com>
-References: <20250408092303.3563231-1-wenst@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250408092303.3563231-1-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D913G6I023M1.NLMLJDZ1PYSA@bootlin.com>
 
-Il 08/04/25 11:23, Chen-Yu Tsai ha scritto:
-> Based on the comments in the MT8188 IOMMU binding header, the rdma0
-> device specifies the wrong IOMMU device for the IOMMU port it is
-> tied to:
+On Tue, Apr 08, 2025 at 09:54:27AM +0200, Thomas Bonnefille wrote:
+> On Mon Apr 7, 2025 at 9:21 AM CEST, Inochi Amaoto wrote:
+> > On Sun, Apr 06, 2025 at 02:16:41AM +0200, Thomas Bonnefille wrote:
+> >> Hello,
+> >> 
+> >> On Sat Jun 1, 2024 at 1:53 PM CEST, Uwe Kleine-König wrote:
+> >> > On Wed, May 01, 2024 at 04:32:42PM +0800, Jingbao Qiu wrote:
+> >> >> [...]
+> >> >> +	if ((state & BIT(pwm->hwpwm)) && enable)
+> >> >> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
+> >> >> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
+> >> >> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> >> >
+> >> > This looks strange. If BIT(hwpwm) is already set, set it again?!
+> >> > Also if you used the caching implemented in regmap, you don't need to
+> >> > make this conditional.
+> >> >
+> >> 
+> >> I was testing the series and noticed indeed an issue in this driver at
+> >> those lines. If PWM_CV1800_OE isn't set by something else than the
+> >> kernel it will never be set and so, there will never be a PWM outputted.
+> >> 
+> >> Using :
+> >>     if (!(state & BIT(pwm->hwpwm)) && enable)
+> >> Solved the issue but as Uwe said you can probably rely on regmap caching
+> >> to avoid this condition.
+> >> 
+> >> >
+> >> > ...
+> >> > 
+> >> 
+> >> Do you plan on sending a new iteration some day ? I may have some time
+> >> to continue the upstreaming process if you need to.
+> >> 
+> >> Thank you for this series !
+> >> Thomas
+> >
+> > I suggest checking existing spi-sg2044-nor driver, which may reduce your
+> > work for upstreaming.
+> >
+> > Regards,
+> > Inochi
 > 
->      This SoC have two MM IOMMU HWs, this is the connected information:
->      iommu-vdo: larb0/2/5/9/10/11A/11C/13/16B/17B/19/21
->      iommu-vpp: larb1/3/4/6/7/11B/12/14/15/16A/17A/23/27
+> Hello Inochi,
 > 
-> rdma0's endpoint is M4U_PORT_L1_DISP_RDMA0 (on larb1), which should use
-> iommu-vpp, but it is currently tied to iommu-vdo.
+> Thank you very much, however even after reading it I can't see the link
+> between the SPI NOR controller driver of the SG2044 and the PWM driver
+> for the CV18XX series ?
 > 
-> Somehow this went undetected until recently in Linux v6.15-rc1 with some
-> IOMMU subsystem framework changes that caused the IOMMU to no longer
-> work. The IOMMU would fail to probe if any devices associated with it
-> could not be successfully attached. Prior to these changes, only the
-> end device would be left without an IOMMU attached.
-> 
-> Fixes: 7075b21d1a8e ("arm64: dts: mediatek: mt8188: Add display nodes for vdosys0")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Regards,
+> Thomas
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I am sorry, I mistake this as the spi-nor one. You may want to check
+the SG2044 pwm driver, which should be similiar. You could find it at 
+https://lore.kernel.org/all/20250407072056.8629-1-looong.bin@gmail.com/
 
+Regards,
+Inochi
 
 
 
