@@ -1,145 +1,246 @@
-Return-Path: <devicetree+bounces-164424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774D0A80F80
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:15:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E20EA80F84
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:15:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E59D1889BD0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:11:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A603A5157
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:11:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F025722A4F2;
-	Tue,  8 Apr 2025 15:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907121D6DC8;
+	Tue,  8 Apr 2025 15:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Z6TsN5TX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t5MZzqRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D7C1DA612;
-	Tue,  8 Apr 2025 15:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639D039ACF;
+	Tue,  8 Apr 2025 15:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744125026; cv=none; b=DrSHqY0sTcYDZHEXA29fqq5lgKWuK/qXUgU1jqfccCGQaSeX6jx8D2o0nwgCy0lW+HF6Bc1XhOk157SXtBpDYVfdKIu6UZBAtZ38w32Bn5JOHsD+0wMhw+qYre0780tP6Bmpfenr+QWvzmu+MwdaFO33hTP2MMxAEumW6sOjf3Y=
+	t=1744125090; cv=none; b=cDlRg5A52XikgimelFiXSLybIN6U19nFwIqff472jwnqHPSGO9aVolkJXHfpTp437HZikOLfpYx3nERJNywcYGMGU4tziynTNI6zATzRu47Rw9KO1+x6p1vTSTeeYE9Jw0j6KCz5WKab+F3ISYOwRmaszl0I5AtdR8TtRr5aQeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744125026; c=relaxed/simple;
-	bh=GudziAjvRjhdTl3T1GFT2vjHAMhpb5UxWzvHyhPg32U=;
+	s=arc-20240116; t=1744125090; c=relaxed/simple;
+	bh=iDHL867Wm1Z34v53LOE/b0GskTUGIOuSB67G+ibvt0w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=axwAURVro/HDmgsBdJhN4eIeKWKjVQ1/guhdQyCBGBmFGE7P1J9Ue6p3ARPJJrBiM7kbFXnAzJ7FmoBYoF+QDOIzyvQ6hmEFXQPt9X8n21KsOCzqrsSk9cti6FX47inL2qpKH7AqjAG/A6oB+fE+1teiWFgTSOceWvdZaPES2/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Z6TsN5TX; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <73faa3c8-70b9-4c95-b42a-5932249881e9@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1744125020;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=W4XCug/ybuLX9M5/EBwxp5KiEtgoov6beXctF05fO7o=;
-	b=Z6TsN5TXUZpLuZqqmNh9SZXNkgo3yaezRlUh/ImoVbMAO0eqYoGnAKYx1/p2+iT6QjcFz0
-	gKzIcfBmhBf3qCtoZCNtE22cCRDwwZAbfPwkfqYJ35cT9UaYfmcw3MHjxDhcjHYQQc1OJh
-	WFT/4dCbmuR0pd9P6JKp9m1eaAItijc=
-Date: Tue, 8 Apr 2025 11:10:15 -0400
+	 In-Reply-To:Content-Type; b=GQr+DY35lVeI6Tf3Xky6Q8dw0bDntZn/l5PbwS11OUVy/kdWfrXdpWstw7ADZEfXG1P6mt4NeAejG/oMn0FuIbp1W69OQd+Ixz8PVD3tdsxm88UhtcfKkw3RqVrfuUiEklV8U7zH0CZwA2ZuZ5Fr6tvXV/gy8Dh9TxwhXxpyUYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t5MZzqRo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48825C4CEE5;
+	Tue,  8 Apr 2025 15:11:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744125089;
+	bh=iDHL867Wm1Z34v53LOE/b0GskTUGIOuSB67G+ibvt0w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=t5MZzqRoVz8luWLE3kVME9RM0/xjP0+NP2lGKGmx8O1bjzyVXhWU14snopHUKGBu6
+	 Tq0RmkonTX/WBEHHLRVFvEnJySyAeCELjYgoV4vu3WqOjZQVAUlm9BdYHPsGYXFGLx
+	 Ml8tzceK7napCm+hHxluXm1TnjzJST3j+2hWwAcsSbYmll/TR0LsfVb71phkkXpOn8
+	 Xyp/G9Z6zF4W2Fs1giPZE+6jzND2i62uDadkCbjAkJaqetviNP7RVgea34u6nLEIXg
+	 AWCL18cUIu8obhXB3igMDMUVFu4pyXomzYcrEFDQQGyOqFsc5Q/1Mjlk0T9yvOZyOD
+	 /xF7vLkvPdPVA==
+Message-ID: <18365ed3-94bf-432a-a6f0-38e9c7ea0c6c@kernel.org>
+Date: Tue, 8 Apr 2025 17:11:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] device property: Add
- fwnode_property_get_reference_optional_args
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- devicetree@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>, linux-kernel@vger.kernel.org,
- Danilo Krummrich <dakr@kernel.org>, linux-acpi@vger.kernel.org
-References: <20250407223714.2287202-1-sean.anderson@linux.dev>
- <20250407223714.2287202-3-sean.anderson@linux.dev>
- <Z_Tg1v0rlrnjs0mt@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: clock: add TI CDCE6214 binding
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ kernel@pengutronix.de, =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
+ <20250408-clk-cdce6214-v1-3-bd4e7092a91f@pengutronix.de>
+ <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
+ <Z_U6fUGbOV2SdO_C@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <Z_Tg1v0rlrnjs0mt@smile.fi.intel.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z_U6fUGbOV2SdO_C@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
 
-On 4/8/25 04:39, Andy Shevchenko wrote:
-> On Mon, Apr 07, 2025 at 06:37:14PM -0400, Sean Anderson wrote:
->> Add a fwnode variant of of_parse_phandle_with_optional_args to allow
->> nargs_prop to be absent from the referenced node. This improves
->> compatibility for references where the devicetree might not always have
->> nargs_prop.
+On 08/04/2025 17:02, Sascha Hauer wrote:
+>>> +  clock-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: priref
+>>> +      - const: secref
+>>
+>> So one input is optional?
 > 
-> ...
+> The chip has two clock inputs and to be operational it needs at least
+> one clock, could be priref or secref or both.
 > 
->> +/**
->> + * fwnode_property_get_reference_optional_args() - Find a reference with optional arguments
->> + * @fwnode:	Firmware node where to look for the reference
->> + * @prop:	The name of the property
->> + * @nargs_prop:	The name of the property telling the number of
-> 
-> Use space instead of TAB as it's already too long to make it aligned with the
-> rest.
-> 
->> + *		arguments in the referred node.
->> + * @index:	Index of the reference, from zero onwards.
->> + * @args:	Result structure with reference and integer arguments.
->> + *		May be NULL.
->> + *
->> + * Obtain a reference based on a named property in an fwnode, with
->> + * integer arguments. If @nargs_prop is absent from the referenced node, then
->> + * number of arguments is be assumed to be 0.
->> + *
->> + * The caller is responsible for calling fwnode_handle_put() on the returned
->> + * @args->fwnode pointer.
->> + *
->> + * Return: %0 on success
->> + *	    %-ENOENT when the index is out of bounds, the index has an empty
->> + *		     reference or the property was not found
->> + *	    %-EINVAL on parse error
->> + */
->> +int fwnode_property_get_reference_optional_args(const struct fwnode_handle *fwnode,
->> +						const char *prop,
->> +						const char *nargs_prop,
->> +						unsigned int index,
->> +						struct fwnode_reference_args *args)
->> +{
->> +	int ret;
-> 
->> +	if (IS_ERR_OR_NULL(fwnode))
->> +		return -ENOENT;
-> 
-> This is incorrect most likely, see below.
-> 
->> +	ret = fwnode_call_int_op(fwnode, get_reference_args, prop, nargs_prop,
->> +				 0, index, args);
->> +	if (ret == 0)
->> +		return ret;
->> +
->> +	if (IS_ERR_OR_NULL(fwnode->secondary))
->> +		return ret;
-> 
-> Here no such error code shadowing, and TBH I do not like the shadowing without
-> real need.
+> Is there a proper way to express this situation?
 
-I don't understand the objection. First, this logic is identical to
-fwnode_property_get_reference_args. Second, the process seems clear to
-me:
+No, this is fine, I just wanted to be sure that's the intention.
 
-- If we have a primary fwnode, try it otherwise return -ENOENT
-- If we have a secondary fwnode and the first failed, try it otherwise
-  return the original error code
+> 
+> 
+>>> +  "^clk@[2-9]$":
+>>> +    type: object
+>>> +    description: |
+>>> +      optional child node that can be used to specify output pin parameters.  The reg
+>>> +      properties match the CDCE6214_CLK_* defines.
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        description:
+>>> +          clock output identifier.
+>>> +        minimum: 2
+>>> +        maximum: 9
+>>> +
+>>> +      ti,lphcsl:
+>>> +        type: boolean
+>>> +        description: |
+>>> +          If true enable LP-HCSL output mode for this clock
+>>> +
+>>> +      ti,lvds:
+>>> +        type: boolean
+>>> +        description: |
+>>> +          If true enable LVDS output mode for this clock
+>>> +
+>>> +      ti,cmosp:
+>>> +        type: boolean
+>>> +        description: |
+>>> +          If true enable CMOSP output for this clock
+>>> +
+>>> +      ti,cmosn:
+>>> +        type: boolean
+>>> +        description: |
+>>> +          If true enable CMOSN output for this clock
+>>
+>> Looks the same here. Anyway having these as subnodes is too much. You
+>> have fixed number of clocks, so you need one or two array properties in
+>> top-level.
+> 
+> There are several properties I haven't yet modeled, like
+> 
+> - 1.8V / 2.5V output
+> - sync_delay
+> - LVDS common-mode trim increment/decrement
+> - differential buffer BIAS trim
+> - slew rate
+> - BIAS current setting for XTAL mode
+> - load capacity for XTAL mode
+> 
+> I don't know which of them will ever be supported, but I thought having a
+> node per pin would add a natural place to add these properties. Do you
+> still think arrays would be more appropriate?
 
-The purpose of a secondary fwnode is to allow supplying missing
-properties absent from the primary fwnode. Which part of the above do
-you dislike?
+Binding is supposed to be complete. If you send incomplete, you get
+review like that.
 
---Sean
+Several of these look like pinctrl thus maybe this should be pin
+controller as well. It's not exactly GPIO, but still configuring
+specific functions and pin characteristics is the exact job of pinctrl.
+
+> 
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - "#clock-cells"
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/ti,cdce6214.h>
+>>
+>> This file does not exist. Something is odd in this example.
+> 
+> It is added in the driver patch. Should it come with the binding patch
+> instead?
+
+Yes, because it is a binding.
+
+> 
+>>
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        clock-generator@67 {
+>>> +            compatible = "ti,cdce6214";
+>>> +            reg = <0x67>;
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            #clock-cells = <1>;
+>>> +            clocks = <&clock_ref25m>;
+>>> +            clock-names = "priref";
+>>> +
+>>> +            clk@CDCE6214_CLK_SECREF {
+>>
+>> That's not a valid unit address. Use simple numbers, see DT spec and DTS
+>> coding style.
+> 
+> CDCE6214_CLK_SECREF is a macro added in dt-bindings/clock/ti,cdce6214.h
+> and it expands to a simple number (1 in this case). While I haven't
+> found any examples of someone using macros for the unit address / reg
+> property I thought I'd give it a try as it nicely shows how it is used.
+> 
+> I can switch to plain numbers if you prefer that though.
+
+We don't encode addresses as headers in DTS (with few exception), so
+definitely not as a binding. It just does not bind anything (in the ABI).
+
+Best regards,
+Krzysztof
 
