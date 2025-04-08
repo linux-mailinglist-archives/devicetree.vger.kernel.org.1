@@ -1,231 +1,160 @@
-Return-Path: <devicetree+bounces-164100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6717A7F31B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:16:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBE7A7F32B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54B963B2F7A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 03:16:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 051347A2FB5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 03:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C401B3927;
-	Tue,  8 Apr 2025 03:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597BD25B663;
+	Tue,  8 Apr 2025 03:28:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ZzFcx253"
+	dkim=pass (1024-bit key) header.d=infineon.com header.i=@infineon.com header.b="DIPsDAnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973181.qiye.163.com (mail-m1973181.qiye.163.com [220.197.31.81])
+Received: from smtp2.infineon.com (smtp2.infineon.com [217.10.52.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50645322B;
-	Tue,  8 Apr 2025 03:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41EE4A1E;
+	Tue,  8 Apr 2025 03:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.10.52.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744082209; cv=none; b=Z2CSQPa1UPEryjtfAFTU58FmB+GvyhyhXXd7d5u/rdnR3EUk6fQqbia3f7X4dFHEqeEOtX9i/nRxUkAcL2KkyQhiYTMYaK7avPujZoD7JKkQjEPWnpwJNtw50Omz7EfDIQHenbhSLf/0EGXYRtHC9Y6oMes1z3xijEYtL9raAn8=
+	t=1744082920; cv=none; b=Altzdu4aNj06C0Nv04HJpt8iyWc9glUfFmD2V8E/ai3ff56tRJqhRGU1Pna3VfJP4oU/Se7W4V7as6MwHmo1TV9Po4fpoMxj/agMKk+renbmyhRLY5pK6G4sLGAFnIOPD1NAqGfS/2etU2xTbm4VVsl++M/iMlAzwci+imcXv4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744082209; c=relaxed/simple;
-	bh=+C/ir4MXLCFa4qRxQoVsWWbgVy0MyXuOwnSs1AcMeOg=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LwrfLSsoGLetV3m6DIcLL8F5io314z4pWJg7SszPlDn6TJBzvj5rDJBfKvfNQAezGWyUd49Zi5VCfzHcPLfqjbso1Dj4kZUt9ZQv9FbowSf6A6hJUkmSAT70pelUxJEZbX/W7DdamzyQKZF/0mcY2ZRCMLq1drTxCj0YSyU13Mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ZzFcx253; arc=none smtp.client-ip=220.197.31.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.129] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 110100f9f;
-	Tue, 8 Apr 2025 11:01:19 +0800 (GMT+08:00)
-Message-ID: <6ccfc126-b009-4ee9-0a2c-3e7faf512751@rock-chips.com>
-Date: Tue, 8 Apr 2025 11:01:04 +0800
+	s=arc-20240116; t=1744082920; c=relaxed/simple;
+	bh=NhUqRHGXvznjLxV6/mpyO20W9nTF5RCj2oU+Gi6q32g=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=rsxV80Dtm/lAdetnchcG6Er0aD+tey2FRqJkU9sDNhWyoypcyhdKI+kKiCw/r56L6+8CKoePyJnGnaz6g9UmAMsqlPWmAab8GHh4plrn0/2SaM8QKMhSeTByDVw+KcdTlm/TjzmcFeSTj09NNNQckSX3RL+GmnA5Nc8XHfLSy+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infineon.com; spf=pass smtp.mailfrom=infineon.com; dkim=pass (1024-bit key) header.d=infineon.com header.i=@infineon.com header.b=DIPsDAnl; arc=none smtp.client-ip=217.10.52.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infineon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=infineon.com
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1744082918; x=1775618918;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=NhUqRHGXvznjLxV6/mpyO20W9nTF5RCj2oU+Gi6q32g=;
+  b=DIPsDAnlBQloXF49967YZ34E3czPCloLeb9LaBmeWK892FJdroXqIWws
+   2UwDEUsK3REDNvjqpjW5hQ/ikJvqUpPdGTwxWXzQkQQAA0hcyYE7/4ACu
+   4uQ277wYtZudKXISaexu05NfNyCIsrvtc8KnHeZ2F5g7nMTpnGksJ9tHb
+   Y=;
+X-CSE-ConnectionGUID: xg05KNqeTEKSkLs9bsiP5A==
+X-CSE-MsgGUID: z4qFc0OtQ4u++L8lCaL78g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="107247366"
+X-IronPort-AV: E=Sophos;i="6.15,196,1739833200"; 
+   d="scan'208";a="107247366"
+Received: from unknown (HELO MUCSE822.infineon.com) ([172.23.29.53])
+  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2025 05:28:35 +0200
+Received: from MUCSE808.infineon.com (172.23.29.34) by MUCSE822.infineon.com
+ (172.23.29.53) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.39; Tue, 8 Apr
+ 2025 05:28:35 +0200
+Received: from MUCSE839.infineon.com (172.23.7.112) by MUCSE808.infineon.com
+ (172.23.29.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.39; Tue, 8 Apr
+ 2025 05:28:35 +0200
+Received: from MUCSE839.infineon.com ([fe80::e04:7b92:8020:5ebd]) by
+ MUCSE839.infineon.com ([fe80::e04:7b92:8020:5ebd%11]) with mapi id
+ 15.02.1258.039; Tue, 8 Apr 2025 05:28:35 +0200
+From: <Ashish.Yadav@infineon.com>
+To: <linux@roeck-us.net>, <wsa+renesas@sang-engineering.com>,
+	<Shirley.Lin@infineon.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <jdelvare@suse.com>, <corbet@lwn.net>,
+	<patrick.rudolph@9elements.com>, <bhelgaas@google.com>,
+	<ninad@linux.ibm.com>, <festevam@denx.de>, <devicetree@vger.kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+	<Mills.Liu@infineon.com>, <Ian.Fang@infineon.com>
+Subject: RE: Update driver xdpe152c4.c
+Thread-Topic: Update driver xdpe152c4.c
+Thread-Index: AduncG4+KOQ8tLMYRdSyF3hlAwcSUwAAz8qAABBIAQAAATWmAAAe7QAw
+Date: Tue, 8 Apr 2025 03:28:35 +0000
+Message-ID: <c8b9aa8e579e4892a35542f59cff44e4@infineon.com>
+References: <3f7d0644a1f844b8b3ee9b3139b85339@infineon.com>
+ <Z_NteUAIeuDdDPls@shikoro>
+ <69c8cf7c-b334-4f13-ba36-a2248686b419@roeck-us.net>
+ <3df0bfff-413d-4ad5-a3a8-39a7bb7a90ba@roeck-us.net>
+In-Reply-To: <3df0bfff-413d-4ad5-a3a8-39a7bb7a90ba@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Cc: shawn.lin@rock-chips.com, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Finley Xiao <finley.xiao@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Liang Chen <cl@rock-chips.com>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Yifeng Zhao <yifeng.zhao@rock-chips.com>,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 2/2] arm64: dts: rockchip: Add rk3576 pcie nodes
-To: Kever Yang <kever.yang@rock-chips.com>, heiko@sntech.de
-References: <20250225102611.2096462-1-kever.yang@rock-chips.com>
- <20250225102611.2096462-2-kever.yang@rock-chips.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20250225102611.2096462-2-kever.yang@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkwYTVYZSEtOGEpLGUxCGUlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9613585a7e09cckunm110100f9f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OSo6OBw*TzJCNUJKKR4eLioX
-	FzMaFElVSlVKTE9PS0NKSUNKSUNOVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1MQ0s3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=ZzFcx253Iawa95Ut/zueBk6AOjK/JxZoWLnmw0TH6KDZc8RlQ7YnUlOpTHMHsFffAR/USMj5zUBT2BYglrMvPvoLWOjH7W3Vymu+m1vLvUPHOxBaS5zm/hHV9ejb3E099jnZ3QdUWJospg6rNBs/UVdBG+6V1U/jJHt8Cwql21Y=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=SLSSxNg3dTpdPXjgZLIOhqnXXot5F10MyjFb2gUR874=;
-	h=date:mime-version:subject:message-id:from;
 
-在 2025/02/25 星期二 18:26, Kever Yang 写道:
-> rk3576 has two pcie controllers, both are pcie2x1 work with
-> naneng-combphy.
-> 
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> ---
-> 
+Hi Guenter, Wolfram and Mukesh,=20
 
-One thing need to be mentioned, defconfig set:
-CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY=m
-CONFIG_PHY_ROCKCHIP_PCIE=m
+I hope you are doing well.
+Thanks for your suggestion/feedback.=20
 
-So the phy is missing leads deferred probe pending.
+Sorry for the inconvenience.
+This patch is still in the testing phase and not the final one, that is why=
+  " pr_warn()" is used for debug purposes.=20
 
-With setting CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY=y,
-pcie works fine, so
+We will get back to you with the final patch with proper process as suggest=
+ed by you.=20
 
-Tested-by: Shawn Lin <Shawn.lin@rock-chips.com>
+With Best Regards
+   Ashish Yadav
 
-> Changes in v7:
-> - re-order the properties.
-> 
-> Changes in v6: None
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3:
-> - Update the subject
-> 
-> Changes in v2:
-> - Update clock and reset names and sequence to pass DTB check
-> 
->   arch/arm64/boot/dts/rockchip/rk3576.dtsi | 108 +++++++++++++++++++++++
->   1 file changed, 108 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> index 4dde954043ef..79e24b2c3c60 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -1127,6 +1127,114 @@ qos_npu_m1ro: qos@27f22100 {
->   			reg = <0x0 0x27f22100 0x0 0x20>;
->   		};
->   
-> +		pcie0: pcie@2a200000 {
-> +			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
-> +			reg = <0x0 0x22000000 0x0 0x00400000>,
-> +			      <0x0 0x2a200000 0x0 0x00010000>,
-> +			      <0x0 0x20000000 0x0 0x00100000>;
-> +			reg-names = "dbi", "apb", "config";
-> +			bus-range = <0x0 0xf>;
-> +			clocks = <&cru ACLK_PCIE0_MST>, <&cru ACLK_PCIE0_SLV>,
-> +				 <&cru ACLK_PCIE0_DBI>, <&cru PCLK_PCIE0>,
-> +				 <&cru CLK_PCIE0_AUX>;
-> +			clock-names = "aclk_mst", "aclk_slv",
-> +				      "aclk_dbi", "pclk",
-> +				      "aux";
-> +			device_type = "pci";
-> +			interrupts = <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &pcie0_intc 0>,
-> +					<0 0 0 2 &pcie0_intc 1>,
-> +					<0 0 0 3 &pcie0_intc 2>,
-> +					<0 0 0 4 &pcie0_intc 3>;
-> +			linux,pci-domain = <0>;
-> +			max-link-speed = <2>;
-> +			num-ib-windows = <8>;
-> +			num-viewport = <8>;
-> +			num-ob-windows = <2>;
-> +			num-lanes = <1>;
-> +			phys = <&combphy0_ps PHY_TYPE_PCIE>;
-> +			phy-names = "pcie-phy";
-> +			power-domains = <&power RK3576_PD_PHP>;
-> +			ranges = <0x01000000 0x0 0x20100000 0x0 0x20100000 0x0 0x00100000
-> +				  0x02000000 0x0 0x20200000 0x0 0x20200000 0x0 0x00e00000
-> +				  0x03000000 0x9 0x00000000 0x9 0x00000000 0x0 0x80000000>;
-> +			resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
-> +			reset-names = "pwr", "pipe";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			status = "disabled";
-> +
-> +			pcie0_intc: legacy-interrupt-controller {
-> +				interrupt-controller;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +				interrupt-parent = <&gic>;
-> +				interrupts = <GIC_SPI 280 IRQ_TYPE_EDGE_RISING>;
-> +			};
-> +		};
-> +
-> +		pcie1: pcie@2a210000 {
-> +			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
-> +			reg = <0x0 0x22400000 0x0 0x00400000>,
-> +			      <0x0 0x2a210000 0x0 0x00010000>,
-> +			      <0x0 0x21000000 0x0 0x00100000>;
-> +			reg-names = "dbi", "apb", "config";
-> +			bus-range = <0x20 0x2f>;
-> +			clocks = <&cru ACLK_PCIE1_MST>, <&cru ACLK_PCIE1_SLV>,
-> +				 <&cru ACLK_PCIE1_DBI>, <&cru PCLK_PCIE1>,
-> +				 <&cru CLK_PCIE1_AUX>;
-> +			clock-names = "aclk_mst", "aclk_slv",
-> +				      "aclk_dbi", "pclk",
-> +				      "aux";
-> +			device_type = "pci";
-> +			interrupts = <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &pcie1_intc 0>,
-> +					<0 0 0 2 &pcie1_intc 1>,
-> +					<0 0 0 3 &pcie1_intc 2>,
-> +					<0 0 0 4 &pcie1_intc 3>;
-> +			linux,pci-domain = <0>;
-> +			max-link-speed = <2>;
-> +			num-ib-windows = <8>;
-> +			num-viewport = <8>;
-> +			num-ob-windows = <2>;
-> +			num-lanes = <1>;
-> +			phys = <&combphy1_psu PHY_TYPE_PCIE>;
-> +			phy-names = "pcie-phy";
-> +			power-domains = <&power RK3576_PD_SUBPHP>;
-> +			ranges = <0x01000000 0x0 0x21100000 0x0 0x21100000 0x0 0x00100000
-> +				  0x02000000 0x0 0x21200000 0x0 0x21200000 0x0 0x00e00000
-> +				  0x03000000 0x9 0x80000000 0x9 0x80000000 0x0 0x80000000>;
-> +			resets = <&cru SRST_PCIE1_POWER_UP>, <&cru SRST_P_PCIE1>;
-> +			reset-names = "pwr", "pipe";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			status = "disabled";
-> +
-> +			pcie1_intc: legacy-interrupt-controller {
-> +				interrupt-controller;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +				interrupt-parent = <&gic>;
-> +				interrupts = <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>;
-> +			};
-> +		};
-> +
->   		gmac0: ethernet@2a220000 {
->   			compatible = "rockchip,rk3576-gmac", "snps,dwmac-4.20a";
->   			reg = <0x0 0x2a220000 0x0 0x10000>;
+
+-----Original Message-----
+From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
+Sent: 07 April 2025 20:06
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>; Lin Shirley (SMD C3 GC=
+ TM DCO) <Shirley.Lin@infineon.com>; robh@kernel.org; krzk+dt@kernel.org; c=
+onor+dt@kernel.org; jdelvare@suse.com; corbet@lwn.net; patrick.rudolph@9ele=
+ments.com; bhelgaas@google.com; ninad@linux.ibm.com; festevam@denx.de; devi=
+cetree@vger.kernel.org; linux-hwmon@vger.kernel.org; linux-i2c@vger.kernel.=
+org; Liu Mills (SMD C3 GC TM DCO) <Mills.Liu@infineon.com>; Yadav Ashish (P=
+SS PCS RD FW HD) <Ashish.Yadav@infineon.com>; Fang Ian (SMD C3 GC TM DCO) <=
+Ian.Fang@infineon.com>
+Subject: Re: Update driver xdpe152c4.c
+
+Caution: This e-mail originated outside Infineon Technologies. Please be ca=
+utious when sharing information or opening attachments especially from unkn=
+own senders. Refer to our intranet guide<https://intranet-content.infineon.=
+com/explore/aboutinfineon/rules/informationsecurity/ug/SocialEngineering/Pa=
+ges/SocialEngineeringElements_en.aspx> to help you identify Phishing email.
+
+
+
+On 4/7/25 07:01, Guenter Roeck wrote:
+> On 4/6/25 23:15, Wolfram Sang wrote:
+>>
+>>> Please help to review the attached Linux Kernel patch for xdpe152xx dri=
+ver.
+>>
+>> To shorten things, you could return -EAGAIN as an error code, then=20
+>> the I2C core will retry the message for you. Within the configured=20
+>> limits for the controller.
+>>
+>
+> The patch neglects to state the _reason_ for the change.
+>
+> I'd like to know what causes the problem before applying a change like th=
+is.
+> I suspect that the chip needs either a delay between accesses or a=20
+> delay after a write. Both are supported by the PMBus core.
+>
+
+And this is a complete no-go:
+
++       if (ret < 0)
++               pr_warn("PMBUS READ ERROR:%d\n", ret);
+
+It isn't even dev_warn(), and I am not going to accept patches which will c=
+log the kernel log for every single error return. Just imagine how the kern=
+el log would look like if every driver would log errors like this.
+
+Guenter
+
 
