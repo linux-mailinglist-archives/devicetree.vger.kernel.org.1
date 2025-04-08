@@ -1,109 +1,104 @@
-Return-Path: <devicetree+bounces-164432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE4DA80FD6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:25:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D23A81006
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 472DE19E504B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:20:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF7B51887B15
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E815322B8C4;
-	Tue,  8 Apr 2025 15:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508DE2253FF;
+	Tue,  8 Apr 2025 15:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzrx13MO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="B+vW1Cpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B981322A4D6;
-	Tue,  8 Apr 2025 15:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B6E8F5A;
+	Tue,  8 Apr 2025 15:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744125585; cv=none; b=qLJtuf2EE+KB+u3MAeCncPg+460XRdOmfWKo/LTbs5F3R70e3PYMLOm3A62LYqRhwqsn9y/8BR7MSS2RnDWauNQLOJ43LJDrECYILDKtgqw6Ota3kBJY1qvjTpiH9i0s3HBCla76SifX/TNUP9pjuObwK7BwtBajxhP+htAEgc8=
+	t=1744126027; cv=none; b=Rrfmpg2gppjOXbOcxkZM/WjsntE+5K1rKYfbg51IQCWvA0TzD+jj4ctmKzUOMZeCUMb4je1851wh6z2W2gAV8FubkPqj5He3wbBDexh7KXVoMlIYY6KidiFi7Ydhvjvnsvoy8bBhEnwyEdYGcbHcSvKGja3a05Cjxz51nvY5cuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744125585; c=relaxed/simple;
-	bh=5r+8gccGfjZhRBhcCBd1dzGJn2Jkz7RXA3qq2bWhCK0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KmC2nRh08lPDnLr3LPCHkEQcygw+qfIYWbfVph1cEnF9sHi5ETrB3dulM3A0GALCkkFje3WxolFlvcJHqwtiTEIghPixEx2yROfpfKc6/68ShhsWcKz7qJ1yUvmeL739OLFQF62kNOmnhJVKZIF0JOopk3H3RBQMsadTbpdpsSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzrx13MO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31962C4CEEA;
-	Tue,  8 Apr 2025 15:19:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744125585;
-	bh=5r+8gccGfjZhRBhcCBd1dzGJn2Jkz7RXA3qq2bWhCK0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bzrx13MOl6Y45pMoXjn8QqKm163EL1u/4qzRTOhy23zM+gDi/ZKX8fNA2lq2XB3qd
-	 IxJdcD4u+zX/OLe9RKy9JZzPCtgJgMVb4yTFzfeGCZ6miHZX3Eue3JU9Vlxfyq3J7V
-	 SLuBUU0chWF1Mb8adeecdr/MVMwML+vAFdceP1LVxGBJyKTl/WJomYQB+N8kdoLKT3
-	 MvEIUB859iJz0tM54FgT2PatbG2iY/iRp2mbFdtuOURBbRae5OJLJNnEWlOdvJBqjO
-	 7U7pZm/BWNrNn+LWiKwA/Sl0jgKeJp0SwJHIESYmKe/XVWXkyAQQwchP5NvR28K/gx
-	 ONnnosx+eqcVQ==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac6ed4ab410so917841166b.1;
-        Tue, 08 Apr 2025 08:19:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUu1iBPJue4CFtRBIQVuiosug1lgczpJti04HsJh/t8M7/nIgDH78Lo6G9qiM93FJ3RS6ri+iBMCnUIrA==@vger.kernel.org, AJvYcCV4oAfNRjwWJcs29WV7Js9XlnhBkMBWNf/qj0/mdVuUjHnYI0nM5doAGuQExQ99/Ed7iiV92qTKwFikwOcV@vger.kernel.org, AJvYcCW7iODb+YLvdwACsrreMxusM2WtrR8vv55ILZv3HXQtKWVIM4hy5ckDuhrjbpG5/aywWB3Ducc55vLm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3h3bMcveu7pjeetvF0NdpPVvgRaZ19rDV/KR8r5P2//c7cqRM
-	fYxhUgBgLIB0QJ4YqNcnD2hIOQaN53xbNBwFMz38ZRLJhWjjTsaxxCudwQS73j1j4nawBftUl+a
-	FlUPT0p5rqdRlDqIRYHoce/Avdw==
-X-Google-Smtp-Source: AGHT+IF3F02goH1mkXM1CLVQ1LdqaDZim54698ZOk0FvN2HsFWZHQ7Bc94XvEpjtOZ9EFcTOA1a4uKMEgk+52atGWFM=
-X-Received: by 2002:a17:907:3f19:b0:ac2:d0e6:2b99 with SMTP id
- a640c23a62f3a-ac7d1976666mr1648980366b.36.1744125583758; Tue, 08 Apr 2025
- 08:19:43 -0700 (PDT)
+	s=arc-20240116; t=1744126027; c=relaxed/simple;
+	bh=onBIrP3+NLc+xs22yPLSnivp0ZQZjdl7sA4TdUIhX0M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aXavjuXZLHXqOIo1arZBG5+bHqY5lf3njTaOyynCBK2P6UsOkv6mIFth8L3TTCKF1rf7/0FDQYuREn0nWKpr5u1unyAKWLi7jkqTE9ZyKdzUjB8nHaLFEMvChcxmQdd2H/AT5bFF3pOYKhFc6lbzHhtPzoKqhvm7RdrfHF4Sp1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=B+vW1Cpx; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B832C443CD;
+	Tue,  8 Apr 2025 15:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744126023;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=LfAx4lVS0KGN2cWpFco43WjIJVHZrufPU/v15sg8xV4=;
+	b=B+vW1Cpxk2j9SQVdgSnkzsXvOJaa6m77+oYmpQJJHMQlkUbGEW+2k/zQzrHttaCtyVDItA
+	kzeycUUKa+pgBiIObvDHvnTRtemTdsNobjZ2VQwRHTIApLh6k/qSXXd/UOlCb9StpCW6Ie
+	Il8OXZ9H0zk4KyhQ3/zOHKxjo2R32NuCA6haMuHz1oSd5Q6Um3OQrv+HhRslVnmAV8Vqys
+	xSHqtdoIsgpQ1Wpq+FPduhQy8nyDzHazCTiIA7Z+YQwonp6h+AWRpNhhV4JhBhpAGXk+Ti
+	msT+jUGqEZZWRQhq46wQAfVt4sW5vmJkhvULf7LjVcEfPrO2/DeaZOta7gslBQ==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH 0/4] Add support for Saef SFTO340XC panel.
+Date: Tue, 08 Apr 2025 17:26:59 +0200
+Message-Id: <20250408-feature_sfto340xc-v1-0-f303d1b9a996@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407223714.2287202-1-sean.anderson@linux.dev>
- <20250407223714.2287202-3-sean.anderson@linux.dev> <CAL_JsqLQvyBvOXJJhRcnVAVx81MUf9YwtyZ5VC-whwY=uoeDXw@mail.gmail.com>
- <52d79db7-f1fa-4695-aeb6-d07d6c2f90dc@linux.dev>
-In-Reply-To: <52d79db7-f1fa-4695-aeb6-d07d6c2f90dc@linux.dev>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 8 Apr 2025 10:19:32 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ_EqsxrY67OPm+t6tU5ikFA-TZ-fFqHPYQMuy16c_kLg@mail.gmail.com>
-X-Gm-Features: ATxdqUHSWs5RSXg2lA9S4EXsZuIsQgjtK7SB7Iy6RQkc9ncfm736BRinxEHrnCA
-Message-ID: <CAL_JsqJ_EqsxrY67OPm+t6tU5ikFA-TZ-fFqHPYQMuy16c_kLg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] device property: Add fwnode_property_get_reference_optional_args
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAENA9WcC/x3MTQqAIBBA4avErBNsUvq5SkRojTWbCq0IxLsnL
+ b/FexECeaYAfRHB08OBjz2jKguYN7OvJHjJBpSoZYWdcGSu29MU3HXUSr6zWNCiNtrqRrWQu9O
+ T4/d/DmNKH7t+hRFjAAAA
+X-Change-ID: 20250129-feature_sfto340xc-d2b25a5b5748
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdefgeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthekredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedugefgudfftefhtdeghedtieeiueevleeludeiieetjeekteehleehfeetuefggeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvi
+ hgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepqhhuihgtpghjvghsshiihhgrnhesqhhuihgtihhntgdrtghomhdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, Apr 8, 2025 at 10:12=E2=80=AFAM Sean Anderson <sean.anderson@linux.=
-dev> wrote:
->
-> On 4/8/25 09:00, Rob Herring wrote:
-> > On Mon, Apr 7, 2025 at 5:37=E2=80=AFPM Sean Anderson <sean.anderson@lin=
-ux.dev> wrote:
-> >>
-> >> Add a fwnode variant of of_parse_phandle_with_optional_args to allow
-> >> nargs_prop to be absent from the referenced node. This improves
-> >> compatibility for references where the devicetree might not always hav=
-e
-> >> nargs_prop.
-> >
-> > Can't we just make fwnode_property_get_reference_args() handle this
-> > case? Or why is it not just a 1 line wrapper function?
->
-> fwnode_property_get_reference_args ignores nargs when nargs_prop is
-> non-NULL. So all the existing callers just pass 0 to nargs. Rather than
-> convert them, I chose to add another function with different defaults.
-> There are only four callers that pass nargs_prop, so I could just as
-> easily change the callers instead.
+Add support for Saef Technology Limited SFTO340XC LCD panel.
+Add alongside the number of lanes configuration in the ili9881c driver
+as the board on my desc use the panel with only two lanes.
 
-Why do you have to change the callers? nargs value won't matter
-because they obviously have nargs_prop present or they would not have
-worked in the first place. If behavior changes because there's an
-error in their DT, who cares. That's their problem for not validating
-the DT.
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Kory Maincent (4):
+      dt-bindings: display: panel: ili9881c: Add dsi-lanes property
+      drm/panel: ilitek-ili9881c: Add support for two-lane configuration
+      dt-bindings: ili9881c: Add Saef SFTO340XC support
+      drm: panel: Add Saef SFTO340XC LCD panel
 
-Rob
+ .../bindings/display/panel/ilitek,ili9881c.yaml    |   6 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      | 267 ++++++++++++++++++++-
+ 2 files changed, 271 insertions(+), 2 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250129-feature_sfto340xc-d2b25a5b5748
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
