@@ -1,190 +1,418 @@
-Return-Path: <devicetree+bounces-164379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53812A80C95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:39:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBA8A80CD2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F42001890710
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:31:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59D511BA2144
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496A318CC15;
-	Tue,  8 Apr 2025 13:30:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S3L3W2OO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043E518DB0D;
+	Tue,  8 Apr 2025 13:43:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B003E12FF69
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 13:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D1718DF6D
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 13:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744119052; cv=none; b=N4WYWDJXi3thBeegfxAfhRmmqXazjOkxw/CTdVOloG/dhv18I6g6NTK/3pfB5udbd1q2HZLOuHSSsANsxQoAVG0h++BaezXo8mGTGIDguP2mILZ/h99jG46FBkYzH3UeGAfeteVcHu9eqElQqcDZ6grBSufTU2cvM/8qkQsgm0E=
+	t=1744119834; cv=none; b=nokayTpn927il9VrAM0B0tSydOnzidbAvn5z3pUuaS8n+ekSC51oPGXr6qwvVhpkjLqJykyY+oA9bBZ2JC7dzVtzsYzd2leiS6f90tmos9CvuThAlCWHFpfRRM2JfsiUvhRnDujA8h+bP/4adu1Sv+mhWluprMcAptuT63UfiHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744119052; c=relaxed/simple;
-	bh=wbXIV8fD5EsgsdW9CNBtdLwY/+j7rS217N7ZSoYjoQU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XG/H991xRjqwC73ifrNdmGwUypnt7dabpDmAuUpmg9Syrk79GMgxNqWRhsW/c2xt7N5L7No1NLnX5ype2hx2BzMhkmKgo4rYyiv+O4DC/FigZr/buHUToXaPAVUANm+p3PEjZPQINgSp+hB1r24DEiloefND43+zF9Q0O63aKVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S3L3W2OO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BDd8X008070
-	for <devicetree@vger.kernel.org>; Tue, 8 Apr 2025 13:30:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Nja2Tn/hbf3f+kd28RTjUYmIevE/H1W2OAgxtQp+p7M=; b=S3L3W2OOUUyW00bZ
-	Nzbzrk3MBXFvNF5Zk5rcD8GJWasFlTywL2YOLrQaeACw1b+9uAngLF0ZNhVrVyQj
-	6bd+1Dke3kdf4f7tppnvCpuY1aEZY7U0rA1P7IyeDd++4VPGNzLJynU6KvreHfDr
-	27TpF+3Mhcn8eorLN3NZPyKv+ApMtUczA4sJi04WuBowb1Eoxa/sLBhmpDdOqgra
-	5ZCk5vta36r+q04M406KfJwQNdJj66xpogSdkvE5ulZlEHU3W3AgM/W9AwL155Mp
-	BDjQEgIWIQnUD+LB8SQrTgCCnXijhWLMKm4G/I7MXCyznj6skKRH0Q2IAinmIdMK
-	ioXn4A==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twtayxrt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 13:30:48 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5c82c6d72so1000932185a.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 06:30:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744119047; x=1744723847;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nja2Tn/hbf3f+kd28RTjUYmIevE/H1W2OAgxtQp+p7M=;
-        b=iPNQsh/1HG0M1oZQkXCWbKwR5dxY8yVlZs79Qwn20SavHz2AzsDgqfINP5T7BYrOKm
-         GnPljNYuHKb0NBva1eNHjRvw6/rjso0kuSsfFnrSppdh7Mg+43aTbRixHwMNzn7wLOxp
-         SlyhYBN14cTQIYMto5w0Uu8VjptDfeUp85wEwk6G29M1+ALgtA8iyuCmwR22zeQvZKLF
-         xA9XyUf5fl3rTpOZ9jslLPyDYy+ngZCUs82Bah+oBxA9wmCUfb4Ga3YSa2b04sy1lvbr
-         dJHfaOZ/ulqRZv01m+9pyMHKwe5SHzbxyFpYRbWV4Y4ahu2+30GqbJjf3pD/h0Oo/vLe
-         QR9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWEwWiyho9oi5WYL472luH74D7JkX28O/J8H30ZH8fuIf/OV98RBk1PrerqlYPHSjQsKFDIs+WO7JRz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuwM1lGkxbKlOFCPWLDv2jG7/3xKoHuPNWKVpLYL5kGMzYhDMp
-	qjSIxgwTWe6keuIr0hGX5GD8oniQE2Fy1hrtIsB/3tVctl0tzY8IOyRgC+2LQdZSSxpnZ/Yuc08
-	xSSHtMo8aitG8jitYckjzE0jBVPaFwjjIXPKurd22clEDHcgEwj73N6OukD/A
-X-Gm-Gg: ASbGncvuyTrxmjmKAjcMOqE+mGd3QSIYSNtFDwrvWCwk1gFhHxofOWBhtiR+xQ954R5
-	pyxFCaVjjcXe0/4FbbxX+0+3ZZkfDAXqnSIcMKHrrh9+kDRmj9j5lnoQkjsoS8WwedQjg7lYgcP
-	S6tPAOUapBPGKsUj5xYBHdpWiCEX7CMtogtMwmFyYNVH3FNQVipal39Nw4Qm244pWopn+sU8S+c
-	zl4ZtLkPM+0WvCfJqWW7ehuKmVHVVlbnPmYnqLTym5uTP7hSmTlH3uOR1FfPWRJx0j87DeDeXp1
-	rYMdAFwyYKK7hfWk1SLXSq/ju7uFr+JJ4K8UnwOZ3YHomTr+NF5VuF5lKOQiC+mDzKHhfpwJ6rz
-	zdU7ULMIWZjc3FicqypjtlNWhHFVb3xz2xMyZDhmGqAl1Neb7qBnUr6Nkp6qei7b1s7g+kJrC
-X-Received: by 2002:a05:620a:438d:b0:7c5:9a4f:adf0 with SMTP id af79cd13be357-7c775a3a31bmr2266252485a.33.1744119047441;
-        Tue, 08 Apr 2025 06:30:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHbMmp3CfVKfd6hjxj4wFX4JzUWBBnXDkMhXPHpNvTKDffs5k7umGwLhGsCMYlEiCZzHxRmIQ==
-X-Received: by 2002:a05:620a:438d:b0:7c5:9a4f:adf0 with SMTP id af79cd13be357-7c775a3a31bmr2266248085a.33.1744119047104;
-        Tue, 08 Apr 2025 06:30:47 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:67f:3161:8c52:493e:b4d8:ba34? (2001-14bb-67f-3161-8c52-493e-b4d8-ba34.rev.dnainternet.fi. [2001:14bb:67f:3161:8c52:493e:b4d8:ba34])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f03124530sm19668361fa.9.2025.04.08.06.30.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 06:30:46 -0700 (PDT)
-Message-ID: <3831073d-fcc4-46a5-bdb7-ec19702a08be@oss.qualcomm.com>
-Date: Tue, 8 Apr 2025 16:30:44 +0300
+	s=arc-20240116; t=1744119834; c=relaxed/simple;
+	bh=2qHhThrnOTWPUjl99ltiubZEVCpfALKofqfiBBBxp7Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xr4EgIuyzlqV+QHTFSgYoVTpuOOsns/pezUPK/iOfuLrb8GrlfZu4JfzXjvmR2KrTYP/xBct5C9VWbbliafyZFeEbAUkKsSYUGjFoUP8Jtzkwy1zbBZWlhV28uCpiD7YaAbwWMjcMR0+cFTGjRafQiv5psXBw+Ko6qHkPaH32pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u29Eq-00012g-Is; Tue, 08 Apr 2025 15:43:40 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u29Eq-003wQM-0v;
+	Tue, 08 Apr 2025 15:43:40 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u29Eq-006Zph-0T;
+	Tue, 08 Apr 2025 15:43:40 +0200
+Date: Tue, 8 Apr 2025 15:43:40 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de,
+	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/3] clk: add TI CDCE6214 clock driver
+Message-ID: <Z_UoDCZKQpeID50C@pengutronix.de>
+References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
+ <20250408-clk-cdce6214-v1-2-bd4e7092a91f@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: ipq5424: Enable PCIe PHYs and
- controllers
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20250402102723.219960-1-quic_mmanikan@quicinc.com>
- <20250402102723.219960-3-quic_mmanikan@quicinc.com>
- <ezodm6qh63fs43xx6cw3smspfqkwqb5qscwfee36k5vtktguc4@tlqhuvjg2bly>
- <bcbd2f83-2599-4a2e-ad69-64edcb97dfbe@quicinc.com>
- <CAO9ioeVTyWL0-vzzNs3isDodi8jXQ9pHknyyhnWKcb+0tyf1FQ@mail.gmail.com>
- <769be701-afd1-4c14-8e44-fbb25a0c3f24@quicinc.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <769be701-afd1-4c14-8e44-fbb25a0c3f24@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: YiH2-6Dga1DEuYdafDgrZutyqO-hQgrh
-X-Authority-Analysis: v=2.4 cv=LLlmQIW9 c=1 sm=1 tr=0 ts=67f52508 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=TZ-J8J8rxNrT4oVwbdUA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: YiH2-6Dga1DEuYdafDgrZutyqO-hQgrh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-08_05,2025-04-08_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- clxscore=1015 mlxlogscore=966 malwarescore=0 phishscore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 adultscore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504080095
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250408-clk-cdce6214-v1-2-bd4e7092a91f@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 08/04/2025 15:49, Manikanta Mylavarapu wrote:
+On Tue, Apr 08, 2025 at 02:00:23PM +0200, Sascha Hauer wrote:
+> The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+> Differential Outputs, Two Inputs, and Internal EEPROM. This patch adds
+> a common clk framework driver for this chip.
 > 
+> - Two inputs (PRIREF and SECREF)
+> - Programmable 8bit divider or x2 multiplier between input and PLL
+> - 16b integer / 24bit fractional PLL
+> - Two programmable /4, /5, /6 dividers after PLL (PSA/PSB)
+> - Four outputs (OUT1-OUT4) with programmable 14b dividers,
+>   muxable between PSA, PSB and PLL input
+> - One output (OUT0) fed from PLL input
 > 
-> On 4/3/2025 3:02 PM, Dmitry Baryshkov wrote:
->> On Thu, 3 Apr 2025 at 08:08, Manikanta Mylavarapu
->> <quic_mmanikan@quicinc.com> wrote:
->>>
->>>
->>>
->>> On 4/2/2025 7:50 PM, Dmitry Baryshkov wrote:
->>>> On Wed, Apr 02, 2025 at 03:57:23PM +0530, Manikanta Mylavarapu wrote:
->>>>> Enable the PCIe controller and PHY nodes corresponding to RDP466.
->>>>>
->>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>>>> ---
->>>>> Changes in V6:
->>>>>       - No change.
->>>>>
->>>>>   arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 41 ++++++++++++++++++++-
->>>>>   1 file changed, 40 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->>>>> index 0fd0ebe0251d..1f89530cb035 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->>>>> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->>>>> @@ -82,6 +82,32 @@ &dwc_1 {
->>>>>       dr_mode = "host";
->>>>>   };
->>>>>
->>>>> +&pcie2 {
->>>>> +    pinctrl-0 = <&pcie2_default_state>;
->>>>> +    pinctrl-names = "default";
->>>>> +
->>>>> +    perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
->>>>
->>>>
->>>> No wake-gpios? Please document it in the commit message.
->>>>
->>>
->>> Hi Dmitry,
->>>
->>> Thank you for reviewing the patch.
->>>
->>> The wake GPIO is dropped because the PCIe on the IPQ5424 doesn't support low power mode.
->>> I will document this information in the commit message and post the next version.
->>
->> If the GPIO is routed on the PCB I think it should still be described in the DT.
->>
->>
+> - PRIREF can be configured as LVCMOS or differential input
+> - SECREF can be configured as LVCMOS, differential or oscillator input
+> - OUT0 is a LVCMOS output
+> - OUT1 and OUT4 can be configured as LVDS, LP-HCSL or LVCMOS outputs
+> - OUT2 and OUT3 can be configured as LVDS or LP-HCSL outputs
 > 
-> Hi Dmitry,
+> All clocks are registered without parent rate propagation, so each of
+> the clocks must be configured separately via device tree or consumer.
 > 
-> 	I have confirmed with the hardware team that the wake GPIO is not routed on the PCB.
+> Signed-off-by: Alvin ¦ipraga <alsi@bang-olufsen.dk>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  drivers/clk/Kconfig                     |    7 +
+>  drivers/clk/Makefile                    |    1 +
+>  drivers/clk/clk-cdce6214.c              | 1105 +++++++++++++++++++++++++++++++
+>  include/dt-bindings/clock/ti,cdce6214.h |   24 +
+>  4 files changed, 1137 insertions(+)
+> 
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 713573b6c86c7..499fd610c0467 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -170,6 +170,13 @@ config COMMON_CLK_BM1880
+>  	help
+>  	  This driver supports the clocks on Bitmain BM1880 SoC.
+>  
+> +config COMMON_CLK_CDCE6214
+> +	tristate "Clock driver for TI CDCE6214 clock synthesizer"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  This driver supports TI CDCE6214 programmable 1-PLL clock synthesizer.
+> +
+>  config COMMON_CLK_CDCE706
+>  	tristate "Clock driver for TI CDCE706 clock synthesizer"
+>  	depends on I2C
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index bf4bd45adc3a0..0f87b13b137b5 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -49,6 +49,7 @@ obj-$(CONFIG_COMMON_CLK_AXI_CLKGEN)	+= clk-axi-clkgen.o
+>  obj-$(CONFIG_ARCH_AXXIA)		+= clk-axm5516.o
+>  obj-$(CONFIG_COMMON_CLK_BD718XX)	+= clk-bd718x7.o
+>  obj-$(CONFIG_COMMON_CLK_BM1880)		+= clk-bm1880.o
+> +obj-$(CONFIG_COMMON_CLK_CDCE6214)	+= clk-cdce6214.o
+>  obj-$(CONFIG_COMMON_CLK_CDCE706)	+= clk-cdce706.o
+>  obj-$(CONFIG_COMMON_CLK_CDCE925)	+= clk-cdce925.o
+>  obj-$(CONFIG_ARCH_CLPS711X)		+= clk-clps711x.o
+> diff --git a/drivers/clk/clk-cdce6214.c b/drivers/clk/clk-cdce6214.c
+> new file mode 100644
+> index 0000000000000..a825cd71bb11b
+> --- /dev/null
+> +++ b/drivers/clk/clk-cdce6214.c
+> @@ -0,0 +1,1105 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for the TI CDCE6214 clock generator
+> + *
+> + * Copyright (c) 2023 Alvin ¦ipraga <alsi@bang-olufsen.dk>
+> + * Copyright (c) 2025 Sascha Hauer <s.hauer@pengutronix.de>
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/of.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <dt-bindings/clock/ti,cdce6214.h>
+> +
+> +#define RO_I2C_A0			BIT(15)
+> +#define RO_PDN_INPUT_SEL		BIT(14)
+> +#define RO_GPIO4_DIR_SEL		BIT(13)
+> +#define RO_GPIO1_DIR_SEL		BIT(12)
+> +#define RO_ZDM_CLOCKSEL			BIT(10)
+> +#define RO_ZDM_EN			BIT(8)
+> +#define RO_SYNC				BIT(5)
+> +#define RO_RECAL			BIT(4)
+> +#define RO_RESETN_SOFT			BIT(3)
+> +#define RO_SWRST			BIT(2)
+> +#define RO_POWERDOWN			BIT(1)
+> +#define RO_MODE				BIT(0)
+> +
+> +#define R1_GPIO4_INPUT_SEL		GENMASK(15, 12)
+> +#define R1_GPIO3_INPUT_SEL		GENMASK(11, 8)
+> +#define R1_GPIO2_INPUT_SEL		GENMASK(7, 4)
+> +#define R1_GPIO1_INPUT_SEL		GENMASK(3, 0)
+> +
+> +#define R2_GPIO4_OUTPUT_SEL		GENMASK(9, 6)
+> +#define R2_GPIO1_OUTPUT_SEL		GENMASK(5, 2)
+> +#define R2_REFSEL_SW			GENMASK(1, 0)
+> +
+> +#define R3_DISABLE_CRC			BIT(13)
+> +#define R3_UPDATE_CRC			BIT(12)
+> +#define R3_NVMCOMMIT			BIT(11)
+> +#define R3_REGCOMMIT			BIT(10)
+> +#define R3_REGCOMMIT_PAGE		BIT(9)
+> +#define R3_FREQ_DEC_REG			BIT(6)
+> +#define R3_FREQ_INC_REG			BIT(5)
+> +#define R3_FREQ_INC_DEC_REG_MODE	BIT(4)
+> +#define R3_FREQ_INC_DEC_EN		BIT(3)
+> +
+> +#define R4_CH4_PD			BIT(7)
+> +#define R4_CH3_PD			BIT(6)
+> +#define R4_CH2_PD			BIT(5)
+> +#define R4_CH1_PD			BIT(4)
+> +#define R4_POST_EE_DLY			GENMASK(3, 0)
+> +
+> +#define R5_PLL_VCOBUFF_LDO_PD		BIT(8)
+> +#define R5_PLL_VCO_LDO_PD		BIT(7)
+> +#define R5_PLL_VCO_BUFF_PD		BIT(6)
+> +#define R5_PLL_CP_LDO_PD		BIT(5)
+> +#define R5_PLL_LOCKDET_PD		BIT(4)
+> +#define R5_PLL_PSB_PD			BIT(3)
+> +#define R5_PLL_PSA_PD			BIT(2)
+> +#define R5_PLL_PFD_PD			BIT(1)
+> +
+> +#define R7_NVMCRCERR			BIT(5)
+> +#define R7_LOCK_DET_S			BIT(1)
+> +#define R7_LOCK_DET			BIT(0)
+> +
+> +#define R9_NVMLCRC			GENMASK(15, 0)
+> +
+> +#define R10_NVMSCRC			GENMASK(15, 0)
+> +
+> +#define R11_NVM_RD_ADDR			GENMASK(5, 0)
+> +
+> +#define R12_NVM_RD_DATA			GENMASK(15, 0)
+> +
+> +#define R13_NVM_WR_ADDR			GENMASK(5, 0)
+> +
+> +#define R14_NVM_WR_DATA			GENMASK(15, 0)
+> +
+> +#define R15_EE_LOCK			GENMASK(15, 12)
+> +#define R15_CAL_MUTE			BIT(5)
+> +
+> +#define R24_IP_PRIREF_BUF_SEL		BIT(15)
+> +#define R24_IP_XO_CLOAD			GENMASK(12, 8)
+> +#define R24_IP_BIAS_SEL_XO		GENMASK(5, 2)
+> +#define R24_IP_SECREF_BUF_SEL		GENMASK(1, 0)
+> +#define R24_IP_SECREF_BUF_SEL_XTAL	0
+> +#define R24_IP_SECREF_BUF_SEL_LVCMOS	1
+> +#define R24_IP_SECREF_BUF_SEL_DIFF	2
+> +
+> +#define R25_IP_REF_TO_OUT4_EN		BIT(14)
+> +#define R25_IP_REF_TO_OUT3_EN		BIT(13)
+> +#define R25_IP_REF_TO_OUT2_EN		BIT(12)
+> +#define R25_IP_REF_TO_OUT1_EN		BIT(11)
+> +#define R25_IP_BYP_OUT0_EN		BIT(10)
+> +#define R25_REF_CH_MUX			BIT(9)
+> +#define R25_IP_RDIV			GENMASK(7, 0)
+> +
+> +#define R27_MASH_ORDER			GENMASK(1, 0)
+> +
+> +#define R30_PLL_NDIV			GENMASK(14, 0)
+> +
+> +#define R31_PLL_NUM_15_0		GENMASK(15, 0)
+> +
+> +#define R32_PLL_NUM_23_16		GENMASK(7, 0)
+> +
+> +#define R33_PLL_DEN_15_0		GENMASK(15, 0)
+> +
+> +#define R34_PLL_DEN_23_16		GENMASK(7, 0)
+> +
+> +#define R41_SSC_EN			BIT(15)
+> +
+> +#define R42_SSC_TYPE			BIT(5)
+> +#define R42_SSC_SEL			GENMASK(3, 1)
+> +
+> +#define R43_FREQ_INC_DEC_DELTA		GENMASK(15, 0)
+> +
+> +#define R47_PLL_CP_DN			GENMASK(12, 7)
+> +#define R47_PLL_PSB			GENMASK(6, 5)
+> +#define R47_PLL_PSA			GENMASK(4, 3)
+> +
+> +#define R48_PLL_LF_RES			GENMASK(14, 11)
+> +#define R48_PLL_CP_UP			GENMASK(5, 0)
+> +
+> +#define R49_PLL_LF_ZCAP			GENMASK(4, 0)
+> +
+> +#define R50_PLL_LOCKDET_WINDOW		GENMASK(10, 8)
+> +
+> +#define R51_PLL_PFD_DLY_EN		BIT(10)
+> +#define R51_PLL_PFD_CTRL		BIT(6)
+> +
+> +#define R52_PLL_NCTRL_EN		BIT(6)
+> +#define R52_PLL_CP_EN			BIT(3)
+> +
+> +#define R55_PLL_LF_3_PCTRIM		GENMASK(9, 8)
+> +#define R55_PLL_LF_3_PRTRIM		GENMASK(7, 6)
+> +
+> +#define R56_CH1_MUX			GENMASK(15, 14)
+> +#define R56_CH1_DIV			GENMASK(13, 0)
+> +
+> +#define R57_CH1_LPHCSL_EN		BIT(14)
+> +#define R57_CH1_1P8VDET			BIT(12)
+> +#define R57_CH1_GLITCHLESS_EN		BIT(9)
+> +#define R57_CH1_SYNC_DELAY		GENMASK(8, 4)
+> +#define R57_CH1_SYNC_EN			BIT(3)
+> +#define R57_CH1_MUTE_SEL		BIT(1)
+> +#define R57_CH1_MUTE			BIT(0)
+> +
+> +#define R59_CH1_LVDS_EN			BIT(15)
+> +#define R59_CH1_CMOSN_EN		BIT(14)
+> +#define R59_CH1_CMOSP_EN		BIT(13)
+> +#define R59_CH1_CMOSN_POL		BIT(12)
+> +#define R59_CH1_CMOSP_POL		BIT(11)
+> +
+> +#define R60_CH1_DIFFBUF_IBIAS_TRIM	GENMASK(15, 12)
+> +#define R60_CH1_LVDS_CMTRIM_INC		GENMASK(11, 10)
+> +#define R60_CH1_LVDS_CMTRIM_DEC		GENMASK(5, 4)
+> +#define R60_CH1_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
+> +
+> +#define R62_CH2_MUX			GENMASK(15, 14)
+> +#define R62_CH2_DIV			GENMASK(13, 0)
+> +
+> +#define R63_CH2_LPHCSL_EN		BIT(13)
+> +#define R63_CH2_1P8VDET			BIT(12)
+> +#define R63_CH2_GLITCHLESS_EN		BIT(9)
+> +#define R63_CH2_SYNC_DELAY		GENMASK(8, 4)
+> +#define R63_CH2_SYNC_EN			BIT(3)
+> +#define R63_CH2_MUTE_SEL		BIT(1)
+> +#define R63_CH2_MUTE			BIT(0)
+> +
+> +#define R65_CH2_LVDS_CMTRIM_DEC		GENMASK(14, 13)
+> +#define R65_CH2_LVDS_EN			BIT(11)
+> +
+> +#define R66_CH2_LVDS_CMTRIM_IN		GENMASK(5, 4)
+> +#define R66_CH2_DIFFBUF_IBIAS_TRIM	GENMASK(3, 0)
+> +
+> +#define R67_CH3_MUX			GENMASK(15, 14)
+> +#define R67_CH3_DIV			GENMASK(13, 0)
+> +
+> +#define R68_CH3_LPHCSL_EN		BIT(13)
+> +#define R68_CH3_1P8VDET			BIT(12)
+> +#define R68_CH3_GLITCHLESS_EN		BIT(9)
+> +#define R68_CH3_SYNC_DELAY		GENMASK(8, 4)
+> +#define R68_CH3_SYNC_EN			BIT(3)
+> +#define R68_CH3_MUTE_SEL		BIT(1)
+> +#define R68_CH3_MUTE			BIT(0)
+> +
+> +#define R70_CH3_LVDS_EN			BIT(11)
+> +
+> +#define R71_CH3_LVDS_CMTRIM_DEC		GENMASK(10, 9)
+> +#define R71_CH3_LVDS_CMTRIM_INC		GENMASK(5, 4)
+> +#define R71_CH3_DIFFBUF_IBIAS_TR	GENMASK(3, 0)
+> +
+> +#define R72_CH4_MUX			GENMASK(15, 14)
+> +#define R72_CH4_DIV			GENMASK(13, 0)
+> +
+> +#define R73_CH4_LPHCSL_EN		BIT(13)
+> +#define R73_CH4_1P8VDET			BIT(12)
+> +#define R73_CH4_GLITCHLESS_EN		BIT(9)
+> +#define R73_CH4_SYNC_DELAY		GENMASK(8, 4)
+> +#define R73_CH4_SYNC_EN			BIT(3)
+> +#define R73_CH4_MUTE_SEL		BIT(1)
+> +#define R73_CH4_MUTE			BIT(0)
+> +
+> +#define R75_CH4_LVDS_EN			BIT(15)
+> +#define R75_CH4_CMOSP_EN		BIT(14)
+> +#define R75_CH4_CMOSN_EN		BIT(13)
+> +#define R75_CH4_CMOSP_POL		BIT(12)
+> +#define R75_CH4_CMOSN_POL		BIT(11)
+> +
+> +#define R76_CH4_DIFFBUF_IBIAS_TRIM	GENMASK(9, 6)
+> +#define R76_CH4_LVDS_CMTRIM_IN		GENMASK(5, 4)
+> +#define R76_CH4_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
+> +
+> +#define R77_CH4_LVDS_CMTRIM_DEC		GENMASK(1, 0)
+> +
+> +#define R78_CH0_EN			BIT(12)
+> +
+> +#define R79_SAFETY_1P8V_MODE		BIT(9)
+> +#define R79_CH0_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
+> +
+> +#define R81_PLL_LOCK_MASK		BIT(3)
+> +
+> +#define CDCE6214_VCO_MIN 2335000000
+> +#define CDCE6214_VCO_MAX 2625000000
+> +#define CDCE6214_DENOM_DEFAULT (1 << 24)
+> +
+> +static char *clk_names[] = {
+> +	[CDCE6214_CLK_PRIREF] = "priref",
+> +	[CDCE6214_CLK_SECREF] = "secref",
+> +	[CDCE6214_CLK_OUT0] = "out0",
+> +	[CDCE6214_CLK_OUT1] = "out1",
+> +	[CDCE6214_CLK_OUT2] = "out2",
+> +	[CDCE6214_CLK_OUT3] = "out3",
+> +	[CDCE6214_CLK_OUT4] = "out4",
+> +	[CDCE6214_CLK_PLL] = "pll",
+> +	[CDCE6214_CLK_PSA] = "psa",
+> +	[CDCE6214_CLK_PSB] = "psb",
+> +};
+> +
+> +#define CDCE6214_NUM_CLOCKS	ARRAY_SIZE(clk_names)
+> +
+> +struct cdce6214;
+> +
+> +struct cdce6214_clock {
+> +	struct clk_hw hw;
+> +	struct cdce6214 *priv;
+> +	int index;
+> +};
+> +
+> +struct cdce6214_config {
+> +	const struct reg_default *reg_default;
+> +	int reg_default_size;
+> +};
 
-Sad. Please mention it in the commit message.
+This is unused. I'll remove it next round.
 
-> 
-> Thanks & Regards,
-> Manikanta.
-> 
+> +static const struct of_device_id cdce6214_ids[] = {
+> +	{
+> +		.compatible = "ti,cdce6214-24mhz",
 
+Should be ti,cdce6214. Will fix next round.
+
+Sascha
 
 -- 
-With best wishes
-Dmitry
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
