@@ -1,241 +1,316 @@
-Return-Path: <devicetree+bounces-164356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28DBA8099A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:55:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3754A80A5F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C345D1B65E10
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:50:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C9194C6EB3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEAA626F466;
-	Tue,  8 Apr 2025 12:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ovuATnNA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DF8270EBC;
+	Tue,  8 Apr 2025 12:45:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27AF26F46A
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 12:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF1926A08B;
+	Tue,  8 Apr 2025 12:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744116280; cv=none; b=aamZcBpIUHZ3m838qCctpdjP5ObPWpFngRDSNH5c5uKFeUQ7lgG08aUwnG+q0gTS9p8pj4KqXvTyi5esxFNCvPbUTN0DDeZz02yIoIJGOCYtc9OarKkK+tPib1lCToQPBSJDWkVEl8D+FDUfvqyzj4gA+SSFE7terhIfbMhrFB0=
+	t=1744116338; cv=none; b=SfD1POkLO+1sk6iMdXTJJxhfDtk052qvutJhlo8JcIDy98Jg9lumzrsW8wXu0hjsZKi4GwTP2Ve4N8kfAaamZVvQyStVA6v8PiKFfThW+D9iuH+PtW+ENd5uQdiOiyn57i8fhsWjNA3JQN5vsygzjx4qlKPCgJNib6aXtBVtiB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744116280; c=relaxed/simple;
-	bh=UVKNIXJZ3EizZ14aiaQDLO5yj1M51S+0ibMt6nLcfeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ke+M+4+VqcINPljJO3vBVzDQVOcwjifZ0zyjqMUrAKiCI9Fadoo/q9RR5PF9KAbNO71/gUrXX4y9qmyMcAq9x9vU8rfWt2xg7y40HaFvjYp1RD2y8TkXsVn+k+oT1RGN/vH/jVpsHdryUQtELwVN7uWRpnIf2mJdrrjf1sqgj5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ovuATnNA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BFinX010549
-	for <devicetree@vger.kernel.org>; Tue, 8 Apr 2025 12:44:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lg3ZT4srw+6aryFi5Qc7G2dueXIKHeooH8YunyQ+fbw=; b=ovuATnNAylzikAyd
-	WtOcoK/ivI0Z1bAvVeZIcWUM0vUOKBVIFq1RIDSG6DOTo6g14E4X/kfM8FHcayzZ
-	60RyeWAWGrY1LETgrU1OQTE94j923Igv32/NuaYlTPz0Gh3dpN2pxPNWbmRjzjZ4
-	KZADeWIh059zhZsxgvrI0UhKbjoY3wWAIkxwEU2UHENveZagtDZpmYjeoUdXzk6I
-	CHx8mEf2FDsuI0V6lPCnKQCmmBYLzt9VczDOsESP4g7ql52bytZH5mtGUDKOlfD2
-	ACwfVqCLTHX8nmSZOfUrvaG61wc0WvOXe9l4n3vXWZsPZY3ddxrLpuQSCrFWYNNT
-	4qY+/w==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1fndq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:44:37 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5c9abdbd3so539187285a.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 05:44:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744116277; x=1744721077;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lg3ZT4srw+6aryFi5Qc7G2dueXIKHeooH8YunyQ+fbw=;
-        b=POWP2DkvfwFeHOWikYUxcDn8jbePQieNlf00nD8ZWEgzHI6eyXaAh2IyLvvKZso1Uw
-         71j3rzsS52eagDfYM8s4/yhvGSgo8AI2oifEJxvXb0xC7pF7EQAMTKL2QwGuucgetO5c
-         BehgdGrzG1pDr2qaa4N3NRaNRaprc3lG2cy9BZ4oeJN7KdGLc/aVYNcXRHmcY5A5qqTE
-         X0bc5VzSws+I8D0OnqKZNH1PyIRs7WEdfR50N+iF1KIm57+ujRJ3LLtEVBA79epluJYZ
-         K3SMW+CRlqEGCRYgYExUcrs5KveHrOgt/eXiis+yWm36TgDffTSsKk/QFyqZ23MbhvVm
-         fw8w==
-X-Forwarded-Encrypted: i=1; AJvYcCV3yd0quAmS7MnovPoDLK1vU1FzbjZpFkkpf3Mopr75lFLkghI/k8D7sVEzKYoGU5rwLG+Sm0EHYWUO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyL4Zpk37SoPebEzn0z0AL/vdZYMWfCNJNrw2YKOw4ZCvhxv+8l
-	GnKWmkOkLBVDyFmbjtenjMWeWZWmyTYtwh0ougg8rLuGVxdNnaxkMjcje29XHa8MznynSiiqU4Z
-	kHNq7NXJmBUfP+ggPHtrhJfyXZhsd5h13jJ6QTERLCRGrSO27N0U81NcVDpeh
-X-Gm-Gg: ASbGncuRLbj6ZOT9dFXlxixbCBLEWMM8XrtjH/johMxzv74WR8K0gIQSEYGWdtzMxF7
-	lmIRO6eyQWORtgGCqtH/1KHskcGOJHAvi2NJ4Z/1H4bGgyFQu8ODbzAGiU180RU7Eb+7oU/qGIJ
-	boK07ssmQdxZuiAnDPkmQgmVw4eII+8PKHvLsqFxSeQdKMVGsW8xwViJv/hKDW+pJdcWb40sBZP
-	UNU+gMTLDWgI5qzM0KnXuobcadrjaEqMFGk846s0QGcT6ZgTVUnL4/6GG94SAuNpbO/MeZ8p3RU
-	Jxea98eJ9tNWDzyIFuAH7mr9yd00iyQDKzgAvlk/rLwAuif+K4FXPkxS10i3VFbqOv8wG4OWFNJ
-	08fk=
-X-Received: by 2002:a05:620a:1918:b0:7c5:9c38:ef6b with SMTP id af79cd13be357-7c775abfc97mr2255087685a.45.1744116276747;
-        Tue, 08 Apr 2025 05:44:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEG22ST879wU1hj8qKN5DvkfkmnnORS8BpEMeXnfFTdBQ8zZsfg2IPMrVXraLLg9Li7ARcMaQ==
-X-Received: by 2002:a05:620a:1918:b0:7c5:9c38:ef6b with SMTP id af79cd13be357-7c775abfc97mr2255084485a.45.1744116276401;
-        Tue, 08 Apr 2025 05:44:36 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e6370d1sm1512901e87.143.2025.04.08.05.44.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 05:44:35 -0700 (PDT)
-Date: Tue, 8 Apr 2025 15:44:33 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: Alex Bee <knaerzche@gmail.com>, heiko@sntech.de, conor+dt@kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org, hjc@rock-chips.com,
-        mripard@kernel.org, neil.armstrong@linaro.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v3 7/7] drm/rockchip: inno-hdmi: Convert to drm bridge
-Message-ID: <yjxr7dphzm7rbuf7mfpkat4k2vssk2qxio3esvjfhd2ygq6byo@kag57knzrj4l>
-References: <20250402123150.238234-1-andyshrk@163.com>
- <20250402123150.238234-8-andyshrk@163.com>
- <680a40a8-07c1-4dde-93b2-337ab15f7afe@gmail.com>
- <618c65eb.b8a8.1961550f5ae.Coremail.andyshrk@163.com>
+	s=arc-20240116; t=1744116338; c=relaxed/simple;
+	bh=XsDdFxw2/94hD3jA90zPjew2cMEKPvGv+xMalZkkkLw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N5IvnCMuD3t0g2Qn6UZR+37ixrd5EJh2M1Z+BI4V6EqQOdzSb+2ZnoL72kh85IDRQlhett5dbOJeuft6wxRVaVmfEdbsyBox208nE7Yw9H8h7JOJzuwNyhzDBRIkk2K8vPAo+Y0EFCJPyZdOhjs+ppA2GwEetuXS764nPBau3HE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E2F944340A;
+	Tue,  8 Apr 2025 12:45:25 +0000 (UTC)
+Message-ID: <4f6a0c65-7c3a-4457-8b0b-cd39f40931c8@ghiti.fr>
+Date: Tue, 8 Apr 2025 14:45:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <618c65eb.b8a8.1961550f5ae.Coremail.andyshrk@163.com>
-X-Proofpoint-ORIG-GUID: xcVxNV85oEPxIefWHYs4cIPfhf8e1Rhn
-X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f51a35 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=Byx-y9mGAAAA:8 a=pGLkceISAAAA:8 a=s8YR1HE3AAAA:8 a=RRhK3aCThXU4g2SLoiEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=jGH_LyMDp9YhSvY-UuyI:22
-X-Proofpoint-GUID: xcVxNV85oEPxIefWHYs4cIPfhf8e1Rhn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-08_04,2025-04-08_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504080090
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 24/28] arch/riscv: compile vdso with landing pad
+Content-Language: en-US
+To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Christian Brauner <brauner@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+ Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-24-e51202b53138@rivosinc.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20250314-v5_user_cfi_series-v12-24-e51202b53138@rivosinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdefuddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpeetgffgkeefteduhefgjeekjeelieejtdekvefhfffhudetkeejhfeuhefgtdekteenucffohhmrghinhepghhnuhdrphhrohhpvghrthihpdgsohhothhlihhnrdgtohhmpdhflhhushhhpghitggrtghhvgdrshgspdhgvghttghpuhdrshgspdhrthgpshhighhrvghtuhhrnhdrshgspdhshihspghhfihprhhosggvrdhssgenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmegsudgurgemudeitgegmehfrgefkeemjeeigedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmegsudgurgemudeitgegmehfrgefkeemjeeigedvpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmegsudgurgemudeitgegmehfrgefkeemjeeigedvngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtt
+ hhopeegledprhgtphhtthhopeguvggsuhhgsehrihhvohhsihhntgdrtghomhdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehmihhnghhosehrvgguhhgrthdrtghomhdprhgtphhtthhopegsphesrghlihgvnhekrdguvgdprhgtphhtthhopegurghvvgdrhhgrnhhsvghnsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepgiekieeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhprgesiiihthhorhdrtghomhdprhgtphhtthhopegrkhhpmheslhhinhhugidqfhhouhhnuggrthhiohhnrdhorhhg
+X-GND-Sasl: alex@ghiti.fr
 
-On Tue, Apr 08, 2025 at 08:12:29PM +0800, Andy Yan wrote:
-> 
-> 
-> Hi Alex，
-> 
-> At 2025-04-03 01:24:22, "Alex Bee" <knaerzche@gmail.com> wrote:
-> >
-> >Hi Andy,
-> >
-> >> From: Andy Yan <andy.yan@rock-chips.com>
-> >> 
-> >> Convert it to drm bridge driver, it will be convenient for us to
-> >> migrate the connector part to the display driver later.
-> >> 
-> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> >> 
-> >> ---
-> >> 
-> >> Changes in v3:
-> >> - First included in v3
-> >> - Link to V2: https://lore.kernel.org/dri-devel/20250325132944.171111-1-andyshrk@163.com/
-> >> 
-> >>   drivers/gpu/drm/bridge/Kconfig                |   7 +
-> >>   drivers/gpu/drm/bridge/Makefile               |   1 +
-> >>   .../inno_hdmi.c => bridge/inno-hdmi.c}        | 924 ++++++++++--------
-> >>   drivers/gpu/drm/rockchip/Kconfig              |   1 +
-> >>   drivers/gpu/drm/rockchip/Makefile             |   2 +-
-> >>   drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c | 187 ++++
-> >>   drivers/gpu/drm/rockchip/inno_hdmi.h          | 349 -------
-> >>   include/drm/bridge/inno_hdmi.h                |  33 +
-> >>   8 files changed, 741 insertions(+), 763 deletions(-)
-> >>   rename drivers/gpu/drm/{rockchip/inno_hdmi.c => bridge/inno-hdmi.c} (52%)
-> >>   create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
-> >>   delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
-> >>   create mode 100644 include/drm/bridge/inno_hdmi.h
-> >>
-> >
-> >...
-> >
-> >> +#define m_RX_DONE			(1 << 0)
-> >> +
-> >> +#define HDMI_CEC_TX_INT			0xda
-> >> +#define HDMI_CEC_RX_INT			0xdb
-> >> +#define HDMI_CEC_BUSFREETIME_L		0xdc
-> >> +#define HDMI_CEC_BUSFREETIME_H		0xdd
-> >> +#define HDMI_CEC_LOGICADDR		0xde
-> >> +
-> >>   struct inno_hdmi_i2c {
-> >>   	struct i2c_adapter adap;
-> >>   
-> >> @@ -68,41 +395,18 @@ struct inno_hdmi_i2c {
-> >>   
-> >>   struct inno_hdmi {
-> >>   	struct device *dev;
-> >> -
-> >> +	struct drm_bridge bridge;
-> >>   	struct clk *pclk;
-> >>   	struct clk *refclk;
-> >>   	void __iomem *regs;
-> >>   	struct regmap *grf;
-> >>   
-> >> -	struct drm_connector	connector;
-> >> -	struct rockchip_encoder	encoder;
-> >> -
-> >>   	struct inno_hdmi_i2c *i2c;
-> >>   	struct i2c_adapter *ddc;
-> >> -
-> >> -	const struct inno_hdmi_variant *variant;
-> >> +	const struct inno_hdmi_plat_data *plat_data;
-> >> +	unsigned int colorimetry;
-> >
-> >thanks a lot for doing the bridge conversion for this driver.
-> >Please keep the custom connector state which was introduced after Maxim's
-> >review during the last rework of this [0] driver. The colorimetry is not
-> >part of the device, but of the connector and thus should not be part of the
-> >device struct.
-> >It's, however, likely that the common (hdmi-)connector framework will once
-> >hold its own colorimetry property and then the custom connector state in
-> >this driver can go away, but until than we have to keep it here.
-> 
-> After converting to a bridge driver, this driver no longer has a connector. 
-> In this case, how should I create customized connector states?
 
-You can subclass drm_bridge_state. Another option is to follow
-rk3066_hdmi.c and to pass mode to inno_hdmi_config_video_csc().
-Finally, you can just extend the drm_connector_hdmi_state.
+On 14/03/2025 22:39, Deepak Gupta wrote:
+> From: Jim Shu <jim.shu@sifive.com>
+>
+> user mode tasks compiled with zicfilp may call indirectly into vdso (like
+> hwprobe indirect calls). Add landing pad compile support in vdso. vdso
+> with landing pad in it will be nop for tasks which have not enabled
+> landing pad.
+> This patch allows to run user mode tasks with cfi eanbled and do no harm.
+>
+> Future work can be done on this to do below
+>   - labeled landing pad on vdso functions (whenever labeling support shows
+>     up in gnu-toolchain)
+>   - emit shadow stack instructions only in vdso compiled objects as part of
+>     kernel compile.
+>
+> Signed-off-by: Jim Shu <jim.shu@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>   arch/riscv/Makefile                   |  5 +++-
+>   arch/riscv/include/asm/assembler.h    | 44 +++++++++++++++++++++++++++++++++++
+>   arch/riscv/kernel/vdso/Makefile       | 12 ++++++++++
+>   arch/riscv/kernel/vdso/flush_icache.S |  4 ++++
+>   arch/riscv/kernel/vdso/getcpu.S       |  4 ++++
+>   arch/riscv/kernel/vdso/rt_sigreturn.S |  4 ++++
+>   arch/riscv/kernel/vdso/sys_hwprobe.S  |  4 ++++
+>   7 files changed, 76 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+> index 13fbc0f94238..eca94246cda6 100644
+> --- a/arch/riscv/Makefile
+> +++ b/arch/riscv/Makefile
+> @@ -88,9 +88,12 @@ riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZACAS) := $(riscv-march-y)_zacas
+>   # Check if the toolchain supports Zabha
+>   riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZABHA) := $(riscv-march-y)_zabha
+>   
+> +KBUILD_BASE_ISA = -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+> +export KBUILD_BASE_ISA
+> +
+>   # Remove F,D,V from isa string for all. Keep extensions between "fd" and "v" by
+>   # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
+> -KBUILD_CFLAGS += -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+> +KBUILD_CFLAGS += $(KBUILD_BASE_ISA)
+>   
+>   KBUILD_AFLAGS += -march=$(riscv-march-y)
+>   
+> diff --git a/arch/riscv/include/asm/assembler.h b/arch/riscv/include/asm/assembler.h
+> index 44b1457d3e95..a058ea5e9c58 100644
+> --- a/arch/riscv/include/asm/assembler.h
+> +++ b/arch/riscv/include/asm/assembler.h
+> @@ -80,3 +80,47 @@
+>   	.endm
+>   
+>   #endif	/* __ASM_ASSEMBLER_H */
+> +
+> +#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen == 64)
+> +.macro vdso_lpad
+> +lpad 0
+> +.endm
+> +#else
+> +.macro vdso_lpad
+> +.endm
+> +#endif
+> +
+> +/*
+> + * This macro emits a program property note section identifying
+> + * architecture features which require special handling, mainly for
+> + * use in assembly files included in the VDSO.
+> + */
+> +#define NT_GNU_PROPERTY_TYPE_0  5
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_AND 0xc0000000
+> +
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP      (1U << 0)
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFISS      (1U << 1)
+> +
+> +#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen == 64)
+> +#define GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT \
+> +	(GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP)
+> +#endif
+> +
+> +#ifdef GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT
+> +.macro emit_riscv_feature_1_and, feat = GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT
+> +	.pushsection .note.gnu.property, "a"
+> +	.p2align        3
+> +	.word           4
+> +	.word           16
+> +	.word           NT_GNU_PROPERTY_TYPE_0
+> +	.asciz          "GNU"
+> +	.word           GNU_PROPERTY_RISCV_FEATURE_1_AND
+> +	.word           4
+> +	.word           \feat
+> +	.word           0
+> +	.popsection
+> +.endm
+> +#else
+> +.macro emit_riscv_feature_1_and, feat = 0
+> +.endm
+> +#endif
+> diff --git a/arch/riscv/kernel/vdso/Makefile b/arch/riscv/kernel/vdso/Makefile
+> index 9a1b555e8733..daa10c2b0dd1 100644
+> --- a/arch/riscv/kernel/vdso/Makefile
+> +++ b/arch/riscv/kernel/vdso/Makefile
+> @@ -13,12 +13,18 @@ vdso-syms += flush_icache
+>   vdso-syms += hwprobe
+>   vdso-syms += sys_hwprobe
+>   
+> +ifdef CONFIG_RISCV_USER_CFI
+> +LPAD_MARCH = _zicfilp
+> +endif
+> +
+>   # Files to link into the vdso
+>   obj-vdso = $(patsubst %, %.o, $(vdso-syms)) note.o
+>   
+>   ccflags-y := -fno-stack-protector
+>   ccflags-y += -DDISABLE_BRANCH_PROFILING
+>   ccflags-y += -fno-builtin
+> +ccflags-y += $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+> +asflags-y += $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+>   
+>   ifneq ($(c-gettimeofday-y),)
+>     CFLAGS_vgettimeofday.o += -fPIC -include $(c-gettimeofday-y)
+> @@ -40,6 +46,12 @@ endif
+>   CFLAGS_REMOVE_vgettimeofday.o = $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>   CFLAGS_REMOVE_hwprobe.o = $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>   
+> +# Disable profiling and instrumentation for VDSO code
+> +GCOV_PROFILE := n
+> +KCOV_INSTRUMENT := n
+> +KASAN_SANITIZE := n
+> +UBSAN_SANITIZE := n
 
-My preference would lean towards the second option.
 
-> 
-> >
-> >Thanks,
-> >Alex
-> >
-> >[0]
-> >https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ceeb0f0104a62c867656c2730a51df47e7350b8f
-> >
-> >
-> >>   };
-> >>   
-> >> -struct inno_hdmi_connector_state {
-> >> -	struct drm_connector_state	base;
-> >> -	unsigned int			colorimetry;
-> >> -};
-> >> -
-> >> -static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
-> >> -{
-> >> -	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> >> -
-> >> -	return container_of(rkencoder, struct inno_hdmi, encoder);
-> >> -}
-> >> -
-> >> -static struct inno_hdmi *connector_to_inno_hdmi(struct drm_connector *connector)
-> >...
+So I looked into this and it seems it is not needed. All the profilers 
+above only add their corresponding "clags" if the object 
+"is-kernel-object" 
+(https://elixir.bootlin.com/linux/v6.14-rc6/source/scripts/Makefile.lib#L147) 
+which is not the case for hwprobe.c since it is not added to obj-y.
 
--- 
-With best wishes
-Dmitry
+
+> +
+>   # Force dependency
+>   $(obj)/vdso.o: $(obj)/vdso.so
+>   
+> diff --git a/arch/riscv/kernel/vdso/flush_icache.S b/arch/riscv/kernel/vdso/flush_icache.S
+> index 8f884227e8bc..e4c56970905e 100644
+> --- a/arch/riscv/kernel/vdso/flush_icache.S
+> +++ b/arch/riscv/kernel/vdso/flush_icache.S
+> @@ -5,11 +5,13 @@
+>   
+>   #include <linux/linkage.h>
+>   #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>   
+>   	.text
+>   /* int __vdso_flush_icache(void *start, void *end, unsigned long flags); */
+>   SYM_FUNC_START(__vdso_flush_icache)
+>   	.cfi_startproc
+> +	vdso_lpad
+>   #ifdef CONFIG_SMP
+>   	li a7, __NR_riscv_flush_icache
+>   	ecall
+> @@ -20,3 +22,5 @@ SYM_FUNC_START(__vdso_flush_icache)
+>   	ret
+>   	.cfi_endproc
+>   SYM_FUNC_END(__vdso_flush_icache)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/getcpu.S b/arch/riscv/kernel/vdso/getcpu.S
+> index 9c1bd531907f..5c1ecc4e1465 100644
+> --- a/arch/riscv/kernel/vdso/getcpu.S
+> +++ b/arch/riscv/kernel/vdso/getcpu.S
+> @@ -5,14 +5,18 @@
+>   
+>   #include <linux/linkage.h>
+>   #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>   
+>   	.text
+>   /* int __vdso_getcpu(unsigned *cpu, unsigned *node, void *unused); */
+>   SYM_FUNC_START(__vdso_getcpu)
+>   	.cfi_startproc
+> +	vdso_lpad
+>   	/* For now, just do the syscall. */
+>   	li a7, __NR_getcpu
+>   	ecall
+>   	ret
+>   	.cfi_endproc
+>   SYM_FUNC_END(__vdso_getcpu)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/rt_sigreturn.S b/arch/riscv/kernel/vdso/rt_sigreturn.S
+> index 3dc022aa8931..e82987dc3739 100644
+> --- a/arch/riscv/kernel/vdso/rt_sigreturn.S
+> +++ b/arch/riscv/kernel/vdso/rt_sigreturn.S
+> @@ -5,12 +5,16 @@
+>   
+>   #include <linux/linkage.h>
+>   #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>   
+>   	.text
+>   SYM_FUNC_START(__vdso_rt_sigreturn)
+>   	.cfi_startproc
+>   	.cfi_signal_frame
+> +	vdso_lpad
+>   	li a7, __NR_rt_sigreturn
+>   	ecall
+>   	.cfi_endproc
+>   SYM_FUNC_END(__vdso_rt_sigreturn)
+> +
+> +emit_riscv_feature_1_and
+> diff --git a/arch/riscv/kernel/vdso/sys_hwprobe.S b/arch/riscv/kernel/vdso/sys_hwprobe.S
+> index 77e57f830521..f1694451a60c 100644
+> --- a/arch/riscv/kernel/vdso/sys_hwprobe.S
+> +++ b/arch/riscv/kernel/vdso/sys_hwprobe.S
+> @@ -3,13 +3,17 @@
+>   
+>   #include <linux/linkage.h>
+>   #include <asm/unistd.h>
+> +#include <asm/assembler.h>
+>   
+>   .text
+>   SYM_FUNC_START(riscv_hwprobe)
+>   	.cfi_startproc
+> +	vdso_lpad
+>   	li a7, __NR_riscv_hwprobe
+>   	ecall
+>   	ret
+>   
+>   	.cfi_endproc
+>   SYM_FUNC_END(riscv_hwprobe)
+> +
+> +emit_riscv_feature_1_and
+>
 
