@@ -1,79 +1,38 @@
-Return-Path: <devicetree+bounces-164178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856B4A7F73E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:05:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81E15A7F741
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:06:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3309177AAB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:05:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA183AD993
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0032638B2;
-	Tue,  8 Apr 2025 08:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T1QxLmXb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCAD263F2C;
+	Tue,  8 Apr 2025 08:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D15325F996;
-	Tue,  8 Apr 2025 08:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488A725F96E;
+	Tue,  8 Apr 2025 08:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744099529; cv=none; b=VOCjHAUjrfc4tVnaYvQI9uE+QeAjSaI4hf2DCEejY1JEYfnvSb55yqXzoeGTqNYeCFt97AiZdIKeCVNMa4OWApL60jwKvp7jviq+ZDRlIYVz+MgHPlQClSWOjwwZC5K9NAFu06p/Rc04+3IoFIRCHSQB139jW6hxJM5DjeirQ6I=
+	t=1744099566; cv=none; b=K2pKLO4ImMt7alHCDlnt6drhYm0bL7RkXtRqaV5pQAXkqZSvOMyLiccJg58vVdTo98onPp5OM9jjQsylsv91glt3pveiXeubJV8LivMhJHJiu17rMZF17zI0jS7vgrw4JGZF/tkgdA49+WOyz4GyyJ82EwGTIl7uETS1XrS0erQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744099529; c=relaxed/simple;
-	bh=2ppVHmf3lr9m17yQUCa7+XtsozlMQJrpYZVAqzv++Xg=;
+	s=arc-20240116; t=1744099566; c=relaxed/simple;
+	bh=80EgAG7HXUHwaTNBiNtJabzbql9J8NHwuJwaMe4c7lU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d29ok/At6uG6wVmApghLcGtAl19gAAY+6LLLSZVwabvlb7WX0Aj5XHjTd5AskZV8g4EVBAMjxKktNsKM2WahZg6CY3d0ekaJz4i3WiuthUR05DFf0RsngSlwbEZt86msRwjX86yu8WG+ednhzgjCDNc4IlF3pB7el4leekJQjqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T1QxLmXb; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30effbfaf61so56310861fa.0;
-        Tue, 08 Apr 2025 01:05:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744099524; x=1744704324; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9RbNPrMfTGfYX3/yWaDonxxQD7j4lQW1brIvif8+e8M=;
-        b=T1QxLmXb0jpFspX6JXbZDM55NvDtGx1nt/o79dHhGXqZEI9anH+VVuVIYlbd6ovO9K
-         bNdwkhcYoSI3kgdys67Bf+mqlCy8B2gt+Xu0OJYUJM9D2Z0B+PGI3vOYsGLUik295ALC
-         XIqlVCxHnre/bCBXRjlrXa/2a5QfLpACgk7uRQeKiaWMudaSX1HGR0GzRDJi/BRSAE3l
-         Oem/xf99rFoV0S6SDGziEn/u7Rjz2/fB0eynL9vyK5sLfLN7OrUtKDTNBsjGZHZUxryT
-         JUrmPPDGRGqeeyxmijW5hXWiNSAkTMnjEKVVehkMKHdphbbEEDTLYl1omRNfTuKCNXgy
-         zdfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744099524; x=1744704324;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9RbNPrMfTGfYX3/yWaDonxxQD7j4lQW1brIvif8+e8M=;
-        b=wweQEv4o5hcafDc1YJvQz90h6KEBsuEV7ibhVDaqGtLlBQUzNzIOo0dYFfxEC3zeA9
-         i1osT8uw8o4JTpAYUqNJBYHZi8wB/kn5cGeRXEKlfnufi05ZNe8DdHjJyYT3mWZXSe/l
-         rnAgZ/AAOodUDPaFTYqB/vYrKiT4K7l6tk25YOUtpB13n8NQgai5IbGmtubIdAWbHPhl
-         i8cLo9Ujxj12kCVFjkYTz38bcA2RG3TcaZOIDWr9hXT7D7vPnR/B78ED+1tDiQh1ZTbY
-         Fl2KCZEicQkyS+fCaJb4YI3pODd1oueNqlpeZX6TyP5ad3Tq5BmfVhSyE6EROrpFwD4e
-         el4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVEOL7u0ELr2kIW02G6bPGFk0A8aRThkyh9GhkGhwmrRXijINr32UfZR6OYQ8JKWWxbxRGaGborNDqLlOl4@vger.kernel.org, AJvYcCWNBGmIf1lxS0zk+Wz0KMhoT3S36DbJhQ59E9OqL2HYS46I62P5BaHGPgWp847x3SPnUocs2i0jZhv3@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDCG65CC6LcQJXX05fYm1wou7khFFzurZD0foUZBgThfaNER/L
-	jjM5O/A7qFCggWGnY0TtXUil/2z7SKH9PZsuwj4r/a1w8o28UhHY
-X-Gm-Gg: ASbGncv+83bPv2t5YdTtRnqUcJO1fH3FatFzT18d1dw6djL9qvvYSXKNajrvoQE8Khr
-	eJMKKWiHLtOravruGE9Aba7P8DKaVpN3SdQ4bzmRI9wbzPuYs7VT94/R4B1sOKKR50hpjqET6Cu
-	zuoa6SnkTq0pzXingO0phyOP0FWJyxqNMtSj2zPITFhvmRnIRPHRLGxMZjw90SzleXytYkeQ578
-	g1n432Qa8+wb5TpRSob7xI6bxQ5wTq3AX2xdETKnFchaQLBWAOHNE5yZ625zJ9BP51c3AiNNEwe
-	zzLG8xJRSOkrGTYf6PDPTi+7Ct/VNOmf1L9/kEm12TQBKAGHs5gQa+PzdQ==
-X-Google-Smtp-Source: AGHT+IEkAvq73Uy7BGO3rzFjCskyJl1DBlIcf3jZyB3KR5grfXemkv771D9nyg47NLtYCmIHr8N1Tw==
-X-Received: by 2002:a2e:9e4b:0:b0:30b:e73e:e472 with SMTP id 38308e7fff4ca-30f35ee19d8mr6099961fa.14.1744099524017;
-        Tue, 08 Apr 2025 01:05:24 -0700 (PDT)
-Received: from [172.16.183.207] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f03125862sm19378111fa.3.2025.04.08.01.05.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 01:05:23 -0700 (PDT)
-Message-ID: <ddd8882f-05b6-40f0-9a26-ab21d9644364@gmail.com>
-Date: Tue, 8 Apr 2025 11:05:21 +0300
+	 In-Reply-To:Content-Type; b=KyMXoUDGBQ8st2WM5+KTYMFQ9YZCD8S6ouEoRgxIwDlFY6YEhOhph8MpW3PWhd9xfi1daNLecRxIrwObBNFrpuAvYUa3A6sFx0kB1SOtbBd2hIyx64sLlAQGMBSvWrk4T91kAnb391vlRj8v7Lpfo76zfZqkFHFlOfPNVXKz/Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B0E3744445;
+	Tue,  8 Apr 2025 08:05:49 +0000 (UTC)
+Message-ID: <cbc057b9-e3ec-4750-aad4-0cc813b65b07@ghiti.fr>
+Date: Tue, 8 Apr 2025 10:05:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,84 +40,210 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1742802856.git.mazziesaccount@gmail.com>
- <20250404154355.GH372032@google.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250404154355.GH372032@google.com>
+Subject: Re: [PATCH v12 05/28] riscv: usercfi state for task and save/restore
+ of CSR_SSP on trap entry/exit
+Content-Language: en-US
+To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Christian Brauner <brauner@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+ Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvheeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpefhlefhffeggfeftddvtdeukeelgfehkeehhfeuheehleefkeelgffglefghfffueenucffohhmrghinhepvghnthhrhidrshgsnecukfhppedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvddphhgvlhhopeglkffrggeimedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvdgnpdhmrghilhhfrhhomheprghlvgigsehghhhithhirdhfrhdpnhgspghrtghpthhtohepgeelpdhrtghpthhtohepuggvsghughesrhhivhhoshhinhgtrdgtohhmpdhrtghpthhtohepthhglhigsehlihhnuhhtrhhonhhigidruggvpdhrtghpthhtohepmhhinhhgohesrhgvu
+ ghhrghtrdgtohhmpdhrtghpthhtohepsghpsegrlhhivghnkedruggvpdhrtghpthhtohepuggrvhgvrdhhrghnshgvnheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopeigkeeisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehhphgrseiihihtohhrrdgtohhmpdhrtghpthhtoheprghkphhmsehlihhnuhigqdhfohhunhgurghtihhonhdrohhrgh
+X-GND-Sasl: alex@ghiti.fr
 
-On 04/04/2025 18:43, Lee Jones wrote:
-> On Mon, 24 Mar 2025, Matti Vaittinen wrote:
-> 
->> Support ROHM BD96802, BD96805 and BD96806 PMICs
->>
->> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
->> to the digital interface. Main difference is voltage tuning range.
->> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
->> able to differentiate the PMICs (done based on the devicetree
->> compatible) and then providing separate voltage tables.
->>
->> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
->> provide more capacity on systems where the BD96801 alone is not
->> sufficient. Startup sequence of these PMICs can be synchronized in
->> hardware level, and there seems to be some mechanisms which allow
->> delivering the companion PMIC (BD96802) status to the main PMIC
->> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
->> individual PMICs and allows using them from software point of view as a
->> stand alone ICs. From the digital point of view, the BD96802 is a subset
->> of BD96801, providing only buck1 and buck2 regulators. Please see the
->> data sheet
->>
->> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
->> provide different voltage tuning ranges.
->>
->> This series adds basic voltage monitoring and control as well as a
->> watchdog support for these PMICs using the BD96801 drivers.
->>
->> Similarly to the BD96801, these PMICs too have a few configurations
->> which can only be done when the PMIC is in STBY state. Similarly to the
->> BD96801, doing these configurations isn't supported by the driver. The
->> original BD96801 RFC [5] driver should be able to cover those
->> configurations, if modified to support these models.
->>
->> [1]: ROHM BD96801 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
->> [2]: ROHM BD96805 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
->> [3]: ROHM BD96802 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
->> [4]: ROHM BD96806 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
->> [5]: Original BD96801 RFC:
->> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
->>
->> Revision history:
->>
->> v1 => v2: MFD driver changes after review by Lee
->>   - Use enum for chip type instead of picking the data directly from the
->>     of_match_data.
->>   - rename "chip data" variable 'cd' to more widely used 'ddata'.
->>   link to v1:
->>    https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
+On 14/03/2025 22:39, Deepak Gupta wrote:
+> Carves out space in arch specific thread struct for cfi status and shadow
+> stack in usermode on riscv.
+>
+> This patch does following
+> - defines a new structure cfi_status with status bit for cfi feature
+> - defines shadow stack pointer, base and size in cfi_status structure
+> - defines offsets to new member fields in thread in asm-offsets.c
+> - Saves and restore shadow stack pointer on trap entry (U --> S) and exit
+>    (S --> U)
+>
+> Shadow stack save/restore is gated on feature availiblity and implemented
+> using alternative. CSR can be context switched in `switch_to` as well but
+> soon as kernel shadow stack support gets rolled in, shadow stack pointer
+> will need to be switched at trap entry/exit point (much like `sp`). It can
+> be argued that kernel using shadow stack deployment scenario may not be as
+> prevalant as user mode using this feature. But even if there is some
+> minimal deployment of kernel shadow stack, that means that it needs to be
+> supported. And thus save/restore of shadow stack pointer in entry.S instead
+> of in `switch_to.h`.
+>
+> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>   arch/riscv/include/asm/processor.h   |  1 +
+>   arch/riscv/include/asm/thread_info.h |  3 +++
+>   arch/riscv/include/asm/usercfi.h     | 24 ++++++++++++++++++++++++
+>   arch/riscv/kernel/asm-offsets.c      |  4 ++++
+>   arch/riscv/kernel/entry.S            | 26 ++++++++++++++++++++++++++
+>   5 files changed, 58 insertions(+)
+>
+> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
+> index e3aba3336e63..d851bb5c6da0 100644
+> --- a/arch/riscv/include/asm/processor.h
+> +++ b/arch/riscv/include/asm/processor.h
+> @@ -14,6 +14,7 @@
+>   
+>   #include <asm/ptrace.h>
+>   #include <asm/hwcap.h>
+> +#include <asm/usercfi.h>
+>   
+>   #define arch_get_mmap_end(addr, len, flags)			\
+>   ({								\
+> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
+> index f5916a70879a..a0cfe00c2ca6 100644
+> --- a/arch/riscv/include/asm/thread_info.h
+> +++ b/arch/riscv/include/asm/thread_info.h
+> @@ -62,6 +62,9 @@ struct thread_info {
+>   	long			user_sp;	/* User stack pointer */
+>   	int			cpu;
+>   	unsigned long		syscall_work;	/* SYSCALL_WORK_ flags */
+> +#ifdef CONFIG_RISCV_USER_CFI
+> +	struct cfi_status	user_cfi_state;
+> +#endif
+>   #ifdef CONFIG_SHADOW_CALL_STACK
+>   	void			*scs_base;
+>   	void			*scs_sp;
+> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
+> new file mode 100644
+> index 000000000000..5f2027c51917
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/usercfi.h
+> @@ -0,0 +1,24 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + * Copyright (C) 2024 Rivos, Inc.
+> + * Deepak Gupta <debug@rivosinc.com>
+> + */
+> +#ifndef _ASM_RISCV_USERCFI_H
+> +#define _ASM_RISCV_USERCFI_H
+> +
+> +#ifndef __ASSEMBLY__
+> +#include <linux/types.h>
+> +
+> +#ifdef CONFIG_RISCV_USER_CFI
+> +struct cfi_status {
+> +	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
+> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
+> +	unsigned long user_shdw_stk; /* Current user shadow stack pointer */
+> +	unsigned long shdw_stk_base; /* Base address of shadow stack */
+> +	unsigned long shdw_stk_size; /* size of shadow stack */
+> +};
+> +
+> +#endif /* CONFIG_RISCV_USER_CFI */
+> +
+> +#endif /* __ASSEMBLY__ */
+> +
+> +#endif /* _ASM_RISCV_USERCFI_H */
+> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offsets.c
+> index e89455a6a0e5..0c188aaf3925 100644
+> --- a/arch/riscv/kernel/asm-offsets.c
+> +++ b/arch/riscv/kernel/asm-offsets.c
+> @@ -50,6 +50,10 @@ void asm_offsets(void)
+>   #endif
+>   
+>   	OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
+> +#ifdef CONFIG_RISCV_USER_CFI
+> +	OFFSET(TASK_TI_CFI_STATUS, task_struct, thread_info.user_cfi_state);
+> +	OFFSET(TASK_TI_USER_SSP, task_struct, thread_info.user_cfi_state.user_shdw_stk);
+> +#endif
+>   	OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
+>   	OFFSET(TASK_THREAD_F1,  task_struct, thread.fstate.f[1]);
+>   	OFFSET(TASK_THREAD_F2,  task_struct, thread.fstate.f[2]);
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> index 33a5a9f2a0d4..68c99124ea55 100644
+> --- a/arch/riscv/kernel/entry.S
+> +++ b/arch/riscv/kernel/entry.S
+> @@ -147,6 +147,20 @@ SYM_CODE_START(handle_exception)
+>   
+>   	REG_L s0, TASK_TI_USER_SP(tp)
+>   	csrrc s1, CSR_STATUS, t0
+> +	/*
+> +	 * If previous mode was U, capture shadow stack pointer and save it away
+> +	 * Zero CSR_SSP at the same time for sanitization.
+> +	 */
+> +	ALTERNATIVE("nop; nop; nop; nop",
 
-> 
-> The MFD stuff looks okay to me now.
-> 
-> Let me know when everything else is ready to go.
-> 
 
-I'll treat this as an ACK for the V3. Please, let me know if that's not 
-Okay.
+You could use __nops(4) here instead.
 
-Yours,
-	-- Matti
+
+> +				__stringify(			\
+> +				andi s2, s1, SR_SPP;	\
+> +				bnez s2, skip_ssp_save;	\
+> +				csrrw s2, CSR_SSP, x0;	\
+> +				REG_S s2, TASK_TI_USER_SSP(tp); \
+> +				skip_ssp_save:),
+> +				0,
+> +				RISCV_ISA_EXT_ZICFISS,
+> +				CONFIG_RISCV_USER_CFI)
+>   	csrr s2, CSR_EPC
+>   	csrr s3, CSR_TVAL
+>   	csrr s4, CSR_CAUSE
+> @@ -236,6 +250,18 @@ SYM_CODE_START_NOALIGN(ret_from_exception)
+>   	 * structures again.
+>   	 */
+>   	csrw CSR_SCRATCH, tp
+> +
+> +	/*
+> +	 * Going back to U mode, restore shadow stack pointer
+> +	 */
+> +	ALTERNATIVE("nop; nop",
+
+
+Ditto
+
+
+> +				__stringify(					\
+> +				REG_L s3, TASK_TI_USER_SSP(tp); \
+> +				csrw CSR_SSP, s3),
+> +				0,
+> +				RISCV_ISA_EXT_ZICFISS,
+> +				CONFIG_RISCV_USER_CFI)
+> +
+>   1:
+>   #ifdef CONFIG_RISCV_ISA_V_PREEMPTIVE
+>   	move a0, sp
+>
+Apart from the nits above, you can add:
+
+Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+
+Thanks,
+
+Alex
+
+
 
