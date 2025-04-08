@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-164181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66927A7F79E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:20:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3675EA7F7C5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87ED73AA7BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:17:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AAD53AAD37
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D5A263F21;
-	Tue,  8 Apr 2025 08:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2562F263C8E;
+	Tue,  8 Apr 2025 08:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ns5V01Wq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EyoCFa+Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1FA2627E3;
-	Tue,  8 Apr 2025 08:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7879263C74;
+	Tue,  8 Apr 2025 08:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744100240; cv=none; b=ZVSS97nv9JUax0BzHXPRSSJ4fjtRqw0aCB1XMOk/Rf11PGJxefxQYR/y9jdeh3KCPDIj/G2yf4+gqw2LQZqHstEbcZi+yQJour51N6HBRpThCzfTP9taFnqYeyaKdsMCfNy8D/5RJTiar1h6SlJ0oOHkl0jMYPkF6S9edRYpHDI=
+	t=1744100515; cv=none; b=IBUkymYzvsqiVHa7s46DvTrRpTIO1mER5fn5ucRAfrMxxtBM1e7/PlaBJaZQWmau90pE6lJTq9V44ZtENgqrX9v9GbmbQ8TpC886B+X2UJnZrAXNW+yjQJOljAMCod9dJiegd7hg67mZ1mcnk2Z7wduBhuChJ9CHgX5IZVpw8ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744100240; c=relaxed/simple;
-	bh=enf1eqRg2cFawO7RARD+HZdl3KnC0gY4tfN8Ux7CqDs=;
+	s=arc-20240116; t=1744100515; c=relaxed/simple;
+	bh=FRpgq4XuASac1bfTXNxGqnPuGvIwraMV0eZ6/X35UIk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B9NP2LBTqjc96oSTodQ9tFvTH2liyt9dQnF08LDpjtwYK9l5ujeIh1QvA0uioK0h8o0S3GOk+5xuaqgI15SGj+Hsl29a9jo97S/ZNhraW5ix4+nEVb4AAy9q1D10L8D+OrtKW2VPRMsDWEevI2U7cdMx1Xe1BU3k68I0uHaVer0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ns5V01Wq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC46FC4CEE9;
-	Tue,  8 Apr 2025 08:17:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IVJNFS2g6wohjuRXJu8CyIxV/3CnF2d9olowKATVpxogOlBIkfY792mH5C3pY1194TEDms85g535FPBNMCwE1QbUNF94cORgb0VywvU/tYgzxtAHC5Gt1A4iU5NLZDZ6HWaDX8rl5ovQYBdAdnMxpzOkQ/bXfuOZg3LK1Zn/nMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyoCFa+Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29F01C4CEE5;
+	Tue,  8 Apr 2025 08:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744100237;
-	bh=enf1eqRg2cFawO7RARD+HZdl3KnC0gY4tfN8Ux7CqDs=;
+	s=k20201202; t=1744100514;
+	bh=FRpgq4XuASac1bfTXNxGqnPuGvIwraMV0eZ6/X35UIk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ns5V01Wq+R+7c3ZPBdv17LI7hYvaMiOH6GB3lm0tE7kMiUC9wNEGnFZveaxLHl42T
-	 ySeOCYnZalBDF4w5W0RiLFTfUHrJaSFRk81nmUVyN5NlVK4zvmX0L/9Op9zlE3Z4sx
-	 vB1H38q6rDh12KD+uOb7PpFku6rcNXRLK1hQT+zVH9K6mIaMKLKYZdZZXYZx8WID9E
-	 5OSh0ye/cVipL7ZZ1dQXuXuJ4Tw09O44m5ArPNl22kaY1eBI6J19qf5LQ2qxSFOJun
-	 XKxuP4Om1VFPCoT52Tgi7E9FfsGKa6lqy45EHczooxS16FLa0o4/wxYFmg+vFF943b
-	 PiEByzH7OdArA==
-Message-ID: <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org>
-Date: Tue, 8 Apr 2025 10:17:11 +0200
+	b=EyoCFa+ZhP1mKkc8kgnQ71cq5I13effleKh125lgNWwlM6dIZqo5Zfs9old/PT3HN
+	 cZIfHHRQwqxTVqdDG6tY0MPVbd2LavsfrWsaJN6tjZGFFkqI6sz9n9Ekbw/CCXstKu
+	 59j8IFjmJ2VEQM+W6WhcYDhCZFsw72WyqU4v1qcCfpwOdT2mldlNklnJlWsxIPC8ID
+	 sNswtr3dg5ru4Im3FA7RaxSHR2g0Pax2vUSYx/J0QOxivVlTR87ef1SJrf5i9jcKwx
+	 +Ld8OZJrnAq6bPMmj0Ywyf6xQ+QQonasVOb9TRgLkvo8he6wCszr/cbHnl3Yo43wMP
+	 tVFXa6H0WyPwA==
+Message-ID: <094855d6-a99b-4ca5-bc8f-ab6faccfd332@kernel.org>
+Date: Tue, 8 Apr 2025 10:21:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
- <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org>
- <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
- <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org>
- <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
+ Timer
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
+ thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20250407160318.936142-1-daniel.lezcano@linaro.org>
+ <20250407160318.936142-2-daniel.lezcano@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,117 +104,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+In-Reply-To: <20250407160318.936142-2-daniel.lezcano@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/04/2025 09:35, Aaron Kling wrote:
-> On Tue, Apr 8, 2025 at 1:08 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 07/04/2025 18:00, Aaron Kling wrote:
->>> On Mon, Apr 7, 2025 at 7:59 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 06/04/2025 23:12, Aaron Kling via B4 Relay wrote:
->>>>> From: Aaron Kling <webgeek1234@gmail.com>
->>>>>
->>>>> This allows using pstore on all such platforms. There are some
->>>>> differences per arch:
->>>>>
->>>>> * Tegra132: Flounder does not appear to enumerate pstore and I do not
->>>>>   have access to norrin, thus Tegra132 is left out of this commit.
->>>>> * Tegra210: Does not support ramoops carveouts in the bootloader, instead
->>>>>   relying on a dowstream driver to allocate the carveout, hence this
->>>>>   hardcodes a location matching what the downstream driver picks.
->>>>> * Tegra186 and Tegra194 on cboot: Bootloader fills in the address and
->>>>>   size in a node specifically named /reserved-memory/ramoops_carveout,
->>>>>   thus these cannot be renamed.
->>>>> * Tegra194 and Tegra234 on edk2: Bootloader looks up the node based on
->>>>>   compatible, however the dt still does not know the address, so keeping
->>>>>   the node name consistent on Tegra186 and newer.
->>>>>
->>>>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
->>>>> ---
->>>>>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
->>>>>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
->>>>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
->>>>>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
->>>>>  4 files changed, 61 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>>>> index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e42dd03f5a1da5079971dc 100644
->>>>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
->>>>> @@ -2051,6 +2051,22 @@ pmu-denver {
->>>>>               interrupt-affinity = <&denver_0 &denver_1>;
->>>>>       };
->>>>>
->>>>> +     reserved-memory {
->>>>> +             #address-cells = <2>;
->>>>> +             #size-cells = <2>;
->>>>> +             ranges;
->>>>> +
->>>>> +             ramoops_carveout {
->>>>
->>>> Please follow DTS coding style for name, so this is probably only ramoops.
->>>
->>> As per the commit message regarding tegra186: bootloader fills in the
->>> address and size in a node specifically named
->>> /reserved-memory/ramoops_carveout, thus these cannot be renamed.
->>
->> That's not a reason to introduce issues. Bootloader is supposed to
->> follow same conventions or use aliases or labels (depending on the node).
->>
->> If bootloader adds junk, does it mean we have to accept that junk?
->>
->>>
->>>>
->>>> It does not look like you tested the DTS against bindings. Please run
->>>> `make dtbs_check W=1` (see
->>>> Documentation/devicetree/bindings/writing-schema.rst or
->>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->>>> for instructions).
->>>> Maybe you need to update your dtschema and yamllint. Don't rely on
->>>> distro packages for dtschema and be sure you are using the latest
->>>> released dtschema.
->>>
->>> The bot is reporting that the reg field is missing from the added
->>> ramoops nodes on t186, t194, and t234. However, as also mentioned in
->>> the commit message, this is intentional because it is expected for the
->>> bootloader to fill that in. It is not known at dt compile time. Is
->>> there a way to mark this as intentional, so dtschema doesn't flag it?
->>
->> Fix your bootloader or chain load some normal one, like U-Boot.
-> How would chainloading a second bootloader 'fix' previous stage
-> bootloaders trampling on an out-of-sync hardcoded reserved-memory
-> address? It's possible for carveout addresses and sizes to change. Not
-> from boot to boot on the same version of the Nvidia bootloader, but
-> potentially from one version to another. Depending on if the
-> bootloader was configured with different carveout sizes.
-> 
-> There is precedence for this. When blind cleanup was done on arm
-> device trees, a chromebook broke because the memory node has to be
-> named exactly '/memory' [0]. How is this any different from that case?
+On 07/04/2025 18:03, Daniel Lezcano wrote:
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: nxp,s32g2-swt
+> +      - items:
+> +          - const: nxp,s32g3-swt
+> +          - const: nxp,s32g2-swt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Counter clock
+> +      - description: Module clock
+> +      - description: Register clock
+> +    minItems: 1
 
-That was an existing node, so ABI.
-
-> These nodes are an ABI to an existing bootloader. Carveouts on these
-
-You add new ABI, which I object to.
-
-> archs are set up in bl1 or bl2, which are not source available. I
-> could potentially hardcode things for myself in bl33, which is source
-> available, but the earlier stages could still overwrite any chosen
-> block depending on how carveouts are configured. But even then, that
-> will not change the behaviour of the vast majority of units that use a
-> fully prebuilt boot stack direct from Nvidia. My intent here is for
-> pstore to work on such units without users needing to use a custom
-> bootloader.
-I understand your goal. What I still do not understand, why bootloader
-even bothers with ramoops carveout. It shouldn't and you should just
-ignore whatever bootloader provides, no?
-
-It's not the same case as memory, where bootloader needs to fill out the
-actual size, or some other boot-specific properties.
+Why clocks are flexible? The SoC does not change between boards. It
+should be a fixed list - block receives that number of clocks or does
+not... unless you meant that different instances of the block have
+different clocks?
 
 Best regards,
 Krzysztof
