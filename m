@@ -1,110 +1,453 @@
-Return-Path: <devicetree+bounces-164155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03AAFA7F55D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:59:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE31A7F561
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 799D23AA2BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2A951896F96
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C497325F99B;
-	Tue,  8 Apr 2025 06:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F6124A07F;
+	Tue,  8 Apr 2025 07:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UJFNd62E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6EB2063FA;
-	Tue,  8 Apr 2025 06:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326801FECD2;
+	Tue,  8 Apr 2025 07:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744095571; cv=none; b=nKf07Ai2X/Ui5WvN1lLL3gsIGi7bg0HPZzFrj+K3+JkAc9RRzNEQ6vI35nnxZZwWQjrzmvM1X8NqncdZNbNylGiBpCF+T90HTsWrYZSa0CsxCA7/O6pmoTs3K4sWuDdi2SoJoVZGgXYheO29vO+EN/gjeR8Qxm8pbcwFvuf6SPs=
+	t=1744095647; cv=none; b=ijFWBzkPBSrYfeZjPk7RmhvmgwVgSdVSwKxagshfTu5Htg2c0Y8SjYxHg9FaM9WplnZRKhiPVHQWiCASNxqi3JAqlDV63xdH38fqV4lsdFgCNUzrGjrmj+a563cdAVRJYkkwUxwxYuePN9jwL8VnOSxfZMCbgbU67HdGmgICNoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744095571; c=relaxed/simple;
-	bh=snAIEc5ZyPbwD4Eh9FlhXy8CECaIUO9YWMJeXNjXXKI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aLTSW3j2nnw0EpaE8SoyuxTFGD3zJcl06w3/zLQTjPcePZ8pPbgjjo1euAM12x7qiLnPXLv76WzYi1b/+VHZBY8TFbA/7Y0bijlsnnsYbGn/aYWJDs9hIrJvyONYfZwSZikptwrP5GiSV4G3c72JuylbDkrcuVDee8diKCTTXcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-86b9d1f7249so4472878241.2;
-        Mon, 07 Apr 2025 23:59:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744095567; x=1744700367;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ENS8/lcG5HmpDuN4HU90AXuzWeROSJ9Y1N1msrf0CYQ=;
-        b=OTc3UXrgilFWGla2jNTbsFwE3CO1ccZarDgTcFlw4G2njFsTW2w/DlFhljZ8wYzJiA
-         AWXeYC7SpqaJPOCNk8c49SPl8NbY2O8c/oC2BaRM7sYXdt72b6MzKL041MfSt5IeBmPB
-         CpN2V+DYIlF9HAu31V2125oIhlYQ0tE/juL4yMLTUl0Cr5KnuHAywWYsXyHk4jN1OFpA
-         yJoz2nR+4KpJ9T5ZRycDsdONdJxKRg/91zfKhxdg8VcBVqqiQiLLuPPo8sY1lYUiU3AL
-         jqmFIYZFTE/YC8wrALBEfk97dPogTQWH/YTUBaG35K+wXkmR+Qz1FOb60GDXH3KijwO6
-         VPgw==
-X-Forwarded-Encrypted: i=1; AJvYcCV74OfcfIwz8w3dHrDD2PQahyU8/tRyTthSEyJWLAr8ys44ey29u+siftgoxj8jZa/sZ0PcUFy6MhlplPEgKJh+u1Q=@vger.kernel.org, AJvYcCWifO6kNldG+2mMGswha2Z47a+TqpewLwZKD5gng+fE7zKkX4GOWKXpuD7LMYVBtc7GBhSmyZMlkzUQ@vger.kernel.org, AJvYcCWuKpdTXZx2QWl0VwcBHeaGCDZ1zUamZHcgLLqZLYY5TgVjq8hiEtrc+0CkrQKYxKU5ihNWBhP2/wHI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOhvFSEzcYj5n4Vd/1hmTq4WohrmmDrAWa1lINiM/iDtYj9K8P
-	BQEkPZxzqgMeo+ZBj9DQkt6e3ayHdbRM26vzekkwtGUgjIsnRuD3/HSASXSr
-X-Gm-Gg: ASbGncsd6hbQxBYQ08MF94rZPNSNwfgRI37v0c0MX5Ss0/nru2462qWgch4bOFLb7Ry
-	X9U34fhcCUxPDPWBH/BEBYNgjl6csiozMpTN1f9AaJ4j1UY93MZzJNk3B3IuSVmWESH1iEcIGXw
-	pZ7NBaGVMAumoR/vR6noUGMX20jb0T6BgbP+kzE6nYDSkO+cRbGQUiIc9bYLGSR0Wkbd46jT/af
-	HlVbevtYICFils5CzqpLbZS4Is/4lIezkmdJT7AYFCo2rYzGnCiqx4i09qR49aND12kq00RT9bH
-	AuJ60xn0sjNkTlDns7K4MklNx0U9Sk2MrDG4/+Bxvba+/dZZyafs1vIsmf2OJ2q9o/DkCFMIRoX
-	9Ro/McvVGJH0rQWVaKQ==
-X-Google-Smtp-Source: AGHT+IFl1iqzu6WMe7GDZDGfjywVcwT9miqF0ELppeYKBX9Mp7hNKkbYkvwrt9/zMz2IHTpWIqkv3w==
-X-Received: by 2002:a05:6102:3f0d:b0:4bb:623:e1f7 with SMTP id ada2fe7eead31-4c863779c2bmr7955210137.16.1744095567501;
-        Mon, 07 Apr 2025 23:59:27 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9b4482147sm252530137.13.2025.04.07.23.59.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Apr 2025 23:59:27 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86d2fba8647so4836346241.0;
-        Mon, 07 Apr 2025 23:59:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUQppzws8SejBJUb5k8qs45Dn1Q747tuLL1r9ZbOvbHkgI2DgokiIy1W/IuLqGTILo4xzU3HYDCz2S9@vger.kernel.org, AJvYcCWsIGQucZLYD+qxOZ91s6iBFBhAI1ALdabsUAgg/GW11ocuEygB+UuJTpvDv2xcd9LferOHHy0/qMVUoBGWQ/lr1bM=@vger.kernel.org, AJvYcCXNUvGg+VmmVE9KA7noqNNm88/2YyRgLDeEeXIMKIAiULC68WM6BPRpIfYtxFxERvR3E512rm6F6P/R@vger.kernel.org
-X-Received: by 2002:a05:6102:3e8a:b0:4c3:64bc:7d00 with SMTP id
- ada2fe7eead31-4c8637ae1dbmr9131704137.24.1744095566739; Mon, 07 Apr 2025
- 23:59:26 -0700 (PDT)
+	s=arc-20240116; t=1744095647; c=relaxed/simple;
+	bh=42m28A8NBmP4XndDX2mAe2EuPrpPYHWaO9gsgxX4IUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kitcv3SNgb8rPWgA/RpenZF5pCdn0nR7LW0FnrxFZx6gkF44BTNQaZQyO9E2ElMTwu/K66rT7aWuPZORHepA4bxjR46V3t2GaisXEMvk5qSxLjzh65QgDCBlqK72zX1pDyhk0KHU80Xc/9VLWHq3krNyhW/+azvI776Tyr7qf8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UJFNd62E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0479AC4CEE5;
+	Tue,  8 Apr 2025 07:00:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744095646;
+	bh=42m28A8NBmP4XndDX2mAe2EuPrpPYHWaO9gsgxX4IUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UJFNd62EvWR5e0ge0D3V4hsAoe7kHxorX/C3lzPxgu5wghnpM52S/nUzFtu9GhYYY
+	 FCqZtqF+dTvsXf8G2oMIF4AyGHYtocxxnFfI3s8Q9xaNfiYhP2A9Es9oIoOaQ5dX11
+	 ZjdvrtOCWVeK4LkPVtuAJK4M8tJFDTYGs0rX2Pd5WOBzksLBsLHMMRsIOHK3+dKI9j
+	 jG8MyQvxg+C6GXsVAB4tYLAEP7tVHI4twEOZreXWpuuPyw+c6rzdqX8qngCtksdb7/
+	 KwP5JtME2qwrzJzCl9uCPjU6XLOgXOhMMevxQ8RF20qsi0mxlCDnFHEacxZ0rQiBym
+	 JJTjzxWvCnFog==
+Date: Tue, 8 Apr 2025 09:00:43 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, christophe.kerello@foss.st.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 3/7] memory: Add STM32 Octo Memory Manager driver
+Message-ID: <20250408-shiny-whimsical-pigeon-4e2c9a@shite>
+References: <20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com>
+ <20250407-upstream_ospi_v6-v8-3-7b7716c1c1f6@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <877c3vnq0k.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <877c3vnq0k.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 8 Apr 2025 08:59:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXXwJq+6tS+dsUFp_Py6i=zh7z39tUxMEJNXkG9=pRCmw@mail.gmail.com>
-X-Gm-Features: ATxdqUGWk5Heoq0AsfLpFY-aqpEf7IKP9PKQhPBCKi6qDe8wRUDowBnb1w3XPvc
-Message-ID: <CAMuHMdXXwJq+6tS+dsUFp_Py6i=zh7z39tUxMEJNXkG9=pRCmw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas,tpu: remove DoC
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Rob Herring <robh@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250407-upstream_ospi_v6-v8-3-7b7716c1c1f6@foss.st.com>
 
-On Tue, 8 Apr 2025 at 08:09, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> commit 1c4b5ecb7ea1 ("remove the h8300 architecture") removes Renesas TPU
-> timer driver. Let's remove its Doc.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+On Mon, Apr 07, 2025 at 03:27:34PM GMT, Patrice Chotard wrote:
+> +	for (i = 0; i < omm->nb_child; i++) {
+> +		idx = of_property_match_string(dev->of_node,
+> +					       "memory-region-names",
+> +					       mm_name[i]);
+> +		if (idx < 0)
+> +			continue;
+> +
+> +		/* res1 only used on second loop iteration */
+> +		res1.start = res.start;
+> +		res1.end = res.end;
+> +
+> +		node = of_parse_phandle(dev->of_node, "memory-region", idx);
+> +		if (!node)
+> +			continue;
+> +
+> +		ret = of_address_to_resource(node, 0, &res);
+> +		if (ret) {
+> +			dev_err(dev, "unable to resolve memory region\n");
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Where do you drop reference to node?
 
-Gr{oetje,eeting}s,
+> +			return ret;
+> +		}
+> +
+> +		/* check that memory region fits inside OMM memory map area */
+> +		if (!resource_contains(omm->mm_res, &res)) {
+> +			dev_err(dev, "%s doesn't fit inside OMM memory map area\n",
+> +				mm_name[i]);
+> +			dev_err(dev, "%pR doesn't fit inside %pR\n", &res, omm->mm_res);
+> +
+> +			return -EFAULT;
+> +		}
+> +
+> +		if (i == 1) {
+> +			mm_ospi2_size = resource_size(&res);
+> +
+> +			/* check that OMM memory region 1 doesn't overlap memory region 2 */
+> +			if (resource_overlaps(&res, &res1)) {
+> +				dev_err(dev, "OMM memory-region %s overlaps memory region %s\n",
+> +					mm_name[0], mm_name[1]);
+> +				dev_err(dev, "%pR overlaps %pR\n", &res1, &res);
+> +
+> +				return -EFAULT;
+> +			}
+> +		}
+> +	}
+> +
+> +	syscfg_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "st,syscfg-amcr");
+> +	if (IS_ERR(syscfg_regmap))
+> +		return dev_err_probe(dev, PTR_ERR(syscfg_regmap),
+> +				     "Failed to get st,syscfg-amcr property\n");
+> +
+> +	ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 1,
+> +					 &amcr_base);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = of_property_read_u32_index(dev->of_node, "st,syscfg-amcr", 2,
+> +					 &amcr_mask);
+> +	if (ret)
+> +		return ret;
+> +
+> +	amcr = mm_ospi2_size / SZ_64M;
+> +
+> +	if (set)
+> +		regmap_update_bits(syscfg_regmap, amcr_base, amcr_mask, amcr);
+> +
+> +	/* read AMCR and check coherency with memory-map areas defined in DT */
+> +	regmap_read(syscfg_regmap, amcr_base, &read_amcr);
+> +	read_amcr = read_amcr >> (ffs(amcr_mask) - 1);
+> +
+> +	if (amcr != read_amcr) {
+> +		dev_err(dev, "AMCR value not coherent with DT memory-map areas\n");
+> +		ret = -EINVAL;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int stm32_omm_toggle_child_clock(struct device *dev, bool enable)
+> +{
+> +	/* As there is only 2 children, remember first child in case of error */
+> +	struct clk *first_child_clk = NULL;
+> +	struct stm32_omm *omm = dev_get_drvdata(dev);
+> +	u8 i;
 
-                        Geert
+iterations are always unsigned ints (or ints), not other types.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +	int ret;
+> +
+> +	for (i = 0; i < omm->nb_child; i++) {
+> +		if (enable) {
+> +			ret = clk_prepare_enable(omm->clk_bulk[i + 1].clk);
+> +			if (ret) {
+> +				if (first_child_clk)
+> +					clk_disable_unprepare(first_child_clk);
+> +
+> +				dev_err(dev, "Can not enable clock\n");
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+That's unnecessary complicated. Instead create error handling label,
+goto it and unwind iterating from last position of 'i'.
+
+> +				return ret;
+> +			}
+> +		} else {
+> +			clk_disable_unprepare(omm->clk_bulk[i + 1].clk);
+> +		}
+> +
+> +		first_child_clk = omm->clk_bulk[i + 1].clk;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int stm32_omm_disable_child(struct device *dev)
+> +{
+> +	static const char * const resets_name[] = {"ospi1", "ospi2"};
+> +	struct stm32_omm *omm = dev_get_drvdata(dev);
+> +	struct reset_control *reset;
+> +	int ret;
+> +	u8 i;
+> +
+> +	ret = stm32_omm_toggle_child_clock(dev, true);
+> +	if (!ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < omm->nb_child; i++) {
+> +		reset = reset_control_get_exclusive(dev, resets_name[i]);
+> +		if (IS_ERR(reset)) {
+> +			dev_err(dev, "Can't get %s reset\n", resets_name[i]);
+
+You should acquire resources in the probe, not on every suspend/resume.
+Then you can use `return dev_err_probe`.
+
+> +			return PTR_ERR(reset);
+> +		};
+> +
+> +		/* reset OSPI to ensure CR_EN bit is set to 0 */
+> +		reset_control_assert(reset);
+> +		udelay(2);
+> +		reset_control_deassert(reset);
+> +
+> +		reset_control_put(reset);
+> +	}
+> +
+> +	return stm32_omm_toggle_child_clock(dev, false);
+> +}
+> +
+> +static int stm32_omm_configure(struct device *dev)
+> +{
+> +	static const char * const clocks_name[] = {"omm", "ospi1", "ospi2"};
+> +	struct stm32_omm *omm = dev_get_drvdata(dev);
+> +	unsigned long clk_rate_max = 0;
+> +	u32 mux = 0;
+> +	u32 cssel_ovr = 0;
+> +	u32 req2ack = 0;
+> +	struct reset_control *rstc;
+> +	unsigned long clk_rate;
+> +	int ret;
+> +	u8 i;
+> +
+> +	for (i = 0; i < OMM_CLK_NB; i++)
+> +		omm->clk_bulk[i].id = clocks_name[i];
+> +
+> +	/* retrieve OMM, OSPI1 and OSPI2 clocks */
+> +	ret = devm_clk_bulk_get(dev, OMM_CLK_NB, omm->clk_bulk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get OMM/OSPI's clocks\n");
+> +
+> +	/* Ensure both OSPI instance are disabled before configuring OMM */
+> +	ret = stm32_omm_disable_child(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* parse children's clock */
+> +	for (i = 1; i <= omm->nb_child; i++) {
+> +		clk_rate = clk_get_rate(omm->clk_bulk[i].clk);
+> +		if (!clk_rate) {
+> +			dev_err(dev, "Invalid clock rate\n");
+> +			goto err_clk_disable;
+
+That's a confusing label - it jumps to PM put, not clk disable. It
+isn't matching the source of error either (get rate, not clock disable).
+
+> +		}
+> +
+> +		if (clk_rate > clk_rate_max)
+> +			clk_rate_max = clk_rate;
+> +	}
+> +
+> +	rstc = devm_reset_control_get_exclusive(dev, "omm");
+> +	if (IS_ERR(rstc))
+> +		return dev_err_probe(dev, PTR_ERR(rstc), "reset get failed\n");
+> +
+> +	reset_control_assert(rstc);
+> +	udelay(2);
+> +	reset_control_deassert(rstc);
+> +
+> +	omm->cr = readl_relaxed(omm->io_base + OMM_CR);
+> +	/* optional */
+> +	ret = of_property_read_u32(dev->of_node, "st,omm-mux", &mux);
+> +	if (!ret) {
+> +		if (mux & CR_MUXEN) {
+> +			ret = of_property_read_u32(dev->of_node, "st,omm-req2ack-ns",
+> +						   &req2ack);
+> +			if (!ret && !req2ack) {
+> +				req2ack = DIV_ROUND_UP(req2ack, NSEC_PER_SEC / clk_rate_max) - 1;
+> +
+> +				if (req2ack > 256)
+> +					req2ack = 256;
+> +			}
+> +
+> +			req2ack = FIELD_PREP(CR_REQ2ACK_MASK, req2ack);
+> +
+> +			omm->cr &= ~CR_REQ2ACK_MASK;
+> +			omm->cr |= FIELD_PREP(CR_REQ2ACK_MASK, req2ack);
+> +
+> +			/*
+> +			 * If the mux is enabled, the 2 OSPI clocks have to be
+> +			 * always enabled
+> +			 */
+> +			ret = stm32_omm_toggle_child_clock(dev, true);
+> +			if (ret)
+> +				goto err_clk_disable;
+> +		}
+> +
+> +		omm->cr &= ~CR_MUXENMODE_MASK;
+> +		omm->cr |= FIELD_PREP(CR_MUXENMODE_MASK, mux);
+> +	}
+> +
+> +	/* optional */
+> +	ret = of_property_read_u32(dev->of_node, "st,omm-cssel-ovr", &cssel_ovr);
+> +	if (!ret) {
+> +		omm->cr &= ~CR_CSSEL_OVR_MASK;
+> +		omm->cr |= FIELD_PREP(CR_CSSEL_OVR_MASK, cssel_ovr);
+> +		omm->cr |= CR_CSSEL_OVR_EN;
+> +	}
+> +
+> +	omm->restore_omm = true;
+> +	writel_relaxed(omm->cr, omm->io_base + OMM_CR);
+> +
+> +	ret = stm32_omm_set_amcr(dev, true);
+> +
+> +err_clk_disable:
+> +	pm_runtime_put_sync_suspend(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int stm32_omm_check_access(struct device_node *np)
+> +{
+> +	struct stm32_firewall firewall;
+> +	int ret;
+> +
+> +	ret = stm32_firewall_get_firewall(np, &firewall, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return stm32_firewall_grant_access(&firewall);
+> +}
+> +
+> +static int stm32_omm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	u8 child_access_granted = 0;
+> +	struct stm32_omm *omm;
+> +	int ret;
+> +
+> +	omm = devm_kzalloc(dev, sizeof(*omm), GFP_KERNEL);
+> +	if (!omm)
+> +		return -ENOMEM;
+> +
+> +	omm->io_base = devm_platform_ioremap_resource_byname(pdev, "regs");
+> +	if (IS_ERR(omm->io_base))
+> +		return PTR_ERR(omm->io_base);
+> +
+> +	omm->mm_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "memory_map");
+> +	if (IS_ERR(omm->mm_res))
+> +		return PTR_ERR(omm->mm_res);
+> +
+> +	/* check child's access */
+> +	for_each_child_of_node_scoped(dev->of_node, child) {
+> +		if (omm->nb_child >= OMM_CHILD_NB) {
+> +			dev_err(dev, "Bad DT, found too much children\n");
+> +			return -E2BIG;
+> +		}
+> +
+> +		if (!of_device_is_compatible(child, "st,stm32mp25-ospi"))
+> +			return -EINVAL;
+
+continue;
+
+or better just drop the code - you are not supposed to validate the DTB.
+DT schema's job is for that.
+
+> +
+> +		ret = stm32_omm_check_access(child);
+> +		if (ret < 0 && ret != -EACCES)
+> +			return ret;
+> +
+> +		if (!ret)
+> +			child_access_granted++;
+> +
+> +		omm->nb_child++;
+> +	}
+> +
+> +	if (omm->nb_child != OMM_CHILD_NB)
+> +		return -EINVAL;
+> +
+> +	platform_set_drvdata(pdev, omm);
+> +
+> +	pm_runtime_enable(dev);
+> +
+> +	/* check if OMM's resource access is granted */
+> +	ret = stm32_omm_check_access(dev->of_node);
+> +	if (ret < 0 && ret != -EACCES)
+> +		goto error;
+> +
+> +	if (!ret && child_access_granted == OMM_CHILD_NB) {
+> +		ret = stm32_omm_configure(dev);
+> +		if (ret)
+> +			goto error;
+> +	} else {
+> +		dev_dbg(dev, "Octo Memory Manager resource's access not granted\n");
+> +		/*
+> +		 * AMCR can't be set, so check if current value is coherent
+> +		 * with memory-map areas defined in DT
+> +		 */
+> +		ret = stm32_omm_set_amcr(dev, false);
+> +		if (ret)
+> +			goto error;
+> +	}
+> +
+> +	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to create Octo Memory Manager child\n");
+> +		of_platform_depopulate(dev);
+
+That's odd. Why do you depopulate if populate did not happen? Anyway,
+don't mix devm with standard error paths, so this all should be handled
+by devm.
+
+> +		ret = -EINVAL;
+> +		goto error;
+> +	}
+> +
+> +	return ret;
+> +
+> +error:
+> +	pm_runtime_disable(dev);
+
+This as well
+
+> +
+> +	return ret;
+> +
+> +}
+> +
+> +static void stm32_omm_remove(struct platform_device *pdev)
+> +{
+> +	struct stm32_omm *omm = platform_get_drvdata(pdev);
+> +
+> +	of_platform_depopulate(&pdev->dev);
+> +	if (omm->cr & CR_MUXEN)
+> +		stm32_omm_toggle_child_clock(&pdev->dev, false);
+
+This as well, via devm calback.
+
+> +
+> +	pm_runtime_disable(&pdev->dev);
+> +}
+> +
+> +static const struct of_device_id stm32_omm_of_match[] = {
+> +	{ .compatible = "st,stm32mp25-omm", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, stm32_omm_of_match);
+
+Best regards,
+Krzysztof
+
 
