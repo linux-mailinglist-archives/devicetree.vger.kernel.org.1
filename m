@@ -1,137 +1,125 @@
-Return-Path: <devicetree+bounces-164449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30FEA8109D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:50:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05574A810AD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB36177D83
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:45:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A1F18997CA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466582376F4;
-	Tue,  8 Apr 2025 15:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEA222D7B0;
+	Tue,  8 Apr 2025 15:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P2OWBDJQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZYljaMId"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE5F2356AF;
-	Tue,  8 Apr 2025 15:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0333F227E98;
+	Tue,  8 Apr 2025 15:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744126987; cv=none; b=VBEguY0mlDgdmNeYtRaoSAX7FsnA8WFL6jJzeQDMjOAwAEDuicHbeWldfs+x1JJVLVMVKoc2YIMX1QOiWRboW18++DsD2DaOLCL/PNFuYYF5qNPUm/FLjpKRNTDCnNGRtfofFQLc77giq2xbfgG2Mp+FCUha+9dnRYPdBiEx1ZQ=
+	t=1744127076; cv=none; b=ShBFeXvmCkqk0mz8MOLiwa5m4TNt5TeJZ31pNxM8GX/vtNC8itcQBbKTeawqPWCkNSoUP9j22B7fLIaswDSK++YsdyIQjbbXBuBng7DSoypGHbVw96uLtYQEpr+mii/Lo1V0EaIFtSzMTjHsnyM3oarJX4WYSvFyBRO2thvSua0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744126987; c=relaxed/simple;
-	bh=JEyvW/eqJbmU/OCF5g6macBqJVG6TLDRzvb/ARI/GWE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nFux9O1Eu0Am+1q4eTYGkm0WM0I+tbi7FsqquY1dV9gT2JVXQI3Vzaj8iTE+kAaYquWgmOvFiNh7XUqpcdY+B1z0/w4DgYcIxYAt2gHRrkpGjmfyG5lphyQYl1elatzvWLQ7wVlFBtQpjxymT5r3S52Ru9Rpg6n0htIYTZx82Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P2OWBDJQ; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43edb40f357so31762025e9.0;
-        Tue, 08 Apr 2025 08:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744126984; x=1744731784; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rtG6uWcIXl5lH7IBHhdVeY4nZALvB6ooRyYGRnxDiL0=;
-        b=P2OWBDJQGEgRszdx8SjdqLaD+1FOPsTYBXnl7dwEiSlB5gNpFmKLtRdFVn0pC0/uJX
-         p4CSCG3zoPzMIla4hgO/5RFIRfRGnsUCkBpolwCt75KJzCWDEcHx7gJVYHzdmA9hX3q+
-         hyPgOL40cLHcOA0j1gkTCwhlIwfTWM5Ph27JjWENz91i/KE2kzLpC51r+IIfj4A8bjvt
-         ZpuxEhPZJtQgMHqn16nYfdgfpmsMHNldZBlXjiHyeanaJchBpwDtWkcTw89CtlnRqc+E
-         MIF+6lreNr9M1p3gBNqkqMz4uJoxtL+9uRuxur+zPK8qgRPKiAemlqRun+B0iwQbBmcb
-         4yZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744126984; x=1744731784;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rtG6uWcIXl5lH7IBHhdVeY4nZALvB6ooRyYGRnxDiL0=;
-        b=IXUCMbcDMKv6N1cgQvpfXdIjPV+dYYR/mlKoWHBcwjlAHWczX8+VdcL5RLJuw3uQqj
-         VL3uA8A39gSdndynCN+gATv1Vgc39eFBMwH56heKos6xlpFliK88deWldJLUsDSzhnYY
-         csTa2Rb1kLE6MfQccdofkyoCqlmoAplHCDR3cn/HVQNyqdiM2+CDAosgZ4Fp9bLPceIg
-         nIGbK4cgEWCBA96E4Isrrc4/H/mtdrjEgE0S4YAF8/CcKukJDvi+DhBJMJrU8z9GL1+k
-         lMU8AFvTmSnSyIM9j09OpjPCeRdVVboc6PXMBwBAQZOLUPgOZM9lTIQoBdwuKOHxvRrl
-         IG8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUmkLmnwkNMmbvYUwLiHjc0lMsErrd2JmbyOqekt/camhHeqpLqPiLjn6gm5u1JS8T+j7lQbnZUe6zZdEfs@vger.kernel.org, AJvYcCXwEZr98cX/I5fypDFwqx0zeeBVAdkr65WDrwsEAcWgLvwZoaPLdr1bifsXlizPeAzxuzAzTgP4PVHZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoHwZL14TRj6ADohv74VB7U1pPorkitTSOjq6Trz9rXN+eavQ5
-	vAoHt3tBt3VRfl2r1rPj3aOWOIXQJ2rVPN8HrHWXWn25TqKpOOcF
-X-Gm-Gg: ASbGncuoVfTPtQaUmyq2GvQfhczeXi6ZsEetBYESaxPjtD5K12mzIiFDoNfJ5bF7BIP
-	utQyoM0DDYP06qyvqylgZ/mc/IEq+UJkKATEoUcCfawO/pCAPIU6mhAMDNWzZ/fZDGJVHI9tHs8
-	SWxu73uJIztfzC9HAaV5poof65s/6bZN0XA/mpRxmBgzS06fe9MRzAiL5Vnw0eewOIl8oRqorKG
-	n20JJPTRATv7qaQTtSUjzKtrejjSH8zTcVu3OkOm1n+h6NHWEX/7Ncf+L9rXQDZ4Ra2t3GN8JuY
-	V2UhUYe1FXHKFub2ivR8a1XZl7AJASWy2mKekjncJhf+OL9VRaSXzx6WDCuSugD5gZGJs/zixGC
-	lfCeUjEo=
-X-Google-Smtp-Source: AGHT+IH2pIjwLHd99OaOkEDJZzV3BxzBXMBL7iQPz/Uj8BamXLBLhgF6w37q7JaR9mEFlWaWbAKHNw==
-X-Received: by 2002:a05:600c:3489:b0:43c:f0ae:da7 with SMTP id 5b1f17b1804b1-43ee0617025mr127689295e9.7.1744126983675;
-        Tue, 08 Apr 2025 08:43:03 -0700 (PDT)
-Received: from playground.localdomain ([82.79.237.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34be2e6sm164476675e9.18.2025.04.08.08.43.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 08:43:03 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 6/6] arm64: dts: imx8mp: make 'dsp' node depend on 'aips5'
-Date: Tue,  8 Apr 2025 11:42:36 -0400
-Message-Id: <20250408154236.49421-7-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250408154236.49421-1-laurentiumihalcea111@gmail.com>
-References: <20250408154236.49421-1-laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1744127076; c=relaxed/simple;
+	bh=G8wk56TGud9rHoSNEW8UY1VtUECn2NoFygWu15JtULs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dvnrLSHzBpK+orFYsSfP+c6oSTs8KeDhDRDXHViKytw1j7opA3T9g+A1Y+NY6O1A9klXbtxru22ytxQrK1O8lm0WAxt0TsxDd3RlsKGKVo4AqvY59ZJOViFYC4znqDh9ZndukJ6iDoXbJd0zo4YvOGwgHpFFgsDIMUY5/3EjHHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZYljaMId; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE02FC4CEE5;
+	Tue,  8 Apr 2025 15:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744127075;
+	bh=G8wk56TGud9rHoSNEW8UY1VtUECn2NoFygWu15JtULs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZYljaMIdULyniQr4RNSq/irzs7yzuoCVria0BPrUmcRijGVaIHZFkHo3TEBcosHsJ
+	 ryvOd1adZTIJEFB5nPq942zrQTvj3sXcTr0iKUi7ZxQ/JnBEvDjnlk+BfP0EQ6kmv4
+	 dq7RfWtlXT0M6ofeb2EcYJInJbf6+9NgZL/E7z2ntYLdhxaCDqnsi1jw63KY9HPtir
+	 PCns7ofz5YlmHotO4IB7qhjeSMvbTnrOuwD3MbUYOU0yspP+qirazvRkqSYxV7cwUF
+	 kGoHCsOFIfJfNCMgBDzgIqKbjYvQa8G8sGqyCgDA+zcbfE9LDtLdqhjwlFV/rAf36k
+	 LvCzGwZplFTMw==
+Date: Tue, 8 Apr 2025 17:44:32 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display: panel: ili9881c: Add dsi-lanes
+ property
+Message-ID: <20250408-statuesque-poised-firefly-ed8db1@houat>
+References: <20250408-feature_sfto340xc-v1-0-f303d1b9a996@bootlin.com>
+ <20250408-feature_sfto340xc-v1-1-f303d1b9a996@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ewdpo6mzqq4hfc4b"
+Content-Disposition: inline
+In-Reply-To: <20250408-feature_sfto340xc-v1-1-f303d1b9a996@bootlin.com>
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-The DSP needs to access peripherals on AIPSTZ5 (to communicate with
-the AP using AUDIOMIX MU, for instance). To do so, the security-related
-registers of the bridge have to be configured before the DSP is started.
-Enforce a dependency on AIPSTZ5 by adding the 'access-controllers'
-property to the 'dsp' node.
+--ewdpo6mzqq4hfc4b
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/4] dt-bindings: display: panel: ili9881c: Add dsi-lanes
+ property
+MIME-Version: 1.0
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+hi,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index ebbc99f9ceba..f0f0ff5edea6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -2425,6 +2425,7 @@ dsp: dsp@3b6e8000 {
- 			mboxes = <&mu2 2 0>, <&mu2 2 1>,
- 				<&mu2 3 0>, <&mu2 3 1>;
- 			memory-region = <&dsp_reserved>;
-+			access-controllers = <&aips5 IMX8MP_AIPSTZ_HIFI4_T_RW_PL>;
- 			status = "disabled";
- 		};
- 	};
--- 
-2.34.1
+On Tue, Apr 08, 2025 at 05:27:00PM +0200, Kory Maincent wrote:
+> Add the dsi-lanes property to specify the number of DSI lanes used by the
+> panel. This allows configuring the panel for either two, three or four
+> lanes.
+>=20
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml | 5=
+ +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili98=
+81c.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.=
+yaml
+> index baf5dfe5f5ebdd92f460a78d0e56e1b45e7dd323..e36550616f6aac86c79832a48=
+132ce8c11ebcf7a 100644
+> --- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
+> @@ -27,6 +27,11 @@ properties:
+>    reg:
+>      maxItems: 1
+> =20
+> +  dsi-lanes:
+> +    description: Number of DSI lanes to be used must be <2>, <3> or <4>
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [2, 3, 4]
+> +
 
+We have the data-lanes property for that already
+
+Maxime
+
+--ewdpo6mzqq4hfc4b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZ/VEYAAKCRDj7w1vZxhR
+xS9/AP9EMIfcRTTSX4RRpS+AQwAkdMgo5C06Wa7dpi5u86T7xQD+NZxqjENpRkCr
+c4NE2azRMmu/2S+PcdUP6ZbJuCARnQc=
+=Cc2N
+-----END PGP SIGNATURE-----
+
+--ewdpo6mzqq4hfc4b--
 
