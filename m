@@ -1,150 +1,121 @@
-Return-Path: <devicetree+bounces-164170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C189A7F697
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:41:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731B1A7F70D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:50:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E5AE7A9509
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:37:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5A14423B93
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834762641C3;
-	Tue,  8 Apr 2025 07:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8249263C72;
+	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OgBMdpby"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tQdvLmS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AF6263F5B;
-	Tue,  8 Apr 2025 07:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B2723F262;
+	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744097807; cv=none; b=XADuK2aXP7c+VbGrhkjiXwfYxcycguLF6uU233pIB0CdCb3zTlera2OW1MaQzgzWJbOXE78qEmFpHit8PEzYBkb4SsRJiM2q+iV/YG10W5YN9SSJqSCAZY7DlvVe4mRbsyQCupXjRkplKqMvudsk75kK8xA9ilb6QdkBuzhIsHI=
+	t=1744098340; cv=none; b=AzYBaVFJILWUrZo2oy5WaGyFR62jkCevl52qfmlKX+8Xo3ncjIM5liBCP9k+wh+C8gH+ChOK1krdaJ/DPP1JmQUt3USbEX0JUPKPD0ve2Hx1JA0rT1NNzwK/2F7PRs1ZCYib03E7FtJuuwf644C7poqG1VCNP7d1lj0t5CfdfN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744097807; c=relaxed/simple;
-	bh=qStEiInZ6QdmTNPscErtkbrO8I7VqKWbI7Vow2/nZlQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hhj2LrOpKB8gY+gu9MtT5Oo57LRjGQ8gTopX77gTfYeU40QOf7+CAmPSLcu/sWhoIxoK1wuSHpHcnsgceIxV9ZPEIHgDXBHqLg4kuaQcLftGMVLVuD1GCedbASxsKDYK9lBnzmzRaZ/kc+jr0dVGsbF0Wb0mMJG/ETBtOj3Itys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OgBMdpby; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CAF22442DC;
-	Tue,  8 Apr 2025 07:36:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744097802;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vqZg4tEnT3kYdltFRHVi26EBjikLyKFcZ9ynT2bbpFA=;
-	b=OgBMdpby5E/xgaA7CMEHegfw3/FY7SMlp19DXobX0C1ETaxvLon+no8FD7xGrYEjZ5swQQ
-	49hh4s+R7bCt69pr+LWDRXSG6NpYxt+970wfH5eRm08tvXphPL3kyoRvkqmMrepAHdyJWg
-	Xf6YRqoXwwwhEBENueCkJ7SzDplsmgHLuO+FLaKfBjHHjqRVza4+sCGybwmpj2cFbo3jWV
-	elVezCkW4v3C3fNFwmbk0Q+m6DCsvQuIHW9zgo5jmryRC0KpJR+OPppCi6wk8XUt+vKKuL
-	im8Tcacxro+BEBEt/AnC2afndKXk2aGQ300/+CBiFiDYlWH83gPb9OEm+21INQ==
-Date: Tue, 8 Apr 2025 09:36:41 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Antoni Pokusinski <apokusinski01@gmail.com>, krzk+dt@kernel.org,
-	conor+dt@kernel.org, robh@kernel.org,
-	alexander.stein@ew.tq-group.com, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] rtc: pcf85063: add support for RV8063
-Message-ID: <20250408073641fa372d2e@mail.local>
-References: <20250407193521.634807-1-apokusinski01@gmail.com>
- <20250407193521.634807-3-apokusinski01@gmail.com>
- <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
+	s=arc-20240116; t=1744098340; c=relaxed/simple;
+	bh=OvKGbB2FbzBCATO/Bgq5TPoN+AHARPbGu6KH2H1fDDw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DsCShPiScDo6KQm7knW8F3v/TwOg3bMEEP/56qCIac4+5nez3v1uYzChyLd3mX38SpLo6JOGzaZL4SyVZ0SgXG2VMwd9bFXvVXeilY/0sY4W7c3UVacJhq+83Xf/yb7Dp4NM62NYTn2wKHqZ7bCCXg4KKqyWUtx3VVdpqdrKB+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tQdvLmS8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DCAFEC4CEE5;
+	Tue,  8 Apr 2025 07:45:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744098339;
+	bh=OvKGbB2FbzBCATO/Bgq5TPoN+AHARPbGu6KH2H1fDDw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tQdvLmS8MIfd49Xe4tK5hslcfvoCAGk+GU51525sTG1EZRm+xHftDRmZwWk73O8DU
+	 ut29CtQx15xtyYbka91mmzQrdegSaHL4AVNmD5O9gYSE+zSYHeAR0qeSGke02gYC6j
+	 pBAIpP5qgB5Sbvf4tkwRa8EWIah9aUx5WoTkCinS157Ay4DCmsYV930F7fqbk7lZAX
+	 e3KnS1HYOosGypqzLu5+4LF5TK6uWD43Bx0MLjzFfKhB3qUcVvTNsO791OOemovqWI
+	 THj9/H1ilGQkWS0oOgIb4YSbS87dtN4TsrLsGIpkvyApB2GmH41d5Mfs+I3Lo/FQll
+	 vWcqE8g/8ljGw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8C4CC3600C;
+	Tue,  8 Apr 2025 07:45:39 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH net-next v2 0/3] net: phy: dp83822: Add support for
+ changing the MAC series termination
+Date: Tue, 08 Apr 2025 09:45:31 +0200
+Message-Id: <20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvhedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtudenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevudevhfdvheelgfeileefteduuefghefguefgkeeljeeufeeutedtffeuteeivdenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmegrugdtfeemgehflegtmeeffeejfhemfheffegunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmegrugdtfeemgehflegtmeeffeejfhemfheffegupdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrphhokhhushhinhhskhhitddusehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhriihkodgut
- heskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopehlihhnuhigqdhrthgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABvU9GcC/3WNywqDMBBFf0Vm3Skxmhpd9T+KizymdaBGSUQs4
+ r83SLddHg733B0SRaYEXbFDpJUTTyGDvBTgBhNehOwzgxRSiUoo9LOutJQ4Goc8zuRNcIS6FnW
+ lrHAt3SBv50hP3s7uAwItGGhboM9m4LRM8XMeruXpf+3mT3stUaD1XivTqNbW6v5msgPFeHXTC
+ P1xHF/GHUuUxwAAAA==
+X-Change-ID: 20250305-dp83822-mac-impedance-840435b0c9e6
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744098338; l=1500;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=OvKGbB2FbzBCATO/Bgq5TPoN+AHARPbGu6KH2H1fDDw=;
+ b=LAP+5KozOfLFiM9ARSpBu0uYlfKBnWFlKSIEmHuCE92oEypvNMNHSfEJlTOZxY+HY6lLA1X/f
+ tK9686IiRiaAPUOAdgx9IRqOWq4Szc8sSbjvHzzoEx48sIfqzoqz3aj
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
 
-On 08/04/2025 08:14:36+0200, Krzysztof Kozlowski wrote:
-> On 07/04/2025 21:35, Antoni Pokusinski wrote:
-> > Microcrystal RV8063 is a real-time clock with SPI interface. Its
-> > functionality is very similar to the RV8263 rtc.
-> > 
-> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> > ---
-> >  drivers/rtc/Kconfig        | 21 ++++++-----
-> >  drivers/rtc/rtc-pcf85063.c | 74 +++++++++++++++++++++++++++++++++++++-
-> >  2 files changed, 85 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> > index 838bdc138ffe..1b9be96faa13 100644
-> > --- a/drivers/rtc/Kconfig
-> > +++ b/drivers/rtc/Kconfig
-> > @@ -483,15 +483,6 @@ config RTC_DRV_PCF8523
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called rtc-pcf8523.
-> >  
-> > -config RTC_DRV_PCF85063
-> > -	tristate "NXP PCF85063"
-> > -	select REGMAP_I2C
-> > -	help
-> > -	  If you say yes here you get support for the PCF85063 RTC chip
-> > -
-> > -	  This driver can also be built as a module. If so, the module
-> > -	  will be called rtc-pcf85063.
-> > -
-> >  config RTC_DRV_PCF85363
-> >  	tristate "NXP PCF85363"
-> >  	select REGMAP_I2C
-> > @@ -971,6 +962,18 @@ config RTC_DRV_PCF2127
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called rtc-pcf2127.
-> >  
-> > +config RTC_DRV_PCF85063
-> 
-> Why? This breaks the order.
-> 
+The dp83822 provides the possibility to set the resistance value of the
+the MAC series termination. Modifying the resistance to an appropriate
+value can reduce signal reflections and therefore improve signal quality.
 
-I don't think it does but you can't see it from the diff.
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v2:
+- Renamed "mac-series-termination-ohms" to "mac-termination-ohms"
+- Added description for "mac-termination-ohms"
+- Renamed "phy_get_mac_series_termination" to "phy_get_mac_termination"
+- Dropped "mac_series_termination_modify" from dp83822_private
+- Init mac_termination_index in dp8382x_probe
+- Renamed "mac_series_termination" to "mac_termination"
+- Link to v1: https://lore.kernel.org/r/20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com
 
-> > +	tristate "NXP PCF85063"
-> > +	depends on RTC_I2C_AND_SPI
-> > +	select REGMAP_I2C if I2C
-> > +	select REGMAP_SPI if SPI_MASTER
-> > +	help
-> > +	  If you say yes here you get support for the PCF85063 and RV8063
-> > +	  RTC chips.
-> > +
-> > +	  This driver can also be built as a module. If so, the module
-> > +	  will be called rtc-pcf85063.
-> > +
-> 
-> 
-> ...
-> 
-> >  module_exit(pcf85063_exit);
-> > @@ -740,3 +811,4 @@ module_exit(pcf85063_exit);
-> >  MODULE_AUTHOR("Søren Andersen <san@rosetechnology.dk>");
-> >  MODULE_DESCRIPTION("PCF85063 RTC driver");
-> >  MODULE_LICENSE("GPL");
-> > +MODULE_ALIAS("spi:rv8063");
-> 
-> Drop and use proper ID tables.
-> 
-> 
-> Best regards,
-> Krzysztof
+---
+Dimitri Fedrau (3):
+      dt-bindings: net: ethernet-phy: add property mac-termination-ohms
+      net: phy: Add helper for getting MAC termination resistance
+      net: phy: dp83822: Add support for changing the MAC termination
 
+ .../devicetree/bindings/net/ethernet-phy.yaml      |  9 ++++++
+ drivers/net/phy/dp83822.c                          | 33 ++++++++++++++++++++++
+ drivers/net/phy/phy_device.c                       | 15 ++++++++++
+ include/linux/phy.h                                |  3 ++
+ 4 files changed, 60 insertions(+)
+---
+base-commit: 61f96e684edd28ca40555ec49ea1555df31ba619
+change-id: 20250305-dp83822-mac-impedance-840435b0c9e6
+
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+
+
 
