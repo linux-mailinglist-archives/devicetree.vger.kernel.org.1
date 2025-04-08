@@ -1,122 +1,132 @@
-Return-Path: <devicetree+bounces-164343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FC9A80647
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:26:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F30A8A807B3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DB8B1B843BA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:20:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F3A2885AD7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BB226F44C;
-	Tue,  8 Apr 2025 12:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FDA26A0A2;
+	Tue,  8 Apr 2025 12:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z+pTG+24"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/gJTstg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDD926AA93;
-	Tue,  8 Apr 2025 12:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE6B1AAA32;
+	Tue,  8 Apr 2025 12:26:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744114669; cv=none; b=vDpJQow4S/YB+Fl8pZdiHUlq110LhTBQnWNUyKz8aT/067EzLLpuN7aQ5/MUkxnyrqhQTZYDsVLQpvi/gZqgs7zIekWKe5ViXVfka88mbLItq3Ngi7+7FjX5xM3QY3GF1AAFx+AH3NfivMRDCIbeM4aGCtLv8EiP9re6ewxr9Zo=
+	t=1744115214; cv=none; b=dUJvEInvSLbGjAc1EKzEekWzf9PAvUeQlzoJs9TU3w/nOFFRlWZ76ZgNB2BUfaY9k5AP/qflwf6Q6jX6iVJspn/FfFrsW4e3947pVH6VYTsThVXAQXggdj2T9CWUebR1fJxGN90IfO8cKUXrogJuf2LqWWaCCSKpqQNgfhADJ8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744114669; c=relaxed/simple;
-	bh=V1YRfWmWFWbhpHBtVJZMWNP1AZyQpK52DXn595wf9HY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rSX7ZfNp2LWOHb2K7U1oO307MY54QM1jFW/SNrddqRvkNXQjB3ZlOG0eAgMa0j6cVhUZkq3/ZAqOVmHwHxewpc/zKliqzgk6bvy5954dloWq1hEx8djegJAFF1hMTq57+UICAuzsMLfviAKaWc5LZS27yGfiw0DiGVyGVaFa/Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z+pTG+24; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 538CHNdb673137
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 8 Apr 2025 07:17:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744114643;
-	bh=40zPUQrlcr8Vw5CjXjou4ckrp+WYfHtg2mzzQ/p+6/0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Z+pTG+24QgYuVGeEyiu+Krg6vZD7z7igJ9ynRkHU8gV8Jm+rk/alFJXJ6xgz/x1Ze
-	 a4AtgTKrrLmHMtSXF4MfZwIp5riKITAoI2dWKwHf1d/oOE7WISSopWkXw9bHWnU1/X
-	 FSaUIkDrIXCw+FmbzQOfgnR4PAZo73uoIGk5pqJg=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 538CHN4S008016
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 8 Apr 2025 07:17:23 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Apr 2025 07:17:23 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Apr 2025 07:17:23 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 538CHNA4001367;
-	Tue, 8 Apr 2025 07:17:23 -0500
-Date: Tue, 8 Apr 2025 07:17:23 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <jai.luthra@linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-Subject: Re: [PATCH 3/5] arm64: dts: ti: k3-j721e-sk: Fix dtbs_check warnings
- in IMX219 overlay
-Message-ID: <20250408121723.ksjtilh4hxl2wh34@derail>
-References: <20250401114053.229534-1-y-abhilashchandra@ti.com>
- <20250401114053.229534-4-y-abhilashchandra@ti.com>
- <20250407134523.d56rjpydflmkw2ze@privatize>
- <c1762c69-6a76-4f89-ab64-e6d9215e1be2@ti.com>
+	s=arc-20240116; t=1744115214; c=relaxed/simple;
+	bh=F1wj3qpVgo1qr1BveM6Zq/QNOkaTsdEvxE8GsgIH80g=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=kM4gZVNyT5VuXB1uKh3z1d6B/msQrM+e/vLItHq8WGScOOg7DZOkv6KDja6xrzG08IMMaq3HoKb660OVJUkXdqWfkeX2rLv/6xI3DpGB5/s/+LCenX7JJB6xEOyOXQZsaU53l8NSsnW9f3twflggBDOa3abc9rlHr/JHDfEkRLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/gJTstg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DC91C4CEE5;
+	Tue,  8 Apr 2025 12:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744115214;
+	bh=F1wj3qpVgo1qr1BveM6Zq/QNOkaTsdEvxE8GsgIH80g=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=m/gJTstgQA1my9A3PxtSag5ErhPe+ieuCHFi+wlAw/Jpczvrzw12lI+xmMQpfEMST
+	 7BjqvM0rhlJ8QlBD4fVh41Gz6+00Go3c7jLSjASzAqoS1WU4vTf1DFtdeEyPh2dil5
+	 zwrZzxuwQwqZt775I4uU9MTU0L/bac5d8QL6O5fj/ZwsGXR4JIoCo8pBNRzfVveZkc
+	 tLTmrdfbsK936NHN8dFk6o8QqHDWmUVGw3R4imaWpPw4jF0bi/G4zYwbhEppdgtyW/
+	 AnwqWFfvEK5vK8bCcEEWQBpr/F2JmmQwbpWXMmelLSJKSLrPEJfx31AOgyCSKRc9HT
+	 Tp0VWYCg+vhYg==
+Date: Tue, 08 Apr 2025 07:26:53 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c1762c69-6a76-4f89-ab64-e6d9215e1be2@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Will Deacon <will@kernel.org>, Timothy Hayes <timothy.hayes@arm.com>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Sascha Bischoff <sascha.bischoff@arm.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+In-Reply-To: <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
+Message-Id: <174411521311.1639476.6777663294037851144.robh@kernel.org>
+Subject: Re: [PATCH 01/24] Documentation: devicetree: bindings: Add GICv5
+ DT bindings
 
-On 14:31-20250408, Yemike Abhilash Chandra wrote:
-> Hi Nishanth,
+
+On Tue, 08 Apr 2025 12:50:00 +0200, Lorenzo Pieralisi wrote:
+> The GICv5 interrupt controller architecture is composed of:
 > 
-> On 07/04/25 19:15, Nishanth Menon wrote:
-> > $subject - the patch adds description for the supplies for the sensor.
-> > Please fix the description.
-> > 
+> - one or more Interrupt Routing Service (IRS)
+> - zero or more Interrupt Translation Service (ITS)
+> - zero or more Interrupt Wire Bridge (IWB)
 > 
-> In this patch, I am addressing all dtbs_check warnings generated from this
-> overlay:
+> Describe a GICv5 implementation by specifying a top level node
+> corresponding to the GICv5 system component.
 > 
-> 1. Adding the missing regulator node
-> 2. Removing the incorrectly added clock-names property
+> IRS nodes are added as GICv5 system component children.
 > 
-> Due to the inclusion of both changes, I opted for a more generic commit
-> title.
-> Please let me know if you want me to split this patch into two separate
-> patches
-> with specific commit titles and commit messages.
+> An ITS is associated with an IRS so ITS nodes are described
+> as IRS children - use the hierarchy explicitly in the device
+> tree to define the association.
+> 
+> IWB nodes are described as GICv5 system component children - to make it
+> explicit that are part of the GICv5 system component; an IWB is
+> connected to a single ITS but the connection is made explicit through
+> the msi-parent property and therefore is not required to be explicit
+> through a parent-child relationship in the device tree.
+> 
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+> ---
+>  .../bindings/interrupt-controller/arm,gic-v5.yaml  | 268 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 275 insertions(+)
+> 
 
-subject line should indicate what we are fixing here. If the commit
-message indicates two different problems that were to be fixed, it is
-better to do that in two different commits. Generic subject line is hard
-to gork to understand if it is critical or not.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Do not forget ./Documentation/process/stable-kernel-rules.rst and use
-fixes: tag as appropriate to indicate the original problem patch
-which is being fixed.
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dts:43.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-[...]
+doc reference errors (make refcheckdocs):
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
