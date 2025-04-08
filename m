@@ -1,569 +1,209 @@
-Return-Path: <devicetree+bounces-164167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52ED0A7F63D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:29:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCFDA7F67E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCEDD7A5805
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:28:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BEFB18941CC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4282620C9;
-	Tue,  8 Apr 2025 07:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BAD263C6F;
+	Tue,  8 Apr 2025 07:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="im5tIV+c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iYbtY1cx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEFE10E0;
-	Tue,  8 Apr 2025 07:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771CE262802;
+	Tue,  8 Apr 2025 07:35:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744097364; cv=none; b=gV6Xpa7NPl89y4+HU6tM6RiWeZjsUoL7ckSOfS061RMqSZoE07Uvp6xcmGq52FP5Rg6Zof3fKj+Jn7wTClQsKyIH8p4TrVKnxFxgc2qQkw/mMbF/tdxg6fddRlsf7HhiiWlUmxUgoteTomJuO2cE1FlcuJXC4REJ2A9i5DjuApY=
+	t=1744097727; cv=none; b=j237SBJWAUXYltnwTxW21UxArXLNrhS7hc98AcA/sVB0nt5u1yjznYm/XpO8bJQOjJD81pGzTO7d/P0MObdBquCBjdm3D/+KNDH/jZyE6OcmF5OIVeSE8txjzWCT6OzZGlSpG10aJrIpsMuG9kwsG+FLwdIcs+sIERxSIrlX/WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744097364; c=relaxed/simple;
-	bh=Ckf5evGzzSA24OVxp5igOfL9k+cH+xIn2o2pz40R4SI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CNUF2/0/azQS81rsCbJUx1sRmpwG35DYf55qvkTCi3w2v04kYTpn/41zHOE7lrYZVHC+3tIQlrl6uwpgUqY/iDOFK2vTVcyeoBK0QzIGUgisNbi4S5ni63cISfPVQbd/w6E8Q4K2a9/Kt6QZNI0wQBsooQAPpl4vUR7k8GCgZ/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=im5tIV+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 704D4C4CEE5;
-	Tue,  8 Apr 2025 07:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744097364;
-	bh=Ckf5evGzzSA24OVxp5igOfL9k+cH+xIn2o2pz40R4SI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=im5tIV+cO6FjNr0HBCwhh1fyzxRdZ8EowauARd2uhx5E43BbhoPG3G6O9X7h1xra7
-	 bwTExrURDpEj49wryRXSFFJws7yOL5TzvwRkezGiBOvJrr4qseKDC40Hv+7l5IbLCo
-	 Fr4jOQF5/T7ZJN9PBTXFnaqSzduJFFz+iEGBgUarWUnMEqiuwyzUZE5mVe0jYjxzxX
-	 8K3o4oaJUE2z4D+mmCCZr0mKwXffQ+CPKCsbs/JxiD0LpYkNcx5wRkCij/opVjj8EZ
-	 ENO2YcpcGgOMbQDKtRpo5eS0J43hF8861tv5MVHhX9Kfe+KdjCh5zSumyYbnC464dn
-	 SMJR3RMxlK+5g==
-Date: Tue, 8 Apr 2025 09:29:21 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
-Subject: Re: [RFC PATCH net-next v2 11/11] net: airoha: add phylink support
- for GDM2/3/4
-Message-ID: <Z_TQURKSb7rOY9NF@lore-desk>
-References: <20250406221423.9723-1-ansuelsmth@gmail.com>
- <20250406221423.9723-12-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1744097727; c=relaxed/simple;
+	bh=RfVYczxIb1l3GGMPXFeT6GWHpmjtTJlf7l2gvlRQhAI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ov2PVGcyuCKSsFFuOmvuILDVpYb1EkLefRjMJ0YMRAJ+nOp5OCGlaCGtBcM1HE5w/UNjnW77atsNo3TgrS3E8YoEsMMk+mWAIN4+/jID9stPCdU/p1ax9jLOL2DIbUpFXOO4suDxoo1jUZe7s89LhOSEqH3cBRSgkZUYmayfN4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iYbtY1cx; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30db3f3c907so47697171fa.1;
+        Tue, 08 Apr 2025 00:35:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744097723; x=1744702523; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g5JtdeaXKDYvfwZoLN8X6ZLeGIMqSphwrswY3PSKZU0=;
+        b=iYbtY1cxzMw5QVacP4DKlzjuDbCKnYYkzKAdI8uitM8xtHMj9PoxlGN91J8dDDngMj
+         whnSjPjvTeGukOTugVaHQbVoMOeEtG4HMOdqOeUZwZM4t3+cShoKT3oo6Oibjw1eIg8D
+         EyZcfhw87yvfJij521POrz11UpIBR2snrI+SAtMXlglBOuKtJrefsXRsupQWJLcd/Bp6
+         KG+4bUfQlk1+jgBuLRLPxzKEemKO/uPLgBX778xf8456uA68efM/APwuQ/70mVCBkraZ
+         H5KWB4TocRn1AHyw0my6OgYWblF+FgGKJONNhrWeUhAKInwerzi/cQ4u4ijb406VMCff
+         19lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744097723; x=1744702523;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g5JtdeaXKDYvfwZoLN8X6ZLeGIMqSphwrswY3PSKZU0=;
+        b=VylWvTiQpm9uDThuNqurp3zQV8kPrfwpTGy28MRrzdkFZsSsurNOA3AXZ23Qse/zup
+         ALZFLo9mH5P4EarjzjXNnU0QwJSbVQ7fa2AwFVUDtKSydwt2fz2oAXnrV0cZNjzxXYvv
+         Hko+vcHzDwhdxh+yOs1aYnWVNGuvKTqBZyJK3VOsOZDYI1UfrKLFKtEWIN+35tSf9rS4
+         AMRwZapAkd5qKTcOMUa1EGVm6xStI8bEmWy6y+OS+/XOi8iVho8y8NpQpPqDTmI180iu
+         +xchhji1DAW9zRX5WiGk9Jyj4/xk11sYEg8tV/1unvarYTHsFoTr53z4q7ORZ9Ba/2wQ
+         uIrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUNRp8/uSobG6W3C863ZkVYQtFG40McW/e4V3i6K0xfBmWr94FxBp/jOznsH4ebAyrXzdhXyqdc/71D2mLCqc47@vger.kernel.org, AJvYcCVa9KzsqNcMSPBM44QwX+lPnXWjS7etfqWAtFkehzbCuRJoER4K8eF/oydvkXBUlB6pTGpVLJQEtZPTuTU=@vger.kernel.org, AJvYcCWEr0uj4O1DtglK1Rf1iSkvYLJ5CxS5VyiNiSJdtxZLf6f0dNf4i9kfB5y4JoBBQEtg/gHZz7Q1UgWX8TNH@vger.kernel.org, AJvYcCWY1ZM5puxS05impNVWBMoa3rI3dTC2UPmW5J5yOuDZpk3dxZP3zdl3k9vQWlC6887zMCx2yy/5HREB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzregvc9nG+nMEwcdjjrsQ6J2GG2PODtHjY6gtrpYj8xHFhrqKX
+	uLbfq6HwWvW8SF7nkZ4fMfsw8EM3MBP5Mm86iuZXFNjV0MtXkt8o1yF64N/yan6QYygDXvqScGM
+	NG8qCE8qgAD2DaQrlC/9vIsT9YII=
+X-Gm-Gg: ASbGncuGl4vhekU3GZGsMk0cCTlHsXduZn0wDsULgKGHpIKm5T/2sGiut1YQCTlsOxH
+	M6m/3D0Hmmag65FeXzur4hrIhyZmKtLCTtzY8sJlMNNLNJogSZSLntoObluQFTCm7oxZWyGEQQP
+	3TRdTGYwMFP/+yY4jdKJ+XMFsaOA==
+X-Google-Smtp-Source: AGHT+IGLFlGV0+F2A7WjAzugPsJsNrpzgZaS1otIu2dmbXOM18v+qIiibbTKcAKtDA2ibCYLFOZG4haJvxewlqhpI/k=
+X-Received: by 2002:a2e:bccf:0:b0:307:e0c3:5293 with SMTP id
+ 38308e7fff4ca-30f0a1d4e3amr55882911fa.36.1744097723300; Tue, 08 Apr 2025
+ 00:35:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OGbBDibJTakze8F1"
-Content-Disposition: inline
-In-Reply-To: <20250406221423.9723-12-ansuelsmth@gmail.com>
-
-
---OGbBDibJTakze8F1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+ <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org> <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
+ <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org>
+In-Reply-To: <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 8 Apr 2025 02:35:11 -0500
+X-Gm-Features: ATxdqUEhT_cCsCHIzbYXLVPcrwdWBAkM0Y94ixPBAugMf6UkgCf_WAucGZWtu5k
+Message-ID: <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> Add phylink support for GDM2/3/4 port that require configuration of the
-> PCS to make the external PHY or attached SFP cage work.
->=20
-> These needs to be defined in the GDM port node using the pcs-handle
-> property.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+On Tue, Apr 8, 2025 at 1:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 07/04/2025 18:00, Aaron Kling wrote:
+> > On Mon, Apr 7, 2025 at 7:59=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >>
+> >> On 06/04/2025 23:12, Aaron Kling via B4 Relay wrote:
+> >>> From: Aaron Kling <webgeek1234@gmail.com>
+> >>>
+> >>> This allows using pstore on all such platforms. There are some
+> >>> differences per arch:
+> >>>
+> >>> * Tegra132: Flounder does not appear to enumerate pstore and I do not
+> >>>   have access to norrin, thus Tegra132 is left out of this commit.
+> >>> * Tegra210: Does not support ramoops carveouts in the bootloader, ins=
+tead
+> >>>   relying on a dowstream driver to allocate the carveout, hence this
+> >>>   hardcodes a location matching what the downstream driver picks.
+> >>> * Tegra186 and Tegra194 on cboot: Bootloader fills in the address and
+> >>>   size in a node specifically named /reserved-memory/ramoops_carveout=
+,
+> >>>   thus these cannot be renamed.
+> >>> * Tegra194 and Tegra234 on edk2: Bootloader looks up the node based o=
+n
+> >>>   compatible, however the dt still does not know the address, so keep=
+ing
+> >>>   the node name consistent on Tegra186 and newer.
+> >>>
+> >>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
+> >>>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
+> >>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
+> >>>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
+> >>>  4 files changed, 61 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/bo=
+ot/dts/nvidia/tegra186.dtsi
+> >>> index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e42=
+dd03f5a1da5079971dc 100644
+> >>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> >>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> >>> @@ -2051,6 +2051,22 @@ pmu-denver {
+> >>>               interrupt-affinity =3D <&denver_0 &denver_1>;
+> >>>       };
+> >>>
+> >>> +     reserved-memory {
+> >>> +             #address-cells =3D <2>;
+> >>> +             #size-cells =3D <2>;
+> >>> +             ranges;
+> >>> +
+> >>> +             ramoops_carveout {
+> >>
+> >> Please follow DTS coding style for name, so this is probably only ramo=
+ops.
+> >
+> > As per the commit message regarding tegra186: bootloader fills in the
+> > address and size in a node specifically named
+> > /reserved-memory/ramoops_carveout, thus these cannot be renamed.
+>
+> That's not a reason to introduce issues. Bootloader is supposed to
+> follow same conventions or use aliases or labels (depending on the node).
+>
+> If bootloader adds junk, does it mean we have to accept that junk?
+>
+> >
+> >>
+> >> It does not look like you tested the DTS against bindings. Please run
+> >> `make dtbs_check W=3D1` (see
+> >> Documentation/devicetree/bindings/writing-schema.rst or
+> >> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-=
+sources-with-the-devicetree-schema/
+> >> for instructions).
+> >> Maybe you need to update your dtschema and yamllint. Don't rely on
+> >> distro packages for dtschema and be sure you are using the latest
+> >> released dtschema.
+> >
+> > The bot is reporting that the reg field is missing from the added
+> > ramoops nodes on t186, t194, and t234. However, as also mentioned in
+> > the commit message, this is intentional because it is expected for the
+> > bootloader to fill that in. It is not known at dt compile time. Is
+> > there a way to mark this as intentional, so dtschema doesn't flag it?
+>
+> Fix your bootloader or chain load some normal one, like U-Boot.
+How would chainloading a second bootloader 'fix' previous stage
+bootloaders trampling on an out-of-sync hardcoded reserved-memory
+address? It's possible for carveout addresses and sizes to change. Not
+from boot to boot on the same version of the Nvidia bootloader, but
+potentially from one version to another. Depending on if the
+bootloader was configured with different carveout sizes.
 
-Hi Christian,
+There is precedence for this. When blind cleanup was done on arm
+device trees, a chromebook broke because the memory node has to be
+named exactly '/memory' [0]. How is this any different from that case?
+These nodes are an ABI to an existing bootloader. Carveouts on these
+archs are set up in bl1 or bl2, which are not source available. I
+could potentially hardcode things for myself in bl33, which is source
+available, but the earlier stages could still overwrite any chosen
+block depending on how carveouts are configured. But even then, that
+will not change the behaviour of the vast majority of units that use a
+fully prebuilt boot stack direct from Nvidia. My intent here is for
+pstore to work on such units without users needing to use a custom
+bootloader.
+>
+> Best regards,
+> Krzysztof
 
-the patch looks fine to me, just few nits inline.
+Sincerely,
+Aaron
 
-Regards,
-Lorenzo
-
-> ---
->  drivers/net/ethernet/airoha/airoha_eth.c  | 266 +++++++++++++++++++++-
->  drivers/net/ethernet/airoha/airoha_eth.h  |   4 +
->  drivers/net/ethernet/airoha/airoha_regs.h |  12 +
->  include/linux/pcs/pcs-airoha.h            |  15 ++
->  4 files changed, 296 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ether=
-net/airoha/airoha_eth.c
-> index c0a642568ac1..40d5d7cb1410 100644
-> --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> @@ -5,9 +5,13 @@
->   */
->  #include <linux/of.h>
->  #include <linux/of_net.h>
-> +#include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/tcp.h>
-> +#include <linux/pcs/pcs.h>
-> +#include <linux/pcs/pcs-airoha.h>
-
-can you please put includes in alphabetical order?
-
->  #include <linux/u64_stats_sync.h>
-> +#include <linux/regmap.h>
->  #include <net/dst_metadata.h>
->  #include <net/page_pool/helpers.h>
->  #include <net/pkt_cls.h>
-> @@ -76,6 +80,11 @@ static bool airhoa_is_lan_gdm_port(struct airoha_gdm_p=
-ort *port)
->  	return port->id =3D=3D 1;
->  }
-> =20
-> +static bool airhoa_is_phy_external(struct airoha_gdm_port *port)
-> +{
-
-I guess you can add a comment here.
-
-> +	return port->id !=3D 1;
-> +}
-> +
->  static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 *a=
-ddr)
->  {
->  	struct airoha_eth *eth =3D port->qdma->eth;
-> @@ -1535,6 +1544,17 @@ static int airoha_dev_open(struct net_device *dev)
->  	struct airoha_gdm_port *port =3D netdev_priv(dev);
->  	struct airoha_qdma *qdma =3D port->qdma;
-> =20
-> +	if (airhoa_is_phy_external(port)) {
-> +		err =3D phylink_of_phy_connect(port->phylink, dev->dev.of_node, 0);
-> +		if (err) {
-> +			netdev_err(dev, "%s: could not attach PHY: %d\n", __func__,
-> +				   err);
-> +			return err;
-> +		}
-> +
-> +		phylink_start(port->phylink);
-> +	}
-> +
->  	netif_tx_start_all_queues(dev);
->  	err =3D airoha_set_vip_for_gdm_port(port, true);
->  	if (err)
-> @@ -1587,19 +1607,36 @@ static int airoha_dev_stop(struct net_device *dev)
->  		}
->  	}
-> =20
-> +	if (airhoa_is_phy_external(port)) {
-> +		phylink_stop(port->phylink);
-> +		phylink_disconnect_phy(port->phylink);
-> +	}
-> +
->  	return 0;
->  }
-> =20
->  static int airoha_dev_set_macaddr(struct net_device *dev, void *p)
->  {
->  	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +	const u8 *mac_addr =3D dev->dev_addr;
->  	int err;
-> =20
->  	err =3D eth_mac_addr(dev, p);
->  	if (err)
->  		return err;
-> =20
-> -	airoha_set_macaddr(port, dev->dev_addr);
-> +	airoha_set_macaddr(port, mac_addr);
-
-this is not required.
-
-> +
-> +	/* Update XFI mac address */
-> +	if (airhoa_is_phy_external(port)) {
-> +		regmap_write(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_MACADDRL,
-> +			     FIELD_PREP(AIROHA_PCS_XFI_MAC_MACADDRL,
-> +					mac_addr[0] << 24 | mac_addr[1] << 16 |
-> +					mac_addr[2] << 8 | mac_addr[3]));
-> +		regmap_write(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_MACADDRH,
-> +			     FIELD_PREP(AIROHA_PCS_XFI_MAC_MACADDRH,
-> +					mac_addr[4] << 8 | mac_addr[5]));
-> +	}
-> =20
->  	return 0;
->  }
-> @@ -2454,6 +2491,210 @@ static void airoha_metadata_dst_free(struct airoh=
-a_gdm_port *port)
->  	}
->  }
-> =20
-> +static void airoha_mac_config(struct phylink_config *config, unsigned in=
-t mode,
-> +			      const struct phylink_link_state *state)
-> +{
-> +	struct airoha_gdm_port *port =3D container_of(config, struct airoha_gdm=
-_port,
-> +						    phylink_config);
-> +
-> +	/* Frag disable */
-> +	regmap_update_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			   AIROHA_PCS_XFI_RX_FRAG_LEN,
-> +			   FIELD_PREP(AIROHA_PCS_XFI_RX_FRAG_LEN, 31));
-> +	regmap_update_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			   AIROHA_PCS_XFI_TX_FRAG_LEN,
-> +			   FIELD_PREP(AIROHA_PCS_XFI_TX_FRAG_LEN, 31));
-> +
-> +	/* IPG NUM */
-> +	regmap_update_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			   AIROHA_PCS_XFI_IPG_NUM,
-> +			   FIELD_PREP(AIROHA_PCS_XFI_IPG_NUM, 10));
-> +
-> +	/* Enable TX/RX flow control */
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			AIROHA_PCS_XFI_TX_FC_EN);
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			AIROHA_PCS_XFI_RX_FC_EN);
-
-I guess you can squash all the regmap_update_bits here.
-
-> +}
-> +
-> +static int airoha_mac_prepare(struct phylink_config *config, unsigned in=
-t mode,
-> +			      phy_interface_t iface)
-> +{
-> +	struct airoha_gdm_port *port =3D container_of(config, struct airoha_gdm=
-_port,
-> +						    phylink_config);
-> +
-> +	/* MPI MBI disable */
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			AIROHA_PCS_XFI_RXMPI_STOP |
-> +			AIROHA_PCS_XFI_RXMBI_STOP |
-> +			AIROHA_PCS_XFI_TXMPI_STOP |
-> +			AIROHA_PCS_XFI_TXMBI_STOP);
-> +
-> +	/* Write 1 to trigger reset and clear */
-> +	regmap_clear_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_LOGIC_RST,
-> +			  AIROHA_PCS_XFI_MAC_LOGIC_RST);
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_LOGIC_RST,
-> +			AIROHA_PCS_XFI_MAC_LOGIC_RST);
-> +
-> +	usleep_range(1000, 2000);
-> +
-> +	/* Clear XFI MAC counter */
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_CNT_CLR,
-> +			AIROHA_PCS_XFI_GLB_CNT_CLR);
-> +
-> +	return 0;
-> +}
-> +
-> +static void airoha_mac_link_down(struct phylink_config *config, unsigned=
- int mode,
-> +				 phy_interface_t interface)
-> +{
-> +	struct airoha_gdm_port *port =3D container_of(config, struct airoha_gdm=
-_port,
-> +						    phylink_config);
-> +
-> +	/* MPI MBI disable */
-> +	regmap_set_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			AIROHA_PCS_XFI_RXMPI_STOP |
-> +			AIROHA_PCS_XFI_RXMBI_STOP |
-> +			AIROHA_PCS_XFI_TXMPI_STOP |
-> +			AIROHA_PCS_XFI_TXMBI_STOP);
-> +}
-> +
-> +static void airoha_mac_link_up(struct phylink_config *config, struct phy=
-_device *phy,
-> +			       unsigned int mode, phy_interface_t interface,
-> +			       int speed, int duplex, bool tx_pause, bool rx_pause)
-> +{
-> +	struct airoha_gdm_port *port =3D container_of(config, struct airoha_gdm=
-_port,
-> +						    phylink_config);
-> +	struct airoha_qdma *qdma =3D port->qdma;
-> +	struct airoha_eth *eth =3D qdma->eth;
-> +	u32 frag_size_tx, frag_size_rx;
-> +
-> +	switch (speed) {
-> +	case SPEED_10000:
-> +	case SPEED_5000:
-> +		frag_size_tx =3D 8;
-> +		frag_size_rx =3D 8;
-> +		break;
-> +	case SPEED_2500:
-> +		frag_size_tx =3D 2;
-> +		frag_size_rx =3D 1;
-> +		break;
-> +	default:
-> +		frag_size_tx =3D 1;
-> +		frag_size_rx =3D 0;
-
-missing break
-
-> +	}
-> +
-> +	/* Configure TX/RX frag based on speed */
-> +	if (port->id =3D=3D 4) {
-> +		airoha_fe_rmw(eth, REG_GDMA4_TMBI_FRAG, GDMA4_SGMII0_TX_FRAG_SIZE,
-> +			      FIELD_PREP(GDMA4_SGMII0_TX_FRAG_SIZE, frag_size_tx));
-> +
-> +		airoha_fe_rmw(eth, REG_GDMA4_RMBI_FRAG, GDMA4_SGMII0_RX_FRAG_SIZE,
-> +			      FIELD_PREP(GDMA4_SGMII0_RX_FRAG_SIZE, frag_size_rx));
-> +	}
-> +
-> +	/* BPI BMI enable */
-> +	regmap_clear_bits(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-> +			  AIROHA_PCS_XFI_RXMPI_STOP |
-> +			  AIROHA_PCS_XFI_RXMBI_STOP |
-> +			  AIROHA_PCS_XFI_TXMPI_STOP |
-> +			  AIROHA_PCS_XFI_TXMBI_STOP);
-> +}
-> +
-> +static const struct phylink_mac_ops airoha_phylink_ops =3D {
-> +	.mac_config =3D airoha_mac_config,
-> +	.mac_prepare =3D airoha_mac_prepare,
-> +	.mac_link_down =3D airoha_mac_link_down,
-> +	.mac_link_up =3D airoha_mac_link_up,
-> +};
-> +
-> +static int airoha_setup_phylink(struct net_device *dev)
-> +{
-> +	struct device_node *pcs_np, *np =3D dev->dev.of_node;
-> +	struct airoha_gdm_port *port =3D netdev_priv(dev);
-> +	struct phylink_pcs **available_pcs;
-> +	struct platform_device *pdev;
-> +	phy_interface_t phy_mode;
-> +	struct phylink *phylink;
-> +	unsigned int num_pcs;
-> +	int err;
-> +
-> +	err =3D of_get_phy_mode(np, &phy_mode);
-> +	if (err) {
-> +		dev_err(&dev->dev, "incorrect phy-mode\n");
-> +		return err;
-> +	}
-> +
-> +	pcs_np =3D of_parse_phandle(np, "pcs-handle", 0);
-
-I guess you need to update airoha,en7581-eth.yaml, don't you?
-
-> +	if (!pcs_np)
-> +		return -ENODEV;
-> +
-> +	if (!of_device_is_available(pcs_np)) {
-> +		of_node_put(pcs_np);
-> +		return -ENODEV;
-> +	}
-> +
-> +	pdev =3D of_find_device_by_node(pcs_np);
-> +	of_node_put(pcs_np);
-> +	if (!pdev || !platform_get_drvdata(pdev)) {
-> +		if (pdev)
-> +			put_device(&pdev->dev);
-> +		return -EPROBE_DEFER;
-> +	}
-> +
-> +	port->xfi_mac =3D dev_get_regmap(&pdev->dev, "xfi_mac");
-> +	if (IS_ERR(port->xfi_mac))
-> +		return PTR_ERR(port->xfi_mac);
-> +
-> +	port->phylink_config.dev =3D &dev->dev;
-> +	port->phylink_config.type =3D PHYLINK_NETDEV;
-> +	port->phylink_config.mac_capabilities =3D MAC_ASYM_PAUSE | MAC_SYM_PAUS=
-E |
-> +						MAC_10 | MAC_100 | MAC_1000 | MAC_2500FD |
-> +						MAC_5000FD | MAC_10000FD;
-> +
-> +	err =3D fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), NULL, &num_pcs);
-> +	if (err)
-> +		return err;
-> +
-> +	available_pcs =3D kcalloc(num_pcs, sizeof(*available_pcs), GFP_KERNEL);
-
-you can use devm_kcalloc() here.
-
-> +	if (!available_pcs)
-> +		return -ENOMEM;
-> +
-> +	err =3D fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), available_pcs,
-> +				       &num_pcs);
-> +	if (err)
-> +		goto out;
-> +
-> +	port->phylink_config.available_pcs =3D available_pcs;
-> +	port->phylink_config.num_available_pcs =3D num_pcs;
-> +
-> +	__set_bit(PHY_INTERFACE_MODE_SGMII,
-> +		  port->phylink_config.supported_interfaces);
-> +	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-> +		  port->phylink_config.supported_interfaces);
-> +	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-> +		  port->phylink_config.supported_interfaces);
-> +	__set_bit(PHY_INTERFACE_MODE_USXGMII,
-> +		  port->phylink_config.supported_interfaces);
-> +
-> +	phy_interface_copy(port->phylink_config.pcs_interfaces,
-> +			   port->phylink_config.supported_interfaces);
-> +
-> +	phylink =3D phylink_create(&port->phylink_config,
-> +				 of_fwnode_handle(np),
-> +				 phy_mode, &airoha_phylink_ops);
-> +	if (IS_ERR(phylink)) {
-> +		err =3D PTR_ERR(phylink);
-> +		goto out;
-> +	}
-> +
-> +	port->phylink =3D phylink;
-> +out:
-> +	kfree(available_pcs);
-> +
-> +	return err;
-> +}
-> +
->  static int airoha_alloc_gdm_port(struct airoha_eth *eth,
->  				 struct device_node *np, int index)
->  {
-> @@ -2532,6 +2773,23 @@ static int airoha_alloc_gdm_port(struct airoha_eth=
- *eth,
->  	if (err)
->  		return err;
-> =20
-> +	if (airhoa_is_phy_external(port)) {
-> +		const u8 *mac_addr =3D dev->dev_addr;
-> +
-> +		err =3D airoha_setup_phylink(dev);
-> +		if (err)
-> +			return err;
-> +
-> +		/* Setup XFI mac address */
-> +		regmap_write(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_MACADDRL,
-> +			     FIELD_PREP(AIROHA_PCS_XFI_MAC_MACADDRL,
-> +					mac_addr[0] << 24 | mac_addr[1] << 16 |
-> +					mac_addr[2] << 8 | mac_addr[3]));
-> +		regmap_write(port->xfi_mac, AIROHA_PCS_XFI_MAC_XFI_MACADDRH,
-> +			     FIELD_PREP(AIROHA_PCS_XFI_MAC_MACADDRH,
-> +					mac_addr[4] << 8 | mac_addr[5]));
-> +	}
-> +
->  	return register_netdev(dev);
->  }
-> =20
-> @@ -2626,6 +2884,9 @@ static int airoha_probe(struct platform_device *pde=
-v)
->  		struct airoha_gdm_port *port =3D eth->ports[i];
-> =20
->  		if (port && port->dev->reg_state =3D=3D NETREG_REGISTERED) {
-> +			if (airhoa_is_phy_external(port))
-> +				phylink_destroy(port->phylink);
-> +
->  			unregister_netdev(port->dev);
->  			airoha_metadata_dst_free(port);
->  		}
-> @@ -2653,6 +2914,9 @@ static void airoha_remove(struct platform_device *p=
-dev)
->  			continue;
-> =20
->  		airoha_dev_stop(port->dev);
-> +		if (airhoa_is_phy_external(port))
-> +			phylink_destroy(port->phylink);
-> +
->  		unregister_netdev(port->dev);
->  		airoha_metadata_dst_free(port);
->  	}
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ether=
-net/airoha/airoha_eth.h
-> index 60690b685710..bc0cbeb6bd6d 100644
-> --- a/drivers/net/ethernet/airoha/airoha_eth.h
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.h
-> @@ -460,6 +460,10 @@ struct airoha_gdm_port {
->  	struct net_device *dev;
->  	int id;
-> =20
-> +	struct phylink *phylink;
-> +	struct phylink_config phylink_config;
-> +	struct regmap *xfi_mac;
-> +
->  	struct airoha_hw_stats stats;
-> =20
->  	DECLARE_BITMAP(qos_sq_bmap, AIROHA_NUM_QOS_CHANNELS);
-> diff --git a/drivers/net/ethernet/airoha/airoha_regs.h b/drivers/net/ethe=
-rnet/airoha/airoha_regs.h
-> index 8146cde4e8ba..72f7824fcc2e 100644
-> --- a/drivers/net/ethernet/airoha/airoha_regs.h
-> +++ b/drivers/net/ethernet/airoha/airoha_regs.h
-> @@ -356,6 +356,18 @@
->  #define IP_FRAGMENT_PORT_MASK		GENMASK(8, 5)
->  #define IP_FRAGMENT_NBQ_MASK		GENMASK(4, 0)
-> =20
-> +#define REG_GDMA4_TMBI_FRAG		0x2028
-> +#define GDMA4_SGMII1_TX_WEIGHT		GENMASK(31, 26)
-> +#define GDMA4_SGMII1_TX_FRAG_SIZE	GENMASK(25, 16)
-> +#define GDMA4_SGMII0_TX_WEIGHT		GENMASK(15, 10)
-> +#define GDMA4_SGMII0_TX_FRAG_SIZE	GENMASK(9, 0)
-> +
-> +#define REG_GDMA4_RMBI_FRAG		0x202c
-> +#define GDMA4_SGMII1_RX_WEIGHT		GENMASK(31, 26)
-> +#define GDMA4_SGMII1_RX_FRAG_SIZE	GENMASK(25, 16)
-> +#define GDMA4_SGMII0_RX_WEIGHT		GENMASK(15, 10)
-> +#define GDMA4_SGMII0_RX_FRAG_SIZE	GENMASK(9, 0)
-> +
->  #define REG_MC_VLAN_EN			0x2100
->  #define MC_VLAN_EN_MASK			BIT(0)
-> =20
-> diff --git a/include/linux/pcs/pcs-airoha.h b/include/linux/pcs/pcs-airoh=
-a.h
-> index 07797645ff15..947dbcbc5206 100644
-> --- a/include/linux/pcs/pcs-airoha.h
-> +++ b/include/linux/pcs/pcs-airoha.h
-> @@ -5,7 +5,22 @@
-> =20
->  /* XFI_MAC */
->  #define AIROHA_PCS_XFI_MAC_XFI_GIB_CFG		0x0
-> +#define   AIROHA_PCS_XFI_RX_FRAG_LEN		GENMASK(26, 22)
-> +#define   AIROHA_PCS_XFI_TX_FRAG_LEN		GENMASK(21, 17)
-> +#define   AIROHA_PCS_XFI_IPG_NUM		GENMASK(15, 10)
->  #define   AIROHA_PCS_XFI_TX_FC_EN		BIT(5)
->  #define   AIROHA_PCS_XFI_RX_FC_EN		BIT(4)
-> +#define   AIROHA_PCS_XFI_RXMPI_STOP		BIT(3)
-> +#define   AIROHA_PCS_XFI_RXMBI_STOP		BIT(2)
-> +#define   AIROHA_PCS_XFI_TXMPI_STOP		BIT(1)
-> +#define   AIROHA_PCS_XFI_TXMBI_STOP		BIT(0)
-> +#define AIROHA_PCS_XFI_MAC_XFI_LOGIC_RST	0x10
-> +#define   AIROHA_PCS_XFI_MAC_LOGIC_RST		BIT(0)
-> +#define AIROHA_PCS_XFI_MAC_XFI_MACADDRH		0x60
-> +#define   AIROHA_PCS_XFI_MAC_MACADDRH		GENMASK(15, 0)
-> +#define AIROHA_PCS_XFI_MAC_XFI_MACADDRL		0x64
-> +#define   AIROHA_PCS_XFI_MAC_MACADDRL		GENMASK(31, 0)
-> +#define AIROHA_PCS_XFI_MAC_XFI_CNT_CLR		0x100
-> +#define   AIROHA_PCS_XFI_GLB_CNT_CLR		BIT(0)
-> =20
->  #endif /* __LINUX_PCS_AIROHA_H */
-> --=20
-> 2.48.1
->=20
-
---OGbBDibJTakze8F1
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZ/TQUQAKCRA6cBh0uS2t
-rHzjAP4n24uJQMCV8CN0gv8PiZmIavEx5R38OtpevHdA8VShfAD/ZQlW+LyETXAo
-9ytiCAn1YPhFpygRPvsuhfx1eGeqjAU=
-=/5aH
------END PGP SIGNATURE-----
-
---OGbBDibJTakze8F1--
+[0] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20190211110=
+919.10388-1-thierry.reding@gmail.com/#22474263
 
