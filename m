@@ -1,123 +1,164 @@
-Return-Path: <devicetree+bounces-164177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4884DA7F736
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:03:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856B4A7F73E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:05:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCAE63ACB21
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:03:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3309177AAB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:05:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C8421B9C2;
-	Tue,  8 Apr 2025 08:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0032638B2;
+	Tue,  8 Apr 2025 08:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YmlTKyVG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T1QxLmXb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C61F1EE7BE
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 08:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D15325F996;
+	Tue,  8 Apr 2025 08:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744099394; cv=none; b=dx2Us9gdHfpq6U+40lje2MEV6AgarUV1rnemEf1a9TSkwXBTZl3YpjBBTZpHbckeZ5u2VJKg80fTp2ujMe7oK3BigoTN81OlTFwGka+rFqkaEJdZOszpWXd6eyL+VmBh2bntRCWZ+A2qr6Dt7IKU+zI1iBuK2qSXUR6h+R2wmVQ=
+	t=1744099529; cv=none; b=VOCjHAUjrfc4tVnaYvQI9uE+QeAjSaI4hf2DCEejY1JEYfnvSb55yqXzoeGTqNYeCFt97AiZdIKeCVNMa4OWApL60jwKvp7jviq+ZDRlIYVz+MgHPlQClSWOjwwZC5K9NAFu06p/Rc04+3IoFIRCHSQB139jW6hxJM5DjeirQ6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744099394; c=relaxed/simple;
-	bh=eOAw0hyWHLIINvb14CVs1GR58Bxf6TZohiFSnFDaF2U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KXNbgiH8AXpV4dxM4W+MFBx6qIJBAMYiEhkS1Nn6BuFLIRv/b9lt552BASWfsAoYuaJV5xd7ZHZWNACQ6jKpzpu2NBxbxbMpwehuHQRrVSvVL85CKrYMNVHesDYMuk1XS1c2e6Yd6N+C579N32KbNbjpYCppIHxnZshz0JBKANw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YmlTKyVG; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=eOAw
-	0hyWHLIINvb14CVs1GR58Bxf6TZohiFSnFDaF2U=; b=YmlTKyVGuYg4ZkoKlIoi
-	PC2qp9kjkR2bU5Pm9PA8uQ8xV68iSkwgBVeqQW/KsbkFjrcUbI5kt8ce48C+dYIe
-	MbYBFLDhPn8sS/4WLGF/p9s/yYLQkKvcRqnf+DqbX9clAQhKbQvfPrK/Sryfagkl
-	aqH+280eqnHXCcIbqZgGmSeZ+XFEfK12zyQ4nOJx1pETMKx/V9rFy9JkaHWddcvA
-	KhqIajrZb3E+M1wOfMc+nIncIcDWruk6U4uUzGH8Z5BSEfPW5t00T3UJMdQegrNC
-	SSWhJwZkFCZPvutSnAU6U+MCw11kvlJWQJMGhAeAURMUuVP66dkgWPNxmyxJpbRR
-	FA==
-Received: (qmail 4102305 invoked from network); 8 Apr 2025 10:03:07 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Apr 2025 10:03:07 +0200
-X-UD-Smtp-Session: l3s3148p1@ahJnyD8yFpcgAwDPXyfYALbiJ46yNPq3
-Date: Tue, 8 Apr 2025 10:03:06 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Subject: Re: [PATCH v3] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-Message-ID: <Z_TYOm6xuYcQEt_V@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-References: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com>
- <D8IEWP78KVOE.1SD29H0S51FZM@bootlin.com>
- <Z_TA46i0KfFq89ch@shikoro>
- <CAMuHMdWLvqKP6QnLGuR3AT1SEJ_XO5F4119JCqgptv4RFWx8tA@mail.gmail.com>
+	s=arc-20240116; t=1744099529; c=relaxed/simple;
+	bh=2ppVHmf3lr9m17yQUCa7+XtsozlMQJrpYZVAqzv++Xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d29ok/At6uG6wVmApghLcGtAl19gAAY+6LLLSZVwabvlb7WX0Aj5XHjTd5AskZV8g4EVBAMjxKktNsKM2WahZg6CY3d0ekaJz4i3WiuthUR05DFf0RsngSlwbEZt86msRwjX86yu8WG+ednhzgjCDNc4IlF3pB7el4leekJQjqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T1QxLmXb; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30effbfaf61so56310861fa.0;
+        Tue, 08 Apr 2025 01:05:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744099524; x=1744704324; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9RbNPrMfTGfYX3/yWaDonxxQD7j4lQW1brIvif8+e8M=;
+        b=T1QxLmXb0jpFspX6JXbZDM55NvDtGx1nt/o79dHhGXqZEI9anH+VVuVIYlbd6ovO9K
+         bNdwkhcYoSI3kgdys67Bf+mqlCy8B2gt+Xu0OJYUJM9D2Z0B+PGI3vOYsGLUik295ALC
+         XIqlVCxHnre/bCBXRjlrXa/2a5QfLpACgk7uRQeKiaWMudaSX1HGR0GzRDJi/BRSAE3l
+         Oem/xf99rFoV0S6SDGziEn/u7Rjz2/fB0eynL9vyK5sLfLN7OrUtKDTNBsjGZHZUxryT
+         JUrmPPDGRGqeeyxmijW5hXWiNSAkTMnjEKVVehkMKHdphbbEEDTLYl1omRNfTuKCNXgy
+         zdfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744099524; x=1744704324;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9RbNPrMfTGfYX3/yWaDonxxQD7j4lQW1brIvif8+e8M=;
+        b=wweQEv4o5hcafDc1YJvQz90h6KEBsuEV7ibhVDaqGtLlBQUzNzIOo0dYFfxEC3zeA9
+         i1osT8uw8o4JTpAYUqNJBYHZi8wB/kn5cGeRXEKlfnufi05ZNe8DdHjJyYT3mWZXSe/l
+         rnAgZ/AAOodUDPaFTYqB/vYrKiT4K7l6tk25YOUtpB13n8NQgai5IbGmtubIdAWbHPhl
+         i8cLo9Ujxj12kCVFjkYTz38bcA2RG3TcaZOIDWr9hXT7D7vPnR/B78ED+1tDiQh1ZTbY
+         Fl2KCZEicQkyS+fCaJb4YI3pODd1oueNqlpeZX6TyP5ad3Tq5BmfVhSyE6EROrpFwD4e
+         el4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVEOL7u0ELr2kIW02G6bPGFk0A8aRThkyh9GhkGhwmrRXijINr32UfZR6OYQ8JKWWxbxRGaGborNDqLlOl4@vger.kernel.org, AJvYcCWNBGmIf1lxS0zk+Wz0KMhoT3S36DbJhQ59E9OqL2HYS46I62P5BaHGPgWp847x3SPnUocs2i0jZhv3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDCG65CC6LcQJXX05fYm1wou7khFFzurZD0foUZBgThfaNER/L
+	jjM5O/A7qFCggWGnY0TtXUil/2z7SKH9PZsuwj4r/a1w8o28UhHY
+X-Gm-Gg: ASbGncv+83bPv2t5YdTtRnqUcJO1fH3FatFzT18d1dw6djL9qvvYSXKNajrvoQE8Khr
+	eJMKKWiHLtOravruGE9Aba7P8DKaVpN3SdQ4bzmRI9wbzPuYs7VT94/R4B1sOKKR50hpjqET6Cu
+	zuoa6SnkTq0pzXingO0phyOP0FWJyxqNMtSj2zPITFhvmRnIRPHRLGxMZjw90SzleXytYkeQ578
+	g1n432Qa8+wb5TpRSob7xI6bxQ5wTq3AX2xdETKnFchaQLBWAOHNE5yZ625zJ9BP51c3AiNNEwe
+	zzLG8xJRSOkrGTYf6PDPTi+7Ct/VNOmf1L9/kEm12TQBKAGHs5gQa+PzdQ==
+X-Google-Smtp-Source: AGHT+IEkAvq73Uy7BGO3rzFjCskyJl1DBlIcf3jZyB3KR5grfXemkv771D9nyg47NLtYCmIHr8N1Tw==
+X-Received: by 2002:a2e:9e4b:0:b0:30b:e73e:e472 with SMTP id 38308e7fff4ca-30f35ee19d8mr6099961fa.14.1744099524017;
+        Tue, 08 Apr 2025 01:05:24 -0700 (PDT)
+Received: from [172.16.183.207] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f03125862sm19378111fa.3.2025.04.08.01.05.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Apr 2025 01:05:23 -0700 (PDT)
+Message-ID: <ddd8882f-05b6-40f0-9a26-ab21d9644364@gmail.com>
+Date: Tue, 8 Apr 2025 11:05:21 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="O0J9fWFvFi2G9MU+"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWLvqKP6QnLGuR3AT1SEJ_XO5F4119JCqgptv4RFWx8tA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
+To: Lee Jones <lee@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <20250404154355.GH372032@google.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250404154355.GH372032@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 04/04/2025 18:43, Lee Jones wrote:
+> On Mon, 24 Mar 2025, Matti Vaittinen wrote:
+> 
+>> Support ROHM BD96802, BD96805 and BD96806 PMICs
+>>
+>> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
+>> to the digital interface. Main difference is voltage tuning range.
+>> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
+>> able to differentiate the PMICs (done based on the devicetree
+>> compatible) and then providing separate voltage tables.
+>>
+>> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
+>> provide more capacity on systems where the BD96801 alone is not
+>> sufficient. Startup sequence of these PMICs can be synchronized in
+>> hardware level, and there seems to be some mechanisms which allow
+>> delivering the companion PMIC (BD96802) status to the main PMIC
+>> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
+>> individual PMICs and allows using them from software point of view as a
+>> stand alone ICs. From the digital point of view, the BD96802 is a subset
+>> of BD96801, providing only buck1 and buck2 regulators. Please see the
+>> data sheet
+>>
+>> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
+>> provide different voltage tuning ranges.
+>>
+>> This series adds basic voltage monitoring and control as well as a
+>> watchdog support for these PMICs using the BD96801 drivers.
+>>
+>> Similarly to the BD96801, these PMICs too have a few configurations
+>> which can only be done when the PMIC is in STBY state. Similarly to the
+>> BD96801, doing these configurations isn't supported by the driver. The
+>> original BD96801 RFC [5] driver should be able to cover those
+>> configurations, if modified to support these models.
+>>
+>> [1]: ROHM BD96801 data sheet:
+>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
+>> [2]: ROHM BD96805 data sheet:
+>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
+>> [3]: ROHM BD96802 data sheet:
+>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
+>> [4]: ROHM BD96806 data sheet:
+>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
+>> [5]: Original BD96801 RFC:
+>> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
+>>
+>> Revision history:
+>>
+>> v1 => v2: MFD driver changes after review by Lee
+>>   - Use enum for chip type instead of picking the data directly from the
+>>     of_match_data.
+>>   - rename "chip data" variable 'cd' to more widely used 'ddata'.
+>>   link to v1:
+>>    https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
 
---O0J9fWFvFi2G9MU+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> 
+> The MFD stuff looks okay to me now.
+> 
+> Let me know when everything else is ready to go.
+> 
 
+I'll treat this as an ACK for the V3. Please, let me know if that's not 
+Okay.
 
-> > Please do with the minor review comments addressed. I have some patches
-> > depending on it. Which means that I am using this DTS regularly now and
-> > it works great.
->=20
-> v4 was posted on March 24th?
-
-Mea culpa, I overlooked it in the list. I am sorry.
-
-
---O0J9fWFvFi2G9MU+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf02DYACgkQFA3kzBSg
-KbZKlw/6AjOgH6RhHYUZCXliEOaraIhmt7GNbKOGM1poWQNlOa2Wi4qSDbjE8Q/P
-EDdgHu9Kgwfm4C6NOn8Y6heSbnFSxhe2UQFsCHyDiUK5ABVayN1cI4IXldbF0YA2
-C1LL+SxWIYf5dNlQt0m+ZL1g1VkIUDNqKLByqXT854g/rk91Gwak/uhbUljhC/d0
-D31Q1afnNqc2FLAchDEddbpjW2ejJZIZM2MK1a9sF64Xnru5Y2GSuGAzjV5mKdj1
-r3MbgXvj+85GV6UNyoWhiFWhoS8LBe5CpXAoGCjB3zsmgsD6UZlXMnN33fr+1g9B
-ooD9YzWiPjqMRM2Fe2k58sM38mu4o2aAwotVXw/Xud50vs0fHd7inR88do+eq6kK
-dthigEb7wLkHYMHzXhzaGAWCW5m3Xt68wh36guUTQx0uRC3FgoJhBxGr6M5Scyf/
-YMIyu8p5NjE+Aktkjw9CtgC8jvfcICNxwlizqj8pBnGRl0SwQf0saukHf+f28m7P
-mbTTSexNVh1NmAdNubwtGcxA/P2zzyfQfCJfglSf4tSO+8vlBzq4s6gP4rR8br/1
-25AZM+SHFJvysENWujxmrsqVKzJ5svin3CRzSXvFsUmRbHpmTWUUQBe0zykkGFx/
-1jwGRNgo294/N2DpnbhT+Mqi7xQ8nf1pauB6HUUqYbU7lm48zNA=
-=0lay
------END PGP SIGNATURE-----
-
---O0J9fWFvFi2G9MU+--
+Yours,
+	-- Matti
 
