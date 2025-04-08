@@ -1,239 +1,338 @@
-Return-Path: <devicetree+bounces-164529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72467A81622
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9894CA8163E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 22:03:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D5E117D52E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:58:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 737A346830B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 20:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0245223ED56;
-	Tue,  8 Apr 2025 19:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29402243958;
+	Tue,  8 Apr 2025 20:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="kVvtbMIT"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="QOnjGrf7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B508241683
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 19:58:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A96244186;
+	Tue,  8 Apr 2025 20:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744142283; cv=none; b=m3qElenqdxON6o9mh8MYSuebjYiKYX7wNBshN7YnqzP7nxw3Be+c763dpoHH7pUfDOfb8vwJUyB0LW7I80MRgpiFg/1/PXJBMP6XjiwH2whcUbyB6fUV0mihz0VhGGxQKSJnavnNukjhcCcILC42Ff6FuMcxKAm6DFqbi+JR/LU=
+	t=1744142596; cv=none; b=AquduS4QlkxJ0m1tc44vFE0t15Bz1FWuGm+Bc4hv4DidwSlu3GGBhpeI7liyXCzWqQwpuRBDhuyWMxiKRndmxVD3yQQ4LnWg2ygkMwN2YF/d73IrJNJys4eMs1m+5ACCYBI3fnDQFC5gfN8SP1TBPMwIJJ1I3zwwjKNpSyDm9D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744142283; c=relaxed/simple;
-	bh=Kkj9GohePdbHPB9rpAZSOl6dv06PU7x0WQC/liO3+mE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NB2d7fMB1+xhRtR6MVvZXbyMs4h4aebYB5sA+DBmZ+dFHzA5jPl3I6PRqDdQwlbfu0KeYHxuEkbfPKca1QP48mLblsJUPzZVGA/Wwf/FAbRCb6v5pNX2SNTLy8c/nUxpy2/lEkGTBd8w3ECHVttvDPDogu8OcSfQXOunAOsBYmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=kVvtbMIT; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-af50f56b862so4129562a12.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1744142281; x=1744747081; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lduEcIzJil9047xkgT6hDyNCUaJld8YJ1rfKXfQjuxU=;
-        b=kVvtbMITITbU3AaWOuIV3TVYn6DEO+YbA9k0k0pJ4YkE6smkY4YvMrcItSiFRgeI0M
-         wAzhXreNYHieO1QNL83hOoXdZLgkKtJ8ngrDvwDkDC6LVD3YzrbTLkeCRwYMGzWMgISy
-         zUPmAIZK4AcH2B85UrnyfFIf0HWu4c8UukXkoUv04i7RCisS2pyqqTVYbKA6AVeIA8re
-         lEIe3ZUoRi0SRbC1tJhfVl4ZnIBznQnmQosdCptJjsU30cQ5Spt+D7QduDfxoUnsz9Rn
-         GFJtt17Y1yQlgcUr5nnwNwbijfPAHHI2d4aCWiTyTtz1Znwf/L3CbfsOj+4XcB/L0mo1
-         lNAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744142281; x=1744747081;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lduEcIzJil9047xkgT6hDyNCUaJld8YJ1rfKXfQjuxU=;
-        b=RAptw5BFdbZWitJ6lvllSV087VOO7nmY5xl2/DO9V9b7m8e6R0JXBN07odfsOwkZhM
-         Lvz0FXuFvaMfAPcwdwLUbWQhpQsm1AtIGoxxZSJ52+T7yHF13SFMmxL+dP8R7IIDa+vF
-         FNIf6Tg0qlcKKrtLaRevenyheYYG7+Sz1Jo31xs6y4ElneK53tmHQ8DhQv7e00ZoRBV+
-         2PaLamsNl7aGHrm0QJX6SrAPhjZzKGeXWPlAVfgrEx+5SsCfOaSNPPY3vxYxz8Ypvifi
-         sEfXf4pHd3ptZrdqNElc2Sosr49xvuzwy6uu+XTWRx5qk0lOSAd25AOb83ItBCmxoicS
-         lg2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXJ6UThaJm0nQ8eCgEpn1ebSKsVCTeQMm3whebdHxYWDZG/uM+grbg+Y9DKuIka9bygDMjTd3yyjmgQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/Oy/zsQrDz0Bm7+Q0XMEdXoKWRhfHsBFe8gzEvRY3JjiOGvDZ
-	H27P56sczDhCmOOZecSWqMpeev6E56GmUFrw4c/R8awXxvRcIoM3jOTVymIZFA==
-X-Gm-Gg: ASbGncsWLS4tiv6XvsatykGOPokzH7EgsChTVJLslcPb3HSdEt2e0w9DIopbefBR+6b
-	eqMhoDOLhHvinmDkTRybcyWH4knsmT7O+JE0Ie/NXRPM/cGNyF2aqDgy1dCB7nd5o/BV3E81whI
-	aqyS260YkuY2Zffa7leHWqkVeS6vsmCnUt4E9KSnyUSBjMPqDoy4PRZn4XaRErqtCt2chfYFvLP
-	G7bsr3nsByDEmXJsVUGSbo4wp7ikb5Q/UZnJ9oVK4rbFFINzWNazbu6tvPJgrXIZ87NvkbKm/iv
-	MkkMcAk0WF1GZTrg1uiTjCKDtFKKa6Fwy+RCGgMpT0Yb1wcX5XQamM+T4RQwZ57/JO3y7HpiKGf
-	84TWuYzXgKlpwRF/otbok5ekE6A==
-X-Google-Smtp-Source: AGHT+IFor0iASzFnnbbMCvlZdq1DNYl/sjVsXAFwMdH3cFVbjXLUMfVqsU/jqqIox3/wYp0bWz4FAw==
-X-Received: by 2002:a17:90b:514e:b0:2ee:a583:e616 with SMTP id 98e67ed59e1d1-306dbbb5c92mr734616a91.9.1744142281307;
-        Tue, 08 Apr 2025 12:58:01 -0700 (PDT)
-Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-305983da812sm11467438a91.46.2025.04.08.12.58.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 12:58:00 -0700 (PDT)
-Date: Tue, 8 Apr 2025 12:57:57 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Youngmin Nam <youngmin.nam@samsung.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Donghoon Yu <hoony.yu@samsung.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	semen.protsenko@linaro.org
-Subject: Re: [PATCH v2 0/7] Add module support for Arm64 Exynos MCT driver
-Message-ID: <Z_V_xXsAedUSZURp@google.com>
-References: <CGME20250402233425epcas2p479285add99d27dc18aabd2295bfcbdc8@epcas2p4.samsung.com>
- <20250402233407.2452429-1-willmcvicker@google.com>
- <Z+8xrLbya9/oFg7y@perf>
+	s=arc-20240116; t=1744142596; c=relaxed/simple;
+	bh=2Z4TqMhJgMVGMdEWKFKm8oqk6IobRWcr5GzyRiHD9X0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R75FpAQ/b7oz64Vk1RLGV3eGcmfjdBQbfWIQYbMnor0fuH5qA//QJATK7F9oopbByjXEouSNVldfNnLuBqKfjif03H44YqUQXsZosWXQ2n+/SHihmsPL10AGN+XfnwbB+dVSSsH4NzJeML/ej6w23yCZfT6E3ozaOT33Zw0YllQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=QOnjGrf7; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=FxiVMMavbeVJat0Fg13/bdPyEQi5kd3dq3ZqRtNTT1k=; b=QOnjGrf7X9PrCbh55TklsvWBSV
+	RpDtdVx3YJhCSYVlvWD8r5SitRALVtYyrVe4AjNSmP0rf0XqJROu31YDlFYA/9R9Oequlznuxc+Ka
+	hASbdH7877Vj9UPZ8la+BO50aButo8PYEaf6wpSUiFylT01JejCZbV+4F3tim+4ss9RnrlBURjL+5
+	hd2oQW0TN9pAP9/KHhvVTA87RPnAX37KJRkgV8bH3Y9BVRjAEU7GUkFHp/GgIJfrOB+II2JQ2GApD
+	u5V6Xu8Nj4TXSsvNybh4kDPTmhuxsgUd5uVb8JzO+AuZ5UE10Dcvbkl4NFm4jRRXfBZc1suO3l8J4
+	mWFi6LWg==;
+Received: from i53875b95.versanet.de ([83.135.91.149] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u2F9z-00023n-2e; Tue, 08 Apr 2025 22:03:03 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
+ William Breathitt Gray <wbg@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-iio@vger.kernel.org, kernel@collabora.com,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH 4/7] soc: rockchip: add mfpwm driver
+Date: Tue, 08 Apr 2025 22:03:01 +0200
+Message-ID: <5559308.Sb9uPGUboI@diego>
+In-Reply-To: <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
+References:
+ <20250408-rk3576-pwm-v1-0-a49286c2ca8e@collabora.com>
+ <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z+8xrLbya9/oFg7y@perf>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On 04/04/2025, Youngmin Nam wrote:
-> On Wed, Apr 02, 2025 at 04:33:51PM -0700, Will McVicker wrote:
-> > This series adds support to build the Arm64 Exynos MCT driver as a module. This
-> > is only possible on Arm64 SoCs since they can use the Arm architected timer as
-> > the clocksource. Once the Exynos MCT module is loaded and the device probes,
-> > the MCT is used as the wakeup source for the arch_timer to ensure the device
-> > can wakeup from the "c2" idle state.
-> > 
-> > These patches are originally from the downstream Pixel 6 (gs101) kernel found
-> > at [1] and have been adapted for upstream. Not only has the Exynos MCT driver
-> > been shipping as a module in the field with Android, but I've also tested this
-> > seris with the upstream kernel on my Pixel 6 Pro.
-> > 
-> > Thanks,
-> > Will
-> > 
-> > Note1, instructions to build and flash a Pixel 6 device with the upstream kernel
-> > can be found at [2].
-> > 
-> > Note2, this series is based off of linux-next/master commit 405e2241def8 ("Add
-> > linux-next specific files for 20250331").
-> > 
-> > [1] https://android.googlesource.com/kernel/gs/+log/refs/heads/android-gs-raviole-5.10-android12-d1
-> > [2] https://protect2.fireeye.com/v1/url?k=d287bb1b-b30cae21-d2863054-74fe4860008a-f0cb7ae29f3b1b85&q=1&e=4e8467a4-13da-4dd4-a8fd-4ddfc38e89b4&u=https%3A%2F%2Fgit.codelinaro.org%2Flinaro%2Fgooglelt%2Fpixelscripts%2F-%2Fblob%2Fclo%2Fmain%2FREADME.md%3Fref_type%3Dheads
-> > 
-> > Cc: Alim Akhtar <alim.akhtar@samsung.com>
-> > Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > Cc: Donghoon Yu <hoony.yu@samsung.com>
-> > Cc: Hosung Kim <hosung0.kim@samsung.com>
-> > Cc: kernel-team@android.com
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Saravana Kannan <saravanak@google.com>
-> > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > Cc: Youngmin Nam <youngmin.nam@samsung.com>
-> > Cc: Peter Griffin <peter.griffin@linaro.org>
-> > Cc: Tudor Ambarus <tudor.ambarus@linaro.org>
-> > Cc: André Draszik <andre.draszik@linaro.org>
-> > Cc: Will Deacon <will@kernel.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> > Cc: linux-samsung-soc@vger.kernel.org
-> > 
-> > ---
-> > Changes in v2:
-> > - Re-worked patch v1 5 based on Rob Herring's review to use the compatible data
-> >   for retrieving the mct_init function pointer.
-> > - Updated the Kconfig logic to disallow building the Exynos MCT driver as
-> >   a module for ARM32 configurations based on Krzysztof Kozlowski's findings.
-> > - Added comments and clarified commit messages in patches 1 and 2 based on
-> >   reviews from John Stultz and Youngmin Nam.
-> > - Fixed an issue found during testing that resulted in the device getting
-> >   stuck on boot. This is included in v2 as patch 5.
-> > - Collected *-by tags
-> > - Rebased to the latest linux-next/master.
-> > 
-> > ---
-> > Donghoon Yu (1):
-> >   clocksource/drivers/exynos_mct: Add module support
-> > 
-> > Hosung Kim (1):
-> >   clocksource/drivers/exynos_mct: Set local timer interrupts as percpu
-> > 
-> > Will Deacon (1):
-> >   arm64: dts: exynos: gs101: Add 'local-timer-stop' to cpuidle nodes
-> > 
-> > Will McVicker (4):
-> >   of/irq: Export of_irq_count for modules
-> >   clocksource/drivers/exynos_mct: Don't register as a sched_clock on
-> >     arm64
-> >   clocksource/drivers/exynos_mct: Fix uninitialized irq name warning
-> >   arm64: exynos: Drop select CLKSRC_EXYNOS_MCT
-> > 
-> >  arch/arm64/Kconfig.platforms                 |  1 -
-> >  arch/arm64/boot/dts/exynos/google/gs101.dtsi |  3 +
-> >  drivers/clocksource/Kconfig                  |  3 +-
-> >  drivers/clocksource/exynos_mct.c             | 73 ++++++++++++++++----
-> >  drivers/of/irq.c                             |  1 +
-> >  5 files changed, 67 insertions(+), 14 deletions(-)
-> > 
-> > -- 
-> > 2.49.0.472.ge94155a9ec-goog
-> > 
-> > 
-> 
-> Hi Will.
-> 
-> I tested this series on a E850-96(Exynos3830 based) board and it's working as a moudle.
-> 
-> # dmesg | grep mct
-> [7.376224] clocksource: mct-frc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 73510017198 ns
-> 
-> # lsmod | grep exynos_mct
-> exynos_mct             12288  0
-> 
-> # cat /sys/devices/system/clocksource/clocksource0/current_clocksource
-> arch_sys_counter
-> # cat /sys/devices/system/clockevents/clockevent0/current_device
-> arch_sys_timer
-> 
-> # cat /proc/interrupts 
->         CPU0    CPU1    CPU2    CPU3    CPU4    CPU5    CPU6    CPU7
->  12:    2566    2752    2467    4026    3372    2822    2115    3227 GIC-0  27 Level     arch_timer
-> ...
->  77:       0       0       0       0       0       0       0       0 GIC-0 235 Level     mct_comp_irq
->  78:       0       0       0       0       0       0       0       0 GIC-0 239 Level     mct_tick0
->  79:       0       0       0       0       0       0       0       0 GIC-0 240 Level     mct_tick1
->  80:       0       0       0       0       0       0       0       0 GIC-0 241 Level     mct_tick2
->  81:       0       0       0       0       0       0       0       0 GIC-0 242 Level     mct_tick3
->  82:       0       0       0       0       0       0       0       0 GIC-0 243 Level     mct_tick4
->  83:       0       0       0       0       0       0       0       0 GIC-0 244 Level     mct_tick5
->  84:       0       0       0       0       0       0       0       0 GIC-0 245 Level     mct_tick6
->  85:       0       0       0       0       0       0       0       0 GIC-0 246 Level     mct_tick7
-> 
-> Reviewed-by: Youngmin Nam <youngmin.nam@samsung.com>
-> Tested-by: Youngmin Nam <youngmin.nam@samsung.com>
-> 
-> Thanks,
-> Youngmin
+Hi,
 
-Thanks Youngmin for the reviews and testing!
+not a full review, just me making a first pass.
 
-Regards,
-Will
+> +unsigned long mfpwm_clk_get_rate(struct rockchip_mfpwm *mfpwm)
+> +{
+> +	if (!mfpwm || !mfpwm->chosen_clk)
+> +		return 0;
+> +
+> +	return clk_get_rate(mfpwm->chosen_clk);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(mfpwm_clk_get_rate, "ROCKCHIP_MFPWM");
+
+aren't you just re-implemeting a clk-mux with the whole chosen-clk
+mechanism? See drivers/clk/clk-mux.c, so in theory you should be
+able to just do a clk_register_mux(...) similar to for example
+sound/soc/samsung/i2s.c .
+
+
+> +
+> +__attribute__((nonnull))
+> +static int mfpwm_do_acquire(struct rockchip_mfpwm_func *pwmf)
+> +{
+> +	struct rockchip_mfpwm *mfpwm = pwmf->parent;
+> +	unsigned int cnt;
+> +
+> +	if (mfpwm->active_func && pwmf->id != mfpwm->active_func->id)
+> +		return -EBUSY;
+> +
+> +	if (!mfpwm->active_func)
+> +		mfpwm->active_func = pwmf;
+> +
+> +	if (!check_add_overflow(mfpwm->acquire_cnt, 1, &cnt)) {
+> +		mfpwm->acquire_cnt = cnt;
+> +	} else {
+> +		WARN(1, "prevented acquire counter overflow in %s\n", __func__);
+
+dev_warn, as you have the mfpwm pointing to a pdev?
+
+> +		return -EOVERFLOW;
+> +	}
+> +
+> +	dev_dbg(&mfpwm->pdev->dev, "%d acquired mfpwm, acquires now at %u\n",
+> +		pwmf->id, mfpwm->acquire_cnt);
+> +
+> +	return clk_enable(mfpwm->pclk);
+> +}
+
+> +/**
+> + * mfpwm_get_clk_src - read the currently selected clock source
+> + * @mfpwm: pointer to the driver's private &struct rockchip_mfpwm instance
+> + *
+> + * Read the device register to extract the currently selected clock source,
+> + * and return it.
+> + *
+> + * Returns:
+> + * * the numeric clock source ID on success, 0 <= id <= 2
+> + * * negative errno on error
+> + */
+> +static int mfpwm_get_clk_src(struct rockchip_mfpwm *mfpwm)
+> +{
+> +	u32 val;
+> +
+> +	clk_enable(mfpwm->pclk);
+> +	val = mfpwm_reg_read(mfpwm->base, PWMV4_REG_CLK_CTRL);
+> +	clk_disable(mfpwm->pclk);
+> +
+> +	return (val & PWMV4_CLK_SRC_MASK) >> PWMV4_CLK_SRC_SHIFT;
+> +}
+> +
+> +static int mfpwm_choose_clk(struct rockchip_mfpwm *mfpwm)
+> +{
+> +	int ret;
+> +
+> +	ret = mfpwm_get_clk_src(mfpwm);
+> +	if (ret < 0) {
+> +		dev_err(&mfpwm->pdev->dev, "couldn't get current clock source: %pe\n",
+> +			ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +	if (ret == PWMV4_CLK_SRC_CRYSTAL) {
+> +		if (mfpwm->osc_clk) {
+> +			mfpwm->chosen_clk = mfpwm->osc_clk;
+> +		} else {
+> +			dev_warn(&mfpwm->pdev->dev, "initial state wanted 'osc' as clock source, but it's unavailable. Defaulting to 'pwm'.\n");
+> +			mfpwm->chosen_clk = mfpwm->pwm_clk;
+> +		}
+> +	} else {
+> +		mfpwm->chosen_clk = mfpwm->pwm_clk;
+> +	}
+> +
+> +	return clk_rate_exclusive_get(mfpwm->chosen_clk);
+> +}
+>
+> +/**
+> + * mfpwm_switch_clk_src - switch between PWM clock sources
+> + * @mfpwm: pointer to &struct rockchip_mfpwm driver data
+> + * @clk_src: one of either %PWMV4_CLK_SRC_CRYSTAL or %PWMV4_CLK_SRC_PLL
+> + *
+> + * Switch between clock sources, ``_exclusive_put``ing the old rate,
+> + * ``clk_rate_exclusive_get``ing the new one, writing the registers and
+> + * swapping out the &struct_rockchip_mfpwm->chosen_clk.
+> + *
+> + * Returns:
+> + * * %0        - Success
+> + * * %-EINVAL  - A wrong @clk_src was given or it is unavailable
+> + * * %-EBUSY   - Device is currently in use, try again later
+> + */
+> +__attribute__((nonnull))
+> +static int mfpwm_switch_clk_src(struct rockchip_mfpwm *mfpwm,
+> +					  unsigned int clk_src)
+> +{
+> +	struct clk *prev;
+> +	int ret = 0;
+> +
+> +	scoped_cond_guard(spinlock_try, return -EBUSY, &mfpwm->state_lock) {
+> +		/* Don't fiddle with any of this stuff if the PWM is on */
+> +		if (mfpwm->active_func)
+> +			return -EBUSY;
+> +
+> +		prev = mfpwm->chosen_clk;
+> +		ret = mfpwm_get_clk_src(mfpwm);
+> +		if (ret < 0)
+> +			return ret;
+> +		if (ret == clk_src)
+> +			return 0;
+> +
+> +		switch (clk_src) {
+> +		case PWMV4_CLK_SRC_PLL:
+> +			mfpwm->chosen_clk = mfpwm->pwm_clk;
+> +			break;
+> +		case PWMV4_CLK_SRC_CRYSTAL:
+> +			if (!mfpwm->osc_clk)
+> +				return -EINVAL;
+> +			mfpwm->chosen_clk = mfpwm->osc_clk;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +		clk_enable(mfpwm->pclk);
+> +
+> +		mfpwm_reg_write(mfpwm->base, PWMV4_REG_CLK_CTRL,
+> +				PWMV4_CLK_SRC(clk_src));
+> +		clk_rate_exclusive_get(mfpwm->chosen_clk);
+> +		if (prev)
+> +			clk_rate_exclusive_put(prev);
+> +
+> +		clk_disable(mfpwm->pclk);
+> +	}
+> +
+> +	return ret;
+> +}
+
+ok, the relevant part might be the 
+	/* Don't fiddle with any of this stuff if the PWM is on */
+thing, which will require special set_rate operation, but in general I
+think, if it ticks like a clock, it probably should be a real clock ;-) .
+
+
+> +static ssize_t chosen_clock_show(struct device *dev,
+> +				 struct device_attribute *attr, char *buf)
+> +{
+> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
+> +	unsigned long clk_src = 0;
+> +
+> +	/*
+> +	 * Why the weird indirection here? I have the suspicion that if we
+> +	 * emitted to sysfs with the lock still held, then a nefarious program
+> +	 * could hog the lock by somehow forcing a full buffer condition and
+> +	 * then refusing to read from it. Don't know whether that's feasible
+> +	 * to achieve in reality, but I don't want to find out the hard way
+> +	 * either.
+> +	 */
+> +	scoped_guard(spinlock, &mfpwm->state_lock) {
+> +		if (mfpwm->chosen_clk == mfpwm->pwm_clk)
+> +			clk_src = PWMV4_CLK_SRC_PLL;
+> +		else if (mfpwm->osc_clk && mfpwm->chosen_clk == mfpwm->osc_clk)
+> +			clk_src = PWMV4_CLK_SRC_CRYSTAL;
+> +		else
+> +			return -ENODEV;
+> +	}
+> +
+> +	if (clk_src == PWMV4_CLK_SRC_PLL)
+> +		return sysfs_emit(buf, "pll\n");
+> +	else if (clk_src == PWMV4_CLK_SRC_CRYSTAL)
+> +		return sysfs_emit(buf, "crystal\n");
+> +
+> +	return -ENODEV;
+> +}
+
+which brings me to my main point of contention. Why does userspace
+need to select a clock source for the driver via sysfs.
+
+Neither the commit message nor the code does seem to explain that,
+or I'm just blind - which is also a real possibility.
+
+In general I really think, userspace should not need to care about if
+a PLL or directly the oscillator is used a clock input.
+I assume which is needed results from some runtime factor, so the
+driver should be able to select the correct one?
+
+A mux-clock could ust use clk_mux_determine_rate_flags() to select
+the best parent depending on a requested rate instead.
+
+
+> +static ssize_t chosen_clock_store(struct device *dev,
+> +				  struct device_attribute *attr,
+> +				  const char *buf, size_t count)
+> +{
+> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	if (sysfs_streq(buf, "pll")) {
+> +		ret = mfpwm_switch_clk_src(mfpwm, PWMV4_CLK_SRC_PLL);
+> +		if (ret)
+> +			return ret;
+> +		return count;
+> +	} else if (sysfs_streq(buf, "crystal")) {
+> +		ret = mfpwm_switch_clk_src(mfpwm, PWMV4_CLK_SRC_CRYSTAL);
+> +		if (ret)
+> +			return ret;
+> +		return count;
+> +	} else {
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static DEVICE_ATTR_RW(chosen_clock);
+> +
+> +static ssize_t available_clocks_show(struct device *dev,
+> +				     struct device_attribute *attr, char *buf)
+> +{
+> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
+> +	ssize_t size = 0;
+> +
+> +	size += sysfs_emit_at(buf, size, "pll\n");
+> +	if (mfpwm->osc_clk)
+> +		size += sysfs_emit_at(buf, size, "crystal\n");
+> +
+> +	return size;
+> +}
+> +
+> +static DEVICE_ATTR_RO(available_clocks);
+> +
+> +static struct attribute *mfpwm_attrs[] = {
+> +	&dev_attr_available_clocks.attr,
+> +	&dev_attr_chosen_clock.attr,
+> +	NULL,
+> +};
+
+Not understanding the need for the sysfs stuff was my main point this
+evening :-)
+
+Heiko
 
 
 
