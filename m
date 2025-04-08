@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-164524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F00FA815F0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:39:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C19AA81609
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:51:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 504A73BF699
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:38:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC8C61BA61B1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D3C254843;
-	Tue,  8 Apr 2025 19:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40529245012;
+	Tue,  8 Apr 2025 19:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="tUWjlHU0"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ns76dayi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB80253F34
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 19:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A567A2505AA
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 19:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744141059; cv=none; b=mJtQQVtr7ILk5YUxKPSnfUpa8T8YhSpvHQx26FNNF/uegPWiTI3pWYyg+zW4Jz3E9R+U2YdnwiUrZBI/KJZ+S0osU56cpQI30b5ILqr9hPOFILwK/ZW1Y+/ZRYZI8EKAIBtBPpvoF5wYj4nbuF3Jtoyg9RhomL3tDEKYT+AJWUQ=
+	t=1744141863; cv=none; b=CAgeQyOeLxQ1zTYM8djYgLkN37kiFeuhM5sfkesaeDepaaG0yx7JpIL8A+htfrSJAvkHgF6RzFGR+8QUmDfPC3nnN8/PzJMCSuLWoDfDjuIcLkPzHPPLIlM88oK9sHuUH7oX3AzccMTIlUJiQx7rlM1HDn06Wkzgp5sCLOFB32M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744141059; c=relaxed/simple;
-	bh=rVKeUcWubqSu6ZsfxRbi7N7hyuMsaoaOHtTFm6Zrf7o=;
+	s=arc-20240116; t=1744141863; c=relaxed/simple;
+	bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B7B5CDOfv8DsV2UcuxjfRVorBgV3yrwP1EvM67ALlueP+937LIU+y0Zlu5WaUKkeNFRBG6GooO+wLIGJC8mc/7/bhrob10sXashTMsowJ7bfQHfEtQ47O+2rWwIz6M+0mPETPHMdXOypeDQTMKwK7ixzDGbGQ1pLgSA3/GxB2k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=tUWjlHU0; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-3d6d84923c8so18075495ab.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:37:38 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=X7YHRN+Hr3zsEcx0S9ONbUTibuW29B5i2Z1sUkerZ4TK3vrItH5BG7DYDRum9e4R4Pj1SwOsDtk+ypK5kekYt6LscF+w+V27axpHFaFPqFCsBN8SIfsaaPwzQkhuY4Eeq2Tl6os7oHxKb94kGIZ3gLZxPyrQ9Kf2m09wAUtK1Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ns76dayi; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-af6b02d9e5eso4165882a12.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744141057; x=1744745857; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1744141861; x=1744746661; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7RqTCyVarb3HOJMAA+PoO2FMbP6+BrxJ4VIEUqNGh+4=;
-        b=tUWjlHU0jseg0svHBFiNSRfTs+KVZCtBz6VdgJQQ9SYYP9kvhuC5XAItAHZYGKJwH+
-         6dx55PmP++IFWY2eR/QPlk5fWaVCcbpYYZnDxsvagcl9LFsRdCnORSDaziEM6NXr1Cj8
-         hFS0KvJWccJ4Sx46MPJJMsh5sabUSZaOrfMlcrhAwnfkV6ZgFvYUfxsDtdVHfymksa+E
-         D8T24+WEJW3226RrSXpi0Zpv3vpq5cCIwiiriQMXLN+CcOLP10iHUOpq5rVyrXagPcFm
-         RT8XJzfC0S2M1+802mnRWMu0vp1+MxXQN3EByiHarBSVFdPztwIvp2tdHF3Fg/fVhb2E
-         mf5g==
+        bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
+        b=ns76dayi9FfsOOgzwJ0t1uyR+Mx/iowxQxn1f26XcVcx9qFDZodfmFmj3i6Be/Idzw
+         TeHExO0zxK/GQ4plC46NTxhzlT9rB/MMT58gCixw1lFbMnN/epRcV11ux5eb3mvHq/2L
+         vTXnTUufXTtH2t9OwsL4EVqUSQ2xB/tNUWCZ5t/hHzlhWe0rgzI89xO4jvuiaYanqiPN
+         rqofdshqQ2gXZLJzQa/gMQlhPncWWI179QslDblAmBmzgTVIJfoRYvscpiQLetklMKTd
+         woixp8w7D+vB2JQo3OTQbMboXgC14nVDXUFvWU66f7AosrVdtH+6/VERfVEI5ulcOWqp
+         p9og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744141057; x=1744745857;
+        d=1e100.net; s=20230601; t=1744141861; x=1744746661;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7RqTCyVarb3HOJMAA+PoO2FMbP6+BrxJ4VIEUqNGh+4=;
-        b=F22QEatSCuhGBK9nwrV0z95/DitVLiSFU5W1LAPK1FL5RvsQVLq0bEcD1y9cunfwsb
-         y7T1BzgMOp75Hc2x139DSm+Sm1nHKLrjcj41Uu5vyZ4SpTKxJct0vVJN9alsHo/0LT+s
-         1YRzo1Mn/GhwwyY86irnZWVdwBUeikidP8P1sNfS09JhApfzY/6aru8bK8y3UHxwpMWJ
-         E5Zj/5G4qjuxqdQDrQ+2XppIsjya3Qaaib7HkWt3VeAjRQ/7JlgX1NaoXDS1nptoaAoq
-         PsMU4BX7JjLLIk0SmXZvmrTMT3FEiYrybWyQ1sv0COsuG4vUWARY8kFrMFBqz+mPdkpo
-         /01g==
-X-Forwarded-Encrypted: i=1; AJvYcCVyYAISo6XfTU4Uohdhit9mPjg45Gsiyz9VQT3jAuiytQTwKqwngBcJIJTYwpbFPsU3PsilyqRQtUJg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEHU8ZNiUrvD5IZ02vgZbc+fSWHzDH2zLlqtpMmM0osEF89hJ4
-	gMWIK/hjPhU3nWLTpFOjK5Ga2h5WvedVHfetRdFHbCt2KLCLeE3aTO3FskgGSnI=
-X-Gm-Gg: ASbGncusSe4vsWeQ2gQHd5U2zARh0byuAS5R9hf+t7zS8kTHi0swRXEMfwQnKMy1HGi
-	+276K2jO7gVBEykmhS1KT6NqQP0teunJppfM7Tq/IO0rn7x0YrsiwpPho9huW314psKMUc5nhyT
-	DiY9WN2mCTFDxo6jKKeznGKpE/gsC0/dFzaRywW6gL35HcJCI7rRHRCySEaucuDggtU6reTmsMP
-	3qu+4UBS2yzCOC++zORqz0rlcNK6mkNnmwxX5kpVyYlFsN/slitqyp2MaD/yjNJswCc1tp+l9wz
-	nSR2BE7SZrAxScQciSsyCcqjNIIRdnCIAGD1ygTWSFNt/vJIOjeVlzYgT/mBKSO11inx8yLxIPc
-	emNmLCHhL
-X-Google-Smtp-Source: AGHT+IG7rW/jA34zO9YwR/Uhv4tZyavVt40Io0eZXrFxdcpUtJcFv8zQCXnlCLGlof0n9kin5siP+g==
-X-Received: by 2002:a05:6e02:2587:b0:3d5:be65:34ac with SMTP id e9e14a558f8ab-3d776c807acmr2719605ab.2.1744141057452;
-        Tue, 08 Apr 2025 12:37:37 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3d703c0665esm5904485ab.50.2025.04.08.12.37.35
+        bh=kYjOzHDJD1Ku2qLVhOUwN9rHloyRnFSlAKTaMhIuOKA=;
+        b=oF47eBjcKb5JvMYmLq2M4M2DNxvnCvFxkTsWM1eR9baJCeUV+cLNIA94DDD850vRJ2
+         /hL6tgALyZplF3RdnZ8zNZv10Nv7eO4S4+MibstiafUenreGaKj3qV6a/ok4f+qw98FO
+         1139K8XXvcDPQlJFf7EY2DqqVm6bWUmP/AWH/w1Yjrv4U4vxdOcQ8mhhXmMLSgRNDI4r
+         3a70DvHAggpgmkVQsCDzIslwsFdEc/X+wMV4guLVkquU1ofUJGc4t091EVKroooVbv/m
+         Lxg9PZtIFy1YLtFP4EcuYbviQjz9tH2DywuWB19SdADW188MyKDB71Sjg7aWWBWicA06
+         uQhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWK4vNCmYeT1FSP2A2xlmzkiKwFV1ABcku4qkGGSmStV2EOs7gnDh0O9QOY/W6QLkGWtJGeXVglkbdl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRR7fr4fXC4fu572sVm59dX8FcXkHxlg9gdi8fVxprkCUjW+v0
+	MTLoKvkobJl2xb7ZV2QP4Rob6s9cKe2hTOFqJMSqqZ2ouALkR0C2oP/wvMksBVtrWVjt+tmMz/h
+	jokeX
+X-Gm-Gg: ASbGncsqIYnpCRqVrjWnKL4VMNm/MP2Y2l+89QPX3V6Dnj3Ew+5Ung0tZ1ER7nhLu+w
+	k3zvCo99/a2FEM3Xk4b4L4gBExU2YrDJkeHzi9Fo1d2XZSk5N2Rkaf4q6EX2gXjHYBSepGpvVLD
+	v1++n57prhtr+Pi5o+x4HpZPlvEqLYsNd7xmjX+QEEJafW+FJ8q8YMgsAxOtoSxRe9xFLr0YVkA
+	L3r6mbAM8Ebjnl+nIgxOTkJdzHyKsuPccOsfLQsHPnXy3b+ClXuPwNUzlEVMUPdfA/BFrBiXUSB
+	EVOugLwdx20+awDioz1h6dcKxjeCnwe6PtCyEavikLLpCbRSmWLqBdE7A5KVFAN2ZNFVFh+6tpD
+	9laTJhMA2XitAc2cI/gn9UXMKzxWPL+iyWaKuXhSJbl0=
+X-Google-Smtp-Source: AGHT+IE8D0yj/1izPqnhy7CnkrKCfihVPNUd7hh5oantY3ye/eMd0x6P1EKKg9jiwP4mfC+LMAEAyg==
+X-Received: by 2002:a17:90b:51c3:b0:2f4:434d:c7f0 with SMTP id 98e67ed59e1d1-306dbb948d6mr770818a91.12.1744141860732;
+        Tue, 08 Apr 2025 12:51:00 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:4da8:81cb:274b:fff0? ([2a00:79e0:2e14:7:4da8:81cb:274b:fff0])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3057cb5a7d8sm11701509a91.38.2025.04.08.12.50.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 12:37:36 -0700 (PDT)
-Message-ID: <e2c5c2c2-61a8-458d-8e95-521c5ea752f9@riscstar.com>
-Date: Tue, 8 Apr 2025 14:37:35 -0500
+        Tue, 08 Apr 2025 12:51:00 -0700 (PDT)
+Message-ID: <d6a33a0c-f24c-470a-97bf-ee50ee7a82b5@google.com>
+Date: Tue, 8 Apr 2025 12:50:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,57 +83,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/6] riscv: defconfig: enable clock controller unit
- support for SpacemiT K1
-To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-References: <20250401172434.6774-1-heylenay@4d2.org>
- <20250401172434.6774-7-heylenay@4d2.org>
+Subject: Re: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
+ TCPM
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Sebastian Reichel <sre@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
+ Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
+ <20250313-determined-wild-seahorse-f7871a@krzk-bin>
+ <914a0df4-96d0-4cd4-ac87-3826fa9c1440@google.com>
+ <3f65fe16-56f8-4887-bb91-994b181ce5a9@kernel.org>
+ <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
+ <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
+ <7c7cff17-2c53-4dcd-8760-50c72760de5b@google.com>
+ <ba5f79a0-be46-4f17-90f7-1342a6310048@kernel.org>
+ <07e4478d-569e-46d5-aad7-882e52ef3cac@kernel.org>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250401172434.6774-7-heylenay@4d2.org>
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <07e4478d-569e-46d5-aad7-882e52ef3cac@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 4/1/25 12:24 PM, Haylen Chu wrote:
-> Clock controller unit, or CCU, generates various clocks frequency for
-> peripherals integrated in SpacemiT K1 SoC and is essential for normal
-> operation. Let's enable it in defconfig.
-> 
-> Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> ---
->   arch/riscv/configs/defconfig | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index 0f7dcbe3c45b..011788d16d93 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -252,6 +252,8 @@ CONFIG_CLK_SOPHGO_CV1800=y
->   CONFIG_CLK_SOPHGO_SG2042_PLL=y
->   CONFIG_CLK_SOPHGO_SG2042_CLKGEN=y
->   CONFIG_CLK_SOPHGO_SG2042_RPGATE=y
-> +CONFIG_SPACEMIT_CCU=y
-> +CONFIG_SPACEMIT_K1_CCU=y
 
-Maybe these could be specified with default values that
-are based on the value of CONFIG_ARCH_SPACEMIT instead of
-forcing them to be defined here?
+On 4/3/25 1:02 AM, Krzysztof Kozlowski wrote:
+> On 03/04/2025 10:00, Krzysztof Kozlowski wrote:
+>>>>>> Which upstream DTS (or upstream supported hardware) is going to use this
+>>>>>> binding, so I can see how you are going to implement it there in the
+>>>>>> entire system?
+>>>>> This is for maxim,max33359 Type-C controller.
+>>>> Stop deflecting the questions. max33359 is not a board. I already asked
+>>>> two times.
+>>>>
+>>>> Apparently admitting "no upstream users" is impossible, so let's state
+>>>> the obvious:
+>>>>
+>>>> There are no upstream users of this.
+>>> max33359 controller has an upstream user i.e., gs101-oriole (Pixel 6)
+>>> board. Totally agree that at the moment there are no upstream
+>>> devices/drivers for the Fuel Gauge (that my patchset has a dependency
+>>> on) in gs101-oriole board. gs101-oriole uses max77759 fuel gauge device.
+>>> I see that there's an effort for upstreaming it
+>>> (https://lore.kernel.org/all/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be/).
+>>> I will mark my patches as dependent on it + demonstrate the relationship
+>>> of the devices in the gs101-oriole board. Hope that's okay?
+>> Then please send the DTS for GS101 Oriole using this binding. I don't
+>> understand the point of adding binding for some user and in the same
+>> time not doing anything for that user.
+>
+> ... and just a reminder: DTS goes to separate patchset (!) from USB
+> drivers one, with lore link in changelog or cover letter to the binding.
 
-					-Alex
+Sure thing!
 
->   CONFIG_SUN8I_DE2_CCU=m
->   CONFIG_SUN50I_IOMMU=y
->   CONFIG_RPMSG_CHAR=y
+Thanks
 
+>
+> Best regards,
+> Krzysztof
 
