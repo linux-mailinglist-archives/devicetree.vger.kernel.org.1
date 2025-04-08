@@ -1,205 +1,128 @@
-Return-Path: <devicetree+bounces-164120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA076A7F3B9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:40:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC88A7F3E7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B90017770D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 04:40:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAE0C3B3DF6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3AD25F96E;
-	Tue,  8 Apr 2025 04:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3701B21AA;
+	Tue,  8 Apr 2025 05:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l2QS5Hbv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JRqm5piq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B84226170;
-	Tue,  8 Apr 2025 04:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364A02F5E;
+	Tue,  8 Apr 2025 05:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744087205; cv=none; b=lk+Pj5QAnnCcyDaCJETH0V+/mjXjcgLYNCoFksY1ZTkzUI0YxH4NI5TQWu1NRyvTevZqSETF3gBRtRYd3py05Myev/O79yy+RaPgnzy7y1PQDF5lCwDocbfF5lWzz4W/P65pKvRgdxXtQKa2ULIoT0iyPvkImm/V10EJyhTgKig=
+	t=1744088548; cv=none; b=qz0kbxnPNP/zk8A6HGUVM8nmDwdGjpfD9KULJZ7qUzzmmhnMmRZlpLI6T4jO1ekrU+KGVHv267aVRskVSKSu0dzq3WY3VIX3c2s0buZGms+1yjzU2c9fWBrSXdV8elbgPXrdW8054EDUus6HgoQrcZOKACea67IAwegXBUb7Azg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744087205; c=relaxed/simple;
-	bh=VLSMlFX8MHlSUtQUTu5mk0CYrZpnr3KFN4CqZqLwFhk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sb8gTCPzPumassnIZZzayl6VWcZI95orNQrpaF5/9Mqs4SrNm0sjXNN1Wj/lkyEHeTEFne6Vb0UzlwsFNMdKVVbak8bfmQNkkaQ7XQNRGATrzz4jlnSil5Wa1/DXheNMOsMnOvBpMFBZPPGZOMtGqhN1MSXnSd38bxrQ0hAEv4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2QS5Hbv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D4C8BC4CEF0;
-	Tue,  8 Apr 2025 04:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744087204;
-	bh=VLSMlFX8MHlSUtQUTu5mk0CYrZpnr3KFN4CqZqLwFhk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=l2QS5HbvKqA6r+NCxeIvD2Ox+NfBuDEl6BuWSekuePq+YfASOZo543ODPZo4zmPRc
-	 dlQ01Hs/oaptTuMFBo32xd05MQl2ML/vpicd8+z1HC7Pg/wSTGDYJCZmfNMp5UBEvW
-	 BFmKWXi+IKDoYNds7mW8tLitc4P/qyft78eZpApghZ9hgTcxOLAPE3Vto+rMfuMMaY
-	 ZDV5wDFIDWdCjyqL8tVT+IY/G8acFh947XPbqDzi3185Z66HDJcdmppTjru2CS9PDA
-	 a9ikKq8NuxHWyPqiWtTv9hMW+CcDFjdmKVQ/Rwjtoer5sF9ILE7ng2f+Bux6VRpKKu
-	 GxqMLIIVOnGJw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C392AC36010;
-	Tue,  8 Apr 2025 04:40:04 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Mon, 07 Apr 2025 23:39:51 -0500
-Subject: [PATCH 4/4] arm64: tegra: Wire up cec to devkits
+	s=arc-20240116; t=1744088548; c=relaxed/simple;
+	bh=KM4iNMvKGENubzBlP4oFLFuPGo1+bejKdkpXcDrBbw0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FvqobeDoc+SOR42Uk7Ql9cSUyALQgcuGW2TfeeOQwuAOBvsuWEI+sog0aj6QeHJK3Bw78wGZZ0pCWGHfUEdMsGeWEmRz9OWR4aQZqlPcaOOn61LryPKzgz48aQqk/NqL/auvv8z7jjG/iFqiMsc0L6t3VrsSl+yNjNE0FmqJ31U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JRqm5piq; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6f0c30a1ca3so24402606d6.1;
+        Mon, 07 Apr 2025 22:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744088546; x=1744693346; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R7RoF88PRiXIA+X9QRRmiBMpMzS+lQz5HYzbozNYwWM=;
+        b=JRqm5piqbs/RYUd0EPfQ451KuJieoSpNILGgCDdHaFbkw0tFzak3FBPoEUnxxLC6O8
+         OAcDCakyGQU1mDzKx1QCG2ZkdPYjefCKoNppVEkddLoZqBlydJty6DIwUjcZsnbUp738
+         OLRhuwDg9NQcwL2+ZEiKLITNHRxt+6bZ3V9yIZeGdSHERkdq0VZTo62O3X3ySVZfZyAw
+         5/vOamFDQDXU0cTkKWK0Y/OeLXFrEXuzqal6U8B2l8f1aF3UIpww71L/bOt0KZOi72SL
+         wD1XvOeWvxf41S1BgRCU0BD8w904bcQF/Ogt/ZzeNEP9DfVqPJQsoBQrt1Q0El8fTZ6p
+         0A1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744088546; x=1744693346;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R7RoF88PRiXIA+X9QRRmiBMpMzS+lQz5HYzbozNYwWM=;
+        b=euG0eHZHD+eDF+zudKPlEl23HgD04Ks9qejHys7a+pICVB50Z9e01QxZDZkE2FPRKt
+         8D93SKCbF6+M0ajpMIjY//r0FeKeNWHITE0hSq1YBBgP9KgOzfbU3+FoXCm0DVPF3Pmy
+         SBcvVYlejRctRwYOLiC4eKM1Dzapl6HxO7exxyOhPe5eOeH+DI3Oa3isd049xs30NIPu
+         lO6zk1KCqG5s7YHlO+198iuTVP9OHEm39kaE6lhAllSz1xLXP9rwCwGY7gvtM2vylyqY
+         xpIJd5EQIB9kBGM+at60C39l8PIMkz58RiKJNXht4sA4kz/nxpWZmFbYCI4DGlBzMnp0
+         HZAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVPtoHcblWlrqdOPt7fcyDSCfR5fClsVqaRsWAyIl4kUz1/3//1yqIF82BZRM/TYO0ywO8c+4HkfmSm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2S0axKVjP4orRiYb3Wibk5krxYTbU7JtD4kr2tbAoNdmIX7Y5
+	1GEe1RIHz0Gerb5pgF1CLfIlj0VoapQnvgXmHgcQ2Txy3j3cdZXy
+X-Gm-Gg: ASbGnctRb84aSVx2dFt35b7Tqfcqo1OTBltguz7rIV/Sq6KZQyxGvvmrvv19+cp9FZH
+	4SFIzfHeknVwTt7zeskmQKIlfuwBY0bsyTyBC76jDGiW3zUQa0RGYlNzKlctm2vqsPU5Gp/GKu2
+	5FbUmHC0Sv2XLNw4bvqmmdP0BP4CgeK/Gp3HQ2x6043r0lwPZGpGxZIRWqzrbNdzMVAtkom17Pq
+	PxeR8ppfx04IkksC58YbqOxKTUov5+EGsA3iG1MzlDTmbhs8P1QTbyuDinwSo80VRp6tysjcler
+	i2dZsmpVBTlV6zmI61b3
+X-Google-Smtp-Source: AGHT+IFAmQyuLEqKSqUa3zPYlnlVpM+D6CTCY9Gci7d7NscOgG+3f+LABsr60dVnS0EGKdGef2Rzqg==
+X-Received: by 2002:a05:6214:c6d:b0:6e1:f40c:b558 with SMTP id 6a1803df08f44-6f01e7f5050mr180369806d6.44.1744088546031;
+        Mon, 07 Apr 2025 22:02:26 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6ef0f047aa7sm68706526d6.55.2025.04.07.22.02.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Apr 2025 22:02:25 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v3 0/4] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI interrupt controller
+Date: Tue,  8 Apr 2025 13:01:41 +0800
+Message-ID: <20250408050147.774987-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250407-tegra-cec-v1-4-e25dd9577b5f@gmail.com>
-References: <20250407-tegra-cec-v1-0-e25dd9577b5f@gmail.com>
-In-Reply-To: <20250407-tegra-cec-v1-0-e25dd9577b5f@gmail.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-tegra@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744087203; l=4050;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=/KKv/TYqLGMeib4RLCtBAkuSb2lVtoCy1X50R5bg7FY=;
- b=Qe7WUDnKEe/CJA2Ni9XfRhcj9ymbqx0BS/5cX0NE9HrFsAa/cW3rj2vLHU5ggV/m6JR9aoI0S
- nu/hmkqtQMyDEVimS7+BPkmg6KGJGav6Sb1tmgmcXBkednWc3M+ALJ4
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Content-Transfer-Encoding: 8bit
 
-From: Aaron Kling <webgeek1234@gmail.com>
+Like Sophgo SG2042, SG2044 also uses an external interrupt controller
+to handle MSI/MSI-X. It supports more interrupt and has a different
+msi message address mapping.
 
-This enables hdmi cec and routes it to the hdmi port on all supported
-Tegra210, Tegra186, and Tegra194 devkits.
+Changed from v2:
+1. patch 1: separate from patch 2 of v2 for better reviewing
+2. patch 2: separate from patch 2 of v2 for better reviewing
+3. patch 3: apply Chen'tag
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts            | 6 ++++++
- arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts | 6 ++++++
- arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts            | 6 ++++++
- arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi           | 6 ++++++
- arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts            | 6 ++++++
- arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts            | 6 ++++++
- 6 files changed, 36 insertions(+)
+Changed from v1:
+- https://lore.kernel.org/all/20250303111648.1337543-1-inochiama@gmail.com/
+1. patch 1: apply Conor's tag
+2. patch 1: improve the bindings comments.
+3. patch 2: rebased on tips:irq/drivers patch
+4. patch 2: remove unused macro "SG2042_MAX_MSI_VECTOR"
+5. patch 2: rename generic structure name to match sg204x.
+6. patch 2: rename info field name to avoid misunderstanding.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-index 15aa49fc450399c7bd525adcdb6e92a27a185805..90155e4ff1feb609f79416a410c3666ebef8b634 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-@@ -2394,6 +2394,12 @@ usb@3550000 {
- 		phy-names = "usb2-0";
- 	};
- 
-+	cec@3960000 {
-+		status = "okay";
-+
-+		hdmi-phandle = <&sor1>;
-+	};
-+
- 	i2c@c250000 {
- 		/* carrier board ID EEPROM */
- 		eeprom@57 {
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-index 26f71651933d1d8ef32bbd1645cac1820bd2e104..a6d7fec2e84fb917018aff843845b02c34fede33 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
-@@ -712,6 +712,12 @@ usb@3550000 {
- 		phy-names = "usb2-0";
- 	};
- 
-+	cec@3960000 {
-+		status = "okay";
-+
-+		hdmi-phandle = <&sor1>;
-+	};
-+
- 	hsp@3c00000 {
- 		status = "okay";
- 	};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-index c32876699a43e9f57b3888c5bc0f5da73c5b95b5..ea6f397a27926e3dcd54002177f68749bc1cc309 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
-@@ -2121,6 +2121,12 @@ usb@3610000 {
- 			phy-names = "usb2-0", "usb2-1", "usb2-3", "usb3-0", "usb3-2", "usb3-3";
- 		};
- 
-+		cec@3960000 {
-+			status = "okay";
-+
-+			hdmi-phandle = <&sor2>;
-+		};
-+
- 		i2c@c240000 {
- 			typec@8 {
- 				compatible = "cypress,cypd4226";
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-index 4a17ea5e40fd034c6f4acb023cd7908d6800f710..16cf4414de599baea96362b494be40c800a8197f 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-@@ -2174,6 +2174,12 @@ usb@3610000 {
- 			phy-names = "usb2-1", "usb2-2", "usb3-2";
- 		};
- 
-+		cec@3960000 {
-+			status = "okay";
-+
-+			hdmi-phandle = <&sor1>;
-+		};
-+
- 		host1x@13e00000 {
- 			display-hub@15200000 {
- 				status = "okay";
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-index a6a58e51822d90f8815df880ea7e668caff1b1ec..627abf51a5a472ddcc42fdc1d783876b0a03da47 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-@@ -90,6 +90,12 @@ eeprom@57 {
- 		};
- 	};
- 
-+	cec@70015000 {
-+		status = "okay";
-+
-+		hdmi-phandle = <&sor1>;
-+	};
-+
- 	clock@70110000 {
- 		status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-index 0ecdd7243b2eb1abba9adbe9a404b226c29b85ef..ec0e84cb83ef9bf8f0e52e2958db33666813917c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-@@ -419,6 +419,12 @@ pmc@7000e400 {
- 		nvidia,sys-clock-req-active-high;
- 	};
- 
-+	cec@70015000 {
-+		status = "okay";
-+
-+		hdmi-phandle = <&sor1>;
-+	};
-+
- 	hda@70030000 {
- 		nvidia,model = "NVIDIA Jetson Nano HDA";
- 
+Inochi Amaoto (4):
+  dt-bindings: interrupt-controller: Add Sophgo SG2044 MSI controller
+  irqchip/sg2042-msi: rename generic function and structure
+  irqchip/sg2042-msi: introduce configurable chipinfo for sg2042
+  irqchip/sg2042-msi: Add the Sophgo SG2044 MSI interrupt controller
 
--- 
-2.48.1
+ .../sophgo,sg2042-msi.yaml                    |   4 +-
+ drivers/irqchip/irq-sg2042-msi.c              | 149 ++++++++++++++----
+ 2 files changed, 119 insertions(+), 34 deletions(-)
 
+--
+2.49.0
 
 
