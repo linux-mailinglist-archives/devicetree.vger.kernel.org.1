@@ -1,84 +1,113 @@
-Return-Path: <devicetree+bounces-164358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A22A80A75
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0D7A80B45
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:14:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05C644264B6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:52:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C00E885E41
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F3F277026;
-	Tue,  8 Apr 2025 12:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844F827EC9A;
+	Tue,  8 Apr 2025 12:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KyUgwuZf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHWt6b4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F048277012;
-	Tue,  8 Apr 2025 12:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525E527EC93;
+	Tue,  8 Apr 2025 12:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744116438; cv=none; b=WeZhsY8cQ2cASgSkZn8ufgjs8aN8f1KDwKBLGTKqJX6fqg6SUD3nxCPr72D2BVLqHdZfa54ZPxJWRvIHSDlY41waGAocemfBpFXo0A6/aE8eg2sWserSU3v644FmhDaFN5beWEsSnINGOYlA+KbzRKxw25rtphelXq7x5+PbMFA=
+	t=1744116547; cv=none; b=nIH9CSRlANWcXIFRKw2bFeT1UUJYKv9sXmdBHEu+h6Db0rVXjpLXubw5w+yNyP4HKtFX3AsQhn+e1C9GZmghTLcuqjzJZKPhKUQDUVLmTSvrIMrnWiiOsJN9mshdEk86ACom628UtCCuGJCiHo8Q75ITnGRtCmOPwHQbNVplAYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744116438; c=relaxed/simple;
-	bh=a32roObW0PsYnOYo+NLeOqzjCGce5vN+ZowJoxmJpO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZmzL/Qnwks3h56Z1XyfPuyENGBRaktsTLBP0vALKx1x1BaArerL7qIDz1wHLSVmBGkzeR9MNT3toUyI+dnJbZhqzfBLN4hbTOp0m7O9qPWMDteV9ZarL0VQVeVvkY7O5X3anikntait31sRVyuiXEcSF6mavrgHQQR97v9oGlC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KyUgwuZf; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nnAd+oDktJ4u091aOMFFxGn4kFMDAVqAApVVSQwIxPw=; b=KyUgwuZfyeteb/hIMbTNw7qOvI
-	B8va6d+N5/MsSxOXxwUtjg1eL0LER0FyO8xeC/NGTD148eWSZRHIrWmi5+UO8NuzXVUrERv4GTmpL
-	NXYXYp9HBIdgnRpQ4yUwVzsoIn8ZfUYU4ue/aZtZvOsybE453JecvVDMo84G86eFGSdQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u28M9-008O6I-91; Tue, 08 Apr 2025 14:47:09 +0200
-Date: Tue, 8 Apr 2025 14:47:09 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: dimitri.fedrau@liebherr.com
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dimitri Fedrau <dima.fedrau@gmail.com>
-Subject: Re: [PATCH net-next v2 3/3] net: phy: dp83822: Add support for
- changing the MAC termination
-Message-ID: <7dbf8923-ac78-47b8-8b9c-8f511a40dfa3@lunn.ch>
-References: <20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com>
- <20250408-dp83822-mac-impedance-v2-3-fefeba4a9804@liebherr.com>
+	s=arc-20240116; t=1744116547; c=relaxed/simple;
+	bh=vKT4C/GTC6IQ9JYbZes2rZEbu8WnSSrIU6DtAnt8Gv4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=mwmtxYSbqP/DB0q7FwqvikhvYpr1xx8YWZK6+WZjJnPnzjQIbwDm5L7HKG16jX0OsaacocVbxml5QIT6wdSYxgV8u5HQFvXIR+0/exnS6/fFfRPUVXKJJo48KLvEyQcrEItN6DtS5sgHMTty1gZonmqvg2h0wI07AmGim9AVjpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHWt6b4o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EC80C4CEEC;
+	Tue,  8 Apr 2025 12:49:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744116546;
+	bh=vKT4C/GTC6IQ9JYbZes2rZEbu8WnSSrIU6DtAnt8Gv4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=kHWt6b4oMvIthJlMku0Z8R2pq9+6O0s1tZ/V33yDLuw1jVvTlSKngzjmPYbrSxPeW
+	 upbiPdKqb1y62Q/xY7wU3BczXQqTmhtDmyAUoHawFemVmWCONGNCvPgO/DiPu3N4Lw
+	 HY+L3g9gw+gMs0yQSNQtfEiA8vNI4QV4bttPvN2/r3b0bAVbiHNzs51/fmur5sHuDq
+	 xQva2DC4Zy+vRRyr48b908Cn9Uhq1j6qwXsYAJf0ymM+CdHSnGEnKgvGZHXAWo2iF9
+	 4pBQ1Z5KlkHcBmqvidCQ5SU5zvmx3NXD6ov8jql5kLHOL3b+8/Mr3RvEhoUAb+2a2O
+	 y+wl7irHtKAtA==
+From: Mark Brown <broonie@kernel.org>
+To: peda@axentia.se, andersson@kernel.org, krzk+dt@kernel.org, 
+ srinivas.kandagatla@linaro.org
+Cc: ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
+ zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com, 
+ robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
+ perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com, 
+ linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ johan+linaro@kernel.org
+In-Reply-To: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
+References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
+Subject: Re: (subset) [PATCH v6 0/6] ASoC: wcd938x: enable t14s audio
+ headset
+Message-Id: <174411654299.2091760.16115765833106462248.b4-ty@kernel.org>
+Date: Tue, 08 Apr 2025 13:49:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250408-dp83822-mac-impedance-v2-3-fefeba4a9804@liebherr.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-> +static const u32 mac_termination[] = {
-> +	99, 91, 84, 78, 73, 69, 65, 61, 58, 55, 53, 50, 48, 46, 44, 43,
+On Thu, 27 Mar 2025 10:06:27 +0000, srinivas.kandagatla@linaro.org wrote:
+> On Lenovo ThinkPad T14s, the headset is connected via a HiFi Switch to
+> support CTIA and OMTP headsets. This switch is used to minimise pop and
+> click during headset type switching.
+> 
+> This patchset adds required bindings and changes to codec and dts to
+> tnable the regulator required to power this switch along with wiring up
+> gpio that control the headset switching.
+> 
+> [...]
 
-Please add this list to the binding.
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-    Andrew
+Thanks!
 
----
-pw-bot: cr
+[3/6] ASoC: codecs: wcd-mbhc: cleanup swap_gnd_mic api
+      commit: 6417066fb41f70c5aec242a36cbb6def8c99303f
+[4/6] ASoC: dt-bindings: wcd93xx: add bindings for audio mux controlling hp
+      commit: fe19245d3efd5bf714623e83f2056bc46d9339b1
+[5/6] ASoC: codecs: wcd938x: add mux control support for hp audio mux
+      commit: eec611d26f84800852a9badbeafa76db3cdc9118
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
