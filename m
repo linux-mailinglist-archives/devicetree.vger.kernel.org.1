@@ -1,220 +1,133 @@
-Return-Path: <devicetree+bounces-164228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB05FA7F91D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B4EA7F953
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FDAE189220B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:15:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC10E18933E1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C29264A99;
-	Tue,  8 Apr 2025 09:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872A1264F8A;
+	Tue,  8 Apr 2025 09:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YwrYfUHx"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="G1t1zwKH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97961263C6B;
-	Tue,  8 Apr 2025 09:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F39264A9E
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 09:23:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744103675; cv=none; b=UMC0Nt8yU3vynGT1WCu2CZ9eji2n6XK3McT9vf6BeeJVCFrVT/wmp3QdDCFEcPsyiZFNi04Xboummvx+/UNRajiWGQMjtL0dis7saEw7Opl4cF5uzD3BtdK/Gkfg7rlnA1yvsZ83pqRQQL86+lB/rCBU+OXeFlVxI5TQwyd2pmw=
+	t=1744104202; cv=none; b=VuTpEDRqpAeHMWYRYw6Gtwmgeu5v9Tj0b3RBaglCJS+wS+Fmx+u8C77BndQgaBR1Vtvuv2vpjCaXe2y6MAOv0s5hZbH+DQ3gq1yuN5OtPP0HVyyfRsbVge+pylp6SU/B73YezEo0NhY7/9ymA9zN5U0oM81ODZmi3OQL2weHYXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744103675; c=relaxed/simple;
-	bh=gvibY0b3Sa3/VZFUImm9G5mH7JVGsXUzNoeyoJHUoeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F1axJl4GogdCsIzgTdZQJG6h75lp9XkEIFLzU/cjRpv1Y66HTgX/68vOwSF8wTJWAV8Nfbzca5rnShD3JCHJcXReGjlUDrUNKTdaaJ4vk3giYSHmVYEekMmMdzN2X07cBVg5f9jTrTfhNmGXtdgIOotctriuYJc4MErNxCki2O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YwrYfUHx; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744103674; x=1775639674;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gvibY0b3Sa3/VZFUImm9G5mH7JVGsXUzNoeyoJHUoeQ=;
-  b=YwrYfUHx5uiAUdslsD48+lCHPus2uEXejalouYZc50cjxP0oco2afexl
-   3PViUneGXV0d3e01xQENebfth2LikWY0u5Lz2ErJNWM52W23UpyujN2Vz
-   snx1U2FNEdrJ4hL3f+9k+nRsEhiJWtPhtW3ZncFWCNk39xn995nbefP4/
-   QFDXYuVsnEK4boTFIn0gO7uc4CcFuFsFnoT0Lq8cnGIDJ3yBYvAGXbEpe
-   PMD2g5DqmdjFS8qRQlAmC6QeAgHW591urnLRU7dNwrpnyT2RTGpcKC9Xa
-   etPmseZH0ldwlBUOkKc+Oa/Owte+c7iZzfrc8mvqh7xyI3JWrThAEREpO
-   Q==;
-X-CSE-ConnectionGUID: /JJln5ejRCyFHZ0YXTLMRg==
-X-CSE-MsgGUID: t6uqto/YQ9CE7htne065dA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="55709144"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; 
-   d="scan'208";a="55709144"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2025 02:14:33 -0700
-X-CSE-ConnectionGUID: V1kGg9uZQr6ITUYd6/pVBw==
-X-CSE-MsgGUID: xbQBXVPZSSq7Zifz9uAIUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; 
-   d="scan'208";a="151398279"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2025 02:14:29 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id EB9E411FB1F;
-	Tue,  8 Apr 2025 12:14:26 +0300 (EEST)
-Date: Tue, 8 Apr 2025 09:14:26 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	s=arc-20240116; t=1744104202; c=relaxed/simple;
+	bh=bdnFDgVEI5AOqZfbKX9QQbECCPESHem01GmKSzkyHbE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XJo5gPfQsvJ2NPruOWTOniBHu0LXgR5Q+LSplrXqm/SZfo4LK37Sb6drgjFDpXa0AbTKUSvKOriVMAYc2Er5D9KWmHBytJlpSsj7iKPxq6AW0v2K6YXVEODrI+QjCncQ1s0KX/tHrg/wrmcIxdNPA/54n0R0ZmNxc8V/+uO5mY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=G1t1zwKH; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-227c7e57da2so44715145ad.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 02:23:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1744104200; x=1744709000; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DNUnjAwr3K7/bh0YQuGEFB/xa4tI2s8atXnUMP1mg7g=;
+        b=G1t1zwKHcBaPUVCJs4l/312aX70OROcWJzXZ1oIy7/S0peYjPesBrBeVgwDWro/epG
+         5dsKXfsxIJvfDK5+85594bIu9dcSq7ViuWBVmvt7sKfTg9hs0H4AzMrFx00bY5ZdA174
+         cFxc3hmyFCFXiUhaRzmmcrb0Uudq43XlEd4Wo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744104200; x=1744709000;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DNUnjAwr3K7/bh0YQuGEFB/xa4tI2s8atXnUMP1mg7g=;
+        b=QC1574vqHUdCaLx0jxXKltMUjsIo6QVPe1Q8qXHDuwQpmmtFBVa0tPkk5gvJnqdSrJ
+         f4bbzWypK3+S8qmGc6FwuehkHGtvKn2TfOmPNFBG6mF4Mtj8HtNieoeIlMm1Ku41ZzUf
+         653PZz7PhQLkRvXwMp9VSsBhpvlaFLg2XKsXjt9s62xZXTey9LQp/80BeHCTSPNAEyvp
+         nFcVRSLLnbAAeGN1R6d8VD3ELhGkF+R1Mn1yPwZc7MdsLSzD2+y3CLr0lnJz3sdhcGLo
+         WY/NEfgIacxoLVI/XyTRf2g5dOD3tOcyJokmxeRtxo9k5HjW7/AE6xnLry8utaBFvpHl
+         rUtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBZVzLHX6Mro/Ex1OBtp1F3/u97SOheEZSinqg/4lPpwhEP05gYMKf8VGJfoYdOG+WxmXxHh5HSQYb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/UbXL61KPxBClYPVooYrE+RtprsUVFSfxq3gvpNeWKF5F4rkY
+	phsvF7tUL9WYavuUHsHOQgMUIicXv3PLToZ6lTqzIfScE0Xpx6H++o0FPRmAdKNRbvo0oKAz3/k
+	=
+X-Gm-Gg: ASbGncs9TMSCIWzxFn/kVaOI68ZIhTxz4PBoKjVUmGM09zIP3uh4c+4J2Gg8s1aUaGQ
+	/63BysmOqGg83aHsR72PAoubUSJMA4/cyBpY8TLNdkYWWuS80q6kzYZSu7jfVDtxvHSokmo3VJ9
+	0OS5wWUlm6PiCQWW5+aS2hAxH/TOScFkDM9NV/xvNB4zAWVOoxlnmi1P/1q9MMmun+wumHdqhYh
+	8xOPiP0Keu2/hclmDy5tUHa44BTob+ykGqIAmzB85io8Av2tk97ZpaqTWVLyE7+ntkg39k/szaU
+	YlzwqlvTnu3qKeTpNB75OHg1e2CxnlVSlC3StlyfqHjeLhogcYIWJRqvBjt1iQo=
+X-Google-Smtp-Source: AGHT+IGPhkSRb5R3PVNGCzYv1a6SJZoNU3t0aIi0QTJm3JWsa/HB1uZ+jzdpdKOIXFpq6puPuDXpRQ==
+X-Received: by 2002:a17:902:da85:b0:224:f12:3735 with SMTP id d9443c01a7336-22a8a06b38dmr169101945ad.31.1744104200152;
+        Tue, 08 Apr 2025 02:23:20 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:79d9:c941:96f6:ac1c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297865e477sm95651655ad.122.2025.04.08.02.23.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 02:23:19 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Len Brown <lenb@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>, linux-kernel@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH 1/2] device property: Add optional nargs_prop for
- get_reference_args
-Message-ID: <Z_To8p6xD7aLrEVk@kekkonen.localdomain>
-References: <20250407223714.2287202-1-sean.anderson@linux.dev>
- <20250407223714.2287202-2-sean.anderson@linux.dev>
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	"Chengci . Xu" <chengci.xu@mediatek.com>,
+	Yong Wu <yong.wu@mediatek.com>,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: [PATCH] arm64: dts: mediatek: mt8188: Fix IOMMU device for rdma0
+Date: Tue,  8 Apr 2025 17:23:02 +0800
+Message-ID: <20250408092303.3563231-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.49.0.504.g3bcea36a83-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250407223714.2287202-2-sean.anderson@linux.dev>
+Content-Transfer-Encoding: 8bit
 
-Hi Sean,
+Based on the comments in the MT8188 IOMMU binding header, the rdma0
+device specifies the wrong IOMMU device for the IOMMU port it is
+tied to:
 
-On Mon, Apr 07, 2025 at 06:37:13PM -0400, Sean Anderson wrote:
-> get_reference_args does not permit falling back to nargs when nargs_prop
-> is missing. This makes it difficult to support older devicetrees where
-> nargs_prop may not be present. Add support for this by converting nargs
-> to a signed value. Where before nargs was ignored if nargs_prop was
-> passed, now nargs is only ignored if it is strictly negative. When it is
-> positive, nargs represents the fallback cells to use if nargs_prop is
-> absent.
+    This SoC have two MM IOMMU HWs, this is the connected information:
+    iommu-vdo: larb0/2/5/9/10/11A/11C/13/16B/17B/19/21
+    iommu-vpp: larb1/3/4/6/7/11B/12/14/15/16A/17A/23/27
 
-If you don't know either the argument count or have a property that tells
-it, there's no way to differentiate phandles from arguments. I'd say such
-DTS are broken. Where do they exist?
+rdma0's endpoint is M4U_PORT_L1_DISP_RDMA0 (on larb1), which should use
+iommu-vpp, but it is currently tied to iommu-vdo.
 
-At the very least this needs to be documented as a workaround and moved to
-the OF framework. I wouldn't add such a workaround to swnodes either, the
-bugs should be fixed instead.
+Somehow this went undetected until recently in Linux v6.15-rc1 with some
+IOMMU subsystem framework changes that caused the IOMMU to no longer
+work. The IOMMU would fail to probe if any devices associated with it
+could not be successfully attached. Prior to these changes, only the
+end device would be left without an IOMMU attached.
 
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> ---
-> 
->  drivers/base/property.c |  4 ++--
->  drivers/base/swnode.c   | 13 +++++++++----
->  drivers/of/property.c   | 10 +++-------
->  include/linux/fwnode.h  |  2 +-
->  4 files changed, 15 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/base/property.c b/drivers/base/property.c
-> index c1392743df9c..049f8a6088a1 100644
-> --- a/drivers/base/property.c
-> +++ b/drivers/base/property.c
-> @@ -606,7 +606,7 @@ int fwnode_property_get_reference_args(const struct fwnode_handle *fwnode,
->  		return -ENOENT;
->  
->  	ret = fwnode_call_int_op(fwnode, get_reference_args, prop, nargs_prop,
-> -				 nargs, index, args);
-> +				 nargs_prop ? -1 : nargs, index, args);
->  	if (ret == 0)
->  		return ret;
->  
-> @@ -614,7 +614,7 @@ int fwnode_property_get_reference_args(const struct fwnode_handle *fwnode,
->  		return ret;
->  
->  	return fwnode_call_int_op(fwnode->secondary, get_reference_args, prop, nargs_prop,
-> -				  nargs, index, args);
-> +				  nargs_prop ? -1 : nargs, index, args);
->  }
->  EXPORT_SYMBOL_GPL(fwnode_property_get_reference_args);
->  
-> diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
-> index b1726a3515f6..11af2001478f 100644
-> --- a/drivers/base/swnode.c
-> +++ b/drivers/base/swnode.c
-> @@ -503,7 +503,7 @@ software_node_get_named_child_node(const struct fwnode_handle *fwnode,
->  static int
->  software_node_get_reference_args(const struct fwnode_handle *fwnode,
->  				 const char *propname, const char *nargs_prop,
-> -				 unsigned int nargs, unsigned int index,
-> +				 int nargs, unsigned int index,
->  				 struct fwnode_reference_args *args)
->  {
->  	struct swnode *swnode = to_swnode(fwnode);
-> @@ -543,10 +543,15 @@ software_node_get_reference_args(const struct fwnode_handle *fwnode,
->  		error = property_entry_read_int_array(ref->node->properties,
->  						      nargs_prop, sizeof(u32),
->  						      &nargs_prop_val, 1);
-> -		if (error)
-> +
-> +		if (error == -EINVAL) {
-> +			if (nargs < 0)
-> +				return error;
-> +		} else if (error) {
->  			return error;
-> -
-> -		nargs = nargs_prop_val;
-> +		} else {
-> +			nargs = nargs_prop_val;
-> +		}
->  	}
->  
->  	if (nargs > NR_FWNODE_REFERENCE_ARGS)
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index c1feb631e383..c41190e47111 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1116,19 +1116,15 @@ of_fwnode_get_named_child_node(const struct fwnode_handle *fwnode,
->  static int
->  of_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
->  			     const char *prop, const char *nargs_prop,
-> -			     unsigned int nargs, unsigned int index,
-> +			     int nargs, unsigned int index,
->  			     struct fwnode_reference_args *args)
->  {
->  	struct of_phandle_args of_args;
->  	unsigned int i;
->  	int ret;
->  
-> -	if (nargs_prop)
-> -		ret = of_parse_phandle_with_args(to_of_node(fwnode), prop,
-> -						 nargs_prop, index, &of_args);
-> -	else
-> -		ret = of_parse_phandle_with_fixed_args(to_of_node(fwnode), prop,
-> -						       nargs, index, &of_args);
-> +	ret = __of_parse_phandle_with_args(to_of_node(fwnode), prop, nargs_prop,
-> +					   nargs, index, &of_args);
->  	if (ret < 0)
->  		return ret;
->  	if (!args) {
-> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-> index 6fa0a268d538..69fe44c68f8c 100644
-> --- a/include/linux/fwnode.h
-> +++ b/include/linux/fwnode.h
-> @@ -163,7 +163,7 @@ struct fwnode_operations {
->  				const char *name);
->  	int (*get_reference_args)(const struct fwnode_handle *fwnode,
->  				  const char *prop, const char *nargs_prop,
-> -				  unsigned int nargs, unsigned int index,
-> +				  int nargs, unsigned int index,
->  				  struct fwnode_reference_args *args);
->  	struct fwnode_handle *
->  	(*graph_get_next_endpoint)(const struct fwnode_handle *fwnode,
+Fixes: 7075b21d1a8e ("arm64: dts: mediatek: mt8188: Add display nodes for vdosys0")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+index 69a8423d3858..29d35ca94597 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+@@ -2579,7 +2579,7 @@ rdma0: rdma@1c002000 {
+ 			reg = <0 0x1c002000 0 0x1000>;
+ 			clocks = <&vdosys0 CLK_VDO0_DISP_RDMA0>;
+ 			interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
+-			iommus = <&vdo_iommu M4U_PORT_L1_DISP_RDMA0>;
++			iommus = <&vpp_iommu M4U_PORT_L1_DISP_RDMA0>;
+ 			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
+ 			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x2000 0x1000>;
+ 
 -- 
-Regards,
+2.49.0.504.g3bcea36a83-goog
 
-Sakari Ailus
 
