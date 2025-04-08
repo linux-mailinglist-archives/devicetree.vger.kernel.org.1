@@ -1,153 +1,106 @@
-Return-Path: <devicetree+bounces-164405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5007DA80E95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:42:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328C2A80E8F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 828C34220B7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:35:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC93850050D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A74F233D98;
-	Tue,  8 Apr 2025 14:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F55B1DEFD4;
+	Tue,  8 Apr 2025 14:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j8NIHh68"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OT4Vg+IN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAD422E400;
-	Tue,  8 Apr 2025 14:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F08F1FCFF3
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 14:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744122773; cv=none; b=iWjYK2H75AAP0ybprxKJ2n93DZWKAZpGsd5vkKL162+xxacwZ4mvSCUe2ylR+0ncel8EUV7Wgxe3ov4JzUiTex/hnbpN2Q5V9lxyItL03VaLNJXtu16f2oCUXCIKdfX3aUP4Mr7bdL70Kjx7E730SOvFTMcwRIJd7ax4g0EY958=
+	t=1744122791; cv=none; b=nLdDmPn0XpnsOHCP2S6awXA4Lf+am09QF7NgXf2gkyXvDfVaoOAx1UcDybnUNAZXQJah0XnCj65y6gSdbln9ThP4/JL0CN4ePKRcl6Xa9IjtkVTLZemgby7dTIQFCD81lH+bynIK50ekvRND2boWM9akjfgLDkS5jxN3GGvkx2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744122773; c=relaxed/simple;
-	bh=Jn41cw8nKB5Et/jTyOLpaMmZXmY/SDIsbul00xmf0hA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TYFFf7X1eX4JYfd17aAQy6B11OA2zVD1WWbxx8tT4pUKntM8D0kplGxBclSKlmXE3WJ6Fkaobj3E0EhbFeXa4al1VhEILLgftbPDBykqK22XwO/qw9FOTG/nKf/Qn2JdFDzglH2p7AgoSF8ei065bBc96MUathGs8pbSfDA9wOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j8NIHh68; arc=none smtp.client-ip=217.70.183.194
+	s=arc-20240116; t=1744122791; c=relaxed/simple;
+	bh=0XHIkHLQpkJB14ZvGsfWqrrWydV0S3BZmprvTvTjxSA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LvemjLwHM1np8rwKyMtv5ACHM0b2Sb/1CVkXheMeZN6suRZUQekLcOAb90KHDSIZaixm8ScZWDM8uyeysflBxF/92yklHviKyFF04/zsq5NI2m+SDqE85IRYzvx/u6WGxonV3bOUSBC28NZ/X9+Dl/JuzFSpSJufSBzyOFo3vWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OT4Vg+IN; arc=none smtp.client-ip=217.70.183.200
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 39A50441CD;
-	Tue,  8 Apr 2025 14:32:48 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 450C643210;
+	Tue,  8 Apr 2025 14:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744122769;
+	t=1744122787;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pMaIRlhquyjfKzC9Nfmvr79PGKRBrxgo0Q9ST42MxmE=;
-	b=j8NIHh68TfXxzOYdLXy3qI8E2oE0xPdq/2J98xAIeUAUW4MTnhoGoIoPfQtu/U5EWdcTAN
-	erJ6FRH3rGjhZl+O+TL5qj0o7W1Z3ALe1TUAZJFRsWS7WMH39ZM0Ml0u5bQDCZObqk2QxA
-	z9Ien9mKE9LvIvie66QHk7ra9Dkzc+xw6xkGSoEddJY/F/Sducb4LWWjybV1BsjOaND8aQ
-	MQe4cJr978eJDKbP99o5rQrwf3r0Ten/6YmUZdVHV0GHo4f1EK9gcVGCkT0tumiIaZc885
-	PYPQ2Aho3E0GmYJqKd0IuLi0HDv+2it1K0wuvScwxTqsP7tRx08DCaQzg8k3+Q==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Tue, 08 Apr 2025 16:32:22 +0200
-Subject: [PATCH net-next v7 13/13] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	bh=MtQ1RX1XHakV4BJm9VJ9jncw9PkEX8uZ1NRRr/+hnO8=;
+	b=OT4Vg+INpqb39sAAx0HMNcZIzeUBSZpIkjtBucWdRUBC/8E8xAWI1SJLJFoXyis7sfjYmT
+	0BNyxiMnxH2m+VzKn0beEhCiW/KIGXd2joOcNr/9oNSvr2+Yufl3eNQJOXZ1jkZHIXY1UL
+	jsra+WWxYMkd3PUFdKMK+Dx4FOD+jJGCK26tVyeKZeZY8XAyiMmBwkPp9gqoXZB++868ea
+	LnX5jdRx1+zbtebupBszf9bIHq2kKbQL7SjGxtp5Zwuka0hYHu7mNjow446tLoYzQC3Jsl
+	SkVxwIiK+cLdpdxu2mjfxutuZzaXm2bXU+mT83XgoD4gH2bFaOslt124KxyKsw==
+Date: Tue, 8 Apr 2025 16:33:06 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 0/4] ARM: dts: at91: calao_usb: clean up and remove
+ usb_a9g20_common.dtsi
+Message-ID: <20250408143306fd090d99@mail.local>
+References: <20250402204856.5197-1-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250408-feature_poe_port_prio-v7-13-9f5fc9e329cd@bootlin.com>
-References: <20250408-feature_poe_port_prio-v7-0-9f5fc9e329cd@bootlin.com>
-In-Reply-To: <20250408-feature_poe_port_prio-v7-0-9f5fc9e329cd@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-8cb71
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250402204856.5197-1-wsa+renesas@sang-engineering.com>
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdeffeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevgfdvgfektefgfefggeekudfggffhtdfffedtueetheejtddvledvvdelhedtveenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpeelnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehkhihlvgdrshifvghnshhonhesvghsthdrthgvtghhpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhig
- idruggvpdhrtghpthhtoheplhhinhhugidqughotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomh
-X-GND-Sasl: kory.maincent@bootlin.com
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdeffeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetlhgvgigrnhgurhgvuceuvghllhhonhhiuceorghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeeiudeuteehhfekgeejveefhfeiudejuefhgfeljefgjeegkeeujeeugfehgefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemrggutdefmeegfheltgemfeefjehfmehffeefugenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemrggutdefmeegfheltgemfeefjehfmehffeefugdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepkedprhgtphhtthhopeifshgrodhrvghnvghsrghssehsrghnghdqvghnghhinhgvvghrihhnghdrtghomhdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhts
+ hdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhitgholhgrshdrfhgvrhhrvgesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+On 02/04/2025 22:48:50+0200, Wolfram Sang wrote:
+> My USB-A9G20 definitely has no external RTC, unlike the LPW version.
+> While fixing that, I noticed that this renders the whole a9g20 include
+> obsolete. Here is a complete series doing that.
+> 
+> 
+> Wolfram Sang (4):
+>   ARM: dts: at91: calao_usb: simplify memory node
+>   ARM: dts: at91: usb_a9260: use 'stdout-path'
+>   ARM: dts: at91: calao_usb: simplify chosen node
+>   ARM: dts: at91: usb_a9g20: move wrong RTC node
+> 
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
+Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
-
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-
-Change in v5:
-- Use standard interrupt flag in the example.
-
-Change in v3:
-- New patch
----
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index d08abcb01211..3a5f960d8489 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -62,9 +65,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -72,6 +78,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
+>  arch/arm/boot/dts/microchip/usb_a9260.dts     |  8 ------
+>  .../boot/dts/microchip/usb_a9260_common.dtsi  |  9 +++++++
+>  arch/arm/boot/dts/microchip/usb_a9g20.dts     |  3 ++-
+>  .../boot/dts/microchip/usb_a9g20_common.dtsi  | 27 -------------------
+>  arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts | 10 ++++++-
+>  5 files changed, 20 insertions(+), 37 deletions(-)
+>  delete mode 100644 arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi
+> 
+> -- 
+> 2.47.2
+> 
 
 -- 
-2.34.1
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
