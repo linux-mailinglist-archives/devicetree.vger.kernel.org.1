@@ -1,137 +1,110 @@
-Return-Path: <devicetree+bounces-164499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC2BA8139B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E89A8140B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 970993BAA54
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:27:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C89D3B7D5B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A714023BCFB;
-	Tue,  8 Apr 2025 17:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61CA23F26D;
+	Tue,  8 Apr 2025 17:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Gug+5dJk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6gm00BS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A011D61A2;
-	Tue,  8 Apr 2025 17:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B8123E23F;
+	Tue,  8 Apr 2025 17:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744133269; cv=none; b=ut938Oe27ztIxgCAOgc0v+A+/P3byz7VY4yxU/Hy6m1T8p93Ywoslsv2atA/uy9SaI52d17pKGHrMvp2kRyUTdzBgm3NrqsctrzYzcf3uGh264uNIpE+cfge8qFjTist+WkcwT25q2XRHbTNbwMuqjV7pc5WujQyM+tbLKedPx0=
+	t=1744134469; cv=none; b=LXy3M0d+fQ3UeC4P3VvSmMHUyCLImM9L3pEi3p97YYlCoqceJJYHw+jxXxEHHF/4L0FjBKZlkQ0d0SFdKpVfAjDxm8s2awvyLCXK3Goa6hftRZMSw5Db1vJ7Y1764trPBVMRBe7Gp+GyK5rMpvZ4hZ+Dh9qYvaUuODm+EnHkdrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744133269; c=relaxed/simple;
-	bh=iGs2ZZHWszBkgjha1A2dY+//qUbJ939WmeteH4R9VoY=;
+	s=arc-20240116; t=1744134469; c=relaxed/simple;
+	bh=R0H4qB2DWVusKSacLmBvQoYOkD35Q2qxSrY8UFIpCvI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cGide0u/aBZ/dtQPqBxkI4et503S5P78DbZYfBr/GbiNy0XdNNhKnDKXbadb+Lun0kUqIQbScDhK8MyjJ+vqMDkUEsIaywjEr072CrYjEoi78j6CCVPjo7laX5UI2byCC1rYNSpsCGsqdzxU01TfQ1Kq/f2z8Evo9W/gCBbRQWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Gug+5dJk; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Y8RWM2V6ZnehV9xCG2Wi7D3YFpwSdHlPKuNFJkQ/bqQ=; b=Gug+5dJkFQ2rbCZ5IXZX4osrkc
-	z4jCLXuY8M+Deo7TGvO4X3azXzNOY81Pym6BE1wRVtlX0j1A55PWe5bI2sC3crPMPxHw1CeStLy2o
-	/V0QKXahJUMiiC0QA75pZ0B71CSfo3v561yu0Dz00hSkJbrLJPo2YlqRoNq7PJUrXxcRgH84YKKRU
-	OmVjnaBReXWpYspNTe4XnqnxjIhTFm+dq6EUTbPorz00lCBHEMhGAjD6JCR7I3D0tHI4klOBUjGmX
-	WZfuxE+cKAVpE7S62ePuI4c2mcHsgReKBCz99EZlrG7OMoPEVQAv2csuoYJ61Ua+C90ZhC8XailZA
-	nZx7znGQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51470)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1u2Cjb-0007pu-0I;
-	Tue, 08 Apr 2025 18:27:39 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1u2CjV-0001bg-19;
-	Tue, 08 Apr 2025 18:27:33 +0100
-Date: Tue, 8 Apr 2025 18:27:33 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	linux-kernel@vger.kernel.org, upstream@airoha.com,
-	Christian Marangi <ansuelsmth@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mb4bzVQWdIrl7QAQSlgtHm8JitZvCktd+1jTnAzzsuCBvPvdB7Sire5AzNM3vvFDR1BiF+CVT1UTyaeyUsabZNwxJ/jnX31LcBpGtoKpwyj7aMBuCcJ2eZ+we7dlxv9FgSz3PTLpRjGDzUZOxP85o+9QtA/xDkZyKoVldYqpR/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6gm00BS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D13BFC4CEE5;
+	Tue,  8 Apr 2025 17:47:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744134469;
+	bh=R0H4qB2DWVusKSacLmBvQoYOkD35Q2qxSrY8UFIpCvI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=g6gm00BSrUC9a67VqfO6wzWEjAiHCtHL+S0ONbWlZMdtU1RGAA1v7JyzyXBXm7oSF
+	 KWVxyk524MPRmVUAXoOjqyy4XmLat4bzEnXeICTAI7M/iXAG/DfNTO5TZZKyaz4YsX
+	 Bo3rtDRoRI1SfJkbJ4gFnuNg4WKEKp1x7kJcK4QbPLDo5ycUvUouZonsO/zCJvwPpZ
+	 ldDNwn1Tb4+9MCZVY8ms0z8w+ON0h4iyZ/frlBQjdm7lWsEf1EGE16myKTLJthgtqJ
+	 T7L+/DmJH52x5aDEygZvRGYbYNULH/VQ3VuFk71ev3vNdUzfF/xwpP5V77GJG3c5NX
+	 l+GMF4NLDc27g==
+Date: Tue, 8 Apr 2025 12:47:47 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	DENG Qingfang <dqfext@gmail.com>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Jonathan Corbet <corbet@lwn.net>, Joyce Ooi <joyce.ooi@intel.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>, upstream@airoha.com,
+	linux-kernel@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Madalin Bucur <madalin.bucur@nxp.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Robert Hancock <robert.hancock@calian.com>,
-	Saravana Kannan <saravanak@google.com>,
-	UNGLinuxDriver@microchip.com,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Wei Fang <wei.fang@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [net-next PATCH v2 00/14] Add PCS core support
-Message-ID: <Z_VchfzoKOTvy5TQ@shell.armlinux.org.uk>
-References: <20250407231746.2316518-1-sean.anderson@linux.dev>
- <20250408075047.69d031a9@kernel.org>
- <08c0e1eb-2de6-45bf-95a4-e817008209ab@linux.dev>
+	linux-mediatek@lists.infradead.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [net-next PATCH v14 03/16] dt-bindings: net: dsa: Document
+ support for Airoha AN8855 DSA Switch
+Message-ID: <174413446086.2421916.12520938934401150643.robh@kernel.org>
+References: <20250408095139.51659-1-ansuelsmth@gmail.com>
+ <20250408095139.51659-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <08c0e1eb-2de6-45bf-95a4-e817008209ab@linux.dev>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250408095139.51659-4-ansuelsmth@gmail.com>
 
-On Tue, Apr 08, 2025 at 11:30:43AM -0400, Sean Anderson wrote:
-> On 4/8/25 10:50, Jakub Kicinski wrote:
-> > On Mon,  7 Apr 2025 19:17:31 -0400 Sean Anderson wrote:
-> >> This series depends on [1,2], and they have been included at the
-> >> beginning so CI will run. However, I expect them to be reviewed/applied
-> >> outside the net-next tree.
-> > 
-> > These appear to break the build:
-> > 
-> > drivers/acpi/property.c:1669:39: error: initialization of ‘int (*)(const struct fwnode_handle *, const char *, const char *, int,  unsigned int,  struct fwnode_reference_args *)’ from incompatible pointer type ‘int (*)(const struct fwnode_handle *, const char *, const char *, unsigned int,  unsigned int,  struct fwnode_reference_args *)’ [-Wincompatible-pointer-types]
-> >  1669 |                 .get_reference_args = acpi_fwnode_get_reference_args,   \
-> > 
-> > Could you post as RFC until we can actually merge this? I'm worried 
-> > some sleep deprived maintainer may miss the note in the cover letter
-> > and just apply it all to net-next..
+
+On Tue, 08 Apr 2025 11:51:10 +0200, Christian Marangi wrote:
+> Document support for Airoha AN8855 5-port Gigabit Switch.
 > 
-> I would really like to keep RFC off the titles since some reviewers don't
-> pay attention to RFC series.
+> It does expose the 5 Internal PHYs on the MDIO bus and each port
+> can access the Switch register space by configurting the PHY page.
 > 
-> Would [DO NOT MERGE] in the subject be OK?
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../net/dsa/airoha,an8855-switch.yaml         | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
+> 
 
-I'd bet that those who have decided "RFC means the patch series is not
-ready" will take such a notice to also mean the same, and ignore it.
 
-I think there needs to be some kind of push-back against these
-maintainers who explicitly state that they ignore RFC series - making
-it basically anti-social behaviour in the kernel community.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+
+
 
