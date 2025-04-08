@@ -1,38 +1,96 @@
-Return-Path: <devicetree+bounces-164320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA47A7FD57
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:01:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC4EA7FE41
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1300E422A4D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:54:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8A9F3ABB81
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 11:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117AD26B0B6;
-	Tue,  8 Apr 2025 10:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6634F269CFD;
+	Tue,  8 Apr 2025 11:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bAbPaFzD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yDplW1iu";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="bAbPaFzD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yDplW1iu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A219268FDB;
-	Tue,  8 Apr 2025 10:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A2A2698AE
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 11:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744109523; cv=none; b=kyBqmR1FBZ3UtVw1pPq05B49lInAyer6LKG3mDHDK2NMvex6d6RhoF0pCRtGJZdgcvh1iJbthlGj0s+okNNZavRBW8utIZvq02gIVywkSxlUDeevsLBIIv9fVDmljrFJfpD/0nJ8rCUIumUs57jXbbbwGSJL/RTawClgExrMHcs=
+	t=1744110118; cv=none; b=l9EFLpwLwrTceDmKldJo9ir2OMdq9bY1Hq84ozV04aEg+KX/yV9FUpYpvnPY3VeAUoWZ5RrJd4P2xW3OPvJy9a9kZncK+BtEhkqr022vaS7iGeDOEGPC0All36h79+o29tbEWpX9mUbZWvMp1ugAZhAcSfBCt+CnOHGYAyyEq7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744109523; c=relaxed/simple;
-	bh=qdyfGchOgczDeIWDi2AZQbVlzbLP0tVBpIdNaPkXiQ8=;
+	s=arc-20240116; t=1744110118; c=relaxed/simple;
+	bh=1pXCfqByNkTtQWes3YLVtnm/TzDhesXTRO71sE4gCwQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FsFWfwd8+Iwsh1+2el/kbrO/+37iu5hTxZVvSotw8WeHUt9nsX6txYZ9XQ10awOVZsAk4JroXGDNpBlxoesMWDRmn4hplHdHwCPy8w+LVGNJv4iV8X1SitiPn7tYC1Ej1tjAGEYlHLiDZso4u37GhMXN1RYDP2psvnXcfLLDBvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3856F2047C;
-	Tue,  8 Apr 2025 10:51:46 +0000 (UTC)
-Message-ID: <3f9c48a6-1256-4e52-a26a-7f80f3b7c05a@ghiti.fr>
-Date: Tue, 8 Apr 2025 12:51:45 +0200
+	 In-Reply-To:Content-Type; b=YZBQufdFNOdBlbYRo2pGoCaALNxMUpBgVnD9O+XNU/LDlGTcLlcyIovB2i18N0mIJAH8409GaTD29sFp9y6nOKTejUQxrkNx4zxR6+Is0JZzwxoyug64Ue/XDUm47GtYlTc4mgqU7EOputuVvy3wPUc/PjjJT3GHN+Fv7zUHzCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=bAbPaFzD; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=yDplW1iu; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=bAbPaFzD; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=yDplW1iu; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 53E651F388;
+	Tue,  8 Apr 2025 11:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1744110114; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Ywc27iSwIC4EnbPxOMxz7hD70DTqHsguQev0GCVuwAw=;
+	b=bAbPaFzD0gi4Bf8Q9I+SKTqTOzcBuv0/zwxJLNMH+WplJ0Rn0ObH3t4TC5JPuTaKDNrN8v
+	v65iEvXx/B8850cth6aT33I7BJLXOGslAGVhS3VotW4hI923pwIqUh+hY3NCmuEdXsVw4A
+	SSnlBN19CbVyq0oqmmROTD+1WAQ60e8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1744110114;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Ywc27iSwIC4EnbPxOMxz7hD70DTqHsguQev0GCVuwAw=;
+	b=yDplW1iu2X7YWRLkpSP6e03u4ile3KPeJgaQ3ShSt1Wus4FPCoxU54ARxW5tH0gJL2cHQY
+	b/Cq/Wrje7drFqDw==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=bAbPaFzD;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=yDplW1iu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1744110114; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Ywc27iSwIC4EnbPxOMxz7hD70DTqHsguQev0GCVuwAw=;
+	b=bAbPaFzD0gi4Bf8Q9I+SKTqTOzcBuv0/zwxJLNMH+WplJ0Rn0ObH3t4TC5JPuTaKDNrN8v
+	v65iEvXx/B8850cth6aT33I7BJLXOGslAGVhS3VotW4hI923pwIqUh+hY3NCmuEdXsVw4A
+	SSnlBN19CbVyq0oqmmROTD+1WAQ60e8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1744110114;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Ywc27iSwIC4EnbPxOMxz7hD70DTqHsguQev0GCVuwAw=;
+	b=yDplW1iu2X7YWRLkpSP6e03u4ile3KPeJgaQ3ShSt1Wus4FPCoxU54ARxW5tH0gJL2cHQY
+	b/Cq/Wrje7drFqDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DF9F313691;
+	Tue,  8 Apr 2025 11:01:53 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id wqc0NSEC9Wd+AgAAD6G6ig
+	(envelope-from <tzimmermann@suse.de>); Tue, 08 Apr 2025 11:01:53 +0000
+Message-ID: <c4669293-0d56-4bdd-9075-01281042b002@suse.de>
+Date: Tue, 8 Apr 2025 13:01:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,315 +98,301 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 11/28] riscv/shstk: If needed allocate a new shadow
- stack on clone
+Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
+ LCD controller
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmrmann@suse.de>
+References: <20250408-st7571-v3-0-200693efec57@gmail.com>
+ <20250408-st7571-v3-2-200693efec57@gmail.com>
+ <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
 Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-11-e51202b53138@rivosinc.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-11-e51202b53138@rivosinc.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvkeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedthfelfeejgeehveegleejleelgfevhfekieffkeeujeetfedvvefhledvgeegieenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeegledprhgtphhtthhopeguvggsuhhgsehrihhvohhsihhntgdrtghomhdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehmihhnghhosehrvgguhhgrthdrtghomhdprhgtphhtthhopegsp
- hesrghlihgvnhekrdguvgdprhgtphhtthhopegurghvvgdrhhgrnhhsvghnsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepgiekieeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhprgesiiihthhorhdrtghomhdprhgtphhtthhopegrkhhpmheslhhinhhugidqfhhouhhnuggrthhiohhnrdhorhhg
-X-GND-Sasl: alex@ghiti.fr
+X-Rspamd-Queue-Id: 53E651F388
+X-Spam-Score: -3.01
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[redhat.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[suse.de:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	TO_MATCH_ENVRCPT_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 
+Hi,
 
-On 14/03/2025 22:39, Deepak Gupta wrote:
-> Userspace specifies CLONE_VM to share address space and spawn new thread.
-> `clone` allow userspace to specify a new stack for new thread. However
-> there is no way to specify new shadow stack base address without changing
-> API. This patch allocates a new shadow stack whenever CLONE_VM is given.
+lots of good points in the review.
+
+Am 08.04.25 um 12:44 schrieb Javier Martinez Canillas:
+[...]
+>> Reviewed-by: Thomas Zimmermann <tzimmrmann@suse.de>
+>> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+>> ---
+>>   drivers/gpu/drm/tiny/Kconfig      |  11 +
+>>   drivers/gpu/drm/tiny/Makefile     |   1 +
+>>   drivers/gpu/drm/tiny/st7571-i2c.c | 721 ++++++++++++++++++++++++++++++++++++++
+> I personally think that the tiny sub-directory is slowly becoming a
+> dumping ground for small drivers. Instead, maybe we should create a
+> drivers/gpu/drm/sitronix/ sub-dir and put all Sitronix drivers there?
 >
-> In case of CLONE_VFORK, parent is suspended until child finishes and thus
-> can child use parent shadow stack. In case of !CLONE_VM, COW kicks in
-> because entire address space is copied from parent to child.
+> So far we have drivers in tiny for: ST7735R, ST7586 and ST7571 with
+> your driver. And also have a few more Sitronix drivers in the panel
+> sub-directory (although those likely should remain there).
 >
-> `clone3` is extensible and can provide mechanisms using which shadow stack
-> as an input parameter can be provided. This is not settled yet and being
-> extensively discussed on mailing list. Once that's settled, this commit
-> will adapt to that.
+> I have a ST7565S and plan to write a driver for it. And I know someone
+> who is working on a ST7920 driver. That would be 5 Sitronix drivers and
+> the reason why I think that a dedicated sub-dir would be more organized.
+>
+> Maybe there's even common code among these drivers and could be reused?
+>
+> Just a thought though, it's OK to keep your driver as-is and we could do
+> refactor / move drivers around as follow-up if agreed that is desirable.
 
-
-What's the status of this discussion? Can you provide a Link to it?
-
+That sounds like a good idea. But the other existing drivers are based 
+on mipi-dbi helpers, while this one isn't. Not sure if that's important 
+somehow.
 
 >
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->   arch/riscv/include/asm/mmu_context.h |   7 ++
->   arch/riscv/include/asm/usercfi.h     |  25 ++++++++
->   arch/riscv/kernel/process.c          |   9 +++
->   arch/riscv/kernel/usercfi.c          | 120 +++++++++++++++++++++++++++++++++++
->   4 files changed, 161 insertions(+)
+>>   3 files changed, 733 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+>> index 94cbdb1337c07f1628a33599a7130369b9d59d98..33a69aea4232c5ca7a04b1fe18bb424e0fded697 100644
+>> --- a/drivers/gpu/drm/tiny/Kconfig
+>> +++ b/drivers/gpu/drm/tiny/Kconfig
+>> @@ -232,6 +232,17 @@ config TINYDRM_ST7586
+>>   
+[...]
+>> +
+>> +static const uint32_t st7571_primary_plane_formats[] = {
+>> +	DRM_FORMAT_C1,
+>> +	DRM_FORMAT_C2,
+>> +};
+>> +
+> I would add a DRM_FORMAT_XRGB8888 format. This will allow your display to
+> be compatible with any user-space. Your st7571_fb_blit_rect() can then do
+> a pixel format conversion from XRGB8888 to the native pixel format.
+
+It would be a starting point for XRGB8888 on C1/R1. I always wanted to 
+reimplement drm_fb_xrgb8888_to_mono() [1] with the generic _xfrm_ 
+helpers. Once the generic helpers can do such low-bit formats, C2 would 
+also work easily.
+
+[1] 
+https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/gpu/drm/drm_format_helper.c#L1114
+
+Best regards
+Thomas
+
 >
-> diff --git a/arch/riscv/include/asm/mmu_context.h b/arch/riscv/include/asm/mmu_context.h
-> index 8c4bc49a3a0f..dbf27a78df6c 100644
-> --- a/arch/riscv/include/asm/mmu_context.h
-> +++ b/arch/riscv/include/asm/mmu_context.h
-> @@ -48,6 +48,13 @@ static inline unsigned long mm_untag_mask(struct mm_struct *mm)
->   }
->   #endif
->   
-> +#define deactivate_mm deactivate_mm
-> +static inline void deactivate_mm(struct task_struct *tsk,
-> +				 struct mm_struct *mm)
-> +{
-> +	shstk_release(tsk);
-> +}
-> +
->   #include <asm-generic/mmu_context.h>
->   
->   #endif /* _ASM_RISCV_MMU_CONTEXT_H */
-> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
-> index 5f2027c51917..82d28ac98d76 100644
-> --- a/arch/riscv/include/asm/usercfi.h
-> +++ b/arch/riscv/include/asm/usercfi.h
-> @@ -8,6 +8,9 @@
->   #ifndef __ASSEMBLY__
->   #include <linux/types.h>
->   
-> +struct task_struct;
-> +struct kernel_clone_args;
-> +
->   #ifdef CONFIG_RISCV_USER_CFI
->   struct cfi_status {
->   	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
-> @@ -17,6 +20,28 @@ struct cfi_status {
->   	unsigned long shdw_stk_size; /* size of shadow stack */
->   };
->   
-> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
-> +				       const struct kernel_clone_args *args);
-> +void shstk_release(struct task_struct *tsk);
-> +void set_shstk_base(struct task_struct *task, unsigned long shstk_addr, unsigned long size);
-> +unsigned long get_shstk_base(struct task_struct *task, unsigned long *size);
-> +void set_active_shstk(struct task_struct *task, unsigned long shstk_addr);
-> +bool is_shstk_enabled(struct task_struct *task);
-> +
-> +#else
-> +
-> +#define shstk_alloc_thread_stack(tsk, args) 0
-> +
-> +#define shstk_release(tsk)
-> +
-> +#define get_shstk_base(task, size) 0UL
-> +
-> +#define set_shstk_base(task, shstk_addr, size)
-> +
-> +#define set_active_shstk(task, shstk_addr)
-> +
-> +#define is_shstk_enabled(task) false
-> +
->   #endif /* CONFIG_RISCV_USER_CFI */
->   
->   #endif /* __ASSEMBLY__ */
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index 7c244de77180..99acb6342a37 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -29,6 +29,7 @@
->   #include <asm/vector.h>
->   #include <asm/cpufeature.h>
->   #include <asm/exec.h>
-> +#include <asm/usercfi.h>
->   
->   #if defined(CONFIG_STACKPROTECTOR) && !defined(CONFIG_STACKPROTECTOR_PER_TASK)
->   #include <linux/stackprotector.h>
-> @@ -211,6 +212,7 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
->   	unsigned long clone_flags = args->flags;
->   	unsigned long usp = args->stack;
->   	unsigned long tls = args->tls;
-> +	unsigned long ssp = 0;
->   	struct pt_regs *childregs = task_pt_regs(p);
->   
->   	/* Ensure all threads in this mm have the same pointer masking mode. */
-> @@ -229,11 +231,18 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
->   		p->thread.s[0] = (unsigned long)args->fn;
->   		p->thread.s[1] = (unsigned long)args->fn_arg;
->   	} else {
-> +		/* allocate new shadow stack if needed. In case of CLONE_VM we have to */
-> +		ssp = shstk_alloc_thread_stack(p, args);
-> +		if (IS_ERR_VALUE(ssp))
-> +			return PTR_ERR((void *)ssp);
-> +
->   		*childregs = *(current_pt_regs());
->   		/* Turn off status.VS */
->   		riscv_v_vstate_off(childregs);
->   		if (usp) /* User fork */
->   			childregs->sp = usp;
-> +		/* if needed, set new ssp */
-> +		ssp ? set_active_shstk(p, ssp) : 0;
-
-
-The use of the ternary here is weird, can you change that to a if 
-statement?
-
-
->   		if (clone_flags & CLONE_SETTLS)
->   			childregs->tp = tls;
->   		childregs->a0 = 0; /* Return value of fork() */
-> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
-> index 24022809a7b5..73cf87dab186 100644
-> --- a/arch/riscv/kernel/usercfi.c
-> +++ b/arch/riscv/kernel/usercfi.c
-> @@ -19,6 +19,41 @@
->   
->   #define SHSTK_ENTRY_SIZE sizeof(void *)
->   
-> +bool is_shstk_enabled(struct task_struct *task)
-> +{
-> +	return task->thread_info.user_cfi_state.ubcfi_en ? true : false;
-> +}
-> +
-> +void set_shstk_base(struct task_struct *task, unsigned long shstk_addr, unsigned long size)
-> +{
-> +	task->thread_info.user_cfi_state.shdw_stk_base = shstk_addr;
-> +	task->thread_info.user_cfi_state.shdw_stk_size = size;
-> +}
-> +
-> +unsigned long get_shstk_base(struct task_struct *task, unsigned long *size)
-> +{
-> +	if (size)
-> +		*size = task->thread_info.user_cfi_state.shdw_stk_size;
-> +	return task->thread_info.user_cfi_state.shdw_stk_base;
-> +}
-> +
-> +void set_active_shstk(struct task_struct *task, unsigned long shstk_addr)
-> +{
-> +	task->thread_info.user_cfi_state.user_shdw_stk = shstk_addr;
-> +}
-> +
-> +/*
-> + * If size is 0, then to be compatible with regular stack we want it to be as big as
-> + * regular stack. Else PAGE_ALIGN it and return back
-> + */
-> +static unsigned long calc_shstk_size(unsigned long size)
-> +{
-> +	if (size)
-> +		return PAGE_ALIGN(size);
-> +
-> +	return PAGE_ALIGN(min_t(unsigned long long, rlimit(RLIMIT_STACK), SZ_4G));
-> +}
-> +
->   /*
->    * Writes on shadow stack can either be `sspush` or `ssamoswap`. `sspush` can happen
->    * implicitly on current shadow stack pointed to by CSR_SSP. `ssamoswap` takes pointer to
-> @@ -142,3 +177,88 @@ SYSCALL_DEFINE3(map_shadow_stack, unsigned long, addr, unsigned long, size, unsi
->   
->   	return allocate_shadow_stack(addr, aligned_size, size, set_tok);
->   }
-> +
-> +/*
-> + * This gets called during clone/clone3/fork. And is needed to allocate a shadow stack for
-> + * cases where CLONE_VM is specified and thus a different stack is specified by user. We
-> + * thus need a separate shadow stack too. How does separate shadow stack is specified by
-> + * user is still being debated. Once that's settled, remove this part of the comment.
-> + * This function simply returns 0 if shadow stack are not supported or if separate shadow
-> + * stack allocation is not needed (like in case of !CLONE_VM)
-> + */
-> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
-> +				       const struct kernel_clone_args *args)
-> +{
-> +	unsigned long addr, size;
-> +
-> +	/* If shadow stack is not supported, return 0 */
-> +	if (!cpu_supports_shadow_stack())
-> +		return 0;
-> +
-> +	/*
-> +	 * If shadow stack is not enabled on the new thread, skip any
-> +	 * switch to a new shadow stack.
-> +	 */
-> +	if (!is_shstk_enabled(tsk))
-> +		return 0;
-> +
-> +	/*
-> +	 * For CLONE_VFORK the child will share the parents shadow stack.
-> +	 * Set base = 0 and size = 0, this is special means to track this state
-> +	 * so the freeing logic run for child knows to leave it alone.
-> +	 */
-> +	if (args->flags & CLONE_VFORK) {
-> +		set_shstk_base(tsk, 0, 0);
-> +		return 0;
-> +	}
-> +
-> +	/*
-> +	 * For !CLONE_VM the child will use a copy of the parents shadow
-> +	 * stack.
-> +	 */
-> +	if (!(args->flags & CLONE_VM))
-> +		return 0;
-> +
-> +	/*
-> +	 * reaching here means, CLONE_VM was specified and thus a separate shadow
-> +	 * stack is needed for new cloned thread. Note: below allocation is happening
-> +	 * using current mm.
-> +	 */
-> +	size = calc_shstk_size(args->stack_size);
-> +	addr = allocate_shadow_stack(0, size, 0, false);
-> +	if (IS_ERR_VALUE(addr))
-> +		return addr;
-> +
-> +	set_shstk_base(tsk, addr, size);
-> +
-> +	return addr + size;
-> +}
-> +
-> +void shstk_release(struct task_struct *tsk)
-> +{
-> +	unsigned long base = 0, size = 0;
-> +	/* If shadow stack is not supported or not enabled, nothing to release */
-> +	if (!cpu_supports_shadow_stack() || !is_shstk_enabled(tsk))
-> +		return;
-> +
-> +	/*
-> +	 * When fork() with CLONE_VM fails, the child (tsk) already has a
-> +	 * shadow stack allocated, and exit_thread() calls this function to
-> +	 * free it.  In this case the parent (current) and the child share
-> +	 * the same mm struct. Move forward only when they're same.
-> +	 */
-> +	if (!tsk->mm || tsk->mm != current->mm)
-> +		return;
-> +
-> +	/*
-> +	 * We know shadow stack is enabled but if base is NULL, then
-> +	 * this task is not managing its own shadow stack (CLONE_VFORK). So
-> +	 * skip freeing it.
-> +	 */
-> +	base = get_shstk_base(tsk, &size);
-> +	if (!base)
-> +		return;
-> +
-> +	vm_munmap(base, size);
-> +	set_shstk_base(tsk, 0, 0);
-> +}
+> ...
 >
+>> +static void st7571_primary_plane_helper_atomic_update(struct drm_plane *plane,
+>> +						   struct drm_atomic_state *state)
+>> +{
+>> +	struct drm_plane_state *old_plane_state = drm_atomic_get_old_plane_state(state, plane);
+>> +	struct drm_plane_state *plane_state = drm_atomic_get_new_plane_state(state, plane);
+>> +	struct drm_shadow_plane_state *shadow_plane_state = to_drm_shadow_plane_state(plane_state);
+>> +	struct drm_framebuffer *fb = plane_state->fb;
+>> +	struct drm_atomic_helper_damage_iter iter;
+>> +	struct drm_device *dev = plane->dev;
+>> +	struct drm_rect damage;
+>> +	struct st7571_device *st7571 = drm_to_st7571(plane->dev);
+>> +	int ret, idx;
+>> +
+>> +	if (!fb)
+>> +		return; /* no framebuffer; plane is disabled */
+>> +
+>> +	ret = drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
+>> +	if (ret)
+>> +		return;
+>> +
+>> +	if (!drm_dev_enter(dev, &idx))
+> Should do a drm_gem_fb_end_cpu_access() here before returning.
+>
+>> +		return;
+>> +
+>> +	ret = st7571_set_pixel_format(st7571, fb->format->format);
+>> +	if (ret) {
+>> +		dev_err(dev->dev, "Failed to set pixel format: %d\n", ret);
+> And here I think you need to do both drm_gem_fb_end_cpu_access() and drm_dev_exit().
+>
+>> +		return;
+>> +	}
+>> +
+>> +	drm_atomic_helper_damage_iter_init(&iter, old_plane_state, plane_state);
+>> +	drm_atomic_for_each_plane_damage(&iter, &damage) {
+>> +		st7571_fb_blit_rect(fb, &shadow_plane_state->data[0], &damage);
+>> +	}
+>> +
+>> +	drm_dev_exit(idx);
+>> +	drm_gem_fb_end_cpu_access(fb, DMA_FROM_DEVICE);
+>> +}
+>> +
+>> +static const struct drm_plane_helper_funcs st7571_primary_plane_helper_funcs = {
+>> +	DRM_GEM_SHADOW_PLANE_HELPER_FUNCS,
+>> +	.atomic_check = st7571_primary_plane_helper_atomic_check,
+>> +	.atomic_update = st7571_primary_plane_helper_atomic_update,
+>> +};
+> Maybe you want an .atomic_disable callback that clears your screen ?
+>
+>
+>> +
+>> +/*
+>> + * CRTC
+>> + */
+>> +
+>> +static const struct drm_crtc_helper_funcs st7571_crtc_helper_funcs = {
+>> +	.atomic_check = drm_crtc_helper_atomic_check,
+> I think you could have an .mode_valid callback that just checks the fixed mode.
+>
+>> +/*
+>> + * Encoder
+>> + */
+>> +
+>> +static const struct drm_encoder_funcs st7571_encoder_funcs = {
+>> +	.destroy = drm_encoder_cleanup,
+>> +};
+> I recommend to have an encoder .atomic_{en,dis}able callbacks to init and turn
+> off your display respectively. That way, the driver can call st7571_lcd_init()
+> only when the display is going to be used instead of at probe time.
+>
+> ...
+>
+>> +static enum drm_mode_status st7571_mode_config_mode_valid(struct drm_device *dev,
+>> +						       const struct drm_display_mode *mode)
+>> +{
+>> +	struct st7571_device *st7571 = drm_to_st7571(dev);
+>> +
+>> +	return drm_crtc_helper_mode_valid_fixed(&st7571->crtc, mode, &st7571->mode);
+>> +}
+> The fact that you are calling a drm_crtc_helper here is an indication that probably
+> this should be done in a struct drm_crtc_helper_funcs .mode_valid callback instead,
+> as mentioned above.
+>
+>> +
+>> +static const struct drm_mode_config_funcs st7571_mode_config_funcs = {
+>> +	.fb_create = drm_gem_fb_create_with_dirty,
+>> +	.mode_valid = st7571_mode_config_mode_valid,
+> And that way you could just drop this handler.
+>
+>> +	.atomic_check = drm_atomic_helper_check,
+>> +	.atomic_commit = drm_atomic_helper_commit,
+>> +};
+>> +
+> ...
+>
+>> +static int st7571_probe(struct i2c_client *client)
+>> +{
+>> +	struct st7571_device *st7571;
+>> +	struct drm_device *dev;
+>> +	int ret;
+>> +
+>> +	st7571 = devm_drm_dev_alloc(&client->dev, &st7571_driver,
+>> +				    struct st7571_device, dev);
+>> +	if (IS_ERR(st7571))
+>> +		return PTR_ERR(st7571);
+>> +
+>> +	dev = &st7571->dev;
+>> +	st7571->client = client;
+>> +	i2c_set_clientdata(client, st7571);
+>> +
+>> +	ret = st7571_parse_dt(st7571);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	st7571->mode = st7571_mode(st7571);
+>> +
+>> +	/*
+>> +	 * The chip nacks some messages but still works as expected.
+>> +	 * If the adapter does not support protocol mangling do
+>> +	 * not set the I2C_M_IGNORE_NAK flag at the expense * of possible
+>> +	 * cruft in the logs.
+>> +	 */
+>> +	if (i2c_check_functionality(client->adapter, I2C_FUNC_PROTOCOL_MANGLING))
+>> +		st7571->ignore_nak = true;
+>> +
+>> +	st7571->regmap = devm_regmap_init(&client->dev, &st7571_regmap_bus,
+>> +					   client, &st7571_regmap_config);
+>> +	if (IS_ERR(st7571->regmap)) {
+>> +		dev_err(&client->dev, "Failed to initialize regmap\n");
+> If you use dev_err_probe(), you can give some indication to users about
+> what failed. It prints messages in the /sys/kernel/debug/devices_deferred
+> debugfs entry.
+>
+>> +
+>> +static void st7571_remove(struct i2c_client *client)
+>> +{
+>> +	struct st7571_device *st7571 = i2c_get_clientdata(client);
+>> +
+>> +	drm_dev_unplug(&st7571->dev);
+> I think you are missing a drm_atomic_helper_shutdown() here.
+>
+> And also a struct i2c_driver .shutdown callback to call to
+> drm_atomic_helper_shutdown() as well.
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
 
