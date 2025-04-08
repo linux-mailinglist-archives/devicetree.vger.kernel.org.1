@@ -1,338 +1,189 @@
-Return-Path: <devicetree+bounces-164530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9894CA8163E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 22:03:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4A9A81667
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 22:10:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 737A346830B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 20:03:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5983F3BA460
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 20:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29402243958;
-	Tue,  8 Apr 2025 20:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24517243958;
+	Tue,  8 Apr 2025 20:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="QOnjGrf7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="itvuakTL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A96244186;
-	Tue,  8 Apr 2025 20:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6F12C9A;
+	Tue,  8 Apr 2025 20:09:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744142596; cv=none; b=AquduS4QlkxJ0m1tc44vFE0t15Bz1FWuGm+Bc4hv4DidwSlu3GGBhpeI7liyXCzWqQwpuRBDhuyWMxiKRndmxVD3yQQ4LnWg2ygkMwN2YF/d73IrJNJys4eMs1m+5ACCYBI3fnDQFC5gfN8SP1TBPMwIJJ1I3zwwjKNpSyDm9D4=
+	t=1744142968; cv=none; b=fD3kwdD7mHFDkQGU9y7fA1banT+vdF+8bJVVPjuOh5nh0oPgLyo7yNqB09wr1RuqvFfS2I2vxcJnqW2C7Yyk2jt2mfMfoJDRyuXaLir1htQm0o9J0/SWxeRrJXWkwOuxwgyg2AY3OGn9A3qA0zc59dnt4HgyI81U/aEpgaJeXt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744142596; c=relaxed/simple;
-	bh=2Z4TqMhJgMVGMdEWKFKm8oqk6IobRWcr5GzyRiHD9X0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R75FpAQ/b7oz64Vk1RLGV3eGcmfjdBQbfWIQYbMnor0fuH5qA//QJATK7F9oopbByjXEouSNVldfNnLuBqKfjif03H44YqUQXsZosWXQ2n+/SHihmsPL10AGN+XfnwbB+dVSSsH4NzJeML/ej6w23yCZfT6E3ozaOT33Zw0YllQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=QOnjGrf7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=FxiVMMavbeVJat0Fg13/bdPyEQi5kd3dq3ZqRtNTT1k=; b=QOnjGrf7X9PrCbh55TklsvWBSV
-	RpDtdVx3YJhCSYVlvWD8r5SitRALVtYyrVe4AjNSmP0rf0XqJROu31YDlFYA/9R9Oequlznuxc+Ka
-	hASbdH7877Vj9UPZ8la+BO50aButo8PYEaf6wpSUiFylT01JejCZbV+4F3tim+4ss9RnrlBURjL+5
-	hd2oQW0TN9pAP9/KHhvVTA87RPnAX37KJRkgV8bH3Y9BVRjAEU7GUkFHp/GgIJfrOB+II2JQ2GApD
-	u5V6Xu8Nj4TXSsvNybh4kDPTmhuxsgUd5uVb8JzO+AuZ5UE10Dcvbkl4NFm4jRRXfBZc1suO3l8J4
-	mWFi6LWg==;
-Received: from i53875b95.versanet.de ([83.135.91.149] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1u2F9z-00023n-2e; Tue, 08 Apr 2025 22:03:03 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
- William Breathitt Gray <wbg@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-iio@vger.kernel.org, kernel@collabora.com,
- Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject: Re: [PATCH 4/7] soc: rockchip: add mfpwm driver
-Date: Tue, 08 Apr 2025 22:03:01 +0200
-Message-ID: <5559308.Sb9uPGUboI@diego>
-In-Reply-To: <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
-References:
- <20250408-rk3576-pwm-v1-0-a49286c2ca8e@collabora.com>
- <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
+	s=arc-20240116; t=1744142968; c=relaxed/simple;
+	bh=aNjMjBImuHWm3Za2GhViisBUEbWGiBpRO0GDHuabOik=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HToH6t5CmTA8YG0pxFvCgDyul95cN5FMPQisEGfXOMP1Fp3kDiL+/NsrZnoDLSf0adGNKaJ8Nk7PQEBDfzFzy8dSvR+lFgM+EQonqWaHfDqjCvD7+nv0M28RLr6u6OP/zbi4RQVyeOQi+rWl5KIbSSVMZ9GMgZ12Rmqv1NiHBZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=itvuakTL; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso40791355e9.3;
+        Tue, 08 Apr 2025 13:09:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744142965; x=1744747765; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HxycxmR24mreWb3qYHH41P8fRm9tAvDYgVZJX5g6AZU=;
+        b=itvuakTL3++YyIBr1GCEVegMvmJQnE9Ex3DgDIM3Zna63m6CxZ0QbMEN+DrlnWQ2Sw
+         JGqGsHVtB1KO6XwPXiRMUU/AVjnF9aK9d6xF4C6UPLjiuqVPXFPUx2/8V9KJupIs8ozA
+         vgFWbv6rLwl9YtTKwcqbNwLvNye8VlXS5bNIzyUDXU73OVCU9Epg3FrMMYk0AbUkaAVZ
+         7cQ3w3vFEj2rDIZKmx5YYEXQQIk7MDqj6xrsXDYP8KwtsqfJLZ15zfwazRufC8vQJmuT
+         ObK1zBeTvQ4myn9GiUHJDclYF65kHtQ1afYWKU9cN+NDDiRte1WdwMmHEf0Z77fO+wSQ
+         ybxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744142965; x=1744747765;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HxycxmR24mreWb3qYHH41P8fRm9tAvDYgVZJX5g6AZU=;
+        b=K78wBAF7BrPS41sYapHnMyB9FZWLEeS/bkBzyL6JyRjXSfH1EMdvFrt5nHo+mnQnad
+         M3whVV+On+RWKXvk0vSI9Q5KmUHwzgT1fEbUzN9hyuGbVC/c0RdIu1D/lVSmcRP9B4eG
+         DfbfzdkCw5Owp/cJIpJ1WTox37UYwiG6rs9BcAQ+eN6e9enCuglceRpK/nIHrSghR6r2
+         y1yFsMNPPVG1VysrQbUuzjkZy1FJo+zaJH2qK9kd9VtwdeujH9NVLyDltLZqedhVDs7l
+         kmZXsbXn7QF0V/5MD2Ab4Frug10HXdWJSvh2VZ8mskJu0IRFNaq4pPrgsuHDHA0if+1K
+         R3jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtfBuTOVgfKzj0BhiQShXeQ+8uBCAby7hai+gy3mWdGfR2Pm/9OvCL9HhU1o3IiHm3km2FPtghqf3h@vger.kernel.org, AJvYcCVgGCnk3RFjyb5n6fImWOz/Nt6rqVLC9XFMmyBVCBD2GJoKvB9x/ac45qA2SDYLvkNUtHlU/Co7SA4HteO9@vger.kernel.org, AJvYcCW8qACsIAcRiXzJGJmtn+y/xsPWodHQdPjA60/tLpXLb8+UUNdMfSbCNnwevk4pFfNA+IK4YqzI79Fl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkaWeihV6ZJPu61nFYzbdSQF6c12HX3+6DY/SSR1Mgj7qqUIRG
+	jY8hKTLgWTk89tsIHNWVe+/5hH90WxpojIMcsFCjF63vGTN+61Ru
+X-Gm-Gg: ASbGnctMvQKWGutjZGqxvfYOicbYl1soF9sYm+ebCQiL4J5BDhsD7AG+Ml0nXNdzMj2
+	CbQnWcpc9XpyJSHl9kjbX3hZ9YQwP9P/w7rAdzWw7fT7uiMD0vjjZY4ZFLTeSAtFkLaNZni4C3y
+	INmHy/9XHmII6sT96taMMX6ss2RCC21FMeh1M/oqTn1t0daTQvbQ13M34bAxDU5UxD0UG8DlOTa
+	LH8paAC6E7qygANfHZPFev8fjC8xZWhELJ30xo+diXfm2OsWFNuGWMV0EK50TLYrRcIMuAvoRdv
+	CoVz+/CxzZLEnK8OMvU3RruR4zo/yB3Umvd/EZUOHWy84iZxLaVdJcDKZMfg7W6pjOFdhoCn98j
+	tYyI=
+X-Google-Smtp-Source: AGHT+IG4pnFJ8kcq862U72zyRWeCt8XlAxDg3swXx2I9PFJY/N49qCA0Jg1JfeOeNkChX7NGEB4opQ==
+X-Received: by 2002:a05:600c:5107:b0:43c:f8fc:f69a with SMTP id 5b1f17b1804b1-43f1fdbf975mr428285e9.4.1744142964596;
+        Tue, 08 Apr 2025 13:09:24 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:469:6216:b7f8:fc55])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec1795782sm174892875e9.26.2025.04.08.13.09.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 13:09:24 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 00/15] Add support for DU and DSI on the Renesas RZ/V2H(P) SoC
+Date: Tue,  8 Apr 2025 21:08:57 +0100
+Message-ID: <20250408200916.93793-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-not a full review, just me making a first pass.
+Hi All,
 
-> +unsigned long mfpwm_clk_get_rate(struct rockchip_mfpwm *mfpwm)
-> +{
-> +	if (!mfpwm || !mfpwm->chosen_clk)
-> +		return 0;
-> +
-> +	return clk_get_rate(mfpwm->chosen_clk);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(mfpwm_clk_get_rate, "ROCKCHIP_MFPWM");
+This patch series adds support for the Display Unit (DU) and MIPI DSI
+interface on the Renesas RZ/V2H(P) SoC. The initial patches add PLLDSI
+clocks and reset entries for the DSI and LCDC and the later patches add
+support for the DU and DSI drivers. The DU block is similar to the
+RZ/G2L SoC, but the DSI interface is slightly different. The patches
+include updates to the device tree bindings, clock and reset
+controllers, and the DU driver to accommodate these changes.
 
-aren't you just re-implemeting a clk-mux with the whole chosen-clk
-mechanism? See drivers/clk/clk-mux.c, so in theory you should be
-able to just do a clk_register_mux(...) similar to for example
-sound/soc/samsung/i2s.c .
+Note, my initial intention was to split the clock patches and the DU/DSI
+driver patches into two separate series. However, I found that sending
+them together will make it easier for the reviewers to understand clock
+related changes.
 
+Note, the clock patches apply on top of the below patch series:
+- https://lore.kernel.org/all/20250407165202.197570-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> +
-> +__attribute__((nonnull))
-> +static int mfpwm_do_acquire(struct rockchip_mfpwm_func *pwmf)
-> +{
-> +	struct rockchip_mfpwm *mfpwm = pwmf->parent;
-> +	unsigned int cnt;
-> +
-> +	if (mfpwm->active_func && pwmf->id != mfpwm->active_func->id)
-> +		return -EBUSY;
-> +
-> +	if (!mfpwm->active_func)
-> +		mfpwm->active_func = pwmf;
-> +
-> +	if (!check_add_overflow(mfpwm->acquire_cnt, 1, &cnt)) {
-> +		mfpwm->acquire_cnt = cnt;
-> +	} else {
-> +		WARN(1, "prevented acquire counter overflow in %s\n", __func__);
+v1->v2:
+- Rebased the changes on top of v6.15-rc1
+- Kept the sort order for schema validation
+- Added  `port@1: false` for RZ/V2H(P) SoC
+- Added enum for RZ/V2H as suggested by Krzysztof as the list
+  will grow in the future (while adding RZ/G3E SoC).
+- Added Reviewed-by tag from Biju and Krzysztof.
+- Replaced individual flags as reset flag
+- Dropped unused macros
+- Added missing LPCLK flag to rzvv2h info
+- Dropped FCP and VSP documentation patch and sent them separately
 
-dev_warn, as you have the mfpwm pointing to a pdev?
+Cheers,
+Prabhakar
 
-> +		return -EOVERFLOW;
-> +	}
-> +
-> +	dev_dbg(&mfpwm->pdev->dev, "%d acquired mfpwm, acquires now at %u\n",
-> +		pwmf->id, mfpwm->acquire_cnt);
-> +
-> +	return clk_enable(mfpwm->pclk);
-> +}
+Lad Prabhakar (15):
+  clk: renesas: rzv2h-cpg: Add support for DSI clocks
+  clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
+  dt-bindings: display: renesas,rzg2l-du: Add support for RZ/V2H(P) SoC
+  dt-bindings: display: bridge: renesas,dsi: Add support for RZ/V2H(P)
+    SoC
+  drm: renesas: rz-du: Add support for RZ/V2H(P) SoC
+  drm: renesas: rz-du: mipi_dsi: Add min check for VCLK range
+  drm: renesas: rz-du: mipi_dsi: Simplify HSFREQ calculation
+  drm: renesas: rz-du: mipi_dsi: Use VCLK for HSFREQ calculation
+  drm: renesas: rz-du: mipi_dsi: Add OF data support
+  drm: renesas: rz-du: mipi_dsi: Use mHz for D-PHY frequency
+    calculations
+  drm: renesas: rz-du: mipi_dsi: Add feature flag for 16BPP support
+  drm: renesas: rz-du: mipi_dsi: Add dphy_late_init() callback for
+    RZ/V2H(P)
+  drm: renesas: rz-du: mipi_dsi: Add function pointers for configuring
+    VCLK and mode validation
+  drm: renesas: rz-du: mipi_dsi: Add support for LPCLK handling
+  drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
 
-> +/**
-> + * mfpwm_get_clk_src - read the currently selected clock source
-> + * @mfpwm: pointer to the driver's private &struct rockchip_mfpwm instance
-> + *
-> + * Read the device register to extract the currently selected clock source,
-> + * and return it.
-> + *
-> + * Returns:
-> + * * the numeric clock source ID on success, 0 <= id <= 2
-> + * * negative errno on error
-> + */
-> +static int mfpwm_get_clk_src(struct rockchip_mfpwm *mfpwm)
-> +{
-> +	u32 val;
-> +
-> +	clk_enable(mfpwm->pclk);
-> +	val = mfpwm_reg_read(mfpwm->base, PWMV4_REG_CLK_CTRL);
-> +	clk_disable(mfpwm->pclk);
-> +
-> +	return (val & PWMV4_CLK_SRC_MASK) >> PWMV4_CLK_SRC_SHIFT;
-> +}
-> +
-> +static int mfpwm_choose_clk(struct rockchip_mfpwm *mfpwm)
-> +{
-> +	int ret;
-> +
-> +	ret = mfpwm_get_clk_src(mfpwm);
-> +	if (ret < 0) {
-> +		dev_err(&mfpwm->pdev->dev, "couldn't get current clock source: %pe\n",
-> +			ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +	if (ret == PWMV4_CLK_SRC_CRYSTAL) {
-> +		if (mfpwm->osc_clk) {
-> +			mfpwm->chosen_clk = mfpwm->osc_clk;
-> +		} else {
-> +			dev_warn(&mfpwm->pdev->dev, "initial state wanted 'osc' as clock source, but it's unavailable. Defaulting to 'pwm'.\n");
-> +			mfpwm->chosen_clk = mfpwm->pwm_clk;
-> +		}
-> +	} else {
-> +		mfpwm->chosen_clk = mfpwm->pwm_clk;
-> +	}
-> +
-> +	return clk_rate_exclusive_get(mfpwm->chosen_clk);
-> +}
->
-> +/**
-> + * mfpwm_switch_clk_src - switch between PWM clock sources
-> + * @mfpwm: pointer to &struct rockchip_mfpwm driver data
-> + * @clk_src: one of either %PWMV4_CLK_SRC_CRYSTAL or %PWMV4_CLK_SRC_PLL
-> + *
-> + * Switch between clock sources, ``_exclusive_put``ing the old rate,
-> + * ``clk_rate_exclusive_get``ing the new one, writing the registers and
-> + * swapping out the &struct_rockchip_mfpwm->chosen_clk.
-> + *
-> + * Returns:
-> + * * %0        - Success
-> + * * %-EINVAL  - A wrong @clk_src was given or it is unavailable
-> + * * %-EBUSY   - Device is currently in use, try again later
-> + */
-> +__attribute__((nonnull))
-> +static int mfpwm_switch_clk_src(struct rockchip_mfpwm *mfpwm,
-> +					  unsigned int clk_src)
-> +{
-> +	struct clk *prev;
-> +	int ret = 0;
-> +
-> +	scoped_cond_guard(spinlock_try, return -EBUSY, &mfpwm->state_lock) {
-> +		/* Don't fiddle with any of this stuff if the PWM is on */
-> +		if (mfpwm->active_func)
-> +			return -EBUSY;
-> +
-> +		prev = mfpwm->chosen_clk;
-> +		ret = mfpwm_get_clk_src(mfpwm);
-> +		if (ret < 0)
-> +			return ret;
-> +		if (ret == clk_src)
-> +			return 0;
-> +
-> +		switch (clk_src) {
-> +		case PWMV4_CLK_SRC_PLL:
-> +			mfpwm->chosen_clk = mfpwm->pwm_clk;
-> +			break;
-> +		case PWMV4_CLK_SRC_CRYSTAL:
-> +			if (!mfpwm->osc_clk)
-> +				return -EINVAL;
-> +			mfpwm->chosen_clk = mfpwm->osc_clk;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +
-> +		clk_enable(mfpwm->pclk);
-> +
-> +		mfpwm_reg_write(mfpwm->base, PWMV4_REG_CLK_CTRL,
-> +				PWMV4_CLK_SRC(clk_src));
-> +		clk_rate_exclusive_get(mfpwm->chosen_clk);
-> +		if (prev)
-> +			clk_rate_exclusive_put(prev);
-> +
-> +		clk_disable(mfpwm->pclk);
-> +	}
-> +
-> +	return ret;
-> +}
+ .../bindings/display/bridge/renesas,dsi.yaml  | 116 +++-
+ .../bindings/display/renesas,rzg2l-du.yaml    |  23 +-
+ drivers/clk/renesas/r9a09g057-cpg.c           |  63 ++
+ drivers/clk/renesas/rzv2h-cpg.c               | 284 ++++++++
+ drivers/clk/renesas/rzv2h-cpg.h               |  17 +
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 +
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 608 +++++++++++++++++-
+ .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  36 +-
+ include/linux/clk/renesas-rzv2h-dsi.h         | 207 ++++++
+ 9 files changed, 1299 insertions(+), 66 deletions(-)
+ create mode 100644 include/linux/clk/renesas-rzv2h-dsi.h
 
-ok, the relevant part might be the 
-	/* Don't fiddle with any of this stuff if the PWM is on */
-thing, which will require special set_rate operation, but in general I
-think, if it ticks like a clock, it probably should be a real clock ;-) .
-
-
-> +static ssize_t chosen_clock_show(struct device *dev,
-> +				 struct device_attribute *attr, char *buf)
-> +{
-> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
-> +	unsigned long clk_src = 0;
-> +
-> +	/*
-> +	 * Why the weird indirection here? I have the suspicion that if we
-> +	 * emitted to sysfs with the lock still held, then a nefarious program
-> +	 * could hog the lock by somehow forcing a full buffer condition and
-> +	 * then refusing to read from it. Don't know whether that's feasible
-> +	 * to achieve in reality, but I don't want to find out the hard way
-> +	 * either.
-> +	 */
-> +	scoped_guard(spinlock, &mfpwm->state_lock) {
-> +		if (mfpwm->chosen_clk == mfpwm->pwm_clk)
-> +			clk_src = PWMV4_CLK_SRC_PLL;
-> +		else if (mfpwm->osc_clk && mfpwm->chosen_clk == mfpwm->osc_clk)
-> +			clk_src = PWMV4_CLK_SRC_CRYSTAL;
-> +		else
-> +			return -ENODEV;
-> +	}
-> +
-> +	if (clk_src == PWMV4_CLK_SRC_PLL)
-> +		return sysfs_emit(buf, "pll\n");
-> +	else if (clk_src == PWMV4_CLK_SRC_CRYSTAL)
-> +		return sysfs_emit(buf, "crystal\n");
-> +
-> +	return -ENODEV;
-> +}
-
-which brings me to my main point of contention. Why does userspace
-need to select a clock source for the driver via sysfs.
-
-Neither the commit message nor the code does seem to explain that,
-or I'm just blind - which is also a real possibility.
-
-In general I really think, userspace should not need to care about if
-a PLL or directly the oscillator is used a clock input.
-I assume which is needed results from some runtime factor, so the
-driver should be able to select the correct one?
-
-A mux-clock could ust use clk_mux_determine_rate_flags() to select
-the best parent depending on a requested rate instead.
-
-
-> +static ssize_t chosen_clock_store(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  const char *buf, size_t count)
-> +{
-> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	if (sysfs_streq(buf, "pll")) {
-> +		ret = mfpwm_switch_clk_src(mfpwm, PWMV4_CLK_SRC_PLL);
-> +		if (ret)
-> +			return ret;
-> +		return count;
-> +	} else if (sysfs_streq(buf, "crystal")) {
-> +		ret = mfpwm_switch_clk_src(mfpwm, PWMV4_CLK_SRC_CRYSTAL);
-> +		if (ret)
-> +			return ret;
-> +		return count;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static DEVICE_ATTR_RW(chosen_clock);
-> +
-> +static ssize_t available_clocks_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf)
-> +{
-> +	struct rockchip_mfpwm *mfpwm = dev_get_drvdata(dev);
-> +	ssize_t size = 0;
-> +
-> +	size += sysfs_emit_at(buf, size, "pll\n");
-> +	if (mfpwm->osc_clk)
-> +		size += sysfs_emit_at(buf, size, "crystal\n");
-> +
-> +	return size;
-> +}
-> +
-> +static DEVICE_ATTR_RO(available_clocks);
-> +
-> +static struct attribute *mfpwm_attrs[] = {
-> +	&dev_attr_available_clocks.attr,
-> +	&dev_attr_chosen_clock.attr,
-> +	NULL,
-> +};
-
-Not understanding the need for the sysfs stuff was my main point this
-evening :-)
-
-Heiko
-
+-- 
+2.49.0
 
 
