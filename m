@@ -1,129 +1,80 @@
-Return-Path: <devicetree+bounces-164175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D149A7F723
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:56:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF90CA7F72A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:59:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 619AD3B76CD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:54:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C30F7AAE91
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4831625F990;
-	Tue,  8 Apr 2025 07:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54AD25F987;
+	Tue,  8 Apr 2025 07:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M3xXo6sy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hrL/DcZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A41219A9D;
-	Tue,  8 Apr 2025 07:54:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836FF1FECDF;
+	Tue,  8 Apr 2025 07:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744098885; cv=none; b=gSUXpc3No8D/Zza+rjK/YGd/1MZ3cJST0HChU4+doz2LduGE3zwoCMzk9TiAvENvdUb/TAyXww+/9uIHVFdm0lptvb6dXat6xGDG4cZH3ly0POxP+dmOGUHVMpmnn237yXtihXRC26DGvIiwSxriTILxp1hwlh6lFFbJqRSIejU=
+	t=1744099176; cv=none; b=EFnOa1AbuyNYbCMlipSf0V2/+sOmLUnNZvx7AgPDCgPq+9VUKjgM+1BOiFVw4UOuafv9V6Xcmz6bshlM8zNm3qN/eFBAJmTYwlC55pchamx6SQPXVfZenILWmdzN24wpYmN+qDlGBLwlwzsxMkhThOyeKADBLUPtxzCATn+rS9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744098885; c=relaxed/simple;
-	bh=xxetUDTZlqHK0fEp7Vi6b/HN4t5K5gsdbrTM3CzIMZc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=SK5WXiWCB2eXWz0RHnBZx4fZ0ALxka3zv0uGiTMgbMXSYn/Tvo3ZNETcxYDsJXEy3oCHhEZDRX/yGFrXsW7T+Wp+nLzox157aNxnlVRczNGNdObpoHxIjJ+vOvBIWVVszZy8+3HLwW6Yedz4hKsV4JwfdU1/mrDf+A//pLQ12N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M3xXo6sy; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A30B420483;
-	Tue,  8 Apr 2025 07:54:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744098875;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JKsaa5Qw6MpBCcMH9HOs47mW1tDXG/PfpB5X4FVgPbw=;
-	b=M3xXo6sykhWw+N7TXiXB1g6Hcor8ZMEk7uaESpU493qpZPI9Eg9SHzDy7EE0z5uGqY3/qW
-	CZy+juqPIIl8RcI/C9xJClXuX3lz1HMgbJXpN1fIDd2ISJdc77ek3rhHgSdZVBIpQoTXM8
-	lFFC5t8zBs1piZNyDhqwaOK/xI3zsJULaVlSKpcWEM/+4QQmbiPdN4EYFC1VE1etA2bLW7
-	TDp2fFPL1rmSR3gtwP54pbspGaoacRHRKje1HZtlAOxKXv+OGZrzUUrRcjXeuyLEvKxvjO
-	forGNMl3mo/lNByht2d9qsT+7aULp2h+/a7lEyZ2SFGunVTen1DALXBUmgWNyA==
+	s=arc-20240116; t=1744099176; c=relaxed/simple;
+	bh=R1ijQ3kBDcwUSWxv7wnlaXKC0PsJ0DHQs7sROgqv68Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=teuExQ6mUPwv/svoDTyUs9jcJ1LXoptJr0b/rfP0bMGPSTg0aFyTSY8+0HbvLI1tmmSVWykX/0us7pso56XWYH2ZgxhWcvD2p2T+VQSPvpS/CAw8Rj4aZiEOiEWqWffBPlSmd8M65iTiFkAo9GpupqIOgPiulStZGTc5b79MwyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hrL/DcZG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C34C4CEE5;
+	Tue,  8 Apr 2025 07:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744099176;
+	bh=R1ijQ3kBDcwUSWxv7wnlaXKC0PsJ0DHQs7sROgqv68Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hrL/DcZGiXsYQC9iWOpQpDoG5td307Qa2g9h4dWM/R7lIIAuedLdU+4Ex2AEgMKLT
+	 2akDQJj2krbO/IU5Z8pU5IoN2VFX2ehKRfrCeDN9aTfpd2nBwnw6dhdSXmYs5I1A2O
+	 EFQJDFiRQ/Q8acWP/OKnPbGf8VFAhwUKXJruyzgautJCK79gh7j1h7jfFDThLrcpeW
+	 Tf4Y/qkPpYXJ98lylPGsvowXfmwVlxuhVU5JfqWpSimV1VrUFKf4R4h0oa886Ag22S
+	 liZV/tcj0Lx3haXbLGkqNOQ27hNUTzy4FNc87wdY0iQkttC1dbPn4VG4F4Z4OyrQvy
+	 iWb0+hhUEzEdw==
+Date: Tue, 8 Apr 2025 07:59:33 +0000
+From: Tzung-Bi Shih <tzungbi@kernel.org>
+To: Gwendal Grignou <gwendal@chromium.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] iio: cros_ec_sensors: Flush when changing the FIFO
+ timeout
+Message-ID: <Z_TXZT3SPEpTm6tc@google.com>
+References: <CAPUE2uuY=BaPFro5cQSmQg4JS1Z5J5aBL7XvqqAo-X=LR4be3Q@mail.gmail.com>
+ <20250408055412.1623257-1-gwendal@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 08 Apr 2025 09:54:27 +0200
-Message-Id: <D913G6I023M1.NLMLJDZ1PYSA@bootlin.com>
-To: "Inochi Amaoto" <inochiama@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Jingbao Qiu" <qiujingbao.dlmu@gmail.com>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <unicorn_wang@outlook.com>, <dlan@gentoo.org>, <linux-pwm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 2/2] pwm: sophgo: add pwm support for Sophgo CV1800
- SoC
-From: "Thomas Bonnefille" <thomas.bonnefille@bootlin.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
- <20240501083242.773305-3-qiujingbao.dlmu@gmail.com>
- <k6jbdbhkgwthxwutty6l4q75wds2nilb3chrv7n4ccycnzllw4@yubxfh5ciahr>
- <D8Z4GLQZGKKS.37TDZ7QBN4V4N@bootlin.com>
- <j74t2zqvoslo5fgmea4kp434tafgchkncytofj65zbbt7ivcqy@auboc3pkdiz3>
-In-Reply-To: <j74t2zqvoslo5fgmea4kp434tafgchkncytofj65zbbt7ivcqy@auboc3pkdiz3>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvheefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvfevuffhofhfjgesthhqredtredtjeenucfhrhhomhepfdfvhhhomhgrshcuuehonhhnvghfihhllhgvfdcuoehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetuedvlefhtedujeevtdffgeevjeetuedvudehtefhgfeuteefhefguddtfedtteenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduuddprhgtphhtthhopehinhhotghhihgrmhgrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepuhhklhgvihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrg
- hdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuhhnihgtohhrnhgpfigrnhhgsehouhhtlhhoohhkrdgtohhmpdhrtghpthhtohepughlrghnsehgvghnthhoohdrohhrgh
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250408055412.1623257-1-gwendal@chromium.org>
 
-On Mon Apr 7, 2025 at 9:21 AM CEST, Inochi Amaoto wrote:
-> On Sun, Apr 06, 2025 at 02:16:41AM +0200, Thomas Bonnefille wrote:
->> Hello,
->>=20
->> On Sat Jun 1, 2024 at 1:53 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
->> > On Wed, May 01, 2024 at 04:32:42PM +0800, Jingbao Qiu wrote:
->> >> [...]
->> >> +	if ((state & BIT(pwm->hwpwm)) && enable)
->> >> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
->> >> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
->> >> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
->> >
->> > This looks strange. If BIT(hwpwm) is already set, set it again?!
->> > Also if you used the caching implemented in regmap, you don't need to
->> > make this conditional.
->> >
->>=20
->> I was testing the series and noticed indeed an issue in this driver at
->> those lines. If PWM_CV1800_OE isn't set by something else than the
->> kernel it will never be set and so, there will never be a PWM outputted.
->>=20
->> Using :
->>     if (!(state & BIT(pwm->hwpwm)) && enable)
->> Solved the issue but as Uwe said you can probably rely on regmap caching
->> to avoid this condition.
->>=20
->> >
->> > ...
->> >=20
->>=20
->> Do you plan on sending a new iteration some day ? I may have some time
->> to continue the upstreaming process if you need to.
->>=20
->> Thank you for this series !
->> Thomas
->
-> I suggest checking existing spi-sg2044-nor driver, which may reduce your
-> work for upstreaming.
->
-> Regards,
-> Inochi
+On Mon, Apr 07, 2025 at 10:54:11PM -0700, Gwendal Grignou wrote:
+> @@ -853,6 +859,16 @@ int cros_ec_sensors_core_write(struct cros_ec_sensors_core_state *st,
+>  		st->param.sensor_odr.roundup = 1;
+>  
+>  		ret = cros_ec_motion_send_host_cmd(st, 0);
+> +
+> +		/* Flush the FIFO in case we are stopping a sensor.
+> +		 * If the FIFO has just been emptied, pending samples will be
+> +		 * stuck until new samples are available. It will not happen
+> +		 * when all the sensors are stopped.
+> +		 */
+> +		if (ret >= 0 && frequency == 0) {
 
-Hello Inochi,
+To disambiguate, `ret == 0` or `!ret`[1].
 
-Thank you very much, however even after reading it I can't see the link
-between the SPI NOR controller driver of the SG2044 and the PWM driver
-for the CV18XX series ?
-
-Regards,
-Thomas
+[1]: https://elixir.bootlin.com/linux/v6.13/source/drivers/iio/common/cros_ec_sensors/cros_ec_sensors_core.c#L411
 
