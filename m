@@ -1,161 +1,151 @@
-Return-Path: <devicetree+bounces-164293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F22A7FC4E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:38:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88630A7FC60
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:40:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D06D316F3EB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:37:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A23D07A9A47
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CEDD267393;
-	Tue,  8 Apr 2025 10:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559D4267B7D;
+	Tue,  8 Apr 2025 10:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OmPziao6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eojACxmi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A30A267AF0;
-	Tue,  8 Apr 2025 10:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F0525FA01;
+	Tue,  8 Apr 2025 10:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744108598; cv=none; b=gf/L5v1G09z58Cy49F9vj9ZgRIwB+FWzoyUe2zjNOb5cvieRUDnMMrTAw02tzyIRQHvauz6jGVe5NENlVvHXVW4H6uShIzVqMhCeZYfMswg9amjA72NWdZRsHs8RKiQJ+K7RIFJX2s8+DDJY/wZnuxCBRmCWf1iz5thZVBSIXrE=
+	t=1744108751; cv=none; b=rSdhQSJ2joO2JiOsFq9zAZ0DvqCTuLlwMCZQRes27Mi2Qh7Eddpg23sSASpr8Svk/J5RPMXzCqbRgcRYsnaWvfIeX8x5RXJiZ/BEw821JEz7tgFfz0GCRaLWalD/I97FGpJJra+F13K1RpAO1O1T9y5OU53rdIw/smM2IYoOXvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744108598; c=relaxed/simple;
-	bh=/UphR4APFcK/PozCoAhhjfIcAkajuJZKr5WV2+8cQPc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bCWiZrwrGg3Dh3INCILuxfIApQdDtgX6CoFOhxl5wXU3Qpafv0dfrR7o0raL8yzmcsQ9lVqqQvPj7cKE/JFVBYmdi9gur5D3avodO460YdTrAFEJjLj5S8XHc8r+IxPFMD3EtKyAiaKaO7jXZVwL+JqsEPxf10cppi0Dqhg004Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OmPziao6; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-523f721bc63so5611863e0c.0;
-        Tue, 08 Apr 2025 03:36:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744108595; x=1744713395; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KgmG0wqQuAR9ll3NJT03Os1B09ohhoP7nPRoSHR6bKo=;
-        b=OmPziao6wFNS8qvNYI7EMNZG9Ih1bHKoMPQos8gV1JtViB01pBRmD+AFOOGIqOemsz
-         qIy79u6sgNuUoP8ENcxQclcCXHaU4s19utH9kzdu8N6v08SMBq2TRT/VZCgFZr9tvLZL
-         /NH/j4tgEkNRd7URdCy3iZkY+hyBHjaV0L8oZv6zhf69GHTvz+3VOJ/btQ2JLtuyyfyW
-         ONWy0yx51KXuh5w6qlNjiSoNyqF/Kk6N3fT7cjxvLX4bBBI2Bz38Z77hgAAiqo4JN2Yc
-         li5g8lnIuarYhKYhqEO/S+6NDtWxqf6XUe8vKi7vFdmYLNiveUZ2oypxLtkdNpllZWW0
-         6NGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744108595; x=1744713395;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KgmG0wqQuAR9ll3NJT03Os1B09ohhoP7nPRoSHR6bKo=;
-        b=PIlKiVCZDoV8otHO1MLelt+fZUK0x/mJubWOCH/P3FcADiUE+4IiesALH1IXZLx9AX
-         tCozZ1K5GVLnJTcG8iPoba+l2ha8c5FRMziMX2M7IpFL4zOUdg6F0CItBH/itXOf8ETL
-         XhYCg1k5hCc644QUfhpcCGuMZp3s0gHHhperZxN3yqk582qCyL4LkwvkeKFltG8X19rR
-         5RIkvVZ1gBh5XZ9vyNyCYDEav+lhJygsWHAc0RcNe6h4TUK/yzsm7k+eSgviiA2m0Vvi
-         AICnSyxRmQnlu3bXhYbr44xG38yWq7khOoeMTPsd+Ggeo9iD1pmLmNsTtr+mLIZ5cGN9
-         T7sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQOSTFXSXQbvs77ls8j1bm4ECaa4aAtU3bTYnHQcGFtq4HxUh7VPcdb2coRAkG+I/loUI6dibLoEoy@vger.kernel.org, AJvYcCUmNX1uKanDenIl0pp4Gxku2x/0Aexgg4wCUBtWUXodUVnXlEiavMbQ6u29VIHJMXdf/3Mr5kUlW1F9pLQR@vger.kernel.org, AJvYcCV8pnbZRpj1vF4oTEbynCTopve3416J3DfcobahdRllzrsvOeIfy027+BtTrYd4ebBcvinoww5cZ/ky@vger.kernel.org, AJvYcCVeSxDUksHXQHyEml1ojnATRGzjOIJjzp+oQEj+BNDCehNmoOd0Odw9PpRa3i+6+zIo6/F1CttbtbDgTq8=@vger.kernel.org, AJvYcCXkTsgIyFTV4X2LK0WMC8XpX/hcaDN8ndYhRXiw5PSXjxyywEAIDwFH1LPHXpXKQwl4sJk+zPALgQ4CjLCYtiWnRPs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YykvkwR3kGIJtwXxBmdFs24lOputP351v4/MkIXgKjiYZXqdI1C
-	ckD6MubN+dIsb9+wDlnqYv0l7UNvxpKVxgxYT4fZS0dWJj9Z5oXA5JSdt0Aaq1E0KvfHvkgSqKo
-	Q6Q9ss3ic6V2w9VY9hhlBlILg8MQ=
-X-Gm-Gg: ASbGncuR+/3BcGkKScHseBn8k4S8oFo+ouAFsfcWJgI5OYv/ESoelKWOOiqC5wzVd6z
-	GEv4HInEHq9Dz91xPcgQIITmPacdxyl/SKl9sJQ0yrObN4LVhmafRCdJnxa3MRkmGpf1ljBz3Eo
-	RIIT4EYvlFMJlqZ3Wa3pBLOC3eIfog9Olw38pklyaz7udy3J/sQKoRt7G2Fw==
-X-Google-Smtp-Source: AGHT+IGMyNP2No7AuI19CdTtXFJE8koZoGDmQoARojlwrt1NccfGqz2JVp+QE7meuv23NLp5JcjsnmRCoc4VHK/gGxk=
-X-Received: by 2002:a05:6122:894:b0:523:771e:8b81 with SMTP id
- 71dfb90a1353d-5279acd553cmr1706106e0c.7.1744108595413; Tue, 08 Apr 2025
- 03:36:35 -0700 (PDT)
+	s=arc-20240116; t=1744108751; c=relaxed/simple;
+	bh=L72ZX9dA2Duq2821IFupYiHBYIu2thE53zR7y1HFpBM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KETHke38Of7XMze27A3Vg+ONP/UqnRGWKmdEdlhzc0KClAFY6Xa2Op39B9f84pU+iErvzAwF7+QtAJveybzbWqw3iIC+/T3OhTz3bHvJpZju8q0LBBQnC82GU4Ou6631gXt/Zq1uxwqvlNJNdCOryAeeipPrnEIWpnll9WZtHmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eojACxmi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5382GOTS010519;
+	Tue, 8 Apr 2025 10:38:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4ADjzn89USD7dkigsxKLtRctPWf17q4/PIP1TT/2F/U=; b=eojACxmi0iS15s9D
+	QHBTHZv5Jt+/m5ckpOY9rKZpLFnmeppuI/lnpDyvPjmnN9iQ0we0kXgY8E3pjOlI
+	G1/Pf8fqGzFvoqhTvogPgUcqmfoIqzIBySf7xIA9V7XQwer7jA309qYB2R68lbPn
+	L7OD0Zu3qBmrWdWTwXtWZQ/ewoTGGOskUn9gvsBfR3bZ+xW2HjdXxZJXszI6SQF5
+	du5FZEb3VfGeUbt71P6UXR3V2WsVTCHf1Dj3jwQoDXlq9datMhtr7XXMFUqt+MLM
+	/xFfDQ5ZJ4kSBcKg56h+zrLJ0Vt5+qzXV8Vzag6rWtx197TuxeZfF+udI7bQwNP7
+	Wlx+Qg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1fbjv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Apr 2025 10:38:47 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 538AckEx016860
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 8 Apr 2025 10:38:46 GMT
+Received: from [10.206.97.61] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Apr 2025
+ 03:38:38 -0700
+Message-ID: <654d409e-2325-46e7-a064-ed9e64277e69@quicinc.com>
+Date: Tue, 8 Apr 2025 16:08:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250330210717.46080-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250331-magic-buzzard-from-valhalla-af88e3@krzk-bin>
-In-Reply-To: <20250331-magic-buzzard-from-valhalla-af88e3@krzk-bin>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 8 Apr 2025 11:36:09 +0100
-X-Gm-Features: ATxdqUEzNQOXPjrLjLavlNGBXC7oKKUbhfJS_OUOhwmcc79SQzhslZo05twijCQ
-Message-ID: <CA+V-a8tDfqH_utn7k0j=6s8HkjkLFrAanwZD8m8LpBxpWXO1QA@mail.gmail.com>
-Subject: Re: [PATCH 05/17] dt-bindings: display: renesas,rzg2l-du: Add support
- for RZ/V2H(P) SoC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/10] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-4-quic_amakhija@quicinc.com>
+ <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: NcqhLJn_YjNX6jUAZO9TiF035QhZQKct
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f4fcb7 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=jCZCQBWE56vx5fooemgA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: NcqhLJn_YjNX6jUAZO9TiF035QhZQKct
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-08_03,2025-04-08_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504080076
 
+On 3/12/2025 5:15 PM, Krzysztof Kozlowski wrote:
+> On Tue, Mar 11, 2025 at 05:54:38PM +0530, Ayushi Makhija wrote:
+>> Document DSI controller and phy on SA8775P platform.
+>>
+>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+>> ---
+>>  .../display/msm/qcom,sa8775p-mdss.yaml        | 188 ++++++++++++++++++
+>>  1 file changed, 188 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> index a90a8b3f1a9e..628ca68871f4 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+>> @@ -52,6 +52,26 @@ patternProperties:
+>>          items:
+>>            - const: qcom,sa8775p-dp
+>>  
+>> +  "^dsi@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: true
+>> +
+> 
+> Drop blank line
+> 
+>> +    properties:
+>> +      compatible:
+>> +        items:
+> 
+> contains
+> 
+>> +          - const: qcom,sa8775p-dsi-ctrl
+>> +          - const: qcom,mdss-dsi-ctrl
+> 
+> Drop fallback
+>
+ 
 Hi Krzysztof,
 
-Thank you for the review.
+I couldn't understand the meaning of "Drop fallback", could please elaborate it ?
 
-On Mon, Mar 31, 2025 at 9:24=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Sun, Mar 30, 2025 at 10:07:01PM +0100, Prabhakar wrote:
-> >  allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a07g044-du
->
-> This goes probably after the if: block for renesas,r9a07g043u-du to keep
-> sorting (if I get numbers correctly).
->
-Agreed, I'll maintain the sort order here.
-
-> > +    then:
-> > +      properties:
-> > +        ports:
-> > +          properties:
-> > +            port@0:
-> > +              description: DSI
-> > +            port@1:
-> > +              description: DPI
-> > +
-> > +          required:
-> > +            - port@0
-> > +            - port@1
-> >    - if:
-> >        properties:
-> >          compatible:
-> > @@ -101,18 +119,20 @@ allOf:
-> >
-> >            required:
-> >              - port@0
-> > -    else:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,r9a09g057-du
-> > +    then:
-> >        properties:
-> >          ports:
-> >            properties:
-> >              port@0:
-> >                description: DSI
->
-> port@1: false
-Agreed, more validation.
-
-Cheers,
-Prabhakar
+Thanks,
+Ayushi
 
