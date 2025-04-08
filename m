@@ -1,123 +1,136 @@
-Return-Path: <devicetree+bounces-164495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1601A812C9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:49:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A5EA81362
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3CAE88616A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:46:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 595D31BA7535
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:18:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E27B22D786;
-	Tue,  8 Apr 2025 16:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013392356BE;
+	Tue,  8 Apr 2025 17:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DUjOR1gP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ktH5wggp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2665757EA;
-	Tue,  8 Apr 2025 16:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4798C155C97;
+	Tue,  8 Apr 2025 17:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744130772; cv=none; b=cKCN4of8erIGz+tMQPnBG/Xi9XYYoJYf9Mom8NKHsD0c9TZWFqLB+gBFMRLo6qUAWigrt/Vu8cQJstr+OtGeNKYVYMHeWKt9scAIKIDKkOWP9IsqhSPBLkCQO5DotBJoFFL6JCjx7rNg+h5wBAk1ykRxMb7M3F9/9y+mWOpQBvI=
+	t=1744132717; cv=none; b=ce5jrgv9ek3rZZdElA04lCcWJGG8wVfhIe2bx6K+y+AZWqe7Aa2C6/53vSxH1ooZb6zvJ6SjLgmfmHA+hBPdHGM+1JgksYZ4YGsy9N6y8f8y5hUmoi7kQggmLix3Jeli0rDDaBKI0VS8Iu4/BCHRbGj+teyJNn2Q60cu5wVEA/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744130772; c=relaxed/simple;
-	bh=y4Hqk7RHiAYWnIB3Uz5J2+6PZDT7++zFv2jNYoLEenY=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bgFK5HamxVML2sN2wsesj8wJNomkTBpvRZXoR+F706fk76UM+NzfXVejgXVhkQvcFnUahWUmyPqEB5WAJepCpxCpOgL4rckq2uOrhMm2YvrUGVkeOVLYPyH8//xNlAHWbXOCgpftCN1fVipgqqMmq4kbNUAkMTq3kR9GACV+q1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DUjOR1gP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B965C4CEE5;
-	Tue,  8 Apr 2025 16:46:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744130772;
-	bh=y4Hqk7RHiAYWnIB3Uz5J2+6PZDT7++zFv2jNYoLEenY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DUjOR1gPJl0ApZpB/E3373YoIV46OrU6cPFDDiW/l0F6x+bHvm5eQDURxTLou+4c3
-	 3yTBK/zyqVIhQA2YvV3bS2ZsgR6PgOqVjbwf3YK0KMN525zzQVUogeYmafZ0E20/OS
-	 pHy8CEgkFAulpaAgESXJV/jYZL5hLjUnATbmorU6USCxP7EpTyQm8qPndBkUektB1g
-	 Hr5dqoxcWuDTH6hFdlKNUm64U96rUn+IQB9CsLK3dtqsL6tFydy79icXhCh1tEokeQ
-	 uhJHGXizHmp+7/j/xSdceKL19YXdEqEeYN2E45L3qSEMNxZftRbIffewIB1sIIrXSW
-	 LfpV46f0oYjag==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1u2C5R-003YhG-TM;
-	Tue, 08 Apr 2025 17:46:10 +0100
-Date: Tue, 08 Apr 2025 17:46:09 +0100
-Message-ID: <86r022lhym.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: <robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<mcoquelin.stm32@gmail.com>,
-	<alexandre.torgue@foss.st.com>,
-	<devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: st: Use 128kB size for aliased GIC400 register access
-In-Reply-To: <20250407084028.2072504-1-christian.bruel@foss.st.com>
-References: <20250407084028.2072504-1-christian.bruel@foss.st.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1744132717; c=relaxed/simple;
+	bh=S5hwzszlwJNLau0VGr3CkyJrBYombWM4nx71saH4Ut8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uyvbmkpujZMEYyTDR/ez/QE+i3xIaN85OsSKCviTbWJ4tzvjsfBObF3KkbRBN3IgDDIZuaLAcRJr6Wb3ApTz/I3SGSd2u3nMNArYJucP7sjH4VKIKEU9as5a/j2UIv1cT3VInbUjKegCJ49R87jLTtomV1BXC77rxaMQIPrvY+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ktH5wggp; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43d0359b1fcso37568255e9.0;
+        Tue, 08 Apr 2025 10:18:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744132714; x=1744737514; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CiTIXeZwnuUauUrRwauEywvsU+gyTYIu7GFp5cUTyWA=;
+        b=ktH5wggp/d51Xs89bUh7l03uvBSxtCtNk0qjyZ9LhLptwohvL5EsXSATJKciUNz2L1
+         HgxGkSaeCwVgE3iaGTAIqQ6/JJNGIhxiNmiQ5JwRkawv2G9QUOhBuAFobLDwyDG1Lk7Z
+         NHW2CxtgqNVCtKYoX9LAB/jtb6ntINJ26BRyCz0hblozmX+KXHrxp/ujOxk7G/UvCJX7
+         wVM5UPlZuhuygnw7rhsWBeOGN95u3WQBKJTr9E+q40sCyV7ZWVaw+jEyywGfVMHJCRhV
+         fhKbhIMdIxgwLcscHW4g8MRfvm/3SoivcB8gzusstKVUuV/r9o8m1rSSGOqbCqSJoxvR
+         TaPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744132714; x=1744737514;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CiTIXeZwnuUauUrRwauEywvsU+gyTYIu7GFp5cUTyWA=;
+        b=s51yvC0E8jWg78sZ2o+Pt6OVmDEVfpvdkZYuYAqn33xOOFxpQlTfR10vHgS4Z4kRy7
+         qt9FCfr6z7DP/Vl8Os/X0nSq3LnOELs0q6QgA00IwUR4wEXWLK2dfV6E7gFLDmGTbmvH
+         Pp2zB71QtxTmfR7S0kurYoKusGfCFWhTTMiW7+ZOuEu1S3W4zoUhgA4BiUXF0sOXkeJn
+         du6p7MH4yHZ8iAy5PbywjvoKyv8budK9zZ1lw63VhcLeZwb05hbsi7xl6baFZyB4ubxn
+         12D0yUVGJ3TzlwrGSlLnC9KKN+PRjFioG9rKXrWKk+6TEI44C24/7S0gInxjdH+tPZ66
+         7N2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVNhEX7Q3ICHC45iOufe8z5PKujfmSZN78l69z82vTPRhmEtgaj2tSVH0xYe7PsWTiBsgK+tbB3TJBOOwKr@vger.kernel.org, AJvYcCWBtL0RGbnr5xiaA4nUN6GiPeWTuR7Dn3nrnnVFCQD9yj/Ivwbb7wuuWjWbI2sLlYyFYEXN4PiM@vger.kernel.org, AJvYcCWK5pXG/0TSmuT+3mg4ZQXMJ+v51oGXTdKlwvnX2BiNa/UkXkVMZTI75trVLCM5hTE6euTBn55RRhOc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTxqi7zH6sfuhKutUFRcluMqKcsgIS+2PHXzOuacJiovKujNzm
+	nuPs1S9pdhugjwFu2vrT4cBblpwLYTY+dtLFfPyhNXV5022TT38r
+X-Gm-Gg: ASbGncvqwbic9rLQFpi8sK4b2k1/23FACjMJwXKoUbOj8rHZyvhLYjeVKED7+SRHE7e
+	r0GOclqlKw+Xrulcli/GvX1sNU2QEXnp2NRFwruPZ6zgjoSQZNn/bCNO4dPd4iKh8zFp/f5hF57
+	RMUqNAbck9v5qkO63D6UIZRnLMJvG5LrzVF86UF3RzdJlZxMKm5QeZl92wk9nZbnAKZ+MdzKDns
+	GAz3rQugdJfQn5RhStezNEbmE+IrXx02UvNU8sfQ1BfGz5NA9kHrfHVBNyPgtsEm4hfABSz9ULU
+	1OvAHEztB40IFyk+J6oSzPlCH36DTEWDv2jRqocSKQ==
+X-Google-Smtp-Source: AGHT+IEYwDbT9p1L/2oYWlI1MhpjtEFHvct3vhuaSgjgtsPmwFS9knRYrA4BJDAEeuvpZbxKlYVQvQ==
+X-Received: by 2002:a05:600c:3b8f:b0:43c:f509:2bbf with SMTP id 5b1f17b1804b1-43f0e64988emr40757195e9.15.1744132714292;
+        Tue, 08 Apr 2025 10:18:34 -0700 (PDT)
+Received: from debian ([2a00:79c0:63d:b300:45fb:7d1a:5e4d:9727])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34a8d67sm168016435e9.12.2025.04.08.10.18.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 10:18:33 -0700 (PDT)
+Date: Tue, 8 Apr 2025 19:18:31 +0200
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "Fedrau Dimitri (LED)" <Dimitri.Fedrau@liebherr.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 3/3] net: phy: dp83822: Add support for
+ changing the MAC termination
+Message-ID: <20250408171831.GA4828@debian>
+References: <20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com>
+ <20250408-dp83822-mac-impedance-v2-3-fefeba4a9804@liebherr.com>
+ <7dbf8923-ac78-47b8-8b9c-8f511a40dfa3@lunn.ch>
+ <DB8P192MB0838E18B78149B3EC1E0F168F3B52@DB8P192MB0838.EURP192.PROD.OUTLOOK.COM>
+ <04dc2856-f717-4d27-9e5c-5374bb01a322@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: christian.bruel@foss.st.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <04dc2856-f717-4d27-9e5c-5374bb01a322@lunn.ch>
 
-On Mon, 07 Apr 2025 09:40:28 +0100,
-Christian Bruel <christian.bruel@foss.st.com> wrote:
+On Tue, Apr 08, 2025 at 03:28:32PM +0200, Andrew Lunn wrote:
+> On Tue, Apr 08, 2025 at 01:01:17PM +0000, Fedrau Dimitri (LED) wrote:
+> > -----Ursprüngliche Nachricht-----
+> > Von: Andrew Lunn <andrew@lunn.ch> 
+> > Gesendet: Dienstag, 8. April 2025 14:47
+> > An: Fedrau Dimitri (LED) <dimitri.fedrau@liebherr.com>
+> > Cc: Heiner Kallweit <hkallweit1@gmail.com>; Russell King <linux@armlinux.org.uk>; David S. Miller <davem@davemloft.net>; Eric Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni <pabeni@redhat.com>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Florian Fainelli <f.fainelli@gmail.com>; netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Dimitri Fedrau <dima.fedrau@gmail.com>
+> > Betreff: Re: [PATCH net-next v2 3/3] net: phy: dp83822: Add support for changing the MAC termination
+> > 
+> > > > +static const u32 mac_termination[] = {
+> > > > +	99, 91, 84, 78, 73, 69, 65, 61, 58, 55, 53, 50, 48, 46, 44, 43,
+> > > 
+> > > Please add this list to the binding.
+> > 
+> > Add this list to "ti,dp83822.yaml" ?
 > 
-> Adjust the size of 8kB GIC regions to 128kB so that each 4kB is mapped
-> to 64kB. The offset is then adjusted in the irq-gic driver.
+> Yes please. Ideally we want the DT validation tools to pick up invalid
+> values before they reach the kernel.
+>
+Ok, but then I would have to add "mac-termination-ohms" property to
+"ti,dp83822.yaml" as well together with the allowed values ? Ending up in
+some sort of duplication, because the property is already defined in
+"ethernet-phy.yaml". Is this the right way to do it ?
 
-nit: mapped *16 times* over a 64kB region.
-
-> 
-> see commit 12e14066f4835 ("irqchip/GIC: Add workaround for aliased GIC400")
-> 
-> Fixes: 5d30d03aaf785 ("arm64: dts: st: introduce stm32mp25 SoCs family")
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> ---
->  arch/arm64/boot/dts/st/stm32mp251.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> index 379e290313dc..87110f91e489 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> @@ -119,9 +119,9 @@ intc: interrupt-controller@4ac00000 {
->  		#interrupt-cells = <3>;
->  		interrupt-controller;
->  		reg = <0x0 0x4ac10000 0x0 0x1000>,
-> -		      <0x0 0x4ac20000 0x0 0x2000>,
-> -		      <0x0 0x4ac40000 0x0 0x2000>,
-> -		      <0x0 0x4ac60000 0x0 0x2000>;
-> +		      <0x0 0x4ac20000 0x0 0x20000>,
-> +		      <0x0 0x4ac40000 0x0 0x20000>,
-> +		      <0x0 0x4ac60000 0x0 0x20000>;
->  	};
->  
->  	psci {
-
-Suggested-by: Marc Zyngier <maz@kernel.org>
-Acked-by: Marc Zyngier <maz@kernel.org>
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Best regards,
+Dimitri Fedrau
 
