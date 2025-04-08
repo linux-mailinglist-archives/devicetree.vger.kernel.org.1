@@ -1,114 +1,114 @@
-Return-Path: <devicetree+bounces-164130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A78A7F447
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:41:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2A3A7F44E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:42:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82213B3512
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:41:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50F01896571
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12407212B2D;
-	Tue,  8 Apr 2025 05:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67842116F0;
+	Tue,  8 Apr 2025 05:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="joQSQjxD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i+j0jLul"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5780E207A03;
-	Tue,  8 Apr 2025 05:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD5C2063FA;
+	Tue,  8 Apr 2025 05:42:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744090901; cv=none; b=FAkBQ2q5iMO4O692iZ3WARk6Mikg9LShLQys5GWujp4zZNZGfZ/Y5XtnJP7xqtsW3Ywh1RxaHq4KlRw0vtL0teW+oMBnsuUHmFlXX7NHk5Qljbg17Jv7HorGdO+QonQzi0nz0dYixqMRIlx9Rkq7rnAhW1u3RpITCMoH9yMLZnc=
+	t=1744090965; cv=none; b=NK88DjOhB9k4hETS3Jw5afATAFgZcVDAUIqToKnLhcEjksPW13zWwrLh1sjJgWzD9p3KM7yScdajzLSqXldoVePrI1lh9nuOiX7+cRtiAE6EUtLMIrQSXyWzUmPeeRj3hGH5Oqs5g3g20RDWpg07ggWKCiLydutHVp0VECQ7KPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744090901; c=relaxed/simple;
-	bh=G1JuetwdsIcWMawyHukOBenwh01h3lNnPIUeKihQC5s=;
+	s=arc-20240116; t=1744090965; c=relaxed/simple;
+	bh=JkXUz/XoGFUT5k9LVmtqJKl/eMUlgznfEvEGWx4dV+4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZoFNtDMQFxg4SjiAqSnGlBkNn+y6eTg8QAMAEj6DOy7lvCMtVgbsPEYUi7FUmFhl2HvY9F19RgGkgHdZ5wWjYOGv/zG5yDfqGe67K9f8yaqLu/lrxB8BxoeGATEXalWgEqu+q+Hs7ronQ4KnF59AXgyv7CGcSqWURPZJEwE4Pmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=joQSQjxD; arc=none smtp.client-ip=209.85.221.43
+	 To:Cc:Content-Type; b=Pa6fUPbFiah8U5U5ryx7jTd1SJKrRlQPeb01qGqaY25Fu4l6knQWZhnUyjG6X4YU3isb9iA+T7KqzaooLU2cOb9SjxygspkOPLNC2883oI7suoBNvqBESYGKKvXAbeIRBa+/e3pBmQ90LrADxGGM+WvDWyv/llCtj29Zl/M2+XY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i+j0jLul; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-391342fc0b5so3985872f8f.3;
-        Mon, 07 Apr 2025 22:41:38 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so34918935e9.1;
+        Mon, 07 Apr 2025 22:42:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744090897; x=1744695697; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744090962; x=1744695762; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MkEG3n73IB5H7P8Kzz2563aBkmYhG0bK12uFL4QfAdU=;
-        b=joQSQjxDbINjHn2ldnQ+SzbrmmNhsStW+2MKXTaKlSHLX8+MiG1JpnlkzIeB/TTN1/
-         FA+RNwBPw1Mc8Elfw7vL1VOu2AV2rcUR5XCd9S2m174Q0gdfZ7RQ8giPdaYmaXjxMdBh
-         6mPTZnX1azPNDBj3ZVrxMCianDeSmIJRUasqg/vpOQ2vaIyhfLRVb+W4QCEd4YQm3EAT
-         5hyiZcHCjhtIJeLBYxLwIgVFGjTsWLCizcaaR4ldIJGq1cR8Q/xikkt1JjiRXOXiVeAl
-         Ol//5YhSD1g0VHCycmezgKT8MxucxIUyOY19y20SjCnxV7iupLeG3Tzd1D4NcRrrqQdk
-         JW0w==
+        bh=hNlU9IW0/3w2Hi0+ap/18NdS+AKkCCQ6NPlM5h3+t2Q=;
+        b=i+j0jLuln+KI0Y2UUxmZzR+dOvwg7lHEWahV2+h43IO4+sDBbFFL4AHdqS/EGcC1Wj
+         Mm2rSoa3tMgPF0av08ol2i/ZSue0K1AFgUXj/oG5WXZ7cPhyyXQBUd56DCEiQZzpJWpL
+         4I4RMKNfr9JhojRkmE5X4ATLn82lyXb49JKGWGG0viZbbpFpjLF/IdJKF2cNOwsk9Wwn
+         oPQNVOU4756eASssEXkECsgaO1rxDHTqRudgnwAZHXN0Ac5o3iL0xab4M6hCMxbmDO6k
+         X5QGUNZ8hq/DLXeGPfc9EZ/yqZS2TF/NBmCd1QaNX72Jji2SmWboEoyfzuv76lASrP7y
+         vMHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744090897; x=1744695697;
+        d=1e100.net; s=20230601; t=1744090962; x=1744695762;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MkEG3n73IB5H7P8Kzz2563aBkmYhG0bK12uFL4QfAdU=;
-        b=qd+58iA9z1yUKa5q1hBb5Ko3w7pB8xJqrvLYkW1Oe+1zmqEgoQ/nek26wdy1hmoLqf
-         pFTCD63kFpU1F6XkAj0PoPcWVcTU5Iqbm9+9YU5PQbP16w2M6o/MrvMlbp/w6J5iEsXk
-         jEGbj26hQz2unpNKU4RAIhQE8J7EBO3E+A8yadxNbKfqPIPkAucSLNUWADkmlq3gqS9q
-         enVBmFT9OTVUkHPL3yC2tR73b3Zy5IAFcYhdV8gS7uu5294CaovmDV8kmcIRo78oq2ZV
-         x1mI6Gv2MtGg9TFQLAfmvTiLwAiMrQbGvaO93udhBHp5HW3vbzAn6IQX/OY30tWb2yvg
-         681w==
-X-Forwarded-Encrypted: i=1; AJvYcCX3zs47lSDuRxYus8dG77b8lBP0vPDxHopPEY4p1Oy3qC8GBRSnANkVMpLcrjg2l/19KWsNu+ww7KZS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrW2MDI6I8RyTu1bM/DdrR30uW39YMK2rvRzaJ+iCdy46XA/PU
-	KcSl9xOZyIvoSZPWGLBMc+pGxW50ZMUQ51cUK41VGQ1X3e+6t1Ri1WU/USuERan2kXP2y8H2nIC
-	eeGEPwUbGIDN3cRodUod+DLwyNCo=
-X-Gm-Gg: ASbGnctvg9HLXTCr93KpYrrGHYQgeW69dmyeTzasOfQpt06YBuN/Vf7WlHn/OKlg+yI
-	ELL8gxK9W9sGZoNzv0/PNJ48TVca1DYoFVNQPvcrxApzKAdrzpdz3jEm82MxXRxvKx7UbxDm554
-	VHEt+n+kuFptIG3JvZpWXSm/x88SxklMI0NTi4Rg==
-X-Google-Smtp-Source: AGHT+IEJr2RlRRds5DV0exNulLERHdSbrpUGr5tWT9FMrnYpJY5Rtqgr1wOwCX9SOcbwvfWFrL/jRBm4zBcByw9xuZM=
-X-Received: by 2002:a05:6000:2482:b0:390:e7c1:59c4 with SMTP id
- ffacd0b85a97d-39cba932868mr13644064f8f.13.1744090897524; Mon, 07 Apr 2025
- 22:41:37 -0700 (PDT)
+        bh=hNlU9IW0/3w2Hi0+ap/18NdS+AKkCCQ6NPlM5h3+t2Q=;
+        b=jUljuY8AaKtHfxdPEP+D3YeCVSlXfUfLbHR48zFUa2YBlg6g+35blWFnog/+3YwDPK
+         /EiKb4SahSNWIYL3ixNMq1FbbwtEMryKiDugCmQ6WjsTkJaT9a6E3TrYMKXrP3C8nMXb
+         HKAslsiEbesOM0wzBsE+w8SwMNoEyc05ktBS2VrcvRiHYI1PeegMAY8Sz5OXySoBLhvY
+         L+GGrIEMd9gvpKbHEWk6ZmniR1nvBsaZtlRjsMsgipTa2EscqGeCX2I8TgsZ43NW/K0Z
+         N1ABH5bDWU/A8d04ZyQkraRtyJ1ymW0jw2hpu0NKBukxwsHcd6g4mo66HUSU4XEmHjNv
+         K+uA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0h6RpirJR1I/UwdmLEoUgmJp0P13IBl1M12dzpPs8/11dhZLHC48fuRkMSq5vKfTDGfWQhxcG0QqI@vger.kernel.org, AJvYcCXgoqZwY6yoIDTNhDjXJxZ8IVCMhrBs2vvM/67t3HM/DxJgQWh/OD4Dyz5YgvKxf0RNt+2dcC5W7A6dydRB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLRwLBAm+e4JvFny4bmLApWDLEcFfWQ/s8QzEfHNLCJYWJIY+n
+	yh2b+7FqK/m0eUryinANQa9+/+G1pHr0qyCM9Zw7VxrTxB3Sr4lCW2//+cm2NWP/Jl4i3aKnOlX
+	oi4er8TnAKFVb6Klmjf6icV+RJmo=
+X-Gm-Gg: ASbGncu+2uuQSIDGBCCLKKno2nHcC/VTYcaIS+kOql8lIJIEf3z8kK6VY6pYXEADi93
+	r1oZnpaTWRm1asCN/T1lulSsUMdrW7ca3sxgEam3Y476iZmbtT7K/B0y2dwcUZ26C6LA/FDMvD2
+	eso6U7aBX7Ow+/mRGN8HJdb2iZ4y4=
+X-Google-Smtp-Source: AGHT+IHmnqwp7fYLD9r0VzUZ9uVobcEtY3ANbSUHe5IqHvpSb08zJTe5lq7GR0A2HHq8TuJDFRWbEUa4D0HngXEzQro=
+X-Received: by 2002:a05:6000:420f:b0:39c:30fb:fd97 with SMTP id
+ ffacd0b85a97d-39d07ad8accmr11712104f8f.1.1744090962383; Mon, 07 Apr 2025
+ 22:42:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225090014.59067-1-clamor95@gmail.com> <20250225090014.59067-3-clamor95@gmail.com>
-In-Reply-To: <20250225090014.59067-3-clamor95@gmail.com>
+References: <20250223153244.149102-1-clamor95@gmail.com> <20250223153244.149102-3-clamor95@gmail.com>
+In-Reply-To: <20250223153244.149102-3-clamor95@gmail.com>
 From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 8 Apr 2025 08:41:26 +0300
-X-Gm-Features: ATxdqUGMeG1CwHC3rDx2BTng2GdUddmPlkEu4XWRs8Y5daVCNusbjXPJd2k3sVo
-Message-ID: <CAPVz0n2SAuC_yH79Q1Qor3yp7tAhhzqnTmma24TFXFcMhF0GSg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] extcon: Add basic support for Maxim MAX14526 MUIC
-To: MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+Date: Tue, 8 Apr 2025 08:42:31 +0300
+X-Gm-Features: ATxdqUFll3jD8BcEvaAkgpR3n64WmaGGcMsqo5zGxP_xFPaWja_GHAYRiR6wr5A
+Message-ID: <CAPVz0n21dv1faVeWaRRtA=06D4Ve65cwP_nYF=f=orv_d67oWw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm: bridge: Add support for Solomon SSD2825
+ RGB/DSI bridge
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D0=B2=D1=82, 25 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 11:00 Svya=
+=D0=BD=D0=B4, 23 =D0=BB=D1=8E=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 17:33 Svya=
 toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> The MAX14526 is designed to simplify interface requirements on
-> portable devices by multiplexing common inputs (USB, UART,
-> Microphone, Stereo Audio and Composite Video) on a single
-> micro/mini USB connector. The USB input supports Hi-Speed USB
-> and the audio/video inputs feature negative rail signal
-> operation allowing simple DC coupled accessories. These device
-> allow a single micro/mini USB port to support all the common
-> interfaces on Cellular phones and portable media players over
-> the same external lines.
+> SSD2825 is a cost-effective MIPI Bridge Chip solution targeting mainly
+> smartphones. It can convert 24bit RGB interface into 4-lane MIPI-DSI
+> interface to drive display modules of up to 800 x 1366, while supporting
+> AMOLED, a-si LCD or LTPS panel technologies for smartphone applications.
 >
 > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  drivers/extcon/Kconfig           |  12 ++
->  drivers/extcon/Makefile          |   1 +
->  drivers/extcon/extcon-max14526.c | 301 +++++++++++++++++++++++++++++++
->  3 files changed, 314 insertions(+)
->  create mode 100644 drivers/extcon/extcon-max14526.c
->
+>  drivers/gpu/drm/bridge/Kconfig   |  13 +
+>  drivers/gpu/drm/bridge/Makefile  |   1 +
+>  drivers/gpu/drm/bridge/ssd2825.c | 821 +++++++++++++++++++++++++++++++
+>  3 files changed, 835 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
 
 These patches had no activity/feedback from maintainers for a while,
 so, in case they got lost in the depths of email box, this is a
