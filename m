@@ -1,147 +1,171 @@
-Return-Path: <devicetree+bounces-164162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1888A7F591
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80ABAA7F59F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 402D517BE95
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:05:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65EAF17A71D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D822C261382;
-	Tue,  8 Apr 2025 07:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE76225FA34;
+	Tue,  8 Apr 2025 07:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kLXn6B/j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tuNiBJYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07814261360;
-	Tue,  8 Apr 2025 07:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E19635979;
+	Tue,  8 Apr 2025 07:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744095905; cv=none; b=cTS0E4RABbwEgmEVWu1k2MQYk1REOrDtkAS8+DCbYpQkWrPcRTL/tB/NZvaHVO7wYSTVAJxW1fRVK5IASPd4IWNQwM2qPvWVXyTBXJAFXjSIgw31i/R3YAM9G3rbdSsmu+tDE+LCl3WmWVllm1U1gs5EsiwLe1sD6UC+I4azwWI=
+	t=1744096007; cv=none; b=I9LyKDYL10YTW235M8J+efPOXq7SYNbHcLGvEVBIwQrYqST+I4QqwoNVCPHVD++m0BiDQVj96ygy4r8GQb1Ymam3FzQVvwiP9c7sA8J/XajVjIku0XmMotmFAz1S+CWd4CWHhiPw3JnZpON8r+dGEzrcMwZjiVwTWqWS43tzlAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744095905; c=relaxed/simple;
-	bh=YCGDQojD8nya6OBnR7iagaQHAlVaXzUTMmVsiIk5blE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jeSMeICr+ntXjNdIzeO2PpFDfCSZA9Ts8Ov6CJKsIMhdIehylqccrkA3hhsZoiLLGq7/HmHtlOXUcHABmKDmjwu7fXepgj3QwQKLOqFXAZFNAPk+hfsBNCFK3KFl244rb3RtvkpFRMRILg3x6Y/+fky/YnRpucY1GncXv1qDF0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kLXn6B/j; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30c461a45f8so51166551fa.1;
-        Tue, 08 Apr 2025 00:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744095902; x=1744700702; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i11n14/4d12JDY2DmtQ7aKWTPCB2K2tXSiZI90yPfyM=;
-        b=kLXn6B/j00FfQm/HeFGKXD5QtYhE7Qs0tBfpyccMCeYH4EqY3+Zo3piQ71gsx6DLXQ
-         T24z0/yWlJ3ZdNsHEAG7/RLyTa7P/iSxclGjT/A3LJrAtSJLhCKPgunUJVZeIUUmoh0A
-         qClQLFn5yzkeZTEYPcU6z/g3u+e8R3fxO6nyngTbcrv8mpn9PMxv8hAuWSXkasDnuGiR
-         vUJ9FuiNrrtnzfkNPEv7hGDt2+WBOEHbUreE5StpzUg4hONdR5N3ZYqKSHFOgP+qDC5c
-         qYVNi79Cl6bwN0/RpKpox5LrFNPLrhCp3cvPrD+c6NaCcsnwqKbynGWZPGcqy9VR7oIR
-         I67w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744095902; x=1744700702;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i11n14/4d12JDY2DmtQ7aKWTPCB2K2tXSiZI90yPfyM=;
-        b=d/35hNEUP2p0izjT44I+IBCG8npJtrU7T3w3LuixL1NBrkhc5dPKe2azA+BGqabuTw
-         ZL6VJCvJ7YcqD6FKqip8yUpgtfLr/HiZEJ9p/nhgcK5BVZ5dDPBlvD3KvWD2Py+NeEjJ
-         /Kh7J0tBwJDJip0BVWFij9W1xkB688BtPe1k8O1m4R8MY5Kg6LyrAR7v3/zltrGJ/YKw
-         bVEJLRm/zwthyisla0pGJJcbKHSlH9bPy35pq1vfE3uglgpKNQgJdu0Req8+k6Sn4QKi
-         +0gPeJdpXzfl0vS5OPgmAuJV9ttd2ZW/u6OpwGbYsLzcCygO6rLK6xt7aIut+T0GpQCO
-         4WhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOjKKBPzMaXLpmDMiiD7Rwpht7QENQu0HQvKFrXaqkAleS4Mz8H4vmDLyNLVUF/s6LzmN6grK72vOflEAK@vger.kernel.org, AJvYcCX9j1Oe5lCul70arN/dIYSkNOY7DzhCTcNR2QiBCGzLxFKoZKhk7jk/dIj7tSmDOzaJxKwuvzIATuho@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4usDNOuNb+DOgoVguk1cVFmZbSI7DZahy1HwCe3/47/edUZfG
-	CYGgBPTpolJ/vsjcCWeXeU+HD/DDnGHfwj7QMWwz5HVUP1CRIAJ1
-X-Gm-Gg: ASbGncvYquUKRGYfebGdI6KEt7cHWPk+QrwhvAUZgJM/l1b7M9Qox3KYOfOQZ164iaf
-	nrtg47f8AVNwNzIOtn9D66RhnlN3fXv2mZ6epIlxuXPrSE89Ji5NSJdClH1S7ckq2xL9s2CmFJw
-	JBzW9b4s1JvNRuC7QImgKMQKX2Qr5P4vjOAr5CsKiLeVF7eJ8DUFG2gN6S6G4BWlHHW0W0cetoW
-	KISPuUfCYa8FRqs9P95KJ0b6Ps2D4eKrXLH6IMt5xy9wrSUlKFHKpueMA4kSqGfKZU28ES/JA4A
-	twa898aJduUSyoyRl41mvHCLjCY7viZEpBbOC7CHNJxLSTdmVLDYNgbBa78/M0chQiscVjhm0+O
-	4NiBm5Hx5Mlcd
-X-Google-Smtp-Source: AGHT+IFweT18OMKEwMuPZL1sAyNuy95xRHNHIIz/+725Kq7sjzQyRwU4H6VFXOnMdyuzO5rCuDw9xg==
-X-Received: by 2002:a05:651c:989:b0:309:2ed:72df with SMTP id 38308e7fff4ca-30f0bf50394mr40218871fa.24.1744095901929;
-        Tue, 08 Apr 2025 00:05:01 -0700 (PDT)
-Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f031bcd37sm19252841fa.76.2025.04.08.00.05.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 00:05:00 -0700 (PDT)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Tue, 08 Apr 2025 09:04:30 +0200
-Subject: [PATCH v3 3/3] MAINTAINERS: add entry for Sitronix ST7571 LCD
- Controller
+	s=arc-20240116; t=1744096007; c=relaxed/simple;
+	bh=b4/HM8+SciHG286LvQnLgT/d3PAh2mnGk8+5TyFZWoU=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U6wSqExhdJ2bVMT5SKOA3VbjgrtgNI56C7SgkG5bcKB3OuLmIr0NVk4s1YJhOdVxXohZl33DBuwFlAL00LXN9CFhUQQPSux341Bjr1OMzvuOoT9XmyNuCU99lAhD/hEcXTkFMD2LJ332b5PIFCPndwNCh0nVjbDSl2A/keO0UmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tuNiBJYi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4448C4CEE5;
+	Tue,  8 Apr 2025 07:06:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744096007;
+	bh=b4/HM8+SciHG286LvQnLgT/d3PAh2mnGk8+5TyFZWoU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tuNiBJYibWOt5+vSOcQ+JRLaGgZWDkwaR5g7lNtcFTYc0eXDRKe6tq4CFJoPxKpIt
+	 5zBNMaoK7dfKeOvGjJHcZC3SgfNhwMciKiHLr3Xj3tBZTIQAQriWeFzCef/7bg1+dE
+	 hyqgZvsEdCEEUnc8kb8ixxAmY0ceVaTbQ/FV/etjY5hzXxF4tmwW+1dePcWZiVahGl
+	 0JA6jU7oJiTCnEF5XrUfeiimXLagzfg43mKERJZSQ+zqZhgvK4Qk5R1p1r9X+bNtjt
+	 Kk9dCK73/RxRciBC9MdW/1HCWKw9hR/5lrex479hCJcM2sa/cq97vi7qhYhnbL+BmN
+	 nEcjjtUmDVjOg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1u232h-003JRY-F2;
+	Tue, 08 Apr 2025 08:06:43 +0100
+Date: Tue, 08 Apr 2025 08:06:42 +0100
+Message-ID: <86semjku7x.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Roman Kisel <romank@linux.microsoft.com>
+Cc: arnd@arndb.de,
+	bhelgaas@google.com,
+	bp@alien8.de,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	dan.carpenter@linaro.org,
+	dave.hansen@linux.intel.com,
+	decui@microsoft.com,
+	haiyangz@microsoft.com,
+	hpa@zytor.com,
+	joey.gouly@arm.com,
+	krzk+dt@kernel.org,
+	kw@linux.com,
+	kys@microsoft.com,
+	lenb@kernel.org,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	mark.rutland@arm.com,
+	mingo@redhat.com,
+	oliver.upton@linux.dev,
+	rafael@kernel.org,
+	robh@kernel.org,
+	rafael.j.wysocki@intel.com,
+	ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com,
+	suzuki.poulose@arm.com,
+	tglx@linutronix.de,
+	wei.liu@kernel.org,
+	will@kernel.org,
+	yuzenghui@huawei.com,
+	devicetree@vger.kernel.org,
+	kvmarm@lists.linux.dev,
+	linux-acpi@vger.kernel.org,
+	linux-arch@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	x86@kernel.org,
+	apais@microsoft.com,
+	benhill@microsoft.com,
+	bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: Re: [PATCH hyperv-next v7 01/11] arm64: kvm, smccc: Introduce and use API for getting hypervisor UUID
+In-Reply-To: <20250407201336.66913-2-romank@linux.microsoft.com>
+References: <20250407201336.66913-1-romank@linux.microsoft.com>
+	<20250407201336.66913-2-romank@linux.microsoft.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250408-st7571-v3-3-200693efec57@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
-In-Reply-To: <20250408-st7571-v3-0-200693efec57@gmail.com>
-To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=954;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=YCGDQojD8nya6OBnR7iagaQHAlVaXzUTMmVsiIk5blE=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBn9MqSKP5h8IxUt3tj8KSjZst0/DK3ePN4fRnIZ
- RaulY19LpuJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZ/TKkgAKCRCIgE5vWV1S
- MusgD/0Rm5O0xsoOa0hrInGGh3xTpRan1/qYSMbzqbntwNtFVuAJS2qFMQHUzjRRo876g2wBhrl
- tVHdOa5Mws9M9WDVXV9gl3Y3YUUhb3A73bPu4fcYFezB+l8EKIM/tWCkccAAEdurADlnhlUJT1g
- 9KZ433Vf7QjooRYWXmrfs0V2RVyLwKpwtYsncODbhn/psZLl+OCjuEUafXaVUOAnN1HIQgb1vtv
- PyTZKZ6ksGEdozDboo9Y6HU2R++4LO+3ud6mfg+g98HXE02moXFB0N8d8UK8HBfh7OrqNTBcP5a
- kCYoRxhFCvXIy98IT/aE3tlC4O1kvV8DD2JoXLnb6mWFqfeBxOm5elx3apa1NNaE/xJgXVeDA1x
- ZsDYD5aJ5ph61JeRqUkxpO10nrVKxVnSWvfQKkbOA+/ImL7Fy4jcQ1s+YyinLyqWPRJf3dZU5W8
- rfQUFJ/fZla7z/ZqWEmFCm8Rj+zua78TXUKn7ZR8lNmngNo05TuBSkfwmp0NAJrLPz5mNZJ2Z8M
- Ogpc71FndO5Ay+Kx8xbmF+69baWDWfoA/WKnsmZKWKbsn4EhNRQPm4mpFcXdVvlu2poBaudsBCy
- 53CRD1jqvNzr/IIC/B5mzSoY9ts5CJpzUFIRrUEYauwXGnHa/AQY4UsfKlFyNH8uRNsOhZcUEc2
- QrrWkW8xBQ2fjnA==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: romank@linux.microsoft.com, arnd@arndb.de, bhelgaas@google.com, bp@alien8.de, catalin.marinas@arm.com, conor+dt@kernel.org, dan.carpenter@linaro.org, dave.hansen@linux.intel.com, decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com, joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, mark.rutland@arm.com, mingo@redhat.com, oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org, rafael.j.wysocki@intel.com, ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com, tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com, devicetree@vger.kernel.org, kvmarm@lists.linux.dev, linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org, apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft
+ .com, sunilmut@microsoft.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Add MAINTAINERS entry for the Sitronix ST7571 dot matrix LCD
-controller.
+On Mon, 07 Apr 2025 21:13:26 +0100,
+Roman Kisel <romank@linux.microsoft.com> wrote:
+> 
+> The KVM/arm64 uses SMCCC to detect hypervisor presence. That code is
+> private, and it follows the SMCCC specification. Other existing and
+> emerging hypervisor guest implementations can and should use that
+> standard approach as well.
+> 
+> Factor out a common infrastructure that the guests can use, update KVM
+> to employ the new API. The central notion of the SMCCC method is the
+> UUID of the hypervisor, and the new API follows that.
+> 
+> No functional changes. Validated with a KVM/arm64 guest.
+> 
+> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+> ---
+>  arch/arm64/kvm/hypercalls.c        | 10 +++--
+>  drivers/firmware/smccc/kvm_guest.c | 10 +----
+>  drivers/firmware/smccc/smccc.c     | 17 ++++++++
+>  include/linux/arm-smccc.h          | 64 ++++++++++++++++++++++++++++--
+>  4 files changed, 85 insertions(+), 16 deletions(-)
+>
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+[...]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 889bd4a59551c9bc125f94944a6e1c7e3ef2de83..eeae24fda846b9f63400ebb08c3fa7f02f3f4b19 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7572,6 +7572,12 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7586.txt
- F:	drivers/gpu/drm/tiny/st7586.c
- 
-+DRM DRIVER FOR SITRONIX ST7571 PANELS
-+M:	Marcus Folkesson <marcus.folkesson@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-+F:	drivers/gpu/drm/tiny/st7571-i2c.c
-+
- DRM DRIVER FOR SITRONIX ST7701 PANELS
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
+> diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
+> index 67f6fdf2e7cd..4bb38f0e3fe2 100644
+> --- a/include/linux/arm-smccc.h
+> +++ b/include/linux/arm-smccc.h
+> @@ -7,6 +7,11 @@
+>  
+>  #include <linux/args.h>
+>  #include <linux/init.h>
+> +
+> +#ifndef __ASSEMBLER__
+> +#include <linux/uuid.h>
+> +#endif
+
+That's a pretty unusual guard in arm64 land. Looking at the current
+state of the kernel:
+
+$ git grep -w __ASSEMBLER__ arch/arm64/ | wc -l
+2
+$ git grep -w __ASSEMBLY__ arch/arm64/ | wc -l
+122
+
+I'd suggest the later rather than the former.
+
+Thanks,
+
+	M.
 
 -- 
-2.49.0
-
+Without deviation from the norm, progress is not possible.
 
