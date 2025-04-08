@@ -1,71 +1,74 @@
-Return-Path: <devicetree+bounces-164141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9B7DA7F495
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02213A7F49E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:08:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 017ED3B41FE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:07:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C4AA3B422E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7FD25FA18;
-	Tue,  8 Apr 2025 06:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C58261576;
+	Tue,  8 Apr 2025 06:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CFRQYz03"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vz3JrasY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4270C25F98B;
-	Tue,  8 Apr 2025 06:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030C8261380;
+	Tue,  8 Apr 2025 06:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744092411; cv=none; b=MzocVu9mzA41KygxuQrwHvKV/nhw0kmy2X4V0TBe3O8LOS/MxtIa9KLgFVw0Lt6h9djZNstFR8BCzftxXlSaM4mod2dEJjAQ5yptNLqqWUDWmrmzdc4xMIrqOZikVa/RD3Ye0I104PWzMFj+PQUKWaNrQPrtNCiPHH/ugyeX9T4=
+	t=1744092416; cv=none; b=WHcqfT6wWgruc78IhkQRXIFHZOg6TQvD99o4sAMTV4oy8jSYD7h8JIgChQTYKb/1ae2BcsTLaTZ+csl5usulkqGh4O+EhCkJHm+GbbI29NQCjH9nhYLHdyPYgF2hr9s6zgUjoi/UKs1uxzc4TmStR2EYP5O3VoXR+5FMTbv9SDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744092411; c=relaxed/simple;
-	bh=5Q/qbzf87+jHK3LEj1xpmiZPZoZCk+cG/M4W+faqlKw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZBPZRBOjy3coLbpYJ5i1RBkZ8OCa5kzuXQXSG4MPOR9G7kQtE8P4cpzciBE9rn4OKmRD94zLv5xqwTjRReQmx/um1W7QZiMJhgn/a257pVtLk8VGGm7KKbwSiWL34BgyrrE1QlSbC3K3orlFLFtxdUNB0U3OszTz6awFwPRXwi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CFRQYz03; arc=none smtp.client-ip=198.47.19.246
+	s=arc-20240116; t=1744092416; c=relaxed/simple;
+	bh=GUuT7bTMVUKVp6dEEOPf/226ycpsaZ7FXgep5Yhrybk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M87aOG5U3AWH0JYmiUze6alrVTUUjX4wZ51nWa2MiXIbzjx78rClKTlr+yYr25toZU7XGy7rgHXvafHDw+xNGL/bZ0Faf7KopJmkw+TpK5Z5Cu3gcM4HoHQNCymmhs1YgJqHl3OsMBsy85+KN5H3lW1IPMLk3hCF6rvGXWjr6rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vz3JrasY; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53866fL91125960
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53866i6u588116
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 8 Apr 2025 01:06:41 -0500
+	Tue, 8 Apr 2025 01:06:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744092401;
-	bh=sj/vDMjsgS3JeJqVpVc7Ee+PaOYcv9JfrYRFTbtostM=;
-	h=From:To:CC:Subject:Date;
-	b=CFRQYz03j5T9vR0x1RsAeWGiHVVF2hjE+90K9qzcLmcFWnx85SlOKvtihk62svUkq
-	 wFPgmgbq/ZM9eEX4KsvyM5BWpR/NAqvbmbl+WkzVsKVQ3Te0VCtQjO+lL/nyiFrk+9
-	 rQ4qP4vkexiQFH55Leex3KIcVp6KpVd/bHmnISMQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53866f2e030560
+	s=ti-com-17Q1; t=1744092404;
+	bh=YqLD2vCeiPs+6q1xuXlk8xM8QBX+ma3oG/1xC1BKk/w=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=Vz3JrasYYyBxloSqBO8Q4VWSxrW+Dxx0zNBOwWFQ/fZY8PKHFaIMmDEQhjTsrr4lH
+	 s+Q1AIHbGtecg0fmTVY+Ffq6IGOHy2j0bxNn1JnTaCiiA9BTZpiaIVcdbAevjde4hA
+	 foYX+lVKDBQX8YAuTj5v1FkDrHRPqozfsCMlkNXI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53866ida079146
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 8 Apr 2025 01:06:41 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 8 Apr 2025 01:06:44 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Apr 2025 01:06:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 01:06:43 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Apr 2025 01:06:40 -0500
+ Frontend Transport; Tue, 8 Apr 2025 01:06:44 -0500
 Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53866bvo080076;
-	Tue, 8 Apr 2025 01:06:37 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53866bvp080076;
+	Tue, 8 Apr 2025 01:06:41 -0500
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
 To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
         <s-vadapalli@ti.com>
-Subject: [PATCH 0/2] J722S: Disable WIZ0 and WIZ1 in SoC file
-Date: Tue, 8 Apr 2025 11:36:34 +0530
-Message-ID: <20250408060636.3413856-1-s-vadapalli@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-j722s-evm: Enable serdes_wiz0 and serdes_wiz1
+Date: Tue, 8 Apr 2025 11:36:35 +0530
+Message-ID: <20250408060636.3413856-2-s-vadapalli@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250408060636.3413856-1-s-vadapalli@ti.com>
+References: <20250408060636.3413856-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,34 +79,40 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello,
+In preparation for disabling "serdes_wiz0" and "serdes_wiz1" device-tree
+nodes in the SoC file, enable them in the board file.
 
-This series disables the "serdes_wiz0" and "serdes_wiz1" device-tree
-nodes in the J722S SoC file and enables them in the board files where
-they are required along with "serdes0" and "serdes1". There are two
-reasons behind this change:
-1. To follow the existing convention of disabling nodes in the SoC file
-   and enabling them in the board file as required.
-2. To address situations where a board file hasn't explicitly disabled
-   "serdes_wiz0" and "serdes_wiz1" (example: am67a-beagley-ai.dts)
-   as a result of which booting the board displays the following errors:
-     wiz bus@f0000:phy@f000000: probe with driver wiz failed with error -12
-     ...
-     wiz bus@f0000:phy@f010000: probe with driver wiz failed with error -12
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Series is based on linux-next tagged next-20250408.
-
-Regards,
-Siddharth.
-
-Siddharth Vadapalli (2):
-  arm64: dts: ti: k3-j722s-evm: Enable serdes_wiz0 and serdes_wiz1
-  arm64: dts: ti: k3-j722s-main: Disable "serdes_wiz0" and "serdes_wiz1"
-
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts   | 8 ++++++++
- arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 4 ++++
- 2 files changed, 12 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index 2127316f36a3..0bf2e1821662 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -843,6 +843,10 @@ &serdes_ln_ctrl {
+ 		      <J722S_SERDES1_LANE0_PCIE0_LANE0>;
+ };
+ 
++&serdes_wiz0 {
++	status = "okay";
++};
++
+ &serdes0 {
+ 	status = "okay";
+ 	serdes0_usb_link: phy@0 {
+@@ -854,6 +858,10 @@ serdes0_usb_link: phy@0 {
+ 	};
+ };
+ 
++&serdes_wiz1 {
++	status = "okay";
++};
++
+ &serdes1 {
+ 	status = "okay";
+ 	serdes1_pcie_link: phy@0 {
 -- 
 2.34.1
 
