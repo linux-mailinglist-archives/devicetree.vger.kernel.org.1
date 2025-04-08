@@ -1,120 +1,119 @@
-Return-Path: <devicetree+bounces-164149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0C8A7F4E3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:23:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8B3A7F4F8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B76427A6DF5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:22:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 209803AEF46
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91912226170;
-	Tue,  8 Apr 2025 06:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4544022A4DB;
+	Tue,  8 Apr 2025 06:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YzGd/NAe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCxPKDAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E74218EBA
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 06:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20099204599;
+	Tue,  8 Apr 2025 06:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744093424; cv=none; b=a4Un6gaoLjuEosKsG6imMY7X+/Ac++xBtjgYmcd55k0zUTA3EO+8RcWYBI02ziuEwAgAY1KrOs60+sfKXvVO03wd5hXvPl7wWna7/0GmNu8XgeU/D8Uh4b3SoPWqYHQ7OhAnCsixUI2t69W1G8sSguIQlh3MKciIJTGdS5sTaYQ=
+	t=1744093675; cv=none; b=pU1vQCC3RT5slYkqJG3O9ACX8FF0tZAPOg6PYIrd1sS7go3cX/7Dj0grD+f7d7cXwMY5Qvx1jBSPfKY2h6k+iqtVqf7EPwCrtl5lCw2ON1PvYjPqHLFVSnWOEnatGfo2ia6tgDigqkJAatajN88TZXuPc9RdSEyUuwhKe7tahcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744093424; c=relaxed/simple;
-	bh=gQwgHMK+g5MP4cnX6961bnkS2wSa/8ntMGORd4vyZ1I=;
+	s=arc-20240116; t=1744093675; c=relaxed/simple;
+	bh=sMS+pgw6gVqh68XJIsm5XK7zPr1Qw6uCBmzpegKq8po=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B2rfLQatQFqh2axWZFm2iqkvEEoUTDD6dxtp6ALQxPtRp4M/KmLd06uXv725Hkl/3ykG4SHe1A53gn0tGXQcEVXN4uVHhtdbe+Hsy9O7oe8d7C4FebF6hU4pS1+psUvg9gd9XocsbJZGl/+a+vNMBxvYl85Op1LSJbceL7AeNmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=YzGd/NAe; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=gQwg
-	HMK+g5MP4cnX6961bnkS2wSa/8ntMGORd4vyZ1I=; b=YzGd/NAe/8LUbXa9Mgha
-	8ooVPcpS4xEJHgXxaxw37j/0FAhN8oHEC0vMx95lfXCD+swYASZHsXpSodIgonoV
-	/OgBaB4bCbREHGTK7d6Q6Pky3DOHQFP/ecSmnywEcRgTrbc3a0roK7wUytd40F5u
-	zIh1ldeit7Pq7NJPwhveNWtet2ofobG38knUSlfQ1gFweUgwiljI9kX/pqnp9M3Q
-	mZLtrjbo9MJ/4IQHBinQWJ+/AdzDB5jZKVSFtVKDJeGD1T+m9fS+NMBduI83K3r9
-	UdpPm1BSA7PTkzauc2uj+CGXfQNmxZNSU3NPvw7hylXQV/q+biZgQKg7bDq0leEX
-	aA==
-Received: (qmail 4069015 invoked from network); 8 Apr 2025 08:23:31 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Apr 2025 08:23:31 +0200
-X-UD-Smtp-Session: l3s3148p1@rEQ9ZD4y0LkgAwDPXyfYALbiJ46yNPq3
-Date: Tue, 8 Apr 2025 08:23:31 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Subject: Re: [PATCH v3] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-Message-ID: <Z_TA46i0KfFq89ch@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-References: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com>
- <D8IEWP78KVOE.1SD29H0S51FZM@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DiI4GATQLyiQbd6nEcNqPLMFR5vSZefbv2A8HYZ9NQtMl0M3rJNsiqfaVYmJp/0XqrvKhyW5oMwr+NSqA+XHLY8SZHejTc6DtHBN8eAdHJy7692TjFL0on9WjA5v36G00DjDO8gRh8ANqBFujBZaLJS1N39RxMeaW72Y/03wqcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCxPKDAt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEA00C4CEE5;
+	Tue,  8 Apr 2025 06:27:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744093674;
+	bh=sMS+pgw6gVqh68XJIsm5XK7zPr1Qw6uCBmzpegKq8po=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KCxPKDAtYbCUGWLAiugHnlJ1jfR7zWnnyv2OFh5PAfDoXZ5tNhjnYj7CCDh9B4YZr
+	 XBmjYBbC965nulCVvYBO33HlCKoyIb6T9L8+o6kkcPbMC1XL8UdineCjJrOqAm8hBn
+	 qJSX7QgOzaL9eL0P46aTPKRWWE/2PEJXSpZNv9W62YJmepkAFgw7oPDwOjEohJrRcK
+	 vPgCUGoYuZZGPBDkWZaGmprtjx1O5BqTz0ZP+XMUgSSswwnZYFbys0Yi1QK7/hgGTt
+	 AelyZ9xgtBpZmhTCEgPBnZHn2F/RRbPngzI7jYEKmxwfHvglujYi5USJVC1oadHCFE
+	 7DncsVfNmNocQ==
+Date: Tue, 8 Apr 2025 08:27:51 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Friday Yang <friday.yang@mediatek.com>
+Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6 1/3] dt-bindings: memory: mediatek: Add SMI reset and
+ clamp for MT8188
+Message-ID: <20250408-bulky-optimistic-lobster-69ed77@shite>
+References: <20250408033206.12176-1-friday.yang@mediatek.com>
+ <20250408033206.12176-2-friday.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9lPWgJKryjainis/"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <D8IEWP78KVOE.1SD29H0S51FZM@bootlin.com>
+In-Reply-To: <20250408033206.12176-2-friday.yang@mediatek.com>
 
+On Tue, Apr 08, 2025 at 11:31:54AM GMT, Friday Yang wrote:
+> From: "Friday Yang" <friday.yang@mediatek.com>
+> 
+> Add 'resets' and 'reset-names' properties for SMI LARBs to support
+> SMI reset operations.
+> On the MediaTek platform, some SMI LARBs are directly connected to
+> the SMI Common, while others are connected to the SMI Sub-Common,
+> which in turn is connected to the SMI Common. The hardware block
+> diagram can be described as follows.
+> 
+>              SMI-Common(Smart Multimedia Interface Common)
+>                  |
+>          +----------------+------------------+
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>        larb0       SMI-Sub-Common0     SMI-Sub-Common1
+>                    |      |     |      |             |
+>                   larb1  larb2 larb3  larb7       larb9
+> 
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> ---
+>  .../mediatek,smi-common.yaml                  |  2 ++
+>  .../memory-controllers/mediatek,smi-larb.yaml | 19 +++++++++++++++++++
+>  2 files changed, 21 insertions(+)
+> 
 
---9lPWgJKryjainis/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+<form letter>
+This is a friendly reminder during the review process.
 
+It looks like you received a tag and forgot to add it.
 
-> I'll send a v4 soon.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
 
-Please do with the minor review comments addressed. I have some patches
-depending on it. Which means that I am using this DTS regularly now and
-it works great.
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
---9lPWgJKryjainis/
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf0wN8ACgkQFA3kzBSg
-KbZrfhAAluEQLV+tfzv7xuGV7MUBYyc/AO3qenfaU6TtbMNnU+S4EOuVT2ZHFfpo
-07HoNPprmpKFGJ6BP9o0ZyOzjn8BvA7iRaWH8a4g8+OBBOzqRgthwcrmiuDhkDHz
-Q5CtFfeVW++uDIrrhL5J5BDuCI/CpTOc1CC1zWPpA9DOdh2hxOqxOfisf0SDXrre
-VaLgjKZSVqEgvRXKvdQjD/gzByW8E3oes7ZhDz9sQc6Hp1SXHX1+0/M73lELU7o5
-c2FKMe/ePrb+3ldxdvvzu8H8xUIWLbkajv8G+aV4G3608uEPXCkLFiJGdJsF8YJI
-8yXz5BcF9CWh+0an6tfCkeGDLQ22pcVf3urQI+VKXXjDcIZfLtBohZ9r0LX+e5ON
-o9oZudSSH8pl3MZzoW7T4Y/f3eNnQb3MRQ4+7LVaGcNLUoXz6eN65/89Bq+0077K
-ZB+zNMWIwkKYf0VazsXhmxAsmFcfMCVSH2s35uAVq0nELRG1GeczK5eBorS+/3to
-EUTi+KHFwaNL3/wIFPrIyBXvd+LpjGS+54sHM0PhRVmLX6153gwN4wsWXCvOy+Xe
-ZVeGhQp9cvx7+Yd12yTQy+dA70MoDaQxKoKNE3NcaCQVQUEdLd45qAhtZcoD952a
-o2LnIwEYFnX+88i065V5DN9P/o7ZhpK6+7oXPko2gBzn1/vgOIo=
-=HfnY
------END PGP SIGNATURE-----
-
---9lPWgJKryjainis/--
 
