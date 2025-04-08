@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-164419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 862F8A80F42
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:07:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C62EA80F45
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 813F819E2E4B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:03:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8EA21B622B4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:04:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C47522B8DB;
-	Tue,  8 Apr 2025 15:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121D222A7E0;
+	Tue,  8 Apr 2025 15:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1A0ss6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79CFC22ACDF
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 15:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA581EB9F9;
+	Tue,  8 Apr 2025 15:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744124562; cv=none; b=hXC4mYqKUxP0Mw2FxajMm2+gjjMTMZnhC8fKptL0VQouj5LNBCZxnZrM+3Dn3Mspmk2JbDj7yfLgEjuJGPC/koLDIT6c02urlVLqJir3vnB+yH1zM1rjBQzZMhidrrTVjNITgmRsgghFbG4iHH+jbD+2vyGGp6vbkz9xtlcmyFA=
+	t=1744124580; cv=none; b=Www86w9DdCUe28ttnY1wLK0OrxDwxuFn2Pwb0dzc32z/p11CWhw5OKg4p5nKt/BvhKjqk3MIYi5Cg4u2pVYahln7q+wgWdMbwy60t7nJHIKigDZ1TpB/JtEclgtw8tZgmg9WKDEj9afuIQiN3H2ecV9DS/lYP/tzjnWpPDegvS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744124562; c=relaxed/simple;
-	bh=HAeZ3Bog+4YMf9IhhAyXeuG17F+LI3itmc8xpJJVdHI=;
+	s=arc-20240116; t=1744124580; c=relaxed/simple;
+	bh=LKvavUYgpGR64gZmKbXgsDUtOXVLw5hcAok6WXy6l2w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a2Sn7GLtmTF9JV848a5DwCNEPc5lURigqgy/M/wL7X5UmqOS7ZKAGR7rFcZ1TkCX4O1M+UhAcVHyqp3vqNWbw8FtLYUSkWbWAnmJPiZLpEXr1ssl3LM7xSfm0a3a/p5GRUbJkchNdVbiS0POEJk6UevBzoynlT2NKkI3ie8RrY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u2ASz-00062H-Mm; Tue, 08 Apr 2025 17:02:21 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u2ASz-003wys-1A;
-	Tue, 08 Apr 2025 17:02:21 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u2ASz-006bVt-0n;
-	Tue, 08 Apr 2025 17:02:21 +0200
-Date: Tue, 8 Apr 2025 17:02:21 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cGYADMZQwApPkvznHJM7lWOR/mDA9Fpo6oLxf3121NSRJQBB1cLaLBK/eEu/pZzrt02L1FpIbWCwask9S+8CtnPan3csy6540g+ie6wnz93PhUddSW+EWst64xUNSFuzKCjUzlnkQgemu+VzzcWp8fxoFh+KrAbHn/wMW1v266I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1A0ss6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16087C4CEE5;
+	Tue,  8 Apr 2025 15:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744124579;
+	bh=LKvavUYgpGR64gZmKbXgsDUtOXVLw5hcAok6WXy6l2w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F1A0ss6HLnm9h4iZmE3GGxq7KgMcTItcndCwA9TrvJ15cN8gdHxIAtMQuUDLaqm99
+	 0KZ6n+1XpUrmR3N9EPmN0TR/w26ve6ew02oqFcqz3gfPkFmpt4aGOF8xKDnhNuXLhn
+	 lFA4g4QrP3/0RGYEzYOt4WAbQB5svqsyZ51z6tH/tSP6b8QDM01UCHimmHW7RvDfyy
+	 JPH67kVjPetJUMEiZ+7TTXxRqD0a/O/khNPzP6UWtVz2T6SjAgfTK+QCzYNMKwMn2i
+	 W+4Jvfo01tAc+8CqOD38twNOzVomSZs1vMnjZsRjOerTk4w/Obn6QBi50mY0sUhcyz
+	 +1wy+SIS1t7cw==
+Date: Tue, 8 Apr 2025 17:02:53 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH 3/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <Z_U6fUGbOV2SdO_C@pengutronix.de>
-References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
- <20250408-clk-cdce6214-v1-3-bd4e7092a91f@pengutronix.de>
- <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 16/24] arm64: cpucaps: Add GCIE capability
+Message-ID: <Z/U6nVugAnrE2I7e@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-16-1f26db465f8d@kernel.org>
+ <Z_UH0808dGkS3v7-@J2N7QTR9R3.cambridge.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,155 +67,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <Z_UH0808dGkS3v7-@J2N7QTR9R3.cambridge.arm.com>
 
-On Tue, Apr 08, 2025 at 04:27:23PM +0200, Krzysztof Kozlowski wrote:
-> On 08/04/2025 14:00, Sascha Hauer wrote:
-> > +
+On Tue, Apr 08, 2025 at 12:26:11PM +0100, Mark Rutland wrote:
+> On Tue, Apr 08, 2025 at 12:50:15PM +0200, Lorenzo Pieralisi wrote:
+> > Implement the GCIE capability as a strict boot cpu capability to
+> > detect whether architectural GICv5 support is available in HW.
+> > 
+> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> > Cc: Marc Zyngier <maz@kernel.org>
 > 
-> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-> prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> This looks good; I have a minor consistency/bikeshedding concern below.
 > 
+> > ---
+> >  arch/arm64/kernel/cpufeature.c | 7 +++++++
+> >  arch/arm64/tools/cpucaps       | 1 +
+> >  2 files changed, 8 insertions(+)
+> > 
+> > diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
+> > index 9c4d6d552b25cb3a31d1fb267bd73d3f82513e69..8c60591633f3d435ad9b80a10e484f26af328964 100644
+> > --- a/arch/arm64/kernel/cpufeature.c
+> > +++ b/arch/arm64/kernel/cpufeature.c
+> > @@ -3041,6 +3041,13 @@ static const struct arm64_cpu_capabilities arm64_features[] = {
+> >  		.matches = has_pmuv3,
+> >  	},
+> >  #endif
+> > +	{
+> > +		.desc = "GCIE",
+> > +		.type = ARM64_CPUCAP_STRICT_BOOT_CPU_FEATURE,
+> > +		.capability = ARM64_HAS_GCIE,
+> > +		.matches = has_cpuid_feature,
+> > +		ARM64_CPUID_FIELDS(ID_AA64PFR2_EL1, GCIE, IMP)
+> > +	},
 > 
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,cdce6214
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: priref
-> > +      - const: secref
+> I reckon it's worth making the desc a bit clearer, e.g. "GICv5 CPU
+> interface".
 > 
-> So one input is optional?
-
-The chip has two clock inputs and to be operational it needs at least
-one clock, could be priref or secref or both.
-
-Is there a proper way to express this situation?
-
-
-> > +  "^clk@[2-9]$":
-> > +    type: object
-> > +    description: |
-> > +      optional child node that can be used to specify output pin parameters.  The reg
-> > +      properties match the CDCE6214_CLK_* defines.
-> > +
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          clock output identifier.
-> > +        minimum: 2
-> > +        maximum: 9
-> > +
-> > +      ti,lphcsl:
-> > +        type: boolean
-> > +        description: |
-> > +          If true enable LP-HCSL output mode for this clock
-> > +
-> > +      ti,lvds:
-> > +        type: boolean
-> > +        description: |
-> > +          If true enable LVDS output mode for this clock
-> > +
-> > +      ti,cmosp:
-> > +        type: boolean
-> > +        description: |
-> > +          If true enable CMOSP output for this clock
-> > +
-> > +      ti,cmosn:
-> > +        type: boolean
-> > +        description: |
-> > +          If true enable CMOSN output for this clock
+> It might be worth cleaning up the existing ARM64_HAS_GIC_CPUIF_SYSREGS
+> feature, e.g. making that have "GICv3 CPU interface" as its desc.
 > 
-> Looks the same here. Anyway having these as subnodes is too much. You
-> have fixed number of clocks, so you need one or two array properties in
-> top-level.
-
-There are several properties I haven't yet modeled, like
-
-- 1.8V / 2.5V output
-- sync_delay
-- LVDS common-mode trim increment/decrement
-- differential buffer BIAS trim
-- slew rate
-- BIAS current setting for XTAL mode
-- load capacity for XTAL mode
-
-I don't know which of them will ever be supported, but I thought having a
-node per pin would add a natural place to add these properties. Do you
-still think arrays would be more appropriate?
-
+> Likewise, could make the names consistent, e.g. have:
 > 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - "#clock-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/ti,cdce6214.h>
+> 	ARM64_HAS_GICV3_CPUIF
+> 	ARM64_HAS_GICV5_CPUIF
 > 
-> This file does not exist. Something is odd in this example.
+> ... ?
 
-It is added in the driver patch. Should it come with the binding patch
-instead?
+This makes sense to me, I will do it in preparation for v2.
 
-> 
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        clock-generator@67 {
-> > +            compatible = "ti,cdce6214";
-> > +            reg = <0x67>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            #clock-cells = <1>;
-> > +            clocks = <&clock_ref25m>;
-> > +            clock-names = "priref";
-> > +
-> > +            clk@CDCE6214_CLK_SECREF {
-> 
-> That's not a valid unit address. Use simple numbers, see DT spec and DTS
-> coding style.
-
-CDCE6214_CLK_SECREF is a macro added in dt-bindings/clock/ti,cdce6214.h
-and it expands to a simple number (1 in this case). While I haven't
-found any examples of someone using macros for the unit address / reg
-property I thought I'd give it a try as it nicely shows how it is used.
-
-I can switch to plain numbers if you prefer that though.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks,
+Lorenzo
 
