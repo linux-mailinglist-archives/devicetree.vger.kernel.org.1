@@ -1,241 +1,241 @@
-Return-Path: <devicetree+bounces-164347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC984A808F6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:50:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A28DBA8099A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:55:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 946C88C0B15
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:35:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C345D1B65E10
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AEAF26A1D7;
-	Tue,  8 Apr 2025 12:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEAA626F466;
+	Tue,  8 Apr 2025 12:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MsF2bOyM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ovuATnNA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA3A1AAA32;
-	Tue,  8 Apr 2025 12:33:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27AF26F46A
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 12:44:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744115597; cv=none; b=qXFOyh1rD8qCED9YH7dkjzUDuOenO3Icw4Tu9PR1Bk9OifHwZre3vu4BEm3Cqr8FlIB3zjf8qANTOhmgeGfEl6eft4f9CL+oVtp+hvBrPp4rIIEqz29VFbuk+a7DsHZIlNbsQ90DEkliKcgbZFXO8vom357cfPny4JEI7N91wqo=
+	t=1744116280; cv=none; b=aamZcBpIUHZ3m838qCctpdjP5ObPWpFngRDSNH5c5uKFeUQ7lgG08aUwnG+q0gTS9p8pj4KqXvTyi5esxFNCvPbUTN0DDeZz02yIoIJGOCYtc9OarKkK+tPib1lCToQPBSJDWkVEl8D+FDUfvqyzj4gA+SSFE7terhIfbMhrFB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744115597; c=relaxed/simple;
-	bh=wUf1I3G91DtSOH9aKzGyhBVYA1gBjDZ6llSyIbkY0WM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NY13HZkgREab1RB8BvE/upT95E44XvtFKxB41uDEdhu6//DUvHqz3ypbbEGxRES8Uzb0bt7AxtO7XPBzXP/XgE23SQk9Tm3xFNcHvO9kx5/+HxpxV5fUbnHiXoUHWdORdmzSKEIXiwxxaFBXHjLRhgvZG1df7QZ0b3ZslQ5vUxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MsF2bOyM; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-225477548e1so50773905ad.0;
-        Tue, 08 Apr 2025 05:33:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744115595; x=1744720395; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=/nF9UHsTjavBiIQDEA/vItUfmoGpLwv3vVUwf7BNWYQ=;
-        b=MsF2bOyMVnryeZ8VMGVewJpYt4OOEgE+OCWaL166Y9V5NkZMUnT+vHk/tr09z10maV
-         y5jyuYKY+amOw1HZZISq5bvJi0KrPIFKgk1F+7tPIvhPvp36+O3cr/dOi5XD4/IPHBOl
-         Itm96wjtxUkGcnUmct/6kT/F5nmDGYd04A9LxM57IGBEcs3/50JHtP+8p00euVomXg6m
-         R+tgJiNhiAKulX6sH7sEG3jdY8sQkqc4xT8uJJnLocJ1VC7DKvhel+cJvrm1/+zxoxPG
-         Mzq9p2/9NHXacl54IU7uURRZiutrylbD7QKaaUw3LJqRl8yUP4B5QKpzjLg1TYq7v8zl
-         HpCQ==
+	s=arc-20240116; t=1744116280; c=relaxed/simple;
+	bh=UVKNIXJZ3EizZ14aiaQDLO5yj1M51S+0ibMt6nLcfeQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ke+M+4+VqcINPljJO3vBVzDQVOcwjifZ0zyjqMUrAKiCI9Fadoo/q9RR5PF9KAbNO71/gUrXX4y9qmyMcAq9x9vU8rfWt2xg7y40HaFvjYp1RD2y8TkXsVn+k+oT1RGN/vH/jVpsHdryUQtELwVN7uWRpnIf2mJdrrjf1sqgj5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ovuATnNA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BFinX010549
+	for <devicetree@vger.kernel.org>; Tue, 8 Apr 2025 12:44:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lg3ZT4srw+6aryFi5Qc7G2dueXIKHeooH8YunyQ+fbw=; b=ovuATnNAylzikAyd
+	WtOcoK/ivI0Z1bAvVeZIcWUM0vUOKBVIFq1RIDSG6DOTo6g14E4X/kfM8FHcayzZ
+	60RyeWAWGrY1LETgrU1OQTE94j923Igv32/NuaYlTPz0Gh3dpN2pxPNWbmRjzjZ4
+	KZADeWIh059zhZsxgvrI0UhKbjoY3wWAIkxwEU2UHENveZagtDZpmYjeoUdXzk6I
+	CHx8mEf2FDsuI0V6lPCnKQCmmBYLzt9VczDOsESP4g7ql52bytZH5mtGUDKOlfD2
+	ACwfVqCLTHX8nmSZOfUrvaG61wc0WvOXe9l4n3vXWZsPZY3ddxrLpuQSCrFWYNNT
+	4qY+/w==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1fndq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 12:44:37 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5c9abdbd3so539187285a.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 05:44:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744115595; x=1744720395;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/nF9UHsTjavBiIQDEA/vItUfmoGpLwv3vVUwf7BNWYQ=;
-        b=Yhnq4mHVIul4TDxxIEgANu9JoGJ1v3n+ODFMi8HNUEnjozBCkDOQqIAhensJ93wMd7
-         /LVbAKG3psqSHS+DyAJ0FA55p/M9OBnzoSQbCEfyHeYkVuyTyT4k0fZOuMpesSjHLX1Z
-         E8YexVCQ1Th1RUaOiBa657HM0Q9Zcl8X9GOjb2zJzMogipO8fGUXQtRj+/pthh4t+mYL
-         uxgP7mF9nLk2YQr/Mk3yRFbkiBtHYxdZcTI69tjGsIEdEW0Zt2mJ+B0kti0Kl1GTpnbv
-         b4LL+COw0rxkTbakNpR0lKzpN3TYukAVH6cb3sqIJZ3OIht2P+17Nx2CaBAVBWjF3wey
-         9Xxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUecZJkfWhyO2EDp4iPPwNnd81RQ0w4+8snCQ7ghVtr93k/tSOiCPY5QIMlTkpDpUyGlXDuoKh57Xcd@vger.kernel.org, AJvYcCV5Y/5w16DEBYT2WdZUghmwDU8+2MzQkNcITCdpA/czS9e+Dky7zb6X3O5E8yF3m3bLI9PdC1mmXZ5v5DdR@vger.kernel.org, AJvYcCVxN2iHtLBX1TheRZFoaKWvW4fiLAKU470YWGW9RsFI/2VgAK+hNHij4Wm9QldB90hoKkRi0abIK/sKw/JQN0Q=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZX0qRMJQIcXMwbsMm+Xw6qvfvnCk3ZZBBOZmuLA+FCtTFQdSz
-	76E1uIhffgcZRGm8nK1GtnF8Eg9C/OBgYxex6IRjiu9aYpKv0oFe
-X-Gm-Gg: ASbGncv16I0q91+PAJo2XOJ/qBMqoIXoyK0XdULOboaUArSvu9lq3EXb1cTE5wMzBcH
-	qqkaQPOJWmKLPZJ0vpbkN5MZGr5c8PJy0EYGl+S1uzF80uim404x9kGMMXDF6LgP+4JKa1Jj8zQ
-	TwahZuhGla5EVETosI2tY3QMchAr71S2v6XnAYGsRjyWIsENJnzDxUDTPBK+o+ocaadkHireDKp
-	gnvdwYN5MjUBkBRPw9ZPfzocs1E3YRRbeeIyKJFi+odh0GHMexRmMXW/5kVNa0cs5z+XctjxQqP
-	s6d12XxA7lIAdIEaTJpCygzplgtJJgQwM+WY/DGWQrRvtg9UFJLrEi+KOK9qquLMV7eodtlii8A
-	e6c6xfLs6JFIBx2G+jA==
-X-Google-Smtp-Source: AGHT+IFPKxw0kQu5TDkKvHbyIFUGFcpYxBGmNw870k+hopqQQs5wQGQiZg50KgRRxbLhvgP+K93CBw==
-X-Received: by 2002:a17:903:1a10:b0:224:216e:3342 with SMTP id d9443c01a7336-22a8a8e3d97mr225074215ad.43.1744115594771;
-        Tue, 08 Apr 2025 05:33:14 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22978771c07sm98918465ad.212.2025.04.08.05.33.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 05:33:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e02e7431-2e30-4e65-b04b-15fbb0bcd8d0@roeck-us.net>
-Date: Tue, 8 Apr 2025 05:33:12 -0700
+        d=1e100.net; s=20230601; t=1744116277; x=1744721077;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lg3ZT4srw+6aryFi5Qc7G2dueXIKHeooH8YunyQ+fbw=;
+        b=POWP2DkvfwFeHOWikYUxcDn8jbePQieNlf00nD8ZWEgzHI6eyXaAh2IyLvvKZso1Uw
+         71j3rzsS52eagDfYM8s4/yhvGSgo8AI2oifEJxvXb0xC7pF7EQAMTKL2QwGuucgetO5c
+         BehgdGrzG1pDr2qaa4N3NRaNRaprc3lG2cy9BZ4oeJN7KdGLc/aVYNcXRHmcY5A5qqTE
+         X0bc5VzSws+I8D0OnqKZNH1PyIRs7WEdfR50N+iF1KIm57+ujRJ3LLtEVBA79epluJYZ
+         K3SMW+CRlqEGCRYgYExUcrs5KveHrOgt/eXiis+yWm36TgDffTSsKk/QFyqZ23MbhvVm
+         fw8w==
+X-Forwarded-Encrypted: i=1; AJvYcCV3yd0quAmS7MnovPoDLK1vU1FzbjZpFkkpf3Mopr75lFLkghI/k8D7sVEzKYoGU5rwLG+Sm0EHYWUO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyL4Zpk37SoPebEzn0z0AL/vdZYMWfCNJNrw2YKOw4ZCvhxv+8l
+	GnKWmkOkLBVDyFmbjtenjMWeWZWmyTYtwh0ougg8rLuGVxdNnaxkMjcje29XHa8MznynSiiqU4Z
+	kHNq7NXJmBUfP+ggPHtrhJfyXZhsd5h13jJ6QTERLCRGrSO27N0U81NcVDpeh
+X-Gm-Gg: ASbGncuRLbj6ZOT9dFXlxixbCBLEWMM8XrtjH/johMxzv74WR8K0gIQSEYGWdtzMxF7
+	lmIRO6eyQWORtgGCqtH/1KHskcGOJHAvi2NJ4Z/1H4bGgyFQu8ODbzAGiU180RU7Eb+7oU/qGIJ
+	boK07ssmQdxZuiAnDPkmQgmVw4eII+8PKHvLsqFxSeQdKMVGsW8xwViJv/hKDW+pJdcWb40sBZP
+	UNU+gMTLDWgI5qzM0KnXuobcadrjaEqMFGk846s0QGcT6ZgTVUnL4/6GG94SAuNpbO/MeZ8p3RU
+	Jxea98eJ9tNWDzyIFuAH7mr9yd00iyQDKzgAvlk/rLwAuif+K4FXPkxS10i3VFbqOv8wG4OWFNJ
+	08fk=
+X-Received: by 2002:a05:620a:1918:b0:7c5:9c38:ef6b with SMTP id af79cd13be357-7c775abfc97mr2255087685a.45.1744116276747;
+        Tue, 08 Apr 2025 05:44:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEG22ST879wU1hj8qKN5DvkfkmnnORS8BpEMeXnfFTdBQ8zZsfg2IPMrVXraLLg9Li7ARcMaQ==
+X-Received: by 2002:a05:620a:1918:b0:7c5:9c38:ef6b with SMTP id af79cd13be357-7c775abfc97mr2255084485a.45.1744116276401;
+        Tue, 08 Apr 2025 05:44:36 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e6370d1sm1512901e87.143.2025.04.08.05.44.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 05:44:35 -0700 (PDT)
+Date: Tue, 8 Apr 2025 15:44:33 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: Alex Bee <knaerzche@gmail.com>, heiko@sntech.de, conor+dt@kernel.org,
+        krzk+dt@kernel.org, robh@kernel.org, hjc@rock-chips.com,
+        mripard@kernel.org, neil.armstrong@linaro.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v3 7/7] drm/rockchip: inno-hdmi: Convert to drm bridge
+Message-ID: <yjxr7dphzm7rbuf7mfpkat4k2vssk2qxio3esvjfhd2ygq6byo@kag57knzrj4l>
+References: <20250402123150.238234-1-andyshrk@163.com>
+ <20250402123150.238234-8-andyshrk@163.com>
+ <680a40a8-07c1-4dde-93b2-337ab15f7afe@gmail.com>
+ <618c65eb.b8a8.1961550f5ae.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 5/6] watchdog: qcom-wdt: add support to read the
- restart reason from IMEM
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250408-wdt_reset_reason-v1-0-e6ec30c2c926@oss.qualcomm.com>
- <20250408-wdt_reset_reason-v1-5-e6ec30c2c926@oss.qualcomm.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250408-wdt_reset_reason-v1-5-e6ec30c2c926@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <618c65eb.b8a8.1961550f5ae.Coremail.andyshrk@163.com>
+X-Proofpoint-ORIG-GUID: xcVxNV85oEPxIefWHYs4cIPfhf8e1Rhn
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f51a35 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=Byx-y9mGAAAA:8 a=pGLkceISAAAA:8 a=s8YR1HE3AAAA:8 a=RRhK3aCThXU4g2SLoiEA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=jGH_LyMDp9YhSvY-UuyI:22
+X-Proofpoint-GUID: xcVxNV85oEPxIefWHYs4cIPfhf8e1Rhn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-08_04,2025-04-08_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504080090
 
-On 4/8/25 01:49, Kathiravan Thirumoorthy wrote:
-> When the system boots up after a watchdog reset, the EXPIRED_STATUS bit
-> in the WDT_STS register is cleared. To identify if the system was restarted
-> due to WDT expiry, bootloaders update the information in the IMEM region.
-> Update the driver to read the restart reason from IMEM and populate the
-> bootstatus accordingly.
+On Tue, Apr 08, 2025 at 08:12:29PM +0800, Andy Yan wrote:
 > 
-> For backward compatibility, keep the EXPIRED_STATUS bit check. Add a new
-> function qcom_wdt_get_restart_reason() to read the restart reason from
-> IMEM.
 > 
-> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-> ---
->   drivers/watchdog/qcom-wdt.c | 40 +++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 39 insertions(+), 1 deletion(-)
+> Hi Alex，
 > 
-> diff --git a/drivers/watchdog/qcom-wdt.c b/drivers/watchdog/qcom-wdt.c
-> index 006f9c61aa64fd2b4ee9db493aeb54c8fafac818..54d6eaa132ab9f63e1312a69ad51b7a14f78fe2d 100644
-> --- a/drivers/watchdog/qcom-wdt.c
-> +++ b/drivers/watchdog/qcom-wdt.c
-> @@ -9,6 +9,7 @@
->   #include <linux/kernel.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
-> +#include <linux/of_address.h>
->   #include <linux/platform_device.h>
->   #include <linux/watchdog.h>
->   
-> @@ -22,6 +23,8 @@ enum wdt_reg {
->   
->   #define QCOM_WDT_ENABLE		BIT(0)
->   
-> +#define NON_SECURE_WDT_RESET	0x5
-> +
->   static const u32 reg_offset_data_apcs_tmr[] = {
->   	[WDT_RST] = 0x38,
->   	[WDT_EN] = 0x40,
-> @@ -187,6 +190,39 @@ static const struct qcom_wdt_match_data match_data_kpss = {
->   	.max_tick_count = 0xFFFFFU,
->   };
->   
-> +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt)
-> +{
-> +	struct device_node *np;
-> +	struct resource imem;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	np = of_find_compatible_node(NULL, NULL, "qcom,restart-reason-info");
-> +	if (!np)
-> +		return -ENOENT;
-> +
-> +	ret = of_address_to_resource(np, 0, &imem);
-> +	of_node_put(np);
-> +	if (ret < 0) {
-> +		dev_err(wdt->wdd.parent, "can't translate OF node address\n");
-> +		return ret;
-> +	}
-> +
-> +	base = ioremap(imem.start, resource_size(&imem));
-> +	if (!base) {
-> +		dev_err(wdt->wdd.parent, "failed to map restart reason info region\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	memcpy_fromio(&ret, base, sizeof(ret));
-> +	iounmap(base);
-> +
-> +	if (ret == NON_SECURE_WDT_RESET)
-> +		wdt->wdd.bootstatus = WDIOF_CARDRESET;
-> +
-> +	return 0;
-> +}
-> +
->   static int qcom_wdt_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> @@ -267,7 +303,9 @@ static int qcom_wdt_probe(struct platform_device *pdev)
->   	wdt->wdd.parent = dev;
->   	wdt->layout = data->offset;
->   
-> -	if (readl(wdt_addr(wdt, WDT_STS)) & 1)
-> +	ret = qcom_wdt_get_restart_reason(wdt);
-> +	if (ret == -ENOENT &&
-> +	    readl(wdt_addr(wdt, WDT_STS)) & 1)
->   		wdt->wdd.bootstatus = WDIOF_CARDRESET;
+> At 2025-04-03 01:24:22, "Alex Bee" <knaerzche@gmail.com> wrote:
+> >
+> >Hi Andy,
+> >
+> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >> 
+> >> Convert it to drm bridge driver, it will be convenient for us to
+> >> migrate the connector part to the display driver later.
+> >> 
+> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >> 
+> >> ---
+> >> 
+> >> Changes in v3:
+> >> - First included in v3
+> >> - Link to V2: https://lore.kernel.org/dri-devel/20250325132944.171111-1-andyshrk@163.com/
+> >> 
+> >>   drivers/gpu/drm/bridge/Kconfig                |   7 +
+> >>   drivers/gpu/drm/bridge/Makefile               |   1 +
+> >>   .../inno_hdmi.c => bridge/inno-hdmi.c}        | 924 ++++++++++--------
+> >>   drivers/gpu/drm/rockchip/Kconfig              |   1 +
+> >>   drivers/gpu/drm/rockchip/Makefile             |   2 +-
+> >>   drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c | 187 ++++
+> >>   drivers/gpu/drm/rockchip/inno_hdmi.h          | 349 -------
+> >>   include/drm/bridge/inno_hdmi.h                |  33 +
+> >>   8 files changed, 741 insertions(+), 763 deletions(-)
+> >>   rename drivers/gpu/drm/{rockchip/inno_hdmi.c => bridge/inno-hdmi.c} (52%)
+> >>   create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+> >>   delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
+> >>   create mode 100644 include/drm/bridge/inno_hdmi.h
+> >>
+> >
+> >...
+> >
+> >> +#define m_RX_DONE			(1 << 0)
+> >> +
+> >> +#define HDMI_CEC_TX_INT			0xda
+> >> +#define HDMI_CEC_RX_INT			0xdb
+> >> +#define HDMI_CEC_BUSFREETIME_L		0xdc
+> >> +#define HDMI_CEC_BUSFREETIME_H		0xdd
+> >> +#define HDMI_CEC_LOGICADDR		0xde
+> >> +
+> >>   struct inno_hdmi_i2c {
+> >>   	struct i2c_adapter adap;
+> >>   
+> >> @@ -68,41 +395,18 @@ struct inno_hdmi_i2c {
+> >>   
+> >>   struct inno_hdmi {
+> >>   	struct device *dev;
+> >> -
+> >> +	struct drm_bridge bridge;
+> >>   	struct clk *pclk;
+> >>   	struct clk *refclk;
+> >>   	void __iomem *regs;
+> >>   	struct regmap *grf;
+> >>   
+> >> -	struct drm_connector	connector;
+> >> -	struct rockchip_encoder	encoder;
+> >> -
+> >>   	struct inno_hdmi_i2c *i2c;
+> >>   	struct i2c_adapter *ddc;
+> >> -
+> >> -	const struct inno_hdmi_variant *variant;
+> >> +	const struct inno_hdmi_plat_data *plat_data;
+> >> +	unsigned int colorimetry;
+> >
+> >thanks a lot for doing the bridge conversion for this driver.
+> >Please keep the custom connector state which was introduced after Maxim's
+> >review during the last rework of this [0] driver. The colorimetry is not
+> >part of the device, but of the connector and thus should not be part of the
+> >device struct.
+> >It's, however, likely that the common (hdmi-)connector framework will once
+> >hold its own colorimetry property and then the custom connector state in
+> >this driver can go away, but until than we have to keep it here.
+> 
+> After converting to a bridge driver, this driver no longer has a connector. 
+> In this case, how should I create customized connector states?
 
-This ignores all other error returns from qcom_wdt_get_restart_reason(),
-but in that function it generates several dev_err(). Either make those
-messages less than an error, or treat them as error and drop out here.
+You can subclass drm_bridge_state. Another option is to follow
+rk3066_hdmi.c and to pass mode to inno_hdmi_config_video_csc().
+Finally, you can just extend the drm_connector_hdmi_state.
 
-Thanks,
-Guenter
+My preference would lean towards the second option.
 
+> 
+> >
+> >Thanks,
+> >Alex
+> >
+> >[0]
+> >https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ceeb0f0104a62c867656c2730a51df47e7350b8f
+> >
+> >
+> >>   };
+> >>   
+> >> -struct inno_hdmi_connector_state {
+> >> -	struct drm_connector_state	base;
+> >> -	unsigned int			colorimetry;
+> >> -};
+> >> -
+> >> -static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
+> >> -{
+> >> -	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+> >> -
+> >> -	return container_of(rkencoder, struct inno_hdmi, encoder);
+> >> -}
+> >> -
+> >> -static struct inno_hdmi *connector_to_inno_hdmi(struct drm_connector *connector)
+> >...
+
+-- 
+With best wishes
+Dmitry
 
