@@ -1,117 +1,114 @@
-Return-Path: <devicetree+bounces-164127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E77A7F418
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:21:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B28AA7F441
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:40:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA08C17A1F5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:20:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E5393B3732
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAEC1C84AD;
-	Tue,  8 Apr 2025 05:20:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A46925F798;
+	Tue,  8 Apr 2025 05:40:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Ycp8js6V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lCrRynXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69117207E0F
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 05:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF7F25EFAA;
+	Tue,  8 Apr 2025 05:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744089611; cv=none; b=alhy/DOcTgD9MLd1pSViNVMVmVdbDIOAgK0g7PF34bups0Gf5KmMZbuVcq3qg3IVYy6L8cH80YyK2l+tcqYnR6VVgf0rVJe28uyeWTMM0HW1/MoYCYaI4W+KxsapQf5cCCWC3hioBh9mFvHBix1wNiVGO4jpXvlwnkfCR7yUk1o=
+	t=1744090832; cv=none; b=q8m+iIxW0SKKvV5FqZEfBsZLjXQF6d7NwwPL246i0LzwgjhTb83SKIeG6CJ/Nvbkw/zUU1DoFTmde9Zvb1u8fV3ePes+RkLJlSgS9mkpoYEFHGs/gx+3Vid7LCRXQZfZeJ/ZNznooF8528wvExkDWzukD//kc0vIo5PxQys3yDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744089611; c=relaxed/simple;
-	bh=cPWwWnJ7ViDkLl5MW+qHSwW3GfvvX0QdfidKESl6o9Y=;
+	s=arc-20240116; t=1744090832; c=relaxed/simple;
+	bh=JqryJqnBL6vBQBF2JhLv1OsdHxFNy4u1dsJZVxvK6Xk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FZ3eUQ3wLWCzRcaUEuzBgnHET3mLhQyJ3DjuKy3Eu39sL7OFr0ULxMQMaIqEfsLQi+y23DE9k5AeY0nKBdr1jLGvjCWUb6gxSnOw3wHiBGX0dBqPDy+41S+01QvoSFqshPCn43sxFl86m3f+gxAApTr5edKUW4aBK83qU09mbB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Ycp8js6V; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744089609;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cPWwWnJ7ViDkLl5MW+qHSwW3GfvvX0QdfidKESl6o9Y=;
-	b=Ycp8js6VGyZT5BefndTNG8mFNiRC/GRFYarA5FTXwJq2A2bHQbRpuPHPRlzP2Ro8gxGR8P
-	ajX/97ZaXNM74o5/0gf5/Woeo5G5CvkkOtkdy45Z2C0oKoVUS6bCuyQWR9vmTX2oF90JL4
-	MB9+teaFTfJvxqFkAi2JwRIrzYMq3ws=
-Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
- [209.85.161.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-647-8YrfhLIrMTCdUyUhU3rs9A-1; Tue, 08 Apr 2025 01:20:07 -0400
-X-MC-Unique: 8YrfhLIrMTCdUyUhU3rs9A-1
-X-Mimecast-MFC-AGG-ID: 8YrfhLIrMTCdUyUhU3rs9A_1744089607
-Received: by mail-oo1-f71.google.com with SMTP id 006d021491bc7-601c2ff0a0dso714078eaf.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Apr 2025 22:20:07 -0700 (PDT)
+	 To:Cc:Content-Type; b=i5ynwsV7UUvE8RX/hAT+7oXQBtHvKKb3vBKMKogHHIsyR1ckyFNuTwo6SnSrlmWnYB2SIeishdjfarF4eunS+55DJJ8YY5Zfzsc066oxV4puGh/fj1kN5+geb0lD6JPUohW+kigEpcr3PcBMububaE6/IfK6dtVm3L8616uuPcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lCrRynXV; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cf848528aso41181485e9.2;
+        Mon, 07 Apr 2025 22:40:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744090829; x=1744695629; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s3GTqf61Bnr6E3gFypGdydx1ayMsoXVO9MpTGoXDQ+Y=;
+        b=lCrRynXVNhno6VJ548aID7UM0KGgbXyVigTIvUbZOpMQf1TsVOnZlNrqFZmWXm8KEE
+         dQ5btVgjufTi0uhMm+wr6Mncs4WM/1fI15MTS7aUr8tXzlFVjkiyWkxIwvi+5FSB5zWe
+         SAGsdNbKwxbnDqr7waAQNqQnHiI+MrAR7k53Sv+UFcSntpOiO0Du+XgPDSKzWgxwIcrR
+         wBD7KE3mp1z4Ekt+vM5lT4oSrYjG/G9sfPqDNdHs4Zpr6RCdC32I6DUNnlBMqdI2gDSD
+         7+pMTjGJVE7V/kFVHgkY7jXzogyCjibYZ/tLsqO9iwYkgWYca6lklgHGuOEtAiJ+oPGn
+         109A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744089607; x=1744694407;
+        d=1e100.net; s=20230601; t=1744090829; x=1744695629;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cPWwWnJ7ViDkLl5MW+qHSwW3GfvvX0QdfidKESl6o9Y=;
-        b=KVwPKFi07ArobXtIdlR89DKEyBsRTIAoonZL2p+DzDzzymKjcYndqRWIGXTjg8Y6A2
-         q4rCmqB1e7UqWWk8LCuB4J5waD5TwkAGKmDL6k+78OqlsLBiQoHZreDtLwlROsSmgiVz
-         SoJLogz5Qy/yiECU/80M+AVs+86ZRX460OtiikcRld3qt8xYxGpFvyB3+CWkiMXVxsz/
-         usGOYC3nYwM69+iLV6rIFh/0U6E3gqdiPDXgETIbTpR409th7nEZh+HXkI5NObr4Sk7E
-         5Gj2k7JY+0/DlH8EZYFLx6OHNbb7IPnro55Vb4k7998Q9MMZEbdZgA+htJqfNyzes3Qm
-         A+0A==
-X-Forwarded-Encrypted: i=1; AJvYcCW6PtxisRrN8Y9bCKQ6OrYar1lhPdQ3rjMmzitPTLyMqeSNYFVeJyzTIMrbFeHzj56A3xWTex+i4Izr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrlTRvlzaIdJZqSfxPlKiltw1QU0ORyPFu6Xegd3lszuOzWmST
-	5+BAZEG/Ja9I6/t2c9AwteWwHoXqqF8MHuqADG62HKqxS22XbkvCEfir0/yx750tP4zUd5AzBH/
-	FmUiCCIzALBpk8ucKcs+nxsgqnHfhwLcbIQJrHjvYXMxreP/jApGMF/3pMBZMmWpFuwHKLZ4egh
-	WN0obL2BUmYsRtDVHmntRuunpxFAfyfK8IJw==
-X-Gm-Gg: ASbGncuKzoZxCCqfvk19zdBQ7fDCFX3fLzgKxgiBeIOrw0bcdHL27QuNp/uqJTFQRLo
-	v20bffBmpqytBux2AC5Nz6sb1w0RrE3y8bnHGvH8rMoP5AYdMgkGF1AdZwADqVsnO/GlbL7E=
-X-Received: by 2002:a05:6808:158d:b0:3f6:6dea:55ac with SMTP id 5614622812f47-400456a460fmr3391071b6e.9.1744089607260;
-        Mon, 07 Apr 2025 22:20:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFndQwFQTxqQbhh7/1XO26yh+0Bql7sVDUgvChNzviW902Do9tUiMP8jbpkd2ikbG9OPRvnppdBsFKJDjF8szQ=
-X-Received: by 2002:a05:6808:158d:b0:3f6:6dea:55ac with SMTP id
- 5614622812f47-400456a460fmr3391067b6e.9.1744089606990; Mon, 07 Apr 2025
- 22:20:06 -0700 (PDT)
+        bh=s3GTqf61Bnr6E3gFypGdydx1ayMsoXVO9MpTGoXDQ+Y=;
+        b=sqfWIMA97EJN0D4exhysdUMxYBg8JrZr3QdmNqzNCS1aRqDrD6zzdej2Fu+qWGkVG3
+         702rj2k6Z7zvMr83OVdWWV5hfNfEMOuw7IBpJU0wizA7lXkgEJGVRJJMimqCq74RyfsC
+         ce4VgEe1NopVvPvL+scDm0W5DSEYedYhv8JGx1yiARRVBPw62RTDadHVIkq3vcGbnlBY
+         b7E39AWsWfu2SmE5AadOxhb1UhKz4hM66FaUfHVEUUx/4eDpuE4F3ctYOJBMO6g8aOCY
+         4cRUD7kiKqmnANHnlNV7FRw92TORukjNK0rUwJ6ZjtlWB7wJAnoSt0Ka0r4IsXhz2P9i
+         X4ug==
+X-Forwarded-Encrypted: i=1; AJvYcCUZcz2WkkNzutFQgqv2gzitP0lGYrhzoCvuw660ZjcaO5VSlL7k4gbo269reCaKV23GEDlEQrNP6bWM@vger.kernel.org, AJvYcCW1NwN3Fn1ujCmgYgsVAsNHrcL+vCtIRH+I9lLZL2z2/U9EbncY12xjepaa0jALqa1D+Ipf2swGRKK5KAQa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHvZxShyDSJGjnewVo8KftebiSSKcVaoVCVF4dlhvD5HXUbt2q
+	kwhA/NLsnthblJBNXqjko73MZjbcyGcVIdNiTR8UrCL4Y6a5mwDdZEsPSjWNU73yskXl7AfhGkn
+	qelm9BK8hfGgnGUTQb3CJL8zaoGE=
+X-Gm-Gg: ASbGncs9jTLEeIenLvBH8TfzhTHVbzVGTqq88ABL4zHjZ6nLnnSbgZSFqU/vHHFQA/c
+	dwvbrKmq2lI34UsWPqgtY0r9H+DrodVxJfGEiz61V3zJtSeKlLcnk8/Mt40vH8p6qpEZdVbYiT/
+	7f0kIMlinR5Oy0XhSo2K5M/7tqV20=
+X-Google-Smtp-Source: AGHT+IEoCMSHoj6LX7zEMPpGl4kBP88kMk7JMzqofVjGDFsp3+V+t4uRtgquAA/3W9X/QL6JC0mKCCuxASppti3h39I=
+X-Received: by 2002:a05:600c:1d0d:b0:43c:ec28:d310 with SMTP id
+ 5b1f17b1804b1-43ee063da68mr134725485e9.10.1744090828770; Mon, 07 Apr 2025
+ 22:40:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407172836.1009461-1-ivecera@redhat.com> <20250407173149.1010216-6-ivecera@redhat.com>
- <74172acd-e649-4613-a408-d1f61ceeba8b@kernel.org>
-In-Reply-To: <74172acd-e649-4613-a408-d1f61ceeba8b@kernel.org>
-From: Michal Schmidt <mschmidt@redhat.com>
-Date: Tue, 8 Apr 2025 07:19:55 +0200
-X-Gm-Features: ATxdqUE8CZctw0bSKyYLZFAm9WOiGKPiK7Kqb-GLiHvQfp2TsbW9P7zTG2qlt-E
-Message-ID: <CADEbmW3Byn8a4otcHqHr_=p4s5kKFq2D9N9xouWVr_0VX3ZikQ@mail.gmail.com>
-Subject: Re: [PATCH 15/28] dt-bindings: dpll: Add device tree bindings for
- DPLL device and pin
-To: Krzysztof Kozlowski <krzk@kernel.org>, Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, 
-	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250320072947.8174-1-clamor95@gmail.com> <20250320072947.8174-3-clamor95@gmail.com>
+In-Reply-To: <20250320072947.8174-3-clamor95@gmail.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 8 Apr 2025 08:40:16 +0300
+X-Gm-Features: ATxdqUFbtp_2jsA4Cxqvw5F8BXDsY4yEvFFJuimR8jvb7bvK5M7v2b5To0sJNQo
+Message-ID: <CAPVz0n30gJp7=YhxShzMWNtPOPFFx7ggdbQAgYATSpS3ZMB6zQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] power: supply: Add support for Maxim MAX8971 charger
+To: Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 7, 2025 at 8:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
-> On 07/04/2025 19:31, Ivan Vecera wrote:
-> > This adds DT bindings schema for DPLL (device phase-locked loop)
-> > Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
+=D1=87=D1=82, 20 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:30 Svya=
+toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> Did this really happen?
+> The MAX8971 is a compact, high-frequency, high-efficiency switch-mode
+> charger for a one-cell lithium-ion (Li+) battery.
+>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  Documentation/ABI/testing/sysfs-class-power |  43 ++
+>  drivers/power/supply/Kconfig                |  14 +
+>  drivers/power/supply/Makefile               |   1 +
+>  drivers/power/supply/max8971_charger.c      | 750 ++++++++++++++++++++
+>  4 files changed, 808 insertions(+)
+>  create mode 100644 drivers/power/supply/max8971_charger.c
+>
 
-We have been through several iterations of the patchset internally. I
-pointed out numerous bugs in the driver code and suggested cleanups.
-However, I know very little about DT, so in v2 we should omit my
-Reviewed-by on the DT patches.
-Michal
+These patches had no activity/feedback from maintainers for a while,
+so, in case they got lost in the depths of email box, this is a
+friendly reminder that they are still relevant and I would like them
+to move on.
 
+Best regards,
+Svyatoslav R.
 
