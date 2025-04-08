@@ -1,113 +1,160 @@
-Return-Path: <devicetree+bounces-164359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0D7A80B45
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:14:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D89BCA80AD4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:10:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C00E885E41
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 12:58:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFE564A4E85
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844F827EC9A;
-	Tue,  8 Apr 2025 12:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5872F26F466;
+	Tue,  8 Apr 2025 12:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHWt6b4o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K+KXiprJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525E527EC93;
-	Tue,  8 Apr 2025 12:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EFDB2690FA;
+	Tue,  8 Apr 2025 12:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744116547; cv=none; b=nIH9CSRlANWcXIFRKw2bFeT1UUJYKv9sXmdBHEu+h6Db0rVXjpLXubw5w+yNyP4HKtFX3AsQhn+e1C9GZmghTLcuqjzJZKPhKUQDUVLmTSvrIMrnWiiOsJN9mshdEk86ACom628UtCCuGJCiHo8Q75ITnGRtCmOPwHQbNVplAYE=
+	t=1744116603; cv=none; b=FsFhZW0qb7g10pudCjS4gKZF6a6mVCrbuRT/irKMutotPk/YWq3WgaST2uQibJsxP/xdTDBzRU5cRskmRyPFhelnaAER2K0Qm8i7fkNmwDjXSavoixyBAHe/DJHjrYECSd+pT8wnuTJkyl+Ij3UGyFJ/E7oq9pLTjEVwJGFg5gY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744116547; c=relaxed/simple;
-	bh=vKT4C/GTC6IQ9JYbZes2rZEbu8WnSSrIU6DtAnt8Gv4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mwmtxYSbqP/DB0q7FwqvikhvYpr1xx8YWZK6+WZjJnPnzjQIbwDm5L7HKG16jX0OsaacocVbxml5QIT6wdSYxgV8u5HQFvXIR+0/exnS6/fFfRPUVXKJJo48KLvEyQcrEItN6DtS5sgHMTty1gZonmqvg2h0wI07AmGim9AVjpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHWt6b4o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EC80C4CEEC;
-	Tue,  8 Apr 2025 12:49:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744116546;
-	bh=vKT4C/GTC6IQ9JYbZes2rZEbu8WnSSrIU6DtAnt8Gv4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=kHWt6b4oMvIthJlMku0Z8R2pq9+6O0s1tZ/V33yDLuw1jVvTlSKngzjmPYbrSxPeW
-	 upbiPdKqb1y62Q/xY7wU3BczXQqTmhtDmyAUoHawFemVmWCONGNCvPgO/DiPu3N4Lw
-	 HY+L3g9gw+gMs0yQSNQtfEiA8vNI4QV4bttPvN2/r3b0bAVbiHNzs51/fmur5sHuDq
-	 xQva2DC4Zy+vRRyr48b908Cn9Uhq1j6qwXsYAJf0ymM+CdHSnGEnKgvGZHXAWo2iF9
-	 4pBQ1Z5KlkHcBmqvidCQ5SU5zvmx3NXD6ov8jql5kLHOL3b+8/Mr3RvEhoUAb+2a2O
-	 y+wl7irHtKAtA==
-From: Mark Brown <broonie@kernel.org>
-To: peda@axentia.se, andersson@kernel.org, krzk+dt@kernel.org, 
- srinivas.kandagatla@linaro.org
-Cc: ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
- zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com, 
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
- perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- johan+linaro@kernel.org
-In-Reply-To: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
-Subject: Re: (subset) [PATCH v6 0/6] ASoC: wcd938x: enable t14s audio
- headset
-Message-Id: <174411654299.2091760.16115765833106462248.b4-ty@kernel.org>
-Date: Tue, 08 Apr 2025 13:49:02 +0100
+	s=arc-20240116; t=1744116603; c=relaxed/simple;
+	bh=73j1qf9YL3hU1SMdWBZfA+7cHrnKgYDUNSDw78DjbwE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=H21Pl922CX6aO+DbPtCmxkTco7mHvOg5V2IYUKjeCtwUX8OZ7gaRwbUrYSpl7CLCvz48eNCV8VIo0++yvlDtbiIxCFXu/d6weEqlkH04mW6Wn5vVgpze+4EDdJu6VOTV6f/+/0Yrd0U4ysZP4wbaPb6b5U3FWXfLVsAQLoujyjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K+KXiprJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538BKpQ6020241;
+	Tue, 8 Apr 2025 12:49:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8G1Bvs+ozikQLgQexasi4DPTPq+M6ZRH/p0uSEU235o=; b=K+KXiprJjfjRrt33
+	66feO8MgDu3Wv507V4ZXOlFaQXiRRtYp4dCfJFbUX3pz9RskI+Su/QCq1q69H2Lo
+	tLWGyVbfYGjstr+WLDtmmmst/s498kz/MxuDicGdRnCAsnwO+Wy5AtZ0G+xgs64W
+	QkDa1sI+jOEI5oufJvLdS0qAufdhHRbMeaVtPus/pROwkYZ9b8V7d9EYJqnAVNya
+	Bz2KlPt8CJ3+2iEKIrtVoTtTvyzFWMvIhaVd8SC7itB3M2+p+t+Q5gDK2BcORUXf
+	LusMMnQI6N53xvVTl9xQHLmeYMnxxIKC6KZ+b2AYz6KJrjhA2eW/egOqRj1zNwan
+	unEQIQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd2qsas-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Apr 2025 12:49:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 538Cnvvv021184
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 8 Apr 2025 12:49:57 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Apr 2025
+ 05:49:53 -0700
+Message-ID: <769be701-afd1-4c14-8e44-fbb25a0c3f24@quicinc.com>
+Date: Tue, 8 Apr 2025 18:19:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: ipq5424: Enable PCIe PHYs and
+ controllers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_varada@quicinc.com>,
+        <quic_srichara@quicinc.com>
+References: <20250402102723.219960-1-quic_mmanikan@quicinc.com>
+ <20250402102723.219960-3-quic_mmanikan@quicinc.com>
+ <ezodm6qh63fs43xx6cw3smspfqkwqb5qscwfee36k5vtktguc4@tlqhuvjg2bly>
+ <bcbd2f83-2599-4a2e-ad69-64edcb97dfbe@quicinc.com>
+ <CAO9ioeVTyWL0-vzzNs3isDodi8jXQ9pHknyyhnWKcb+0tyf1FQ@mail.gmail.com>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <CAO9ioeVTyWL0-vzzNs3isDodi8jXQ9pHknyyhnWKcb+0tyf1FQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: nTiDGv2y5f8W4JTVb2sjQarimUPbgkX1
+X-Proofpoint-GUID: nTiDGv2y5f8W4JTVb2sjQarimUPbgkX1
+X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f51b76 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=nIpMe3r6VvzHKAbM5SAA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-08_04,2025-04-08_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 mlxlogscore=697 clxscore=1015 phishscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504080090
 
-On Thu, 27 Mar 2025 10:06:27 +0000, srinivas.kandagatla@linaro.org wrote:
-> On Lenovo ThinkPad T14s, the headset is connected via a HiFi Switch to
-> support CTIA and OMTP headsets. This switch is used to minimise pop and
-> click during headset type switching.
+
+
+On 4/3/2025 3:02 PM, Dmitry Baryshkov wrote:
+> On Thu, 3 Apr 2025 at 08:08, Manikanta Mylavarapu
+> <quic_mmanikan@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 4/2/2025 7:50 PM, Dmitry Baryshkov wrote:
+>>> On Wed, Apr 02, 2025 at 03:57:23PM +0530, Manikanta Mylavarapu wrote:
+>>>> Enable the PCIe controller and PHY nodes corresponding to RDP466.
+>>>>
+>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>>> ---
+>>>> Changes in V6:
+>>>>      - No change.
+>>>>
+>>>>  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 41 ++++++++++++++++++++-
+>>>>  1 file changed, 40 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>>>> index 0fd0ebe0251d..1f89530cb035 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>>>> @@ -82,6 +82,32 @@ &dwc_1 {
+>>>>      dr_mode = "host";
+>>>>  };
+>>>>
+>>>> +&pcie2 {
+>>>> +    pinctrl-0 = <&pcie2_default_state>;
+>>>> +    pinctrl-names = "default";
+>>>> +
+>>>> +    perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
+>>>
+>>>
+>>> No wake-gpios? Please document it in the commit message.
+>>>
+>>
+>> Hi Dmitry,
+>>
+>> Thank you for reviewing the patch.
+>>
+>> The wake GPIO is dropped because the PCIe on the IPQ5424 doesn't support low power mode.
+>> I will document this information in the commit message and post the next version.
 > 
-> This patchset adds required bindings and changes to codec and dts to
-> tnable the regulator required to power this switch along with wiring up
-> gpio that control the headset switching.
+> If the GPIO is routed on the PCB I think it should still be described in the DT.
 > 
-> [...]
+> 
 
-Applied to
+Hi Dmitry,
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+	I have confirmed with the hardware team that the wake GPIO is not routed on the PCB.
 
-Thanks!
-
-[3/6] ASoC: codecs: wcd-mbhc: cleanup swap_gnd_mic api
-      commit: 6417066fb41f70c5aec242a36cbb6def8c99303f
-[4/6] ASoC: dt-bindings: wcd93xx: add bindings for audio mux controlling hp
-      commit: fe19245d3efd5bf714623e83f2056bc46d9339b1
-[5/6] ASoC: codecs: wcd938x: add mux control support for hp audio mux
-      commit: eec611d26f84800852a9badbeafa76db3cdc9118
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Thanks & Regards,
+Manikanta.
 
 
