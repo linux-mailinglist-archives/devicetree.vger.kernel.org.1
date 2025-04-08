@@ -1,106 +1,101 @@
-Return-Path: <devicetree+bounces-164483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39D1A81204
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:20:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90779A81213
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98D081BC6177
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:13:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD5B3B16E9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E114422CBD0;
-	Tue,  8 Apr 2025 16:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBEA22DF87;
+	Tue,  8 Apr 2025 16:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xQHDKD9Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bd0gWoht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315B721859D;
-	Tue,  8 Apr 2025 16:13:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75ADB22D7AA;
+	Tue,  8 Apr 2025 16:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744128799; cv=none; b=NvXO8s+GLnKEGcqKwfzyqCQAZKqbBvTchdBapUPh17hV6RrKPg/2LZSgk9gbC3xJVEzPwFn+/zAF35Aqi2pG/hLGwBT5bUziTs22vIu7mDHFjqIc0DFN3pAq4lkweFlXqkcxJAsC2pZi8R1R27WKaLi9X1o9eu2vKQygYmRnzmI=
+	t=1744128980; cv=none; b=I4EbRPqCJujoi6yXYgPwNIK3bmJguEi7hfUhjC6rC8cOps/vB2el6puaCq83GSkzaJknuMWVibbi+KuBVGiUWFi8rbfgpDpO/lPjpdsslGFrwGiagx/KhVw7OFpCj1EKGH6e3Vn0nU0tjSsfNW6LVHaH66+X6uC0XPbpVYJnVi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744128799; c=relaxed/simple;
-	bh=Qc1TY5TBgRWiRlw2g3PMWP+HHylhaLXQ7+7HE1eiRc8=;
+	s=arc-20240116; t=1744128980; c=relaxed/simple;
+	bh=qs8fCeXhqzm+0+n8n76ErRe0opz5wFwtZ5bEgiv2P5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eijevH6/NRruoWAaaZbmLZHt9qSsPTBb6me8OFJENyr7ir8QNPHW3o43FJY+EKp/+8jbr/LizyqbBokueNn4H5JS0I2JXy5A2+FmhDq2mBYIy3T/BRefHjiBnPr+I4HLkEYvx+QppzGQIIxZslG2+125QHwVP75CvUV5Kjxl9DQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xQHDKD9Z; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iHamA6MmAQln3g+ph5RzN9L5CgRNW7XpNoZqh01YomM=; b=xQHDKD9ZXptDaSK+dQASAxx790
-	Ybh87tS1nZ3FusAZGh77bUylZwpxjm6ICZWRNMCCbeK3BDFf+XrZwIaTUeNHNl2mncQZsxLkl7Acq
-	FR96apk9s3xS4f0APOr0XRJuOag3yS2jFyDzyK/zpm+y9Y37zDhSdhTY1OCd/dS4J8es=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u2BZW-008QBU-Ty; Tue, 08 Apr 2025 18:13:10 +0200
-Date: Tue, 8 Apr 2025 18:13:10 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Martyn Welch <martyn.welch@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, kernel <kernel@collabora.com>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	imx <imx@lists.linux.dev>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add device tree for Nitrogen8M
- Plus ENC Carrier Board
-Message-ID: <22e7df8e-51a2-4549-ad80-0e7fd256de0a@lunn.ch>
-References: <20250327123907.542132-1-martyn.welch@collabora.com>
- <cf525617-b895-4d58-8455-a5c7fa9bbeab@lunn.ch>
- <196162332ff.b61ad5b5564260.8672918780815538746@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kC/MsusodVuzXKJbErbuIrXAe3DOIbO8xLaIUtI9oJy+8CBf9dMwmrfuShKfAMb9/bPk1SuvwpC+6VfIc2/fUzsivCCR0XLosyf5J1QiMIWOMFG6AXitcg0JAyZgkvsNcyr5U1c3AKm9hfm45ysQXE6VhzDvNeTj459W2q/JZsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bd0gWoht; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA293C4CEE9;
+	Tue,  8 Apr 2025 16:16:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744128979;
+	bh=qs8fCeXhqzm+0+n8n76ErRe0opz5wFwtZ5bEgiv2P5c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bd0gWohtxll0C8zmHx6/GaAox9jOMBhTWJ43rp0wm0uw7vqNieGPMWaJm6jZK9DIv
+	 QltkhujTr3xKeF0bRY3zNt7XwfCN3XfxEUywdAmc56XfWxwYwHNWyaf2lBnV9pedWg
+	 KesNDdBHkMvhGKD6vRT43dufa6gGcleAH1IXFIIH0aTQN3wgkkCcA0fZg8px5bewxk
+	 6Gfq4DlBGNUlGH1T1g65VjMLMvxVej/tewsQc6C3TQf53wd8vfl19oUTi6xJhXHb82
+	 sUFPfJ9n/wAc8mr67u0EWPQExSEjTL1NPElpbZ5hhIUYISVs9LqpDQWhwlRN1LLW2Z
+	 04KqLiRCfJKvw==
+Date: Tue, 8 Apr 2025 17:16:15 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
+Message-ID: <20250408-boogieman-underwent-968671653b3f@spud>
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
+ <df7983e7c623041f14a4fbe409a2cff846e68a05.1744090658.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uuAFbGTWvfty7AaS"
+Content-Disposition: inline
+In-Reply-To: <df7983e7c623041f14a4fbe409a2cff846e68a05.1744090658.git.mazziesaccount@gmail.com>
+
+
+--uuAFbGTWvfty7AaS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <196162332ff.b61ad5b5564260.8672918780815538746@collabora.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 08, 2025 at 05:02:07PM +0100, Martyn Welch wrote:
->  ---- On Thu, 27 Mar 2025 14:25:38 +0000  Andrew Lunn <andrew@lunn.ch> wrote --- 
->  > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-som.dtsi
->  > > @@ -0,0 +1,415 @@
->  > > +&eqos {
->  > > +    pinctrl-names = "default";
->  > > +    pinctrl-0 = <&pinctrl_eqos>;
->  > > +    phy-handle = <&ethphy0>;
->  > > +    phy-mode = "rgmii-id";
->  > > +    status = "okay";
->  > > +
->  > > +    mdio {
->  > > +        compatible = "snps,dwmac-mdio";
->  > > +        #address-cells = <1>;
->  > > +        #size-cells = <0>;
->  > > +
->  > > +        ethphy0: ethernet-phy@4 {
->  > 
->  > Just conformation, the PHY is on the SOM? Are the magnetics and RJ45
->  > socket on the SOM, or the carrier?
->  > 
-> 
-> The PHY is on the SOM, the magnetics and RJ45 socket are on the carrier.
+On Tue, Apr 08, 2025 at 11:40:41AM +0300, Matti Vaittinen wrote:
+> BD96802Qxx-C is an automotive grade configurable Power Management
+> Integrated Circuit supporting Functional Safety features for application
+> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
+> interrupt lines and has two controllable buck regulators.
+>=20
+> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
+> to be used as a companion PMIC for the BD96801.
+>=20
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Thanks. So phy-mode is in the right place.
+I think I acked this one on v1, no?
+https://lore.kernel.org/all/20250326-candy-endocrine-2e7b2182e53b@spud/
 
-> 
->  > > +            compatible = "ethernet-phy-ieee802.3-c22";
->  > > +            reg = <4>;
+--uuAFbGTWvfty7AaS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-and the reg value is fixed.
+-----BEGIN PGP SIGNATURE-----
 
-    Andrew
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/VLzwAKCRB4tDGHoIJi
+0nSjAP9bY9GVbG3GEKEFQXWZDLJZRybg7KceJ8vfM6jmZCEsrAEA5c9R6oh3+mvx
+x2YBgFqWpZQ+P0sS5g9JO5oq1T6GZA4=
+=4I1U
+-----END PGP SIGNATURE-----
+
+--uuAFbGTWvfty7AaS--
 
