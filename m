@@ -1,333 +1,236 @@
-Return-Path: <devicetree+bounces-164213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99443A7F887
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:54:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A02AA7F88E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC95C4411E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:50:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F88F17DA70
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF4C264633;
-	Tue,  8 Apr 2025 08:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0438F264A90;
+	Tue,  8 Apr 2025 08:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F34BNLh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF6A218587;
-	Tue,  8 Apr 2025 08:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFF1221DA0;
+	Tue,  8 Apr 2025 08:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744102108; cv=none; b=D9KcebeZMJKXYaohr9wvfGRuYqCHdcZYW0sgtaM5Ph9zxjtu5/kN+rpRQkrNVq7pUEv5lLW/yTKcEbFfQyNB4dJFLeHvopzRMnbCfXXC4RkTno7WzjNrWHZYh4d5TbEwTRjXwvg+hypMpYidPUjCME4d1JsF+NNSg65Tz+fQ/gE=
+	t=1744102168; cv=none; b=aIBOAeME/LmFzGYCbBEYIeLDWc/x9tF9O18+hgdYSFxywiIMD6W50CmcFW9VJv6AzQDUnnI5ARVTbSsrE7WmufZ6bCyFO24Gk7d9rCqoWWEAymeshjIoVExtKLhRhN0qI7Gs0BtindvZC0/XRy8g+auqDVBfyVdaEthlDPj6FGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744102108; c=relaxed/simple;
-	bh=EKRfp60XCNJ7rg/cJg3WFzBihjWnzQtJhPEvpaboi2g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XXNDnGWcF1gHZwCkROlS98SjmGi1KS9ORJS2eJvzg4nvvkomDAuVB3Qz4V0w/92G1btExwb3xjd+uGV85kiCHIh/7wGOhgubJJ7cPtPRgOyPlzpBMwMYQU4hFqv3E7te35oSdURV5QUVU0wmvFT33SJvqdCDIPK5kcfeVFX70E4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 40BFF43409;
-	Tue,  8 Apr 2025 08:48:09 +0000 (UTC)
-Message-ID: <2a24cc43-4150-4a56-ba09-0d136dde893f@ghiti.fr>
-Date: Tue, 8 Apr 2025 10:48:08 +0200
+	s=arc-20240116; t=1744102168; c=relaxed/simple;
+	bh=/oi0h+YxGjSj0Amrgd3zkGZvok/zMIeGT22vwxuw0xs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CKJrrF7MkhLjPKOk7qPhtOpZXwrCsJHNHF2/2XzR1HSWWvDb97pcfQ9otocmm9cwejE8nMk0MqTmHJ69W9zQ44CCBVbBCE1SDmvSZroS79i1bLvizfBrwWdANEcaUe/LwqZkwoYRsRvJZN9b15g1ilT0eYIw2LglCf4z+i2gi+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F34BNLh/; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54298ec925bso1675178e87.3;
+        Tue, 08 Apr 2025 01:49:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744102165; x=1744706965; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vLz6PIQLrX7WAvTgN7mKlzbJuOZCZNXq5vbLEn5vmhw=;
+        b=F34BNLh/V77HHZ0mSwg4yanme41aqOwp4+33aLzTWhVhGe6HR3qW+9BjBIfc4ezwPc
+         ug6DjamhNrxaVeSN7DdKVxF4REOJQOiwwECTBn2aUX+wSjFOkbAtFYLzND+1x8Dnqe0B
+         O8Z/HySipzQH0zJBGwA3pcLtOWPsuge9KnOPejZ+zs+VPrdCYaESQ/OsrWf7eKQd+oHr
+         +lLSbHCmbO+fKUGtW3QoQAPp+NA9Ww6OsZ+wA85BvvHjq3Fx0sD67FRVlnty9aBlqeXl
+         fBe6rSUADQl6z+MXtSZO3Zy4I4wBVpN0sxK6B/3ETSSUwmwfWOVZSF8I/vdNEuoUJpMz
+         lK8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744102165; x=1744706965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vLz6PIQLrX7WAvTgN7mKlzbJuOZCZNXq5vbLEn5vmhw=;
+        b=avZLWhZuAij+EF2kK5E2wECVpcAPtZi6HhgxdQyj1b+h2YO68zNRmWmAyFiOWE/4GF
+         o2lkQCZYzCrzvYtN/2mjvwC8mPgT3sMQnvvmq9FdPG6cDuqsVZQ0+inv0UvhOOqnW+Os
+         Ie3wdfsnalll7Xngya0k+rOIHtXlZz/fQVb/6r7VSjxEleB25EfY0hgZOGlo/DN9E5Yu
+         cxDCqWWe0N/72YkeNXo5cn5ymKHE2rZ5PhraWeTelw2v+oiCgN4+XNiMBtsxZdabp+Nq
+         ntq/0iCpBtP6rWDZbxVWnX62YR58lr25eqMQBWSSt+DM5qf4H7M2WXuJLQTmYsL8AKb8
+         fj9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUc3kQ59cqL1L0JCCGz6pGiWKHNPpJ9hBLfPw8bflgISgu+G3G8lG2FpZK3H4c9LjT14tf/XCixc/PRthY=@vger.kernel.org, AJvYcCVdcoZMfGS7hk4Ju6+N+8HOI6xPMw9oKtfaCjLgsd27ghSXumDkg2SGwoXnqCslJz7dzCYA6AO7lxLqnmyy@vger.kernel.org, AJvYcCWWxwE8acrkZHBM0hr0THrY/coNIyL7kgsIKIpMGR6pv029N93z8Zc1dtlxrstbePkgbXNkG1AKKInv@vger.kernel.org, AJvYcCXM3KDvigMP6aILJla6J31eUfHreOr4IoFPGVrOHgneeMwUUrPmcqRHgd+uxneU1UY3eAO5XmYN0gQP50GU28Xh@vger.kernel.org
+X-Gm-Message-State: AOJu0YywO7pR5vAXju5hoEiEJ4CHMQPwW3Oy+rrvxMMoo1KM32IZtaC8
+	8rOpjcpX2HEECWFN+d/kdi4tf/NbQ+SK9BridPAZbKbqJPq1Dq6FMTvJOjhA6oNozM2xJTJZ86i
+	otxUalq7FOE9rXI8KSA8+S6YzkWQ=
+X-Gm-Gg: ASbGncvGTio1eHTIwAjoVG82AX/rC60n82Al2U8NWeGVz1BDltGcAI1Yw7/WM7At4xb
+	DAXYvwC+kGFeYNqgRa8hPlWxO4KEy20hb/o3yv63Aw92wda9WBWBfppLbyqrJ+Xg8UcWFlP7T6I
+	qjdyC482vtEREwZ8/7qWB7ts9fLw==
+X-Google-Smtp-Source: AGHT+IE+JJyjApRSjTK6zCCcuyEkxu6Qm3vnoWNWSqKZ/kXpSOIJZWdovVbmT7GRh38X03m8OMgFhs3vFURkhxl2cy4=
+X-Received: by 2002:a05:6512:b98:b0:549:b0f3:4391 with SMTP id
+ 2adb3069b0e04-54c233470ddmr3538766e87.38.1744102164993; Tue, 08 Apr 2025
+ 01:49:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 27/28] riscv: Documentation for shadow stack on riscv
-Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-27-e51202b53138@rivosinc.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-27-e51202b53138@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvieegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedthfelfeejgeehveegleejleelgfevhfekieffkeeujeetfedvvefhledvgeegieenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmeehsgegieemkeeludekmegtledujeemjeekjedvngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeegledprhgtphhtthhopeguvggsuhhgsehrihhvohhsihhntgdrtghomhdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehmihhnghhosehrvgguhhgrthdrtghomhdprhgtphhtthhopegsp
- hesrghlihgvnhekrdguvgdprhgtphhtthhopegurghvvgdrhhgrnhhsvghnsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepgiekieeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhprgesiiihthhorhdrtghomhdprhgtphhtthhopegrkhhpmheslhhinhhugidqfhhouhhnuggrthhiohhnrdhorhhg
-X-GND-Sasl: alex@ghiti.fr
+References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+ <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org> <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
+ <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org> <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+ <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org>
+In-Reply-To: <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 8 Apr 2025 03:49:12 -0500
+X-Gm-Features: ATxdqUETOFGFn2EHri9F9_4eIfOQKPNEzsi7Q-YJUiQd95xxiBDN67yuVyhCAbs
+Message-ID: <CALHNRZ8+X61YzQ_gYRkuAZrz2XFiZK36GDgk=801+384y2KnOQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 14/03/2025 22:39, Deepak Gupta wrote:
-> Adding documentation on shadow stack for user mode on riscv and kernel
-> interfaces exposed so that user tasks can enable it.
+On Tue, Apr 8, 2025 at 3:17=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
 >
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->   Documentation/arch/riscv/index.rst   |   1 +
->   Documentation/arch/riscv/zicfiss.rst | 176 +++++++++++++++++++++++++++++++++++
->   2 files changed, 177 insertions(+)
+> On 08/04/2025 09:35, Aaron Kling wrote:
+> > On Tue, Apr 8, 2025 at 1:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >>
+> >> On 07/04/2025 18:00, Aaron Kling wrote:
+> >>> On Mon, Apr 7, 2025 at 7:59=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>>>
+> >>>> On 06/04/2025 23:12, Aaron Kling via B4 Relay wrote:
+> >>>>> From: Aaron Kling <webgeek1234@gmail.com>
+> >>>>>
+> >>>>> This allows using pstore on all such platforms. There are some
+> >>>>> differences per arch:
+> >>>>>
+> >>>>> * Tegra132: Flounder does not appear to enumerate pstore and I do n=
+ot
+> >>>>>   have access to norrin, thus Tegra132 is left out of this commit.
+> >>>>> * Tegra210: Does not support ramoops carveouts in the bootloader, i=
+nstead
+> >>>>>   relying on a dowstream driver to allocate the carveout, hence thi=
+s
+> >>>>>   hardcodes a location matching what the downstream driver picks.
+> >>>>> * Tegra186 and Tegra194 on cboot: Bootloader fills in the address a=
+nd
+> >>>>>   size in a node specifically named /reserved-memory/ramoops_carveo=
+ut,
+> >>>>>   thus these cannot be renamed.
+> >>>>> * Tegra194 and Tegra234 on edk2: Bootloader looks up the node based=
+ on
+> >>>>>   compatible, however the dt still does not know the address, so ke=
+eping
+> >>>>>   the node name consistent on Tegra186 and newer.
+> >>>>>
+> >>>>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> >>>>> ---
+> >>>>>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++++++
+> >>>>>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++++++
+> >>>>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 +++++++++++++
+> >>>>>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
+> >>>>>  4 files changed, 61 insertions(+)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/=
+boot/dts/nvidia/tegra186.dtsi
+> >>>>> index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb957dfd754e=
+42dd03f5a1da5079971dc 100644
+> >>>>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> >>>>> @@ -2051,6 +2051,22 @@ pmu-denver {
+> >>>>>               interrupt-affinity =3D <&denver_0 &denver_1>;
+> >>>>>       };
+> >>>>>
+> >>>>> +     reserved-memory {
+> >>>>> +             #address-cells =3D <2>;
+> >>>>> +             #size-cells =3D <2>;
+> >>>>> +             ranges;
+> >>>>> +
+> >>>>> +             ramoops_carveout {
+> >>>>
+> >>>> Please follow DTS coding style for name, so this is probably only ra=
+moops.
+> >>>
+> >>> As per the commit message regarding tegra186: bootloader fills in the
+> >>> address and size in a node specifically named
+> >>> /reserved-memory/ramoops_carveout, thus these cannot be renamed.
+> >>
+> >> That's not a reason to introduce issues. Bootloader is supposed to
+> >> follow same conventions or use aliases or labels (depending on the nod=
+e).
+> >>
+> >> If bootloader adds junk, does it mean we have to accept that junk?
+> >>
+> >>>
+> >>>>
+> >>>> It does not look like you tested the DTS against bindings. Please ru=
+n
+> >>>> `make dtbs_check W=3D1` (see
+> >>>> Documentation/devicetree/bindings/writing-schema.rst or
+> >>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetre=
+e-sources-with-the-devicetree-schema/
+> >>>> for instructions).
+> >>>> Maybe you need to update your dtschema and yamllint. Don't rely on
+> >>>> distro packages for dtschema and be sure you are using the latest
+> >>>> released dtschema.
+> >>>
+> >>> The bot is reporting that the reg field is missing from the added
+> >>> ramoops nodes on t186, t194, and t234. However, as also mentioned in
+> >>> the commit message, this is intentional because it is expected for th=
+e
+> >>> bootloader to fill that in. It is not known at dt compile time. Is
+> >>> there a way to mark this as intentional, so dtschema doesn't flag it?
+> >>
+> >> Fix your bootloader or chain load some normal one, like U-Boot.
+> > How would chainloading a second bootloader 'fix' previous stage
+> > bootloaders trampling on an out-of-sync hardcoded reserved-memory
+> > address? It's possible for carveout addresses and sizes to change. Not
+> > from boot to boot on the same version of the Nvidia bootloader, but
+> > potentially from one version to another. Depending on if the
+> > bootloader was configured with different carveout sizes.
+> >
+> > There is precedence for this. When blind cleanup was done on arm
+> > device trees, a chromebook broke because the memory node has to be
+> > named exactly '/memory' [0]. How is this any different from that case?
 >
-> diff --git a/Documentation/arch/riscv/index.rst b/Documentation/arch/riscv/index.rst
-> index be7237b69682..e240eb0ceb70 100644
-> --- a/Documentation/arch/riscv/index.rst
-> +++ b/Documentation/arch/riscv/index.rst
-> @@ -15,6 +15,7 @@ RISC-V architecture
->       vector
->       cmodx
->       zicfilp
-> +    zicfiss
->   
->       features
->   
-> diff --git a/Documentation/arch/riscv/zicfiss.rst b/Documentation/arch/riscv/zicfiss.rst
-> new file mode 100644
-> index 000000000000..5ba389f15b3f
-> --- /dev/null
-> +++ b/Documentation/arch/riscv/zicfiss.rst
-> @@ -0,0 +1,176 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +:Author: Deepak Gupta <debug@rivosinc.com>
-> +:Date:   12 January 2024
-> +
-> +=========================================================
-> +Shadow stack to protect function returns on RISC-V Linux
-> +=========================================================
-> +
-> +This document briefly describes the interface provided to userspace by Linux
-> +to enable shadow stack for user mode applications on RISV-V
-
-
-s/RISV-V/RISC-V and the final dot
-
-
-> +
-> +1. Feature Overview
-> +--------------------
-> +
-> +Memory corruption issues usually result in to crashes, however when in hands of
-
-
-s/in to/into
-
-
-> +an adversary and if used creatively can result into variety security issues.
-
-
-"into a variety of"
-
-
-> +
-> +One of those security issues can be code re-use attacks on program where
-> +adversary can use corrupt return addresses present on stack and chain them
-> +together to perform return oriented programming (ROP) and thus compromising
-> +control flow integrity (CFI) of the program.
-> +
-> +Return addresses live on stack and thus in read-write memory and thus are
-> +susceptible to corruption and allows an adversary to reach any program counter
-
-
-s/and allows/which allows
-
-
-> +(PC) in address space. On RISC-V ``zicfiss`` extension provides an alternate
-> +stack termed as shadow stack on which return addresses can be safely placed in
-> +prolog of the function and retrieved in epilog. ``zicfiss`` extension makes
-> +following changes:
-> +
-> +- PTE encodings for shadow stack virtual memory
-> +  An earlier reserved encoding in first stage translation i.e.
-> +  PTE.R=0, PTE.W=1, PTE.X=0  becomes PTE encoding for shadow stack pages.
-> +
-> +- ``sspush x1/x5`` instruction pushes (stores) ``x1/x5`` to shadow stack.
-> +
-> +- ``sspopchk x1/x5`` instruction pops (loads) from shadow stack and compares
-> +  with ``x1/x5`` and if un-equal, CPU raises ``software check exception`` with
-> +  ``*tval = 3``
-> +
-> +Compiler toolchain makes sure that function prologue have ``sspush x1/x5`` to
-> +save return address on shadow stack in addition to regular stack. Similarly
-> +function epilogs have ``ld x5, offset(x2)`` followed by ``sspopchk x5`` to
-> +ensure that popped value from regular stack matches with popped value from
-> +shadow stack.
-> +
-> +2. Shadow stack protections and linux memory manager
-> +-----------------------------------------------------
-> +
-> +As mentioned earlier, shadow stack get new page table encodings and thus have
-
-
-s/shadow stack/shadow stacks
-
-
-> +some special properties assigned to them and instructions that operate on them
-> +as below:
-> +
-> +- Regular stores to shadow stack memory raises access store faults. This way
-> +  shadow stack memory is protected from stray inadvertant writes.
-
-
-s/inadvertant/inadvertent
-
-
-> +
-> +- Regular loads to shadow stack memory are allowed. This allows stack trace
-> +  utilities or backtrace functions to read true callstack (not tampered).
-> +
-> +- Only shadow stack instructions can generate shadow stack load or shadow stack
-> +  store.
-> +
-> +- Shadow stack load / shadow stack store on read-only memory raises AMO/store
-> +  page fault. Thus both ``sspush x1/x5`` and ``sspopchk x1/x5`` will raise AMO/
-> +  store page fault. This simplies COW handling in kernel During fork, kernel
-
-
-s/During/during
-
-
-> +  can convert shadow stack pages into read-only memory (as it does for regular
-> +  read-write memory) and as soon as subsequent ``sspush`` or ``sspopchk`` in
-> +  userspace is encountered, then kernel can perform COW.
-> +
-> +- Shadow stack load / shadow stack store on read-write, read-write-execute
-> +  memory raises an access fault. This is a fatal condition because shadow stack
-> +  should never be operating on read-write, read-write-execute memory.
-> +
-> +3. ELF and psABI
-> +-----------------
-> +
-> +Toolchain sets up :c:macro:`GNU_PROPERTY_RISCV_FEATURE_1_BCFI` for property
-> +:c:macro:`GNU_PROPERTY_RISCV_FEATURE_1_AND` in notes section of the object file.
-> +
-> +4. Linux enabling
-> +------------------
-> +
-> +User space programs can have multiple shared objects loaded in its address space
-> +and it's a difficult task to make sure all the dependencies have been compiled
-> +with support of shadow stack. Thus it's left to dynamic loader to enable
-> +shadow stack for the program.
-> +
-> +5. prctl() enabling
-> +--------------------
-> +
-> +:c:macro:`PR_SET_SHADOW_STACK_STATUS` / :c:macro:`PR_GET_SHADOW_STACK_STATUS` /
-> +:c:macro:`PR_LOCK_SHADOW_STACK_STATUS` are three prctls added to manage shadow
-> +stack enabling for tasks. prctls are arch agnostic and returns -EINVAL on other
-> +arches.
-> +
-> +* prctl(PR_SET_SHADOW_STACK_STATUS, unsigned long arg)
-> +
-> +If arg1 :c:macro:`PR_SHADOW_STACK_ENABLE` and if CPU supports ``zicfiss`` then
-> +kernel will enable shadow stack for the task. Dynamic loader can issue this
-> +:c:macro:`prctl` once it has determined that all the objects loaded in address
-> +space have support for shadow stack. Additionally if there is a
-> +:c:macro:`dlopen` to an object which wasn't compiled with ``zicfiss``, dynamic
-> +loader can issue this prctl with arg1 set to 0 (i.e.
-> +:c:macro:`PR_SHADOW_STACK_ENABLE` being clear)
-> +
-> +* prctl(PR_GET_SHADOW_STACK_STATUS, unsigned long *arg)
-> +
-> +Returns current status of indirect branch tracking. If enabled it'll return
-> +:c:macro:`PR_SHADOW_STACK_ENABLE`.
-> +
-> +* prctl(PR_LOCK_SHADOW_STACK_STATUS, unsigned long arg)
-> +
-> +Locks current status of shadow stack enabling on the task. User space may want
-> +to run with strict security posture and wouldn't want loading of objects
-> +without ``zicfiss`` support in it and thus would want to disallow disabling of
-> +shadow stack on current task. In that case user space can use this prctl to
-> +lock current settings.
-> +
-> +5. violations related to returns with shadow stack enabled
-> +-----------------------------------------------------------
-> +
-> +Pertaining to shadow stack, CPU raises software check exception in following
-> +condition:
-> +
-> +- On execution of ``sspopchk x1/x5``, ``x1/x5`` didn't match top of shadow
-> +  stack. If mismatch happens then cpu does ``*tval = 3`` and raise software
-> +  check exception.
-> +
-> +Linux kernel will treat this as :c:macro:`SIGSEV`` with code =
-> +:c:macro:`SEGV_CPERR` and follow normal course of signal delivery.
-> +
-> +6. Shadow stack tokens
-> +-----------------------
-> +Regular stores on shadow stacks are not allowed and thus can't be tampered
-> +with via arbitrary stray writes due to bugs. Method of pivoting / switching to
-> +shadow stack is simply writing to csr ``CSR_SSP`` changes active shadow stack.
-
-
-I don't understand the end of this sentence.
-
-
-> +This can be problematic because usually value to be written to ``CSR_SSP`` will
-> +be loaded somewhere in writeable memory and thus allows an adversary to
-> +corruption bug in software to pivot to an any address in shadow stack range.
-
-
-Remove "an"
-
-
-> +Shadow stack tokens can help mitigate this problem by making sure that:
-> +
-> +- When software is switching away from a shadow stack, shadow stack pointer
-> +  should be saved on shadow stack itself and call it ``shadow stack token``
-> +
-> +- When software is switching to a shadow stack, it should read the
-> +  ``shadow stack token`` from shadow stack pointer and verify that
-> +  ``shadow stack token`` itself is pointer to shadow stack itself.
-> +
-> +- Once the token verification is done, software can perform the write to
-> +  ``CSR_SSP`` to switch shadow stack.
-> +
-> +Here software can be user mode task runtime itself which is managing various
-> +contexts as part of single thread. Software can be kernel as well when kernel
-> +has to deliver a signal to user task and must save shadow stack pointer. Kernel
-> +can perform similar procedure by saving a token on user shadow stack itself.
-> +This way whenever :c:macro:`sigreturn` happens, kernel can read the token and
-> +verify the token and then switch to shadow stack. Using this mechanism, kernel
-> +helps user task so that any corruption issue in user task is not exploited by
-> +adversary by arbitrarily using :c:macro:`sigreturn`. Adversary will have to
-> +make sure that there is a ``shadow stack token`` in addition to invoking
-> +:c:macro:`sigreturn`
-> +
-> +7. Signal shadow stack
-> +-----------------------
-> +Following structure has been added to sigcontext for RISC-V::
-> +
-> +    struct __sc_riscv_cfi_state {
-> +        unsigned long ss_ptr;
-> +    };
-> +
-> +As part of signal delivery, shadow stack token is saved on current shadow stack
-> +itself and updated pointer is saved away in :c:macro:`ss_ptr` field in
-> +:c:macro:`__sc_riscv_cfi_state` under :c:macro:`sigcontext`. Existing shadow
-> +stack allocation is used for signal delivery. During :c:macro:`sigreturn`,
-> +kernel will obtain :c:macro:`ss_ptr` from :c:macro:`sigcontext` and verify the
-> +saved token on shadow stack itself and switch shadow stack.
+> That was an existing node, so ABI.
 >
+> > These nodes are an ABI to an existing bootloader. Carveouts on these
+>
+> You add new ABI, which I object to.
+>
+> > archs are set up in bl1 or bl2, which are not source available. I
+> > could potentially hardcode things for myself in bl33, which is source
+> > available, but the earlier stages could still overwrite any chosen
+> > block depending on how carveouts are configured. But even then, that
+> > will not change the behaviour of the vast majority of units that use a
+> > fully prebuilt boot stack direct from Nvidia. My intent here is for
+> > pstore to work on such units without users needing to use a custom
+> > bootloader.
+> I understand your goal. What I still do not understand, why bootloader
+> even bothers with ramoops carveout. It shouldn't and you should just
+> ignore whatever bootloader provides, no?
+
+Mmm, I actually don't have the answer to this. Ramoops carveout
+handling was added to t186 and t194 in cboot for L4T r32.7.3, fairly
+late in the life cycle. But it has always been in edk2 for t194 and
+t234 afaik. I could hazard some guesses, but don't have any
+documentation on why the decision was made. Maybe Thierry or Jonathan
+could chime in on why this was done.
+
+>
+> It's not the same case as memory, where bootloader needs to fill out the
+> actual size, or some other boot-specific properties.
+>
+> Best regards,
+> Krzysztof
+Sincerely,
+Aaron
 
