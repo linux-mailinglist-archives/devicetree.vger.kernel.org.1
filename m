@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-164139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284B6A7F484
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:01:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B673A7F48E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99D243B3DC5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:01:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B520F3B4048
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 06:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8505025F78C;
-	Tue,  8 Apr 2025 06:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726AD25F79E;
+	Tue,  8 Apr 2025 06:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cbpio9LM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z48KeYwO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F15210E0;
-	Tue,  8 Apr 2025 06:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D3C1EA65;
+	Tue,  8 Apr 2025 06:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744092083; cv=none; b=lvV++t2GUiItnR/k8dClYO3kTht/Mynw4h+83Evz2/A9fAnxGGqZ/hehK+tPG+EREscyVa5vKpAhorlyEquBqRUad5TqPUjRkxGsLof0MIdhRv0TjgRHwQYH5tXqzkYCxpdJ+hC9lzXL1ilTY+vjEHWkxidzy6rWv4IW4qcCIkU=
+	t=1744092337; cv=none; b=ZCssl1s4ctvlyyQSRQzU8iBiv1dam+BtyknjRN3SupH+KmLHODfWc47erxj0KdChFtgVGFGA4DmFB1cbCUYZi8KzBIn1+3JX8riVsp4IUgFcFvn04m7ngvkqopUof89eZRm1DGuGV79HHx6rte+MQN/fJwm+/kmJFDsWG0CVu5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744092083; c=relaxed/simple;
-	bh=V08LfMrRepcIFzbFA52GTbzWj04RRx3nwYobnk7R1Xc=;
+	s=arc-20240116; t=1744092337; c=relaxed/simple;
+	bh=R/byLNIrcWM+dcFIioTGrewEb6YU76BO06rIy5Y0gxk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ndM/yxmYjkgpkUmhfGpua+kuvP5h78GZoLJUF+TtFxUI3Na0oj9bxeBH2AI+VRv5he/pFJbHrSRmo70fUwT4pERThrIqqOXDym9b2jQoPTRJBg2hk3Y0lH4IRSmjNEUJcSkTwy8Eg5/o7ZwfKyHjxLKUP0v95GDK6F7QtFycVd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cbpio9LM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB339C4CEE5;
-	Tue,  8 Apr 2025 06:01:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DX5Z0sd7PgQ9H6ku6TjOesYloTvLbZfhgzkbR2OhCTmKY3Vxzzwi022iVeLFFcdE4BfJAfwV1aj+l+uOQ9wL8jAZvGTX1EBazyrZqRm+3Ekrq34jfxeG1Y960g1VM29kd/6aljWhkhRXqpf0Zy+z3i9lyeDwquLGAd+JqPHAhZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z48KeYwO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE9BC4CEE5;
+	Tue,  8 Apr 2025 06:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744092082;
-	bh=V08LfMrRepcIFzbFA52GTbzWj04RRx3nwYobnk7R1Xc=;
+	s=k20201202; t=1744092337;
+	bh=R/byLNIrcWM+dcFIioTGrewEb6YU76BO06rIy5Y0gxk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cbpio9LMXZsKy8AY6obGaCUJBqrRlFA2FxqdBHSxAQtsto+fSfTkszUOo4Il+siPp
-	 YOmRKENa0wnx3GVdhBW5ZI8VpsUgPReqpoiJj/mJtfETw9JZ/FowK0jDXkNOuX/72k
-	 KIdM3tjSOpJHCcz0dwEmaeRLviQGy+4BUR8Xhmf4eO10IKJBvWqdkveBR/Ah88QO5U
-	 VywREMoF7Ee0umkHuYUwR3B+znrH4GWT97UMEgTZMpGu1vhIVzT+96Ufc5z9tZ5Vsy
-	 edpIplC+hLM/QmGhaWEYBJEvMelapkl6o2R+tS5bkyqfctqo0rP39gfCvGn33om70T
-	 685a1tRIIG4nQ==
-Message-ID: <8d41f893-20dc-4362-91fd-689b41076e30@kernel.org>
-Date: Tue, 8 Apr 2025 08:01:18 +0200
+	b=Z48KeYwOhWMCOKLm+SPfTdjWSlP/S2tVErcsftuNUAg4+km6F3qkNy4+7UHz62R3M
+	 LfE+pDJBh2oIYC2zCDKKtc21LwnsLx+2/sLH/zsrBgmSylwi8GoGoJ7nAyvHf6BYvU
+	 QtjdTiKgCVN6m7WDG+uBwylHyPQy6r2NuPNYEeKQ5sarWJYqFKRMrClTYgP2af1Osh
+	 VBSihHHgQNtbRoI4TBxmZTFzws2QI5EMQIKaXSEwivxyqLyWk5g3m2s+gZd1vJNlDi
+	 lZDQxgrQ2C5Zzar4bOjrxv168TjOnv7RjDm7w/JEA40hc5dlNUpYac6fP1/+jlNMmx
+	 GuC9EU+PiTnoA==
+Message-ID: <8abcf2bf-77cb-4380-bdc4-95c3796a96f0@kernel.org>
+Date: Tue, 8 Apr 2025 08:05:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] media: tegra-cec: Support Tegra186 and Tegra194
-To: webgeek1234@gmail.com, Hans Verkuil <hverkuil@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-tegra@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250407-tegra-cec-v1-0-e25dd9577b5f@gmail.com>
- <20250407-tegra-cec-v1-2-e25dd9577b5f@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add support for bcm74110
+To: Justin Chen <justin.chen@broadcom.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: florian.fainelli@broadcom.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, jassisinghbrar@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20250404222058.396134-1-justin.chen@broadcom.com>
+ <20250404222058.396134-2-justin.chen@broadcom.com>
+ <b32aa644-6984-476b-abc0-a5416f551bba@kernel.org>
+ <9088acd0-4650-4b10-88f9-6b6c0b1f9978@broadcom.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,34 +105,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250407-tegra-cec-v1-2-e25dd9577b5f@gmail.com>
+In-Reply-To: <9088acd0-4650-4b10-88f9-6b6c0b1f9978@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/04/2025 06:39, Aaron Kling via B4 Relay wrote:
-> From: Aaron Kling <webgeek1234@gmail.com>
-> 
-> The tegra186 and tegra194 controllers are working with the driver as-is,
-> so add the compatibles to allow them to probe.
-> 
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->  drivers/media/cec/platform/tegra/tegra_cec.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/media/cec/platform/tegra/tegra_cec.c b/drivers/media/cec/platform/tegra/tegra_cec.c
-> index 3ed50097262f64c32fe0480698cea9a1056a0953..aa3d36286d256d59f9d726e5c3cee5decacd1d23 100644
-> --- a/drivers/media/cec/platform/tegra/tegra_cec.c
-> +++ b/drivers/media/cec/platform/tegra/tegra_cec.c
-> @@ -456,6 +456,8 @@ static const struct of_device_id tegra_cec_of_match[] = {
->  	{ .compatible = "nvidia,tegra114-cec", },
->  	{ .compatible = "nvidia,tegra124-cec", },
->  	{ .compatible = "nvidia,tegra210-cec", },
-> +	{ .compatible = "nvidia,tegra186-cec", },
-> +	{ .compatible = "nvidia,tegra194-cec", },
+On 07/04/2025 22:57, Justin Chen wrote:
 
-No, express compatible devices with fallbacks.
 
+> from v2 of my patch was copied from said generated DTS.
+> 
+> Apologies as I navigate through the different yaml keywords here. The HW
+> isn't changing, I am just struggling with representing the HW using the
+> different keywords. And the different implications of using said keywords.
+> 
+> Here is what I have for v4.
+>       items:
+>         - description: RX doorbell and watermark interrupts
+>         - description: TX doorbell and watermark interrupts
+> +    description:
+> +      RX interrupts are required to notify the host of pending messages. TX
+> +      interrupts are optional. The TX doorbell interrupt is not used by the
+> +      host, but watermark interrupts may be used to notify a host 
+> waiting on
+> +      a full out queue.
+What does it mean optional? Board decides on SoC connections? Given SoC
+is fixed isn't it?
 
 Best regards,
 Krzysztof
