@@ -1,194 +1,141 @@
-Return-Path: <devicetree+bounces-164417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC0EA80F27
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:03:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2682A80F1E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 17:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B14ED423B82
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:57:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E66E1895E42
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 14:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766401E9B2C;
-	Tue,  8 Apr 2025 14:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B338120CCD8;
+	Tue,  8 Apr 2025 14:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lQL+qfsv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nl0emsqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A678F1E1A3F;
-	Tue,  8 Apr 2025 14:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A841DF749;
+	Tue,  8 Apr 2025 14:59:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744124288; cv=none; b=chM83X335qpngRdYRSHb5Lo1LKbvwVadvz5R14GFY/E3HeQg+4oacPpVhGHHIyxDptHNRvA0s2qRJYvzudlv2tfa27nycAJGpHEi32YZZ5A1ff1loDa7yXZfaoCAzpFogHMljYrX1WbKCEuLjKXVw2OHqbbw2aIODRhNEplZG3k=
+	t=1744124340; cv=none; b=hWk8GPgugMMf/ODsABj3ka0vkMhKxKpvJdJK2rv+c96CPXmAkOXNO+4zWJa4aXeGi1oCsgc1xfM1pEiuAQQ4NnF0NthLeMNVjyKUYhunYz+rBIT8noBgzHMtXILbo23MJ+61E0iHqlg41CrWdVfkT1IZ61DK6aFiwXhS19ggdsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744124288; c=relaxed/simple;
-	bh=8H5Xn3sQovWkd+GJDu5CdgqtheWeaa0IPtY2GnP1Q0o=;
+	s=arc-20240116; t=1744124340; c=relaxed/simple;
+	bh=YvdHl1/Z4vQg1X2njDEqwyEHsxKugzx7tWbrj/mGuto=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n+GlTq/HArWK8TOc7yMNcR5wdoSeSSmwOa1WZhm/BxXB3Yxe4hLoRASmunhJaxJLElJ/jKuWwkS/C5EPGxeXAcsmQ06/hNKN9Bd7aRLqAuVPJmX6edOFn7Jt2Q3gC6Gk33auaB20ch9/HT4AYHYWbpIX1df0F3kvj0tyyxXmAGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lQL+qfsv; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54996d30bfbso2790547e87.2;
-        Tue, 08 Apr 2025 07:58:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744124285; x=1744729085; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0jIrA3mx6C6mZy2tnJofkxitpjJevE8nbzOCRz8TRh8=;
-        b=lQL+qfsvXJTnNDdV5ufNF6G/iyOwwwT6x+Qh77ul2LikAOxvrlQkoIZtzKwvy3pttL
-         cTOmrr+GqdgZHnP9u27AO3dJHnSh0t9m6UWBh4QXFPJftKpbNjiAA+6e9vqcr1bEcuDQ
-         I1NU+SiLiQ0qrmY9sOWMPetQjoQl/HfetPEw5gf14yY7Ha5PI6mmHd9XosBefYWIhYzT
-         qfBk2jzEsmoCAjwu/CZfcImmNqGnNVIqCAaIuSlX++13ZS2tt9yETw+Q6x8Xf3gvgVMK
-         d5KiUa1mGHg+1GiTIyjJnVfJCxkHlWyPyt/6KIOTQ9R5CbqF/z9BDMJ4tQLLR/x9Log2
-         fO1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744124285; x=1744729085;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0jIrA3mx6C6mZy2tnJofkxitpjJevE8nbzOCRz8TRh8=;
-        b=gHNxgOY9T9nw/AVzkmnCActoMpcVC3hgNTUciM65NnX414oB5Skv6nE/1KXtJscHSW
-         wqmsKPiqqZDuDCYcGwvBjD6LM/bkuLpmY5Kzto5HYL/Rz62HRGHN0zRyhCQnVQek+vcd
-         0ypP57giP89CqOxbAg1WeBC7LQWW3ZxjNgoQc7FJdrkFoj/myYSAlFbL+CBZ5iHndWTG
-         vO0gyrxPErgYrpQPqN6ipQRWINuIzkyfmBaqcLaFfQra/8yImYJADaaueBlJYxCkh0jT
-         1+rluXcx9Cml2w1Yl+OvwWNJAu0usJZs0agmPOWrhBhMbnr2pITU41yeOh3QPbehfVze
-         Gqbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUq7mbyb49UuTp2ACdlr9dJuZ+36nVgErMCO2ibugq2v0C0SjyTXqgrKpa62cjZz0XhJrqiMidSgOaE@vger.kernel.org, AJvYcCXcnXyRjmDhG1KSoR4swlgnv8/0or2a0YH+o0T3x/3U6X/1nC8/TBn11OAqSKHf0GMpFfAVLync1V34LMug@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxoo4HQaMhl/SCK4LkWfNBKtNt4YuUb078sOVZQul50Folpn8zp
-	YWDSdFdDkHpErM2L6RdJysVXjqcMy91E878SgxfmIitdCnYlMdaQ
-X-Gm-Gg: ASbGncsCC64PDI+YxXMEP2enwW8clLtQa4A1VD1lsfwvp5CYl/UBpBg9Vc+rZ4FC8J8
-	1ZYqUlCumS72pGZ4picFtzgBlbxTnk/Z/Om5da2gGTp+jL3/M/wHC8TtfUhGfqzE2kw/Mgd8N20
-	7yIHGqvzY+8gKq04nho9mpoUhJpA90VRHEVKg3K1z+hMmwIA3GjT3C0KfkuscAFzwpA2hD4/XG9
-	AuD100MgzWJL1tABa8fSFjW2mctXBLglo+T+5YqdgNXMLpa3jiBIuPBka0Zch2MM8y8Qoyprsmx
-	XQE1JQaLnn7+GbXjKTwfDQDkhmMNyiw8+w0oOnc4oVw5AHhVH9/lOGPcuYNY3e+CPGp4RHCwiYx
-	FSb6Xjg==
-X-Google-Smtp-Source: AGHT+IH7AfCDvYI4ulQvJiioz+8wMgXMRFnMBvJTApo51eq7l+wLWCNH4RztQpIl6uGPT7+sa6FzgA==
-X-Received: by 2002:a05:6512:e92:b0:549:8d16:7267 with SMTP id 2adb3069b0e04-54c2276aba5mr4772259e87.10.1744124284349;
-        Tue, 08 Apr 2025 07:58:04 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e65d6d5sm1510577e87.181.2025.04.08.07.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 07:58:02 -0700 (PDT)
-Date: Tue, 8 Apr 2025 16:58:00 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Javier Martinez Canillas <javierm@redhat.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UGGZJOmKsAAr0bnBPFxOG7qWtv0RPnuiVDx+LnnpmcFdFxEuIpWlgxTjEybYr78KTu6rCGktWqooKz6rnQ+O8jhx7UMup6QSVrji8eDyhLWt9WZywLW+S4cpKaqZEa1H5wYLeobZ5dot/cI9n7ci/2ftP2ZaQI782fjULyl6xwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nl0emsqp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0970C4CEE5;
+	Tue,  8 Apr 2025 14:58:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744124339;
+	bh=YvdHl1/Z4vQg1X2njDEqwyEHsxKugzx7tWbrj/mGuto=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Nl0emsqpUJ0D+aADf9ENV/mLocPn8KFDil18e0TyKmPCQ6PGjlZ2x+d3+7TSj8CQ0
+	 qgEUx2j2jv3lZo2G+SKJBfWwkkp8N/fOT9+TDG+xXsuEwbp4w2sBnHIGAvv8CpMFCM
+	 buMpRieSWXok7HFoLlUk/HFsiKaqbVMkLcXTuA7d5vKf+DMny8hIRFK24AKKwSs146
+	 1gq8QsXfx2ir1fR1TpkHGqKgWJwzdppxbe7MuTsK7ZTkIiUyrmORQBest5MMCf8PVx
+	 D0jG6462EwGU8W9Yy4feQm27Olp1ANlMfouSLrcjdZQvIf3ZhSbxow9z4zpUS6sj66
+	 FclbqQBHQLFJA==
+Date: Tue, 8 Apr 2025 16:58:54 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Will Deacon <will@kernel.org>, Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-Message-ID: <Z_U5eGy3vLgHZmz1@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
- <20250408-st7571-v3-2-200693efec57@gmail.com>
- <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
- <Z_Uin2dvmbantQU4@gmail.com>
- <05fa4ac7-db09-401d-8680-0d71112d2239@suse.de>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 01/24] Documentation: devicetree: bindings: Add GICv5 DT
+ bindings
+Message-ID: <Z/U5rvfU9CWUpYCc@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org>
+ <174411521311.1639476.6777663294037851144.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lMPor8puCNzndVuT"
-Content-Disposition: inline
-In-Reply-To: <05fa4ac7-db09-401d-8680-0d71112d2239@suse.de>
-
-
---lMPor8puCNzndVuT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <174411521311.1639476.6777663294037851144.robh@kernel.org>
 
-Hi,
+On Tue, Apr 08, 2025 at 07:26:53AM -0500, Rob Herring (Arm) wrote:
+> 
+> On Tue, 08 Apr 2025 12:50:00 +0200, Lorenzo Pieralisi wrote:
+> > The GICv5 interrupt controller architecture is composed of:
+> > 
+> > - one or more Interrupt Routing Service (IRS)
+> > - zero or more Interrupt Translation Service (ITS)
+> > - zero or more Interrupt Wire Bridge (IWB)
+> > 
+> > Describe a GICv5 implementation by specifying a top level node
+> > corresponding to the GICv5 system component.
+> > 
+> > IRS nodes are added as GICv5 system component children.
+> > 
+> > An ITS is associated with an IRS so ITS nodes are described
+> > as IRS children - use the hierarchy explicitly in the device
+> > tree to define the association.
+> > 
+> > IWB nodes are described as GICv5 system component children - to make it
+> > explicit that are part of the GICv5 system component; an IWB is
+> > connected to a single ITS but the connection is made explicit through
+> > the msi-parent property and therefore is not required to be explicit
+> > through a parent-child relationship in the device tree.
+> > 
+> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > ---
+> >  .../bindings/interrupt-controller/arm,gic-v5.yaml  | 268 +++++++++++++++++++++
+> >  MAINTAINERS                                        |   7 +
+> >  2 files changed, 275 insertions(+)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dts:43.27-28 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250408-gicv5-host-v1-1-1f26db465f8d@kernel.org
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 
-On Tue, Apr 08, 2025 at 03:57:22PM +0200, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 08.04.25 um 15:20 schrieb Marcus Folkesson:
-> [...]
-> > >=20
-> > > > +static int st7571_set_pixel_format(struct st7571_device *st7571,
-> > > > +				   u32 pixel_format)
-> > > > +{
-> > > > +	switch (pixel_format) {
-> > > > +	case DRM_FORMAT_C1:
-> > > > +		return st7571_set_color_mode(st7571, ST7571_COLOR_MODE_BLACKWHIT=
-E);
-> > > > +	case DRM_FORMAT_C2:
-> > > > +		return st7571_set_color_mode(st7571, ST7571_COLOR_MODE_GRAY);
-> > > > +	default:
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > These should be DRM_FORMAT_R1 and DRM_FORMAT_R2 and not C{1,2}. The f=
-ormer
-> > > is for displays have a single color (i.e: grey) while the latter is w=
-hen a
-> > > pixel can have different color, whose values are defined by a CLUT ta=
-ble.
-> > >=20
-> > I see.
-> > Does fbdev only works with CLUT formats? I get this error when I switch
-> > to DRM_FORMAT_R{1,2}:
-> >=20
-> > [drm] Initialized st7571 1.0.0 for 0-003f on minor 0
-> > st7571 0-003f: [drm] format C1   little-endian (0x20203143) not support=
-ed
-> > st7571 0-003f: [drm] No compatible format found
-> > st7571 0-003f: [drm] *ERROR* fbdev: Failed to setup emulation (ret=3D-2=
-2)
->=20
-> For testing purposes, you can add the _R formats to the switch case at
->=20
-> https://elixir.bootlin.com/linux/v6.13.7/source/drivers/gpu/drm/drm_fb_he=
-lper.c#L1246
->=20
-> and see how it goes.
+Validated the bindings, not the example within, that caused this to trigger,
+apologies.
 
-Still no penguin (same error as above).
+Already fixed it - please review the bindings though, feedback on them
+appreciated, thanks.
 
-The problem is that drm_mode_legacy_fb_format(), which is called from
-drm_fbdev_shmem_driver_fbdev_probe -> drm_driver_legacy_fb_format -> drm_mo=
-de_legacy_fb_format
-
-Sets the pixel format DRM_FORMAT_C{1,2} when bpp is 1 or 2.
-So I don't think it is possible to use the _R formats with fbdev.
-But I'm not sure?
-
->=20
-> Best regards
-> Thomas
-
-Best regards,
-Marcus Folkesson
-
---lMPor8puCNzndVuT
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmf1OXQACgkQiIBOb1ld
-UjITCBAAnmJ67WKzefUaDAR0UVVZ3Bc/0DD0kDE1HD0PNw44h8PIW3Tw+fQB0OQP
-LqPs0Vi33D4Zf81iutlO/hfS2L57bkdPBVFvQckWyeA6fomaQYIprdi4U9bE9T/x
-0/e1IfZQ1+AkgjuXaba6Hw4t8P8fDCqSFIqvZ+PEuizgJEA+aLrk2Sav1+xucRhi
-R0vAzjmJk4MKIONG1ZhHMxCP1WgduGfwA9z7rpB2sMkT/sAg2+ydrTXIEEBZAe1C
-7ippzhsChYflIiAG5VWqS5WetIZOumzvxe5lbPEiQa22n6D8lgtTXnxOEt8H3254
-lDeOCuklGlC6zNr6vr7B6I2AhkKxHI60tNM9C2ZzRZCx7fgmjh32XZTqlS9Ux9CF
-UdP5bmSJwn0I1KgwfCTouCNtAK4OwPHeqRipT6/0ADPcAL4Cvs39CdwErBmpEkQk
-KsdrZ4ALHHVrSX7mTMNQKQnpgByZqJep4/y2Y5aTd63x3+UC8Kabnob46xgDlMJq
-pIaV0qsoshSHxyF2xDqQBWSCfC4L4WDbQzuhZhQZ8E7pAInv72MC/l7tvFTk3OSK
-pOdCim/LJ8p3wF0bpBQb54uaV0S72lL65CIJ2qOoZvZSrF1sm7Y2PDKwridY3Spi
-IPNO8mHiN8BIRcVtigKkSS0aAoCYmRbWwIUAPws4c4kw2TXeE2o=
-=fljt
------END PGP SIGNATURE-----
-
---lMPor8puCNzndVuT--
+Lorenzo
 
