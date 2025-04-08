@@ -1,124 +1,232 @@
-Return-Path: <devicetree+bounces-164491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC41A81258
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:31:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749D0A8128F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19AB9883083
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:25:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37E831892FB5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019BA22D7A4;
-	Tue,  8 Apr 2025 16:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3E122E40E;
+	Tue,  8 Apr 2025 16:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eYSPj+Ke"
+	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="w3+Q8MAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E2F22A4FA
-	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 16:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FDE1CB501
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 16:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744129560; cv=none; b=WCeS/0OPHcLpw2I8C9sR819wvy9bGPJswGO+tqsyH06F8Tp2Lpo9xul0H5OYyIjII7acyXtdD5DrzyV2fR3Tvuj7plJDh8Dy+nne77kN5n7iOYeP/B+xgfXWhcW63bNfL4JVoUkU1OWfXHBSsM63t0TiaKq37fNRmzm0n1SqWU0=
+	t=1744130181; cv=none; b=N/Ik2GQ+TjZQbNrfBrzUkBeNMP3gzsmOS0nLwjTDMFC6MkY3FbjBSzMHX2kwVKy+CjTd0hVRQ9UJiibCajSsa1i/X1sT/2fipCcHzlSQIs/jFMSKQnmunxGDW7w7XOgBIhqcwJlOOQvuN2bfawuTAbvlof+7OyG1VqDr0TFUQa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744129560; c=relaxed/simple;
-	bh=ljFPIOq3znfMAq1hPUQc5glriASqAaiOXMDYR6i6u48=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=JS45sbOLycaR9pKN+mPgEWe+ObVnPzZd+aFh5tc8Hjxgdyme6JifDswOdTkQkgDi5UNDdbz1Y3zbQPnkqtVpkgObSLaBkWq7xOoswUd8/KC4j+w2DXyDTPhSyOpPb7Oafzp59BPwPRq8USIpU7GSLzkFNGdsgbpkbT/ZsNGGXg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eYSPj+Ke; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cf825f46bso4993335e9.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 09:25:58 -0700 (PDT)
+	s=arc-20240116; t=1744130181; c=relaxed/simple;
+	bh=zNql4wjyEPOLy1mY6jhCj+sK140gdpVkS0KbDrHloKs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f3MCNY8ldtwtUUWMlbxUHRFQ9aYvR0UQNSBTThcf7F+AIcxMQucl0kXj+W+NMcq3GauIlhh52Ex9pl14LE11lhXBuhV/jinB/cm+sbZTPrrLx4OrRI9ZeUXVPU3OJ1aUI+LY1lfWw/5edUb7poDqs3wrsoNg1HZTCLwoxl7KufU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=w3+Q8MAD; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac41514a734so1004746566b.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 09:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744129557; x=1744734357; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1744130177; x=1744734977; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RFphVcqK3mFE7z2xyqgIGdTaijWdMSkT/C4V2pISyXU=;
-        b=eYSPj+Kes8bLRHabUmJ0gn2WrliHC1zORE4e26cCsDtm65ZJ55AZGmUewn8sgUH7LJ
-         /gBOs+RBRBeAvS94Yz1NP7RxSJYeu7w6949M0x/uRuYiPUDnis09fpaCARnFQV8eu96Z
-         VG2MsepuGlcGlmPCcJEighzg2Z/lXYUikFTz0ttfl8VdAAgx4m69tOBjey5fctaUSjqu
-         GvkUBldDd/WQKmOVPIaaSjkLPTw14xeuWnELcfBSCWwYHngXu/d/4LLVZokszjWZcBNV
-         X5onQIadAY2tFoWXuh/+8Wg+j9ToOkORTWCRptreCb28gSe3XpzlruKVVwF8NAPZcBIN
-         cvsg==
+        bh=i3wrvWVbOnRUQVWpOBEubP7kMDCUCq12GpzisA/3qfg=;
+        b=w3+Q8MADhnBdGtHmrmwMEr3qqPodDdBil5lUmmiSj30j0y8uiLKXK7MTYanU0do1jV
+         y6tE7UZMl1U+0Sr+jg/I+CEdtMMpYqz3w2wcoM+VExLGP5mboTP7Ezw4KV9zarlsPQoD
+         KVhghmJvOK/MqOEOm9/C6Xwxj5T9unJpAckgUWbQZh7CgA4+14DHu1QKnHRQMdGRY7Qu
+         +gAN2MfRasrQ3Se9ai3ZmZRBF/Ok7/rpejhmYjPIzxn/YVm2GY3H8rLyodfFUD5am1if
+         N79Qq/GD/ZcohtokcRzkOGxIs4+DAX2aJt/sT4mT8nsZEpxhqmbkHQ+ciZ0wlV9iiwh1
+         bPpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744129557; x=1744734357;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744130177; x=1744734977;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RFphVcqK3mFE7z2xyqgIGdTaijWdMSkT/C4V2pISyXU=;
-        b=RU+D+T1tH61W1fw0duL964r3j6p0bti31eq7zdl68UyUNqpm76DbaXVa5Q8tN2QyKz
-         cV1ui3pUOpRAeZ/XW2akHEVCrIASKb2ywLW/sAlz6GUwWyjfKFssED4TY0Ce9IKTaWZt
-         rup6o9IRvmTkckMbKbf/i3Gv92P/ndIfkI7F4Gbl0CuJvcoBFf7QdcTZ8Z8I6kAjK1zQ
-         cvrj1PtSa6XsNj4dzuZh2BjG/p4HtpyJNugeeOQQ7iH8huaUYNQ3SxX5jdt7SpgloFKP
-         NC9jGP7kJOii18iT/002XY+6yoyDZxJaSKOF3j39GtkRNKgB3JVrmyujz36IbKWlGkJ2
-         ycfw==
-X-Forwarded-Encrypted: i=1; AJvYcCUi8Uhda9qzqarRID70wa1tx0uMBvFJhJDEfy+WYgnJzcHZt6HN39D4CJakPcIIz8Fq8Ry9Bf4KReQ2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAD1j77DByfWYiQ323FaxA1NVQUlfhw2PwsvGVUHAJYkumknPo
-	SNa1sMVz59sXNYIy3vMDzoFWJDIUP/XvGn+ozuyYiuePaq6xmhO6oBsodxRlJPg=
-X-Gm-Gg: ASbGncsqY+WjTRJW5rOUIJQszkEuX93svHyQ655ylEIl5gI3lGcKr2nxsc5ZTnHiETZ
-	jPwdKHo3GBl3Bh54EpqxHi9AtnlORLlVlSVPQwaiyH2KHhsWcXzavS7BVbuO96mI3CA9qY1VhmK
-	LoQhJk6/N1K0TUcNtVyZxHvm2qMGAYhiTOU42+HPioil8GMpLJ7dYL0r+6ddcbpe/ci32WHZKD/
-	NbCHkqG0IU7IFn/LAF+LcEbBTuBhK1r5INsORrv2I8MbLGUNHPXMRoD/Fo5QY8E+6AN0Ha0rHtd
-	xaEj6XM6o+TOs59tpUqtAbzJLijzoeolPLtzWdLCFLoGqlJKpTRoXpfe/uPXRI/2rmDv2ud7NQ=
-	=
-X-Google-Smtp-Source: AGHT+IHcjPw7vTVflIx/On2eYRJY4Tq9MrtcT3MQ3yA+ESz6rLfbUvrWYzlL9vvcgtQLsbxNYvAtHw==
-X-Received: by 2002:a05:600c:848d:b0:439:a3df:66f3 with SMTP id 5b1f17b1804b1-43ecfa18ba7mr56191265e9.6.1744129557114;
-        Tue, 08 Apr 2025 09:25:57 -0700 (PDT)
-Received: from [192.168.1.26] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec34a7615sm164763125e9.9.2025.04.08.09.25.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 09:25:56 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: krzk+dt@kernel.org, linux-fsd@tesla.com, robh@kernel.org, 
- conor+dt@kernel.org, richardcochran@gmail.com, alim.akhtar@samsung.com, 
- Swathi K S <swathi.ks@samsung.com>
-Cc: jayati.sahu@samsung.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
-In-Reply-To: <20250307044904.59077-1-swathi.ks@samsung.com>
-References: <CGME20250307045516epcas5p3b4006a5e2005beda04170179dc92ad16@epcas5p3.samsung.com>
- <20250307044904.59077-1-swathi.ks@samsung.com>
-Subject: Re: [PATCH v8 0/2] arm64: dts: fsd: Add Ethernet support for FSD
- SoC
-Message-Id: <174412955552.86459.1583748766350981659.b4-ty@linaro.org>
-Date: Tue, 08 Apr 2025 18:25:55 +0200
+        bh=i3wrvWVbOnRUQVWpOBEubP7kMDCUCq12GpzisA/3qfg=;
+        b=oSOAvOMZNerwXjqCFe/EN1yhgXtCpMnUeRRTWWEIAMgCycig+lMTrp9LsJAdvjfnEw
+         Ry305qbLfHUjWJCwhow9EKIiWQB5gLFRtPN0FS7nU+jLq/SP+iOkwpsgwtsx9ukYnwpd
+         vZJpvUmFyY1SZOywCGob3jxi104J9FDqjLHrzCXOcUBIa9PJLmL32wHXxgLTj9SFUW+F
+         e09PzDKsSxCEKWcWSGm1dLdiIJuz3Lan8levQa/7pBzYDpuH0JMw8e4FvtXUAVB0lLKu
+         VG9mh9AJV2qNIdRUgqdsfTwjLEq9Fy3oqnHZ2LrHMrmSXxyDPfoeMia9bfcycnUaXSI6
+         eMxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV7ZOsGDkKxp8p87DzuvzB33Sps8evUW1fbEsyHpDPbE+Xk+zM+zE4h6jb0bASZi2XdjUR61wnrFDlk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/pigrW6qVV1Qn6vR0sXm/2pCdKnsP8GARbzchHwrHHVSFHZ09
+	Fwn6VhVq+fglULsa4SnIppwHIjdhzsqKrZcNPAD2+rrIXQUJuK6/tIVtuh8L5b7Phrz++eL2pmh
+	JJihNCBnoSKma0i208guydZHmNV3TBOFoowi7og==
+X-Gm-Gg: ASbGncv+J4QChnRKOpeQaRtArCvoaMaphDnOT317q17x/Lfg9lVWAwDj2KK7IxzatYO
+	AuBUq56JXEo6cstGH4d5/hQ0kIKkHsI1LNI6OyfN9fSPsryVjbwQLe7AFCAuJxI22nqjv1N/XQC
+	6mPvoO8xYC5UQH+SqLlyU57pL0q4ne
+X-Google-Smtp-Source: AGHT+IEKFLhzxNA8nE4j3QQLXx2xIaLoG80ZEqlxvEiciuURe4ovIM9jxkUyiDuLYEFOGCRYHlOLSuzofncZr+mD4JY=
+X-Received: by 2002:a17:907:7da3:b0:ac2:55f2:f939 with SMTP id
+ a640c23a62f3a-ac7e7170328mr1083292466b.6.1744130176982; Tue, 08 Apr 2025
+ 09:36:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+References: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
+ <20250326-onboard_usb_dev-v1-2-a4b0a5d1b32c@thaumatec.com> <20250326-fanatic-onion-5f6bf8ec97e3@spud>
+In-Reply-To: <20250326-fanatic-onion-5f6bf8ec97e3@spud>
+From: =?UTF-8?Q?=C5=81ukasz_Czechowski?= <lukasz.czechowski@thaumatec.com>
+Date: Tue, 8 Apr 2025 18:36:04 +0200
+X-Gm-Features: ATxdqUGKDxJYzUIvQOK05tjpTcLCd2GeOTcg3K4KoR3MFRQVI_hcKPX99fihLeY
+Message-ID: <CABd623tEGh=qtpF0h7PkRBBrR7V9EaxUv9HregqbPcLU_2Exbg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: usb: cypress,hx3: Add support for all variants
+To: Conor Dooley <conor@kernel.org>
+Cc: Matthias Kaehlcke <mka@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Benjamin Bara <benjamin.bara@skidata.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Klaus Goger <klaus.goger@theobroma-systems.com>, 
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, quentin.schulz@cherry.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+=C5=9Br., 26 mar 2025 o 18:58 Conor Dooley <conor@kernel.org> napisa=C5=82(=
+a):
+>
+> On Wed, Mar 26, 2025 at 05:22:57PM +0100, Lukasz Czechowski wrote:
+> > The Cypress HX3 hubs use different default PID value depending
+> > on the variant. Update compatibles list.
+> >
+> > Fixes: 1eca51f58a10 ("dt-bindings: usb: Add binding for Cypress HX3 USB=
+ 3.0 family")
+> > Cc: stable@vger.kernel.org # 6.6
+> > Cc: stable@vger.kernel.org # Backport of the patch in this series fixin=
+g product ID in onboard_dev_id_table and onboard_dev_match in drivers/usb/m=
+isc/onboard_usb_dev.{c,h} driver
+> > Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/cypress,hx3.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/D=
+ocumentation/devicetree/bindings/usb/cypress,hx3.yaml
+> > index 1033b7a4b8f9..f0b93002bd02 100644
+> > --- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+> > @@ -15,8 +15,14 @@ allOf:
+> >  properties:
+> >    compatible:
+> >      enum:
+> > +      - usb4b4,6500
+> > +      - usb4b4,6502
+> > +      - usb4b4,6503
+> >        - usb4b4,6504
+> >        - usb4b4,6506
+> > +      - usb4b4,6507
+> > +      - usb4b4,6508
+> > +      - usb4b4,650a
+>
+> All these devices seem to have the same match data, why is a fallback
+> not suitable?
+>
+
+Thank you for the suggestion. Indeed the fallback compatible appears
+to work fine in this case,
+and I am able to avoid additional entries in onboard_dev_match table
+as added in the first patch in this series.
+
+However, after I've updated the cypress,hx3.yaml schema file and
+rk3399-puma.dtsi file,
+I get the following warnings, when running "make dtbs_check":
+
+linux/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dtb: hub@1:
+compatible: ['usb4b4,6502', 'usb4b4,6506'] is too long
+=E2=80=83=E2=80=83from schema $id: http://devicetree.org/schemas/usb/cypres=
+s,hx3.yaml#
+linux/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dtb: hub@2:
+compatible: ['usb4b4,6500', 'usb4b4,6504'] is too long
+=E2=80=83=E2=80=83from schema $id: http://devicetree.org/schemas/usb/cypres=
+s,hx3.yaml#
+
+Below is the diff of my changes:
+
+diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+index f0b93002bd02..d6eac1213228 100644
+--- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
++++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+@@ -14,15 +14,22 @@ allOf:
+
+ properties:
+   compatible:
+-    enum:
+-      - usb4b4,6500
+-      - usb4b4,6502
+-      - usb4b4,6503
+-      - usb4b4,6504
+-      - usb4b4,6506
+-      - usb4b4,6507
+-      - usb4b4,6508
+-      - usb4b4,650a
++    oneOf:
++      - enum:
++          - usb4b4,6504
++          - usb4b4,6506
++      - items:
++          - enum:
++              - usb4b4,6500
++              - usb4b4,6508
++          - const: usb4b4,6504
++      - items:
++          - enum:
++              - usb4b4,6502
++              - usb4b4,6503
++              - usb4b4,6507
++              - usb4b4,650a
++          - const: usb4b4,6506
+
+   reg: true
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+index d0d867374b3f..7fac61f95fc6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+@@ -594,14 +594,14 @@ &usbdrd_dwc3_1 {
+        #size-cells =3D <0>;
+
+        hub_2_0: hub@1 {
+-               compatible =3D "usb4b4,6502";
++               compatible =3D "usb4b4,6502", "usb4b4,6506";
+                reg =3D <1>;
+                peer-hub =3D <&hub_3_0>;
+                reset-gpios =3D <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;
+        };
+
+        hub_3_0: hub@2 {
+-               compatible =3D "usb4b4,6500";
++               compatible =3D "usb4b4,6500", "usb4b4,6504";
+                reg =3D <2>;
+                peer-hub =3D <&hub_2_0>;
+                reset-gpios =3D <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;
 
 
-On Fri, 07 Mar 2025 10:19:02 +0530, Swathi K S wrote:
-> FSD platform has two instances of EQoS IP, one is in FSYS0 block and
-> another one is in PERIC block. This patch series add required DT file
-> modifications for the same.
-> 
-> Changes since v1:
-> 1. Addressed the format related corrections.
-> 2. Addressed the MAC address correction.
-> 
-> [...]
+Do you have any suggestions on how I can properly update the schema
+files to avoid the above warnings?
 
-Applied, thanks!
-
-[1/2] arm64: dts: fsd: Add Ethernet support for FSYS0 Block of FSD SoC
-      https://git.kernel.org/krzk/linux/c/1d62af229b18bff2430ea5dde0e129d43515e12c
-[2/2] arm64: dts: fsd: Add Ethernet support for PERIC Block of FSD SoC
-      https://git.kernel.org/krzk/linux/c/ebeab0be707ddcffd2b7f6ff4f9bd8e0c1c49fdd
+> >
+> >    reg: true
+> >
+> >
+> > --
+> > 2.43.0
+> >
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Lukasz
 
