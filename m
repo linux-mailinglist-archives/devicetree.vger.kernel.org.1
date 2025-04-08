@@ -1,123 +1,123 @@
-Return-Path: <devicetree+bounces-164494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8790A812C3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1601A812C9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:49:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56D7D881098
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:43:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3CAE88616A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 16:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BABA22F3BD;
-	Tue,  8 Apr 2025 16:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E27B22D786;
+	Tue,  8 Apr 2025 16:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CN5QCqo8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DUjOR1gP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F7222F392;
-	Tue,  8 Apr 2025 16:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2665757EA;
+	Tue,  8 Apr 2025 16:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744130604; cv=none; b=oPHejroiPU/2wVNl0bBG3eF3kY5uQk20Kmhe5lZJIoRXlOghFts4OqSlV8OLsCYvYa2465yx1re4YrdLjFbsQCg0oe3C4Ja1w2uY1ctg/f9hS29yhy0PaOmar3CCxElAK8n+Nrn5tHPr1ukp+JntyeWVgkZnucDavZd2ZyRx8+A=
+	t=1744130772; cv=none; b=cKCN4of8erIGz+tMQPnBG/Xi9XYYoJYf9Mom8NKHsD0c9TZWFqLB+gBFMRLo6qUAWigrt/Vu8cQJstr+OtGeNKYVYMHeWKt9scAIKIDKkOWP9IsqhSPBLkCQO5DotBJoFFL6JCjx7rNg+h5wBAk1ykRxMb7M3F9/9y+mWOpQBvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744130604; c=relaxed/simple;
-	bh=raJz/ai0ZijncBOlpXxt8uuwgqGiy01W9ag8yTzBix8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1bsGQN2VUQd/cVxvw9UHzwADqlh6cxF8NMSmdBJfc/p8klNNsithLuXyTXD49CtoPM+Yq/yHDurHuJo8FF/fYNtT/5AYIdP4fKN6yKCpNIPkoml1YTkn10Ukq9uudVQzPqDlDp6fiVtkVXk1WFp/v/8+iWiyjJOrrztuM2oKk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CN5QCqo8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35166C4CEE5;
-	Tue,  8 Apr 2025 16:43:21 +0000 (UTC)
+	s=arc-20240116; t=1744130772; c=relaxed/simple;
+	bh=y4Hqk7RHiAYWnIB3Uz5J2+6PZDT7++zFv2jNYoLEenY=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bgFK5HamxVML2sN2wsesj8wJNomkTBpvRZXoR+F706fk76UM+NzfXVejgXVhkQvcFnUahWUmyPqEB5WAJepCpxCpOgL4rckq2uOrhMm2YvrUGVkeOVLYPyH8//xNlAHWbXOCgpftCN1fVipgqqMmq4kbNUAkMTq3kR9GACV+q1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DUjOR1gP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B965C4CEE5;
+	Tue,  8 Apr 2025 16:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744130604;
-	bh=raJz/ai0ZijncBOlpXxt8uuwgqGiy01W9ag8yTzBix8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CN5QCqo8FfJuS+kH2SrW9SXisJd5pHEXM8AdUowcpWagegjOXBQVbBANE07oZlmzQ
-	 li5c+mCiTm83gAQ3bOAX+pfgdLKJBTZvlL2u7f3xCCNDIQEeWP1a60PccTMgN8wXtO
-	 bMrQt1hXozSe81baudtBer5uThmcSifBWXLWrigdtGK6mwSX5oKw8vkizKf8RKZxnZ
-	 JETomvJV5XQZnyZFxsKx/aGxKNE8xkAQU8wlrIgL7jdZqAvJxcCeBRcyD2g1s3k43m
-	 I7sEGUcGFtK3bnTaQQhzLyWWJA2oKRJz+mDPuaJ2APbfB5vh7NgeA3IDvVjL2LrwE8
-	 eFV0zUGdNCPaw==
-Date: Tue, 8 Apr 2025 17:43:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	tglx@linutronix.de, daniel.lezcano@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com
-Subject: Re: [PATCH 7/9] riscv: dts: andes: add QiLai SoC device tree
-Message-ID: <20250408-activism-botany-351c2e49b4e9@spud>
-References: <20250407104937.315783-1-ben717@andestech.com>
- <20250407104937.315783-8-ben717@andestech.com>
+	s=k20201202; t=1744130772;
+	bh=y4Hqk7RHiAYWnIB3Uz5J2+6PZDT7++zFv2jNYoLEenY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DUjOR1gPJl0ApZpB/E3373YoIV46OrU6cPFDDiW/l0F6x+bHvm5eQDURxTLou+4c3
+	 3yTBK/zyqVIhQA2YvV3bS2ZsgR6PgOqVjbwf3YK0KMN525zzQVUogeYmafZ0E20/OS
+	 pHy8CEgkFAulpaAgESXJV/jYZL5hLjUnATbmorU6USCxP7EpTyQm8qPndBkUektB1g
+	 Hr5dqoxcWuDTH6hFdlKNUm64U96rUn+IQB9CsLK3dtqsL6tFydy79icXhCh1tEokeQ
+	 uhJHGXizHmp+7/j/xSdceKL19YXdEqEeYN2E45L3qSEMNxZftRbIffewIB1sIIrXSW
+	 LfpV46f0oYjag==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1u2C5R-003YhG-TM;
+	Tue, 08 Apr 2025 17:46:10 +0100
+Date: Tue, 08 Apr 2025 17:46:09 +0100
+Message-ID: <86r022lhym.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: <robh@kernel.org>,
+	<krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>,
+	<mcoquelin.stm32@gmail.com>,
+	<alexandre.torgue@foss.st.com>,
+	<devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: st: Use 128kB size for aliased GIC400 register access
+In-Reply-To: <20250407084028.2072504-1-christian.bruel@foss.st.com>
+References: <20250407084028.2072504-1-christian.bruel@foss.st.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="awb5ELcIZKsHge4i"
-Content-Disposition: inline
-In-Reply-To: <20250407104937.315783-8-ben717@andestech.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: christian.bruel@foss.st.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Mon, 07 Apr 2025 09:40:28 +0100,
+Christian Bruel <christian.bruel@foss.st.com> wrote:
+> 
+> Adjust the size of 8kB GIC regions to 128kB so that each 4kB is mapped
+> to 64kB. The offset is then adjusted in the irq-gic driver.
 
---awb5ELcIZKsHge4i
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+nit: mapped *16 times* over a 64kB region.
 
-On Mon, Apr 07, 2025 at 06:49:35PM +0800, Ben Zong-You Xie wrote:
-> Introduce the initial device tree support for the Andes QiLai SoC.
->=20
-> For further information, you can refer to [1].
->=20
-> [1] https://www.andestech.com/en/products-solutions/andeshape-platforms/q=
-ilai-chip/
->=20
-> Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
+> 
+> see commit 12e14066f4835 ("irqchip/GIC: Add workaround for aliased GIC400")
+> 
+> Fixes: 5d30d03aaf785 ("arm64: dts: st: introduce stm32mp25 SoCs family")
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
 > ---
->  MAINTAINERS                          |   1 +
->  arch/riscv/boot/dts/andes/qilai.dtsi | 194 +++++++++++++++++++++++++++
->  2 files changed, 195 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/andes/qilai.dtsi
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d1e1b98dfe7b..b974e83c9f10 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20731,6 +20731,7 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/interrupt-controller/andestech,plic=
-sw.yaml
->  F:	Documentation/devicetree/bindings/riscv/andes.yaml
->  F:	Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
-> +F:	arch/riscv/boot/dts/andes/
+>  arch/arm64/boot/dts/st/stm32mp251.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> index 379e290313dc..87110f91e489 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+> @@ -119,9 +119,9 @@ intc: interrupt-controller@4ac00000 {
+>  		#interrupt-cells = <3>;
+>  		interrupt-controller;
+>  		reg = <0x0 0x4ac10000 0x0 0x1000>,
+> -		      <0x0 0x4ac20000 0x0 0x2000>,
+> -		      <0x0 0x4ac40000 0x0 0x2000>,
+> -		      <0x0 0x4ac60000 0x0 0x2000>;
+> +		      <0x0 0x4ac20000 0x0 0x20000>,
+> +		      <0x0 0x4ac40000 0x0 0x20000>,
+> +		      <0x0 0x4ac60000 0x0 0x20000>;
+>  	};
+>  
+>  	psci {
 
-New platform, but your maintainers entry contains no git tree. Who are
-you expecting to apply patches and send PRs to the soc maintainers for
-this platform? Hint: I really hope it is you.
+Suggested-by: Marc Zyngier <maz@kernel.org>
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-If it is you, please look at the soc platform maintainers documentation
-entry:
-https://docs.kernel.org/process/maintainer-soc.html
+	M.
 
-Cheers,
-Conor.
-
---awb5ELcIZKsHge4i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/VSJwAKCRB4tDGHoIJi
-0vZcAP9RbDFg/af3ECEvZAxIZ+AZ8LsCFlFr9kWSatf+nA5aEAEAtS1YMjdLacjF
-5TjTqZ65HkYhQTbXoa6mn6dLiR1j6gE=
-=oOMV
------END PGP SIGNATURE-----
-
---awb5ELcIZKsHge4i--
+-- 
+Without deviation from the norm, progress is not possible.
 
