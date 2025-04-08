@@ -1,140 +1,231 @@
-Return-Path: <devicetree+bounces-164098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4657BA7F2B2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 04:34:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6717A7F31B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 05:16:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29CA5164C22
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 02:34:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54B963B2F7A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 03:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2AA1CDA2D;
-	Tue,  8 Apr 2025 02:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C401B3927;
+	Tue,  8 Apr 2025 03:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GkKetjWS"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ZzFcx253"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973181.qiye.163.com (mail-m1973181.qiye.163.com [220.197.31.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06ECF1A5BBB;
-	Tue,  8 Apr 2025 02:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50645322B;
+	Tue,  8 Apr 2025 03:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744079651; cv=none; b=T0Tm471PP95zSGFB6enMLJaqHPSjG97sYfCUfGgEnxYqeBkDhf+nzP9PemUcT7jXSMD83fJkLchDxAKecR9w/u0qPCoTzXUpQezjSMV5G/UxKHpz4vQCD1zKpz3+XmwMWnVDpEoNtvV1UfC04cmG73uYofBNlMBB3OcSLzk8FkA=
+	t=1744082209; cv=none; b=Z2CSQPa1UPEryjtfAFTU58FmB+GvyhyhXXd7d5u/rdnR3EUk6fQqbia3f7X4dFHEqeEOtX9i/nRxUkAcL2KkyQhiYTMYaK7avPujZoD7JKkQjEPWnpwJNtw50Omz7EfDIQHenbhSLf/0EGXYRtHC9Y6oMes1z3xijEYtL9raAn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744079651; c=relaxed/simple;
-	bh=+hLj8ICUAAVqQQcsCRHJOsDstttPzIFItann4SgbdTw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MdwYM9leJ/ubrrSe3ucWlPe8NWaZthLJqRAhNBqBITbpgotUe5jK38aNAAyA6YiwIH8iKLtUGu0V9Lfq87jmjPQ5aTx1BBguZBeulfLtb+atiy6dsntxw0DPXiohbVwWZy4nMxkK2QsFrWGJZOt6KEhuYNaXajYZLBI19v7nDKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GkKetjWS; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c08f9d0ef3so303486185a.2;
-        Mon, 07 Apr 2025 19:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744079649; x=1744684449; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=waaMzRcEYQgRpRjT/cb8agAmmDWkveY+/Tn+x5v2WbI=;
-        b=GkKetjWSYHbzm/fQlyh7Dbt7eVpQWG3He0fWFjvpRKEl6K9QAQEgkirdrkG3fOeeu+
-         946j698ct5N1444jNMyup7SJEbTyvxTTE+JzZs0Z5NyOtlJaFfykyK61c0BnkOB9/KYd
-         ZVqeTDfMwoRnuvRFkZmld7KryaV9RJ24z7z6Butl1GtRGO9OkCzRqYr3bX8uebxMrpEZ
-         2BackYStPHFPAZurkAxfHkG9Lnfkn2bHHdtvUlgBnIxAS4nPcpFImXMzk03Hw7IGKnjX
-         zrlej2tsrwOeZc14UWDaqgE+vWNaQ2EGO1IMJQ4O8Lm4trTHlEuulGQA0RYOvhkALAT4
-         OyRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744079649; x=1744684449;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=waaMzRcEYQgRpRjT/cb8agAmmDWkveY+/Tn+x5v2WbI=;
-        b=w3qvznv5zXVvrancwZG/94JZ9S5p4eryUS2Zw+wSJHDQYuHH7UvhTY1LeydY+fGQKl
-         D9KNpWmBjq+wl2OJFaTBxKsX36NnNZ8DM+5o/2ZAQtpfBc2HGs5QbtM6PYGe18AbcEsZ
-         8IAqlDR5vQzNty4inza+i4kdqjA3+KLlFTFU5NS6MPYnkwr1+PJKmvF7Bql1HXbYNmP/
-         kCgHhgBnQGRR1Jpnv/OBLu6r+06OlwWgp3J1rf43f8EwlaW66PSr82Tc33Csj7f161PR
-         n8HYBqR3O34NQ3EOtZAiq0Si7bxZ7MCVdTpK2nihHzBJGW/NnCmJPGPAO7nj/rozNq7Y
-         NubA==
-X-Forwarded-Encrypted: i=1; AJvYcCW2RNJZM6+GZNDekG/A4OVguRCwuaVpEnoGRqcVXC2RFzpwE1IGDok1ZdiHXKeg7bmsai38a5W6nYwG@vger.kernel.org, AJvYcCW5/XgNzXO8E93SZG1uAReghJWJp569G6n/AIg+1fdAfGsn8TUC1B4caPAHtoG9KEkCoLq7MlKuciJ9@vger.kernel.org, AJvYcCWLdUtf7wL9z3YLafEWqx7XBC2BA4jjQJYAl48WQuQYy0ZbvfJXKC2b+SFDmchCbLsO4VAaXcsgh4Y0gtMq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwot0VF95ubuJSrX9oZWfN4FH0mbkXyxIO11yjX3azF/9a9jH/
-	k3rBFpaieZawLrLZQQNdQCvA6Q2eUQNM3z6KOnWw7uVOjeJmV3iG
-X-Gm-Gg: ASbGncsTBnc5mZm+DvzIQkyI2yQFRwbtQo3ff9R2Oaznl+PmPmKek6IXPk9LI47DNNL
-	rpz+Q5oklRCxUA1zWrOWgxs2q3xPMt0r3hLYoYyaYDGMEMQ5NGm9E6x9FUJPOfQo2GgySg89eWK
-	HTsnhVLQo5NR+wEYc73zg80pVvVPvudCXt8kna6Lh3DIjftsEm03HZoYzrjQFYBz0778BSDFZ0N
-	8juagCZ9ta2VfdTY01LrjUopjTwUFerTcOtp2gOOp1xVG+iu9dII4KgartO6ilPfY12bPWLHdaF
-	XrawwaHlvPN65dtj4gu1
-X-Google-Smtp-Source: AGHT+IHa2pjYh5qtU2xFWFpFRw710b9YzXGj/CQhpz4LU55IzIv/AkIca8T95g1vDXO/do3EzvlTyA==
-X-Received: by 2002:a05:620a:372c:b0:7c5:a5a2:eea3 with SMTP id af79cd13be357-7c775a3a33bmr1702022885a.34.1744079648872;
-        Mon, 07 Apr 2025 19:34:08 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6ef0f14d2a7sm67012176d6.107.2025.04.07.19.34.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Apr 2025 19:34:08 -0700 (PDT)
-Date: Tue, 8 Apr 2025 10:33:32 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Longbin Li <looong.bin@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, ghost <2990955050@qq.com>, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: sophgo: add pwm controller for
- SG2044
-Message-ID: <3y4nm5ievsfyomyzm35b3moj2buunwmisjowmvovhbglcjwnhi@gaj7wz4sm7tj>
-References: <20250407072056.8629-1-looong.bin@gmail.com>
- <20250407072056.8629-2-looong.bin@gmail.com>
- <jq55x7uhftvejninh56tzk32jtmmwa5wxzna5uxbkk5woi7zi5@6wrg2ctmyg7b>
- <20250407141119.GA2192351-robh@kernel.org>
+	s=arc-20240116; t=1744082209; c=relaxed/simple;
+	bh=+C/ir4MXLCFa4qRxQoVsWWbgVy0MyXuOwnSs1AcMeOg=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LwrfLSsoGLetV3m6DIcLL8F5io314z4pWJg7SszPlDn6TJBzvj5rDJBfKvfNQAezGWyUd49Zi5VCfzHcPLfqjbso1Dj4kZUt9ZQv9FbowSf6A6hJUkmSAT70pelUxJEZbX/W7DdamzyQKZF/0mcY2ZRCMLq1drTxCj0YSyU13Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ZzFcx253; arc=none smtp.client-ip=220.197.31.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.129] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 110100f9f;
+	Tue, 8 Apr 2025 11:01:19 +0800 (GMT+08:00)
+Message-ID: <6ccfc126-b009-4ee9-0a2c-3e7faf512751@rock-chips.com>
+Date: Tue, 8 Apr 2025 11:01:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Cc: shawn.lin@rock-chips.com, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Finley Xiao <finley.xiao@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Liang Chen <cl@rock-chips.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/2] arm64: dts: rockchip: Add rk3576 pcie nodes
+To: Kever Yang <kever.yang@rock-chips.com>, heiko@sntech.de
+References: <20250225102611.2096462-1-kever.yang@rock-chips.com>
+ <20250225102611.2096462-2-kever.yang@rock-chips.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20250225102611.2096462-2-kever.yang@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250407141119.GA2192351-robh@kernel.org>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkwYTVYZSEtOGEpLGUxCGUlWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9613585a7e09cckunm110100f9f
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OSo6OBw*TzJCNUJKKR4eLioX
+	FzMaFElVSlVKTE9PS0NKSUNKSUNOVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1MQ0s3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=ZzFcx253Iawa95Ut/zueBk6AOjK/JxZoWLnmw0TH6KDZc8RlQ7YnUlOpTHMHsFffAR/USMj5zUBT2BYglrMvPvoLWOjH7W3Vymu+m1vLvUPHOxBaS5zm/hHV9ejb3E099jnZ3QdUWJospg6rNBs/UVdBG+6V1U/jJHt8Cwql21Y=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=SLSSxNg3dTpdPXjgZLIOhqnXXot5F10MyjFb2gUR874=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon, Apr 07, 2025 at 09:11:19AM -0500, Rob Herring wrote:
-> On Mon, Apr 07, 2025 at 02:31:24PM +0200, Uwe Kleine-K�nig wrote:
-> > Hello,
-> > 
-> > On Mon, Apr 07, 2025 at 03:20:38PM +0800, Longbin Li wrote:
-> > > diff --git a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-> > > index bbb6326d47d7..e0e91aa237ec 100644
-> > > --- a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-> > > +++ b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-> > > @@ -17,7 +17,9 @@ allOf:
-> > > 
-> > >  properties:
-> > >    compatible:
-> > > -    const: sophgo,sg2042-pwm
-> > > +    enum:
-> > > +      - sophgo,sg2042-pwm
-> > > +      - sophgo,sg2044-pwm
-> > 
-> > Given that the sg2044 has more registers (to e.g. implement different
-> > polarity), but the sg2042 registers are identical, I wonder if the 2044
-> > device should use:
-> > 
-> > 	compatible = "sophgo,sg2044-pwm", "sophgo,sg2042-pwm";
-> > 
-> > Note, I'm unsure here, only providing input to people who are more
-> > knowledgeable in DT that I am.
+在 2025/02/25 星期二 18:26, Kever Yang 写道:
+> rk3576 has two pcie controllers, both are pcie2x1 work with
+> naneng-combphy.
 > 
-> Depends if s/w only understanding "sophgo,sg2042-pwm" will work on the 
-> 2044. IOW, will a kernel without the driver change here work?
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 > 
 
-No luck, the logic for SG2042 is broken on SG2044. In fact, it seems
-to be more familiar to the pwm ip on CV1800 than it on SG2042.
+One thing need to be mentioned, defconfig set:
+CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY=m
+CONFIG_PHY_ROCKCHIP_PCIE=m
 
-Regards,
-Inochi 
+So the phy is missing leads deferred probe pending.
+
+With setting CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY=y,
+pcie works fine, so
+
+Tested-by: Shawn Lin <Shawn.lin@rock-chips.com>
+
+> Changes in v7:
+> - re-order the properties.
+> 
+> Changes in v6: None
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3:
+> - Update the subject
+> 
+> Changes in v2:
+> - Update clock and reset names and sequence to pass DTB check
+> 
+>   arch/arm64/boot/dts/rockchip/rk3576.dtsi | 108 +++++++++++++++++++++++
+>   1 file changed, 108 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> index 4dde954043ef..79e24b2c3c60 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1127,6 +1127,114 @@ qos_npu_m1ro: qos@27f22100 {
+>   			reg = <0x0 0x27f22100 0x0 0x20>;
+>   		};
+>   
+> +		pcie0: pcie@2a200000 {
+> +			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
+> +			reg = <0x0 0x22000000 0x0 0x00400000>,
+> +			      <0x0 0x2a200000 0x0 0x00010000>,
+> +			      <0x0 0x20000000 0x0 0x00100000>;
+> +			reg-names = "dbi", "apb", "config";
+> +			bus-range = <0x0 0xf>;
+> +			clocks = <&cru ACLK_PCIE0_MST>, <&cru ACLK_PCIE0_SLV>,
+> +				 <&cru ACLK_PCIE0_DBI>, <&cru PCLK_PCIE0>,
+> +				 <&cru CLK_PCIE0_AUX>;
+> +			clock-names = "aclk_mst", "aclk_slv",
+> +				      "aclk_dbi", "pclk",
+> +				      "aux";
+> +			device_type = "pci";
+> +			interrupts = <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &pcie0_intc 0>,
+> +					<0 0 0 2 &pcie0_intc 1>,
+> +					<0 0 0 3 &pcie0_intc 2>,
+> +					<0 0 0 4 &pcie0_intc 3>;
+> +			linux,pci-domain = <0>;
+> +			max-link-speed = <2>;
+> +			num-ib-windows = <8>;
+> +			num-viewport = <8>;
+> +			num-ob-windows = <2>;
+> +			num-lanes = <1>;
+> +			phys = <&combphy0_ps PHY_TYPE_PCIE>;
+> +			phy-names = "pcie-phy";
+> +			power-domains = <&power RK3576_PD_PHP>;
+> +			ranges = <0x01000000 0x0 0x20100000 0x0 0x20100000 0x0 0x00100000
+> +				  0x02000000 0x0 0x20200000 0x0 0x20200000 0x0 0x00e00000
+> +				  0x03000000 0x9 0x00000000 0x9 0x00000000 0x0 0x80000000>;
+> +			resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
+> +			reset-names = "pwr", "pipe";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			status = "disabled";
+> +
+> +			pcie0_intc: legacy-interrupt-controller {
+> +				interrupt-controller;
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 280 IRQ_TYPE_EDGE_RISING>;
+> +			};
+> +		};
+> +
+> +		pcie1: pcie@2a210000 {
+> +			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
+> +			reg = <0x0 0x22400000 0x0 0x00400000>,
+> +			      <0x0 0x2a210000 0x0 0x00010000>,
+> +			      <0x0 0x21000000 0x0 0x00100000>;
+> +			reg-names = "dbi", "apb", "config";
+> +			bus-range = <0x20 0x2f>;
+> +			clocks = <&cru ACLK_PCIE1_MST>, <&cru ACLK_PCIE1_SLV>,
+> +				 <&cru ACLK_PCIE1_DBI>, <&cru PCLK_PCIE1>,
+> +				 <&cru CLK_PCIE1_AUX>;
+> +			clock-names = "aclk_mst", "aclk_slv",
+> +				      "aclk_dbi", "pclk",
+> +				      "aux";
+> +			device_type = "pci";
+> +			interrupts = <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &pcie1_intc 0>,
+> +					<0 0 0 2 &pcie1_intc 1>,
+> +					<0 0 0 3 &pcie1_intc 2>,
+> +					<0 0 0 4 &pcie1_intc 3>;
+> +			linux,pci-domain = <0>;
+> +			max-link-speed = <2>;
+> +			num-ib-windows = <8>;
+> +			num-viewport = <8>;
+> +			num-ob-windows = <2>;
+> +			num-lanes = <1>;
+> +			phys = <&combphy1_psu PHY_TYPE_PCIE>;
+> +			phy-names = "pcie-phy";
+> +			power-domains = <&power RK3576_PD_SUBPHP>;
+> +			ranges = <0x01000000 0x0 0x21100000 0x0 0x21100000 0x0 0x00100000
+> +				  0x02000000 0x0 0x21200000 0x0 0x21200000 0x0 0x00e00000
+> +				  0x03000000 0x9 0x80000000 0x9 0x80000000 0x0 0x80000000>;
+> +			resets = <&cru SRST_PCIE1_POWER_UP>, <&cru SRST_P_PCIE1>;
+> +			reset-names = "pwr", "pipe";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			status = "disabled";
+> +
+> +			pcie1_intc: legacy-interrupt-controller {
+> +				interrupt-controller;
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>;
+> +			};
+> +		};
+> +
+>   		gmac0: ethernet@2a220000 {
+>   			compatible = "rockchip,rk3576-gmac", "snps,dwmac-4.20a";
+>   			reg = <0x0 0x2a220000 0x0 0x10000>;
 
