@@ -1,38 +1,79 @@
-Return-Path: <devicetree+bounces-164179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E15A7F741
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E058A7F77C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 10:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA183AD993
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:06:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 992AE3B7339
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 08:13:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCAD263F2C;
-	Tue,  8 Apr 2025 08:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76EEE263C8B;
+	Tue,  8 Apr 2025 08:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XMcHmseS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488A725F96E;
-	Tue,  8 Apr 2025 08:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479CB263C74
+	for <devicetree@vger.kernel.org>; Tue,  8 Apr 2025 08:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744099566; cv=none; b=K2pKLO4ImMt7alHCDlnt6drhYm0bL7RkXtRqaV5pQAXkqZSvOMyLiccJg58vVdTo98onPp5OM9jjQsylsv91glt3pveiXeubJV8LivMhJHJiu17rMZF17zI0jS7vgrw4JGZF/tkgdA49+WOyz4GyyJ82EwGTIl7uETS1XrS0erQ=
+	t=1744100051; cv=none; b=SB4dMcp+gU+DBAqIZFpMtGqxQljjie2JkFTUFpRdbz/cNtqI8G5J535KpeaQloPZzseZvgFUJuCItfR1b3lxqpAYv/med/DfVlju7gz9c+l66Vu5UvRIr5iw4h+4SfIYItJ1OhdKPnxEE55oXAwJIg7tITu5txIkP+rI7TcbZ8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744099566; c=relaxed/simple;
-	bh=80EgAG7HXUHwaTNBiNtJabzbql9J8NHwuJwaMe4c7lU=;
+	s=arc-20240116; t=1744100051; c=relaxed/simple;
+	bh=oAS13G1ySo3BTj4AeO+QfsgP1JMQOqQN+NetSQkPYSY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KyMXoUDGBQ8st2WM5+KTYMFQ9YZCD8S6ouEoRgxIwDlFY6YEhOhph8MpW3PWhd9xfi1daNLecRxIrwObBNFrpuAvYUa3A6sFx0kB1SOtbBd2hIyx64sLlAQGMBSvWrk4T91kAnb391vlRj8v7Lpfo76zfZqkFHFlOfPNVXKz/Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B0E3744445;
-	Tue,  8 Apr 2025 08:05:49 +0000 (UTC)
-Message-ID: <cbc057b9-e3ec-4750-aad4-0cc813b65b07@ghiti.fr>
-Date: Tue, 8 Apr 2025 10:05:48 +0200
+	 In-Reply-To:Content-Type; b=okiAFuBb9wg0Syzn2NP2uAr8iT/UB0RuNC+9y28B3FFGpQDAKOqQzOgw1BoUYQRTxyVRnH7feT6xv9f2AyVKqoAWG7BDqoULwFNNzThog5neJK2THycXfu8D67g7AQkIBQnZKuF/FAlfAOGCl6ceMRyQWFcK+enDZZ9l1+gx0Po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XMcHmseS; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4394a823036so48395905e9.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 01:14:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744100047; x=1744704847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OSsQQMPTG91ipLO2Lx37iAbnWCmF1lAWx7weRpdCuxs=;
+        b=XMcHmseSr+TYW30PhZMRXYd/PY1/D4lg9g6uBxMi7yOtTUPOXb17svSO0zFsSSKVJa
+         Rl7yMiXIAxx+LkZYVDftUL79rYL1QLFTVEeJvLicqlpQPYe7fV2T48kttNlpEWJyOtYf
+         ce6XWFklX1mu4R2lTmKe3FqG0Mb3nc1Y8+GoUAEAQUApnlh5Gbi59d6MHgumBscRmOYV
+         uasVjlGNiQvyGXHJjb9jv5PKao09v7/W+nPCjU7YVpNa8FGTD/vvxovrW/XF0AzwYNVM
+         tXD5KYImEdfX5NTSDg4BxKiqjslm2CNOzBoXjcjBTMVwqqXc50x+PWBk6A5Sy72atYdW
+         b29Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744100047; x=1744704847;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OSsQQMPTG91ipLO2Lx37iAbnWCmF1lAWx7weRpdCuxs=;
+        b=axGwiBXHsf/wT0L9lm4WcfIE/Fp82PihxnM9GpmfxAeyg3vcLsCkYwhcW+8z0fzdIq
+         zGPP3C+mx3On9Gho684QcP2PB+AaP2Qh3e4e2vq2twXiLj3g/P7yeaUu7qDHuf2AZDS1
+         XAcofORaw75P62TEpKGHxvRIqjIITTAHeAaFKA9pbQSYRQAiBiatzKTLF052El10Es78
+         al/o1J2bv3jQdv3LlcoYoV5r1zLOwt2bVC7Z6zzF2V7Z97rT8uaIypmUCJmYBqYWXveb
+         0W567UeLNaC+ESZRxZCg02Zmi6oj0viQON+VjvhmcOPf6/RFp46YgMrFRRXLi75vC/aU
+         4jfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWIdWNT7lYq/wz1V5quegl1NxB1bvK9PkafQ4e3Z74HhscRufgsqtj9huT6SrAGV4/FR2/kv2wMTX/A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw94i9u4f13mx99nNDPEMevLny/1OegNnQvK4A/4TMmZruBs0hA
+	wuesJzJ/MHPcbJOeRpRfaWClgSYeiJieQggN99x7t6myiBElHcU0L/kCsPae7nk=
+X-Gm-Gg: ASbGncujRo0V5vxwra8VgCbCAYZNHrZ/tHB5QWo/g+j9qre+rBKm2SmUuxoeEOBRThq
+	FO47K0JiqalVwmxsEa0kZ8i5Ny6NRzwYmheEW5CBq1XsERMXp7w/rBQV9Yg/DEWKFpt/I6ADrfw
+	3CPESxXB2iug7LUEEM693rx6Gv8D6glSPxct58k3LZV7CWAoqcJsZEgfhE0TRqHwAiIHOmzkhZ8
+	gHkgn4lbfejHNHUKgfisKxQ7iZ3vuSEz2+df3o0OkwyGuFThYQR6emFVuepesPLZIN9c+NU8aea
+	T43tQ9hRnxdgrgmP+nBsS7Dg39EWCChvdFIyAvAlAke78reAacJvoiCozDXhw74=
+X-Google-Smtp-Source: AGHT+IHMcM/JRxPbct9OPzdKglXYqGvT+2iz/IgWsDMqHapPmd+z3PyGamR9WaSnQe0LD/KLTcKXeQ==
+X-Received: by 2002:a05:6000:2281:b0:39c:cc7:3c97 with SMTP id ffacd0b85a97d-39d6fd3646cmr7346835f8f.50.1744100047362;
+        Tue, 08 Apr 2025 01:14:07 -0700 (PDT)
+Received: from [192.168.68.117] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43ec342a3dfsm155505145e9.4.2025.04.08.01.14.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Apr 2025 01:14:06 -0700 (PDT)
+Message-ID: <07bfc5f3-1bcb-4018-bd63-8317ec6dac48@linaro.org>
+Date: Tue, 8 Apr 2025 09:14:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,210 +81,244 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 05/28] riscv: usercfi state for task and save/restore
- of CSR_SSP on trap entry/exit
+Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
+To: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, amahesh@qti.qualcomm.com, arnd@arndb.de,
+ gregkh@linuxfoundation.org
+Cc: quic_kuiw@quicinc.com, quic_ekangupt@quicinc.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-3-quic_lxu5@quicinc.com>
+ <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
+ <e2a8528b-fa18-471f-9cb8-da64bb488f2a@quicinc.com>
 Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-5-e51202b53138@rivosinc.com>
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <e2a8528b-fa18-471f-9cb8-da64bb488f2a@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvheeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpefhlefhffeggfeftddvtdeukeelgfehkeehhfeuheehleefkeelgffglefghfffueenucffohhmrghinhepvghnthhrhidrshgsnecukfhppedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvddphhgvlhhopeglkffrggeimedvtddtudemkeeiudemfeefkedvmegvfheltdemhegsgeeimeekledukeemtgeludejmeejkeejvdgnpdhmrghilhhfrhhomheprghlvgigsehghhhithhirdhfrhdpnhgspghrtghpthhtohepgeelpdhrtghpthhtohepuggvsghughesrhhivhhoshhinhgtrdgtohhmpdhrtghpthhtohepthhglhigsehlihhnuhhtrhhonhhigidruggvpdhrtghpthhtohepmhhinhhgohesrhgvu
- ghhrghtrdgtohhmpdhrtghpthhtohepsghpsegrlhhivghnkedruggvpdhrtghpthhtohepuggrvhgvrdhhrghnshgvnheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopeigkeeisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehhphgrseiihihtohhrrdgtohhmpdhrtghpthhtoheprghkphhmsehlihhnuhigqdhfohhunhgurghtihhonhdrohhrgh
-X-GND-Sasl: alex@ghiti.fr
-
-On 14/03/2025 22:39, Deepak Gupta wrote:
-> Carves out space in arch specific thread struct for cfi status and shadow
-> stack in usermode on riscv.
->
-> This patch does following
-> - defines a new structure cfi_status with status bit for cfi feature
-> - defines shadow stack pointer, base and size in cfi_status structure
-> - defines offsets to new member fields in thread in asm-offsets.c
-> - Saves and restore shadow stack pointer on trap entry (U --> S) and exit
->    (S --> U)
->
-> Shadow stack save/restore is gated on feature availiblity and implemented
-> using alternative. CSR can be context switched in `switch_to` as well but
-> soon as kernel shadow stack support gets rolled in, shadow stack pointer
-> will need to be switched at trap entry/exit point (much like `sp`). It can
-> be argued that kernel using shadow stack deployment scenario may not be as
-> prevalant as user mode using this feature. But even if there is some
-> minimal deployment of kernel shadow stack, that means that it needs to be
-> supported. And thus save/restore of shadow stack pointer in entry.S instead
-> of in `switch_to.h`.
->
-> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->   arch/riscv/include/asm/processor.h   |  1 +
->   arch/riscv/include/asm/thread_info.h |  3 +++
->   arch/riscv/include/asm/usercfi.h     | 24 ++++++++++++++++++++++++
->   arch/riscv/kernel/asm-offsets.c      |  4 ++++
->   arch/riscv/kernel/entry.S            | 26 ++++++++++++++++++++++++++
->   5 files changed, 58 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-> index e3aba3336e63..d851bb5c6da0 100644
-> --- a/arch/riscv/include/asm/processor.h
-> +++ b/arch/riscv/include/asm/processor.h
-> @@ -14,6 +14,7 @@
->   
->   #include <asm/ptrace.h>
->   #include <asm/hwcap.h>
-> +#include <asm/usercfi.h>
->   
->   #define arch_get_mmap_end(addr, len, flags)			\
->   ({								\
-> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
-> index f5916a70879a..a0cfe00c2ca6 100644
-> --- a/arch/riscv/include/asm/thread_info.h
-> +++ b/arch/riscv/include/asm/thread_info.h
-> @@ -62,6 +62,9 @@ struct thread_info {
->   	long			user_sp;	/* User stack pointer */
->   	int			cpu;
->   	unsigned long		syscall_work;	/* SYSCALL_WORK_ flags */
-> +#ifdef CONFIG_RISCV_USER_CFI
-> +	struct cfi_status	user_cfi_state;
-> +#endif
->   #ifdef CONFIG_SHADOW_CALL_STACK
->   	void			*scs_base;
->   	void			*scs_sp;
-> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
-> new file mode 100644
-> index 000000000000..5f2027c51917
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/usercfi.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0
-> + * Copyright (C) 2024 Rivos, Inc.
-> + * Deepak Gupta <debug@rivosinc.com>
-> + */
-> +#ifndef _ASM_RISCV_USERCFI_H
-> +#define _ASM_RISCV_USERCFI_H
-> +
-> +#ifndef __ASSEMBLY__
-> +#include <linux/types.h>
-> +
-> +#ifdef CONFIG_RISCV_USER_CFI
-> +struct cfi_status {
-> +	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
-> +	unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
-> +	unsigned long user_shdw_stk; /* Current user shadow stack pointer */
-> +	unsigned long shdw_stk_base; /* Base address of shadow stack */
-> +	unsigned long shdw_stk_size; /* size of shadow stack */
-> +};
-> +
-> +#endif /* CONFIG_RISCV_USER_CFI */
-> +
-> +#endif /* __ASSEMBLY__ */
-> +
-> +#endif /* _ASM_RISCV_USERCFI_H */
-> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offsets.c
-> index e89455a6a0e5..0c188aaf3925 100644
-> --- a/arch/riscv/kernel/asm-offsets.c
-> +++ b/arch/riscv/kernel/asm-offsets.c
-> @@ -50,6 +50,10 @@ void asm_offsets(void)
->   #endif
->   
->   	OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
-> +#ifdef CONFIG_RISCV_USER_CFI
-> +	OFFSET(TASK_TI_CFI_STATUS, task_struct, thread_info.user_cfi_state);
-> +	OFFSET(TASK_TI_USER_SSP, task_struct, thread_info.user_cfi_state.user_shdw_stk);
-> +#endif
->   	OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
->   	OFFSET(TASK_THREAD_F1,  task_struct, thread.fstate.f[1]);
->   	OFFSET(TASK_THREAD_F2,  task_struct, thread.fstate.f[2]);
-> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-> index 33a5a9f2a0d4..68c99124ea55 100644
-> --- a/arch/riscv/kernel/entry.S
-> +++ b/arch/riscv/kernel/entry.S
-> @@ -147,6 +147,20 @@ SYM_CODE_START(handle_exception)
->   
->   	REG_L s0, TASK_TI_USER_SP(tp)
->   	csrrc s1, CSR_STATUS, t0
-> +	/*
-> +	 * If previous mode was U, capture shadow stack pointer and save it away
-> +	 * Zero CSR_SSP at the same time for sanitization.
-> +	 */
-> +	ALTERNATIVE("nop; nop; nop; nop",
+Content-Transfer-Encoding: 8bit
 
 
-You could use __nops(4) here instead.
+
+On 07/04/2025 10:13, Ling Xu wrote:
+> 在 3/21/2025 1:11 AM, Srinivas Kandagatla 写道:
+>>
+>>
+>> On 20/03/2025 09:14, Ling Xu wrote:
+>>> The fastrpc driver has support for 5 types of remoteprocs. There are
+>>> some products which support GPDSP remoteprocs. Add changes to support
+>>> GPDSP remoteprocs.
+>>>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>>> ---
+>>>    drivers/misc/fastrpc.c | 10 ++++++++--
+>>>    1 file changed, 8 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>>> index 7b7a22c91fe4..80aa554b3042 100644
+>>> --- a/drivers/misc/fastrpc.c
+>>> +++ b/drivers/misc/fastrpc.c
+>>> @@ -28,7 +28,9 @@
+>>>    #define SDSP_DOMAIN_ID (2)
+>>>    #define CDSP_DOMAIN_ID (3)
+>>>    #define CDSP1_DOMAIN_ID (4)
+>>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>> +#define GDSP0_DOMAIN_ID (5)
+>>> +#define GDSP1_DOMAIN_ID (6)
+>>
+>> We have already made the driver look silly here, Lets not add domain ids for each instance, which is not a scalable.
+>>
+>> Domain ids are strictly for a domain not each instance.
+>>
+>>
+>>> +#define FASTRPC_DEV_MAX        7 /* adsp, mdsp, slpi, cdsp, cdsp1, gdsp0, gdsp1 */
+>>>    #define FASTRPC_MAX_SESSIONS    14
+>>>    #define FASTRPC_MAX_VMIDS    16
+>>>    #define FASTRPC_ALIGN        128
+>>> @@ -107,7 +109,9 @@
+>>>    #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>>>      static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+>>> -                        "sdsp", "cdsp", "cdsp1" };
+>>> +                        "sdsp", "cdsp",
+>>> +                        "cdsp1", "gdsp0",
+>>> +                        "gdsp1" };
+>>>    struct fastrpc_phy_page {
+>>>        u64 addr;        /* physical address */
+>>>        u64 size;        /* size of contiguous region */
+>>> @@ -2338,6 +2342,8 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>>            break;
+>>>        case CDSP_DOMAIN_ID:
+>>>        case CDSP1_DOMAIN_ID:
+>>> +    case GDSP0_DOMAIN_ID:
+>>> +    case GDSP1_DOMAIN_ID:
+>>>            data->unsigned_support = true;
+>>>            /* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>>>            err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>>
+>>
+>> Can you try this patch: only compile tested.
+>>
+>> ---------------------------------->cut<---------------------------------------
+>>  From 3f8607557162e16673b26fa253d11cafdc4444cf Mon Sep 17 00:00:00 2001
+>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Date: Thu, 20 Mar 2025 17:07:05 +0000
+>> Subject: [PATCH] misc: fastrpc: cleanup the domain names
+>>
+>> Currently the domain ids are added for each instance of domain, this is
+>> totally not scalable approch.
+>>
+>> Clean this mess and create domain ids for only domains not its
+>> instances.
+>> This patch also moves the domain ids to uapi header as this is required
+>> for FASTRPC_IOCTL_GET_DSP_INFO ioctl.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   drivers/misc/fastrpc.c      | 45 ++++++++++++++++++++-----------------
+>>   include/uapi/misc/fastrpc.h |  7 ++++++
+>>   2 files changed, 32 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>> index 7b7a22c91fe4..b3932897a437 100644
+>> --- a/drivers/misc/fastrpc.c
+>> +++ b/drivers/misc/fastrpc.c
+>> @@ -23,12 +23,6 @@
+>>   #include <uapi/misc/fastrpc.h>
+>>   #include <linux/of_reserved_mem.h>
+>>
+>> -#define ADSP_DOMAIN_ID (0)
+>> -#define MDSP_DOMAIN_ID (1)
+>> -#define SDSP_DOMAIN_ID (2)
+>> -#define CDSP_DOMAIN_ID (3)
+>> -#define CDSP1_DOMAIN_ID (4)
+>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>   #define FASTRPC_MAX_SESSIONS    14
+>>   #define FASTRPC_MAX_VMIDS    16
+>>   #define FASTRPC_ALIGN        128
+>> @@ -106,8 +100,6 @@
+>>
+>>   #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>>
+>> -static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+>> -                        "sdsp", "cdsp", "cdsp1" };
+>>   struct fastrpc_phy_page {
+>>       u64 addr;        /* physical address */
+>>       u64 size;        /* size of contiguous region */
+>> @@ -1769,7 +1761,7 @@ static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
+>>           return  -EFAULT;
+>>
+>>       cap.capability = 0;
+>> -    if (cap.domain >= FASTRPC_DEV_MAX) {
+>> +    if (cap.domain >= FASTRPC_DOMAIN_MAX) {
+>>           dev_err(&fl->cctx->rpdev->dev, "Error: Invalid domain id:%d, err:%d\n",
+>>               cap.domain, err);
+>>           return -ECHRNG;
+> 
+> I tested this patch and saw one issue.
+> Here FASTRPC_DOMAIN_MAX is set to 4, but in userspace, cdsp1 is 4, gdsp0 is 5 and gdsp1 is 6.
 
 
-> +				__stringify(			\
-> +				andi s2, s1, SR_SPP;	\
-> +				bnez s2, skip_ssp_save;	\
-> +				csrrw s2, CSR_SSP, x0;	\
-> +				REG_S s2, TASK_TI_USER_SSP(tp); \
-> +				skip_ssp_save:),
-> +				0,
-> +				RISCV_ISA_EXT_ZICFISS,
-> +				CONFIG_RISCV_USER_CFI)
->   	csrr s2, CSR_EPC
->   	csrr s3, CSR_TVAL
->   	csrr s4, CSR_CAUSE
-> @@ -236,6 +250,18 @@ SYM_CODE_START_NOALIGN(ret_from_exception)
->   	 * structures again.
->   	 */
->   	csrw CSR_SCRATCH, tp
-> +
-> +	/*
-> +	 * Going back to U mode, restore shadow stack pointer
-> +	 */
-> +	ALTERNATIVE("nop; nop",
+Why is the userspace using something that is not uAPI?
+
+Why does it matter if its gdsp0 or gdsp1 for the userspace?
+It should only matter if its gdsp domain or not.
 
 
-Ditto
+
+--srini
 
 
-> +				__stringify(					\
-> +				REG_L s3, TASK_TI_USER_SSP(tp); \
-> +				csrw CSR_SSP, s3),
-> +				0,
-> +				RISCV_ISA_EXT_ZICFISS,
-> +				CONFIG_RISCV_USER_CFI)
-> +
->   1:
->   #ifdef CONFIG_RISCV_ISA_V_PREEMPTIVE
->   	move a0, sp
->
-Apart from the nits above, you can add:
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
-
-
+> For example, if we run a demo on gdsp0, cap.domain copied from userspace will be 5 which could lead to wrong message.
+> 
+> --Ling Xu
+> 
+>> @@ -2255,6 +2247,24 @@ static int fastrpc_device_register(struct device *dev, struct fastrpc_channel_ct
+>>       return err;
+>>   }
+>>
+>> +static int fastrpc_get_domain_id(const char *domain)
+>> +{
+>> +    if (strncmp(domain, "adsp", 4) == 0) {
+>> +        return ADSP_DOMAIN_ID;
+>> +    } else    if (strncmp(domain, "cdsp", 4) == 0) {
+>> +        return CDSP_DOMAIN_ID;
+>> +    } else if (strncmp(domain, "mdsp", 4) ==0) {
+>> +        return MDSP_DOMAIN_ID;
+>> +    } else if (strncmp(domain, "sdsp", 4) ==0) {
+>> +        return SDSP_DOMAIN_ID;
+>> +    } else if (strncmp(domain, "gdsp", 4) ==0) {
+>> +        return GDSP_DOMAIN_ID;
+>> +    }
+>> +
+>> +    return -EINVAL;
+>> +
+>> +}
+>> +
+>>   static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>   {
+>>       struct device *rdev = &rpdev->dev;
+>> @@ -2272,15 +2282,10 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>           return err;
+>>       }
+>>
+>> -    for (i = 0; i < FASTRPC_DEV_MAX; i++) {
+>> -        if (!strcmp(domains[i], domain)) {
+>> -            domain_id = i;
+>> -            break;
+>> -        }
+>> -    }
+>> +    domain_id = fastrpc_get_domain_id(domain);
+>>
+>>       if (domain_id < 0) {
+>> -        dev_info(rdev, "FastRPC Invalid Domain ID %d\n", domain_id);
+>> +        dev_info(rdev, "FastRPC Domain %s not supported\n", domain);
+>>           return -EINVAL;
+>>       }
+>>
+>> @@ -2332,19 +2337,19 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>>       case SDSP_DOMAIN_ID:
+>>           /* Unsigned PD offloading is only supported on CDSP and CDSP1 */
+>>           data->unsigned_support = false;
+>> -        err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
+>> +        err = fastrpc_device_register(rdev, data, secure_dsp, domain);
+>>           if (err)
+>>               goto fdev_error;
+>>           break;
+>>       case CDSP_DOMAIN_ID:
+>> -    case CDSP1_DOMAIN_ID:
+>> +    case GDSP_DOMAIN_ID:
+>>           data->unsigned_support = true;
+>>           /* Create both device nodes so that we can allow both Signed and Unsigned PD */
+>> -        err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+>> +        err = fastrpc_device_register(rdev, data, true, domain);
+>>           if (err)
+>>               goto fdev_error;
+>>
+>> -        err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
+>> +        err = fastrpc_device_register(rdev, data, false, domain);
+>>           if (err)
+>>               goto populate_error;
+>>           break;
+>> diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
+>> index f33d914d8f46..89516abd258f 100644
+>> --- a/include/uapi/misc/fastrpc.h
+>> +++ b/include/uapi/misc/fastrpc.h
+>> @@ -133,6 +133,13 @@ struct fastrpc_mem_unmap {
+>>       __s32 reserved[5];
+>>   };
+>>
+>> +#define ADSP_DOMAIN_ID (0)
+>> +#define MDSP_DOMAIN_ID (1)
+>> +#define SDSP_DOMAIN_ID (2)
+>> +#define CDSP_DOMAIN_ID (3)
+>> +#define GDSP_DOMAIN_ID (4)
+>> +
+>> +#define FASTRPC_DOMAIN_MAX    4
+>>   struct fastrpc_ioctl_capability {
+>>       __u32 domain;
+>>       __u32 attribute_id;
+> 
 
