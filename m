@@ -1,171 +1,117 @@
-Return-Path: <devicetree+bounces-164511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E91FA81542
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:01:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1073A815A9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 21:15:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 981247A9E3C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 18:59:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78ECB460889
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 19:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7EA1E8348;
-	Tue,  8 Apr 2025 19:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0712B24501C;
+	Tue,  8 Apr 2025 19:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IT4ocMvV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GMwNhvyD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEC2158553;
-	Tue,  8 Apr 2025 19:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBA41DA60F;
+	Tue,  8 Apr 2025 19:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744138861; cv=none; b=QZXSCsMKXKpPIHIbRTKNCr+w9rSYrAxHTzEx/oJDPXx/Kxh6Ntzq0oSEhXmZYYOad430mpCYn0mdecY2J98kAIxFKSjifJxrCY/tbJ58bLIkEJx64ejHclRCldz006usjJxggzJWqSiZlxsSl4rtV3i6EUPxsv+TDj2DNzmMtro=
+	t=1744139639; cv=none; b=USDRfvTpqVcGH6KZrIE4H8c+ra1xlq9zTVPhq97yLOXBJT7ULGJ/wJGZ79Yk9fw66HCOfscfTbic+LOkJ9yAlUTkyPJvhBZG4ksMWqZCYFjOH+S9YVdL2kaTEDMyCRaGdUfvpjRWD54vWI6RflmnxjxxtSRO4hatV0RenNtI8Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744138861; c=relaxed/simple;
-	bh=3XZrPac3Hw5S3fai1epjOKmznTRQIETE0iMgnKYeJK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mTI7w8e25olQxVvtcgtYCNvmSIfHpSTtyRWu3B7d87DXRSU9Do+bw2mJevSdVY5iaiG5HFJM8luGP8A6O13lTVll4NnDNNKZFrCU0B3wfSVBFLr+q+bJqi7MnIjN7EJBQU3rGmZviQohMygZLC/6QRYC7ScQaE6Fr51Ez7juSkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IT4ocMvV; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac297cbe017so1511066b.0;
-        Tue, 08 Apr 2025 12:00:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744138858; x=1744743658; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=86qWtNJK63V7fbnn92M5Wwej+llSZGxK/013fMMqHeY=;
-        b=IT4ocMvV7MxY11Uiv0mv0vYxtYc08v8d/4c+7D5mApihMYXvAbKq3+Up5faSdvWwz5
-         tFNVdKayd74tAhR0dLHrKCfVOqCByOnPapQAbm7lbi6V+XZc6yveeM5Wc4yOrp45iHXl
-         3aoE/ITYgf5ugaT2m7iNX4wIuSV5uc2V9doaQvY+GcSXZZwrR5JieCcASAvmVqeYRrXv
-         1aKE5FWSfEBD32aDaz1Z8JJmR2/ff6xUvylEYPv3ZV6QojQjASh0OYhneWsmPef592bM
-         B5/LK0x5iw/0FQxTVGqKcIe1MIlzCXGeVK3pBXb/Mz48gcjyjbvWMBRFsLLKdGSe2ZeU
-         N0TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744138858; x=1744743658;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=86qWtNJK63V7fbnn92M5Wwej+llSZGxK/013fMMqHeY=;
-        b=ry4reHhG1g/mRXJPqTgozScwYABFdR6W+6MOQtJRoZKN6snQuPxhUUVs+3EVGZOZCo
-         r8rEaCvjNN69+PqSFR/LD30YSmMSgAk+n/Qd+CmUHJSJBWXo2n+wvkHbcdM9bMxGYCcA
-         HJnTMOH2XKA+YENCKbgcgzZsJxcdKjIVoojiS4WFrjhCkXkgl+ChTd+8GnrzF8wH15jo
-         RyR9caBMxyFRZDFyFaIrYpxpG3/BR+JVmyvNockjrLw8F9UlZfItrYQOUi4FiKCMYqon
-         S8xLm0hDIbryVukh9yHsOvwaNtNBrmfcnDuJE2JxiFtp4uoRv/Ns8ImJSmMiwcVVW1mV
-         q5Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlHrGXPsVyWBMcSqHE9eQpLdUB4lBGjULZ4zXjIA2cMpfTOq6bVrg1dKPw5Jk/0aSiMYIOxA3iOBiw1KfE@vger.kernel.org, AJvYcCWYJJOxSDdUC8nwW9AhlG+57IQ55ugO+GkUxFqp5T4HxleYDrA3hIGuSRMoFjoKggQBNhiPjN3d5gkH@vger.kernel.org, AJvYcCX6ecMV8zzM3VpEumN4MS8Nfhuk94Wre0fOgEQZC7zTP0lV+HW7Ou7yXpw7U6BeY3TxZoRgUARYLunh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS/OsRjOeXAQCFYBwzKNetqRip28pOu0xpzTwxfNP/NQJpHGfD
-	od3nIk78uKQvjuWXIWb9rh8xCQ/JvnQwV5eIJIsL8c5kik1C1krn
-X-Gm-Gg: ASbGncu8+bKqSX9/D98wAYkN33Di143CGdWO5TqrVc85KDdhccVSelnVmSRBxF0qUyO
-	Xk6FeLboBeMVH1msDAmfvZF38ZG5m+B0SFDhOH81hlYqJRFjenRTqjDjGuy57o4xY7kEXZTQjvW
-	fqmPgddVv2K+3e7HKkSpA9RzSsBD+/5hdMLxv0w6SLOm+s7VSrqzBaHKVAMHCd9/1FFOABQIzcl
-	Xj0rs0h6Z0dpCE+0iYZHk/AO+ako2B0hlVSt8nJJ4OIb3ekvfHGHyirgZ3iBeAmf8Y384EC9gB3
-	Ld2CWZs0QjS5DYCDI/o7X96CWePhDrVXs2KsFE0SXlvDF0XHOGjsFsNjRPAYlzqMryHFvCkPUJh
-	KzrF6FdXTnHEAKw==
-X-Google-Smtp-Source: AGHT+IG3OUU8/aAdVJYCK6TAljVtxnmldcMJAlzz9XYOf3SCmOSD/fkTD3Wz1wCPcAqWw1fhUjtzJg==
-X-Received: by 2002:a17:907:7f0b:b0:ac7:b8d3:df9c with SMTP id a640c23a62f3a-aca9bfb1039mr16449566b.1.1744138857536;
-        Tue, 08 Apr 2025 12:00:57 -0700 (PDT)
-Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.161.107.101])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7bfe5d46esm976543366b.19.2025.04.08.12.00.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Apr 2025 12:00:56 -0700 (PDT)
-Date: Tue, 8 Apr 2025 21:00:27 +0200
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: alexandre.belloni@bootlin.com
-Subject: Re: [PATCH 2/3] rtc: pcf85063: add support for RV8063
-Message-ID: <20250408190027.4odmg77f2f33i5f5@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250407193521.634807-1-apokusinski01@gmail.com>
- <20250407193521.634807-3-apokusinski01@gmail.com>
- <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
+	s=arc-20240116; t=1744139639; c=relaxed/simple;
+	bh=CKwo4CEyVgAnPR0XP4Ca6WTn2rjHiPkVkvAQlXqXWe0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BM16VhJ6s0+cwRI8BPUtqZzwqeX/0+hUeOVOQlWfnI6vxcwnPfsSBg1j7058nry6eLr1oOAAgs5kaMSdepJUeU7/iS6Lsvefs6ZUtZeUcw+zgOJLrBNgYhI31VVly9q12AjI61YyYpIgtWx1kLsiaxylc6ybSqnVtfP1jRp/upw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GMwNhvyD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 437FDC4CEE9;
+	Tue,  8 Apr 2025 19:13:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744139639;
+	bh=CKwo4CEyVgAnPR0XP4Ca6WTn2rjHiPkVkvAQlXqXWe0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=GMwNhvyDOpDoWFGo26E3SW0ae/kkNc24Lq4Cv5E/mo4j8nTScU7q+COs2fQWXJcRl
+	 ED+srwVtGI8EQBQlY42K5JrZnSLF5h5EGmevNL19C690piaXbdkuTl99+cnpz84Cfq
+	 2uIvmWeQTwo9r4sDihrK8Pi1rLGagGlxlSHIDbGygHAzWFcl78EtQ9cKbE/W6UAQuh
+	 Dqvjb/Z9ONzGie1TVxipTwGE7sHUam8Tj1puuWyOiRY6nbmW8Y6yIA2FCDA8EZ3o5y
+	 2XxzTSWsgE2fxDKKvUh/XswSRDYvwmZsLQvnybUICNi3RExisLGM3/0zSnyuoBIm/U
+	 NoU/066S23cww==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 318EEC369A1;
+	Tue,  8 Apr 2025 19:13:59 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v2 0/2] Onboard USB device support for RTL8188ETV 2.4GHz
+ USB WiFi module
+Date: Tue, 08 Apr 2025 21:13:11 +0200
+Message-Id: <20250408-rtl-onboard-v2-0-0b6730b90e31@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b42d082e-0568-4d2c-849c-a0b9ab762afd@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAEd19WcC/23MywrCMBCF4VcpszYyuVTUVd9DukjaqQ1IpiQhK
+ CXvbuza5X/gfDskip4S3LsdIhWfPIcW6tTBtNrwJOHn1qBQ9WhQi5hfgoNjG2ex6KvuzYJOGgf
+ tsUVa/PvQHmPr1afM8XPgRf7W/06RAoXEyd7sxRoiHDZOmfgcKMNYa/0C8hFdd6cAAAA=
+X-Change-ID: 20250403-rtl-onboard-f38354f0b14b
+To: Johannes Berg <johannes@sipsolutions.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jes Sorensen <Jes.Sorensen@gmail.com>, linux-wireless@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, Bitterblue Smith <rtl8821cerfe2@gmail.com>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744139638; l=1198;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=CKwo4CEyVgAnPR0XP4Ca6WTn2rjHiPkVkvAQlXqXWe0=;
+ b=uUhCgcSt/puX3o3dWNQZSDas53VdL2UfuHpeEbhOQOvmlroP9iHibEpRQjLg2ojIeIgbRcZ+a
+ 0KTiyVQ+UswBYmyG95EETp/oya+UIrjBca2XXS3o0ODLyw+0pcTHz6E
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-On Tue, Apr 08, 2025 at 08:14:36AM +0200, Krzysztof Kozlowski wrote:
-> On 07/04/2025 21:35, Antoni Pokusinski wrote:
-> > Microcrystal RV8063 is a real-time clock with SPI interface. Its
-> > functionality is very similar to the RV8263 rtc.
-> > 
-> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> > ---
-> >  drivers/rtc/Kconfig        | 21 ++++++-----
-> >  drivers/rtc/rtc-pcf85063.c | 74 +++++++++++++++++++++++++++++++++++++-
-> >  2 files changed, 85 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> > index 838bdc138ffe..1b9be96faa13 100644
-> > --- a/drivers/rtc/Kconfig
-> > +++ b/drivers/rtc/Kconfig
-> > @@ -483,15 +483,6 @@ config RTC_DRV_PCF8523
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called rtc-pcf8523.
-> >  
-> > -config RTC_DRV_PCF85063
-> > -	tristate "NXP PCF85063"
-> > -	select REGMAP_I2C
-> > -	help
-> > -	  If you say yes here you get support for the PCF85063 RTC chip
-> > -
-> > -	  This driver can also be built as a module. If so, the module
-> > -	  will be called rtc-pcf85063.
-> > -
-> >  config RTC_DRV_PCF85363
-> >  	tristate "NXP PCF85363"
-> >  	select REGMAP_I2C
-> > @@ -971,6 +962,18 @@ config RTC_DRV_PCF2127
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called rtc-pcf2127.
-> >  
-> > +config RTC_DRV_PCF85063
-> 
-> Why? This breaks the order.
->
-I moved this config entry to the "SPI and I2C RTC drivers" section,
-because the driver supports now both I2C and SPI devices.
+This patchset adds rtl8188etv (usbbda,179) to the onboard_usb_dev driver.
+It is found in a set-top box called "Fernsehfee 3.0".
 
-> > +	tristate "NXP PCF85063"
-> > +	depends on RTC_I2C_AND_SPI
-> > +	select REGMAP_I2C if I2C
-> > +	select REGMAP_SPI if SPI_MASTER
-> > +	help
-> > +	  If you say yes here you get support for the PCF85063 and RV8063
-> > +	  RTC chips.
-> > +
-> > +	  This driver can also be built as a module. If so, the module
-> > +	  will be called rtc-pcf85063.
-> > +
-> 
-> 
-> ...
-> 
-> >  module_exit(pcf85063_exit);
-> > @@ -740,3 +811,4 @@ module_exit(pcf85063_exit);
-> >  MODULE_AUTHOR("S�ren Andersen <san@rosetechnology.dk>");
-> >  MODULE_DESCRIPTION("PCF85063 RTC driver");
-> >  MODULE_LICENSE("GPL");
-> > +MODULE_ALIAS("spi:rv8063");
-> 
-> Drop and use proper ID tables.
-> 
-Will fix that in v2, thanks.
-> 
-> Best regards,
-> Krzysztof
+As a side note, this device is currently marked untested in the RTL8XXXU
+driver. In my experience it works (tested with a WPA2 home network).
 
-Kind regards,
-Antoni
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v2:
+- Fix editing errors (email address and TODO comment) in binding
+- Refer to more specific RTL8188ETV instead of RTL8188
+- Use unambiguous SPDX identifier GPL-2.0-only instead of GPL-2.0
+- Link to v1: https://lore.kernel.org/r/20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net
+
+---
+J. Neuschäfer (2):
+      dt-bindings: net: wireless: Add Realtek RTL8188ETV USB WiFi
+      usb: misc: onboard_dev: Add Realtek RTL8188ETV WiFi (0bda:0179)
+
+ .../bindings/net/wireless/realtek,rtl8188e.yaml    | 50 ++++++++++++++++++++++
+ drivers/usb/misc/onboard_usb_dev.c                 |  1 +
+ drivers/usb/misc/onboard_usb_dev.h                 |  8 ++++
+ 3 files changed, 59 insertions(+)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250403-rtl-onboard-f38354f0b14b
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
