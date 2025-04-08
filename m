@@ -1,186 +1,129 @@
-Return-Path: <devicetree+bounces-164174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCCDA7F6F7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:47:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D149A7F723
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 09:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E461317E636
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:45:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 619AD3B76CD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 07:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E761E263F2B;
-	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4831625F990;
+	Tue,  8 Apr 2025 07:54:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L5OLauJX"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M3xXo6sy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DE625F79E;
-	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A41219A9D;
+	Tue,  8 Apr 2025 07:54:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744098340; cv=none; b=OsnF1RGR5sDL3EYUY/S4XFKqXt3AVQ+K9HJ55KvgmIk6EuxFQq41C2dQKfZGb7ojHEoLby2vT5YYLuFprSOFp1WJaeXChryDXr5qT6hJptL7o5cyuRUeAZlK+7qULaRTWizPIeMtIFTCfOBydoYoxs0QTSyG2Kj7HKQ4s7De3hE=
+	t=1744098885; cv=none; b=gSUXpc3No8D/Zza+rjK/YGd/1MZ3cJST0HChU4+doz2LduGE3zwoCMzk9TiAvENvdUb/TAyXww+/9uIHVFdm0lptvb6dXat6xGDG4cZH3ly0POxP+dmOGUHVMpmnn237yXtihXRC26DGvIiwSxriTILxp1hwlh6lFFbJqRSIejU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744098340; c=relaxed/simple;
-	bh=B84DeuW12H5b3bBfEOf4ObuDbt+tx3UhEmjpcBCFxDg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mZRDKBwCZCHbNgYdxSa1b5PDsZO8pXdoQC32lNzL7OSRdRU4m5T0BfUAT0zwWmA7555Nv3OeYSuSFJuwD1Bufigcw8N5Fy3VQ1HintyrmtaOzsG8tyEtHvszKSji35tREO3wcxgH0Uvrd/+x6sAvZvUYKAt2A5DQ3JQm75GqLtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5OLauJX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 25DB7C4CEED;
-	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744098340;
-	bh=B84DeuW12H5b3bBfEOf4ObuDbt+tx3UhEmjpcBCFxDg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=L5OLauJXElm0ow49GaNBkFnUvt+9nWlP7IEW0cFkJUZkSW1NMyh4WTrxLMJpUI6Nb
-	 PKWYQb3uH2vfxVrUr4mi1CwdgC5FoyybDdqvXOF1Qrz0THOGFUmeg7dPK7yVVDGcmL
-	 RdhySwi/KoUM71SbMPiGFKb+yoXkJ4mYEO2nfkUML18AINmjhVia/fos8Hys+4Jl8A
-	 P1foODHpdYRllVEiVK/ldgu5PFxzyCGVdFLnyLg5p5oWVB0d4syodyLQgm7mGuJrd1
-	 5qqTgpBRhyUW29z0zVmifFCHVcMbZSh0ggSwltUufyJyCK2e0PriAcze40SxfnhD1B
-	 AfLG7NOX7AU4Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 183EFC369A1;
-	Tue,  8 Apr 2025 07:45:40 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Tue, 08 Apr 2025 09:45:34 +0200
-Subject: [PATCH net-next v2 3/3] net: phy: dp83822: Add support for
- changing the MAC termination
+	s=arc-20240116; t=1744098885; c=relaxed/simple;
+	bh=xxetUDTZlqHK0fEp7Vi6b/HN4t5K5gsdbrTM3CzIMZc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=SK5WXiWCB2eXWz0RHnBZx4fZ0ALxka3zv0uGiTMgbMXSYn/Tvo3ZNETcxYDsJXEy3oCHhEZDRX/yGFrXsW7T+Wp+nLzox157aNxnlVRczNGNdObpoHxIjJ+vOvBIWVVszZy8+3HLwW6Yedz4hKsV4JwfdU1/mrDf+A//pLQ12N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M3xXo6sy; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A30B420483;
+	Tue,  8 Apr 2025 07:54:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744098875;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JKsaa5Qw6MpBCcMH9HOs47mW1tDXG/PfpB5X4FVgPbw=;
+	b=M3xXo6sykhWw+N7TXiXB1g6Hcor8ZMEk7uaESpU493qpZPI9Eg9SHzDy7EE0z5uGqY3/qW
+	CZy+juqPIIl8RcI/C9xJClXuX3lz1HMgbJXpN1fIDd2ISJdc77ek3rhHgSdZVBIpQoTXM8
+	lFFC5t8zBs1piZNyDhqwaOK/xI3zsJULaVlSKpcWEM/+4QQmbiPdN4EYFC1VE1etA2bLW7
+	TDp2fFPL1rmSR3gtwP54pbspGaoacRHRKje1HZtlAOxKXv+OGZrzUUrRcjXeuyLEvKxvjO
+	forGNMl3mo/lNByht2d9qsT+7aULp2h+/a7lEyZ2SFGunVTen1DALXBUmgWNyA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250408-dp83822-mac-impedance-v2-3-fefeba4a9804@liebherr.com>
-References: <20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com>
-In-Reply-To: <20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744098338; l=3142;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=uqjFbEaYL6in0znuVFxVSZRGnoMMf/E8l1gq/kbmCFc=;
- b=RcUpgLTX51RLZ/1goSlYifFqe2FHeIkjOLMB9SMHeSorYgXKQHJidYLmXNRTaWG4m5M+9L9gV
- lDaiQXMWPdRBdMXKsEuO71hSj4zPWLtofUQOZCvE3uRHD8hCPCG6aAo
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 08 Apr 2025 09:54:27 +0200
+Message-Id: <D913G6I023M1.NLMLJDZ1PYSA@bootlin.com>
+To: "Inochi Amaoto" <inochiama@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Jingbao Qiu" <qiujingbao.dlmu@gmail.com>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <unicorn_wang@outlook.com>, <dlan@gentoo.org>, <linux-pwm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 2/2] pwm: sophgo: add pwm support for Sophgo CV1800
+ SoC
+From: "Thomas Bonnefille" <thomas.bonnefille@bootlin.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
+ <20240501083242.773305-3-qiujingbao.dlmu@gmail.com>
+ <k6jbdbhkgwthxwutty6l4q75wds2nilb3chrv7n4ccycnzllw4@yubxfh5ciahr>
+ <D8Z4GLQZGKKS.37TDZ7QBN4V4N@bootlin.com>
+ <j74t2zqvoslo5fgmea4kp434tafgchkncytofj65zbbt7ivcqy@auboc3pkdiz3>
+In-Reply-To: <j74t2zqvoslo5fgmea4kp434tafgchkncytofj65zbbt7ivcqy@auboc3pkdiz3>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtddvheefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvfevuffhofhfjgesthhqredtredtjeenucfhrhhomhepfdfvhhhomhgrshcuuehonhhnvghfihhllhgvfdcuoehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetuedvlefhtedujeevtdffgeevjeetuedvudehtefhgfeuteefhefguddtfedtteenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduuddprhgtphhtthhopehinhhotghhihgrmhgrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepuhhklhgvihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrg
+ hdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuhhnihgtohhrnhgpfigrnhhgsehouhhtlhhoohhkrdgtohhmpdhrtghpthhtohepughlrghnsehgvghnthhoohdrohhrgh
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Mon Apr 7, 2025 at 9:21 AM CEST, Inochi Amaoto wrote:
+> On Sun, Apr 06, 2025 at 02:16:41AM +0200, Thomas Bonnefille wrote:
+>> Hello,
+>>=20
+>> On Sat Jun 1, 2024 at 1:53 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
+>> > On Wed, May 01, 2024 at 04:32:42PM +0800, Jingbao Qiu wrote:
+>> >> [...]
+>> >> +	if ((state & BIT(pwm->hwpwm)) && enable)
+>> >> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
+>> >> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
+>> >> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+>> >
+>> > This looks strange. If BIT(hwpwm) is already set, set it again?!
+>> > Also if you used the caching implemented in regmap, you don't need to
+>> > make this conditional.
+>> >
+>>=20
+>> I was testing the series and noticed indeed an issue in this driver at
+>> those lines. If PWM_CV1800_OE isn't set by something else than the
+>> kernel it will never be set and so, there will never be a PWM outputted.
+>>=20
+>> Using :
+>>     if (!(state & BIT(pwm->hwpwm)) && enable)
+>> Solved the issue but as Uwe said you can probably rely on regmap caching
+>> to avoid this condition.
+>>=20
+>> >
+>> > ...
+>> >=20
+>>=20
+>> Do you plan on sending a new iteration some day ? I may have some time
+>> to continue the upstreaming process if you need to.
+>>=20
+>> Thank you for this series !
+>> Thomas
+>
+> I suggest checking existing spi-sg2044-nor driver, which may reduce your
+> work for upstreaming.
+>
+> Regards,
+> Inochi
 
-The dp83822 provides the possibility to set the resistance value of the
-the MAC termination. Modifying the resistance to an appropriate value can
-reduce signal reflections and therefore improve signal quality.
+Hello Inochi,
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/net/phy/dp83822.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Thank you very much, however even after reading it I can't see the link
+between the SPI NOR controller driver of the SG2044 and the PWM driver
+for the CV18XX series ?
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 14f36154963841dff98be5af4dfbd2760325c13d..490c9f4e5d4e4dc866ef99f426f7497b5e1b49b4 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -33,6 +33,7 @@
- #define MII_DP83822_MLEDCR	0x25
- #define MII_DP83822_LDCTRL	0x403
- #define MII_DP83822_LEDCFG1	0x460
-+#define MII_DP83822_IOCTRL	0x461
- #define MII_DP83822_IOCTRL1	0x462
- #define MII_DP83822_IOCTRL2	0x463
- #define MII_DP83822_GENCFG	0x465
-@@ -118,6 +119,9 @@
- #define DP83822_LEDCFG1_LED1_CTRL	GENMASK(11, 8)
- #define DP83822_LEDCFG1_LED3_CTRL	GENMASK(7, 4)
- 
-+/* IOCTRL bits */
-+#define DP83822_IOCTRL_MAC_IMPEDANCE_CTRL	GENMASK(4, 1)
-+
- /* IOCTRL1 bits */
- #define DP83822_IOCTRL1_GPIO3_CTRL		GENMASK(10, 8)
- #define DP83822_IOCTRL1_GPIO3_CTRL_LED3		BIT(0)
-@@ -202,6 +206,7 @@ struct dp83822_private {
- 	u32 gpio2_clk_out;
- 	bool led_pin_enable[DP83822_MAX_LED_PINS];
- 	int tx_amplitude_100base_tx_index;
-+	int mac_termination_index;
- };
- 
- static int dp83822_config_wol(struct phy_device *phydev,
-@@ -533,6 +538,12 @@ static int dp83822_config_init(struct phy_device *phydev)
- 			       FIELD_PREP(DP83822_100BASE_TX_LINE_DRIVER_SWING,
- 					  dp83822->tx_amplitude_100base_tx_index));
- 
-+	if (dp83822->mac_termination_index >= 0)
-+		phy_modify_mmd(phydev, MDIO_MMD_VEND2, MII_DP83822_IOCTRL,
-+			       DP83822_IOCTRL_MAC_IMPEDANCE_CTRL,
-+			       FIELD_PREP(DP83822_IOCTRL_MAC_IMPEDANCE_CTRL,
-+					  dp83822->mac_termination_index));
-+
- 	err = dp83822_config_init_leds(phydev);
- 	if (err)
- 		return err;
-@@ -736,6 +747,10 @@ static const u32 tx_amplitude_100base_tx_gain[] = {
- 	93, 95, 97, 98, 100, 102, 103, 105,
- };
- 
-+static const u32 mac_termination[] = {
-+	99, 91, 84, 78, 73, 69, 65, 61, 58, 55, 53, 50, 48, 46, 44, 43,
-+};
-+
- static int dp83822_of_init_leds(struct phy_device *phydev)
- {
- 	struct device_node *node = phydev->mdio.dev.of_node;
-@@ -852,6 +867,23 @@ static int dp83822_of_init(struct phy_device *phydev)
- 		}
- 	}
- 
-+	ret = phy_get_mac_termination(phydev, dev, &val);
-+	if (!ret) {
-+		for (i = 0; i < ARRAY_SIZE(mac_termination); i++) {
-+			if (mac_termination[i] == val) {
-+				dp83822->mac_termination_index = i;
-+				break;
-+			}
-+		}
-+
-+		if (dp83822->mac_termination_index < 0) {
-+			phydev_err(phydev,
-+				   "Invalid value for mac-termination-ohms property (%u)\n",
-+				   val);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	return dp83822_of_init_leds(phydev);
- }
- 
-@@ -931,6 +963,7 @@ static int dp8382x_probe(struct phy_device *phydev)
- 		return -ENOMEM;
- 
- 	dp83822->tx_amplitude_100base_tx_index = -1;
-+	dp83822->mac_termination_index = -1;
- 	phydev->priv = dp83822;
- 
- 	return 0;
-
--- 
-2.39.5
-
-
+Regards,
+Thomas
 
