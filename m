@@ -1,88 +1,173 @@
-Return-Path: <devicetree+bounces-164366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3950A80BA6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:19:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDDFA80C28
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 15:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 318601BC2895
-	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:12:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DE0950471A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Apr 2025 13:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117F18632E;
-	Tue,  8 Apr 2025 13:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585571DF267;
+	Tue,  8 Apr 2025 13:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNjFiC5X"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CoGtiJjr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50D680C02;
-	Tue,  8 Apr 2025 13:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99451DED78;
+	Tue,  8 Apr 2025 13:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744117255; cv=none; b=sULw1RZlC0dKKjE2BWyanvMuy5q5qKoeAtGJs1WrJO+cbHy4uC6AKH9WvPWqzw/PmnQ6O2GuwL1IryQgAvWlZdPQ/vAH5CG6pPUvxvr4Q3E1SooY+LfzGouDQ4M8PJO2pyhQRabaPh7pauWT+KdpZ7qlOdxFnYUIfpQH7B78WHo=
+	t=1744117726; cv=none; b=QLIby3ZS3S4N6WG84Qx7ujtlFuQNCqANwzWZnGnti2W0gJjH1QqbGq3R6Vz3nk4/qbrY6JCACfcjkEUjjtRZZoAyrf5AKMi0njPUYtNuZvk3eCmYycN1ifP2+HvqLlKSyIW8I7GrmkwiIjhcrAy+diz/Pelrc5TzJPtJM6wfdhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744117255; c=relaxed/simple;
-	bh=Aknki6s1igQM/Eo/fOwSNCs6u83k6YRBUPCvCg2YfMQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ScYfCzxktCH9cX9dnmdl8LNT4V8c9kc2rc94YotL21Vf3NezDwcE3fKnCKYu87JjNSXK1kXac/eaNknqMOYnXcnzCB+YWu/Ui8cYBOBFyky5Dmx9zi+i34xh2ZXJxWPFnQafrIk4TFTeukY7kDdIaWfagi6eTYa/3dU7bBUfGEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNjFiC5X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96DE1C4CEE5;
-	Tue,  8 Apr 2025 13:00:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744117254;
-	bh=Aknki6s1igQM/Eo/fOwSNCs6u83k6YRBUPCvCg2YfMQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PNjFiC5XlfUBaGxhyYMMrFC3DJ2Sfx7Jn1eXcErlTN0IvIfaAzoo9Ez41UVBVGBiC
-	 UoC8Ih7R9g+OuEqg5+55bSLpP9nOPVDYdNyzshqek7hT43LgSw3EZpUL6EkFODC+/j
-	 lvdZK60feF1j9rLctZo0KM1bi52voMWvaRkUaUjTNuexD1ZaCy8YYPMZzxQ3tLmN0z
-	 ToGh0uDsK3AQRnfd/RzKqG7KZnIqO8ycYJ5yDEkCx+g32MUBjrFd7chUm9HwnK5pbF
-	 5JtcZkxyE885FiGCKRyjIcvZ8prSyU2mRsgL+qzspQMOG1wUXO5TC9D8k69bAzZGdC
-	 5FeBgauaWj4Bw==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac73723b2d5so1145691466b.3;
-        Tue, 08 Apr 2025 06:00:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUxEsiwWZcqr/+Cvu7kJMJxTY3EVcM8BzybW/F5f7079FcbdaYBdOgJtHstDn0Py5tFWw2zdrD6rvqNuQ==@vger.kernel.org, AJvYcCWbeoEYmaNdokHiTYBkYeuhI5/sajQJuo+w367RCbu/cfXwvjiMGlEIYkUzytn873RRom5OkdkPYGO0@vger.kernel.org, AJvYcCXhPDtr8SHA6rgKUpsVWNjapH2uz53rMprO+F2U1kR2y9BGhORob6Pooo7Bu4FhNN5PWyhNchW0R+3OFFhg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnER5m/RIrZTaATu3Nw+uyBs/1hLFKxUAgW/vrg0HRJTWBwq3u
-	/paHPKcA6C7OzohM0y4/WWgKCdvFofr65EDpwBfWbpZOpRvGrv5qVxqTg1oysqH2jvb+S3XK9do
-	+Xuov04iawn2M/9rhUnk89Z4sFA==
-X-Google-Smtp-Source: AGHT+IEIFbZ/VySFNhPS9VbSSf72FCcLurPLqXyg7psGtmDjYbg+I6LwO1ocXD7pga0Z9QTXsdpGpDneAuLkUMDfe/I=
-X-Received: by 2002:a17:907:969f:b0:ac7:c5bb:3b21 with SMTP id
- a640c23a62f3a-ac7e71b1f33mr1206431966b.13.1744117252440; Tue, 08 Apr 2025
- 06:00:52 -0700 (PDT)
+	s=arc-20240116; t=1744117726; c=relaxed/simple;
+	bh=RXNrlCWRVAP2kZW5DHHqBHlW5pOJ9IXKJbD4ElTd98M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MpqLRvkWAtsBCi4/hjEnQxHIy/XlHIfnrPebAw++9TIjOAgS52a+nSLyWRAELC3udHFpbUPPbqx4T7alzXmdS5CCymGF7Fq73zYwrp8yoRT8eNfGDPVclt1+KkRU5Y3JFSTwm1PCpbvs5UH8j/H9v2OdFvqPTb/LZ/BG9Pn2lM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CoGtiJjr; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B982944326;
+	Tue,  8 Apr 2025 13:08:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744117721;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MT039/hhuMMp5IO2JcEWxMC4o3y8QemyuoMvfE2SUFc=;
+	b=CoGtiJjrd6pJSrynxk4Ww042keQh9u8acYoWopM/7RJrx9UjShh6+u7Qo3SEoi01uF1T+3
+	7JYdjRmu+B/pSRo5pKCLoCR+Wnw9v1QhZDuWoasw9JAzB1/hEkC6kEYTs1u6jXCFCSypsd
+	8EYWRBvHIoQB0sde8vSCwIyu2OYFXap+fsygdNhAOjLPHZ+ljCPsdEa9Tb3Zh19j7+9RMU
+	5Bg5gS0f5LoXYD55neip1umz/F8gxUf2aVGhUaz63FSOKcaLxWUsac7ZoMUZgsTu5lm97u
+	tV9Df778F4P+kiMOoJZJ/CJRrnkEnStg22TSuJc7wvqBsbmT23vNx5hI6wdulA==
+Date: Tue, 8 Apr 2025 15:08:36 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
+ Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Saravana
+ Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Mark
+ Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Daniel Scally
+ <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 08/16] i2c: core: Introduce i2c_get_adapter_supplier()
+Message-ID: <20250408150836.327a337d@bootlin.com>
+In-Reply-To: <Z_Puy8eEBc6tubEx@smile.fi.intel.com>
+References: <20250407145546.270683-1-herve.codina@bootlin.com>
+	<20250407145546.270683-9-herve.codina@bootlin.com>
+	<Z_Puy8eEBc6tubEx@smile.fi.intel.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407223714.2287202-1-sean.anderson@linux.dev> <20250407223714.2287202-3-sean.anderson@linux.dev>
-In-Reply-To: <20250407223714.2287202-3-sean.anderson@linux.dev>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 8 Apr 2025 08:00:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLQvyBvOXJJhRcnVAVx81MUf9YwtyZ5VC-whwY=uoeDXw@mail.gmail.com>
-X-Gm-Features: ATxdqUH9SYHqPHdjPN-N3uuh5HF5pHyCtZZKigzGpkEh3qURSGekLdlIrc9NheI
-Message-ID: <CAL_JsqLQvyBvOXJJhRcnVAVx81MUf9YwtyZ5VC-whwY=uoeDXw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] device property: Add fwnode_property_get_reference_optional_args
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdefudejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeegtddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhop
+ egurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrdhhrghuvghrsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepfhgvshhtvghvrghmsehgmhgrihhlrdgtohhm
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Mon, Apr 7, 2025 at 5:37=E2=80=AFPM Sean Anderson <sean.anderson@linux.d=
-ev> wrote:
->
-> Add a fwnode variant of of_parse_phandle_with_optional_args to allow
-> nargs_prop to be absent from the referenced node. This improves
-> compatibility for references where the devicetree might not always have
-> nargs_prop.
+Hi Andy,
 
-Can't we just make fwnode_property_get_reference_args() handle this
-case? Or why is it not just a 1 line wrapper function?
+On Mon, 7 Apr 2025 18:27:07 +0300
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+
+> On Mon, Apr 07, 2025 at 04:55:37PM +0200, Herve Codina wrote:
+> > The supplier device of an I2C adapter is the device that calls
+> > i2c_add_adapter() or variants and i2c_del_adapter().
+> > 
+> > Most of the time this supplier device is the parent of the adapter dev.
+> > 
+> > Exceptions exist with i2c muxes. Indeed, in case of i2c muxes, the
+> > parent of the adapter dev points to the adapter dev the mux is connected  
+> 
+> dev --> device (in both cases)
+
+Will be updated in the newt iteration.
+
+> 
+> > to instead of the supplier of this adapter.
+> > 
+> > Introduce i2c_get_adapter_supplier() and a new supplier field in the
+> > adapter structure in order to ease the adapter supplier retrieval.  
+> 
+> ...
+> 
+> > +/**
+> > + * i2c_get_adapter_supplier() - Get the supplier of an adapter
+> > + * @adapter: the adapter to get the supplier from
+> > + *
+> > + * return:  
+> 
+> Return:
+
+Will be updated.
+
+> 
+> > + * Look up and return the &struct device corresponding to the device supplying
+> > + * this adapter.  
+> 
+> @adapter
+
+Will be updated.
+
+> 
+> > + * The user must call put_device() once done with the supplier returned.
+> > + */
+> > +struct device *i2c_get_adapter_supplier(struct i2c_adapter *adapter)
+> > +{
+> > +	return get_device(adapter->supplier ?: adapter->dev.parent);  
+> 
+> What will be the meaning when both are set? Why dev.parent is not the same
+> as supplier in this case?  Looking at the commit message example, it seems
+> like you want to provide a physdev or sysdev (as term supplier seems more
+> devlink:ish), like it's done elsewhere. And in the same way _always_ initialise
+> it. In such a case, the ambiguity will be gone.
+
+When both are set (this is case for i2c muxes), the adapter->supplier the
+device that register the I2C adapter using i2c_add_adapter() or variant.
+In other word, the device that creates the I2C adapter.
+
+The adapter->dev.parent is most of the time the device that register the
+I2C adapter except for i2c muxes. For I2C muxes, this adapter->dev.parent
+is the adapter the i2c mux is connected to.
+
+Between physdev and sysdev, I really prefer physdev and, if renaming from
+supplier to physdev is still needed (and wanted), I will rename it. Let me
+know.
+
+For initialization, I don't want to modify all the I2C controller drivers.
+What I can do is to initialize adapter->supplier using adapter->dev.parent
+during the i2c_register_adapter() call if it was not already initialize by
+the caller (i.e. the I2C controller driver).
+
+Does it make sense ?
+
+Best regards,
+Hervé
 
