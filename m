@@ -1,335 +1,245 @@
-Return-Path: <devicetree+bounces-164910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E74AA82C54
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:27:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0965BA82C6A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:32:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28F8A7AB238
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:26:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBC38189E4BA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604C326B2DC;
-	Wed,  9 Apr 2025 16:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B0726B2CD;
+	Wed,  9 Apr 2025 16:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K7Z19thJ"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="YzJ7DsZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2073.outbound.protection.outlook.com [40.107.236.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0756126B2D4
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 16:26:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744216019; cv=none; b=LqkpIGApBdhRDpqTnG2+kiqV/uE0yYz1Nq2AsPy6yqLuApyQeXMqlmi/TAA/xjf9lM3tdF7/wcMsYIZyWx02r/nSkv0eQhK39tzD6NtKyM+oXpD4ID4pPKbwMmnzHbrurevIH5Q8PzrPEEuO7xnoFr6HmBPfwfc2pCXsbfZ8ctE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744216019; c=relaxed/simple;
-	bh=I7bKAVYH4lAfQNoycierrwfzAOJeEsFuwQlPVG/ml1A=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bP5X/lTaUNItUuiEKWfT+PmEDvX0kp9XUd0HpoRofnYaWylnu9Z0B48l/fkvShCBs8bplulLyNcQKKQk3m7ipx6x+9oo8VgEmpUjnuF/bsNcMqzmDHvEC+KovD5e9iMe1/DmgVNJP/pYl94tdt+7Pe8GHkp6YXTFomgGlYaG84o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K7Z19thJ; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43cfe574976so48576315e9.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 09:26:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744216015; x=1744820815; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JSp4ty85LzeyrRbTnah9LeTjNVJM7XWlOpFLqxqVkeg=;
-        b=K7Z19thJqZEILrnO5EIj9SWCf2Syv2H5Odzmu2UXkofGXLP/UP35m+dLP8E5gu3x2t
-         CPFriSuq6KgiZkNbxpcC1V3xUxTHqad5vMaMGBDqBrEzj/usoeCwGAlvTZWtxIAPdJsN
-         i3zyQtSdtLX+kZClKZ2H7QTrMFN1PkD6MKmQtXGXH67tGQoitalF0tO5nu8tyO7PvqW4
-         RZsKlHwB57TjGChst1XkR7GxdB03AHOWiym1ABgpn8r2Tgu8bwHUSIqOkUWiwyv7SVrj
-         Dz5Dt25ZVxB8VaUXZoVMj/JlErPURQqwdEv7RXBCy20grK8/jjR0QJ1beFxlPrI61SwK
-         eiwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744216015; x=1744820815;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JSp4ty85LzeyrRbTnah9LeTjNVJM7XWlOpFLqxqVkeg=;
-        b=SkDhhLxZrzqFTUunzajzwv+ywkUknCcD2t0ceYuHznwyFjlrSRZ/K9s0BOovsbGMEc
-         bMI/vycOkPBTa3ijhtr/QBmzM44gTH2M5eClntQgFbT15SHxvfTXrWf5Wz3/ZYYK0G22
-         G1H3FdqhPqwiuJ4C0h6WnDD39Ghua0xJzJ7el1Z/BiCQ8Iay4zBPP6aNWG75gqUPyjp8
-         5JonBszTJHzz4xdSKB1bnM4QWWjBS5LjozmELBPf+EjbTiDjoOq7r5MdIZfbQHu0azwZ
-         QwkEoljD4l2mbyi6qTP3XH9d8pdoPGPY7fbVu02v+I4iSiCgiq0GFDWTPc5oBG03CDru
-         DwRg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPAS60OYEKKHkqyoXluKl1Gc29iJHXMspWTejD2YZkuhPbLTLTmkqELLYwWwwkWDlwneRd1hohwKv0@vger.kernel.org
-X-Gm-Message-State: AOJu0YznXuUhQAoV3t/5kS7rpnzneIwgxMUjzMxoVuoTYrZzom5JfJZT
-	5RweLwnH03zg9/X89wmx6ZGu2pHF6SiBDUjQvlUf8y+1RzUIfaryGHYWQSNivIg=
-X-Gm-Gg: ASbGnctzam0uNzcjigo6foVYYNlxdRrDelCf8IKl3COqs78K7gQb1aM49WDUWaPC9cK
-	5StAdTTWHMOzmnRadG7QaRWPF2hsI9kjdCAr7RUJpu8iV0kgoycYyR5ddehPSZSgzoqdsA9eqcy
-	S9vO+sIZtYAC7BreYztpWWsLSWB8pqZGMeIGgp/eEqxA2Wuxn6xClboih4Nl8YT1yMKnL9RCYVb
-	FGvIPWHZ+Oo0kf7z9f1XGYc1KVHPgs5f6/9gEFB8oTgYQaobHVSprZcbtNIHuBSDCNmZOSwuthW
-	YpiHRNwD1rmAn2XACPGImbDz9eA3blJcU9YxhXKWDkm2VozMHcsjMx9QUYl/XDqyfNXyDVgA0Fh
-	pJAiX1mlDi9auDX/Glw==
-X-Google-Smtp-Source: AGHT+IE4pgJC7F75RQmdvqxiCKqZVfdVoZauqghq0OlFNK0wjkzDjhkVHca4QNEGcxe3FS6jbliKiw==
-X-Received: by 2002:a05:600c:3484:b0:43b:ca39:6c75 with SMTP id 5b1f17b1804b1-43f1ecd6affmr44410605e9.16.1744216015215;
-        Wed, 09 Apr 2025 09:26:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:87d9:979a:1261:ab65? ([2a01:e0a:3d9:2080:87d9:979a:1261:ab65])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f205eccd8sm24795565e9.5.2025.04.09.09.26.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Apr 2025 09:26:54 -0700 (PDT)
-Message-ID: <72a5b302-5c99-4457-86c8-5fa994c93c4a@linaro.org>
-Date: Wed, 9 Apr 2025 18:26:53 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A93826B2D5;
+	Wed,  9 Apr 2025 16:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.73
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744216127; cv=fail; b=J7zlrvcfMU/vWoZolh36LrzbX0f823vsEiYQiPVK2XQo/nEsNYpXpw8vvjDM0XrjeUXAUaB3JmSuPeGETQ9/h74DOqVX/lXxA08BS3Rwh/mOV++Hj7FvzLmUzcqrTCY7ThLuqbZzBEjFwV2/vbikD9kF2/GZGbC5gZJhNpSiE2Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744216127; c=relaxed/simple;
+	bh=R0l8HQVG3Sy6exOAPrqqgdmvs1xtSYI05eEiozZtGrw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=cFzlX1tVkCwEDHzZyYV8uDkaRt0jzLMHDkW/g4nSB/7GLshN0jF1TSajnhHy4rKPXep9uk8lNwcJnaauEdCxLOpHzgRbqs2/gnXiHNkQYB6pOcthpT9WQ+bZvEGczA8gNLaCghSNC0ubzr2kkq8BQSluys+Qz+k6Ueeco3/0FkI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=YzJ7DsZn; arc=fail smtp.client-ip=40.107.236.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=doci5hV+H+/S7P7ULwiYUobGRvYG5r7NUZeIxsRUb+m5cZsqf++Ps/7K1vRiqYr1psGUI3cTkze1cRIfvrciy0UhBmCBNGDw5poNiSYuNMROcg067U7irfUlw252BTolBWrj27mJPEpAW5bk61hyG4FIvGEPHDfGZEaTWUgPeVdpMpe2JSfr+KS1HhUbAFzkriLzERl4o+4TGANvteNw6Om9P/15ofTCgNwh8exzD6mcKEAd9lG2m4b2Yc1jZifp/0QCntGPpCBHdwHqQg4D1mbUve96TseoMIUqRi9bbgEc77u1FhCYM+UNZzrzouLIviaO/wK6y8QaMp8BN6agHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7TgaLNueXKrQeZ5VhRepA+jJUjF1dv6EPUmQblRWkv8=;
+ b=OJgEPyDHHkJP2QqFkqQ+VvBa+Z9uwPYLNxYnjLriB6uyozIMK3ItoO/t43VpQwu8rlZp6iWA8RWn/jOKs1gxsdOTeSo5eaR1OHK1EPHZ/bzkdAfh7Dkugd00pJUkuoTYT4se8lz9sIMiwUZsiPU7VprCbF+3QO/iVB9gr5FU9BGj0X2i3Ur3rNVuDTT61OWXZqBWlCrO5iBQTV7M8T3AkTuuX43G6pOsyDH0LeUt+MHXB3FCGQ2IM5DLwLjXBCDjgdRgRHX/fLHckGSyfGeYa3C4DZpIT7revVQ24MdZYsXrBz4MmvjYQNs6WKIMyzeDc7eNGOQG+XZ2yO7ByyL7AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7TgaLNueXKrQeZ5VhRepA+jJUjF1dv6EPUmQblRWkv8=;
+ b=YzJ7DsZn7lXw9TUEVbwR6ZXclpl2k1ijr4NsgMC8C/Fi133ZvlobwvuNaMGEO27TPxzHUitH66AE5xUHUvUaqzMd07+DukPvmnK0SOHgpG/D/WdMKW1dwJUrR+YLbr5A2xG/4xBDVYHoW13ONIk0UOvhvT0xeLo1O7BGRW2gPHUUKoLH26cQf3hhD4jAnko7NkBz43v03JGS2UDCevsqFSk05hnLbj2PUw1pjcnYSkTckSmCM9n0chFPyEC3rQsmSegzJ+tetw2uWjURpqrubRsm4otS7wDQUX9xz5Wj4LAEBTtzP0msj1d0PHKZF/Q0xbjP0qJSwFsVR00f8y6cHw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com (2603:10b6:610:17c::13)
+ by IA0PR12MB7628.namprd12.prod.outlook.com (2603:10b6:208:436::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Wed, 9 Apr
+ 2025 16:28:38 +0000
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732]) by CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732%4]) with mapi id 15.20.8606.028; Wed, 9 Apr 2025
+ 16:28:38 +0000
+Date: Wed, 9 Apr 2025 13:28:37 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Pratyush Yadav <ptyadav@amazon.de>,
+	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
+	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
+	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
+	saravanak@google.com, skinsburskii@linux.microsoft.com,
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
+ preservation
+Message-ID: <20250409162837.GN1778492@nvidia.com>
+References: <20250404143031.GB1336818@nvidia.com>
+ <Z_KnovvW7F2ZyzhX@kernel.org>
+ <20250407141626.GB1557073@nvidia.com>
+ <Z_P92UCbNCV0TbiA@kernel.org>
+ <20250407170305.GI1557073@nvidia.com>
+ <Z_Y4k4rDO-BbMjqs@kernel.org>
+ <20250409125630.GI1778492@nvidia.com>
+ <Z_Z8-BLWMkiWpaDY@kernel.org>
+ <20250409153714.GK1778492@nvidia.com>
+ <Z_aeEn7hKqGOG3Cf@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z_aeEn7hKqGOG3Cf@kernel.org>
+X-ClientProxiedBy: BL1PR13CA0219.namprd13.prod.outlook.com
+ (2603:10b6:208:2bf::14) To CH3PR12MB8659.namprd12.prod.outlook.com
+ (2603:10b6:610:17c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 00/20] Add support for HEVC and VP9 codecs in decoder
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- stable@vger.kernel.org, Dan Carpenter <dan.carpenter@linaro.org>
-References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
- <801511ac-78db-476b-8f1d-a478b0b64bcb@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <801511ac-78db-476b-8f1d-a478b0b64bcb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR12MB8659:EE_|IA0PR12MB7628:EE_
+X-MS-Office365-Filtering-Correlation-Id: 806f2467-9e78-4f91-caaf-08dd778394f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Yd0A62UsT8FX09JRjKDeSo5A06OPT4bdHh0nY0ZfaRjtyNy7HNGYXE2fh0xX?=
+ =?us-ascii?Q?6uM2fpq8h8c6JIXzSGCBQLfm/8bBmJqahcQKh4kXm37o1aGjbWcjGIebBDGT?=
+ =?us-ascii?Q?bS1cVH7YepQQl2YSxW6XxGFwUo2GvzyPrLY5pu9t8IoGewSmttPO9jLIBTy9?=
+ =?us-ascii?Q?AEtNj0c0qQHsZFivM0sfLcKYjR1GyzPdpEtTWPvtxJC/mHtpnbfpgJfTqAFf?=
+ =?us-ascii?Q?2YyzzS9OzGnsFPQCTP+TkJtvRzZigmwKt4wpxCM4ZyF9AQnaRcAWFG3fcDUx?=
+ =?us-ascii?Q?yNLp0mqfalZv+9qEEl+0FVhvP2JeIBGr24VmGJ7s3uCPj7KCzb010G5kD1b4?=
+ =?us-ascii?Q?ZFx/q5ZJGgcEi7GDAXHdJVrIpwDUDOpXHkPodQAoVpu4jf/+Jb6HCZK5fvH8?=
+ =?us-ascii?Q?MJ9xHGHPziwl9gVfT7DWgZCPDQqzSC4/L3ITGGAXTFLNBbJ75rIAO6WpawFY?=
+ =?us-ascii?Q?TYk1D/8rbp/sqguh2wwdEsHcQziBWUNH23TCdQWpSw5JoRHykgo5T6FZxeaM?=
+ =?us-ascii?Q?7cgS2RbmL5RTVJTpBql1BSAllqDuy4R6BSXeVSk3qo3xelx6f++ovSOcFwpK?=
+ =?us-ascii?Q?7pIFs+BKGTFQH1R+pJTDmU6mcDQQrg3/ThHVofD5nNmWTDhhtI7vk45RhTWP?=
+ =?us-ascii?Q?H+s3MogmWlDOZHFiWtjGrwsCd3BDSrViD9wtnYIyuTak06HTP7QemnuETFVR?=
+ =?us-ascii?Q?1f2qfBU2Mf+NJj9Aj4QPT2x0s59h30WyI1njFDU7nnET8fbUBCHqNJBkL9yG?=
+ =?us-ascii?Q?GgSYGIKE8wQ7WkygxFGNOWW9yKlUyVigSG9Y6q7WjUF2yjuFdyOB5dz17ALn?=
+ =?us-ascii?Q?ibj7tVbagIbA3x1fOwRZxmy91mLdZ59QSOXNFpbhr/5wyp5cVQ1FJ0thxAwG?=
+ =?us-ascii?Q?iJIj+DktceOtS8pAjFjPl3TTrJumgNZabANDGZr/tmHXLXEnaSqei5PW8c6i?=
+ =?us-ascii?Q?dCxUTz5rABuESFZVKmmA7ebewRniMzxa6Puy+kZsHwVH1XfCSV+9JiczqK8K?=
+ =?us-ascii?Q?EwLk0yVjorSv/R5+UwnI1ZbVeG6AKtRZXyRwmUuqYtHxu2CMdstGM7SK+k7x?=
+ =?us-ascii?Q?KQ1TIrJyJk0k6mcmUJHr04YQOkK5y7zgxq0WedJ9UYDGRpUZwRIHMF4ycx+f?=
+ =?us-ascii?Q?l5HxJgEMU/4o+ibbW7XGDRv5LH8tIq+bc9wRmFmDO6GgEM3nhthTPhzmLgYj?=
+ =?us-ascii?Q?AG/Pk5D91VBgrVS0O4RdVRJ18U97LYBrxNy+V5AVs+V8AHbQ5eoEKs4nhNZW?=
+ =?us-ascii?Q?dWnGMJ6/dvODprO2tbFfsgjatvK5jaiguu8ppGtx+HVamQod3bk42lAXVL8T?=
+ =?us-ascii?Q?/K5XcfCxmfSvTUo6ILxS3hEk9C7anlLpWhyBM43V8YlQ+FuJ60ilYxmi/kEB?=
+ =?us-ascii?Q?J+RrXHEkUVYfsepo/gU86jTWuVtt?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB8659.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?uF7Eji2dbT4V9W5iGGRpzT6AbtN/rgGs+8CuzMwV8o+28L1Wau5Gn5/xl501?=
+ =?us-ascii?Q?sXuBSlStmPKIMsa6Uxtry67UfCRzA0RylN2RpbToAX4kI88SMnKVM5Jel3FJ?=
+ =?us-ascii?Q?dIWgaUk4XQZIeqG3qpVEMEeCfEb7ol3Y22Xon1iyl16ALxyvkhl0e4Oqeibi?=
+ =?us-ascii?Q?ZNTA+JJBQdbC5YptA0UvQ0DCbzRGmbIck4h+5f3HMHikttQTdQf2iFNQlG7B?=
+ =?us-ascii?Q?hmQuaUzUNLw016vqqE502Ua+plR/P0eqXL7k+yxkSNo8g8z+i388lPBajDTh?=
+ =?us-ascii?Q?N18TSk+L6m8GLkhU96GSSm8zkhnSQ5402MDW0YQfnt3a7BZoKJrwbwuqlpq7?=
+ =?us-ascii?Q?wznI4834ski9inV8uOxaWBA4JqxAmsQ30tuMmtg6kCsgvOIDwP5iXfoXwGFE?=
+ =?us-ascii?Q?OBuroI69sWY/C/LuXxL86ULLChiEouP7ek6U/DaOGz5IXeHZihCCReMe5P0M?=
+ =?us-ascii?Q?ylp/EFhzMTl24MUJWMuBUJMMD7uiYwB9zopzq9dx8TYJ3pwidgNsHNQNT0Yp?=
+ =?us-ascii?Q?lD7Eg8C0D49cafKcn9tlivEFSCLDEfTmUXYYqFNchGibSPyeY0ZLnYTt09mr?=
+ =?us-ascii?Q?MflsVsJfN6bJeMxEFeWNIZModz4tPci5Qrh+Xzj50VCY4NgWMV7ia0CR/lGw?=
+ =?us-ascii?Q?Is5cofyFbr5uKjPAaTnGGTvrO3x5tOUteHozMpSTKu8l1IW5zizPPwMbhXvC?=
+ =?us-ascii?Q?DZRDSqYv/+WP0s/Q6jmxj1yL4dCCkpR2mZ/uMgdmCwSq4aF6PpUrqZmcLoV/?=
+ =?us-ascii?Q?xZrXk5cUugYZbd8yBMiB8h9X4kjJYMaspsD9bumgkYE46pqksfZ8+vWA9FaN?=
+ =?us-ascii?Q?lDcHZkCar0+6K8yagSgyVHsFWwz27sN7ytCnv3MqU6x47BtTbCIuokMavDIA?=
+ =?us-ascii?Q?Cm9Q9QE7r7jzjTmcXLgVcWgWYlWlz70PSGidEWQM0ZKQ9fCfWzqYCXTwCJRL?=
+ =?us-ascii?Q?+XTkJ0+ZHFLijgFV7CyEt2ovz8EnoM12PpXrw98BHZbcNRQqiB/S1axzkjA1?=
+ =?us-ascii?Q?bpf3L+HDsIdwFXDiRVZRAhJtDdCWY/GrUTlRsDC0x9eS/6aJjHdmEnufcK8k?=
+ =?us-ascii?Q?yNYfVS8uiWu9R+y/9AugmYJtLKX4hda2kfuUm8IN/FJ4oT3nVD7rf2Bx5Xvc?=
+ =?us-ascii?Q?n9hoANCm6ULMzK/eVwqwhy9witg8iV4sZ5Rmp8RaCLYv5afg+03yh1us2NCC?=
+ =?us-ascii?Q?1a/iMfOK/ECEngz9eWwEs5sYnQksA2HNSDqQBf9ByUTuSlS1560xN8/7Q0hD?=
+ =?us-ascii?Q?GcgtznWBTWkhp5IlUUK0pWqKed/Kfv6CrTiv/UY5HgGE086ds2UnQ69CCtfl?=
+ =?us-ascii?Q?AT6Ago0X1lMOq+SxDG8L7DgjZxtwwXcEjSI3p0wN805fjfuaydHqw00jlmRc?=
+ =?us-ascii?Q?ycJkasPTsQfygAOriKfG8YS0MTAvwoBZiY501aD+jBfDr1qc8jNAIkBG6iLS?=
+ =?us-ascii?Q?+bH7rEk0ObGgwVfDBkU2ogie2pXVGXwYdz8UiSml/Sd1am2Bcdw6ePrl+xMf?=
+ =?us-ascii?Q?Whm/oVBxKz3495dA3WgdH1m1efkyAqmGOCrbj+aj3W7k+bXNT1QCFv47Iko/?=
+ =?us-ascii?Q?kkMMtaSh+wySTbMXV4o+/usY1z4/BSLqQglwOgWh?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 806f2467-9e78-4f91-caaf-08dd778394f1
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8659.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 16:28:38.1827
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yIgyE+yD8RFyl5KB27rr4ZVvT2uJ304046gNqQsgExjwrS4mVOMlxfLbb7hZW+7X
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7628
 
-On 09/04/2025 16:29, Bryan O'Donoghue wrote:
-> On 08/04/2025 16:54, Dikshita Agarwal wrote:
->> Hi All,
->>
->> This patch series adds initial support for the HEVC(H.265) and VP9
->> codecs in iris decoder. The objective of this work is to extend the
->> decoder's capabilities to handle HEVC and VP9 codec streams,
->> including necessary format handling and buffer management.
->> In addition, the series also includes a set of fixes to address issues
->> identified during testing of these additional codecs.
->>
->> These patches also address the comments and feedback received from the
->> RFC patches previously sent. I have made the necessary improvements
->> based on the community's suggestions.
->>
->> Changes sinces RFC:
->> - Added additional fixes to address issues identified during further
->> testing.
->> - Moved typo fix to a seperate patch [Neil]
->> - Reordered the patches for better logical flow and clarity [Neil,
->> Dmitry]
->> - Added fixes tag wherever applicable [Neil, Dmitry]
->> - Removed the default case in the switch statement for codecs [Bryan]
->> - Replaced if-else statements with switch-case [Bryan]
->> - Added comments for mbpf [Bryan]
->> - RFC: https://lore.kernel.org/linux-media/20250305104335.3629945-1-quic_dikshita@quicinc.com/
->>
->> These patches are tested on SM8250 and SM8550 with v4l2-ctl and
->> Gstreamer for HEVC and VP9 decoders, at the same time ensured that
->> the existing H264 decoder functionality remains uneffected.
->>
->> Note: 1 of the fluster compliance test is fixed with firmware [1]
->> [1]: https://lore.kernel.org/linux-firmware/1a511921-446d-cdc4-0203-084c88a5dc1e@quicinc.com/T/#u
->>
-
-<snip>
-
->> ---
->> Dikshita Agarwal (20):
->>        media: iris: Skip destroying internal buffer if not dequeued
->>        media: iris: Update CAPTURE format info based on OUTPUT format
->>        media: iris: Add handling for corrupt and drop frames
->>        media: iris: Avoid updating frame size to firmware during reconfig
->>        media: iris: Send V4L2_BUF_FLAG_ERROR for buffers with 0 filled length
->>        media: iris: Add handling for no show frames
->>        media: iris: Improve last flag handling
->>        media: iris: Skip flush on first sequence change
->>        media: iris: Prevent HFI queue writes when core is in deinit state
->>        media: iris: Remove redundant buffer count check in stream off
->>        media: iris: Remove deprecated property setting to firmware
->>        media: iris: Fix missing function pointer initialization
->>        media: iris: Fix NULL pointer dereference
->>        media: iris: Fix typo in depth variable
->>        media: iris: Add a comment to explain usage of MBPS
->>        media: iris: Add HEVC and VP9 formats for decoder
->>        media: iris: Add platform capabilities for HEVC and VP9 decoders
->>        media: iris: Set mandatory properties for HEVC and VP9 decoders.
->>        media: iris: Add internal buffer calculation for HEVC and VP9 decoders
->>        media: iris: Add codec specific check for VP9 decoder drain handling
->>
->>   drivers/media/platform/qcom/iris/iris_buffer.c     |  22 +-
->>   drivers/media/platform/qcom/iris/iris_ctrls.c      |  35 +-
->>   drivers/media/platform/qcom/iris/iris_hfi_common.h |   1 +
->>   .../platform/qcom/iris/iris_hfi_gen1_command.c     |  44 ++-
->>   .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   5 +-
->>   .../platform/qcom/iris/iris_hfi_gen1_response.c    |  22 +-
->>   .../platform/qcom/iris/iris_hfi_gen2_command.c     | 143 +++++++-
->>   .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   5 +
->>   .../platform/qcom/iris/iris_hfi_gen2_response.c    |  57 ++-
->>   drivers/media/platform/qcom/iris/iris_hfi_queue.c  |   2 +-
->>   drivers/media/platform/qcom/iris/iris_instance.h   |   6 +
->>   .../platform/qcom/iris/iris_platform_common.h      |  28 +-
->>   .../platform/qcom/iris/iris_platform_sm8250.c      |  15 +-
->>   .../platform/qcom/iris/iris_platform_sm8550.c      | 143 +++++++-
->>   drivers/media/platform/qcom/iris/iris_vb2.c        |   3 +-
->>   drivers/media/platform/qcom/iris/iris_vdec.c       | 113 +++---
->>   drivers/media/platform/qcom/iris/iris_vdec.h       |  11 +
->>   drivers/media/platform/qcom/iris/iris_vidc.c       |   3 -
->>   drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 397 ++++++++++++++++++++-
->>   drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  46 ++-
->>   20 files changed, 948 insertions(+), 153 deletions(-)
->> ---
->> base-commit: 7824b91d23e9f255f0e9d2acaa74265c9cac2e9c
->> change-id: 20250402-iris-dec-hevc-vp9-2654a1fc4d0d
->>
->> Best regards,
+On Wed, Apr 09, 2025 at 07:19:30PM +0300, Mike Rapoport wrote:
+> On Wed, Apr 09, 2025 at 12:37:14PM -0300, Jason Gunthorpe wrote:
+> > On Wed, Apr 09, 2025 at 04:58:16PM +0300, Mike Rapoport wrote:
+> > > >
+> > > > I think we still don't really know what will be needed, so I'd stick
+> > > > with folio only as that allows building the memfd and a potential slab
+> > > > preservation system.
+> > > 
+> > > void * seems to me much more reasonable than folio one as the starting
+> > > point because it allows preserving folios with the right order but it's not
+> > > limited to it. 
+> > 
+> > It would just call kho_preserve_folio() under the covers though.
 > 
-> Assuming we merge Neils sm8650 stuff first, which I think we should merge first, you'll have a subsequent build error to fix [1]
+> How that will work for memblock and 1G pages?
 
-I agree, it would be simpler, I prepared a fix to apply on top of this patchset.
+memblock has to do its own thing, it isn't the buddy allocator.
 
+1G pages should be very high order folios
+
+> > It does for vmalloc too, just stop thinking about it as a
+> > folio-for-pagecache and instead as an arbitary order handle to buddy
+> > allocator memory that will someday be changed to a memdesc :|
 > 
-> https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris?ref_type=heads
+> But we have memdesc today, it's struct page.
+
+No, I don't think it is. struct page seems to be turning into
+something legacy that indicates the code has not been converted to the
+new stuff yet.
+
+> And when the data structure that memdesc points to will be allocated
+> separately folios won't make sense for order-0 allocations.
+
+At that point the lowest level allocator function will be allocating
+the memdesc along with the struct page. Then folio will become
+restricted to only actual folio memdescs and alot of the type punning
+should go away. We are not there yet.
+
+> > The lowest allocator primitive returns folios, which can represent any
+> > order, and the caller casts to their own memdesc.
 > 
-> Testing your series in isolation. I can confirm vp9 decodes also getting some strange prinouts which we need to follow up to see if they exist with the baseline driver [2].
-> 
-> https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris-20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com?ref_type=heads
-> 
+> The lowest allocation primitive returns pages. 
 
-<snip>
+Yes, but as I understand things, we should not be calling that
+interface in new code because we are trying to make 'struct page' go
+away.
 
-> [  126.582170] qcom-iris aa00000.video-codec: session error received 0x1000006: unknown
-> [  126.582177] qcom-iris aa00000.video-codec: session error received 0x4000004: invalid operation for current state
+Instead you should use the folio interfaces and cast to your own
+memdesc, or use an allocator interface that returns void * (ie slab)
+and never touch the struct page area.
 
-With the following on top of the last SM8650 patchet + this patchset, I have the same HEVC errors on SM8650, but VP9 works fine:
-[  115.185745] qcom-iris aa00000.video-codec: session error received 0x4000004: invalid operation for current state
-[  115.221058] qcom-iris aa00000.video-codec: session error received 0x1000006: unknown
+AFAICT, and I just wrote one of these..
 
-==========================================><==============================================
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-index 65f3accc2fb2..7d5116528fca 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-+++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-@@ -213,6 +213,22 @@ static void iris_set_sm8550_preset_registers(struct iris_core *core)
-  	writel(0x0, core->reg_base + 0xB0088);
-  }
+> And I don't think folio will be a lowest primitive buddy returns anytime
+> soon if ever.
 
-+static void iris_set_sm8650_preset_registers(struct iris_core *core)
-+{
-+	writel(0x0, core->reg_base + 0xB0088);
-+	writel(0x33332222, core->reg_base + 0x13030);
-+	writel(0x44444444, core->reg_base + 0x13034);
-+	writel(0x1022, core->reg_base + 0x13038);
-+	writel(0x0, core->reg_base + 0x13040);
-+	writel(0xFFFF, core->reg_base + 0x13048);
-+	writel(0x33332222, core->reg_base + 0x13430);
-+	writel(0x44444444, core->reg_base + 0x13434);
-+	writel(0x1022, core->reg_base + 0x13438);
-+	writel(0x0, core->reg_base + 0x13440);
-+	writel(0xFFFF, core->reg_base + 0x13448);
-+	writel(0x99, core->reg_base + 0xA013C);
-+}
-+
-  static const struct icc_info sm8550_icc_table[] = {
-  	{ "cpu-cfg",    1000, 1000     },
-  	{ "video-mem",  1000, 15000000 },
-@@ -390,6 +406,7 @@ struct iris_platform_data sm8550_data = {
+Maybe not internally, but driver facing, I think it should be true.
 
-  /*
-   * Shares most of SM8550 data except:
-+ * - set_preset_registers to iris_set_sm8650_preset_registers
-   * - vpu_ops to iris_vpu33_ops
-   * - clk_rst_tbl to sm8650_clk_reset_table
-   * - controller_rst_tbl to sm8650_controller_reset_table
-@@ -400,7 +417,7 @@ struct iris_platform_data sm8650_data = {
-  	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
-  	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
-  	.vpu_ops = &iris_vpu33_ops,
--	.set_preset_registers = iris_set_sm8550_preset_registers,
-+	.set_preset_registers = iris_set_sm8650_preset_registers,
-  	.icc_tbl = sm8550_icc_table,
-  	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-  	.clk_rst_tbl = sm8650_clk_reset_table,
-@@ -428,20 +445,34 @@ struct iris_platform_data sm8650_data = {
-  	.ubwc_config = &ubwc_config_sm8550,
-  	.num_vpp_pipe = 4,
-  	.max_session_count = 16,
--	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
--	.input_config_params =
--		sm8550_vdec_input_config_params,
--	.input_config_params_size =
--		ARRAY_SIZE(sm8550_vdec_input_config_params),
-+	.max_core_mbpf = NUM_MBS_8K * 2,
-+	.input_config_params_default =
-+		sm8550_vdec_input_config_params_default,
-+	.input_config_params_default_size =
-+		ARRAY_SIZE(sm8550_vdec_input_config_params_default),
-+	.input_config_params_hevc =
-+		sm8550_vdec_input_config_param_hevc,
-+	.input_config_params_hevc_size =
-+		ARRAY_SIZE(sm8550_vdec_input_config_param_hevc),
-+	.input_config_params_vp9 =
-+		sm8550_vdec_input_config_param_vp9,
-+	.input_config_params_vp9_size =
-+		ARRAY_SIZE(sm8550_vdec_input_config_param_vp9),
-  	.output_config_params =
-  		sm8550_vdec_output_config_params,
-  	.output_config_params_size =
-  		ARRAY_SIZE(sm8550_vdec_output_config_params),
-  	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
-  	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
--	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
--	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
--
-+	.dec_output_prop_avc = sm8550_vdec_subscribe_output_properties_avc,
-+	.dec_output_prop_avc_size =
-+		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_avc),
-+	.dec_output_prop_hevc = sm8550_vdec_subscribe_output_properties_hevc,
-+	.dec_output_prop_hevc_size =
-+		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_hevc),
-+	.dec_output_prop_vp9 = sm8550_vdec_subscribe_output_properties_vp9,
-+	.dec_output_prop_vp9_size =
-+		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_vp9),
-  	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-  	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-  	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-==========================================><==============================================
+Like I just completely purged all struct page from the iommu code:
 
-Thanks,
-Neil
+https://lore.kernel.org/linux-iommu/0-v4-c8663abbb606+3f7-iommu_pages_jgg@nvidia.com/
+
+I don't want some weird KHO interface that doesn't align with using
+__folio_alloc_node() and folio_put() as the lowest level allocator
+interface.
+
+Jason
 
