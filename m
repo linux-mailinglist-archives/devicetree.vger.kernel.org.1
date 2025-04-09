@@ -1,64 +1,48 @@
-Return-Path: <devicetree+bounces-164636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77477A81D15
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:31:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6DAA81D18
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C70D63A9132
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:31:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4705B7B09B1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C4311DD9AD;
-	Wed,  9 Apr 2025 06:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F19FA1DEFE7;
+	Wed,  9 Apr 2025 06:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="foW3fH9P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dNkGSMo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9659B6F073
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 06:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9971DE884;
+	Wed,  9 Apr 2025 06:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744180274; cv=none; b=ppmbGLcfYe5PxC691ZH308uLPn2phnoJnvE9D/zC+/qRaOFEWRSoHLG4SolttP5b4AtgmiZMGdi09gw2A2zCLMRc2iQqR5IrgOtUfwoqQoUjNwV/6KTnBfkS+oMaEAAUvA5z5VNnsltPJ8hKjLPY2t49htWrT037jcXxuwvrVCQ=
+	t=1744180283; cv=none; b=Cuj9WALpkwgJbw4BpUcFlVOTY/YMsKwuSXS9lge5BtHaultmpQ5w2bySunKar3UC1j0wI2A8jeBaUgglWnRkQaSFJ8bwQLr4CwlPMYuKLqMfugNV6ROM15+4Ev/hh6Ga37sXd7HK8dWVEEr9o6KvpcQ4YAXaBAjZQ/7UkMoVnSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744180274; c=relaxed/simple;
-	bh=c2PprSJYcvSOOVD7CPC11hdDQnxIfNPG8Zd5bRYVz0w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oNFbuOpVmyVafXBI1mP7HxUtvQCoHoHZ1qZBjQM+ZBctne1jpYPOhkfAXZVo+gNuOm+cwgdCsecL1FJPoRvx2bj96bTmEGfyXjnhJ6dL7KwDLUNaPt6qaQ87RgvrE3kmsSywwYRB2vEewbQ8C4CpHewvbydGCDX9gVCT8MHsDNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=foW3fH9P; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744180271;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pxsCkg7T9hdK7RNaWY5esSIdR5AuOm6Jdp3figUFvGs=;
-	b=foW3fH9PZUUxmwiSn94TWyC8b/y+tBHTzMzYqyFz36T85C8zOHGBIlZNhHlCf+TsAbR0sd
-	rrDuIcksERhpPm+9ENmC54E+5kEFPKwxhl79XGtcChs3bZyqPCRv4xmfLyVkOvTgnLQSvf
-	czzEDlEyhTJeiHPrtk46RvZwtY84Z1Q=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-17-RdlbYl45Mk6sCPkLfLCfvA-1; Wed,
- 09 Apr 2025 02:31:09 -0400
-X-MC-Unique: RdlbYl45Mk6sCPkLfLCfvA-1
-X-Mimecast-MFC-AGG-ID: RdlbYl45Mk6sCPkLfLCfvA_1744180267
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6896A180035E;
-	Wed,  9 Apr 2025 06:31:06 +0000 (UTC)
-Received: from [10.44.32.72] (unknown [10.44.32.72])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id DCB171955DCE;
-	Wed,  9 Apr 2025 06:31:01 +0000 (UTC)
-Message-ID: <333a12a8-157b-47f1-9602-e68e7d52b4c2@redhat.com>
-Date: Wed, 9 Apr 2025 08:31:00 +0200
+	s=arc-20240116; t=1744180283; c=relaxed/simple;
+	bh=bSqmtQt6Y90TPCAPpS9SHgxyup/nXbow7xJwS9rFhe4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=YHvCkcEFqCebGpepuVjRx78ypYMsEjjdD09yMx8Yfn+DxEjAK4EJXst6fdSlYYgL9DKnHpaxsCIy2Cl5qXDhhkR2dFRvfvtyOCtCCDzvmD0D7x4VpDU/+Imv3y1Wlqi7pjtrjj6/XU58EIHutN0BuEzJqNscXd8QS5vZ38IAnEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dNkGSMo9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F209C4CEE7;
+	Wed,  9 Apr 2025 06:31:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744180283;
+	bh=bSqmtQt6Y90TPCAPpS9SHgxyup/nXbow7xJwS9rFhe4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=dNkGSMo9fpnNGq+GOs1hy8WEYX1QEHKfpuvPdgpgV+Aw82d3ZzUTPB4eHw6LZ4dNB
+	 wSSdKRswKcj76Yj8kAOWSyCdcH3SGMmZnw7fVHOd0G1Ar7VxjOYAzX1AX6ClyteuOn
+	 r14lfEhomubpWySJ4/6N7+ndCbJK+lbGYIBSJE+Cb+mU+Nh7h3KQ4B02jadX0j2Qw3
+	 JeAygHrqYv+qq7PFL4asBMYuJEPqWHWuVVwtj6WUXAkFnzu5cGE5Ak5MV0/CZb5e4v
+	 oZe9MHnRB+FHkO9IC38756Q7iFExjp+icnRw35rVxk839pOD9feC6HaIWOZ6oBsC3j
+	 mnxyLmVkccipg==
+Message-ID: <66808fa5-2b81-4145-b2c6-9b0d76d2a6dc@kernel.org>
+Date: Wed, 9 Apr 2025 08:31:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,141 +50,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
-To: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org
-Cc: Michal Schmidt <mschmidt@redhat.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407172836.1009461-2-ivecera@redhat.com>
- <9b38d033-72aa-4fb0-b1ee-41bbe3884040@kernel.org>
+Subject: Re: [PATCH 1/7] spi: renesas,sh-msiof: Living separately from MSIOF
+ I2S Sound
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
+ <874iyyb0w2.wl-kuninori.morimoto.gx@renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <9b38d033-72aa-4fb0-b1ee-41bbe3884040@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <874iyyb0w2.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
-
-
-On 07. 04. 25 7:53 odp., Krzysztof Kozlowski wrote:
-> On 07/04/2025 19:28, Ivan Vecera wrote:
->> This adds base MFD driver for Microchip Azurite ZL3073x chip family.
+On 18/03/2025 03:06, Kuninori Morimoto wrote:
+> Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
+> both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
+> uses Of-Graph in DT.
 > 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> MSIOF-SPI/I2S are using same DT compatible properties.
+> MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
+> MSIOF-SPI doesn't use  Of-Graph.
+> 
+> Ignore MSIOF-I2S case (= Of-Graph) in MSIOF-SPI Doc.
 
-Will fix in v2.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
->> These chips provide DPLL and PHC (PTP) functionality and they can
->> be connected over I2C or SPI bus.
->>
-> 
-> ...
-> 
->> +/**
->> + * zl3073x_get_regmap_config - return pointer to regmap config
->> + *
->> + * Returns pointer to regmap config
->> + */
->> +const struct regmap_config *zl3073x_get_regmap_config(void)
->> +{
->> +	return &zl3073x_regmap_config;
->> +}
->> +EXPORT_SYMBOL_NS_GPL(zl3073x_get_regmap_config, "ZL3073X");
->> +
->> +struct zl3073x_dev *zl3073x_dev_alloc(struct device *dev)
->> +{
->> +	struct zl3073x_dev *zldev;
->> +
->> +	return devm_kzalloc(dev, sizeof(*zldev), GFP_KERNEL);
->> +}
->> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
->> +
->> +int zl3073x_dev_init(struct zl3073x_dev *zldev)
->> +{
->> +	devm_mutex_init(zldev->dev, &zldev->lock);
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_init, "ZL3073X");
->> +
->> +void zl3073x_dev_exit(struct zl3073x_dev *zldev)
->> +{
->> +}
->> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_exit, "ZL3073X");
-> 
-> Why do you add empty exports?
+Missing dt-bindings.
 
-It is filled in the later commits but yeah I will include the function 
-once it will be necessary.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/spi/renesas,sh-msiof.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> index 49649fc3f95a..c491ef5bc78c 100644
+> --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> @@ -9,6 +9,18 @@ title: Renesas MSIOF SPI controller
+>  maintainers:
+>    - Geert Uytterhoeven <geert+renesas@glider.be>
+>  
+> +# sharing with MSIOF I2S
 
->> diff --git a/drivers/mfd/zl3073x-spi.c b/drivers/mfd/zl3073x-spi.c
->> new file mode 100644
->> index 0000000000000..a6b9a366a7585
->> --- /dev/null
->> +++ b/drivers/mfd/zl3073x-spi.c
->> @@ -0,0 +1,71 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/spi/spi.h>
->> +#include "zl3073x.h"
->> +
->> +static const struct spi_device_id zl3073x_spi_id[] = {
->> +	{ "zl3073x-spi", },
->> +	{ /* sentinel */ },
->> +};
->> +MODULE_DEVICE_TABLE(spi, zl3073x_spi_id);
->> +
->> +static const struct of_device_id zl3073x_spi_of_match[] = {
->> +	{ .compatible = "microchip,zl3073x-spi" },
-> 
-> 
-> You need bindings. If they are somewhere in this patchset then you need
-> correct order so before users (see DT submitting patches).
+That's not how you create common schemas. You need to separate schema
+which is then referenced with $ref with all users.
 
-Yes, there are. I will reorder the patches in v2 and also split the 
-whole series into several ones.
+> +# see
+> +# ${LINUX}/Documentation/devicetree/bindings/sound/renesas,msiof.yaml
 
->> +static void zl3073x_spi_remove(struct spi_device *spidev)
->> +{
->> +	struct zl3073x_dev *zldev;
->> +
->> +	zldev = spi_get_drvdata(spidev);
->> +	zl3073x_dev_exit(zldev);
->> +}
->> +
->> +static struct spi_driver zl3073x_spi_driver = {
->> +	.driver = {
->> +		.name = "zl3073x-spi",
->> +		.of_match_table = of_match_ptr(zl3073x_spi_of_match),
-> 
-> Drop of_match_ptr, you have warnings here.
+In anycase drop ${linux}, so the path is verifiable.... which leads to
+problem: I do not see that file in next.
 
-Ack, will avoid.
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        pattern: "^renesas,.*-msiof$"
 
->> +	},
->> +	.probe = zl3073x_spi_probe,
->> +	.remove = zl3073x_spi_remove,
->> +	.id_table = zl3073x_spi_id,
->> +};
->> +
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+You don't get custom selects. This replaces existing select which breaks
+the binding.
 
+
+Best regards,
+Krzysztof
 
