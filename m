@@ -1,90 +1,69 @@
-Return-Path: <devicetree+bounces-164894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E3CA82AEC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E6DA82B07
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FAF01899572
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:40:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE2A19E18D7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EF72676FE;
-	Wed,  9 Apr 2025 15:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q8/utymb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5051F267B96;
+	Wed,  9 Apr 2025 15:43:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B97265CC6;
-	Wed,  9 Apr 2025 15:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52817A319;
+	Wed,  9 Apr 2025 15:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744213212; cv=none; b=MNJ5vQpoTASGHT+hFrieEZtrwtcnQo9HG7NBUgc8KRsjK9Q3J9tXBuQSABJ4pD0nSvJeUXlTDWwgjpTgHnFNk/ZvlLUIRKA84bKZ2u1xRxRvP9qRn4b1ixCijJSve5MU5j9FwaEoAE53FxgT89hltBh35WxhcLcoD+4gGYDiadE=
+	t=1744213406; cv=none; b=rxgMlwb3mpJUmn2rG9GEzwdtrRdk2fLnLAsoSaTKSfvCBMSG8jFRDTvZZeh+9LZaEhhIkFqSHo2nBB4DpWsdT79wZqv6+lVBVVthQY46m1I+b2XQQiT6O08WtjUq0xWBbetH3yJZrbt4o6KpNqfnj2BWwmbRZP8Pr8SI5O5CGL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744213212; c=relaxed/simple;
-	bh=z3ECtH9nXMU27fndDBs3IrRNaeghTsCm4s6Kg7+bUX4=;
+	s=arc-20240116; t=1744213406; c=relaxed/simple;
+	bh=y9uebcKW8YvKkKHt4Ltu6yUEyYoT0rCBCLeMKwit3eM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1YhbwFQ+rkqYRrU3OnLppfi/As+3azOQ6hlMZeVFls0QNd+CEVbCi410XbYp4JEKaGozWhYLWnJDWx6K7U/fYTqHRtVxGQdkjtwLHfycwP1HtutZcMN3s/bIP7Teip8XUa5Lg2Iq6p3uYLOCfG1VSOEdKzye3v/UbtelRLfmfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q8/utymb; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744213210; x=1775749210;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z3ECtH9nXMU27fndDBs3IrRNaeghTsCm4s6Kg7+bUX4=;
-  b=Q8/utymbiZA7+C73+eJUjtrCWacsvx8Qb5H2T1E8IV7WPm0nJ4bwaG5f
-   62aVwHCuT3+J4tQQrPWmqjwkSdQkfNiGsGqwc75UV6Evm9ekXMfHQEk7S
-   cjQCSKh6NnY2Ow39n/udriwGspmCxN19OOdP20JCngvsSVfi/aHfhChdr
-   eRIlQuFhoZU5BQD5bc3aEhldl+c4ednwO/8Ww8LliCTkz4toECOKRab1Q
-   A39t2WrZXgx5WySCzSNm/HEdiUWrwwT45bUA9O46gDOSVCxfdpE/3+TSR
-   VUqbSJydQN6KPD3r7IpzqPZuOVvBuUVSJQz5pRCE7JGivD770SeNtIwXH
-   Q==;
-X-CSE-ConnectionGUID: 6HQDCHt/RrKQyASpvRc0vg==
-X-CSE-MsgGUID: xab30qb4QEiYMMDJaiKy8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="71073106"
+	 Content-Type:Content-Disposition:In-Reply-To; b=e1LHJc0mICJSmKfo4rRy03rLUeDkSCraxXHHSCDrZ293tWHedFgMcyStL98ZAr1XpVCSX/QPSt/Ov46Qt2PSBOkIQFS/nWoL68SCmfVPGRv7P+FPCEw+2AhhnO0kPr/EqQujgtrHIDDmspd6fKLzXf/VovaxXCGR21W46AqYoGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: z09WTXwoSD6gInyYwOsg3w==
+X-CSE-MsgGUID: qBZiBJvZShqOzDg+fyM8rg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="56330918"
 X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="71073106"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:40:09 -0700
-X-CSE-ConnectionGUID: 0DcUfIIVTr+p/lHA4Mexsw==
-X-CSE-MsgGUID: f1H6QlzIQA2UddKHS9KjPQ==
+   d="scan'208";a="56330918"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:43:23 -0700
+X-CSE-ConnectionGUID: jBz6NS4OR62aMwAXaezCtA==
+X-CSE-MsgGUID: Ckj9YI5xSyu3GY5GKOussQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="151798272"
+   d="scan'208";a="128540658"
 Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:40:04 -0700
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:43:19 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u2XWz-0000000AmV4-2IGG;
-	Wed, 09 Apr 2025 18:40:01 +0300
-Date: Wed, 9 Apr 2025 18:40:01 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	(envelope-from <andy@kernel.org>)
+	id 1u2Xa8-0000000AmY0-3UpM;
+	Wed, 09 Apr 2025 18:43:16 +0300
+Date: Wed, 9 Apr 2025 18:43:16 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
-Message-ID: <Z_aU0dRS3I4cN2aX@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 03/14] mfd: Add Microchip ZL3073x support
+Message-ID: <Z_aVlIiT07ZDE2Kf@smile.fi.intel.com>
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-4-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,14 +72,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+In-Reply-To: <20250409144250.206590-4-ivecera@redhat.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Apr 09, 2025 at 04:55:52PM +0200, Mathieu Dubois-Briand wrote:
-> BUG() never returns, so code after it is unreachable: remove it.
+On Wed, Apr 09, 2025 at 04:42:39PM +0200, Ivan Vecera wrote:
+> Add base MFD driver for Microchip Azurite ZL3073x chip family.
+> These chips provide DPLL and PHC (PTP) functionality and they can
+> be connected over I2C or SPI bus.
+> 
+> The MFD driver provide basic communication and synchronization
+> over the bus and common functionality that are used by the DPLL
+> driver (later in this series) and by the PTP driver (will be
+> added later).
+> 
+> The chip family is characterized by following properties:
+> * 2 separate DPLL units (channels)
+> * 5 synthesizers
+> * 10 input pins (references)
+> * 10 outputs
+> * 20 output pins (output pin pair shares one output)
+> * Each reference and output can act in differential or single-ended
+>   mode (reference or output in differential mode consumes 2 pins)
+> * Each output is connected to one of the synthesizers
+> * Each synthesizer is driven by one of the DPLL unit
 
-Thank you, this is the right change to do.
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+...
+
+> +/*
+> + * Regmap ranges
+> + */
+> +#define ZL3073x_PAGE_SIZE	128
+> +#define ZL3073x_NUM_PAGES	16
+> +#define ZL3073x_PAGE_SEL	0x7F
+> +
+> +/*
+> + * Regmap range configuration
+> + *
+> + * The device uses 7-bit addressing and has 16 register pages with
+> + * range 0x00-0x7f. The register 0x7f in each page acts as page
+> + * selector where bits 0-3 contains currently selected page.
+> + */
+> +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
+> +	{
+> +		.range_min	= 0,
+
+This still has the same issue, you haven't given a chance to me to reply
+in v1 thread. I'm not going to review this as it's not settled down yet.
+Let's first discuss the questions you have in v1.
+
+> +		.range_max	= ZL3073x_NUM_PAGES * ZL3073x_PAGE_SIZE,
+> +		.selector_reg	= ZL3073x_PAGE_SEL,
+> +		.selector_mask	= GENMASK(3, 0),
+> +		.selector_shift	= 0,
+> +		.window_start	= 0,
+> +		.window_len	= ZL3073x_PAGE_SIZE,
+> +	},
+> +};
 
 -- 
 With Best Regards,
