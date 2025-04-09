@@ -1,184 +1,144 @@
-Return-Path: <devicetree+bounces-164926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B387FA82D4D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:10:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BE9A82D61
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:13:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F1968885DE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:10:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4CC4648B8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A74270ED2;
-	Wed,  9 Apr 2025 17:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NC7VN3bz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04841270EC3;
+	Wed,  9 Apr 2025 17:13:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E4F276032;
-	Wed,  9 Apr 2025 17:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2723270EC5;
+	Wed,  9 Apr 2025 17:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744218595; cv=none; b=svr/dVjE7M07i+z7xiLRaS4L8ydGNS0JJ21t6AxMwZ9aRAB60IO1rlcpfRj0qVvOJzTtgITdDYg94LkXde9FPBQU1Nu+FY3c8TTShyOvnUt0T8twh25GDRYcutVhgmYu6kCNOB0gYrGxA5a3f1usDEF89C4UJYKFblR65B2hM3E=
+	t=1744218783; cv=none; b=AuGeTS+IYVVnw8WmA3LMo/rj0tGlDc0w4xSPLA2RxkKUbDTnS4iMzkVFH3NDBzSTGiScYGYkhMEzKVjlNW3+B7wXioXDwlXGMm63H7xpc86Vl2yQQsJ8A3+75Jd11x0jTo22GdKZqeJexgfiGLhxr67jBhcyFivWCdkYUi+FXYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744218595; c=relaxed/simple;
-	bh=nStIjfSZeL0zt9W7+iaa9CoiY9nOZsfvqJhLH6Sl5g4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mZM8NHJQs/74mtJmVFe3E0BtyTJFWwnnJCE7f6G76ynI1TH+SedGrXOistWtMIgl26ySiFKTYewn/7OwQNLFh5C2mYuw/hV+ODlE5SbpEmUp1uFm9LwR70iZmJaycKsyEE2snMKuJ7om6p/HesulBdJmWoBZCHKFdiYw8oURvsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NC7VN3bz; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso1891287a12.1;
-        Wed, 09 Apr 2025 10:09:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744218592; x=1744823392; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hSPr9sZkytyi6HYm3brTb7NWt25n9J2i6nUGBqwMRe0=;
-        b=NC7VN3bzwAwEuapSebs+vi8FU4As75Mzqlww2K6XFsUrUV9nwF0MRdPALpHvLudX1l
-         uV1tE8w0UHgmWrarbY0yiBJDe5G52NpuRN8TkRCu+utak232l0pdlF6L7J7zwhT8lF/q
-         /k2yipMfMSOUsmyOLXxiFdyj3qRY2mGAp5JEgd/jWx1uhyRsem7XOl4tprbR/QkO6AfS
-         zA+Crs+LQCCRtYMUrnTTFmD6Vb9njcz84REBR4al7l0qM1hxkXvYrnpdqPqlSShbhxfV
-         ooPI2k8HHUWYvFP0gn1JkzOFCp4r3FtFgSbuZUko0wN8es9nnxdjaxd5T6z2iuEfIohl
-         gASA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744218592; x=1744823392;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hSPr9sZkytyi6HYm3brTb7NWt25n9J2i6nUGBqwMRe0=;
-        b=c9RYmW32/Du1/6FgLE4Ce/7Zj0CJVq1443+0qHa34inFZzROv3vpzOhrxpc2vLAbpT
-         c1WfE/5zTUX7Gc97IsrzugxR3taMFGSBy0K2OLlY6QRNUWFdELHRy7HRjGSUlCEO94/u
-         uA32lvnbBNWiE5/mDIuiKYvVUxTEf/BZNLu/dnu37I+53h6Nj74f7jNKtQMTuVtP0Glb
-         CFITfwt4hpBDSnpY8dzT6DNO4FqPO9K5i83d34BXnB5Elay0/j0Xzd7ftsIXbnVM2GtV
-         //+aAnyD+m6QfTR4c1UZPcqNdAsE2awLWVF51QmvBjmJFD647YUQ1BM170eiGSDU4caf
-         FGAA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvAU2i0ckr/qvtfG8s3BljnrVWXTcnN7KxegbQxeEtRBWnoBH9PucDXpVgXD2SrTk+uMxWUTfLXZPcPcAM@vger.kernel.org, AJvYcCXXKiA9FRkTekthQ6mmKGIZtEJ/NvGuUo7igH6YVDjvwwH0tsCNkMRY9zTzqMlIRkpMw1pIXWhggCCh@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywywo2Pe9DnaWwl0z1j7QBHog+G8Ms1wEiqHlegbiYKdtJ2oGNh
-	yozpBhGpUgyTlc4jOrxZbsEuZ0LrNWArZPIrRcTgSV74Y5jTcXPX
-X-Gm-Gg: ASbGncv6PLmPV6p6zIkrVwKFPSr5jwaot99xo9pKUg21Ira1YwJYS4TncDLtralgMe/
-	V2p/kRo2UAVirUs4m+MyaTrOL3EN4Mln9ZwGSKTWmBfnDJ8L3V2VnkXOCQo7fnL+m+plrJ4s7uH
-	cVyegabXIqk7lEwDQiCTulEv8rnBw/355hxGjOyNm3ZiyGa+ERIw8ogWXRdgig5X7Bl6Sa4iBQn
-	GngUl0Z5kKz9SMW5cdDlUdoE8nwG9kueKR0lOPxk3rTZKarcvY7f1TtUgy+hBrTmaa+enkgxKSK
-	6Uca44IFvHIQow+Zi4x5XivZTrkSxdvvDEh8YR0Cwr4ozQJPYLFZS+iLxw==
-X-Google-Smtp-Source: AGHT+IH+YqAH5P1C3rfvoj+3ijZp9a9WOznX8fS4UF+0NYL6MxuzKlq1D64zrOEIFuEz9UbRr2NnoQ==
-X-Received: by 2002:a17:907:94d1:b0:ac3:ed4d:c9a1 with SMTP id a640c23a62f3a-acab6322c91mr30685866b.17.1744218591828;
-        Wed, 09 Apr 2025 10:09:51 -0700 (PDT)
-Received: from localhost.localdomain ([78.209.27.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1be913asm122151166b.47.2025.04.09.10.09.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 10:09:50 -0700 (PDT)
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	alexander.stein@ew.tq-group.com
-Cc: linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Antoni Pokusinski <apokusinski01@gmail.com>
-Subject: [PATCH v2 3/3] dt-bindings: rtc: pcf85063: add binding for RV8063
-Date: Wed,  9 Apr 2025 19:09:16 +0200
-Message-Id: <20250409170916.47224-4-apokusinski01@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250409170916.47224-1-apokusinski01@gmail.com>
-References: <20250409170916.47224-1-apokusinski01@gmail.com>
+	s=arc-20240116; t=1744218783; c=relaxed/simple;
+	bh=s9Gi35I1sUGULtTOtFmgKjk2LcTE5lWCFnKHhQhu+Tw=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Sb3BeA6rNV6AIJmav5iY1Hy4Xjx6/+46PIBPZoQUZDeSlMAl5LgDyyDen5BLvztDiPnpZmGU9CWN13I4mv3vT99oI8V3nQnp4Adl/8Rjrwh2nzUwzcJ/gxzaz+Z81/CH1053vr0QkOq007ngabiyeOXQzoiWfgYWaLfiDyP0YC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZXqD94V21z6HJc7;
+	Thu, 10 Apr 2025 01:08:57 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 7B4091402F1;
+	Thu, 10 Apr 2025 01:12:52 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 9 Apr
+ 2025 19:12:51 +0200
+Date: Wed, 9 Apr 2025 18:12:50 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Andy Shevchenko <andy@kernel.org>
+CC: <jean-baptiste.maneyrol@tdk.com>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: imu: inv_icm42600: switch to use generic
+ name irq get
+Message-ID: <20250409181250.00001c9f@huawei.com>
+In-Reply-To: <Z_apXw_HoD0EHHY-@smile.fi.intel.com>
+References: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
+	<20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-2-dab85a0a7c2b@tdk.com>
+	<Z_apXw_HoD0EHHY-@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100012.china.huawei.com (7.191.174.184) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Microcrystal RV8063 is a real-time clock module with SPI interface.
+On Wed, 9 Apr 2025 20:07:43 +0300
+Andy Shevchenko <andy@kernel.org> wrote:
 
-Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
----
- .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 33 ++++++++++++++++++-
- 1 file changed, 32 insertions(+), 1 deletion(-)
+> On Wed, Apr 09, 2025 at 05:14:32PM +0200, Jean-Baptiste Maneyrol via B4 Relay wrote:
+> > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> > 
+> > Use generic fwnode_irq_get_byname() for getting interrupt pin using
+> > interrupt name. Only INT1 is supported by the driver currently.
+> > 
+> > If not found fallback to first defined interrupt to keep compatibility.  
+> 
+> ...
+> 
+> > -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
+> > +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
+> >  			    inv_icm42600_bus_setup bus_setup);  
+> 
+> If you use 100 limit, it fits now on one line.
 
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-index 2f892f8640d1..cb31c7619d66 100644
---- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-@@ -12,6 +12,7 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - microcrystal,rv8063
-       - microcrystal,rv8263
-       - nxp,pcf85063
-       - nxp,pcf85063a
-@@ -44,7 +45,12 @@ properties:
- 
-   wakeup-source: true
- 
-+  spi-cs-high: true
-+
-+  spi-3wire: true
-+
- allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-   - $ref: rtc.yaml#
-   - if:
-       properties:
-@@ -52,6 +58,7 @@ allOf:
-           contains:
-             enum:
-               - microcrystal,rv8263
-+              - microcrystal,rv8063
-     then:
-       properties:
-         quartz-load-femtofarads: false
-@@ -65,12 +72,23 @@ allOf:
-       properties:
-         quartz-load-femtofarads:
-           const: 7000
-+  - if:
-+      properties:
-+        compatible:
-+          not:
-+            contains:
-+              enum:
-+                - microcrystal,rv8063
-+    then:
-+      properties:
-+        spi-cs-high: false
-+        spi-3wire: false
- 
- required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -90,3 +108,16 @@ examples:
-           };
-         };
-       };
-+
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@0 {
-+          compatible = "microcrystal,rv8063";
-+          reg = <0>;
-+          spi-cs-high;
-+          spi-3wire;
-+        };
-+    };
--- 
-2.25.1
+I'd rather stick to 'just over 80' where it really helps. Rather than
+generally switch to 100.  Maybe that day will come but I'm not sure it is
+yet.
+
+> 
+> ...
+> 
+> > -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
+> > +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
+> >  			    inv_icm42600_bus_setup bus_setup)  
+> 
+> Ditto.
+> 
+> ...
+> 
+> > +	struct fwnode_handle *fwnode;  
+> 
+> Do you need to include property.h?
+> 
+> ...
+> 
+> > +	/* get INT1 only supported interrupt or fallback to first interrupt */
+> > +	fwnode = dev_fwnode(dev);  
+> 
+> > +	if (!fwnode)
+> > +		return -ENODEV;  
+> 
+> Unneeded check, the below will do it for you,
+> 
+> > +	irq = fwnode_irq_get_byname(fwnode, "INT1");
+> > +	if (irq < 0 && irq != -EPROBE_DEFER) {
+> > +		dev_info(dev, "no INT1 interrupt defined, fallback to first interrupt\n");
+> > +		irq = fwnode_irq_get(fwnode, 0);
+> > +	}
+> > +	if (irq < 0)
+> > +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");  
+> 
+> ...
+> 
+> > -	return inv_icm42600_core_probe(regmap, chip, client->irq,
+> > +	return inv_icm42600_core_probe(regmap, chip,
+> >  				       inv_icm42600_i2c_bus_setup);  
+> 
+> This is now one line (81 characters which is fine independently on your choice
+> of the limit).
+> 
+> ...
+> 
+> > -	return inv_icm42600_core_probe(regmap, chip, spi->irq,
+> > +	return inv_icm42600_core_probe(regmap, chip,
+> >  				       inv_icm42600_spi_bus_setup);  
+> 
+> One line.
+> 
 
 
