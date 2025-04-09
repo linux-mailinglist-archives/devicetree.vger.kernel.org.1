@@ -1,134 +1,198 @@
-Return-Path: <devicetree+bounces-164680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCFBFA81E9F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:49:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5633A81EAB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACD82463D47
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:49:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD81E1BA256D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B298A1DF270;
-	Wed,  9 Apr 2025 07:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582B31DF270;
+	Wed,  9 Apr 2025 07:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="kd1hed4q";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="DeHRGbSP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sU9G9DO/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A90D259C;
-	Wed,  9 Apr 2025 07:49:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25189259C;
+	Wed,  9 Apr 2025 07:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744184973; cv=none; b=DBb7V8mds8PCFx+u/ZMPhk/eDp1kGV94rm3abKNAcSZ1WLpcEBRYRAVOE6U2c/Slfem1r5kbsIMG5pG9uD6OjmDE7RFN/jBRbySntM9zR3/px4nF4VCwlb16WoQp9bhQ7l5ulK8T94AS4uWEgTVkUsv/6tYGd/rjPEJUE33bPMo=
+	t=1744185173; cv=none; b=QIx1xgzKQDoswznqvduArCQz04e2KtsYMi0TZpV1lkZo0n9WJnEYDRyBftdCB6AxNalAT7X17EXZ4ndgBU08C3EVq1jwJ0c89RfEuY8SWUrAHgy93DdSXk9/WmzlAIsJ6xmVFXesg8Glg0mst3/EWRtHIncABmxxh3/2ZQVGGY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744184973; c=relaxed/simple;
-	bh=/TD0IuDa//akCv132OXUCy0NPl5bx2LScr8ZqBMjylU=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=THDBT9GMCxOTq/cAqgA4Zv7u+Gm3LgUdSAApt4LmZ5RCzdwu8PmHmKjIH/xvf42xQbjxz++QHGkRYlGuapJ/A1oE82oasiNOBm19+HMzJtBoQskfjr8xJNow2VlxyQyWwgs6GsSMY8LWuTA2E2OZvoHCi4GGFZPXsOKLj3Vms9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=kd1hed4q; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=DeHRGbSP; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal [10.202.2.52])
-	by mailfout.phl.internal (Postfix) with ESMTP id 6655613801B8;
-	Wed,  9 Apr 2025 03:49:30 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-12.internal (MEProxy); Wed, 09 Apr 2025 03:49:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1744184970;
-	 x=1744271370; bh=b7QO4XxBsidc/k+388zWruWPPsPpYT/wiCzlONis2iU=; b=
-	kd1hed4qBru5mq0PUNDyFPHnc1oWGZoYE/UlqjQfMKgzDcx+ZVvgexHpDYGUQRbm
-	H80NpaFeQehhRv/p2U7rrK11YycAYQ2DH0B3AwF1diLPC+p0BglmPcsKI8m6Hi9e
-	pCxG6gwq5W3/kAqcoSGSFK/b+1AUNlGRo6IpxQ3HUobUtTmQk6xUsO2+/Z41K9DL
-	QzZgRSkZ8GtjAaq1TB3mKxsSHPhcRZTOPvXq4dDwpvPgsoBYEV+O0iZC1UNHooPR
-	VCRExzQbmr78sN38+iy8OJVUGFm8a5+cvTpJukWp4BL06yOg++ak8h4oYsmrg/2P
-	g2oLPElnsgGU1e0977qxdg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744184970; x=
-	1744271370; bh=b7QO4XxBsidc/k+388zWruWPPsPpYT/wiCzlONis2iU=; b=D
-	eHRGbSP+L+TDl8aAREeve+Jf4texGRhNYy3cOjhovDbyOBvC3rjfhxH8uIwQ2zfw
-	cJNL520BLh4Gh4gjBXbbPuMNsw3TvnCCBwnxeDHRbp25gEqCg6dbpG99m0zga0yO
-	6satkEa6+eqfll7+YpEDYUWeYNiDmu/btCYQQ3tsoC7/WnvZNjxO4aAs06MQR0KX
-	qiBSX/fS9kK+nzjVRzxE6Zwo+8FswfnJjwDubzIJEmvlubBOQCL7vhOYBGbXzWzS
-	KDjia4a16Dc2SQst83A2ALbPfl53b5Vwlofufm5FkZV7Vj468Xm33l9e485DKOgW
-	uFVxdGtrA+Bg/YYYuvliA==
-X-ME-Sender: <xms:iSb2Z2Et506oI8LNEYn1Jy3l7oSy2nJHIIfWyojPUtFNQBTv7SZorA>
-    <xme:iSb2Z3WUlYb46-DmmRyrTFDn1czxWaZSiT3Y8_eNAf8uE9al9iy8i89CcuNsXbQST
-    NIcZMj-hMS-IcaRTZA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdehgeegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
-    tddtnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
-    gsrdguvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeet
-    fefggfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
-    hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
-    udefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegtrghtrghlihhnrdhmrghrih
-    hnrghssegrrhhmrdgtohhmpdhrtghpthhtohepshgrshgthhgrrdgsihhstghhohhffhes
-    rghrmhdrtghomhdprhgtphhtthhopehtihhmohhthhihrdhhrgihvghssegrrhhmrdgtoh
-    hmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlphhivghrrghlih
-    hsiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgriieskhgvrhhnvghlrdhorhhg
-    pdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeifihhllh
-    eskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:iSb2ZwKsTfrLqpDyBgskviGCEFI-4Xn2ksXcaYtH4ixw0U2NKKqrHQ>
-    <xmx:iSb2ZwF1V-6fwB7e-EhikcvO3A0UvwgoNxPjJ-_mzSwJTVrg2qGTuA>
-    <xmx:iSb2Z8V7iwX4xcw85J6wpH2W4Pnw2BMcAvVk0_5PL_1vOwWVRonICw>
-    <xmx:iSb2ZzNNGR5BENWLma_5U_rPgbdvYGpgL5POptKyYMsIIniJ4TvbVA>
-    <xmx:iib2Z0BjNWvTXgczBR0xN7gwz1CxxiOuyWw3ZfF-kJI6DzOJAJY1AQaO>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id D75382220073; Wed,  9 Apr 2025 03:49:29 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1744185173; c=relaxed/simple;
+	bh=XjAKn4aDznWhBOaqEoB9bXhZFVhxOdYJJPaXIpo77zM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pf2davA4MmUJq3Log0On81MAjTyuFbIcOgqqbm/ffiEZRipR4tCtsbXCWIBvkm3aR6l2EhPAo52c3onBqFrx6GxswVxihwToR7Npvn4DDNoYLMTOP3oO6AUvde8zkfoLMrTjMNdetQw3Pf1pqm2/18IWBZvY2dAH4g3oRPaK7zI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sU9G9DO/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE36C4CEE3;
+	Wed,  9 Apr 2025 07:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744185172;
+	bh=XjAKn4aDznWhBOaqEoB9bXhZFVhxOdYJJPaXIpo77zM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sU9G9DO/fROyMfqlpzDHMTPzJtcZtuh73c4/hx6JY4ntTgETXl5pVnYebOrdn0Iz6
+	 WBo8htxQ73LcrAOWbQ/0dEFhb+EFWDab7zuEe6M7PAzRohgB1BCUwxMusSVHdFkzxt
+	 DykxPGdgngfGNEk5IOl7Br2OoRIcN66WZqE2rU7glaGfz7AB03oph6JZ3LJkla9XzV
+	 b04VY+KYo3oRYkMW9ST1cazdrbmvXu9yXEyHkG3VTfeO5KTsFEzHqItQLYXF6EchQo
+	 RdNrnK4dOFw9VCqFZrAf11I1J4YsWiiDD2u3KIhkngnJBJB1oUefDeebX9FlFMphvq
+	 Pb6EinzZNbc+w==
+Date: Wed, 9 Apr 2025 09:52:49 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH 5/7] ASoC: renesas: add MSIOF sound Documentation
+Message-ID: <20250409-functional-cheetah-of-honor-b9d9cf@shite>
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
+ <87y0wa9mb2.wl-kuninori.morimoto.gx@renesas.com>
+ <bd15c145-c175-468d-a1ac-1ad157358aea@kernel.org>
+ <CAMuHMdUiO2mVzYn4PGZwUat6W_0JQjD3be7X6ThzK7vcPisKEg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: Tf8f308e4370a4290
-Date: Wed, 09 Apr 2025 09:48:49 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
- "Marc Zyngier" <maz@kernel.org>, "Thomas Gleixner" <tglx@linutronix.de>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>
-Cc: "Sascha Bischoff" <sascha.bischoff@arm.com>,
- "Timothy Hayes" <timothy.hayes@arm.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Message-Id: <a1c79f36-322f-4444-992b-1b69d8232124@app.fastmail.com>
-In-Reply-To: <20250408-gicv5-host-v1-13-1f26db465f8d@kernel.org>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-13-1f26db465f8d@kernel.org>
-Subject: Re: [PATCH 13/24] arm64/sysreg: Add ICH_HFGWTR_EL2
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUiO2mVzYn4PGZwUat6W_0JQjD3be7X6ThzK7vcPisKEg@mail.gmail.com>
 
-On Tue, Apr 8, 2025, at 12:50, Lorenzo Pieralisi wrote:
-> Add ICH_HFGWTR_EL2 register description to sysreg.
->
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Marc Zyngier <maz@kernel.org>
+On Wed, Apr 09, 2025 at 09:01:22AM GMT, Geert Uytterhoeven wrote:
+> > > +select:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        pattern: "renesas,.*-msiof"
+> > > +  required:
+> > > +    - compatible
+> > > +    - port
+> >
+> > Drop entire select.
+> 
+> This is needed to avoid matching when using the device in SPI mode.
 
-No comment on the contents, but I feel that having ten patches
-adding new sysregs one group at a time is a bit worse than a
-single patch adding them all. The patch descriptions don't add
-any particular information about why these are distinct, and you
-need them all anyway, so I'd suggest combining them into a
-larger patch.
+Which you need to avoid, so drop the select. One device, one schema.
 
-      Arnd
+> 
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: renesas,msiof-r8a779g0   # R-Car V4H
+> >
+> > Use expected format of all soc compatibles. It has been always: SoC-module.
+> 
+> This is a pre-existing compatible value, so it cannot be changed.
+> 
+> > > +      - const: renesas,rcar-gen4-msiof  # generic R-Car Gen4
+> >
+> > If you have duplicated compatibles then:
+> > 1. It rarely makes sense because you claim that two different devices
+> > are using the same compatible. Different device, different compatible.
+> > 2. Or if this is really same device, then only one schema.
+> 
+> This the same device, but it can be used in two (actually more)
+> different modes: SPI and I2S.  Hence it has two separate DT binding
+> documents.  If this needs to be merged (the result is gonna be ugly):
+
+... then next time don't post incomplete bindings. I know we do not have
+time machine, but any mess is on contributors who posted some limited
+scope/view of the hardware entirely ignoring the rest of interfaces.
+
+> where to fit it in the DT binding doc hierarchy?
+
+Does not matter, whatever fits better in overal picture/purpose of this
+device.
+
+> 
+> > > +  reg:
+> > > +    minItems: 1
+> > > +    maxItems: 2
+> >
+> > Drop these two.
+> >
+> > > +    oneOf:
+> >
+> > Why is this flexible?
+> 
+> I am not sure where this is coming from (an old SH part?).
+> The SPI bindings have the same construct.  As this binding supports
+> R-Car Gen4 only, a single reg should be fine.
+> 
+> >
+> > > +      - items:
+> > > +          - description: CPU and DMA engine registers
+> > > +      - items:
+> > > +          - description: CPU registers
+> > > +          - description: DMA engine registers
+> 
+> > > +  dmas:
+> > > +    minItems: 2
+> > > +    maxItems: 4
+> >
+> > Why flexible?
+> >
+> > > +
+> > > +  dma-names:
+> > > +    minItems: 2
+> > > +    maxItems: 4
+> > > +    items:
+> > > +      enum: [ tx, rx ]
+> >
+> > How would that work? tx rx tx rx? And then driver requests 'tx' (by
+> > name) and what is supposed to be returned?
+> 
+> The module may be connected to one or more DMA controllers (see below).
+
+Yes, but how the implementation would work?
+
+Anyway, this needs to be strictly ordered, not random rx rx tx tx or rx
+rx rx rx.
+
+> 
+> > > +
+> > > +    msiof1: serial@e6ea0000 {
+> >
+> > serial means UART controller. You need name matching the class of the
+> > device.
+> > Node names should be generic. See also an explanation and list of
+> > examples (not exhaustive) in DT specification:
+> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> What is the recommend generic node name for a flexible serial device
+> that can operate as (a.o.) either SPI or I2S controller?
+
+i2s
+or even not so generic msiof, but definitely not serial because that is
+reserved for UART.
+
+> 
+> > > +      compatible = "renesas,msiof-r8a779g0",
+> > > +                   "renesas,rcar-gen4-msiof";
+> > > +      reg = <0 0xe6ea0000 0 0x0064>;
+> > > +      interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
+> > > +      clocks = <&cpg CPG_MOD 619>;
+> > > +      dmas = <&dmac0 0x43>, <&dmac0 0x42>,
+> > > +             <&dmac1 0x43>, <&dmac1 0x42>;
+> > > +      dma-names = "tx", "rx", "tx", "rx";
+> >
+> > So test it now - get DMA by name 'tx'. What do you get?
+> 
+> A handle to either <&dmac0 0x43> or <&dmac1 0x43>; which one is
+> random. It's been working like that for ages.
+
+Interesting. And is this expected behavior? Driver does not care which
+RX and which TX it gets? Like RX from dmac0 and TX from dmac1?
+
+Best regards,
+Krzysztof
+
 
