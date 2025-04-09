@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-164673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AABA81E75
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:41:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A2E9A81E79
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:41:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ED2A7AD93E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:39:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 812FD7AF3CD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A8FB25A2AF;
-	Wed,  9 Apr 2025 07:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A3B25A2D7;
+	Wed,  9 Apr 2025 07:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHvg3aQ6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADbsarn1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B6A2AE89;
-	Wed,  9 Apr 2025 07:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F96F2AE89;
+	Wed,  9 Apr 2025 07:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744184460; cv=none; b=WviXqo0NH4TwDAmu2GZdXYWKFQF+l7/AkdIfNSrXmVH2b6jwtEmXqQR7ntKgWEkW4mhjRSuqDbeVez4aXOC8F+0sUCVnV9xm/wLq8BbqyDxvzQ1IxxDG87L1izGV7VDfBcALz9mgAtAZbEPfx6r7IRiij9VBJdIRaolBJxfv+3U=
+	t=1744184502; cv=none; b=VEvIrUvYpRKR8ukwgK5VuAwwuJXPVf5JAGm4MVCclHVMWTUfihEByYrhGrlwjiL0HooPXVDspYnnH5BjwaajdzvceLRBBzqfdzNg/VjbCszKX/+VoOw4SHNVeZDf/V9Nls/do1YtwDzf2ijYXRqhV0EGnfnT5aGPBUn++HuWZ1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744184460; c=relaxed/simple;
-	bh=qVnRcibZsKZayn6OQD1ZHThuYI/D6rlvvaIk20DSsq8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T3RTZti+PmWn2JmPVaeaK8eKUumtStzgKKY7+fRxEMVKDo+lQTndTnqoxv586KRq2tIUyO/95U9lSsW085K8ylfZ2pql5svYPFF0CKVku6PlI1omQqvFk/xkdH7/M2jrkEC/YwqIGU3VKgShpyqr5Wr6ufgaI+D9hGEflzRcMro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHvg3aQ6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB1EAC4CEE7;
-	Wed,  9 Apr 2025 07:40:55 +0000 (UTC)
+	s=arc-20240116; t=1744184502; c=relaxed/simple;
+	bh=b5ZWJSt98bGlYQWhOR/2hFH9QvIVdwmraGsAqX/dums=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eF7yw96ypehCIjettwWqGkKVjj9uACEVlyWSFz2tQ37mvgqIE2N1yFg46TfvroVVgEuPZ7gKpbNU0XRt5HByridpFDzpuAdTAWGnNqbXBCq/W5ueX5JZuAFINWabNyMoAerbRL39m4INwHFg1rzQinUMDAY7OMHbT9ebinSAJ2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ADbsarn1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECEEEC4CEE3;
+	Wed,  9 Apr 2025 07:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744184459;
-	bh=qVnRcibZsKZayn6OQD1ZHThuYI/D6rlvvaIk20DSsq8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FHvg3aQ6W+swrUHodTyOzNNm4f68YiYNP9idAp4WfEEa57ZAjCqB59bhu4bMPIm2b
-	 tzH6vYqbyWuHO0FRiGjNQtLFt4cG0LD1BJ150E1AJ2d1B+DFhnuQz5Jl4j6thTcUlh
-	 93L7dJsUMyx0fp2FCVCEzWGN9U0Hu56FtN4lraN7JLIKFAj0DgMUEyJdDqai9vxO3r
-	 z+yVuH3pKVzl/iXfZNy25m8yYr2mdTcTaGlrx1BBfKrNW82D3sn+rlFiVjyrPN6qj2
-	 ZwUroPsMUp5Yyz0NieigyHa7axNWlLDwnhpWyeIkCAdtxw7A5jyeq01grUNtMP39h1
-	 PFGG5yYkcSeiQ==
-Date: Wed, 9 Apr 2025 09:40:52 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 19/24] irqchip/gic-v5: Add GICv5 IRS/SPI support
-Message-ID: <Z/YkhDpUOXKOpIOo@lpieralisi>
-References: <20250408-gicv5-host-v1-19-1f26db465f8d@kernel.org>
- <87zfgpu89p.ffs@tglx>
+	s=k20201202; t=1744184501;
+	bh=b5ZWJSt98bGlYQWhOR/2hFH9QvIVdwmraGsAqX/dums=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=ADbsarn1KqN8k1Ns2zG9iXspz0IShp20rQDARlqE9IiRqUJLImpzauuNFW4iyW5Nz
+	 XXIkD9Xj9XcVPpZVRxUz0jnI12XTZo4zujSekJOYzwPT8tV32VNjseLhWBPZ6K5RUb
+	 ipt3WDlVpkIzMb9GQHGm/PbHK/XFn1MA+YBYJUBw6fcIfYofYMJeoOVa0S4dwnWRHH
+	 Ts92imvf3Y2SHArfq4pQEw18xc80S5CWyWZ6zhNWN5lv+5pElZbRYqCwE8HABvd+6m
+	 e1mvflcIbWEChE70GwKrhzvz0SDgm/QeD6wUe0+6uS+xaBcfFPUEhFTNtI1ZH8afbN
+	 TeZLP9MfGXg0g==
+Date: Wed, 9 Apr 2025 09:41:38 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 5/7] ASoC: renesas: add MSIOF sound Documentation
+Message-ID: <20250409-mouse-of-eternal-warranty-5eafd2@shite>
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
+ <87y0wa9mb2.wl-kuninori.morimoto.gx@renesas.com>
+ <bd15c145-c175-468d-a1ac-1ad157358aea@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,171 +62,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87zfgpu89p.ffs@tglx>
+In-Reply-To: <bd15c145-c175-468d-a1ac-1ad157358aea@kernel.org>
 
-On Wed, Apr 09, 2025 at 09:02:58AM +0200, Thomas Gleixner wrote:
-> On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
-> > +struct iaffid_entry {
-> > +	u16 iaffid;
-> > +	bool valid;
-> > +};
-> 
-> See the previous documentation link and search for struct definitions on
-> that page.
-
-Right, will fix.
-
-> > +static int gicv5_irs_wait_for_spi_op(struct gicv5_irs_chip_data *irs_data)
-> > +{
-> > +	int ret;
-> > +	u32 statusr;
-> 
-> See documentaion...
-> 
-> > +	ret = readl_relaxed_poll_timeout_atomic(
-> > +			irs_data->irs_base + GICV5_IRS_SPI_STATUSR, statusr,
-> > +			FIELD_GET(GICV5_IRS_SPI_STATUSR_IDLE, statusr), 1,
-> > +			USEC_PER_SEC);
-> 
-> See previous mail about how to make stuff like this readable. My eyes
-> bleed already.
-> 
-> > +	if (ret == -ETIMEDOUT) {
-> 
-> unlikely(ret == ...) perhaps?
-
-Will change it.
-
-> > +		pr_err_ratelimited("Time out waiting for IRS SPI to be configured\n");
-> 
-> > +static int __init gicv5_irs_init_bases(struct gicv5_irs_chip_data *irs_data,
-> > +				       void __iomem *irs_base,
-> > +				       struct fwnode_handle *handle)
-> > +{
-> > +	u32 cr0, cr1;
-> > +	struct device_node *np = to_of_node(handle);
-> 
-> Sigh
-> 
-> > +static int __init gicv5_irs_of_init_affinity(struct device_node *node,
-> > +				      struct gicv5_irs_chip_data *irs_data,
-> > +				      u8 iaffid_bits)
-> 
-> Moar random coding style choices.
-> 
-> > +{
-> > +	/*
-> > +	 * Detect IAFFID<->CPU mappings from the device tree and
-> > +	 * record IRS<->CPU topology information.
-> > +	 */
-> > +	int ret, i, ncpus, niaffids;
-> > +	u16 *iaffids;
-> > +	u16 iaffid_mask = GENMASK(iaffid_bits - 1, 0);
+On Wed, Apr 09, 2025 at 08:37:03AM GMT, Krzysztof Kozlowski wrote:
 > > +
-> > +	ncpus = of_property_count_elems_of_size(node, "cpus", sizeof(u32));
-> > +	if (WARN_ON(ncpus < 0))
-> > +		return -EINVAL;
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: renesas,msiof-r8a779g0   # R-Car V4H
 > 
-> Do you really need all these warnings?
-
-I will review them.
-
-> > +
-> > +	niaffids = of_property_count_elems_of_size(node, "arm,iaffids",
-> > +						   sizeof(u16));
-> > +	if (WARN_ON(niaffids != ncpus))
-> > +		return -EINVAL;
-> > +
-> > +	iaffids = kcalloc(niaffids, sizeof(*iaffids), GFP_KERNEL);
-> > +	if (!iaffids)
-> > +		return -ENOMEM;
-> > +
-> > +	ret = of_property_read_u16_array(node, "arm,iaffids", iaffids, niaffids);
-> > +	if (ret)
-> > +		return ret;
 > 
-> Leaks iaffids. Please use
-> 
->       u16 *iaffids __free(kfree) = kcalloc(...);
-> 
-> and the compiler will take care of that.
+> Use expected format of all soc compatibles. It has been always: SoC-module.
 
-Yes, that's silly.
+... unless this is an existing compatible, but then it should be in one
+schema, not two.
 
-> > +static int __init gicv5_irs_init(struct device_node *node)
-> > +{
-> > +	void __iomem *irs_base;
-> > +	struct gicv5_irs_chip_data *irs_data;
-> > +	int ret;
-> > +	u32 idr;
-> > +	u8 iaffid_bits;
-> > +
-> > +	irs_data = kzalloc(sizeof(*irs_data), GFP_KERNEL);
-> 
-> __free(kfree)
+Best regards,
+Krzysztof
 
-Will do.
-
-> > +	if (!irs_data)
-> > +		return -ENOMEM;
-> 
-> > +	if (irs_data->spi_range)
-> > +		pr_info("%s detected SPI range [%u-%u]\n",
-> > +						of_node_full_name(node),
-> > +						irs_data->spi_min,
-> > +						irs_data->spi_min +
-> > +						irs_data->spi_range - 1);
-> 
-> Please put those _five_ lines into brackets. It's not required by the
-> compiler, but for reading. Brackets should be omitted only if the
-> statement which follows ‘if’, ‘for’, ‘while’ etc. is truly a single
-> line.
-
-Ok.
-
-> > +static int gicv5_iri_irq_get_irqchip_state(struct irq_data *d,
-> > +					   enum irqchip_irq_state which,
-> > +					   bool *val, u8 hwirq_type)
-> > +{
-> > +	u64 icsr, cdrcfg = d->hwirq | FIELD_PREP(GICV5_GIC_CDRCFG_TYPE_MASK,
-> > +						 hwirq_type);
-> > +
-> > +	preempt_disable();
-> 
-> That's required because the calling contexts protection (raw spinlock
-> held and interrupts disabled) is not enough, right?
-
-Yes it is useless, I will remove it.
-
-> > +	gic_insn(cdrcfg, GICV5_OP_GIC_CDRCFG);
-> > +	isb();
-> > +	icsr = read_sysreg_s(SYS_ICC_ICSR_EL1);
-> > +	preempt_enable();
-> 
-> > +static int gicv5_irq_spi_domain_translate(struct irq_domain *d,
-> > +					  struct irq_fwspec *fwspec,
-> > +					  irq_hw_number_t *hwirq,
-> > +					  unsigned int *type)
-> > +{
-> > +	if (is_of_node(fwspec->fwnode)) {
-> > +		if (fwspec->param_count < 3)
-> > +			return -EINVAL;
-> > +
-> > +		if (fwspec->param[0] != GICV5_HWIRQ_TYPE_SPI)
-> > +			return -EINVAL;
-> > +
-> > +		*hwirq = fwspec->param[1];
-> > +		*type = fwspec->param[2] & IRQ_TYPE_SENSE_MASK;
-> > +
-> > +		return 0;
-> > +	}
-> 
-> The only difference between this and the ppi variant is the type check
-> of param[0]. Common helper perhaps?
-
-Definitely.
-
-Thanks a lot,
-Lorenzo
 
