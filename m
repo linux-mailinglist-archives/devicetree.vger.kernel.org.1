@@ -1,370 +1,159 @@
-Return-Path: <devicetree+bounces-164657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA75A81DF8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:09:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA81A81DF9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AE081BA2F66
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:09:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC88C4A22F8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459F625332E;
-	Wed,  9 Apr 2025 07:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MsTgXj5b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2526B254861;
+	Wed,  9 Apr 2025 07:10:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D49A2528F9
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 07:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6FE250C1C;
+	Wed,  9 Apr 2025 07:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744182572; cv=none; b=gAYWHCf1KHnKhuUsw5V46e3mrI1BwlgP3YKWrpb2xH1JmF49c+wJMj4EtAgZsltBPti8kxXr4nrVaEXsHpulExpNn65wt9AguhQcUGGBmZejItP3Nw0OXT8Y3wwnbeLNsg4byCs77zupJ1VGIR+h22ofYvlLWuv5sbzewbs1oM0=
+	t=1744182602; cv=none; b=X99ZFMIuPEPKi1u3ybWZlQ2j/idoKz2+JrZq1PyXJWBjWyekb900GsDqgC6j5CVttQ5Nw7XbCqliQWmd9rD4vPMKFES/2pBAnVYP9XAaon1LfImUAjORkfUMc7wov3SIy53Fzs9wXORtxG7dOrbXkOv2hwCBQD+AHVs0ExVF754=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744182572; c=relaxed/simple;
-	bh=Ju61UE3ue+7ZPK1+BpNOyDImzB+6PsUjmMaUw6oxeNQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hu1oArjX/0xzoPA4T8XVZ8OG/1LP3yuvo+pExcbpa9TaeGtDOiJaA8bLLnvYyumz5c4CLTpsI75g13/JPZ4Kp0fMyPL0Z2lWc988mV2DMCI6SoODvtfto4Yjw4sWrQP5A6sH3We1UwIJKcPaI2B8doCFPA0yV+3/XlJMR4HTBgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MsTgXj5b; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744182569;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VKXNBwTzB3JJWhMXmywSS8c+ahDgNbNsHfEHIzv0RqE=;
-	b=MsTgXj5bfWV7S/W1EYnNe+e9bo7ly2SeyGx+Dp1DXJ8TOGnP0gwp3ZclgAfTaXFlzwJfwe
-	AsYAgyEwHVSu45MZ0V1vLy+xkk6MJLFAcfupwV1aMT9cCAzdy9L02p+HN7wLp2suz0FPLx
-	rJzointU1oXIPaI4kHqB/1XBxwsDcIU=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-114-LqtNNFwjPwKxf1NEBtXEIQ-1; Wed,
- 09 Apr 2025 03:09:23 -0400
-X-MC-Unique: LqtNNFwjPwKxf1NEBtXEIQ-1
-X-Mimecast-MFC-AGG-ID: LqtNNFwjPwKxf1NEBtXEIQ_1744182561
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 43E6219560B3;
-	Wed,  9 Apr 2025 07:09:21 +0000 (UTC)
-Received: from [10.44.32.72] (unknown [10.44.32.72])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id B117A19560AD;
-	Wed,  9 Apr 2025 07:09:16 +0000 (UTC)
-Message-ID: <5bd6c5d4-4ca1-4e53-b073-717a8e8295c6@redhat.com>
-Date: Wed, 9 Apr 2025 09:09:15 +0200
+	s=arc-20240116; t=1744182602; c=relaxed/simple;
+	bh=xzWFr6RQHobZVkQEtYfHxByEWAH6rqCQhtdNhto6g3w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DP8qSKbVZo3PKJ2z81s06uZ8U+p1W6dZqpbBtZ59zCeqEOWnOaY3GqbxBGCIZaH3COGyAIFVbDrwOZklzGjLrX8mYrCeByPFZp+3pm6anG/NpY1QYlj7ZYw4vh1YvfNKafGokHCHED1JERpqLQNHDuyL21ieacUMT33MMadJbGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-523fa0df55dso460159e0c.1;
+        Wed, 09 Apr 2025 00:09:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744182597; x=1744787397;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xCjOEqHOQd0uUlE94eC4JCNmgohT3221wsRkdKFRNL0=;
+        b=T6p2A/lJ7E1kBBdAJPG2uevhPIwdzRouqfDqkEWLqS6s60Sz/YYtCB8ZF5jp9Jf7Ec
+         2EPUz1LJDTcpztSh/AxOw4SWG/azA4rGz/yl8k/+ZfTYI3fO5V9Zx/8nCvyreUoHwxjK
+         ANTZo8iGDi2pZgwH3mixBwVqiTPyK9p7xDo66UXQPG4+ZNP4PD/E0hfzk6CL4asZ6lDj
+         lyODNqNDhhBXqJnjqSwqb5W+ErUyra8jdS4sW7JnggjeoG216pcb/knpCmyxDRu0UG5S
+         KQKLUAkaSJwDt/wazsYA429pNZ3P2NQSqR1ggt7m9AjQgvLOzj/sTo/QrDOgQ8P5Fx9L
+         R0+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUhlgjra0GC+Oo4wV+N6qLZnfC0bmKJTDC0Gg4G6pXE7XZDXiOpKqBgv6/wy1AG1C+fhWL9nuE+de1ieZE=@vger.kernel.org, AJvYcCW69UzTvzKJUGilTY9ej0RwttfDRHLq4B/4FtzYedyqbf99eBKXNBLjovSrGD6TdTn2ksx5Wv+AiYfB@vger.kernel.org, AJvYcCWvgiUFgeTAbz4+wvcfh1pmoCQ6kAbsME0InT9tnoH0wGUltRS9GZuoYnSgU33ehxsbPyFr6LarC5GrSscY0Wr7KDo=@vger.kernel.org, AJvYcCXTZFlqOzApk+22MD/AeQ93EXrclpUjKXgvRXiXwBPrYaYBEMUazhkmtWf7+S9oR/ZM6DY5+CEJ04Ho@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1ZDPnzpiJSMc9+Bj7BBZdFHK2l0M2oNdUwOWwRb/CGBHhzXTz
+	NQr//vf3p298CNvWhBE5g6iANcpGu4icL0vvJCEkk1/j+26mmeH7MIsBwzG5
+X-Gm-Gg: ASbGncsw9w42O3ULLd+u00XlN4y8VZCGKigXLC4hX9T3ufCVi+lQdu52ctgWhz/unRJ
+	gZ6wARywZtrP7EM93sGWaer9a7KNySrY+R4ohdPbF97GskfmWAEDMVV2w+x9Gi4KI++kLGl+LOQ
+	Mdh/dUQrd7Y7MORREnvuvgpyNmCiF0LbA/LMnhZKnue1uMzRpLCSP1yNSgrzV+XQP5tKh2IWabB
+	eJOIrnExbPbNxY+JY6UNyDN0nnJnjh3QCpZEiTkBId2IC7fn+TY8PDHOFL1Hz/zvmzJhCWFrVY1
+	l3VxeJZxqrNY0jtWL0cjWiFSSCSJhQTn0ZjtrpklAhI5lyXn1IQ/IhMCZHweiPSg5Mer/cacfk4
+	r0Vc=
+X-Google-Smtp-Source: AGHT+IHW53vWYq7TSmVYcH2oen8xtBomvJnp8hJWeYmuq3YtIHbILAvG0/tpLwkUXwiUfIhOigD6lw==
+X-Received: by 2002:a05:6122:319d:b0:520:4806:a422 with SMTP id 71dfb90a1353d-527a8e901cdmr1233546e0c.3.1744182597091;
+        Wed, 09 Apr 2025 00:09:57 -0700 (PDT)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abe8d1b9sm111727e0c.31.2025.04.09.00.09.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Apr 2025 00:09:56 -0700 (PDT)
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-86dc3482b3dso488879241.0;
+        Wed, 09 Apr 2025 00:09:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU0pG/UUhJU8/Kb96HPdC6LOpIyomTnDUVpTiSxYwmrtIt0euHyTxgoE0TwPe2XbKpk3DWiT3Q9gV9Ud/wfiU5832I=@vger.kernel.org, AJvYcCUF5Lux6hvCAKowMx2I3P3Nj/EEeXgbkhfB39yT/jtn+F4Ybv7J1yAsYqtbW3lKlp0kkuo1bZ5rQFKBi2g=@vger.kernel.org, AJvYcCV65GjYU8gYiLOyqodb1rJ6z6AYtqdWIUtYwWPL6kPRnCmOToYF+PzZXU6oxNfv1N/H6V7mJuplIph2@vger.kernel.org, AJvYcCXV9zrvkQB431jFrX2RKXz9tbtyTax0Eu9mJ8xixD7Uq4dh5ZoJ5+tnZDPeKrXp6k29gr81gm28f+Y0@vger.kernel.org
+X-Received: by 2002:a05:6102:5794:b0:4c2:ff6c:6043 with SMTP id
+ ada2fe7eead31-4c9b368e974mr5084603137.0.1744182596209; Wed, 09 Apr 2025
+ 00:09:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/28] dt-bindings: dpll: Add device tree bindings for
- DPLL device and pin
-To: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org
-Cc: Michal Schmidt <mschmidt@redhat.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407173149.1010216-6-ivecera@redhat.com>
- <74172acd-e649-4613-a408-d1f61ceeba8b@kernel.org>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <74172acd-e649-4613-a408-d1f61ceeba8b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com> <8734eib0vx.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <8734eib0vx.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 9 Apr 2025 09:09:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVC997SufjabEtwx9ZLZrzYRmWpCEXxHh9r8Rtee=QYpg@mail.gmail.com>
+X-Gm-Features: ATxdqUG3_OX2HcrfXwIG-FjpUcpmP4Wv0CKo6s-O57I2uDAn7kfrkEinNrI4qAo
+Message-ID: <CAMuHMdVC997SufjabEtwx9ZLZrzYRmWpCEXxHh9r8Rtee=QYpg@mail.gmail.com>
+Subject: Re: [PATCH 2/7] spi: sh-msiof: ignore driver probing if it was MSIOF Sound
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 07. 04. 25 8:01 odp., Krzysztof Kozlowski wrote:
-> On 07/04/2025 19:31, Ivan Vecera wrote:
->> This adds DT bindings schema for DPLL (device phase-locked loop)
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
-> A nit, subject: drop second/last, redundant "device tree bindings for".
-> The "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Hi Morimoto-san,
 
-Will fix this in v2.
+On Wed, 9 Apr 2025 at 03:05, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
+> both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
+> Of-Graph in DT.
+>
+> MSIOF-SPI/I2S are using same DT compatible properties.
+> MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
+> MSIOF-SPI doesn't use  Of-Graph.
+>
+> Check "port" node when driver probing
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
->> device and associated pin. The schema follows existing DPLL core API
-> 
-> What is core API in terms of Devicetree?
-> 
->> and should be used to expose information that should be provided
->> by platform firmware.
->>
->> The schema for DPLL device describe a DPLL chip that can contain
->> one or more DPLLs (channels) and platform can specify their types.
->> For now 'pps' and 'eec' types supported and these values are mapped
->> to DPLL core's enums.
-> 
-> Describe entire hardware, not what is supported.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Ack
+Still, some comment below
 
->>
->> The DPLL device can have optionally 'input-pins' and 'output-pins'
->> sub-nodes that contain pin sub-nodes.
->>
->> These pin sub-nodes follows schema for dpll-pin and can contain
->> information about the particular pin.
-> 
-> Describe the hardware, not the schema. We can read the contents of
-> patch. What we cannot read is the hardware and why you are making all
-> these choices.
+> --- a/drivers/spi/spi-sh-msiof.c
+> +++ b/drivers/spi/spi-sh-msiof.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_graph.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/sh_dma.h>
+> @@ -1276,10 +1277,19 @@ static int sh_msiof_spi_probe(struct platform_device *pdev)
+>         const struct sh_msiof_chipdata *chipdata;
+>         struct sh_msiof_spi_info *info;
+>         struct sh_msiof_spi_priv *p;
+> +       struct device_node *port;
 
-OK
+If you would add "__free(device_node)", you could drop the of_node_put()
+below.
 
->>
->> The pin contains the following properties:
->> * reg - pin HW index (physical pin number of given type)
->> * label - string that is used as board label by DPLL core
->> * type - string that indicates pin type (mapped to DPLL core pin type)
->> * esync-control - boolean that indicates whether embeddded sync control
->>                    is allowed for this pin
->> * supported-frequencies - list of 64bit values that represents frequencies
->>                            that are allowed to be configured for the pin
-> 
-> Drop. Describe the hardware.
-> 
-> 
->>
->> Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
-> 
-> Did this really happen?
-> 
->> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->> ---
->>   .../devicetree/bindings/dpll/dpll-device.yaml | 84 +++++++++++++++++++
->>   .../devicetree/bindings/dpll/dpll-pin.yaml    | 43 ++++++++++
->>   MAINTAINERS                                   |  2 +
->>   3 files changed, 129 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
->>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
-> 
-> Filenames matching compatibles... unless this is common schema, but
-> commit description did not mention it.
+>         unsigned long clksrc;
+>         int i;
+>         int ret;
+>
+> +       /* Check whether MSIOF is used as I2S mode or SPI mode by checking "port" node */
+> +       port = of_graph_get_next_port(pdev->dev.of_node, NULL);
 
-Yes, this is common schema to describe a common properties of DPLL 
-device that is inherited by a concrete HW implementation (next patch).
+This is actually checking for both "ports" and "port".  If you know the
+subnode is called "port", you could simplify to of_get_child_by_name().
 
->>
->> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> new file mode 100644
->> index 0000000000000..e6c309abb857f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> @@ -0,0 +1,84 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dpll/dpll-device.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Digital Phase-Locked Loop (DPLL) Device
->> +
->> +maintainers:
->> +  - Ivan Vecera <ivecera@redhat.com>
->> +
->> +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
+> +       if (port) {
+> +               /* It was MSIOF-I2S */
+> +               of_node_put(port);
+> +               return -ENODEV;
+> +       }
+> +
+>         chipdata = of_device_get_match_data(&pdev->dev);
+>         if (chipdata) {
+>                 info = sh_msiof_spi_parse_dt(&pdev->dev);
 
-OK
+Gr{oetje,eeting}s,
 
->> +  Digital Phase-Locked Loop (DPLL) device are used for precise clock
->> +  synchronization in networking and telecom hardware. The device can
->> +  have one or more channels (DPLLs) and one or more input and output
->> +  pins. Each DPLL channel can either produce pulse-per-clock signal
->> +  or drive ethernet equipment clock. The type of each channel is
->> +  indicated by dpll-types property.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^dpll(@.*)?$"
->> +
->> +  "#address-cells":
->> +    const: 0
->> +
->> +  "#size-cells":
->> +    const: 0
-> 
-> Why do you need these cells?
+                        Geert
 
-There are 'input-pins' and 'output-pins' sub-nodes that do not use '@' 
-suffix and 'reg' property. They can be specified only once so address 
-nor size do not make sense.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->> +
->> +  num-dplls:
->> +    description: Number of DPLL channels in this device.
-> 
-> Why this is not deducible from compatible?
-
-Yes, it is. Concrete HW implementation should know this.
-Will drop.
-
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 1
->> +
->> +  dpll-types:
->> +    description: List of DPLL types, one per DPLL instance.
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    items:
->> +      enum: [pps, eec]
-> 
-> Why this is not deducible from compatible?
-
-The compatible does not specify how the DPLL channels are used. 
-Particular hardware schematics/wiring specify the type of the channel usage.
-
->> +
->> +  input-pins:
->> +    type: object
->> +    description: DPLL input pins
->> +    unevaluatedProperties: false
-> 
-> So this is all for pinctrl? Or something else? Could not figure out from
-> commit msg. This does not help me either.
-
-No, these pins have nothing to do with pinctrl.
-Will describe in next version.
-
->> +
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
-> 
-> Why?
-> 
->> +      "#size-cells":
->> +        const: 0
-> 
-> Why? I don't see these being used.
-
-The pin has '@' suffix and 'reg' property that specifies the HW index of 
-the pin. (e.g pin@3 under output-pins is the 3rd physical output pin).
-
->> +
->> +    patternProperties:
->> +      "^pin@[0-9]+$":
->> +        $ref: /schemas/dpll/dpll-pin.yaml
->> +        unevaluatedProperties: false
->> +
->> +    required:
->> +      - "#address-cells"
->> +      - "#size-cells"
->> +
->> +  output-pins:
->> +    type: object
->> +    description: DPLL output pins
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^pin@[0-9]+$":
->> +        $ref: /schemas/dpll/dpll-pin.yaml
->> +        unevaluatedProperties: false
->> +
->> +    required:
->> +      - "#address-cells"
->> +      - "#size-cells"
->> +
->> +dependentRequired:
->> +  dpll-types: [ num-dplls ]
->> +
->> +additionalProperties: true
->> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->> new file mode 100644
->> index 0000000000000..9aea8ceabb5af
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->> @@ -0,0 +1,43 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dpll/dpll-pin.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: DPLL Pin
->> +
->> +maintainers:
->> +  - Ivan Vecera <ivecera@redhat.com>
->> +
->> +description: |
->> +  Schema for defining input and output pins of a Digital Phase-Locked Loop (DPLL).
->> +  Each pin can have a set of supported frequencies, label, type and may support
->> +  embedded sync.
->> +
->> +properties:
->> +  reg:
->> +    description: Hardware index of the pin.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +  esync-control:
->> +    description: Indicates whether the pin supports embedded sync functionality.
->> +    type: boolean
->> +
->> +  label:
->> +    description: String exposed as the pin board label
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +
->> +  supported-frequencies:
->> +    description: List of supported frequencies for this pin, expressed in Hz.
->> +    $ref: /schemas/types.yaml#/definitions/uint64-array
-> 
-> Use common property suffixes and drop ref.
-
-Should I use 'supported-frequencies-hz'? If so... This property unit 
-type is specified [1] as uint32-matrix, can I use this for list of 
-uint64 numbers?
-
-[1] 
-https://github.com/devicetree-org/dt-schema/blob/dd3e3dce83607661f2831a8fac9112fae5ebe6cd/dtschema/schemas/property-units.yaml#L56
-
->> +
->> +  type:
->> +    description: Type of the pin
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    enum: [ext, gnss, int, mux, synce]
->> +
->> +
-> 
-> Just one blank line
-
-Ack
-
-> I bet that half of my questions could be answered with proper hardware
-> description which is missing in commit msg and binding description.
-> Instead your commit msg explains schema which makes no sense - I
-> mentioned, we can read the schema.
->> +required:
->> +  - reg
-> Best regards,
-> Krzysztof
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
