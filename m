@@ -1,120 +1,130 @@
-Return-Path: <devicetree+bounces-164614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1CBA81BF4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:55:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC93DA81C44
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:43:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF0FC886000
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 04:55:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FE7F4671D3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 05:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379941D63D8;
-	Wed,  9 Apr 2025 04:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3991DACB1;
+	Wed,  9 Apr 2025 05:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lC5HMd9h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMZz0b/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D355C259C;
-	Wed,  9 Apr 2025 04:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F45282FA;
+	Wed,  9 Apr 2025 05:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744174538; cv=none; b=Fmno2uJZ3Cxtt2VUJcQ71CUUJy+tDzUxFs4yWnfSYTfRSER+G9HaiWyo9MMvhKnCODCk916B//Qwzy7s1aaDbR0/QvbPv0oTEgfwxx+zfn8Sa6NNZJk62GymzQoo4cwsIkQRoyo7uUrwOu1MIClsQ7IVgbGmvZHMn2tQkbm1WT0=
+	t=1744177416; cv=none; b=YSVmZxPeMEllfztFvF87FWstfU+eya+KAu2uIEomUvT8H9Hz8B4B3TVkgtmc3GfUAmFhGWZWvVl9eQq56Mmn22H5d/Q4AafKRJlTfyS4CTlz1AhZuj1LURcFNaMDpdOSVWs1jLByYYp2VHqB7irckklTmpX31wbSILqO4XQwb9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744174538; c=relaxed/simple;
-	bh=rw6n8wAXaslqMh/HGhZlUfa8r7rzuMUM5nP/VRN/nPk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ba4mSw+jCd1aii1x4nIxQWbRupmWok9eXzKOX7sGqN9lu5jJ1/vc/bXhSW2LGZQnJl85PxHMh7QmsYL2Igtq4zUfRLsNtZwOXDynm3hgbXWd+cFnNV5c2HJcy+udruFsVtyCJSgxXjk4LfbxOpEjAzkWbMpnU1Ok2blcDV5dSwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lC5HMd9h; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5394tAMc1398897
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 8 Apr 2025 23:55:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744174510;
-	bh=EL8jXAZdg4d+0UegI3uA5v5X0bH/2EC+cV61o4j2lMc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=lC5HMd9hpEFUSsdW0DjvzAUDfKbORIXI9h+SBqtfl9I8e1/qHYjYo2I5BeOZx+WcL
-	 +yst7KIcfAk0wosaVSi5bZH3HuBXAPoEiG2lIHXp6FKUJ3eXV9LwWFDW9fAdVZP1dE
-	 H/LPYoYXKTfde8xeQbyv8yIaF1HHo2eD0Tp8uyEY=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5394tACe041603
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 8 Apr 2025 23:55:10 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
- Apr 2025 23:55:09 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 8 Apr 2025 23:55:09 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.226])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5394t8It123674;
-	Tue, 8 Apr 2025 23:55:09 -0500
-Date: Wed, 9 Apr 2025 10:25:08 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, "Andrew
- Davis" <afd@ti.com>,
-        Andrei Aldea <a-aldea@ti.com>,
-        Jason Kridner
-	<jkridner@beagleboard.org>,
-        Deepak Khatri <lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: ti: Add PocketBeagle2
-Message-ID: <20250409045508.tywtknafajned2ak@lcpd911>
-References: <20250408231823.826163-1-robertcnelson@gmail.com>
+	s=arc-20240116; t=1744177416; c=relaxed/simple;
+	bh=J8LGMW7whhEgDF1kkORXiCUzQ4kiTZwBcZaIB8TG5Rs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=KTLD9KXp1C8UWM4x3uKumThIw3So9Vy5LtmV/YNevrQqRDEOBqXZsbcXYdeqEbCzqBbfp+ISYaESrrshUMdiR+IxlCPv/+bIH1h2N1vnRElD2PHptb06koGnymgfOXA+k+f7uWM2LtvBYWtDGavn3mT6I/Zg/bV766R0NnMnC6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMZz0b/0; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-54addb5a139so7062705e87.0;
+        Tue, 08 Apr 2025 22:43:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744177413; x=1744782213; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=In49OOnUnZvZAmK2s0fur5Q6IBBJkwDHf53+fdgFBOY=;
+        b=WMZz0b/05Pnhk8mU72IX0U/rTIKyqw7+F2cL8yduRkpWqzi5WG0tYgL3G8L4vtPSBv
+         A6E3DSG/ce3EAank5OJPnFCCNVc8+dipBaCMrL79Uof3vnW3Kod1zwk2yvkvPzesJ26C
+         81fRio5sFn3+aqbo3+PoZ7yCvVZNBwthcjleishSXekd/d67ePwMVVr320iU0tLjGjEW
+         pUt30Bdv6dbn0J5n5kkdPXzirmyse9PjY9zJ4XeDlwMhAIMDcKwUnpXCXW1SSOxPAyV0
+         Wz3bc0qXbPq5gicA3AonGFoeVfz8Ea9c84PGBGKbOZpGi4NWzNbVIYDiPVSS8OzucVhe
+         dFIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744177413; x=1744782213;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=In49OOnUnZvZAmK2s0fur5Q6IBBJkwDHf53+fdgFBOY=;
+        b=xJ41INaSSFATFq8JFgsGRl2+c1LMaogckaEihfAu9CeF7cbJE2UL9Qhp3dxQO/qcXB
+         OanaaLTsfzznbva2vkPEEFPFEFIAjjxANlNNQVtOHdUu8PoRbEZMt0moq8Tk20JpenRw
+         tW94flQTf/AIMvfMO+vgZ/mQ2dKqNQ8JWvZBwFzAvasHukbr5rkDXtBxPDVQ9XzZgbaw
+         2i06QNz6l5qNgCtRQ6W/vWTk2baDzKJfn96ciiwg85E67FaI+gWlOeQCo0a26D4+f8GP
+         dFfx3dFe6P1ku3RQEJiy/0AEnkKc0mlLLuRapXjbOdwtBZ6sQULULshr8TKAv0jvNLYr
+         MvTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVlzOkAl0yrfqQi5iOk+Y8G4PemEhf4YHUkEF2RQe4NxykpS1wWoikHKDE2fNb1W2EFA2QLB1N0Nrwnkr9v@vger.kernel.org, AJvYcCXSkvenY4J7+m0bUZ30okQCO1j7OaWhH/eMn5S4+f6wqWhu5yWozhuo9PVy+e7bGexyRWNlMP6TKCtf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzivLG/7br0DOmKyWtWAylBo7eKABsFFdPJPYCJ+wMFozIVGRxs
+	UkrlLUEfHMkGARQtuSYVJ96500q1pmCWHDVcRIBKDPogduKwjRfxPu1ZVw==
+X-Gm-Gg: ASbGncu+RAcHDaeFmwbzNo+mQfKfA9uNuQ11+qzPMfMZ99rR5W/yHpvKXNTzxAUfIvK
+	eJGAT9py4Ix6/aSZfnQ9cG0E4qHsQZgi4sCfEBLsAJPWwY47421b/WbAyBu09hEf1Ig/m9aZi6t
+	mPVlY0l4yHGhnEo4WBOFI4tK2IxeJARZbUM9BIwXWM05xEYA5izwkrWZtuSFbthQKkoxYLMKjBb
+	/u2Gldxh/36zo8YptRvYp+S3MpzYAT9WqVW5ZJNO4fKHLcdWNcd+YyVjG/5ukkkeVPVq0zzCHl4
+	hlsEEUK1ExlU7j7PfpmK1myMUM8V28er0Y+cMiMjP0HYjhU3HeJho0xfhlAjiZ3FjT+TGFWhewP
+	W+xpXrHcWhOp3bOVI9j5oaA==
+X-Google-Smtp-Source: AGHT+IEjVOH0cbgp0Cn3BQSndRXT//QCFT+iAuFmZ0J4tEVy6BjhZuTDOKomi+NcIz3wdVSRuebPhA==
+X-Received: by 2002:a05:6512:1586:b0:54b:ed9:2cf6 with SMTP id 2adb3069b0e04-54c444fdc93mr383432e87.32.1744177412917;
+        Tue, 08 Apr 2025 22:43:32 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c455e5f2csm45868e87.58.2025.04.08.22.43.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Apr 2025 22:43:32 -0700 (PDT)
+Message-ID: <62f78786-f9db-4e05-9001-28b786df669b@gmail.com>
+Date: Wed, 9 Apr 2025 08:43:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250408231823.826163-1-robertcnelson@gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
+ <df7983e7c623041f14a4fbe409a2cff846e68a05.1744090658.git.mazziesaccount@gmail.com>
+ <20250408-boogieman-underwent-968671653b3f@spud>
+ <b233f08a-ac8a-4670-8b32-8afc8a7dfc0c@gmail.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+In-Reply-To: <b233f08a-ac8a-4670-8b32-8afc8a7dfc0c@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Apr 08, 2025 at 18:18:22 -0500, Robert Nelson wrote:
-> This board is based on ti,am625 family using the am6232 and am6254 variations.
+On 09/04/2025 07:30, Matti Vaittinen wrote:
+> On 08/04/2025 19:16, Conor Dooley wrote:
+>> On Tue, Apr 08, 2025 at 11:40:41AM +0300, Matti Vaittinen wrote:
+>>> BD96802Qxx-C is an automotive grade configurable Power Management
+>>> Integrated Circuit supporting Functional Safety features for application
+>>> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
+>>> interrupt lines and has two controllable buck regulators.
+>>>
+>>> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
+>>> to be used as a companion PMIC for the BD96801.
+>>>
+>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>
+>> I think I acked this one on v1, no?
+>> https://lore.kernel.org/all/20250326-candy-endocrine-2e7b2182e53b@spud/
 > 
-> https://www.beagleboard.org/boards/pocketbeagle-2
-> https://openbeagle.org/pocketbeagle/pocketbeagle-2
-> 
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Vignesh Raghavendra <vigneshr@ti.com>
-> CC: Tero Kristo <kristo@kernel.org>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> CC: Andrew Davis <afd@ti.com>
-> CC: Andrei Aldea <a-aldea@ti.com>
-> CC: Dhruva Gole <d-gole@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Deepak Khatri <lorforlinux@beagleboard.org>
-> CC: Ayush Singh <ayush@beagleboard.org>
-> ---
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+> Sorry Conor!
+> Somehow I managed to drop your acks. Also from the other binding 
+> patches.
 
+Oh, actually, I didn't drop acks from the other bindings. Seems like it 
+was just this one. Sorry for the confusion!
 
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+Anyways, all should have acks now - Thanks again for the reviews!
+
+Yours,
+	-- Matti
 
