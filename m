@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-164618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4595FA81C6B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CE2A81C8D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:05:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 303921BA053C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 05:56:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 842F91B68206
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87AD1DE2CE;
-	Wed,  9 Apr 2025 05:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F871DE892;
+	Wed,  9 Apr 2025 06:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2/BfBjp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNCGTpwN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D0D1DDC23;
-	Wed,  9 Apr 2025 05:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504571DE4FB;
+	Wed,  9 Apr 2025 06:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744178163; cv=none; b=T8hxHKj4GwtYfOV2sgVNhZ8IbIylP1iDR0aWWPWjw1mt6639eyr4+515fxjetsJYNeCetT4qHhHSxZom/fhJT44mv7vrIjMgHxlz4lG0ubW8NloDJx3Ht6ESoLe6itVU1Pd/H8c28mrMSsKl0dfZvlU8OLiEhOZemjx0Eoa9mkk=
+	t=1744178596; cv=none; b=O9lTYv8kTU+9HrDU6FmK7klzv9NqnhiUP13iQJ1j02GsmZbD3xzU9s1a7OGUfQGbz1+47+Q/1l5kMVfJw/39ms6Jw+M/Bn6O4/PWUoHB8C4st+K8yErWm7VDc49Ma5CvQlcKyVQLnCxNxbDNg9iLyQrIZN8/xaajLCB9sSLSsOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744178163; c=relaxed/simple;
-	bh=KT1GTf9jH0Y0noounuaWF7hX7ztxlRY+I+TkMzC5KKI=;
+	s=arc-20240116; t=1744178596; c=relaxed/simple;
+	bh=PC2Cvk3hQ6ILTfs1axrdvZeQZiDqDu4ODKLySChbf7c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fAZj6jViVTKImK5zsKGY8yr2JZkxk+dL/DJpTuoZJK1jFLtSQoM38dcByJBbEg5YljaxFkdmoFiwqg5XtOGxa7okQ3YcIb7Ado8D8fg6g4Vzk0PM5CsMJE2P5xIbd4HRDRiSzQsrcWzqs/hstxjJ0feCnOIsCkYyFghvgG0fQy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2/BfBjp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4304CC4CEE7;
-	Wed,  9 Apr 2025 05:55:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GRjPhuATHqIxaw6l7w35cmOHknrZ47XZClv5z+q1bKBSZDcpbC43WA+RkOR0rNJhIbusmL7a1CW9Ao51QvMjqy0OhptW+L4WQqMSWaE7WL75/KNIt1jLCcZniC9j4CtFCgPZtmLyOEEDKfDjgMZ1/iCe8YQOWFOtUE+xAcvqzho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNCGTpwN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74033C4CEE3;
+	Wed,  9 Apr 2025 06:03:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744178163;
-	bh=KT1GTf9jH0Y0noounuaWF7hX7ztxlRY+I+TkMzC5KKI=;
+	s=k20201202; t=1744178595;
+	bh=PC2Cvk3hQ6ILTfs1axrdvZeQZiDqDu4ODKLySChbf7c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e2/BfBjpcaAQiyUmR7eaad4qI3B7d+60BmczQ28uXhD2N33w7GFW0ZbtBYZ6ktiU8
-	 SwHOf82JDvrpHNPmO96+yExS/50r2LdfQeVvXrfIMsoT0gJIb6TpPJF1r5XyN1K7YO
-	 q92WdTRljQsC1lWQiPY9Ql7gYBJb6qBWRAdSgMc2+7yBIg8Xkj69AYJo0umjUNreHh
-	 zgGDyrS87BgNuqHw3ij52Vh7E6yDjoVRAsFvU51y+U/cJcEvUpcXC4RVm/Zw5S8Dk/
-	 +9XipP548+Zfn4lfqrCOPy0VgDqyYAqduRpyx50Z/w1DarBSArx3OtuiiQxAn8sX2p
-	 1o1NPVVQm4VjA==
-Message-ID: <7f2d4894-788e-4ba7-bbfc-67ac0903b6fb@kernel.org>
-Date: Wed, 9 Apr 2025 07:55:53 +0200
+	b=bNCGTpwNtqhjwkBxrcKicZtLgSQCrTSimburI1kUZbPyPgyf0m2Fuv02WDFw9A0KV
+	 Z/pZhHtEX7NzXilgoFDSWa9P10SddYfY/u5lrPCsf8gTLEytItl/2+IYQN66CPaVXv
+	 jG2+TNYvonlnFICwqePiGdmuP+oJcuOZy48bjyLKHz+S8qDcyIY89KIwrH/xix9mHU
+	 eN1YS7Zv4tSJbB5THHFVdjI0BSjYf4n2l/XBbh8b/i+N83F7z2e4l0BgEG5gP1YCjC
+	 C/bAkZ6YJGA54WRj93qGXuqhdZ2kpSY3qije0fA8t2yoWOstMIr9tCmS1jZyzYX67W
+	 2oyyiT2p1Rxhg==
+Message-ID: <018b15a8-4f5b-4752-b865-06608b82e7d5@kernel.org>
+Date: Wed, 9 Apr 2025 08:03:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: iio: adc: add NCT7201 ADCs
-To: Eason Yang <j2anfernee@gmail.com>, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, javier.carrasco.cruz@gmail.com,
- gstols@baylibre.com, tgamblin@baylibre.com, alisadariana@gmail.com,
- antoniu.miclaus@analog.com, eblanc@baylibre.com,
- andriy.shevchenko@linux.intel.com, jstephan@baylibre.com,
- matteomartelli3@gmail.com, angelogioacchino.delregno@collabora.com,
- herve.codina@bootlin.com, marcelo.schmitt@analog.com,
- chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250409012351.2543450-1-j2anfernee@gmail.com>
- <20250409012351.2543450-2-j2anfernee@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: linux-kernel@vger.kernel.org, mdf@kernel.org, hao.wu@intel.com,
+ yilun.xu@intel.com, trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, michal.simek@amd.com, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Sam Winchenbach <swinchenbach@arka.org>
+References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
+ <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
+ <p4bujnmgkcvsu4qipmgh2j2loedepmwgp7zlaxrurhaveb6tbc@ibqtbjnbzdzj>
+ <14b12882-119d-4c24-9634-e4cc37a39212@kernel.org>
+ <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,33 +107,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250409012351.2543450-2-j2anfernee@gmail.com>
+In-Reply-To: <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/04/2025 03:23, Eason Yang wrote:
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-If you are going to send a new version, drop blank line here.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+On 31/03/2025 15:07, Sam Winchenbach wrote:
+>>> Before writing the fabric to the FPGA the driver disables the ICAP, enabling
+>>> the PCAP. Once writing is complete it unconditionally disables the PCAP,
+>>> enabling the ICAP. This patch just makes it so, depending on the use case,
+>>> the ICAP can be enabled at boot. This will not prevent the system from being
+>>> able to load a fabric through the driver. I added in this boolean so existing
+>>> behavior would be maintained.
+>>>
+>>> Do you recommend another approach such as writing to a sysfs attribute to
+>>> switch from PCAP to ICAP?
+>> Not sure yet. Can't you check the status of ICAP before programming and
+>> then enable it only if was enabled before?
+> 
+> I am having a bit of difficulty understanding this so let's talk about cases
+> where the ICAP is enabled/disabled -
+> 
+> 1. When writing the fabric from the driver
+>    In this situation it might make sense to read the state of the ICAP
+>    interface when preparing the fabric, before enabling PCAP. When the write
+>    completes you could re-enable the ICAP if it was previously enabled.
+> 
+>    This might be outside the scope of this change - and I am not comfortable
+>    enough with this use-case to understand potential side effects from doing
+>    this. Logically it makes sense, but there may be a very specific reason that
+>    the ICAP must be enabled after doing a fabric load or partial
+>    reconfiguration.
+> 
+> 2. When the FPGA driver loads and is probed by the DTS
+>    In this situation, which is covered by this patch, the FPGA is loaded by
+>    BootROM/FSBL but contains functionality that requires the ICAP. Unless the
+>    user has made modifications to the FSBL or 3rd stage bootloader there is no
+>    clear way to enable the ICAP interface. Checking to see if it had been
+>    enabled prior to loading this driver does not (in my opinion) make a lot of
+>    sense here.
+> 
+>    Perhaps the name of the DTS is confusing? The suffix '-on-load' was meant to
+>    indicate when the driver was loaded, not the fabric. Would the suffix
+>    '-on-probe' be more clear?
+None of these two, because you refer to software. Property is fine but
+you need to describe the actual state of hardware or system or entire
+stack, e.g. "fpga-with-sem".
 Best regards,
 Krzysztof
 
