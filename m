@@ -1,612 +1,218 @@
-Return-Path: <devicetree+bounces-164765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44CB6A82502
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABD2A8256C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 768D3172E62
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:37:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9A4917C4B3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F76626159E;
-	Wed,  9 Apr 2025 12:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BE325EFBF;
+	Wed,  9 Apr 2025 12:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IAGkxqek"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Md6s7K9p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2043.outbound.protection.outlook.com [40.107.95.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C880218AD2
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 12:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744202210; cv=none; b=FzbiFJRh5k9Z+gSGMqaa3szT3csqopj4RsnUNs+UqY6WkdwWDKkTQuV/DmbBy0noc/hwgTwKyBaGLa7U7g9aZYrDlXVO3nQxvgqLE4sghkZcN5OLaPvjIOdxm62OGD/osyQ0qbwQ0RCkfcz4o89csem3suRsvdXsNDTY4dnYyk4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744202210; c=relaxed/simple;
-	bh=QvGqeVyR+0/+b53m3cQsHwf9C+sdmlzj4AS84hbQ1b0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VuvME3VLRkFSrC4e2navuK/wGPEm/xGg2Na05M/PiPBz2IZFGUPP6PuBk5sKItYVjezIXDiui4w/Z0DyUeP/nzWwvxkgfutz5Gkvs/f/2HBrw3Kfr3ZsHKEcdhSlLUuDwGsUiNEIhB57goTBEyIJeQuvcyxAtKVr2L4AvG0YqnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IAGkxqek; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cfecdd8b2so52155065e9.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 05:36:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744202206; x=1744807006; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KwK0naV27RrZvDNLnQVM+49TIANDOYakUt8eI4RWU/s=;
-        b=IAGkxqekfxaGkGlmPDboVojM3RIYSFbBSv5g/7UhYDEA8R79JgNiDAg0G56K1udF/o
-         3myLPkcf9H+TLaL1N5i3d+SZokx4TTZoD2vbcI1f2VtUQyWzqaAS89zC3V2Zsrh8vaTG
-         c+K9Y/uCejS1x97jofR2EGb92YVpyK6L6lCYG6Hi6GqxtIGvrOcbAZzFTnsrW2uYDHa4
-         z6rE0JMwj5Vg889H+/J4YzGjKnuXnFb8rR2ttSy5mbU3mgqvFun/OHamw3+BTWWC21sc
-         awD50GE0Cy4mGpUKuCMsrK9eMbbCIGXjxRVVh7prdueU1M2xgaVt+31D8W6TlqXvjnQ8
-         5vTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744202206; x=1744807006;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=KwK0naV27RrZvDNLnQVM+49TIANDOYakUt8eI4RWU/s=;
-        b=lbLuM1xXixfXMTBvPrIE6n6EPFHq7ddiHsFoy1qv0+8pqmZ865s5mbYCUAenh4D1N9
-         T9fIGCHWC2ZnN9X/YGbA0/13Hvl9cIjsgJMzhbi40KnD7tqhYPHkMZxgLjzTlA67E5wG
-         LbIIrcXolD4UYTfbsWPhmazXNnpKMIFGEXIGcmIfNUXRtvDyXAxZ0kPuL+AYH4YkvZQo
-         vbWKZZkltwptxl564jnGoZiy/wSvBPdLeoBAjv2Z9WqENDfpybVEE2irCeri5p8q4Vdg
-         3sE58kzlIpE/02dgPkIpcfMXecTxSxrmcDDzeFHTuS4oeJi8ho/MaWNTsqZGKMaHZ9t3
-         mUIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFaoiiLb9fYYEdnwu/LT1qQ34CcMG7P2SOAUzeeY97zLl9dJOzds15Ktx/WYDvvSsFDr46MjAkElhl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDMyU7gUHIN37FP1rUvCJezk+f31q6YSp9bHdigtMMviQIc1m4
-	jBKD0LUvge465rni4rCDlMVdTr9GEf/huXGcpzwGXo2Ai+7ivw4Fc7ik1fzjHHs=
-X-Gm-Gg: ASbGnctLO3G+3mhXD2Uams3FFV6fe4w2KUUYDlWzW0k8Deb2vkz7nhy9QWcXyDrQ4SR
-	enLAmZAVYfIBUieVQtjERT9/OgrUGoj3MBQEHwmzXxj9bZc1r0hPyNNyxqLozvOOCFacqDCvzc3
-	jvCKwE8LEZCPpoXxQ+poSbxWMS32tTSMmQfVo8yyI5tcHj9Xu8weGwNz7HkM6YWSZmrR1bHxu1A
-	cs4WFurKZwRRulr01S0pO3fFmPWHmbewN7Z6sK4GRIMPjlqdyeLwOSqDDw2fuNrOp/eyhhlI+Qf
-	IgmG12YzPz0sdK5Yxos9274EZ2G+eWkExX4bTv8UGQi3PmoU1kxmuIM/Hm/Ap072wAl57/etPxD
-	jPsPD5I8kAIi3aEQoIQ==
-X-Google-Smtp-Source: AGHT+IHBlyCqmjJJIWgNQo+0YLAowDIP7iInadYLTkkQDznweq1Zp91mujS5ucwbObvFMMcjnLhYpg==
-X-Received: by 2002:a05:600c:c86:b0:43d:2313:7b54 with SMTP id 5b1f17b1804b1-43f1ec8d066mr29679945e9.3.1744202206227;
-        Wed, 09 Apr 2025 05:36:46 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:87d9:979a:1261:ab65? ([2a01:e0a:3d9:2080:87d9:979a:1261:ab65])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f206332d9sm18743995e9.13.2025.04.09.05.36.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Apr 2025 05:36:45 -0700 (PDT)
-Message-ID: <b13b4199-168e-419c-a897-298675533c67@linaro.org>
-Date: Wed, 9 Apr 2025 14:36:43 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C702D25A625;
+	Wed,  9 Apr 2025 12:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744203401; cv=fail; b=WMaGDiXMjEit0AFoBlfsCbRpy6bFp9/PXF3SE8mI3sKHUKEuslKEFGaLM3/p9ePnb9706aOkneJvCoUMoQahEvt6H9gTluBnepl67VBgfOmcoUFdDc+ObFfpgRLUmrNqgm1iug3pEWdpbHQl6oXbIm+kKqLk1NqiQ2HI66QlHPI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744203401; c=relaxed/simple;
+	bh=NqZQi4zjAjeDjbR1+b+lLyi4bjIMGJsLmPEIrDjDh9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=RifUOsGdC8jbVpVSXZpASUuxp4V0R9k147vG4nWYbJjg+iS8dcDSYVgYbJVsrOMmllQMp8W4a8Lai5gmWXULRpRvaQTxgmz7P1zzNqd9asVI/+mqiIt5ApfOXqNo1cORa4J7UM/0yOsZjX3L13oReS4+71BTwmYMR6E9UsyDO9U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Md6s7K9p; arc=fail smtp.client-ip=40.107.95.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b6lDo0doX9+kyNP84ZNQngZE/8oQq/jH4HNgAiBwX/+4XzzW4WLgvq14/Cqk7qkqUNubAE6V+eNgHHhASZiPuLtr/Y9+i6HcleumxXlxKkYmE+bJgWXMj/KQOW/2Pc5+ISR3BMIiI3DHQ+7+TBQDeVfTj1eskESF2XTTK1xvha08kko2M6bbDMFgACvQjc2ro0syKoUWrGAb4+sfp03l7UWTixGDTBYih1fOhKJhRsJy79GxV7gbGQUFvRZMuvtK/3IABZz/7DBvHPC9Mvu/5c43M3Xy5tc/6ztS6zN019BxvhdxeCpWm1Ntjp43FGatBMcHxVVnXDUwL7Wq3m9T+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NqZQi4zjAjeDjbR1+b+lLyi4bjIMGJsLmPEIrDjDh9U=;
+ b=akljG02WZwdcI77J14tvkhK5IhyI1Aha4GLAeUB2en0mWG1hpucF921jlAIq8xIl3I+Z/LnvZnXhFeC2orqgsuVsQHg6kypbjDmYISyvFO34XYHRR61GzPUbgJKESUWIK45LVo8V22XzyAzxqcR2xT3yYAevWIovxEg2cE/MxeSn15FJhCC8TxrSEVQ/ss98jRBS8U3Uk4WYvnrRSDKJ4zbUV5dgsENGd2Rxm5sxDkh99laPhyf+PH36sCMyMIgZY8A7y74hR6UnlKBUG8JORzVw0+H+hq1BL3VCBZijelXLyX9hVd6dKNOx27B40PzEFokVIipV0AOdJcJpvBb89Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NqZQi4zjAjeDjbR1+b+lLyi4bjIMGJsLmPEIrDjDh9U=;
+ b=Md6s7K9pNr4lMEmpm6i9opqCDT4MWKtrKHxwOqWm14olTJWjE28VO7hAAC1P2NIwwNKg84BZprKGcJgYY+PiaTndxuzdRPF6nnQ46xYoWTbobZht9kx3DOUNR0lhddsJ2sZQp+BXlmew2/2SgLSsvBTNBLeMgTt+e4H1ypghinKufsFPC0pN0+XWG7118WQUdlepkCYt4l8MdKizceFuLWyCT2CBmwFPzFA/yYGNfBYhcII3UPSyd2J0MaIVoGl+yyy/Lu/kSFuK9qdwuZdfJFcfvzyN7UtO3qzfEkUvhrsRGPBUomtVK7J4UCBpinNnB8AQzHo+BIIw+p3u+NzAmA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com (2603:10b6:610:17c::13)
+ by IA1PR12MB6484.namprd12.prod.outlook.com (2603:10b6:208:3a7::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.31; Wed, 9 Apr
+ 2025 12:56:32 +0000
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732]) by CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732%4]) with mapi id 15.20.8606.028; Wed, 9 Apr 2025
+ 12:56:32 +0000
+Date: Wed, 9 Apr 2025 09:56:30 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Pratyush Yadav <ptyadav@amazon.de>,
+	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
+	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
+	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
+	saravanak@google.com, skinsburskii@linux.microsoft.com,
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
+ preservation
+Message-ID: <20250409125630.GI1778492@nvidia.com>
+References: <20250403142438.GF342109@nvidia.com>
+ <Z--sUYCvP3Q8nT8e@kernel.org>
+ <20250404124729.GH342109@nvidia.com>
+ <Z-_kSXrHWU5Bf3sV@kernel.org>
+ <20250404143031.GB1336818@nvidia.com>
+ <Z_KnovvW7F2ZyzhX@kernel.org>
+ <20250407141626.GB1557073@nvidia.com>
+ <Z_P92UCbNCV0TbiA@kernel.org>
+ <20250407170305.GI1557073@nvidia.com>
+ <Z_Y4k4rDO-BbMjqs@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z_Y4k4rDO-BbMjqs@kernel.org>
+X-ClientProxiedBy: BL1PR13CA0387.namprd13.prod.outlook.com
+ (2603:10b6:208:2c0::32) To CH3PR12MB8659.namprd12.prod.outlook.com
+ (2603:10b6:610:17c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 4/5] media: platform: qcom/iris: rename iris_vpu3 to
- iris_vpu3x
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org>
- <20250407-topic-sm8x50-iris-v10-v3-4-63569f6d04aa@linaro.org>
- <808f48f4-ad4d-1afe-bf15-a8e57288f9d3@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <808f48f4-ad4d-1afe-bf15-a8e57288f9d3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR12MB8659:EE_|IA1PR12MB6484:EE_
+X-MS-Office365-Filtering-Correlation-Id: f25ecdc7-cb7a-4312-374f-08dd7765f3a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?AQ6ARALcPZzHKEopKML0MlKzoSGCiS7Ah3QQebv8Wdr66yfB+ICkEQcf/Tdi?=
+ =?us-ascii?Q?PJ8n6dELFS8CXHvA57j5ojZpmTqIsj1xdAhDsUTFvm4Jn1oVJEnYTShYmIjb?=
+ =?us-ascii?Q?zwm/uJDDXTCfsoDr5z0OcRcey8vtL1nw2Zt4I46PwfBvTsuzcvF/QcYlGQko?=
+ =?us-ascii?Q?rMllwrY4iSSZTG27PIeV/7YuDwkzYVTStE01VpO+m62uallOaesH6TLI+ZsN?=
+ =?us-ascii?Q?BRwSTREim8yakAdYu0I+G11x1Fd4j43YHnF23FgG23uHuQqk3XuGzA9+bDcR?=
+ =?us-ascii?Q?BV8GuJiMajrCrsN4Qw6+mVm3PJVPkC+2kBovRyhj0W43/9QhzCbNVKicRK49?=
+ =?us-ascii?Q?iQp3C6TD9mzpe5pEEWG59D+hMiiPXrhF8rmHS0X1yvIrD7INN3KL7rYz8470?=
+ =?us-ascii?Q?kvoUSTonqvm/yPtsytrYUCN6fiKt7mBph5KJpDMf3yatjQ532/EUuJHTY1QX?=
+ =?us-ascii?Q?8HHs+P7HS4ZdbTXIYXubz/0QNvenmjKjE/YeiBZnW4bVPBb4k2G3uH7Fqd60?=
+ =?us-ascii?Q?OMXNHEcbv/r9UC5zhtuVeNns121oQTKCraHhFRmXdrkX2xSGMijDeuFXCvii?=
+ =?us-ascii?Q?HSMZsSRg9PrZpqwLzrYpWuyX9X/9yM9p2XAWl9HKH4Yfth43J7i+a+RbmHGY?=
+ =?us-ascii?Q?dYQsgzZFJ2HlhmR72e/L36eNQRmR3Az8HBOv9G9ICo7CdclILGFgUyMnCnDA?=
+ =?us-ascii?Q?o8ndNwlLOZg3+X5Y3Ovyv13kH/bthwNb42EcSQlHq47R20xV6AZ6F/5TzcVL?=
+ =?us-ascii?Q?/NQya6zjZzeKfp2BvGEy7QL8KHGPnHi2VcZnubxsOJTckX6bSTwTVnTdlOO/?=
+ =?us-ascii?Q?JLb6rJjxA+zjS2s/XiIiPILRgQzdo7WcH5HX7RwQXxrW1I4+lhqEBE4rj6po?=
+ =?us-ascii?Q?ypY3gsHvv1dRVaglmF4ss0Ml6lCgJRin79YE2LquQuUD4rq43KzhlWQI3Uec?=
+ =?us-ascii?Q?7dVWBz8uq3MmAzXnWwNKkTD+qD/Gz/g7u8AA+bo8xVPPZkN3qksqQk6294aq?=
+ =?us-ascii?Q?zzT9jHgekM7ZK37faVGwTVcNTlsxvrg1wNBh9phkZoCc37C9bj+wsjPs/e+N?=
+ =?us-ascii?Q?Wb0DNXUgw11uxQMIc8LuHM5ouwOAH+qxCVeIVhwAeyWkfkT3BVwbjZ0jmaIm?=
+ =?us-ascii?Q?2sQozStDbAmL7tKG86L5wBsMeEUcLSO0TuJ/S78e18AoIN90q3ecyjuqMdIO?=
+ =?us-ascii?Q?gQMPAs9QjtrNIRs1MpTnLOzYeAN35WiSoZ6CYYXXsNS45OTF44ZHlgxUyAxV?=
+ =?us-ascii?Q?9Vz8IrZdKLfX1VP5NvwGrMfTPu4Nq7FyaqvRGcUB3uDcpxDFWR3XoZbGEPU8?=
+ =?us-ascii?Q?4rUEldsh5QkLoDx7ProBuw/ZDvsHaoP3I8y9qN7aNk+Hce1kfT1x4bB9hSdp?=
+ =?us-ascii?Q?h1w3QwvVRsiTnAawLLDB6E69zII/9s4CwdNMznHCqc2yg12amJwn21nn4bFT?=
+ =?us-ascii?Q?bdFJfhv6JHI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB8659.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?32L52kGFBne3725fgGoyYWGJD9us64HSHHBCH9ST9WSgkLkRgJkY1cJk/ExX?=
+ =?us-ascii?Q?svvRQ+atxrwnQr8ywVOMGYHMvCZU7sJjEBcexpLwHp6nLu3puHTh07aKHTiq?=
+ =?us-ascii?Q?dHTeh5qRptKhuRa5+2LBC9VuMbn6uxnO0xKnn1/eZXs92R5Pxbo+cwRxLBaa?=
+ =?us-ascii?Q?ETPhJnJZImcicACA0Zj7TLq5poZ7OEEljlpxuk2OUXHEdvR414psi9vT4cP9?=
+ =?us-ascii?Q?i0T1jwbPtdnmZZAhRz6yJJ1BnZ1Zoiln7J9bbORqIoirC4BPcHSzHl8hCrXG?=
+ =?us-ascii?Q?wgukTTJdpYr83g4fmrmPoCVJTMCXXJK/iBna2kf/vJ9imGYOghimc/mkuz6e?=
+ =?us-ascii?Q?sL3MszwW3riJWvyIdtAvwGWwfD1NeEneH+9wMM7uVmZ50qgR1BzilaoW+TUV?=
+ =?us-ascii?Q?aGrcsor2p+RYsfjK9jnMlaUd83sgW6nIk6s7wrau8+5TRS0VcsDR3VXthMjr?=
+ =?us-ascii?Q?qFK1MTVV2flPlj0Lw6QbPuWiR+cTAv8TWXQm7vAxjwEUa543eEPq961NrFyi?=
+ =?us-ascii?Q?KOH8zrVYUT3qY0T2GAjjy4WapXbEZ8YSwOpXv0KsqE+fPnc+szGKekIZTLhL?=
+ =?us-ascii?Q?zlrcQYH71ps9Jj23GbJsxE1WYzgVi2879euGtF72nz8oMFlFjbN0rg8Osgvi?=
+ =?us-ascii?Q?qcQ5F5A1r0XrFTd7q9igxaClVqK3zrHSjfdPiZf84TyotzEPCs2klt/QQ1Xz?=
+ =?us-ascii?Q?rISHNZLnElofE/EzSOOPbC5C2sf/oBPZ77kzzjX0afsk1CujX1cOYCVUy6pu?=
+ =?us-ascii?Q?5QmfQOGwkvLG1EzIvKzvfb51TM2bOJCr9822WZTUlyddMXPByp6sGyp7psqk?=
+ =?us-ascii?Q?wLlhaZSln0L85Zv9jc6A7qt0cQvRbExZMLlQHjU1jeMhjQhVbxAig++03rcT?=
+ =?us-ascii?Q?Qbym2xy7Yb1qhBaITQcODXrDehJLkc+ULS4zRboqZNDebdi1aq7qC8S/hH+p?=
+ =?us-ascii?Q?ko15NbRTlSOorHXUT9zn0hrMqJQFQgN3Z2krMY7jG+Y6BfBvL3AV6oM/CWOU?=
+ =?us-ascii?Q?TbD7N04gkcvXw14IvQ8k/DKgGZMX5QQnKuUVZd0QxSc/LY7U6r6c6lk2M4lN?=
+ =?us-ascii?Q?eepXyN8QdNqCfGPXYvCubFCuSkNVvhg4sBWo4FHBNZCylmsX0M+LDnLz2/e+?=
+ =?us-ascii?Q?NyLjmEfkF9op0HnDPM1YKfbZpp0012j3hTOHsT8pLDuZOI5ILhkSPxs91FaV?=
+ =?us-ascii?Q?V5+pXKtArN/O9Kurh5foZCewU+4Bj4GCu/jQFStMru6i9FbRuMFLRMSdQYbr?=
+ =?us-ascii?Q?+lCXuiY6Ved/ATId3Rf8s6wBY1P+QB7EM/iSqIQqtMmgWCaqvnET8ip/ohRr?=
+ =?us-ascii?Q?MuR4ZMzYJp5quWOrs1DYzjgdC9wIIn35Pd3r+7Y1DjltFCPfLTxxAx05NnWr?=
+ =?us-ascii?Q?u6kOXFGu60e7vO6iM3o6IBYy2LNDo0h4qpGaxPOWKIdMsMc4zfDlh8fb+E8a?=
+ =?us-ascii?Q?2/C9NJFrTbV+IAlekfxPS6GIUYTYMkHBBgTPZ35ZLXYY8GC4SsB8O+V4Idfe?=
+ =?us-ascii?Q?ZN0+gWX4c1YVDo95HWnH4EvDfnGFdPrUMj9KT9RhWzoK22cmOTCTAphsxrJH?=
+ =?us-ascii?Q?MgUdwNDD6V7JRhyXMAoVhKwwG/IvuDtnhuTmxSrJ?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f25ecdc7-cb7a-4312-374f-08dd7765f3a1
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8659.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 12:56:32.2825
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ns8NgL+vzLxfXj/NonFUv2JXVbqk/whMMexzTsADjMXQHWovugM+j42CnrutHO4Y
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6484
 
-On 09/04/2025 12:49, Dikshita Agarwal wrote:
-> 
-> 
-> On 4/7/2025 8:54 PM, Neil Armstrong wrote:
->> The vpu33 HW is very close to vpu3, and shares most of the
->> operations, so rename file to vpu3x since we'll handle all vpu3
->> variants in it.
->>
->> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/media/platform/qcom/iris/Makefile          |   2 +-
->>   drivers/media/platform/qcom/iris/iris_vpu3.c       | 123 ---------
->>   drivers/media/platform/qcom/iris/iris_vpu3x.c      | 277 +++++++++++++++++++++
->>   drivers/media/platform/qcom/iris/iris_vpu_common.h |   3 +
->>   4 files changed, 281 insertions(+), 124 deletions(-)
->>
->> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
->> index 35390534534e93f4617c1036a05ca0921567ba1d..473aaf655448180ade917e642289677fc1277f99 100644
->> --- a/drivers/media/platform/qcom/iris/Makefile
->> +++ b/drivers/media/platform/qcom/iris/Makefile
->> @@ -20,7 +20,7 @@ qcom-iris-objs += \
->>                iris_vb2.o \
->>                iris_vdec.o \
->>                iris_vpu2.o \
->> -             iris_vpu3.o \
->> +             iris_vpu3x.o \
->>                iris_vpu_buffer.o \
->>                iris_vpu_common.o \
->>   
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3.c b/drivers/media/platform/qcom/iris/iris_vpu3.c
->> deleted file mode 100644
->> index 13dab61427b8bd0491b69a9bc5f5144d27d17362..0000000000000000000000000000000000000000
->> --- a/drivers/media/platform/qcom/iris/iris_vpu3.c
->> +++ /dev/null
->> @@ -1,123 +0,0 @@
->> -// SPDX-License-Identifier: GPL-2.0-only
->> -/*
->> - * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> - */
->> -
->> -#include <linux/iopoll.h>
->> -
->> -#include "iris_instance.h"
->> -#include "iris_vpu_common.h"
->> -#include "iris_vpu_register_defines.h"
->> -
->> -#define AON_MVP_NOC_RESET			0x0001F000
->> -
->> -#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
->> -#define CORE_CLK_RUN				0x0
->> -
->> -#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
->> -#define CORE_BRIDGE_SW_RESET			BIT(0)
->> -#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
->> -
->> -#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
->> -#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
->> -
->> -#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
->> -
->> -#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
->> -
->> -static bool iris_vpu3_hw_power_collapsed(struct iris_core *core)
->> -{
->> -	u32 value, pwr_status;
->> -
->> -	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
->> -	pwr_status = value & BIT(1);
->> -
->> -	return pwr_status ? false : true;
->> -}
->> -
->> -static void iris_vpu3_power_off_hardware(struct iris_core *core)
->> -{
->> -	u32 reg_val = 0, value, i;
->> -	int ret;
->> -
->> -	if (iris_vpu3_hw_power_collapsed(core))
->> -		goto disable_power;
->> -
->> -	dev_err(core->dev, "video hw is power on\n");
->> -
->> -	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
->> -	if (value)
->> -		writel(CORE_CLK_RUN, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
->> -
->> -	for (i = 0; i < core->iris_platform_data->num_vpp_pipe; i++) {
->> -		ret = readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN + 4 * i,
->> -					 reg_val, reg_val & 0x400000, 2000, 20000);
->> -		if (ret)
->> -			goto disable_power;
->> -	}
->> -
->> -	writel(VIDEO_NOC_RESET_REQ, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
->> -
->> -	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
->> -				 reg_val, reg_val & 0x3, 200, 2000);
->> -	if (ret)
->> -		goto disable_power;
->> -
->> -	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
->> -
->> -	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
->> -				 reg_val, !(reg_val & 0x3), 200, 2000);
->> -	if (ret)
->> -		goto disable_power;
->> -
->> -	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE,
->> -	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> -	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> -	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> -
->> -disable_power:
->> -	iris_vpu_power_off_hw(core);
->> -}
->> -
->> -static u64 iris_vpu3_calculate_frequency(struct iris_inst *inst, size_t data_size)
->> -{
->> -	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
->> -	struct v4l2_format *inp_f = inst->fmt_src;
->> -	u32 height, width, mbs_per_second, mbpf;
->> -	u64 fw_cycles, fw_vpp_cycles;
->> -	u64 vsp_cycles, vpp_cycles;
->> -	u32 fps = DEFAULT_FPS;
->> -
->> -	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
->> -	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
->> -
->> -	mbpf = NUM_MBS_PER_FRAME(height, width);
->> -	mbs_per_second = mbpf * fps;
->> -
->> -	fw_cycles = fps * caps->mb_cycles_fw;
->> -	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
->> -
->> -	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
->> -	/* 21 / 20 is minimum overhead factor */
->> -	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
->> -
->> -	/* 1.059 is multi-pipe overhead */
->> -	if (inst->fw_caps[PIPE].value > 1)
->> -		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
->> -
->> -	vsp_cycles = fps * data_size * 8;
->> -	vsp_cycles = div_u64(vsp_cycles, 2);
->> -	/* VSP FW overhead 1.05 */
->> -	vsp_cycles = div_u64(vsp_cycles * 21, 20);
->> -
->> -	if (inst->fw_caps[STAGE].value == STAGE_1)
->> -		vsp_cycles = vsp_cycles * 3;
->> -
->> -	return max3(vpp_cycles, vsp_cycles, fw_cycles);
->> -}
->> -
->> -const struct vpu_ops iris_vpu3_ops = {
->> -	.power_off_hw = iris_vpu3_power_off_hardware,
->> -	.power_off_controller = iris_vpu_power_off_controller,
->> -	.calc_freq = iris_vpu3_calculate_frequency,
->> -};
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3x.c b/drivers/media/platform/qcom/iris/iris_vpu3x.c
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..ea7be2e0a3a255f61e236740e1082e7c9207250d
->> --- /dev/null
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu3x.c
->> @@ -0,0 +1,277 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/iopoll.h>
->> +#include <linux/reset.h>
->> +
->> +#include "iris_instance.h"
->> +#include "iris_vpu_common.h"
->> +#include "iris_vpu_register_defines.h"
->> +
->> +#define WRAPPER_TZ_BASE_OFFS			0x000C0000
->> +#define AON_BASE_OFFS				0x000E0000
->> +#define AON_MVP_NOC_RESET			0x0001F000
->> +
->> +#define WRAPPER_DEBUG_BRIDGE_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x54)
->> +#define WRAPPER_DEBUG_BRIDGE_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x58)
->> +#define WRAPPER_IRIS_CPU_NOC_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x5C)
->> +#define REQ_POWER_DOWN_PREP			BIT(0)
->> +#define WRAPPER_IRIS_CPU_NOC_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x60)
->> +#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
->> +#define CORE_CLK_RUN				0x0
->> +
->> +#define WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG		(WRAPPER_TZ_BASE_OFFS + 0x14)
->> +#define CTL_AXI_CLK_HALT			BIT(0)
->> +#define CTL_CLK_HALT				BIT(1)
->> +
->> +#define WRAPPER_TZ_QNS4PDXFIFO_RESET		(WRAPPER_TZ_BASE_OFFS + 0x18)
->> +#define RESET_HIGH				BIT(0)
->> +
->> +#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
->> +#define CORE_BRIDGE_SW_RESET			BIT(0)
->> +#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
->> +
->> +#define CPU_CS_X2RPMH				(CPU_CS_BASE_OFFS + 0x168)
->> +#define MSK_SIGNAL_FROM_TENSILICA		BIT(0)
->> +#define MSK_CORE_POWER_ON			BIT(1)
->> +
->> +#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
->> +#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
->> +
->> +#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
->> +
->> +#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
->> +
->> +#define AON_WRAPPER_MVP_NOC_LPI_CONTROL		(AON_BASE_OFFS)
->> +#define AON_WRAPPER_MVP_NOC_LPI_STATUS		(AON_BASE_OFFS + 0x4)
->> +
->> +#define AON_WRAPPER_MVP_NOC_CORE_SW_RESET	(AON_BASE_OFFS + 0x18)
->> +#define SW_RESET				BIT(0)
->> +#define AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL	(AON_BASE_OFFS + 0x20)
->> +#define NOC_HALT				BIT(0)
->> +#define AON_WRAPPER_SPARE			(AON_BASE_OFFS + 0x28)
->> +
->> +static bool iris_vpu3x_hw_power_collapsed(struct iris_core *core)
->> +{
->> +	u32 value, pwr_status;
->> +
->> +	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
->> +	pwr_status = value & BIT(1);
->> +
->> +	return pwr_status ? false : true;
->> +}
->> +
->> +static int iris_vpu3x_power_off_hardware_begin(struct iris_core *core)
->> +{
->> +	u32 reg_val = 0, value, i;
->> +	int ret;
->> +
->> +	if (iris_vpu3x_hw_power_collapsed(core))
->> +		return 1;
->> +
->> +	dev_err(core->dev, "video hw is power on\n");
->> +
->> +	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
->> +	if (value)
->> +		writel(CORE_CLK_RUN, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
->> +
->> +	for (i = 0; i < core->iris_platform_data->num_vpp_pipe; i++) {
->> +		ret = readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN + 4 * i,
->> +					 reg_val, reg_val & 0x400000, 2000, 20000);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void iris_vpu3x_power_off_hardware_end(struct iris_core *core)
->> +{
->> +	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE,
->> +	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> +	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> +	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
->> +}
->> +
-> I'm not a big fan of splitting the API into begin/middle/end just for the
-> sake of de-duplication of small part of code. It ends up introducing a lot
-> of jumps in the code, which makes it harder to follow.
-> Keeping it as a single flow, even with some duplication, would be more
-> readable and maintainable.
+On Wed, Apr 09, 2025 at 12:06:27PM +0300, Mike Rapoport wrote:
 
-OK, will un-split them.
+> Now we've settled with terminology, and given that currently memdesc ==
+> struct page, I think we need kho_preserve_folio(struct *folio) for actual
+> struct folios and, apparently other high order allocations, and
+> kho_preserve_pages(struct page *, int nr) for memblock, vmalloc and
+> alloc_pages_exact.
 
-Thanks,
-Neil
+I'm not sure that is consistent with what Matthew is trying to build,
+I think we are trying to remove 'struct page' usage, especially for
+compound pages. Right now, though it is confusing, folio is the right
+word to encompass both page cache memory and random memdescs from
+other subsystems.
 
->> +static void iris_vpu3_power_off_hardware(struct iris_core *core)
->> +{
->> +	u32 reg_val = 0;
->> +	int ret;
->> +
->> +	ret = iris_vpu3x_power_off_hardware_begin(core);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	writel(VIDEO_NOC_RESET_REQ, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
->> +
->> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
->> +				 reg_val, reg_val & 0x3, 200, 2000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
->> +
->> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
->> +				 reg_val, !(reg_val & 0x3), 200, 2000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	iris_vpu3x_power_off_hardware_end(core);
->> +
->> +disable_power:
->> +	iris_vpu_power_off_hw(core);
->> +}
->> +
->> +static void iris_vpu33_power_off_hardware(struct iris_core *core)
->> +{
->> +	u32 reg_val = 0;
->> +	int ret;
->> +
->> +	ret = iris_vpu3x_power_off_hardware_begin(core);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS,
->> +			reg_val, reg_val & BIT(0), 200, 2000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	/* set MNoC to low power, set PD_NOC_QREQ (bit 0) */
->> +	writel(BIT(0), core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
->> +
->> +	iris_vpu3x_power_off_hardware_end(core);
->> +
->> +disable_power:
->> +	iris_vpu_power_off_hw(core);
->> +}
->> +
->> +static int iris_vpu33_power_off_controller(struct iris_core *core)
->> +{
->> +	u32 xo_rst_tbl_size = core->iris_platform_data->controller_rst_tbl_size;
->> +	u32 clk_rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
->> +	u32 val = 0;
->> +	int ret;
->> +
->> +	writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON, core->reg_base + CPU_CS_X2RPMH);
->> +
->> +	writel(REQ_POWER_DOWN_PREP, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
->> +
->> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
->> +				 val, val & BIT(0), 200, 2000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	writel(0x0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
->> +
->> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
->> +				 val, val == 0, 200, 2000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	writel(CTL_AXI_CLK_HALT | CTL_CLK_HALT,
->> +	       core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
->> +	writel(RESET_HIGH, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
->> +	writel(0x0, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
->> +	writel(0x0, core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
->> +
->> +	reset_control_bulk_reset(clk_rst_tbl_size, core->resets);
->> +
->> +	/* Disable MVP NoC clock */
->> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
->> +	val |= NOC_HALT;
->> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
->> +
->> +	/* enable MVP NoC reset */
->> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
->> +	val |= SW_RESET;
->> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
->> +
->> +	/* poll AON spare register bit0 to become zero with 50ms timeout */
->> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_SPARE,
->> +				 val, (val & BIT(0)) == 0, 1000, 50000);
->> +	if (ret)
->> +		goto disable_power;
->> +
->> +	/* enable bit(1) to avoid cvp noc xo reset */
->> +	val = readl(core->reg_base + AON_WRAPPER_SPARE);
->> +	val |= BIT(1);
->> +	writel(val, core->reg_base + AON_WRAPPER_SPARE);
->> +
->> +	reset_control_bulk_assert(xo_rst_tbl_size, core->controller_resets);
->> +
->> +	/* De-assert MVP NoC reset */
->> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
->> +	val &= ~SW_RESET;
->> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
->> +
->> +	usleep_range(80, 100);
->> +
->> +	reset_control_bulk_deassert(xo_rst_tbl_size, core->controller_resets);
->> +
->> +	/* reset AON spare register */
->> +	writel(0, core->reg_base + AON_WRAPPER_SPARE);
->> +
->> +	/* Enable MVP NoC clock */
->> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
->> +	val &= ~NOC_HALT;
->> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
->> +
->> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
->> +
->> +disable_power:
->> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
->> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
->> +
->> +	return 0;
->> +}
->> +
->> +static u64 iris_vpu3x_calculate_frequency(struct iris_inst *inst, size_t data_size)
->> +{
->> +	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
->> +	struct v4l2_format *inp_f = inst->fmt_src;
->> +	u32 height, width, mbs_per_second, mbpf;
->> +	u64 fw_cycles, fw_vpp_cycles;
->> +	u64 vsp_cycles, vpp_cycles;
->> +	u32 fps = DEFAULT_FPS;
->> +
->> +	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
->> +	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
->> +
->> +	mbpf = NUM_MBS_PER_FRAME(height, width);
->> +	mbs_per_second = mbpf * fps;
->> +
->> +	fw_cycles = fps * caps->mb_cycles_fw;
->> +	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
->> +
->> +	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
->> +	/* 21 / 20 is minimum overhead factor */
->> +	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
->> +
->> +	/* 1.059 is multi-pipe overhead */
->> +	if (inst->fw_caps[PIPE].value > 1)
->> +		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
->> +
->> +	vsp_cycles = fps * data_size * 8;
->> +	vsp_cycles = div_u64(vsp_cycles, 2);
->> +	/* VSP FW overhead 1.05 */
->> +	vsp_cycles = div_u64(vsp_cycles * 21, 20);
->> +
->> +	if (inst->fw_caps[STAGE].value == STAGE_1)
->> +		vsp_cycles = vsp_cycles * 3;
->> +
->> +	return max3(vpp_cycles, vsp_cycles, fw_cycles);
->> +}
->> +
->> +const struct vpu_ops iris_vpu3_ops = {
->> +	.power_off_hw = iris_vpu3_power_off_hardware,
->> +	.power_off_controller = iris_vpu_power_off_controller,
->> +	.calc_freq = iris_vpu3x_calculate_frequency,
->> +};
->> +
->> +const struct vpu_ops iris_vpu33_ops = {
->> +	.power_off_hw = iris_vpu33_power_off_hardware,
->> +	.power_off_controller = iris_vpu33_power_off_controller,
->> +	.calc_freq = iris_vpu3x_calculate_frequency,
->> +};
->> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> index f8965661c602f990d5a7057565f79df4112d097e..4af3cb0d44e00be498fc7ba648c68f1ef2cb0f20 100644
->> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
->> @@ -10,6 +10,7 @@ struct iris_core;
->>   
->>   extern const struct vpu_ops iris_vpu2_ops;
->>   extern const struct vpu_ops iris_vpu3_ops;
->> +extern const struct vpu_ops iris_vpu33_ops;
->>   
->>   struct vpu_ops {
->>   	void (*power_off_hw)(struct iris_core *core);
->> @@ -23,6 +24,8 @@ void iris_vpu_clear_interrupt(struct iris_core *core);
->>   int iris_vpu_watchdog(struct iris_core *core, u32 intr_status);
->>   int iris_vpu_prepare_pc(struct iris_core *core);
->>   int iris_vpu_power_on(struct iris_core *core);
->> +void iris_vpu_power_off_controller_begin(struct iris_core *core);
->> +int iris_vpu_power_off_controller_end(struct iris_core *core);
-> These are unused, pls remove.
->>   int iris_vpu_power_off_controller(struct iris_core *core);
->>   void iris_vpu_power_off_hw(struct iris_core *core);
->>   void iris_vpu_power_off(struct iris_core *core);
->>
-> 
-> Thanks,
-> Dikshita
+Maybe next year we will get a memdesc API that will clarify this
+substantially.
 
+> On the restore path kho_restore_folio() will recreate multi-order thingy by
+> doing parts of what prep_new_page() does. And kho_restore_pages() will
+> recreate order-0 pages as if they were allocated from buddy.
+
+I don't see we need two functions, folio should handle 0 order pages
+just fine, and callers should generally be either not using struct
+page at all or using their own memdesc/folio.
+
+If we need a second function it would be a void * function that is for
+things that need memory but have no interest in the memdesc. Arguably
+this should be slab preservation. There is a corner case of preserving
+slab allocations >= PAGE_SIZE that is much simpler than general slab
+preservation, maybe that would be interesting..
+
+I think we still don't really know what will be needed, so I'd stick
+with folio only as that allows building the memfd and a potential slab
+preservation system.
+
+Then we can see where we get to with further patches doing
+serialization of actual things.
+
+Jason
 
