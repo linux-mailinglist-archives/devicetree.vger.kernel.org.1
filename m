@@ -1,195 +1,117 @@
-Return-Path: <devicetree+bounces-164726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA44A821D9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:15:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBA73A8220C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:30:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D7CB1B87104
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:15:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CBD17A61C5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350D225D8E1;
-	Wed,  9 Apr 2025 10:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1A825D91A;
+	Wed,  9 Apr 2025 10:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="T+zpQimh";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="U5co9zDH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hmv2um88"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D74E25A2DC;
-	Wed,  9 Apr 2025 10:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368AB25D903;
+	Wed,  9 Apr 2025 10:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744193703; cv=none; b=VzorYc8izLf4X/bYNnnw7J4AdGbEQdhx7BjkDmptccQ8stQMLn9T+VMMZP67FaK2/Eft1joSvWYKOtobc6JTLRKhuEOMrsbQJim9Kl6xqOnT8aqauYoUvyRowOb0/hAjPTjwActaQXrJ94Ulm3dmgzAmJqE8o+sqSJtDBRD4qro=
+	t=1744194600; cv=none; b=NMdoSA8QvCILHZWF/hvh0Y02IIXntECdMSTw85N9lU/gL8ALeiEnwof71TncJqz5ASN1/KVolvZAmLkdpwR2EL3/xTS/9kXbtuooX8QEQBAcTihSsx/jvfPn7D3sVlYmBOVrPszeSYNLt4mX0bGCV4lJdx8K9bkdh7Qf9h9xcPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744193703; c=relaxed/simple;
-	bh=Wro90VfYL3b5j7TbNKN81Xu/BV5HuwqQ7RbveyBWuXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R19O9Rg4GWlPw0SatFkB82XdkU/z2LKTOlt9EpeRsrnfA2OFShyGg54JYGFjrKknAiszq26b27VQfltrJnqSEnIFpIQBD/eMXNlvB540h2UQXpSjtAIlAD7laNzBJMtMdVRG8jzBLKpn6HvlRjnwbWkJmFaDWymGAAMnia1k9IU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=T+zpQimh; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=U5co9zDH reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1744193698; x=1775729698;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=BNoNE6e64sEYfFsroSfsCY8QuIvX813ZAxY1wFGvAfs=;
-  b=T+zpQimh7RJ4+BqmTQBXiIZxRCB852eTKHJjZwAneooHbdMdUIjiZqhR
-   8oIGOTBJICzfc14e+ByxKw50IUyHQA/Kvfvr5801VRp0pA9YCn+f2NSqV
-   YPJFeo0W53YJ2te1FVYQQEIUuivB9SUZSgNeu3QW6JpZf2ZxnhVdmCcQA
-   OKOz04ilJc7yqh1lA/p+OvnIGjHV5gMpv5iWiAue5tJEITCwn4932sSjw
-   wN2Wp8JrBTAoIGy1aq+Rfv44evD/rFkDcZxoPnCNfrLpKPkyaz8DjS+Ym
-   UqFrpG7NoZQ1+papy14qIHLgvOXiBsaXLakX2LWUY/Sa3vIm9jYIvpImB
-   w==;
-X-CSE-ConnectionGUID: QsBY5tYfRvO4jvFCFUdRaw==
-X-CSE-MsgGUID: aXOJ8JttQUS4xI0EqVv4JA==
-X-IronPort-AV: E=Sophos;i="6.15,200,1739833200"; 
-   d="scan'208";a="43425758"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 09 Apr 2025 12:14:55 +0200
-X-CheckPoint: {67F6489F-13-7141A0B0-E6EDEC14}
-X-MAIL-CPID: AD203921DB3D5B5D91448C1600452817_3
-X-Control-Analysis: str=0001.0A006371.67F6489C.0095,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C4929164F85;
-	Wed,  9 Apr 2025 12:14:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1744193690;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BNoNE6e64sEYfFsroSfsCY8QuIvX813ZAxY1wFGvAfs=;
-	b=U5co9zDHmUiL4PoV2Bj2nlNzBH5Iw4uyo0kqMS2d6jtR4Z5RRyNUgOHxnyq53EzUGy9Hs1
-	X1kpcaOShYEFlPCqXOlvyCdjzA0qcaogFMx4vIRjMzJo9cHvrvkqqGl02d3U5f7d16MQGQ
-	UL5wPE6Zjx4+f34EB7abO0z0TGl1JdUWax3kcWhx7AUrgNe9NX0QqF9Iq2mApQgzjqOw+I
-	mX+nEs5xCCxaSughpJRy4a4v4gDxI+Z0XZQrSLD2z2RED29IdYaENPyjIF3ueEvZpBa0H0
-	6uNRtF3XLiaBKXoVOiaocRtSUeM74EPUb6/tPFMBPxvEdEBKrtSyw5IQdgMjQw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>, hongxing.zhu@nxp.com
-Subject:
- Re: [PATCH 4/5] arm64: dts: imx95: add PCIe's msi-map and iommu-map property
-Date: Wed, 09 Apr 2025 12:14:48 +0200
-Message-ID: <10643619.nUPlyArG6x@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <Z+WdgWQo4dbPG5tP@lizhi-Precision-Tower-5810>
-References:
- <20250128211559.1582598-1-Frank.Li@nxp.com>
- <Z8HuU6ULEN756lyr@lizhi-Precision-Tower-5810>
- <Z+WdgWQo4dbPG5tP@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1744194600; c=relaxed/simple;
+	bh=wTO9XVahwzKLxaPS9+9HXlOMbiu+xAnQVIyTH2JqEdc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gxIKmYnRkzi99T8RaWazDpq6ER69IXpTH+HYHMxabf/yoPd2Pu3QqAMoD62XfcK6XKhXVSJXEeBsHInvr870K6lMmVmVdmS3wzOHlpvb6NdgWzBNLliiTZq0tqx1fUUUiH2Hs/51wjB7wN42Owcrkug7jemBACWirkH795phNi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hmv2um88; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A1D51C4CEE7;
+	Wed,  9 Apr 2025 10:29:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744194599;
+	bh=wTO9XVahwzKLxaPS9+9HXlOMbiu+xAnQVIyTH2JqEdc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Hmv2um88CV6KzCn5iwO68jn08TntANXxXvJgL7EmzfikVidy8Q8ZbkqrPxskVcjBW
+	 5H9rTVHfzaqf09GDzr/wRELoxglk1M+pds9MokRzlUFaTNFJMUo6xP8WTzCFFlxiKZ
+	 ItrtWnzEyEjrdeIlqhHhC45njST4mNAwmDPZAWrmmMh9NabZxXLu5gBAmyfseA/a8z
+	 iISYy/GjC+4uLmCrYBQ7Zt1EjFCpJkNntn9KvyorkcAQWsqWo0ma7MpDT72r3HR/PW
+	 K/UmeDQL7cEfkW4XhQdMUovWae/YBeV2PkRfNXNGsim+IxuCRvPtljkMOysbvYpC8q
+	 G2FAervEHdMPg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 942B5C369A1;
+	Wed,  9 Apr 2025 10:29:59 +0000 (UTC)
+From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Subject: [PATCH v2 0/4] Add support for Loongson-1 AC97
+Date: Wed, 09 Apr 2025 18:29:30 +0800
+Message-Id: <20250409-loongson1-ac97-v2-0-65d5db96a046@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAApM9mcC/3XMQQ7CIBCF4as0sxYDVELrynuYLhCmdJIWDBiia
+ bi72L3L/yXv2yFjIsxw7XZIWChTDC3kqQO7mOCRkWsNkkvFhVBsjTH4HINgxo6a9cPoDKJVCnt
+ op2fCmd4HeJ9aL5RfMX0Ov4jf+pcqgnEm+aAf/OKs0/PNb4bWs40bTLXWL3nB5M6sAAAA
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-mips@vger.kernel.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Keguang Zhang <keguang.zhang@gmail.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744194597; l=1358;
+ i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
+ bh=wTO9XVahwzKLxaPS9+9HXlOMbiu+xAnQVIyTH2JqEdc=;
+ b=DWbS+jO0h+JveVSR7kVCBar4uEFKji4nMkZQ8LrP60uOzZnWrsGlHTzVn9JbQJI7xcFuRHPnY
+ LRoGsvkJKweBcUU5DwckahhyBroTWlBwmjn43xmY/zGtG/cpDa7YP9l
+X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
+ pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
+X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
+ auth_id=102
+X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
+Reply-To: keguang.zhang@gmail.com
 
-Hi Frank,
+Add the driver and dt-binding document for Loongson-1 AC97.
+Add the dt-binding document for Realtek ALC203 Codec.
+Add DT support for the AC97 generic codec driver.
 
-Am Donnerstag, 27. M=E4rz 2025, 19:48:33 CEST schrieb Frank Li:
-> [snip]
-> Finially we get realtek PCI card
->=20
-> it quite complex, there are one PCIe switch to split it to two pci bus.
->=20
->  lspci -t
-> -[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-03.0-[03]----00.0
->                                            \-07.0-[04]----00.0
+Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+---
+Changes in v2:
+- Added a reference to dai-common.yaml in realtek,alc203.yaml.
+- Return -EINVAL when 'audio-tx' or 'audio-rx' is absent from reg-names.
+- Link to v1: https://lore.kernel.org/r/20250115-loongson1-ac97-v1-0-2087b04dcd7f@gmail.com
 
-Interesting. Mine looks slightly different:
+---
+Keguang Zhang (4):
+      ASoC: dt-bindings: Add Loongson-1 AC97 Controller
+      ASoC: dt-bindings: Add Realtek ALC203 Codec
+      ASoC: loongson: Add Loongson-1 AC97 Driver
+      ASoC: ac97: Add DT support
 
-$ lspci -t
-=2D[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-01.0-[03]----00.0
-                                           \-02.0-[04]----00.0
-
->=20
->=20
-> 0000:00:00.0 PCI bridge: Philips Semiconductors Device 0000
-> 0000:01:00.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
-Gen2 Packet Switch
-> 0000:02:03.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
-Gen2 Packet Switch
-> 0000:02:07.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
-Gen2 Packet Switch
-
-It seems you have a newer hardware revision. I have
-0000:01:00.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
-0000:02:01.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
-0000:02:02.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
-
-PCIe bridges.
-
-> 0000:03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111=
-/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
-> 0000:04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111=
-/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
->=20
-> It need below change
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
-ts/freescale/imx95.dtsi
-> index 9bb26b466a061..9dbf395b9a67b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -1660,10 +1660,18 @@ pcie0: pcie@4c300000 {
->                         power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
->                         /* pcie0's Devid(BIT[7:6]) is 0x00, stream id(BIT=
-[5:0]) is 0x10~0x17 */
->                         msi-map =3D <0x0 &its 0x10 0x1>,
-> -                                 <0x100 &its 0x11 0x7>;
-> +                                 <0x100 &its 0x11 0x1>,
-> +                                 <0x218 &its 0x12 0x1>,
-> +                                 <0x238 &its 0x13 0x1>,
-> +                                 <0x300 &its 0x14 0x1>,
-> +                                 <0x400 &its 0x15 0x1>;
->                         iommu-map =3D <0x000 &smmu 0x10 0x1>,
-> -                                   <0x100 &smmu 0x11 0x7>;
-> -                       iommu-map-mask =3D <0x1ff>;
-> +                                   <0x100 &smmu 0x11 0x1>,
-> +                                   <0x218 &smmu 0x12 0x1>,
-> +                                   <0x238 &smmu 0x13 0x1>,
-> +                                   <0x300 &smmu 0x14 0x1>,
-> +                                   <0x400 &smmu 0x15 0x1>;
-> +                       //iommu-map-mask =3D <0x1ff>;
->                         fsl,max-link-speed =3D <3>;
->                         status =3D "disabled";
->=20
->=20
-> Only 8 stream id assign to PCIe0 device, it is hard to dynamaic alloce on=
-e,
-> or need extra works
-
-Uh, this looks awefully complicated. Even worse this doesn't work on
-my hardware. I need mappings for IDs 0x208 and 0x210, so I replaced 0x218
-and 0x238 from your diff into my numbers.
-
-So I take that PCIe bridges are not supported properly. What would be
-necessary to support this?
+ .../bindings/sound/loongson,ls1b-ac97.yaml         |  68 ++++
+ .../devicetree/bindings/sound/realtek,alc203.yaml  |  36 ++
+ MAINTAINERS                                        |   1 +
+ sound/soc/codecs/ac97.c                            |  10 +
+ sound/soc/loongson/Kconfig                         |  10 +
+ sound/soc/loongson/Makefile                        |   2 +
+ sound/soc/loongson/loongson1_ac97.c                | 398 +++++++++++++++++++++
+ 7 files changed, 525 insertions(+)
+---
+base-commit: 46086739de22d72319e37c37a134d32db52e1c5c
+change-id: 20250115-loongson1-ac97-389daeec55e3
 
 Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-- 
+Keguang Zhang <keguang.zhang@gmail.com>
 
 
 
