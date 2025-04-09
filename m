@@ -1,138 +1,123 @@
-Return-Path: <devicetree+bounces-164611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C62A81BC4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:04:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B403FA81BE7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73586886C46
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 04:03:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22C067B5281
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 04:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B2E15F330;
-	Wed,  9 Apr 2025 04:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32621D54D8;
+	Wed,  9 Apr 2025 04:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k38rmXDx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QIlovDAY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C2A3D76;
-	Wed,  9 Apr 2025 04:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABBA1448F2;
+	Wed,  9 Apr 2025 04:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744171442; cv=none; b=olL5OWO3wkj98legQX9jFgFGKmCu7o4xeOM2gdyBngYWgzA/H2caPgmfhph9YgEPSbjikNMspdBKZGh+uRhjtTx0Vu83zd2iHy88+xdaVYtfhCey3C1QEZGJaGY7aZNcylBqhNVE6GMoxlghGtr7mx0WAfmQc4N9WJE2QvL4DKM=
+	t=1744173040; cv=none; b=NPnoAitIslsUw9QArU+PdKcF1MAFTZEjSSQiR+M6HwWydZWG4u6gWs+SaXsdgiPIGYUXBu7H0cNa1eEzhDIWeTxd7adV7noL2a7cwDbbIzuf17KBPuOsuyP4/GQtyt9jSoWB1JhL4/Fu0jQZS77bVB/1fw5w0659m6jhuN+CNXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744171442; c=relaxed/simple;
-	bh=D03yomViP85sZ7xkf5etK1i+y2JadkTdw7EFuab7kVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jAhp7rL0dFnuuskT192xMNhs8k9ZVWUAWLYc0cFeqv2E8xTsBKrYgWTrzFX/1pmFfbB8HCmQnshJwOyqrMvAz+qASC8dvSPntCGktZp6I3NuAVLKXVydwTxjxSJ20fZW873Bd5xg/8gIi8nZBLmtpH3m9aCHZobRqbATMwZLCvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k38rmXDx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE062C4CEE3;
-	Wed,  9 Apr 2025 04:04:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744171441;
-	bh=D03yomViP85sZ7xkf5etK1i+y2JadkTdw7EFuab7kVs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=k38rmXDxCqQT3hB1u+hC500R/vsTcgMNqpyf28DpXoFQjPVOT2cBOIGUq8iYzHmtR
-	 thy3gTfGh6mudDEgEDE7H7rcxh0cm8APa8RqH4TIimxpDcYS+PrPJC7IvK1rETxmNh
-	 LKciXo0L86TV6fF/bgGXzzflAs0RJeZPEKpJV4oubf1f5+lRwmj5n3recncubx/C3u
-	 qrkoGjlNe1l2hB3O2nkt5VTyKIntsGTfxQZFXxklWZQ5Z19Ry+zUT7hIiC2KrIvFWU
-	 j3yWdce7Yh82xrCzZ21QTg6gbBl+UToTMWf/B6nxooQuW0MAEANgwNC7uQU85OARhF
-	 qz7FeadRPIrhw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v2 00/24] ARM / arm64: dts: qcom: Use the header with DSI phy clock IDs
-Date: Tue,  8 Apr 2025 23:03:59 -0500
-Message-ID: <174417136198.113796.2666820396319444637.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250408-dts-qcom-dsi-phy-clocks-v2-0-73b482a6dd02@linaro.org>
-References: <20250408-dts-qcom-dsi-phy-clocks-v2-0-73b482a6dd02@linaro.org>
+	s=arc-20240116; t=1744173040; c=relaxed/simple;
+	bh=A+B/gLgYYuRdNUd1qUlwvwecmPuJjkMVoaI5fQ59yrw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UuH3HJIqWXtGH/vqJqpBWB26yIvtfkYfKjtGybKLzXqnjAcRbOXWNQh+nefLAxhm6IsTlt0EFemRdxj/rd1+1B4khDRRHRJ22sfrBBE3E3SxHKBc7k77UcLZ2zDarEYRcrM+4kZerirkXW4GtJ10MisL/T3kr+XMfGQDbSyDVec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QIlovDAY; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5499c5d9691so7083792e87.2;
+        Tue, 08 Apr 2025 21:30:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744173037; x=1744777837; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yFwO+hYw03wGfjNxNJud8inynjlbdbEn6J8azxQuyYo=;
+        b=QIlovDAYGgT62F6SfFBS+wUuE4JgpWETyXch0gXjzCZ+ifneeJTlIXufzJcwu8EuIL
+         kI0s4mHdoh4jExoGszNJwpWpBz63qWKZsltnqYjpqouvJ1lSmWu0MKxA3Ej3xnZ55YwF
+         JfN/EsYJaxar4IucHfxFibkicqwxFnmiYDSVlSRNl7tObX9WjPP0qK0dd9bRQF1RCJ5p
+         Ju9qr7m2Yx+08FD+TONsd4yo39mJVGrO/Ex03lkSH5KElVh0Bz0uGrwETL3IJa3mOSdO
+         NeaMfTT92cgZEQfUIH894UEYNbZpRuFtzO8tTKIYKuE7WjqjGRT8a3PEWKA9puONAJEI
+         m3Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744173037; x=1744777837;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFwO+hYw03wGfjNxNJud8inynjlbdbEn6J8azxQuyYo=;
+        b=EaYEUjnMYxxc/IppQYhpOy/GlM8ec2CMbEsH30b2487OPtAVdp8EZv/otSKa81I/Jh
+         tcP0GsTrri3QzQ6tHoflqyynB6XoSl9CJn3V00kMUETNOyU8JzxBnu9/VCxszO5HrG3l
+         EUkYUCmWM9Y0CCxTS7LGtohlRuYRMb4Cn++3uugTmvXPaTkO0ouWX020EpsyPcDESSmW
+         nxPcxvMAEzj5vMQHVIGsNcDPVNn/w7P/MeOepYfnUlMkXdF7/vznIxZxgb66nzcmOIfZ
+         btgnO3B2h8/22HRrnURm9ABi6hRcsFHVmO3EoQHsfYiKlcsH/AQIUb9/EGR3lXtvQjK6
+         cjPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVy5IUvTJdQevw7QO9z7iEz+SZ+8uX9m1Lc+aN/trA7Ml7bdmQqW1GJpzFLJ/qnk0qe8REhjFNS7nr/Tf1K@vger.kernel.org, AJvYcCWP43SmEMF971O2csgzrEtPIu2DgUS2OQe6MnHGDvYaGgoddum6C1pl2BTVAwtIOa91HP/hsQ77l15D@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhxthhXkMqWunKOjmatZfY7P98SUBCD5BYTjyYZBsyfPvVwnp4
+	k66Ju7SEe6je2stHoo88nTOODSetZ8022M1cyx6zaX0aEDDSq24OdPxwmA==
+X-Gm-Gg: ASbGnctn9O2CuVSNOg3vpHZwEab0i1d3DFs+8semdd1v/JoIw+E5CfqigvIn609KKnG
+	flv/wwIoZVt0qI1poiQq1lel+ug0uafN7a1MlV2SuKkQMgCTgUxOU829TfpMtAJCS7lshjPJm8V
+	45rGb5t6xnpnlp+4MVmphh+Dz4+Iju/8TjyW3mvWQcWHcDICKStQALt+bjY6o4509RAv6gVZcn6
+	exZ5ZM0zhsf0g0qIaMTpsSrthmfN4V1gw94FQXaK5nl/Swek6NOjdPov5cgiywoIX6h8e+7qFEj
+	n2gsN4GvqOs0WkdtNkvkm4j7ZzAQGkzxFDmhy4zLhd0PKQmOLBCV5zvq+OFFIWi5UDvYESlmUXf
+	nso3Ve4KPhwB3FWcpzvgjxN/TBN12CvJGqNB+
+X-Google-Smtp-Source: AGHT+IEl8OyCkcEb62DT5Krt7eESLpqsnrh9N81tshj4PwOv7L6cNiDBrNhuNhjlJB5cNM8eX75vTw==
+X-Received: by 2002:a05:6512:3f27:b0:54a:cc11:a94c with SMTP id 2adb3069b0e04-54c444b3815mr290619e87.3.1744173036744;
+        Tue, 08 Apr 2025 21:30:36 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c4566ddd5sm32199e87.185.2025.04.08.21.30.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Apr 2025 21:30:36 -0700 (PDT)
+Message-ID: <b233f08a-ac8a-4670-8b32-8afc8a7dfc0c@gmail.com>
+Date: Wed, 9 Apr 2025 07:30:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
+To: Conor Dooley <conor@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
+ <df7983e7c623041f14a4fbe409a2cff846e68a05.1744090658.git.mazziesaccount@gmail.com>
+ <20250408-boogieman-underwent-968671653b3f@spud>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250408-boogieman-underwent-968671653b3f@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 08 Apr 2025 11:31:57 +0200, Krzysztof Kozlowski wrote:
-> Changes in v2:
-> - Collect tags and rebase (no changes).
-> - Dependency was merged, so this can send be applied freely.
-> - Link to v1: https://lore.kernel.org/r/20250127-dts-qcom-dsi-phy-clocks-v1-0-9d8ddbcb1c7f@linaro.org
+On 08/04/2025 19:16, Conor Dooley wrote:
+> On Tue, Apr 08, 2025 at 11:40:41AM +0300, Matti Vaittinen wrote:
+>> BD96802Qxx-C is an automotive grade configurable Power Management
+>> Integrated Circuit supporting Functional Safety features for application
+>> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
+>> interrupt lines and has two controllable buck regulators.
+>>
+>> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
+>> to be used as a companion PMIC for the BD96801.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 > 
-> Use the header with DSI phy clock IDs to make code more readable.
-> Changes done with sed with alignment/wrapping fixups. Verified with
-> dtx_diff.
-> 
-> [...]
+> I think I acked this one on v1, no?
+> https://lore.kernel.org/all/20250326-candy-endocrine-2e7b2182e53b@spud/
 
-Applied, thanks!
+Sorry Conor!
+Somehow I managed to drop your acks. Also from the other binding 
+patches. That wasn't by purpose.
 
-[01/24] ARM: dts: qcom: msm8226: Use the header with DSI phy clock IDs
-        commit: 17268faf29992d37033d6ad1a5ed5d924f2430d8
-[02/24] ARM: dts: qcom: msm8974: Use the header with DSI phy clock IDs
-        commit: 1afdd80d1e021f758c975d857c6beb6da5c891bd
-[03/24] ARM: dts: qcom: msm8916: Use the header with DSI phy clock IDs
-        commit: 651af46f33ab284400e0fc307e5a81de54c75945
-[04/24] arm64: dts: qcom: msm8917: Use the header with DSI phy clock IDs
-        commit: 7c92da246e1a6933f25fa015d6c43a6bcfb2c7b3
-[05/24] arm64: dts: qcom: msm8939: Use the header with DSI phy clock IDs
-        commit: 011e7f2c26dcb42c255ab54207f548d68c3b8e38
-[06/24] arm64: dts: qcom: msm8953: Use the header with DSI phy clock IDs
-        commit: 8e35fab460cce97e387a2c975db45b762b551521
-[07/24] arm64: dts: qcom: msm8976: Use the header with DSI phy clock IDs
-        commit: b06f27d09ed455f153d2523f96bbd94ecf6a69d8
-[08/24] arm64: dts: qcom: msm8996: Use the header with DSI phy clock IDs
-        commit: 4b32499da71716e075ea2dba115e3fe8b6f8ed2f
-[09/24] arm64: dts: qcom: msm8998: Use the header with DSI phy clock IDs
-        commit: f4220c41decc1944ef319c859840aa5405eee6fa
-[10/24] arm64: dts: qcom: qcm2290: Use the header with DSI phy clock IDs
-        commit: 48478f726f3793a9d1cf9b10d6487a81ea7e3c73
-[11/24] arm64: dts: qcom: sc7180: Use the header with DSI phy clock IDs
-        commit: adaa876233c102e53fb2bafe4f502474613f4ed2
-[12/24] arm64: dts: qcom: sc8180x: Use the header with DSI phy clock IDs
-        commit: 4390fc773154ea25c0aeb4e75d0425cfa8de431f
-[13/24] arm64: dts: qcom: sdm630: Use the header with DSI phy clock IDs
-        commit: 3c1ae3b255555406c5ff030190649437e399dde9
-[14/24] arm64: dts: qcom: sdm670: Use the header with DSI phy clock IDs
-        commit: dc489ba0dea37e3655d265f5889ade0d173229d5
-[15/24] arm64: dts: qcom: sdm845: Use the header with DSI phy clock IDs
-        commit: 77764620c1888e8c8dc169f7c2f693fc4db96964
-[16/24] arm64: dts: qcom: sm6115: Use the header with DSI phy clock IDs
-        commit: b44bf3bc74912649b2495894e82f5384e24e2060
-[17/24] arm64: dts: qcom: sm6125: Use the header with DSI phy clock IDs
-        commit: 4f40ebbebcd9a7a03b72aac478c7df7c7b44c635
-[18/24] arm64: dts: qcom: sm6350: Use the header with DSI phy clock IDs
-        commit: ab7cd7f3968f14171d50ba0b0655186c3857d258
-[19/24] arm64: dts: qcom: sm8150: Use the header with DSI phy clock IDs
-        commit: 35ed99d7f589f310688fa0d088913e5c8927da43
-[20/24] arm64: dts: qcom: sm8250: Use the header with DSI phy clock IDs
-        commit: 855ff06098b7f3a2aca21b79d32d212fd096a98e
-[21/24] arm64: dts: qcom: sm8350: Use the header with DSI phy clock IDs
-        commit: ee4bb3169263bad99d68e0039e944ae53e77691a
-[22/24] arm64: dts: qcom: sm8450: Use the header with DSI phy clock IDs
-        commit: 0d18a031499d4ea2b86cdc8120c22bdcf22bcac0
-[23/24] arm64: dts: qcom: sm8550: Use the header with DSI phy clock IDs
-        commit: 0d046b7ad7d3c7f2dfc53fc5ad48e2fe2c3f2186
-[24/24] arm64: dts: qcom: sm8650: Use the header with DSI phy clock IDs
-        commit: 314ffec606514cdf6d4bbedaaeeba0c826b6afc2
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Yours,
+	-- Matti
 
