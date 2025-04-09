@@ -1,230 +1,193 @@
-Return-Path: <devicetree+bounces-164597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC958A81A82
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 03:29:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5308A81A8F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 03:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38B103BFA31
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 01:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EDCC887418
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 01:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0F8165F1A;
-	Wed,  9 Apr 2025 01:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2342186E26;
+	Wed,  9 Apr 2025 01:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wbUxru1E"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="bhjIDPWZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BBAE6BFC0;
-	Wed,  9 Apr 2025 01:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230BC153836;
+	Wed,  9 Apr 2025 01:37:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744162183; cv=none; b=TmJAdA/9WsNg2/sAQM0d6xNhuvUrC0TZRCGU/vSC/AVsYQwoEKANISy/RxbL9yHvVHDLreyp74FGW2R+mN8lMuqucHnkpcyZL3fh0TGNbcu2ik82CY7hIhtQWY2DfcJlh+7v8ANWsYvII73P7XqcNKME2ObHfNbIso1yl2QDVsA=
+	t=1744162645; cv=none; b=u08Lldzw/e2Zz973GFNwXW7aQylzr+nVH+CMTLHkwo37iJNprDWM90J8GAQXLMq56nrtbHNDxcadHy9CcaMQ4y2ecgf/KJlQydJCCsdZtYih/KA+IEfDdH/8hYA12RkXi5490oA4QOPlayOokzKOc/+h+O4tBNthpKSgdMVSyPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744162183; c=relaxed/simple;
-	bh=jqXJkpKflOLHdYCCkc79nFsoqa/SSDo+aaoBYTvRk5I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nM68ePbwV+V26LQqSNmvSgoJ/U79y3CLUOhlG0PnLClW8ujG3mQK5aLGgp8u2LkHRKUSl4h1/vJvl59s7jrPHdkzGOIcSKswVpHm/5wa3r85D1VeTdYBkFc2hOVlGExL6wWwXAz0AegfqgTRB/Vwm/X8r+qzWjnkyvb9Ls28+S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wbUxru1E; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC66C82E;
-	Wed,  9 Apr 2025 03:27:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744162062;
-	bh=jqXJkpKflOLHdYCCkc79nFsoqa/SSDo+aaoBYTvRk5I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wbUxru1EE88T40IODiloHKP2PaubUSiAkNqWJhKJnCCQbociv+8fDM2gL/XEvA/zw
-	 J4JWjChCJ38Gh/i0dcszgMIJWmir2KdlmejeOoI4oCncYPRKOX3Yd/k78sZqZcFhEg
-	 /7KDZMSsVHwHgOLM0qlrbZNRXyitzKmqGToMfGb4=
-Date: Wed, 9 Apr 2025 04:29:14 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 11/17] media: rzg2l-cru: Add register mapping support
-Message-ID: <20250409012914.GD31475@pendragon.ideasonboard.com>
-References: <20250328173032.423322-1-tommaso.merciai.xr@bp.renesas.com>
- <20250328173032.423322-12-tommaso.merciai.xr@bp.renesas.com>
- <TY3PR01MB11346ECE31CB6C8DC33459C2486AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8sJQnyJb_uq9yEcjHRW7ZFOw3g2XQyygcozWTgMjrYxRQ@mail.gmail.com>
- <TY3PR01MB113462DC897E0DB681B1C020F86AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8ukJ+_Bhy-4nU_CFD4rMoTRxEY-q+bXHHZ-9Mz8gQ362A@mail.gmail.com>
- <20250402092618.GH4845@pendragon.ideasonboard.com>
- <TY3PR01MB11346DF814762C667FF97074286AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8tsCEhmhNSbMMiuN6b2rJCoSekf+-e6EHr5wE5C000ZxQ@mail.gmail.com>
+	s=arc-20240116; t=1744162645; c=relaxed/simple;
+	bh=EGrCBvrJNmPnCF1RaG08Czz3QlE7QtPNQUX9fCvZE6o=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=qxK0p4F5D0WwbJxDqUQqOu8X3crFNnTd52UWjRj1p3FcS7zYFOTAbrFTDWUJcGkErBxSUY7mEeT2T9fEGF5SAhgTAXqd+4cBlF1D/M9Tkm7J/aa0ePRTTGellB8v0WSzSrG7yEjkbe8C+13mcwxn01EUPLcqpEkoqG8q+KVZT9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=bhjIDPWZ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538N7vEF009349;
+	Tue, 8 Apr 2025 21:37:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=VRHV7ZWFnjIFC9ZCah3RNzMhAmq
+	etP84FetN86BF3s4=; b=bhjIDPWZRZ7ItLyYrv0qc7cDzYPdg/P4lQJJzaznej4
+	OWmtEaz0LPMZh5OB1dYjY9bTv/kg0uh5O7qYsfOPonKivACSl/Yy6vQVwk78USXP
+	F9+bRs8k9LVKpXZudR/vxKwWlYB+K5pDSvf23TH5CTHwCwGob7rcg5dsLNHmZHsH
+	yyMUx08yrOjED0d+zvANctf2vzQ1vSdDFPx5nxZ+FGLUjEjqh2TvwaRIqfroyfCH
+	RwmXSpWXDrTm0KwY+BX5KmMo+Km6obykjn/FaG7LjthXeQQ6PXq1MRqZtQsVTITD
+	xYxGXZgvq1S4ErFNq1HIQaCQ0SZ2hObeIN1kSQXdXbw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 45vvjqwxag-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Apr 2025 21:37:19 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5391bIZK008394
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 8 Apr 2025 21:37:18 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 8 Apr 2025
+ 21:37:17 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 8 Apr 2025 21:37:17 -0400
+Received: from ATORRENO-L02.ad.analog.com (ATORRENO-L02.ad.analog.com [10.116.44.203])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5391b5Dp030146;
+	Tue, 8 Apr 2025 21:37:08 -0400
+From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Subject: [PATCH v6 0/2] Add support for ADP5055 triple buck regulator.
+Date: Wed, 9 Apr 2025 09:34:27 +0800
+Message-ID: <20250409-upstream-adp5055-v6-0-faa6e810deb1@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8tsCEhmhNSbMMiuN6b2rJCoSekf+-e6EHr5wE5C000ZxQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKPO9WcC/33OwWrDMAwG4FcpPs/DkS3b6WnvUXZQY7k1rEmwu
+ 9BR8u5zemlHwk7iF/yfdBeFc+Ii9ru7yDylkoa+Bvu2E92Z+hPLFGoWoAAVAMrvsVwz00VSGFE
+ h1nlkCxZi642otTFzTLcHefis+ZzKdcg/jwtTs2z/waZGKklILno2tvX2g3r6Gk7v3XARizbBU
+ 9CgNgRYBOogaKfQK1gJ+ikYpTcEXQXPx8apaGJreCWYV8FtCKYKtgnBg7ZtjOsf8FXwGwJWIXT
+ oQ+vJkQ5/hHmefwFbS7aXuQEAAA==
+X-Change-ID: 20250225-upstream-adp5055-adbe6262f984
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Alexis
+ Czezar Torreno <alexisczezar.torreno@analog.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744162625; l=3640;
+ i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
+ bh=EGrCBvrJNmPnCF1RaG08Czz3QlE7QtPNQUX9fCvZE6o=;
+ b=GiaySU/oIq0Y0FeXxc7QMI0rEN5qLPnq5qFRDoly8F5NBxlCPlwY2gUraQ/SgVrngMpSEnr6A
+ vnOZPsxnP8JAyXYkGgiwtS0WGkBfpEIHL3XC+ElyGAv199C3RQr4EvV
+X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
+ pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=Var3PEp9 c=1 sm=1 tr=0 ts=67f5cf4f cx=c_pps a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=i18f-GKKc1N0n-IE89QA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: XCTRcbCEYpiyQojKgyKCtlmf4AGUsA2f
+X-Proofpoint-GUID: XCTRcbCEYpiyQojKgyKCtlmf4AGUsA2f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_01,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090002
 
-On Mon, Apr 07, 2025 at 04:55:33PM +0000, Lad, Prabhakar wrote:
-> On Wed, Apr 2, 2025 at 10:39 AM Biju Das wrote:
-> > On 02 April 2025 10:26, Laurent Pinchart wrote:
-> > > On Wed, Apr 02, 2025 at 08:25:06AM +0000, Lad, Prabhakar wrote:
-> > > > On Wed, Apr 2, 2025 at 9:20 AM Biju Das wrote:
-> > > > > On 02 April 2025 08:35, Lad, Prabhakar wrote:
-> > > > > > On Wed, Apr 2, 2025 at 7:31 AM Biju Das wrote:
-> > > > > > > > On 28 March 2025 17:30, Tommaso Merciai wrote:
-> > > > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > > >
-> > > > > > > > Prepare for adding support for RZ/G3E and RZ/V2HP SoCs, which
-> > > > > > > > have a CRU-IP that is mostly identical to RZ/G2L but with
-> > > > > > > > different register offsets and additional registers. Introduce
-> > > > > > > > a flexible register mapping mechanism to handle these
-> > > > > > > > variations.
-> > > > > > > >
-> > > > > > > > Define the `rzg2l_cru_info` structure to store register
-> > > > > > > > mappings and pass it as part of the OF match data. Update the
-> > > > > > > > read/write functions to check out-of-bound accesses and use
-> > > > > > > > indexed register offsets from `rzg2l_cru_info`, ensuring
-> > > > > > > > compatibility across different SoC variants.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > > > > > > > ---
-> > > > > > > > Changes since v2:
-> > > > > > > >  - Implemented new rzg2l_cru_write/read() that now are checking out-of-bound
-> > > > > > > >    accesses as suggested by LPinchart.
-> > > > > > > >  - Fixed AMnMBxADDRL() and AMnMBxADDRH() as suggested by LPinchart.
-> > > > > > > >  - Update commit body
-> > > > > > > >
-> > > > > > > > Changes since v4:
-> > > > > > > >  - Mark __rzg2l_cru_write_constant/__rzg2l_cru_read_constant
-> > > > > > > >    as __always_inline
-> > > > > > > >
-> > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 46 ++++++++++++-
-> > > > > > > >  .../renesas/rzg2l-cru/rzg2l-cru-regs.h        | 66 ++++++++++---------
-> > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  4 ++
-> > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 58 ++++++++++++++--
-> > > > > > > >  4 files changed, 139 insertions(+), 35 deletions(-)
-> > > > > > > >
-> > > > > > > > diff --git
-> > > > > > > > a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > index eed9d2bd08414..abc2a979833aa 100644
-> > > > > > > > --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > @@ -22,6 +22,7 @@
-> > > > > > > >  #include <media/v4l2-mc.h>
-> > > > > > > >
-> > > > > > > >  #include "rzg2l-cru.h"
-> > > > > > > > +#include "rzg2l-cru-regs.h"
-> > > > > > > >
-> > > > > > > >  static inline struct rzg2l_cru_dev *notifier_to_cru(struct
-> > > > > > > > v4l2_async_notifier *n)  { @@ -269,6 +270,9 @@ static int
-> > > > > > > > rzg2l_cru_probe(struct platform_device *pdev)
-> > > > > > > >
-> > > > > > > >       cru->dev = dev;
-> > > > > > > >       cru->info = of_device_get_match_data(dev);
-> > > > > > > > +     if (!cru->info)
-> > > > > > > > +             return dev_err_probe(dev, -EINVAL,
-> > > > > > > > +                                  "Failed to get OF match data\n");
-> > > > > > > >
-> > > > > > > >       irq = platform_get_irq(pdev, 0);
-> > > > > > > >       if (irq < 0)
-> > > > > > > > @@ -317,8 +321,48 @@ static void rzg2l_cru_remove(struct platform_device *pdev)
-> > > > > > > >       rzg2l_cru_dma_unregister(cru);  }
-> > > > > > > >
-> > > > > > > > +static const u16 rzg2l_cru_regs[] = {
-> > > > > > > > +     [CRUnCTRL] = 0x0,
-> > > > > > > > +     [CRUnIE] = 0x4,
-> > > > > > > > +     [CRUnINTS] = 0x8,
-> > > > > > > > +     [CRUnRST] = 0xc,
-> > > > > > > > +     [AMnMB1ADDRL] = 0x100,
-> > > > > > > > +     [AMnMB1ADDRH] = 0x104,
-> > > > > > > > +     [AMnMB2ADDRL] = 0x108,
-> > > > > > > > +     [AMnMB2ADDRH] = 0x10c,
-> > > > > > > > +     [AMnMB3ADDRL] = 0x110,
-> > > > > > > > +     [AMnMB3ADDRH] = 0x114,
-> > > > > > > > +     [AMnMB4ADDRL] = 0x118,
-> > > > > > > > +     [AMnMB4ADDRH] = 0x11c,
-> > > > > > > > +     [AMnMB5ADDRL] = 0x120,
-> > > > > > > > +     [AMnMB5ADDRH] = 0x124,
-> > > > > > > > +     [AMnMB6ADDRL] = 0x128,
-> > > > > > > > +     [AMnMB6ADDRH] = 0x12c,
-> > > > > > > > +     [AMnMB7ADDRL] = 0x130,
-> > > > > > > > +     [AMnMB7ADDRH] = 0x134,
-> > > > > > > > +     [AMnMB8ADDRL] = 0x138,
-> > > > > > > > +     [AMnMB8ADDRH] = 0x13c,
-> > > > > > > > +     [AMnMBVALID] = 0x148,
-> > > > > > > > +     [AMnMBS] = 0x14c,
-> > > > > > > > +     [AMnAXIATTR] = 0x158,
-> > > > > > > > +     [AMnFIFOPNTR] = 0x168,
-> > > > > > > > +     [AMnAXISTP] = 0x174,
-> > > > > > > > +     [AMnAXISTPACK] = 0x178,
-> > > > > > > > +     [ICnEN] = 0x200,
-> > > > > > > > +     [ICnMC] = 0x208,
-> > > > > > > > +     [ICnMS] = 0x254,
-> > > > > > > > +     [ICnDMR] = 0x26c,
-> > > > > > > > +};
-> > > > > > >
-> > > > > > > Do we need enum, can't we use struct instead with all these entries instead?
-> > > > > > >
-> > > > > > What benefit do you foresee when using struct? With the current
-> > > > > > approach being used a minimal diff is generated when
-> > > > > > switched to struct there will be lots of changes.
-> > > > >
-> > > > > The mapping is convinient when you want to iterate throught it.
-> > > > > Here, if you just want to access the offset value from its name, a
-> > > > > structure looks more appropriate.
-> > > >
-> > > > Thanks, as this patch has been reviewed by Laurent a couple of times
-> > > > we will change this to struct If he insists.
-> > >
-> > > How would a struct look like ? I'm not sure what is being proposed.
-> >
-> > It will be
-> >
-> > struct rzg2l_cru_regs {
-> >         u16 cru_n_ctrl;
-> >         u16 cru_n_ie;
-> >         u16 cru_n_ints;
-> >         u16 cru_n_rst;
-> > };
-> >
-> > static const struct rzg2l_cru_regs rzg2l_cru_regs = {
-> >         .cru_n_ctrl = 0x0,
-> >         .cru_n_ie = 0x4,
-> >         .cru_n_ints = 0x8,
-> >         .cru_n_rst = 0xc,
-> > };
-> >
-> > You can access it using info->regs->cru_n_ctrl instead of info->regs[CRUnCTRL]
-> > This is proposal.
->
-> Are you OK with the above proposal?
+Introduce a regulator driver support for ADP5055. The device combines 3
+high performance buck regulators in a 43-termminal land grid array
+package. The device enables direct connection to high input voltages up
+to 18V with no preregulator. Channel 1 and 2 deliver a programmable
+output current of 3.5A or 7.5A or provide a single output with up to 14A
+in parallel operation. Channel 3 has a programmable output current of
+1.5A or 3A.
 
-I may be missing something, but I don't see why this would be a
-significantly better option. It seems it would make the callers more
-complex, and decrease readability.
+Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+---
+Changes in v6:
+- adp5055-regulator.c
+   - Edited a for loop causing build error
+- Link to v5: https://lore.kernel.org/r/20250408-upstream-adp5055-v5-0-dc58d98a7a3d@analog.com
 
+Changes in v5:
+- adp5055-regulator.c
+   - Removed custom adp5055_enable and adp5055_disable function
+- Link to v4: https://lore.kernel.org/r/20250407-upstream-adp5055-v4-0-61dd82369ff2@analog.com
+
+Changes in v4:
+- adp5055-regulator.c
+   - Removed custom adp5055_is_enabled function and let core handle it
+- adi,adp5055-regulator.yaml
+   - Changed "" to '' for quotes consistency
+   - Added a missing % in default value
+- Link to v3: https://lore.kernel.org/r/20250403-upstream-adp5055-v3-0-8eb170f4f94e@analog.com
+
+Changes in v3:
+- Improved commit message,
+- adp5055-regulator.c
+    - Regulator node names are now lowercase 
+    - Edited to support changes in bindings
+- adi,adp5055-regulator.yaml
+    - Improved property definitions
+    - Improved text wrapping
+    - Moved device 'adi,hw-en-array-gpios' to 'enable-gpios' per regulator
+    - Changed 'channels' to regulators named buck[0-2]
+    - Added missing ref to regulator schema
+- Link to v2: https://lore.kernel.org/r/20250320-upstream-adp5055-v2-0-aac2d3705802@analog.com
+
+Changes in v2:
+- Kconfig - fixed indention problem, occured due to using spaces rather tabs
+- adp5055-regulator.c
+  - Turned initial comment block into c++ style, using // per line
+  - Merged the similar read/write ranges variable called access_ranges_table
+  - Set max_register value correctly to 0xE0 instead of 0xFF
+  - Fixed issue where ndescs was an error code. replaced with -EINVAL
+  - Enable/disable ops functions, now use helpers like regulator_enable_regmap
+  - Added config.ena_gpiod for the regulator config  
+  - Used of_parse_cb to do per regulator properties, new function added
+  - Migrated some yaml properties to the core regulator function
+-adi,adp5055-regulator.yaml
+  - Moved property power_saving_mode to set/get mode under 'IDLE' mode
+  - Moved property output-discharge-func to core func set_active_discharge
+  - Moved property enable-delay-us to core function set_ramp_delay.
+  - Removed property disable-delay-us, as suggested to not worry about
+  - adjusted sample device tree to match changes due to use of of_parse_cb
+- Link to v1: https://lore.kernel.org/r/20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com
+
+---
+Alexis Czezar Torreno (2):
+      regulator: dt-bindings: adi,adp5055-regulator: Add adp5055 support
+      regulator: adp5055: Add driver for adp5055
+
+ .../bindings/regulator/adi,adp5055-regulator.yaml  | 157 ++++++++
+ MAINTAINERS                                        |   7 +
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/adp5055-regulator.c              | 430 +++++++++++++++++++++
+ 5 files changed, 606 insertions(+)
+---
+base-commit: 7fef39f0e82ff02282797d9ae2589b39b16ab614
+change-id: 20250225-upstream-adp5055-adbe6262f984
+
+Best regards,
 -- 
-Regards,
+Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 
-Laurent Pinchart
 
