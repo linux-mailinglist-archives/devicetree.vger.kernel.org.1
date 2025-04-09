@@ -1,210 +1,206 @@
-Return-Path: <devicetree+bounces-164635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DAF8A81D06
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:26:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77477A81D15
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EC95461B97
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C70D63A9132
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11D81DD9AD;
-	Wed,  9 Apr 2025 06:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C4311DD9AD;
+	Wed,  9 Apr 2025 06:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="W4RUcBwQ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="foW3fH9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19010008.outbound.protection.outlook.com [52.103.68.8])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85631DB122;
-	Wed,  9 Apr 2025 06:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744179922; cv=fail; b=Ai6eNT2mGa+XlQK/tfuVZK9+cpAE6Ms/J/qV4LbCSTQK7v2dFjijTlSS2NlpURsJDXIEeJJfh05B/cDHmS7ez/Y3py2jiy/BYYCSsOuMVLC0tcc+whqA8oSMzrE0eO/1woYpl+JZYOF9Adu5ycMuTvjOdVFMxIoitMHVXU2Lo0Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744179922; c=relaxed/simple;
-	bh=kCV6naYGiw0yCsCZ9jmysNJjdU6d8qMV95iiMBsZ4xE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=LHG9ISNtgvatekVRaQ69gS9UixbXO89IWdrD7Jz1azaXyvQTTd4i2WiMZEkO/V+D49Geiw+2MwOyb5KZu0hW8DjR9if3PuvHT3qntSoT+zqWNh/eXV45lvrjhCozQQ7RFc3I7b6hNOoSmFgw3e3SfU3xD8P66zgxRLmLcSsukvw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=W4RUcBwQ; arc=fail smtp.client-ip=52.103.68.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WipHWxvbb7lOfXMlaN8S8DFEfodxxbad0aXtZPXw3QgBo0oIfDck4Vj/VNNN13GYl9OYirwMamZn62BOBBjWBvMHu7iCbggSno4sODTvG+2ALi2gjH0MTTkDf6+1/vwpoav9U1Hb4kFbnAwEOtQnZ3MB5mEVAxeMeF1MDbD7+EKbp49SQIkanV+6y0eBp6pmkk3muGeYB2okFM5yVG1zrXGhtZwOO4XpVYVKjSjsxfhfNSxNGhVmzH7jy3U6aj+W13gbifObspQLV5mXc2p5Yo7Fm2zHyhYdHL/iPHIyFvkZDlJNoCspyF0Vv1cGtPtLGsgzfujZKpWAO9Cyc8r4uA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VZkcqXIw9qXC1Mfc6OpVdlSuEiBJfsD52Ej4tUIyb0I=;
- b=Em91l5QSH9pxvQMGX/D8nZQxochxnzaD/zJX/tc70uscR8yJLTUYxAYoPKdYxbadFSV7KcRgz/reYiXKKqyBWxtDIM7JvyVHCiFqX59J5aho8Je9ksOBHi6D6br6PHHasoiy09vH4zsqwtDWnF8tQBy7gtWfjXEsDD23CvTbTTsaqayp9vk/7tSo2PgDVPUdCbJotpkVK1SIWb8MAPXOt4WK/f7ORO1esYDbDvLJwGySOUwT8fb7QE59a+5Lv6soIPI6YkDuYn0At25X4fH238SYOx8Oj182fxtcshrcuyt835kQqfkWFSc4XwH59eEPnGpsmIvlgPVczAJnEuGXIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VZkcqXIw9qXC1Mfc6OpVdlSuEiBJfsD52Ej4tUIyb0I=;
- b=W4RUcBwQ9XR4U7Cs/cXQuxzelQ4z2i/x6hGkI38Iz7VEXLh6sUlVe00wi56O7fC0dFEoZjRX3vQt4Lz9IcVGDlIoi5AE25RMYWExzJrxVN1/NzsInoUjh0wnesHdycvbcr4g/DhcPgeQWqxZaBMaHsGqsKVknEXKOvdpWqKby3/XulovYUEaLf5c7ZqRD34uMlLq5NgDctPWfrgkECxXsnBPlsdVHG6fiDS7AuKNH5VKFJWWbVaU+7WO8yuPLfEEqQWEvU3gUBJYdZHZDQ50FT3uOJxPO2y7Wmgm5nixN4o3AVQ0hVmNSja6RgymcFmTGJuPWFoye04ITlhZIOG5+g==
-Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
- by PN2P287MB0984.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:132::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Wed, 9 Apr
- 2025 06:25:13 +0000
-Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- ([fe80::ca81:3600:b1e4:fcf4]) by MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- ([fe80::ca81:3600:b1e4:fcf4%5]) with mapi id 15.20.8606.033; Wed, 9 Apr 2025
- 06:25:13 +0000
-Message-ID:
- <MA0P287MB226270BEC9AD175FEB28E0B5FEB42@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
-Date: Wed, 9 Apr 2025 14:25:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240501083242.773305-1-qiujingbao.dlmu@gmail.com>
- <20240501083242.773305-3-qiujingbao.dlmu@gmail.com>
- <k6jbdbhkgwthxwutty6l4q75wds2nilb3chrv7n4ccycnzllw4@yubxfh5ciahr>
- <D8Z4GLQZGKKS.37TDZ7QBN4V4N@bootlin.com>
- <CAJRtX8S0Zg7-Rba6ziaAoBi-2Bs3N0NfpguF40T16yObaxCZiQ@mail.gmail.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <CAJRtX8S0Zg7-Rba6ziaAoBi-2Bs3N0NfpguF40T16yObaxCZiQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR01CA0030.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::15) To MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:100::6)
-X-Microsoft-Original-Message-ID:
- <45195511-425a-4259-87cc-52c6c7fb55e1@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9659B6F073
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 06:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744180274; cv=none; b=ppmbGLcfYe5PxC691ZH308uLPn2phnoJnvE9D/zC+/qRaOFEWRSoHLG4SolttP5b4AtgmiZMGdi09gw2A2zCLMRc2iQqR5IrgOtUfwoqQoUjNwV/6KTnBfkS+oMaEAAUvA5z5VNnsltPJ8hKjLPY2t49htWrT037jcXxuwvrVCQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744180274; c=relaxed/simple;
+	bh=c2PprSJYcvSOOVD7CPC11hdDQnxIfNPG8Zd5bRYVz0w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oNFbuOpVmyVafXBI1mP7HxUtvQCoHoHZ1qZBjQM+ZBctne1jpYPOhkfAXZVo+gNuOm+cwgdCsecL1FJPoRvx2bj96bTmEGfyXjnhJ6dL7KwDLUNaPt6qaQ87RgvrE3kmsSywwYRB2vEewbQ8C4CpHewvbydGCDX9gVCT8MHsDNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=foW3fH9P; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744180271;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pxsCkg7T9hdK7RNaWY5esSIdR5AuOm6Jdp3figUFvGs=;
+	b=foW3fH9PZUUxmwiSn94TWyC8b/y+tBHTzMzYqyFz36T85C8zOHGBIlZNhHlCf+TsAbR0sd
+	rrDuIcksERhpPm+9ENmC54E+5kEFPKwxhl79XGtcChs3bZyqPCRv4xmfLyVkOvTgnLQSvf
+	czzEDlEyhTJeiHPrtk46RvZwtY84Z1Q=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-17-RdlbYl45Mk6sCPkLfLCfvA-1; Wed,
+ 09 Apr 2025 02:31:09 -0400
+X-MC-Unique: RdlbYl45Mk6sCPkLfLCfvA-1
+X-Mimecast-MFC-AGG-ID: RdlbYl45Mk6sCPkLfLCfvA_1744180267
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6896A180035E;
+	Wed,  9 Apr 2025 06:31:06 +0000 (UTC)
+Received: from [10.44.32.72] (unknown [10.44.32.72])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id DCB171955DCE;
+	Wed,  9 Apr 2025 06:31:01 +0000 (UTC)
+Message-ID: <333a12a8-157b-47f1-9602-e68e7d52b4c2@redhat.com>
+Date: Wed, 9 Apr 2025 08:31:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2262:EE_|PN2P287MB0984:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb68cfd5-e38b-4a60-89fb-08dd772f495b
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|5072599009|19110799003|6090799003|15080799006|461199028|7092599003|1602099012|440099028|4302099013|3412199025|10035399004;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WTRPMkpCdldSd09jRVJocWtoZUN4bTVQQ3c3UmUwcU9lcFNKQmdSbG8veHM5?=
- =?utf-8?B?dTRyR0hVMkZmdllOb09VY0RUMElWMFIxZ1Z5TlRmNldJZjlHWDBDNWNtNXo1?=
- =?utf-8?B?a05CWE54LzBaVnp5R0lVSHg5TGswSWU4bW4yRmtyYmt5UWFSQWlBSU4yb1lz?=
- =?utf-8?B?eVhxU096T3FWOXhBdENSbUZ5bFZBNkdGU3JoQ3RQMVVGUFpUZWRYS3p4WFNM?=
- =?utf-8?B?aXltZ205d0tndWJVK1N5TFBxMHQ3WitQWDRzZys2R2UrQThtaTlFRjNnd3Nh?=
- =?utf-8?B?QjdqNW1FUTM2UHRGOHpydGFBWFo1STZBU3V0OVJ1UUNkTE1BdVVrMnFLc3g1?=
- =?utf-8?B?SzBNVGYyRkNjS1RsaldVRFFKKzBMV2toSXltL0NtazR0S0Q4V1JOL0p0TDIy?=
- =?utf-8?B?UzVuODByTEJLcWlSZUEzR0lIOUF2eWxnNWM4K0xoSjI2ZGVXVHJIcVdnd3ZQ?=
- =?utf-8?B?ZHJ0dERFRkhqL3ozYjV2YzJqTU9xdXJOMlB2RTlodjRkZVBGYTVwQnNBVGJk?=
- =?utf-8?B?RldZVlRrTG5JUjBZa0VSYWUwcHRhSDhJY29wZzVBRGtPcFFhZTk2MExJcENx?=
- =?utf-8?B?MlM1UVJXMDZmNDZGTW9wbnBNY2lkSkw2NGxpNjVKMFlsRkxMeXExUDhWeUdV?=
- =?utf-8?B?NFBqamJFMnhvaXAxNVdQbVE4d3huei82NDg0dmdQRFdnWmZ1cWY2RmJZNkd4?=
- =?utf-8?B?WGEvYVdDVGJwbWZyOWJzMVp2WVh1ZDVYWTlJNitpNE5oV0NWYS9TN2dYK2gz?=
- =?utf-8?B?SGhsejFGTmExaERaZUpxMm0xTFgzRjZwWnQya1hySVVuV3ZGdkxvWCswNXRp?=
- =?utf-8?B?ampQcXFVVVdzSFlUTmNIeWcwZmxjcTRRRFUwSDh3S3hYMlJxTm42cVM4VWd5?=
- =?utf-8?B?K3hoZDBmdTBhUWZHSXdRcGYrcE04ckRIMlhXSUdFeG9DWDJ3Zjd1eWxkTGZE?=
- =?utf-8?B?S0xrNGpwZWMvUXloYit0ZkxLVDd6WDZlR3hDakVSeTcrYVlQbzIxMDVXVnBQ?=
- =?utf-8?B?RWJFeXM4V3VTM1RuQ0dqR1ZlR0J4cXVHUDhCSzJhUStPWjlFSHRFZFpvNlRR?=
- =?utf-8?B?L0thV0RrQnJHeVl1TDNpWlFPYjcxcnlLaWZXa3lZWDdpNmNlV1pNSkUwMTNZ?=
- =?utf-8?B?RklLTFE2VVE0eGRNMWhIbEJ6QzBVaGpyOGJFVXg5WGZHVzg4TmRRY3RHK3Ur?=
- =?utf-8?B?WnNBckVpUmQ5Tmx5TTV1dk1IdS9jOXltemlodjZDSEF6aUd0Y2w3emUydjIy?=
- =?utf-8?B?d3ozMWFBMkYwVWhNY0lubTNtdFJPeE5XRnZldmpuL3RHSUlkR3gvMk5NeDhN?=
- =?utf-8?B?MXZsZTJHVEN2MC8wRGFrRU5nMjZleTREZ3k5UjJvRDFnTDhIeEhuWGFYNzlj?=
- =?utf-8?B?NlgyMDlXTUw2N3RLaGJoU3hkd1JaTDJaMU5aUXJFcVpUK2djd3hseGRFQ3hx?=
- =?utf-8?B?Z0Y2dnlOakcrYWZkc3RybWJuL2pEZ3hFRkpJc3NyclBOZWk2amxSODNVZ2JY?=
- =?utf-8?B?N29STjRPbjdjaE9ZeW90UjV1c0NFVDNaaWVGdk1sZ3dGbldOWkYxaWlUcXA5?=
- =?utf-8?B?SUtxR3JzTmFtdFJzL1QrSlJHTDMrYjlFdE82Q1VUWVM1a0Y2VG9QajduR0F3?=
- =?utf-8?B?anlXQmFVaHhnbklYM2xaSVk0UkNtTEJuTUx0ZmIzbmdLOUswWTVvb1ZlNmlX?=
- =?utf-8?Q?8Kj6E+WNEwjPU8cJn6Wp?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cVhwMUY4VEc4QkNJMHh4aEJ0eXRuWVJmbjZNc3E5TWJmM09HWStaQzhuMmg3?=
- =?utf-8?B?K0tiL0lDSzNCUnNxRkMrL2xhUXRSNGUyOXNPZ3VTNnJJbDFGeURHbUtONWF6?=
- =?utf-8?B?ZnVzQkpDMnBYZU9HV1RIbEZlT0FWdWQzVFQ1SmFKbTVrNE9zaWpTYVp4emdj?=
- =?utf-8?B?MndZRjUrSDNteXhHNkU1bE16aDZsSURTKy9nTGNLRmVIUUsySlEvNllWd0kv?=
- =?utf-8?B?YnFUTDZGSE5QWDVmZ2lhaWJ2bW1yanVDVUlUb24wTHlkVGY5c0RWNE04VG1E?=
- =?utf-8?B?Q05ET05wQW9GUUxza0s4RnFLUVJLbGwwSm15bzRQdm0xcjlFMXpCejdFbzZ6?=
- =?utf-8?B?b0wwMnJGRkFBVk9udjc4UitOSWxQdVZ0MUtTVUV0RlVOdUU5ai9HU0FZdGlE?=
- =?utf-8?B?aFdTdVVtUlZRQUZHa1E5Yk5EN3YrM3dOWW9nclg1UWJsTExzcU1CalQ0ZjNZ?=
- =?utf-8?B?bS9TL285Y3FPcCt2cnJDc05vU1p1cFoxYXhSNDVuakdHNGMxSnpmb1NNSlZL?=
- =?utf-8?B?U1BvWDh2Z0hIekwxYnM4N0ZUMGhoZFArbXhiS3RlTnV4Y1AvZFRBUDEvcGNI?=
- =?utf-8?B?UGFoNkdvWUhOT21KN3FNVm5xVHZMcGdmWW96VURSR0QyU3pwcE9DeFBjNHow?=
- =?utf-8?B?Ymh6dXBjSUJvNUFxME1WWUpEOGlJZ1JwaER0QVJTL2hzRCtIUU9oWmQ3K0FC?=
- =?utf-8?B?amNZdXQwZzFoU3EzRXdvclpUWm9ZRjBqeExrYXdwMnlwTzVuV0YzMnFCVXky?=
- =?utf-8?B?L3VMSmZDM1NPeWs4NHQxR1NjMkFieVZXbVhsM0xGdHdXVnFzSFF0UDBWZUp1?=
- =?utf-8?B?aTRiazZsWGdiNFFTdWdYdjVWQUltT3FuOUFmWDRNczJydkFnaUdRVW80ZTJx?=
- =?utf-8?B?c2JkV05vWWxZNlJhQTdDRlhjOWZuUG9iRzBzaVdCVm50WVAwZmFlNWx0c05u?=
- =?utf-8?B?SXJhd0dRWTU3c0lTV3JaeERnbmh4SG1sMC9lOEdWTmNRVWROZFAxclRRRlA2?=
- =?utf-8?B?OWJKUjloNHVPTjRqaWtwNmFrVHVaaytIeDVKTlN1Y0Jyb1d0RzRwZWRIRWhp?=
- =?utf-8?B?RUw2U0k3TktlMVcvbHBHN01PTlZjek1BZDQ1eThQeDdGS3hUOXZKZXhsNEpD?=
- =?utf-8?B?NjkrajdibDZOb3Qwc3NERzUyM1hPOURZZ3dyem5xRWpHOHhPTlJJZDlBcEhP?=
- =?utf-8?B?ZjlTOFhmQ3lMd2FvR0tVTllvTnlWRm9LNUs3dDNQQkdPK1BEKzMvT0hiVWJh?=
- =?utf-8?B?Nzd2blZBeEFQdHJUaFp2WGtHVGJHWGhMNHd1MGRzUDhsaHNKZGozTlZyQ1Bs?=
- =?utf-8?B?YXVQQW1EejNTWWRrZGgrSVZWSE1jUDlzQ2R3RkxwTSt4Tm5YbENFbW1pYlZX?=
- =?utf-8?B?YjNncEpOUWlwSWZ5TjlJN1RROWNOWVhBVE9MSjN1ZzFSVCsxWnFNcjBUYmpo?=
- =?utf-8?B?bWtlQmh0ZCswT0ZNNU1LVWE1YU9JQWMxdHhKSDZmN2QxUWRsM2RTVkJneEpo?=
- =?utf-8?B?VjJqSDBnNGZzcU1GR2pIWXE3cFZJT1huN1dNVVJKdUF1NmMzQ0dPNERHd1VF?=
- =?utf-8?B?YXRWUXQvL2NWaThCUWJnUUtYL2dJZHJEY1hkNWZjSXF1bHRjR1hJQXZsWHRP?=
- =?utf-8?B?UTh3N2FURmJLWGlUL0l4RmhpMTUya1Z6WkN1dEZvOTBmOEdZYlFmTUJFczZH?=
- =?utf-8?B?QU1XcXpBSXdUak01MlA3SjBXSzFnMXkrVERZd0NyQUZuKzVUOGpWajlqRjN4?=
- =?utf-8?Q?jz0g7p7BRfYxtEImrCetuDlGGZhyc+2Ilmstb20?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb68cfd5-e38b-4a60-89fb-08dd772f495b
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 06:25:13.7124
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0984
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
+To: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org
+Cc: Michal Schmidt <mschmidt@redhat.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407172836.1009461-2-ivecera@redhat.com>
+ <9b38d033-72aa-4fb0-b1ee-41bbe3884040@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <9b38d033-72aa-4fb0-b1ee-41bbe3884040@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
 
-On 2025/4/7 13:38, Jingbao Qiu wrote:
-> On Sun, Apr 6, 2025 at 8:16 AM Thomas Bonnefille
-> <thomas.bonnefille@bootlin.com> wrote:
->> Hello,
+
+On 07. 04. 25 7:53 odp., Krzysztof Kozlowski wrote:
+> On 07/04/2025 19:28, Ivan Vecera wrote:
+>> This adds base MFD driver for Microchip Azurite ZL3073x chip family.
+> 
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+Will fix in v2.
+
+>> These chips provide DPLL and PHC (PTP) functionality and they can
+>> be connected over I2C or SPI bus.
 >>
->> On Sat Jun 1, 2024 at 1:53 PM CEST, Uwe Kleine-König wrote:
->>> On Wed, May 01, 2024 at 04:32:42PM +0800, Jingbao Qiu wrote:
->>>> [...]
->>>> +    if ((state & BIT(pwm->hwpwm)) && enable)
->>>> +            regmap_update_bits(priv->map, PWM_CV1800_OE,
->>>> +                               PWM_CV1800_OE_MASK(pwm->hwpwm),
->>>> +                               PWM_CV1800_REG_ENABLE(pwm->hwpwm));
->>> This looks strange. If BIT(hwpwm) is already set, set it again?!
->>> Also if you used the caching implemented in regmap, you don't need to
->>> make this conditional.
->>>
->> I was testing the series and noticed indeed an issue in this driver at
->> those lines. If PWM_CV1800_OE isn't set by something else than the
->> kernel it will never be set and so, there will never be a PWM outputted.
->>
->> Using :
->>      if (!(state & BIT(pwm->hwpwm)) && enable)
->> Solved the issue but as Uwe said you can probably rely on regmap caching
->> to avoid this condition.
->>
->>> ...
->>>
->> Do you plan on sending a new iteration some day ? I may have some time
->> to continue the upstreaming process if you need to.
->>
-> I am so happy you can continue finish this patch.
->
-> Best regards
-> Jingbao Qiu
+> 
+> ...
+> 
+>> +/**
+>> + * zl3073x_get_regmap_config - return pointer to regmap config
+>> + *
+>> + * Returns pointer to regmap config
+>> + */
+>> +const struct regmap_config *zl3073x_get_regmap_config(void)
+>> +{
+>> +	return &zl3073x_regmap_config;
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_get_regmap_config, "ZL3073X");
+>> +
+>> +struct zl3073x_dev *zl3073x_dev_alloc(struct device *dev)
+>> +{
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	return devm_kzalloc(dev, sizeof(*zldev), GFP_KERNEL);
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
+>> +
+>> +int zl3073x_dev_init(struct zl3073x_dev *zldev)
+>> +{
+>> +	devm_mutex_init(zldev->dev, &zldev->lock);
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_init, "ZL3073X");
+>> +
+>> +void zl3073x_dev_exit(struct zl3073x_dev *zldev)
+>> +{
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_exit, "ZL3073X");
+> 
+> Why do you add empty exports?
 
-Thank you Thomas, I updated info on https://github.com/sophgo/linux/wiki.
+It is filled in the later commits but yeah I will include the function 
+once it will be necessary.
 
-Thank you Jingbao too for your good job done.
+>> diff --git a/drivers/mfd/zl3073x-spi.c b/drivers/mfd/zl3073x-spi.c
+>> new file mode 100644
+>> index 0000000000000..a6b9a366a7585
+>> --- /dev/null
+>> +++ b/drivers/mfd/zl3073x-spi.c
+>> @@ -0,0 +1,71 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/spi/spi.h>
+>> +#include "zl3073x.h"
+>> +
+>> +static const struct spi_device_id zl3073x_spi_id[] = {
+>> +	{ "zl3073x-spi", },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(spi, zl3073x_spi_id);
+>> +
+>> +static const struct of_device_id zl3073x_spi_of_match[] = {
+>> +	{ .compatible = "microchip,zl3073x-spi" },
+> 
+> 
+> You need bindings. If they are somewhere in this patchset then you need
+> correct order so before users (see DT submitting patches).
 
-Chen
+Yes, there are. I will reorder the patches in v2 and also split the 
+whole series into several ones.
+
+>> +static void zl3073x_spi_remove(struct spi_device *spidev)
+>> +{
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	zldev = spi_get_drvdata(spidev);
+>> +	zl3073x_dev_exit(zldev);
+>> +}
+>> +
+>> +static struct spi_driver zl3073x_spi_driver = {
+>> +	.driver = {
+>> +		.name = "zl3073x-spi",
+>> +		.of_match_table = of_match_ptr(zl3073x_spi_of_match),
+> 
+> Drop of_match_ptr, you have warnings here.
+
+Ack, will avoid.
+
+>> +	},
+>> +	.probe = zl3073x_spi_probe,
+>> +	.remove = zl3073x_spi_remove,
+>> +	.id_table = zl3073x_spi_id,
+>> +};
+>> +
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
