@@ -1,154 +1,126 @@
-Return-Path: <devicetree+bounces-164702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03021A81FB3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:27:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2765A8201C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC4B54C25AE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:27:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB2A08A1DAF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27B925B694;
-	Wed,  9 Apr 2025 08:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cEqbhwTo";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="XU06grse"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4817F25D53A;
+	Wed,  9 Apr 2025 08:30:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E1725B683;
-	Wed,  9 Apr 2025 08:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E21525D52D;
+	Wed,  9 Apr 2025 08:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744187248; cv=none; b=An/3+bphcARZymvTvYz+Q8+pCggmT9FKfuqqcTgbPR4XA81MpMPRw0cD6vqB2C08djUw5O/hXxOMwf+iKQjdPOcfkxEp0QTEpDPwA+V0xB7fPfNvye1u91AXxVgpDf2fyoFonvZKadWbVR427/7X4TNvouLHVxlap4y2ChipNS8=
+	t=1744187442; cv=none; b=LJEGIOgfFY+SRzKZ3bkP7bd7vEtj5p1c2ny0e2v9w2sXSF7tfw501g592rpjK0Kd5gRyNWqPvF0r0rt1enf47NRC1dB5s/GFV4dV6nc2aPmlpdYho/DjIP2jDOx180xlmdFZhGYcRurJq7G7FXZA8uWDJc7gnnaplg/ijK9dF6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744187248; c=relaxed/simple;
-	bh=G3spHja+t7swvyipJ/vLXF0lt8/0DKjysSgKTLoOqlk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=N58gUqabBpmxG/XuyAEDDPYTQs1o6M4KLeLhsq+f3/TOCX+48efXeFHZWwH5duiUwkskBymia6jG9zqfffeBPqMEl3KwB6/sf4ch56vaVF/uHtds54LPE7TGekWe5mDswP+yPCxwl4ZXwbmFdoCuTcssNKAfBgJNOdQZp1yC4dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cEqbhwTo; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=XU06grse; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1744187244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=beqSCrthJJ96ffNv3VxFRcPOEYbKMeCzBJvR9ZAwmRo=;
-	b=cEqbhwTougUpomdumFtZLkpuEa6pFWI8Ce4+URMRNQwDpvuX3iLQ8D95jsn1TrL5ApN57d
-	s1fYke81i0ORSg+/67l8P4xSEqb7rhdxujU9Bp3YZEu/f5hMjEsM4I9JkyHmN++E9hItRZ
-	+ySNNZ+9reK6a7EE7/86AA3JVJF4vxB5uoOq56lNgr0cxWBKG6SBfRnTceifjiA5ur9g66
-	DiDLKEZTqEHSBzdnUgYnrLClugiJPfiLuKzjrDo2xwnSEWtg5xbEE+2OL7VpIYN2NgkQUt
-	H017FlRcZE7RaUO0hsf2lS7H/1ElA0H7QcejDvgA3ugefNS8X0uhKZcZ/pODlA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1744187244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=beqSCrthJJ96ffNv3VxFRcPOEYbKMeCzBJvR9ZAwmRo=;
-	b=XU06grseNXk6NF5fs+KuOxKTjWZFrN7EUjv1zo7cX9FSdrHcycwpYCk0dxAwjpUSKQ9GQC
-	PEVl8g+1LE5EuGDQ==
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes
- <timothy.hayes@arm.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Lorenzo
- Pieralisi <lpieralisi@kernel.org>
-Subject: Re: [PATCH 20/24] irqchip/gic-v5: Add GICv5 LPI/IPI support
-In-Reply-To: <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
-Date: Wed, 09 Apr 2025 10:27:24 +0200
-Message-ID: <87wmbtu4cz.ffs@tglx>
+	s=arc-20240116; t=1744187442; c=relaxed/simple;
+	bh=7RJbB0wwplKFvV8WjY6nmxdD97+VB6jb4eBmvgMPSLw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=upJeanmo8D5s9Pb/7OXkkN3b2hkoP8aJYvKeH/qZIUhSeBl4MY38S1yICltCKrDOXiwVeQ2KerkxQ2BbZI4EKr56ZkQagUyod9csZE4j9Wd2MHsUHwb+8xNqJQ8F9UHOdGFQ8YAl7xNuecXfJtMkP/4ISGRbbY20l6MsAU1ZFLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [27.18.106.237])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 113514274;
+	Wed, 9 Apr 2025 16:30:29 +0800 (GMT+08:00)
+Message-ID: <756177ef-f2a7-4a8a-afa4-a68d68e5c733@whut.edu.cn>
+Date: Wed, 9 Apr 2025 16:30:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] dt-bindings: usb: add SpacemiT K1 DWC3 glue
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ Yixun Lan <dlan@gentoo.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-phy@lists.infradead.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
+ <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+ <174403387085.2155711.16403180293126338183.robh@kernel.org>
+Content-Language: en-US
+From: Ze Huang <huangze@whut.edu.cn>
+In-Reply-To: <174403387085.2155711.16403180293126338183.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHh1OVk9MHksZTUlPGUIYSVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJTFVKQ1VKS01VSUhMWVdZFhoPEhUdFFlBWU9LSFVKS0lCTUpKVUpLS1VLWQ
+	Y+
+X-HM-Tid: 0a9619ac159503a1kunm113514274
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDo6CSo*CjJOQz1NN1FJAUkf
+	ExgwCklVSlVKTE9PSkNMT0hMSUlJVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
+	TFVKQ1VKS01VSUhMWVdZCAFZQUhMSE83Bg++
 
-On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
-> +/* Wait for completion of an IST change */
-> +static int gicv5_irs_ist_wait_for_idle(struct gicv5_irs_chip_data *irs_data)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = readl_relaxed_poll_timeout_atomic(
-> +			irs_data->irs_base + GICV5_IRS_IST_STATUSR, val,
-> +			FIELD_GET(GICV5_IRS_IST_STATUSR_IDLE, val), 1,
-> +			USEC_PER_SEC);
-> +
-> +	if (ret == -ETIMEDOUT)
-> +		pr_err_ratelimited("IST_STATUSR.IDLE timeout...\n");
-> +
-> +	return ret;
+On 4/7/25 9:51 PM, Rob Herring (Arm) wrote:
+> On Mon, 07 Apr 2025 20:38:48 +0800, Ze Huang wrote:
+>> Add support for SpacemiT DWC3 glue driver, which manages interrupt,
+>> reset and clock resource.
+>>
+>> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+>> ---
+>>   .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 78 ++++++++++++++++++++++
+>>   1 file changed, 78 insertions(+)
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@c0a00000 (spacemit,k1-dwc3): '#address-cells', '#size-cells' do not match any of the regexes: '^usb@', 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@c0a00000 (spacemit,k1-dwc3): usb@0:reg: [[0, 0], [0, 65536]] is too long
+> 	from schema $id: http://devicetree.org/schemas/usb/spacemit,k1-dwc3.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.example.dtb: usb@0 (snps,dwc3): reg: [[0, 0], [0, 65536]] is too long
+> 	from schema $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
 
-I'm sure I've seen that code before and without looking I'm sure the
-diff between the two functions is ~2 lines.
+Thanks for the report!
+I’ll add '#address-cells' and '#size-cells' under properties to resolve 
+the error.
+because if I drop them from the example, I get warnings like:
 
-> +
-> +	mtree_lock(&lpi_mt);
-> +	ret = mas_empty_area(&mas, 0, num_lpis - 1, lpis);
-> +	if (ret) {
-> +		pr_err("Failed to perform a dynamic alloc in the LPI MT!\n");
-> +		return ret;
-> +	}
-> +
-> +	lpi_base = mas.index;
-> +
-> +	/*
-> +	 * We don't really care about the entry itself, only about
-> +	 * allocation of a maple tree ranges describing in use LPIs.
-> +	 * That's why, upon allocation, we try to merge slots adjacent
-> +	 * with the empty one we are allocating to minimize the number
-> +	 * of slots we take from maple tree nodes for nothing, all
-> +	 * we need to keep track of is in use ranges.
-> +	 */
+Warning (avoid_default_addr_size): /example-0/usb@c0a00000/usb@0: 
+Relying on default #address-cells value
 
-I'm really not convinced that you need a maple tree and the code
-complexity for this. What's wrong with a simple bitmap other than that
-it might need 1MB memory?
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
+>
+>
 
-> +static int gicv5_irq_lpi_domain_alloc(struct irq_domain *domain,
-> +				      unsigned int virq, unsigned int nr_irqs,
-> +				      void *arg)
-> +{
-> +	irq_hw_number_t hwirq;
-> +	struct irq_data *irqd;
-> +	u32 *base_lpi = arg;
-> +	int i, ret;
-> +
-> +	hwirq = *base_lpi;
-> +
-> +	for (i = 0; i < nr_irqs; i++) {
-> +		irqd = irq_desc_get_irq_data(irq_to_desc(virq + i));
-
-irq_get_irq_data() and irq_domain_get_irq_data() exist for a reason.
-
-> +
-> +		irq_domain_set_info(domain, virq + i, hwirq + i,
-> +				    &gicv5_lpi_irq_chip, NULL,
-> +				    handle_fasteoi_irq, NULL, NULL);
-> +		irqd_set_single_target(irqd);
-> +static int gicv5_irq_ipi_domain_alloc(struct irq_domain *domain,
-> +				      unsigned int virq, unsigned int nr_irqs,
-> +				      void *arg)
-> +{
-> +	int ret, i;
-> +	u32 lpi;
-> +	struct irq_data *irqd = irq_desc_get_irq_data(irq_to_desc(virq));
-
-Again. Zero reason to fiddle with irq_desc.
-
-Thanks,
-
-        tglx
 
