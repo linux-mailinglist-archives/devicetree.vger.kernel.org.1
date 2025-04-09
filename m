@@ -1,124 +1,84 @@
-Return-Path: <devicetree+bounces-164972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A434A830EA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:51:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 014A3A831A4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 22:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 349A3467549
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:49:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEA481897678
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 20:11:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2E721421E;
-	Wed,  9 Apr 2025 19:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1626221128A;
+	Wed,  9 Apr 2025 20:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e2S6XtIj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ra99G1Pf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240912101B3;
-	Wed,  9 Apr 2025 19:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBAD4211261;
+	Wed,  9 Apr 2025 20:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744228118; cv=none; b=Fi5IZB1ZEQbHplpTvvmyrjJv2sUdj2/k0GHL0cuJgOSRnwyD8qNTSJbvqlTL7rXk5oKqa1BukunhNBEXaI8fNq54xMI56lpWVK34BhqQ/4DvnRmwmkEq3z0o1u6hbOI3tRK/SIfM67mwanGfbf2WQWF+UvX0nSPCapKqeQ2S8VE=
+	t=1744229467; cv=none; b=mSO9P++ELY8ardbvFJhkHO7uoCT6NZ2SlNOm2cvlqnI/TwozYUJKFfGh1UgE92XFgvyhLehVoF71KZHFc0/gTU4LUMKFZmNEUqeqfg4hKwpqzkrYUDKJoWxyJtPtn15sJa4KkmV3D9A7I5vCn7iG/7z3alkdrL1qrZFS/1+CJt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744228118; c=relaxed/simple;
-	bh=iCtHLk33YvZVAWXt7i5RyMq9fMhcsg+qWem2feATC5g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t7hT7bVaO7mSjZvNcRoXW6BR6Q11xIy2c5n3melxRPs6+n3IUgnkusWwoDKTlgKZIT9lPell+85dGJ31xkWZSPxpqFhQwTPF1nVptopCLYGlEyV3RU42QPzvpl2Aj9tZo3L++huDpD6C9Q/+0B8vuJsCxlSau080dVOrY/ylHTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e2S6XtIj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HE1fJ005921;
-	Wed, 9 Apr 2025 19:48:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	coBhNxrqtvBjPYHNF8KL0UPazsmtH2wkILUKTEDK9Ns=; b=e2S6XtIjbzWLlY6q
-	fo78D1uUsMyMxOYWpZpFxhOCCARzdl7gtnOj53Rdl5NISfNXMnxpL+wNkS3PjSgL
-	70tEo+M+3hg4xC0hMGnMvLL2d5t+d9SMSxs87U09EsqbZbkJTjL1flpu1nJEWpbu
-	rmwPcMu9ifoOcazPSOK/2R4xChDjn523xVqP5Hj4eXGA+3rDAAH8R9smBy/HmEaL
-	MKDHlV5LvWRMHS+QQb1C9y4E6jbMzrNW61NJYB18EI/S5ggeLZwPuit98n+AjQoH
-	aQ/7SeNwiIzmDniW9t/3jcqHYEwzdTbufT0kq1aJAtTNWmw3A+yl4Ak+uTBOEXX2
-	Hulo6w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twtb4pc5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 19:48:25 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539JmOYE031475
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Apr 2025 19:48:24 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Apr 2025 12:48:24 -0700
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
-        <tiwai@suse.com>, <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v38 31/31] ALSA: usb-audio: qcom: Notify USB audio devices on USB offload probing
-Date: Wed, 9 Apr 2025 12:48:04 -0700
-Message-ID: <20250409194804.3773260-32-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250409194804.3773260-1-quic_wcheng@quicinc.com>
-References: <20250409194804.3773260-1-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1744229467; c=relaxed/simple;
+	bh=0e4FkhqyEYt7yqEDX5mzHFyo+DedyZnaA98fEUnVjQI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=hwWi5LqmcRXg2I4KL41o/ClzB+uPLlcm77T1+C6W5lIDUIi2HS1vNZMSqJYu8URCjUZ/Er14XFWRoRxkHKXtt4OxBbaArXBjrlGh5+7tx6K6Hvgu3PCEnNjr69q/PREYbeKsnfcWEeuQR76xrrwO4sdNOOV37cDCtRYCpYNIbsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ra99G1Pf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 178BAC4CEE8;
+	Wed,  9 Apr 2025 20:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744229466;
+	bh=0e4FkhqyEYt7yqEDX5mzHFyo+DedyZnaA98fEUnVjQI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Ra99G1PfH0mlQl/VvEl7lYnGVufgYLzq9Zt9O6BLMeY1V4NySIUGR6y/NiQr8ZLYW
+	 N69ZO91wXYEbLNtWPY8wxT7AuXEAzO78u9G+0psZ1kMSKYKKxcaMXJfnEwelHhlH9m
+	 dRh8uznYDtXA6yGSe2/veKd6CDf9UzAOieEYzwbgVmcAsLEaJvfRnP7ZzN6A6UyQmI
+	 mMZlDun1fLrYbU/Q14hat91MBSASXC7An31Bo8dNANFOhT16ssBDj5pgYsdom7rygK
+	 7W5qS0Ncj+/pgKC2pc8axYwJKdkQxO+gZ1qfdS4l4KYCnQADF1P1jftCxmNmNPpRD3
+	 9laeGltrrdgog==
+Date: Wed, 9 Apr 2025 15:11:04 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Milind Parab <mparab@cadence.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/7] Enhance the PCIe controller driver
+Message-ID: <20250409201104.GA295084@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: NyMvLVILQomADtA_HpADUenBomJUU4EG
-X-Authority-Analysis: v=2.4 cv=LLlmQIW9 c=1 sm=1 tr=0 ts=67f6cf09 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=3H110R4YSZwA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=0R9NKns1a96QCZ5VGfgA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: NyMvLVILQomADtA_HpADUenBomJUU4EG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- clxscore=1015 mlxlogscore=999 malwarescore=0 phishscore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0 adultscore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090132
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CH2PPF4D26F8E1CA951AF03C17D11C7BEB3A2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
 
-If the vendor USB offload class driver is not ready/initialized before USB
-SND discovers attached devices, utilize snd_usb_rediscover_devices() to
-find all currently attached devices, so that the ASoC entities are notified
-on available USB audio devices.
+On Thu, Mar 27, 2025 at 10:59:08AM +0000, Manikandan Karunakaran Pillai wrote:
+> Enhances the exiting Cadence PCIe controller drivers to support second
+> generation PCIe controller also referred as HPA(High Performance
+> Architecture) controllers.
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/usb/qcom/qc_audio_offload.c | 2 ++
- 1 file changed, 2 insertions(+)
+Usual convention is to include a space before "(" in English text.
+Apply throughout this series in commit logs and comments.
 
-diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
-index 378249a264a3..5874eb5ba827 100644
---- a/sound/usb/qcom/qc_audio_offload.c
-+++ b/sound/usb/qcom/qc_audio_offload.c
-@@ -1952,6 +1952,8 @@ static int qc_usb_audio_probe(struct auxiliary_device *auxdev,
- 	if (ret < 0)
- 		goto release_qmi;
- 
-+	snd_usb_rediscover_devices();
-+
- 	return 0;
- 
- release_qmi:
+Others have mentioned the fact that we can't easily extract the
+patches from this posting because of the Outlook series.  That also
+makes it harder to review because we can't apply the series and see
+the changes in context.
+
+Bjorn
 
