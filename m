@@ -1,83 +1,63 @@
-Return-Path: <devicetree+bounces-164669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E09A81E49
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:29:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E951BA81E51
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:31:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5055881089
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:29:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E5A87AD231
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0798C25A2B4;
-	Wed,  9 Apr 2025 07:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46B025A2C4;
+	Wed,  9 Apr 2025 07:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rm3YTr4z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oq9TuK38"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5252725A2AF;
-	Wed,  9 Apr 2025 07:29:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFBE1DDC07;
+	Wed,  9 Apr 2025 07:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744183759; cv=none; b=B66P+FE4YwWhKQ0Fruu2/CvYL8qUVG+YP9PLehRBGePm0Ut053+yE9jq6Zf0xJtWCzLZP6asoEbVpr5EAwwrDSWyLM1/0gPyXhR57w6RPWex+kBfbHldu28wmjZfFKIE5taB1541tY0XniWEEUOC9ATJXW1MILxEiSw+KDiiK0w=
+	t=1744183859; cv=none; b=INO0fLKfeqRQX53pQqE7KKY+Uc1RwjqDi72H3XBBqbbAm+BXgIPApY+KIWJr6qaNPOhDr/897k1FX5qVyYzsBAsi6ZvZB7heG8BzQoab2Vpox11DGh98B1+WNlOwOVSszEkg4euly6VFogquKFZwtyeXBpRlkf8PBYAKAKnZttA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744183759; c=relaxed/simple;
-	bh=SGfNYxf1SFuOxndDllT2akQb3PF8/MAIXy5zK8FRPFk=;
+	s=arc-20240116; t=1744183859; c=relaxed/simple;
+	bh=v3n5JgwpE6270eRrZMtFhK0CZ0KtsCC90coVUAGG9aE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MQzzPWSf/UcYHMdBuWN1792STMfStMvUbX4Yf/FZfhYZwa6t2C00PeVPPjW7wlSDIC/ITq27YDRnqukRhLlYpJJsPKHocgpyGDZCz0uc9fuyNOkPt3GQ/2/IVTB8NhrMb2HGrdSWvNSyBr0ph4JZggDe3FE/jzm9GzHQlnolGTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rm3YTr4z; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744183758; x=1775719758;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SGfNYxf1SFuOxndDllT2akQb3PF8/MAIXy5zK8FRPFk=;
-  b=Rm3YTr4zX7jrsW3HdK/2QJVwuds63NoPsnJs0PSkOHj290rWCVwhjJrM
-   0x3I83sGOO3DkXdkZX/mvI5i+sd3v20Dbfbb5FM5cWUmVufAGM8/AFvcg
-   fJpnPk3H/s7I4nHcwab+fbNWy8igJgz71G7XQLlmpaQSCJ33Sc8C/AsN9
-   LI2xFEyjAjhE0T0hqwvHrrAYxqUrM509rbc/dHYDn+jPZ4iEOQj4+sx/D
-   O8TSgR95HVY/ZOrMNm3QU0SeVNvhg4+28O83SDu9Gd7u6RigNgj7P8JOU
-   uf3AwCJYPfgyuPzpAoj4autqb2d2kK+k7Ms1ho7v2Soq1dDefqJgm+DTZ
-   g==;
-X-CSE-ConnectionGUID: 61PDVKtITjey4Br80ruInw==
-X-CSE-MsgGUID: 09pfA6+WR2Ky87QnZbZUJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="33248826"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="33248826"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 00:29:16 -0700
-X-CSE-ConnectionGUID: Sov2QirNQMyY4Sg8LTP0bw==
-X-CSE-MsgGUID: g5S/97v6QbiG4KufX4Wc1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="129331858"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 00:29:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u2Prs-0000000AeQj-2FRX;
-	Wed, 09 Apr 2025 10:29:04 +0300
-Date: Wed, 9 Apr 2025 10:29:04 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Alex Elder <elder@riscstar.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com,
-	u.kleine-koenig@baylibre.com, lkundrak@v3.sk,
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] serial: 8250_of: add support for an optional bus
- clock
-Message-ID: <Z_YhwJ1ZGSodMcMH@smile.fi.intel.com>
-References: <20250408175146.979557-1-elder@riscstar.com>
- <20250408175146.979557-3-elder@riscstar.com>
- <Z_V-aKBOFHt-0RKz@smile.fi.intel.com>
- <2b322564-10c0-4bbd-89d9-bc9da405f831@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y74vZItQpaHcgPl83thkzzJsT4dFh6r5vuV6YKYTn90vwIyjVWTpi/W0JKKTMszw91d3sSVCA4Fc1if7tfthw5f2MpqBogntpv+o+c4+7u4e8sZIpUxMuBUyriH1gXcQ52oz11MWRCftVsCwzBTBT/09XTedlWj5P/T/EpnYka4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oq9TuK38; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC10C4CEE3;
+	Wed,  9 Apr 2025 07:30:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744183859;
+	bh=v3n5JgwpE6270eRrZMtFhK0CZ0KtsCC90coVUAGG9aE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Oq9TuK38hrQocohwoPsnURn+ULs/oGCy9Y9IBcW4pjU6px6xjpvUzanY9a+Tahu3l
+	 afwfMQxG3wf0pGQizMQWWc2tiywjUWmISG1LCARkEV9qODEgWCj4Wffh0dPFnrUpRA
+	 aazDJpiwoq6Pl3PHRspEk+yrYY4DgZ2x5t1hF+osaryN5AyEz/fG+AEJr8EtnWpmKH
+	 xUYQ3GqH4GUAi1T0xDEQyw3fEeewIt7TX3JUOy0kXCNSdmOyY3jO8B6MY9fz9wFJcd
+	 62VyS6lK9aXKHvfN4dxeL62ZShJWS68w2CKXBWRNgDFJ2/OoAkQG0LriOrsl8ABqvb
+	 NZ/KJlsP8jQ8Q==
+Date: Wed, 9 Apr 2025 09:30:52 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 18/24] irqchip/gic-v5: Add GICv5 PPI support
+Message-ID: <Z/YiLNzRvXUgcHFc@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-18-1f26db465f8d@kernel.org>
+ <877c3uuy7u.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,72 +66,256 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2b322564-10c0-4bbd-89d9-bc9da405f831@riscstar.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <877c3uuy7u.ffs@tglx>
 
-On Tue, Apr 08, 2025 at 03:11:10PM -0500, Alex Elder wrote:
-> On 4/8/25 2:52 PM, Andy Shevchenko wrote:
-> > On Tue, Apr 08, 2025 at 12:51:43PM -0500, Alex Elder wrote:
-
-> > > The SpacemiT UART requires a bus clock to be enabled, in addition to
-> > > it's "normal" core clock.  Look up the core clock by name, and if
-> > > that's found, look up the bus clock.  If named clocks are used, both
-> > > are required.
-> > > 
-> > > Supplying a bus clock is optional.  If no bus clock is needed, the clocks
-> > > aren't named and we only look up the first clock.
-> > 
-> > Code and description are not aligned. And What you are described above make
-> > more sense to me than what's done below.
+On Tue, Apr 08, 2025 at 11:42:29PM +0200, Thomas Gleixner wrote:
+> On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
+> > +
+> > +static void gicv5_ppi_priority_init(void)
+> > +{
+> > +	write_sysreg_s(REPEAT_BYTE(GICV5_IRQ_PRIORITY_MI),
+> > +				 SYS_ICC_PPI_PRIORITYR0_EL1);
 > 
-> I want to do this the right way.
+> Just let stick it out. You have 100 characters. All over the place...
+
+I will do.
+
+> > +static int gicv5_ppi_irq_set_irqchip_state(struct irq_data *d,
+> > +					   enum irqchip_irq_state which,
+> > +					   bool val)
+> > +{
+> > +	u64 hwirq_id_bit = BIT_ULL(d->hwirq % 64);
+> > +
+> > +	switch (which) {
+> > +	case IRQCHIP_STATE_PENDING:
+> > +		if (val) {
+> > +			if (d->hwirq < 64)
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_SPENDR0_EL1);
+> > +			else
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_SPENDR1_EL1);
+> > +
+> > +		} else {
+> > +			if (d->hwirq < 64)
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_CPENDR0_EL1);
+> > +			else
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_CPENDR1_EL1);
+> > +		}
+> > +
+> > +		return 0;
+> > +	case IRQCHIP_STATE_ACTIVE:
+> > +		if (val) {
+> > +			if (d->hwirq < 64)
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_SACTIVER0_EL1);
+> > +			else
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_SACTIVER1_EL1);
+> > +		} else {
+> > +			if (d->hwirq < 64)
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_CACTIVER0_EL1);
+> > +			else
+> > +				write_sysreg_s(hwirq_id_bit,
+> > +					       SYS_ICC_PPI_CACTIVER1_EL1);
+> > +		}
 > 
-> My explanation says:
-> - look up the core clock by name
->     - if that is found, look up the bus clock
->     - both clocks are required in this case (error otherwise)
-> - If the "core" clock is not found:
->     - look up the first clock.
+> You already precalculate hwirq_id_bit. Can't you do something similar
+> for the registers?
 > 
-> And my code does:
-> - look up the core clock by name (not found is OK)
->     - if it is found, look up the bus clock by name
->     - If that is not found or error, it's an error
-> - if the "core" clock is not found
->     - look up the first clock
+> 	case IRQCHIP_STATE_PENDING:
+>         	u32 reg = val ? SYS_ICC_PPI_SPENDR1_EL1 : SYS_ICC_PPI_SPENDR0_EL1;
 > 
-> What is not aligned?
-
-That you are telling that bus is optional and core is not, the code does the
-opposite (and yes, I understand the logic behind, but why not doing the same in
-the code, i.e. check for the *optional* bus clock first?
-
-> > Also can we simply not not touch this conditional at all, but just add
-> > a new one before? Like
-> > 
-> > 	/* Get clk rate through clk driver if present */
-> > 
-> > 	/* Try named clock first */
-> > 	if (!port->uartclk) {
-> > 		...
-> > 	}
-> > 
-> > 	/* Try unnamed core clock */
-> > // the below is just an existing code.
+>                 write_sysreg_s(hwirq_id_bit, reg);
+>                 return 0;
+> 	case IRQCHIP_STATE_ACTIVE:
+>                 ....
 > 
-> That's easy enough.  I think it might be a little more code
-> but I have no problem with that.
+> Ditto in the get_state() function.
+> 
+> No?
 
-I;m fine with a little more code, but it will be much cleaner in my point of
-view and as a bonus the diff will be easier to review.
+Yes, more readable.
 
-> > 	if (!port->uartclk) {
-> > 		...
-> > 	}
+> > +static int gicv5_irq_ppi_domain_translate(struct irq_domain *d,
+> > +					  struct irq_fwspec *fwspec,
+> > +					  irq_hw_number_t *hwirq,
+> > +					  unsigned int *type)
+> > +{
+> > +	if (is_of_node(fwspec->fwnode)) {
+> 
+> It'd be way more readable to invert this check
+> 
+>      if (!is_of_node(...))
+>      	return -EINVAL;
+> 
+> so that the subsequent checks are just a read through.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Will do.
 
+> > +		if (fwspec->param_count < 3)
+> > +			return -EINVAL;
+> > +
+> > +		if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI)
+> > +			return -EINVAL;
+> > +
+> > +		*hwirq = fwspec->param[1];
+> > +		*type = fwspec->param[2] & IRQ_TYPE_SENSE_MASK;
+> > +
+> > +		return 0;
+> > +	}
+> > +
+> > +	return -EINVAL;
+> > +}
+> 
+> > +static void gicv5_irq_ppi_domain_free(struct irq_domain *domain,
+> > +				      unsigned int virq, unsigned int nr_irqs)
+> > +{
+> > +	struct irq_data *d;
+> > +
+> > +	if (WARN_ON(nr_irqs != 1))
+> 
+> WARN_ON_ONCE ?
 
+Yes.
+
+> > +		return;
+> > +
+> > +	d = irq_domain_get_irq_data(domain, virq);
+> > +
+> > +	irq_set_handler(virq, NULL);
+> > +	irq_domain_reset_irq_data(d);
+> > +}
+> > +
+> > +static int gicv5_irq_ppi_domain_select(struct irq_domain *d,
+> > +				       struct irq_fwspec *fwspec,
+> > +				       enum irq_domain_bus_token bus_token)
+> > +{
+> > +	/* Not for us */
+> > +	if (fwspec->fwnode != d->fwnode)
+> > +		return 0;
+> > +
+> > +	if (fwspec->param[0] != GICV5_HWIRQ_TYPE_PPI) {
+> > +		// only handle PPIs
+> 
+> Commenting the obvious?
+> 
+
+Will remove it.
+
+> > +		return 0;
+> > +	}
+> > +
+> > +	return (d == gicv5_global_data.ppi_domain);
+> > +}
+> > +
+> > +static const struct irq_domain_ops gicv5_irq_ppi_domain_ops = {
+> > +	.translate	= gicv5_irq_ppi_domain_translate,
+> > +	.alloc		= gicv5_irq_ppi_domain_alloc,
+> > +	.free		= gicv5_irq_ppi_domain_free,
+> > +	.select		= gicv5_irq_ppi_domain_select
+> > +};
+> > +
+> > +static inline void handle_irq_per_domain(u32 hwirq)
+> > +{
+> > +	u32 hwirq_id;
+> > +	struct irq_domain *domain = NULL;
+> > +	u8 hwirq_type = FIELD_GET(GICV5_HWIRQ_TYPE, hwirq);
+> 
+> So far you managed to comply with the documented reverse fir tree
+> ordering.
+> 
+>   https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
+> 
+> Why are you changing coding style in the middle of the code?
+
+Mea culpa, don't bother commenting on this further, point taken.
+
+> > +	hwirq_id = FIELD_GET(GICV5_HWIRQ_ID, hwirq);
+> > +
+> > +	if (hwirq_type == GICV5_HWIRQ_TYPE_PPI)
+> > +		domain = gicv5_global_data.ppi_domain;
+> > +
+> > +	if (generic_handle_domain_irq(domain, hwirq_id)) {
+> > +		pr_err("Could not handle, hwirq = 0x%x", hwirq_id);
+> 
+> pr_err_once() perhaps?
+> 
+> > +		gicv5_hwirq_eoi(hwirq_id, hwirq_type);
+> > +	}
+> > +}
+> > +
+> > +static asmlinkage void __exception_irq_entry
+> > +gicv5_handle_irq(struct pt_regs *regs)
+> > +{
+> > +	u64 ia;
+> > +	bool valid;
+> > +	u32 hwirq;
+> 
+> See above
+> 
+> > +	ia = gicr_insn(GICV5_OP_GICR_CDIA);
+> > +	valid = GICV5_GIC_CDIA_VALID(ia);
+> 
+> And please move that to the declaration lines
+> 
+> > +static int __init gicv5_init_domains(struct fwnode_handle *handle)
+> > +{
+> > +	gicv5_global_data.fwnode = handle;
+> > +	gicv5_global_data.ppi_domain = irq_domain_create_linear(
+> > +		handle, 128, &gicv5_irq_ppi_domain_ops, NULL);
+> 
+> The ever changing choice of coding styles across functions is really
+> interesting. Obviously the length of 'gicv5_global_data.ppi_domain'
+> forces ugly, but that does not mean it needs to be that way:
+> 
+>        struct irqdomain *d;
+> 
+>        d = irq_domain_create_linear(handle, 128, &gicv5_irq_ppi_domain_ops, NULL);
+>        if (!d)
+>        		return - ENOMEM;
+> 
+>        irq_domain_update_bus_token(d, DOMAIN_BUS_WIRED);
+>        gicv5_global_data.fwnode = handle;
+>        gicv5_global_data.ppi_domain = d;
+>        return 0;
+> 
+> No?
+
+Yes it is better.
+
+> > +static int __init gicv5_of_init(struct device_node *node,
+> > +				struct device_node *parent)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = gicv5_init_domains(&node->fwnode);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	gicv5_set_cpuif_pribits();
+> > +
+> > +	ret = gicv5_starting_cpu(smp_processor_id());
+> 
+> You invoke the CPU hotplug callback for the boot CPU explicitly, but
+> what the heck installs the actual hotplug callback for the secondary
+> CPUs?
+
+That comes with a subsequent patch[21]. I mentioned in the cover letter
+that I tried to split the functionality into interrupt types to ease
+review (well, it does not look like I succeeded, sorry) and then in
+patch [21] (when LPIs backing IPIs are implemented), enable SMP.
+
+The point is, we need patches [18-21] to enable SMP booting.
+
+I can squash [18-21] all together or I can enable the hotplug callback
+here but this patch stand alone is not functional for the reasons
+above, let me know please what's best in your opinion and I will do.
+
+Above all, thank you very much for reviewing the series.
+
+Lorenzo
 
