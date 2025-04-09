@@ -1,212 +1,158 @@
-Return-Path: <devicetree+bounces-164860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB46FA82946
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:05:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1137A82BF9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:11:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2307916E9A5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:59:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 800328C2D7A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D9D26A1CD;
-	Wed,  9 Apr 2025 14:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E53225EFBF;
+	Wed,  9 Apr 2025 15:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="ezMVi0So"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hSurYbEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2046.outbound.protection.outlook.com [40.107.22.46])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E734126A1BC;
-	Wed,  9 Apr 2025 14:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744210330; cv=fail; b=RCcXsXZS+qZpv2tdHnwKnP0Mpd01qvybsQsOIbU+KvLttw+aOWnZpe8zXB7gghzuNxdJak3TQwNfz4Ye4PjlLymYM/XejFzfod76zZ2RQQioajd0SYppn0FWJAxI5Bk+G1pMKhv3SQqX/eAHOO2sqNmiePLC0zfN/p0SyqL728Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744210330; c=relaxed/simple;
-	bh=ZGbDcGtoZ3e2uUgnGsQlABHMXsiUHG5dHu7uNVM7GpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MFW7YoT5JchbUuA8mRr33Wd8g1JzCe2PmPE8b4qOSenp/dO7PPvJq46oeAM9fa5PcMz7V/7y/9IwKUql7bsk6Z5OrjVkzcjUDeCg1ZDV26cE1fzKIH8WgrnS6l3d2UCqzQdBLx+CxyOn0DCTkuPlWK3Kv4SbD4OCZg1VCJXFQm8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=ezMVi0So; arc=fail smtp.client-ip=40.107.22.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ry/BHCfhA1C4jmhUFo2T4ocN4M/aS/SlMfRlB0ZWdBKnFj9FvrvppQBs2++B+Ck2/2f+ZMVuBQSjPDssWEwgMarMqRoIAhyk5bgkzwiNa4XO8s58vL6PX9cEfocneq4xcJ4H9zg9SZOp9YzCEDfoF3K1lM/Kx2mmTMrzVvYP5ICYWgP5XRhAgBQaQ2k/N38fqCFq0XfSsjIpzosDJ/HH+HObmrT8Zsom4GXUAQeLvpDe0zkw/WRhqAjP80AFwLaD7BAar5TAU4H+RFXfDSN/q5FKpUjN58LCIkQCxptoUA6bf95DE/sI6OH7Is77f62fHZ/7MhtxRJwNMBNfUQ2Hmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XujLaNdrw93KFdiOiNGjP0lp30k5KJiYzBpoyIi4TO0=;
- b=TiCTuEqmVkUpxfI6dNn0nuN0cx8KGDk4H9FrW0VjGyRzl8RTuhpb6BLgI1jh95gghBlU/FwaURxE2Vq094kifVMigF0X3eSjTa+zgy8vMLId4Nl8cyC/vfYrNjtP4w6UGd3P2Qdgq+ANsbxQU8BanK6Q4v/dQgv1lEYeENEVJQhBpp2+IfMHcTSLbNZuI4T5Imz2eeqMol8fsNc7KCGeid9xs++K0JnRbg+KV1XECy7ri9mNcxUndgrs9AmbIOk9IOpdfH63YshJf7tblww9m1JyNZ/UWcBKt0kqcrzn8DgsrXvSbsAAODtK0D/kkQjGCJLJDCy9YELcP0BTiO/rJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XujLaNdrw93KFdiOiNGjP0lp30k5KJiYzBpoyIi4TO0=;
- b=ezMVi0SoxEVB/BFQCo9YvAWnpFgjmLYKuGi3N1P5Hoop9EAXjHFDx2+WCSy8Zq5GkX+fbZ/98CqBcj2xwmW2pmyKGNRw23PNpJfymHh3nzkPpyG11nxXK1m2dykqbCFUriGOFAsyYaSEboyt8Rgf0Kj2QrfnEjN7pUdU2ofkpkEZphXRyMAedPU44B+4V5vX0GD6Qc7gk2lO7YntPYCnpAOQr/PhgDS75yAwHZex7GC6NwHVcNBYHMj/SGP6qjgDI6owQfJIxyC6RPwTDXjYppHMwKulOxYS/BvqYzbVEqHDdZQyV9e3SJQsE8kpnn68mKKC72bgYRlrv8szHNmyvA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AS8PR04MB7495.eurprd04.prod.outlook.com (2603:10a6:20b:295::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Wed, 9 Apr
- 2025 14:52:03 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.8606.033; Wed, 9 Apr 2025
- 14:52:03 +0000
-Date: Thu, 10 Apr 2025 00:00:29 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow
- linux,code for protocol@81
-Message-ID: <20250409160029.GE27988@nxa18884-linux>
-References: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
- <2003940.PYKUYFuaPT@steina-w>
- <20250409121829.GA11949@nxa18884-linux>
- <20250409-heavenly-sceptical-ara-bceeb9@sudeepholla>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409-heavenly-sceptical-ara-bceeb9@sudeepholla>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SI2PR01CA0011.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::6) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BCF1C6FFD;
+	Wed,  9 Apr 2025 15:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744214281; cv=none; b=UtHu5D8qctHn5kG1+vh/0+vyV3GC2DClsPxVjV5uBK1MW7j02JsP47In0Yfk2PuGZpGPYWv/bNwzAaMXmC3ZMcPnuoWau1icOOqM5zD75+x2rnM+JwbMibtZVXjY0Oh3xWTJpKvlZAFp8d0ng5edT643kKaAfKF5CkU05pU51J8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744214281; c=relaxed/simple;
+	bh=LHDRTqB/4aFtHHTphM5iyORZ3GnZAyBxGXVbnQv0x7o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LYx8qBGotABFGpM8mt/XDTp7EB4FSABItiiovmRZjYte6UdsUlu2CYSa4cG/EO8CH/QwpObjZ3VrvfDI2c1GH3y90Tge8uapYvp27WH0pkh6bJZeWNrbMl3Zrwi2EqPZ/sdRrZa460xmZn9z5wRjExrmbqoo5/vRDCBxlhj701E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hSurYbEE; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539D8iiA003194;
+	Wed, 9 Apr 2025 17:57:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	ciBgB/a2M9sVi4sdzHlbrYxfyvZ/g7Jwnk3UWviHnV8=; b=hSurYbEEBJuu1CAq
+	stGgu8szSgpCQ2UKDGHSmM8CBXilyyF91vAlwc9PWSkxz+i/QNvNa61zMWSw5aIZ
+	w9516O7NcptcMcNiLdRt/D8/qt6aGTDY1qxFBswF9XC737zJho7f8EkTMcyEj5bD
+	K/tPBqHHpsG8PMc5cyLUbVCwft7pK499XNFuXUf2+StAyuCZrDTtA89kxBjBldw7
+	sRzFUBxd1F2PzPj6cg+FT4Bj3Yj0u6f7IHIRcXE2A4mLpTx92Myygsh2+JOJPgjb
+	FnKc1ZQYinD4oibRZ8f+iXPZqUl85QOnEa3K4+lw9zijhxUaFUEAC/GNS/QkThRs
+	9jUOFw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45tw5gbyth-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Apr 2025 17:57:44 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DD0FB40045;
+	Wed,  9 Apr 2025 17:56:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 378189BAC1C;
+	Wed,  9 Apr 2025 17:54:35 +0200 (CEST)
+Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 9 Apr
+ 2025 17:54:34 +0200
+Message-ID: <9c9172b8-508c-4855-9299-aab72ac2fae6@foss.st.com>
+Date: Wed, 9 Apr 2025 17:54:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AS8PR04MB7495:EE_
-X-MS-Office365-Filtering-Correlation-Id: e66ac35f-8581-4ec9-dcd8-08dd777616e6
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XcsF9CZyFZ4m6wM68tO4IcK2/D6JbKcilYPf9tZbaYhYnVNeHe1OGNOSSHgv?=
- =?us-ascii?Q?mbcKPk+F8hVy05R7l/PxVqp+tiv3XkkclNA6duJq80YJxbJytxB+nXq8aa+l?=
- =?us-ascii?Q?H1+rzJPoI7trbrItQLX9gQ/+Bq4zhGePbU2JAEXPpoch3wtF0WgXRHu1mtab?=
- =?us-ascii?Q?aIrbm0cybt3pngzop1bkvxVkZWJ0HMGKbmBJ0tCVAgSN3C6LgI6CoaxciV48?=
- =?us-ascii?Q?X+BTqCDv4AZpIeia7eoOql6cNK0svt9W0Gl0KEZCWCWs/FoOueRIYk+cYUO3?=
- =?us-ascii?Q?ftkmfHbpsxYP+l17qpj0qGs4M5LlIDgtf2zYFxyOsYzKPxz/xUPxrbeTx2ci?=
- =?us-ascii?Q?GjEJF4CA0HFnALwS1hZ9EICzvkutIdyJYRcho0MCt/XQWkRR7HLFmszqrdrD?=
- =?us-ascii?Q?gdCuq9d7Hz1779hDkKDzDMLAKrIbe7qNXQ0FEZlNdipcfpYg7m3pupX/suwx?=
- =?us-ascii?Q?bw3gD/fJfNwhBIyBPmmXMc0FrFBortncdrjBIO7D1YviEHWKMuQ1OaZN6JaW?=
- =?us-ascii?Q?AUDJQshhExe600HD1RhR5cz6KVmt68QX4gif8ov631/Eo5Ri3z3g5AbLpgbs?=
- =?us-ascii?Q?9MJYhlE4an1Pk7UgD9g0yqpLnlXvhJ6QFmA6NhCS4xp/ZNKM3pdz6RSJu0Mf?=
- =?us-ascii?Q?DegGMqUQzzU3/4AYIx/YznVS+lKh6xbF63qZ5SN8sSyrASlNQngSue876izy?=
- =?us-ascii?Q?ZB+MIOJry5zlQ3fuc+2XbdK2p2KQvyH5cf3XC+twVA9lxT4aX6ik/IIRkBjV?=
- =?us-ascii?Q?TWY8t5GUN0U/XR7WEXd1c7r1Jh2WJrSmdtxCi6OcLLCjCD3LtEBZnJbj/GIu?=
- =?us-ascii?Q?/bZPDffk/ygYC66DNoQSuQSV4Ics2K1YqI+eGvOJqKoZpM1vjMxwsDMz+6tL?=
- =?us-ascii?Q?GZygAi2t7yV8n5nedHQsOFXGNa0KNZEbfQynmn21LxREK7WxywGDSgLIAqUs?=
- =?us-ascii?Q?MD9TW06D2xPs9DfXRzDgMO5yfFSLby/ohpNCcv/dAYLY4X7TS6d061XIhbiw?=
- =?us-ascii?Q?d9OhjwVtjlbq+h55F7eA722FMdkbID1yNgxFcLDSQNMPUFwtzI9OMHGgQiC/?=
- =?us-ascii?Q?reOER+TmEAGoexRkM6eaQLEhAuQHxqCet0PJg4U36RfaI+xp/9JD6bG31NZ8?=
- =?us-ascii?Q?SjvCfgrRMEWhamBhT7W8D7fKrglMkaJhzdXxc7UxXS74wSlqzdWHKaym/6d+?=
- =?us-ascii?Q?vn5kibM1GsbpRJZAPZRk6gUGUe2ELTEi/qaiJLHAbpAPF5awsY4oYhv9d1GY?=
- =?us-ascii?Q?7CmmOOs9qljQb7yYUGtiF0RCucnTHh82771DQeHZJOEj9O2FI9Kso5VpEhvY?=
- =?us-ascii?Q?dflf4CKzR3JXdCmUNrUbNG/FOvkRrJczEklQ9wcKg9D+J743d1KpFYsMC4M1?=
- =?us-ascii?Q?F7M16HHlC2+TSWZAfX1McT6Pk5kZp25x61LNWFyqHvaA2bUCfgn6JOyB6qHK?=
- =?us-ascii?Q?01bM+j0vHPdN8bctqyWhy5Yg+3YpEvhg2lHu2Yo10KPrE+ekXD+Y1Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?eDPzDfq9w/JOvOR86CGmmY/091knrRtHCuF4sYUZ5S+xjV2JG7fDDv9nDtUi?=
- =?us-ascii?Q?bWYhgeJ4a01kIIFo8d4dtt4JZVDjw3Qbs+HUiNfRvmTIQFo1gKpBXRjkFAb1?=
- =?us-ascii?Q?C/JM716S4TyT2dQ8PlCK86P/D4jgijrqzIcqsK45UvLOSuGoS+lo3YK0uDop?=
- =?us-ascii?Q?uTB82TJqcOJpe8vb/W5EdAScvoPUJV4I8hbveaDc7mHa7OgQ/P6OJmG6JvcP?=
- =?us-ascii?Q?PhgDnG/2pcpaQJowySFgFaM0T05euuOrsj6pdjIJ0jfJhl6DA+/ZwZ0u0cQY?=
- =?us-ascii?Q?7/AUr3B4B5NRD1R2nJGpbZwYj+qVxM/FOfw5zJp0KuT7R8JUHzis30fhmQTU?=
- =?us-ascii?Q?gIseDEcrGRKjpYjyaIXLNeGuDBprcQdNlmJ+VCtXKWgHzO3i0U54OsnhbRQM?=
- =?us-ascii?Q?RZHI0vEmSd7pfIuLXXwiWSDqEx0uNi7c56hdlslDG+nD3m+KFI7YS/OihtyG?=
- =?us-ascii?Q?RmMFAjcBc0CCNGX5o2AIpe45EtF6eoHBMpuarVK8R6mSMcNwCP/v9nXRFAhT?=
- =?us-ascii?Q?abZ2xAJtBNZe7wJqz/kk9SeA7HkObNMx7dzGMpIpbvl2K6eY2IBxNfk3YMWc?=
- =?us-ascii?Q?g4Blv6rNTQa4JaAk4YH4LV+bgnJNoNyWoTQA0dvxCIgxXaNSOUCzu+B7+vGP?=
- =?us-ascii?Q?e62dW8xCFaIQULpAoBAV7E3kABqGFjJyawrsUeN65nMpnp9yTuL3KUhKIwFH?=
- =?us-ascii?Q?lI8qt/VnnbJk7eVGxEaM0vCyFITIcCL2uGgWfsFC82YLaz78fbKZvff5aS20?=
- =?us-ascii?Q?yBW2qlZNU4QyOVzzSwdPcyVvOwtLqzEvNm1jqXhAszaCKbbeSORwVSqX9NGT?=
- =?us-ascii?Q?Wdou9UOOwBYzGvp78OFLP0osAARW0k6uflrVLbYQstuD4mOfF05466RTGTrz?=
- =?us-ascii?Q?FXB0D5CYIuW3DGC+dDCvfJ5RAPj/T4BAIsymMmHVrPfqOU27wfONZQmMKLy6?=
- =?us-ascii?Q?+HTpKUCI+x77/2XVDJDE4JXyOn4lN282/84zYyGbgnyFsnzbR63edThzzXcG?=
- =?us-ascii?Q?MM+EhoajjrXh8+XfZS5lONxBCFdbCU3J1h0R8yQfTI6i8NXlORpeqU9+7qLt?=
- =?us-ascii?Q?xHAMcycWjsH5roGp63fQBpPc+ic4pG0Z0hg6hFfGj1Bf84ieASvLGE8TnW04?=
- =?us-ascii?Q?BDxeUE5ofR9z873wYQexXKbFtlXqW5QbE90WSH0yKE++anG7q26CKDmHzz30?=
- =?us-ascii?Q?WbpBrfx9F9UHLeY4XZUXNu+z1r7VUkMXy5tG+mrdUDeJcEe2SAoPoAtfXdIH?=
- =?us-ascii?Q?syYeUbzJ/8fTdpK7Ll+v4vcxoc7tyUr7+5MLeFdEqHqLEML4Aj+iqHp2KhkY?=
- =?us-ascii?Q?3iJx7hj+xrey+f/IE5oxaFbxDqITxL/eOBs04QDSEAIzxkVRBMd1vgUAXMKP?=
- =?us-ascii?Q?WydccU4UV9JS5V+gVypaUFennN++uxIYUQefLlFXTg6X6AKIVbmcZdQJJagC?=
- =?us-ascii?Q?t1y8+mGFydwLA6D4nrz617i3iS9tN0zRhp6g/P/VaFYjFS6b1pXIE0R4zuVI?=
- =?us-ascii?Q?Hc96uNquoCXvgAmHSIPZxOY1/jkkKAHxETI5GSLOpkF01NjRDyhXW9UoO5ZA?=
- =?us-ascii?Q?WkyVwVShlbfxBIitkGNqQZ+pgKoaxQcKEZrtrYWh?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e66ac35f-8581-4ec9-dcd8-08dd777616e6
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 14:52:03.2537
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FSKCi9HpH0nqHyH3wLMklRHV392ygVSjg0U3c+mk8yhTSsjaETHRoEJmSnPb19yoeUUNThcga9gjqOLXEyeevg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7495
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 0/7] Add STM32MP25 SPI NOR support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <christophe.kerello@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com>
+ <20250408-opal-pillbug-of-acumen-0fbb68@shite>
+Content-Language: en-US
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20250408-opal-pillbug-of-acumen-0fbb68@shite>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
 
-Hi Sudeep,
 
-On Wed, Apr 09, 2025 at 01:31:58PM +0100, Sudeep Holla wrote:
->On Wed, Apr 09, 2025 at 08:18:29PM +0800, Peng Fan wrote:
->> + SCMI maintainer, Sudeep and Cristian
->> 
->> On Wed, Apr 09, 2025 at 12:59:50PM +0200, Alexander Stein wrote:
->> >Hi,
->> >
->> >Am Montag, 4. November 2024, 09:56:21 CEST schrieb Alexander Stein:
->> >> BBM protocol supports a single power button, supported by driver
->> >> imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritten
->> >> using linux,code. Add a reference to this schema and add linux,code as a
->> >> supported property.
->> >> 
->> >> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->> >
->> >Is there any other feedback or things to do here?
->> 
->> I see Rob already gave R-b.
->> 
->> Not sure this should go through Shawn's or Sudeep's tree.
->> 
->
->I am fine either way. Peng, just let me know if you want to pick this up.
 
-Not my patch :)
+On 4/8/25 08:38, Krzysztof Kozlowski wrote:
+> On Mon, Apr 07, 2025 at 03:27:31PM GMT, Patrice Chotard wrote:
+>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>> ---
+>> Patrice Chotard (7):
+>>       MAINTAINERS: add entry for STM32 OCTO MEMORY MANAGER driver
+>>       dt-bindings: memory-controllers: Add STM32 Octo Memory Manager controller
+>>       memory: Add STM32 Octo Memory Manager driver
+>>       arm64: dts: st: Add OMM node on stm32mp251
+>>       arm64: dts: st: Add ospi port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+>>       arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+>>       arm64: defconfig: Enable STM32 Octo Memory Manager and OcstoSPI driver
+>>
+>>  .../memory-controllers/st,stm32mp25-omm.yaml       | 226 ++++++++++
+>>  MAINTAINERS                                        |   6 +
+>>  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi      |  51 +++
+>>  arch/arm64/boot/dts/st/stm32mp251.dtsi             |  54 +++
+>>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  32 ++
+>>  arch/arm64/configs/defconfig                       |   2 +
+>>  drivers/memory/Kconfig                             |  17 +
+>>  drivers/memory/Makefile                            |   1 +
+>>  drivers/memory/stm32_omm.c                         | 474 +++++++++++++++++++++
+>>  9 files changed, 863 insertions(+)
+>> ---
+>> base-commit: 88424abd55ab36c3565898a656589a0a25ecd92f
+> 
+> That's unknown commit.
+> 
+> b4 diff '20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com'
+> Using cached copy of the lookup
+> ---
+> Analyzing 81 messages in the thread
+> Preparing fake-am for v7: MAINTAINERS: add entry for STM32 OCTO MEMORY MANAGER driver
+> ERROR: Could not write fake-am tree
+> ---
+> Could not create fake-am range for lower series v7
+> 
+> I tried on latest next, on some March next, on latest mainline. It seems
+> you use some weird base here, so anyway I won't be able to apply it.
 
-Since scmi driver changes go through your tree, the binding changes
-should follow same.
+It was based on next-20250317 plus the 2 ospi patches already merged 
+by Mark Brown, that's why.
 
-It would be good that if you could pick it up. 
+> 
+> Please split the patchset per subsystem and send something based on
+> maintainer tree (so for me my for-next branch), mainline (which is the
+> same as for-next currently) or linux-next.... which would be the same as
+> my for-next branch currently.
 
-Thanks,
-Peng
+ok
 
->
->-- 
->Regards,
->Sudeep
->
+Thanks
+Patrice
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
