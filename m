@@ -1,117 +1,151 @@
-Return-Path: <devicetree+bounces-164896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA654A82B28
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:51:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA68EA82BB1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 798CC7B5867
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:49:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94DAE189395D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9341B27700E;
-	Wed,  9 Apr 2025 15:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1952726F476;
+	Wed,  9 Apr 2025 15:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rtQKUrHW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d/QSwyj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE5E277007;
-	Wed,  9 Apr 2025 15:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9904626A085;
+	Wed,  9 Apr 2025 15:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744213571; cv=none; b=EDOQCCjOAchZJGfDheDbka07jGSwonw78PBGNw1XclG90Vm5KHKa7ZtW7dV3RBFp+cwy3QybEj3s0KrxSRWr2LKgse4rU4jXHVDT9jFr2eayEfElz2t6Bx1aoAoXDJMxvagSXyjWwIwlBq5JWKZHw9F8hXlXtKLJF9iRtXvdLDA=
+	t=1744213861; cv=none; b=LGvXi0j6MVRu+ckZwIyRumetSbJhr951d7lxDotPYJPtjpdA6co+7nRsheJTOS7p/vXJZJzYqr5vnR/GE7wE6VoTQIef0c4PmH7vrzjdx2prSj0y1te5hq1CPLg6SE/2GclSk1GgdGh23D6UVgrzJWc3wG+STag+we2cvjSe2sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744213571; c=relaxed/simple;
-	bh=vMJrlyFnjoqqmGoioQWBvWZ1yISZadfrxOaMgELN/sE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nsK1BrqeI5d/T4yg4AiL1WSlqbYjtMus7TXNVhmfE57khNYbJsTWiVPsI3pLNjvgIZows6lG3sKgS79j9VMZWyZbiwKNtA95pvnNq18tEccHYfY2LmlDTvQzw7lmDn83+zzTz+hYSCB3wN8x8N5AeDAtixR47pVj3Mxt+CGKewY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rtQKUrHW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF76C4CEE7;
-	Wed,  9 Apr 2025 15:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744213571;
-	bh=vMJrlyFnjoqqmGoioQWBvWZ1yISZadfrxOaMgELN/sE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rtQKUrHWrZ2FSeQYFkcEV4CGuq/CYzfyJgUtdMPvbSuuWopwf18CFbnX6iiaeMC+F
-	 SX/zNt1LEM80SCx3aq2OE8R9y+R6anoOpS3vpbYdQcVoW7oRu+reD/2pUpsWUXo2LR
-	 iCNE/gJmyvbvpkBW3o8+fGMIN9doH3mbJkgubJfSbf9sihVaNJE5R2lRdFDJk/bQwh
-	 MQXZPzonSVoU/v1zZDgYhGw7x42Hf07pRQrnnCSyeGRoaEdCpuUeV/qF2TghtkCWC8
-	 4aGkvZdEAZS4cOF208CY3JI6qzFcetbedt1cU4pFYcr/5xi338lNywdl8V2azguFyh
-	 9cbiNbA405jCw==
-Date: Wed, 9 Apr 2025 16:46:04 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
-Message-ID: <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
- <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
- <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
+	s=arc-20240116; t=1744213861; c=relaxed/simple;
+	bh=bvozvL+Ka3UE57hADrHygiEEqNN6MU5nlJ3B+28IPjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XdHrAflbBmKLYCLKAboT88UgJgK4iiz5u5KPJaSMI857EpigSJKqN8X/MGh9wUBZJyLgA5SZCsg96VE/fbqEzT97CAFvoDKZwM4y4NhEhOOOApi1ryx5eJyt7wL01J5kGopKshJxKF1J4YA1XX/muzgibbXXYx+zYWHMzTNEUs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d/QSwyj6; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1744213856;
+	bh=bvozvL+Ka3UE57hADrHygiEEqNN6MU5nlJ3B+28IPjg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d/QSwyj6A/GsoV1lb0JMMaH1EXGZRVDAAH/pa/Fy+Vzkgi5vrgyalGshHWTccvu2T
+	 eH7NBGQrxOZhgkW2FTWZ1fmBoPA/hG8GdyAGGg7ePKqln76v5bafr9JTsQRd5OnQJr
+	 BpFdUtAlooojoZJ97HPjV5MN9Tcr3v0fKsYV7JfOz/qb6UXYoOKiVEgPvZep4kAM59
+	 B0j9BiMIdGbzUl2HoROUyJijk+zTKxegWlSan6vy74mKleqdX0Fq2XLmOz1FDbW+YT
+	 zVaK+shJ3ZNBWq8JkyAkoX14HLQQODhOwBJDcQjOTTTY3AGhXEMuOMLukiPFy2TDkC
+	 ID2JcQzQ31ceA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F07EC17E0657;
+	Wed,  9 Apr 2025 17:50:55 +0200 (CEST)
+Message-ID: <399f89fb-092e-4fb3-8a0b-987dea129554@collabora.com>
+Date: Wed, 9 Apr 2025 17:50:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cQn7E9YAulFrDkPz"
-Content-Disposition: inline
-In-Reply-To: <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
-X-Cookie: Words must be weighed, not counted.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] memory: mtk-smi: mt8188: Use
+ devm_pm_runtime_enable
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Friday Yang <friday.yang@mediatek.com>
+Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250408033206.12176-1-friday.yang@mediatek.com>
+ <20250408033206.12176-4-friday.yang@mediatek.com>
+ <20250408-woodoo-quick-worm-bf82b4@shite>
+ <e777f95c-c21f-4a91-b044-5fc19eb22c3d@collabora.com>
+ <258c8fda-70cc-4624-aef6-7cbef3cdbde6@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <258c8fda-70cc-4624-aef6-7cbef3cdbde6@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Il 09/04/25 11:56, Krzysztof Kozlowski ha scritto:
+> On 09/04/2025 10:26, AngeloGioacchino Del Regno wrote:
+>> Il 08/04/25 08:29, Krzysztof Kozlowski ha scritto:
+>>> On Tue, Apr 08, 2025 at 11:31:56AM GMT, Friday Yang wrote:
+>>>> Replace pm_runtime_enable with the devres-enabled version which
+>>>> can trigger pm_runtime_disable.
+>>>>
+>>>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+>>>> ---
+>>>>    drivers/memory/mtk-smi.c | 16 +++++++++-------
+>>>>    1 file changed, 9 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>>>> index f25d46d2ef33..daef6d350419 100644
+>>>> --- a/drivers/memory/mtk-smi.c
+>>>> +++ b/drivers/memory/mtk-smi.c
+>>>> @@ -713,16 +713,17 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>>>>    	if (ret)
+>>>>    		goto err_link_remove;
+>>>>
+>>>> -	pm_runtime_enable(dev);
+>>>> +	ret = devm_pm_runtime_enable(dev);
+>>>> +	if (ret)
+>>>> +		goto err_link_remove;
+>>>> +
+>>>>    	platform_set_drvdata(pdev, larb);
+>>>>    	ret = component_add(dev, &mtk_smi_larb_component_ops);
+>>>>    	if (ret)
+>>>> -		goto err_pm_disable;
+>>>> +		goto err_link_remove;
+>>>>
+>>>>    	return 0;
+>>>>
+>>>> -err_pm_disable:
+>>>> -	pm_runtime_disable(dev);
+>>>
+>>> You now broke/changed the order of cleanup without any explanation.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> I agree some comment in the commit description saying that the cleanup reordering
+>> doesn't matter in this specific case would've been nice to have, but anyway IMO
+>> it's not a big deal - he didn't break anything, anyway :-)
+> 
+> Cleanup orderings are tricky, so are you sure nothing got here called in
+> incorrect moment?
 
---cQn7E9YAulFrDkPz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes.
 
-On Wed, Apr 09, 2025 at 06:38:32PM +0300, Andy Shevchenko wrote:
-> On Wed, Apr 09, 2025 at 04:19:27PM +0100, Mark Brown wrote:
+ >> I see that runtime PM will be disabled much later and
+> what certainty you have that device won't get resumed that time?
+> 
+How can a device that failed to probe be resumed?! Who's going to resume it?! :-)
 
-> > BUG() can be compiled out, CONFIG_BUG.
+Also, in the remove phase, all users get removed first, there's no ISR (implies
+that there's no isr that will resume this device inadvertently, and other than
+no isr - there's no kthread/queue/this/that that could do this), and no nothing.
 
-> Yes, and it's still has unreachable() there. So, this change is correct.
-> See include/asm-generic/bug.h for the details of the implementation.
-> And yes, if we have an architecture that does not do this way, it has to
-> be fixed.
+Moreover, SMI-LARB cannot be removed unless all of the components are unbound;
+SMI-Common (be it a common or a sub-common) cannot be removed if SMI-LARB is still
+using it.
 
-unreachable() just annotates things, AFAICT it doesn't actually
-guarantee to do anything in particular if the annotation turns out to be
-incorrect.
+No I don't see anything that can resume it before devm does its job.
 
---cQn7E9YAulFrDkPz
-Content-Type: application/pgp-signature; name="signature.asc"
+If you do see something though, I'm curious to understand what I'm missing here :-)
 
------BEGIN PGP SIGNATURE-----
-
-iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmf2ljsACgkQJNaLcl1U
-h9BlaQf4gUpWNlETPHRZXjDQr/n4EFgXaLshmryE1reYNw7Jh07SJCohl7snptEs
-IRVt9+5+nNGtISlJs4QXa6Hkqr/ytOpw5rXRmTSBkKhhbvdStUJkUv9X7jkQiNy/
-1zhBb6ShA8nqUjHnZRhvjEO6JGKp4Cu1Iugs8pUjEfkDwLqU6NCq3yxqqqGnhGAY
-/t7uOcrizg3jQtZYzmaXjZZYGv4yKaujcVEffu2QyhtF5ulLGwNm9hYz7x5ZHLBq
-zJllpNQrrQp/6/GFZw/FY4J/8Xam5xUPHuxCe2ibHn0Xq1ym/JobQc2BjihrwKT+
-xQwyPXj7Kb9z78qnphRGjcRw4Oeo
-=pR1K
------END PGP SIGNATURE-----
-
---cQn7E9YAulFrDkPz--
+Cheers!
+Angelo
 
