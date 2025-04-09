@@ -1,186 +1,258 @@
-Return-Path: <devicetree+bounces-164796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BDCBA82642
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:26:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E885A82641
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74B8E1B87212
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:23:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CAFC3A9095
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F8325B66B;
-	Wed,  9 Apr 2025 13:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C2325D8E8;
+	Wed,  9 Apr 2025 13:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JcQzuWSU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TGJ/LEO9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B257255E55
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 13:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF32255E4D;
+	Wed,  9 Apr 2025 13:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744204957; cv=none; b=H7ec6fJSMUYAkR23RRG3TeGGYor3GDoSM9bGpiUEmuGPC07vUUCjhR/0ykRU0cTzDTNYDi4pVgikajiWXhRy2gm94VLHhBLYuWE/2LjlSz4WeBdLINF1mBeKL4L3TvZbhg8uzse1ZcEewZkTXfjhjYd2hxL+A19xHWWxG4iD4dQ=
+	t=1744205144; cv=none; b=bH3cZesdIWi/OR2xhFXadobMWwDdERCGopWRV9ZiZZIb8YLE/GWNbxPCDrV4AoT0O9C3vqY+PRLA7D55Fc2u942YUGeH7DyKW3WJAUVSRRI3SHLq5hYGtSDI57qG1+U+Kq8BNJoEaFQCxqQyb3dVh11ItP5brZepVFs5AtkFYmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744204957; c=relaxed/simple;
-	bh=zX4CYBgkdc29p/d5raDLjcdhkjA/VM+yjkA51ipJEMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZbPxQQp5BGnAKRBRbcUTCWoWaezHPfa1ywQaQMWgiHxzqmE1OtDZ9zNfMKr7Fn/KvinSFcacQn/5oeCIHOoPLYk1Xtj5TsBkw4Dvr+iPm74r76sPry5kHfQB7PWoMiX+YOo8gKjk7ODM8lgDYDsWtNmxG5bldxvP31BpGR+vA/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JcQzuWSU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5398S3On023665
-	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 13:22:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oG97pdlG3/MhaV/Eh1XXDbmemJdCv3MUuOAbWpnlMxs=; b=JcQzuWSUjcAF3JAp
-	j8DfR3LIJMa6R4pvXTY8dHvEHrvGHVohZC2mRyqD43hG/VyNm5hj6m3cTRrzZnit
-	Q4auc9lcw8EI4HGQ/LWZOKGViH1GMS0XtoIPI8gvvaCiQ5/Ljjkhfmbv055i4wSH
-	1JNNjPsn/QuF7Q5UU5BnwKefXWMYbjura/MQDDP4uxcr8aWAUcQhUfjrGk5NYvaK
-	1l2Wl4CtHZHXzUrXewSZYz/vWxiYvfOWFmkdYVzcjnQ67oeFwWbQ7dVtD8a6cESS
-	DJ6FjoL7UDTj9zEmSUhAv5UagQnafBbPLn0zgXMTLqU5T52U34sKia4W8+A8xM9V
-	hQFZng==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd03hst-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 13:22:33 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-476783cbdb8so17007471cf.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 06:22:33 -0700 (PDT)
+	s=arc-20240116; t=1744205144; c=relaxed/simple;
+	bh=ywQHOtBWUaayWMmXLKDE9oibC6pt0eSAjkXAU0hLgbg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bOUDKb5Ra5aMSxPd83aHifPwnZKrtgR5MoUlc2x6T1xnV9ydVt1SkLWXYO8JmNtgkxnFmltnjOt8zvh06NZ58fObmpcsTpfLSijPleLzZJx0GfMrpyiNEyCVDVi1RQ88/htT4NhS0ITKQ1+APtRbsm9aLq4cakwTwqs7hccqWHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TGJ/LEO9; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5499c5d9691so7561112e87.2;
+        Wed, 09 Apr 2025 06:25:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744205139; x=1744809939; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CCPfq870lo6I3VwBZegYGwOMPFDFieit2DF9RetxgIQ=;
+        b=TGJ/LEO9VOkVEbGDWxAlgMTx3o0I0ItPgDgVyT5AMaxD5vi8O3v2608Eg+HXL/fE2z
+         qwXcEZ2hMTbQ7u1HPnu8CvnOJZzFdal3+1saLQ+b0zmqF4XA+1+k4Xd4VPEFkNiDm40W
+         wp2jCovG+oRliM92hotkV/xIW1zyodSLqwOMHT86hqhkFQI0O0gRpeD3e0XHOWn4gRhu
+         0xyqQnlWINqs31TT5jNp7jvNdgAxPZgnTz6L3fvvzfgiM2Efzv6oZoFzWKVaAMsrQJN8
+         sk2DruoxJAh7+98WEaCiTmXJ1d7HDIWC022VJ/Rqecm9kzgjN1Q+R9XLT0KlmNiXKkdf
+         CPug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744204952; x=1744809752;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oG97pdlG3/MhaV/Eh1XXDbmemJdCv3MUuOAbWpnlMxs=;
-        b=RX15Wz2itCN0xKKt+ZaBrwCMOxVI/76F7K2RhaGJLFH//HYjuKB/D9GS9z/JW0tp4Z
-         1t/RR15Ga0p1JUG+2sF03jiZhfxUzPg7QyEFocqTF6txptGPZUExgUpyOJlHawlwQMGE
-         WFbqXCYNGw/96KUV6mEBwSTqyPFOon7OCjwgfFS62z53YE8ESQHcCAIBY/0KfgigsqLG
-         qvyhXNCaNkwTEOR0EmdN1vsEvvtZ2jzCjzpWizs/DEsKO93EbNb8pAEn/ihTOeH7dbjU
-         DBdbLEEAQ4JfxVCeSkbpPTnJJ8UDnKLKjvHYFZ6UBedR4gIdGYzMzamNitb5QQrX8CIS
-         SyYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBgnKYVvbgLimrRw+Q2MoPOZl2rsC/MXdgvpkcWXrZQ7+55ksOD7dnwbVJlM2NDREJbck3E5yXcGpb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyjf9oXhn3Swe3+ideA42fXIbxuh6ZFVGllcg9ch+6v/CfX+QiB
-	OOBTQvAwzZMaATcJwil7PAQs7LRMa8qAOO7ERUftJCirSiVSFgfv6Wj2KDlP3gwEgKcF1JCVPrj
-	FONuB5Sl/qndTelKRdDfOkjh7Uny/+n0VnwbUEqWPgozlqcU/G2oop3ch9FEA
-X-Gm-Gg: ASbGncvBXO+13gvaIrHp7YxfmEINY+sCaubs8fKLhgGrXfiBKVcTFm2YZAjBpDFU/uz
-	2LHP9HVgo/U1yt9HFdl0UvTeqkDFlENykm5rg5tHIMlUUDDwyxEdxr418u4F+qPARtKOXaKaKGu
-	B4JsY+4dEhCyG96aQ8CmMWQCTg4nLEpvuH+zfONdKHRMHG33RJdIpv+/RLYjZoyF5SDA3wkGZ64
-	CSTdJ0F+ovG39SfGxobbVfg6XIIehxpfB9Us5vnrXIsLu5O9QYtXRvG0ZncWC6mp4F6y7taAzgw
-	rO2QPUxiHadlbrdIi5dERaC7HXErMUj68yKedVAhzgEePO7VY1xvB7fH2j5flz7QMA==
-X-Received: by 2002:a05:622a:19a7:b0:477:e9f:7530 with SMTP id d75a77b69052e-4795f35494amr14732641cf.12.1744204950994;
-        Wed, 09 Apr 2025 06:22:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGYtvvTpAbOq+RwOTgPOW+p1fvx55yA5PRtcriKzpC7QJsbRuHC9EleyT/a6UkABJje5rKgAA==
-X-Received: by 2002:a05:622a:19a7:b0:477:e9f:7530 with SMTP id d75a77b69052e-4795f35494amr14732121cf.12.1744204949672;
-        Wed, 09 Apr 2025 06:22:29 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f2fbc2cf69sm799686a12.37.2025.04.09.06.22.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Apr 2025 06:22:29 -0700 (PDT)
-Message-ID: <a79eaaa9-0fe9-45d9-b55f-ba2c327eaaaf@oss.qualcomm.com>
-Date: Wed, 9 Apr 2025 15:22:25 +0200
+        d=1e100.net; s=20230601; t=1744205139; x=1744809939;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CCPfq870lo6I3VwBZegYGwOMPFDFieit2DF9RetxgIQ=;
+        b=pUzaSpht4gm8NY/knHINUp4ljKKyAfzE0RHvmKCM6pHkgMpt/8pwnBjJxl9gMpOQxk
+         8KuzMe4iNs8/j8EJPV8nFtfA9aFQvcSgytdQ8wecxtHBgGXmNxEMx0swMoKsEoamWcSK
+         ZpWeoAHo39itLWsfomcn35VL0PrZsX7PhM6noMkojt/I2PaIn9VGt1pHtDWgPfpEHWFg
+         VSAgbklPY6PgXUpy7UqzwLwJK7hglC0xuPBTPPEAOzexZ5DwyRyFQufg6IZfLaFR6rqa
+         BfflUqNpgOLLphJfikGD+HbbAa1cVlxlu6S0X27XJQkwN1Hn+zVGtXXYo8M/lAd9/Bnt
+         FPLw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIzWYY1vHjpnyMTI7d0VLWrV7P6NllsKpxZ6uxzFS+VqCkesLdjSoaSHpF2cI9B/EZdESar+a2Gjb4@vger.kernel.org, AJvYcCW07bbLC+gTN7ysBVH1qQ2I9v01nSBnXCtColWVyWnec4U6YOxmgY+/PGewuTkUjo2rVLyNLPBBPY4iSFF5@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywf2/hCPvuWFUagMNNibTm0dl+xM8eBwFKIo0t/HF79sqr3wgNw
+	QE/hwsSOWYihe1dW2Dz0PizDPQRsUqhqNIhH+/ObNG4H6QWXjul7
+X-Gm-Gg: ASbGncsOAqocXn7Z2kvplzH/8UQi9dXp2mWudN4XQfXB+wVNQMDATliEB8oWShDKyrZ
+	03gTp1sO4Ykgte35MosgCBSAeC5CPgOct1BqUBZU/526Jbv35JLEjSUs4Zvk49v1APOAWiYe9hw
+	A5uw/qHqd+mRjtcq+KR1jkzLlsG9fyuyn5pYf8OeXSBiVGWA7uVZDmMFn8Lq/lpW3JCF7u6LgLR
+	QacDzGWDHugk0AsTeffJRhc7ykkqzM1wTsEiIVqghqdvFdiPPxadCY9XrqRddGqwG1POSF5BtNd
+	ou6qDAvn4/yCwnJOXwFyTyLPYbubEgPOfCCGfwhqA2UXCE51PZemln6dEy5G2XJA/K9/SS1dv8h
+	uZjfRQXcSr5/8
+X-Google-Smtp-Source: AGHT+IGolglO8KHWHfYhPUPwqYH4QluVvVji4FU7LlGDKueiKzOe0iuK04Akv8MJU97gcutn8Zezgw==
+X-Received: by 2002:a05:6512:1095:b0:549:8537:79d6 with SMTP id 2adb3069b0e04-54c44576943mr746530e87.48.1744205139035;
+        Wed, 09 Apr 2025 06:25:39 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c455e9272sm136782e87.92.2025.04.09.06.25.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 06:25:38 -0700 (PDT)
+Date: Wed, 9 Apr 2025 15:25:36 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Zimmermann <tzimmrmann@suse.de>
+Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
+ LCD controller
+Message-ID: <Z_Z1UOan6Qu5d3VM@gmail.com>
+References: <20250408-st7571-v3-0-200693efec57@gmail.com>
+ <20250408-st7571-v3-2-200693efec57@gmail.com>
+ <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
+ <Z_Uin2dvmbantQU4@gmail.com>
+ <87ecy1g8z8.fsf@minerva.mail-host-address-is-not-set>
+ <Z_YWq4ry6Y-Jgvjq@gmail.com>
+ <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add binding for Toshiba TC956x
- PCIe switch
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        chaitanya chundru <quic_krichai@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
-        amitk@kernel.org, dmitry.baryshkov@linaro.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez@oss.qualcomm.com
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com>
- <20250226-eager-urchin-of-performance-b71ae4@krzk-bin>
- <8e301a7b-c475-4642-bf91-7a5176a00d1f@oss.qualcomm.com>
- <385c7c77-0cb7-f899-4934-dfa58328235a@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <385c7c77-0cb7-f899-4934-dfa58328235a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: -EfEqbNxTVsaKW9O5HWY-0lFPgDQWrJk
-X-Authority-Analysis: v=2.4 cv=Q4vS452a c=1 sm=1 tr=0 ts=67f67499 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=o148c7v5wAakItcUyVIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: -EfEqbNxTVsaKW9O5HWY-0lFPgDQWrJk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 phishscore=0
- bulkscore=0 adultscore=0 malwarescore=0 mlxscore=0 suspectscore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090081
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2ofPkAe93cfrZ/9C"
+Content-Disposition: inline
+In-Reply-To: <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
 
-On 4/1/25 7:52 AM, Krishna Chaitanya Chundru wrote:
-> 
-> 
-> On 3/25/2025 7:26 PM, Konrad Dybcio wrote:
->> On 2/26/25 8:30 AM, Krzysztof Kozlowski wrote:
->>> On Tue, Feb 25, 2025 at 03:03:58PM +0530, Krishna Chaitanya Chundru wrote:
->>>> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>>
->>>> Add a device tree binding for the Toshiba TC956x PCIe switch, which
->>>> provides an Ethernet MAC integrated to the 3rd downstream port and two
->>>> downstream PCIe ports.
->>>>
->>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
->>>
->>> Drop, file was named entirely different. I see other changes, altough
->>> comparing with b4 is impossible.
->>>
->>> Why b4 does not work for this patch?
->>>
->>>    b4 diff '20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com'
->>>    Checking for older revisions
->>>    Grabbing search results from lore.kernel.org
->>>    Nothing matching that query.
->>>
->>> Looks like you use b4 but decide to not use b4 changesets/versions. Why
->>> making it difficult for reviewers and for yourself?
->>>
->>>
->>>> ---
->>>>   .../devicetree/bindings/pci/toshiba,tc956x.yaml    | 178 +++++++++++++++++++++
->>>>   1 file changed, 178 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
->>>> new file mode 100644
->>>> index 000000000000..ffed23004f0d
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
->>>
->>> What is "x" here? Wildcard?
->>
->> Yes, an overly broad one. Let's use the actual name going forward.
->>
-> ok I will update the next series the name from tc956x to tc9563 as
-> suggested.
 
-As per internal discussions, 956*4* would be the correct name for this one
+--2ofPkAe93cfrZ/9C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
+Hello Javier,
+
+On Wed, Apr 09, 2025 at 11:43:54AM +0200, Javier Martinez Canillas wrote:
+> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+>=20
+> Hello Marcus,
+>=20
+> [...]
+>=20
+> >>=20
+> >> That's a god question, I don't really know...
+> >>=20
+> >> But fbdev does support XRGB8888, which may be another good reason to a=
+dd
+> >> it and make it the default format. Yes, it will cause an unnecessary p=
+ixel
+> >> format conversion but the I2C transport is so slow anyways that comput=
+e is
+> >> not the bottleneck when using these small displays.
+> >
+> > Hrm, I now realised that I have another issue.
+> > Not all LCDs that will be attached to the ST7571 controller will be
+> > grayscale.
+> > The display I've attached to the ST7571 is a monochrome LCD for example.
+> >
+>=20
+> Oh, that's very interesting. This means that vendors are using a more cap=
+able IC
+> (i.e: ST7571) for display controllers + LCD panels board designs, even wh=
+ere they
+> could had used a less capable one (i.e: ST7765). That is, using an IC tha=
+t supports
+> 2-bit grayscale when they could just used one that only supported monochr=
+ome pixels.
+>=20
+> From a quick search, I found for example this one from SinoCrystal:
+>=20
+> https://displaysino.com/product_details/SC128128012-V01.html
+>=20
+> > Maybe the right way to do it is to only support XRGB8888 and specify=20
+> > if the display is monochrome or grayscale in the device tree.
+> >
+> > Or do you have any good suggestions?
+> >
+>=20
+> I don't know the proper way to handle this, but what I would do is to inc=
+lude
+> the actual boards as entries in the OF device ID table instead of just th=
+e ICs.
+>=20
+> And then for each entry you can specify what formats are supported, e.g:
+>=20
+> static const uint32_t monochrome_formats[] =3D {
+> 	DRM_FORMAT_XRGB8888,
+>         DRM_FORMAT_R1
+> };
+>=20
+> static const uint32_t grayscale_formats[] =3D {
+> 	DRM_FORMAT_XRGB8888,
+>         DRM_FORMAT_R1
+>         DRM_FORMAT_R2
+> };
+>=20
+> static const struct of_device_id st7571_of_match[] =3D {
+> 	/* monochrome displays */
+> 	{
+> 		.compatible =3D "sinocrystal,sc128128012-v01",
+> 		.data =3D monochrome_formats,
+> 	},
+> ...
+>         /* grayscale displays */
+> 	{
+> 		.compatible =3D "foo,bar",
+> 		.data =3D grayscale_formats,
+> 	},
+> };
+>=20
+> and then in your probe callback, you can get the correct format list for
+> the device matched. Something like the following for example:
+>=20
+> static int st7571_probe(struct i2c_client *client) {
+>        const uint32_t *formats =3D device_get_match_data(client->dev);
+>        ...
+>=20
+>        ret =3D drm_universal_plane_init(..., formats, ...);
+>        ...
+> };
+>=20
+> Likely you will need to define more stuff to be specific for each entry, =
+maybe
+> you will need different primary plane update handlers too. Similar to how=
+ I had =20
+> to do it the ssd130x driver to support all the Solomon OLED controller fa=
+milies:
+>=20
+> https://elixir.bootlin.com/linux/v6.11/source/drivers/gpu/drm/solomon/ssd=
+130x.c#L1439
+
+Thanks, that sounds like a good idea.
+
+I've now experimenting with XRGB8888, and, well, it works. I guess.
+The thresholds levels in the all conversion steps for  XRGB8888 -> 8 bit gr=
+ayscale -> monochrome
+makes my penguin look a bit boring.
+
+But I guess that is expected.
+
+Please compare
+https://www.marcusfolkesson.se/xrgb8888.png
+and
+https://www.marcusfolkesson.se/c1.png
+
+> --=20
+> Best regards,
+>=20
+> Javier Martinez Canillas
+> Core Platforms
+> Red Hat
+>=20
+
+Best regards,
+Marcus Folkesson
+
+--2ofPkAe93cfrZ/9C
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmf2dUsACgkQiIBOb1ld
+UjJ2FQ/9F0UFdn828HNufX71J48BfU7Ae27co8Y+CWw0T9eVXhT5v+xn9bTNdQ9d
+0559ifYcUFI95AZKaDSQCH2JXngYVD7ym/lcIT63LNZEGPiJyqT201mQEjyxHVWI
+88FXsZX4pAMHf7egL1YD9VkksybmvSRzlOY+a6y6GxvFfkPbCAJWroRdhk97J/d/
+/rYgr1XVBCA3q1CfeX4MXONhdNkQTyeoPnv+/N5zmLY8pYRjLYF97/AsN6jHh+7Y
+oE9Cai1jbz1ThDq3l8ngXNMtMag/xjXbJIBWB7krmVzgFyiWJUlVgmEN2xxk3jrI
+muNlGIbcQEPKASwh4F7SC5FYwymG63e78qXsrJ5JUmzbYx8M0xMztYABSC0OGzLe
+Vzx6whPv0VGPgKULgrI8LrZqiW4Zl3B76CZfff3oBdvq+zHPXRrvsEVXnXRfw2t8
+x1raGSc0ln14kHr1LzYoMTyJ4ao3RWPG/ZuSbBQbxrJuFqpDPKUJ4Zt+M5GKDfQQ
+9HqylDeIDXS92l9tV7Ei8xdBthzhjYggDyoWKJ35Luq5YG/PICC3/PqJRTa3W+OG
+uubjtV9HGLIxDf/cj7tdVXSGAAhDy8uzTJTzsfdLS8EWwUw6ZXgrQ3JU2FWx+o+z
+UQGfvTeQwqeOemY52P/B+xj9/hvZLgxDqZzgudAiK95h5a4fmHM=
+=xpde
+-----END PGP SIGNATURE-----
+
+--2ofPkAe93cfrZ/9C--
 
