@@ -1,197 +1,149 @@
-Return-Path: <devicetree+bounces-164717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF031A820EB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:20:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005BCA82109
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:30:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6C878A5974
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:19:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 437868A55C9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE5B25DAFD;
-	Wed,  9 Apr 2025 09:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6755625D1F0;
+	Wed,  9 Apr 2025 09:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="hLE2NkMj"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="opqHZhyM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF75725DAEF;
-	Wed,  9 Apr 2025 09:18:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744190326; cv=pass; b=CqHVDUHiBDwBJeDJxYGr4GKrnzF1lehfoZLLlprnK10mo1TTCNEbEypkLRR5ncArEzTrNCLnPTE6ZtwsJ/JP/X5/5kMsQq4qr7Y5NbK6XEMP6NPX9+jm82AwYjDhge6at3FoQMcS2/heT7hWZumo3ijVJoKtmfGFrhMHVGrEb9o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744190326; c=relaxed/simple;
-	bh=A/imn54PrdFFCFJ8k3qP2+XHCPlv8dY71Fi4FFrHPyA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Y4rj5MbEUP6iSWtSb20aWuTdvZVhfxYDeE26TmgbalEM7eZheqjsedzpuWmS7SgJHRGkAE7LlacaeQ0YHVd4ph9gnMHOkJXReDWRjE1bwjCDsXFmExsMfj/R/z9kXSXc7FFTsyFCvAfuAl2Ei6b9AghyjG1WEed66DoB470JF8E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=hLE2NkMj; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1744190306; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=S7upKIOYjF/0byUSM97pC9pIwWTRz3EC16Sbz7/VpY+SlGlP/TKpNxUkOSJb7cDkKcPzw/r1I31Gje2NXmKr6C9z/cUG5ee1Sf0BfcbNVhZZ7cfBxvDq/lajdEUr6Ggl5H4iOuAsFwyd5I/NEHsT1lmGpaEJ7fTqYqBPi1pjXic=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744190306; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=KwHCepAXG5Am7WCb6/BmtfPU10GewLqbpuq+dp90/YU=; 
-	b=SW6SO7nJKS6UZN/KeVBrwC9vqRi3TLT9M5K67cicyM5/P5MIbCQilywKed9KUQzwhQRD5Q1yRMX4P615ChCnBbciZq2CZYk3ovufVqYTwL1lvVHcM/UlEtENk0C8uY6+Gy9Dur8ENbt/pH2g95vtIIm6sq5o3yvjyXWHcVGN0QE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744190306;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=KwHCepAXG5Am7WCb6/BmtfPU10GewLqbpuq+dp90/YU=;
-	b=hLE2NkMjspTEcAjl+TFG3q4SN+NokZdZTQ11WdQFT3YzVVD1DqiD0gWZb8RUPR4P
-	JnFPUdLlzmwrJsjadg2J27hnmBEWwG73j61Gu18dVcwvUnUJlserU8+m/UPK5MfAulW
-	mcKZhxdM3VTR0HywD1dUDMuz8+FJIRMHCYl0/Jd9mPhVr4lkd2PRc3VR131+CNn9AQQ
-	FdVnEu8S/As/EkTmqNLsbWu4dL2MDzvbCSrnwITvcJUF/ON2OoGTlve3UFj/TuUZhEn
-	XT1xgjsV9Z3k3jbi1cb2ze2FMjTgsITJ0uWH9m4JFX3uRGT8cA99RInJtBzpLcXW8p0
-	yscXTRt2Vw==
-Received: by mx.zohomail.com with SMTPS id 1744190304414130.91962773873797;
-	Wed, 9 Apr 2025 02:18:24 -0700 (PDT)
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Michael Zhu <michael.zhu@starfivetech.com>,
-	Drew Fustini <drew@beagleboard.org>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH 2/2] riscv: dts: starfive: add DT for Orange Pi RV
-Date: Wed,  9 Apr 2025 17:18:01 +0800
-Message-ID: <20250409091801.855083-2-uwu@icenowy.me>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250409091801.855083-1-uwu@icenowy.me>
-References: <20250409091801.855083-1-uwu@icenowy.me>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4D012CDAE;
+	Wed,  9 Apr 2025 09:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744190939; cv=none; b=hatRfBQWRCsG1DJx4XZLS93CrO/kzat9N5EitXIwKR7Sq2MTZdmi59z6CFDXpa5z2gIpW2jLQtGRnmpj7ZG1BWkAKXmHaMsKNmA9BMPezFttpIS1J4NP3VoeRrgx4JT0lo8HCoGy3V+pdIhVeEn6W1c5rUtqgsoXF30AzTuoeC8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744190939; c=relaxed/simple;
+	bh=KanLV8teFafM3o2AgwNuwgKNCMSridXAMcWEyeQGXTU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LUkgbxnjFLfj40CxbVsKC1qrRDWJ1vbPd2m8LSp0MysGMr+qDDBxzCnwOKh8fEusVSaUBBDq1OPr4RyWvEwtS1BWiuhfV/CK/RwNoowKHgMfCHokn+7xWifSTf2wu7n6mnTT8RCCEH9nNNV5zYwUfcoyaX/WUoTsYaxqHjDR+kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=opqHZhyM; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A8E07432BC;
+	Wed,  9 Apr 2025 09:28:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744190929;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S7l8DdiwAsT9iakA4gFPB1pBO6OTN/7Blo3PFVtSEWc=;
+	b=opqHZhyM1IneIaZeMbXDIzm+KCDAUoF2l/oHki5jyFHJYMeo13n5cPGexNc7QKJihDwxAN
+	+m6MJkjCT/KuNEhDGN1ZUZVm+MJ8veq5ACAT7VPlZHWBdYbAwVeGSR9h/uebXqZXI5qFql
+	DlQxLtwFLOoiOA5mAxFko00jBknccCrBd9EW9IVbsoZQUk3KngguS4zIPlfFX+y8lAEY3/
+	d+UggslpBftKF9/y9Q9P4HRfJnsxAM33NLGZhOR8GZo77fw/6xsFuGVDQGOL6LjJG2ZksK
+	/LKq4lMh6j2uco/mjpy7KWxQA5Ws3ryXaO4JqZ96wjelLwLztD8Ss7mmAv5lFQ==
+Date: Wed, 9 Apr 2025 11:28:46 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display: panel: ili9881c: Add
+ dsi-lanes property
+Message-ID: <20250409112846.2fb20426@kmaincent-XPS-13-7390>
+In-Reply-To: <20250408-statuesque-poised-firefly-ed8db1@houat>
+References: <20250408-feature_sfto340xc-v1-0-f303d1b9a996@bootlin.com>
+	<20250408-feature_sfto340xc-v1-1-f303d1b9a996@bootlin.com>
+	<20250408-statuesque-poised-firefly-ed8db1@houat>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdehieefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudehpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehquhhitggpjhgvshhsiihhrghnsehquhhitghinhgtrdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhst
+ heslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE port
-(connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a VL805
-PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
-(connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio output
-and a microSD slot.
+On Tue, 8 Apr 2025 17:44:32 +0200
+Maxime Ripard <mripard@kernel.org> wrote:
 
-Onboard peripherals contain a SPI NOR (which contains the U-Boot
-firmware) and an Ampak AP6256 SDIO Wi-Fi module.
+> hi,
+>=20
+> On Tue, Apr 08, 2025 at 05:27:00PM +0200, Kory Maincent wrote:
+> > Add the dsi-lanes property to specify the number of DSI lanes used by t=
+he
+> > panel. This allows configuring the panel for either two, three or four
+> > lanes.
+> >=20
+> > Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > ---
+> >  Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml |=
+ 5
+> > +++++ 1 file changed, 5 insertions(+)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
+> > b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
+> > index
+> > baf5dfe5f5ebdd92f460a78d0e56e1b45e7dd323..e36550616f6aac86c79832a48132c=
+e8c11ebcf7a
+> > 100644 ---
+> > a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml =
++++
+> > b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml =
+@@
+> > -27,6 +27,11 @@ properties: reg: maxItems: 1=20
+> > +  dsi-lanes:
+> > +    description: Number of DSI lanes to be used must be <2>, <3> or <4>
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [2, 3, 4]
+> > + =20
+>=20
+> We have the data-lanes property for that already
 
-As the schematics isn't available yet, the SDIO Wi-Fi is left disabled
-yet.
+Indeed but there is no such usage in panel bindings, only in bridge binding=
+s.
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
----
- arch/riscv/boot/dts/starfive/Makefile         |  1 +
- .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 73 +++++++++++++++++++
- 2 files changed, 74 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+You are saying that I should add something like that:
+  port:                                                                    =
+   =20
+    $ref: /schemas/graph.yaml#/properties/port
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index b3bb12f78e7d5..24f1a44828350 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
- 
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
-+dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-new file mode 100644
-index 0000000000000..bde01f117e0b2
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-+ */
-+
-+/dts-v1/;
-+#include "jh7110-common.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Xunlong Orange Pi RV";
-+	compatible = "xunlong,orangepi-rv", "starfive,jh7110";
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-ack {
-+			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+			label = "ack";
-+		};
-+	};
-+};
-+
-+&gmac0 {
-+	starfive,tx-use-rgmii-clk;
-+	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-+	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	/* TODO: Ampak AP6256 Wi-Fi module attached here */
-+	status = "disabled";
-+};
-+
-+&mmc1 {
-+	/delete-property/ cd-gpios;
-+	broken-cd;
-+};
-+
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+&phy0 {
-+	motorcomm,tx-clk-adj-enabled;
-+	motorcomm,tx-clk-10-inverted;
-+	motorcomm,tx-clk-100-inverted;
-+	motorcomm,tx-clk-1000-inverted;
-+	motorcomm,rx-clk-drv-microamp = <3970>;
-+	motorcomm,rx-data-drv-microamp = <2910>;
-+	rx-internal-delay-ps = <1500>;
-+	tx-internal-delay-ps = <1500>;
-+};
-+
-+&pwmdac {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+};
--- 
-2.49.0
+    properties:                                                            =
+=20
+      endpoint:                                                            =
+=20
+        $ref: /schemas/media/video-interfaces.yaml#                        =
+=20
+        unevaluatedProperties: false                                       =
+=20
 
+        data-lanes:
+          minItems: 2
+          maxItems: 4                                              =20
+
+And use drm_of_get_data_lanes_count in the drivers.
+
+If we do so, maybe this binding should land in panel-common.yaml instead?
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
