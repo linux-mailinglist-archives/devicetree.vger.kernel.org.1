@@ -1,91 +1,68 @@
-Return-Path: <devicetree+bounces-164920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D8F6A82D1F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:04:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C9D0A82D3B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929001B64F11
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:02:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21D168879DF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D28C270EA1;
-	Wed,  9 Apr 2025 17:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YorHfPsw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB50D270EDB;
+	Wed,  9 Apr 2025 17:07:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589421BF33F;
-	Wed,  9 Apr 2025 17:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066C83595C;
+	Wed,  9 Apr 2025 17:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744218158; cv=none; b=Tq2xPNrdhwgf7v5uGnY+XwL5mUozNyY57HczmK1bGJNk4/6PCt2l9OyEZ/9d+SPoYGlg5ikxiOYGd8rNASF3IGFkS+txTNQhBu//nMGJq27gbOLY4powVEvwrxJhzqrfrv62XTcB+MLHxF+8qIIDuXEoff77sBQKQQwIPo7z1rc=
+	t=1744218471; cv=none; b=AFIF/He7wm+/G8saP4lnoubopReE0Q3kELjVPwiFjYLFHNlZUGHG3t/XArVHt6rVJuDtN8y3a3ys8qNtI2Iz+iRX62NfQjg2F/NmKyTOYpmhNKKbNgA4hAcf6a2u7Cgub4DnZQhzEYtA3GajkVd/a3LT0E6bKSaWMOn1ivCZ7nM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744218158; c=relaxed/simple;
-	bh=2fgrXbl7XmK/1Sd1jXkY+WL8zQcGEPJy1lFAiX+4sZ8=;
+	s=arc-20240116; t=1744218471; c=relaxed/simple;
+	bh=5KdC9UJi/G+Mbx+/YKkMbJ5CpyMBOiyE15pwvCv36as=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kdhM1p711p3RjbWYEEPqxO07RBgk/00bjucnJ+vafOG7c3mgCTz1nuyvmeIs9J/oA9rwDeYbAw6p6rQwOCJzbuspYqoJLV/2McaYHpfIANGOJMocm4SppjmwrIh1r1UZ/7YPT6kHRfIWjOSZWbcPxhPgo2dIWqdUucvkShN/CUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YorHfPsw; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744218157; x=1775754157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2fgrXbl7XmK/1Sd1jXkY+WL8zQcGEPJy1lFAiX+4sZ8=;
-  b=YorHfPswphdkLiFGma5xKFUegX859r1uhBAmLx8EoItV3byLy9iUgAlh
-   lIOzn3F4msczkCbikjpsC+obLV1P8lsxnku0j37XCC1r6ANSZ8dPoTlPN
-   nD8biAdVgUQgUATuW+kAxXyD8w5FkmreBMlkjHp5UK/Hxb1CydpvKHeUU
-   spYFEhRjK9idFxOIMoA5g2YeQD95FWr2KArQA2/ObUod5Y5cA83t2rq1b
-   yzqAjZPncysEDRfPzWskPNv7s4YqdHeM7ds6c6TX5CsFsiYE4BdpHAECl
-   Q5Wob842ljx27ZGOViplno6/RDHPhv28QOyVGegiIuqDCEektn5c1pCBO
-   Q==;
-X-CSE-ConnectionGUID: TO0ssnPUToyKhYl5rsBlwA==
-X-CSE-MsgGUID: SSCNnrpIQEWGcEHYZRWyEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="56371745"
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bps/F4mK+WheeS0/amzqAIV8YT+TTS0F8cQ+szG8tEysPryb6ipi4Ht1H5ADXs+n76GjRflds/d3garqE5c7vn6dbpbe0UqjYCG8pSF2om0mmf0Hd5CJ99bJVQpjxzlZS8kNBrkcXecVxRUsMaWLhk58o+y805JNvveqH6VpU3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: HhqECDI+TMCLK8l9AzpW7A==
+X-CSE-MsgGUID: 2D8M2a0zRDuua/+M/nowWw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="56372545"
 X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; 
-   d="scan'208";a="56371745"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 10:02:35 -0700
-X-CSE-ConnectionGUID: paFj+VcoTGiDSdzXaUP6mA==
-X-CSE-MsgGUID: CqqqKux0Sve0pXbYVxqIcw==
+   d="scan'208";a="56372545"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 10:07:49 -0700
+X-CSE-ConnectionGUID: yGr5e5YxSkKbytzGsMXyrA==
+X-CSE-MsgGUID: 9eyaHSfMSKq6x3B9l9oeBQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; 
-   d="scan'208";a="151822353"
+   d="scan'208";a="128625028"
 Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 10:02:31 -0700
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 10:07:47 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u2Yol-0000000Anq8-2VfQ;
-	Wed, 09 Apr 2025 20:02:27 +0300
-Date: Wed, 9 Apr 2025 20:02:27 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	(envelope-from <andy@kernel.org>)
+	id 1u2Yts-0000000AnwL-088Z;
+	Wed, 09 Apr 2025 20:07:44 +0300
+Date: Wed, 9 Apr 2025 20:07:43 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: jean-baptiste.maneyrol@tdk.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 08/12] gpio: regmap: Allow to provide init_valid_mask
- callback
-Message-ID: <Z_aoI2n5v0TyJhb3@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-8-7a2535876e39@bootlin.com>
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: imu: inv_icm42600: switch to use generic
+ name irq get
+Message-ID: <Z_apXw_HoD0EHHY-@smile.fi.intel.com>
+References: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
+ <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-2-dab85a0a7c2b@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,14 +71,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250409-mdb-max7360-support-v6-8-7a2535876e39@bootlin.com>
+In-Reply-To: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-2-dab85a0a7c2b@tdk.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Apr 09, 2025 at 04:55:55PM +0200, Mathieu Dubois-Briand wrote:
-> Allows to populate the gpio_regmap_config structure with
-> init_valid_mask() callback to set on the final gpio_chip structure.
+On Wed, Apr 09, 2025 at 05:14:32PM +0200, Jean-Baptiste Maneyrol via B4 Relay wrote:
+> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> 
+> Use generic fwnode_irq_get_byname() for getting interrupt pin using
+> interrupt name. Only INT1 is supported by the driver currently.
+> 
+> If not found fallback to first defined interrupt to keep compatibility.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+...
+
+> -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
+> +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
+>  			    inv_icm42600_bus_setup bus_setup);
+
+If you use 100 limit, it fits now on one line.
+
+...
+
+> -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
+> +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
+>  			    inv_icm42600_bus_setup bus_setup)
+
+Ditto.
+
+...
+
+> +	struct fwnode_handle *fwnode;
+
+Do you need to include property.h?
+
+...
+
+> +	/* get INT1 only supported interrupt or fallback to first interrupt */
+> +	fwnode = dev_fwnode(dev);
+
+> +	if (!fwnode)
+> +		return -ENODEV;
+
+Unneeded check, the below will do it for you,
+
+> +	irq = fwnode_irq_get_byname(fwnode, "INT1");
+> +	if (irq < 0 && irq != -EPROBE_DEFER) {
+> +		dev_info(dev, "no INT1 interrupt defined, fallback to first interrupt\n");
+> +		irq = fwnode_irq_get(fwnode, 0);
+> +	}
+> +	if (irq < 0)
+> +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");
+
+...
+
+> -	return inv_icm42600_core_probe(regmap, chip, client->irq,
+> +	return inv_icm42600_core_probe(regmap, chip,
+>  				       inv_icm42600_i2c_bus_setup);
+
+This is now one line (81 characters which is fine independently on your choice
+of the limit).
+
+...
+
+> -	return inv_icm42600_core_probe(regmap, chip, spi->irq,
+> +	return inv_icm42600_core_probe(regmap, chip,
+>  				       inv_icm42600_spi_bus_setup);
+
+One line.
 
 -- 
 With Best Regards,
