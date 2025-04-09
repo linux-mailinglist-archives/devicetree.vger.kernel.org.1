@@ -1,134 +1,138 @@
-Return-Path: <devicetree+bounces-164961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DC2A83050
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B58C4A83061
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C085F3BCFBB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:17:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C923A3A4910
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0DC1E3DFA;
-	Wed,  9 Apr 2025 19:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CB931E51F2;
+	Wed,  9 Apr 2025 19:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mr7qMi/M"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FBUBH+Nu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B857A1BC073;
-	Wed,  9 Apr 2025 19:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1091E1C3A
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 19:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744226283; cv=none; b=nnrsJ/lfEdGHSXUMZ8SchtPkhWAbMltZm/90+oavaxqKjAlixit599as2hLgg91dtlVmFwEq/BRzbjLKqwCzFHw7ITXpKbvvtXj6ZKKUt1AfjxZcn9G5yfrLf/bUwn+0W2jxncusxSSiNS6gp0kWTP9QwJ0aYge86wKDSuklRmA=
+	t=1744226513; cv=none; b=YEdBkLi6Hak3PrG04ZipWeCSkUNDE5wkN2YaurhDbTSlC8SCvrdoktM+pB/zvnzZqkVZQmbj2S/qBGDgPZMWw/MEtyxG88t5RSQKUEJDqgmlmaVE+23Q6lBG5naSyBsQ8sTxqvQkc828e8d2+QsCqjraa+TeLf+Ax78C7R/Zyc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744226283; c=relaxed/simple;
-	bh=n0MHnrgNObzTRjdLX0L/5mn6PIokeufmSE0xOH7vcyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JWIlBQC/BexYQtwLrTuTCAXcC67jakVO2dyLUQy1Xp31tISFHlRutNNCxZX1xbaPTGs/+cZghJMVNVqGM1jaJp2GG9Q9VzhWrSNaPa5kP1Bl05XdgoqG8W4ddmub6E/kLg2/i5yo4UktDC9Kz3jLQ4PGUGxuDQbBybqzhLak9/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mr7qMi/M; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-223fb0f619dso69165ad.1;
-        Wed, 09 Apr 2025 12:18:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744226281; x=1744831081; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HHQD0iOlFuQkVDhwcExHTtZwTrYRkg2cZu77K8SIYig=;
-        b=mr7qMi/MYdXEkSiz8cSRWJYTAVXZWdwK4FngFaRBizA/qJiuCTxruAElF1T/drqEC2
-         s3CeOB1XZ15DQO6ZT0trQUIX/+QjRtG3bFC9K80i7bpDQMistsNb7FwUl34iSMAhp6Ck
-         ASfjH/pzyjShG1HzbKX2qhpWEhgOy/+CbRGwAtLP+Pbx6gUfK9vD65BD/FQ0cAvrtvAI
-         kd7CvrOM7pTwULSYDssqnSKozm18K8JXXkS4rZe0sTDnP+A+B7LHbYGh2rdzQQSr6ssN
-         ZLPkFE9hLWa42ajIxJbJBOXlY7BSk+YdvUgT+OuGVbcPOX/Xca2UTt1JFEdVviLZgNnt
-         Yq0g==
+	s=arc-20240116; t=1744226513; c=relaxed/simple;
+	bh=tqqtVLL0a7rnxVyWWNMx3H0IFxuLoh3JJkSTBORz7dM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kRKs5vRWxRkBeNxVRwqIacBiC4TwtGyMEu3wrIkVjAEClC9LedpiEN11PTdYs6ctqWUovKD1fIKjCwQv+pgH6B2idnzIz9Qf6YugSLuylWEeeCaxA/WZsTXQRfDZnQd2t/egJpouIEHoTA6yIwedRdOKfJkwh+PlO82sIOqwd/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FBUBH+Nu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HH02F002307
+	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 19:21:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ao2/4Ir7LjEidGCmtnAUzgnJ1V7Yk4U0mm093nzxA/8=; b=FBUBH+NufFHcklkW
+	+pkQwxYqymHBAdpD3DQ9e77+Bf9pxYOadwtNU+oar0BXBZ8YuGvK9KQEQ3mKr/mv
+	PpVdW8sfpQ7oxKe0HnubXHyiMd8NqAUVM7Alp+kPbHnkc7o2uffeuN64eCzE2yVI
+	JXdwYhwJ68+l70W4R6SwzKvNe8uVvoC0CEeknToRvAAZe6ewmdJ4zedDNAKGcPf2
+	2ku0u8aut0we2EAFiiK1crcozY6SSL8xQtRal91g9vJD7ycPp7NB0jpid4Ztnmuv
+	KLjDq1LMuMjuEH9rvpF/diEhN8GTppxlEFxdXg2uhqOHzCWqCkNLAzf29gIZWIvG
+	Bbb6sA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1mcuk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 19:21:50 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5af539464so1383785a.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 12:21:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744226281; x=1744831081;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HHQD0iOlFuQkVDhwcExHTtZwTrYRkg2cZu77K8SIYig=;
-        b=QLh/K7mO8nbj4cbJiSUVArr39h1tFFlyPX45rNFY3vkkXgimf7KB8z/BzWbwXouPIV
-         3ZAK0EbVIf2PnoxMlkgv0DIrQmtXf5QWueKF5eZHMjRsvia583iZmP7dhni57TpWNv+A
-         DCVKuSiE8Ok4j6Zoq52sjPPkIHKTdjsA1hk79sukc9GYdVlb2TJ9ORiamguSyJO//UEY
-         VofoFhjmaJ7DvPF4VZUYAEFrwywTnXJqrRXdjMUDgL+PyX8GaKGbVVlRCUZAIBzS2xRb
-         aooJbQ04O4plYtzQrNhkGd1czfoLFFfuLZoY+0YiA0DMVpQ6RT9zECw86ABELK0dvvZy
-         Ei4w==
-X-Forwarded-Encrypted: i=1; AJvYcCU6FoTyUn3nPmn1OreHcjSFXptpqWz6eivkZZhI/Xay9Oiwej/06HuNC1KG/V4qbcryT+xvyLpTQWNev4xc@vger.kernel.org, AJvYcCVA1KEKA80rG6Y1WCL5uMBCfLx7d9+9nLr07E2+5ms+1sOxUYTae0O1DrdskIK4lNSH9fTXhpw8zeSi@vger.kernel.org, AJvYcCVhxtPOxWxTEcbb/o4Nso+ApKPUo7Kp/mHlbTxA9GU68Bzio35yuLfGeq1jqOoMxMoo01Pojvgp/mR5@vger.kernel.org, AJvYcCWJ5ve0M1AO9UAcszVAv96BPYbRag6iDcvoyeiLUkhufYbzSL3SPxXDhTdXeSOsFXyocwsfIB8othbKRR0=@vger.kernel.org, AJvYcCXxc0l3t0Z87D2wkfteaMLjkS5blwjFLGQNPIa5+OpxIonfqM6SeKgDHGK2qxb0J0PjlJmFi/dv+fQzPQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRHjyopcEf0iSyMDXPKXdix0VpPHbcqZHs9Lg+BeQH1ko2FZLI
-	nOqnIlPi1f5QDs6Pdr/4B53r2BiOPaDAXMD4glNRvK+uhSJ94TjG
-X-Gm-Gg: ASbGncu3pxtQ5VY+8xXQjWPOk8ZLQ/HKHFcfJC5313XIb3PbzGvuklngwdCiSArWLGw
-	pkV5VzNIPFaj7p2XC/GYHozNEYXpv++1FfeJofZJBcyRNA1nDPAS+uIk45OH05QvfWiNQu39PM3
-	BcXUn3jGMAZbMyHvUREi5XQeWRrreglZlXryRA7Drwr8xIrTSc5TpxKeUUc6iRF3CWtoKMJn/Ln
-	2BRa2NWEtINsuN/JPi2DufCB0m9AGSTWvnrWBjVrRHvHavyQzyVq+nRhszkzPqQg3mVTMT8ysqA
-	5HowdXBTNUnk7tpDTKK3g15kfXmVwYpfIz/W0FkicQ==
-X-Google-Smtp-Source: AGHT+IFwBTfAW024TNIPQDCEFzUgxaaGpyzh2C3mW7SRmH4lEb0zb5qo7j6yydOgEn+rBQXJppUNnA==
-X-Received: by 2002:a17:903:440b:b0:224:1935:fb91 with SMTP id d9443c01a7336-22b2edf6293mr1071095ad.27.1744226280948;
-        Wed, 09 Apr 2025 12:18:00 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:cff4:8871:54bb:4c97])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bb1e386d2sm1777469b3a.98.2025.04.09.12.17.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 12:18:00 -0700 (PDT)
-Date: Wed, 9 Apr 2025 12:17:57 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 11/12] input: misc: Add support for MAX7360 rotary
-Message-ID: <qszbvz7xr4jhpqnae7mqmnqfv6qzppxjpmbavdknhdnjausqtt@rbjjgc2ozbmq>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-11-7a2535876e39@bootlin.com>
+        d=1e100.net; s=20230601; t=1744226509; x=1744831309;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ao2/4Ir7LjEidGCmtnAUzgnJ1V7Yk4U0mm093nzxA/8=;
+        b=NQr2s+YOvCjQm1058UFlM3O7IX7xGlgoyzAg+4Yy25WMujbUF4FyXP+cBSnhW5SvFZ
+         x8sgsi4KZPYR/OgsskR/11J2rlzvaqowcEG/lv+5knDlk7UGomSlNAfh15zwwHYO4NyN
+         swFghA01TX22NkI/GPbFhO7f7FLB0Biw8IWSD0ixJY4sTqFXyHJxFgQSA0EEY38hl59h
+         1CJGlnBYU26PS13hx8QFJ3sd0H0aOjMoqZyVwzrKARdUQ0vSYw10abhJpscC/vJNiiqY
+         nNCSctTotfBU4sBAcRcK42pK02fOd/6ayZdFZgMG6b3c4Zq9aX2qxCK3oi2Odxta440j
+         RrIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX1x9bYbNBq1leNB/G4uEvFjHF/4YMFa+iYZwoGBm66g0qqWw7y2vxcN8/rSAizzLUcyysowcVmI8/P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjpJt+aOFllFkZS2SG/EAB3RSPom47OsaPX64HoabxcIAG7zgi
+	Ex3S1e6zaI64GKx7ZhQb/nyeXg0wDA+gHUNwjcy7EIvSndrCkIuc7dv3ApA3m9d2WPXets/nGhN
+	5VRzMdvNxlMCj2zEGXgcCS0cVhQFqOZCq6b5s1AuiS5QJSLkUNijQ0npdsNQP
+X-Gm-Gg: ASbGnctpMQPDuPlBN+mKUwNdd9Oy/nBWc+nsdFpqB90+LAP83pYcDd/aPc6vTPbVugH
+	cNVH1/sgCgyAjuCVRtuAYUVnUq69IxkaxIe/JT1DBJ1EVRLFZfiSm0lwIK/7PEgyx/svhpCNZxX
+	XZzwZ31VQIalyCBpbG+KxY2SbmudIoDVD6cZ8HYvO6BdlhBZDqwZMJ4SLTLph4oyvH6I/mV2fiE
+	VIJrlGUUTby+Wvx59XYiitNJi4LiKL5uL9f1xAuLIjOxCcn5R++LcG9/exIzHN/HokO1IMJSIus
+	myH0CS011yA0lpurcei/ugvlLISsm8kKrZznQ7vddjnFvwhKEeBiltYcDs4bC66u9Q==
+X-Received: by 2002:ac8:605:0:b0:474:e7de:8595 with SMTP id d75a77b69052e-47960156d99mr14124381cf.14.1744226509606;
+        Wed, 09 Apr 2025 12:21:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE77QLvXVQb8hQrclk4GktTwGGdd9UcIQL9qbqVYhfi4TU+IPv00TzOyHgAFpOf5a4SCAcmAg==
+X-Received: by 2002:ac8:605:0:b0:474:e7de:8595 with SMTP id d75a77b69052e-47960156d99mr14124201cf.14.1744226509199;
+        Wed, 09 Apr 2025 12:21:49 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f2fbc0c7basm1151156a12.30.2025.04.09.12.21.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Apr 2025 12:21:48 -0700 (PDT)
+Message-ID: <2326817d-0b23-4990-b5a4-68efc8c20b03@oss.qualcomm.com>
+Date: Wed, 9 Apr 2025 21:21:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409-mdb-max7360-support-v6-11-7a2535876e39@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Stop setting dmic01 pinctrl for
+ va-macro
+To: Luca Weiss <luca.weiss@fairphone.com>, cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250404-sc7280-va-dmic01-v1-1-2862ddd20c48@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250404-sc7280-va-dmic01-v1-1-2862ddd20c48@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 9WtApJsC1dM95EGn1TtLnOyIuJqKwzWx
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f6c8ce cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=FVEEgxo8gcP725zB7O8A:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: 9WtApJsC1dM95EGn1TtLnOyIuJqKwzWx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=650 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090128
 
-Hi Mathieu,
+On 4/4/25 10:42 AM, Luca Weiss wrote:
+> There's devices that don't have a DMIC connected to va-macro, so stop
+> setting the pinctrl in sc7280.dtsi, but move it to the devices that
+> actually are using it.
+> 
+> No change in functionality is expected, just some boards with disabled
+> va-macro are losing the pinctrl (herobrine-r1, villager-r0, zombie*).
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-On Wed, Apr 09, 2025 at 04:55:58PM +0200, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 rotary encoder controller,
-> supporting a single rotary switch.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Largely same comments as for the keypad driver: use "int error" for erro
-variable, selection of the device for logging. Also:
-
-> +
-> +	input = devm_input_allocate_device(dev);
-> +	if (!input)
-> +		return -ENOMEM;
-> +
-> +	max7360_rotary->input = input;
-> +
-> +	input->id.bustype = BUS_I2C;
-> +	input->name = pdev->name;
-> +	input->dev.parent = dev;
-
-No need to be setting/overriding this, devm_input_allocate_device()
-already sets this up.
-
-> +
-> +	input_set_capability(input, EV_REL, max7360_rotary->axis);
-
-The event type should come from the DT data I believe. Could we use at
-least parts of the regular rotary encoding bindings?
-
-Thanks.
-
--- 
-Dmitry
+Konrad
 
