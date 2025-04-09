@@ -1,237 +1,186 @@
-Return-Path: <devicetree+bounces-164795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E842EA8261C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:21:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDCBA82642
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:26:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FA6B7AAB6E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:19:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74B8E1B87212
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCD8261565;
-	Wed,  9 Apr 2025 13:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F8325B66B;
+	Wed,  9 Apr 2025 13:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tDc6J0t0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JcQzuWSU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C7925B666;
-	Wed,  9 Apr 2025 13:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B257255E55
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 13:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744204515; cv=none; b=s1nGSbd9tzyyiMbBkrXeC3qAAbRZv6/+sudJFPts3C+SYdruRSZlwHibCOhiQviZXyKtbWSgGtb0bccI4LjaSzLUGbrVRt2jrRr80GogOT4HbPzJ8wRxl8nr5tjKldKORqF7FRLQ3+tE8jjoSEPBYNE2MfpPg3ZjrsSkMJlk6ic=
+	t=1744204957; cv=none; b=H7ec6fJSMUYAkR23RRG3TeGGYor3GDoSM9bGpiUEmuGPC07vUUCjhR/0ykRU0cTzDTNYDi4pVgikajiWXhRy2gm94VLHhBLYuWE/2LjlSz4WeBdLINF1mBeKL4L3TvZbhg8uzse1ZcEewZkTXfjhjYd2hxL+A19xHWWxG4iD4dQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744204515; c=relaxed/simple;
-	bh=S15u78BKbSHh1fzKUfpf0wJOK432GkMnYgwe1vKsInk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IUAD8VyxmiX8l4izfptykgSdajJ9WNz7DZLTNRO/jBnBGxwHEOopLCm0jbfXKTv+y2LZ8vj/DoY+SRpJyYlj3Q+6UsF1TK/xeUrEjjF3o+hUPlKymMh4hsZuovTvTLvmITm1ZvI+4kIYCwNF8GI5lp1VlIEUd+V1e5Jku9p+W1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tDc6J0t0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D98C4CEE7;
-	Wed,  9 Apr 2025 13:15:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744204514;
-	bh=S15u78BKbSHh1fzKUfpf0wJOK432GkMnYgwe1vKsInk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tDc6J0t0EzQjucGrX0fYRnnbfFGbB+cQfpVivNIqSiL01iuj2QPaABZ1DsziZ/82I
-	 I6tINz1dLf/clN00vw8sip9ev7esPsaoolLYjDetj4uyzgSWXOmxSavofpNhG1nFIn
-	 MXHCBwJ1OUdbhdlFyjKkl5e1VTl/n2L6570ywcTvSNbLKE2MAKtp0TCbb2XYpN44lH
-	 WY10uAbIMfK5RJ0BWApbSGkqBDEB5Fkbc/eadVmdDdrnEwVpy7SR2yD/08pKdzANuv
-	 UtxUDo8h2EsD9fsoBU0zNDgzqjjqP5WFXkdhn6DxNIDvOKCDTeCK2UqjzX48QmRpBL
-	 wzwuim9Kzmb2A==
-Date: Wed, 9 Apr 2025 15:15:07 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 20/24] irqchip/gic-v5: Add GICv5 LPI/IPI support
-Message-ID: <Z/Zy2zxD33/7sRrx@lpieralisi>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
- <ed63bb91-e9ac-409a-a9a0-25b233fe2e15@app.fastmail.com>
- <Z/ZH5IBQAZ8rc9Cz@lpieralisi>
- <e7e4e9f0-a9e4-48d4-9bed-a4c52453ee8e@app.fastmail.com>
+	s=arc-20240116; t=1744204957; c=relaxed/simple;
+	bh=zX4CYBgkdc29p/d5raDLjcdhkjA/VM+yjkA51ipJEMQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZbPxQQp5BGnAKRBRbcUTCWoWaezHPfa1ywQaQMWgiHxzqmE1OtDZ9zNfMKr7Fn/KvinSFcacQn/5oeCIHOoPLYk1Xtj5TsBkw4Dvr+iPm74r76sPry5kHfQB7PWoMiX+YOo8gKjk7ODM8lgDYDsWtNmxG5bldxvP31BpGR+vA/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JcQzuWSU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5398S3On023665
+	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 13:22:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oG97pdlG3/MhaV/Eh1XXDbmemJdCv3MUuOAbWpnlMxs=; b=JcQzuWSUjcAF3JAp
+	j8DfR3LIJMa6R4pvXTY8dHvEHrvGHVohZC2mRyqD43hG/VyNm5hj6m3cTRrzZnit
+	Q4auc9lcw8EI4HGQ/LWZOKGViH1GMS0XtoIPI8gvvaCiQ5/Ljjkhfmbv055i4wSH
+	1JNNjPsn/QuF7Q5UU5BnwKefXWMYbjura/MQDDP4uxcr8aWAUcQhUfjrGk5NYvaK
+	1l2Wl4CtHZHXzUrXewSZYz/vWxiYvfOWFmkdYVzcjnQ67oeFwWbQ7dVtD8a6cESS
+	DJ6FjoL7UDTj9zEmSUhAv5UagQnafBbPLn0zgXMTLqU5T52U34sKia4W8+A8xM9V
+	hQFZng==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd03hst-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 13:22:33 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-476783cbdb8so17007471cf.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 06:22:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744204952; x=1744809752;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oG97pdlG3/MhaV/Eh1XXDbmemJdCv3MUuOAbWpnlMxs=;
+        b=RX15Wz2itCN0xKKt+ZaBrwCMOxVI/76F7K2RhaGJLFH//HYjuKB/D9GS9z/JW0tp4Z
+         1t/RR15Ga0p1JUG+2sF03jiZhfxUzPg7QyEFocqTF6txptGPZUExgUpyOJlHawlwQMGE
+         WFbqXCYNGw/96KUV6mEBwSTqyPFOon7OCjwgfFS62z53YE8ESQHcCAIBY/0KfgigsqLG
+         qvyhXNCaNkwTEOR0EmdN1vsEvvtZ2jzCjzpWizs/DEsKO93EbNb8pAEn/ihTOeH7dbjU
+         DBdbLEEAQ4JfxVCeSkbpPTnJJ8UDnKLKjvHYFZ6UBedR4gIdGYzMzamNitb5QQrX8CIS
+         SyYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXBgnKYVvbgLimrRw+Q2MoPOZl2rsC/MXdgvpkcWXrZQ7+55ksOD7dnwbVJlM2NDREJbck3E5yXcGpb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyjf9oXhn3Swe3+ideA42fXIbxuh6ZFVGllcg9ch+6v/CfX+QiB
+	OOBTQvAwzZMaATcJwil7PAQs7LRMa8qAOO7ERUftJCirSiVSFgfv6Wj2KDlP3gwEgKcF1JCVPrj
+	FONuB5Sl/qndTelKRdDfOkjh7Uny/+n0VnwbUEqWPgozlqcU/G2oop3ch9FEA
+X-Gm-Gg: ASbGncvBXO+13gvaIrHp7YxfmEINY+sCaubs8fKLhgGrXfiBKVcTFm2YZAjBpDFU/uz
+	2LHP9HVgo/U1yt9HFdl0UvTeqkDFlENykm5rg5tHIMlUUDDwyxEdxr418u4F+qPARtKOXaKaKGu
+	B4JsY+4dEhCyG96aQ8CmMWQCTg4nLEpvuH+zfONdKHRMHG33RJdIpv+/RLYjZoyF5SDA3wkGZ64
+	CSTdJ0F+ovG39SfGxobbVfg6XIIehxpfB9Us5vnrXIsLu5O9QYtXRvG0ZncWC6mp4F6y7taAzgw
+	rO2QPUxiHadlbrdIi5dERaC7HXErMUj68yKedVAhzgEePO7VY1xvB7fH2j5flz7QMA==
+X-Received: by 2002:a05:622a:19a7:b0:477:e9f:7530 with SMTP id d75a77b69052e-4795f35494amr14732641cf.12.1744204950994;
+        Wed, 09 Apr 2025 06:22:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYtvvTpAbOq+RwOTgPOW+p1fvx55yA5PRtcriKzpC7QJsbRuHC9EleyT/a6UkABJje5rKgAA==
+X-Received: by 2002:a05:622a:19a7:b0:477:e9f:7530 with SMTP id d75a77b69052e-4795f35494amr14732121cf.12.1744204949672;
+        Wed, 09 Apr 2025 06:22:29 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f2fbc2cf69sm799686a12.37.2025.04.09.06.22.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Apr 2025 06:22:29 -0700 (PDT)
+Message-ID: <a79eaaa9-0fe9-45d9-b55f-ba2c327eaaaf@oss.qualcomm.com>
+Date: Wed, 9 Apr 2025 15:22:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7e4e9f0-a9e4-48d4-9bed-a4c52453ee8e@app.fastmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add binding for Toshiba TC956x
+ PCIe switch
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez@oss.qualcomm.com
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com>
+ <20250226-eager-urchin-of-performance-b71ae4@krzk-bin>
+ <8e301a7b-c475-4642-bf91-7a5176a00d1f@oss.qualcomm.com>
+ <385c7c77-0cb7-f899-4934-dfa58328235a@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <385c7c77-0cb7-f899-4934-dfa58328235a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: -EfEqbNxTVsaKW9O5HWY-0lFPgDQWrJk
+X-Authority-Analysis: v=2.4 cv=Q4vS452a c=1 sm=1 tr=0 ts=67f67499 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=o148c7v5wAakItcUyVIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: -EfEqbNxTVsaKW9O5HWY-0lFPgDQWrJk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 adultscore=0 malwarescore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090081
 
-On Wed, Apr 09, 2025 at 12:56:52PM +0200, Arnd Bergmann wrote:
-> On Wed, Apr 9, 2025, at 12:11, Lorenzo Pieralisi wrote:
-> > On Wed, Apr 09, 2025 at 10:23:57AM +0200, Arnd Bergmann wrote:
-> >> On Tue, Apr 8, 2025, at 12:50, Lorenzo Pieralisi wrote:
-> >> > +static void irs_writeq(struct gicv5_irs_chip_data *irs_data, const u64 
-> >> > val,
-> >> > +		       const u64 reg_offset)
-> >> > +{
-> >> > +	writeq_relaxed(val, irs_data->irs_base + reg_offset);
-> >> > +}
-> >> 
-> >> I think the use of _relaxed memory accessors needs some code
-> >> comments here. The definition of these is that you don't care
-> >> about ordering relative to DMA master accesses, yet you seem to
-> >> very much have accesses to the 'ist' from the GIC, as well as
-> >> DMA accesses from an MSI device, and I would expect both to
-> >> require ordering.
-> >
-> > For the 1-level (linear) IST we allocate it in one go, write
-> > the base address through relaxed access (that sets the IST
-> > valid) and poll completion with a relaxed access. Memory is
-> > cleaned and invalidated from the cache (if the IRS is not
-> > coherent) before the MMIO sequence above, which implies a
-> > dsb().
-> >
-> > After that memory is handed over to the GIC.
-> >
-> > For a 2-level IST, the code that updates L1 entries already add
-> > a dma_rmb() barrier (ie gicv5_irs_iste_alloc()) to make sure we
-> > order MMIO wait completion with the subsequent cache invalidate
-> > (again, in the yet hypothetical case where the IRS is not coherent).
-> >
-> > I think I can add comments where the sequence to initialize the
-> > tables is executed more than here, given that these helpers are
-> > used for other purposes too.
+On 4/1/25 7:52 AM, Krishna Chaitanya Chundru wrote:
 > 
-> Usually my recommendation is to have abstractions like this
-> provide both relaxed and normal variants, and then only
-> use the relaxed ones where it really matters for performance.
 > 
-> That way you can keep relatively short explanations where
-> you call irs_writeq_relaxed() and use irs_writeq() without
-> any code comments any place that doesn't care about saving
-> a few cycles per call.
+> On 3/25/2025 7:26 PM, Konrad Dybcio wrote:
+>> On 2/26/25 8:30 AM, Krzysztof Kozlowski wrote:
+>>> On Tue, Feb 25, 2025 at 03:03:58PM +0530, Krishna Chaitanya Chundru wrote:
+>>>> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>>
+>>>> Add a device tree binding for the Toshiba TC956x PCIe switch, which
+>>>> provides an Ethernet MAC integrated to the 3rd downstream port and two
+>>>> downstream PCIe ports.
+>>>>
+>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+>>>
+>>> Drop, file was named entirely different. I see other changes, altough
+>>> comparing with b4 is impossible.
+>>>
+>>> Why b4 does not work for this patch?
+>>>
+>>>    b4 diff '20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com'
+>>>    Checking for older revisions
+>>>    Grabbing search results from lore.kernel.org
+>>>    Nothing matching that query.
+>>>
+>>> Looks like you use b4 but decide to not use b4 changesets/versions. Why
+>>> making it difficult for reviewers and for yourself?
+>>>
+>>>
+>>>> ---
+>>>>   .../devicetree/bindings/pci/toshiba,tc956x.yaml    | 178 +++++++++++++++++++++
+>>>>   1 file changed, 178 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..ffed23004f0d
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
+>>>
+>>> What is "x" here? Wildcard?
+>>
+>> Yes, an overly broad one. Let's use the actual name going forward.
+>>
+> ok I will update the next series the name from tc956x to tc9563 as
+> suggested.
 
-I will review and update accordingly.
+As per internal discussions, 956*4* would be the correct name for this one
 
-> >> > +/* Wait for completion of an IST change */
-> >> > +static int gicv5_irs_ist_wait_for_idle(struct gicv5_irs_chip_data 
-> >> > *irs_data)
-> >> > +{
-> >> > +	int ret;
-> >> > +	u32 val;
-> >> > +
-> >> > +	ret = readl_relaxed_poll_timeout_atomic(
-> >> > +			irs_data->irs_base + GICV5_IRS_IST_STATUSR, val,
-> >> > +			FIELD_GET(GICV5_IRS_IST_STATUSR_IDLE, val), 1,
-> >> > +			USEC_PER_SEC);
-> >> > +
-> >> 
-> >> What is the significance of the 1 second timeout? This is probably
-> >> a million times longer than I would expect any hardware interaction
-> >> to be specified to take. Are you waiting for another thread here?
-> >
-> > It is arbitrary, agreed.
-> 
-> Can you make either much shorter, or non-atomic then?
-
-Yes sure (and try to consolidate them as Thomas correctly pointed out).
-
-> >> > +	l2istsz = BIT(n + 1);
-> >> > +	if (l2istsz > KMALLOC_MAX_SIZE) {
-> >> > +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
-> >> > +
-> >> > +		pr_warn("Limiting LPI ID bits from %u to %u\n",
-> >> > +			lpi_id_bits, lpi_id_cap);
-> >> > +		lpi_id_bits = lpi_id_cap;
-> >> > +		l2istsz = KMALLOC_MAX_SIZE;
-> >> > +	}
-> >> 
-> >> The use of KMALLOC_MAX_SIZE seem arbitrary here. I remember discussing
-> >> this in the past and concluding that this is fine for all cases
-> >> that may be relevant, but it would be good to explain the reasoning
-> >> in a comment.
-> >
-> > We need contiguous physical memory that can be < PAGE_SIZE or larger.
-> >
-> > For allocations larger than the allocator caches kmalloc hands over to
-> > the page allocator, MAX_ORDER is reflected into KMALLOC_MAX_SIZE AFAIU.
-> >
-> > That's the reasoning. Does it make sense ?
-> 
-> I'm more worried about what happens when KMALLOC_MAX_SIZE is
-> really small -- did you show that the allocation is still
-> going to work, or is this likely to cause runtime problems?
-
-Are you referring to KMALLOC_MAX_CACHE_SIZE or KMALLOC_MAX_SIZE ?
-
-KMALLOC_MAX_SIZE is set according to MAX_PAGE_ORDER, that should
-be fine for most set-ups (well, obviously implementations that
-only support a 1-level IST can't expect a very large number of
-IRQs -  we set that to 12 bits worth of IDs deliberately but
-given the current memory allocation limits it can be much higher).
-
-A 2-level IST can easily manage 24-bits worth of IDs split into
-two-level tables with the current kmalloc() limits.
-
-For the ITS DT and ITT the same reasoning goes, so the capping
-is the (rare) exception not the rule and I don't expect this to be a
-problem at all or I am missing something.
-
-> >> > +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT)
-> >> > +		dcache_clean_inval_poc((unsigned long)ist,
-> >> > +				       (unsigned long)ist + l2istsz);
-> >> > +	else
-> >> > +		dsb(ishst);
-> >> ...
-> >> > +	baser = (virt_to_phys(ist) & GICV5_IRS_IST_BASER_ADDR_MASK) |
-> >> > +		FIELD_PREP(GICV5_IRS_IST_BASER_VALID, 0x1);
-> >> 
-> >> Here it seems like you are open-coding the DMA mapping interface
-> >> details, in particular the mapping of the 'ist' memory area into
-> >> the gic's DMA master space, the coherency and the barrier that is
-> >> normally part of a (non-relaxed) writeq().  Is there a reason
-> >> you can't use the normal interfaces here, using dma_alloc_coherent()
-> >> or dma_alloc_noncoherent()?
-> >
-> > The GIC IRS must be brought up early, it is not a struct device.
-> 
-> Right, that is rather unfortunate.
-> 
-> >> Do you expect actual implementation to not be cache-coherent?
-> >
-> > It is allowed by the architecture - I don't have a crystal ball
-> > but if I want to add support for a non-coherent IRS the DMA mapping
-> > like sequence above has to be there - alternatives are welcome.
-> 
-> I see that we have a few GICv3 implementations that are marked
-> as non-coherent in DT. I don't understand why they'd do that,
-> but I guess there is not much to be done about it.
-
-You don't understand why the GIC HW is not coherent or why we set it
-up as such in the driver ?
-
-> The only other idea I have would be to use an uncached allocation
-> for the non-coherent case, the same way that dma_alloc_coherent()
-> or maybe dma_alloc_wc() does. This still has the same problem
-> with bypassing the dma-mapping.h interface because of the lack
-> of a device pointer, but it would at least avoid the cache flushes
-> at runtime. If I read this code right, the data in here is only
-> written by the CPU and read by the GIC, so a WC buffer wouldn't
-> be more expensive, right?
-
-The IST is also written by the GIC, the CPU reads it (explicity, with a
-memory read rather than through instructions) only if the table is two
-level and we are allocating L2 entries on demand to check whether an
-L2 entry is valid.
-
-I am not sure the CMOs are that bad given that's what we do
-for GICv3 already but it is worth looking into it.
-
-Thanks,
-Lorenzo
+Konrad
 
