@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-164721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF5AA8216C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:56:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C96A821B7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31CCF16BD9F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:56:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72D0A16FA30
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B151325D8F5;
-	Wed,  9 Apr 2025 09:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3953325C6E3;
+	Wed,  9 Apr 2025 10:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qWPe5feZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VU2q5mPq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 886C825D8F2;
-	Wed,  9 Apr 2025 09:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0962A1B6CE0;
+	Wed,  9 Apr 2025 10:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744192585; cv=none; b=goe8C8Z51+GXDRZtTCT6ZhFGBxUivHLuR3/3MBuK+r+nTZ/l5WIeD9KgRI8YTA4Eg9z0n3FnA5HEGl9ZF5UZw5iSI1SguqmhtUip7/wMsKuCFvlw6OdlCULbo6O4TPIilA3MmBsXDgfhJJldbVYYdkGDQHD6p/eS1hO8IlZ6kAM=
+	t=1744193305; cv=none; b=OFa6f4oChEGzukJ92m1swiz9loOhf0Zlt33yEM5IIeHuezfF+o4q16O5lWLSdU5xKaT21bYc3NDf4fcf3QPpHNb3BseMtKArHvrB+ZFkxHnlWsHk5JG9cawfRGPPf2N7myrIEyYOLnXM3trGDmNf8cEf8hIRdhh7/VENG1yD8Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744192585; c=relaxed/simple;
-	bh=Rt/zFCT2dVTcx0v7PgWTkg2x2TmEPzbuCc7LGol1NJo=;
+	s=arc-20240116; t=1744193305; c=relaxed/simple;
+	bh=LcspFk/X/sA7YZYHZEQPrB2VlezSYpfA0UY17z/Qkc0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r+qw4Y3EiJYh8HTI89vUdzNgAdnZYH9ZhMx9Fxrb7EHxEW1Zs6bM/Aee33J0+sc7GbYNH+p4XGlFxbrZ1DMPp02YHxUucEbN4V9gtKVl2KYfJMnDj3rXeJ/6y6/iY8lIhPKCCB1LPpmydKE0B2+I3Yx6x9qSx+GXwdXnGZvwxlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qWPe5feZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B178EC4CEEB;
-	Wed,  9 Apr 2025 09:56:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=l2d8TBR6DsFW3Z4cBSB40dDZ/EvT8wIbPwOObCAsqHTJIy9fbQPc+MWCMZeZKX31xOXx8FdZTn5vAL3iq7VRLff/DyrPMzti5sTBIhTNvBc9J2pQynbHy3YpdYh1a5aejVH3TpEILEPtZjyD8jtgctqrZGbThMQ222zLL5MJIkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VU2q5mPq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED89C4CEE3;
+	Wed,  9 Apr 2025 10:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744192584;
-	bh=Rt/zFCT2dVTcx0v7PgWTkg2x2TmEPzbuCc7LGol1NJo=;
+	s=k20201202; t=1744193304;
+	bh=LcspFk/X/sA7YZYHZEQPrB2VlezSYpfA0UY17z/Qkc0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qWPe5feZ8pZyNgIE8UrI6Qe+5HR6c8wDH2s4C1DqPnOMRD2ktMdZnSdqh7dCkyLWi
-	 FP74r3nZP76ETGqCVpcNNDaZZsssd29J9NJxyVX9QoIMQlpnaoCezJx4hGlAAYEraz
-	 knt1yLB+bcGqG4liiQxunbx2M4AVlHo+SMRRg1hQO6FT7QP9/iZ3aYw2IqXCXN7vdT
-	 2Yl00VKdRd1Pbpiy9Hxi/QwpX+IgjYH1J+uJDsWbA8drLstFyOn9HY49GXdxgLF/Fb
-	 CBIj5zIpwhsqr5DMGh8bPbOLs3AH6RVCcehA2xh3aqy/d3XNVzaoQb5dLI3R2G8Q6O
-	 kVOtNcCJ9xQvQ==
-Message-ID: <258c8fda-70cc-4624-aef6-7cbef3cdbde6@kernel.org>
-Date: Wed, 9 Apr 2025 11:56:19 +0200
+	b=VU2q5mPqyURKQUNVN/j/LMlB1LbtvVJ0luiDxdJYD4OTxjO9sEhtG7mxKmezdpQJk
+	 xRxGPKRJ68HI22sBzL5T6Vt6t1+d6JcknvfgJ7MrXYhyUQxUh6bilaC6lNbvpF+oJQ
+	 RbPsILz1OqJg23pnzC7wt1ksyrYUM2tXVgZ94gysgDPLcRItvm+613n3rGAQKrhrt7
+	 skPy5H9U9J2kSNTYKSXZsZWKnCYS226jcXiTRRZGdOnVzU8JETPZ7ctXBuza1dj2Do
+	 HmofgcyzIJgXlqWd7f1gce+V6nPow2W1JxKCsqCdKtWjUyhQxy3vn7hR3svbT1/36H
+	 0mm0EJ/SGllGw==
+Message-ID: <6319c28b-1ce1-4521-a673-72ca6b712090@kernel.org>
+Date: Wed, 9 Apr 2025 12:08:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] memory: mtk-smi: mt8188: Use
- devm_pm_runtime_enable
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Friday Yang <friday.yang@mediatek.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250408033206.12176-1-friday.yang@mediatek.com>
- <20250408033206.12176-4-friday.yang@mediatek.com>
- <20250408-woodoo-quick-worm-bf82b4@shite>
- <e777f95c-c21f-4a91-b044-5fc19eb22c3d@collabora.com>
+Subject: Re: [PATCH 3/7] dt-bindings: usb: add SpacemiT K1 DWC3 glue
+To: Ze Huang <huangze@whut.edu.cn>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
+ <20250407-b4-k1-usb3-v3-2-v1-3-bf0bcc41c9ba@whut.edu.cn>
+ <ac9fd6b3-2184-4d75-83e5-6caee4f3758d@kernel.org>
+ <9f7d1ea4-d9cb-48d2-9af1-4db38fadd55e@whut.edu.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,58 +113,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <e777f95c-c21f-4a91-b044-5fc19eb22c3d@collabora.com>
+In-Reply-To: <9f7d1ea4-d9cb-48d2-9af1-4db38fadd55e@whut.edu.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/04/2025 10:26, AngeloGioacchino Del Regno wrote:
-> Il 08/04/25 08:29, Krzysztof Kozlowski ha scritto:
->> On Tue, Apr 08, 2025 at 11:31:56AM GMT, Friday Yang wrote:
->>> Replace pm_runtime_enable with the devres-enabled version which
->>> can trigger pm_runtime_disable.
->>>
->>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
->>> ---
->>>   drivers/memory/mtk-smi.c | 16 +++++++++-------
->>>   1 file changed, 9 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
->>> index f25d46d2ef33..daef6d350419 100644
->>> --- a/drivers/memory/mtk-smi.c
->>> +++ b/drivers/memory/mtk-smi.c
->>> @@ -713,16 +713,17 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
->>>   	if (ret)
->>>   		goto err_link_remove;
->>>
->>> -	pm_runtime_enable(dev);
->>> +	ret = devm_pm_runtime_enable(dev);
->>> +	if (ret)
->>> +		goto err_link_remove;
+On 09/04/2025 10:16, Ze Huang wrote:
+>>
+>>> +  vbus-supply:
+>>> +    description: A phandle to the regulator supplying the VBUS voltage.
 >>> +
->>>   	platform_set_drvdata(pdev, larb);
->>>   	ret = component_add(dev, &mtk_smi_larb_component_ops);
->>>   	if (ret)
->>> -		goto err_pm_disable;
->>> +		goto err_link_remove;
->>>
->>>   	return 0;
->>>
->>> -err_pm_disable:
->>> -	pm_runtime_disable(dev);
->>
->> You now broke/changed the order of cleanup without any explanation.
->>
->> Best regards,
->> Krzysztof
->>
+>>> +patternProperties:
+>>> +  '^usb@':
+>>> +    $ref: snps,dwc3.yaml#
+>> No, rather fold child into the parent.
 > 
-> I agree some comment in the commit description saying that the cleanup reordering
-> doesn't matter in this specific case would've been nice to have, but anyway IMO
-> it's not a big deal - he didn't break anything, anyway :-)
-
-Cleanup orderings are tricky, so are you sure nothing got here called in
-incorrect moment? I see that runtime PM will be disabled much later and
-what certainty you have that device won't get resumed that time?
+> I’m not entirely sure I understand your suggestion. Could you please provide
+> an example? Thanks!
+Do not create glue node, but only one node for entire DWC. All new DWC
+USB bindings are supposed to follow this new approach. There are some
+examples in the tree and some on the lists.
 
 Best regards,
 Krzysztof
