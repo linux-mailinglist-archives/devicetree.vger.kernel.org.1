@@ -1,203 +1,183 @@
-Return-Path: <devicetree+bounces-165046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E331A83300
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:09:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FEAAA83314
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:16:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C37D179311
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:09:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DE8316FA16
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:16:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15623213E6A;
-	Wed,  9 Apr 2025 21:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D24320299B;
+	Wed,  9 Apr 2025 21:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="baw1qUL+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YtAK71wN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E48B1E25E8;
-	Wed,  9 Apr 2025 21:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417F1155C97;
+	Wed,  9 Apr 2025 21:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744232942; cv=none; b=gMOdKjSsopJsKrP/lfXjuERzVBztWJrTDlgO/KLT8W8DDI8JOtS/bNdkR8IVrgv5VCZeo5Dydbd4t6B+vfgIYFuHTWNtQkGKBXRmNBVLrPSLU8o71laDs7hmsilqSpbRJDIl3Q0VEAnufnVpfNzerpz2mxAgvjTLF0/n+M5Vit4=
+	t=1744233383; cv=none; b=BjEN3yOFfAHGDElkbFPysbCJczONVAH2BmANXI7umM2YEyBSZadYfd67ZY67JyuV2efsxmiWmlLgvhL54xia6JmJA/+0BokcneQ4EzjgY6qq5tgC5on+C7ZofTDYRaz1/Mz705oRtsKpC+I1J2jf4Wo17fKHpMYtPYKE8WuVfzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744232942; c=relaxed/simple;
-	bh=9FwTOr+ksva7BcWKrWAypW1bPBx+E92LgMFk7X5OZQw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LoHyy5pR6zuiAhKMODBx0v2pvgc/hX037m2d+cc8cbz3nBDsurdW3o4OJ0LSdZJhY3k38PzfUJrdwmHRE5lC8p3p5QOnw13wmtmd2lV88mSiQkBoiVzcJAzYS47a6gXW6MIsxZwSyEzRc1LBEQKDnjTfdNUNiH8810ee4Ed5ySo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=baw1qUL+; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744232941; x=1775768941;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9FwTOr+ksva7BcWKrWAypW1bPBx+E92LgMFk7X5OZQw=;
-  b=baw1qUL+iKw3QVkMa3yHvG9nBCX17LWKrW7MjjL4SDtfiEdvPcbXHZ6N
-   pkhY+KHVbbWx0yuumbXZZS9dUdtTbJ/sVyYp99y6c0dnMiOhO28Tc9Gns
-   C0R9iWlwZUPa47WaIaNTomWcZDQtOCyPoUO+ttpZKYyq1Ntu7pAdV6XlW
-   dlb5+UN1ZMq4xaRBpY7qf+a15iosxOCP+yJ2Upm1X4rzr+/WrjkshuMau
-   l2fmhjaUh5C9ydDd8GpR09krh8onoeeOMLugYjB+Fqs+DVz2UiNcKB8Tx
-   U0Py6Q9KWFhT7ixJWjW/xeAyQnz6gvn0b10XPj/GjEumWb5hl5bZ6y+rw
-   g==;
-X-CSE-ConnectionGUID: GwgRp4y/RQeB/a8o2r/MEA==
-X-CSE-MsgGUID: JmPlGaUcRsWSRQMnVqP+6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45820533"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; 
-   d="scan'208";a="45820533"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 14:09:00 -0700
-X-CSE-ConnectionGUID: dRISYAzsS+uR+D60TYeNVA==
-X-CSE-MsgGUID: PYadYmTTQIqQqMRejQ+j1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; 
-   d="scan'208";a="133816955"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 09 Apr 2025 14:08:57 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u2cfG-0009KJ-14;
-	Wed, 09 Apr 2025 21:08:54 +0000
-Date: Thu, 10 Apr 2025 05:08:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Richard Fitzgerald <rf@opensource.cirrus.com>, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Stuart Henderson <stuarth@opensource.cirrus.com>,
-	Qi Zhou <qi.zhou@cirrus.com>,
-	Piotr Stankiewicz <piotrs@opensource.cirrus.com>
-Subject: Re: [PATCH 2/2] ASoC: cs48l32: Add driver for Cirrus Logic CS48L32
- audio DSP
-Message-ID: <202504100405.7znimLX7-lkp@intel.com>
-References: <20250408162310.670041-3-rf@opensource.cirrus.com>
+	s=arc-20240116; t=1744233383; c=relaxed/simple;
+	bh=r+FCOM4FxN8EdgC44yZEyioV6YS73ZEgUGDU3vCHZSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=u1Xigqc1O2vwHbOMch7hCceW437jo/hEQzP4PfXYeWwUj2XZCt65NGkgjHi9q/x1u6mXOJQE1yg9LF1OBZmeDZOBOdfOiDkj8fWsF1ly3TYmuXA9EEcMY+fdM3XGOiIKrhRgNSINvtiRFTSccn3Z+vl2Hfvq2TGS5C0hIE5zMm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YtAK71wN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539IHWsI002286;
+	Wed, 9 Apr 2025 21:16:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FAoVU227KYJbM1z8Qce+FIEVBao6f+hjFeNa5g5KkP0=; b=YtAK71wNtc3Km4R9
+	7NNe9W419Cdh2ry4vG6/0cUezWo5OXuS2PS+nW/Uk5IjFXwhWaAzmNFct96U2XXS
+	aFbWe1a3xkdqtmMThCe5VVWdaJ1NY2cetUYhLdAGiTz3Hg50GWhhCP8vHldboJNF
+	+SZcv4vnJnbAQrDoEUaWj5LcBxxxWzfT4m/HC7MToVwxrAVXvHZsVKCq2tj61I2s
+	sAfVPCa+sK+exaAZ5VPmmnRyrx9p4oVItEySebyfhFKn9hdg7HgIpzjUTEXWItnt
+	ftgKE5E3EYWY88ATmEw9MBhPJkt0C74zia+llbYYgBAF/JJ+0X6r85XNyTkZg2+L
+	YzFFsg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1mmnc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Apr 2025 21:16:14 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539LGDTj019433
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 9 Apr 2025 21:16:13 GMT
+Received: from [10.71.111.82] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
+ 14:16:13 -0700
+Message-ID: <92b6ea9d-0b13-472f-afad-2b67d869a0bb@quicinc.com>
+Date: Wed, 9 Apr 2025 14:16:13 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250408162310.670041-3-rf@opensource.cirrus.com>
-
-Hi Richard,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on tiwai-sound/for-next tiwai-sound/for-linus robh/for-next linus/master v6.15-rc1 next-20250409]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Fitzgerald/ASoC-dt-bindings-Add-Cirrus-Logic-CS48L32-audio-DSP/20250409-002905
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20250408162310.670041-3-rf%40opensource.cirrus.com
-patch subject: [PATCH 2/2] ASoC: cs48l32: Add driver for Cirrus Logic CS48L32 audio DSP
-config: powerpc64-randconfig-003-20250410 (https://download.01.org/0day-ci/archive/20250410/202504100405.7znimLX7-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project 92c93f5286b9ff33f27ff694d2dc33da1c07afdd)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250410/202504100405.7znimLX7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504100405.7znimLX7-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> sound/soc/codecs/cs48l32.c:3435:3: warning: variable 'i' is uninitialized when used here [-Wuninitialized]
-    3435 |                 i + 1, ana_mode_l, ana_mode_r);
-         |                 ^
-   include/linux/dev_printk.h:165:39: note: expanded from macro 'dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                              ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:274:19: note: expanded from macro 'dynamic_dev_dbg'
-     274 |                            dev, fmt, ##__VA_ARGS__)
-         |                                        ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:59: note: expanded from macro '_dynamic_func_call'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |                                                                  ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:248:65: note: expanded from macro '_dynamic_func_call_cls'
-     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-         |                                                                        ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:224:15: note: expanded from macro '__dynamic_func_call_cls'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   sound/soc/codecs/cs48l32.c:3408:7: note: initialize the variable 'i' to silence this warning
-    3408 |         int i;
-         |              ^
-         |               = 0
-   1 warning generated.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] soc: qcom: llcc-qcom: Add support for LLCC V6
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley
+	<conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Satya Durga
+ Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250324-sm8750_llcc_master-v3-0-2afd5c0fdbde@quicinc.com>
+ <20250324-sm8750_llcc_master-v3-2-2afd5c0fdbde@quicinc.com>
+ <0ca929c6-6ff5-4ab0-8ebf-aed3cc5f350b@oss.qualcomm.com>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <0ca929c6-6ff5-4ab0-8ebf-aed3cc5f350b@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: b5qxgxy_sQ0Z-RQs4yqsgZoM5jK0fInt
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f6e39f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=ARX7N87W17KPkUc0mbYA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: b5qxgxy_sQ0Z-RQs4yqsgZoM5jK0fInt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090144
 
 
-vim +/i +3435 sound/soc/codecs/cs48l32.c
 
-  3402	
-  3403	static int cs48l32_init_inputs(struct snd_soc_component *component)
-  3404	{
-  3405		struct cs48l32_codec *cs48l32_codec = snd_soc_component_get_drvdata(component);
-  3406		struct regmap *regmap = cs48l32_codec->core.regmap;
-  3407		unsigned int ana_mode_l, ana_mode_r, dig_mode;
-  3408		int i;
-  3409	
-  3410		/*
-  3411		 * Initialize input modes from the A settings. For muxed inputs the
-  3412		 * B settings will be applied if the mux is changed
-  3413		 */
-  3414		switch (cs48l32_codec->in_type[0][0]) {
-  3415		default:
-  3416		case CS48L32_IN_TYPE_DIFF:
-  3417			ana_mode_l = 0;
-  3418			break;
-  3419		case CS48L32_IN_TYPE_SE:
-  3420			ana_mode_l = 1 << CS48L32_INx_SRC_SHIFT;
-  3421			break;
-  3422		}
-  3423	
-  3424		switch (cs48l32_codec->in_type[1][0]) {
-  3425		default:
-  3426		case CS48L32_IN_TYPE_DIFF:
-  3427			ana_mode_r = 0;
-  3428			break;
-  3429		case CS48L32_IN_TYPE_SE:
-  3430			ana_mode_r = 1 << CS48L32_INx_SRC_SHIFT;
-  3431			break;
-  3432		}
-  3433	
-  3434		dev_dbg(cs48l32_codec->core.dev, "IN%d_1 Analogue mode=#%x,#%x\n",
-> 3435			i + 1, ana_mode_l, ana_mode_r);
-  3436	
-  3437		regmap_update_bits(regmap,
-  3438				   CS48L32_IN1L_CONTROL1,
-  3439				   CS48L32_INx_SRC_MASK,
-  3440				   ana_mode_l);
-  3441	
-  3442		regmap_update_bits(regmap,
-  3443				   CS48L32_IN1R_CONTROL1,
-  3444				   CS48L32_INx_SRC_MASK,
-  3445				   ana_mode_r);
-  3446	
-  3447		for (i = 0; i < ARRAY_SIZE(cs48l32_codec->pdm_sup); i++) {
-  3448			dig_mode = cs48l32_codec->pdm_sup[i] << CS48L32_IN1_PDM_SUP_SHIFT;
-  3449	
-  3450			dev_dbg(cs48l32_codec->core.dev, "IN%d PDM_SUP=#%x\n", i + 1, dig_mode);
-  3451	
-  3452			regmap_update_bits(regmap,
-  3453					   CS48L32_INPUT1_CONTROL1 + (i * 0x40),
-  3454					   CS48L32_IN1_PDM_SUP_MASK, dig_mode);
-  3455		}
-  3456	
-  3457		return 0;
-  3458	}
-  3459	
+On 3/26/2025 6:39 AM, Konrad Dybcio wrote:
+> On 3/24/25 9:29 PM, Melody Olvera wrote:
+>> Add support for LLCC V6. V6 adds several additional usecase IDs,
+>> rearrages several registers and offsets, and supports slice IDs
+>> over 31, so add a new function for programming LLCC V6.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+> [...]
+>
+>> +
+>> +	if (config->parent_slice_id && config->fixed_size) {
+>> +		attr2_val |= FIELD_PREP(ATTR2_PARENT_SCID_MASK, config->parent_slice_id);
+>> +		attr2_val |= ATTR2_IN_A_GROUP_MASK;
+>> +	}
+> This is fragile if parent_slice_id == 0, but let's say this is not an issue
+> for now..
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Agreed, but I don't anticipate that being an issue. I don't think any 
+slice ID is/will be 0.
+
+>
+>> +
+>> +	attr3_val = MAX_CAP_TO_BYTES(config->max_cap);
+>> +	attr3_val /= drv_data->num_banks;
+>> +	attr3_val >>= CACHE_LINE_SIZE_SHIFT;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr0_cfg, attr0_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr1_cfg, attr1_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr2_cfg, attr2_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(drv_data->bcast_regmap, attr3_cfg, attr3_val);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	slice_offset = config->slice_id % 32;
+>> +	reg_offset = (config->slice_id / 32) * 4;
+>> +
+>> +	wren = config->write_scid_en << slice_offset;If I'm reading the wrappers right, you should be able to drop both the
+> shifting and intermediate variables with regmap_assign_bits()
+
+I'm not so sure. I tried with regmap_assign_bits and it seems the 
+correct way to use it would be roughly:
+
+regmap_assign_bits(drv_data->bcast_regmap,
+             cfg->reg_offset[LLCC_TRP_WRS_EN], BIT(config->slice_id),
+             (bool)config->write_scid_en);
+
+but the third argument is an unsigned int (the BIT(config->slice_id)). I 
+tried just putting the slice_id there,
+but got some bizarre results leading me to believe that's not the 
+correct way to use this api. If I'm missing
+something, let me know, but AFAICT, this is six one way, a half-dozen 
+another.
+
+Thanks,
+Melody
+
+>
+> Looks good otherwise
+>
+> Konrad
+
 
