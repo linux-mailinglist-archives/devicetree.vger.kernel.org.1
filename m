@@ -1,126 +1,132 @@
-Return-Path: <devicetree+bounces-165060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674C0A83389
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:43:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6C0FA833B0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66F441B62A6D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:44:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 388C43A918C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67245215198;
-	Wed,  9 Apr 2025 21:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C3D21A928;
+	Wed,  9 Apr 2025 21:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHDuLYqj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5892147F3;
-	Wed,  9 Apr 2025 21:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8B4215798;
+	Wed,  9 Apr 2025 21:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744235032; cv=none; b=oliogwJUAFMkApT3akHE69zprCLM4Qgt1voLrqs/NtNwfqNv1J088Xw1B4QFORTTZfm3P/gu4MAHDJ69+2HWmUdvtW3B+YHbdESpqFCbHw/LKv9ynTWVdsq23AVRYuqJsH3y3hBx0Qia3pr+lus7GuZkGzDzA10ZpXTM6JEtp2w=
+	t=1744235554; cv=none; b=mfojOGZ9tChfXoFpjmZRowp9+dgDlkAgRaucvVL8DT94L0UndQ9VeU8bNLOi839t2xjR8ut2PDmt1A628GzsInCwkPdzv7ImQH6umuNpQrvD/iEWPGE6cgLHaOC1zVQ8Qdi5+yKy6+HEK+tYPm3UoIdlPuiwJqPN23l0txGAWYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744235032; c=relaxed/simple;
-	bh=eesypCNmz5sJKsF5KpZG/L0WnupeOJYtqoN4SCn0pyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WOaHYYQtTX/tA+L/PulcOVbwTCkLSygHjU2kEIigO7T8mvveJjuZ6kRWkU7s7HBvIpiP2SasaihNXMUR3SutqEfI/AZCiUJK5eaN34Bgt1GLoyq35NsF9ky3J525ZRMqU/dMHT9nNTSJAB7jBdrvMe1x0fFeaF+Zd/dBNKg4ypM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 426CB343183;
-	Wed, 09 Apr 2025 21:43:48 +0000 (UTC)
-Date: Wed, 9 Apr 2025 21:43:45 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com,
-	andriy.shevchenko@linux.intel.com, u.kleine-koenig@baylibre.com,
-	lkundrak@v3.sk, devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] serial: 8250_of: add support for an optional bus
- clock
-Message-ID: <20250409214345-GYA19066@gentoo>
-References: <20250409192213.1130181-1-elder@riscstar.com>
- <20250409192213.1130181-3-elder@riscstar.com>
+	s=arc-20240116; t=1744235554; c=relaxed/simple;
+	bh=CXl1nA0gkeV3YEJmr8NWq0DTje/v81qqIMYYeDNAeDU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=t5iiIy/HmlvCOtgpcefsilp2F04IVZPWvM2d6kQDEgOOPR2efV7rj3C+AVhzwLDNo9CAe24quCj5MORNvrYxPebcozSk09Pxr5NyIknk9tSDa4LYQ9ltaT/U6v/z2SUJ5Bd2vCJzWbQsjCGYGFmxndW2iqwnP1eznvFw18Hxbuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XHDuLYqj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C563AC4CEE8;
+	Wed,  9 Apr 2025 21:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744235553;
+	bh=CXl1nA0gkeV3YEJmr8NWq0DTje/v81qqIMYYeDNAeDU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XHDuLYqjrOWOMRNWHG6AeY5Mtn8ADaRdFFep9MMuj1N9uaB/BgbZI4KPzxFWhuwoy
+	 bG3tsj944PcXJi24qOgjbWL9ALH5ICZQMgpcNIXPum4q/PzAi6+hKwGyDHcDWS5gwN
+	 BwyzRCrYikMxDu23jqoBWSSBvzLCIakPChgIuUqVEMhk9m4AX1d305gAiczPTzSmkS
+	 lJbuAofZZ7HQ9QOcDe60mG8X5W7V1ICac96vDoFdnQeVEaXcoW/h0AdCbaS73d4T+H
+	 ZBUQxF1m+ZfxKq5Tmq6b5My7QPmACzIUM+1AchxTPUXY+WLq3Br9ppKTRQhBbjY/po
+	 xu7FyM2SEAHSA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ADA93C36002;
+	Wed,  9 Apr 2025 21:52:33 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH v4 0/3] Driver for the Apple SPMI controller
+Date: Wed, 09 Apr 2025 23:52:11 +0200
+Message-Id: <20250409-spmi-v4-0-eb81ecfd1f64@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409192213.1130181-3-elder@riscstar.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAvs9mcC/13MywrCMBCF4VcpWRuZJL2NK99DXKS5tAF7IZGgl
+ L67aa1QXJ5hvn8mwXhnArlkM/EmuuDGIY38lBHVyaE11Om0CQdegICchql3tNRC8bxB4JUk6XX
+ yxrrXlrnd0+5ceI7+vVUjW6+/QPENREaBKqxtUTIrEe217aV7nNXYkzUQ+RFVO+IJGaV0A6W0D
+ eI/EgfEYEciIeSy5qbSaEEf0bIsH2wPcXQCAQAA
+X-Change-ID: 20250304-spmi-6d3c24b9027a
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Stephen Boyd <sboyd@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Neal Gompa <neal@gompa.dev>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, 
+ Jean-Francois Bortolotti <jeff@borto.fr>, Nick Chan <towinchenmi@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744235551; l=1649;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=CXl1nA0gkeV3YEJmr8NWq0DTje/v81qqIMYYeDNAeDU=;
+ b=XaQhaaJwxWHZCyL0KjusE3kB1Cm7zwrQ5Xz6uFE0AeD50bT/9JjX1VrQy+u4VWeDkY50nLAPX
+ baXS3qrjf/BBHGmLCoCIkp68qo0X+nI92t2lj1YDpAIHXpBgv0S4QhT
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-Hi Alex,
+Hi.
 
-On 14:22 Wed 09 Apr     , Alex Elder wrote:
-> The SpacemiT UART requires a bus clock to be enabled, in addition to
-> it's "normal" core clock.  Look up the optional bus clock by name,
-> and if that's found, look up the core clock using the name "core".
-> 
-> Supplying a bus clock is optional.  If no bus clock is needed, the
-> the first/only clock is used for the core clock.
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
-> v2: Update logic to more check for the optional bus clock first
-> 
->  drivers/tty/serial/8250/8250_of.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/tty/serial/8250/8250_of.c b/drivers/tty/serial/8250/8250_of.c
-> index 11c860ea80f60..a90a5462aa72a 100644
-> --- a/drivers/tty/serial/8250/8250_of.c
-> +++ b/drivers/tty/serial/8250/8250_of.c
-> @@ -123,7 +123,16 @@ static int of_platform_serial_setup(struct platform_device *ofdev,
->  
->  	/* Get clk rate through clk driver if present */
->  	if (!port->uartclk) {
-> -		info->clk = devm_clk_get_enabled(dev, NULL);
-> +		struct clk *bus_clk;
-we also need to handle clk in suspend/resume procedure, so
-I think you need to put bus_clk inside struct of_serial_info..
+This patch series adds support for the SPMI controller persent in most
+Apple SoCs. The drivers for the attached PMU and subdevices will be in
+further patch series.
 
-> +
-> +		bus_clk = devm_clk_get_optional_enabled(dev, "bus");
-for the 'optional', we can interpret it's optional for other vendor 
-UART, but a must required clk for SpacemiT's k1 UART controller
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Changes in v4:
+- Rebase on 6.14
+- Link to v3: https://lore.kernel.org/r/20250310-spmi-v3-0-92a82e7d9f0d@gmail.com
 
-would it better to guard this inside a compatible test or even introduce
-a flag in compatible data?
+Changes in v3:
+- Inlined helpers, dropped unneccesary error prefixes
+- Link to v2: https://lore.kernel.org/r/20250307-spmi-v2-0-eccdb06afb99@gmail.com
 
-	if (of_device_is_compatible(pdev->dev.of_node, "spacemit,k1-uart")) {
-		bus_clk = devm_clk_get_enabled(dev, "bus");
-		..
-	}
+Changes in v2:
+- Removed redundant error prints
+- Various style fixes
+- Better explanation of why the driver is needed
+- Link to v1: https://lore.kernel.org/r/20250305-spmi-v1-0-c98f561fa99f@gmail.com
 
-}
-> +		if (IS_ERR(bus_clk)) {
-> +			ret = dev_err_probe(dev, PTR_ERR(bus_clk), "failed to get bus clock\n");
-> +			goto err_pmruntime;
-> +		}
-> +
-> +		/* If the bus clock is required, core clock must be named */
-> +		info->clk = devm_clk_get_enabled(dev, bus_clk ? "core" : NULL);
->  		if (IS_ERR(info->clk)) {
->  			ret = dev_err_probe(dev, PTR_ERR(info->clk), "failed to get clock\n");
->  			goto err_pmruntime;
-> -- 
-> 2.45.2
-> 
+---
+Jean-Francois Bortolotti (1):
+      spmi: add a spmi driver for Apple SoC
 
+Sasha Finkelstein (2):
+      dt-bindings: spmi: Add Apple SPMI controller
+      arm64: dts: apple: Add SPMI controller nodes
+
+ .../devicetree/bindings/spmi/apple,spmi.yaml       |  49 ++++++
+ MAINTAINERS                                        |   2 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi          |   7 +
+ arch/arm64/boot/dts/apple/t8103.dtsi               |   8 +
+ arch/arm64/boot/dts/apple/t8112.dtsi               |   7 +
+ drivers/spmi/Kconfig                               |   8 +
+ drivers/spmi/Makefile                              |   1 +
+ drivers/spmi/spmi-apple-controller.c               | 168 +++++++++++++++++++++
+ 8 files changed, 250 insertions(+)
+---
+base-commit: a24588245776dafc227243a01bfbeb8a59bafba9
+change-id: 20250304-spmi-6d3c24b9027a
+
+Best regards,
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Sasha Finkelstein <fnkl.kernel@gmail.com>
+
+
 
