@@ -1,106 +1,84 @@
-Return-Path: <devicetree+bounces-165044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC9CA832F0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:03:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF89A832F7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:06:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECC3C1B6746A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:03:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DC29468875
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8832116F1;
-	Wed,  9 Apr 2025 21:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B440C1E5710;
+	Wed,  9 Apr 2025 21:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAIJgM3l"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qba/6MvM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462341DE884;
-	Wed,  9 Apr 2025 21:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0FE1D5ADE;
+	Wed,  9 Apr 2025 21:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744232585; cv=none; b=DAG04sP/XyFXEegKDAukG61EYCauVFgLYHAvji6PaZyXqY2VvHNl80U/oD42PVifca7yIWQcXqxlnAOnPrQVwtH81HMDXU9TG78bVffIriUegNJ1xX/42z0uNf1cDlc0wPi+EreCjTcpeDyTaSoK+DT2AuL6aSAX8KLzEsp64fo=
+	t=1744232806; cv=none; b=iFLiqIEUdjrZQx2Y8ktEvdiRHIhwQGWnM8zkWh3SIi3LH2KUqAEFOyHPCii3M+6r9TUmb1EsULUl01UuykP0hVgTIW2HdcMB4zX2b4dbm7Lwm+ZyN1Id2yagyADH9vI8feh75F1LvhMsSPPtLWq3Da4+vtOajQju5ksGlGyfViI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744232585; c=relaxed/simple;
-	bh=GNu9pN8MhnbhJEhK3+EqUFdenT1ITVQAVXD2zBG/u2M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Pa8BqQ97VlVMDcxp2Ce10a+5G2E8ddFwd7+SKxXnL7SSmNtmBC0FPpEFW0o9Nw6NjKNbVHW3foIJNLm0DB4cEsJOffBJFHlDPO0DHU4JfV4k+5KYodsYJkwrJZ3HTrrB0eMnLSRlQoLBdGc7XmuneFk6SiW1Mw7HKGZj7a2ZGR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAIJgM3l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96F92C4CEE8;
-	Wed,  9 Apr 2025 21:03:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744232584;
-	bh=GNu9pN8MhnbhJEhK3+EqUFdenT1ITVQAVXD2zBG/u2M=;
-	h=From:To:Cc:Subject:Date:From;
-	b=eAIJgM3llVkrBg2XJetnIXjBEJ5PHPjd9/hRTZCUjALRAmeHqssEJ0l9GOGzLbzZF
-	 7izQXKEH9nOlBN9eAkaVRat8fYDFJO3pxymnku1NOVsbnaVNoIiHPT5sCy0gO5wfU8
-	 q2ofvlxiTgfnogcRPFy5YZo60W886Nh6kGT5JGiBL0TYd0BadPwwlzZgmspF13/upj
-	 Ihi/GLl74UBsGqJEN3fqC6g/xcDosymFkd0axdXRyusvH727mWnYW+Vz5TBDulbwrO
-	 FYmPXLC8x07vn9aHhTc8jPted9k2KI/b9NADC11qBi+KSUw/0pFb8w9Eboaq467sMT
-	 UHGmmqi7rD9sw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: soc@kernel.org,
-	Antoine Tenart <atenart@kernel.org>,
+	s=arc-20240116; t=1744232806; c=relaxed/simple;
+	bh=A5tiqZuk19Z9E9HTBmsdD/Utrq5L4fPz7jKOjnNEIJg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B0wNMJs4GaG7P2PmAk49WOM9u1T7Un7m2WkJKbGbhtz+0iFuZ8iwy7zjtDCWewnbaBxatImkfo3FPPNOhjpSFUs6czej6Je3YNHDALBxtmnYBU2jEu0OXrIKma4bBdNs7gmk+VSYJmkIb+5kFExQTgYFRztwv0Drt5m28EZ7wFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qba/6MvM; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=iay7Qa9sHNdJmcKXfDHG/I+AIXVYDO+D/QQZnAThWT4=; b=qba/6MvMpUVqbjjCqTUqeAW+ne
+	H+o9Nsni77/pVeMjpWzHLi5WCNgJevjaPJ8xhwIIpr0YtybM40VTypQ3eX82igMkWUYgClhYpK1w5
+	UEcDIHOHgdzBuEgbIJ3FO7uvz6bRITBehc+JonQGPEZLyr8vyyJCzuTZSWiOfRfo992w=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u2ccw-008azr-2R; Wed, 09 Apr 2025 23:06:30 +0200
+Date: Wed, 9 Apr 2025 23:06:30 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: amazon: Fix simple-bus node name schema warnings
-Date: Wed,  9 Apr 2025 16:02:54 -0500
-Message-ID: <20250409210255.1541298-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [net-next v4 3/5] ARM: dts: nxp: mxs: Adjust XEA board's DTS to
+ support L2 switch
+Message-ID: <b380c764-5a46-49e8-9241-675a6b9d85b6@lunn.ch>
+References: <20250407145157.3626463-1-lukma@denx.de>
+ <20250407145157.3626463-4-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250407145157.3626463-4-lukma@denx.de>
 
-Fix a couple of node name warnings from the schema checks:
+On Mon, Apr 07, 2025 at 04:51:55PM +0200, Lukasz Majewski wrote:
+> The description is similar to the one used with the new CPSW driver.
+> 
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
 
-arch/arm64/boot/dts/amazon/alpine-v2-evp.dt.yaml: io-fabric: $nodename:0: 'io-fabric' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-arch/arm64/boot/dts/amazon/alpine-v3-evp.dt.yaml: io-fabric: $nodename:0: 'io-fabric' does not match '^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-Arnd, please apply directly unless you expect the Amazon maintainers
-will pick this up.
----
- arch/arm64/boot/dts/amazon/alpine-v2.dtsi | 2 +-
- arch/arm64/boot/dts/amazon/alpine-v3.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
-index da9de4986660..5a72f0b64247 100644
---- a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
-+++ b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
-@@ -151,7 +151,7 @@ msix: msix@fbe00000 {
- 			al,msi-num-spis = <160>;
- 		};
- 
--		io-fabric@fc000000 {
-+		io-bus@fc000000 {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-index 8b6156b5af65..dea60d136c2e 100644
---- a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-+++ b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
-@@ -361,7 +361,7 @@ msix: msix@fbe00000 {
- 			interrupt-parent = <&gic>;
- 		};
- 
--		io-fabric@fc000000 {
-+		io-bus@fc000000 {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-2.47.2
-
+    Andrew
 
