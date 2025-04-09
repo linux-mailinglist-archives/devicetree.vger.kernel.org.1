@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-164947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1DFA82E1C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 20:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 510D0A82E7C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 20:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00E38174ADD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:00:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F0044406D3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289FB27604D;
-	Wed,  9 Apr 2025 17:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCE4277032;
+	Wed,  9 Apr 2025 18:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mqmqyOLP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BfUzE5Jr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0942726FA5D;
-	Wed,  9 Apr 2025 17:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D4225A349;
+	Wed,  9 Apr 2025 18:19:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744221599; cv=none; b=exf5rYKrPec3DrMBbwQqQnkIiQz2FBOihTxfra06H0CLtZPCCDHXvJhnnrnXXeVXDO4gs6Sn45XXLSAmwvAhtRcUXUKJRJklKZjdjBlhFDSKghTnazsSi8FB7AEGiXaCo0hVOepzpL/1YUiw58zcn7g1ctojHoYLy18MdAM8vyA=
+	t=1744222744; cv=none; b=PB3n+39kaprwrmF+8JvIiJkmgWRlWXq8U/mceOs4m5pi5BA6Xps1BP1yHKXIt6+y+bx2eRRwvlcjXUX6rc+/RYcPIj2tG8uyX5ezs0wt/FFI5xoAQ7YWqcmKyC5/XKCWHoLDSfUl/1RHb5I8Im62PLcnNgLCPmiPlwh1Ro5zGI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744221599; c=relaxed/simple;
-	bh=7xfO8S5P70mtmNq6teszI7P5gFMBxJ5kBAQeuYM1XTM=;
+	s=arc-20240116; t=1744222744; c=relaxed/simple;
+	bh=WdhZGuCRdhG1Ku9TKq1p6zOkAFULJIJDE8qrOF8EAeE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nPJKW1s00h4yyF11EYy0IBeqNRUVuhhzIIVpALGgmgt6/TGYybirvRu5Na1Bvth52YJZiWsI4sbxy5p76ZVm/B5JOrsSxcdJjgjo1FmVh1Ll6UbERtTj1+qi6Kohaj5O8a+JWs7kNY+dZ/fb/aBFWo/mE/9/CAn9Or7bvNboYS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mqmqyOLP; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=THadesmKWXbMmAu0pKCAa3ih07klH5gmTkxEqZF412JXhBVfw3SXfoANlLPXxRoYp738N63zRpWpGB+niQ7rQjQXyvpAUISQ3qL+WKf3iz7Ra6AAOCjF6YhPi/ilLfjy1LQ9RFqXx8UmHTtICsjIxthcrwwSGRbwhot1hTXJ+wQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BfUzE5Jr; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539AA3hX016808;
-	Wed, 9 Apr 2025 17:59:52 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HJp9b002292;
+	Wed, 9 Apr 2025 18:18:38 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gFAsJZPpxtaEj1yMAH4zv7GRSSWRzyvYcL/0JMQxEkI=; b=mqmqyOLPtmd9zpES
-	Cfh6HF+4KyK9Ir1Q37DnRXMyh4BbzfZdAL0OzJqMFQ+l+gGWEk4z+BVsdKYTaLy5
-	W4iG/pgpuRq1eT3q32Auh81FENQDBoNCYry2dnU8zAtE11WDT2Ux2T8PWaBV3V1b
-	rXgkQt7+nQVqrdxpOnmt3NyVmLC4K3IZFewqAbFk5nTdb4JHFEU5s6/ZvHMNSo+/
-	Wt/HNfhbTNMByeKMnHhNPrbtDw+NZsZ+aZfyeLSH4xGDnuaDIv/uljZqvm+/9IA5
-	z22o0m0xG1FkZcdIBS1jkPT7fk8E0VjS6o55iTcK21NkhTC1+FK19vYq5IKllh8x
-	2bvacw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd2v9bu-1
+	vDB9i5HbiFDi+DD2d892gk8deVQEG6oEt5T/dGXUghA=; b=BfUzE5JrxVACSkoC
+	ObefC+VvNu/EL24bqp7Zqk2ue99/LDPw7eBB2L956/YTBqb0CWisawKDjUiU6FTJ
+	SR06nwa/3226HEbqC1Yid/47MKDYkm5uVXsR5rG2kEacmXCq04xybHWZ9+CYQhvA
+	3rwPbvLTJvOkPXXFgap9VkANGoEPGrPk2dmuKhHWjHS1oZyCVq+J5o1uPQ2Jd3vi
+	0PnxzNninYHoZ0O5v7Hwqg1N9Zdp9xGs5dPBiwn5FkHrj8/Br6Z7D6BobPaffHcv
+	yY5SXieAcWj9UebMIyglPQA4FItTAap4qUXodCEdlUNbeILT2ajVvaHbpZlj5vwY
+	I1yBow==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1m7eu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 17:59:52 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539HxpDv004736
+	Wed, 09 Apr 2025 18:18:37 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539IIaVZ003733
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Apr 2025 17:59:51 GMT
-Received: from [10.216.18.165] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 9 Apr 2025 18:18:36 GMT
+Received: from [10.216.24.63] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
- 10:59:46 -0700
-Message-ID: <054c3ee4-78d3-68b2-0dca-8fc339cbea80@quicinc.com>
-Date: Wed, 9 Apr 2025 23:29:43 +0530
+ 11:18:27 -0700
+Message-ID: <973eaca7-0632-53d8-f892-fe4d859ebbac@quicinc.com>
+Date: Wed, 9 Apr 2025 23:48:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,275 +65,353 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 00/20] Add support for HEVC and VP9 codecs in decoder
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v9 2/5] firmware: psci: Read and use vendor reset types
 Content-Language: en-US
-To: <neil.armstrong@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        "Hans
- Verkuil" <hverkuil@xs4all.nl>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <stable@vger.kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>
-References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
- <801511ac-78db-476b-8f1d-a478b0b64bcb@linaro.org>
- <72a5b302-5c99-4457-86c8-5fa994c93c4a@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <72a5b302-5c99-4457-86c8-5fa994c93c4a@linaro.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mukesh Ojha
+	<mukesh.ojha@oss.qualcomm.com>
+CC: Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul
+	<vkoul@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland
+	<mark.rutland@arm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "Catalin
+ Marinas" <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Srinivas
+ Kandagatla" <srinivas.kandagatla@linaro.org>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli
+	<florian.fainelli@broadcom.com>,
+        Stephen Boyd <swboyd@chromium.org>, <linux-pm@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Elliot Berman
+	<elliotb317@gmail.com>,
+        Elliot Berman <elliot.berman@oss.qualcomm.com>
+References: <20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com>
+ <20250303-arm-psci-system_reset2-vendor-reboots-v9-2-b2cf4a20feda@oss.qualcomm.com>
+ <Z9QQw6BcE7IXzu+r@lpieralisi> <Z+K3uNjTNbq3pUis@hu-mojha-hyd.qualcomm.com>
+ <Z/U95G+2GsoLD6Mi@lpieralisi>
+From: Shivendra Pratap <quic_spratap@quicinc.com>
+In-Reply-To: <Z/U95G+2GsoLD6Mi@lpieralisi>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: p3PfYbYQV7mbiC_x2qO09XwCjuxY0OXt
-X-Proofpoint-GUID: p3PfYbYQV7mbiC_x2qO09XwCjuxY0OXt
-X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f6b598 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=qC_FGOx9AAAA:8
- a=MtqB9aAArxYXyEGXeLUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-ORIG-GUID: ciznKKjcMEcr-YwHu2T0BWZzgx5pMj7s
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f6b9fe cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=GcyzOjIWAAAA:8 a=EUspDBNiAAAA:8 a=lk1OGY4DhEOsRDYAZwQA:9
+ a=QEXdDO2ut3YA:10 a=dtxw0mqMjrQA:10 a=hQL3dl6oAZ8NdCsdz28n:22
+X-Proofpoint-GUID: ciznKKjcMEcr-YwHu2T0BWZzgx5pMj7s
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=999 clxscore=1011 phishscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090117
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090120
 
 
 
-On 4/9/2025 9:56 PM, Neil Armstrong wrote:
-> On 09/04/2025 16:29, Bryan O'Donoghue wrote:
->> On 08/04/2025 16:54, Dikshita Agarwal wrote:
->>> Hi All,
+On 4/8/2025 8:46 PM, Lorenzo Pieralisi wrote:
+> On Tue, Mar 25, 2025 at 07:33:36PM +0530, Mukesh Ojha wrote:
+>> On Fri, Mar 14, 2025 at 12:19:31PM +0100, Lorenzo Pieralisi wrote:
+>>> On Mon, Mar 03, 2025 at 01:08:31PM -0800, Elliot Berman wrote:
+>>>> From: Elliot Berman <elliot.berman@oss.qualcomm.com>
+>>>>
+>>>> SoC vendors have different types of resets and are controlled through
+>>>> various registers. For instance, Qualcomm chipsets can reboot to a
+>>>> "download mode" that allows a RAM dump to be collected. Another example
+>>>> is they also support writing a cookie that can be read by bootloader
+>>>> during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
+>>>> vendor reset types to be implemented without requiring drivers for every
+>>>> register/cookie.
+>>>>
+>>>> Add support in PSCI to statically map reboot mode commands from
+>>>> userspace to a vendor reset and cookie value using the device tree.
 >>>
->>> This patch series adds initial support for the HEVC(H.265) and VP9
->>> codecs in iris decoder. The objective of this work is to extend the
->>> decoder's capabilities to handle HEVC and VP9 codec streams,
->>> including necessary format handling and buffer management.
->>> In addition, the series also includes a set of fixes to address issues
->>> identified during testing of these additional codecs.
+>>> I have managed to discuss a little bit this patchset over the last
+>>> few days and I think we have defined a plan going forward.
 >>>
->>> These patches also address the comments and feedback received from the
->>> RFC patches previously sent. I have made the necessary improvements
->>> based on the community's suggestions.
+>>> A point that was raised is:
 >>>
->>> Changes sinces RFC:
->>> - Added additional fixes to address issues identified during further
->>> testing.
->>> - Moved typo fix to a seperate patch [Neil]
->>> - Reordered the patches for better logical flow and clarity [Neil,
->>> Dmitry]
->>> - Added fixes tag wherever applicable [Neil, Dmitry]
->>> - Removed the default case in the switch statement for codecs [Bryan]
->>> - Replaced if-else statements with switch-case [Bryan]
->>> - Added comments for mbpf [Bryan]
->>> - RFC:
->>> https://lore.kernel.org/linux-media/20250305104335.3629945-1-quic_dikshita@quicinc.com/
+>>> https://man7.org/linux/man-pages/man2/reboot.2.html
 >>>
->>> These patches are tested on SM8250 and SM8550 with v4l2-ctl and
->>> Gstreamer for HEVC and VP9 decoders, at the same time ensured that
->>> the existing H264 decoder functionality remains uneffected.
+>>> LINUX_REBOOT_CMD_RESTART2 *arg command, what is it supposed to
+>>> represent ?
 >>>
->>> Note: 1 of the fluster compliance test is fixed with firmware [1]
->>> [1]:
->>> https://lore.kernel.org/linux-firmware/1a511921-446d-cdc4-0203-084c88a5dc1e@quicinc.com/T/#u
+>>> Is it the mode the system should reboot into OR it is the
+>>> actual command to be issued (which is what this patchset
+>>> implements) ?
 >>>
-> 
-> <snip>
-> 
->>> ---
->>> Dikshita Agarwal (20):
->>>        media: iris: Skip destroying internal buffer if not dequeued
->>>        media: iris: Update CAPTURE format info based on OUTPUT format
->>>        media: iris: Add handling for corrupt and drop frames
->>>        media: iris: Avoid updating frame size to firmware during reconfig
->>>        media: iris: Send V4L2_BUF_FLAG_ERROR for buffers with 0 filled length
->>>        media: iris: Add handling for no show frames
->>>        media: iris: Improve last flag handling
->>>        media: iris: Skip flush on first sequence change
->>>        media: iris: Prevent HFI queue writes when core is in deinit state
->>>        media: iris: Remove redundant buffer count check in stream off
->>>        media: iris: Remove deprecated property setting to firmware
->>>        media: iris: Fix missing function pointer initialization
->>>        media: iris: Fix NULL pointer dereference
->>>        media: iris: Fix typo in depth variable
->>>        media: iris: Add a comment to explain usage of MBPS
->>>        media: iris: Add HEVC and VP9 formats for decoder
->>>        media: iris: Add platform capabilities for HEVC and VP9 decoders
->>>        media: iris: Set mandatory properties for HEVC and VP9 decoders.
->>>        media: iris: Add internal buffer calculation for HEVC and VP9 decoders
->>>        media: iris: Add codec specific check for VP9 decoder drain handling
+>>> LINUX_REBOOT_CMD_RESTART "..a default restart..."
 >>>
->>>   drivers/media/platform/qcom/iris/iris_buffer.c     |  22 +-
->>>   drivers/media/platform/qcom/iris/iris_ctrls.c      |  35 +-
->>>   drivers/media/platform/qcom/iris/iris_hfi_common.h |   1 +
->>>   .../platform/qcom/iris/iris_hfi_gen1_command.c     |  44 ++-
->>>   .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   5 +-
->>>   .../platform/qcom/iris/iris_hfi_gen1_response.c    |  22 +-
->>>   .../platform/qcom/iris/iris_hfi_gen2_command.c     | 143 +++++++-
->>>   .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   5 +
->>>   .../platform/qcom/iris/iris_hfi_gen2_response.c    |  57 ++-
->>>   drivers/media/platform/qcom/iris/iris_hfi_queue.c  |   2 +-
->>>   drivers/media/platform/qcom/iris/iris_instance.h   |   6 +
->>>   .../platform/qcom/iris/iris_platform_common.h      |  28 +-
->>>   .../platform/qcom/iris/iris_platform_sm8250.c      |  15 +-
->>>   .../platform/qcom/iris/iris_platform_sm8550.c      | 143 +++++++-
->>>   drivers/media/platform/qcom/iris/iris_vb2.c        |   3 +-
->>>   drivers/media/platform/qcom/iris/iris_vdec.c       | 113 +++---
->>>   drivers/media/platform/qcom/iris/iris_vdec.h       |  11 +
->>>   drivers/media/platform/qcom/iris/iris_vidc.c       |   3 -
->>>   drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 397 ++++++++++++++++++++-
->>>   drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  46 ++-
->>>   20 files changed, 948 insertions(+), 153 deletions(-)
->>> ---
->>> base-commit: 7824b91d23e9f255f0e9d2acaa74265c9cac2e9c
->>> change-id: 20250402-iris-dec-hevc-vp9-2654a1fc4d0d
+>>> It is unclear what "default" means. We wonder whether the
+>>> reboot_mode variable was introduced to _define_ that "default".
 >>>
->>> Best regards,
+>>> So, in short, my aim is trying to decouple reboot_mode from the
+>>> LINUX_REBOOT_CMD_RESTART2 *arg command.
+>>>
+>>> I believe that adding a sysfs interface to reboot-mode driver
+>>> infrastructure would be useful, so that the commands would
+>>> be exposed to userspace and userspace can set the *arg command
+>>> specifically to issue a given reset/mode.
+>>>
+>>> I wonder why this is not already in place for eg syscon-reboot-mode
+>>> resets, how does user space issue a command in those systems if the
+>>> available commands aren't exposed to userspace ?
+>>>
+>>> Is there a kernel entity exposing those "modes" to userspace, somehow ?
+>>>
+>>>> A separate initcall is needed to parse the devicetree, instead of using
+>>>> psci_dt_init because mm isn't sufficiently set up to allocate memory.
+>>>>
+>>>> Reboot mode framework is close but doesn't quite fit with the
+>>>> design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
+>>>> be solved but doesn't seem reasonable in sum:
+>>>>  1. reboot mode registers against the reboot_notifier_list, which is too
+>>>>     early to call SYSTEM_RESET2. PSCI would need to remember the reset
+>>>>     type from the reboot-mode framework callback and use it
+>>>>     psci_sys_reset.
+>>>>  2. reboot mode assumes only one cookie/parameter is described in the
+>>>>     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
+>>>>     cookie.
+>>>
+>>> This can be changed and I think it should, so that the reboot modes
+>>> are exposed to user space and PSCI can use that.
+>>>
+>> In the case of a regular reboot or panic, the reboot/panic notifiers run
+>> first, followed by the restart notifiers. The PSCI reset/reset2 should
+>> be the last call from Linux, and ideally, this call should not fail.
 >>
->> Assuming we merge Neils sm8650 stuff first, which I think we should merge
->> first, you'll have a subsequent build error to fix [1]
-> 
-> I agree, it would be simpler, I prepared a fix to apply on top of this patchset.
-Lets sort out the platform data handling. More so, when i see that the patch you
-are adding more of 8650 specific data into 8550 file.
-> 
+>> Reboot mode notifiers => restart notifiers or Panic notifiers => restart
+>> notifiers
 >>
->> https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris?ref_type=heads
->>
->> Testing your series in isolation. I can confirm vp9 decodes also getting some
->> strange prinouts which we need to follow up to see if they exist with the
->> baseline driver [2].
->>
->> https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris-20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com?ref_type=heads
->>
+>> So, if I understand correctly, you mean that we can change the reboot
+>> mode framework to expose the arguments available to user space. We can
+>> extend it to accept magic and cookies, save them in the reboot
+>> framework, and retrieve them via a call from PSCI during a regular
+>> reboot or panic based on the current arguments. Is this leading towards
+>> writing an ARM-specific PSCI-reboot-mode driver, which in its reboot
+>> notifier callback saves the magic and cookies, and these magic and
+>> cookies will be used during psci_sys_reset2()? Or is there something
+>> wrong with my understanding?
 > 
-> <snip>
+> No, you got it right (apologies for the delay in replying) - if the
+> case for making reboot mode available to user space is accepted.
 > 
->> [  126.582170] qcom-iris aa00000.video-codec: session error received
->> 0x1000006: unknown
->> [  126.582177] qcom-iris aa00000.video-codec: session error received
->> 0x4000004: invalid operation for current state
-> 
-> With the following on top of the last SM8650 patchet + this patchset, I have the
-> same HEVC errors on SM8650, but VP9 works fine:
-> [  115.185745] qcom-iris aa00000.video-codec: session error received 0x4000004:
-> invalid operation for current state
-> [  115.221058] qcom-iris aa00000.video-codec: session error received 0x1000006:
-> unknown
-> 
-> ==========================================><==============================================
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> index 65f3accc2fb2..7d5116528fca 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
-> @@ -213,6 +213,22 @@ static void iris_set_sm8550_preset_registers(struct
-> iris_core *core)
->      writel(0x0, core->reg_base + 0xB0088);
->  }
-> 
-> +static void iris_set_sm8650_preset_registers(struct iris_core *core)
-> +{
-> +    writel(0x0, core->reg_base + 0xB0088);
-> +    writel(0x33332222, core->reg_base + 0x13030);
-> +    writel(0x44444444, core->reg_base + 0x13034);
-> +    writel(0x1022, core->reg_base + 0x13038);
-> +    writel(0x0, core->reg_base + 0x13040);
-> +    writel(0xFFFF, core->reg_base + 0x13048);
-> +    writel(0x33332222, core->reg_base + 0x13430);
-> +    writel(0x44444444, core->reg_base + 0x13434);
-> +    writel(0x1022, core->reg_base + 0x13438);
-> +    writel(0x0, core->reg_base + 0x13440);
-> +    writel(0xFFFF, core->reg_base + 0x13448);
-> +    writel(0x99, core->reg_base + 0xA013C);
-> +}
-This is strange, h264 decoder does not need any of those while VP9 needed it to
-work. I could see the same set of registers in downstream code, but cannot
-recollect now on the need to add those.
 
-Regards,
-Vikash
-> +
->  static const struct icc_info sm8550_icc_table[] = {
->      { "cpu-cfg",    1000, 1000     },
->      { "video-mem",  1000, 15000000 },
-> @@ -390,6 +406,7 @@ struct iris_platform_data sm8550_data = {
+Agree that the available modes should be exposed to usespace via sysfs interface
+and we should implement it. Also #1 and #2 can be handled via some
+changes in the design as mentioned in above discussion.
+
+I have one doubt though when we implement this via reboot-mode framework.
+The current patch implements PSCI ARM PSCI SYSTEM RESET2 vendor reset types.
+psci driver is initialized very early at boot but potential ARM psci reboot-mode
+driver will not probe at that stage and the ARM PSCI SYSTEM RESET2 vendor reset
+types functionality will not be available in psci reset path until the reboot-mode
+driver probes. Will this cause any limitation on usage of ARM's PSCI vendor-reset
+types for early device resets?
+
+One use-case may be an early device crash or a early reset where a vendor 
+wants to use PSCI SYSTEM RESET2 vendor reset type to a reset the device to a 
+specific state but may not be able to use this driver.
+(eg: a kernel panic at early boot where a vendor wants to reset device 
+to a specific state using vendor reset. Currently panic passes a NULL
+(*arg command) while device reset but it may be explored for vendor specific
+reset).
+
+- Shivendra
+
+>> P.S. We appreciate Elliot for his work and follow-up on this while being
+>> employed at Qualcomm.
 > 
->  /*
->   * Shares most of SM8550 data except:
-> + * - set_preset_registers to iris_set_sm8650_preset_registers
->   * - vpu_ops to iris_vpu33_ops
->   * - clk_rst_tbl to sm8650_clk_reset_table
->   * - controller_rst_tbl to sm8650_controller_reset_table
-> @@ -400,7 +417,7 @@ struct iris_platform_data sm8650_data = {
->      .init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
->      .init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
->      .vpu_ops = &iris_vpu33_ops,
-> -    .set_preset_registers = iris_set_sm8550_preset_registers,
-> +    .set_preset_registers = iris_set_sm8650_preset_registers,
->      .icc_tbl = sm8550_icc_table,
->      .icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
->      .clk_rst_tbl = sm8650_clk_reset_table,
-> @@ -428,20 +445,34 @@ struct iris_platform_data sm8650_data = {
->      .ubwc_config = &ubwc_config_sm8550,
->      .num_vpp_pipe = 4,
->      .max_session_count = 16,
-> -    .max_core_mbpf = ((8192 * 4352) / 256) * 2,
-> -    .input_config_params =
-> -        sm8550_vdec_input_config_params,
-> -    .input_config_params_size =
-> -        ARRAY_SIZE(sm8550_vdec_input_config_params),
-> +    .max_core_mbpf = NUM_MBS_8K * 2,
-> +    .input_config_params_default =
-> +        sm8550_vdec_input_config_params_default,
-> +    .input_config_params_default_size =
-> +        ARRAY_SIZE(sm8550_vdec_input_config_params_default),
-> +    .input_config_params_hevc =
-> +        sm8550_vdec_input_config_param_hevc,
-> +    .input_config_params_hevc_size =
-> +        ARRAY_SIZE(sm8550_vdec_input_config_param_hevc),
-> +    .input_config_params_vp9 =
-> +        sm8550_vdec_input_config_param_vp9,
-> +    .input_config_params_vp9_size =
-> +        ARRAY_SIZE(sm8550_vdec_input_config_param_vp9),
->      .output_config_params =
->          sm8550_vdec_output_config_params,
->      .output_config_params_size =
->          ARRAY_SIZE(sm8550_vdec_output_config_params),
->      .dec_input_prop = sm8550_vdec_subscribe_input_properties,
->      .dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
-> -    .dec_output_prop = sm8550_vdec_subscribe_output_properties,
-> -    .dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
-> -
-> +    .dec_output_prop_avc = sm8550_vdec_subscribe_output_properties_avc,
-> +    .dec_output_prop_avc_size =
-> +        ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_avc),
-> +    .dec_output_prop_hevc = sm8550_vdec_subscribe_output_properties_hevc,
-> +    .dec_output_prop_hevc_size =
-> +        ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_hevc),
-> +    .dec_output_prop_vp9 = sm8550_vdec_subscribe_output_properties_vp9,
-> +    .dec_output_prop_vp9_size =
-> +        ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_vp9),
->      .dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
->      .dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
->      .dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> ==========================================><==============================================
+> Yes I sincerely do for his patience, thank you.
 > 
-> Thanks,
-> Neil
+> Lorenzo
+> 
+>>>>  3. psci cpuidle driver already registers a driver against the
+>>>>     arm,psci-1.0 compatible. Refactoring would be needed to have both a
+>>>>     cpuidle and reboot-mode driver.
+>>>>
+>>>> Signed-off-by: Elliot Berman <elliot.berman@oss.qualcomm.com>
+>>>> ---
+>>>>  drivers/firmware/psci/psci.c | 105 +++++++++++++++++++++++++++++++++++++++++++
+>>>>  1 file changed, 105 insertions(+)
+>>>>
+>>>> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+>>>> index a1ebbe9b73b136218e9d9f9b8daa7756b3ab2fbe..6f8c47deaec0225f26704e1f3bcad52603127a85 100644
+>>>> --- a/drivers/firmware/psci/psci.c
+>>>> +++ b/drivers/firmware/psci/psci.c
+>>>> @@ -80,6 +80,14 @@ static u32 psci_cpu_suspend_feature;
+>>>>  static bool psci_system_reset2_supported;
+>>>>  static bool psci_system_off2_hibernate_supported;
+>>>>  
+>>>> +struct psci_reset_param {
+>>>> +	const char *mode;
+>>>> +	u32 reset_type;
+>>>> +	u32 cookie;
+>>>> +};
+>>>> +static struct psci_reset_param *psci_reset_params __ro_after_init;
+>>>> +static size_t num_psci_reset_params __ro_after_init;
+>>>> +
+>>>>  static inline bool psci_has_ext_power_state(void)
+>>>>  {
+>>>>  	return psci_cpu_suspend_feature &
+>>>> @@ -306,9 +314,39 @@ static int get_set_conduit_method(const struct device_node *np)
+>>>>  	return 0;
+>>>>  }
+>>>>  
+>>>> +static int psci_vendor_system_reset2(const char *cmd)
+>>>> +{
+>>>> +	unsigned long ret;
+>>>> +	size_t i;
+>>>> +
+>>>> +	for (i = 0; i < num_psci_reset_params; i++) {
+>>>> +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
+>>>> +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
+>>>> +					     psci_reset_params[i].reset_type,
+>>>> +					     psci_reset_params[i].cookie, 0);
+>>>> +			/*
+>>>> +			 * if vendor reset fails, log it and fall back to
+>>>> +			 * architecture reset types
+>>>
+>>> That's not what the code does.
+>>>
+>> Ack.
+>>
+>> -Mukesh
+>>
+>>>> +			 */
+>>>> +			pr_err("failed to perform reset \"%s\": %ld\n", cmd,
+>>>> +			       (long)ret);
+>>>> +			return 0;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>> +	return -ENOENT;
+>>>> +}
+>>>> +
+>>>>  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+>>>>  			  void *data)
+>>>>  {
+>>>> +	/*
+>>>> +	 * try to do the vendor system_reset2
+>>>> +	 * If there wasn't a matching command, fall back to architectural resets
+>>>> +	 */
+>>>> +	if (data && !psci_vendor_system_reset2(data))
+>>>> +		return NOTIFY_DONE;
+>>>> +
+>>>>  	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+>>>>  	    psci_system_reset2_supported) {
+>>>>  		/*
+>>>> @@ -795,6 +833,73 @@ static const struct of_device_id psci_of_match[] __initconst = {
+>>>>  	{},
+>>>>  };
+>>>>  
+>>>> +#define REBOOT_PREFIX "mode-"
+>>>> +
+>>>> +static int __init psci_init_system_reset2_modes(void)
+>>>> +{
+>>>> +	const size_t len = strlen(REBOOT_PREFIX);
+>>>> +	struct psci_reset_param *param;
+>>>> +	struct device_node *psci_np __free(device_node) = NULL;
+>>>> +	struct device_node *np __free(device_node) = NULL;
+>>>> +	struct property *prop;
+>>>> +	size_t count = 0;
+>>>> +	u32 magic[2];
+>>>> +	int num;
+>>>> +
+>>>> +	if (!psci_system_reset2_supported)
+>>>> +		return 0;
+>>>> +
+>>>> +	psci_np = of_find_matching_node(NULL, psci_of_match);
+>>>> +	if (!psci_np)
+>>>> +		return 0;
+>>>> +
+>>>> +	np = of_find_node_by_name(psci_np, "reset-types");
+>>>> +	if (!np)
+>>>> +		return 0;
+>>>
+>>> Related to my initial question above. If LINUX_REBOOT_CMD_RESTART2 *arg command,
+>>> is the actual reset to be issued, should we add a default mode "cold"
+>>> and, if SYSTEM_RESET2 is supported, a "warm" reset mode too ?
+>>>
+>>> It all boils down to what *arg represents - adding "cold" and "warm"
+>>> modes would remove the dependency on reboot_mode for resets issued
+>>> through LINUX_REBOOT_CMD_RESTART2, the question is whether this
+>>> is the correct thing to do.
+>>>
+>>> Comments very welcome.
+>>>
+>>> Thanks,
+>>> Lorenzo
+>>>
+>>>> +
+>>>> +	for_each_property_of_node(np, prop) {
+>>>> +		if (strncmp(prop->name, REBOOT_PREFIX, len))
+>>>> +			continue;
+>>>> +		num = of_property_count_u32_elems(np, prop->name);
+>>>> +		if (num != 1 && num != 2)
+>>>> +			continue;
+>>>> +
+>>>> +		count++;
+>>>> +	}
+>>>> +
+>>>> +	param = psci_reset_params =
+>>>> +		kcalloc(count, sizeof(*psci_reset_params), GFP_KERNEL);
+>>>> +	if (!psci_reset_params)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	for_each_property_of_node(np, prop) {
+>>>> +		if (strncmp(prop->name, REBOOT_PREFIX, len))
+>>>> +			continue;
+>>>> +
+>>>> +		num = of_property_read_variable_u32_array(np, prop->name, magic,
+>>>> +							  1, ARRAY_SIZE(magic));
+>>>> +		if (num < 0) {
+>>>> +			pr_warn("Failed to parse vendor reboot mode %s\n",
+>>>> +				param->mode);
+>>>> +			kfree_const(param->mode);
+>>>> +			continue;
+>>>> +		}
+>>>> +
+>>>> +		param->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>>>> +		if (!param->mode)
+>>>> +			continue;
+>>>> +
+>>>> +		/* Force reset type to be in vendor space */
+>>>> +		param->reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic[0];
+>>>> +		param->cookie = num > 1 ? magic[1] : 0;
+>>>> +		param++;
+>>>> +		num_psci_reset_params++;
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +arch_initcall(psci_init_system_reset2_modes);
+>>>> +
+>>>>  int __init psci_dt_init(void)
+>>>>  {
+>>>>  	struct device_node *np;
+>>>>
+>>>> -- 
+>>>> 2.34.1
+>>>>
 
