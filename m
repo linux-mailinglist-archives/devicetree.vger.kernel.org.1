@@ -1,169 +1,354 @@
-Return-Path: <devicetree+bounces-164646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EAA5A81D5D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:45:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9787FA81D83
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:55:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 204041B621DB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:45:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04F5F7AB217
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E071E25E3;
-	Wed,  9 Apr 2025 06:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7C721322E;
+	Wed,  9 Apr 2025 06:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="FJqxQ0tl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vusY60yE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969581E0E1A
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 06:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9929F212B1B
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 06:55:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744181102; cv=none; b=VvZvp8cPueHJgINnJQbz5H4XjsscB45Nd8B4Q9xVSLhTpeDi1vIu79yutILxHrXn4Y1UFMKhqWwAmQOsVdkEmdyYa/CDFLJ+8ZadCGYCRykbgBX7WfcG9S/OjpDfQNAlccK26bwee5vRi0D9h0u8aP/DEV2w/T81qds3e+IWhE0=
+	t=1744181725; cv=none; b=UseeEZ4zweuNwyW0l2+BCD8Ww/cvdteIl4QbyIKbtpJ2wrFhNazl9Q7norqhdV6JbWHXKUgPFMkag1KyxhSYercmXFl+O1kW9Gm9LVSAp6N6nMGf21GbVOok3i1MI1+sapD1IhkHa5fhunX3FG0Sl41TH7sjCwjQXEUUYeGgVUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744181102; c=relaxed/simple;
-	bh=Lk/nerQuXwCVaG1hZ0KR4U4tdyw6/FXCBoB6hXRgscQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=APxHwua64SD4bR+HzWES8qx2NlWBspfTgZkKzRM7G0fymQf+F7wa/W/tuoXMFDRkXg9HUDP2XYUnzRNlVLU883597Hshd8stUstpvH50pJLokpUMQYSts6V7TG+GE6DfMcamNpYMYLUxNmB/NuSqHTjPwJSiKuq0/x/YI9itv2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=FJqxQ0tl; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744181099;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xyyyv7/mfJ9H0zBbyj9vD5vCWrDye2V05E9brkG1H0g=;
-	b=FJqxQ0tlb2yCd5CtizmWFzTbySj2YFqlDidAPfbCc0/84s9Nj4nR7YYtPvyi+RiSeKWRCz
-	HBmw1iXprfGYfqFkC+dKQsEnFq9zARGPrcUDVPyLez7eiWzKV4UlvFC60I6+SDWCszFmgb
-	LYgezhQiY4uiyIw4XT4j+8d9yQbT5a8=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-675-m6XxHO3uPn6SB5zNQuCBSg-1; Wed,
- 09 Apr 2025 02:44:55 -0400
-X-MC-Unique: m6XxHO3uPn6SB5zNQuCBSg-1
-X-Mimecast-MFC-AGG-ID: m6XxHO3uPn6SB5zNQuCBSg_1744181093
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id CA7321955DCD;
-	Wed,  9 Apr 2025 06:44:52 +0000 (UTC)
-Received: from [10.44.32.72] (unknown [10.44.32.72])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 521C43001D0E;
-	Wed,  9 Apr 2025 06:44:47 +0000 (UTC)
-Message-ID: <22b9f197-2f98-43c7-9cc9-c748e80078b0@redhat.com>
-Date: Wed, 9 Apr 2025 08:44:46 +0200
+	s=arc-20240116; t=1744181725; c=relaxed/simple;
+	bh=QdVBI9jATxw7evkS6I10+tbNM0r/BgQjoVbuKYu53nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iimqN5gMXB5L40w9FGDqzrBjKQ6Eeqh+B+opqaIp50sh9G3dA+mD2bK6lCU369VTGiXJoRyuOqEkKWrnJoHyAWQck+TcuXPH9C/209WWXjnRAdu0UrohgNaX+6Gm9RXC3ZnI3lK5m9tYvNLLSee5uejHGzeohSqKp803OeB9kIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vusY60yE; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-af51596da56so5229721a12.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Apr 2025 23:55:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744181723; x=1744786523; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BOZjLOAGYZcTUH3TOIZZnZSwMjEJaIzKoYbYDzfZTq8=;
+        b=vusY60yEWq+zDVMG77LqShNfNUZaMFPMO1VNSZHH1ky1d2DTWutqJoOr/Q+cw4y79w
+         1OQYckkK1vY/JmpqL4WUg9/EwQf9ElpZJNvJnkQi4B+G3agqX6Fa6vtFdq1JD05UoQ7+
+         HS/jDUwKe2Gi/WQbZkKmmO0p62Abl8egmNtNip57vGkGK2bZ78MjTDCGSrfRyRSocIjr
+         sLRTbxMcC9hWzG8DDMMw7HcIsZ0tCt+Rixugy7blb0S2z7IDPXj80YKtNdhlmXiEpp7W
+         EcdMYACX7zxMt2StL00OfKDwenr15lDl6bnZ/bXIH6rBb4T5ZHyXSEHjSQghBAQX466a
+         tyHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744181723; x=1744786523;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BOZjLOAGYZcTUH3TOIZZnZSwMjEJaIzKoYbYDzfZTq8=;
+        b=TDSrayrQzcLW4sBv4kMpJI1nSBaBn4APKeVE9NyohtQ907fFSpvLuLqr84Ol1QnYgY
+         wegwIOVEok9Mhi+KivSl4lgE+39/p2q+hK3tE36Q6wLvpSy2/MPKUlbfkmNrj3UbBXvQ
+         88c4WxH+rpItj65WKITchytjiYQmtsDxWqCTy3X5VdzifXKyBCuUNZhuQ+vPRyk8QHLa
+         94E9Gqkbg4aCMF6tONJaV8lk8G38Icy+TknQIkbuy3deAEsTERzCZR1YTP6WkYwT1qAT
+         sV5dd4gsGw1yyGCbIfP8HRe6C0rCBXCaeze8UMZqdJs5Nr/4VSEoyPaIkMMlcaza5vXk
+         2xbg==
+X-Forwarded-Encrypted: i=1; AJvYcCUncmCsH+VCIi7NNWQG7XYM9sban4/vqeLqnB86u76obze6y2UPteK0rAKwPj3ElgVTgA6UA1of5Z76@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8qrEQldXmHvmevcf3M+qKNH0QdE3ql+cff8RFlC/olbgUH9Nk
+	9Xnct8Y3mvCwfvt3zuFluvbq7GtWNNk7RdgOTuQmqklrrTvoe0A4X0oWa4cK2uuTDMC95Vm8c/I
+	=
+X-Gm-Gg: ASbGncvOQhmZhShyNcwv9QWrGumF31IBfPqqNX9FrZP/rq7q4lNjQvjKDxaenRHGAgE
+	lLab9jy+2bheRYvHzukoR+0e+sTZmgS1aNR6ukVZBJG35y67X2mT/8O31WNq0QVD6GVzhzh7jM9
+	Jz+aDb/YQNQtl1EWRqLWG6KUAQryQY3vE9vyig6x5LoRl1JkVS/47LgTyhlgERYVr5EbgS0m6uO
+	NnuYwp4a4aGHrd8roC69+cZwFb1zgF+uaracTZGShQy2Ettvay4+7Ty1wXabLvKOiicAJHTM89m
+	XglCTbQwxvQ/sgsVd/KVoi3oGKRloUjFE/Pem1uuUN2PE8Dyno249aq47n81nQ==
+X-Google-Smtp-Source: AGHT+IFEKpvJ/peYbL5UF/N3MPHp1NNbjrOs3QVXN8gAKbEYxPJH808F/Kuid1w2H5MEKJ7Cx9vuPA==
+X-Received: by 2002:a05:6a20:438c:b0:1f5:769a:a4bf with SMTP id adf61e73a8af0-201592e0c38mr3268658637.36.1744181722822;
+        Tue, 08 Apr 2025 23:55:22 -0700 (PDT)
+Received: from thinkpad ([120.56.198.53])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b02a11d2654sm508981a12.35.2025.04.08.23.55.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Apr 2025 23:55:22 -0700 (PDT)
+Date: Wed, 9 Apr 2025 12:25:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: "Musham, Sai Krishna" <sai.krishna.musham@amd.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>, 
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "cassel@kernel.org" <cassel@kernel.org>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Simek, Michal" <michal.simek@amd.com>, 
+	"Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>, "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+Subject: Re: [PATCH v6 2/2] PCI: xilinx-cpm: Add support for PCIe RP PERST#
+ signal
+Message-ID: <kjfnox7hefk7ribdhkzj4kbkwyeg7lf62oep7duw6vfarmx5hl@eg5nzkbusm4n>
+References: <20250326022811.3090688-1-sai.krishna.musham@amd.com>
+ <20250326022811.3090688-3-sai.krishna.musham@amd.com>
+ <cjrb3idrj3x7vo4fujl6nakj3foyu64gtxwovmxd4qvovvhwqq@26bpt5b4zjao>
+ <DM4PR12MB6158EFFB5F245FAA5CB022A8CDA92@DM4PR12MB6158.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/28] mfd: zl3073x: Add components versions register defs
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407172836.1009461-6-ivecera@redhat.com>
- <a5d2e1eb-7b98-4909-9505-ec93fe0c3aac@lunn.ch>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <a5d2e1eb-7b98-4909-9505-ec93fe0c3aac@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM4PR12MB6158EFFB5F245FAA5CB022A8CDA92@DM4PR12MB6158.namprd12.prod.outlook.com>
 
-On 07. 04. 25 11:09 odp., Andrew Lunn wrote:
-> On Mon, Apr 07, 2025 at 07:28:32PM +0200, Ivan Vecera wrote:
->> Add register definitions for components versions and report them
->> during probe.
->>
->> Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
->> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->> ---
->>   drivers/mfd/zl3073x-core.c | 35 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 35 insertions(+)
->>
->> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
->> index 39d4c8608a740..b3091b00cffa8 100644
->> --- a/drivers/mfd/zl3073x-core.c
->> +++ b/drivers/mfd/zl3073x-core.c
->> @@ -1,10 +1,19 @@
->>   // SPDX-License-Identifier: GPL-2.0-only
->>   
->> +#include <linux/bitfield.h>
->>   #include <linux/module.h>
->>   #include <linux/unaligned.h>
->>   #include <net/devlink.h>
->>   #include "zl3073x.h"
->>   
->> +/*
->> + * Register Map Page 0, General
->> + */
->> +ZL3073X_REG16_DEF(id,			0x0001);
->> +ZL3073X_REG16_DEF(revision,		0x0003);
->> +ZL3073X_REG16_DEF(fw_ver,		0x0005);
->> +ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
->> +
->>   /*
->>    * Regmap ranges
->>    */
->> @@ -159,10 +168,36 @@ EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
->>   
->>   int zl3073x_dev_init(struct zl3073x_dev *zldev)
->>   {
->> +	u16 id, revision, fw_ver;
->>   	struct devlink *devlink;
->> +	u32 cfg_ver;
->> +	int rc;
->>   
->>   	devm_mutex_init(zldev->dev, &zldev->lock);
->>   
->> +	scoped_guard(zl3073x, zldev) {
+On Fri, Apr 04, 2025 at 06:59:23AM +0000, Musham, Sai Krishna wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 > 
-> Why the scoped_guard? The locking scheme you have seems very opaque.
-
-We are read the HW registers in this block and the access is protected 
-by this device lock. Regmap locking will be disabled in v2 as this is 
-not sufficient.
-
->> +		rc = zl3073x_read_id(zldev, &id);
->> +		if (rc)
->> +			return rc;
->> +		rc = zl3073x_read_revision(zldev, &revision);
->> +		if (rc)
->> +			return rc;
->> +		rc = zl3073x_read_fw_ver(zldev, &fw_ver);
->> +		if (rc)
->> +			return rc;
->> +		rc = zl3073x_read_custom_config_ver(zldev, &cfg_ver);
->> +		if (rc)
->> +			return rc;
+> Hi Manivannan,
 > 
-> Could a parallel operation change the ID? Upgrade the firmware
-> version?
+> Thanks for the review.
 > 
-> 	Andrew
+> > -----Original Message-----
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Sent: Thursday, March 27, 2025 10:56 PM
+> > To: Musham, Sai Krishna <sai.krishna.musham@amd.com>
+> > Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com; robh@kernel.org;
+> > krzk+dt@kernel.org; conor+dt@kernel.org; cassel@kernel.org; linux-
+> > pci@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > Simek, Michal <michal.simek@amd.com>; Gogada, Bharat Kumar
+> > <bharat.kumar.gogada@amd.com>; Havalige, Thippeswamy
+> > <thippeswamy.havalige@amd.com>
+> > Subject: Re: [PATCH v6 2/2] PCI: xilinx-cpm: Add support for PCIe RP PERST#
+> > signal
+> >
+> > Caution: This message originated from an External Source. Use proper caution
+> > when opening attachments, clicking links, or responding.
+> >
+> >
+> > On Wed, Mar 26, 2025 at 07:58:11AM +0530, Sai Krishna Musham wrote:
+> > > Add PCIe IP reset along with GPIO-based control for the PCIe Root
+> > > Port PERST# signal. Synchronizing the PCIe IP reset with the PERST#
+> > > signal's assertion and deassertion avoids Link Training failures.
+> > >
+> > > Adapt to use GPIO framework and make reset optional to maintain
+> > > backward compatibility with existing DTBs.
+> > >
+> > > Add clear firewall after Link reset for CPM5NC.
+> > >
+> > > Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> > > ---
+> > > Changes for v6:
+> > > - Correct version check condition of CPM5NC_HOST.
+> > >
+> > > Changes for v5:
+> > > - Handle probe defer for reset_gpio.
+> > > - Resolve ABI break.
+> > >
+> > > Changes for v4:
+> > > - Add PCIe PERST# support for CPM5NC.
+> > > - Add PCIe IP reset along with PERST# to avoid Link Training Errors.
+> > > - Remove PCIE_T_PVPERL_MS define and PCIE_T_RRS_READY_MS after
+> > >   PERST# deassert.
+> > > - Move PCIe PERST# assert and deassert logic to
+> > >   xilinx_cpm_pcie_init_port() before cpm_pcie_link_up(), since
+> > >   Interrupts enable and PCIe RP bridge enable should be done after
+> > >   Link up.
+> > > - Update commit message.
+> > >
+> > > Changes for v3:
+> > > - Use PCIE_T_PVPERL_MS define.
+> > >
+> > > Changes for v2:
+> > > - Make the request GPIO optional.
+> > > - Correct the reset sequence as per PERST#
+> > > - Update commit message
+> > > ---
+> > >  drivers/pci/controller/pcie-xilinx-cpm.c | 86 ++++++++++++++++++++++--
+> > >  1 file changed, 82 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-
+> > cpm.c
+> > > index d0ab187d917f..b10c0752a94f 100644
+> > > --- a/drivers/pci/controller/pcie-xilinx-cpm.c
+> > > +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+> > > @@ -6,6 +6,8 @@
+> > >   */
+> > >
+> > >  #include <linux/bitfield.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/gpio/consumer.h>
+> > >  #include <linux/interrupt.h>
+> > >  #include <linux/irq.h>
+> > >  #include <linux/irqchip.h>
+> > > @@ -21,6 +23,13 @@
+> > >  #include "pcie-xilinx-common.h"
+> > >
+> > >  /* Register definitions */
+> > > +#define XILINX_CPM_PCIE0_RST         0x00000308
+> > > +#define XILINX_CPM5_PCIE0_RST                0x00000318
+> > > +#define XILINX_CPM5_PCIE1_RST                0x0000031C
+> > > +#define XILINX_CPM5NC_PCIE0_RST              0x00000324
+> > > +
+> > > +#define XILINX_CPM5NC_PCIE0_FRWALL   0x00001140
+> > > +
+> > >  #define XILINX_CPM_PCIE_REG_IDR              0x00000E10
+> > >  #define XILINX_CPM_PCIE_REG_IMR              0x00000E14
+> > >  #define XILINX_CPM_PCIE_REG_PSCR     0x00000E1C
+> > > @@ -99,6 +108,7 @@ struct xilinx_cpm_variant {
+> > >       u32 ir_status;
+> > >       u32 ir_enable;
+> > >       u32 ir_misc_value;
+> > > +     u32 cpm_pcie_rst;
+> > >  };
+> > >
+> > >  /**
+> > > @@ -106,6 +116,8 @@ struct xilinx_cpm_variant {
+> > >   * @dev: Device pointer
+> > >   * @reg_base: Bridge Register Base
+> > >   * @cpm_base: CPM System Level Control and Status Register(SLCR) Base
+> > > + * @crx_base: CPM Clock and Reset Control Registers Base
+> > > + * @cpm5nc_attr_base: CPM5NC Control and Status Registers Base
+> > >   * @intx_domain: Legacy IRQ domain pointer
+> > >   * @cpm_domain: CPM IRQ domain pointer
+> > >   * @cfg: Holds mappings of config space window
+> > > @@ -118,6 +130,8 @@ struct xilinx_cpm_pcie {
+> > >       struct device                   *dev;
+> > >       void __iomem                    *reg_base;
+> > >       void __iomem                    *cpm_base;
+> > > +     void __iomem                    *crx_base;
+> > > +     void __iomem                    *cpm5nc_attr_base;
+> > >       struct irq_domain               *intx_domain;
+> > >       struct irq_domain               *cpm_domain;
+> > >       struct pci_config_window        *cfg;
+> > > @@ -475,12 +489,45 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie
+> > *port)
+> > >   * xilinx_cpm_pcie_init_port - Initialize hardware
+> > >   * @port: PCIe port information
+> > >   */
+> > > -static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
+> > > +static int xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
+> > >  {
+> > >       const struct xilinx_cpm_variant *variant = port->variant;
+> > > +     struct device *dev = port->dev;
+> > > +     struct gpio_desc *reset_gpio;
+> > > +
+> > > +     /* Request the GPIO for PCIe reset signal */
+> > > +     reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> > > +     if (IS_ERR(reset_gpio)) {
+> > > +             if (PTR_ERR(reset_gpio) != -EPROBE_DEFER)
+> > > +                     dev_err(dev, "Failed to request reset GPIO\n");
+> > > +             return PTR_ERR(reset_gpio);
+> > > +     }
+> > >
+> > > -     if (variant->version == CPM5NC_HOST)
+> > > -             return;
+> > > +     if (reset_gpio && port->crx_base) {
+> > > +             /* Assert the PCIe IP reset */
+> > > +             writel_relaxed(0x1, port->crx_base + variant->cpm_pcie_rst);
+> > > +
+> > > +             /* Controller specific delay */
+> > > +             udelay(50);
+> > > +
+> >
+> > There should be atleast 100ms delay before PERST# deassert as per the spec. So
+> > use PCIE_T_PVPERL_MS. I know that you had it before, but removed in v4. I don't
+> > see a valid reason for that.
+> 
+> For CPM/CPM5/CPM5NC, the "Power Up" sequence mentioned in section 2.2.1
+> of PCIe Electromechanical Spec is handled in the design. The PERST# we are
+> using here is applied after the Power Up sequence and will be used for warm reset,
+> where power of the system is already stable.
+> 
 
-No, but register access functions require the device lock to be held. 
-See above.
+I don't quite understand what you mean by 'warm reset' here. Even if the power
+was already stable, what is the guarantee that the 100ms time is elapsed before
+deasserting the PERST#? Does the hardware logic ensure 100ms time is elapsed
+before the driver is probed?
 
-Thanks,
-Ivan
+> So, we changed the delay after PERST# and IP reset assertion to 50us controller
+> specific delay, similar to TPERST(PERST# active time 100us) delay in "Power
+> sequencing and Reset Signal Timings" of PCIe Electromechanical Spec. After
+> deassertion of PERST# signal and IP reset, a delay of PCIE_T_RRS_READY_MS
+> is required before checking the Link. Please let me know if you have further queries.
+> 
 
+This part is fine.
+
+> Thanks, I will update this information in commit message.
+> >
+> > > +             /* Deassert the PCIe IP reset */
+> > > +             writel_relaxed(0x0, port->crx_base + variant->cpm_pcie_rst);
+> > > +
+> > > +             /* Deassert the reset signal */
+> > > +             gpiod_set_value(reset_gpio, 0);
+> > > +             mdelay(PCIE_T_RRS_READY_MS);
+> > > +
+> > > +             if (variant->version == CPM5NC_HOST && port->cpm5nc_attr_base) {
+> > > +                     /* Clear Firewall */
+> > > +                     writel_relaxed(0x00, port->cpm5nc_attr_base +
+> > > +                                     XILINX_CPM5NC_PCIE0_FRWALL);
+> > > +                     writel_relaxed(0x01, port->cpm5nc_attr_base +
+> > > +                                     XILINX_CPM5NC_PCIE0_FRWALL);
+> > > +                     writel_relaxed(0x00, port->cpm5nc_attr_base +
+> > > +                                     XILINX_CPM5NC_PCIE0_FRWALL);
+> > > +                     return 0;
+> > > +             }
+> > > +     }
+> > >
+> > >       if (cpm_pcie_link_up(port))
+> > >               dev_info(port->dev, "PCIe Link is UP\n");
+> > > @@ -512,6 +559,8 @@ static void xilinx_cpm_pcie_init_port(struct
+> > xilinx_cpm_pcie *port)
+> > >       pcie_write(port, pcie_read(port, XILINX_CPM_PCIE_REG_RPSC) |
+> > >                  XILINX_CPM_PCIE_REG_RPSC_BEN,
+> > >                  XILINX_CPM_PCIE_REG_RPSC);
+> > > +
+> > > +     return 0;
+> > >  }
+> > >
+> > >  /**
+> > > @@ -551,6 +600,27 @@ static int xilinx_cpm_pcie_parse_dt(struct
+> > xilinx_cpm_pcie *port,
+> > >               port->reg_base = port->cfg->win;
+> > >       }
+> > >
+> > > +     port->crx_base = devm_platform_ioremap_resource_byname(pdev,
+> > > +                                                            "cpm_crx");
+> > > +     if (IS_ERR(port->crx_base)) {
+> > > +             if (PTR_ERR(port->crx_base) == -EINVAL)
+> > > +                     port->crx_base = NULL;
+> > > +             else
+> > > +                     return PTR_ERR(port->crx_base);
+> > > +     }
+> > > +
+> > > +     if (port->variant->version == CPM5NC_HOST) {
+> > > +             port->cpm5nc_attr_base =
+> > > +                     devm_platform_ioremap_resource_byname(pdev,
+> > > +                                                           "cpm5nc_attr");
+> >
+> > Where is this resource defined in the binding?
+> 
+> This patch is tested for mentioned CPM versions, I apologize that
+> I missed adding the cpm5nc_attr resource in DT binding. I will not
+> repeat this again. I will add the resource in the next patch.
+> Thanks for your understanding.
+> >
+> > > +             if (IS_ERR(port->cpm5nc_attr_base)) {
+> > > +                     if (PTR_ERR(port->cpm5nc_attr_base) == -EINVAL)
+> >
+> > Why?
+> 
+> This condition check is added to make cpm5nc_attr_base optional,
+> once I add missing resource in DT this condition will be applicable.
+
+Why are you checking for -EINVAL? What does it correspond to?
+
+If your intention is to make the resource_get optional, you should use
+platform_get_resource_byname() first. If it returns NULL, then it means the
+resource is not defined in DT.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
