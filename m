@@ -1,284 +1,190 @@
-Return-Path: <devicetree+bounces-164858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5554A8291A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:00:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C7DA8291D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:01:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53CD49A12B1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:52:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A44141BC6C07
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE12626FA5E;
-	Wed,  9 Apr 2025 14:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B912676CD;
+	Wed,  9 Apr 2025 14:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HSDS/mD1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PAwKdEvj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F5826AAAA;
-	Wed,  9 Apr 2025 14:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A2B26738C
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 14:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744210059; cv=none; b=EBAcIsM5xLPoiBWheGAK7QzsANHtE2u+0eqO4PLm8m+KzCU+sueimEToQfI8kLFNqsadiN3xQL/XrvCGXb8ME8e9kEA7huslrLEFYLAY/M0leKYJoL2aopBQQ/v1VBQ/TuV8/tXp1SWGZRBec3qW3FcIuhY1ybd4+NfFJAlw1zE=
+	t=1744210188; cv=none; b=k+kWEJzXTFzU3RCelc0wczlcLs8tHdvaJMiD0PMuYGpW390f2FYV07qGvg1GIVkxXRX/G4+asJk1irs+/vmwq8HYiOwmDSxLi6L6iSWLn6lgJZ2unWjedLwTqXS/bNyr3KpJ7LckGh9aGa5R2Q4Tl7sfQ/8in7/8F+GD2gqwL0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744210059; c=relaxed/simple;
-	bh=QE1XMyiEfHKVDVPNBt1oL3c+f45lsJThYSxbdchE9vs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sBrJ5chdJrHchYPgfKTtI3/NUgZ3aXRGxbpuTrYBtdGPDzetym8wvpFLQ91Zi02MuSJKC4zkKX67yndaawm5N0gBytUHs47JjJVza+djasOZHIigTiOtqo8/R52YDvO6yaewbaP/RBqKQeDkOB8y7Ll0VMuD8EmRqs+bee3aUWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HSDS/mD1; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-47692b9d059so34572601cf.3;
-        Wed, 09 Apr 2025 07:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744210057; x=1744814857; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zdDH+qr7UBoA/lgIB3GeZraE2OIbymXMH9TLc56aCLg=;
-        b=HSDS/mD1UAWmMkEy56VKtH6IZlmEu3N1tpbANV1fMKomEa7hCa/k9RPxPc50f1sGp1
-         rKtB+XqxN7yDZq+zAieJzce7Yils7OZXreBNm57obtFlOkW1c2vapeeM1ln0SIPMybkf
-         kkwLeFucI2TTL9MHR0fVmFOeYsxPZVOeQtrFv/ir7f14y993mcRr2WfGXVuHlyPQmozK
-         bLWPIveM7osq3XVSYM/+eyqxjtzhy8I4QfbFqudOH1rSrRW30pF26s+PLqvjhparreRX
-         +bsQkqVVjQfAXKCPC1Eshx7n5uJ8XxqhKf7rZSrTTAcTcOumhn+/n4bZ0A7svPiRQTKa
-         yZ/A==
+	s=arc-20240116; t=1744210188; c=relaxed/simple;
+	bh=85+UIcf1eKLU/wNzZgNVq10Yo7Ip9fEDwLj2BK/wH0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FZzy0UPBbUygBzFab3iv0TN6hW+6blElu2cFUk/Zm7LO1Po6uZeCLeaOt5g2JGtu9Lt9HgHH5fooOGN/KQTCypIlnLw+i3yh3JkDkel7NMO0A2REQzJ05q9cBPsPe3z2WV/SEh1Mj9RtXG/VynxGa4LVSiwNsh3LseKiE1puYxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PAwKdEvj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5398QT26032504
+	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 14:49:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NAji33sbWftR/X6dZ2NUeyfjXLgktdVt707HtkxaLX0=; b=PAwKdEvjtewbtaba
+	2V2qQjPJwGOamRfReF4UgYHmeMQPWAMYT6bC8e2TsfZzNn5hpIluqBIcCB2VD5gc
+	oIcllz4ev5MxKTTUAPQFCQpXLI0okxFDYPb+0hqeu2guc4fWqE4WpMVWiqA6TDkm
+	1Nu7jGCBtZabRfZRQHgLGTpe+6bNB7hC04kvxNiG7Z9fPjZTYfFWlXM+fBE5DMk5
+	I2kHcg/lPeC1cHyJgoYwIdpDZgC0VDBBsw/tRTNrxw3Z0Zex0SaxodPfbAQHR5hd
+	xUSYZLu71lvANyR44l+aMLnRsMs7iprErdrR2G9V117gWTJx0e8Eh89vuI4XbtaV
+	qqfsaQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbebsdp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 14:49:45 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c53d5f85c9so162219085a.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 07:49:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744210057; x=1744814857;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zdDH+qr7UBoA/lgIB3GeZraE2OIbymXMH9TLc56aCLg=;
-        b=byfChugHBH+XCoMlWIe0sZRrct55p1iZh8z1ktn50iUS9dLUTMvkbOaBegz8CFXpSZ
-         ZUlnebzOsvBFDkEARVwj20bd+RU+e0FyMB60oeXt73RStW1FfJhqKpjIK7e87/MG8o1n
-         mw3I90yxDwCW0gNAI7qZgQWdYAz24ylGZui+pBM7xR3nVFtx44SPyscoAU3jQN7KATbt
-         9rNVB6f8T+lYmLBHBWIjX7w+wOPT2180ZCVt9/XaO2KZooDv/jRXZmSG9LjYcicHODyF
-         HKnF/7CZhaZRK+lOXg/7hhsnJAGQwG3BDs3CaGt2ygm3lOlh8cvnqc4+eADtAqZWSZRi
-         QbuA==
-X-Forwarded-Encrypted: i=1; AJvYcCUz1B/yAh79EZQKTxppzR1B4Jqje8NTdm1p0abRbLOyfOSKWDatrL/mIxvorGgjRz3Ej0AZQJUp@vger.kernel.org, AJvYcCV44OyIVay3X/EdS1xcNTw/fgOU6qerGZosN1Toxo4VyZ5GDyKh8yTkRAz2+bOjCP7jfPQDdb9ZG86UKJtPLvo=@vger.kernel.org, AJvYcCVgQo1JuazwgIT9BFRCaOAG6yd/ZXoBo9GxxCz1Hud1Zd1u8HYvoh3120DtYZextM2BqzfPyH9RoOWVTDz3@vger.kernel.org, AJvYcCVhLdEAijLfauEdht0YfXXbsIZ2IS9vu4Xc8S408aqqQ8vpzK/4Uw1z4mJVS8ttaA074hMP9Z9ntEhEo++/tIIT@vger.kernel.org, AJvYcCW15GNwYgkaBMjeOwVWXLmYgVHzZXxX0UG4806cAzXanUriT/ZzLmV+jzGAL9i4DTnnKCH49UA/Huq6@vger.kernel.org, AJvYcCWXRSCCFwdmLNjaJUuzvbL/yor5WyJJ6W8X2uFOqFpG20x5/JojI1X3hxnaBDeKFtL+4HAPoLotnkrU@vger.kernel.org, AJvYcCWrFe51eZBIRrR2QuDStsiOeDvc22IGEQDwXijI07BooNu0AqbzZTB+Lp7babMEA8q4Q+vDVOt5xDurnKk=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8l48HZqOkMe9PtVH6yJdQsMviuZY489GXfygrLs1G8c2NjKfy
-	LIvUl+3ez6IeSpu480TZ+qsoJC8QnIJCZLbQF1Y8cHNeY272G0nc
-X-Gm-Gg: ASbGnctK9kWguV3sj3vhVtTxmSiT/grLrh5uCi+FsPlpIXbHH9MJ7CEmkIieaUd8Wk6
-	u0l1++Fp5n6Dx66bxomZo8gB3h4FM5DjdX9tovYB/dg0qk1CfhjeOXhDFDIrIUQ+TdXtsKFEq1I
-	zA1corVD5wZPkV9xHOzcHAmguPxwiM1YyxvWLoIaAtX4zlWaat5whWmu5OmOvoEL/TT8q1gsclo
-	HaMivfd7DT/QNaZkgeP7X0RyMSKzXHKoYaXkAQB/vHx2fbGzFSaoAceRV1s1dIUpOfeJp4/AmSu
-	bgYbUarjCGZ2Eys5qocddkY0Kqgu66WFxFj4SC469Dvu7ixP9/IBu9Mcujz59VFgXhvyuYz1+uD
-	1um5Lv0fmeZ8bM7g/tJHTjdPAgZudlHRbZDjjRB86oTbtBsDzY4klvw0=
-X-Google-Smtp-Source: AGHT+IFr7umJxKzgzhGh/oy0Dih4g5haX41vEbYRI8F+ERkJbmGl9jimDDp7gEjubuafDokQiSZEmA==
-X-Received: by 2002:ac8:7d4c:0:b0:476:8cad:72d7 with SMTP id d75a77b69052e-4796007888bmr32351221cf.8.1744210056456;
-        Wed, 09 Apr 2025 07:47:36 -0700 (PDT)
-Received: from 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa ([2620:10d:c091:600::1:3298])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-47964eb9a8fsm8024461cf.49.2025.04.09.07.47.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 07:47:35 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 09 Apr 2025 10:47:23 -0400
-Subject: [PATCH v8 6/6] rust: enable `clippy::ref_as_ptr` lint
+        d=1e100.net; s=20230601; t=1744210184; x=1744814984;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NAji33sbWftR/X6dZ2NUeyfjXLgktdVt707HtkxaLX0=;
+        b=ecvpmsMD1T8fk9TiN3JA5vo4cnVwg9Betf7vadxb0jeiSEy4TVIuO6/qOkzhABRr6w
+         bh9QSlBXx885PM9llDDgrrrrhTbtBnhsqHJzPCqBx/3hOlW95NNzSleRnMBjHKOINNQa
+         nHnfolh7ikwldIA4fIPJ36O1G99p1O8HUiaGqd44sykoN0nuG1ig4TWOSiib2dciftZ/
+         UwvComRNkFTCEl+mL2cBz7hCoExFxv7wS1ef/ABAg7qHlKUC2Q7F4L7OgJLqIhHITi+k
+         H1grTPbDY2RjDGzQyJ+vZZ5m55tYEjGOa7NYVORUlI1TiHHjBK9duEQQCT+3/czO/4j0
+         LLqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU01VoRr9Q8UbcpL2dMqAjJAXQH9G0WH33hdXcNdLJLzfYcnRkv8t8SoSf3koInXpIqjiXX95DkHVTk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa+yrmQ0OQpdl38qcDoxcWGUOulQb/6mA8mXBwmMhdD4Xf1OfJ
+	jHn9/c2KFqH4ayFZ8ZafoYRdBDmRrBgIdRnAQsfhXgZs3V5ujEkKRsc0h+3k5EMp68RT1qrIrNa
+	tRFxIuePy3AV88qfd6tctFY5CwceZw/ZavltO6FuQojVQMl2QSQe9c+/me/kL
+X-Gm-Gg: ASbGncs4yocDt5p8ei/lQd5LlFRGoS5w+JqxAd/Fgs3HQuKuwenzqFfIhI0x05oSARV
+	gznkOKrU3aBVMjvsg3OzqracW/qCBSFw2/VINDv0yoUH5cg8XFlyyMKOVdnChqOLV4uXLoAY05q
+	h7sjip+1EnMBg5dZ3tcChD+H9556u1WDzHkh+GBYIcjRgit4at8rfIVq3oSuooXfG+NemV/s3vl
+	hBsDuSVpexAWFifj4kBv/KTA5o/KD5PO9vZOGBzhWG6ZvBOSTDOMY26oqAv8wa41eD6jRNCmoiH
+	4Q5UBThdvG9IushEIDCUBHmkxzhwcAY062uPTX5Uvxuilk1rsBBpryiFXOLBk380lw==
+X-Received: by 2002:a05:620a:1792:b0:7c3:c9d4:95e3 with SMTP id af79cd13be357-7c79cc382dcmr170870585a.10.1744210184433;
+        Wed, 09 Apr 2025 07:49:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFMm5nWNQB+SUuTMx8XfwA9o0yrLRkaTZP7ACAR3JyVEdTKjbhOMoZD8lRtbWW3IF+TISiTyg==
+X-Received: by 2002:a05:620a:1792:b0:7c3:c9d4:95e3 with SMTP id af79cd13be357-7c79cc382dcmr170869385a.10.1744210183947;
+        Wed, 09 Apr 2025 07:49:43 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ccd205sm108975966b.141.2025.04.09.07.49.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Apr 2025 07:49:43 -0700 (PDT)
+Message-ID: <83713b15-d74d-4620-b9a0-9c57f216c6bc@oss.qualcomm.com>
+Date: Wed, 9 Apr 2025 16:49:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250409-ptr-as-ptr-v8-6-3738061534ef@gmail.com>
-References: <20250409-ptr-as-ptr-v8-0-3738061534ef@gmail.com>
-In-Reply-To: <20250409-ptr-as-ptr-v8-0-3738061534ef@gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>, 
- Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <benno.lossin@proton.me>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
- Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Robin Murphy <robin.murphy@arm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, 
- Nicolas Schier <nicolas.schier@linux.dev>, 
- Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Nicolas Schier <nicolas.schier@linux.dev>
-Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
- linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/10] dt-bindings: PCI: Add binding for Toshiba TC956x
+ PCIe switch
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez@oss.qualcomm.com
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com>
+ <20250226-eager-urchin-of-performance-b71ae4@krzk-bin>
+ <8e301a7b-c475-4642-bf91-7a5176a00d1f@oss.qualcomm.com>
+ <385c7c77-0cb7-f899-4934-dfa58328235a@oss.qualcomm.com>
+ <a79eaaa9-0fe9-45d9-b55f-ba2c327eaaaf@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a79eaaa9-0fe9-45d9-b55f-ba2c327eaaaf@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: OAdxRoiFpH0SBKzqGb65UKI9Dnd0Laer
+X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f68909 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=3h54kFN3o8ui-8ShBWYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: OAdxRoiFpH0SBKzqGb65UKI9Dnd0Laer
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=999 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090093
 
-In Rust 1.78.0, Clippy introduced the `ref_as_ptr` lint [1]:
+On 4/9/25 3:22 PM, Konrad Dybcio wrote:
+> On 4/1/25 7:52 AM, Krishna Chaitanya Chundru wrote:
+>>
+>>
+>> On 3/25/2025 7:26 PM, Konrad Dybcio wrote:
+>>> On 2/26/25 8:30 AM, Krzysztof Kozlowski wrote:
+>>>> On Tue, Feb 25, 2025 at 03:03:58PM +0530, Krishna Chaitanya Chundru wrote:
+>>>>> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>>>
+>>>>> Add a device tree binding for the Toshiba TC956x PCIe switch, which
+>>>>> provides an Ethernet MAC integrated to the 3rd downstream port and two
+>>>>> downstream PCIe ports.
+>>>>>
+>>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>>> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+>>>>
+>>>> Drop, file was named entirely different. I see other changes, altough
+>>>> comparing with b4 is impossible.
+>>>>
+>>>> Why b4 does not work for this patch?
+>>>>
+>>>>    b4 diff '20250225-qps615_v4_1-v4-1-e08633a7bdf8@oss.qualcomm.com'
+>>>>    Checking for older revisions
+>>>>    Grabbing search results from lore.kernel.org
+>>>>    Nothing matching that query.
+>>>>
+>>>> Looks like you use b4 but decide to not use b4 changesets/versions. Why
+>>>> making it difficult for reviewers and for yourself?
+>>>>
+>>>>
+>>>>> ---
+>>>>>   .../devicetree/bindings/pci/toshiba,tc956x.yaml    | 178 +++++++++++++++++++++
+>>>>>   1 file changed, 178 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..ffed23004f0d
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/pci/toshiba,tc956x.yaml
+>>>>
+>>>> What is "x" here? Wildcard?
+>>>
+>>> Yes, an overly broad one. Let's use the actual name going forward.
+>>>
+>> ok I will update the next series the name from tc956x to tc9563 as
+>> suggested.
+> 
+> As per internal discussions, 956*4* would be the correct name for this one
 
-> Using `as` casts may result in silently changing mutability or type.
+I misread. It's supposed to be 3. Sorry for the confusion.
 
-While this doesn't eliminate unchecked `as` conversions, it makes such
-conversions easier to scrutinize.  It also has the slight benefit of
-removing a degree of freedom on which to bikeshed. Thus apply the
-changes and enable the lint -- no functional change intended.
-
-Link: https://rust-lang.github.io/rust-clippy/master/index.html#ref_as_ptr [1]
-Suggested-by: Benno Lossin <benno.lossin@proton.me>
-Link: https://lore.kernel.org/all/D8PGG7NTWB6U.3SS3A5LN4XWMN@proton.me/
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- Makefile                 |  1 +
- rust/bindings/lib.rs     |  1 +
- rust/kernel/device_id.rs |  3 ++-
- rust/kernel/fs/file.rs   |  3 ++-
- rust/kernel/str.rs       |  6 ++++--
- rust/kernel/uaccess.rs   | 10 ++++------
- rust/uapi/lib.rs         |  1 +
- 7 files changed, 15 insertions(+), 10 deletions(-)
-
-diff --git a/Makefile b/Makefile
-index eb5a942241a2..2a16e02f26db 100644
---- a/Makefile
-+++ b/Makefile
-@@ -485,6 +485,7 @@ export rust_common_flags := --edition=2021 \
- 			    -Wclippy::no_mangle_with_rust_abi \
- 			    -Wclippy::ptr_as_ptr \
- 			    -Wclippy::ptr_cast_constness \
-+			    -Wclippy::ref_as_ptr \
- 			    -Wclippy::undocumented_unsafe_blocks \
- 			    -Wclippy::unnecessary_safety_comment \
- 			    -Wclippy::unnecessary_safety_doc \
-diff --git a/rust/bindings/lib.rs b/rust/bindings/lib.rs
-index b105a0d899cc..2b69016070c6 100644
---- a/rust/bindings/lib.rs
-+++ b/rust/bindings/lib.rs
-@@ -27,6 +27,7 @@
- #[allow(dead_code)]
- #[allow(clippy::cast_lossless)]
- #[allow(clippy::ptr_as_ptr)]
-+#[allow(clippy::ref_as_ptr)]
- #[allow(clippy::undocumented_unsafe_blocks)]
- mod bindings_raw {
-     // Manual definition for blocklisted types.
-diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
-index 4063f09d76d9..37cc03d1df4c 100644
---- a/rust/kernel/device_id.rs
-+++ b/rust/kernel/device_id.rs
-@@ -136,7 +136,8 @@ impl<T: RawDeviceId, U, const N: usize> IdTable<T, U> for IdArray<T, U, N> {
-     fn as_ptr(&self) -> *const T::RawType {
-         // This cannot be `self.ids.as_ptr()`, as the return pointer must have correct provenance
-         // to access the sentinel.
--        (self as *const Self).cast()
-+        let this: *const Self = self;
-+        this.cast()
-     }
- 
-     fn id(&self, index: usize) -> &T::RawType {
-diff --git a/rust/kernel/fs/file.rs b/rust/kernel/fs/file.rs
-index 791f493ada10..559a4bfa123f 100644
---- a/rust/kernel/fs/file.rs
-+++ b/rust/kernel/fs/file.rs
-@@ -359,12 +359,13 @@ impl core::ops::Deref for File {
-     type Target = LocalFile;
-     #[inline]
-     fn deref(&self) -> &LocalFile {
-+        let this: *const Self = self;
-         // SAFETY: The caller provides a `&File`, and since it is a reference, it must point at a
-         // valid file for the desired duration.
-         //
-         // By the type invariants, there are no `fdget_pos` calls that did not take the
-         // `f_pos_lock` mutex.
--        unsafe { LocalFile::from_raw_file((self as *const Self).cast()) }
-+        unsafe { LocalFile::from_raw_file(this.cast()) }
-     }
- }
- 
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index 40034f77fc2f..75b4a18c67c4 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -28,8 +28,9 @@ pub const fn is_empty(&self) -> bool {
-     /// Creates a [`BStr`] from a `[u8]`.
-     #[inline]
-     pub const fn from_bytes(bytes: &[u8]) -> &Self {
-+        let bytes: *const [u8] = bytes;
-         // SAFETY: `BStr` is transparent to `[u8]`.
--        unsafe { &*(bytes as *const [u8] as *const BStr) }
-+        unsafe { &*(bytes as *const BStr) }
-     }
- 
-     /// Strip a prefix from `self`. Delegates to [`slice::strip_prefix`].
-@@ -289,8 +290,9 @@ pub const fn from_bytes_with_nul(bytes: &[u8]) -> Result<&Self, CStrConvertError
-     /// `NUL` byte (or the string will be truncated).
-     #[inline]
-     pub unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut CStr {
-+        let bytes: *mut [u8] = bytes;
-         // SAFETY: Properties of `bytes` guaranteed by the safety precondition.
--        unsafe { &mut *(bytes as *mut [u8] as *mut CStr) }
-+        unsafe { &mut *(bytes as *mut CStr) }
-     }
- 
-     /// Returns a C pointer to the string.
-diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
-index 80a9782b1c6e..7a6fc78fc314 100644
---- a/rust/kernel/uaccess.rs
-+++ b/rust/kernel/uaccess.rs
-@@ -240,9 +240,10 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit<u8>]) -> Result {
-     /// Fails with [`EFAULT`] if the read happens on a bad address, or if the read goes out of
-     /// bounds of this [`UserSliceReader`]. This call may modify `out` even if it returns an error.
-     pub fn read_slice(&mut self, out: &mut [u8]) -> Result {
-+        let out: *mut [u8] = out;
-         // SAFETY: The types are compatible and `read_raw` doesn't write uninitialized bytes to
-         // `out`.
--        let out = unsafe { &mut *(out as *mut [u8] as *mut [MaybeUninit<u8>]) };
-+        let out = unsafe { &mut *(out as *mut [MaybeUninit<u8>]) };
-         self.read_raw(out)
-     }
- 
-@@ -348,6 +349,7 @@ pub fn write<T: AsBytes>(&mut self, value: &T) -> Result {
-         if len > self.length {
-             return Err(EFAULT);
-         }
-+        let value: *const T = value;
-         // SAFETY: The reference points to a value of type `T`, so it is valid for reading
-         // `size_of::<T>()` bytes.
-         //
-@@ -355,11 +357,7 @@ pub fn write<T: AsBytes>(&mut self, value: &T) -> Result {
-         // kernel pointer. This mirrors the logic on the C side that skips the check when the length
-         // is a compile-time constant.
-         let res = unsafe {
--            bindings::_copy_to_user(
--                self.ptr as *mut c_void,
--                (value as *const T).cast::<c_void>(),
--                len,
--            )
-+            bindings::_copy_to_user(self.ptr as *mut c_void, value.cast::<c_void>(), len)
-         };
-         if res != 0 {
-             return Err(EFAULT);
-diff --git a/rust/uapi/lib.rs b/rust/uapi/lib.rs
-index d5dab4dfabec..6230ba48201d 100644
---- a/rust/uapi/lib.rs
-+++ b/rust/uapi/lib.rs
-@@ -16,6 +16,7 @@
-     clippy::all,
-     clippy::cast_lossless,
-     clippy::ptr_as_ptr,
-+    clippy::ref_as_ptr,
-     clippy::undocumented_unsafe_blocks,
-     dead_code,
-     missing_docs,
-
--- 
-2.49.0
-
+Konrad
 
