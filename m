@@ -1,144 +1,140 @@
-Return-Path: <devicetree+bounces-164927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0BE9A82D61
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:13:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93408A82D6E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:16:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4CC4648B8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:13:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B43167B106D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04841270EC3;
-	Wed,  9 Apr 2025 17:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763EC26FA78;
+	Wed,  9 Apr 2025 17:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M4wKTQrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2723270EC5;
-	Wed,  9 Apr 2025 17:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91C81CB332;
+	Wed,  9 Apr 2025 17:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744218783; cv=none; b=AuGeTS+IYVVnw8WmA3LMo/rj0tGlDc0w4xSPLA2RxkKUbDTnS4iMzkVFH3NDBzSTGiScYGYkhMEzKVjlNW3+B7wXioXDwlXGMm63H7xpc86Vl2yQQsJ8A3+75Jd11x0jTo22GdKZqeJexgfiGLhxr67jBhcyFivWCdkYUi+FXYs=
+	t=1744219006; cv=none; b=AiywyeYCEaGORGRuDV/aH65MxryVrR7UpKgqKFPNEHLM+ZzdJ7wP6BWwrfDN7w7Yr9YjyqNBeZMGfB7Aa34tbeirreLjQOrGYZCD7EXPncLVABvGz+9G1UVZvYwml2w0uZ8hgWhLob24ejdjaW+krOQwTtdsWXoSK8+tbG/UnhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744218783; c=relaxed/simple;
-	bh=s9Gi35I1sUGULtTOtFmgKjk2LcTE5lWCFnKHhQhu+Tw=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Sb3BeA6rNV6AIJmav5iY1Hy4Xjx6/+46PIBPZoQUZDeSlMAl5LgDyyDen5BLvztDiPnpZmGU9CWN13I4mv3vT99oI8V3nQnp4Adl/8Rjrwh2nzUwzcJ/gxzaz+Z81/CH1053vr0QkOq007ngabiyeOXQzoiWfgYWaLfiDyP0YC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZXqD94V21z6HJc7;
-	Thu, 10 Apr 2025 01:08:57 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 7B4091402F1;
-	Thu, 10 Apr 2025 01:12:52 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 9 Apr
- 2025 19:12:51 +0200
-Date: Wed, 9 Apr 2025 18:12:50 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Andy Shevchenko <andy@kernel.org>
-CC: <jean-baptiste.maneyrol@tdk.com>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] iio: imu: inv_icm42600: switch to use generic
- name irq get
-Message-ID: <20250409181250.00001c9f@huawei.com>
-In-Reply-To: <Z_apXw_HoD0EHHY-@smile.fi.intel.com>
-References: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
-	<20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-2-dab85a0a7c2b@tdk.com>
-	<Z_apXw_HoD0EHHY-@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1744219006; c=relaxed/simple;
+	bh=hAy1MJepwnZxQmMK/uOX+EgaJ07ZfV47gUfy+9bYyfc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lgWQXjdJ/k8rxWmX04Y1HC+uktEhEvg6fdD5B/HEgF1wV3XFJj78xlK7bkRCjaEMPM03gt7DMPxshguLlvedgcGj57Rp9xQyNmVcs6w1NCBaqy9T4ENsfsR+eYNEINQ0emPGD7v0Gf+Ur88lCblqv2bvag7wi71rOcrTgAKiKPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M4wKTQrn; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7369ce5d323so5759256b3a.1;
+        Wed, 09 Apr 2025 10:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744219004; x=1744823804; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5JqUMAh6AmNecX7O3aET6mXLWZl7+p4uOdSNHYwRAMQ=;
+        b=M4wKTQrnkYwE67DfmzedDAjYZxq4aSK4LT4pxBpFJ4ySyZCq/x+5BY46yMmoZD3kfR
+         yRSSiNGXMMtmOdGK+pAQ9fXsYPWyI5hTISETQszZ8w2onz+8pUSroh/UHfmTxmWBuIT9
+         5hmC11k6yohqhm/3vpq9HjccMpOf+seozx0PyZ8i0or+9Zw+wvoa8FhiLMg3qobRnIwR
+         besgMmMcL06hukjaL7Nt215N/4EfEfiVvTEwRrJfSZXvw5GLgF3037JMwj8ywLOlugCx
+         y24lE4y0sQeZjUVsrS7b0jY2kVlWF8Mcjkr3puGGPuSXZBjzzvtb8Cl3lwHNDrIBTRJN
+         GFog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744219004; x=1744823804;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5JqUMAh6AmNecX7O3aET6mXLWZl7+p4uOdSNHYwRAMQ=;
+        b=EAvOPKsgWDDEPaRiLcWVLsunw/RycKJGJnLa03D1UyETWhQiLMRa95E8YfC/KV1Hu3
+         LojSvAju+olBecOnEnS7a4zs1FsTd1Ay8IpR9kwMJDFVx5mWtvieBPfW5/DY8fDJ56B5
+         LssS1jYbGrDFUC/OGLSuBV4ZqYKc535uF4D47DDF0Eo/UmY7wICYlSq0AmKm55S/Zjfp
+         2bCbSY5Brwm0FhLMK7xMT3oTvDCUKTB/tD7JIc74+i3sQ6JaEmz35ac5RrmUrHrL0IaQ
+         xf62v4MXfeETAyQ2ACIrJ+16xu+la2SSU9a7MZowFWIjz8TizFaHUHWT3sjEpQZesJtA
+         SecQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbgRm7Fh+xW2pp0KCJrQ9C44WdJ0FF42EDCJs6JbfA5zWzOAEyA3Lb9ceEwEFCby4aoEftIcl1uRcy9VYA@vger.kernel.org, AJvYcCW0KagUnd+oJD7RmuwixjM46daQ0AISmH4FFW9J8F3t/MBh4CKno8/GgnbvmbZNfdgTtkSqmRWkrrku@vger.kernel.org, AJvYcCW1E8W82yAxIDb2V1Q3EduhA71k+H3enAOAUPoN4Aw8GvpyyARRVALLVJz+r9E4mg6IJxeBJrjS7D0V2io=@vger.kernel.org, AJvYcCWURy7kDgyL8NQ93Nj7d3gnMry4BwItY9xcphnMDnF92I5SVkz216yoHs0n8IGXY8hyVaTQP264XZf0@vger.kernel.org, AJvYcCXmvGtoBauBrYDdrkyf1Pm9ml2/tPdw9uIQrweZfS71U1njXgBuJ4c2MmoHlza7W8geRuc9xkZg06bw+A==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm3TpzWFYnvWTi7+Islp/9hdDdiA5sCOMlI3xcXiZTGZlEiSpY
+	G4j0t18WizV5KwRQ1Omt+qf6JKJ19NFurK45D1vfkolctym9YN0s
+X-Gm-Gg: ASbGncu3Zy4RHsz3Jo8oaQ8v809e9JNncYAVJivwxIHN6wQ8fptT0nQiQA5pNGzQVOI
+	M3QvO49YGxhIm/DGerAoMcgEeGlr0EbeIs8yE4uE63hjFMzoShcIPPNffNATRCu6e/2UhqcT5/Q
+	nES0odXR/wROLn1g2uW85RsVhhR/vH/MKlfJj//cPZ5Tzuj2CORW3ZBM9mPGPXS4kK8UM3+gIIo
+	KurbNRivWhqho5mKMdFwuNp8+hTvC5FpuBwVPawVeNRnzMCINQwH/ZiwO1/zhRDRk7TN/OQoVD8
+	QDg1Uuw1YeLFVIaZu5haMO8/iSXaBRL3LxxL1ohqGQ==
+X-Google-Smtp-Source: AGHT+IHwkaJMo3yG/X2kIQQLKeqOt+a7WIEY87CCGVmBrcmN2ocarEBiD+9SHNAOXX+Wk5f33TSTmA==
+X-Received: by 2002:a05:6a21:168d:b0:1f5:86ce:126a with SMTP id adf61e73a8af0-201592e127fmr6116939637.40.1744219003913;
+        Wed, 09 Apr 2025 10:16:43 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:cff4:8871:54bb:4c97])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b02a0cf38dasm1312066a12.23.2025.04.09.10.16.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 10:16:43 -0700 (PDT)
+Date: Wed, 9 Apr 2025 10:16:40 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Mark Brown <broonie@kernel.org>, 
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+Message-ID: <asjb2gjqpohtq2cyn3pll6nabbymd2o3jg723eloog6znwruo3@47wewlrtom5h>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+ <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
+ <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
+ <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
+ <Z_aZmJxPwIBgcwhG@smile.fi.intel.com>
+ <28982424-d425-47c3-b910-58c787e13510@sirena.org.uk>
+ <Z_akNogB_TkXcS37@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100012.china.huawei.com (7.191.174.184) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z_akNogB_TkXcS37@smile.fi.intel.com>
 
-On Wed, 9 Apr 2025 20:07:43 +0300
-Andy Shevchenko <andy@kernel.org> wrote:
-
-> On Wed, Apr 09, 2025 at 05:14:32PM +0200, Jean-Baptiste Maneyrol via B4 Relay wrote:
-> > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+On Wed, Apr 09, 2025 at 07:45:42PM +0300, Andy Shevchenko wrote:
+> On Wed, Apr 09, 2025 at 05:32:55PM +0100, Mark Brown wrote:
+> > On Wed, Apr 09, 2025 at 07:00:24PM +0300, Andy Shevchenko wrote:
+> > > On Wed, Apr 09, 2025 at 04:46:04PM +0100, Mark Brown wrote:
 > > 
-> > Use generic fwnode_irq_get_byname() for getting interrupt pin using
-> > interrupt name. Only INT1 is supported by the driver currently.
+> > > > unreachable() just annotates things, AFAICT it doesn't actually
+> > > > guarantee to do anything in particular if the annotation turns out to be
+> > > > incorrect.
 > > 
-> > If not found fallback to first defined interrupt to keep compatibility.  
+> > > I;m not sure I follow. unreachable is a wrapper on top of
+> > > __builtin_unreachable() which is intrinsic of the compiler.
+> > 
+> > > https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html#index-_005f_005fbuiltin_005funreachable
+> > 
+> > That just says that the program is undefined if we get to the
+> > __builtin_undefined() and documents some behaviour around warnings.  One
+> > example of undefined behaviour would be doing nothing.
 > 
-> ...
-> 
-> > -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-> > +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
-> >  			    inv_icm42600_bus_setup bus_setup);  
-> 
-> If you use 100 limit, it fits now on one line.
+> Theoretically yes, practically return after a BUG() makes no sense. Note,
+> that compiler effectively removes 'goto exit;' here (that's also mentioned
+> in the documentation independently on the control flow behaviour), so
+> I don't know what you expect from it.
 
-I'd rather stick to 'just over 80' where it really helps. Rather than
-generally switch to 100.  Maybe that day will come but I'm not sure it is
-yet.
+So unreachable() sometimes lears to weird behavior from compiler, for
+example as mentioned here where we ended up removing it to prevent
+miscompilations:
 
-> 
-> ...
-> 
-> > -int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-> > +int inv_icm42600_core_probe(struct regmap *regmap, int chip,
-> >  			    inv_icm42600_bus_setup bus_setup)  
-> 
-> Ditto.
-> 
-> ...
-> 
-> > +	struct fwnode_handle *fwnode;  
-> 
-> Do you need to include property.h?
-> 
-> ...
-> 
-> > +	/* get INT1 only supported interrupt or fallback to first interrupt */
-> > +	fwnode = dev_fwnode(dev);  
-> 
-> > +	if (!fwnode)
-> > +		return -ENODEV;  
-> 
-> Unneeded check, the below will do it for you,
-> 
-> > +	irq = fwnode_irq_get_byname(fwnode, "INT1");
-> > +	if (irq < 0 && irq != -EPROBE_DEFER) {
-> > +		dev_info(dev, "no INT1 interrupt defined, fallback to first interrupt\n");
-> > +		irq = fwnode_irq_get(fwnode, 0);
-> > +	}
-> > +	if (irq < 0)
-> > +		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");  
-> 
-> ...
-> 
-> > -	return inv_icm42600_core_probe(regmap, chip, client->irq,
-> > +	return inv_icm42600_core_probe(regmap, chip,
-> >  				       inv_icm42600_i2c_bus_setup);  
-> 
-> This is now one line (81 characters which is fine independently on your choice
-> of the limit).
-> 
-> ...
-> 
-> > -	return inv_icm42600_core_probe(regmap, chip, spi->irq,
-> > +	return inv_icm42600_core_probe(regmap, chip,
-> >  				       inv_icm42600_spi_bus_setup);  
-> 
-> One line.
-> 
+https://lore.kernel.org/all/20241010222451.GA3571761@thelio-3990X/
 
+Thanks.
+
+-- 
+Dmitry
 
