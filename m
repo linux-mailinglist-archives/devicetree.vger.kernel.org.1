@@ -1,272 +1,149 @@
-Return-Path: <devicetree+bounces-164740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A485EA8231D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:09:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED40BA8234F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4A91BA2DDA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:09:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FC668C1173
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D310725B664;
-	Wed,  9 Apr 2025 11:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912C425D1F0;
+	Wed,  9 Apr 2025 11:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pbCEdVHW"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ndkVFXp2";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="T3ygFDei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A095813C9A3;
-	Wed,  9 Apr 2025 11:09:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0990433AC;
+	Wed,  9 Apr 2025 11:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744196954; cv=none; b=txvPpdIZ50mX/RrLyg9xwGnzN8BTLrE6ZV0pBhWDxri5SWQtk4qNuFe6MYh9IZkATs2FTndoiBNB4to8zBp4L1xv66775DxpCeKIVxWgnXhyu8GyUWOR0Cu8gDfwyKXgKGbF2IrroL+WceGOpUsOvDJsYu7h5Beyp2GSbapNVes=
+	t=1744197230; cv=none; b=PvQ3IjiFa47bq6gSo1Ld3/7RCSuON2RxJpydk9v05xhQIjH1y4+jIqe4+XXtV67MMRGjPWYB4AxBj4k7jAWY8oRrQFCVGeek3C5wL0olC6YlkOBpQEntffSs3+QC8VpQY3tMbM5toW89hf+rRcMe92hcCXIZVyrD2XGxcs5dxrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744196954; c=relaxed/simple;
-	bh=7wbQ3lchSkZZ5tdZaoI/xJxofwaC7PcGBCfb35Zk+lg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BFasJy3WEs4aZjuXv5IP3Uryf2XkwhwbFit2IzfEN6+60OusStEZtit5PgkftUYYTzCIplAcz1nRfMK6whidfR2OzYIYCxJcY6JMY22N3vK7xtOsnJkZt/LJ6eGoM7jyhAW9/HZ8bcS0loFOqCVzDC3DWIR3NFJAe5gfLxQf9j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pbCEdVHW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 24F6182E;
-	Wed,  9 Apr 2025 13:07:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744196827;
-	bh=7wbQ3lchSkZZ5tdZaoI/xJxofwaC7PcGBCfb35Zk+lg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pbCEdVHW6aisqhSEnhUiViEGdyriqLYMvO7kiGWa/b3L7Yo5PltG4ukIQABSOsNxU
-	 a2RLxOhefl+JFnfCKCBU+yOHY39W60dnKWA7COKjMO4PhKBpoPkz5pniZvRSexppS2
-	 iTLjYtpnki94c8yGo2RK5omsakrSzPy/FhSG7B80=
-Date: Wed, 9 Apr 2025 14:08:40 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 11/17] media: rzg2l-cru: Add register mapping support
-Message-ID: <20250409110840.GG31475@pendragon.ideasonboard.com>
-References: <20250328173032.423322-12-tommaso.merciai.xr@bp.renesas.com>
- <TY3PR01MB11346ECE31CB6C8DC33459C2486AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8sJQnyJb_uq9yEcjHRW7ZFOw3g2XQyygcozWTgMjrYxRQ@mail.gmail.com>
- <TY3PR01MB113462DC897E0DB681B1C020F86AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8ukJ+_Bhy-4nU_CFD4rMoTRxEY-q+bXHHZ-9Mz8gQ362A@mail.gmail.com>
- <20250402092618.GH4845@pendragon.ideasonboard.com>
- <TY3PR01MB11346DF814762C667FF97074286AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8tsCEhmhNSbMMiuN6b2rJCoSekf+-e6EHr5wE5C000ZxQ@mail.gmail.com>
- <20250409012914.GD31475@pendragon.ideasonboard.com>
- <TY3PR01MB11346A5CBFD05A51E351DCE6586B42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1744197230; c=relaxed/simple;
+	bh=qvZ41SeZUWTJUM2/0wOjudaZGd/o08OfWeoXOJTa5LQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=mlD54hVIctHwKpbRVqyAMhlgq/4M+stztxPpojLb11rb74qke890oRsR6plwTeOeONmEBJl0r9oU2jwpxpUn9Gpe74DpkhzA3ISxPFDccLwL0/CdxR5ceeM/JhpYd1w8RAijhuMA3MBPkDiv26F4BzWsCyKLNzPDfyRW8BU+ufY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ndkVFXp2; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=T3ygFDei; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1744197226;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1UIP4ZGix9p5MaH9RHiON2iNZ1qNwydPjYtJFAn6h60=;
+	b=ndkVFXp2m4OiYv7D2NIsqsFhmpQaMrSMq4M/Fxl214eOX7BqCBLgBejQ21mYGWpaoi+Sed
+	fiChITipD81wOCRi1M013UAXtjJ8J6bKfMJYV1HWIIDrukJA6EYi75IbNO9Y3p0eGnjNJj
+	qxCEh2pnxJuTBIYoHrH09g6phqYuPdkGfnqjCf//lvjqIY2aU8etRxte3SLw7MEaCPoDkS
+	/l6+j6s0C5wQiifRFsEnK6u/w9o2aw+nK+fSQBlY7Ks9EIm0gFH4UHtBNWirDgvr6VqJKu
+	KS/1NxaCjEu+Vg4I1Y2I8mlQqJFIlJzoAhpOnOPOxI38446wm31YohyCasKkMA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1744197226;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1UIP4ZGix9p5MaH9RHiON2iNZ1qNwydPjYtJFAn6h60=;
+	b=T3ygFDeiKIpY65OR/wfBjvG7m5xLPXI2LXSCfvJFe1hMWt2WW8vCSUQfhLAenBcfB8+5oZ
+	dJ6r7/B2gnhDWvBA==
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier
+ <maz@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes
+ <timothy.hayes@arm.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>
+Subject: Re: [PATCH 22/24] irqchip/gic-v5: Add GICv5 ITS support
+In-Reply-To: <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
+Date: Wed, 09 Apr 2025 13:13:46 +0200
+Message-ID: <87tt6xtwnp.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TY3PR01MB11346A5CBFD05A51E351DCE6586B42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain
 
-Hi Biju,
+On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
+>  
+> +void gicv5_irs_syncr(void)
+> +{
+> +	u32 syncr;
+> +	u32 statusr;
+> +	int ret;
+> +	struct gicv5_irs_chip_data *irs_data;
+> +
+> +	irs_data = list_first_entry_or_null(&irs_nodes,
+> +					    struct gicv5_irs_chip_data, entry);
+> +	if (WARN_ON(!irs_data))
+> +		return;
+> +
+> +	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
+> +	irs_writel(irs_data, syncr, GICV5_IRS_SYNCR);
+> +
+> +	ret = readl_relaxed_poll_timeout_atomic(
+> +			irs_data->irs_base + GICV5_IRS_SYNC_STATUSR, statusr,
+> +			FIELD_GET(GICV5_IRS_SYNC_STATUSR_IDLE, statusr), 1,
+> +			USEC_PER_SEC);
+> +
+> +	if (ret == -ETIMEDOUT)
+> +		pr_err_ratelimited("SYNCR timeout...\n");
 
-On Wed, Apr 09, 2025 at 07:25:43AM +0000, Biju Das wrote:
-> On 09 April 2025 02:29, Laurent Pinchart wrote:
-> > On Mon, Apr 07, 2025 at 04:55:33PM +0000, Lad, Prabhakar wrote:
-> > > On Wed, Apr 2, 2025 at 10:39 AM Biju Das wrote:
-> > > > On 02 April 2025 10:26, Laurent Pinchart wrote:
-> > > > > On Wed, Apr 02, 2025 at 08:25:06AM +0000, Lad, Prabhakar wrote:
-> > > > > > On Wed, Apr 2, 2025 at 9:20 AM Biju Das wrote:
-> > > > > > > On 02 April 2025 08:35, Lad, Prabhakar wrote:
-> > > > > > > > On Wed, Apr 2, 2025 at 7:31 AM Biju Das wrote:
-> > > > > > > > > > On 28 March 2025 17:30, Tommaso Merciai wrote:
-> > > > > > > > > > From: Lad Prabhakar
-> > > > > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > > > > >
-> > > > > > > > > > Prepare for adding support for RZ/G3E and RZ/V2HP SoCs,
-> > > > > > > > > > which have a CRU-IP that is mostly identical to RZ/G2L
-> > > > > > > > > > but with different register offsets and additional
-> > > > > > > > > > registers. Introduce a flexible register mapping
-> > > > > > > > > > mechanism to handle these variations.
-> > > > > > > > > >
-> > > > > > > > > > Define the `rzg2l_cru_info` structure to store register
-> > > > > > > > > > mappings and pass it as part of the OF match data.
-> > > > > > > > > > Update the read/write functions to check out-of-bound
-> > > > > > > > > > accesses and use indexed register offsets from
-> > > > > > > > > > `rzg2l_cru_info`, ensuring compatibility across different SoC variants.
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Lad Prabhakar
-> > > > > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > > > > > Signed-off-by: Tommaso Merciai
-> > > > > > > > > > <tommaso.merciai.xr@bp.renesas.com>
-> > > > > > > > > > ---
-> > > > > > > > > > Changes since v2:
-> > > > > > > > > >  - Implemented new rzg2l_cru_write/read() that now are checking out-of-bound
-> > > > > > > > > >    accesses as suggested by LPinchart.
-> > > > > > > > > >  - Fixed AMnMBxADDRL() and AMnMBxADDRH() as suggested by LPinchart.
-> > > > > > > > > >  - Update commit body
-> > > > > > > > > >
-> > > > > > > > > > Changes since v4:
-> > > > > > > > > >  - Mark __rzg2l_cru_write_constant/__rzg2l_cru_read_constant
-> > > > > > > > > >    as __always_inline
-> > > > > > > > > >
-> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 46 ++++++++++++-
-> > > > > > > > > >  .../renesas/rzg2l-cru/rzg2l-cru-regs.h        | 66 ++++++++++---------
-> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  4 ++
-> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 58
-> > > > > > > > > > ++++++++++++++--
-> > > > > > > > > >  4 files changed, 139 insertions(+), 35 deletions(-)
-> > > > > > > > > >
-> > > > > > > > > > diff --git
-> > > > > > > > > > a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > > > b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > > > index eed9d2bd08414..abc2a979833aa 100644
-> > > > > > > > > > ---
-> > > > > > > > > > a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> > > > > > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cor
-> > > > > > > > > > +++ e.c
-> > > > > > > > > > @@ -22,6 +22,7 @@
-> > > > > > > > > >  #include <media/v4l2-mc.h>
-> > > > > > > > > >
-> > > > > > > > > >  #include "rzg2l-cru.h"
-> > > > > > > > > > +#include "rzg2l-cru-regs.h"
-> > > > > > > > > >
-> > > > > > > > > >  static inline struct rzg2l_cru_dev
-> > > > > > > > > > *notifier_to_cru(struct v4l2_async_notifier *n)  { @@
-> > > > > > > > > > -269,6 +270,9 @@ static int rzg2l_cru_probe(struct
-> > > > > > > > > > platform_device *pdev)
-> > > > > > > > > >
-> > > > > > > > > >       cru->dev = dev;
-> > > > > > > > > >       cru->info = of_device_get_match_data(dev);
-> > > > > > > > > > +     if (!cru->info)
-> > > > > > > > > > +             return dev_err_probe(dev, -EINVAL,
-> > > > > > > > > > +                                  "Failed to get OF
-> > > > > > > > > > + match data\n");
-> > > > > > > > > >
-> > > > > > > > > >       irq = platform_get_irq(pdev, 0);
-> > > > > > > > > >       if (irq < 0)
-> > > > > > > > > > @@ -317,8 +321,48 @@ static void rzg2l_cru_remove(struct platform_device *pdev)
-> > > > > > > > > >       rzg2l_cru_dma_unregister(cru);  }
-> > > > > > > > > >
-> > > > > > > > > > +static const u16 rzg2l_cru_regs[] = {
-> > > > > > > > > > +     [CRUnCTRL] = 0x0,
-> > > > > > > > > > +     [CRUnIE] = 0x4,
-> > > > > > > > > > +     [CRUnINTS] = 0x8,
-> > > > > > > > > > +     [CRUnRST] = 0xc,
-> > > > > > > > > > +     [AMnMB1ADDRL] = 0x100,
-> > > > > > > > > > +     [AMnMB1ADDRH] = 0x104,
-> > > > > > > > > > +     [AMnMB2ADDRL] = 0x108,
-> > > > > > > > > > +     [AMnMB2ADDRH] = 0x10c,
-> > > > > > > > > > +     [AMnMB3ADDRL] = 0x110,
-> > > > > > > > > > +     [AMnMB3ADDRH] = 0x114,
-> > > > > > > > > > +     [AMnMB4ADDRL] = 0x118,
-> > > > > > > > > > +     [AMnMB4ADDRH] = 0x11c,
-> > > > > > > > > > +     [AMnMB5ADDRL] = 0x120,
-> > > > > > > > > > +     [AMnMB5ADDRH] = 0x124,
-> > > > > > > > > > +     [AMnMB6ADDRL] = 0x128,
-> > > > > > > > > > +     [AMnMB6ADDRH] = 0x12c,
-> > > > > > > > > > +     [AMnMB7ADDRL] = 0x130,
-> > > > > > > > > > +     [AMnMB7ADDRH] = 0x134,
-> > > > > > > > > > +     [AMnMB8ADDRL] = 0x138,
-> > > > > > > > > > +     [AMnMB8ADDRH] = 0x13c,
-> > > > > > > > > > +     [AMnMBVALID] = 0x148,
-> > > > > > > > > > +     [AMnMBS] = 0x14c,
-> > > > > > > > > > +     [AMnAXIATTR] = 0x158,
-> > > > > > > > > > +     [AMnFIFOPNTR] = 0x168,
-> > > > > > > > > > +     [AMnAXISTP] = 0x174,
-> > > > > > > > > > +     [AMnAXISTPACK] = 0x178,
-> > > > > > > > > > +     [ICnEN] = 0x200,
-> > > > > > > > > > +     [ICnMC] = 0x208,
-> > > > > > > > > > +     [ICnMS] = 0x254,
-> > > > > > > > > > +     [ICnDMR] = 0x26c,
-> > > > > > > > > > +};
-> > > > > > > > >
-> > > > > > > > > Do we need enum, can't we use struct instead with all these entries instead?
-> > > > > > > > >
-> > > > > > > > What benefit do you foresee when using struct? With the
-> > > > > > > > current approach being used a minimal diff is generated when
-> > > > > > > > switched to struct there will be lots of changes.
-> > > > > > >
-> > > > > > > The mapping is convinient when you want to iterate throught it.
-> > > > > > > Here, if you just want to access the offset value from its
-> > > > > > > name, a structure looks more appropriate.
-> > > > > >
-> > > > > > Thanks, as this patch has been reviewed by Laurent a couple of
-> > > > > > times we will change this to struct If he insists.
-> > > > >
-> > > > > How would a struct look like ? I'm not sure what is being proposed.
-> > > >
-> > > > It will be
-> > > >
-> > > > struct rzg2l_cru_regs {
-> > > >         u16 cru_n_ctrl;
-> > > >         u16 cru_n_ie;
-> > > >         u16 cru_n_ints;
-> > > >         u16 cru_n_rst;
-> > > > };
-> > > >
-> > > > static const struct rzg2l_cru_regs rzg2l_cru_regs = {
-> > > >         .cru_n_ctrl = 0x0,
-> > > >         .cru_n_ie = 0x4,
-> > > >         .cru_n_ints = 0x8,
-> > > >         .cru_n_rst = 0xc,
-> > > > };
-> > > >
-> > > > You can access it using info->regs->cru_n_ctrl instead of
-> > > > info->regs[CRUnCTRL] This is proposal.
-> > >
-> > > Are you OK with the above proposal?
-> > 
-> > I may be missing something, but I don't see why this would be a significantly better option. It seems
-> > it would make the callers more complex, and decrease readability.
-> 
-> Basically,
-> I guess sruct  will allow us to avoid (WARN_ON(offset >= RZG2L_CRU_MAX_REG) and
->    BUILD_BUG_ON(offset >= RZG2L_CRU_MAX_REG); checks as there is no array, so there is no
->    buffer overrun condition and also we can drop enum aswell.
+This timeout poll thing looks very familiar by now. Third variant :)
 
-That's right fpr the BUILD_BUG_ON(), but I don't think that would be an
-improvement. The BUILD_BUG_ON() catches at compile time the issues that
-are comparable to mistyping a struct field name, so incorrect code
-patterns will result in compile-time errors in both cases. The WARN_ON()
-is there for cases where the offset needs to be dynamically computed,
-and if we wanted to have similar safeguards with a struct, we would also
-need a runtime check.
+> +static int gicv5_its_wait_for_invalidation(struct gicv5_its_chip_data *its)
+> +{
+> +	int ret;
+> +	u32 statusr;
+> +
+> +	ret = readl_relaxed_poll_timeout_atomic(
+> +			its->its_base + GICV5_ITS_STATUSR, statusr,
+> +			FIELD_GET(GICV5_ITS_STATUSR_IDLE, statusr), 1,
+> +			USEC_PER_SEC);
+> +
+> +	if (ret == -ETIMEDOUT)
+> +		pr_err_ratelimited("STATUSR timeout...\n");
+> +
+> +	return ret;
+> +}
 
-Using a struct would also prevent (I think) implementing additional
-safeguards. Not registers exist on all platforms (hence the need for
-this mapping mechanism), and it would be nice to catch attempts to
-access a register that does not exist. With the existing series, we
-could quite easily add a check in the read and write functions to ensure
-the regs array entry is not zero (except when the register is CRUnCTRL).
-With a struct-based approach, the read/write functions would get the
-offset but wouldn't know which register is being accessed, so the same
-logic can't be implemented.
+And number four follows suit :)
 
-Last but not least, I think the current approach is more readable in the
-callers: lines are shorter, and register names match the documentation,
-including being uppercase.
+> +
+> +static void gicv5_its_syncr(struct gicv5_its_chip_data *its,
+> +			    struct gicv5_its_dev *its_dev)
+> +{
+> +	int ret;
+> +	u64 syncr;
+> +	u32 statusr;
+> +
+> +	syncr = FIELD_PREP(GICV5_ITS_SYNCR_SYNC, 1) |
+> +		FIELD_PREP(GICV5_ITS_SYNCR_DEVICEID, its_dev->device_id);
+> +
+> +	its_writeq(its, syncr, GICV5_ITS_SYNCR);
+> +
+> +	ret = readl_relaxed_poll_timeout_atomic(
+> +			its->its_base + GICV5_ITS_SYNC_STATUSR, statusr,
+> +			FIELD_GET(GICV5_ITS_SYNC_STATUSR_IDLE, statusr), 1,
+> +			USEC_PER_SEC);
+> +
+> +	if (ret == -ETIMEDOUT)
+> +		pr_err_ratelimited("SYNCR timeout...\n");
+> +}
 
-> So, if using struct decreases readability and makes the code complex,
-> then current patch is fine.
+Along with #5 
 
--- 
-Regards,
+Thanks,
 
-Laurent Pinchart
+        tglx
 
