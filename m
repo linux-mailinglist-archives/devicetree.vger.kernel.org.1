@@ -1,192 +1,195 @@
-Return-Path: <devicetree+bounces-164725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979D7A821CF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:11:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FA44A821D9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74440461782
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:11:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D7CB1B87104
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB7725D52E;
-	Wed,  9 Apr 2025 10:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350D225D8E1;
+	Wed,  9 Apr 2025 10:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fwUeGYpD"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="T+zpQimh";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="U5co9zDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D111DF247;
-	Wed,  9 Apr 2025 10:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D74E25A2DC;
+	Wed,  9 Apr 2025 10:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744193516; cv=none; b=qTx9vuNF/g0fXfjVRnSlldlJl1iwzh8vK7g7LmO6cgJ7TjDKeVm6zAiNoEpvfwBvVFyoKJc1+rwH48fFJ7WtYYve0ZxO5W2Orn8Qlu0F2Ji+a/cY1aP2X9t2XQrYp73VKr776p/Tdbe1LSRpIPDZSNS4XUlcmXUpfvVRKa6498E=
+	t=1744193703; cv=none; b=VzorYc8izLf4X/bYNnnw7J4AdGbEQdhx7BjkDmptccQ8stQMLn9T+VMMZP67FaK2/Eft1joSvWYKOtobc6JTLRKhuEOMrsbQJim9Kl6xqOnT8aqauYoUvyRowOb0/hAjPTjwActaQXrJ94Ulm3dmgzAmJqE8o+sqSJtDBRD4qro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744193516; c=relaxed/simple;
-	bh=RGF42t7ba2gAeFKFDl+Vmbdg5+GzN+Zs2MtQQeMaOzA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SuTzgfXM/M+YDHbo//wgU5eZZDmGoOIP/3hRdVduYTPX4XxWJQGlG/Hi9sPVpeDHYExBQwn+T9XDgavtGUFBuWPECKh9T3KlyACUFlse+tDvumW8EtktWMQn3SCLz9FZ6KwqeOugjshgipHB7XTlkViLPXhdH+7Ca+s0oyxcvV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fwUeGYpD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3749AC4CEE3;
-	Wed,  9 Apr 2025 10:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744193515;
-	bh=RGF42t7ba2gAeFKFDl+Vmbdg5+GzN+Zs2MtQQeMaOzA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fwUeGYpDLFK+5BGx2AbhI3UnKi4pDLqO80mF/ZArkv9w4uEn25194kz+ZQVL5Yfbq
-	 1I2aYAqMrSfMogQbOKTS2P1eWRbIbsxujxh8wVKFsRDFefIzGt2yfVELOKkvb1peGc
-	 ty4vT5Nqe7KmZQj+zTOyiPKansiizzmZMyEGr9vr6Yi0ms1BS0F4LKhc18kSO3Gxu6
-	 oZfVrlAQKrHLsbcwlqWxtS+1pAgS8GgLzn9ZTrO/qJz/BZoJ4Pwr2ERQZlpyYFN03b
-	 uVRedj9uJ57K+3l5aSvN3dazHwV1Jd8+Odd2YWOC8XeIS4kf5DIh88q5GbHR2VZpdT
-	 pZ/4NmFqEm3RA==
-Date: Wed, 9 Apr 2025 12:11:48 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 20/24] irqchip/gic-v5: Add GICv5 LPI/IPI support
-Message-ID: <Z/ZH5IBQAZ8rc9Cz@lpieralisi>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
- <ed63bb91-e9ac-409a-a9a0-25b233fe2e15@app.fastmail.com>
+	s=arc-20240116; t=1744193703; c=relaxed/simple;
+	bh=Wro90VfYL3b5j7TbNKN81Xu/BV5HuwqQ7RbveyBWuXo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R19O9Rg4GWlPw0SatFkB82XdkU/z2LKTOlt9EpeRsrnfA2OFShyGg54JYGFjrKknAiszq26b27VQfltrJnqSEnIFpIQBD/eMXNlvB540h2UQXpSjtAIlAD7laNzBJMtMdVRG8jzBLKpn6HvlRjnwbWkJmFaDWymGAAMnia1k9IU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=T+zpQimh; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=U5co9zDH reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1744193698; x=1775729698;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=BNoNE6e64sEYfFsroSfsCY8QuIvX813ZAxY1wFGvAfs=;
+  b=T+zpQimh7RJ4+BqmTQBXiIZxRCB852eTKHJjZwAneooHbdMdUIjiZqhR
+   8oIGOTBJICzfc14e+ByxKw50IUyHQA/Kvfvr5801VRp0pA9YCn+f2NSqV
+   YPJFeo0W53YJ2te1FVYQQEIUuivB9SUZSgNeu3QW6JpZf2ZxnhVdmCcQA
+   OKOz04ilJc7yqh1lA/p+OvnIGjHV5gMpv5iWiAue5tJEITCwn4932sSjw
+   wN2Wp8JrBTAoIGy1aq+Rfv44evD/rFkDcZxoPnCNfrLpKPkyaz8DjS+Ym
+   UqFrpG7NoZQ1+papy14qIHLgvOXiBsaXLakX2LWUY/Sa3vIm9jYIvpImB
+   w==;
+X-CSE-ConnectionGUID: QsBY5tYfRvO4jvFCFUdRaw==
+X-CSE-MsgGUID: aXOJ8JttQUS4xI0EqVv4JA==
+X-IronPort-AV: E=Sophos;i="6.15,200,1739833200"; 
+   d="scan'208";a="43425758"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 09 Apr 2025 12:14:55 +0200
+X-CheckPoint: {67F6489F-13-7141A0B0-E6EDEC14}
+X-MAIL-CPID: AD203921DB3D5B5D91448C1600452817_3
+X-Control-Analysis: str=0001.0A006371.67F6489C.0095,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C4929164F85;
+	Wed,  9 Apr 2025 12:14:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1744193690;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BNoNE6e64sEYfFsroSfsCY8QuIvX813ZAxY1wFGvAfs=;
+	b=U5co9zDHmUiL4PoV2Bj2nlNzBH5Iw4uyo0kqMS2d6jtR4Z5RRyNUgOHxnyq53EzUGy9Hs1
+	X1kpcaOShYEFlPCqXOlvyCdjzA0qcaogFMx4vIRjMzJo9cHvrvkqqGl02d3U5f7d16MQGQ
+	UL5wPE6Zjx4+f34EB7abO0z0TGl1JdUWax3kcWhx7AUrgNe9NX0QqF9Iq2mApQgzjqOw+I
+	mX+nEs5xCCxaSughpJRy4a4v4gDxI+Z0XZQrSLD2z2RED29IdYaENPyjIF3ueEvZpBa0H0
+	6uNRtF3XLiaBKXoVOiaocRtSUeM74EPUb6/tPFMBPxvEdEBKrtSyw5IQdgMjQw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>, hongxing.zhu@nxp.com
+Subject:
+ Re: [PATCH 4/5] arm64: dts: imx95: add PCIe's msi-map and iommu-map property
+Date: Wed, 09 Apr 2025 12:14:48 +0200
+Message-ID: <10643619.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Z+WdgWQo4dbPG5tP@lizhi-Precision-Tower-5810>
+References:
+ <20250128211559.1582598-1-Frank.Li@nxp.com>
+ <Z8HuU6ULEN756lyr@lizhi-Precision-Tower-5810>
+ <Z+WdgWQo4dbPG5tP@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ed63bb91-e9ac-409a-a9a0-25b233fe2e15@app.fastmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Apr 09, 2025 at 10:23:57AM +0200, Arnd Bergmann wrote:
-> On Tue, Apr 8, 2025, at 12:50, Lorenzo Pieralisi wrote:
-> > @@ -22,12 +25,346 @@ static u32 irs_readl(struct gicv5_irs_chip_data 
-> > *irs_data, const u64 reg_offset)
-> >  	return readl_relaxed(irs_data->irs_base + reg_offset);
-> >  }
-> > 
-> > +static u64 irs_readq(struct gicv5_irs_chip_data *irs_data, const u64 
-> > reg_offset)
-> > +{
-> > +	return readq_relaxed(irs_data->irs_base + reg_offset);
-> > +}
-> > +
-> >  static void irs_writel(struct gicv5_irs_chip_data *irs_data, const u32 
-> > val,
-> >  		       const u64 reg_offset)
-> >  {
-> >  	writel_relaxed(val, irs_data->irs_base + reg_offset);
-> >  }
-> > 
-> > +static void irs_writeq(struct gicv5_irs_chip_data *irs_data, const u64 
-> > val,
-> > +		       const u64 reg_offset)
-> > +{
-> > +	writeq_relaxed(val, irs_data->irs_base + reg_offset);
-> > +}
-> 
-> I think the use of _relaxed memory accessors needs some code
-> comments here. The definition of these is that you don't care
-> about ordering relative to DMA master accesses, yet you seem to
-> very much have accesses to the 'ist' from the GIC, as well as
-> DMA accesses from an MSI device, and I would expect both to
-> require ordering.
+Hi Frank,
 
-For the 1-level (linear) IST we allocate it in one go, write
-the base address through relaxed access (that sets the IST
-valid) and poll completion with a relaxed access. Memory is
-cleaned and invalidated from the cache (if the IRS is not
-coherent) before the MMIO sequence above, which implies a
-dsb().
+Am Donnerstag, 27. M=E4rz 2025, 19:48:33 CEST schrieb Frank Li:
+> [snip]
+> Finially we get realtek PCI card
+>=20
+> it quite complex, there are one PCIe switch to split it to two pci bus.
+>=20
+>  lspci -t
+> -[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-03.0-[03]----00.0
+>                                            \-07.0-[04]----00.0
 
-After that memory is handed over to the GIC.
+Interesting. Mine looks slightly different:
 
-For a 2-level IST, the code that updates L1 entries already add
-a dma_rmb() barrier (ie gicv5_irs_iste_alloc()) to make sure we
-order MMIO wait completion with the subsequent cache invalidate
-(again, in the yet hypothetical case where the IRS is not coherent).
+$ lspci -t
+=2D[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-01.0-[03]----00.0
+                                           \-02.0-[04]----00.0
 
-I think I can add comments where the sequence to initialize the
-tables is executed more than here, given that these helpers are
-used for other purposes too.
+>=20
+>=20
+> 0000:00:00.0 PCI bridge: Philips Semiconductors Device 0000
+> 0000:01:00.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
+Gen2 Packet Switch
+> 0000:02:03.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
+Gen2 Packet Switch
+> 0000:02:07.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port PCIe x1 =
+Gen2 Packet Switch
 
-> > +/* Wait for completion of an IST change */
-> > +static int gicv5_irs_ist_wait_for_idle(struct gicv5_irs_chip_data 
-> > *irs_data)
-> > +{
-> > +	int ret;
-> > +	u32 val;
-> > +
-> > +	ret = readl_relaxed_poll_timeout_atomic(
-> > +			irs_data->irs_base + GICV5_IRS_IST_STATUSR, val,
-> > +			FIELD_GET(GICV5_IRS_IST_STATUSR_IDLE, val), 1,
-> > +			USEC_PER_SEC);
-> > +
-> 
-> What is the significance of the 1 second timeout? This is probably
-> a million times longer than I would expect any hardware interaction
-> to be specified to take. Are you waiting for another thread here?
+It seems you have a newer hardware revision. I have
+0000:01:00.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
+0000:02:01.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
+0000:02:02.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
 
-It is arbitrary, agreed.
+PCIe bridges.
 
-> > +	l2istsz = BIT(n + 1);
-> > +	if (l2istsz > KMALLOC_MAX_SIZE) {
-> > +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
-> > +
-> > +		pr_warn("Limiting LPI ID bits from %u to %u\n",
-> > +			lpi_id_bits, lpi_id_cap);
-> > +		lpi_id_bits = lpi_id_cap;
-> > +		l2istsz = KMALLOC_MAX_SIZE;
-> > +	}
-> 
-> The use of KMALLOC_MAX_SIZE seem arbitrary here. I remember discussing
-> this in the past and concluding that this is fine for all cases
-> that may be relevant, but it would be good to explain the reasoning
-> in a comment.
+> 0000:03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111=
+/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+> 0000:04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111=
+/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+>=20
+> It need below change
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 9bb26b466a061..9dbf395b9a67b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1660,10 +1660,18 @@ pcie0: pcie@4c300000 {
+>                         power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+>                         /* pcie0's Devid(BIT[7:6]) is 0x00, stream id(BIT=
+[5:0]) is 0x10~0x17 */
+>                         msi-map =3D <0x0 &its 0x10 0x1>,
+> -                                 <0x100 &its 0x11 0x7>;
+> +                                 <0x100 &its 0x11 0x1>,
+> +                                 <0x218 &its 0x12 0x1>,
+> +                                 <0x238 &its 0x13 0x1>,
+> +                                 <0x300 &its 0x14 0x1>,
+> +                                 <0x400 &its 0x15 0x1>;
+>                         iommu-map =3D <0x000 &smmu 0x10 0x1>,
+> -                                   <0x100 &smmu 0x11 0x7>;
+> -                       iommu-map-mask =3D <0x1ff>;
+> +                                   <0x100 &smmu 0x11 0x1>,
+> +                                   <0x218 &smmu 0x12 0x1>,
+> +                                   <0x238 &smmu 0x13 0x1>,
+> +                                   <0x300 &smmu 0x14 0x1>,
+> +                                   <0x400 &smmu 0x15 0x1>;
+> +                       //iommu-map-mask =3D <0x1ff>;
+>                         fsl,max-link-speed =3D <3>;
+>                         status =3D "disabled";
+>=20
+>=20
+> Only 8 stream id assign to PCIe0 device, it is hard to dynamaic alloce on=
+e,
+> or need extra works
 
-We need contiguous physical memory that can be < PAGE_SIZE or larger.
+Uh, this looks awefully complicated. Even worse this doesn't work on
+my hardware. I need mappings for IDs 0x208 and 0x210, so I replaced 0x218
+and 0x238 from your diff into my numbers.
 
-For allocations larger than the allocator caches kmalloc hands over to
-the page allocator, MAX_ORDER is reflected into KMALLOC_MAX_SIZE AFAIU.
+So I take that PCIe bridges are not supported properly. What would be
+necessary to support this?
 
-That's the reasoning. Does it make sense ?
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-> > +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT)
-> > +		dcache_clean_inval_poc((unsigned long)ist,
-> > +				       (unsigned long)ist + l2istsz);
-> > +	else
-> > +		dsb(ishst);
-> ...
-> > +	baser = (virt_to_phys(ist) & GICV5_IRS_IST_BASER_ADDR_MASK) |
-> > +		FIELD_PREP(GICV5_IRS_IST_BASER_VALID, 0x1);
-> 
-> Here it seems like you are open-coding the DMA mapping interface
-> details, in particular the mapping of the 'ist' memory area into
-> the gic's DMA master space, the coherency and the barrier that is
-> normally part of a (non-relaxed) writeq().  Is there a reason
-> you can't use the normal interfaces here, using dma_alloc_coherent()
-> or dma_alloc_noncoherent()?
 
-The GIC IRS must be brought up early, it is not a struct device.
-
-> Do you expect actual implementation to not be cache-coherent?
-
-It is allowed by the architecture - I don't have a crystal ball
-but if I want to add support for a non-coherent IRS the DMA mapping
-like sequence above has to be there - alternatives are welcome.
-
-Thanks a lot for reviewing.
-
-Lorenzo
 
