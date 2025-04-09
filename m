@@ -1,279 +1,199 @@
-Return-Path: <devicetree+bounces-164707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F746A8203D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:38:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C4EA82041
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76F171B803FE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:39:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F03223BDEE4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658F825D207;
-	Wed,  9 Apr 2025 08:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F7925D1ED;
+	Wed,  9 Apr 2025 08:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VdOCdPAx"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="m3mhxWCL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2049.outbound.protection.outlook.com [40.107.20.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960CA18B46E
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 08:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744187919; cv=none; b=Q/6NRpTCRjPNMUtrO+Xe0r4yrycfG7kTH/zR1QROcOdImh9/hife8wC7kOqPGwyszZcRMi0Nyj6YLzZ9oZZ+SP4DdNiXhtjti17Hi/nDJ/0hvZ/vVW8+IVpNBrssNeZ1KFBd2MGK7NbaqORg5FpqITsWhkEugPktknesNZUs91s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744187919; c=relaxed/simple;
-	bh=4d7r93CFGXUsgYwAKRgAOyiDxMOHLB27bOOTVYjroZM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UrPIjd/JT9M9DmovVVaEEnds/0+Qw+wz0Vp7wU1F4xrTIAs5uiJI21qW2Nb3hB4cpdZcj9/eHikdr4x7Z6Ia+RqSPtMrlKJR2zlyLF/jTKRc7wbDR+wVZX6rB0h5jz4/wE6KTJxJlrooH914HF44q+Rd4bCwPMBDQchvs3UNei0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VdOCdPAx; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2264aefc45dso82897895ad.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 01:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744187916; x=1744792716; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PMDTcY+QSM6bxbtbqX/RPBUWVkAI5eV/38uSVpSo7Us=;
-        b=VdOCdPAxcmFMusPSeEOAfYyoj6ZVysyJQSWxQ4cx+LsvNWbwQBfl95wtU+x3iGY9LK
-         dMGi8I/cTL0co+PNthNBPCCZX81K9OSy8JtHbmawnmVq2TtKPYhXCRa3cPY3yHN34VIg
-         x9qDPqGFlpoRcQEHHQTs47sT20k7S0el/W1d/wSBb1ZdFl190Apz/8WaD8ep+GSBY8VO
-         z5Vtf5Ww3Xf8PPovlkucbJz3Uom1JkHvkTpxaBfP4IxSpV7aKsztA8BoyfdJUA3ixeAe
-         w61C8fbBgsh6uelYcuBtfTaaucX2p2m5xy53cQzorw26akh16eunEaV6xjemmFcp1Toi
-         yZ1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744187916; x=1744792716;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PMDTcY+QSM6bxbtbqX/RPBUWVkAI5eV/38uSVpSo7Us=;
-        b=ZVDxhxBnTH1iJuC5wBcg4aNZoIyv1g42gIkZSpq8n8np8Xuiv3DTCrfJMECGW6MM6m
-         2YiwavpiFGNUOQLkW4Tw9RFfZORj9aDWL/+0MFZ8zN59jhroDClzDxo/vJIJm47A8CNP
-         5xBOm6PBHNsivnTtXWHBb9ClNS23w3ZR2qJNhoVEp0xWHnNTvfmxtP0Cr39RkicSvaNm
-         V/KN38R4KfLzGceVHShxn7RBP8boeGSMeX/xzf6GiQjmPNaDD+GPGllNyoaB95PJBWup
-         0AsKHpuygl7XVyvJqC4mp+ydxIB48K3Yo3Ob5yHidCK6Pb2eGcPV2gAhl8G1UNL0ZsK4
-         +JQg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZOI0StRj01D8phYC4+b40UNkwg/cU7hiIhRA29DLSV98NMKr/staHxiwak+JqPNvcguiILch+5TNO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL/XclgrQ7O2oH4Eb6AQr46PFOsF+X2vkBlGzluAi8674effwH
-	5SnYRuJlhtfVBPQ/nV3i/naS2Tbt433rd8Q/TOCdWX+bG5RuCLp8j6FC787/iwU=
-X-Gm-Gg: ASbGncsGenEP9BiKhnWMmfkH+GQREcbJF47mMevfaiuaRBqZqVaBXIubOfdoN3OrH4N
-	juljTJDEoYkGLHTO8AyBDSYQ48UWX7oZynulrss5pMmbI5VQler115d7S5HB/xTWkZQ205pEJkQ
-	EE1oQmRlElxamkCFV7rmBdfGHZUaxXxr6FlALS0nwt3wqJF6EPxwjo54XnVQZgQgKXRPepUBAym
-	RcCeFf51ewU1PaTqyEyq/gRXrac/a+O+Qti2qpdvrZD74eDEf4eXK55iv+X/OFeavrMYUG6lfx+
-	JcoU+dYSKrgrnUR0Ekvs6FSntyetKdNOAqF56wLEwE5dJp8bRZZcrglToFrz2nJ1iHP6UYWX4D8
-	z
-X-Google-Smtp-Source: AGHT+IEnaBnd+8JGTNcFE07Pg5u5VCMhvHVH3KD5tf25RaR94ALuGFeb4d5WTs/AGgKbGWudmVdJQg==
-X-Received: by 2002:a17:903:2310:b0:227:e709:f71 with SMTP id d9443c01a7336-22ac29b41d7mr36476575ad.29.1744187915879;
-        Wed, 09 Apr 2025 01:38:35 -0700 (PDT)
-Received: from dev-linux (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c9db26sm6261735ad.140.2025.04.09.01.38.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 01:38:35 -0700 (PDT)
-Date: Wed, 9 Apr 2025 01:38:32 -0700
-From: Sukrut Bellary <sbellary@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Andreas Kemnade <andreas@kemnade.info>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: clock: ti: Convert fixed-factor-clock
- to yaml
-Message-ID: <Z/YyCGHrd3AEjNRb@dev-linux>
-References: <20250404014500.2789830-1-sbellary@baylibre.com>
- <20250404014500.2789830-4-sbellary@baylibre.com>
- <20250404194046.GA167370-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE16125A2CD;
+	Wed,  9 Apr 2025 08:39:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744187970; cv=fail; b=sCcQgQaSMwP9NyjAy1OBCB/f/qYRb/4tKvy8d4YxTWywuAM56v5x65XmJUJbFXW3n1dJQIoxYbyM2c+3+pCavfwX22p1oUbWYi2A4xWoIKn3NUvAWmVWsRodEU5LxADhU8Xjij4GhzNWJuES946gcd6Lk/HaUpa2C/0hlyOU5Zc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744187970; c=relaxed/simple;
+	bh=Y0Il9etqFRK51ywGojblSGXb9BBnqIEUtmVf8USM6OI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=RhIe4fn9EPWxf4LLld6P1AM60eAeL4qvolVAXyLiFytYvTg9xXxQyeNYjP7QC18l322fKvcCpvXmgIy6imCnsccZUqPUZWzkl89duI2No1n/stbcby+aBFYNfcTxq/RfTFa0EZrFKaaPE8vNeRU6DqGOCZtI2klTrTtpQKDsKRQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=m3mhxWCL; arc=fail smtp.client-ip=40.107.20.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VQGInyitz0Fr5ezoC9p4oNukoos1tMFyr3DyDwaCwJqLwsRejf2K4eJWYi3wGIHkEJKP3LEMDcxsNmIp/pa8e+M5B2qaMRmoD/vB2nyVyzBAbgbJKMdWjffp2fEzwUmLNuVbvADzQib8pLl3g7q76xQtaivq/hJ/FO26QGdAIpvIrO5QZRoqPdauob6tGvh0pdI4FsFrEBJHFrNix0ZCNQCRgID/lWX1fSyXgmksxpyAtKakovrgWGTR00ithLInDMRj31wk/q+P0TejcYHeck4FPG+rGfM7FGF+wSaPXKNAepwHX6+MQRIfvx3cX9PpfztaqXVE5bZ0ejFeEo0BEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VuFAMYmZhcakjhZ3tgPLwJUFSo88RL9rV2Wt/jZGbIw=;
+ b=Ut99fzSkFK06AN/m1h0ZLFMhe5TENy8mdBosVQwIk40EB3foTBYeutA6uO+EorhDRTU5szJvXD1uVcfVAruXVM1/HhduBnBBcetfi9K9es0J6aCwr3NmBQ21Vp24wVCl90qVPAZJnsyEfkUC6jSx30BDz+S08JkDiFlhE7BUfTXRt8R4nE5anpkVpS1OM7oJ0AJG4tZ0MMzlUknWpOuEeKd3UjemPrgElWenkSCt1RAxhCskLQ0KigN3P/4EXrPAdAUCNqZxA6aU2p0xWzCDdBP3qLCKRb2rHthpszWUcyz73uYKEZiIztyJyFBY2VNshk9K33PhwAbr80NNZ+s0aA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=leica-geosystems.com; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VuFAMYmZhcakjhZ3tgPLwJUFSo88RL9rV2Wt/jZGbIw=;
+ b=m3mhxWCLcxUmxlILDJVl67imxEU/4EW7apL2Q7jfyquJFa3Jov3Bdzg8/1z2VQFss0cXx90nYKXZgphOefXc2OJMPs8JOVysGurVg/4hEwS4PO44spOd7II2DU9NPJ79x+NlsiZihGPMelFndK7qKEIk7yB1KiV81aQkfCU20gQ=
+Received: from AS9PR04CA0112.eurprd04.prod.outlook.com (2603:10a6:20b:531::13)
+ by VI0PR06MB9108.eurprd06.prod.outlook.com (2603:10a6:800:249::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.22; Wed, 9 Apr
+ 2025 08:39:24 +0000
+Received: from AMS1EPF00000045.eurprd04.prod.outlook.com
+ (2603:10a6:20b:531:cafe::4c) by AS9PR04CA0112.outlook.office365.com
+ (2603:10a6:20b:531::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.37 via Frontend Transport; Wed,
+ 9 Apr 2025 08:39:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ AMS1EPF00000045.mail.protection.outlook.com (10.167.16.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8632.13 via Frontend Transport; Wed, 9 Apr 2025 08:39:23 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Wed, 9 Apr 2025 10:39:23 +0200
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: amitkumar.karwar@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de
+Cc: linux-bluetooth@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	loic.poulain@linaro.org,
+	m.felsch@pengutronix.de,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH next v3 1/2] dt-bindings: net: bluetooth: nxp: add support for supply and reset
+Date: Wed,  9 Apr 2025 10:39:20 +0200
+Message-Id: <20250409083921.3701280-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250404194046.GA167370-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 09 Apr 2025 08:39:23.0431 (UTC) FILETIME=[E50FF370:01DBA92A]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000045:EE_|VI0PR06MB9108:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 5169883a-8963-4717-81ce-08dd774207c2
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Eymwtt0ES/7xnvricaXTWDx7r0c/cRFudDI1075Jq3PNMrkk7f6tNJ4hZLPz?=
+ =?us-ascii?Q?2BHLJzn6+rk6nWNmksGZRze6902GUqR+Wm5W8RVFe7eUqjlOKsxr5LO11Uo3?=
+ =?us-ascii?Q?svKwak/IEsdiyRLU6ftl2rI/B/rQIib6N4pwJ9A98steldOF7z8nkMQxBxpy?=
+ =?us-ascii?Q?et53nJA4R2FfWmb/0Ewz5pa5/Q3x5Td4jGIOdBnh9MtooHGBeMwy8gmoltH1?=
+ =?us-ascii?Q?pu0NzNfPnfWIQitPRZJgWleaAMtBT8hGYF/cHBrMCtceDJP3EbkOGj3cHeCT?=
+ =?us-ascii?Q?BJUbOAk08maz6BZBs0emJ+RHJxsNGzAp75nrDic+J8iYu7P8XXNF/vpSVDsq?=
+ =?us-ascii?Q?IvssXTn+oYGOGRLqelhIKeLX5Zsv1TdqX/jDdLsqAly6Fid/7oPavNCZqnGg?=
+ =?us-ascii?Q?T/pe2QroHfHw8uqX3AirvAbjXj0+utvMUSDJTiz1csVqo0zKHLyK9bXT10hn?=
+ =?us-ascii?Q?rLxn8tcFYEfni5GvF38HMcfZSzBHJsU7jb8HQX+ILlinW+7RblIKi6m1YqUd?=
+ =?us-ascii?Q?IVY9QQ68vLDK+s9yF68pF7YEI5ChiOK6nQjwRzj1ufaz9lldd38RWH9cC7l3?=
+ =?us-ascii?Q?diit2OoYhXSNDAtn97cbbvDM7bdL16pqfckVc9znujBUBFY/wSfn8DR+D4A3?=
+ =?us-ascii?Q?cNqvBEddcjHx9sNuGqB49XoJ7WzadXnPxcgYxi2p/PXoURnBbJIWPMVcNF/Z?=
+ =?us-ascii?Q?LjXEq+SzKvbi1ReeDHS28sWt+BTNAudO4MgirGaKDNJIWrcR0MpfnHbCJefH?=
+ =?us-ascii?Q?f2clEd1G7A31IqI9mDlwfaK+1xvntPXb4hwnuDDEpihwSCxxdIsQ0H3V/ics?=
+ =?us-ascii?Q?SzaXdSPwAeFm5mSllc+BHJ6zoOkV6IM0CYCP5eFSXVuUVwuu2R1jChi5mW9j?=
+ =?us-ascii?Q?e66s9pKO4H5GP9CCUOWLF36a7+y5J3zf2xcMWQlESjOwyeI1LITw0YME1ipR?=
+ =?us-ascii?Q?YNbu5Ei6sW/L/Gs52AVLEZzf3lnQvTGjq7pPfP5qBysjAuqOyHdOw8MSabXr?=
+ =?us-ascii?Q?0gV8w2dQHItuBT4FRihJHhVbDSkh0UXMxlS2jFIJWffeaNp//X4t5ibTnGF2?=
+ =?us-ascii?Q?hU3NsUsq3wGT/aZGovg5YZGBryosm9pfWsFQmtqHygrfpOIBYXyEH7TWYlwW?=
+ =?us-ascii?Q?RNGcFxwU7EccBMiFo/Ca1db4FX1lJdI9sbkqrvqOMFgwxt+uPlxIE++JYsGf?=
+ =?us-ascii?Q?UlRXXdO2Pi22t3O/fdc9XEK7QWkay86WpZ1A6p6cB9K0XH7mQ5Gs4Z553POi?=
+ =?us-ascii?Q?54Nql3quZcWc363+xbIfA4EreldnGyE+TaG/zejRjqTnVK9qdksvPduTpsYu?=
+ =?us-ascii?Q?i1hoWuKW4Xyfw+27+0vGaYBJyHUYKrwFXLGbh8ADEQoZvy3kMmmmJzwhCsi3?=
+ =?us-ascii?Q?VAguV9fxWOd0BbII2Tb8tDSMBYAnYX9QmmSp+8jKbC6x8s1FWtcz+5FPl1Jd?=
+ =?us-ascii?Q?VIe5IsktRKZ0ampH7CCQHgJfMTseNTm9MEuKJYOZveiW2OhMQIaW3QcG/2dV?=
+ =?us-ascii?Q?Bdq2KCtSqdxYTnE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 08:39:23.7275
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5169883a-8963-4717-81ce-08dd774207c2
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000045.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR06MB9108
 
-On Fri, Apr 04, 2025 at 02:40:46PM -0500, Rob Herring wrote:
-> On Thu, Apr 03, 2025 at 06:44:59PM -0700, Sukrut Bellary wrote:
-> > Convert TI fixed-factor-clock binding to yaml.
-> > 
-> > This uses the ti,autoidle.yaml for clock autoidle support.
-> > Clean up the example to meet the current standards.
-> > 
-> > Add the creator of the original binding as a maintainer.
-> > 
-> > Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
-> > ---
-> >  .../bindings/clock/ti/fixed-factor-clock.txt  | 42 ----------
-> >  .../clock/ti/ti,fixed-factor-clock.yaml       | 77 +++++++++++++++++++
-> >  2 files changed, 77 insertions(+), 42 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
-> >  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
-> > deleted file mode 100644
-> > index dc69477b6e98..000000000000
-> > --- a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
-> > +++ /dev/null
-> > @@ -1,42 +0,0 @@
-> > -Binding for TI fixed factor rate clock sources.
-> > -
-> > -This binding uses the common clock binding[1], and also uses the autoidle
-> > -support from TI autoidle clock [2].
-> > -
-> > -[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > -[2] Documentation/devicetree/bindings/clock/ti/autoidle.txt
-> > -
-> > -Required properties:
-> > -- compatible : shall be "ti,fixed-factor-clock".
-> > -- #clock-cells : from common clock binding; shall be set to 0.
-> > -- ti,clock-div: fixed divider.
-> > -- ti,clock-mult: fixed multiplier.
-> > -- clocks: parent clock.
-> > -
-> > -Optional properties:
-> > -- clock-output-names : from common clock binding.
-> > -- ti,autoidle-shift: bit shift of the autoidle enable bit for the clock,
-> > -  see [2]
-> > -- reg: offset for the autoidle register of this clock, see [2]
-> > -- ti,invert-autoidle-bit: autoidle is enabled by setting the bit to 0, see [2]
-> > -- ti,set-rate-parent: clk_set_rate is propagated to parent
-> > -
-> > -Example:
-> > -	clock {
-> > -		compatible = "ti,fixed-factor-clock";
-> > -		clocks = <&parentclk>;
-> > -		#clock-cells = <0>;
-> > -		ti,clock-div = <2>;
-> > -		ti,clock-mult = <1>;
-> > -	};
-> > -
-> > -	dpll_usb_clkdcoldo_ck: dpll_usb_clkdcoldo_ck {
-> > -		#clock-cells = <0>;
-> > -		compatible = "ti,fixed-factor-clock";
-> > -		clocks = <&dpll_usb_ck>;
-> > -		ti,clock-div = <1>;
-> > -		ti,autoidle-shift = <8>;
-> > -		reg = <0x01b4>;
-> > -		ti,clock-mult = <1>;
-> > -		ti,invert-autoidle-bit;
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
-> > new file mode 100644
-> > index 000000000000..f597aedbad05
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/ti/ti,fixed-factor-clock.yaml
-> > @@ -0,0 +1,77 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ti/ti,fixed-factor-clock.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI fixed factor rate clock sources
-> > +
-> > +maintainers:
-> > +  - Tero Kristo <kristo@kernel.org>
-> > +  - Sukrut Bellary <sbellary@baylibre.com>
-> > +
-> > +description: |
-> 
-> Don't need '|'.
-> 
-> > +  This consists of a divider and a multiplier used to generate
-> > +  a fixed rate clock. This also uses the autoidle support from
-> > +  TI autoidle clock.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/clock/ti/ti,autoidle.yaml#
-> 
-> You can drop '/schemas/clock/ti/'
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,fixed-factor-clock
-> > +
-> > +  "#clock-cells":
-> > +    const: 0
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  ti,clock-div:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Fixed divider
-> 
-> Constraints?
-> 
-> > +
-> > +  ti,clock-mult:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Fixed multiplier
-> 
-> Constraints?
-> 
-> > +
-> > +  clocks:
-> 
->        maxItems: 1
-> 
-> > +    description:
-> > +      Link to phandle of parent clock.
-> 
-> Drop the description
-> 
-> > +
-> > +  clock-output-names:
-> 
->        maxItems: 1
-> 
-> > +    description:
-> > +      From common clock binding
-> 
-> Drop
+Add support for chip power supply and chip reset/powerdown.
 
-Thanks for the review.
-I will fix all of the above issues.
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v3:
+- rebase on linux-next tag next-20250409
+v2:
+- rebase on linux-next tag next-20250227
+- add acked-by
+---
+ .../bindings/net/bluetooth/nxp,88w8987-bt.yaml         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-> > +
-> > +  ti,set-rate-parent:
-> > +    description:
-> > +      Propagate to parent clock
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - clocks
-> > +  - "#clock-cells"
-> > +  - ti,clock-mult
-> > +  - ti,clock-div
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    bus{
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        clock@1b4 {
-> > +            compatible = "ti,fixed-factor-clock";
-> > +            reg = <0x1b4>;
-> > +            clocks = <&dpll_usb_ck>;
-> > +            #clock-cells = <0>;
-> > +            ti,clock-mult = <1>;
-> > +            ti,clock-div = <1>;
-> > +            ti,autoidle-shift = <8>;
-> > +            ti,invert-autoidle-bit;
-> > +        };
-> > +    };
-> > -- 
-> > 2.34.1
-> > 
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+index d02e9dd847ef..7b72b2aa6e8d 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+@@ -53,6 +53,14 @@ properties:
+     description:
+       The GPIO number of the NXP chipset used for BT_WAKE_OUT.
+ 
++  vcc-supply:
++    description:
++      phandle of the regulator that provides the supply voltage.
++
++  reset-gpios:
++    description:
++      Chip powerdown/reset signal (PDn).
++
+ required:
+   - compatible
+ 
+@@ -69,6 +77,8 @@ examples:
+             device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+             nxp,wakein-pin = /bits/ 8 <18>;
+             nxp,wakeout-pin = /bits/ 8 <19>;
++            vcc-supply = <&nxp_iw612_supply>;
++            reset-gpios = <&gpioctrl 2 GPIO_ACTIVE_LOW>;
+             local-bd-address = [66 55 44 33 22 11];
+         };
+     };
+
+base-commit: 46086739de22d72319e37c37a134d32db52e1c5c
+prerequisite-patch-id: 0000000000000000000000000000000000000000
+-- 
+2.43.0
+
 
