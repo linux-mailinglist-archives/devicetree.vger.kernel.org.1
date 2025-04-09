@@ -1,158 +1,123 @@
-Return-Path: <devicetree+bounces-164899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1137A82BF9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:11:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B1BA82BCA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 800328C2D7A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:59:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48E7B1B66580
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E53225EFBF;
-	Wed,  9 Apr 2025 15:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18806267B65;
+	Wed,  9 Apr 2025 15:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hSurYbEE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="az88w5tV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BCF1C6FFD;
-	Wed,  9 Apr 2025 15:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028CB4C9D;
+	Wed,  9 Apr 2025 15:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744214281; cv=none; b=UtHu5D8qctHn5kG1+vh/0+vyV3GC2DClsPxVjV5uBK1MW7j02JsP47In0Yfk2PuGZpGPYWv/bNwzAaMXmC3ZMcPnuoWau1icOOqM5zD75+x2rnM+JwbMibtZVXjY0Oh3xWTJpKvlZAFp8d0ng5edT643kKaAfKF5CkU05pU51J8=
+	t=1744214177; cv=none; b=CrKTotFEU/ZIEJ5L81FhIh8osGeb6Fse9THOiZcPniDKwO7J5xDjPT5Iq4XfMpuzsoTCEHr+RY/xOIWRW7ZnKz2ciT8BoUdx5T0gBmut3qlUQhZZbmwhkvXuuoi0EOX65wjZAWBRHQBcZVzidDpedDFcy3XSPQATDK4c8o2K6uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744214281; c=relaxed/simple;
-	bh=LHDRTqB/4aFtHHTphM5iyORZ3GnZAyBxGXVbnQv0x7o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LYx8qBGotABFGpM8mt/XDTp7EB4FSABItiiovmRZjYte6UdsUlu2CYSa4cG/EO8CH/QwpObjZ3VrvfDI2c1GH3y90Tge8uapYvp27WH0pkh6bJZeWNrbMl3Zrwi2EqPZ/sdRrZa460xmZn9z5wRjExrmbqoo5/vRDCBxlhj701E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hSurYbEE; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539D8iiA003194;
-	Wed, 9 Apr 2025 17:57:45 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	ciBgB/a2M9sVi4sdzHlbrYxfyvZ/g7Jwnk3UWviHnV8=; b=hSurYbEEBJuu1CAq
-	stGgu8szSgpCQ2UKDGHSmM8CBXilyyF91vAlwc9PWSkxz+i/QNvNa61zMWSw5aIZ
-	w9516O7NcptcMcNiLdRt/D8/qt6aGTDY1qxFBswF9XC737zJho7f8EkTMcyEj5bD
-	K/tPBqHHpsG8PMc5cyLUbVCwft7pK499XNFuXUf2+StAyuCZrDTtA89kxBjBldw7
-	sRzFUBxd1F2PzPj6cg+FT4Bj3Yj0u6f7IHIRcXE2A4mLpTx92Myygsh2+JOJPgjb
-	FnKc1ZQYinD4oibRZ8f+iXPZqUl85QOnEa3K4+lw9zijhxUaFUEAC/GNS/QkThRs
-	9jUOFw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45tw5gbyth-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 17:57:44 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DD0FB40045;
-	Wed,  9 Apr 2025 17:56:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 378189BAC1C;
-	Wed,  9 Apr 2025 17:54:35 +0200 (CEST)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 9 Apr
- 2025 17:54:34 +0200
-Message-ID: <9c9172b8-508c-4855-9299-aab72ac2fae6@foss.st.com>
-Date: Wed, 9 Apr 2025 17:54:33 +0200
+	s=arc-20240116; t=1744214177; c=relaxed/simple;
+	bh=Zs0jaTexTm2u6cUXt75+V1sMJtA/LRlBeeMT1No2U7o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e0BT3W9fY6KldHYqHdISh9FK7cAxgSCcRPQd5xOQPn2CDcmfnY6lJ6O3cAJ3pRVQUKk8IA5OnSTcRmb7sMR3QY+QYoNtlAc9cjfjgbBqpuBB7/s+pJR/JhCfn0nrHWKiCtej3D69iA5ztg0DehNqJHVCljB8vTj5quKfH2SfKvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=az88w5tV; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744214175; x=1775750175;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Zs0jaTexTm2u6cUXt75+V1sMJtA/LRlBeeMT1No2U7o=;
+  b=az88w5tVUbHieg1JukNOmRmK77rwzjl3kSHiWWLGuskPrwc9mC5nqI19
+   q7BxJBdIOg8YlfyoCgudg3UlEsnaGDLg4/9iAjB/5NDcocHzsModV6/U2
+   r+JBuH+bBwaiBI+VYHhXGfiHVqOOt0k67/oqgRmzgsTJYwI8XRdNZTkHT
+   eCWjarvwMU/wk9Ces5oVuPQe1ejUUj7ksOQzxt0iujqSLWV3RiZ1XPnTe
+   zolMYt0tc1JjaN6j7+G/25Z9ccItisnjMWKsse8TrS+ds2HBSIZJAoW7m
+   xwUqEHQHHNUcjDjT3TDwEo3+XzAlkq33HSRPc1MG53P7ePjbBPUw3R21R
+   Q==;
+X-CSE-ConnectionGUID: O345ttWnTT+2GpEc1Y2zUg==
+X-CSE-MsgGUID: 5RMYws5vRAmsLgx2ML88Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="44841472"
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
+   d="scan'208";a="44841472"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:56:14 -0700
+X-CSE-ConnectionGUID: VvEk0XIxRtePac4orJ/hLQ==
+X-CSE-MsgGUID: dLuw43uiR5SApZ5FV+Y8cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
+   d="scan'208";a="159595494"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:56:09 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1u2XmY-0000000Amkj-3Ozw;
+	Wed, 09 Apr 2025 18:56:06 +0300
+Date: Wed, 9 Apr 2025 18:56:06 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+Message-ID: <Z_aYlrjWE6-fdltT@smile.fi.intel.com>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+ <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
+ <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/7] Add STM32MP25 SPI NOR support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <christophe.kerello@foss.st.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com>
- <20250408-opal-pillbug-of-acumen-0fbb68@shite>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250408-opal-pillbug-of-acumen-0fbb68@shite>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-
-
-On 4/8/25 08:38, Krzysztof Kozlowski wrote:
-> On Mon, Apr 07, 2025 at 03:27:31PM GMT, Patrice Chotard wrote:
->> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
->> ---
->> Patrice Chotard (7):
->>       MAINTAINERS: add entry for STM32 OCTO MEMORY MANAGER driver
->>       dt-bindings: memory-controllers: Add STM32 Octo Memory Manager controller
->>       memory: Add STM32 Octo Memory Manager driver
->>       arm64: dts: st: Add OMM node on stm32mp251
->>       arm64: dts: st: Add ospi port1 pinctrl entries in stm32mp25-pinctrl.dtsi
->>       arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
->>       arm64: defconfig: Enable STM32 Octo Memory Manager and OcstoSPI driver
->>
->>  .../memory-controllers/st,stm32mp25-omm.yaml       | 226 ++++++++++
->>  MAINTAINERS                                        |   6 +
->>  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi      |  51 +++
->>  arch/arm64/boot/dts/st/stm32mp251.dtsi             |  54 +++
->>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  32 ++
->>  arch/arm64/configs/defconfig                       |   2 +
->>  drivers/memory/Kconfig                             |  17 +
->>  drivers/memory/Makefile                            |   1 +
->>  drivers/memory/stm32_omm.c                         | 474 +++++++++++++++++++++
->>  9 files changed, 863 insertions(+)
->> ---
->> base-commit: 88424abd55ab36c3565898a656589a0a25ecd92f
+On Wed, Apr 09, 2025 at 06:38:33PM +0300, Andy Shevchenko wrote:
+> On Wed, Apr 09, 2025 at 04:19:27PM +0100, Mark Brown wrote:
+> > On Wed, Apr 09, 2025 at 04:55:52PM +0200, Mathieu Dubois-Briand wrote:
+> > > BUG() never returns, so code after it is unreachable: remove it.
+> > 
+> > BUG() can be compiled out, CONFIG_BUG.
 > 
-> That's unknown commit.
-> 
-> b4 diff '20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com'
-> Using cached copy of the lookup
-> ---
-> Analyzing 81 messages in the thread
-> Preparing fake-am for v7: MAINTAINERS: add entry for STM32 OCTO MEMORY MANAGER driver
-> ERROR: Could not write fake-am tree
-> ---
-> Could not create fake-am range for lower series v7
-> 
-> I tried on latest next, on some March next, on latest mainline. It seems
-> you use some weird base here, so anyway I won't be able to apply it.
+> Yes, and it's still has unreachable() there. So, this change is correct.
+> See include/asm-generic/bug.h for the details of the implementation.
+> And yes, if we have an architecture that does not do this way, it has to
+> be fixed.
 
-It was based on next-20250317 plus the 2 ospi patches already merged 
-by Mark Brown, that's why.
+FWIW, I just have briefly checked the architectures and all of them include
+asm-generic/bug.h independently on the configuration option, some of them
+even define BUG() despite the configuration option (e.g. arc).
 
-> 
-> Please split the patchset per subsystem and send something based on
-> maintainer tree (so for me my for-next branch), mainline (which is the
-> same as for-next currently) or linux-next.... which would be the same as
-> my for-next branch currently.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-ok
 
-Thanks
-Patrice
-
-> 
-> Best regards,
-> Krzysztof
-> 
 
