@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-164622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF0CA81C97
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:06:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4086A81CA4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 573251B6477C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:06:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAB934A4EE2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7847B1D86F2;
-	Wed,  9 Apr 2025 06:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8D81C4609;
+	Wed,  9 Apr 2025 06:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H0KmZdRr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXTT4SHt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0741624CC;
-	Wed,  9 Apr 2025 06:06:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0165D3FFD;
+	Wed,  9 Apr 2025 06:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744178786; cv=none; b=k7wmRGGJvk5p2qv+fBcV/S4XcKzxUExHWH55yEjFDtVc1lRzvhop7stzrnx3tMo0bMzJ7/ZnsxztlBo5zgRy9pqzpvTqS5gbjFU6ku/GpUVNwa1Fz7zdgd8ekA51wAC/VC4F57pRKs/jajLhIKKrqX58np5dNnD7bQF0JHyK8MA=
+	t=1744178870; cv=none; b=SWU+NcCg6QZdlJAWoD+90u5/jo8LOglIodCcrLu7QQqV1nxU1WUokoeX1HuC9d1zoKmTzzdrJdHzdiPYiZfb6S0SkAvPJH0D5A5IayoRPLcYa/5oKI5uvPOIZUIEIcRrYuMJRdSD24E4nIj1abr9j3ZZQaLOTRB137q4zgJ1VFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744178786; c=relaxed/simple;
-	bh=SnDCC8NV1OGso4ndHc3gp5eGukpaV/c6TUmGj0lPGf0=;
+	s=arc-20240116; t=1744178870; c=relaxed/simple;
+	bh=jznKGqM7OIKIRDaNKhp41YBmLqZQSYOXFvzxAVG7FO0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rPk1I1Qw7xEyUFEsh6UezVALFwYeLsM6vTh01bOhhTvFPtmB/k6gaAZRFdKfSTxng1pvaTzL6cK/gNlsxtzvbB1GQnnuITLpZP5i3f7/iw9XS4SMZ07kBHZ+TgjSu/MZ2f69DaCjEcjjHYkjFMUZlN/xOgIHzspGDCmTnZXF7iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H0KmZdRr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B60C4CEE3;
-	Wed,  9 Apr 2025 06:06:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KJRnNm9M23vuTYhq7+QkLDXdz14zG3UoKvxqZOY9rtZ6sxM3Y75IWFN8a1fsDN1EaOYjXnZdn4k0UQZaDZi/a/efPsDiiOcoStnDYpuZtVCwgDwZwDLaG7rvZmYKM4A1eAAWnQvfVnWMsZ+u0NaqlZZdTwmIpx5ElKz0/9SRbzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXTT4SHt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90F16C4CEE3;
+	Wed,  9 Apr 2025 06:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744178785;
-	bh=SnDCC8NV1OGso4ndHc3gp5eGukpaV/c6TUmGj0lPGf0=;
+	s=k20201202; t=1744178869;
+	bh=jznKGqM7OIKIRDaNKhp41YBmLqZQSYOXFvzxAVG7FO0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H0KmZdRrrujyUsoW4srAejUT8G0RRNDLvUmqiSTHr0LohsMOJafW/FOivb36r1aNF
-	 TVvMqDkun9sMLALLdP1igeVyAujh0KU9NxgKtwiJfmGJRBE2jrFMfQS2alcqB0AQ+W
-	 A7FmGezoFnyQeJVNKgr+e6pG7vgntg7/0oOKJG4nNlnCo3nNj3j/1E3m4KeyyK3qUz
-	 3JkZ2pjJtKSb0mmnyWAvcyu5QlVmc7vdRww454WdkP7HoVckzkZpEb84xY6DbvzRUB
-	 tIqpgl/k4fqrtjqXWTTNb/3OHxsIqj+yIhzoSVOvV5ZDnmGwQrXZlkWqGnue7V/LUn
-	 7voHVKiq+s2Qg==
-Message-ID: <edc3cc2b-20a9-4175-9434-184485ea345f@kernel.org>
-Date: Wed, 9 Apr 2025 08:06:21 +0200
+	b=mXTT4SHt7doPyaQJmaWnbL1EpL2VKZeGI/rDqQRXcxrjdN+WChlQLY0HEFjJxdnVw
+	 40YaB15751jFS94DbV7e18v+B9E3Y1ojwrh2WM3E1ypcHRz7CJQfRhc9iOiheNQ4j4
+	 jc+tPwIC0MujHZa8T4/+ppyRz0u4pjbbnwLzp3opNLrkp1jRBeiL9hLPBgesYm0Uqa
+	 6GyCcIcde88s4aAsltLQbVSb8DTMz4TG4X0FWyDPSC/COqA79zPRVtpv/W/v+Cq89T
+	 6rNFkDLT/0PNUrw/WFovUYm/AsUGC4pXe7hkxubnNhzNd8cz+FgbRBJSCbR+kc8i6T
+	 sqPDqj0PbTFEQ==
+Message-ID: <04d90c1b-1b73-4b6a-b7fc-351754fbb16b@kernel.org>
+Date: Wed, 9 Apr 2025 08:07:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add binding for PS5511 hub
- controller
-To: Pin-yen Lin <treapking@chromium.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
- linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250328082950.1473406-1-treapking@chromium.org>
- <20250331-loud-micro-booby-e0fd4a@krzk-bin>
- <CAEXTbpf9crpkTGctoWseoG1fz=jvUbiTi6e2adZy0JJu78dTgg@mail.gmail.com>
+Subject: Re: [PATCH v2 03/10] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robdclark@gmail.com,
+ dmitry.baryshkov@linaro.org, sean@poorly.run, marijn.suijten@somainline.org,
+ andersson@kernel.org, robh@kernel.org, robh+dt@kernel.org,
+ krzk+dt@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+ quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+ quic_jesszhan@quicinc.com
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-4-quic_amakhija@quicinc.com>
+ <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
+ <654d409e-2325-46e7-a064-ed9e64277e69@quicinc.com>
+ <a168a473-c363-4041-8e3e-84fa44e92b10@kernel.org>
+ <zpmr6cpiixyu2sj7r7oqpqsge6dcqw6xszldf7ugznmcrxqsme@efiwnggcn5qx>
+ <a654d62e-502a-4a47-96c4-a44c14860e54@kernel.org>
+ <767e11cd-e338-4e00-a8e7-2e15f3da84b4@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,29 +118,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAEXTbpf9crpkTGctoWseoG1fz=jvUbiTi6e2adZy0JJu78dTgg@mail.gmail.com>
+In-Reply-To: <767e11cd-e338-4e00-a8e7-2e15f3da84b4@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/04/2025 06:30, Pin-yen Lin wrote:
->>> +  peer-hub:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      phandle to the peer hub on the controller.
->>> +
->>> +  ports:
->>> +    $ref: /schemas/graph.yaml#/properties/ports
+On 08/04/2025 22:26, Dmitry Baryshkov wrote:
+>>>>>>> +          - const: qcom,sa8775p-dsi-ctrl
+>>>>>>> +          - const: qcom,mdss-dsi-ctrl
+>>>>>>
+>>>>>> Drop fallback
+>>>>>>
+>>>>>   
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> I couldn't understand the meaning of "Drop fallback", could please elaborate it ?
+>>>> Look at SM8750 example on the lists. Keep only front compatible.
+>>>
+>>> Why?
 >>
->> I don't understand why do you need OF graph here. Children are already
->> defined in patternProperties as usb-devices.
+>> To make things simpler and shorter.
 > 
-> I would like to describe the connection between the hub and the USB
-> connectors, which is similar to commit c44d9dab31d6a9 ("dt-bindings:
-> usb: Add downstream facing ports to realtek binding").
-> 
-> I'm aware that Rob expects a usb-hub.yaml binding in [1]. Should I do that now?
-Yes, please, two devices using common pattern is already enough to
-create common schema.
+> I'd prefer consistency. Previous platforms use qcom,mdss-dsi-ctrl.
+Then you should have objected month(s) ago when Rob asked for dropping
+fallback and since then we consistently drop it.
 
 Best regards,
 Krzysztof
