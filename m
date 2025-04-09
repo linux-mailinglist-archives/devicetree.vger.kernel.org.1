@@ -1,832 +1,1030 @@
-Return-Path: <devicetree+bounces-164824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85676A827DB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:29:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABAC6A827E0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D908C0BB8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:28:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 314861B84780
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C01625E836;
-	Wed,  9 Apr 2025 14:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC1C2AE8C;
+	Wed,  9 Apr 2025 14:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="BUOI5u4N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dOhA0+2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C06A47;
-	Wed,  9 Apr 2025 14:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D861265CB5
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 14:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744208947; cv=none; b=dECQ1bI+2ilG6M64CcDsExLAYqqT5m5LkW9nLfkvdOsZnY+ngmMGdCu9aGJzGNBrmQOMqif/t3l+uVVxSw+EpMqNurGUx/xQpCwVcqZLyqeOCd7+yzRUK+OJQiaN9GE29AwpFsm05cJ95BvnYuxmx9mFdlrltbNWA6Hsd+rEMtc=
+	t=1744209009; cv=none; b=YaAUnDJr/NQwCpSmcWcK4J1Bt2ETUD+XzaS9UdWxoc0eventq9Y0EWQTHUegFCYaNJleVBfSGXIeN8Nwh8CisxBIDJCbh7CmR9i2/f8xq0ap333ZX3qrgyIGB4sDz6sm0XDKgdvQmZdkpMvL2cBkQxrrQWonIwDiJ/936if8+o0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744208947; c=relaxed/simple;
-	bh=DY5hr/N79Zj8jPciVFTpI3C4aMEkV1Ymqa3zJVQ4klA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Hq3cPk8PqVj9ipkrJEaif7KSiMVBEL+WnmmkZN1JU98YgJMJFsKJ3FeQNYpwl3HsHyN7ZgUmGhtBK+dfOKXVkNJhdEDYDNBXtlmaeyNv65pzHeiHmjYTBr1hvu9JuDwSNXc6tChqe1T40Lp1WPkNjeI9VHs/bRVWkCc6M705EsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=BUOI5u4N; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7DEDD102EB98D;
-	Wed,  9 Apr 2025 16:28:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1744208941; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=LsvOV40rHLHEO52M3MfyuhChr2LG3bnILrU9gU+hjVA=;
-	b=BUOI5u4Nz4QAKa223h8Jo/UxWNb/XU4MK3bBv4zNnM1ZsW16drAvqFRxZZXxVIw3k2LGku
-	jdhi6ipcYTDKmLwcDCBEEEE/6F7jywUB3ghtGFrw6Y0SB7izpIWgSnprVlD9anRVcoiGvW
-	Xd8KqfVpmiQgNg0ScUk99aiEIMcGwIkJBBoyBToO/wgnBjrIb/vbYBzUXLYVodWVohp2e9
-	Aa/yXU8+5Pan4ZLYcJsi7X9V1h2/0qL3yv7KgZ+pTd2KfkEX5kjslUIg0qz+/tae+fJQfn
-	BjW9F1f9KWA3ohtSlfnn1+3D3PwSSuDA/zePSt0t4LwuI2nYOvflDGr90vuMnA==
-Date: Wed, 9 Apr 2025 16:28:54 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Simon Horman <horms@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>
-Subject: Re: [net-next v4 4/5] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250409162854.069abe88@wsk>
-In-Reply-To: <20250408151447.GX395307@horms.kernel.org>
-References: <20250407145157.3626463-1-lukma@denx.de>
-	<20250407145157.3626463-5-lukma@denx.de>
-	<20250408151447.GX395307@horms.kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1744209009; c=relaxed/simple;
+	bh=npvT8j+Cs70iH2DxnARKFvJlnZdjWmfYrmcQAPjcgmc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GPp1fl9Eld6bqVfUK+Fq5GNWsxrggrtFa39v6c6lDD7AdHZWRnzTkbytR7MiiZkg/L23Kd1RoNvRX1HiLnMVG9EzHJhHebmBSpgIvsshensuW7QvWo+q3/X0CK+HkGGpcTmo3p+P0/c2sUsLr74KumugyIFfVvdXf+v06bxypFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dOhA0+2G; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cfba466b2so67795125e9.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 07:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744209004; x=1744813804; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GkQuOeVn2ONhN5CNwRv9/7F9pJsr6h7ntpJG/RM6z/s=;
+        b=dOhA0+2GJCN7x9F80L95SdYNvAe89zsta2S3pRTCAgVcBqkA8Ddnf5E9a3XY5aic5d
+         PJRP7/Jgaw8WH6RscfuYvqjq/bkAQwYnCizofryRGe04XQaADQ81BIWmp8hWKPUfno8o
+         o7UQBiF5NVRSxFR6iTVkswHXAQjzGmXHkIHtNocpNU1RL87xbENmV8kIt5HMFPHTo9Tk
+         44QSsXKpxJG3rgoCgKnEhnz40BiRwHXFFavUPbnlF1OtRRG0ttnOxNEmGNtOZjOgXDef
+         z0KmUDfovNQ08QZSTg6SSps5WVUWkuqSh8hMt6ynaOOMYwqZVwUafGEqOi6QHRDThfL4
+         b0Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744209004; x=1744813804;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GkQuOeVn2ONhN5CNwRv9/7F9pJsr6h7ntpJG/RM6z/s=;
+        b=BZEuM5lGEHwzLu/hplGxKEe1DQi9h522EclEVRp7C7+g+DDifPTqDVCxI6kQ6itrIL
+         hvfyv8zy5XUfnL01+7vX6viierkgoUrZ3LG7JEcEO5biUyfA3M9ztzTYYlFyBmALKeJU
+         2Z7gq2EQVubHbK9OqniIEFO2XxSGG/bKQoWxZFw59GiYNchot+cIIEy2gMEf7yg4V6TV
+         QUZdQp4f7tWfRvEJ7UnNgKW2Kojvdqr/E/PTHU6kLaj1B9TZ4pBDVSUHjgv9BXnlHU4L
+         Tg4dFMlys1HWD+M3mCMqmwOFblV78KO3cO3hGzfWGDrExyyGz3W2yHSSncCl9nSrbruB
+         INnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSxJnBxvdUgCTUfkWloHdZWLEn0JRKbGD+udSct8cFijjBI/Chu40UcHTyhAtZcT+pOj1+AMR/ekKJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbqG72/eWZpZfPEScJKdCvTCPOXNML8deKMZNTaL+rbw0w3iDE
+	UDapVld5w0Ay6lxJ3EDCDdSBQxCDo4ysgZvzdsxsIrXohEm7VP7/ZHzPkT9Ae4c=
+X-Gm-Gg: ASbGnctLK9nPE4oGDIkyK+lzuoCYV6m2esMyK5J6zkzT57fN5PA9UcWMLjKt1JIu0KH
+	Xjrh0BMbTpXMLyaku7Ap1vH3I4XcCtMBdRPvuLYfCdRMay1emdiELGKU2mH+aLPbD1RHTkPJ5V1
+	tSR0uCMA4RI7xhsdLtUixWtDzor4p66OeVjGF3kR8iPkd8DR8r2l8eksPHncLR86bZ4tCI+PqNO
+	utimWVG0RnvlKTMC76tS4O2OK8NdCXUwI7TFr63qh9Doz5DGXSO0N2Yh6CMTV3l4jdMdfIwrETJ
+	lHCFBKDp/xydWNJg6r8Mf7kid8BeVtt0/2as+8otS08xWQFnIiX0B6xWAhJNRvJPUgd33JUl6kc
+	1K+CdsQ==
+X-Google-Smtp-Source: AGHT+IEcqK0kNqp/Jqf2Mwb7lJryZqIEsydrSxZYZD4Leq8qbft0xXSYD2Z4wp+Wiot2TvYaL0oUQQ==
+X-Received: by 2002:a05:600c:138b:b0:43c:fb95:c752 with SMTP id 5b1f17b1804b1-43f1fdc3ae7mr29526015e9.3.1744209004191;
+        Wed, 09 Apr 2025 07:30:04 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f2066d109sm22086535e9.20.2025.04.09.07.29.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Apr 2025 07:30:03 -0700 (PDT)
+Message-ID: <801511ac-78db-476b-8f1d-a478b0b64bcb@linaro.org>
+Date: Wed, 9 Apr 2025 15:29:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/dNduXPY5UY6jbpqt=Tj7eFz";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/dNduXPY5UY6jbpqt=Tj7eFz
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Simon,
-
-> On Mon, Apr 07, 2025 at 04:51:56PM +0200, Lukasz Majewski wrote:
-> > This patch series provides support for More Than IP L2 switch
-> > embedded in the imx287 SoC.
-> >=20
-> > This is a two port switch (placed between uDMA[01] and MAC-NET[01]),
-> > which can be used for offloading the network traffic.
-> >=20
-> > It can be used interchangeably with current FEC driver - to be more
-> > specific: one can use either of it, depending on the requirements.
-> >=20
-> > The biggest difference is the usage of DMA - when FEC is used,
-> > separate DMAs are available for each ENET-MAC block.
-> > However, with switch enabled - only the DMA0 is used to
-> > send/receive data to/form switch (and then switch sends them to
-> > respecitive ports).
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de> =20
->=20
-> Hi Lukasz,
->=20
-> This is not a complete review, but I did spend a bit of time
-> looking over this and have provided some feedback on
-> things I noticed below.
->=20
-
-Thanks for your feedback.
-
-> ...
->=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/Kconfig
-> > b/drivers/net/ethernet/freescale/mtipsw/Kconfig new file mode 100644
-> > index 000000000000..450ff734a321
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/freescale/mtipsw/Kconfig
-> > @@ -0,0 +1,13 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +config FEC_MTIP_L2SW
-> > +	tristate "MoreThanIP L2 switch support to FEC driver"
-> > +	depends on OF
-> > +	depends on NET_SWITCHDEV
-> > +	depends on BRIDGE
-> > +	depends on ARCH_MXS || ARCH_MXC || COMPILE_TEST
-> > +	help
-> > +	  This enables support for the MoreThan IP L2 switch on
-> > i.MX
-> > +	  SoCs (e.g. iMX28, vf610). It offloads bridging to this
-> > IP block's
-> > +	  hardware and allows switch management with standard
-> > Linux tools.
-> > +	  This switch driver can be used interchangeable with the
-> > already
-> > +	  available FEC driver, depending on the use case's
-> > requirments. =20
->=20
-> nit: requirements
->=20
-> Flagged by checkpatch.pl --codespell
->=20
-
-Ok.
-
-> ...
->=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c =20
->=20
-> ...
->=20
-> > +static void mtip_enet_init(struct switch_enet_private *fep, int
-> > port) +{
-> > +	void __iomem *enet_addr =3D fep->enet_addr;
-> > +	u32 mii_speed, holdtime, tmp; =20
->=20
-> I think it would be best to avoid variable names like tmp which have
-> little meaning. Although still rather generic, perhaps reg would be
-> more appropriate. Or better still something relating to the name the
-> register, say rcr.
-
-Ok, I will use reg/rcr instead of tmp.
-
->=20
-> > +
-> > +	if (port =3D=3D 2)
-> > +		enet_addr +=3D MCF_ESW_ENET_PORT_OFFSET;
-> > +
-> > +	tmp =3D MCF_FEC_RCR_PROM | MCF_FEC_RCR_MII_MODE |
-> > +		MCF_FEC_RCR_MAX_FL(1522);
-> > +
-> > +	if (fep->phy_interface[port - 1]  =3D=3D
-> > PHY_INTERFACE_MODE_RMII)
-> > +		tmp |=3D MCF_FEC_RCR_RMII_MODE;
-> > +
-> > +	writel(tmp, enet_addr + MCF_FEC_RCR);
-> > +
-> > +	/* TCR */
-> > +	writel(MCF_FEC_TCR_FDEN, enet_addr + MCF_FEC_TCR);
-> > +
-> > +	/* ECR */
-> > +	writel(MCF_FEC_ECR_ETHER_EN, enet_addr + MCF_FEC_ECR);
-> > +
-> > +	/* Set MII speed to 2.5 MHz
-> > +	 */
-> > +	mii_speed =3D DIV_ROUND_UP(clk_get_rate(fep->clk_ipg),
-> > 5000000);
-> > +	mii_speed--;
-> > +
-> > +	/* The i.MX28 and i.MX6 types have another filed in the
-> > MSCR (aka
-> > +	 * MII_SPEED) register that defines the MDIO output hold
-> > time. Earlier
-> > +	 * versions are RAZ there, so just ignore the difference
-> > and write the
-> > +	 * register always.
-> > +	 * The minimal hold time according to IEE802.3 (clause 22)
-> > is 10 ns.
-> > +	 * HOLDTIME + 1 is the number of clk cycles the fec is
-> > holding the
-> > +	 * output.
-> > +	 * The HOLDTIME bitfield takes values between 0 and 7
-> > (inclusive).
-> > +	 * Given that ceil(clkrate / 5000000) <=3D 64, the
-> > calculation for
-> > +	 * holdtime cannot result in a value greater than 3.
-> > +	 */
-> > +	holdtime =3D DIV_ROUND_UP(clk_get_rate(fep->clk_ipg),
-> > 100000000) - 1; +
-> > +	fep->phy_speed =3D mii_speed << 1 | holdtime << 8;
-> > +
-> > +	writel(fep->phy_speed, enet_addr + MCF_FEC_MSCR);
-> > +}
-> > +
-> > +static int mtip_setup_mac(struct net_device *dev)
-> > +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	unsigned char *iap, tmpaddr[ETH_ALEN]; =20
->=20
-> Maybe mac_addr instead of tmpaddr.
-
-Ok.
-
->=20
-> > +
-> > +	/* Use MAC address from DTS */
-> > +	iap =3D &fep->mac[priv->portnum - 1][0];
-> > +
-> > +	/* Use MAC address set by bootloader */
-> > +	if (!is_valid_ether_addr(iap)) {
-> > +		*((unsigned long *)&tmpaddr[0]) =3D
-> > +			be32_to_cpu(readl(fep->enet_addr +
-> > MCF_FEC_PALR));
-> > +		*((unsigned short *)&tmpaddr[4]) =3D
-> > +			be16_to_cpu(readl(fep->enet_addr +
-> > +					  MCF_FEC_PAUR) >> 16); =20
->=20
-> * Above, and elsewhere in this patch unsigned long seems to be
->   used for 32 bit values. But unsigned long can be 64 bits wide.
->=20
-
-As fair as I know - from the outset - this driver had some implicit
-assumption to be used on 32 bit SoCs (imx28, vf610).
-
-As a result the unsigned long would be 32 bits.
-
-On the other hand - the documentation clearly says that registers in
-this IP block implementation are 32 bit wide.
-
->   I would suggest using u32, u16, and friends throughout this
->   patch where an integer has a specific number of bits.
->=20
-
-I think that values, which directly readl()/writel() values from the
-registers shall be u32. However, more generic code could use int/
-unsigned int though.
-
-> * readl returns a 32-bit value in host byte order.
->   But the above assumes it returns a big endian value.
->=20
->   This does not seem correct.
->=20
-
-Please consult similar implementation from fec_main.c:
-https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/net/ethernet/free=
-scale/fec_main.c#L2044
-
-I would use the same approach as in the above link.
-
-> * The point immediately above aside, the assignment of
->   host byte order values to the byte-array tmpaddr
->   seems to assume an endianness (little endian?).
->=20
->   It should work on either endian.
->=20
-
-I guess that implementation from above link is the correct one.
-
-> > +		iap =3D &tmpaddr[0];
-> > +	}
-> > +
-> > +	/* Use random MAC address */
-> > +	if (!is_valid_ether_addr(iap)) {
-> > +		eth_hw_addr_random(dev);
-> > +		dev_info(&fep->pdev->dev, "Using random MAC
-> > address: %pM\n",
-> > +			 dev->dev_addr);
-> > +		iap =3D (unsigned char *)dev->dev_addr;
-> > +	}
-> > +
-> > +	/* Adjust MAC if using macaddr (and increment if needed) */
-> > +	eth_hw_addr_gen(dev, iap, priv->portnum - 1);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/**
-> > + * crc8_calc - calculate CRC for MAC storage
-> > + *
-> > + * @pmacaddress: A 6-byte array with the MAC address. The first
-> > byte is
-> > + *               the first byte transmitted.
-> > + *
-> > + * Calculate Galois Field Arithmetic CRC for Polynom x^8+x^2+x+1.
-> > + * It omits the final shift in of 8 zeroes a "normal" CRC would do
-> > + * (getting the remainder).
-> > + *
-> > + *  Examples (hexadecimal values):<br>
-> > + *   10-11-12-13-14-15  =3D> CRC=3D0xc2
-> > + *   10-11-cc-dd-ee-00  =3D> CRC=3D0xe6
-> > + *
-> > + * Return: The 8-bit CRC in bits 7:0
-> > + */
-> > +static int crc8_calc(unsigned char *pmacaddress) =20
->=20
-> Can lib/crc8.c:crc8() be used here?
-
-This seems a bit problematic, as the above code is taken from the
-vendor driver.
-
-The documentation states - that the hash uses CRC-8 with following
-polynomial:
-
-x^8 + x^2 + x + 1 (0x07), which shall correspond to available in Linux:
-
-static unsigned char mac1[] =3D {0x10, 0x11, 0x12, 0x13, 0x14, 0x15};
-crc8_populate_msb(mtipl2sw_crc8_table, 0x07);
-crc8(mtipl2sw_crc8_table, mac1, sizeof(mac1), CRC8_INIT_VALUE);
-
-However, those results don't match (either with 0xFF and 0x00 as the
-initial value).
-
-I've also searched the Internet to compare different CRC
-implementations used in field:
-https://crccalc.com/?crc=3D0x10 0x11 0x12 0x13 0x14
-0x15&method=3DCRC-8&datatype=3Dhex&outtype=3Dhex
-
-they also doesn't match results from this code.
-
-Hence, the question - which implementation is right?
-
-Vendor developer could have known a bit more than we do, so I would
-prefer to keep this code as is - especially that switch internally may
-use this crc8 calculation to find proper "slot/index" in the atable.
-
->=20
-> > +{
-> > +	int byt; /* byte index */
-> > +	int bit; /* bit index */
-> > +	int crc =3D 0x12;
-> > +	int inval;
-> > +
-> > +	for (byt =3D 0; byt < 6; byt++) {
-> > +		inval =3D (((int)pmacaddress[byt]) & 0xff);
-> > +		/* shift bit 0 to bit 8 so all our bits
-> > +		 * travel through bit 8
-> > +		 * (simplifies below calc)
-> > +		 */
-> > +		inval <<=3D 8;
-> > +
-> > +		for (bit =3D 0; bit < 8; bit++) {
-> > +			/* next input bit comes into d7 after
-> > shift */
-> > +			crc |=3D inval & 0x100;
-> > +			if (crc & 0x01)
-> > +				/* before shift  */
-> > +				crc ^=3D 0x1c0;
-> > +
-> > +			crc >>=3D 1;
-> > +			inval >>=3D 1;
-> > +		}
-> > +	}
-> > +	/* upper bits are clean as we shifted in zeroes! */
-> > +	return crc;
-> > +}
-> > +
-> > +static void mtip_read_atable(struct switch_enet_private *fep, int
-> > index,
-> > +			     unsigned long *read_lo, unsigned long
-> > *read_hi) +{
-> > +	unsigned long atable_base =3D (unsigned long)fep->hwentry;
-> > +
-> > +	*read_lo =3D readl((const void *)atable_base + (index << 3));
-> > +	*read_hi =3D readl((const void *)atable_base + (index << 3)
-> > + 4); +} =20
->=20
-> It is unclear why hwentry, which is a pointer, is being cast to an
-> integer and then back to a pointer. I see pointer arithmetic, but
-> that can operate on pointers just as well as integers, without making
-> assumptions about how wide pointers are with respect to longs.
->=20
-> And in any case, can't the types be used to directly access the
-> offsets needed like this?
->=20
-> 	atable =3D fep->hwentry.mtip_table64b_entry;
->=20
-> 	*read_lo =3D readl(&atable[index].lo);
-> 	*read_hi =3D readl(&atable[index].hi);
->=20
-
-The code as is seems to be OK.
-
-The (atable) memory structure is as follows:
-
-1. You can store 2048 MAC addresses (2x32 bit each).
-
-2. Memory from point 1 is addressed as follows:
-	2.1 -> from MAC address the CRC8 is calculated (0x00 - 0xFF).
-	This is the 'index' in the original code.
-	2.2 -> as it may happen that for two different MAC address the
-	same CRC8 is calculated (i.e. 'index' is the same), each
-	'index' can store 8 entries for MAC addresses (and it is
-	searched in a linear way if needed).
-
-IMHO, the index above shall be multiplied by 8.
-
-> Also, and perhaps more importantly, readl expects to be passed
-> a pointer to __iomem. But the appropriate annotations seem
-> to be missing (forcing them with a cast is not advisable here IMHO).
->=20
-
-I think that the code below:
-unsigned long atable_base =3D (unsigned long)fep->hwentry;
-
-could be replaced with
-void __iomem *atable_base =3D fep->hwentry;
-
-and the (index << 3) with (index * ATABLE_ENTRY_PER_SLOT)
-
-> Please do run sparse over your patches to iron out __iomem
-> (and endian) issues.
->=20
-
-Ok, I will run the make C=3D1 when compiling.
-
-> > +
-> > +static void mtip_write_atable(struct switch_enet_private *fep, int
-> > index,
-> > +			      unsigned long write_lo, unsigned
-> > long write_hi) +{
-> > +	unsigned long atable_base =3D (unsigned long)fep->hwentry;
-> > +
-> > +	writel(write_lo, (void *)atable_base + (index << 3));
-> > +	writel(write_hi, (void *)atable_base + (index << 3) + 4); =20
->=20
-> Likewise here.
-
-Please see the above comment.
-
->=20
-> > +} =20
->=20
-> ...
->=20
-> > +/* Clear complete MAC Look Up Table */
-> > +void mtip_clear_atable(struct switch_enet_private *fep)
-> > +{
-> > +	int index;
-> > +
-> > +	for (index =3D 0; index < 2048; index++)
-> > +		mtip_write_atable(fep, index, 0, 0);
-> > +}
-> > +
-> > +/**
-> > + * mtip_update_atable_static - Update switch static address table
-> > + *
-> > + * @mac_addr: Pointer to the array containing MAC address to
-> > + *            be put as static entry
-> > + * @port:     Port bitmask numbers to be added in static entry,
-> > + *            valid values are 1-7
-> > + * @priority: The priority for the static entry in table =20
->=20
-> @fep should also be documented here.
->=20
-
-OK.
-
-> Flagged by ./scripts/kernel-doc -none
-> and W=3D1 builds.
->=20
-> > + *
-> > + * Updates MAC address lookup table with a static entry.
-> > + *
-> > + * Searches if the MAC address is already there in the block and
-> > replaces
-> > + * the older entry with the new one. If MAC address is not there
-> > then puts
-> > + * a new entry in the first empty slot available in the block.
-> > + *
-> > + * Return: 0 for a successful update else -ENOSPC when no slot
-> > available
-> > + */
-> > +static int mtip_update_atable_static(unsigned char *mac_addr,
-> > unsigned int port,
-> > +				     unsigned int priority,
-> > +				     struct switch_enet_private
-> > *fep) =20
->=20
-> ...
->=20
-> > +/* During a receive, the cur_rx points to the current incoming
-> > buffer.
-> > + * When we update through the ring, if the next incoming buffer has
-> > + * not been given to the system, we just set the empty indicator,
-> > + * effectively tossing the packet.
-> > + */
-> > +static int mtip_switch_rx(struct net_device *dev, int budget, int
-> > *port) +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	struct switch_t *fecp =3D fep->hwp;
-> > +	unsigned short status, pkt_len;
-> > +	struct net_device *pndev;
-> > +	u8 *data, rx_port =3D 0xFF;
-> > +	struct ethhdr *eth_hdr;
-> > +	int pkt_received =3D 0;
-> > +	struct sk_buff *skb;
-> > +	unsigned long flags;
-> > +	struct cbd_t *bdp;
-> > +
-> > +	spin_lock_irqsave(&fep->hw_lock, flags);
-> > +
-> > +	/* First, grab all of the stats for the incoming packet.
-> > +	 * These get messed up if we get called due to a busy
-> > condition.
-> > +	 */
-> > +	bdp =3D fep->cur_rx;
-> > +
-> > +	while (!((status =3D bdp->cbd_sc) & BD_ENET_RX_EMPTY)) { =20
->=20
-> ...
->=20
-> > +	} /* while (!((status =3D bdp->cbd_sc) & BD_ENET_RX_EMPTY))
-> > */ +
-> > +	writel(bdp, &fep->cur_rx); =20
->=20
-> I'm confused buy this.
->=20
-> At the top of this function, bdp is assigned using:
->=20
-> 	bdp =3D fep->cur_rx;
->=20
-> But here writel() is used to assign bdp to &fep->cur_rx.
-> Which assumes that bdp is a 32-bit little endian value.
-> But it is a pointer in host byte order which may be wide than 32-bits.
->=20
-> On x86_64 int is 32-bits while pointers are 64 bits.
-
-I will cross compile with make W=3D1 and C=3D1 to find all problematic
-places.
-
-> W=3D1 builds with gcc 14.2.0 flag this problem like this:
->=20
->=20
-> .../mtipl2sw.c:1108:9: error: incompatible pointer to integer
-> conversion passing 'struct cbd_t *' to parameter of type 'unsigned
-> int' [-Wint-conversion] 1108 |         writel(bdp, &fep->cur_rx); |
->              ^~~
->=20
->=20
-> This also assumes that &fep->cur_rx is a pointer to __iomem,
-> but that does not seem to be the case.
-
-The writel(bdp, &fep->cur_rx); shall be just replaced with fep->cur_rx
-=3D bdp.
-
-Thanks for spotting.
-
->=20
-> > +	spin_unlock_irqrestore(&fep->hw_lock, flags);
-> > +
-> > +	return pkt_received;
-> > +} =20
->=20
-> ...
->=20
-> > +static int __init mtip_switch_dma_init(struct switch_enet_private
-> > *fep) +{
-> > +	struct cbd_t *bdp, *cbd_base;
-> > +	int ret, i;
-> > +
-> > +	/* Check mask of the streaming and coherent API */
-> > +	ret =3D dma_set_mask_and_coherent(&fep->pdev->dev,
-> > DMA_BIT_MASK(32));
-> > +	if (ret < 0) {
-> > +		dev_err(&fep->pdev->dev, "No suitable DMA
-> > available\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* Allocate memory for buffer descriptors */
-> > +	cbd_base =3D dma_alloc_coherent(&fep->pdev->dev, PAGE_SIZE,
-> > &fep->bd_dma,
-> > +				      GFP_KERNEL);
-> > +	if (!cbd_base)
-> > +		return -ENOMEM;
-> > +
-> > +	/* Set receive and transmit descriptor base */
-> > +	fep->rx_bd_base =3D cbd_base;
-> > +	fep->tx_bd_base =3D cbd_base + RX_RING_SIZE;
-> > +
-> > +	/* Initialize the receive buffer descriptors */
-> > +	bdp =3D fep->rx_bd_base;
-> > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
-> > +		bdp->cbd_sc =3D 0;
-> > +		bdp++;
-> > +	}
-> > +
-> > +	/* Set the last buffer to wrap */
-> > +	bdp--;
-> > +	bdp->cbd_sc |=3D BD_SC_WRAP;
-> > +
-> > +	/* ...and the same for transmmit */ =20
->=20
-> nit: transmit
-
-Ok.
-
->=20
-> > +	bdp =3D fep->tx_bd_base;
-> > +	for (i =3D 0; i < TX_RING_SIZE; i++) {
-> > +		/* Initialize the BD for every fragment in the
-> > page */
-> > +		bdp->cbd_sc =3D 0;
-> > +		bdp->cbd_bufaddr =3D 0;
-> > +		bdp++;
-> > +	}
-> > +
-> > +	/* Set the last buffer to wrap */
-> > +	bdp--;
-> > +	bdp->cbd_sc |=3D BD_SC_WRAP;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void mtip_ndev_cleanup(struct switch_enet_private *fep)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < SWITCH_EPORT_NUMBER; i++) {
-> > +		if (fep->ndev[i]) {
-> > +			unregister_netdev(fep->ndev[i]);
-> > +			free_netdev(fep->ndev[i]);
-> > +		}
-> > +	}
-> > +} =20
->=20
-> ...
->=20
-> > +static const struct of_device_id mtipl2_of_match[] =3D {
-> > +	{ .compatible =3D "nxp,imx28-mtip-switch",
-> > +	  .data =3D &mtip_imx28_l2switch_info},
-> > +	{ /* sentinel */ }
-> > +} =20
->=20
-> There should be a trailing ';' on the line above.
->=20
-
-+1
-
-> ...
->=20
-> > +struct  addr_table64b_entry { =20
->=20
-> One space after struct is enough.
->=20
-> > +	unsigned int lo;  /* lower 32 bits */
-> > +	unsigned int hi;  /* upper 32 bits */
-> > +};
-> > +
-> > +struct  mtip_addr_table_t { =20
->=20
-> I think you can drop the '_t' from the name of this struct.
-> We know it is a type :)
-
-Ok.
-
->=20
-> > +	struct addr_table64b_entry  mtip_table64b_entry[2048]; =20
->=20
-> One space is enough after addr_table64b_entry.
-> And in general, unless the aim is to align field names
-> (not here because there is only one field :)
->=20
-> > +};
-> > +
-> > +#define MCF_ESW_LOOKUP_MEM_OFFSET      0x4000
-> > +#define MCF_ESW_ENET_PORT_OFFSET      0x4000
-> > +#define ENET_SWI_PHYS_ADDR_OFFSET	0x8000 =20
->=20
-> Ditto.
->=20
-
-+1
-
-> ...
->=20
-> > diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-> > b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c =20
->=20
-> > new file mode 100644
-> > index 000000000000..0b76a60858a5
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-> > @@ -0,0 +1,122 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + *  L2 switch Controller driver for MTIP block - bridge network
-> > interface
-> > + *
-> > + *  Copyright (C) 2025 DENX Software Engineering GmbH
-> > + *  Lukasz Majewski <lukma@denx.de>
-> > + */
-> > +
-> > +#include <linux/netdevice.h>
-> > +#include <linux/etherdevice.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "mtipl2sw.h" =20
->=20
-> Blank line here please.
->=20
-
-Ok.
-
-> > +static int mtip_ndev_port_link(struct net_device *ndev,
-> > +			       struct net_device *br_ndev,
-> > +			       struct netlink_ext_ack *extack)
-> > +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(ndev),
-> > *other_priv;
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +	struct net_device *other_ndev;
-> > +
-> > +	/* Check if one port of MTIP switch is already bridged */
-> > +	if (fep->br_members && !fep->br_offload) {
-> > +		/* Get the second bridge ndev */
-> > +		other_ndev =3D fep->ndev[fep->br_members - 1];
-> > +		other_priv =3D netdev_priv(other_ndev);
-> > +		if (other_priv->master_dev !=3D br_ndev) {
-> > +			NL_SET_ERR_MSG_MOD(extack,
-> > +					   "L2 offloading only
-> > possible for the same bridge!");
-> > +			return notifier_from_errno(-EOPNOTSUPP);
-> > +		}
-> > +
-> > +		fep->br_offload =3D 1;
-> > +		mtip_switch_dis_port_separation(fep);
-> > +		mtip_clear_atable(fep);
-> > +	}
-> > +
-> > +	if (!priv->master_dev)
-> > +		priv->master_dev =3D br_ndev;
-> > +
-> > +	fep->br_members |=3D BIT(priv->portnum - 1);
-> > +
-> > +	dev_dbg(&ndev->dev,
-> > +		"%s: ndev: %s br: %s fep: 0x%x members: 0x%x
-> > offload: %d\n",
-> > +		__func__, ndev->name,  br_ndev->name, (unsigned
-> > int)fep, =20
->=20
-> Perhaps it would be best to use %p as the format specifier for fep
-> and not cast it.
->=20
-> On x86_64 int is 32-bits while pointers are 64 bits.
-> W=3D1 builds with gcc 14.2.0 flag this problem like this:
->=20
-> .../mtipl2sw_br.c:45:55: warning: cast from pointer to integer of
-> different size [-Wpointer-to-int-cast] 45 |                 __func__,
-> ndev->name,  br_ndev->name, (unsigned int)fep, |
->                                  ^
-
-Ok.
-
->=20
-> > +		fep->br_members, fep->br_offload);
-> > +
-> > +	return NOTIFY_DONE;
-> > +}
-> > +
-> > +static void mtip_netdevice_port_unlink(struct net_device *ndev)
-> > +{
-> > +	struct mtip_ndev_priv *priv =3D netdev_priv(ndev);
-> > +	struct switch_enet_private *fep =3D priv->fep;
-> > +
-> > +	dev_dbg(&ndev->dev, "%s: ndev: %s members: 0x%x\n",
-> > __func__,
-> > +		ndev->name, fep->br_members);
-> > +
-> > +	fep->br_members &=3D ~BIT(priv->portnum - 1);
-> > +	priv->master_dev =3D NULL;
-> > +
-> > +	if (!fep->br_members) {
-> > +		fep->br_offload =3D 0;
-> > +		mtip_switch_en_port_separation(fep);
-> > +		mtip_clear_atable(fep);
-> > +	}
-> > +} =20
->=20
-> ...
->=20
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/dNduXPY5UY6jbpqt=Tj7eFz
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmf2hCYACgkQAR8vZIA0
-zr2eWggAnGaPnum/oDc9V7qV5DGHw6FRQcrvaw74UOyG0zMT9ozngRyzM0MDhXRa
-4ax8CFkyfUp7XmffyYlhE1S7iSec4hSCf2CFb+yTfKKO2hKBrU7DYLYyN7AMy8gK
-EI9PE6n2k4pJS9XpU9aN5LOWCVgy33jSrwDKZBUtOAaMN9iomoFsFUOk1ooc99Q9
-g3Su044eov6gxiKibN8mtv5S9imrPIBUdLuNASbejZG4ChXv4sQLjiWpoMSP9RSE
-EZGzKqVSXtUo02Qm8ZZtnjLcp+FufjfbEbfdwq/aPWZj5lZvnFuOt4lKflaj4YOT
-Qafg2fTOqthKpwSsPn5uhqsaHnJU0w==
-=R/iR
------END PGP SIGNATURE-----
-
---Sig_/dNduXPY5UY6jbpqt=Tj7eFz--
+User-Agent: Mozilla Thunderbird
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH 00/20] Add support for HEVC and VP9 codecs in decoder
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, stable@vger.kernel.org,
+ Dan Carpenter <dan.carpenter@linaro.org>
+References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 08/04/2025 16:54, Dikshita Agarwal wrote:
+> Hi All,
+> 
+> This patch series adds initial support for the HEVC(H.265) and VP9
+> codecs in iris decoder. The objective of this work is to extend the
+> decoder's capabilities to handle HEVC and VP9 codec streams,
+> including necessary format handling and buffer management.
+> In addition, the series also includes a set of fixes to address issues
+> identified during testing of these additional codecs.
+> 
+> These patches also address the comments and feedback received from the
+> RFC patches previously sent. I have made the necessary improvements
+> based on the community's suggestions.
+> 
+> Changes sinces RFC:
+> - Added additional fixes to address issues identified during further
+> testing.
+> - Moved typo fix to a seperate patch [Neil]
+> - Reordered the patches for better logical flow and clarity [Neil,
+> Dmitry]
+> - Added fixes tag wherever applicable [Neil, Dmitry]
+> - Removed the default case in the switch statement for codecs [Bryan]
+> - Replaced if-else statements with switch-case [Bryan]
+> - Added comments for mbpf [Bryan]
+> - RFC: https://lore.kernel.org/linux-media/20250305104335.3629945-1-quic_dikshita@quicinc.com/
+> 
+> These patches are tested on SM8250 and SM8550 with v4l2-ctl and
+> Gstreamer for HEVC and VP9 decoders, at the same time ensured that
+> the existing H264 decoder functionality remains uneffected.
+> 
+> Note: 1 of the fluster compliance test is fixed with firmware [1]
+> [1]: https://lore.kernel.org/linux-firmware/1a511921-446d-cdc4-0203-084c88a5dc1e@quicinc.com/T/#u
+> 
+> The result of fluster test on SM8550:
+>   131/147 testcases passed while testing JCT-VC-HEVC_V1 with
+>   GStreamer-H.265-V4L2-Gst1.0.
+>   The failing test case:
+>   - 10 testcases failed due to unsupported 10 bit format.
+>     - DBLK_A_MAIN10_VIXS_4
+>     - INITQP_B_Main10_Sony_1
+>     - TSUNEQBD_A_MAIN10_Technicolor_2
+>     - WP_A_MAIN10_Toshiba_3
+>     - WP_MAIN10_B_Toshiba_3
+>     - WPP_A_ericsson_MAIN10_2
+>     - WPP_B_ericsson_MAIN10_2
+>     - WPP_C_ericsson_MAIN10_2
+>     - WPP_E_ericsson_MAIN10_2
+>     - WPP_F_ericsson_MAIN10_2
+>   - 4 testcase failed due to unsupported resolution
+>     - PICSIZE_A_Bossen_1
+>     - PICSIZE_B_Bossen_1
+>     - WPP_D_ericsson_MAIN10_2
+>     - WPP_D_ericsson_MAIN_2
+>   - 1 testcase failed as bitstream is invalid (this fails with reference
+>     as well)
+>     - RAP_B_Bossen_2
+>   - 1 testcase failed due to CRC mismatch
+>     - RAP_A_docomo_6
+>       Analysis - First few frames in this discarded by firmware and are
+>       sent to driver with 0 filled length. Driver send such buffers to
+>       client with timestamp 0 and payload set to 0 and
+>       make buf state to VB2_BUF_STATE_ERROR. Such buffers should be
+>       dropped by GST. But instead, the first frame displayed as green
+>       frame and when a valid buffer is sent to client later with same 0
+>       timestamp, its dropped, leading to CRC mismatch for first frame.
+> 
+>   235/305 testcases passed while testing VP9-TEST-VECTORS with
+>   GStreamer-VP9-V4L2-Gst1.0.
+>   The failing test case:
+>   - 64 testcases failed due to unsupported resolution
+>     - vp90-2-02-size-08x08.webm
+>     - vp90-2-02-size-08x10.webm
+>     - vp90-2-02-size-08x16.webm
+>     - vp90-2-02-size-08x18.webm
+>     - vp90-2-02-size-08x32.webm
+>     - vp90-2-02-size-08x34.webm
+>     - vp90-2-02-size-08x64.webm
+>     - vp90-2-02-size-08x66.webm
+>     - vp90-2-02-size-10x08.webm
+>     - vp90-2-02-size-10x10.webm
+>     - vp90-2-02-size-10x16.webm
+>     - vp90-2-02-size-10x18.webm
+>     - vp90-2-02-size-10x32.webm
+>     - vp90-2-02-size-10x34.webm
+>     - vp90-2-02-size-10x64.webm
+>     - vp90-2-02-size-10x66.webm
+>     - vp90-2-02-size-16x08.webm
+>     - vp90-2-02-size-16x10.webm
+>     - vp90-2-02-size-16x16.webm
+>     - vp90-2-02-size-16x18.webm
+>     - vp90-2-02-size-16x32.webm
+>     - vp90-2-02-size-16x34.webm
+>     - vp90-2-02-size-16x64.webm
+>     - vp90-2-02-size-16x66.webm
+>     - vp90-2-02-size-18x08.webm
+>     - vp90-2-02-size-18x10.webm
+>     - vp90-2-02-size-18x16.webm
+>     - vp90-2-02-size-18x18.webm
+>     - vp90-2-02-size-18x32.webm
+>     - vp90-2-02-size-18x34.webm
+>     - vp90-2-02-size-18x64.webm
+>     - vp90-2-02-size-18x66.webm
+>     - vp90-2-02-size-32x08.webm
+>     - vp90-2-02-size-32x10.webm
+>     - vp90-2-02-size-32x16.webm
+>     - vp90-2-02-size-32x18.webm
+>     - vp90-2-02-size-32x32.webm
+>     - vp90-2-02-size-32x34.webm
+>     - vp90-2-02-size-32x64.webm
+>     - vp90-2-02-size-32x66.webm
+>     - vp90-2-02-size-34x08.webm
+>     - vp90-2-02-size-34x10.webm
+>     - vp90-2-02-size-34x16.webm
+>     - vp90-2-02-size-34x18.webm
+>     - vp90-2-02-size-34x32.webm
+>     - vp90-2-02-size-34x34.webm
+>     - vp90-2-02-size-34x64.webm
+>     - vp90-2-02-size-34x66.webm
+>     - vp90-2-02-size-64x08.webm
+>     - vp90-2-02-size-64x10.webm
+>     - vp90-2-02-size-64x16.webm
+>     - vp90-2-02-size-64x18.webm
+>     - vp90-2-02-size-64x32.webm
+>     - vp90-2-02-size-64x34.webm
+>     - vp90-2-02-size-64x64.webm
+>     - vp90-2-02-size-64x66.webm
+>     - vp90-2-02-size-66x08.webm
+>     - vp90-2-02-size-66x10.webm
+>     - vp90-2-02-size-66x16.webm
+>     - vp90-2-02-size-66x18.webm
+>     - vp90-2-02-size-66x32.webm
+>     - vp90-2-02-size-66x34.webm
+>     - vp90-2-02-size-66x64.webm
+>     - vp90-2-02-size-66x66.webm
+>   - 2 testcases failed due to unsupported format
+>     - vp91-2-04-yuv422.webm
+>     - vp91-2-04-yuv444.webm
+>   - 1 testcase failed with CRC mismatch (fails with ref decoder as well)
+>     - vp90-2-22-svc_1280x720_3.ivf
+>   - 2 testcase failed due to unsupported resolution after sequence change
+>     - vp90-2-21-resize_inter_320x180_5_1-2.webm
+>     - vp90-2-21-resize_inter_320x180_7_1-2.webm
+>   - 1 testcase failed due to unsupported stream
+>     - vp90-2-16-intra-only.webm
+>   Note: There is a timing issue with the clips having multiple resolution
+>   change. Where firmware returned all the buffers with previous sequence
+>   and has no buffer left to attach the LAST flag to. At the same time,
+>   client is not queueing any further buffers, so there is deadlock where
+>   client is waiting for LAST flag, while firmware doesn't have any
+>   capture buffer to attach LAST flag to.
+>   Ideally client should keep queueing the buffers on capture queue untill
+>   the LAST flag is received.
+> 
+> The result of fluster test on SM8250:
+>   132/147 testcases passed while testing JCT-VC-HEVC_V1 with
+>   GStreamer-H.265-V4L2-Gst1.0.
+>   The failing test case:
+>   - 10 testcases failed due to unsupported 10 bit format.
+>     - DBLK_A_MAIN10_VIXS_4
+>     - INITQP_B_Main10_Sony_1
+>     - TSUNEQBD_A_MAIN10_Technicolor_2
+>     - WP_A_MAIN10_Toshiba_3
+>     - WP_MAIN10_B_Toshiba_3
+>     - WPP_A_ericsson_MAIN10_2
+>     - WPP_B_ericsson_MAIN10_2
+>     - WPP_C_ericsson_MAIN10_2
+>     - WPP_E_ericsson_MAIN10_2
+>     - WPP_F_ericsson_MAIN10_2
+>   - 4 testcase failed due to unsupported resolution
+>     - PICSIZE_A_Bossen_1
+>     - PICSIZE_B_Bossen_1
+>     - WPP_D_ericsson_MAIN10_2
+>     - WPP_D_ericsson_MAIN_2
+>   - 1 testcase failed as bitstream is invalid (this fails with reference
+>     as well)
+>     - RAP_B_Bossen_2
+> 
+>   232/305 testcases passed while testing VP9-TEST-VECTORS with
+>   GStreamer-VP9-V4L2-Gst1.0.
+>   The failing test case:
+>   - 64 testcases failed due to unsupported resolution
+>     - vp90-2-02-size-08x08.webm
+>     - vp90-2-02-size-08x10.webm
+>     - vp90-2-02-size-08x16.webm
+>     - vp90-2-02-size-08x18.webm
+>     - vp90-2-02-size-08x32.webm
+>     - vp90-2-02-size-08x34.webm
+>     - vp90-2-02-size-08x64.webm
+>     - vp90-2-02-size-08x66.webm
+>     - vp90-2-02-size-10x08.webm
+>     - vp90-2-02-size-10x10.webm
+>     - vp90-2-02-size-10x16.webm
+>     - vp90-2-02-size-10x18.webm
+>     - vp90-2-02-size-10x32.webm
+>     - vp90-2-02-size-10x34.webm
+>     - vp90-2-02-size-10x64.webm
+>     - vp90-2-02-size-10x66.webm
+>     - vp90-2-02-size-16x08.webm
+>     - vp90-2-02-size-16x10.webm
+>     - vp90-2-02-size-16x16.webm
+>     - vp90-2-02-size-16x18.webm
+>     - vp90-2-02-size-16x32.webm
+>     - vp90-2-02-size-16x34.webm
+>     - vp90-2-02-size-16x64.webm
+>     - vp90-2-02-size-16x66.webm
+>     - vp90-2-02-size-18x08.webm
+>     - vp90-2-02-size-18x10.webm
+>     - vp90-2-02-size-18x16.webm
+>     - vp90-2-02-size-18x18.webm
+>     - vp90-2-02-size-18x32.webm
+>     - vp90-2-02-size-18x34.webm
+>     - vp90-2-02-size-18x64.webm
+>     - vp90-2-02-size-18x66.webm
+>     - vp90-2-02-size-32x08.webm
+>     - vp90-2-02-size-32x10.webm
+>     - vp90-2-02-size-32x16.webm
+>     - vp90-2-02-size-32x18.webm
+>     - vp90-2-02-size-32x32.webm
+>     - vp90-2-02-size-32x34.webm
+>     - vp90-2-02-size-32x64.webm
+>     - vp90-2-02-size-32x66.webm
+>     - vp90-2-02-size-34x08.webm
+>     - vp90-2-02-size-34x10.webm
+>     - vp90-2-02-size-34x16.webm
+>     - vp90-2-02-size-34x18.webm
+>     - vp90-2-02-size-34x32.webm
+>     - vp90-2-02-size-34x34.webm
+>     - vp90-2-02-size-34x64.webm
+>     - vp90-2-02-size-34x66.webm
+>     - vp90-2-02-size-64x08.webm
+>     - vp90-2-02-size-64x10.webm
+>     - vp90-2-02-size-64x16.webm
+>     - vp90-2-02-size-64x18.webm
+>     - vp90-2-02-size-64x32.webm
+>     - vp90-2-02-size-64x34.webm
+>     - vp90-2-02-size-64x64.webm
+>     - vp90-2-02-size-64x66.webm
+>     - vp90-2-02-size-66x08.webm
+>     - vp90-2-02-size-66x10.webm
+>     - vp90-2-02-size-66x16.webm
+>     - vp90-2-02-size-66x18.webm
+>     - vp90-2-02-size-66x32.webm
+>     - vp90-2-02-size-66x34.webm
+>     - vp90-2-02-size-66x64.webm
+>     - vp90-2-02-size-66x66.webm
+>   - 2 testcases failed due to unsupported format
+>     - vp91-2-04-yuv422.webm
+>     - vp91-2-04-yuv444.webm
+>   - 1 testcase failed with CRC mismatch (fails with ref decoder as well)
+>     - vp90-2-22-svc_1280x720_3.ivf
+>   - 5 testcase failed due to unsupported resolution after sequence change
+>     - vp90-2-21-resize_inter_320x180_5_1-2.webm
+>     - vp90-2-21-resize_inter_320x180_7_1-2.webm
+>     - vp90-2-21-resize_inter_320x240_5_1-2.webm
+>     - vp90-2-21-resize_inter_320x240_7_1-2.webm
+>     - vp90-2-18-resize.ivf
+>   - 1 testcase failed with CRC mismatch
+>     - vp90-2-16-intra-only.webm
+>     Analysis: First few frames are marked by firmware as NO_SHOW frame.
+>     Driver make buf state to VB2_BUF_STATE_ERROR for such frames.
+>     Such buffers should be dropped by GST. But instead, the first frame
+>     is being displayed and when a valid buffer is sent to client later
+>     with same timestamp, its dropped, leading to CRC mismatch for first
+>     frame.
+>   Note: Same timing issue as observed on SM8550 is seen on SM8250 as
+>   well.
+> 
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+> Dikshita Agarwal (20):
+>        media: iris: Skip destroying internal buffer if not dequeued
+>        media: iris: Update CAPTURE format info based on OUTPUT format
+>        media: iris: Add handling for corrupt and drop frames
+>        media: iris: Avoid updating frame size to firmware during reconfig
+>        media: iris: Send V4L2_BUF_FLAG_ERROR for buffers with 0 filled length
+>        media: iris: Add handling for no show frames
+>        media: iris: Improve last flag handling
+>        media: iris: Skip flush on first sequence change
+>        media: iris: Prevent HFI queue writes when core is in deinit state
+>        media: iris: Remove redundant buffer count check in stream off
+>        media: iris: Remove deprecated property setting to firmware
+>        media: iris: Fix missing function pointer initialization
+>        media: iris: Fix NULL pointer dereference
+>        media: iris: Fix typo in depth variable
+>        media: iris: Add a comment to explain usage of MBPS
+>        media: iris: Add HEVC and VP9 formats for decoder
+>        media: iris: Add platform capabilities for HEVC and VP9 decoders
+>        media: iris: Set mandatory properties for HEVC and VP9 decoders.
+>        media: iris: Add internal buffer calculation for HEVC and VP9 decoders
+>        media: iris: Add codec specific check for VP9 decoder drain handling
+> 
+>   drivers/media/platform/qcom/iris/iris_buffer.c     |  22 +-
+>   drivers/media/platform/qcom/iris/iris_ctrls.c      |  35 +-
+>   drivers/media/platform/qcom/iris/iris_hfi_common.h |   1 +
+>   .../platform/qcom/iris/iris_hfi_gen1_command.c     |  44 ++-
+>   .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   5 +-
+>   .../platform/qcom/iris/iris_hfi_gen1_response.c    |  22 +-
+>   .../platform/qcom/iris/iris_hfi_gen2_command.c     | 143 +++++++-
+>   .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   5 +
+>   .../platform/qcom/iris/iris_hfi_gen2_response.c    |  57 ++-
+>   drivers/media/platform/qcom/iris/iris_hfi_queue.c  |   2 +-
+>   drivers/media/platform/qcom/iris/iris_instance.h   |   6 +
+>   .../platform/qcom/iris/iris_platform_common.h      |  28 +-
+>   .../platform/qcom/iris/iris_platform_sm8250.c      |  15 +-
+>   .../platform/qcom/iris/iris_platform_sm8550.c      | 143 +++++++-
+>   drivers/media/platform/qcom/iris/iris_vb2.c        |   3 +-
+>   drivers/media/platform/qcom/iris/iris_vdec.c       | 113 +++---
+>   drivers/media/platform/qcom/iris/iris_vdec.h       |  11 +
+>   drivers/media/platform/qcom/iris/iris_vidc.c       |   3 -
+>   drivers/media/platform/qcom/iris/iris_vpu_buffer.c | 397 ++++++++++++++++++++-
+>   drivers/media/platform/qcom/iris/iris_vpu_buffer.h |  46 ++-
+>   20 files changed, 948 insertions(+), 153 deletions(-)
+> ---
+> base-commit: 7824b91d23e9f255f0e9d2acaa74265c9cac2e9c
+> change-id: 20250402-iris-dec-hevc-vp9-2654a1fc4d0d
+> 
+> Best regards,
+
+Assuming we merge Neils sm8650 stuff first, which I think we should 
+merge first, you'll have a subsequent build error to fix [1]
+
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris?ref_type=heads
+
+Testing your series in isolation. I can confirm vp9 decodes also getting 
+some strange prinouts which we need to follow up to see if they exist 
+with the baseline driver [2].
+
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linaro/arm-laptop/wip/x1e80100-6.15-rc1-dell-inspiron14-camss-ov02c10-ov02e10-audio-iris-20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com?ref_type=heads
+
+[1]
+
+  CC [M]  drivers/media/platform/qcom/iris/iris_vdec.o
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:432:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘input_config_params’; did you mean ‘output_config_params’?
+   432 |         .input_config_params =
+       |          ^~~~~~~~~~~~~~~~~~~
+       |          output_config_params
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:433:17: 
+error: ‘sm8550_vdec_input_config_params’ undeclared here (not in a 
+function); did you mean ‘sm8550_vdec_output_config_params’?
+   433 |                 sm8550_vdec_input_config_params,
+       |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       |                 sm8550_vdec_output_config_params
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:434:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘input_config_params_size’; did you mean ‘output_config_params_size’?
+   434 |         .input_config_params_size =
+       |          ^~~~~~~~~~~~~~~~~~~~~~~~
+       |          output_config_params_size
+In file included from 
+/home/deckard/Development/linux/include/linux/dev_printk.h:14,
+                  from 
+/home/deckard/Development/linux/include/linux/device.h:15,
+                  from 
+/home/deckard/Development/linux/include/linux/pm_domain.h:11,
+                  from 
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_core.h:10,
+                  from 
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:6:
+/home/deckard/Development/linux/include/linux/compiler.h:197:77: error: 
+expression in static assertion is not an integer
+   197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct 
+{_Static_assert(!(e), msg);}))
+       |             ^
+/home/deckard/Development/linux/include/linux/compiler.h:202:33: note: 
+in expansion of macro ‘__BUILD_BUG_ON_ZERO_MSG’
+   202 | #define __must_be_array(a) 
+__BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+       |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+/home/deckard/Development/linux/include/linux/array_size.h:11:59: note: 
+in expansion of macro ‘__must_be_array’
+    11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + 
+__must_be_array(arr))
+       | ^~~~~~~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:435:17: 
+note: in expansion of macro ‘ARRAY_SIZE’
+   435 |                 ARRAY_SIZE(sm8550_vdec_input_config_params),
+       |                 ^~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:442:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘dec_output_prop’; did you mean ‘dec_input_prop’?
+   442 |         .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+       |          ^~~~~~~~~~~~~~~
+       |          dec_input_prop
+   CC [M]  drivers/media/platform/qcom/iris/iris_vpu3x.o
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:442:28: 
+error: ‘sm8550_vdec_subscribe_output_properties’ undeclared here (not in 
+a function); did you mean ‘sm8550_vdec_subscribe_input_properties’?
+   442 |         .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       |                            sm8550_vdec_subscribe_input_properties
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:443:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘dec_output_prop_size’; did you mean ‘dec_input_prop_size’?
+   443 |         .dec_output_prop_size = 
+ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+       |          ^~~~~~~~~~~~~~~~~~~~
+       |          dec_input_prop_size
+/home/deckard/Development/linux/include/linux/compiler.h:197:77: error: 
+expression in static assertion is not an integer
+   197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct 
+{_Static_assert(!(e), msg);}))
+       |             ^
+/home/deckard/Development/linux/include/linux/compiler.h:202:33: note: 
+in expansion of macro ‘__BUILD_BUG_ON_ZERO_MSG’
+   202 | #define __must_be_array(a) 
+__BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+       |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+/home/deckard/Development/linux/include/linux/array_size.h:11:59: note: 
+in expansion of macro ‘__must_be_array’
+    11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + 
+__must_be_array(arr))
+       | ^~~~~~~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:443:33: 
+note: in expansion of macro ‘ARRAY_SIZE’
+   443 |         .dec_output_prop_size = 
+ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+       |                                 ^~~~~~~~~~
+make[8]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:203: 
+drivers/media/platform/qcom/iris/iris_platform_sm8550.o] Error 1
+make[8]: *** Waiting for unfinished jobs....
+make[7]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform/qcom/iris] Error 2
+make[6]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform/qcom] Error 2
+make[5]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform] Error 2
+make[4]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media] Error 2
+make[3]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: drivers] 
+Error 2
+make[2]: *** [/home/deckard/Development/linux/Makefile:2006: .] Error 2
+make[1]: *** [/home/deckard/Development/linux/Makefile:248: __sub-make] 
+Error 2
+make[1]: Leaving directory 
+'/home/deckard/Development/linux-tools/qlt-kernel/build/x1e80100-crd_qlt_integration'
+make: *** [Makefile:248: __sub-make] Error 2
+make[1]: Entering directory 
+'/home/deckard/Development/linux-tools/qlt-kernel/build/x1e80100-crd_qlt_integration'
+   GEN     Makefile
+   CALL    /home/deckard/Development/linux/scripts/checksyscalls.sh
+   CC [M]  drivers/media/platform/qcom/iris/iris_platform_sm8550.o
+   CC [M]  drivers/media/platform/qcom/iris/iris_vpu_buffer.o
+   CC [M]  drivers/media/platform/qcom/iris/iris_vpu_common.o
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:432:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘input_config_params’; did you mean ‘output_config_params’?
+   432 |         .input_config_params =
+       |          ^~~~~~~~~~~~~~~~~~~
+       |          output_config_params
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:433:17: 
+error: ‘sm8550_vdec_input_config_params’ undeclared here (not in a 
+function); did you mean ‘sm8550_vdec_output_config_params’?
+   433 |                 sm8550_vdec_input_config_params,
+       |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       |                 sm8550_vdec_output_config_params
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:434:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘input_config_params_size’; did you mean ‘output_config_params_size’?
+   434 |         .input_config_params_size =
+       |          ^~~~~~~~~~~~~~~~~~~~~~~~
+       |          output_config_params_size
+In file included from 
+/home/deckard/Development/linux/include/linux/dev_printk.h:14,
+                  from 
+/home/deckard/Development/linux/include/linux/device.h:15,
+                  from 
+/home/deckard/Development/linux/include/linux/pm_domain.h:11,
+                  from 
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_core.h:10,
+                  from 
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:6:
+/home/deckard/Development/linux/include/linux/compiler.h:197:77: error: 
+expression in static assertion is not an integer
+   197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct 
+{_Static_assert(!(e), msg);}))
+       |             ^
+/home/deckard/Development/linux/include/linux/compiler.h:202:33: note: 
+in expansion of macro ‘__BUILD_BUG_ON_ZERO_MSG’
+   202 | #define __must_be_array(a) 
+__BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+       |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+/home/deckard/Development/linux/include/linux/array_size.h:11:59: note: 
+in expansion of macro ‘__must_be_array’
+    11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + 
+__must_be_array(arr))
+       | ^~~~~~~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:435:17: 
+note: in expansion of macro ‘ARRAY_SIZE’
+   435 |                 ARRAY_SIZE(sm8550_vdec_input_config_params),
+       |                 ^~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:442:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘dec_output_prop’; did you mean ‘dec_input_prop’?
+   442 |         .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+       |          ^~~~~~~~~~~~~~~
+       |          dec_input_prop
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:442:28: 
+error: ‘sm8550_vdec_subscribe_output_properties’ undeclared here (not in 
+a function); did you mean ‘sm8550_vdec_subscribe_input_properties’?
+   442 |         .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       |                            sm8550_vdec_subscribe_input_properties
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:443:10: 
+error: ‘struct iris_platform_data’ has no member named 
+‘dec_output_prop_size’; did you mean ‘dec_input_prop_size’?
+   443 |         .dec_output_prop_size = 
+ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+       |          ^~~~~~~~~~~~~~~~~~~~
+       |          dec_input_prop_size
+/home/deckard/Development/linux/include/linux/compiler.h:197:77: error: 
+expression in static assertion is not an integer
+   197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct 
+{_Static_assert(!(e), msg);}))
+       |             ^
+/home/deckard/Development/linux/include/linux/compiler.h:202:33: note: 
+in expansion of macro ‘__BUILD_BUG_ON_ZERO_MSG’
+   202 | #define __must_be_array(a) 
+__BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+       |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+/home/deckard/Development/linux/include/linux/array_size.h:11:59: note: 
+in expansion of macro ‘__must_be_array’
+    11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + 
+__must_be_array(arr))
+       | ^~~~~~~~~~~~~~~
+/home/deckard/Development/linux/drivers/media/platform/qcom/iris/iris_platform_sm8550.c:443:33: 
+note: in expansion of macro ‘ARRAY_SIZE’
+   443 |         .dec_output_prop_size = 
+ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+       |                                 ^~~~~~~~~~
+make[8]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:203: 
+drivers/media/platform/qcom/iris/iris_platform_sm8550.o] Error 1
+make[8]: *** Waiting for unfinished jobs....
+make[7]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform/qcom/iris] Error 2
+make[6]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform/qcom] Error 2
+make[5]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media/platform] Error 2
+make[4]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: 
+drivers/media] Error 2
+make[3]: *** 
+[/home/deckard/Development/linux/scripts/Makefile.build:461: drivers] 
+Error 2
+
+
+[2]
+
+[   58.165118] qcom-iris aa00000.video-codec: invalid plane
+[   58.165721] ------------[ cut here ]------------
+[   58.165727] WARNING: CPU: 1 PID: 1209 at 
+drivers/media/common/videobuf2/videobuf2-core.c:2222 
+__vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   58.165749] Modules linked in: rfcomm michael_mic reset_gpio 
+snd_soc_wsa884x q6prm_clocks q6apm_lpass_dais snd_q6dsp_common q6apm_dai 
+q6prm algif_hash algif_skcipher af_alg qrtr_mhi ntfs3 ath12k mac80211 
+ov02e10 v4l2_cci snd_q6apm snd_soc_x1e80100 hci_uart snd_soc_qcom_common 
+btqca bluetooth snd_soc_qcom_sdw ps883x ecdh_generic pwrseq_qcom_wcn ecc 
+regmap_i2c phy_nxp_ptn3222 rtc_pm8xxx snd_soc_wcd938x snd_soc_wcd_classh 
+snd_soc_wcd938x_sdw regmap_sdw qcom_iris videobuf2_dma_contig qcom_camss 
+snd_soc_wcd_mbhc v4l2_mem2mem videobuf2_dma_sg snd_soc_lpass_rx_macro 
+snd_soc_lpass_tx_macro snd_soc_lpass_va_macro snd_soc_lpass_wsa_macro 
+soundwire_qcom snd_soc_hdmi_codec mux_core v4l2_fwnode 
+snd_soc_lpass_macro_common videobuf2_memops videobuf2_v4l2 
+videobuf2_common v4l2_async snd_soc_core videocc_sm8550 i2c_qcom_cci 
+videodev snd_compress mc phy_qcom_qmp_usb rpmsg_ctrl apr fastrpc snd_pcm 
+qcom_pd_mapper rpmsg_char pci_pwrctrl_pwrseq pci_pwrctrl_core qrtr_smd 
+pwrseq_core snd_timer cfg80211 snd soundwire_bus rfkill i2c_dev
+[   58.165914]  ip_tables x_tables autofs4 ipv6 fuse socinfo 
+qcom_cpucp_mbox icc_bwmon leds_gpio phy_qcom_qmp_pcie arm_smccc_trng 
+rng_core gpucc_x1e80100 pcie_qcom crc8 soundcore tcsrcc_x1e80100 
+pinctrl_sm8550_lpass_lpi pinctrl_lpass_lpi lpasscc_sc8280xp 
+hid_multitouch i2c_qcom_geni dispcc_x1e80100 phy_qcom_edp qcom_stats 
+phy_qcom_snps_eusb2 sha512_ce sha512_arm64 nvmem_qcom_spmi_sdam 
+qcom_spmi_temp_alarm industrialio sha3_ce phy_qcom_qmp_combo aux_bridge 
+phy_qcom_eusb2_repeater qcom_pon reboot_mode sm3_ce sm3 ucsi_glink 
+pmic_glink_altmode typec_ucsi qcom_battmgr aux_hpd_bridge pmic_glink 
+pdr_interface qcom_pdr_msg typec msm drm_client_lib drm_exec llcc_qcom 
+gpu_sched i2c_hid_of i2c_hid qrtr qcom_q6v5_pas qcom_pil_info 
+qcom_common qcom_glink_smem qcom_glink qcom_q6v5 qcom_sysmon mdt_loader 
+rpmsg_core qmi_helpers input_leds panel_edp drm_display_helper 
+drm_dp_aux_bus drm_kms_helper drm i2c_core mhi libarc4 nvme nvme_core 
+usb_storage r8152 mii libphy led_class dm_crypt dm_mod
+[   58.166115] CPU: 1 UID: 1001 PID: 1209 Comm: GstPlay Tainted: G 
+  W           6.15.0-rc1 #69 PREEMPT
+[   58.166125] Tainted: [W]=WARN
+[   58.166129] Hardware name: Dell Inc. Inspiron 14 Plus 7441/0YWPR3, 
+BIOS 2.5.0 12/16/2024
+[   58.166133] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS 
+BTYPE=--)
+[   58.166140] pc : __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   58.166146] lr : __vb2_queue_cancel+0x2c/0x2d0 [videobuf2_common]
+[   58.166152] sp : ffff800083f9bb00
+[   58.166155] x29: ffff800083f9bb00 x28: ffff6ad64770c020 x27: 
+0000000000000000
+[   58.166165] x26: 0000000040045613 x25: 0000000000000000 x24: 
+ffffac02677a6bc8
+[   58.166174] x23: ffff6ad64770c060 x22: ffff6ad68e60c780 x21: 
+ffff6ad679c36428
+[   58.166183] x20: 0000000000000009 x19: ffff6ad679c36428 x18: 
+0000000000000000
+[   58.166192] x17: 0000000000000000 x16: ffffac027ba13408 x15: 
+0000ffff000304b0
+[   58.166200] x14: 0000000000000000 x13: 0000000000000000 x12: 
+0000000000000000
+[   58.166208] x11: 0000000000000000 x10: 0000000000000000 x9 : 
+0000000000000000
+[   58.166216] x8 : ffff800083f9bd48 x7 : ffffac02677a6e28 x6 : 
+ffffac02677a6e28
+[   58.166226] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 
+0000000000000000
+[   58.166233] x2 : ffffac0267986fb0 x1 : 0000000000000000 x0 : 
+0000000000000008
+[   58.166242] Call trace:
+[   58.166246]  __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common] (P)
+[   58.166254]  vb2_core_streamoff+0x24/0xc8 [videobuf2_common]
+[   58.166260]  vb2_streamoff+0x18/0x64 [videobuf2_v4l2]
+[   58.166267]  v4l2_m2m_streamoff+0x78/0x144 [v4l2_mem2mem]
+[   58.166273]  v4l2_m2m_ioctl_streamoff+0x18/0x24 [v4l2_mem2mem]
+[   58.166279]  v4l_streamoff+0x24/0x30 [videodev]
+[   58.166289]  __video_do_ioctl+0x40c/0x4a0 [videodev]
+[   58.166298]  video_usercopy+0x2bc/0x688 [videodev]
+[   58.166307]  video_ioctl2+0x18/0x38 [videodev]
+[   58.166315]  v4l2_ioctl+0x40/0x60 [videodev]
+[   58.166323]  __arm64_sys_ioctl+0xb4/0xf4
+[   58.166335]  invoke_syscall+0x48/0x104
+[   58.166346]  el0_svc_common.constprop.0+0x40/0xe0
+[   58.166355]  do_el0_svc+0x1c/0x28
+[   58.166363]  el0_svc+0x30/0xcc
+[   58.166373]  el0t_64_sync_handler+0x10c/0x138
+[   58.166381]  el0t_64_sync+0x198/0x19c
+[   58.166386] ---[ end trace 0000000000000000 ]---
+[   58.166390] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 0 in active state
+[   58.166395] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 1 in active state
+[   58.166398] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 2 in active state
+[   58.166401] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 3 in active state
+[   58.166404] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 5 in active state
+[   58.166407] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 6 in active state
+[   58.166410] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 7 in active state
+[   58.166413] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 8 in active state
+[   58.169738] qcom-iris aa00000.video-codec: invalid plane
+[   61.517138] ------------[ cut here ]------------
+[   61.517147] WARNING: CPU: 1 PID: 1209 at 
+drivers/media/common/videobuf2/videobuf2-core.c:2222 
+__vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   61.517157] Modules linked in: rfcomm michael_mic reset_gpio 
+snd_soc_wsa884x q6prm_clocks q6apm_lpass_dais snd_q6dsp_common q6apm_dai 
+q6prm algif_hash algif_skcipher af_alg qrtr_mhi ntfs3 ath12k mac80211 
+ov02e10 v4l2_cci snd_q6apm snd_soc_x1e80100 hci_uart snd_soc_qcom_common 
+btqca bluetooth snd_soc_qcom_sdw ps883x ecdh_generic pwrseq_qcom_wcn ecc 
+regmap_i2c phy_nxp_ptn3222 rtc_pm8xxx snd_soc_wcd938x snd_soc_wcd_classh 
+snd_soc_wcd938x_sdw regmap_sdw qcom_iris videobuf2_dma_contig qcom_camss 
+snd_soc_wcd_mbhc v4l2_mem2mem videobuf2_dma_sg snd_soc_lpass_rx_macro 
+snd_soc_lpass_tx_macro snd_soc_lpass_va_macro snd_soc_lpass_wsa_macro 
+soundwire_qcom snd_soc_hdmi_codec mux_core v4l2_fwnode 
+snd_soc_lpass_macro_common videobuf2_memops videobuf2_v4l2 
+videobuf2_common v4l2_async snd_soc_core videocc_sm8550 i2c_qcom_cci 
+videodev snd_compress mc phy_qcom_qmp_usb rpmsg_ctrl apr fastrpc snd_pcm 
+qcom_pd_mapper rpmsg_char pci_pwrctrl_pwrseq pci_pwrctrl_core qrtr_smd 
+pwrseq_core snd_timer cfg80211 snd soundwire_bus rfkill i2c_dev
+[   61.517210]  ip_tables x_tables autofs4 ipv6 fuse socinfo 
+qcom_cpucp_mbox icc_bwmon leds_gpio phy_qcom_qmp_pcie arm_smccc_trng 
+rng_core gpucc_x1e80100 pcie_qcom crc8 soundcore tcsrcc_x1e80100 
+pinctrl_sm8550_lpass_lpi pinctrl_lpass_lpi lpasscc_sc8280xp 
+hid_multitouch i2c_qcom_geni dispcc_x1e80100 phy_qcom_edp qcom_stats 
+phy_qcom_snps_eusb2 sha512_ce sha512_arm64 nvmem_qcom_spmi_sdam 
+qcom_spmi_temp_alarm industrialio sha3_ce phy_qcom_qmp_combo aux_bridge 
+phy_qcom_eusb2_repeater qcom_pon reboot_mode sm3_ce sm3 ucsi_glink 
+pmic_glink_altmode typec_ucsi qcom_battmgr aux_hpd_bridge pmic_glink 
+pdr_interface qcom_pdr_msg typec msm drm_client_lib drm_exec llcc_qcom 
+gpu_sched i2c_hid_of i2c_hid qrtr qcom_q6v5_pas qcom_pil_info 
+qcom_common qcom_glink_smem qcom_glink qcom_q6v5 qcom_sysmon mdt_loader 
+rpmsg_core qmi_helpers input_leds panel_edp drm_display_helper 
+drm_dp_aux_bus drm_kms_helper drm i2c_core mhi libarc4 nvme nvme_core 
+usb_storage r8152 mii libphy led_class dm_crypt dm_mod
+[   61.517282] CPU: 1 UID: 1001 PID: 1209 Comm: GstPlay Tainted: G 
+  W           6.15.0-rc1 #69 PREEMPT
+[   61.517286] Tainted: [W]=WARN
+[   61.517288] Hardware name: Dell Inc. Inspiron 14 Plus 7441/0YWPR3, 
+BIOS 2.5.0 12/16/2024
+[   61.517289] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS 
+BTYPE=--)
+[   61.517291] pc : __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   61.517293] lr : __vb2_queue_cancel+0x2c/0x2d0 [videobuf2_common]
+[   61.517295] sp : ffff800083f9bb00
+[   61.517296] x29: ffff800083f9bb00 x28: ffff6ad64770c020 x27: 
+0000000000000000
+[   61.517299] x26: 0000000040045613 x25: 0000000000000000 x24: 
+ffffac02677a6bc8
+[   61.517301] x23: ffff6ad64770c060 x22: ffff6ad68e60c780 x21: 
+ffff6ad679c36428
+[   61.517304] x20: 0000000000000009 x19: ffff6ad679c36428 x18: 
+0000000000000000
+[   61.517306] x17: 0000000000000000 x16: ffffac027ba13408 x15: 
+0000ffff000304b0
+[   61.517309] x14: 0000000000000000 x13: 0000000000000000 x12: 
+0000000000000000
+[   61.517311] x11: 0000000000000000 x10: 0000000000000000 x9 : 
+0000000000000000
+[   61.517314] x8 : ffff800083f9bd48 x7 : ffffac02677a6e28 x6 : 
+ffffac02677a6e28
+[   61.517316] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 
+0000000000000000
+[   61.517319] x2 : ffffac0267986fb0 x1 : 0000000000000000 x0 : 
+0000000000000008
+[   61.517321] Call trace:
+[   61.517323]  __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common] (P)
+[   61.517325]  vb2_core_streamoff+0x24/0xc8 [videobuf2_common]
+[   61.517327]  vb2_streamoff+0x18/0x64 [videobuf2_v4l2]
+[   61.517330]  v4l2_m2m_streamoff+0x78/0x144 [v4l2_mem2mem]
+[   61.517332]  v4l2_m2m_ioctl_streamoff+0x18/0x24 [v4l2_mem2mem]
+[   61.517334]  v4l_streamoff+0x24/0x30 [videodev]
+[   61.517338]  __video_do_ioctl+0x40c/0x4a0 [videodev]
+[   61.517341]  video_usercopy+0x2bc/0x688 [videodev]
+[   61.517343]  video_ioctl2+0x18/0x38 [videodev]
+[   61.517346]  v4l2_ioctl+0x40/0x60 [videodev]
+[   61.517348]  __arm64_sys_ioctl+0xb4/0xf4
+[   61.517355]  invoke_syscall+0x48/0x104
+[   61.517359]  el0_svc_common.constprop.0+0x40/0xe0
+[   61.517362]  do_el0_svc+0x1c/0x28
+[   61.517364]  el0_svc+0x30/0xcc
+[   61.517368]  el0t_64_sync_handler+0x10c/0x138
+[   61.517371]  el0t_64_sync+0x198/0x19c
+[   61.517372] ---[ end trace 0000000000000000 ]---
+[   61.517375] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 0 in active state
+[   61.517377] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 1 in active state
+[   61.517378] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 2 in active state
+[   61.517379] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 3 in active state
+[   61.517381] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 5 in active state
+[   61.517382] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 6 in active state
+[   61.517383] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 7 in active state
+[   61.517384] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 8 in active state
+[   84.239087] ------------[ cut here ]------------
+[   84.239099] WARNING: CPU: 0 PID: 1283 at 
+drivers/media/common/videobuf2/videobuf2-core.c:2222 
+__vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   84.239110] Modules linked in: rfcomm michael_mic reset_gpio 
+snd_soc_wsa884x q6prm_clocks q6apm_lpass_dais snd_q6dsp_common q6apm_dai 
+q6prm algif_hash algif_skcipher af_alg qrtr_mhi ntfs3 ath12k mac80211 
+ov02e10 v4l2_cci snd_q6apm snd_soc_x1e80100 hci_uart snd_soc_qcom_common 
+btqca bluetooth snd_soc_qcom_sdw ps883x ecdh_generic pwrseq_qcom_wcn ecc 
+regmap_i2c phy_nxp_ptn3222 rtc_pm8xxx snd_soc_wcd938x snd_soc_wcd_classh 
+snd_soc_wcd938x_sdw regmap_sdw qcom_iris videobuf2_dma_contig qcom_camss 
+snd_soc_wcd_mbhc v4l2_mem2mem videobuf2_dma_sg snd_soc_lpass_rx_macro 
+snd_soc_lpass_tx_macro snd_soc_lpass_va_macro snd_soc_lpass_wsa_macro 
+soundwire_qcom snd_soc_hdmi_codec mux_core v4l2_fwnode 
+snd_soc_lpass_macro_common videobuf2_memops videobuf2_v4l2 
+videobuf2_common v4l2_async snd_soc_core videocc_sm8550 i2c_qcom_cci 
+videodev snd_compress mc phy_qcom_qmp_usb rpmsg_ctrl apr fastrpc snd_pcm 
+qcom_pd_mapper rpmsg_char pci_pwrctrl_pwrseq pci_pwrctrl_core qrtr_smd 
+pwrseq_core snd_timer cfg80211 snd soundwire_bus rfkill i2c_dev
+[   84.239190]  ip_tables x_tables autofs4 ipv6 fuse socinfo 
+qcom_cpucp_mbox icc_bwmon leds_gpio phy_qcom_qmp_pcie arm_smccc_trng 
+rng_core gpucc_x1e80100 pcie_qcom crc8 soundcore tcsrcc_x1e80100 
+pinctrl_sm8550_lpass_lpi pinctrl_lpass_lpi lpasscc_sc8280xp 
+hid_multitouch i2c_qcom_geni dispcc_x1e80100 phy_qcom_edp qcom_stats 
+phy_qcom_snps_eusb2 sha512_ce sha512_arm64 nvmem_qcom_spmi_sdam 
+qcom_spmi_temp_alarm industrialio sha3_ce phy_qcom_qmp_combo aux_bridge 
+phy_qcom_eusb2_repeater qcom_pon reboot_mode sm3_ce sm3 ucsi_glink 
+pmic_glink_altmode typec_ucsi qcom_battmgr aux_hpd_bridge pmic_glink 
+pdr_interface qcom_pdr_msg typec msm drm_client_lib drm_exec llcc_qcom 
+gpu_sched i2c_hid_of i2c_hid qrtr qcom_q6v5_pas qcom_pil_info 
+qcom_common qcom_glink_smem qcom_glink qcom_q6v5 qcom_sysmon mdt_loader 
+rpmsg_core qmi_helpers input_leds panel_edp drm_display_helper 
+drm_dp_aux_bus drm_kms_helper drm i2c_core mhi libarc4 nvme nvme_core 
+usb_storage r8152 mii libphy led_class dm_crypt dm_mod
+[   84.239292] CPU: 0 UID: 1001 PID: 1283 Comm: GstPlay Tainted: G 
+  W           6.15.0-rc1 #69 PREEMPT
+[   84.239297] Tainted: [W]=WARN
+[   84.239299] Hardware name: Dell Inc. Inspiron 14 Plus 7441/0YWPR3, 
+BIOS 2.5.0 12/16/2024
+[   84.239301] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS 
+BTYPE=--)
+[   84.239304] pc : __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common]
+[   84.239307] lr : __vb2_queue_cancel+0x2c/0x2d0 [videobuf2_common]
+[   84.239309] sp : ffff800082333b00
+[   84.239311] x29: ffff800082333b00 x28: ffff6ad65e9d5020 x27: 
+0000000000000000
+[   84.239315] x26: 0000000040045613 x25: 0000000000000000 x24: 
+ffffac02677a6bc8
+[   84.239319] x23: ffff6ad65e9d5060 x22: ffff6ad646d64d80 x21: 
+ffff6ad65f005028
+[   84.239324] x20: 0000000000000009 x19: ffff6ad65f005028 x18: 
+0000000000000000
+[   84.239328] x17: 0000000000000000 x16: ffffac027ba13408 x15: 
+0000ffff20030410
+[   84.239332] x14: 0000000000000000 x13: 0000000000000000 x12: 
+0000000000000000
+[   84.239335] x11: 0000000000000000 x10: 0000000000000000 x9 : 
+0000000000000000
+[   84.239339] x8 : ffff800082333d48 x7 : ffffac02677a6e28 x6 : 
+ffffac02677a6e28
+[   84.239343] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 
+0000000000000000
+[   84.239347] x2 : ffffac0267986fb0 x1 : 0000000000000000 x0 : 
+0000000000000016
+[   84.239351] Call trace:
+[   84.239353]  __vb2_queue_cancel+0x238/0x2d0 [videobuf2_common] (P)
+[   84.239357]  vb2_core_streamoff+0x24/0xc8 [videobuf2_common]
+[   84.239360]  vb2_streamoff+0x18/0x64 [videobuf2_v4l2]
+[   84.239364]  v4l2_m2m_streamoff+0x78/0x144 [v4l2_mem2mem]
+[   84.239368]  v4l2_m2m_ioctl_streamoff+0x18/0x24 [v4l2_mem2mem]
+[   84.239370]  v4l_streamoff+0x24/0x30 [videodev]
+[   84.239376]  __video_do_ioctl+0x40c/0x4a0 [videodev]
+[   84.239380]  video_usercopy+0x2bc/0x688 [videodev]
+[   84.239384]  video_ioctl2+0x18/0x38 [videodev]
+[   84.239388]  v4l2_ioctl+0x40/0x60 [videodev]
+[   84.239392]  __arm64_sys_ioctl+0xb4/0xf4
+[   84.239400]  invoke_syscall+0x48/0x104
+[   84.239407]  el0_svc_common.constprop.0+0x40/0xe0
+[   84.239411]  do_el0_svc+0x1c/0x28
+[   84.239415]  el0_svc+0x30/0xcc
+[   84.239421]  el0t_64_sync_handler+0x10c/0x138
+[   84.239425]  el0t_64_sync+0x198/0x19c
+[   84.239428] ---[ end trace 0000000000000000 ]---
+[   84.239430] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 0 in active state
+[   84.239432] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 1 in active state
+[   84.239433] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 2 in active state
+[   84.239435] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 3 in active state
+[   84.239436] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 4 in active state
+[   84.239438] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 5 in active state
+[   84.239439] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 7 in active state
+[   84.239440] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 8 in active state
+[   84.239442] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 9 in active state
+[   84.239443] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 10 in active state
+[   84.239445] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 11 in active state
+[   84.239446] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 14 in active state
+[   84.239447] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 15 in active state
+[   84.239449] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 16 in active state
+[   84.239450] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 17 in active state
+[   84.239452] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 18 in active state
+[   84.239453] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 19 in active state
+[   84.239454] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 20 in active state
+[   84.239456] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 21 in active state
+[   84.239457] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 22 in active state
+[   84.239459] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 23 in active state
+[   84.239460] videobuf2_common: driver bug: stop_streaming operation is 
+leaving buffer 24 in active state
+[   84.245873] qcom-iris aa00000.video-codec: invalid plane
+[  126.573593] qcom-iris aa00000.video-codec: session error received 
+0x1000009: unknown
+[  126.573638] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.573644] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.573649] qcom-iris aa00000.video-codec: session error received 
+0x1000009: unknown
+[  126.573654] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.573659] qcom-iris aa00000.video-codec: session error received 
+0x1000009: unknown
+[  126.573664] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.573668] qcom-iris aa00000.video-codec: session error received 
+0x1000009: unknown
+[  126.573670] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.582134] qcom-iris aa00000.video-codec: session error received 
+0x1000006: unknown
+[  126.582142] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.582147] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.582152] qcom-iris aa00000.video-codec: session error received 
+0x1000006: unknown
+[  126.582156] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.582161] qcom-iris aa00000.video-codec: session error received 
+0x1000006: unknown
+[  126.582166] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
+[  126.582170] qcom-iris aa00000.video-codec: session error received 
+0x1000006: unknown
+[  126.582177] qcom-iris aa00000.video-codec: session error received 
+0x4000004: invalid operation for current state
 
