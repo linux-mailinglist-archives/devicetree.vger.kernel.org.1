@@ -1,306 +1,251 @@
-Return-Path: <devicetree+bounces-164737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F780A822D9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:54:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871A0A822EC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADE4C1895504
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D565688116A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96A025DAF3;
-	Wed,  9 Apr 2025 10:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE7A25DAE3;
+	Wed,  9 Apr 2025 10:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U6EgeblM"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="OFkm2Wy7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="dPBKFJ4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D71F25D911;
-	Wed,  9 Apr 2025 10:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17DB450FE;
+	Wed,  9 Apr 2025 10:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744196049; cv=none; b=H9LBTMHaVYoKzStT8gKMSU+hVKYDmOoLJc0odlyW24hrDbgcQjcRcsd1SoLwDAJWuCReT/Mb3MxotYgio8WLq+DEDd8YehC3zRk60++EIOsgdTv2BmJCx4f368Nap/lfUJ7KtZ+d8XK1Yp0ugefw8xvi63kcvd5B9yUw2pRY5Eo=
+	t=1744196239; cv=none; b=pSchdPQbHQp9+Fz6mwuxkZ+PI5Ya1jZcwXQsC1qouI625UIvfG0H29JRb4ehluySPNZ1A9y+Cz6jvzObhWRNHk1q01dGN0aSDLcUusa/jeNAumniCrmyss4B9iadzC8XKoL7S65rNxqO5aHFxfCxGf1dvdxps++hUl7m/OHXNg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744196049; c=relaxed/simple;
-	bh=tbMF/C9iX4T5eVWba47BrfnFko25wlOg82piSbLeNaA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D3extVeMlhiC7JLUGJ5BNlcxcOz/bsRvFubR4LwCCI/acoPSCwmNbeuWKF0+1bvi5QJyPomrLbD3IIsf4CKueY+P3yZBsxsPTjhqnWvEas7rQ39zi3gZkIBbNh2LswPqPlRkVT+D9qMducpa2wr3kJ2tX0Vpduoh1xmy5nt8syo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U6EgeblM; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-523de5611a3so2975881e0c.1;
-        Wed, 09 Apr 2025 03:54:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744196047; x=1744800847; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TgIZoVKkgioMafx+bWpknazJMwDcHn7HAdB02qWhWbo=;
-        b=U6EgeblMc/A5bWHWhwOsobkpeibS9uEp6RpaOeyf+4nOwXntDFOYwfR5LJKwogM5Sn
-         4y/ERoBcq79QTafMLqm2mgEl/W5zo3JESjRrFOHbPf0JNDlFeUzJB5ZmsMmczwt2t5Zt
-         aezTUsGRSwco8DPseSaonxchyM3fE+f/lS5VUR5YyUBqf3Vadyy+tBafp6qm2w0cSDwB
-         A2nscjHnTcg4ROc2Rk+5HFpwK3LPwZXMmcZ/1xiWTF8pPOU38tAxUR63BFpoSch59C+h
-         /RxD5E0WVV+U44ggN6s9EhM4wSKWiIU7ecM9YeY7QoYbUXHZDRxA2okgKhlD/4GuKMxn
-         P60g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744196047; x=1744800847;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TgIZoVKkgioMafx+bWpknazJMwDcHn7HAdB02qWhWbo=;
-        b=ZwccVvQQizBHNXlOs5rPDYpQ5YSLVbJnQUl/f9PNCb8iN0lO7vX1Q2ja7ru9N3VZIm
-         LIQOo/FdlAVrC2XseSGEOvkhDTAjiW104p0Wxi5bIxz4rmvHwwIsFXxKcE/w3pNqUYG6
-         ftN6doVQz56db3FiCek6yz4H9YXAYbUXKKb7uCisJkTVmxMMvfqSOU4M2OKoGVfsdZVC
-         Wen4CXtK0gHJ4xDS5KD792Zmb5UVI6Q/nMKMwEl6CLJkchF8wBf8WbT8YhWgKVtRv4mB
-         4QQCzylIfRL4V+5wb2okAoC3M+zT8H3SqVYNbrVwENJf/mcYcpj4LcED5X4Ky/KwMfkR
-         E6xQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU7b2d9GzYyteDIBJT9NYfWA0W43XeiKESxY+P9OS9N6fdwgMwM2yuTDK9Vnqh08aL9Ve+LuOsRk01HaAwA++qm9WU=@vger.kernel.org, AJvYcCUrY5Iwx4+Jc7IaL1UoyQrUi7gkXuROx5ToeXDo8nQE4h1eMb8YJ7qFY+OzU/JgMNLLRoZ8QYkwu1+UxOpu@vger.kernel.org, AJvYcCXsb7DhhTL41TjUB56ViCiE3+KEi5PfpEWwPdbDnHu6hzS817O935fHMdO4Xc1crVOwOqoBsPheFwx8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOTusoU6Nbhiue5dLXvgOyLeTOsBKxuk2aONYmRai10lPkD1+8
-	wyhQxEPhKZC2hnzfDZVsp0z89Itfht48HQS6WBuRc/+rc4OTkL9fEP/nk9oub9pRhJSGflc620W
-	sD+YmsZfs/cB8WOJpSuHHb80feVX3RpBO9KQ=
-X-Gm-Gg: ASbGncuUJgmDUkpBfzBsrwKBlq/g2StI8hd8Z2T02sRszsYMfxycz8u0Ihoh+CXXdzr
-	XijlHcx5MgHhKUNAF8maYTgudlaBlloeK4GbkHHhvAgl5KYzEs1eKTXJiAjHwONzQEIJIKpmim1
-	aZYK/WIhXH4n8SwLWPK4doBSoRo2BlHTltbWNg31IT7DFyvnTjzkuDx9M=
-X-Google-Smtp-Source: AGHT+IG7crk11/4VvyNYcFqhtUhfs+6UpTaoV15rvEpSl7rA5USiS8iy0l6f440IQVj+zgXTr44Tai3CmYR/w6AqpDc=
-X-Received: by 2002:a05:6122:2023:b0:520:5a87:66fa with SMTP id
- 71dfb90a1353d-527a9cf80f1mr1058327e0c.3.1744196046902; Wed, 09 Apr 2025
- 03:54:06 -0700 (PDT)
+	s=arc-20240116; t=1744196239; c=relaxed/simple;
+	bh=2LytKNIoCuhhtB6sio3aMmi90kofWNCfL4cxq3uWT+4=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=p9OfNCmUVwQXXsgjIuh9WxRWG7RBc5glPIeuxQQivOm3TLFTQVBzcZE8AqTE0fUAbY6N34SxapDRh+doB6OgmorMnbyoRnTj4BDNwEVdffilE6QEp9GlWlUtfZVwKoInc2J529VXUva66NZQwFOLlt2sSAA3Vqn9iy1k52qtCSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=OFkm2Wy7; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=dPBKFJ4z; arc=none smtp.client-ip=103.168.172.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-12.internal (phl-compute-12.phl.internal [10.202.2.52])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id D60F5114002D;
+	Wed,  9 Apr 2025 06:57:15 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-12.internal (MEProxy); Wed, 09 Apr 2025 06:57:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1744196235;
+	 x=1744282635; bh=uWm2NE/IuMCfn/DQORBBNK2WOS92lOJvjTCw/zxxtHA=; b=
+	OFkm2Wy7p07VJ0jHAgwUbZ1WqR2AT10rZ2moBuYAcqAWCsWPwsVwWO73mP4KRaeV
+	BnnwhOmh7s1fCHEObRoY500jEVTkQVyTdsufpPaeDGcugCq9d0vG5y9GQK0LR4k7
+	Hm6Qr0xPu3UPe3V5FYySP7od4JyFEQ4eVxsySmw9i+6W3qpuO1VPo6D+PknS6JuJ
+	IXnLA/5qF2tP9Ygi8JkCjwXxVtEirGdWzLIG0wsDlL36+4PCw9iMeEmFcBUPoSxZ
+	EXNgp/t+fD6zYaMC8SmETSKsiDkI4gAgV7AYuAzKnlF/HHeoTvL2WphFzwe7dyPo
+	M5cmOoMXVsu5E/0rzvp8/A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744196235; x=
+	1744282635; bh=uWm2NE/IuMCfn/DQORBBNK2WOS92lOJvjTCw/zxxtHA=; b=d
+	PBKFJ4zjIxK/rtsgaUGu82JGMk1gQ6GOOdO/eJSWvgiGcq6Bx/zqOLgaCw2L2LIy
+	KPbJeHcMtebgEnqr2DNP9Ddb+zYesi8UKyo8n4md8QSTensmh7BUpOt16AybMn5L
+	xrm3cd3kBYKfYvBvdCUziAYVMiv07vsZv7DkxvLfoh36SzpfoVgTf8lFeWIi/hsi
+	xJqPuEqf5eTwpFEjiYEDtBaup5Pu5BiiCJIgyftHCLcntUrNLjnrBiXF6ZTs4iLb
+	I0U/WjMpkdY9CNE2zou2vO5Fz5PvSezORPkcA6o3OoDEE7SwTpnfMHvFFaZI3Zmt
+	muHaq2nHzcWKtDWR/vE4g==
+X-ME-Sender: <xms:i1L2Z1HCHzGQT13IRupI9t1a4tSG2cUwXxCcjvahFjxCzQpH1McToQ>
+    <xme:i1L2Z6WevBv7h8kw8DO9g-k2quKOjikdF_S7xWGLMk7igtWQeYnjwJdMahB3Vkgt1
+    wGkAkKseVnwvEFSPoM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdehkeduucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
+    tddtnecuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnug
+    gsrdguvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeet
+    fefggfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
+    udefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegtrghtrghlihhnrdhmrghrih
+    hnrghssegrrhhmrdgtohhmpdhrtghpthhtohepshgrshgthhgrrdgsihhstghhohhffhes
+    rghrmhdrtghomhdprhgtphhtthhopehtihhmohhthhihrdhhrgihvghssegrrhhmrdgtoh
+    hmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlphhivghrrghlih
+    hsiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgriieskhgvrhhnvghlrdhorhhg
+    pdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopeifihhllh
+    eskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:i1L2Z3IiVJP-N-x9HB5gq2ubKKGUv2n_Xl2zeM0wytbi0tReHMXbxA>
+    <xmx:i1L2Z7GCwDPglZxkaouRtfLqXrnVo26z_G0kgpi1QpotBZg59GIwWg>
+    <xmx:i1L2Z7Vv0jMlEJ4Vga8HQKVgyhvG6C9fM2R4mwBxP2cjAbXj6JSAiA>
+    <xmx:i1L2Z2PKuJICfQge-i7dIThPzjCRg3fGNDul7WF8DGrrzoeBiQ0ItQ>
+    <xmx:i1L2Z7BFFsTNsp4ZounQ-w-YcwJ-BIi5OQ4zdzB7zpegWfAgQDzGXTA2>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 6226A2220073; Wed,  9 Apr 2025 06:57:15 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250305002112.5289-1-fabrizio.castro.jz@renesas.com> <20250305002112.5289-7-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20250305002112.5289-7-fabrizio.castro.jz@renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 9 Apr 2025 11:53:38 +0100
-X-Gm-Features: ATxdqUFKIMEQwTyPYyiLYbKx2EqmtKkQ7AXS8LOIIFWZ7NU0GfAVFtJtbnAndu0
-Message-ID: <CA+V-a8vj-Yu+nTEhN0d5ds0WSsQKH+Jh1L__iPqWNU28QXdSWg@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] arm64: dts: renesas: r9a09g057: Add DMAC nodes
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ThreadId: T274101974a25e0dd
+Date: Wed, 09 Apr 2025 12:56:52 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Lorenzo Pieralisi" <lpieralisi@kernel.org>
+Cc: "Marc Zyngier" <maz@kernel.org>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Sascha Bischoff" <sascha.bischoff@arm.com>,
+ "Timothy Hayes" <timothy.hayes@arm.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Message-Id: <e7e4e9f0-a9e4-48d4-9bed-a4c52453ee8e@app.fastmail.com>
+In-Reply-To: <Z/ZH5IBQAZ8rc9Cz@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
+ <ed63bb91-e9ac-409a-a9a0-25b233fe2e15@app.fastmail.com>
+ <Z/ZH5IBQAZ8rc9Cz@lpieralisi>
+Subject: Re: [PATCH 20/24] irqchip/gic-v5: Add GICv5 LPI/IPI support
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 5, 2025 at 12:24=E2=80=AFAM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
+On Wed, Apr 9, 2025, at 12:11, Lorenzo Pieralisi wrote:
+> On Wed, Apr 09, 2025 at 10:23:57AM +0200, Arnd Bergmann wrote:
+>> On Tue, Apr 8, 2025, at 12:50, Lorenzo Pieralisi wrote:
+>> > +static void irs_writeq(struct gicv5_irs_chip_data *irs_data, const u64 
+>> > val,
+>> > +		       const u64 reg_offset)
+>> > +{
+>> > +	writeq_relaxed(val, irs_data->irs_base + reg_offset);
+>> > +}
+>> 
+>> I think the use of _relaxed memory accessors needs some code
+>> comments here. The definition of these is that you don't care
+>> about ordering relative to DMA master accesses, yet you seem to
+>> very much have accesses to the 'ist' from the GIC, as well as
+>> DMA accesses from an MSI device, and I would expect both to
+>> require ordering.
 >
-> Add nodes for the DMAC IPs found on the Renesas RZ/V2H(P) SoC.
+> For the 1-level (linear) IST we allocate it in one go, write
+> the base address through relaxed access (that sets the IST
+> valid) and poll completion with a relaxed access. Memory is
+> cleaned and invalidated from the cache (if the IRS is not
+> coherent) before the MMIO sequence above, which implies a
+> dsb().
 >
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v4->v5:
-> * Collected tags.
-> v3->v4:
-> * No change.
-> v2->v3:
-> * No change.
-> v1->v2:
-> * No change.
-> ---
->  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 165 +++++++++++++++++++++
->  1 file changed, 165 insertions(+)
+> After that memory is handed over to the GIC.
 >
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> For a 2-level IST, the code that updates L1 entries already add
+> a dma_rmb() barrier (ie gicv5_irs_iste_alloc()) to make sure we
+> order MMIO wait completion with the subsequent cache invalidate
+> (again, in the yet hypothetical case where the IRS is not coherent).
+>
+> I think I can add comments where the sequence to initialize the
+> tables is executed more than here, given that these helpers are
+> used for other purposes too.
 
-Cheers,
-Prabhakar
+Usually my recommendation is to have abstractions like this
+provide both relaxed and normal variants, and then only
+use the relaxed ones where it really matters for performance.
 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a09g057.dtsi
-> index 1c550b22b164..0a7d0c801e32 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> @@ -252,6 +252,171 @@ sys: system-controller@10430000 {
->                         status =3D "disabled";
->                 };
+That way you can keep relatively short explanations where
+you call irs_writeq_relaxed() and use irs_writeq() without
+any code comments any place that doesn't care about saving
+a few cycles per call.
+
+>> > +/* Wait for completion of an IST change */
+>> > +static int gicv5_irs_ist_wait_for_idle(struct gicv5_irs_chip_data 
+>> > *irs_data)
+>> > +{
+>> > +	int ret;
+>> > +	u32 val;
+>> > +
+>> > +	ret = readl_relaxed_poll_timeout_atomic(
+>> > +			irs_data->irs_base + GICV5_IRS_IST_STATUSR, val,
+>> > +			FIELD_GET(GICV5_IRS_IST_STATUSR_IDLE, val), 1,
+>> > +			USEC_PER_SEC);
+>> > +
+>> 
+>> What is the significance of the 1 second timeout? This is probably
+>> a million times longer than I would expect any hardware interaction
+>> to be specified to take. Are you waiting for another thread here?
 >
-> +               dmac0: dma-controller@11400000 {
-> +                       compatible =3D "renesas,r9a09g057-dmac";
-> +                       reg =3D <0 0x11400000 0 0x10000>;
-> +                       interrupts =3D <GIC_SPI 499 IRQ_TYPE_EDGE_RISING>=
-,
-> +                                    <GIC_SPI 89  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 90  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 91  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 92  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 93  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 94  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 95  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 96  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 97  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 98  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 99  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 101 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 103 IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 104 IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names =3D "error",
-> +                                         "ch0", "ch1", "ch2", "ch3",
-> +                                         "ch4", "ch5", "ch6", "ch7",
-> +                                         "ch8", "ch9", "ch10", "ch11",
-> +                                         "ch12", "ch13", "ch14", "ch15";
-> +                       clocks =3D <&cpg CPG_MOD 0x0>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg 0x31>;
-> +                       #dma-cells =3D <1>;
-> +                       dma-channels =3D <16>;
-> +                       renesas,icu =3D <&icu 4>;
-> +               };
-> +
-> +               dmac1: dma-controller@14830000 {
-> +                       compatible =3D "renesas,r9a09g057-dmac";
-> +                       reg =3D <0 0x14830000 0 0x10000>;
-> +                       interrupts =3D <GIC_SPI 495 IRQ_TYPE_EDGE_RISING>=
-,
-> +                                    <GIC_SPI 25  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 26  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 27  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 28  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 29  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 30  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 31  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 32  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 33  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 34  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 35  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 36  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 37  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 38  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 39  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 40  IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names =3D "error",
-> +                                         "ch0", "ch1", "ch2", "ch3",
-> +                                         "ch4", "ch5", "ch6", "ch7",
-> +                                         "ch8", "ch9", "ch10", "ch11",
-> +                                         "ch12", "ch13", "ch14", "ch15";
-> +                       clocks =3D <&cpg CPG_MOD 0x1>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg 0x32>;
-> +                       #dma-cells =3D <1>;
-> +                       dma-channels =3D <16>;
-> +                       renesas,icu =3D <&icu 0>;
-> +               };
-> +
-> +               dmac2: dma-controller@14840000 {
-> +                       compatible =3D "renesas,r9a09g057-dmac";
-> +                       reg =3D <0 0x14840000 0 0x10000>;
-> +                       interrupts =3D <GIC_SPI 496 IRQ_TYPE_EDGE_RISING>=
-,
-> +                                    <GIC_SPI 41  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 42  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 43  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 44  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 45  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 46  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 47  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 48  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 49  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 50  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 51  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 52  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 53  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 54  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 55  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 56  IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names =3D "error",
-> +                                         "ch0", "ch1", "ch2", "ch3",
-> +                                         "ch4", "ch5", "ch6", "ch7",
-> +                                         "ch8", "ch9", "ch10", "ch11",
-> +                                         "ch12", "ch13", "ch14", "ch15";
-> +                       clocks =3D <&cpg CPG_MOD 0x2>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg 0x33>;
-> +                       #dma-cells =3D <1>;
-> +                       dma-channels =3D <16>;
-> +                       renesas,icu =3D <&icu 1>;
-> +               };
-> +
-> +               dmac3: dma-controller@12000000 {
-> +                       compatible =3D "renesas,r9a09g057-dmac";
-> +                       reg =3D <0 0x12000000 0 0x10000>;
-> +                       interrupts =3D <GIC_SPI 497 IRQ_TYPE_EDGE_RISING>=
-,
-> +                                    <GIC_SPI 57  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 58  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 59  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 60  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 61  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 62  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 63  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 64  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 65  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 66  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 67  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 68  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 69  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 70  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 71  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 72  IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names =3D "error",
-> +                                         "ch0", "ch1", "ch2", "ch3",
-> +                                         "ch4", "ch5", "ch6", "ch7",
-> +                                         "ch8", "ch9", "ch10", "ch11",
-> +                                         "ch12", "ch13", "ch14", "ch15";
-> +                       clocks =3D <&cpg CPG_MOD 0x3>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg 0x34>;
-> +                       #dma-cells =3D <1>;
-> +                       dma-channels =3D <16>;
-> +                       renesas,icu =3D <&icu 2>;
-> +               };
-> +
-> +               dmac4: dma-controller@12010000 {
-> +                       compatible =3D "renesas,r9a09g057-dmac";
-> +                       reg =3D <0 0x12010000 0 0x10000>;
-> +                       interrupts =3D <GIC_SPI 498 IRQ_TYPE_EDGE_RISING>=
-,
-> +                                    <GIC_SPI 73  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 74  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 75  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 76  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 77  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 78  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 79  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 80  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 81  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 82  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 83  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 84  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 85  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 86  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 87  IRQ_TYPE_EDGE_RISING>,
-> +                                    <GIC_SPI 88  IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names =3D "error",
-> +                                         "ch0", "ch1", "ch2", "ch3",
-> +                                         "ch4", "ch5", "ch6", "ch7",
-> +                                         "ch8", "ch9", "ch10", "ch11",
-> +                                         "ch12", "ch13", "ch14", "ch15";
-> +                       clocks =3D <&cpg CPG_MOD 0x4>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg 0x35>;
-> +                       #dma-cells =3D <1>;
-> +                       dma-channels =3D <16>;
-> +                       renesas,icu =3D <&icu 3>;
-> +               };
-> +
->                 ostm0: timer@11800000 {
->                         compatible =3D "renesas,r9a09g057-ostm", "renesas=
-,ostm";
->                         reg =3D <0x0 0x11800000 0x0 0x1000>;
-> --
-> 2.34.1
+> It is arbitrary, agreed.
+
+Can you make either much shorter, or non-atomic then?
+
+>> > +	l2istsz = BIT(n + 1);
+>> > +	if (l2istsz > KMALLOC_MAX_SIZE) {
+>> > +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
+>> > +
+>> > +		pr_warn("Limiting LPI ID bits from %u to %u\n",
+>> > +			lpi_id_bits, lpi_id_cap);
+>> > +		lpi_id_bits = lpi_id_cap;
+>> > +		l2istsz = KMALLOC_MAX_SIZE;
+>> > +	}
+>> 
+>> The use of KMALLOC_MAX_SIZE seem arbitrary here. I remember discussing
+>> this in the past and concluding that this is fine for all cases
+>> that may be relevant, but it would be good to explain the reasoning
+>> in a comment.
 >
+> We need contiguous physical memory that can be < PAGE_SIZE or larger.
 >
+> For allocations larger than the allocator caches kmalloc hands over to
+> the page allocator, MAX_ORDER is reflected into KMALLOC_MAX_SIZE AFAIU.
+>
+> That's the reasoning. Does it make sense ?
+
+I'm more worried about what happens when KMALLOC_MAX_SIZE is
+really small -- did you show that the allocation is still
+going to work, or is this likely to cause runtime problems?
+
+>> > +	if (irs_data->flags & IRS_FLAGS_NON_COHERENT)
+>> > +		dcache_clean_inval_poc((unsigned long)ist,
+>> > +				       (unsigned long)ist + l2istsz);
+>> > +	else
+>> > +		dsb(ishst);
+>> ...
+>> > +	baser = (virt_to_phys(ist) & GICV5_IRS_IST_BASER_ADDR_MASK) |
+>> > +		FIELD_PREP(GICV5_IRS_IST_BASER_VALID, 0x1);
+>> 
+>> Here it seems like you are open-coding the DMA mapping interface
+>> details, in particular the mapping of the 'ist' memory area into
+>> the gic's DMA master space, the coherency and the barrier that is
+>> normally part of a (non-relaxed) writeq().  Is there a reason
+>> you can't use the normal interfaces here, using dma_alloc_coherent()
+>> or dma_alloc_noncoherent()?
+>
+> The GIC IRS must be brought up early, it is not a struct device.
+
+Right, that is rather unfortunate.
+
+>> Do you expect actual implementation to not be cache-coherent?
+>
+> It is allowed by the architecture - I don't have a crystal ball
+> but if I want to add support for a non-coherent IRS the DMA mapping
+> like sequence above has to be there - alternatives are welcome.
+
+I see that we have a few GICv3 implementations that are marked
+as non-coherent in DT. I don't understand why they'd do that,
+but I guess there is not much to be done about it.
+
+The only other idea I have would be to use an uncached allocation
+for the non-coherent case, the same way that dma_alloc_coherent()
+or maybe dma_alloc_wc() does. This still has the same problem
+with bypassing the dma-mapping.h interface because of the lack
+of a device pointer, but it would at least avoid the cache flushes
+at runtime. If I read this code right, the data in here is only
+written by the CPU and read by the GIC, so a WC buffer wouldn't
+be more expensive, right?
+
+       Arnd
 
