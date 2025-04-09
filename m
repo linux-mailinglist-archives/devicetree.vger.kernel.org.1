@@ -1,157 +1,272 @@
-Return-Path: <devicetree+bounces-164739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B171A822F3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:00:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A485EA8231D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5572A8834C6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:59:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4A91BA2DDA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BC025DB19;
-	Wed,  9 Apr 2025 11:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D310725B664;
+	Wed,  9 Apr 2025 11:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="RIb4T0jX";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="c6yWtWu5"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pbCEdVHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE7A25DAEF;
-	Wed,  9 Apr 2025 10:59:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A095813C9A3;
+	Wed,  9 Apr 2025 11:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744196403; cv=none; b=Txdct5XfeWC6ePpo0wLGOAioy1XJTCgr9KLYzK4gCJEVBSqEgvGf853yeUCBYHUNC/1y0UfzHR9GmxzRlPz/AucfbQw3iDC2XXvgXLpgfRB2x0CfhS40+0DE0mQuh2jcECpG9IGtFxlm0d0hd/3MO/QQskT6oOvR7Kbi10y36aw=
+	t=1744196954; cv=none; b=txvPpdIZ50mX/RrLyg9xwGnzN8BTLrE6ZV0pBhWDxri5SWQtk4qNuFe6MYh9IZkATs2FTndoiBNB4to8zBp4L1xv66775DxpCeKIVxWgnXhyu8GyUWOR0Cu8gDfwyKXgKGbF2IrroL+WceGOpUsOvDJsYu7h5Beyp2GSbapNVes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744196403; c=relaxed/simple;
-	bh=TfB1w3nVESPRx1uoE2Mc5Ze55+L0OBKpgUXDoSKfnCE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b4WrV+3MnmcZ1FsdLNbgBhvuAaPfqVFfYTY8kIwQWNmuWK6nFxP2aeUXtt8eeWZf0WZcPEMAS1vIr4WBXRnE1HUtvZAKKg+pEPWlt32CCUdu5wHCGYJRtz3O+KLda1+Sge2gRKKNomZEsi00EOe5CVZXRgNxdigPiO03MuLipIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=RIb4T0jX; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=c6yWtWu5 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1744196399; x=1775732399;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Kn75fkqPv9i2aiN1xOdOZGSnE5xqACnS+FveSU5qwDo=;
-  b=RIb4T0jX2jIy1weYafwVy2t14ihbWZ1UxIGZ647ecTgJqFs4pBKGaVUM
-   V6NYU7weNgD0DBEapQsBgcNEeZIoHWfvYENFY8znnGSYNcbUvY3rKXQRx
-   x6Syj17GH24c43FzXu7DEW4N8M2rNVadMDu2D4J5vfQFnWCc/5NSCVaAS
-   Ut5UXJMLM6+5MUkzHeZ0LyPv8HkuZP00P5OEwhJZuS4GKz9OiCDCX1cIF
-   0mnFWE2PffT8Q/Ry5IY4lozDopUeF3lDY/2HhB9xj43jQy5VWpiABj1/9
-   3OjK2pR5v6ajm50M8lb111b0gkHcTSOLqYlGKpEITTVeHxkTA1d5P0wOG
-   Q==;
-X-CSE-ConnectionGUID: FaxeuNCfQkWKH7AtI6ab7g==
-X-CSE-MsgGUID: 5VwsxvJMQVCKcn0dBh+4hA==
-X-IronPort-AV: E=Sophos;i="6.15,200,1739833200"; 
-   d="scan'208";a="43426690"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 09 Apr 2025 12:59:56 +0200
-X-CheckPoint: {67F6532B-59-7141A0B0-E6EDEC14}
-X-MAIL-CPID: C309E74E949F8B32217D51A50BFA7CA5_3
-X-Control-Analysis: str=0001.0A006371.67F65329.000F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B4609165763;
-	Wed,  9 Apr 2025 12:59:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1744196391;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Kn75fkqPv9i2aiN1xOdOZGSnE5xqACnS+FveSU5qwDo=;
-	b=c6yWtWu5ldp40FtgZLvlKrLPY8tZFdZikCLZSAcQjmnId/U1Z42jqJJzy/rq+jP4UqS4Hf
-	SLkiGUErbtWr5TQ6KSRVKwv6NjWsBOAx4GrxWkl+HOBqBEk6iYFgIMKQbuzrnhUN44zOqe
-	2P4t+3fKlVkeuur7IWfG8M6AjMTT3Ui0rFqoUU6gveNIhFl7l1N0wely8wPDYYE3OrtLVG
-	2mrthxPtuqoAv5GNLJwvrjVcFNJiq9dVMVdEZhu5XEfvRDmsXnLig9ktLHjeUh4U/rOyQt
-	6x8jvhu+Jsu9eBSbzO0eHVsHZYL+MkisR4MZEBnVRHtvGcE4CQ2Ley5EF7aIbg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow linux,code for
- protocol@81
-Date: Wed, 09 Apr 2025 12:59:50 +0200
-Message-ID: <2003940.PYKUYFuaPT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
-References: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1744196954; c=relaxed/simple;
+	bh=7wbQ3lchSkZZ5tdZaoI/xJxofwaC7PcGBCfb35Zk+lg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFasJy3WEs4aZjuXv5IP3Uryf2XkwhwbFit2IzfEN6+60OusStEZtit5PgkftUYYTzCIplAcz1nRfMK6whidfR2OzYIYCxJcY6JMY22N3vK7xtOsnJkZt/LJ6eGoM7jyhAW9/HZ8bcS0loFOqCVzDC3DWIR3NFJAe5gfLxQf9j4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pbCEdVHW; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 24F6182E;
+	Wed,  9 Apr 2025 13:07:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1744196827;
+	bh=7wbQ3lchSkZZ5tdZaoI/xJxofwaC7PcGBCfb35Zk+lg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pbCEdVHW6aisqhSEnhUiViEGdyriqLYMvO7kiGWa/b3L7Yo5PltG4ukIQABSOsNxU
+	 a2RLxOhefl+JFnfCKCBU+yOHY39W60dnKWA7COKjMO4PhKBpoPkz5pniZvRSexppS2
+	 iTLjYtpnki94c8yGo2RK5omsakrSzPy/FhSG7B80=
+Date: Wed, 9 Apr 2025 14:08:40 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 11/17] media: rzg2l-cru: Add register mapping support
+Message-ID: <20250409110840.GG31475@pendragon.ideasonboard.com>
+References: <20250328173032.423322-12-tommaso.merciai.xr@bp.renesas.com>
+ <TY3PR01MB11346ECE31CB6C8DC33459C2486AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8sJQnyJb_uq9yEcjHRW7ZFOw3g2XQyygcozWTgMjrYxRQ@mail.gmail.com>
+ <TY3PR01MB113462DC897E0DB681B1C020F86AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8ukJ+_Bhy-4nU_CFD4rMoTRxEY-q+bXHHZ-9Mz8gQ362A@mail.gmail.com>
+ <20250402092618.GH4845@pendragon.ideasonboard.com>
+ <TY3PR01MB11346DF814762C667FF97074286AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8tsCEhmhNSbMMiuN6b2rJCoSekf+-e6EHr5wE5C000ZxQ@mail.gmail.com>
+ <20250409012914.GD31475@pendragon.ideasonboard.com>
+ <TY3PR01MB11346A5CBFD05A51E351DCE6586B42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TY3PR01MB11346A5CBFD05A51E351DCE6586B42@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-Hi,
+Hi Biju,
 
-Am Montag, 4. November 2024, 09:56:21 CEST schrieb Alexander Stein:
-> BBM protocol supports a single power button, supported by driver
-> imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritt=
-en
-> using linux,code. Add a reference to this schema and add linux,code as a
-> supported property.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Wed, Apr 09, 2025 at 07:25:43AM +0000, Biju Das wrote:
+> On 09 April 2025 02:29, Laurent Pinchart wrote:
+> > On Mon, Apr 07, 2025 at 04:55:33PM +0000, Lad, Prabhakar wrote:
+> > > On Wed, Apr 2, 2025 at 10:39 AM Biju Das wrote:
+> > > > On 02 April 2025 10:26, Laurent Pinchart wrote:
+> > > > > On Wed, Apr 02, 2025 at 08:25:06AM +0000, Lad, Prabhakar wrote:
+> > > > > > On Wed, Apr 2, 2025 at 9:20 AM Biju Das wrote:
+> > > > > > > On 02 April 2025 08:35, Lad, Prabhakar wrote:
+> > > > > > > > On Wed, Apr 2, 2025 at 7:31 AM Biju Das wrote:
+> > > > > > > > > > On 28 March 2025 17:30, Tommaso Merciai wrote:
+> > > > > > > > > > From: Lad Prabhakar
+> > > > > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > > > > >
+> > > > > > > > > > Prepare for adding support for RZ/G3E and RZ/V2HP SoCs,
+> > > > > > > > > > which have a CRU-IP that is mostly identical to RZ/G2L
+> > > > > > > > > > but with different register offsets and additional
+> > > > > > > > > > registers. Introduce a flexible register mapping
+> > > > > > > > > > mechanism to handle these variations.
+> > > > > > > > > >
+> > > > > > > > > > Define the `rzg2l_cru_info` structure to store register
+> > > > > > > > > > mappings and pass it as part of the OF match data.
+> > > > > > > > > > Update the read/write functions to check out-of-bound
+> > > > > > > > > > accesses and use indexed register offsets from
+> > > > > > > > > > `rzg2l_cru_info`, ensuring compatibility across different SoC variants.
+> > > > > > > > > >
+> > > > > > > > > > Signed-off-by: Lad Prabhakar
+> > > > > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > > > > > Signed-off-by: Tommaso Merciai
+> > > > > > > > > > <tommaso.merciai.xr@bp.renesas.com>
+> > > > > > > > > > ---
+> > > > > > > > > > Changes since v2:
+> > > > > > > > > >  - Implemented new rzg2l_cru_write/read() that now are checking out-of-bound
+> > > > > > > > > >    accesses as suggested by LPinchart.
+> > > > > > > > > >  - Fixed AMnMBxADDRL() and AMnMBxADDRH() as suggested by LPinchart.
+> > > > > > > > > >  - Update commit body
+> > > > > > > > > >
+> > > > > > > > > > Changes since v4:
+> > > > > > > > > >  - Mark __rzg2l_cru_write_constant/__rzg2l_cru_read_constant
+> > > > > > > > > >    as __always_inline
+> > > > > > > > > >
+> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 46 ++++++++++++-
+> > > > > > > > > >  .../renesas/rzg2l-cru/rzg2l-cru-regs.h        | 66 ++++++++++---------
+> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  4 ++
+> > > > > > > > > >  .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 58
+> > > > > > > > > > ++++++++++++++--
+> > > > > > > > > >  4 files changed, 139 insertions(+), 35 deletions(-)
+> > > > > > > > > >
+> > > > > > > > > > diff --git
+> > > > > > > > > > a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > > > > > > b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > > > > > > index eed9d2bd08414..abc2a979833aa 100644
+> > > > > > > > > > ---
+> > > > > > > > > > a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > > > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cor
+> > > > > > > > > > +++ e.c
+> > > > > > > > > > @@ -22,6 +22,7 @@
+> > > > > > > > > >  #include <media/v4l2-mc.h>
+> > > > > > > > > >
+> > > > > > > > > >  #include "rzg2l-cru.h"
+> > > > > > > > > > +#include "rzg2l-cru-regs.h"
+> > > > > > > > > >
+> > > > > > > > > >  static inline struct rzg2l_cru_dev
+> > > > > > > > > > *notifier_to_cru(struct v4l2_async_notifier *n)  { @@
+> > > > > > > > > > -269,6 +270,9 @@ static int rzg2l_cru_probe(struct
+> > > > > > > > > > platform_device *pdev)
+> > > > > > > > > >
+> > > > > > > > > >       cru->dev = dev;
+> > > > > > > > > >       cru->info = of_device_get_match_data(dev);
+> > > > > > > > > > +     if (!cru->info)
+> > > > > > > > > > +             return dev_err_probe(dev, -EINVAL,
+> > > > > > > > > > +                                  "Failed to get OF
+> > > > > > > > > > + match data\n");
+> > > > > > > > > >
+> > > > > > > > > >       irq = platform_get_irq(pdev, 0);
+> > > > > > > > > >       if (irq < 0)
+> > > > > > > > > > @@ -317,8 +321,48 @@ static void rzg2l_cru_remove(struct platform_device *pdev)
+> > > > > > > > > >       rzg2l_cru_dma_unregister(cru);  }
+> > > > > > > > > >
+> > > > > > > > > > +static const u16 rzg2l_cru_regs[] = {
+> > > > > > > > > > +     [CRUnCTRL] = 0x0,
+> > > > > > > > > > +     [CRUnIE] = 0x4,
+> > > > > > > > > > +     [CRUnINTS] = 0x8,
+> > > > > > > > > > +     [CRUnRST] = 0xc,
+> > > > > > > > > > +     [AMnMB1ADDRL] = 0x100,
+> > > > > > > > > > +     [AMnMB1ADDRH] = 0x104,
+> > > > > > > > > > +     [AMnMB2ADDRL] = 0x108,
+> > > > > > > > > > +     [AMnMB2ADDRH] = 0x10c,
+> > > > > > > > > > +     [AMnMB3ADDRL] = 0x110,
+> > > > > > > > > > +     [AMnMB3ADDRH] = 0x114,
+> > > > > > > > > > +     [AMnMB4ADDRL] = 0x118,
+> > > > > > > > > > +     [AMnMB4ADDRH] = 0x11c,
+> > > > > > > > > > +     [AMnMB5ADDRL] = 0x120,
+> > > > > > > > > > +     [AMnMB5ADDRH] = 0x124,
+> > > > > > > > > > +     [AMnMB6ADDRL] = 0x128,
+> > > > > > > > > > +     [AMnMB6ADDRH] = 0x12c,
+> > > > > > > > > > +     [AMnMB7ADDRL] = 0x130,
+> > > > > > > > > > +     [AMnMB7ADDRH] = 0x134,
+> > > > > > > > > > +     [AMnMB8ADDRL] = 0x138,
+> > > > > > > > > > +     [AMnMB8ADDRH] = 0x13c,
+> > > > > > > > > > +     [AMnMBVALID] = 0x148,
+> > > > > > > > > > +     [AMnMBS] = 0x14c,
+> > > > > > > > > > +     [AMnAXIATTR] = 0x158,
+> > > > > > > > > > +     [AMnFIFOPNTR] = 0x168,
+> > > > > > > > > > +     [AMnAXISTP] = 0x174,
+> > > > > > > > > > +     [AMnAXISTPACK] = 0x178,
+> > > > > > > > > > +     [ICnEN] = 0x200,
+> > > > > > > > > > +     [ICnMC] = 0x208,
+> > > > > > > > > > +     [ICnMS] = 0x254,
+> > > > > > > > > > +     [ICnDMR] = 0x26c,
+> > > > > > > > > > +};
+> > > > > > > > >
+> > > > > > > > > Do we need enum, can't we use struct instead with all these entries instead?
+> > > > > > > > >
+> > > > > > > > What benefit do you foresee when using struct? With the
+> > > > > > > > current approach being used a minimal diff is generated when
+> > > > > > > > switched to struct there will be lots of changes.
+> > > > > > >
+> > > > > > > The mapping is convinient when you want to iterate throught it.
+> > > > > > > Here, if you just want to access the offset value from its
+> > > > > > > name, a structure looks more appropriate.
+> > > > > >
+> > > > > > Thanks, as this patch has been reviewed by Laurent a couple of
+> > > > > > times we will change this to struct If he insists.
+> > > > >
+> > > > > How would a struct look like ? I'm not sure what is being proposed.
+> > > >
+> > > > It will be
+> > > >
+> > > > struct rzg2l_cru_regs {
+> > > >         u16 cru_n_ctrl;
+> > > >         u16 cru_n_ie;
+> > > >         u16 cru_n_ints;
+> > > >         u16 cru_n_rst;
+> > > > };
+> > > >
+> > > > static const struct rzg2l_cru_regs rzg2l_cru_regs = {
+> > > >         .cru_n_ctrl = 0x0,
+> > > >         .cru_n_ie = 0x4,
+> > > >         .cru_n_ints = 0x8,
+> > > >         .cru_n_rst = 0xc,
+> > > > };
+> > > >
+> > > > You can access it using info->regs->cru_n_ctrl instead of
+> > > > info->regs[CRUnCTRL] This is proposal.
+> > >
+> > > Are you OK with the above proposal?
+> > 
+> > I may be missing something, but I don't see why this would be a significantly better option. It seems
+> > it would make the callers more complex, and decrease readability.
+> 
+> Basically,
+> I guess sruct  will allow us to avoid (WARN_ON(offset >= RZG2L_CRU_MAX_REG) and
+>    BUILD_BUG_ON(offset >= RZG2L_CRU_MAX_REG); checks as there is no array, so there is no
+>    buffer overrun condition and also we can drop enum aswell.
 
-Is there any other feedback or things to do here?
+That's right fpr the BUILD_BUG_ON(), but I don't think that would be an
+improvement. The BUILD_BUG_ON() catches at compile time the issues that
+are comparable to mistyping a struct field name, so incorrect code
+patterns will result in compile-time errors in both cases. The WARN_ON()
+is there for cases where the offset needs to be dynamically computed,
+and if we wanted to have similar safeguards with a struct, we would also
+need a runtime check.
 
-Thanks
-Alexander
+Using a struct would also prevent (I think) implementing additional
+safeguards. Not registers exist on all platforms (hence the need for
+this mapping mechanism), and it would be nice to catch attempts to
+access a register that does not exist. With the existing series, we
+could quite easily add a check in the read and write functions to ensure
+the regs array entry is not zero (except when the register is CRUnCTRL).
+With a struct-based approach, the read/write functions would get the
+offset but wouldn't know which register is being accessed, so the same
+logic can't be implemented.
 
-> ---
-> Changes in v2:
-> * Added default value
->=20
->  .../devicetree/bindings/firmware/nxp,imx95-scmi.yaml   | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.ya=
-ml b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> index 1a95010a546b1..c1b7140ee0098 100644
-> --- a/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/nxp,imx95-scmi.yaml
-> @@ -12,13 +12,19 @@ maintainers:
-> =20
->  properties:
->    protocol@81:
-> -    $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-> -    unevaluatedProperties: false
-> +    type: object
-> +    allOf:
-> +      - $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
-> +      - $ref: /schemas/input/input.yaml#
-> +    additionalProperties: false
-> =20
->      properties:
->        reg:
->          const: 0x81
-> =20
-> +      linux,code:
-> +        default: 116  # KEY_POWER
-> +
->    protocol@84:
->      $ref: '/schemas/firmware/arm,scmi.yaml#/$defs/protocol-node'
->      unevaluatedProperties: false
->=20
+Last but not least, I think the current approach is more readable in the
+callers: lines are shorter, and register names match the documentation,
+including being uppercase.
 
+> So, if using struct decreases readability and makes the code complex,
+> then current patch is fine.
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-- 
+Regards,
 
-
+Laurent Pinchart
 
