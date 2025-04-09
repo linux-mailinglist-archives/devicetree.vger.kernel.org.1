@@ -1,182 +1,106 @@
-Return-Path: <devicetree+bounces-164885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9B7A82A03
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05F38A82A30
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21F054E725B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:15:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C9B4176F9F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BFB32673B7;
-	Wed,  9 Apr 2025 15:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4A7265CBD;
+	Wed,  9 Apr 2025 15:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fZekAEak"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5NYgS7N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA40264633;
-	Wed,  9 Apr 2025 15:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A0A198E8C;
+	Wed,  9 Apr 2025 15:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744211688; cv=none; b=DD8w4nhscfd+ph/HT8OB5453RZ+ojBZUfCiNU+FjQ4kODcc0Hbor24W5Ddzdx9TYCk2AyQ1tARsPYXa1stl5UtsjOIgE7GC51czMgF26mjMt2S0whmkeEGcSAbWbSGKPSxfNRAzoaCFhP5lFVyyZJn2tE/v6WYghb4yt7eXzSAA=
+	t=1744211976; cv=none; b=LVEWLwZx38D3igP1yJUHuSHwWFv10tfkHnxtXAa9lZrrHYSX2DQKPPFppn1h6bJzboyBt9+YMVXTYB4wn+80p9+xr2FMKs9jjJAbGYmXuvtVoLIT1GK05T0lxRobwaO8qHEqw1clz92J/p5VPhj6Nmg/UNZCcIqalZGl/XynM7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744211688; c=relaxed/simple;
-	bh=0w8yAQJiPOZnV0UHv/R8A2XVkSYUyrYq+ByRjE1W+QM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RnV6rUXHzsi0pCH0cN7XpsVzKvaNdNfuCecZJxF9ns3ALvrT+0fBtVUWa6tBGUxjN1dB80LhQKbCKLd/0p1WJKcczvoL38FGvYyGsoUAU4pQgK1PFFKEEu0Gy9ILfWbF7419XYGbNZJEXgV+fgECP2k0sIrUJJX2RdD2fuN7OlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fZekAEak; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D2D0DC4CEE8;
-	Wed,  9 Apr 2025 15:14:47 +0000 (UTC)
+	s=arc-20240116; t=1744211976; c=relaxed/simple;
+	bh=NeomZw9+DPq5KpWTRNo/0lEsrpLUPG4nFaavnDmdc0Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AWbINkDDTZolmuZv4K1AUln8k1fWVudXHEjx/364bKHrnFIaRFRhMZ+xsIVvlwJnLfNvRAWtIOzw9iktD+lRvv9eIlbc6QdnGq82cB0NL+/ykIWcRcHPdt9N4tyY/y/QgtdBGdtSCr129fnqa88Vg/yq41cJLTmwynaeZF2FIaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5NYgS7N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1645C4CEE2;
+	Wed,  9 Apr 2025 15:19:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744211687;
-	bh=0w8yAQJiPOZnV0UHv/R8A2XVkSYUyrYq+ByRjE1W+QM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=fZekAEak8Hd7jjr2cf5FY1tEMEauoC+/H1mQ41GqRqAhRy7t0nokoo1OGcOTFd+yn
-	 d37U0C6Q4chPU6zmA9+3QrjN3cFQDxKsya/cmqeHKyzM8yyG9yUTNvDgzQP1+Bl+Jp
-	 wFnm5cL/70ZHakz+SIMJQf5PKiSHhv7SMDfKHPHVMKOrqg/GeT2D+YvCA97uTWQeWI
-	 Zi8+cbb7XAJCAhnRFt2esrp77FYCmmq3S1lYnVSxPRILqWsel0uuWbynl2c6oky2da
-	 4t+/r0yTP6L4b5gC4kNVAWI71RmQF2c2OZ9Nm8XK2SkPVC6um4pcKkOcowbQdSHA5v
-	 NpoPTTBPLMKig==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C6238C369A6;
-	Wed,  9 Apr 2025 15:14:47 +0000 (UTC)
-From: Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
-Date: Wed, 09 Apr 2025 17:14:32 +0200
-Subject: [PATCH v3 2/2] iio: imu: inv_icm42600: switch to use generic name
- irq get
+	s=k20201202; t=1744211974;
+	bh=NeomZw9+DPq5KpWTRNo/0lEsrpLUPG4nFaavnDmdc0Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e5NYgS7NvPHEBE4Wu73p5gqF8sAI4EGpLcPs2FIiPBBj2lS+M+Q1z+MWfRUHrwqou
+	 xDOHm7rTJ/K4u9wvLhuz1aoaHzbX9WHTwLGPGJoR1XHiqe4quu+YGvX7xkppHyFm/4
+	 gjZ+gbM+Lv35sCQO0BIhKAMrm+nxQFcGvm+NvAt2sga65pSulUjMpyElK66L0h3w06
+	 pZW+9mqw/CGSXHp3Fax0OpJWdUt+sfSqz+g/fEVWsKVer96LGRnEZU8rQR63WywMN+
+	 4BfKrTmNLQXJ6bkmM9DCxT1vSLQ2aUU84Qx6216Dti6bevmM2E13m3WNZQDRwHg1YL
+	 fVw6bBwuVbwzw==
+Date: Wed, 9 Apr 2025 16:19:27 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+Message-ID: <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-2-dab85a0a7c2b@tdk.com>
-References: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
-In-Reply-To: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744211686; l=4065;
- i=jean-baptiste.maneyrol@tdk.com; s=20240923; h=from:subject:message-id;
- bh=/VtK2uQ40gbKTy8BClZYWTjqk6A7kwyWnfPM64PZuwk=;
- b=Embo/tmwLQHDcYKYU6ptpEtaAO+uC89KyWB9MHCTT92WeA0vLH6Ux4kgPa3tz4Nhnlx0rB9Fr
- 5YeeWovYXq9AjzISPQpd8sGhlFVql7rhCuiYv1bpzwgKn0vAuxQfHX5
-X-Developer-Key: i=jean-baptiste.maneyrol@tdk.com; a=ed25519;
- pk=bRqF1WYk0hR3qrnAithOLXSD0LvSu8DUd+quKLxCicI=
-X-Endpoint-Received: by B4 Relay for
- jean-baptiste.maneyrol@tdk.com/20240923 with auth_id=218
-X-Original-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Reply-To: jean-baptiste.maneyrol@tdk.com
-
-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-
-Use generic fwnode_irq_get_byname() for getting interrupt pin using
-interrupt name. Only INT1 is supported by the driver currently.
-
-If not found fallback to first defined interrupt to keep compatibility.
-
-Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
- drivers/iio/imu/inv_icm42600/inv_icm42600.h      |  2 +-
- drivers/iio/imu/inv_icm42600/inv_icm42600_core.c | 17 +++++++++++++++--
- drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c  |  2 +-
- drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c  |  2 +-
- 4 files changed, 18 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600.h b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-index 18787a43477b89db12caee597ab040af5c8f52d5..f893dbe6996506a33eb5d3be47e6765a923665c9 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600.h
-@@ -426,7 +426,7 @@ int inv_icm42600_set_temp_conf(struct inv_icm42600_state *st, bool enable,
- int inv_icm42600_debugfs_reg(struct iio_dev *indio_dev, unsigned int reg,
- 			     unsigned int writeval, unsigned int *readval);
- 
--int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-+int inv_icm42600_core_probe(struct regmap *regmap, int chip,
- 			    inv_icm42600_bus_setup bus_setup);
- 
- struct iio_dev *inv_icm42600_gyro_init(struct inv_icm42600_state *st);
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-index ef9875d3b79db116f9fb4f6d881a7979292c1792..8ce817a4d5aa78cc8b228ee3064083b336c2c357 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_core.c
-@@ -683,12 +683,13 @@ static void inv_icm42600_disable_pm(void *_data)
- 	pm_runtime_disable(dev);
- }
- 
--int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
-+int inv_icm42600_core_probe(struct regmap *regmap, int chip,
- 			    inv_icm42600_bus_setup bus_setup)
- {
- 	struct device *dev = regmap_get_device(regmap);
- 	struct inv_icm42600_state *st;
--	int irq_type;
-+	struct fwnode_handle *fwnode;
-+	int irq, irq_type;
- 	bool open_drain;
- 	int ret;
- 
-@@ -697,6 +698,18 @@ int inv_icm42600_core_probe(struct regmap *regmap, int chip, int irq,
- 		return -ENODEV;
- 	}
- 
-+	/* get INT1 only supported interrupt or fallback to first interrupt */
-+	fwnode = dev_fwnode(dev);
-+	if (!fwnode)
-+		return -ENODEV;
-+	irq = fwnode_irq_get_byname(fwnode, "INT1");
-+	if (irq < 0 && irq != -EPROBE_DEFER) {
-+		dev_info(dev, "no INT1 interrupt defined, fallback to first interrupt\n");
-+		irq = fwnode_irq_get(fwnode, 0);
-+	}
-+	if (irq < 0)
-+		return dev_err_probe(dev, irq, "error missing INT1 interrupt\n");
-+
- 	irq_type = irq_get_trigger_type(irq);
- 	if (!irq_type)
- 		irq_type = IRQF_TRIGGER_FALLING;
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-index 04e440fe023aa3869529b0f0be003ea0544bfb8d..38cc0d7834fcb96dabc401f29d613cf9fc75b8f5 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c
-@@ -67,7 +67,7 @@ static int inv_icm42600_probe(struct i2c_client *client)
- 	if (IS_ERR(regmap))
- 		return PTR_ERR(regmap);
- 
--	return inv_icm42600_core_probe(regmap, chip, client->irq,
-+	return inv_icm42600_core_probe(regmap, chip,
- 				       inv_icm42600_i2c_bus_setup);
- }
- 
-diff --git a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-index 2bd2c4c8e50c3fe081e882aca6c64736510b474c..f40a09c4cbfc673e76922d13d61a3634785300ec 100644
---- a/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-+++ b/drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c
-@@ -64,7 +64,7 @@ static int inv_icm42600_probe(struct spi_device *spi)
- 	if (IS_ERR(regmap))
- 		return PTR_ERR(regmap);
- 
--	return inv_icm42600_core_probe(regmap, chip, spi->irq,
-+	return inv_icm42600_core_probe(regmap, chip,
- 				       inv_icm42600_spi_bus_setup);
- }
- 
-
--- 
-2.49.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BYUP7jXFrzr2lfUp"
+Content-Disposition: inline
+In-Reply-To: <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+X-Cookie: Words must be weighed, not counted.
 
 
+--BYUP7jXFrzr2lfUp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Apr 09, 2025 at 04:55:52PM +0200, Mathieu Dubois-Briand wrote:
+> BUG() never returns, so code after it is unreachable: remove it.
+
+BUG() can be compiled out, CONFIG_BUG.
+
+--BYUP7jXFrzr2lfUp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmf2j/8ACgkQJNaLcl1U
+h9CbmQf/SCMi4nu6jgz97GD4VidWAdiJFF0TbdY32OKI1BCS4Bz4ULVB3auTnlL3
+Da6w8bylWLU9a7Bw/zmxCR/KHFTpuRgKuw45cVQXxj+EawLl7vJwvQj8w4zSXM6Y
+OYm+a6a+wNCFsiN1x/CdQDEjk2vlcT1tKjgw674j7FzyRDokJej+CaBRA/L1/yHO
+tnv9oBlKpLzaPGti39AqeyC9uO7M0/meAw+9Zg2m6blijZML85AZEpaEMGvAnTPP
+LMGIgFdNtcdB+frLw3QHKtcLHM+V2fvUwr5Pc/6+0/GmXc6rW2I8fLIwHUzEHLea
+BpzVN5RC9pQ0L0fB/+6+6UiTialtHQ==
+=oey7
+-----END PGP SIGNATURE-----
+
+--BYUP7jXFrzr2lfUp--
 
