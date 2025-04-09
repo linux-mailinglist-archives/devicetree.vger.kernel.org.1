@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-164742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED40BA8234F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:17:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE7DA8236F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FC668C1173
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:13:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA76A18830FF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912C425D1F0;
-	Wed,  9 Apr 2025 11:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ndkVFXp2";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="T3ygFDei"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C5225DCFA;
+	Wed,  9 Apr 2025 11:21:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0990433AC;
-	Wed,  9 Apr 2025 11:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5679525B664
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 11:21:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744197230; cv=none; b=PvQ3IjiFa47bq6gSo1Ld3/7RCSuON2RxJpydk9v05xhQIjH1y4+jIqe4+XXtV67MMRGjPWYB4AxBj4k7jAWY8oRrQFCVGeek3C5wL0olC6YlkOBpQEntffSs3+QC8VpQY3tMbM5toW89hf+rRcMe92hcCXIZVyrD2XGxcs5dxrY=
+	t=1744197675; cv=none; b=PEK8hdn9JfarlYYhXYZNbZT5ZpP+5VhjVt89jCOEB9wUBMBbOmcVgubtzNouhJuaSrWpGea7fOJtPI713etnX6FDiOKpJBzF71Bphkoza3rwBV0cWjHASA/oLO37QF8IL8yDraj6A8Ifh19yGs9s344XI8yKukM1hKx0D1CqI3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744197230; c=relaxed/simple;
-	bh=qvZ41SeZUWTJUM2/0wOjudaZGd/o08OfWeoXOJTa5LQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=mlD54hVIctHwKpbRVqyAMhlgq/4M+stztxPpojLb11rb74qke890oRsR6plwTeOeONmEBJl0r9oU2jwpxpUn9Gpe74DpkhzA3ISxPFDccLwL0/CdxR5ceeM/JhpYd1w8RAijhuMA3MBPkDiv26F4BzWsCyKLNzPDfyRW8BU+ufY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ndkVFXp2; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=T3ygFDei; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1744197226;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1UIP4ZGix9p5MaH9RHiON2iNZ1qNwydPjYtJFAn6h60=;
-	b=ndkVFXp2m4OiYv7D2NIsqsFhmpQaMrSMq4M/Fxl214eOX7BqCBLgBejQ21mYGWpaoi+Sed
-	fiChITipD81wOCRi1M013UAXtjJ8J6bKfMJYV1HWIIDrukJA6EYi75IbNO9Y3p0eGnjNJj
-	qxCEh2pnxJuTBIYoHrH09g6phqYuPdkGfnqjCf//lvjqIY2aU8etRxte3SLw7MEaCPoDkS
-	/l6+j6s0C5wQiifRFsEnK6u/w9o2aw+nK+fSQBlY7Ks9EIm0gFH4UHtBNWirDgvr6VqJKu
-	KS/1NxaCjEu+Vg4I1Y2I8mlQqJFIlJzoAhpOnOPOxI38446wm31YohyCasKkMA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1744197226;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1UIP4ZGix9p5MaH9RHiON2iNZ1qNwydPjYtJFAn6h60=;
-	b=T3ygFDeiKIpY65OR/wfBjvG7m5xLPXI2LXSCfvJFe1hMWt2WW8vCSUQfhLAenBcfB8+5oZ
-	dJ6r7/B2gnhDWvBA==
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes
- <timothy.hayes@arm.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Lorenzo
- Pieralisi <lpieralisi@kernel.org>
-Subject: Re: [PATCH 22/24] irqchip/gic-v5: Add GICv5 ITS support
-In-Reply-To: <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
-References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
- <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
-Date: Wed, 09 Apr 2025 13:13:46 +0200
-Message-ID: <87tt6xtwnp.ffs@tglx>
+	s=arc-20240116; t=1744197675; c=relaxed/simple;
+	bh=7tije2NwPJ8JUYfrk6Nbn+v7LM8+SxWVe/sBjMR5O0Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e0crUj/xYvGYwdg0aNDWAQugfb4vErDCFcDYxISRHClQ++CLZ9IlL6zdEvpk4OU0fPR2nAwJpOYGBByHuSBZnqxLhi3P3fyEtg/zi/cXMHv3tZMUz5fQyzaYKhLbrQzk4s2r00yCgmvmnuEnmqqbFzG9JG720a/DDZs+2BDTIMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2TUH-0007P8-9J; Wed, 09 Apr 2025 13:20:57 +0200
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2TUH-0045qb-02;
+	Wed, 09 Apr 2025 13:20:57 +0200
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2TUG-00GOXj-2s;
+	Wed, 09 Apr 2025 13:20:56 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v2 0/3] clk: add support for TI CDCE6214
+Date: Wed, 09 Apr 2025 13:20:56 +0200
+Message-Id: <20250409-clk-cdce6214-v2-0-40b25b722ecb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABhY9mcC/3XMQQ6CMBCF4auQWVszrZWKK+9hWGA7wETTkhYbD
+ OHuVvYu/5e8b4VEkSnBtVohUubEwZdQhwrs2PmBBLvSoFCdUeNF2NdTWGepVlILtEajPjmragP
+ lMkXqedm5e1t65DSH+Nn1LH/rHyhLgeLhNBlsVNfI/jaRH95zDJ6XoyNot237AlhQTvitAAAA
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744197656; l=1820;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=7tije2NwPJ8JUYfrk6Nbn+v7LM8+SxWVe/sBjMR5O0Q=;
+ b=wtk51CkFO3YbZTL5b/0C5IvLP+ysM1hbgF4ZS46yRAaWSbds4EsLOrt8XfdIWFC34e1pRsfyZ
+ BREidgiYMF1BlIltodnePbIalauiAdowFpHxTVkavHjtfRTSXSJTOsj
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
->  
-> +void gicv5_irs_syncr(void)
-> +{
-> +	u32 syncr;
-> +	u32 statusr;
-> +	int ret;
-> +	struct gicv5_irs_chip_data *irs_data;
-> +
-> +	irs_data = list_first_entry_or_null(&irs_nodes,
-> +					    struct gicv5_irs_chip_data, entry);
-> +	if (WARN_ON(!irs_data))
-> +		return;
-> +
-> +	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
-> +	irs_writel(irs_data, syncr, GICV5_IRS_SYNCR);
-> +
-> +	ret = readl_relaxed_poll_timeout_atomic(
-> +			irs_data->irs_base + GICV5_IRS_SYNC_STATUSR, statusr,
-> +			FIELD_GET(GICV5_IRS_SYNC_STATUSR_IDLE, statusr), 1,
-> +			USEC_PER_SEC);
-> +
-> +	if (ret == -ETIMEDOUT)
-> +		pr_err_ratelimited("SYNCR timeout...\n");
+The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+Differential Outputs, Two Inputs, and Internal EEPROM.
 
-This timeout poll thing looks very familiar by now. Third variant :)
+This series adds a common clk framework driver for this chip along with
+the dt-bindings document and a small fix needed for the common clk
+framework.
 
-> +static int gicv5_its_wait_for_invalidation(struct gicv5_its_chip_data *its)
-> +{
-> +	int ret;
-> +	u32 statusr;
-> +
-> +	ret = readl_relaxed_poll_timeout_atomic(
-> +			its->its_base + GICV5_ITS_STATUSR, statusr,
-> +			FIELD_GET(GICV5_ITS_STATUSR_IDLE, statusr), 1,
-> +			USEC_PER_SEC);
-> +
-> +	if (ret == -ETIMEDOUT)
-> +		pr_err_ratelimited("STATUSR timeout...\n");
-> +
-> +	return ret;
-> +}
+Sascha
 
-And number four follows suit :)
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+Changes in v2:
+- Use consistent quotes in binding document
+- make clock-names an enum to make each clock fully optional
+- drop '|' in binding description where not needed
+- encode clock input mode into integer
+- encode clock output mode into integer
+- do not use defines for reg properties
+- support setting load capacity for the oscillator via device tree
+- support setting Bias current for the oscillator via device tree
+- support setting polarities of CMOS outputs via device tree
+- fix compatible string in driver
+- remove unused struct cdce6214_config
+- Link to v1: https://lore.kernel.org/r/20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de
 
-> +
-> +static void gicv5_its_syncr(struct gicv5_its_chip_data *its,
-> +			    struct gicv5_its_dev *its_dev)
-> +{
-> +	int ret;
-> +	u64 syncr;
-> +	u32 statusr;
-> +
-> +	syncr = FIELD_PREP(GICV5_ITS_SYNCR_SYNC, 1) |
-> +		FIELD_PREP(GICV5_ITS_SYNCR_DEVICEID, its_dev->device_id);
-> +
-> +	its_writeq(its, syncr, GICV5_ITS_SYNCR);
-> +
-> +	ret = readl_relaxed_poll_timeout_atomic(
-> +			its->its_base + GICV5_ITS_SYNC_STATUSR, statusr,
-> +			FIELD_GET(GICV5_ITS_SYNC_STATUSR_IDLE, statusr), 1,
-> +			USEC_PER_SEC);
-> +
-> +	if (ret == -ETIMEDOUT)
-> +		pr_err_ratelimited("SYNCR timeout...\n");
-> +}
+---
+Sascha Hauer (3):
+      clk: make determine_rate optional for non reparenting clocks
+      dt-bindings: clock: add TI CDCE6214 binding
+      clk: add TI CDCE6214 clock driver
 
-Along with #5 
+ .../devicetree/bindings/clock/ti,cdce6214.yaml     |  167 +++
+ drivers/clk/Kconfig                                |    7 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-cdce6214.c                         | 1284 ++++++++++++++++++++
+ drivers/clk/clk.c                                  |    3 +-
+ include/dt-bindings/clock/ti,cdce6214.h            |   24 +
+ 6 files changed, 1485 insertions(+), 1 deletion(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250408-clk-cdce6214-0c74043dc267
 
-Thanks,
+Best regards,
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
 
-        tglx
 
