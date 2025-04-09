@@ -1,594 +1,244 @@
-Return-Path: <devicetree+bounces-164851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F94A828CA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:54:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 302DEA828B8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4687116DBA5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:49:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C114A1113
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C33267B09;
-	Wed,  9 Apr 2025 14:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE9026A1D7;
+	Wed,  9 Apr 2025 14:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LlKkX7wX"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Rv1Tpnnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6627267AFC
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 14:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D076226A1C9
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 14:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744209852; cv=none; b=AiVaOHxm5CGY9GwoGdgjWfqUkf9CjU3tOte+UTLl2k8lL5OJ/1j+Pt5c789dkGv3zQpePHcGFiugKOteJc1enxKzZBchLzs0IPR+2nq8/Gy3c0nlywvqYdBNiymPFpbXecH1mHmcyEqgbxjfkunlHKm0oVJeakpXeR6StYozoN8=
+	t=1744209829; cv=none; b=Mwo/MINP0fS8KQ9sc097KmVxQgW9BtH4BUHZsIZBMXBqUB+2/XYWxmyVgLAEvIISZMjJeJQV3q/liQiWmkcJjnGdzFDJ7KrKAx4mXVhZxorrFntQI+dhdLrvc3towKVE3R/xp6jIPyM5DDgLHALsBRbHXwhUu2H36de9V+VqtrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744209852; c=relaxed/simple;
-	bh=r4tEhs3plnKYcKDhvXEA+K3gyKULKlZx/3IR/BGLFcM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X7eRVS5RrEEIogs5ZWlWm5Cf/ROiHmd32Mru1qLW/fFovROAEbB7TEKizkBlpryP+kVz6sXZdqFYVs11g6y9mPD4elIxNRIPNvf0LvCpNQjNFLLYDVXGbItb/vh83wsEyuP/8RuCZUxxW6LvWQSlEomypNKT2Pe7jcc9Anj38eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LlKkX7wX; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744209849;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EvqkpfjDT+NgiYPOSw0pvxSQmjnc3C6o8MNs2VobJgk=;
-	b=LlKkX7wXJjQ4+SSDlGgmfGQA14B89mqlCfodI33Sb9GGlC705W2bB0WCUO3wyo9EpDEuJY
-	ZADGh56eY524qmo9U92zq4RFQ1VXPSXvguWD7NyAcIRJtArZhmmCBFvg9MXX3jLa+s2Lqm
-	cCR7jhK0xW2tllc6xVers2Tl/oQSwCM=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-484-EbAQfhTYPIu0bApdNW2vzQ-1; Wed,
- 09 Apr 2025 10:44:06 -0400
-X-MC-Unique: EbAQfhTYPIu0bApdNW2vzQ-1
-X-Mimecast-MFC-AGG-ID: EbAQfhTYPIu0bApdNW2vzQ_1744209844
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 70F4818001E3;
-	Wed,  9 Apr 2025 14:44:04 +0000 (UTC)
-Received: from p16v.luc.cera.cz (unknown [10.44.32.72])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 388A01801747;
-	Wed,  9 Apr 2025 14:44:00 +0000 (UTC)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>,
+	s=arc-20240116; t=1744209829; c=relaxed/simple;
+	bh=7Qyl/KGbNgAjKHzOstykL1b1PVeFC9C9SmfU8PxYhlc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WKQT7q2GgsbYH6x4Uxa5chyctt036S0pCzS6VGQJW8iGDcs1nh1OFnk2MQnTtmu8QnklQIFUPGdSsjOwUEgSMNw44BsLZHsQO+MAutEdg6eBKUt4mPJ4YsV/E4SwTMJfMh6QzJc4m74yfg5IgoavmKyDCXghCr/26z4uqzpEREE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Rv1Tpnnf; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2243803b776so98160395ad.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 07:43:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1744209827; x=1744814627; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ow5mA7lTDwDJ/M6E3XEwhzsM01atmOj/MJRSg0pfs/U=;
+        b=Rv1TpnnfCAYDUJmZsb8GSLvbfAR41yOxgzPfzDczY7jUA9EHzFeKfw8JMydztCGYmZ
+         EjkDW3U9IbEbUtWHMuA7Ei3zh3fO1csXbPVFVIW4Lk95SfxgnBXXrgS+h1ORV6U+k9rK
+         0q3vzGjvCCjgiP9ttTvVkciqE0XaJPSBdZR16s8pDn7OLYvGm5g+2E0VHGt2MX9y6x9h
+         MUF7ZnNirkUdAMreh7a4kyTkdeG9ovH0ptoLzHh8IZi9NhzWmPlJFGGHjxCbG5LBLWF0
+         6k8csHj2KmrgIgaOfbscu3VA6rKihvw7Im13SXTB/DAuk8xbv597NB3r5s2ufihZAbqu
+         pHgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744209827; x=1744814627;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ow5mA7lTDwDJ/M6E3XEwhzsM01atmOj/MJRSg0pfs/U=;
+        b=oXzHvydmZ2flcmPa07ju66QeiDIiIX4leY1yq6aj9Wrt6RqXBXAic1WflGeV/+4e4a
+         Xt6gLs9BhhkJhblCMwq5qkzbFNVRFY2LX4v0edckJ2VdnUiolYwyybkHI5k0s4I7CfNn
+         X9pi74o7CXZ3xR0IZ8zOy5g6wfsdr1sEwsqTHXzxHnoPZOBAv4E2HPV2M/hfJlynGGiH
+         MhJ0Zdhwd+J9n+PYTQqiFse6Njyqk0n5Y0KN0AZo6IC9EcXNa+NdMnm+IXBU5JLUEtsa
+         zT1+Ju6Te9HK7bRi82qax+3mxwkxBxacxvHF/gfcTpKoiHHEOxOPHXDLqCKiq2ea6rta
+         VFlg==
+X-Forwarded-Encrypted: i=1; AJvYcCXc42MPBuRIsLX578mRV4WvapIKnPHmJblF2BDpjUBJNJ10FVKKI56nAcs+XQ/Z9xgHQ8YfH9QyXoFo@vger.kernel.org
+X-Gm-Message-State: AOJu0YyozFLvKGLXMvwclHX6C7C6E+fYm/v78CoKAj2i6C9c4V7YKVGF
+	W9vZLcX4zhjpdZiWEqSaSCLT5VICHTmRJfsn75Yd3iZGeglIItecUuH6DAPbdFo=
+X-Gm-Gg: ASbGncu8xeYUzBQ8EvSPCrt2tkRDLXTnHXZ8SdOr5CUBsV7pxcgkrLLTeRpMLxyWlqn
+	fP8eHHZQ1awKG/Jh58S0sSQz5Opf6eYPUSGNJG9+5ZrqSLcI1GHLzaxRYr0n42WOD8ZVrVLV4+O
+	Yw+IzbAXo7An0qKIeHJGegLWQ6P6nyZ3g3xuQgsP5dCDZ9bINOLviJEPzAV9Vkv3hFSDMXWlmda
+	uMc1p2/EIyMgdz9K4748pbhzs7fsRzfWQ8yQwe45yJSr32g4oRdS8fwyjmvSi3kJg4N0DQQb5Q0
+	kynsZHSuZ2LwKhJ2eKNOFEjiTc0h2jC57afwrMDH/f36klUkHUQ=
+X-Google-Smtp-Source: AGHT+IEgaCnvV5qiE5FYgc0Ujjm72QHq4NY5rpvgBrpJwRVGqGD1OFM7I6sIlnm2n2XAV9/GUpCxyg==
+X-Received: by 2002:a17:903:32cb:b0:220:c164:6ee1 with SMTP id d9443c01a7336-22ac2a1df5cmr51260355ad.32.1744209826897;
+        Wed, 09 Apr 2025 07:43:46 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb538csm12708815ad.176.2025.04.09.07.43.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 07:43:46 -0700 (PDT)
+Date: Wed, 9 Apr 2025 07:43:42 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Alexandre Ghiti <alex@ghiti.fr>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: [PATCH v2 14/14] mfd: zl3073x: Fetch invariants during probe
-Date: Wed,  9 Apr 2025 16:42:50 +0200
-Message-ID: <20250409144250.206590-15-ivecera@redhat.com>
-In-Reply-To: <20250409144250.206590-1-ivecera@redhat.com>
-References: <20250409144250.206590-1-ivecera@redhat.com>
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v12 03/28] riscv: zicfiss / zicfilp enumeration
+Message-ID: <Z_aHnj2-8OlcRuHd@debug.ba.rivosinc.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-3-e51202b53138@rivosinc.com>
+ <cc314da6-8755-4037-846b-01a20b3c68e1@ghiti.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <cc314da6-8755-4037-846b-01a20b3c68e1@ghiti.fr>
 
-Several configuration parameters will not be changed in runtime so we
-can load them during probe to avoid excessive reads from the hardware.
+On Mon, Apr 07, 2025 at 05:48:27PM +0200, Alexandre Ghiti wrote:
+>
+>On 14/03/2025 22:39, Deepak Gupta wrote:
+>>This patch adds support for detecting zicfiss and zicfilp. zicfiss and
+>>zicfilp stands for unprivleged integer spec extension for shadow stack
+>>and branch tracking on indirect branches, respectively.
+>>
+>>This patch looks for zicfiss and zicfilp in device tree and accordinlgy
+>>lights up bit in cpu feature bitmap. Furthermore this patch adds detection
+>>utility functions to return whether shadow stack or landing pads are
+>>supported by cpu.
+>>
+>>Reviewed-by: Zong Li <zong.li@sifive.com>
+>>Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>>---
+>>  arch/riscv/include/asm/cpufeature.h | 13 +++++++++++++
+>>  arch/riscv/include/asm/hwcap.h      |  2 ++
+>>  arch/riscv/include/asm/processor.h  |  1 +
+>>  arch/riscv/kernel/cpufeature.c      | 13 +++++++++++++
+>>  4 files changed, 29 insertions(+)
+>>
+>>diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
+>>index 569140d6e639..69007b8100ca 100644
+>>--- a/arch/riscv/include/asm/cpufeature.h
+>>+++ b/arch/riscv/include/asm/cpufeature.h
+>>@@ -12,6 +12,7 @@
+>>  #include <linux/kconfig.h>
+>>  #include <linux/percpu-defs.h>
+>>  #include <linux/threads.h>
+>>+#include <linux/smp.h>
+>>  #include <asm/hwcap.h>
+>>  #include <asm/cpufeature-macros.h>
+>>@@ -137,4 +138,16 @@ static __always_inline bool riscv_cpu_has_extension_unlikely(int cpu, const unsi
+>>  	return __riscv_isa_extension_available(hart_isa[cpu].isa, ext);
+>>  }
+>>+static inline bool cpu_supports_shadow_stack(void)
+>>+{
+>>+	return (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
+>>+		riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICFISS));
+>
+>
+>I would use riscv_has_extension_unlikely() instead of the cpu specific 
+>variant, that would remove the need for #include <linux/smp.h>. Unless 
+>you have a good reason to do that?
 
-These parameters will be frequently read by the DPLL driver from this
-series and later by PHC/PTP sub-device driver.
 
-Read the following parameters from the device during probe and store
-them for later use:
+No I dont remember the reason. I'll fix it.
+When I am fixing it, and happpen to remember the reason.
+I'll post it.
 
-* synthesizers' frequencies and associated DPLL channel
-* input pins' enablement and type (single-ended or differential)
-* outputs'associated synths, signal format and enablement
-
-Signed-off-by: Ivan Vecera <ivecera@redhat.com>
----
-v1->v2:
-* fixed and added inline documentation
----
- drivers/mfd/zl3073x-core.c  | 243 ++++++++++++++++++++++++++++++++++++
- include/linux/mfd/zl3073x.h | 161 ++++++++++++++++++++++++
- 2 files changed, 404 insertions(+)
-
-diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
-index 110071b28cab9..70fd7a76c6478 100644
---- a/drivers/mfd/zl3073x-core.c
-+++ b/drivers/mfd/zl3073x-core.c
-@@ -11,6 +11,7 @@
- #include <linux/firmware.h>
- #include <linux/kstrtox.h>
- #include <linux/lockdep.h>
-+#include <linux/math64.h>
- #include <linux/mfd/zl3073x.h>
- #include <linux/module.h>
- #include <linux/netlink.h>
-@@ -29,6 +30,20 @@ ZL3073X_REG16_DEF(revision,		0x0003);
- ZL3073X_REG16_DEF(fw_ver,		0x0005);
- ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
- 
-+/*
-+ * Register Map Page 9, Synth and Output
-+ */
-+ZL3073X_REG8_IDX_DEF(synth_ctrl,		0x480, ZL3073X_NUM_SYNTHS, 1);
-+#define SYNTH_CTRL_EN				BIT(0)
-+#define SYNTH_CTRL_DPLL_SEL			GENMASK(6, 4)
-+
-+ZL3073X_REG8_IDX_DEF(output_ctrl,		0x4a8, ZL3073X_NUM_OUTPUTS, 1);
-+#define OUTPUT_CTRL_EN				BIT(0)
-+#define OUTPUT_CTRL_STOP			BIT(1)
-+#define OUTPUT_CTRL_STOP_HIGH			BIT(2)
-+#define OUTPUT_CTRL_STOP_HZ			BIT(3)
-+#define OUTPUT_CTRL_SYNTH_SEL			GENMASK(6, 4)
-+
- /*
-  * Register Map Page 10, Ref Mailbox
-  */
-@@ -39,6 +54,10 @@ ZL3073X_REG8_DEF(ref_mb_sem,			0x504);
- #define REF_MB_SEM_WR				BIT(0)
- #define REF_MB_SEM_RD				BIT(1)
- 
-+ZL3073X_REG8_DEF(ref_config,			0x50d);
-+#define REF_CONFIG_ENABLE			BIT(0)
-+#define REF_CONFIG_DIFF_EN			BIT(2)
-+
- /*
-  * Register Map Page 12, DPLL Mailbox
-  */
-@@ -70,6 +89,9 @@ ZL3073X_REG8_DEF(output_mb_sem,			0x704);
- #define OUTPUT_MB_SEM_WR			BIT(0)
- #define OUTPUT_MB_SEM_RD			BIT(1)
- 
-+ZL3073X_REG8_DEF(output_mode,			0x705);
-+#define OUTPUT_MODE_SIGNAL_FORMAT		GENMASK(7, 4)
-+
- /*
-  * Regmap ranges
-  */
-@@ -570,6 +592,220 @@ static void zl3073x_fw_load(struct zl3073x_dev *zldev)
- 	release_firmware(fw);
- }
- 
-+/**
-+ * zl3073x_input_state_fetch - get input state
-+ * @zldev: pointer to zl3073x_dev structure
-+ * @index: input pin index to fetch state for
-+ *
-+ * Function fetches information for the given input reference that are
-+ * invariant and stores them for later use.
-+ *
-+ * Return: 0 on success, <0 on error
-+ */
-+static int
-+zl3073x_input_state_fetch(struct zl3073x_dev *zldev, u8 index)
-+{
-+	struct zl3073x_input *input;
-+	u8 ref_config;
-+	int rc;
-+
-+	if (index >= ZL3073X_NUM_INPUTS)
-+		return -EINVAL;
-+
-+	input = &zldev->input[index];
-+
-+	/* If the input is differential then the configuration for N-pin
-+	 * reference is ignored and P-pin config is used for both.
-+	 */
-+	if (zl3073x_is_n_pin(index) &&
-+	    zl3073x_input_is_diff(zldev, index - 1)) {
-+		input->enabled = zl3073x_input_is_enabled(zldev, index - 1);
-+		input->diff = true;
-+
-+		return 0;
-+	}
-+
-+	/* Read reference configuration into mailbox */
-+	rc = zl3073x_mb_ref_read(zldev, index);
-+	if (rc)
-+		return rc;
-+
-+	/* Read reference config register */
-+	rc = zl3073x_read_ref_config(zldev, &ref_config);
-+	if (rc)
-+		return rc;
-+
-+	/* Store info about input reference enablement and if it is
-+	 * configured in differential mode or not.
-+	 */
-+	input->enabled = FIELD_GET(REF_CONFIG_ENABLE, ref_config);
-+	input->diff = FIELD_GET(REF_CONFIG_DIFF_EN, ref_config);
-+
-+	return rc;
-+}
-+
-+/**
-+ * zl3073x_output_state_fetch - get output state
-+ * @zldev: pointer to zl3073x_dev structure
-+ * @index: output index to fetch state for
-+ *
-+ * Function fetches information for the given output (not output pin)
-+ * that are invariant and stores them for later use.
-+ *
-+ * Return: 0 on success, <0 on error
-+ */
-+static int
-+zl3073x_output_state_fetch(struct zl3073x_dev *zldev, u8 index)
-+{
-+	struct zl3073x_output *output;
-+	u8 output_ctrl, output_mode;
-+	int rc;
-+
-+	if (index >= ZL3073X_NUM_OUTPUTS)
-+		return -EINVAL;
-+
-+	output = &zldev->output[index];
-+
-+	/* Read output control register */
-+	rc = zl3073x_read_output_ctrl(zldev, index, &output_ctrl);
-+	if (rc)
-+		return rc;
-+
-+	/* Store info about output enablement and synthesizer the output
-+	 * is connected to.
-+	 */
-+	output->enabled = FIELD_GET(OUTPUT_CTRL_EN, output_ctrl);
-+	output->synth = FIELD_GET(OUTPUT_CTRL_SYNTH_SEL, output_ctrl);
-+
-+	/* Load given output config into mailbox */
-+	rc = zl3073x_mb_output_read(zldev, index);
-+	if (rc)
-+		return rc;
-+
-+	/* Read output mode from mailbox */
-+	rc = zl3073x_read_output_mode(zldev, &output_mode);
-+	if (rc)
-+		return rc;
-+
-+	/* Extract and store output signal format */
-+	output->signal_format = FIELD_GET(OUTPUT_MODE_SIGNAL_FORMAT,
-+					  output_mode);
-+
-+	return rc;
-+}
-+
-+/**
-+ * zl3073x_synth_state_fetch - get synth state
-+ * @zldev: pointer to zl3073x_dev structure
-+ * @index: synth index to fetch state for
-+ *
-+ * Function fetches information for the given synthesizer that are
-+ * invariant and stores them for later use.
-+ *
-+ * Return: 0 on success, <0 on error
-+ */
-+static int
-+zl3073x_synth_state_fetch(struct zl3073x_dev *zldev, u8 index)
-+{
-+	u16 base, numerator, denominator;
-+	u8 synth_ctrl;
-+	u32 mult;
-+	int rc;
-+
-+	/* Read synth control register */
-+	rc = zl3073x_read_synth_ctrl(zldev, index, &synth_ctrl);
-+	if (rc)
-+		return rc;
-+
-+	/* Extract and store DPLL channel the synth is driven by */
-+	zldev->synth[index].dpll = FIELD_GET(SYNTH_CTRL_DPLL_SEL, synth_ctrl);
-+
-+	dev_dbg(zldev->dev, "SYNTH%u is connected to DPLL%u\n", index,
-+		zldev->synth[index].dpll);
-+
-+	/* Read synth configuration into mailbox */
-+	rc = zl3073x_mb_synth_read(zldev, index);
-+	if (rc)
-+		return rc;
-+
-+	/* The output frequency is determined by the following formula:
-+	 * base * multiplier * numerator / denominator
-+	 *
-+	 * Therefore get all this number and calculate the output frequency
-+	 */
-+	rc = zl3073x_read_synth_freq_base(zldev, &base);
-+	if (rc)
-+		return rc;
-+
-+	rc = zl3073x_read_synth_freq_mult(zldev, &mult);
-+	if (rc)
-+		return rc;
-+
-+	rc = zl3073x_read_synth_freq_m(zldev, &numerator);
-+	if (rc)
-+		return rc;
-+
-+	rc = zl3073x_read_synth_freq_n(zldev, &denominator);
-+	if (rc)
-+		return rc;
-+
-+	/* Check denominator for zero to avoid div by 0 */
-+	if (!denominator) {
-+		dev_err(zldev->dev,
-+			"Zero divisor for SYNTH%u retrieved from device\n",
-+			index);
-+		return -ENODEV;
-+	}
-+
-+	/* Compute and store synth frequency */
-+	zldev->synth[index].freq = mul_u64_u32_div(mul_u32_u32(base, mult),
-+						   numerator, denominator);
-+
-+	dev_dbg(zldev->dev, "SYNTH%u frequency: %llu Hz\n", index,
-+		zldev->synth[index].freq);
-+
-+	return rc;
-+}
-+
-+static int
-+zl3073x_dev_state_fetch(struct zl3073x_dev *zldev)
-+{
-+	int rc;
-+	u8 i;
-+
-+	for (i = 0; i < ZL3073X_NUM_INPUTS; i++) {
-+		rc = zl3073x_input_state_fetch(zldev, i);
-+		if (rc) {
-+			dev_err(zldev->dev,
-+				"Failed to fetch input state: %pe\n",
-+				ERR_PTR(rc));
-+			return rc;
-+		}
-+	}
-+
-+	for (i = 0; i < ZL3073X_NUM_SYNTHS; i++) {
-+		rc = zl3073x_synth_state_fetch(zldev, i);
-+		if (rc) {
-+			dev_err(zldev->dev,
-+				"Failed to fetch synth state: %pe\n",
-+				ERR_PTR(rc));
-+			return rc;
-+		}
-+	}
-+
-+	for (i = 0; i < ZL3073X_NUM_OUTPUTS; i++) {
-+		rc = zl3073x_output_state_fetch(zldev, i);
-+		if (rc) {
-+			dev_err(zldev->dev,
-+				"Failed to fetch output state: %pe\n",
-+				ERR_PTR(rc));
-+			return rc;
-+		}
-+	}
-+
-+	return rc;
-+}
-+
- /**
-  * zl3073x_dev_init - initialize zl3073x device
-  * @zldev: pointer to zl3073x device
-@@ -614,6 +850,13 @@ int zl3073x_dev_init(struct zl3073x_dev *zldev, u8 dev_id)
- 	/* Load mfg file if present */
- 	zl3073x_fw_load(zldev);
- 
-+	/* Fetch device state */
-+	scoped_guard(zl3073x, zldev) {
-+		rc = zl3073x_dev_state_fetch(zldev);
-+		if (rc)
-+			return rc;
-+	}
-+
- 	dev_info(zldev->dev, "ChipID(%X), ChipRev(%X), FwVer(%u)\n",
- 		 id, revision, fw_ver);
- 	dev_info(zldev->dev, "Custom config version: %lu.%lu.%lu.%lu\n",
-diff --git a/include/linux/mfd/zl3073x.h b/include/linux/mfd/zl3073x.h
-index 50befd7f03b24..ec265d2e935bb 100644
---- a/include/linux/mfd/zl3073x.h
-+++ b/include/linux/mfd/zl3073x.h
-@@ -12,18 +12,75 @@
- struct device;
- struct regmap;
- 
-+/*
-+ * Hardware limits for ZL3073x chip family
-+ */
-+#define ZL3073X_NUM_INPUTS	10
-+#define ZL3073X_NUM_OUTPUTS	10
-+#define ZL3073X_NUM_SYNTHS	5
-+
-+/**
-+ * struct zl3073x_input - input invariant info
-+ * @enabled: input is enabled or disabled
-+ * @diff: true if input is differential
-+ */
-+struct zl3073x_input {
-+	bool	enabled;
-+	bool	diff;
-+};
-+
-+/**
-+ * struct zl3073x_output - output invariant info
-+ * @enabled: output is enabled or disabled
-+ * @synth: synthesizer the output is connected to
-+ * @signal_format: output signal format
-+ */
-+struct zl3073x_output {
-+	bool	enabled;
-+	u8	synth;
-+	u8	signal_format;
-+#define OUTPUT_MODE_SIGNAL_FORMAT_DISABLED	0
-+#define OUTPUT_MODE_SIGNAL_FORMAT_LVDS		1
-+#define OUTPUT_MODE_SIGNAL_FORMAT_DIFFERENTIAL	2
-+#define OUTPUT_MODE_SIGNAL_FORMAT_LOWVCM	3
-+#define OUTPUT_MODE_SIGNAL_FORMAT_TWO		4
-+#define OUTPUT_MODE_SIGNAL_FORMAT_ONE_P		5
-+#define OUTPUT_MODE_SIGNAL_FORMAT_ONE_N		6
-+#define OUTPUT_MODE_SIGNAL_FORMAT_TWO_INV	7
-+#define OUTPUT_MODE_SIGNAL_FORMAT_TWO_N_DIV	12
-+#define OUTPUT_MODE_SIGNAL_FORMAT_TWO_N_DIV_INV	15
-+};
-+
-+/**
-+ * struct zl3073x_synth - synthesizer invariant info
-+ * @freq: synthesizer frequency
-+ * @dpll: ID of DPLL the synthesizer is driven by
-+ */
-+struct zl3073x_synth {
-+	u64	freq;
-+	u8	dpll;
-+};
-+
- /**
-  * struct zl3073x_dev - zl3073x device
-  * @dev: pointer to device
-  * @regmap: regmap to access HW registers
-  * @clock_id: clock id of the device
-  * @lock: lock to be held during access to HW registers
-+ * @input: array of inputs
-+ * @output: array of outputs
-+ * @synth: array of synthesizers
-  */
- struct zl3073x_dev {
- 	struct device		*dev;
- 	struct regmap		*regmap;
- 	u64			clock_id;
- 	struct mutex		lock;
-+
-+	/* Invariants */
-+	struct zl3073x_input	input[ZL3073X_NUM_INPUTS];
-+	struct zl3073x_output	output[ZL3073X_NUM_OUTPUTS];
-+	struct zl3073x_synth	synth[ZL3073X_NUM_SYNTHS];
- };
- 
- /**
-@@ -199,4 +256,108 @@ int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index);
- int zl3073x_mb_synth_read(struct zl3073x_dev *zldev, u8 index);
- int zl3073x_mb_synth_write(struct zl3073x_dev *zldev, u8 index);
- 
-+static inline
-+bool zl3073x_is_n_pin(u8 index)
-+{
-+	/* P-pins indices are even while N-pins are odd */
-+	return index & 1;
-+}
-+
-+static inline
-+bool zl3073x_is_p_pin(u8 index)
-+{
-+	return !zl3073x_is_n_pin(index);
-+}
-+
-+/**
-+ * zl3073x_input_is_diff - check if the given input ref is differential
-+ * @zldev: pointer to zl3073x device
-+ * @index: output index
-+ *
-+ * Return: true if input is differential, false if input is single-ended
-+ */
-+static inline
-+bool zl3073x_input_is_diff(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->input[index].diff;
-+}
-+
-+/**
-+ * zl3073x_input_is_enabled - check if the given input ref is enabled
-+ * @zldev: pointer to zl3073x device
-+ * @index: input index
-+ *
-+ * Return: true if input is enabled, false if input is disabled
-+ */
-+static inline
-+bool zl3073x_input_is_enabled(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->input[index].enabled;
-+}
-+
-+/**
-+ * zl3073x_output_is_enabled - check if the given output is enabled
-+ * @zldev: pointer to zl3073x device
-+ * @index: output index
-+ *
-+ * Return: true if output is enabled, false if output is disabled
-+ */
-+static inline
-+u8 zl3073x_output_is_enabled(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->output[index].enabled;
-+}
-+
-+/**
-+ * zl3073x_output_signal_format_get - get output signal format
-+ * @zldev: pointer to zl3073x device
-+ * @index: output index
-+ *
-+ * Return: signal format of given output
-+ */
-+static inline
-+u8 zl3073x_output_signal_format_get(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->output[index].signal_format;
-+}
-+
-+/**
-+ * zl3073x_output_synth_get - get synth connected to given output
-+ * @zldev: pointer to zl3073x device
-+ * @index: output index
-+ *
-+ * Return: index of synth connected to given output.
-+ */
-+static inline
-+u8 zl3073x_output_synth_get(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->output[index].synth;
-+}
-+
-+/**
-+ * zl3073x_synth_dpll_get - get DPLL ID the synth is driven by
-+ * @zldev: pointer to zl3073x device
-+ * @index: synth index
-+ *
-+ * Return: ID of DPLL the given synthetizer is driven by
-+ */
-+static inline
-+u64 zl3073x_synth_dpll_get(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->synth[index].dpll;
-+}
-+
-+/**
-+ * zl3073x_synth_freq_get - get synth current freq
-+ * @zldev: pointer to zl3073x device
-+ * @index: synth index
-+ *
-+ * Return: frequency of given synthetizer
-+ */
-+static inline
-+u64 zl3073x_synth_freq_get(struct zl3073x_dev *zldev, u8 index)
-+{
-+	return zldev->synth[index].freq;
-+}
-+
- #endif /* __LINUX_MFD_ZL3073X_H */
--- 
-2.48.1
-
+>
+>
+>>+}
+>>+
+>>+static inline bool cpu_supports_indirect_br_lp_instr(void)
+>>+{
+>>+	return (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
+>>+		riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICFILP));
+>>+}
+>>+
+>>  #endif
+>>diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+>>index 869da082252a..2dc4232bdb3e 100644
+>>--- a/arch/riscv/include/asm/hwcap.h
+>>+++ b/arch/riscv/include/asm/hwcap.h
+>>@@ -100,6 +100,8 @@
+>>  #define RISCV_ISA_EXT_ZICCRSE		91
+>>  #define RISCV_ISA_EXT_SVADE		92
+>>  #define RISCV_ISA_EXT_SVADU		93
+>>+#define RISCV_ISA_EXT_ZICFILP		94
+>>+#define RISCV_ISA_EXT_ZICFISS		95
+>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>>diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
+>>index 5f56eb9d114a..e3aba3336e63 100644
+>>--- a/arch/riscv/include/asm/processor.h
+>>+++ b/arch/riscv/include/asm/processor.h
+>>@@ -13,6 +13,7 @@
+>>  #include <vdso/processor.h>
+>>  #include <asm/ptrace.h>
+>>+#include <asm/hwcap.h>
+>>  #define arch_get_mmap_end(addr, len, flags)			\
+>>  ({								\
+>>diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>>index c6ba750536c3..82065cc55822 100644
+>>--- a/arch/riscv/kernel/cpufeature.c
+>>+++ b/arch/riscv/kernel/cpufeature.c
+>>@@ -150,6 +150,15 @@ static int riscv_ext_svadu_validate(const struct riscv_isa_ext_data *data,
+>>  	return 0;
+>>  }
+>>+static int riscv_cfi_validate(const struct riscv_isa_ext_data *data,
+>>+			      const unsigned long *isa_bitmap)
+>>+{
+>>+	if (!IS_ENABLED(CONFIG_RISCV_USER_CFI))
+>>+		return -EINVAL;
+>>+
+>>+	return 0;
+>>+}
+>>+
+>>  static const unsigned int riscv_zk_bundled_exts[] = {
+>>  	RISCV_ISA_EXT_ZBKB,
+>>  	RISCV_ISA_EXT_ZBKC,
+>>@@ -333,6 +342,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>>  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicboz, RISCV_ISA_EXT_ZICBOZ, riscv_xlinuxenvcfg_exts,
+>>  					  riscv_ext_zicboz_validate),
+>>  	__RISCV_ISA_EXT_DATA(ziccrse, RISCV_ISA_EXT_ZICCRSE),
+>>+	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicfilp, RISCV_ISA_EXT_ZICFILP, riscv_xlinuxenvcfg_exts,
+>>+					  riscv_cfi_validate),
+>>+	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicfiss, RISCV_ISA_EXT_ZICFISS, riscv_xlinuxenvcfg_exts,
+>>+					  riscv_cfi_validate),
+>>  	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
+>>  	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
+>>  	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
+>>
+>
+>With the above comment fixed, you can add:
+>
+>Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+>
+>Thanks,
+>
+>Alex
+>
 
