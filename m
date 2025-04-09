@@ -1,142 +1,204 @@
-Return-Path: <devicetree+bounces-164903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8834A82C20
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:17:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FB6A82C26
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F1223BF82B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:11:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1893C1B62272
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A9425A65C;
-	Wed,  9 Apr 2025 16:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C2C25EF92;
+	Wed,  9 Apr 2025 16:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B/rx5/JP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBI1MXOX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C4825291E;
-	Wed,  9 Apr 2025 16:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD8325E457;
+	Wed,  9 Apr 2025 16:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744215110; cv=none; b=Xdcskx5N3VJcGgyvSlhfHXGhmCKh5Oz84PXTniZ2E5uuue5DbwOHP0DxB2w99cfxYyR+z1eJqLwbIIJ4NBPipzDQj08+VYtVPAjz1OOR6ySvOaKjXDGwizo681I3vW1OLTjA4Qx4OCPwOFndpdobYw7DJt97fjeaTDSNmcpYAEk=
+	t=1744215201; cv=none; b=hwWOovFbcg7/9J1wvq0IlDDr2vKNA36KcPXqhztPt8mTgd1NMP7Vwv1dfN0KJpkSdRgnLLDdLwXuW3RB4asI8JxitOEYg9iEGrTzabtnDtQAJ5etRXjuhmjVqKKhhDcfb64Ch1MSU76zuPMVIuuxaKRg429kDBN40oWt1uy5YEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744215110; c=relaxed/simple;
-	bh=SOt/CFi1QiyqKnESz/YdCWfrhyhPQInzpR3x42DBcxE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WvcG1R4mR25pyuOBJLCnx8Z2P6GbCujE0VKW8ihGtXIiu7X4Txr5A/zGJdpe+cTaF2OwXMyB1PSbPU8/OY7CxP8k9A2q2SRewN9eYvHvBI+nfYOisLtOakbqdw9WzWZGT/WDJHCLZeCP2fJ3XqcbzlQLhGzJUSeugRZJKOQaz+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B/rx5/JP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53990uxk006865;
-	Wed, 9 Apr 2025 16:11:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XXwUDlQWx/Utjz+xFTN2fvOi5jYALPdD8+MrVwah8A8=; b=B/rx5/JPdjBxsG+U
-	X5XoTURq4hOH+4xUyonHLnFOvPS+GlxtXVleseObQhgT1z7D3jSmC6xbXGE0PPVh
-	fIhrAqqfvcIjn2jIAtpZ+4AXNE9beR1E5Wwu8HUwSriVXMX4+7hf8QiWHXoIyBky
-	OIWJoLXf9LPXZWQRJiL8/6txAWUP4homhQUCnGoxufKhLeCEmNtLcfGOJvfzGWIm
-	O7hew3G6qQxIf3Cv/5WfnyDTFyKXtqXbj38TJFH9swURLB1tLO8Dexgqo+PsOtWT
-	saHC8qeID5m6tfVIV0ix/k1VdirU5ZxT22ahj0GvBS04wSu9e6cFlmlpvCu/sEsE
-	doftOw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twg3kxgx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 16:11:39 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539GBcTR007745
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Apr 2025 16:11:38 GMT
-Received: from [10.216.18.165] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
- 09:11:34 -0700
-Message-ID: <902ed546-4335-26a9-27aa-56a543108b22@quicinc.com>
-Date: Wed, 9 Apr 2025 21:41:31 +0530
+	s=arc-20240116; t=1744215201; c=relaxed/simple;
+	bh=yJiCj/KLlXnc9aM7spTJqyiJV+1GV9RlHUWP2ACtPZo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ENS+u0flAHKQ9JyW7/K1xktaqEQffZ/cUnPWNnFDgbXPOlPiqLj/2FnkmvT641iJ46cZVemZlPtnzSEg0xy2IeCHdblymSmOU4xB/YlrP5LCIGy0I7k5fCFGFvUXL5EQOvksCtjO1ElIzfOByfeBLE642Zt4ymr4DqKF21O2y5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBI1MXOX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4E36C4CEE2;
+	Wed,  9 Apr 2025 16:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744215201;
+	bh=yJiCj/KLlXnc9aM7spTJqyiJV+1GV9RlHUWP2ACtPZo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KBI1MXOXwVafCWYo+bPClyePCICCqCXlYMV85Ynv+NoJzmLqqF3hHAsdT48jkgaeK
+	 mMqkQGxACw+U0ptiJFw+sM6RFCGwY6GdmnlB2APJZ6zyMdsqDjX5/EYDxaOZHdo9AV
+	 vhxO7x6IO6HFpRIE/jT5HHWinHqmaQjZqgmVzGklKKCZ1izAAUy6sTyArpospnfXBs
+	 /sxzDbj6QJw/L1pHrBqVy8SN0L4wgGpOHLLH6G0PfjcOwBQLJot7QHz+BtZ/7hoMnB
+	 urAdV1I6eyzJBdu0195rw8mZUSQHbPhNZKWokCa7H5rGtHmeXANHFtgKyzztYd8rdS
+	 wghHpRIrHr25Q==
+Message-ID: <b01e955d-329a-4130-8cd9-fce4d31cbc54@kernel.org>
+Date: Wed, 9 Apr 2025 18:13:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 4/6] media: platform: qcom/iris: rename iris_vpu3 to
- iris_vpu3x
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] memory: mtk-smi: mt8188: Use
+ devm_pm_runtime_enable
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Friday Yang <friday.yang@mediatek.com>
+Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250408033206.12176-1-friday.yang@mediatek.com>
+ <20250408033206.12176-4-friday.yang@mediatek.com>
+ <20250408-woodoo-quick-worm-bf82b4@shite>
+ <e777f95c-c21f-4a91-b044-5fc19eb22c3d@collabora.com>
+ <258c8fda-70cc-4624-aef6-7cbef3cdbde6@kernel.org>
+ <399f89fb-092e-4fb3-8a0b-987dea129554@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>
-References: <20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org>
- <20250409-topic-sm8x50-iris-v10-v4-4-40e411594285@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250409-topic-sm8x50-iris-v10-v4-4-40e411594285@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <399f89fb-092e-4fb3-8a0b-987dea129554@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kbTkeGp3dH3-n5oqDxNJl1HQfmcZGAfK
-X-Proofpoint-ORIG-GUID: kbTkeGp3dH3-n5oqDxNJl1HQfmcZGAfK
-X-Authority-Analysis: v=2.4 cv=I/9lRMgg c=1 sm=1 tr=0 ts=67f69c3b cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=2ECtzDhs6wtSefyIrJgA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_05,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- phishscore=0 suspectscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
- clxscore=1015 malwarescore=0 adultscore=0 priorityscore=1501
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090103
 
-
-On 4/9/2025 8:08 PM, Neil Armstrong wrote:
-> The vpu33 HW is very close to vpu3, and shares most of the
-> operations, so rename file to vpu3x since we'll handle all vpu3
-> variants in it.
+On 09/04/2025 17:50, AngeloGioacchino Del Regno wrote:
+> Il 09/04/25 11:56, Krzysztof Kozlowski ha scritto:
+>> On 09/04/2025 10:26, AngeloGioacchino Del Regno wrote:
+>>> Il 08/04/25 08:29, Krzysztof Kozlowski ha scritto:
+>>>> On Tue, Apr 08, 2025 at 11:31:56AM GMT, Friday Yang wrote:
+>>>>> Replace pm_runtime_enable with the devres-enabled version which
+>>>>> can trigger pm_runtime_disable.
+>>>>>
+>>>>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+>>>>> ---
+>>>>>    drivers/memory/mtk-smi.c | 16 +++++++++-------
+>>>>>    1 file changed, 9 insertions(+), 7 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>>>>> index f25d46d2ef33..daef6d350419 100644
+>>>>> --- a/drivers/memory/mtk-smi.c
+>>>>> +++ b/drivers/memory/mtk-smi.c
+>>>>> @@ -713,16 +713,17 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>>>>>    	if (ret)
+>>>>>    		goto err_link_remove;
+>>>>>
+>>>>> -	pm_runtime_enable(dev);
+>>>>> +	ret = devm_pm_runtime_enable(dev);
+>>>>> +	if (ret)
+>>>>> +		goto err_link_remove;
+>>>>> +
+>>>>>    	platform_set_drvdata(pdev, larb);
+>>>>>    	ret = component_add(dev, &mtk_smi_larb_component_ops);
+>>>>>    	if (ret)
+>>>>> -		goto err_pm_disable;
+>>>>> +		goto err_link_remove;
+>>>>>
+>>>>>    	return 0;
+>>>>>
+>>>>> -err_pm_disable:
+>>>>> -	pm_runtime_disable(dev);
+>>>>
+>>>> You now broke/changed the order of cleanup without any explanation.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> I agree some comment in the commit description saying that the cleanup reordering
+>>> doesn't matter in this specific case would've been nice to have, but anyway IMO
+>>> it's not a big deal - he didn't break anything, anyway :-)
+>>
+>> Cleanup orderings are tricky, so are you sure nothing got here called in
+>> incorrect moment?
 > 
-> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e Dell
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/media/platform/qcom/iris/Makefile                      | 2 +-
->  drivers/media/platform/qcom/iris/{iris_vpu3.c => iris_vpu3x.c} | 0
->  2 files changed, 1 insertion(+), 1 deletion(-)
+> Yes.
 > 
-> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-> index 35390534534e93f4617c1036a05ca0921567ba1d..473aaf655448180ade917e642289677fc1277f99 100644
-> --- a/drivers/media/platform/qcom/iris/Makefile
-> +++ b/drivers/media/platform/qcom/iris/Makefile
-> @@ -20,7 +20,7 @@ qcom-iris-objs += \
->               iris_vb2.o \
->               iris_vdec.o \
->               iris_vpu2.o \
-> -             iris_vpu3.o \
-> +             iris_vpu3x.o \
->               iris_vpu_buffer.o \
->               iris_vpu_common.o \
->  
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3.c b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> similarity index 100%
-> rename from drivers/media/platform/qcom/iris/iris_vpu3.c
-> rename to drivers/media/platform/qcom/iris/iris_vpu3x.c
+>  >> I see that runtime PM will be disabled much later and
+>> what certainty you have that device won't get resumed that time?
+>>
+> How can a device that failed to probe be resumed?! Who's going to resume it?! :-)
 
-Reviewed-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+That's unbind path.
+
+> 
+> Also, in the remove phase, all users get removed first, there's no ISR (implies
+> that there's no isr that will resume this device inadvertently, and other than
+> no isr - there's no kthread/queue/this/that that could do this), and no nothing.
+> 
+> Moreover, SMI-LARB cannot be removed unless all of the components are unbound;
+> SMI-Common (be it a common or a sub-common) cannot be removed if SMI-LARB is still
+> using it.
+> 
+> No I don't see anything that can resume it before devm does its job.
+
+so this should be in commit msg... I doubt that author did any
+investigation but instead just blindly converted to devm.
+
+> 
+> If you do see something though, I'm curious to understand what I'm missing here :-)
+
+You change the order of cleanup and this is known to introduce errors.
+Real bugs during probe error paths or removal. Some are tricky to
+trigger, but some are obvious and really happening. The easiest to
+trigger issues is for devices sharing interrupts (there is even CONFIG
+for that). That's why generic recommendation is don't use devm with
+shared interrupts. Even more generic recommendation is don't mix devm
+with non-devm, but just choose one.
+
+Best regards,
+Krzysztof
 
