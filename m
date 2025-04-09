@@ -1,183 +1,163 @@
-Return-Path: <devicetree+bounces-165047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FEAAA83314
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:16:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9468FA83320
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:17:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DE8316FA16
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:16:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 766CB1701DD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D24320299B;
-	Wed,  9 Apr 2025 21:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5591214818;
+	Wed,  9 Apr 2025 21:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YtAK71wN"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="bVPY8moo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417F1155C97;
-	Wed,  9 Apr 2025 21:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07C41EB18E
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 21:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744233383; cv=none; b=BjEN3yOFfAHGDElkbFPysbCJczONVAH2BmANXI7umM2YEyBSZadYfd67ZY67JyuV2efsxmiWmlLgvhL54xia6JmJA/+0BokcneQ4EzjgY6qq5tgC5on+C7ZofTDYRaz1/Mz705oRtsKpC+I1J2jf4Wo17fKHpMYtPYKE8WuVfzM=
+	t=1744233468; cv=none; b=hb8Ds26dEpX1RNbp8VgZpqiLdCYIkFH533kUNuLZ7e8KeEL6UJxQQxv1El1PZ91j0oS2cwEbZQdXOhVK/QeCpNi7WyDHvfn8JguTGcADD8wr8PM14/0ZxkyTBR96ajB4hCMUt3txYcP7FqDxPk9qffN46OHAge9xDrq7BIw/zys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744233383; c=relaxed/simple;
-	bh=r+FCOM4FxN8EdgC44yZEyioV6YS73ZEgUGDU3vCHZSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=u1Xigqc1O2vwHbOMch7hCceW437jo/hEQzP4PfXYeWwUj2XZCt65NGkgjHi9q/x1u6mXOJQE1yg9LF1OBZmeDZOBOdfOiDkj8fWsF1ly3TYmuXA9EEcMY+fdM3XGOiIKrhRgNSINvtiRFTSccn3Z+vl2Hfvq2TGS5C0hIE5zMm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YtAK71wN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539IHWsI002286;
-	Wed, 9 Apr 2025 21:16:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FAoVU227KYJbM1z8Qce+FIEVBao6f+hjFeNa5g5KkP0=; b=YtAK71wNtc3Km4R9
-	7NNe9W419Cdh2ry4vG6/0cUezWo5OXuS2PS+nW/Uk5IjFXwhWaAzmNFct96U2XXS
-	aFbWe1a3xkdqtmMThCe5VVWdaJ1NY2cetUYhLdAGiTz3Hg50GWhhCP8vHldboJNF
-	+SZcv4vnJnbAQrDoEUaWj5LcBxxxWzfT4m/HC7MToVwxrAVXvHZsVKCq2tj61I2s
-	sAfVPCa+sK+exaAZ5VPmmnRyrx9p4oVItEySebyfhFKn9hdg7HgIpzjUTEXWItnt
-	ftgKE5E3EYWY88ATmEw9MBhPJkt0C74zia+llbYYgBAF/JJ+0X6r85XNyTkZg2+L
-	YzFFsg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1mmnc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 21:16:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539LGDTj019433
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Apr 2025 21:16:13 GMT
-Received: from [10.71.111.82] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
- 14:16:13 -0700
-Message-ID: <92b6ea9d-0b13-472f-afad-2b67d869a0bb@quicinc.com>
-Date: Wed, 9 Apr 2025 14:16:13 -0700
+	s=arc-20240116; t=1744233468; c=relaxed/simple;
+	bh=VMdYZrLAD8DMV1DpO50jqiz0vFY6aFjrLaJXiBM7mvI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MeDY1zfuF2i/ckgT7DHHxlZZJsyRDrjSuPsx8vg0SFurJIgZxF/HrBRE8GcMq8i2nGneOCeAh/0Hv3YU+kqz53uIlstHyPRXwOGETF9A7EaHyv4NTUt7TfxwiXm+U0dafdQP8dozLyUP449TpVSlVWgh463dOLqLswBVGgxDwfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=bVPY8moo; arc=none smtp.client-ip=209.85.166.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-86142446f3fso4737239f.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 14:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744233466; x=1744838266; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rrV5UlJLrK5aj5lTpRQRYMaHqlL0u3EBGUfh4HcWOG4=;
+        b=bVPY8mooGRXZnFbyiZgysvh7XZ+c1nIRhkLwk9qtWfFI/KTkPZW5d/QjeUO0H6Jhqj
+         FeoyiT/0JUaPh2f+2pzBaJsW40YRETM9N7jMIfQhD4Xfstc9JiqGWLMC3xome1KsaN0/
+         BzJpScvxyL+8joBKnnHnXZJTbEbfT5MglkcwPsBGXCFqT+nr7KQuHgpifT5mrYNcFFR0
+         1Kc9qpqRn0xhcmzcqCGCXNLVzv57aLhpkrZgX6LFVmnwrtfPtfmK4IxganXVQDydYbxK
+         XuURMpGoF56af+0HiNYJbRpULycS1SUrxGBaGsbGf0IhzTure6XfuD+gdWc2m+fKICeF
+         VGsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744233466; x=1744838266;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rrV5UlJLrK5aj5lTpRQRYMaHqlL0u3EBGUfh4HcWOG4=;
+        b=v9PTwR3/BiHI98oNIZC+fE396U4g5flilYKrqXF+I+iczP6m0a45PQ7Q41582MDZ00
+         9KARjK0qSm4MNEA7X+THjaZirpdGmtm1CSqVYAVpELENhf46tdDTiMUhSagEnybDCS34
+         4BOwRr77HDt92u1amnQDlYjSOTL3KxmLeSkHeouI/ENakxXXJvwDS9DQi5jSUqvCtBwk
+         gp92YvoXWjyT+romR2nrW+kNzPKEA9HwdPhWlaTdcMrLQfulA8IUqLwzGOcVre/FV0fu
+         8LAi98c1M+fi20EDyczGGBrWtygkBUMXUkog/j6bpD67sJy9LeIS0hSYg2OKAgzN7wUp
+         Y1iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVswP7Cu4s6EINXtTZBRlKKZWs1hugY4cQstxnusNmOcubrdVHa4SOW8Tfhdwwjit4UOw/8iwsIMwnE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkIOb+BQZyUCQSVFes7coriX5QAM1LddBWj0ONSuppOM07rBL5
+	DFKGznF00v+erxqMK+GnZNs9B/9XFXr5OhfuwO1MZGTIyHrsRH0j8lAOir1k+Ao=
+X-Gm-Gg: ASbGncvyQhTjvVkazchrDj+uX833FAbrWMglb0SmqEwia6tbKRxGVVbLBfT6uECekam
+	J/7YBL+BKcpXYRjcstfn7R5bCdD6XMqW71Wrywe6GesuioIRmpgicj0cU9TmITeF2RHy/YHz1UI
+	c/R2IdLVuagKM33OliZI/S9PkEfU2fiYpH/vkEZKmHvPhWT2GZznvyDKW/hpenbg8eo9+72QxSL
+	NLiTe1k2/WMqS/qIMhjYLCx1Uir7UZpDiJWhimUkRT5wgYIe3mTog1bDZAwHHp8nUVAxbCySM28
+	qdZG3VOFrF6ddFaE0m1yqQPGBIsA1IBCidH+KE/PEJPHe4vfNLJODfYfvbgJBgM9E6vIBtUBJoW
+	SvyCws9ic2MMzHA==
+X-Google-Smtp-Source: AGHT+IG6Fs0mDXRYU2o6Td0yWxwYb8N9uHgcDDzyd75KPdUxyiPuO9N5OH70dXQk1TVcz0gCoG5PKQ==
+X-Received: by 2002:a05:6e02:1887:b0:3d2:6768:c4fa with SMTP id e9e14a558f8ab-3d7e4780824mr6626785ab.21.1744233465833;
+        Wed, 09 Apr 2025 14:17:45 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f505cf8e91sm420735173.6.2025.04.09.14.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 14:17:45 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: p.zabel@pengutronix.de,
+	dlan@gentoo.org,
+	heylenay@4d2.org,
+	guodong@riscstar.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] clk: spacemit: add K1 reset support
+Date: Wed,  9 Apr 2025 16:17:33 -0500
+Message-ID: <20250409211741.1171584-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] soc: qcom: llcc-qcom: Add support for LLCC V6
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley
-	<conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Satya Durga
- Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250324-sm8750_llcc_master-v3-0-2afd5c0fdbde@quicinc.com>
- <20250324-sm8750_llcc_master-v3-2-2afd5c0fdbde@quicinc.com>
- <0ca929c6-6ff5-4ab0-8ebf-aed3cc5f350b@oss.qualcomm.com>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <0ca929c6-6ff5-4ab0-8ebf-aed3cc5f350b@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: b5qxgxy_sQ0Z-RQs4yqsgZoM5jK0fInt
-X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f6e39f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=ARX7N87W17KPkUc0mbYA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: b5qxgxy_sQ0Z-RQs4yqsgZoM5jK0fInt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090144
 
+This series adds reset controller support for the SpacemiT K1 SoC.
 
+As before, this version is built upon the clock controller driver that
+Haylen Chu has out for review (currently at v6):
+  https://lore.kernel.org/lkml/20250401172434.6774-1-heylenay@4d2.org/
 
-On 3/26/2025 6:39 AM, Konrad Dybcio wrote:
-> On 3/24/25 9:29 PM, Melody Olvera wrote:
->> Add support for LLCC V6. V6 adds several additional usecase IDs,
->> rearrages several registers and offsets, and supports slice IDs
->> over 31, so add a new function for programming LLCC V6.
->>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
-> [...]
->
->> +
->> +	if (config->parent_slice_id && config->fixed_size) {
->> +		attr2_val |= FIELD_PREP(ATTR2_PARENT_SCID_MASK, config->parent_slice_id);
->> +		attr2_val |= ATTR2_IN_A_GROUP_MASK;
->> +	}
-> This is fragile if parent_slice_id == 0, but let's say this is not an issue
-> for now..
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v3
 
-Agreed, but I don't anticipate that being an issue. I don't think any 
-slice ID is/will be 0.
+Between version 2 and version 3 there was no feedback, however:
+  - Haylen posted v6 of the clock series, and it included some changes
+    that affected the logic in this reset code.
+  - I was informed that defining CCU nodes without any clocks led to
+    warnings about "clocks" being a required property when running
+    "make dtbs_check".  For that reason, I made clock properties
+    optional for reset-only CCU nodes.
+  - This code is now based on v6.15-rc1, which includes a few commits
+    that were listed as dependencies previously.
 
->
->> +
->> +	attr3_val = MAX_CAP_TO_BYTES(config->max_cap);
->> +	attr3_val /= drv_data->num_banks;
->> +	attr3_val >>= CACHE_LINE_SIZE_SHIFT;
->> +
->> +	ret = regmap_write(drv_data->bcast_regmap, attr0_cfg, attr0_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = regmap_write(drv_data->bcast_regmap, attr1_cfg, attr1_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = regmap_write(drv_data->bcast_regmap, attr2_cfg, attr2_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = regmap_write(drv_data->bcast_regmap, attr3_cfg, attr3_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	slice_offset = config->slice_id % 32;
->> +	reg_offset = (config->slice_id / 32) * 4;
->> +
->> +	wren = config->write_scid_en << slice_offset;If I'm reading the wrappers right, you should be able to drop both the
-> shifting and intermediate variables with regmap_assign_bits()
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
 
-I'm not so sure. I tried with regmap_assign_bits and it seems the 
-correct way to use it would be roughly:
+Between version 1 and version 2:
+  - Added Rob's Reviewed-by tag on the first patch
+  - Renamed the of_match_data data type (and one or two other symbols) to
+    use "spacemit" rather than "k1".
+  - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+    sympols with "reset" or "RESET" respectively.
+  - Eliminated rcdev_to_controller(), which was only used once.
+  - Changed a function that unsafely did a read/modify/write of a register
+    to use regmap_update_bits() instead as suggested by Haylen.
+  - Eliminated a null check for a pointer known to be non-null.
+  - Reordered the assignment of reset controller device fields.
+  - Added a "sentinel" comment as requested by Yixun.
+  - Updated to be based on Linux v6.14 final.
 
-regmap_assign_bits(drv_data->bcast_regmap,
-             cfg->reg_offset[LLCC_TRP_WRS_EN], BIT(config->slice_id),
-             (bool)config->write_scid_en);
+Here is the first version of this series.
+  https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
 
-but the third argument is an unsigned int (the BIT(config->slice_id)). I 
-tried just putting the slice_id there,
-but got some bizarre results leading me to believe that's not the 
-correct way to use this api. If I'm missing
-something, let me know, but AFAICT, this is six one way, a half-dozen 
-another.
+					-Alex
 
-Thanks,
-Melody
+Alex Elder (7):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  clk: spacemit: rename spacemit_ccu_data fields
+  clk: spacemit: add reset controller support
+  clk: spacemit: define existing syscon resets
+  clk: spacemit: make clocks optional
+  clk: spacemit: define new syscons with only resets
+  riscv: dts: spacemit: add reset support for the K1 SoC
 
->
-> Looks good otherwise
->
-> Konrad
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 +
+ drivers/clk/spacemit/ccu-k1.c                 | 340 ++++++++++++++++--
+ .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 +++++++
+ 4 files changed, 488 insertions(+), 27 deletions(-)
+
+-- 
+2.45.2
 
 
