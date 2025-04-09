@@ -1,187 +1,345 @@
-Return-Path: <devicetree+bounces-164954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF1CA82EFB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 20:40:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 175DBA82F12
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 20:42:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CC961B810E3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:39:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2DFB8A2425
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0575C2777FF;
-	Wed,  9 Apr 2025 18:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F75278143;
+	Wed,  9 Apr 2025 18:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="grTJTIaq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwSLT6GO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B632676D6
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 18:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02FF2278141;
+	Wed,  9 Apr 2025 18:40:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744223962; cv=none; b=ugCXquhS160ax5BGS5NDZA9+gG5xwYT1PGPyuCITOQhn+bqWMxGPLkUZ+vVWtubWBy32cq16UU+vM8ikQE8EbuoaRiHWviErgiPld/acWAchhsHoUfR+MGkqIzStyKJUuw5aLxNtuTMW68623ycNeMrQXM3EATv6Ew3Q9ee82Bo=
+	t=1744224053; cv=none; b=fifHNuWBqOIZzVMf2St9Xr6fUCpy+3QVGF+HY4WzWi6TPptKgpUCggNYbxjtbzxVyzwQiED/RBa/1w4j+U0LJpDANiqSKBmcQA1ZWF2dWJtMR1bDBd6HKspqHiC/dTo89iXfMaI2P81YSf3+7iVKhdJETrKhnIaUOZAbVvQE68U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744223962; c=relaxed/simple;
-	bh=AI9YxaHUdkFH0+ZfIcwV6u5b5F9PgshpmXiOT7skFJA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EicTNVk8GcmCAZnkv0HR4h3TSO6ykfStONVPiTTCi3E4HFAo8uw2r2QD9NJm/IS9MfkGsx/MnZNm7NA9sgPozG4qoxG7iGwcAahNymF3ISgUc7M4jvRSLJn1VURQWXLzkyLO1xIqG4MmIDlLF6l+7OdofHXq2iZG2L6JSqsp6YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=grTJTIaq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HJpAx002292
-	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 18:39:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vqf5MTz4sL9bNwFSw+g0H3Dwlf7C/BX0UqReS/yNI1Y=; b=grTJTIaqAyhnryqN
-	wuWWwTFO2+9TrCBetktcTXDP3XxTtu2xu0+aekKM8OyKKPJ5uGG9BvonzOKuHSkk
-	kBQQkD7opkOdeFGAv7EJPQHDnzQtdiChblubxAVk8A7I5nG6n1zdx0ooX6iu6V/L
-	DeM3WmuluqPcSD9lrOn+ClEVl0dn45tG7gJ+9uz7OPih1CbBgjeQoIz33BO2Cj/5
-	ttszJwlh6ZIClHRH2Bini/j3doveYUQTR5mnMN7IiTMDKhAFIXsbF0q7Vt6m43PL
-	MPWJxOlFgw9ctxuAX4MxYP0HN436HUcJGqBVK8zFVQdRJLLfoS5HhtTJ/zqSykJ7
-	+hdExQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1m94a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 18:39:08 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6eeeaf707b0so6107416d6.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 11:39:08 -0700 (PDT)
+	s=arc-20240116; t=1744224053; c=relaxed/simple;
+	bh=7ce31LOaktiwPuRBBPpSmmXKf6M/YMvZPR0T7UZBGh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZK706aEs7/OOFr6ZcF12JgDmMUxq/UksY/fRos6Ou+Reg5uXNk2S9WCBA0M3257NLibar7qcL8cWtvHLqO1NCZcc5wt4wlH7xoZfOkTVeIBDxFPOwxACmGkYY9IQTyTa40d888T+/fokAp0fA90kUYRMBJIV1ADzH0PKvir1qZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwSLT6GO; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-227d6b530d8so66216775ad.3;
+        Wed, 09 Apr 2025 11:40:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744224051; x=1744828851; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XKCylbKIjrgOfv1bOhlYLqzn746P08J59uI4yN7YCeY=;
+        b=NwSLT6GOJL7nuSu3848e0KNpM6ULT4lyMxJJYKoC0tXT6nJDPVQjUQCLxKz4lQg8cg
+         p4rjqv3/D5xHAeLWCwSn3KZ9TQyEYoxefYenYLi4Ff9n78ybSzKmwdtlJHLMAwPC48Im
+         f9uKVDBLz+h1w4JVnYodda/JdKzgAmbrE5YCsg5HAEOKnC9TuUSkUjxGz5hQNWcqIYsd
+         y58L1o2zWwSgqIrnG4en8I1dWrTGSgOCnLIE7ZwIkz/go3LcZ5sFpV5p25yS5XdvZwUN
+         pJg7RPWbSyI4JI0lD4xBEmy+F7UKp2IA4ls0tkN/VwQOaVgtE2YyE3DeWz/9ayqPJA9E
+         /8IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744223948; x=1744828748;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqf5MTz4sL9bNwFSw+g0H3Dwlf7C/BX0UqReS/yNI1Y=;
-        b=fPmptGwQDapf8EKnBghj7NQ66PZu4Qwc+beZOJGlcl4aBVxA/3O3IWV3qnl1p7ZQi0
-         N/GpZsHpMXMJpwlAloT027WWa0CzHUBAGRoCbvBa9oegawIKOV6cANzV3dpYuZjFe+Ny
-         t4WfhVzJckW6b47m4e98RnKoKfLBz911qiewFDMngfC/Rp6Pufo9Q/HrAE23HeBuVjSo
-         zipn8WcJO/ivOLoaAuOZzFsy19qAoivq19OTxxiT/Mel/UB0AO6NmmaWiCVer8N+HYfx
-         xHB4lDShSFulbXIUmYOPhq9+zR/Adwwgnpfv1BWKgigRGsjoqjqgyCmS6mldu/5+ayKy
-         7SZg==
-X-Forwarded-Encrypted: i=1; AJvYcCWSxogMpzEpr3+N17b1BIeHSgdkr3oQ/xd+gpx50lhPgAGZ8gEAxNfGcXJ29duTbNVFSHouIZlBRP9R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7y4xGmbavNrG7gxIXayDAAi8r7keR4EK61gaEU7QBfj5kBO8Q
-	d69/ornSCNzqP3KlYI7A3ti9xcmvrryRk6UfWckNGjskFeTy0Nr4sUWGU4l9P3751snN+oBTe09
-	l1W5jnFZT6NkTT8zrhrc7KkA10uzTR+xDuSrZhld9ZTFhnnw9NZNAAsSUmaR7
-X-Gm-Gg: ASbGncsph9HF6bhr2X8BCuq3QK7DnIwBtPCsLsMb592bgRcDTVnKvaPokwVMosWMfdI
-	/9ECp/avEYAYnQ+k3Vi5Oj2kHM4+1Q2Jogk6SEfHMCPd7Zojpq6NJLaia8wbS98+p3yCpOic2ZV
-	VMr745A1FqwWhQBrK/Mcwxjn7HrxRtgap1ARJeZhHKiKv/9fTG1qiVDk876zNp6i2GrEicqZg+w
-	CAd0br5mPtnD8erZl4ixViMigJ4fv75Ac93tlAsvg/xDXzzAMrHdB7nVXahTnX7k0aydNQLwkEe
-	35L40m//3u8kXrdnOD5Q9XTH7kFwqU7y3Qupj1iewQ21cAVrVMbh8DuuPSKwsCtebQ==
-X-Received: by 2002:ad4:5c8d:0:b0:6e8:af1b:e70e with SMTP id 6a1803df08f44-6f0dbc7d4admr21390496d6.8.1744223947912;
-        Wed, 09 Apr 2025 11:39:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFtByW9xt2uR5vzFzf+TpdmkDJ75TD1GMSbFIMd+F10uBRLBJ7jIOFCqqqfHNK6a4HMz6a6wQ==
-X-Received: by 2002:ad4:5c8d:0:b0:6e8:af1b:e70e with SMTP id 6a1803df08f44-6f0dbc7d4admr21390386d6.8.1744223947588;
-        Wed, 09 Apr 2025 11:39:07 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb4204sm133546366b.116.2025.04.09.11.39.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Apr 2025 11:39:06 -0700 (PDT)
-Message-ID: <170e4c9a-bdf4-44f7-9dd1-9eed31fa27db@oss.qualcomm.com>
-Date: Wed, 9 Apr 2025 20:39:05 +0200
+        d=1e100.net; s=20230601; t=1744224051; x=1744828851;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XKCylbKIjrgOfv1bOhlYLqzn746P08J59uI4yN7YCeY=;
+        b=NxNRTBz2f8PgtNq07rSPZriIaj1/UBLBTeCfkXoV4+Ki4L2/L5sWdaOeoO2ujroal/
+         NYwwN2f3KU/52osyY4JxoJEpZbi75BAtIPhfvfrdNKhuhTU2BsT9e32bFuekY4usJQQ5
+         Z+QR6lE0zBevT6SzntYozhCbZYaS/3lZR44F9yipgQFZ7tgYr3DbOjFFZXEfgHEuBGXJ
+         SN+dGu65jJo2axERhT2BODrncT+uhifeuxP8STcaybhsX6KTa6BYHMni8IY+ZFY5WGrq
+         6Ap4gVpnIY5BgCRCOOThkBAnAnTRBofFRKraJI0tYyJ2qwMX70IpN5biZy9MKAGH5vfJ
+         VEZw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6Jh0JJ8+kBUMUgXx6gBB0X2iNSea1llHwosn9nGxa1tP3x+R7xi+K7eQXgnwA8D6ZAUY1Vlk2QS7Y@vger.kernel.org, AJvYcCUOWMIZPIzXHm60oduypPUykmviYSqUGPPlcIOq1Xw7POj/uq34gTxh9UrO8Yk6dfSOZQgoWXHT/OJHtw==@vger.kernel.org, AJvYcCUpTUPz5DtyJC/Dg3xYyblBIzFTt0wI8iSHwl/Y27EgH1ytXTkm6yeGiHluXJIHl2EMajxMpfMqbyuuKbMg@vger.kernel.org, AJvYcCVnuH74Tg8YQvhOlM5vnyJJmr/M4XO+tZxKly/TU5RGG9dEL3QVREUd/AZkLz2ahiucuLVPukJ+ZdiQc8w=@vger.kernel.org, AJvYcCWXbjZiKCyeCtue4ESjl3YQjChFvbc/mL7tI2ri7FJC/aFK3EpCf611BgxHNVXmtCw5d8qoe41KLNAs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0DuhSWIzYtZ1TL41KhkYFfyG8WKF60mDgaWa94G2oqswgu5hl
+	CT9ZV793LclvNMzAx2Re/ugGZbbgeetiJCdQi2aKjE7X3Hx8e+Pk
+X-Gm-Gg: ASbGncvMNLkRbtCsvuvoxk133Tg612aHDxOiqCGN9fxX76HbJk4L+CCgzKXUMKlTRYL
+	t+7yqs8EnWlDNzCdtf+FU1zFT20vJ7IVS4OS709uzJlfaF6PPqmBqclCdHHlEexADrvVKtNfNn1
+	HS6F8N2qWycQtu+M2ZscgwzW2a/hsGTDdjoY8jFjcQg0naOam1siaO/fBXd3SQZ8lKUCt7hkc5f
+	wNeD4KzGEVh+GjUzRjeDJbBrb/RWB+ON+UckWVqg0iDT+NECN+SpUNF1PESiyaODpomuohJDWBk
+	S3vn3BZMrn6wnl8UP6ZaW9wEdpbL7IhORIy8wx/C1Q==
+X-Google-Smtp-Source: AGHT+IEvVcXJt7NNKX5SaeEVlcZaK6qMDnh8XmZ4fCAiKyzsL52qof/mXos31CnmY0ZKrW4CD72UiA==
+X-Received: by 2002:a17:902:d2ca:b0:224:1c41:a4cd with SMTP id d9443c01a7336-22ac296e7d5mr49925255ad.3.1744224051208;
+        Wed, 09 Apr 2025 11:40:51 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:cff4:8871:54bb:4c97])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7ccb5c5sm15464235ad.222.2025.04.09.11.40.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 11:40:50 -0700 (PDT)
+Date: Wed, 9 Apr 2025 11:40:47 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 10/12] input: keyboard: Add support for MAX7360 keypad
+Message-ID: <chhnkepvlbiv6xvgh5zso526xsp4zk7tgzsqzoqe7b5jmvdyrw@afio6lmx55zv>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-10-7a2535876e39@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm2290: Add CCI node
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org
-References: <20250403102256.101217-1-loic.poulain@oss.qualcomm.com>
- <0YH8BNtmMcywwRXI3xHiLyB_zFED-XbjzCyyI1Vc4184BPadVJ-GWj23lpEwaXEHqDPiMiraMsWlOd1qA_hiog==@protonmail.internalid>
- <20250403102256.101217-2-loic.poulain@oss.qualcomm.com>
- <1b649ead-f6d6-4fb0-b5ac-02cf2dba92ca@linaro.org>
- <CAFEp6-2kamY6m_vzE0gMi-QKCRYf42RjMd7f2ud6bte=aL9mRA@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAFEp6-2kamY6m_vzE0gMi-QKCRYf42RjMd7f2ud6bte=aL9mRA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: N1TDE91zNJyUv1Nv2QdjbV0c00mGJhco
-X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f6becc cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=DQTqHzjkEM4X2CI68noA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: N1TDE91zNJyUv1Nv2QdjbV0c00mGJhco
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090122
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250409-mdb-max7360-support-v6-10-7a2535876e39@bootlin.com>
 
-On 4/7/25 4:56 PM, Loic Poulain wrote:
-> Hi Bryan,
-> 
-> 
-> On Fri, Apr 4, 2025 at 2:10 PM Bryan O'Donoghue
-> <bryan.odonoghue@linaro.org> wrote:
->>
->> On 03/04/2025 11:22, Loic Poulain wrote:
->>> Add Camera Control Interface (CCI), supporting two I2C masters.
->>>
->>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
->>> ---
->>>   v2: Reorder commits; Update dts properties order and style
->>>   v3: No change for this patch
->>>
->>>   arch/arm64/boot/dts/qcom/qcm2290.dtsi | 50 +++++++++++++++++++++++++++
->>>   1 file changed, 50 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
->>> index 7fb5de92bc4c..43fcb4f40a8c 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
->>> @@ -557,6 +557,20 @@ qup_uart4_default: qup-uart4-default-state {
->>>                               bias-disable;
->>>                       };
->>>
->>> +                     cci0_default: cci0-default-state {
->>> +                             pins = "gpio22", "gpio23";
->>> +                             function = "cci_i2c";
->>> +                             drive-strength = <2>;
->>> +                             bias-disable;
->>> +                     };
->>> +
->>> +                     cci1_default: cci1-default-state {
->>> +                             pins = "gpio29", "gpio30";
->>> +                             function = "cci_i2c";
->>> +                             drive-strength = <2>;
->>> +                             bias-disable;
->>> +                     };
->>> +
->>>                       sdc1_state_on: sdc1-on-state {
->>>                               clk-pins {
->>>                                       pins = "sdc1_clk";
->>> @@ -1603,6 +1617,42 @@ adreno_smmu: iommu@59a0000 {
->>>                       #iommu-cells = <2>;
->>>               };
->>>
->>> +             cci: cci@5c1b000 {
->>> +                     compatible = "qcom,qcm2290-cci", "qcom,msm8996-cci";
->>> +                     reg = <0x0 0x5c1b000 0x0 0x1000>;
->>> +
->>> +                     interrupts = <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>;
->>> +
->>> +                     clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>, <&gcc GCC_CAMSS_CCI_0_CLK>;
->>> +                     clock-names = "camss_top_ahb", "cci";
->>
->> do you not need an axi clock GCC_CAMSS_AXI_CLK ?
-> 
-> AFAIU AXI is not involved for CCI.
+Hi Mathieu,
 
-I'm not able to infer that from statically provided infromation, try
-forcefully shutting the clock down (both the branch and _SRC) and
-poking at the CCI
+On Wed, Apr 09, 2025 at 04:55:57PM +0200, Mathieu Dubois-Briand wrote:
+> +struct max7360_keypad {
+> +	struct input_dev *input;
+> +	unsigned int rows;
+> +	unsigned int cols;
+> +	unsigned int debounce_ms;
+> +	int irq;
+> +	struct regmap *regmap;
+> +	unsigned short keycodes[MAX7360_MAX_KEY_ROWS * MAX7360_MAX_KEY_COLS];
+> +};
+> +
+> +static irqreturn_t max7360_keypad_irq(int irq, void *data)
+> +{
+> +	struct max7360_keypad *max7360_keypad = data;
+> +	unsigned int val;
+> +	unsigned int row, col;
+> +	unsigned int release;
+> +	unsigned int code;
+> +	int ret;
 
-Konrad
+int error;
+
+> +
+> +	do {
+> +		ret = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
+> +		if (ret) {
+> +			dev_err(&max7360_keypad->input->dev, "Failed to read max7360 FIFO");
+
+This will return name pf the input device, whereas logging name of the
+platform device (representing the hardware device) would be much more
+interesting. You can either use max7360_keypad->input->dev.parent, or,
+better yet, add *dev pointer to struct max7360_keypad.
+
+> +			return IRQ_NONE;
+> +		}
+> +
+> +		/* FIFO overflow: ignore it and get next event. */
+> +		if (val == MAX7360_FIFO_OVERFLOW)
+> +			dev_warn(&max7360_keypad->input->dev, "max7360 FIFO overflow");
+> +	} while (val == MAX7360_FIFO_OVERFLOW);
+> +
+> +	if (val == MAX7360_FIFO_EMPTY) {
+> +		dev_dbg(&max7360_keypad->input->dev, "Got a spurious interrupt");
+> +
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	row = FIELD_GET(MAX7360_FIFO_ROW, val);
+> +	col = FIELD_GET(MAX7360_FIFO_COL, val);
+> +	release = val & MAX7360_FIFO_RELEASE;
+> +
+> +	code = MATRIX_SCAN_CODE(row, col, MAX7360_ROW_SHIFT);
+> +
+> +	dev_dbg(&max7360_keypad->input->dev, "key[%d:%d] %s\n", row, col,
+> +		release ? "release" : "press");
+> +
+> +	input_event(max7360_keypad->input, EV_MSC, MSC_SCAN, code);
+> +	input_report_key(max7360_keypad->input, max7360_keypad->keycodes[code], !release);
+> +	input_sync(max7360_keypad->input);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int max7360_keypad_open(struct input_dev *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+> +	int ret;
+
+"int error" for variables holding error codes or 0. Also elsewhere in
+the driver.
+
+> +
+> +	/* Somebody is using the device: get out of sleep. */
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
+> +				MAX7360_CFG_SLEEP, MAX7360_CFG_SLEEP);
+> +	if (ret)
+> +		dev_err(&max7360_keypad->input->dev, "Failed to write max7360 configuration\n");
+
+Log error code?
+
+Explicit error return please.
+		retrun error;
+	}
+> +
+> +	return ret;
+
+	return 0;
+
+> +}
+> +
+> +static void max7360_keypad_close(struct input_dev *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+> +	int ret;
+> +
+> +	/* Nobody is using the device anymore: go to sleep. */
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG, MAX7360_CFG_SLEEP, 0);
+> +	if (ret)
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to write max7360 configuration\n");
+
+Log error code?
+
+> +}
+> +
+> +static int max7360_keypad_hw_init(struct max7360_keypad *max7360_keypad)
+> +{
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	val = max7360_keypad->debounce_ms - MAX7360_DEBOUNCE_MIN;
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_DEBOUNCE,
+> +				MAX7360_DEBOUNCE,
+> +				FIELD_PREP(MAX7360_DEBOUNCE, val));
+> +	if (ret) {
+> +		return dev_err_probe(&max7360_keypad->input->dev, ret,
+> +			"Failed to write max7360 debounce configuration\n");
+> +	}
+
+No need for braces with single line statements.
+
+> +
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_INTERRUPT,
+> +				MAX7360_INTERRUPT_TIME_MASK,
+> +				FIELD_PREP(MAX7360_INTERRUPT_TIME_MASK, 1));
+> +	if (ret) {
+> +		return dev_err_probe(&max7360_keypad->input->dev, ret,
+> +			"Failed to write max7360 keypad interrupt configuration\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_keypad_build_keymap(struct max7360_keypad *max7360_keypad)
+> +{
+> +	struct input_dev *input_dev = max7360_keypad->input;
+> +	struct device *dev = input_dev->dev.parent->parent;
+> +	struct matrix_keymap_data keymap_data;
+> +	const char *propname = "linux,keymap";
+> +	unsigned int max_keys;
+> +	int size;
+> +	int ret;
+> +
+> +	size = device_property_count_u32(dev, propname);
+> +	if (size <= 0) {
+> +		dev_err(dev, "missing or malformed property %s: %d\n", propname, size);
+> +		return size < 0 ? size : -EINVAL;
+> +	}
+> +
+> +	max_keys = max7360_keypad->cols * max7360_keypad->rows;
+> +	if (size > max_keys) {
+> +		dev_err(dev, "%s size overflow (%d vs max %u)\n", propname, size, max_keys);
+> +		return -EINVAL;
+> +	}
+> +
+> +	u32 *keys __free(kfree) = kmalloc_array(size, sizeof(*keys), GFP_KERNEL);
+> +	if (!keys)
+> +		return -ENOMEM;
+> +
+> +	ret = device_property_read_u32_array(dev, propname, keys, size);
+> +	if (ret) {
+> +		dev_err(dev, "failed to read %s property: %d\n", propname, ret);
+> +		return ret;
+> +	}
+> +
+> +	keymap_data.keymap = keys;
+> +	keymap_data.keymap_size = size;
+> +	ret = matrix_keypad_build_keymap(&keymap_data, NULL, max7360_keypad->rows, max7360_keypad->cols,
+> +					 max7360_keypad->keycodes, max7360_keypad->input);
+
+What if it fails? Error handling please.
+
+Also, it looks like you are repeating what matrix_keypad_build_keymap()
+is already doing. If you pass NULL as keymap data, won't it do the right
+thing?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_keypad_parse_fw(struct device *dev,
+> +				   struct max7360_keypad *max7360_keypad,
+> +				   bool *autorepeat)
+> +{
+> +	int ret;
+> +
+> +	ret = matrix_keypad_parse_properties(dev->parent, &max7360_keypad->rows,
+> +					     &max7360_keypad->cols);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!max7360_keypad->rows || !max7360_keypad->cols ||
+> +	    max7360_keypad->rows > MAX7360_MAX_KEY_ROWS ||
+> +	    max7360_keypad->cols > MAX7360_MAX_KEY_COLS) {
+> +		dev_err(dev, "Invalid number of columns or rows (%ux%u)\n",
+> +			max7360_keypad->cols, max7360_keypad->rows);
+> +		return -EINVAL;
+> +	}
+> +
+> +	*autorepeat = device_property_read_bool(dev->parent, "autorepeat");
+> +
+> +	max7360_keypad->debounce_ms = MAX7360_DEBOUNCE_MIN;
+> +	ret = device_property_read_u32(dev->parent, "keypad-debounce-delay-ms",
+> +				       &max7360_keypad->debounce_ms);
+> +	if (ret == -EINVAL) {
+> +		dev_info(dev, "Using default keypad-debounce-delay-ms: %u\n",
+> +			 max7360_keypad->debounce_ms);
+> +	} else if (ret < 0) {
+> +		dev_err(dev, "Failed to read keypad-debounce-delay-ms property\n");
+> +		return ret;
+> +	}
+> +
+> +	if (!in_range(max7360_keypad->debounce_ms, MAX7360_DEBOUNCE_MIN,
+> +		      MAX7360_DEBOUNCE_MAX - MAX7360_DEBOUNCE_MIN)) {
+> +		dev_err(dev, "Invalid keypad-debounce-delay-ms: %u, should be between %u and %u.\n",
+> +			max7360_keypad->debounce_ms, MAX7360_DEBOUNCE_MIN, MAX7360_DEBOUNCE_MAX);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_keypad_probe(struct platform_device *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad;
+> +	struct device *dev = &pdev->dev;
+> +	struct input_dev *input;
+> +	struct regmap *regmap;
+> +	bool autorepeat;
+> +	int ret;
+> +	int irq;
+> +
+> +	regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (!regmap)
+> +		dev_err_probe(dev, -ENODEV, "Could not get parent regmap\n");
+
+		return dev_err_probe(...) ?
+
+Thanks.
+
+-- 
+Dmitry
 
