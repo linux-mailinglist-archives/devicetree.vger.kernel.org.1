@@ -1,128 +1,212 @@
-Return-Path: <devicetree+bounces-164900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0024A82BDF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:08:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443F0A82BE7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 18:09:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A0CD19E1A37
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:00:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B09F17B070
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 16:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9344E1C3BE0;
-	Wed,  9 Apr 2025 16:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B811C8637;
+	Wed,  9 Apr 2025 16:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bUU/TICQ"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="uh1XqO9m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE94E1AF0AF;
-	Wed,  9 Apr 2025 16:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326531C1F0C;
+	Wed,  9 Apr 2025 16:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744214435; cv=none; b=t3XvN61gNdhPCXzuQQMMMa+43vspzKdf9bqtxK7QQqBD2XjC739D7k/sbMPCuUiH9cna+z82c0ZokxZ155k2Hjp/WHeTfIa+gwq3pt8TFfK5qoZS5iqMD3fo1A/FCfB3QISNKpL9YoShlZnhiaZsxEZLY5QQFfp6m4bYhlvt7oo=
+	t=1744214553; cv=none; b=dvVWZH9w1o0Z1VvqlDRmfJWKGGTh1waNcG78o+fZkekjap1fjJb4Yxs0PPPM0JCeUpVsNdFVNXaTtFqmubksggekn5Yy3+KaJbR7dEE/pyC7nZiyY8JK8aWXCA5Y1NkKdo73ctLevJQ5pbHPIohw4U/3TFcXe/GnTzpxqoOMrwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744214435; c=relaxed/simple;
-	bh=uMKu+jFYPg96rqO8KN7gZyvKhno3jI10KclYtsC1aKQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OAy9G6fzq6Eljxhurc9bHWSetH1skvy2Pt4W26577Ge5vgkI1gebPKiPHZTfqth66ItoGezVxfgr4oj147s4q4DKLfMuvHTivL2LS4pXLMBtpRsb7rBIL3qLcmHKMlu6YdD6HLTAhkrKoAPdTDmRei90B1SMmO2B8bfjfiuNXNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bUU/TICQ; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744214433; x=1775750433;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uMKu+jFYPg96rqO8KN7gZyvKhno3jI10KclYtsC1aKQ=;
-  b=bUU/TICQJOcEGKRV/B0u2vAEJn45Wl7Ii03Woj7Era/9dUHAj80QTG/6
-   vAKO6mrL/0+mnSk+MX+tbqXBoMn3G+IVWIEh7jeAvlss8rDZ3fu2yrjbY
-   Ge7Wh/yyEDFzobFzNwbXGf1LPK1frEE61bJjG4HprKbrtymgDA5IEKJ3Q
-   Y0LS53wceGGkP7yXfG0BR1YpQJol9wVoJm4wCe+xPrANw9Bf80f1tcI07
-   9DiEQbyaQZvcbPl1e22h2byvILVFZXlGcjUQ0ef1oFexY0jP617FIk5Or
-   LhbSSlMqhguoEB0WqMUB4uAFNntqAkMnakH9rUvYNxYdN9v4kvHAxQeqv
-   Q==;
-X-CSE-ConnectionGUID: d4g4DevrTi6nITvsL5mFEA==
-X-CSE-MsgGUID: KMdxu9A4SyKSiWkQq126xQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57069910"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="57069910"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 09:00:32 -0700
-X-CSE-ConnectionGUID: M6haKlFeT6mLpHo/o0g4oQ==
-X-CSE-MsgGUID: YEcl2JY6RJ+PfT5TKRRWKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="159614553"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 09:00:28 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1u2Xqi-0000000Amra-49ph;
-	Wed, 09 Apr 2025 19:00:24 +0300
-Date: Wed, 9 Apr 2025 19:00:24 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
-Message-ID: <Z_aZmJxPwIBgcwhG@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
- <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
- <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
- <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
+	s=arc-20240116; t=1744214553; c=relaxed/simple;
+	bh=bWjKZWGcLrX2LMShH+VAwIZzXlyUx/AVkhZt7QnY6P0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X6QSSJJkISxDqck33AhlxmPNLnNeLRi4BwejwnYLzmkks9DvwXyPNFZCqf1rlHA1tLEpL8QvtoISB50jlICtOnwSM9pqzQHaGDEfzyw9TpXkUHF0GntVTCcmZvQbxzl3GPTQb1Nvs8K2ExX+Vwv/kI5WyjjdCI5pC45zPWVWiqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=uh1XqO9m; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744214503; x=1744819303; i=wahrenst@gmx.net;
+	bh=GT+e0rgk5at2BiS7exBI3n9s8/eUZISH0DmawBVE9Ck=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=uh1XqO9m44OLywMw5J3jhDWcs77Cz+bVQp+9fgKs3nfx5wbZmNJez6sm+T/kVtkS
+	 alfyOcM/+iU91cSeARDCZGgzPUc+bVs+lsW32UzaNYxE0zMGh9b4h7tvMzmclJLtf
+	 haSAQlZhWqAdWsE91HBq5CZpRLjMeLgKyiuEQjRf5/o8USje8g/l5Rg4SE/ue1JBC
+	 +UfhFwR92XIAB4MJwQdxWIhpn/DEKKX2JjQWfwsEkI+DXwGaSVj6YuFOw/qIXutpS
+	 LLQvA4h3kI1L2ra0dRdMhQ704HyFhrKk5EWP57DnbIuRrWCQUwqrxuDyhRlBBeJsk
+	 okdS0xNFonCPsLoUMA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MQe5u-1texFJ1NfK-00Nnw3; Wed, 09
+ Apr 2025 18:01:43 +0200
+Message-ID: <c67ad9fa-6255-48e8-9537-2fceb0510127@gmx.net>
+Date: Wed, 9 Apr 2025 18:01:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next v4 5/5] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW
+ to support MTIP L2 switch
+To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250407145157.3626463-1-lukma@denx.de>
+ <20250407145157.3626463-6-lukma@denx.de>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250407145157.3626463-6-lukma@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:C+u//MOKrD6OdwvSME77qybiBXe8adc+njD77MBHM1ou1SB80g9
+ CfCohUvsktjxjtntt5js9Ty3COdHeULgaRnhBHHLgQIAwUJwW5jpBMHhH/y28PpuTcVa0Xt
+ NUZzHDi8osc+iFVGUZEnfhgcpRZmvQO63hb/o9UYD2DifW+ODJqnrPlxGgcKLL5f4D8l72r
+ DnIvoB9kQQrjxQQ6QPh0A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:h0HaSYSRWiA=;9+RUTCpsfpjtjY9+/fAxrUKZlov
+ en9y0HFgHTqcg/tTomRJXXnKDodyPsrawVBHjmREAT+vi9nezDT1o3dXhmnjyrPzCGbiAYqO9
+ m5aTfBilljd+4GP8Fd0eiBknFpE/RW2JUKOr7PDqsfZO39RqdMTugoZMcb+KwBN678RNijbUz
+ ZadVP+Pagi9G3ek4w6BJ0sJBpNsinoPp9gQXJd9D1E6py+KrLqQ1DCiQBrAGzA2csvJKNocLy
+ 2JMgJrGWuEvii3JW/QsZFeyA5tUaOzSr88pHzmb7ppaRdfCnIV14yl4eQInAiz2WoDxkhQJTH
+ s1gpWGw0nJPKlNmO96ZOHI6s6UqiITzy++DGlf90aTN83+rW3b8i91D+ZemFvMZSYX5pNIfrD
+ l8E5FngLmD/fJ8ZUAgzSN6HEip1IrKv5kjgKjck9bmkl2JAdS+vc0pfmAbpKzY5riUNv156BV
+ s8hWUkxFU6hYV+uNK0TcG4akL3K9J/w/XEjWxg44kCZtnvbNCcu8cXY5TA1S/OWtbpr9ph5AP
+ SGzz37iNu9PFdnOj6Rxg1tuEwqw0nVe3Hy162pyMiyA+NcEcIwo/0OPRN+iwyLKqjwH8WsgRA
+ NRpX6GSN8kW004v22qYLKQmCCltpdN/qSkl+4ZNnTAlixCrnM6kXtyUV9IaVmGRCh/MM8bFgc
+ mmdzQz54c6SjBRkFpn4CYW3k2Phw6eqw+VR+9x+8TMRuudOHlE9uf2W+gT6kFv3xMre/HhfQc
+ I8/n44itpdaTDiH6SUOGux/r2p3oGL1UVHesvkgZ3YIsO74hU4v/w15PAYJEXOHdZffIsBhnt
+ QwjNy7Sst1rMF5e4IwhjH3jQn2JDApo+6FebR8YvrAwocR3e6UNgbHJ4No1rin7af0mjDbB3K
+ 6rlODNmQoHCA7fVsqR+gHAUkrBKn/PnPTgfqONjwJPyKnVKK73VUPAdDL3MGcT4wYbH2VRk+j
+ J0g1VFdQYwYWj+3gXragNVb8UPO9sVbb/JhMC7lldzzNmeKdPazCtQRqdJiKWlwcJwQBjj5t2
+ kHMaXhvqHWkFKxidP1pWXy8xaTgWgBq4iDy4+fsjslurKS1+ImyhEd3WjKeks49/R8rbfjHfx
+ 4vdDSHAFYmkbmVXMFlqPYoSq5QPRADXqca+YtIk9s4Ji8KM2fj2ORaO6XwG/DbZrZTPhdZs3C
+ +83/UadyftJ02TTSh67jc2cDyhcXfJVQv4tOpefzok3wJ4/J+NbqwIY5/aeGRyrbV9FjJCGzy
+ DBTnUeC7Ax/ObUIJxQKeUXFFl0A0RaYDlyRw+sV0iIel4IRQXpFic/v/JrOS72KTUF0MbuIkG
+ 7z6szCO/Vdawq8BcPZKS3BigX3DEyDNeEFxkT4wyDMXe9/vas9OF0m/C2wPoqgQwuBJhzivvS
+ Rhsm6/vWInQLqWIZhomLfqsRSqrWqaVeYkwCLvzqv7y/wPtGjqw/jTyJ8i+eHSc6S+lW/FtJM
+ SMMWrrp2+Er+POSLNtsK24LHUW94=
 
-On Wed, Apr 09, 2025 at 04:46:04PM +0100, Mark Brown wrote:
-> On Wed, Apr 09, 2025 at 06:38:32PM +0300, Andy Shevchenko wrote:
-> > On Wed, Apr 09, 2025 at 04:19:27PM +0100, Mark Brown wrote:
-> 
-> > > BUG() can be compiled out, CONFIG_BUG.
-> 
-> > Yes, and it's still has unreachable() there. So, this change is correct.
-> > See include/asm-generic/bug.h for the details of the implementation.
-> > And yes, if we have an architecture that does not do this way, it has to
-> > be fixed.
-> 
-> unreachable() just annotates things, AFAICT it doesn't actually
-> guarantee to do anything in particular if the annotation turns out to be
-> incorrect.
+Hi Lukasz,
 
-I;m not sure I follow. unreachable is a wrapper on top of
-__builtin_unreachable() which is intrinsic of the compiler.
+Am 07.04.25 um 16:51 schrieb Lukasz Majewski:
+> This patch enables support for More Than IP switch available on some
+> imx28[7] devices.
+>
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+thanks adding the driver to mxs_defconfig. Unfortunately it's not
+possible for reviewers to identify the relevant changes, also the commit
+messages doesn't provide further information.
 
-https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html#index-_005f_005fbuiltin_005funreachable
+In general there are two approaches to solves this:
+1) prepend an additional patch which synchronizes mxs_defconfig with
+current mainline
+2) manually create the relevant changes against mxs_defconfig
 
--- 
-With Best Regards,
-Andy Shevchenko
+The decision about the approaches is up to the maintainer.
 
+Btw driver review will follow ...
+
+Regards
+> ---
+> Changes for v4:
+> - New patch
+> ---
+>   arch/arm/configs/mxs_defconfig | 14 +++-----------
+>   1 file changed, 3 insertions(+), 11 deletions(-)
+>
+> diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defco=
+nfig
+> index d8a6e43c401e..4dc4306c035f 100644
+> --- a/arch/arm/configs/mxs_defconfig
+> +++ b/arch/arm/configs/mxs_defconfig
+> @@ -32,11 +32,10 @@ CONFIG_INET=3Dy
+>   CONFIG_IP_PNP=3Dy
+>   CONFIG_IP_PNP_DHCP=3Dy
+>   CONFIG_SYN_COOKIES=3Dy
+> -# CONFIG_INET_XFRM_MODE_TRANSPORT is not set
+> -# CONFIG_INET_XFRM_MODE_TUNNEL is not set
+> -# CONFIG_INET_XFRM_MODE_BEET is not set
+>   # CONFIG_INET_DIAG is not set
+>   # CONFIG_IPV6 is not set
+> +CONFIG_BRIDGE=3Dy
+> +CONFIG_NET_SWITCHDEV=3Dy
+>   CONFIG_CAN=3Dm
+>   # CONFIG_WIRELESS is not set
+>   CONFIG_DEVTMPFS=3Dy
+> @@ -45,7 +44,6 @@ CONFIG_MTD=3Dy
+>   CONFIG_MTD_CMDLINE_PARTS=3Dy
+>   CONFIG_MTD_BLOCK=3Dy
+>   CONFIG_MTD_DATAFLASH=3Dy
+> -CONFIG_MTD_M25P80=3Dy
+>   CONFIG_MTD_SST25L=3Dy
+>   CONFIG_MTD_RAW_NAND=3Dy
+>   CONFIG_MTD_NAND_GPMI_NAND=3Dy
+> @@ -56,11 +54,11 @@ CONFIG_EEPROM_AT24=3Dy
+>   CONFIG_SCSI=3Dy
+>   CONFIG_BLK_DEV_SD=3Dy
+>   CONFIG_NETDEVICES=3Dy
+> +CONFIG_FEC_MTIP_L2SW=3Dy
+>   CONFIG_ENC28J60=3Dy
+>   CONFIG_ICPLUS_PHY=3Dy
+>   CONFIG_MICREL_PHY=3Dy
+>   CONFIG_REALTEK_PHY=3Dy
+> -CONFIG_SMSC_PHY=3Dy
+>   CONFIG_CAN_FLEXCAN=3Dm
+>   CONFIG_USB_USBNET=3Dy
+>   CONFIG_USB_NET_SMSC95XX=3Dy
+> @@ -77,13 +75,11 @@ CONFIG_SERIAL_AMBA_PL011=3Dy
+>   CONFIG_SERIAL_AMBA_PL011_CONSOLE=3Dy
+>   CONFIG_SERIAL_MXS_AUART=3Dy
+>   # CONFIG_HW_RANDOM is not set
+> -# CONFIG_I2C_COMPAT is not set
+>   CONFIG_I2C_CHARDEV=3Dy
+>   CONFIG_I2C_MXS=3Dy
+>   CONFIG_SPI=3Dy
+>   CONFIG_SPI_GPIO=3Dm
+>   CONFIG_SPI_MXS=3Dy
+> -CONFIG_GPIO_SYSFS=3Dy
+>   # CONFIG_HWMON is not set
+>   CONFIG_WATCHDOG=3Dy
+>   CONFIG_STMP3XXX_RTC_WATCHDOG=3Dy
+> @@ -138,10 +134,6 @@ CONFIG_PWM_MXS=3Dy
+>   CONFIG_NVMEM_MXS_OCOTP=3Dy
+>   CONFIG_EXT4_FS=3Dy
+>   # CONFIG_DNOTIFY is not set
+> -CONFIG_NETFS_SUPPORT=3Dm
+> -CONFIG_FSCACHE=3Dy
+> -CONFIG_FSCACHE_STATS=3Dy
+> -CONFIG_CACHEFILES=3Dm
+>   CONFIG_VFAT_FS=3Dy
+>   CONFIG_TMPFS=3Dy
+>   CONFIG_TMPFS_POSIX_ACL=3Dy
 
 
