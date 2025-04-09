@@ -1,163 +1,94 @@
-Return-Path: <devicetree+bounces-164714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C0EA820AF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:06:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31AF1A820BE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:10:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AC404260C2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:06:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2A947B042B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A4924EF6E;
-	Wed,  9 Apr 2025 09:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF6D25C6FA;
+	Wed,  9 Apr 2025 09:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eerjUQlv"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="o/wJaXjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69166EEB3;
-	Wed,  9 Apr 2025 09:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF001DE3AA;
+	Wed,  9 Apr 2025 09:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744189603; cv=none; b=AK6UQnjaEijDn7dfaXXuKi3+tVSPc3wXMO+AIBZY9nhH3qkkeAvE1YZvSUdYsMyYokhf4J2C39HYpCc1RnbUy8vCi+53ENBu+klfR6vXnoWO/VJBrhBe8Cl9SfhdLBWNIGxe6VWT18i1lIq0qsW20Nh5LM5uTncgACudN4lRunU=
+	t=1744189815; cv=none; b=lgOpQHViVqDJvios5E7zhMBXF6PxOJj6/mWFTjAcutwwBH7ZPQ1KrAdWXyojLOCkRjPI7mltqddY1y0/XujWHj/XsfaXUVweZrKGQrLOprY2rd8pD5LHPZR25W9xH5uhAxL1gBC/FcpXS3O9mJsRZiTEsrzAB5BzDYKh5oUgHBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744189603; c=relaxed/simple;
-	bh=/s+U51p2rme6ttKunG01nE4+T3pq5eYIYautG/ah3Wc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PJew9nGtLEauv02E4+7E4tuAqjcTJuTJH9uMhVXqe8yaTGTy0uO88VOBLgwP102lfDH0McjiK+KcQ42r6K7fbxg/c9ckjdm/F6550gcE/V5CK6jSXVPSaKuCDc7jIIs7HPf3dGkO63z3bUrQkBs/VvNmDAy3NlCgTRNCvU5ri2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eerjUQlv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20181C4CEE3;
-	Wed,  9 Apr 2025 09:06:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744189602;
-	bh=/s+U51p2rme6ttKunG01nE4+T3pq5eYIYautG/ah3Wc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eerjUQlvNJF+OcsvIsqmEbAp/QAZ/fvQAZPtZABd4PBsB7L/b4Q5V00nkAKW7iTGB
-	 fOWeKV/HJ/ib1NS32lxrfK674W4vSwxOS/yrVTY0c7xJyhbfGDcT9JWQU5S0ZYKolL
-	 bIKUumb/XfD+cSCkjS6jADB/RYMB7aQ2g7eLdflW7X+exTmDyUGTqcW+pVSPt4uoGZ
-	 oTqY7MD0cLXyIw8SnWTcPccndUqN9w/kWekQURRgNXJsL+uDtiwyA58zBUMHEEnuxs
-	 chk5n2/7cxnMmUCrsFmejaBdPXgvCnJLEGYHXd5nkJcUyqeHVzitwPYKYPg2Ps+4hN
-	 M2oTs57z8vEAg==
-Date: Wed, 9 Apr 2025 12:06:27 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Pratyush Yadav <ptyadav@amazon.de>,
-	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
-	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
-	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
-	saravanak@google.com, skinsburskii@linux.microsoft.com,
-	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
- preservation
-Message-ID: <Z_Y4k4rDO-BbMjqs@kernel.org>
-References: <Z-6UA3C1TPeH_kGL@kernel.org>
- <20250403142438.GF342109@nvidia.com>
- <Z--sUYCvP3Q8nT8e@kernel.org>
- <20250404124729.GH342109@nvidia.com>
- <Z-_kSXrHWU5Bf3sV@kernel.org>
- <20250404143031.GB1336818@nvidia.com>
- <Z_KnovvW7F2ZyzhX@kernel.org>
- <20250407141626.GB1557073@nvidia.com>
- <Z_P92UCbNCV0TbiA@kernel.org>
- <20250407170305.GI1557073@nvidia.com>
+	s=arc-20240116; t=1744189815; c=relaxed/simple;
+	bh=1BErre+1YrsgvpSOm70ydSSZiRCm4uZbh9W8B+UV/tw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ajNRgu45UF6mk0HDvP1F9FS71g93w+duzPiZyGAaLz696RX2eZQq3Go5biYhZp7lNUR7amnJ01o6myoaOdJt5scA6rwQysmCRzmt5JT+Q1HkjGcZ/koFfIwO4uFh5RpmhzO4AeKtG4oX0m5mngtjGkooX6rjNSay72rBuQQTqRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=o/wJaXjG; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Chcrrmltg8lJD6q+d1jGSA/zsPM8icsB5uVp0MwIi8s=; b=o/wJaXjG5d8IUQuvtcEqHA53sU
+	PKJeR02EsUor5c3I/mm3nC2+R0sKaKucxEKUONrzxfwHN31qGEcQEH8rvVI/n09mNsXHhffqSVxdO
+	/Kbi8fPV40I9FwNUKtmAh3A0gQKSIYSrVrqQJP/LSvKgsI8Qn5z6MQ1kw5uIzOy0B8QdCCUXEmr0i
+	h943DBM+NPNI9V7VUnU9TOg6sGlSYvNUXtraYN0y+DTvwZilhby/mRJy9GDtnIqRkueIETIk8AlYx
+	ZYoY/HGkilj/u0WKYFqLYI1cAZOWrZACbPqpkQ+kz+3A0AtCSSUBItJUt9kn/H3vHvwwdYjG5BZdc
+	Q/VMkWgg==;
+Date: Wed, 9 Apr 2025 11:10:02 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Sukrut Bellary <sbellary@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tero Kristo
+ <kristo@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: clock: ti: Convert to yaml
+Message-ID: <20250409111002.5b88a127@akair>
+In-Reply-To: <20250404014500.2789830-3-sbellary@baylibre.com>
+References: <20250404014500.2789830-1-sbellary@baylibre.com>
+	<20250404014500.2789830-3-sbellary@baylibre.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250407170305.GI1557073@nvidia.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 07, 2025 at 02:03:05PM -0300, Jason Gunthorpe wrote:
-> On Mon, Apr 07, 2025 at 07:31:21PM +0300, Mike Rapoport wrote:
-> >
-> > Ok, let's stick with memdesc then. Put aside the name it looks like we do
-> > agree that KHO needs to provide a way to preserve memory allocated from
-> > buddy along with some of the metadata describing that memory, like order
-> > for multi-order allocations.
-> 
-> +1
-> 
-> > The issue I see with bitmaps is that there's nothing except the order that
-> > we can save. And if sometime later we'd have to recreate memdesc for that
-> > memory, that would mean allocating a correct data structure, i.e. struct
-> > folio, struct slab, struct vmalloc maybe.
-> 
-> Yes. The caller would have to take care of this using a caller
-> specific serialization of any memdesc data. Like slab would have to
-> presumably record the object size and the object allocation bitmap.
-> 
-> > I'm not sure we are going to preserve slabs at least at the foreseeable
-> > future, but vmalloc seems like something that we'd have to address.
-> 
-> And I suspect vmalloc doesn't need to preserve any memdesc information?
-> It can all be recreated
+Am Thu,  3 Apr 2025 18:44:58 -0700
+schrieb Sukrut Bellary <sbellary@baylibre.com>:
 
-vmalloc does not have anything in memdesc now, just plain order-0 pages
-from alloc_pages variants.
-
-Now we've settled with terminology, and given that currently memdesc ==
-struct page, I think we need kho_preserve_folio(struct *folio) for actual
-struct folios and, apparently other high order allocations, and
-kho_preserve_pages(struct page *, int nr) for memblock, vmalloc and
-alloc_pages_exact.
-
-On the restore path kho_restore_folio() will recreate multi-order thingy by
-doing parts of what prep_new_page() does. And kho_restore_pages() will
-recreate order-0 pages as if they were allocated from buddy.
-
-If the caller needs more in its memdesc, it is responsible to fill in the
-missing bits.
- 
-> > > Also the bitmap scanning to optimize the memblock reserve isn't
-> > > implemented for xarray.. I don't think this is representative..
-> > 
-> > I believe that even with optimization of bitmap scanning maple tree would
-> > perform much better when the memory is not fragmented. 
+> This binding doesn't define a new clock binding type,
+> it is used to group the existing clock nodes under the hardware hierarchy.
 > 
-> Hard to guess, bitmap scanning is not free, especially if there are
-> lots of zeros, but memory allocating maple tree nodes and locking them
-> is not free either so who knows where things cross over..
+> As this is not a provider clock, remove #clock-cells and
+> clock-output-names properties.
+> Though few clockdomain nodes in the dts use these properties,
+> we are not fixing dts here.
+> Clean up the example to meet the current standards.
 > 
-> > And when it is fragmented both will need to call memblock_reserve()
-> > similar number of times and there won't be real difference. Of
-> > course maple tree will consume much more memory in the worst case.
+> Add the creator of the original binding as a maintainer.
 > 
-> Yes.
-> 
-> bitmaps are bounded like the comment says, 512K for 16G of memory with
-> arbitary order 0 fragmentation.
-> 
-> Assuming absolute worst case fragmentation maple tree (@24 bytes per
-> range, alternating allocated/freed pattern) would require around
-> 50M. Then almost doubled since we have the maple tree and then the
-> serialized copy.
-> 
-> 100Mb vs 512k - I will pick the 512K :)
+> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+> ---
+>  .../bindings/clock/ti/clockdomain.txt         | 25 ------------
+>  .../bindings/clock/ti/ti,clockdomain.yaml     | 38 +++++++++++++++++++
 
-Nah, memory is cheap nowadays :)
+I am wondering whether this should just be part of a converted version
+of Documentation/devicetree/bindings/arm/omap/prcm.txt. I doubt there
+is any other usage for this compatible.
 
-Ok, let's start with bitmaps and then see what are the actual bottlenecks
-we have to optimize.
- 
-> Jason
+Regards,
+Andreas
 
--- 
-Sincerely yours,
-Mike.
 
