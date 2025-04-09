@@ -1,258 +1,148 @@
-Return-Path: <devicetree+bounces-164797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E885A82641
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:26:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7841A8265F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:37:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CAFC3A9095
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:25:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4E644472F8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 13:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C2325D8E8;
-	Wed,  9 Apr 2025 13:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CDB25DCE6;
+	Wed,  9 Apr 2025 13:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TGJ/LEO9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ILIPoAv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF32255E4D;
-	Wed,  9 Apr 2025 13:25:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8468254B09;
+	Wed,  9 Apr 2025 13:37:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744205144; cv=none; b=bH3cZesdIWi/OR2xhFXadobMWwDdERCGopWRV9ZiZZIb8YLE/GWNbxPCDrV4AoT0O9C3vqY+PRLA7D55Fc2u942YUGeH7DyKW3WJAUVSRRI3SHLq5hYGtSDI57qG1+U+Kq8BNJoEaFQCxqQyb3dVh11ItP5brZepVFs5AtkFYmw=
+	t=1744205831; cv=none; b=dQeqgfjSzWK2zm6GShulXf72bzwQaj9Yqeb20Y90KAk39mP+dmTqUheu8Xcq7wUWUHY8VLAXsYjQmBoAi8bJha0n5xVYXf/ZSAfRYSNYAaeqqm23DBxNLQOyu6gAc9MIHBeXj4//M563cePOxEVqFeTvDEL0ITYRWp5sC5GAnMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744205144; c=relaxed/simple;
-	bh=ywQHOtBWUaayWMmXLKDE9oibC6pt0eSAjkXAU0hLgbg=;
+	s=arc-20240116; t=1744205831; c=relaxed/simple;
+	bh=UlHnIINK3hXAnc8dnyHTZc+hOC/0RUhg2HMmsTBNBvQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bOUDKb5Ra5aMSxPd83aHifPwnZKrtgR5MoUlc2x6T1xnV9ydVt1SkLWXYO8JmNtgkxnFmltnjOt8zvh06NZ58fObmpcsTpfLSijPleLzZJx0GfMrpyiNEyCVDVi1RQ88/htT4NhS0ITKQ1+APtRbsm9aLq4cakwTwqs7hccqWHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TGJ/LEO9; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5499c5d9691so7561112e87.2;
-        Wed, 09 Apr 2025 06:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744205139; x=1744809939; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CCPfq870lo6I3VwBZegYGwOMPFDFieit2DF9RetxgIQ=;
-        b=TGJ/LEO9VOkVEbGDWxAlgMTx3o0I0ItPgDgVyT5AMaxD5vi8O3v2608Eg+HXL/fE2z
-         qwXcEZ2hMTbQ7u1HPnu8CvnOJZzFdal3+1saLQ+b0zmqF4XA+1+k4Xd4VPEFkNiDm40W
-         wp2jCovG+oRliM92hotkV/xIW1zyodSLqwOMHT86hqhkFQI0O0gRpeD3e0XHOWn4gRhu
-         0xyqQnlWINqs31TT5jNp7jvNdgAxPZgnTz6L3fvvzfgiM2Efzv6oZoFzWKVaAMsrQJN8
-         sk2DruoxJAh7+98WEaCiTmXJ1d7HDIWC022VJ/Rqecm9kzgjN1Q+R9XLT0KlmNiXKkdf
-         CPug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744205139; x=1744809939;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CCPfq870lo6I3VwBZegYGwOMPFDFieit2DF9RetxgIQ=;
-        b=pUzaSpht4gm8NY/knHINUp4ljKKyAfzE0RHvmKCM6pHkgMpt/8pwnBjJxl9gMpOQxk
-         8KuzMe4iNs8/j8EJPV8nFtfA9aFQvcSgytdQ8wecxtHBgGXmNxEMx0swMoKsEoamWcSK
-         ZpWeoAHo39itLWsfomcn35VL0PrZsX7PhM6noMkojt/I2PaIn9VGt1pHtDWgPfpEHWFg
-         VSAgbklPY6PgXUpy7UqzwLwJK7hglC0xuPBTPPEAOzexZ5DwyRyFQufg6IZfLaFR6rqa
-         BfflUqNpgOLLphJfikGD+HbbAa1cVlxlu6S0X27XJQkwN1Hn+zVGtXXYo8M/lAd9/Bnt
-         FPLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIzWYY1vHjpnyMTI7d0VLWrV7P6NllsKpxZ6uxzFS+VqCkesLdjSoaSHpF2cI9B/EZdESar+a2Gjb4@vger.kernel.org, AJvYcCW07bbLC+gTN7ysBVH1qQ2I9v01nSBnXCtColWVyWnec4U6YOxmgY+/PGewuTkUjo2rVLyNLPBBPY4iSFF5@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf2/hCPvuWFUagMNNibTm0dl+xM8eBwFKIo0t/HF79sqr3wgNw
-	QE/hwsSOWYihe1dW2Dz0PizDPQRsUqhqNIhH+/ObNG4H6QWXjul7
-X-Gm-Gg: ASbGncsOAqocXn7Z2kvplzH/8UQi9dXp2mWudN4XQfXB+wVNQMDATliEB8oWShDKyrZ
-	03gTp1sO4Ykgte35MosgCBSAeC5CPgOct1BqUBZU/526Jbv35JLEjSUs4Zvk49v1APOAWiYe9hw
-	A5uw/qHqd+mRjtcq+KR1jkzLlsG9fyuyn5pYf8OeXSBiVGWA7uVZDmMFn8Lq/lpW3JCF7u6LgLR
-	QacDzGWDHugk0AsTeffJRhc7ykkqzM1wTsEiIVqghqdvFdiPPxadCY9XrqRddGqwG1POSF5BtNd
-	ou6qDAvn4/yCwnJOXwFyTyLPYbubEgPOfCCGfwhqA2UXCE51PZemln6dEy5G2XJA/K9/SS1dv8h
-	uZjfRQXcSr5/8
-X-Google-Smtp-Source: AGHT+IGolglO8KHWHfYhPUPwqYH4QluVvVji4FU7LlGDKueiKzOe0iuK04Akv8MJU97gcutn8Zezgw==
-X-Received: by 2002:a05:6512:1095:b0:549:8537:79d6 with SMTP id 2adb3069b0e04-54c44576943mr746530e87.48.1744205139035;
-        Wed, 09 Apr 2025 06:25:39 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c455e9272sm136782e87.92.2025.04.09.06.25.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 06:25:38 -0700 (PDT)
-Date: Wed, 9 Apr 2025 15:25:36 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1rb7CFGAEk9RHkscvrWikmBlIGJcwAQIQv9La6gXOv/NBXvhuVTkoPMU965cDxf6gUaaAsJUCtKBtKa6oC4vdSvP9SneZHh0ohLTn2ZZKi9wof0SaMYEQZHjnKbpfphJye/tw5PeASBX2iYliRvSVpg5b5wHa4KsNbA+LrhP1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ILIPoAv/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38C86C4CEE3;
+	Wed,  9 Apr 2025 13:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744205831;
+	bh=UlHnIINK3hXAnc8dnyHTZc+hOC/0RUhg2HMmsTBNBvQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ILIPoAv/k7LqaCUhdE9DT97eKEnh8gzljrWqTZUEgt0Zqrm26HXMPSSMaHBp8g58D
+	 VWtvrXZTpUiTYt50lvqCct3gyKyXfqeNckgRPROtWqSfpEEczJgwVuDXRCdFbNMcXm
+	 cqNLqTSAK9Gsuvo9NfAecngtROsehcrPMbKvAfZ0MdmRAh2xiCEC9vTAE2MhQOw2nu
+	 Uw6XFf+iXXOtt4bj4cPwimB/7bw9CVluBI+xYZ6Soige28t6Pih25LtEHuPsY/K9qC
+	 tE0w+jXQJDZh/z/rydjNp3R5Ae7yVWlQH3t6ZO3GKwOJVtGr8M760vpBN04ATZdCyO
+	 ya6oReDMOGCjw==
+Date: Wed, 9 Apr 2025 15:37:04 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-Message-ID: <Z_Z1UOan6Qu5d3VM@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
- <20250408-st7571-v3-2-200693efec57@gmail.com>
- <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
- <Z_Uin2dvmbantQU4@gmail.com>
- <87ecy1g8z8.fsf@minerva.mail-host-address-is-not-set>
- <Z_YWq4ry6Y-Jgvjq@gmail.com>
- <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 22/24] irqchip/gic-v5: Add GICv5 ITS support
+Message-ID: <Z/Z4AFYNQmxTApYi@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
+ <87tt6xtwnp.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2ofPkAe93cfrZ/9C"
-Content-Disposition: inline
-In-Reply-To: <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
-
-
---2ofPkAe93cfrZ/9C
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87tt6xtwnp.ffs@tglx>
 
-Hello Javier,
+On Wed, Apr 09, 2025 at 01:13:46PM +0200, Thomas Gleixner wrote:
+> On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
+> >  
+> > +void gicv5_irs_syncr(void)
+> > +{
+> > +	u32 syncr;
+> > +	u32 statusr;
+> > +	int ret;
+> > +	struct gicv5_irs_chip_data *irs_data;
+> > +
+> > +	irs_data = list_first_entry_or_null(&irs_nodes,
+> > +					    struct gicv5_irs_chip_data, entry);
+> > +	if (WARN_ON(!irs_data))
+> > +		return;
+> > +
+> > +	syncr = FIELD_PREP(GICV5_IRS_SYNCR_SYNC, 1);
+> > +	irs_writel(irs_data, syncr, GICV5_IRS_SYNCR);
+> > +
+> > +	ret = readl_relaxed_poll_timeout_atomic(
+> > +			irs_data->irs_base + GICV5_IRS_SYNC_STATUSR, statusr,
+> > +			FIELD_GET(GICV5_IRS_SYNC_STATUSR_IDLE, statusr), 1,
+> > +			USEC_PER_SEC);
+> > +
+> > +	if (ret == -ETIMEDOUT)
+> > +		pr_err_ratelimited("SYNCR timeout...\n");
+> 
+> This timeout poll thing looks very familiar by now. Third variant :)
+> 
+> > +static int gicv5_its_wait_for_invalidation(struct gicv5_its_chip_data *its)
+> > +{
+> > +	int ret;
+> > +	u32 statusr;
+> > +
+> > +	ret = readl_relaxed_poll_timeout_atomic(
+> > +			its->its_base + GICV5_ITS_STATUSR, statusr,
+> > +			FIELD_GET(GICV5_ITS_STATUSR_IDLE, statusr), 1,
+> > +			USEC_PER_SEC);
+> > +
+> > +	if (ret == -ETIMEDOUT)
+> > +		pr_err_ratelimited("STATUSR timeout...\n");
+> > +
+> > +	return ret;
+> > +}
+> 
+> And number four follows suit :)
+> 
+> > +
+> > +static void gicv5_its_syncr(struct gicv5_its_chip_data *its,
+> > +			    struct gicv5_its_dev *its_dev)
+> > +{
+> > +	int ret;
+> > +	u64 syncr;
+> > +	u32 statusr;
+> > +
+> > +	syncr = FIELD_PREP(GICV5_ITS_SYNCR_SYNC, 1) |
+> > +		FIELD_PREP(GICV5_ITS_SYNCR_DEVICEID, its_dev->device_id);
+> > +
+> > +	its_writeq(its, syncr, GICV5_ITS_SYNCR);
+> > +
+> > +	ret = readl_relaxed_poll_timeout_atomic(
+> > +			its->its_base + GICV5_ITS_SYNC_STATUSR, statusr,
+> > +			FIELD_GET(GICV5_ITS_SYNC_STATUSR_IDLE, statusr), 1,
+> > +			USEC_PER_SEC);
+> > +
+> > +	if (ret == -ETIMEDOUT)
+> > +		pr_err_ratelimited("SYNCR timeout...\n");
+> > +}
+> 
+> Along with #5 
 
-On Wed, Apr 09, 2025 at 11:43:54AM +0200, Javier Martinez Canillas wrote:
-> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
->=20
-> Hello Marcus,
->=20
-> [...]
->=20
-> >>=20
-> >> That's a god question, I don't really know...
-> >>=20
-> >> But fbdev does support XRGB8888, which may be another good reason to a=
-dd
-> >> it and make it the default format. Yes, it will cause an unnecessary p=
-ixel
-> >> format conversion but the I2C transport is so slow anyways that comput=
-e is
-> >> not the bottleneck when using these small displays.
-> >
-> > Hrm, I now realised that I have another issue.
-> > Not all LCDs that will be attached to the ST7571 controller will be
-> > grayscale.
-> > The display I've attached to the ST7571 is a monochrome LCD for example.
-> >
->=20
-> Oh, that's very interesting. This means that vendors are using a more cap=
-able IC
-> (i.e: ST7571) for display controllers + LCD panels board designs, even wh=
-ere they
-> could had used a less capable one (i.e: ST7765). That is, using an IC tha=
-t supports
-> 2-bit grayscale when they could just used one that only supported monochr=
-ome pixels.
->=20
-> From a quick search, I found for example this one from SinoCrystal:
->=20
-> https://displaysino.com/product_details/SC128128012-V01.html
->=20
-> > Maybe the right way to do it is to only support XRGB8888 and specify=20
-> > if the display is monochrome or grayscale in the device tree.
-> >
-> > Or do you have any good suggestions?
-> >
->=20
-> I don't know the proper way to handle this, but what I would do is to inc=
-lude
-> the actual boards as entries in the OF device ID table instead of just th=
-e ICs.
->=20
-> And then for each entry you can specify what formats are supported, e.g:
->=20
-> static const uint32_t monochrome_formats[] =3D {
-> 	DRM_FORMAT_XRGB8888,
->         DRM_FORMAT_R1
-> };
->=20
-> static const uint32_t grayscale_formats[] =3D {
-> 	DRM_FORMAT_XRGB8888,
->         DRM_FORMAT_R1
->         DRM_FORMAT_R2
-> };
->=20
-> static const struct of_device_id st7571_of_match[] =3D {
-> 	/* monochrome displays */
-> 	{
-> 		.compatible =3D "sinocrystal,sc128128012-v01",
-> 		.data =3D monochrome_formats,
-> 	},
-> ...
->         /* grayscale displays */
-> 	{
-> 		.compatible =3D "foo,bar",
-> 		.data =3D grayscale_formats,
-> 	},
-> };
->=20
-> and then in your probe callback, you can get the correct format list for
-> the device matched. Something like the following for example:
->=20
-> static int st7571_probe(struct i2c_client *client) {
->        const uint32_t *formats =3D device_get_match_data(client->dev);
->        ...
->=20
->        ret =3D drm_universal_plane_init(..., formats, ...);
->        ...
-> };
->=20
-> Likely you will need to define more stuff to be specific for each entry, =
-maybe
-> you will need different primary plane update handlers too. Similar to how=
- I had =20
-> to do it the ssd130x driver to support all the Solomon OLED controller fa=
-milies:
->=20
-> https://elixir.bootlin.com/linux/v6.11/source/drivers/gpu/drm/solomon/ssd=
-130x.c#L1439
+No question about it, I will consolidate them as much as I can, I
+noticed while implementing them then focused on getting the driver
+functionality in place and forgot to create a single function,
+apologies.
 
-Thanks, that sounds like a good idea.
-
-I've now experimenting with XRGB8888, and, well, it works. I guess.
-The thresholds levels in the all conversion steps for  XRGB8888 -> 8 bit gr=
-ayscale -> monochrome
-makes my penguin look a bit boring.
-
-But I guess that is expected.
-
-Please compare
-https://www.marcusfolkesson.se/xrgb8888.png
-and
-https://www.marcusfolkesson.se/c1.png
-
-> --=20
-> Best regards,
->=20
-> Javier Martinez Canillas
-> Core Platforms
-> Red Hat
->=20
-
-Best regards,
-Marcus Folkesson
-
---2ofPkAe93cfrZ/9C
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmf2dUsACgkQiIBOb1ld
-UjJ2FQ/9F0UFdn828HNufX71J48BfU7Ae27co8Y+CWw0T9eVXhT5v+xn9bTNdQ9d
-0559ifYcUFI95AZKaDSQCH2JXngYVD7ym/lcIT63LNZEGPiJyqT201mQEjyxHVWI
-88FXsZX4pAMHf7egL1YD9VkksybmvSRzlOY+a6y6GxvFfkPbCAJWroRdhk97J/d/
-/rYgr1XVBCA3q1CfeX4MXONhdNkQTyeoPnv+/N5zmLY8pYRjLYF97/AsN6jHh+7Y
-oE9Cai1jbz1ThDq3l8ngXNMtMag/xjXbJIBWB7krmVzgFyiWJUlVgmEN2xxk3jrI
-muNlGIbcQEPKASwh4F7SC5FYwymG63e78qXsrJ5JUmzbYx8M0xMztYABSC0OGzLe
-Vzx6whPv0VGPgKULgrI8LrZqiW4Zl3B76CZfff3oBdvq+zHPXRrvsEVXnXRfw2t8
-x1raGSc0ln14kHr1LzYoMTyJ4ao3RWPG/ZuSbBQbxrJuFqpDPKUJ4Zt+M5GKDfQQ
-9HqylDeIDXS92l9tV7Ei8xdBthzhjYggDyoWKJ35Luq5YG/PICC3/PqJRTa3W+OG
-uubjtV9HGLIxDf/cj7tdVXSGAAhDy8uzTJTzsfdLS8EWwUw6ZXgrQ3JU2FWx+o+z
-UQGfvTeQwqeOemY52P/B+xj9/hvZLgxDqZzgudAiK95h5a4fmHM=
-=xpde
------END PGP SIGNATURE-----
-
---2ofPkAe93cfrZ/9C--
+Thanks,
+Lorenzo
 
