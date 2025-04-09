@@ -1,298 +1,206 @@
-Return-Path: <devicetree+bounces-164934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E661CA82DCC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29EFEA82DD9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 19:48:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6B5C4677FB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:39:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0509C46245D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347E4270ECA;
-	Wed,  9 Apr 2025 17:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F36227604C;
+	Wed,  9 Apr 2025 17:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nXMyLimo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j0nP4u0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5512276040;
-	Wed,  9 Apr 2025 17:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850B31C84CF
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 17:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744220366; cv=none; b=XkrELjqwOgCOWK+ing1gIixsCL44dDRb02YnIA+3S8pUJ3dzFvWfRLykXlgc3dV5WuQHCXtdXqfs3IBW1SXjB05dlT8vrJnHz/+ClbSpF83coM3JkOQvVDEtenjdvCYW0qysKrOO+z5Znd0RuMQ3UpB1R8+vqD2N+1Q1lrCWwOA=
+	t=1744220910; cv=none; b=Mwpx0nzUiU+OQm1amK2IdFmOkwSjlIjGjqN3txMMPYVJDSkBfUB5PZpMD6Sk0QXL3M2HCQ8ntuDC/+3sXPcb93t8/FqV8rX2r2ohltYukH84Is6UZCj5Qzn1ttj/15NHlxYgZa66fq6FygxmeSMtbpGRWwm4b5CUr+BVWiaXBCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744220366; c=relaxed/simple;
-	bh=msPgzrV8Us/naJ3S+zSDwJxkQrEyWqBjzxX0c40z2zw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pSNir2ddIa7NyMM3upDSpjjZOnqBZtfRHi1Of22grekPAqYK/mJPFWL9ujh2756ZEEfMpQqWaCz4xwhab8QqMc8LDdgWSip1QHLRQJys+pznZaBHWvB4DFynSutSMFEk4ihK8U3QqfmkLP4G2lZv1Rr/9EbzVLXcXdZelHMzo5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nXMyLimo; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 539HdDcd894353
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 9 Apr 2025 12:39:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744220353;
-	bh=rCJqBTtApQp0a/WR/olWHy2S6RHwhtdebllXn8ohFLE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=nXMyLimohCVJ1eIKLAs1Wdz1um/G1fJLytg5VwJpXgqTfV2Rf6NfK4xxu+eEc3/Ik
-	 hXpslgkCYWQ4pzSnGdZDxI1qnl4Xn/tuDas4Qko76JMIHpQ18Ssq5UUzUlNe1aPMuy
-	 0vjrUsL1CyzY6QhJ0XxMRnzrkeMGkRH+EOaz0OD0=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 539HdDaP015557
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 9 Apr 2025 12:39:13 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Apr 2025 12:39:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Apr 2025 12:39:12 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 539HdCpr021525;
-	Wed, 9 Apr 2025 12:39:12 -0500
-Message-ID: <b7f6570f-3b80-4fc1-8201-d44f5692867f@ti.com>
-Date: Wed, 9 Apr 2025 12:39:11 -0500
+	s=arc-20240116; t=1744220910; c=relaxed/simple;
+	bh=hc3zIYh7JSINeCh8Z4mm9tEk+Au4y7knpSnk7GKAv5E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=C9HoNLuQviC5lXdZJ+MweJSX0242GCdHsyw1CwFGdM8utpyD+h7x9zeUh+Ny/Kh3NND+rD7yiz5OFwZQaLL2/5/0wrvIjpb1QbwTl8Or8ANJ/x3zulB9MXBnPc0GoUbc0yC+y2ygikIQyBstIxoNyviHrB73tdWBi11aGiMsUlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j0nP4u0c; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5399673c006872
+	for <devicetree@vger.kernel.org>; Wed, 9 Apr 2025 17:48:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=2xGb6Lh+V7STeCHTaCEpkP
+	9K8DWgoNDGliAnks1g2Mw=; b=j0nP4u0czRkp9AcpCO9Brqv2nI2Gzkg0BRZ3BI
+	uun2N25YYL+CMIOGSq5AUri36yKBlQKgn9UEHutP7w3jRDEeUrPiUxjQhz/QplTl
+	wtrxasWsDi/whtixf2qB7P36fmVwGvp5WnjhpNZtT2Aj4mi8sb7QGeD5qgCpTte5
+	MCteXCOdpMp5DeByXbzyoQpIr8MpBPA2b0FDA3z3Nh3KwGTo7jqcrQznzqeb2ly0
+	yTKvTaXGdBnK9gaXUD4sD91CarcBJlKLBAQoItJDg+r01Qzlxjy1yEg6D6rJBrE5
+	9NQtnvrbD2U9d5WL+L6nztzSFQWTNLLLC7HmjEPZQ0Gtc5ZQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twg3m8fd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 17:48:26 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2242ce15cc3so63275545ad.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 10:48:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744220905; x=1744825705;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2xGb6Lh+V7STeCHTaCEpkP9K8DWgoNDGliAnks1g2Mw=;
+        b=BBMGT6wb1eV3Ed9pmQKWjX4URGGnUEH4H4sDgvFDO+dUV1LUIzowZ6kqzr8ZE5vRwZ
+         XodMVgi9GdxH7+w5+QYbM8td+xUQzCZ5KZdS5T9CzvzOZt0AIdz6u0ucUNciGbl4tGTt
+         ZxlB2Pb0xykzDTXelWF4ndVLsG637AcmIv7jbIDCZ0r+l94wrwZpT3mX9UwSZGg9qW5y
+         SLxniZslXrqsKU4RPo8aWhF03wVwvpHPkQdupBLhKddxkmW6SrOcG/+J1UrVbUohtRPP
+         Qh4o2ZOwIdAKOK1nEbIVTSYIBQ6lUM6ISik2qPiKzYKR9rEgQa4F8qh7fahcy1Ae3+PP
+         Q9hA==
+X-Forwarded-Encrypted: i=1; AJvYcCWaJhPjljJq9rg9hNhD4ntwAi6fvymQDKSKQH5vQkzvW8XKF7BdEUolufQoIucHuZnpnrtNZeDFgRLE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKWkyV97NgZXowsAzJST39ysuwyoVjW7vuZtnclZAziEP5CvhB
+	TYfMX2SZTUXOVrp5z27EETNstTsyh3NkRateQSPHl4+E1GtyP1dcrmV3gvNmUs3A1ppRhqZ9vU6
+	iNdAYh0GVCJPU77hBFFEBQQaoomCoIdICUMVW8J8bB+sHaIpQPXSQM7bOe/aG
+X-Gm-Gg: ASbGncvCqpDAF8TrUaPdm5zrmPKYhjoJmdL8Uw3e5GKu9TEBr+ZrnNgW51GMrhspcsz
+	Vx/t14aDP/pKJhhoRMCCoQ9iUrkNhY9opnZavVDNFeu1ybF0EZ/b3R+FOVbyVypqZFbBmE7RMDi
+	iDlU5xR5qGMGL/WrXr9ymm1I3n8U3sdT7BzudFldcPBNYB1dE/7hqreW4vHKX/XlvrBoKxLuFpU
+	+VQ7yBaF4ai9f2CKhU5UJEYaQpOTVcgcV5POBv2+371fiVnHdMLBiUaJxLMWAbX9sV/7eGW551r
+	2ETcK+ovE9WerCzw6HlPPu8f2R7NlqfIx3CWcMyYeLKNU5KjXRvhSpj3q7STLRby3TI=
+X-Received: by 2002:a17:902:e750:b0:224:256e:5e4e with SMTP id d9443c01a7336-22ac2991b3dmr44828485ad.16.1744220905525;
+        Wed, 09 Apr 2025 10:48:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE0DTV9cBjuEu2MIM4VNLNiQsiktOF0HLT4+M1oyrikXvXe/d3fV2RaMyWqc4EXrShjavyy5Q==
+X-Received: by 2002:a17:902:e750:b0:224:256e:5e4e with SMTP id d9443c01a7336-22ac2991b3dmr44828135ad.16.1744220905102;
+        Wed, 09 Apr 2025 10:48:25 -0700 (PDT)
+Received: from hu-molvera-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c97a1bsm14964005ad.148.2025.04.09.10.48.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 10:48:24 -0700 (PDT)
+From: Melody Olvera <melody.olvera@oss.qualcomm.com>
+Subject: [PATCH v4 00/10] phy: qcom: Introduce USB support for SM8750
+Date: Wed, 09 Apr 2025 10:48:11 -0700
+Message-Id: <20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>
-CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
- <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
- <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
- <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
- <mocfnpebc67xegcis6tx3ekhsjcsqnvhwtipufycrtq2be4nbh@pmxhir5gmkos>
- <639b4e3a-3f68-4fba-aa33-c46dcb6fc88f@linaro.org>
- <d6252b73-0bcc-4724-8144-d6a98c8980f8@ti.com>
- <74ee6d9b-fd78-4d8a-a94f-b2c4dc794b60@linaro.org>
- <ebsbaaxyatrcikoem75t2blkhhceuidq3wnj3r2hbezfcmtc3u@ptffexrigbff>
- <f9a2247e-e0eb-4e22-8626-80e87afa9386@linaro.org>
- <qjwlppsq4eorzepvjsgjjyyaddouo5w2rjguu5c2mqesd6luwp@f426xeghy2ht>
- <2130b439-74d0-475d-8429-1a1b4d9738aa@linaro.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <2130b439-74d0-475d-8429-1a1b4d9738aa@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIANuy9mcC/23NwW7DIBAE0F+JOJdoWTDGPeU/oigisDQcbKfgW
+ Kks/3uxc0iq+jgjzZuJZUqRMvvcTSzRGHPsuxLUx465q+2+iEdfMkNAJRAlz62pKzjf8+Xc2jx
+ Q4gFrS74O2itgZXdLFOJjNY+nZ070fS/08CqvMQ99+ll/R7G0y0UFQmxdjIIDh8YGEt5hhepQP
+ Bc7t3d9yxZvxJchQW0ZWAyrG2ORtCHQ/w35ZuCmIYshJEGjvTMm+L/GPM+/19zZdVEBAAA=
+X-Change-ID: 20241223-sm8750_usb_master-f27aed7f6d40
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Melody Olvera <melody.olvera@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744220903; l=3325;
+ i=melody.olvera@oss.qualcomm.com; s=20241204; h=from:subject:message-id;
+ bh=hc3zIYh7JSINeCh8Z4mm9tEk+Au4y7knpSnk7GKAv5E=;
+ b=zw2dUOA9Z5fTRvpUid1hCtpl8B6Q8X93pzTd7rkqWGMA1r8H1zd/4CmdV5ZTN89UxJK8IxJB7
+ WUCArCpEc9IAjj+Es//Eik6NbyfCoICTWuBufEJReoHQD0JlOuU43bJ
+X-Developer-Key: i=melody.olvera@oss.qualcomm.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-Proofpoint-GUID: E4UYX1bg2aPtu6BgRk5OjLH2hryWKMIV
+X-Proofpoint-ORIG-GUID: E4UYX1bg2aPtu6BgRk5OjLH2hryWKMIV
+X-Authority-Analysis: v=2.4 cv=I/9lRMgg c=1 sm=1 tr=0 ts=67f6b2eb cx=c_pps a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=1rs2XOWFaH1SNEFhMLQA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ phishscore=0 suspectscore=0 mlxlogscore=913 lowpriorityscore=0 spamscore=0
+ clxscore=1015 malwarescore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090116
 
-On 2/12/25 1:35 PM, Krzysztof Kozlowski wrote:
-> On 10/02/2025 11:35, Markus Schneider-Pargmann wrote:
->> On Sun, Feb 09, 2025 at 01:21:27PM +0100, Krzysztof Kozlowski wrote:
->>> On 07/02/2025 15:40, Markus Schneider-Pargmann wrote:
->>>> Hi Krzysztof,
->>>>
->>>> On Mon, Jan 27, 2025 at 01:09:49PM +0100, Krzysztof Kozlowski wrote:
->>>>> On 24/01/2025 23:35, Andrew Davis wrote:
->>>>>> On 1/24/25 10:48 AM, Krzysztof Kozlowski wrote:
->>>>>>> On 24/01/2025 17:05, Markus Schneider-Pargmann wrote:
->>>>>>>> Hi Krzysztof,
->>>>>>>>
->>>>>>>> On Fri, Jan 24, 2025 at 09:22:54AM +0100, Krzysztof Kozlowski wrote:
->>>>>>>>> On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
->>>>>>>>>> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
->>>>>>>>>>> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
->>>>>>>>>>> register in the wkup-conf register space of am62a and am62p. This
->>>>>>>>>>> register controls DDR power management.
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->>>>>>>>>>> ---
->>>>>>>>>>>    Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->>>>>>>>>>>    1 file changed, 2 insertions(+)
->>>>>>>>>>
->>>>>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>>>>
->>>>>>>>> Un-acked, I missed the point that you really speak in commit msg about
->>>>>>>>> register and you really treat one register is a device. I assumed you
->>>>>>>>> only need that register from this device, but no. That obviously is not
->>>>>>>>> what this device is. Device is not a single register among 10000 others.
->>>>>>>>> IOW, You do not have 10000 devices there.
->>>>>>>>
->>>>>>>> Do I understand you correctly that the whole register range of the
->>>>>>>> wkup_conf node as seen in arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->>>>>>>> should be considered a single syscon device?
->>>>>>>
->>>>>>> I don't have the datasheets (and not my task to actually check this),
->>>>>>> but you should probably follow datasheet. I assume it describes what is
->>>>>>> the device, more or less.
->>>>>>>
->>>>>>> I assume entire wkup_conf is considered a device.
->>>>>>>
->>>>>>>>
->>>>>>>> Unfortunately wkup_conf is modeled as a simple-bus with currently 5
->>>>>>>> subnodes defined of which 4 of them consist of a single register. Most
->>>>>>>> of them are syscon as well. So I think I can't change the simple-bus
->>>>>>>> back to syscon.
->>>>>>>
->>>>>>> Huh... Maybe TI folks will help us understand why such design was chosen.
->>>>>>>
->>>>>>
->>>>>> Many of the devices inside the wkup_conf are already modeled as such.
->>>>>> Clocks and muxes for instance already have drivers and bindings, this
->>>>>> is nothing new to TI.
->>>>>>
->>>>>> If we just use a blank "syscon" over the entire region we would end up
->>>>>> with drivers that use phandles to the top level wkup_conf node and
->>>>>> poke directly the registers they need from that space.
->>>>>>
->>>>>> Would you rather have
->>>>>>
->>>>>> some-device {
->>>>>> 	ti,epwm_tbclk = <&wkup_conf>;
->>>>>> }
->>>>>>
->>>>>> or
->>>>>>
->>>>>> some-device {
->>>>>> 	clocks = <&epwm_tbclk 0>;
->>>>>> }
->>>>>
->>>>> How is this comparable? These are clocks. You would have clocks property
->>>>> in both cases.
->>>>>
->>>>>
->>>>>>
->>>>>> with that epwm_tbclk being a proper clock node inside wkup_conf?
->>>>>> I would much prefer the second, even though the clock node
->>>>>> only uses a single register. And in the first case, we would need
->>>>>> to have the offset into the wkup_conf space hard-coded in the
->>>>>> driver for each new SoC. Eventually all that data would need to be
->>>>>> put in tables and we end up back to machine board files..
->>>>>>
->>>>>> I'm not saying every magic number in all drivers should
->>>>>> be offloaded into DT, but there is a line somewhere between
->>>>>> that and having the DT simply contain the SoC's name compatible
->>>>>
->>>>> That's not the question here.
->>>>>
->>>>>> and all other data going into the kernel. That line might be a
->>>>>> personal preference, so my question back is: what is wrong
->>>>>> if we do want "1000 new syscons per each register" for our
->>>>>> SoCs DT?
->>>>>
->>>>> Because it is false representation of hardware. You do not have 1000
->>>>> devices. You have only one device.
->>>>>
->>>>>
->>>>>>
->>>>>> (and the number is not 1000, scanning the kernel I can see
->>>>>> the largest wkup_conf region node we have today has a grand
->>>>>> total number sub-nodes of 6)
->>>>>
->>>>> But what is being added here is device per each register, not per feature.
->>>>
->>>> The register layout is like this:
->>>
->>> The register layout of what? How is the device called? Is datasheet
->>> available anywhere?
->>
->> Yes, it is available here: https://www.ti.com/de/lit/pdf/spruj16
->>
->> 14 Registers
->> 14.2 Device Configuration Registers
->> 14.2.1 CTRL_MMR Registers
->> 14.2.1.1 General Purpose Control Registers
->> 14.2.1.1.3 WKUP_CTRL_MMR0 Registers
->>
->> Each domain has their own set of general purpose control registers,
->> CTRL_MMR for the main domain, MCU_CTRL_MMR0 for the MCU domain,
->> WKUP_CTRL_MMR0 for the wakeup domain.
-> 
-> 
-> So according to the doc you have only one device - CTRL_MMR. All other
-> splits are superficial.
-> 
+Add support for the PHYs and controllers used for USB on SM8750 SoCs.
 
-It is not one device, it is a collection of devices under one labeled
-bus range. Some items here are full normal devices, already modeled by DT
-as stand-alone devices, for instance our chipid, efuse, clock controller,
-etc. even our pinmux is part of this bus range.
+---
+Changes in v4:
+- Made some fixups to the M31 eUSB2 driver
+- Moved TCSR refclk_en to the QMP PHY DT node
+- Link to v3: https://lore.kernel.org/r/20250324-sm8750_usb_master-v3-0-13e096dc88fd@quicinc.com
 
-They are grouped as we have one set for each domain (MAIN, WKUP, MCU).
+Changes in v3:
+- Split platform DTs into separate commits.
+- Fixed up M31 eUSB2 PHY driver with feedback received.
+- Reordered DT properties based on feedback.
+- Rewrote commit message for enabling EUSB driver.
+- Link to v2: https://lore.kernel.org/r/20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com
 
-All other splits are not superficial, if we go down that path then
-the whole SoC is one "device". We could simply have the whole address
-bus be one node and have Linux hard-code offsets in the drivers, we
-end up back at board files..
+Changes in v2:
+- Added new QMP PHY register definitions for v8 based QMP phys.
+- Made changes to clean up some code in the M31 eUSB2 PHY driver based
+on feedback received.
+- Added bulk regulator operations in M31 eUSB2 PHY, to ensure that
+both the vdd and vdda12 regulators are properly voted for.
+- Removed external references to other dt bindings in M31 example for
+the DT bindings change.
+- Split DT patches between SoC and plaform changes, as well as the
+PHY subsystem Kconfig changes when introducing the M31 eUSB2 PHY.
+- Added orientation switch and port definitions in the DT changes.EDITME: describe what is new in this series revision.
+- Link to v1: https://lore.kernel.org/r/20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com
 
-DT should break things into logically distinct and reusable units
-so we don't have to store that in the kernel. That is what we do
-here, even if some units end up being very small.
+---
+Melody Olvera (1):
+      arm64: defconfig: Add M31 eUSB2 PHY config for SM8750
 
->>
->> So I understand this to just be a collection of general purpose control
->> registers. If you go by feature, then many of the registers can be
->> grouped into units with a specific purpose or controlling a specific
->> device which are also grouped by the offsets they represent. I assume
-> 
-> It could work if you have distinctive groups, but here:
-> 1. You do not have this grouped, you just judge by yourself "oh, that's
-> group A, that's B".
-> 2. Group per one register is not that.
-> 
-> For me this is one big block and even CLKSEL is spread all over so
-> cannot be really made distinctive.
-> 
->> this is why the other nodes in this wkup_conf node were created. Also in
-> 
-> The other nodes represent some sort of fake or totally arbitrary
-> grouping. That's abuse of the syscon.
-> 
+Wesley Cheng (9):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add SM8750 to QMP PHY
+      dt-bindings: phy: Add the M31 based eUSB2 PHY bindings
+      dt-bindings: usb: qcom,dwc3: Add SM8750 compatible
+      phy: qcom: qmp-combo: Add new PHY sequences for SM8750
+      phy: qcom: Update description for QCOM based eUSB2 repeater
+      phy: qcom: Add M31 based eUSB2 PHY driver
+      arm64: dts: qcom: sm8750: Add USB support to SM8750 SoCs
+      arm64: dts: qcom: sm8750: Add USB support for SM8750 MTP platform
+      arm64: dts: qcom: sm8750: Add USB support for SM8750 QRD platform
 
-They are grouped by function.
+ .../bindings/phy/qcom,m31-eusb2-phy.yaml           |  79 +++++
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   3 +
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts            |  24 ++
+ arch/arm64/boot/dts/qcom/sm8750-qrd.dts            |  24 ++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               | 164 +++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/phy/qualcomm/Kconfig                       |  16 +-
+ drivers/phy/qualcomm/Makefile                      |   1 +
+ drivers/phy/qualcomm/phy-qcom-m31-eusb2.c          | 325 +++++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 223 +++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-usb-v8.h     |  38 +++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v8.h         |  32 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v8.h |  64 ++++
+ .../phy/qualcomm/phy-qcom-qmp-qserdes-txrx-v8.h    |  68 +++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |   5 +
+ 16 files changed, 1065 insertions(+), 4 deletions(-)
+---
+base-commit: 46086739de22d72319e37c37a134d32db52e1c5c
+change-id: 20241223-sm8750_usb_master-f27aed7f6d40
 
->> my opinion this makes the relation between the original device and this
->> general purpose control registers better understandable.
->>
->> For this patch the ddr-pmctrl regsiter is just a single register, but it
->> has the purpose of controlling the DDR device power management.
-> 
-> Sure, but that is NOT syscon. One register of entire block is not system
-> controller. The entire block is system controller.
-> 
+Best regards,
+-- 
+Melody Olvera <melody.olvera@oss.qualcomm.com>
 
-The whole block cannot be a system controller as there are regular
-devices inside this range. If we made the whole region a syscon and
-also left the device nodes inside, then we would have overlapping
-register owners, one register would be controlled by two or more
-drivers. How would we synchronize mappings, access, updates, etc.
-Any one register should belong to exactly one device.
-
-Is your issue the name "system controller", as yes I agree some of
-these regions are not "system controllers".
-
-Would it work better if we didn't call this "ti,am62-ddr-pmctrl"
-node a "syscon"? That can be done, we just would add a normal
-binding doc for it, instead of trying to reuse the generic
-bindings/mfd/syscon.yaml file.
-
-Andrew
-
-> 
-> 
-> Best regards,
-> Krzysztof
 
