@@ -1,94 +1,105 @@
-Return-Path: <devicetree+bounces-164715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31AF1A820BE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:10:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25893A820E4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 11:19:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2A947B042B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:09:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1437219E7D89
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF6D25C6FA;
-	Wed,  9 Apr 2025 09:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE7325D53F;
+	Wed,  9 Apr 2025 09:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="o/wJaXjG"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Bhbga7i8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF001DE3AA;
-	Wed,  9 Apr 2025 09:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744189815; cv=none; b=lgOpQHViVqDJvios5E7zhMBXF6PxOJj6/mWFTjAcutwwBH7ZPQ1KrAdWXyojLOCkRjPI7mltqddY1y0/XujWHj/XsfaXUVweZrKGQrLOprY2rd8pD5LHPZR25W9xH5uhAxL1gBC/FcpXS3O9mJsRZiTEsrzAB5BzDYKh5oUgHBQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744189815; c=relaxed/simple;
-	bh=1BErre+1YrsgvpSOm70ydSSZiRCm4uZbh9W8B+UV/tw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ajNRgu45UF6mk0HDvP1F9FS71g93w+duzPiZyGAaLz696RX2eZQq3Go5biYhZp7lNUR7amnJ01o6myoaOdJt5scA6rwQysmCRzmt5JT+Q1HkjGcZ/koFfIwO4uFh5RpmhzO4AeKtG4oX0m5mngtjGkooX6rjNSay72rBuQQTqRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=o/wJaXjG; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Chcrrmltg8lJD6q+d1jGSA/zsPM8icsB5uVp0MwIi8s=; b=o/wJaXjG5d8IUQuvtcEqHA53sU
-	PKJeR02EsUor5c3I/mm3nC2+R0sKaKucxEKUONrzxfwHN31qGEcQEH8rvVI/n09mNsXHhffqSVxdO
-	/Kbi8fPV40I9FwNUKtmAh3A0gQKSIYSrVrqQJP/LSvKgsI8Qn5z6MQ1kw5uIzOy0B8QdCCUXEmr0i
-	h943DBM+NPNI9V7VUnU9TOg6sGlSYvNUXtraYN0y+DTvwZilhby/mRJy9GDtnIqRkueIETIk8AlYx
-	ZYoY/HGkilj/u0WKYFqLYI1cAZOWrZACbPqpkQ+kz+3A0AtCSSUBItJUt9kn/H3vHvwwdYjG5BZdc
-	Q/VMkWgg==;
-Date: Wed, 9 Apr 2025 11:10:02 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tero Kristo
- <kristo@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: clock: ti: Convert to yaml
-Message-ID: <20250409111002.5b88a127@akair>
-In-Reply-To: <20250404014500.2789830-3-sbellary@baylibre.com>
-References: <20250404014500.2789830-1-sbellary@baylibre.com>
-	<20250404014500.2789830-3-sbellary@baylibre.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C4F1DE3AA;
+	Wed,  9 Apr 2025 09:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744190323; cv=pass; b=CExwJDuw8EZGb6wFbs+yXLAEsne7YOK0W4vGu2b3UfZ31wCTSJJ3pUqyN0XZlJnOECIGA52pf2oSpxYerIRfn8dJWpkXezF2Dr/jtEu+yNYziRkUnENbv5Y5h4vztYLOLNlnUlIZoA0KE9rKAxogtWOPYyhnLaTv6IKtb/QBC/Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744190323; c=relaxed/simple;
+	bh=/EWHlmYXaX+Bvh8b073v4/q3puALtJJtIUIUWp1XOsM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Fbwb3Fz48D1E3Y6vtTFFqnT602hvbTNo+C7BaJ1Ox4zA6wMBk79THKRvN1J6U8XkNHNWmLg+B1a/Ngun7g87sRXJirZ1TNg2C9BmH0r5WPhf0dMSQbSo1KsDf37k/CrFIhVT9360zD4tcRJ5/E1wpsXAb6T5EpRh3+i8EW+9GMA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Bhbga7i8; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1744190298; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=noaV+5Df7rQy8pCXBcixf29FwbUky43S4/ZSdvz6tjX0An1kW0dbpUW+Hm4dzlD1T+MvD/NahFZZBeWQjlRMDF9fHVpDLRggTfuG5+XVK3QGXxBNcHnKIC7vjaNNA+6rgOhSWDCIqZ484SrUM9DItiVjJtTw52C3bvZVwIDxjnU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1744190298; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QBe9+uH6ODWa9iTcZwQDOb5iAmFt+z8pNalKVqBUYEk=; 
+	b=YBqdjpsLfDAFVWjnL1A2GbS87D+d+HlmjHL0QGUIqDatEtQhonsJnwMe5AR5jLbeoI6HaJWC8mV1G+uuYWnMtgCqvBpoL7BIIp9nj3kuu4LGOWDL60O6TQ/MTJCQlgrKKej1NGfsGyAgku1ITW56WVg9dfuIDgMI4t/DYLZX9eQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744190298;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=QBe9+uH6ODWa9iTcZwQDOb5iAmFt+z8pNalKVqBUYEk=;
+	b=Bhbga7i8hGzD+nSQq80LKELsH1eX8cZ5OproLFqKtbjHp4knUmOwnnmoncWms+2/
+	FEB3/GQvzHSxr26Y3Ps/P7KA/LMp0nLfs1QEwskVSYDuCrpJUVf5vKmErJv5Tzsca4U
+	poDVoe6nRxR8BS/8WRnMh2R8E1K4shxwS4fUJwmNpc2bwQzTmW2s5caCAUqkzzYHaVs
+	UXN5T7AVejbu9GEtK1FhVG0kvZYVyr/wZLrEesdskjXq5x14Gn/HYr7gUV7uDVf1ikj
+	eqPQs82Bfcq6dfD0XOBa2qohgmK8bDgaROe/4nooV9Z1y/8IrrInncej/RwTXUVWgAc
+	BXyIDJvj5g==
+Received: by mx.zohomail.com with SMTPS id 1744190296788595.8894788219615;
+	Wed, 9 Apr 2025 02:18:16 -0700 (PDT)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Michael Zhu <michael.zhu@starfivetech.com>,
+	Drew Fustini <drew@beagleboard.org>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 1/2] dt-bindings: riscv: starfive: add Orange Pi RV board compatible
+Date: Wed,  9 Apr 2025 17:18:00 +0800
+Message-ID: <20250409091801.855083-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-Am Thu,  3 Apr 2025 18:44:58 -0700
-schrieb Sukrut Bellary <sbellary@baylibre.com>:
+Orange Pi RV is a newly released JH7110 board by Xunlong.
 
-> This binding doesn't define a new clock binding type,
-> it is used to group the existing clock nodes under the hardware hierarchy.
-> 
-> As this is not a provider clock, remove #clock-cells and
-> clock-output-names properties.
-> Though few clockdomain nodes in the dts use these properties,
-> we are not fixing dts here.
-> Clean up the example to meet the current standards.
-> 
-> Add the creator of the original binding as a maintainer.
-> 
-> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
-> ---
->  .../bindings/clock/ti/clockdomain.txt         | 25 ------------
->  .../bindings/clock/ti/ti,clockdomain.yaml     | 38 +++++++++++++++++++
+Add a compatible string to the starfive platform DT binding.
 
-I am wondering whether this should just be part of a converted version
-of Documentation/devicetree/bindings/arm/omap/prcm.txt. I doubt there
-is any other usage for this compatible.
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ Documentation/devicetree/bindings/riscv/starfive.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Regards,
-Andreas
+diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+index 7ef85174353de..dd5cd51e38797 100644
+--- a/Documentation/devicetree/bindings/riscv/starfive.yaml
++++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+@@ -31,6 +31,7 @@ properties:
+               - pine64,star64
+               - starfive,visionfive-2-v1.2a
+               - starfive,visionfive-2-v1.3b
++              - xunlong,orangepi-rv
+           - const: starfive,jh7110
+ 
+ additionalProperties: true
+-- 
+2.49.0
 
 
