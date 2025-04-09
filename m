@@ -1,579 +1,306 @@
-Return-Path: <devicetree+bounces-164736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901B2A822BA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:51:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F780A822D9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 536C54C0EFE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:50:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADE4C1895504
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 10:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B36325D911;
-	Wed,  9 Apr 2025 10:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96A025DAF3;
+	Wed,  9 Apr 2025 10:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ewq/fSU6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U6EgeblM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427BE25D8EC;
-	Wed,  9 Apr 2025 10:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D71F25D911;
+	Wed,  9 Apr 2025 10:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744195810; cv=none; b=Hw5hCIkXwk8vDQYeeyJWDQ+mgtDX3fF+rItxEfPzW4KZvmKF0xIoXePYxjDO/7Tm76a4ngDX1Envwg3o4kK0bHe8LUhqxWk0zFZDBtMPdHpOaFEuCzmgTwZG5AvpnJKKamb9uYE4W5YhZHf+l5Qz7iwLjhO6Mwu7EJixvF5g+Tw=
+	t=1744196049; cv=none; b=H9LBTMHaVYoKzStT8gKMSU+hVKYDmOoLJc0odlyW24hrDbgcQjcRcsd1SoLwDAJWuCReT/Mb3MxotYgio8WLq+DEDd8YehC3zRk60++EIOsgdTv2BmJCx4f368Nap/lfUJ7KtZ+d8XK1Yp0ugefw8xvi63kcvd5B9yUw2pRY5Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744195810; c=relaxed/simple;
-	bh=/rNLSrEQSOpvZ7nwsDMuYt/FkXNNEdQSkznhwYn37SM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DfTtuu/s0SYyET5NCNMojacfqpU/FBPUwSwAV7UqnSPIoOuAE16lpAydTx/QcdWbH40DLVmgQXKQOurZLZRpngSX7y003DDTEEHRZkKFK2bTV/UrQHM74tKkpxz6eZXtFc9q6iAQGCw2C+K5PgqtnzrKFHUrcqbwB7Bd65ki7Sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ewq/fSU6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5398a5HG015866;
-	Wed, 9 Apr 2025 10:49:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BvRoGFR35f/h0ADIFFSeWQTQxxC1ta+JOprFdLBdxzk=; b=ewq/fSU6KxPW2mzc
-	7obQnygvwuSWqjl8RKUkiIYjn76vhVremuc+/8tkTYW71CykNNyecgrepd0Xcxle
-	wwc/GC5+1Xi6xMNaHeOvjmPHgUpYo/N9qO7jhlAstk778Blu5ldYNgUyb97wkhOQ
-	hVjyK72Gmkh1vm/wdVX6EiHff6jIsu7ZI2/zJ9ItZ0xI59+7FK9ousmPqJQQMJ+u
-	tkwUIZzXWjVwTKmGTRzF3bnSNXHW0Hh/vigWZeLpZuGsSoMyivPaDNTEnokFlfd/
-	fLia35tlDwxq4zzI4CLvSMses/T4FSUTW+3x4AxmKXEKCQ8nwrafIFabUbKe3e4+
-	1FZa2w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd2u1g7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Apr 2025 10:49:59 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 539Anw5C008784
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Apr 2025 10:49:58 GMT
-Received: from [10.50.45.73] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
- 03:49:54 -0700
-Message-ID: <808f48f4-ad4d-1afe-bf15-a8e57288f9d3@quicinc.com>
-Date: Wed, 9 Apr 2025 16:19:51 +0530
+	s=arc-20240116; t=1744196049; c=relaxed/simple;
+	bh=tbMF/C9iX4T5eVWba47BrfnFko25wlOg82piSbLeNaA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D3extVeMlhiC7JLUGJ5BNlcxcOz/bsRvFubR4LwCCI/acoPSCwmNbeuWKF0+1bvi5QJyPomrLbD3IIsf4CKueY+P3yZBsxsPTjhqnWvEas7rQ39zi3gZkIBbNh2LswPqPlRkVT+D9qMducpa2wr3kJ2tX0Vpduoh1xmy5nt8syo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U6EgeblM; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-523de5611a3so2975881e0c.1;
+        Wed, 09 Apr 2025 03:54:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744196047; x=1744800847; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TgIZoVKkgioMafx+bWpknazJMwDcHn7HAdB02qWhWbo=;
+        b=U6EgeblMc/A5bWHWhwOsobkpeibS9uEp6RpaOeyf+4nOwXntDFOYwfR5LJKwogM5Sn
+         4y/ERoBcq79QTafMLqm2mgEl/W5zo3JESjRrFOHbPf0JNDlFeUzJB5ZmsMmczwt2t5Zt
+         aezTUsGRSwco8DPseSaonxchyM3fE+f/lS5VUR5YyUBqf3Vadyy+tBafp6qm2w0cSDwB
+         A2nscjHnTcg4ROc2Rk+5HFpwK3LPwZXMmcZ/1xiWTF8pPOU38tAxUR63BFpoSch59C+h
+         /RxD5E0WVV+U44ggN6s9EhM4wSKWiIU7ecM9YeY7QoYbUXHZDRxA2okgKhlD/4GuKMxn
+         P60g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744196047; x=1744800847;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TgIZoVKkgioMafx+bWpknazJMwDcHn7HAdB02qWhWbo=;
+        b=ZwccVvQQizBHNXlOs5rPDYpQ5YSLVbJnQUl/f9PNCb8iN0lO7vX1Q2ja7ru9N3VZIm
+         LIQOo/FdlAVrC2XseSGEOvkhDTAjiW104p0Wxi5bIxz4rmvHwwIsFXxKcE/w3pNqUYG6
+         ftN6doVQz56db3FiCek6yz4H9YXAYbUXKKb7uCisJkTVmxMMvfqSOU4M2OKoGVfsdZVC
+         Wen4CXtK0gHJ4xDS5KD792Zmb5UVI6Q/nMKMwEl6CLJkchF8wBf8WbT8YhWgKVtRv4mB
+         4QQCzylIfRL4V+5wb2okAoC3M+zT8H3SqVYNbrVwENJf/mcYcpj4LcED5X4Ky/KwMfkR
+         E6xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7b2d9GzYyteDIBJT9NYfWA0W43XeiKESxY+P9OS9N6fdwgMwM2yuTDK9Vnqh08aL9Ve+LuOsRk01HaAwA++qm9WU=@vger.kernel.org, AJvYcCUrY5Iwx4+Jc7IaL1UoyQrUi7gkXuROx5ToeXDo8nQE4h1eMb8YJ7qFY+OzU/JgMNLLRoZ8QYkwu1+UxOpu@vger.kernel.org, AJvYcCXsb7DhhTL41TjUB56ViCiE3+KEi5PfpEWwPdbDnHu6hzS817O935fHMdO4Xc1crVOwOqoBsPheFwx8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOTusoU6Nbhiue5dLXvgOyLeTOsBKxuk2aONYmRai10lPkD1+8
+	wyhQxEPhKZC2hnzfDZVsp0z89Itfht48HQS6WBuRc/+rc4OTkL9fEP/nk9oub9pRhJSGflc620W
+	sD+YmsZfs/cB8WOJpSuHHb80feVX3RpBO9KQ=
+X-Gm-Gg: ASbGncuUJgmDUkpBfzBsrwKBlq/g2StI8hd8Z2T02sRszsYMfxycz8u0Ihoh+CXXdzr
+	XijlHcx5MgHhKUNAF8maYTgudlaBlloeK4GbkHHhvAgl5KYzEs1eKTXJiAjHwONzQEIJIKpmim1
+	aZYK/WIhXH4n8SwLWPK4doBSoRo2BlHTltbWNg31IT7DFyvnTjzkuDx9M=
+X-Google-Smtp-Source: AGHT+IG7crk11/4VvyNYcFqhtUhfs+6UpTaoV15rvEpSl7rA5USiS8iy0l6f440IQVj+zgXTr44Tai3CmYR/w6AqpDc=
+X-Received: by 2002:a05:6122:2023:b0:520:5a87:66fa with SMTP id
+ 71dfb90a1353d-527a9cf80f1mr1058327e0c.3.1744196046902; Wed, 09 Apr 2025
+ 03:54:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 4/5] media: platform: qcom/iris: rename iris_vpu3 to
- iris_vpu3x
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org>
- <20250407-topic-sm8x50-iris-v10-v3-4-63569f6d04aa@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <20250407-topic-sm8x50-iris-v10-v3-4-63569f6d04aa@linaro.org>
+References: <20250305002112.5289-1-fabrizio.castro.jz@renesas.com> <20250305002112.5289-7-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20250305002112.5289-7-fabrizio.castro.jz@renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 9 Apr 2025 11:53:38 +0100
+X-Gm-Features: ATxdqUFKIMEQwTyPYyiLYbKx2EqmtKkQ7AXS8LOIIFWZ7NU0GfAVFtJtbnAndu0
+Message-ID: <CA+V-a8vj-Yu+nTEhN0d5ds0WSsQKH+Jh1L__iPqWNU28QXdSWg@mail.gmail.com>
+Subject: Re: [PATCH v5 6/6] arm64: dts: renesas: r9a09g057: Add DMAC nodes
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CusLhOIKW2XGLqse1G2R7PYYIBSw-oNT
-X-Proofpoint-GUID: CusLhOIKW2XGLqse1G2R7PYYIBSw-oNT
-X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f650d7 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=rVHiDwQOYXtOlGk_woMA:9
- a=QEXdDO2ut3YA:10 a=RVmHIydaz68A:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_04,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015 phishscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504090061
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 4/7/2025 8:54 PM, Neil Armstrong wrote:
-> The vpu33 HW is very close to vpu3, and shares most of the
-> operations, so rename file to vpu3x since we'll handle all vpu3
-> variants in it.
-> 
-> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Wed, Mar 5, 2025 at 12:24=E2=80=AFAM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+>
+> Add nodes for the DMAC IPs found on the Renesas RZ/V2H(P) SoC.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/media/platform/qcom/iris/Makefile          |   2 +-
->  drivers/media/platform/qcom/iris/iris_vpu3.c       | 123 ---------
->  drivers/media/platform/qcom/iris/iris_vpu3x.c      | 277 +++++++++++++++++++++
->  drivers/media/platform/qcom/iris/iris_vpu_common.h |   3 +
->  4 files changed, 281 insertions(+), 124 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-> index 35390534534e93f4617c1036a05ca0921567ba1d..473aaf655448180ade917e642289677fc1277f99 100644
-> --- a/drivers/media/platform/qcom/iris/Makefile
-> +++ b/drivers/media/platform/qcom/iris/Makefile
-> @@ -20,7 +20,7 @@ qcom-iris-objs += \
->               iris_vb2.o \
->               iris_vdec.o \
->               iris_vpu2.o \
-> -             iris_vpu3.o \
-> +             iris_vpu3x.o \
->               iris_vpu_buffer.o \
->               iris_vpu_common.o \
->  
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3.c b/drivers/media/platform/qcom/iris/iris_vpu3.c
-> deleted file mode 100644
-> index 13dab61427b8bd0491b69a9bc5f5144d27d17362..0000000000000000000000000000000000000000
-> --- a/drivers/media/platform/qcom/iris/iris_vpu3.c
-> +++ /dev/null
-> @@ -1,123 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> - */
-> -
-> -#include <linux/iopoll.h>
-> -
-> -#include "iris_instance.h"
-> -#include "iris_vpu_common.h"
-> -#include "iris_vpu_register_defines.h"
-> -
-> -#define AON_MVP_NOC_RESET			0x0001F000
-> -
-> -#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
-> -#define CORE_CLK_RUN				0x0
-> -
-> -#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
-> -#define CORE_BRIDGE_SW_RESET			BIT(0)
-> -#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
-> -
-> -#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
-> -#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
-> -
-> -#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
-> -
-> -#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
-> -
-> -static bool iris_vpu3_hw_power_collapsed(struct iris_core *core)
-> -{
-> -	u32 value, pwr_status;
-> -
-> -	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
-> -	pwr_status = value & BIT(1);
-> -
-> -	return pwr_status ? false : true;
-> -}
-> -
-> -static void iris_vpu3_power_off_hardware(struct iris_core *core)
-> -{
-> -	u32 reg_val = 0, value, i;
-> -	int ret;
-> -
-> -	if (iris_vpu3_hw_power_collapsed(core))
-> -		goto disable_power;
-> -
-> -	dev_err(core->dev, "video hw is power on\n");
-> -
-> -	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-> -	if (value)
-> -		writel(CORE_CLK_RUN, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-> -
-> -	for (i = 0; i < core->iris_platform_data->num_vpp_pipe; i++) {
-> -		ret = readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN + 4 * i,
-> -					 reg_val, reg_val & 0x400000, 2000, 20000);
-> -		if (ret)
-> -			goto disable_power;
-> -	}
-> -
-> -	writel(VIDEO_NOC_RESET_REQ, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-> -
-> -	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-> -				 reg_val, reg_val & 0x3, 200, 2000);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-> -
-> -	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-> -				 reg_val, !(reg_val & 0x3), 200, 2000);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE,
-> -	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> -	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> -	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> -
-> -disable_power:
-> -	iris_vpu_power_off_hw(core);
-> -}
-> -
-> -static u64 iris_vpu3_calculate_frequency(struct iris_inst *inst, size_t data_size)
-> -{
-> -	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-> -	struct v4l2_format *inp_f = inst->fmt_src;
-> -	u32 height, width, mbs_per_second, mbpf;
-> -	u64 fw_cycles, fw_vpp_cycles;
-> -	u64 vsp_cycles, vpp_cycles;
-> -	u32 fps = DEFAULT_FPS;
-> -
-> -	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-> -	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-> -
-> -	mbpf = NUM_MBS_PER_FRAME(height, width);
-> -	mbs_per_second = mbpf * fps;
-> -
-> -	fw_cycles = fps * caps->mb_cycles_fw;
-> -	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
-> -
-> -	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
-> -	/* 21 / 20 is minimum overhead factor */
-> -	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
-> -
-> -	/* 1.059 is multi-pipe overhead */
-> -	if (inst->fw_caps[PIPE].value > 1)
-> -		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
-> -
-> -	vsp_cycles = fps * data_size * 8;
-> -	vsp_cycles = div_u64(vsp_cycles, 2);
-> -	/* VSP FW overhead 1.05 */
-> -	vsp_cycles = div_u64(vsp_cycles * 21, 20);
-> -
-> -	if (inst->fw_caps[STAGE].value == STAGE_1)
-> -		vsp_cycles = vsp_cycles * 3;
-> -
-> -	return max3(vpp_cycles, vsp_cycles, fw_cycles);
-> -}
-> -
-> -const struct vpu_ops iris_vpu3_ops = {
-> -	.power_off_hw = iris_vpu3_power_off_hardware,
-> -	.power_off_controller = iris_vpu_power_off_controller,
-> -	.calc_freq = iris_vpu3_calculate_frequency,
-> -};
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3x.c b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ea7be2e0a3a255f61e236740e1082e7c9207250d
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> @@ -0,0 +1,277 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/iopoll.h>
-> +#include <linux/reset.h>
-> +
-> +#include "iris_instance.h"
-> +#include "iris_vpu_common.h"
-> +#include "iris_vpu_register_defines.h"
-> +
-> +#define WRAPPER_TZ_BASE_OFFS			0x000C0000
-> +#define AON_BASE_OFFS				0x000E0000
-> +#define AON_MVP_NOC_RESET			0x0001F000
-> +
-> +#define WRAPPER_DEBUG_BRIDGE_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x54)
-> +#define WRAPPER_DEBUG_BRIDGE_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x58)
-> +#define WRAPPER_IRIS_CPU_NOC_LPI_CONTROL	(WRAPPER_BASE_OFFS + 0x5C)
-> +#define REQ_POWER_DOWN_PREP			BIT(0)
-> +#define WRAPPER_IRIS_CPU_NOC_LPI_STATUS		(WRAPPER_BASE_OFFS + 0x60)
-> +#define WRAPPER_CORE_CLOCK_CONFIG		(WRAPPER_BASE_OFFS + 0x88)
-> +#define CORE_CLK_RUN				0x0
-> +
-> +#define WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG		(WRAPPER_TZ_BASE_OFFS + 0x14)
-> +#define CTL_AXI_CLK_HALT			BIT(0)
-> +#define CTL_CLK_HALT				BIT(1)
-> +
-> +#define WRAPPER_TZ_QNS4PDXFIFO_RESET		(WRAPPER_TZ_BASE_OFFS + 0x18)
-> +#define RESET_HIGH				BIT(0)
-> +
-> +#define CPU_CS_AHB_BRIDGE_SYNC_RESET		(CPU_CS_BASE_OFFS + 0x160)
-> +#define CORE_BRIDGE_SW_RESET			BIT(0)
-> +#define CORE_BRIDGE_HW_RESET_DISABLE		BIT(1)
-> +
-> +#define CPU_CS_X2RPMH				(CPU_CS_BASE_OFFS + 0x168)
-> +#define MSK_SIGNAL_FROM_TENSILICA		BIT(0)
-> +#define MSK_CORE_POWER_ON			BIT(1)
-> +
-> +#define AON_WRAPPER_MVP_NOC_RESET_REQ		(AON_MVP_NOC_RESET + 0x000)
-> +#define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
-> +
-> +#define AON_WRAPPER_MVP_NOC_RESET_ACK		(AON_MVP_NOC_RESET + 0x004)
-> +
-> +#define VCODEC_SS_IDLE_STATUSN			(VCODEC_BASE_OFFS + 0x70)
-> +
-> +#define AON_WRAPPER_MVP_NOC_LPI_CONTROL		(AON_BASE_OFFS)
-> +#define AON_WRAPPER_MVP_NOC_LPI_STATUS		(AON_BASE_OFFS + 0x4)
-> +
-> +#define AON_WRAPPER_MVP_NOC_CORE_SW_RESET	(AON_BASE_OFFS + 0x18)
-> +#define SW_RESET				BIT(0)
-> +#define AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL	(AON_BASE_OFFS + 0x20)
-> +#define NOC_HALT				BIT(0)
-> +#define AON_WRAPPER_SPARE			(AON_BASE_OFFS + 0x28)
-> +
-> +static bool iris_vpu3x_hw_power_collapsed(struct iris_core *core)
-> +{
-> +	u32 value, pwr_status;
-> +
-> +	value = readl(core->reg_base + WRAPPER_CORE_POWER_STATUS);
-> +	pwr_status = value & BIT(1);
-> +
-> +	return pwr_status ? false : true;
-> +}
-> +
-> +static int iris_vpu3x_power_off_hardware_begin(struct iris_core *core)
-> +{
-> +	u32 reg_val = 0, value, i;
-> +	int ret;
-> +
-> +	if (iris_vpu3x_hw_power_collapsed(core))
-> +		return 1;
-> +
-> +	dev_err(core->dev, "video hw is power on\n");
-> +
-> +	value = readl(core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-> +	if (value)
-> +		writel(CORE_CLK_RUN, core->reg_base + WRAPPER_CORE_CLOCK_CONFIG);
-> +
-> +	for (i = 0; i < core->iris_platform_data->num_vpp_pipe; i++) {
-> +		ret = readl_poll_timeout(core->reg_base + VCODEC_SS_IDLE_STATUSN + 4 * i,
-> +					 reg_val, reg_val & 0x400000, 2000, 20000);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void iris_vpu3x_power_off_hardware_end(struct iris_core *core)
-> +{
-> +	writel(CORE_BRIDGE_SW_RESET | CORE_BRIDGE_HW_RESET_DISABLE,
-> +	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> +	writel(CORE_BRIDGE_HW_RESET_DISABLE, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> +	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> +}
-> +
-I'm not a big fan of splitting the API into begin/middle/end just for the
-sake of de-duplication of small part of code. It ends up introducing a lot
-of jumps in the code, which makes it harder to follow.
-Keeping it as a single flow, even with some duplication, would be more
-readable and maintainable.
-> +static void iris_vpu3_power_off_hardware(struct iris_core *core)
-> +{
-> +	u32 reg_val = 0;
-> +	int ret;
-> +
-> +	ret = iris_vpu3x_power_off_hardware_begin(core);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(VIDEO_NOC_RESET_REQ, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-> +
-> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-> +				 reg_val, reg_val & 0x3, 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(0x0, core->reg_base + AON_WRAPPER_MVP_NOC_RESET_REQ);
-> +
-> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_RESET_ACK,
-> +				 reg_val, !(reg_val & 0x3), 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	iris_vpu3x_power_off_hardware_end(core);
-> +
-> +disable_power:
-> +	iris_vpu_power_off_hw(core);
-> +}
-> +
-> +static void iris_vpu33_power_off_hardware(struct iris_core *core)
-> +{
-> +	u32 reg_val = 0;
-> +	int ret;
-> +
-> +	ret = iris_vpu3x_power_off_hardware_begin(core);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_NOC_LPI_STATUS,
-> +			reg_val, reg_val & BIT(0), 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	/* set MNoC to low power, set PD_NOC_QREQ (bit 0) */
-> +	writel(BIT(0), core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-> +
-> +	iris_vpu3x_power_off_hardware_end(core);
-> +
-> +disable_power:
-> +	iris_vpu_power_off_hw(core);
-> +}
-> +
-> +static int iris_vpu33_power_off_controller(struct iris_core *core)
-> +{
-> +	u32 xo_rst_tbl_size = core->iris_platform_data->controller_rst_tbl_size;
-> +	u32 clk_rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
-> +	u32 val = 0;
-> +	int ret;
-> +
-> +	writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON, core->reg_base + CPU_CS_X2RPMH);
-> +
-> +	writel(REQ_POWER_DOWN_PREP, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
-> +
-> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
-> +				 val, val & BIT(0), 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(0x0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
-> +
-> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
-> +				 val, val == 0, 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(CTL_AXI_CLK_HALT | CTL_CLK_HALT,
-> +	       core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
-> +	writel(RESET_HIGH, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
-> +	writel(0x0, core->reg_base + WRAPPER_TZ_QNS4PDXFIFO_RESET);
-> +	writel(0x0, core->reg_base + WRAPPER_TZ_CTL_AXI_CLOCK_CONFIG);
-> +
-> +	reset_control_bulk_reset(clk_rst_tbl_size, core->resets);
-> +
-> +	/* Disable MVP NoC clock */
-> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
-> +	val |= NOC_HALT;
-> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
-> +
-> +	/* enable MVP NoC reset */
-> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
-> +	val |= SW_RESET;
-> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
-> +
-> +	/* poll AON spare register bit0 to become zero with 50ms timeout */
-> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_SPARE,
-> +				 val, (val & BIT(0)) == 0, 1000, 50000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	/* enable bit(1) to avoid cvp noc xo reset */
-> +	val = readl(core->reg_base + AON_WRAPPER_SPARE);
-> +	val |= BIT(1);
-> +	writel(val, core->reg_base + AON_WRAPPER_SPARE);
-> +
-> +	reset_control_bulk_assert(xo_rst_tbl_size, core->controller_resets);
-> +
-> +	/* De-assert MVP NoC reset */
-> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
-> +	val &= ~SW_RESET;
-> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_SW_RESET);
-> +
-> +	usleep_range(80, 100);
-> +
-> +	reset_control_bulk_deassert(xo_rst_tbl_size, core->controller_resets);
-> +
-> +	/* reset AON spare register */
-> +	writel(0, core->reg_base + AON_WRAPPER_SPARE);
-> +
-> +	/* Enable MVP NoC clock */
-> +	val = readl(core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
-> +	val &= ~NOC_HALT;
-> +	writel(val, core->reg_base + AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL);
-> +
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-> +
-> +disable_power:
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
-> +
-> +	return 0;
-> +}
-> +
-> +static u64 iris_vpu3x_calculate_frequency(struct iris_inst *inst, size_t data_size)
-> +{
-> +	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-> +	struct v4l2_format *inp_f = inst->fmt_src;
-> +	u32 height, width, mbs_per_second, mbpf;
-> +	u64 fw_cycles, fw_vpp_cycles;
-> +	u64 vsp_cycles, vpp_cycles;
-> +	u32 fps = DEFAULT_FPS;
-> +
-> +	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-> +	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-> +
-> +	mbpf = NUM_MBS_PER_FRAME(height, width);
-> +	mbs_per_second = mbpf * fps;
-> +
-> +	fw_cycles = fps * caps->mb_cycles_fw;
-> +	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
-> +
-> +	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
-> +	/* 21 / 20 is minimum overhead factor */
-> +	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
-> +
-> +	/* 1.059 is multi-pipe overhead */
-> +	if (inst->fw_caps[PIPE].value > 1)
-> +		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
-> +
-> +	vsp_cycles = fps * data_size * 8;
-> +	vsp_cycles = div_u64(vsp_cycles, 2);
-> +	/* VSP FW overhead 1.05 */
-> +	vsp_cycles = div_u64(vsp_cycles * 21, 20);
-> +
-> +	if (inst->fw_caps[STAGE].value == STAGE_1)
-> +		vsp_cycles = vsp_cycles * 3;
-> +
-> +	return max3(vpp_cycles, vsp_cycles, fw_cycles);
-> +}
-> +
-> +const struct vpu_ops iris_vpu3_ops = {
-> +	.power_off_hw = iris_vpu3_power_off_hardware,
-> +	.power_off_controller = iris_vpu_power_off_controller,
-> +	.calc_freq = iris_vpu3x_calculate_frequency,
-> +};
-> +
-> +const struct vpu_ops iris_vpu33_ops = {
-> +	.power_off_hw = iris_vpu33_power_off_hardware,
-> +	.power_off_controller = iris_vpu33_power_off_controller,
-> +	.calc_freq = iris_vpu3x_calculate_frequency,
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> index f8965661c602f990d5a7057565f79df4112d097e..4af3cb0d44e00be498fc7ba648c68f1ef2cb0f20 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> @@ -10,6 +10,7 @@ struct iris_core;
->  
->  extern const struct vpu_ops iris_vpu2_ops;
->  extern const struct vpu_ops iris_vpu3_ops;
-> +extern const struct vpu_ops iris_vpu33_ops;
->  
->  struct vpu_ops {
->  	void (*power_off_hw)(struct iris_core *core);
-> @@ -23,6 +24,8 @@ void iris_vpu_clear_interrupt(struct iris_core *core);
->  int iris_vpu_watchdog(struct iris_core *core, u32 intr_status);
->  int iris_vpu_prepare_pc(struct iris_core *core);
->  int iris_vpu_power_on(struct iris_core *core);
-> +void iris_vpu_power_off_controller_begin(struct iris_core *core);
-> +int iris_vpu_power_off_controller_end(struct iris_core *core);
-These are unused, pls remove.
->  int iris_vpu_power_off_controller(struct iris_core *core);
->  void iris_vpu_power_off_hw(struct iris_core *core);
->  void iris_vpu_power_off(struct iris_core *core);
-> 
+> v4->v5:
+> * Collected tags.
+> v3->v4:
+> * No change.
+> v2->v3:
+> * No change.
+> v1->v2:
+> * No change.
+> ---
+>  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 165 +++++++++++++++++++++
+>  1 file changed, 165 insertions(+)
+>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks,
-Dikshita
+Cheers,
+Prabhakar
+
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a09g057.dtsi
+> index 1c550b22b164..0a7d0c801e32 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> @@ -252,6 +252,171 @@ sys: system-controller@10430000 {
+>                         status =3D "disabled";
+>                 };
+>
+> +               dmac0: dma-controller@11400000 {
+> +                       compatible =3D "renesas,r9a09g057-dmac";
+> +                       reg =3D <0 0x11400000 0 0x10000>;
+> +                       interrupts =3D <GIC_SPI 499 IRQ_TYPE_EDGE_RISING>=
+,
+> +                                    <GIC_SPI 89  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 90  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 91  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 92  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 93  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 94  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 95  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 96  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 97  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 98  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 99  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 101 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 103 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 104 IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names =3D "error",
+> +                                         "ch0", "ch1", "ch2", "ch3",
+> +                                         "ch4", "ch5", "ch6", "ch7",
+> +                                         "ch8", "ch9", "ch10", "ch11",
+> +                                         "ch12", "ch13", "ch14", "ch15";
+> +                       clocks =3D <&cpg CPG_MOD 0x0>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg 0x31>;
+> +                       #dma-cells =3D <1>;
+> +                       dma-channels =3D <16>;
+> +                       renesas,icu =3D <&icu 4>;
+> +               };
+> +
+> +               dmac1: dma-controller@14830000 {
+> +                       compatible =3D "renesas,r9a09g057-dmac";
+> +                       reg =3D <0 0x14830000 0 0x10000>;
+> +                       interrupts =3D <GIC_SPI 495 IRQ_TYPE_EDGE_RISING>=
+,
+> +                                    <GIC_SPI 25  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 26  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 27  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 28  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 29  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 30  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 31  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 32  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 33  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 34  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 35  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 36  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 37  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 38  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 39  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 40  IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names =3D "error",
+> +                                         "ch0", "ch1", "ch2", "ch3",
+> +                                         "ch4", "ch5", "ch6", "ch7",
+> +                                         "ch8", "ch9", "ch10", "ch11",
+> +                                         "ch12", "ch13", "ch14", "ch15";
+> +                       clocks =3D <&cpg CPG_MOD 0x1>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg 0x32>;
+> +                       #dma-cells =3D <1>;
+> +                       dma-channels =3D <16>;
+> +                       renesas,icu =3D <&icu 0>;
+> +               };
+> +
+> +               dmac2: dma-controller@14840000 {
+> +                       compatible =3D "renesas,r9a09g057-dmac";
+> +                       reg =3D <0 0x14840000 0 0x10000>;
+> +                       interrupts =3D <GIC_SPI 496 IRQ_TYPE_EDGE_RISING>=
+,
+> +                                    <GIC_SPI 41  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 42  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 43  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 44  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 45  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 46  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 47  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 48  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 49  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 50  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 51  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 52  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 53  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 54  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 55  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 56  IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names =3D "error",
+> +                                         "ch0", "ch1", "ch2", "ch3",
+> +                                         "ch4", "ch5", "ch6", "ch7",
+> +                                         "ch8", "ch9", "ch10", "ch11",
+> +                                         "ch12", "ch13", "ch14", "ch15";
+> +                       clocks =3D <&cpg CPG_MOD 0x2>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg 0x33>;
+> +                       #dma-cells =3D <1>;
+> +                       dma-channels =3D <16>;
+> +                       renesas,icu =3D <&icu 1>;
+> +               };
+> +
+> +               dmac3: dma-controller@12000000 {
+> +                       compatible =3D "renesas,r9a09g057-dmac";
+> +                       reg =3D <0 0x12000000 0 0x10000>;
+> +                       interrupts =3D <GIC_SPI 497 IRQ_TYPE_EDGE_RISING>=
+,
+> +                                    <GIC_SPI 57  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 58  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 59  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 60  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 61  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 62  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 63  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 64  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 65  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 66  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 67  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 68  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 69  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 70  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 71  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 72  IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names =3D "error",
+> +                                         "ch0", "ch1", "ch2", "ch3",
+> +                                         "ch4", "ch5", "ch6", "ch7",
+> +                                         "ch8", "ch9", "ch10", "ch11",
+> +                                         "ch12", "ch13", "ch14", "ch15";
+> +                       clocks =3D <&cpg CPG_MOD 0x3>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg 0x34>;
+> +                       #dma-cells =3D <1>;
+> +                       dma-channels =3D <16>;
+> +                       renesas,icu =3D <&icu 2>;
+> +               };
+> +
+> +               dmac4: dma-controller@12010000 {
+> +                       compatible =3D "renesas,r9a09g057-dmac";
+> +                       reg =3D <0 0x12010000 0 0x10000>;
+> +                       interrupts =3D <GIC_SPI 498 IRQ_TYPE_EDGE_RISING>=
+,
+> +                                    <GIC_SPI 73  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 74  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 75  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 76  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 77  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 78  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 79  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 80  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 81  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 82  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 83  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 84  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 85  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 86  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 87  IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 88  IRQ_TYPE_EDGE_RISING>;
+> +                       interrupt-names =3D "error",
+> +                                         "ch0", "ch1", "ch2", "ch3",
+> +                                         "ch4", "ch5", "ch6", "ch7",
+> +                                         "ch8", "ch9", "ch10", "ch11",
+> +                                         "ch12", "ch13", "ch14", "ch15";
+> +                       clocks =3D <&cpg CPG_MOD 0x4>;
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg 0x35>;
+> +                       #dma-cells =3D <1>;
+> +                       dma-channels =3D <16>;
+> +                       renesas,icu =3D <&icu 3>;
+> +               };
+> +
+>                 ostm0: timer@11800000 {
+>                         compatible =3D "renesas,r9a09g057-ostm", "renesas=
+,ostm";
+>                         reg =3D <0x0 0x11800000 0x0 0x1000>;
+> --
+> 2.34.1
+>
+>
 
