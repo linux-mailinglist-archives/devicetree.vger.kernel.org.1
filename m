@@ -1,48 +1,64 @@
-Return-Path: <devicetree+bounces-164639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401A7A81D2A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:38:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F215A81D3C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 08:41:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E1E23B5AF6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:38:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A06E61B67EA5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 06:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 564391DE4C9;
-	Wed,  9 Apr 2025 06:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36F71E22E6;
+	Wed,  9 Apr 2025 06:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YKpQNYmU"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="c06qeGdB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B911990CD;
-	Wed,  9 Apr 2025 06:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34821E1A08
+	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 06:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744180700; cv=none; b=VvIEaRqiHwwMk6W5iz3GMPoRhJHmeQlyBbiClS904j835EDRjx9pbKxAvQU6pgYgY6df03MNd5rLeoAsfpKuPm+ho/2ZCEnf+5Exj9tAvxhlibtenB37okXLb92pI0fY8JzmMWsdyWFcKZuDhcBJ6z07rwV4TDeV0DDmgqxZdKI=
+	t=1744180839; cv=none; b=fP1mxO2BZH2XngT/GT1iC+24Sgy9Fy2cJgtlGrqJS6qK6NdBTqqR5lHrerjh58rChRaIzgJSU6dLUlRrAjeHWbFkIIVVxSuj2zEAQOwAqk3eR7v9cRFztlGGKZnUL2aIa+43+mjZQjTDYx3U1xACQsl9L8gac3GAXS4iF1XfgPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744180700; c=relaxed/simple;
-	bh=9+tBm/sG20Wjw/tQDz5/ACUURCsiLW6CBMvFOEGfsG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=F8e1cyNT32lE4rboq31UhlopJSYlMnGbh869HesBWfil6+mgVp/moVs9iW7RfY3+xImKPh1LPBV1kUGcITTXfjezppcqVrHwxkgRueYFmCccT77LNouatgA08kU8+dRLdSkfRmTSpiBKmgDLuOKkArhKOayZLB6EMBmvXuBLTtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YKpQNYmU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A33C4CEE3;
-	Wed,  9 Apr 2025 06:38:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744180699;
-	bh=9+tBm/sG20Wjw/tQDz5/ACUURCsiLW6CBMvFOEGfsG0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=YKpQNYmUWmWb6hflGaEH/iXgMgky7/4CLLVLaERkJNzFKokSkxdePTDsa93fJcbZ9
-	 BnzSGN4yXxxOlmOcZo1ng3oOwQxgP3bhsjE3SOIUi7jQWgyO40/bhBFur8g3O/21Ng
-	 UpwjV91mIp/s7qHdwf/+uVdHKcbCUUhZ+EKKNN0powrEDIerxaUpgjJewnbkeC8MpF
-	 Wayj5BQK0V4o5MPBmg2/l0X6TCtlh/0uAEu6K4Xla/jVFGjTGa1OmNPSwxPS0SX860
-	 bfIzRVsAdlIsXgALq5lHyF/OXrMwHxPzPIgj8ISAfv0JLz3w/pT6vGylaTjoOX6RcS
-	 N5spu4obqgmjQ==
-Message-ID: <24d1c5d9-0eeb-4f59-86bd-cd3690145981@kernel.org>
-Date: Wed, 9 Apr 2025 08:38:14 +0200
+	s=arc-20240116; t=1744180839; c=relaxed/simple;
+	bh=fCEfYtmFH6rGKcVieG+9qEMAsfW+dbKvw5cxExd42eg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f7m2oS7tRJGSpCDqDkt1rhVwcmj42ruiNXpOvDvhivDENLqeAZ6JE8n38HRy2VVqtZjqjV+4Wd5J9T8YePtLR6/9aUqDu1TwCJlRdsPdVtyGe2lMS5aDmFBHUVlpBXBaCTNz4tUVgQ2248nh3qEWeYFZWIA6n7N766Iq7Gt8wDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=c06qeGdB; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744180836;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=lEq+Iv/LM2UETreZmi3CwTkcO/puV6AGdcdNXTDUug0=;
+	b=c06qeGdBPlBvZ1Iri+c/wU3rOzj4nuYpAH93ERts/t0VmVy8Q/0ccFTb/0ejpHGdFUsNiL
+	EccPlNIO4BOQGyZ3AxL+Ck55aPO7CzuRw+55xE3YHI5yymA/EHRz90lLtnxBYRMAwE/RIO
+	A3CtN6PKpDcOIdQ5yOt3IPqPmnqDAVE=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-617-eJ9JksEPPwCt0cKWPUl8aA-1; Wed,
+ 09 Apr 2025 02:40:30 -0400
+X-MC-Unique: eJ9JksEPPwCt0cKWPUl8aA-1
+X-Mimecast-MFC-AGG-ID: eJ9JksEPPwCt0cKWPUl8aA_1744180829
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 8C0BD1800EC5;
+	Wed,  9 Apr 2025 06:40:28 +0000 (UTC)
+Received: from [10.44.32.72] (unknown [10.44.32.72])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 1AB613001D0F;
+	Wed,  9 Apr 2025 06:40:23 +0000 (UTC)
+Message-ID: <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
+Date: Wed, 9 Apr 2025 08:40:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,125 +66,343 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] ASoC: renesas: add MSIOF sound support
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
-References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
- <87wmbu9may.wl-kuninori.morimoto.gx@renesas.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
+To: Andy Shevchenko <andy@kernel.org>
+Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407172836.1009461-2-ivecera@redhat.com>
+ <Z_QTzwXvxcSh53Cq@smile.fi.intel.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <87wmbu9may.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <Z_QTzwXvxcSh53Cq@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On 09/04/2025 03:05, Kuninori Morimoto wrote:
-> +	priv->base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	ret = devm_request_irq(dev, irq, msiof_interrupt, 0, dev_name(dev), priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->dev	= dev;
-> +	priv->phy_addr	= res->start;
-> +
-> +	spin_lock_init(&priv->lock);
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	devm_pm_runtime_enable(dev);
-> +
-> +	ret = devm_snd_soc_register_component(dev, &msiof_component_driver,
-> +					      &msiof_dai_driver, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(dev, "probed\n");
+On 07. 04. 25 8:05 odp., Andy Shevchenko wrote:
+> On Mon, Apr 07, 2025 at 07:28:28PM +0200, Ivan Vecera wrote:
+>> This adds base MFD driver for Microchip Azurite ZL3073x chip family.
+>> These chips provide DPLL and PHC (PTP) functionality and they can
+>> be connected over I2C or SPI bus.
+>>
+>> The MFD driver provide basic communication and synchronization
+>> over the bus and common functionality that are used by the DPLL
+>> driver (later in this series) and by the PTP driver (will be
+>> added later).
+>>
+>> The chip family is characterized by following properties:
+>> * 2 separate DPLL units (channels)
+>> * 5 synthesizers
+>> * 10 input pins (references)
+>> * 10 outputs
+>> * 20 output pins (output pin pair shares one output)
+>> * Each reference and output can act in differential or single-ended
+>>    mode (reference or output in differential mode consumes 2 pins)
+>> * Each output is connected to one of the synthesizers
+>> * Each synthesizer is driven by one of the DPLL unit
+> .
+> The comments below are applicable to entire series, take your time and fix
+> *all* stylic and header issues before sending v2.
+> 
+> ...
+> 
+> + array_size.h
+> + bits.h
+> 
+> + device/devres.h
+> 
+>> +#include <linux/module.h>
+> 
+> This file uses *much* amore than that.
+> 
+> + regmap.h
+> 
+> 
+>> +#include "zl3073x.h"
+> 
+> ...
+> 
 
-Drop. Driver should be silent on success and simple success messages are
-useless. Core already gives you information that probe succeeded.
+Will fix in the next series.
 
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id msiof_of_match[] = {
-> +	{ .compatible = "renesas,rcar-gen4-msiof", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, msiof_of_match);
-> +
-> +static struct platform_driver msiof_driver = {
-> +	.driver 	= {
-> +		.name	= "msiof-pcm-audio",
-> +		.of_match_table = msiof_of_match,
-> +	},
-> +	.probe		= msiof_probe,
-> +};
-> +module_platform_driver(msiof_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("Renesas R-Car MSIOF I2S audio driver");
-> +MODULE_AUTHOR("Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>");
-> +MODULE_ALIAS("platform:msiof-pcm-audio");
+>> +/*
+>> + * Regmap ranges
+>> + */
+>> +#define ZL3073x_PAGE_SIZE	128
+>> +#define ZL3073x_NUM_PAGES	16
+>> +#define ZL3073x_PAGE_SEL	0x7F
+>> +
+>> +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
+>> +	{
+>> +		.range_min	= 0,
+> 
+> Are you sure you get the idea of virtual address pages here?
 
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
+What is wrong here?
 
+I have a device that uses 7-bit addresses and have 16 register pages.
+Each pages is from 0x00-0x7f and register 0x7f is used as page selector 
+where bits 0-3 select the page.
 
+>> +		.range_max	= ZL3073x_NUM_PAGES * ZL3073x_PAGE_SIZE,
+>> +		.selector_reg	= ZL3073x_PAGE_SEL,
+>> +		.selector_mask	= GENMASK(3, 0),
+>> +		.selector_shift	= 0,
+>> +		.window_start	= 0,
+>> +		.window_len	= ZL3073x_PAGE_SIZE,
+>> +	},
+>> +};
+> 
+> ...
+> 
+>> +struct zl3073x_dev *zl3073x_dev_alloc(struct device *dev)
+>> +{
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	return devm_kzalloc(dev, sizeof(*zldev), GFP_KERNEL);
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
+>> +
+>> +int zl3073x_dev_init(struct zl3073x_dev *zldev)
+>> +{
+>> +	devm_mutex_init(zldev->dev, &zldev->lock);
+> 
+> Missing check.
 
+Will fix.
 
-Best regards,
-Krzysztof
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_init, "ZL3073X");
+>> +
+>> +void zl3073x_dev_exit(struct zl3073x_dev *zldev)
+>> +{
+>> +}
+>> +EXPORT_SYMBOL_NS_GPL(zl3073x_dev_exit, "ZL3073X");
+> 
+> What's the point in these stubs?
+
+This function is used and filled later. I will drop it here and 
+introduce when it will be necessary.
+
+>> +#include <linux/i2c.h>
+> 
+>> +#include <linux/kernel.h>
+> 
+> No usual driver should include kernel.h, please follow IWYU principle.
+
+Will follow IWYU in v2.
+
+>> +#include <linux/module.h>
+> 
+> Again, this is just a random list of headers, see above and follow the IWYU
+> principle.
+
+Ditto.
+
+>> +#include "zl3073x.h"
+> 
+> ...
+> 
+>> +static const struct i2c_device_id zl3073x_i2c_id[] = {
+>> +	{ "zl3073x-i2c", },
+> 
+> Redundant inner comma.
+
+Ack
+
+>> +	{ /* sentinel */ },
+> 
+> No comma for the sentinel.
+> 
+>> +};
+
+Ack
+
+>> +static const struct of_device_id zl3073x_i2c_of_match[] = {
+>> +	{ .compatible = "microchip,zl3073x-i2c" },
+>> +	{ /* sentinel */ },
+
+Ack
+
+>> +};
+> 
+>> +static int zl3073x_i2c_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	const struct i2c_device_id *id;
+>> +	struct zl3073x_dev *zldev;
+> 
+>> +	int rc = 0;
+> 
+> Useless assignment.
+
+Sorry for that, it was originally necessary.
+Will drop.
+
+>> +	zldev = zl3073x_dev_alloc(dev);
+>> +	if (!zldev)
+>> +		return -ENOMEM;
+>> +
+>> +	id = i2c_client_get_device_id(client);
+>> +	zldev->dev = dev;
+>> +
+>> +	zldev->regmap = devm_regmap_init_i2c(client,
+>> +					     zl3073x_get_regmap_config());
+> 
+> It's perfectly a single line.
+
+I tried to follow strictly 80 chars/line. Will fix.
+
+>> +	if (IS_ERR(zldev->regmap)) {
+>> +		rc = PTR_ERR(zldev->regmap);
+>> +		dev_err(dev, "Failed to allocate register map: %d\n", rc);
+>> +		return rc;
+> 
+> 		return dev_err_probe(...);
+
+Will change.
+
+>> +	}
+>> +
+>> +	i2c_set_clientdata(client, zldev);
+>> +
+>> +	return zl3073x_dev_init(zldev);
+>> +}
+> 
+> ...
+> 
+>> +static void zl3073x_i2c_remove(struct i2c_client *client)
+>> +{
+> 
+>> +	struct zl3073x_dev *zldev;
+>> +
+>> +	zldev = i2c_get_clientdata(client);
+> 
+> Just make it one line definition + assignment.
+
+Ack
+
+>> +	zl3073x_dev_exit(zldev);
+> 
+> This is a red flag and because you haven't properly named the calls (i.e. devm
+> to show that they are only for probe stage and use managed resources) this is
+> not easy to catch.
+
+Will rename zl3073x_dev_alloc() to zl3073x_devm_alloc() to indicate that 
+devres is used... Probably will drop zl3073x_dev_exit() entirely and 
+take care of devlink unregistration by devres way.
+
+>> +}
+>> +
+>> +static struct i2c_driver zl3073x_i2c_driver = {
+>> +	.driver = {
+>> +		.name = "zl3073x-i2c",
+>> +		.of_match_table = of_match_ptr(zl3073x_i2c_of_match),
+> 
+> Please, never use of_match_ptr() or ACPI_PTR() in a new code.
+
+Ack
+
+>> +	},
+>> +	.probe = zl3073x_i2c_probe,
+>> +	.remove = zl3073x_i2c_remove,
+>> +	.id_table = zl3073x_i2c_id,
+>> +};
+> 
+>> +
+> 
+> Redundant blank line.
+> 
+>> +module_i2c_driver(zl3073x_i2c_driver);
+> 
+> ...
+> 
+>> +#include <linux/kernel.h>
+> 
+> Just no. You should know what you are doing in the driver.
+
+Will fix.
+
+>> +#include <linux/module.h>
+> 
+>> +#include <linux/of.h>
+
+Ack
+
+>> +#include <linux/spi/spi.h>
+>> +#include "zl3073x.h"
+> 
+> ...
+> 
+>> +static const struct spi_device_id zl3073x_spi_id[] = {
+>> +	{ "zl3073x-spi", },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(spi, zl3073x_spi_id);
+>> +
+>> +static const struct of_device_id zl3073x_spi_of_match[] = {
+>> +	{ .compatible = "microchip,zl3073x-spi" },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, zl3073x_spi_of_match);
+> 
+> Move the above closer to its user.
+
+Ack
+
+>> +static int zl3073x_spi_probe(struct spi_device *spidev)
+> 
+> Usual name is spi for the above, it's shorter and allows to tidy up the code.
+> 
+> And below same comments as for i2c part of the driver.
+
+OK, will fix.
+
+>> +#ifndef __ZL3073X_CORE_H
+>> +#define __ZL3073X_CORE_H
+> 
+>> +#include <linux/mfd/zl3073x.h>
+> 
+> How is it used here, please?
+
+Will change to forward declaration.
+
+>> +struct zl3073x_dev *zl3073x_dev_alloc(struct device *dev);
+>> +int zl3073x_dev_init(struct zl3073x_dev *zldev);
+>> +void zl3073x_dev_exit(struct zl3073x_dev *zldev);
+>> +const struct regmap_config *zl3073x_get_regmap_config(void);
+>> +
+>> +#endif /* __ZL3073X_CORE_H */
+> 
+> ...
+> 
+>> +#ifndef __LINUX_MFD_ZL3073X_H
+>> +#define __LINUX_MFD_ZL3073X_H
+> 
+>> +#include <linux/device.h>
+>> +#include <linux/regmap.h>
+> 
+> Ditto. Two unused headers and one which must be included is missed.
+
+The same, forward declaration and inclusion of <linux/mutex.h>
+
+>> +struct zl3073x_dev {
+>> +	struct device		*dev;
+>> +	struct regmap		*regmap;
+>> +	struct mutex		lock;
+>> +};
+
+Thank you Andy for the review.
+
+I.
+
 
