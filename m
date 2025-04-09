@@ -1,137 +1,117 @@
-Return-Path: <devicetree+bounces-164895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E6DA82B07
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:49:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA654A82B28
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 17:51:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE2A19E18D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:43:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 798CC7B5867
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 15:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5051F267B96;
-	Wed,  9 Apr 2025 15:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9341B27700E;
+	Wed,  9 Apr 2025 15:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rtQKUrHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52817A319;
-	Wed,  9 Apr 2025 15:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE5E277007;
+	Wed,  9 Apr 2025 15:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744213406; cv=none; b=rxgMlwb3mpJUmn2rG9GEzwdtrRdk2fLnLAsoSaTKSfvCBMSG8jFRDTvZZeh+9LZaEhhIkFqSHo2nBB4DpWsdT79wZqv6+lVBVVthQY46m1I+b2XQQiT6O08WtjUq0xWBbetH3yJZrbt4o6KpNqfnj2BWwmbRZP8Pr8SI5O5CGL8=
+	t=1744213571; cv=none; b=EDOQCCjOAchZJGfDheDbka07jGSwonw78PBGNw1XclG90Vm5KHKa7ZtW7dV3RBFp+cwy3QybEj3s0KrxSRWr2LKgse4rU4jXHVDT9jFr2eayEfElz2t6Bx1aoAoXDJMxvagSXyjWwIwlBq5JWKZHw9F8hXlXtKLJF9iRtXvdLDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744213406; c=relaxed/simple;
-	bh=y9uebcKW8YvKkKHt4Ltu6yUEyYoT0rCBCLeMKwit3eM=;
+	s=arc-20240116; t=1744213571; c=relaxed/simple;
+	bh=vMJrlyFnjoqqmGoioQWBvWZ1yISZadfrxOaMgELN/sE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e1LHJc0mICJSmKfo4rRy03rLUeDkSCraxXHHSCDrZ293tWHedFgMcyStL98ZAr1XpVCSX/QPSt/Ov46Qt2PSBOkIQFS/nWoL68SCmfVPGRv7P+FPCEw+2AhhnO0kPr/EqQujgtrHIDDmspd6fKLzXf/VovaxXCGR21W46AqYoGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: z09WTXwoSD6gInyYwOsg3w==
-X-CSE-MsgGUID: qBZiBJvZShqOzDg+fyM8rg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="56330918"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="56330918"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:43:23 -0700
-X-CSE-ConnectionGUID: jBz6NS4OR62aMwAXaezCtA==
-X-CSE-MsgGUID: Ckj9YI5xSyu3GY5GKOussQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; 
-   d="scan'208";a="128540658"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Apr 2025 08:43:19 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1u2Xa8-0000000AmY0-3UpM;
-	Wed, 09 Apr 2025 18:43:16 +0300
-Date: Wed, 9 Apr 2025 18:43:16 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=nsK1BrqeI5d/T4yg4AiL1WSlqbYjtMus7TXNVhmfE57khNYbJsTWiVPsI3pLNjvgIZows6lG3sKgS79j9VMZWyZbiwKNtA95pvnNq18tEccHYfY2LmlDTvQzw7lmDn83+zzTz+hYSCB3wN8x8N5AeDAtixR47pVj3Mxt+CGKewY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rtQKUrHW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF76C4CEE7;
+	Wed,  9 Apr 2025 15:46:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744213571;
+	bh=vMJrlyFnjoqqmGoioQWBvWZ1yISZadfrxOaMgELN/sE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rtQKUrHWrZ2FSeQYFkcEV4CGuq/CYzfyJgUtdMPvbSuuWopwf18CFbnX6iiaeMC+F
+	 SX/zNt1LEM80SCx3aq2OE8R9y+R6anoOpS3vpbYdQcVoW7oRu+reD/2pUpsWUXo2LR
+	 iCNE/gJmyvbvpkBW3o8+fGMIN9doH3mbJkgubJfSbf9sihVaNJE5R2lRdFDJk/bQwh
+	 MQXZPzonSVoU/v1zZDgYhGw7x42Hf07pRQrnnCSyeGRoaEdCpuUeV/qF2TghtkCWC8
+	 4aGkvZdEAZS4cOF208CY3JI6qzFcetbedt1cU4pFYcr/5xi338lNywdl8V2azguFyh
+	 9cbiNbA405jCw==
+Date: Wed, 9 Apr 2025 16:46:04 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 03/14] mfd: Add Microchip ZL3073x support
-Message-ID: <Z_aVlIiT07ZDE2Kf@smile.fi.intel.com>
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-4-ivecera@redhat.com>
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
+Message-ID: <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
+ <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
+ <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cQn7E9YAulFrDkPz"
+Content-Disposition: inline
+In-Reply-To: <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
+X-Cookie: Words must be weighed, not counted.
+
+
+--cQn7E9YAulFrDkPz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250409144250.206590-4-ivecera@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Apr 09, 2025 at 04:42:39PM +0200, Ivan Vecera wrote:
-> Add base MFD driver for Microchip Azurite ZL3073x chip family.
-> These chips provide DPLL and PHC (PTP) functionality and they can
-> be connected over I2C or SPI bus.
-> 
-> The MFD driver provide basic communication and synchronization
-> over the bus and common functionality that are used by the DPLL
-> driver (later in this series) and by the PTP driver (will be
-> added later).
-> 
-> The chip family is characterized by following properties:
-> * 2 separate DPLL units (channels)
-> * 5 synthesizers
-> * 10 input pins (references)
-> * 10 outputs
-> * 20 output pins (output pin pair shares one output)
-> * Each reference and output can act in differential or single-ended
->   mode (reference or output in differential mode consumes 2 pins)
-> * Each output is connected to one of the synthesizers
-> * Each synthesizer is driven by one of the DPLL unit
+On Wed, Apr 09, 2025 at 06:38:32PM +0300, Andy Shevchenko wrote:
+> On Wed, Apr 09, 2025 at 04:19:27PM +0100, Mark Brown wrote:
 
-...
+> > BUG() can be compiled out, CONFIG_BUG.
 
-> +/*
-> + * Regmap ranges
-> + */
-> +#define ZL3073x_PAGE_SIZE	128
-> +#define ZL3073x_NUM_PAGES	16
-> +#define ZL3073x_PAGE_SEL	0x7F
-> +
-> +/*
-> + * Regmap range configuration
-> + *
-> + * The device uses 7-bit addressing and has 16 register pages with
-> + * range 0x00-0x7f. The register 0x7f in each page acts as page
-> + * selector where bits 0-3 contains currently selected page.
-> + */
-> +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
-> +	{
-> +		.range_min	= 0,
+> Yes, and it's still has unreachable() there. So, this change is correct.
+> See include/asm-generic/bug.h for the details of the implementation.
+> And yes, if we have an architecture that does not do this way, it has to
+> be fixed.
 
-This still has the same issue, you haven't given a chance to me to reply
-in v1 thread. I'm not going to review this as it's not settled down yet.
-Let's first discuss the questions you have in v1.
+unreachable() just annotates things, AFAICT it doesn't actually
+guarantee to do anything in particular if the annotation turns out to be
+incorrect.
 
-> +		.range_max	= ZL3073x_NUM_PAGES * ZL3073x_PAGE_SIZE,
-> +		.selector_reg	= ZL3073x_PAGE_SEL,
-> +		.selector_mask	= GENMASK(3, 0),
-> +		.selector_shift	= 0,
-> +		.window_start	= 0,
-> +		.window_len	= ZL3073x_PAGE_SIZE,
-> +	},
-> +};
+--cQn7E9YAulFrDkPz
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
 
+iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmf2ljsACgkQJNaLcl1U
+h9BlaQf4gUpWNlETPHRZXjDQr/n4EFgXaLshmryE1reYNw7Jh07SJCohl7snptEs
+IRVt9+5+nNGtISlJs4QXa6Hkqr/ytOpw5rXRmTSBkKhhbvdStUJkUv9X7jkQiNy/
+1zhBb6ShA8nqUjHnZRhvjEO6JGKp4Cu1Iugs8pUjEfkDwLqU6NCq3yxqqqGnhGAY
+/t7uOcrizg3jQtZYzmaXjZZYGv4yKaujcVEffu2QyhtF5ulLGwNm9hYz7x5ZHLBq
+zJllpNQrrQp/6/GFZw/FY4J/8Xam5xUPHuxCe2ibHn0Xq1ym/JobQc2BjihrwKT+
+xQwyPXj7Kb9z78qnphRGjcRw4Oeo
+=pR1K
+-----END PGP SIGNATURE-----
 
+--cQn7E9YAulFrDkPz--
 
