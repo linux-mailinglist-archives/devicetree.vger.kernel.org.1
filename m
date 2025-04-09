@@ -1,198 +1,292 @@
-Return-Path: <devicetree+bounces-164681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5633A81EAB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:52:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE34A81EAC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD81E1BA256D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:53:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B10C01BA2625
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582B31DF270;
-	Wed,  9 Apr 2025 07:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA3025522C;
+	Wed,  9 Apr 2025 07:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sU9G9DO/"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="UpABxwYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazolkn19010001.outbound.protection.outlook.com [52.103.67.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25189259C;
-	Wed,  9 Apr 2025 07:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744185173; cv=none; b=QIx1xgzKQDoswznqvduArCQz04e2KtsYMi0TZpV1lkZo0n9WJnEYDRyBftdCB6AxNalAT7X17EXZ4ndgBU08C3EVq1jwJ0c89RfEuY8SWUrAHgy93DdSXk9/WmzlAIsJ6xmVFXesg8Glg0mst3/EWRtHIncABmxxh3/2ZQVGGY4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744185173; c=relaxed/simple;
-	bh=XjAKn4aDznWhBOaqEoB9bXhZFVhxOdYJJPaXIpo77zM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pf2davA4MmUJq3Log0On81MAjTyuFbIcOgqqbm/ffiEZRipR4tCtsbXCWIBvkm3aR6l2EhPAo52c3onBqFrx6GxswVxihwToR7Npvn4DDNoYLMTOP3oO6AUvde8zkfoLMrTjMNdetQw3Pf1pqm2/18IWBZvY2dAH4g3oRPaK7zI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sU9G9DO/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE36C4CEE3;
-	Wed,  9 Apr 2025 07:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744185172;
-	bh=XjAKn4aDznWhBOaqEoB9bXhZFVhxOdYJJPaXIpo77zM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sU9G9DO/fROyMfqlpzDHMTPzJtcZtuh73c4/hx6JY4ntTgETXl5pVnYebOrdn0Iz6
-	 WBo8htxQ73LcrAOWbQ/0dEFhb+EFWDab7zuEe6M7PAzRohgB1BCUwxMusSVHdFkzxt
-	 DykxPGdgngfGNEk5IOl7Br2OoRIcN66WZqE2rU7glaGfz7AB03oph6JZ3LJkla9XzV
-	 b04VY+KYo3oRYkMW9ST1cazdrbmvXu9yXEyHkG3VTfeO5KTsFEzHqItQLYXF6EchQo
-	 RdNrnK4dOFw9VCqFZrAf11I1J4YsWiiDD2u3KIhkngnJBJB1oUefDeebX9FlFMphvq
-	 Pb6EinzZNbc+w==
-Date: Wed, 9 Apr 2025 09:52:49 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH 5/7] ASoC: renesas: add MSIOF sound Documentation
-Message-ID: <20250409-functional-cheetah-of-honor-b9d9cf@shite>
-References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
- <87y0wa9mb2.wl-kuninori.morimoto.gx@renesas.com>
- <bd15c145-c175-468d-a1ac-1ad157358aea@kernel.org>
- <CAMuHMdUiO2mVzYn4PGZwUat6W_0JQjD3be7X6ThzK7vcPisKEg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD07C259C;
+	Wed,  9 Apr 2025 07:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744185196; cv=fail; b=k5/5xzoqtEDKHprTSdSexwrEDRrCUezU9k7svsNQebHfcwZ7cec6MKRY2FERft8GL+HuZLIytNJMhjsSjE93eodx+P3q4qltlEjWgSkOeyD7mnYFqMcsG5kOAzEpmdV5pwj2CVST6qFyE1Tov8WLwtRF1wmvkZYRhyjm/8+70y0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744185196; c=relaxed/simple;
+	bh=S+3r1qI2eZvbj55yoZzbrZJs4h6lfZ8cu1M4OSoLkw8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=d7aY6nZwX3kcjiBA7tsBle9vj28De1KpXQv0XZilnaO5d2j+exd0I/V2aujPBoph3wP+wWWD0EOcZzGb6YcqHM0w7MGszWTGaGta3oraV6mYbrWVFcpWrmpbGeAQAsQ51mHh88xeY87Y4Ee8eeMwzIe0uCC8d2FuqqM+6kcQCBk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=UpABxwYH; arc=fail smtp.client-ip=52.103.67.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VB9LcP5XpmOignbmPFi/fj/yIIlMoyo6BiJ9b2gqPOPuthLiEUpEcWMsINdvq7uKUG86ls6+OgZcohnPSW3k5X05YkqNekXv0NUyWKtVLVpFdlc6ZMrt5yJpteGHZCfgpNiDrP5zjYQowjHltAyHqx6LC6UBU95780hnD8ZXZqqH4fUBpt8Ct1NOK9trcgYghMLP8GTZYvkBNQ0KkvaKyUNVDMPeIlZE/mSgDTM6ocbJkHbtFGP2yEWpWDclcX8LKdlveuXs3QTqTw210V5bKRVOGMVUJHZMxSgfPGy99HKLLMNDL1QseL4HIjAsn6YJu+2ippXG5dSpOs9LPwHB+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=S8WI02dU1lX+fdLMw4IJff9BUKwtg7EwsfLv5tIFivk=;
+ b=ZrS4t/S3hLrERA+eRUKk8CGgv+5hD8Nq0CXqCmo0uQkCX0Q7R2r5L9ZVJXD3eN40zMJewQCrGQ2xAeuocpqfnIyh09Zp2izZiQgQZ8Ot4F25TO3qZJiDxFNierkbMD/ZUqAwdN3uAGOs+h9vVk8DdSbYNqGrd8VrsD5jxYkVBWrftTkkULgwG8qBZapUr386yNzO6w0qXulxBdtbGs8BUDgFhlQ/nnc/m3dyN/prnSVj0q7ZWBxu/fexISPy4Hb9oPO1K0nL9THALQLEGnuiAultNFCWv9mbz8RCmGMek1CfNm2c4wwVmW6z6EA7njptNEgaFGLtutjKiyXjp8CAHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S8WI02dU1lX+fdLMw4IJff9BUKwtg7EwsfLv5tIFivk=;
+ b=UpABxwYHN37PW9KgwlQCT37gpzJvrVO1ErqhKR1PlNS7nSny8tQ4hJScAc3s3hAQrGPAH375lvsZaiLZ80nZT7ynHtowV4OMbEttwIeMWGhwCVafG0UO0nj6DEYOYncdvEvWsEBfkB0ELjCvygh0sQqtfd5OO/CMeLKRSWwx18oYfQsf2yMvhbrrdSSsZpSgBY+S6XmmWmPc8niTL5TV+rJ6IoDCbOB/hXI3idrUTDQqCFFu5IFFsPD765WRfXCftzi9D6z7puMXpTdpedeiOkZ7zj0yFQXdbuGgANL0tEXHT72JJC4hbZvCR+gDMGbfK11xgLG7QNFPuspMX9iVaQ==
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
+ by PN3P287MB1749.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:19c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Wed, 9 Apr
+ 2025 07:53:08 +0000
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4]) by MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4%5]) with mapi id 15.20.8606.033; Wed, 9 Apr 2025
+ 07:53:08 +0000
+Message-ID:
+ <MA0P287MB2262DBC84878347B78CA50ECFEB42@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 9 Apr 2025 15:53:04 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] irqchip/sg2042-msi: Add the Sophgo SG2044 MSI
+ interrupt controller
+To: Inochi Amaoto <inochiama@gmail.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
+ Longbin Li <looong.bin@gmail.com>
+References: <20250408050147.774987-1-inochiama@gmail.com>
+ <20250408050147.774987-5-inochiama@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20250408050147.774987-5-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SGBP274CA0015.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::27)
+ To MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
+X-Microsoft-Original-Message-ID:
+ <b3ac6688-6a50-41a1-95d3-161012fd18f5@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUiO2mVzYn4PGZwUat6W_0JQjD3be7X6ThzK7vcPisKEg@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2262:EE_|PN3P287MB1749:EE_
+X-MS-Office365-Filtering-Correlation-Id: 327850b9-af56-4884-6a77-08dd773b9144
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|461199028|6090799003|7092599003|5072599009|15080799006|19110799003|3412199025|440099028|41001999003|19111999003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?alNXeERUQXZPeVdnYTg2Z1MzVUVEdzcwMWxWalE4T0M0RU5qQVlCc2VkQ0x1?=
+ =?utf-8?B?b2lGN2hhcDZTWHlEQitDcGJmTDN4d3Q5N1JOQWtWWjBKaTMvRzJHWncxd0U0?=
+ =?utf-8?B?YjM3Uzh3T1djN0VKQnNqcTRnZVg0akhLeC9rVnZONndHVjFJYi9iMkF1MWs4?=
+ =?utf-8?B?SmxiN3FjSG9BdmlxdktvUS9OdGhsKzQ0aUZvS3hwS041WEZNN2l6eDRla3dm?=
+ =?utf-8?B?V2xBZFJzZ1pBcCs1aGNHaVRlbDhvYmk3VExMcCtSQmh0VjRCN0JoMmFsTytK?=
+ =?utf-8?B?NG1ZbnloeFNSbkpwbkxMamo4SFNoNlgyL1FYOHRVTE91STZVU2t3R3NVUDVV?=
+ =?utf-8?B?ZTJRdGkzUTRpa2QxWEVFUURWVmZaNmI5SlhHNDR4aXRDOXJqbjg4cHJpcXNw?=
+ =?utf-8?B?RnhzdVJmblRqTDdiQkU4TkRNTmRIeG1CMml2YWVmK3NrNXY2Tm9oMUJ3bm1N?=
+ =?utf-8?B?am1xWGtTem5lNSswMUh1SFZmT1dmeWJtT1ZpUENoKzh5RktVa2VMR2N6MEZl?=
+ =?utf-8?B?dGM1NHp5K2ZQL1RCNHZKVEpKSE12RlMwd1ZtYkJyd21vY2VhRkdOdGFTWGN1?=
+ =?utf-8?B?anJKaXBMeGFianh3OTNib1JHbmQ4MFVnUEhsTWE0WkVpRDRaUlFvMWJJKzZM?=
+ =?utf-8?B?YnVyb1A2QTE1SVRlOUJRYmFDT1N4bm9XVUVCOGN1NU1tdTBjSTNVK0szcXl1?=
+ =?utf-8?B?SGpmblFQbGQyUTJkRjVyRXVPQ0lHMTlNNDJ1OHVrWDBGMmRSVkdWRlRkSFVW?=
+ =?utf-8?B?U0xnNDlQNWFBdGlPSkpWcXR4WFVBc1Zqazg0RTZjNEw2WU1ocjFBR01NcmNh?=
+ =?utf-8?B?bE5LWEdYNXcrQ2x1eWtHc1MrazJuNS9OVWxUVnoyQkpDdkR1WTgrZGlSYlpZ?=
+ =?utf-8?B?bURLSTFNSEFub0U1SXBHZlpmMjZqVEhtbGkxYThWR3FEMWZ3T1RuQ3V5T2VS?=
+ =?utf-8?B?V1RzQWFSQUNkUFEyZEE5TEwzMnF2T1I0Smo2NFFqRi9SYmg1MFQyNmt6ZnZP?=
+ =?utf-8?B?N212K2ZMSjNOclRmRmEyem1NSUNyQnZ0bGp5ZSsvUGFrZHYyUmx4MGtIUUVY?=
+ =?utf-8?B?OUZJN3NWWmptYk1HdHZqUm9ISjFtWll4N3Z1VFhQRHNsR3drd0VCa08wcEFB?=
+ =?utf-8?B?WmplTVU4cE5ITTdIWm42OENOK1M1am9TY2hBeDNUczRhQmRSenIvQU00elhW?=
+ =?utf-8?B?OW1JS1FHN2pJN2JtTkZURUNFbE1DejlRK3lGb3d1TnU4MjJWTGRPR1k3ckNY?=
+ =?utf-8?B?V25qcTEzT21YbE1oVTYrMkkyaW5pRzB6dnZ4U0FGQWpxcFZxSng3ODJURTVJ?=
+ =?utf-8?B?VHdHUWxhWVMyNzdvWGpZMUxKaElTTDJITGRaYzZFdWIrVWFhMm53MmRSOE1x?=
+ =?utf-8?B?RDhzTUJjS1lMdmdpWDN1RmhXQTJsN1BFOEhnanQ0MkpUS0hadmNPZmR1RzB6?=
+ =?utf-8?B?VVRnMGJiN1JXSnpwUWdjV3JDUW15M2o4c3ZHVHJBQzk4T0pyZ1NVTyt5RERv?=
+ =?utf-8?B?TldRanlGVkM4S1FwQzFtWVZOdDdPb3g5NVNqc0xYdUplbzg0b2tUcmpsYmlQ?=
+ =?utf-8?B?dGJDTGx0clA5QXVZek10L2FRTEo1bEFMUUFvUlQzdnhzUHNBREYvWlpPdXpP?=
+ =?utf-8?B?eHY4cjhRRmZEaDBMajhUaUhFVkZqa1E9PQ==?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WVdYa05qdjJQdE9IY3diRjJlRnBqS2ZzblBYR0VkdVJMQ05sVEIyNWZsQUNS?=
+ =?utf-8?B?S0s2NFkwT0Y1KzJ3Z211QTd4NkN1ODlXeDVUdU1Hd0dhaktFUGhFZGhRdmNK?=
+ =?utf-8?B?T2lQOUpHQUttMTNuemRKazNPWG5OR0NPay9JODlhaEl4VlhkYlJJaWwxWEwy?=
+ =?utf-8?B?enFkSXdyK0grdDV0ODArUnJ1R05BS28vUXJRL0w5VmVjWGtaTnBRWklWM1hy?=
+ =?utf-8?B?ZDZkMmtCT1dQUGhYbFhYWHlORGpmVUtXTmVtY0Y3NUJKTGdWbENiclBISndm?=
+ =?utf-8?B?LzFVeDUxNHExeHpMMm5oRkpQK1NHMEsrY040QTViaGt1eVBlUVVIdjBoZG0z?=
+ =?utf-8?B?L2crRHdMdHRwN3c4b0s4SmVVSjdtQzR4VVZxa0RwWHZGTG15bmRXS0dvM2hq?=
+ =?utf-8?B?YlpYdVlnTGxsUjdnUEFYTEtuZkFHdmxaS1lQaHBNdU83M3NKajhCUWQ2V1pq?=
+ =?utf-8?B?bmFvcEU0VUVWdkxRcVpocUR4aFFWNlVhMTg4eTZqenZlY1RZN2JnZW1QRXIv?=
+ =?utf-8?B?MU9kSGgwaU5vUTVEVU5MUytCSitkaU8zQWZ0MjRVN011VFpocEd6N2h5UHpN?=
+ =?utf-8?B?MmlreUtnYkRYRXkwVHpNUEJ1aEFPKzcxREtOTUJsNnIrMHoxOGpENDBLc1FM?=
+ =?utf-8?B?NGtsanZpVlNHK01NbGNjWkRMdElTNGNwUDllL1NnaHlKODdIeks0bnIyMHJK?=
+ =?utf-8?B?N0I2ZlVaeG9pdEhDbjFJM0lWbnBhRTBMYVBOQlI1akZNMWpGZFdFOTZONmFx?=
+ =?utf-8?B?VzNab1JmQ1JmSFQ1UEJTb2xjZVVyMzg5Ry8xcjNzRmNaamVmMytQUm02Q3lY?=
+ =?utf-8?B?dUZuZEc4SGZ4OWRIQklVM2NwTWdWNWtIQm1HWm9ZdzNXWFhEUFhKbTJub1Nu?=
+ =?utf-8?B?aXNmYXhCQjdobmRwWkJsRElrVnUvNURWcmZUODVlMkQ4OFlvV2pYVi9oZGxt?=
+ =?utf-8?B?a0wwVUNwL0s4WDJ4TDVEL1VtNittWEpIZEdNMTl4eWt4eUZBc2loVzBHQnpM?=
+ =?utf-8?B?QXdoWVhKL05uN0hXZUlxd3g3NzQrVXU1aHlWQllKMkM0YnNQelBGL3NtaUJr?=
+ =?utf-8?B?TEUwQUxDcVQzN3grL1dyNk5vc2RKOUloNWx6anU4TDV0SmUrVktoYjdzbTZX?=
+ =?utf-8?B?b215NlRBT1pHYXpaVWxUREVGR2NuMGFkTHFlOEEwUFZLczBqR3QvVGVEdjMv?=
+ =?utf-8?B?b3VtcCs4eHByZlBVTk9WYVhZVWp2UnJJbktGY3FhS2lwNHFkdTVWWHJQdEVE?=
+ =?utf-8?B?MmVjNjJqdVFtdmVGbDVheUJvbERTQTVGVVREeDRCSVpJQ091b2czajIxM2c2?=
+ =?utf-8?B?MnVsR2RCd0VzWVVLdEZ4eGtjMzhSNFJiVHhJTU9oSXFGbDBubEg3Y2pRWWds?=
+ =?utf-8?B?Nmx3WUJqTjFZaVNDWVVjM3g3Y3E2a0JiNjRHQ1cvN3VVYjR3OVhKNFVFM1lL?=
+ =?utf-8?B?TnphVGxEV0o4bDh3UWU1TUdKWnBmQzF5SDhKQ0plRmp1SlhaN2tuUGprRnhm?=
+ =?utf-8?B?ZVpTcysrZEs0Tlc4eEVTTGhOeUNRWkE5bXR4RUdmK0FqczB0b25lSWhuTGdx?=
+ =?utf-8?B?Qkl1NEdUb2hnY1UvRjltb0loK1djR0VoUFpqOGVkU1pneitIaWUyV1dxMDVT?=
+ =?utf-8?B?czF0WXA5NlRxSlB4NEh1M2tnU2YwMEMxc1hzdlo3YXVtcXk5VXh2VlphWW5L?=
+ =?utf-8?B?MTgwMWxxRWxiejc4VkxlYVFxNFV4Um9PNjZRTGFVK2NKbU9CWEhvVVUrVVdI?=
+ =?utf-8?Q?/ZKO1xqNE5Ywk6SeG+1jCBoE3uuJwPneOFJAv2n?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 327850b9-af56-4884-6a77-08dd773b9144
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 07:53:08.2873
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1749
 
-On Wed, Apr 09, 2025 at 09:01:22AM GMT, Geert Uytterhoeven wrote:
-> > > +select:
-> > > +  properties:
-> > > +    compatible:
-> > > +      contains:
-> > > +        pattern: "renesas,.*-msiof"
-> > > +  required:
-> > > +    - compatible
-> > > +    - port
-> >
-> > Drop entire select.
-> 
-> This is needed to avoid matching when using the device in SPI mode.
 
-Which you need to avoid, so drop the select. One device, one schema.
+On 2025/4/8 13:01, Inochi Amaoto wrote:
+> Add support for Sophgo SG2044 MSI interrupt controller.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>   drivers/irqchip/irq-sg2042-msi.c | 61 ++++++++++++++++++++++++++++++--
+>   1 file changed, 58 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
+> index 30a1d2bfd474..2935ca213306 100644
+> --- a/drivers/irqchip/irq-sg2042-msi.c
+> +++ b/drivers/irqchip/irq-sg2042-msi.c
+> @@ -19,8 +19,6 @@
+>   
+>   #include "irq-msi-lib.h"
+>   
+> -#define SG2042_MAX_MSI_VECTOR	32
+> -
+>   struct sg204x_msi_chip_info {
+>   	const struct irq_chip		*irqchip;
+>   	const struct msi_parent_ops	*parent_ops;
+> @@ -44,7 +42,7 @@ struct sg204x_msi_chipdata {
+>   	u32					irq_first;
+>   	u32					num_irqs;
+>   
+> -	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
+> +	unsigned long				*msi_map;
 
-> 
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: renesas,msiof-r8a779g0   # R-Car V4H
-> >
-> > Use expected format of all soc compatibles. It has been always: SoC-module.
-> 
-> This is a pre-existing compatible value, so it cannot be changed.
-> 
-> > > +      - const: renesas,rcar-gen4-msiof  # generic R-Car Gen4
-> >
-> > If you have duplicated compatibles then:
-> > 1. It rarely makes sense because you claim that two different devices
-> > are using the same compatible. Different device, different compatible.
-> > 2. Or if this is really same device, then only one schema.
-> 
-> This the same device, but it can be used in two (actually more)
-> different modes: SPI and I2S.  Hence it has two separate DT binding
-> documents.  If this needs to be merged (the result is gonna be ugly):
+Regarding the common parts of SG2042 and SG2044, I noticed that you 
+changed DECLARE_BITMAP back to dynamic application. If there is a next 
+version, I suggest you mention it in the commit information.
 
-... then next time don't post incomplete bindings. I know we do not have
-time machine, but any mess is on contributors who posted some limited
-scope/view of the hardware entirely ignoring the rest of interfaces.
+Otherwise, LGTM.
 
-> where to fit it in the DT binding doc hierarchy?
+Reviewed-by: Chen Wang <wangchen20@iscas.ac.cn>
 
-Does not matter, whatever fits better in overal picture/purpose of this
-device.
-
-> 
-> > > +  reg:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> >
-> > Drop these two.
-> >
-> > > +    oneOf:
-> >
-> > Why is this flexible?
-> 
-> I am not sure where this is coming from (an old SH part?).
-> The SPI bindings have the same construct.  As this binding supports
-> R-Car Gen4 only, a single reg should be fine.
-> 
-> >
-> > > +      - items:
-> > > +          - description: CPU and DMA engine registers
-> > > +      - items:
-> > > +          - description: CPU registers
-> > > +          - description: DMA engine registers
-> 
-> > > +  dmas:
-> > > +    minItems: 2
-> > > +    maxItems: 4
-> >
-> > Why flexible?
-> >
-> > > +
-> > > +  dma-names:
-> > > +    minItems: 2
-> > > +    maxItems: 4
-> > > +    items:
-> > > +      enum: [ tx, rx ]
-> >
-> > How would that work? tx rx tx rx? And then driver requests 'tx' (by
-> > name) and what is supposed to be returned?
-> 
-> The module may be connected to one or more DMA controllers (see below).
-
-Yes, but how the implementation would work?
-
-Anyway, this needs to be strictly ordered, not random rx rx tx tx or rx
-rx rx rx.
-
-> 
-> > > +
-> > > +    msiof1: serial@e6ea0000 {
-> >
-> > serial means UART controller. You need name matching the class of the
-> > device.
-> > Node names should be generic. See also an explanation and list of
-> > examples (not exhaustive) in DT specification:
-> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> What is the recommend generic node name for a flexible serial device
-> that can operate as (a.o.) either SPI or I2S controller?
-
-i2s
-or even not so generic msiof, but definitely not serial because that is
-reserved for UART.
-
-> 
-> > > +      compatible = "renesas,msiof-r8a779g0",
-> > > +                   "renesas,rcar-gen4-msiof";
-> > > +      reg = <0 0xe6ea0000 0 0x0064>;
-> > > +      interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
-> > > +      clocks = <&cpg CPG_MOD 619>;
-> > > +      dmas = <&dmac0 0x43>, <&dmac0 0x42>,
-> > > +             <&dmac1 0x43>, <&dmac1 0x42>;
-> > > +      dma-names = "tx", "rx", "tx", "rx";
-> >
-> > So test it now - get DMA by name 'tx'. What do you get?
-> 
-> A handle to either <&dmac0 0x43> or <&dmac1 0x43>; which one is
-> random. It's been working like that for ages.
-
-Interesting. And is this expected behavior? Driver does not care which
-RX and which TX it gets? Like RX from dmac0 and TX from dmac1?
-
-Best regards,
-Krzysztof
-
+>   	struct mutex				msi_map_lock;
+>   
+>   	const struct sg204x_msi_chip_info	*chip_info;
+> @@ -96,6 +94,35 @@ static const struct irq_chip sg2042_msi_middle_irq_chip = {
+>   	.irq_compose_msi_msg	= sg2042_msi_irq_compose_msi_msg,
+>   };
+>   
+> +static void sg2044_msi_irq_ack(struct irq_data *d)
+> +{
+> +	struct sg204x_msi_chipdata *data = irq_data_get_irq_chip_data(d);
+> +
+> +	writel(0, (unsigned int *)data->reg_clr + d->hwirq);
+> +	irq_chip_ack_parent(d);
+> +}
+> +
+> +static void sg2044_msi_irq_compose_msi_msg(struct irq_data *d, struct msi_msg *msg)
+> +{
+> +	struct sg204x_msi_chipdata *data = irq_data_get_irq_chip_data(d);
+> +	phys_addr_t doorbell = data->doorbell_addr + 4 * (d->hwirq / 32);
+> +
+> +	msg->address_lo = lower_32_bits(doorbell);
+> +	msg->address_hi = upper_32_bits(doorbell);
+> +	msg->data = d->hwirq % 32;
+> +}
+> +
+> +static struct irq_chip sg2044_msi_middle_irq_chip = {
+> +	.name			= "SG2044 MSI",
+> +	.irq_ack		= sg2044_msi_irq_ack,
+> +	.irq_mask		= irq_chip_mask_parent,
+> +	.irq_unmask		= irq_chip_unmask_parent,
+> +#ifdef CONFIG_SMP
+> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
+> +#endif
+> +	.irq_compose_msi_msg	= sg2044_msi_irq_compose_msi_msg,
+> +};
+> +
+>   static int sg204x_msi_parent_domain_alloc(struct irq_domain *domain, unsigned int virq, int hwirq)
+>   {
+>   	struct sg204x_msi_chipdata *data = domain->host_data;
+> @@ -175,6 +202,22 @@ static const struct msi_parent_ops sg2042_msi_parent_ops = {
+>   	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
+>   };
+>   
+> +#define SG2044_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
+> +				   MSI_FLAG_USE_DEF_CHIP_OPS)
+> +
+> +#define SG2044_MSI_FLAGS_SUPPORTED (MSI_GENERIC_FLAGS_MASK |	\
+> +				    MSI_FLAG_PCI_MSIX)
+> +
+> +static const struct msi_parent_ops sg2044_msi_parent_ops = {
+> +	.required_flags		= SG2044_MSI_FLAGS_REQUIRED,
+> +	.supported_flags	= SG2044_MSI_FLAGS_SUPPORTED,
+> +	.chip_flags		= MSI_CHIP_FLAG_SET_EOI | MSI_CHIP_FLAG_SET_ACK,
+> +	.bus_select_mask	= MATCH_PCI_MSI,
+> +	.bus_select_token	= DOMAIN_BUS_NEXUS,
+> +	.prefix			= "SG2044-",
+> +	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
+> +};
+> +
+>   static int sg204x_msi_init_domains(struct sg204x_msi_chipdata *data,
+>   				   struct irq_domain *plic_domain, struct device *dev)
+>   {
+> @@ -255,6 +298,12 @@ static int sg2042_msi_probe(struct platform_device *pdev)
+>   
+>   	mutex_init(&data->msi_map_lock);
+>   
+> +	data->msi_map = devm_bitmap_zalloc(&pdev->dev, data->num_irqs, GFP_KERNEL);
+> +	if (!data->msi_map) {
+> +		dev_err(&pdev->dev, "Unable to allocate msi mapping\n");
+> +		return -ENOMEM;
+> +	}
+> +
+>   	return sg204x_msi_init_domains(data, plic_domain, dev);
+>   }
+>   
+> @@ -263,8 +312,14 @@ static const struct sg204x_msi_chip_info sg2042_chip_info = {
+>   	.parent_ops	= &sg2042_msi_parent_ops,
+>   };
+>   
+> +static const struct sg204x_msi_chip_info sg2044_chip_info = {
+> +	.irqchip	= &sg2044_msi_middle_irq_chip,
+> +	.parent_ops	= &sg2044_msi_parent_ops,
+> +};
+> +
+>   static const struct of_device_id sg2042_msi_of_match[] = {
+>   	{ .compatible	= "sophgo,sg2042-msi", .data	= &sg2042_chip_info },
+> +	{ .compatible	= "sophgo,sg2044-msi", .data	= &sg2044_chip_info },
+>   	{ }
+>   };
+>   
 
