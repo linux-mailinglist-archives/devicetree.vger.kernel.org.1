@@ -1,104 +1,92 @@
-Return-Path: <devicetree+bounces-164763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C65AA824F9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:35:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22163A824F2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 14:34:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE86F1BC4270
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:31:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46BA517688C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 12:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B46D25F7AE;
-	Wed,  9 Apr 2025 12:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X13c65Wv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0144025F7BD;
+	Wed,  9 Apr 2025 12:32:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB2625DCEC;
-	Wed,  9 Apr 2025 12:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE23E2620E4;
+	Wed,  9 Apr 2025 12:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744201802; cv=none; b=ZY2XRRlKXsECta2afGrDjLxV8ebajfomyc31XiFW/fZ8cWSqpG4lzDAAumZ2eMxuu7cM4H77TAyoKpF1A9jZ1UN+6QIfd5xt8+3bGIfFqfC2G/fWt3q1arYMSST7xKvOd3hLCVD/aaazcrKIpnqwf+Rmnqtv4UJQ2gOfJ3JvWmg=
+	t=1744201926; cv=none; b=tWvrAL9+64+P5DvBNYIg+RjP51ls60x8WS+beOMdG8KVpzDJcmmbxYXpphHkAQ9ShWE82cL56E/NVY2DUngtOwmdvsr4XTyA0OIepO8KDNMvTznAEm0D/sCsV1hglZxI9JlTyB4CwaQHm7dfqNxGD/d5VHwkC4uwNu6YzbrRPZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744201802; c=relaxed/simple;
-	bh=IZoOsZsy8sycYe6l3UDWg9W0PAk6ggScHLXiXDpcBOs=;
+	s=arc-20240116; t=1744201926; c=relaxed/simple;
+	bh=XOh91lN8AEqXFXIq3i+RvJ8nO5R+kWkUOOoTRfSQYXU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iiWqDEqy7KoOuRWwPsSOwyeJ6uqhpFFXBjl74rXZpIcfBOf05qFET1H8xHIL/RXJz0ovj97TahgojWKyX5VhwMhORewD2wc5I8n5nIm3dA4ntyX/189UgTpfjNIlgxb7STAwTD9Uk9rYi+lur/J7+wsmY1tdaehGEBazw1ihNYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X13c65Wv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 637ECC4CEE3;
-	Wed,  9 Apr 2025 12:29:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744201801;
-	bh=IZoOsZsy8sycYe6l3UDWg9W0PAk6ggScHLXiXDpcBOs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X13c65WvBHdt0K8dH9/tmuUHVrLk04U/l5se7vnYNohYidTx/CXA3unl7hPlG9apO
-	 5DUSGjKQ+jAzKmzKUDOkkkAeEBdPm+t5RraN7UDAkMwkBvCg4xIsKqxLo+CmQiNTPi
-	 mat7+8IaNdzzbUyyJ7CnfFNNQtdFYrnjv3LcJCsFkCT4Gx7xKw77UGrWfpTTfTpiUl
-	 gTOZPa0xK7AhzKNOa9KsBtPIygy4QEZ9aivAQDBZj7Sv3o5oqgCUsBJ79NrgHv4sYa
-	 p51LLCQle8bBlZd6f+M1T0m2BJZitB/7ZAi4yf6yQlfJghhlw0hFJV9ZGSPJPMZpoA
-	 mPtIf8JyGKMew==
-Date: Wed, 9 Apr 2025 13:29:56 +0100
-From: Mark Brown <broonie@kernel.org>
-To: ChiYuan Huang <cy_huang@richtek.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] ASoC: codecs: Add support for Richtek rt9123p
-Message-ID: <0aa1c431-4408-489d-8f11-e6055c827e20@sirena.org.uk>
-References: <cover.1743774849.git.cy_huang@richtek.com>
- <27583d8f9bb07351e5c9ea78ed286ca6daa74a8d.1743774849.git.cy_huang@richtek.com>
- <20250404200519.GA198531-robh@kernel.org>
- <Z/Mh8JEHqYohvcfL@git-send.richtek.com>
- <Z/XILJ8YRt905whu@git-send.richtek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GXccOUFwCjV2VaT/SMtV3u1LUkisg9EOZp9YIQzFqbnqCGHPg76Vw091eCfS5Zqw8h2EoCOER0mfyDwfSQgjmA59nx7Nv5dV4vsap8tX+lgWVZ6O/JXDyOL7cDDS7/7CsvYruB1EdsiATZdvil7tRRGziYqcv5KyX5DVL+45u/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C452915A1;
+	Wed,  9 Apr 2025 05:32:04 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AFEB33F59E;
+	Wed,  9 Apr 2025 05:32:01 -0700 (PDT)
+Date: Wed, 9 Apr 2025 13:31:58 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	<devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow
+ linux,code for protocol@81
+Message-ID: <20250409-heavenly-sceptical-ara-bceeb9@sudeepholla>
+References: <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
+ <2003940.PYKUYFuaPT@steina-w>
+ <20250409121829.GA11949@nxa18884-linux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BIesKuQNbSpzPwCg"
-Content-Disposition: inline
-In-Reply-To: <Z/XILJ8YRt905whu@git-send.richtek.com>
-X-Cookie: Words must be weighed, not counted.
-
-
---BIesKuQNbSpzPwCg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20250409121829.GA11949@nxa18884-linux>
 
-On Wed, Apr 09, 2025 at 09:06:52AM +0800, ChiYuan Huang wrote:
+On Wed, Apr 09, 2025 at 08:18:29PM +0800, Peng Fan wrote:
+> + SCMI maintainer, Sudeep and Cristian
+> 
+> On Wed, Apr 09, 2025 at 12:59:50PM +0200, Alexander Stein wrote:
+> >Hi,
+> >
+> >Am Montag, 4. November 2024, 09:56:21 CEST schrieb Alexander Stein:
+> >> BBM protocol supports a single power button, supported by driver
+> >> imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritten
+> >> using linux,code. Add a reference to this schema and add linux,code as a
+> >> supported property.
+> >> 
+> >> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >
+> >Is there any other feedback or things to do here?
+> 
+> I see Rob already gave R-b.
+> 
+> Not sure this should go through Shawn's or Sudeep's tree.
+> 
 
-> In last mail, I have already described what the delay for.
+I am fine either way. Peng, just let me know if you want to pick this up.
 
-> Another question is for this property name 'enable-delay'. Should I add a
-> suffix like as 'enable-delay-ms'?
-
-Yes, if there's sensible units then adding a suffix for them would be
-good.
-
---BIesKuQNbSpzPwCg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmf2aEMACgkQJNaLcl1U
-h9CgBgf/T0/YpQZE7mqmZaBrW3K9TGXl0yrAZmdxuMnBRHS4G2ui4cr27J3PqI3S
-CRuKgq8PZxaeLwyH9lnSlYG3wA4O5DxYVn77Msu7NcOtLmnumyTvEEy9oxdsmdSK
-Rb4L+Lgt8s1+EcXCyvCkso4RXJHPmVk1CVpzrrUsJXvqH1w/Mt5n9n31uSvtFkg/
-Q6Eapenh3vW6bv/8T40YQbbbw7KCMfxoATSCk9+vcrm/E+j5ia6iXhDiHa87W+by
-0QJIId4CmqiwOhrBDE1ILXuYp9ayaZGNrwHWxkAmAqHqe2exHYwxoMEsuL8qvjL1
-U/Mg5FC8LjifOS52Zj2LlMifEn2p6g==
-=ooYi
------END PGP SIGNATURE-----
-
---BIesKuQNbSpzPwCg--
+-- 
+Regards,
+Sudeep
 
