@@ -1,161 +1,314 @@
-Return-Path: <devicetree+bounces-165063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61105A833B2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:52:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D59A83418
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 00:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D22FC1B6409A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 21:52:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F8838A8530
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 22:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9994021ABD7;
-	Wed,  9 Apr 2025 21:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8D021ADA4;
+	Wed,  9 Apr 2025 22:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K9jjtyv2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BHkvd6t4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2D621A451;
-	Wed,  9 Apr 2025 21:52:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F23026ACB;
+	Wed,  9 Apr 2025 22:32:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744235554; cv=none; b=OpdPy2MrhONVo/7rqQt/zEA41ceFntWPu0V/Id1s3gKA3kKxeXYdoZO4WqCVNiTgMt+RDr2kiuJqwywwTKLdsPlaR7IVzsMbVfP8fZSY5ooq+bf24pnA2iuEeAd25vJBZZ/tKBH3IXLho72ZkmE+J2yiKryUaNzPJjOTrShcPLY=
+	t=1744237955; cv=none; b=L9xgtCrWIYU8ZYjlKixaFzTTwnwNFegmMOttwpnLbaQhqGPBlHZMJDJ3z9aQXT3yGYXZyx8m5u+AvpMagJSNQRXsaFTiPM6SF8Em/WxXse1ZoIUUI5qqmP8PE/uKrTvZc3odV1omAj9HxpuOGUO4FOMWnj4hnR9WRswm/0xQnUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744235554; c=relaxed/simple;
-	bh=tDrAT+BbyeoPC1cnbHm+N0m2OZYVHsC6MBKxaijdOFE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GCc/QeaigD569UoOUXuUfuveVjtnqAifOjMgNhsE6Gm2I2FvrQK1TAtfC6+BJEf5gjXCXZB5CUbZK/iA6NUBBWCUZiB8T97P0bT4It/i1fEgNnM6TTAlo+VCzPD73zPGmWbbag6d15ZUpXdt1lxe+c3SDf7ifijxWiFo0Qlqf0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K9jjtyv2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F1375C4CEED;
-	Wed,  9 Apr 2025 21:52:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744235554;
-	bh=tDrAT+BbyeoPC1cnbHm+N0m2OZYVHsC6MBKxaijdOFE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=K9jjtyv29hIh4quHKzqIOZFAsLHTicus/m/wRN6J5XGuzpWFVK58fQVW0UY2DPkPP
-	 wAn5mm+8S264/+dcpUFBbEMb9rBfFwVe1twam4W8ZSKJMJLHFu5oP7rCGagzeJUfBK
-	 N0xaum3ROG6A3bKWYnMlJuRUbHBXW/cfUL+tAg9rvuc+g+RUL6dgUGTwEew9L3MPuq
-	 twbcgU8iuSVzn9MbRT+T3mzDnlvwHZ/ma7aNZRFcMACR71bVQQ229vyzHckKUc23nh
-	 a1Xyt1BSwLWLVpOABV1p0QeVYDd9C2nuXzPwULEsyF9rMSzqtraYB99ghAZEejCMys
-	 O8M5HarrwbJXw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E571DC36002;
-	Wed,  9 Apr 2025 21:52:33 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Wed, 09 Apr 2025 23:52:14 +0200
-Subject: [PATCH v4 3/3] arm64: dts: apple: Add SPMI controller nodes
+	s=arc-20240116; t=1744237955; c=relaxed/simple;
+	bh=GJBF9YT4qTUceYQdIfBhE7d1Hxel8j5IxMQVI15xlC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NZeoV0y3g5lczPewR0uw6QJIuDai2jdsTTkIAr2v9fFg53tgJtW9LavvLhVqDM7PMcj49U6qV9bz9E5kZySeXq+fcUs5/PL8Su6Zo1RspOfq0U8xl5TSO10SsSBhdqENls36pnOsxzCYj8RfrX4bupJyv82b22DllsCiDAUm7ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BHkvd6t4; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 539MWMnZ1602107
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 9 Apr 2025 17:32:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744237943;
+	bh=F2DUGq4PpnA0mRyUvzOtXn7CGfV1K5I0ALvoIWAGTP0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BHkvd6t4u0ETPPoqD59yPKVttkp1xjIwR36DmTsiR6+Pcvt5W1ITb6cbaDP0vqQf0
+	 XmQ4s/9vtrT5foUApEyyObbMLGq49bn2PGUfRismcohq6IKzD5KrTagCVqGQzRF/D1
+	 IHC7RSMTGK2s2sJ7t2WhbqELNFJVs78OzU5OdRIo=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 539MWMUG006103
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 9 Apr 2025 17:32:22 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
+ Apr 2025 17:32:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 9 Apr 2025 17:32:22 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 539MWMgB116920;
+	Wed, 9 Apr 2025 17:32:22 -0500
+Message-ID: <fe735242-4643-432a-adaf-27e29719948a@ti.com>
+Date: Wed, 9 Apr 2025 17:32:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250409-spmi-v4-3-eb81ecfd1f64@gmail.com>
-References: <20250409-spmi-v4-0-eb81ecfd1f64@gmail.com>
-In-Reply-To: <20250409-spmi-v4-0-eb81ecfd1f64@gmail.com>
-To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Stephen Boyd <sboyd@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Neal Gompa <neal@gompa.dev>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>, 
- Nick Chan <towinchenmi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744235552; l=2708;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=GL5MDHX1ynp82oR1XOrB9Oz6SPOYuVIO8f/ENpih52M=;
- b=eQ4cnKeAdHlViCFW86uXUAWuk+qcZDOtzliKB2jTojwIJAhnsrdgxfBvAUS5m5KGemviidJ7+
- hVrUhk3rK6cDV8thV+2YlzTrYJLZlMpMvvPNKo8WS6i069iXeXTce9X
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with
+ remote processors
+To: Beleswar Prasad Padhi <b-padhi@ti.com>,
+        Devarsh Thakkar
+	<devarsht@lewv0571a.ent.ti.com>,
+        Nishanth Menon <nm@ti.com>, Andrew Davis
+	<afd@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>
+References: <20250405001518.1315273-1-jm@ti.com>
+ <20250405001518.1315273-7-jm@ti.com>
+ <6868f593-0728-4e92-a57b-87db6a0037f6@ti>
+ <f42607f5-e39d-48a1-89c0-11d4982a2426@ti.com>
+ <f8f1d877-3d13-4ba7-90e1-455923458c11@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <f8f1d877-3d13-4ba7-90e1-455923458c11@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Hi Beleswar,
 
-Add device tree entries for the SPMI controller
+On 4/7/25 11:00 PM, Beleswar Prasad Padhi wrote:
+> Hi Judith, Andrew,
+> 
+> On 07/04/25 19:43, Judith Mendez wrote:
+>> Hi Devarsh,
+>>
+>> On 4/7/25 8:54 AM, Devarsh Thakkar wrote:
+>>> Hi Judith,
+>>>
+>>> On 05/04/25 05:45, Judith Mendez wrote:
+>>>  > From: Devarsh Thakkar <devarsht@ti.com>
+>>>>
+>>>
+>>> Thanks for the patch.
+>>>
+>>>> For each remote proc, reserve memory for IPC and bind the mailbox
+>>>> assignments. Two memory regions are reserved for each remote processor.
+>>>> The first region of 1MB of memory is used for Vring shared buffers
+>>>> and the second region is used as external memory to the remote 
+>>>> processor
+>>>> for the resource table and for tracebuffer allocations.
+>>>>
+>>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>>>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 96 
+>>>> +++++++++++++++++++++++--
+>>>>   1 file changed, 90 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts 
+>>>> b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> index 1c9d95696c839..7d817b447c1d0 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>>>> @@ -52,6 +52,42 @@ linux,cma {
+>>>>               linux,cma-default;
+>>>>           };
+>>>> +        c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x99800000 0x00 0x100000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>> +        c7x_0_memory_region: c7x-memory@99900000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x99900000 0x00 0xf00000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>> +        mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x9b800000 0x00 0x100000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>> +        mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x9b900000 0x00 0xf00000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>> +        wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x9c800000 0x00 0x100000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>> +        wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
+>>>> +            compatible = "shared-dma-pool";
+>>>> +            reg = <0x00 0x9c900000 0x00 0xf00000>;
+>>>> +            no-map;
+>>>> +        };
+>>>> +
+>>>>           secure_tfa_ddr: tfa@9e780000 {
+>>>>               reg = <0x00 0x9e780000 0x00 0x80000>;
+>>>>               alignment = <0x1000>;
+>>>> @@ -63,12 +99,6 @@ secure_ddr: optee@9e800000 {
+>>>>               alignment = <0x1000>;
+>>>>               no-map;
+>>>>           };
+>>>> -
+>>>> -        wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
+>>>> -            compatible = "shared-dma-pool";
+>>>> -            reg = <0x00 0x9c900000 0x00 0x01e00000>;
+>>>> -            no-map;
+>>>> -        };
+>>>>       };
+>>>
+>>> This is missing the edgeAI specific remote-core carveouts and 
+>>> RTOS-to-RTOS IPC memory regions [1] being used by edgeAI firmwares 
+>>> which come as pre-packaged in the official SDK release for AM62A.
+>>>
+>>> There is only one official SDK release for AM62A (which is edgeAI 
+>>> based) [2] which packages these edgeAI remoteproc firmwares and in my 
+>>> view it is a fair expectation that remote core careveouts in 
+>>> device-tree should align with firmwares released in SDK.
+>>>
+>>> This is because most developers (including me) and vendors download 
+>>> this official SDK release and use it with latest upstream kernel and 
+>>> modules (right now we are applying required patches locally) and this 
+>>> patch won't suffice for this, in-fact it won't work since the 
+>>> remoteproc firmwares are already using regions beyond the 
+>>> reserved-regions from this patch.
+>>
+>> I understand your point, currently with this patch remoteproc loading
+>> will not work for some cores. However, the goal here is to standardize
+>> as much as possible the memory carveout sizes, push the "demo firmware"
+>> to request resources the correct way from resource table, 
+> 
+> 
+> It is indeed more suitable if the memory carveouts are called out in the 
+> resource table of the firmware. But you will still need to reserve that 
+> memory sections in the Device Tree so that Kernel does not map that 
+> memory for anything else. So I am thinking how moving to resource table 
+> will help solve this problem?
 
-Reviewed-by: Nick Chan <towinchenmi@gmail.com>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- arch/arm64/boot/dts/apple/t600x-die0.dtsi | 7 +++++++
- arch/arm64/boot/dts/apple/t8103.dtsi      | 8 ++++++++
- arch/arm64/boot/dts/apple/t8112.dtsi      | 7 +++++++
- 3 files changed, 22 insertions(+)
+The point is that our default FW is doing things incorrectly. We want to
+push the existing FW to
+1. Request resources via resource table.
+2. Fix their memory requirements (recent offline discussion proved that
+FW is requesting more than it needs)
+3. FW should adapt to Linux not Linux adapt to FW
 
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index e9b3140ba1a996eeb91b3f60470833060b632bd2..4c224e686ffe5602329f7f394d3354559c4130ab 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -45,6 +45,13 @@ pinctrl_smc: pinctrl@290820000 {
- 				<AIC_IRQ 0 749 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
-+	nub_spmi0: spmi@2920a1300 {
-+		compatible = "apple,t6000-spmi", "apple,spmi";
-+		reg = <0x2 0x920a1300 0x0 0x100>;
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+	};
-+
- 	wdt: watchdog@2922b0000 {
- 		compatible = "apple,t6000-wdt", "apple,wdt";
- 		reg = <0x2 0x922b0000 0x0 0x4000>;
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 97b6a067394e311ed19392a34237c74936dbb7d7..bdb1cb9e406a441e458b1c735359b0148146e91b 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/apple-aic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/apple.h>
-+#include <dt-bindings/spmi/spmi.h>
- 
- / {
- 	compatible = "apple,t8103", "apple,arm-platform";
-@@ -741,6 +742,13 @@ pcie_pins: pcie-pins {
- 			};
- 		};
- 
-+		nub_spmi: spmi@23d0d9300 {
-+			compatible = "apple,t8103-spmi", "apple,spmi";
-+			reg = <0x2 0x3d0d9300 0x0 0x100>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		pinctrl_nub: pinctrl@23d1f0000 {
- 			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x3d1f0000 0x0 0x4000>;
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index d9b966d68e4fae2dfb21d6fb7a97ebba81643ae8..950d1f906ba3023c1d118179207a2099345aae94 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -782,6 +782,13 @@ wdt: watchdog@23d2b0000 {
- 			interrupts = <AIC_IRQ 379 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		nub_spmi: spmi@23d714000 {
-+			compatible = "apple,t8112-spmi", "apple,spmi";
-+			reg = <0x2 0x3d714000 0x0 0x100>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		pinctrl_smc: pinctrl@23e820000 {
- 			compatible = "apple,t8112-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x3e820000 0x0 0x4000>;
+If not, then then we should try to move to Zephyr firmware or other/
+better options.
 
--- 
-2.49.0
+Hope I am able to explain myself better this time around.
 
+~ Judith
+
+> 
+> Thanks,
+> Beleswar
+> 
+>> and move away
+>> from this dependency and limitations that we have with our firmware. We
+>> should soon be able to generate our own firmware using Zephyr, which
+>> Andrew is pioneering, so with this firmware we should move to the
+>> correct direction upstream. Downstream we are still using the memory
+>> carveout sizes that the firmware folk want so desperately to keep, for
+>> now..
+>>
+>> ~ Judith
+>>
+>>>
+>>> [1]: 
+>>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts?h=ti-linux-6.6.y-cicd#n103
+>>> [2]: https://www.ti.com/tool/PROCESSOR-SDK-AM62A
+>>>
+>>> Regards
+>>> Devarsh
+>>>
+>>>>       opp-table {
+>>>> @@ -741,3 +771,57 @@ dpi1_out: endpoint {
+>>>>           };
+>>>>       };
+>>>>   };
+>>>> +
+>>>> +&mailbox0_cluster0 {
+>>>> +    status = "okay";
+>>>> +
+>>>> +    mbox_r5_0: mbox-r5-0 {
+>>>> +        ti,mbox-rx = <0 0 0>;
+>>>> +        ti,mbox-tx = <1 0 0>;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&mailbox0_cluster1 {
+>>>> +    status = "okay";
+>>>> +
+>>>> +    mbox_c7x_0: mbox-c7x-0 {
+>>>> +        ti,mbox-rx = <0 0 0>;
+>>>> +        ti,mbox-tx = <1 0 0>;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&mailbox0_cluster2 {
+>>>> +    status = "okay";
+>>>> +
+>>>> +    mbox_mcu_r5_0: mbox-mcu-r5-0 {
+>>>> +        ti,mbox-rx = <0 0 0>;
+>>>> +        ti,mbox-tx = <1 0 0>;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&wkup_r5fss0 {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&wkup_r5fss0_core0 {
+>>>> +    mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
+>>>> +    memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
+>>>> +            <&wkup_r5fss0_core0_memory_region>;
+>>>> +};
+>>>> +
+>>>> +&mcu_r5fss0 {
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mcu_r5fss0_core0 {
+>>>> +    mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
+>>>> +    memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+>>>> +            <&mcu_r5fss0_core0_memory_region>;
+>>>> +};
+>>>> +
+>>>> +&c7x_0 {
+>>>> +    mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
+>>>> +    memory-region = <&c7x_0_dma_memory_region>,
+>>>> +            <&c7x_0_memory_region>;
+>>>> +    status = "okay";
+>>>> +};
+>>>
+>>
 
 
