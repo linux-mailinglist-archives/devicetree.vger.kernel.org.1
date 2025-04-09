@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-164615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC93DA81C44
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:43:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36984A81C52
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FE7F4671D3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 05:43:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 448981BA03EB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 05:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3991DACB1;
-	Wed,  9 Apr 2025 05:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5261DB377;
+	Wed,  9 Apr 2025 05:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMZz0b/0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LfCvLzdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F45282FA;
-	Wed,  9 Apr 2025 05:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447D51D5CC2;
+	Wed,  9 Apr 2025 05:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744177416; cv=none; b=YSVmZxPeMEllfztFvF87FWstfU+eya+KAu2uIEomUvT8H9Hz8B4B3TVkgtmc3GfUAmFhGWZWvVl9eQq56Mmn22H5d/Q4AafKRJlTfyS4CTlz1AhZuj1LURcFNaMDpdOSVWs1jLByYYp2VHqB7irckklTmpX31wbSILqO4XQwb9c=
+	t=1744177756; cv=none; b=FIPdfRzs7hpYtNFYbqq4EbHu0h8tN1pwLN2EvOq3feY4BtNzctW+cIZexmCFT93NLGcbHhQdJ7fliBDbrDRb/koUEnGtWz3fQwHFWjxDeY7ZUxGRcUDUmHVNnRD7/gOGB3fCs/4PptlRUOgiJxaDqkbeq3MCNueAzQa6Pv1bGGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744177416; c=relaxed/simple;
-	bh=J8LGMW7whhEgDF1kkORXiCUzQ4kiTZwBcZaIB8TG5Rs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KTLD9KXp1C8UWM4x3uKumThIw3So9Vy5LtmV/YNevrQqRDEOBqXZsbcXYdeqEbCzqBbfp+ISYaESrrshUMdiR+IxlCPv/+bIH1h2N1vnRElD2PHptb06koGnymgfOXA+k+f7uWM2LtvBYWtDGavn3mT6I/Zg/bV766R0NnMnC6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMZz0b/0; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-54addb5a139so7062705e87.0;
-        Tue, 08 Apr 2025 22:43:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744177413; x=1744782213; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=In49OOnUnZvZAmK2s0fur5Q6IBBJkwDHf53+fdgFBOY=;
-        b=WMZz0b/05Pnhk8mU72IX0U/rTIKyqw7+F2cL8yduRkpWqzi5WG0tYgL3G8L4vtPSBv
-         A6E3DSG/ce3EAank5OJPnFCCNVc8+dipBaCMrL79Uof3vnW3Kod1zwk2yvkvPzesJ26C
-         81fRio5sFn3+aqbo3+PoZ7yCvVZNBwthcjleishSXekd/d67ePwMVVr320iU0tLjGjEW
-         pUt30Bdv6dbn0J5n5kkdPXzirmyse9PjY9zJ4XeDlwMhAIMDcKwUnpXCXW1SSOxPAyV0
-         Wz3bc0qXbPq5gicA3AonGFoeVfz8Ea9c84PGBGKbOZpGi4NWzNbVIYDiPVSS8OzucVhe
-         dFIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744177413; x=1744782213;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=In49OOnUnZvZAmK2s0fur5Q6IBBJkwDHf53+fdgFBOY=;
-        b=xJ41INaSSFATFq8JFgsGRl2+c1LMaogckaEihfAu9CeF7cbJE2UL9Qhp3dxQO/qcXB
-         OanaaLTsfzznbva2vkPEEFPFEFIAjjxANlNNQVtOHdUu8PoRbEZMt0moq8Tk20JpenRw
-         tW94flQTf/AIMvfMO+vgZ/mQ2dKqNQ8JWvZBwFzAvasHukbr5rkDXtBxPDVQ9XzZgbaw
-         2i06QNz6l5qNgCtRQ6W/vWTk2baDzKJfn96ciiwg85E67FaI+gWlOeQCo0a26D4+f8GP
-         dFfx3dFe6P1ku3RQEJiy/0AEnkKc0mlLLuRapXjbOdwtBZ6sQULULshr8TKAv0jvNLYr
-         MvTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlzOkAl0yrfqQi5iOk+Y8G4PemEhf4YHUkEF2RQe4NxykpS1wWoikHKDE2fNb1W2EFA2QLB1N0Nrwnkr9v@vger.kernel.org, AJvYcCXSkvenY4J7+m0bUZ30okQCO1j7OaWhH/eMn5S4+f6wqWhu5yWozhuo9PVy+e7bGexyRWNlMP6TKCtf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzivLG/7br0DOmKyWtWAylBo7eKABsFFdPJPYCJ+wMFozIVGRxs
-	UkrlLUEfHMkGARQtuSYVJ96500q1pmCWHDVcRIBKDPogduKwjRfxPu1ZVw==
-X-Gm-Gg: ASbGncu+RAcHDaeFmwbzNo+mQfKfA9uNuQ11+qzPMfMZ99rR5W/yHpvKXNTzxAUfIvK
-	eJGAT9py4Ix6/aSZfnQ9cG0E4qHsQZgi4sCfEBLsAJPWwY47421b/WbAyBu09hEf1Ig/m9aZi6t
-	mPVlY0l4yHGhnEo4WBOFI4tK2IxeJARZbUM9BIwXWM05xEYA5izwkrWZtuSFbthQKkoxYLMKjBb
-	/u2Gldxh/36zo8YptRvYp+S3MpzYAT9WqVW5ZJNO4fKHLcdWNcd+YyVjG/5ukkkeVPVq0zzCHl4
-	hlsEEUK1ExlU7j7PfpmK1myMUM8V28er0Y+cMiMjP0HYjhU3HeJho0xfhlAjiZ3FjT+TGFWhewP
-	W+xpXrHcWhOp3bOVI9j5oaA==
-X-Google-Smtp-Source: AGHT+IEjVOH0cbgp0Cn3BQSndRXT//QCFT+iAuFmZ0J4tEVy6BjhZuTDOKomi+NcIz3wdVSRuebPhA==
-X-Received: by 2002:a05:6512:1586:b0:54b:ed9:2cf6 with SMTP id 2adb3069b0e04-54c444fdc93mr383432e87.32.1744177412917;
-        Tue, 08 Apr 2025 22:43:32 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c455e5f2csm45868e87.58.2025.04.08.22.43.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Apr 2025 22:43:32 -0700 (PDT)
-Message-ID: <62f78786-f9db-4e05-9001-28b786df669b@gmail.com>
-Date: Wed, 9 Apr 2025 08:43:31 +0300
+	s=arc-20240116; t=1744177756; c=relaxed/simple;
+	bh=k4HcGRw78ZPemeVLUPmNyPpjYHYVgeBQ3IfXfKFaiqw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Q4fAB+sP4axKjg9D4/Uyc7SIF/NSxRd8sMk8Frk3FIcc5Raxi//DNGe3mu3Z+rHovCMmVmc2IycJGcMMya7xgQLy93w3SNzVrMRxDhgjEclhFoksSExoQghuDOKgmVKfBGy/rOKXzXcXq+4Utfock/M84tCtAcPWPAXdFr1Fl2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LfCvLzdN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 538JZem7011629;
+	Wed, 9 Apr 2025 05:49:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ovsg1QF8xQXaSQIpASLIOR/7BlVQMkeqc0GKLgadWWw=; b=LfCvLzdN/zncPJ5k
+	eDJl+aEnQrr4nwizG4NdbVf9Y/bg+xoAxATEL2+5tC7CQQLLlM1WTnLd31WDIHaa
+	6/QXZsYoT7OnxZeae7MbdoWWu7olejUx/dsE6tMwpaw5J1y4Hr1ACGznYHcWPfNu
+	Lcdrh/TiFFhc1JaNZlDJOAMEP02/Y9U1Qs9HDA4DFRai8F0GXK0rh1dblK/MkubZ
+	GuqyG8VqLjMhUcDcI/K1P7IYd1X4hOmHjvQH+TmzloT1/ietjvD9n5wJEzb9usby
+	kInspd1x+1/laWneEJbMpeY5IbJs0rukJm5oQw98j9a2fcsWbVE0z3pyOIH2mZEb
+	EclwfQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twftj2g1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Apr 2025 05:49:05 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5395n56L001254
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 9 Apr 2025 05:49:05 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Apr 2025
+ 22:49:01 -0700
+Message-ID: <6ab62bb9-2758-4a12-aec3-6de9efc3075a@quicinc.com>
+Date: Wed, 9 Apr 2025 11:18:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,49 +65,192 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1744090658.git.mazziesaccount@gmail.com>
- <df7983e7c623041f14a4fbe409a2cff846e68a05.1744090658.git.mazziesaccount@gmail.com>
- <20250408-boogieman-underwent-968671653b3f@spud>
- <b233f08a-ac8a-4670-8b32-8afc8a7dfc0c@gmail.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-In-Reply-To: <b233f08a-ac8a-4670-8b32-8afc8a7dfc0c@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 2/3] i3c: master: Add Qualcomm I3C controller driver
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <jarkko.nikula@linux.intel.com>,
+        <linux-i3c@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>
+References: <20250403134644.3935983-1-quic_msavaliy@quicinc.com>
+ <20250403134644.3935983-3-quic_msavaliy@quicinc.com>
+ <20250404-provocative-mayfly-of-drama-eeddc1@shite>
+ <4fe9f898-63bf-4815-a493-23bdee93481e@quicinc.com>
+ <e93c50ce-30dd-45ef-b945-019e703bd7c3@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <e93c50ce-30dd-45ef-b945-019e703bd7c3@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=B5+50PtM c=1 sm=1 tr=0 ts=67f60a51 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=9noXzk69sv193lEOhfoA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: R7jrNI3Zn3z8QFV1UoGmI9KPfZ17VsXq
+X-Proofpoint-ORIG-GUID: R7jrNI3Zn3z8QFV1UoGmI9KPfZ17VsXq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_02,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ suspectscore=0 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 lowpriorityscore=0
+ mlxscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504090020
 
-On 09/04/2025 07:30, Matti Vaittinen wrote:
-> On 08/04/2025 19:16, Conor Dooley wrote:
->> On Tue, Apr 08, 2025 at 11:40:41AM +0300, Matti Vaittinen wrote:
->>> BD96802Qxx-C is an automotive grade configurable Power Management
->>> Integrated Circuit supporting Functional Safety features for application
->>> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
->>> interrupt lines and has two controllable buck regulators.
+Hi Krzysztof,
+
+On 4/9/2025 12:11 AM, Krzysztof Kozlowski wrote:
+> On 08/04/2025 15:23, Mukesh Kumar Savaliya wrote:
+>>>> +
+>>>> +static int i3c_geni_runtime_get_mutex_lock(struct geni_i3c_dev *gi3c)
+>>>> +{
 >>>
->>> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
->>> to be used as a companion PMIC for the BD96801.
+>>> You miss sparse/lockdep annotations.
 >>>
->>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> This is called in pair only, but to avoid repeated code in caller
+>> functions, we have designed this wrapper.
+>> i3c_geni_runtime_get_mutex_lock()
+>> i3c_geni_runtime_put_mutex_unlock().
 >>
->> I think I acked this one on v1, no?
->> https://lore.kernel.org/all/20250326-candy-endocrine-2e7b2182e53b@spud/
+>> caller function maintains the parity. e.g. geni_i3c_master_priv_xfers().
+>>
+>> Does a comment help here ? Then i can write up to add.
 > 
-> Sorry Conor!
-> Somehow I managed to drop your acks. Also from the other binding 
-> patches.
+> I do not see how this is relevant to my comment at all.
+> 
+What i understood is you suspect about lock/unlock imbalance right ?
+I know that Lockdep annotations will be used to check if locks are 
+acquired and released in a proper order.
 
-Oh, actually, I didn't drop acks from the other bindings. Seems like it 
-was just this one. Sorry for the confusion!
+You want me to add below code in both the functions mentioned ?
+     lockdep_assert_held(&gi3c->lock);
 
-Anyways, all should have acks now - Thanks again for the reviews!
+What exact sparse/attribute can be added ? I am not sure about that.
+>>
+>>>> +	int ret;
+>>>> +
+>>>> +	mutex_lock(&gi3c->lock);
+>>>> +	reinit_completion(&gi3c->done);
+>>>> +	ret = pm_runtime_get_sync(gi3c->se.dev);
+>>>> +	if (ret < 0) {
+>>>> +		dev_err(gi3c->se.dev, "error turning on SE resources:%d\n", ret);
+>>>> +		pm_runtime_put_noidle(gi3c->se.dev);
+>>>> +		/* Set device in suspended since resume failed */
+>>>> +		pm_runtime_set_suspended(gi3c->se.dev);
+>>>> +		mutex_unlock(&gi3c->lock);
+>>>
+>>> Either you lock or don't lock, don't mix these up.
+>>>
+>> Caller is taking care of not calling i3c_geni_runtime_put_mutex_unlock()
+>> if this failed.
+> 
+> 
+> I do not see how this is relevant to my comment at all.
+> 
+same as above
+>>>> +		return ret;
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static void i3c_geni_runtime_put_mutex_unlock(struct geni_i3c_dev *gi3c)
+>>>> +{
+>>>
+>>> Missing annotations.
+>>>
+>> Shall i add a comment here ?
+> 
+> Do you understand what is sparse? And lockdep?
+> 
+Little but not clear on exact sparse attribute to be added. please help 
+me. if you can help with some clear comment and sample, will be easier 
+if you can.
 
-Yours,
-	-- Matti
+Lockdep : Helps with runtime check if lock, unlock are proper.
+sparse: attributes /special comments to add which helps with static 
+analysis which is not done by the compiler.
+>>>> +	pm_runtime_mark_last_busy(gi3c->se.dev);
+>>>> +	pm_runtime_put_autosuspend(gi3c->se.dev);
+>>>> +	mutex_unlock(&gi3c->lock);
+>>>> +}
+>>>> +
+>>>> +static void geni_i3c_abort_xfer(struct geni_i3c_dev *gi3c)
+>>>> +{
+>>>> +	unsigned long time_remaining;
+>>>> +	unsigned long flags;
+>>>> +
+>>>> +	reinit_completion(&gi3c->done);
+>>>> +	spin_lock_irqsave(&gi3c->irq_lock, flags);
+>>>> +	geni_i3c_handle_err(gi3c, GENI_TIMEOUT);
+>>>> +	geni_se_abort_m_cmd(&gi3c->se);
+>>>> +	spin_unlock_irqrestore(&gi3c->irq_lock, flags);
+>>>> +	time_remaining = wait_for_completion_timeout(&gi3c->done, XFER_TIMEOUT);
+>>>> +	if (!time_remaining)
+>>>> +		dev_err(gi3c->se.dev, "Timeout abort_m_cmd\n");
+>>>> +}
+>>>
+>>> ...
+>>>
+>>>> +
+>>>> +static int i3c_geni_resources_init(struct geni_i3c_dev *gi3c, struct platform_device *pdev)
+>>>> +{
+>>>> +	int ret;
+>>>> +
+>>>> +	gi3c->se.base = devm_platform_ioremap_resource(pdev, 0);
+>>>> +	if (IS_ERR(gi3c->se.base))
+>>>> +		return PTR_ERR(gi3c->se.base);
+>>>> +
+>>>> +	gi3c->se.clk = devm_clk_get(&pdev->dev, "se");
+>>>> +	if (IS_ERR(gi3c->se.clk))
+>>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(gi3c->se.clk),
+>>>> +							"Unable to get serial engine core clock: %pe\n",
+>>>> +							gi3c->se.clk);
+>>>
+>>> Totally messed indentation.
+>>>
+>> yes, corrected.
+>>>> +	ret = geni_icc_get(&gi3c->se, NULL);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	/* Set the bus quota to a reasonable value for register access */
+>>>> +	gi3c->se.icc_paths[GENI_TO_CORE].avg_bw = GENI_DEFAULT_BW;
+>>>> +	gi3c->se.icc_paths[CPU_TO_GENI].avg_bw = GENI_DEFAULT_BW;
+>>>> +	ret = geni_icc_set_bw(&gi3c->se);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	/* Default source clock (se-clock-frequency) freq is 100Mhz */
+>>>> +	gi3c->clk_src_freq = KHZ(100000);
+>>>
+>>> And why can't you use clk_get_rate()?
+>>>
+>> During probe(), we need one time initialization of source clock
+>> frequencey. HW has no clock set before this.
+> 
+> How is it possible that there is no clock or clock was not configured
+> but you need to know it? Anyway, it's tiring to keep discussing this.
+> 
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int geni_i3c_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	u32 proto, tx_depth, fifo_disable;
+>>>> +	struct geni_i3c_dev *gi3c;
+>>>
+>>> Just store pdev->dev in local dev variable, to simplify everything here.
+>> yes, thats right. But i see other drivers are using same pdev->dev. Is
+>> it fine ? if really required, will change it.
+> 
+> Are you going to discuss every little comment? And come with arguments
+> like "I found poor code, so I am allowed to do the same"?
+> 
+> Best regards,
+> Krzysztof
+
 
