@@ -1,146 +1,149 @@
-Return-Path: <devicetree+bounces-164655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-164656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A4FA81DE1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:06:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F638A81DFC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 09:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9250F173F24
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:06:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBCAE8805E9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 07:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462721DE3DB;
-	Wed,  9 Apr 2025 07:06:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5B22DF8F;
+	Wed,  9 Apr 2025 07:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PrD1SWNd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dSBftMqN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA0B22ACEE
-	for <devicetree@vger.kernel.org>; Wed,  9 Apr 2025 07:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5ED322CBE6;
+	Wed,  9 Apr 2025 07:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744182381; cv=none; b=ceEk5IYMuoyYWr2YF/mC6CgBeOLQE04bnrO9sQRZPxM4Ov77+2fXUw/c+cLmKeawLOZ+kYUBdxy7FQ18SGpAwy1Om4nyAeCivhEB0zWXeduugcn5vB3wHy4x06hBrJhWVUiLfvkbSBAAQT5qU3EV/dvhrc1dcWW03GtMpv6SPq0=
+	t=1744182485; cv=none; b=fhc/D7Rv/1OAnJZ7nxSp10vwudiI6anm+M2bA4VsAfrN30ustobqC32UliahhQaogOlZIx3WbFRxYirURoeNIsxyASun4S0nQfm23WO3nKV1EVkcD3h8/oCyEWt75L6disKIJS2vl18m/izSeS0ocF9Eso6seWTfdciQHwm6/rU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744182381; c=relaxed/simple;
-	bh=yS+f3fqEzIoMXoYigNyYL1iRCbrDvUkMQNrAccauF30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nK7wqyRldNbdB+G7/4qnFV9E0q5bIMDNd8BI0UzcZ/iAUJpCcTqJ5hSTGDPaN4hwLYxIwRDFCQ7iqcyYw7+Ef9jyhWGqKKV/WNNqzq84m0iUHyFvBfdy6f9ecnporrnK85r8XKCbu2mXoQw0yaeaB8lz1mPQYNZnpoJiVIdgacI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PrD1SWNd; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22403cbb47fso68961045ad.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 00:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744182379; x=1744787179; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Nm7nG2cOghl5We3pl16VQKS1/9Lv238uk1E4idOp5vQ=;
-        b=PrD1SWNdTtPZUgQjRNif2ls9MubJr9v7WpJMbQBGMplnDg/ESsiWZdjv3qFwkjXX84
-         lONLGQro2/xnruJpKObbR0aS2CwXuG+xYN7mEDe6swzRcwdKYHIsV0Tdsf7qulqmhtGs
-         Cc8rW41SvaR0djm60tukZRnm7/UJwVxZfwxkgxrg3Tr655x/wfxsO4clFVrmI7HuSYf/
-         de5vws9DkS4T4CONHe/9F/zIFWKLZezzppEir0ux2e3BT9qXb+QxEmfcGt7X0//8ObMG
-         o9xHdnnb1H9q0Krb0GTqrwVDZp/zBjXN+7WsSUD+qKjqcbBhQI5bcyCIkorcYa4Wfe0y
-         Ch+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744182379; x=1744787179;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nm7nG2cOghl5We3pl16VQKS1/9Lv238uk1E4idOp5vQ=;
-        b=cG8Aepo+PiFBWBpZKDMyUD/UmY1CygNr4CqQk8xvGdCnTWTxNSRQGvmF89cmd2S2Yl
-         ah/t0EBvMzJHigaMHFr9zYjEuuKMTXKkxdkeoxZWQZFvRHdjen+vZ/v07fE7C+iMCpUB
-         JgWXlgPrVbHXJyz5KmazJrsEAuim3DtpKqxRLAdtsuaPLLO+xEaaDTu0i47oKL2ZNwmE
-         cdxCw05hc6Emk+W8xjlAzgm+TjTYg+/uBMuROemn7n4T7nKo2eY/GgrjNhmT2mzmPs7a
-         SmzdRubcxFmZE/FPasOBR6IkQudKENW6S93DARK9aByyQOS5G4wrvQ/9YmZbiCukpP5G
-         B3IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXkRvPaya8O5ReLVqjm0/KWTXy7tSNlbrqJYmDiOxwkK6H+tzI/DArfuWxgAv13ENrk2kmEMJ8cJUnv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+BVpvvTlTyKRSmn+HTGo9OBGokim9ZEtryJW/vb+6/NUtXRkh
-	RD280IyxIoxj6dPISmMNY/jZtS4cTYYB/Bcpe948g39NxF/8c09e6WqpXgwWqg==
-X-Gm-Gg: ASbGncuNPOTgmdqj+OZ884qwNeLCJkDnFeAwbdotM3D7j0Pw2q0E9LC9nFkut9/5SOg
-	kpnHj97oqT3a6f53HRXAi1mebyDMl4w9UpXU1DjoqmLxVOdAyZssuEC4gKBjKfgejsxSbZ6+/+u
-	ildoFKxXCtwqLOExRKxcbzIOKl/dU72OpV/Qryy2wEgKEaBdmrn6lFWvWgnAcgfNdVpHqrVa5r+
-	mth3hhBtd8XEw0eo99dEvgFodqsJt3gGnkdqQNNF44TZ2MjWpnFqxRpjMaExSmUk9enhx4yM0Ho
-	qheXgzgihCYPxAETGXzYf3qOvgc6rzAz40nJ4S6xeGGLf02Ba04=
-X-Google-Smtp-Source: AGHT+IG2IBbUsP4jpyoBsAQl7I0S2iGdcUbnYfvvANGYcDIZAtyYHJ27CyPFx40ttshkAUckDfLO7g==
-X-Received: by 2002:a17:903:3bc6:b0:224:10a2:cad9 with SMTP id d9443c01a7336-22ac2a2991bmr35596635ad.41.1744182379003;
-        Wed, 09 Apr 2025 00:06:19 -0700 (PDT)
-Received: from thinkpad ([120.56.198.53])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7cb5047sm4544815ad.170.2025.04.09.00.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 00:06:18 -0700 (PDT)
-Date: Wed, 9 Apr 2025 12:36:08 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Srikanth Thokala <srikanth.thokala@intel.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Marek Vasut <marek.vasut+renesas@gmail.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Greentime Hu <greentime.hu@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>, Michal Simek <michal.simek@amd.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Tom Joseph <tjoseph@cadence.com>, Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: sifive,fu740-pcie: Fix include
- placement in DTS example
-Message-ID: <3cfkeludmigojzadrgyxyidiydb3mx6yqjcvmgpbhdk75cflog@66i4zpvjcwzv>
-References: <20250324125202.81986-1-krzysztof.kozlowski@linaro.org>
- <20250324125202.81986-2-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1744182485; c=relaxed/simple;
+	bh=7fYf2v+WQaBPYIpK3VnnhW/8ORET4qfJFexoueFeRbg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ldIluQaUvELneLK47/qM0Ve4YQ4EZH0N54++I5m8YBKJCnh42QAfpsDQSxFkDkSBMmFSBpBOl30UDQMEGe3KDCmRqDg3BV5mQocJqamhWYxHPZrvp8wlZICrCLFA7zYUvu4/5dj5cXPCyr0UDiZlFKODJ0/U0SE4vX42PWEuWTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dSBftMqN; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 584852047C;
+	Wed,  9 Apr 2025 07:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744182479;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QZlEU/CzuHV3jCOgs94woTuzZFDAACQlWjPWeu//Pr0=;
+	b=dSBftMqNWrNrVih04KqB6BFDVmnnEnUtoAvUaPtg9UmBFDHN82iyJRyFUY83U+IrRJ/c2f
+	aTpERBb6YufZPFyaW9nl5TmxavHY16QToLY8kqoTjDpfn2OQ4eJFC5ieHFS9OJtbCzCWMH
+	xcm9okGOnQp/samWMULZMaW9v6i1NNu5IZKrHW7t0AOg4HUz6UFMFfpE9xGpSwkusYLWEc
+	pgut8NQ3gJSOgsvjS+Bw2lSHxUlP0NpRAPVMdZyx19eIMh27Wt+FhWPiN8610oAsxsLR2L
+	EbfDqJXTWgsVXtuzTeAWJYgEdqLUCMyinbeuQTBSrG3Lz3qgYrpTBjTck/VQjw==
+Date: Wed, 9 Apr 2025 09:07:51 +0200
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
+ Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Vladimir Oltean <olteanv@gmail.com>, Srinivas
+ Kandagatla <srinivas.kandagatla@linaro.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "Chester A.
+ Unal" <chester.a.unal@arinc9.com>, Daniel Golle <daniel@makrotopia.org>,
+ DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>, Simon
+ Horman <horms@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@airoha.com
+Subject: Re: [net-next PATCH v14 07/16] net: mdio: regmap: add support for
+ C45 read/write
+Message-ID: <20250409090751.6bc42b5b@fedora.home>
+In-Reply-To: <20250408095139.51659-8-ansuelsmth@gmail.com>
+References: <20250408095139.51659-1-ansuelsmth@gmail.com>
+	<20250408095139.51659-8-ansuelsmth@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250324125202.81986-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdehfeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeevledtvdevueehhfevhfelhfekveeftdfgiedufeffieeltddtgfefuefhueeknecukfhppedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjedphhgvlhhopehfvgguohhrrgdrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtoheprghnshhuvghlshhmthhhsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkr
+ hiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomh
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-On Mon, Mar 24, 2025 at 01:52:02PM +0100, Krzysztof Kozlowski wrote:
-> Coding style and common logic dictates that headers should not be
-> included in device nodes.  No functional impact.
+Hi Christian,
+
+On Tue,  8 Apr 2025 11:51:14 +0200
+Christian Marangi <ansuelsmth@gmail.com> wrote:
+
+> Add support for C45 read/write for mdio regmap. This can be done
+> by enabling the support_encoded_addr bool in mdio regmap config and by
+> using the new API devm_mdio_regmap_init to init a regmap.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> ---
->  Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> To support C45, additional info needs to be appended to the regmap
+> address passed to regmap OPs.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> index 844fc7142302..d35ff807936b 100644
-> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -81,10 +81,10 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/clock/sifive-fu740-prci.h>
->      bus {
->          #address-cells = <2>;
->          #size-cells = <2>;
-> -        #include <dt-bindings/clock/sifive-fu740-prci.h>
->  
->          pcie@e00000000 {
->              compatible = "sifive,fu740-pcie";
-> -- 
-> 2.43.0
+> The logic applied to the regmap address value:
+> - First the regnum value (20, 16)
+> - Second the devnum value (25, 21)
+> - A bit to signal if it's C45 (26)
 > 
+> devm_mdio_regmap_init MUST be used to register a regmap for this to
+> correctly handle internally the encode/decode of the address.
+> 
+> Drivers needs to define a mdio_regmap_init_config where an optional regmap
+> name can be defined and MUST define C22 OPs (mdio_read/write).
+> To support C45 operation also C45 OPs (mdio_read/write_c45).
+> 
+> The regmap from devm_mdio_regmap_init will internally decode the encoded
+> regmap address and extract the various info (addr, devnum if C45 and
+> regnum). It will then call the related OP and pass the extracted values to
+> the function.
+> 
+> Example for a C45 read operation:
+> - With an encoded address with C45 bit enabled, it will call the
+>   .mdio_read_c45 and addr, devnum and regnum will be passed.
+>   .mdio_read_c45 will then return the val and val will be stored in the
+>   regmap_read pointer and will return 0. If .mdio_read_c45 returns
+>   any error, then the regmap_read will return such error.
+> 
+> With support_encoded_addr enabled, also C22 will encode the address in
+> the regmap address and .mdio_read/write will called accordingly similar
+> to C45 operation.
 
--- 
-மணிவண்ணன் சதாசிவம்
+This driver's orginal goal is to address the case where we have a
+PHY-like device that has the same register layout and behaviour as a
+C22 PHY, but where the registers are not accesses through MDIO (MMIO
+for example, as in altera-tse or dwmac-socfpga, or potentially SPI even
+though  there's no example upstream).
+
+What is done here is quite different, I guess it could work if we have
+MMIO C45 phys that understand the proposed encoding, but I don't really
+understand the dance where C45 accesses are wrapped by this mdio-regmap
+driver into regmap accesss, but the regmap itself converts it back to
+C45 accesses. Is it just so that it fits well with MFD ?
+
+I'm not really against that, it still converts mdio access to regmap so
+there's that, but is there a way to elaborate or document somewhere why
+we need to do go through C45 -> regmap -> C45 instead of just
+writing a mii_bus driver in the first place ?
+
+As I said, I think this could work and even be re-used in other places,
+so I'm ok with that, it's just not really clear from the commit log what
+problem this solves.
+
+Maxime
 
