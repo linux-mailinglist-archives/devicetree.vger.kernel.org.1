@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-165254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11F5A83CD2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:27:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B2BA83CD8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:27:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 890811889827
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:27:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 302D6173C85
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDE820AF9A;
-	Thu, 10 Apr 2025 08:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C241C20B810;
+	Thu, 10 Apr 2025 08:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JHbPptnu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S67htKsN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE861FDE31
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 08:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CFF2045B3
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 08:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744273608; cv=none; b=BXttYtsnT4YtXDn7VfbhgBlgc5I8g0cpuCGA+m1Q23duIfMlpELcVusf1t2gO7lJHezPT2qIcD9N6mH/0jENJnnHPEaaJLLrsReCXj1u219ckVmReuv5OSVJnjJIw/K1uP3TQ/OXKIqtqIwEAkycHCpXXN8DTaJ0pPnsWjBlaCk=
+	t=1744273610; cv=none; b=ajhLM5DoeJxnBOH5nrUvUTPvlXi+NJVpibBtNF1heKzS1ArgxVfSoZuqPmvmolVI2AYezJ5oLP4YpK/W6zbcuzjWWGj2ICwE3d2qqpC++fICrXgvDuATeZpYr3eoAUFudOlzoMz46s0cqIsf7ogoXGoASgOvj85BUENrL3UifHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744273608; c=relaxed/simple;
-	bh=1MwayweBMCGI1FLlKVhQxmnVp9c11rxMnbmLOw/VEXY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a2xx+KlLnEcUVjeGQGBaX+++v59ZUp+7oVBMzXKy6f8NwSYagoeBqukF7XyAIhU1Dq2/3/EtWeHYX09wYa3riznD9+dBVmRfAt7DEHm9azJh4bFyFYSfpQewYMx/KbmMcdwv9NrMb8iWH08HCOimuBsK5UlntWNrZHaf7TUoeKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JHbPptnu; arc=none smtp.client-ip=209.85.128.52
+	s=arc-20240116; t=1744273610; c=relaxed/simple;
+	bh=Qw+ihHzG5xct+geio3rYuIIVhgSwwRDJSCuqYbtpH4w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=LUd5BzP5p+ouJa2mc/TaKEcNtCcA44Vn+wytLVfE1YrYkyl0kLh2nWM9bFlnstNIEHvo7D0rbs4P2LN2t7VofRmdmLSVXNFEMXW4FcbnSx5MByVNePejFoJ8UQJV3dMBaBQmM6Ye/2jrvZ1A0LrIGeYHEX+SGuOer1d/8u2JM/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S67htKsN; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf0d787eeso6132995e9.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 01:26:46 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39c266c1389so260884f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 01:26:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744273605; x=1744878405; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=by0C3qcBJWPP2R5Tts84nwTn6pqrbnhx93UsShQdVNQ=;
-        b=JHbPptnuJMFxceSbvazDapKu5L+m0xCVYqqxx4PJC/hk4QM7H6uujswVXqWcG4x4qX
-         WJEDDP+7rsQDWT6w13Q26NjzQKEwZ2mjdTLkYdsBiitSvaiPUuLker7d0TWtTjpyhJJm
-         mHpxeAcqtHi7wcYEqYmAQEimg1ZaIz4RZM434lWv4H2BkHFZT1GQJjoL1U3td04deZRg
-         8CLfk+F9JMOkL+UBIX1ua9Z8MgbUeviEgpXzja4PnkHjxtrVINPbPdm2+BUt3TXEUg/m
-         FGdX1vNLss27fT71mVz+sY1G/2yW9TcCj93rNnTuaCD7kr4DRXmw6K5dzzXKHo7GXN4C
-         EwLA==
+        d=linaro.org; s=google; t=1744273606; x=1744878406; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BoLuuoO2Fvx4pIGyt5bGUZIVskYzSTtG3IaMJttRhAg=;
+        b=S67htKsNjmw9XgntdxzuX+TxJRFXrkBYb2J6hbSnES4mk33LR3Ay3lyy4VuWSeAzSi
+         LLAoWcw3OI9JUvD5BR/CknWHTM2OUd8uLXN522Oi2oZCwPDl9ksJeaB9rNGBuVN8y+eq
+         3vbvYHhAKpA70zfoYEz6ZAMRh9OqSYRaamrrWtrOLMEDIaqU2LkAcmk7sB2CMYiw5WBF
+         MmUHvWbGRaBJ98/I26MnYRgwhBWdAeoQjqoJC/06NvXOGJlX+QbVaMixWFPvWkeE9CH3
+         PmY0GZ5drccFuHtX9yDzFxFBvDRpEJ1RP0B/hYkK406od8b1LxRMJNie6Dhfhyi/qwaU
+         /cjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744273605; x=1744878405;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=by0C3qcBJWPP2R5Tts84nwTn6pqrbnhx93UsShQdVNQ=;
-        b=roHqxGb7gGEeZODBxW+R3+wfkt9SUEjFKb02poCv4Q7stZuHveEjYLA5vU9QLBSQol
-         hfUg4F9OUyhIZwhwG9qv8Vomh9l2vFqd2FY70OKT8c6P4nZsNKnM8xDoYbIDB36LwdMP
-         L/xXpj1/lQz4DYFoDmp7L1Yoj/i4JKhIBtiZZmD+hPMr3b9VO9Vube4MtocgWRVbnJCn
-         jQHOxG5tPxBcFc/djOp79DZA9WedL/ek2PLYYKlKuwSNnC5gSHm6DI/3djqkx+YvCT76
-         puGuz1EJT4hIJOo0nITv29afZaLd3jR/UX1j9XkTjlWVnMf/MnWcNo/icSizIrSkkz4Y
-         WdEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKJjFXzdmDZIee6cWdIrW761P3OVOxkepORUf5/FuDyQADn47X8ACDmV1X+JSguXadTrg6cBwXQ+Jl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6TPnWntLNbLDIlNcUm1w4MilgNCiC/+o1bkPD+1zY2LWJdIf0
-	g5EvuibniFfEAgO7xs5jmyA9PfyBBLVnzK3O+xCuzmyT1k9LPEuxQxG1WhHJMjA=
-X-Gm-Gg: ASbGncufJcf9k7ItW3s2oXVUD/w2zGPbFq4pKP0MsJN2UyEXLXah1OZGXMqgdcVlLmr
-	ueoGKC801rhAufQe/GjBZQZfcYybrqOPZsbpfKjSeq4KrdaAmWaLlE25cal8eZZmO55PehwygOx
-	oaHNKt+RWa1f3A0DDCJSTc1M4YO5j6Sxig+FYweBjaFW9Zqs/+8MenL6x+IB/x0AfclWZAMKTuw
-	J37YOvbUJM9aJATBCljd/td2e3PMUoxryfM4utuf51yeb/z0qqwbNBwFi//ugnQT6p1FB+zc940
-	HbJLlarbcvGlnJ/BqfWSA5duohjgUCMKTGN6eQmoCmPqobytVL3F+YoMu2bD1gBZSiQ=
-X-Google-Smtp-Source: AGHT+IFY9hRZTvaafYq2hL5p30TOnetIisE6/GIMeJNcOc0jS1+hW0A56uPnzu4Ixw/+IUcYhD8Lxg==
-X-Received: by 2002:a05:600c:1da4:b0:43c:f44c:72a6 with SMTP id 5b1f17b1804b1-43f2fdced9cmr13942095e9.2.1744273604558;
-        Thu, 10 Apr 2025 01:26:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744273606; x=1744878406;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BoLuuoO2Fvx4pIGyt5bGUZIVskYzSTtG3IaMJttRhAg=;
+        b=nkDZskX8y9bSPCUCzZrDM99Sy9u+hDIz/jbzi+0gCucG+exGtsDt1tQiKqBCHq9ANo
+         as0rJzVcnwjMyqWrz2yxcEM25ACoxqjN3RrXFujPdFgEvMPVSPC64zRzdblPPE6zZHNI
+         66DBfjpa8a3g4kk92oRcKuK+BPTX5uZppFyTqewWrWtPdMRJ6BpaEwHRAri30d1+jgFx
+         fnUX69+SzaF2zKQmFT3t9AJzX5Kqv96cXifCi2eEvh+wCZyCUG9Uypm/lzwwT80AVVLw
+         0MWsNt3oYIopR2jDZmn/3eB26bDINxlwpRqFiZ7lUGhiJ3ft7flJj1XPGjHNxU5VTBOV
+         /Qsw==
+X-Forwarded-Encrypted: i=1; AJvYcCXu9G5+dyCp6G+/KA66EaNBZYIl7IEnQCVDQVWBIxuRwkz0JkS3OyJBs1Dj+5dS951g07IoS58gWcSw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzXVWuox3IIbNAS5OcRMlgWtGTM6aVqSW+wWb5gy5ReuynK2hi
+	1m/46GUHHWmnCXndFqEpI0lPXb9EahN3pvH/QwzAb7BA/OGlDYZLp6GeoZFGbVI=
+X-Gm-Gg: ASbGnctz/0F5PmyA36iWMC6PozgWDhbeIPwzZzzz7DmE7GznVr0rhjTskEktQLCB3bj
+	GyhN5/m/hGEiR4IZR9DuZ8PboE/jMvy6Yh2vCT2jIVWL0PMVZCoNHOyP2mlD1gyrPyVBWU9q3u7
+	Kn+ww9ha83OvJZyLEurUZVYPw7zs3GvfawV+T3BBwIQGK8eZHi2itLhQKtZYN4gLHXxFXuf/D8s
+	eo9ULYtB/o6UVxfWt+ZWDxXJ4pyx1NCJv4QASXN79XqgM/eDIzGuz2KqHPx+VKDqmoZlTAM1d0I
+	ngKGaRwqj3iOiI9DmGJ8dWC+vMyeomhaVQ2/T1GklvIL0ttaUGjZWvfHjkeC9SV1PUY=
+X-Google-Smtp-Source: AGHT+IFJAAYpm4ch8BzX/j32mCSfuBT0k4tmo3Fc4S6M/p1AIC8JN3xN7HEUUqArc7BN3Wfv8o/vIA==
+X-Received: by 2002:a5d:5889:0:b0:391:4674:b136 with SMTP id ffacd0b85a97d-39d8fd52397mr1003636f8f.29.1744273606025;
+        Thu, 10 Apr 2025 01:26:46 -0700 (PDT)
 Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233a2c84sm42884645e9.11.2025.04.10.01.26.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233a2c84sm42884645e9.11.2025.04.10.01.26.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 01:26:44 -0700 (PDT)
+        Thu, 10 Apr 2025 01:26:45 -0700 (PDT)
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: wim@linux-watchdog.org
 Cc: linux@roeck-us.net,
@@ -83,10 +85,12 @@ Cc: linux@roeck-us.net,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
 	alexandru-catalin.ionita@nxp.com
-Subject: [PATCH v4 0/2] Add the NXP S32 Watchdog
-Date: Thu, 10 Apr 2025 10:26:12 +0200
-Message-ID: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings: watchdog: Add NXP Software Watchdog Timer
+Date: Thu, 10 Apr 2025 10:26:13 +0200
+Message-ID: <20250410082616.1855860-2-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+References: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,66 +99,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The NXP S32 watchdog, referenced in the documentation as the Software
-Watchdog Timer is actually a hardware watchdog. The system has one
-watchdog per core but an assertation does not directly reset the
-system as this behavior relies on a particular setup and another
-component which is not part of these changes. However the first
-watchdog on the system, tied with the Cortex-M4 #0 is a particular
-case where it will reset the system directly. This is enough for the
-watchdog purpose on Linux.
+Describe the Software Watchdog Timer available on the S32G platforms.
 
-The watchdog relies on the default timeout described in the device
-tree but if another timeout is needed at boot time, it can be changed
-with the module parameter.
-
-If the kernel has to service the watchdog in place of the userspace,
-it can specify the 'early-enable' option at boot time.
-
-And finally, if starting the watchdog has no wayback then the option
-'nowayout' can be also specified in the boot option.
-
-Changelog:
-
- - v4:
-    - Update the watchdog timeout when the callback is called (Alexandru-Catalin Ionita)
-    - Fix the clocks bindings to have all the clocks described (Krzysztof Kozlowski)
-
- - v3:
-    - Add the clocks for the module and the register (Ghennadi Procopciuc)
-    - Use the clock name from the driver
-    - Removed Review-by tag from Krzysztof Kozlowski as the bindings changed
-
- - v2:
-    - Removed debugfs code as considered pointless for a such simple
-      driver (Arnd Bergmann)
-    - Replaced __raw_readl / __raw_writel by readl and writel (Arnd Bergmann)
-    - Reordered alphabetically the headers (Guenter Roeck)
-    - Enclosed macro parameter into parenthesis (Guenter Roeck)
-    - Fixed checkpatch reported errors (Guenter Roeck)
-    - Clarified a ping on a stopped timer does not affect it (Guenter Roeck)
-    - Used wdt_is_running() to save an extra IO (Guenter Roeck)
-    - Fixed a misleading comment about starting the watchdog at boot time (Guenter Roeck)
-    - Replaced allocation size sizeof(struct ...) by sizeof(*var) (Krzysztof Kozlowski)
-    - Drop old way of describing the module and use table module device (Krzysztof Kozlowski)
-    - Replaced additionalProperties by unevaluatedProperties (Rob Herring)
-    - Removed the DT bindings description as it is obvious (Ghennadi Procopciuc)
-    - Fixed DT bindings compatible string (Krzysztof Kozlowski)
-
- - v1: initial posting
-
-Daniel Lezcano (2):
-  dt-bindings: watchdog: Add NXP Software Watchdog Timer
-  watchdog: Add the Watchdog Timer for the NXP S32 platform
-
- .../bindings/watchdog/nxp,s32g2-swt.yaml      |  54 +++
- drivers/watchdog/Kconfig                      |   9 +
- drivers/watchdog/Makefile                     |   1 +
- drivers/watchdog/s32g_wdt.c                   | 315 ++++++++++++++++++
- 4 files changed, 379 insertions(+)
+Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Cc: Thomas Fossati <thomas.fossati@linaro.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../bindings/watchdog/nxp,s32g2-swt.yaml      | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
- create mode 100644 drivers/watchdog/s32g_wdt.c
 
+diff --git a/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml b/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
+new file mode 100644
+index 000000000000..8f168a05b50c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/nxp,s32g2-swt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP Software Watchdog Timer (SWT)
++
++maintainers:
++  - Daniel Lezcano <daniel.lezcano@kernel.org>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: nxp,s32g2-swt
++      - items:
++          - const: nxp,s32g3-swt
++          - const: nxp,s32g2-swt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Counter clock
++      - description: Module clock
++      - description: Register clock
++
++  clock-names:
++    items:
++      - const: counter
++      - const: module
++      - const: register
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@40100000 {
++        compatible = "nxp,s32g2-swt";
++        reg = <0x40100000 0x1000>;
++        clocks = <&clks 0x3a>, <&clks 0x3b>, <&clks 0x3c>;
++        clock-names = "counter", "module", "register";
++        timeout-sec = <10>;
++    };
 -- 
 2.43.0
 
