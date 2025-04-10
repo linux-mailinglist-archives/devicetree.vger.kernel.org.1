@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-165226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED6DA83C44
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:15:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C03AA83C74
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3E6A3A5D40
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:12:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28DA31B671F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF491D5CFE;
-	Thu, 10 Apr 2025 08:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93ACC2153E1;
+	Thu, 10 Apr 2025 08:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bjDJKemL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EqTJLb5T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED81038F80;
-	Thu, 10 Apr 2025 08:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA56520C469;
+	Thu, 10 Apr 2025 08:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744272767; cv=none; b=aKs0lF8Xe88p/Bha4L477y5fpjbwrBG53VFwslARc2PZmclNWnSsm34QrXDwx2ZWWhi6Cva5bxaw2RYLJbB8G0y599J4ikKumq3dh64Esg1QqhUmy0FpOVZt6M3MRMOwBYsq2/ZhrnSyxeM/M0oFpVSayuS7VTHIkxvYh9PB2/M=
+	t=1744272918; cv=none; b=ZxUC69BtcVRM7kOiUJTBuCXtBwkk1+ZQRhLjpedmdcjuzSJO3CJ2LWpSe1NrspgJqkgvRmPML9p6E0VcJ/uFMlC0IDxE2XGAgc9f1sp9/h+eqjeD+yt6xBjwIaAz19ZIkW9TlOAIAI9PUrEzSQwYnR1DnyRs0nzVXg/6urMSJSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744272767; c=relaxed/simple;
-	bh=3AoGDgwNV7KMGShci6YGW6agw+iL/mF/817ug3TjIhE=;
+	s=arc-20240116; t=1744272918; c=relaxed/simple;
+	bh=TEJ75bcWXgyu16xTGaeO9Tkza70WrHE/yhq9raHi1gs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iTFERKzDEDMZEWQpWTpEF0yJNR+wHFuttI8k9U60X8dpQnaze1e189WmwMJmXoezbeS6DxcDjJ+u7dAXGyIg4ob9LjVeuHOV4M+I3zAlRi26q+rpuRoiMUFsZvUTN0Rue/BYK9o9qIRhz4Z4G7Estuq3BEWT9deBff36Y/V0W3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bjDJKemL; arc=none smtp.client-ip=209.85.167.52
+	 In-Reply-To:Content-Type; b=rriflXjeHmSHUum/2YHNNl33qQlaaLA/Gk5gSwLxzIMfcuoe6G0DBfLjS2xnCXljamaYPHWKctm5LM5QMSdrFgQBekbiUBh8BskDDUDDpglTG9PmIAZcLa35c9CcCEW41hxfMW7mKdAhMczGOtlQdUHAdQor5g3EozPIVrqtflw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EqTJLb5T; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5497590ffbbso519154e87.1;
-        Thu, 10 Apr 2025 01:12:45 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54afb5fcebaso647186e87.3;
+        Thu, 10 Apr 2025 01:15:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744272764; x=1744877564; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744272914; x=1744877714; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Grl2X0AdNCCi9R+lafeqWzTVoLK8D9dH81pG+O46x74=;
-        b=bjDJKemLa40gTOGc+AnJ7saXosPCiYvAKRihVooLxIKnzaF5OEdt1czDi/eicyhDij
-         NV3OpQDdiVC5qOEowIE2Y2c7+8de8ar/frrvwzVT74hmmub+zqwFiA8dpMEPy7kSYoqo
-         WkCdRpeEOzkCd1InxtdR0ze4wuEfigh4zujHQWHMAbpLQZKWJBNmh7ugNDxkS4W50DVC
-         Zi3NP1BV06iNILMSRAqUaBKI5wxbrI24uqOiSTTuxxKgMuL3IvTMcmmvAc6xYo8C/jaC
-         EwCuLiVW+V7/T1aPGvDWw07fHyEBrDcpqZRHoSg9rjkzu8IN5Ht7aLWH5Fk+1crkRcJF
-         zbwg==
+        bh=gneycikMji292Iovmau2ZZPw4hlcAglWkCTS8hfns70=;
+        b=EqTJLb5TOYDXCZYTKgh+EiEHzTE1/vAif5fXMC32BMYrzosrrqxZOaONXnQDubG182
+         BJcmTbxhx9r2FHN9HXccmhTsrtuNTKb7fkzHfG4cqQEaq4pO29+UepfHxP8CniuNyG4f
+         jsdcB+TFP4BPWL+GEp5Jee3HvMxhqLXq+QriFYavHYTgIXsRK38XHBnpyCRO39/iSVve
+         ZAssfJYqS7NB/vpPHw84d1LYblpTX2BeJxXgpRBh2els8GtjlcmT+yzejSyd//bI9vwQ
+         mnVmGj6DjvURreqnYLR432peVPsLHWRAX+/l93J5dCICfpcpMQxG2auK63/XUFYaaL8t
+         of2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744272764; x=1744877564;
+        d=1e100.net; s=20230601; t=1744272914; x=1744877714;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Grl2X0AdNCCi9R+lafeqWzTVoLK8D9dH81pG+O46x74=;
-        b=j33YVol8s29Y8ts48Hc2dm213UWhhwhvjQ/qR4C/Dh0Uo+dVq5lZxXbz4XGZVvf9Cb
-         BYUxS2B7VySO1pTr0DtsoldcBWi80TNnSxORGh8nOvyB3RKrRQwe+PxaxtxPc4/hdv2n
-         rEda4wMslb5wruUrjtrffXbZ9L6GuLnuwdScXDL0EmGh6yvkgFFkhFv9Zmfz/lEr8Hpt
-         RVRnC0CvVeK/WCbhpQ41Y91NZym6b0HBTo/btnnx/dgMGMaSQvMmhMqxoH+7nG+mPECC
-         oPuFQ6e+jg7j7RZsbAIbhRdOwiLXuS7z9wmmDxM66p4F8fQvQVNB3hbM3FlKyyM1QJYP
-         6mpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvv+AEWAVhU1qwJoc5QeF3ZKZS/AuEGE4TQi+nEDlIBpyg4Cufg6mkeX9YBAQgnVt0ZravTvQJmNNA@vger.kernel.org, AJvYcCVccEeq7z6dpCJSSkVbCeuGB3qmL3akRE2e4k8kuR21BNGj5HDjM31b4BjU6a9NCXMoJkF8TVVBkAFOL2VX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLdkbCwzubhKVMDRqTgj9N8fULSbjbcpKmpIFipMnXXbbdyzkA
-	AJbyKPWz7NTKJDN5qM6Hq/nwtKnxJZriC4TiKE4RYIYU33PdtER/
-X-Gm-Gg: ASbGncspvjzeuc1P6lsmI8e+P5rxcvTWmgGZH4jS2GACnAeENBw+idNaguWGB+x+Job
-	mGq2mp2c0gOr8nBNQoGPrk84TQXDtTGPDA4EeG9OeYiNjM5bErwWjyA97bGplaaPFkN4dp1zonO
-	JhNDb8TLB8cA/8DgKB1Ml+PgdqDspYIxVa/fYYmvSM5AtIEfIKA7OdTOcjUfEOEBHdm/6iloK4y
-	ua5pm+vvKQFaq+H6WJwt+1GLnx53MNScmA51I7uht9tA3d9XUcCmTppITA11+Oc3zO8NVNi+D5d
-	QRelmxHPJb9Ey+bPgTTB8e0BzuMAijGB26hTl1dtI3GwtX6BYR7q5SDfd9y/gjVzSaHoJWCDh+v
-	WDGU227pnsuUN9DJLVHT50A==
-X-Google-Smtp-Source: AGHT+IFWmbEOh1Nr1upe9f78hm2o5YATKFuyEjVt78HlmgXqCdbv9VFkmZ3/3po0lLSijlz1ag+8lw==
-X-Received: by 2002:a05:6512:158d:b0:549:8f06:8229 with SMTP id 2adb3069b0e04-54d3c64a477mr420491e87.49.1744272763705;
-        Thu, 10 Apr 2025 01:12:43 -0700 (PDT)
+        bh=gneycikMji292Iovmau2ZZPw4hlcAglWkCTS8hfns70=;
+        b=IpIhgda1xr/hpP5Gfvf+h5Qeetrn/3oAmGWmxzT5F0OAgHV3AKDBHlzZooflNzMbcl
+         RyBUYqZoXIdGLFS+8Af6jMSCm8KsbOOj5DjjAMr1bQsS7LM59EYBAV1UGMrU6X4B9qQD
+         aBHwsAixS5xiAiY0j1WxsD8bFou3gkj05YWiVMS5pEvkDxPHy0/+otosV4Wy9UdErrOH
+         lPpA3Pr1jxMvkwYvDlIYdNuRIZs5TGxOwja2YmhfnjfJOKGk//6d+BecT4Dxi/Rplevp
+         vTHjFon3W9QYHyVStBELliEpa/BZ97YKlw6q94XYuYMgY6eRVbCLT6z4oJJwQfJ+Xntv
+         TLSg==
+X-Forwarded-Encrypted: i=1; AJvYcCW0/ETrOCQl7ZjrsRHlzhzcRPzjQg0o0iI4nKFu4aKRYOiDnpkUDPoBYA/FCdQThGllmRcCGzt9EJ4H@vger.kernel.org, AJvYcCWq+T8iDLg+3/pk+iCksI7LU6SSCQnp2OQ8UO3bUxmSzM7aBqW2jRfrjdVf1xRsRKhV6MWParAu8Y9xQys3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmYm1rBuQiJztG/Y95wcXX98wA3jSCMLi/7y/d//HjmG1O3exZ
+	tlEGuB8aOsDxZesH5YbbpLk8jy2Gi65k4Ifd6Uvlez+SSusESj5u
+X-Gm-Gg: ASbGnctWZ+nvdiUw87tN8pkd/YPcGWbRRTPzcN/4xSajVvT7oE/ETjM1UvSweB4qP8g
+	3dEUgyv0OIFwo8nB20h004AgsQzfJP/e9/OhIuBOK/nDwY3aUoHf6RMj0y5Kh3sXKPxQr2nUCh9
+	u8h9JogFgzq8pC2IpfIEQjyqCV1IoYMDCuq4a42xFRMAHqjUZpgHnqO1yGfrInmpxrDbvzm7EyY
+	QllpEa400s810ws24hMKKBb7M++le3o/tVz8uxQHb1/tJWGHDCLjG6jwZ8EGacLLUyLzGYlLOtw
+	ea/N9ZjMSYX/1trAmZLNYMoWkCRNUKEh6vpQccKSdzC66v6igB8SRtGQwGRCJQXnDuMlJeIzc+w
+	fBeB3SH6WQMsuFzRNPMYyuomRYFe9qSir
+X-Google-Smtp-Source: AGHT+IGgKdHHRzRFXIUkI9/XXEoFfkSCagpx+2vHi+FbNluTJ/xUkEOH9aHhI17yT5kabItmPLAE6g==
+X-Received: by 2002:a05:6512:104f:b0:549:8db6:b2dd with SMTP id 2adb3069b0e04-54cb1175ff3mr594047e87.31.1744272913526;
+        Thu, 10 Apr 2025 01:15:13 -0700 (PDT)
 Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d5035c9sm71061e87.125.2025.04.10.01.12.42
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d23a586sm73583e87.100.2025.04.10.01.15.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 01:12:43 -0700 (PDT)
-Message-ID: <ea291459-5c25-40bc-997a-490fe2a42a12@gmail.com>
-Date: Thu, 10 Apr 2025 11:12:42 +0300
+        Thu, 10 Apr 2025 01:15:12 -0700 (PDT)
+Message-ID: <6f8e644c-d383-476d-87f8-2304e47436fd@gmail.com>
+Date: Thu, 10 Apr 2025 11:15:11 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,116 +82,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/14] Support ROHM Scalable PMIC family
+Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
 To: Lee Jones <lee@kernel.org>
 Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
  Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <cover.1744090658.git.mazziesaccount@gmail.com>
- <20250410075817.GN372032@google.com>
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <20250404154355.GH372032@google.com>
+ <ddd8882f-05b6-40f0-9a26-ab21d9644364@gmail.com>
+ <20250410080233.GO372032@google.com>
 Content-Language: en-US, en-AU, en-GB, en-BW
 From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250410075817.GN372032@google.com>
+In-Reply-To: <20250410080233.GO372032@google.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/04/2025 10:58, Lee Jones wrote:
+On 10/04/2025 11:02, Lee Jones wrote:
 > On Tue, 08 Apr 2025, Matti Vaittinen wrote:
 > 
->> Support ROHM BD96802, BD96805 and BD96806 PMICs
+>> On 04/04/2025 18:43, Lee Jones wrote:
+>>> On Mon, 24 Mar 2025, Matti Vaittinen wrote:
+>>>
+>>>> Support ROHM BD96802, BD96805 and BD96806 PMICs
+>>>>
+>>>> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
+>>>> to the digital interface. Main difference is voltage tuning range.
+>>>> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
+>>>> able to differentiate the PMICs (done based on the devicetree
+>>>> compatible) and then providing separate voltage tables.
+>>>>
+>>>> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
+>>>> provide more capacity on systems where the BD96801 alone is not
+>>>> sufficient. Startup sequence of these PMICs can be synchronized in
+>>>> hardware level, and there seems to be some mechanisms which allow
+>>>> delivering the companion PMIC (BD96802) status to the main PMIC
+>>>> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
+>>>> individual PMICs and allows using them from software point of view as a
+>>>> stand alone ICs. From the digital point of view, the BD96802 is a subset
+>>>> of BD96801, providing only buck1 and buck2 regulators. Please see the
+>>>> data sheet
+>>>>
+>>>> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
+>>>> provide different voltage tuning ranges.
+>>>>
+>>>> This series adds basic voltage monitoring and control as well as a
+>>>> watchdog support for these PMICs using the BD96801 drivers.
+>>>>
+>>>> Similarly to the BD96801, these PMICs too have a few configurations
+>>>> which can only be done when the PMIC is in STBY state. Similarly to the
+>>>> BD96801, doing these configurations isn't supported by the driver. The
+>>>> original BD96801 RFC [5] driver should be able to cover those
+>>>> configurations, if modified to support these models.
+>>>>
+>>>> [1]: ROHM BD96801 data sheet:
+>>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
+>>>> [2]: ROHM BD96805 data sheet:
+>>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
+>>>> [3]: ROHM BD96802 data sheet:
+>>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
+>>>> [4]: ROHM BD96806 data sheet:
+>>>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
+>>>> [5]: Original BD96801 RFC:
+>>>> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
+>>>>
+>>>> Revision history:
+>>>>
+>>>> v1 => v2: MFD driver changes after review by Lee
+>>>>    - Use enum for chip type instead of picking the data directly from the
+>>>>      of_match_data.
+>>>>    - rename "chip data" variable 'cd' to more widely used 'ddata'.
+>>>>    link to v1:
+>>>>     https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
 >>
->> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
->> to the digital interface. Main difference is voltage tuning range.
->> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
->> able to differentiate the PMICs (done based on the devicetree
->> compatible) and then providing separate voltage tables.
+>>>
+>>> The MFD stuff looks okay to me now.
+>>>
+>>> Let me know when everything else is ready to go.
+>>>
 >>
->> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
->> provide more capacity on systems where the BD96801 alone is not
->> sufficient. Startup sequence of these PMICs can be synchronized in
->> hardware level, and there seems to be some mechanisms which allow
->> delivering the companion PMIC (BD96802) status to the main PMIC
->> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
->> individual PMICs and allows using them from software point of view as a
->> stand alone ICs. From the digital point of view, the BD96802 is a subset
->> of BD96801, providing only buck1 and buck2 regulators. Please see the
->> data sheet
->>
->> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
->> provide different voltage tuning ranges.
->>
->> This series adds basic voltage monitoring and control as well as a
->> watchdog support for these PMICs using the BD96801 drivers.
->>
->> Similarly to the BD96801, these PMICs too have a few configurations
->> which can only be done when the PMIC is in STBY state. Similarly to the
->> BD96801, doing these configurations isn't supported by the driver. The
->> original BD96801 RFC [5] driver should be able to cover those
->> configurations, if modified to support these models.
->>
->> [1]: ROHM BD96801 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
->> [2]: ROHM BD96805 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
->> [3]: ROHM BD96802 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
->> [4]: ROHM BD96806 data sheet:
->> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
->> [5]: Original BD96801 RFC:
->> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
->>
->> Revision history:
->> v2 => v3:
->>   - Fix BD96806 voltages
->>   - Use defines for voltages to ease spotting (copy-paste) errors in
->>     regulator descs
->>   - Use lowercase node names in the BD96802 dt-binding
->> v1 => v2: MFD driver changes after review by Lee
->>   - Use enum for chip type instead of picking the data directly from the
->>     of_match_data.
->>   - rename "chip data" variable 'cd' to more widely used 'ddata'.
->>   link to v1:
->>    https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
->>
->>
->> Matti Vaittinen (14):
->>    dt-bindings: regulator: Add ROHM BD96802 PMIC
->>    dt-bindings: mfd: Add ROHM BD96802 PMIC
->>    dt-bindings: mfd: bd96801: Add ROHM BD96805
->>    dt-bindings: mfd: bd96802: Add ROHM BD96806
->>    mfd: rohm-bd96801: Add chip info
->>    mfd: bd96801: Drop IC name from the regulator IRQ resources
->>    regulator: bd96801: Drop IC name from the IRQ resources
->>    mfd: rohm-bd96801: Support ROHM BD96802
->>    regulator: bd96801: Support ROHM BD96802
->>    mfd: bd96801: Support ROHM BD96805
->>    regulator: bd96801: Support ROHM BD96805 PMIC
->>    mfd: bd96801: Support ROHM BD96806
->>    regulator: bd96801: Support ROHM BD96806 PMIC
->>    MAINTAINERS: Add BD96802 specific header
->>
->>   .../bindings/mfd/rohm,bd96801-pmic.yaml       |  10 +-
->>   .../bindings/mfd/rohm,bd96802-pmic.yaml       | 101 ++++
->>   .../regulator/rohm,bd96802-regulator.yaml     |  44 ++
->>   MAINTAINERS                                   |   1 +
->>   drivers/mfd/rohm-bd96801.c                    | 565 ++++++++++++++----
->>   drivers/regulator/bd96801-regulator.c         | 455 ++++++++++++--
->>   include/linux/mfd/rohm-bd96801.h              |   2 +
->>   include/linux/mfd/rohm-bd96802.h              |  74 +++
->>   include/linux/mfd/rohm-generic.h              |   3 +
->>   9 files changed, 1073 insertions(+), 182 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
->>   create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
->>   create mode 100644 include/linux/mfd/rohm-bd96802.h
+>> I'll treat this as an ACK for the V3. Please, let me know if that's not
+>> Okay.
 > 
-> This set good to go now?
+> Acks are tricky because another maintainer might (have have in the past)
+> assume that they can apply the set with my blessing, this is not the
+> case.  I used to use `Acked-for-MFD-by: <me>`, but these ended up being
+> merged.  *face palm*
+> 
+> Anyway, no harm done this time around I think.
 
-Yes :)
+I remembered you used to use the "Acked-for-MFD-by". Never knew the 
+rationale though. Thanks for sharing the reason - and downside :)
+
+I try to remember to not treat your "this looks good to me" as an ACK in 
+the future then, but expect explicit acks.
 
 Yours,
 	-- Matti
-
-
 
