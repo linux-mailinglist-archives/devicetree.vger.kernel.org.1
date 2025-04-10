@@ -1,132 +1,179 @@
-Return-Path: <devicetree+bounces-165405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54806A842A0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:11:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A36CA842E7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:21:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB833BDE9C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:08:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ACFB465105
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695A4284B46;
-	Thu, 10 Apr 2025 12:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCCD284B30;
+	Thu, 10 Apr 2025 12:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JcrysT00"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNcDZ7ze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941A1283C90;
-	Thu, 10 Apr 2025 12:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D42D283C9F;
+	Thu, 10 Apr 2025 12:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744286918; cv=none; b=c6Q4BNzJXo0Q7jfq4q2zDPleqFqSbV1qpsSt0WzlfUw6V5f1HeIAwIMEuBOXsORY0yQI4AB0to5kLXiP5Od65IqUcK0VWv4V3wErAriyKI0wt1GomBEvtm3g73MGjrQ5WZfqhBeUSBu5Q6lLhKsBPfIUol4thzi/omr88/xWrWg=
+	t=1744287558; cv=none; b=feC2s8HsdhICC9i/sar/7qMmZfSZwzsiL+5/nUjuUtkCS+GaWqCUP31McxY+lv1lgUQlAm22I9eHZNFy2UgheyvnHEEDAur8HzPA2A46MLh87GfkP4h+qNfW3ftjQTS53ey065Upldoppq6I+Cb1qBHed848wkrJSk/Q8hqThIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744286918; c=relaxed/simple;
-	bh=8QQfDRrU1vgWxnygHJ1ssYKWNkietgQzVlMFFQk+d8M=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hvlRNZVa4FVKgPS2HtUP+lQxLTidExWfEeFAphTcPTcvshv5Z0mHLv1jhwr2YkI4iYzBG9eQC4zLc7G1QRv86tKfkJ39omzTsa5exB6OM7DdiOL8//PZd+O1IOWoUkW2LX9W0g/11N/UbXBw3BPAzR0CvAfHec6GqWlg1b6edog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JcrysT00; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AC8MtZ1125397
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 10 Apr 2025 07:08:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744286902;
-	bh=/WtYtYBZqx4XMAJuxTT0OcqzWgf2/8t867s121qJZNI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=JcrysT00/IQVRByyhqEKtf13FUISI9cLIRAeoihDXEii6UDOiDlgNt1aE5Le/5Qs9
-	 qRpLz6GSFYC5ZDyRJQiZmW6mX5MZOlfpfMBXH29b5aZWYKaoKpuIj7bsvpo8b8S/0m
-	 +ETYQqVEUQYCO9ozrnH0Yseh15rXqZ6FwhNjmwvI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AC8MlO115444
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 10 Apr 2025 07:08:22 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Apr 2025 07:08:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Apr 2025 07:08:22 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AC8MQT102361;
-	Thu, 10 Apr 2025 07:08:22 -0500
-Date: Thu, 10 Apr 2025 07:08:22 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
-	<jm@ti.com>,
-        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Deepak Khatri
-	<lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>, <kamlesh@ti.com>,
-        <praneeth@ti.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Message-ID: <20250410120822.3vsrt42iyfs75h6q@spearhead>
-References: <20250408231823.826163-1-robertcnelson@gmail.com>
- <20250408231823.826163-2-robertcnelson@gmail.com>
- <CAOCHtYhFKO=LRN8qp-w+rkTGKJ8t-LnqgqbQW9P6CO3=EeuufA@mail.gmail.com>
- <20250409130918.d3cyzv3to65oktv2@vision>
- <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
+	s=arc-20240116; t=1744287558; c=relaxed/simple;
+	bh=rJa9YkIp7H064dJyAxgUKpVWovBRYUB4q2laXDx+6Hk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DdM8kpzb2aIJ52S41271NItVQLH+XrqpBuxg4sNhqHBHQ/ooXBL/9dNGVI3a9GGMW3Th/KTkBM4q8ff6ox/rDfn7g+lMVxXxCBkJwN73gmtVtZeJCqfCyBArhRE+APKGqTBYLUiia0LE368faETWIhhFwtNqB+2RBKT6+yr0nOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNcDZ7ze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6B9CC4CEDD;
+	Thu, 10 Apr 2025 12:19:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744287557;
+	bh=rJa9YkIp7H064dJyAxgUKpVWovBRYUB4q2laXDx+6Hk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZNcDZ7zeGLAjOs0IUNTw68TCAeZu5T9MFU5IO2xMFhFFbnAnSph6oJKUV5Jn0ibWs
+	 PtB/DgowNBc4qLJBOrqoCd3Xj91tTCuC8kN4+xH+DLTuXMnfY+QMD8qUVXuvkAqrOF
+	 5TlLIt2kfs3V1SalL01iiT00s7s7rsEB1J39gkRXGhodPjvzzc9fX9aqHPQ8X7rSlE
+	 Wxu0NAlSVQgBmpl5SffvJAKt13l/bDk6xj5X0Q1rZ7eAlMP0Y5djCmfpNsc1aBfgFJ
+	 Vd6CTJUm8Ao2iCGByV5wy8o9/kBZsnbZIYFXz1Gfk6vL9Ibz84ztFE6sZG27havyI8
+	 5NeA99BLg1+MA==
+Message-ID: <ecde1c37-0fa2-4c2e-ad81-bee3cc7d58c0@kernel.org>
+Date: Thu, 10 Apr 2025 14:19:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 16/28] dt-bindings: dpll: Add support for Microchip
+ Azurite chip family
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Michal Schmidt <mschmidt@redhat.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407173149.1010216-7-ivecera@redhat.com>
+ <7dfede37-2434-4892-8c8d-4d005fa1072b@kernel.org>
+ <280e8a8e-b68f-4536-b9a4-4e924dde0783@redhat.com>
+ <b65daab2-8184-45f4-af18-8499e80fbc04@kernel.org>
+ <b4d22372-ae85-421c-8ce4-669787160da2@redhat.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b4d22372-ae85-421c-8ce4-669787160da2@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 10:12-20250409, Robert Nelson wrote:
-[..]
-
-> > Any idea why we are crashing?
-> > https://gist.github.com/RobertCNelson/c68c96a8a1dc6e4d39d8c48fc13ca1c1#file-gistfile1-txt-L311
-> >
-> > I don't see the same crash in beagleplay:
-> > https://gist.github.com/nmenon/5709a8714d3ab31cac5c00b515d04752
+On 10/04/2025 12:28, Ivan Vecera wrote:
 > 
-> On 6.14.x i have a little more, info...
+>>>> 2. What is 'x'? Wildcard? If so, drop and use specific compatibles.
+>>>
+>>> Microchip refers to the ZL3073x as a family of compatible DPLL chips
+>>> with the same features. There is no need to introduce separate
+>>> compatible string for each of them.
+>>
+>> So a wildcard, thus drop. Use full product names. Google search gives me
+>> no products for ZL3073x but gives me ZL30735.
 > 
-> I've got all the CRYPTO stuff enabled, pretty sure that comes from
-> CONFIG_CRYPTO_MANAGER
+> I will use more appropriate microchip,azurite compatible.
+
+Hm? What/who gave such hint? Please read writing bindings or any other
+guide/speech about it. If that's a zl30735 then use "zl30735" as device
+part. If you have more devices, use fallbacks. See writing bindings.
+
 > 
-> CONFIG_CRYPTO_MANAGER=y
-> CONFIG_CRYPTO_MANAGER2=y
-> CONFIG_CRYPTO_USER=y
-> # CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
-> # CONFIG_CRYPTO_MANAGER_EXTRA_TESTS is not set
+>>>
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: /schemas/dpll/dpll-device.yaml
+>>>>> +
+>>>>> +unevaluatedProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    i2c {
+>>>>> +      #address-cells = <1>;
+>>>>> +      #size-cells = <0>;
+>>>>> +
+>>>>> +      dpll@70 {
+>>>>> +        compatible = "microchip,zl3073x-i2c";
+>>>>
+>>>>> +        #address-cells = <0>;
+>>>>> +        #size-cells = <0>;
+>>>>
+>>>> Again, why do you need them if you are not using these two?
+>>>
+>>> The dpll-device.yaml defines them as required. Shouldn't they be
+>>> specified explicitly?
+>>
+>> But you do not use them. Where is any child node?
 > 
-> https://openbeagle.org/RobertCNelson/arm64-multiplatform/-/blob/v6.15.x-arm64-k3/patches/defconfig?ref_type=heads#L9578
+> I though I have to specify this due to existence of 'input-pins' and 
+> 'output-pins' in the example.
 
-OK this looks like to be a independent pre-existing bug then and needs
-to be investigated, but it is probably independent of this patch itself.
+They do not have addressing, so no need for cells.
 
-Could you share a clean defconfig bootlog? I have no existing scheme to
-test this on my end. In the logs, please also print
-/sys/kernel/debug/devices_deferred to ensure we have nothing sticking
-out in our defconfig?
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Krzysztof
 
