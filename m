@@ -1,241 +1,154 @@
-Return-Path: <devicetree+bounces-165660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94965A84F9F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:25:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D843FA84FB7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:36:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A10184C1C89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:25:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E74AE7A4808
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8151C20FA97;
-	Thu, 10 Apr 2025 22:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B09C1EBA03;
+	Thu, 10 Apr 2025 22:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GlcyBZft"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aaP+8pzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013064.outbound.protection.outlook.com [52.101.67.64])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F1B1EB9F9;
-	Thu, 10 Apr 2025 22:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744323931; cv=fail; b=bs4m9jrciOYYQ2J+u/2zpckRwSx1mneHW/rIp2zlnpXxnXvxkVRF/HMkZLnyiERxzxPaSVQPviLeI0lWuphLj5ALk3sXrl6rA2+GS56A2Ah8Ds9pRCMIPms5LtoMoRkzwLwIbby4JDfp/L1xm6QKZNw23v7B0Ocvb+/TNRBXFdw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744323931; c=relaxed/simple;
-	bh=Wll/dItWJbcHIFxyalwWK6ZjXSOIp/0yJkSuYc7W90o=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=sdYPFc0k89R4vLJUt5ZdxxRQbmQTI9jltNao7K+4JOKDLDRQTbJN4OWwTUhCDu6Sx5pj4Syz40tksBiPP2x0GRUXcfV/H9jPkLk6qjXxhFRPh+SJeI1eQBEabxz6AhKAMlt25ALq74tcl8rtO8B6HKaoamg9dWLnCqrv8DhFXRU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GlcyBZft; arc=fail smtp.client-ip=52.101.67.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MKuLjdNiwTBt9fVqNpmahOgaOo/iW51DZ5RSfOfD5epoVFKpuzpOZ8lgN5mspfVk5u7FdCR3KOlFseuiwyUOdMXQuHTw2EzXQwWIk/CBCt0vTroyyG7oNJTIC+70BQA1Wd8ycbFTcA3qxWWXYJmYZfvGPWF2Zgq9uoQPSBeG1fwQQ/oDALvVPkEi0pGlQoy/hCj3gSe/c6+lrrfVxXCKzeO6byilYiLNruvtDLUaAuE6atJ+ccF9WV0UWQxZ58w4hOweHtl4lP0RNJK0mUWRAXCM42AD8ja5LHsswEUuCK+JSecEAPvcdPMpqfLcFCjsVUF6RKocXJj1pp8nyl4CLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DWyVzC9N2xF6D/01QaIhtA1JN17CuhYXgBS1pZtjQUs=;
- b=k+3/aMNdUN9QYV+TZxPY0kJAQfGEfs6QokD+bZaAo/TlAL5yIDmtWQjsZEEyweV1sBKWFvgRRwchd4Wpy7j0kGARTQype1KVvqSl8ys3RlKGNLbNgU132btrm4Or7Y1n7STRj7vMD92MAWgm7M5qmUxgBqL2GUBolCWTNBfth+NcoCcJm4JwAEbymvR/AjeJ8amAXlsn+4sYmfA/0FYQcDV2Qg9CeQIPT33eERzyvH9T6yNYyfmtSTA8sxb//SXm25uwuMDR/20YHYlOVWezji2ky9TRQUO36ouGFYgQFPnxT839OSdaRjfzK3BnG+jwb5CaLDMcFNuu1LDQigeNJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DWyVzC9N2xF6D/01QaIhtA1JN17CuhYXgBS1pZtjQUs=;
- b=GlcyBZfttn/pPjBEkujZ+MUXDJKNjScdhjJ44ESIF4AcYy4LT6TFKsCkLSjOehrKSZ22slDDfW3vmlZJaRiG/KwKXJ+WVXR/ZqhzVexBdAetIJfix6Nf7G/N8pLcSKV1T0e6b7madusHiWYxzQTtxeiayR1bUyesWwaeOduQsxmpT149Lx+7Ykw5mF0LAcM3rVp3B/6Sxi5WUnwzPnt0NYO/RBv5IIxfFX4DwluKVmJhdRCRPLbo/LKMqTEQC1nfIeYhO1eZC+bmhwgxZMymu24RWmV6tnjjwJmw0QxCv0LgS2eOM7rEO30CiC1C9bbw6vJCHl01RO/3ViGFdcYoMA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10300.eurprd04.prod.outlook.com (2603:10a6:800:218::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8583.45; Thu, 10 Apr
- 2025 22:25:24 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.021; Thu, 10 Apr 2025
- 22:25:24 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Patrick Havelange <patrick.havelange@essensium.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-iio@vger.kernel.org (open list:FLEXTIMER FTM-QUADDEC DRIVER)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: counter: Convert ftm-quaddec.txt to yaml format
-Date: Thu, 10 Apr 2025 18:25:05 -0400
-Message-Id: <20250410222509.3242241-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH8P222CA0005.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:2d7::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C712905;
+	Thu, 10 Apr 2025 22:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744324556; cv=none; b=IbamwT1nl7UOOULUSQsUuhjzHkQ/GYKghDlQhfElWBYTNd9KaQytBuC6QUrZFKEhAlM6lDKKj3ieQXcraLY5cCo8YA4KK4HMi4MFVJMdjF+pnC5QHeOPFeiqsw6Jn4hVyHhEJPX2N2dE+j/pvWNGrAnWGmyaqFrciuo+Q+M7TL0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744324556; c=relaxed/simple;
+	bh=c1qpPL+yyFnz5f3Ay//CYrfHeZAMl12w1V/xFcL9rHk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pi11lMGKCu8YzrPSfdqK69+JFGmTrkoniWCxlajGe3AhB51GSiBUc81xiQf5CRHEg0KSqIh8C8OGnJuVt8BCKI/T/e2a7ebwCR3tAnqnKr9xEt8uEUbkPgB2G/0Lg2MSzJTxGFjLmJM4H5/KBPkhvu8PbYv/VQpZmWQ3/WJuyfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aaP+8pzk; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMZkFm1933242
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 10 Apr 2025 17:35:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744324546;
+	bh=uAHWlrkGaGa/sJ3ZWC6puhhyYjNhD0uWw1WtiT3oZXA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=aaP+8pzkOCSycvOOl74ognY5yyrUQJuhrNr4m55ZHqJ01ukyv5ozjXRCGOm926WrG
+	 5eezpEAJCii4xFBn5IOoXnZW3ewTO7w4JOb/HVcK3JFgT2Ije2Yy5C1fTQBgE844vy
+	 HgRCjcEIj2tS+cGXB5CVkXfeDoRCZz1Cm1ynwLoA=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMZjVJ017990
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Apr 2025 17:35:46 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Apr 2025 17:35:45 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Apr 2025 17:35:45 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AMZjPt092627;
+	Thu, 10 Apr 2025 17:35:45 -0500
+Date: Thu, 10 Apr 2025 17:35:45 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Robert Nelson <robertcnelson@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
+	<jm@ti.com>,
+        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Deepak Khatri
+	<lorforlinux@beagleboard.org>,
+        Ayush Singh <ayush@beagleboard.org>, <kamlesh@ti.com>,
+        <praneeth@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+Message-ID: <20250410223545.m747qkoqpwsz57ae@septum>
+References: <20250408231823.826163-1-robertcnelson@gmail.com>
+ <20250408231823.826163-2-robertcnelson@gmail.com>
+ <CAOCHtYhFKO=LRN8qp-w+rkTGKJ8t-LnqgqbQW9P6CO3=EeuufA@mail.gmail.com>
+ <20250409130918.d3cyzv3to65oktv2@vision>
+ <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
+ <20250410120822.3vsrt42iyfs75h6q@spearhead>
+ <CAOCHtYh7LWhTBOSsua9_=wxSTNt9HmvUaAFCiVS6a8G6dV4AoA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10300:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa1c8563-f30d-41db-1b32-08dd787e95e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?JB3kAb2e+6zGKJGmptSE2XuJDjn98v95s+0bwqVwPgFNQVnMJz+MSDeVYy0T?=
- =?us-ascii?Q?ajKvV9pqk0ePx3GHcWkKWrUhhSeKP94ywl1hbSap5qkdk+TfAYUsedYytqqV?=
- =?us-ascii?Q?mOFW5QYTCQBYjtXHCdnhDUbio3NpRDvkxr8rmCpU8enptJHFFwYOOmjHPs6C?=
- =?us-ascii?Q?vJmJWVdBHeodeloTluClIJeXDfwx7EWATOzixKu7NaIwBxt5quSK3490p/HP?=
- =?us-ascii?Q?r3w8hm1lwabaq80R4ZQOPpnyk+7w+ZVXRGW+Zcz82NbYiHvemBsY0dASoJ7C?=
- =?us-ascii?Q?O3P5QP9Nit47faz4hW6OEoAQdEwkRur41dXxB+x6ox3stvQgRIyrX04LWwOe?=
- =?us-ascii?Q?8lXBw6yX5N/Aee6YelBzrHBOv6YnjTLFqbvk20kWqeOie5grqBL6EWnemJ2Z?=
- =?us-ascii?Q?jLEbaCynJ79m4WMDJai3l2qlBiCR1nlzFhdeJh8GIZVEf+lRdAXessIK/J16?=
- =?us-ascii?Q?EVXR84WWh1EoYx9RDhIEhp1NlTJmYuM127Yj+91IGCrGssAxe+E1gAqWFX/O?=
- =?us-ascii?Q?gAotVsEDoawWuIJfHXdsZyNgUMrXsTvRFhJ3b0QbcQJKXj0WRd7F9II3F69K?=
- =?us-ascii?Q?DLnhDNhOPwyGRJ5NQsiKvVRE5dy7iXo1q0mU4ozKv4I84IIMwMuJ81HgckZx?=
- =?us-ascii?Q?qQz96/n03ulb7SvEPhDXG7QBG9e4y0MK9uwzinTbzQf7urNPsjya19+L4MYI?=
- =?us-ascii?Q?eFIP7EQgoK9DyIJ80yrJPhjCSo9bsUKjwzFvK8i45Aq6bMuMa28qsh8JcR2O?=
- =?us-ascii?Q?IerEPS820/1DpA3+VflTqUVjOEWSteYD1iU/FcOkJlpq+tp5uiNTOqggmGhn?=
- =?us-ascii?Q?TtnZu5hO9hIi3/az5ZvZ1oAo2MTumrEXLxByuEb65kGbpp4K0AeGTJVI1vUy?=
- =?us-ascii?Q?6TxKQw5H1ptImNh7UCw9CAYrGK1ZJFw3tdc3CJdBYVSX5IObZP8zwfZ+ZJZ3?=
- =?us-ascii?Q?lr+eEElV9XNdvX34hs9CmhxFUdjp2VCUfab5J/w6WKxivaQz0EYxL/4KXmek?=
- =?us-ascii?Q?iaoe0ea5Y5QPJANTofCOWh7cz6teaLGqzmPcBjlJWt3LF7Pba6kSUgAwmQYh?=
- =?us-ascii?Q?1USfFK3oBXKok7kcRbEJeG+JIZ3ZOyIcI/PLt4tdOn34LAavNt6O8ZCfcJwu?=
- =?us-ascii?Q?2sLZx8bblfWRjmEgMLCZQPlPc1aQgIT/Utz9sL5Jny84FvGQrRkIb6S/65ko?=
- =?us-ascii?Q?YpaC/FMdyIieloA1K8qbZaArmUNgg5w57Ktfjf8HZdkAJj8Pm3/76qAtDhGN?=
- =?us-ascii?Q?h1594tDF19WSSiyR0/hxIa7fM0y7xKtv2DybVc9JJJ7EK3ktMN9+STC7LFS5?=
- =?us-ascii?Q?Ti01rL8H4B1gBR1+cfpQjYVhslOO5ihHQTkeBs2SgLVDILqgSedR8PK5k9mJ?=
- =?us-ascii?Q?vc2wRy08AsC8ey9Jo4tpdTlOapkJ0+VbU3X+MoRplZIm6OCPv9K1L0F+qUTz?=
- =?us-ascii?Q?GqHloHb8U/Q=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?LuKgHf63IjuyVANfLoBj2OXQRKqSBLRwiaZwYkfTtNx+fiEUgU6jTjXpSIvT?=
- =?us-ascii?Q?48/E9m7sqetYzSu915dKzET/KlbffWZ+Fp9PdaMN9fhHWd/PE4E6HXMEv370?=
- =?us-ascii?Q?SFms3i/7x+nrB7pg9spI3DGAJ9+uOw4H+5yaeiU/fLbO9vP8hGxVSbkPnrk3?=
- =?us-ascii?Q?DorgsUGjoIrUoEpdo+jEZMVmkaUjxOiLLU2akTBGUL4M2rJg+gmbbPLb/l8+?=
- =?us-ascii?Q?bkUjSwA3LewEYOvC4B1ElbDC9kpoj5rz9KfRAhFxG2/ZLNA2r555Mdlb409X?=
- =?us-ascii?Q?X2G/styqtaTXszdXXPvuiu7Xiias+nor3zKCFLOoCjwV3rRbLHGs0gKhGabI?=
- =?us-ascii?Q?YJYZWnLc8NUZyj7Hu/foQyx6IPT8aAMOXs1f7TiCaaB6iPwK9V83MrmZTAT6?=
- =?us-ascii?Q?gp816P3iwe3DZrDQKn8iqIPtaXjcG5dFSgCGaAVLIrGBFcnGu/Hu94Ptmy7v?=
- =?us-ascii?Q?7SEJeZ3jahJpyNxnCnuVG3zh/hYzCd6I5Uci/OCR0ewuydysaXTKRyStNVkh?=
- =?us-ascii?Q?3DazimHFngh8WMJJ+Z5EWD0BUtfBLWtM84aZFebigReddCXYj5vO9lHD5zsV?=
- =?us-ascii?Q?nQlg7sfbgqmW+lc0uZY8qXME2kFLqHcsespuGcukt6UlVcImng0cEmZDq5tn?=
- =?us-ascii?Q?oR58s7PXMSaD6QgZT29+/4LbCt0sMpvnDWhm7Oiq+O/IcyEwm4o2GOjHQtsa?=
- =?us-ascii?Q?y8wBssXmQlfBt9iwsYJOMLLjxotY68SAFh54r7UnSoVlS2jnrmXcI/7g9C3O?=
- =?us-ascii?Q?ZuJpk4WtTd8Pwy4xOKcavCGCCKcD8j9EhYZD2zS2q98DkqtDlF3JINAIxSTJ?=
- =?us-ascii?Q?wxsORGf0DJcSx0TIRepcH0i1JERnUfRgDR7ClpacZHQSoESQBvSW3uyoBPoV?=
- =?us-ascii?Q?fC/L9IyKDpl3UMUSoPlj5Ox9djWoT+ZlEcfkiwIRSGhsYjDNP2DA5KVc+rJ/?=
- =?us-ascii?Q?mb2gWWntNtlgyyPHp50V7U0rtaDaTOD0MpHBjthwjWXyPXeJJEqqwcKUlD8Z?=
- =?us-ascii?Q?dn1Uxdpz/8VqKXZqWGfux2PuQAWv3a7EMxfbHPhRh7vA005KRLCyWMA51Mvo?=
- =?us-ascii?Q?mrYf7ctE+VbiBmWFWyMIHtO74ewy0dO8fqTIBIBiDuIWh5JWiEnBYDs6Jadu?=
- =?us-ascii?Q?FOZRBNcRlFsoI4Top/oLhFPM93IImtaW4m+N+HjovNhGlk5JHkRlEFFYWXCy?=
- =?us-ascii?Q?2OKWo4oJdxDTmzbL4eZ5Slr7L7V2amJT1G7frbQg7B0B0tlrO8lYxqdsLMT6?=
- =?us-ascii?Q?OeIcCpwmb3NAeDVI5YJoxNsRcyUeBf7xb2Yo8Q4Qk5rDyltObQoMDfl16Wwj?=
- =?us-ascii?Q?9Wk6t4BGSTq2CVVjSKp4ooe1KRAqckMf+dqDkqmnJXR1/b6fqj1yjvjjMFnr?=
- =?us-ascii?Q?Yg4xjiNRIrexoZHHvnyNn6gOtANjgLjegAfZTEUh56wj4/tzvfxNnytu6DP8?=
- =?us-ascii?Q?hJA8aNT50J78MWC2eQ3ro4yNTsQOt5UH9p4cC2vtdcY/ig0c7o3rzIzNOpg5?=
- =?us-ascii?Q?NzFSon4jrKFy9s0GlRI0RA7rNPy0PC4eE10eMss5ZM1bFwUmuuY64g0cp/0A?=
- =?us-ascii?Q?z/Z93UzTtIJisGBHYZ4pWA35bZY1uH17D4mJW3gm?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa1c8563-f30d-41db-1b32-08dd787e95e5
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 22:25:24.1645
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: g9tLZ1c+5742UgvhdTtZAs4VpBbmXZkdC9wdKDjWM/Ln+pHkMngXTo9y/i6kO8zYCGpd8jVeffGL+s87VZ0PSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10300
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOCHtYh7LWhTBOSsua9_=wxSTNt9HmvUaAFCiVS6a8G6dV4AoA@mail.gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Convert ftm-quaddec.txt to yaml format.
+On 12:15-20250410, Robert Nelson wrote:
+> On Thu, Apr 10, 2025 at 7:08 AM Nishanth Menon <nm@ti.com> wrote:
+> >
+> > On 10:12-20250409, Robert Nelson wrote:
+> > [..]
+> >
+> > > > Any idea why we are crashing?
+> > > > https://gist.github.com/RobertCNelson/c68c96a8a1dc6e4d39d8c48fc13ca1c1#file-gistfile1-txt-L311
+> > > >
+> > > > I don't see the same crash in beagleplay:
+> > > > https://gist.github.com/nmenon/5709a8714d3ab31cac5c00b515d04752
+> > >
+> > > On 6.14.x i have a little more, info...
+> > >
+> > > I've got all the CRYPTO stuff enabled, pretty sure that comes from
+> > > CONFIG_CRYPTO_MANAGER
+> > >
+> > > CONFIG_CRYPTO_MANAGER=y
+> > > CONFIG_CRYPTO_MANAGER2=y
+> > > CONFIG_CRYPTO_USER=y
+> > > # CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+> > > # CONFIG_CRYPTO_MANAGER_EXTRA_TESTS is not set
+> > >
+> > > https://openbeagle.org/RobertCNelson/arm64-multiplatform/-/blob/v6.15.x-arm64-k3/patches/defconfig?ref_type=heads#L9578
+> >
+> > OK this looks like to be a independent pre-existing bug then and needs
+> > to be investigated, but it is probably independent of this patch itself.
+> >
+> > Could you share a clean defconfig bootlog? I have no existing scheme to
+> > test this on my end. In the logs, please also print
+> > /sys/kernel/debug/devices_deferred to ensure we have nothing sticking
+> > out in our defconfig?
+> 
+> Okay stable v6.15-rc1 with arm64 defconfig..
+> 
+> https://gist.github.com/RobertCNelson/666638abac8eee4ed573997996362450
+> 
+> root@am6232-pb2-87:~# ls -lha /sys/kernel/debug/device_component/
 
-Additional changes:
-- Remove "status" at example.
-- Remove label at example.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/counter/fsl,ftm-quaddec.yaml     | 36 +++++++++++++++++++
- .../bindings/counter/ftm-quaddec.txt          | 18 ----------
- 2 files changed, 36 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/counter/fsl,ftm-quaddec.yaml
- delete mode 100644 Documentation/devicetree/bindings/counter/ftm-quaddec.txt
+umm..  It was cat /sys/kernel/debug/devices_deferred
 
-diff --git a/Documentation/devicetree/bindings/counter/fsl,ftm-quaddec.yaml b/Documentation/devicetree/bindings/counter/fsl,ftm-quaddec.yaml
-new file mode 100644
-index 0000000000000..384ca63b64d53
---- /dev/null
-+++ b/Documentation/devicetree/bindings/counter/fsl,ftm-quaddec.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/counter/fsl,ftm-quaddec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: FlexTimer Quadrature decoder counter
-+
-+description:
-+  Exposes a simple counter for the quadrature decoder mode.
-+
-+maintainers:
-+  - Frank Li <Frank.li@nxp.com>
-+
-+properties:
-+  compatible:
-+    const: fsl,ftm-quaddec
-+
-+  reg:
-+    maxItems: 1
-+
-+  big-endian: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    counter@29d0000 {
-+       compatible = "fsl,ftm-quaddec";
-+       reg = <0x29d0000 0x10000>;
-+       big-endian;
-+    };
-diff --git a/Documentation/devicetree/bindings/counter/ftm-quaddec.txt b/Documentation/devicetree/bindings/counter/ftm-quaddec.txt
-deleted file mode 100644
-index 4d18cd7220745..0000000000000
---- a/Documentation/devicetree/bindings/counter/ftm-quaddec.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--FlexTimer Quadrature decoder counter
--
--This driver exposes a simple counter for the quadrature decoder mode.
--
--Required properties:
--- compatible:		Must be "fsl,ftm-quaddec".
--- reg:			Must be set to the memory region of the flextimer.
--
--Optional property:
--- big-endian:		Access the device registers in big-endian mode.
--
--Example:
--		counter0: counter@29d0000 {
--			compatible = "fsl,ftm-quaddec";
--			reg = <0x0 0x29d0000 0x0 0x10000>;
--			big-endian;
--			status = "disabled";
--		};
+> total 0
+> drwxr-xr-x  2 root root 0 Dec 31  1969 .
+> drwx------ 44 root root 0 Dec 31  1969 ..
+
+Thank you Robert. I will assume there are no deferred devices or
+additional defconfig components to enable.
+
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
