@@ -1,59 +1,52 @@
-Return-Path: <devicetree+bounces-165634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDDC8A84D64
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:44:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C84A84D8C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45D801BA1032
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:43:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 818F28C3C43
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBC42980A3;
-	Thu, 10 Apr 2025 19:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3811B28F935;
+	Thu, 10 Apr 2025 19:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="LA+ztzZM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgiWjwxK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C299B2980A4;
-	Thu, 10 Apr 2025 19:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744314109; cv=pass; b=F532ogrLKjLGuP2L5U3s31SaSelGHLaBjZ920nJG7sylrHZgo93viTz0Omd8scy/lKXRZhWEVbft+reEvN+zdpv151Ss9VtazZC0cqBvHj8Qyx0TRxBQmZzyniLCvp9uXiZJcf8/OQYHA3pLlcKU4TrcmGQ3vGE0OiE+Ce0o9Vo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744314109; c=relaxed/simple;
-	bh=R1OEWQc82aEj2dgJQcUToroohClIvwQ79QPZXLUQSmE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kWnh4eHit+k1k2uY6bEuEqW6xodQBrwEcCq1SCHwHRMoM47rZ6gpmJkp24vcCZyQSi6Sij79yyJsQxgdkiOfpniLigdhwGXwNxPtvoLF/KPjgR6QU/DZBc4Sq4hQWGcAYsd4Jfxw2JljCIZxvshMN6ITOHJ4Ocjxqavg9njX8vs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=LA+ztzZM; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1744314077; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=PW2V7ubmD7SApc50+9soD97n+s4rw7uBDPMUGkRbOJXYJWTYGMHnYTJU0Gh7mNBXmFgDiYv4ibtxwmNb/ArkUMX2gaAwvusdgbqkt2Jg5BNcZfVeeZIYrKn7G+JZKni1z2B7IWgf1vPwme0DUGPHPCEbn2gSetbBZgIindSk3W8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744314077; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=QlmLIVs2PX6RAiZw67r46XTY/ZM209p1JSqO1Nx5peI=; 
-	b=kJx+HM+qKrQ+bNpJgtFaUqyXo9mA8UXVNqJARKNq+u8vQ6j+ejKbCK+enQhsUpT93kAkMeDHL2HCL9VfURw8c3NP/WrYJEMv43gW9NGiMqEHqjOzdCvbgjIs5IInSi88MxEButKUSqDdOoo8N31+zy4btPXBGwYs/n5K7OzTj/k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744314077;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=QlmLIVs2PX6RAiZw67r46XTY/ZM209p1JSqO1Nx5peI=;
-	b=LA+ztzZMgld9jbNmCSIXnqi0yrLibQqbP+2dN3SRQDAX3HS5SYa40ArY+g0aRKIM
-	5rNeIopHwzmtba6h9mTmVwq4cjm8mkHJsIpUia+I/ckZ/+qP5FJQ/DmqGvxFlrF+hQe
-	rbzwCGSkRrDRpTWyNDD+A1ls4WmxcoO5CWCP0DWw=
-Received: by mx.zohomail.com with SMTPS id 1744314075380251.2791003000325;
-	Thu, 10 Apr 2025 12:41:15 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 10 Apr 2025 21:40:03 +0200
-Subject: [PATCH v2 11/11] arm64: defconfig: Enable Rockchip SAI
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9CE1F09BF;
+	Thu, 10 Apr 2025 19:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744314798; cv=none; b=NmSvffQ80UPgVA+YNiyAm2GzRQp+Y0rqNzx/S/0WdpPldyOYSGjeCuuZTjJxgvT2sTrBpBAJI2cS7LjDoFZa49yEtAGOWwDwhdHzrKIGW2wiB09FCvpjTVUnUw8NDxai9Qda4cqMHXjc6AkJ3nlzdE4X+SkcM219BhUt+9b2F8k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744314798; c=relaxed/simple;
+	bh=SabI+vQohgwZoGDBdV/O1b0jCw1dwkyTziMkwNMVoak=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Kp0/wDRKXqmsXXWO2pstothtMXeBjewru7bRzy+5oxA+ko0U5LYxmslzVvrDNlVA95wmW9OXqzcSVYVNsTqEiWIC0ovLKo3ujUPyplqbPHPTsPG3A9vd7Klrea+jFdutKTr2aGi5pIebHm9jRBNruFL1NVdmsnA4NjRBUNJm6kI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgiWjwxK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 49344C4CEDD;
+	Thu, 10 Apr 2025 19:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744314797;
+	bh=SabI+vQohgwZoGDBdV/O1b0jCw1dwkyTziMkwNMVoak=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MgiWjwxKrjSiKCQ/hEBawyOjZ+luZ3Unss1ZioKO9vBxc8KkZbP/2vO+20my9+58Z
+	 Y/pi8gc8ZPg2l69sTTFONmTYi6VxHLC9j3Bo/AdSsDoYLWZmhyswGUBAD+YJbeIKFl
+	 Rgqu0L2YlWscNrHhNMpegdtqw6rPenyGw/SVUCtw+50NFZA2XRyLgpgrT4WOI2IMi+
+	 lOCPNOoIzXTgTib+CYrt56aV+CwZZR7pwy3GS+74Ch5QaUsvoqIHtOriaouXb5yyF3
+	 /LvH+FO/GoV5pIy1g7iFSJ8e8vleNMi/ABHnzc5NzjCgXpahogq49rD/kyUbygCWf3
+	 lSlr+cVGkcpZQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36501C3601E;
+	Thu, 10 Apr 2025 19:53:17 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH 0/3] update e-mail address for Michael Riesch
+Date: Thu, 10 Apr 2025 21:41:29 +0200
+Message-Id: <20250410-maintainer-mriesch-v1-0-cdc5c6c68238@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,49 +55,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250410-rk3576-sai-v2-11-c64608346be3@collabora.com>
-References: <20250410-rk3576-sai-v2-0-c64608346be3@collabora.com>
-In-Reply-To: <20250410-rk3576-sai-v2-0-c64608346be3@collabora.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAOoe+GcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDE0MD3dzEzLwSIE4t0s0F6UzO0DVOMbQwNTFIMkpLMlcCaiwoSk3LrAA
+ bGh1bWwsAMGSZLGQAAAA=
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Sugar Zhang <sugar.zhang@rock-chips.com>
-Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Collabora Kernel Team <kernel@collabora.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744314121; l=1300;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=SabI+vQohgwZoGDBdV/O1b0jCw1dwkyTziMkwNMVoak=;
+ b=EeQE2RZ6/nv/2KYm3bdfAzi43a+GNtVc0yCaKN/zDsu0Ale+mzT2Xw5s+1uuu3I76u4imTJqv
+ Xz5rGoJNIjaCcWoVMUQQ7LSUJr7Q/qR3XFewc1GOmyqWbAMIBMokQho
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-The RK3576 uses Rockchip SAI for audio output.
+Habidere,
+    
+"All things must pass..." After five interesting years I recently left
+WolfVision and joined Collabora.
+    
+These patches add a corresponding entry to the mailmap and update my
+e-mail address in the Sony IMX415 image sensor driver, which I would like
+to continue maintaining using the new Collabora e-mail address.
+    
+When I prepared the series, I noticed that the i.MX maintainers are most
+likely informed about every device tree bindings change for Sony IMX
+image sensors. The first patch adds an exclude to fix this.
+    
+Best regards,
+Michael
+    
 
-Enable it in the defconfig.
-
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Michael Riesch (3):
+      MAINTAINERS: add exclude for dt-bindings to imx entry
+      mailmap: add entry for Michael Riesch
+      media: dt-bindings: sony,imx415: update maintainer e-mail address
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5bb8f09422a22116781169611482179b10798c14..17cf29f066b793b47665088084e12d2762d3d832 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1005,6 +1005,7 @@ CONFIG_SND_SOC_SC7280=m
- CONFIG_SND_SOC_X1E80100=m
- CONFIG_SND_SOC_ROCKCHIP=m
- CONFIG_SND_SOC_ROCKCHIP_I2S_TDM=m
-+CONFIG_SND_SOC_ROCKCHIP_SAI=m
- CONFIG_SND_SOC_ROCKCHIP_SPDIF=m
- CONFIG_SND_SOC_ROCKCHIP_RT5645=m
- CONFIG_SND_SOC_RK3399_GRU_SOUND=m
+ .mailmap                                                     | 1 +
+ Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml | 2 +-
+ MAINTAINERS                                                  | 3 ++-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250410-maintainer-mriesch-3d18540b2fb7
 
+Best regards,
 -- 
-2.49.0
+Michael Riesch <michael.riesch@collabora.com>
+
 
 
