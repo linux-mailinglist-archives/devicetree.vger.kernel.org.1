@@ -1,157 +1,132 @@
-Return-Path: <devicetree+bounces-165404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FCADA8427B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:07:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54806A842A0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:11:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 421EE16E9AA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:07:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB833BDE9C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A32822836B9;
-	Thu, 10 Apr 2025 12:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695A4284B46;
+	Thu, 10 Apr 2025 12:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JcrysT00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720C9280CFF;
-	Thu, 10 Apr 2025 12:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941A1283C90;
+	Thu, 10 Apr 2025 12:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744286828; cv=none; b=sCwXMl56rR1V4hbAyYZUf3sjq8saW4aw6jM/2pXGXujSIqwGEKsIw7F8yKoFwQAIQ7Tn8y/HN3jH2fifNUQRS/1KfXwJzagzakeXkri+UiPJiB44leOKTZxjtKDcTiz9EuE6qUN9VlcLiVem3OHQ/RMboe2SDJneH8fvudOCpsI=
+	t=1744286918; cv=none; b=c6Q4BNzJXo0Q7jfq4q2zDPleqFqSbV1qpsSt0WzlfUw6V5f1HeIAwIMEuBOXsORY0yQI4AB0to5kLXiP5Od65IqUcK0VWv4V3wErAriyKI0wt1GomBEvtm3g73MGjrQ5WZfqhBeUSBu5Q6lLhKsBPfIUol4thzi/omr88/xWrWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744286828; c=relaxed/simple;
-	bh=FsHvlmClM0GMqX9no6wWpUpR5lKtX5Iqyq8UgL37wdA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KvSr3tVi6oXaOx1hiO3fo/Q9a9qe7EfbMJ8i9dMdxloq6h7q1ld/lKB8fMDFLhH1nytKl0h2Z1DJN2fugIb8d0VT97I/EcVKToQRC6teslvfix7vf7T4gROG7390KOZkOSvcinjIlCrcc2HOUBhIarlnzdK7wRChP8hYE5p9X44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-86d3ac0fec0so689141241.1;
-        Thu, 10 Apr 2025 05:07:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744286824; x=1744891624;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nfcdHlJ2PMoCxR66t/GSWsV/takeL5uVdDX1C1wdF9k=;
-        b=NgCbZkEfS21bpIqdRx8w8ZiQhxLjnVd6/UeDoEUZKbgs70AtohmLAaBS0HjX0zbDs5
-         SxlWwq2m7iU8qTtwdgnGUrQn/G1dQzKQZIYnHeAIdiq5P0ZJ0H7GwzjH+T68W/ejdf2j
-         9sPPkgJ0cBZtCA6HHfkp0ZwbhShY4y4oPvzWk6aAc2qze+vEq0t+8yuowQXeTA9goPs1
-         ON+f6UWS6BUI98GaliZaHDTK5LnRcwSed9h8SxR+w3iSwYVSZ//juScCQa8WBIsIylYG
-         eXyLjnIPWNDnhUchvzX4oRWcnnJaVj295OHa+QoEpVaG5uMy7+22uNm//3oIPRMtOmdN
-         2EDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUBmLRaMIa6yB+Aslv0xv4qpS2yavmd8gT5Z6jwb/qdC2csd5vXMZjX30sHIUFeqpxHqglSKBGZAdPjbkFYKzNGm4w=@vger.kernel.org, AJvYcCV/WN7RJodCz3rrvmfMzFYTCJyjl41vE3cmvRvt2+YYiPRkU8vMPWzUHksWijHu8wbLv9DJ0IZLKM77@vger.kernel.org, AJvYcCVNh6vibCk/iMd+k+xayTimemg5oSOyzFkQuYYhXJ8U6d9WQQYc/lfmV2DhrngtOk3Mc/4G23i/LThj@vger.kernel.org, AJvYcCWww0gkIwJVb03CMoi9a3opSDO1POYFYgIZnZViNkWxmG3lIxPt47VBElzVWjyzc+liiW9vLPv7Zz4K/g==@vger.kernel.org, AJvYcCX4XIXz1XV/jEXtysGDJcTt5T7zyWXAX19VW2kaSFBMQot7h8QmV9Nb0Z12dDW3clHDwpSlNlNDe4F6zaBF@vger.kernel.org, AJvYcCXY81wYWg12i98HPcI37THJ9S4D3YinOALvEt6qJjEG7r60j/U9NThn8WUmTKkNpCScWkWSuQkRMF3B3m0P@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjQoLvsFvqtXBD6DGkdelW9ksHwnwCbC1d7ysuyxec/SNBlmeO
-	AcD3mAH9htVYIQOno+B6fEtnIZKqySYVVecebY5+b1Imo+6laaq67AxJZMTFVb8=
-X-Gm-Gg: ASbGncshIC5F0Vb5b5yVxa9lwYG/HwLRSzhTCgEz9+eFutuv257H781q/NMfbL5/Go2
-	FrsF0u7XzHmz4qSnbiGxRhjpOg3n0S4tdABj1Ic/4/ZiG1eNSn/WAYC5P+1WFypO/C11U1OSSSZ
-	obemsC5bWOBSSWLFcJjK30RzTxgbqZEVrlGu+VXIrkRhHW2n6HANEMDZl+3RuEKdwx3e4BE++rm
-	SHVPJ209ijphz15ONDt/2+A1WoeiJdYpSgVeomgY5Cc0svSwGkxWywTbrQSvZ60C+CG+QozLbTs
-	95CioiknMNDdoD2UYKeE1BfBxwmBP+jOBGgNLy1qsm6rH+7hSsJRomCd5GfcpgBZlmFS32wCZBe
-	xdZg=
-X-Google-Smtp-Source: AGHT+IG72Y/9XubavCVGulTQleGDJuPaNQQLIm5s9ZmgPwgZq9cOF9NZ3VXwuwg8q0LqfySIQgH3bg==
-X-Received: by 2002:a05:6102:5615:b0:4c1:83c4:8562 with SMTP id ada2fe7eead31-4c9d629409bmr848750137.13.1744286824487;
-        Thu, 10 Apr 2025 05:07:04 -0700 (PDT)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c97a2b38sm546308137.15.2025.04.10.05.07.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 05:07:04 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86d5e42c924so621235241.3;
-        Thu, 10 Apr 2025 05:07:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUC6OuHm1X9jUiCI6OvorxOo37Ao4sLNXezP3C94AWcNCs3OiMkuAuJOxeX4HK0vtsMHl42Jv06ekztge+F@vger.kernel.org, AJvYcCV2jUrsMkXmyt5IZTaC8vo9UDlXLoBOKL9isVoawF3sVS+b0LGsHcUeH9FQwO0PkPeDidy++DH9CRxNFAKDTBxEZbI=@vger.kernel.org, AJvYcCVhONVDvTgbUe3R9uXwEPi8VfA+XsanbYZP/998rpwsaCyD47avO9ExeVWhN27q/7IQILdMB9M9DgS0Ww==@vger.kernel.org, AJvYcCVrNZ23cVNXIpRJ5B34oO/c8sGSbCYKSkTc+zY0TwhdbF5LVPb9g7wX+sV/ibiEr3Y9UFMVtxpL6hkBB4K9@vger.kernel.org, AJvYcCWK7ZmgAlqs+WSBuoUPJ5a/Kqrk7XBL0x1QPmtXJTtO81IYVajaCVYz0oe+5MeAQKWo61vUlcr5PppY@vger.kernel.org, AJvYcCXJCuUoBYGARaCDRj1kmxBAucC29BF94FPckFp1QSND9e5AR07Uxx3751S1LKty1AGcV4iwRAhR1GIc@vger.kernel.org
-X-Received: by 2002:a05:6102:3ca8:b0:4c1:9526:a636 with SMTP id
- ada2fe7eead31-4c9d62c8d5amr914699137.15.1744286823794; Thu, 10 Apr 2025
- 05:07:03 -0700 (PDT)
+	s=arc-20240116; t=1744286918; c=relaxed/simple;
+	bh=8QQfDRrU1vgWxnygHJ1ssYKWNkietgQzVlMFFQk+d8M=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvlRNZVa4FVKgPS2HtUP+lQxLTidExWfEeFAphTcPTcvshv5Z0mHLv1jhwr2YkI4iYzBG9eQC4zLc7G1QRv86tKfkJ39omzTsa5exB6OM7DdiOL8//PZd+O1IOWoUkW2LX9W0g/11N/UbXBw3BPAzR0CvAfHec6GqWlg1b6edog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JcrysT00; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AC8MtZ1125397
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 10 Apr 2025 07:08:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744286902;
+	bh=/WtYtYBZqx4XMAJuxTT0OcqzWgf2/8t867s121qJZNI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=JcrysT00/IQVRByyhqEKtf13FUISI9cLIRAeoihDXEii6UDOiDlgNt1aE5Le/5Qs9
+	 qRpLz6GSFYC5ZDyRJQiZmW6mX5MZOlfpfMBXH29b5aZWYKaoKpuIj7bsvpo8b8S/0m
+	 +ETYQqVEUQYCO9ozrnH0Yseh15rXqZ6FwhNjmwvI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AC8MlO115444
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Apr 2025 07:08:22 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Apr 2025 07:08:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Apr 2025 07:08:22 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AC8MQT102361;
+	Thu, 10 Apr 2025 07:08:22 -0500
+Date: Thu, 10 Apr 2025 07:08:22 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Robert Nelson <robertcnelson@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
+	<jm@ti.com>,
+        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Deepak Khatri
+	<lorforlinux@beagleboard.org>,
+        Ayush Singh <ayush@beagleboard.org>, <kamlesh@ti.com>,
+        <praneeth@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+Message-ID: <20250410120822.3vsrt42iyfs75h6q@spearhead>
+References: <20250408231823.826163-1-robertcnelson@gmail.com>
+ <20250408231823.826163-2-robertcnelson@gmail.com>
+ <CAOCHtYhFKO=LRN8qp-w+rkTGKJ8t-LnqgqbQW9P6CO3=EeuufA@mail.gmail.com>
+ <20250409130918.d3cyzv3to65oktv2@vision>
+ <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407191628.323613-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250407191628.323613-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Apr 2025 14:06:52 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVYfe7oUp+2QiHbBqxb3zKUYufpZHJQWmbzD1cu3TuRxg@mail.gmail.com>
-X-Gm-Features: ATxdqUEiNZxbpljvmV2Rh2j3dyixwd3mbyXsNxgjOyX-oweSfY5v8rMCzTpccpA
-Message-ID: <CAMuHMdVYfe7oUp+2QiHbBqxb3zKUYufpZHJQWmbzD1cu3TuRxg@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] arm64: dts: renesas: Add initial device tree for
- RZ/V2N EVK
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Prabhakar,
+On 10:12-20250409, Robert Nelson wrote:
+[..]
 
-On Mon, 7 Apr 2025 at 21:16, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add the initial device tree for the Renesas RZ/V2N EVK board, based on
-> the R9A09G056N48 SoC. Enable basic board functionality, including:
->
-> - Memory mapping (reserve the first 128MB for the secure area)
-> - Clock inputs (QEXTAL, RTXIN, AUDIO_EXTAL)
-> - PINCTRL configurations for peripherals
-> - Serial console (SCIF)
-> - SDHI1 with power control and UHS modes
->
-> Update the Makefile to include the new DTB.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> - Followed DTS coding style guidelines
+> > Any idea why we are crashing?
+> > https://gist.github.com/RobertCNelson/c68c96a8a1dc6e4d39d8c48fc13ca1c1#file-gistfile1-txt-L311
+> >
+> > I don't see the same crash in beagleplay:
+> > https://gist.github.com/nmenon/5709a8714d3ab31cac5c00b515d04752
+> 
+> On 6.14.x i have a little more, info...
+> 
+> I've got all the CRYPTO stuff enabled, pretty sure that comes from
+> CONFIG_CRYPTO_MANAGER
+> 
+> CONFIG_CRYPTO_MANAGER=y
+> CONFIG_CRYPTO_MANAGER2=y
+> CONFIG_CRYPTO_USER=y
+> # CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+> # CONFIG_CRYPTO_MANAGER_EXTRA_TESTS is not set
+> 
+> https://openbeagle.org/RobertCNelson/arm64-multiplatform/-/blob/v6.15.x-arm64-k3/patches/defconfig?ref_type=heads#L9578
 
-Thanks for the update!
+OK this looks like to be a independent pre-existing bug then and needs
+to be investigated, but it is probably independent of this patch itself.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.16.
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts
-
-> +&pinctrl {
-
-> +       sdhi1_pins: sd1 {
-> +               sd1-dat-cmd {
-> +                       pins = "SD1DAT0", "SD1DAT1", "SD1DAT2", "SD1DAT3", "SD1CMD";
-> +                       input-enable;
-> +                       renesas,output-impedance = <3>;
-> +                       slew-rate = <0>;
-> +               };
-> +
-> +               sd1-clk {
-> +                       pins = "SD1CLK";
-> +                       renesas,output-impedance = <3>;
-> +                       slew-rate = <0>;
-> +               };
-> +
-> +               sd1-cd {
-> +                       pinmux = <RZV2N_PORT_PINMUX(9, 4, 14)>; /* SD1_CD */
-> +               };
-
-I will sort these subnodes while applying.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Could you share a clean defconfig bootlog? I have no existing scheme to
+test this on my end. In the logs, please also print
+/sys/kernel/debug/devices_deferred to ensure we have nothing sticking
+out in our defconfig?
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
