@@ -1,81 +1,67 @@
-Return-Path: <devicetree+bounces-165580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4A4A84A76
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:52:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDAFA84A7B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA31E7AEB79
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:51:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 433F41B62E2D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EDB1EE008;
-	Thu, 10 Apr 2025 16:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72A81EE7DA;
+	Thu, 10 Apr 2025 16:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="RAnFP+sa"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Yo8ar9ev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2641AAA1E;
-	Thu, 10 Apr 2025 16:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.50.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2181EE031;
+	Thu, 10 Apr 2025 16:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744303925; cv=none; b=sbydFO1yOEXoiIJBJtRqdFsHI+qd5uAZ3A0LrgH0GpT/8OtjQDka+bIMGB7ZoWh1QSbNtQOKUlO9nluLqJas2CHbzuIN+jXW2EulLWOuSzBW4IBEFRlTSli12bcL7szcUauv2TWP6s4cm0WCCo2c2pC/1k98zPYv0vKLlTq4Vq8=
+	t=1744304104; cv=none; b=DXLWHs6LrNm570ABF9kyEnz5zWfb3nf0vKTE7BMJ8zAaPG6v1PxJTi/O7dP0Hk4+yNU7NwLxXOc+oBjasVqO+dBCW76/Bi6zpiJ908/lU6UkxhgvoFXAL3sXCasXOrIFBG/W8a5Ivt89Z62PK6x3vrIoRc07veCuN1+WWcWKYN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744303925; c=relaxed/simple;
-	bh=h+pmHy2x2qcqGwPMErMQ2GPwatDQxp3usz35PZILRBo=;
+	s=arc-20240116; t=1744304104; c=relaxed/simple;
+	bh=6ILYwxPk1uunko0MaW2WhQjFVnHa2NU28ADIkv7zU0I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HSWSXFtQ64OBtBMzJScRwvoM1PFQb9C+mLP23hoiCRYRSaMQqLj07NK4vdy4qCYmXZe7hClrtPQWuKH/LysPrJ3WLQfLcQQ1uW4n0pU2fN7rDt52cwtdAeg/5vlSD0u4+HVOiVhnmDmYdqNqmD2LjwgAbJteCLHM++mVuOblFgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=RAnFP+sa; arc=none smtp.client-ip=90.155.50.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=EjNA9E6fQoObQrEF9x/xR2bwcpg2cboOt/4jyue8tog=; b=RAnFP+sa8REHwREQhuJs2YHIWN
-	OrZAs12oMxeWbpncHVB29giNb8cyVPFV3+HdAb/cmklF4kTJD8BRqCv4exsJXSKaiW7dMlbUE2hHr
-	6rgi9NFwGz8ahECnVaFqrUK7nZu6YDFwiK+BHj3w1GQ+CEtykNrITzBxkTj4pqJiUfipuZUkHryYk
-	FcoRDUUy751+rhrtNHwqavdxk62n4fXInDOnrKxh3cYuCP8m6EB01JqmoKvbOfJc3bUcP58GoemOM
-	1W4ZmB951GNXPtbhO0Bcpxn93wdKB00fjmkCjI9efyEMQ5M5eQvjPtqEsh9cRwdCtzr+Y2WqmmMYv
-	c2UMaN8A==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1u2v83-000000039mo-2MIy;
-	Thu, 10 Apr 2025 16:51:51 +0000
-Date: Thu, 10 Apr 2025 17:51:51 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Mike Rapoport <rppt@kernel.org>, Pratyush Yadav <ptyadav@amazon.de>,
-	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
-	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
-	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
-	saravanak@google.com, skinsburskii@linux.microsoft.com,
-	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
- preservation
-Message-ID: <Z_f3Jyac_o308ws-@casper.infradead.org>
-References: <Z_KnovvW7F2ZyzhX@kernel.org>
- <20250407141626.GB1557073@nvidia.com>
- <Z_P92UCbNCV0TbiA@kernel.org>
- <20250407170305.GI1557073@nvidia.com>
- <Z_Y4k4rDO-BbMjqs@kernel.org>
- <20250409125630.GI1778492@nvidia.com>
- <Z_Z8-BLWMkiWpaDY@kernel.org>
- <20250409153714.GK1778492@nvidia.com>
- <Z_aeEn7hKqGOG3Cf@kernel.org>
- <20250409162837.GN1778492@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SrRIT077acdhp4YWtIX5txgP2fPS6pqUXoVQwzklt3TCL/ZnbmidUqzj6WGJlL1z8ErXSZoUJ+ruuBBj+ZAWEvFAolaz/QoRXyE8dSLgHUY8wzo3gIqZiuaR2Lulq0+6tDTNk+UEAaLpMZmEwiKyxEQozIUxH7ktk35cHZM8WMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Yo8ar9ev; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 4E37B25DC2;
+	Thu, 10 Apr 2025 18:54:59 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id AYPDpyDU1__h; Thu, 10 Apr 2025 18:54:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1744304098; bh=6ILYwxPk1uunko0MaW2WhQjFVnHa2NU28ADIkv7zU0I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Yo8ar9evgyQErWgB1u5lLqMaQwD2Tvr49FX66uZuDCTl8NPdVDfVFghZ4W9R6Gaxm
+	 Mz8mOJ0fGzWLWCUY0rhuPrixJ/IrZKiluPQB2r8KYQGfrYo1YJ68jTB+42CH+QqzR5
+	 wL9VTnl1vk+oIEavqYHofGrzOerTvx699vl53+cHVL4KxLG+5QFds2oDzwlVbfbhgV
+	 X+sSce8U4eEU7g0rugNQjHKUJ7eE5xg6N5FPXz8OFAsjly+tCL9Wuca8uD/jK9bTA0
+	 cMRYSw+X+jr4d3UZMHOdQNkBTF+GHaiTzy8HTUuzI6GYBzdUOcd5sLvYbX32itR7TF
+	 1sFQCOSmXIc2A==
+Date: Thu, 10 Apr 2025 16:54:42 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Michael Zhu <michael.zhu@starfivetech.com>,
+	Drew Fustini <drew@beagleboard.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+Message-ID: <Z_f30vAuATR1DCWk@pie>
+References: <20250409091801.855083-1-uwu@icenowy.me>
+ <20250409091801.855083-2-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,69 +70,144 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250409162837.GN1778492@nvidia.com>
+In-Reply-To: <20250409091801.855083-2-uwu@icenowy.me>
 
-On Wed, Apr 09, 2025 at 01:28:37PM -0300, Jason Gunthorpe wrote:
-> On Wed, Apr 09, 2025 at 07:19:30PM +0300, Mike Rapoport wrote:
-> > But we have memdesc today, it's struct page.
+On Wed, Apr 09, 2025 at 05:18:01PM +0800, Icenowy Zheng wrote:
+> Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE port
+> (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a VL805
+> PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+> (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio output
+> and a microSD slot.
 > 
-> No, I don't think it is. struct page seems to be turning into
-> something legacy that indicates the code has not been converted to the
-> new stuff yet.
-
-No, struct page will be with us for a while.  Possibly forever.  I have
-started reluctantly talking about a future in which there aren't struct
-pages, but it's really premature at this point.  That's a 2030 kind
-of future.
-
-For 2025-2029, we will still have alloc_page(s)().  It's just that
-the size of struct page will be gradually shrinking over that time.
-
-> > And when the data structure that memdesc points to will be allocated
-> > separately folios won't make sense for order-0 allocations.
+> Onboard peripherals contain a SPI NOR (which contains the U-Boot
+> firmware) and an Ampak AP6256 SDIO Wi-Fi module.
 > 
-> At that point the lowest level allocator function will be allocating
-> the memdesc along with the struct page. Then folio will become
-> restricted to only actual folio memdescs and alot of the type punning
-> should go away. We are not there yet.
+> As the schematics isn't available yet, the SDIO Wi-Fi is left disabled
+> yet.
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 73 +++++++++++++++++++
+>  2 files changed, 74 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index b3bb12f78e7d5..24f1a44828350 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+>  
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> new file mode 100644
+> index 0000000000000..bde01f117e0b2
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> @@ -0,0 +1,73 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+> + */
+> +
+> +/dts-v1/;
+> +#include "jh7110-common.dtsi"
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Xunlong Orange Pi RV";
+> +	compatible = "xunlong,orangepi-rv", "starfive,jh7110";
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-ack {
+> +			gpios = <&aongpio 3 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			linux,default-trigger = "heartbeat";
+> +			label = "ack";
 
-We'll have a few allocator functions.  There'll be a slab_alloc(),
-folio_alloc(), pt_alloc() and so on.  I sketched out how these might
-work last year:
+Should we sort the properties in alphabet order? i.e. color, function,
+gpios, label then linux,default-trigger. See dts-coding-style.rst,
 
-https://kernelnewbies.org/MatthewWilcox/FolioAlloc
+> The following order of properties in device nodes is preferred:
+>
+> 1. "compatible"
+> 2. "reg"
+> 3. "ranges"
+> 4. Standard/common properties (defined by common bindings, e.g. without
+> vendor-prefixes)
+> 5. Vendor-specific properties
+> 6. "status" (if applicable)
+> 7. Child nodes, where each node is preceded with a blank line
 
-> > > The lowest allocator primitive returns folios, which can represent any
-> > > order, and the caller casts to their own memdesc.
-> > 
-> > The lowest allocation primitive returns pages. 
-> 
-> Yes, but as I understand things, we should not be calling that
-> interface in new code because we are trying to make 'struct page' go
-> away.
-> 
-> Instead you should use the folio interfaces and cast to your own
-> memdesc, or use an allocator interface that returns void * (ie slab)
-> and never touch the struct page area.
-> 
-> AFAICT, and I just wrote one of these..
+> +		};
+> +	};
+> +};
+> +
+> +&gmac0 {
+> +	starfive,tx-use-rgmii-clk;
+> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+> +	status = "okay";
 
-Casting is the best you can do today because I haven't provided a better
-interface yet.
+Vendor property starfive,tx-use-rgmii-clk should go after the common
+ones.
 
-> > And I don't think folio will be a lowest primitive buddy returns anytime
-> > soon if ever.
-> 
-> Maybe not internally, but driver facing, I think it should be true.
-> 
-> Like I just completely purged all struct page from the iommu code:
-> 
-> https://lore.kernel.org/linux-iommu/0-v4-c8663abbb606+3f7-iommu_pages_jgg@nvidia.com/
-> 
-> I don't want some weird KHO interface that doesn't align with using
-> __folio_alloc_node() and folio_put() as the lowest level allocator
-> interface.
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	/* TODO: Ampak AP6256 Wi-Fi module attached here */
+> +	status = "disabled";
+> +};
+> +
+> +&mmc1 {
+> +	/delete-property/ cd-gpios;
+> +	broken-cd;
+> +};
+> +
+> +&pcie0 {
+> +	status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +	status = "okay";
+> +};
+> +
+> +&phy0 {
+> +	motorcomm,tx-clk-adj-enabled;
+> +	motorcomm,tx-clk-10-inverted;
+> +	motorcomm,tx-clk-100-inverted;
+> +	motorcomm,tx-clk-1000-inverted;
+> +	motorcomm,rx-clk-drv-microamp = <3970>;
+> +	motorcomm,rx-data-drv-microamp = <2910>;
+> +	rx-internal-delay-ps = <1500>;
+> +	tx-internal-delay-ps = <1500>;
+> +};
 
-I think it's fine to say "the KHO interface doesn't support bare pages;
-you must have a memdesc".  But I'm not sure that's the right approach.
+Ditto, move the vendor properties below the common ones.
+
+> +&pwmdac {
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	status = "okay";
+> +};
+> -- 
+> 2.49.0
+> 
+
+Best regards,
+Yao Zi
 
