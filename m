@@ -1,144 +1,93 @@
-Return-Path: <devicetree+bounces-165224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAC9A83BF6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:02:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C337A83CEF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:30:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B751E7B1C89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:01:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CC318A4770
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC661E1DF8;
-	Thu, 10 Apr 2025 08:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rwur5bLq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E9620B21D;
+	Thu, 10 Apr 2025 08:23:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28C2381A3;
-	Thu, 10 Apr 2025 08:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB751EF372
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 08:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744272157; cv=none; b=rJ4UZn7nkjQxhD4pNtKScrOC+miCS6QEJBg/r76glr7T2+3kH/1+iElLK9gnIU5+xnx0unZjfdy0Xhi5z/Ex4i/Va5eGVmvU++7CVBfQFFrYKfBfFsDQZpOsFkGNfay4BNH9JCuFQ9uuwGMPoA4NvsI7FYtZoCPUh8bpMG/e6jc=
+	t=1744273429; cv=none; b=gAih20A52YJyi5C/M2JifnNmPbf1YufrkrvG1UJG6cujqtl3O/XikhQKq1xYoCmx9gbrwLBicgFxw/NsVAZx+tS0LnZPZlkuzbsYiv/2ft/AFooQhfTNdZRIEEzI80WCpl0IKLZRgPHTNPlO0MIHUis4vCnI2rNu/y73Q/wdxFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744272157; c=relaxed/simple;
-	bh=FqsQ/mYhFu7t1FoIrEwny3QHUYvXb566G8N8Z42Mbs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QvhQoIo3yNWoB7KNjEYBTDlLcOPrfsKBgPd10ZNPb7aeZjSbx9riijgXLh0m2mqiGxUVP8jfmbm6omie/mXR4RqoKBd+SmXZMHnDA++bvdUtanE2oNKbH37fiDOIGVoaxFWXFeHe7SRPapyeS7LmZQsaVOoEOIYjvKdRweKNCrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rwur5bLq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB65C4CEDD;
-	Thu, 10 Apr 2025 08:02:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744272157;
-	bh=FqsQ/mYhFu7t1FoIrEwny3QHUYvXb566G8N8Z42Mbs0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rwur5bLq9O7t1p/zAhYTqgQawZNcM74MfsiJojMkUBO+e6ctBrO1h64GI2qRORN67
-	 xBdwWb2kmPtKrcPpso6wEPH2dJgDHAJhQoWSCCdoDviCEMw71KlhcD0EcppxpMAvW3
-	 uJRFPIszwOzrj0BXUCQsg+/6fmmVaM0VtAx5ORmTQwqQwG/ESYvRkVu1l4NhRyNCTL
-	 7+5LhcPoKopK7CKY2j/5/fGjvZhlcE2ANez5xzOrmgucyB94r1yAGcCc1XEDEn5vdz
-	 Gwf0rV13rdQkrcdxtvgF1nB/1IMdBevh8z1aSFckqbUcoe//Jgd9UsRyHEt4p4Ausz
-	 NxWvIEoln8kYQ==
-Date: Thu, 10 Apr 2025 09:02:33 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	s=arc-20240116; t=1744273429; c=relaxed/simple;
+	bh=jDXMzCGFtFDBoTcrxabt2a9M54AJhVzDoWKMD8H2qRc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JtSJrkf7+ywDEC9N8NQvANY85yUX3Gs+3SGqAzmMCXsV2afJjhEIZbFGK5FEE99wIXhHbrIMROhJf+s5BnsSxVhxiWwQTVvEWSZgN3jt7LWTdie/ImtT/t6rQhOMpk73KDTkIbTu3B93ZLX+iCxYj+ejvoAwatfKV2nkdLGcW0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:9963:4e91:5683:bcc8])
+	by michel.telenet-ops.be with cmsmtp
+	id bLPk2E0080oWysV06LPkLC; Thu, 10 Apr 2025 10:23:44 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1u2nCJ-00000000Gls-0OKt;
+	Thu, 10 Apr 2025 10:23:44 +0200
+Received: from geert by rox.of.borg with local (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1u2mqJ-00000009Hw2-0InG;
+	Thu, 10 Apr 2025 10:00:59 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/14] Support ROHM Scalable PMIC family
-Message-ID: <20250410080233.GO372032@google.com>
-References: <cover.1742802856.git.mazziesaccount@gmail.com>
- <20250404154355.GH372032@google.com>
- <ddd8882f-05b6-40f0-9a26-ab21d9644364@gmail.com>
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less RZ/N1 rule
+Date: Thu, 10 Apr 2025 10:00:56 +0200
+Message-ID: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ddd8882f-05b6-40f0-9a26-ab21d9644364@gmail.com>
 
-On Tue, 08 Apr 2025, Matti Vaittinen wrote:
+There is no need to repeat all SoC-specific compatible values in the
+rule for DMA-less RZ/N1 variants.  Use wildcard "{}" instead, to ease
+maintenance.
 
-> On 04/04/2025 18:43, Lee Jones wrote:
-> > On Mon, 24 Mar 2025, Matti Vaittinen wrote:
-> > 
-> > > Support ROHM BD96802, BD96805 and BD96806 PMICs
-> > > 
-> > > The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
-> > > to the digital interface. Main difference is voltage tuning range.
-> > > Supporting BD96805 with BD96801 drivers is mostly just a matter of being
-> > > able to differentiate the PMICs (done based on the devicetree
-> > > compatible) and then providing separate voltage tables.
-> > > 
-> > > The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
-> > > provide more capacity on systems where the BD96801 alone is not
-> > > sufficient. Startup sequence of these PMICs can be synchronized in
-> > > hardware level, and there seems to be some mechanisms which allow
-> > > delivering the companion PMIC (BD96802) status to the main PMIC
-> > > (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
-> > > individual PMICs and allows using them from software point of view as a
-> > > stand alone ICs. From the digital point of view, the BD96802 is a subset
-> > > of BD96801, providing only buck1 and buck2 regulators. Please see the
-> > > data sheet
-> > > 
-> > > The ROHM BD96806 [4] is similar to the BD96802, except that it does also
-> > > provide different voltage tuning ranges.
-> > > 
-> > > This series adds basic voltage monitoring and control as well as a
-> > > watchdog support for these PMICs using the BD96801 drivers.
-> > > 
-> > > Similarly to the BD96801, these PMICs too have a few configurations
-> > > which can only be done when the PMIC is in STBY state. Similarly to the
-> > > BD96801, doing these configurations isn't supported by the driver. The
-> > > original BD96801 RFC [5] driver should be able to cover those
-> > > configurations, if modified to support these models.
-> > > 
-> > > [1]: ROHM BD96801 data sheet:
-> > > https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
-> > > [2]: ROHM BD96805 data sheet:
-> > > https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
-> > > [3]: ROHM BD96802 data sheet:
-> > > https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
-> > > [4]: ROHM BD96806 data sheet:
-> > > https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
-> > > [5]: Original BD96801 RFC:
-> > > https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
-> > > 
-> > > Revision history:
-> > > 
-> > > v1 => v2: MFD driver changes after review by Lee
-> > >   - Use enum for chip type instead of picking the data directly from the
-> > >     of_match_data.
-> > >   - rename "chip data" variable 'cd' to more widely used 'ddata'.
-> > >   link to v1:
-> > >    https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
-> 
-> > 
-> > The MFD stuff looks okay to me now.
-> > 
-> > Let me know when everything else is ready to go.
-> > 
-> 
-> I'll treat this as an ACK for the V3. Please, let me know if that's not
-> Okay.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Acks are tricky because another maintainer might (have have in the past)
-assume that they can apply the set with my blessing, this is not the
-case.  I used to use `Acked-for-MFD-by: <me>`, but these ended up being
-merged.  *face palm*
-
-Anyway, no harm done this time around I think.
-
+diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+index 1aa3480d8d818e99..1ffe3834b0a85085 100644
+--- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+@@ -17,9 +17,7 @@ allOf:
+       properties:
+         compatible:
+           items:
+-            - enum:
+-                - renesas,r9a06g032-uart
+-                - renesas,r9a06g033-uart
++            - {}
+             - const: renesas,rzn1-uart
+             - const: snps,dw-apb-uart
+     then:
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
