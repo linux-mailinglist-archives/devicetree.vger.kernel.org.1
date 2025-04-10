@@ -1,123 +1,147 @@
-Return-Path: <devicetree+bounces-165289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A1AA83E31
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:16:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE001A83E28
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:16:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00C641BA3D5F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:11:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C02B4C3206
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A03920E711;
-	Thu, 10 Apr 2025 09:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639B8202981;
+	Thu, 10 Apr 2025 09:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="k64BKgH2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BCB920E33A;
-	Thu, 10 Apr 2025 09:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B65189B84;
+	Thu, 10 Apr 2025 09:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744276198; cv=none; b=UO8GgaMp8EM6z/0O9M+MGWb5JsEbM3bCJoZpUdXDyFIP/Ud9kK0v1ampmKTuCqKgCrn1aiBGoBNaXakYh4xg5MExJUB1t56bOZdP7qGcTPThY4u7BbbTW0IHpA0Q6X/2RnRMYvBR/YZq/D2l4p3mY/fbqbVGKjl9y5mzcrW5Ttg=
+	t=1744276303; cv=none; b=OIXo4PADaGpsE7t3rxI9t7wZkUa9KdmMuTdkUds0pUS3Az8aE6PBYpR9mt3WaZw5SpbgR5j4H8wBtWuOcm29Jif/BoFVF2UO+BMZP9BLT6bke3n3NuwMv1s8oSL6/rcL7nlAfLhYOP7UZb5WqGK8gXhgCX5sVOkLBWePGuGEArA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744276198; c=relaxed/simple;
-	bh=QzdvsrmdC8ZVPxZM6HHYJn2xGTypliiPzhu2tEsqJGw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qsT0yVv2B07CXKh8ceOhPH805/CGtOCIQ32p2oOfs2JkDn/iNwO8+U4kY01zFVmKe7Ck9DzAyDJOVvHiy/OtpIvOCPmoQbNM2tLoQBObCqfupaBqUFIO7EBsevBUot7EozQ48in15ugk1ZovNwLeNXLG5VPNJdR5n60qv7gmmXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-525b44b7720so293312e0c.0;
-        Thu, 10 Apr 2025 02:09:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744276194; x=1744880994;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e+4Ism3nybkdIu4M5oGMw9weAjI5XWety4odcvOD83Q=;
-        b=P1+B3ogAIrRcPz8zK4BalTc6SI06pIcCCiVx81B9PLxFRAKXayVoIhTZ3cZ6QxQY/s
-         xixb65e4oS8wzevv4fW6SxX9V7Lux0K2VZ9prlX7Y3vpD/fGhmH1Eorx9D1Y3Q+vJKsH
-         lhnHoqTO/brxA+EQX2PwEeFinFzAHCXa9IuAvFz+8+Jso/SNnZpTRSYjhEss9F18VqKn
-         nDYD59u7BTPx5z1V8FNv71LEsPUechMCesZLADQoMNyRWiPnP1ECpzQraM+tCXNj2kCp
-         MzYs1woNEkhHa53gxYjD1Rw5Zg4kS8oQg9DwLxF/moUvJzy+bL4ira20RJETTsyIP2JB
-         QyQw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2aTAgUxF1CR3QCNBcInyWltR+9bj6MLQZketC6Kv81RJ5A3YxXw3nCl39tn7xlSjEh2hqsu1JxGaY@vger.kernel.org, AJvYcCV63ea61wTfzgygzKpTMqLmkltqLDu1859b8zaXeagnXs/fQYHfmcler/81ejiGEaE5AWGZKQ8wAZ27ENsOtn4CPfI=@vger.kernel.org, AJvYcCVZfoZGnY6mQHl2xjuZtHwO5VSOa2qiGLty/zz6lgYVgTFrB1nggT6GLcjpKAsmR4aT65RnU52bz6F5E17L@vger.kernel.org, AJvYcCVkvzTqRhP2VMQCQBMLrXZvEohJ0wc9n8uqpQ8OxlpwXSXOTJrXhNU/e+G6fFi3p8XKmkhWDRAz8wTQ@vger.kernel.org, AJvYcCVlQhEtfbQ/+oVMAY4jnwx3h07WeiY+ZEfgqRKtCDl7vqA7poGqeHNfiR1p3sszuBXNufTXE85q0Tf5qg==@vger.kernel.org, AJvYcCW5cldt6t1oGqx/Gi+DndCS4MTX1pi3KA1rCfv8RHTKxz8sRoly9l+a1zn7OH+/zVO6japRsVorNTMwxjX+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxSPgLalAYnrzOVfPXG2p3jrsFsN5l0y7zOrvNGmcLYrnQ3s1W
-	ixGy2ZgFd7dXPmkC/z66g2dwGUS5J2jL3Q8ECNZ4mJPI9XGnx92TWyY+uJNA
-X-Gm-Gg: ASbGncvmWBMq3dxEKkKYktrH4BprrzMz/A0Y2/XQFiGerr9QiQSG1jHqjPsXHQJfBAc
-	NQH4Yt5/xVdzLmygnmHiwT2ROzp8ctXwgI+o6Wr36x/06I78VrIC1i1SUbv7trdDVxV+BIlts4L
-	QiFNPzgAU8u+Z+U/pyGpFlWKcwkmyNBymQ8QmVY9b17cPVxbv0+fM4zv/1VHYJobr3qQY5SVaJB
-	jMbpFJqGHV3DM7IyUbQm67//ZDwpBMcBycD/Zj3qvWtx8fs3OrsyQh83mtlSGlkzC01gsLWmwjI
-	U/pf0ska4JFpv/477Fom/6IRwtxjoD0G18cLdbxC0fAb8Q9txfuICWesnUZ4FPfXLnLK/wHaDFW
-	UErs=
-X-Google-Smtp-Source: AGHT+IGsfdRQ3bq+sRFOynBDnPdM91dL8JeTsQA/kWhHtmhgpaGKW/qjgRWYbdh135PW/LjPZ9qekw==
-X-Received: by 2002:a05:6122:168d:b0:526:483:95fd with SMTP id 71dfb90a1353d-527b50f5076mr1148110e0c.10.1744276194384;
-        Thu, 10 Apr 2025 02:09:54 -0700 (PDT)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87555547509sm593614241.0.2025.04.10.02.09.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 02:09:54 -0700 (PDT)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-86fab198f8eso228644241.1;
-        Thu, 10 Apr 2025 02:09:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUVgEqBIE4nv3y50CP2Cc0iew1WC4KDYl6TS/EHEtUgc/IpFzDvyoqx1jS3VxQcb/7836LpaqKGAO8r@vger.kernel.org, AJvYcCUrCVA/Ha5BuwYvdY278ALDhpj1VbfEAmGRN4gD5wzDslHsEbQEn26ZQ7APbILZDzZ2YIxmjkwxedeMUw==@vger.kernel.org, AJvYcCUzxCfd+KrGJx/ztVzrCCVLgDIhTZ6xARQd1flV5L8Nvf1EMTvBZttJAp1JC191haRZVKIROMRIe6ccrWus@vger.kernel.org, AJvYcCWDOEhPe2cJYGFPGaXXIeVeOrX6yvCXMv/YnAbn8RjMhZrxdiJpU48dyJz/Frf+Hx3NlFlNFkIHBDmAhfH9@vger.kernel.org, AJvYcCWMJ2sJPC/dOfgU3824eEk9qunqzV6f1ukvT/KQVf2842UBzU/J/4MsHbVZA2CtiYxR2eyf135pnW11dcBtB6oVqWo=@vger.kernel.org, AJvYcCXUd2X308/4BZjHJybqWvYmH9dyW/4uMwlRXW/aOtfzx2X05pmWi/RwcWul5nLOESMxyeJbJuHUL/L7@vger.kernel.org
-X-Received: by 2002:a05:6102:6cd:b0:4c1:9780:3830 with SMTP id
- ada2fe7eead31-4c9d362cf82mr1086322137.23.1744276193774; Thu, 10 Apr 2025
- 02:09:53 -0700 (PDT)
+	s=arc-20240116; t=1744276303; c=relaxed/simple;
+	bh=aTPVMYbW6F0IqppqC40Mcn7dIv8KOa0Pnw0g2LzJ5rY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GmA6oLhwpvCttwjPjUV+gmRJfe4iefWLfbk1N81vgPEdfiiIZdUHPfeU61vpL2Wfzy6H/D1jddojAfuph66nIkwMJXDdpu0jpwC71D1nR8fPmE9TecKVf3Wg1NbVhRAoisB3bvM4FW/iq1KUiUi2DmdV32/4NPBDTq93h4vVEtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=k64BKgH2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Q7XeSNwUSyKsnPHjzguFYMm/+HQnjTgqG1Z3ie3pBlE=; b=k64BKgH2UFkjxG4Hthfdq7uVRP
+	bYAoS6CUmGYx7xXgn1+VVf3RjjrbUYW5fNq+bxp1uO7DMOzVLjhD6FYaPk0YxTdx70jFgt/FdbjKx
+	hn+5ant+gddH2+aUdKnm/V2OuA5//nbVyiCAZGhWVaDgDRxuKvHMunrDItSeCYABqoFSYjgBKqiDx
+	KEp5DEIJP6uv7jCnxMb5tpp7y42m/3Ku4sT7kHOIUuUyWXrv3XILCQlQerunqrS8gyXNIA0Wcuzv/
+	OQBi7bQ/coxWxu1xfcqFezqhP/Tn1hNpUvr9oGhQjrg4MUFP8aOICuFzyJINEXKWfT3vHcL6l3+16
+	fwff5YEw==;
+Received: from i53875b95.versanet.de ([83.135.91.149] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u2nwY-0003XO-TF; Thu, 10 Apr 2025 11:11:30 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Zhang Yubing <yubing.zhang@rock-chips.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2] dt-bindings: phy: rockchip: Add missing "phy-supply" property
+Date: Thu, 10 Apr 2025 11:11:30 +0200
+Message-ID: <4668554.cEBGB3zze1@diego>
+In-Reply-To: <20250407165607.2937088-1-robh@kernel.org>
+References: <20250407165607.2937088-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407191628.323613-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250407191628.323613-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Apr 2025 11:09:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5TVByqNKgZ6UpEUEzT6Gj3UK_g9c9sE6JqMcZy++uPA@mail.gmail.com>
-X-Gm-Features: ATxdqUFwmEObbAhJi8W14BlD1YfbKbKlORWkmE5uLsdB29hvqZQyn7Wk-5suNRo
-Message-ID: <CAMuHMdW5TVByqNKgZ6UpEUEzT6Gj3UK_g9c9sE6JqMcZy++uPA@mail.gmail.com>
-Subject: Re: [PATCH v2 03/12] dt-bindings: soc: renesas: Document SYS for
- RZ/V2N SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Mon, 7 Apr 2025 at 21:16, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add the RZ/V2N (R9A09G056) variant to the existing RZ/V2H(P) System
-> Controller (SYS) binding, as both IPs are very similar.
->
-> However, they have different SoC IDs, and the RZ/V2N does not have
-> PCIE1 configuration registers, unlike the RZ/V2H(P) SYS IP. To handle
-> these differences, introduce a new compatible string
-> `renesas,r9a09g056-sys`.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Am Montag, 7. April 2025, 18:56:06 Mitteleurop=C3=A4ische Sommerzeit schrie=
+b Rob Herring (Arm):
+> Several Rockchip PHYs use the "phy-supply" property, but don't
+> document it. Add it to the current known users.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.16.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Gr{oetje,eeting}s,
 
-                        Geert
+> ---
+> v2:
+>  - Drop maxItems
+> ---
+>  .../devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml   | 3 +++
+>  Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml  | 3 +++
+>  Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml  | 3 +++
+>  3 files changed, 9 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-co=
+mbphy.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-comb=
+phy.yaml
+> index 888e6b2aac5a..3e101c3c5ea9 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.y=
+aml
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.y=
+aml
+> @@ -42,6 +42,9 @@ properties:
+>        - const: phy
+>        - const: apb
+> =20
+> +  phy-supply:
+> +    description: Single PHY regulator
+> +
+>    rockchip,enable-ssc:
+>      type: boolean
+>      description:
+> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yam=
+l b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> index b42f1272903d..8b7059d5b182 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> @@ -47,6 +47,9 @@ properties:
+>        - const: pcs_apb
+>        - const: pma_apb
+> =20
+> +  phy-supply:
+> +    description: Single PHY regulator
+> +
+>    rockchip,dp-lane-mux:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>      minItems: 2
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yam=
+l b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> index ba67dca5a446..d7de8b527c5c 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+> @@ -46,6 +46,9 @@ properties:
+>    reset-names:
+>      const: phy
+> =20
+> +  phy-supply:
+> +    description: Single PHY regulator
+> +
+>    rockchip,phy-grf:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description: phandle to the syscon managing the phy "general registe=
+r files"
+>=20
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+
 
