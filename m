@@ -1,157 +1,201 @@
-Return-Path: <devicetree+bounces-165378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E269DA84091
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:26:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45263A84083
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:24:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 489BF3AE871
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:20:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85DA1464B0A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB90B280CC5;
-	Thu, 10 Apr 2025 10:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8CC280CF1;
+	Thu, 10 Apr 2025 10:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hocVkP6L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7F13596F;
-	Thu, 10 Apr 2025 10:20:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB43280CE8
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 10:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744280415; cv=none; b=T1yeB80ZVJUPTO2ByXzH+Xgst3JyTF0xOlNvyc+ld8aQqCZAdvhdGs9GeJsWscyfrIyLrHHCTH81vGyRscGDtuZIJvKFY7BWpRR3Snirv+1WJtipx5/6fHojpnMcV4o/NKL/67QzVKfFYufcvRXg1hXnwN+G8wgZcF0xj8uGC3c=
+	t=1744280633; cv=none; b=uN6stt4HnLD6EQN82hjXLJeIGkzOK8ySo+S32A6hw1wx2Q6ZkI1xm8yb/NNBKenCv3Tiy+XKqIB70P8yigpCVFYihpPtEwTw71Dpp1p/VG7ACaiztHI7EkOpW/N/ymvR5VMsSfGe/nZTiNM7ziPohqVjvm65+i1v4UZSKmEBcwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744280415; c=relaxed/simple;
-	bh=STXnym/Nr2t8Lenz1RUY5A2v+n8iUqtKTitbeFBx2W4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QcEXfI/u2WZZ/GHpt+t125XvRfUYvruKQKOw6VyI91d+GfL1E1F7j5LGfoPFKiXxXZyFjU5YihgJoYfXmH5kFDNduElwyRumTKpyReug7Vitu7c15Lij/zT3PC1sfEX1r67OHTYK2ZYTJApPgabe3tWAN7PR9LeLWjCYFdDyon0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-525b44b7720so321049e0c.0;
-        Thu, 10 Apr 2025 03:20:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744280411; x=1744885211;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ODWzl5U+kYhA+n5JAsKOo52bKLUN4i9fElnwM1XhI38=;
-        b=YCREBFisHBkEK1tCrpLenxse1MzacjCJcEWj5tuYzM6fRcbBxGL+brteqvoj+xdHt0
-         xT18VYsHMasbyUPMhGQiFJUax4m6w5oyD8fLN0gS+0+NlqMs7sXjUG7Ee6VnKoDsiwgk
-         cCm0HA50x9ItrFPSVqtqH0OpBN/Dr0r0yf/98P8M48UOxtiF82cDyP7xhfHK7/1MexS/
-         QQx6e+D70RFhON3vYnyYnv6uzqIBeuA2TkVnJ84VVs9U3QFWNT/CQObUQrF//updUSmp
-         mtctc7j/2LslEdEnAzS1prze4qDGnLwPNh4RsZ026oa0va0W4qZ6AoR0uN/MX0agQNef
-         9mpg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/MQ1a+PR8BPLtCU7xLT1fSYQAhrp/oXRgA2S++j5BVDgTp8z3+2E+U3rgFS0Sq6vRHXM1pwjJng2H1j9r@vger.kernel.org, AJvYcCVNi20Tb0VFzr7qbR9lVsblHeFxugTlppjn8XL7aV4Qb9SWOzXYVcqITtnEW1oftRgMAbfzBrN+uRI1oMsx@vger.kernel.org, AJvYcCWRbBwLfmfX7DMEEhgLm1xBjk5XUgmDchf7BMaZG5c+Kn4/cdzUXTLAHl0r3CaO1+uV+4kdE7CLIUx5EA==@vger.kernel.org, AJvYcCXBAgNB/RkHkYDzlEYzJ6JRjFrFYjga4Bru/UYx/YI1Pa34k6vuP0ZjqsqTe6GYA5r0t5KNHqfsnRRFZZl1xEVM4U8=@vger.kernel.org, AJvYcCXjjWFgJ/G0oDNNj3xdGUIbk0s1/TErzm4VhlccI8ZL25co5qBfon970bgDb2Iz4zLQCQmq3ln1aDp4@vger.kernel.org, AJvYcCXw7yAqJ+RQIZPk9BvmEh2arJskelTyDG8i9wO3UVyglxJvaiRaR/Xpq1Rk3ycHkhC0jsN5H2/LLxeH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxk6zohWV35bBgJnW/opL2TJ5A+Mk99X44CW71RG+8bEXZCgRXI
-	9G47JFhy/4t3z8z0Jttd1AVf9cy7nhAog2O0Y8cYn0PjfP/HXViFIVAGv8LSuEw=
-X-Gm-Gg: ASbGnctZGGyuw/JPmlxCfxO66Hex2RC1Jpg8j4t7KsaVcQj0pI8mR0OzQZBADBnABdV
-	840/kro23WzB5U3W1LWPSTdwqCl/4p48pBERQz7MCSy+qz2TVtvvqxkNI1S7abeiL1M5dV4LsC/
-	41tlsT7psNQncJh2S5xp7BMVvYGaqjHVHP8Y7ahaBTMZn/Pm2GM4efxJd7MUwPYZP8mrpyTaeTs
-	/USCuP9ueAsxgWQ6RVV588fBY8Bx4Bh9K0M0nciTXcWWI6fQ9JlFOBKr9CG/TJd6q+OUF9w7vft
-	pDobOOImLmfkkx6xIT5GdaXfQNebA3KFCn4elLd7EZtK4XPWiOXIQDp+zbmCKR4YKAtT9/lSn8U
-	NREU=
-X-Google-Smtp-Source: AGHT+IGDnrwd/pRhxXcBRW34jqcXglHIXgKQjOJdxR/uZPSFVzKz648FxnkB/QXrtYn+PgefePQdUw==
-X-Received: by 2002:a05:6122:168d:b0:526:483:95fd with SMTP id 71dfb90a1353d-527b50f5076mr1237693e0c.10.1744280411375;
-        Thu, 10 Apr 2025 03:20:11 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd4e8fdsm585458e0c.2.2025.04.10.03.20.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 03:20:10 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-86d3805a551so275105241.3;
-        Thu, 10 Apr 2025 03:20:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUfknW/C2QFw37QL4sTz1/kD3gMVukMgg5XeTO0u5rDU2iV+kd6Sgx1IbLbVcuIvFYwlQQEaVmbRCXZoYBtaKwjRoE=@vger.kernel.org, AJvYcCUk9jHNC3IoJcgpJrgkzDOZMaj0Rfv/mIh2zf9Wdw7JyH9ynjB9NGIf7v1SGTWO8xwQM04814cqqQj5@vger.kernel.org, AJvYcCVyr7p4jM1+7lWuu6Zfw1hV0vw90zOQs9Gejg5Pr+rcIS37XvGStfglrBl+KuPi4JjPeYGNERFKpHydEA==@vger.kernel.org, AJvYcCXU5pZpe7tC48VfA2BKf36gfjPeARnrziEfGZwM4VIhE3VdHdRQqhlaaAmLDP06LtRCgs+gxClAHVJcGq2X@vger.kernel.org, AJvYcCXpFnUxpwcjxX+wym6wHXh+xKV8vH6gO1AxwbYoS0kC+dwTpvZDdmwEFbGMCKgiHl3T6ycFBMEb0OwxVHL4@vger.kernel.org, AJvYcCXr0Xv0BQ+IR27Y7DJoX2rE9olMjVRTstT3CZtfgN8u/PN/6CNdi4zP9KOSKtF1ttT1WQjdukM0fCT7@vger.kernel.org
-X-Received: by 2002:a05:6102:3e8a:b0:4c1:86bc:f959 with SMTP id
- ada2fe7eead31-4c9d34b2b55mr1523924137.8.1744280410407; Thu, 10 Apr 2025
- 03:20:10 -0700 (PDT)
+	s=arc-20240116; t=1744280633; c=relaxed/simple;
+	bh=KFFGsaJ42NneK7JhtvnEybxvw/Sz33e6bm09QFRxBRc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OJgOHtFVusEgdiBtr7Hgbok+cTocmEsWHtBMBBq5eiZuETtz1R2XEk/2X+9OBDjw0SRrmpBRmgwlTMOoT+YTMQ+HVh/BzcMSaYvqsfPftRCHY+1pwVabMzHRncjFfRaR/2u5ZEwpr40855Ulpb7mfhI+ayTlDEVun4W67BYqH28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hocVkP6L; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744280630;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5Cmcl/WkdnX++J14o4N9FMLdimmmWjtXNPGTUQE37cs=;
+	b=hocVkP6LqrthbNfl9whnd7wy3JhaKX6xulJKn3WL5oz6SO6IROsZNGTqOrGuldeQYrM/4+
+	bNkbRl23/1EAwC+gCRpLLcjZg4tm/ULS2DLUdP7bof01v31i0QHySk399EO7VGHaqWqAeR
+	JPaHWlqnvhBB2PKhbP2PDC9JElOmx8A=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-622-D1m_GYS7PTGtphfHMR4Rjg-1; Thu,
+ 10 Apr 2025 06:23:47 -0400
+X-MC-Unique: D1m_GYS7PTGtphfHMR4Rjg-1
+X-Mimecast-MFC-AGG-ID: D1m_GYS7PTGtphfHMR4Rjg_1744280625
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id E51DC1809CA3;
+	Thu, 10 Apr 2025 10:23:44 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 07EC63001D11;
+	Thu, 10 Apr 2025 10:23:39 +0000 (UTC)
+Message-ID: <40239de9-7552-41d1-9ee4-152ece6f33bc@redhat.com>
+Date: Thu, 10 Apr 2025 12:23:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407191628.323613-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250407191628.323613-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Apr 2025 12:19:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWRokrL3EPKQbhHhCL84h1fZ7L3LjM0gFw96iqv36EiVA@mail.gmail.com>
-X-Gm-Features: ATxdqUGjvQ5S18MOWEQVYhe-LHAQ30tmHpWeWOmzudY-_jg54YISF-DWnbivz3c
-Message-ID: <CAMuHMdWRokrL3EPKQbhHhCL84h1fZ7L3LjM0gFw96iqv36EiVA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/12] pinctrl: renesas: rzg2l: Add support for RZ/V2N SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/28] mfd: zl3073x: Add components versions register defs
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407172836.1009461-6-ivecera@redhat.com>
+ <a5d2e1eb-7b98-4909-9505-ec93fe0c3aac@lunn.ch>
+ <22b9f197-2f98-43c7-9cc9-c748e80078b0@redhat.com>
+ <5af77349-5a76-4557-839b-d9ac643f5368@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <5af77349-5a76-4557-839b-d9ac643f5368@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-Hi Prabhakar,
 
-On Mon, 7 Apr 2025 at 21:16, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add pinctrl support for the Renesas RZ/V2N SoC by reusing the existing
-> RZ/V2H(P) pin configuration data. The PFC block is nearly identical, with
-> the only difference being the absence of `PCIE1_RSTOUTB` on RZ/V2N.
->
-> To accommodate this, move the `PCIE1_RSTOUTB` entry to the end of the
-> `rzv2h_dedicated_pins` array and set `.n_dedicated_pins` to
-> `ARRAY_SIZE(rzv2h_dedicated_pins) - 1` in the RZ/V2N OF data.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks for your patch!
+On 10. 04. 25 9:11 dop., Krzysztof Kozlowski wrote:
+> On 09/04/2025 08:44, Ivan Vecera wrote:
+>> On 07. 04. 25 11:09 odp., Andrew Lunn wrote:
+>>> On Mon, Apr 07, 2025 at 07:28:32PM +0200, Ivan Vecera wrote:
+>>>> Add register definitions for components versions and report them
+>>>> during probe.
+>>>>
+>>>> Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
+>>>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>>>> ---
+>>>>    drivers/mfd/zl3073x-core.c | 35 +++++++++++++++++++++++++++++++++++
+>>>>    1 file changed, 35 insertions(+)
+>>>>
+>>>> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
+>>>> index 39d4c8608a740..b3091b00cffa8 100644
+>>>> --- a/drivers/mfd/zl3073x-core.c
+>>>> +++ b/drivers/mfd/zl3073x-core.c
+>>>> @@ -1,10 +1,19 @@
+>>>>    // SPDX-License-Identifier: GPL-2.0-only
+>>>>    
+>>>> +#include <linux/bitfield.h>
+>>>>    #include <linux/module.h>
+>>>>    #include <linux/unaligned.h>
+>>>>    #include <net/devlink.h>
+>>>>    #include "zl3073x.h"
+>>>>    
+>>>> +/*
+>>>> + * Register Map Page 0, General
+>>>> + */
+>>>> +ZL3073X_REG16_DEF(id,			0x0001);
+>>>> +ZL3073X_REG16_DEF(revision,		0x0003);
+>>>> +ZL3073X_REG16_DEF(fw_ver,		0x0005);
+>>>> +ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
+>>>> +
+>>>>    /*
+>>>>     * Regmap ranges
+>>>>     */
+>>>> @@ -159,10 +168,36 @@ EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
+>>>>    
+>>>>    int zl3073x_dev_init(struct zl3073x_dev *zldev)
+>>>>    {
+>>>> +	u16 id, revision, fw_ver;
+>>>>    	struct devlink *devlink;
+>>>> +	u32 cfg_ver;
+>>>> +	int rc;
+>>>>    
+>>>>    	devm_mutex_init(zldev->dev, &zldev->lock);
+>>>>    
+>>>> +	scoped_guard(zl3073x, zldev) {
+>>>
+>>> Why the scoped_guard? The locking scheme you have seems very opaque.
+>>
+>> We are read the HW registers in this block and the access is protected
+>> by this device lock. Regmap locking will be disabled in v2 as this is
+> 
+> Reading ID must be protected by mutex? Why and how?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Yes, the ID is read from the hardware register and HW access functions 
+are protected by zl3073x_dev->lock. The access is not protected by 
+regmap locking schema. Set of registers are indirect and are accessed by 
+mailboxes where multiple register accesses need to be done atomically.
+This is the reason why regmap locking is not sufficient.
 
-Suggestion for improvement below.
+> What is a "device lock"?
 
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -2304,7 +2304,6 @@ static struct rzg2l_dedicated_configs rzv2h_dedicated_pins[] = {
->         { "SD1DAT3", RZG2L_SINGLE_PIN_PACK(0xc, 3, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR |
->                                                     PIN_CFG_IEN | PIN_CFG_PUPD)) },
->         { "PCIE0_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 0, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR)) },
-> -       { "PCIE1_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 1, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR)) },
->         { "ET0_MDIO", RZG2L_SINGLE_PIN_PACK(0xf, 0, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR |
->                                                      PIN_CFG_IEN | PIN_CFG_PUPD)) },
->         { "ET0_MDC", RZG2L_SINGLE_PIN_PACK(0xf, 1, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR |
-> @@ -2359,6 +2358,14 @@ static struct rzg2l_dedicated_configs rzv2h_dedicated_pins[] = {
->         { "ET1_RXD1", RZG2L_SINGLE_PIN_PACK(0x14, 5, (PIN_CFG_PUPD)) },
->         { "ET1_RXD2", RZG2L_SINGLE_PIN_PACK(0x14, 6, (PIN_CFG_PUPD)) },
->         { "ET1_RXD3", RZG2L_SINGLE_PIN_PACK(0x14, 7, (PIN_CFG_PUPD)) },
-> +
-> +       /*
-> +        * This pin is only available on the RZ/V2H(P) SoC and not on the RZ/V2N.
-> +        * Since this array is shared with the RZ/V2N SoC, this entry should be placed
-> +        * at the end. This ensures that on the RZ/V2N, we can set
-> +        * `.n_dedicated_pins = ARRAY_SIZE(rzv2h_dedicated_pins) - 1,`.
-> +        */
-> +       { "PCIE1_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 1, (PIN_CFG_IOLH_RZV2H | PIN_CFG_SR)) },
->  };
+zl3073x_dev->lock
 
-Alternatively, you can replace the single array by a structure
-containing two arrays, one for common pins, and a second
-for V2H-only pins, like the common and automotive arrays in
-e.g. drivers/pinctrl/renesas/pfc-r8a7791.c.  That would get rid of
-the literal "- 1" (and the need for a comment ;-), and would protect
-against future mistakes.
+Sorry for confusing.
 
-Gr{oetje,eeting}s,
+>> not sufficient.
+>>
+>>>> +		rc = zl3073x_read_id(zldev, &id);
+>>>> +		if (rc)
+>>>> +			return rc;
+>>>> +		rc = zl3073x_read_revision(zldev, &revision);
+>>>> +		if (rc)
+>>>> +			return rc;
+>>>> +		rc = zl3073x_read_fw_ver(zldev, &fw_ver);
+>>>> +		if (rc)
+>>>> +			return rc;
+>>>> +		rc = zl3073x_read_custom_config_ver(zldev, &cfg_ver);
+>>>> +		if (rc)
+>>>> +			return rc;
+>>>
+>>> Could a parallel operation change the ID? Upgrade the firmware
+>>> version?
+>>>
+>>> 	Andrew
+>>
+>> No, but register access functions require the device lock to be held.
+>> See above.
+> 
+> Andrew comments stay valid here. This is weird need of locking and your
+> explanation is very vague.
 
-                        Geert
+See above why custom locking schema is necessary.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> BTW, do not send v2 before people respond to your comments in reasonable
+> time. You just send 28 patchset and expect people to finish review after
+> one day.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+I'm sorry... will wait.
+
+Thanks,
+Ivan
+
 
