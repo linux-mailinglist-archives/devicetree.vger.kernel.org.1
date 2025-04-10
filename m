@@ -1,151 +1,496 @@
-Return-Path: <devicetree+bounces-165213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9C2A83B79
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:41:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B338FA83B8A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE6917FD89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A938F188E940
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731C1204F92;
-	Thu, 10 Apr 2025 07:41:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D272045A6;
+	Thu, 10 Apr 2025 07:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aot9COST"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TcNs4cuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7A81CEACB;
-	Thu, 10 Apr 2025 07:41:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71571F1932;
+	Thu, 10 Apr 2025 07:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744270881; cv=none; b=gJngUTo6S9sf/6uvI0MS3lSVLNhqX0H2Kbu9bzyCkx5z3LeazwlW69EdJIcML5+leTzDujmrcssDH2xFKEtLZG220Nd7mXWt/eS4rYonLQr+tGjbCS6c9y9HgGOyvTZzuRm5f6nnJb2zwbwKJe/5P5XdeLek08DVlnt82JsG2rE=
+	t=1744270982; cv=none; b=Qjs2Cw+iHDeQxjytTa8CgBOvoLIN+5GjwLX0LBQ0zotnoMRsLSSEaj2ztcYXItTEuhl3pwlAolXuhkwJ1+PLx9Z5WowoP26/NQvid0loitf75OeBw40K5sAoEOQbcYheknDkmNJeiiRG7QJOPcdi1iZ860YL8ZG9yAxyioBe7MU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744270881; c=relaxed/simple;
-	bh=T0rl6mtqXz5LmV5LLiBAssGxQHXvEWWXL3EDzwmnWEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=JzDsGH4fRkTucNY/ThFz7wHlI7n6/ruM4PvOdodt5FczjwVYAG+TyEZkU+ikbHDFk97hhwsED6/+J81Q123QEWIvAWwlPmfFVtGjXALl5rLdM2ythuuvla2ksHtR1zC93w+csGntkc0MMCOt0vuwzaskazzxTbGetLcwyUe2YDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aot9COST; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744270877;
-	bh=T0rl6mtqXz5LmV5LLiBAssGxQHXvEWWXL3EDzwmnWEk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=aot9COSTnnKvgbGAq80PH5OkL2BX7fTgqBgoPPT/KOmtsS0JQ3I5AnxJ2kkahytDZ
-	 RMauBQEs4WXQ/fG7+K7cGkem33n5Afdt7mMk2Z3tQBcxJdlFLLdbTUO5xgN1I85hyL
-	 AIUiTLipV5O01P4BySbn1VtLc+LOJFa+/qrPh/OkaN3DE5U5Y6ySrwh5nM3/4QHcR7
-	 al3BIoEy24HMwNHPcIYwwHGTTMZsVpVWxlPq8HYjOi+LycGoj+BuWGykl3AB3Haem0
-	 jt6Om8U14QSdNDNd9ADCaxME29oX/M67NRdEOcbR6F4FvC1LUKphUd1T86EmUifUX3
-	 /XxVPg5vq0Z6Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C03ED17E0904;
-	Thu, 10 Apr 2025 09:41:16 +0200 (CEST)
-Message-ID: <58b3bbe7-c036-45c6-b6e9-e2fc150a9256@collabora.com>
-Date: Thu, 10 Apr 2025 09:41:16 +0200
+	s=arc-20240116; t=1744270982; c=relaxed/simple;
+	bh=qEoYekXX5sCrALDE6l7uxfoTVE2rec0BZ6mOu36pRZE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=qJl1LqKuO3yjV+rHxNil2rkqmUcCx7Mb0OIVksMijhOXitQ4okyD7FiTGXPWnubjtjpBT2ukKXTY5G8IhCbk3soVhvCzy6qlks5aiZZuGIj889tITATk6mWzn79y8VI2Ptz697ORbaYwGgIlRe0rSNXtAMhsO32QqoHewblum0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TcNs4cuB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818EFC4CEDD;
+	Thu, 10 Apr 2025 07:43:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744270982;
+	bh=qEoYekXX5sCrALDE6l7uxfoTVE2rec0BZ6mOu36pRZE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=TcNs4cuBp/hRZ5//YjZvg7tfj3/7mk+LcgavFyhrFmE1NKHFiVFQP6sB/EDSVnfeU
+	 sJhRuB0eydFOcsOnpXtL6xpC8uHrLs95TDoODn4BLcen6yRXW/JkB9mORIkVZVHAYD
+	 cS+PS8zzmXfiqOsPVviyMNjnxuPVLC/T2OpE45TH9tXP7e81k+hGz8de8uQIA1Ww5w
+	 MLLGiVBiJMAmf/cHgruZb5x7KHpWhtOJNUvub/OPkUSWeXYyiftZtA7vj0B7A++03d
+	 JGok6bnhX8jq0lI6VSML9m+LYs5LomQx+AuX/sxzN/BN+h7d8dXpIQ3cLaTDXRBOEN
+	 LUcm06oo5FZBg==
+From: Mattijs Korpershoek <mkorpershoek@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
+ John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for
+ reserved memory
+In-Reply-To: <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
+References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
+ <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
+Date: Thu, 10 Apr 2025 09:42:58 +0200
+Message-ID: <8734eg1myl.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mediatek: Correct indentation
- and style in DTS example
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Sean Wang <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Andy Teng <andy.teng@mediatek.com>,
- linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250324125105.81774-1-krzysztof.kozlowski@linaro.org>
- <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-Il 24/03/25 13:51, Krzysztof Kozlowski ha scritto:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
-> 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Maxime,
+
+Thank you for the patch.
+
+On lun., avril 07, 2025 at 18:29, Maxime Ripard <mripard@kernel.org> wrote:
+
+> Some reserved memory regions might have particular memory setup or
+> attributes that make them good candidates for heaps.
+>
+> Let's provide a heap type that will create a new heap for each reserved
+> memory region flagged as such.
+>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
 > ---
->   .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 83 +++++++------------
->   .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 48 +++++------
->   .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 68 +++++++--------
->   .../pinctrl/mediatek,mt8192-pinctrl.yaml      | 76 ++++++++---------
->   4 files changed, 127 insertions(+), 148 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> index 5f2808212f39..b9680b896f12 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> @@ -137,64 +137,43 @@ examples:
->           #size-cells = <2>;
->   
->           pinctrl@1c20800 {
-> -          compatible = "mediatek,mt8135-pinctrl";
-> -          reg = <0 0x1000B000 0 0x1000>;
-> -          mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
-> -          gpio-controller;
-> -          #gpio-cells = <2>;
-> -          interrupt-controller;
-> -          #interrupt-cells = <2>;
-> -          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> -              <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-> -              <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-> +            compatible = "mediatek,mt8135-pinctrl";
-> +            reg = <0 0x1000B000 0 0x1000>;
-> +            mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
->   
-> -          i2c0_pins_a: i2c0-pins {
-> -            pins1 {
-> -              pinmux = <MT8135_PIN_100_SDA0__FUNC_SDA0>,
-> -                <MT8135_PIN_101_SCL0__FUNC_SCL0>;
-> -              bias-disable;
-> -            };
-> -          };
-> -
-> -          i2c1_pins_a: i2c1-pins {
-> -            pins {
-> -              pinmux = <MT8135_PIN_195_SDA1__FUNC_SDA1>,
-> -                <MT8135_PIN_196_SCL1__FUNC_SCL1>;
-> -              bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> -            };
-> -          };
-> -
-> -          i2c2_pins_a: i2c2-pins {
-> -            pins1 {
-> -              pinmux = <MT8135_PIN_193_SDA2__FUNC_SDA2>;
-> -              bias-pull-down;
-> +            i2c0_pins_a: i2c0-pins {
+>  drivers/dma-buf/heaps/Kconfig         |   8 +
+>  drivers/dma-buf/heaps/Makefile        |   1 +
+>  drivers/dma-buf/heaps/carveout_heap.c | 360 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 369 insertions(+)
+>
+> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
+> index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..c6981d696733b4d8d0c3f6f5a37d967fd6a1a4a2 100644
+> --- a/drivers/dma-buf/heaps/Kconfig
+> +++ b/drivers/dma-buf/heaps/Kconfig
+> @@ -1,5 +1,13 @@
+> +config DMABUF_HEAPS_CARVEOUT
+> +	bool "Carveout Heaps"
 
-Agreeing with Rob - if you can please also remove the labels while at it,
-that'd be great, but regardless of that...
+Nitpick: Shouldn't this be: "DMA-BUF Carveout Heaps" ?
+This way, we are consistent with the other entries in this Kconfig.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In my opinion, I don't know enough about dma-buf to do a good review,
+but I've tried my best by comparing this to a downstream heap I'm using from:
 
+https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/drivers/dma-buf/heaps/carveout-heap.c?h=ti-android-linux-6.6.y
 
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+
+> +	depends on DMABUF_HEAPS
+> +	help
+> +	  Choose this option to enable the carveout dmabuf heap. The carveout
+> +	  heap is backed by pages from reserved memory regions flagged as
+> +	  exportable. If in doubt, say Y.
+> +
+>  config DMABUF_HEAPS_SYSTEM
+>  	bool "DMA-BUF System Heap"
+>  	depends on DMABUF_HEAPS
+>  	help
+>  	  Choose this option to enable the system dmabuf heap. The system heap
+> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
+> index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f449106748160258e372f153df2 100644
+> --- a/drivers/dma-buf/heaps/Makefile
+> +++ b/drivers/dma-buf/heaps/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)	+= carveout_heap.o
+>  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
+>  obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
+> diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f7198b781ea57f4f60e554d917c9277e9a716b16
+> --- /dev/null
+> +++ b/drivers/dma-buf/heaps/carveout_heap.c
+> @@ -0,0 +1,360 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/dma-buf.h>
+> +#include <linux/dma-heap.h>
+> +#include <linux/genalloc.h>
+> +#include <linux/highmem.h>
+> +#include <linux/of_reserved_mem.h>
+> +
+> +struct carveout_heap_priv {
+> +	struct dma_heap *heap;
+> +	struct gen_pool *pool;
+> +};
+> +
+> +struct carveout_heap_buffer_priv {
+> +	struct mutex lock;
+> +	struct list_head attachments;
+> +
+> +	unsigned long num_pages;
+> +	struct carveout_heap_priv *heap;
+> +	dma_addr_t daddr;
+> +	void *vaddr;
+> +	unsigned int vmap_cnt;
+> +};
+> +
+> +struct carveout_heap_attachment {
+> +	struct list_head head;
+> +	struct sg_table table;
+> +
+> +	struct device *dev;
+> +	bool mapped;
+> +};
+> +
+> +static int carveout_heap_attach(struct dma_buf *buf,
+> +				struct dma_buf_attachment *attachment)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = buf->priv;
+> +	struct carveout_heap_attachment *a;
+> +	struct sg_table *sgt;
+> +	unsigned long len = priv->num_pages * PAGE_SIZE;
+> +	int ret;
+> +
+> +	a = kzalloc(sizeof(*a), GFP_KERNEL);
+> +	if (!a)
+> +		return -ENOMEM;
+> +	INIT_LIST_HEAD(&a->head);
+> +	a->dev = attachment->dev;
+> +	attachment->priv = a;
+> +
+> +	sgt = &a->table;
+> +	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
+> +	if (ret)
+> +		goto err_cleanup_attach;
+> +
+> +	sg_dma_address(sgt->sgl) = priv->daddr;
+> +	sg_dma_len(sgt->sgl) = len;
+> +
+> +	mutex_lock(&priv->lock);
+> +	list_add(&a->head, &priv->attachments);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +
+> +err_cleanup_attach:
+> +	kfree(a);
+> +	return ret;
+> +}
+> +
+> +static void carveout_heap_detach(struct dma_buf *dmabuf,
+> +				 struct dma_buf_attachment *attachment)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +	struct carveout_heap_attachment *a = attachment->priv;
+> +
+> +	mutex_lock(&priv->lock);
+> +	list_del(&a->head);
+> +	mutex_unlock(&priv->lock);
+> +
+> +	sg_free_table(&a->table);
+> +	kfree(a);
+> +}
+> +
+> +static struct sg_table *
+> +carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
+> +			  enum dma_data_direction direction)
+> +{
+> +	struct carveout_heap_attachment *a = attachment->priv;
+> +	struct sg_table *table = &a->table;
+> +	int ret;
+> +
+> +	ret = dma_map_sgtable(a->dev, table, direction, 0);
+> +	if (ret)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	a->mapped = true;
+> +
+> +	return table;
+> +}
+> +
+> +static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
+> +					struct sg_table *table,
+> +					enum dma_data_direction direction)
+> +{
+> +	struct carveout_heap_attachment *a = attachment->priv;
+> +
+> +	a->mapped = false;
+> +	dma_unmap_sgtable(a->dev, table, direction, 0);
+> +}
+> +
+> +static int
+> +carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
+> +				       enum dma_data_direction direction)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +	struct carveout_heap_attachment *a;
+> +	unsigned long len = priv->num_pages * PAGE_SIZE;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	if (priv->vmap_cnt > 0)
+> +		invalidate_kernel_vmap_range(priv->vaddr, len);
+> +
+> +	list_for_each_entry(a, &priv->attachments, head) {
+> +		if (!a->mapped)
+> +			continue;
+> +
+> +		dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
+> +	}
+> +
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int
+> +carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
+> +				     enum dma_data_direction direction)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +	struct carveout_heap_attachment *a;
+> +	unsigned long len = priv->num_pages * PAGE_SIZE;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	if (priv->vmap_cnt > 0)
+> +		flush_kernel_vmap_range(priv->vaddr, len);
+> +
+> +	list_for_each_entry(a, &priv->attachments, head) {
+> +		if (!a->mapped)
+> +			continue;
+> +
+> +		dma_sync_sgtable_for_device(a->dev, &a->table, direction);
+> +	}
+> +
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int carveout_heap_mmap(struct dma_buf *dmabuf,
+> +			      struct vm_area_struct *vma)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +	unsigned long len = priv->num_pages * PAGE_SIZE;
+> +	struct page *page = virt_to_page(priv->vaddr);
+> +
+> +	return remap_pfn_range(vma, vma->vm_start, page_to_pfn(page),
+> +			       len, vma->vm_page_prot);
+> +}
+> +
+> +static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	iosys_map_set_vaddr(map, priv->vaddr);
+> +	priv->vmap_cnt++;
+> +
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
+> +{
+> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	priv->vmap_cnt--;
+> +	mutex_unlock(&priv->lock);
+> +
+> +	iosys_map_clear(map);
+> +}
+> +
+> +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
+> +{
+> +	struct carveout_heap_buffer_priv *buffer_priv = buf->priv;
+> +	struct carveout_heap_priv *heap_priv = buffer_priv->heap;
+> +	unsigned long len = buffer_priv->num_pages * PAGE_SIZE;
+> +
+> +	gen_pool_free(heap_priv->pool, (unsigned long)buffer_priv->vaddr, len);
+> +	kfree(buffer_priv);
+> +}
+> +
+> +static const struct dma_buf_ops carveout_heap_buf_ops = {
+> +	.attach		= carveout_heap_attach,
+> +	.detach		= carveout_heap_detach,
+> +	.map_dma_buf	= carveout_heap_map_dma_buf,
+> +	.unmap_dma_buf	= carveout_heap_unmap_dma_buf,
+> +	.begin_cpu_access	= carveout_heap_dma_buf_begin_cpu_access,
+> +	.end_cpu_access	= carveout_heap_dma_buf_end_cpu_access,
+> +	.mmap		= carveout_heap_mmap,
+> +	.vmap		= carveout_heap_vmap,
+> +	.vunmap		= carveout_heap_vunmap,
+> +	.release	= carveout_heap_dma_buf_release,
+> +};
+> +
+> +static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
+> +					      unsigned long len,
+> +					      u32 fd_flags,
+> +					      u64 heap_flags)
+> +{
+> +	struct carveout_heap_priv *heap_priv = dma_heap_get_drvdata(heap);
+> +	struct carveout_heap_buffer_priv *buffer_priv;
+> +	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+> +	struct dma_buf *buf;
+> +	dma_addr_t daddr;
+> +	size_t size = PAGE_ALIGN(len);
+> +	void *vaddr;
+> +	int ret;
+> +
+> +	buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
+> +	if (!buffer_priv)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	INIT_LIST_HEAD(&buffer_priv->attachments);
+> +	mutex_init(&buffer_priv->lock);
+> +
+> +	vaddr = gen_pool_dma_zalloc(heap_priv->pool, size, &daddr);
+> +	if (!vaddr) {
+> +		ret = -ENOMEM;
+> +		goto err_free_buffer_priv;
+> +	}
+> +
+> +	buffer_priv->vaddr = vaddr;
+> +	buffer_priv->daddr = daddr;
+> +	buffer_priv->heap = heap_priv;
+> +	buffer_priv->num_pages = size >> PAGE_SHIFT;
+> +
+> +	/* create the dmabuf */
+> +	exp_info.exp_name = dma_heap_get_name(heap);
+> +	exp_info.ops = &carveout_heap_buf_ops;
+> +	exp_info.size = size;
+> +	exp_info.flags = fd_flags;
+> +	exp_info.priv = buffer_priv;
+> +
+> +	buf = dma_buf_export(&exp_info);
+> +	if (IS_ERR(buf)) {
+> +		ret = PTR_ERR(buf);
+> +		goto err_free_buffer;
+> +	}
+> +
+> +	return buf;
+> +
+> +err_free_buffer:
+> +	gen_pool_free(heap_priv->pool, (unsigned long)vaddr, len);
+> +err_free_buffer_priv:
+> +	kfree(buffer_priv);
+> +
+> +	return ERR_PTR(ret);
+> +}
+> +
+> +static const struct dma_heap_ops carveout_heap_ops = {
+> +	.allocate = carveout_heap_allocate,
+> +};
+> +
+> +static int __init carveout_heap_setup(struct device_node *node)
+> +{
+> +	struct dma_heap_export_info exp_info = {};
+> +	const struct reserved_mem *rmem;
+> +	struct carveout_heap_priv *priv;
+> +	struct dma_heap *heap;
+> +	struct gen_pool *pool;
+> +	void *base;
+> +	int ret;
+> +
+> +	rmem = of_reserved_mem_lookup(node);
+> +	if (!rmem)
+> +		return -EINVAL;
+> +
+> +	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
+> +	if (!pool) {
+> +		ret = -ENOMEM;
+> +		goto err_cleanup_heap;
+> +	}
+> +	priv->pool = pool;
+> +
+> +	base = memremap(rmem->base, rmem->size, MEMREMAP_WB);
+> +	if (!base) {
+> +		ret = -ENOMEM;
+> +		goto err_release_mem_region;
+> +	}
+> +
+> +	ret = gen_pool_add_virt(pool, (unsigned long)base, rmem->base,
+> +				rmem->size, NUMA_NO_NODE);
+> +	if (ret)
+> +		goto err_unmap;
+> +
+> +	exp_info.name = node->full_name;
+> +	exp_info.ops = &carveout_heap_ops;
+> +	exp_info.priv = priv;
+> +
+> +	heap = dma_heap_add(&exp_info);
+> +	if (IS_ERR(heap)) {
+> +		ret = PTR_ERR(heap);
+> +		goto err_cleanup_pool_region;
+> +	}
+> +	priv->heap = heap;
+> +
+> +	return 0;
+> +
+> +err_cleanup_pool_region:
+> +	gen_pool_free(pool, (unsigned long)base, rmem->size);
+> +err_unmap:
+> +	memunmap(base);
+> +err_release_mem_region:
+> +	gen_pool_destroy(pool);
+> +err_cleanup_heap:
+> +	kfree(priv);
+> +	return ret;
+> +}
+> +
+> +static int __init carveout_heap_init(void)
+> +{
+> +	struct device_node *rmem_node;
+> +	struct device_node *node;
+> +	int ret;
+> +
+> +	rmem_node = of_find_node_by_path("/reserved-memory");
+> +	if (!rmem_node)
+> +		return 0;
+> +
+> +	for_each_child_of_node(rmem_node, node) {
+> +		if (!of_property_read_bool(node, "export"))
+> +			continue;
+> +
+> +		ret = carveout_heap_setup(node);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +module_init(carveout_heap_init);
+>
+> -- 
+> 2.49.0
 
