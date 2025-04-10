@@ -1,272 +1,342 @@
-Return-Path: <devicetree+bounces-165336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38F83A83F93
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:56:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAA5A83FB1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22757189D1A3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:56:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F09F9E03EE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF1B26B968;
-	Thu, 10 Apr 2025 09:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA74526B96F;
+	Thu, 10 Apr 2025 09:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kOKI3eFC"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="mckrzuQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD32A26B94D;
-	Thu, 10 Apr 2025 09:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9168726A0D1;
+	Thu, 10 Apr 2025 09:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744278930; cv=none; b=tZo8RNw3TvPWqiNzcPA63NoSUpVB6rr2HqXUew2HqTRHRjLKJ+nUSfYm1XrT8zlAd34CGJQkdV4gxNQNMGdtvbnwhruXS5DlSQLGnQ8u60is5J/+8yKZbpyoFLwouduzEagVTetKMGtk/xTWwE1qmjcRGOK+W1xk1VUwvXMx2Jg=
+	t=1744278968; cv=none; b=PgTP5cGqtH3ntEt14pdw2KMMFq2yFFDyZXlh9FaYyZSX4DwpC72EFNBtpflaFwE6fscb1k1y6+7O9Mb2/OruSoZOKXFIOXVptLPRQNViRr2JawMRI0BU0rjWBjIXBashOdFtcISWzTnJV1hl+qUK5fkp8OWK1Cq3cbCwt5TA1vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744278930; c=relaxed/simple;
-	bh=4THuh4l2cNhIbqy6HlF/J7Hc+TBYJG/XLk/3DEKuZfU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lucW8jpKVe54mX8o6CIVLW4U6mbGaR0oestUpoQQ16QgIbxnuhzvzMRb1vkgX9aQsnx0SIXNTAy3WOc/A4tFuhVWvMRGTEoF6VYbnU2JJKA3VIEDFXSQ+qb8zvxBuTr/RMiyH67xGHXj8uzDiqLYxYLoXCQKD8pPXmZ/KFu9+2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kOKI3eFC; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-39c0e0bc733so475406f8f.1;
-        Thu, 10 Apr 2025 02:55:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744278926; x=1744883726; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1XrhBUQXr1bVfeeEaE7z+isBFAKnFsoBJygdtgcyNsY=;
-        b=kOKI3eFCLYAUmKueFM8Q1Rt8nWz/U5YGdmobenbIMTYYWxqCw529yAao7TwDHAavhn
-         pYW08eRZp++xLs/+J5aLV5cBXN5IEZ2VrxEeyro6OFTynXRDN1ucjLRh9DmBtErgnfAZ
-         ovYF2gIYWiX2bsAKHUDGA4RfRjx0Kv1sz+vxdDO/kmrV3Gdd69MNJ+CGFO4i2255Olp6
-         efEj4Ho9EMDeQOcsrKN6SiLhXz7rbB8+aDF+Jj5SCeSZNpwQHqFXisAwb2WmgDFiHJDv
-         hwTOSVJGntzdyd9ypNU96D5WDp9ecBboBpgIlHi1KKkG8iLokFwVo9nXYZ++GwCXVJhI
-         ATPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744278926; x=1744883726;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1XrhBUQXr1bVfeeEaE7z+isBFAKnFsoBJygdtgcyNsY=;
-        b=VEqCF/PdSd2+HHpCsP8wHVBRi60TX+LzsLTQAI0p/A/ZB7KJnTuDJz8zTb4Y5kTV7v
-         XkZx0uo0J7X7q9wF81Q0R0wOjo5ihzLvZ34MHDYyGMMjfMpE+B4jS/KJevJcsEmkzapf
-         Kgq8nNei6ogxblWzfYPFpBWQ8PSZbE4RdjGO+Xrlw4xM36WgYMMabXgiEQ/O7PFRJyYr
-         IIcGViPJd35T0GkpVCnt0VqpcJ4mtbRLACecHKqDXhj5/TtHxZqeYZCH7uXR4E2VpGq4
-         5bSk4yi8u0w8QKH37z95NgcjW920BoLASAC8J8PTnlsQIV5Rr4xkHSztcRv2B3BL3xBI
-         ktlg==
-X-Forwarded-Encrypted: i=1; AJvYcCWX2KatwtH771DvQxqs1AI8lGFx0A5eUkq8UdR5hYSgftKpSQbNvqjmK8e46Jl6IvIKTUT/YxvN@vger.kernel.org, AJvYcCWgGhGbAjqjP9Nenw+M8aLTHQZyixYA2/hAEN6y7MqM9RVPjbnsjTlhWDCtjzNSjLx9nGiTamgcYtXD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOAVn9bvgtpP7JP7kQSt3/eDQI5Jrk1bVuRmsVapE0yHZYVC4R
-	boe436WerH5pceqq7VM8PwbCKuF0cAt6z19EQjXGLGeAOkQNRPzm
-X-Gm-Gg: ASbGnctyTU6/RCUwQSVzKO86cYVRYfthz/rStJaWkXdTBUlzvibXCjU+mD92Xw+BINl
-	AfzJmUgNJY9Y69VfWK65PDYOaZR0rBypE3e+L/TOoT3mUy0lKLelY4II2KL7M1uBu7qxiHqbc5u
-	0oRnS6rVp/lPlAtfwFoaBqkM2FYciFit5UIa3z6df0qdnFfyrWJBOJbq95l92YTVoMtGqlbYPAv
-	omslCNZumFSps2YioaNdznSeQDyHpFbeTZMejvqrGqQ6BlOKk1jJW/MeKXL+3EwvHzrcHA2ajoS
-	ihgDHOUJLNSeSuOZ/enPm49d3knfDez5Pv2e2ArmBNHEEVGGttEWPmtae4j15psGyGLxyou1BpZ
-	7fQW/5BlMNdWp5vpF9qsm
-X-Google-Smtp-Source: AGHT+IFoTYNKuvisb2Nf2HNU64oJYWZ1oJ5EubtlHVoN0Ry37Umdzq3TL1vC1SX2bh8dDZ/J/0RBnA==
-X-Received: by 2002:a5d:5f48:0:b0:39c:13fd:e2fa with SMTP id ffacd0b85a97d-39d8f4731e8mr1579097f8f.28.1744278925847;
-        Thu, 10 Apr 2025 02:55:25 -0700 (PDT)
-Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43f233a2f71sm45404425e9.15.2025.04.10.02.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 02:55:25 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.or
-Subject: [net-next PATCH v7 6/6] dt-bindings: net: Document support for Aeonsemi PHYs
-Date: Thu, 10 Apr 2025 11:53:36 +0200
-Message-ID: <20250410095443.30848-7-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250410095443.30848-1-ansuelsmth@gmail.com>
-References: <20250410095443.30848-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1744278968; c=relaxed/simple;
+	bh=cwhUox7//H167AAG+R5mbZoCosGXgGT7DBgD29i305I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=RE/lIFve+jAlh/CpMcvgJRzybOUJzVCsoo11r90sJkRvYFt5pqD349U1udPdK5HhJDECya/gazOc00a4yrLTt3bFO5PzXwTpDmIpWqa24AIh9PYPW3jhpqrffSNjbXXlincGRsr0qhOcBU+M/ulRlWMi18RN+SPh8hSJXkJIzMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=mckrzuQO; arc=none smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53A60F8Q032471;
+	Thu, 10 Apr 2025 10:55:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=dk201812; bh=4
+	DNwj8oE9ElJfcM7Gdo3nLUTkjleFIKZUfxZ3uMW+2I=; b=mckrzuQO4a9OE47IO
+	CXurPyGqU2BLy/tZsfsVwhsEA6RuS+pOjXWErb+rfowfgydFBwasBJI5oPvP0rPD
+	oGKDnDJ2AFOlMQoUJ0rP1dMt/c4sDia5+TEcvOxNZfTSlvE0Vr1Amh2V13jZ1gQ7
+	5nyG66AE8ewGDg3k67m3SS7wWPshXOSuU7ykh69sPBhGSGl04R4JNNkQgxmnQp5a
+	pqU9RUlI+MewZpPxq0xuyKV+8ypwnNqOOxoN0BEsauDaZklfvNU+yfqPVzMVm0PM
+	SePw4Vih/a89ys3EStD4QPq9RG3BcW5R8oDToQpa3Vem3fkhaYvO/m+j/yHfMAwt
+	w8+dg==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 45w86h1d34-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 10 Apr 2025 10:55:23 +0100 (BST)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ (172.25.6.134) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 10 Apr 2025 10:55:21 +0100
+From: Matt Coster <matt.coster@imgtec.com>
+Date: Thu, 10 Apr 2025 10:55:06 +0100
+Subject: [PATCH v6 07/18] drm/imagination: Handle Rogue safety event IRQs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250410-sets-bxs-4-64-patch-v1-v6-7-eda620c5865f@imgtec.com>
+References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
+In-Reply-To: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
+To: Frank Binns <frank.binns@imgtec.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        "Michal
+ Wilczynski" <m.wilczynski@samsung.com>,
+        Alessio Belle
+	<alessio.belle@imgtec.com>,
+        Alexandru Dadu <alexandru.dadu@imgtec.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7962;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=7bJNfhFytbvbu6cvrIpRSbTDY3CZGjLuEkKwu/E+W5U=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMaR/n9q4r+iw3LGz4ss2/TzbqP71Rm2WzMGC1qBvF272n
+ I2V3vg3t6OUhUGMg0FWTJFlxwrLFWp/1LQkbvwqhpnDygQyhIGLUwAm8uofwz9bzbILORLSQlzZ
+ 7BzHimSYZ7klZiQ82vJPs9on92v9onuMDNMzHC2V/tSmybxZF3iZJcD9V2jC4w7Pvec2x6ctD7E
+ X4wUA
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Authority-Analysis: v=2.4 cv=MLNgmNZl c=1 sm=1 tr=0 ts=67f7958b cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=UtEzwyU9vMAA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=EFqOhPBUpbQHUZJt0gEA:9
+ a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-GUID: 5FAvgAJvdld4cCtDU5tu3G0FhGCvC59_
+X-Proofpoint-ORIG-GUID: 5FAvgAJvdld4cCtDU5tu3G0FhGCvC59_
 
-Add Aeonsemi PHYs and the requirement of a firmware to correctly work.
-Also document the max number of LEDs supported and what PHY ID expose
-when no firmware is loaded.
+From: Alessio Belle <alessio.belle@imgtec.com>
 
-Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-AS21210PB1 that all register with the PHY ID 0x7500 0x9410 on C45
-registers before the firmware is loaded.
+Extend interrupt handling logic to check for safety event IRQs, then clear
+and handle them in the IRQ handler thread.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Safety events need to be checked and cleared with a different set of GPU
+registers than those the IRQ handler has been using so far.
+
+Only two safety events need to be handled on the host: FW fault (ECC error
+correction or detection) and device watchdog timeout. Handling right now
+simply consists of clearing any error and logging the event. If either of
+these events results in an unrecoverable GPU or FW, the driver will
+eventually attempt to recover from it e.g. via pvr_power_reset().
+
+Note that Rogue GPUs may send interrupts to the host for all types of
+safety events, not just the two above. For events not handled by the host,
+clearing the associated interrupt is sufficient.
+
+Signed-off-by: Alessio Belle <alessio.belle@imgtec.com>
+Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+Reviewed-by: Frank Binns <frank.binns@imgtec.com>
 ---
- .../bindings/net/aeonsemi,as21xxx.yaml        | 122 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+Changes in v6:
+- Add Frank's Rb
+- Link to v5: https://lore.kernel.org/r/20250326-sets-bxs-4-64-patch-v1-v5-7-e4c46e8280a9@imgtec.com
+Changes in v5:
+- None
+- Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-7-d987cf4ca439@imgtec.com
+Changes in v4:
+- Only invoke pvr_device_safety_irq_clear() if has_safety_events is set
+- Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-7-143b3dbef02f@imgtec.com
+Changes in v3:
+- Added
+---
+ drivers/gpu/drm/imagination/pvr_device.c | 113 ++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/imagination/pvr_device.h |   3 +
+ drivers/gpu/drm/imagination/pvr_fw.c     |   3 +
+ 3 files changed, 117 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-new file mode 100644
-index 000000000000..69eb29dc4d7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aeonsemi AS21XXX Ethernet PHY
-+
-+maintainers:
-+  - Christian Marangi <ansuelsmth@gmail.com>
-+
-+description: |
-+  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
-+  work. The same firmware is compatible with various PHYs of the same family.
-+
-+  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
-+  0x7500 0x7500 or 0x7500 0x9410 on C45 registers.
-+
-+  This can be done and is implemented by OEM in 2 different way:
-+    - Attached SPI flash directly to the PHY with the firmware. The PHY
-+      will self load the firmware in the presence of this configuration.
-+    - Manually provided firmware loaded from a file in the filesystem.
-+
-+  Each PHY can support up to 5 LEDs.
-+
-+  AS2xxx PHY Name logic:
-+
-+  AS21x1xxB1
-+      ^ ^^
-+      | |J: Supports SyncE/PTP
-+      | |P: No SyncE/PTP support
-+      | 1: Supports 2nd Serdes
-+      | 2: Not 2nd Serdes support
-+      0: 10G, 5G, 2.5G
-+      5: 5G, 2.5G
-+      2: 2.5G
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id7500.9410
-+          - ethernet-phy-id7500.9402
-+          - ethernet-phy-id7500.9412
-+          - ethernet-phy-id7500.9422
-+          - ethernet-phy-id7500.9432
-+          - ethernet-phy-id7500.9442
-+          - ethernet-phy-id7500.9452
-+          - ethernet-phy-id7500.9462
-+          - ethernet-phy-id7500.9472
-+          - ethernet-phy-id7500.9482
-+          - ethernet-phy-id7500.9492
-+  required:
-+    - compatible
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: specify the name of PHY firmware to load
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ethernet-phy-id7500.9410
-+then:
-+  required:
-+    - firmware-name
-+else:
-+  properties:
-+    firmware-name: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@1f {
-+            compatible = "ethernet-phy-id7500.9410",
-+                         "ethernet-phy-ieee802.3-c45";
-+
-+            reg = <31>;
-+            firmware-name = "as21x1x_fw.bin";
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <0>;
-+                    default-state = "keep";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <1>;
-+                    default-state = "keep";
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 53ca93b0cc18..310530649a48 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -650,6 +650,7 @@ AEONSEMI PHY DRIVER
- M:	Christian Marangi <ansuelsmth@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
- F:	drivers/net/phy/as21xxx.c
+diff --git a/drivers/gpu/drm/imagination/pvr_device.c b/drivers/gpu/drm/imagination/pvr_device.c
+index b6ce936f07c8bb26d240e50b72a1d991dbe4b045..a47dd1dd82432f1d66ff90aca26b7b264f4068df 100644
+--- a/drivers/gpu/drm/imagination/pvr_device.c
++++ b/drivers/gpu/drm/imagination/pvr_device.c
+@@ -146,9 +146,61 @@ static void pvr_device_process_active_queues(struct pvr_device *pvr_dev)
+ 	mutex_unlock(&pvr_dev->queues.lock);
+ }
  
- AF8133J THREE-AXIS MAGNETOMETER DRIVER
++static bool pvr_device_safety_irq_pending(struct pvr_device *pvr_dev)
++{
++	u32 events;
++
++	WARN_ON_ONCE(!pvr_dev->has_safety_events);
++
++	events = pvr_cr_read32(pvr_dev, ROGUE_CR_EVENT_STATUS);
++
++	return (events & ROGUE_CR_EVENT_STATUS_SAFETY_EN) != 0;
++}
++
++static void pvr_device_safety_irq_clear(struct pvr_device *pvr_dev)
++{
++	WARN_ON_ONCE(!pvr_dev->has_safety_events);
++
++	pvr_cr_write32(pvr_dev, ROGUE_CR_EVENT_CLEAR,
++		       ROGUE_CR_EVENT_CLEAR_SAFETY_EN);
++}
++
++static void pvr_device_handle_safety_events(struct pvr_device *pvr_dev)
++{
++	struct drm_device *drm_dev = from_pvr_device(pvr_dev);
++	u32 events;
++
++	WARN_ON_ONCE(!pvr_dev->has_safety_events);
++
++	events = pvr_cr_read32(pvr_dev, ROGUE_CR_SAFETY_EVENT_STATUS__ROGUEXE);
++
++	/* Handle only these events on the host and leave the rest to the FW. */
++	events &= ROGUE_CR_SAFETY_EVENT_STATUS__ROGUEXE__FAULT_FW_EN |
++		ROGUE_CR_SAFETY_EVENT_STATUS__ROGUEXE__WATCHDOG_TIMEOUT_EN;
++
++	pvr_cr_write32(pvr_dev, ROGUE_CR_SAFETY_EVENT_CLEAR__ROGUEXE, events);
++
++	if (events & ROGUE_CR_SAFETY_EVENT_STATUS__ROGUEXE__FAULT_FW_EN) {
++		u32 fault_fw = pvr_cr_read32(pvr_dev, ROGUE_CR_FAULT_FW_STATUS);
++
++		pvr_cr_write32(pvr_dev, ROGUE_CR_FAULT_FW_CLEAR, fault_fw);
++
++		drm_info(drm_dev, "Safety event: FW fault (mask=0x%08x)\n", fault_fw);
++	}
++
++	if (events & ROGUE_CR_SAFETY_EVENT_STATUS__ROGUEXE__WATCHDOG_TIMEOUT_EN) {
++		/*
++		 * The watchdog timer is disabled by the driver so this event
++		 * should never be fired.
++		 */
++		drm_info(drm_dev, "Safety event: Watchdog timeout\n");
++	}
++}
++
+ static irqreturn_t pvr_device_irq_thread_handler(int irq, void *data)
+ {
+ 	struct pvr_device *pvr_dev = data;
++	struct drm_device *drm_dev = from_pvr_device(pvr_dev);
+ 	irqreturn_t ret = IRQ_NONE;
+ 
+ 	/* We are in the threaded handler, we can keep dequeuing events until we
+@@ -164,24 +216,76 @@ static irqreturn_t pvr_device_irq_thread_handler(int irq, void *data)
+ 			pvr_device_process_active_queues(pvr_dev);
+ 		}
+ 
+-		pm_runtime_mark_last_busy(from_pvr_device(pvr_dev)->dev);
++		pm_runtime_mark_last_busy(drm_dev->dev);
+ 
+ 		ret = IRQ_HANDLED;
+ 	}
+ 
++	if (pvr_dev->has_safety_events) {
++		int err;
++
++		/*
++		 * Ensure the GPU is powered on since some safety events (such
++		 * as ECC faults) can happen outside of job submissions, which
++		 * are otherwise the only time a power reference is held.
++		 */
++		err = pvr_power_get(pvr_dev);
++		if (err) {
++			drm_err_ratelimited(drm_dev,
++					    "%s: could not take power reference (%d)\n",
++					    __func__, err);
++			return ret;
++		}
++
++		while (pvr_device_safety_irq_pending(pvr_dev)) {
++			pvr_device_safety_irq_clear(pvr_dev);
++			pvr_device_handle_safety_events(pvr_dev);
++
++			ret = IRQ_HANDLED;
++		}
++
++		pvr_power_put(pvr_dev);
++	}
++
+ 	return ret;
+ }
+ 
+ static irqreturn_t pvr_device_irq_handler(int irq, void *data)
+ {
+ 	struct pvr_device *pvr_dev = data;
++	bool safety_irq_pending = false;
++
++	if (pvr_dev->has_safety_events)
++		safety_irq_pending = pvr_device_safety_irq_pending(pvr_dev);
+ 
+-	if (!pvr_fw_irq_pending(pvr_dev))
++	if (!pvr_fw_irq_pending(pvr_dev) && !safety_irq_pending)
+ 		return IRQ_NONE; /* Spurious IRQ - ignore. */
+ 
+ 	return IRQ_WAKE_THREAD;
+ }
+ 
++static void pvr_device_safety_irq_init(struct pvr_device *pvr_dev)
++{
++	u32 num_ecc_rams = 0;
++
++	/*
++	 * Safety events are an optional feature of the RogueXE platform. They
++	 * are only enabled if at least one of ECC memory or the watchdog timer
++	 * are present in HW. While safety events can be generated by other
++	 * systems, that will never happen if the above mentioned hardware is
++	 * not present.
++	 */
++	if (!PVR_HAS_FEATURE(pvr_dev, roguexe)) {
++		pvr_dev->has_safety_events = false;
++		return;
++	}
++
++	PVR_FEATURE_VALUE(pvr_dev, ecc_rams, &num_ecc_rams);
++
++	pvr_dev->has_safety_events =
++		num_ecc_rams > 0 || PVR_HAS_FEATURE(pvr_dev, watchdog_timer);
++}
++
+ /**
+  * pvr_device_irq_init() - Initialise IRQ required by a PowerVR device
+  * @pvr_dev: Target PowerVR device.
+@@ -199,6 +303,8 @@ pvr_device_irq_init(struct pvr_device *pvr_dev)
+ 
+ 	init_waitqueue_head(&pvr_dev->kccb.rtn_q);
+ 
++	pvr_device_safety_irq_init(pvr_dev);
++
+ 	pvr_dev->irq = platform_get_irq(plat_dev, 0);
+ 	if (pvr_dev->irq < 0)
+ 		return pvr_dev->irq;
+@@ -207,6 +313,9 @@ pvr_device_irq_init(struct pvr_device *pvr_dev)
+ 	pvr_fw_irq_clear(pvr_dev);
+ 	pvr_fw_irq_enable(pvr_dev);
+ 
++	if (pvr_dev->has_safety_events)
++		pvr_device_safety_irq_clear(pvr_dev);
++
+ 	/*
+ 	 * The ONESHOT flag ensures IRQs are masked while the thread handler is
+ 	 * running.
+diff --git a/drivers/gpu/drm/imagination/pvr_device.h b/drivers/gpu/drm/imagination/pvr_device.h
+index 2dd8a8885fe07078896d669d822525fb2b7bab51..6c01d96657de6dc3904ef5ca28365f06cfe0f40b 100644
+--- a/drivers/gpu/drm/imagination/pvr_device.h
++++ b/drivers/gpu/drm/imagination/pvr_device.h
+@@ -308,6 +308,9 @@ struct pvr_device {
+ 	 *  struct pvr_file.
+ 	 */
+ 	spinlock_t ctx_list_lock;
++
++	/** @has_safety_events: Whether this device can raise safety events. */
++	bool has_safety_events;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/imagination/pvr_fw.c b/drivers/gpu/drm/imagination/pvr_fw.c
+index 012596402a33d03513997b40c73564d36570b44c..17c29b5081f417cccd28909ccca4f9ca9da1b9ca 100644
+--- a/drivers/gpu/drm/imagination/pvr_fw.c
++++ b/drivers/gpu/drm/imagination/pvr_fw.c
+@@ -437,6 +437,9 @@ fw_runtime_cfg_init(void *cpu_ptr, void *priv)
+ 	runtime_cfg->active_pm_latency_persistant = true;
+ 	WARN_ON(PVR_FEATURE_VALUE(pvr_dev, num_clusters,
+ 				  &runtime_cfg->default_dusts_num_init) != 0);
++
++	/* Keep watchdog timer disabled. */
++	runtime_cfg->wdg_period_us = 0;
+ }
+ 
+ static void
+
 -- 
-2.48.1
+2.49.0
 
 
