@@ -1,261 +1,211 @@
-Return-Path: <devicetree+bounces-165453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB9AA8465D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:30:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141E1A8466C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:32:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63A6F3AFA31
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:28:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BD0F189BA56
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:31:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92A528CF77;
-	Thu, 10 Apr 2025 14:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2223D28C5C7;
+	Thu, 10 Apr 2025 14:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gji7fY8D"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="M3vquscP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2088.outbound.protection.outlook.com [40.107.105.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8065728CF5B;
-	Thu, 10 Apr 2025 14:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744295304; cv=none; b=bEPgTOQWoZyv61oUOEKenAh/jXyLEIXIMyHLfbpExjMcCs4jjtBce/zDmcjTuteU4bLOyantQX89kIUN9mFl4Q8IRDF7wwAVB0NXsC9UvVCFK0BYBXR8ZeZjpuHMGLFHx5idW3Rt+gkZBO7IdE5VR4wGs1LOwDtsCFqnzFYpV6U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744295304; c=relaxed/simple;
-	bh=1m5MrCMQZzlU0LN1R3HC+JwbXbXfHGmK5U8Hi2uUEyQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CkhioTTr0oxyHRsvj0aBT/aWgGwV8r58QLBsK/aQ1K7e+gDnupq7h0xo6L7ZJqh3tb7hPa0GbLAWBqxi+rzdQtsshKriSruxgdsBqIfI84BoqkFiodbY09Kfsh6Ey8LysVripdwXMSK31DVp3ToAWpVoQ3myVR0q1jj5juNSV9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gji7fY8D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0BF91C4CEED;
-	Thu, 10 Apr 2025 14:28:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744295304;
-	bh=1m5MrCMQZzlU0LN1R3HC+JwbXbXfHGmK5U8Hi2uUEyQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gji7fY8DFeP004b5Iejv6FALlhgzP7dYKkZCpsLielfBcGg7x0arY9RcS5Bv7BKbP
-	 PKOUiX55IJhS81lGgm7HUAhDzwlgfb35f84dSDeTBdYd7JcM03OpxeA/4qCHr5ijOb
-	 yZZfLcr1sxcJJGV1C2+zdz1tTW8MeJn3W5Amoy+Sn+IqlSLQLue5whQ44Gt4/IECQ9
-	 asgb2RxNc1/GpY+Ep13C9MbtEDy+8RTE6eW/fGJx6ehINkCbctpiCzqPURSE/9lMUh
-	 Wzx8G8YzRa2J+QFvH57QQjhTixX+A/74Ergciphqk8espJvWtHow5MB35r3uKPeZ8U
-	 p+IWVrLjxvfJw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 01800C369A9;
-	Thu, 10 Apr 2025 14:28:24 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Thu, 10 Apr 2025 16:28:25 +0200
-Subject: [PATCH v5 7/7] Input: synaptics-rmi4 - support fallback values for
- PDT descriptor bytes
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72639284B51;
+	Thu, 10 Apr 2025 14:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744295498; cv=fail; b=OLcxYKwMoyIE4Vc2W/nRkF0wydwZHsKHs9ZlftdYXEf5RyPJz0nWCu8I3q0ugcxy4A/FewFztmpqBfFrM5+b+joMfZzjKo5LHUC7FGnVSFBxYySmIoGZwxxRPSUxyPvcTzzWpIbMC4Sgd02R0AiQOD6NIaqzrZGoN9bxfg2uzt4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744295498; c=relaxed/simple;
+	bh=/c9ekH56WxDFljWitVWqla7pYt1F5NecOnFiAED9KMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=TLRAbpQoosMUBxvWzHkzgDBt0W+2cLWnaeW4EX+ol/HewNlh0q1C/YuWsf3lk+2rxEEIaY0bbQCdJKLUlV12ftpDEZVy0pj3RPZJKWAYjsBv0sidBxo6uS6v7ZRf5KuHk/5tqC3rT84AjbYHsqqf2nB0bv1V82zsZc0Gx3kz1pc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=M3vquscP; arc=fail smtp.client-ip=40.107.105.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q5f7XuBUvTcMhNxxN/WLsCaNi8MBuLzsIoptLg7X4XxJmbZjLYc0n6lXevlHvJgN5eO3ulD9M8wBL+wPm6mdA5a3qL7E2HD1xGqhegiHVSQP3k3c7s5CWZrlKj2txRTCUtWaTfCuDlpGuJ7EM0wwvCQKZXoqbtBs5axRWwGFtFOC/4JuZRbBzIOAYrysf/l4RILN3GPC5NsqCS5L6HAevdar2z2zLuKys8BHw0gbXKLH5zlYTvEzG2tGUPWN8Tu3Rp4SioyiIEA2AgLNDiFsYjab0PM233TPmYIMhWvbdj9sUNY5i22d8BIplPuZ7p+yahNeKDxENrbVqgQJv4S0Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3D2r0wWHKczvjUF/tv5MmStdU1NLuFn0cuvHMaJys7U=;
+ b=eVIl/pRljgJTNTBy7+0oaDKuInpsejw3b27DBBZ/H6EFoSTLCbUCX5R7l3lNxYGdGC4pJSmMNJ1n4/vac2F1aaWbqgvDGHrCXtuBoV+iArJP5c8060JTr+EeFONWSeJUJxov7nkgeUZIcq+j+vbF5yTQCJtI+dbYCZb1EkY14QU+XgIvQIvm1areejsGzhGKVa/led9lOq99/PTBtwJtBRUGPDpIU/ei3GHut50jWkZmMq6NqMq4Kd4FY1k9SOqWTOm5iY/r6zsE1PYJFhG2VlDeGVdMKf8n1It0Z40JkQ9qMjtV9/34TCDalFHFOtuK73/yz2o+hk5/6jWs67Kd3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3D2r0wWHKczvjUF/tv5MmStdU1NLuFn0cuvHMaJys7U=;
+ b=M3vquscPQQ35sGD6XXP9UJbkld02O35XytDuW5Xm6VAzrBsGeZ5fsb5V2tOD9tM2Ov5gN4lJjQdfZ4PgpqLuLyycC7Zb3Ce4O21YKzCahIurdLTHzp3CVWQGmxiGO1uV6QhX4LHjV2IJoNw78rwpqfPzxG8Hs9VFXDrCVhXy84OefCYKOLIOBF/h4be2LoeISrxvvZnv7z8DaswQfQth7CrK9/YKrWogclC8MQsMHK0LZkh9Mi+rjB8KrUnfNID3PR/GH2hD9AOZkXmdGMzkK6Br5oqLQL52K/2ypTctD6S4JVGzN2RAWyYzr57N8qNap1OpG9KplrPZe2hERnijUQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA1PR04MB10675.eurprd04.prod.outlook.com (2603:10a6:102:48f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.31; Thu, 10 Apr
+ 2025 14:31:32 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.021; Thu, 10 Apr 2025
+ 14:31:32 +0000
+Date: Thu, 10 Apr 2025 10:31:19 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, s32@nxp.com, imx@lists.linux.dev,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Eric Chanudet <echanude@redhat.com>
+Subject: Re: [PATCH] arm64: dts: s32gxxxa-rdb: add RTC module over I2C0
+Message-ID: <Z/fWNxhtLb7Mz20R@lizhi-Precision-Tower-5810>
+References: <20250410133028.5871-1-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250410133028.5871-1-ciprianmarian.costea@oss.nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0028.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::33) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250410-synaptics-rmi4-v5-7-b41bb90f78b9@ixit.cz>
-References: <20250410-synaptics-rmi4-v5-0-b41bb90f78b9@ixit.cz>
-In-Reply-To: <20250410-synaptics-rmi4-v5-0-b41bb90f78b9@ixit.cz>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
- Vincent Huang <vincent.huang@tw.synaptics.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Caleb Connolly <caleb.connolly@linaro.org>, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5812; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=DYMCSRx4MYk/eiJZRVIbkMrJs+fsXN/6sXerZ8espFs=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn99WFILMWTotJJzfqkt07UciWHWfwLLcdraefK
- +eWaJEz1eGJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ/fVhQAKCRBgAj/E00kg
- cg6eD/4pEfQGtsusYNhAuIKQiEbi7zyY13QPhez7C1VHAsIblmK4vWf/K4vNcSdkTORNrEUqZxy
- MKz/eKGbDMEBRCWo4WwnmP4G3eq2pNy5VRjSNhVObQm/n9P0Zyt9M08gh76CZHPLhvsktHbzzKg
- uHQ4u2aYhH6jUlUS/8yi2i4Wek4piscVmFpqCnCQw28rTf8gb5xGxC1gLTKN4AcDpbyw6NmSjWD
- /AyAkVvNKWuSbZP/GiCWQmERhbtr1uK7aVH4RpEdRZrYdaKMDNw0aIB0tIiXTfy2i0mFfFWfDdK
- W060UQJVrLFE4cAlEIRG50lihHVk3dOEeTvnSpXpXgpeli6w48ZcvRxW9TmYpd8JW2MqnHj7Hz3
- 2RByGzUo3KoRDoK8AlFdl+CUmrJEO2E3oDXlsB1drjF6jMCDefVxnnxbcIrya/jQu8f8QpGzrxr
- hZVNh+5VOBiq0p/uY930OVlyyX1u8oxwhbE1NVkL/sBr0WiXmuTpRV/Af+GeckA8hzovcPrQt+n
- jRyHe11grMay0VD0wmhwmS+FgmmYXjx0K73lbCuQ8KelxNjYTUmPugXSxPybZMtc4TnDb8oVLVD
- sJagrXW+21t/ze7qW4JCRezbm7MHUbHi9KjEBKuTraYEcL1VBbQie9ko7I40xu3hRBVWXlswr/1
- spMdD6yCS4HJvfA==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9cb23c44-c098-4167-3631-08dd783c63b2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?WzZNPnCDIJEM/9zkAqOeRtVKBBB+T8O8Bhap7p3kuUJ05euxkvkwApuUl91T?=
+ =?us-ascii?Q?DnUrXQwGfdK3/Kt4MvS9I3OlfZepq6OPPQ/HOZLOMkDsSK29oo/OkdTCdQW6?=
+ =?us-ascii?Q?lQVxAC8Jlq5RrGG180TKySwUYmLei1keAXHeERLy13gyGGJUMMLpfRtQuMRY?=
+ =?us-ascii?Q?ooacNDRTCWitl4QNzcsjBzH5muUqDuSuDax6gFYWtDPiGf7q04e/FTVST9hl?=
+ =?us-ascii?Q?GgdGa1sMC7VyZoUh4oGTAzX+rJmtS5iiiQ7P1RQnJMS5Fa8LVRzOEMHLu38k?=
+ =?us-ascii?Q?EatOrDT4BHVb3dcAimVljNj+cJcoGWYkCpWcPXnihCEBPArsq1LOqpn4V9ly?=
+ =?us-ascii?Q?xsBXB7IpeAhfz3neuiFzx6uPd+Y0ES+lfswesWz+54RwNBcmEeKT9AxRg/3j?=
+ =?us-ascii?Q?rxn3XoLZAo6WLAozwQX/M+nZGUBCD0htXnI69qC0kyCh4jC8jUc6fq5XloI1?=
+ =?us-ascii?Q?HB701ZZZzXCFM2LDAzRVC+irStiNiTbWhmwhRlhiODH5PFwqMTk1p+Yzjg7c?=
+ =?us-ascii?Q?8LhYHA81Njy0J8DOhu9n+iYL6m2Jqm7sXk5LZeU+eWeWri1FtmaUopvNIsEP?=
+ =?us-ascii?Q?q2wMwD8HxJBXBo0+RIM23KO8cKRUQE6GwwnH/OgZq5WBMmpqm+15R6w4lfPs?=
+ =?us-ascii?Q?nkDv1Ioupm0zqcYefGF2W3adZSEk1CrZeWueYD+G5RaGUEkKtYMF+AQCz3BT?=
+ =?us-ascii?Q?WIX6fnVLUspQNDdutp741Q5P6FvjGJtP9UqwF42Z0+GqwOojV/y68eX3SSxz?=
+ =?us-ascii?Q?euOGE/BkSYjKUYZRc4WvoTvOHXZzqkisjNyKqMOKmDmEo3GcXkHB0qIW+X7c?=
+ =?us-ascii?Q?3tTKLrIYv2KwGiNSN41hs5IhcbOH+BW0hYfpupZ2O4Frsj/xVQ/QZiQvoCoQ?=
+ =?us-ascii?Q?mXzj05SzAPFVnhHTmTJHCPF3Ey14/DS2tOfC2OH/Ep82ANg5VmxoNdqT+9Rb?=
+ =?us-ascii?Q?MPVU59MRqyEef4N0QARaE1ss6fKn8lE3uR5N0XKsVD5QLsDJqtUVkZdysx/s?=
+ =?us-ascii?Q?0MqD2r7LgoV4cg+ME9xoGQoWQ/Dq9YR0bibNAoCDNeGUegNCNtLiopfBmuBE?=
+ =?us-ascii?Q?BuR76sjuplSac8Lx+QZKOZ1Yh9A084H/T0+my81gCEDRT9EmOWV6wdfvMKZB?=
+ =?us-ascii?Q?iIYQGZzENf16qie6Oy2gaKHpXlSo/lttazkU4Ar8U3OYBfDNZ+osYmkLfUzA?=
+ =?us-ascii?Q?4n+dBJwOQRjrERmifrSIROf8nRCccizDpW4H10FmOc1FVuT2aZkFHgxS5yiX?=
+ =?us-ascii?Q?kNQ5mvCXVAd5aAuTqACyR6Ii3bHsVf3lwwTGJwRX2PtYUdd5URtTU0aurj0i?=
+ =?us-ascii?Q?8ObmVFj/9SFvkwSRYIVYGjICy6EmTzGq4q5hFGTr0U/nzCbmg7zs+y0K+KQi?=
+ =?us-ascii?Q?n0sxLTXRrFwKdiLk2bp+iJa6ShaHSbzE5EoLHnYK/KehYEVu+a4gHo9zcORx?=
+ =?us-ascii?Q?Yal5JitQBw0ZVx2Pm/sOln1bIJ9o4YzE?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?O+jgi0lErsZzinduYdPJmk4+ku0O0kVYY9/ZfmyTARbnZwOdU7mvrkXwYBk/?=
+ =?us-ascii?Q?Sasu3LfTA2dB+NgAgHMgzMozE7yFfYJv6lZnkPnyuWVKgE55VZLT9+J1pvVH?=
+ =?us-ascii?Q?3sSK4GHKyxAV6z3JZ/OS14xee5jOe4Bei3QtmXno8p0yvBxCNs08YhoTWWcD?=
+ =?us-ascii?Q?LsP4CsywnIKpa5IqLVYZz5bULuMhazrDAUxNkdGwyem7Ak3DNHzPNa9rgpqw?=
+ =?us-ascii?Q?CUyCW2NAHAzFFnjFbw1Py6jhRxaKYiVKaPdjs429hd7s+ogGPzHMRycQU7du?=
+ =?us-ascii?Q?TJu8zT7euRbjZ/ygawZq5IYQASZf9Fudh2bmeeJR5bD8I6iXFqYOVLzew8Up?=
+ =?us-ascii?Q?4z5mTEV3PgAvcFeQPX9g11tLjQgIDUBJRqnQL5xxeuk4PHxsqsJiVc+nZ0Vq?=
+ =?us-ascii?Q?iw/BH8+UkiUo5CVVNMlLnQlAsVfGg1jO/4sInY2WQMJC6urXaXFRZhU35tEa?=
+ =?us-ascii?Q?eiUYyZH/O8/oKJwbGHAtSoLckgwSkVsHcsPmdVTeUzSh59nJVC7ASEMCKPAJ?=
+ =?us-ascii?Q?Q+dsI+ZeUPExDWsAY6eKryADuaaBc7vuoR3yBpGjYnJVEUlKO4kQ09RF4o0L?=
+ =?us-ascii?Q?5Ly6FSbr34zwgOVmKy+4skKVeR3Hwc+fDKz+VHvoAbbtZeI4uGpF3L55xZzF?=
+ =?us-ascii?Q?10a3rLZHIL2ywZw8nLUUh9phvw4ymFlMZGVVVFq3eRNocnE9siaLZlK02DsN?=
+ =?us-ascii?Q?hIWyT9c3aERTbItDKBuLxbXIaM5Sf2g9z/WUFfbBgtUDuispb/E8V6bAIa+m?=
+ =?us-ascii?Q?jDE4o2v/6IOrLkZlOSVzfBiw+d66bMqHNlhpU/3jSU1Pprcsb8ZKPceY9ZtO?=
+ =?us-ascii?Q?zteb1yGbgKORd83FSo0JqricRb4jKEJSOO7Tf+w1DQFiODTCk4X0DV/CyxFD?=
+ =?us-ascii?Q?g7nAYCBQzyi+7jllNA7IoCSxbvzZVnaEq1BvA22COrCEG/2dikDuYbQlpBqz?=
+ =?us-ascii?Q?JDM/8djhge0VF8VFAx5rdfgS2v/Y2udmno7wmdXXT5suWttxrce6/lN3lvrs?=
+ =?us-ascii?Q?zqqoupiI0ZOrhBsVRIZWrY4YGHBNdmK7qbYqhZtZ1Y2KsAB61jtXTyAaKm4o?=
+ =?us-ascii?Q?l81kxZpjrhWUTPCodQ8SYeKoMR2YUT7iRlNfh/Hjb7R38UzUs54oXBBI+baE?=
+ =?us-ascii?Q?OUA5GxN7dUHzJfWC4quP9s+xkxCTtKu+JwYwZc0wLTH7xli+q4yODaz2Swdo?=
+ =?us-ascii?Q?4KGDrIEsj+g+6ySflIMGygvenC8656hWO/xCJ/k1t+GLa+EpcmPeAbPaR7Go?=
+ =?us-ascii?Q?UqKDmcUgi1gwbODahlhf5cG1yLq7pRbMEz+w+yGJWzpl8UagQ+nTB57iLFDu?=
+ =?us-ascii?Q?45OCo610V+bujzETQqDzEpIQm3Xx9oSqxHOVwWL4ojdm6mtzb6qwYVWx9i8i?=
+ =?us-ascii?Q?6wnLrwEz0V4Jpyg4Jn6eJhAxCkHtJcXJ2CU4uxlsMMIpFIjVUnjxKB52/STA?=
+ =?us-ascii?Q?pyf8IbaIN0exB42dCse5Gk3tENxL2C+zbx1RsLqpO01hd/CpcV1h5ufKR2lY?=
+ =?us-ascii?Q?7JV5b4azMPzA/Fm1upmNwQneJa7xoGXhqE5IA4d5K1KC3b41t6zRHDNRjURG?=
+ =?us-ascii?Q?Z4ukOMp+cHR+wZjqUjo=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cb23c44-c098-4167-3631-08dd783c63b2
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 14:31:32.5601
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NEMsbYwreDZiKSaPXY+rcUc5d1hM3y8wT+QHAeRd5DAvkiNJz2BFPKSQDXFZ0SWqHG9eOu8kTtyZ1s39NY5EoA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10675
 
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
+On Thu, Apr 10, 2025 at 04:30:28PM +0300, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>
+> S32G274A-RDB2 and S32G399A-RDB3 boards have a PCA85073A RTC hardware module
+> available and connected over I2C0. Note that the RTC module is not battery
+> backed.
 
-Some replacement displays include third-party touch ICs which do not
-expose the function number and the interrupt status in its PDT entries.
+Suggested commit message:
 
-OnePlus 6 (original touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2b 22 0d 06 01 01)
+arm64: dts: s32gxxxa-rdb: Add PCA85073A RTC module over I2C0
 
-OnePlus 6 (aftermarket touch IC)
-  rmi4_i2c 12-0020: read 6 bytes at 0x00e3: 0 (2c 23 0d 06 00 00)
+Add support for the PCA85073A RTC module connected via I2C0 on
+S32G274A-RDB2 and S32G399A-RDB3 boards.
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-[codeflow adjustments, checkpatch fixes, wording]
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- drivers/input/rmi4/rmi_driver.c | 62 +++++++++++++++++++++++++++++++++++------
- drivers/input/rmi4/rmi_driver.h |  2 ++
- include/linux/rmi.h             |  3 ++
- 3 files changed, 59 insertions(+), 8 deletions(-)
+Note that the RTC module is not battery backed.
 
-diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
-index f977541d8913525d53a59e1d53c33897f1c93901..e736e90c071466cc61a441bcb3061564e039bfc8 100644
---- a/drivers/input/rmi4/rmi_driver.c
-+++ b/drivers/input/rmi4/rmi_driver.c
-@@ -461,9 +461,10 @@ static int rmi_driver_reset_handler(struct rmi_device *rmi_dev)
- 	return 0;
- }
- 
--static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
--			      struct pdt_entry *entry, u16 pdt_address)
-+static int rmi_read_pdt_entry(struct rmi_device *rmi_dev, struct pdt_entry *entry,
-+			      struct pdt_scan_state *state, u16 pdt_address)
- {
-+	const struct rmi_device_platform_data *pdata = rmi_get_platform_data(rmi_dev);
- 	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int error;
- 
-@@ -474,6 +475,21 @@ static int rmi_read_pdt_entry(struct rmi_device *rmi_dev,
- 		return error;
- 	}
- 
-+	if (pdata->pdt_fallback_size > state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1) {
-+		/* Use the description bytes from the driver */
-+		buf[5] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS];
-+		buf[4] = pdata->pdt_fallback_desc[state->pdt_count * RMI_OF_PDT_DESC_CELLS + 1];
-+
-+		error = rmi_read_block(rmi_dev, pdt_address, buf,
-+				RMI_PDT_ENTRY_SIZE - 2);
-+		if (error) {
-+			dev_err(&rmi_dev->dev,
-+					"Read PDT entry at %#06x failed, code: %d.\n",
-+					pdt_address, error);
-+			return error;
-+		}
-+	}
-+
- 	entry->page_start = pdt_address & RMI4_PAGE_MASK;
- 	entry->query_base_addr = buf[0];
- 	entry->command_base_addr = buf[1];
-@@ -546,7 +562,7 @@ static int rmi_scan_pdt_page(struct rmi_device *rmi_dev,
- 	int retval;
- 
- 	for (addr = pdt_start; addr >= pdt_end; addr -= RMI_PDT_ENTRY_SIZE) {
--		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, addr);
-+		error = rmi_read_pdt_entry(rmi_dev, &pdt_entry, state, addr);
- 		if (error)
- 			return error;
- 
-@@ -1023,9 +1039,13 @@ static int rmi_driver_remove(struct device *dev)
- }
- 
- #ifdef CONFIG_OF
--static int rmi_driver_of_probe(struct device *dev,
--				struct rmi_device_platform_data *pdata)
-+static const u8 rmi_s3706_fallback_pdt[] = {34, 41, 01, 01, 12, 01};
-+
-+static int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+			       struct rmi_device_platform_data *pdata)
- {
-+	struct device *dev = rmi_dev->xport->dev;
-+	u8 buf[RMI_PDT_ENTRY_SIZE];
- 	int retval;
- 
- 	retval = rmi_of_property_read_u32(dev, &pdata->reset_delay_ms,
-@@ -1033,11 +1053,37 @@ static int rmi_driver_of_probe(struct device *dev,
- 	if (retval)
- 		return retval;
- 
-+	/*
-+	 * In some aftermerket touch ICs, the first PDT entry is empty and
-+	 * the function number register is 0. If so, the driver
-+	 * may have provide backup PDT entries.
-+	 */
-+
-+	retval = rmi_read_block(rmi_dev, PDT_START_SCAN_LOCATION,
-+			buf, RMI_PDT_ENTRY_SIZE);
-+	if (retval) {
-+		dev_err(dev, "Read PDT entry at %#06x failed, code: %d.\n",
-+			PDT_START_SCAN_LOCATION, retval);
-+		return retval;
-+	}
-+
-+	if (!RMI4_END_OF_PDT(buf[5]))
-+		return 0;
-+
-+	/* List of known PDT entries per compatible. */
-+	if (of_device_is_compatible(dev->of_node, "syna,rmi4-s3706b")) {
-+		pdata->pdt_fallback_desc = rmi_s3706_fallback_pdt;
-+		pdata->pdt_fallback_size = ARRAY_SIZE(rmi_s3706_fallback_pdt);
-+	} else {
-+		dev_err(dev, "First PDT entry is empty and no backup values provided.\n");
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- }
- #else
--static inline int rmi_driver_of_probe(struct device *dev,
--					struct rmi_device_platform_data *pdata)
-+static inline int rmi_driver_of_probe(struct rmi_device *rmi_dev,
-+				      struct rmi_device_platform_data *pdata)
- {
- 	return -ENODEV;
- }
-@@ -1158,7 +1204,7 @@ static int rmi_driver_probe(struct device *dev)
- 	pdata = rmi_get_platform_data(rmi_dev);
- 
- 	if (rmi_dev->xport->dev->of_node) {
--		retval = rmi_driver_of_probe(rmi_dev->xport->dev, pdata);
-+		retval = rmi_driver_of_probe(rmi_dev, pdata);
- 		if (retval)
- 			return retval;
- 	}
-diff --git a/drivers/input/rmi4/rmi_driver.h b/drivers/input/rmi4/rmi_driver.h
-index cb1cacd013a3f39db96935f705f18018bf15adff..3b87d177db59591691a56ce7ac03dd2e8671421d 100644
---- a/drivers/input/rmi4/rmi_driver.h
-+++ b/drivers/input/rmi4/rmi_driver.h
-@@ -31,6 +31,8 @@
- #define RMI_PDT_FUNCTION_VERSION_MASK   0x60
- #define RMI_PDT_INT_SOURCE_COUNT_MASK   0x07
- 
-+#define RMI_OF_PDT_DESC_CELLS 2
-+
- #define PDT_START_SCAN_LOCATION 0x00e9
- #define PDT_END_SCAN_LOCATION	0x0005
- #define RMI4_END_OF_PDT(id) ((id) == 0x00 || (id) == 0xff)
-diff --git a/include/linux/rmi.h b/include/linux/rmi.h
-index ab7eea01ab4274bfc9efcefcdb0cced6ec34966f..4ba2cefac85583a4ba65c70dca418a2c7c65362a 100644
---- a/include/linux/rmi.h
-+++ b/include/linux/rmi.h
-@@ -214,6 +214,9 @@ struct rmi_device_platform_data {
- 	int reset_delay_ms;
- 	int irq;
- 
-+	unsigned int pdt_fallback_size;
-+	const u8 *pdt_fallback_desc;
-+
- 	struct rmi_device_platform_data_spi spi_data;
- 
- 	/* function handler pdata */
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
--- 
-2.49.0
-
-
+>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+> index ba53ec622f0b..4587e1cb8835 100644
+> --- a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+> @@ -153,6 +153,11 @@ pcal6524: gpio-expander@22 {
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+>  	};
+> +
+> +	pca85073a: rtc@51 {
+> +		compatible = "nxp,pca85073a";
+> +		reg = <0x51>;
+> +	};
+>  };
+>
+>  &i2c2 {
+> --
+> 2.45.2
+>
 
