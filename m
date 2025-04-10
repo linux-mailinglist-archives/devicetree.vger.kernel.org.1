@@ -1,183 +1,130 @@
-Return-Path: <devicetree+bounces-165573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D56A84A41
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90ECBA84A4A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2204188B57C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:41:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B752A189210F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281771EDA05;
-	Thu, 10 Apr 2025 16:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D161EDA05;
+	Thu, 10 Apr 2025 16:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="Fmf//sE3";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="oU8ToU5e"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jooRrozr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58B61DF73A;
-	Thu, 10 Apr 2025 16:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26BB91C700D
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 16:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744303267; cv=none; b=MR9clVc7Ag/0QHTuyqCWqRjwl495fMSN2jjjaLmmzWZFqf4daAPda5cVRNoXApP+Ded7vTPsIVQEDdSEOuYqcRpvYcHQbBfotMVn2XpXCewFRbpvp9kRdmVoFp7fMQk164AHinYuvwC4XzsS4JcRL56IFaNAppnWlsCHbzETHkM=
+	t=1744303284; cv=none; b=VCYPYVmjByYyii6knxPxZ+yixBgdkrsF9jvQkE4BlGs5hVi7XtzVxIwTocJEvWhtQr9QZG63lKX4xozRMCUdvNrNs1gwY2nTvJzJk8FjBkVJdSMuFJYaKeYV4cAjmnwvY1rFx4C0fkAYlUsqnKliIjbW0Nc6Yupsut1SimtrUYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744303267; c=relaxed/simple;
-	bh=KKUAC0r/gPym5dtn4mAKTqqf3QcWgBmB3QKesCnSCbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mGFQFYAlzUfeCsTSEA/lhiVkKd682qsMSaDzCzvBJixDgoxj/jarhvPaH48s4ihfFEGWULGe52mIuuqEZojMIS0ge2BsWYxjCLeAU31u80p1J3oKufw/oc0Wsqk1y7cTR5vWTrWqjftpIXkUVIYh8qbdUIhKC9TVGwzr6C/P6IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=Fmf//sE3; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=oU8ToU5e; arc=none smtp.client-ip=202.12.124.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 7BACD25401AC;
-	Thu, 10 Apr 2025 12:41:00 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Thu, 10 Apr 2025 12:41:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1744303260;
-	 x=1744389660; bh=rt65cHcbQzrTXnga1fM9WZtMZgWbrqK/Rj8B1eto+UI=; b=
-	Fmf//sE3eaNOwNXM5xFa7zaLDP9XDqJh026B86rVjyigGXg1OuTFXP5GjIOpBc/m
-	A1cdOHoK+Uc1tbd/FhI76M1LIvFxnK7v1AnFfZ9DzjeXEB0ChgFC6xy20hUgzb97
-	L8aVr+CmZlpMmC6TmkwTXz98P7FozIp4w3+k7NdPcDYoXMXQjEBlIPcwlP148Hwa
-	1XLidcGT/qu2jenBoyEAKmN2XH5vDp3k8jMksNsx5rVw69SDPbogHLeCji0OVMfb
-	Z28wQ4IIWclCgXo7HnA9b1PE61Y1u6PKVZ5owW/xC6LQCTGrW+1yEha2Zo5PJoff
-	Vzv8TlMDpOOArLwx+cZwaA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1744303260; x=
-	1744389660; bh=rt65cHcbQzrTXnga1fM9WZtMZgWbrqK/Rj8B1eto+UI=; b=o
-	U8ToU5excXz1DZzKUYzQ71PdbqhCXnUxK+GK90hqf5T1HldT27ogbKDscPAbsfaQ
-	IHCQpArcUSfNspXWQ7EsRN7JFm94K0mAV1TxxxEsyWO7ZkMMMxorldv0S97mrRBX
-	wU2wigc8Sos1pm/8au5A6vwm3aJ2f9ABUQc2+KOM8v4Yp2T6UyiiHOibj4amoE6v
-	5Mnsd/2AYV+/fd2Vg6X7vmwDNWKG8ad6cx4XvgNIcvhm1+JDp1+pYqG4/EBh+4Ki
-	7bScMtKuuRfZdoACOlKKRxGMdBjuWcdlgS+kC5zfcvaL/1iAS7N7rw3tZjmR+BK0
-	7tSgDimQ+Xbgqbw8UmIQA==
-X-ME-Sender: <xms:m_T3Z1vb2CkjfEC-rDZeZQuOuIVvLyIsTPCkMQOpjFoy6On_2Z0dwQ>
-    <xme:m_T3Z-dDQxAGlrEmETV8KR6ZPnb5Sqi64LxSU-RgmorMmF5PbN6jBiaiqZUobvc-m
-    2fEn687buNjRRrNCfA>
-X-ME-Received: <xmr:m_T3Z4zL-T3cN7bq2tTc0Un2JKCeD9Gbni6tm7sd8bq_2zN22hSdQ5rvkS0z5dvgMV5Xaw_hJxkfOZeqhUR3iXztqzgV4YrOVw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdelgeduucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddt
-    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
-    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
-    rghtthgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehff
-    dtvdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
-    pehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthh
-    drshgvpdhnsggprhgtphhtthhopeduvddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepmhgthhgvhh
-    grsgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhr
-    ghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
-    gtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohephhhvvghrkhhuihhl
-    seigshegrghllhdrnhhlpdhrtghpthhtohepshgrkhgrrhhirdgrihhluhhssehlihhnuh
-    igrdhinhhtvghlrdgtohhmpdhrtghpthhtoheplhgruhhrvghnthdrphhinhgthhgrrhht
-    sehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehjrggtohhpohdrmhhonh
-    guihesihguvggrshhonhgsohgrrhgurdgtohhm
-X-ME-Proxy: <xmx:m_T3Z8PeLiJ7va-vUuzCs0DcZTO8361aeHr3E41hxR68yt5DZFs88Q>
-    <xmx:m_T3Z1_PH1yVKCGL5-EEit_jPgZ1f5p2vEHbtstu3IyDa3rts5TA_w>
-    <xmx:m_T3Z8VBVdxQz-pACNTISn7XSuztyoeXBE9ddMsuuxmbgTbUzBQiVA>
-    <xmx:m_T3Z2eQnVMQV7TamNH793lJwBUB9MKG7YdQSFMWLkVlEJrBXndy9Q>
-    <xmx:nPT3Z0qTpsnp8-zsGQQATIRTl6tyxrYl0Ch_BRNZsCDZi8NzUuv82llN>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Apr 2025 12:40:59 -0400 (EDT)
-Date: Thu, 10 Apr 2025 18:40:57 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/7] arm64: dts: renesas: r8a779a0: Add ISP core function
- block
-Message-ID: <20250410164057.GB3736289@ragnatech.se>
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-3-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdXsU7uJVTM=U66pSO+wWLQWXkjxyvu572D+gSd6cyd2eg@mail.gmail.com>
+	s=arc-20240116; t=1744303284; c=relaxed/simple;
+	bh=Hcr+OsbV0giuq3OJQt+MLAFzhy4z/J4/UvCBYVt5Ipc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G4LgsXtT9DJKpmDdvidOGOAJfK4RCSn5ZiFRfzIvH7kKzIARpK5tJRtP/U8w+VB8ByhpQTL9cPJz/VTC/dcRAnEszomssVJTtek7URa9OtvZgMMS882HIzGPNrC/3WS/oS6flblOA+lMC5IsIfNMlZQxbDiEOjaBvs9von63CPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jooRrozr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53AD2n1b006985
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 16:41:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Nz3AV0ZTJrVixT1lebo/KxCHi2vspT4PrctEXCftC3c=; b=jooRrozrTmVsxT8y
+	iVOKgnQF/yctxkX/Riuy9pLd2BkHVUGuOC/0MM9M1YnC8Saj2EAT4z0/55c0l7Ix
+	LVSCAA39XdGqSxhirFSNQwg9SQNxEG2J8oX7aXSDjefkQl2mxMppbz0N5cUfWI4h
+	MqGgKAseeILwa4vHLi4eDzyMJGpF6Z8o6DeVY8dCTRQm3Doq8x5lsNruqkn6MWx1
+	6Ow90tWKjPjSc42dxlbpS15e8aqXKgNWWAgo/c0EubPPR3oUHoG6nUB3ltoULHFg
+	2Kn9GJfW3qY/e2sEC3HkaSbEiet8vk4aOdt4GOVVDAnrnUjCc7rOA2lMoqBfr1QH
+	oVwuKQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45xeh3gmvs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 16:41:21 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5af539464so29100085a.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:41:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744303281; x=1744908081;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nz3AV0ZTJrVixT1lebo/KxCHi2vspT4PrctEXCftC3c=;
+        b=dxmubvD/z2k42IH5lL7o7FqC//IL8LX8C81VaYqBLCZXhm+gin7fpxc/Qat1cOzXy4
+         SE26fQOBIHq4jDEMocUy55ZmjXQKZYdDuITQ+dbpFCOoBf9HS1jV31gmWTnTB87RHeC8
+         lG6xCmFUpY1whtUoWA95gJfyLVFQdaRFUnl5LS12bvunMYfHvX84huHjYGWko1wcwq6u
+         pJN95iAtEK6nyMdtWAkt9/f8Yki4089XvqFbr+VTSgkTDf7Y0FAuKLfoQnLX3bImBtHu
+         kN8LserlgwfIQWvTZ2j9ZN/HN2qeExOFUsVBEvY47T1sisqUALX+e7M8XIwBVR8b+rid
+         NqAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZnV+ZXG0WVAztVurZFUfyICJqV0IyxMfeO1DWyOezXwHv25L/zlhveZegnPEe+nLjEJdhbxj3q/HF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwJcCme1FA0oVAVhs8bQmK2sf8SKlmhvjGDYsENGC+IVEh/PZR
+	l6YoOo/tfItCn7F6TQqW9O6q4o7m+eh2VFI683VE53ExDtgwwgVPsqB5tqVMpUz/oEOq2+Jel9Q
+	JCIdLIFQcK1DgeW8uQc6kRZJAcfe6qkLV1JgC8PSZw6Nc6+G164BAvC6ws0MN
+X-Gm-Gg: ASbGncvcIfRL8x8mBSjuE3pqPo29SHJO0+eNLd5ze55ksGdxuB0IS06MfTXdTxG9Ign
+	qDmNrLaSeLpt6BgJ/appEdHrmqD+P/LmGtdvImGTFZV02a4f+qlt1nxXjOY+4HXokvaOYhnPAHl
+	iTU6c94zmUb9RfbEXBubcBTVDOGzv84STSwgQAfp4Z2uWZ4aUXFNYBPNRzCtrBtgbt3btS0MJIV
+	kXvkMyGMGhtMYrcqlJwJ1lBSgpkcAipBq4UCTdxKNNkk36Gh/ZNt7EVF2KLRsUNCsFguqR/LAAn
+	bcVrhlbR3OrD46Pwci6rosZwqVROJ9uBnpUbBAyG9z0+wSqMeuUrZSyHAq/9vuxfug==
+X-Received: by 2002:a05:620a:40cc:b0:7c0:a1ca:93cb with SMTP id af79cd13be357-7c79dd9a8b1mr382563485a.1.1744303281082;
+        Thu, 10 Apr 2025 09:41:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHKyHlrNq2qLH05ohY7PXUtOJFZJXokcW+KLyTTZ5H9Yjn47IJOlgaBBW+DUuMj07LVZzxX8Q==
+X-Received: by 2002:a05:620a:40cc:b0:7c0:a1ca:93cb with SMTP id af79cd13be357-7c79dd9a8b1mr382560885a.1.1744303280439;
+        Thu, 10 Apr 2025 09:41:20 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f2fbd17646sm2618786a12.56.2025.04.10.09.41.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 09:41:19 -0700 (PDT)
+Message-ID: <9db38911-4bb3-42c9-90be-51cbd6e523fc@oss.qualcomm.com>
+Date: Thu, 10 Apr 2025 18:41:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXsU7uJVTM=U66pSO+wWLQWXkjxyvu572D+gSd6cyd2eg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-hp-elitebook-ultra-g1q:
+ DT for HP EliteBook Ultra G1q
+To: Maud Spierings <maud_spierings@hotmail.com>, juerg.haefliger@canonical.com
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        konradybcio@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org
+References: <20250408145252.581060-4-juerg.haefliger@canonical.com>
+ <AM7P189MB100977CCFD602396E8F01FCBE3B72@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <AM7P189MB100977CCFD602396E8F01FCBE3B72@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=VbH3PEp9 c=1 sm=1 tr=0 ts=67f7f4b1 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=g0goBy0-_zJ6c0Nzw48A:9 a=QEXdDO2ut3YA:10 a=QYH75iMubAgA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: Yk72yJ5XJ5CniwVZIEc613IVJifjA_od
+X-Proofpoint-ORIG-GUID: Yk72yJ5XJ5CniwVZIEc613IVJifjA_od
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-10_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ phishscore=0 impostorscore=0 suspectscore=0 adultscore=0 spamscore=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0
+ mlxlogscore=537 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504100122
 
-Hi Geert,
+On 4/10/25 7:34 AM, Maud Spierings wrote:
+> Sorry I messed up and replied to the wrong patch somehow, this comment was meant for this patch.
+> 
+>> Introduce a device tree for the HP EliteBook Ultra G1q 14" AI laptop. It
+>> seems to be using the same baseboard as the HP OmniBook X 14 so just use
+>> that for now.
 
-Thanks for your feedback.
+https://lore.kernel.org/lkml/20230510183423.never.877-kees@kernel.org/
 
-On 2025-04-10 17:54:25 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Sat, 15 Mar 2025 at 16:28, Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > All ISP instances on V3U have both a channel select and core function
-> > block, describe the core region in addition to the existing cs region.
-> >
-> > The interrupt number already described intended to reflect the cs
-> > function but did incorrectly describe the core block. This was not
-> > noticed until now as the driver do not make use of the interrupt for the
-> > cs block.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch!
-> 
-> > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > @@ -2588,13 +2588,20 @@ du_out_dsi1: endpoint {
-> >                 isp0: isp@fed00000 {
-> >                         compatible = "renesas,r8a779a0-isp",
-> >                                      "renesas,rcar-gen4-isp";
-> > -                       reg = <0 0xfed00000 0 0x10000>;
-> > -                       interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> > -                       clocks = <&cpg CPG_MOD 612>;
-> > +                       reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
-> > +                       reg-names = "cs", "core";
-> > +                       interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                    <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> So we used to describe the "wrong" interrupt before, but it didn't hurt,
-> as the driver doesn't use it anyway?
-
-Correct.
-
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Queuing in renesas-devel is postponed, pending acceptance of the DT
-> binding changes.
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
--- 
-Kind Regards,
-Niklas Söderlund
+Konrad
 
