@@ -1,289 +1,122 @@
-Return-Path: <devicetree+bounces-165210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D7AA83B63
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:37:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47446A83B91
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:46:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E71318842BF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:36:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 118413A40B1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B0C1F1932;
-	Thu, 10 Apr 2025 07:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9k1URoY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90121E32C3;
+	Thu, 10 Apr 2025 07:39:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CF61D90AD;
-	Thu, 10 Apr 2025 07:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79B91B81DC;
+	Thu, 10 Apr 2025 07:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744270581; cv=none; b=YSLjhXyn0/zc91fTqdwOsPbaibm0qh5+feNnNiCDqFuC3U1XHuWg5MBDsIFpNFsUSCfG3gEUzWE7MNLzKOTaDlZMqvFb6P+8FNXk1HUQVndSavFkWrwHFArcPLXbLjrB/DrzBlDXlOm0Xid5oByqmFWFza5A7RauhtxYOZ7MKng=
+	t=1744270787; cv=none; b=hA/SxEOCAo4Ug/r09sYtvjBajQguZT5ZFZNS7cxAQMcjJBtjRYjAfF6B0pwBzMTb1tCb7YG1SntaDKy/5JFeEtsFtRWAmDL8JT0EtJ5XTddpQZoPD1orxgM109SlaoaVXM2esU9KFbdrwOjWcfK9qNKxpYXUQ+Ty9iCRpg0yQU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744270581; c=relaxed/simple;
-	bh=/NFqkxxxqXaQUxSCOyIdp5ab20f0TbRcKSw1DXoIYm8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fcMTee2aJIsd5ZAoIVhG7WdC+GLWT3+HWNEUgbrKfCiTXoOIJJ9MmhooIPpwEJJeRhDYsNskdv9RYHmZyNm6UjVwHJ8J2lOZLsPNXafkVsRLK9vUJ1UNAosIrN5/04dP/RUbddcZEY8jpm/5TSMtT6FgbXukyGi792FNSiTGw20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9k1URoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 168D5C4CEDD;
-	Thu, 10 Apr 2025 07:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744270580;
-	bh=/NFqkxxxqXaQUxSCOyIdp5ab20f0TbRcKSw1DXoIYm8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n9k1URoYtnKtpMy8mnGxEgMifeE86DAUptIfA9GB4IvU1HWlmNEsvu3kI9rdNDJZG
-	 iVOmZ6NZV4pajZXkSaz+efbKwONru8Fha5S/Hc34E9NLsdOaD0OjsWb7mrwJifksdh
-	 qW9AqfsabQuR8g7t7u6NPKdQmPWOXvSyDJSloLwDCVlSjQTmjByAedPQZiRrxYKjzP
-	 Jun0UoxLWfqzBZQoLii/CvTlimvujBvxl/CdlEU8snBoyx4i9LcpS9+1MnFju2ppNe
-	 cQWUsTbvkxrR9U5Il97R+sYb5AZMI/qE0TxKhY/VUdsmtXxciisjWH+o7WHbSeNIu5
-	 8DndnNPunyQJQ==
-Date: Thu, 10 Apr 2025 09:36:18 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nipun Gupta <nipun.gupta@amd.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org, 
-	conor+dt@kernel.org, ogabbay@kernel.org, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
-	derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de, praveen.jain@amd.com, 
-	harpreet.anand@amd.com, nikhil.agarwal@amd.com, srivatsa@csail.mit.edu, code@tyhicks.com, 
-	ptsm@linux.microsoft.com, herbert@gondor.apana.org.au, davem@davemloft.net, 
-	linux-crypto@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
-Message-ID: <20250410-sly-inventive-squirrel-ddecbc@shite>
-References: <20250409173033.2261755-1-nipun.gupta@amd.com>
- <20250409173033.2261755-2-nipun.gupta@amd.com>
+	s=arc-20240116; t=1744270787; c=relaxed/simple;
+	bh=L1sXf+9FqINNB+qS1AHvdqZAgpqLVBCQX8MZALCtQgw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E+YFpR3jwHL4XgFEMLWjK0nvoH7XGxu+FKWwNQ7gqjw0IePM2xWzk5FpFy6CXLneYWxvySWMStSEADq32yXiVrMDGqOp1euR4oglKa39Qwu4rsqj2NSJFDLvO6A4Sa8lIMEMdenkbmxvj0BmD+dsVE1smIXXGrk8d9BH40hmWXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-52413efd0d3so251099e0c.2;
+        Thu, 10 Apr 2025 00:39:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744270784; x=1744875584;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QdhhHhNL4jcHghdMHoTj4SWhcku+gXEaGiUBtSR+CRE=;
+        b=vjdnqTMvqWNS4lsIxxkaD6zQE3lahA5rXyQhniwRrIea3ISpQxpnFJSMpJ+lJeDzxH
+         bkiLmWB4TsTbJBWdKv4mfGFKB/xC73ftzTBUvxbDut10TMEc3LAMqpEmV3ktsBpao1BT
+         Dy9s7oeXFpf/uRxC+rOxWZk+pgd3FBWHNgMZlMne31ZzWx8kny4d0tNWE6zT0Y46HcZq
+         o0QA5lMfHRJS8lJpMKIdnZ2KUuGH+qkErN5OOshu5FLoj1W02odETrzQLsWSOU9Yuvj6
+         oIZx1OZxeSZi+d+MHojb08ApfKqCu/OdcVH566jY24OxC99T5jxIvwY0LiLyiJ3pBjjh
+         tuyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVh+nyhY+6pZfjBiXBm8S7MhuNu4VxoCVl0jMz0PE6MPpJ7/2cwldG+lXGkeJw9RJ+02Cd1PwBgnLPF@vger.kernel.org, AJvYcCX/zPaBifESNxr8JrL0MUApeojAXaAtholdGnBmMB68sy06cQEEp+M/qjWBbEZoZ5HyY7r9pI2Fmzln@vger.kernel.org, AJvYcCXcGJD2LkNuiUGB7tPFM9N8lbJ8W8Yf9PL5SY7LKgnb5Y9OzyqB6HoJbSHKLgB8zJHPEMbG9GWhNLL0iBA=@vger.kernel.org, AJvYcCXoEzL0M+ezC6h07k6ZJu84mi4EEmtrlw50D4pvDIiSS404+DxN+K4QGVyk3q9W3anO/4zBadylAZT8ZuucL87zdkw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJN4M9TLzjD0hCHEPqkzqSAa0Z7r46P5kjhiYs+ujWHZwt6BXh
+	LIjF8wmSwypgs9tDVamXxBVqli+RbvSbwVKf4c/0bTXmyDEHNN9LmsNJtiVkijc=
+X-Gm-Gg: ASbGncvdnHHEhT4+FfYPGx4nhTSrkdinQNSGYxxInR1k1PWOgW4IZqtcrUiMWrsX1iw
+	dbogEHbfT4jIEg97MV0F0faSiM72P9s9cTSqhrHGg3ZhsSnV76wo2uwq9D2IIXHDrN+7s7CLIIs
+	g9XyDk2cVNPxw7S9HhWas/frBAUTwptoS+61OEeGJEql8go917kQDrhHnK0/RBvgqAGQ1iE09vw
+	yivj5EUSfGiJsB+KhflIQBrmd7xkI7XiEPH5Z6I/rP4MZrtNFvKsI2Bkw4j0AUbA77mL0WJG9rC
+	Ci8Vq3Cpsmo9r7ZeU4WbGkVKx6VPKP7MQEhOx45RVK+StoGhTNS7Q6+/sk1Hp1fVrOxpyzarHjK
+	valk=
+X-Google-Smtp-Source: AGHT+IFNUEigN4Q8OdWD5uHh1HcaRF0zgQhg092oSOiRrItqQWX8wj0NHnS/0WN4hRWDsvBUyfXH0A==
+X-Received: by 2002:a05:6102:c4e:b0:4b6:20a5:8a11 with SMTP id ada2fe7eead31-4c9d34801dfmr1290034137.1.1744270783970;
+        Thu, 10 Apr 2025 00:39:43 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-875560e4a9asm545013241.6.2025.04.10.00.39.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 00:39:43 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-86b9d1f729eso215830241.3;
+        Thu, 10 Apr 2025 00:39:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUY04djTYtfpwv/W3C8nQL1f7l83x3WSf8aeHPR7kL1Pr6GMqnjE0Zruz8SwvGIq9ig1SGH4NpDLNYez2k=@vger.kernel.org, AJvYcCVIfSy+hXA8jZSZn2iuSSl5Y6P0s0ZotsNp55r3OTGx8hx4nnPLq2NOdKNPqJM/zKDE2wi6RuDDl6Kfev3Pn86JpO4=@vger.kernel.org, AJvYcCWNpoZyvxJFDz+BUMTEZvk++xTHdlifIKsqpDEhZxXvR8pVBiOZSPMZLX1raJ/69rAwEVPMt3IHwOzd@vger.kernel.org, AJvYcCXDE6pYy+/MUI/VLKu+AYnionbgV1DGB3cGT0JhEBVccvxBFvW6SdrcURmSnZo5zED1Q4zCXbGCflBZ@vger.kernel.org
+X-Received: by 2002:a05:6102:3f0c:b0:4c1:c10d:cf65 with SMTP id
+ ada2fe7eead31-4c9d361f9a5mr1118125137.25.1744270783521; Thu, 10 Apr 2025
+ 00:39:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250409173033.2261755-2-nipun.gupta@amd.com>
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
+ <87wmbu9may.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdWL_C-Vg3d+fAK_nXvzeZNNPDkkzPjB1oHRKHh16rZUHw@mail.gmail.com>
+ <8734egnbl0.wl-kuninori.morimoto.gx@renesas.com> <87iknclp1w.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87iknclp1w.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Apr 2025 09:39:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXYYYAabmsuVmM6mAqNM6XHyzKsScwAr0TruSe_LMo1kQ@mail.gmail.com>
+X-Gm-Features: ATxdqUFE85rUT8Av9gY4HgZmbdXhKV7A7wBHH1G6a_BtzkDiwH5i1TwKTn-l6uQ
+Message-ID: <CAMuHMdXYYYAabmsuVmM6mAqNM6XHyzKsScwAr0TruSe_LMo1kQ@mail.gmail.com>
+Subject: Re: [PATCH 6/7] ASoC: renesas: add MSIOF sound support
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Apr 09, 2025 at 11:00:32PM GMT, Nipun Gupta wrote:
-> The AMD PKI accelerator driver provides a accel interface to interact
-> with the device for offloading and accelerating asymmetric crypto
-> operations.
-> 
+Hi Morimoto-san,
 
-For me this is clearly a crypto driver and you are supposed to:
-1. Cc crypto maintaners,
-2. Put it actually into crypto and use crypto API.
+On Thu, 10 Apr 2025 at 04:37, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > > > +config SND_SOC_MSIOF
+> > > > +       tristate "R-Car series MSIOF support"
+> > > > +       depends on OF
+> > >
+> > > depends on ARCH_RENESAS || COMPILE_TEST
+> >
+> > Ah, yes indeed. Will add in v2
+>
+> Renesas category Sound drivers are under below menu.
+> So, it is not needed on each drivers.
+>
+> menu "SoC Audio support for Renesas SoCs"
+>         depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
 
+Thanks, I should have checked that...
 
-Limited review follows.
+Gr{oetje,eeting}s,
 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> ---
-> 
-> Changes RFC->v2:
-> - moved from misc to accel
-> - added architecture and compile test dependency in Kconfig
-> - removed sysfs (and added debugfs in new patch 3/3)
-> - fixed platform compat
-> - removed redundant resource index 1 configuration (which was there in
->   RFC patch)
-> 
->  MAINTAINERS                     |   2 +
->  drivers/accel/Kconfig           |   1 +
->  drivers/accel/Makefile          |   1 +
->  drivers/accel/amdpk/Kconfig     |  18 +
->  drivers/accel/amdpk/Makefile    |   8 +
->  drivers/accel/amdpk/amdpk_drv.c | 736 ++++++++++++++++++++++++++++++++
->  drivers/accel/amdpk/amdpk_drv.h | 271 ++++++++++++
->  include/uapi/drm/amdpk.h        |  49 +++
->  8 files changed, 1086 insertions(+)
->  create mode 100644 drivers/accel/amdpk/Kconfig
->  create mode 100644 drivers/accel/amdpk/Makefile
->  create mode 100644 drivers/accel/amdpk/amdpk_drv.c
->  create mode 100644 drivers/accel/amdpk/amdpk_drv.h
->  create mode 100644 include/uapi/drm/amdpk.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 11f8815daa77..cdc305a206aa 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1161,6 +1161,8 @@ L:	dri-devel@lists.freedesktop.org
->  S:	Maintained
->  T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->  F:	Documentation/devicetree/bindings/accel/amd,versal-net-pki.yaml
-> +F:	drivers/accel/amdpk/
-> +F:	include/uapi/drm/amdpk.h
-> 
->  AMD PMC DRIVER
->  M:	Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-> diff --git a/drivers/accel/Kconfig b/drivers/accel/Kconfig
-> index 5b9490367a39..5632c6c62c15 100644
-> --- a/drivers/accel/Kconfig
-> +++ b/drivers/accel/Kconfig
-> @@ -28,5 +28,6 @@ source "drivers/accel/amdxdna/Kconfig"
->  source "drivers/accel/habanalabs/Kconfig"
->  source "drivers/accel/ivpu/Kconfig"
->  source "drivers/accel/qaic/Kconfig"
-> +source "drivers/accel/amdpk/Kconfig"
+                        Geert
 
-Why placing at the end?
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
->  endif
-> diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
-> index a301fb6089d4..caea6d636ac8 100644
-> --- a/drivers/accel/Makefile
-> +++ b/drivers/accel/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_ACCEL_AMDXDNA)		+= amdxdna/
->  obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
->  obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
->  obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
-> +obj-$(CONFIG_DRM_ACCEL_AMDPK)		+= amdpk/
-
-Did you just add it to the end breaking any ordering? Look, there is
-already AMD entry in the context.
-
-> diff --git a/drivers/accel/amdpk/Kconfig b/drivers/accel/amdpk/Kconfig
-> new file mode 100644
-> index 000000000000..c0b459bb66a7
-> --- /dev/null
-> +++ b/drivers/accel/amdpk/Kconfig
-> @@ -0,0 +1,18 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Makefile for AMD PKI accelerator for versal-net
-> +#
-> +
-> +config DRM_ACCEL_AMDPK
-> +	tristate "AMD PKI accelerator for versal-net"
-> +	depends on DRM_ACCEL
-> +	depends on ARM64 || COMPILE_TEST
-
-What do you need from arm64? I don't see it from the code at all.
-
-> +	help
-> +	  Enables platform driver for AMD PKI accelerator that are designed
-> +	  for high performance Public Key asymmetric crypto operations on AMD
-> +	  versal-net.
-> +
-> +	  If unsure, say N.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called amdpk.
-
-...
-
-> +static void amdpk_remove_device(struct amdpk_dev *pkdev)
-> +{
-> +	drm_dev_unplug(&pkdev->ddev);
-> +	pk_wrreg(pkdev->regs, REG_IRQ_ENABLE, 0);
-> +	ida_destroy(&pkdev->avail_queues);
-> +}
-> +
-> +static int amdpk_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct amdpk_dev *pkdev;
-> +	struct resource *memres;
-> +	int irq, ret;
-> +
-> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	pkdev = devm_drm_dev_alloc(dev, &amdpk_accel_driver, typeof(*pkdev), ddev);
-> +	if (IS_ERR(pkdev))
-> +		return PTR_ERR(pkdev);
-> +	pkdev->dev = dev;
-> +
-> +	memres = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	pkdev->regs = devm_ioremap_resource(dev, memres);
-
-Use wrapper for these two.
-
-> +	if (IS_ERR(pkdev->regs))
-> +		return PTR_ERR(pkdev->regs);
-> +	pkdev->regsphys = memres->start;
-> +	platform_set_drvdata(pdev, pkdev);
-> +
-> +	if (platform_irq_count(pdev) != 1)
-
-Drop, what's the benefit? DT schema ensures you have only one entry.
-
-> +		return -ENODEV;
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return -ENODEV;
-> +
-> +	ret = drm_dev_register(&pkdev->ddev, 0);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "DRM register failed, ret %d", ret);
-> +		return ret;
-> +	}
-> +
-> +	return amdpk_create_device(pkdev, dev, irq);
-> +}
-> +
-> +static void amdpk_remove(struct platform_device *pdev)
-> +{
-> +	struct amdpk_dev *pkdev = platform_get_drvdata(pdev);
-> +
-> +	amdpk_remove_device(pkdev);
-> +}
-> +
-> +static void amdpk_shutdown(struct platform_device *pdev)
-> +{
-> +	amdpk_remove(pdev);
-
-I am not sure why this is necessary. Please provide comment WHY you
-need it. IOW, why do you need to disable IRQ manually here if the entire
-system is shutting down?
-
-> +}
-> +
-> +static const struct of_device_id amdpk_match_table[] = {
-> +	{ .compatible = "amd,versal-net-pki" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, amdpk_match_table);
-> +
-> +static struct platform_driver amdpk_pdrv = {
-> +	.probe = amdpk_probe,
-> +	.remove = amdpk_remove,
-> +	.shutdown = amdpk_shutdown,
-> +	.driver = {
-> +		.name = DRIVER_NAME,
-> +		.of_match_table = amdpk_match_table,
-> +	},
-> +};
-> +
-> +static int __init amdpk_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = platform_driver_register(&amdpk_pdrv);
-> +	if (ret) {
-> +		pr_err("can't register platform driver\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void __exit amdpk_exit(void)
-> +{
-> +	platform_driver_unregister(&amdpk_pdrv);
-> +}
-> +
-> +module_init(amdpk_init);
-> +module_exit(amdpk_exit);
-
-Why do you need to open code module_platform_driver?
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
