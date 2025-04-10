@@ -1,145 +1,133 @@
-Return-Path: <devicetree+bounces-165219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69D5A83BBC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:53:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9928EA83BBD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4CD03B21C4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AC314A2CA5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:53:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C7B1E0B86;
-	Thu, 10 Apr 2025 07:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D0F1E1A17;
+	Thu, 10 Apr 2025 07:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aM5njTKT"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BCL3s1/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A14D1DF985;
-	Thu, 10 Apr 2025 07:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A859B146A68
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 07:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744271424; cv=none; b=NByYmpxeY50vOGaF51hCBr2w9QapMhr3kOi0OzAc0gE8WN9OB2uwJEN1T/RUauQI/+N1UQ1KUAcB+PU0PNYsox+7ipkbWa3NokuKVhA9Azr99IISDsGQYrnI3a7VErjDdcXHLUmdQREsKtPLoje7VsXJ5OuupGdldnyOoWEVb7M=
+	t=1744271574; cv=none; b=uhW6oC1rcu+fL6iFkUaKggKD1lzmRM9EtImxXdFvA03l6smESARhv05lJtz8pT+ooWmXgAYixUK2/OnFvv7aMZp/nXJWymqbFiaFg0Wg93YlzrXeu0cymxp9KyugubGKrYxSt7pRX2UG00CRBpmRZFsYhnhMa7pV94qefrMdRJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744271424; c=relaxed/simple;
-	bh=XJ8C56dpgh7I3PapWIvW5bS5auRCwUc0h+lB9fhDO6I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q+kocV7dCxOzgt/AZbfkBORACp5H3f/HxhVlijItuZE2O1ZROpD9F9AFfledfT0OOmXWwR2Mf3fS1JTxIjHSd5zbNL1j9PoQL3FBxMudHCqOnWy/+AFagkTFOgtXeoqvrXIeoP8lBoaSe6UPXS64bGbAK4nlR2P1M2V+xcDzb7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aM5njTKT; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso90267266b.1;
-        Thu, 10 Apr 2025 00:50:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744271421; x=1744876221; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mex8Z9dzfxz3hW33N8AMNQUPFzwP3mz+qG8H/RfxWWU=;
-        b=aM5njTKTrKaULscH0EIBdfsIrXKoMQjOmP3U+vrFtj9S8f90ZpL3MNWnwlDqW8Gg4o
-         UibWIQ63o1STs4AjXbNOgG8JL/0NHySeJwMhWrI0tu09BotsbtQ99Xn3cYcFErj5S8fL
-         YWXNnBA4ahD2+pKHdLfdOAEr+q5wdDOotPz4i4RWD5Dcf3nQCJKmcmeolrTChhGoDJJy
-         QnV/FGNFPiV3gjS/Bqn5yHbYaYF2aY6AfBFazEiBHEzQXJazyH7oJ5abdxqVx8vrw/N/
-         dhXZUJQROoW9QeNVCULSvCV3LsBcTGtiKIgynVsWu7t8c6V+dFFJVnyMbqFvefZDnmSa
-         S8aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744271421; x=1744876221;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mex8Z9dzfxz3hW33N8AMNQUPFzwP3mz+qG8H/RfxWWU=;
-        b=j5CtgmeSNeKA/14rmn6BUud6NdzM3nxMa6bmNmOAk6+nf5GGsQw6Azdvc72a5WN9Pf
-         DZns+JKWxzAJEPTBsN+2GNOq+MkR4kqadnXvUP/WlbjO8pOquU0OlUnD0D0S6xP2vCj6
-         TBkaApi3BHIByduCCWUeUjeODYeZ6lqQEQB38byFBEqXuPEOWh4mRlwvsVgD2jwvp9XV
-         s1cFgbCNJXkw8pe9kO5blHRWIp8mmnfOKq2mScmDSe6FPpV3wZULPZ/DxlylTPmTnWed
-         GSeXSbpR68QCQvbwsXlsywW4qoP2zi0lAJea3Zf9PYOxTLDlNHjLJpBrLhaPMSDLrFqX
-         eYEw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEC/qiRQBnOyqloAUuHQWS6WBASUWwsiZFWyZsF6eQlZWTYd8mEaiOjiAAredTVJG1A5yiA+eLIauo@vger.kernel.org, AJvYcCUVTnOHot1EjKjyEecC22tq39ZyA3V7JkNdMhejDqMwqbfQOeCsCPPIIHVYYEQPRZDBdAC8e3llK+KA@vger.kernel.org, AJvYcCWA8iJVlnQo9jMnnF7I+jARuPjxsuC62lPiJ4Pnfgkd6NIjm5jh+dRYmDM1Z6dXHocE1rDG+UVDXSwse2Ou@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR6R31w5cGaTjQONCf4l+yxHaWEaakTuLdGOh692EN1JcNGTNi
-	Pp/R+ZQ/xJqV1uExQTQsZUicFLHEy+QaG5BPS+im9g2hZePVVIjn
-X-Gm-Gg: ASbGncu6y/0C8aQpQNZxc07seBizQfK4ZZqm7o4GUQxE/8KNpQh10Pt4v+PMfVhDneJ
-	fJ2uF7Zm0PsTikLRrkTPjnP/vp7QjuM9dcbz/sRBA0f1SPW/2ywBdNNkbn91o7321ve53hhO4mK
-	ql3Q+LtcNWNctLhsx0HfDEZ0KsQ8hqZE6/sWywUnz5ZJQkw0mEVoElAK7aEC8o56VJ4ppLriJDV
-	xzDCywuq4zksi76R2YIJW1/mfiKKj3/hrQbipK57wLKe4oWxiyKiuDKWsxGrh/ylMqZvYyfI/6B
-	i2mqHW0hYtmtw+fWEL5IPT10OAebntgpNrnsfU47EAME4KI2vxjFXgKpOZPHNYJg9JWDLAIH1vy
-	NngEXOV4h+OJcE3IFWA2acig/u2VGhRWkKH00a+4=
-X-Google-Smtp-Source: AGHT+IEUKtIECQHfvCCQHEULrOOyIkJYLflU4RweKbQ5LyEXFJ2aLZNpy2NRTB84slWGKlTEWqpvyA==
-X-Received: by 2002:a17:906:7310:b0:ac6:edd3:e466 with SMTP id a640c23a62f3a-acac008e44dmr102214566b.19.1744271421157;
-        Thu, 10 Apr 2025 00:50:21 -0700 (PDT)
-Received: from alb3rt0-ThinkPad-P15-Gen-1 (host-79-37-123-173.retail.telecomitalia.it. [79.37.123.173])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ccd195sm225096366b.130.2025.04.10.00.50.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 00:50:20 -0700 (PDT)
-Date: Thu, 10 Apr 2025 09:50:18 +0200
-From: Alberto Merciai <alb3rt0.m3rciai@gmail.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Joy Zou <joy.zou@nxp.com>
-Subject: Re: [PATCH v2 3/3] arm64: dtsi: imx93: add edma error interrupt
- support
-Message-ID: <Z/d4OlTG6uDXtl49@alb3rt0-ThinkPad-P15-Gen-1>
-References: <20250407-edma_err-v2-0-9d7e5b77fcc4@nxp.com>
- <20250407-edma_err-v2-3-9d7e5b77fcc4@nxp.com>
+	s=arc-20240116; t=1744271574; c=relaxed/simple;
+	bh=8W8A/ge74B5Up1+m3x8qVG/YMkIdKFsPE4oY8AXG+TU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YM2lbllYU+PPvfLJSwlbubHyu+i+VnY9/mQsRo2SfUcvQDDXS5U0wwjqosE7pBi13KAUln2efFDspLoeo6DajFcPuw6BcqCaQ4poYDcK6Fd+aX5nuc+ByhzyjPRmO+JPi4ZHEY9Jg82iSIzmDZmy65B/J+cnw6uSyFTljmQQx0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BCL3s1/Q; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744271571;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RRCyAMNNVq6+4i5409xIeFnFjYc/oiKQZz4zgkZf2gg=;
+	b=BCL3s1/QjgrX3jk/hvKChzzIc2k989KWrK752VZRcPo6NYlGpA3TQ1aDsqckM2Rd7m18lZ
+	5jsCTX92Bgx65DTeiyaFgWSellOhzglPZc3sMQZ+Y5Fu8Zf59XLv7rubFhT9aJmzqcJejg
+	nxmUkf8MWb9uNJOXKStgLhw4oCwqnVg=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-259-2qk4kd0TMyuB0dHyHAQAhw-1; Thu,
+ 10 Apr 2025 03:52:48 -0400
+X-MC-Unique: 2qk4kd0TMyuB0dHyHAQAhw-1
+X-Mimecast-MFC-AGG-ID: 2qk4kd0TMyuB0dHyHAQAhw_1744271566
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C1F5D180034D;
+	Thu, 10 Apr 2025 07:52:45 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0B1A71956094;
+	Thu, 10 Apr 2025 07:52:40 +0000 (UTC)
+Message-ID: <e760caeb-5c7b-4014-810c-c2a97b3bda28@redhat.com>
+Date: Thu, 10 Apr 2025 09:52:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250407-edma_err-v2-3-9d7e5b77fcc4@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/14] mfd: Add Microchip ZL3073x support
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-4-ivecera@redhat.com>
+ <Z_aVlIiT07ZDE2Kf@smile.fi.intel.com>
+ <eecfb843-e9cd-4d07-bb72-15cf84a25706@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <eecfb843-e9cd-4d07-bb72-15cf84a25706@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 
-On Mon, Apr 07, 2025 at 12:46:37PM -0400, Frank Li wrote:
-> From: Joy Zou <joy.zou@nxp.com>
+
+
+On 10. 04. 25 9:19 dop., Krzysztof Kozlowski wrote:
+> On 09/04/2025 17:43, Andy Shevchenko wrote:
+>>> +/*
+>>> + * Regmap range configuration
+>>> + *
+>>> + * The device uses 7-bit addressing and has 16 register pages with
+>>> + * range 0x00-0x7f. The register 0x7f in each page acts as page
+>>> + * selector where bits 0-3 contains currently selected page.
+>>> + */
+>>> +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
+>>> +	{
+>>> +		.range_min	= 0,
+>>
+>> This still has the same issue, you haven't given a chance to me to reply
+>> in v1 thread. I'm not going to review this as it's not settled down yet.
+>> Let's first discuss the questions you have in v1.
+>>
+
+Sorry for that but I don't understand where the issue is... Many drivers 
+uses this the same way.
+E.g.
+drivers/leds/leds-aw200xx.c
+drivers/mfd/rsmu_i2c.c
+sound/soc/codecs/tas2562.c
+...and many others
+
+All of them uses selector register that is present on all pages, wide 
+range for register access <0, num_pages*window_size> and window <0, 
+window_size>
+
+Do they also do incorrectly or am I missing something?
+
+I.
+> I already started reviewing v2, so now we have simultaneous discussions
+> in v1 and v2...
 > 
-> Add edma error irq for imx93.
+> Best regards,
+> Krzysztof
 > 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 64cd0776b43d3..9f6ac3c8f9455 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -297,7 +297,8 @@ edma1: dma-controller@44000000 {
->  					     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>, // 27: TMP2 CH1/CH3
->  					     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, // 28: TMP2 Overflow
->  					     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>, // 29: PDM
-> -					     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>; // 30: ADC1
-> +					     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>, // 30: ADC1
-> +					     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;  // err
->  				clocks = <&clk IMX93_CLK_EDMA1_GATE>;
->  				clock-names = "dma";
->  			};
-> @@ -667,7 +668,8 @@ edma2: dma-controller@42000000 {
->  					     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
->  					     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> +					     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX93_CLK_EDMA2_GATE>;
->  				clock-names = "dma";
->  			};
-> 
-> -- 
-> 2.34.1
-> 
-> 
-Reviewed-by: Alberto Merciai <alb3rt0.m3rciai@gmail.com>
-Tested-by: Alberto Merciai <alb3rt0.m3rciai@gmail.com>
+
 
