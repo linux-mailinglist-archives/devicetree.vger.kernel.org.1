@@ -1,193 +1,191 @@
-Return-Path: <devicetree+bounces-165111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE721A8363A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 04:10:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB36FA8368F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 04:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 015D546621A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 02:10:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86DFC1B64B96
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 02:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0E41C1F2F;
-	Thu, 10 Apr 2025 02:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A6001E25F8;
+	Thu, 10 Apr 2025 02:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="YFqwplF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010068.outbound.protection.outlook.com [52.101.228.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A99136327;
-	Thu, 10 Apr 2025 02:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744251017; cv=none; b=YTzZMePRfk15z6oap+l6H8qeHcYjak1bqxTzDrgPxCEA3dyOfYMGcZXBvYxw1o6IpGHBIx3j4OHtY1vRxNHxyGeSIKYHNLvm4qoZwvKg1EDxuUnI4HlpS5fG972bbZrTxpBCmsYj6EB8NRceeZnyQ5EwjHTHgDCHXxIQ16fgD0Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744251017; c=relaxed/simple;
-	bh=rusP4e8kCFAczgQY3Sdj8q9TkHCZznQjrAV+7N+Q6mc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QwU8C2Jkz1ytGKswz2UNhtQyzBJaI9H37Q2kh8HeBCatna6Ih9EAFY/0baoQaTTPOsGdm6s56VEjPYFZgsZyItgQzDFVPA1YCD2u06Drd3/qJV9cQ6B3SAzsgcMPA+uWyIE4z4TDSKsUQsNevr9iAeF8LLFiDQ33XFVTa/6kOGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [27.18.106.237])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 114dfc3d8;
-	Thu, 10 Apr 2025 09:34:38 +0800 (GMT+08:00)
-Message-ID: <d500b879-a4fe-4f29-a9d0-c29826d21e31@whut.edu.cn>
-Date: Thu, 10 Apr 2025 09:34:38 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAB91E1A18;
+	Thu, 10 Apr 2025 02:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744252662; cv=fail; b=bIzcl7CHALfjgOYaCvnebWaXlN6Tq2l0Dy+Yc75AJhSrifUOP9REpBFukuWiTEjesGm3NJAX2zVQsAfRr55yiqFjuMiQjnqlOXVhjmhDngGu1/kKbkcftE43Z3cJgIUO4Fm7zhPH0mtB+Mc+F8gLkuUBJcYhowUHxEDIUEkrzME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744252662; c=relaxed/simple;
+	bh=aiHRI822eZgfHxER0rY0NNbODvdW6VeNd0z0rgO2P5E=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=OQjaphpI9xEPRXG/3DoZ9KOwscs4OJIvY1muVmf/gdfAGP4FHUxdTK3J49eum+gQJVmvwbUr/5HJ4ZHUdK8oioT0YcCbxEFBSfOrzHMh+2GY2KPuqc0lW8y6EJ/5fesWcj73Ec3aHK/trCUP3FgOu8ryuuNWD2lUMV4+Bgfdt+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=YFqwplF9; arc=fail smtp.client-ip=52.101.228.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uVPsAqftW0vhtKA58ZDlqFmO1bWJwWK9skTTWgRlEpv6n4qx0ZYGjhlXvWoUamwups49Og1XWMLRxqtzoXzvio9NkvowCMQAE4I/vnii87QU+/3K+JPvCD5ThL2dTnTVMH7d8PM1ycR4aQ9w8Y/+bXWJY5DB1+rZokWfk3RByR0Eg/r1QEvemQSAB7UyLrqlRexczRf/hHGMGN6Oo6Qz2QNCsvy32q4/DoB3wvPV+8/rbt+pjmfUkl9JM1kfF0CdKfy2nP3mST0NhqHowd9F9hpQAvHFknre1Jfkf7X2DEnYlgcgmSHpw0RBoqkVQ+RyuG39ki0l3wSVkY6gH+6oYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xQXGV66aJeZoS2m8p9M99CKvCL/7cD5OM8LFloyyv8A=;
+ b=gj6vSiiCc2n4LlJSJjhHruqc7MX4Gd9HtOPjNfJqDeKOkg4h3FlypnMYsEopdaeaqnqBMKEYPq/8uVuaeXlGtUguFG/a+BDoRXd3voIytbTt1v+4JCs62RZunqG31JW3TxsSPiF0lC3yeLYnwBU+gesWsJ0JdfKXi548rxZjjc0Rx3wyGcdawZ42BUeD6YNQZdABog9WF8tUDJMnlw7gEDlpRLmDSwgrxxSv/zTVhGa1vJyglEBsbUIT3vu14bRu5fiVQN3JYfuXLal9vzyttfqcFVsOlxYl9gsa7WNn4aALqqVnfFe/a2VRWGDLwEfZiO+ElrhLBagM3aAKYW9T5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xQXGV66aJeZoS2m8p9M99CKvCL/7cD5OM8LFloyyv8A=;
+ b=YFqwplF9G29EMCX0du94hsChARTgt0blpGVuHf9wk15vZSG3a40ylmmzGXkH3xP7DA9Y9MDCBCM9FNHZShErPYA0hTWsFZevl1UXuzdHQgwYIDUppSYbG66I33xudiodmdNzYTXM3P/x/tA6J4lRFhhgkKXbIohpXY6UhkiNkbI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS7PR01MB11837.jpnprd01.prod.outlook.com
+ (2603:1096:604:23a::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.32; Thu, 10 Apr
+ 2025 02:37:31 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8606.033; Thu, 10 Apr 2025
+ 02:37:31 +0000
+Message-ID: <87iknclp1w.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH 6/7] ASoC: renesas: add MSIOF sound support
+In-Reply-To: <8734egnbl0.wl-kuninori.morimoto.gx@renesas.com>
+References: <875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com>
+	<87wmbu9may.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdWL_C-Vg3d+fAK_nXvzeZNNPDkkzPjB1oHRKHh16rZUHw@mail.gmail.com>
+	<8734egnbl0.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 10 Apr 2025 02:37:31 +0000
+X-ClientProxiedBy: TYAPR01CA0055.jpnprd01.prod.outlook.com
+ (2603:1096:404:2b::19) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] usb: dwc3: add spacemit dwc3 glue layer driver
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
- <20250407-b4-k1-usb3-v3-2-v1-6-bf0bcc41c9ba@whut.edu.cn>
- <20250409223452.svwckotac4dbze6v@synopsys.com>
-Content-Language: en-US
-From: Ze Huang <huangze@whut.edu.cn>
-In-Reply-To: <20250409223452.svwckotac4dbze6v@synopsys.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGUNPVh9LTkoYTBpKQk4fTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VKS01VSUhMWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxPVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a961d55b85703a1kunm114dfc3d8
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ogg6OTo4MTJNDjJKEiIDSwwp
-	LjQwCh5VSlVKTE9PSU9DQ0NOTUNIVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VKS01VSUhMWVdZCAFZQU5KQ0w3Bg++
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS7PR01MB11837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2330097d-d9e3-4e0b-e0b3-08dd77d8a49e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|376014|7416014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5So7/NrisTns4olJMz2aJ5Z9P1nttcevAmgCEucLWMsf8+rCuq9CcLXmfTkE?=
+ =?us-ascii?Q?xDYy1BZ7kmyxN/lMtt0kvx6RdG+0j1ucV5L66CKtitU8FKkF7JynBRz+U5Ld?=
+ =?us-ascii?Q?v3gitYC+3YEJ2cFh4uf87AuZPWWA0NPKnmp266sqDU9lvdI68rfyYO8BwEtV?=
+ =?us-ascii?Q?/uxhagMOse488LTDHZab1tffBpI668GmYW322mATmBF20TU+Idd5FnNZU7yi?=
+ =?us-ascii?Q?xBY+lxm9ILacCrNUFJCWHdOeKdoqECJDCpljPmdm9WG24UKTro3qZ1K24v4u?=
+ =?us-ascii?Q?/k1t3K4ucO/fYe4TTMciBJVp0rqAYEgNJpHQNA276Dx9R5Fz1hKxcefmAKfS?=
+ =?us-ascii?Q?YfUt/HQy6fpFJZGAg/O/z6MlgJgNY8yWUqpQgwZQ8zSpIn+/BBKXEjkZsb9A?=
+ =?us-ascii?Q?3KoWjM7WQbH6wEVXIwjiNFkfEz7tNdaNrpMHeDjI5JJtpuQoUPntqBqiD+N2?=
+ =?us-ascii?Q?bHuPLisjJNx9T/VpukSCJnNy1ltVIO3RJe5/NNc47BRNrBD2SfqLbeXjdmIw?=
+ =?us-ascii?Q?vG2z40aWaPXoCezR7oHEiGgLLBlE15IeVVj7B4U83RwzKwfjCPBmktkpR6Xf?=
+ =?us-ascii?Q?+7mh9FcBijmcCJAibuhUE/GZL2sivgPCDqhoTFSxMXzt03j+B+3DPWQ3sGPf?=
+ =?us-ascii?Q?/8G5B1wzcW4X5+u0zWCaAbzZFFm8IHfH1KtqPDP8rydyGjQ2M5cJGPj/Iii4?=
+ =?us-ascii?Q?37oCtmGvQT0Ql5FlNiXyF118pD91iJ6ldijM0OxT34eDmZaaopAp+nuQwGLi?=
+ =?us-ascii?Q?kiBZPcUgOEnb+gHnSKrMyTLE6CVK5bMZIalupKu9T5KBRqwOOeXgdywycLHk?=
+ =?us-ascii?Q?2L504QiSnh86FDg9pLe/wnhhyK/b0Taz1ClovD17Zs/Wj6SK9XmrbGibLTS3?=
+ =?us-ascii?Q?RlKwhTCwiDjcFhWBaAQ6aL0jg51KYio1KObKft1n46PLpkpZFIgedzZr8jiJ?=
+ =?us-ascii?Q?D9n0vaxyp28oRH2PnWci26YBKxLkxNZxd32fjOBu54sbwjPRp8M/5L3UEMCm?=
+ =?us-ascii?Q?e9/GX7pewUSRQqa5dtxesLQOASdKZjvqLsU2irW7kX0N2HtDyYnFa+ip89vR?=
+ =?us-ascii?Q?kHHu463nlL6sdIfHOlKvp5/InicWJH93gsv8k+QbCEtKSLtzgbW1Z6tw1YSw?=
+ =?us-ascii?Q?jRGDMHVmLu072fBXse+OuuJeS0SQJCGAZdYkZkrJYwnW2PL4+G+QH3QcrwVC?=
+ =?us-ascii?Q?it6KdKPgkyWiLEl/SLdicDqxE0sBPfIFtYwmUfsSR1QNp3Xx1KCCZkTwVD7b?=
+ =?us-ascii?Q?czIXP0Nl7uAPFmVUEXKGjH8azrGasiOCQLDuLM8WjBrEYMsWfI+sIVImxkqr?=
+ =?us-ascii?Q?NsN5YCmrVzHICD1Z0A15rLEO/UigfPZj6+aBQzH6TupeFa3gWtzMhslyJCNo?=
+ =?us-ascii?Q?t+wgGPalvt1c5ZmoVPLqIHF6gA++d5HuxNxqbIxOwoUoefUL7/luPfPXUH9w?=
+ =?us-ascii?Q?LBQNcaGxQvV1yWLHseaCKVnofEuSxyhZ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?loJOnh9G2EP6JKCf8cc0NQhA5W7IzW+cP8W+geshPX1rOTAYflO87K3vs8oK?=
+ =?us-ascii?Q?H6Y7UKDR4KvIHL4BDQNlIFlbhRDDkmBYbvCZ0Kkn4/o8Ai9fFfGCs9cjTtAc?=
+ =?us-ascii?Q?c36SvNmPWYodHX8lnKTswLuixu3FCCE/8IxYXY0+t75ON7w3em1kUk7j20Q8?=
+ =?us-ascii?Q?6zt5ooz0mAnN7cBHIm4XG+YYEdy5KIbvpoy8C1GMx5PFXJjKGe2GZtFtKMtl?=
+ =?us-ascii?Q?dMUIpglqROtuII6PrbQZ3QD5ln33f3CJColwtFgpJpz27KiRbvP+h27+oDur?=
+ =?us-ascii?Q?h7DYfzIthYqHJfjPVhzd8/oacTxhlYfOQ/JNNx5H5dzNd1M30xgAPQaNzwDX?=
+ =?us-ascii?Q?K/P06U2R0GVEpNLi3oH7aw3jzctbdO93VOXO6ij3uzXTjmFISpaoZuPa6ilJ?=
+ =?us-ascii?Q?2nM3NpNxhBssJUbg96oODh0XBGTJCFxpokbjiccgQ1gEVydUfKGwtwYoJe9A?=
+ =?us-ascii?Q?COxxScvNC0g6kDisBHOltOxQlSFpkpkOlKYE/lKnBOCH+NZP+y3m0WCJGXaV?=
+ =?us-ascii?Q?c3rQdw3vTtqHVH4Gp4bbig+45LSFs9IkLsZyT+pKWgVpfiArgooMuhrgcAFv?=
+ =?us-ascii?Q?Eupl51pPEqvhPYA5STA7R5kYPK1uJzn21ByzdUNMvyxQP+7AgY9AmEEQVk50?=
+ =?us-ascii?Q?IWkquv1D2j3X4G95iKUXLAHklSKPXaFMaIvYvRMfaMMrXmrsDtYwx6alywhx?=
+ =?us-ascii?Q?f3cGWFbBRqNutNw70H1440ZCffFzs+mLMilrajg0g0vNX1HF3Jfmgd/WWMWK?=
+ =?us-ascii?Q?YNmMfAZvHX2OLpVgFLkgE4M5u8rQe6DKHIrnojTvuXjpZlF1+kakF+rf2YzU?=
+ =?us-ascii?Q?gLzN62+DQ+h4a6r7jYO1zd7e8TFNQSTyPjcQdznlDMeR0ucZfITYVppdhAf7?=
+ =?us-ascii?Q?qiIqBZ4hTFboHolOsmkeu6opAoFfDvjUauZgy6oa/vQP2bi0SBjo2p94XHcX?=
+ =?us-ascii?Q?6BIAErm3JQTRZ/D5ju3qUsohW67rKOOn46PlkbJBoCaCmaevEAorJGMOIR0o?=
+ =?us-ascii?Q?eZzoUsdQ+LzV9satSmp0CIIGuNTPCtpdxidJFRnjyxz56aK2FN+mlXFP5asM?=
+ =?us-ascii?Q?Bv60N6D+yvUC5NQVEg6pY3/+sNHebaOPV7QU9y2oT3P3hsln6eSbqjtelXwP?=
+ =?us-ascii?Q?BMw16vsiAA2Umu+xOhMopKVEuDKKtQscbMz/zecvOiC7Mypq4oHowhWGJ5yT?=
+ =?us-ascii?Q?hG1XldW4uGO6085dQ6RjGuYeNcfc5+XJHdQAxO2dKuAHgWRXL/iVkxnzcmXI?=
+ =?us-ascii?Q?+li/1rfi3cB5GZdho1z8lwmKFmQ+qUVT/r3Rai5MJdrMin3Mfs9LxeAIbDL4?=
+ =?us-ascii?Q?DSt7UV5PYyhqqfS2l2uNedXvH3MUR7fN4id4JYkkp3Fr2gbriHwBu0iWsroV?=
+ =?us-ascii?Q?+wKona2bdpkiN9r7+ciBta6ayMg30GGQt/8WkEpB2EE9Fj5RwFo8fMKG9P/f?=
+ =?us-ascii?Q?leM0xSc+mPn3Vlj/fxtFATe11eQJ55Uj3/+Ou1l9qDoo1On1Wl1veko8F6Ua?=
+ =?us-ascii?Q?czbOGGKl84JRL+2tQMzoUqZmzDOy6eQSNb4N2MBlbI7ZQsXgGKj+s1vNVzPH?=
+ =?us-ascii?Q?hlxoPL5YlWORNlhbTtwD2RVo8s3IEco0jVQctWe5u7RfT+tbTxvZrW8WvmwF?=
+ =?us-ascii?Q?W4bbr/uZWMv5s2OJUI+Qvqo=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2330097d-d9e3-4e0b-e0b3-08dd77d8a49e
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 02:37:31.6025
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gVPIJjyV5AhzNK97u3/QpSXYVtzPeVQZPUSXHyVkU6fd3SmjUAeq1qINFeZYjMZQmJI0VjRVBmXrdImr8z1w4aN4QrsB0IPi+JNm9V4D0YwjB5vkrdRy5CVm9GXAox3p
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB11837
 
-On 4/10/25 6:34 AM, Thinh Nguyen wrote:
-> On Mon, Apr 07, 2025, Ze Huang wrote:
->> Add SpacemiT glue logic to support dwc3 HC on K1 SoC. The driver manages
->> clock, reset and interrupt resource.
->>
->> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
->> ---
->>   drivers/usb/dwc3/Kconfig         |   7 +++
->>   drivers/usb/dwc3/Makefile        |   1 +
->>   drivers/usb/dwc3/dwc3-spacemit.c | 127 +++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 135 insertions(+)
->>
->> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
->> index 310d182e10b50b253d7e5a51674806e6ec442a2a..3c30680fa4f83565fc03c6800e867c6ced0fe101 100644
->> --- a/drivers/usb/dwc3/Kconfig
->> +++ b/drivers/usb/dwc3/Kconfig
->> @@ -189,4 +189,11 @@ config USB_DWC3_RTK
->>   	  or dual-role mode.
->>   	  Say 'Y' or 'M' if you have such device.
->>   
->> +config USB_DWC3_SPACEMIT
->> +	tristate "Spacemit Platforms"
-> Does this depend on other configs like OF and COMMON_CLK?
 
-Yes, depends on them, will fix Kconfig entries in next version
+Hi Geert, again
 
->
->> +	default USB_DWC3
->> +	help
->> +	  Support SPACEMIT platforms with DesignWare Core USB3 IP.
->> +	  Say 'Y' or 'M' here if you have one such device
->> +
->>   endif
->> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
->> index 124eda2522d9c1f4caab222ec9770d0deaf655fc..61a87765c0c591e0a53c33b5a6544db056166f96 100644
->> --- a/drivers/usb/dwc3/Makefile
->> +++ b/drivers/usb/dwc3/Makefile
->> @@ -56,3 +56,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
->>   obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
->>   obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
->>   obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
->> +obj-$(CONFIG_USB_DWC3_SPACEMIT)		+= dwc3-spacemit.o
-...
->> +
->> +#ifdef CONFIG_PM_SLEEP
->> +static int dwc3_spacemit_suspend(struct device *dev)
->> +{
->> +	struct dwc3_spacemit *spacemit = dev_get_drvdata(dev);
->> +
->> +	clk_disable_unprepare(spacemit->clk);
->> +
->> +	return 0;
->> +}
->> +
->> +static int dwc3_spacemit_resume(struct device *dev)
->> +{
->> +	struct dwc3_spacemit *spacemit = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(spacemit->clk);
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct dev_pm_ops dwc3_spacemit_dev_pm_ops = {
->> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_spacemit_suspend, dwc3_spacemit_resume)
->> +};
->> +#endif /* CONFIG_PM_SLEEP */
->> +
-> Use DEFINE_SIMPLE_DEV_PM_OPS to remove the CONFIG_PM_SLEEP guards.
+> > > +config SND_SOC_MSIOF
+> > > +       tristate "R-Car series MSIOF support"
+> > > +       depends on OF
+> > 
+> > depends on ARCH_RENESAS || COMPILE_TEST
+> 
+> Ah, yes indeed. Will add in v2
 
-thanks
+Renesas category Sound drivers are under below menu.
+So, it is not needed on each drivers.
 
->
->> +static struct platform_driver dwc3_spacemit_driver = {
->> +	.probe		= dwc3_spacemit_probe,
->> +	.remove		= dwc3_spacemit_remove,
->> +	.driver		= {
->> +		.name	= "spacemit-dwc3",
->> +		.of_match_table = spacemit_dwc3_match,
->> +#ifdef CONFIG_PM_SLEEP
->> +		.pm	= &dwc3_spacemit_dev_pm_ops,
->> +#endif /* CONFIG_PM_SLEEP */
->> +	},
->> +};
->> +module_platform_driver(dwc3_spacemit_driver);
->> +
->> +MODULE_AUTHOR("Wilson <long.wan@spacemit.com>");
-> The author is different than the commiter? Also, is there a last name?
+menu "SoC Audio support for Renesas SoCs"
+	depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
 
-You're right, I missed Signed-off-by tag for Wilson in commit message
+Thank you for your help !!
 
->
->> +MODULE_LICENSE("GPL");
->> +MODULE_DESCRIPTION("DesignWare USB3 Spacemit Glue Layer");
->>
->> -- 
->> 2.49.0
->>
-> The logic in this glue driver looks quite simple. Can this platform work
-> as dwc3-of-simple?
-
-Yes, indeed simple.
-As Krzysztof mentioned, creating glue nodes is not ideal for DWC USB. I
-would drop the glue driver and use dwc3/core.c as fallback, similar to
-what Rockchip did[1].
-
-[1] 
-https://www.kernel.org/doc/Documentation/devicetree/bindings/usb/rockchip%2Cdwc3.yaml
-
->
-> Thanks,
-> Thinh
-
+Best regards
+---
+Kuninori Morimoto
 
