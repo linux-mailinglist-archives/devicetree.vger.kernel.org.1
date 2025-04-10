@@ -1,211 +1,111 @@
-Return-Path: <devicetree+bounces-165167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB6AA83993
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36246A8399E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C14331B61C6A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:42:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E8A516CF73
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD61204594;
-	Thu, 10 Apr 2025 06:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1D220126A;
+	Thu, 10 Apr 2025 06:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dKOfMOT3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yxfsa/O8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573FB204086
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 06:41:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37EF20371D;
+	Thu, 10 Apr 2025 06:43:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744267309; cv=none; b=oy+bFwklYRUFiv4++5YbL7YtGO5dZDp/yaiJAd+Rsv4bJlUfmxkUd+VdKvAVZ58+Mhsa0uSB1cZfRnVE9QlV5X5Wex+nHufZm9SBJ4qIDxd0U7UxdL8OG202X4cylLsfzRCALDmpmjYUA0Z1GSg8J2PW/yqNx5qSQ6PkUj0VItI=
+	t=1744267386; cv=none; b=SArj9hSJsdvXGzQKGr5Hjw0v6gxA/5rp28YUqAYVm++vg+ljPmcCOhlMOdXatEJL+eV7vW5VYArU0nXKQxWDcLNx1n1CxnhAC9B078PgdwYS8weYDSrjGlzpcL9NX/qfSSlnb2gp7xWyTXCh1WgiIzkgV1d3eezJYCbhLP9Rj/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744267309; c=relaxed/simple;
-	bh=eKWdlsR+gZq/WMnwiDfDDPjy/aOdQaKP5Tog0oX8hXI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R2Cb88mXuKumBx64nBTjBGptMjj2spt5QLUkDqsU4Xi3hX0DFfsgp0bFPelMh4tf1n+e+8aJjszq+4UWtKVDSR/SSCvkkQjFSBYe+U79DIv4QaxsqE8iK8XG8XBiLbwR5nB6WNw0e/Juhoj64dRP/DoLndKfAoC5A2SJoY6lYQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dKOfMOT3; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac3eb3fdd2eso94173766b.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 23:41:47 -0700 (PDT)
+	s=arc-20240116; t=1744267386; c=relaxed/simple;
+	bh=kTO6UhYzw0IJ0LAt7kC1M5FyfmyVXCWONfGYVQ5KXmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UApVZd5ymGCDH3/APJ7Gy41gWmAYJKlEHLVrT01mOTw74qtou3FsvuGcojlYj/MrRc5mXSor4rGpIrwJjR0PgE0+BHzMrBWFP2e1iJcOzAiuVRm/Cu3kSPlwCgCzzI9w0Fzjxr9kBv9FubRel8Qt1dlTm/yx9z+rr9Yh8gs67XY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yxfsa/O8; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cf58eea0fso2221785e9.0;
+        Wed, 09 Apr 2025 23:43:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744267306; x=1744872106; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sbl05XNjXwXIwA7PmbRBkyTSHc10MQi0pg5RfqUxRjQ=;
-        b=dKOfMOT3zf19q3/SaMp71AMOwSWNO+Nymp479U1orkzGBNoTOt6WawgFtJ6autr5QO
-         EESJW7gb6g59d1iRQ2+BPF2n63YmmYpo9hJfAH9Hvc/9n3uoZoeb/AwD32pmzxpBsHws
-         eV2yZM6VnR78EFytfqT/yyBBms9rJ0p7Blo0ZJ0eiODVswhjE3reinDNrEiNIVZVwWF7
-         zMNAk9xdevU4bRWduYuOu5Gv2Kx0DVOvYWSdMJY8oznb8N4ELKGxFEpts/SwsLaa/Xhu
-         u9fxOhvRYoO8OHI7O6U/6HDCqVsdLgLsfg9Xfs/due7Vbt5NgDBp8AHTr5SHKQd0EbZt
-         9vgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744267306; x=1744872106;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1744267383; x=1744872183; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Sbl05XNjXwXIwA7PmbRBkyTSHc10MQi0pg5RfqUxRjQ=;
-        b=DlsFNc8fQ2FVAdvnqfiX4MNwD47KyzSpN8YityDpobWGO3n0gjk+++uAj3BotpNnll
-         SM/YDpJwnTJ+0LfNnBSdPCf6kA8Zw2lhGMknUA++MoGFtIwOtncTKrkw27MWouCcciyO
-         6tgIeA3Fir04eLvR0ELJGSbKbhk8ZHLHId2OZIZzf5IXgqdc079Pl1CtPmSQZfpWGjDr
-         1SG7UFNRfTenxtgMIwdecNJzdbgRxnHsiAsbNO+IL4db7ga4Ysbxtgn0TwXwzd/CSiuH
-         Eej6e1sj41Ajgv8jkmLQGnRUH4r84uzQjEEE2bEceamwk7xE0kWiXQORUoYSUTB3hWkK
-         7aOw==
-X-Forwarded-Encrypted: i=1; AJvYcCUmOsg0yTB1+oOQcJwDcHa2OMIiNpemVydk39IaRYDlLI/qwKHSP1ON8OUzrAwgdWAItUZs7mB5nANX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKyy3lTeoE7UA3k+h04iubNxdTHziNiBJobErqtX/2wrp3T1RX
-	M/l0yyHGQVfPkU1TqC+k42w1KN1QX1o7Jr8t1ZV4RqR5mhuoK8uXxlAiXJREOVw=
-X-Gm-Gg: ASbGncuvadDk8cGU5yg3meP8vkn3N75sPX5Juis1XYPfOtPslSl3TUO8fN2lNkX1Apl
-	yv7euP38GSgtqPQ61t6ZZ8ZY1QJBVFK/JiTV2emu9K+XVaoakTzInwZAP68EgTWvFB9binjAwNT
-	8o8ZFTPN4GFtNwdcwJLWU9+mMrUyeXK9qBdDC2ldiBj4tajBKYaxbrKJKdQYeWQ3hs4sGKE+XUx
-	N2Bt11HQ+FTqLhV5jtb9Y2G0L11XId5ogOzzCHJyUcvbkzmkdmNLP9h8whUSpfEj415QEWOsaUb
-	32YsXuylCs1xKxRkHHgVSqOK8sgt41iXagsEtj+IqnFqqgbbrQl2BRQ4mP9oow==
-X-Google-Smtp-Source: AGHT+IGIijzSQTIvNZFHk1vd6j481tQc4BPdHGyE68UEhUubBExhKjE2Tspefm3pBMUpCnsjgm2sQw==
-X-Received: by 2002:a17:907:3cc3:b0:ac3:afb1:dee7 with SMTP id a640c23a62f3a-acabd20d17dmr128884466b.28.1744267305615;
-        Wed, 09 Apr 2025 23:41:45 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:ae8a:4fb8:9c71:6be])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1be9632sm221324866b.66.2025.04.09.23.41.44
+        bh=kTO6UhYzw0IJ0LAt7kC1M5FyfmyVXCWONfGYVQ5KXmY=;
+        b=Yxfsa/O8/xqCYgkakik8UMCYbXLzqjcgIYC2ObxN8hXPCiLya/KPnSkuuvdW9schKv
+         RuW9r9rWvqSWcuitfh68xDkz/vFS1cHBK3tac2yzKU+EYO/hJUzjh0eaO1fYIXpALiXg
+         x5JxbHA7Iok/Vdary3odick1m31a/8dJdBDgdQlsq5GgsYlPTjX278Crf1fsKtHTkDkT
+         5p+FclsTPdrfjoeQ8JHZu4AsvxzhO/vHoJcEv69O4ULZ77r7pkJ6SgDtr6ijpN1G+zb3
+         dT2NBgV8lfqOZ9Lc0eJXen2lHDoDEmNJu4DU/i/fmQ27HRfZsGZYfgvfPcdCgRePqJ2o
+         NnTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744267383; x=1744872183;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kTO6UhYzw0IJ0LAt7kC1M5FyfmyVXCWONfGYVQ5KXmY=;
+        b=st+/D4pMNoIqL3BxMXia3iw1ec9eVwHvBoU0mT7ATukJXo0MEca9k9Jf7wiE2fgYMV
+         qT58y4U1xpVE/rk19R6Z9RgrqTtIeV3vcOtHDUc2+7JQI8v9Gf5v8unYCV0HymXXOFqk
+         OA32pFJhqK87otu0p/Z/SVygVdI3q20KYlPsp0BsrPE5YaSzTdxVp46zAV9udcjYg2R5
+         0KhQINkTJmAF1uLve3dRCQmYadX90npA4gQBtP0AvLpaD0/TYy/GoRe9DKTZnAoFQOJf
+         9yhYnZ6vf5XsTb62PfTOqgvCrd6q1v/XMvV1D2sgczkxAQprmpWe76I5wpywOhz4AH5f
+         Df8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWSTWeVOoM5BfK4ErtSls7OHBpNd71jxdXcalJs/gzuWjfmmEJLXHOWnQg04+0nAz94R737d5UIiiviLP4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxy5sQ0BTEKIQRP8LdXWjJs7rfErJ8V5xXPpA3RW+F7UN+nMXfd
+	bV0BXCNt1VzGO6rtQpUkoQfZVQdolzwDgKKhqs/DuNDhsIxxtFkJ
+X-Gm-Gg: ASbGncsS2TPUH0bTVvh9Y+3NuR/GlDr67ZrbPTWMr+UsXzvlacR8Qut+NU0uKnMRKYq
+	ytq4uloje0IvX7FxKNnOSVQ+zoEYcD3SERvPXJnOnyMkXh5OJ8U47LhrBWM2p/Xdaet4CKZYZ8f
+	SBnYL2YqhnoEmyfJ2YLGbEZSEnZmb/23kwcs6FdAZp4YHQngZPcnOeaaklFu+VngKXDj8kBKU4e
+	2grmzQjFaZ0e7vq04oJfy6LmbSZO48+Ff9+GnZxdG/R6l+vvlBQ8ghsv+HuUn2QWIxijD3puvbo
+	R2AffywX+plyTCo8iSdBEB2VaNHo3mrlvhIZ7mdp5sMRfMAOzhIyHTVaE2Ikgrh1g9sDm8sr4C/
+	nw9yyWyXO7eVIxYFp
+X-Google-Smtp-Source: AGHT+IGD3pEoyOISIn1Zfw6v9W1npm1S6qIsP7cYoTCH8BploIFWDI5dRtvNA2LJBx5ej5GOm8Sf4A==
+X-Received: by 2002:a05:600c:1e1e:b0:43d:fa58:81d3 with SMTP id 5b1f17b1804b1-43f2d9a3c76mr13488945e9.32.1744267382701;
+        Wed, 09 Apr 2025 23:43:02 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f207c8fb4sm43670385e9.35.2025.04.09.23.43.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Apr 2025 23:41:45 -0700 (PDT)
-Date: Thu, 10 Apr 2025 08:41:40 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
-	broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, pierre-louis.bossart@linux.intel.com,
-	Thinh.Nguyen@synopsys.com, tiwai@suse.com,
-	gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v38 26/31] ASoC: qcom: qdsp6: Fetch USB offload mapped
- card and PCM device
-Message-ID: <Z_doJMXjSFHt6eAp@linaro.org>
-References: <20250409194804.3773260-1-quic_wcheng@quicinc.com>
- <20250409194804.3773260-27-quic_wcheng@quicinc.com>
+        Wed, 09 Apr 2025 23:43:02 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] arm/arm64: dts: allwinner: Use preferred node names for cooling
+ maps
+Date: Thu, 10 Apr 2025 08:43:00 +0200
+Message-ID: <5874556.DvuYhMxLoT@jernej-laptop>
+In-Reply-To: <20250409203613.1506047-1-robh@kernel.org>
+References: <20250409203613.1506047-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409194804.3773260-27-quic_wcheng@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, Apr 09, 2025 at 12:47:59PM -0700, Wesley Cheng wrote:
-> The USB SND path may need to know how the USB offload path is routed, so
-> that applications can open the proper sound card and PCM device.  The
-> implementation for the QC ASoC design has a "USB Mixer" kcontrol for each
+Dne sreda, 9. april 2025 ob 22:36:12 Srednjeevropski poletni =C4=8Das je Ro=
+b Herring (Arm) napisal(a):
+> The preferred node name for cooling map nodes is a 'map' prefix. Use
+> 'map0' like most other platforms.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Is this "USB_RX Audio Mixer" now?
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-> possible FE (Q6ASM) DAI, which can be utilized to know which front end link
-> is enabled.
-> 
-> When an application/userspace queries for the mapped offload devices, the
-> logic will lookup the USB mixer status though the following path:
-> 
-> MultiMedia* <-> MM_DL* <-> USB Mixer*
+Best regards,
+Jernej
 
-^
 
-> 
-> The "USB Mixer" is a DAPM widget, and the q6routing entity will set the
-
-^
-
-> DAPM connect status accordingly if the USB mixer is enabled.  If enabled,
-> the Q6USB backend link can fetch the PCM device number from the FE DAI
-> link (Multimedia*).  With respects to the card number, that is
-> straightforward, as the ASoC components have direct references to the ASoC
-> platform sound card.
-> 
-> An example output can be shown below:
-> 
-> Number of controls: 9
-> name                                    value
-> Capture Channel Map                     0, 0 (range 0->36)
-> Playback Channel Map                    0, 0 (range 0->36)
-> Headset Capture Switch                  On
-> Headset Capture Volume                  1 (range 0->4)
-> Sidetone Playback Switch                On
-> Sidetone Playback Volume                4096 (range 0->8192)
-> Headset Playback Switch                 On
-> Headset Playback Volume                 20, 20 (range 0->24)
-> USB Offload Playback Route PCM#0        0, 1 (range -1->255)
-> 
-> The "USB Offload Playback Route PCM#*" kcontrol will signify the
-> corresponding card and pcm device it is offload to. (card#0 pcm - device#1)
-> If the USB SND device supports multiple audio interfaces, then it will
-> contain several PCM streams, hence in those situations, it is expected
-> that there will be multiple playback route kcontrols created.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  sound/soc/qcom/qdsp6/q6usb.c | 98 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 98 insertions(+)
-> 
-> diff --git a/sound/soc/qcom/qdsp6/q6usb.c b/sound/soc/qcom/qdsp6/q6usb.c
-> index 6634e132787e..274c251e84dd 100644
-> --- a/sound/soc/qcom/qdsp6/q6usb.c
-> +++ b/sound/soc/qcom/qdsp6/q6usb.c
-> @@ -134,6 +134,103 @@ static int q6usb_audio_ports_of_xlate_dai_name(struct snd_soc_component *compone
->  	return ret;
->  }
->  
-> +static int q6usb_get_pcm_id_from_widget(struct snd_soc_dapm_widget *w)
-> +{
-> +	struct snd_soc_pcm_runtime *rtd;
-> +	struct snd_soc_dai *dai;
-> +
-> +	for_each_card_rtds(w->dapm->card, rtd) {
-> +		dai = snd_soc_rtd_to_cpu(rtd, 0);
-> +		/*
-> +		 * Only look for playback widget. RTD number carries the assigned
-> +		 * PCM index.
-> +		 */
-> +		if (dai->stream[0].widget == w)
-> +			return rtd->id;
-> +	}
-> +
-> +	return -1;
-> +}
-> +
-> +static int q6usb_usb_mixer_enabled(struct snd_soc_dapm_widget *w)
-> +{
-> +	struct snd_soc_dapm_path *p;
-> +
-> +	/* Checks to ensure USB path is enabled/connected */
-> +	snd_soc_dapm_widget_for_each_sink_path(w, p)
-> +		if (!strcmp(p->sink->name, "USB Mixer") && p->connect)
-> +			return 1;
-
-I assume this also needs to be changed. Please make sure you test the
-series again. :)
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int q6usb_get_pcm_id(struct snd_soc_component *component)
-> +{
-> +	struct snd_soc_dapm_widget *w;
-> +	struct snd_soc_dapm_path *p;
-> +	int pidx;
-> +
-> +	/*
-> +	 * Traverse widgets to find corresponding FE widget.  The DAI links are
-> +	 * built like the following:
-> +	 *    MultiMedia* <-> MM_DL* <-> USB Mixer*
-
-^
-
-Thanks,
-Stephan
 
