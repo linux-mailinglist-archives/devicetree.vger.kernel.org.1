@@ -1,253 +1,203 @@
-Return-Path: <devicetree+bounces-165329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D818A83F74
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:54:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD54A83F7C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:55:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80C877A4EF9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:52:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CB5B172003
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EE62676DD;
-	Thu, 10 Apr 2025 09:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0129A267706;
+	Thu, 10 Apr 2025 09:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="azKE0pTe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UdPDMXmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43860269D0C;
-	Thu, 10 Apr 2025 09:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23189202F71;
+	Thu, 10 Apr 2025 09:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744278798; cv=none; b=BPHMXTh98YDMC+i/O1ilid2nMrscPSbxEUinumurOH6nJ5vn2VtQ2opE+ap4CNsHZDWtj66MVLgySExGuskiZN+rcBPQxIUJWuko/ZUKUMIWe0OL9Y23wwtQMwor8zkldyF4Hb8aoaTmPb4bgAmu/m1HYbe3ZguAEo93sN6SJEU=
+	t=1744278921; cv=none; b=MjRFjjBFalE0SQIBRPGqnXeagk08w20IM4ayGVNRCcFLadAaokW9eIMBj65/qkb2H34SCC21Ikg9ENPXYjZOZbHFuQOASi9/LChdl1APAK0CS/qEBZ0qNht7uYyKwznO5VU5FU40EjVNv0bOFjPeYrCq4y6chAQZ/d1xFlrMtcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744278798; c=relaxed/simple;
-	bh=jfdZoHdvb1PYe6Xj1zXtn7WtPaT6dulwA78Y/DWrCWs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VpTcOW/GuBsRcSvyrxUEj+lvoX8ipfd7BQ0/xHOzKINb28iBWX14WFDfYG5HZvtcIr5BHFgrPakKDMFlgqjXFYmLtgZOeYxxUk+JPMJUTySFc5x2i6Gw7gXEM4g0iLHTTflYNUB+KdeTJOXOipIj5jRWL4Tkfw49ZHod7V+gZ7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=azKE0pTe; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1744278921; c=relaxed/simple;
+	bh=/orFv0AtTHLY5ElQLQO2B8ifFr0ZQhJFVLRGysobIKE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=OGAeZABl6VjtHRoC02kLJsbiDmRNaWkbjQKjNIn131Ih2ZDg2pJtScuRdFRtLfzzc0DjrED/gInoTzcDphzTu2Qh7q/FzgmNyD2nb37/ugcYWnF184BLs6kX4SYUtIBF7ZS/vi+3sjVlbtxkprZ9J3GPWGqjr9TV7Z1F5Bu8tcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UdPDMXmC; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so11832225e9.1;
-        Thu, 10 Apr 2025 02:53:14 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4394a823036so6307195e9.0;
+        Thu, 10 Apr 2025 02:55:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744278793; x=1744883593; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LPGXt0g52MME06VHiwLRnezmorxd1sA0KqT649GrFg4=;
-        b=azKE0pTeXGd35ChbsYK+kDnerAL012us9Tntft+919ik903Qi1e3+gqQDw0b0CdnEr
-         vpxiTrkO8hidg7UcLfgwow7omIf1aZDhIw0+KkJvPSfILsRGZcNakLmd1ZWoidW5vpYO
-         5SY75auBDAedmrBgiM9DR0lG56HB2jVUond2qfmw4ujeewXMzoT/JieQvodqVhh+nk4o
-         Ga4G5khxGdFn7B3oMKx8jr2wyUz2/P8eTcG8pr94fUKA3FsxTF+cITxSBEqKi9JmLftj
-         JhgTqmg303jJ/cPgolfIYE4X5gJ/nQX2un0yRvUFOi8KRjRe7jmGjYc0i2KRXES9NR2b
-         ke+w==
+        d=gmail.com; s=20230601; t=1744278918; x=1744883718; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ryLqYVQRXhUxLUXXF1P7mjvbMh3YZ6sx7CjC9Lhfcx8=;
+        b=UdPDMXmCu7J+QtYOlNScjPfISDKCs0pMaqg3Gri2hF5IG/+4U/TpzCEpvU67+2dIpI
+         H969ckxFxNj+RfU8bLhX8RHqvpBM9GnhjoB4mmrtrYiM7ak57bfUx+Pn97tpUGN2I0Am
+         AUi8LKNorgi/rxQkoJvJHxgTqxjgNDWnngbENGxoH/li4Qu2ah7OUl/gEc/YmCFmS2ix
+         T1ucTk0vHruibQS/KL3FFKP3ZdPDcTDqHm+c4dPQBcAUdDXFJ6ivFKDb6L1SmOeUKolr
+         pV1OAV4LodZ7YB39BKB5E5mydBA2RyojO8OisJ686rwijoMyPbLtV5Z6qMkAL4u4uHSb
+         qhaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744278793; x=1744883593;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LPGXt0g52MME06VHiwLRnezmorxd1sA0KqT649GrFg4=;
-        b=pjPI52gUiKBf3y0MYnle64n7WWadjzRhnxm31AtlZ8FHgoMibK+mH5IJH9mhaZFmQc
-         Z7Z7VB83diCN+5NnRO+4ce0/w6FamMSoX2xPuuvl+q1nvqmWCbOhWUPelZk06yzazgnn
-         WW7cyob/OtBBGCoJS8gOPKbNilQ4VFZQbt0pdAzM6JRD/uHIYNQe9O+yR4GMKUL3YC1X
-         NGXg1+Q8n/0FiTpIoTQ/4LD/R4aKHWQ+M25svKZxiqAhuvM5qYvsVHSHdjqx5pp+j/fL
-         CJhl4+aSucmqNFHm9wszJZP6rYhFmRqO6HmmMPJhRiiqxdhJRr5x/k+TEg7+6zu2lkbx
-         VsFg==
-X-Forwarded-Encrypted: i=1; AJvYcCU97jabuUFws/C9mf4t+4tZol4qrRQXdmacrhqkDCSksTngn5oCkclMkk8j0s8ddJlwZrD71eDch903dDk4@vger.kernel.org, AJvYcCU9LSCoW7k2Dgl/F8jEXsWyYz0NLoz6wCxdqnvUrJXiPJGOjrG4CmvXTFwPtOwWqcsRMebFBQ2coQzC@vger.kernel.org, AJvYcCWMNHMvKiiaJthXKqdct4sDsKC3Exj5QGOog13oJna38Px1nfZ0pO0vsNiQeeV/I2xXwLSfRBmpvOpZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxELaR38jWTdJoI9pXPPVNwZBaoQIE3c3Q5GsugcRdMeimujRwG
-	+xrBKXViTeafcqBdSVu7yx+jVtpi+hFePWltVtrsqbCXw0P6RaAL
-X-Gm-Gg: ASbGncsI5xSajZG3rzQAenGokAJI4Iz8Hbxsqeg7kaIMJx7Q9VZVBwj0L1NRraWzsed
-	foc5PU2QRiksnUvf7YjrazQrdLrM9BhjaEDxVtYlr65fjc1Mc7Hc5/p1ljMZIXR151aIOMZjpeK
-	MuWaXK/sY2+29VFIx8tgJz8Z98aliEhGe3K/sjKSik2joX/nRClQ0WmwDK1xB4f6VgLOMGt/STP
-	hHQT9qTlnNVNK308+mNZ3SWZsSaKI6HPeg5MR6mVkC3B80QnazABxvMB/8UhOvSYctoFtK87etF
-	m8oaNqC1EwjaCNwPBpw77bS04rtLJV1VRrH81U4DPgOurYWIwXTjze0H5X1KnAxpXKDyayZEmTF
-	LmR/jlaXbK8TVyoK8FAnp2GQ=
-X-Google-Smtp-Source: AGHT+IHDmjbsYU+B1fjfn/G/QUfgle5G1tQDw1CIm/Z+8igoCnblxyBawgAULO7NrWNfMep+0ARwaQ==
-X-Received: by 2002:a05:600c:a012:b0:43c:f3e1:a729 with SMTP id 5b1f17b1804b1-43f2eb50f83mr19991235e9.12.1744278793256;
-        Thu, 10 Apr 2025 02:53:13 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f20a303absm34971915e9.1.2025.04.10.02.53.12
+        d=1e100.net; s=20230601; t=1744278918; x=1744883718;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ryLqYVQRXhUxLUXXF1P7mjvbMh3YZ6sx7CjC9Lhfcx8=;
+        b=iWWi/5q07CtHzfL6pjNHKEqjYGIZm30SXm7JYvs7qnpGD3Eyk5c9HYEq+XV6csoo6T
+         7uFP5n61eRr1X434bb0Wv5BSzXFlt0BQHCghkmZ6RGaRyzXuerjQjMCXXqd7n5KyhWdX
+         F9r/9G/+DFKQdTHLFZTZumVOEL4/wGSW0AVWhh23BpecqXUfQrkgWtmtPK+q4CR9iWZH
+         xFiGvvPTd0LueDRPAH7ifibtFTIAPreZIoCTLSrVaYxqohiML/AauCZELc4lxnmVHZJU
+         4ZPbn+fV4E/XI2DKBDvxA0rP/opc3qj05hSDKg970U2w4XiGLiboEK2ShVXNx8l7qTs+
+         0atw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbeGjPuqDJSMSjcPtaf0WQRhJgIS04DbHFhG7Hr+GMAtKHvc6jF2I7iBjhi5DtFzXoLvXvSgfy@vger.kernel.org, AJvYcCVz/oGTrF1YGnJAVJiy8+mY5xP1k3GT1k0r+lkq5Da96+ZhnYQhYRtW2inym9I9HiN4G8dJH+DY9jFu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhGVcCXKNI/K1b3EVZIOy7+aNAPJQZxs66Zhs04oNkfqybBko5
+	SNWDkQDPm7Tp6ua5GqT/iLt3iLHs0XI6BwpKSL0Dl+6GoCpAAwN4
+X-Gm-Gg: ASbGnctnu3qB1qD0ax4097DRT6S/9yMI61/qSPi0ovAz1aqq1YgAZzX1hhiPpewUvq2
+	xCgd7RAe22SUwOqyd+elq3o93p4zfZXdzBvTDG1nyfu18eBWaFPHbWCPG9App8PZv2aLubD0W8d
+	utUUG26t06PHjiUjWDyH8yEkF6gF20oP0Bvq8WAA1pgZVr4f95rLFU0EmjB7O7VqQN7wkwd4Ti8
+	1FBwzwyp8ugz5ciCjJ7ZOLBGH5KYNFjF0vTnn9Mx78Volq6btu6HNar8SqGJ58JuWRzz4vec/q3
+	G5ntLLmD+a0vVgMn9JkkaJpKSfkoKBJgu57/J5MgtD4muwwUf/rVSSYs8yumiMxcJn1huA91b3r
+	/2OV2dPv0pg==
+X-Google-Smtp-Source: AGHT+IFuW8aDgUFFbxNmVyV7OtI/+bEW/yfspJiL9uGNZh8woACFhqAcrsoteXlUhCOPi//w6xDfsA==
+X-Received: by 2002:a05:600c:1e0c:b0:43d:7a:471f with SMTP id 5b1f17b1804b1-43f2d7cea33mr23224105e9.18.1744278917348;
+        Thu, 10 Apr 2025 02:55:17 -0700 (PDT)
+Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43f233a2f71sm45404425e9.15.2025.04.10.02.55.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 02:53:12 -0700 (PDT)
-Message-ID: <6669da27c78714d76ff21f810cd57045e90d701a.camel@gmail.com>
-Subject: Re: [PATCH v1 5/7] iio: adc: ad4170: Add GPIO controller support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com
-Date: Thu, 10 Apr 2025 10:53:14 +0100
-In-Reply-To: <247566f848cdf2a245a8b6da6a84c22e155beeb7.1744200264.git.marcelo.schmitt@analog.com>
-References: <cover.1744200264.git.marcelo.schmitt@analog.com>
-	 <247566f848cdf2a245a8b6da6a84c22e155beeb7.1744200264.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+        Thu, 10 Apr 2025 02:55:16 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.or
+Subject: [net-next PATCH v7 0/6] net: phy: Add support for new Aeonsemi PHYs
+Date: Thu, 10 Apr 2025 11:53:30 +0200
+Message-ID: <20250410095443.30848-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2025-04-09 at 09:25 -0300, Marcelo Schmitt wrote:
-> The AD4170 has four multifunctional pins that can be used as GPIOs. The
-> GPIO functionality can be accessed when the AD4170 chip is not busy
-> performing continuous data capture or handling any other register
-> read/write request. Also, the AD4170 does not provide any interrupt based
-> on GPIO pin states so AD4170 GPIOs can't be used as interrupt sources.
->=20
-> Implement gpio_chip callbacks so to make AD4170 GPIO pins controllable
-> through the gpiochip interface.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
+Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+to setup some configuration and require special handling to sync with
+the parity bit. The parity bit is a way the IPC use to follow correct
+order of command sent.
 
-Just some doubts, see below...
+Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+before the firmware is loaded.
 
-> =C2=A0drivers/iio/adc/ad4170.c | 167 ++++++++++++++++++++++++++++++++++++=
-++-
-> =C2=A01 file changed, 166 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
-> index 97cf4465038f..b382e7f3dbe0 100644
-> --- a/drivers/iio/adc/ad4170.c
-> +++ b/drivers/iio/adc/ad4170.c
-> @@ -12,6 +12,7 @@
-> =C2=A0#include <linux/delay.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> =C2=A0#include <linux/iio/buffer.h>
-> =C2=A0#include <linux/iio/iio.h>
-> =C2=A0#include <linux/iio/sysfs.h>
-> @@ -79,6 +80,7 @@
-> =C2=A0#define AD4170_FIR_CTRL					0x141
-> =C2=A0#define AD4170_COEFF_DATA_REG				0x14A
-> =C2=A0#define AD4170_COEFF_ADDR_REG				0x14C
-> +#define AD4170_GPIO_MODE_REG				0x191
-> =C2=A0#define AD4170_GPIO_OUTPUT_REG				0x193
-> =C2=A0#define AD4170_GPIO_INPUT_REG				0x195
-> =C2=A0
-> @@ -189,6 +191,7 @@
-> =C2=A0/* Device properties and auxiliary constants */
-> =C2=A0
-> =C2=A0#define AD4170_NUM_ANALOG_PINS				9
-> +#define AD4170_NUM_GPIO_PINS				4
-> =C2=A0#define AD4170_MAX_CHANNELS				16
-> =C2=A0#define AD4170_MAX_ANALOG_PINS				8
-> =C2=A0#define AD4170_MAX_SETUPS				8
-> @@ -340,6 +343,7 @@ struct ad4170_state {
-> =C2=A0	struct clk *ext_clk;
-> =C2=A0	struct clk_hw int_clk_hw;
-> =C2=A0	int pins_fn[AD4170_NUM_ANALOG_PINS];
-> +	struct gpio_chip gpiochip;
-> =C2=A0	u32 int_pin_sel;
-> =C2=A0	int
-> sps_tbl[ARRAY_SIZE(ad4170_filt_names)][AD4170_MAX_FS_TBL_SIZE][2];
-> =C2=A0	struct completion completion;
-> @@ -1553,6 +1557,156 @@ static int ad4170_soft_reset(struct ad4170_state =
-*st)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static int ad4170_gpio_get(struct gpio_chip *gc, unsigned int offset)
-> +{
-> +	struct iio_dev *indio_dev =3D gpiochip_get_data(gc);
-> +	struct ad4170_state *st =3D iio_priv(indio_dev);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
-> +	ret =3D regmap_read(st->regmap16, AD4170_GPIO_MODE_REG, &val);
-> +	if (ret)
-> +		goto err_release;
-> +
-> +	/*
-> +	 * If the GPIO is configured as an input, read the current value from
-> +	 * AD4170_GPIO_INPUT_REG. Otherwise, read the input value from
-> +	 * AD4170_GPIO_OUTPUT_REG.
-> +	 */
-> +	if (val & BIT(offset * 2))
-> +		ret =3D regmap_read(st->regmap16, AD4170_GPIO_INPUT_REG, &val);
-> +	else
-> +		ret =3D regmap_read(st->regmap16, AD4170_GPIO_OUTPUT_REG,
-> &val);
-> +	if (ret)
-> +		goto err_release;
-> +
-> +	ret =3D !!(val & BIT(offset));
-> +err_release:
-> +	iio_device_release_direct(indio_dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ad4170_gpio_set(struct gpio_chip *gc, unsigned int offset, in=
-t
-> value)
-> +{
-> +	struct iio_dev *indio_dev =3D gpiochip_get_data(gc);
-> +	struct ad4170_state *st =3D iio_priv(indio_dev);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
-> +	ret =3D regmap_read(st->regmap16, AD4170_GPIO_MODE_REG, &val);
-> +	if (ret)
-> +		goto err_release;
-> +
-> +	if (val & BIT(offset * 2 + 1))
+The big special thing about this PHY is that it does provide
+a generic PHY ID in C45 register that change to the correct one
+one the firmware is loaded.
 
-Why do we need this? Are we checking if it's a GPO? If so, we should return
--EPERM in case we have a GPI?
-=20
-> +		ret =3D regmap_update_bits(st->regmap16,
-> AD4170_GPIO_OUTPUT_REG,
-> +					 BIT(offset), value << offset);
-> +
-> +err_release:
-> +	iio_device_release_direct(indio_dev);
-> +	return ret;
-> +}
-> +
-> +static int ad4170_gpio_get_direction(struct gpio_chip *gc, unsigned int
-> offset)
-> +{
-> +	struct iio_dev *indio_dev =3D gpiochip_get_data(gc);
-> +	struct ad4170_state *st =3D iio_priv(indio_dev);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
+In practice:
+- MMD 0x7 ID 0x7500 0x9410 -> FW LOAD -> ID 0x7500 0x9422
 
-This claim_direct() makes me wonder if there's any overlap between the GPIO=
- func
-and normal readings? Like, imagine a consumer requests a gpio and no buffer=
-ing
-is happening so all is good. However, there's nothing stopping us for enabl=
-ing
-buffering afterwards, right? Wouldn't that be an issue? If there are shared
-pins, I can see this also being an issue even for single shot reading...
-Otherwise, I wonder why we have this iio_device_claim_direct() calls? Is it=
- just
-for using the internal IIO lock?
+To handle this, we operate on .match_phy_device where
+we check the PHY ID, if the ID match the generic one,
+we load the firmware and we return 0 (PHY driver doesn't
+match). Then PHY core will try the next PHY driver in the list
+and this time the PHY is correctly filled in and we register
+for it.
 
-At this point, I did not checked the datasheet so I can be completely
-misunderstanding things...
+To help in the matching and not modify part of the PHY device
+struct, .match_phy_device is extended to provide also the
+current phy_driver is trying to match for. This add the
+extra benefits that some other PHY can simplify their
+.match_phy_device OP.
 
-- Nuno S=C3=A1
+Changes v7:
+- Make sure fw_version is NULL terminated
+- Better describe logic for .match_phy_device
+Changes v6:
+- Out of RFC
+- Add Reviewed-by tag from Russell
+Changes v5:
+- Add Reviewed-by tag from Rob
+- Fix subject in DT patch
+- Fix wrong Suggested-by tag in patch 1
+- Rework nxp patch to 80 column
+Changes v4:
+- Add Reviewed-by tag
+- Better handle PHY ID scan in as21xxx
+- Also simplify nxp driver and fix .match_phy_device
+Changes v3:
+- Correct typo intergate->integrate
+- Try to reduce to 80 column (where possible... define become
+  unreasable if split)
+- Rework to new .match_phy_device implementation
+- Init active_low_led and fix other minor smatch war
+- Drop inline tag (kbot doesn't like it but not reported by checkpatch???)
+Changes v2:
+- Move to RFC as net-next closed :(
+- Add lock for IPC command
+- Better check size values from IPC
+- Add PHY ID for all supported PHYs
+- Drop .get_feature (correct values are exported by standard
+  regs)
+- Rework LED event to enum
+- Update .yaml with changes requested (firmware-name required
+  for generic PHY ID)
+- Better document C22 in C45
+- Document PHY name logic
+- Introduce patch to load PHY 2 times
+
+Christian Marangi (6):
+  net: phy: pass PHY driver to .match_phy_device OP
+  net: phy: bcm87xx: simplify .match_phy_device OP
+  net: phy: nxp-c45-tja11xx: simplify .match_phy_device OP
+  net: phy: introduce genphy_match_phy_device()
+  net: phy: Add support for Aeonsemi AS21xxx PHYs
+  dt-bindings: net: Document support for Aeonsemi PHYs
+
+ .../bindings/net/aeonsemi,as21xxx.yaml        |  122 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/phy/Kconfig                       |   12 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/as21xxx.c                     | 1076 +++++++++++++++++
+ drivers/net/phy/bcm87xx.c                     |   14 +-
+ drivers/net/phy/icplus.c                      |    6 +-
+ drivers/net/phy/marvell10g.c                  |   12 +-
+ drivers/net/phy/micrel.c                      |    6 +-
+ drivers/net/phy/nxp-c45-tja11xx.c             |   41 +-
+ drivers/net/phy/nxp-tja11xx.c                 |    6 +-
+ drivers/net/phy/phy_device.c                  |   52 +-
+ drivers/net/phy/realtek/realtek_main.c        |   27 +-
+ drivers/net/phy/teranetics.c                  |    3 +-
+ include/linux/phy.h                           |    6 +-
+ 15 files changed, 1325 insertions(+), 66 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+ create mode 100644 drivers/net/phy/as21xxx.c
+
+-- 
+2.48.1
 
 
