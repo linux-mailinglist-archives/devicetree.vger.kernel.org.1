@@ -1,202 +1,133 @@
-Return-Path: <devicetree+bounces-165394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D61A841B9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:29:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD11A841C7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:33:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38B948A6AF8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:29:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 671DA189CC65
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBD2281523;
-	Thu, 10 Apr 2025 11:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2661281368;
+	Thu, 10 Apr 2025 11:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c3Dq2l3r"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="V1GiciCX";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="S+Mp5tI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898C21D89FD;
-	Thu, 10 Apr 2025 11:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EC4267F7E;
+	Thu, 10 Apr 2025 11:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744284587; cv=none; b=RoCPKguPi3AcTIQlNlpzZ6buzL+ifm92jOJM75Q2rJ7T4n6H8E9Ou1IANVyVbIt/yke547H6UY5eYMmLFClH3lEytsbijU8WnVHnzzq+cYVN/LNJMOT/FFG+wYEtao/MVbHYci4NPocTknxl6vVazOa00wbEHK2WO+qsWdyci6k=
+	t=1744284803; cv=none; b=lf94dkE9/NqW3Mqbuvnh9AFEVuk21dm9eRE9UjWIDJ160IaURAkoCObWJ+Y+yIiYJHTUdEvErZv1yk7/2hJhKL2HNMT6fc7UQKp4Foh0mH3gqx4x1tVPuSznmL+6uA772xwBkmAegKYVrBdL4qytflRGnJTeUAC08QMSfrSeRq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744284587; c=relaxed/simple;
-	bh=HZES9pXg4cmaTiSlbNcW6mQ3TVO6SVmHNL0ZJvT71B8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=rQ4aomPXz0KW6OT9nIhZ73fHqpWRe+DNB848J+XLx+e+OGL78VRLPuvGAbwSxznOgqS97GE0O63rBAJVvwkPG0jPJ1wrZJKdfIP29t6hccXZoSejd8LFNk8KwvstMQl2tiIqwVaIoU+1ZvQ2RXE4LI2jMvg8xVaZ4XhQ4cUjz5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c3Dq2l3r; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 946C842E7E;
-	Thu, 10 Apr 2025 11:29:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744284576;
+	s=arc-20240116; t=1744284803; c=relaxed/simple;
+	bh=R1RamiOYBsgQqyvpemeNTw9ZpeHXuxKV9XyxkITm2QE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q7Kl7XVRLGsK2zZreD65U2ZzgkTiaOzFqrPLgUm9GnhIIt3BUkZgYVcXCvtRb+PJJWnC0JZPLf2Uc/Juxthc4HHnwibzP61Y6ivRTSp67rWVqer5yPbbaqx7n31csHU7c6RWQRpE63lZD0/imD0fA++yqtf8pwkbKJO/CJ/wjv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=V1GiciCX; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=S+Mp5tI6 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1744284800; x=1775820800;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MD88gCL7rQbK+pc439u9tVo7TJPofOErBFBWtlbIJ60=;
+  b=V1GiciCXGNHp8oZeRyzmKMDMw8dw+qJQMB1PFZzi6wlW61OVWqMPf/Iv
+   l2CdjDkURQMzHq7oYhjVeIdi7mwFp8RJFEP3dS5rWiGTY1TS4yC6OYrOU
+   rn22tTGMPB0gSYYNGPza55EL0Cxq0giO1YkZkFnLFOaS0/LbwRCuAafVT
+   CAK9NubhPG4UaowaCmLBAL2aelrdeoJ4g7sBZrhZi4EcQS80QZykDNECb
+   1TMHa5e5vCTl6FgSSj8s7O4aABl8TqQaKv4e8ZIXt+i89GHxlPE9PimL3
+   O5BQG27l5BGM+8+lliV7xKbKRAmaI1TIZrXABxXMM1DtlN7Q3DXgipA1K
+   A==;
+X-CSE-ConnectionGUID: ftrXZWfaQzG4fZ8Xgk4A5Q==
+X-CSE-MsgGUID: GfBzyNicRKeXSWTt2uBJoA==
+X-IronPort-AV: E=Sophos;i="6.15,202,1739833200"; 
+   d="scan'208";a="43454829"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 10 Apr 2025 13:33:11 +0200
+X-CheckPoint: {67F7AC77-9-B1D34AC3-DEA5B19F}
+X-MAIL-CPID: 657CAC6F24C51A7ADDCC0D077348AF1F_4
+X-Control-Analysis: str=0001.0A006370.67F7AC82.0092,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EF0641677C0;
+	Thu, 10 Apr 2025 13:33:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1744284786;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WPYbX6fgpQKH4gxTLPqiuRTln0p2CLo5Xpglajm7yQ4=;
-	b=c3Dq2l3rV3r4VCBO5MdlBSCaimsTsADpHW1jyVn1NurkDOUKRhbehdmhwyZmJmn0wyBOBs
-	BnEeLFYXW9fFdHbyovxfw/W7BJy4zAQujjXSitqCDb7RhQ2eU60RT9Suu4NzTxQbxCgq8g
-	0gWIZs3CeuAra2uQ3m/UPqnLAIrix/S68CqhLJcYvt38/DNP32hWAyRMHqH3wNdFhTtCRJ
-	azb88G7zUS2fmB+F3S2WKsQdMy9W4kvmjDGnCD0tgwr9pdfnGRAnKtk/ggK+16f7dsCT1E
-	aJU9K2zkXzL03y4UllN74cgTARb3lp/Y+GSrklq2fLL801lTg2tgHbdohHYrfg==
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MD88gCL7rQbK+pc439u9tVo7TJPofOErBFBWtlbIJ60=;
+	b=S+Mp5tI6t7kJ68kZ/rvlJx8BpAETCS6IW87/LY6TRHbRBv2J0YSWKKXpn3Bnif0ObnP+iF
+	9kl5Pi35qEjdIdv2/DABsbTBqSn/IkVNTrygGy35csBEhLPB9VQ+SjJVTeNIj9BzEADMBT
+	u+9lLLJEW5ILPS0CBhnoqu9q5quCRW9+M1neL0SzvMrnphplbgNow2zwjv4cH/mURqm9BI
+	dopeahZjfiRR81vAhSKzYKLN1S11JMUmSN7w90hfjLx7fVCs61ge5QjQFNrB8tNTs9okJC
+	zYI7M0N/wZCp/+mFoFghlrBXPniurliee3paZ614Rz3bjqxltPi/DR9tuPAk9Q==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt: bindings: arm: add bindings for TQMa95xxSA
+Date: Thu, 10 Apr 2025 13:31:02 +0200
+Message-ID: <20250410113107.2057426-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Apr 2025 13:29:35 +0200
-Message-Id: <D92X9ZK07SIK.124N9HG8W7QEI@bootlin.com>
-Subject: Re: [PATCH v6 10/12] input: keyboard: Add support for MAX7360
- keypad
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-10-7a2535876e39@bootlin.com>
- <chhnkepvlbiv6xvgh5zso526xsp4zk7tgzsqzoqe7b5jmvdyrw@afio6lmx55zv>
-In-Reply-To: <chhnkepvlbiv6xvgh5zso526xsp4zk7tgzsqzoqe7b5jmvdyrw@afio6lmx55zv>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdekjeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegumhhithhrhidrthhorhhokhhhohhvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhor
- hhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed Apr 9, 2025 at 8:40 PM CEST, Dmitry Torokhov wrote:
-> Hi Mathieu,
->
-> On Wed, Apr 09, 2025 at 04:55:57PM +0200, Mathieu Dubois-Briand wrote:
-> ...
->> +static irqreturn_t max7360_keypad_irq(int irq, void *data)
->> +{
->> +	struct max7360_keypad *max7360_keypad =3D data;
->> +	unsigned int val;
->> +	unsigned int row, col;
->> +	unsigned int release;
->> +	unsigned int code;
->> +	int ret;
->
-> int error;
->
+TQMa95xxSA is a SOM using NXP i.MX95 CPU. MB-SMARC-2 is a carrier
+reference design.
 
-Ok using error on all similar cases.
+[1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma95xxsa/
 
->> +
->> +	do {
->> +		ret =3D regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val=
-);
->> +		if (ret) {
->> +			dev_err(&max7360_keypad->input->dev, "Failed to read max7360 FIFO");
->
-> This will return name pf the input device, whereas logging name of the
-> platform device (representing the hardware device) would be much more
-> interesting. You can either use max7360_keypad->input->dev.parent, or,
-> better yet, add *dev pointer to struct max7360_keypad.
->
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Makes sense, thanks.
-
-> ...
->
->> +static int max7360_keypad_build_keymap(struct max7360_keypad *max7360_k=
-eypad)
->> +{
->> +	struct input_dev *input_dev =3D max7360_keypad->input;
->> +	struct device *dev =3D input_dev->dev.parent->parent;
->> +	struct matrix_keymap_data keymap_data;
->> +	const char *propname =3D "linux,keymap";
->> +	unsigned int max_keys;
->> +	int size;
->> +	int ret;
->> +
->> +	size =3D device_property_count_u32(dev, propname);
->> +	if (size <=3D 0) {
->> +		dev_err(dev, "missing or malformed property %s: %d\n", propname, size=
-);
->> +		return size < 0 ? size : -EINVAL;
->> +	}
->> +
->> +	max_keys =3D max7360_keypad->cols * max7360_keypad->rows;
->> +	if (size > max_keys) {
->> +		dev_err(dev, "%s size overflow (%d vs max %u)\n", propname, size, max=
-_keys);
->> +		return -EINVAL;
->> +	}
->> +
->> +	u32 *keys __free(kfree) =3D kmalloc_array(size, sizeof(*keys), GFP_KER=
-NEL);
->> +	if (!keys)
->> +		return -ENOMEM;
->> +
->> +	ret =3D device_property_read_u32_array(dev, propname, keys, size);
->> +	if (ret) {
->> +		dev_err(dev, "failed to read %s property: %d\n", propname, ret);
->> +		return ret;
->> +	}
->> +
->> +	keymap_data.keymap =3D keys;
->> +	keymap_data.keymap_size =3D size;
->> +	ret =3D matrix_keypad_build_keymap(&keymap_data, NULL, max7360_keypad-=
->rows, max7360_keypad->cols,
->> +					 max7360_keypad->keycodes, max7360_keypad->input);
->
-> What if it fails? Error handling please.
-
-Yes, forgot to return ret just below. Not adding logs as in most cases
-matrix_keypad_build_keymap() will already print some logs. OK with that?
-
->
-> Also, it looks like you are repeating what matrix_keypad_build_keymap()
-> is already doing. If you pass NULL as keymap data, won't it do the right
-> thing?
->
-
-No, because matrix_keypad_parse_keymap() is using input_dev->dev.parent
-and this device will not have any associated device tree node. It should
-use input_dev->dev.parent->parent to get correct values.
-
-There is a discussion ongoing about using device_set_of_node_from_dev(),
-so the MFD child device reuse the node of the parent. But I tried to
-avoid using it here, as I was able to come with another solution.
-Discussion is in the thread of the pinctrl driver (patch #3).
-
-Another solution would be to modify matrix_keypad_parse_keymap(),
-allowing to pass a custom device. But again, I tried to avoid doing this
-modification just for my own need.
-
-> ...
->
-> Thanks.
-
-Ok with all other comments.
-
-Thanks for your review.
-Mathieu
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b90870958a22..0ce2653066e91 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1403,6 +1403,16 @@ properties:
+           - const: kontron,imx93-osm-s    # Kontron OSM-S i.MX93 SoM
+           - const: fsl,imx93
+ 
++      - description:
++          TQMa95xxSA is a series of SOM featuring NXP i.MX95 SoC variants.
++          It has the SMARC form factor and is designed to be placed on
++          different carrier boards. MB-SMARC-2 is a carrier reference design.
++        items:
++          - enum:
++              - tq,imx95-tqma9596sa-mb-smarc-2 # TQ-Systems GmbH i.MX95 TQMa95xxSA SOM on MB-SMARC-2
++          - const: tq,imx95-tqma9596sa         # TQ-Systems GmbH i.MX95 TQMa95xxSA SOM
++          - const: fsl,imx95
++
+       - description:
+           Freescale Vybrid Platform Device Tree Bindings
+ 
+-- 
+2.43.0
 
 
