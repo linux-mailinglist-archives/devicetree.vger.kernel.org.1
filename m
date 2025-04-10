@@ -1,66 +1,79 @@
-Return-Path: <devicetree+bounces-165651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCB94A84ECE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:54:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73F1A84EDB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:57:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98B034E3963
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 20:53:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD5BE4A162E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 20:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF27293468;
-	Thu, 10 Apr 2025 20:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F50290BCD;
+	Thu, 10 Apr 2025 20:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T8Vyz6cf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="icN/Z1BF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F63290BD1;
-	Thu, 10 Apr 2025 20:53:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF92290BD5;
+	Thu, 10 Apr 2025 20:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744318405; cv=none; b=uI0lnaV6GzJ+V6d3oVRxyE0k4z2CVJ73q7QXqMAANepds1EG3p3BGnU+JbGzaiCjAB65ombPGNH9gn3RWXitPWvJ/5NcRmIAYQy4cGeQc3aEPgUMoJf/fZ3cxP3b4m/8+qwWC24KxIiA0ihlCqtVTeqS8og/ZbX5E97OyW3muDw=
+	t=1744318619; cv=none; b=aM4hMCYe9EDcsCvpk6ufaIPgOIhRvdbWR3alzCdLlRbdpOOp+oDXoAbJCQy+WNNLArgODYtPFuh5Nd6xn/4g/akoooGSde6jm9NmrngWErwaqTB42tKLjfhO+5HF6e6SQzmdJMX3j8No82RmqQbcW246Sjjusq7ZbsfwbyxqbYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744318405; c=relaxed/simple;
-	bh=BALhi4UrMbOHA37ho5uqHpYpjwN+INMK6vrW7q6TxLY=;
+	s=arc-20240116; t=1744318619; c=relaxed/simple;
+	bh=gjRlPSDk+HP4s4FGm5gbcf/CmugeuOqJPfC/yVVpyyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nd4fBGc8I23WBFe51gFmm+TV6sWc5guGKng0MqGTNVJpdyC7D01Po7os14ut1IDDfmTbtBKpuOAdyLxkDgjbAgyh6mdq4NlugVF4V2h51jqdXaWZhqmvqrap1VCWtfqkAhRsKe+Pm8HkpdvHMrnYkCOouDdxhIHG0W3tjPSEfNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T8Vyz6cf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B6DC4CEE9;
-	Thu, 10 Apr 2025 20:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744318404;
-	bh=BALhi4UrMbOHA37ho5uqHpYpjwN+INMK6vrW7q6TxLY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T8Vyz6cfJb/zRX/vLBSm8X+PPVyWrHbSmVVfybfeJ25+JlQOaUtD0X9QKcHfOSUY4
-	 ejqEG36LkwZ0X1thU8D3+5KGySCJJ8OoPMp5rz7kuVNnZVIjl0HZbO5h3FvCpOLbuo
-	 ZjsGQNqEj8XqjX9icWiqTZlPyy5NOVoomW6aFXTar7Tv49ayJuvgef0UU6SNq1S2vI
-	 rKphEYb/zcsM2gzUVXGW1EwI9a+su8oreolWTPBWzhlDtBWeO11xFdmAGfP3Ivtz8L
-	 GgiKk8Bg3NmuHJSLAcD5HYi7qNOKhMbI1juoCitot4icgIVzohwjBbgLmW1f/kglbS
-	 +p8eQKJSg+/Bg==
-Date: Thu, 10 Apr 2025 15:53:23 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: Conor Dooley <conor+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-usb@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Yixun Lan <dlan@gentoo.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, spacemit@lists.linux.dev,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HcZoCHHbD1KlaVpQRRM0zxtW1G1KOKh8izeBJC2O6fKHvS/Eijwvj9hT/21NcuqjA0gZYsTSsnlECtPF5ZnzevqgvqEKokhNEiG+C/KJJRDR23TIIS9/IC5dm06atYk90U1VsVgoZUTnayTSffUwXNp7ukMYxmRl6iKiYQ/aS+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=icN/Z1BF; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OpP8724RjBuTtHqPoOQEYb+UxkeI+0f3hSg/HwAnRco=; b=icN/Z1BFMHxh7eIZg8j2CW4tVW
+	hHIGaaBjnmXtwawWDpVZLt1mP/C20pZ3xlQkC948V6q2MhQSSSK7Tru1fr0GAbOlCQSK7+Z4DfRQm
+	nWs1pZ21+QvE3vOvDVz97G4MfajtZDrGmk5nOCpaXAqwNOwo4BNWzW3ORkg97kBvJPww=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u2ywq-008jEk-I3; Thu, 10 Apr 2025 22:56:32 +0200
+Date: Thu, 10 Apr 2025 22:56:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	Palmer Dabbelt <palmer@dabbelt.com>
-Subject: Re: [PATCH 1/7] dt-bindings: phy: spacemit: add K1 USB2 PHY
-Message-ID: <174431840229.1041655.15249977458763916963.robh@kernel.org>
-References: <20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn>
- <20250407-b4-k1-usb3-v3-2-v1-1-bf0bcc41c9ba@whut.edu.cn>
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v14 07/16] net: mdio: regmap: add support for
+ C45 read/write
+Message-ID: <5472c608-df78-4433-a086-6ac9323d9d35@lunn.ch>
+References: <20250408095139.51659-1-ansuelsmth@gmail.com>
+ <20250408095139.51659-8-ansuelsmth@gmail.com>
+ <50c7328d-b8f7-4b07-9e34-6d7c34923335@lunn.ch>
+ <67f80275.df0a0220.39b09a.dd38@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +82,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407-b4-k1-usb3-v3-2-v1-1-bf0bcc41c9ba@whut.edu.cn>
+In-Reply-To: <67f80275.df0a0220.39b09a.dd38@mx.google.com>
 
+> Hope you can give some guidance about this! Happy to split this once we
+> find a common point on how to proceed with this.
 
-On Mon, 07 Apr 2025 20:38:46 +0800, Ze Huang wrote:
-> Add support for USB2 PHY found on SpacemiT K1 SoC.
-> 
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> ---
->  .../devicetree/bindings/phy/spacemit,usb2-phy.yaml | 40 ++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
+One thing i'm failing to understand is, why use a regmap at all. For a
+single C22 device it make sense. 32 linear registers, nice and
+simple. They could be memory mapped, I2C addresses, SPI addresses,
+etc. The regmap implementer probably just adds a constant offset and
+does a hardware access.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Multiple C22 devices gets us into a two dimensional problem. Multiple
+C45 devices gives us a three dimensional problem. Mixing multiple C22
+and C45 gets us a four dimensional problem. This is a long way from
+regmaps nice simple model of linear registers.
 
+What does regmap bring here?
+
+	Andrew
 
