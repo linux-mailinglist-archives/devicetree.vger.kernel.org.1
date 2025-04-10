@@ -1,260 +1,199 @@
-Return-Path: <devicetree+bounces-165318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7C9FA83F18
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:40:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE1AA83F42
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFF5D16B990
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:40:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FE618A1F5F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F1225E82D;
-	Thu, 10 Apr 2025 09:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919A2268C66;
+	Thu, 10 Apr 2025 09:42:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PlgPEVPI"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="M7jXcM7r";
+	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="SKM8QirJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0C525E81E;
-	Thu, 10 Apr 2025 09:40:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744278019; cv=none; b=YpQoNE3HfgtKGzYyMuWCNIayc3R+eC7SZ64tHU+WTk1sdZkQljztKKF3R/H5MQqzVJZdxiFdl5cHVarNSwfTS3KVwvSEbTad3FnaX/tzXC0lAewlxYQWY5JXcfakJjQQpfgaQoBbIBNoqwIaKkIwGn4Ma3SCvk5UVrWFsgHQRds=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744278019; c=relaxed/simple;
-	bh=CbYtk44myoD5BZVO0UzRr8Ax21je9fKshpjG1nkT0jk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=a+g9aTx3VLrwkc5lvu8uGt94/OpnbSjz24oTIv33GOcIpOPbrzli+OpjBS+4JAll2h6YeYzFgrwOphWxNbO3UqS8GtVN/0rLbtaO4VeVRyE5dRklBe6s1DObeQn9n8E7br6+qDb/c/pvCKoEsrLX0kBkF1dzRcYUx1QL+3NHfJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PlgPEVPI; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-39bf44be22fso291794f8f.0;
-        Thu, 10 Apr 2025 02:40:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C638267B7C;
+	Thu, 10 Apr 2025 09:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744278147; cv=fail; b=gGEFNut6uvUfdEMP1H8b6/kpW7+Vao54xiLEIMY3i+oTIkBVc3c7501I/SWmPdRVV1VPNJT8+zEo2vhKBC16WfRpnQ9pbRBvZnt5MEYg3Fj9/v06KWV5bRS0AP6Q1YjkV6wb8xS5t42b5UPEbhJ6Lf5BrOG4S8SzzAiqSqreqYQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744278147; c=relaxed/simple;
+	bh=UGhljcDLmbfVr+xIb+A8Zq5mH+53yZocM1XVk9XKZCI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jFOJw1JeM3o8udvmjlQ0S5evxcbSUrYzOHmY1mgZBMXi8Q+5TJIvnpFlwGoJgx5i3ompcIfwADzkznQU9Px7IWcIBoDdTP0kOAK6Zd3craxe4KBILZyO15dymGlK843Ef3Xtn9mHlbL1tpqikh6DVbweEs47TQ44qDVRKG4xeUQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=M7jXcM7r; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=SKM8QirJ; arc=fail smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53A82DHB001301;
+	Thu, 10 Apr 2025 04:42:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=N1RPv15ZtntXIN67
+	wtAVZtf7e4We1SLUIbwRnCSXHZQ=; b=M7jXcM7rErOPC+rNrbEwjkdgC1C+S7IQ
+	1mfJp8V39sRM65by6B5OTCQpsM0stRTAbKxLAlR9YkihplEvyqWvVyY+qnh6bWAX
+	XIyZ10rxEB40AfPdqQf1SNemoyyQ90nXBLaRM0g5Un4HhvxwMKvJ9Foglgw6n6tC
+	h1AQuSvhr/FkFROrJjkU9KYHnSVunBV3L6mH/ddL+IFvCkSyNme4gCgIFi3n3g3X
+	K6b98xrzRSJHZlL4C5B9aUkGNh//3pqP2GHh4atv9pNWNBAUnLh+Hxg7M7eHKvP2
+	cfGIIgoubD7akmoBvDKlAvr6sAtK8d7xhUYy5kX+RVjPOxsHCm0I6g==
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2040.outbound.protection.outlook.com [104.47.70.40])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 45xa4bg41m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Apr 2025 04:42:21 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZmI3nVxnb1c0uITT/33Ywss4yXCFLwN0nZxtZwcvM3aL0UnMRVZe1qiJpvvCikyjqLFJNePeYuW3pLZs2vxStn/+Rn8nlyrFX6YRQL5POMmk6575URf0PbKc1Y/z5ECAc1TKGblWOIxhvho79Mro6CiR0nEtqE/wswllEx38/+UtTaT1tLR2Cro6LdRkuAPWc6Rbldj/Sf6rAml7cnf0yB7iXnymriFb/ckG+C7x1LixPLlRLOd6N+cxsB8O3UBCJWxOVCwcUuE+YcRATJ5tsC3twO2zZiBjDgD+bHUE1m8EmoFZZIvyzjVfXvMbenAPlJ0DrlI2vItivmSp51pLDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N1RPv15ZtntXIN67wtAVZtf7e4We1SLUIbwRnCSXHZQ=;
+ b=URDFFVO/0faoi1n5xOR5mJE5SFR99RrkiF4nmk1KczrTx6zd5QR+f/79TzRpLBCB7nEntMhwCi/uuFZJlxcrtDUre1zn3e9Ryq7PDGx/9bL3ElvRAOiK96nt+zbEyni2+eavM/oCAj9LJeEj+cFXr3ak/cuB+2K+ezwtzcVrgpgXdZ1tRH2yaYa0ZwbGfVtUlppt49kIvWixd8zzNAIMY7IlKrILnI2+Qn393aJYy8KwhW4KLsognubojPsGHWSUtprK5hVQF7T3ZheDJYJUsu8tp3XwsK6+eh5Di61aK8mJNuYyf5d6+WCrOpK/SF84Q80rb2galY9aDLopQ/WbLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 84.19.233.75) smtp.rcpttodomain=cirrus.com smtp.mailfrom=cirrus.com;
+ dmarc=fail (p=reject sp=reject pct=100) action=oreject
+ header.from=opensource.cirrus.com; dkim=none (message not signed); arc=none
+ (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744278015; x=1744882815; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6ZzHK+u3IhtNYeAtrRxJUvgO65HY7/Y2Xaxu6J22s48=;
-        b=PlgPEVPIkIBCvlejBEMPh2ZNQ3JkORWQnA9prX6FrdrMxujJ9IH31SldUdbZJ1X8iq
-         cXq4NIYRFzQuaP7+7ifkEVGoAoipk9s5P5uQn570TMpbCymHL5iEFVl6rrjnClk49QGi
-         LFZ6jhhipjnk8CwO61SvvgfidWIsUxJVWaiWJL1tAox0iSs5GGilfQef4ZHgACWsL6lj
-         mpwRr3i7+I6HAIDJtr3ItEDsbW0uNRQ4FGELBkDK1lR2lybdnSYuCVYsKM/myKCYP5FL
-         a03dtRK91idJ/t4nJRkcPCJZN08lKn2qX1OhBrjzgsQoW9gyMsrUuqeTyGCzJPBHEYtp
-         2ylA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744278015; x=1744882815;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ZzHK+u3IhtNYeAtrRxJUvgO65HY7/Y2Xaxu6J22s48=;
-        b=Cf4cdNIjnNgUR05mou0NPDx9LZK6jEgAWF0tYC2bcOB57QOLYtd2nQZtvpshXJWUdl
-         dgdUADcAaZ2f+wZJmFmnIYlGPYKjsTMrKX6b/LYqV8cNBigiLqAFT0DgWwp7jDi5CBJq
-         0Yv3j7jD2IISEclm3hnQo3GUiZBdSgx1ZXV0t4kuWy2SWId+mAbhSGUIy/tNq2h0TqcM
-         yxfcCrBa0+0ZgPbOG4XQXTeYfiuqdnbj/8lhpPnplWVz1/gFqt8f62EXDyQMJuUxuSnR
-         Z4qYYCMze1RsZfHiB5Knx9CeLgCfKHDC8+QqlQsry0dQFT3JQT94046bL46GiaNKwlms
-         HkTg==
-X-Forwarded-Encrypted: i=1; AJvYcCWI9m8tG1R/vLT1E5iWsvA0et0B0ZD68LXbLtwn48Lt5jUap68vZpQKC1rbbJFgfbv15xIEa0r+7muc@vger.kernel.org, AJvYcCX26Cz6Alcsx0OZqhstxkxkKsFCLGWCPsFut1Zswr0i6jq3nqatL21A1ryYOKZQ5uxiOHWPDGO5U5NB@vger.kernel.org, AJvYcCX5IzhMUjlK/P3pHoOJzgrWefbcjSuVVANrqTKhXOXqcMo8Wg+++dFn8Lz3b85x3WXEeeoSv9SGOoanvBjL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0M5EdKVzcr1T1P+PPzyRWz8Y6pyCfMtKd1yi/vPsvRYFosuUq
-	4BpGlRHD5z3gfQ4duolRUV5LYvEERb/P2juM5vTjQIPpCnKKbnQL
-X-Gm-Gg: ASbGncvwK+YTpOPTpZY6pTZR2/FwTIY+xB0B5pDm2ExYntJuew+7RQMYqk1/JWjEs0R
-	PVEZLDF92JBBuSMdJhhtL0142YAPFG7XlQMyVhJFca3afxzE1PyZ7+u+CxweMpq9Qs5YEMFgvWM
-	f7qQAxCkZ/p+qrUmdAXEgwAYKBEFn7fvuCH8czf0NTRrMylNtdgGQQ5beqE9KavZlKzyuAIqkZ8
-	ng92TXkm5XQw846zzpZ8EwSXJNFsaLD2M+4DDS3VhiriLJZ4F+6jzD/Fak6LwL9GI/o96z2uofi
-	ppAEUkug4GO9AR/kA3RG0b1BJb43I7S7hiFrwfcW5TuoHbrEef+xNNE3sXMzgH3vCE/LSQOmH3f
-	HH7lNwgdVDzuH
-X-Google-Smtp-Source: AGHT+IHo+l30usT0vi5GeqmBPEKKMjK/tSE3z/8K18JGQBbnkLhIaa5/jdg4FvLoCv/QnMnDJltr1g==
-X-Received: by 2002:a05:6000:4021:b0:39a:ca0c:fc90 with SMTP id ffacd0b85a97d-39d8f469697mr1840680f8f.14.1744278015282;
-        Thu, 10 Apr 2025 02:40:15 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233c8224sm44508825e9.22.2025.04.10.02.40.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 02:40:14 -0700 (PDT)
-Message-ID: <4ef3b2464691d65a295d0f5669e27f8a5382ea06.camel@gmail.com>
-Subject: Re: [PATCH v1 4/7] iio: adc: ad4170: Add clock provider support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com
-Date: Thu, 10 Apr 2025 10:40:16 +0100
-In-Reply-To: <65b71e307d37b8e3e26937a1e67398b2af0af399.1744200264.git.marcelo.schmitt@analog.com>
-References: <cover.1744200264.git.marcelo.schmitt@analog.com>
-	 <65b71e307d37b8e3e26937a1e67398b2af0af399.1744200264.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+ d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N1RPv15ZtntXIN67wtAVZtf7e4We1SLUIbwRnCSXHZQ=;
+ b=SKM8QirJpQDmZuVPEZ4G0q73uNDaatLxXi6JLbuRV7OS4X71Jaf9b3sHxL3OkUivbSMbRJrlivbwjXBkthFTTN46GFNnxOi7DP4RiAgOB0NOtrlrjKnoC+Mz36rou7Nz1Rc0gdCQIlOnnxTjsfOjQc8jx4zVIhI+GRmf0hcOl0w=
+Received: from BL0PR01CA0013.prod.exchangelabs.com (2603:10b6:208:71::26) by
+ PH7PR19MB5581.namprd19.prod.outlook.com (2603:10b6:510:134::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.31; Thu, 10 Apr
+ 2025 09:42:14 +0000
+Received: from BN3PEPF0000B077.namprd04.prod.outlook.com
+ (2603:10b6:208:71:cafe::97) by BL0PR01CA0013.outlook.office365.com
+ (2603:10b6:208:71::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.23 via Frontend Transport; Thu,
+ 10 Apr 2025 09:42:07 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
+ smtp.mailfrom=cirrus.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
+Received-SPF: Fail (protection.outlook.com: domain of cirrus.com does not
+ designate 84.19.233.75 as permitted sender) receiver=protection.outlook.com;
+ client-ip=84.19.233.75; helo=edirelay1.ad.cirrus.com;
+Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
+ BN3PEPF0000B077.mail.protection.outlook.com (10.167.243.122) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.13
+ via Frontend Transport; Thu, 10 Apr 2025 09:42:13 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 52D49406540;
+	Thu, 10 Apr 2025 09:42:12 +0000 (UTC)
+Received: from ediswws06.ad.cirrus.com (ediswws06.ad.cirrus.com [198.90.208.23])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 4123E820259;
+	Thu, 10 Apr 2025 09:42:12 +0000 (UTC)
+From: Richard Fitzgerald <rf@opensource.cirrus.com>
+To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+Subject: [PATCH v2 0/2]  ASoC: Add codec driver for Cirrus Logic CS48L32 DSP
+Date: Thu, 10 Apr 2025 10:42:10 +0100
+Message-Id: <20250410094212.1155529-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B077:EE_|PH7PR19MB5581:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 856dc3df-2980-490b-0cfb-08dd7813f945
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|61400799027|36860700013|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?noChtx8OsPxWv1zXqheFMwe05XBOQps4aWmxaQu1gA8kJ4lyQakbztv2PN/I?=
+ =?us-ascii?Q?xpeNsnk5QLqgpVnfnk4XVxDtJ6W0hFizajNqSJCEeI5lpmJrh8W3V6jFnRAQ?=
+ =?us-ascii?Q?G1IUtr+oVxsP//GgM86b5sPBfuqzaNUeffDVIoc8k49LwjSSX2lT+CHss0DT?=
+ =?us-ascii?Q?22yuUUzgLJTUwUpfC3ZJq90YJ8PAtsYt45dGhxkzly6L7ShZNF2clTUcsDxB?=
+ =?us-ascii?Q?F2b8dseczdHejZ3HoGgDTT6hr+9XfvcFAe3Uk9WXMCoICAy8MTN/pI6VkJmg?=
+ =?us-ascii?Q?c9swq08aeG+gn1+dIrYJ5UkcFVJP6GJ2wNmNadT6fwQ41Vguj31BRaX6M5xT?=
+ =?us-ascii?Q?U5IybEujABI5VF8WHdkzylA6+b2GQTiYBQGxEAcaSYzy9aLGJ4/BpMzO5mfx?=
+ =?us-ascii?Q?Lgyd8dT2uK5BaYMV3ID0JaDjM1dpHzfF0GpqPh+5QQk3srhD1v2/Bk3zcHlu?=
+ =?us-ascii?Q?hQ7uaUN2xq/01AU6Ff6+LSQLeHYEtdoPyfqzlZ5TmP/dKBSuJy714/ahQqOP?=
+ =?us-ascii?Q?Nw6nNohKaGTulqY0oOO2KmxTSJkH1ZtBlSNtxhXVOrjfAlzx0CUYy5HhGRU1?=
+ =?us-ascii?Q?T2Hj/ad7xkBItmjCr9ttBMbSpDgd+J+srbEYjFo1zRY0puuCBvAzFqQHRy6f?=
+ =?us-ascii?Q?zcMIg2u4Dfi08DfS22Rt8wKmO5ZpgOPQIjIx9FTpAwd4mgPvykGwxQ+OhsSk?=
+ =?us-ascii?Q?ALDLahlZLvVYpxrjIShwfWd/5yoLgQSLVfLZ/wGIZzT5OMIF+4wKM1sOjpfm?=
+ =?us-ascii?Q?X4t/jnnAXy5829id8o3p7QgZd0sn23ongx1UJB8SuftOY1Nip3T42QW14iUZ?=
+ =?us-ascii?Q?cuFyEiBBijagcbCJ4z4cJo/CHUp+D7YWK+4S7cOkZoP/YUEVgPGJH6OCvnZQ?=
+ =?us-ascii?Q?zinmhUUQTb/pu6O5p5pF0QDfzLTlgPpdcBTP0RbDiZonfVttLLwcHgrWQP+m?=
+ =?us-ascii?Q?21jprBYidI226wRY25nsNRhg6xVWkA6HIWR1mSg4LFZ3Pl66lBwplg8k9DKG?=
+ =?us-ascii?Q?HcNhgoCGyvHBU497MrO52s5xVHXjX4eapaT3p9MnvS9nkxTqOLP8uOj/Y8CE?=
+ =?us-ascii?Q?lXzBozjhpNTBwGFJKcEu+8XXYeMfWz11jys76hIdNk+KqqELhH/FiFUKPeNn?=
+ =?us-ascii?Q?HeW5Y+a0tkcfrPXtmvjeLe9JE0cZAyum/8aHEKL00MYJqg2+oeO7TOTu0WWD?=
+ =?us-ascii?Q?y6EDjIa/H8zPDLojQYTjjtYJIZbQsfT9bJHGj8nrNeOOWI+yT2Od+GmE+DGf?=
+ =?us-ascii?Q?WC5PYpwXU4eAqVIBTBoU6mYviEHGBKFhZvJpsytnxNdRFyg5IlrjpSPK9aPM?=
+ =?us-ascii?Q?vUoGMXobT+7aMdkMIi1pSVLBlAbOQGCBB2IJ4MeDFLGpS39yXy1OHbPP6UX8?=
+ =?us-ascii?Q?OrbQs7kmgr1/3FoAk164oE0OKpj1Cdq+hqiRJDoM/HKJnFzm8xPdxO4UiEO5?=
+ =?us-ascii?Q?mjbDL1Cel5kQavVZMbVvekRtD3SGauqSgnmi1Pl4jwPvsHQu+ITOmANayVGA?=
+ =?us-ascii?Q?m/tnn81tEg7ssKQ=3D?=
+X-Forefront-Antispam-Report:
+	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(61400799027)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: opensource.cirrus.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 09:42:13.6054
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 856dc3df-2980-490b-0cfb-08dd7813f945
+X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B077.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR19MB5581
+X-Proofpoint-ORIG-GUID: Fy2cGqM2c2z-eZlubshtPR5ZLS-pehYt
+X-Proofpoint-GUID: Fy2cGqM2c2z-eZlubshtPR5ZLS-pehYt
+X-Authority-Analysis: v=2.4 cv=B6W50PtM c=1 sm=1 tr=0 ts=67f7927d cx=c_pps a=bqH6H/OQt14Rv/FmpY1ebg==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=XR8D0OoHHMoA:10 a=s63m1ICgrNkA:10
+ a=RWc_ulEos4gA:10 a=TDA31o14s-3B4xYcogsA:9 a=BGLuxUZjE2igh1l4FkT-:22
+X-Proofpoint-Spam-Reason: safe
 
-On Wed, 2025-04-09 at 09:25 -0300, Marcelo Schmitt wrote:
-> The AD4170 chip can use an externally supplied clock at the XTAL2 pin, or
-> an external crystal connected to the XTAL1 and XTAL2 pins. Alternatively,
-> the AD4170 can provide it's 16 MHz internal clock at the XTAL2 pin. Exten=
-d
-> the AD4170 driver so it effectively uses the provided external clock, if
-> any, or supplies it's own clock as a clock provider.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
+The CS48L32 is a high-performance low-power audio DSP with analog and
+PDM digital inputs and support for low-power always-on voice-trigger
+functionality.
 
-Just one minor note, with it:
+This series adds the devicetree bindings and the ASoC codec driver.
 
-Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+Changes since V1:
+- Remove bogus use of 'i' local variable in dev_dbg() statement in
+  cs48l32_init_inputs()
 
-> =C2=A0drivers/iio/adc/ad4170.c | 135 ++++++++++++++++++++++++++++++++++++=
-++-
-> =C2=A01 file changed, 134 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
-> index 5ffcdedf3e7f..97cf4465038f 100644
-> --- a/drivers/iio/adc/ad4170.c
-> +++ b/drivers/iio/adc/ad4170.c
-> @@ -7,6 +7,8 @@
-> =C2=A0
-> =C2=A0#include <linux/bitfield.h>
-> =C2=A0#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> =C2=A0#include <linux/delay.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/err.h>
-> @@ -62,6 +64,7 @@
-> =C2=A0#define AD4170_DATA_16B_STATUS_REG			0x1A
-> =C2=A0#define AD4170_DATA_24B_REG				0x1E
-> =C2=A0#define AD4170_PIN_MUXING_REG				0x69
-> +#define AD4170_CLOCK_CTRL_REG				0x6B
-> =C2=A0#define AD4170_ADC_CTRL_REG				0x71
-> =C2=A0#define AD4170_CHAN_EN_REG				0x79
-> =C2=A0#define AD4170_CHAN_SETUP_REG(x)			(0x81 + 4 * (x))
-> @@ -89,6 +92,9 @@
-> =C2=A0#define AD4170_PIN_MUXING_DIG_AUX1_CTRL_MSK		GENMASK(5, 4)
-> =C2=A0#define AD4170_PIN_MUXING_SYNC_CTRL_MSK			GENMASK(3, 2)
-> =C2=A0
-> +/* AD4170_CLOCK_CTRL_REG */
-> +#define AD4170_CLOCK_CTRL_CLOCKSEL_MSK			GENMASK(1, 0)
-> +
-> =C2=A0/* AD4170_ADC_CTRL_REG */
-> =C2=A0#define AD4170_ADC_CTRL_MULTI_DATA_REG_SEL_MSK		BIT(7)
-> =C2=A0#define AD4170_ADC_CTRL_CONT_READ_MSK			GENMASK(5, 4)
-> @@ -121,6 +127,12 @@
-> =C2=A0
-> =C2=A0/* AD4170 register constants */
-> =C2=A0
-> +/* AD4170_CLOCK_CTRL_REG constants */
-> +#define AD4170_CLOCK_CTRL_CLOCKSEL_INT			0x0
-> +#define AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT		0x1
-> +#define AD4170_CLOCK_CTRL_CLOCKSEL_EXT			0x2
-> +#define AD4170_CLOCK_CTRL_CLOCKSEL_EXT_XTAL		0x3
-> +
-> =C2=A0/* AD4170_CHAN_MAP_REG constants */
-> =C2=A0#define AD4170_CHAN_MAP_AIN0			0
-> =C2=A0#define AD4170_CHAN_MAP_AIN1			1
-> @@ -238,6 +250,10 @@ enum ad4170_regulator {
-> =C2=A0	AD4170_MAX_SUP
-> =C2=A0};
-> =C2=A0
-> +static const char *const ad4170_clk_sel[] =3D {
-> +	"ext-clk", "xtal"
-> +};
-> +
-> =C2=A0enum ad4170_int_pin_sel {
-> =C2=A0	AD4170_INT_PIN_SDO,
-> =C2=A0	AD4170_INT_PIN_DIG_AUX1,
-> @@ -320,6 +336,9 @@ struct ad4170_state {
-> =C2=A0	struct ad4170_chan_info chan_infos[AD4170_MAX_CHANNELS];
-> =C2=A0	struct ad4170_setup_info setup_infos[AD4170_MAX_SETUPS];
-> =C2=A0	u32 mclk_hz;
-> +	unsigned int clock_ctrl;
-> +	struct clk *ext_clk;
-> +	struct clk_hw int_clk_hw;
-> =C2=A0	int pins_fn[AD4170_NUM_ANALOG_PINS];
-> =C2=A0	u32 int_pin_sel;
-> =C2=A0	int
-> sps_tbl[ARRAY_SIZE(ad4170_filt_names)][AD4170_MAX_FS_TBL_SIZE][2];
-> @@ -1693,13 +1712,127 @@ static int ad4170_parse_channels(struct iio_dev
-> *indio_dev)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static struct ad4170_state *clk_hw_to_ad4170(struct clk_hw *hw)
-> +{
-> +	return container_of(hw, struct ad4170_state, int_clk_hw);
-> +}
-> +
-> +static unsigned long ad4170_sel_clk(struct ad4170_state *st,
-> +				=C2=A0=C2=A0=C2=A0 unsigned int clk_sel)
-> +{
-> +	st->clock_ctrl &=3D ~AD4170_CLOCK_CTRL_CLOCKSEL_MSK;
-> +	st->clock_ctrl |=3D FIELD_PREP(AD4170_CLOCK_CTRL_CLOCKSEL_MSK,
-> clk_sel);
-> +	return regmap_write(st->regmap16, AD4170_CLOCK_CTRL_REG, st-
-> >clock_ctrl);
-> +}
-> +
-> +static unsigned long ad4170_clk_recalc_rate(struct clk_hw *hw,
-> +					=C2=A0=C2=A0=C2=A0 unsigned long parent_rate)
-> +{
-> +	return AD4170_INT_CLOCK_16MHZ;
-> +}
-> +
-> +static int ad4170_clk_output_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
-> +	u32 clk_sel;
-> +
-> +	clk_sel =3D FIELD_GET(AD4170_CLOCK_CTRL_CLOCKSEL_MSK, st->clock_ctrl);
-> +	return clk_sel =3D=3D AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT;
-> +}
-> +
-> +static int ad4170_clk_output_prepare(struct clk_hw *hw)
-> +{
-> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
-> +
-> +	return ad4170_sel_clk(st, AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT);
-> +}
-> +
-> +static void ad4170_clk_output_unprepare(struct clk_hw *hw)
-> +{
-> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
-> +
-> +	ad4170_sel_clk(st, AD4170_CLOCK_CTRL_CLOCKSEL_INT);
-> +}
-> +
-> +static const struct clk_ops ad4170_int_clk_ops =3D {
-> +	.recalc_rate =3D ad4170_clk_recalc_rate,
-> +	.is_enabled =3D ad4170_clk_output_is_enabled,
-> +	.prepare =3D ad4170_clk_output_prepare,
-> +	.unprepare =3D ad4170_clk_output_unprepare,
-> +};
-> +
-> +static int ad4170_register_clk_provider(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4170_state *st =3D iio_priv(indio_dev);
-> +	struct device *dev =3D indio_dev->dev.parent;
-> +	struct fwnode_handle *fwnode =3D dev_fwnode(dev);
-> +	struct clk_init_data init =3D {};
-> +	int ret;
-> +
-> +	if (!IS_ENABLED(CONFIG_COMMON_CLK))
-> +		return 0;
-> +
-> +	init.name =3D fwnode_get_name(fwnode);
+Richard Fitzgerald (2):
+  ASoC: dt-bindings: Add Cirrus Logic CS48L32 audio DSP
+  ASoC: cs48l32: Add driver for Cirrus Logic CS48L32 audio DSP
 
-Maybe allow for clock-output-names? See:
+ .../bindings/sound/cirrus,cs48l32.yaml        |  196 +
+ MAINTAINERS                                   |    3 +
+ include/dt-bindings/sound/cs48l32.h           |   20 +
+ include/sound/cs48l32.h                       |   47 +
+ include/sound/cs48l32_registers.h             |  530 +++
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/cs48l32-tables.c             |  540 +++
+ sound/soc/codecs/cs48l32.c                    | 4073 +++++++++++++++++
+ sound/soc/codecs/cs48l32.h                    |  403 ++
+ 10 files changed, 5824 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs48l32.yaml
+ create mode 100644 include/dt-bindings/sound/cs48l32.h
+ create mode 100644 include/sound/cs48l32.h
+ create mode 100644 include/sound/cs48l32_registers.h
+ create mode 100644 sound/soc/codecs/cs48l32-tables.c
+ create mode 100644 sound/soc/codecs/cs48l32.c
+ create mode 100644 sound/soc/codecs/cs48l32.h
 
-https://elixir.bootlin.com/linux/v6.13.7/source/drivers/iio/frequency/adf43=
-50.c#L467
-
-- Nuno S=C3=A1
+-- 
+2.39.5
 
 
