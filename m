@@ -1,102 +1,106 @@
-Return-Path: <devicetree+bounces-165635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9230A84D65
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:45:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6342A84DAC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:02:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E9F4A5A3B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:44:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63172175FD4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 20:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C230E28FFCE;
-	Thu, 10 Apr 2025 19:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29F328D84C;
+	Thu, 10 Apr 2025 20:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jrTsBVS4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CekWLmOX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD6828EA7C
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A6D202F70
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 20:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744314250; cv=none; b=j7iNJ+yl4Re9NeSEtdKJEbawxcOkDnO3IW9TT08P6C3XKiAOLA40ggMSSmZ7cUxLEriKsg7i9dI5VrLSL4ER9EaRnMPpwb6X2u28U7CaOsOYrh8iz7lXGQNYB1oLUxwNjh+Kp8xZ462/+BxrC3Pa6cvQP8+4cJzK4W0OSWA0+H4=
+	t=1744315314; cv=none; b=ro35rxV4xyC9O710/mtRChs7d/K8XCHmMQMfPYDHXj4xUAXtmKraQPUxO2J7ak6JwLn1UZnC9vNZRiDTlazRqJu3zwfPeStG34EvImFSZlVSVpzZ8j9HajYtjlqIK/0BJOVduVeV+MXmRk5nXp12UspKJypNIyIuKfY/Z58WpGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744314250; c=relaxed/simple;
-	bh=iMsdDLXheF8MRz+4l0Yir4tgR3MOExzWlGax/sLIrVM=;
+	s=arc-20240116; t=1744315314; c=relaxed/simple;
+	bh=TrzVZsIqMWU4hMxLem7e7/TD9bck0PlIEl82VVz4dgg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fv2kZe6GG8H5wK0tKndrx5UGGEBmqHkMX/SdLDZOv097dNN4Ckd70e+01K/cO+B8XhY3zhCO9V+KgwQ+zfPd9M/AodlNL9CkByOrNdeW4qsJ4H6FQNl6kXGVOtI1ERlqmex4OjWSfVyD56D5MORKsNZrk4+6Uzv5m3q4gzf7W0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jrTsBVS4; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=j7v462RsmmeKZl1gkQXIirtQfRy4gWT7sd7PJplpd4qH+cGk6CaZnoBB+oO9Y4aEJ1w2EwlKINEHbIRjuIoRpvOTiZ614WTtxaUNm/GmdX+IKGKTGkSeCVYTYo+euc9LsVQY/iiWDpYv5usO2QdtnFdbM6KuwJIBIznemdNRIyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CekWLmOX; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53AGIbZM013881
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:44:08 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53AGDo06000645
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 20:01:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=PZm0qqgS5dTG7oCRmAuLkE5p
-	HlURp9VF4PXmAQpOQA8=; b=jrTsBVS4kK+l+2V83qmi5UfEscnaEuyvCKWxr/E9
-	YrAJ2ykybUVRjY1dIyYRhHir3HHM+cXScju49r/96bW5aSl8Qk3jiq/kDpFCagyK
-	u51msUMUidkU0dvyTAmpr+v/fdFkUHHylP8KUGP2ypdWvkVMsNy/QeN/7Jjk8a+I
-	yl+VXDrihEZsb4/Jvt8YJTcXfLR94gSk5jGkH4zqLomjhkfce9+I0Dflxfuohdhg
-	g3STC047JWrBgpNuz/JUPelYPqI61ZMDPJF4y+q+PyPwXh/HuNecoLiJJMOkFUUP
-	hrslaynksnQaPuG8ssB0q2MLRZ9R71rc9uDED7Irewx/+g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbeg754-1
+	:references:subject:to; s=qcppdkim1; bh=cQKF/VxyCC/OpmAoONC18oPV
+	cOgA+smPZj7cgddFWhE=; b=CekWLmOXP/799feVGPBXyj1rLU0O205hSip17lRn
+	1ZYB/jJTw5GWr9C/+D3Y/7cwpC90R0y32893q7WDyQNgHlzMZj12S3UeIrpNrgSh
+	AmyPeytI35uNhNHR38qcioQoKtpU4o77PbSq7KmkdTUUnR5GzST/AxmBQ0kAUW+u
+	Wuf9R+Q+0I38BY+GQBgxtnVwwhOO+FyT+dyyn4GqFBedvqdYnAtZQbFHx6pELFWQ
+	jy/fqStHIgA1D6p8GZDWF8B9TTt2AxLyJmooiEP769ozMIoUfLbDGye2UmEz/qpt
+	mnG3iudCH4i8IMKScfwJ+X5qjE3170a9RGSYFJad9KSwKQ==
+Received: from mail-io1-f69.google.com (mail-io1-f69.google.com [209.85.166.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd305me-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:44:08 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5c77aff55so293871985a.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:44:08 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 20:01:52 +0000 (GMT)
+Received: by mail-io1-f69.google.com with SMTP id ca18e2360f4ac-85b402f69d4so145826739f.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 13:01:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744314247; x=1744919047;
+        d=1e100.net; s=20230601; t=1744315311; x=1744920111;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PZm0qqgS5dTG7oCRmAuLkE5pHlURp9VF4PXmAQpOQA8=;
-        b=mE9lk2SZ3om3zcz2vUToNkNzjsNVgVt4GDtQpLVhEKEzCuje0nFMdjPUGKvOX/c41c
-         JwFTeamuFIjcN4byWPJSUG8HHlodv0R6sDGpa+iDU7nMA2lKYszgblpmIUBLVX4w6Uv0
-         ipqNflPLq8BR1OqufA3awv3V5iIla7W+g2xujyMFg4IirEy+OqdFwBfyncyE9Acz+ENR
-         FXaAsQP0aucDAr4MxJJxAXId2S+3SwbZNfZAZ3jjMlqcjrYc7HQYIz+/mhTK6LoXwRYG
-         3O6/Q3xi2lYZ1lFim28wCVXDM7az8QYPgWZRXImJwAo0xtclRgBIVFHt/iF/707Jcu9U
-         NlLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQmbd7W5ZULOWKQCRT9YMnzXGZwUYm3iAieKec27hnFym+X/sGHbT+RX36Rn88DvqyCK7YPI5enO+i@vger.kernel.org
-X-Gm-Message-State: AOJu0YyA6I0FUWdXLmGHgvlJJJnW1Mhh9PG+/hBdCy7EBrvAQ3fvLlKL
-	CRrsLZrd+Ifsn2pTEZdPXkLIjSPTH7yU+elIyFplkFWVeNnOuQRIrnSGJwXQoa9KShNE3yEtNZn
-	qK+t1MoGbP8XDkJG4lCIqi8GHEjuR8xzZtXO+0Kvhe+YnWN7tsBHoJ2d/CkF4
-X-Gm-Gg: ASbGncvg0D6/t8qaZWrbDPNKqARfRleHxjm4ev/YvMB1ivNY4uljhjkXKzZtsATtQ/J
-	YyXw0l/IYxooaL9LUMuadNDMx5DdIjn5e/17GLiIjVo9zSK1LwA1RcN5WSEDeyIUwDO5YY3ivAD
-	/l2TABmBNQYtJ6DX1qCWlnO0wHrGu1mcrJ9najESXgPXLZ0fm7SETPbOjQmJdUKoqH12pSEuPOv
-	lRzPmARGjnfMePO8Ndr1nLFtY5SA5fW1As9nAaT/KCfWs/pljFHSkAhJlh/eSAqqSWqsc6grbk4
-	SlBLp6YKFnbnWzRqnhRTLCUWrFq30t3uZaAugcEon83+wPHDwFTvoMRcx1mG10naLQJGoWeDujk
+        bh=cQKF/VxyCC/OpmAoONC18oPVcOgA+smPZj7cgddFWhE=;
+        b=dJ9j2XkrrRgetgd6wEl8rcNqHi6ROPCpCxEok9pPH8PTOHXKDIeOTPKMO+f9MX4WKJ
+         OSUadmh9w8FxQfU9vnh9S0oC1XnLrI7jFBDkzicYaD5H/feBc25kuVauMk+v8JbRY83g
+         98f58I4+aD6KDFskhuoTNnvW/s+iDFo5ezb/yYxBtQ337DfUA1BvJPWS8bPc02ExjW5s
+         utXsKff3A/AqbBrbUeRTGxAauTfgdE3cKbVoiNeAYS5NNzURRqcGCv0FVHLMErFZqtFV
+         DobgImnI2FnOgDgb6ptQ1N8gtUc6OCKRM+snBLoWVmfcw21PjaU6RjIb92UhBHfA/Gwy
+         ym/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVRADZRtZ0PChf20veHimZxhQXDHIUOH3X7k2NzC9NmGHPr5lVFYrDkpi8svX1fgaVI0A32o4SdB01R@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfKxWBL46kxTZlDfZ5xS2LxnHZIfTPyv8H+8ma8hQz1vRWsEZa
+	enKyaAlCqXt1iy/jSpFAjDm8znj7U6NdWchZ7ZiDMqcFpVZm6BtMUxTn6X0KtIV9GWtRCDgIvRF
+	d6AP99hjBDkIzgAQUBXiLAtTLrh4Z8kcMleqXnzYo6i5H4KIDNuyNGHJJWHfW
+X-Gm-Gg: ASbGncvgaQodjwp8+TrZplXoYrc8rPwLUt5YZiKIfzDg86W1VwlXKu0tyu3py5vQhrZ
+	/OadJ0pinYswKPuZOvop5wfpz5JeDn4nGFAeLoMBWSDa2CarSIFWMDD2YyXZcURfhVYwaWC9czh
+	kQpggebeyesUkVDJ+iR4Lp/lzCxYiICrs2d1QhCZreP5mcZ0ljh421NWWx9f/1wC0z+OjUKvR1L
+	iUSCa3guEAyFJcxw1KXkWW8oGK3pSA8yl6KL+3x1WFPJC/IMed1rx0TCi/mQrHpcb6rOIl6Clhy
+	DU08W1kbbtwGaNQ5tOf2yyhtKXHJPmOQSonR2wHXJX+eHwE0pCF0kCIE4RKU0yrR3p+y5/b82ZM
 	=
-X-Received: by 2002:a05:620a:4484:b0:7c5:4b91:6a39 with SMTP id af79cd13be357-7c7af12ec95mr31545785a.33.1744314246986;
-        Thu, 10 Apr 2025 12:44:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE/AtswoZH0U6ZdBxJQfiEwZm4aVhqnq1sZshU8lrm5+ua8KiXU0Tcl7YdGDm/CpynyS+kVcA==
-X-Received: by 2002:a05:620a:4484:b0:7c5:4b91:6a39 with SMTP id af79cd13be357-7c7af12ec95mr31542185a.33.1744314246699;
-        Thu, 10 Apr 2025 12:44:06 -0700 (PDT)
+X-Received: by 2002:a05:6e02:989:b0:3d6:d162:be12 with SMTP id e9e14a558f8ab-3d7ec277267mr1619115ab.21.1744315311152;
+        Thu, 10 Apr 2025 13:01:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEOcgglq72/KtLWeA8A2vkExuJ9YEmeKKzeIWF0tQFF4TsI9WFOgD8ectS26sdoezA0dGVAXQ==
+X-Received: by 2002:a05:6e02:989:b0:3d6:d162:be12 with SMTP id e9e14a558f8ab-3d7ec277267mr1618855ab.21.1744315310705;
+        Thu, 10 Apr 2025 13:01:50 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d2386absm228473e87.87.2025.04.10.12.44.05
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d51006bsm234397e87.170.2025.04.10.13.01.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 12:44:05 -0700 (PDT)
-Date: Thu, 10 Apr 2025 22:44:04 +0300
+        Thu, 10 Apr 2025 13:01:48 -0700 (PDT)
+Date: Thu, 10 Apr 2025 23:01:45 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v5 1/8] media: qcom: iris: move sm8250 to gen1 catalog
-Message-ID: <vhfuhjruok7gupoeo2uloe525k7oycd5gkh67zzz4wbiwrczpt@i3qknymfu4px>
-References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
- <20250410-topic-sm8x50-upstream-iris-catalog-v5-1-44a431574c25@linaro.org>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: Re: [PATCH v3 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
+ to DP bridge nodes
+Message-ID: <wzqct2y67h6bkazxv3se77slsheaw5rspgcrcfjm7ngr5t4alw@nktpqrt5woky>
+References: <20250404115539.1151201-1-quic_amakhija@quicinc.com>
+ <20250404115539.1151201-8-quic_amakhija@quicinc.com>
+ <nxnqwh2mzvnxv5ytwjsyulxr6ct6mhv3z3v6q4ojrjhhclwv2i@55nb56hnwi3y>
+ <0f4eca6c-67df-4730-88b3-a277903deabc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,44 +109,119 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250410-topic-sm8x50-upstream-iris-catalog-v5-1-44a431574c25@linaro.org>
-X-Proofpoint-GUID: SI8RAkft5q8Lp4ogo7sGBWgfsau17Mib
-X-Authority-Analysis: v=2.4 cv=T7OMT+KQ c=1 sm=1 tr=0 ts=67f81f88 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=w-EXFu6-wi7iOCDdWgUA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: SI8RAkft5q8Lp4ogo7sGBWgfsau17Mib
+In-Reply-To: <0f4eca6c-67df-4730-88b3-a277903deabc@quicinc.com>
+X-Proofpoint-ORIG-GUID: -nPF4FkVWLonBS3mzbK0_SLJvLXPTffz
+X-Proofpoint-GUID: -nPF4FkVWLonBS3mzbK0_SLJvLXPTffz
+X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f823b0 cx=c_pps a=7F85Ct0dzgNClt63SJIU8Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=u-yodfwXetj8OPw8cswA:9 a=CjuIK1q_8ugA:10 a=LKR0efx6xuerLj5D82wC:22
+ a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-10_06,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0
- mlxscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504100143
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 mlxlogscore=999 clxscore=1015 phishscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504100145
 
-On Thu, Apr 10, 2025 at 06:30:00PM +0200, Neil Armstrong wrote:
-> Re-organize the platform support core into a gen1 catalog C file
-> declaring common platform structure and include platform headers
-> containing platform specific entries and iris_platform_data
-> structure.
+On Thu, Apr 10, 2025 at 06:37:54PM +0530, Ayushi Makhija wrote:
+> Hi Dmirity/Konard
 > 
-> The goal is to share most of the structure while having
-> clear and separate per-SoC catalog files.
+> On 4/7/2025 1:42 AM, Dmitry Baryshkov wrote:
+> > On Fri, Apr 04, 2025 at 05:25:36PM +0530, Ayushi Makhija wrote:
+> >> Add anx7625 DSI to DP bridge device nodes.
+> >>
+> >> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 208 ++++++++++++++++++++-
+> >>  1 file changed, 207 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> >> index 175f8b1e3b2d..8e784ccf4138 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> >> @@ -28,6 +28,13 @@ chosen {
+> >>  		stdout-path = "serial0:115200n8";
+> >>  	};
+> >>  
+> >> +	vph_pwr: vph-pwr-regulator {
+> >> +		compatible = "regulator-fixed";
+> >> +		regulator-name = "vph_pwr";
+> >> +		regulator-always-on;
+> >> +		regulator-boot-on;
+> >> +	};
+> >> +
+> >>  	vreg_conn_1p8: vreg_conn_1p8 {
+> >>  		compatible = "regulator-fixed";
+> >>  		regulator-name = "vreg_conn_1p8";
+> >> @@ -128,6 +135,30 @@ dp1_connector_in: endpoint {
+> >>  			};
+> >>  		};
+> >>  	};
+> >> +
+> >> +	dp-dsi0-connector {
+> >> +		compatible = "dp-connector";
+> >> +		label = "DSI0";
+> >> +		type = "full-size";
+> >> +
+> >> +		port {
+> >> +			dp_dsi0_connector_in: endpoint {
+> >> +				remote-endpoint = <&dsi2dp_bridge0_out>;
+> >> +			};
+> >> +		};
+> >> +	};
+> >> +
+> >> +	dp-dsi1-connector {
+> >> +		compatible = "dp-connector";
+> >> +		label = "DSI1";
+> >> +		type = "full-size";
+> >> +
+> >> +		port {
+> >> +			dp_dsi1_connector_in: endpoint {
+> >> +				remote-endpoint = <&dsi2dp_bridge1_out>;
+> >> +			};
+> >> +		};
+> >> +	};
+> >>  };
+> >>  
+> >>  &apps_rsc {
+> >> @@ -517,9 +548,135 @@ &i2c11 {
+> >>  
+> >>  &i2c18 {
+> >>  	clock-frequency = <400000>;
+> >> -	pinctrl-0 = <&qup_i2c18_default>;
+> >> +	pinctrl-0 = <&qup_i2c18_default>,
+> >> +		    <&io_expander_intr_active>,
+> >> +		    <&io_expander_reset_active>;
+> > 
+> > These pinctrl entries should go to the IO expander itself.
+> > 
+> >>  	pinctrl-names = "default";
+> >> +
+> >>  	status = "okay";
+> >> +
+> >> +	io_expander: gpio@74 {
+> >> +		compatible = "ti,tca9539";
+> >> +		reg = <0x74>;
+> >> +		interrupts-extended = <&tlmm 98 IRQ_TYPE_EDGE_BOTH>;
+> >> +		gpio-controller;
+> >> +		#gpio-cells = <2>;
+> >> +		interrupt-controller;
+> >> +		#interrupt-cells = <2>;
+> >> +
+> >> +		gpio2-hog {
+> > 
+> > This needs a huuge explanation in the commit message. Otherwise I'd say
+> > these pins should likely be used by the corresponding anx bridges.
 > 
-> The organization is based on the current drm/msm dpu1 catalog
-> entries.
+> Thanks, for the review.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/media/platform/qcom/iris/Makefile          |  2 +-
->  .../media/platform/qcom/iris/iris_catalog_gen1.c   | 83 ++++++++++++++++++++++
->  ...ris_platform_sm8250.c => iris_catalog_sm8250.h} | 80 ++-------------------
+> Previously, I was referring to the downstream DT and misunderstood the use of gpio-hog.
+> After reading the schematic, I realized that gpio2, gpio3, gpio10, and gpio11 are all input pins
+> to the IO expander TC9539. We have already configured gpio2 and gpio10 as interrupts in the
+> ANX7625 bridges, so the gpio-hog is not required. It is working without the gpio-hog configuration.
 
-I'd suggest _not_ to follow DPU here. I like the per-generation files,
-but please consider keeping platform files as separate C files too.
-
->  3 files changed, 89 insertions(+), 76 deletions(-)
-> 
+Please make sure that there are pinctrl entries for all pins.
 
 -- 
 With best wishes
