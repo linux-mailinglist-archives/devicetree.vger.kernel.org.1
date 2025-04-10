@@ -1,64 +1,82 @@
-Return-Path: <devicetree+bounces-165300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23400A83E91
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:27:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A51A83E92
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87362A0154F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:18:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 361778C06F4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E2521CC7C;
-	Thu, 10 Apr 2025 09:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA8621D3C9;
+	Thu, 10 Apr 2025 09:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="SCcDHHFd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZaeFFJn5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FDA21CC5C
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194F121CA0A
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:18:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744276719; cv=none; b=M9qySCePxXgUKRzyMRUmHVajLva4LPx6tl/Z2ZSNyYeDazystUGnXt6l1X96yihlwD4G1BoOA4fCUXfX5VXlZJl8XsLULyHkV+goAl9QG7JCGPXxG37WJkwbbwv3whchXiNMfL65Je/sU2C5sVVm4ylc+thyj1xBXdD72FlkVYI=
+	t=1744276741; cv=none; b=GPjlCGSUw9UWr/D61JebesX5mnce7oKJ8Gp/8w7HoBL/EfeSIrG0s7tamWrliFDP4yZQ8y0BCXylAKoSXoeMrSwfBoiqL3OAkhfO+6/PnNosNgXEwRHXrbc4AqfccLZJ4dJNQd63VvH5dXA1MeqdiClbuJoV+Au7kvc/eI31jNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744276719; c=relaxed/simple;
-	bh=TPqJ1k8AAIrPY7q3JCPcpdlJDfzdRL5HJ7DL+ztbSTc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nfZ7mdbsSj0bX80JRzZzBQJJ6bKlKpumSWvI60pAObrbI+kv4k1OB/0ZJnu7wF+WdV6d9e7Or8kQ4u/CAH/qJnW0dzSRahEEK0XwTF8C/im5350RGNK3g+dat+2+KR8d+ch6Lj7PgoMmmyjKtjOguDRXfLJ9uIVeC3ku0tq1Akc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=SCcDHHFd; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744276716;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UaBBYYn9+Ny+SB7cdMeOGamaaptDicYH91ubkreRXjE=;
-	b=SCcDHHFdp1OyPL9EPvqfKlViAutSAqR+3r4RFlGbQKP8XiZEouFplo0Wyk3Mzo7tRvfQZM
-	+s97y86H8eIsfo1Y8yqYUC9N+tjMjzIjQLzjmVARjoGdXC470IwxQTYrof0s3o9t/an1n7
-	v4CafGUAwdY/ksgQ2uGWU/u3ZLqwzNE=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-498-0xZnWK54OPGpkNHlMA1m1g-1; Thu,
- 10 Apr 2025 05:18:32 -0400
-X-MC-Unique: 0xZnWK54OPGpkNHlMA1m1g-1
-X-Mimecast-MFC-AGG-ID: 0xZnWK54OPGpkNHlMA1m1g_1744276710
-Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id CA6DB180025E;
-	Thu, 10 Apr 2025 09:18:29 +0000 (UTC)
-Received: from [10.44.33.222] (unknown [10.44.33.222])
-	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 3ABE119560AD;
-	Thu, 10 Apr 2025 09:18:24 +0000 (UTC)
-Message-ID: <889e68eb-d5b5-41ae-876d-9efc45416db6@redhat.com>
-Date: Thu, 10 Apr 2025 11:18:24 +0200
+	s=arc-20240116; t=1744276741; c=relaxed/simple;
+	bh=aI5DckRcY3uvGVitEQyezExuiLfiGorC7LFw35ahPaE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=awgbb+HA6OjbfU0SKZP5z9VJVgOx/dIlSO3iXWEjNKVKPqE6phg4f4nX4HJWgtAD00B/lbZtOgj4UkEeHJb7c1wB8pxd/VkXzR9SiPsmJhNWe4os/5iWPoEbjneFmSvGu2U5QHBlP8sYj1UTARDcMgM1JQq2CAeQ4uUlIXfCogI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZaeFFJn5; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso6445695e9.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 02:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744276737; x=1744881537; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WwIUe5xeYKahYAImN2NVHeSMnWwIAKuXbFFVaCCoOAA=;
+        b=ZaeFFJn5qOel80UQTiSeHHVUC+XtCw+vwQ1Xpt51wf5UGWTBipNIp4hNUlKKw5lJXp
+         AmOSeHdEvCyJZWnqQ8ng5g/1GJhnCetvmJQZk0fZfcvG/BCueYZCeavH/x6j/IPQ585f
+         YlMgWZ5HjyZ3JOtjTgDPaBkZNoOrEP7RXpDsoWoUTx//79Zda9EfNISZquHCtUJDthLe
+         ai4wkuLDq2fXxCajEPWNjOtH3RIfICnrpPilzJjEMqO8BgE0JJqvAuBJH5UhIdHfmaCH
+         dIVNpEvJH0cA+DY9Fv4Psz+rlCwdfhodU/58Hpim6EJ30ctWUtcsPqGNN0NxxZcJ0Zln
+         ZsRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744276737; x=1744881537;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WwIUe5xeYKahYAImN2NVHeSMnWwIAKuXbFFVaCCoOAA=;
+        b=LbIMp7x+FVCC/fEKcN0e/wswVaOfQBUpmR1ft3nhlJyqjskha5IIkMPL8fA6xh9SWn
+         zBVuBGi8Fl4iz7HcRgZjPNmCwE1BzrQlaXhzbPpnaqwL7eacRDfKB+sJ7lpVfhEbRKK1
+         nW2fOsjcPl8KSH+e7sU9g4ZcoSaHBnzlzG9r+5/SJhpvZL1QpMdpNVO6nT29/xythEa8
+         tYOkCwrbWRk+7odW9NH8eZCBJBGJSPkvR9jM9B+WQ5Kcl50+yg1jhRYc0aQBnvPMkP8m
+         Wz4leVmq3CTgLseeKF9lmHPJfBnqxSwL+LYC4pqjqF/ksaRsSURgQ1wMkds2SxsdMEQI
+         1dJw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1y+UGHMES3WoYAqsnHVaMD1rt86kwH9E4wkcJVX2vmMna30tVdLPr3t7D/Sqz0K4Fsqo7jhF3LT6T@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQMF9S7WjG3aDaifBDZkhaNwEjwoffY9uJUhVPl1u589DWqlnx
+	LCYDPM0buaG5/sZL3aIjY/268ps0vd09jQnXCmtjjVB7vM5gqDSjOwO2m1yUh2Q=
+X-Gm-Gg: ASbGncvWLKvzaDx5b7Wdr2c16PcKyINTMHYWwKdK768qPqlThIA8EFog7BxdIayoW1v
+	YvDhaRDF/yCBmASc+SQA+RbFpHLqOO7YwM5cBQjOAvOSxOHhSM9ShkHFs5hPHWCeTgGsgFLejZS
+	pV2MA/+FcWdmHaKtiKg6WCCSvVg5Oe7w2mNRE+F8N3aEvIcE2ADiBM6AWHoacSMh9reXH1o1sew
+	6ORTOfYJRQEgI5wSvq96Ftu7rt7hoxI9AfMzwimBICSx5cKlq6dAdKsg5xHINv/iPv9oEgAcFb+
+	kjmnZKWx9AGvUeRTQE2zUb8+gOEqVxSi4/VWukUfxL5H2wPRNtqnbC6GWNoWQNR7/f9bR4lQjTA
+	eQ3FacED/YzZa98HMvw==
+X-Google-Smtp-Source: AGHT+IEkF5jqV7dBUbgzdx+/fTWhr/zHL1/1GLifD4OF7RcHvWlZSXLeUY7vA0Vpns/o+mMzhQgeEg==
+X-Received: by 2002:a05:600c:1d10:b0:43d:683:8cb2 with SMTP id 5b1f17b1804b1-43f2d7bc1cbmr21322675e9.14.1744276737360;
+        Thu, 10 Apr 2025 02:18:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:1a13:cd5d:5261:ebfe? ([2a01:e0a:3d9:2080:1a13:cd5d:5261:ebfe])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f23572cf0sm46300245e9.27.2025.04.10.02.18.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 02:18:57 -0700 (PDT)
+Message-ID: <f1bd21b9-6f77-4112-bc3d-9c94f170857e@linaro.org>
+Date: Thu, 10 Apr 2025 11:18:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,72 +84,235 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 6/6] media: platform: qcom/iris: add sm8650 support
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409171713.6e9fb666@kernel.org>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250409171713.6e9fb666@kernel.org>
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org>
+ <20250409-topic-sm8x50-iris-v10-v4-6-40e411594285@linaro.org>
+ <36e25d6e-36de-fec6-e54d-0683503c7a09@quicinc.com>
+ <1550c870-188e-4b41-b17c-2009cda41ffc@linaro.org>
+ <8cade183-72ac-eac1-1a57-a9db37657fca@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <8cade183-72ac-eac1-1a57-a9db37657fca@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
+Content-Transfer-Encoding: 8bit
 
-
-
-On 10. 04. 25 2:17 dop., Jakub Kicinski wrote:
-> On Wed,  9 Apr 2025 16:42:36 +0200 Ivan Vecera wrote:
->> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
->> provides DPLL and PTP functionality. This series bring first part
->> that adds the common MFD driver that provides an access to the bus
->> that can be either I2C or SPI.
->>
->> The next series will bring the DPLL driver that will covers DPLL
->> functionality. And another ones will bring PTP driver and flashing
->> capability via devlink.
->>
->> Testing was done by myself and by Prathosh Satish on Microchip EDS2
->> development board with ZL30732 DPLL chip connected over I2C bus.
+On 10/04/2025 11:13, Vikash Garodia wrote:
 > 
-> The DPLL here is for timing, right? Not digital logic?
-> After a brief glance I'm wondering why mfd, PHC + DPLL
-> is a pretty common combo. Am I missing something?
+> On 4/10/2025 2:31 PM, Neil Armstrong wrote:
+>> On 09/04/2025 18:57, Vikash Garodia wrote:
+>>> Hi Neil,
+>>>
+>>> On 4/9/2025 8:08 PM, Neil Armstrong wrote:
+>>>> Add support for the SM8650 platform by re-using the SM8550
+>>>> definitions and using the vpu33 ops.
+>>>>
+>>>> The SM8650/vpu33 requires more reset lines, but the H.264
+>>>> decoder capabilities are identical.
+>>>>
+>>>> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e Dell
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>    .../platform/qcom/iris/iris_platform_common.h      |  1 +
+>>>>    .../platform/qcom/iris/iris_platform_sm8550.c      | 64 ++++++++++++++++++++++
+>>>>    drivers/media/platform/qcom/iris/iris_probe.c      |  4 ++
+>>>>    3 files changed, 69 insertions(+)
+>>>>
+>>>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>> b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>> index
+>>>> fdd40fd80178c4c66b37e392d07a0a62f492f108..6bc3a7975b04d612f6c89206eae95dac678695fc 100644
+>>>> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>> @@ -35,6 +35,7 @@ enum pipe_type {
+>>>>      extern struct iris_platform_data sm8250_data;
+>>>>    extern struct iris_platform_data sm8550_data;
+>>>> +extern struct iris_platform_data sm8650_data;
+>>>>      enum platform_clk_type {
+>>>>        IRIS_AXI_CLK,
+>>>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+>>>> b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+>>>> index
+>>>> 35d278996c430f2856d0fe59586930061a271c3e..d0f8fa960d53367023e41bc5807ba3f8beae2efc 100644
+>>>> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+>>>> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+>>>> @@ -144,6 +144,10 @@ static const struct icc_info sm8550_icc_table[] = {
+>>>>      static const char * const sm8550_clk_reset_table[] = { "bus" };
+>>>>    +static const char * const sm8650_clk_reset_table[] = { "bus", "core" };
+>>>> +
+>>>> +static const char * const sm8650_controller_reset_table[] = { "xo" };
+>>>> +
+>>>>    static const struct bw_info sm8550_bw_table_dec[] = {
+>>>>        { ((4096 * 2160) / 256) * 60, 1608000 },
+>>>>        { ((4096 * 2160) / 256) * 30,  826000 },
+>>>> @@ -264,3 +268,63 @@ struct iris_platform_data sm8550_data = {
+>>>>        .dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+>>>>        .dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+>>>>    };
+>>>> +
+>>>> +/*
+>>>> + * Shares most of SM8550 data except:
+>>>> + * - vpu_ops to iris_vpu33_ops
+>>>> + * - clk_rst_tbl to sm8650_clk_reset_table
+>>>> + * - controller_rst_tbl to sm8650_controller_reset_table
+>>>> + * - fwname to "qcom/vpu/vpu33_p4.mbn"
+>>>> + */
+>>>> +struct iris_platform_data sm8650_data = {
+>>>> +    .get_instance = iris_hfi_gen2_get_instance,
+>>>> +    .init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
+>>>> +    .init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
+>>>> +    .vpu_ops = &iris_vpu33_ops,
+>>>> +    .set_preset_registers = iris_set_sm8550_preset_registers,
+>>>> +    .icc_tbl = sm8550_icc_table,
+>>>> +    .icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
+>>>> +    .clk_rst_tbl = sm8650_clk_reset_table,
+>>>> +    .clk_rst_tbl_size = ARRAY_SIZE(sm8650_clk_reset_table),
+>>>> +    .controller_rst_tbl = sm8650_controller_reset_table,
+>>>> +    .controller_rst_tbl_size = ARRAY_SIZE(sm8650_controller_reset_table),
+>>>> +    .bw_tbl_dec = sm8550_bw_table_dec,
+>>>> +    .bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
+>>>> +    .pmdomain_tbl = sm8550_pmdomain_table,
+>>>> +    .pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
+>>>> +    .opp_pd_tbl = sm8550_opp_pd_table,
+>>>> +    .opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
+>>>> +    .clk_tbl = sm8550_clk_table,
+>>>> +    .clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
+>>>> +    /* Upper bound of DMA address range */
+>>>> +    .dma_mask = 0xe0000000 - 1,
+>>>> +    .fwname = "qcom/vpu/vpu33_p4.mbn",
+>>>> +    .pas_id = IRIS_PAS_ID,
+>>>> +    .inst_caps = &platform_inst_cap_sm8550,
+>>>> +    .inst_fw_caps = inst_fw_cap_sm8550,
+>>>> +    .inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_sm8550),
+>>>> +    .tz_cp_config_data = &tz_cp_config_sm8550,
+>>>> +    .core_arch = VIDEO_ARCH_LX,
+>>>> +    .hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
+>>>> +    .ubwc_config = &ubwc_config_sm8550,
+>>>> +    .num_vpp_pipe = 4,
+>>>> +    .max_session_count = 16,
+>>>> +    .max_core_mbpf = ((8192 * 4352) / 256) * 2,
+>>>> +    .input_config_params =
+>>>> +        sm8550_vdec_input_config_params,
+>>>> +    .input_config_params_size =
+>>>> +        ARRAY_SIZE(sm8550_vdec_input_config_params),
+>>>> +    .output_config_params =
+>>>> +        sm8550_vdec_output_config_params,
+>>>> +    .output_config_params_size =
+>>>> +        ARRAY_SIZE(sm8550_vdec_output_config_params),
+>>>> +    .dec_input_prop = sm8550_vdec_subscribe_input_properties,
+>>>> +    .dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
+>>>> +    .dec_output_prop = sm8550_vdec_subscribe_output_properties,
+>>>> +    .dec_output_prop_size =
+>>>> ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+>>>> +
+>>>> +    .dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
+>>>> +    .dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
+>>>> +    .dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+>>>> +    .dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+>>>> +};
+>>> While i was extending the data for QCS8300 (one another iris-v3 variant), i
+>>> realize that this file iris_platform_sm8550.c is getting dumped with all SOC
+>>> platform data. It would be a good idea at this point to split it into something
+>>> like this
+>>> 1. Introduce SOC specific c file and move the respective SOC platform data to
+>>> it, for ex, in this case sm8650_data
+>>> 2. Move the common structs from iris_platform_sm8550.c to
+>>> iris_platform_common.h. This way more SOCs getting added in future, can include
+>>> the common header to reuse them, otherwise it would end up using 8550.c for all
+>>> future SOC.
+>>>
+>>> Share your comments if you have any better approach to manage/re-use these
+>>> platform data considering more SOCs getting added.
+>>
+>> Right, yes the architecture is fine, but I don't feel iris_platform_common is
+>> the right
+>> place, perhaps we could introduce a platform_catalog.c where we could place all
+>> the common
+>> platform data and reuse them from the platform_<soc>.c files ?
+> Common structs would certainly need to be part of a header which can be
+> included. Where do you plan to keep common struct to be used across SOC specific
+> file in your approach ?
 
-Well, you are right, this is not pretty common combo right now. But how 
-many DPLL implementations we have now in kernel?
+Common struct in header would mean they would be duplicated for each platform
+when compiled, which would sub-optimal.
 
-There are 3 mlx5, ice and ptp_ocp. The first two are ethernet NIC 
-drivers that re-expose (translate) DPLL API provided by their firmwares 
-and the 3rd timecard that acts primarily as PTP clock.
+I tried to look at the drm/msm/dpu1 catalog, but:
+1) in our case 99% is common, only a few stuff differs
+2) we have a single struct which requires the array sizes
 
-Azurite is primarly the DPLL chip with multiple DPLL channels and one of 
-its use-case is time synchronization or signal synchronization. Other 
-one can be PTP clock and even GPIO controller where some of input or 
-output pins can be configured not to receive or send periodic signal but 
-can act is GPIO inputs or outputs (depends on wiring and usage).
+This makes using the drm/msm/dpu1 catalog structure impossible.
 
-So I have taken an approach to have common MFD driver that provides a 
-synchronized access to device registers and to have another drivers for 
-particular functionality in well bounded manner (DPLL sub-device (MFD 
-cell) for each DPLL channel, PTP cell for channel that is configured to 
-provide PTP clock and potentially GPIO controller cell but this is 
-out-of-scope now).
+>>
+>> I can design prototype on top of this patchset as an RFC.
+> I was thinking that the changes are not that big, and can be done in existing
+> series though.
 
-Btw. I would be interesting to see a NIC that just exposes an access to 
-I2C bus (implements I2C read/write by NIC firmware) instead of exposing 
-complete DPLL API from the firmware. Just an idea.
+I disagree, this is a much larger subject than sm8650 support itself.
 
-Thanks,
-Ivan
+Neil
+
+> 
+> Thanks,
+> Vikash
+>>
+>> Neil
+>>
+>>>
+>>> Regards,
+>>> Vikash
+>>>
+>>>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c
+>>>> b/drivers/media/platform/qcom/iris/iris_probe.c
+>>>> index
+>>>> 4f8bce6e2002bffee4c93dcaaf6e52bf4e40992e..7cd8650fbe9c09598670530103e3d5edf32953e7 100644
+>>>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+>>>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+>>>> @@ -345,6 +345,10 @@ static const struct of_device_id iris_dt_match[] = {
+>>>>                .data = &sm8250_data,
+>>>>            },
+>>>>    #endif
+>>>> +    {
+>>>> +        .compatible = "qcom,sm8650-iris",
+>>>> +        .data = &sm8650_data,
+>>>> +    },
+>>>>        { },
+>>>>    };
+>>>>    MODULE_DEVICE_TABLE(of, iris_dt_match);
+>>>>
+>>
 
 
