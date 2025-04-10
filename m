@@ -1,179 +1,620 @@
-Return-Path: <devicetree+bounces-165406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A36CA842E7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B35FA842F2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:22:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ACFB465105
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:19:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C10D4A6BFC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCCD284B30;
-	Thu, 10 Apr 2025 12:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNcDZ7ze"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4522836A2;
+	Thu, 10 Apr 2025 12:20:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D42D283C9F;
-	Thu, 10 Apr 2025 12:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9E81E0B62
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:20:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744287558; cv=none; b=feC2s8HsdhICC9i/sar/7qMmZfSZwzsiL+5/nUjuUtkCS+GaWqCUP31McxY+lv1lgUQlAm22I9eHZNFy2UgheyvnHEEDAur8HzPA2A46MLh87GfkP4h+qNfW3ftjQTS53ey065Upldoppq6I+Cb1qBHed848wkrJSk/Q8hqThIw=
+	t=1744287628; cv=none; b=mhQfLamLqpFFCG7oKw6K0oLjo5IyViNuxARaFUAViVaOjTzCgxXdFNKp9L022XfJB1HOduxSUqWXGL1LPcOElPy6aZTRxELizx5CuaaJ60/YJPhEJg8288IqSCQL1fdKVhYF31w/ddRmnASEx1Sj0mR7wkNdHHaazCcWrcaJRzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744287558; c=relaxed/simple;
-	bh=rJa9YkIp7H064dJyAxgUKpVWovBRYUB4q2laXDx+6Hk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DdM8kpzb2aIJ52S41271NItVQLH+XrqpBuxg4sNhqHBHQ/ooXBL/9dNGVI3a9GGMW3Th/KTkBM4q8ff6ox/rDfn7g+lMVxXxCBkJwN73gmtVtZeJCqfCyBArhRE+APKGqTBYLUiia0LE368faETWIhhFwtNqB+2RBKT6+yr0nOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNcDZ7ze; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6B9CC4CEDD;
-	Thu, 10 Apr 2025 12:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744287557;
-	bh=rJa9YkIp7H064dJyAxgUKpVWovBRYUB4q2laXDx+6Hk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZNcDZ7zeGLAjOs0IUNTw68TCAeZu5T9MFU5IO2xMFhFFbnAnSph6oJKUV5Jn0ibWs
-	 PtB/DgowNBc4qLJBOrqoCd3Xj91tTCuC8kN4+xH+DLTuXMnfY+QMD8qUVXuvkAqrOF
-	 5TlLIt2kfs3V1SalL01iiT00s7s7rsEB1J39gkRXGhodPjvzzc9fX9aqHPQ8X7rSlE
-	 Wxu0NAlSVQgBmpl5SffvJAKt13l/bDk6xj5X0Q1rZ7eAlMP0Y5djCmfpNsc1aBfgFJ
-	 Vd6CTJUm8Ao2iCGByV5wy8o9/kBZsnbZIYFXz1Gfk6vL9Ibz84ztFE6sZG27havyI8
-	 5NeA99BLg1+MA==
-Message-ID: <ecde1c37-0fa2-4c2e-ad81-bee3cc7d58c0@kernel.org>
-Date: Thu, 10 Apr 2025 14:19:11 +0200
+	s=arc-20240116; t=1744287628; c=relaxed/simple;
+	bh=RnQI4rW3gJeF4oBjr8qkkvR6vsldEGuaiKpBZWCYWtc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M3FUVjStPqZQN/0YGb0ZaNpAsPMxgJ6O0qCR40lBzU3oG/2ukkmr79ASkcHoufYGR+rNdUo07IkHeQ97j9iqfkPYuRjlDaHSha3vcvlUzDvL+RAbeOa18Bog25hlK77BI/0c2kYBp0C4oGTx7d5s30bX/28HJm7k10RxJRNY/W8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u2qt0-0001re-VG; Thu, 10 Apr 2025 14:20:02 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u2qt0-004GfH-0i;
+	Thu, 10 Apr 2025 14:20:02 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1u2qt0-00AN7d-0G;
+	Thu, 10 Apr 2025 14:20:02 +0200
+Date: Thu, 10 Apr 2025 14:20:02 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	kernel@pengutronix.de, linux-doc@vger.kernel.org,
+	netdev@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	Mark Brown <broonie@kernel.org>,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v7 07/13] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <Z_e3chchKI5j6Ryv@pengutronix.de>
+References: <20250408-feature_poe_port_prio-v7-0-9f5fc9e329cd@bootlin.com>
+ <20250408-feature_poe_port_prio-v7-7-9f5fc9e329cd@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/28] dt-bindings: dpll: Add support for Microchip
- Azurite chip family
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Michal Schmidt <mschmidt@redhat.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407173149.1010216-7-ivecera@redhat.com>
- <7dfede37-2434-4892-8c8d-4d005fa1072b@kernel.org>
- <280e8a8e-b68f-4536-b9a4-4e924dde0783@redhat.com>
- <b65daab2-8184-45f4-af18-8499e80fbc04@kernel.org>
- <b4d22372-ae85-421c-8ce4-669787160da2@redhat.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <b4d22372-ae85-421c-8ce4-669787160da2@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250408-feature_poe_port_prio-v7-7-9f5fc9e329cd@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 10/04/2025 12:28, Ivan Vecera wrote:
+Hi,
+
+looks like i started to review it and forgot to send it. Sorry :)
+
+On Tue, Apr 08, 2025 at 04:32:16PM +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 > 
->>>> 2. What is 'x'? Wildcard? If so, drop and use specific compatibles.
->>>
->>> Microchip refers to the ZL3073x as a family of compatible DPLL chips
->>> with the same features. There is no need to introduce separate
->>> compatible string for each of them.
->>
->> So a wildcard, thus drop. Use full product names. Google search gives me
->> no products for ZL3073x but gives me ZL30735.
+> This patch introduces the ability to configure the PSE PI budget evaluation
+> strategies. Budget evaluation strategies is utilized by PSE controllers to
+> determine which ports to turn off first in scenarios such as power budget
+> exceedance.
 > 
-> I will use more appropriate microchip,azurite compatible.
-
-Hm? What/who gave such hint? Please read writing bindings or any other
-guide/speech about it. If that's a zl30735 then use "zl30735" as device
-part. If you have more devices, use fallbacks. See writing bindings.
-
+> The pis_prio_max value is used to define the maximum priority level
+> supported by the controller. Both the current priority and the maximum
+> priority are exposed to the user through the pse_ethtool_get_status call.
 > 
->>>
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/dpll/dpll-device.yaml
->>>>> +
->>>>> +unevaluatedProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    i2c {
->>>>> +      #address-cells = <1>;
->>>>> +      #size-cells = <0>;
->>>>> +
->>>>> +      dpll@70 {
->>>>> +        compatible = "microchip,zl3073x-i2c";
->>>>
->>>>> +        #address-cells = <0>;
->>>>> +        #size-cells = <0>;
->>>>
->>>> Again, why do you need them if you are not using these two?
->>>
->>> The dpll-device.yaml defines them as required. Shouldn't they be
->>> specified explicitly?
->>
->> But you do not use them. Where is any child node?
+> This patch add support for two mode of budget evaluation strategies.
+> 1. Static Method:
 > 
-> I though I have to specify this due to existence of 'input-pins' and 
-> 'output-pins' in the example.
+>    This method involves distributing power based on PD classification.
+>    It’s straightforward and stable, the PSE core keeping track of the
+>    budget and subtracting the power requested by each PD’s class.
+> 
+>    Advantages: Every PD gets its promised power at any time, which
+>    guarantees reliability.
+> 
+>    Disadvantages: PD classification steps are large, meaning devices
+>    request much more power than they actually need. As a result, the power
+>    supply may only operate at, say, 50% capacity, which is inefficient and
+>    wastes money.
+> 
+>    Priority max value is matching the number of PSE PIs within the PSE.
+> 
+> 2. Dynamic Method:
+> 
+>    To address the inefficiencies of the static method, vendors like
+>    Microchip have introduced dynamic power budgeting, as seen in the
+>    PD692x0 firmware. This method monitors the current consumption per port
+>    and subtracts it from the available power budget. When the budget is
+>    exceeded, lower-priority ports are shut down.
+> 
+>    Advantages: This method optimizes resource utilization, saving costs.
+> 
+>    Disadvantages: Low-priority devices may experience instability.
+> 
+>    Priority max value is set by the PSE controller driver.
+> 
+> For now, budget evaluation methods are not configurable and cannot be
+> mixed. They are hardcoded in the PSE driver itself, as no current PSE
+> controller supports both methods.
+> 
+> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> ---
+> Change in v7:
+> - Move Budget evaluation strategy enum definition out of uAPI, and
+>   remove ethtool prefix.
+> - Add support to retry enabling port that failed to be powered in case of
+>   port disconnection or priority change.
+> - Update the events name in ethtool specs to match the ones described in
+>   the UAPI.
+> 
+> Change in v6:
+> - Remove Budget evaluation strategy from ethtool_pse_control_status struct.
+> 
+> Change in v5:
+> - Save PI previous power allocated in set current limit to be able to
+>   restore the power allocated in case of error.
+> 
+> Change in v4:
+> - Remove disconnection policy features.
+> - Rename port priority to budget evaluation strategy.
+> - Add kdoc
+> 
+> Change in v3:
+> - Add disconnection policy.
+> - Add management of disabled port priority in the interrupt handler.
+> - Move port prio mode in the power domain instead of the PSE.
+> 
+> Change in v2:
+> - Rethink the port priority support.
+> ---
+>  Documentation/netlink/specs/ethtool.yaml |   7 +-
+>  drivers/net/pse-pd/pse_core.c            | 680 ++++++++++++++++++++++++++++---
+>  include/linux/pse-pd/pse.h               |  62 +++
+>  include/uapi/linux/ethtool.h             |  21 +-
+>  4 files changed, 721 insertions(+), 49 deletions(-)
+> 
+> diff --git a/Documentation/netlink/specs/ethtool.yaml b/Documentation/netlink/specs/ethtool.yaml
+> index e78dde7340ae..93e470895dc1 100644
+> --- a/Documentation/netlink/specs/ethtool.yaml
+> +++ b/Documentation/netlink/specs/ethtool.yaml
+> @@ -99,9 +99,12 @@ definitions:
+>    -
+>      name: pse-events
+>      type: flags
+> -    name-prefix: ethtool-pse-event-
+> +    name-prefix: ethtool-
+>      header: linux/ethtool.h
+> -    entries: [ over-current, over-temp ]
+> +    entries: [ pse-event-over-current, pse-event-over-temp,
+> +               c33-pse-event-detection, c33-pse-event-classification,
+> +               c33-pse-event-disconnection, pse-event-over-budget,
+> +               pse-event-sw-pw-control-error ]
+>  
+>  attribute-sets:
+>    -
+> diff --git a/drivers/net/pse-pd/pse_core.c b/drivers/net/pse-pd/pse_core.c
+> index 5f1faa17f298..9b26d44e9498 100644
+> --- a/drivers/net/pse-pd/pse_core.c
+> +++ b/drivers/net/pse-pd/pse_core.c
+> @@ -44,11 +44,14 @@ struct pse_control {
+>   * @id: ID of the power domain
+>   * @supply: Power supply the Power Domain
+>   * @refcnt: Number of gets of this pse_power_domain
+> + * @budget_eval_strategy: Current power budget evaluation strategy of the
+> + *			  power domain
+>   */
+>  struct pse_power_domain {
+>  	int id;
+>  	struct regulator *supply;
+>  	struct kref refcnt;
+> +	u32 budget_eval_strategy;
+>  };
+>  
+>  static int of_load_single_pse_pi_pairset(struct device_node *node,
+> @@ -252,6 +255,89 @@ static int pse_pi_is_hw_enabled(struct pse_controller_dev *pcdev, int id)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * pse_pi_is_failed_to_enable - Is PI in a failed to enable state
+> + * @pcdev: a pointer to the PSE controller device
+> + * @id: Index of the PI
+> + *
+> + * Return: true if the PI is in a failed to enable state, false otherwise
+> + */
+> +static bool pse_pi_is_failed_to_enable(struct pse_controller_dev *pcdev,
+> +				       int id)
+> +{
 
-They do not have addressing, so no need for cells.
+The function name pse_pi_is_failed_to_enable() is misleading. It doesn’t
+check whether the PI actually failed to deliver power — it only checks
+if the admin enable flag is set in software but not yet reflected in the
+hardware admin state.
 
-Best regards,
-Krzysztof
+This is not the same as a real enable failure (like power budget
+exceeded or fault). It may simply mean the controller hasn’t applied the
+request yet.
+
+Please consider renaming the function to something more accurate, like
+pse_pi_admin_enable_not_applied() or pse_pi_admin_state_mismatch(), to
+better reflect what it actually checks.
+
+If the intention is to check whether power is truly being delivered,
+then the function should be rewritten to evaluate the power delivery
+status (e.g., ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING), and the name
+should reflect that.
+
+> +	int ret;
+> +
+> +	/* PI not enabled or nothing is plugged */
+> +	if (!pcdev->pi[id].admin_state_enabled ||
+> +	    !pcdev->pi[id].isr_pd_detected)
+> +		return false;
+> +
+> +	ret = pse_pi_is_hw_enabled(pcdev, id);
+> +	if (ret < 0)
+> +		return ret;
+
+We converting here negative return value to bool.
+
+> +
+> +	return !ret;
+> +}
+> +
+> +static int _pse_pi_enable_sw_pw_ctrl(struct pse_controller_dev *pcdev, int id,
+> +				     struct netlink_ext_ack *extack);
+> +
+> +/**
+> + * pse_pw_d_retry_enable - Retry to enable port of a PSE power domain
+> + *			    that are in the failed to enable state
+> + * @pcdev: a pointer to the PSE controller device
+> + * @pw_d: a pointer to the PSE power domain
+> + */
+> +static void pse_pw_d_retry_enable(struct pse_controller_dev *pcdev,
+> +				  struct pse_power_domain *pw_d)
+> +{
+
+The function name pse_pw_d_retry_enable() may be misleading in the context of
+IEEE 802.3-2022, where “enabled” and “delivering power” are not the same.
+
+This function doesn't just re-apply the "enable" admin request — it tries to
+start delivering power to ports that were already enabled and had a PD
+detected, but didn't receive power (likely due to a previous over-budget
+condition).
+
+Please consider renaming it to something more accurate, such as:
+pse_pw_d_retry_power_delivery()
+pse_pw_d_attempt_restore_delivery()
+
+> +	int i, ret = 0;
+> +
+> +	for (i = 0; i < pcdev->nr_lines; i++) {
+> +		int prio_max = pcdev->nr_lines;
+> +		struct netlink_ext_ack extack;
+> +
+> +		if (pcdev->pi[i].pw_d != pw_d)
+> +			continue;
+> +
+> +		if (!pse_pi_is_failed_to_enable(pcdev, i))
+> +			continue;
+> +
+> +		/* Do not try to enable PI with a lower prio (higher value)
+> +		 * than one which already can't be enabled.
+> +		 */
+> +		if (pcdev->pi[i].prio > prio_max)
+> +			continue;
+> +
+> +		ret = _pse_pi_enable_sw_pw_ctrl(pcdev, i, &extack);
+> +		if (ret == ERANGE)
+> +			prio_max = pcdev->pi[i].prio;
+> +	}
+> +}
+> +
+> +/**
+> + * pse_pw_d_is_sw_pw_control - Is power control software managed
+> + * @pcdev: a pointer to the PSE controller device
+> + * @pw_d: a pointer to the PSE power domain
+> + *
+> + * Return: true if the power control of the power domain is managed from
+> + * the software in the interrupt handler
+> + */
+> +static bool pse_pw_d_is_sw_pw_control(struct pse_controller_dev *pcdev,
+> +				      struct pse_power_domain *pw_d)
+> +{
+> +	if (!pw_d)
+> +		return false;
+> +
+> +	if (pw_d->budget_eval_strategy == PSE_BUDGET_EVAL_STRAT_STATIC)
+> +		return true;
+> +	if (pw_d->budget_eval_strategy == PSE_BUDGET_EVAL_STRAT_DISABLED &&
+> +	    pcdev->ops->pi_enable && pcdev->irq)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+>  static int pse_pi_is_enabled(struct regulator_dev *rdev)
+>  {
+>  	struct pse_controller_dev *pcdev = rdev_get_drvdata(rdev);
+> @@ -264,17 +350,272 @@ static int pse_pi_is_enabled(struct regulator_dev *rdev)
+>  
+>  	id = rdev_get_id(rdev);
+>  	mutex_lock(&pcdev->lock);
+> +	if (pse_pw_d_is_sw_pw_control(pcdev, pcdev->pi[id].pw_d)) {
+> +		ret = pcdev->pi[id].admin_state_enabled;
+> +		goto out;
+> +	}
+> +
+>  	ret = pse_pi_is_hw_enabled(pcdev, id);
+> +
+> +out:
+>  	mutex_unlock(&pcdev->lock);
+>  
+>  	return ret;
+>  }
+>  
+> +/**
+> + * pse_pi_deallocate_pw_budget - Deallocate power budget of the PI
+> + * @pi: a pointer to the PSE PI
+> + */
+> +static void pse_pi_deallocate_pw_budget(struct pse_pi *pi)
+> +{
+> +	if (!pi->pw_d || !pi->pw_allocated_mW)
+> +		return;
+> +
+> +	regulator_free_power_budget(pi->pw_d->supply, pi->pw_allocated_mW);
+> +	pi->pw_allocated_mW = 0;
+> +}
+> +
+> +/**
+> + * _pse_pi_disable - Call disable operation. Assumes the PSE lock has been
+> + *		     acquired.
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int _pse_pi_disable(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	const struct pse_controller_ops *ops = pcdev->ops;
+> +	int ret;
+> +
+> +	if (!ops->pi_disable)
+> +		return -EOPNOTSUPP;
+> +
+> +	ret = ops->pi_disable(pcdev, id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pse_pi_deallocate_pw_budget(&pcdev->pi[id]);
+> +
+> +	if (pse_pw_d_is_sw_pw_control(pcdev, pcdev->pi[id].pw_d))
+> +		pse_pw_d_retry_enable(pcdev, pcdev->pi[id].pw_d);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * pse_control_find_phy_by_id - Find PHY attached to the pse control id
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + *
+> + * Return: PHY device pointer or NULL
+> + */
+> +static struct phy_device *
+> +pse_control_find_phy_by_id(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	struct pse_control *psec;
+> +
+> +	mutex_lock(&pse_list_mutex);
+> +	list_for_each_entry(psec, &pcdev->pse_control_head, list) {
+> +		if (psec->id == id) {
+> +			mutex_unlock(&pse_list_mutex);
+> +			return psec->attached_phydev;
+> +		}
+> +	}
+> +	mutex_unlock(&pse_list_mutex);
+> +	return NULL;
+> +}
+> +
+> +/**
+> + * pse_disable_pi_pol - Disable a PI on a power budget policy
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE PI
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int pse_disable_pi_pol(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	unsigned long notifs = ETHTOOL_PSE_EVENT_OVER_BUDGET;
+> +	struct netlink_ext_ack extack = {};
+> +	struct phy_device *phydev;
+> +	int ret;
+> +
+> +	dev_dbg(pcdev->dev, "Disabling PI %d to free power budget\n", id);
+> +
+> +	NL_SET_ERR_MSG_FMT(&extack,
+> +			   "Disabling PI %d to free power budget", id);
+> +
+> +	ret = _pse_pi_disable(pcdev, id);
+> +	if (ret)
+> +		notifs |= ETHTOOL_PSE_EVENT_SW_PW_CONTROL_ERROR;
+> +
+> +	phydev = pse_control_find_phy_by_id(pcdev, id);
+> +	if (phydev)
+> +		ethnl_pse_send_ntf(phydev, notifs, &extack);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * pse_disable_pi_prio - Disable all PIs of a given priority inside a PSE
+> + *			 power domain
+> + * @pcdev: a pointer to the PSE
+> + * @pw_d: a pointer to the PSE power domain
+> + * @prio: priority
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int pse_disable_pi_prio(struct pse_controller_dev *pcdev,
+> +			       struct pse_power_domain *pw_d,
+> +			       int prio)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < pcdev->nr_lines; i++) {
+> +		int ret;
+> +
+> +		if (pcdev->pi[i].prio != prio ||
+> +		    pcdev->pi[i].pw_d != pw_d ||
+> +		    !pse_pi_is_hw_enabled(pcdev, i))
+
+pse_pi_is_hw_enabled() can return negative value on error.
+
+> +			continue;
+> +
+> +		ret = pse_disable_pi_pol(pcdev, i);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * pse_pi_allocate_pw_budget_static_prio - Allocate power budget for the PI
+> + *					   when the budget eval strategy is
+> + *					   static
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + * @pw_req: power requested in mW
+> + * @extack: extack for error reporting
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int
+> +pse_pi_allocate_pw_budget_static_prio(struct pse_controller_dev *pcdev, int id,
+> +				      int pw_req, struct netlink_ext_ack *extack)
+> +{
+> +	struct pse_pi *pi = &pcdev->pi[id];
+> +	int ret, _prio;
+> +
+> +	_prio = pcdev->nr_lines;
+> +	while (regulator_request_power_budget(pi->pw_d->supply, pw_req) == -ERANGE) {
+> +		if (_prio <= pi->prio) {
+> +			NL_SET_ERR_MSG_FMT(extack,
+> +					   "PI %d: not enough power budget available",
+> +					   id);
+> +			return -ERANGE;
+> +		}
+> +
+> +		ret = pse_disable_pi_prio(pcdev, pi->pw_d, _prio);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		_prio--;
+> +	}
+> +
+> +	pi->pw_allocated_mW = pw_req;
+> +	return 0;
+> +}
+> +
+> +/**
+> + * pse_pi_allocate_pw_budget - Allocate power budget for the PI
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + * @pw_req: power requested in mW
+> + * @extack: extack for error reporting
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int pse_pi_allocate_pw_budget(struct pse_controller_dev *pcdev, int id,
+> +				     int pw_req, struct netlink_ext_ack *extack)
+> +{
+> +	struct pse_pi *pi = &pcdev->pi[id];
+> +
+> +	if (!pi->pw_d)
+> +		return 0;
+> +
+> +	/* PSE_BUDGET_EVAL_STRAT_STATIC */
+> +	if (pi->pw_d->budget_eval_strategy == PSE_BUDGET_EVAL_STRAT_STATIC)
+> +		return pse_pi_allocate_pw_budget_static_prio(pcdev, id, pw_req,
+> +							     extack);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * _pse_pi_enable_sw_pw_ctrl - Enable PSE PI in case of software power control.
+> + *			       Assumes the PSE lock has been acquired
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + * @extack: extack for error reporting
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int _pse_pi_enable_sw_pw_ctrl(struct pse_controller_dev *pcdev, int id,
+> +				     struct netlink_ext_ack *extack)
+> +{
+
+Is it for "admin enable" or "start power delivery"?
+
+> +	const struct pse_controller_ops *ops = pcdev->ops;
+> +	struct pse_pi *pi = &pcdev->pi[id];
+> +	int ret, pw_req;
+> +
+> +	if (!ops->pi_get_pw_req) {
+> +		/* No power allocation management */
+> +		ret = ops->pi_enable(pcdev, id);
+> +		if (ret)
+> +			NL_SET_ERR_MSG_FMT(extack,
+> +					   "PI %d: enable error %d",
+> +					   id, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = ops->pi_get_pw_req(pcdev, id);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	pw_req = ret;
+> +
+> +	/* Compare requested power with port power limit and use the lowest
+> +	 * one.
+> +	 */
+> +	if (ops->pi_get_pw_limit) {
+> +		ret = ops->pi_get_pw_limit(pcdev, id);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		if (ret < pw_req)
+> +			pw_req = ret;
+> +	}
+> +
+> +	ret = pse_pi_allocate_pw_budget(pcdev, id, pw_req, extack);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ops->pi_enable(pcdev, id);
+> +	if (ret) {
+> +		pse_pi_deallocate_pw_budget(pi);
+> +		NL_SET_ERR_MSG_FMT(extack,
+> +				   "PI %d: enable error %d",
+> +				   id, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
