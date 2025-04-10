@@ -1,156 +1,182 @@
-Return-Path: <devicetree+bounces-165247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FD7A83C9A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:22:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7CCA83CAD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B65A1B60F67
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:22:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C379C1B657DF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A9220C486;
-	Thu, 10 Apr 2025 08:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348661EF371;
+	Thu, 10 Apr 2025 08:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NIXQOVlI"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cehBgJ3P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177891E5B84;
-	Thu, 10 Apr 2025 08:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5491E1F1306
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 08:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744273186; cv=none; b=Hrw1vrp5HQKJHpcqUUWuEVPOJMdfCDKMOi13FOuRhgNEfg4fLBklbtAmcS1BMUCUuvxQhXIEh5BZkAFTw/qKNciQdXymj9Zv4a6q0z9+kJfHmsLNSzt6njg7qAwwVtbN+KJGppligi2p2FLE+MfIXFPixptGRSYU0+F8KHO2KMM=
+	t=1744273273; cv=none; b=L1NuqfE/64BpLtl0HH5tNFBCUhPnBnzX5fxgawf7qngMse1A+JlpQ/5zyioTJrhtUjdOS/QtSyVS+mavo3KvDGmFT93TdZC1OA9F6DHk/9p1cipHNPMcaLzJyN4TNLHotxCZLzV9WyqXqSRsDzLAWm88oH+mBCXITwL9nb0j15U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744273186; c=relaxed/simple;
-	bh=JH0ysD7QlUmh3YZt2NcU9owTunnHQH6W/wNghS58NQI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
-	 References:In-Reply-To; b=TwvqH5k0WxOJyrTf334vRYkKKI04Sb2ZVYJLraTUeN8KXKm1P7lkuLZc9dt001t0bDyzb8vJGhsn2+EZZSYpNr4fJ04IGF1yICRA1o0Tpt/zDbkzJwhalmD6BhqouwsnOmCnvorCO3VwzkFKqGhwrLxRdCzf97dZoRIl4Q/2cf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NIXQOVlI; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D63034327A;
-	Thu, 10 Apr 2025 08:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744273181;
+	s=arc-20240116; t=1744273273; c=relaxed/simple;
+	bh=VekH1TtvA9ycbAEh3GkwYb3Y2hHvnuv9qkqAOyAANBg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Sd5Dv9e4hx51fQFM/U3cAD+QlrwYU/4rDHQrasL8KLBKwL5b1+JLzwRp0H8POfneNS2AGykgS9Z6j5aJcmPPuOQGKm1G1DdaX5GbG8vIeXmfIVZlopHnZIfFr0LXpBKED3EWdee3GkKwoG4rspJ9zzdUlQ6rOujRYsgI0VqKmXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cehBgJ3P; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744273270;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/Y5h+5OSRWIwQZiitm22COKTZGTsAm6UEQXwd9f9Grk=;
-	b=NIXQOVlIrym6KHvZ8zKy+qyJJYRaB6rzZvV1l2dctN9BM7O9xMfH4KCGwQoUewtNavGD9l
-	UBub7ZB9EJXHeHkffmFMFZpKwduUBxFGmEmMbN9qUQzSzkj4n7OzJerLwlfXCb1+tkw32Y
-	Aa6lBxB574wk2kfDRXLmAgKci/NcV4jEznQXBH7Dex4YJQUHCYxjHgCvOqSrnOM4Fy9mGX
-	9I1/jses8ZD8ieH1QsKASBBG8m9TpkWw1LG0Ew2teQhH+cufhYIvyoMCuB2uFVFVVO01m0
-	LI6UNdBkzBHpDr7SqGszCBdIQ/Q4nVcla9E9kqu/AoSxP0nqVg7P3Uk1l6ZnNw==
+	bh=+979veQE+KclGLEtYrkcPeF+CuZm6IpwHOpzDxyU3C4=;
+	b=cehBgJ3PSQweF3NYCJouJ+AEUqC1M9l1lM7m149Cv2wyo/3sLGEHxFsUs6XE3O18p3L+vB
+	U0fdVJmQUs2UMinkH8R3NhF79wY5PY6+ItvTq+TU24NjB/lWvfIdqiNbyVI4Jo+d00Ens9
+	HDTX4fE1J58dN7RO9UcnBM0I3bQ+Ovs=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-520-SEnZhfAjOfi0dJpkj5e4Iw-1; Thu,
+ 10 Apr 2025 04:21:06 -0400
+X-MC-Unique: SEnZhfAjOfi0dJpkj5e4Iw-1
+X-Mimecast-MFC-AGG-ID: SEnZhfAjOfi0dJpkj5e4Iw_1744273264
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 9902C1800A3E;
+	Thu, 10 Apr 2025 08:21:02 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A0F751955DCE;
+	Thu, 10 Apr 2025 08:20:57 +0000 (UTC)
+Message-ID: <b73e1103-a670-43da-8f1a-b9c99cd1a90d@redhat.com>
+Date: Thu, 10 Apr 2025 10:20:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Apr 2025 10:19:39 +0200
-Message-Id: <D92T8KH7F8Q1.3MYEC6SZEEGNB@bootlin.com>
-To: "ALOK TIWARI" <alok.a.tiwari@oracle.com>, "Lee Jones" <lee@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>
-Subject: Re: [External] : [PATCH v6 01/12] dt-bindings: mfd: gpio: Add
- MAX7360
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-1-7a2535876e39@bootlin.com>
- <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
-In-Reply-To: <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdekgedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvffuvefhofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedvffdugeeiudevjedtteettefftefhvdeileekhffgleeiteeufeejvedvledtffenucffohhmrghinhepuhhrlhguvghfvghnshgvrdgtohhmpdguvghvihgtvghtrhgvvgdrohhrghdprghnrghlohhgrdgtohhmpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtoheprghlohhkr
- dgrrdhtihifrghrihesohhrrggtlhgvrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 06/14] mfd: zl3073x: Add macros for device registers
+ access
+To: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-7-ivecera@redhat.com>
+ <3e12b213-db36-4a76-9a58-c62dc8b1b2ce@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <3e12b213-db36-4a76-9a58-c62dc8b1b2ce@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
-On Wed Apr 9, 2025 at 5:22 PM CEST, ALOK TIWARI wrote:
->
->
-> On 09-04-2025 20:25, Mathieu Dubois-Briand wrote:
->> Add device tree bindings for Maxim Integrated MAX7360 device with
->> support for keypad, rotary, gpios and pwm functionalities.
->>=20
->> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+
+
+On 10. 04. 25 9:17 dop., Krzysztof Kozlowski wrote:
+> On 09/04/2025 16:42, Ivan Vecera wrote:
+>> Add several macros to access device registers. These macros
+>> defines a couple of static inline functions to ease an access
+>> device registers. There are two types of registers, the 1st type
+>> is a simple one that is defined by an address and size and the 2nd
+>> type is indexed register that is defined by base address, type,
+>> number of register instances and address stride between instances.
+>>
+>> Examples:
+>> __ZL3073X_REG_DEF(reg1, 0x1234, 4, u32);
+>> __ZL3073X_REG_IDX_DEF(idx_reg2, 0x1234, 2, u16, 4, 0x10);
+> 
+> Why can't you use standard FIELD_ macros? Why inventing the wheel again?
+
+This is not about FIELD_* macros replacement. This is an abstraction to 
+access device registers in safe manner. Generated inline functions 
+ensures that proper value or pointer to value type is passed by caller.
+Also in case of arbitrary zl3073x_{read,write_{,idx}_reg() the does not 
+need to know what is the register address.
+
+If the caller just need to read regX or indexed regY it will call just
+
+zl3073x_read_regX(..., &value);
+zl3073x_read_regX(..., idx, &value);
+
+instead of
+
+zl3073x_read_reg(..., ZL3073x_REGX_ADDR, &value);
+zl3073x_read_reg(..., ZL3073x_REGY_ADDR + (idx * ZL3073X_REGY_STRIDE), 
+&value)
+
+The 1st variant is additionally type safe, the caller is warned if it is 
+passing u8 * instead of u32 *.
+
+I tried to take similar approach the mlxsw driver took to access device 
+registers.
+
+If you are only against such macro usage for static inline functions 
+generation, I can avoid them and pre-create them in separate include 
+file like zl3073x_regs.h
+
+>> this defines the following functions:
+>> int zl3073x_read_reg1(struct zl3073x_dev *dev, u32 *value);
+>> int zl3073x_write_reg1(struct zl3073x_dev *dev, u32 value);
+>> int zl3073x_read_idx_reg2(struct zl3073x_dev *dev, unsigned int idx,
+>>                            u32 *value);
+>> int zl3073x_write_idx_reg2(struct zl3073x_dev *dev, unsigned int idx,
+>>                             u32 value);
+> 
+> Do not copy code into commit msg. I asked about this last time. Explain
+> why do you need it, why existing API is not good.
+
+Will drop... I wanted only show how the macros work and what is their output
+
+>>
+>> There are also several shortcut macros to define registers with
+>> certain bit widths: 8, 16, 32 and 48 bits.
+>>
+>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
 >> ---
->>   .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++++++
->>   .../devicetree/bindings/mfd/maxim,max7360.yaml     | 171 +++++++++++++=
-++++++++
->>   2 files changed, 254 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.y=
-aml b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
->> new file mode 100644
->> index 000000000000..21d603d9504c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
->> @@ -0,0 +1,83 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/gpio/max=
-im,max7360-gpio.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp2=
-4O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvakCad_v0$
->> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas=
-/core.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujl=
-nN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvacsB3d9k$
->> +
->> +title: Maxim MAX7360 GPIO controller
->> +
->> +maintainers:
->> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
->> +  - Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
->> +
->> +description: |
->> +  Maxim MAX7360 GPIO controller, in MAX7360 chipset
->> +  https://urldefense.com/v3/__https://www.analog.com/en/products/max736=
-0.html__;!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-=
-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvavZnHZJk$
->> +
->> +  The device provide two series of GPIOs, referred here as GPIOs and GP=
-Os.
-> typo: The device provides two series of GPIOs,
->> +
->> +  PORT0 to PORT7 pins can be used as GPIOs, with support for interrupts=
- and
->> +  constant-current mode. These pins will also be used by the torary enc=
-oder and
-> typo: ie rotary encoder ?
->> +  PWM functionalities.
->> +
->> +  COL2 to COL7 pins can be used as GPOs, there is no input capability. =
-COL pins
->> +  will be partitionned, with the first pins being affected to the keypa=
-d
->> +  functionality and the last ones as GPOs.
->> +
-> typo: partitionned -> partitioned
+> 
+> 
+> ...
+> 
+>> + *
+>> + * Note that these functions have to be called with the device lock
+>> + * taken.
+>> + */
+>> +#define __ZL3073X_REG_IDX_DEF(_name, _addr, _len, _type, _num, _stride)	\
+>> +typedef _type zl3073x_##_name##_t;					\
+>> +static inline __maybe_unused						\
+>> +int zl3073x_read_##_name(struct zl3073x_dev *zldev, unsigned int idx,	\
+>> +			 _type * value)					\
+>> +{									\
+>> +	WARN_ON(idx >= (_num));						\
+> 
+> No need to cause panic reboots. Either review your code so this does not
+> happen or properly handle.
 
-Thanks for your review, I fixed all 3 typos.
+Ack, will replace by
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+if (idx >= (_num))
+	return -EINVAL
+
+Thanks,
+Ivan
 
 
