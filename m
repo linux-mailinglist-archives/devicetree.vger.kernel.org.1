@@ -1,93 +1,116 @@
-Return-Path: <devicetree+bounces-165250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C337A83CEF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:30:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34779A83C1C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CC318A4770
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:25:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94B261B6473A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E9620B21D;
-	Thu, 10 Apr 2025 08:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7281E5B9D;
+	Thu, 10 Apr 2025 08:08:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etC/ghh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB751EF372
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 08:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AD41E572F;
+	Thu, 10 Apr 2025 08:08:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744273429; cv=none; b=gAih20A52YJyi5C/M2JifnNmPbf1YufrkrvG1UJG6cujqtl3O/XikhQKq1xYoCmx9gbrwLBicgFxw/NsVAZx+tS0LnZPZlkuzbsYiv/2ft/AFooQhfTNdZRIEEzI80WCpl0IKLZRgPHTNPlO0MIHUis4vCnI2rNu/y73Q/wdxFQ=
+	t=1744272499; cv=none; b=Xt6HAiJAjKusiDRxDVxZs3+HMEk6SUasReD6hPN4crk9QuZfFiJjO3TSBjn0dvXiVLzB8BxrTLsaKU5GxF3a2jXAMcGIfeoT9Pmx4t90KqxMby9zYBWdnb+sgKAZEetaKzPgOiVC38ceCubFuFAMZwA9dkA4tdsMCOWYwcPGpbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744273429; c=relaxed/simple;
-	bh=jDXMzCGFtFDBoTcrxabt2a9M54AJhVzDoWKMD8H2qRc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JtSJrkf7+ywDEC9N8NQvANY85yUX3Gs+3SGqAzmMCXsV2afJjhEIZbFGK5FEE99wIXhHbrIMROhJf+s5BnsSxVhxiWwQTVvEWSZgN3jt7LWTdie/ImtT/t6rQhOMpk73KDTkIbTu3B93ZLX+iCxYj+ejvoAwatfKV2nkdLGcW0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:9963:4e91:5683:bcc8])
-	by michel.telenet-ops.be with cmsmtp
-	id bLPk2E0080oWysV06LPkLC; Thu, 10 Apr 2025 10:23:44 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1u2nCJ-00000000Gls-0OKt;
-	Thu, 10 Apr 2025 10:23:44 +0200
-Received: from geert by rox.of.borg with local (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1u2mqJ-00000009Hw2-0InG;
-	Thu, 10 Apr 2025 10:00:59 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1744272499; c=relaxed/simple;
+	bh=8ND6dqJylzytwK8QGY61NBtBW3bbGF9AnqUq6PCX2cA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oQOXj4TC4SSmixLxhrsuxNFivRY0UFiH/IpFQAB5PHzBQhCC42kq0jQcnTShHI/DUeDrQR7YdPTp+rziFZWjzGk1tSyIav2YToLZ6QPsmdvEEmMK4G6hz990xIAwZnf2HwDQY+I62TvAgN8nnscC6dUySWyiiPJQlKT6Rd/MWBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etC/ghh+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 355EFC4CEDD;
+	Thu, 10 Apr 2025 08:08:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744272499;
+	bh=8ND6dqJylzytwK8QGY61NBtBW3bbGF9AnqUq6PCX2cA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=etC/ghh+hxK8w7jbzUsZMabc6XyIzS5CT4Mg7Fa7JrIL5CyE1k2PVwADgAFE9Vean
+	 /0aYjyCiEReq33iNmBth8wdQ2Nh5tYasEmVOc6J07KJ+LzQkWTqUyZs9Rl0TLenf2o
+	 riSY3QobJLrHdYdAGrHu8KJivKEY6d5RZfDXb7yzEC8GbDZVy1znKo4POOMqT+69gW
+	 rTR843N8sbkhlXfRYMPovrzBekXMQA+E3bajLciYq6oa8idjQRxqJK0DSNEDbSeW4S
+	 5blEih3PumxcILI8AMhng0P5Z/d7bzOb6KXm1VBfxZawaNRApNjonNqMHmcA7EhlaQ
+	 YuimoL7vdE6zA==
+Date: Thu, 10 Apr 2025 10:08:12 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less RZ/N1 rule
-Date: Thu, 10 Apr 2025 10:00:56 +0200
-Message-ID: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 22/24] irqchip/gic-v5: Add GICv5 ITS support
+Message-ID: <Z/d8bP9GceSVpJAU@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-22-1f26db465f8d@kernel.org>
+ <87jz7ttb7l.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87jz7ttb7l.ffs@tglx>
 
-There is no need to repeat all SoC-specific compatible values in the
-rule for DMA-less RZ/N1 variants.  Use wildcard "{}" instead, to ease
-maintenance.
+On Wed, Apr 09, 2025 at 08:57:02PM +0200, Thomas Gleixner wrote:
+> On Tue, Apr 08 2025 at 12:50, Lorenzo Pieralisi wrote:
+> > +	guard(mutex)(&its->dev_alloc_lock);
+> > +
+> > +	its_dev = gicv5_its_find_device(its, device_id);
+> > +	if (IS_ERR(its_dev))
+> > +		return PTR_ERR(its_dev);
+> > +
+> > +	ret = gicv5_its_alloc_eventid(its_dev, nr_irqs, &event_id_base);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = iommu_dma_prepare_msi(info->desc,
+> > +				    its->its_trans_phys_base);
+> > +	if (ret)
+> > +		goto out_eventid;
+> 
+> As 0-day already complained, guard() and goto does not mix. the simple
+> solution is to do
+> 
+> foo()
+>         guard()
+>         return __foo();
+> 
+> Then you can put the gotos into __foo()
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Yes even though its usage in this function IIUC is technically fine,
+there are other kernel functions where the guard(mutex) is at the
+function entry with gotos that follow.
 
-diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-index 1aa3480d8d818e99..1ffe3834b0a85085 100644
---- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-@@ -17,9 +17,7 @@ allOf:
-       properties:
-         compatible:
-           items:
--            - enum:
--                - renesas,r9a06g032-uart
--                - renesas,r9a06g033-uart
-+            - {}
-             - const: renesas,rzn1-uart
-             - const: snps,dw-apb-uart
-     then:
--- 
-2.43.0
+Regardless, bad idea to mix them, as documented, thanks.
 
+Side note: the bug the bot caught is because I moved the guard(mutex)
+lower in the function and incidentally got past gotos (and gcc did not
+catch it, it has to go up to W=2 to barf).
+
+Anyway - as I mentioned in the cover letter, the current IWB driver
+design, (patch 23 - where the guard(mutex) bug is and more readl_poll_*
+boilerplate :), sorry), is a bit of a question (should I move it to
+DOMAIN_BUS_WIRED_TO_MSI with the fixed eventid caveat to solve somehow),
+or is it OK "as-is", treating it basically as an ITS hardcoded plugin ?
+
+Thank you very much for having a look.
+
+Lorenzo
 
