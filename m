@@ -1,237 +1,165 @@
-Return-Path: <devicetree+bounces-165621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB1AA84CE6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7300BA84D12
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23E698A7D8B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:22:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E0C18A7A15
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:31:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814B7290BB7;
-	Thu, 10 Apr 2025 19:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08AB628F946;
+	Thu, 10 Apr 2025 19:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MfTHyMwR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gJPX7vmi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D926028FFCA
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6404B28F932
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744312810; cv=none; b=JnAWNw2bDrSPncPZOxfr0iGdWYuYpPxfi1G2JOlA6D5ZXcA/dE+n1kWKM/ok5J84ZVA3kA0Y6P4GFD5B8rfHShBJ9mHL4zj6km0PHrCsbWDSyF4RKxVpSNJhWj+gMOlBflJm4BAmL6NlNGm47htuP7Ky4b0XQTv6nMLXnTX+lBM=
+	t=1744313499; cv=none; b=gmQ7piEX/RjGNw/zx3kPmtozxXL0Oq8Bu7pQEYJnYQYLpVGwBIw5xmNssVYWy6Js3RKh71opovBoaADFkDnIE/9wFDzWbOwkhYdnWNsFqmHv1FI+peqgCc+MoJ5rqX+j66bSVj+1G72MKtNJ5lzZQDA9vMa/djlrN1aySgi86DM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744312810; c=relaxed/simple;
-	bh=cmOxgMYeXuiv/pQXl+s/yMcwTC1lnAs0cstnKTzASMM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ezNyqtQJYbJLinp5+ysU6jqPvanhdZmawrAblnMLkeZJRRDo4Gp3O8ANpzcqExHJffQRAk6IpD2cZhqS0NZigUlBmAklAk6mF0vVU55CgWBMegvKKJkmRIn43WRZzTSic+tisDD/Fs8Fbvk08svQKsrszq9uVN8RfOV3Whdu9ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MfTHyMwR; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so10308895e9.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:20:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744312806; x=1744917606; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4PeML4HkryCZ6NAJ6y4QX+nve1DMi7KD87VmFketEG0=;
-        b=MfTHyMwRd2/9FIMXWzp9D7SnMviZTFvIw1r8jdeTyfVuczKaUKapS5OVXzIbDzyjIo
-         GNTZFCLwLPfk2zjUB4/8+B362S2g48MWgkXmhCNR0n6kGgIf/Od5/LpAOu8ns8dBidTp
-         7h7/o1uJna9QfF6wBrw3L8uCUxKD4UIYAXqfUaEov4BU0Y+NOk0/suAM/KETJVTNYqCc
-         PfL2lXKoFljdKqRjw3NktraUfg5w+jKD1CxLf1xW3RqayutnV5gA7hCH34UztiPTbu2/
-         kl7mskRICH3GvRliud6OB4t2/sE3tEyC6IYJ7Fkw5N4lT/TseEjhFC4+KHHi5FiCXfXw
-         7LVQ==
+	s=arc-20240116; t=1744313499; c=relaxed/simple;
+	bh=nvk3AfBlAGN872ZRTShvqoou5aanO8EBPXmNKMB9Veo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=igyVAlOtguvEZ2fc0q5QTiZekQ/BkY9Jnvihff9PEvHKom5e+kEfgRQ6JdV5wddCR2RxJZwIBdLEIUw8HwEgMAwpT0+ol8STzuwjqj7o4tP6W/Lt6afrG41Su7KvtlUdGDNAql6kjIqq4LQG2LtAuX4Rs3HO/+25eyUGM1a+ObM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gJPX7vmi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53AGEjdH028834
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:31:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ds9TtaCY5KQ6iV/Yaj6mG8zs
+	RfUBvQFElU18gYT4+UY=; b=gJPX7vmiC/oS5ak4DBfWZE9ixd9+ysY8osoaEgj7
+	61edvL7XVE34WQiPGOVw+HlwLzPZqN6Ovu/+GgcvyuIN5Fou8pCocDn5TO2+FidD
+	Wz7LXd8COtugpdgTP6aan5mqKNwcaw6Eaf0GjmzDVgUxfoe+yUUEubsrKbMfhYqk
+	clzFgiIVJUr3IQAmlTsx1vUQb+nmnE3+Z1hwaqRorXlUl16NxUFATWerVOK25eip
+	ptaCjZPDZISJHQ3BhWQxySQSOkRyV0ikTUYkHsCESJy+dyEnlfFiSozQDZaSREcy
+	dRWjFRFSY60uxcOGQ30oHZ8nfQ0U31bSL2qbKsBirUC5Dg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbur56r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 19:31:37 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5e2a31f75so351109485a.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:31:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744312806; x=1744917606;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4PeML4HkryCZ6NAJ6y4QX+nve1DMi7KD87VmFketEG0=;
-        b=W5WpXlQ2ZpUwQndU3Ifx0OrlyD4lq2eqxsR6uxYB9ch4ldEUsctnLiNntv2sp9o0vS
-         Xhlvqtl/jxW0cChPwvr4bPXqsPEXdCp96oohTiIO5vfSHtQv2lEoMlajUla5FLIv2Qon
-         b1d2v+TjtA3uc4emFk7hC0oF9FLjKoayPggriRc8bWZUgiPcGeJ/lAmzkddh4HbLniRW
-         KkepmEEvlhX0Ww1BLZadzw2cQwz4T54sExAIwujg5dm6kFNczO70/XRtPaybkFJzkHwO
-         ale1DiDmnQopmKv1951U4L97kF9/y36V19UcyX5Sdtlgx8ZiHkDjllV4SXIRt6GLGI8E
-         alCw==
-X-Forwarded-Encrypted: i=1; AJvYcCXPeTfZdZ14SiUFb8x5XaUgbs37cm415c8Vxi81DXd6WYq4HsSOaA7ur7BunXqB5vwNi1oov82vjTPR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkDNep/RrCuFPhhrciS/ZhHcPXLe9GHkn/8N9wDeKfromkaIoj
-	FIZ5WcuiOgwUmGCx7ntr7JtKLK1NQVxlu2Oi/FhxAVWK785njVB2g1Rs2rfD4Fg=
-X-Gm-Gg: ASbGncvw2CBo0942Ye76sciJqsFIix6Ay7degWEQtK2gvPXnfjvoIGv6W7Wd7LyS/WC
-	+JnRXa9zAixtBX1pEi34BUl9gGDhynukdpOvX4lsYAbIBn8X7OtmDWs0uM6w51/vXQ1RMfA0Cc5
-	dIBuZjeRRdtTRqYeR7n68dVd3H5Our0oC/nktEvamU7Af7j9/5VThBcEGLrv3/G3/U8n9H6VxZi
-	1oMo9YdkqFYhWrwRDg/QFiEt0O9eigFyhy7IrG3/WlUwz3flXSMOg5Rp0EOkJkDYBGaOOkwnmS7
-	A0Krjw+8ZJEBOh26Y74V9p+EKlyEzjHqSiuGlSGhfo0KX3RahqAaMJx4VrtoivcidzMBsWgcsl/
-	Nk5bSrw==
-X-Google-Smtp-Source: AGHT+IHnbbg2oQEhdS9pBWSuU067/lrColYgyfvpNZrHx5zV1btkqBntvobWJ9dX2TLoxmYpRTFngg==
-X-Received: by 2002:a05:600c:4e13:b0:43d:ed:acd5 with SMTP id 5b1f17b1804b1-43f2fedc486mr46994095e9.10.1744312806182;
-        Thu, 10 Apr 2025 12:20:06 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39d893fdf6dsm5698830f8f.90.2025.04.10.12.20.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 12:20:05 -0700 (PDT)
-Message-ID: <919203d2-cae2-4ed8-8144-8303d185d773@linaro.org>
-Date: Thu, 10 Apr 2025 20:20:04 +0100
+        d=1e100.net; s=20230601; t=1744313496; x=1744918296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ds9TtaCY5KQ6iV/Yaj6mG8zsRfUBvQFElU18gYT4+UY=;
+        b=dnYMhQww+Tifw3CzJ3AzJG7Gysp5Ffdv71zE0dM87tSkU74o/zOWg0TY2b8ejqBEF4
+         jcF1aN5kLpDF8uUfSJAJfPLZh+/ntgYIIklktUbjqjc5lpSRBbbP3HPqvqj/ntiPs1YB
+         Uh2ART1DXR2IVCMinn5OXYKhg2qfp+B/VbiOEPR2xbM5a05eVFDmvfbT/kx2xS0MyVsh
+         T2G5Dh9oyXTJIDFhcJwLINXvL+BggD+AnNUsis7vLO9OiS3I36q5gCnLsWB1yfrKQ0Ph
+         ioCSDC3KbZ5XG47RH3XxBodCSOz7CPWaOPArys3tqLqghvrYJtGo5EXM8DbNWg7/PKGn
+         6fDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXalbvrWs3mVz5yYPoLYf06nMa8eFj0q709/kbzj2jjn1FxEHIGBMIvGLmaUQEvaJEV9UiIoKHs1oJO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1wT33vR5vkucjobvymb/G1UEQjc8P/jfwjzvs8UVZnTZSXj1f
+	YQiTChO5NMEpa6xBzo9mUoDGPhTbuWq+Jb0e9UvFZ5HE3rzuJoGubXFnmpnOd5L940PUj+IPQT2
+	5pm0q/kSXfEofAvxorWYJ2wQSooIg+R7wVCF/gY2yBYN43anFxywtqN7zOlcB
+X-Gm-Gg: ASbGncs2TVcZUiWornslu1LUwvgF502sEKIstDbRIjNu1l3VbPD5n9dGlQrYjtqL+k4
+	cMm0d1H/l20k0YrQwLVA0cmTO/3XhH9Y6hbwOIJ+aD2pkodOBvT3xhrL+LRvzabcDoirA1RYgQ2
+	xQZEU4A35GjD5hyBuhBNQnwwgIzVCT+O2/BxoPDzmzKRX39xkzs8LT1tNgxT63s0Ud+oFt4dtpQ
+	6JZIQwfKUFgEa1oPDE5InmymmJOYz6iCFwYUvUPAi6lZbEspIefVLx2IdADtofCHMFSOEt160bP
+	0Zcm0Ry4hLYI2xAbiB9FxlXoUGHBsf5v92L2srADfTd/GLV+9kyJ7jjQb893HYc425q/JEkbphQ
+	=
+X-Received: by 2002:a05:620a:439c:b0:7c5:5e69:4450 with SMTP id af79cd13be357-7c7af0d6384mr32378985a.17.1744313496262;
+        Thu, 10 Apr 2025 12:31:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGqctDDvkKrw5rP7GZctwMAOW52noXSrb/QQM/7LagYwEhTOr3WvKjQ5q57zE/X4Pbf9fAxcQ==
+X-Received: by 2002:a05:620a:439c:b0:7c5:5e69:4450 with SMTP id af79cd13be357-7c7af0d6384mr32373885a.17.1744313495965;
+        Thu, 10 Apr 2025 12:31:35 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d123d84sm228105e87.23.2025.04.10.12.31.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 12:31:35 -0700 (PDT)
+Date: Thu, 10 Apr 2025 22:31:32 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Anthony Ruhier <aruhier@mailbox.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] Support for GPU ACD feature on Adreno X1-85
+Message-ID: <zns3xlyeajvxxpubzzsls5tnr7tnp4ws2dwfx4s7klzn4nslte@gpgdfjzm2s7p>
+References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
+ <dj256lrkc4s5ylqkqdrak6a6p3v62ckkd3orsg7ykz2w6ugllg@rbfkojacklvx>
+ <0d1aaba8-7736-497e-8424-84489c637914@oss.qualcomm.com>
+ <dmzoooujjb4zojjlgovjt6lccxilnnc3yr4j24vj4hwpzf5ouf@e6qkdlekcsnm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v5 8/8] media: platform: qcom/iris: add sm8650 support
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
- <20250410-topic-sm8x50-upstream-iris-catalog-v5-8-44a431574c25@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250410-topic-sm8x50-upstream-iris-catalog-v5-8-44a431574c25@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dmzoooujjb4zojjlgovjt6lccxilnnc3yr4j24vj4hwpzf5ouf@e6qkdlekcsnm>
+X-Proofpoint-GUID: uqkhhySDeSD5bFWQddHSO-rH9J4vLJhU
+X-Proofpoint-ORIG-GUID: uqkhhySDeSD5bFWQddHSO-rH9J4vLJhU
+X-Authority-Analysis: v=2.4 cv=dbeA3WXe c=1 sm=1 tr=0 ts=67f81c99 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=ZR51km1V383oZAxlFiMA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-10_06,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 mlxlogscore=999 phishscore=0 mlxscore=0 spamscore=0
+ malwarescore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2504100141
 
-On 10/04/2025 17:30, Neil Armstrong wrote:
-> Add support for the SM8650 platform by re-using the SM8550
-> definitions and using the vpu33 ops.
+On Thu, Apr 10, 2025 at 05:51:38PM +0200, Anthony Ruhier wrote:
+> Hi,
 > 
-> The SM8650/vpu33 requires more reset lines, but the H.264
-> decoder capabilities are identical.
+> Sorry I should have gave an update on this: I don't think the lockups are
+> related to this patch series, the same problem happens without applying these
+> patches. It seems to increase by a lot the chances that a GPU lockup happens at
+> start, however, so I could use that to debug the real problem.
 > 
-> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e Dell
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   .../media/platform/qcom/iris/iris_catalog_gen2.c   |  1 +
->   .../media/platform/qcom/iris/iris_catalog_sm8650.h | 68 ++++++++++++++++++++++
->   .../platform/qcom/iris/iris_platform_common.h      |  1 +
->   drivers/media/platform/qcom/iris/iris_probe.c      |  4 ++
->   4 files changed, 74 insertions(+)
+> > What firmware files are you using? ZAP surely comes from the Windows
+> > package, but what about GMU and SQE? Linux-firmware?
+> >
+> > Specifically, please provide the GMU version which is printed to dmesg
+> > on first GPU open
 > 
-> diff --git a/drivers/media/platform/qcom/iris/iris_catalog_gen2.c b/drivers/media/platform/qcom/iris/iris_catalog_gen2.c
-> index c3f8ad004cb7f9317859b2594640c7138dbb6534..ad559351f1125d266dedac7eb6e91cda90bbae72 100644
-> --- a/drivers/media/platform/qcom/iris/iris_catalog_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_catalog_gen2.c
-> @@ -186,3 +186,4 @@ static const u32 sm8550_dec_op_int_buf_tbl[] = {
->   
->   /* platforms catalogs */
->   #include "iris_catalog_sm8550.h"
-> +#include "iris_catalog_sm8650.h"
-> diff --git a/drivers/media/platform/qcom/iris/iris_catalog_sm8650.h b/drivers/media/platform/qcom/iris/iris_catalog_sm8650.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..be8737dd4f3d9ec20a457d50076be1b4d841787c
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_catalog_sm8650.h
-> @@ -0,0 +1,68 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _IRIS_CATALOG_SM8650_H
-> +#define _IRIS_CATALOG_SM8650_H
-> +
-> +#define VIDEO_ARCH_LX 1
-> +
-> +static const char * const sm8650_clk_reset_table[] = { "bus", "core" };
-> +
-> +static const char * const sm8650_controller_reset_table[] = { "xo" };
-> +
-> +struct iris_platform_data sm8650_data = {
-> +	.get_instance = iris_hfi_gen2_get_instance,
-> +	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
-> +	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
-> +	.vpu_ops = &iris_vpu33_ops,
-> +	.set_preset_registers = iris_set_sm8550_preset_registers,
-> +	.icc_tbl = sm8550_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-> +	.clk_rst_tbl = sm8650_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8650_clk_reset_table),
-> +	.controller_rst_tbl = sm8650_controller_reset_table,
-> +	.controller_rst_tbl_size = ARRAY_SIZE(sm8650_controller_reset_table),
-> +	.bw_tbl_dec = sm8550_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
-> +	.pmdomain_tbl = sm8550_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
-> +	.opp_pd_tbl = sm8550_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
-> +	.clk_tbl = sm8550_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
-> +	/* Upper bound of DMA address range */
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/vpu/vpu33_p4.mbn",
-> +	.pas_id = IRIS_PAS_ID,
-> +	.inst_caps = &platform_inst_cap_sm8550,
-> +	.inst_fw_caps = inst_fw_cap_sm8550,
-> +	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_sm8550),
-> +	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.core_arch = VIDEO_ARCH_LX,
-> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-> +	.ubwc_config = &ubwc_config_sm8550,
-> +	.num_vpp_pipe = 4,
-> +	.max_session_count = 16,
-> +	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
-> +	.input_config_params =
-> +		sm8550_vdec_input_config_params,
-> +	.input_config_params_size =
-> +		ARRAY_SIZE(sm8550_vdec_input_config_params),
-> +	.output_config_params =
-> +		sm8550_vdec_output_config_params,
-> +	.output_config_params_size =
-> +		ARRAY_SIZE(sm8550_vdec_output_config_params),
-> +	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
-> +	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
-> +	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
-> +	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
-> +
-> +	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-> +	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-> +};
-> +
-> +#endif
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index fdd40fd80178c4c66b37e392d07a0a62f492f108..6bc3a7975b04d612f6c89206eae95dac678695fc 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -35,6 +35,7 @@ enum pipe_type {
->   
->   extern struct iris_platform_data sm8250_data;
->   extern struct iris_platform_data sm8550_data;
-> +extern struct iris_platform_data sm8650_data;
->   
->   enum platform_clk_type {
->   	IRIS_AXI_CLK,
-> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
-> index 4f8bce6e2002bffee4c93dcaaf6e52bf4e40992e..7cd8650fbe9c09598670530103e3d5edf32953e7 100644
-> --- a/drivers/media/platform/qcom/iris/iris_probe.c
-> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
-> @@ -345,6 +345,10 @@ static const struct of_device_id iris_dt_match[] = {
->   			.data = &sm8250_data,
->   		},
->   #endif
-> +	{
-> +		.compatible = "qcom,sm8650-iris",
-> +		.data = &sm8650_data,
-> +	},
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(of, iris_dt_match);
-> 
+> I'm using the firmwares imported from Windows, the Yoga Slim 7x is not in
+> linux-firmware. I understood that the firmware files used by the Slim 7x are
+> quite old, maybe it could be the problem.
 
-This LGTM one thing is I think you should convert the sm8250 stuff into 
-a corresponding iris_catalog_gen1.c
+Recently firmware for Yoga Slim 7x was merged to linux-firmware. Could
+you please check if this helps or not?
 
-Would be grateful if you could add that patch to a V6.
+> 
+> The GMU version:
+> 
+> > [drm] Loaded GMU firmware v4.3.17
+> 
+> Thanks
+> 
+> --
+> Anthony Ruhier
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+-- 
+With best wishes
+Dmitry
 
