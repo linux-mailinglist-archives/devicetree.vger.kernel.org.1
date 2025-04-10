@@ -1,211 +1,91 @@
-Return-Path: <devicetree+bounces-165190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B413A83A9F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:17:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A8C3A83A96
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:17:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AAB48C2B2D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:13:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A926D4A50EB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C0C204C39;
-	Thu, 10 Apr 2025 07:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B65720A5EE;
+	Thu, 10 Apr 2025 07:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j7eVjhap"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="U2VrtSWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4611D5CFE;
-	Thu, 10 Apr 2025 07:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD434207663
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 07:14:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744269217; cv=none; b=O3yNGWfq6lCE4Ns+IxpmoTMGebwpf8g9dRaejWyZfg5Jk67n/qJyGEyDqIeSYVd+d/B6OrTXNYW9xh5DVwkOSVqJq9TlHp01f+M3Y3dbdhS60bAFlehuMkDbGgOqcrK32ICLWhg0WADYNIJyU4gPxEKnWBnWHUKoRAPgleT2XiU=
+	t=1744269277; cv=none; b=VBWVjKAD7lu9Th5sZUUkMrM/8bd0ro8zBuHDJSKSUnbUwBI1Lizk91e58oY4HjCNz/wiDw4kpGRzQJTo33Cy/mNO82t7oF28ZERBe4DPFK3uaDvj8YITJesyT9q5/6ZRXeRqMQw9RAhW6Z+LPyfcMlwmGNBPN6bDs/JGzqhVczc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744269217; c=relaxed/simple;
-	bh=wEprt1V9FwlRv54AeVzv/QmIKFbiUarPRZDJwhM3Qrg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EzaXKtAmrai5Re3jmtiSMZB/FXlbyJDggm4awH2VAqGcD6EOdxbpqVMyVOABWhz1poVRhVsx4LBZsp2hD0znZ+ZlG6oEvnyk1+MocsW+5dFtp/l8to4ENKaDNDwHijBhif5JxmRnXW/VD7t5lN/lI/6YayTA8v/Q2/qU2TjB4zQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j7eVjhap; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A267FC4CEDD;
-	Thu, 10 Apr 2025 07:13:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744269216;
-	bh=wEprt1V9FwlRv54AeVzv/QmIKFbiUarPRZDJwhM3Qrg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j7eVjhapz6xOom/yV5R7ZMb5uI8G/cRGB+fn3rJA5bkidAdBPUjhNC4IqVO27dqsD
-	 /fvJlKHN8zoruwhDiGxISslNVRBI0Sbc3GG1JkK8+woxm0nMAcwFIIcgLYODguM4be
-	 1Mldtygh1RP/v1NpogiDsE9gEg+1le7Lg1Vx7kkr+kQYP1Su5sxpUKMFjljO+j027v
-	 2e5U5vcLS+Sf1AFryIIEOxTdxn5cpH7v7ILVEbLkXWT+Q9Qw29NxbQh6IZO4VD/umm
-	 YOM81fSF8eFKhTUbtMu1SrRXCrPBIW6xNX/yur5CKdpESgNqf3iiqJDQklOBQnZfSV
-	 ry45YCIHYO5Yg==
-Message-ID: <df6a57df-8916-4af2-9eee-10921f90ff93@kernel.org>
-Date: Thu, 10 Apr 2025 09:13:30 +0200
+	s=arc-20240116; t=1744269277; c=relaxed/simple;
+	bh=DI8+V7nELfkp39/M11BFR/XwXd8b32oSimd4PrQco1k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fGwxxi4zMJbjMp/z4QwFL5sEnOW9jQQ4JBavv5EOlkpyrKUd9NGmZspZ6gNTvHewRdyLf75BPhrgr1ipwFLSJwx7kY4lnjnlwlRgu1vCXdtyoqmGUyMFDx5rbBRDhyC5CMiqI4rcz6FL3p4UHK+fDBCnSXHgM8m2H9YXIOTIFV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=U2VrtSWH; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=yTj4Bzw4urWlip
+	6cyxXGZ1ZCJzBrSVlc0X7g4KrUnJM=; b=U2VrtSWHCIPYr1jNbcQjKKnNON7eal
+	54ljkaYuAZxGdjptPFHKCM2JhJIwVkHlis/ab+cCatH/nl+/tNSfnIH/7dSWhWu9
+	t+tJyowO99yiCK1GuOcMKTsV2QSXuRHK3gBs8ePIG6/EmcU+v4bk+nhW4ivid1Hg
+	x0OmRQaMMlksUgFGp0Cr69pgMCC/YxJkXBXyefOuq/oaO0tbeBIFChbM4G7Tpz6/
+	FVIPaLCco6eiAEpNTdHYZycomcker0jIuaO5/ykLnEohzS+gYn0X0Qa+MZTdKU29
+	Mu9FDwYUiYZ+fELwhZC7MdsUxUJxZ3h9TbFjybN/G/NB1VKOes33dDRA==
+Received: (qmail 783770 invoked from network); 10 Apr 2025 09:14:24 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Apr 2025 09:14:24 +0200
+X-UD-Smtp-Session: l3s3148p1@YZ3gVWcypq0gAwDPXyfYALbiJ46yNPq3
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: enable SD card port
+Date: Thu, 10 Apr 2025 09:14:07 +0200
+Message-ID: <20250410071406.9669-4-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
- defs
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-8-ivecera@redhat.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250409144250.206590-8-ivecera@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/04/2025 16:42, Ivan Vecera wrote:
-> Add register definitions for components versions and report them
-> during probe.
-> 
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
->  drivers/mfd/zl3073x-core.c | 36 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
-> 
-> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
-> index f0d85f77a7a76..28f28d00da1cc 100644
-> --- a/drivers/mfd/zl3073x-core.c
-> +++ b/drivers/mfd/zl3073x-core.c
-> @@ -1,7 +1,9 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  
->  #include <linux/array_size.h>
-> +#include <linux/bitfield.h>
->  #include <linux/bits.h>
-> +#include <linux/cleanup.h>
->  #include <linux/dev_printk.h>
->  #include <linux/device.h>
->  #include <linux/export.h>
-> @@ -13,6 +15,14 @@
->  #include <net/devlink.h>
->  #include "zl3073x.h"
->  
-> +/*
-> + * Register Map Page 0, General
-> + */
-> +ZL3073X_REG16_DEF(id,			0x0001);
-> +ZL3073X_REG16_DEF(revision,		0x0003);
-> +ZL3073X_REG16_DEF(fw_ver,		0x0005);
-> +ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
-> +
->  /*
->   * Regmap ranges
->   */
-> @@ -196,7 +206,9 @@ static void zl3073x_devlink_unregister(void *ptr)
->   */
->  int zl3073x_dev_init(struct zl3073x_dev *zldev)
->  {
-> +	u16 id, revision, fw_ver;
->  	struct devlink *devlink;
-> +	u32 cfg_ver;
->  	int rc;
->  
->  	rc = devm_mutex_init(zldev->dev, &zldev->lock);
-> @@ -205,6 +217,30 @@ int zl3073x_dev_init(struct zl3073x_dev *zldev)
->  		return rc;
->  	}
->  
-> +	/* Take device lock */
+As the bindings for RZ/N1D SDHCI controller are now in -next, the DT
+additions for the extension board can now be added, too. Again, to match
+datasheets and schematics, the instances are numbered from '1', not from
+'0'. The wakeup interrupt is only described, not used yet by the driver.
+Parts are taken from the BSP. All double checked, rebased and updated by
+me. dtbs_check is happy, build bots, too.
 
-What is a device lock? Why do you need to comment standard guards/mutexes?
+The series is based on my I2C enablement series [1]. A branch can be
+found here:
 
-> +	scoped_guard(zl3073x, zldev) {
-> +		rc = zl3073x_read_id(zldev, &id);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_revision(zldev, &revision);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_fw_ver(zldev, &fw_ver);
-> +		if (rc)
-> +			return rc;
-> +		rc = zl3073x_read_custom_config_ver(zldev, &cfg_ver);
-> +		if (rc)
-> +			return rc;
-> +	}
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/n1d/enablement
 
-Nothing improved here. Andrew comments are still valid and do not send
-v3 before the discussion is resolved.
+[1] 20250328153134.2881-7-wsa+renesas@sang-engineering.com
 
-> +
-> +	dev_info(zldev->dev, "ChipID(%X), ChipRev(%X), FwVer(%u)\n",
-> +		 id, revision, fw_ver);
-> +	dev_info(zldev->dev, "Custom config version: %lu.%lu.%lu.%lu\n",
-> +		 FIELD_GET(GENMASK(31, 24), cfg_ver),
-> +		 FIELD_GET(GENMASK(23, 16), cfg_ver),
-> +		 FIELD_GET(GENMASK(15, 8), cfg_ver),
-> +		 FIELD_GET(GENMASK(7, 0), cfg_ver));
+Wolfram Sang (2):
+  ARM: dts: renesas: r9a06g032: Describe SDHCI controllers
+  ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe SD card port
 
+ .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 22 +++++++++++++++++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi      | 24 +++++++++++++++++++
+ 2 files changed, 46 insertions(+)
 
-Both should be dev_dbg. Your driver should be silent on success.
+-- 
+2.47.2
 
-> +
->  	devlink = priv_to_devlink(zldev);
->  	devlink_register(devlink);
->  
-
-
-Best regards,
-Krzysztof
 
