@@ -1,276 +1,139 @@
-Return-Path: <devicetree+bounces-165125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93165A837FD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:49:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443B5A83801
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C34013BE0FC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 04:48:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 591A97AE32F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 04:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29E81A3150;
-	Thu, 10 Apr 2025 04:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4791F1524;
+	Thu, 10 Apr 2025 04:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="f+Zthjn1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aIBANVCA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010041.outbound.protection.outlook.com [52.101.228.41])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFFA4A04;
-	Thu, 10 Apr 2025 04:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744260551; cv=fail; b=IVbIAfCSj9uvNnd5cIp7F+YnlhhyxCjnA1p/CVsZSJrUzibQO1VsjensZzowY/MPTLKu8o9CKdKe1dmadiAWocJVJGrR+EO0TiYCo5dzxcn0drgcPQf7Y/cJTgUK7DdjcrcwRMbhgrf57/Gk6zMN0/LTJUTcFCDWEASEhz8nbB4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744260551; c=relaxed/simple;
-	bh=4d4j1v7apmBah+csWQk6VVJ2EHQhN/VwKw7FBF58eZE=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=rqDq9FN3Vmd4RcooHy9DxyM2f533z7HzK/pef2NP0Ag4P0IVDlEr1Gl+6J4iOJS0D9oZBzDnrliyKrhe0ZVD0+rWg+fJOuoN7MdMJOQvHnUt59n9nFOau5oXI/Nz6Zk7b4tVC8n3sShAARGmSh7/ZpDzqpc3mJGFlZEraCjDDm0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=f+Zthjn1; arc=fail smtp.client-ip=52.101.228.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vhaZ3DrsRPU2bqWTgxKuUa1I1XcIyJshw4Qnqs1sZfyV8FBNDyhtSKFdYx2JMF0+2QGU6oAaJA8czzaE2gz0AuPK9Ywp3GAQFVF/4FfzD2D3K8nsPSbpq5KM4+BywM7J41K0iCq1qYXvB990MrwYechE1Ckdji0R6dalYz+Ljc8xdGEbvLP03YlqqYoL2cG3+tmin/A5s1kssGokXITIZTV1guP2bElS/53hOXRJcuQDN1Ql18UM3ZjnOYAsxSPdlWQGBlcIVhqlbye2KSOxSkQWFtJqcQjWlA0bh5xKbM69SmVsUDYpJT1Y9yT8czB4Q/LLo5mjzh1G3dHsjCpeMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=904KDUSkcJt1TvUFUD9WBZ32HLxOoYZoIZvqzbxTDGs=;
- b=g22dYTAUK8tJEDQAogswVrFupiMPWLOuBnLqBz4wFKHx9DpUkxBGSBKaIlbNuhAZtUgiwp/OaKRdHSS7sTj7j8NibkQyqUu5Q+/HUAIqW0QCF/FK9gnaSFDFzI4aVYdleaC6M7wqGaGKrHrOavHkwTtiZfZarLWR3td5VsMNTJUGuEmC6pmcaaLwJxN0y48lpn3PlW6h8slkjoafNJpuRExxULPq0nLG5jIou7jkx3TvjoM4xVEN0XRai8ZLT1xXPQzw0uEdAGUpfZ0WMTLmqVgwoTZWEkCtTYTh0ATe/ID03UWWzPLj6Rwzenc0kZDaSrcb2ZDMSilcxE4il3U/2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=904KDUSkcJt1TvUFUD9WBZ32HLxOoYZoIZvqzbxTDGs=;
- b=f+Zthjn1OwR4vbxwCS3+PhgwQlulsVPSBWaSRTgLnWQs1adt/xpj41r7NSQgBUaznyWOqZdRTo3omTBnFOgSdov2jPNr8OOnlVNlx4+yYox9H7dm/05qjbHfovK8n1X5S5OGznNl61Dv7N668ivfzpyIE+L/5DqYr0dU4y3J42I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OSZPR01MB7097.jpnprd01.prod.outlook.com
- (2603:1096:604:13e::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Thu, 10 Apr
- 2025 04:49:02 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8606.033; Thu, 10 Apr 2025
- 04:49:02 +0000
-Message-ID: <87bjt4liyr.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Niklas =?ISO-8859-1?Q?S=F6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,	Geert Uytterhoeven
- <geert+renesas@glider.be>,	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Conor
- Dooley <conor+dt@kernel.org>,	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,	Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g0: Fix graph_child_address warnings from capture pipeline
-In-Reply-To: <87r02dzsue.wl-kuninori.morimoto.gx@renesas.com>
-References: <20241016134819.1434340-1-niklas.soderlund+renesas@ragnatech.se>
-	<20241209153536.GA74826@ragnatech.se>
-	<20250109150327.GA3352888-robh@kernel.org>
-	<87r02dzsue.wl-kuninori.morimoto.gx@renesas.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Thu, 10 Apr 2025 04:49:01 +0000
-X-ClientProxiedBy: TYCP286CA0118.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29c::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA111C32FF
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 04:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744260595; cv=none; b=goLmJC/8X/Q6x/ZUnscMwUCjWYHP8oGf+Fe7QobSWSPcZy4itQ22ffBlPIX4KMZtCsA5/Ueno2psiComfd6oULuXp3MxyP/tIx4sBL8VaoXrF+w//NFoh+LApp/udxM6XWZSu/N+FQn7Gsl24NQBeCYFoV/Xr/H3J6OKBtCTv6U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744260595; c=relaxed/simple;
+	bh=HJubsNTysXTSg4uK/7vFlSsmHsU1JS438LmRfIfFBYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K7HeJbxR/aByhav6/SVewpE7KG7QtXcjt3RwB8WjuNe39+C3btEpRHoIx/SYu7wJzAMpcUR/1FjwNZEfQxfym1M5T2/PTDXsYFb7bei0MpAqWOA1O+ECfrV5YwNIO4h1BX4sLsJ80HzdewCMvs8YXb84Gyd9NLTQ7nu5SoHaSm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aIBANVCA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 539HHZVn002547
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 04:49:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=EBe4h+OgQF6wvfsXVl90BUY1
+	oHsbYsSIiyiB+HhoGsQ=; b=aIBANVCA2GR+yE21Gs/xRp5QKXTryJ9pEofLPOzE
+	BKPKb0IC0+u5SlPqHWRg+dc97HSIqFMsvwgI5/EgHX63qd1csdaDl252/hiNlWCk
+	4cMODLt7/XFmCyWSRMFf7zU9PUy0d5LNBXHUTpjtYUJEl0pJb6DdqwlqYScLQFPp
+	kZdvaQ3xydV8lV2WvRJAaRaxTixgmmklesbZlfepoiR9g53aYZsutxaX8WHv+lko
+	Y/kIl8NCz6zNlzc8L4zT/6x9IJQb/0C/W63HU2lHv2I+pKBuO6aXpGkEyqtUWWto
+	Wp+9gwov5mql+hFOhuDcry0DzPXwXCdk2rzYbNrRhfNuxg==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1ng1p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 04:49:52 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c549ea7166so65753385a.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Apr 2025 21:49:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744260591; x=1744865391;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EBe4h+OgQF6wvfsXVl90BUY1oHsbYsSIiyiB+HhoGsQ=;
+        b=ed/7eNselKvV/8q5Xa2Dney2VCX+R17vnk0wTXMjJhz/E9zj0lGvhw2kbbhnyp/OMk
+         kmraVa88ikoglXscbgTrTMRfQttdtBCmpNC4IICEGYMrTG4Yhx3iJntLad44zRCuEbvc
+         /0QfiVRzJFOquUxO0J1Zi5Wp9ZmgiFC5qM38EIp60DL4pFiTWJT1HOZkXSmIr+YSB/9t
+         7CGSA/vRWYLJhR2d9baptP8Wullh4CVsAK9Je6AYDuKXJP3OKB7G0BoshHQP1t5kaZQZ
+         mm7BjTDwXoWY1uxx6wFoYge1Au1Y8b+vAEXHE3paQh4xPN+PVveezv0huRsnZEhfjk+R
+         JDtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUg/5yXjPQz88ZM6/G+zGzASZuX2RLfwqQLDL/5NUhKm4veL1Ys0uPNfYfG/mFTk22gl/m+VHQ3CHpX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl5kdzmlVSyzoctsGQiRditZOlmom9dd9DtuhzSpZfDdvtqQpx
+	P4uL5OUcSh6y9XJE3rim1ayAXY0SvjjppibjEIDMbj+5pJIor3SSEbClwVBiXJT/6Z/JpsBBczE
+	2QCs9ELZWT6dN5HkDxEa9K6HP5GGw3+2h4L56YvmShmP9In13OXO806PjGtoqvQnQqOKN
+X-Gm-Gg: ASbGncum8lMExrPvyx/uaKnDa3t5JPivTCM6/hRpl4SyH5WykbhX2jL9ViegfCoTQi7
+	P+RIl5KRWR7kpAlyty0KE9xypZjCad864Zam9DhaUbCHKy1lYn9tARfKpj8ZB2SAvPnT/uBcIGA
+	TE3nmJ0/eNjJVKT5jGh7Yk6mrjHU17CoL5yfWkWswgj9miDJoo93RD6ievPxuKcQ0d2YM89rrKJ
+	TZwLTpZTIwnufrtFUenjmJCzQA2yJjhVC3xMmbEoFUfwc9639BLQN+N/IfuEKExZOnD7YsT+dAI
+	1Slft3adOHc2jkb4+SEbP2mtzNTqraIk3HEx2QayaBVK7qLLMbk1qRhik2P3k8Al2eSKu/aoRdU
+	=
+X-Received: by 2002:a05:620a:394f:b0:7c7:a5e1:f204 with SMTP id af79cd13be357-7c7a76d0513mr192039585a.56.1744260591132;
+        Wed, 09 Apr 2025 21:49:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFck7/LVrUqvTqOk8GDKtlJNoq9VvB11DSq0iOs78rjGlby6/VccIdHdBwARgqpjy/7DrynVQ==
+X-Received: by 2002:a05:620a:394f:b0:7c7:a5e1:f204 with SMTP id af79cd13be357-7c7a76d0513mr192038085a.56.1744260590818;
+        Wed, 09 Apr 2025 21:49:50 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d51051dsm38905e87.182.2025.04.09.21.49.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 21:49:49 -0700 (PDT)
+Date: Thu, 10 Apr 2025 07:49:46 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-hp-x14: Fix up BT pinctrl
+ node name
+Message-ID: <dyfj4b74at2hr5xftohn6byfa3tzsr233y7wmgf4aums3hjnax@2lgotcdl37x6>
+References: <20250409-topic-x14s_bt_tlmm-v1-1-b159395b7922@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSZPR01MB7097:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38dc7654-f216-4ffb-e240-08dd77eb034d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?tEjpPPf63d6hQUpHKOrPAzD0Ci+3Z9CK6qb0ArcQc6xQ89kD7p9DkNCWVn7h?=
- =?us-ascii?Q?+7cEK3yoxJ/4akbxXzCtb633+aYXpDpVYW6PxMhIhlu5yBlQ7wCuirsHEv03?=
- =?us-ascii?Q?5QtksClflYrtMIqb4A9y50ciChbLy0/dtai8Dwv4JZB/77PvClrNSjMnv/Qd?=
- =?us-ascii?Q?GS6Xz+4OTQmIY10SM/ZM9FxDvGBAMq22mhldEyg21bCmLgW41Ef3Uqk8YK7S?=
- =?us-ascii?Q?BVkl2D52OJ2BUKaUFaU83nAQgQjPMKv8jPn3ZZ31rC2Bcgt1c/CNZ8kbBRYv?=
- =?us-ascii?Q?FR6AqL+k+pNSkfQvHVPXaZL/rM9ng3tkmo7HBop5AOcTaBf4k+3+UVDokZ8Y?=
- =?us-ascii?Q?K4502RL1A/uYH/z588/4OxIYDGfr+M2jTclaLpzED7kGvzH11UKc78wPPWTA?=
- =?us-ascii?Q?0lzl1gpl/GBFM7GpV9pXVPwdR3dKEKmOdULjRPLj6QQ2TXlALdco+Rl41sp9?=
- =?us-ascii?Q?R8iIoGc1hOrantr7uzqUdbFdwYoif8xuPh8X5TdCH8OmyQkshfGXB6tKpgVD?=
- =?us-ascii?Q?vMoO+KGIUdu3GPJPltDu+VqHDlYYYTUKBj9ECI7FfbaTRS96KQLGNjTRo2su?=
- =?us-ascii?Q?ZY9j6j3q2lWPYgXw5fsi8BlyPuezt6t5ub4hpttNIMFNkrDMD9uNiVJUdehg?=
- =?us-ascii?Q?gUJs30nZY3e6V1QyAdajWFjgfdvsC9ZGZ6gaqQHLxwh4VBFtnD3MhS2l7FqP?=
- =?us-ascii?Q?f8IkAuWtB98iLP5ahj7KP0lOA/45frHk+3K89nL6X+Ve1Y51wX3q+Q/sqBVw?=
- =?us-ascii?Q?Faue0fX7blCIjmBI0Iuy+0jnXdl0U654ZoFO9A5lK2qDTI073jnI2ZJelNmL?=
- =?us-ascii?Q?BORq9cH/XlH6nZ0brasB3UeHxBKo+TvbDGYIngKA4mN42jAlsNYAFPLYW8O6?=
- =?us-ascii?Q?/M5A2/zHeQeHyHgUiEnjzFj9hKH1sXhsay9bUlHxeDmdExgll2x6kceXMXAF?=
- =?us-ascii?Q?bcROIzbEWl6r56Pb9WXtmt3vFuTjZ6fUnAiI14Fc28NpJb4hwm0+Km7WneGx?=
- =?us-ascii?Q?Xsa/6Dpjz4LSl2vFvMEYDwAAUKT0hAblj8EoX7Es+JSneySoVHzsS8FxBSzg?=
- =?us-ascii?Q?03ljXCPSW4losgqfWMpZixMNaWryJ50y2zFuEB6GwJcpMqWpnyr/FNjYDkvh?=
- =?us-ascii?Q?f1hWQpKLYAYONGPTRDIVxvBK5ywsRULi6y6vyEoFgWLsxBQ6ieI4gSKkfdkA?=
- =?us-ascii?Q?MBjhxI9XCVNmVucyB0Z9avXZgoc4/lpJvChuaqkkriAnM3BQ8CCgWiaTf5gk?=
- =?us-ascii?Q?P7wquDR/0KPPLpyRLmctpVejmVMUCvymKzAjdGsv2YskOcup/iQiiYWqfLQf?=
- =?us-ascii?Q?aZCXXDOp97NxRf7Nyqav4rUImxsotifhXDJ4culd+Pm6wqe9AGwgkW+0I0NI?=
- =?us-ascii?Q?oCqUJSfwLOSeI0fp9fFfZio+snPLeLywYWdO5iYuXcqM4PINHmTyqzbx24mg?=
- =?us-ascii?Q?nTuhd9H1XM8khVGktL9mxi6lSA077lPD?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sDbpyT4m9DAzT6kR2Avm7D0ckHgEi1IJjAEzTdKgbBdViYOUpcDe4Ik/t6g0?=
- =?us-ascii?Q?Pk68iv+aX4HfMETmKPykAgy0pAt9yXFUbExi0QvSKDUf3mysZ5RpuHF0JoXH?=
- =?us-ascii?Q?FcYTv9oznOS+c7ZqIoMdYyoc+nsFPbLndQtoiAbUNr6ycgnO1b1ZgY5cKzLM?=
- =?us-ascii?Q?U9300pzFDdN1bg3ipTE9GgFj9YTVPAb0Sq2tlbsC/NCKXDQnwjX9b+R18ORU?=
- =?us-ascii?Q?lKiiJDtuG4nvIghZRxhU3fy19L4vmA771HJtVuemd8EyzMW3KFTy27puxAjw?=
- =?us-ascii?Q?t7hryM7PT2oLAzDc6EYURFh4u3mqH2kpLdzC06bZXdE6Yxd6voM5IOpOcs01?=
- =?us-ascii?Q?qT0aDXW+W58VuqPirBIgWRf5w7y6mXvnyJpWdzY8R1/XhGmA4HlpV92AHIUE?=
- =?us-ascii?Q?wLrXgVaOib94Ow7HbPiBD2pL29JSYX7r5TtoOTMTDTbfqI/aEE+g27ETEIDt?=
- =?us-ascii?Q?cm8jY2MoTpXOo/pcsQUCW0yBZFnV/gDT6r7jmQRxt4YhkiZM8+R36mcUuesg?=
- =?us-ascii?Q?vL8+3m1xJeM42Qi7M1HHEihO6vBzTHu/qAKYhFHfblU71VHRb8nwEYnAIfat?=
- =?us-ascii?Q?qNj3z44iOJbzWQzoOXZ/0ovAZ3MLZXnCtmlwtArAic3V6EAKKecbyvG0ByjV?=
- =?us-ascii?Q?H1YhFa5CF9S9ed2HTVKl64DPJvXTriuV9G8o1Kh2xljLZpEfZqfKYjZqREwh?=
- =?us-ascii?Q?zF9XOgbtv6FnEunH318vdBaUcI28CxdBbWZK/V7EEsqrKdo5FBUj9JbDMQva?=
- =?us-ascii?Q?NoSWBrOONp1caT6U/GVkzLk0DZVd/cSc92PruXWyCPSOwOB/6oDvX98e9Aqc?=
- =?us-ascii?Q?FxEHIQw6PtRmM+GO1Pvn/V3wh4KC/FcIfrb8NRsmHCgsS0ig/x0puEQIaJOe?=
- =?us-ascii?Q?SCfXL0tZP7D6vQzOU9Hi/syen9mWD2JNrOhh/iZ0RnODc01SFbEk+tslfi5q?=
- =?us-ascii?Q?EpILG05Q1Yq8V7kwZAXQ7ZNtxtu2DzRGaqqjb9yahFNFsDqn6w2E9vr4XEZG?=
- =?us-ascii?Q?5KBwSUbctxa/fLIz9wD6qUNbuhtBtpP3x0+j6r14PT7o8hUDcIsA5DFJ655j?=
- =?us-ascii?Q?KcMbojlH57ngyZgC1rrzToVr2hmQ/xNl+QIvZtoB8SqDCBzpN1Yhl/G7wWwT?=
- =?us-ascii?Q?y0Mqjvnfeha7+YFygt8bwh1SvXfVtvY9RTNsEh53xY1vAUTqWwYRy9Fh3N0w?=
- =?us-ascii?Q?po5NaVyKkLyAvNFMPbH9jm1SxQsCZou2cwlhSIZln6PZgKDOdVE1azvvHHeQ?=
- =?us-ascii?Q?G2K/VeQ8WKDDAKIn20cNwwmKZZqk8ZpV5SV0n3RxwVH01dGyEunWbDuDKOzp?=
- =?us-ascii?Q?pcvGjIqxEMVdoitFLW84r28OEOBkx7nNVlz9w3M4Bm4zPUkSA+Bjz39oYJ2k?=
- =?us-ascii?Q?ia4jfsybLgcRAtmexpdabzzQw/PyHPD7yw6Y3X9sWLf0pBqdARuVicOiClTB?=
- =?us-ascii?Q?81kSFz5ZY4pX0oB1+LYUrw0G9mRCilHJmnEnMTqBhjgcRV2JtLalDxAcnqDi?=
- =?us-ascii?Q?XMoIxTvlL8rRudzpbkOeeLP5Tde0BOHJX+Rh61xZSqLD1QOtjBNT4cRmhq6N?=
- =?us-ascii?Q?QOzulHQ4riIiWWGwZeTsGcQBOPnh/sEwdFpsfmi7K9+5HzPvilCm/DNhQeRs?=
- =?us-ascii?Q?XVVV0dnEtQSSpqB+gZM8+iI=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38dc7654-f216-4ffb-e240-08dd77eb034d
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 04:49:02.3645
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vt7h5tdgCstAGFHl1AeAV21k8E6uBTou//xiZaRlD5y4TZ+9vU2df7EQk/6/+PmmaDYKO+KQR/YUv4JC91n11C9B14Mt9kCvuOjLvxv1zuvbzgIP0yQKGHDw6XcTDS+p
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB7097
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250409-topic-x14s_bt_tlmm-v1-1-b159395b7922@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: 36zLWskRle4WpsgzHlqM_yAYX_uuj7f2
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f74df0 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=9F8HMpmrTCUkXK7qiZgA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: 36zLWskRle4WpsgzHlqM_yAYX_uuj7f2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=671 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504100034
 
+On Wed, Apr 09, 2025 at 05:00:00PM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> The schema expects all TLMM subnodes to end in -state.
+> Fix it up.
+> 
+> Fixes: 6f18b8d4142c ("arm64: dts: qcom: x1e80100-hp-x14: dt for HP Omnibook X Laptop 14")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Hi Rob
-Cc Geert
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> 
 
-> > > Sorry to bother you but I wonder if you could help me understand why the
-> > > dtc checker warns for the issues I tried to work around in this patch,
-> > > and if possible how I can improve my solution to get rid of the
-> > > warnings.
-> > >
-> > > This patch addresses the same problem for a few different devices. I
-> > > will focus on the last one (/soc/isp@fed00000/ports/port@0) for my
-> > > question, but all warnings here have the same issue.
-> > >
-> > > I have a port node the represents a sink for a video input. This sink
-> > > can either be connected to source A or source B, but not both at the
-> > > same time. So each possible source is represented by an endpoint in the
-> > > port node. Each endpoint have specific register address on the port bus
-> > > that is described in the bindings as they map to different physical pins
-> > > on the hardware.
-> > >
-> > > The issue I have is that not all hardware configurations have both
-> > > source A and B populated. All combinations of A, B and C are possible
-> > > depending on the platform.
-> > >
-> > > A)
-> > >     ports {
-> > >         ...
-> > >         port@0 {
-> > >             ...
-> > >             sourceA: endpoint@0 {
-> > >                 reg = <0>
-> > >             };
-> > >             sourceB: endpoint@1 {
-> > >                 reg = <1>
-> > >             };
-> > >         };
-> > >     };
-> > >
-> > > B)
-> > >     ports {
-> > >         ...
-> > >         port@0 {
-> > >             ...
-> > >             sourceA: endpoint@0 {
-> > >                 reg = <0>
-> > >             };
-> > >         };
-> > >     };
-> > >
-> > > C)
-> > >     ports {
-> > >         ...
-> > >         port@0 {
-> > >             ...
-> > >             sourceB: endpoint@1 {
-> > >                 reg = <1>
-> > >             };
-> > >         };
-> > >     };
-> > >
-> > > For option A and C the checker is happy, but for option B the warnings
-> > > this patch tries to address are triggered. While reading the
-> > > dtc/checks.c I find check_graph_child_address() is the one that is
-> > > triggering the warning. And this function explicitly checks for port
-> > > buses with a single endpoint with a register value of 0.
-> > >
-> > > This check was added way back in 2018 in commit df536831d02c ("checks:
-> > > add graph binding checks"). But I can't find any information on the
-> > > specifics. Is this design a bad idea for port buses for some reason I
-> > > don't understand? AFIU this design is possible on other type of buses?
-> > > And do you have any guidance on how I can dig myself out of this hole?
-> >
-> > Don't.
-> >
-> > The check is only with W=1. It is for cases where there is never more
-> > than 1 endpoint. dtc can't distinguish when that is the case, so there's
-> > going to be cases to ignore. Perhaps we could demote it W=2, but I'd
-> > prefer not to. Making W=1 warning free may be a platform goal, but
-> > that's not an overall go. If we fix something everywhere, then the check
-> > is promoted.
->
-> I get this warning, but I'm not using W=1 option.
-> I'm using v6.13-rcX, but which kernel version hide it in normal compile
-> (= without W=1) ?
->
-> 	${linux}/arch/arm64/boot/dts/renesas/r8a779a0.dtsi:1189.12-1199.7:
-> 	  Warning (graph_child_address): /soc/video@e6ef0000/ports/port@2:
-> 	  graph node has single child node 'endpoint@0', #address-cells/#size-cells
-> 	  are not necessary
-
-I got same warning (without W=1), on isp too.
-How to solve it ?
-
-linux/arch/arm64/boot/dts/renesas/r8a779g0.dtsi:2291.12-2301.7: Warning (graph_child_address): /soc/isp@fed00000/
-ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-Traceback (most recent call last):
-  File "/home/morimoto/my_python/lib/python3.12/site-packages/jsonschema/validators.py", line 966, in resolve_fragment
-    document = document[part]
-               ~~~~~~~~^^^^^^
-TypeError: 'bool' object is not subscriptable
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/morimoto/my_python/bin/dt-validate", line 8, in <module>
-
-
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+-- 
+With best wishes
+Dmitry
 
