@@ -1,154 +1,117 @@
-Return-Path: <devicetree+bounces-165661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D843FA84FB7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:36:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A51A84FCF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E74AE7A4808
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:34:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDCB81B6272E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B09C1EBA03;
-	Thu, 10 Apr 2025 22:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F73420E702;
+	Thu, 10 Apr 2025 22:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aaP+8pzk"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="St9i/IlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C712905;
-	Thu, 10 Apr 2025 22:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAD420C470
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 22:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744324556; cv=none; b=IbamwT1nl7UOOULUSQsUuhjzHkQ/GYKghDlQhfElWBYTNd9KaQytBuC6QUrZFKEhAlM6lDKKj3ieQXcraLY5cCo8YA4KK4HMi4MFVJMdjF+pnC5QHeOPFeiqsw6Jn4hVyHhEJPX2N2dE+j/pvWNGrAnWGmyaqFrciuo+Q+M7TL0=
+	t=1744325437; cv=none; b=rB8+OFD3tcUHeFF1IeoXNXdtOm9pzyjTQaCVkEjPlxCQVbCLM3oxzOVaPswzoiLrgH0g5hrgL3BFMJ5dHRSq1p66tsJmtzu6LVFIaoQLaNalehvaLvBzUMOf928pdy+r4qpkevFZBqUsgTryhOjgBGC9eRnn7lm+JJ6l3/HQddA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744324556; c=relaxed/simple;
-	bh=c1qpPL+yyFnz5f3Ay//CYrfHeZAMl12w1V/xFcL9rHk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pi11lMGKCu8YzrPSfdqK69+JFGmTrkoniWCxlajGe3AhB51GSiBUc81xiQf5CRHEg0KSqIh8C8OGnJuVt8BCKI/T/e2a7ebwCR3tAnqnKr9xEt8uEUbkPgB2G/0Lg2MSzJTxGFjLmJM4H5/KBPkhvu8PbYv/VQpZmWQ3/WJuyfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aaP+8pzk; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMZkFm1933242
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 10 Apr 2025 17:35:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744324546;
-	bh=uAHWlrkGaGa/sJ3ZWC6puhhyYjNhD0uWw1WtiT3oZXA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=aaP+8pzkOCSycvOOl74ognY5yyrUQJuhrNr4m55ZHqJ01ukyv5ozjXRCGOm926WrG
-	 5eezpEAJCii4xFBn5IOoXnZW3ewTO7w4JOb/HVcK3JFgT2Ije2Yy5C1fTQBgE844vy
-	 HgRCjcEIj2tS+cGXB5CVkXfeDoRCZz1Cm1ynwLoA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMZjVJ017990
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 10 Apr 2025 17:35:46 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Apr 2025 17:35:45 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Apr 2025 17:35:45 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AMZjPt092627;
-	Thu, 10 Apr 2025 17:35:45 -0500
-Date: Thu, 10 Apr 2025 17:35:45 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Robert Nelson <robertcnelson@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
-	<jm@ti.com>,
-        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Deepak Khatri
-	<lorforlinux@beagleboard.org>,
-        Ayush Singh <ayush@beagleboard.org>, <kamlesh@ti.com>,
-        <praneeth@ti.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Message-ID: <20250410223545.m747qkoqpwsz57ae@septum>
-References: <20250408231823.826163-1-robertcnelson@gmail.com>
- <20250408231823.826163-2-robertcnelson@gmail.com>
- <CAOCHtYhFKO=LRN8qp-w+rkTGKJ8t-LnqgqbQW9P6CO3=EeuufA@mail.gmail.com>
- <20250409130918.d3cyzv3to65oktv2@vision>
- <CAOCHtYgpkBXZmZEDz6gUCO2x+WGA_paKHFHS-Br=ypo+AFrBmw@mail.gmail.com>
- <20250410120822.3vsrt42iyfs75h6q@spearhead>
- <CAOCHtYh7LWhTBOSsua9_=wxSTNt9HmvUaAFCiVS6a8G6dV4AoA@mail.gmail.com>
+	s=arc-20240116; t=1744325437; c=relaxed/simple;
+	bh=P1iXDiE8J8ek4XOmWgtJcdDtey4KnTMCvw2UkhMIrE4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=guDWywTwwKX46sWucvIK48jX4t7BzcH58d1kI+siyjjfGkljbNhlPkUWs3lnh6rVlgQm31GAlg+ttAHTMQ+7EmbJplKZv/WrUyi8Q0N65gWjXbeug0bEkBX8aMGC+jHJ58Gd9cpqp2jStZ/s0OS3vdu5bmoFvjsfy379/aWEOeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=St9i/IlO; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.10.206])
+	by linux.microsoft.com (Postfix) with ESMTPSA id EDD132114DAB;
+	Thu, 10 Apr 2025 15:50:34 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com EDD132114DAB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1744325435;
+	bh=XQOB4P9tl5xP8BTMFQTkA/5MgocI9fZkIBoJhuuZIMM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=St9i/IlObVbj6pZJi6K4m05RyLTZHZvLujb+r7TY89ASvq7FBJpBLSi7ZjiU0ZVzN
+	 IIH1/NU3Qc0MZsjrX3TLCrd0llm3w8ouWNCkmNP/L6TKsEaf1MlbMoWtaALEDj9gRn
+	 damsdo3DPTHe1skB73yFsOhNmbZcL9NN6x3DkFBI=
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev
+Cc: jgg@ziepe.ca,
+	will@kernel.org,
+	jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com,
+	code@tyhicks.com,
+	eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com
+Subject: [PATCH v2 0/3] arm-smmu: select suitable IOVA
+Date: Thu, 10 Apr 2025 15:50:27 -0700
+Message-Id: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOCHtYh7LWhTBOSsua9_=wxSTNt9HmvUaAFCiVS6a8G6dV4AoA@mail.gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-On 12:15-20250410, Robert Nelson wrote:
-> On Thu, Apr 10, 2025 at 7:08 AM Nishanth Menon <nm@ti.com> wrote:
-> >
-> > On 10:12-20250409, Robert Nelson wrote:
-> > [..]
-> >
-> > > > Any idea why we are crashing?
-> > > > https://gist.github.com/RobertCNelson/c68c96a8a1dc6e4d39d8c48fc13ca1c1#file-gistfile1-txt-L311
-> > > >
-> > > > I don't see the same crash in beagleplay:
-> > > > https://gist.github.com/nmenon/5709a8714d3ab31cac5c00b515d04752
-> > >
-> > > On 6.14.x i have a little more, info...
-> > >
-> > > I've got all the CRYPTO stuff enabled, pretty sure that comes from
-> > > CONFIG_CRYPTO_MANAGER
-> > >
-> > > CONFIG_CRYPTO_MANAGER=y
-> > > CONFIG_CRYPTO_MANAGER2=y
-> > > CONFIG_CRYPTO_USER=y
-> > > # CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
-> > > # CONFIG_CRYPTO_MANAGER_EXTRA_TESTS is not set
-> > >
-> > > https://openbeagle.org/RobertCNelson/arm64-multiplatform/-/blob/v6.15.x-arm64-k3/patches/defconfig?ref_type=heads#L9578
-> >
-> > OK this looks like to be a independent pre-existing bug then and needs
-> > to be investigated, but it is probably independent of this patch itself.
-> >
-> > Could you share a clean defconfig bootlog? I have no existing scheme to
-> > test this on my end. In the logs, please also print
-> > /sys/kernel/debug/devices_deferred to ensure we have nothing sticking
-> > out in our defconfig?
-> 
-> Okay stable v6.15-rc1 with arm64 defconfig..
-> 
-> https://gist.github.com/RobertCNelson/666638abac8eee4ed573997996362450
-> 
-> root@am6232-pb2-87:~# ls -lha /sys/kernel/debug/device_component/
 
 
-umm..  It was cat /sys/kernel/debug/devices_deferred
+Hi,
 
-> total 0
-> drwxr-xr-x  2 root root 0 Dec 31  1969 .
-> drwx------ 44 root root 0 Dec 31  1969 ..
+Currently, the MSI_IOVA_BASE address is hard-coded to 0x80000000,
+assuming that all platforms have this address available for MSI IOVA
+reservation. However, this is not always the case, as some platforms
+reserve this address for other purposes. Consequently, these platforms
+cannot reserve the MSI_IOVA_BASE address for MSI.
 
-Thank you Robert. I will assume there are no deferred devices or
-additional defconfig components to enable.
+There was an [1] attempt to fix this problem by passing the MSI IOVA
+base as a kernel command line parameter.
+
+This patch series aims to address the issue by introducing a new DTS
+property, "arm,smmu-faulty-msi-iova" which can be used to hold faulty
+MSI IOVA address. This property can be passed to ARM SMMU drivers
+via device tree so that the drivers can select appropriate MSI IOVA base
+address which doesn't intersect with the faulty MSI IOVA address.
+
+This approach accommodates platforms that do not have the default MSI base address
+available for MSI reservation.
+
+[1]: https://lore.kernel.org/lkml/20200914181307.117792-1-vemegava@linux.microsoft.com/
+
+Thanks,
+Shyam
+
+---
+v2:
+- add new dts property to hold faulty MSI IOVA and select appropriate
+  MSI IOVA address
+
+v1:
+Link: https://lore.kernel.org/linux-iommu/20250116232307.1436693-1-shyamsaini@linux.microsoft.com/
+
+Shyam Saini (3):
+  arm-smmu: move MSI_IOVA macro definitions
+  arm-smmu: select suitable MSI IOVA
+  dt-bindings: iommu: add "arm,smmu-faulty-msi-iova" property
+
+ .../bindings/iommu/arm,smmu-v3.yaml           |  8 +++
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |  8 +++
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   |  9 +++-
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  3 --
+ drivers/iommu/arm/arm-smmu/arm-smmu.c         | 10 ++--
+ drivers/iommu/virtio-iommu.c                  |  2 -
+ include/linux/iommu.h                         | 52 +++++++++++++++++++
+ 7 files changed, 81 insertions(+), 11 deletions(-)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.34.1
+
 
