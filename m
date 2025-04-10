@@ -1,368 +1,86 @@
-Return-Path: <devicetree+bounces-165171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3EA839AF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:46:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A5BA839B2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33729462F09
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:46:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F33B7AF256
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7718A2045A1;
-	Thu, 10 Apr 2025 06:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71E72036E3;
+	Thu, 10 Apr 2025 06:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="R2hdi96c";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="PSAvIW3P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYokwitx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DED11D5143
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 06:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E641D63C7;
+	Thu, 10 Apr 2025 06:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744267598; cv=none; b=gHi8O+vct5heGNBjuS07CUUTNb5LBpVAJbpAZmcOE0U+N5Mr2LbFo9Xemehl5LP4GfBnEembaaHNs7Ek87yjBHl9T7808UnFkfr916V2oeSyUnTT+ebCqgb3ScyX6HsnPIMfZ5KLHSy5M7t3THaaRb3ApLFmMfHVCEwbcok63tM=
+	t=1744267654; cv=none; b=rWaxaanF8LhK2qrjof5erK42Aj3ddpdg7Y0YnrUBVcuSMZosPTBXhRUNFAUZS8MoQNFltcT2Woc6C64z4sDjqCw+7qGbgJ9U2kYoK1I8WF9fbXgFgr5666MzghKij78iG20gvPYdjW08v+zk5dvkN5pjV47qBGoWB5W15n/RUPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744267598; c=relaxed/simple;
-	bh=0X1VRhLWVu1Os0QmeVRy5jVmkThieLulTpQLXTIax3U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UDIUH+xZ3TJMcolAdH3jQvvH645PJB7zr2hsFUX2/nqOhILQ2/WurNujvBaYHv/pO1EjSHSERtdn59ky9dOkmkGyiNPf4KYMgfwI+LwvhGHtzVRPcZugLFxY8SLishJv3PSSRQd0rCDu2EQufmH7ZTjyJOg5W7jXjb4pdCVtzgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=R2hdi96c; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=PSAvIW3P reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1744267594; x=1775803594;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=LhTk5eEl1mfzJeZRCk8tqJRARMxVGHA4PYoLJRHQY/U=;
-  b=R2hdi96ci5bXYDSxmHhOOWnUopRnuFYK+InXI3ymlmxrcA77PsgWT0IY
-   DhHDGli1Rv6fBPzCs0z1nueWyLSUFsCAJip6khA04wrVp58AcWh4su1xo
-   PS3LZd0dL3ti6Cft6Utdpz0OoNHBE8PuV2QwiuRrPFNPDu7KjXUgeShku
-   KGQROtLuqQ5odgjRskBiBItvtEXmXHyA1BLbOT10LUzV7IEEUfBv2Qv2U
-   4WbiqJO2HVthOiEcfTHOMXzj7U9eYrjimXdboi3r7hAOga5B5IiooR4S9
-   om8aKq9VHr9QzdNACF/3EI1e10lbLBcg26+UXpNK6EBWSzN6WhJOQZiMy
-   g==;
-X-CSE-ConnectionGUID: 62GB+poBTYesEavmwqwQdg==
-X-CSE-MsgGUID: AYRWs7IISduZAutwYzqOwg==
-X-IronPort-AV: E=Sophos;i="6.15,202,1739833200"; 
-   d="scan'208";a="43444076"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 10 Apr 2025 08:46:31 +0200
-X-CheckPoint: {67F76947-F-F35B2447-E1635CDE}
-X-MAIL-CPID: 7D6055AE6D1CC76D938C826B4F8389AB_1
-X-Control-Analysis: str=0001.0A006378.67F76945.0019,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 00ECD166944;
-	Thu, 10 Apr 2025 08:46:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1744267587;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LhTk5eEl1mfzJeZRCk8tqJRARMxVGHA4PYoLJRHQY/U=;
-	b=PSAvIW3Plv9L8n0jLSX4an9g+Uo2DobBiEFKAGC930tF4ujS3LaszrX8dokMs/O6uxhEgs
-	6naRi983sXQDmQ1Sd/IZ1Kt3npiGSfZRoMLdqjVTPzB/da0VXxyiL7I6HLwESgCNEZ/bh5
-	UtWt4ZEX9D/GMMZHY2z6eQTtM2UtKEFMlOUbPIgsZBdUo/FTGuwSRf6N2diIhAM7UB0Ijm
-	20HTJEpBDxtmOabWKd7wU0inXrPNtlxuR+mmV7shbNpNxwcVA3wXFe+V06Of+PHd61p3tl
-	JAQqYZ0JBNyUltp/bMKBG5lRDMKDhSSE2Iwyld3Eg0/Bh15ZaCMrDUmnqwEGlg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de,
- linux-arm-kernel@lists.infradead.org
-Cc: kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- aisheng.dong@nxp.com, peng.fan@nxp.com, frank.li@nxp.com,
- Jacky Bai <ping.bai@nxp.com>
-Subject:
- Re: [PATCH v5 3/3] arm64: dts: freescale: Add minimal dts support for imx943
- evk
-Date: Thu, 10 Apr 2025 08:46:25 +0200
-Message-ID: <3627104.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250410062826.3344545-4-ping.bai@nxp.com>
-References:
- <20250410062826.3344545-1-ping.bai@nxp.com>
- <20250410062826.3344545-4-ping.bai@nxp.com>
+	s=arc-20240116; t=1744267654; c=relaxed/simple;
+	bh=8hkLcLDH7nSI13qsqezdG+87BGroYwujWBW8KumB1MM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q97m0YpKnCZKibtN6CWySy08oaoaob7tT1OI5e3iATvNV7F842qT4Xe7DaJR0uM32W+kNiEpT9lhJLjdAKgzKWdwohQa5mZM8sKXGn52voRsrIlcLRpLJIwQAa0w1fKR9FSR87DOxyiHw+yYleD7prKEl49s0iNDFgePByz+wSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYokwitx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573C1C4CEE3;
+	Thu, 10 Apr 2025 06:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744267653;
+	bh=8hkLcLDH7nSI13qsqezdG+87BGroYwujWBW8KumB1MM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LYokwitx/IQTfloJqvtw9W73YftJtdBU9KKufIeVzr+DmF74EgudgIWvwL5qBMRS4
+	 jlp6EKU8xwPIazNpv/LIihUWSCGEhx5fFvCcm1Bg7ujD7sWjnmKQ0udLkRJCjla8wG
+	 2la6raLHHiilW8u2uMsju0vz314FXtc5GtUwXJeK8FYzeqPLd3pEN+45lUkKeYRF/G
+	 D7BXESDXQ5HkD+c1IXKwHovGosEVDPYnF6bSALkkjYvyPZRsUHwHyHgRz3SrHxQFoR
+	 NfDhJU1HBUy+zx3oG6MjlVlciUHm1GdOTi8+mPJ1sgInqt6RWcInhWuuEeoMEzTnnB
+	 WQUf2NuxzZ7Xg==
+Date: Thu, 10 Apr 2025 08:47:31 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Tingwei Zhang <quic_tingweiz@quicinc.com>, Jinlong Mao <quic_jinlmao@quicinc.com>, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: arm: Add an interrupt property for
+ Coresight CTCU
+Message-ID: <20250410-demonic-woodoo-kudu-bcd994@shite>
+References: <20250410013330.3609482-1-jie.gan@oss.qualcomm.com>
+ <20250410013330.3609482-3-jie.gan@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250410013330.3609482-3-jie.gan@oss.qualcomm.com>
 
-Hi,
+On Thu, Apr 10, 2025 at 09:33:27AM GMT, Jie Gan wrote:
+> Add an interrupt property to CTCU device. The interrupt will be triggered
+> when the data size in the ETR buffer exceeds the threshlod of the
 
-Am Donnerstag, 10. April 2025, 08:28:26 CEST schrieb Jacky Bai:
-> Add the minimal board dts support for i.MX943 EVK. Only the
-> console uart, SD & eMMC are enabled for linux basic boot.
->=20
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  - v5 changes:
->   - remove the unused and not documented 'fsl,cd-gpio-wakeup-disable'
->     property from usdhc node.
->=20
->  - v4 changes:
->   - no
->=20
->  - v3 changes:
->   - no
->=20
->  - v2 changes:
->   - newly added for board dts
-> ---
->  arch/arm64/boot/dts/freescale/Makefile       |   1 +
->  arch/arm64/boot/dts/freescale/imx943-evk.dts | 195 +++++++++++++++++++
->  2 files changed, 196 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943-evk.dts
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
-/freescale/Makefile
-> index b6d3fe26d621..2fe86fc6d73a 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -303,6 +303,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx93-tqma9352-mba93xxla.=
-dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx93-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx95-15x15-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx95-19x19-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx943-evk.dtb
+typo: threshold?
 
-Uh, please sort the entries alphabetically, thus imx94 goes before imx95.
+> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL register
+> of CTCU device will enable the interrupt.
 
-> =20
->  imx8mm-kontron-dl-dtbs			:=3D imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dt=
-bo
-> =20
-> diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx943-evk.dts
-> new file mode 100644
-> index 000000000000..b0bb08bb67d5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> @@ -0,0 +1,195 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2024-2025 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx943.dtsi"
-> +
-> +/ {
-> +	compatible =3D "fsl,imx943-evk", "fsl,imx94";
-> +	model =3D "NXP i.MX943 EVK board";
-> +
-> +	aliases {
-> +		mmc0 =3D &usdhc1;
-> +		mmc1 =3D &usdhc2;
-> +		serial0 =3D &lpuart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D &lpuart1;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible =3D "regulator-fixed";
-> +		off-on-delay-us =3D <12000>;
-> +		pinctrl-0 =3D <&pinctrl_reg_usdhc2_vmmc>;
-> +		pinctrl-names =3D "default";
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-name =3D "VDD_SD2_3V3";
-> +		gpio =3D <&gpio4 27 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reserved-memory {
-> +		ranges;
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +
-> +		linux,cma {
-> +			compatible =3D "shared-dma-pool";
-> +			alloc-ranges =3D <0 0x80000000 0 0x7f000000>;
-> +			reusable;
-> +			size =3D <0 0x10000000>;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		reg =3D <0x0 0x80000000 0x0 0x80000000>;
-> +		device_type =3D "memory";
-> +	};
-> +};
-> +
-> +&lpuart1 {
-> +	pinctrl-0 =3D <&pinctrl_uart1>;
-> +	pinctrl-names =3D "default";
-> +	status =3D "okay";
-> +};
-> +
-> +&scmi_iomuxc {
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_UART1_TXD__LPUART1_TX		0x31e
-> +			IMX94_PAD_UART1_RXD__LPUART1_RX		0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD1_CLK__USDHC1_CLK		0x158e
-> +			IMX94_PAD_SD1_CMD__USDHC1_CMD		0x138e
-> +			IMX94_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
-> +			IMX94_PAD_SD1_DATA1__USDHC1_DATA1	0x138e
-> +			IMX94_PAD_SD1_DATA2__USDHC1_DATA2	0x138e
-> +			IMX94_PAD_SD1_DATA3__USDHC1_DATA3	0x138e
-> +			IMX94_PAD_SD1_DATA4__USDHC1_DATA4	0x138e
-> +			IMX94_PAD_SD1_DATA5__USDHC1_DATA5	0x138e
-> +			IMX94_PAD_SD1_DATA6__USDHC1_DATA6	0x138e
-> +			IMX94_PAD_SD1_DATA7__USDHC1_DATA7	0x138e
-> +			IMX94_PAD_SD1_STROBE__USDHC1_STROBE	0x158e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-> +			IMX94_PAD_SD1_CMD__USDHC1_CMD		0x13fe
-> +			IMX94_PAD_SD1_DATA0__USDHC1_DATA0	0x13fe
-> +			IMX94_PAD_SD1_DATA1__USDHC1_DATA1	0x13fe
-> +			IMX94_PAD_SD1_DATA2__USDHC1_DATA2	0x13fe
-> +			IMX94_PAD_SD1_DATA3__USDHC1_DATA3	0x13fe
-> +			IMX94_PAD_SD1_DATA4__USDHC1_DATA4	0x13fe
-> +			IMX94_PAD_SD1_DATA5__USDHC1_DATA5	0x13fe
-> +			IMX94_PAD_SD1_DATA6__USDHC1_DATA6	0x13fe
-> +			IMX94_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
-> +			IMX94_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD1_CLK__USDHC1_CLK		0x158e
-> +			IMX94_PAD_SD1_CMD__USDHC1_CMD		0x138e
-> +			IMX94_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
-> +			IMX94_PAD_SD1_DATA1__USDHC1_DATA1	0x138e
-> +			IMX94_PAD_SD1_DATA2__USDHC1_DATA2	0x138e
-> +			IMX94_PAD_SD1_DATA3__USDHC1_DATA3	0x138e
-> +			IMX94_PAD_SD1_DATA4__USDHC1_DATA4	0x138e
-> +			IMX94_PAD_SD1_DATA5__USDHC1_DATA5	0x138e
-> +			IMX94_PAD_SD1_DATA6__USDHC1_DATA6	0x138e
-> +			IMX94_PAD_SD1_DATA7__USDHC1_DATA7	0x138e
-> +			IMX94_PAD_SD1_STROBE__USDHC1_STROBE	0x158e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD2_CLK__USDHC2_CLK		0x158e
-> +			IMX94_PAD_SD2_CMD__USDHC2_CMD		0x138e
-> +			IMX94_PAD_SD2_DATA0__USDHC2_DATA0	0x138e
-> +			IMX94_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-> +			IMX94_PAD_SD2_DATA2__USDHC2_DATA2	0x138e
-> +			IMX94_PAD_SD2_DATA3__USDHC2_DATA3	0x138e
-> +			IMX94_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD2_CLK__USDHC2_CLK		0x15fe
-> +			IMX94_PAD_SD2_CMD__USDHC2_CMD		0x13fe
-> +			IMX94_PAD_SD2_DATA0__USDHC2_DATA0	0x13fe
-> +			IMX94_PAD_SD2_DATA1__USDHC2_DATA1	0x13fe
-> +			IMX94_PAD_SD2_DATA2__USDHC2_DATA2	0x13fe
-> +			IMX94_PAD_SD2_DATA3__USDHC2_DATA3	0x13fe
-> +			IMX94_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD2_CD_B__GPIO4_IO20		0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD2_CLK__USDHC2_CLK		0x158e
-> +			IMX94_PAD_SD2_CMD__USDHC2_CMD		0x138e
-> +			IMX94_PAD_SD2_DATA0__USDHC2_DATA0	0x138e
-> +			IMX94_PAD_SD2_DATA1__USDHC2_DATA1	0x138e
-> +			IMX94_PAD_SD2_DATA2__USDHC2_DATA2	0x138e
-> +			IMX94_PAD_SD2_DATA3__USDHC2_DATA3	0x138e
-> +			IMX94_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: usdhc2regvmmcgrp {
-> +		fsl,pins =3D <
-> +			IMX94_PAD_SD2_RESET_B__GPIO4_IO27	0x31e
-> +		>;
-> +	};
-> +};
-> +
-> +&usdhc1 {
-> +	pinctrl-0 =3D <&pinctrl_usdhc1>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc1_200mhz>;
-> +	pinctrl-3 =3D <&pinctrl_usdhc1>;
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz", "sleep";
-
-Is the sleep pinctrl necessary if it is the same as 'default'?
-
-> +	bus-width =3D <8>;
-> +	non-removable;
-> +	no-sdio;
-> +	no-sd;
-> +	status =3D "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-3 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz", "sleep";
-
-Same here.
-
-> +	bus-width =3D <4>;
-> +	cd-gpios =3D <&gpio4 20 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply =3D <&reg_usdhc2_vmmc>;
-
-This is probably also 'no-mmc', no? Maybe even 'no-sdio'.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Alexander
-
-> +	status =3D "okay";
-> +};
-> +
-> +&wdog3 {
-> +	fsl,ext-reset-output;
-> +	status =3D "okay";
-> +};
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
 
