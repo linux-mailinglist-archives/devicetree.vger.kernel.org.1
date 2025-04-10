@@ -1,496 +1,226 @@
-Return-Path: <devicetree+bounces-165214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B338FA83B8A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:44:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4488A83BA7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:50:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A938F188E940
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:43:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA3699E023D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D272045A6;
-	Thu, 10 Apr 2025 07:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9838C1E2613;
+	Thu, 10 Apr 2025 07:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TcNs4cuB"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JGqG+vMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71571F1932;
-	Thu, 10 Apr 2025 07:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E615E1DF985
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 07:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744270982; cv=none; b=Qjs2Cw+iHDeQxjytTa8CgBOvoLIN+5GjwLX0LBQ0zotnoMRsLSSEaj2ztcYXItTEuhl3pwlAolXuhkwJ1+PLx9Z5WowoP26/NQvid0loitf75OeBw40K5sAoEOQbcYheknDkmNJeiiRG7QJOPcdi1iZ860YL8ZG9yAxyioBe7MU=
+	t=1744271165; cv=none; b=iC7UTSyDdK70UtnSZhM1hrk6K/2Q54pi31v3PCF3+7IaFQK0/qAtQowtohKE245khNy0Ikj1sNOzC+CX/hNmWeJQntwuY+oh+eO57iwtoSk2SC9TTMeX/C0OatOFitlvVmdxfU4v+6IBUIvP9zv+u4vUSKp9p1O2+W0ujckPimo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744270982; c=relaxed/simple;
-	bh=qEoYekXX5sCrALDE6l7uxfoTVE2rec0BZ6mOu36pRZE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=qJl1LqKuO3yjV+rHxNil2rkqmUcCx7Mb0OIVksMijhOXitQ4okyD7FiTGXPWnubjtjpBT2ukKXTY5G8IhCbk3soVhvCzy6qlks5aiZZuGIj889tITATk6mWzn79y8VI2Ptz697ORbaYwGgIlRe0rSNXtAMhsO32QqoHewblum0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TcNs4cuB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818EFC4CEDD;
-	Thu, 10 Apr 2025 07:43:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744270982;
-	bh=qEoYekXX5sCrALDE6l7uxfoTVE2rec0BZ6mOu36pRZE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=TcNs4cuBp/hRZ5//YjZvg7tfj3/7mk+LcgavFyhrFmE1NKHFiVFQP6sB/EDSVnfeU
-	 sJhRuB0eydFOcsOnpXtL6xpC8uHrLs95TDoODn4BLcen6yRXW/JkB9mORIkVZVHAYD
-	 cS+PS8zzmXfiqOsPVviyMNjnxuPVLC/T2OpE45TH9tXP7e81k+hGz8de8uQIA1Ww5w
-	 MLLGiVBiJMAmf/cHgruZb5x7KHpWhtOJNUvub/OPkUSWeXYyiftZtA7vj0B7A++03d
-	 JGok6bnhX8jq0lI6VSML9m+LYs5LomQx+AuX/sxzN/BN+h7d8dXpIQ3cLaTDXRBOEN
-	 LUcm06oo5FZBg==
-From: Mattijs Korpershoek <mkorpershoek@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
- John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for
- reserved memory
-In-Reply-To: <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
-References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
- <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
-Date: Thu, 10 Apr 2025 09:42:58 +0200
-Message-ID: <8734eg1myl.fsf@baylibre.com>
+	s=arc-20240116; t=1744271165; c=relaxed/simple;
+	bh=9KkuM3PxR3O/kSEkhfLpDrsgcymd6VI76hN32SdMmuw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QGnLznLCnmagCjz1dAxbgrz86X6xIFgOsTLydRKZAqbiFyOVjtcBJ1z62HnBIT+qEF8Y+i0sH6YHmpNPUA+PQC9DZ4S4BCyNPo9VJ2KxzWEzvQd2zqQDTaEpljaTvGU88A8QJbAlzHUT3sqdw6NIcYfagRzeaAagzqUNnSKz1Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=JGqG+vMh; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744271162;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=F58ZWliydz3U6uMmvLSlm0nGnQbwI4yd1xZW1tjL3iY=;
+	b=JGqG+vMhqnhqDXcKDPzquFWItvFnMcFmRLhtXLtskRO8vx29ByXS6/FTdk1QuvVw01Smhm
+	p0BX6v1NfDlK/JKUBjaue8RJvdByYsRHx71YZ4Kuoc3qxce7c9dyGupW6vlEwntCIOrvJm
+	vBZ53V2cHBwKzGAjzym+QJfu54lu2Ro=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-379-gl3OVORbO3iDtlv_t2Huzg-1; Thu,
+ 10 Apr 2025 03:45:56 -0400
+X-MC-Unique: gl3OVORbO3iDtlv_t2Huzg-1
+X-Mimecast-MFC-AGG-ID: gl3OVORbO3iDtlv_t2Huzg_1744271154
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4C48C19541B1;
+	Thu, 10 Apr 2025 07:45:54 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 1F81019560AD;
+	Thu, 10 Apr 2025 07:45:48 +0000 (UTC)
+Message-ID: <1a78fc71-fcf6-446e-9ada-c14420f9c5fe@redhat.com>
+Date: Thu, 10 Apr 2025 09:45:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/14] dt-bindings: dpll: Add support for Microchip
+ Azurite chip family
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-3-ivecera@redhat.com>
+ <20250410-skylark-of-silent-symmetry-afdec9@shite>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250410-skylark-of-silent-symmetry-afdec9@shite>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-Hi Maxime,
 
-Thank you for the patch.
 
-On lun., avril 07, 2025 at 18:29, Maxime Ripard <mripard@kernel.org> wrote:
+On 10. 04. 25 9:06 dop., Krzysztof Kozlowski wrote:
+> On Wed, Apr 09, 2025 at 04:42:38PM GMT, Ivan Vecera wrote:
+>> Add DT bindings for Microchip Azurite DPLL chip family. These chips
+>> provides 2 independent DPLL channels, up to 10 differential or
+>> single-ended inputs and up to 20 differential or 20 single-ended outputs.
+>> It can be connected via I2C or SPI busses.
+>>
+>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>> ---
+>>   .../bindings/dpll/microchip,zl3073x-i2c.yaml  | 74 ++++++++++++++++++
+>>   .../bindings/dpll/microchip,zl3073x-spi.yaml  | 77 +++++++++++++++++++
+> 
+> No, you do not get two files. No such bindings were accepted since some
+> years.
+> 
+>>   2 files changed, 151 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
+>> new file mode 100644
+>> index 0000000000000..d9280988f9eb7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/dpll/microchip,zl3073x-i2c.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: I2C-attached Microchip Azurite DPLL device
+>> +
+>> +maintainers:
+>> +  - Ivan Vecera <ivecera@redhat.com>
+>> +
+>> +description:
+>> +  Microchip Azurite DPLL (ZL3073x) is a family of DPLL devices that
+>> +  provides 2 independent DPLL channels, up to 10 differential or
+>> +  single-ended inputs and up to 20 differential or 20 single-ended outputs.
+>> +  It can be connected via multiple busses, one of them being I2C.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - microchip,zl3073x-i2c
+> 
+> I already said: you have one compatible, not two. One.
 
-> Some reserved memory regions might have particular memory setup or
-> attributes that make them good candidates for heaps.
->
-> Let's provide a heap type that will create a new heap for each reserved
-> memory region flagged as such.
->
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  drivers/dma-buf/heaps/Kconfig         |   8 +
->  drivers/dma-buf/heaps/Makefile        |   1 +
->  drivers/dma-buf/heaps/carveout_heap.c | 360 ++++++++++++++++++++++++++++++++++
->  3 files changed, 369 insertions(+)
->
-> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-> index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..c6981d696733b4d8d0c3f6f5a37d967fd6a1a4a2 100644
-> --- a/drivers/dma-buf/heaps/Kconfig
-> +++ b/drivers/dma-buf/heaps/Kconfig
-> @@ -1,5 +1,13 @@
-> +config DMABUF_HEAPS_CARVEOUT
-> +	bool "Carveout Heaps"
+Ah, you mean something like:
+iio/accel/adi,adxl313.yaml
 
-Nitpick: Shouldn't this be: "DMA-BUF Carveout Heaps" ?
-This way, we are consistent with the other entries in this Kconfig.
+Do you?
 
-In my opinion, I don't know enough about dma-buf to do a good review,
-but I've tried my best by comparing this to a downstream heap I'm using from:
+> Also, still wildcard, so still a no.
 
-https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/drivers/dma-buf/heaps/carveout-heap.c?h=ti-android-linux-6.6.y
+This is not wildcard, Microchip uses this to designate DPLL devices with 
+the same characteristics.
 
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+But I can use microchip,azurite, is it more appropriate?
 
-> +	depends on DMABUF_HEAPS
-> +	help
-> +	  Choose this option to enable the carveout dmabuf heap. The carveout
-> +	  heap is backed by pages from reserved memory regions flagged as
-> +	  exportable. If in doubt, say Y.
-> +
->  config DMABUF_HEAPS_SYSTEM
->  	bool "DMA-BUF System Heap"
->  	depends on DMABUF_HEAPS
->  	help
->  	  Choose this option to enable the system dmabuf heap. The system heap
-> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
-> index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f449106748160258e372f153df2 100644
-> --- a/drivers/dma-buf/heaps/Makefile
-> +++ b/drivers/dma-buf/heaps/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)	+= carveout_heap.o
->  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
->  obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
-> diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f7198b781ea57f4f60e554d917c9277e9a716b16
-> --- /dev/null
-> +++ b/drivers/dma-buf/heaps/carveout_heap.c
-> @@ -0,0 +1,360 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/dma-buf.h>
-> +#include <linux/dma-heap.h>
-> +#include <linux/genalloc.h>
-> +#include <linux/highmem.h>
-> +#include <linux/of_reserved_mem.h>
-> +
-> +struct carveout_heap_priv {
-> +	struct dma_heap *heap;
-> +	struct gen_pool *pool;
-> +};
-> +
-> +struct carveout_heap_buffer_priv {
-> +	struct mutex lock;
-> +	struct list_head attachments;
-> +
-> +	unsigned long num_pages;
-> +	struct carveout_heap_priv *heap;
-> +	dma_addr_t daddr;
-> +	void *vaddr;
-> +	unsigned int vmap_cnt;
-> +};
-> +
-> +struct carveout_heap_attachment {
-> +	struct list_head head;
-> +	struct sg_table table;
-> +
-> +	struct device *dev;
-> +	bool mapped;
-> +};
-> +
-> +static int carveout_heap_attach(struct dma_buf *buf,
-> +				struct dma_buf_attachment *attachment)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = buf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	struct sg_table *sgt;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +	int ret;
-> +
-> +	a = kzalloc(sizeof(*a), GFP_KERNEL);
-> +	if (!a)
-> +		return -ENOMEM;
-> +	INIT_LIST_HEAD(&a->head);
-> +	a->dev = attachment->dev;
-> +	attachment->priv = a;
-> +
-> +	sgt = &a->table;
-> +	ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
-> +	if (ret)
-> +		goto err_cleanup_attach;
-> +
-> +	sg_dma_address(sgt->sgl) = priv->daddr;
-> +	sg_dma_len(sgt->sgl) = len;
-> +
-> +	mutex_lock(&priv->lock);
-> +	list_add(&a->head, &priv->attachments);
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +
-> +err_cleanup_attach:
-> +	kfree(a);
-> +	return ret;
-> +}
-> +
-> +static void carveout_heap_detach(struct dma_buf *dmabuf,
-> +				 struct dma_buf_attachment *attachment)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +
-> +	mutex_lock(&priv->lock);
-> +	list_del(&a->head);
-> +	mutex_unlock(&priv->lock);
-> +
-> +	sg_free_table(&a->table);
-> +	kfree(a);
-> +}
-> +
-> +static struct sg_table *
-> +carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
-> +			  enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +	struct sg_table *table = &a->table;
-> +	int ret;
-> +
-> +	ret = dma_map_sgtable(a->dev, table, direction, 0);
-> +	if (ret)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	a->mapped = true;
-> +
-> +	return table;
-> +}
-> +
-> +static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
-> +					struct sg_table *table,
-> +					enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_attachment *a = attachment->priv;
-> +
-> +	a->mapped = false;
-> +	dma_unmap_sgtable(a->dev, table, direction, 0);
-> +}
-> +
-> +static int
-> +carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
-> +				       enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (priv->vmap_cnt > 0)
-> +		invalidate_kernel_vmap_range(priv->vaddr, len);
-> +
-> +	list_for_each_entry(a, &priv->attachments, head) {
-> +		if (!a->mapped)
-> +			continue;
-> +
-> +		dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
-> +	}
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
-> +				     enum dma_data_direction direction)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	struct carveout_heap_attachment *a;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (priv->vmap_cnt > 0)
-> +		flush_kernel_vmap_range(priv->vaddr, len);
-> +
-> +	list_for_each_entry(a, &priv->attachments, head) {
-> +		if (!a->mapped)
-> +			continue;
-> +
-> +		dma_sync_sgtable_for_device(a->dev, &a->table, direction);
-> +	}
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int carveout_heap_mmap(struct dma_buf *dmabuf,
-> +			      struct vm_area_struct *vma)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +	unsigned long len = priv->num_pages * PAGE_SIZE;
-> +	struct page *page = virt_to_page(priv->vaddr);
-> +
-> +	return remap_pfn_range(vma, vma->vm_start, page_to_pfn(page),
-> +			       len, vma->vm_page_prot);
-> +}
-> +
-> +static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	iosys_map_set_vaddr(map, priv->vaddr);
-> +	priv->vmap_cnt++;
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
-> +{
-> +	struct carveout_heap_buffer_priv *priv = dmabuf->priv;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	priv->vmap_cnt--;
-> +	mutex_unlock(&priv->lock);
-> +
-> +	iosys_map_clear(map);
-> +}
-> +
-> +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
-> +{
-> +	struct carveout_heap_buffer_priv *buffer_priv = buf->priv;
-> +	struct carveout_heap_priv *heap_priv = buffer_priv->heap;
-> +	unsigned long len = buffer_priv->num_pages * PAGE_SIZE;
-> +
-> +	gen_pool_free(heap_priv->pool, (unsigned long)buffer_priv->vaddr, len);
-> +	kfree(buffer_priv);
-> +}
-> +
-> +static const struct dma_buf_ops carveout_heap_buf_ops = {
-> +	.attach		= carveout_heap_attach,
-> +	.detach		= carveout_heap_detach,
-> +	.map_dma_buf	= carveout_heap_map_dma_buf,
-> +	.unmap_dma_buf	= carveout_heap_unmap_dma_buf,
-> +	.begin_cpu_access	= carveout_heap_dma_buf_begin_cpu_access,
-> +	.end_cpu_access	= carveout_heap_dma_buf_end_cpu_access,
-> +	.mmap		= carveout_heap_mmap,
-> +	.vmap		= carveout_heap_vmap,
-> +	.vunmap		= carveout_heap_vunmap,
-> +	.release	= carveout_heap_dma_buf_release,
-> +};
-> +
-> +static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
-> +					      unsigned long len,
-> +					      u32 fd_flags,
-> +					      u64 heap_flags)
-> +{
-> +	struct carveout_heap_priv *heap_priv = dma_heap_get_drvdata(heap);
-> +	struct carveout_heap_buffer_priv *buffer_priv;
-> +	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
-> +	struct dma_buf *buf;
-> +	dma_addr_t daddr;
-> +	size_t size = PAGE_ALIGN(len);
-> +	void *vaddr;
-> +	int ret;
-> +
-> +	buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
-> +	if (!buffer_priv)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	INIT_LIST_HEAD(&buffer_priv->attachments);
-> +	mutex_init(&buffer_priv->lock);
-> +
-> +	vaddr = gen_pool_dma_zalloc(heap_priv->pool, size, &daddr);
-> +	if (!vaddr) {
-> +		ret = -ENOMEM;
-> +		goto err_free_buffer_priv;
-> +	}
-> +
-> +	buffer_priv->vaddr = vaddr;
-> +	buffer_priv->daddr = daddr;
-> +	buffer_priv->heap = heap_priv;
-> +	buffer_priv->num_pages = size >> PAGE_SHIFT;
-> +
-> +	/* create the dmabuf */
-> +	exp_info.exp_name = dma_heap_get_name(heap);
-> +	exp_info.ops = &carveout_heap_buf_ops;
-> +	exp_info.size = size;
-> +	exp_info.flags = fd_flags;
-> +	exp_info.priv = buffer_priv;
-> +
-> +	buf = dma_buf_export(&exp_info);
-> +	if (IS_ERR(buf)) {
-> +		ret = PTR_ERR(buf);
-> +		goto err_free_buffer;
-> +	}
-> +
-> +	return buf;
-> +
-> +err_free_buffer:
-> +	gen_pool_free(heap_priv->pool, (unsigned long)vaddr, len);
-> +err_free_buffer_priv:
-> +	kfree(buffer_priv);
-> +
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +static const struct dma_heap_ops carveout_heap_ops = {
-> +	.allocate = carveout_heap_allocate,
-> +};
-> +
-> +static int __init carveout_heap_setup(struct device_node *node)
-> +{
-> +	struct dma_heap_export_info exp_info = {};
-> +	const struct reserved_mem *rmem;
-> +	struct carveout_heap_priv *priv;
-> +	struct dma_heap *heap;
-> +	struct gen_pool *pool;
-> +	void *base;
-> +	int ret;
-> +
-> +	rmem = of_reserved_mem_lookup(node);
-> +	if (!rmem)
-> +		return -EINVAL;
-> +
-> +	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
-> +	if (!pool) {
-> +		ret = -ENOMEM;
-> +		goto err_cleanup_heap;
-> +	}
-> +	priv->pool = pool;
-> +
-> +	base = memremap(rmem->base, rmem->size, MEMREMAP_WB);
-> +	if (!base) {
-> +		ret = -ENOMEM;
-> +		goto err_release_mem_region;
-> +	}
-> +
-> +	ret = gen_pool_add_virt(pool, (unsigned long)base, rmem->base,
-> +				rmem->size, NUMA_NO_NODE);
-> +	if (ret)
-> +		goto err_unmap;
-> +
-> +	exp_info.name = node->full_name;
-> +	exp_info.ops = &carveout_heap_ops;
-> +	exp_info.priv = priv;
-> +
-> +	heap = dma_heap_add(&exp_info);
-> +	if (IS_ERR(heap)) {
-> +		ret = PTR_ERR(heap);
-> +		goto err_cleanup_pool_region;
-> +	}
-> +	priv->heap = heap;
-> +
-> +	return 0;
-> +
-> +err_cleanup_pool_region:
-> +	gen_pool_free(pool, (unsigned long)base, rmem->size);
-> +err_unmap:
-> +	memunmap(base);
-> +err_release_mem_region:
-> +	gen_pool_destroy(pool);
-> +err_cleanup_heap:
-> +	kfree(priv);
-> +	return ret;
-> +}
-> +
-> +static int __init carveout_heap_init(void)
-> +{
-> +	struct device_node *rmem_node;
-> +	struct device_node *node;
-> +	int ret;
-> +
-> +	rmem_node = of_find_node_by_path("/reserved-memory");
-> +	if (!rmem_node)
-> +		return 0;
-> +
-> +	for_each_child_of_node(rmem_node, node) {
-> +		if (!of_property_read_bool(node, "export"))
-> +			continue;
-> +
-> +		ret = carveout_heap_setup(node);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +module_init(carveout_heap_init);
->
-> -- 
-> 2.49.0
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/dpll/dpll-device.yaml#
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      dpll@70 {
+>> +        compatible = "microchip,zl3073x-i2c";
+>> +        reg = <0x70>;
+>> +        #address-cells = <0>;
+>> +        #size-cells = <0>;
+> 
+> Again, not used. Drop.
+
+Sorry, will do.
+
+>> +        dpll-types = "pps", "eec";
+>> +
+>> +        input-pins {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          pin@0 { /* REF0P */
+>> +            reg = <0>;
+>> +            label = "Input 0";
+>> +            supported-frequencies = /bits/ 64 <1 1000>;
+>> +            type = "ext";
+>> +          };
+>> +        };
+>> +
+>> +        output-pins {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          pin@3 { /* OUT1N */
+>> +            reg = <3>;
+>> +            esync-control;
+>> +            label = "Output 1";
+>> +            supported-frequencies = /bits/ 64 <1 10000>;
+>> +            type = "gnss";
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
+>> new file mode 100644
+>> index 0000000000000..7bd6e5099e1ce
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
+> 
+> No, you do not get two files. Neither two compatibles, nor two files.
+> Please look at existing bindings how they do it for such devices.
+
+Thanks Krzysztof for comments.
+
+Ivan
+
 
