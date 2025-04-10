@@ -1,1463 +1,634 @@
-Return-Path: <devicetree+bounces-165384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED02A840CA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:35:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDA01A840EF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 064091B65D88
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:35:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8B8917C33F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B93F4281364;
-	Thu, 10 Apr 2025 10:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85B126FD99;
+	Thu, 10 Apr 2025 10:39:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f2piEIUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E410F281501
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 10:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F9CBA33;
+	Thu, 10 Apr 2025 10:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744281326; cv=none; b=SbdxA/E/nWrPEKGw/49z3eUFAxBNiqV7yfOQ4L2vzNtpQHv/0LDjrAcaRgBTBYMs7fNJHpYG6yNMqAsgdCHlp4m+dLyMCr27w7tyzVdyaVM6W9WZSlI0E7qltObDHKCDqE0XSSzlssaeZZmeUugjTpy6GOGvr5MfKu0O8V1JtDc=
+	t=1744281588; cv=none; b=ssgGIGTttvNwKoxI0ktG/GF/ruCZSys1r6Xhvl9/WmFUR5ES2y3Okn9l7MeDqG/JRoaaF4LHNJ00MQC9ew1/IxI3U/oRd1Xb84I3awis/qU780PbcMf1hYoBAevgQ8a2Obolhms2PuJ07SIM8JyvE+k9wRVBDQQ8igciDZjkVug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744281326; c=relaxed/simple;
-	bh=rIbo7QAJwYbO0/8MEpTqk3mJkcwRRo7uAmdfJEI5eVU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GRLsJqRBOPDXgbV0FOx1jTAfhdiNVr8y52Yb7i5a8C5rtNlAU74Guic+YgQ5E1OPYmtDUAPQYB9Wr6jn/VLMsQ8hbDiT9tQ9IRLMgOxWq8Aoczm6v9eegYGkOZWyWYoUln82L3JAZYTwhuMDMa/i/R1xzXJGlYe7LWf/VD30bJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1u2pFS-0004gY-AB; Thu, 10 Apr 2025 12:35:06 +0200
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1u2pFR-004Ftu-2l;
-	Thu, 10 Apr 2025 12:35:05 +0200
-Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
-	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1u2pFR-002dX6-2V;
-	Thu, 10 Apr 2025 12:35:05 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 10 Apr 2025 12:34:58 +0200
-Subject: [PATCH v3 3/3] clk: add TI CDCE6214 clock driver
+	s=arc-20240116; t=1744281588; c=relaxed/simple;
+	bh=+B3g7hJrq0NhP7fMwX42imq5bftlva8KrWwq3uuALik=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=sbOldNaH16GpqexPYiSXr3YlOuNGes6zgmmux0U1KTuIgE+1+YETRIZWi8m5Qp0APVBrnIgP/p3DcZjGHNSpo/NyF7b3n/UFwA8opl5tUAwZ960WY5Yf6otWmmHlQejiVciEkOw6F6K4z8QkeWnfnF8yKf6UhBmOYXTXeArDuoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f2piEIUS; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso4887055e9.3;
+        Thu, 10 Apr 2025 03:39:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744281585; x=1744886385; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/tYUZGEQszCIEdfQvqts2TfbL6KlaJBNQkK8Bg4ZLOg=;
+        b=f2piEIUS/uuCyylLfoabooYUpbw2esY175OeSzRi6ZBr0JTQOAREcJSjKEL+bzU/pI
+         CRvHpnVPNMNoSZXeyf5xYjvYKlNMS1PCnHe7qUeFcUzspvNj6atC8jS5jNXjS9cx3gnl
+         YStAoEzq+B4QEinjqaGeawdnm/Z+u/Zf7OzulNwc8eXIcWwW5Dzz/GBQpKhK8DsqdT/5
+         Lf0ymF7gOpR6wxCSsFXHNx8qX0xXCHuI7zczZafyxu331FLH2tsmlIWk63J7yZjy2iNd
+         ECu4bMXyimfF0wWIuwzW0wUe6r5OvQK+8VRoq/IBBTSPM93SPRF2trEc60xDHsDH7yFi
+         Izcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744281585; x=1744886385;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/tYUZGEQszCIEdfQvqts2TfbL6KlaJBNQkK8Bg4ZLOg=;
+        b=UTbzcyP3LQm3FduMX3HGiRfRipaCCNCdfT0CMCTs/aZwk8PkFX+/2oit5SX4dRoCNJ
+         5GoEMHGeU+5+yvan+xlZE7nHzrjKGyaf7sWo234Lf8U/oiKA5G77KxlUbK/DRcH/M6z5
+         jmUH7KRkRz43jHDN9OyPP50w0vEO4NQ/9SqeKHClMKFqRUVipq13MzWAYoQ1PHJx7ze8
+         tWu4GaJAQlX0PkMpy+nGEy6+dRdyjWNxX17A0kks+690GiIlgKAIokG+I53wQ+Y6pDL/
+         uxUBAidzGwtYis8rvMrCp8dcypNYZDWbxsunPD+JantWBld9KwYBKBKDFLL4HeXqaAWJ
+         kXPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVo2wsq3UrOr4st62MDiPAsGLkszPOHvxAmVNbXjLagKO3YEDHTWpDhDfF5iAvQtAT45+dEWw//K0q5@vger.kernel.org, AJvYcCWDrdD7GujlJ/zuyRXfnjEWZSYcehb7RQBD8Ldr0vEoCUVHg5QHEx91lv4wc2cOGWI39HJ8VDfwdS/DNANq@vger.kernel.org, AJvYcCXxMFtwrE9fr0jxoXwO+4tTHvHSsigKtTmsjWVP+PyFfT9gOxWgA4GcqvTm+Vj7QXe/S1sWAGrrS5Dr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhAvLVfso3DfYlTUWEmEqPXkbchAlAESUqW6TxnoG3Aqubt+bd
+	fWXfNUT81f5Yr93jpoj09Q4YscnmAgEwBCGWqAPdqv2Zqpl1oPWkNxmjvTIv7cZ0Ew==
+X-Gm-Gg: ASbGncvEA3YO3Y2NEA8+JjrsRwbXYuNCwdlJKQSrsDi94U53J+CS2SG3CyNah1AF/eo
+	BI8Whxmb8oHazt1szQRZoKS3BhRAey9KfyCK+FMxsNtTgOk0PNtzvYWBBlLPdt8bwU975ZNWAqr
+	+QZ1sN0A5YqStWUQ7NFabt8PKhzRFEL0An/9LasjxLWGj8rlM8MkQZvczioVgpynmYFhzeFfrYD
+	JXe0M1io8hYvrRSvMJa/yq2mqeMl/Z7shxg6rPZfR9KkUveTvfK4k97yAYNPe1aDlLYrilUp2nK
+	MMesYulFrZ8g4T39H+CY0aFtcppxXXygiDhNaAETezhi1T5i0VgLYzcdcJyMhEm9iZSiHWVmibZ
+	OisgSn7ic7h/Q
+X-Google-Smtp-Source: AGHT+IEUYK3abJlyt5HgH62f94YjR849g/VWZIjVvRTToR+Im45S67UpdPTJJrNs3/Tk6+lF8aLsIA==
+X-Received: by 2002:a05:600c:154c:b0:43b:ce36:7574 with SMTP id 5b1f17b1804b1-43f2d7bc1a3mr18308205e9.11.1744281584607;
+        Thu, 10 Apr 2025 03:39:44 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f2075fca5sm52428665e9.32.2025.04.10.03.39.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 03:39:44 -0700 (PDT)
+Message-ID: <149672e84f09fb178c90856920e3cfd4f140529d.camel@gmail.com>
+Subject: Re: [PATCH v1 7/7] iio: adc: ad4170: Add support for weigh scale
+ and RTD sensors
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
+ marcelo.schmitt1@gmail.com
+Date: Thu, 10 Apr 2025 11:39:45 +0100
+In-Reply-To: <56e76070b72d15950bf1fb01e68e94c42e79905b.1744200264.git.marcelo.schmitt@analog.com>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+	 <56e76070b72d15950bf1fb01e68e94c42e79905b.1744200264.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250410-clk-cdce6214-v3-3-d73cf9ff3d80@pengutronix.de>
-References: <20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de>
-In-Reply-To: <20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
- Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744281305; l=38309;
- i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=rIbo7QAJwYbO0/8MEpTqk3mJkcwRRo7uAmdfJEI5eVU=;
- b=6XLy5XL0b0qAJRXfnh5LfK/kJPpEBTY+gY90eICtpdjXF/gd9zTzADwfqTjrScWBHSYHTgLyK
- bKayPqT0+v6C+j4usQ1CxrNw9mXWY1J4Pp1lWUulSkIiy/LE6sZfwL9
-X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
- pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: s.hauer@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
-Differential Outputs, Two Inputs, and Internal EEPROM. This patch adds
-a common clk framework driver for this chip.
+On Wed, 2025-04-09 at 09:26 -0300, Marcelo Schmitt wrote:
+> The AD4170 design has features to aid interfacing with weigh scale and RT=
+D
+> sensors that are expected to be setup with external circuitry for proper
+> sensor operation. A key characteristic of those sensors is that the circu=
+it
+> they are in must be excited with a pair of signals. The external circuit
+> can be excited either by voltage supply or by AD4170 excitation signals.
+> The sensor can then be read through a different pair of lines that are
+> connected to AD4170 ADC.
+>=20
+> Configure AD4170 to handle external circuit sensors.
+>=20
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> =C2=A0drivers/iio/adc/ad4170.c | 341 ++++++++++++++++++++++++++++++++++++=
+++-
+> =C2=A01 file changed, 338 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
+> index d204f8ca840f..2cf578608316 100644
+> --- a/drivers/iio/adc/ad4170.c
+> +++ b/drivers/iio/adc/ad4170.c
+> @@ -77,6 +77,7 @@
+> =C2=A0#define AD4170_OFFSET_REG(x)				(0xCA + 14 * (x))
+> =C2=A0#define AD4170_GAIN_REG(x)				(0xCD + 14 * (x))
+> =C2=A0#define AD4170_V_BIAS_REG				0x135
+> +#define AD4170_CURRENT_SRC_REG(x)			(0x139 + 2 * (x))
+> =C2=A0#define AD4170_FIR_CTRL					0x141
+> =C2=A0#define AD4170_COEFF_DATA_REG				0x14A
+> =C2=A0#define AD4170_COEFF_ADDR_REG				0x14C
+> @@ -127,6 +128,10 @@
+> =C2=A0/* AD4170_FILTER_REG */
+> =C2=A0#define AD4170_FILTER_FILTER_TYPE_MSK			GENMASK(3, 0)
+> =C2=A0
+> +/* AD4170_CURRENT_SRC_REG */
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_MSK		GENMASK(12, 8)
+> +#define AD4170_CURRENT_SRC_I_OUT_VAL_MSK		GENMASK(2, 0)
+> +
+> =C2=A0/* AD4170 register constants */
+> =C2=A0
+> =C2=A0/* AD4170_CLOCK_CTRL_REG constants */
+> @@ -188,6 +193,21 @@
+> =C2=A0#define AD4170_FILTER_FILTER_TYPE_SINC5			0x4
+> =C2=A0#define AD4170_FILTER_FILTER_TYPE_SINC3			0x6
+> =C2=A0
+> +/* AD4170_CURRENT_SRC_REG constants */
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN0		0
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN1		1
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN2		2
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN3		3
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN4		4
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN5		5
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN6		6
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN7		7
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_AIN8		8
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_GPIO0		17
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_GPIO1		18
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_GPIO2		19
+> +#define AD4170_CURRENT_SRC_I_OUT_PIN_GPIO3		20
+> +
+> =C2=A0/* Device properties and auxiliary constants */
+> =C2=A0
 
-- Two inputs (PRIREF and SECREF)
-- Programmable 8bit divider or x2 multiplier between input and PLL
-- 16b integer / 24bit fractional PLL
-- Two programmable /4, /5, /6 dividers after PLL (PSA/PSB)
-- Four outputs (OUT1-OUT4) with programmable 14b dividers,
-  muxable between PSA, PSB and PLL input
-- One output (OUT0) fed from PLL input
+...
 
-- PRIREF can be configured as LVCMOS or differential input
-- SECREF can be configured as LVCMOS, differential or oscillator input
-- OUT0 is a LVCMOS output
-- OUT1 and OUT4 can be configured as LVDS, LP-HCSL or LVCMOS outputs
-- OUT2 and OUT3 can be configured as LVDS or LP-HCSL outputs
+> =C2=A0#define AD4170_NUM_ANALOG_PINS				9
+> @@ -222,6 +242,12 @@
+> =C2=A0#define AD4170_PIN_UNASIGNED				0x00
+> =C2=A0#define AD4170_PIN_ANALOG_IN				0x01
+> =C2=A0#define AD4170_PIN_CURRENT_OUT				0x02
+> +#define AD4170_PIN_VBIAS				0x04
+> +
+> +/* GPIO pin functions=C2=A0 */
+> +#define AD4170_GPIO_UNASIGNED				0x00
+> +#define AD4170_GPIO_AC_EXCITATION			0x02
+> +#define AD4170_GPIO_OUTPUT				0x04
+> =C2=A0
+> =C2=A0enum ad4170_ref_buf {
+> =C2=A0	AD4170_REF_BUF_PRE,	/* Pre-charge referrence buffer */
+> @@ -278,6 +304,33 @@ static const unsigned int ad4170_sinc5_filt_fs_tbl[]=
+ =3D {
+> =C2=A0	1, 2, 4, 8, 12, 16, 20, 40, 48, 80, 100, 256
+> =C2=A0};
+> =C2=A0
+> +static const unsigned int ad4170_iout_pin_tbl[] =3D {
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN0,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN1,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN2,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN3,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN4,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN5,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN6,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN7,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_AIN8,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_GPIO0,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_GPIO1,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_GPIO2,
+> +	AD4170_CURRENT_SRC_I_OUT_PIN_GPIO3,
+> +};
+> +
+> +static const unsigned int ad4170_iout_current_ua_tbl[] =3D {
+> +	0, 10, 50, 100, 250, 500, 1000, 1500
+> +};
+> +
+> +enum ad4170_sensor_type {
+> +	AD4170_ADC_SENSOR =3D 0,
+> +	AD4170_WEIGH_SCALE_SENSOR =3D 1,
+> +	AD4170_THERMOCOUPLE_SENSOR =3D 2,
+> +	AD4170_RTD_SENSOR =3D 3,
+> +};
+> +
+> =C2=A0static const char * const ad4170_chip_names[] =3D {
+> =C2=A0	"ad4170",
+> =C2=A0	"ad4190",
+> @@ -343,6 +396,7 @@ struct ad4170_state {
+> =C2=A0	struct clk *ext_clk;
+> =C2=A0	struct clk_hw int_clk_hw;
+> =C2=A0	int pins_fn[AD4170_NUM_ANALOG_PINS];
+> +	int gpio_fn[AD4170_NUM_GPIO_PINS];
+> =C2=A0	struct gpio_chip gpiochip;
+> =C2=A0	u32 int_pin_sel;
+> =C2=A0	int
+> sps_tbl[ARRAY_SIZE(ad4170_filt_names)][AD4170_MAX_FS_TBL_SIZE][2];
+> @@ -956,6 +1010,19 @@ static int ad4170_get_ain_voltage_uv(struct ad4170_=
+state
+> *st, int ain_n,
+> =C2=A0	struct device *dev =3D &st->spi->dev;
+> =C2=A0
+> =C2=A0	*ain_voltage =3D 0;
+> +	/*
+> +	 * The voltage bias (vbias) sets the common-mode voltage of the
+> channel
+> +	 * to (AVDD + AVSS)/2. If provided, AVSS supply provides the
+> magnitude
+> +	 * (absolute value) of the negative voltage supplied to the AVSS pin.
+> +	 * So, we do AVDD - AVSS to compute the DC voltage generated by the
+> bias
+> +	 * voltage generator.
+> +	 */
+> +	if (st->pins_fn[ain_n] & AD4170_PIN_VBIAS) {
+> +		*ain_voltage =3D (st->vrefs_uv[AD4170_AVDD_SUP]
+> +				- st->vrefs_uv[AD4170_AVSS_SUP]) / 2;
+> +		return 0;
+> +	}
+> +
+> =C2=A0	if (ain_n <=3D AD4170_CHAN_MAP_TEMP_SENSOR)
+> =C2=A0		return 0;
+> =C2=A0
+> @@ -1746,6 +1813,242 @@ static int ad4170_gpio_init(struct iio_dev *indio=
+_dev)
+> =C2=A0	return devm_gpiochip_add_data(&st->spi->dev, &st->gpiochip,
+> indio_dev);
+> =C2=A0}
+> =C2=A0
+> +static int _ad4170_find_table_index(const unsigned int *tbl, size_t len,
+> +				=C2=A0=C2=A0=C2=A0 unsigned int val)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i =3D 0; i < len; i++)
+> +		if (tbl[i] =3D=3D val)
+> +			return i;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +#define ad4170_find_table_index(table, val) \
+> +	_ad4170_find_table_index(table, ARRAY_SIZE(table), val)
+> +
+> +static int ad4170_validate_excitation_pins(struct ad4170_state *st,
+> +					=C2=A0=C2=A0 u32 *exc_pins, int num_exc_pins)
+> +{
+> +	struct device *dev =3D &st->spi->dev;
+> +	int ret, i;
+> +
+> +	for (i =3D 0; i < num_exc_pins; i++) {
+> +		unsigned int pin =3D exc_pins[i];
+> +
+> +		ret =3D ad4170_find_table_index(ad4170_iout_pin_tbl, pin);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid excitation pin: %u\n",
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 pin);
+> +
+> +		if (pin <=3D AD4170_MAX_ANALOG_PINS) {
+> +			if (st->pins_fn[pin] !=3D AD4170_PIN_UNASIGNED)
+> +				return dev_err_probe(dev, -EINVAL,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 "Pin %u already used
+> with fn %u\n",
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 pin, st->pins_fn[pin]);
+> +
+> +			st->pins_fn[pin] =3D AD4170_PIN_CURRENT_OUT;
+> +		} else {
+> +			unsigned int gpio =3D pin -
+> AD4170_CURRENT_SRC_I_OUT_PIN_GPIO0;
+> +
+> +			if (st->gpio_fn[gpio] !=3D AD4170_GPIO_UNASIGNED)
+> +				return dev_err_probe(dev, -EINVAL,
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 "GPIO %u already used
+> with fn %u\n",
+> +						=C2=A0=C2=A0=C2=A0=C2=A0 gpio, st-
+> >gpio_fn[gpio]);
+> +
+> +			st->gpio_fn[gpio] =3D AD4170_GPIO_AC_EXCITATION;
+> +		}
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int ad4170_setup_rtd(struct ad4170_state *st,
+> +			=C2=A0=C2=A0=C2=A0 struct fwnode_handle *child,
+> +			=C2=A0=C2=A0=C2=A0 struct ad4170_setup *setup, u32 *exc_pins,
+> +			=C2=A0=C2=A0=C2=A0 int num_exc_pins, int exc_cur, bool ac_excited)
+> +{
+> +	int current_src, ret, i;
+> +
+> +	for (i =3D 0; i < num_exc_pins; i++) {
+> +		unsigned int pin =3D exc_pins[i];
+> +
+> +		current_src |=3D FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_PIN_MSK,
+> pin);
+> +		current_src |=3D FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_VAL_MSK,
+> exc_cur);
+> +
+> +		ret =3D regmap_write(st->regmap16, AD4170_CURRENT_SRC_REG(i),
+> +				=C2=A0=C2=A0 current_src);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (ac_excited)
+> +		setup->misc |=3D FIELD_PREP(AD4170_MISC_CHOP_IEXC_MSK,
+> +					=C2=A0 num_exc_pins =3D=3D 2 ? 0x2 : 0x3);
+> +
+> +	return 0;
+> +}
 
-All clocks are registered without parent rate propagation, so each of
-the clocks must be configured separately via device tree or consumer.
+In the above I do not see any explicit GPIO configuration which makes me wo=
+nder
+if having the RTD is mutual exclusive with having GPIOs?
 
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- drivers/clk/Kconfig        |    7 +
- drivers/clk/Makefile       |    1 +
- drivers/clk/clk-cdce6214.c | 1311 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 1319 insertions(+)
+> +
+> +static int ad4170_setup_bridge(struct ad4170_state *st,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *child,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ad4170_setup *setup, u32 =
+*exc_pins,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int num_exc_pins, int exc_cur, b=
+ool
+> ac_excited)
+> +{
+> +	int current_src, ret, i;
+> +
+> +	if (!ac_excited)
+> +		return 0;
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 713573b6c86c7..499fd610c0467 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -170,6 +170,13 @@ config COMMON_CLK_BM1880
- 	help
- 	  This driver supports the clocks on Bitmain BM1880 SoC.
- 
-+config COMMON_CLK_CDCE6214
-+	tristate "Clock driver for TI CDCE6214 clock synthesizer"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This driver supports TI CDCE6214 programmable 1-PLL clock synthesizer.
-+
- config COMMON_CLK_CDCE706
- 	tristate "Clock driver for TI CDCE706 clock synthesizer"
- 	depends on I2C
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index bf4bd45adc3a0..0f87b13b137b5 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_COMMON_CLK_AXI_CLKGEN)	+= clk-axi-clkgen.o
- obj-$(CONFIG_ARCH_AXXIA)		+= clk-axm5516.o
- obj-$(CONFIG_COMMON_CLK_BD718XX)	+= clk-bd718x7.o
- obj-$(CONFIG_COMMON_CLK_BM1880)		+= clk-bm1880.o
-+obj-$(CONFIG_COMMON_CLK_CDCE6214)	+= clk-cdce6214.o
- obj-$(CONFIG_COMMON_CLK_CDCE706)	+= clk-cdce706.o
- obj-$(CONFIG_COMMON_CLK_CDCE925)	+= clk-cdce925.o
- obj-$(CONFIG_ARCH_CLPS711X)		+= clk-clps711x.o
-diff --git a/drivers/clk/clk-cdce6214.c b/drivers/clk/clk-cdce6214.c
-new file mode 100644
-index 0000000000000..38fb27eb2b13c
---- /dev/null
-+++ b/drivers/clk/clk-cdce6214.c
-@@ -0,0 +1,1311 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Driver for the TI CDCE6214 clock generator
-+ *
-+ * Copyright (c) 2023 Alvin Šipraga <alsi@bang-olufsen.dk>
-+ * Copyright (c) 2025 Sascha Hauer <s.hauer@pengutronix.de>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/of.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <dt-bindings/clock/ti,cdce6214.h>
-+
-+#define RO_I2C_A0			BIT(15)
-+#define RO_PDN_INPUT_SEL		BIT(14)
-+#define RO_GPIO4_DIR_SEL		BIT(13)
-+#define RO_GPIO1_DIR_SEL		BIT(12)
-+#define RO_ZDM_CLOCKSEL			BIT(10)
-+#define RO_ZDM_EN			BIT(8)
-+#define RO_SYNC				BIT(5)
-+#define RO_RECAL			BIT(4)
-+#define RO_RESETN_SOFT			BIT(3)
-+#define RO_SWRST			BIT(2)
-+#define RO_POWERDOWN			BIT(1)
-+#define RO_MODE				BIT(0)
-+
-+#define R1_GPIO4_INPUT_SEL		GENMASK(15, 12)
-+#define R1_GPIO3_INPUT_SEL		GENMASK(11, 8)
-+#define R1_GPIO2_INPUT_SEL		GENMASK(7, 4)
-+#define R1_GPIO1_INPUT_SEL		GENMASK(3, 0)
-+
-+#define R2_GPIO4_OUTPUT_SEL		GENMASK(9, 6)
-+#define R2_GPIO1_OUTPUT_SEL		GENMASK(5, 2)
-+#define R2_REFSEL_SW			GENMASK(1, 0)
-+
-+#define R3_DISABLE_CRC			BIT(13)
-+#define R3_UPDATE_CRC			BIT(12)
-+#define R3_NVMCOMMIT			BIT(11)
-+#define R3_REGCOMMIT			BIT(10)
-+#define R3_REGCOMMIT_PAGE		BIT(9)
-+#define R3_FREQ_DEC_REG			BIT(6)
-+#define R3_FREQ_INC_REG			BIT(5)
-+#define R3_FREQ_INC_DEC_REG_MODE	BIT(4)
-+#define R3_FREQ_INC_DEC_EN		BIT(3)
-+
-+#define R4_CH4_PD			BIT(7)
-+#define R4_CH3_PD			BIT(6)
-+#define R4_CH2_PD			BIT(5)
-+#define R4_CH1_PD			BIT(4)
-+#define R4_POST_EE_DLY			GENMASK(3, 0)
-+
-+#define R5_PLL_VCOBUFF_LDO_PD		BIT(8)
-+#define R5_PLL_VCO_LDO_PD		BIT(7)
-+#define R5_PLL_VCO_BUFF_PD		BIT(6)
-+#define R5_PLL_CP_LDO_PD		BIT(5)
-+#define R5_PLL_LOCKDET_PD		BIT(4)
-+#define R5_PLL_PSB_PD			BIT(3)
-+#define R5_PLL_PSA_PD			BIT(2)
-+#define R5_PLL_PFD_PD			BIT(1)
-+
-+#define R7_NVMCRCERR			BIT(5)
-+#define R7_LOCK_DET_S			BIT(1)
-+#define R7_LOCK_DET			BIT(0)
-+
-+#define R9_NVMLCRC			GENMASK(15, 0)
-+
-+#define R10_NVMSCRC			GENMASK(15, 0)
-+
-+#define R11_NVM_RD_ADDR			GENMASK(5, 0)
-+
-+#define R12_NVM_RD_DATA			GENMASK(15, 0)
-+
-+#define R13_NVM_WR_ADDR			GENMASK(5, 0)
-+
-+#define R14_NVM_WR_DATA			GENMASK(15, 0)
-+
-+#define R15_EE_LOCK			GENMASK(15, 12)
-+#define R15_CAL_MUTE			BIT(5)
-+
-+#define R24_IP_PRIREF_BUF_SEL		BIT(15)
-+#define R24_IP_XO_CLOAD			GENMASK(12, 8)
-+#define R24_IP_BIAS_SEL_XO		GENMASK(5, 2)
-+#define R24_IP_SECREF_BUF_SEL		GENMASK(1, 0)
-+#define R24_IP_SECREF_BUF_SEL_XTAL	0
-+#define R24_IP_SECREF_BUF_SEL_LVCMOS	1
-+#define R24_IP_SECREF_BUF_SEL_DIFF	2
-+
-+#define R25_IP_REF_TO_OUT4_EN		BIT(14)
-+#define R25_IP_REF_TO_OUT3_EN		BIT(13)
-+#define R25_IP_REF_TO_OUT2_EN		BIT(12)
-+#define R25_IP_REF_TO_OUT1_EN		BIT(11)
-+#define R25_IP_BYP_OUT0_EN		BIT(10)
-+#define R25_REF_CH_MUX			BIT(9)
-+#define R25_IP_RDIV			GENMASK(7, 0)
-+
-+#define R27_MASH_ORDER			GENMASK(1, 0)
-+
-+#define R30_PLL_NDIV			GENMASK(14, 0)
-+
-+#define R31_PLL_NUM_15_0		GENMASK(15, 0)
-+
-+#define R32_PLL_NUM_23_16		GENMASK(7, 0)
-+
-+#define R33_PLL_DEN_15_0		GENMASK(15, 0)
-+
-+#define R34_PLL_DEN_23_16		GENMASK(7, 0)
-+
-+#define R41_SSC_EN			BIT(15)
-+
-+#define R42_SSC_TYPE			BIT(5)
-+#define R42_SSC_SEL			GENMASK(3, 1)
-+
-+#define R43_FREQ_INC_DEC_DELTA		GENMASK(15, 0)
-+
-+#define R47_PLL_CP_DN			GENMASK(12, 7)
-+#define R47_PLL_PSB			GENMASK(6, 5)
-+#define R47_PLL_PSA			GENMASK(4, 3)
-+
-+#define R48_PLL_LF_RES			GENMASK(14, 11)
-+#define R48_PLL_CP_UP			GENMASK(5, 0)
-+
-+#define R49_PLL_LF_ZCAP			GENMASK(4, 0)
-+
-+#define R50_PLL_LOCKDET_WINDOW		GENMASK(10, 8)
-+
-+#define R51_PLL_PFD_DLY_EN		BIT(10)
-+#define R51_PLL_PFD_CTRL		BIT(6)
-+
-+#define R52_PLL_NCTRL_EN		BIT(6)
-+#define R52_PLL_CP_EN			BIT(3)
-+
-+#define R55_PLL_LF_3_PCTRIM		GENMASK(9, 8)
-+#define R55_PLL_LF_3_PRTRIM		GENMASK(7, 6)
-+
-+#define R56_CH1_MUX			GENMASK(15, 14)
-+#define R56_CH1_DIV			GENMASK(13, 0)
-+
-+#define R57_CH1_LPHCSL_EN		BIT(14)
-+#define R57_CH1_1P8VDET			BIT(12)
-+#define R57_CH1_GLITCHLESS_EN		BIT(9)
-+#define R57_CH1_SYNC_DELAY		GENMASK(8, 4)
-+#define R57_CH1_SYNC_EN			BIT(3)
-+#define R57_CH1_MUTE_SEL		BIT(1)
-+#define R57_CH1_MUTE			BIT(0)
-+
-+#define R59_CH1_LVDS_EN			BIT(15)
-+#define R59_CH1_CMOSN_EN		BIT(14)
-+#define R59_CH1_CMOSP_EN		BIT(13)
-+#define R59_CH1_CMOSN_POL		BIT(12)
-+#define R59_CH1_CMOSP_POL		BIT(11)
-+
-+#define R60_CH1_DIFFBUF_IBIAS_TRIM	GENMASK(15, 12)
-+#define R60_CH1_LVDS_CMTRIM_INC		GENMASK(11, 10)
-+#define R60_CH1_LVDS_CMTRIM_DEC		GENMASK(5, 4)
-+#define R60_CH1_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
-+
-+#define R62_CH2_MUX			GENMASK(15, 14)
-+#define R62_CH2_DIV			GENMASK(13, 0)
-+
-+#define R63_CH2_LPHCSL_EN		BIT(13)
-+#define R63_CH2_1P8VDET			BIT(12)
-+#define R63_CH2_GLITCHLESS_EN		BIT(9)
-+#define R63_CH2_SYNC_DELAY		GENMASK(8, 4)
-+#define R63_CH2_SYNC_EN			BIT(3)
-+#define R63_CH2_MUTE_SEL		BIT(1)
-+#define R63_CH2_MUTE			BIT(0)
-+
-+#define R65_CH2_LVDS_CMTRIM_DEC		GENMASK(14, 13)
-+#define R65_CH2_LVDS_EN			BIT(11)
-+
-+#define R66_CH2_LVDS_CMTRIM_IN		GENMASK(5, 4)
-+#define R66_CH2_DIFFBUF_IBIAS_TRIM	GENMASK(3, 0)
-+
-+#define R67_CH3_MUX			GENMASK(15, 14)
-+#define R67_CH3_DIV			GENMASK(13, 0)
-+
-+#define R68_CH3_LPHCSL_EN		BIT(13)
-+#define R68_CH3_1P8VDET			BIT(12)
-+#define R68_CH3_GLITCHLESS_EN		BIT(9)
-+#define R68_CH3_SYNC_DELAY		GENMASK(8, 4)
-+#define R68_CH3_SYNC_EN			BIT(3)
-+#define R68_CH3_MUTE_SEL		BIT(1)
-+#define R68_CH3_MUTE			BIT(0)
-+
-+#define R70_CH3_LVDS_EN			BIT(11)
-+
-+#define R71_CH3_LVDS_CMTRIM_DEC		GENMASK(10, 9)
-+#define R71_CH3_LVDS_CMTRIM_INC		GENMASK(5, 4)
-+#define R71_CH3_DIFFBUF_IBIAS_TR	GENMASK(3, 0)
-+
-+#define R72_CH4_MUX			GENMASK(15, 14)
-+#define R72_CH4_DIV			GENMASK(13, 0)
-+
-+#define R73_CH4_LPHCSL_EN		BIT(13)
-+#define R73_CH4_1P8VDET			BIT(12)
-+#define R73_CH4_GLITCHLESS_EN		BIT(9)
-+#define R73_CH4_SYNC_DELAY		GENMASK(8, 4)
-+#define R73_CH4_SYNC_EN			BIT(3)
-+#define R73_CH4_MUTE_SEL		BIT(1)
-+#define R73_CH4_MUTE			BIT(0)
-+
-+#define R75_CH4_LVDS_EN			BIT(15)
-+#define R75_CH4_CMOSP_EN		BIT(14)
-+#define R75_CH4_CMOSN_EN		BIT(13)
-+#define R75_CH4_CMOSP_POL		BIT(12)
-+#define R75_CH4_CMOSN_POL		BIT(11)
-+
-+#define R76_CH4_DIFFBUF_IBIAS_TRIM	GENMASK(9, 6)
-+#define R76_CH4_LVDS_CMTRIM_IN		GENMASK(5, 4)
-+#define R76_CH4_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
-+
-+#define R77_CH4_LVDS_CMTRIM_DEC		GENMASK(1, 0)
-+
-+#define R78_CH0_EN			BIT(12)
-+
-+#define R79_SAFETY_1P8V_MODE		BIT(9)
-+#define R79_CH0_CMOS_SLEW_RATE_CTRL	GENMASK(3, 0)
-+
-+#define R81_PLL_LOCK_MASK		BIT(3)
-+
-+#define CDCE6214_VCO_MIN 2335000000
-+#define CDCE6214_VCO_MAX 2625000000
-+#define CDCE6214_DENOM_DEFAULT (1 << 24)
-+
-+#define CDCE6214_CLKIN_FMT_CMOS		0
-+#define CDCE6214_CLKIN_FMT_XTAL		1
-+#define CDCE6214_CLKIN_FMT_DIFF		2
-+
-+#define CDCE6214_CLKOUT_FMT_CMOS	0
-+#define CDCE6214_CLKOUT_FMT_LVDS	1
-+#define CDCE6214_CLKOUT_FMT_LPHCSL	2
-+
-+#define CDCE6214_CMOS_MODE_DISABLED	0
-+#define CDCE6214_CMOS_MODE_HIGH		1
-+#define CDCE6214_CMOS_MODE_LOW		2
-+
-+static const char * const clk_names[] = {
-+	[CDCE6214_CLK_PRIREF] = "priref",
-+	[CDCE6214_CLK_SECREF] = "secref",
-+	[CDCE6214_CLK_OUT0] = "out0",
-+	[CDCE6214_CLK_OUT1] = "out1",
-+	[CDCE6214_CLK_OUT2] = "out2",
-+	[CDCE6214_CLK_OUT3] = "out3",
-+	[CDCE6214_CLK_OUT4] = "out4",
-+	[CDCE6214_CLK_PLL] = "pll",
-+	[CDCE6214_CLK_PSA] = "psa",
-+	[CDCE6214_CLK_PSB] = "psb",
-+};
-+
-+static const char * const clkkin_fmt_names[] = {
-+	[CDCE6214_CLKIN_FMT_CMOS] = "cmos",
-+	[CDCE6214_CLKIN_FMT_XTAL] = "xtal",
-+	[CDCE6214_CLKIN_FMT_DIFF] = "differential",
-+};
-+
-+static const char * const clkkout_fmt_names[] = {
-+	[CDCE6214_CLKOUT_FMT_CMOS] = "cmos",
-+	[CDCE6214_CLKOUT_FMT_LVDS] = "lvds",
-+	[CDCE6214_CLKOUT_FMT_LPHCSL] = "lp-hcsl",
-+};
-+
-+static const char * const cmos_mode_names[] = {
-+	[CDCE6214_CMOS_MODE_DISABLED] = "disabled",
-+	[CDCE6214_CMOS_MODE_HIGH] = "high",
-+	[CDCE6214_CMOS_MODE_LOW] = "low",
-+};
-+
-+#define CDCE6214_NUM_CLOCKS	ARRAY_SIZE(clk_names)
-+
-+struct cdce6214;
-+
-+struct cdce6214_clock {
-+	struct clk_hw hw;
-+	struct cdce6214 *priv;
-+	int index;
-+};
-+
-+struct cdce6214 {
-+	struct i2c_client *client;
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct gpio_desc *reset_gpio;
-+	struct cdce6214_clock clk[CDCE6214_NUM_CLOCKS];
-+};
-+
-+static inline struct cdce6214_clock *hw_to_cdce6214_clk(struct clk_hw *hw)
-+{
-+	return container_of(hw, struct cdce6214_clock, hw);
-+}
-+
-+static struct clk_hw *cdce6214_of_clk_get(struct of_phandle_args *clkspec,
-+					  void *data)
-+{
-+	struct cdce6214 *priv = data;
-+	unsigned int idx = clkspec->args[0];
-+
-+	if (idx >= CDCE6214_NUM_CLOCKS)
-+		return ERR_PTR(-EINVAL);
-+	if (idx <= CDCE6214_CLK_SECREF)
-+		return ERR_PTR(-EINVAL);
-+
-+	return &priv->clk[idx].hw;
-+}
-+
-+static const struct regmap_config cdce6214_regmap_config = {
-+	.reg_bits = 16,
-+	.val_bits = 16,
-+	.reg_stride = 1,
-+	.max_register = 0x0055,
-+};
-+
-+static int cdce6214_configure(struct cdce6214 *priv)
-+{
-+	regmap_update_bits(priv->regmap, 2, R2_REFSEL_SW,
-+			   FIELD_PREP(R2_REFSEL_SW, 2));
-+
-+	return 0;
-+}
-+
-+static unsigned long cdce6214_clk_out0_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int val, div;
-+
-+	regmap_read(priv->regmap, 25, &val);
-+
-+	div = FIELD_GET(R25_IP_RDIV, val);
-+
-+	if (!div)
-+		return parent_rate * 2;
-+
-+	return DIV_ROUND_UP_ULL((u64)parent_rate, div);
-+}
-+
-+static long cdce6214_clk_out0_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *best_parent_rate)
-+{
-+	unsigned int div;
-+
-+	if (rate >= *best_parent_rate)
-+		return *best_parent_rate * 2;
-+
-+	div = DIV_ROUND_CLOSEST(*best_parent_rate, rate);
-+
-+	return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-+}
-+
-+static int cdce6214_clk_out0_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int div;
-+
-+	if (rate >= parent_rate) {
-+		regmap_update_bits(priv->regmap, 25, R25_IP_RDIV, FIELD_PREP(R25_IP_RDIV, 0));
-+		return 0;
-+	}
-+
-+	div = DIV_ROUND_CLOSEST(parent_rate, rate);
-+	if (div > R25_IP_RDIV)
-+		div = R25_IP_RDIV;
-+
-+	regmap_update_bits(priv->regmap, 25, R25_IP_RDIV, FIELD_PREP(R25_IP_RDIV, div));
-+
-+	return 0;
-+}
-+
-+static u8 cdce6214_clk_out0_get_parent(struct clk_hw *hw)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int val, idx;
-+
-+	regmap_read(priv->regmap, 2, &val);
-+
-+	idx = FIELD_GET(R2_REFSEL_SW, val);
-+
-+	switch (idx) {
-+		case 0:
-+		case 1:
-+			idx = 0;
-+			break;
-+		case 2:
-+			idx = 1;
-+			break;
-+		case 3:
-+			idx = 0;
-+			break;
-+	};
-+
-+	return idx;
-+}
-+
-+static int cdce6214_clk_out0_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	regmap_update_bits(priv->regmap, 25, R25_REF_CH_MUX, FIELD_PREP(R25_REF_CH_MUX, index));
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops cdce6214_clk_out0_ops = {
-+	.recalc_rate = cdce6214_clk_out0_recalc_rate,
-+	.round_rate = cdce6214_clk_out0_round_rate,
-+	.set_rate = cdce6214_clk_out0_set_rate,
-+	.get_parent = cdce6214_clk_out0_get_parent,
-+	.set_parent = cdce6214_clk_out0_set_parent,
-+};
-+
-+static int cdce6214_clk_out_ldo(struct clk_hw *hw, int enable)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int mask, val;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_OUT1:
-+		mask = R4_CH1_PD;
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		mask = R4_CH2_PD;
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		mask = R4_CH3_PD;
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		mask = R4_CH4_PD;
-+		break;
-+	default:
-+		return -EINVAL;
-+	};
-+
-+	if (enable > 0) {
-+		regmap_clear_bits(priv->regmap, 4, mask);
-+	} else if (!enable) {
-+		regmap_set_bits(priv->regmap, 4, mask);
-+	} else {
-+		regmap_read(priv->regmap, 4, &val);
-+		return !(val & mask);
-+	}
-+
-+	return 0;
-+}
-+
-+static int cdce6214_clk_out_prepare(struct clk_hw *hw)
-+{
-+	return cdce6214_clk_out_ldo(hw, 1);
-+}
-+
-+static void cdce6214_clk_out_unprepare(struct clk_hw *hw)
-+{
-+	cdce6214_clk_out_ldo(hw, 0);
-+}
-+
-+static int cdce6214_clk_out_is_prepared(struct clk_hw *hw)
-+{
-+	return cdce6214_clk_out_ldo(hw, -1);
-+}
-+
-+static unsigned long cdce6214_clk_out_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int val, div;
-+	unsigned long r;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_OUT1:
-+		regmap_read(priv->regmap, 56, &val);
-+		div = FIELD_GET(R56_CH1_DIV, val);
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		regmap_read(priv->regmap, 62, &val);
-+		div = FIELD_GET(R62_CH2_DIV, val);
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		regmap_read(priv->regmap, 67, &val);
-+		div = FIELD_GET(R67_CH3_DIV, val);
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		regmap_read(priv->regmap, 72, &val);
-+		div = FIELD_GET(R72_CH4_DIV, val);
-+		break;
-+	};
-+
-+	if (!div)
-+		div = 1;
-+
-+	r = DIV_ROUND_UP_ULL((u64)parent_rate, div);
-+
-+	return r;
-+}
-+
-+static int cdce6214_get_out_div(unsigned long rate, unsigned long parent_rate)
-+{
-+	unsigned int div = DIV_ROUND_CLOSEST(parent_rate, rate);
-+
-+	if (div < 1)
-+		div = 1;
-+
-+	if (div > R72_CH4_DIV)
-+		div = R72_CH4_DIV;
-+
-+	return div;
-+}
-+
-+static long cdce6214_clk_out_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *best_parent_rate)
-+{
-+	unsigned int div = cdce6214_get_out_div(rate, *best_parent_rate);
-+
-+	return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-+}
-+
-+static int cdce6214_clk_out_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	unsigned int div = cdce6214_get_out_div(rate, parent_rate);
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_OUT1:
-+		regmap_update_bits(priv->regmap, 56, R56_CH1_DIV,
-+				   FIELD_PREP(R56_CH1_DIV, div));
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		regmap_update_bits(priv->regmap, 62, R62_CH2_DIV,
-+				   FIELD_PREP(R62_CH2_DIV, div));
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		regmap_update_bits(priv->regmap, 67, R67_CH3_DIV,
-+				   FIELD_PREP(R67_CH3_DIV, div));
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		regmap_update_bits(priv->regmap, 72, R72_CH4_DIV,
-+				   FIELD_PREP(R72_CH4_DIV, div));
-+		break;
-+	};
-+
-+	return 0;
-+}
-+
-+static u8 cdce6214_clk_out_get_parent(struct clk_hw *hw)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int val, idx;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_OUT1:
-+		regmap_read(priv->regmap, 56, &val);
-+		idx = FIELD_GET(R56_CH1_MUX, val);
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		regmap_read(priv->regmap, 62, &val);
-+		idx = FIELD_GET(R62_CH2_MUX, val);
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		regmap_read(priv->regmap, 67, &val);
-+		idx = FIELD_GET(R67_CH3_MUX, val);
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		regmap_read(priv->regmap, 72, &val);
-+		idx = FIELD_GET(R72_CH4_MUX, val);
-+		break;
-+	};
-+
-+	return idx;
-+}
-+
-+static int cdce6214_clk_out_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_OUT1:
-+		regmap_update_bits(priv->regmap, 56, R56_CH1_MUX, FIELD_PREP(R56_CH1_MUX, index));
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		regmap_update_bits(priv->regmap, 62, R62_CH2_MUX, FIELD_PREP(R62_CH2_MUX, index));
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		regmap_update_bits(priv->regmap, 67, R67_CH3_MUX, FIELD_PREP(R67_CH3_MUX, index));
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		regmap_update_bits(priv->regmap, 72, R72_CH4_MUX, FIELD_PREP(R72_CH4_MUX, index));
-+		break;
-+	};
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops cdce6214_clk_out_ops = {
-+	.prepare = cdce6214_clk_out_prepare,
-+	.unprepare = cdce6214_clk_out_unprepare,
-+	.is_prepared = cdce6214_clk_out_is_prepared,
-+	.recalc_rate = cdce6214_clk_out_recalc_rate,
-+	.round_rate = cdce6214_clk_out_round_rate,
-+	.set_rate = cdce6214_clk_out_set_rate,
-+	.get_parent = cdce6214_clk_out_get_parent,
-+	.set_parent = cdce6214_clk_out_set_parent,
-+};
-+
-+static int pll_calc_values(unsigned long parent_rate, unsigned long out,
-+			   unsigned long *ndiv, unsigned long *num, unsigned long *den)
-+{
-+	u64 a;
-+
-+	if (out < CDCE6214_VCO_MIN || out > CDCE6214_VCO_MAX)
-+		return -EINVAL;
-+
-+	*den = 10000000;
-+	*ndiv = out / parent_rate;
-+	a = (out % parent_rate);
-+	a *= *den;
-+	do_div(a, parent_rate);
-+	*num = a;
-+
-+	return 0;
-+}
-+
-+static unsigned long cdce6214_clk_pll_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned long ndiv, num, den;
-+	unsigned int val;
-+
-+	regmap_read(priv->regmap, 30, &val);
-+	ndiv = FIELD_GET(R30_PLL_NDIV, val);
-+
-+	regmap_read(priv->regmap, 31, &val);
-+	num = FIELD_GET(R31_PLL_NUM_15_0, val);
-+
-+	regmap_read(priv->regmap, 32, &val);
-+	num |= FIELD_GET(R32_PLL_NUM_23_16, val) << 16;
-+
-+	regmap_read(priv->regmap, 33, &val);
-+	den = FIELD_GET(R33_PLL_DEN_15_0, val);
-+
-+	regmap_read(priv->regmap, 34, &val);
-+	den |= FIELD_GET(R34_PLL_DEN_23_16, val) << 16;
-+
-+	if (!den)
-+		den = CDCE6214_DENOM_DEFAULT;
-+
-+	return parent_rate * ndiv + DIV_ROUND_CLOSEST(parent_rate * num, den);
-+}
-+
-+static long cdce6214_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *best_parent_rate)
-+{
-+	if (rate < CDCE6214_VCO_MIN)
-+		rate = CDCE6214_VCO_MIN;
-+	if (rate > CDCE6214_VCO_MAX)
-+		rate = CDCE6214_VCO_MAX;
-+	if (rate < *best_parent_rate * 24)
-+		return -EINVAL;
-+
-+	return rate;
-+}
-+
-+static bool cdce6214_pll_locked(struct cdce6214 *priv)
-+{
-+	unsigned int val;
-+
-+	regmap_read(priv->regmap, 7, &val);
-+
-+	return val & R7_LOCK_DET;
-+}
-+
-+static int cdce6214_wait_pll_lock(struct cdce6214 *priv)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read_poll_timeout(priv->regmap, 7, val,
-+				       val & R7_LOCK_DET, 0, 1000);
-+	if (ret)
-+		dev_err(priv->dev, "Timeout waiting for PLL lock\n");
-+
-+	return ret;
-+}
-+
-+#define R5_PLL_POWER_BITS (R5_PLL_VCOBUFF_LDO_PD | \
-+			   R5_PLL_VCO_LDO_PD | \
-+			   R5_PLL_VCO_BUFF_PD)
-+
-+static int cdce6214_clk_pll_prepare(struct clk_hw *hw)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	regmap_clear_bits(priv->regmap, 5, R5_PLL_POWER_BITS);
-+
-+	regmap_set_bits(priv->regmap, 0, RO_RECAL);
-+
-+	return cdce6214_wait_pll_lock(priv);
-+}
-+
-+static void cdce6214_clk_pll_unprepare(struct clk_hw *hw)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	regmap_set_bits(priv->regmap, 5, R5_PLL_POWER_BITS);
-+}
-+
-+static bool cdce6214_clk_pll_powered(struct cdce6214 *priv)
-+{
-+	unsigned int val;
-+
-+	regmap_read(priv->regmap, 5, &val);
-+
-+	return (val & R5_PLL_POWER_BITS) == 0;
-+}
-+
-+static int cdce6214_clk_pll_is_prepared(struct clk_hw *hw)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	return cdce6214_pll_locked(priv);
-+}
-+
-+static int cdce6214_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned long ndiv, num, den;
-+	int ret;
-+
-+	ret = pll_calc_values(parent_rate, rate, &ndiv, &num, &den);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (den == CDCE6214_DENOM_DEFAULT)
-+		den = 0;
-+
-+	regmap_update_bits(priv->regmap, 34, R34_PLL_DEN_23_16,
-+			   FIELD_PREP(R34_PLL_DEN_23_16, den >> 16));
-+	regmap_update_bits(priv->regmap, 33, R33_PLL_DEN_15_0,
-+			   FIELD_PREP(R33_PLL_DEN_15_0, den & 0xffff));
-+	regmap_update_bits(priv->regmap, 32, R32_PLL_NUM_23_16,
-+			   FIELD_PREP(R32_PLL_NUM_23_16, num >> 16));
-+	regmap_update_bits(priv->regmap, 31, R31_PLL_NUM_15_0,
-+			   FIELD_PREP(R31_PLL_NUM_15_0, num & 0xffff));
-+	regmap_update_bits(priv->regmap, 30, R30_PLL_NDIV,
-+			   FIELD_PREP(R30_PLL_NDIV, ndiv));
-+
-+	regmap_update_bits(priv->regmap, 3, R3_FREQ_INC_DEC_REG_MODE | R3_FREQ_INC_DEC_EN,
-+			   R3_FREQ_INC_DEC_REG_MODE | R3_FREQ_INC_DEC_EN);
-+
-+	if (cdce6214_clk_pll_powered(priv)) {
-+		regmap_set_bits(priv->regmap, 0, RO_RECAL);
-+		ret = cdce6214_wait_pll_lock(priv);
-+	}
-+
-+	return ret;
-+}
-+
-+static const struct clk_ops cdce6214_clk_pll_ops = {
-+	.prepare = cdce6214_clk_pll_prepare,
-+	.unprepare = cdce6214_clk_pll_unprepare,
-+	.is_prepared = cdce6214_clk_pll_is_prepared,
-+	.recalc_rate = cdce6214_clk_pll_recalc_rate,
-+	.round_rate = cdce6214_clk_pll_round_rate,
-+	.set_rate = cdce6214_clk_pll_set_rate,
-+};
-+
-+static int cdce6214_clk_psx_ldo(struct clk_hw *hw, int enable)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int mask, val;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_PSA:
-+		mask = R5_PLL_PSA_PD;
-+		break;
-+	case CDCE6214_CLK_PSB:
-+		mask = R5_PLL_PSB_PD;
-+		break;
-+	default:
-+		return -EINVAL;
-+	};
-+
-+	if (enable > 0 ) {
-+		regmap_clear_bits(priv->regmap, 5, mask);
-+	} else if (!enable) {
-+		regmap_set_bits(priv->regmap, 5, mask);
-+	} else {
-+		regmap_read(priv->regmap, 5, &val);
-+
-+		return !(val & mask);
-+	}
-+
-+	return 0;
-+}
-+
-+static int cdce6214_clk_psx_prepare(struct clk_hw *hw)
-+{
-+	return cdce6214_clk_psx_ldo(hw, 1);
-+}
-+
-+static void cdce6214_clk_psx_unprepare(struct clk_hw *hw)
-+{
-+	cdce6214_clk_psx_ldo(hw, 0);
-+}
-+
-+static int cdce6214_clk_psx_is_prepared(struct clk_hw *hw)
-+{
-+	return cdce6214_clk_psx_ldo(hw, -1);
-+}
-+
-+static unsigned long cdce6214_clk_psx_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+	unsigned int psx[] = { 4, 5, 6, 6 };
-+	unsigned int val, div;
-+
-+	regmap_read(priv->regmap, 47, &val);
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_PSA:
-+		div = psx[FIELD_GET(R47_PLL_PSA, val)];
-+		break;
-+	case CDCE6214_CLK_PSB:
-+		div = psx[FIELD_GET(R47_PLL_PSB, val)];
-+		break;
-+	};
-+
-+	return DIV_ROUND_UP_ULL((u64)parent_rate, div);
-+}
-+
-+static int cdce6214_get_psx_div(unsigned long rate, unsigned long parent_rate)
-+{
-+	unsigned int div = DIV_ROUND_CLOSEST(parent_rate, rate);
-+
-+	if (div < 4)
-+		div = 4;
-+
-+	if (div > 6)
-+		div = 6;
-+
-+	return div;
-+}
-+
-+static long cdce6214_clk_psx_round_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long *best_parent_rate)
-+{
-+	unsigned int div = cdce6214_get_psx_div(rate, *best_parent_rate);
-+
-+	return DIV_ROUND_UP_ULL((u64)*best_parent_rate, div);
-+}
-+
-+static int cdce6214_clk_psx_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	unsigned int div = cdce6214_get_psx_div(rate, parent_rate);
-+	struct cdce6214_clock *clock = hw_to_cdce6214_clk(hw);
-+	struct cdce6214 *priv = clock->priv;
-+
-+	switch (clock->index) {
-+	case CDCE6214_CLK_PSA:
-+		regmap_update_bits(priv->regmap, 47, R47_PLL_PSA,
-+				   FIELD_PREP(R47_PLL_PSA, div));
-+		break;
-+	case CDCE6214_CLK_PSB:
-+		regmap_update_bits(priv->regmap, 47, R47_PLL_PSB,
-+				   FIELD_PREP(R47_PLL_PSB, div));
-+		break;
-+	};
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops cdce6214_clk_psx_ops = {
-+	.prepare = cdce6214_clk_psx_prepare,
-+	.unprepare = cdce6214_clk_psx_unprepare,
-+	.is_prepared = cdce6214_clk_psx_is_prepared,
-+	.recalc_rate = cdce6214_clk_psx_recalc_rate,
-+	.round_rate = cdce6214_clk_psx_round_rate,
-+	.set_rate = cdce6214_clk_psx_set_rate,
-+};
-+
-+static int cdce6214_clk_register(struct cdce6214 *priv)
-+{
-+	struct clk_init_data init[CDCE6214_NUM_CLOCKS] = { 0 };
-+	struct clk_parent_data pdata_out0[2] = {};
-+	struct clk_parent_data pdata_out[4] = {};
-+	struct clk_parent_data pdata_pll = {};
-+	struct clk_parent_data pdata_psx = {};
-+	int i, ret;
-+
-+	pdata_out0[0].fw_name = "priref";
-+	pdata_out0[1].fw_name = "secref";
-+
-+	init[CDCE6214_CLK_OUT0].ops = &cdce6214_clk_out0_ops;
-+	init[CDCE6214_CLK_OUT0].num_parents = 2;
-+	init[CDCE6214_CLK_OUT0].parent_data = pdata_out0;
-+	init[CDCE6214_CLK_OUT0].flags = CLK_SET_RATE_NO_REPARENT;
-+
-+	pdata_out[0].hw = &priv->clk[CDCE6214_CLK_PSA].hw;
-+	pdata_out[1].hw = &priv->clk[CDCE6214_CLK_PSB].hw;
-+	pdata_out[3].hw = &priv->clk[CDCE6214_CLK_OUT0].hw;
-+
-+	for (i = CDCE6214_CLK_OUT1; i <= CDCE6214_CLK_OUT4; i++) {
-+		init[i].ops = &cdce6214_clk_out_ops;
-+		init[i].num_parents = 4;
-+		init[i].parent_data = pdata_out;
-+		init[i].flags = CLK_SET_RATE_NO_REPARENT;
-+	}
-+
-+	init[CDCE6214_CLK_PLL].ops = &cdce6214_clk_pll_ops;
-+	init[CDCE6214_CLK_PLL].num_parents = 1;
-+	pdata_pll.hw = &priv->clk[CDCE6214_CLK_OUT0].hw;
-+	init[CDCE6214_CLK_PLL].parent_data = &pdata_pll;
-+
-+	pdata_psx.hw = &priv->clk[CDCE6214_CLK_PLL].hw;
-+	for (i = CDCE6214_CLK_PSA; i <= CDCE6214_CLK_PSB; i++) {
-+		init[i].ops = &cdce6214_clk_psx_ops;
-+		init[i].num_parents = 1;
-+		init[i].parent_data = &pdata_psx;
-+	}
-+
-+	for (i = 0; i < CDCE6214_NUM_CLOCKS; i++) {
-+		struct cdce6214_clock *clk = &priv->clk[i];
-+		char name[128];
-+
-+		if (!init[i].ops)
-+			continue;
-+
-+		snprintf(name, sizeof(name), "%s_%s", dev_name(priv->dev), clk_names[i]);
-+		init[i].name = name;
-+		clk->hw.init = &init[i];
-+		clk->priv = priv;
-+		clk->index = i;
-+		ret = devm_clk_hw_register(priv->dev, &clk->hw);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void cdce6214_setup_xtal(struct cdce6214 *priv, struct device_node *np)
-+{
-+	unsigned short ip_xo_cload[] = {
-+		/* index is the register value */
-+		3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400,
-+		4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000,
-+		6200, 6400, 6500, 6700, 6900, 7100, 7300, 7500,
-+		7700, 7900, 8100, 8300, 8500, 8700, 8900, 9000
-+	};
-+
-+	unsigned short ip_bias_sel_xo[] = {
-+		/* index is the register value */
-+		0, 14, 29, 44,
-+		59, 148, 295, 443,
-+		591, 884, 1177, 1468, 1758
-+	};
-+
-+	unsigned int cload = 4400; /* reset default */
-+	unsigned int bias = 295; /* reset default */
-+	int i;
-+
-+	of_property_read_u32(np, "ti,xo-cload-femtofarad", &cload);
-+	of_property_read_u32(np, "ti,xo-bias-current-microampere", &bias);
-+
-+	for (i = 0; i < ARRAY_SIZE(ip_xo_cload); i++)
-+		if (cload <= ip_xo_cload[i])
-+			break;
-+
-+	if (i >= ARRAY_SIZE(ip_xo_cload)) {
-+		dev_warn(priv->dev, "ti,xo-cload-femtofarad value %u too high\n",
-+			 cload);
-+		i = ARRAY_SIZE(ip_xo_cload) - 1;
-+	}
-+
-+	regmap_update_bits(priv->regmap, 2, R24_IP_XO_CLOAD,
-+			   FIELD_PREP(R24_IP_XO_CLOAD, i));
-+
-+	for (i = 0; i < ARRAY_SIZE(ip_bias_sel_xo); i++)
-+		if (bias <= ip_bias_sel_xo[i])
-+			break;
-+
-+	if (i >= ARRAY_SIZE(ip_xo_cload)) {
-+		dev_warn(priv->dev, "ti,xo-bias-current-microampere value %u too high\n",
-+			 bias);
-+		i = ARRAY_SIZE(ip_xo_cload) - 1;
-+	}
-+
-+	regmap_update_bits(priv->regmap, 2, R24_IP_BIAS_SEL_XO,
-+			   FIELD_PREP(R24_IP_BIAS_SEL_XO, i));
-+}
-+
-+static int cdce6214_get_clkout_fmt(struct cdce6214 *priv, struct device_node *np)
-+{
-+	const char *fmt;
-+	int ret;
-+
-+	ret = of_property_read_string(np, "ti,clkout-fmt", &fmt);
-+	if (ret)
-+		return ret;
-+
-+	return match_string(clkkout_fmt_names, ARRAY_SIZE(clkkout_fmt_names), fmt);
-+}
-+
-+static int cdce6214_get_clkin_fmt(struct cdce6214 *priv, struct device_node *np)
-+{
-+	const char *fmt;
-+	int ret;
-+
-+	ret = of_property_read_string(np, "ti,clkin-fmt", &fmt);
-+	if (ret)
-+		return ret;
-+
-+	return match_string(clkkin_fmt_names, ARRAY_SIZE(clkkin_fmt_names), fmt);
-+}
-+
-+static int cdce6214_get_cmos_mode(struct cdce6214 *priv, struct device_node *np,
-+				  const char *propname)
-+{
-+	const char *fmt;
-+	int ret;
-+
-+	ret = of_property_read_string(np, propname, &fmt);
-+	if (ret)
-+		return 0;
-+
-+	return match_string(cmos_mode_names, ARRAY_SIZE(cmos_mode_names), fmt);
-+}
-+
-+static int cdce6214_set_cmos_mode(struct cdce6214 *priv, struct device_node *np,
-+				  unsigned int reg)
-+{
-+	int cmosp_mode, cmosn_mode;
-+	u16 cmode = 0, cmode_mask;
-+
-+	cmosn_mode = cdce6214_get_cmos_mode(priv, np, "ti,cmosn-mode");
-+	if (cmosn_mode < 0)
-+		return cmosn_mode;
-+
-+	cmosp_mode = cdce6214_get_cmos_mode(priv, np, "ti,cmosp-mode");
-+	if (cmosp_mode < 0)
-+		return cmosp_mode;
-+
-+	switch (cmosp_mode) {
-+	case CDCE6214_CMOS_MODE_DISABLED:
-+		break;
-+	case CDCE6214_CMOS_MODE_HIGH:
-+		cmode |= R59_CH1_CMOSP_EN | R59_CH1_CMOSP_POL;
-+		break;
-+	case CDCE6214_CMOS_MODE_LOW:
-+		cmode |= R59_CH1_CMOSP_EN;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (cmosn_mode) {
-+	case CDCE6214_CMOS_MODE_DISABLED:
-+		break;
-+	case CDCE6214_CMOS_MODE_HIGH:
-+		cmode |= R59_CH1_CMOSN_EN | R59_CH1_CMOSN_POL;
-+		break;
-+	case CDCE6214_CMOS_MODE_LOW:
-+		cmode |= R59_CH1_CMOSN_EN;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	cmode_mask = R59_CH1_CMOSP_EN | R59_CH1_CMOSN_EN |
-+		     R59_CH1_CMOSP_POL | R59_CH1_CMOSN_POL;
-+
-+	/* Relevant fields are identical for register 59 and 75 */
-+	regmap_update_bits(priv->regmap, reg, cmode_mask, cmode);
-+
-+	return 0;
-+}
-+
-+static int cdce6214_parse_subnode(struct cdce6214 *priv, struct device_node *np)
-+{
-+	struct regmap *reg = priv->regmap;
-+	unsigned int idx, val;
-+	int fmt;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, "reg", &idx);
-+	if (ret) {
-+		dev_err(priv->dev, "missing reg property in child: %s\n",
-+			np->full_name);
-+		return ret;
-+	}
-+
-+	if (idx >= CDCE6214_NUM_CLOCKS)
-+		return -EINVAL;
-+
-+	switch (idx) {
-+	case CDCE6214_CLK_OUT1:
-+		fmt = cdce6214_get_clkout_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKOUT_FMT_CMOS:
-+			ret = cdce6214_set_cmos_mode(priv, np, 59);
-+			if (ret)
-+				return ret;
-+			regmap_clear_bits(reg, 59, R59_CH1_LVDS_EN);
-+			regmap_clear_bits(reg, 57, R57_CH1_LPHCSL_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LVDS:
-+			regmap_clear_bits(reg, 57, R57_CH1_LPHCSL_EN);
-+			regmap_set_bits(reg, 59, R59_CH1_LVDS_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LPHCSL:
-+			regmap_clear_bits(reg, 59, R59_CH1_LVDS_EN);
-+			regmap_set_bits(reg, 57, R57_CH1_LPHCSL_EN);
-+			break;
-+		default:
-+			goto err_illegal_fmt;
-+		}
-+		break;
-+	case CDCE6214_CLK_OUT2:
-+		fmt = cdce6214_get_clkout_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKOUT_FMT_CMOS:
-+			goto err_illegal_fmt;
-+		case CDCE6214_CLKOUT_FMT_LVDS:
-+			regmap_set_bits(reg, 65, R65_CH2_LVDS_EN);
-+			regmap_clear_bits(reg, 63, R63_CH2_LPHCSL_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LPHCSL:
-+			regmap_set_bits(reg, 63, R63_CH2_LPHCSL_EN);
-+			regmap_clear_bits(reg, 65, R65_CH2_LVDS_EN);
-+			break;
-+		default:
-+			goto err_illegal_fmt;
-+		}
-+		break;
-+	case CDCE6214_CLK_OUT3:
-+		fmt = cdce6214_get_clkout_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKOUT_FMT_CMOS:
-+			goto err_illegal_fmt;
-+		case CDCE6214_CLKOUT_FMT_LVDS:
-+			regmap_set_bits(reg, 70, R70_CH3_LVDS_EN);
-+			regmap_clear_bits(reg, 68, R68_CH3_LPHCSL_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LPHCSL:
-+			regmap_set_bits(reg, 70, R70_CH3_LVDS_EN);
-+			regmap_clear_bits(reg, 68, R65_CH2_LVDS_EN);
-+			break;
-+		}
-+		break;
-+	case CDCE6214_CLK_OUT4:
-+		fmt = cdce6214_get_clkout_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKOUT_FMT_CMOS:
-+			ret = cdce6214_set_cmos_mode(priv, np, 75);
-+			if (ret)
-+				return ret;
-+			regmap_clear_bits(reg, 75, R75_CH4_LVDS_EN);
-+			regmap_clear_bits(reg, 73, R73_CH4_LPHCSL_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LVDS:
-+			regmap_clear_bits(reg, 73, R73_CH4_LPHCSL_EN);
-+			regmap_set_bits(reg, 75, R75_CH4_LVDS_EN);
-+			break;
-+		case CDCE6214_CLKOUT_FMT_LPHCSL:
-+			regmap_clear_bits(reg, 75, R75_CH4_LVDS_EN);
-+			regmap_set_bits(reg, 72, R73_CH4_LPHCSL_EN);
-+			break;
-+		default:
-+			goto err_illegal_fmt;
-+		}
-+		break;
-+	case CDCE6214_CLK_PRIREF:
-+		fmt = cdce6214_get_clkin_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKIN_FMT_CMOS:
-+			regmap_clear_bits(reg, 24, R24_IP_PRIREF_BUF_SEL);
-+			break;
-+		case CDCE6214_CLKIN_FMT_DIFF:
-+			regmap_set_bits(reg, 24, R24_IP_PRIREF_BUF_SEL);
-+			break;
-+		case CDCE6214_CLKIN_FMT_XTAL: /* XTAL not allowed for PRIREF */
-+		default:
-+			fmt = fmt;
-+			goto err_illegal_fmt;
-+		}
-+		break;
-+	case CDCE6214_CLK_SECREF:
-+		fmt = cdce6214_get_clkin_fmt(priv, np);
-+		switch (fmt) {
-+		case CDCE6214_CLKIN_FMT_CMOS:
-+			val = R24_IP_SECREF_BUF_SEL_LVCMOS;
-+			break;
-+		case CDCE6214_CLKIN_FMT_XTAL:
-+			val = R24_IP_SECREF_BUF_SEL_XTAL;
-+			cdce6214_setup_xtal(priv, np);
-+			break;
-+		case CDCE6214_CLKIN_FMT_DIFF:
-+			val = R24_IP_SECREF_BUF_SEL_DIFF;
-+			break;
-+		default:
-+			goto err_illegal_fmt;
-+		}
-+
-+		regmap_update_bits(reg, 24, R24_IP_SECREF_BUF_SEL, val);
-+
-+		break;
-+	}
-+
-+	return 0;
-+
-+err_illegal_fmt:
-+	if (fmt < 0)
-+		dev_err(priv->dev, "%pOF: missing required property\n", np);
-+	else
-+		dev_err(priv->dev, "%pOF: illegal format %u\n", np, fmt);
-+
-+	return -EINVAL;
-+}
-+
-+static int cdce6214_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct device_node *child;
-+	struct cdce6214 *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->client = client;
-+	priv->dev = dev;
-+	i2c_set_clientdata(client, priv);
-+	dev_set_drvdata(dev, priv);
-+
-+	priv->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(priv->reset_gpio)) {
-+		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-+				     "failed to get reset gpio\n");
-+	}
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &cdce6214_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	ret = cdce6214_configure(priv);
-+	if (ret)
-+		return ret;
-+
-+	for_each_child_of_node(dev->of_node, child) {
-+		ret = cdce6214_parse_subnode(priv, child);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = cdce6214_clk_register(priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_of_clk_add_hw_provider(dev, cdce6214_of_clk_get, priv);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id cdce6214_ids[] = {
-+	{
-+		.compatible = "ti,cdce6214",
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+MODULE_DEVICE_TABLE(of, cdce6214_ids);
-+
-+static struct i2c_driver cdce6214_driver = {
-+	.driver = {
-+		.name = "cdce6214",
-+		.of_match_table = cdce6214_ids,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+	.probe = cdce6214_probe,
-+};
-+module_i2c_driver(cdce6214_driver);
-+
-+MODULE_AUTHOR("Alvin Šipraga <alsi@bang-olufsen.dk>");
-+MODULE_AUTHOR("Sascha Hauer <s.hauer@pengutronix.de>");
-+MODULE_DESCRIPTION("TI CDCE6214 driver");
-+MODULE_LICENSE("GPL");
+Same as above, if !ac_excited, can't we use the GPIOs? because
+ad4170_validate_excitation_pins() just unconditionally sets
+AD4170_GPIO_AC_EXCITATION. Or maybe this DT property is only adding
+complexity... See below
+> +
+> +	/*
+> +	 * If a specific current is provided through
+> +	 * adi,excitation-current-microamp, set excitation pins provided
+> through
+> +	 * adi,excitation-pins to AC excite the bridge circuit. Else, use
+> +	 * predefined ACX1, ACX1 negated, ACX2, ACX2 negated signals to AC
+> +	 * excite the bridge. Those signals are output on GPIO2, GPIO0,
+> GPIO3,
+> +	 * and GPIO1, respectively. If only two pins are specified for AC
+> +	 * excitation, use ACX1 and ACX2. See AD4170 datasheet for
+> instructions
+> +	 * on how to setup the bridge circuit.
+> +	 *
+> +	 * Also, to avoid any short-circuit condition when more than one
+> channel
+> +	 * is enabled, set GPIO2 and GPIO0 high, and set GPIO1 and GPIO3 low
+> to
+> +	 * DC excite the bridge whenever a channel without AC excitation is
+> +	 * selected. That is needed because GPIO pins are controlled by the
+> next
+> +	 * highest priority GPIO function when a channel doesn't enable AC
+> +	 * excitation. See datasheet Figure 113 Weigh Scale (AC Excitation)
+> for
+> +	 * an example circuit diagram.
+> +	 */
+> +	if (exc_cur =3D=3D 0) {
+> +		if (num_exc_pins =3D=3D 2) {
+> +			setup->misc |=3D FIELD_PREP(AD4170_MISC_CHOP_ADC_MSK,
+> 0x3);
+> +			ret =3D regmap_set_bits(st->regmap16,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AD4170_GPIO_MODE_REG,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(7) | BIT(5));
+> +			if (ret)
+> +				return ret;
+> +
+> +			ret =3D regmap_set_bits(st->regmap16,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AD4170_GPIO_OUTPUT_REG,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(3) | BIT(2));
+> +			if (ret)
+> +				return ret;
+> +
+> +			st->gpio_fn[3] |=3D AD4170_GPIO_OUTPUT;
+> +			st->gpio_fn[2] |=3D AD4170_GPIO_OUTPUT;
+> +		} else {
+> +			setup->misc |=3D FIELD_PREP(AD4170_MISC_CHOP_ADC_MSK,
+> 0x2);
+> +			ret =3D regmap_set_bits(st->regmap16,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AD4170_GPIO_MODE_REG,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(7) | BIT(5) | BIT(3) |
+> BIT(1));
+> +			if (ret)
+> +				return ret;
+> +
+> +			ret =3D regmap_set_bits(st->regmap16,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AD4170_GPIO_OUTPUT_REG,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(3) | BIT(2) | BIT(1) |
+> BIT(0));
+> +			if (ret)
+> +				return ret;
+> +
+> +			st->gpio_fn[3] |=3D AD4170_GPIO_OUTPUT;
+> +			st->gpio_fn[2] |=3D AD4170_GPIO_OUTPUT;
+> +			st->gpio_fn[1] |=3D AD4170_GPIO_OUTPUT;
+> +			st->gpio_fn[0] |=3D AD4170_GPIO_OUTPUT;
 
--- 
-2.39.5
+Not sure if you gain much with having the funcs OR'ed like this... If I'm n=
+ot
+missing nothing it's only about logging in ad4170_validate_excitation_pins(=
+)?
+It's up to you but I would consider using bitmaps (unsigned long) for this =
+and
+just test the bits.
+
+
+> +		}
+> +
+> +		return 0;
+> +	}
+> +	for (i =3D 0; i < num_exc_pins; i++) {
+> +		unsigned int pin =3D exc_pins[i];
+> +
+> +		current_src |=3D FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_PIN_MSK,
+> pin);
+> +		current_src |=3D FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_VAL_MSK,
+> exc_cur);
+> +
+> +		ret =3D regmap_write(st->regmap16, AD4170_CURRENT_SRC_REG(i),
+> +				=C2=A0=C2=A0 current_src);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	setup->misc |=3D FIELD_PREP(AD4170_MISC_CHOP_IEXC_MSK,
+> +				=C2=A0 num_exc_pins =3D=3D 2 ? 0x2 : 0x3);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad4170_parse_external_sensor(struct ad4170_state *st,
+> +					struct fwnode_handle *child,
+> +					struct ad4170_setup *setup,
+> +					struct iio_chan_spec *chan, u8
+> s_type)
+> +{
+> +	unsigned int num_exc_pins, exc_cur, reg_val;
+> +	struct device *dev =3D &st->spi->dev;
+> +	u32 pins[2], exc_pins[4];
+> +	bool ac_excited, vbias;
+> +	int ret;
+> +
+> +	ret =3D fwnode_property_read_u32_array(child, "diff-channels", pins,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(pins));
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to read sensor diff-
+> channels\n");
+> +
+> +	chan->differential =3D true;
+> +	chan->channel =3D pins[0];
+> +	chan->channel2 =3D pins[1];
+> +
+> +	ac_excited =3D fwnode_property_read_bool(child, "adi,ac-excited");
+> +
+> +	num_exc_pins =3D fwnode_property_count_u32(child, "adi,excitation-
+> pins");
+> +	if (num_exc_pins !=3D 2 && num_exc_pins !=3D 4)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid number of excitation pins\n");
+
+Can't we assume that a valid num_exc_pins property means ac_excited =3D tru=
+e?
+Because that looks to be the logic in ad4170_validate_excitation_pins().
+
+> +
+> +	ret =3D fwnode_property_read_u32_array(child, "adi,excitation-pins",
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 exc_pins, num_exc_pins);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to read adi,excitation-pins\n");
+> +
+> +	ret =3D ad4170_validate_excitation_pins(st, exc_pins, num_exc_pins);
+> +	if (ret)
+> +		return ret;
+> +
+> +	exc_cur =3D 0;
+> +	ret =3D fwnode_property_read_u32(child, "adi,excitation-current-
+> microamp",
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &exc_cur);
+> +	if (ret && s_type =3D=3D AD4170_RTD_SENSOR)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to read adi,excitation-current-
+> microamp\n");
+> +
+> +	ret =3D ad4170_find_table_index(ad4170_iout_current_ua_tbl, exc_cur);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid excitation current: %uuA\n",
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 exc_cur);
+> +
+> +	/* Get the excitation current configuration value */
+> +	exc_cur =3D ret;
+> +
+> +	if (s_type =3D=3D AD4170_THERMOCOUPLE_SENSOR) {
+> +		vbias =3D fwnode_property_read_bool(child, "adi,vbias");
+> +		if (vbias) {
+> +			st->pins_fn[chan->channel2] |=3D AD4170_PIN_VBIAS;
+> +			reg_val =3D BIT(chan->channel2);
+> +			return regmap_write(st->regmap16, AD4170_V_BIAS_REG,
+> +					=C2=A0=C2=A0=C2=A0 reg_val);
+> +		}
+> +	}
+> +	if (s_type =3D=3D AD4170_WEIGH_SCALE_SENSOR ||
+> +	=C2=A0=C2=A0=C2=A0 s_type =3D=3D AD4170_THERMOCOUPLE_SENSOR) {
+
+I guess you have this because of indentation levels but is it that bad if w=
+e do
+		if (s_typ =3D=3D AD4170_THERMOCOUPLE_SENSOR && fwnode_property_read_bool(=
+child, "adi,vbias") {
+			...
+		}
+
+> +		ret =3D ad4170_setup_bridge(st, child, setup, exc_pins,
+> +					=C2=A0 num_exc_pins, exc_cur, ac_excited);
+> +	} else {
+> +		ret =3D ad4170_setup_rtd(st, child, setup, exc_pins,
+> num_exc_pins,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 exc_cur, ac_excited);
+> +	}
+> +	return ret;
+> +}
+> +
+> =C2=A0static int ad4170_parse_reference(struct ad4170_state *st,
+> =C2=A0				=C2=A0 struct fwnode_handle *child,
+> =C2=A0				=C2=A0 struct ad4170_setup *setup)
+> @@ -1827,6 +2130,7 @@ static int ad4170_parse_channel_node(struct iio_dev
+> *indio_dev,
+> =C2=A0	struct ad4170_state *st =3D iio_priv(indio_dev);
+> =C2=A0	struct device *dev =3D &st->spi->dev;
+> =C2=A0	struct ad4170_chan_info *chan_info;
+> +	u8 s_type =3D AD4170_ADC_SENSOR;
+> =C2=A0	struct ad4170_setup *setup;
+> =C2=A0	struct iio_chan_spec *chan;
+> =C2=A0	unsigned int ch_reg;
+> @@ -1857,10 +2161,34 @@ static int ad4170_parse_channel_node(struct iio_d=
+ev
+> *indio_dev,
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
+> -	ret =3D ad4170_parse_adc_channel_type(dev, child, chan);
+> -	if (ret < 0)
+> -		return ret;
+> +	ret =3D fwnode_property_read_u8(child, "adi,sensor-type", &s_type);
+> +	if (!ret) {
+> +		if (s_type > AD4170_RTD_SENSOR)
+> +			return dev_err_probe(dev, ret,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid adi,sensor-type: %u\n",
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 s_type);
+> +	}
+> +	switch (s_type) {
+> +	case AD4170_ADC_SENSOR:
+> +		ret =3D ad4170_parse_adc_channel_type(dev, child, chan);
+> +		if (ret < 0)
+> +			return ret;
+> =C2=A0
+> +		break;
+> +	case AD4170_WEIGH_SCALE_SENSOR:
+> +		fallthrough;
+> +	case AD4170_THERMOCOUPLE_SENSOR:
+> +		fallthrough;
+> +	case AD4170_RTD_SENSOR:
+> +		ret =3D ad4170_parse_external_sensor(st, child, setup, chan,
+> +						=C2=A0=C2=A0 s_type);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> =C2=A0	bipolar =3D fwnode_property_read_bool(child, "bipolar");
+> =C2=A0	setup->afe |=3D FIELD_PREP(AD4170_AFE_BIPOLAR_MSK, bipolar);
+> =C2=A0	if (bipolar)
+> @@ -2057,6 +2385,9 @@ static int ad4170_parse_firmware(struct iio_dev
+> *indio_dev)
+> =C2=A0	for (i =3D 0; i < AD4170_NUM_ANALOG_PINS; i++)
+> =C2=A0		st->pins_fn[i] =3D AD4170_PIN_UNASIGNED;
+> =C2=A0
+> +	for (i =3D 0; i < AD4170_NUM_GPIO_PINS; i++)
+> +		st->gpio_fn[i] =3D AD4170_GPIO_UNASIGNED;
+> +
+> =C2=A0	/* On power on, device defaults to using SDO pin for data ready
+> signal */
+> =C2=A0	st->int_pin_sel =3D AD4170_INT_PIN_SDO;
+> =C2=A0	ret =3D device_property_match_property_string(dev, "interrupt-name=
+s",
+> @@ -2081,6 +2412,10 @@ static int ad4170_parse_firmware(struct iio_dev
+> *indio_dev)
+> =C2=A0
+> =C2=A0	/* Only create a GPIO chip if flagged for it */
+> =C2=A0	if (device_property_read_bool(&st->spi->dev, "gpio-controller")) {
+> +		for (i =3D 0; i < AD4170_NUM_GPIO_PINS; i++)
+> +			if (st->gpio_fn[i] !=3D AD4170_GPIO_UNASIGNED)
+> +				return 0;
+
+I think you could improve this... You're taking an all or nothing approach.
+IIUC, we can have cases where only two GPIOs are in use which means we coul=
+d use
+the other 2? There the gpiochio init_valid_mask() call that you could
+potentially use.
+
+- Nuno S=C3=A1
 
 
