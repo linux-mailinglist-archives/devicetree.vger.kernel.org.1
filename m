@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-165561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FC5A849BD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:31:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FACA849AD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54E2F189E7A0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:30:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 181797B3FA7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E455A1EFFAC;
-	Thu, 10 Apr 2025 16:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0835D1F03FE;
+	Thu, 10 Apr 2025 16:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KOenOsFU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xZaP7lrx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971741EF09C
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 16:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664CF1EF375
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 16:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744302613; cv=none; b=qCA1nH1KBA6UgvFzfQ55H8hlySNWaVpBfGHston81QTS8lfk1yhcyihXX6Hy3MuCrXF1i8jKwL/SxkB+RZz3H+9mkKIoEI/NTupFToPwxxuQYk23QEEo63Z11xb8tNBwSXytQUMA7LQlHIQdG1gkEegyIGL2w7SPpiXsmKxvMAU=
+	t=1744302614; cv=none; b=lRsXYIoEAGgY07iFTgMF5YSyX98bWEvEU1XIYQjQ25MOSmRsJeNAoUWr2K+BJfMdnQxw02z6d8NAJgOdhM8kib86/blLuww0s7qOj6Mkr9d9Y0fLJlA8AiGKVBweE3s9Wxi/Gsk/oU2nvnL7p9q/7vky4TKhzOLT3aULDBqtb/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744302613; c=relaxed/simple;
-	bh=tCEOYGPmIc1SPAM1HF+UO1/NYRAAsIsKLUXJIESOnu8=;
+	s=arc-20240116; t=1744302614; c=relaxed/simple;
+	bh=L4NXBpzPMKFNxMKi5oizC54iyk+GaNvSqVtucu7YlsU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T3Kek54KoQOm65XOCqLEu4xj5WzvNJfuV4OpRGYjR6TotDBXk7uBcdnx9XE5T8vRldRxkyTHnaXfTY6wgDl0sZDCPX6G5Hy/5KbQugrXrGMYpfFwkXG5qvrjMf0DwJotUtbjt67KOCQXnch1b/Ey9FO4BFyOxCZmMYMt9j3tU2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KOenOsFU; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:To:Cc; b=o8X4h97Fb+6m/qeUXQnEhBSkAKN2wksETMR4TUP+RDfqLW3ia3UX+5JUK7juB72rAbtzLqw2eBqlxWvHMYKGijVNY0+jbjI7Qt2qV9xhJ9VXPUm88Ozxk20LbVcfCugu5I5s3rJh2PObq1sh5z9HgNwwpFg6g0WMphQP5MUiKjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xZaP7lrx; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3914bc3e01aso551702f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:30:11 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so7160415e9.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:30:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1744302610; x=1744907410; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EfgoiISEI6CCBXz+KLnorq2mkzdptbjBXDbJbv0ENcI=;
-        b=KOenOsFUYl1MszShGxzm6w4IkmvEmCf15tkHW6HQ94NGCjzhXE/D+c/guxGlsMXC+8
-         5YAmZvhxSQYv7j/fQUwVVHCCm6IxfllWb5NZ5Wv1rLSBFugLS46xkdLfKO0MiwPQWytH
-         bNB91sWbKbJCVrjz3/D/D2YmNAiynxhEC42f51vMxe6Gh26KwHnhDAHLluoajQ2jFYwB
-         kAYQfq1HhN+RLEKa5URPU2ytFAKjgP1iGG1UQKbpgnNsGDQ++amA33l6KqVRHIhIXk+6
-         Pyv9hVtWulP0f/jc1RKxLnQYHV4ZW/JSq6zB2jj8Hdm3kpmB2Myg6ASsISxzlqR2PUvN
-         MFaA==
+        bh=stq3gy3C89gBLCbNpoC1WtQHytzE8kSphcRK2tdRkZU=;
+        b=xZaP7lrxgGTX9JAONUp42ojzJ3k2ikSc+4gU40ZPRyg9aFwP6Kt/KYyiC2JM69QLNR
+         1eElPBctdJeFU5VH/LVvl4Zs8UWtzImd3auMdgG1TI0vP6PgAcg3jJmKWZo6VA3EcWKu
+         9vPyQTzg4FEqVjuwVD8h/9OM7f/jCLKEcDOa2cyDm1P67ja9AwG8VlrD4W6oAvIsD5sA
+         eCN9ADOP4cqFKMHuiFitCzvwKK17KtY+7rLZmSFYkgTfCp1cPVzHoHDN+NMSWlDbTD7C
+         C/YEWYeooHQhve/ZSRqtsgdTR3KV0t18ZwfJoK4pD+5/7owX3iZ50OtG1/GApskevnTM
+         2Mcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1744302610; x=1744907410;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EfgoiISEI6CCBXz+KLnorq2mkzdptbjBXDbJbv0ENcI=;
-        b=ett6zQVbuTsmJ7Mza4I/JtHRhiZ3qjGNINSSnVpz2AjsZsXeQF1c8x3fUhNHKuHuOk
-         t/mN/coQFRyj87uINkIYAX3QX90YFkbeLqt1jHCTWqJnY2wtYAr30bEYzS0i5NS7x72C
-         NT/CuXCUr0w2iYZily5SNlQFg49ADIb/lopi6wu54IjRtcu3uY5+eaBbo746kNTxGw8a
-         f0Y/MkymWhYYOg9Tw0MMvHBWuQ2uR88PbUI//FFDgYv70hsKhol7cWFrVYlo78gmchpa
-         9Fs1j89qUkDPwAK9tii+5Y5WRvIKtzVowe/1maFnYxzxjExQcRdOntZibHqDdUaQrALK
-         MJcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ08LvsvVgkEm70bMBHVFiEhGJ6V3/ULWfw4PzqFIWi5QobfXXVjMV+NxIjMlBgBL6jMcuvq5zVeMr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy38Kts4B3u1griO56gJwv0o8NI3vH2xL4yrGyuZXD8LmQlNnsE
-	GnsTTkvSZbcsLm/c6wLMz9CA661Ch27JdekT/KwJoBYlan1PezP1ZR5hAusj/N9pMeLZPKCjzC1
-	y
-X-Gm-Gg: ASbGnctFVc1sixzy90AIkgUEe8Yh6MTgOv3GOVpanto/6DAxLZpKKQjVMjrGThOOZj/
-	v82qy33i/4wREsBBkl8g6xlmOa2OkRTmyI3NnkXtS4cQbD2yC0q+rfLWwn8v5AwTH6dW0U8D04J
-	4K8GJP/OnrJTPirmxUAYxEgxSiV900Q/U6u+/qYIYfxiE74WzQQ0XR8TJIPT36XlTAFq1piDrYP
-	fMBfDKrSmckB7erM0faBMzoM2FZsvOj0VCdUeUUuuzqNcHI/GgSbk4vism030b0Iw2j6rnqZk9n
-	v0PdyDZDrCJKBdgj5vtR0VmvyJcyYIObQ9JPsOjT+JUM8D8V4ZonNoIVvaQfmA==
-X-Google-Smtp-Source: AGHT+IF7YxresxxIUSbFvKOXhrMSn92TtBy4rTG0L/x99604fWMt5TARqsw/+/xZMRt9jngqCpO+LA==
-X-Received: by 2002:a05:6000:240b:b0:391:ba6:c066 with SMTP id ffacd0b85a97d-39d8fd526f8mr3324426f8f.35.1744302609788;
-        Thu, 10 Apr 2025 09:30:09 -0700 (PDT)
+        bh=stq3gy3C89gBLCbNpoC1WtQHytzE8kSphcRK2tdRkZU=;
+        b=Tj6dI604za1HiGMwVYv0/AC7MnHBtagygdHbrH4sUVCivI2LLU/uVC6oy9LkikSE31
+         t7vCVUaLLxYVWkQTb6/gonWI/4pP7k4u5+pmCd/Ku+EeGqxnQapL6Ru7EFBCfqwn2Skk
+         +4U2SiJkBhtaIiXh26mWv3UPimSAJHEAdBsMJ5Lh8l/KzuxjoYjUdz9hno60CPHlSPUg
+         MKJXty3cO9bHQKCvGxiN4f3Q2QpJumA9yRC5kPqrEmhM5dhTc6NNvPBjsoRbqj4cXQ8c
+         29KLJwEdap6+0P4Q9IQNMVAin0EewXAU4DU9pojvRPyZOnNhWJIcW/TN7ptsPVvaJOy4
+         oGWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbg50T12SU0YvGHmMX8JPNZXH8wBI0nAThF4fpCIpLMlJ8O4BBsvpOz1AjTwLRDWNEUuAE4bDVlpRA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZwMF9hQTTR/4vktzX6lchYdHKVL4uX0QJ0RVIyuaVMAbE4jtx
+	qvTJ3FAPJUS1ZtyS1wwRPZMQSWuR+ehvhWcD6WM1Ulex9EMIzyxarRCYBGpJNUYfLpSjM9cBp27
+	M
+X-Gm-Gg: ASbGnctLe22KHgL6nBzrWMlIzpv8v/PEid5mowVgE+tzkoLvglAKM3y4ChbDbV6g4Lq
+	ypluJ+JMrS4GRhaoMu02YH1K5xqG+UboVmHnOx5wssE4SqfCkG8uYctcnhXsnxKEJ86rISXz3xn
+	v0EisZqTsUPn9u7z1QXa88IE6sBAo9/mdrx2Llrz9uBTcHbEN41EEGykQLu/NKQoIUwNAvlSHmv
+	/3m+QsLs09brawZqbwSnKigv8KX6be3ocAL896FYC3Y5qVWaIWctLSb97XROjiBcPHSeJ52wxdW
+	vYTTauIKyA2qePGRtC38pU5x4+XzJQti3TJ2TXOndvBm+izAYITTrzpzDgzqFngPtrtMG3CJ
+X-Google-Smtp-Source: AGHT+IFmLMreu/PX6gbj+vVUdVfkhJz3KnC+d9rJ+ne/nkWs0nvjTnHvLHfgwvW0aBBJ3zngwn5A0A==
+X-Received: by 2002:a05:600c:350b:b0:43b:c7f0:6173 with SMTP id 5b1f17b1804b1-43f2f0283cemr31704965e9.4.1744302610494;
+        Thu, 10 Apr 2025 09:30:10 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
         by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39d8936129dsm5350663f8f.18.2025.04.10.09.30.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 09:30:09 -0700 (PDT)
+        Thu, 10 Apr 2025 09:30:10 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 10 Apr 2025 18:30:00 +0200
-Subject: [PATCH RFC v5 1/8] media: qcom: iris: move sm8250 to gen1 catalog
+Date: Thu, 10 Apr 2025 18:30:01 +0200
+Subject: [PATCH RFC v5 2/8] media: qcom: iris: move sm8550 to gen2 catalog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250410-topic-sm8x50-upstream-iris-catalog-v5-1-44a431574c25@linaro.org>
+Message-Id: <20250410-topic-sm8x50-upstream-iris-catalog-v5-2-44a431574c25@linaro.org>
 References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
 In-Reply-To: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
 To: Vikash Garodia <quic_vgarodia@quicinc.com>, 
@@ -97,24 +97,24 @@ Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6915;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9291;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=tCEOYGPmIc1SPAM1HF+UO1/NYRAAsIsKLUXJIESOnu8=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBn9/IMfeilWuF7TCcmZY4Vf7hudfDLAqCN0DgvzgK+
- br44w/SJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ/fyDAAKCRB33NvayMhJ0U6SD/
- 9eu8VP5fZKJUmWqiNhVFsP9SryZn/Pch5CB3w0UsohBaxx5ZsdmQ/hOV2noeGbQVAA3Y+ZuPPHEUFq
- XG5qS3iWPxny7ZWiv84OANxwLyeVo92A4cf/yFN/UD0xpRRh+OY1gs0gj4hmu2WaJ8AMuvwIx6Y7YI
- Wa1PRKGm6IFlwUAQLPbn0w1hjDu5Qq49NTvgSP+ZRuob350ZBM/F8KmeRQGypHOShJD4YZIAGrO0m1
- peYZvwEDaD/q4I8QXH3XrRYM229nEbp2rOUhGR1eyxdxiLmDNwW5LjX/Tit2Hy548v/Ekbfyc0Adtb
- vLRISSZLyGHx4NtWa1/oTXLn5GRFHwjZw/IESaujA2+NrIKHncSUk5z1XQdQuyNt6Wv3dUJGz0RpyJ
- RPO8ijfo960Popy9dvNzz9FIamuyo+P8Jt7xOPhmYDl9SPPrHfE7kyebOkx9VPuejQMyvX9dVQ8CFT
- dUXQrcRu9MY4tRsWkKVc41XhqKV9x8SzXznOuTNCY8QPhXH48jpwfrHVqNyf9yjkTlqBw3P25tcp98
- qZck9hdzUfJcTO0aFLvnG4plAQyNpeOnAFXT0JAhYMvo4YgjZ7DQJMyJDFU+DHIB0el3soh1FPLN+D
- WATjkT2LrgGa7QXhQ/x9z4yghkEeR0MKNAH3RAR/R4dfGUxFw1yMzQVTE7dQ==
+ bh=L4NXBpzPMKFNxMKi5oizC54iyk+GaNvSqVtucu7YlsU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBn9/INaOefYh4X6fHWldzKKbLL1CkFKQZgGtWfq7X0
+ qM55IY6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ/fyDQAKCRB33NvayMhJ0RL+D/
+ 9zEaAjnZBFGe8gFlUKzIXOvbEsGV/mi2eG5S+8I9yaKDynkSAua9YLXDEnwXO2Y+yw5GfPxv+m1wuC
+ szV2IoKY+AdyXOm1GN2z9agiRD/uoO0bndPeAILKtFtJG22EhAwk8m4Zz4IFfLiyIMqHG2F6+aLiK2
+ ryxIFZ//YKO2Fk3X5vn9hOD7VE+8sll+J/LaPTG/QW0OnLm0DKVXFKkkjk51LFYYJt4rEEd48C1Nse
+ 7YjwVt2TQtyX9tSnQbPBmzE8x8nL2/pflywS9aNEkRli66Zq10exLn1kqI74LenUcFFmdlDzE6NRB1
+ wm7ePzbzWOoSSqilvXQzk71CyAm6gp3b625YYqnvN8MJiGEWgesRigSVH4tyms5kxEu1UdX0lbTtx8
+ m54KUm8R/QeROlZ2dwqm8ZgtHbQ1rghMxLRZme19NixySS+k3DFWdUjHjtu4CBW5zu/8WqaBu3dFQI
+ 0YrlOsYhVMtlfkRNF5/XuvqkvSTR1I+nO1jiIzCBP1JZqqZI8Ap29MmBGRcQ0iQ06Xu93dGibmOr4F
+ u5CeFiCTcSzIF6wPc7yhXweLGzWtunq8Ea2veG2uTSFBwAEtmgJyzwS8QzfKebIyoWAxHhLI/cz9yc
+ u0Y/Rt4jWs2AJRFpBCL0EfcbfUj94uzmmJokUkldekKaFJ7XQNNDgzLK5jeQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Re-organize the platform support core into a gen1 catalog C file
+Re-organize the platform support core into a gen2 catalog C file
 declaring common platform structure and include platform headers
 containing platform specific entries and iris_platform_data
 structure.
@@ -128,216 +128,227 @@ entries.
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
  drivers/media/platform/qcom/iris/Makefile          |  2 +-
- .../media/platform/qcom/iris/iris_catalog_gen1.c   | 83 ++++++++++++++++++++++
- ...ris_platform_sm8250.c => iris_catalog_sm8250.h} | 80 ++-------------------
- 3 files changed, 89 insertions(+), 76 deletions(-)
+ ...{iris_platform_sm8550.c => iris_catalog_gen2.c} | 84 +-------------------
+ .../media/platform/qcom/iris/iris_catalog_sm8550.h | 91 ++++++++++++++++++++++
+ 3 files changed, 95 insertions(+), 82 deletions(-)
 
 diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
-index 35390534534e93f4617c1036a05ca0921567ba1d..7e7bc5ca81e0f0119846ccaff7f79fd17b8298ca 100644
+index 7e7bc5ca81e0f0119846ccaff7f79fd17b8298ca..379359c5c7e1e4ca39b1216335cd8cf2317b6308 100644
 --- a/drivers/media/platform/qcom/iris/Makefile
 +++ b/drivers/media/platform/qcom/iris/Makefile
-@@ -25,7 +25,7 @@ qcom-iris-objs += \
-              iris_vpu_common.o \
+@@ -10,7 +10,7 @@ qcom-iris-objs += \
+              iris_hfi_gen2_packet.o \
+              iris_hfi_gen2_response.o \
+              iris_hfi_queue.o \
+-             iris_platform_sm8550.o \
++             iris_catalog_gen2.o \
+              iris_power.o \
+              iris_probe.o \
+              iris_resources.o \
+diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_catalog_gen2.c
+similarity index 61%
+rename from drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+rename to drivers/media/platform/qcom/iris/iris_catalog_gen2.c
+index 35d278996c430f2856d0fe59586930061a271c3e..c3f8ad004cb7f9317859b2594640c7138dbb6534 100644
+--- a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
++++ b/drivers/media/platform/qcom/iris/iris_catalog_gen2.c
+@@ -10,8 +10,7 @@
+ #include "iris_platform_common.h"
+ #include "iris_vpu_common.h"
  
- ifeq ($(CONFIG_VIDEO_QCOM_VENUS),)
--qcom-iris-objs += iris_platform_sm8250.o
-+qcom-iris-objs += iris_catalog_gen1.o
- endif
+-#define VIDEO_ARCH_LX 1
+-
++/* Common SM8550 & variants */
+ static struct platform_inst_fw_cap inst_fw_cap_sm8550[] = {
+ 	{
+ 		.cap_id = PROFILE,
+@@ -132,35 +131,6 @@ static struct platform_inst_caps platform_inst_cap_sm8550 = {
+ 	.num_comv = 0,
+ };
  
- obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
-diff --git a/drivers/media/platform/qcom/iris/iris_catalog_gen1.c b/drivers/media/platform/qcom/iris/iris_catalog_gen1.c
+-static void iris_set_sm8550_preset_registers(struct iris_core *core)
+-{
+-	writel(0x0, core->reg_base + 0xB0088);
+-}
+-
+-static const struct icc_info sm8550_icc_table[] = {
+-	{ "cpu-cfg",    1000, 1000     },
+-	{ "video-mem",  1000, 15000000 },
+-};
+-
+-static const char * const sm8550_clk_reset_table[] = { "bus" };
+-
+-static const struct bw_info sm8550_bw_table_dec[] = {
+-	{ ((4096 * 2160) / 256) * 60, 1608000 },
+-	{ ((4096 * 2160) / 256) * 30,  826000 },
+-	{ ((1920 * 1080) / 256) * 60,  567000 },
+-	{ ((1920 * 1080) / 256) * 30,  294000 },
+-};
+-
+-static const char * const sm8550_pmdomain_table[] = { "venus", "vcodec0" };
+-
+-static const char * const sm8550_opp_pd_table[] = { "mxc", "mmcx" };
+-
+-static const struct platform_clk_data sm8550_clk_table[] = {
+-	{IRIS_AXI_CLK,  "iface"        },
+-	{IRIS_CTRL_CLK, "core"         },
+-	{IRIS_HW_CLK,   "vcodec0_core" },
+-};
+-
+ static struct ubwc_config_data ubwc_config_sm8550 = {
+ 	.max_channels = 8,
+ 	.mal_length = 32,
+@@ -214,53 +184,5 @@ static const u32 sm8550_dec_op_int_buf_tbl[] = {
+ 	BUF_DPB,
+ };
+ 
+-struct iris_platform_data sm8550_data = {
+-	.get_instance = iris_hfi_gen2_get_instance,
+-	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
+-	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
+-	.vpu_ops = &iris_vpu3_ops,
+-	.set_preset_registers = iris_set_sm8550_preset_registers,
+-	.icc_tbl = sm8550_icc_table,
+-	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
+-	.clk_rst_tbl = sm8550_clk_reset_table,
+-	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
+-	.bw_tbl_dec = sm8550_bw_table_dec,
+-	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
+-	.pmdomain_tbl = sm8550_pmdomain_table,
+-	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
+-	.opp_pd_tbl = sm8550_opp_pd_table,
+-	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
+-	.clk_tbl = sm8550_clk_table,
+-	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
+-	/* Upper bound of DMA address range */
+-	.dma_mask = 0xe0000000 - 1,
+-	.fwname = "qcom/vpu/vpu30_p4.mbn",
+-	.pas_id = IRIS_PAS_ID,
+-	.inst_caps = &platform_inst_cap_sm8550,
+-	.inst_fw_caps = inst_fw_cap_sm8550,
+-	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_sm8550),
+-	.tz_cp_config_data = &tz_cp_config_sm8550,
+-	.core_arch = VIDEO_ARCH_LX,
+-	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
+-	.ubwc_config = &ubwc_config_sm8550,
+-	.num_vpp_pipe = 4,
+-	.max_session_count = 16,
+-	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
+-	.input_config_params =
+-		sm8550_vdec_input_config_params,
+-	.input_config_params_size =
+-		ARRAY_SIZE(sm8550_vdec_input_config_params),
+-	.output_config_params =
+-		sm8550_vdec_output_config_params,
+-	.output_config_params_size =
+-		ARRAY_SIZE(sm8550_vdec_output_config_params),
+-	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
+-	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
+-	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
+-	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
+-
+-	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
+-	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
+-	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+-	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+-};
++/* platforms catalogs */
++#include "iris_catalog_sm8550.h"
+diff --git a/drivers/media/platform/qcom/iris/iris_catalog_sm8550.h b/drivers/media/platform/qcom/iris/iris_catalog_sm8550.h
 new file mode 100644
-index 0000000000000000000000000000000000000000..c4590f8996431eb5103d45f01c6bee2b38b848c2
+index 0000000000000000000000000000000000000000..e101eed6568bfc7c62651491daad0e9e5b0224e5
 --- /dev/null
-+++ b/drivers/media/platform/qcom/iris/iris_catalog_gen1.c
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: GPL-2.0-only
++++ b/drivers/media/platform/qcom/iris/iris_catalog_sm8550.h
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
 +/*
 + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 + */
 +
-+#include "iris_core.h"
-+#include "iris_ctrls.h"
-+#include "iris_platform_common.h"
-+#include "iris_resources.h"
-+#include "iris_hfi_gen1.h"
-+#include "iris_hfi_gen1_defines.h"
-+#include "iris_vpu_common.h"
++#ifndef _IRIS_CATALOG_SM8550_H
++#define _IRIS_CATALOG_SM8550_H
 +
-+/* Common SM8250 & variants */
-+static struct platform_inst_fw_cap inst_fw_cap_sm8250[] = {
-+	{
-+		.cap_id = PIPE,
-+		.min = PIPE_1,
-+		.max = PIPE_4,
-+		.step_or_mask = 1,
-+		.value = PIPE_4,
-+		.hfi_id = HFI_PROPERTY_PARAM_WORK_ROUTE,
-+		.set = iris_set_pipe,
-+	},
-+	{
-+		.cap_id = STAGE,
-+		.min = STAGE_1,
-+		.max = STAGE_2,
-+		.step_or_mask = 1,
-+		.value = STAGE_2,
-+		.hfi_id = HFI_PROPERTY_PARAM_WORK_MODE,
-+		.set = iris_set_stage,
-+	},
-+	{
-+		.cap_id = DEBLOCK,
-+		.min = 0,
-+		.max = 1,
-+		.step_or_mask = 1,
-+		.value = 0,
-+		.hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
-+		.set = iris_set_u32,
-+	},
++#define VIDEO_ARCH_LX 1
++
++static void iris_set_sm8550_preset_registers(struct iris_core *core)
++{
++	writel(0x0, core->reg_base + 0xB0088);
++}
++
++static const struct icc_info sm8550_icc_table[] = {
++	{ "cpu-cfg",    1000, 1000     },
++	{ "video-mem",  1000, 15000000 },
 +};
 +
-+static struct platform_inst_caps platform_inst_cap_sm8250 = {
-+	.min_frame_width = 128,
-+	.max_frame_width = 8192,
-+	.min_frame_height = 128,
-+	.max_frame_height = 8192,
-+	.max_mbpf = 138240,
-+	.mb_cycles_vsp = 25,
-+	.mb_cycles_vpp = 200,
++static const char * const sm8550_clk_reset_table[] = { "bus" };
++
++static const struct bw_info sm8550_bw_table_dec[] = {
++	{ ((4096 * 2160) / 256) * 60, 1608000 },
++	{ ((4096 * 2160) / 256) * 30,  826000 },
++	{ ((1920 * 1080) / 256) * 60,  567000 },
++	{ ((1920 * 1080) / 256) * 30,  294000 },
 +};
 +
-+static struct tz_cp_config tz_cp_config_sm8250 = {
-+	.cp_start = 0,
-+	.cp_size = 0x25800000,
-+	.cp_nonpixel_start = 0x01000000,
-+	.cp_nonpixel_size = 0x24800000,
++static const char * const sm8550_pmdomain_table[] = { "venus", "vcodec0" };
++
++static const char * const sm8550_opp_pd_table[] = { "mxc", "mmcx" };
++
++static const struct platform_clk_data sm8550_clk_table[] = {
++	{IRIS_AXI_CLK,  "iface"        },
++	{IRIS_CTRL_CLK, "core"         },
++	{IRIS_HW_CLK,   "vcodec0_core" },
 +};
 +
-+static const u32 sm8250_vdec_input_config_param_default[] = {
-+	HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE,
-+	HFI_PROPERTY_PARAM_UNCOMPRESSED_FORMAT_SELECT,
-+	HFI_PROPERTY_PARAM_UNCOMPRESSED_PLANE_ACTUAL_CONSTRAINTS_INFO,
-+	HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL,
-+	HFI_PROPERTY_PARAM_VDEC_MULTI_STREAM,
-+	HFI_PROPERTY_PARAM_FRAME_SIZE,
-+	HFI_PROPERTY_PARAM_BUFFER_SIZE_ACTUAL,
-+	HFI_PROPERTY_PARAM_BUFFER_ALLOC_MODE,
-+};
++struct iris_platform_data sm8550_data = {
++	.get_instance = iris_hfi_gen2_get_instance,
++	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
++	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
++	.vpu_ops = &iris_vpu3_ops,
++	.set_preset_registers = iris_set_sm8550_preset_registers,
++	.icc_tbl = sm8550_icc_table,
++	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
++	.clk_rst_tbl = sm8550_clk_reset_table,
++	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
++	.bw_tbl_dec = sm8550_bw_table_dec,
++	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
++	.pmdomain_tbl = sm8550_pmdomain_table,
++	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
++	.opp_pd_tbl = sm8550_opp_pd_table,
++	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
++	.clk_tbl = sm8550_clk_table,
++	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
++	/* Upper bound of DMA address range */
++	.dma_mask = 0xe0000000 - 1,
++	.fwname = "qcom/vpu/vpu30_p4.mbn",
++	.pas_id = IRIS_PAS_ID,
++	.inst_caps = &platform_inst_cap_sm8550,
++	.inst_fw_caps = inst_fw_cap_sm8550,
++	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_sm8550),
++	.tz_cp_config_data = &tz_cp_config_sm8550,
++	.core_arch = VIDEO_ARCH_LX,
++	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
++	.ubwc_config = &ubwc_config_sm8550,
++	.num_vpp_pipe = 4,
++	.max_session_count = 16,
++	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
++	.input_config_params =
++		sm8550_vdec_input_config_params,
++	.input_config_params_size =
++		ARRAY_SIZE(sm8550_vdec_input_config_params),
++	.output_config_params =
++		sm8550_vdec_output_config_params,
++	.output_config_params_size =
++		ARRAY_SIZE(sm8550_vdec_output_config_params),
++	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
++	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
++	.dec_output_prop = sm8550_vdec_subscribe_output_properties,
++	.dec_output_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_output_properties),
 +
-+static const u32 sm8250_dec_ip_int_buf_tbl[] = {
-+	BUF_BIN,
-+	BUF_SCRATCH_1,
++	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
++	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
++	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
++	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
 +};
-+
-+static const u32 sm8250_dec_op_int_buf_tbl[] = {
-+	BUF_DPB,
-+};
-+
-+/* platforms catalogs */
-+#include "iris_catalog_sm8250.h"
-diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c b/drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
-similarity index 59%
-rename from drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-rename to drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
-index 5c86fd7b7b6fd36dc2d57a1705d915308b4c0f92..4d2df669b3e1df2ef2b0d2f88fc5f309b27546db 100644
---- a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-+++ b/drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
-@@ -1,55 +1,10 @@
--// SPDX-License-Identifier: GPL-2.0-only
-+/* SPDX-License-Identifier: GPL-2.0-only */
- /*
-  * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
--#include "iris_core.h"
--#include "iris_ctrls.h"
--#include "iris_platform_common.h"
--#include "iris_resources.h"
--#include "iris_hfi_gen1.h"
--#include "iris_hfi_gen1_defines.h"
--#include "iris_vpu_common.h"
--
--static struct platform_inst_fw_cap inst_fw_cap_sm8250[] = {
--	{
--		.cap_id = PIPE,
--		.min = PIPE_1,
--		.max = PIPE_4,
--		.step_or_mask = 1,
--		.value = PIPE_4,
--		.hfi_id = HFI_PROPERTY_PARAM_WORK_ROUTE,
--		.set = iris_set_pipe,
--	},
--	{
--		.cap_id = STAGE,
--		.min = STAGE_1,
--		.max = STAGE_2,
--		.step_or_mask = 1,
--		.value = STAGE_2,
--		.hfi_id = HFI_PROPERTY_PARAM_WORK_MODE,
--		.set = iris_set_stage,
--	},
--	{
--		.cap_id = DEBLOCK,
--		.min = 0,
--		.max = 1,
--		.step_or_mask = 1,
--		.value = 0,
--		.hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
--		.set = iris_set_u32,
--	},
--};
--
--static struct platform_inst_caps platform_inst_cap_sm8250 = {
--	.min_frame_width = 128,
--	.max_frame_width = 8192,
--	.min_frame_height = 128,
--	.max_frame_height = 8192,
--	.max_mbpf = 138240,
--	.mb_cycles_vsp = 25,
--	.mb_cycles_vpp = 200,
--};
-+#ifndef _IRIS_CATALOG_SM8250_H
-+#define _IRIS_CATALOG_SM8250_H
- 
- static void iris_set_sm8250_preset_registers(struct iris_core *core)
- {
-@@ -80,33 +35,6 @@ static const struct platform_clk_data sm8250_clk_table[] = {
- 	{IRIS_HW_CLK,   "vcodec0_core" },
- };
- 
--static struct tz_cp_config tz_cp_config_sm8250 = {
--	.cp_start = 0,
--	.cp_size = 0x25800000,
--	.cp_nonpixel_start = 0x01000000,
--	.cp_nonpixel_size = 0x24800000,
--};
--
--static const u32 sm8250_vdec_input_config_param_default[] = {
--	HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE,
--	HFI_PROPERTY_PARAM_UNCOMPRESSED_FORMAT_SELECT,
--	HFI_PROPERTY_PARAM_UNCOMPRESSED_PLANE_ACTUAL_CONSTRAINTS_INFO,
--	HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL,
--	HFI_PROPERTY_PARAM_VDEC_MULTI_STREAM,
--	HFI_PROPERTY_PARAM_FRAME_SIZE,
--	HFI_PROPERTY_PARAM_BUFFER_SIZE_ACTUAL,
--	HFI_PROPERTY_PARAM_BUFFER_ALLOC_MODE,
--};
--
--static const u32 sm8250_dec_ip_int_buf_tbl[] = {
--	BUF_BIN,
--	BUF_SCRATCH_1,
--};
--
--static const u32 sm8250_dec_op_int_buf_tbl[] = {
--	BUF_DPB,
--};
--
- struct iris_platform_data sm8250_data = {
- 	.get_instance = iris_hfi_gen1_get_instance,
- 	.init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
-@@ -147,3 +75,5 @@ struct iris_platform_data sm8250_data = {
- 	.dec_op_int_buf_tbl = sm8250_dec_op_int_buf_tbl,
- 	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_op_int_buf_tbl),
- };
 +
 +#endif
 
