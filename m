@@ -1,161 +1,127 @@
-Return-Path: <devicetree+bounces-165363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A93AA8403D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:12:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A4AA84059
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:15:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 420439E6C39
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:06:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8ED9A02BF4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47418279328;
-	Thu, 10 Apr 2025 10:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906EA26B971;
+	Thu, 10 Apr 2025 10:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="m+y/XIU0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fIDnKzJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D598278154
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 10:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60539267722;
+	Thu, 10 Apr 2025 10:08:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744279429; cv=none; b=lYy0iX+H07z0wUmcq1b3GSxR3nmnQA/C+PqooR8LXkyDLdDKU9pbwXfyp9mRbEvPYSfS5/q1nvA6E3S3lvIcOvRNNeFd3ucaldxvnGxtxwNo+fx0EKZHPI1YfDCKURiotsLJQxdagi5dcYKbP5njObjsIY+Ue7djp763QNUwrqY=
+	t=1744279683; cv=none; b=JjeRdbxMuhs3rnSPBnNwPVf3d0W7W2d7O2G2zI/m9RUsJ78M0X3zMuaLry0h06anTzy97AshVr70weCTmE0D13FXi1SMV5cp0rby4lSZjqbMC3AwA1dSvUHUGirQy1NzrU5i+5Nej9WAgVP+UbZX9hCqSIlXzFPjLYbb6AH8v2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744279429; c=relaxed/simple;
-	bh=HUIIkQA6QycOoJu2qQMdVk5tOnI9W5lI6BOW89OgIIQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=UqCqIO5/9ycjI3fKs8S9/YCH5tm9IMAP3a9nIRkeeUorYxA0dMM5U73HaaBJIClKJPDVwK3mmUj5vVekGOnc3gb/o3xzpZRKtwg+Fo9mdEUxuvxOipAIl6J6RLskBvJOj4CNffhZ1Ch+1jzUiBgj70LF6froPfs7b6yX7LYalC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=m+y/XIU0; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf89f81c5so865175e9.2
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 03:03:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1744279425; x=1744884225; darn=vger.kernel.org;
-        h=in-reply-to:references:from:to:cc:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yuhlYfO+SCuG1tPDw0icZEsvUHv3NYtA5HOyZj159xM=;
-        b=m+y/XIU0hk4zgQ0m6cmy30IVEMK/Cf7BEKyo4w/ypQmckNGam9UbI8aBFIBh5MzJ0E
-         NwVHqY6AVKxYft/z58pmNoYSKAKAPfNMd2VLY2XqEIqPmt3QAqhgsLdQmq1gIU5gBbvN
-         nqXM96PRmPlNx3YDrO1MJwRPy99sVOlT2y0LgfvDOAV52aBIURP+NQW6VhvL80zXZDdI
-         SbupOWBGC2yPGcx+h9aFFe3fnw4KfY1nktDodlcLwDzUiMRIadzlm9+euvoXd0aurX+J
-         kaORrNbwesg6m/U98zAZNeKtjlcATHWhzATrLpVb+BuFuEPxsAGEP0x7q88E/oTBFmDT
-         PuWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744279425; x=1744884225;
-        h=in-reply-to:references:from:to:cc:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yuhlYfO+SCuG1tPDw0icZEsvUHv3NYtA5HOyZj159xM=;
-        b=uLlS1kvkhmJwAnJmSXSQWBHHfl8bqlaK4Ocft7/TEFpLWkbVuErfKJ6T+N9HMGpQC7
-         R4GislRaxe/6OGdAaDwvQp9nMetsLirRUenwMLuaMC7vZM/kOcNJelo+xH7Xka10kghU
-         VZhau8AYRQUnK6mMC+XizfF4t0KI1VBrLfgx/y4GkbAi0O49DVXumlGQTqI8IKL+KwUp
-         z0PeeI8TZ5pwDGeNjDZFySLJjpoR7qcBcLtvT/K6VWOfN7DH05BF1qjy27NcvlWAVeEu
-         4SxTDXqdb2EVxEctLyIJHDWoAF3MDzlvQG5VROgYaKdQhVdUBm+hB4MHP6S4Y5fUOSP1
-         MU6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXOJDZ5GUn2/oM8R9yXAB8PN+Lxya9zwbR+WyRqB5lo8C+SxWy81nkiOmH7cEZ0QqywVtRG9J9unDv2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeNccRtetgBzL1lY/Tcb3vcu2VNJa70tud05R6Pk9eIx3XKAev
-	jRp4bZQrg+CsWyEYGY4lucucM+N6W7TpSeoaLe2OX68AwxT4u7ELgeNlEdNO9gg=
-X-Gm-Gg: ASbGncvBABLoGmovI2Mjtb2l3NWNME+njNMRY1UmvakpajMD8YRLUCmcB2S/14QTpjo
-	dOyxIHivnA1IKu5tUzuZArpnSF4K/4Mc7ICocKwlJvOJQvPC8cCsmqGGwi+lStu+U9T7IQHJ0JD
-	9aK3Aymi51titstrEz3/Z8sW+LCuLB/c6e30Wainp61WJ0SGavW5h25XZ569Am9Vx3kvVybkEP+
-	cOWBRI2XA6ilf8FerUm5WTezDyhT70UQcNOOPIAF7flAtuErnqBrDBSDEsIoE74QNVmB84LqwqU
-	Pe7AjedFCsY/8QrP/xuneTPWOqFwOdNMMLMUZ7U71a7gzcU5
-X-Google-Smtp-Source: AGHT+IFucTZsmmGzPkhUaQ2Z/vAwZtrI/ji5V2QIPWKukl3A8249XbRp5GqSbF4sFE7Q2Qv5hdQlbA==
-X-Received: by 2002:a05:600c:3d0c:b0:439:a1ce:5669 with SMTP id 5b1f17b1804b1-43f1ed4a7a9mr22097145e9.5.1744279425469;
-        Thu, 10 Apr 2025 03:03:45 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200:7d22:13bb:e539:15ee])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39d893773a0sm4273653f8f.25.2025.04.10.03.03.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Apr 2025 03:03:45 -0700 (PDT)
+	s=arc-20240116; t=1744279683; c=relaxed/simple;
+	bh=63Q2CP1BjWPMJIsb/dxHjtnUbcBupGKBm9IiQVKWr7o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=adWq9SMhpwd9cACOzBR8Q5avMWK4demVmZOFlPU042EWzhAxd7316p6321A5SE8gJrQRSD5PWo4GRnhV2ksc7foTkqWZk4Od+aa+SrXw+DHZrOy75IX9wbvD2anNRQBnNOawHt7ElN3zGTrWIBvFQbRYE9MCVyvtBxuLSjyKR7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIDnKzJ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D038EC4CEDD;
+	Thu, 10 Apr 2025 10:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744279682;
+	bh=63Q2CP1BjWPMJIsb/dxHjtnUbcBupGKBm9IiQVKWr7o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fIDnKzJ3wWuyN+D28ZX3a75/K6ZAmTj7z1ReQ73W4dFXNVSjospzUtCngaaXJ+m45
+	 gT7rFPGKpoDlNeAbuZsdl9S04vKYEuU7pApb6K4+ebRxSCDRKOKWvyDA4hoHPnBepJ
+	 s4ZL65se4D/y1L1DwIgSu3+IKvZTlR2n0KP1DrM0lRjkcGwScJ5qQjZEedfTbxrr1W
+	 GP3X2/W+lqiyhUMDkqCe9MM7TsPYZa+wbMf1D+bwfLXUu9BUKuBgO+00ORsisocloY
+	 iXoemd8h2fY/vsDOXVfFBCsZY/o6BaT6pPw7Z+/dn+YedK5LvTJB8LGjCMUIF8egeN
+	 UwBFJQ/Rl5nTQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B578BC3601E;
+	Thu, 10 Apr 2025 10:08:02 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: x1e80100-hp-x14: add
+ usb-1-ss1-sbu-mux
+Date: Thu, 10 Apr 2025 12:07:27 +0200
+Message-Id: <20250410-hp-x14-v2-0-d36414704a0a@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Apr 2025 12:03:44 +0200
-Message-Id: <D92VG9GT3W5D.2B71FBI67EYJ6@ventanamicro.com>
-Subject: Re: [PATCH v12 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
- | VM_WRITE
-Cc: <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
- <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
- <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
- <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
- <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "Zong Li"
- <zong.li@sifive.com>, "linux-riscv"
- <linux-riscv-bounces@lists.infradead.org>
-To: "Deepak Gupta" <debug@rivosinc.com>, "Thomas Gleixner"
- <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov"
- <bp@alien8.de>, "Dave Hansen" <dave.hansen@linux.intel.com>,
- <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- "Vlastimil Babka" <vbabka@suse.cz>, "Lorenzo Stoakes"
- <lorenzo.stoakes@oracle.com>, "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Arnd Bergmann"
- <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>, "Peter Zijlstra"
- <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>, "Eric Biederman"
- <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>, "Jonathan Corbet"
- <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann Horn"
- <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>
-From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
- <20250314-v5_user_cfi_series-v12-6-e51202b53138@rivosinc.com>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-6-e51202b53138@rivosinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF+Y92cC/zXOQQ6CMBCF4auQWVvTViDWFfcwLGgZ7CSEkg4Sl
+ PTuVqLL/2XyZXZgjIQMt2KHiCsxhSmHPhXgfDc9UFCfG7TUlSylEX4WmyqFHFR/ra2ztTGQj+e
+ IA20HdG9ze+IlxNfhruq7/ggl/8SqhBS2xMp1urqgM00Ye3Y+hJHD+FzyJ3y29IY2pfQBG99Ut
+ 6kAAAA=
+X-Change-ID: 20250409-hp-x14-0f1d86bcb699
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744279681; l=1464;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=63Q2CP1BjWPMJIsb/dxHjtnUbcBupGKBm9IiQVKWr7o=;
+ b=tuqFUauzJa7LaauxOGCboKN4tSuMaOgeQubZN0kK0oeSGsOJFIel2tA1kTb4gywWqDDSUfRFw
+ V4xOSZ+9scmDW5Od13VRx9SUYjG3VbroHfZ+7DLgFiIsCimIbrouG90
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-2025-03-14T14:39:25-07:00, Deepak Gupta <debug@rivosinc.com>:
-> diff --git a/arch/riscv/include/asm/mman.h b/arch/riscv/include/asm/mman.=
-h
-> +static inline unsigned long arch_calc_vm_prot_bits(unsigned long prot,
-> +						   unsigned long pkey __always_unused)
-> +{
-> +	unsigned long ret =3D 0;
-> +
-> +	/*
-> +	 * If PROT_WRITE was specified, force it to VM_READ | VM_WRITE.
-> +	 * Only VM_WRITE means shadow stack.
-> +	 */
+The usb_1_1 port doesn't have the PS8830 repeater, but apparently some
+MUX for DP altmode control. After a suggestion from sgerhold on
+'#aarch64-laptops' I added gpio-sbu-mux nodes from the x1e80100-QCP
+tree, and this appears to work well. It is still guesswork, but
+working guesswork.
 
-This function also changes PROT_WX to VM_RWX, which is effectively not
-changing anything, but I think it deserves an explicit intent.
-(At least in the commit message.)
+Added and rewired for usb_1_1
 
-> +	if (prot & PROT_WRITE)
-> +		ret =3D (VM_READ | VM_WRITE);
-> +	return ret;
-> +}
-> diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.=
-c
-> @@ -16,6 +17,15 @@ static long riscv_sys_mmap(unsigned long addr, unsigne=
-d long len,
-> +	/*
-> +	 * If PROT_WRITE is specified then extend that to PROT_READ
-> +	 * protection_map[VM_WRITE] is now going to select shadow stack encodin=
-gs.
-> +	 * So specifying PROT_WRITE actually should select protection_map [VM_W=
-RITE | VM_READ]
-> +	 * If user wants to create shadow stack then they should use `map_shado=
-w_stack` syscall.
-> +	 */
-> +	if (unlikely((prot & PROT_WRITE) && !(prot & PROT_READ)))
-> +		prot |=3D PROT_READ;
+Also, did some more changes as tested here:
 
-Why isn't the previous hunk be enough?  (Or why don't we do just this?)
+- remove unused i2c buses
+- amend order of nodes.
 
-riscv_sys_mmap() eventually calls arch_calc_vm_prot_bits(), so I'd
-rather fix each code path just once.
+The series is based on [1] from Johan.
 
-Thanks.
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+---
+Changes in v2:
+- removed overlapping patches with [1] and [2] - thanks Johan
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250410-hp-x14-v1-0-b4e5ca253ec9@oldschoolsolutions.biz
+
+[1] https://lore.kernel.org/lkml/20250328084154.16759-1-johan+linaro@kernel.org/
+[2] https://lore.kernel.org/r/20250319160509.1812805-1-juerg.haefliger@canonical.com
+
+---
+Jens Glathe (3):
+      arm64: dts: qcom: x1e80100-hp-x14: add usb-1-ss1-sbu-mux
+      arm64: dts: qcom: x1e80100-hp-x14: remove unused i2c buses
+      arm64: dts: qcom: x1e80100-hp-x14: amend order of nodes
+
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 98 ++++++++++++++--------
+ 1 file changed, 62 insertions(+), 36 deletions(-)
+---
+base-commit: 2791023c72489c91f59cfe818776fc6cd164ddad
+change-id: 20250409-hp-x14-0f1d86bcb699
+
+Best regards,
+-- 
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
 
