@@ -1,170 +1,260 @@
-Return-Path: <devicetree+bounces-165317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50149A83F06
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7C9FA83F18
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E34616FAF5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:38:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFF5D16B990
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B58026772E;
-	Thu, 10 Apr 2025 09:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F1225E82D;
+	Thu, 10 Apr 2025 09:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="J2HWf7DP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PlgPEVPI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF50126A1A3
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0C525E81E;
+	Thu, 10 Apr 2025 09:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744277847; cv=none; b=O6mZbD7wM9wDG7jBAu4C3F2CUM1BvsvXW46enaJtg9pzcN1RrWHBms/93Csyuqj2rwcbphjbc7mdl2xAkiNNIBWIZe1dGu5pbgyOyJnnX8lcm7apYYMtzadhs8/M4l0HLK6TrDtln/EhOQrBblynm2wjLO3+kRht8/Q5k7EsLaw=
+	t=1744278019; cv=none; b=YpQoNE3HfgtKGzYyMuWCNIayc3R+eC7SZ64tHU+WTk1sdZkQljztKKF3R/H5MQqzVJZdxiFdl5cHVarNSwfTS3KVwvSEbTad3FnaX/tzXC0lAewlxYQWY5JXcfakJjQQpfgaQoBbIBNoqwIaKkIwGn4Ma3SCvk5UVrWFsgHQRds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744277847; c=relaxed/simple;
-	bh=9BVvnuQ6fCl62EYpepZFFM6P/9BBWAx1Aa886gI+GLg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qip0LS9vfQy/UYbgM2lvh+BmdvKEvKVS/XDcHNFOTavZ30RGz2D/4dXSReG3nW8HgOGfS92Ap6zdA0tVLT0yZByfoElKvvn3YR3nFTqaVzmfqWGgGOwIdKDs7lSpqTWZZvR7B1vGjVTrqHGd7TnNQPBCUPmUVNCWlBJEJEhEafE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=J2HWf7DP; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=IMkv
-	6mF2Z7fWGwFCIqoOe7mXoEAAuKKFHb+aQFyHTRI=; b=J2HWf7DPeRZoBAI5FRXL
-	+CixNkfOepoTLZlDhzG5g4VhaWiDIz4XDoH4jBYLIkGFExFzgoMgJdsDvxzjhU4z
-	Kpl+t89iFhrL8m6+XK033+BZZkXxQgz0iLWcUsocqz/t0uMWzg6hmf8yf5dbStok
-	321UvW0SWxbveC0zZdvGxSDBLKrN2+ydwYi0Sb4HJzs29JN9xJEkrBuGjG4e+4UV
-	cGCZ8/UUBlOo3OORt7qAN97QfKCwhPKNG/5pNin1Bl/MkG7fQaWp0k6az0BXsnRM
-	Q5EpMROeSipzVVzhOxV7OP6SHPvCMr5LFawVvDXyl5WTL0lbvH/fgA8agivGGJhm
-	6A==
-Received: (qmail 836129 invoked from network); 10 Apr 2025 11:37:17 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Apr 2025 11:37:17 +0200
-X-UD-Smtp-Session: l3s3148p1@znThVGkyKsEgAwDPXyfYALbiJ46yNPq3
-Date: Thu, 10 Apr 2025 11:37:17 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less
- RZ/N1 rule
-Message-ID: <Z_eRTafA9mjDC175@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
- <Z_eCV8aTmr4t1_xZ@shikoro>
- <CAMuHMdV5w_9VpVrJPHy_EtmXoWV9fdBBO_YwhPt2TcX_D4TUxg@mail.gmail.com>
+	s=arc-20240116; t=1744278019; c=relaxed/simple;
+	bh=CbYtk44myoD5BZVO0UzRr8Ax21je9fKshpjG1nkT0jk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=a+g9aTx3VLrwkc5lvu8uGt94/OpnbSjz24oTIv33GOcIpOPbrzli+OpjBS+4JAll2h6YeYzFgrwOphWxNbO3UqS8GtVN/0rLbtaO4VeVRyE5dRklBe6s1DObeQn9n8E7br6+qDb/c/pvCKoEsrLX0kBkF1dzRcYUx1QL+3NHfJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PlgPEVPI; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-39bf44be22fso291794f8f.0;
+        Thu, 10 Apr 2025 02:40:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744278015; x=1744882815; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6ZzHK+u3IhtNYeAtrRxJUvgO65HY7/Y2Xaxu6J22s48=;
+        b=PlgPEVPIkIBCvlejBEMPh2ZNQ3JkORWQnA9prX6FrdrMxujJ9IH31SldUdbZJ1X8iq
+         cXq4NIYRFzQuaP7+7ifkEVGoAoipk9s5P5uQn570TMpbCymHL5iEFVl6rrjnClk49QGi
+         LFZ6jhhipjnk8CwO61SvvgfidWIsUxJVWaiWJL1tAox0iSs5GGilfQef4ZHgACWsL6lj
+         mpwRr3i7+I6HAIDJtr3ItEDsbW0uNRQ4FGELBkDK1lR2lybdnSYuCVYsKM/myKCYP5FL
+         a03dtRK91idJ/t4nJRkcPCJZN08lKn2qX1OhBrjzgsQoW9gyMsrUuqeTyGCzJPBHEYtp
+         2ylA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744278015; x=1744882815;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6ZzHK+u3IhtNYeAtrRxJUvgO65HY7/Y2Xaxu6J22s48=;
+        b=Cf4cdNIjnNgUR05mou0NPDx9LZK6jEgAWF0tYC2bcOB57QOLYtd2nQZtvpshXJWUdl
+         dgdUADcAaZ2f+wZJmFmnIYlGPYKjsTMrKX6b/LYqV8cNBigiLqAFT0DgWwp7jDi5CBJq
+         0Yv3j7jD2IISEclm3hnQo3GUiZBdSgx1ZXV0t4kuWy2SWId+mAbhSGUIy/tNq2h0TqcM
+         yxfcCrBa0+0ZgPbOG4XQXTeYfiuqdnbj/8lhpPnplWVz1/gFqt8f62EXDyQMJuUxuSnR
+         Z4qYYCMze1RsZfHiB5Knx9CeLgCfKHDC8+QqlQsry0dQFT3JQT94046bL46GiaNKwlms
+         HkTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWI9m8tG1R/vLT1E5iWsvA0et0B0ZD68LXbLtwn48Lt5jUap68vZpQKC1rbbJFgfbv15xIEa0r+7muc@vger.kernel.org, AJvYcCX26Cz6Alcsx0OZqhstxkxkKsFCLGWCPsFut1Zswr0i6jq3nqatL21A1ryYOKZQ5uxiOHWPDGO5U5NB@vger.kernel.org, AJvYcCX5IzhMUjlK/P3pHoOJzgrWefbcjSuVVANrqTKhXOXqcMo8Wg+++dFn8Lz3b85x3WXEeeoSv9SGOoanvBjL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0M5EdKVzcr1T1P+PPzyRWz8Y6pyCfMtKd1yi/vPsvRYFosuUq
+	4BpGlRHD5z3gfQ4duolRUV5LYvEERb/P2juM5vTjQIPpCnKKbnQL
+X-Gm-Gg: ASbGncvwK+YTpOPTpZY6pTZR2/FwTIY+xB0B5pDm2ExYntJuew+7RQMYqk1/JWjEs0R
+	PVEZLDF92JBBuSMdJhhtL0142YAPFG7XlQMyVhJFca3afxzE1PyZ7+u+CxweMpq9Qs5YEMFgvWM
+	f7qQAxCkZ/p+qrUmdAXEgwAYKBEFn7fvuCH8czf0NTRrMylNtdgGQQ5beqE9KavZlKzyuAIqkZ8
+	ng92TXkm5XQw846zzpZ8EwSXJNFsaLD2M+4DDS3VhiriLJZ4F+6jzD/Fak6LwL9GI/o96z2uofi
+	ppAEUkug4GO9AR/kA3RG0b1BJb43I7S7hiFrwfcW5TuoHbrEef+xNNE3sXMzgH3vCE/LSQOmH3f
+	HH7lNwgdVDzuH
+X-Google-Smtp-Source: AGHT+IHo+l30usT0vi5GeqmBPEKKMjK/tSE3z/8K18JGQBbnkLhIaa5/jdg4FvLoCv/QnMnDJltr1g==
+X-Received: by 2002:a05:6000:4021:b0:39a:ca0c:fc90 with SMTP id ffacd0b85a97d-39d8f469697mr1840680f8f.14.1744278015282;
+        Thu, 10 Apr 2025 02:40:15 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233c8224sm44508825e9.22.2025.04.10.02.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 02:40:14 -0700 (PDT)
+Message-ID: <4ef3b2464691d65a295d0f5669e27f8a5382ea06.camel@gmail.com>
+Subject: Re: [PATCH v1 4/7] iio: adc: ad4170: Add clock provider support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
+ marcelo.schmitt1@gmail.com
+Date: Thu, 10 Apr 2025 10:40:16 +0100
+In-Reply-To: <65b71e307d37b8e3e26937a1e67398b2af0af399.1744200264.git.marcelo.schmitt@analog.com>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+	 <65b71e307d37b8e3e26937a1e67398b2af0af399.1744200264.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VlYVZXkNo46z8BQq"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdV5w_9VpVrJPHy_EtmXoWV9fdBBO_YwhPt2TcX_D4TUxg@mail.gmail.com>
 
-
---VlYVZXkNo46z8BQq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> > What about simply dropping r9a06g033 which cannot run Linux (no RAM
-> > controller, only 6MB internal RAM) and there hasn't been any upstreaming
+On Wed, 2025-04-09 at 09:25 -0300, Marcelo Schmitt wrote:
+> The AD4170 chip can use an externally supplied clock at the XTAL2 pin, or
+> an external crystal connected to the XTAL1 and XTAL2 pins. Alternatively,
+> the AD4170 can provide it's 16 MHz internal clock at the XTAL2 pin. Exten=
+d
+> the AD4170 driver so it effectively uses the provided external clock, if
+> any, or supplies it's own clock as a clock provider.
 >=20
-> You can run Linux on 6 MiB of RAM, if you try hard ;-)
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
 
-Whoever tries that hard will have zero problems upstreaming the bindings
-then again. I will happily ack them. But it will not happen.
+Just one minor note, with it:
 
+Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+
+> =C2=A0drivers/iio/adc/ad4170.c | 135 ++++++++++++++++++++++++++++++++++++=
+++-
+> =C2=A01 file changed, 134 insertions(+), 1 deletion(-)
 >=20
-> > effort for other OS in the last 7 years? And making the remaining
->=20
-> ... which does not mean there are no users.
+> diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
+> index 5ffcdedf3e7f..97cf4465038f 100644
+> --- a/drivers/iio/adc/ad4170.c
+> +++ b/drivers/iio/adc/ad4170.c
+> @@ -7,6 +7,8 @@
+> =C2=A0
+> =C2=A0#include <linux/bitfield.h>
+> =C2=A0#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> =C2=A0#include <linux/delay.h>
+> =C2=A0#include <linux/device.h>
+> =C2=A0#include <linux/err.h>
+> @@ -62,6 +64,7 @@
+> =C2=A0#define AD4170_DATA_16B_STATUS_REG			0x1A
+> =C2=A0#define AD4170_DATA_24B_REG				0x1E
+> =C2=A0#define AD4170_PIN_MUXING_REG				0x69
+> +#define AD4170_CLOCK_CTRL_REG				0x6B
+> =C2=A0#define AD4170_ADC_CTRL_REG				0x71
+> =C2=A0#define AD4170_CHAN_EN_REG				0x79
+> =C2=A0#define AD4170_CHAN_SETUP_REG(x)			(0x81 + 4 * (x))
+> @@ -89,6 +92,9 @@
+> =C2=A0#define AD4170_PIN_MUXING_DIG_AUX1_CTRL_MSK		GENMASK(5, 4)
+> =C2=A0#define AD4170_PIN_MUXING_SYNC_CTRL_MSK			GENMASK(3, 2)
+> =C2=A0
+> +/* AD4170_CLOCK_CTRL_REG */
+> +#define AD4170_CLOCK_CTRL_CLOCKSEL_MSK			GENMASK(1, 0)
+> +
+> =C2=A0/* AD4170_ADC_CTRL_REG */
+> =C2=A0#define AD4170_ADC_CTRL_MULTI_DATA_REG_SEL_MSK		BIT(7)
+> =C2=A0#define AD4170_ADC_CTRL_CONT_READ_MSK			GENMASK(5, 4)
+> @@ -121,6 +127,12 @@
+> =C2=A0
+> =C2=A0/* AD4170 register constants */
+> =C2=A0
+> +/* AD4170_CLOCK_CTRL_REG constants */
+> +#define AD4170_CLOCK_CTRL_CLOCKSEL_INT			0x0
+> +#define AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT		0x1
+> +#define AD4170_CLOCK_CTRL_CLOCKSEL_EXT			0x2
+> +#define AD4170_CLOCK_CTRL_CLOCKSEL_EXT_XTAL		0x3
+> +
+> =C2=A0/* AD4170_CHAN_MAP_REG constants */
+> =C2=A0#define AD4170_CHAN_MAP_AIN0			0
+> =C2=A0#define AD4170_CHAN_MAP_AIN1			1
+> @@ -238,6 +250,10 @@ enum ad4170_regulator {
+> =C2=A0	AD4170_MAX_SUP
+> =C2=A0};
+> =C2=A0
+> +static const char *const ad4170_clk_sel[] =3D {
+> +	"ext-clk", "xtal"
+> +};
+> +
+> =C2=A0enum ad4170_int_pin_sel {
+> =C2=A0	AD4170_INT_PIN_SDO,
+> =C2=A0	AD4170_INT_PIN_DIG_AUX1,
+> @@ -320,6 +336,9 @@ struct ad4170_state {
+> =C2=A0	struct ad4170_chan_info chan_infos[AD4170_MAX_CHANNELS];
+> =C2=A0	struct ad4170_setup_info setup_infos[AD4170_MAX_SETUPS];
+> =C2=A0	u32 mclk_hz;
+> +	unsigned int clock_ctrl;
+> +	struct clk *ext_clk;
+> +	struct clk_hw int_clk_hw;
+> =C2=A0	int pins_fn[AD4170_NUM_ANALOG_PINS];
+> =C2=A0	u32 int_pin_sel;
+> =C2=A0	int
+> sps_tbl[ARRAY_SIZE(ad4170_filt_names)][AD4170_MAX_FS_TBL_SIZE][2];
+> @@ -1693,13 +1712,127 @@ static int ad4170_parse_channels(struct iio_dev
+> *indio_dev)
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> +static struct ad4170_state *clk_hw_to_ad4170(struct clk_hw *hw)
+> +{
+> +	return container_of(hw, struct ad4170_state, int_clk_hw);
+> +}
+> +
+> +static unsigned long ad4170_sel_clk(struct ad4170_state *st,
+> +				=C2=A0=C2=A0=C2=A0 unsigned int clk_sel)
+> +{
+> +	st->clock_ctrl &=3D ~AD4170_CLOCK_CTRL_CLOCKSEL_MSK;
+> +	st->clock_ctrl |=3D FIELD_PREP(AD4170_CLOCK_CTRL_CLOCKSEL_MSK,
+> clk_sel);
+> +	return regmap_write(st->regmap16, AD4170_CLOCK_CTRL_REG, st-
+> >clock_ctrl);
+> +}
+> +
+> +static unsigned long ad4170_clk_recalc_rate(struct clk_hw *hw,
+> +					=C2=A0=C2=A0=C2=A0 unsigned long parent_rate)
+> +{
+> +	return AD4170_INT_CLOCK_16MHZ;
+> +}
+> +
+> +static int ad4170_clk_output_is_enabled(struct clk_hw *hw)
+> +{
+> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
+> +	u32 clk_sel;
+> +
+> +	clk_sel =3D FIELD_GET(AD4170_CLOCK_CTRL_CLOCKSEL_MSK, st->clock_ctrl);
+> +	return clk_sel =3D=3D AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT;
+> +}
+> +
+> +static int ad4170_clk_output_prepare(struct clk_hw *hw)
+> +{
+> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
+> +
+> +	return ad4170_sel_clk(st, AD4170_CLOCK_CTRL_CLOCKSEL_INT_OUT);
+> +}
+> +
+> +static void ad4170_clk_output_unprepare(struct clk_hw *hw)
+> +{
+> +	struct ad4170_state *st =3D clk_hw_to_ad4170(hw);
+> +
+> +	ad4170_sel_clk(st, AD4170_CLOCK_CTRL_CLOCKSEL_INT);
+> +}
+> +
+> +static const struct clk_ops ad4170_int_clk_ops =3D {
+> +	.recalc_rate =3D ad4170_clk_recalc_rate,
+> +	.is_enabled =3D ad4170_clk_output_is_enabled,
+> +	.prepare =3D ad4170_clk_output_prepare,
+> +	.unprepare =3D ad4170_clk_output_unprepare,
+> +};
+> +
+> +static int ad4170_register_clk_provider(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4170_state *st =3D iio_priv(indio_dev);
+> +	struct device *dev =3D indio_dev->dev.parent;
+> +	struct fwnode_handle *fwnode =3D dev_fwnode(dev);
+> +	struct clk_init_data init =3D {};
+> +	int ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_COMMON_CLK))
+> +		return 0;
+> +
+> +	init.name =3D fwnode_get_name(fwnode);
 
-And these mysterious users will complain about a removed UART binding
-while there is not even a clk binding upstream?
+Maybe allow for clock-output-names? See:
 
-> We don't allow "everything". Valid compatible values are checked by
-> the normal rules below.
+https://elixir.bootlin.com/linux/v6.13.7/source/drivers/iio/frequency/adf43=
+50.c#L467
 
-Why don't we use '{}' with all the bindings then? Would simplify so
-much. From the watchdog driver:
+- Nuno S=C3=A1
 
-
-      - items:
-          - enum:
-              - renesas,r8a7742-wdt      # RZ/G1H
-              - renesas,r8a7743-wdt      # RZ/G1M
-              - renesas,r8a7744-wdt      # RZ/G1N
-              - renesas,r8a7745-wdt      # RZ/G1E
-              - renesas,r8a77470-wdt     # RZ/G1C
-              - renesas,r8a7790-wdt      # R-Car H2
-              - renesas,r8a7791-wdt      # R-Car M2-W
-              - renesas,r8a7792-wdt      # R-Car V2H
-              - renesas,r8a7793-wdt      # R-Car M2-N
-              - renesas,r8a7794-wdt      # R-Car E2
-          - const: renesas,rcar-gen2-wdt # R-Car Gen2 and RZ/G1
-
-      - items:
-          - enum:
-              - renesas,r8a774a1-wdt     # RZ/G2M
-              - renesas,r8a774b1-wdt     # RZ/G2N
-              - renesas,r8a774c0-wdt     # RZ/G2E
-              - renesas,r8a774e1-wdt     # RZ/G2H
-              - renesas,r8a7795-wdt      # R-Car H3
-              - renesas,r8a7796-wdt      # R-Car M3-W
-              - renesas,r8a77961-wdt     # R-Car M3-W+
-              - renesas,r8a77965-wdt     # R-Car M3-N
-              - renesas,r8a77970-wdt     # R-Car V3M
-              - renesas,r8a77980-wdt     # R-Car V3H
-              - renesas,r8a77990-wdt     # R-Car E3
-              - renesas,r8a77995-wdt     # R-Car D3
-          - const: renesas,rcar-gen3-wdt # R-Car Gen3 and RZ/G2
-
-      - items:
-          - enum:
-              - renesas,r8a779a0-wdt     # R-Car V3U
-              - renesas,r8a779f0-wdt     # R-Car S4-8
-              - renesas,r8a779g0-wdt     # R-Car V4H
-              - renesas,r8a779h0-wdt     # R-Car V4M
-          - const: renesas,rcar-gen4-wdt # R-Car Gen4
-
-
-
---VlYVZXkNo46z8BQq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf3kUkACgkQFA3kzBSg
-KbaQVBAAkMj6dR4lQUEQzzrjGuxqHhGf0KTH4g3s8S/FRcNL0S+6AF6htkwir/V4
-Jcu4tYHAIHEsbvjW58pVvKusNlGNE8X0/vTBVyILyfqGn6UVH7B6D/KIj2VR1K9o
-so21zggKrYKdcM+UE9Ql5o7FcyepMcJAneibxM7lm6mu5V6Jvut8v8nDJmnNC59w
-pwuFZOL5AzMoh4sxre5ZkFhj/S6ihwVIw+ylyFmQ6Z1sK6X8Hr+LJuF5v7Gdp79B
-PfSAtyd/jbl48ynaRQny4uAFweXas5iQ+asxJrFgPJDxBs7jRtf/kYB2ojzwo0DG
-AYghjlra9bl0jXRdrzi0dEdYfIoU0CR3rAMkZLAGX/sKXCJra0wBVzMc6QZfF79/
-nXTk8PPxI4pUZxxxX2yenXckU8v/ivUGmL0WTrBgrZtbnU2umn0OVrYLGJBmpihf
-t+Yt3bmp0qxfqy4qwgauZtsQRhtT8WlbnU5Nvkew82LNnQ2GvARIiBpnYfQP5CeX
-dqeFVJ1u5ZzEZ68Spn0aVnQXjzfDKziI9l5rt3j2YkBv4ZrtD8MIa3iCO7+k8DPa
-6JoeDJbxAeZOa6y9HDnA+g40XLEOmyDVWm6PyPlr36DsELQ5eAp1gB/fgExddPEf
-KHt4G/0pI8r/WbZvwOW/meXBgZsGaVihAwBz7Y+yzZeVo9UUprU=
-=CKzT
------END PGP SIGNATURE-----
-
---VlYVZXkNo46z8BQq--
 
