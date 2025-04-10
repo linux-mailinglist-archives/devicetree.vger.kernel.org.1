@@ -1,288 +1,105 @@
-Return-Path: <devicetree+bounces-165399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583F2A841E0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:39:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B95A84231
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:57:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3380D1B836AB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:39:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 182661B867F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C5E2836A2;
-	Thu, 10 Apr 2025 11:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D2528F92A;
+	Thu, 10 Apr 2025 11:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oBTu+Ecr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h7MQhzqY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68352036F3;
-	Thu, 10 Apr 2025 11:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2FBF283CAA;
+	Thu, 10 Apr 2025 11:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744285156; cv=none; b=GWFzwFVkCELWqC7KOf7H+jzy46emABt6B5NqJdUYRvojk7smMzKPss3beLYNhu0qseSHb4K3cVmuF2ElrFIuJzS0yMsEX/A/cRgVVqpwDobK6G5K7kNSqOH/djJmeK6RcLl0dK9EZckhDA4NMaBESfdtvR5+rE0V+woUunJW8Gk=
+	t=1744286013; cv=none; b=P2T7IcLbp2Pfq4SKm7tWDGAdAwwAfKOhiTnQ6Mh5fTCKlNWGbVm8D5WQ2qxg8NH59/TayUpk5niK0XtjD8Bgo2Y3F0OzG/K1rxE/fvH+5PdDv83s/vRkZWJvyrlKFnCKILI+qgmHPLfdERPYH//4tEeO7beV56tqRpEzXKaDtJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744285156; c=relaxed/simple;
-	bh=7rc31dbAkmSoVmEuH2fQ0M0qVEHGMJLlfF9VNZAzxno=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=l9TZWA57rZcpL7T3TqSoqYIMgaf8lfYg80TRL42NQD8OHqKs5PKhzLQc4pvAXpQzdQ9n8taSY+eK9oIlMex73kapZHF42P6RNGiN5sGVsyj5CMJB1Bl777rCtiB0xlzZInpLjvNA3ftKmm52dxvUPVHrE4Q6uKot4P6jg4N8C/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oBTu+Ecr; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53ABd5bB1791201
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 10 Apr 2025 06:39:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744285145;
-	bh=w6fV5bI1T6GN2zcix/2ZHOp8qdNscyjQU9GGmfz+CPs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oBTu+EcrWlL3O/dOxm68A7YOJYb53FXxbzk21g5R3E2jQL0pBTydhzGoc3dbZNJeL
-	 XdfqiJja1XH21abud33uK4aTR+CjAB9ae60YN0T1VkVRYR2RMNyXIzErHyFrgMBitk
-	 j92DM/gQjK4QfTSACOCo5numOfzxun3BpeNdCT2I=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53ABd4kb041232
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 10 Apr 2025 06:39:04 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Apr 2025 06:39:04 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Apr 2025 06:39:04 -0500
-Received: from [172.24.227.193] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53ABcvFD086503;
-	Thu, 10 Apr 2025 06:38:58 -0500
-Message-ID: <5969e1e8-0bb7-4334-a0c5-b4c396b8b6af@ti.com>
-Date: Thu, 10 Apr 2025 17:08:57 +0530
+	s=arc-20240116; t=1744286013; c=relaxed/simple;
+	bh=PhiOxgPV+UJGeNCtj3MezYeVIX8cgjdJLX0OoBVn8PU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ez/m7JI/hP38qWCr8Gotkvca9PRrD8FpLV4yUucVnNei6RQMOb51ttoGnHbVaIbXTQFfRjhHY5vK+VdQEh+7ORkQR6bAKN3wf0YbFml+8GStgmTxKpmyDEoP+/pswa1TbKGUz7HHz4wd5beK/GV8fbib/MKwe0kxER6shporo2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h7MQhzqY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E5BDC4CEEB;
+	Thu, 10 Apr 2025 11:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744286012;
+	bh=PhiOxgPV+UJGeNCtj3MezYeVIX8cgjdJLX0OoBVn8PU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h7MQhzqY2PpJ0Jem5Fw2rsXzKuA1s69TONRI1iVqGtOLjORR228OnpOyzwHw3s5h+
+	 vwgY95cSE+Co0rFRlFI7+tP0C7dYB7y+tggmxpExoPNjTzc6sBj5Mf3MOxmPpZaUcn
+	 SIuYoYcUpI/po+HeJlmC2P/8Xa8Xre7fZwuwLqXk5pEZ4rxli+GaFoVRD/YBNFnklt
+	 sAiUVSzji0bfDgBH+w5NVXBxW/nF7WyQ92wClMsAoAlOgOBUzD4V1KqEUQzsphw0sL
+	 6I1CQS8eH1/DmU29GNOdnFxPzaz3HdRAa7mfik1bOmdRlenPIZ2BJSL2ZGDK92BGSc
+	 YHOzgOQT0pSHQ==
+Date: Thu, 10 Apr 2025 17:23:28 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Melody Olvera <melody.olvera@oss.qualcomm.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 06/10] phy: qcom: Add M31 based eUSB2 PHY driver
+Message-ID: <Z/exOF4T+0vNLQwg@vaman>
+References: <20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com>
+ <20250409-sm8750_usb_master-v4-6-6ec621c98be6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Linux)
-Subject: Re: [PATCH v6 06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with
- remote processors
-To: Jai Luthra <jai.luthra@ideasonboard.com>
-CC: Andrew Davis <afd@ti.com>, Judith Mendez <jm@ti.com>,
-        Devarsh Thakkar
-	<devarsht@lewv0571a.ent.ti.com>,
-        Nishanth Menon <nm@ti.com>, Hari Nagalla
-	<hnagalla@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Beleswar Padhi
-	<b-padhi@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>, <praneeth@ti.com>,
-        "Khasim, Syed
- Mohammed" <khasim@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <v-krishnamoorthy@ti.com>,
-        <s-tripathy@ti.com>, <s-tripathi1@ti.com>, <c-shilwant@ti.com>,
-        <r-ravikumar@ti.com>
-References: <20250405001518.1315273-1-jm@ti.com>
- <20250405001518.1315273-7-jm@ti.com>
- <6868f593-0728-4e92-a57b-87db6a0037f6@ti>
- <f42607f5-e39d-48a1-89c0-11d4982a2426@ti.com>
- <e131298f-3713-482a-a740-ff89709270b4@ti.com>
- <091c0869-525b-4b40-b5fe-a5c1907ec606@ti.com>
- <czmir7yvss3oreveesyrjqfdcawyn2axtstomsj3yx5sntqwo2@r3udnsyrxvkp>
-Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <czmir7yvss3oreveesyrjqfdcawyn2axtstomsj3yx5sntqwo2@r3udnsyrxvkp>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250409-sm8750_usb_master-v4-6-6ec621c98be6@oss.qualcomm.com>
 
-Hi Jai,
+On 09-04-25, 10:48, Melody Olvera wrote:
 
-On 10/04/25 15:48, Jai Luthra wrote:
-> Hi Devarsh,
-> 
-> Thanks for the cc here.
+> +static int m31eusb2_phy_write_readback(void __iomem *base, u32 offset,
+> +					const u32 mask, u32 val)
+> +{
+> +	u32 write_val;
+> +	u32 tmp;
+> +
+> +	tmp = readl_relaxed(base + offset);
+> +	tmp &= ~mask;
+> +	write_val = tmp | val;
+> +
+> +	writel_relaxed(write_val, base + offset);
+> +
+> +	tmp = readl_relaxed(base + offset);
 
-Thanks for the quick comments.
+Why are you using _relaxed version here?
 
-> 
-<snip>
+> +	tmp &= mask;
+> +
+> +	if (tmp != val) {
+> +		pr_err("write: %x to offset: %x FAILED\n", val, offset);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
 
-> On the basic camera + ISP usecase, afaiu the downstream edgeAI SDK uses
-> custom gstreamer elements that make calls to the aforementioned R5 core
-> that controls the ISP. On top of that there are additional gstreamer
-> patches that are not yet posted upstream for review from the community,
-> so the userspace design isn't really set in stone, or upstream-friendly
-> yet.
-> 
-
-I don't see much relation of carve-outs with Gstreamer or it's pending 
-downstream patches. The memory is mainly managed from firmwares (mainly 
-openvx layer being used underneath) and there are even non-gstreamer 
-pure openvx based use-cases/tests which use these carveouts. At the end 
-of the day, the firmwares from the only SDK which is released publicly 
-for AM62A uses all these carveouts.
-
-
-> IMO if that architecture is still under discussion, it might be better
-> to keep the edgeAI specific carveouts out of the upstream DTs.. just in
-> case the carevouts have to go away, or change significantly.
-> 
-> If you are sure that the regions and firmware architecture is set in
-> stone and won't be updated even if there is a complete redesign of the
-> userspace/application level stack for accessing the ISP (let's say u
-sing> libcamera), only then it makes sense to add the carveouts right now.
-
-
-Yes as I said if whole firmware arch is getting updated then better to 
-wait. I think probably the firmware team marked in cc can comment on 
-that. Moreover I don't see any point of adding only half the regions as 
-that would anyway not work with SDK supplied firmwares, for e.g. 
-RTOS-to-RTOS ipc test run by firmwares on bootup would fail, along with 
-other camera+ISP and AI use-cases.
-
-Regards
-Devarsh
-
->>>>
->>>> I understand your point, currently with this patch remoteproc loading
->>>> will not work for some cores. However, the goal here is to standardize
->>>> as much as possible the memory carveout sizes, push the "demo firmware"
->>>> to request resources the correct way from resource table, and move away
->>>> from this dependency and limitations that we have with our firmware.
->>
->> I understand this, but my view is that w.r.t firmware only goal should not
->> just be tp demonstrate correct way of requesting resources from
->> resource-tables, optimize the carve-outs etc but also to demonstrate the
->> primary use-cases (camera+ISP+edgeAI) which the device is capable of.
->>
->>>> should soon be able to generate our own firmware using Zephyr,  which
->>>> Andrew is pioneering, so with this firmware we should move to the
->>>> correct direction upstream. Downstream we are still using the memory
->>>> carveout sizes that the firmware folk want so desperately to keep, for
->>>> now..
->>>>
->>>
->>> +1
->>>
->>> I have this Zephyr based firmware for AM62A working and it uses the
->>> standard IPC regions as specified in this patch. I'll be posting the PR
->>> for it in Zephyr upstream by the end of week.
->>>
->>
->> I understand this, but will this zephyr based firmware support vision +
->> edgeAI analytics ? Does it demonstrate all the unique capabilities of AM62A
->> SoC ? If not, then what would be utility of such firmware on AM62A where
->> these are the primary use-cases w.r.t AM62A ?
->>
->> Why should upstream device-tree use carve-outs which match to this demo
->> zephyr based firmware (which apparently not many are using and is not going
->> into any official SDK release) instead of official firmwares going into SDK
->> ? SDK released firmwares are being used by so many customers and SDK
->> documentation maps to it, but zephyr firmware that is being pitched here,
->> who would be the potential users and what would be it's utility ?
->>
->> [1]: https://www.ti.com/tool/PROCESSOR-SDK-J721E
->>
->> Regards
->> Devarsh
->>
->>> For this patch as it is:
->>>
->>> Acked-by: Andrew Davis <afd@ti.com>
->>>
->>
->>
->>> Andrew
->>>
->>> [0] https://lore.kernel.org/lkml/20241011123922.23135-1-richard@nod.at/
->>> [1] https://git.ti.com/cgit/edgeai/meta-edgeai/tree/recipes-kernel/
->>> linux/linux-ti-staging/j721e-evm/0001-arm64-dts-ti-Add-DTB-overlays-for-
->>> vision-apps-and-ed.patch?h=kirkstone
->>>
->>>> ~ Judith
->>>>
->>>>>
->>>>> [1]:
->>>>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/
->>>>> arch/arm64/boot/dts/ti/k3-am62a7-sk.dts?h=ti-linux-6.6.y-cicd#n103
->>>>> [2]: https://www.ti.com/tool/PROCESSOR-SDK-AM62A
->>>>>
->>>>> Regards
->>>>> Devarsh
->>>>>
->>>>>>        opp-table {
->>>>>> @@ -741,3 +771,57 @@ dpi1_out: endpoint {
->>>>>>            };
->>>>>>        };
->>>>>>    };
->>>>>> +
->>>>>> +&mailbox0_cluster0 {
->>>>>> +    status = "okay";
->>>>>> +
->>>>>> +    mbox_r5_0: mbox-r5-0 {
->>>>>> +        ti,mbox-rx = <0 0 0>;
->>>>>> +        ti,mbox-tx = <1 0 0>;
->>>>>> +    };
->>>>>> +};
->>>>>> +
->>>>>> +&mailbox0_cluster1 {
->>>>>> +    status = "okay";
->>>>>> +
->>>>>> +    mbox_c7x_0: mbox-c7x-0 {
->>>>>> +        ti,mbox-rx = <0 0 0>;
->>>>>> +        ti,mbox-tx = <1 0 0>;
->>>>>> +    };
->>>>>> +};
->>>>>> +
->>>>>> +&mailbox0_cluster2 {
->>>>>> +    status = "okay";
->>>>>> +
->>>>>> +    mbox_mcu_r5_0: mbox-mcu-r5-0 {
->>>>>> +        ti,mbox-rx = <0 0 0>;
->>>>>> +        ti,mbox-tx = <1 0 0>;
->>>>>> +    };
->>>>>> +};
->>>>>> +
->>>>>> +&wkup_r5fss0 {
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&wkup_r5fss0_core0 {
->>>>>> +    mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
->>>>>> +    memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
->>>>>> +            <&wkup_r5fss0_core0_memory_region>;
->>>>>> +};
->>>>>> +
->>>>>> +&mcu_r5fss0 {
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&mcu_r5fss0_core0 {
->>>>>> +    mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
->>>>>> +    memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
->>>>>> +            <&mcu_r5fss0_core0_memory_region>;
->>>>>> +};
->>>>>> +
->>>>>> +&c7x_0 {
->>>>>> +    mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
->>>>>> +    memory-region = <&c7x_0_dma_memory_region>,
->>>>>> +            <&c7x_0_memory_region>;
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>
->>>>
->>>
->>
->>
-> 
-
+-- 
+~Vinod
 
