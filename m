@@ -1,205 +1,118 @@
-Return-Path: <devicetree+bounces-165666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3376DA84FDC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:53:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB52A84FEC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:57:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4724A4C24
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:53:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE621B87197
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9BA20C021;
-	Thu, 10 Apr 2025 22:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE1420F085;
+	Thu, 10 Apr 2025 22:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="urVlRqb4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjea6f97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54D0172767;
-	Thu, 10 Apr 2025 22:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B64420C470;
+	Thu, 10 Apr 2025 22:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744325607; cv=none; b=JfGHlDHiTafEIor1dCrEK9EOA4m+vsve189aK8xizHVOPmQvU0i1OgBxSqy9/6/ARjJfq7fURU2vRWFYc6DRv0YujScMJFH2zg8SKHee7RPxB7hqBc/TbI//QCDFBmkpt5PaiuH/ZvseupW7Tkr5H+XQOvq7Ihb2MSMESNOySaA=
+	t=1744325832; cv=none; b=cjlYfvXW0ffgcg9Bm0lc6Kj7tBru6RZ8cAd3XXjC1f1WAw2iE6yrIIfsluYtL/0CcHBoe5YYIodXp0HXib8TYzrP5vgsscxuqHw2yKACn1i0dC3u7wBrIRLVE9A/9CkmumXH4IUwEqDMxlEUwIIZiYEJEJvKtKn89ayJOnOmIIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744325607; c=relaxed/simple;
-	bh=V4mVQZ//Ezj+MDhUUmwsm/fNROxGBSW/cC+lzJA8c/Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QaKeZYqmc8m9xRWn76g0t+dsuFUltondp0sP9qFUTaI4nlK1aI8oa9CoD5AFzGY52t0ScdWDNkl0FWLqH5wrezvDR1GealUVzW4YatEmu2C9XgzTd5hSpqoJ9DjwroBtRngL2znsijfN/yfAxYJ2KQjhdK/D/H2yxM/IkYY/l54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=urVlRqb4; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMr2W71399307
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 10 Apr 2025 17:53:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744325582;
-	bh=dr2zDigygCC2C4GSdx8OOUFZ1CPNnNchXON92zqlKB0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=urVlRqb483spdKodj3Dr9LKvkfWZLWEpOvAwJDLkxZ+kqD2WowvYXrkOaLUMxsn2F
-	 OzMfcUl7wK7ZksHrxPKiIuskTG0fcUVwPDw9QqU2t1QVEtkLPv5GfdB4RvZmF8gv8y
-	 li2mK6eGrEklD1UR6RccLcVK7O6duK/T/4Lo6uJ4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMr2AV125532
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 10 Apr 2025 17:53:02 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Apr 2025 17:53:02 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Apr 2025 17:53:01 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AMr1Sm093211;
-	Thu, 10 Apr 2025 17:53:01 -0500
-Date: Thu, 10 Apr 2025 17:53:01 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Jason Kridner <jkridner@beagleboard.org>
-CC: Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
-	<jm@ti.com>,
-        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
-        Deepak Khatri <lorforlinux@beagleboard.org>,
-        Ayush Singh
-	<ayush@beagleboard.org>,
-        <michael.opdenacker@rootcommit.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Message-ID: <20250410225301.orsurkanor52ovmk@native>
-References: <20250408231823.826163-1-robertcnelson@gmail.com>
- <20250408231823.826163-2-robertcnelson@gmail.com>
- <20250410161509.yviucf36uhox4wvm@unedited>
- <CA+T6QPm2gVSa_+-vj5EA=RAs_sZFjq0LJKYVKPf_LN9Xc9uQQQ@mail.gmail.com>
+	s=arc-20240116; t=1744325832; c=relaxed/simple;
+	bh=dFjSj+0XP33Tq5fvO9OJcLGRfVuicnfCNBFxi1smsew=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IDLMhQy9kX5/WQZu1I2PzDhFLrG5u+8Da4ML/zvPmdb4R60mFdbVMZuHAPbrokniulhoUezwtzjAtLKymRSkIQNR9CIHaeG7ezwhoImlb+3JY27g+R5tGea+MbMVLZA+AKvhQ4QeI1AH3pgdNoGyPY4sH70DGGV0YngyAjf903A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjea6f97; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CC36C4CEDD;
+	Thu, 10 Apr 2025 22:57:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744325831;
+	bh=dFjSj+0XP33Tq5fvO9OJcLGRfVuicnfCNBFxi1smsew=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hjea6f97bl1ND8IhXBcyyoRfCD5qyNUa4prZrat/d6tm9yWKT4pkXtP++59cIxb0o
+	 sT9Bjc5amMt9BwUuK/ahI5rMyvwJknMAjNLX3fwRUzTPUgU3gcQbakEYvlb4MXFJvG
+	 xL/tXnxhNMNGSjRqI/j7Odg9jxIiNtq57ogvv4lhfwWY5+KQzHfFf+ayMfUJCZqw1w
+	 ihd4gEOrNJWZob8ZcnkhWDwATFUMVbmmM9se7uA8OKQe2e0q7v+U9X7Lfr5wwZVk4q
+	 SKM/jLFstYNok683XRkde4V8zvEg6TIWEzAtCOYsZ49z5VxJQ1knS9ydGKLhtjaKNk
+	 gqs1U7EB1PsiQ==
+Date: Thu, 10 Apr 2025 15:57:10 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko
+ <jiri@resnulli.us>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Prathosh Satish
+ <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, Kees Cook
+ <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+Message-ID: <20250410155710.067a97f7@kernel.org>
+In-Reply-To: <889e68eb-d5b5-41ae-876d-9efc45416db6@redhat.com>
+References: <20250409144250.206590-1-ivecera@redhat.com>
+	<20250409171713.6e9fb666@kernel.org>
+	<889e68eb-d5b5-41ae-876d-9efc45416db6@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CA+T6QPm2gVSa_+-vj5EA=RAs_sZFjq0LJKYVKPf_LN9Xc9uQQQ@mail.gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 13:26-20250410, Jason Kridner wrote:
-[...]
-> > > +&usb1 {
-> > > +     dr_mode = "host";
-> > > +     pinctrl-names = "default";
-> > > +     pinctrl-0 = <&usb1_pins_default>;
-> > > +};
-> >
-> > is'nt this over https://www.beagleboard.org/boards/techlab or
-> > https://www.beagleboard.org/boards/pocketbeagle-gamepup-cape or
-> > https://github.com/mwelling/pocket-bob ?
-> >
-> > I think it is better as an overlay? Let us not enable something that
-> > will add power for no benefit :)
-> > Further USB1.ID has options for PRU as well. Let the daughter overlay
-> > deal with it.
-> >
-> > On the flip side, we could work the other way - since majority of
-> > daughter cards use USB host, it could be that the other overlays can
-> > just disable usbss1 and usb1
-> >
-> > Thoughts?
+On Thu, 10 Apr 2025 11:18:24 +0200 Ivan Vecera wrote:
+> On 10. 04. 25 2:17 dop., Jakub Kicinski wrote:
+> > On Wed,  9 Apr 2025 16:42:36 +0200 Ivan Vecera wrote:  
+> >> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> >> provides DPLL and PTP functionality. This series bring first part
+> >> that adds the common MFD driver that provides an access to the bus
+> >> that can be either I2C or SPI.
+> >>
+> >> The next series will bring the DPLL driver that will covers DPLL
+> >> functionality. And another ones will bring PTP driver and flashing
+> >> capability via devlink.
+> >>
+> >> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+> >> development board with ZL30732 DPLL chip connected over I2C bus.  
+> > 
+> > The DPLL here is for timing, right? Not digital logic?
+> > After a brief glance I'm wondering why mfd, PHC + DPLL
+> > is a pretty common combo. Am I missing something?  
 > 
-> Since you asked, Being the somewhat unique state of PocketBeagle 2 and
-> other Beagle
-> single-board computers as rapid-prototyping development platforms, my
-> personal general
-> preference is to see all the stuff turned on by default and then to
-> provide some clear direction
-> on what is not necessary such that it lives as documentation forhow to
-> enable it and simplify
-> the development of overlays. Some of the rationale for this was
-> discussed a couple
-> of years back in a series of blog posts by Michael Opdenacker. [1][2][3]
-
-OK - Let us document that in the device tree then. For the i2c ports and
-usb ports that are implemented in the cape, just add a documentation
-note saying enabled for cape header or something for that effect. all
-these main USB pins are dedicated functions anyways, so it is unlikely
-to see capes that can even attempt to reuse the generic USB data pins
-for alternate functions.
-
-If folks do not use that header in some specific overlay, they can
-disable the node based on at least some guidance from the documentation.
-
+> Well, you are right, this is not pretty common combo right now. But how 
+> many DPLL implementations we have now in kernel?
 > 
-> My perspective is that the interfaces need to be enabled to define the
-> header connector to
-> the device tree and that the muxes should further be fully described
-> to the system, rather than
-> leaving those bits of metadata regarding the running system as an
-> exercise for the reader.
+> There are 3 mlx5, ice and ptp_ocp. The first two are ethernet NIC 
+> drivers that re-expose (translate) DPLL API provided by their firmwares 
+> and the 3rd timecard that acts primarily as PTP clock.
 > 
-> The aforementioned approach of removing all the "dead bits" is great
-> until someone is left with
-> the challenge of figuring out how to turn them on and/or select
-> between them. Providing an
-> overlay that disables all the unnecessary bits seems reasonable to me.
-
-I understand the rationale, but, we as Linux community came to this
-guideline:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n207
-"
-Hardware components that are present on the board shall be placed in the
-board DTS, not in the SoC or SoM DTSI
-"
-
-PB2 being an partial "SOM".
-
-It is a trade-off unfortunately.
-
+> Azurite is primarly the DPLL chip with multiple DPLL channels and one of 
+> its use-case is time synchronization or signal synchronization. Other 
+> one can be PTP clock and even GPIO controller where some of input or 
+> output pins can be configured not to receive or send periodic signal but 
+> can act is GPIO inputs or outputs (depends on wiring and usage).
 > 
-> Otherwise, I think we can put the entirety of the header description
-> into an overlay for
-> cape-specific overlays to use, but I find the lack of an upstream
-> definition to make it difficult to
-> enable cape makers to define overlays that are likely to actually work.
+> So I have taken an approach to have common MFD driver that provides a 
+> synchronized access to device registers and to have another drivers for 
+> particular functionality in well bounded manner (DPLL sub-device (MFD 
+> cell) for each DPLL channel, PTP cell for channel that is configured to 
+> provide PTP clock and potentially GPIO controller cell but this is 
+> out-of-scope now).
 
-This is not an unknown problem, though not something pleasant to
-live with. Linux community is always happy to review options around
-this, there has been attempts to help standardize these daughter card
-ecosystems in the past, but none have achieved acceptance.
-
-What we have today is the scheme where we have dts and overlays and
-ability to generate a dtb that stitches the two together in a specific
-order. That is usually requested to be demonstrated to work prior to
-acceptance in upstream. That provides folks at least one specific
-combination of things that is known to work. (testing is a case of
-effort spent by the community to test things - including overlay,
-which is no different from the core dtb). But, yes, there is no do what
-you want and it will just work option today.
-
-> 
-> Just my $0.0000002.
-> 
-> [1] https://www.beagleboard.org/blog/2022-02-15-using-device-tree-overlays-example-on-beaglebone-cape-add-on-boards
-> [2] https://www.beagleboard.org/blog/2022-03-31-device-tree-supporting-similar-boards-the-beaglebone-example
-> [3] https://www.beagleboard.org/blog/2022-06-06-using-the-u-boot-extension-board-manager-beaglebone-boards-example
-
-
-Thank you for sharing your thoughts.
-
-[...]
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Okay, my understanding was that if you need to reuse the component
+drivers across multiple different SoCs or devices, and there is no
+"natural" bus then MFD is the go to. OTOH using MFD as a software
+abstraction/to organize your code is a pointless complication.
+(We're going to merge the MFD parts via Lee's tree and the all actual
+drivers via netdev?) Admittedly that's just my feeling and not based 
+on any real info or experience. I defer to Lee and others to pass
+judgment.
 
