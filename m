@@ -1,165 +1,210 @@
-Return-Path: <devicetree+bounces-165342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31EEAA83FB4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:58:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC2BA83FC7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF82B7AC4B8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:55:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DC454A1AEC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B6026E174;
-	Thu, 10 Apr 2025 09:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B743A26B941;
+	Thu, 10 Apr 2025 09:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="A3NbMLb9"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="AL5ylmJn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F6A26B092;
-	Thu, 10 Apr 2025 09:56:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875A126B2A8
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744278969; cv=none; b=Xo1ZO3PsOC6pkXdDFRA2QeuuDvTfdKFpDOkJx/DEmgC7f8h0p1kVbR5M2pRnY23CVX7fiGyBfjZBokr2wDnmMJioUJeZF/6mdS+uZ1nINT+VurFIxBupru/i+c+/TN183z1j5ZkBWF8nb1W1UDlxyh1b6uWV9DkldqGiJyErm7A=
+	t=1744279009; cv=none; b=C4uG3KPbt5vyvbQmqhYyc5O7igdAnfWa0bC+QKSMzPNv7fgOjsHJJaoPdDBObhlfoST+NVACQk/hmXt64oX6iJ6FgQmEds7Mw5b/EUVE4FeEfVTVsnRMRyTRpp6d0ObSp8I226146oYK8BWE0Qk/m0UBESmP0fJNiaXcEhji5Vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744278969; c=relaxed/simple;
-	bh=1O63fHvP1rG7PVltXz7KlpJwSIz+erZooO4dk0p95co=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=VFj5z6KaAfop2zH1+RIBzYal3FBrlaWl+iOesYDJA9WiutfFlUl2pCid4LjIEJE+FhTmpeO1nwFxKklYWEKArc691WkAJ4yppJU0TyWUej+gh+8hF3PkfFyDrX4S7MQTYvKTbsS8JDF1JJfaawwyLq1xmqk4jdd4jW5dNsVQ6t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=A3NbMLb9; arc=none smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53A60F8c032471;
-	Thu, 10 Apr 2025 10:55:33 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=U
-	S9om7LbTVhKzl3AjW5fTuL57GJtJzJ36K/RfTOKEwY=; b=A3NbMLb9LSg9y+UP+
-	/vhTgGzEKAIYKOdGykQ2tJIBlGuVeITZ0jFg642PY/dv8p4dYIOdApATCdXnSHjc
-	uICOHeSfbyXjj3cmVFIHlPniHIM70DiOvgOH3ROnCHYtCYuLo+GkpUumGEbNcyvb
-	q6QYWpQDHnFozKSOde0umKiIV17t3+Q56at8J31nv4hFp8rpVqjNgj2VI/EycoC7
-	uJH3bSs3Jdtafordl2w6SM7nc2lqI9Z2nYB4dwo1PX409eAEDDnaQos3IpxRQlUa
-	HON680uLDtRdd8ygvbllMTEoKkerUS9nVmKxc5VdCUY2eSpH/D5kcsSvohKKl8CX
-	nwksA==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 45w86h1d34-13
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 10 Apr 2025 10:55:32 +0100 (BST)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.6.134) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 10 Apr 2025 10:55:30 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Thu, 10 Apr 2025 10:55:17 +0100
-Subject: [PATCH DO NOT MERGE v6 18/18] arm64: dts: ti: k3-j721s2: Add GPU
- node
+	s=arc-20240116; t=1744279009; c=relaxed/simple;
+	bh=xS47vOnBOl+2Wgh/X17ml36azQPBKEMDbkQQ9axrYJM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=TvWtWJ3DUYjb+zOYBgbFxRnFSyCTHjK45xKSUEcTkraTmSqUw0KH1OlC7N1guJaQ2o/r4kfZT1Paf+IU3N3gA/erWEWFsfG/kzOjCg4uPVrqxmrcFXUDWfN6PzXlEjKlfEgOC0MxzsOJm1as4GJeql4CLpmC0QFaA4V4D/m87oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=AL5ylmJn; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cf861f936so973385e9.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 02:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1744279006; x=1744883806; darn=vger.kernel.org;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0PsTek2iG0P9gXerP0u/dhkc6G7oyliO6C0xZFmP/8A=;
+        b=AL5ylmJnAqGE1DSAt91SDPd06EgEFCW/rKrEf11c2uGbdyGhpE/70pOzslFN8ACDzw
+         8RYHtcvL4sOFhjMcQFKWF9lz11TgoeuR19XsBNM3iPIHEyOEGJCj501fV3UXs7Zw+f9Z
+         eoW+/nJxn9u3JQnYtC0xXjjc1ZsnLY6X57EOgpvP6pDuWVz57h6aVHnsG5taGdRnQqsg
+         9JOLN2SUURmUj0JCUGoK9gbdIx3g4beEK5Peq/IHR8kxQF1f1RW7PKCayMaLmC1pGZ0K
+         +OASt33X2wvMS1NI6NrjxPNtkq7vtv1TxfJ8cylpqg0DXFw098Y06K6Fw2HfpGO3Xl3A
+         vN8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744279006; x=1744883806;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0PsTek2iG0P9gXerP0u/dhkc6G7oyliO6C0xZFmP/8A=;
+        b=BSNgM23K2I1hpT22C1iyQgKUsVF5kWSygAijMLtt81P9tVVo6a9dUjJ8xZbSVwzjN/
+         +JFHQaYjNpxG32fC8hy/G6G19Mqw8tguraoeSumX5GF6l4DtUZff7T5VrZMqWRvanllC
+         hgtJ81xlFb0PWOwrX0ayahgKlPOuNhvKYs7kmJfT2ZOpeNgEDMKTF/rejrPm5xhUJQrr
+         oTRZhWRN989Sh/+LayoePKv/nfd2E5FRUJyoVU9XZeClQZoa5oTGnA7VHpcTx1DV2XTy
+         H5ljyYDsgpCMW7kQwE7jUmMMJOoCGsIDQvQDMbl3MyOoG1PEMgAM5uHtkdHmc3OemQ11
+         24wg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8r1FLWqp7NYyEqNJU4/1SNodD8MCSob9USlVMHcA85qFMpNhhsvlwwd4jdQfjwqf/Lv6VAaZz4U/z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4azTwas8SBH2x64DSVF+lCviDXFX4H/ElbFFP/fyj5C8vv8Ej
+	JeE9gKW5lOGM2w2cf10O62491b0bJLfZp4jcXHCKlaZA2CZkUbsSXGdqKthz30o=
+X-Gm-Gg: ASbGncsyEVYeQrZ3sxL5cEIhruVcUk58skSjF90R1Grp/HlHWQqt84vVc+IStdV7L/3
+	AzBEf6d9XVuQheO98eu1SzPP7lzxEdO2ylPOMPs3Qo1Nz9tYKg4gmAznMznasdB/yqR2hV6XepR
+	Mftw2SBvwqZw52FkXRv+hrQBjvMI7N5pVS5JXHiDZ+Bjkj/FJIAKORfSToQ3DArJxxTBmDfp1ZZ
+	YknCWSevyFlKthpGTtGCXAsjNN6UZ0v0N01E6E1ImdqJgv1YzBOXW4DcLVD+ycI9CLivh2e9q8/
+	0kGyTIoYg3rHQj4+Suxk36Ezf9UcKoS9gaRxR/dtSMnCnLhM
+X-Google-Smtp-Source: AGHT+IHBsekVmgMMcd9frJRGybN0tNs9jfPFgV6X7l6TgORlz7EkCuYcLx9G1wBU1KIlE1VBTkos1Q==
+X-Received: by 2002:a5d:6d8a:0:b0:39b:f12c:3862 with SMTP id ffacd0b85a97d-39d87aa7badmr2003379f8f.2.1744279005675;
+        Thu, 10 Apr 2025 02:56:45 -0700 (PDT)
+Received: from localhost ([2a02:8308:a00c:e200:7d22:13bb:e539:15ee])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39d89362fd6sm4349691f8f.16.2025.04.10.02.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 02:56:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com>
-References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
-In-Reply-To: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
-To: Frank Binns <frank.binns@imgtec.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        "Michal
- Wilczynski" <m.wilczynski@samsung.com>,
-        Alessio Belle
-	<alessio.belle@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2186;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=1O63fHvP1rG7PVltXz7KlpJwSIz+erZooO4dk0p95co=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMaR/n9p8a0HOjOfKd+NWnMyoj+i6HMs3OW+y5ETJk9dOT
- o1o9bv4raOUhUGMg0FWTJFlxwrLFWp/1LQkbvwqhpnDygQyhIGLUwAm4tjOyLDuy3Xvh0Gia8+K
- TN2kb6+TMPHZ9cayNX6T/q90X7flXuUzhv/BVVs+u+jcNVhm7Hnmfa9g9qOclrpffy0fiJ1k2PX
- 1hRgzAA==
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Authority-Analysis: v=2.4 cv=MLNgmNZl c=1 sm=1 tr=0 ts=67f79594 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=UtEzwyU9vMAA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=sozttTNsAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
- a=hJ1mkiiSfvO0DrLeNb8A:9 a=QEXdDO2ut3YA:10 a=S-JV1fTmrHgA:10 a=j2-svP0xy3wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: N5519SmxWGqsd3s5LI3Y6WBlzLJsD_E8
-X-Proofpoint-ORIG-GUID: N5519SmxWGqsd3s5LI3Y6WBlzLJsD_E8
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 10 Apr 2025 11:56:44 +0200
+Message-Id: <D92VAWLM8AGD.3CF1VH6NYHCYV@ventanamicro.com>
+Subject: Re: [PATCH v12 10/28] riscv/mm: Implement map_shadow_stack()
+ syscall
+Cc: <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+ <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+ <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
+ <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
+ <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
+ <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
+ <broonie@kernel.org>, <rick.p.edgecombe@intel.com>, "Zong Li"
+ <zong.li@sifive.com>, "linux-riscv"
+ <linux-riscv-bounces@lists.infradead.org>
+To: "Deepak Gupta" <debug@rivosinc.com>, "Thomas Gleixner"
+ <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov"
+ <bp@alien8.de>, "Dave Hansen" <dave.hansen@linux.intel.com>,
+ <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, "Andrew Morton"
+ <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ "Vlastimil Babka" <vbabka@suse.cz>, "Lorenzo Stoakes"
+ <lorenzo.stoakes@oracle.com>, "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Arnd Bergmann"
+ <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>, "Peter Zijlstra"
+ <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>, "Eric Biederman"
+ <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann Horn"
+ <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-10-e51202b53138@rivosinc.com>
+In-Reply-To: <20250314-v5_user_cfi_series-v12-10-e51202b53138@rivosinc.com>
 
-The J721S2 binding is based on the TI downstream binding in 54b0f2a00d92
-("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1] but with updated
-compatible strings.
+2025-03-14T14:39:29-07:00, Deepak Gupta <debug@rivosinc.com>:
+> As discussed extensively in the changelog for the addition of this
+> syscall on x86 ("x86/shstk: Introduce map_shadow_stack syscall") the
+> existing mmap() and madvise() syscalls do not map entirely well onto the
+> security requirements for shadow stack memory since they lead to windows
+> where memory is allocated but not yet protected or stacks which are not
+> properly and safely initialised. Instead a new syscall map_shadow_stack()
+> has been defined which allocates and initialises a shadow stack page.
+>
+> This patch implements this syscall for riscv. riscv doesn't require token
+> to be setup by kernel because user mode can do that by itself. However to
+> provide compatibility and portability with other architectues, user mode
+> can specify token set flag.
 
-The clock[2] and power[3] indices were verified from docs, but the
-source of the interrupt index remains elusive.
+RISC-V shadow stack could use mmap() and madvise() perfectly well.
+Userspace can always initialize the shadow stack properly and the shadow
+stack memory is never protected from other malicious threads.
 
-[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-[2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-[3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
+I think that the compatibility argument is reasonable.  We'd need to
+modify the other syscalls to allow a write-only mapping anyway.
 
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
----
-Changes in v6:
-- None
-- Link to v5: https://lore.kernel.org/r/20250326-sets-bxs-4-64-patch-v1-v5-18-e4c46e8280a9@imgtec.com
-Changes in v5:
-- None
-- Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-18-d987cf4ca439@imgtec.com
-Changes in v4:
-- None
-- Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-18-143b3dbef02f@imgtec.com
-Changes in v3:
-- None
-- Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-21-3fd45d9fb0cf@imgtec.com
-Changes in v2:
-- Use normal reg syntax for 64-bit values
-- Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-21-4ed30e865892@imgtec.com
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
+> +static noinline unsigned long amo_user_shstk(unsigned long *addr, unsign=
+ed long val)
+> +{
+> +	/*
+> +	 * Never expect -1 on shadow stack. Expect return addresses and zero
+> +	 */
+> +	unsigned long swap =3D -1;
+> +	__enable_user_access();
+> +	asm goto(
+> +		".option push\n"
+> +		".option arch, +zicfiss\n"
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
- 		/* reserved for MAIN_R5F1_1 */
- 		status = "reserved";
- 	};
-+
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = <0x4e 0x20000000 0x00 0x80000>;
-+		clocks = <&k3_clks 130 1>;
-+		clock-names = "core";
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
+Shouldn't compiler accept ssamoswap.d opcode even without zicfiss arch?
 
--- 
-2.49.0
+> +		"1: ssamoswap.d %[swap], %[val], %[addr]\n"
+> +		_ASM_EXTABLE(1b, %l[fault])
+> +		RISCV_ACQUIRE_BARRIER
 
+Why is the barrier here?
+
+> +		".option pop\n"
+> +		: [swap] "=3Dr" (swap), [addr] "+A" (*addr)
+> +		: [val] "r" (val)
+> +		: "memory"
+> +		: fault
+> +		);
+> +	__disable_user_access();
+> +	return swap;
+> +fault:
+> +	__disable_user_access();
+> +	return -1;
+
+I think we should return 0 and -EFAULT.
+We can ignore the swapped value, or return it through a pointer.
+
+> +}
+> +
+> +static unsigned long allocate_shadow_stack(unsigned long addr, unsigned =
+long size,
+> +					   unsigned long token_offset, bool set_tok)
+> +{
+> +	int flags =3D MAP_ANONYMOUS | MAP_PRIVATE;
+
+Is MAP_GROWSDOWN pointless?
+
+> +	struct mm_struct *mm =3D current->mm;
+> +	unsigned long populate, tok_loc =3D 0;
+> +
+> +	if (addr)
+> +		flags |=3D MAP_FIXED_NOREPLACE;
+> +
+> +	mmap_write_lock(mm);
+> +	addr =3D do_mmap(NULL, addr, size, PROT_READ, flags,
+
+PROT_READ implies VM_READ, so won't this select PAGE_COPY in the
+protection_map instead of PAGE_SHADOWSTACK?
+
+Wouldn't avoiding VM_READ also allow us to get rid of the ugly hack in
+pte_mkwrite?  (VM_WRITE would naturally select the right XWR flags.)
+
+> +		       VM_SHADOW_STACK | VM_WRITE, 0, &populate, NULL);
+> +	mmap_write_unlock(mm);
+> +
+> +SYSCALL_DEFINE3(map_shadow_stack, unsigned long, addr, unsigned long, si=
+ze, unsigned int, flags)
+> +{
+> [...]
+> +	if (addr && (addr & (PAGE_SIZE - 1)))
+
+if (!PAGE_ALIGNED(addr))
 
