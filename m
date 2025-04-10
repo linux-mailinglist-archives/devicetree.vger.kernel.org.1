@@ -1,72 +1,59 @@
-Return-Path: <devicetree+bounces-165221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2608BA83BE1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:59:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68BD0A83BDD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678928C5174
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 474DB16BAB4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B13D1E1DE4;
-	Thu, 10 Apr 2025 07:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635021E1DE4;
+	Thu, 10 Apr 2025 07:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="otmoFr3v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tGY1RDiz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49849130A54;
-	Thu, 10 Apr 2025 07:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370651E32D5;
+	Thu, 10 Apr 2025 07:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744271713; cv=none; b=dzSRBtKX/I1E7LDrGzAZga0wktPkNhKihu71To84Q2CH06AvdexGdv05B46huO0VSf5+wdBIrTfC9tmd1Fx0mj03XHLByhALN/MGiU7GWVdUvKxDPkhbUotaiSGcuyUeaR8PtUZ03r2mFclQn3mxEPbbfB9gqED+KALXMOXUahw=
+	t=1744271902; cv=none; b=Z+HwTkFtVxKXvNoMMRsHjbuOPPUTaYwseFj3pVSDrvZ/CDZ56bfkevMFy4AzKE27K/jXdBMV9b0MnU7I6uF7bgugprK9+BnfQDqAeeumrZPMWzV9VxlHVuWNMTUJ5XoAPvRVuJa4lRoxGfW1KgR+rlBwwAGF6Xz6kz6qtwSx+hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744271713; c=relaxed/simple;
-	bh=lnFZPq6GIT4yu3NTRkld+9fjjb3E4qY9+RFd4qgcgxc=;
+	s=arc-20240116; t=1744271902; c=relaxed/simple;
+	bh=dTI/GJafdxJX+eMaocpLYLEZHuUOrvVBgaIIFIeZENA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CSBy95p5Wgb14cB3RolAgc1uw7lKfQ69Sngh2W5/NDYQ1AeB10vxoZQCS+dMuGh+ZqdO7tQLKufi2EvyP41N7Sm/hWN0RCqLGiuKKmKj0eMNdtZDphgsfssbGDMtaQE7OQPMOTiRbSlimu6gPjat5yp10BQcO/Z0XgHR4swIqVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=otmoFr3v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 827EBC4CEDD;
-	Thu, 10 Apr 2025 07:55:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VaEMzbvzh+Sdv+rrBm1WmLWctwioWG8pEMepWEMRwRVAVrFH0iz6EK4N1wXm8ARj6nXVnn2IfZSgng3YMVFhIiDdhkjkI7eWh4heCe+sdoIveBOUeXNNxQ2J5QYzTJ5R5PzDVWlM6SDYN0W343G1AQjhB3+umjlGqCqMEbDxEng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tGY1RDiz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4FA8C4CEDD;
+	Thu, 10 Apr 2025 07:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744271712;
-	bh=lnFZPq6GIT4yu3NTRkld+9fjjb3E4qY9+RFd4qgcgxc=;
+	s=k20201202; t=1744271901;
+	bh=dTI/GJafdxJX+eMaocpLYLEZHuUOrvVBgaIIFIeZENA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=otmoFr3vxowmlBDmjkGrpqwB37cb7dxQ+cnFzN3C9WSdIFqHe7hblzY0aaz/3Bzmv
-	 8Is4qyffPO+HY1ZeyFn+44YNhlrRcY9HhdQ4UzCUqYi8dRXdBuPqB43j+yUU4kiWnG
-	 mtKxRh9nd7eA/ABKMBKXsUNY4ik67mC8yPje7XS6hgJQTc3cW1DUkSZfV2gali/JQt
-	 HkBLtDeZQaqDQL5dHGrd8JQhtE1ATi8RAmGXf1ha1QHgdiPSQ+X53Pynwxi2T93rUz
-	 /nfIE2FOA/zNCWGmO8htFkORRVaBN0mM5v7xoJRaHnoXCCIaoLXtGx7gn0qc/+L/we
-	 4Mv0YLRPSLC3w==
-Date: Thu, 10 Apr 2025 08:55:05 +0100
+	b=tGY1RDizMH74a20aC0HH4YRTcNFDxjEcutaJQ8EopWeICR7Ztvk/qdDtF+Sg10wEv
+	 bVbB8NbUyzt4EMB26euzSag2uxD8M3U63H3m58kjibUEZoD6/qtgy7Sj2lz5jnlzVn
+	 vsh0lWMzJeYZg75UHucvYBBo9HCQxh+EpmzLlEB+GXtV8v129YvS8dY58Y56aRfSb2
+	 Eb8Hrpu6DIa/EsS+FFbWHaWe+t3niHnrCfDv5KlmVP79Qal60s85Z1vy+UTLF1mUfu
+	 Mkkzomo0qhqMy+iKSq2/dm+ty62v45yxfm1eV0IeLRyNi2SunoQP4kpoCs/58aeAx1
+	 awPjxw6gugH6A==
+Date: Thu, 10 Apr 2025 08:58:17 +0100
 From: Lee Jones <lee@kernel.org>
-To: ALOK TIWARI <alok.a.tiwari@oracle.com>
-Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	andriy.shevchenko@intel.com,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [External] : [PATCH v6 01/12] dt-bindings: mfd: gpio: Add MAX7360
-Message-ID: <20250410075505.GM372032@google.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-1-7a2535876e39@bootlin.com>
- <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/14] Support ROHM Scalable PMIC family
+Message-ID: <20250410075817.GN372032@google.com>
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,61 +63,97 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
+In-Reply-To: <cover.1744090658.git.mazziesaccount@gmail.com>
 
-On Wed, 09 Apr 2025, ALOK TIWARI wrote:
+On Tue, 08 Apr 2025, Matti Vaittinen wrote:
 
+> Support ROHM BD96802, BD96805 and BD96806 PMICs
+> 
+> The ROHM BD96801 [1] and BD96805 [2] are almost identical PMICs what comes
+> to the digital interface. Main difference is voltage tuning range.
+> Supporting BD96805 with BD96801 drivers is mostly just a matter of being
+> able to differentiate the PMICs (done based on the devicetree
+> compatible) and then providing separate voltage tables.
+> 
+> The ROHM BD96802 [3] is a companion PMIC which is intended to be used to
+> provide more capacity on systems where the BD96801 alone is not
+> sufficient. Startup sequence of these PMICs can be synchronized in
+> hardware level, and there seems to be some mechanisms which allow
+> delivering the companion PMIC (BD96802) status to the main PMIC
+> (BD96801/BD96805). This patch series does treat the companion PMIC(s) as
+> individual PMICs and allows using them from software point of view as a
+> stand alone ICs. From the digital point of view, the BD96802 is a subset
+> of BD96801, providing only buck1 and buck2 regulators. Please see the
+> data sheet
+> 
+> The ROHM BD96806 [4] is similar to the BD96802, except that it does also
+> provide different voltage tuning ranges.
+> 
+> This series adds basic voltage monitoring and control as well as a
+> watchdog support for these PMICs using the BD96801 drivers.
+> 
+> Similarly to the BD96801, these PMICs too have a few configurations
+> which can only be done when the PMIC is in STBY state. Similarly to the
+> BD96801, doing these configurations isn't supported by the driver. The
+> original BD96801 RFC [5] driver should be able to cover those
+> configurations, if modified to support these models.
+> 
+> [1]: ROHM BD96801 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96801qxx-c-e.pdf
+> [2]: ROHM BD96805 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96805qxx-c-e.pdf
+> [3]: ROHM BD96802 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96802qxx-c-e.pdf
+> [4]: ROHM BD96806 data sheet:
+> https://fscdn.rohm.com/en/products/databook/datasheet/ic/power/switching_regulator_system/product_brief_bd96806qxx-c-e.pdf
+> [5]: Original BD96801 RFC:
+> https://lore.kernel.org/all/cover.1712058690.git.mazziesaccount@gmail.com/
+> 
+> Revision history:
+> v2 => v3:
+>  - Fix BD96806 voltages
+>  - Use defines for voltages to ease spotting (copy-paste) errors in
+>    regulator descs
+>  - Use lowercase node names in the BD96802 dt-binding
+> v1 => v2: MFD driver changes after review by Lee
+>  - Use enum for chip type instead of picking the data directly from the
+>    of_match_data.
+>  - rename "chip data" variable 'cd' to more widely used 'ddata'.
+>  link to v1:
+>   https://lore.kernel.org/all/cover.1741864404.git.mazziesaccount@gmail.com/
 > 
 > 
-> On 09-04-2025 20:25, Mathieu Dubois-Briand wrote:
-> > Add device tree bindings for Maxim Integrated MAX7360 device with
-> > support for keypad, rotary, gpios and pwm functionalities.
-> > 
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> > ---
-> >   .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++++++
-> >   .../devicetree/bindings/mfd/maxim,max7360.yaml     | 171 +++++++++++++++++++++
-> >   2 files changed, 254 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-> > new file mode 100644
-> > index 000000000000..21d603d9504c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-> > @@ -0,0 +1,83 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/gpio/maxim,max7360-gpio.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvakCad_v0$
-> > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvacsB3d9k$
-> > +
-> > +title: Maxim MAX7360 GPIO controller
-> > +
-> > +maintainers:
-> > +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > +  - Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-> > +
-> > +description: |
-> > +  Maxim MAX7360 GPIO controller, in MAX7360 chipset
-> > +  https://urldefense.com/v3/__https://www.analog.com/en/products/max7360.html__;!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvavZnHZJk$
-> > +
-> > +  The device provide two series of GPIOs, referred here as GPIOs and GPOs.
-> typo: The device provides two series of GPIOs,
-> > +
-> > +  PORT0 to PORT7 pins can be used as GPIOs, with support for interrupts and
-> > +  constant-current mode. These pins will also be used by the torary encoder and
-> typo: ie rotary encoder ?
-> > +  PWM functionalities.
-> > +
-> > +  COL2 to COL7 pins can be used as GPOs, there is no input capability. COL pins
-> > +  will be partitionned, with the first pins being affected to the keypad
-> > +  functionality and the last ones as GPOs.
-> > +
-> typo: partitionned -> partitioned
+> Matti Vaittinen (14):
+>   dt-bindings: regulator: Add ROHM BD96802 PMIC
+>   dt-bindings: mfd: Add ROHM BD96802 PMIC
+>   dt-bindings: mfd: bd96801: Add ROHM BD96805
+>   dt-bindings: mfd: bd96802: Add ROHM BD96806
+>   mfd: rohm-bd96801: Add chip info
+>   mfd: bd96801: Drop IC name from the regulator IRQ resources
+>   regulator: bd96801: Drop IC name from the IRQ resources
+>   mfd: rohm-bd96801: Support ROHM BD96802
+>   regulator: bd96801: Support ROHM BD96802
+>   mfd: bd96801: Support ROHM BD96805
+>   regulator: bd96801: Support ROHM BD96805 PMIC
+>   mfd: bd96801: Support ROHM BD96806
+>   regulator: bd96801: Support ROHM BD96806 PMIC
+>   MAINTAINERS: Add BD96802 specific header
+> 
+>  .../bindings/mfd/rohm,bd96801-pmic.yaml       |  10 +-
+>  .../bindings/mfd/rohm,bd96802-pmic.yaml       | 101 ++++
+>  .../regulator/rohm,bd96802-regulator.yaml     |  44 ++
+>  MAINTAINERS                                   |   1 +
+>  drivers/mfd/rohm-bd96801.c                    | 565 ++++++++++++++----
+>  drivers/regulator/bd96801-regulator.c         | 455 ++++++++++++--
+>  include/linux/mfd/rohm-bd96801.h              |   2 +
+>  include/linux/mfd/rohm-bd96802.h              |  74 +++
+>  include/linux/mfd/rohm-generic.h              |   3 +
+>  9 files changed, 1073 insertions(+), 182 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
+>  create mode 100644 include/linux/mfd/rohm-bd96802.h
 
-Please trim your responses.
-
-You comments should have blank lines above below your comments too please.
+This set good to go now?
 
 -- 
 Lee Jones [李琼斯]
