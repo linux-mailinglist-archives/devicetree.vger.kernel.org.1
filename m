@@ -1,72 +1,94 @@
-Return-Path: <devicetree+bounces-165086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D3BA83538
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 02:58:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBB9A83541
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 03:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 153C71B64A89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 00:57:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 029F41B663A2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 00:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF55113D521;
-	Thu, 10 Apr 2025 00:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1EB84D02;
+	Thu, 10 Apr 2025 00:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="RrAQ2uBm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cHRIXfko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D4F7FBA2;
-	Thu, 10 Apr 2025 00:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6931D381A3;
+	Thu, 10 Apr 2025 00:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744246658; cv=none; b=LD2ZkAL84S+X+DC7Lxp6sH1b+ap/QSYXTpjt4f8ncy5wYbTpksHt//eXmeJWRH2sbLWNEHuCROeVugEGShkAA9t8d0twQee98JZitW7I3Fda5OTUIevgwy8eSjkHyf1jewWSIN0qRJkduJhbfvLcVHafRODjk/o4tBuuKFlKPSI=
+	t=1744246767; cv=none; b=kGMNREbK9gCDw7FRx7Fm4vy+84zMXRup1IsD54rtveDjVOUGFVeCBbinQhN9UkTWf6BP43RlnxwNeyzvzAdMH7MORPKmriXKKr0vVu1oXdhP3CIxd9JhXFx5KR4ANIh6GwZbQABTtX0s6yrsA1TCcvC7bkjET+gKht6e8yXNqbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744246658; c=relaxed/simple;
-	bh=jsRmgAe2t+MxVZJSS+HV/F3n5Gw0WYnO0MwsfyNft8E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fSt2SYmQJ61Rf6CAON3EV8nERr1/TGLFrKyAXLQTuBxsvAbFdP635JmJO6bmemvooJKRg75nLE8td0HdUKiW/dyoy55EWTf8EQrLr8yy4lPL+a7z2EwlezYlhHuL+guDapQitP7nbPb55qMJyL6DigRccsFi4PUC8XaT/EQDgiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=RrAQ2uBm; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1744246647;
-	bh=A+7RJcI16tG9MtFLyrjqbZGmBwKN1YcqzXMKUfpEqHM=; l=7133;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=RrAQ2uBmuItIU6xdLveEM2QrXC94kT+3hVXWlR0GaxAl2QO3Y39wlcqzAwRcCKJK7
-	 O55a4CAoDOCx6WNKGz0+gLi0kBdVq1Wwa9RphNkfZk0dbOBzZWZvnw85sa6so+GEZm
-	 ++vfu1VDesUUkXqBGyV2APuJDZ3NpcK40vXIQlKFArwwT6rxJSygUssyaSLHzZaLpf
-	 elPxB0HoBHCRDb+pPCdMD0qX6LamDdOkdJIWHER94QDUYRJkBs4tM58mJKAezrzPef
-	 u8DudDt6KMTAFxLbUlH8XE2ZsQ9+tJkSDRR3n8LcO7WgLEa6ffsse/7wMjdBroqxBe
-	 F9HdhLjthZjAA==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(2132266:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 10 Apr 2025 08:56:57 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 10 Apr
- 2025 08:56:57 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Thu, 10 Apr 2025 08:56:57 +0800
-From: <cy_huang@richtek.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, ChiYuan Huang <cy_huang@richtek.com>, Otto lin
-	<otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
-	<devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 4/4] ASoC: codecs: Add support for Richtek rt9123p
-Date: Thu, 10 Apr 2025 08:58:13 +0800
-Message-ID: <d10c08abb3e92598ce7ff3663db7dd70ec2d3c65.1744245663.git.cy_huang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1744245663.git.cy_huang@richtek.com>
-References: <cover.1744245663.git.cy_huang@richtek.com>
+	s=arc-20240116; t=1744246767; c=relaxed/simple;
+	bh=n+nZ9BCxcvkMDMHsUavJJTtBrqhvcI6fc4cWqjw7f04=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ggyzWgMReyDp0Grtkrdia2MVkQUcvSF8P7+PUKM9ybo33Pl2Bxpzci5UbwHRJI+GVQtAj4UBbNe7ybPbdLhZXnPbjUcZD+mDQVQh5mJSDv2pq65vsxfPhJ35oDLxxoZcaXkalLaBsmq0cdoFqzddYLMQEY0EuYNeZx+S2ff/0Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cHRIXfko; arc=none smtp.client-ip=209.85.222.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c58974ed57so28476185a.2;
+        Wed, 09 Apr 2025 17:59:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744246765; x=1744851565; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+kyPVB1rxXM0m//xddyhd4EsUDRcFjA3X1gP8LtL3Ps=;
+        b=cHRIXfko5Hc+5DVev2tClJ/sx8QOXUOGlAnDLgV/4J+5mH4CB2ZalEwbioqqHF7bvM
+         LqONxvIkRBHvUpVSh/PK6yLxgqUx39+LV0dPV1LqN4QC6lpBJs+EyrCtk9EWCYuj2b4k
+         F9agNdSFmziL+BV69UhO8it9J+P+ub+cI1qENJgRhvHBcdNwpkuOTMNbvlazC0f8msxT
+         N01WV44qBF29CGC2RtzhEO45cwDUZPuISpNqzQZc68WiCSVMk6zBSqQOySFEsnc6T2pW
+         IFubjvNSyvzVjL+ZHQFtXfWzqg988JANSQOkTIFJM16aQuWyin1LMHfdW+sbSTAQOi3b
+         nRJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744246765; x=1744851565;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+kyPVB1rxXM0m//xddyhd4EsUDRcFjA3X1gP8LtL3Ps=;
+        b=pjdsxi7IN0yXQ5t8PuWiW/sAb9W43iAbaDIW+xFqFMus4pJ3yuhTFlvBlvWVa0jKKe
+         8OQMiu8vFxHDLVf6shvZ6N8oPzZexoc1NFwxEuCF70bEr+hxmOh3aDa8C5vHzj2dIyaG
+         Em34RxBx00cbgD/4oTKV9sKSd0pSSF1eUdTr/HHdGw9XyM28ipNYWiVtljcLKyBYqyTR
+         7A0CdRUxpKJ+TcSGsaOIulZL4mr9oSjn/JsMEI00HXThJd9mjdWpFu1pVftdZHdvIlpJ
+         c2raNE1n60fbPYivSeVYD/YmUS1CGcreWwPMkAmy0snvgkOWKxRJIOpS4oMmxWvPr/0r
+         EBFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNFUYKGLHpbRJ6Isr9WelO2aSLFSvThSHU347z5+32OyPAOfyt+hbXmGL7zTMtGqcqSxoKaTF8WnkO@vger.kernel.org, AJvYcCXu5rg/UW2zqfPgDVcbgx61NLpBeYmL7TB0Sf3sBTjCyFYjWEpyJxE4pF1yL1rV3MiXYpsNozk3BpYZdTNS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj2UyqS4qOI4FrH61Z5EvtNx6+QRDWZn1Nw7ExvgPxvg4VPc1m
+	UaLBR7WSRlu/DdHAMDy1QSEPeLVphT8osT2Vqz2Qt51hhtDqvIZV
+X-Gm-Gg: ASbGncuNrrtOzpvzzYimokHyKkiMxR5Jh9E0sHn47hQGI3d6+JYLGcekJdyQ8CxHH2P
+	8A1Am37ypilU6+lQqI+TqawTuufLq5j32HlzuJ98qSwrS4z6mCw4480grhseETIz05U2+qrmLx0
+	h5DjPKTCwoIHryniP6lKDhbMJymlhrLrTnD7pW0uhv3X///vo/1GhkkaoZ7P1RMC34X4hGjZa/o
+	t6FVLgDT+G6Xgji2xxExAqPfYG+T+ooMLfCSMsYwlQOS0UTUauKxB/AUe4Fu+D6BVo1ryHBuPqh
+	6KsHcEK9VJQ/3J1mbVa0RBNd0qLQIOn120TqoL3TDj8YAnmD+6Fy3VbLYPI/ViPZSliQWg9Wh6w
+	jH4hHsh45kf2R6ic=
+X-Google-Smtp-Source: AGHT+IE/6x1aCGCmhdtAA2IZ9Tq3qv3Y1gkoo0rM9bXUYtA375cdw94zz6Z3IyZoPnI/FmVsMxW2XA==
+X-Received: by 2002:a05:620a:4550:b0:7c7:a543:d878 with SMTP id af79cd13be357-7c7a7654195mr115046085a.12.1744246765254;
+        Wed, 09 Apr 2025 17:59:25 -0700 (PDT)
+Received: from aford-System-Version.. (c-75-72-162-184.hsd1.mn.comcast.net. [75.72.162.184])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a895180esm9590685a.46.2025.04.09.17.59.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 17:59:24 -0700 (PDT)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/9] arm64: dts: imx8mm-beacon: Fix RTC capacitive load
+Date: Wed,  9 Apr 2025 19:58:55 -0500
+Message-ID: <20250410005912.118732-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,238 +96,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Although not noticeable when used every day, the RTC appears to drift
+when left to sit over time.  This is due to the capacitive load
+default being 7000, when the hardware is really using 12500.
+Fixing this setting to fix the drift.
 
-Add codec driver for Richtek rt9123p.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
+Signed-off-by: Adam Ford <aford173@gmail.com>
 ---
-v2
-- Update the property parsing from 'enable-delay' to 'enable-delay-ms'
----
- sound/soc/codecs/Kconfig   |   6 ++
- sound/soc/codecs/Makefile  |   2 +
- sound/soc/codecs/rt9123p.c | 171 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 179 insertions(+)
- create mode 100644 sound/soc/codecs/rt9123p.c
+ arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index c61b2d3cf284..b0fa935846c0 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -1832,6 +1832,12 @@ config SND_SOC_RT9123
- 	  Enable support for the I2C control mode of Richtek RT9123 3.2W mono
- 	  Class-D audio amplifier.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 62ed64663f49..9ba0cb89fa24 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -233,6 +233,7 @@ eeprom@50 {
+ 	rtc: rtc@51 {
+ 		compatible = "nxp,pcf85263";
+ 		reg = <0x51>;
++		quartz-load-femtofarads = <12500>;
+ 	};
+ };
  
-+config SND_SOC_RT9123P
-+	tristate "Richtek RT9123P Mono Class-D Amplifier"
-+	help
-+	  Enable support for the HW control mode of Richtek RT9123P 3.2W mono
-+	  Class-D audio amplifier.
-+
- config SND_SOC_RTQ9128
- 	tristate "Richtek RTQ9128 45W Digital Input Amplifier"
- 	depends on I2C
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index d8d0bc367af8..fba699701804 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -271,6 +271,7 @@ snd-soc-rt721-sdca-y := rt721-sdca.o rt721-sdca-sdw.o
- snd-soc-rt722-sdca-y := rt722-sdca.o rt722-sdca-sdw.o
- snd-soc-rt9120-y := rt9120.o
- snd-soc-rt9123-y := rt9123.o
-+snd-soc-rt9123p-y := rt9123p.o
- snd-soc-rtq9128-y := rtq9128.o
- snd-soc-sdw-mockup-y := sdw-mockup.o
- snd-soc-sgtl5000-y := sgtl5000.o
-@@ -686,6 +687,7 @@ obj-$(CONFIG_SND_SOC_RT721_SDCA_SDW)     += snd-soc-rt721-sdca.o
- obj-$(CONFIG_SND_SOC_RT722_SDCA_SDW)     += snd-soc-rt722-sdca.o
- obj-$(CONFIG_SND_SOC_RT9120)	+= snd-soc-rt9120.o
- obj-$(CONFIG_SND_SOC_RT9123)	+= snd-soc-rt9123.o
-+obj-$(CONFIG_SND_SOC_RT9123P)	+= snd-soc-rt9123p.o
- obj-$(CONFIG_SND_SOC_RTQ9128)	+= snd-soc-rtq9128.o
- obj-$(CONFIG_SND_SOC_SDW_MOCKUP)     += snd-soc-sdw-mockup.o
- obj-$(CONFIG_SND_SOC_SGTL5000)  += snd-soc-sgtl5000.o
-diff --git a/sound/soc/codecs/rt9123p.c b/sound/soc/codecs/rt9123p.c
-new file mode 100644
-index 000000000000..d509659e735b
---- /dev/null
-+++ b/sound/soc/codecs/rt9123p.c
-@@ -0,0 +1,171 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// rt9123p.c -- RT9123 (HW Mode) ALSA SoC Codec driver
-+//
-+// Author: ChiYuan Huang <cy_huang@richtek.com>
-+
-+#include <linux/acpi.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <sound/pcm.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+#include <sound/soc-dapm.h>
-+
-+struct rt9123p_priv {
-+	struct gpio_desc *enable;
-+	unsigned int enable_delay;
-+	int enable_switch;
-+};
-+
-+static int rt9123p_daiops_trigger(struct snd_pcm_substream *substream, int cmd,
-+				  struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *comp = dai->component;
-+	struct rt9123p_priv *rt9123p = snd_soc_component_get_drvdata(comp);
-+
-+	if (!rt9123p->enable)
-+		return 0;
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		mdelay(rt9123p->enable_delay);
-+		if (rt9123p->enable_switch) {
-+			gpiod_set_value(rt9123p->enable, 1);
-+			dev_dbg(comp->dev, "set enable to 1");
-+		}
-+		break;
-+	case SNDRV_PCM_TRIGGER_STOP:
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+		gpiod_set_value(rt9123p->enable, 0);
-+		dev_dbg(comp->dev, "set enable to 0");
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt9123p_enable_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
-+				int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	struct rt9123p_priv *rt9123p = snd_soc_component_get_drvdata(comp);
-+
-+	if (event & SND_SOC_DAPM_POST_PMU)
-+		rt9123p->enable_switch = 1;
-+	else if (event & SND_SOC_DAPM_POST_PMD)
-+		rt9123p->enable_switch = 0;
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget rt9123p_dapm_widgets[] = {
-+	SND_SOC_DAPM_OUTPUT("SPK"),
-+	SND_SOC_DAPM_OUT_DRV_E("Amp Drv", SND_SOC_NOPM, 0, 0, NULL, 0, rt9123p_enable_event,
-+			       SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
-+};
-+
-+static const struct snd_soc_dapm_route rt9123p_dapm_routes[] = {
-+	{"Amp Drv", NULL, "HiFi Playback"},
-+	{"SPK", NULL, "Amp Drv"},
-+};
-+
-+static const struct snd_soc_component_driver rt9123p_comp_driver = {
-+	.dapm_widgets		= rt9123p_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(rt9123p_dapm_widgets),
-+	.dapm_routes		= rt9123p_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(rt9123p_dapm_routes),
-+	.idle_bias_on		= 1,
-+	.use_pmdown_time	= 1,
-+	.endianness		= 1,
-+};
-+
-+static const struct snd_soc_dai_ops rt9123p_dai_ops = {
-+	.trigger        = rt9123p_daiops_trigger,
-+};
-+
-+static struct snd_soc_dai_driver rt9123p_dai_driver = {
-+	.name = "HiFi",
-+	.playback = {
-+		.stream_name	= "HiFi Playback",
-+		.formats	= SNDRV_PCM_FMTBIT_S16 | SNDRV_PCM_FMTBIT_S24 |
-+				  SNDRV_PCM_FMTBIT_S32,
-+		.rates		= SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
-+				  SNDRV_PCM_RATE_22050 | SNDRV_PCM_RATE_24000 |
-+				  SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 |
-+				  SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_88200 |
-+				  SNDRV_PCM_RATE_96000,
-+		.rate_min	= 8000,
-+		.rate_max	= 96000,
-+		.channels_min	= 1,
-+		.channels_max	= 2,
-+	},
-+	.ops    = &rt9123p_dai_ops,
-+};
-+
-+static int rt9123p_platform_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct rt9123p_priv *rt9123p;
-+	int ret;
-+
-+	rt9123p = devm_kzalloc(dev, sizeof(*rt9123p), GFP_KERNEL);
-+	if (!rt9123p)
-+		return -ENOMEM;
-+
-+	rt9123p->enable = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(rt9123p->enable))
-+		return PTR_ERR(rt9123p->enable);
-+
-+	ret = device_property_read_u32(dev, "enable-delay-ms", &rt9123p->enable_delay);
-+	if (ret) {
-+		rt9123p->enable_delay = 0;
-+		dev_dbg(dev, "no optional property 'enable-delay-ms' found, default: no delay\n");
-+	}
-+
-+	platform_set_drvdata(pdev, rt9123p);
-+
-+	return devm_snd_soc_register_component(dev, &rt9123p_comp_driver, &rt9123p_dai_driver, 1);
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id rt9123p_device_id[] = {
-+	{ .compatible = "richtek,rt9123p" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt9123p_device_id);
-+#endif
-+
-+#ifdef CONFIG_ACPI
-+static const struct acpi_device_id rt9123p_acpi_match[] = {
-+	{ "RT9123P", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(acpi, rt9123p_acpi_match);
-+#endif
-+
-+static struct platform_driver rt9123p_platform_driver = {
-+	.driver = {
-+		.name = "rt9123p",
-+		.of_match_table = of_match_ptr(rt9123p_device_id),
-+		.acpi_match_table = ACPI_PTR(rt9123p_acpi_match),
-+	},
-+	.probe	= rt9123p_platform_probe,
-+};
-+module_platform_driver(rt9123p_platform_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("ASoC rt9123p Driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.34.1
+2.48.1
 
 
