@@ -1,137 +1,211 @@
-Return-Path: <devicetree+bounces-165410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1940DA8432A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:32:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E406A8433F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:36:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E99873B5664
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:32:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8139919E8BF9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF71A283CAD;
-	Thu, 10 Apr 2025 12:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463BB28540C;
+	Thu, 10 Apr 2025 12:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="wAcr0Kz7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l2/Kcs5N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD682284B50
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7732836A5
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:34:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744288361; cv=none; b=IhRcjsU/mxDgkixL/VTojUeVisBsMylLZ1GK7MgqTAsIYyUBdZuR4aiRD3PGJ41WLUqNsThfCk8dHuF7Efh6HWnG6fFmKt5zFnk2jhRlPqjZTPSVtbqrkz3N5hOTi7HtfcXKzgxFqHj7aJAwpTyc2V/FCFa7WwF084Z14aIYL4E=
+	t=1744288495; cv=none; b=YEIT/6Co0slKbAIlOTa3S7z4YdgrBhsJxUqCMJCWWP+Fo9trSqeLv66gqgqTFL3c+/EUDbgAH/jMqJplRkFyQGd4HXPf/mUjnMZq7cbhTRPSGasjdzErdBtia/0/1iIrUEYoaWl3tebvp+Ee+NMkJqHokLx2IAsjDWKqF14sfK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744288361; c=relaxed/simple;
-	bh=vaduyXSktTjHWIM6mMUVuzB/JU/7o9Vgbb4ojf5mTUE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=LMbhJ2WjPQ4k4k2W1G3XO/7RdR1q2IpKaaCOvAco9wgeK0lrG330rU7MdggwKgiPvxOOLftad9OmsQRYdApjQsxLxzNr9Xf82VRTyNA8UteVfArRyOjiH7+nWfluJaKx913L/MtR1BMliuU1Rjc47gH4qGDacNONEpCAqYRQILI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=wAcr0Kz7; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-2c7e5f7f0e3so159576fac.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 05:32:39 -0700 (PDT)
+	s=arc-20240116; t=1744288495; c=relaxed/simple;
+	bh=TqoqYW7a4gp6/76bsxLTxXOnix/eiOkPYqrN2pTRfCA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sny6YHeOrlDL3mjoz+ERZXBET4sOcj5c+f8oT4MQqrLLwkXbzOPgDeeA/A4QKwCmqYuTS0fNhSorS+1ZrdQOBj95f4yRQ0/j9MOJdvWFwaWem7rYkVFiYQdlBSXzG2AMEEOQhoJNb9cKHodMRFFlrd48c5lhZg1j3uv4NL+H6Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l2/Kcs5N; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6fead317874so7017077b3.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 05:34:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744288359; x=1744893159; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GvSNTACO1SZCY31F0gRrZZq+wvkmlB8UFBxIZ9DVjtE=;
-        b=wAcr0Kz7P6zFsFwt5BfIPOsSF+2tNShxV8aRC1lu6GJ4Og3+aB0bcFOUrzv/M3dhKv
-         FIebYKdLbbqWlwVw8ZejZFvl15rw2avJp2inoI7GNJAGz+iGp9Y++3ZWu3yqGmpB0Itk
-         FPYHH7KjpeZ3jx0R+tVjcTJushdG4J4JpDy0yUEGNvMS/JAZQabieAIVeKExMqqt3WkO
-         nVO3vw2anuWnBVpq591W/UqcgkpGisHHFiRi5prN9Gk8PbeNpCkjvuNgcisQKMYT7uH2
-         /FYTnyTIMLfyipjnKmdZM2sGCjyJKEK+ParzF+zONIfNGoDuDVJCri61PuOZv+SQRF9z
-         QZnw==
+        d=linaro.org; s=google; t=1744288492; x=1744893292; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=rqOD9OxXJmvSDblyShGiywTB8bqKw04tVNsGe+lxyzo=;
+        b=l2/Kcs5NS1BVHCjFe5dJa8p+HlIAExNJWwoI9rjqzkS0MS+jmqbEhMLRUuqd5RxJkz
+         u11v2ariigV0L1O0vaZ/IpD+POHqUJD2MQ8a9RWNBE7FYZKK11hjeTjZ1DVWxOxOFVIh
+         ZX0p6ZkYS1DlL0payF6SWub4T/qR7VnreZV3LJxXT/NMp4T5Z6zh2F3CLGuvCfb3i7vg
+         per/dhbsHxcBXiWsQtnCsK63MWj0JqVd1cRhjchPM7hmiST3wpGtCLmPuElWlSpYWVqZ
+         LLmDKdVPd+L+tY22Dtfi2R4MwsYhqCeOKuJ5clxE7zBY7X/t620sBhWmjXLLNTQDHHq3
+         ARrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744288359; x=1744893159;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GvSNTACO1SZCY31F0gRrZZq+wvkmlB8UFBxIZ9DVjtE=;
-        b=HFEf4/aKu8K5n93niEN6CR6GfYgFXt+cXyW1iYiqCr2HVtjcr8tr95ZrDTwuZ9LXXf
-         szs9lh1urK4QrM3hDKlh/WsM6KovQWqPHi1oXJvX+mImKT1fl7FeEtRmtWT4bJRbINfO
-         YReBELxpoairHsnCXlJYavEnTvcl8HbKgHqiXzs5IODQ0pjJMqIHrtLc9EZh0YBy3tG9
-         xiAXrUGijmJucY/LC18FwBHu2hvjvXRBG4NlEs4vdRrbENRcHV5LO/sBjN1ad6JnBaAF
-         WIx2zDsglbtVYTLD1EOERK9nRmglG7WbK7LkJJuGZ9B8uOuklELTO+nwn2SsmwswIVJi
-         Wpfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXBmKBRw/wH10YMGSqDO9VjAj2LARsYIO1+m8bajcVn7ddQA4wPZ4xqgP26xWjASfxrbxEa4I+9eGTQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeCSelDcw1EkKsXOMQvPa1gMkZMhm1fmXtCtrm2Nzm5LNe0UmK
-	aqxIjJvbXXM1hctJrlNBhAI4nKFyvNC94y1uV73RVf+hMHkPSB92OBRrbBC/D5o=
-X-Gm-Gg: ASbGncsmXn2KEwZga3Q1AYi1rmIijML9TqUTWe1lxu4+kDpTl8ZXttpdEY8TIWtjCWb
-	IkxFTdFDaHYC/Wxxk9tuiJICZMsjve+P41/WnhYlK/E7dPnLe/jeUzvps+MX8T9RgGj7/GMAisD
-	cnnz3SjoJ8Md53S7eVG3IzhbIwb8rZXfZm76BHHVjQbZu+1pvg4TmrSNJWNwNFCq7y8FmClKCz7
-	y0aZqXDttY5xaSVSEwFk5QL/28gKHLZxFLvKobAt3/MS1wWv0JIWKu7sDK18gk6LNwcDGiNUlsR
-	NJo9HIirB+qVA4tDNrsK5X/cbn27YLSAPUxN+wVVsdpgr2Bjk24wxb3xI9gTu+0DgrMbnObc/2/
-	OcHNm
-X-Google-Smtp-Source: AGHT+IEJuAZEVXhBtSWrNjlEQvBiq7KT4K1Km9MSzZyjIkHUjkvVril1VSVFFBGM/J31v9xCTSVpWA==
-X-Received: by 2002:a05:6808:7004:b0:3f7:f7b7:88b with SMTP id 5614622812f47-4007bcdc348mr1582330b6e.21.1744288358751;
-        Thu, 10 Apr 2025 05:32:38 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6045f5b28basm505694eaf.36.2025.04.10.05.32.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 05:32:38 -0700 (PDT)
-Message-ID: <0ed3ce4c-9be0-485b-a1ea-6a34931179db@riscstar.com>
-Date: Thu, 10 Apr 2025 07:32:36 -0500
+        d=1e100.net; s=20230601; t=1744288492; x=1744893292;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rqOD9OxXJmvSDblyShGiywTB8bqKw04tVNsGe+lxyzo=;
+        b=j8GfzEl83MsqRNs3580EQNKq3i/cwAryayZ2tyD21Jnv5fz/DVEe3b6hcomRTUqvqG
+         FU5HFgnf4QhIhWMRzTpq7eNom17z3VRTOyE+rMFm3a7nWBBQ79Szgp/tz67iBYA5TLoO
+         kf+5T05sxjECtJniTH8xDsGPmbUzl4LGGjmKYlL9F8TsQjtxl6+tA2yvFZPl7HYvuwhy
+         2EU9RVMksKkBkdIL/dN9s2ihhUMlJ8MK708aIKA8bW14n40VSz6vqPkklvlz0dWAfLU0
+         U5QOLkWJlzmdqPxndQecltsB8RHdBrL7IcHDnaAiIAtyqqRq1ODcsTSMUuXzZOngFsMO
+         HYBg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3947MAcbEyM3ju/v0MEfwUwjjEkvJua2OftET95VOvclnTXg9LHrUcWtEbN69Mgg3IVrJ5iV41RKZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjuzH7YTztgYI+qpWvuFv8SAg3XrBpO7N/raq9yICZJlVFz+II
+	eXDDwLDiIKfOXZsMVLUGB4gH3TNJH43cs/pvXvEiJFSr6XlDv50md/O35FdScERmH89Sd3sawQH
+	2filumjmidVWRdiao3+1YpWKPPVzi5wQZfGt8sQ==
+X-Gm-Gg: ASbGnctc/+NjyoeCJi9NPTCwJYfPSTxY/o8Sk8jrAeUXXOXtkp4WHN6F0zzjWcnRXBc
+	bg6BsMFVl5hSuuDeV5e3mW1EQXW3Vy+60sTiJAgETiYf66KcOHQDwaeg4lJ/amHPAwGweGj/8Uw
+	eJCggq+BYteoyRUdB0giAaGmk2TDRBtWvpFA==
+X-Google-Smtp-Source: AGHT+IE96uvkSKWw6YPtFVcby7pWdKNYA2UEmsGaoJPHRvl5S/OcYn8T2l4wlOx/RbleIvNqeqZYcO8OmfDh5/zO70A=
+X-Received: by 2002:a05:690c:3582:b0:702:4eb0:4a60 with SMTP id
+ 00721157ae682-7054c7d0e89mr28286317b3.33.1744288492295; Thu, 10 Apr 2025
+ 05:34:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] clk: spacemit: Add clock support for SpacemiT K1
- SoC
-From: Alex Elder <elder@riscstar.com>
-To: Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>
-Cc: Haylen Chu <heylenay@4d2.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
- Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>,
- Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-References: <20250401172434.6774-1-heylenay@4d2.org>
- <20250401172434.6774-4-heylenay@4d2.org>
- <8fe0aaaa-b8e9-45dd-b792-c32be49cca1a@riscstar.com>
- <20250410003756-GYA19359@gentoo>
- <dm4lwnplwcxj3t3qx3a3bdxtziowjfoqdy4vrd3ahmzkhejrov@fa5rujatatew>
- <z27ri5eue43ti6b2te2cbxiow66mtgbnyudoo5cs4quabgbx5r@uipzoxvfoysi>
- <a8e5adca-8eff-4bbb-a7fa-ce4489b63fa5@riscstar.com>
- <sl752im2sn5sz6yzc23ctprh3rwryuhgtggsaauxixn3b267ag@6sf5fahu6b5i>
- <20250410015549-GYA19471@gentoo>
- <f7cun6vh6lv7q2qdgba4a55wjv3v2pldl22xnrqxnurj3jlyk7@mvafnye3wv7m>
- <cb13c955-3994-4950-9c28-37703f749b0e@riscstar.com>
-Content-Language: en-US
-In-Reply-To: <cb13c955-3994-4950-9c28-37703f749b0e@riscstar.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <CGME20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf@eucas1p2.samsung.com>
+ <20250409093025.2917087-1-m.wilczynski@samsung.com> <20250409093025.2917087-2-m.wilczynski@samsung.com>
+ <CAPDyKFpoSwKAmiWyvNt1fVyu6=NU1oVOmQLVuzX_bG=-5KrM2Q@mail.gmail.com> <75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
+In-Reply-To: <75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 10 Apr 2025 14:34:14 +0200
+X-Gm-Features: ATxdqUFgmaVfbL47_mXJup4YjWo6ZMMfedtXYPTwprySI8RzBXkwm9C8hCD80Tk
+Message-ID: <CAPDyKFq=BF5f2i_Sr1cmVqtVAMgr=0FqsksL7RHZLKn++y0uwg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: firmware: thead,th1520: Add clocks
+ and resets
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, 
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-pm@vger.kernel.org, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 4/10/25 7:30 AM, Alex Elder wrote:
-> 
-> I'd like to see that be the only thing there, and have
-> various SpacemiT modules define default values that
-> depend on ARCH_SPACEMIT (or _K1) in their Kconfig
-> file.  Like:
-> 
->      config SPACEMIT_K1_CCU
->          tristate "Support for SpacemiT K1 SoC"
->          depends on ARCH_SPACEMIT || COMPILE_TEST
->          default m if ARCH_SPACEMIT
-> 
-> I *think* Haylen said that's what he's going to do.  You
-> could make it "default ARCH_SPACEMIT" too, though that
-> builds it in to the kernel.
+On Thu, 10 Apr 2025 at 12:42, Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
+>
+>
+>
+> On 4/9/25 12:41, Ulf Hansson wrote:
+> > On Wed, 9 Apr 2025 at 11:30, Michal Wilczynski <m.wilczynski@samsung.com> wrote:
+> >>
+> >> Prepare for handling GPU clock and reset sequencing through a generic
+> >> power domain by adding clock and reset properties to the TH1520 AON
+> >> firmware bindings.
+> >>
+> >> The T-HEAD TH1520 GPU requires coordinated management of two clocks
+> >> (core and sys) and two resets (GPU and GPU CLKGEN). Due to SoC-specific
+> >> requirements, the CLKGEN reset must be carefully managed alongside clock
+> >> enables to ensure proper GPU operation, as discussed on the mailing list
+> >> [1].
+> >>
+> >> Since the coordination is now handled through a power domain, only the
+> >> programmable clocks (core and sys) are exposed. The GPU MEM clock is
+> >> ignored, as it is not controllable on the TH1520 SoC.
+> >>
+> >> This approach follows upstream maintainers' recommendations [1] to
+> >> avoid SoC-specific details leaking into the GPU driver or clock/reset
+> >> frameworks directly.
+> >>
+> >> [1] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel.org/
+> >>
+> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> ---
+> >>  .../bindings/firmware/thead,th1520-aon.yaml   | 28 +++++++++++++++++++
+> >>  1 file changed, 28 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> index bbc183200400..8075874bcd6b 100644
+> >> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> >> @@ -25,6 +25,16 @@ properties:
+> >>    compatible:
+> >>      const: thead,th1520-aon
+> >>
+> >> +  clocks:
+> >> +    items:
+> >> +      - description: GPU core clock
+> >> +      - description: GPU sys clock
+> >> +
+> >> +  clock-names:
+> >> +    items:
+> >> +      - const: gpu-core
+> >> +      - const: gpu-sys
+> >
+> > These clocks don't look like they belong to the power-domain node, but
+> > rather the GPU's node.
+> >
+> > Or is this in fact the correct description of the HW?
+>
+> Hi,
+> Thank you for your input. Based on my understanding of Stephen
+> presentation the power-domain layer could act as a middleware layer
+> (like ACPI) that could own resources. That being said it was also stated
+> that the proposed approach should work with already existing device
+> trees, which implies that the DT should remain as is.
+>
+> So I could get the resources using attach_dev and detach_dev, but there
+> are two problems with that:
+>
+> 1) The GPU driver will try to manage clocks/reset on it's own using those functions
+>    if I provide non-stub working clocks and reset:
+> static const struct dev_pm_ops pvr_pm_ops = {
+>         RUNTIME_PM_OPS(pvr_power_device_suspend, pvr_power_device_resume,
+>                        pvr_power_device_idle)
+> };
+>
+> So obviously I should invent a way to tell the drm/imagination driver to
+> NOT manage. One obvious way to do this is to introduce new flag to genpd.flags
+> called let's say GENPD_FLAG_EXCLUSIVE_CONTROL, which would tell the consumer
+> driver that the power management is being done only done from the PM
+> middleware driver.
 
-Nope, I just reread what he said, and I'm mistaken.  Go
-with what's preferred by the clock maintainers.
+Something along those lines. Although, I think the below twist to the
+approach would be better.
 
-					-Alex
+Some flag (maybe just a bool) should be set dynamically when the
+->attach_dev() callback is invoked and it should be a per device flag,
+not a per genpd flag. In this way, the genpd provider driver can make
+runtime decisions, perhaps even based on some DT compatible string for
+the device being attached to it, whether it should manage PM resources
+or not.
+
+Additionally, we need a new genpd helper function that allows the
+consumer driver to check if the PM resources are managed from the PM
+domain level (genpd) or not.
+
+If it sounds complicated, just let me know I can try to help put the
+pieces together.
+
+>
+> 2) The GPU node doesn't want to own the gpu-clkgen reset. In fact nobody
+>    seems to want to own it, even though theoretically it should be owned by
+>    the clk_vo as this would describe the hardware best (it's resetting the
+>    GPU clocks). But then it would be trickier to get it from the PM driver,
+>    making the code more complex and harder to understand. Nonetheless I
+>    think it would work.
+
+I guess it doesn't really matter to me. Perhaps model it as a reset
+and make the GPU be the consumer of it?
+
+>
+> If this sounds good to you I will work on the code.
+
+Sure, let's give this a try - I am here to help review and guide the best I can.
+
+[...]
+
+Kind regards
+Uffe
 
