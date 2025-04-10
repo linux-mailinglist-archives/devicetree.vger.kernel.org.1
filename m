@@ -1,56 +1,71 @@
-Return-Path: <devicetree+bounces-165658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C56A84F18
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 23:14:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD89A84F4E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 23:55:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 920917A5EBA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:12:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C51EA9A6A6C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25226290BDB;
-	Thu, 10 Apr 2025 21:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6856C20DD54;
+	Thu, 10 Apr 2025 21:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W845Ln1b"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Hnujsjol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE2C1EDA39;
-	Thu, 10 Apr 2025 21:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C66A20C473;
+	Thu, 10 Apr 2025 21:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744319633; cv=none; b=muZ6hmecrqoPvRtLGk4VXFeYlSYl8KRVUeSVMQ86f4IzXye27ebplrP4Cs9SFMwH/bioruzYwFOyteZNdqR++3De4MZHyUIM0eIma/dJkunHm10hearw2DJWp2fYWk7vG0hPfqvv2b9XjPAkJCLoQKGS9lO5uuVr2NC2lH50dvo=
+	t=1744322075; cv=none; b=XN6L5lY5jcLXnYWw5dgZycce6xaSaLEb4jHH6ExGuSa1bZhlBqXZGb4S/8spkWGcwkbiiH8diVl0C/schK6XDII2ZrB/+VSdGDQnQCmBAHn+cWYXbM+jEPT0hWEtAvPdBCOPR0juMEVw19nC8y7j5wdAmAzbtwk1490fk/Zf4MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744319633; c=relaxed/simple;
-	bh=PyZ19Zto2g311Bz6AKEgiRK+kx0zxDHd+b7mqXnsYqo=;
+	s=arc-20240116; t=1744322075; c=relaxed/simple;
+	bh=eaQNmB6AuNlU+KBlHA0uSaualDavgEDCP9pPFGhTook=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VkMy6iU6dab5uZgD+2A7YDLpLS0yorqDBGKrnx2OsA6j9ZoAocSsojn4cbziCctuJwFp3WrXJarLuvVGUk2cs7kBlYEEuIuc1WkesKKVj720pzU/yaY2MXZrIHLR+GdLWvqUJ2NYMmS0zBx3Gx/8X4YyvHwwF5kFTp+tKVKyONg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W845Ln1b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35013C4CEDD;
-	Thu, 10 Apr 2025 21:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744319632;
-	bh=PyZ19Zto2g311Bz6AKEgiRK+kx0zxDHd+b7mqXnsYqo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W845Ln1biz28JtaulDGfkCGt7swIlHSKQhOAAHE6f6JrPj8wMXN8+LsQe0gZDZ/sk
-	 e0n2Y+fVhkzOvc8XEwW7tP95tOsuE9RUchu0w2Am51DAkajHhSIhC5j+wBO8rXRlVp
-	 9WZ1CoYaAi/SnPuRYY9shpT4tyKhU/nzV2CVXbTtK9zcsKWXfLPyXo+DuTfxMbLCuC
-	 eayxwJAbFFb0Y8rgmb9rBpVTH7I2QtbF7ebX8ykMY5zH/E4ma4+8NUewD8MYHHI6mQ
-	 nbF1s2V0DIR2E4UtXnzDJrg5Gi5t2KPRpRX3A56TdQAHoshTeH8V2Ow5zQj6SHIbAE
-	 oaft5tQdtfM0A==
-Date: Thu, 10 Apr 2025 16:13:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	alexander.stein@ew.tq-group.com, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: rtc: add binding for RV8063
-Message-ID: <20250410211351.GA1076944-robh@kernel.org>
-References: <20250407193521.634807-1-apokusinski01@gmail.com>
- <20250407193521.634807-4-apokusinski01@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TGC+uNQz/7FUxRU84SHKcUwPMgczlxTqL3JxyzkL2fqFWQnCeX9mNa2UPQ08jhTNWqaXNcodWArM2cQlv/e2qEB0RxyRJn/JQKXxBQ+zE9krd75G1P5rtSVsWKLqOJahBpNc7Ln2s3W+VVszfqwskqd/JalfWj0c0xcA+wrcsP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Hnujsjol; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+Tm4+Z7Aj1JN3MuOyJBY1dm5PY2Ga9gM+2/LN/4Z2DI=; b=HnujsjolCAGt25aSwbyuEhUDMi
+	HFYojurzRvmaVDoc1QRWtwX30V/hr9FE7NSwgt2NEdw/o/4fpwwcE/oLKSKEmWvpUFe0GFoq1wLqq
+	Zknr1M9G199OMM0et14gAHCzJJWvmWzM9PlxqOI3GzjCKfFIFYZbid3Tp6OX7GH7x2xc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u2zqi-008jRI-SZ; Thu, 10 Apr 2025 23:54:16 +0200
+Date: Thu, 10 Apr 2025 23:54:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
+ defs
+Message-ID: <8c5fb149-af25-4713-a9c8-f49b516edbff@lunn.ch>
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-8-ivecera@redhat.com>
+ <df6a57df-8916-4af2-9eee-10921f90ff93@kernel.org>
+ <c0ef6dad-ce7e-401c-9ae1-42105fcbf9c4@redhat.com>
+ <098b0477-3367-4f96-906b-520fcd95befb@lunn.ch>
+ <003bfece-7487-4c65-b4f1-2de59207bd5d@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,95 +74,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407193521.634807-4-apokusinski01@gmail.com>
+In-Reply-To: <003bfece-7487-4c65-b4f1-2de59207bd5d@redhat.com>
 
-On Mon, Apr 07, 2025 at 09:35:21PM +0200, Antoni Pokusinski wrote:
-> Microcrystal RV8063 is a real-time clock module with SPI interface.
+On Thu, Apr 10, 2025 at 08:44:43PM +0200, Ivan Vecera wrote:
 > 
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> ---
->  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 33 ++++++++++++++++++-
->  1 file changed, 32 insertions(+), 1 deletion(-)
+> 
+> On 10. 04. 25 7:41 odp., Andrew Lunn wrote:
+> > > > > +	/* Take device lock */
+> > > > 
+> > > > What is a device lock? Why do you need to comment standard guards/mutexes?
+> > > 
+> > > Just to inform code reader, this is a section that accesses device registers
+> > > that are protected by this zl3073x device lock.
+> > 
+> > I didn't see a reply to my question about the big picture. Why is the
+> > regmap lock not sufficient. Why do you need a device lock.
+> > 
+> > > 
+> > > > > +	scoped_guard(zl3073x, zldev) {
+> > > > > +		rc = zl3073x_read_id(zldev, &id);
+> > > > > +		if (rc)
+> > > > > +			return rc;
+> > > > > +		rc = zl3073x_read_revision(zldev, &revision);
+> > > > > +		if (rc)
+> > > > > +			return rc;
+> > > > > +		rc = zl3073x_read_fw_ver(zldev, &fw_ver);
+> > > > > +		if (rc)
+> > > > > +			return rc;
+> > > > > +		rc = zl3073x_read_custom_config_ver(zldev, &cfg_ver);
+> > > > > +		if (rc)
+> > > > > +			return rc;
+> > > > > +	}
+> > > > 
+> > > > Nothing improved here. Andrew comments are still valid and do not send
+> > > > v3 before the discussion is resolved.
+> > > 
+> > > I'm accessing device registers here and they are protected by the device
+> > > lock. I have to take the lock, register access functions expect this by
+> > > lockdep_assert.
+> > 
+> > Because lockdep asserts is not a useful answer. Locks are there to
+> > protect you from something. What are you protecting yourself from? If
+> > you cannot answer that question, your locking scheme is built on sand
+> > and very probably broken.
+> > 
+> >      Andrew
+> 
+> Hi Andrew,
+> I have described the locking requirements under different message [v1
+> 05/28]. Could you please take a look?
 
-Bindings come before users (driver).
+So a small number of registers in the regmap need special locking. It
+was not clear to me what exactly those locking requirements are,
+because they don't appear to be described.
 
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> index 2f892f8640d1..cb31c7619d66 100644
-> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> @@ -12,6 +12,7 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> +      - microcrystal,rv8063
->        - microcrystal,rv8263
->        - nxp,pcf85063
->        - nxp,pcf85063a
-> @@ -44,7 +45,12 @@ properties:
->  
->    wakeup-source: true
->  
-> +  spi-cs-high: true
-> +
-> +  spi-3wire: true
-> +
->  allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->    - $ref: rtc.yaml#
->    - if:
->        properties:
-> @@ -52,6 +58,7 @@ allOf:
->            contains:
->              enum:
->                - microcrystal,rv8263
-> +              - microcrystal,rv8063
->      then:
->        properties:
->          quartz-load-femtofarads: false
-> @@ -65,12 +72,23 @@ allOf:
->        properties:
->          quartz-load-femtofarads:
->            const: 7000
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - microcrystal,rv8063
-> +    then:
-> +      properties:
-> +        spi-cs-high: false
-> +        spi-3wire: false
->  
->  required:
->    - compatible
->    - reg
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> @@ -90,3 +108,16 @@ examples:
->            };
->          };
->        };
-> +
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rtc@0 {
-> +          compatible = "microcrystal,rv8063";
-> +          reg = <0>;
-> +          spi-cs-high;
-> +          spi-3wire;
-> +        };
-> +    };
-> -- 
-> 2.25.1
-> 
+But when i look at the code above, the scoped guard gives the
+impression that i have to read id, revision, fw_vr and cfg_ver all in
+one go without any other reads/writes happening. I strongly suspect
+that impression is wrong. The question then becomes, how can i tell
+apart reads/writes which do need to be made as one group, form others
+which can be arbitrarily ordered with other read/writes.
+
+What i suggest you do is try to work out how to push the locking down
+as low as possible. Make the lock cover only what it needs to cover.
+
+Probably for 95% of the registers, the regmap lock is sufficient.
+
+Just throwing out ideas, i've no idea if they are good or not. Create
+two regmaps onto your i2c device, covering different register
+ranges. The 'normal' one uses standard regmap locking, the second
+'special' one has locking disabled. You additionally provide your own
+lock functions to the 'normal' one, so you have access to the
+lock. When you need to access the mailboxes, take the lock, so you
+know the 'normal' regmap cannot access anything, and then use the
+'special' regmap to do what you need to do. A structure like this
+should help explain what the special steps are for those special
+registers, while not scattering wrong ideas about what the locking
+scheme actually is all over the code.
+
+	Andrew
 
