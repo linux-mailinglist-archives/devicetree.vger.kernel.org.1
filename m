@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-165655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB124A84F06
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 23:07:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F87A84F12
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 23:11:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0EDD462321
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:07:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43C097AED9C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 21:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EC920CCDC;
-	Thu, 10 Apr 2025 21:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5363C290BC2;
+	Thu, 10 Apr 2025 21:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rnE6spxU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkEMYfFO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E6E6EB79;
-	Thu, 10 Apr 2025 21:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7FA28EA5C;
+	Thu, 10 Apr 2025 21:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744319233; cv=none; b=rscpp11c93Pz2OySSFn+cwXLBd7ZXw9u3krBZhgI4yzCWpJlymwcw+pYOFelKR7A0csYJOlAYvFlaoJzNqRjii689/uLiC1Nx1UpjMPyaE4GBE6kxEq1KGOyC/I92jQbZFgNhrxlHOKffPkZlKcFLqn/9EHI80+LtCb3sMqcf5I=
+	t=1744319485; cv=none; b=VS/j449MCyancEVE050MV0Li1Srgf942JfSkA+s9FxNPaxjvngc5kmhkhTJroSmhoE7tgE3W0qmz5SNNgdLtxQU/iwrC2zCeoBqGwF+C3keeJFXmlooDhxNl8sVUJgMsiyk869XCHyTJJYLL9ngedCpcNjVZCAIPHghFLdp2R2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744319233; c=relaxed/simple;
-	bh=KwyzvKEFF2j5LkPa6b0yQ0XGOhj8/U4qBjPGsD96guw=;
+	s=arc-20240116; t=1744319485; c=relaxed/simple;
+	bh=owtnRJWwM8yKkJmYEoQiWQDaxSjXp0C7FQsxarVWC9g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZVFpZsdeU+dkMpQqtynuwyqJnzbrWjZt5RUa5TwkTleYEwWDOFunq3xq7fJgmROay6Dv2hANd10F9HFyk+LJMKJcCoFHxIMTb7yuw0dKIGkVAZrzSDlBUEMElQx26KF5diWabrhGn+5BnsUxlyGzT0KGQLRkSX5kMhwzTYOBYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rnE6spxU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69BBDC4CEDD;
-	Thu, 10 Apr 2025 21:07:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kc3TkVG3I+NpVrfVLYC3LRbHVbIDF5CguXLbKVpCpMXrqyrp0vj2Vxpre9cZ6gQqEifA7Yofxn6SIeU0pHIdfPmR1D7bO550ly/5LmHTwVCOQDb0LkPiyMVj1VzisyUZF+Lfv1VkcgH8p0FYe12fBQQnmiDiS9mUNYmGTFFtaFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkEMYfFO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BF6DC4CEDD;
+	Thu, 10 Apr 2025 21:11:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744319232;
-	bh=KwyzvKEFF2j5LkPa6b0yQ0XGOhj8/U4qBjPGsD96guw=;
+	s=k20201202; t=1744319484;
+	bh=owtnRJWwM8yKkJmYEoQiWQDaxSjXp0C7FQsxarVWC9g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rnE6spxUyg5djIvitXPXVeyRhdmU+5eVVtmfhMDcYPzjQCjBYBuwmHYxdZDyXNXAF
-	 qQca0offnA82uwYeRkGXieqswdVKZC81jKkc8Dkchby+7RlejDCbc+ylspa+EJfKkh
-	 qEEugRAAns2xCVAj26UkSsM8eWjBDVOrJemZ/MkDVpRT3OIS6JJCPNDrCX32wLZvA3
-	 sqLKfbobB2UVWOfATbGFXrm0aduOrdPOBKPNjUDa2RP0iAwkcF1HddGiNIF1g25pOQ
-	 nH6G34EiRLKcQgzyjvFZ8vx486JubmUpNq7JIyep8jU3IrIJSJ9Nssc965nvhwEK60
-	 ocf/0iZilHBNA==
-Date: Thu, 10 Apr 2025 16:07:11 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thomas Richard <thomas.richard@bootlin.com>
-Cc: Shawn Guo <shawnguo@kernel.org>,
+	b=rkEMYfFO8PkNupW9d53Fn+Gf8hLHqpXXnFBqrr4YHQ+uXfsfFycXhKSeCia8matlF
+	 zQOaWWBWviVuR6W/FCo6YVIw254fwMVQCtqE+P+/irD5u3rZQI+mZVMybVzLXHD9z9
+	 XGujbwykQyPlGuSVyfocqgCS49KLORfNgbm5G0ZHfF6fl/QuVxX5wFCOf7ikf7EAlX
+	 /1x4xcxwEj6vTw+fhJWYX7qvgMchl9Ni102t6obZMqBa15ZPU0YRXq0nOgABs2AfuW
+	 UDGi+qYxJVRN/ELF3KV4II6z0Fc7EHY8yhIHz8gcbLoMRxUSeWTAj+TEI5gP4wz+m8
+	 Kp3eiepPvvPXA==
+Date: Thu, 10 Apr 2025 16:11:23 -0500
+From: Rob Herring <robh@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, linux-watchdog@vger.kernel.org,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: fsl,scu-wdt: Document imx8qm
-Message-ID: <174431923074.1071351.3036987096266250197.robh@kernel.org>
-References: <20250407-imx8qm-watchdog-v1-0-20c219b15fd2@bootlin.com>
- <20250407-imx8qm-watchdog-v1-1-20c219b15fd2@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: phy: rockchip,inno-usb2phy: add port
+ property
+Message-ID: <20250410211123.GA1071510-robh@kernel.org>
+References: <20250407-rk3576-sige5-usb-v1-0-67eec166f82f@collabora.com>
+ <20250407-rk3576-sige5-usb-v1-1-67eec166f82f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +68,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407-imx8qm-watchdog-v1-1-20c219b15fd2@bootlin.com>
+In-Reply-To: <20250407-rk3576-sige5-usb-v1-1-67eec166f82f@collabora.com>
 
-
-On Mon, 07 Apr 2025 19:03:25 +0200, Thomas Richard wrote:
-> Add an entry for 'fsl,imx8qm-sc-wdt' as imx8qm also contains the SCU
-> watchdog block.
+On Mon, Apr 07, 2025 at 08:09:14PM +0200, Nicolas Frattaroli wrote:
+> USB connectors like to have OF graph connections to high-speed related
+> nodes to do various things. In the case of the RK3576, we can make use
+> of a port in the usb2 PHY to detect whether the OTG controller is
+> connected to a type C port and apply some special behaviour accordingly.
 > 
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+> The usefulness of having different bits of a fully functioning USB stack
+> point to each other is more general though, and not constrained to
+> RK3576 at all, even for this use-case.
+> 
+> Add a port property to the binding.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> index 6a7ef556414cebad63c10de754778f84fd4486ee..3a662bfc353250a8ad9386ebb5575d1e84c1b5ba 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+> @@ -78,6 +78,11 @@ properties:
+>        When set the driver will request its phandle as one companion-grf
+>        for some special SoCs (e.g rv1108).
+>  
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      A port node to link the PHY to a USB connector's "high-speed" port.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+I don't think this is correct. The HS port of the connector goes to the 
+controller. The controller has the link to the phy.
 
+If the PHY is also what handles USB-C muxing or orientation switching, 
+then it might have ports, but then it needs input and output ports.
+
+Rob
 
