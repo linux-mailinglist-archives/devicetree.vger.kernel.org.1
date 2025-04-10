@@ -1,211 +1,124 @@
-Return-Path: <devicetree+bounces-165411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E406A8433F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:36:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8E1A8436F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8139919E8BF9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:36:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B200442AAC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463BB28540C;
-	Thu, 10 Apr 2025 12:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6F7284B33;
+	Thu, 10 Apr 2025 12:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l2/Kcs5N"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="JzcDa9w2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7732836A5
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06E82853FF;
+	Thu, 10 Apr 2025 12:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744288495; cv=none; b=YEIT/6Co0slKbAIlOTa3S7z4YdgrBhsJxUqCMJCWWP+Fo9trSqeLv66gqgqTFL3c+/EUDbgAH/jMqJplRkFyQGd4HXPf/mUjnMZq7cbhTRPSGasjdzErdBtia/0/1iIrUEYoaWl3tebvp+Ee+NMkJqHokLx2IAsjDWKqF14sfK8=
+	t=1744288673; cv=none; b=rFio01AT/XJVOMdNsGvGzZbqZAKP5LCvQ6NFFuDHuk7As9ExKpk3ly8YysKpf28qjzm5ZHnx58fPDnfu1dI2LdI0QfInEaVDLQ6s1oGtDXMYvVSNKxV3c+lShDLFNvtV1XD8yvsazirJbejxky03pOQeOc8CJEgLMqCaKYq31w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744288495; c=relaxed/simple;
-	bh=TqoqYW7a4gp6/76bsxLTxXOnix/eiOkPYqrN2pTRfCA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sny6YHeOrlDL3mjoz+ERZXBET4sOcj5c+f8oT4MQqrLLwkXbzOPgDeeA/A4QKwCmqYuTS0fNhSorS+1ZrdQOBj95f4yRQ0/j9MOJdvWFwaWem7rYkVFiYQdlBSXzG2AMEEOQhoJNb9cKHodMRFFlrd48c5lhZg1j3uv4NL+H6Vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l2/Kcs5N; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6fead317874so7017077b3.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 05:34:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744288492; x=1744893292; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rqOD9OxXJmvSDblyShGiywTB8bqKw04tVNsGe+lxyzo=;
-        b=l2/Kcs5NS1BVHCjFe5dJa8p+HlIAExNJWwoI9rjqzkS0MS+jmqbEhMLRUuqd5RxJkz
-         u11v2ariigV0L1O0vaZ/IpD+POHqUJD2MQ8a9RWNBE7FYZKK11hjeTjZ1DVWxOxOFVIh
-         ZX0p6ZkYS1DlL0payF6SWub4T/qR7VnreZV3LJxXT/NMp4T5Z6zh2F3CLGuvCfb3i7vg
-         per/dhbsHxcBXiWsQtnCsK63MWj0JqVd1cRhjchPM7hmiST3wpGtCLmPuElWlSpYWVqZ
-         LLmDKdVPd+L+tY22Dtfi2R4MwsYhqCeOKuJ5clxE7zBY7X/t620sBhWmjXLLNTQDHHq3
-         ARrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744288492; x=1744893292;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rqOD9OxXJmvSDblyShGiywTB8bqKw04tVNsGe+lxyzo=;
-        b=j8GfzEl83MsqRNs3580EQNKq3i/cwAryayZ2tyD21Jnv5fz/DVEe3b6hcomRTUqvqG
-         FU5HFgnf4QhIhWMRzTpq7eNom17z3VRTOyE+rMFm3a7nWBBQ79Szgp/tz67iBYA5TLoO
-         kf+5T05sxjECtJniTH8xDsGPmbUzl4LGGjmKYlL9F8TsQjtxl6+tA2yvFZPl7HYvuwhy
-         2EU9RVMksKkBkdIL/dN9s2ihhUMlJ8MK708aIKA8bW14n40VSz6vqPkklvlz0dWAfLU0
-         U5QOLkWJlzmdqPxndQecltsB8RHdBrL7IcHDnaAiIAtyqqRq1ODcsTSMUuXzZOngFsMO
-         HYBg==
-X-Forwarded-Encrypted: i=1; AJvYcCV3947MAcbEyM3ju/v0MEfwUwjjEkvJua2OftET95VOvclnTXg9LHrUcWtEbN69Mgg3IVrJ5iV41RKZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjuzH7YTztgYI+qpWvuFv8SAg3XrBpO7N/raq9yICZJlVFz+II
-	eXDDwLDiIKfOXZsMVLUGB4gH3TNJH43cs/pvXvEiJFSr6XlDv50md/O35FdScERmH89Sd3sawQH
-	2filumjmidVWRdiao3+1YpWKPPVzi5wQZfGt8sQ==
-X-Gm-Gg: ASbGnctc/+NjyoeCJi9NPTCwJYfPSTxY/o8Sk8jrAeUXXOXtkp4WHN6F0zzjWcnRXBc
-	bg6BsMFVl5hSuuDeV5e3mW1EQXW3Vy+60sTiJAgETiYf66KcOHQDwaeg4lJ/amHPAwGweGj/8Uw
-	eJCggq+BYteoyRUdB0giAaGmk2TDRBtWvpFA==
-X-Google-Smtp-Source: AGHT+IE96uvkSKWw6YPtFVcby7pWdKNYA2UEmsGaoJPHRvl5S/OcYn8T2l4wlOx/RbleIvNqeqZYcO8OmfDh5/zO70A=
-X-Received: by 2002:a05:690c:3582:b0:702:4eb0:4a60 with SMTP id
- 00721157ae682-7054c7d0e89mr28286317b3.33.1744288492295; Thu, 10 Apr 2025
- 05:34:52 -0700 (PDT)
+	s=arc-20240116; t=1744288673; c=relaxed/simple;
+	bh=0fjabhNZAh84MY2Ye2yT/jYKRYS78Z/TF6DR2MqSU1Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=ZwSRXioTXQ8Ud7Muyxb9U7OM2DMVzob1A2+VFG2VOpRSWG5LNqTjUiWv1gC/C/6d/R4WhNuOd4Xzx5Ho9TlVTD3rTiRnySZDZRKWlVbP6g9Nn8vGj+KiC4kX8apCBSOU8JT3Lk0pgTdvRuAliW5okxJJZWttbZrYAUcjmPyG3VU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=JzcDa9w2 reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=rFnq27x4coNBtZepsly9PbTQ7APl0Mfwznlf1HossBM=; b=J
+	zcDa9w2v/7924RpIAuaZDDthRZokXLPF3GAbgzFxH/hFXltPmDjL9xclwJavLX1u
+	f7M7PZYDDeCM7Yu9pbFjHfchNb75+KhBgZh4CqJyzxUlt8v0FIFIF+cj51lYFVwG
+	2g2zOVJnf7r0t6KgVc3GHDmCPqnFMPWbuBNFIDSemE=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-107 (Coremail) ; Thu, 10 Apr 2025 20:36:07 +0800
+ (CST)
+Date: Thu, 10 Apr 2025 20:36:07 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Heiko Stuebner" <heiko.stuebner@cherry.de>
+Cc: heiko@sntech.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, dmitry.baryshkov@linaro.org,
+	dianders@chromium.org, sebastian.reichel@collabora.com,
+	cristian.ciocaltea@collabora.com, boris.brezillon@collabora.com,
+	l.stach@pengutronix.de, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	"Damon Ding" <damon.ding@rock-chips.com>
+Subject: Re:[PATCH v8 00/13] Add eDP support for RK3588
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <20250310104114.2608063-1-damon.ding@rock-chips.com>
+References: <20250310104114.2608063-1-damon.ding@rock-chips.com>
+X-NTES-SC: AL_Qu2fBv6Tt00t4SafbOkfmkcVgOw9UcO5v/Qk3oZXOJF8jCHpwA4HTVlTAlzay/CDBgq2nQiHXjJ+zeFCZZJFRqM7aHKxRR/qKmeJ6RSE2yJXmA==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf@eucas1p2.samsung.com>
- <20250409093025.2917087-1-m.wilczynski@samsung.com> <20250409093025.2917087-2-m.wilczynski@samsung.com>
- <CAPDyKFpoSwKAmiWyvNt1fVyu6=NU1oVOmQLVuzX_bG=-5KrM2Q@mail.gmail.com> <75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
-In-Reply-To: <75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 10 Apr 2025 14:34:14 +0200
-X-Gm-Features: ATxdqUFgmaVfbL47_mXJup4YjWo6ZMMfedtXYPTwprySI8RzBXkwm9C8hCD80Tk
-Message-ID: <CAPDyKFq=BF5f2i_Sr1cmVqtVAMgr=0FqsksL7RHZLKn++y0uwg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: firmware: thead,th1520: Add clocks
- and resets
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, 
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-pm@vger.kernel.org, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <f83f9e3.ae33.1961fb35185.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:aygvCgA3f6A3u_dnnVOTAA--.29407W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hErXmf3t3Jj+QAEs9
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Thu, 10 Apr 2025 at 12:42, Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
->
->
->
-> On 4/9/25 12:41, Ulf Hansson wrote:
-> > On Wed, 9 Apr 2025 at 11:30, Michal Wilczynski <m.wilczynski@samsung.com> wrote:
-> >>
-> >> Prepare for handling GPU clock and reset sequencing through a generic
-> >> power domain by adding clock and reset properties to the TH1520 AON
-> >> firmware bindings.
-> >>
-> >> The T-HEAD TH1520 GPU requires coordinated management of two clocks
-> >> (core and sys) and two resets (GPU and GPU CLKGEN). Due to SoC-specific
-> >> requirements, the CLKGEN reset must be carefully managed alongside clock
-> >> enables to ensure proper GPU operation, as discussed on the mailing list
-> >> [1].
-> >>
-> >> Since the coordination is now handled through a power domain, only the
-> >> programmable clocks (core and sys) are exposed. The GPU MEM clock is
-> >> ignored, as it is not controllable on the TH1520 SoC.
-> >>
-> >> This approach follows upstream maintainers' recommendations [1] to
-> >> avoid SoC-specific details leaking into the GPU driver or clock/reset
-> >> frameworks directly.
-> >>
-> >> [1] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel.org/
-> >>
-> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> >> ---
-> >>  .../bindings/firmware/thead,th1520-aon.yaml   | 28 +++++++++++++++++++
-> >>  1 file changed, 28 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> >> index bbc183200400..8075874bcd6b 100644
-> >> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> >> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> >> @@ -25,6 +25,16 @@ properties:
-> >>    compatible:
-> >>      const: thead,th1520-aon
-> >>
-> >> +  clocks:
-> >> +    items:
-> >> +      - description: GPU core clock
-> >> +      - description: GPU sys clock
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: gpu-core
-> >> +      - const: gpu-sys
-> >
-> > These clocks don't look like they belong to the power-domain node, but
-> > rather the GPU's node.
-> >
-> > Or is this in fact the correct description of the HW?
->
-> Hi,
-> Thank you for your input. Based on my understanding of Stephen
-> presentation the power-domain layer could act as a middleware layer
-> (like ACPI) that could own resources. That being said it was also stated
-> that the proposed approach should work with already existing device
-> trees, which implies that the DT should remain as is.
->
-> So I could get the resources using attach_dev and detach_dev, but there
-> are two problems with that:
->
-> 1) The GPU driver will try to manage clocks/reset on it's own using those functions
->    if I provide non-stub working clocks and reset:
-> static const struct dev_pm_ops pvr_pm_ops = {
->         RUNTIME_PM_OPS(pvr_power_device_suspend, pvr_power_device_resume,
->                        pvr_power_device_idle)
-> };
->
-> So obviously I should invent a way to tell the drm/imagination driver to
-> NOT manage. One obvious way to do this is to introduce new flag to genpd.flags
-> called let's say GENPD_FLAG_EXCLUSIVE_CONTROL, which would tell the consumer
-> driver that the power management is being done only done from the PM
-> middleware driver.
-
-Something along those lines. Although, I think the below twist to the
-approach would be better.
-
-Some flag (maybe just a bool) should be set dynamically when the
-->attach_dev() callback is invoked and it should be a per device flag,
-not a per genpd flag. In this way, the genpd provider driver can make
-runtime decisions, perhaps even based on some DT compatible string for
-the device being attached to it, whether it should manage PM resources
-or not.
-
-Additionally, we need a new genpd helper function that allows the
-consumer driver to check if the PM resources are managed from the PM
-domain level (genpd) or not.
-
-If it sounds complicated, just let me know I can try to help put the
-pieces together.
-
->
-> 2) The GPU node doesn't want to own the gpu-clkgen reset. In fact nobody
->    seems to want to own it, even though theoretically it should be owned by
->    the clk_vo as this would describe the hardware best (it's resetting the
->    GPU clocks). But then it would be trickier to get it from the PM driver,
->    making the code more complex and harder to understand. Nonetheless I
->    think it would work.
-
-I guess it doesn't really matter to me. Perhaps model it as a reset
-and make the GPU be the consumer of it?
-
->
-> If this sounds good to you I will work on the code.
-
-Sure, let's give this a try - I am here to help review and guide the best I can.
-
-[...]
-
-Kind regards
-Uffe
+CkhlbGxvIEhlaWtvLAogICBDb3VsZCB5b3UgdGFrZSB0aGlzIHNlcmllcyA/IFRoZXkgaGF2ZSBh
+bHJlYWR5IGdvdCB0aGUgbmVjZXNzYXJ5IFItQiBhbmQgQWNrLiAKSSB0aGluayBEYW1vbiBzdGls
+bCBoYXMgc29tZSBwYXRjaGVzIGZvciBjb25uZWN0b3IgZGVjb3VwbGluZy4gV2l0aCB0aGlzIHNl
+cmllcyBoYXZlIGJlZW4gbWVyZ2VkIGVhcmxpZXIuIApIaXMgbmV3IHBhdGNoZXMgY2FuIGhhdmUg
+ZmV3ZXIgZGVwZW5kZW5jaWVzLgogICAgCgpBdCAyMDI1LTAzLTEwIDE4OjQxOjAxLCAiRGFtb24g
+RGluZyIgPGRhbW9uLmRpbmdAcm9jay1jaGlwcy5jb20+IHdyb3RlOgo+UGlja2VkIGZyb206Cj5o
+dHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtcm9ja2NoaXAvbGlzdC8/
+c2VyaWVzPTkzNjkzMgo+Cj5UaGVzZSBwYXRjaHMgaGF2ZSBiZWVuIHRlc3RlZCB3aXRoIGEgMTUz
+NngyMDQ4cDYwIGVEUCBwYW5lbCBvbgo+UkszNTg4UyBFVkIxIGJvYXJkLCBhbmQgSERNSSAxMDgw
+UC80SyBkaXNwbGF5IGFsc28gaGFzIGJlZW4gdmVyaWZpZWQKPm9uIFJLMzU4OCBFVkIxIGJvYXJk
+LiBGdXJ0aGVybW9yZSwgdGhlIGVEUCBkaXNwbGF5IGhhcyBiZWVuIHJlY2hlY2tlZAo+b24gUksz
+Mzk5IHNhcHBoaXJlIGV4Y2F2YXRvciBib2FyZC4KPgo+UGF0Y2ggMX4zICAgYXJlIHByZXBhcmF0
+aW9ucyBmb3IgdGhlIFJLMzU4OCBlRFAgc3VwcG9ydCBvbiBib3RoIEFuYWxvZ2l4Cj4gICAgICAg
+ICAgICBzaWRlLgo+UGF0Y2ggNH44ICAgYXJlIHRvIHN1cHBvcnQgdG8gZ2V0IHBhbmVsIGZyb20g
+dGhlIERQIEFVWCBidXMuCj5QYXRjaCA5fjExICBhcmUgdGhlIFJLMzU4OCBBbmFsb2dpeCBEUCBk
+cml2ZXIgc3VwcG9ydC4KPlBhdGNoIDEyICAgIGlzIHRoZSBhZGRpdGlvbiBvZiBSSzM1ODggZURQ
+MCBub2RlLgo+UGF0Y2ggMTMgICAgaXMgdG8gZW5hYmxlIHRoZSBlRFAwIGRpc3BsYXkgb24gUksz
+NTg4UyBFVkIxIGJvYXJkLgo+Cj5EYW1vbiBEaW5nICgxMyk6Cj4gIGRybS9icmlkZ2U6IGFuYWxv
+Z2l4X2RwOiBBZGQgaXJxIGZsYWcgSVJRRl9OT19BVVRPRU4gaW5zdGVhZCBvZgo+ICAgIGNhbGxp
+bmcgZGlzYWJsZV9pcnEoKQo+ICBkcm0vYnJpZGdlOiBhbmFsb2dpeF9kcDogUmVtb3ZlIENPTkZJ
+R19QTSByZWxhdGVkIGNoZWNrIGluCj4gICAgYW5hbG9naXhfZHBfYmluZCgpL2FuYWxvZ2l4X2Rw
+X3VuYmluZCgpCj4gIGRybS9icmlkZ2U6IGFuYWxvZ2l4X2RwOiBBZGQgc3VwcG9ydCBmb3IgcGh5
+IGNvbmZpZ3VyYXRpb24uCj4gIGR0LWJpbmRpbmdzOiBkaXNwbGF5OiByb2NrY2hpcDogYW5hbG9n
+aXgtZHA6IEFkZCBzdXBwb3J0IHRvIGdldCBwYW5lbAo+ICAgIGZyb20gdGhlIERQIEFVWCBidXMK
+PiAgZHJtL2JyaWRnZTogYW5hbG9naXhfZHA6IFN1cHBvcnQgdG8gZ2V0ICZhbmFsb2dpeF9kcF9k
+ZXZpY2UucGxhdF9kYXRhCj4gICAgYW5kICZhbmFsb2dpeF9kcF9kZXZpY2UuYXV4Cj4gIGRybS9i
+cmlkZ2U6IGFuYWxvZ2l4X2RwOiBBZGQgc3VwcG9ydCB0byBnZXQgcGFuZWwgZnJvbSB0aGUgRFAg
+QVVYIGJ1cwo+ICBkcm0vYnJpZGdlOiBhbmFsb2dpeF9kcDogQWRkIHN1cHBvcnQgZm9yCj4gICAg
+JmRybV9kcF9hdXgud2FpdF9ocGRfYXNzZXJ0ZWQoKQo+ICBkcm0vcm9ja2NoaXA6IGFuYWxvZ2l4
+X2RwOiBBZGQgc3VwcG9ydCB0byBnZXQgcGFuZWwgZnJvbSB0aGUgRFAgQVVYCj4gICAgYnVzCj4g
+IGR0LWJpbmRpbmdzOiBkaXNwbGF5OiByb2NrY2hpcDogYW5hbG9naXgtZHA6IEFkZCBzdXBwb3J0
+IGZvciBSSzM1ODgKPiAgZHJtL2JyaWRnZTogYW5hbG9naXhfZHA6IEFkZCBzdXBwb3J0IGZvciBS
+SzM1ODgKPiAgZHJtL3JvY2tjaGlwOiBhbmFsb2dpeF9kcDogQWRkIHN1cHBvcnQgZm9yIFJLMzU4
+OAo+ICBhcm02NDogZHRzOiByb2NrY2hpcDogQWRkIGVEUDAgbm9kZSBmb3IgUkszNTg4Cj4gIGFy
+bTY0OiBkdHM6IHJvY2tjaGlwOiBFbmFibGUgZURQMCBkaXNwbGF5IG9uIFJLMzU4OFMgRVZCMSBi
+b2FyZAo+Cj4gLi4uL3JvY2tjaGlwL3JvY2tjaGlwLGFuYWxvZ2l4LWRwLnlhbWwgICAgICAgIHwg
+IDI1ICsrKystCj4gYXJjaC9hcm02NC9ib290L2R0cy9yb2NrY2hpcC9yazM1ODgtYmFzZS5kdHNp
+IHwgIDI4ICsrKysrCj4gLi4uL2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU4OHMtZXZiMS12MTAuZHRz
+ICAgIHwgIDU1ICsrKysrKysrKysKPiAuLi4vZHJtL2JyaWRnZS9hbmFsb2dpeC9hbmFsb2dpeF9k
+cF9jb3JlLmMgICAgfCAgODUgKysrKysrKysrLS0tLS0tCj4gLi4uL2dwdS9kcm0vYnJpZGdlL2Fu
+YWxvZ2l4L2FuYWxvZ2l4X2RwX3JlZy5jIHwgIDUyICsrKysrKysrKwo+IGRyaXZlcnMvZ3B1L2Ry
+bS9yb2NrY2hpcC9LY29uZmlnICAgICAgICAgICAgICB8ICAgMSArCj4gLi4uL2dwdS9kcm0vcm9j
+a2NoaXAvYW5hbG9naXhfZHAtcm9ja2NoaXAuYyAgIHwgMTAzICsrKysrKysrKysrKysrKystLQo+
+IGluY2x1ZGUvZHJtL2JyaWRnZS9hbmFsb2dpeF9kcC5oICAgICAgICAgICAgICB8ICAgNyArLQo+
+IDggZmlsZXMgY2hhbmdlZCwgMzEwIGluc2VydGlvbnMoKyksIDQ2IGRlbGV0aW9ucygtKQo+Cj4t
+LSAKPjIuMzQuMQo+Cg==
 
