@@ -1,141 +1,85 @@
-Return-Path: <devicetree+bounces-165077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AFFCA834E0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 01:59:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0090A83510
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 02:17:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7050460044
-	for <lists+devicetree@lfdr.de>; Wed,  9 Apr 2025 23:59:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 684241B66D98
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 00:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F71121CC6A;
-	Wed,  9 Apr 2025 23:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20729F510;
+	Thu, 10 Apr 2025 00:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WaT5Oxgb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082232144C4;
-	Wed,  9 Apr 2025 23:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF6D37080E;
+	Thu, 10 Apr 2025 00:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744243157; cv=none; b=oIEz8yCm41AGfodNpnDF63F34Iaghd5oGlfEktDrt5hW6mejfkjhDeU2sr0N5DifzWqNnxvpNMg6siJwtjLdMVSf8LffYvATCO2BgwYgQ773MbxU8HI0mOVQeAFQYIxEnSTwxY2rXjnOrOjxlZmYG4Zh8YEC6UwkENOxrXo88Kk=
+	t=1744244235; cv=none; b=qIK6LAONgoX3zLYMcoMJClmem/QxZHNE2nE7WNhRxPVUQviHn7GVU9aL7ktyCEYbJRy+nSEjWIC0YZP4/ySOpIFo2hnofTDBavlc+vPt11Z4yY1xwi30Xwqr0TpDyGs1Wmuk2pSZJamwtkKDmotIfOr2FwmX3+rUfIhCluwC+uQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744243157; c=relaxed/simple;
-	bh=fbizQkJURv/VI4ti6Z1JNgUGnYq1ZQ73QlfCFSh6YFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RawUuz+QRiy0SxngPhLbjfZFq7574DotMyTm2efu0PI37gIYOKot/YAnpSSjYxSY5GWXrzW/5RmgEfZJtLeiJr+dh5KXnx5zl8gSR8DjAOBTBn8cFnU5iU2ALLQHaWfBolNEy9kIwg/UcmZezg/Lku/qhVbn4Tt/xu/PBgKdyXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id C5016343371;
-	Wed, 09 Apr 2025 23:59:13 +0000 (UTC)
-Date: Wed, 9 Apr 2025 23:59:09 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com,
-	andriy.shevchenko@linux.intel.com, u.kleine-koenig@baylibre.com,
-	lkundrak@v3.sk, devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] serial: 8250_of: add support for an optional bus
- clock
-Message-ID: <20250409235909-GYB19066@gentoo>
-References: <20250409192213.1130181-1-elder@riscstar.com>
- <20250409192213.1130181-3-elder@riscstar.com>
- <20250409214345-GYA19066@gentoo>
- <04facbe3-cd40-4d79-a204-2b91880da331@riscstar.com>
+	s=arc-20240116; t=1744244235; c=relaxed/simple;
+	bh=fI41F7Cg84oJdA/p5JmJPu2iEYCdefd/TzI3apBG62o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Tq2QcvM6ukdl3hHZASC4C5FgN2mpcVY9yseAhppnlOgYj+On+FwCPTcZ7HikN9He5s+8EXN4cJxbLsFr3gYqlU6FLSbfVU4FTyledWeskv0EizKSmXGv3//reRAfVz7xg2abMcnkZIHKZJ/0YL6n0uPKJrS2Z+cSywEVykQTgwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WaT5Oxgb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4B35C4CEE2;
+	Thu, 10 Apr 2025 00:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744244234;
+	bh=fI41F7Cg84oJdA/p5JmJPu2iEYCdefd/TzI3apBG62o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WaT5OxgbLp2bNuxQPD2pP3tswuVAQUDFPweIacZ0DiRxaxqspJJOQbC8OVHPl8oIh
+	 MvKORhRPU0b5iFf4JkOwItDAQj8GdxzemHyPoGKsa0ZixYz2iFXQV6P4u3M48OTunn
+	 JRgyfUYp8Xi8DeINnHCGg+tRBH3kXtQt7MRNDUFeJWZaazyLYxJZz4RXdb4sdrhPDi
+	 0h8fwOtsgKgsC5sZ6bQ4IUT+Ykmso8TN6Rk/96FvXdJUpk12LzUvejrexolxMmqq5g
+	 2yqU7zMXBIWUtffbCWjNGiTT+dHk34bNh4qg1VmrQ1HVE7eF7rDrMShV6QDIn4khlW
+	 tMFuI5+VifkzQ==
+Date: Wed, 9 Apr 2025 17:17:13 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko
+ <jiri@resnulli.us>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Prathosh Satish
+ <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, Kees Cook
+ <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+Message-ID: <20250409171713.6e9fb666@kernel.org>
+In-Reply-To: <20250409144250.206590-1-ivecera@redhat.com>
+References: <20250409144250.206590-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <04facbe3-cd40-4d79-a204-2b91880da331@riscstar.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
+On Wed,  9 Apr 2025 16:42:36 +0200 Ivan Vecera wrote:
+> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> provides DPLL and PTP functionality. This series bring first part
+> that adds the common MFD driver that provides an access to the bus
+> that can be either I2C or SPI.
+> 
+> The next series will bring the DPLL driver that will covers DPLL
+> functionality. And another ones will bring PTP driver and flashing
+> capability via devlink.
+> 
+> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+> development board with ZL30732 DPLL chip connected over I2C bus.
 
-On 17:47 Wed 09 Apr     , Alex Elder wrote:
-> On 4/9/25 4:43 PM, Yixun Lan wrote:
-> > Hi Alex,
-> > 
-> > On 14:22 Wed 09 Apr     , Alex Elder wrote:
-> >> The SpacemiT UART requires a bus clock to be enabled, in addition to
-> >> it's "normal" core clock.  Look up the optional bus clock by name,
-> >> and if that's found, look up the core clock using the name "core".
-> >>
-> >> Supplying a bus clock is optional.  If no bus clock is needed, the
-> >> the first/only clock is used for the core clock.
-> >>
-> >> Signed-off-by: Alex Elder <elder@riscstar.com>
-> >> ---
-> >> v2: Update logic to more check for the optional bus clock first
-> >>
-> >>   drivers/tty/serial/8250/8250_of.c | 11 ++++++++++-
-> >>   1 file changed, 10 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/tty/serial/8250/8250_of.c b/drivers/tty/serial/8250/8250_of.c
-> >> index 11c860ea80f60..a90a5462aa72a 100644
-> >> --- a/drivers/tty/serial/8250/8250_of.c
-> >> +++ b/drivers/tty/serial/8250/8250_of.c
-> >> @@ -123,7 +123,16 @@ static int of_platform_serial_setup(struct platform_device *ofdev,
-> >>   
-> >>   	/* Get clk rate through clk driver if present */
-> >>   	if (!port->uartclk) {
-> >> -		info->clk = devm_clk_get_enabled(dev, NULL);
-> >> +		struct clk *bus_clk;
-> > we also need to handle clk in suspend/resume procedure, so
-> > I think you need to put bus_clk inside struct of_serial_info..
-> 
-> OK, I didn't do anything for that in previous versions of the
-> series.
-> 
-> I think that means we'd call clk_disable_unprepare() on
-> the bus clock after doing so for the function clock.  And
-> clk_prepare_enable() on the bus clock before doing that for
-> the function clock in of_serial_resume().  That's easy.
-> 
-right, pretty much similar to info->clk
-
-> Is there anything further you think is required?  There is
-> no clock rate associated with the bus clock that I know of,
-> so even if the function clock rate changes, the bus clock
-> can remain as-is.
-> 
-no further info I know of, my best guess, the rate doesn't
-really matter, a wide clk range should just work fine.
-
-> > 
-> >> +
-> >> +		bus_clk = devm_clk_get_optional_enabled(dev, "bus");
-> > for the 'optional', we can interpret it's optional for other vendor
-> > UART, but a must required clk for SpacemiT's k1 UART controller
-> > 
-> > would it better to guard this inside a compatible test or even introduce
-> > a flag in compatible data?
-> 
-> I don't personally think so. We could, but the DT binding is going
-> out of its way to define when the bus clock is required.  This is
-> simpler, and generic.
-> 
-I would personally choose the way of introducing a flag of compatible data,
-but it's a lot change of the code (may not worth the effort)..
-
-anyway, I'm fine with your current version, and yes, it's generic
-thanks for doing this..
-
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+The DPLL here is for timing, right? Not digital logic?
+After a brief glance I'm wondering why mfd, PHC + DPLL 
+is a pretty common combo. Am I missing something?
 
