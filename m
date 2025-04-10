@@ -1,224 +1,205 @@
-Return-Path: <devicetree+bounces-165665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EA7A84FD5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:50:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3376DA84FDC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 00:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38DC81B62C2E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:50:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4724A4C24
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 22:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2911E20CCD9;
-	Thu, 10 Apr 2025 22:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9BA20C021;
+	Thu, 10 Apr 2025 22:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="ar5iCyWv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="urVlRqb4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9689C20E33F
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 22:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54D0172767;
+	Thu, 10 Apr 2025 22:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744325438; cv=none; b=a1XFK9ttBm0Jvvbuo7yqmyJslewmZ+zISFlCmRT1zEyq9Dxjz+tyqh2D1f+wTR9SZOZnlokn7UG5Tru2tjdjkEKxKlVesohgr+YHjk7advitEHorZ384NDxm3MVzxIEX9wNQ0RhQ3WB1iS/bc5YdmUQcHDIF8mrjHmvpZskcC0o=
+	t=1744325607; cv=none; b=JfGHlDHiTafEIor1dCrEK9EOA4m+vsve189aK8xizHVOPmQvU0i1OgBxSqy9/6/ARjJfq7fURU2vRWFYc6DRv0YujScMJFH2zg8SKHee7RPxB7hqBc/TbI//QCDFBmkpt5PaiuH/ZvseupW7Tkr5H+XQOvq7Ihb2MSMESNOySaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744325438; c=relaxed/simple;
-	bh=eSBlGwPbxQvzEQ0qxyvz9CCsszI2g7B7f9NKVWogNSU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TUXZs80UbGwlOhwgkg+pCSs3ZqxRSS1voBEfNCjbtaxt6BArBYpSuFQAnJt86ImOcyI6Tn/eYoNlJXLUClwLCnUqg5Ti57xs0cvDgZoGAH1VKyxSCrGjuYhV+Sb+9HjhPY2q/YJQsgPN0qarkB54aL9xhLwSuJ1rTSfDqncpaeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=ar5iCyWv; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.10.206])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 05FEA2114DAE;
-	Thu, 10 Apr 2025 15:50:35 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 05FEA2114DAE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1744325436;
-	bh=7gtu6nH7srNfvTtxxwiTNF8qbQE3fc+/uSVqmjie7Kk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ar5iCyWv/QVBsLCCJFSqIY3ZHBZI2x61i2WxVHZ+lvnVMCy4vq9FKsvvgBAk1HT+w
-	 +1lEETI/HuA8bD6AKBf336epHfsi/fLw4wlM4JmFUPXenfHseNInTSdc2qXD8jtqWu
-	 oQvtuf6RkBkC45BRU/ZEVTKkKllPMqYn0zbkRTSA=
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev
-Cc: jgg@ziepe.ca,
-	will@kernel.org,
-	jacob.pan@linux.microsoft.com,
-	eric.auger@redhat.com,
-	code@tyhicks.com,
-	eahariha@linux.microsoft.com,
-	vijayb@linux.microsoft.com
-Subject: [PATCH v2 3/3] arm-smmu: select suitable MSI IOVA
-Date: Thu, 10 Apr 2025 15:50:30 -0700
-Message-Id: <20250410225030.2528385-4-shyamsaini@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
+	s=arc-20240116; t=1744325607; c=relaxed/simple;
+	bh=V4mVQZ//Ezj+MDhUUmwsm/fNROxGBSW/cC+lzJA8c/Y=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QaKeZYqmc8m9xRWn76g0t+dsuFUltondp0sP9qFUTaI4nlK1aI8oa9CoD5AFzGY52t0ScdWDNkl0FWLqH5wrezvDR1GealUVzW4YatEmu2C9XgzTd5hSpqoJ9DjwroBtRngL2znsijfN/yfAxYJ2KQjhdK/D/H2yxM/IkYY/l54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=urVlRqb4; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMr2W71399307
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 10 Apr 2025 17:53:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744325582;
+	bh=dr2zDigygCC2C4GSdx8OOUFZ1CPNnNchXON92zqlKB0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=urVlRqb483spdKodj3Dr9LKvkfWZLWEpOvAwJDLkxZ+kqD2WowvYXrkOaLUMxsn2F
+	 OzMfcUl7wK7ZksHrxPKiIuskTG0fcUVwPDw9QqU2t1QVEtkLPv5GfdB4RvZmF8gv8y
+	 li2mK6eGrEklD1UR6RccLcVK7O6duK/T/4Lo6uJ4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53AMr2AV125532
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Apr 2025 17:53:02 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Apr 2025 17:53:02 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Apr 2025 17:53:01 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53AMr1Sm093211;
+	Thu, 10 Apr 2025 17:53:01 -0500
+Date: Thu, 10 Apr 2025 17:53:01 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Jason Kridner <jkridner@beagleboard.org>
+CC: Robert Nelson <robertcnelson@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>, Judith Mendez
+	<jm@ti.com>,
+        Andrei Aldea <a-aldea@ti.com>, Dhruva Gole <d-gole@ti.com>,
+        Deepak Khatri <lorforlinux@beagleboard.org>,
+        Ayush Singh
+	<ayush@beagleboard.org>,
+        <michael.opdenacker@rootcommit.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
+Message-ID: <20250410225301.orsurkanor52ovmk@native>
+References: <20250408231823.826163-1-robertcnelson@gmail.com>
+ <20250408231823.826163-2-robertcnelson@gmail.com>
+ <20250410161509.yviucf36uhox4wvm@unedited>
+ <CA+T6QPm2gVSa_+-vj5EA=RAs_sZFjq0LJKYVKPf_LN9Xc9uQQQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CA+T6QPm2gVSa_+-vj5EA=RAs_sZFjq0LJKYVKPf_LN9Xc9uQQQ@mail.gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Currently ARM SMMU drivers hardcode PCI MSI IOVA address.
-Not all the platform have same memory mappings and some platform
-could have this address already being mapped for something else.
-This can lead to collision and as a consequence the MSI IOVA addr
-range is never reserved.
+On 13:26-20250410, Jason Kridner wrote:
+[...]
+> > > +&usb1 {
+> > > +     dr_mode = "host";
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&usb1_pins_default>;
+> > > +};
+> >
+> > is'nt this over https://www.beagleboard.org/boards/techlab or
+> > https://www.beagleboard.org/boards/pocketbeagle-gamepup-cape or
+> > https://github.com/mwelling/pocket-bob ?
+> >
+> > I think it is better as an overlay? Let us not enable something that
+> > will add power for no benefit :)
+> > Further USB1.ID has options for PRU as well. Let the daughter overlay
+> > deal with it.
+> >
+> > On the flip side, we could work the other way - since majority of
+> > daughter cards use USB host, it could be that the other overlays can
+> > just disable usbss1 and usb1
+> >
+> > Thoughts?
+> 
+> Since you asked, Being the somewhat unique state of PocketBeagle 2 and
+> other Beagle
+> single-board computers as rapid-prototyping development platforms, my
+> personal general
+> preference is to see all the stuff turned on by default and then to
+> provide some clear direction
+> on what is not necessary such that it lives as documentation forhow to
+> enable it and simplify
+> the development of overlays. Some of the rationale for this was
+> discussed a couple
+> of years back in a series of blog posts by Michael Opdenacker. [1][2][3]
 
-Fix this by adding one more MSI_IOVA base address, so that if the
-platforms can select suitable PCI MSI IOVA address if SMMU dts node
-has "arm,smmu-faulty-msi-iova".
+OK - Let us document that in the device tree then. For the i2c ports and
+usb ports that are implemented in the cape, just add a documentation
+note saying enabled for cape header or something for that effect. all
+these main USB pins are dedicated functions anyways, so it is unlikely
+to see capes that can even attempt to reuse the generic USB data pins
+for alternate functions.
 
-If this property is not found in the dtb for the given platform then
-the driver falls back on the default MSI IOVA address.
+If folks do not use that header in some specific overlay, they can
+disable the node based on at least some guidance from the documentation.
 
-Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c |  9 +++-
- drivers/iommu/arm/arm-smmu/arm-smmu.c       |  9 +++-
- include/linux/iommu.h                       | 49 +++++++++++++++++++++
- 3 files changed, 63 insertions(+), 4 deletions(-)
+> 
+> My perspective is that the interfaces need to be enabled to define the
+> header connector to
+> the device tree and that the muxes should further be fully described
+> to the system, rather than
+> leaving those bits of metadata regarding the running system as an
+> exercise for the reader.
+> 
+> The aforementioned approach of removing all the "dead bits" is great
+> until someone is left with
+> the challenge of figuring out how to turn them on and/or select
+> between them. Providing an
+> overlay that disables all the unnecessary bits seems reasonable to me.
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 358072b4e293..d6ea82ed4530 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -33,6 +33,8 @@
- #include "arm-smmu-v3.h"
- #include "../../dma-iommu.h"
- 
-+u32 msi_iova_base;
-+
- static bool disable_msipolling;
- module_param(disable_msipolling, bool, 0444);
- MODULE_PARM_DESC(disable_msipolling,
-@@ -3541,8 +3543,8 @@ static void arm_smmu_get_resv_regions(struct device *dev,
- 	struct iommu_resv_region *region;
- 	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
- 
--	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
--					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
-+	region = iommu_alloc_resv_region(msi_iova_base, MSI_IOVA_LENGTH, prot,
-+					 IOMMU_RESV_SW_MSI, GFP_KERNEL);
- 	if (!region)
- 		return;
- 
-@@ -4570,6 +4572,9 @@ static int arm_smmu_device_dt_probe(struct platform_device *pdev,
- 	struct device *dev = &pdev->dev;
- 	u32 cells;
- 	int ret = -EINVAL;
-+	u32 msi_iova_ptr;
-+
-+	iommu_configure_msi_iova(dev, "arm,smmu-faulty-msi-iova", msi_iova_ptr);
- 
- 	if (of_property_read_u32(dev->of_node, "#iommu-cells", &cells))
- 		dev_err(dev, "missing #iommu-cells property\n");
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-index a54dc4608c62..cd8bf2278057 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-@@ -50,6 +50,8 @@
-  */
- #define QCOM_DUMMY_VAL -1
- 
-+u32 msi_iova_base;
-+
- static int force_stage;
- module_param(force_stage, int, S_IRUGO);
- MODULE_PARM_DESC(force_stage,
-@@ -1594,8 +1596,8 @@ static void arm_smmu_get_resv_regions(struct device *dev,
- 	struct iommu_resv_region *region;
- 	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
- 
--	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
--					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
-+	region = iommu_alloc_resv_region(msi_iova_base, MSI_IOVA_LENGTH, prot,
-+					 IOMMU_RESV_SW_MSI, GFP_KERNEL);
- 	if (!region)
- 		return;
- 
-@@ -2030,6 +2032,9 @@ static int arm_smmu_device_dt_probe(struct arm_smmu_device *smmu,
- 	const struct arm_smmu_match_data *data;
- 	struct device *dev = smmu->dev;
- 	bool legacy_binding;
-+	u32 *msi_iova_ptr = &msi_iova_base;
-+
-+	iommu_configure_msi_iova(dev, "arm,smmu-faulty-msi-iova", msi_iova_ptr);
- 
- 	if (of_property_read_u32(dev->of_node, "#global-interrupts", global_irqs))
- 		return dev_err_probe(dev, -ENODEV,
-diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-index 8d38d85f23f1..cfd047fdf225 100644
---- a/include/linux/iommu.h
-+++ b/include/linux/iommu.h
-@@ -1531,10 +1531,59 @@ static inline void iommu_debugfs_setup(void) {}
- 
- #ifdef CONFIG_IOMMU_DMA
- #define MSI_IOVA_BASE        0x8000000
-+#define MSI_IOVA_BASE2       0xa0000000
- #define MSI_IOVA_LENGTH      0x100000
- 
-+static inline u32 select_msi_iova_base(u32 erratic_iova_addr)
-+{
-+	phys_addr_t start, end, msi_iova_end;
-+
-+	if (!erratic_iova_addr)
-+		return MSI_IOVA_BASE;
-+
-+	start = erratic_iova_addr;
-+	end = start + MSI_IOVA_LENGTH - 1;
-+	msi_iova_end = MSI_IOVA_BASE + MSI_IOVA_LENGTH - 1;
-+
-+	/* return non-overlapping address */
-+	return (start > MSI_IOVA_BASE ||
-+			end < msi_iova_end) ? MSI_IOVA_BASE : MSI_IOVA_BASE2;
-+}
-+
-+static inline void iommu_configure_msi_iova(struct device *iommu_dev,
-+					    const char *faulty_msi_iova_prop,
-+					    u32 *msi_iova)
-+{
-+	static bool is_msi_iova_selected;
-+	u32 faulty_msi_iova_from_dt;
-+	int rc;
-+
-+	rc = of_property_read_u32(iommu_dev->of_node, faulty_msi_iova_prop,
-+				  &faulty_msi_iova_from_dt);
-+	if (!is_msi_iova_selected) {
-+		*msi_iova = select_msi_iova_base(rc ? 0 : faulty_msi_iova_from_dt);
-+		dev_dbg(iommu_dev, "setting custom MSI IOVA base to 0x%x\n", *msi_iova);
-+		is_msi_iova_selected = true;
-+		return;
-+	}
-+
-+	dev_dbg(iommu_dev, "custom MSI IOVA base already set to 0x%x\n", *msi_iova);
-+}
-+
- int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base);
- #else /* CONFIG_IOMMU_DMA */
-+
-+static inline u32 select_msi_iova_base(u32 erratic_iova_addr)
-+{
-+}
-+
-+static inline void iommu_configure_msi_iova(struct device *iommu_dev,
-+					    const char *faulty_msi_iova_prop,
-+					    u32 *msi_iova)
-+{
-+}
-+
-+
- static inline int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base)
- {
- 	return -ENODEV;
+I understand the rationale, but, we as Linux community came to this
+guideline:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n207
+"
+Hardware components that are present on the board shall be placed in the
+board DTS, not in the SoC or SoM DTSI
+"
+
+PB2 being an partial "SOM".
+
+It is a trade-off unfortunately.
+
+> 
+> Otherwise, I think we can put the entirety of the header description
+> into an overlay for
+> cape-specific overlays to use, but I find the lack of an upstream
+> definition to make it difficult to
+> enable cape makers to define overlays that are likely to actually work.
+
+This is not an unknown problem, though not something pleasant to
+live with. Linux community is always happy to review options around
+this, there has been attempts to help standardize these daughter card
+ecosystems in the past, but none have achieved acceptance.
+
+What we have today is the scheme where we have dts and overlays and
+ability to generate a dtb that stitches the two together in a specific
+order. That is usually requested to be demonstrated to work prior to
+acceptance in upstream. That provides folks at least one specific
+combination of things that is known to work. (testing is a case of
+effort spent by the community to test things - including overlay,
+which is no different from the core dtb). But, yes, there is no do what
+you want and it will just work option today.
+
+> 
+> Just my $0.0000002.
+> 
+> [1] https://www.beagleboard.org/blog/2022-02-15-using-device-tree-overlays-example-on-beaglebone-cape-add-on-boards
+> [2] https://www.beagleboard.org/blog/2022-03-31-device-tree-supporting-similar-boards-the-beaglebone-example
+> [3] https://www.beagleboard.org/blog/2022-06-06-using-the-u-boot-extension-board-manager-beaglebone-boards-example
+
+
+Thank you for sharing your thoughts.
+
+[...]
+
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
