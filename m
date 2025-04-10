@@ -1,183 +1,124 @@
-Return-Path: <devicetree+bounces-165365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B40A84021
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:10:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C95BA84005
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 403974A58F7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:07:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 996EA1718BD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D679426FA68;
-	Thu, 10 Apr 2025 10:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="mcgmNnVk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B12227C868;
+	Thu, 10 Apr 2025 10:01:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C50826FA4F;
-	Thu, 10 Apr 2025 10:06:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A344827C850;
+	Thu, 10 Apr 2025 10:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744279574; cv=none; b=QZguGyxzv1qouZUFhYuZOXuOYqG67RZrbuYCtAS/8Lu87OUBIncWgavHlHn4ES8GHCUb5lDyXRrU6irT7gxSJ/z1cp+70NrZNqIUAODSpCftGtlodqIfi5DSqgDESkjf0Et4fOKSVtsYrHvLiN6JH4R/JQZXqWHJeF8kwR64Tbo=
+	t=1744279306; cv=none; b=Ps3jTr5dB28eUwdJkdX7son8mSvavpJAnHWa5Drbnx3iC5pYMKRVPZxZ1IrVLJG6XzfAdTzc2cZVi9HNELFE9XUdxcwE9+7S2EZLgZgRJq+6z6sOPYoLkaSZsyWuWlXWzip20PSyYCtN6rsJYCRQnootEbflgPebvY3Jkv10P3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744279574; c=relaxed/simple;
-	bh=j2Lix0PbqGcJ+AojNTct2w1fKgg+xU8YgZSdQfGYyQ0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=gNhSqN18l6XrTzl6MhPX3se0yCcR+IN4Y2kruBOmkvgUjU23+kYVqoF1UKiGcLqQ3by2+2WpTbelR+OZIIcyeAxj0RbBu/qtHg9mhi0+xG0sc977McU6Dew7W9OUoN95Xooq5yT95sonvxQ+p41FEIuOlghrbbskRQbdiEjgEfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=mcgmNnVk; arc=none smtp.client-ip=91.207.212.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53A62MMI009620;
-	Thu, 10 Apr 2025 10:55:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=/
-	gRolmKuKuolB7VbWZVEhNf4yILPrIiiDaqW3beae/o=; b=mcgmNnVkLNJH6IeXn
-	5QCWgxX6LVagh758D+Jx3iQSUwsyFA8v5lTjFrQASh2LrU8yvPneYTOQ6+gpeDa3
-	FNoaTJhzq8J7Oh6t9IOSe0uE3Em0uH1MoP6kJwggXjF28D1vWGRBzm1WtnDCQPPq
-	TVvju5EIMchQhieZnC8cczEfQSWqs8lfM4IWhI7BXACeOGmFEcAyht3laEHHbgjb
-	Qd5Q3z0rCppiA3dyGbo9B4/9B9N46mf75RGHCTdZRh9US/W0Cfb7f6sjjjmEgZdh
-	tO9gBVjSR/th/ZKSuQi8ASubrg4SocjcxMQVrgvT1ACVO7vcLStxM4mBmc+6+NYx
-	/N9/w==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 45ttssbgdy-7
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 10 Apr 2025 10:55:21 +0100 (BST)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.6.134) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 10 Apr 2025 10:55:20 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Thu, 10 Apr 2025 10:55:05 +0100
-Subject: [PATCH v6 06/18] drm/imagination: Mask GPU IRQs in threaded
- handler
+	s=arc-20240116; t=1744279306; c=relaxed/simple;
+	bh=9b78sYMlgKV8xbhGsnnU6NEj0KRXsexk+EnRgrPV9zo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZmkpxOIxKWyFDEc8qKKD6WamPfHD927kELy485Z+rbSU/OUoy+rlPYSZG+BDRx30QtJtqyyVT5mwz3JvwCosnjV1ethaQcNkMn2P1iG6FDnml5Gem/rLMU0S7n739+d51fXsB0aPFvmMWwf1svS21z4ovSrCgd0mpMWcEZum7DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5f0c8448f99so1273884a12.1;
+        Thu, 10 Apr 2025 03:01:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744279302; x=1744884102;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3F2NKJ9dNLSl3ARkhxIkJK0rOGADequNLd0IXRv1ebs=;
+        b=XDk4WxN0Mx/M+BRmPQUkBRL5qry2AYccEa1FRETBKOrf5s5Dp3S06P1QDvp5eplpMn
+         OEGOFLJv36UHSB7jx1eZXHinrPtocdkKIni9Eb2nn1tWeoX7MBpIJUpbDmU8g0XfPjuW
+         Ngtacz+GpIdJPjKijY/+4XhuUpIYA5BxXxpKK1yVQ3K20PPXeT3kRipu3LHljzBtMoui
+         fX+UmSBafiOsTFIitHwCmzQ+ZgVbZCBDsTnqIgQOLBeQjYLHL0BJNODxlBJCJZIhGcBP
+         Fj7hwHKvKccnAYvx/o/4eBAO4Wy+mzoqgIjaVC4mxMsu84c9uwlbANBPa99raIcLenFQ
+         /ymA==
+X-Forwarded-Encrypted: i=1; AJvYcCVB9JgUrUKn1eOZcGh+DKIOhZtMaey+7+Dx0HRpd97wDlMLtWHmBCEIW9bh6DCkbFUOOc/flYA5HsdgFODu@vger.kernel.org, AJvYcCVBxMV/IIuyJbsd1+eyguA1lPSpjLltLjHVhWZs8lRY1PDQ5a6DSak6AvZ0c1/ozVSLcSAsQwDaD5GMl5Iz@vger.kernel.org, AJvYcCVgmJEH7j4/TAu9Rz6JG4VRgFVdu6dw4N8dY1pl23e62tGWFgNtki6ESSAbH1vznJjQuoM+XmUe1pejcg==@vger.kernel.org, AJvYcCW/xPyQJB6HrVsBhZwt0nKHbPUrkJR6PkacnpmqpWgJnLCIoq29e5Ydz0s0HBmIwfHbwJGX6UuxC6/b@vger.kernel.org, AJvYcCXW82NCKlqUo0pKSvDFq9kzSF8gGNKiY0dpA6EbPn01LLumxxT6IcxaIEMS5989FzMaN6Q7mXvMejeP1Yex9kT4FrM=@vger.kernel.org, AJvYcCXc/Luu+NMR2/jD2qsBaaEtA8QPEReuLUXDOCYKZPP36XuYykbD+qdDOoA8ozVYLu3YcG++5n5Uz2/0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0Fya05jVZxNQHvoMiqxa0wvz6Zzz1OWSHJVBm+WoVFrbSAhvH
+	ppczHXTdXdrOGix4s9hgBeFGqgigJamijmSCRVGEmGrj1q5UfX74Etk11Kdo1Oo=
+X-Gm-Gg: ASbGncuQLdf5D6zme7m0drbMsCApWBdvg4m0x+jXhBVnhZi/Im1JbNe1eQ8jlV6XFDn
+	ORiIQvExRJCvzi/3rexvMJ03kpKOveYRhCVheCN+f1Jg+1Mzg4K9KTHO5H8caB/tUcNFoHNCxmS
+	5PJKiTy85Q9oip7IDlg/E7xiJcQaItO2j55tIrJc865iXRnzCYjL1nkkdv9Z2liAgHGdI+MM5mg
+	w6u8d/hjRB2mt5MwgsKeDBzY0XMrivljrSbXcWfGPkc9Ejkm4yqD9lcvcIlxd0YdfZhR+Fw2GHN
+	VkNH2e1kyl/pAZ0ujRp4ojieRuZpv58oVC1BuP4j/+SBPm6+0rF0u8tE09sgYtENLjIMog3j4ma
+	Ndzw=
+X-Google-Smtp-Source: AGHT+IEFrTLNQPfXz1mp8f92xYtXrhIRRdb7ZcNLyKRlx2dfbTxo8MRLNtb6jNbIjIjkmXRlsSFgPw==
+X-Received: by 2002:a17:906:f585:b0:ac3:9587:f2ac with SMTP id a640c23a62f3a-acabd24cb50mr191576566b.33.1744279301862;
+        Thu, 10 Apr 2025 03:01:41 -0700 (PDT)
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com. [209.85.208.48])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1bb3513sm247952966b.11.2025.04.10.03.01.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 03:01:38 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so1034688a12.2;
+        Thu, 10 Apr 2025 03:01:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU7mXlDrvRwvyguq0Kk1L8BtiqRpjWLIpd0yV87IuXrxOId1vneyr9IZpNizqN9K/FFg5sOvwnQetka@vger.kernel.org, AJvYcCUEKJIUTfQVW9E/J948HtHeh12sTUc1QAc92rDE4HVMKhHm1SLbVOI/Ti5yAoKDNxQ5c5/WqztLHfYmASjR@vger.kernel.org, AJvYcCUXqdIwdtccZvjpxWGyBdEKuMq1TWbXflCeYJ1lUmw/t1MVnHuS5Gcusr4jvYyhivfnTnh7NuVyYGl8@vger.kernel.org, AJvYcCX3JR4QhTBdydenr3//sbADmFcILTDBkW77wt+OXf2F6dL6fCGE0i+hzEVbr538Ks3ptVhqeJa4D1rurJRFTD3m9fg=@vger.kernel.org, AJvYcCXjLZI35mgOkp8GWeHWUZhRRDVDJnQlx56nEzN9h7tpTklYV5VlXL9PFW9S4A+o4CtZk98TdW+rRk+2BHXu@vger.kernel.org, AJvYcCXjrZm+cDJL0in2mHh1dgn3qsUzuC9dJnIOvPbrsTTSnTYBSR9YSmIoB/Yuci21XVsokHPMB0kVQL6sOQ==@vger.kernel.org
+X-Received: by 2002:a17:907:9692:b0:ac7:ecea:8472 with SMTP id
+ a640c23a62f3a-acabd206311mr163848966b.26.1744279297800; Thu, 10 Apr 2025
+ 03:01:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250410-sets-bxs-4-64-patch-v1-v6-6-eda620c5865f@imgtec.com>
-References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
-In-Reply-To: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
-To: Frank Binns <frank.binns@imgtec.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        "Michal
- Wilczynski" <m.wilczynski@samsung.com>,
-        Alessio Belle
-	<alessio.belle@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2612;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=vecjZhg7SN4KmIZe97DRW0T/wjjhYdfJmFTLlsweF5g=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMaR/n9qYv36i0/WdOS/tFxTzhmyXlD/4wvjwswWqthZ/X
- vqHHLl1vqOUhUGMg0FWTJFlxwrLFWp/1LQkbvwqhpnDygQyhIGLUwAmImbF8FdAlsknZf7C4MCC
- m+3bXnLmfNY8d2Jtncgb240iu3/e5lnI8L+0rivyvmLYC/53gVeOJuhyz1G3/uGe7T/36S/ZhPA
- p99gA
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-ORIG-GUID: 7sSARk4LlDgG1MdWiATfLEs-WalYEdAH
-X-Authority-Analysis: v=2.4 cv=I7hlRMgg c=1 sm=1 tr=0 ts=67f79589 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=UtEzwyU9vMAA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=MXbv0OSQah28ATDbmwsA:9
- a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: 7sSARk4LlDgG1MdWiATfLEs-WalYEdAH
+References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407191628.323613-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250407191628.323613-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Apr 2025 12:01:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXTDMZvVieaTsuPYKjVaK5tFnT_5Pcx7zeRQ6j5vW=C2g@mail.gmail.com>
+X-Gm-Features: ATxdqUFnFS8ru0MA_-DyWlGEfk_lZ9qfaotati6OchDHxwVypNec4oWk2u6TNGc
+Message-ID: <CAMuHMdXTDMZvVieaTsuPYKjVaK5tFnT_5Pcx7zeRQ6j5vW=C2g@mail.gmail.com>
+Subject: Re: [PATCH v2 09/12] dt-bindings: pinctrl: renesas: Document RZ/V2N SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Alessio Belle <alessio.belle@imgtec.com>
+On Mon, 7 Apr 2025 at 21:16, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add documentation for the pin controller found on the Renesas RZ/V2N
+> (R9A09G056) SoC. The RZ/V2N PFC differs slightly from the RZ/G2L family
+> and is almost identical to the RZ/V2H(P) SoC, except that the RZ/V2H(P) SoC
+> has an additional dedicated pin.
+>
+> To account for this, a SoC-specific compatible string,
+> 'renesas,r9a09g056-pinctrl', is introduced for the RZ/V2N SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2:
+> - Dropped `renesas,r9a09g056-pinctrl.h` header file.
 
-Pass IRQF_ONESHOT flag to request_threaded_irq(), so that interrupts will
-be masked by the kernel until the end of the threaded IRQ handler. Since
-the calls to pvr_fw_irq_enable() and pvr_fw_irq_disable() are now
-redundant, remove them.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-pinctrl for v6.16.
 
-Interrupts to the host from the soon-to-be-added RISC-V firmware
-processors cannot be masked in hardware. This change allows us to continue
-using the threaded handler in GPUs with a RISC-V firmware.
+Gr{oetje,eeting}s,
 
-For simplicity, the same approach is taken for all firmware processors.
-
-Signed-off-by: Alessio Belle <alessio.belle@imgtec.com>
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-Reviewed-by: Frank Binns <frank.binns@imgtec.com>
----
-Changes in v6:
-- Add Frank's Rb
-- Link to v5: https://lore.kernel.org/r/20250326-sets-bxs-4-64-patch-v1-v5-6-e4c46e8280a9@imgtec.com
-Changes in v5:
-- None
-- Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-6-d987cf4ca439@imgtec.com
-Changes in v4:
-- None
-- Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-6-143b3dbef02f@imgtec.com
-Changes in v3:
-- Added
----
- drivers/gpu/drm/imagination/pvr_device.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/imagination/pvr_device.c b/drivers/gpu/drm/imagination/pvr_device.c
-index 1704c0268589bdeb65fa6535f9ec63182b0a3e94..b6ce936f07c8bb26d240e50b72a1d991dbe4b045 100644
---- a/drivers/gpu/drm/imagination/pvr_device.c
-+++ b/drivers/gpu/drm/imagination/pvr_device.c
-@@ -169,8 +169,6 @@ static irqreturn_t pvr_device_irq_thread_handler(int irq, void *data)
- 		ret = IRQ_HANDLED;
- 	}
- 
--	/* Unmask FW irqs before returning, so new interrupts can be received. */
--	pvr_fw_irq_enable(pvr_dev);
- 	return ret;
- }
- 
-@@ -181,10 +179,6 @@ static irqreturn_t pvr_device_irq_handler(int irq, void *data)
- 	if (!pvr_fw_irq_pending(pvr_dev))
- 		return IRQ_NONE; /* Spurious IRQ - ignore. */
- 
--	/* Mask the FW interrupts before waking up the thread. Will be unmasked
--	 * when the thread handler is done processing events.
--	 */
--	pvr_fw_irq_disable(pvr_dev);
- 	return IRQ_WAKE_THREAD;
- }
- 
-@@ -213,9 +207,13 @@ pvr_device_irq_init(struct pvr_device *pvr_dev)
- 	pvr_fw_irq_clear(pvr_dev);
- 	pvr_fw_irq_enable(pvr_dev);
- 
-+	/*
-+	 * The ONESHOT flag ensures IRQs are masked while the thread handler is
-+	 * running.
-+	 */
- 	return request_threaded_irq(pvr_dev->irq, pvr_device_irq_handler,
- 				    pvr_device_irq_thread_handler,
--				    IRQF_SHARED, "gpu", pvr_dev);
-+				    IRQF_SHARED | IRQF_ONESHOT, "gpu", pvr_dev);
- }
- 
- /**
+                        Geert
 
 -- 
-2.49.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
