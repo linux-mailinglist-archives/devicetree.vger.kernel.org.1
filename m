@@ -1,102 +1,217 @@
-Return-Path: <devicetree+bounces-165402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FE8EA8423E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:58:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4E0A84259
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:01:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E468B7A7D27
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:57:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5ACEE19E374E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333F728A3EA;
-	Thu, 10 Apr 2025 11:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF23B283C98;
+	Thu, 10 Apr 2025 12:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yu3YMy69"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="iL7nbcUu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB25E284B41;
-	Thu, 10 Apr 2025 11:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C39FD2836B9
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 12:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744286129; cv=none; b=rqFv+NeCq516fnyArLp++7W4PI1aPWgc7V18sysJrsOKtPBHsC6CdiFc9SLx7UlZQjCbwqK2tmg9XiIPQyKDwb3/3s7GMQ+Nw+w0nbt8TwqP76Km3/z+5CViN1D02QieOE5PzKp+s+tJPHbQeHa3p8yiWt7aZcI7vtlfZgrOA1A=
+	t=1744286489; cv=none; b=rGC39YhT/a6U7ssUcEeGp4MP+PKdlyhjXRaTBNjhYbqwUFwfPpQGx85vA2PSD0rLYYB4pbVNn3VXbxJs1c5ClL275XUv59YAMm0HT5A2yY67XjYEYOX4TKqaUYKdKjvl+pRMHctqY6Xv+GRZnH1EjfAVAKvYfBN04QfMnfSvQ+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744286129; c=relaxed/simple;
-	bh=44mkjIR7pjgJknW4oYteunNsO6k7W41ROQuF095Di9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ua2WzlTJqWy59KwtgZxikZpCh6ShmhtCi0dMZoQsKzmdgLr1s1LexVMBJ2khzuJiPvMbv6H+Jt2LO9jIKlDw1oSUds1i3b1EaM9Jajni58/vOT+bVCJzPx6t66SJ3YgS9zYEcXyUy+na6qDrVXT2l6lewcEJadm59M81/bql7QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yu3YMy69; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59FECC4CEDD;
-	Thu, 10 Apr 2025 11:55:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744286128;
-	bh=44mkjIR7pjgJknW4oYteunNsO6k7W41ROQuF095Di9k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yu3YMy69SBaEHcwWB/bBSwo3+G/+eWT8dZvarlELXzx0YoyU6a0z/7gBdef0RX/Xu
-	 x1IKkEAKcQiTwHEtCxT493es7kzZ3l/cZ7EbZqjJNZ4XRd0FyFGiSicD+I0Kjr4t0s
-	 +qmv0/zcdQnzPhdiz7Tkm5kypacjj+mxTD+Sa7TNIpflAcoHfVILNjMkhPwyNRGU7f
-	 ncui0uhN/3PGyY0hF/Pdrsclys/cd/ZEg39idVkD5kHUYzjSj7Rlcq2NA/WXe+w6GE
-	 sZnbIT+zbOygAzLwyBoO6EWl5lzNOksM3e3hIzMF2rs8NdnVQ5Eu8lFdEAy4bk7jSD
-	 OUTolvWxkJuyA==
-Date: Thu, 10 Apr 2025 12:55:21 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
-	lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
-	tiwai@suse.com, gregkh@linuxfoundation.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v38 00/31] Introduce QC USB SND audio offloading support
-Message-ID: <abd7861d-7a70-4e91-8a21-f79d3dd2fccb@sirena.org.uk>
-References: <20250409194804.3773260-1-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1744286489; c=relaxed/simple;
+	bh=8aKH3DYFXObiPNEfF4VluDyh0rfCmk2SNK5Buc2hyeo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SwPE4Vg7b8L6GMbSYOf2K5KKpjUJLeHCdiL8z8JZRspKYfX41kDnfxxNeyA9YNtaQAukNs7zz26xJUBUWquTAjgwwfwnst+B7bleVlSOP9yde2Lfx53z6slCiqpzkM05hWxyR6RVx88xkWYpLVee1es/iXpvw1BqKLJX5TF/SoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=iL7nbcUu; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744286486;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=w9wD4CHs9nQd9+31B+aaGfzekonlDYHicg/bIUqSeTk=;
+	b=iL7nbcUuVSgi/mYCCNcAu+Vaqnv4NJ7xbMnLW7IDnk/XIMNnotJ3tvnkt55xhcsMCr3XAg
+	73YVNPOqPTH5aCEsZ0iah/iO7vELAYLPN0b1ExMpxe+dvCCP09LcjwSI3tGnzfeg3eAq8L
+	IksKQbp8NKfJvJRCAegenCO4ZA/ElAw=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-319-aX7JGYKDM--MYmheBJ358Q-1; Thu,
+ 10 Apr 2025 08:01:20 -0400
+X-MC-Unique: aX7JGYKDM--MYmheBJ358Q-1
+X-Mimecast-MFC-AGG-ID: aX7JGYKDM--MYmheBJ358Q_1744286478
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id B9A33180034D;
+	Thu, 10 Apr 2025 12:01:17 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id E45883001D0E;
+	Thu, 10 Apr 2025 12:01:12 +0000 (UTC)
+Message-ID: <6facfb1d-eafa-432c-9896-321ea9cd9a88@redhat.com>
+Date: Thu, 10 Apr 2025 14:01:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/zWocYay+0q0iG5Y"
-Content-Disposition: inline
-In-Reply-To: <20250409194804.3773260-1-quic_wcheng@quicinc.com>
-X-Cookie: You will be awarded some great honor.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/28] mfd: zl3073x: Add components versions register defs
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407172836.1009461-6-ivecera@redhat.com>
+ <a5d2e1eb-7b98-4909-9505-ec93fe0c3aac@lunn.ch>
+ <22b9f197-2f98-43c7-9cc9-c748e80078b0@redhat.com>
+ <5af77349-5a76-4557-839b-d9ac643f5368@kernel.org>
+ <40239de9-7552-41d1-9ee4-152ece6f33bc@redhat.com>
+ <138d0e3c-ccab-48e2-b437-aec063d1d2dc@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <138d0e3c-ccab-48e2-b437-aec063d1d2dc@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
 
---/zWocYay+0q0iG5Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, Apr 09, 2025 at 12:47:33PM -0700, Wesley Cheng wrote:
-> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
+On 10. 04. 25 12:42 odp., Krzysztof Kozlowski wrote:
+> On 10/04/2025 12:23, Ivan Vecera wrote:
+>>
+>>
+>> On 10. 04. 25 9:11 dop., Krzysztof Kozlowski wrote:
+>>> On 09/04/2025 08:44, Ivan Vecera wrote:
+>>>> On 07. 04. 25 11:09 odp., Andrew Lunn wrote:
+>>>>> On Mon, Apr 07, 2025 at 07:28:32PM +0200, Ivan Vecera wrote:
+>>>>>> Add register definitions for components versions and report them
+>>>>>> during probe.
+>>>>>>
+>>>>>> Reviewed-by: Michal Schmidt <mschmidt@redhat.com>
+>>>>>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>>>>>> ---
+>>>>>>     drivers/mfd/zl3073x-core.c | 35 +++++++++++++++++++++++++++++++++++
+>>>>>>     1 file changed, 35 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
+>>>>>> index 39d4c8608a740..b3091b00cffa8 100644
+>>>>>> --- a/drivers/mfd/zl3073x-core.c
+>>>>>> +++ b/drivers/mfd/zl3073x-core.c
+>>>>>> @@ -1,10 +1,19 @@
+>>>>>>     // SPDX-License-Identifier: GPL-2.0-only
+>>>>>>     
+>>>>>> +#include <linux/bitfield.h>
+>>>>>>     #include <linux/module.h>
+>>>>>>     #include <linux/unaligned.h>
+>>>>>>     #include <net/devlink.h>
+>>>>>>     #include "zl3073x.h"
+>>>>>>     
+>>>>>> +/*
+>>>>>> + * Register Map Page 0, General
+>>>>>> + */
+>>>>>> +ZL3073X_REG16_DEF(id,			0x0001);
+>>>>>> +ZL3073X_REG16_DEF(revision,		0x0003);
+>>>>>> +ZL3073X_REG16_DEF(fw_ver,		0x0005);
+>>>>>> +ZL3073X_REG32_DEF(custom_config_ver,	0x0007);
+>>>>>> +
+>>>>>>     /*
+>>>>>>      * Regmap ranges
+>>>>>>      */
+>>>>>> @@ -159,10 +168,36 @@ EXPORT_SYMBOL_NS_GPL(zl3073x_dev_alloc, "ZL3073X");
+>>>>>>     
+>>>>>>     int zl3073x_dev_init(struct zl3073x_dev *zldev)
+>>>>>>     {
+>>>>>> +	u16 id, revision, fw_ver;
+>>>>>>     	struct devlink *devlink;
+>>>>>> +	u32 cfg_ver;
+>>>>>> +	int rc;
+>>>>>>     
+>>>>>>     	devm_mutex_init(zldev->dev, &zldev->lock);
+>>>>>>     
+>>>>>> +	scoped_guard(zl3073x, zldev) {
+>>>>>
+>>>>> Why the scoped_guard? The locking scheme you have seems very opaque.
+>>>>
+>>>> We are read the HW registers in this block and the access is protected
+>>>> by this device lock. Regmap locking will be disabled in v2 as this is
+>>>
+>>> Reading ID must be protected by mutex? Why and how?
+>>
+>> Yes, the ID is read from the hardware register and HW access functions
+>> are protected by zl3073x_dev->lock. The access is not protected by
+> 
+> Please do not keep repeating the same. You again describe the code. We
+> ask why do you implement that way?
+> 
+>> regmap locking schema. Set of registers are indirect and are accessed by
+>> mailboxes where multiple register accesses need to be done atomically.
+> 
+> regmap handles that, but anyway, how multiple register access to ID
+> registers happen? From what module? Which code does it? So they write
+> here something in the middle and reading would be unsynced?
 
-Acked-by: Mark Brown <broonie@kernel.org>
+OK, I'm going to try to explain in detail...
 
-I have been keeping an eye on this as it's been going past but never
-managed to find the time and sit down to review the whole thing en masse
-- what I've been looking at looks OK, I just didn't look through the
-whole series as a full piece.
+The device have 16 register pages where each of them has 128 registers 
+and register 0x7f on each page is a page selector.
 
---/zWocYay+0q0iG5Y
-Content-Type: application/pgp-signature; name="signature.asc"
+Pages 0..9 contain direct registers that can be arbitrary read or 
+written in any order. For these registers implicit regmap locking is 
+sufficient.
 
------BEGIN PGP SIGNATURE-----
+Pages 10..16 contain indirect registers and these pages are called 
+mailboxes. Each mailbox cover specific part of hardware (synth, DPLL 
+channel, input ref, output...) and each of them contain mailbox_mask 
+register and mailbox_sem register. The rest of registers in the 
+particular page (mailbox) are latch registers.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmf3sagACgkQJNaLcl1U
-h9BlOQf+PWeo8Hynxe91uIIrJSTfuERxNvZ1HRUqPMKkURxYTRpth87Y6ZxZLg87
-VfPrmdvDQrWUNxxUGDp0mnXaY3Y3UThA2VW0DyenTqszWWmCXnRgtOdOR0d6Vhko
-KYWBQtBsDlticj3MN4ZURMYjja6hQiLlxLD4yo7UCtXEnBPjxI/aXuGPTLfSplro
-Ah42pk9RyPGzNIyysQDrTAV62NzNxhrvADXTuXCErpGTImGoQlQc5GJF7jA9VQAQ
-Sj5AW7L2Mu+3j/HacwSvTrYyieb5BSCQtdGM/IBIp0JDjhMeteNluItqAMMnZfjq
-zfrSfMooXxcEuPvJ8fJkHrOzsoUISQ==
-=iANO
------END PGP SIGNATURE-----
+Read operation (described in patch 8 in this v1 series):
+E.g. driver needs to read frequency of input pin 4:
+1) it set value of mailbox_mask (in input mailbox/page) to 4
+2) it set mailbox_sem register (--"--) to read operation
+3) it polls mailbox_sem to be cleared (firmware fills latch registers)
+4) it reads frequency latch register (--"--) filled by FW
 
---/zWocYay+0q0iG5Y--
+Write is similar but opposite:
+1) it writes frequency to freq latch register (in input mb)
+2) it set value of mailbox_mask
+3) it set mailbox_sem to write operation
+4) it polls mailbox_sem to be cleared (write was finished)
+
+Steps 1-4 for both cases have to be done atomically - other reader 
+cannot modify mailbox_sem prior step 4 is finished and other writer 
+cannot touch latch registers prior step 4 is finished.
+
+The module dpll_zl3073x (later in this series) and ptp_zl3073x (will be 
+posted later) use this intensively from multiple contexts (DPLL core 
+callbacks and monitoring threads).
+
+So I have decided to use the custom locking scheme for accessing 
+registers instead of regmap locking that cannot guarantee this atomicity.
+
+Would it be better to leave implicit regmap locking scheme for direct 
+registers and to have extra locking for mailboxes? If so, single mutex 
+for all mailboxes or separate mutex for each mailbox type?
+
+Thanks,
+Ivan
+
 
