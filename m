@@ -1,119 +1,138 @@
-Return-Path: <devicetree+bounces-165618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3297A84C4E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 20:44:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C1FA84C5A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 20:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D79A9A1318
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FC759A3CD7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 18:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1203B28EA4C;
-	Thu, 10 Apr 2025 18:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D894F28F932;
+	Thu, 10 Apr 2025 18:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="M0hUkb8I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4726328EA4A
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 18:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040C328EA6A
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 18:44:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744310607; cv=none; b=W0q3aChSM9xX/hbPkWov5hC96tn3dUuTcQB3FLL4G+3BzAbw17KP7dvm3GrfWau51CIm/0WVFJXt0lqfSVyBI4l7nhU9XOmZaggyXaymvLUdNGqRxP76iS6e1LS7zYtTcTx4+Dbby00hr52yQwqW2rM9Md3pYQcKoC9HepH7vnk=
+	t=1744310685; cv=none; b=hlosu4fmYg2BWV3mztlp/LIBwmGXMFzZzQFqxcgO+0ghibsq8nI8ICahScFij9VQsb5guuQSmmprYLL3TrUoOmXHOEikFd1KybFd3Q3bFfg+fdyPIYSMLFJjsBM92ujz76Cg7z0K3VRvOYK5PZWr8EDFMLngHDy0EH/wDwiD6UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744310607; c=relaxed/simple;
-	bh=wLmrLuGso/E6VTZWxwck/fJMS6jpZqNyrtnxiPHATSI=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VfqGGrZZmLCDTTXSAWcUqTdMiEJiY0HuFirc5RUOaW5zBLL546zr2RoAd1C7DAVVamdUAq/v5X3G9tVg8q/Jz4Ar0WvA2BOIFoEqCeTVuqfPVbEg4sdbMrKLecLufMLI1hAQ5OjkukSe11URQzKbx5tmvlzSCo4q6fa/h3iA7nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-26-232.elisa-laajakaista.fi [88.113.26.232])
-	by fgw22.mail.saunalahti.fi (Halon) with ESMTP
-	id acba84e4-163b-11f0-9b8d-005056bdf889;
-	Thu, 10 Apr 2025 21:43:20 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 10 Apr 2025 21:43:19 +0300
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 05/12] regmap: irq: Remove unreachable goto
-Message-ID: <Z_gRR33vGZpIDXmH@surfacebook.localdomain>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-5-7a2535876e39@bootlin.com>
- <1b280408-888e-48e1-8e6b-de4e7a913e74@sirena.org.uk>
- <Z_aUeKm0k1zReS_D@smile.fi.intel.com>
- <7126e672-a829-489e-a0c0-8d6d64a8b2f4@sirena.org.uk>
- <Z_aZmJxPwIBgcwhG@smile.fi.intel.com>
- <28982424-d425-47c3-b910-58c787e13510@sirena.org.uk>
- <Z_akNogB_TkXcS37@smile.fi.intel.com>
- <asjb2gjqpohtq2cyn3pll6nabbymd2o3jg723eloog6znwruo3@47wewlrtom5h>
+	s=arc-20240116; t=1744310685; c=relaxed/simple;
+	bh=KpyRu/5uzXa1GVCDyLIp/yfkb+u4/vjS1H4M3fliUd0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GqSkQ3gZDU5HpsC0mXcZ43sRkpo4SGvE2GZuV0uFKxQFue0BnbVkdoceuPKxix6xc7fV7OtBuDwifyiXsl4OeBjFYQa29c6DRN/dMI/KgVv2CiNaAkokPEB2UyI1nzdSFcgN2CfGHSDbcazfPa+5BtNB7O7dAve0ls5lACCmz4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=M0hUkb8I; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-2c76a1b574cso393007fac.2
+        for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 11:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1744310683; x=1744915483; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HRVVDW9J76JqylGutlcZ0/5veoOuiZW2PZ5wT20D9wQ=;
+        b=M0hUkb8IJRGC1tx8fNtgkI27W1Ejyopc/hu6Ec/5iKjMRr2xpYJVkFm4JgVzxuBR9b
+         Kt9EKhsBnkxF03g7yPXnyTWcYpU2DSqhDi9e/twmFrg0XDemYTAwhfcq/d7Ey2yRXNzd
+         wCkfQeK3Ey4TSvmx8ys258yz2ygasHw5bu24c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744310683; x=1744915483;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HRVVDW9J76JqylGutlcZ0/5veoOuiZW2PZ5wT20D9wQ=;
+        b=ZDqJFWdap4aTuakxP6LhBKx8mIrE2BrWnpgKjIrvz0kJTa2ieKs14rehEqoTu1n+gb
+         GgfFXYLaFrNELKk7/r0iFmoiLM6S4qkbvLQzwDFzLJy09TtZiy9syj4YC1qU4oKCcrHH
+         UejuVGcsbeCg0w2q7EIGkh7s31YZEriLems4DFe/k7EkiMO9mak1wNySSJbdcBbdtHtm
+         Xp+wVYDv460AWCnhsOUiMWeMB8IiRN5lPt3WxLzCWKO7YV5FnlSBchV/SkBuQl3UYaep
+         gAfBmHOJAIpESCTQz65Ai+FM7xReIykvTx+tde8Xcx2gmblt7j/uG7gvZ9oY9FEJe+Ql
+         VDQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWiFtUhrUXYMOoXLjdATXtqSEr9Iotb8VFyLoAUVIaUiHkh9FrAPNqDvdN1FdfYRZhwQSY4ThuiyGgh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGZsfg3sPUx5O8+TnRT29IZ7otZRlKaYbcGIPSYpaH6Dwstdwv
+	vzgJ6YLxOyRvmslbtCPAX72w8sY7DlStA0QXLaOhZ0kzn2ZBN4tSWouQ2+mNUw==
+X-Gm-Gg: ASbGncvWcqmYf+wyuEfIma9SCjMwB5Tz0FiVt0vr00uDDOtxWR1BQE/sY/oTvomZxxT
+	aQ9qX9tjhEynxfv+8+znae0dwXbNuO9GDK80FDCniclWcMbsMCXkdTGI9x4D49lDGrT29j7jFgK
+	GmV6Av8BD1U39eRu/ujo8yJhwPVkpssnrCt6sa0A44ZKNe56YpVISN1UILg75DwaRpuWSZuNBCf
+	L42Hr6yjhH094RC05q0fsGHpC4vN4KAdMy20vzMVOwCzR68sJMYO8t/CaIVuxJi6n3sdfoJ20BT
+	po5wYH4YJ1zeXTAdpM7F/wkEjP4U0fmEejdluZXS6JaVYpRPnvYTOdprQdwCTg8W8vBMC0+zYtW
+	cygwLPr+7lg==
+X-Google-Smtp-Source: AGHT+IEyARd46f8Z+T3XUj4EtN2OgIy/eEG+61sY650PaxPU2j+xPISU0eje/zg6UkuoVB2yg0LwKQ==
+X-Received: by 2002:a05:6870:b024:b0:29f:97af:a1a0 with SMTP id 586e51a60fabf-2d0b386de21mr1873388fac.24.1744310682914;
+        Thu, 10 Apr 2025 11:44:42 -0700 (PDT)
+Received: from [10.69.70.230] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2d0969589basm776184fac.19.2025.04.10.11.44.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Apr 2025 11:44:42 -0700 (PDT)
+Message-ID: <e0e7952b-a308-4fb7-8af6-d4802e7a5080@broadcom.com>
+Date: Thu, 10 Apr 2025 11:44:40 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <asjb2gjqpohtq2cyn3pll6nabbymd2o3jg723eloog6znwruo3@47wewlrtom5h>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add support for bcm74110
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: florian.fainelli@broadcom.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, jassisinghbrar@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20250404222058.396134-1-justin.chen@broadcom.com>
+ <20250404222058.396134-2-justin.chen@broadcom.com>
+ <b32aa644-6984-476b-abc0-a5416f551bba@kernel.org>
+ <9088acd0-4650-4b10-88f9-6b6c0b1f9978@broadcom.com>
+ <8abcf2bf-77cb-4380-bdc4-95c3796a96f0@kernel.org>
+Content-Language: en-US
+From: Justin Chen <justin.chen@broadcom.com>
+In-Reply-To: <8abcf2bf-77cb-4380-bdc4-95c3796a96f0@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Wed, Apr 09, 2025 at 10:16:40AM -0700, Dmitry Torokhov kirjoitti:
-> On Wed, Apr 09, 2025 at 07:45:42PM +0300, Andy Shevchenko wrote:
-> > On Wed, Apr 09, 2025 at 05:32:55PM +0100, Mark Brown wrote:
-> > > On Wed, Apr 09, 2025 at 07:00:24PM +0300, Andy Shevchenko wrote:
-> > > > On Wed, Apr 09, 2025 at 04:46:04PM +0100, Mark Brown wrote:
-> > > 
-> > > > > unreachable() just annotates things, AFAICT it doesn't actually
-> > > > > guarantee to do anything in particular if the annotation turns out to be
-> > > > > incorrect.
-> > > 
-> > > > I;m not sure I follow. unreachable is a wrapper on top of
-> > > > __builtin_unreachable() which is intrinsic of the compiler.
-> > > 
-> > > > https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html#index-_005f_005fbuiltin_005funreachable
-> > > 
-> > > That just says that the program is undefined if we get to the
-> > > __builtin_undefined() and documents some behaviour around warnings.  One
-> > > example of undefined behaviour would be doing nothing.
-> > 
-> > Theoretically yes, practically return after a BUG() makes no sense. Note,
-> > that compiler effectively removes 'goto exit;' here (that's also mentioned
-> > in the documentation independently on the control flow behaviour), so
-> > I don't know what you expect from it.
+
+
+On 4/7/25 11:05 PM, Krzysztof Kozlowski wrote:
+> On 07/04/2025 22:57, Justin Chen wrote:
 > 
-> So unreachable() sometimes lears to weird behavior from compiler, for
-> example as mentioned here where we ended up removing it to prevent
-> miscompilations:
 > 
-> https://lore.kernel.org/all/20241010222451.GA3571761@thelio-3990X/
+>> from v2 of my patch was copied from said generated DTS.
+>>
+>> Apologies as I navigate through the different yaml keywords here. The HW
+>> isn't changing, I am just struggling with representing the HW using the
+>> different keywords. And the different implications of using said keywords.
+>>
+>> Here is what I have for v4.
+>>        items:
+>>          - description: RX doorbell and watermark interrupts
+>>          - description: TX doorbell and watermark interrupts
+>> +    description:
+>> +      RX interrupts are required to notify the host of pending messages. TX
+>> +      interrupts are optional. The TX doorbell interrupt is not used by the
+>> +      host, but watermark interrupts may be used to notify a host
+>> waiting on
+>> +      a full out queue.
+> What does it mean optional? Board decides on SoC connections? Given SoC
+> is fixed isn't it?
+> 
 
-How does it affect the BUG()?
+Maybe I misunderstand optional here. We have optional from the SoC 
+perspective and optional from a driver perspective. I was thinking if we 
+have a HW feature that the software may choose to use, it is considered 
+optional. If that is not the correct understanding, I can make 
+adjustments. I will remove minItems, which from understanding, means 
+both IRQs are required.
 
-From your link:
-"I tested using BUG() in lieu of unreachable() like the second change
- I mentioned above, which resolves the issue cleanly, ..."
+Thanks,
+Justin
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+> Best regards,
+> Krzysztof
 
 
