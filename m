@@ -1,119 +1,135 @@
-Return-Path: <devicetree+bounces-165386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6EB8A840E9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:38:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0429A840E1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 12:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0123D189C45A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:39:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58DBA8A6FAF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 10:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2051626E158;
-	Thu, 10 Apr 2025 10:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="z7kV0aTq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56EEE281349;
+	Thu, 10 Apr 2025 10:35:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3758BBA33;
-	Thu, 10 Apr 2025 10:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.75
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B94280CFB
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 10:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744281531; cv=none; b=GXeZFo+EyaRsVoq1mSN4lBk12/J+ltEYyAiHTEcHQRW26IRYKClmoGqDkBimygxcQW6LEQhmIzxG9K8jH+f2TI6YYfkT+Kd+rvI+uBFV0imC4R4ArLD7ZPH8mOzvz2c4l2p8qS4KYRigVBDm84b4Fwsql+DAJEXW80FX5hLgTm0=
+	t=1744281318; cv=none; b=jWnGqlI6/PzdITA9SD+3v42WdfIH5n27FhlfJs402WK2t1sul8ORahrvzoC/FdBbLMZSmaSfZ2qzCQPZy2EvJctS8SV1RJ0okIrc5KeUNuuzy5Wyzh/wp885mjHY4cOynJ8gxWretbm9VqsnzHv7RSswBj8hzVbXho29u2fDTfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744281531; c=relaxed/simple;
-	bh=c5XTT4qEHGgCMYa1z33NO+JggFBj56sKwgHQpQ/tYR4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lN3mQAGlsu3Fv03SkJnviIwPPS61DccVDS/Op56PtZvPdQEZ0phbQ7hiymV6p2y60MI7BXhJe8FLxFcqF9cxUmupEbJ5vZG8NRJdaykAZb/W3QI2vNjWBmMRZjyTIKpz6AhJqkuVxC/vGQMJU6CwUpU4F+SvKqoYw0716fiqUZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=z7kV0aTq; arc=none smtp.client-ip=217.72.192.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1744281526; x=1744886326;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=c5XTT4qEHGgCMYa1z33NO+JggFBj56sKwgHQpQ/tYR4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=z7kV0aTqBMLaRHnzg2mM92FPkV4FNBMKb62vbyE6Cspsm574APLbsyqLL0U5Ivb9
-	 m82aWivXCGDYf59p/jKmZ0Af5ZE0aXBlm/g/n8/axMT1Ee2V+6FVOL08jUJouSsnF
-	 gl/42DwYUSP2tqhGQx7Qdlm9bWg1yu4PZuXfuMlFlCklr15iVkeU3VD0gv4Gjri71
-	 4BxT+pgE3bY51/z+zoqh0eKSlZhKjJbcckLlW8pFHYYW5DN1KIBPQx6vigg5NlTLN
-	 ahlWlci2oyKOc1o3yVrBV3I4g/5ci7BdatOqTLN4WpXQv0RD8CqFSdZEA/VI0gbDV
-	 AZCnjKiMPJBMtv8YUg==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.152] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MDPuq-1tsP5J1QW6-006gvS; Thu, 10 Apr 2025 12:33:15 +0200
-Message-ID: <44eb1bf8-55b2-4185-a4ac-fe41bfdb71eb@oldschoolsolutions.biz>
-Date: Thu, 10 Apr 2025 12:33:14 +0200
+	s=arc-20240116; t=1744281318; c=relaxed/simple;
+	bh=P6qo8qAHeJPS2kB9aX7XoqA5Cr9gFdS6Ku0Dtv4Opmo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CtrrTq1bsQ8YlgBnMFvwQRVWiS2H7GyTe1JbXb/p/uCYbuLIdlFdhP+6xNYeLnNz67y6fr4MeONMs7MRGR9xDKy2XgLsGPqI96nDmyua0EgCwDGlpEYOYwSu21qmN42Qt2XkCt0sRCmqRtyB2rWncK6cqUdfndEVNACDG7UIios=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2pFS-0004gX-AB; Thu, 10 Apr 2025 12:35:06 +0200
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2pFR-004Fts-2i;
+	Thu, 10 Apr 2025 12:35:05 +0200
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1u2pFR-002dX6-2R;
+	Thu, 10 Apr 2025 12:35:05 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 0/3] clk: add support for TI CDCE6214
+Date: Thu, 10 Apr 2025 12:34:55 +0200
+Message-Id: <20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-hp-x14: drop bogus USB retimer
-To: Johan Hovold <johan+linaro@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
- Stephan Gerhold <stephan.gerhold@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250328084154.16759-1-johan+linaro@kernel.org>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <20250328084154.16759-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:OX0UsNunnMDxxZSh+PkinXtYyho1+HXrTSk+9RMAUdAjx/nHiEC
- UqRycI/xgkYM5PhtkuXYCuobxG5NAUBBue5B7RvHIOtwHw9lJdXlLrzNdewJGCU/5vnSpM+
- jK+venid9CwFSWmKqj2e9+xMa+D0kP2S6AIEELcawyKnELjs0ndjCI4p6DOpKOwhl1u03pO
- JxO1X/luQTE7MKtpi0q+g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:juvZSYytPOo=;qG+OOdNGQz1TG4KehHdJa/h/jOf
- jqyPDcMUrUVjXgnlOW7/gaxqxtRKnV/f4qZWWeS5B7EYSorcJvM2ckgQj1nlp2Ua6PjneiifP
- 7qT7DHeP3w9ov3VzRc+YTGJJoBy5sUH32IYsdNTVTnn857E37E991SrEM8Q/lw/oQL+ZL4eoq
- h4cmBSi8VkaoaYzCzw2YH4+rpw8FUX++m/WKJSaXqQRR5oF5hII1BP+go+m3wdtdkObWzO1g4
- 3/TbpNcLkY8gfq6+Y3ZjiEtC8/Mus6cClyUey4/V72vJBmNJ3B0j31oQpLkL8h5h4wB4mhM3i
- z/e+CV8E+kdT+7NojTd+A1Dh2PAWPbepF05IqH3EG+WvqLcN4P73QslPJh6btOjE66Qi4+cpp
- TPyWLxcl5/TLAVgOGZFIgrDnDdQjfOYjgDIzT60z0/2P/YC4blEIf0i6h8pvb3dlFRqTJ5/F2
- BtdOZjppUz+GmIgKUWWHeXefqxFICzGDEUVuPSnRwOnBCNNfI6DdvVh7+WvzHBRb5q8RAATnt
- WyFTyQW91ZjPYSTcUrm+6cQCJbNzJvQN7JMfy6p9j0NPYGtU8cxTfMbmVhrhyyshhUSXM+aRB
- 3wD5L3+XEU7/DbGtwhabq6Ym0bNb3mr/jCQ8JWFf34vgDOyzpgMc/otdVYSEmcNMJmquiwYua
- eBHvJkgTygRacNor6gogkFaHozkR16XMDU69e5zwUpIIPwlJW2ToVIBFmStBt58+M70zpDLgj
- efM3h24os/WNjXGtNvM1ULvb5b5zMlXdgr1CbvlO+o9jn6WYGG0iVtxX33vG0sBhkmODx3ptD
- hMRVTtmcNhl4s2l7AEypSX7YqehoyYVVvaH/UfiiFwAV0VEMwd6ZRy0NiR4+pP4A0PioLuSen
- CaCDjUFwCuaIxbF0/TDjTZJV5DS4+KAAYRTVMzrxrq6HSrrTaZTcOHuZBgnjmB0Zya2+oEdUp
- 5i2UcGnGZbySnSOhRIT9Tsf08aCXodzDfSoE20cVTmHFcrM9wt5iZX/7BWPgaydKdFWthVtCD
- 2J+vQMw0JWEPtl9cIH+pAN7cIjhyxqcgoTgLejevJoCVcBLB9KekI/sysLyfTd54TMmvVMdMi
- /g76TpzEpu6Qy92MSS4vXrT+rQ9ifcEUkhcMcYfMvPZ5/dvBW+dIL3y8Dai7EKyfy0a+zqYPn
- DA3aZJQiLAVMyOGlkdIYkDH41k98xRjxAIXdTr/hSlCmtrcIUAkaPQRTAzmRt1Pcc114Bhc4a
- 63T+DjhUFq4rLmxvEMq+HgXNUUrvUYBJnOlQRQjNHVYc077v+D6HO8KmwLMV2GIDbRkEsEl7T
- yHSOhhz7p/YaPd/vYhMD+9K38ABamoYWXvijKo60WcmCTqq989arsHRYnYGCMzM98dzGiDNHj
- 86tXJhJZAgYuCWLMkmBIBRsaEgqjJuQj4dvIQ=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM+e92cC/3XMQQ6CMBCF4auQrq2ZDoWKK+9hXNB2gEYDpMUGQ
+ 7i7hZXRuPxf8r6FBfKOAjtnC/MUXXBDnyI/ZMx0dd8SdzY1Q8ACJJy4edy5sYZKFJKDURJkbg2
+ WiqXL6Klx885db6k7F6bBv3Y9im39A0XBgWsrSUGFdSWay0h9+5z80Lv5aIltWsRPofoSMAkSN
+ BZaIZLRP8K6rm+XZG+I7wAAAA==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744281305; l=2029;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=P6qo8qAHeJPS2kB9aX7XoqA5Cr9gFdS6Ku0Dtv4Opmo=;
+ b=vu/q6ZvKaYA3RqE6e56y1bzkcwgb8VnZhbbrsRAIxkJ4OMuuBSC00Pb0b2uf04jdyL0AW6xsB
+ HkrUCF8HgMIChe/9s/p6sWgLckWfvBEWyMgTt7Jsgvs+JvlgwELMkkR
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 28.03.25 09:41, Johan Hovold wrote:
-> Note that the SBU mux can be added later when/if someone figures out how
-> it is connected.
+The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+Differential Outputs, Two Inputs, and Internal EEPROM.
 
-Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+This series adds a common clk framework driver for this chip along with
+the dt-bindings document and a small fix needed for the common clk
+framework.
 
-I have added a patch for the gpio-sbu-mux on the 10Gbps connector. [1].
+Sascha
 
-[1]:
-https://lore.kernel.org/lkml/20250410-hp-x14-v2-0-d36414704a0a@oldschoolso=
-lutions.biz/
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+Changes in v3:
+- Use string properties instead of int for enums
+- Use units from property-units in dtschema
+- Link to v2: https://lore.kernel.org/r/20250409-clk-cdce6214-v2-0-40b25b722ecb@pengutronix.de
 
-with best regards,
+Changes in v2:
+- Use consistent quotes in binding document
+- make clock-names an enum to make each clock fully optional
+- drop '|' in binding description where not needed
+- encode clock input mode into integer
+- encode clock output mode into integer
+- do not use defines for reg properties
+- support setting load capacity for the oscillator via device tree
+- support setting Bias current for the oscillator via device tree
+- support setting polarities of CMOS outputs via device tree
+- fix compatible string in driver
+- remove unused struct cdce6214_config
+- Link to v1: https://lore.kernel.org/r/20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de
 
-Jens
+---
+Sascha Hauer (3):
+      clk: make determine_rate optional for non reparenting clocks
+      dt-bindings: clock: add TI CDCE6214 binding
+      clk: add TI CDCE6214 clock driver
+
+ .../devicetree/bindings/clock/ti,cdce6214.yaml     |  155 +++
+ drivers/clk/Kconfig                                |    7 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-cdce6214.c                         | 1311 ++++++++++++++++++++
+ drivers/clk/clk.c                                  |    3 +-
+ include/dt-bindings/clock/ti,cdce6214.h            |   24 +
+ 6 files changed, 1500 insertions(+), 1 deletion(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250408-clk-cdce6214-0c74043dc267
+
+Best regards,
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
 
 
