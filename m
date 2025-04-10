@@ -1,126 +1,137 @@
-Return-Path: <devicetree+bounces-165299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22F2A83E71
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:23:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23400A83E91
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51B8F4C3D0B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:18:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87362A0154F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3494A2101A0;
-	Thu, 10 Apr 2025 09:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E2521CC7C;
+	Thu, 10 Apr 2025 09:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BPZ6lc22"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="SCcDHHFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30F720D503;
-	Thu, 10 Apr 2025 09:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FDA21CC5C
+	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 09:18:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744276665; cv=none; b=BA9KfaazAxxMJRlr1NFv9DYBljE/XO9JJfcfkCL/SvNAmaUisgTxKxEgu2RfgdOjWrScLr4NSapHDwlTABs2L1p7/QVjZ3EFpOxsYnAk1tfCtg1Syhp54FJU39wQ8Jum2yX+HPLPtl4kq+LQvQRmos1Yc4VJsKAH2E/Y1b2bNt0=
+	t=1744276719; cv=none; b=M9qySCePxXgUKRzyMRUmHVajLva4LPx6tl/Z2ZSNyYeDazystUGnXt6l1X96yihlwD4G1BoOA4fCUXfX5VXlZJl8XsLULyHkV+goAl9QG7JCGPXxG37WJkwbbwv3whchXiNMfL65Je/sU2C5sVVm4ylc+thyj1xBXdD72FlkVYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744276665; c=relaxed/simple;
-	bh=2AyLsA6kpaZlc9OA+14Q7DYMgAO3xGKomEWFDhjNkAo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QyuMfPKsc/Jxl2ZLGss7Z6f48DkaNr93UWQsem3utVWZEWZiq6wDa3xo/TsJG/u2KQFwb9cw3TWc+3twMowK+c4QDGmg2latHbk7LR9DSkw7EIKLjHjpIf9rmEXSiOB6MkmB1vp9lASjUUhR1n+KKNdRWa5cx5M2O6BqNf6pQDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BPZ6lc22; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4E08844204;
-	Thu, 10 Apr 2025 09:17:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744276661;
+	s=arc-20240116; t=1744276719; c=relaxed/simple;
+	bh=TPqJ1k8AAIrPY7q3JCPcpdlJDfzdRL5HJ7DL+ztbSTc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nfZ7mdbsSj0bX80JRzZzBQJJ6bKlKpumSWvI60pAObrbI+kv4k1OB/0ZJnu7wF+WdV6d9e7Or8kQ4u/CAH/qJnW0dzSRahEEK0XwTF8C/im5350RGNK3g+dat+2+KR8d+ch6Lj7PgoMmmyjKtjOguDRXfLJ9uIVeC3ku0tq1Akc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=SCcDHHFd; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744276716;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=gVo01i0PNBk6lg4xGIJ8PjEi6i48tSdwoY71vr+3/ZY=;
-	b=BPZ6lc22WEcSMe8CUuDX6IdWkZjegNMuPMHhuQnIHsABPK4+qY/y7h7txbaVdU4DuLyh7j
-	7F045SrvyIJD2DGlJYSZEQTBqN24+L2eFO3yQ9VuqDXa45BZJ19mDLEqczz312FWfM9pke
-	HRkAnO0QHbIX+XZ3F2JFIQ8psy3H4AyvQdHDGsJ1fN6dAxS9qTFfCijywHNWCvbU7bOlNm
-	h3VF9UiXrJFb3aKhTMyiZpryGQVcCH14nd6MIt1zW0vsN+i41AtMEUbZ//1dYL/VfkT+2O
-	IlHQlvoEd//ZRVGSuf6h8PcoUTtwi1EJOMKMa94Vdxdi3iKmF1sDu30eWaoFhQ==
-Date: Thu, 10 Apr 2025 11:17:39 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, s32@nxp.com, imx@lists.linux.dev,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 2/2] rtc: pcf85063: handle stopped oscillator at startup
-Message-ID: <202504100917398f7244e9@mail.local>
-References: <20250410082548.3821228-1-ciprianmarian.costea@oss.nxp.com>
- <20250410082548.3821228-3-ciprianmarian.costea@oss.nxp.com>
+	bh=UaBBYYn9+Ny+SB7cdMeOGamaaptDicYH91ubkreRXjE=;
+	b=SCcDHHFdp1OyPL9EPvqfKlViAutSAqR+3r4RFlGbQKP8XiZEouFplo0Wyk3Mzo7tRvfQZM
+	+s97y86H8eIsfo1Y8yqYUC9N+tjMjzIjQLzjmVARjoGdXC470IwxQTYrof0s3o9t/an1n7
+	v4CafGUAwdY/ksgQ2uGWU/u3ZLqwzNE=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-498-0xZnWK54OPGpkNHlMA1m1g-1; Thu,
+ 10 Apr 2025 05:18:32 -0400
+X-MC-Unique: 0xZnWK54OPGpkNHlMA1m1g-1
+X-Mimecast-MFC-AGG-ID: 0xZnWK54OPGpkNHlMA1m1g_1744276710
+Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id CA6DB180025E;
+	Thu, 10 Apr 2025 09:18:29 +0000 (UTC)
+Received: from [10.44.33.222] (unknown [10.44.33.222])
+	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 3ABE119560AD;
+	Thu, 10 Apr 2025 09:18:24 +0000 (UTC)
+Message-ID: <889e68eb-d5b5-41ae-876d-9efc45416db6@redhat.com>
+Date: Thu, 10 Apr 2025 11:18:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250410082548.3821228-3-ciprianmarian.costea@oss.nxp.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdekhedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetlhgvgigrnhgurhgvuceuvghllhhonhhiuceorghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeeiudeuteehhfekgeejveefhfeiudejuefhgfeljefgjeegkeeujeeugfehgefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudehpdhrtghpthhtoheptghiphhrihgrnhhmrghrihgrnhdrtghoshhtvggrsehoshhsrdhngihprdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtt
- hhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrghnuggvrhdrshhtvghinhesvgifrdhtqhdqghhrohhuphdrtghomhdprhgtphhtthhopehlihhnuhigqdhrthgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409171713.6e9fb666@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250409171713.6e9fb666@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 
-On 10/04/2025 11:25:48+0300, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> 
-> If the RTC is not linked to any battery, the oscillator is stopped at
-> startup and a SW reset command is generated to the PCF85063 RTC.
-> Manually start the oscillator in case the PCF85063 RTC is not battery
-> backed.
-> 
 
-No, there is no point in starting the oscillator with a know wrong
-time/date. The oscillator must only be started once the time is known
-good, that is in .set_time
 
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> ---
->  drivers/rtc/rtc-pcf85063.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+On 10. 04. 25 2:17 dop., Jakub Kicinski wrote:
+> On Wed,  9 Apr 2025 16:42:36 +0200 Ivan Vecera wrote:
+>> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+>> provides DPLL and PTP functionality. This series bring first part
+>> that adds the common MFD driver that provides an access to the bus
+>> that can be either I2C or SPI.
+>>
+>> The next series will bring the DPLL driver that will covers DPLL
+>> functionality. And another ones will bring PTP driver and flashing
+>> capability via devlink.
+>>
+>> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+>> development board with ZL30732 DPLL chip connected over I2C bus.
 > 
-> diff --git a/drivers/rtc/rtc-pcf85063.c b/drivers/rtc/rtc-pcf85063.c
-> index 4fa5c4ecdd5a..6de7344d2469 100644
-> --- a/drivers/rtc/rtc-pcf85063.c
-> +++ b/drivers/rtc/rtc-pcf85063.c
-> @@ -590,6 +590,14 @@ static int pcf85063_probe(struct i2c_client *client)
->  
->  	i2c_set_clientdata(client, pcf85063);
->  
-> +	if (of_property_read_bool(client->dev.of_node, "no-battery")) {
-> +		err = regmap_update_bits(pcf85063->regmap, PCF85063_REG_SC,
-> +					 PCF85063_REG_SC_OS, 0);
-> +		if (err)
-> +			return dev_err_probe(&client->dev, err,
-> +					"Failed to start the oscillator\n");
-> +	}
-> +
->  	err = regmap_read(pcf85063->regmap, PCF85063_REG_SC, &tmp);
->  	if (err)
->  		return dev_err_probe(&client->dev, err, "RTC chip is not present\n");
-> -- 
-> 2.45.2
-> 
+> The DPLL here is for timing, right? Not digital logic?
+> After a brief glance I'm wondering why mfd, PHC + DPLL
+> is a pretty common combo. Am I missing something?
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Well, you are right, this is not pretty common combo right now. But how 
+many DPLL implementations we have now in kernel?
+
+There are 3 mlx5, ice and ptp_ocp. The first two are ethernet NIC 
+drivers that re-expose (translate) DPLL API provided by their firmwares 
+and the 3rd timecard that acts primarily as PTP clock.
+
+Azurite is primarly the DPLL chip with multiple DPLL channels and one of 
+its use-case is time synchronization or signal synchronization. Other 
+one can be PTP clock and even GPIO controller where some of input or 
+output pins can be configured not to receive or send periodic signal but 
+can act is GPIO inputs or outputs (depends on wiring and usage).
+
+So I have taken an approach to have common MFD driver that provides a 
+synchronized access to device registers and to have another drivers for 
+particular functionality in well bounded manner (DPLL sub-device (MFD 
+cell) for each DPLL channel, PTP cell for channel that is configured to 
+provide PTP clock and potentially GPIO controller cell but this is 
+out-of-scope now).
+
+Btw. I would be interesting to see a NIC that just exposes an access to 
+I2C bus (implements I2C read/write by NIC firmware) instead of exposing 
+complete DPLL API from the firmware. Just an idea.
+
+Thanks,
+Ivan
+
 
