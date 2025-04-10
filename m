@@ -1,133 +1,137 @@
-Return-Path: <devicetree+bounces-165220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9928EA83BBD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:53:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2608BA83BE1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:59:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AC314A2CA5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:53:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678928C5174
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 07:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D0F1E1A17;
-	Thu, 10 Apr 2025 07:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B13D1E1DE4;
+	Thu, 10 Apr 2025 07:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BCL3s1/Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="otmoFr3v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A859B146A68
-	for <devicetree@vger.kernel.org>; Thu, 10 Apr 2025 07:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49849130A54;
+	Thu, 10 Apr 2025 07:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744271574; cv=none; b=uhW6oC1rcu+fL6iFkUaKggKD1lzmRM9EtImxXdFvA03l6smESARhv05lJtz8pT+ooWmXgAYixUK2/OnFvv7aMZp/nXJWymqbFiaFg0Wg93YlzrXeu0cymxp9KyugubGKrYxSt7pRX2UG00CRBpmRZFsYhnhMa7pV94qefrMdRJM=
+	t=1744271713; cv=none; b=dzSRBtKX/I1E7LDrGzAZga0wktPkNhKihu71To84Q2CH06AvdexGdv05B46huO0VSf5+wdBIrTfC9tmd1Fx0mj03XHLByhALN/MGiU7GWVdUvKxDPkhbUotaiSGcuyUeaR8PtUZ03r2mFclQn3mxEPbbfB9gqED+KALXMOXUahw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744271574; c=relaxed/simple;
-	bh=8W8A/ge74B5Up1+m3x8qVG/YMkIdKFsPE4oY8AXG+TU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YM2lbllYU+PPvfLJSwlbubHyu+i+VnY9/mQsRo2SfUcvQDDXS5U0wwjqosE7pBi13KAUln2efFDspLoeo6DajFcPuw6BcqCaQ4poYDcK6Fd+aX5nuc+ByhzyjPRmO+JPi4ZHEY9Jg82iSIzmDZmy65B/J+cnw6uSyFTljmQQx0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BCL3s1/Q; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744271571;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RRCyAMNNVq6+4i5409xIeFnFjYc/oiKQZz4zgkZf2gg=;
-	b=BCL3s1/QjgrX3jk/hvKChzzIc2k989KWrK752VZRcPo6NYlGpA3TQ1aDsqckM2Rd7m18lZ
-	5jsCTX92Bgx65DTeiyaFgWSellOhzglPZc3sMQZ+Y5Fu8Zf59XLv7rubFhT9aJmzqcJejg
-	nxmUkf8MWb9uNJOXKStgLhw4oCwqnVg=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-259-2qk4kd0TMyuB0dHyHAQAhw-1; Thu,
- 10 Apr 2025 03:52:48 -0400
-X-MC-Unique: 2qk4kd0TMyuB0dHyHAQAhw-1
-X-Mimecast-MFC-AGG-ID: 2qk4kd0TMyuB0dHyHAQAhw_1744271566
-Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C1F5D180034D;
-	Thu, 10 Apr 2025 07:52:45 +0000 (UTC)
-Received: from [10.44.33.222] (unknown [10.44.33.222])
-	by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0B1A71956094;
-	Thu, 10 Apr 2025 07:52:40 +0000 (UTC)
-Message-ID: <e760caeb-5c7b-4014-810c-c2a97b3bda28@redhat.com>
-Date: Thu, 10 Apr 2025 09:52:39 +0200
+	s=arc-20240116; t=1744271713; c=relaxed/simple;
+	bh=lnFZPq6GIT4yu3NTRkld+9fjjb3E4qY9+RFd4qgcgxc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CSBy95p5Wgb14cB3RolAgc1uw7lKfQ69Sngh2W5/NDYQ1AeB10vxoZQCS+dMuGh+ZqdO7tQLKufi2EvyP41N7Sm/hWN0RCqLGiuKKmKj0eMNdtZDphgsfssbGDMtaQE7OQPMOTiRbSlimu6gPjat5yp10BQcO/Z0XgHR4swIqVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=otmoFr3v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 827EBC4CEDD;
+	Thu, 10 Apr 2025 07:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744271712;
+	bh=lnFZPq6GIT4yu3NTRkld+9fjjb3E4qY9+RFd4qgcgxc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=otmoFr3vxowmlBDmjkGrpqwB37cb7dxQ+cnFzN3C9WSdIFqHe7hblzY0aaz/3Bzmv
+	 8Is4qyffPO+HY1ZeyFn+44YNhlrRcY9HhdQ4UzCUqYi8dRXdBuPqB43j+yUU4kiWnG
+	 mtKxRh9nd7eA/ABKMBKXsUNY4ik67mC8yPje7XS6hgJQTc3cW1DUkSZfV2gali/JQt
+	 HkBLtDeZQaqDQL5dHGrd8JQhtE1ATi8RAmGXf1ha1QHgdiPSQ+X53Pynwxi2T93rUz
+	 /nfIE2FOA/zNCWGmO8htFkORRVaBN0mM5v7xoJRaHnoXCCIaoLXtGx7gn0qc/+L/we
+	 4Mv0YLRPSLC3w==
+Date: Thu, 10 Apr 2025 08:55:05 +0100
+From: Lee Jones <lee@kernel.org>
+To: ALOK TIWARI <alok.a.tiwari@oracle.com>
+Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [External] : [PATCH v6 01/12] dt-bindings: mfd: gpio: Add MAX7360
+Message-ID: <20250410075505.GM372032@google.com>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-1-7a2535876e39@bootlin.com>
+ <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/14] mfd: Add Microchip ZL3073x support
-To: Krzysztof Kozlowski <krzk@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-4-ivecera@redhat.com>
- <Z_aVlIiT07ZDE2Kf@smile.fi.intel.com>
- <eecfb843-e9cd-4d07-bb72-15cf84a25706@kernel.org>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <eecfb843-e9cd-4d07-bb72-15cf84a25706@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a9d8ca30-3836-49b3-898c-c351b2c44a76@oracle.com>
 
+On Wed, 09 Apr 2025, ALOK TIWARI wrote:
 
-
-On 10. 04. 25 9:19 dop., Krzysztof Kozlowski wrote:
-> On 09/04/2025 17:43, Andy Shevchenko wrote:
->>> +/*
->>> + * Regmap range configuration
->>> + *
->>> + * The device uses 7-bit addressing and has 16 register pages with
->>> + * range 0x00-0x7f. The register 0x7f in each page acts as page
->>> + * selector where bits 0-3 contains currently selected page.
->>> + */
->>> +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
->>> +	{
->>> +		.range_min	= 0,
->>
->> This still has the same issue, you haven't given a chance to me to reply
->> in v1 thread. I'm not going to review this as it's not settled down yet.
->> Let's first discuss the questions you have in v1.
->>
-
-Sorry for that but I don't understand where the issue is... Many drivers 
-uses this the same way.
-E.g.
-drivers/leds/leds-aw200xx.c
-drivers/mfd/rsmu_i2c.c
-sound/soc/codecs/tas2562.c
-...and many others
-
-All of them uses selector register that is present on all pages, wide 
-range for register access <0, num_pages*window_size> and window <0, 
-window_size>
-
-Do they also do incorrectly or am I missing something?
-
-I.
-> I already started reviewing v2, so now we have simultaneous discussions
-> in v1 and v2...
 > 
-> Best regards,
-> Krzysztof
 > 
+> On 09-04-2025 20:25, Mathieu Dubois-Briand wrote:
+> > Add device tree bindings for Maxim Integrated MAX7360 device with
+> > support for keypad, rotary, gpios and pwm functionalities.
+> > 
+> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> > ---
+> >   .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++++++
+> >   .../devicetree/bindings/mfd/maxim,max7360.yaml     | 171 +++++++++++++++++++++
+> >   2 files changed, 254 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
+> > new file mode 100644
+> > index 000000000000..21d603d9504c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
+> > @@ -0,0 +1,83 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/gpio/maxim,max7360-gpio.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvakCad_v0$
+> > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvacsB3d9k$
+> > +
+> > +title: Maxim MAX7360 GPIO controller
+> > +
+> > +maintainers:
+> > +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
+> > +  - Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> > +
+> > +description: |
+> > +  Maxim MAX7360 GPIO controller, in MAX7360 chipset
+> > +  https://urldefense.com/v3/__https://www.analog.com/en/products/max7360.html__;!!ACWV5N9M2RV99hQ!LySDuQZdU3DANTEmkRlntMCbFm69zp24O0wAwuujlnN1Zh9-xPEHZu7fj5d_O7vIxUHn9b6gqg9MHtd9ntPvXQvavZnHZJk$
+> > +
+> > +  The device provide two series of GPIOs, referred here as GPIOs and GPOs.
+> typo: The device provides two series of GPIOs,
+> > +
+> > +  PORT0 to PORT7 pins can be used as GPIOs, with support for interrupts and
+> > +  constant-current mode. These pins will also be used by the torary encoder and
+> typo: ie rotary encoder ?
+> > +  PWM functionalities.
+> > +
+> > +  COL2 to COL7 pins can be used as GPOs, there is no input capability. COL pins
+> > +  will be partitionned, with the first pins being affected to the keypad
+> > +  functionality and the last ones as GPOs.
+> > +
+> typo: partitionned -> partitioned
 
+Please trim your responses.
+
+You comments should have blank lines above below your comments too please.
+
+-- 
+Lee Jones [李琼斯]
 
