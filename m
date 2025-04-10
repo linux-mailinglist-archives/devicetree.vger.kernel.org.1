@@ -1,177 +1,141 @@
-Return-Path: <devicetree+bounces-165285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E8BFA83DF6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:09:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34702A83E08
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 11:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D905172227
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:06:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C926189B499
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 09:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FAA9217709;
-	Thu, 10 Apr 2025 09:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82FC20E003;
+	Thu, 10 Apr 2025 09:05:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dTA9pZNc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lXw/zGFs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69ADE20C03F;
-	Thu, 10 Apr 2025 09:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA956205AA5;
+	Thu, 10 Apr 2025 09:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744275832; cv=none; b=dMmNUKM0nfB/YTgJoeQ0s3qD129Nkuyzvq3msHFJeyaht7BZA8pFMsaU+1JaCSnbL8Igiq3wy/blPAk7Ybpvz38JD2AVVN99u8++xb3rxdy23ECaQ3lBTAZpibBQdBfudUT3wV2kFVn6WD1czCqGBfLREYe3bV+6ok3aNMaPyTI=
+	t=1744275954; cv=none; b=J7VWHCsiK+00p2SAVzTkw4HojpH2zUXZOOCcKBhOeaM+zR9vH9MP0bH380QVfYZj3xPcvl20CTG5CEkeTuuA+a3cUOVh6/r5ZmN9ss5HtOFrNcRif8WRGRW0EcErveLq2h+IdIstnHYmQbeKAyN/WsnukwItkwu2YD1ziVXssQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744275832; c=relaxed/simple;
-	bh=ppKrKnV9+vX8mOGUnGEaL5bFCF0QWlj/y8uSyBVvFy8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=kjsdGRk6Py7brAGmd3wZb+w7pBi1NNjOm5TwuU1S4MpJISQUp/7k0vMvTujiUsIpArIMwtRIJmvBifLV18PCTcHSHse0QzHpK+tN1Yk7fd/TOrtQ02HCQQQ8jiovqbOz3L3V44UgiW5yB4LwNgH8/qq9+9peJK2QrwbYSiwtlJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dTA9pZNc; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EFC5720452;
-	Thu, 10 Apr 2025 09:03:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744275827;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9W47A03v/jaDinmYX8Ic5nO3KToJ83CC7MwvmAZCXYc=;
-	b=dTA9pZNc+QUadR65S4fti1u2xJ3SvwiKAPBbWTB6SVSt07wWimcvPvJs8q7Fm69/089dd0
-	FNu+gF4BiMDHyS9SSJ4VZSrCgRuwRk/YBV7jdjpw5w6+jfzhYy1UID0b/EAomZbjN1pwTx
-	Mmt3B1Od1d9n5ePkwVdO3u4hztT62JC+oB6Yah3uXtaANP2f/DP7HmlX5hS48tOUyNKksN
-	yu6QsX+wAIFB+u+IBZ+gQIat/xWilWheLzMJftn5fwco6lWhH+nigC3ZLP/aJwjoDX7sAU
-	Rg/eXgCTs7xOE424fn6fMB48D8Fk4Wd46wpXgu4AHOdR9szuZRE+v2TPxubjBQ==
+	s=arc-20240116; t=1744275954; c=relaxed/simple;
+	bh=SyNgFYqShoX8sG1EvElMpp2wgQICe5/LIovg4bPhTLM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SYFrk8RRSUqmxnL+2deceAomsyq/YWlrDMbqI1bKOKwcMhW/uZB69iI7OA3UcaAcz/m3qq4kRgvMQWwEt0xTpe61TUYCB+ffhg+eDi+84x+ZKgkSlw6t0fJ2r2H/SO7PZDsWKR+9g2wAYKrZZnIocWr8P5nS3yQ1F82Y4hAMc5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lXw/zGFs; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53A95OH71769035
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 10 Apr 2025 04:05:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744275924;
+	bh=SD7cOLHPNPRn+FrhFL4jj5FK1/KNQWomyZ99DtlTZeo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=lXw/zGFsunICye/4+h6fJgF860Fh84ljOwinYE5ODgpWsnA7QcvEKWuxpcVnVddle
+	 rTMdN6bbQFVP/3oIwr9QgvX3r9VeqqkQdDJJ8B9ZJx58SlMz3onu+Kqsb96dywsKSS
+	 WAkMgmYnwZxWC0f9FiEzjsdlCPK8SSxyifS9vBxo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53A95Out047438
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Apr 2025 04:05:24 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Apr 2025 04:05:23 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Apr 2025 04:05:23 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53A95MPQ048842;
+	Thu, 10 Apr 2025 04:05:22 -0500
+Date: Thu, 10 Apr 2025 14:35:21 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Frank Li <Frank.Li@nxp.com>
+CC: <s-vadapalli@ti.com>, <bhelgaas@google.com>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <krzk+dt@kernel.org>, <kw@linux.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <lpieralisi@kernel.org>, <manivannan.sadhasivam@linaro.org>,
+        <robh@kernel.org>, <tony@atomide.com>, <vigneshr@ti.com>
+Subject: Re: [PATCH 1/1] Revert "ARM: dts: Update pcie ranges for dra7"
+Message-ID: <9bd626d5-8fcd-4076-af52-deea6cf2dedc@ti.com>
+References: <20250409153518.3068176-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 10 Apr 2025 11:03:46 +0200
-Message-Id: <D92U6CMH9WWM.3JLM1KLZF4WF8@bootlin.com>
-Subject: Re: [PATCH v6 07/12] gpio: regmap: Allow to allocate regmap-irq
- device
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-7-7a2535876e39@bootlin.com>
- <Z_aiubEgXLaDpsoq@smile.fi.intel.com>
-In-Reply-To: <Z_aiubEgXLaDpsoq@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvtdekgeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
- dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250409153518.3068176-1-Frank.Li@nxp.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed Apr 9, 2025 at 6:39 PM CEST, Andy Shevchenko wrote:
-> On Wed, Apr 09, 2025 at 04:55:54PM +0200, Mathieu Dubois-Briand wrote:
->> GPIO controller often have support for IRQ: allow to easily allocate
->> both gpio-regmap and regmap-irq in one operation.
->
->> =20
->> -		memcpy(d->prev_status_buf, d->status_buf, array_size(d->prev_status_b=
-uf));
->> +		memcpy(d->prev_status_buf, d->status_buf,
->> +		       array_size(d->chip->num_regs, sizeof(d->prev_status_buf[0])));
->
-> ...
->
->> +#ifdef CONFIG_REGMAP_IRQ
->> +	if (config->regmap_irq_chip) {
->> +		struct regmap_irq_chip_data *irq_chip_data;
->> +
->> +		ret =3D devm_regmap_add_irq_chip_fwnode(config->parent, dev_fwnode(co=
-nfig->parent),
->> +						      config->regmap, config->regmap_irq_irqno,
->> +						      config->regmap_irq_flags, 0,
->> +						      config->regmap_irq_chip, &irq_chip_data);
->> +		if (ret)
->> +			goto err_free_gpio;
->> +
->> +		irq_domain =3D regmap_irq_get_domain(irq_chip_data);
->> +	} else
->> +#endif
->> +	irq_domain =3D config->irq_domain;
->
->> +
->
-> This is blank line is not needed, but I not mind either way.
->
+On Wed, Apr 09, 2025 at 11:35:18AM -0400, Frank Li wrote:
 
-I can remove it, but as the line above is potentially part of the
-"else", I have a small preference for keeping it.
+Hello Frank,
 
->> +	if (irq_domain) {
->> +		ret =3D gpiochip_irqchip_add_domain(chip, irq_domain);
->>  		if (ret)
->>  			goto err_remove_gpiochip;
->>  	}
->
-> ...
->
->> + * @regmap_irq_chip:	(Optional) Pointer on an regmap_irq_chip structure=
-. If
->> + *			set, a regmap-irq device will be created and the IRQ
->> + *			domain will be set accordingly.
->
->> + * @regmap_irq_chip_data: (Optional) Pointer on an regmap_irq_chip_data
->> + *                      structure pointer. If set, it will be populated=
- with a
->> + *                      pointer on allocated regmap_irq data.
->
-> Leftover?
+> This reverts commit c761028ef5e27f477fe14d2b134164c584fc21ee.
+> 
+> The previous device tree correctly reflects the hardware behavior.
+> The reverted commit introduced a fake address translation at pcie's parent
+> bus node.
 
-Yes, sorry...
+More details are required in the commit message. The commit being
+reverted states:
 
->
->> + * @regmap_irq_irqno	(Optional) The IRQ the device uses to signal inter=
-rupts.
->> + * @regmap_irq_flags	(Optional) The IRQF_ flags to use for the interrup=
-t.
->
-> ...
->
->> +#ifdef CONFIG_REGMAP_IRQ
->> +	struct regmap_irq_chip *regmap_irq_chip;
->> +	int regmap_irq_irqno;
->
-> Perhaps call it line?
->
-> 	int regmap_irq_line;
->
+"The range for 0 is typically used for child devices as the offset from the
+module base. In the following patches, we will update pcie to probe with
+ti-sysc, and the patches become a bit confusing to read compared to other
+similar modules unless we update the ranges first. So let's just use the
+full addresses for ranges for the 0x20000000 and 0x30000000 ranges."
 
-Makes sense, thanks.
+The commit message in this patch should probably indicate something
+along the lines of:
+The commit being reverted updated the "ranges" property for the sake of
+readability but that is no longer required because <your reason here>.
 
->> +	unsigned long regmap_irq_flags;
->> +#endif
+Tony Lindgren is the author of the commit being reverted. Tony could
+clarify if the purpose of the commit was more than just improving
+readability.
 
-Thanks for your review.
-Mathieu
+> 
+> Reverting this change prepares for the cleanup of the driver's
+> cpu_addr_fixup() hook.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Previous disscusion at
+> https://lore.kernel.org/linux-pci/20250314064642.fyf3jqylmc6meft7@uda0492258/
+> ---
+>  arch/arm/boot/dts/ti/omap/dra7.dtsi | 29 +++++++++++------------------
+>  1 file changed, 11 insertions(+), 18 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/dra7.dtsi b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> index b709703f6c0d4..711ce4c31bb1f 100644
+> --- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> @@ -195,24 +195,22 @@ axi0: target-module@51000000 {
+>  			clock-names = "fck", "phy-clk", "phy-clk-div";
+>  			#size-cells = <1>;
+>  			#address-cells = <1>;
+> -			ranges = <0x51000000 0x51000000 0x3000>,
+> -				 <0x20000000 0x20000000 0x10000000>;
+> +			ranges = <0x51000000 0x51000000 0x3000
+> +				  0x0	     0x20000000 0x10000000>;
+>  			dma-ranges;
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+[...]
 
+Regards,
+Siddharth.
 
