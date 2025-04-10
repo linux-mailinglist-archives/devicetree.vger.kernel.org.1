@@ -1,177 +1,162 @@
-Return-Path: <devicetree+bounces-165420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0029DA8449E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 15:22:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482FEA844A9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 15:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CCFC9A6CA2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:18:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B383B88B6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 13:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2B62857D8;
-	Thu, 10 Apr 2025 13:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7D12857C7;
+	Thu, 10 Apr 2025 13:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3zKMaKu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OuKGFnMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696D92853F3;
-	Thu, 10 Apr 2025 13:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E7F2853E1;
+	Thu, 10 Apr 2025 13:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744291091; cv=none; b=nzH5qiF1ykEzaW1gD18cOcrMKAug3kz5KE9TrcYzaeJglZVaoMLssEw3QYKhBA0WFu71Nuh+m6GISu/7+bXS/+pBks/pTfsnOjbdif38MxF7PgNSS2I8GHKqf+UgG9KdaG7HZERYqg5l6BTTwUyBr29Vmxu6o0MUVlB4yuT5GbE=
+	t=1744291238; cv=none; b=PaO8jyv94N++kZhp4xikd5uPjf59ZJXhcTSDr/2sKt9U6DYIUsUlG9t32DXmQen5+mYosFxGhD4dsY7uuudnpwxE1hI2LqcWS7ynq3XhNqVD53xTF4MfTAMxfATVpFO/vSzucOBGEBIdT1oyLdCos171YtYm4waLffjNZqkTi0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744291091; c=relaxed/simple;
-	bh=gx2DUG/jwsMiaaO0LRs0o3B6e5mCvWlXA/E8dDzVJpU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pydUamUHHUa7FNJFUo3p4i061cI3vNcVsh6A27Ic/xiWe7MFNLQlWKZi61svQGhIeh6GdL4RBsmXupQuUpGbGdYzcxxMXACPUlb9G/YoY0+JbXvqWXoW+OvK/EoxJ+s8lA+mRa/cfCIKCMqR76zE2bCaXuswMwFbLFg43VfRSn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3zKMaKu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93A4FC4CEEA;
-	Thu, 10 Apr 2025 13:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744291090;
-	bh=gx2DUG/jwsMiaaO0LRs0o3B6e5mCvWlXA/E8dDzVJpU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V3zKMaKulC/cjqRu5cQOAQ2qTDh1GM7tQdMs+jKt96d+nA8BH5Mb6iNc3QIDyUhUr
-	 HfsbS6gwVuY9QJteNBdLJnj6xYuUgi0XkoqQOOOOOsOiaoXgysTnhvzAoHTiKrHTL7
-	 7o7aFah5/t+ndczLJODamuEH2Kp080fvmuobVjLXZ/+0gU2Gizf5lwqqiprCYyKLbQ
-	 Ek5jMud1uadhbLanUrUnvdIfvzGpjc82Gnyl0xZTCsd3eOKH1KLp0DgGDYVmm7MUV2
-	 TP4ArC310lJzN8WPi9UftgGpsfqomjHpkTJjYnFw7RGxpor0/9tZDTzlvZKhVI6EZb
-	 bm4kru1memdUg==
-Date: Thu, 10 Apr 2025 14:18:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 02/14] dt-bindings: dpll: Add support for Microchip
- Azurite chip family
-Message-ID: <20250410-puritan-flatbed-00bf339297c0@spud>
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-3-ivecera@redhat.com>
- <20250410-skylark-of-silent-symmetry-afdec9@shite>
- <1a78fc71-fcf6-446e-9ada-c14420f9c5fe@redhat.com>
+	s=arc-20240116; t=1744291238; c=relaxed/simple;
+	bh=UtA5gEjIdlbSvKgOUXHBQThchBGfso4/X0OKyeayV/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sDZEHbPJXyn+pH0t7/PIgSbNAkuX5G6EajjB+vrXveXFeWhldPHxM6ZQuCQCOZc7jdC3pIy4wu6DpAw1B8z2kX/1cRmmgGvJXxlK/YgpzL7uqvwyvCiLEXoYAp6GvWR33EGXHheaPQDG+iXMirpCzUyIjOHRfyIiYxQ2BYSvNLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OuKGFnMM; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53ADKRQo1297586
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 10 Apr 2025 08:20:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744291227;
+	bh=UtA5gEjIdlbSvKgOUXHBQThchBGfso4/X0OKyeayV/w=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OuKGFnMMx+MGvEHE8CmdC489iJJG7mN1JssoJ3A6Ftsa1C46guZVqrplScEry3sZ+
+	 WV6gHSc4YDhfyhpYR4RMQv1vHqnLs4/PpxH2vWGi+iZ/P6opqIhfbJVofEKKnFdW91
+	 67pce3rXPZgG3jXXfI+1U4MLYMck6OvLWw2VU/WY=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53ADKRAK029560
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Apr 2025 08:20:27 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Apr 2025 08:20:26 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Apr 2025 08:20:26 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53ADKMAE056004;
+	Thu, 10 Apr 2025 08:20:23 -0500
+Message-ID: <acd087a1-c10d-43dd-8900-d05591b0c4b0@ti.com>
+Date: Thu, 10 Apr 2025 18:50:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="i2F+52kfRwOYiwup"
-Content-Disposition: inline
-In-Reply-To: <1a78fc71-fcf6-446e-9ada-c14420f9c5fe@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-j722s: add rng node
+To: Michael Walle <mwalle@kernel.org>, Manorit Chawdhry <m-chawdhry@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250313144155.2382316-1-mwalle@kernel.org>
+ <837cba5f-f49e-4cbf-9cbe-2b25f7c9d4b8@ti.com>
+ <D8UECOJ2NMCU.3ALYIKSODJ479@kernel.org>
+ <1ad2d8c2-6a0d-419d-984d-4974adb0e1f0@ti.com>
+ <D8V323NBB32P.3P8H103L83HZK@kernel.org>
+ <e2a37e72-d9c8-4329-8a5a-f2c9865cdb5d@ti.com>
+ <ea82dc29e93d53b659916f2fed10982b@kernel.org>
+ <20250409103303.dkrrvp7mdctx32pd@uda0497581-HP>
+ <D92X7T33NU3T.VSZM5K7U602S@kernel.org>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <D92X7T33NU3T.VSZM5K7U602S@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hi Michael,
+
+On 4/10/2025 4:56 PM, Michael Walle wrote:
+> Hi Manorit,
+>
+>>>>>>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>>>>>>>>> [..]
+>>>>>>>> For completeness , this is ok to add this node but
+>>>>>>>> should be kept disabled
+>>>>>>> Shouldn't it be "reserved" then, see [1].
+>>>>>> yes, should be reserved.
+>>>>>>
+>>>>>> With marking status as reserved.
+>>>>>>
+>>>>>> Please use Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+>>>>> Thanks.
+>>>>>
+>>>>>>>> similar to
+>>>>>>>>
+>>>>>>>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi#L662
+>>>>>>> j784s4, j721e and j721s2 have them enabled. What is the rule here?
+>>>>>> J784s4, j721e and j721s2 SOCs has two TRNG blocks,
+>>>>>>
+>>>>>> example for j721e, one is used by kernel [0] and another by
+>>>>>> optee [1].
+>>>>>>
+>>>>>>
+>>>>>>> You also disable the hwrng in optee in your evm according to [2]:
+>>>>>>> CFG_WITH_SOFTWARE_PRNG=y
+>>>>>> We are planning to use this hardware block by secure firmware.
+>>>>>>
+>>>>>> Therefore request not to use by optee as well
+>>>>> How will you be able to access the RNG from linux and u-boot? I'm
+>>>>> asking because I'll need it in u-boot for the lwip stack and the
+>>>>> HTTPS protocol.
+>>>> For now,  If you need TRNG then I can suggest to use optee TRNG (ie
+>>>> build
+>>>> optee with HW TRNG).
+>>> I'll be using an uboot TRNG driver. But how will that work in
+>>> the future if the RNG is used by the secure firmware?
+>> Wondering if this would be of interest to you [0]. I think since this
+>> device only has one TRNG, there has to be a master around and we can
+>> mitigate that from OP-TEE as of now, incase anything changes in future
+>> then the communication channel between OP-TEE and the secure firmware
+>> can be established but currently it's still at work. I think the best
+>> way to go forward is to get the numbers from OP-TEE atm IMHO.
+> I saw the optee rng. But as of now, the instructions are to use a
+> software PRNG for optee. Thus, if someone compiles optee by
+> following the instructions, it's unlikely to work.
+>
+> Would TI willing to agree to change the building docs and enable the
+> TRNG in optee and then work on moving the TRNG into the secure
+> firmware and build a channel between optee and that firmware? Right
+> now, the TRNG seems pretty useless as we cannot use it neither from
+> u-boot or linux (and being future proof).
+
+Thanks for note,
+
+I agree to update doc two times
+
+1) with current state ie use optee based trng
+
+2) When fw based trng is available,
 
 
---i2F+52kfRwOYiwup
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Apr 10, 2025 at 09:45:47AM +0200, Ivan Vecera wrote:
->=20
->=20
-> On 10. 04. 25 9:06 dop., Krzysztof Kozlowski wrote:
-> > On Wed, Apr 09, 2025 at 04:42:38PM GMT, Ivan Vecera wrote:
-> > > Add DT bindings for Microchip Azurite DPLL chip family. These chips
-> > > provides 2 independent DPLL channels, up to 10 differential or
-> > > single-ended inputs and up to 20 differential or 20 single-ended outp=
-uts.
-> > > It can be connected via I2C or SPI busses.
-> > >=20
-> > > Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> > > ---
-> > >   .../bindings/dpll/microchip,zl3073x-i2c.yaml  | 74 ++++++++++++++++=
-++
-> > >   .../bindings/dpll/microchip,zl3073x-spi.yaml  | 77 ++++++++++++++++=
-+++
-> >=20
-> > No, you do not get two files. No such bindings were accepted since some
-> > years.
-> >=20
-> > >   2 files changed, 151 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/dpll/microchip=
-,zl3073x-i2c.yaml
-> > >   create mode 100644 Documentation/devicetree/bindings/dpll/microchip=
-,zl3073x-spi.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/dpll/microchip,zl3073x=
--i2c.yaml b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.ya=
-ml
-> > > new file mode 100644
-> > > index 0000000000000..d9280988f9eb7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.ya=
-ml
-> > > @@ -0,0 +1,74 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/dpll/microchip,zl3073x-i2c.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: I2C-attached Microchip Azurite DPLL device
-> > > +
-> > > +maintainers:
-> > > +  - Ivan Vecera <ivecera@redhat.com>
-> > > +
-> > > +description:
-> > > +  Microchip Azurite DPLL (ZL3073x) is a family of DPLL devices that
-> > > +  provides 2 independent DPLL channels, up to 10 differential or
-> > > +  single-ended inputs and up to 20 differential or 20 single-ended o=
-utputs.
-> > > +  It can be connected via multiple busses, one of them being I2C.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - microchip,zl3073x-i2c
-> >=20
-> > I already said: you have one compatible, not two. One.
->=20
-> Ah, you mean something like:
-> iio/accel/adi,adxl313.yaml
->=20
-> Do you?
->=20
-> > Also, still wildcard, so still a no.
->=20
-> This is not wildcard, Microchip uses this to designate DPLL devices with =
-the
-> same characteristics.
-
-That's the very definition of a wildcard, no? The x is matching against
-several different devices. There's like 14 different parts matching
-zl3073x, with varying numbers of outputs and channels. One compatible
-for all of that hardly seems suitable.
-
->=20
-> But I can use microchip,azurite, is it more appropriate?
-
-No, I think that is worse actually.
-
---i2F+52kfRwOYiwup
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/fE/gAKCRB4tDGHoIJi
-0sTZAQCBzUZkvY+I5FbJkjbLob1otnvEelxWwmfySDNLPHKyQAD/RmLcKN7+q+vW
-T5Aq2D7NiMygDDHTogNi3h0xhh3rCgk=
-=Ga7z
------END PGP SIGNATURE-----
-
---i2F+52kfRwOYiwup--
+>
+> -michael
 
