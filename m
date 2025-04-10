@@ -1,142 +1,106 @@
-Return-Path: <devicetree+bounces-165179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB65EA839FC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:56:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FF9A83A08
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C9C846169D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:56:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 873257A80EF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E276E20487F;
-	Thu, 10 Apr 2025 06:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA892046B9;
+	Thu, 10 Apr 2025 06:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K3KI3Yiv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khKiGgoM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18405204695;
-	Thu, 10 Apr 2025 06:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916DD2040A8;
+	Thu, 10 Apr 2025 06:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744268203; cv=none; b=d2d1mPFksbqtKSf5G3r9cgaiHg21iKfiVCCGF6oZVAE+GGmH1zkcUmbPKkKkdKrYlN7JAzuplwSrLgnHH7FlIHlzPcVyN5LpNLz3wuzY2acYHmhzL5GVRTOBJB5inke8ldvkz+rXeVGiOcspQcsRtj5WRpH5WgvJcFhNx9IY58A=
+	t=1744268302; cv=none; b=euIw7UwpbvVQ9LaWLNht+aS/K6o4FAfC3B89SZxcVmgtyMYFGAC4Ts4E1TWoETsPn64/T5FNf3RMoejBIMrm7k0PMelau6iFvvYFBuocUkfiZV9Qd2/bBHGVGj8mxi+QC91iX7YZwEqLQt4EmhB7J678dMNUS1h79rDS5y8Wreo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744268203; c=relaxed/simple;
-	bh=fRts3zgo/JupMS/LbA41mdmqTvum7+nBFFEZ/u/w3KQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZuJcRd9tBlGJhyeWI2k0nps3SIrwntQsyJ/v9Zr75oe22STrlb1RG1RZUTZh0DRLySItTGQfUj3LU/eKfS6c/4T4KwItP1S2y9S+kkygr2QHRaN5I5u435Hpd6vyDJRUgNUeihWtBv6qm2WsSEa/HvFthlJQJ6DNL1BXbgcbfsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K3KI3Yiv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53A6sSfO013153;
-	Thu, 10 Apr 2025 06:56:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IYjqg+IE/ZF82l81NNLaB50M/Kzsa/5NxbD2R1JmzL0=; b=K3KI3Yiv5tq3OnAK
-	wgkld3e8HPTo7oDK4PYce1siE0FM3VT75aWn7YlDjRQ/I/9lAXRlQXyZltecDu55
-	2xC8rNMCebXcqHZcYVs89KrxRQJGvkQ3b5vQJNg8ulCFDCGPAK3trjVkIj0VJxfQ
-	ZScW/g1qOJiV+nx8TAHV0wwx0cFgtMO9DDesHqSbUCCMf0nUQ4JJpyy9isWI2y8f
-	aWIKxDIoUbPDrCujRd0F/bJAhYL2L7MujFH6gC3ArO8oPfSOmC5VHi9YBZwd0Qu9
-	MELzkP+uRrYpSbxGZzPdi5XhvOBOTA/pEqP6z4Aoyi37fSGBVv1tkN2p5vfQlcio
-	yupYsQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twfknrk3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Apr 2025 06:56:23 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53A6uM5d021336
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Apr 2025 06:56:22 GMT
-Received: from [10.133.33.128] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Apr 2025
- 23:56:16 -0700
-Message-ID: <d4a6b163-ae54-438a-9c05-e9bc1d1e8ca5@quicinc.com>
-Date: Thu, 10 Apr 2025 14:56:13 +0800
+	s=arc-20240116; t=1744268302; c=relaxed/simple;
+	bh=W+EjxpeVVScky8ANFtmNgCyiOFblKlvus+RVoVF6ZF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ftx0K3U1LEjSjUErfkeQ3/m7QZyDVqUbt2MA+1wdpEsu3FnNGaaJuzlQceHEuYutMoiOz6QN8fVA4E22KesRo+IywS2kePf5YBRrObik6BtirgQ7un6lCQlVQ4H8wmYg+EjmS/tHPoBs+EMVq0UAhhhU7cbJQXN29lMUnzg2w10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khKiGgoM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC65AC4CEDD;
+	Thu, 10 Apr 2025 06:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744268302;
+	bh=W+EjxpeVVScky8ANFtmNgCyiOFblKlvus+RVoVF6ZF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=khKiGgoMdhXNa4Q70CPeyvi4b3wCMd8N+O2H3+z7Ol88vgsgfxTPIDAxIEsQonDwh
+	 sGT7UllzMkwwdS7LYMH+Mzh/q4q8plLOBqgYY5Vav1o13Ol6unC7eK1bfxubJWttg7
+	 lJe369QP9Ya169umKfrum8V+a+iCv6hE3xdQ+eG14F1jt403D9Y13V9iRXMjCmuwzP
+	 +z2nR4ioD0EIREd0RyMhCESXtzsNK8GBw23kUGd4KZO9dRDSjMZDTkoAPhvE8c88N0
+	 z4msUQXu2dhkXyrwmGVIzFPR/1XBh17OybNue+17NBoqzF2mZwUnd9klmdCLMsZZ2a
+	 T9AxYUcuzy6NA==
+Date: Thu, 10 Apr 2025 08:58:19 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: icm42600: add interrupt
+ naming support
+Message-ID: <20250410-wonderful-stereotyped-jackal-87fbf5@shite>
+References: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com>
+ <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-1-dab85a0a7c2b@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: Add an interrupt property for
- Coresight CTCU
-To: Krzysztof Kozlowski <krzk@kernel.org>, Jie Gan <jie.gan@oss.qualcomm.com>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20250410013330.3609482-1-jie.gan@oss.qualcomm.com>
- <20250410013330.3609482-3-jie.gan@oss.qualcomm.com>
- <20250410-demonic-woodoo-kudu-bcd994@shite>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <20250410-demonic-woodoo-kudu-bcd994@shite>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8bcMJ04Xn8HbEm5pYOGUlQHZPPQrB43z
-X-Proofpoint-ORIG-GUID: 8bcMJ04Xn8HbEm5pYOGUlQHZPPQrB43z
-X-Authority-Analysis: v=2.4 cv=b7Oy4sGx c=1 sm=1 tr=0 ts=67f76b97 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=wHw0NOgED_JKqtMhe_AA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-09_06,2025-04-08_04,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 mlxscore=0 impostorscore=0 phishscore=0
- clxscore=1015 spamscore=0 mlxlogscore=797 bulkscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504100050
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-1-dab85a0a7c2b@tdk.com>
 
+On Wed, Apr 09, 2025 at 05:14:31PM GMT, Jean-Baptiste Maneyrol wrote:
+> Add interrupt-names field for specifying interrupt pin configured.
+> Chips are supporting 2 interrupt pins, change interrupt to support 2
+> entries.
+> 
+> Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> ---
+>  .../devicetree/bindings/iio/imu/invensense,icm42600.yaml    | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> index 7e4492bbd0278a336587dc5ac04da7153453da29..d4d4e5c3d8562523872a737864610c26c8fccd82 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> @@ -39,7 +39,16 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
 
+Why INT2+INT1 should be valid? Why is this flexible? Commit msg should
+explain that, otherwise we expect fixed number of interrupts. Actually
+commit msg is here specific - always 2 interrupts, so I do not
+understand why 1 is allowed.
 
-On 4/10/2025 2:47 PM, Krzysztof Kozlowski wrote:
-> On Thu, Apr 10, 2025 at 09:33:27AM GMT, Jie Gan wrote:
->> Add an interrupt property to CTCU device. The interrupt will be triggered
->> when the data size in the ETR buffer exceeds the threshlod of the
-> 
-> typo: threshold?
-
-Will fix it in next version.
-
-Thanks,
-Jie
-
-> 
->> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL register
->> of CTCU device will enable the interrupt.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Best regards,
+Krzysztof
 
 
