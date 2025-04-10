@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-165583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1AFA84AB6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:09:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0381A84AC0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 19:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED2DF7AD6F9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 17:08:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC34D1B885BC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 17:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710E51EFF8E;
-	Thu, 10 Apr 2025 17:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C310C1EFFB9;
+	Thu, 10 Apr 2025 17:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xmuRXX4c"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Hk9ICbrI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2AB1D5CE8;
-	Thu, 10 Apr 2025 17:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209E51EFF8B;
+	Thu, 10 Apr 2025 17:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744304972; cv=none; b=ZPsM4u7LkWVGM1j2V3ykaFBywrHCtG8veocLyJVPLMPnJmxAUS1ecGaCzNCr0CQMrC2qQPUKZBFdrrxF17z8eh0XBBkh2BwZTR5vMZMgEl7eDOE5454IZV2vO/iYSflszz3TcvK/7XUJUjPIvIpAevAb0izfKLfOp2ux3IEkjs8=
+	t=1744305232; cv=none; b=KLAozOl5G2nix+snVSAcPmxgE9Zes+jlD7JyBOpWSzlkTREmMCsXz1hZNxAE4bmUDH2bjyLgT6DDfU30olYdneQWVf5dXrirnofBIginF4KAlESoMUXx9pz9fWwe5Ml/UnbR2bQdJA9gcUa5FVpSNujcuxoSUaOaFkENaEvBqnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744304972; c=relaxed/simple;
-	bh=Ug4lEjA1gs4L+Ah+ss6ctQKV51r9X17j7n35KVsDUXQ=;
+	s=arc-20240116; t=1744305232; c=relaxed/simple;
+	bh=4Oj1yvMh0QB813Yn0QiRAoNK8Kh/5ucCp5QFvDHVrsA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d2ZKhyo/lv3FfLK5e/0PJWfB1rSAVGElQ/gLzJ0fgC4Lman+8sSqwssZ3Yb2YH2gIjS29l9hjlzJeHBMf07WNFBBg6YgCCDFNdIx6eeCxESi49KE0yOcCvqlL+tp4X1yZbpdBPh2/XQPDozPqq/mN8MhDDOZeAG5O34mLk+lynk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xmuRXX4c; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lv6Of4rQfBoA9MCA0FCkSvhqLx0Rg+sN35ZV1eZl4cZW+lUxzHmByfFjggdtsvV2QBoJpfztxEZO3FtYETvhZ6OQ0RB85pxpTlJztu+225PI6aeiw/1D85fMDzuePIDc8Gdfk4rGFSoEKHuTJlQT7gYuarrav+3dq7tbE8Wz6ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Hk9ICbrI; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=amQTBAOZwMkJ1j1LtN/s0dLA/fANsCSGlX6qX2vDPVo=; b=xmuRXX4ckQGKPcGs/K603KyGOs
-	QmoAeM637i5YHNIvTohfYiqLxX93Z3FRa6YXYpZ3sxWZQaV+btppFVPLy85jiSRgABw3vFLLBk6LK
-	xaO/iLPaVu5lFyziZmfyk26lo31+TSjMFLJb1ZwR28icKNlvd1R5aSjMBK+W8E6ffK54=;
+	bh=tBs+L7GljmdttspKTR74d3vYIsbQVwMVt7YqQ/pqWX0=; b=Hk9ICbrI9SgVJyivcCnzdyHVHc
+	Q0q2UyStUpC83uG9rxplPupBCIcfaP2HLLKSSgmlQNtmeiS6QWiSS67FEP319t+eCYrlonVtCbnt9
+	esQe/z183xp8bTVROvdWZdKzIHZRXfZGkdRlcwriydvm/UJv9KzrfsKAgaNmAwDsAdyI=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1u2vOX-008i2l-LS; Thu, 10 Apr 2025 19:08:53 +0200
-Date: Thu, 10 Apr 2025 19:08:53 +0200
+	id 1u2vT4-008i5m-63; Thu, 10 Apr 2025 19:13:34 +0200
+Date: Thu, 10 Apr 2025 19:13:34 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Christian Marangi <ansuelsmth@gmail.com>
 Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -67,11 +67,11 @@ Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	upstream@airoha.com
-Subject: Re: [net-next PATCH v14 07/16] net: mdio: regmap: add support for
- C45 read/write
-Message-ID: <50c7328d-b8f7-4b07-9e34-6d7c34923335@lunn.ch>
+Subject: Re: [net-next PATCH v14 06/16] net: mdio: regmap: prepare support
+ for multiple valid addr
+Message-ID: <fc1ee916-c34f-4a73-bdf6-6344846d561b@lunn.ch>
 References: <20250408095139.51659-1-ansuelsmth@gmail.com>
- <20250408095139.51659-8-ansuelsmth@gmail.com>
+ <20250408095139.51659-7-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,73 +80,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250408095139.51659-8-ansuelsmth@gmail.com>
+In-Reply-To: <20250408095139.51659-7-ansuelsmth@gmail.com>
 
-On Tue, Apr 08, 2025 at 11:51:14AM +0200, Christian Marangi wrote:
-> Add support for C45 read/write for mdio regmap. This can be done
-> by enabling the support_encoded_addr bool in mdio regmap config and by
-> using the new API devm_mdio_regmap_init to init a regmap.
-> 
-> To support C45, additional info needs to be appended to the regmap
-> address passed to regmap OPs.
-> 
-> The logic applied to the regmap address value:
-> - First the regnum value (20, 16)
-> - Second the devnum value (25, 21)
-> - A bit to signal if it's C45 (26)
-> 
-> devm_mdio_regmap_init MUST be used to register a regmap for this to
-> correctly handle internally the encode/decode of the address.
-> 
-> Drivers needs to define a mdio_regmap_init_config where an optional regmap
-> name can be defined and MUST define C22 OPs (mdio_read/write).
-> To support C45 operation also C45 OPs (mdio_read/write_c45).
-> 
-> The regmap from devm_mdio_regmap_init will internally decode the encoded
-> regmap address and extract the various info (addr, devnum if C45 and
-> regnum). It will then call the related OP and pass the extracted values to
-> the function.
-> 
-> Example for a C45 read operation:
-> - With an encoded address with C45 bit enabled, it will call the
->   .mdio_read_c45 and addr, devnum and regnum will be passed.
->   .mdio_read_c45 will then return the val and val will be stored in the
->   regmap_read pointer and will return 0. If .mdio_read_c45 returns
->   any error, then the regmap_read will return such error.
-> 
-> With support_encoded_addr enabled, also C22 will encode the address in
-> the regmap address and .mdio_read/write will called accordingly similar
-> to C45 operation.
+On Tue, Apr 08, 2025 at 11:51:13AM +0200, Christian Marangi wrote:
+> Rework the valid_addr and convert it to a mask in preparation for mdio
+> regmap to support multiple valid addr in the case the regmap can support
+> it.
+>  	mr = mii->priv;
+>  	mr->regmap = config->regmap;
+> -	mr->valid_addr = config->valid_addr;
+> +	mr->valid_addr_mask = BIT(config->valid_addr);
 
-This patchset needs pulling apart, there are two many things going on.
+I don't see how this allows you to support multiple addresses. You
+still only have one bit set in mr->valid_addr_mask.
 
-You are adding at least two different features here. The current code
-only supports a single device on the bus, and it assumes the regmap
-provider knows what device that is. That is probably because all
-current users only have a single device. You now appear to want to
-pass that address to the regmap provider. I don't see the need for
-that, since it is still a single device on the bus. So adding this
-feature on its own, with a good commit message, will explain that.
-
-You want to add C45 support. So that is another patch.
-
-C22 and C45 are different address spaces. To me, it seems logical to
-have different regmaps. That makes the regmap provider simpler. A C22
-regmap provider probably is just a straight access. A C45 regmap
-provider might need to handle the hardware having a sparse register
-map, only some of these 32 block of 65536 are implemented, etc.
-
-So i think:
-
-struct mdio_regmap_config {
-        struct device *parent;
-        struct regmap *regmap;
-        char name[MII_BUS_ID_SIZE];
-        u8 valid_addr;
-        bool autoscan;
-};
-
-should be extended with a second regmap, used for C45.
-
-	Andrew
+      Andrew
 
