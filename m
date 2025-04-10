@@ -1,153 +1,131 @@
-Return-Path: <devicetree+bounces-165516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B312EA84806
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 17:34:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 337ADA84844
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 17:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D727C3AFC7F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 15:32:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A35841B61B56
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 15:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C271E5702;
-	Thu, 10 Apr 2025 15:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65ED41EB9E8;
+	Thu, 10 Apr 2025 15:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJe693PR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019C11E990A;
-	Thu, 10 Apr 2025 15:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397F71EB5F0;
+	Thu, 10 Apr 2025 15:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744299162; cv=none; b=t/IBkEg3j/9VvHBIxKmzihgzur+ccRIL/Az6eHkc4jVXAxLsAuvLsfsItObM86j1DraRTT7wxmbWuVk87WX1bG7mLpb9jgQcgf9//IZnjXqeD0/vjxxsOeP25bbUqAG1CeZVKjlqr/X0o3CpTo/SsLEAvhPunHrVNGGMB6RNWT8=
+	t=1744299635; cv=none; b=nMQMRhreXvNnrp9SJvb03Y6Oua5b+S/IxNh+/rd2+TynYjodqP+QBgbRoqHDSECgMEf6nMd3YSj9Ltbr3PA4ltDx0sx6suEBpF4A0eLieWGOagy9P4KpFnm2eU6ZREXUFz+7PxvjCLvT2P7J4FmHNipSw9fHkjw7e3txJqVlFzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744299162; c=relaxed/simple;
-	bh=BfUCJ6zQhrT/3wpw/JuvHEuL8osOaMWGT0eLdP72w1U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fM0M7Ep4k2dN70YHvMD66B10Noa/0fO6XW00k5LAS5J5NwHemGFJ2uIuS3bgm4NFSqRQbBDsc8yU9+bBQw8zxA9nmvv4d1OIEfPNBPIOfEXyrBtLlkEXWALO/oiDRjrSQGyVlA4i8+zYNPp4V29aZNnzLnnfyNw8gNFg8UMtvZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c55500d08cso90550385a.0;
-        Thu, 10 Apr 2025 08:32:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744299159; x=1744903959;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oeaUuCNBxI4Oq+ZUmEOLJH7N/qGDywoJMkgl4ao7Rcs=;
-        b=bbmMOAgt6dY5oWHESGVM/MG0T7DVchHHs4TxlxiXGGqS4QJqG6Ozd28Zg1sQDAL7b6
-         yp98MqP1pdlutxJort2SvLnzLNgrQ08tHjyqw0vc9BkZ1lNcaa5mMfUCIFchofjRl5JP
-         k8D+NIsf//Q7u/1h1tTcAf1TUoLYnkS/VR3VyrS3AIc0HG9SoXMh88WbAqhHUy/pNnhQ
-         bJbC99aJjZw+RMfN/15etPr2vPFIAEo8CT8YjjMgzXavZh4vjJSWg50+ed8dBZxfRvR4
-         2ia1oO/yXN+yEViZCc8tbV0/r+9Ybfk9myrZwYgjF1ogQG1SfATXxjZit139LPToXOI+
-         mShA==
-X-Forwarded-Encrypted: i=1; AJvYcCWO+qKizOwXrl67GBwTwJiW805B9m6OKswk+84tr1MTMm/wnEHT6kI94Fp47uK7+z+g4iJaQ/qr+7su@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzjl1blX/Vq3SmslbUJwH2lzu9r0CE2qiquiBi5D3pixvbjaHSQ
-	X6NhZCgmvxYsF7GBvBYGTippbMoptWN2EzHjoEmT6mNr8UGa4T9htZUbNmdWbsQ=
-X-Gm-Gg: ASbGnctP05zmNRy1j8A0GlvOaADNB7fup2Q3ua7IIZkOFLvlWL61OarHSue/+OfzELT
-	FVpkgZjj7CqPHeX/8QrTUycUJqg0VB7mU1VCtOt53oeLOXpMC4dxqLqdtuy19xmLW0K3+Y/igHM
-	J8hJHedZ23/kQXxbmyFplqJ9xT+cZOLPNsAyb63GtpjHoN0lEeK/nt+IQjgfhc6tSf3oXAs4uJg
-	62h4xV2vjlrPw2UMoA3pNgtbMq47WFdXs4h9riR00yKz+99ZPUSzoRt3s+mSIkcy84TvwZPfFFa
-	zt3yBaylXEFThCOW6hdYLv2FNYmgj0CzRlV3Jjv8Fto1Ikag2/WTQe36YgPL0qcdzDJdhV4V1uN
-	XgVPl3gY=
-X-Google-Smtp-Source: AGHT+IFyxIjrlwakseKVPLOdD42J8HJP+mFffnGX7T/4lPFCYJzgV7mn4gEVhSfVXOtSZXOMGiwuLA==
-X-Received: by 2002:a05:620a:5e54:b0:7c5:a249:901b with SMTP id af79cd13be357-7c7a76d049fmr421800985a.49.1744299158919;
-        Thu, 10 Apr 2025 08:32:38 -0700 (PDT)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com. [209.85.222.173])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a89517f8sm102921385a.37.2025.04.10.08.32.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Apr 2025 08:32:38 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7c55500d08cso90547485a.0;
-        Thu, 10 Apr 2025 08:32:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXmtoawaXqcte5PlSGh8QzhHoQBem743FbNNSnqAPqbRoGgzMmPdUAGsCMsQpFFHrHsvUKiTraqJsu7@vger.kernel.org
-X-Received: by 2002:a05:620a:4589:b0:7c5:57d6:ce3c with SMTP id
- af79cd13be357-7c7a766e1e9mr418492285a.22.1744299158252; Thu, 10 Apr 2025
- 08:32:38 -0700 (PDT)
+	s=arc-20240116; t=1744299635; c=relaxed/simple;
+	bh=WWPgjrypLq+FtwiDGFQDw69WqwGWqMZd39vBNg9H2Ek=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pemJ9dEzb3jWaC1xmaBXDxKTdJLNEapq+oOP8/GvL+PSYcv83hf6PPzu+CRg42XRSIKq8DPRqpDS3wzygxgyi8EGEjHJru3nC2yoTPT7BrZ+xHM3iifFCtv+wNPGh3v64ux15zEM6cGUS+4g7+2QkZT2La5391Qd+jYSjPM3Adg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJe693PR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 95CDEC4CEDD;
+	Thu, 10 Apr 2025 15:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744299634;
+	bh=WWPgjrypLq+FtwiDGFQDw69WqwGWqMZd39vBNg9H2Ek=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qJe693PRS+hQ6mlDmBvuZUfvssTMkQwUs0dlIPhRoGai+Is66UbQhQMRcrTWFuTMW
+	 voSg8/H9A6tN/W2wtWMhDEwA6niGtF1fSzzFdMtsQBrlgFe+PPD0vCX6+64b7QwNEA
+	 MJA2mF49cyLLl0UffUnGpm097TBDKGVyfGCAphTZSzVX5PlUVW4ltDUDLTYV963dQU
+	 V5OTlmsf+/xjXVR5c6kAPvsbOxDMaD+POpP6yUNNFYwTm/HaAfwAPDE206OyvHAHY0
+	 hrNVV/d+CXFR+hUD6v38NozEEVySA7TkkIQ0UTNqShiHrPr5SV1KKvDmrvfsJZul8P
+	 r6aakh8SbxC3w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A6EBC3601E;
+	Thu, 10 Apr 2025 15:40:34 +0000 (UTC)
+From: Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
+Subject: [PATCH v4 0/2] iio: imu: inv_icm42600: switch to use generic name
+ irq get
+Date: Thu, 10 Apr 2025 17:39:39 +0200
+Message-Id: <20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-0-19e4e2f8f7eb@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250313102546.27335-1-wsa+renesas@sang-engineering.com> <20250313102546.27335-3-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250313102546.27335-3-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Apr 2025 17:32:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWO7M+SyvD6gj5h2yFFzpwyXhHzrxWgSCTz8hJb+puzBg@mail.gmail.com>
-X-Gm-Features: ATxdqUH0Q5tpsgQ5jw3fGMblfnYOD24QcVcje-dZdTnoL8MRjCSnCEJ-emxVekU
-Message-ID: <CAMuHMdWO7M+SyvD6gj5h2yFFzpwyXhHzrxWgSCTz8hJb+puzBg@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/4] ARM: dts: renesas: r9a06g032: add second clock
- input to RTC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADvm92cC/53OsW7CMBDG8VdBnnvIOdt16NT3qDo49gEnFBvZi
+ dsK5d1rYADWjN8Nv/9dRKHMVMTH5iIyVS6cYhv6bSP80cUDAYe2BUo0UqEB5gQ8zsCxAvtR47u
+ UkOkn5VO7TZTzfJ5gLhwPEN1IBQa1s56CxV4Z0dxzpj3/3ppf320fuUwp/91eqN31eq9pqVfUa
+ gcSLFIwnZTBdfpzCqetT6O4tio++3aNj833aHvn96a3A7766tnfrfFV84MbeuOksx6Hh78syz/
+ 8+/aesAEAAA==
+X-Change-ID: 20250325-iio-imu-inv-icm42600-rework-interrupt-using-names-b397ced72835
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744299633; l=1934;
+ i=jean-baptiste.maneyrol@tdk.com; s=20240923; h=from:subject:message-id;
+ bh=WWPgjrypLq+FtwiDGFQDw69WqwGWqMZd39vBNg9H2Ek=;
+ b=3e/zhaM3q8MUpKaDXmv/uRr+PITc98IwwQe13/LQSk4jVoPOcTJJ33hLF96luG1fIYPRXL3Pq
+ A3cD4uIaS4LAJM0LAjxh2fSqIfnVUO2DcKzF7rZj9nUexhL/fKD66HO
+X-Developer-Key: i=jean-baptiste.maneyrol@tdk.com; a=ed25519;
+ pk=bRqF1WYk0hR3qrnAithOLXSD0LvSu8DUd+quKLxCicI=
+X-Endpoint-Received: by B4 Relay for
+ jean-baptiste.maneyrol@tdk.com/20240923 with auth_id=218
+X-Original-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Reply-To: jean-baptiste.maneyrol@tdk.com
 
-Hi Wolfram,
+The purpose of this series is to switch to fwnode_irq_get_by_name()
+in the core module instead of using irq from the bus parsing.
 
-On Thu, 13 Mar 2025 at 11:25, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> The external rtc clock is populated on the RZ/N1D module, so describe it
-> and add a reference to the RTC node.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Add in dt binding interrupt naming and up to 2 interrupts support.
 
-Thanks for your patch!
+Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+---
+Changes in v4:
+- Change dt-binding commit message to be more explicit about interrupt
+  support.
+- Simplify fwnode usage, NULL checking is already done automatically.
+- Link to v3: https://lore.kernel.org/r/20250409-iio-imu-inv-icm42600-rework-interrupt-using-names-v3-0-dab85a0a7c2b@tdk.com
 
-> For the non-RFC series, it makes probably sense to split this patch into
-> two.
+Changes in v3:
+- Update dt-binding to report support of the 2 interrupts and delete
+  remark about driver feature support.
+- Link to v2: https://lore.kernel.org/r/20250407-iio-imu-inv-icm42600-rework-interrupt-using-names-v2-0-c278acf587b2@tdk.com
 
-Indeed.
+Changes in v2:
+- Add INT2 in interrupt-names enum and fix enum
+- Add fallback to first interrupt if naming is not here to ensure
+  backward compatibility
+- Link to v1: https://lore.kernel.org/r/20250404-iio-imu-inv-icm42600-rework-interrupt-using-names-v1-0-72ed5100da14@tdk.com
 
-> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> @@ -47,6 +47,10 @@ &eth_miic {
->         renesas,miic-switch-portin = <MIIC_GMAC2_PORT>;
->  };
->
-> +&ext_rtc_clk {
-> +       clock-frequency = <32768>;
-> +};
+---
+Jean-Baptiste Maneyrol (2):
+      dt-bindings: iio: imu: icm42600: add interrupt naming support
+      iio: imu: inv_icm42600: switch to use generic name irq get
 
-That's the mighty 0.033 MHz crystal X2_1? ;-)
+ .../devicetree/bindings/iio/imu/invensense,icm42600.yaml   | 13 ++++++++++++-
+ drivers/iio/imu/inv_icm42600/inv_icm42600.h                |  2 +-
+ drivers/iio/imu/inv_icm42600/inv_icm42600_core.c           | 14 ++++++++++++--
+ drivers/iio/imu/inv_icm42600/inv_icm42600_i2c.c            |  2 +-
+ drivers/iio/imu/inv_icm42600/inv_icm42600_spi.c            |  2 +-
+ 5 files changed, 27 insertions(+), 6 deletions(-)
+---
+base-commit: 1c2409fe38d5c19015d69851d15ba543d1911932
+change-id: 20250325-iio-imu-inv-icm42600-rework-interrupt-using-names-b397ced72835
 
-This change is good for sure.
-
-> +
->  &gmac2 {
->         status = "okay";
->         phy-mode = "gmii";
-> diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> index 7548291c8d7e..458dab9d3b7f 100644
-> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> @@ -73,8 +73,8 @@ rtc0: rtc@40006000 {
->                                      <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
->                                      <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
->                         interrupt-names = "alarm", "timer", "pps";
-> -                       clocks = <&sysctrl R9A06G032_HCLK_RTC>;
-> -                       clock-names = "hclk";
-> +                       clocks = <&sysctrl R9A06G032_HCLK_RTC>, <&ext_rtc_clk>;
-> +                       clock-names = "hclk", "xtal";
-
-This depends on whether we decide to provide direct access to ext_rtc_clk,
-or through the system controller's clock provider.
-
->                         power-domains = <&sysctrl>;
->                         status = "disabled";
->                 };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
