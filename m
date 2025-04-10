@@ -1,845 +1,238 @@
-Return-Path: <devicetree+bounces-165480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B355EA846C8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:48:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D3AA846D1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 16:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE501B85789
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75FAB9C56F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 14:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6EE29617E;
-	Thu, 10 Apr 2025 14:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C02C28C5CD;
+	Thu, 10 Apr 2025 14:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZA9s14Gc"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="YQhF0cXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010018.outbound.protection.outlook.com [52.101.69.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA32E28F92C;
-	Thu, 10 Apr 2025 14:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744296087; cv=none; b=luLfGtKnSqGL6DfwfOtiKl3Hb9uIdkmj5v+cCbG1wLZZQEoeFmXx/OGUyiMtFxogJ66nd4ENIZy7iJz9ZG11fsz/aRTx5zcGED7tJq/jpb6z2F6rgDpjGYkXrH+FS673YkdiGXSvRHdVGYaYOETt1kz3OWUEDIrbWh230H+1hh0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744296087; c=relaxed/simple;
-	bh=bt5ltddMpCdVtI51AV4dO7Se1+OQULRrOBMBGQLtaPA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=e+VyOwO6VKbQg0DNcCrXhfCaCHBEAiQ9uapWGjyxdV/PHRxaPSW8kBVP7CsbxEO5ELcSpDxlLRK7B06uL9F1FXT8B2Qa1ECR4yL6XVh7sL9YoiVzsVmMC+8oFI3ycwao0NrneMlGNeHVXsrxzoBgX6URYKBvmaCds6oDahU7600=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZA9s14Gc; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744296083;
-	bh=bt5ltddMpCdVtI51AV4dO7Se1+OQULRrOBMBGQLtaPA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZA9s14GcPXQdbcxyX9y9EdrcyubEa48EkQL2U4mc2guV+mGK0deqbCLfMK4Zw1qFk
-	 HiujRAYWBmWAlfq/D/UbdL72bUSztvY7pPdg96rd9Z52K4gYIKPRT82xjD3dLBf9Jv
-	 AwgKBquK1LL5lTocOEuL3/E7wbzwg5EH1727PTKzHTlLQI+YOm68Od+JI+eFtmj1mW
-	 x7OK+iW5jC808+dALgplSMRJrSbs2c0hMNEoXV40XCU/c5t4T1uR8jYkUrMi9a8tb2
-	 lRy9ai6mho7MaTwBgOsXpreUuXM/CI2z5L2PUh/O3Rizs1+GtXeO0ERK4yifsA/apI
-	 nJh5LfBDN2YEg==
-Received: from IcarusMOD.eternityproject.eu (fi-19-199-243.service.infuturo.it [151.19.199.243])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 854EA17E14EF;
-	Thu, 10 Apr 2025 16:41:21 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: mturquette@baylibre.com
-Cc: sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	y.oudjana@protonmail.com,
-	lukas.bulwahn@redhat.com,
-	u.kleine-koenig@baylibre.com,
-	geert+renesas@glider.be,
-	amergnat@baylibre.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v1 3/3] clk: mediatek: mt6893: Add peripheral and multimedia clock drivers
-Date: Thu, 10 Apr 2025 16:41:10 +0200
-Message-ID: <20250410144110.476197-4-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410144110.476197-1-angelogioacchino.delregno@collabora.com>
-References: <20250410144110.476197-1-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80BC202F71;
+	Thu, 10 Apr 2025 14:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744296224; cv=fail; b=mFo1BqW1V0e1/rg/vYnebQxmwdA8Co9ANCWqg4Ez+Mg+xmEyO3GWI+qQSKFaMac42N5e9VzPN9VMP03581AkoLB8FedcHj6WGTvRWBZg9SwgoSb5PUsJAYj/lIFbpA9XGUk7BlSpDaFO+og8DQxL2/6i50V424jvnxiyRw2t8lY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744296224; c=relaxed/simple;
+	bh=UfFKniQt4sohx/+HnBlt74D80xKS1QHc9MDoZwAQ6Fw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=jWEr7WKt+gNAqPxxfMEVYOSQHTjLBREbo3piLtrXPhClQficb7w2BWfUEavitkbOxUJzGoC0CqCGwE87FNyL0U+K/a7HbqjQeWGotkMrm0RglxnZjk6GuQ62NySlumlU+Quxz+gag2w5lY7BKiGMLeOi3iobKQZSpq2oLyf66/k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=YQhF0cXW; arc=fail smtp.client-ip=52.101.69.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XshjSqhBlqGJ08PZSY8N/eosxEyPZF0+W3r7FTf5gQBY0PGqM13LODNOiO7Se9vDqZg49k+q5JIyBwsJL4Hzx51GQNIKOeMmHo7EeuXxJUwcN3qy7NXIf9G0PxOmaRvPxSFdyTLhIIjNaXemulrpUJKma5spSnCLCzRjvsv3J7+Bx6k+MMPd42zS5jaGfXk3IaO1yPnwnCuvkz7WzKS3+j+g0H+x1xu5TfAi0KwCglypJlPm0qDQXrZS4DIZ6hl2jsAxvDlLYGMTvFuABGXsRPcJUA+gJflgpoXqp94LS/ELYUjASW5CBV9JXYAYhWb9tu3a2keUlxXus3EehEUVmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YSgtNDPw14tsY72V1LKvNQyG6T+1dMAUewghBBNB8e0=;
+ b=CMgMmJcMsarYZ6DGLpKjvWHvRUw1lWgla2QB3nesLfpcHrja5rshbesm7AqoWl1OXjKS4spXZtr1f2/Ohxkr3cSEPaG1utOGowFzxA+W+13wD22r1RL1WPEKYDFa4fTgUYs+NU+abEk8ZIQEPjHfvOipaGOxx0EdxG7Uxg6rsJwh8Z9A/ddX4ZPpiQc0EtLFxAasmbY4LyL5+aEYwVkCrXJifPIV/Di98/KNWDcdzPtjpQxG1x9QLSyGZtaecZuedWZU6jynfpoBCkUHLbO8GjhhFYQxdbyMSwawoN0l9y4YkBdMB3h6cp15hmSeMkfBeQDV/ytExf4bMxBL9uiy/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YSgtNDPw14tsY72V1LKvNQyG6T+1dMAUewghBBNB8e0=;
+ b=YQhF0cXW0PhlqKls/f5o8j7Ksnr2SHc5vvwPxCzVLjZZiBJ4TEPFgFFdoD7Zb7S+yF4zSYpyCf3XiTkpy5m0yQb1C6fxO5foRjSPzDO+NGD2qnNKDqC2vgaC5FaGTGAkEM+l3jvDEkY+XU5YZgHLMijKN+an8uC6KylAkum09w30pueguzeXHcOO8YSrxiKMdAEANxAirFUJihvbCaOQ4sT+353B46XwncrmleDUhUltLbuVfcBWB1k92KKaC7aONHgagU95lrRY5+KKoZskieNWMwsPdQD40RGol+5dp4lsk9fjJ7DauVWmVYYhlJZb/afq24ztof8MbxN1gGgjJw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by DBBPR04MB7577.eurprd04.prod.outlook.com (2603:10a6:10:206::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Thu, 10 Apr
+ 2025 14:43:39 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%4]) with mapi id 15.20.8606.033; Thu, 10 Apr 2025
+ 14:43:39 +0000
+Message-ID: <9d712c3d-ca69-4a8a-8237-0543fdc2ce5f@oss.nxp.com>
+Date: Thu, 10 Apr 2025 17:43:34 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: s32gxxxa-rdb: add RTC module over I2C0
+To: Frank Li <Frank.li@nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>, Matthias Brugger
+ <mbrugger@suse.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, s32@nxp.com, imx@lists.linux.dev,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>
+References: <20250410133028.5871-1-ciprianmarian.costea@oss.nxp.com>
+ <Z/fWNxhtLb7Mz20R@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <Z/fWNxhtLb7Mz20R@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM8P251CA0002.EURP251.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21b::7) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|DBBPR04MB7577:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2b28c59-ac0f-45f1-d11b-08dd783e14de
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?elgyK21GQmtaM2p4KzYvRnJmTkNCVXYxaVFQa3dnczdUOWtML2x3a1FiWnhR?=
+ =?utf-8?B?S1FPdlJzSll5SUY1MzVna1MzWHBKNWlVZ0RPb1RrZXRZcEQ0eGUwWFQ1bDVL?=
+ =?utf-8?B?RXJoWlMyUkpWRmVxYjNDV00rbnBTVTk1NXNyQjk5WG1IOGQ2OU9ZY0ZOSU1I?=
+ =?utf-8?B?cHVYM1NSUWZML21YbGNWTFhYYkVUZEFrMXpmRmhwbThvejNTdGE0T0MxQ0xO?=
+ =?utf-8?B?TWpZVFIzVXo4cUc2RytNMEpkalJab0hSMndXdFQ4YWEzMlBxS2xHcTJxZzg1?=
+ =?utf-8?B?Z1cxQkg1Mzg3UjlGK1FtRTZGZHlwbjhDa21HOTV5dUw0UzZNTFlVNk5JcHNH?=
+ =?utf-8?B?V1RnRkRINjU5eDZJU01UcDNMTGpJL3Z5QTBvaUxSOVBDMU50bnV3bnZpeU5F?=
+ =?utf-8?B?akNSZGtFck1RNitxclVnT2hkZ0Njakt6Wjd1ZXRTR0dXTkQ5bEpkWmZacno5?=
+ =?utf-8?B?aDZ5NG56NEFxMjgxczdoOW5NaXAvUVFkNGMrQnVQYVEycXMzTTlZL0I3ZmJy?=
+ =?utf-8?B?b21Gdm5abzVUOUJqaFNwd3I3Zit6djhMZWtlOTNMcEJsa2dxbWxkbVZ0V0ph?=
+ =?utf-8?B?a3pzK2Nvdm5BUGxOT3FONERMa1BYRXh3SDVwc2dUQ1RCLzlxQk4ramNXVDNi?=
+ =?utf-8?B?NjM0bnVSU3BSSk1aYjlUK3lLUW0xNmFjaUVuN2lNVFVCZkFvN0FvSTJjN2Jl?=
+ =?utf-8?B?U0tzek1wZUVTL3VOUVFZeEtWMUJ0YURjOWhUa1pRNVNucjBFbDBtcmMzandD?=
+ =?utf-8?B?cC9mOEU0KzF5cGovZTYvZ2lqQ091N2dHMmY5d09NcXZwd1EwOUp5Rjg4RG9B?=
+ =?utf-8?B?RGt4UUFMQkZObWdPOGJQdGJXVW1YSHV0YXprMlI5NXFpZmYxZ2ZvNlVOK3FC?=
+ =?utf-8?B?UUI4OXBkYnFLREJmOG9ERVFGTitrYUZjWWordEJvbHVrZ216R3JnS2k4anVY?=
+ =?utf-8?B?RzRuWUcxQ3lJbUNtU21GTlVrUHlqMlJkSnBJa2d1anYrMm1SSGVlK0FrTVpF?=
+ =?utf-8?B?bGprYkwrUVZkeVJhQ2xBemNmajBPalhTUnlvcE5lWFY2MFdyb3FoVmR1U3NR?=
+ =?utf-8?B?K3FxTnRzYVIxcTdheFUxZkN3WWdTMDJuZndXN0dvQmY2QjhBb0l6bHhVMzF3?=
+ =?utf-8?B?TjFSZVQxaWpRVU9LcDFsMEV3dGtiL2lxYjA2bGc1THlMVndteFJVaGxvK1FN?=
+ =?utf-8?B?VG9VZUJQMWJ0eVh4bzVKUTBibEZra0FpQjJqd0VVQjFRZ01tNTVjd250S1JX?=
+ =?utf-8?B?QzRoUFYvdXdQR0pweEpzMWJ1Y0gzN09aTFloVVFCNU0rR1V2V2lJN2hwbWg4?=
+ =?utf-8?B?RmQzTW51aTc4eHpoSVVIWGpJajYrUGFqeGI5cG03djJqS2RYTjlMRDBPViti?=
+ =?utf-8?B?WEtXdFAxYmszczY4SDlmTWtvRkxXNE9mZVdqV09XeXFwSEw5QkdYZE5WcnFM?=
+ =?utf-8?B?eVdXZ2pBMU5oRmozeDZzZFNvQ05NUldlOVJLY042M3JoQVkxb3F5YkRydk1I?=
+ =?utf-8?B?bWRhdVVEMlZuRGkzTWRlTzdxVDUrdjlSSzhDOWZZL2E2VHRpKy9sY25rZEpT?=
+ =?utf-8?B?cVgyVGZwUGdkVWZmK3c3Z3VKbHo2dFpYYmNFSzlwSkUxbDlTb01jUW9CbW92?=
+ =?utf-8?B?ZjlTL2ZVU013YU1pYWN0eHJvWXlTOG0vOER1Ymh0c1JxS0xlcXI0cm13Smhk?=
+ =?utf-8?B?WEVlRkNHTEQxS25GREg1R20wR1IyTU1XbDZXNHZ4d2ozakhCamMwckdvbUU4?=
+ =?utf-8?B?TnhYbnpYTEkzMGQ3Wm5MN1JUeTc2dXhXdUhicktMa2tGazlBSWNIRFlrbk9Q?=
+ =?utf-8?B?Q3MzVFlYOEh0LzI2dGgzT3NjRDhvQUxub3BpWXRocUpDRDY2VEJ4YW9lWjRi?=
+ =?utf-8?Q?Iy3y1+j4NpOlh?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V0E4cDNITUxNOGJEYzRFZERJbk01ditxRW5FdFArN2loWlFaRW1aa0h6UmlN?=
+ =?utf-8?B?UWE2akVjY3RQenRVZ0hhelVQRVFFVmFJUW9PTDN1NE92Vk0rbm1UMEtzWWJB?=
+ =?utf-8?B?UW85R08vbUxsU1hWR0l6RmRiQVRaSEhwNFhmTU0vYUxRWHJVbjJNTjVnSFN3?=
+ =?utf-8?B?djZTK3VwQ2J6Z2xtVFBVMVFVMjltVS9ES0JxcFB4Ykc1RlpvUnNHZlBVV0Er?=
+ =?utf-8?B?Z28xOXdPckNRTUprTHdycUhobHZNTjRNZDh3MzN2Q1BNZXU1VkJIRy9pN2ZZ?=
+ =?utf-8?B?K0FkN3M2SHhwVTV4WlF3eVh3T3JaL1VRZ01HY2dHWWkvVzViNWxjSjRwYWJw?=
+ =?utf-8?B?cy9nUmhmejNiazFDRis1aXF5MWJScUR1RUNLNXpaTkxzOHpNQXJNNlRkaTB4?=
+ =?utf-8?B?WUxKaTJoSWpqS2tmaVZubGJDamx6Uk8wb3duWVhuRXBFaG5NcHJMcmRydUxz?=
+ =?utf-8?B?VjFYRzQ4b0xleDFPaEU1aVZxMFpxUGJMWmlZK2czRWFvRXErQWh1eVBmeHB3?=
+ =?utf-8?B?UkJ4dVM0RGJnQlloOUY2SExLSFVoR2NTN0F3eENYK3pWa2k3aFd0aVZwZTd1?=
+ =?utf-8?B?L2RKeTRrMTdxRTBRWWVJNG5kcGthSFhWZ05TaDgvSUNHSzgwNnk2OThBNERU?=
+ =?utf-8?B?UjI0R3hNVVEzWGZWQlBPVjVYREdaTTNKYlR6OFAvUDl4Q1lvSnMvcVQydTBy?=
+ =?utf-8?B?bzNIVHVhVC9NRmZVNnYrT3dvdW9CSkJ4WFhkanVOZFRzdTl2ekJjdTlsMExY?=
+ =?utf-8?B?dHJQQ2M3aEFBZVp0T1pBMGxWSDJWa0JkWDFZemZRL1IxZW5aQ0trUCtIdDhj?=
+ =?utf-8?B?TW1XcnoySlVkNmZQbHhLck1uc3VLSys1SUR4NDZYdnp4STdlUUdCWDJQTEVq?=
+ =?utf-8?B?bGhGdEd6YW1KQ0RaNTVRd21hY3dHUmo5SjgvdW8zNzJCbnNnd2ZZQ3Exbkdj?=
+ =?utf-8?B?VmhWZGdFcVdMTWVIcjNJaGc3d0NBclp2Rko0OWpXTE95REtyZ0hDZHZRT1Yz?=
+ =?utf-8?B?TkVjUW5BOVFwWnlaWEtRSlZ1NllBUUIvSmVOVXU3SldESjhoSUpXWStRMGpv?=
+ =?utf-8?B?NnorYWtWdW1NNDdvTkY5VndjTXBjSkpjTENHQUp1MVdEdkRkZFVvREYxRkVj?=
+ =?utf-8?B?cmQ2cDRsdlR3WHluaDVlZis3c2MyRnFTdVJ3NHpUazcrZVNSaWRUTUJON2dY?=
+ =?utf-8?B?Y1UxTlYrditVb0tSdVdQajc4VDhieUlQNmxrWFVIU0hEbUU0NHM1T2NqQTFH?=
+ =?utf-8?B?VmxSYStXa1JPaG03cFp5S2toSE8yVi9JOGJQVWJwQm5HZjdDd2cyZWdKQWV3?=
+ =?utf-8?B?QTJSNWFJWkhJbjhzbFE0UWxic2h1TGIrczhyOWsyUnJTWG9DbElSOUU3TStX?=
+ =?utf-8?B?dDgvL1pocFpTZFRNbzE2T0J0QXU1VS95TmV0bjJWSStSV1M0OGRiN2FabWgr?=
+ =?utf-8?B?VVVHQXZ5aGZXRDlodkluMmRJclh5VEcxTnB5Sk4wRVllNnRtbDl3cXUyRXp3?=
+ =?utf-8?B?WXJEWFpsVmJJWlpLLzZhWnloZ05oRzRla1V3QUZodUd3YnhQWENYR3AvOGpM?=
+ =?utf-8?B?R0RwRi9WT2pjNWFkVC94anIwZ2JodXZaUEZnSG5xekpobDhqNXV4WFo5Q2Qx?=
+ =?utf-8?B?RkpaRVZ1bkdiKzJLd25NWmE2dkRJQWhqbVFIeXBHR21zOGpPRyt5NWUvbE1D?=
+ =?utf-8?B?K3B3WWJFeXVwWTdLTGthWFpjZEFRa0RpRGJKOFUwbEl1VzExU0ViN3hCb2hM?=
+ =?utf-8?B?cXRmeSsrcUpNMmlLeGpIdzRnbTRscmhZZUJJWWJjc3E3d0pCTjgvYkREZ3Vi?=
+ =?utf-8?B?aUlTOFI1Q1dKZGhzSGFjTXo3UDJ2aFN1bytUaVFIeCtSSzluL29OcEczUUVD?=
+ =?utf-8?B?QTVCLzVvS3Fna1ZPZkllTUNXRFFaMTJPMXl2eWNSeTZ0Rkt0cEc2OUZYdGJs?=
+ =?utf-8?B?OFQvaGZrTXNGN3NKZW5HeXhOQjI0TGFGN0FRNFBld3NkMU14TXhRTzlmOEo0?=
+ =?utf-8?B?RGt1c2hxYzdXamIyV213YjgxQ1dJcjFZRWxTNXg0d2ExSlJodXFqQ1A2di9X?=
+ =?utf-8?B?QlRsZEpsbzc3RzZ3REVOVHBTWnhac1RHVTBTTmxKYWNqVzB3OVZVQ1RqZzZS?=
+ =?utf-8?B?Yjl2cHNvQjI5RjBhREFVYWhvSGd5ekdhQmFnUTU2RVRrRE8rWjRxOXg2djhV?=
+ =?utf-8?Q?exNx4+myD0bov1RXrl5wmmo=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2b28c59-ac0f-45f1-d11b-08dd783e14de
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2025 14:43:39.2611
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lbt7rxMl83ESG678MfTPJeLIhwT24F1eBkTamAvd87z6zHk580dUn2vbcc9CixBlcfQWi2UuzNBvTMaX3ndorn/yE+E/vO27zq+LeypGbns=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7577
 
-Add support for the peripheral (imp_iic_wrap for i2c, scp_adsp for
-the System Companion Processor's AudioDSP clock output) and
-multimedia clock drivers (Multimedia Data Path, Display, GPU and
-video encoders/decoders) that are present in the MediaTek
-Dimensity 1200 (MT6893) SoC.
+On 4/10/2025 5:31 PM, Frank Li wrote:
+> On Thu, Apr 10, 2025 at 04:30:28PM +0300, Ciprian Costea wrote:
+>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>
+>> S32G274A-RDB2 and S32G399A-RDB3 boards have a PCA85073A RTC hardware module
+>> available and connected over I2C0. Note that the RTC module is not battery
+>> backed.
+> 
+> Suggested commit message:
+> 
+> arm64: dts: s32gxxxa-rdb: Add PCA85073A RTC module over I2C0
+> 
+> Add support for the PCA85073A RTC module connected via I2C0 on
+> S32G274A-RDB2 and S32G399A-RDB3 boards.
+> 
+> Note that the RTC module is not battery backed.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> 
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/clk/mediatek/Kconfig                  |  49 +++++++
- drivers/clk/mediatek/Makefile                 |   7 +
- .../clk/mediatek/clk-mt6893-imp_iic_wrap.c    |  94 +++++++++++++
- drivers/clk/mediatek/clk-mt6893-mdp.c         | 116 ++++++++++++++++
- drivers/clk/mediatek/clk-mt6893-mfg.c         |  51 +++++++
- drivers/clk/mediatek/clk-mt6893-mm.c          | 129 ++++++++++++++++++
- drivers/clk/mediatek/clk-mt6893-scp_adsp.c    |  52 +++++++
- drivers/clk/mediatek/clk-mt6893-vdec.c        |  98 +++++++++++++
- drivers/clk/mediatek/clk-mt6893-venc.c        |  72 ++++++++++
- 9 files changed, 668 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt6893-imp_iic_wrap.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-mdp.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-mfg.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-mm.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-scp_adsp.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-vdec.c
- create mode 100644 drivers/clk/mediatek/clk-mt6893-venc.c
+Hello Frank,
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index 64204e07ed47..ff8a87112969 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -382,6 +382,55 @@ config COMMON_CLK_MT6893
- 	help
- 	  This driver supports MediaTek Dimensity 1200 MT6893 basic clocks.
- 
-+config COMMON_CLK_MT6893_IMP_IIC_WRAP
-+	tristate "Clock driver for MediaTek MT6893 imp_iic_wrap"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 imp_iic_wrap clocks.
-+
-+config COMMON_CLK_MT6893_MDPSYS
-+	tristate "Clock driver for MediaTek MT6893 mdpsys"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 mdpsys clocks.
-+
-+config COMMON_CLK_MT6893_MFGCFG
-+	tristate "Clock driver for MediaTek MT6893 mfgcfg"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 mfgcfg clocks.
-+
-+config COMMON_CLK_MT6893_MMSYS
-+	tristate "Clock driver for MediaTek MT6893 mmsys"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 mmsys clocks.
-+
-+config COMMON_CLK_MT6893_SCP_ADSP
-+	tristate "Clock driver for MediaTek MT6893 scp_adsp"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 scp_adsp clocks.
-+
-+config COMMON_CLK_MT6893_VDECSYS
-+	tristate "Clock driver for MediaTek MT6893 vdecsys"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 vdecsys and vdecsys_soc clocks.
-+
-+config COMMON_CLK_MT6893_VENCSYS
-+	tristate "Clock driver for MediaTek MT6893 vencsys"
-+	depends on COMMON_CLK_MT6893
-+	default COMMON_CLK_MT6893
-+	help
-+	  This driver supports MediaTek MT6893 vencsys clocks.
-+
- config COMMON_CLK_MT7622
- 	tristate "Clock driver for MediaTek MT7622"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index b9b101eceda0..73004e318702 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -36,6 +36,13 @@ obj-$(CONFIG_COMMON_CLK_MT6797_VDECSYS) += clk-mt6797-vdec.o
- obj-$(CONFIG_COMMON_CLK_MT6797_VENCSYS) += clk-mt6797-venc.o
- obj-$(CONFIG_COMMON_CLK_MT6893) += clk-mt6893-apmixedsys.o clk-mt6893-topckgen.o \
- 				   clk-mt6893-infra_ao.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_IMP_IIC_WRAP) += clk-mt6893-imp_iic_wrap.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_MDPSYS) += clk-mt6893-mdp.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_MFGCFG) += clk-mt6893-mfg.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_MMSYS) += clk-mt6893-mm.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_SCP_ADSP) += clk-mt6893-scp_adsp.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_VDECSYS) += clk-mt6893-vdec.o
-+obj-$(CONFIG_COMMON_CLK_MT6893_VENCSYS) += clk-mt6893-venc.o
- 
- obj-$(CONFIG_COMMON_CLK_MT2701) += clk-mt2701.o
- obj-$(CONFIG_COMMON_CLK_MT2701_AUDSYS) += clk-mt2701-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt6893-imp_iic_wrap.c b/drivers/clk/mediatek/clk-mt6893-imp_iic_wrap.c
-new file mode 100644
-index 000000000000..49416ba7b768
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-imp_iic_wrap.c
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+static const struct mtk_gate_regs imp_iic_wrap_cg_regs = {
-+	.set_ofs = 0xe08,
-+	.clr_ofs = 0xe04,
-+	.sta_ofs = 0xe00,
-+};
-+
-+#define GATE_IMP_IIC_WRAP(_id, _name, _parent, _shift)				\
-+	GATE_MTK_FLAGS(_id, _name, _parent, &imp_iic_wrap_cg_regs, _shift,	\
-+		&mtk_clk_gate_ops_setclr, CLK_OPS_PARENT_ENABLE)
-+
-+static const struct mtk_gate imp_iic_wrap_c_clks[] = {
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_C_AP_I2C0, "imp_iic_wrap_c_ap_i2c0", "i2c_sel", 0),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_C_AP_I2C10, "imp_iic_wrap_c_ap_i2c10", "i2c_sel", 1),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_C_AP_I2C11, "imp_iic_wrap_c_ap_i2c11", "i2c_sel", 2),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_C_AP_I2C12, "imp_iic_wrap_c_ap_i2c12", "i2c_sel", 3),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_C_AP_I2C13, "imp_iic_wrap_c_ap_i2c13", "i2c_sel", 4),
-+};
-+
-+static const struct mtk_gate imp_iic_wrap_e_clks[] = {
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_E_AP_I2C3, "imp_iic_wrap_e_ap_i2c3", "i2c_sel", 0),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_E_AP_I2C9, "imp_iic_wrap_e_ap_i2c9", "i2c_sel", 1),
-+};
-+
-+static const struct mtk_gate imp_iic_wrap_n_clks[] = {
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_N_AP_I2C5, "imp_iic_wrap_n_ap_i2c5", "i2c_sel", 0),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_N_AP_I2C6, "imp_iic_wrap_n_ap_i2c6", "i2c_sel", 1),
-+};
-+
-+static const struct mtk_gate imp_iic_wrap_s_clks[] = {
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_S_AP_I2C1, "imp_iic_wrap_s_ap_i2c1", "i2c_sel", 0),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_S_AP_I2C2, "imp_iic_wrap_s_ap_i2c2", "i2c_sel", 1),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_S_AP_I2C4, "imp_iic_wrap_s_ap_i2c4", "i2c_sel", 2),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_S_AP_I2C7, "imp_iic_wrap_s_ap_i2c7", "i2c_sel", 3),
-+	GATE_IMP_IIC_WRAP(CLK_IMP_IIC_WRAP_S_AP_I2C8, "imp_iic_wrap_s_ap_i2c8", "i2c_sel", 4),
-+};
-+
-+static const struct mtk_clk_desc imp_iic_wrap_c_desc = {
-+	.clks = imp_iic_wrap_c_clks,
-+	.num_clks = ARRAY_SIZE(imp_iic_wrap_c_clks),
-+};
-+
-+static const struct mtk_clk_desc imp_iic_wrap_e_desc = {
-+	.clks = imp_iic_wrap_e_clks,
-+	.num_clks = ARRAY_SIZE(imp_iic_wrap_e_clks),
-+};
-+
-+static const struct mtk_clk_desc imp_iic_wrap_n_desc = {
-+	.clks = imp_iic_wrap_n_clks,
-+	.num_clks = ARRAY_SIZE(imp_iic_wrap_n_clks),
-+};
-+
-+static const struct mtk_clk_desc imp_iic_wrap_s_desc = {
-+	.clks = imp_iic_wrap_s_clks,
-+	.num_clks = ARRAY_SIZE(imp_iic_wrap_s_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_imp_iic_wrap[] = {
-+	{ .compatible = "mediatek,mt6893-imp-iic-wrap-c", .data = &imp_iic_wrap_c_desc },
-+	{ .compatible = "mediatek,mt6893-imp-iic-wrap-e", .data = &imp_iic_wrap_e_desc },
-+	{ .compatible = "mediatek,mt6893-imp-iic-wrap-n", .data = &imp_iic_wrap_n_desc },
-+	{ .compatible = "mediatek,mt6893-imp-iic-wrap-s", .data = &imp_iic_wrap_s_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_imp_iic_wrap);
-+
-+static struct platform_driver clk_mt6893_imp_iic_wrap_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-imp_iic_wrap",
-+		.of_match_table = of_match_clk_mt6893_imp_iic_wrap,
-+	},
-+};
-+module_platform_driver(clk_mt6893_imp_iic_wrap_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 I2C Wrapper clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-mdp.c b/drivers/clk/mediatek/clk-mt6893-mdp.c
-new file mode 100644
-index 000000000000..73ccded6447a
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-mdp.c
-@@ -0,0 +1,116 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+static const struct mtk_gate_regs mdp0_cg_regs = {
-+	.set_ofs = 0x104,
-+	.clr_ofs = 0x108,
-+	.sta_ofs = 0x100,
-+};
-+
-+static const struct mtk_gate_regs mdp1_cg_regs = {
-+	.set_ofs = 0x114,
-+	.clr_ofs = 0x118,
-+	.sta_ofs = 0x110,
-+};
-+
-+static const struct mtk_gate_regs mdp2_cg_regs = {
-+	.set_ofs = 0x124,
-+	.clr_ofs = 0x128,
-+	.sta_ofs = 0x120,
-+};
-+
-+#define GATE_MDP0(_id, _name, _parent, _shift)			\
-+	GATE_MTK(_id, _name, _parent, &mdp0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+#define GATE_MDP1(_id, _name, _parent, _shift)			\
-+	GATE_MTK(_id, _name, _parent, &mdp1_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+#define GATE_MDP2(_id, _name, _parent, _shift)			\
-+	GATE_MTK(_id, _name, _parent, &mdp2_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+static const struct mtk_gate mdp_clks[] = {
-+	/* MDP0 */
-+	GATE_MDP0(CLK_MDP_RDMA0, "mdp_rdma0", "mdp_sel", 0),
-+	GATE_MDP0(CLK_MDP_FG0, "mdp_fg0", "mdp_sel", 1),
-+	GATE_MDP0(CLK_MDP_HDR0, "mdp_hdr0", "mdp_sel", 2),
-+	GATE_MDP0(CLK_MDP_AAL0, "mdp_aal0", "mdp_sel", 3),
-+	GATE_MDP0(CLK_MDP_RSZ0, "mdp_rsz0", "mdp_sel", 4),
-+	GATE_MDP0(CLK_MDP_TDSHP0, "mdp_tdshp0", "mdp_sel", 5),
-+	GATE_MDP0(CLK_MDP_TCC0, "mdp_tcc0", "mdp_sel", 6),
-+	GATE_MDP0(CLK_MDP_WROT0, "mdp_wrot0", "mdp_sel", 7),
-+	GATE_MDP0(CLK_MDP_RDMA2, "mdp_rdma2", "mdp_sel", 8),
-+	GATE_MDP0(CLK_MDP_AAL2, "mdp_aal2", "mdp_sel", 9),
-+	GATE_MDP0(CLK_MDP_RSZ2, "mdp_rsz2", "mdp_sel", 10),
-+	GATE_MDP0(CLK_MDP_COLOR0, "mdp_color0", "mdp_sel", 11),
-+	GATE_MDP0(CLK_MDP_TDSHP2, "mdp_tdshp2", "mdp_sel", 12),
-+	GATE_MDP0(CLK_MDP_TCC2, "mdp_tcc2", "mdp_sel", 13),
-+	GATE_MDP0(CLK_MDP_WROT2, "mdp_wrot2", "mdp_sel", 14),
-+	GATE_MDP0(CLK_MDP_MUTEX0, "mdp_mutex0", "mdp_sel", 15),
-+	GATE_MDP0(CLK_MDP_RDMA1, "mdp_rdma1", "mdp_sel", 16),
-+	GATE_MDP0(CLK_MDP_FG1, "mdp_fg1", "mdp_sel", 17),
-+	GATE_MDP0(CLK_MDP_HDR1, "mdp_hdr1", "mdp_sel", 18),
-+	GATE_MDP0(CLK_MDP_AAL1, "mdp_aal1", "mdp_sel", 19),
-+	GATE_MDP0(CLK_MDP_RSZ1, "mdp_rsz1", "mdp_sel", 20),
-+	GATE_MDP0(CLK_MDP_TDSHP1, "mdp_tdshp1", "mdp_sel", 21),
-+	GATE_MDP0(CLK_MDP_TCC1, "mdp_tcc1", "mdp_sel", 22),
-+	GATE_MDP0(CLK_MDP_WROT1, "mdp_wrot1", "mdp_sel", 23),
-+	GATE_MDP0(CLK_MDP_RDMA3, "mdp_rdma3", "mdp_sel", 24),
-+	GATE_MDP0(CLK_MDP_AAL3, "mdp_aal3", "mdp_sel", 25),
-+	GATE_MDP0(CLK_MDP_RSZ3, "mdp_rsz3", "mdp_sel", 26),
-+	GATE_MDP0(CLK_MDP_COLOR1, "mdp_color1", "mdp_sel", 27),
-+	GATE_MDP0(CLK_MDP_TDSHP3, "mdp_tdshp3", "mdp_sel", 28),
-+	GATE_MDP0(CLK_MDP_TCC3, "mdp_tcc3", "mdp_sel", 29),
-+	GATE_MDP0(CLK_MDP_WROT3, "mdp_wrot3", "mdp_sel", 30),
-+	GATE_MDP0(CLK_MDP_APB_BUS, "mdp_apb_bus", "mdp_sel", 31),
-+	/* MDP1 */
-+	GATE_MDP1(CLK_MDP_MMSYSRAM, "mdp_mmsysram", "mdp_sel", 0),
-+	GATE_MDP1(CLK_MDP_APMCU_GALS, "mdp_apmcu_gals", "mdp_sel", 1),
-+	GATE_MDP1(CLK_MDP_SMI0, "mdp_smi0", "mdp_sel", 4),
-+	GATE_MDP1(CLK_MDP_IMG_DL_ASYNC0, "mdp_img_dl_async0", "mdp_sel", 5),
-+	GATE_MDP1(CLK_MDP_IMG_DL_ASYNC1, "mdp_img_dl_async1", "mdp_sel", 6),
-+	GATE_MDP1(CLK_MDP_IMG_DL_ASYNC2, "mdp_img_dl_async2", "mdp_sel", 7),
-+	GATE_MDP1(CLK_MDP_SMI1, "mdp_smi1", "mdp_sel", 8),
-+	GATE_MDP1(CLK_MDP_IMG_DL_ASYNC3, "mdp_img_dl_async3", "mdp_sel", 9),
-+	GATE_MDP1(CLK_MDP_SMI2, "mdp_smi2", "mdp_sel", 12),
-+	/* MDP2 */
-+	GATE_MDP2(CLK_MDP_IMG0_IMG_DL_ASYNC0, "mdp_img0_dl_as0", "img1_sel", 0),
-+	GATE_MDP2(CLK_MDP_IMG0_IMG_DL_ASYNC1, "mdp_img0_dl_as1", "img1_sel", 1),
-+	GATE_MDP2(CLK_MDP_IMG1_IMG_DL_ASYNC2, "mdp_img1_dl_as2", "img2_sel", 8),
-+	GATE_MDP2(CLK_MDP_IMG1_IMG_DL_ASYNC3, "mdp_img1_dl_as3", "img2_sel", 9),
-+};
-+
-+static const struct mtk_clk_desc mdp_desc = {
-+	.clks = mdp_clks,
-+	.num_clks = ARRAY_SIZE(mdp_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_mdp[] = {
-+	{ .compatible = "mediatek,mt6893-mdpsys", .data = &mdp_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_mdp);
-+
-+static struct platform_driver clk_mt6893_mdp_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-mdp",
-+		.of_match_table = of_match_clk_mt6893_mdp,
-+	},
-+};
-+module_platform_driver(clk_mt6893_mdp_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 Multimedia Data Path clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-mfg.c b/drivers/clk/mediatek/clk-mt6893-mfg.c
-new file mode 100644
-index 000000000000..37e7db835440
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-mfg.c
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ */
-+
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+static const struct mtk_gate_regs mfgcfg_cg_regs = {
-+	.set_ofs = 0x4,
-+	.clr_ofs = 0x8,
-+	.sta_ofs = 0x0,
-+};
-+
-+#define GATE_MFG(_id, _name, _parent, _shift)				\
-+	GATE_MTK_FLAGS(_id, _name, _parent, &mfgcfg_cg_regs, _shift,	\
-+		       &mtk_clk_gate_ops_setclr, CLK_SET_RATE_PARENT)
-+
-+static const struct mtk_gate mfgcfg_clks[] = {
-+	GATE_MFG(CLK_MFGCFG_BG3D, "mfgcfg_bg3d", "mfg_pll_sel", 0),
-+};
-+
-+static const struct mtk_clk_desc mfgcfg_desc = {
-+	.clks = mfgcfg_clks,
-+	.num_clks = ARRAY_SIZE(mfgcfg_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_mfgcfg[] = {
-+	{ .compatible = "mediatek,mt6893-mfgcfg", .data = &mfgcfg_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_mfgcfg);
-+
-+static struct platform_driver clk_mt6893_mfgcfg_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-mfgcfg",
-+		.of_match_table = of_match_clk_mt6893_mfgcfg,
-+	},
-+};
-+
-+module_platform_driver(clk_mt6893_mfgcfg_drv);
-+
-+MODULE_DESCRIPTION("MediaTek MT6893 GPU mfg clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-mm.c b/drivers/clk/mediatek/clk-mt6893-mm.c
-new file mode 100644
-index 000000000000..b41dde6f3149
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-mm.c
-@@ -0,0 +1,129 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+static const struct mtk_gate_regs mm0_cg_regs = {
-+	.set_ofs = 0x104,
-+	.clr_ofs = 0x108,
-+	.sta_ofs = 0x100,
-+};
-+
-+static const struct mtk_gate_regs mm1_cg_regs = {
-+	.set_ofs = 0x114,
-+	.clr_ofs = 0x118,
-+	.sta_ofs = 0x110,
-+};
-+
-+static const struct mtk_gate_regs mm2_cg_regs = {
-+	.set_ofs = 0x1a4,
-+	.clr_ofs = 0x1a8,
-+	.sta_ofs = 0x1a0,
-+};
-+
-+#define GATE_MM0(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &mm0_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+#define GATE_MM1(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &mm1_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+#define GATE_MM2(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &mm2_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-+
-+static const struct mtk_gate mm_clks[] = {
-+	/* MM0 */
-+	GATE_MM0(CLK_MM_DISP_RSZ0, "mm_disp_rsz0", "disp_sel", 0),
-+	GATE_MM0(CLK_MM_DISP_RSZ1, "mm_disp_rsz1", "disp_sel", 1),
-+	GATE_MM0(CLK_MM_DISP_OVL0, "mm_disp_ovl0", "disp_sel", 2),
-+	GATE_MM0(CLK_MM_INLINE, "mm_inline", "disp_sel", 3),
-+	GATE_MM0(CLK_MM_MDP_TDSHP4, "mm_mdp_tdshp4", "disp_sel", 4),
-+	GATE_MM0(CLK_MM_MDP_TDSHP5, "mm_mdp_tdshp5", "disp_sel", 5),
-+	GATE_MM0(CLK_MM_MDP_AAL4, "mm_mdp_aal4", "disp_sel", 6),
-+	GATE_MM0(CLK_MM_MDP_AAL5, "mm_mdp_aal5", "disp_sel", 7),
-+	GATE_MM0(CLK_MM_MDP_HDR4, "mm_mdp_hdr4", "disp_sel", 8),
-+	GATE_MM0(CLK_MM_MDP_HDR5, "mm_mdp_hdr5", "disp_sel", 9),
-+	GATE_MM0(CLK_MM_MDP_RSZ4, "mm_mdp_rsz4", "disp_sel", 10),
-+	GATE_MM0(CLK_MM_MDP_RSZ5, "mm_mdp_rsz5", "disp_sel", 11),
-+	GATE_MM0(CLK_MM_MDP_RDMA4, "mm_mdp_rdma4", "disp_sel", 12),
-+	GATE_MM0(CLK_MM_MDP_RDMA5, "mm_mdp_rdma5", "disp_sel", 13),
-+	GATE_MM0(CLK_MM_DISP_FAKE_ENG0, "mm_disp_fake_eng0", "disp_sel", 14),
-+	GATE_MM0(CLK_MM_DISP_FAKE_ENG1, "mm_disp_fake_eng1", "disp_sel", 15),
-+	GATE_MM0(CLK_MM_DISP_OVL0_2L, "mm_disp_ovl0_2l", "disp_sel", 16),
-+	GATE_MM0(CLK_MM_DISP_OVL1_2L, "mm_disp_ovl1_2l", "disp_sel", 17),
-+	GATE_MM0(CLK_MM_DISP_OVL2_2L, "mm_disp_ovl2_2l", "disp_sel", 18),
-+	GATE_MM0(CLK_MM_DISP_MUTEX, "mm_disp_mutex", "disp_sel", 19),
-+	GATE_MM0(CLK_MM_DISP_OVL1, "mm_disp_ovl1", "disp_sel", 20),
-+	GATE_MM0(CLK_MM_DISP_OVL3_2L, "mm_disp_ovl3_2l", "disp_sel", 21),
-+	GATE_MM0(CLK_MM_DISP_CCORR0, "mm_disp_ccorr0", "disp_sel", 22),
-+	GATE_MM0(CLK_MM_DISP_CCORR1, "mm_disp_ccorr1", "disp_sel", 23),
-+	GATE_MM0(CLK_MM_DISP_COLOR0, "mm_disp_color0", "disp_sel", 24),
-+	GATE_MM0(CLK_MM_DISP_COLOR1, "mm_disp_color1", "disp_sel", 25),
-+	GATE_MM0(CLK_MM_DISP_POSTMASK0, "mm_disp_postmask0", "disp_sel", 26),
-+	GATE_MM0(CLK_MM_DISP_POSTMASK1, "mm_disp_postmask1", "disp_sel", 27),
-+	GATE_MM0(CLK_MM_DISP_DITHER0, "mm_disp_dither0", "disp_sel", 28),
-+	GATE_MM0(CLK_MM_DISP_DITHER1, "mm_disp_dither1", "disp_sel", 29),
-+	GATE_MM0(CLK_MM_DSI0_MM_CLK, "mm_dsi0_mm_clk", "disp_sel", 30),
-+	GATE_MM0(CLK_MM_DSI1_MM_CLK, "mm_dsi1_mm_clk", "disp_sel", 31),
-+	/* MM1 */
-+	GATE_MM1(CLK_MM_DISP_GAMMA0, "mm_disp_gamma0", "disp_sel", 0),
-+	GATE_MM1(CLK_MM_DISP_GAMMA1, "mm_disp_gamma1", "disp_sel", 1),
-+	GATE_MM1(CLK_MM_DISP_AAL0, "mm_disp_aal0", "disp_sel", 2),
-+	GATE_MM1(CLK_MM_DISP_AAL1, "mm_disp_aal1", "disp_sel", 3),
-+	GATE_MM1(CLK_MM_DISP_WDMA0, "mm_disp_wdma0", "disp_sel", 4),
-+	GATE_MM1(CLK_MM_DISP_WDMA1, "mm_disp_wdma1", "disp_sel", 5),
-+	GATE_MM1(CLK_MM_DISP_UFBC_WDMA0, "mm_disp_ufbc_wdma0", "disp_sel", 6),
-+	GATE_MM1(CLK_MM_DISP_UFBC_WDMA1, "mm_disp_ufbc_wdma1", "disp_sel", 7),
-+	GATE_MM1(CLK_MM_DISP_RDMA0, "mm_disp_rdma0", "disp_sel", 8),
-+	GATE_MM1(CLK_MM_DISP_RDMA1, "mm_disp_rdma1", "disp_sel", 9),
-+	GATE_MM1(CLK_MM_DISP_RDMA4, "mm_disp_rdma4", "disp_sel", 10),
-+	GATE_MM1(CLK_MM_DISP_RDMA5, "mm_disp_rdma5", "disp_sel", 11),
-+	GATE_MM1(CLK_MM_DISP_DSC_WRAP, "mm_disp_dsc_wrap", "disp_sel", 12),
-+	GATE_MM1(CLK_MM_DP_INTF_MM_CLK, "mm_dp_intf_mm_clk", "disp_sel", 13),
-+	GATE_MM1(CLK_MM_DISP_MERGE0, "mm_disp_merge0", "disp_sel", 14),
-+	GATE_MM1(CLK_MM_DISP_MERGE1, "mm_disp_merge1", "disp_sel", 15),
-+	GATE_MM1(CLK_MM_SMI_COMMON, "mm_smi_common", "disp_sel", 19),
-+	GATE_MM1(CLK_MM_SMI_GALS, "mm_smi_gals", "disp_sel", 23),
-+	GATE_MM1(CLK_MM_SMI_INFRA, "mm_smi_infra", "disp_sel", 27),
-+	GATE_MM1(CLK_MM_SMI_IOMMU, "mm_smi_iommu", "disp_sel", 31),
-+	/* MM2 */
-+	GATE_MM2(CLK_MM_DSI0_INTF_CLK, "mm_dsi0_intf_clk", "disp_sel", 0),
-+	GATE_MM2(CLK_MM_DSI1_INTF_CLK, "mm_dsi1_intf_clk", "disp_sel", 8),
-+	GATE_MM2(CLK_MM_DP_INTF_INTF_CLK, "mm_dp_intf_intf_clk", "dp_sel", 16),
-+	GATE_MM2(CLK_MM_CK_26_MHZ, "mm_26_mhz", "clk26m", 24),
-+	GATE_MM2(CLK_MM_CK_32_KHZ, "mm_32_khz", "clk32k", 25),
-+};
-+
-+static const struct mtk_clk_desc mm_desc = {
-+	.clks = mm_clks,
-+	.num_clks = ARRAY_SIZE(mm_clks),
-+};
-+
-+static const struct platform_device_id clk_mt6893_mm_id_table[] = {
-+	{ .name = "clk-mt6893-mm", .driver_data = (kernel_ulong_t)&mm_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(platform, clk_mt6893_mm_id_table);
-+
-+static struct platform_driver clk_mt6893_mm_drv = {
-+	.probe = mtk_clk_pdev_probe,
-+	.remove = mtk_clk_pdev_remove,
-+	.driver = {
-+		.name = "clk-mt6893-mm",
-+	},
-+	.id_table = clk_mt6893_mm_id_table,
-+};
-+module_platform_driver(clk_mt6893_mm_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 MultiMedia clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-scp_adsp.c b/drivers/clk/mediatek/clk-mt6893-scp_adsp.c
-new file mode 100644
-index 000000000000..9a02c54c2e5b
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-scp_adsp.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+static const struct mtk_gate_regs scp_adsp_cg_regs = {
-+	.set_ofs = 0x180,
-+	.clr_ofs = 0x180,
-+	.sta_ofs = 0x180,
-+};
-+
-+#define GATE_SCP_ADSP(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &scp_adsp_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr)
-+
-+static const struct mtk_gate scp_adsp_clks[] = {
-+	GATE_SCP_ADSP(CLK_SCP_ADSP_AUDIODSP, "scp_adsp_audiodsp", "adsp_sel", 0),
-+};
-+
-+static const struct mtk_clk_desc scp_adsp_desc = {
-+	.clks = scp_adsp_clks,
-+	.num_clks = ARRAY_SIZE(scp_adsp_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_scp_adsp[] = {
-+	{ .compatible = "mediatek,mt6893-scp-adsp", .data = &scp_adsp_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_scp_adsp);
-+
-+static struct platform_driver clk_mt6893_scp_adsp_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-scp_adsp",
-+		.of_match_table = of_match_clk_mt6893_scp_adsp,
-+	},
-+};
-+module_platform_driver(clk_mt6893_scp_adsp_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 SCP AudioDSP clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-vdec.c b/drivers/clk/mediatek/clk-mt6893-vdec.c
-new file mode 100644
-index 000000000000..4816f7710d9e
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-vdec.c
-@@ -0,0 +1,98 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+static const struct mtk_gate_regs vdec0_cg_regs = {
-+	.set_ofs = 0x0,
-+	.clr_ofs = 0x4,
-+	.sta_ofs = 0x0,
-+};
-+
-+static const struct mtk_gate_regs vdec1_cg_regs = {
-+	.set_ofs = 0x200,
-+	.clr_ofs = 0x204,
-+	.sta_ofs = 0x200,
-+};
-+
-+static const struct mtk_gate_regs vdec2_cg_regs = {
-+	.set_ofs = 0x8,
-+	.clr_ofs = 0xc,
-+	.sta_ofs = 0x8,
-+};
-+
-+#define GATE_VDEC0(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &vdec0_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+#define GATE_VDEC1(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &vdec1_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+#define GATE_VDEC2(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &vdec2_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+static const struct mtk_gate vdec_clks[] = {
-+	/* VDEC0 */
-+	GATE_VDEC0(CLK_VDEC_VDEC, "vdec_vdec", "vdec_sel", 0),
-+	GATE_VDEC0(CLK_VDEC_ACTIVE, "vdec_active", "vdec_sel", 4),
-+	GATE_VDEC0(CLK_VDEC_VDEC_ENG, "vdec_vdec_eng", "vdec_sel", 8),
-+	/* VDEC1 */
-+	GATE_VDEC1(CLK_VDEC_LAT, "vdec_lat", "vdec_sel", 0),
-+	GATE_VDEC1(CLK_VDEC_LAT_ACTIVE, "vdec_lat_active", "vdec_sel", 4),
-+	GATE_VDEC1(CLK_VDEC_LAT_ENG, "vdec_lat_eng", "vdec_sel", 8),
-+	/* VDEC2 */
-+	GATE_VDEC2(CLK_VDEC_LARB1, "vdec_larb1", "vdec_sel", 0),
-+};
-+
-+static const struct mtk_gate vdec_soc_clks[] = {
-+	/* VDEC_SOC0 */
-+	GATE_VDEC0(CLK_VDEC_SOC_VDEC, "vdec_soc_vdec", "vdec_sel", 0),
-+	GATE_VDEC0(CLK_VDEC_SOC_VDEC_ACTIVE, "vdec_soc_vdec_active", "vdec_sel", 4),
-+	GATE_VDEC0(CLK_VDEC_SOC_VDEC_ENG, "vdec_soc_vdec_cken_eng", "vdec_sel", 8),
-+	/* VDEC_SOC1 */
-+	GATE_VDEC1(CLK_VDEC_SOC_LAT, "vdec_soc_lat", "vdec_sel", 0),
-+	GATE_VDEC1(CLK_VDEC_SOC_LAT_ACTIVE, "vdec_soc_lat_active", "vdec_sel", 4),
-+	GATE_VDEC1(CLK_VDEC_SOC_LAT_ENG, "vdec_soc_lat_eng", "vdec_sel", 8),
-+	/* VDEC_SOC2 */
-+	GATE_VDEC2(CLK_VDEC_SOC_LARB1, "vdec_soc_larb1", "vdec_sel", 0),
-+};
-+
-+static const struct mtk_clk_desc vdec_desc = {
-+	.clks = vdec_clks,
-+	.num_clks = ARRAY_SIZE(vdec_clks),
-+};
-+
-+static const struct mtk_clk_desc vdec_soc_desc = {
-+	.clks = vdec_soc_clks,
-+	.num_clks = ARRAY_SIZE(vdec_soc_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_vdec[] = {
-+	{ .compatible = "mediatek,mt6893-vdecsys", .data = &vdec_desc },
-+	{ .compatible = "mediatek,mt6893-vdecsys-soc", .data = &vdec_soc_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_vdec);
-+
-+static struct platform_driver clk_mt6893_vdec_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-vdec",
-+		.of_match_table = of_match_clk_mt6893_vdec,
-+	},
-+};
-+module_platform_driver(clk_mt6893_vdec_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 Video Decoders clocks driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/mediatek/clk-mt6893-venc.c b/drivers/clk/mediatek/clk-mt6893-venc.c
-new file mode 100644
-index 000000000000..d0e88ef3778d
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt6893-venc.c
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2025 Collabora Ltd
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/mediatek,mt6893-clk.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+static const struct mtk_gate_regs venc_cg_regs = {
-+	.set_ofs = 0x4,
-+	.clr_ofs = 0x8,
-+	.sta_ofs = 0x0,
-+};
-+
-+#define GATE_VENC(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &venc_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+static const struct mtk_gate venc0_clks[] = {
-+	GATE_VENC(CLK_VENC0_SET0_LARB, "venc0_set0_larb", "venc_sel", 0),
-+	GATE_VENC(CLK_VENC0_SET1_VENC, "venc0_set1_venc", "venc_sel", 4),
-+	GATE_VENC(CLK_VENC0_SET2_JPGENC, "venc0_set2_jpgenc", "venc_sel", 8),
-+	GATE_VENC(CLK_VENC0_SET3_JPGDEC, "venc0_set2_jpgdec", "venc_sel", 12),
-+	GATE_VENC(CLK_VENC0_SET4_JPGDEC_C1, "venc0_set2_jpgdec_c1", "venc_sel", 16),
-+	GATE_VENC(CLK_VENC0_SET5_GALS, "venc0_set5_gals", "venc_sel", 28),
-+};
-+
-+static const struct mtk_clk_desc venc0_desc = {
-+	.clks = venc0_clks,
-+	.num_clks = ARRAY_SIZE(venc0_clks),
-+};
-+
-+static const struct mtk_gate venc1_clks[] = {
-+	GATE_VENC(CLK_VENC1_SET0_LARB, "venc1_set0_larb", "venc_sel", 0),
-+	GATE_VENC(CLK_VENC1_SET1_VENC, "venc1_set1_venc", "venc_sel", 4),
-+	GATE_VENC(CLK_VENC1_SET2_JPGENC, "venc1_set2_jpgenc", "venc_sel", 8),
-+	GATE_VENC(CLK_VENC1_SET3_JPGDEC, "venc1_set2_jpgdec", "venc_sel", 12),
-+	GATE_VENC(CLK_VENC1_SET4_JPGDEC_C1, "venc1_set2_jpgdec_c1", "venc_sel", 16),
-+	GATE_VENC(CLK_VENC1_SET5_GALS, "venc1_set5_gals", "venc_sel", 28),
-+};
-+
-+static const struct mtk_clk_desc venc1_desc = {
-+	.clks = venc1_clks,
-+	.num_clks = ARRAY_SIZE(venc1_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt6893_venc[] = {
-+	{ .compatible = "mediatek,mt6893-vencsys-c0", .data = &venc0_desc },
-+	{ .compatible = "mediatek,mt6893-vencsys-c1", .data = &venc1_desc },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_clk_mt6893_venc);
-+
-+static struct platform_driver clk_mt6893_venc_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt6893-venc",
-+		.of_match_table = of_match_clk_mt6893_venc,
-+	},
-+};
-+module_platform_driver(clk_mt6893_venc_drv);
-+
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("MediaTek MT6893 Video Encoders clocks driver");
-+MODULE_LICENSE("GPL");
--- 
-2.49.0
+Thanks for your suggestion. I will send a V2 accordingly.
+
+Regards,
+Ciprian
+
+>>
+>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>> ---
+>>   arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+>> index ba53ec622f0b..4587e1cb8835 100644
+>> --- a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
+>> @@ -153,6 +153,11 @@ pcal6524: gpio-expander@22 {
+>>   		gpio-controller;
+>>   		#gpio-cells = <2>;
+>>   	};
+>> +
+>> +	pca85073a: rtc@51 {
+>> +		compatible = "nxp,pca85073a";
+>> +		reg = <0x51>;
+>> +	};
+>>   };
+>>
+>>   &i2c2 {
+>> --
+>> 2.45.2
+>>
 
 
