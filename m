@@ -1,147 +1,99 @@
-Return-Path: <devicetree+bounces-165163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B918A83984
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:39:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81197A8398F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 08:41:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AB031B60E49
-	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:39:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA6CB4A3623
+	for <lists+devicetree@lfdr.de>; Thu, 10 Apr 2025 06:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3762036FA;
-	Thu, 10 Apr 2025 06:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97E320409D;
+	Thu, 10 Apr 2025 06:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="KoGsfqOW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2Ao9rgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09FE3594F;
-	Thu, 10 Apr 2025 06:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DC01BF37;
+	Thu, 10 Apr 2025 06:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744267172; cv=none; b=q6keK1k3SX/1yXFutaAKPTVsjx17+AsdFFJ3SfQI0LfHoS3tSmKtRs9ypvdtWssTm5uWJJICtuJRPQs3jzr38uXHjF/bEHgR0BUXufjAbiWAezTnH8T3ROIcfCZkXamnJKTK+HTM/olMmTCz9wCbgHPAjL1zMCGvPd2jXIybCIg=
+	t=1744267197; cv=none; b=IN/43E9iDI17ymAz1ZkoFDD6GzE9qJgcmklKuuiVRA9btX8F7ZLIMb06rrrmJxL5UBDSm3qX0NDSUlCwVTn7LHytbcxvPrnL7086nIrvQonD9Is6nkHNcercIV58jHN/jEVPCDVOSASTgpAI0aSDVWH9pmT9ZTe+qy/ewtTJ1/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744267172; c=relaxed/simple;
-	bh=DeOBabiwzSpNzgmvHAIm3HCn1UjmvmUWeuTxwxUChvE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y4r1bG8y3qcfBLr37PJ/xEBqjhvAHtYrcgoQTHzLUoNoRdwJiFkXcqj2A391GgNWgfqEKjkhbOymIEVZFZaV5gmLt29NrddiG2V+P8x3HmyX/ZSbL3fQSmkHKFChoY1MEbd0EQTa/hkuVPmzf4PB4CFgtfmW8jpSEHP8QDq8G9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=KoGsfqOW; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 80F6D1F902;
-	Thu, 10 Apr 2025 08:39:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1744267168;
-	bh=A1hNPAkZxUqx56ldFx7Q1sUmsZ7riPmThTz12iJw8wk=; h=From:To:Subject;
-	b=KoGsfqOWWZU/sFkHLpNPJ/Vary9VNh8R/IfzW+3c/GVmNfPA//jC7/YTZ+XpesCUs
-	 sIGvmNvhR4WZWS6d4CUneamXteSyKv0ayvhiJ7SyW5y9pEzWCaOajjipYtEZaiK7iu
-	 ofawD/cHCiK6fmMZy/cFJg0K0MVuN4d2T0m4UhNfMLxkFM1Ae9a747rKoqy6opj7wK
-	 diKn1pqDWLEmvUl0jepL+bQORNRBmabrUuEaIqnX3QjznrCujCMcxgl7kK+Hr8nBww
-	 X/RDcZdpvkUfsy1ibbcWoHWiFPvgRITwQGO6gz4iPHDvM4TAOz80uJkztbSPWTH8zy
-	 YDOK95QvNkEMw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] ARM: tegra: apalis-eval: remove pcie-switch node
-Date: Thu, 10 Apr 2025 08:39:19 +0200
-Message-Id: <20250410063919.11199-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1744267197; c=relaxed/simple;
+	bh=qIxq6rm05hndLmxdtwm+Juf9aChyLKD49TOqyEtT0AA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lv+vocmMurTN5ych92LhFaZ6NoGS23lAUjK2VZb/nRiE6F5GlMV7aotKlx1YvmVyRBkVjeuZcswxHHRABfqrYKBBlt0HHcfraZ87zmW9Aj85h7BL5gchTuNZKXYepSCfpqjN46ngi02e7eTLneiABauZ1Qs/ZDNuatae1pkjj7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2Ao9rgO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 564BDC4CEDD;
+	Thu, 10 Apr 2025 06:39:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744267196;
+	bh=qIxq6rm05hndLmxdtwm+Juf9aChyLKD49TOqyEtT0AA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m2Ao9rgOsYNPb8Y95yxbhe2W68oV3pEjBBTB9tPTAxCjARjQ6MEskgNwtqxD3UMji
+	 e00nFQc40dFUn2VWNXCLc0nOkt61LjcHseDXQnIT7TJloTiTidNJzNWPdKOUF5JzC9
+	 UNIT/vXrecs37PLOH6ncJDREtCFfP2MpIixRRKFy82q2lnlCXyWrffLTRkao8GJvwR
+	 sZ0pDYyZ19dI0S8qpost5vtxwxabVZU2q9d2kQpQDx7R3Qwgfi3/KBiUCjtKG5pDsN
+	 AiI3S3nwFIeBdFCPmdby8MxSYWkKVaP2zipAbLkdm60lpY55VAlC2dzbfF/MTXuFHW
+	 XqHB1dE4rw9tw==
+Date: Thu, 10 Apr 2025 08:39:54 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "kyrie.wu" <kyrie.wu@mediatek.com>
+Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 01/12] dt-bindings: mediatek: Add mediatek,
+ mt8196-jpgdec compatible
+Message-ID: <20250410-wandering-righteous-hound-ac5edd@shite>
+References: <20250410063006.5313-1-kyrie.wu@mediatek.com>
+ <20250410063006.5313-2-kyrie.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250410063006.5313-2-kyrie.wu@mediatek.com>
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Thu, Apr 10, 2025 at 02:29:54PM GMT, kyrie.wu wrote:
+> Add mediatek,mt8196-jpgdec compatible to binding document.
+> 
+> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
 
-The compatible "plx,pex8605" does not exist, there is no DT binding for
-it and there was never a driver matching this compatible, remove it.
+Usual mediatek comment - looks like copy paste of username. Please reach
+to your colleagues how to fix it.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dts      | 5 -----
- arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dts | 5 -----
- arch/arm/boot/dts/nvidia/tegra30-apalis-eval.dts       | 5 -----
- arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1-eval.dts  | 5 -----
- 4 files changed, 20 deletions(-)
+> ---
+>  .../bindings/media/mediatek,mt8195-jpegdec.yaml           | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> index e5448c60e3eb..28a9a9bfdbf8 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> @@ -14,7 +14,9 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt8195-jpgdec
+> +    enum:
+> +      - mediatek,mt8195-jpgdec
+> +      - mediatek,mt8196-jpgdec
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dts b/arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dts
-index 0f3debeb294b..1aa7265554d9 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra124-apalis-eval.dts
-@@ -84,11 +84,6 @@ i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
--		pcie-switch@58 {
--			compatible = "plx,pex8605";
--			reg = <0x58>;
--		};
--
- 		/* M41T0M6 real time clock on carrier board */
- 		rtc@68 {
- 			compatible = "st,m41t0";
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dts b/arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dts
-index d13b8d25ca6a..23158bb82173 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra124-apalis-v1.2-eval.dts
-@@ -85,11 +85,6 @@ i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
--		pcie-switch@58 {
--			compatible = "plx,pex8605";
--			reg = <0x58>;
--		};
--
- 		/* M41T0M6 real time clock on carrier board */
- 		rtc@68 {
- 			compatible = "st,m41t0";
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-apalis-eval.dts b/arch/arm/boot/dts/nvidia/tegra30-apalis-eval.dts
-index fc284155cd76..ccb9f29c5de3 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-apalis-eval.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra30-apalis-eval.dts
-@@ -91,11 +91,6 @@ i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
--		pcie-switch@58 {
--			compatible = "plx,pex8605";
--			reg = <0x58>;
--		};
--
- 		/* M41T0M6 real time clock on carrier board */
- 		rtc@68 {
- 			compatible = "st,m41t0";
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1-eval.dts b/arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1-eval.dts
-index 9d08e2b094b4..bc353324df43 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1-eval.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1-eval.dts
-@@ -92,11 +92,6 @@ i2c@7000c000 {
- 		status = "okay";
- 		clock-frequency = <400000>;
- 
--		pcie-switch@58 {
--			compatible = "plx,pex8605";
--			reg = <0x58>;
--		};
--
- 		/* M41T0M6 real time clock on carrier board */
- 		rtc@68 {
- 			compatible = "st,m41t0";
--- 
-2.39.5
+And devices are not compatible?
+
+Best regards,
+Krzysztof
 
 
