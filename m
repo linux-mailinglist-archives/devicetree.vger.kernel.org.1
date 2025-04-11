@@ -1,135 +1,175 @@
-Return-Path: <devicetree+bounces-165866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC91A85BFF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:40:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0F2A85C14
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:42:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 924A3189389A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:37:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4B353B4A1A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:38:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427BA29B21D;
-	Fri, 11 Apr 2025 11:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65521298CC4;
+	Fri, 11 Apr 2025 11:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UOX6i/ay"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FuDHU6Be"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CE429B214;
-	Fri, 11 Apr 2025 11:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0107238C27;
+	Fri, 11 Apr 2025 11:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744371381; cv=none; b=KGxAtyWCa63XPCB7ui5q2LVaqfM/z5fdnYcI+WrrqEQ3cwqBkYk0sC7+AOFKVSS544o72Oy38y18KwyrkJfF8uApFg5D/NSgOSnRcI6dbGwJRH6Pw5e5LWccNWwVgPdSqbPeEMSycpltLDWfMzfhHiF7y2MH4hrhO6o9QGIyPTk=
+	t=1744371470; cv=none; b=MHKWT8P/DsC4y1ehxT6gb4j8u/TgRNN/2UM+u7/356N4ulhC9gskxwNwdsBzvQ5VkuzNoP1Vdsjpa6CaPJi83X0sE/+8DPF8PqJLQshvrt/ANUzzL5Ss7PqUTUdxff1H6OV+cJXE/E79QXmcN8EUkFVnReIjvXCiT80mt7KSioc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744371381; c=relaxed/simple;
-	bh=55gjNIGIW+U2dGtZipdrF6XglrcDDTwZqRnJymumiIc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aByoPqaz0++WeAK9dQg7mRpcytOo+NyEFVTCbU6KtQOmFR0hMX05tgSyfvV9bD5wawgSVz6wPYhJ6KKw0//QGByOlvmCJIG/tSI5doQXLqcE7/n3K236pm53Rw+vc7bzmOToLMgzd/BX6MGopEAIe5YyMiiqcwLjZdr4YybR/dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UOX6i/ay; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1744371470; c=relaxed/simple;
+	bh=Kw2t04XUNLRM4wS/GspaB4ARdTcOcJffLKspSqUjU9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vpp8duGvIYeVxlIGMZuOGxWgcrUusSJvRM+WelMNEgS/NNBUQTgUPKjvvNSApPqQ2/ycsV9GEJ7hxehAB9DLQ9RRXfe4LueVhlLW/EPM6TI8nXRxzodlU0EZicRJX2vWRdfDVZnATmhak0pu3QD0Xvc7Rn61nS9xrLSzXskNZjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FuDHU6Be; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B5WMMJ032011;
-	Fri, 11 Apr 2025 11:36:09 GMT
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B62xf1016319;
+	Fri, 11 Apr 2025 11:37:40 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=c63I/ycZ6NN
-	qzoA9+qUGPU56vP2DlXK6DQqWrFBcBJc=; b=UOX6i/ayXqtAG0MJwcImPNSATt+
-	HPK/uJ7Z6k/Dzgk6T1zUA2FDGR2XRrPDmg3/lFYQFA490UHEKvQLCFKX9/Kmms8k
-	eGWp9GWjynX2m8R7RkFVTDGGwgcx800KQlv4tKFP7tUPDOEk72YULyMBCXkhEiuF
-	ZoNEKFrY4GkU3vAsPVkI8H5wd7hp+Uq4MVLVEqJ4YENwFyeA3gWa1yVfPKaLLZlT
-	FUPIAODGcVKVRn+eexvQMYooPY/xdVqfR5IdP+gWb3i+AD2LsefQhl3c330DukR3
-	ES1f/kqk1hgTPy7g5VUQTVRYREpbTm6P0V7J+FcDWn4PUMiseBU69SUIRbQ==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twpmj5ng-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	j40li0hUXJG8aKZAfoP+JUQjN0C/lLCXQbNkfXbS/v8=; b=FuDHU6BenHQhdj1F
+	LIjq5nM9OtX+0gKjnnUq0fZtrlwcL8Tg+JLp+uDGlWuiMqKA8uhFFWzeN1KjLs9R
+	rp3CWosFfjDj5JfN4qhVlI7JZNPVE4PDFWCdqjYQbV5AMlzmNB/+ygGL6xMJXSTS
+	Na7ARkX7iDEWfbHKUZkGZDj4fXbVXUlWf5dY+Q2D3vQ183JokdCv1Lrvc0vYvl9N
+	WNtdgxosRG1xo4y1/9pNud78YyHh9ovF4XLZySLKrxjp00ef3sHQb26qQuqa5RrW
+	KE1647hCcMRWAs2IlA9RerTeG6BQGNP6nag9VO/xJdf00rY0KQB8YF33uDR3tXHH
+	J5Dt9Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1t29q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Apr 2025 11:36:09 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53BBa6TW032024;
-	Fri, 11 Apr 2025 11:36:06 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 45ue7gax1m-1
+	Fri, 11 Apr 2025 11:37:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53BBbdla003584
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Apr 2025 11:36:06 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53BBa6fF032019;
-	Fri, 11 Apr 2025 11:36:06 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-msavaliy-hyd.qualcomm.com [10.213.110.207])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 53BBa5Ns032017
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Apr 2025 11:36:06 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 429934)
-	id 0A9F024077; Fri, 11 Apr 2025 17:06:05 +0530 (+0530)
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-To: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
-        linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org,
-        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Subject: [PATCH v4 3/3] MAINTAINERS: Add maintainer for Qualcomm's I3C controller driver
-Date: Fri, 11 Apr 2025 17:05:16 +0530
-Message-Id: <20250411113516.87958-4-quic_msavaliy@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
-References: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
+	Fri, 11 Apr 2025 11:37:39 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Apr
+ 2025 04:37:34 -0700
+Message-ID: <69fba227-ed47-4004-9451-777ca19b687f@quicinc.com>
+Date: Fri, 11 Apr 2025 17:07:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm6350: Add video clock
+ controller
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Luca Weiss
+	<luca.weiss@fairphone.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Michael
+ Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>
+CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
+ <20250324-sm6350-videocc-v2-4-cc22386433f4@fairphone.com>
+ <1c09fee5-9626-4540-83fb-6d90db2ce595@oss.qualcomm.com>
+ <9eb6dfd7-2716-4150-9392-98e26892d82d@quicinc.com>
+ <e3dda8bf-e19e-4dde-83a4-7876ca81e5e6@oss.qualcomm.com>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <e3dda8bf-e19e-4dde-83a4-7876ca81e5e6@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LWiI_H5XabJcCpt6gFVYalD7TiZfqJaT
-X-Proofpoint-ORIG-GUID: LWiI_H5XabJcCpt6gFVYalD7TiZfqJaT
-X-Authority-Analysis: v=2.4 cv=MpRS63ae c=1 sm=1 tr=0 ts=67f8fea9 cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=JfrnYn6hAAAA:8 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8 a=8AirrxEcAAAA:8
- a=cn7IUS33xWvMNiiCnpYA:9 a=TjNXssC_j7lpFel5tvFf:22 a=1CNFftbPRP8L7MoqJWF3:22 a=d3PnA9EDa4IxuAV0gXij:22 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-ORIG-GUID: LjnntO8tf29NEwcfn2mZ6AKG0KlDzgFO
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f8ff04 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=6H0WHjuAAAAA:8
+ a=pBxsQiL28MlgmQOkK-EA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: LjnntO8tf29NEwcfn2mZ6AKG0KlDzgFO
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-11_04,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 clxscore=1015 priorityscore=1501 impostorscore=0
- spamscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
- phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
  definitions=main-2504110074
 
-Add a new entry for the I3C QCOM GENI driver to the MAINTAINERS file.
-This entry includes the maintainer's name and contact information,
-ensuring proper maintainership and communication for the new driver.
 
-Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ce2b64f4568d..a8fcca5d234a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11254,6 +11254,14 @@ S:	Orphan
- F:	Documentation/devicetree/bindings/i3c/snps,dw-i3c-master.yaml
- F:	drivers/i3c/master/dw*
+On 4/11/2025 2:42 PM, Konrad Dybcio wrote:
+> On 4/11/25 9:15 AM, Jagadeesh Kona wrote:
+>>
+>>
+>> On 4/1/2025 10:03 PM, Konrad Dybcio wrote:
+>>> On 3/24/25 9:41 AM, Luca Weiss wrote:
+>>>> Add a node for the videocc found on the SM6350 SoC.
+>>>>
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 14 ++++++++++++++
+>>>>  1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>> index 42f9d16c2fa6da66a8bb524a33c2687a1e4b40e0..4498d6dfd61a7e30a050a8654d54dae2d06c220c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>> @@ -1952,6 +1952,20 @@ usb_1_dwc3_ss_out: endpoint {
+>>>>  			};
+>>>>  		};
+>>>>  
+>>>> +		videocc: clock-controller@aaf0000 {
+>>>> +			compatible = "qcom,sm6350-videocc";
+>>>> +			reg = <0x0 0x0aaf0000 0x0 0x10000>;
+>>>> +			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
+>>>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>>>> +				 <&sleep_clk>;
+>>>> +			clock-names = "iface",
+>>>> +				      "bi_tcxo",
+>>>> +				      "sleep_clk";
+>>>> +			#clock-cells = <1>;
+>>>> +			#reset-cells = <1>;
+>>>> +			#power-domain-cells = <1>;
+>>>> +		};
+>>>
+>>> You'll probably want to hook up some additional power domains here, see
+>>>
+>>> https://lore.kernel.org/linux-arm-msm/20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com/
+>>>
+>>
+>> On SM6350, videocc doesn't need multiple power domains at HW level, it is only on CX rail which would be ON
+>> when system is active, hence power-domains are not mandatory here.
+> 
+> 6350 doesn't have either MMCX nor a split MX - shouldn't both normal
+> CX and MX be in there?
+> 
+
+All clocks & GDSC's of SM6350 videocc are only on CX rail, so it requires only CX power domain. But when HLOS
+is active, CX rail will be ON and operate at a level above retention, which is sufficient for videocc to operate.
+Hence clock driver don't need to explicitly vote on CX rail.
+
+The same is not true for other rails like MMCX and Split MX(MXC), hence clock drivers had to explicitly vote on
+those rails.
+
+Thanks,
+Jagadeesh 
  
-+I3C DRIVER FOR QUALCOMM GENI CONTROLLER IP
-+M:	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-+L:	linux-i3c@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/i3c/qcom,geni-i3c.yaml
-+F:	drivers/i3c/master/i3c-qcom-geni.c
-+
- I3C SUBSYSTEM
- M:	Alexandre Belloni <alexandre.belloni@bootlin.com>
- R:	Frank Li <Frank.Li@nxp.com>
--- 
-2.25.1
-
+> Konrad
 
