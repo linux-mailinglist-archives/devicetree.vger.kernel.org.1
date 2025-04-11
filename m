@@ -1,191 +1,281 @@
-Return-Path: <devicetree+bounces-165751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D8ABA85503
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA727A85538
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A778F9A5EAA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:12:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 000D08A74C3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:13:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D4328369A;
-	Fri, 11 Apr 2025 07:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D33283CBB;
+	Fri, 11 Apr 2025 07:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IyHmTNLo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oC2Acu1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B133E27EC71;
-	Fri, 11 Apr 2025 07:12:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F751283C8B;
+	Fri, 11 Apr 2025 07:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744355532; cv=none; b=FiQjKKVntTMWIpPDF2EQsD3t4lemDCT5PNKJuQG4armhi1nhuPJUyJO9r9mgrcH5zTuQI6bE6bXX3YE634ZG49MN7r03W7f1AFqzfhIe611nPEizadKkNmbORS2zmEkY8/8adzvONEaIF3VEjb1um+x4zo5mGkn/Ho9+shNXNNE=
+	t=1744355637; cv=none; b=f8Ejou5UqprlTuE0yqRUCzdL6ZL0T50NueGk/cHwb56dLRgf6/tTS3I6hSGMzyKieVsLJHwXCls6Bk+W0MaqfSkUAudRRcWVgrto4dlzXHvk4cXF9lRSz0xQw8ZS6avdWbiKnhfRIr7CJWuRdVpA4PzcEesH2EjA2u7MXz49P4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744355532; c=relaxed/simple;
-	bh=gdrhVumeTce66VFXx6iutWVlsPAzxQz8fQdDaFP5jWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S3GmwvIn9nR46qvZuZsrZCB3c3qCtjTmgNpcuzw+0ls172OqEyxlS1NOcS999uabVBPvfDhD50r+1BmFeiNQM9KV5mn3DesV8YIOLJBEUc/3BLyLYLdRUsB7CccXtEd7IylCHyJ+4DVAxREA5TRxNovAU5lZsAWOWLaIRcyjLDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IyHmTNLo; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3912fdddf8fso1902901f8f.1;
-        Fri, 11 Apr 2025 00:12:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744355529; x=1744960329; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7XvJyaIebd7Gra2hTpcbnV/bUDd+9pSKlR1cZwTqv0=;
-        b=IyHmTNLoBC4j0+ImOWqtepfDX4KtI8CMjKQJTLImV5cKXShaVheX92tKj91iquLe1k
-         wfAUPSV0/dNKCaSGBhVqIvTnKV3WUsU0K5drw9pnqwck0dPgNLQIadHLf76ulhT+Rf4r
-         q/JP+8JDbjcDlLfcAakZSb88xNrKGbEQ6ZYbF3LJfz/6+NvvckYuJz59CWv967VmkBW6
-         OSBNUqk/QojzD2y5+pwtvfd8msBbsnKswkVZQu6c65tC/JF2nTCg+NaHx719Cm0OVyzr
-         9BsuUmbhoGyoJlw0y3HFb5mbB8kvtIR3LAncI5MYTM+W1vadkOQHSTB/sX91oFZzt++A
-         mhWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744355529; x=1744960329;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C7XvJyaIebd7Gra2hTpcbnV/bUDd+9pSKlR1cZwTqv0=;
-        b=jeWad6Kdu2Jzvybay8c1A+fTvq/gfrHhkGZBZ9PTT/+RY12YD7P01vc/nuAOL/n7sW
-         7MIltEkvuwkCNic/Wbel+kWajwioAXwhpaUwhz694sZgbaVObn8YtGUHxOwdPsfSRVbH
-         orVIl4grAyrfIuY1wl2go/4MbGkasH22hYaudiBBHPx0mAeTDbLrA/+Qc7mW3/NRy+B9
-         +j6blEdIFYYcudBA4ke2jBXRkArNKh7LTr6boJ+iBLmtMuSTvu8cdrMvr2CpqhRVnnc6
-         Nar8nyyrs0h33xEqnv3xlyqfSXOwHM3Dcwuy+GOlwsHzZ4IA9Zldj9JK6I2S5oAoPPh0
-         N4uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQ9MSG++QRi6pfPuOrZlqbaN4f68X3bF/a9L446q5X1NYy5uRDOPaEiMFa7oOmrlxleuOQ2nBZyUgEPdCG@vger.kernel.org, AJvYcCVnpypBNZiMBmb5F6b2OkRi4usaeZAlWZtALsAHhQbB5Xwi1jbcgG2+Eb34hIFLtfZBv4y/1U8IjlT6@vger.kernel.org, AJvYcCW1YRUb4higcStLV9rv08FITgKU6P7V+fjWBgNLA+wjunogXEFW4glCKc+8vUTS65JfBAW+Dmvn8eUA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHtgVwHhyTPHeXexpjO9VAXFQ1Uti7XPXoanaDVLlfGMZngLxx
-	1Zmh8DlqIkz+45+u5ldaYyFJaYPTwvkpHn/yCpklHKZPZr60K8nDyAvrDP3HfPXx8w==
-X-Gm-Gg: ASbGncu2KUzcXVj1ODQnCYLaUEFHxRsFqj9Ccspv/lKqdSWRr5UJGjRlHL7g5iGkl6h
-	akxuawhTEIK/gScaCl9mvsh+8GNh4iUiAwsZT/bbGLPVbaBjppHvOAUw1sA75zEhzKDXKNc/4pK
-	+QY9QBYuQWUoAGS0gH6bvd/DOhVbggWX9NffAd0N6jThHoVtJaK2DQg8j+L3L24AsCgZO5vaDWB
-	Fw3XYiv1VEtET2EJuU0hdVK1HSSzkJnpxAIJ6ZhKdBM8rBKjL2I7lXsHIOjQrVtAMBR0vnR7u7k
-	pgfANh5ApPCWAYUmp0m5/mBj4nlNIKGGRZ4e1F9Gc3QGVeSQtnb1YZw7KFLNiKnaSLQMdxpPWur
-	ag1af2GjvAQ==
-X-Google-Smtp-Source: AGHT+IHl/LN8pzBCnYdaddscA9zS4QyZ1eGKpY2s4nEo1vuy8PrG4l6gk9J2fhiJN5HFEaJ7977gNA==
-X-Received: by 2002:a5d:648d:0:b0:391:65c:1b05 with SMTP id ffacd0b85a97d-39e6e48d03dmr1267790f8f.11.1744355528773;
-        Fri, 11 Apr 2025 00:12:08 -0700 (PDT)
-Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.161.217.206])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf4456fdsm1104793f8f.86.2025.04.11.00.12.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 00:12:08 -0700 (PDT)
-Date: Fri, 11 Apr 2025 09:11:50 +0200
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	alexander.stein@ew.tq-group.com, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: rtc: add binding for RV8063
-Message-ID: <20250411071118.6fwnmpsgm46oejeb@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250407193521.634807-1-apokusinski01@gmail.com>
- <20250407193521.634807-4-apokusinski01@gmail.com>
- <20250410211351.GA1076944-robh@kernel.org>
+	s=arc-20240116; t=1744355637; c=relaxed/simple;
+	bh=azv0aOtySUpuNbzIBRsPhvGNvDucVhkCDkQJmhuMSI0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=a6gjoCvRPAGeV2O3wa+6Qri0OhyiSnZITmRfHWEm1pGPEduQUJT9oLxumdfu09jtSaMJeWfehTy/Wxe0Qt3xnZDkFjYKoQ+nvwyjmv3R4t1CPJMApw35W/iDyI1K2wJhZ7e8rCX1RRzcYmqT90amEJWB0eB3mwqszE9Fd/rQmGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oC2Acu1I; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B5KZYG008265;
+	Fri, 11 Apr 2025 07:13:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2KUBEMT++R8AyuIZKKBKSwUbsPbRbmz5FXqeoOw0R+o=; b=oC2Acu1IKUc7t7nO
+	J4HrxIJc8uVOkjR5nvLojcTi3eclDzlLBLQ2pi68wIvs7k7UlWVJhmJoi17Ho6iO
+	45eHAITLzzW0LBIQNmQ9kqjEx1QYaw7A5OMbUmYlBYSCdgzYhopNGKAfMw0JLdXv
+	427EebsPLwohgFcGv/SP9VmSiyG2ie0SEmeJkWvQ22IBrTYsZ/VYJaJGC4U0yJCz
+	zo/BxO84GzDDOLj5OaUw0Ydaec39UajKRyJ/r/LpviuYPjdvGdVvnGTv91g/DRWA
+	OCqVYT7q/NHtLhXQkSZ6LDpO7Qe1/oy9zrSPtVHcgAXYFis0YVXpLcE+lzsQ09OA
+	BAgchA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd09pbs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Apr 2025 07:13:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53B7DnUj001858
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Apr 2025 07:13:49 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Apr
+ 2025 00:13:42 -0700
+Message-ID: <958877e3-3e14-4259-af7d-697c87b141ee@quicinc.com>
+Date: Fri, 11 Apr 2025 12:43:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250410211351.GA1076944-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/18] clk: qcom: clk-alpha-pll: Add support for common
+ PLL configuration function
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Vladimir
+ Zapolskiy" <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov
+	<lumag@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
+ <20250327-videocc-pll-multi-pd-voting-v3-4-895fafd62627@quicinc.com>
+ <ddcaa5e5-b5c5-4d78-b44a-4cea75ec6a77@linaro.org>
+ <zyfr7dd3dwfbcyztiaajr6tac7shn6ecrvy5277bfk2uwh3txp@gt4tbxh6xx54>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <zyfr7dd3dwfbcyztiaajr6tac7shn6ecrvy5277bfk2uwh3txp@gt4tbxh6xx54>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _HG16u9yCd5gw9pzUcnkDm1YvcLs7h34
+X-Authority-Analysis: v=2.4 cv=Q4vS452a c=1 sm=1 tr=0 ts=67f8c12e cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=a71U0AYrpCg4a1nRiTEA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: _HG16u9yCd5gw9pzUcnkDm1YvcLs7h34
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-11_02,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 phishscore=0
+ bulkscore=0 adultscore=0 malwarescore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504110049
 
-On Thu, Apr 10, 2025 at 04:13:51PM -0500, Rob Herring wrote:
-> On Mon, Apr 07, 2025 at 09:35:21PM +0200, Antoni Pokusinski wrote:
-> > Microcrystal RV8063 is a real-time clock module with SPI interface.
-> > 
-> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> > ---
-> >  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 33 ++++++++++++++++++-
-> >  1 file changed, 32 insertions(+), 1 deletion(-)
+
+
+On 3/27/2025 11:50 PM, Dmitry Baryshkov wrote:
+> On Thu, Mar 27, 2025 at 03:51:33PM +0000, Bryan O'Donoghue wrote:
+>> On 27/03/2025 09:52, Jagadeesh Kona wrote:
+>>> From: Taniya Das <quic_tdas@quicinc.com>
+>>>
+>>> To properly configure the PLLs on recent chipsets, it often requires more
+>>> than one power domain to be kept ON. The support to enable multiple power
+>>> domains is being added in qcom_cc_really_probe() and PLLs should be
+>>> configured post all the required power domains are enabled.
+>>>
+>>> Hence integrate PLL configuration into clk_alpha_pll structure and add
+>>> support for qcom_clk_alpha_pll_configure() function which can be called
+>>> from qcom_cc_really_probe() to configure the clock controller PLLs after
+>>> all required power domains are enabled.
+>>>
+>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>> ---
+>>>   drivers/clk/qcom/clk-alpha-pll.c | 63 ++++++++++++++++++++++++++++++++++++++++
+>>>   drivers/clk/qcom/clk-alpha-pll.h |  3 ++
+>>>   2 files changed, 66 insertions(+)
+>>>
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>>> index cec0afea8e446010f0d4140d4ef63121706dde47..8ee842254e6690e24469053cdbd99a9953987e40 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>>> @@ -63,6 +63,8 @@
+>>>   #define PLL_OPMODE(p)		((p)->offset + (p)->regs[PLL_OFF_OPMODE])
+>>>   #define PLL_FRAC(p)		((p)->offset + (p)->regs[PLL_OFF_FRAC])
+>>> +#define GET_PLL_TYPE(pll)	(((pll)->regs - clk_alpha_pll_regs[0]) / PLL_OFF_MAX_REGS)
+>>> +
+>>>   const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+>>>   	[CLK_ALPHA_PLL_TYPE_DEFAULT] =  {
+>>>   		[PLL_OFF_L_VAL] = 0x04,
+>>> @@ -2960,3 +2962,64 @@ const struct clk_ops clk_alpha_pll_regera_ops = {
+>>>   	.set_rate = clk_zonda_pll_set_rate,
+>>>   };
+>>>   EXPORT_SYMBOL_GPL(clk_alpha_pll_regera_ops);
+>>> +
+>>> +void qcom_clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap)
+>>> +{
+>>> +	const struct clk_init_data *init = pll->clkr.hw.init;
+>>> +	const char *name = init->name;
+>>> +
+>>> +	if (!pll->config || !pll->regs) {
+>>> +		pr_err("%s: missing pll config or regs\n", name);
+>>> +		return;
+>>> +	}
+>>
+>> Seems like a strange check - you are calling this function in a loop which
+>> looks like
+>>
+>> for (i = 0; i < desc->num_alpha_plls; i++)
+>> 	qcom_clk_alpha_pll_configure(desc->alpha_plls[i], regmap);
+>>
+>> Can num_alpha_plls be true but alpha_plls be NULL and why is regmap
+>> considered valid ?
+>>
+>> I think you can drop this check.
+>
+
+The regmap check is already performed in qcom_cc_map() before we reach this
+point.
+
+It is not possible for num_alpha_plls to be true when alpha_plls is NULL, as
+num_alpha_plls is derived using SIZE_OF(alpha_plls).
+
+Including the above check is beneficial to catch any errors in case we missed
+adding the necessary config/regs fields to the PLL structure in the CC code.
+ 
+> I think pll->config should be moved to a calling code.
+>
+Yes, I can move above checks to calling code in next series. 
+
+Thanks,
+Jagadeesh
+
+>>
+>>> +
+>>> +	switch (GET_PLL_TYPE(pll)) {
+>>> +	case CLK_ALPHA_PLL_TYPE_LUCID_OLE:
+>>> +		clk_lucid_ole_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_LUCID_EVO:
+>>> +		clk_lucid_evo_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_TAYCAN_ELU:
+>>> +		clk_taycan_elu_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_RIVIAN_EVO:
+>>> +		clk_rivian_evo_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_TRION:
+>>> +		clk_trion_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA_2290:
+>>> +		clk_huayra_2290_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_FABIA:
+>>> +		clk_fabia_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_AGERA:
+>>> +		clk_agera_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_PONGO_ELU:
+>>> +		clk_pongo_elu_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_ZONDA:
+>>> +	case CLK_ALPHA_PLL_TYPE_ZONDA_OLE:
+>>> +		clk_zonda_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_STROMER:
+>>> +	case CLK_ALPHA_PLL_TYPE_STROMER_PLUS:
+>>> +		clk_stromer_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	case CLK_ALPHA_PLL_TYPE_DEFAULT:
+>>> +	case CLK_ALPHA_PLL_TYPE_DEFAULT_EVO:
+>>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA:
+>>> +	case CLK_ALPHA_PLL_TYPE_HUAYRA_APSS:
+>>> +	case CLK_ALPHA_PLL_TYPE_BRAMMO:
+>>> +	case CLK_ALPHA_PLL_TYPE_BRAMMO_EVO:
+>>> +		clk_alpha_pll_configure(pll, regmap, pll->config);
+>>> +		break;
+>>> +	default:
+>>> +		WARN(1, "%s: invalid pll type\n", name);
+>>> +		break;
+>>> +	}
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(qcom_clk_alpha_pll_configure);
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+>>> index 79aca8525262211ae5295245427d4540abf1e09a..7f35aaa7a35d88411beb11fd2be5d5dd5bfbe066 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.h
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+>>> @@ -81,6 +81,7 @@ struct pll_vco {
+>>>    * struct clk_alpha_pll - phase locked loop (PLL)
+>>>    * @offset: base address of registers
+>>>    * @regs: alpha pll register map (see @clk_alpha_pll_regs)
+>>> + * @config: array of pll settings
+>>>    * @vco_table: array of VCO settings
+>>>    * @num_vco: number of VCO settings in @vco_table
+>>>    * @flags: bitmask to indicate features supported by the hardware
+>>> @@ -90,6 +91,7 @@ struct clk_alpha_pll {
+>>>   	u32 offset;
+>>>   	const u8 *regs;
+>>> +	const struct alpha_pll_config *config;
+>>>   	const struct pll_vco *vco_table;
+>>>   	size_t num_vco;
+>>>   #define SUPPORTS_OFFLINE_REQ		BIT(0)
+>>> @@ -237,5 +239,6 @@ void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>>   			       const struct alpha_pll_config *config);
+>>>   void clk_regera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>>   			     const struct alpha_pll_config *config);
+>>> +void qcom_clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap);
+>>>   #endif
+>>>
 > 
-> Bindings come before users (driver).
-> 
-Fixed in v3 already.
-
-Kind regards,
-Antoni
-
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> > index 2f892f8640d1..cb31c7619d66 100644
-> > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> > @@ -12,6 +12,7 @@ maintainers:
-> >  properties:
-> >    compatible:
-> >      enum:
-> > +      - microcrystal,rv8063
-> >        - microcrystal,rv8263
-> >        - nxp,pcf85063
-> >        - nxp,pcf85063a
-> > @@ -44,7 +45,12 @@ properties:
-> >  
-> >    wakeup-source: true
-> >  
-> > +  spi-cs-high: true
-> > +
-> > +  spi-3wire: true
-> > +
-> >  allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> >    - $ref: rtc.yaml#
-> >    - if:
-> >        properties:
-> > @@ -52,6 +58,7 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - microcrystal,rv8263
-> > +              - microcrystal,rv8063
-> >      then:
-> >        properties:
-> >          quartz-load-femtofarads: false
-> > @@ -65,12 +72,23 @@ allOf:
-> >        properties:
-> >          quartz-load-femtofarads:
-> >            const: 7000
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          not:
-> > +            contains:
-> > +              enum:
-> > +                - microcrystal,rv8063
-> > +    then:
-> > +      properties:
-> > +        spi-cs-high: false
-> > +        spi-3wire: false
-> >  
-> >  required:
-> >    - compatible
-> >    - reg
-> >  
-> > -additionalProperties: false
-> > +unevaluatedProperties: false
-> >  
-> >  examples:
-> >    - |
-> > @@ -90,3 +108,16 @@ examples:
-> >            };
-> >          };
-> >        };
-> > +
-> > +  - |
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        rtc@0 {
-> > +          compatible = "microcrystal,rv8063";
-> > +          reg = <0>;
-> > +          spi-cs-high;
-> > +          spi-3wire;
-> > +        };
-> > +    };
-> > -- 
-> > 2.25.1
-> > 
 
