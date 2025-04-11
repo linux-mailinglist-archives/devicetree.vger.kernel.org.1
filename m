@@ -1,348 +1,110 @@
-Return-Path: <devicetree+bounces-166150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C579A866CA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 22:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98302A866ED
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 22:16:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BE90177A70
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:09:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F6DD17FC60
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F438283695;
-	Fri, 11 Apr 2025 20:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F791235BE4;
+	Fri, 11 Apr 2025 20:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eM3oApI0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izTNSBcc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011061.outbound.protection.outlook.com [40.107.130.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0BC27E1B0
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 20:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744402164; cv=fail; b=V4pURLPIxA7H6SeriqLhwNi8XF7rwK2EzgO6MEfqI0HrkBfNPuTOBO33nltSR1eNU1Sww3NzQqUzgewFOo/6qS/ATNTXgQiPMLSUfOGXlXV3tGD4lFFqBr3yybwXoW1UmsLAD7BmIKgPkdvOKab1RGvdEd/KyR1AGFhZ+sJJV2M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744402164; c=relaxed/simple;
-	bh=Wb6d8pyknwab14Fpw2VzEKZUo1FmF2F1CE52AWYawH4=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Fz2siPyr5Nh6n0Dfcc5fl+TsrYPIxO481gxywPGMWsa0OM2iMLL3MbQLvLCZPXNwH8yuLC3dWglelcEEadgZ5CGnOiScwqLOeiduWqXIGJDEHF6OZmN42dkB0JtLUzf2BWMsCLf6P7fS3zeRIA1g5RRPJkhg0givTdQx8GSKs4k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eM3oApI0; arc=fail smtp.client-ip=40.107.130.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sVFuuk8mWuNINi1Lk35jLQI4xk7LBBUazhtPdExUNzbb3kGZbcdrm3ONLCSPY7hBu0wCfCmjBAh7iNQ64UhoqordBcXNOtleopNaBod94ty6aPduYvwvydD4OcWQlAJCynouqLsFn6rjW3kMpMoEUmiidOE8Yc+uiqgAPg63KxFG32VT2skmgXV55ZzdrU3YWU/OvTUy3SkbC4al1uaDRZ2YvzxxGzDB2NP8tHVUcox+2TklgG/L7E14PHfRaObeCZwnlc60EVCwMi534ZQdN3CrCWKKDHotK4xMzNabcu9VUwc6mX+B0J5nCKqPNqK9ar6kwvb8DVFrvSX/KgNK5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E7g/IZ8frgnKkeAnyvygKxshp2ICmyVxWQWJz8F7Yqg=;
- b=VoDU2Ab3Nxs9Bt3pSEWfo3EWCHJWfHJZaxqlibVAXrKIT/EJzRpVy/aItgO026KA9l66Ebqc+i1FP6k/z6P179TZHkwE7xgi6eKPM9qSScfVBjCrVJLLXn8UoylksJS+is+ZWqVJ6K3q3JON+E6YzEhTETeDsY1IbgAovgFHCJORAAWNtuNWNVU191KTtef6PMVXUswkfG23F692jQwrRmkgkot8L3yyRcckleEayGGSQON7rMjVhvlZvLDXzv5tk8vow4StMuWc2SYlyRBEptMytE8LF4rsARXXH+xiLoRzuMOXXayS3b52izPFVTxMCuVGHhZcgXaGYMOQx+ctmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E7g/IZ8frgnKkeAnyvygKxshp2ICmyVxWQWJz8F7Yqg=;
- b=eM3oApI0QryXHS4gXQcvKVXE+CTaRkJ/8Xextb6188X+RRRJjEOEwy6895WnRoJsawD7iSvy64kNa3Xg7TW+2KJEKDInpU3szRCTvN95Mndmy60kA6I/iHehR7H+ytXANGX9+Os5sEep9tmRVvZ7fkY5qWdhRsBtilXLo/8HCt8Fajo/zf8/G1mtyh3DT2pQsSp8vaJc3q0db0FD/zuYbFFuGnrijCkYvAitZPME/O1J0j88Q2mAZUPIMLy7bdlw1MvliOsZn9ig4CFU2PFEEiNXWs/YYoouLPS5hcp3iHkXV8/xGRiXqx7tDFZrcLT4O/Txc596soSKFAyaa2K6oQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB7633.eurprd04.prod.outlook.com (2603:10a6:20b:2d9::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.27; Fri, 11 Apr
- 2025 20:09:19 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.025; Fri, 11 Apr 2025
- 20:09:17 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: robh@kernel.org
-Cc: Frank.Li@nxp.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	krzk+dt@kernel.org,
-	linux-mtd@lists.infradead.org,
-	masahiroy@kernel.org,
-	miquel.raynal@bootlin.com,
-	nathan@kernel.org,
-	nicolas.schier@linux.dev,
-	richard@nod.at,
-	vigneshr@ti.com
-Subject: [PATCH v2 1/1] dt-bindings: mtd: convert vf610-nfc to yaml format
-Date: Fri, 11 Apr 2025 16:08:58 -0400
-Message-Id: <20250411200858.3266447-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0135.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::20) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9079C1CEACB;
+	Fri, 11 Apr 2025 20:16:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744402566; cv=none; b=S2PchL7IvRvAO2TKia3pZWbeSUOENb4q4fnM2gPcriRLzofMlmR0bJi7BH9ZUhMumiZVfev0RKcEkrJA4SqSO+4WfbEJe/Sas5fqTm8ff/8qHijIKZ3NJpptWTCZYplhflzqwTDtwq880lZy5C+vZTq75CeRcM6b0ZilD3rEVYc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744402566; c=relaxed/simple;
+	bh=+XRrdLQjbVC+DwwNqBKs9alqnaihfnHPxzvcydtyUiA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U2jBK3T1ur73DH2HcNR+RZ6qIaw0Pun4c3s5OlntWOWIDDuXTjsOFlq6d7nCiZ3+hQo5tiveaCuMi1ruSnAHUsDmH1PZmRduA0uvV5KXOUih/mpyQ6lcO3rrj2T4bXMjjnQv4LR5ac96jt3CuuGGtu+i16fZ00YafRgEAyaLQro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izTNSBcc; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ac2963dc379so393531966b.2;
+        Fri, 11 Apr 2025 13:16:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744402563; x=1745007363; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+XRrdLQjbVC+DwwNqBKs9alqnaihfnHPxzvcydtyUiA=;
+        b=izTNSBcc2EnqWy6ukmb2C6xrHJze8U4bjyaKEP+aK1ZQcWJMyWs3or4gmJsxi3IGPD
+         yVlA3MKCesBPUdypdHQHwqEI2xF37EuVc21k3c/IGbamv5YeHPKRYb6dqklm7S8aE23w
+         ZlTvJoGU8g1gmTZCWBjx4XZOK0fOgcAraPdgGe7arTsErbJc2r4qnfvSdS/ka/J4doSs
+         5Q1p4V3zTaS6tiZ1P4kKCngMny3dfCyG5578o5yoRxL2UVVPI9ws10eRpHUC/l3kHbEY
+         HyERRqSKSo9DFpfqYvH4/BMdO/NlQmELKhQXDeaTMBWnlTw00UW0y78Nn4BuPNAYldlt
+         /7iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744402563; x=1745007363;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+XRrdLQjbVC+DwwNqBKs9alqnaihfnHPxzvcydtyUiA=;
+        b=RFLBMXvSKFgtqZWV8vLYw031cpY5JNVn9mJ98cH+9rifO2PZ1OlF4Jfgd//Oh1cuPc
+         5fa4eMOGfR3C5OQ5kvT7A/Vpr7wyFMD5JQDdAo2bru3mzo73xd3WbqBo5/84gVKZ9RJD
+         /Q6ZmIDUUaLK5YxM+oU2rzb6HOC9Tk2cr1eVjyWGnQ64viqKnnPwkJQOzYEXKJr9nFtH
+         +zW3R2tvTk0fab5R6rNAGpRxE/YlL6Nve7oX9CbH7drwmWA4SV6YPoJrBN6w8X1xb4F+
+         EjLR922k+7dCiSpMQN48i5uXqrtt8xE6DNu1P/QK69ajCnjhbeQUi2hOMFzkt2UPfddq
+         i8YA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKDbipfPnu56PAwCn0TktA7eX3+igl49okSG0HZJHPbIO8bsQgjNntYMlMKJ+VI/ibqIR4MTsY1UhS74uQ@vger.kernel.org, AJvYcCWMWiQw8GqbXMnEd8h5F9iIKSxmDOMDhOX/+Hhlqn45ZyWZGakYRa3vh/dh6F/pMPf/c/Q3i9qCNAPJblwd@vger.kernel.org, AJvYcCWS3SN7CMlZk5K6J5eZYiM6BdQeoz1hybdSBMmYaiQsjUGI+t3QT0Olc9KLrrM0mHe4aCXK9ByW15nC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV2eiPqD6+TThY3Hb32+f/RKJom8SQoTHrX3ftyoeoU70jCRMF
+	zp7hou525Ho83ZRjT0S7OPLGqizL3878c/VIrrIm1LLy5citfkSF2LJmVZaKs8+1u0St+BHcHwQ
+	IEFbRi3bMeV1pOQE4aV0psTsuWK3Cfsq+lrs=
+X-Gm-Gg: ASbGncsDawjcLK58bsie5oG2jkkYY0tN8BO3JxlCpPDasMp1MiQbiSEgyeCIs9e6tc9
+	h/vDMHdIpbN3D31hNrP88h2YHtd3u8ILGfmhQrsCdkfOHLYIR4i12KOAJWISMOsagXCpHa9quIb
+	M6jdKl+YPWS00S0o2XvtkZHA==
+X-Google-Smtp-Source: AGHT+IEZaZAWkd4kV8I3YpLTjYmCJWDI/4A+MRh05C4NiDzsXUA03h3kae5kQ4a316zTbon+mczO7k+6BBDiH5VtnPA=
+X-Received: by 2002:a17:907:2ce5:b0:ac6:ba91:ca4d with SMTP id
+ a640c23a62f3a-acad34c9a32mr343863066b.31.1744402562545; Fri, 11 Apr 2025
+ 13:16:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB7633:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c2f348d-3623-47f0-b899-08dd7934bcd3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|376014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?eGHUaUhpE1/aO/rk0dLm2nWifLVQplM1k1q37dV4mRel84TwbCxS8uujE3ya?=
- =?us-ascii?Q?+fmub6JwBmWK41FbA7dBV8jWcEpzkPGKWhe0r/GYy9fHmamdHuNt2GEBmQyB?=
- =?us-ascii?Q?550ytCkszNlUd2jyZSOlfHXUoEgrd67lxIF5iLREuOH7DQwGMIHXobdrAaOa?=
- =?us-ascii?Q?4qRrnc1A7OJAA5Z52+p5siKTc9C8+tAjkujaXnJIEmK3DOSdw5xARtFFs1+5?=
- =?us-ascii?Q?o8H+7OCwhy9TaDzjuBi9FEnRyPSK4Y7cloVqC/kwhptHzAt3+L4btKTfEbNB?=
- =?us-ascii?Q?Em02NSClv/+nMU9rDKUUiktSCNsS7HEJJakccBPGO8GlP6iT1KYehC5PcoxX?=
- =?us-ascii?Q?bX/8jojm8OiZmBjEtmbdyVV79aE2TMi+r/h/k+h99e4WJ3qUPVz5vbhTSMge?=
- =?us-ascii?Q?jqEPhcelMj1/VVYV/H5C56KSihyWvYwZ6TWVc4moUSxeOolJFkaR5rJhjPuG?=
- =?us-ascii?Q?nnNYUizCtmBvzWEj1xC8jLZVTQxKKJCOVpRXslJlrbDJa/jY1AdIQMwm0H35?=
- =?us-ascii?Q?3l1BtipvpvDd3Tm9i3IYaXxRb7QQzTqUB/gawHF8gKZ2KruahdphqoJtWlw/?=
- =?us-ascii?Q?wZDvwC6FeTF1EaOSf19edzCegYHvWFRY9+IQejqeKNBV4Djz3SWTFWWTuabi?=
- =?us-ascii?Q?3OfgydARvY3UFPr7Z58PIA1k++V1HqykqBf6qdq9NSIcxxBan/vtk1W2bgTJ?=
- =?us-ascii?Q?EoEmMdZzhYS07Wmka990yjzK8fXA2JQofS6NH67RBVOkRbUA6mMfZx/rqhIY?=
- =?us-ascii?Q?VC4w884zCYfXdlY6k7ejPOn+XhXzui3VeyCHgjE/ll7nIhuYO243NzZUYyQt?=
- =?us-ascii?Q?otTY/bt4RZlshonb63ui8r1W7AJvf36awJkXOJ//lQdLl0WJJzT+PjX+xZJT?=
- =?us-ascii?Q?7dz4ugqzXJa/5y0zA7M4KeuGyZAB8s3v4bR91fCqtN+x2upy203rnlOL8S52?=
- =?us-ascii?Q?uqsQG76Yx3f5S25CD6aIDe/RDiaSxeZYGwnFnZKpHiSWGofWqbC9M7ZK6rYO?=
- =?us-ascii?Q?WaweOxFjxX+F+hIpmPeXYsSqbm8PtL7owF0mOl3bL6gt/l64KHcLXHzYl5P2?=
- =?us-ascii?Q?BnqV8cFIxKrv5M067rpfGwLtVqZThGPUTxkfIJ1sDhOW9l1/BhjA/hsow0bf?=
- =?us-ascii?Q?uyiwgrDa26jyZJEipRA2/1hiewJxy7IQcn6rSScE4PXxfu5O52z2Cpfn6BUB?=
- =?us-ascii?Q?Mx/Dd7R2WX0ZdwAnLSEVmVWC7avK60ifEZvGqZTefvKAllhvdC1k5Nr7G2Cb?=
- =?us-ascii?Q?xQYaMJS/RMp9XU2sfTq0F50Ds+uPl8dIqyiFJOQnHKI1cCKw1wt9lIsTZtkD?=
- =?us-ascii?Q?u93XbiqLVWqOWKV72y9RlD6pqffcajZIwdW+CJR27SP5OogxiTnF4IijtghB?=
- =?us-ascii?Q?yDPwL2XLnxcNr03535Ggs0l+fFyyk+24pshwo/+S4uo9HurC/U3QwLiBsRpT?=
- =?us-ascii?Q?piAh9CHaPyU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?KdkzUX4zZVp/4QxOVQ4uYaCVwknfEVq44w1us8uQ6QDV0iD3h1Jvm5q/GPTP?=
- =?us-ascii?Q?vnnjYKbCz2Jw8YQWJ1DcV33SUhRh3LLLPNCBBJmdognKpT85s6OsSescgEmr?=
- =?us-ascii?Q?0tvmqb0bYsXi8Ph1cA4vwdPq4DozgBWLHr46AHFV1gspvqSPZHPbqItlGkl/?=
- =?us-ascii?Q?aHZj9hSq1/e/89JTGqmLdUWDR/MfWRyWFozvL3bGhEpiKalm4C4LXiKbtvpQ?=
- =?us-ascii?Q?5nVUEs8q7NRUvbTAt3+V1EK+NlZVRmsu0HTdUJRBdUth0tOlHF/9krm6jhjm?=
- =?us-ascii?Q?b/+ZNp0s9ggijB29tHrmjfJHOJct18jard3FfBmuGPFL0dq4jLaHofCd6UfF?=
- =?us-ascii?Q?cUXJMTAIbHIFWtL5MXvz9ocDSKkNCT4bgFJK0Ln7IxtD+GtTWL5wk5Fx9gaJ?=
- =?us-ascii?Q?aOLlPDBTx8Q6ty69ytEgE2m+d8k83w4dn3EWD7zDonsQ1jp5Ge1kbrtsxduC?=
- =?us-ascii?Q?L6qWnYsFgUoRkV04MZEM5UuK0wV1st0Mn96Xh/wR2JOrGGqMWovvC9lgVljw?=
- =?us-ascii?Q?B0BfReOjPPWp5Qs01LIJUELv+39qV287vEmp+TeXZaNVsIQbVdBQREWWGNgf?=
- =?us-ascii?Q?JPPcquzFY6AZgRfA8CPfROHW2r/TXHJJ1XT9qw67bcm8IyKbdn5CCommgHue?=
- =?us-ascii?Q?Zbz39MyMevFNpktn9Z2l+4zn48F6lYzGrTcyIvJ6Z7zZN7WlrcJ0fwUih9DF?=
- =?us-ascii?Q?4GxStBN8SPea0q/4Ey7v9ApcnXowFo8RV2J63fs2qRHrzV5gzhCQ2r2YFWwq?=
- =?us-ascii?Q?CVybVNh9AB4Y7ZNNAf+iBE8jyhIYWUHQbGnLp0dkrmu3sesC1pvXXFP1M94s?=
- =?us-ascii?Q?CjU55VolDNvqLBid/y2FqdW1UAXFXLbiwvKH5QVLZ+182ysSqUutnneV0KJ2?=
- =?us-ascii?Q?72d+yvtLkYSSK41GxPBaTBDAmjMT4sv0tlXDBM+Ehicw4h00XlWCX+qp1+z0?=
- =?us-ascii?Q?8QUcoRATVfpqf4oy9D/updLTVIayphT4LOmg0dJOVgyeb8yxpqzbHsRTfKmx?=
- =?us-ascii?Q?GsWXjk3H7doz7oUsY/UeDlok0bHRyDvzmQEyQitIWnSLg0r9GuQVA8w+OFzQ?=
- =?us-ascii?Q?bxAJ5o1OUMiyHCHVeU1cYHCa6Kq+k9flwsO2GTL1eiKyHizch8mitoOwwoCs?=
- =?us-ascii?Q?GAHGslMF4HS1FJ9ztm5ETD4ZLi5+szKAugEpgmfIXLLoWPaRt4u34uv7nPA1?=
- =?us-ascii?Q?OWSU0AkyeVd+L4kS/+vX7faJAt8CQX6/H91KTGEFVCE4qyZzwxNvPgV/xIqM?=
- =?us-ascii?Q?XPzmEgSOxmzo0mcshyd4ewAbfPBF4upgrYaj1p8/o6TnN5NowuLTkEhVoFw4?=
- =?us-ascii?Q?55qQ/azf4a6oX4j7rHupH01jfQ1D/DG//THgVTvrtGLJroPTYcUkWg3yg2a2?=
- =?us-ascii?Q?1dzpCgnTo0uALTA8qGXTxM1DGY8qk/x1dYz8e7oDXYNkGX3GPjyHN/ZCwPWd?=
- =?us-ascii?Q?ZZglEm3GZZ475f0TQsD/gMKdEtvJM8fiolE7SD1H2/D1MbNmRdvrv95PK/lw?=
- =?us-ascii?Q?Hha/4mJVTqbHTJiZLh0VQdP0KVv8kO7X02zo3HDbn0+rcOatqznY4yWHJvOe?=
- =?us-ascii?Q?RJE2vQOr5sGmcXTZrr0/Dzj4vF7dcgGXAr3Fqwzv?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c2f348d-3623-47f0-b899-08dd7934bcd3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2025 20:09:17.2167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VskcPikWMHejJMwkuQjcUsABi9kLTYB/yENPfN8FUChJi7BavJtMSbXe4lLK0WNU8kF9uu7Ofb+ufmTSxYg6Rg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7633
+References: <20250411154419.1379529-1-elder@riscstar.com> <20250411154419.1379529-4-elder@riscstar.com>
+ <Z_ltyAO-OBzl0adV@surfacebook.localdomain> <a3b2d0cc-c055-4cf0-9e03-3ea73041642a@riscstar.com>
+ <CAHp75VchEcpP67oPC8xD+tYrY_A0BGSJqK=1au939-W60_qQoQ@mail.gmail.com> <925ea396-fd60-460e-a3c2-968d0d837a61@riscstar.com>
+In-Reply-To: <925ea396-fd60-460e-a3c2-968d0d837a61@riscstar.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 11 Apr 2025 23:15:26 +0300
+X-Gm-Features: ATxdqUFiElisjjk-BrvNvfHnahnRHi3i4WdHUyY93YRJhwdS1w4TdJrF0zeP38I
+Message-ID: <CAHp75VdA4VPf90NQAqMLNejmugHCiAxhXwrH14+238KWiPvfgg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] serial: 8250_of: manage bus clock in suspend/resume
+To: Alex Elder <elder@riscstar.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org, 
+	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com, 
+	andriy.shevchenko@linux.intel.com, u.kleine-koenig@baylibre.com, 
+	lkundrak@v3.sk, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert binding doc vf610-nfc to yaml format.
+On Fri, Apr 11, 2025 at 10:56=E2=80=AFPM Alex Elder <elder@riscstar.com> wr=
+ote:
+> On 4/11/25 2:44 PM, Andy Shevchenko wrote:
 
-Additional changes:
-- ref to nand-controller.yaml.
-- include arm-gic.h and vf610-clock.h in examples.
-- add clocks and clock-names description.
-- remove #address-cells, #size-cells assigned-clocks and
-assigned-clock-rates.
+...
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- add blank line
-- remove accident change makefile
-- correct head file name in commit message
----
- .../bindings/mtd/fsl,vf610-nfc.yaml           | 89 +++++++++++++++++++
- .../devicetree/bindings/mtd/vf610-nfc.txt     | 59 ------------
- 2 files changed, 89 insertions(+), 59 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mtd/fsl,vf610-nfc.yaml
- delete mode 100644 Documentation/devicetree/bindings/mtd/vf610-nfc.txt
+> when Greg informed me
+> he had already accepted the first two patches.
 
-diff --git a/Documentation/devicetree/bindings/mtd/fsl,vf610-nfc.yaml b/Documentation/devicetree/bindings/mtd/fsl,vf610-nfc.yaml
-new file mode 100644
-index 0000000000000..480a5c87859d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/fsl,vf610-nfc.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/fsl,vf610-nfc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale's NAND flash controller (NFC)
-+
-+description:
-+  This variant of the Freescale NAND flash controller (NFC) can be found on
-+  Vybrid (vf610), MPC5125, MCF54418 and Kinetis K70.
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,vf610-nfc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: nfc
-+
-+patternProperties:
-+  "^nand@[a-f0-9]$":
-+    type: object
-+    $ref: raw-nand-chip.yaml
-+
-+    properties:
-+      compatible:
-+        const: fsl,vf610-nfc-nandcs
-+
-+      reg:
-+        const: 0
-+
-+      nand-ecc-strength:
-+        enum: [24, 32]
-+
-+      nand-ecc-step-size:
-+        const: 2048
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/vf610-clock.h>
-+
-+    nand-controller@400e0000 {
-+        compatible = "fsl,vf610-nfc";
-+        reg = <0x400e0000 0x4000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clks VF610_CLK_NFC>;
-+        clock-names = "nfc";
-+        assigned-clocks = <&clks VF610_CLK_NFC>;
-+        assigned-clock-rates = <33000000>;
-+
-+        nand@0 {
-+            compatible = "fsl,vf610-nfc-nandcs";
-+            reg = <0>;
-+            nand-bus-width = <8>;
-+            nand-ecc-mode = "hw";
-+            nand-ecc-strength = <32>;
-+            nand-ecc-step-size = <2048>;
-+            nand-on-flash-bbt;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/mtd/vf610-nfc.txt b/Documentation/devicetree/bindings/mtd/vf610-nfc.txt
-deleted file mode 100644
-index 7db5e6e609df6..0000000000000
---- a/Documentation/devicetree/bindings/mtd/vf610-nfc.txt
-+++ /dev/null
-@@ -1,59 +0,0 @@
--Freescale's NAND flash controller (NFC)
--
--This variant of the Freescale NAND flash controller (NFC) can be found on
--Vybrid (vf610), MPC5125, MCF54418 and Kinetis K70.
--
--Required properties:
--- compatible: Should be set to "fsl,vf610-nfc".
--- reg: address range of the NFC.
--- interrupts: interrupt of the NFC.
--- #address-cells: shall be set to 1. Encode the nand CS.
--- #size-cells : shall be set to 0.
--- assigned-clocks: main clock from the SoC, for Vybrid <&clks VF610_CLK_NFC>;
--- assigned-clock-rates: The NAND bus timing is derived from this clock
--    rate and should not exceed maximum timing for any NAND memory chip
--    in a board stuffing. Typical NAND memory timings derived from this
--    clock are found in the SoC hardware reference manual. Furthermore,
--    there might be restrictions on maximum rates when using hardware ECC.
--
--- #address-cells, #size-cells : Must be present if the device has sub-nodes
--  representing partitions.
--
--Required children nodes:
--Children nodes represent the available nand chips. Currently the driver can
--only handle one NAND chip.
--
--Required properties:
--- compatible: Should be set to "fsl,vf610-nfc-cs".
--- nand-bus-width: see nand-controller.yaml
--- nand-ecc-mode: see nand-controller.yaml
--
--Required properties for hardware ECC:
--- nand-ecc-strength: supported strengths are 24 and 32 bit (see nand-controller.yaml)
--- nand-ecc-step-size: step size equals page size, currently only 2k pages are
--    supported
--- nand-on-flash-bbt: see nand-controller.yaml
--
--Example:
--
--	nfc: nand@400e0000 {
--		compatible = "fsl,vf610-nfc";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x400e0000 0x4000>;
--		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&clks VF610_CLK_NFC>;
--		clock-names = "nfc";
--		assigned-clocks = <&clks VF610_CLK_NFC>;
--		assigned-clock-rates = <33000000>;
--
--		nand@0 {
--			compatible = "fsl,vf610-nfc-nandcs";
--			reg = <0>;
--			nand-bus-width = <8>;
--			nand-ecc-mode = "hw";
--			nand-ecc-strength = <32>;
--			nand-ecc-step-size = <2048>;
--			nand-on-flash-bbt;
--		};
--	};
--- 
-2.34.1
+Indeed. Just send a last patch in a simplified form as I suggested here.
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
