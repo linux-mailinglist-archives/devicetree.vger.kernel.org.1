@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-165941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68CE3A85EB3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:22:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF7EA85EA5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70E533B1EC1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:18:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852961894406
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84046188591;
-	Fri, 11 Apr 2025 13:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F191A317D;
+	Fri, 11 Apr 2025 13:16:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Wo3e4IE/"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="t4i04Luk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C269317E473
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B8E19E7D0
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744377388; cv=none; b=QpKzS7gHJqdNpNSBr+nmh1GHL2qeqIamiKXhd/Dma/nbWWdWFKR/jf8IHcn54j1OcwoaPYEw78AGc+RtmlLaezDCeZVEdqBqduSb2r86TTLHwkWDWtP4ZLdpmHMsazhpAkwB+8kH2MfBpwDvjy9xcWP23zxJCqKlfDdggStRspw=
+	t=1744377401; cv=none; b=h8Yg/pDTJsd+x3uuWFrZbQq/bM+c38oKHuHe4H8EuR6GxCkPTJlI9tDwbhi1pXVAZXCWfEhuvh+DYHoaHLAgU+WTX146kFaf7IpK8kmJLqTDP894xVdj/IY3rzRjF7ofOgB/OUlLK27FFJZxJODdm0plSmWcgjCOGqnBq5t+mRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744377388; c=relaxed/simple;
-	bh=Vzarm2+GocjZ5yQi5tz+9vTbULzRbJHRPSoTmN+iFLo=;
+	s=arc-20240116; t=1744377401; c=relaxed/simple;
+	bh=6n3VL3xR2NW+WiuR1BgpROds4O7/ouFUZ1fFJBmsbDQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QykyCVgENE9b5qEUqvLzSmesCQU9NGZ4uj44JZB/cH/7LgBr95orFUsPVPdh87gmTaEvGZ69ElMQpL5kXFEU5DKmBAEWfoqQxq/tC6CluBH9VZwbn32ljmz0xqzuWawSPu01FVx3cSAHVQGDqGPvfulSovQYOCAgpQFbLltuHTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Wo3e4IE/; arc=none smtp.client-ip=209.85.214.171
+	 MIME-Version; b=PjV1g2W3ceZCqcHPP3hGuRCuSa46zSo/E2uPzvkHuZcC/9tx6a291SgqjBn5+B9hivP1jikmENwAuxDWKIOcCk5ZDvxkdZorWzsfzizjLO2JREGucRhO+nffUlfJZgp0yj07gkgYUNavlHMtgS3j8vTX4GudDQVKs3rHKHCmrWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=t4i04Luk; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-22548a28d0cso28329195ad.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:16:26 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2241053582dso26985775ad.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744377386; x=1744982186; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744377398; x=1744982198; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sz09ttaY9JsJuScjIjTX5PLx95DbvCz1+uszRy+OQ8A=;
-        b=Wo3e4IE/86YoQE0VoquTJdoWUdZFUEN5HUQJfHSAf25KmrWf3aPDTRurSgDVV70Gqd
-         dDvo13Jzo/VLMNldp+leetcwTDZACiV7wIUsKR4xBRzPfb4AFZUprdPpCTlWu9WVkFHB
-         EdDA5JoHNCis/49VRNOoGebinUhCuyD8jbF43YuAgWPRV0Di1hgKQLBVx43go96k1/G3
-         6ns4EXncCYHJrqN/Z+r47/sBQROchsVlhlej+30H2fWyppEd0JCdcPjC9X7uPcXHiQZ9
-         rJDH97licciLjcUbpAmTot7DOy6NEmLdhfxCdriEiGcDtl7xt+bOmsw80FfM1ZjWuz00
-         IpxQ==
+        bh=63RGI1NwLEiYAeH/RFKeArdRDE2NQgX8WQsa8ntLKY4=;
+        b=t4i04LukFjjq2+Jq+254ANtrKvTCGKzpLQxQt7IREewSH882ZSOJCRnybPm7A+oVJc
+         z8RX2SuHnQddm3FI+tmDM2EnJSRq5QhFqlsqI/QQRBEXjFwg7d2H6kVfkHgodyTbASaN
+         Y42s9k/hzpyNcOO4m8xcJAGRcVI6hMlPSOXfu09Cbs+/tDxMmixK/qcYaiAa01HCDY9g
+         yduSO0Q5tfHgeZKEO0zSGm/8DA8zQ5Ma7qdY9DoPRCMOX9shwdQDq5dQb4fP5cSRh4k5
+         WfG9WRE8qPFlqAFrOlRPNta0Qh58SvtlLY8RuvVuUsNnOn3Jw1lqRXkMaUjbBkdPZ6wZ
+         f5lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744377386; x=1744982186;
+        d=1e100.net; s=20230601; t=1744377398; x=1744982198;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sz09ttaY9JsJuScjIjTX5PLx95DbvCz1+uszRy+OQ8A=;
-        b=nDaoq80OiW9s3QdhZFfDt0ja0cqDBE2hK7Bt7zgFpl7mAmst0uDNCVwOw2B1CtRbeG
-         ln1aOsn/tIR6xxPd2SPfVea6PCEWL1+m8pboEyigD/Sv92EslTLiuYVb+35Bo2WSQfNG
-         2yJimz58uUsBqZTG0GD3BhvxfQz37CByTDrJExGal4I3BpN79A4P13FIkwggCWegieWf
-         tXKZaLCr5L+GhCidPMjJzV4VMGRZkYv+nrHl1C7RobEQOxLKT2EiWnybtCBKRo9DEUy6
-         ofsrAgIhhjZcvdfoW3r7lXBR27GiOMjWbKbq9sswV7syGHbU6kEZQ8aQ5a7bZubqGJev
-         MCWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUU3SmgxecLmgJCh3ODB1l7T/sJc7Gf10TaP4kkWiSV/Yuu9VW8hKolSrVygG90h83fdGleV6y4VjbD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhPhvtLZBMmioD4fknXwiZ6wf4Ot7v6Z6OR8+tlih28Og/b8DA
-	t2U68diPQQlURbUjfV+hXWmUB5iebAeYvOnZ0zNFBeehPwAX2q2xzLfebWYjbGI=
-X-Gm-Gg: ASbGncvQ/Ja06uG0owgfR0xixrvGLdr7sRgijgZzd1+QWLAIQr0f63GLLWylzPEakwK
-	31582goKMo+Zv2kfRt8REbSLKVbRdjeQ5iSjrCWxB6/id6kXSQ6FqOh+JrWRmvzfK7Z9TNUcpYJ
-	KOHXMmBzPL4L66E+AeGFUpeLVWjDZVZnCz3Ax13jfBHbLTwZUxxKOmuPgkk3bz2LuhYxZxiIlZY
-	EhDR/KabO+bdfWkDUyRX78iVtd2EHgAwJzgvMLWTcjmIG5x40mVJPfBh9nUv6c8uaHS+w2ZnnSR
-	BX0fO90zvIhSXnrrzxMGw6y/3X165ZM=
-X-Google-Smtp-Source: AGHT+IEMvfP6Fh97oRNaj3GVNlhjSqFygi8X/wqAMQAzRVrntdPfe+jNArlUN0+OLtqmSujGxJFQ0A==
-X-Received: by 2002:a17:902:ea05:b0:223:f7ec:f834 with SMTP id d9443c01a7336-22bea4bd7damr40806085ad.31.1744377385993;
-        Fri, 11 Apr 2025 06:16:25 -0700 (PDT)
+        bh=63RGI1NwLEiYAeH/RFKeArdRDE2NQgX8WQsa8ntLKY4=;
+        b=JjvLG8AyIA6GcF/I/0G2K9geSgiiQf9GWA4LGwVeS0LoeoCmmpjFHPNmjjgWKt+hx+
+         L54xAp8X5huP0x7NBtPbxIVDUHraOSs/N2+xRNQH3mrbxJqZxWXKUaiVXtmKluIS3jv1
+         snCFiyAwLB/WtrORAgNP/1VpkY9M19cSH5WCp1Eeav4mQJMIlEQicsQAnCgohKjYpGB3
+         prr4vm4CTQGHgXXBfAjiXs7BXcfFwmVGe7TIBL5zwMUaY3pFvctwE0MncGmIBkbB7nEV
+         9+qjI0rycg35RY2wI9roGbQtTEEUhREf5zkYZ5+fMA5i9MPl5qKwkm6RqS761vzkd4bF
+         wjVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUV5HkTpmUWQDXsrlZmwDa5HGX/4U5NkwykWmZouDOrFvmoc8FDR0JXjengYBvYbz0Hr3GZdJVJFDuz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtiLHVOTQ1j0+Hc+qsnAQRT3hrTvaEBae9s7Q9M9Cu8brPcRYN
+	kbR7L3brkbx4XsvzWmpKD2JFrAD5pu9Ovc8GY3cTWc/z/pbRGLMwWNKqI+4UbDQ=
+X-Gm-Gg: ASbGnctp3n8QBSumZb4gQnb5C6W9etKJ7HdlC+aw1AsJjGUxi088i+en3/MOINAF6Zz
+	J5gi1dnJzAc/qlSYUhtEIY/AHz1Ytnnk3oY+C/l52Ev9p2kfhFm/HLhni/ufsXRhVQ9m3axyYip
+	7BUKHZdnisnM4LI00xfqv7mEUrG35+IN9bJpKiWvTQedD9LakTmSy+5iTaTlLUnDl7u7fkwpAsM
+	yzW2boCf4Lzgr7Lx2scPVlDNLlmeGrfLS8SHKeFxWgxI8bOLCR29wL0sbYHHBzChsr5R7uFDN7L
+	0iwj1ZObt8rOT9HwYwKPzJKCIEywFnM=
+X-Google-Smtp-Source: AGHT+IGdBpii9FqwXTM5hJBzhslBNKfg5Cs2FGnvGr9Q17Wy0FzzwX5fnWry21A6oGkbvSxeOYahLg==
+X-Received: by 2002:a17:902:db0d:b0:223:6180:1bf7 with SMTP id d9443c01a7336-22bea4ffb4cmr33239005ad.42.1744377398297;
+        Fri, 11 Apr 2025 06:16:38 -0700 (PDT)
 Received: from localhost.localdomain ([2a12:a305:4::308a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c95cc6sm48245005ad.122.2025.04.11.06.16.17
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c95cc6sm48245005ad.122.2025.04.11.06.16.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 06:16:25 -0700 (PDT)
+        Fri, 11 Apr 2025 06:16:37 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: ukleinek@kernel.org,
 	robh@kernel.org,
@@ -97,9 +97,9 @@ Cc: elder@riscstar.com,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev
-Subject: [PATCH 7/9] riscv: dts: spacemit: Add PWM14 backlight support for BPI-F3
-Date: Fri, 11 Apr 2025 21:14:21 +0800
-Message-ID: <20250411131423.3802611-8-guodong@riscstar.com>
+Subject: [PATCH 8/9] pwm: Kconfig: add depends on ARCH_SPACEMIT to PWM_PXA
+Date: Fri, 11 Apr 2025 21:14:22 +0800
+Message-ID: <20250411131423.3802611-9-guodong@riscstar.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250411131423.3802611-1-guodong@riscstar.com>
 References: <20250411131423.3802611-1-guodong@riscstar.com>
@@ -111,69 +111,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a PWM-based backlight node for the Banana Pi BPI-F3 board,
-using PWM14. The backlight is defined as a 'pwm-backlight' device with
-brightness levels and a default brightness setting. PWM14 is assigned
-a period length of 2000 nanoseconds.
+The SpacemiT K1 SoC uses PWM_PXA driver.
 
-This configuration was used to verify PWM driver changes, with PWM14
-tested and its waveform confirmed as correct.
-
-The node status is set to "disabled", and should be enabled when the
-display driver is ready.
+Update the Kconfig file for the PWM_PXA driver to allow
+the SpacemiT K1 SoC to use it.
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
- .../boot/dts/spacemit/k1-bananapi-f3.dts      | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/pwm/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 816ef1bc358e..d04b57ddeb46 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -28,6 +28,32 @@ led1 {
- 			default-state = "on";
- 		};
- 	};
-+
-+	pwm_bl: lcd_backlight {
-+		compatible = "pwm-backlight";
-+
-+		pwms = <&pwm14 2000>;
-+		brightness-levels = <
-+			0   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-+			40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-+			40  40  40  40  40  40  40  40  40  41  42  43  44  45  46  47
-+			48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63
-+			64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79
-+			80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
-+			96  97  98  99  100 101 102 103 104 105 106 107 108 109 110 111
-+			112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
-+			128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
-+			144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
-+			160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
-+			176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191
-+			192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
-+			208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
-+			224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
-+			240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
-+		>;
-+		default-brightness-level = <100>;
-+		status = "disabled";
-+	};
- };
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index 4731d5b90d7e..6731669e724e 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -493,7 +493,7 @@ config PWM_PCA9685
  
- &uart0 {
-@@ -35,3 +61,9 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&pwm14 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm14_1_cfg>;
-+	status = "disabled";
-+};
+ config PWM_PXA
+ 	tristate "PXA PWM support"
+-	depends on ARCH_PXA || ARCH_MMP || COMPILE_TEST
++	depends on ARCH_PXA || ARCH_MMP || ARCH_SPACEMIT || COMPILE_TEST
+ 	depends on HAS_IOMEM
+ 	help
+ 	  Generic PWM framework driver for PXA.
 -- 
 2.43.0
 
