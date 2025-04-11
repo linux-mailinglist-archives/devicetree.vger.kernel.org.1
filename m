@@ -1,149 +1,173 @@
-Return-Path: <devicetree+bounces-165924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9E2A85DE6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:57:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55EBFA85DCF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D444E4E01FB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:51:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91D737B470B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764A92367CE;
-	Fri, 11 Apr 2025 12:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89662367D4;
+	Fri, 11 Apr 2025 12:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jlCpiLHx"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ORXkI7Ty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711B62367C3
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:51:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBB72367B7;
+	Fri, 11 Apr 2025 12:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744375889; cv=none; b=qnGBBYZNJrYpJQ8FRHlMF4jY05iwEaR3WsEPmrf4dyoimIyzx+88lwijdriQwbZXEUqMTzjf91P73H/cHXk11KuI+SIhpDtNp4uLOeDMU06bJjY/g5lbP6OGpifVd/cNkJLfD1uknwKJkat23CaM73VSy7h22YrOGbLxu7619OU=
+	t=1744376081; cv=none; b=bV7y6pPPRNoMpYQS8d6fdmToPdy0BwyXedfJBER8UjPaRbo/2fto1DJhsWM0wD9xeTmsaY49LQ3RrkRUnyFzhHhmnd39FOXGldK2TRvVkEReZJzLZNUY87QtJaNOS/zwUPht2YILydiIA7h6zwRzx9puwgSRHmmfLV9gk5kaFb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744375889; c=relaxed/simple;
-	bh=Qmeh4hTchOwJYVtrYQ6NlZZQ4TUWUgCH5SLxLm+RCwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kOivAbPdJsiyKn8pfJ0fjEUShTjEt65HBVU1l0iieQHrJ4sJOAu0IXGGZU63lU6TnfR7vYXcmdt6klV5B8ooOlUyBYhdLwia6EPMFIGf6rDJ8xBn3oQ5/SJMl7k0CVx/8Yuc64l89FoWDYety4JxWEvprwfhyaGvNoeBiOIowyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jlCpiLHx; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43690d4605dso15660265e9.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:51:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744375886; x=1744980686; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=riHuEPZaH2UzIe43vzXOZGpSbV5+ij8h98YzpgoN7WU=;
-        b=jlCpiLHxp2dAkRvXFqmssoUe0g90glCYHmNA3zAPfZqoJ4WF5X2dkHfJP1dW4hm1e/
-         eO8oK6D4fVjShVCloGxfQKvhwTS2ni9/UWJbsDsEDh4INTfQQa8RiOPJZT2uzuV9cQ9G
-         hvXLJrWnbSVXNl9UReAgnshe5YYFjJutLXFJexpuZFZ+cookTMsmFkruMmpfGer4R32d
-         rRyTptqNJDpwKjJ8IjbP9kzA6rViOfl32WRYWNA5M7C1p2mx7Z8pMfKEJE30JEjz2qLX
-         FD5QGaCuXJZb+cbNoKhcDHrxnA1IOD9EyX6hBkf1EcyfYNGOOAfLKs7nCRIirxXYyG/R
-         +dXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744375886; x=1744980686;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=riHuEPZaH2UzIe43vzXOZGpSbV5+ij8h98YzpgoN7WU=;
-        b=hmyX5QaogJW4WjN7cG9zXNRnDzGvLvV0ls8dzVbe/I3+yhEGguROa3R5jWlDdFvMyP
-         0wYFM5BX83VYQu++T0AtT2QAXTkfjOTbUkCjPflo85zrlGv56gWaeaBNV5gHFy6uRdg/
-         uuxqIcipAVJi5B9tC7JZxiDkhNl1gdc7XUt6uZJhivBBftAnzoBIGXnhm/K4T8Phep30
-         HHdIlkO1BEdEU0Vt2kmda1/fYvaVNZb3jlb+bNR557E2fV9iGWYTYSSg682YB/mgiHKu
-         +8HN0TjUzIFCaHq6anG+MQ8fvi2Vo/W4KO4rQB9k/zHegPpwz9EIByD39rzKYL+lowaM
-         0jYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGx24/8khnN6TncSy6Shu51As+C2GGxL4olYUSxr7BymJ7U+IAmjazDnf6ml33HlrcAYagASNuWx9q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7qrz6sVvC4k0fB2EM1Da8cCpNGYdgsWsR6w2folSfE8XRQOlN
-	bI1segdOpnYDMyRSSBl3XZtx2UiJLNvY5lJPMvyJq4PiOg2qBzo0Nu3iW4M96OA=
-X-Gm-Gg: ASbGncsllIYRWtp0ATb76S1ZYSlXVi7XMT+jSwrzt2vDtSKCBhIvbVUyAoc11Quyr6J
-	JehjoFhNvnDaM3wqbcvtlCpqxTXxvFVM4/SrlPaWECT8NzWtrWyHM0sYrtF/1OWiXh8K+KjPwrI
-	gSnOIl5T/Qw8i5EL1YirJRPaIMjv9cU+9fshlb46JsFM8+3njcP1Px8Z2MnizHiNq5V8I5ZsV3k
-	ULQfbcBIqBkUIcnGaGCtBnWg1Fu12XMaoIhJ5pftSeGHLb24VTehRBtye1PiHuE4JeBAyDIv0eU
-	GCVvUhtn/VGN3isEVlirpLM7gFpUfQmSYm3sGPrBPQxSbBYvPdIAW5N6FqHFoYdApi8yF0JpRe6
-	pc6O6Aw==
-X-Google-Smtp-Source: AGHT+IFAJk+ThCtQ5r6Ogz7zXQnZLWvFSOxBBn0d7BWFfnRxGWxCV0FsKjihE47cYfeE4hCS+/ne5w==
-X-Received: by 2002:a05:600c:384b:b0:43c:f3e4:d6f6 with SMTP id 5b1f17b1804b1-43f3a9b1564mr29467745e9.31.1744375885776;
-        Fri, 11 Apr 2025 05:51:25 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f235a5d57sm84182605e9.34.2025.04.11.05.51.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 05:51:25 -0700 (PDT)
-Message-ID: <b857d1dc-2b21-4b93-89db-808c5dd4035a@linaro.org>
-Date: Fri, 11 Apr 2025 13:51:24 +0100
+	s=arc-20240116; t=1744376081; c=relaxed/simple;
+	bh=Q4jxB9ZrVGxAJUQQh1yJ586UOZiG9G2p9tGKu+B+EwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Gum/IXR8Tmc57ROXN1MNtIBceGZPApSIEivYlZCjLB5kkXnQPFvGPumkX+j8bna9O2QPPIvrx09iYnT9Fth4yVFYVqK58gCB4R84xpEnCczjZYNX8/VK7Olvy6PF1wce5ZouSb3d4TLEiFsYTORi505NsBww/DrU//JFnWMmj1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ORXkI7Ty; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B916C102E4621;
+	Fri, 11 Apr 2025 14:54:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1744376076; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=hAJSv9h5wRcXrptqovOOWtspStxTbyq+MpU6paZIMew=;
+	b=ORXkI7Tys/+aHAwaPzH3zrM4L5cGkNhSVzUbIDX0YfMWN2nmpnVIdNGWdw1/8legxzCPD1
+	wtxw+ELgb18/QG6eSReH1fXjuApQuStP+GTgStG2YHP2bngukJjBylJWSNlGZnVTHVDxUC
+	RrGPy0ilcuVPtmar0YlqFU1otWHJv3I8NLc3CN8bq8J+9JV1x3q6S+yGHvI9GjcISdlgwT
+	SoA3YKJFln0pH9iS36F/46RRRzRKIxuzOrXxN7x1xISn4EM4ZRQ8cCSysEFxMeHI1TFoN5
+	o5Sno3HBfomj0RLS+u1bhaQIAtaxERGudlso5SFwuuZq/u59w/0Jbe/vftu0vw==
+Date: Fri, 11 Apr 2025 14:54:30 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>
+Subject: Re: [net-next v4 4/5] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250411145430.3001f1db@wsk>
+In-Reply-To: <20250409162854.069abe88@wsk>
+References: <20250407145157.3626463-1-lukma@denx.de>
+	<20250407145157.3626463-5-lukma@denx.de>
+	<20250408151447.GX395307@horms.kernel.org>
+	<20250409162854.069abe88@wsk>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/20] media: iris: Send V4L2_BUF_FLAG_ERROR for buffers
- with 0 filled length
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
- <20250408-iris-dec-hevc-vp9-v1-5-acd258778bd6@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250408-iris-dec-hevc-vp9-v1-5-acd258778bd6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="Sig_/EDd9PYuJ_JPMOcH6VsFq/w0";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 08/04/2025 16:54, Dikshita Agarwal wrote:
-> Firmware sends buffers with 0 filled length which needs to be dropped,
-> to achieve the same, add V4L2_BUF_FLAG_ERROR to such buffers.
-> Also make sure:
-> - These 0 length buffers are not returned as result of flush.
-> - Its not a buffer with LAST flag enabled which will also have 0 filled
->    length.
+--Sig_/EDd9PYuJ_JPMOcH6VsFq/w0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Any buffer with a zero length must be flagged as LAST, else that buffer 
-should be discarded.
+Hi Simon,
 
-Is this another bugfix ? Feels like one, processing redundant packets.
+> > It is unclear why hwentry, which is a pointer, is being cast to an
+> > integer and then back to a pointer. I see pointer arithmetic, but
+> > that can operate on pointers just as well as integers, without
+> > making assumptions about how wide pointers are with respect to
+> > longs.
+> >=20
+> > And in any case, can't the types be used to directly access the
+> > offsets needed like this?
+> >=20
+> > 	atable =3D fep->hwentry.mtip_table64b_entry;
+> >=20
+> > 	*read_lo =3D readl(&atable[index].lo);
+> > 	*read_hi =3D readl(&atable[index].hi);
+> >  =20
+>=20
+> The code as is seems to be OK.
+>=20
+> The (atable) memory structure is as follows:
+>=20
+> 1. You can store 2048 MAC addresses (2x32 bit each).
+>=20
+> 2. Memory from point 1 is addressed as follows:
+> 	2.1 -> from MAC address the CRC8 is calculated (0x00 - 0xFF).
+> 	This is the 'index' in the original code.
+> 	2.2 -> as it may happen that for two different MAC address the
+> 	same CRC8 is calculated (i.e. 'index' is the same), each
+> 	'index' can store 8 entries for MAC addresses (and it is
+> 	searched in a linear way if needed).
+>=20
+> IMHO, the index above shall be multiplied by 8.
 
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->   drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index b75a01641d5d..91c5f04dd926 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -377,6 +377,12 @@ static int iris_hfi_gen2_handle_output_buffer(struct iris_inst *inst,
->   
->   	buf->flags = iris_hfi_gen2_get_driver_buffer_flags(inst, hfi_buffer->flags);
->   
-> +	if (!buf->data_size && inst->state == IRIS_INST_STREAMING &&
-> +	    !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST) &&
-> +	    !(inst->sub_state & IRIS_INST_SUB_DRC)) {
-> +		buf->flags |= V4L2_BUF_FLAG_ERROR;
-> +	}
-> +
+I've double check it and it turned out that you were right :-)
 
-Is this hypothetical or does it happen in real life ?
+The following code:
 
->   	return 0;
->   }
->   
-> 
+struct addr_table64b_entry *atable_base =3D
+fep->hwentry->mtip_table64b_entry;
 
----
-bod
+*read_lo =3D readl(&atable_base[index].lo);
+*read_hi =3D readl(&atable_base[index].hi);
+
+Is more readable than the current code.
+
+The same would be used for atable_write()
+
+I will change it for v5.
+
+>=20
+> > Also, and perhaps more importantly, readl expects to be passed
+> > a pointer to __iomem. But the appropriate annotations seem
+> > to be missing (forcing them with a cast is not advisable here IMHO).
+> >  =20
+>=20
+> I think that the code below:
+> unsigned long atable_base =3D (unsigned long)fep->hwentry;
+>=20
+> could be replaced with
+> void __iomem *atable_base =3D fep->hwentry;
+>=20
+> and the (index << 3) with (index * ATABLE_ENTRY_PER_SLOT)
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/EDd9PYuJ_JPMOcH6VsFq/w0
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmf5EQYACgkQAR8vZIA0
+zr3A6Qf9GXE29Y/XpPCVSfPKZ01QAhFm6OWDn29Hd19Xc5zaiBO3NFgCJzxJpCM/
+hv949OWXQbxs2glV9RSPxw1OJAIUL+Kub2pt23XEMkkobCV0XzuAW/VqPfjjv8in
+Za9ur5L7E840u1z8uu24NbWBDdoRJBCxLy7Z9YSSxPA9UDMytwLWDwelSQADb1lj
+FhdpA0swhuzHJsTUfu0NL9NZcbQbVapyKUsNZ+OzZJV682VIOSw7DGrwazG9NWYX
+KpHcwfAMp2iiEbVVjjjl5n0VXMXO/Lth4LuGGJaAUd+4ZyZk7n8qoTRldy/PjdJZ
+WPYNyrpUjZEEzphLwmzo6N/RRxxp3Q==
+=QEuc
+-----END PGP SIGNATURE-----
+
+--Sig_/EDd9PYuJ_JPMOcH6VsFq/w0--
 
