@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-165902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DA2BA85D52
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:40:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D92A85D69
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB0153A497E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:38:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A07DD1885391
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65A62BF3FC;
-	Fri, 11 Apr 2025 12:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFD92C3761;
+	Fri, 11 Apr 2025 12:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VOhTDv66"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0oQmKPpf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F802BEC38
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1ED29C344
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744375013; cv=none; b=MN4yJSEfqICMXcp/VkYpqc8+aRUJvOH3pfhnL46IbL0u+dI+AC0uI6kFbduYYV6buKCnIyzDDH1R+HUM/kiUHhdfV+g96BnZfhgM3ku7cK7ULwDlvqxKBLZsmcXtkOS6bNUXmY+yVmtVSAZBI1ukqXF0zwu7BunLapg1YCxhe8g=
+	t=1744375020; cv=none; b=hKxQQAPV233z41ERMsDkPT1DmdOA70CrW8xrx2J8rMKcYtFYHLOb/JwlSCxriw47b2xtCJg/b0eiMQwAvNnkp+jD/6RymDB3yIpmXQ+8h+yr6dPz8d8CTA0t+6/zKF+4avVq+/A254BvqbpLqDzqYk4DKPnZFGICMP2HGO9/AQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744375013; c=relaxed/simple;
-	bh=trGJ+81hvgNk61JAyUi09epqF3tLwjd5H58jiE8ssKI=;
+	s=arc-20240116; t=1744375020; c=relaxed/simple;
+	bh=7fUfH1eE+n+zmzKhP4D/88n0duk+DQJUKxhnlJl8LM8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s39kCVPJS1qaVy4aGDBa29XNxLwTJlEd9Uo5rO/7P6oLOTwTw9DfbMcSuKW7JqERivyFacqLjacgmDEhNEDsCg5OzI9CRfl4EhqGYGFEwAWN25PLkP7NOl/V4NZjKkrDVEgnnq/OhoZ+WwGUuLfRVEJo9mkRQRF0iFqDN680ud0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VOhTDv66; arc=none smtp.client-ip=209.85.210.171
+	 In-Reply-To:To:Cc; b=J+zXs/zF4+GPU4YCr9dzx0V9ZjNAqFccbcSDZ6nxeaY4CM+Qv6e6Nk7CQfiZR1nTeEtE1HG0DmSHOL8CHFn+YyyQYapVTQgcFcUYZ0YxUp4CJWgnjyEUOkx3uYgKq2+nVHVJS+Sd0lSnfiICz2bFKSKrmLXli6XEi7R1pmDybl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0oQmKPpf; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-736aaeed234so1534927b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:36:51 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2255003f4c6so20850655ad.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:36:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744375011; x=1744979811; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744375018; x=1744979818; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wSHsj9E7pEVKPo/XiZbiTbb5aejzBmBA8Mzu2UJ7TSE=;
-        b=VOhTDv66TKkL6OctU/gsj7dJmdGEwZOrmzO5sMCTTkNy0Q7p4OcOuqFMPkbVQDXD4u
-         kqtu2eShJI2P3vRnO7Y1tRV4Yid6jIoLm8gijuuKbqjNPKr332oBQj4bSa9jTetZhjVp
-         PxmxWbG6qiy8awCjGDUHHHd80O4ZZgbKW+G2Zyt5NHlpbKCMQv0ZA8y6BxMaR00/XME7
-         U2foyDtsopZ3ySjIYcG2J0xEZlSq/GxjnQY0pxWmyIvu5GSZhdDGg0omFK/W7QaUNwTJ
-         c1Wrfy7XbNfl4x8W3VVikgMILn7zLLwCSCx4yCsnuIaT6LWB4cxagKgXTat1e6l6nxrB
-         kfxg==
+        bh=uPJqCmoSsx1GevRwEqwTz+KiO5ldodlroUJvFu2/V3o=;
+        b=0oQmKPpfP4qUut/3hcryutK5usIxOqRG+Md7deKTQaAVOsjsfZZwV7b33kreEL8HT5
+         5qJAHw5VhjVT6t3f2ttK/JNHTaLob9acgitQfTYdefpsf7gvYNjsV0QvJ3e3tHhO1g4L
+         mMPqU9t8NnP+FM/MKVNd2EuJCJjBL9xVXms0GKzTvdFymq0zMI8b8QaWav8U9dDUQ+ja
+         qtV9/9TrKKR+DM5OYwXmjoZDAj5FRdv0BqvHRnUXCJwbHfRW3X+VNkuV0wrS6BB1b27r
+         PrCHiNuw2mbfiSLuhjB9p/NS/2jkkD8aErgCV5lGauY/I1MctF8VRsoTtxM74FmEsD+K
+         e2Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744375011; x=1744979811;
+        d=1e100.net; s=20230601; t=1744375018; x=1744979818;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wSHsj9E7pEVKPo/XiZbiTbb5aejzBmBA8Mzu2UJ7TSE=;
-        b=vgO8LJN1fKl33XeMaxAoeXIMZCULpirg6kfltD56c2qk+2DuOoCZ1oO6oSJZqkiIj9
-         W30HgcQmKfDeWcIpQ1BsS8aJ97To+Re8pEc+AypUsM/5CoP9gVAXHjeqUEYjll+lcpKN
-         gL8nDgYqcYaiIPLo07mctEyCrODIfKTZWsT4LgkvlgPl6gPMBGYlOQR7qf7baenECmZv
-         7LR3KxhNtv+AuSCDUkaeoHjvfF7U3OYPrjapLWa8F2yp7vz1OhLlZAVIzUA7lB52kZth
-         xbn1Ax5xolMBaGvYGu533mgOqQAsAd6R5ibiw55jG4GpXMKSZfCettoS0DLQDGx9/mlV
-         nqWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWyGKTZKVR/NcDSBrifz8UevB+YNZKQLuZlq+inIR2LhpqUCsqpm+QEH5rS5a4X1tqDzrMU0N5BK8x+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAyj7/+kiyD5vZRiUocOa1wnbJ0rixv1AccX31FV+CqCmze3xS
-	Ht4iKCM/Vk4aJIqGoDr3yXKq8psecA5T5KVjH3iuIMnJiu+DyGyny3VQqsOsqpQ74YxeVssqLV1
-	3oNQ=
-X-Gm-Gg: ASbGncv8ecGbfNzWjfO+twEE4mlZpgvacxn5Gt0jb0O00wg1nxLm7JH4EMwv2FADRoR
-	NIbUF99fWjv+GobdJfqpSd9HZ0fWoUoOOEbcSZb9OdUFlPN0VRvnGqzsEOY+wqLReKNO9v42LO5
-	XdwEqiMqIejokP13Dp2ak9ojr7ZzKZfVPBQdavfoTsStz1BDyffK3YdDhl66hfztnPTH3eFK47i
-	PacrSEl9Gjgu5uU51kwH8SqrWkml6UL5l7KG3GI0UigZtL3ueVVt+giSk7AgjN6WrkkenNw7qqd
-	KNHN34VqDAIpY0+xoReLwK2tOnzFaMfzQwdwP6yxz2c=
-X-Google-Smtp-Source: AGHT+IFfX3ot/L43d0QBZxG633pc/hZyXtl8UpByDyVjAeqVDIhCDU73ulTwgr/AGiuYBQtmE0nzNw==
-X-Received: by 2002:aa7:8895:0:b0:736:3d7c:2368 with SMTP id d2e1a72fcca58-73bd11dc695mr3255714b3a.7.1744375010978;
-        Fri, 11 Apr 2025 05:36:50 -0700 (PDT)
+        bh=uPJqCmoSsx1GevRwEqwTz+KiO5ldodlroUJvFu2/V3o=;
+        b=fUIcXG95JOZ1V0WLLFY2uNo+2HgV3BLK35R5zfjx52Du2qS0Y4sqWmcb6xMsuT21eZ
+         pUZ3F+o/TcES9GcU7sqCxzA0Dlo6TYmz9wT5smlnbmnetzVNdaYhshAMFrM5KVZ4pku6
+         +xQqc1aMdqVXvk0ptJjtj36sh/KhkarTKdmGzUQ22vGzYsHKyYSM0E1c+MYAEBBPYObt
+         Tt7IEPcnaun4z8kPgKpDY3eWvrJHYQLpTLtvC2zS1Ay3CUKbh/ggFmUYzIbmMmO8tVzX
+         QVA/b0cGYw5qRyhoDpqsKKZBTB5Ck9/u88D2UEfa4KU0sCJYmaPHZWN1I8keXJtlRk2+
+         OcIA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgC+piR2gNj2e+i+032M74xMTnCVloQHx+wZeeS6LyMnNj1E15eVjM40Z5zrC8mbUbrbuHAwVH1YXu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3sGqCmW0YnpQBbML5fgEutQVS89GH6HQuJ62hg0GldmP/dx46
+	NxsZmByZd31XybIvtRKqqJt/fgguDgupf13GfnxTw+DoXd/UqAl25KRf4LBsZAg=
+X-Gm-Gg: ASbGncssX6m9eBrI0m0iHJ9oFTHK82Tbv96ig/Z/8epBt3bXPLjh++nA3W+NdPfVaeO
+	uxYYFnP+53w8QP/CIEItQ7uLwP6PXHAVg9gd0YjUIvgQYf9iPV7AYYD8BaVrbqhTgheN24+vDE6
+	gXY+uAIuJgFShHOk41fTDDjtUXpknvBMwBlYqiwozQVxuc8LcCgc3nBuRVQ0sIhRp72ngJ6UbTg
+	1hk3bG3fa+293vOg2DxUCBllHS8aWxLk3NFj5dp31c6oTUx4ydwq5fQOKFKH/eJzpmis9Ph87iA
+	wo7pa2HNpj/tD53hiHHdNGw75YnN6/I+R4sRkNmwGuc=
+X-Google-Smtp-Source: AGHT+IFpLD5B7k7fXna43PL4COCo2fb781nBQohi+uOKDq+PQ5C/xXOE6xN0MQ0jZ8H8pyV6WtJL6g==
+X-Received: by 2002:a17:902:cec9:b0:227:e980:9190 with SMTP id d9443c01a7336-22bea4fcad1mr41903285ad.44.1744375018241;
+        Fri, 11 Apr 2025 05:36:58 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:cf9d:bb30:5951:692])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73bd22f8253sm1408292b3a.93.2025.04.11.05.36.44
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73bd22f8253sm1408292b3a.93.2025.04.11.05.36.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 05:36:50 -0700 (PDT)
+        Fri, 11 Apr 2025 05:36:57 -0700 (PDT)
 From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Fri, 11 Apr 2025 14:35:57 +0200
-Subject: [PATCH v3 4/5] rtc: mt6397: Remove start time parameters
+Date: Fri, 11 Apr 2025 14:35:58 +0200
+Subject: [PATCH v3 5/5] arm64: dts: mediatek: Set RTC start year property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-enable-rtc-v3-4-f003e8144419@baylibre.com>
+Message-Id: <20250109-enable-rtc-v3-5-f003e8144419@baylibre.com>
 References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
 In-Reply-To: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
 To: Eddie Huang <eddie.huang@mediatek.com>, 
@@ -99,47 +98,68 @@ Cc: linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  Alexandre Mergnat <amergnat@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1012; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=trGJ+81hvgNk61JAyUi09epqF3tLwjd5H58jiE8ssKI=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBn+Qy+LNjqc2TQncoR/fu21kLb3B4nDnpKBpYpF3u7
- K+vKNHeJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ/kMvgAKCRArRkmdfjHURUBLEA
- CAC42jhzXF95nwzYaBzqk8pqi2wLrVXoH4PBA0deKY2gEdZoIl9sAOEFMAke8ktBZFrY8zyD3Iilcs
- oByCGpN9m/wQ5S2Ih3Us5gmmwCkWz1CcqvUeMk6aOzqC6tnV+SUW/WHutDoEzQrS+Y3hbbq8SCf628
- TxVPv8tc1AaQc1RRi29L97urd+zi8P2/ucYydlvR0VnVd5BEd9ve7obWrjiwfWA22tckQTsOCO2sAB
- z+j+DbUM3nWqNIVBRj+hlyQOkgxl2NMLlZYfY4uSdJjl42PBffIMp2plpK2m2DZwO2b9LqYtEu33Xv
- qKE/nKDGQK3kUPIQqDkgZpXsg8YdsCSkn09ne3NOpGaw4S8q306wT4gViU2OyQbq2jDy/+5X3WyH6r
- bswFi1Fwgg1sefTSK+B7S/NhI8rhjGYcRxNj7YvLRwGEu2bzNW8KwkcQWYjlF5FAo7lfeuIizrxfqA
- OLV8tKAgl8ncXWKuHgzKKtYqaJzfA2aJXrD6yK5u3U9aNlVe5qbOd3r10sFURDisAhtuCm7fURJqHx
- JC+aHpfgCVZUB/fiWVkYOXBkyeKLsx++ZOoMa2Wi8/mg1CSRWFX0MERFX6a/9stWB7mb3L0L4McAod
- KlRc9GKCciMymJ4QFkvBsy0p0HLsmyvqgdUvtv0sgoLe96aZBCXhM1PiaHFQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1631; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=7fUfH1eE+n+zmzKhP4D/88n0duk+DQJUKxhnlJl8LM8=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBn+Qy+kE39onw4c/4Fkz528PzOFaSGz5L4XeHhWzBX
+ hDMFF+eJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ/kMvgAKCRArRkmdfjHURZFAEA
+ CMgGOq5n82NrZ1LYEtWO5FV0efEnXxIHS7oTUff/+0zjS/Y8jlqnNx8HPZO5nwUH8Nf9LGtZBslozP
+ vWuRX7cK0jNVQfcIjqh9mpcZ2kT1QJoVCsGw9gN+QqAL6mNPZVhvCwG2HIOIEsxRF69xVDOMZbGJMH
+ DRGrZpV24VYPp83m3Rgz+RqqYjOsB6go3Cppb67f56Go43Wa7Bh4h5bL0jMyT9wvc47+ZzIhF8Dsnu
+ tL3sRzfjBIhd456WR4crywwS+Le3HSdnF0s0KBzUmHhKd4e9llBzJ6d9jxQfZmsNvXqlatDiioEYYz
+ G2WgVthTQ1zPwsLFGvmM8dAbs6P/tc1O1RRVxU1RIdOaRjwIh2+BuH6Nf9TC9a748hBugjATRYmiTX
+ 5DUCslbH/zOfvqxbGqVbwjZhdyKXFSTewkXwDt1YuxWaE8spAjAFQYBu6Wcf7p79iPZy1Eoq4D2VtD
+ 4VbzRlik1xMo/9KPiwY3Np5IFPJpEqx2CnO2uCx27ns+84mWkSUIPlxhQVC5yrk/qbbU/hc+7N9uCZ
+ EeICxRI7pmEj546cN1sweBOzcU67+ct8Kd4CZ1plilw+i65YAUP0JXj5JJVcxsWta+SoyGzIojnLcw
+ HDa/GKX3CnNeQrPYSTWlTk7V9dW560HevmEhZH0M64UhIbAGF5pDYsk1OjIw==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-The start time parameters is currently hardcoded to the driver, but
-it may not fit with all equivalent RTC that driver is able to support.
-
-Remove the start_secs and set_start_time value setup because it
-will be handled by the rtc_device_get_offset function using the
-start-year DTS property.
+Set the start-year property for MT6357, MT6358 and MT6359 to have a
+consistent value between the HW registers and the RTC framework.
 
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- drivers/rtc/rtc-mt6397.c | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt6357.dtsi | 1 +
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi | 1 +
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-index 692c00ff544b2..d47626d47602f 100644
---- a/drivers/rtc/rtc-mt6397.c
-+++ b/drivers/rtc/rtc-mt6397.c
-@@ -291,8 +291,6 @@ static int mtk_rtc_probe(struct platform_device *pdev)
- 	rtc->rtc_dev->ops = &mtk_rtc_ops;
- 	rtc->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_1900;
- 	rtc->rtc_dev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
--	rtc->rtc_dev->start_secs = mktime64(1968, 1, 2, 0, 0, 0);
--	rtc->rtc_dev->set_start_time = true;
+diff --git a/arch/arm64/boot/dts/mediatek/mt6357.dtsi b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
+index 5fafa842d312f..d79ba87361d00 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6357.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
+@@ -267,6 +267,7 @@ mt6357_vusb33_reg: ldo-vusb33 {
  
- 	return devm_rtc_register_device(rtc->rtc_dev);
- }
+ 		rtc {
+ 			compatible = "mediatek,mt6357-rtc";
++			start-year = <1942>;
+ 		};
+ 
+ 		keys {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+index e23672a2eea4a..226259a51188f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
+@@ -340,6 +340,7 @@ mt6358_vsim2_reg: ldo_vsim2 {
+ 
+ 		mt6358rtc: rtc {
+ 			compatible = "mediatek,mt6358-rtc";
++			start-year = <1968>;
+ 		};
+ 
+ 		mt6358keys: keys {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+index 150ad84d5d2b3..7f9182be79724 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+@@ -299,6 +299,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
+ 
+ 		mt6359rtc: mt6359rtc {
+ 			compatible = "mediatek,mt6358-rtc";
++			start-year = <1968>;
+ 		};
+ 	};
+ };
 
 -- 
 2.25.1
