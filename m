@@ -1,213 +1,193 @@
-Return-Path: <devicetree+bounces-165890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8922CA85D1D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:34:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5682A85D2D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:37:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6701BA2BDA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:35:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4543D188FC94
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:36:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA244298CBE;
-	Fri, 11 Apr 2025 12:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B33C29AB1F;
+	Fri, 11 Apr 2025 12:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="g+apquat"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nR6QMYZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F4729344B;
-	Fri, 11 Apr 2025 12:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744374892; cv=pass; b=rED0Tay/pt4rBBZqmgaEjaAwbZ2N946FBlRHXvJCnKh8f6UdL/g10TjBp2r+arhibdCdAucJU5NvkcOQ+ZOqyB3ir8Taf19mcqjuJ51ahNDEdMxF0/TuO8nUep7j+Djl330fs6jeT5G3U1vZmXMf4GJkbqm3lY+xcpxWOwVdulM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744374892; c=relaxed/simple;
-	bh=Qos49NVgrAlMjMuABgHqA09+VX8Qabl+AB2UgZAZVnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kWFfXaGE9zLnTnd3fk2iX5y6FWBosxdxaVeX3f1C7alSR3hhSoRo3sL/oeHEX0lNDf9Fyc1S1jbzVowUSqRVDTt1IwaiwrlcA9rOBluuNT5NiqfPvBWw27l2nl6UL3I1bmumEwtOhGSf5y4GT9RBUIWRa3QehGfdHkHgPkgHZ74=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=g+apquat; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1744374871; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jAu+dIumyTWcixiH0aT0BkZ9JZKPDflHo1ApovBUplJwVJJocBl+EFKtjR659jp6tKeUvIzXbFhMbA8MtRTn1ZPnBam9PnUGxS6BaPtOIjH1A2tCXNBw23TPkV87X9+j9BaLSHTdtzuFQD3VRclClboSKCX8olp7M8GGPomiAMo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744374871; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=IDhcIJLaAPZ0hY0thCIRQ8WB/yFxEgviJhFDdroGRPo=; 
-	b=Q7FyUOOip/KwR4X/A/jH7VdkY97fRhqBHzO8WOMVmkiTS8oH0H3vw14RrvLqx47wijd5eDCBlaZWOCp4HQ/gT7utu8xvxbcJ62ziGl1tYV/D9vU3MsVSTlbvfl3Vp1P0OZjTvwrM0gwDku+hOP30bzmVifAzlbymlTrdRXLD1Uw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744374871;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=IDhcIJLaAPZ0hY0thCIRQ8WB/yFxEgviJhFDdroGRPo=;
-	b=g+apquat2dDMp5AnqJiMZhbVK0WFh6t+sv9IytZhoB6XbIyl1wj/85aBAOUlCRQJ
-	An1ZdawVyZOJKIfEh9wJjIkyL9+yzDFfK4rOXeP/CnWxtlHrLhwZ+UryxLPu9DRuCYA
-	MBG0Q7Z3x5EggR2MrINCzK6XhKTMNH+MmEL/J91c=
-Received: by mx.zohomail.com with SMTPS id 1744374869473393.2831161950327;
-	Fri, 11 Apr 2025 05:34:29 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 477931801EB; Fri, 11 Apr 2025 14:34:26 +0200 (CEST)
-Date: Fri, 11 Apr 2025 14:34:26 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: quentin.schulz@cherry.de, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v3 2/3] arm64: dts: rockchip: add dsi controller nodes on
- rk3588
-Message-ID: <p5wucvjabwnkw2itlfrq6hs4wp673cnt2yzqumroz2r3zu5rts@eayxhqm5i4h2>
-References: <20250226140942.3825223-1-heiko@sntech.de>
- <20250226140942.3825223-3-heiko@sntech.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64405298CBE
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744374985; cv=none; b=nnHMvVL0M51F70kgUwgRJQ89B+56w0ksrqpb9gQnEpFJtHm4QW0EditGa0tJyVV6llohW5f8Bff+uT28z5ElCK0PrtGnnx1cUavwqpKB/OGXMnt2TDCEQD+qRXODvAdvp1YhoLgGYldYLDL0d9T44dnQtBRtDvwBNCCoPrcn4mA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744374985; c=relaxed/simple;
+	bh=TeU1qtBc+lGVT/HpCQKfBJRuhD/X5cT4MzAlX7BxgrA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WkvS+pA5tXQq9WR8lacsZH7UPyYKp8dpyW7p0uyXucYDgHigf9ONjiADeeMj7fjE7Dw1Ex1srQCPBnjpHVVpRBeSTmaLdMd1VEhWAyee27N90IeVNOgaEXKajKoFNQ015rXjzTTUGD9EZsG9aUY3ltj16zHQMCZ39KTQi61uLQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nR6QMYZQ; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7398d65476eso1547130b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744374981; x=1744979781; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qVcEprkFzd3rrJu1u3UMnInCKF4r4l20VMNImQnFuE4=;
+        b=nR6QMYZQIhl0Trv7TQpmR8tFLDbb/lKSn6ySm2DOjViB1SU4lZaNEwry6kDEzYFjOM
+         CN+dHg2tUTeKpEGCgVxdSqZrF2HzyO2MaNSP075jenDMSrXfWNhcE2Oi5z2nRL26vuHx
+         xKi/2jj0JMdngtLdbMJFx6orAwESWjzqG3e/Y7rC9wTS2IlPLAGYXh7JmAsMStd9b23I
+         BMxrrDWWSvgfNYzO63nQl2w0pX5Oow/C6QtPVy8HKQs+0TK0ffwHqZu+0qnkUL9n0ED8
+         ++0ZKGu/XNuBlYU4JxYtrmRDqf1nu2SdoFbgeocjYXC9Zp5J/KycYG3pNHO4OwleK8pH
+         QWuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744374981; x=1744979781;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qVcEprkFzd3rrJu1u3UMnInCKF4r4l20VMNImQnFuE4=;
+        b=RWzWbEQUzrlOloNFXd9yqvu6xmIv6H99wlDsPLcxMoYzevzB+MxUntEBnABjHE0QBz
+         BfaP5kNYM3isVkvBNNpYiiiYuf8ZGknyii0GiLaRB6kNX++WnWISgecD6IPOTkDOvrzL
+         9JgW5OIMn0uS0S4xNTuLpYAWDd75OBCVp2/f59y1e4XbuUJ/O6P0AueeqaupuMdgJzGN
+         s/5NPOOFro6H3Sklyb0r7jdBrEYjidiGyh8W11hFKuYTiIkZmecl6aEncjGWl1X+tVnk
+         XBinMd/fuOmgA5qJVYDScNkxuC0HRp9icP4JDBrFdvYjuPZmYoT5isIflDyOv5nuQ99j
+         bJjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVC6POLxv9uvnSdXoD3D7SCHVrGScS2oTqPVcJmRElrxLBrXUIYvkHhfDWRWku0WRRIuepF2NUlOlAv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfRFkUC0aUnzBv7tXNv9UJVN8lb5zcwPvzLOGSQhdtP9V71eM0
+	Caz75jW/AHCzX5pIADCECIQTbBbVPt/eIZ2sGBjlyK29LbKPFNTbFhslDJQyJ30=
+X-Gm-Gg: ASbGncuAWbz+IQcYEcr/fs9VGM6SkbHrOoAX+350ya3rw7K3Og6imYhNItj6IKtTyob
+	S8Bl7fphBAuKl+EfLtkcJT/HMJDcFZKJHeWLjQjdQ9D6Xg/Xj5jmKZnQN/YKeTcUqGSqC4eIpOB
+	YnORGUPezHSzwy3js/Jdfx/gw49vQM0HfHxL6fxPa8KkC2D+vvWaZ/TGMa7aFr7dihzh6jnflUo
+	N0kWwTXWtggAU3xeXc0tpCu+Cdz5qi/JtKGgj1WcNdGuVhX3Cf4S0xQNoGuBy4ZLQ/V0B5ombvd
+	HcUN71oLa9O8e6ogtpFxOJlInXHUyHHVEjhgIfGPPX0=
+X-Google-Smtp-Source: AGHT+IFovmGyGMQj3bymdOLN01PpdPyLZzWvo7zsQfRwoVJ3a92T1FSTenwoChm6y8KulWHfihn9tQ==
+X-Received: by 2002:a05:6a00:1809:b0:736:5813:8c46 with SMTP id d2e1a72fcca58-73bbf5db4c7mr10560474b3a.8.1744374981364;
+        Fri, 11 Apr 2025 05:36:21 -0700 (PDT)
+Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:cf9d:bb30:5951:692])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73bd22f8253sm1408292b3a.93.2025.04.11.05.36.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Apr 2025 05:36:20 -0700 (PDT)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v3 0/5] Enable RTC for the MT6357
+Date: Fri, 11 Apr 2025 14:35:53 +0200
+Message-Id: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ekx3fcfiyobjremz"
-Content-Disposition: inline
-In-Reply-To: <20250226140942.3825223-3-heiko@sntech.de>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.2/244.360.14
-X-ZohoMailClient: External
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKkM+WcC/22NQQqDMBBFryJZdyQmjdiueo/iIhMnNWBjmUioi
+ HdvdN3l+5/H20QiDpTEvdoEUw4pzLGAvlTCjTa+CMJQWCipjGzkDShanAh4cYDK+6s21qvBiCK
+ gTQTINrrxUHJbNxrYtcf3YfLhe4aefeExpGXm9ezm5lj/JnIDEqhTSqM3BrF7oF2ngEy1m9+i3
+ /f9BwGfd+7DAAAA
+To: Eddie Huang <eddie.huang@mediatek.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3605; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=TeU1qtBc+lGVT/HpCQKfBJRuhD/X5cT4MzAlX7BxgrA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBn+Qy+NoIYjXj+o9tBSbe2ubQIPyD5kfY0YF94od6r
+ MU0pleCJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ/kMvgAKCRArRkmdfjHURVN9D/
+ 4k3aK0aGww2YNwHcKCp0TO1UivbsRrZwQC1+ak/Uk7UU7vYjLfAYE/2Dn20O2fUDmSLz92un+oTBP4
+ x9Fhdg9CHZkQaaoxcapPvvG32aI2Aau2SYnny8/WhV65oCkofNgsmj22b3HHWSq1voe7T/kWghKUIo
+ INAdePtn/XBWvyNNt5QUKX1fFUYxG6TZgTF2RryD7y91yyff0QE/UqpzsbA7ZOriIrfCC6MkQq/kcI
+ Dfi6huKX79Aij45TnVutEJQozpDU839t4r1hNIsihIUXI0DkMZTUKdqftJoi+dhwpQGIQuyb2ilDlB
+ izI7ZCeZsnnCW91AxhA7MitBvFdHdmoWyrzKUoQak+rNfMdiSYD8EIXc6SQlFG2L2hDkgnvpSAji7K
+ jIU6dnaUKFY1ITVHzLGxbyAvgKrdlfUMmkeaHuRW9yNxoYVsd4Io2LJ3V9hk9PhXESMr3CRl6DSEI0
+ nlJusBoAibu3rFd9TW/yKTlC0L7eqDgLxRvgLVClSZeUDaC2YJIxMnRrEqH9ffXks2uF6bMftm/Jt9
+ lAhBwwVAHSGS571K0h9uk8QmQvOMSPTNu+/uVbx/F8BAO5bJjb6Yi/P6nCGHFUZ+7FuF4UARR7SXXW
+ BkZJsK6teBtEffDviuxEDEwPAh9/YTnJJx1ClDIfZv8AaVBXbpar7T50Es/Q==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
+The RTC subsystem in the Linux kernel has long had issues handling dates
+before January 1, 1970, particularly for hardware with base years before
+the Unix epoch. This patch series fixes these issues, focusing on the
+MediaTek MT635x PMIC RTC implementations.
 
---ekx3fcfiyobjremz
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/3] arm64: dts: rockchip: add dsi controller nodes on
- rk3588
-MIME-Version: 1.0
+The core problem is that MediaTek MT635x PMIC RTCs use some defined years
+before 1970 which are negative values after conversion. These differences led
+to inconsistencies and bugs when the hardware's native time representation was
+converted to the kernel's time64_t format, especially for dates prior to 1970.
 
-Hi,
+The first patch adds MT6357 support to the MT6359 RTC driver. The second patch
+fixes the fundamental time conversion functions in the RTC subsystem to properly
+handle negative time64_t values (pre-1970 dates). The third patch adds
+explicit type casts between signed time64_t and unsigned timeu64_t to
+fix comparison bugs that were causing validation problems.
 
-On Wed, Feb 26, 2025 at 03:09:41PM +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
->=20
-> The RK3588 comes with two DSI2 controllers based on a new Synopsis IP.
-> Add the necessary nodes for them.
->=20
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> ---
+With the core functionality fixed, the fourth patch removes hardcoded start time
+parameters from the MT6397 driver and instead relies on the start-year
+property from device tree. Finally, the fifth patch updates the DTS files to
+specify the correct start-year values for all MediaTek RTCs.
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com> # RK3588 EVB1
+These changes make the kernel correctly handle the full range of dates
+supported by the hardware. This matters for embedded systems using
+these MediaTek PMICs, which may require accurate representation of
+time across a wide range of years, including before 1970.
 
-Greetings,
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+Changes in v3:
+- Rebase on top of rtc-6.16
+- Added explicit start-year property in DTSIs for MT6357, MT6358, and
+  MT6359 PMIC RTCs to ensure consistent values between hardware
+  registers and the RTC framework.
+- Removed hardcoded offset and start_secs parameter in mt6397 driver
+  in favor of using the DTS start-year property.
+- Fixed type comparison issues between signed time64_t and unsigned
+  range values to correctly handle dates before 1970.
+- Added proper handling of negative time values (pre-1970 dates) in
+  time conversion functions.
+- Modified rtc_time64_to_tm() to correctly handle negative timestamp
+  values.
+- Removed the tm_year < 70 restriction in rtc_valid_tm() to allow
+  pre-1970 dates to be validated correctly .
+- Link to v2: https://lore.kernel.org/all/20250109-enable-rtc-v2-0-d7ddc3e73c57@baylibre.com/
 
--- Sebastian
+Changes in v2:
+- Split the patch to have:
+  - Add MT6357 support
+  - Fix hwclock issue
+- Handle the year offset in another way, but the V1 way still viable.
+- Link to v1: https://lore.kernel.org/r/20250109-enable-rtc-v1-0-e8223bf55bb8@baylibre.com
 
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/b=
-oot/dts/rockchip/rk3588-base.dtsi
-> index 5535d5d905f6..9f9e0d3c7722 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/clock/rockchip,rk3588-cru.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/power/rk3588-power.h>
->  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->  #include <dt-bindings/phy/phy.h>
-> @@ -1406,6 +1407,62 @@ i2s9_8ch: i2s@fddfc000 {
->  		status =3D "disabled";
->  	};
-> =20
-> +	dsi0: dsi@fde20000 {
-> +		compatible =3D "rockchip,rk3588-mipi-dsi2";
-> +		reg =3D <0x0 0xfde20000 0x0 0x10000>;
-> +		interrupts =3D <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru PCLK_DSIHOST0>, <&cru CLK_DSIHOST0>;
-> +		clock-names =3D "pclk", "sys";
-> +		resets =3D <&cru SRST_P_DSIHOST0>;
-> +		reset-names =3D "apb";
-> +		power-domains =3D <&power RK3588_PD_VOP>;
-> +		phys =3D <&mipidcphy0 PHY_TYPE_DPHY>;
-> +		phy-names =3D "dcphy";
-> +		rockchip,grf =3D <&vop_grf>;
-> +		status =3D "disabled";
-> +
-> +		ports {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			dsi0_in: port@0 {
-> +				reg =3D <0>;
-> +			};
-> +
-> +			dsi0_out: port@1 {
-> +				reg =3D <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	dsi1: dsi@fde30000 {
-> +		compatible =3D "rockchip,rk3588-mipi-dsi2";
-> +		reg =3D <0x0 0xfde30000 0x0 0x10000>;
-> +		interrupts =3D <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks =3D <&cru PCLK_DSIHOST1>, <&cru CLK_DSIHOST1>;
-> +		clock-names =3D "pclk", "sys";
-> +		resets =3D <&cru SRST_P_DSIHOST1>;
-> +		reset-names =3D "apb";
-> +		power-domains =3D <&power RK3588_PD_VOP>;
-> +		phys =3D <&mipidcphy1 PHY_TYPE_DPHY>;
-> +		phy-names =3D "dcphy";
-> +		rockchip,grf =3D <&vop_grf>;
-> +		status =3D "disabled";
-> +
-> +		ports {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			dsi1_in: port@0 {
-> +				reg =3D <0>;
-> +			};
-> +
-> +			dsi1_out: port@1 {
-> +				reg =3D <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	hdmi0: hdmi@fde80000 {
->  		compatible =3D "rockchip,rk3588-dw-hdmi-qp";
->  		reg =3D <0x0 0xfde80000 0x0 0x20000>;
-> --=20
-> 2.47.2
->=20
->=20
+---
+Alexandre Mergnat (5):
+      rtc: mt6359: Add mt6357 support
+      rtc: Add handling of pre-1970 dates in time conversion functions
+      rtc: Fix the RTC time comparison issues adding cast
+      rtc: mt6397: Remove start time parameters
+      arm64: dts: mediatek: Set RTC start year property
 
---ekx3fcfiyobjremz
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/mediatek/mt6357.dtsi |  1 +
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi |  1 +
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi |  1 +
+ drivers/rtc/class.c                      |  6 ++---
+ drivers/rtc/interface.c                  |  8 +++----
+ drivers/rtc/lib.c                        | 38 +++++++++++++++++++++++++++-----
+ drivers/rtc/rtc-mt6397.c                 |  3 +--
+ 7 files changed, 43 insertions(+), 15 deletions(-)
+---
+base-commit: 424dfcd441f035769890e6d1faec2081458627b9
+change-id: 20250109-enable-rtc-b2ff435af2d5
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Alexandre Mergnat <amergnat@baylibre.com>
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmf5DFEACgkQ2O7X88g7
-+pqkLQ/+MtRu/6wuVD8vKaXfYITTqMMKPNMm/y2MpaKVOVwek4rNxfOCTj2dAxgr
-QY3aUQuKLEw1ljC6QWrVAUVvnbEiGb/TEwEt0AdJcP0JHkip8BcBYiRMHDN7jiz9
-k3SqIXRKDnZYE2kTbH9QPgs/ebnjJPkH0g6s3uB1n+VFSHWybgo60STsrCwTQMnn
-ozgz/tOwKloLhYLEv7onjpCQh36JIQ7Y9F2SOAjar8iGPy2D/pvoFpn4Ztv9EArS
-iyW0SsAHFODXcrYD44w/luoq3+YIKj4j/C5H4qYl8YFVNqPKgOYQJ6aOSm/9iWfo
-wZ9wEgupLu49FccxegXcYEKTFYmAp4g8jH5gpKIag3Mq2r2moy38Mb8DjxEUXNrj
-hs4c9h8+dgYTNYzyRHLO3WJz5Hv8d2DsCqZ3qRvcfoi/xbA2IiF7pqYYzje/K12J
-/JZUpYBV8ixlCyA5RK/UAuGvPDMOKn/TpwofWh2imW2sMw9y5ToUI2jP0hxCrTE8
-3L+6JKRY67iauXez3A0ds5oRrS3EtdVX/R+oxKddD0BwtxlgcAk68XR8GHN+L5e/
-ouw5bRmAUyMArUADyyNSZ20xw6bRCerWH9yYI+5UbxSxK7OoBhRgs/SeRpZsEj7M
-qr106Y9szomiMFM/jeIkfdhxajGnuHIgpTBK6ivYT2VmMTB6wak=
-=lXSV
------END PGP SIGNATURE-----
-
---ekx3fcfiyobjremz--
 
