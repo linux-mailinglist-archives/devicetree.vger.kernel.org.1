@@ -1,256 +1,140 @@
-Return-Path: <devicetree+bounces-165820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C43A8595B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:18:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2107A8598E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC19D9A60BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:16:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0209D1BA2E7A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C7F221260;
-	Fri, 11 Apr 2025 10:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AeprfV+g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8C7F2111;
+	Fri, 11 Apr 2025 10:19:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC342111
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 10:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963E6EEB1;
+	Fri, 11 Apr 2025 10:19:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744366612; cv=none; b=hML0eANFqiyePNuANj/rolDFXv38I5481kswnQzgAt4UdpS3CXTY3jwEYWGeiT9kscVuIK+iyoWWCJMCm+ewQGo9po5ZZjwcuUt2cp6tD/pt6Tk0V8GGyr+qKFU2FI6Y2obfVIfP3zrrNPH0Hi1IRyi2ZrKLUMCyBc/TiMr6158=
+	t=1744366788; cv=none; b=JDSdNHb/B1GpmV50ToCnz/Xeni8bdOqMNKOuCLu5/mzaC6xoSUrWhao945EDKULi+G22m0S8spzVsM8NvZnBd0TfucHxiLp0ewfW46diSEfBk1q/lIy15O9UuTev14T54LUvenPLSCouSTg36qsGrN8pzYNDUeztCQ+SQjEOf80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744366612; c=relaxed/simple;
-	bh=1hotVe9BlhwBGJJos/NulxBjTlOD2ZF1/TLgGJwSgxE=;
+	s=arc-20240116; t=1744366788; c=relaxed/simple;
+	bh=LprdMn8AM2NvclLuiyL7Aj0jeV6crsPoS64Xmqg3AK4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JnN4sOilyaY/yHDaszJ8XO5kD5CtY+pV2a3kDyFiORHVOY0jkMTPrGD91bUFrUStvbIKMvqEjdYurP21LgbuE84P5T20Zw4k1FNWgP7njVDLl7sMDVtRIn1i1+GOZAVhjKmPEJ6YqABZ/PS91F1acWe4wxr0Eg0OIE6fMeBOG6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AeprfV+g; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22580c9ee0aso19060315ad.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 03:16:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744366608; x=1744971408; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=El+yBbYFfa3m33PcQZ+/sv5AA9CYKsrtHMnxQf73yYk=;
-        b=AeprfV+g+QIa1hL1zFvDhMoeBqecv+AGDgEWbTbS8/gj7PFCWAB6Da0F3TDYSjH+qp
-         JofLEPjszsrcDCQe0EODD8dApTnbULQVcIwHaOzWgcBfDiRFbklqTo06uwDy+rJuTSzo
-         sGH6E+tu9T7wVn5O2lHPwxx/R4T00VgYbp9/aT/0KSI+mb/zMDkvWNnApO9IeuFhYjiw
-         L/S/chgEbFTs7K7CvgW2nrL7Oob2FmKFq/Rk/iIzi3R9poJ6lzLOu5DX4b0+TXFmXLNq
-         +ukY/D0wq84dg/pzLnyyTRWNouLMzMqVLuuwWZlIhdBgFwH0YS0kT3wnwwMV+9ozmvZW
-         F0ZQ==
+	 To:Cc:Content-Type; b=rwPZJdmLrQjkVAXPDps9TEWz6KTGxKfIZFfZrJLLKJZ60kfz4jhUmDJPuI7NaeQ4Hs4Z1dVzwS64ryrbQR5EhLRU0rKeo1UsW6ljc4WE3LemoRdHv5k33TwklbC5VrxTVgEiXE/ldHeOKZg65vTgNfk+m8NOL6YX9sGo530LlyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-86d3ac0fec0so1650907241.1;
+        Fri, 11 Apr 2025 03:19:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744366608; x=1744971408;
+        d=1e100.net; s=20230601; t=1744366784; x=1744971584;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=El+yBbYFfa3m33PcQZ+/sv5AA9CYKsrtHMnxQf73yYk=;
-        b=TI3Y1SAzBm79Ly0CCUGifm7oXIDVdXVItkSMWtETUL4a8x5YJonCejFiE+zItKPacf
-         yAYwsdjMZ3A091fLSfV9upIlemMn2xj2r/dul/UD/TZ+UQiUAWYFshbWv4QDu0mw2FaW
-         5xcmC3cftfnLWJLoUdbfUz/LgrGDFT4d/dUg7erZwYTziraQPM5cJqPy3V1q8VqTWl5w
-         m4D9M9uizh4g2CBt79Ls7nWER34k+I9oVMn3kwzx9uW1NUyKAJEkh8J6AqHC1WaEayI2
-         LYJEfY+6pdWoVqS3FZPVYF0eZ1a1Hl4uZufOAwngh6faH7lkzVCp9zx4axem4W+SOuct
-         l3qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVweqoTqe4/mifYQnV31jLED1TNxGnzai6OG5woqUjsgLAlBUUIK5yCwpdv2BML3eCsCyJYJVsjgdYA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXfB6FunTiem7OS/qY+mqWEcGz9fvO5DmIE6xrw1Wh3LZROQfQ
-	FoRk9uH5VKKJTm5mQv+UoYi+0beNSmq9DpRhCO4D9Hce8fs9A/+kxceFUi7IsfCM2RrpIcCZXQ9
-	enxZHd/vYuPvj4GOEeJ+baOSoJ77HcapDLgreUg==
-X-Gm-Gg: ASbGncu19kkRwLFu0LYdpssE9QQtECmxq2SKbehDfrDvoPdAwb8s+viV5z50lfbzbeJ
-	tV7l2aFrxDRCWUziTn5v2Hn6lYHvDWMDr5mfhIXPlBk0zKIsK5MYT1JsnbFcb+hVXTk+rInKI2w
-	w/JlUkeG+VAt4i7inRhTyuhSU=
-X-Google-Smtp-Source: AGHT+IFS/a80yyyuZi5urEnORY3xQw5mQjSwHZr0ekHuMVLTC+K2x+MxrDzUzO/bjiGCm5Susl2ueRJyb258GnM4w9s=
-X-Received: by 2002:a17:902:f705:b0:227:ac2a:1dd6 with SMTP id
- d9443c01a7336-22bea4c6e17mr42758175ad.24.1744366608577; Fri, 11 Apr 2025
- 03:16:48 -0700 (PDT)
+        bh=MRj8vlwCzaPw8iMnn+a+shmBroae65IYrdR7nYfHouk=;
+        b=Yuj9wD7l8E6xIZARsW5dGms5euLwld2vq6MY6hzNgnsey4dh86fsdbaoc9ll1DvUI8
+         0IxqCGEQ2XubeS1p5dz+q9dytI9jKY644tDfD0XQ22+lZW4fbCuTPvsIX/gGxb9BaQEm
+         C3z4xRDOrNCVPrhfgImnw+i1ZzIUmGdHXJtMBwq8vMVmaY09UpUMfsHXX/dzsFjtfSU+
+         ohWnLOm7Hn+R0hegfzqY1sHFSpC9S4vlV5O6tC21AvbzL1vKMgdqCI2rUBFjeAecehAn
+         gszMyMjYwI2ZQrQAmkLW4I8wn8eQzze6DW1bEjNwSZazPqi3t9UJggt0TmQe+SbKP6Nl
+         tL2w==
+X-Forwarded-Encrypted: i=1; AJvYcCWsy5g+ZhtIcYfFE6OGdQWh3NAzO8cYYrW0ic97IVgkbTV/vedz9cb69gJompw+h9AhmxiqX6F+J3DW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWU9CcCM8oBkzJb3NSDN0MhRvw1leDtF8TuHOoEhmGztttAIxb
+	FNYxRoVImM8rO4H69PC2sQVbDQ/lAnoruZRVjwpQRK3zfvO/aFp+ITctDXq/i4g=
+X-Gm-Gg: ASbGncupox2C2V6LlkaAoBUV+oerd4vPXGEyzeYZEIlIr7ldhf0gyMjD1hb0XrTC9FH
+	1W2+EpYa0M8peFdTz/aVoDkIIpqDwIfzzIuB7nXgbEGjIcj08GD6bZxXCj4EogpIoL2W6q4Pv4e
+	fsd+0HTQNY+gzV8X+RPB28BzW3G6UQ42gziztrWptWcNKtTODtXxmkc4ECWaHYNCCmRc08is12E
+	UC96Y9ZdVlNxqb32dOcWDeYR4spg7qS7W7h3GIiPNMgN/+zOfobQxDk/W6srXaDu8Mq4SdSLal3
+	2ELBUYV4orW05rZDOGci2OLIyWuFamJ10bMC9iDkd+4m2M1Ey+/hbQbAcGWzB4XG5lbtSs0BkAf
+	9ShI=
+X-Google-Smtp-Source: AGHT+IHkDEJ20ruQHBiUp3lkAKpRmRv4rw7qpGTsgkw5NJRzoTqVZ+19LXbccUT1O+31/vk3D3bkNg==
+X-Received: by 2002:a05:6102:370d:b0:4bb:dc3c:1b47 with SMTP id ada2fe7eead31-4c9e4f229famr942091137.14.1744366783897;
+        Fri, 11 Apr 2025 03:19:43 -0700 (PDT)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8755716bae6sm985425241.15.2025.04.11.03.19.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 03:19:43 -0700 (PDT)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86d5e42c924so1480602241.3;
+        Fri, 11 Apr 2025 03:19:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU9xnHdUbtbchDbz44zvVrGvBowBvBEcD/jrpbB+bF/8ovTn2j32e3aErfZwJnnlbn5IY4M3JzsjCDb@vger.kernel.org
+X-Received: by 2002:a05:6102:3e8d:b0:4c1:9288:906c with SMTP id
+ ada2fe7eead31-4c9e4ef1b42mr1037857137.9.1744366783244; Fri, 11 Apr 2025
+ 03:19:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250410013330.3609482-1-jie.gan@oss.qualcomm.com>
-In-Reply-To: <20250410013330.3609482-1-jie.gan@oss.qualcomm.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Fri, 11 Apr 2025 11:16:37 +0100
-X-Gm-Features: ATxdqUEraod8yrwnTn49b9tk1NYUizm-a1oIyjVCeHuX2V2MVcCKfTUobsggqZA
-Message-ID: <CAJ9a7VjzxnOGNbAM974ybRAD4eXxWhr8d+UC1rEG=yMtug2XRQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] coresight: ctcu: Enable byte-cntr function for TMC ETR
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+References: <20250410071406.9669-4-wsa+renesas@sang-engineering.com>
+ <20250410071406.9669-6-wsa+renesas@sang-engineering.com> <CAMuHMdXgWgtNGUCsuRuGQdtwYEZ3H3+JTfMATsCz53WeuOVw9g@mail.gmail.com>
+In-Reply-To: <CAMuHMdXgWgtNGUCsuRuGQdtwYEZ3H3+JTfMATsCz53WeuOVw9g@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 11 Apr 2025 12:19:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU8LV152774jekKzsTLpJNdrvJQookXC2kxa6uerV5PbA@mail.gmail.com>
+X-Gm-Features: ATxdqUGiHLMvgzMX3y1qKKAp2a_PVcgWZ1oyIIciKbrSnEQA-krhQ4s8SruR0c0
+Message-ID: <CAMuHMdU8LV152774jekKzsTLpJNdrvJQookXC2kxa6uerV5PbA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe SD
+ card port
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Tingwei Zhang <quic_tingweiz@quicinc.com>, Jinlong Mao <quic_jinlmao@quicinc.com>, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Fri, 11 Apr 2025 at 11:47, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Thu, 10 Apr 2025 at 09:14, Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+> > --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+> > @@ -66,6 +66,28 @@ pins_eth2: pins-eth2 {
+> >                 drive-strength = <6>;
+> >                 bias-disable;
+> >         };
+> > +
+> > +       pins_sdio1: pins_sdio1 {
+>
+> pins-sdio1
+>
+> > +               pinmux = <RZN1_PINMUX(95, RZN1_FUNC_SDIO)>,
+> > +                        <RZN1_PINMUX(97, RZN1_FUNC_SDIO)>,
+> > +                        <RZN1_PINMUX(98, RZN1_FUNC_SDIO)>,
+> > +                        <RZN1_PINMUX(99, RZN1_FUNC_SDIO)>,
+> > +                        <RZN1_PINMUX(100, RZN1_FUNC_SDIO)>,
+> > +                        <RZN1_PINMUX(101, RZN1_FUNC_SDIO_E)>,
+> > +                        <RZN1_PINMUX(102, RZN1_FUNC_SDIO_E)>;
+> > +       };
+> > +
+> > +       pins_sdio1_clk: pins_sdio1_clk {
+>
+> pins-sdio1-clk
+>
+> > +               pinmux = <RZN1_PINMUX(96, RZN1_FUNC_SDIO)>;
+> > +               drive-strength = <12>;
+> > +       };
+> > +};
+>
+> With the above fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I can see that this patchset has fixed some of the issues raised from
-v1 - using the existing file handle for read, and stopping the ETR to
-read the RWP.
+I will fix these while queuing in renesas-devel for v6.16.
 
-However the fundamental problem that it is still attempting to read
-memory without stopping the ETR has not been addressed.
+Gr{oetje,eeting}s,
 
-As mentioned in mine and Suzuki's comments for v1, this means:-
-
-1) you cannot guarantee that the buffer has not wrapped when reading
-data back, which will corrupt the trace decode process.
-2) The DMA buffers are not being synchronized, so the PE could be
-reading stale data rather than the new data written by the ETR.
-
-
-Regards
-
-Mike
-
-On Thu, 10 Apr 2025 at 02:33, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
->
-> The byte-cntr function provided by the CTCU device is used to transfer data
-> from the ETR buffer to the userspace. An interrupt is tiggered if the data
-> size exceeds the threshold set in the BYTECNTRVAL register. The interrupt
-> handler counts the number of triggered interruptions and the read function
-> will read the data from the ETR buffer if the IRQ count is greater than 0.
-> The read work will be conducted ASAP after the byte-cntr is started.
-> Each successful read process will decrement the IRQ count by 1.
->
-> The byte cntr function will start when the device node is opened for reading,
-> and the IRQ count will reset when the byte cntr function has stopped. When
-> the file node is opened, the w_offset of the ETR buffer will be read and
-> stored in byte_cntr_data, serving as the original r_offset (indicating
-> where reading starts) for the byte counter function.
->
-> The work queue for the read operation will wake up once when ETR is stopped,
-> ensuring that the remaining data in the ETR buffer has been flushed based on
-> the w_offset read at the time of stopping.
->
-> The byte-cntr read work has integrated with the file node tmc_etr, e.g.
-> /dev/tmc_etr0
-> /dev/tmc_etr1
->
-> There are two scenarios for the ETR file nodes with byte-cntr function:
-> 1. BYTECNTRVAL register has configured -> byte-cntr read
-> 2. BYTECNTRVAL register is disabled -> original behavior, flush the etr_buf
->
-> We still can flush the etr buffer once after the byte-cntr function has
-> triggered.
-> 1. Enable byte-cntr
-> 2. Byte-cntr read
-> 3. Disable byte-cntr
-> 4. Flush etr buffer
->
-> Since the ETR operates in circular buffer mode, we cannot fully guarantee
-> that no overwrites occur when the byte-cntr read function reads the data.
-> The read function will read the data ASAP when the interrupt is
-> triggered and we should not configure a threshold greater than the
-> buffer size of the ETR buffer.
->
-> The following shell commands write threshold to BYTECNTRVAL registers.
->
-> Only enable byte-cntr for ETR0:
-> echo 0x10000 > /sys/devices/platform/soc@0/4001000.ctcu/ctcu0/byte_cntr_val
->
-> Enable byte-cntr for both ETR0 and ETR1(support both hex and decimal values):
-> echo 0x10000 4096 > /sys/devices/platform/soc@0/4001000.ctcu/ctcu0/byte_cntr_val
->
-> Setting the BYTECNTRVAL registers to 0 disables the byte-cntr function.
-> Disable byte-cntr for ETR0:
-> echo 0 > /sys/devices/platform/soc@0/4001000.ctcu/ctcu0/byte_cntr_val
->
-> Disable byte-cntr for both ETR0 and ETR1:
-> echo 0 0 > /sys/devices/platform/soc@0/4001000.ctcu/ctcu0/byte_cntr_val
->
-> There is a minimum threshold to prevent generating too many interrupts.
-> The minimum threshold is 4096 bytes. The write process will fail if user try
-> to set the BYTECNTRVAL registers to a value less than 4096 bytes(except
-> for 0).
->
-> Way to enable and start byte-cntr for ETR0:
-> echo 0x10000 > /sys/devices/platform/soc@0/4001000.ctcu/ctcu0/byte_cntr_val
-> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/etm0/enable_source
-> cat /dev/tmc_etr0
->
-> Testing case has conducted for the byte-cntr read work:
-> 1. Setting the buffer_size of the ETR as large as possile, here is for ETR0
->    echo 0x1000000 > /sys/bus/coresight/devices/tmc_etr0/buffer_size
-> 2. Setting the threshold for the ETR0 to 0x10000
->    echo 0x10000 > /sys/bus/coresight/devices/ctcu0/byte_cntr_val
-> 3. Enable ETR0
->    echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
-> 4. Enable ETM0 as source and enable byte-cntr to read data
->    echo 1 > /sys/bus/coresight/devices/etm0/enable_source;
->    cat /dev/tmc_etr0 > /tmp/file_byte_cntr.bin &
-> 5. Disable ETM0
->    echo 0 > /sys/bus/coresight/devices/etm0/enable_source
-> 6. Disable byte-cntr and flush the etr buffer
->    echo 0 > /sys/bus/coresight/devices/ctcu0/byte_cntr_val;
->    cat /dev/tmc_etr0 > /tmp/file_etr0.bin
->    ls -l /tmp
->
-> -rw-r--r--    1 root     root      12628960 Apr 28 17:44 file_byte_cntr.bin
-> -rw-r--r--    1 root     root      12669296 Apr 28 17:45 file_etr0.bin
->
-> 7. Deal with the file_etr0.bin with following command:
->    dd if=/tmp/file_etr0.bin of=/tmp/file_etr0_aligned.bin bs=1
-> count=12628960 skip=40336
->    ls -l /tmp
->
-> -rw-r--r--    1 root     root      12628960 Apr 28 17:44 file_byte_cntr.bin
-> -rw-r--r--    1 root     root      12669296 Apr 28 17:45 file_etr0.bin
-> -rw-r--r--    1 root     root      12628960 Apr 28 17:49 file_etr0_aligned.bin
->
-> 8. Compared file_byte_cntr.bin with file_etr0_aligned.bin and identified
-> they are competely same.
->    diff file_byte_cntr.bin file_etr0_aligned.bin
->
-> =======================
-> Changes in V2:
-> 1. Removed the independent file node /dev/byte_cntr.
-> 2. Integrated the byte-cntr's file operations with current ETR file
->    node.
-> 3. Optimized the driver code of the CTCU that associated with byte-cntr.
-> 4. Add kernel document for the export API tmc_etr_get_rwp_offset.
-> 5. Optimized the way to read the rwp_offset according to Mike's
->    suggestion.
-> 6. Removed the dependency of the dts patch.
-> Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
->
-> Jie Gan (5):
->   coresight: tmc: Introduce new APIs to get the RWP offset of ETR buffer
->   dt-bindings: arm: Add an interrupt property for Coresight CTCU
->   coresight: ctcu: Enable byte-cntr for TMC ETR devices
->   coresight: tmc: add functions for byte-cntr operation
->   arm64: dts: qcom: sa8775p: Add interrupts to CTCU device
->
->  .../bindings/arm/qcom,coresight-ctcu.yaml     |  17 ++
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   5 +
->  drivers/hwtracing/coresight/Makefile          |   2 +-
->  .../coresight/coresight-ctcu-byte-cntr.c      | 119 ++++++++++++
->  .../hwtracing/coresight/coresight-ctcu-core.c |  88 ++++++++-
->  drivers/hwtracing/coresight/coresight-ctcu.h  |  49 ++++-
->  .../hwtracing/coresight/coresight-tmc-core.c  |  29 ++-
->  .../hwtracing/coresight/coresight-tmc-etr.c   | 175 ++++++++++++++++++
->  drivers/hwtracing/coresight/coresight-tmc.h   |  10 +-
->  9 files changed, 483 insertions(+), 11 deletions(-)
->  create mode 100644 drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c
->
-> --
-> 2.34.1
->
-
+                        Geert
 
 -- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
