@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-166008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985E2A86189
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:16:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B6FA861AF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EA8B3A6BF5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:15:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37DA37AAB20
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483861F2367;
-	Fri, 11 Apr 2025 15:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB611F4C96;
+	Fri, 11 Apr 2025 15:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPkeaLo/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1keGl/U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA5910A1E;
-	Fri, 11 Apr 2025 15:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA901F3BA2;
+	Fri, 11 Apr 2025 15:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744384554; cv=none; b=PV9c3X1AdOVFvJP2AIyvPYzoY/b9AxNNlwxbfjpTDV1s0Lk10j1JrZ1s3xhsmqKmm9k8Euw9XLbuItFm8WKrJTdxLTvn6LcmFbqnuZKkBWy4w4vKulGHFhOo0clXh67OdpEt1ZbFiX0qOV91DKwE02KmL/zv3bR1ew0nayXTBa4=
+	t=1744384780; cv=none; b=hVpGdJY3RVYwu16RdhXvR5QSA6aptZjyT7VdBU/HvPaoieXVUpyOQt0O5QzsHsYQ2PJz5DRzFUmrMvfRBzu1LFdX26mzpK0K4ExGUx4cGCpRWYpV+k3+0QdF4rbSkJ22hoP3/3QF8ZhsDfERkp+6K8cDROOnLyer/+Z0mBsghuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744384554; c=relaxed/simple;
-	bh=pOzo9gl+06nuScpgNkLpBddBRrPwWPW2vetdG6X3tV0=;
+	s=arc-20240116; t=1744384780; c=relaxed/simple;
+	bh=vK4hBPEXs8FNoXNcakuV1C4xG7hZYj/TGbBMPIdQDTE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lx+3Mp3chn7/5EslFdp2ivNBu011veFqLD53Q+mkNwNUsZjd1I+5oExKpHYMAx41uPxlofZOrtv0g06tdik1uc5gTlayTifdCxe68NFlXQYIRQIWgThOjYYVQUQbKhWf4xsOFiRn/5R0Dyc1e2+NgN12NsZzhYFvoxflLjtLGI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPkeaLo/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DE72C4CEE2;
-	Fri, 11 Apr 2025 15:15:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZB9DhrT9lMQ/1RZAM0kU/r55G/8ff70yM6clxtL/sx/i6VEGI1AIPAuIdMLAIyCE5YCYgBldcVI89wHyKdxa3U1+TjrU4mvJ3tzaOBYwOiIoH0SHqYFQTAkYBO8viQ8wXsPr5H4Iki6ejelPZRApsNquNaGL5l4QSNSoVR36hQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1keGl/U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9645FC4CEE2;
+	Fri, 11 Apr 2025 15:19:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744384553;
-	bh=pOzo9gl+06nuScpgNkLpBddBRrPwWPW2vetdG6X3tV0=;
+	s=k20201202; t=1744384779;
+	bh=vK4hBPEXs8FNoXNcakuV1C4xG7hZYj/TGbBMPIdQDTE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CPkeaLo/fccnmntzxFzQxJPer3+02uVBRTbhfJZxbJ47QdMCHTrSSaNHTr8R81bQv
-	 kVcjpHF7Xi3kbIvlrKPW/vQGTYIdJWZclGrZZ+y6i+SCn2MkIUHGz7OeF4ANC/TUF6
-	 GZHFQpUuX9SGy3fM9JuYrnOQElwBrW7BDTQSwo2lf7/sc4hgE1Imzw//RIxWVRMBB4
-	 s8nFdf/w7gUXqQew8Whqy8aPvCT6BgTh2TgXigzhPOoi34xRHDG3/WBIWP5lNoNMp4
-	 SVMp9eFY1tWgDbC0/u1UF55oxt8Gv/x+fGc3XZHBLOaVNACEPL/4PN/tMunRKKBQpv
-	 835IQe/VTqg/A==
-Date: Fri, 11 Apr 2025 10:15:52 -0500
+	b=V1keGl/Uu6TBpFoOv7sGSO8j/L1duKmpvUyzGeMphzNSVrghWWyrDGX+zZE4hFYrI
+	 qsBkUXvqjDNgTPM3q+qyq4y/wUyPFHZHefZ3OGUEoYWjuQaogeP4XgN9N0swNfZ5gs
+	 iFioleiJiVLOTzyRq0kZElX0DLCNLl8pIueakWNbdyxF6vmYshKksgDf/mUCZWPAbP
+	 kOX7RpyJq5GgY3Cynd0/g5QaPCx+5W+MNMflhVp/rBPh0sFe7XEfqSnv6lF1mmk7h+
+	 ZO4FyW0MUN4HFEK7RsMl9digzBtVetFiG2Bnkdot5sYR2aokSGfXdQoio7TkOmoy8Y
+	 gQgf8z0uD5zkA==
+Date: Fri, 11 Apr 2025 10:19:38 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH 3/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <20250411151552.GA3258510-robh@kernel.org>
-References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
- <20250408-clk-cdce6214-v1-3-bd4e7092a91f@pengutronix.de>
- <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
- <Z_U6fUGbOV2SdO_C@pengutronix.de>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.li@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/6] dt-bindings: bus: document the IMX AIPSTZ bridge
+Message-ID: <20250411151938.GA3265073-robh@kernel.org>
+References: <20250408154236.49421-1-laurentiumihalcea111@gmail.com>
+ <20250408154236.49421-2-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,132 +68,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z_U6fUGbOV2SdO_C@pengutronix.de>
+In-Reply-To: <20250408154236.49421-2-laurentiumihalcea111@gmail.com>
 
-On Tue, Apr 08, 2025 at 05:02:21PM +0200, Sascha Hauer wrote:
-> On Tue, Apr 08, 2025 at 04:27:23PM +0200, Krzysztof Kozlowski wrote:
-> > On 08/04/2025 14:00, Sascha Hauer wrote:
-> > > +
-> > 
-> > A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-> > prefix is already stating that these are bindings.
-> > See also:
-> > https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> > 
-> > 
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - ti,cdce6214
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > > +
-> > > +  clock-names:
-> > > +    minItems: 1
-> > > +    items:
-> > > +      - const: priref
-> > > +      - const: secref
-> > 
-> > So one input is optional?
+On Tue, Apr 08, 2025 at 11:42:31AM -0400, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> The chip has two clock inputs and to be operational it needs at least
-> one clock, could be priref or secref or both.
+> Add documentation for IMX AIPSTZ bridge.
 > 
-> Is there a proper way to express this situation?
+> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> new file mode 100644
+> index 000000000000..3e2ada7fcdf9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/fsl,imx8mp-aipstz.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Secure AHB to IP Slave bus (AIPSTZ) bridge
+> +
+> +description:
+> +  The secure AIPS bridge (AIPSTZ) acts as a bridge for AHB masters issuing
+> +  transactions to IP Slave peripherals. Additionally, this module offers access
+> +  control configurations meant to restrict which peripherals a master can
+> +  access.
+> +
+> +maintainers:
+> +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8mp-aipstz
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  "#access-controller-cells":
+> +    const: 3
+> +    description:
+> +      First cell - consumer type (master or peripheral)
+> +      Second cell - consumer ID
+> +      Third cell - configuration value
 
-If I understand correctly that only 'secref' is possible then you want:
+Generally the ID would be first though providers can really define 
+whatever they want.
 
-items:
-  - enum: [ priref, secref ]
-  - const: secref
-
-(By default, entries have to be unique, so that eliminates 'secref' in 
-both)
-
-> 
-> 
-> > > +  "^clk@[2-9]$":
-> > > +    type: object
-> > > +    description: |
-> > > +      optional child node that can be used to specify output pin parameters.  The reg
-> > > +      properties match the CDCE6214_CLK_* defines.
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        description:
-> > > +          clock output identifier.
-> > > +        minimum: 2
-> > > +        maximum: 9
-> > > +
-> > > +      ti,lphcsl:
-> > > +        type: boolean
-> > > +        description: |
-> > > +          If true enable LP-HCSL output mode for this clock
-> > > +
-> > > +      ti,lvds:
-> > > +        type: boolean
-> > > +        description: |
-> > > +          If true enable LVDS output mode for this clock
-> > > +
-> > > +      ti,cmosp:
-> > > +        type: boolean
-> > > +        description: |
-> > > +          If true enable CMOSP output for this clock
-> > > +
-> > > +      ti,cmosn:
-> > > +        type: boolean
-> > > +        description: |
-> > > +          If true enable CMOSN output for this clock
-> > 
-> > Looks the same here. Anyway having these as subnodes is too much. You
-> > have fixed number of clocks, so you need one or two array properties in
-> > top-level.
-> 
-> There are several properties I haven't yet modeled, like
-> 
-> - 1.8V / 2.5V output
-> - sync_delay
-> - LVDS common-mode trim increment/decrement
-> - differential buffer BIAS trim
-> - slew rate
-> - BIAS current setting for XTAL mode
-> - load capacity for XTAL mode
-> 
-> I don't know which of them will ever be supported, but I thought having a
-> node per pin would add a natural place to add these properties. Do you
-> still think arrays would be more appropriate?
-
-Assuming they are connected to something in DT (if not, why care), you 
-could add a flags cell so the consumer side can define what they need.
-
-> 
-> > 
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - "#clock-cells"
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/ti,cdce6214.h>
-> > 
-> > This file does not exist. Something is odd in this example.
-> 
-> It is added in the driver patch. Should it come with the binding patch
-> instead?
-
-Yes.
-
-Rob
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
