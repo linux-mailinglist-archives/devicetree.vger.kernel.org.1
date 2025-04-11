@@ -1,210 +1,127 @@
-Return-Path: <devicetree+bounces-165745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3729AA85420
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:29:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6EDA85452
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:40:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47C699A412D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 06:29:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86B7219E75E5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 06:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D3D27CCCF;
-	Fri, 11 Apr 2025 06:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618BE280CF7;
+	Fri, 11 Apr 2025 06:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="EZyMv8uv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6281EFF9C;
-	Fri, 11 Apr 2025 06:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E5E280A2A
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744352951; cv=none; b=LMli9tGRDZFKdr6UH4BQubp39hj5scO2eI7zB/BmhypjoGbAlDavEhn97ffulcTP4L3cWJ1wAmUJ8l/1HnPU0Ps0JTXwDCVNIxS+mqbdyF5fCFQBNBiH4JS3Cw1xXzHTzuBqzOtBwLntnWqEvgSBjMpHQ7VX1lh/umiGB8E6FUI=
+	t=1744353526; cv=none; b=nl1sxUQaj6jPAN4qGaYKp7X8P2hX11sZoBwpwVQjpb1Et0m2SwPfb0DjZAf9CmSknY+JZQmzQdCODS83wd3Jhytp7vYePZkV7cOehoT8WBNqJNCE1AmCKzLIf4jqDq+shvT+uKIgxPyB6iekLYLLqml9ZV46k5GY6qCpaGBw9DI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744352951; c=relaxed/simple;
-	bh=RNF67hXYbIj7AuiBeY9z8+U88Il7RL5JK188qv9/XdI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ft9vMZCZRZqy4G+hlXNgbnJVypxAIW2rreHTqkG6heXJQM/0sxU6+O8kmuag2E1KAcdEw3KPn2UfkMMtMfhse1Yl8Uo4MqQL9cTF9bHAg2OvxobxlB11aJXpIo8c8kDm+MglvpPrhdZwc70HVy3yj22iV5yKPnLV87xjZvmJYLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-Received: from [89.212.21.243] (port=57560 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1u37sx-003VJz-29;
-	Fri, 11 Apr 2025 08:29:07 +0200
-Message-ID: <d68df49c-222a-445d-b29c-f9ad962b87aa@norik.com>
-Date: Fri, 11 Apr 2025 08:29:05 +0200
+	s=arc-20240116; t=1744353526; c=relaxed/simple;
+	bh=/r3e6ANnplQZb34XqIp+ha7TLfJpSOt+PW0RsUwC/AU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4U0URm22xJbFgsNXlCbygUczf51MACWZjZWnDld6WUS4vDqzv86w6XXK+/rl1ZfX4en3AH8W/tUfWZMyforP74N4t5anIbqziYCuRpfmpY1WmrhbtKDDtVkESdpSaP+PB7UtDtZM5FyBeXxvT7Vj7/ve35k3s5igC0o9NCBDUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=EZyMv8uv; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=/r3e
+	6ANnplQZb34XqIp+ha7TLfJpSOt+PW0RsUwC/AU=; b=EZyMv8uvZMwwIM2edgWQ
+	+IIq5zxZo838XmXuznjdIx7M+ga6uA69GhOBjV8m0nuyPeEBfyW+rPw/4er9TxZI
+	kOqCbrZuHYsi5LwlqgyvWdXfu9YeTLkHX3IGOeMjOSJmtQHoMtt6XS61Sji9WmTO
+	v/B3Zsum9l+g+iNeqKweTR/eM2Mg8pK1IrFdVz5vFEf3rWCIPDCuiallX5TW08vO
+	3TYPLHTGrCI2Dk1t9+khHsCjvRo5ELnDYXQlwooG54rLgMQ7LhiRZ4Qq7oGXPHM1
+	K4Aq5I/Pca8OCXTHDDGPuMOGIusoJrWo2nkBV4+8byfw5gPzV9lw+fx0MWaI2RR4
+	Jw==
+Received: (qmail 1169367 invoked from network); 11 Apr 2025 08:38:39 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 08:38:39 +0200
+X-UD-Smtp-Session: l3s3148p1@L3Pd83oypp4gAwDPXyfYALbiJ46yNPq3
+Date: Fri, 11 Apr 2025 08:38:38 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: rtc: rzn1: add optional second clock
+Message-ID: <Z_i47pkkUayLm22v@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org
+References: <20250319110305.19687-1-wsa+renesas@sang-engineering.com>
+ <20250319110305.19687-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUiNYXVzK7hSmgqZ65gq0bJyGkfJU0=u+q5K=Sb8EY3ug@mail.gmail.com>
+ <CAMuHMdXU7wYfzNmvBO4ibUPGUA6xV_4gQxe4DtuKcr-kqXGB1w@mail.gmail.com>
+ <Z_gozhmIeQiPScKK@shikoro>
+ <CAMuHMdURcyViCd8EhhAZQjgx3vfBWBAmhNahwA8qoa_G5tPm1Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] arm64: dts: freescale: imx93-phycore-som: Enhance
- eMMC pinctrl
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-References: <20250410090251.1103979-1-primoz.fiser@norik.com>
- <20250410090251.1103979-5-primoz.fiser@norik.com>
- <Z/fcFPrHdI8/IBRC@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Primoz Fiser <primoz.fiser@norik.com>
-Autocrypt: addr=primoz.fiser@norik.com; keydata=
- xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
- JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
- ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
- gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
- jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
- 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
- TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
- AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
-Organization: Norik systems d.o.o.
-In-Reply-To: <Z/fcFPrHdI8/IBRC@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8zvd0hdnVmtpJ5ER"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdURcyViCd8EhhAZQjgx3vfBWBAmhNahwA8qoa_G5tPm1Q@mail.gmail.com>
 
-Hi Frank,
 
-On 10. 04. 25 16:56, Frank Li wrote:
-> On Thu, Apr 10, 2025 at 11:02:42AM +0200, Primoz Fiser wrote:
->> Improve eMMC on phyCORE-i.MX93 SOM by adding 100MHz and 200MHz pinctrl
->> modes. This enables to use eMMC at enhanced data rates (e.g. HS400).
->>
->> While at it, apply a workaround for the i.MX93 chip errata ERR052021.
->>
->> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
->> ---
->>  .../boot/dts/freescale/imx93-phycore-som.dtsi | 57 +++++++++++++++----
->>  1 file changed, 47 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> index 82f680d891c2..3d84eed33074 100644
->> --- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> @@ -166,8 +166,10 @@ eeprom@50 {
->>
->>  /* eMMC */
->>  &usdhc1 {
->> -	pinctrl-names = "default";
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->>  	pinctrl-0 = <&pinctrl_usdhc1>;
->> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
->>  	bus-width = <8>;
->>  	non-removable;
->>  	status = "okay";
->> @@ -213,18 +215,53 @@ MX93_PAD_ENET2_RD3__GPIO4_IO27		0x31e
->>  		>;
->>  	};
->>
->> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
->>  	pinctrl_usdhc1: usdhc1grp {
->>  		fsl,pins = <
->>  			MX93_PAD_SD1_CLK__USDHC1_CLK		0x179e
->> -			MX93_PAD_SD1_CMD__USDHC1_CMD		0x1386
->> -			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x138e
->> -			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x1386
->> -			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x138e
->> -			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x1386
->> -			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x1386
->> -			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x1386
->> -			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x1386
->> -			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x1386
->> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001386
->> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
->> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001386
->> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x4000138e
->> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x40001386
->> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001386
->> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001386
->> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001386
->> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001386
->> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
->> +		>;
->> +	};
->> +
->> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
->> +	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
->> +		fsl,pins = <
->> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
->> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
->> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
-> 
-> any reason why DATA0 is difference with other one?
-> 
->> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000139e
->> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x400013be
->> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x4000139e
->> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000139e
->> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000139e
->> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000139e
->> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000139e
->> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
->> +		>;
->> +	};
->> +
->> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
->> +	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
->> +		fsl,pins = <
->> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17be
->> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000139e
->> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000139e
-> 
-> any reason why DATA0/DATA1 is difference with other one
+--8zvd0hdnVmtpJ5ER
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Bus signal integrity envelope was measured and drive-strengths adjusted
-accordingly by the PHYTEC hardware department to conform to the specs.
 
-Values were thus determined empirically to adjust for differences in
-signal impedance due to PCB layout.
+> > If it is a pass-through, I wonder what it would gain us, but I can do
+> > that if there are reasons for it.
+>=20
+> Let's go for your solution.
 
-BR,
-Primoz
+Thanks!
 
-> 
-> Frank
->> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013be
->> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x400013be
->> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x400013be
->> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013be
->> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013be
->> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013be
->> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013be
->>  			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x179e
->>  		>;
->>  	};
->> --
->> 2.34.1
->>
 
--- 
-Primoz Fiser
-phone: +386-41-390-545
-email: primoz.fiser@norik.com
---
-Norik systems d.o.o.
-Your embedded software partner
-Slovenia, EU
-phone: +386-41-540-545
-email: info@norik.com
+--8zvd0hdnVmtpJ5ER
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf4uOsACgkQFA3kzBSg
+KbbI+Q/+IUkTDtv+Mt/GR1mhW8Ia4ETN4ZgvsLOPhEPaIfOvvk5++Mv851LAAjo8
+XoDBKM+GLf86ElEZ9rFKCo25ubun+o3Hnf7EE34KnEUcjl8MTu25fPE9H8GzuOcn
+LsaEJt8R0WIMv4pV5Ft6Jt1DZ372hE/XpnVPNIcY5XpsbK8M2T2+TVK4Q1CY9+n/
+yMe9iStXcIvltEgwypgINYNl81Wgk9oFA+G2rbKXHzHnACfCccavD/Q4H9KC22ab
+R9PF+rI10kf58ic/hE69af8xu0C0jySYnind5s6aZH0pSbgXTPKZ/FUgWzv4axC5
+lIpAUYbhQ+x/aLW38dY9Q9iG+Noxk01jljPQxMLu8Xnp4tzoRMZr8nxxHQOcrqt7
+gqA9ln+kqLHVrCzDnE4MhNteE06hFdDspo3ztlUbIm8pnInhyD8Fi7U54NCy9GR1
+07Bbr24TOxIcVRpCMsG7ZO+0Xq9tLlyMOV9WtJQiYgAi/OCaYlHcBnXZVDBJAirs
+Hs9QD7OCWsAY6smYMXDF6B3wRLPjv9ud2U5m47GKCaclTw3NhH5FZ2PQZMy9eoBp
+Ec5VR+dau5t/31GOB+ElpGiS9VyxTB1tdQc1dY3EiGhFdkNDmLqVpKHynGs0zTwg
+/43efUt20Jr1On4+iFHlJ5Ro3h6wRA+rXddfQTO8S4rlb3szq30=
+=14ML
+-----END PGP SIGNATURE-----
+
+--8zvd0hdnVmtpJ5ER--
 
