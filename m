@@ -1,90 +1,118 @@
-Return-Path: <devicetree+bounces-165966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E922A85F6C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:45:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D52A85F61
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:44:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4305217642E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:39:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D48431895D8C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D28B1B21BF;
-	Fri, 11 Apr 2025 13:39:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB34A1D63D5;
+	Fri, 11 Apr 2025 13:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KR7juRuj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yyhPjoGo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFDB175D48;
-	Fri, 11 Apr 2025 13:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FAE51C863E;
+	Fri, 11 Apr 2025 13:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744378751; cv=none; b=Gu2/gyanEaznxrs3DyhBj+fbLtugq2npX9+OLie5XPLS7rcYC7jm0peBj30ADb0Yq5xPYbiwA6reu96CZZI0K7gDgGjZd06hzpwWYnrBgk263+zWUgNYYBTOSKDwWDt1GiRkLoOb0zbHmuSfo1fZAAck3723NIb6V7TZHbWEn6c=
+	t=1744378789; cv=none; b=tnyKggZUnVLuOaE0aHOgN6lqXLoFA27UTXBXW64syvR2b5F/MrptF19qwJ5SdFK9Ou+tW0ktKbGKrpzCf5FXYt0jlrP5YPDvOHUiBSIyoimqMX/b83pR4mQFVvNd/TNOCdIaFcoDJSiZAqnQ5C7CVX4vEghChzuOyizafOqbx4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744378751; c=relaxed/simple;
-	bh=nwdw56JvXHxd/zyJ5QMPwv3wEfR0/2J7KHJPwESoXas=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CDbKNKGAOZohh3VR1iRV3Y9BuO4PTCt1vM1xZWd2FTVJEQpk0mbwROyO8TngMe+Pn9/63NqFLGq5vQ0+mbWhNbOdWAXcKrSnS/oGbfCHYHdovW0EoLTcIuVSPC48Az7uGLdBXDydBMf4E8X6sz2iNRf1asesFnsESdcdm346qNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KR7juRuj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD11DC4AF09;
-	Fri, 11 Apr 2025 13:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744378750;
-	bh=nwdw56JvXHxd/zyJ5QMPwv3wEfR0/2J7KHJPwESoXas=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KR7juRuj9MZJ9pcgTM2h3rgU+KL90sGz8OEoTnqllin0xCOyQu0PszNrnOaBlmBuT
-	 vXfaOhXKOOU9We9V77f4h+JG3/UbqcnyOJp4sTbJV2UIdGMD4kLX3u9bXtk4JNCI4i
-	 IXfWHUqEawG23PZSGX4PcHUmRKgzNjLe31ldRbjqHOE1N6jUWrSvSHr8JaSQoJL6iw
-	 HVIwPdNdk3o0xEmi6UemXb/2R9o5nE5jOq/cnZUNIQCrEqVhiwCtAyMt0U/Dbbp7di
-	 /+/BMlWncKEc7oQVsPi6q24OqHmLS0Hh+rEoZAw3MvbO8rfO5u81m1XjeP6xMUn2HU
-	 bSDQoJek50Kqg==
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e61375c108so2537554a12.1;
-        Fri, 11 Apr 2025 06:39:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUbzlDhTKyDN4yJOPhfT5hX1gYf/oJWgG9hRIHjSKlbjKO2EYvvJjWNEeJ+tcai5dpJ61AGk2k6ZmAnQqF4bO73EY0=@vger.kernel.org, AJvYcCW7uMwlXIuSyP1azrpS+ecnt+k00iJaBIm46agcBPlPuzvypjQTILTkZOl8EgiJJ7KyHSv/Kxdy6Egj0gVa@vger.kernel.org, AJvYcCX28l2DOjed0HuzOvdRZUP6pQ7cL0blx03JZFw4v26B844T4XC46U1/PSZUrYox/Ro8OMWhQsFGSKNZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5VU8A2zo5kV4+pqL+qt5edsI+cUeHrTvzktmnUHstdf8un0rt
-	zZjiAi0irXvhUk4BCcKUwHdjRMCWOxnCr7ci9hwGx7OmqqF5fXwV+3CoiMBvyjXiXRCAz+lBlQE
-	nw0NatTByHtkLchb7PfIXc8hrIg==
-X-Google-Smtp-Source: AGHT+IHCBx9FNpODXurEkVL3DDwzD+pb0yTTZbqh9zO6eHhczvr3O47/vPCgZHqPnrj67KfN0qDwmMDySBH/2uDmTHY=
-X-Received: by 2002:a05:6402:42c4:b0:5ed:44e7:dcf with SMTP id
- 4fb4d7f45d1cf-5f36fdc4e16mr1982670a12.24.1744378749321; Fri, 11 Apr 2025
- 06:39:09 -0700 (PDT)
+	s=arc-20240116; t=1744378789; c=relaxed/simple;
+	bh=MTBfFUuaknDnpEoE11pyg0/w98CA+nnxjMj+AcUfjUQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GoC+7O25bF2o+6xw45owEWw4Qi7zQ0dFJBff7qldnYmi5+BRTa0Y1db9i6Mg05lIT/jA8BsSzQVr737ngX77adFfW0QzpmpBpaN1wUPoTCJjkJfj/PGoM/rjF/wPa91la73mJHLH0/We0zhwQB+HHJybtQiHJ/AuYJRv8wdlT9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yyhPjoGo; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BDddgp2137114
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Apr 2025 08:39:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744378779;
+	bh=9OyvleqLlN3Vcd3jJey54De9/WGKxGUsExiQtJz/ET0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=yyhPjoGoHutd1mbDtkKG1nlpLVHmPUI+dMGGeTQDeN41jbUVTohuVHakhpbCkK4Ae
+	 Ru3dMoykPaydlIvSBJsrB1wmw+ZdHwukQ+ZfWFW6hW2aPQFG3v25j6HmeE4NXaGKqw
+	 gZOBLvvuEsN3krvwAg9QX0+x5e1r6vsu2YuxYVlI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BDdd4v112806
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Apr 2025 08:39:39 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Apr 2025 08:39:38 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Apr 2025 08:39:38 -0500
+Received: from [10.249.136.157] ([10.249.136.157])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BDdXtR100609;
+	Fri, 11 Apr 2025 08:39:33 -0500
+Message-ID: <2919918b-d827-4154-8bbd-fd2de64e7526@ti.com>
+Date: Fri, 11 Apr 2025 19:09:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
-In-Reply-To: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 11 Apr 2025 08:38:58 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
-X-Gm-Features: ATxdqUEE-nGBS4emLkvKhAKcjF2FPzYUzyKn1zR4cfJ-MPI-ZqJeSBygBc5-d-w
-Message-ID: <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less
- RZ/N1 rule
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] arm64: dts: ti: k3-am62x: Remove clock-names
+ property from IMX219 overlay
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <jai.luthra@linux.dev>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, <stable@vger.kernel.org>
+References: <20250409134128.2098195-1-y-abhilashchandra@ti.com>
+ <20250409134128.2098195-6-y-abhilashchandra@ti.com>
+Content-Language: en-US
+From: "Francis, Neha" <n-francis@ti.com>
+In-Reply-To: <20250409134128.2098195-6-y-abhilashchandra@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Apr 10, 2025 at 3:23=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> There is no need to repeat all SoC-specific compatible values in the
-> rule for DMA-less RZ/N1 variants.  Use wildcard "{}" instead, to ease
-> maintenance.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 4/9/2025 7:11 PM, Yemike Abhilash Chandra wrote:
+> The IMX219 sensor device tree bindings do not include a clock-names
+> property. Remove the incorrectly added clock-names entry to avoid
+> dtbs_check warnings.
+> 
+> Fixes: 4111db03dc05 ("arm64: dts: ti: k3-am62x: Add overlay for IMX219")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 > ---
->  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> index 76ca02127f95..7a0d35eb04d3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> @@ -39,7 +39,6 @@ ov5640: camera@10 {
+>  				reg = <0x10>;
+>  
+>  				clocks = <&clk_imx219_fixed>;
+> -				clock-names = "xclk";
+>  
+>  				reset-gpios = <&exp1 13 GPIO_ACTIVE_HIGH>;
+>  
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
+
+-- 
+Thanking You
+Neha Malcom Francis
+
 
