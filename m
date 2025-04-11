@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-166009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B6FA861AF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8461A861C6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37DA37AAB20
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:18:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5ACC47BB382
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB611F4C96;
-	Fri, 11 Apr 2025 15:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38AE820D4E1;
+	Fri, 11 Apr 2025 15:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1keGl/U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFF9wtRU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA901F3BA2;
-	Fri, 11 Apr 2025 15:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2281F91F6;
+	Fri, 11 Apr 2025 15:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744384780; cv=none; b=hVpGdJY3RVYwu16RdhXvR5QSA6aptZjyT7VdBU/HvPaoieXVUpyOQt0O5QzsHsYQ2PJz5DRzFUmrMvfRBzu1LFdX26mzpK0K4ExGUx4cGCpRWYpV+k3+0QdF4rbSkJ22hoP3/3QF8ZhsDfERkp+6K8cDROOnLyer/+Z0mBsghuU=
+	t=1744384979; cv=none; b=EPQEkAOI1/y5iu7JZZvSty9KgvoMwSwvhUDWTrhccChnn1kXIchqb0nr4LS8CA4LhTZRklhLP9MzxZXVY2/G6k2qjdkRV7YAMpgrRMIuJlD82BKhF6HTiHgsDG4uNuGKe53TeC6L0c/4wp0zCTGTVC+HaDSuJIO+k2w+H1yBC2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744384780; c=relaxed/simple;
-	bh=vK4hBPEXs8FNoXNcakuV1C4xG7hZYj/TGbBMPIdQDTE=;
+	s=arc-20240116; t=1744384979; c=relaxed/simple;
+	bh=5VH+Kw5uc61DtQBWYw5PyM1LgNGGDqiUvj3mP4vtzho=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZB9DhrT9lMQ/1RZAM0kU/r55G/8ff70yM6clxtL/sx/i6VEGI1AIPAuIdMLAIyCE5YCYgBldcVI89wHyKdxa3U1+TjrU4mvJ3tzaOBYwOiIoH0SHqYFQTAkYBO8viQ8wXsPr5H4Iki6ejelPZRApsNquNaGL5l4QSNSoVR36hQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1keGl/U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9645FC4CEE2;
-	Fri, 11 Apr 2025 15:19:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SN04HYjz/8A/1dO415FMe2y+PI7kr55fsIvukk+YeI+qrYmZMSVPawSiyeRFxEPn317p6NuSVsDpO/ABuHtFHZrl3wbxh2CZBxtgbOmtPZiZZ+jlVH78XfhxVdHuo/jMcJF7oAhUS0JUQP52pcwfW7I/OcZdRpw0AXWtaqL5MoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFF9wtRU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DF2C4CEE9;
+	Fri, 11 Apr 2025 15:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744384779;
-	bh=vK4hBPEXs8FNoXNcakuV1C4xG7hZYj/TGbBMPIdQDTE=;
+	s=k20201202; t=1744384977;
+	bh=5VH+Kw5uc61DtQBWYw5PyM1LgNGGDqiUvj3mP4vtzho=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V1keGl/Uu6TBpFoOv7sGSO8j/L1duKmpvUyzGeMphzNSVrghWWyrDGX+zZE4hFYrI
-	 qsBkUXvqjDNgTPM3q+qyq4y/wUyPFHZHefZ3OGUEoYWjuQaogeP4XgN9N0swNfZ5gs
-	 iFioleiJiVLOTzyRq0kZElX0DLCNLl8pIueakWNbdyxF6vmYshKksgDf/mUCZWPAbP
-	 kOX7RpyJq5GgY3Cynd0/g5QaPCx+5W+MNMflhVp/rBPh0sFe7XEfqSnv6lF1mmk7h+
-	 ZO4FyW0MUN4HFEK7RsMl9digzBtVetFiG2Bnkdot5sYR2aokSGfXdQoio7TkOmoy8Y
-	 gQgf8z0uD5zkA==
-Date: Fri, 11 Apr 2025 10:19:38 -0500
+	b=jFF9wtRULrrQbnny31jmOpzUAXpNXxVUrIbTKxxkZqGvmmTdqSj91KKl6NkPMNhHc
+	 ofnKGdxbM4RHHURb4B9U204zCVx1plMNxKPefqEYWeCd5fQ4ZT2VaiUNyCfrMvhY6W
+	 BNnCA7cgDNLjfMIk0zMTEKGpCe+k0h8yXGwyZ38B4clA9A7buKm34VNETzfBJOR2gH
+	 VyYG1on5KELT6IABs0XHhehlnP5fl4fUF3iiOSnPmhxxbWH3wU4EAttnWDBXVwln1K
+	 JyAXDEMgbP65kUhawrPNSRo4ksd0PAxzd+aE8QBgjkCVtzVxvnaVtTLbS8RbnaaMrb
+	 bejGVLTBzQdoQ==
+Date: Fri, 11 Apr 2025 10:22:56 -0500
 From: Rob Herring <robh@kernel.org>
 To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -56,10 +56,10 @@ Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/6] dt-bindings: bus: document the IMX AIPSTZ bridge
-Message-ID: <20250411151938.GA3265073-robh@kernel.org>
+Subject: Re: [PATCH v5 5/6] arm64: dts: imx8mp: add aipstz-related definitions
+Message-ID: <20250411152256.GA3270148-robh@kernel.org>
 References: <20250408154236.49421-1-laurentiumihalcea111@gmail.com>
- <20250408154236.49421-2-laurentiumihalcea111@gmail.com>
+ <20250408154236.49421-6-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,69 +68,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250408154236.49421-2-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250408154236.49421-6-laurentiumihalcea111@gmail.com>
 
-On Tue, Apr 08, 2025 at 11:42:31AM -0400, Laurentiu Mihalcea wrote:
+On Tue, Apr 08, 2025 at 11:42:35AM -0400, Laurentiu Mihalcea wrote:
 > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > 
-> Add documentation for IMX AIPSTZ bridge.
+> Add header file with AIPSTZ-related definitions: consumer types,
+> master/peripheral configuration bits, and master ID definitions.
 > 
-> Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 > ---
->  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+>  arch/arm64/boot/dts/freescale/imx8mp-aipstz.h | 39 +++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  1 +
+>  2 files changed, 40 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
 > 
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-aipstz.h b/arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
 > new file mode 100644
-> index 000000000000..3e2ada7fcdf9
+> index 000000000000..b816cb6ee9d0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/fsl,imx8mp-aipstz.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-aipstz.h
+> @@ -0,0 +1,39 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright 2025 NXP
+> + */
 > +
-> +title: Secure AHB to IP Slave bus (AIPSTZ) bridge
+> +#ifndef __IMX8MP_AIPSTZ_H
+> +#define __IMX8MP_AIPSTZ_H
 > +
-> +description:
-> +  The secure AIPS bridge (AIPSTZ) acts as a bridge for AHB masters issuing
-> +  transactions to IP Slave peripherals. Additionally, this module offers access
-> +  control configurations meant to restrict which peripherals a master can
-> +  access.
+> +/* consumer type - master or peripheral */
+> +#define IMX8MP_AIPSTZ_MASTER 0x0
+> +#define IMX8MP_AIPSTZ_PERIPH 0x1
 > +
-> +maintainers:
-> +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> +/* master configuration options */
+> +#define IMX8MP_AIPSTZ_MPL (1 << 0)
+> +#define IMX8MP_AIPSTZ_MTW (1 << 1)
+> +#define IMX8MP_AIPSTZ_MTR (1 << 2)
+> +#define IMX8MP_AIPSTZ_MBW (1 << 3)
 > +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx8mp-aipstz
+> +/* peripheral configuration options */
+> +#define IMX8MP_AIPSTZ_TP (1 << 0)
+> +#define IMX8MP_AIPSTZ_WP (1 << 1)
+> +#define IMX8MP_AIPSTZ_SP (1 << 2)
+> +#define IMX8MP_AIPSTZ_BW (1 << 3)
 > +
-> +  reg:
-> +    maxItems: 1
+> +/* master ID definitions */
+> +#define IMX8MP_AIPSTZ_EDMA 0 /* AUDIOMIX EDMA */
+> +#define IMX8MP_AIPSTZ_CA53 1 /* Cortex-A53 cluster */
+> +#define IMX8MP_AIPSTZ_SDMA2 3 /* AUDIOMIX SDMA2 */
+> +#define IMX8MP_AIPSTZ_SDMA3 3 /* AUDIOMIX SDMA3 */
+> +#define IMX8MP_AIPSTZ_HIFI4 5 /* HIFI4 DSP */
+> +#define IMX8MP_AIPSTZ_CM7 6 /* Cortex-M7 */
 > +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  "#access-controller-cells":
-> +    const: 3
-> +    description:
-> +      First cell - consumer type (master or peripheral)
-> +      Second cell - consumer ID
-> +      Third cell - configuration value
+> +/* helper macros */
+> +#define IMX8MP_AIPSTZ_HIFI4_T_RW_PL					\
+> +	IMX8MP_AIPSTZ_MASTER						\
+> +	IMX8MP_AIPSTZ_HIFI4						\
+> +	(IMX8MP_AIPSTZ_MPL | IMX8MP_AIPSTZ_MTW | IMX8MP_AIPSTZ_MTR)
 
-Generally the ID would be first though providers can really define 
-whatever they want.
+Drop this. 1 define per value. Combining these makes the .dts look 
+wrong.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Rob
 
