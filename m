@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-166004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34561A86101
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:49:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03EF3A86109
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79C531B86895
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:47:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDF894C3653
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F921F1516;
-	Fri, 11 Apr 2025 14:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2199B1F4CB3;
+	Fri, 11 Apr 2025 14:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CiqecLlY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="guWP4nwg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46CBA136A;
-	Fri, 11 Apr 2025 14:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FF11EFFB8;
+	Fri, 11 Apr 2025 14:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744382837; cv=none; b=MwIQW1VjeC2Jdl7FWDEng2eIn0gyCAfMqbzDZ8/OLdo1vRoyi4m4olk2OPOpr1k4M58wGvCJdDm93t2N3iUa+7Q40S+e3KMyuvGbq32xflO5WDcOP7eTmXYlcRaysIaXZimux0LaVEkvloTAveNvyN3BQuh7uypm2OdsD2jBFWU=
+	t=1744383041; cv=none; b=Y9k1MET/zn0J4BLXdFtbaZMNOvkP6gnqUSeS80ulB8XfnaoDzAu/wXHHTXtK/n8lLdla2CV5omCl6jfnj1CfO8yOhs/NXUv9s/bBpC3Vl8vZpOqN+2kpgwIF+tSIQ2gpt9Vka4JfWP1lsBxvvL9RUkPOAH1Q221dqDYHuohgvXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744382837; c=relaxed/simple;
-	bh=bdmi96KJtXzBzzp/XRee5Nf9BbtE748KyLnsywYANZE=;
+	s=arc-20240116; t=1744383041; c=relaxed/simple;
+	bh=prfpkdJjH8gsyLeUcHkDF+9wOpbQqO3gBOF3+xUwy/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gW0kD09j9RJuGUHFhZBxZZa/g0OEKMawp5+EP/jnR6CVsRB9RW5oz/9ri2t497/EVkLvFFYyabvYYKKW904gglpU6D+5Xs1keM5D4SBxN1AIQI5NVtdmizV8pln7YFyfnPxaVYVLgP6kWil83Ji1+ZT5dMMQyVI4vUNErOreUBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CiqecLlY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D3EC4CEE2;
-	Fri, 11 Apr 2025 14:47:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p0SgLgIqc3QpthQExn+5qE32Y3o8jkfSa88X4jWcQaQZ9bUxam9faVu9aCmlydL95Qo62mJ4AtyZYXnZF7+MST0oXFcf1fp5ndHEHWZcxX3yIywKKNIva86hbjKZkW4W2FEN3SUdBIUsu5IiEDGmcmivQM18FB90is+mD/kAd8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=guWP4nwg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92BA0C4CEE2;
+	Fri, 11 Apr 2025 14:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744382837;
-	bh=bdmi96KJtXzBzzp/XRee5Nf9BbtE748KyLnsywYANZE=;
+	s=k20201202; t=1744383040;
+	bh=prfpkdJjH8gsyLeUcHkDF+9wOpbQqO3gBOF3+xUwy/Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CiqecLlYzxIgZEc8oW6GoafOIT18aPWu+pqWnagxmv9+EAOVfpwdG5ftgUQA2VKcm
-	 BwfKAJKFbp8+6WguPaFzQ5lDvs7gVDqfR/ehsS0T+S7W8nLJcVrABXseciK4r77fNj
-	 777ftyM24e/s/UUd93hERrOv65501Hd+tA7ebyAlfoPJyn+Wd56P/6yAYP17+1i6oR
-	 tahcog69OuTAxC3YiHJxX/28oJguSxM4V7/FRvsmqIYaNJJLAUbfhguP4BmRTn+6G6
-	 jRaa1s/KE3UtScrZx3A3sUDlXNOPm8Tpi7dZcoEr7nCwL43AEaGhQSNmv9zeEEKEx1
-	 UIRuh4F+kFiZA==
-Date: Fri, 11 Apr 2025 09:47:15 -0500
+	b=guWP4nwgMlFbond9eIoFzKbNRUApAq4DpSSu/uFEe2lJxCjY7qC89aIsRtU4mwmCY
+	 ywDRHzsC3PuVaBi27Mbln/fQ8V0JZ4vrm4fkr1qyJ8geT4mFyxFVGqlWP3Wy9xBsOj
+	 iE6uDRTqAoIEt0gpODcbNY+uYZzAuODdINbDm1nwZ3H2kzZR2Wcvm5ZBqTwsyKONdU
+	 cauDIW66v1944TXVhf/APuTPgmkIlCwDMBxNN0WE/xTR4MtwdXrBKPxpzXBaX1sDoe
+	 b+987sx4ou7cOD8zge3vqg8FDzHPesMbZScq+Ql7snZtvGje/bdNuRJprXymLq40ut
+	 jNqkMKZinmdfw==
+Date: Fri, 11 Apr 2025 09:50:39 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	Russell King <linux@armlinux.org.uk>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, upstream@airoha.com,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Rob Herring <robh+dt@kernel.org>
-Subject: Re: [net-next PATCH v2 14/14] of: property: Add device link support
- for PCS
-Message-ID: <174438283512.3232416.2867703266953952359.robh@kernel.org>
-References: <20250407231746.2316518-1-sean.anderson@linux.dev>
- <20250407232249.2317158-1-sean.anderson@linux.dev>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: timer: renesas,tpu: remove DoC
+Message-ID: <174438294005.3234652.6798896475162852160.robh@kernel.org>
+References: <877c3vnq0k.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,23 +64,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250407232249.2317158-1-sean.anderson@linux.dev>
+In-Reply-To: <877c3vnq0k.wl-kuninori.morimoto.gx@renesas.com>
 
 
-On Mon, 07 Apr 2025 19:22:49 -0400, Sean Anderson wrote:
-> This adds device link support for PCS devices, providing
-> better probe ordering.
+On Tue, 08 Apr 2025 06:09:15 +0000, Kuninori Morimoto wrote:
+> commit 1c4b5ecb7ea1 ("remove the h8300 architecture") removes Renesas TPU
+> timer driver. Let's remove its Doc.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> 
-> Changes in v2:
-> - Reorder pcs_handle to come before suffix props
-> 
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/pwm/renesas,tpu-pwm.yaml         |  9 ---
+>  .../bindings/timer/renesas,tpu.yaml           | 56 -------------------
+>  2 files changed, 65 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/renesas,tpu.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+I fixed up the subject and commit msg, and applied it, thanks!
 
