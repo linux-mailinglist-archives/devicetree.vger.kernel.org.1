@@ -1,141 +1,242 @@
-Return-Path: <devicetree+bounces-166106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BBC3A864BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:29:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E0FA864E2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:38:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5745A176570
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:29:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35061BA59CA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5AD232365;
-	Fri, 11 Apr 2025 17:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HDjyd73M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2631E23BCF1;
+	Fri, 11 Apr 2025 17:36:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007C3231A2A;
-	Fri, 11 Apr 2025 17:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C6323A9A0;
+	Fri, 11 Apr 2025 17:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744392583; cv=none; b=SLcVAsbyA27LW3bD8RthurtbYvjuLsb9eZBaIQf0EiBD9m481u1dCP58TPxLlZzW7p0TvJmzTnF3ufCUSuLjX2XAoHmfopz5qL+BE5fS9wRiawkp4G/TgsSI4CfqH2SWZs3K70kbK5LupBEtsfAwUcuQCywsWeK05bmKMnFAk1E=
+	t=1744392983; cv=none; b=LJ7AfAa3VMOnIluj8HadHKKPrScLJ1CK5/2+tGsZwTbVhEfAJYWy43uRH0jkYlvXZomCwxzBgQeYRrYLBfyf6leNJHk5zqoV0t1DprmiNtBFE4rGWmrok/B45BPWeiK0/ODh6znsKkru4Ukr/wvZLyc9K43WXEEmoAw0nm6IRaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744392583; c=relaxed/simple;
-	bh=SNjjkvPi8mDPCgliOBOb/sKtvfgDejUzyhE44uJp3mk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rxdLVEmYVgQgse4KCMmYuPwa6pULMO2rsl5S43l1pAMO3glKvyAgmUQGLCbP0UnlKtkVIIjzZhHeo09auZh+6bGLP4YAdtLmogNKjrgDbyirKCYmL7s5UC9lvtGil9jLfu2vkxTDWmtFuaTYMWATXMqQmeQ6yZfhYNN54hqL3lM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HDjyd73M; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BHTU492187578
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 11 Apr 2025 12:29:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744392570;
-	bh=0CmmRFEk2Mpf6bDBwWDF9TSqpw/smnpuGGU09f+E/SM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=HDjyd73MFFe9fhAPqvvRBo9bMJaUdSpHxcNQ+s2jLa7FRWsF95qQFJI28yYTJnrgw
-	 kurLC3kqP8AQpXiN6ku8PhT40Z6xpOuEXqM2CzDPTtL98ozxh+QrmViA83CT5KocVZ
-	 BXkuXhCqtcE8eY7cTNpEn5+iVZq4oOHiM8VrTIkA=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BHTUF6128866
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Apr 2025 12:29:30 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Apr 2025 12:29:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Apr 2025 12:29:29 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BHTPSt002976;
-	Fri, 11 Apr 2025 12:29:26 -0500
-Message-ID: <624fd8c5-1315-4af3-8fb2-486ca95045f2@ti.com>
-Date: Fri, 11 Apr 2025 22:59:25 +0530
+	s=arc-20240116; t=1744392983; c=relaxed/simple;
+	bh=RrQmy/7o+Lvxl/t4l7CT1gzLGDDGt209WtpOumTSV00=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qdkXsSMYZFcho5WttZ0Di+C+j4EeTTpOaW9qo8QToG/upOFkNKiXtMYgYorW2C8yFEvgD/QeZ30VgKfw3aQc76b6/YktQqXwAJf+GP/njzP1vsjxeGlZFEKJCao1t8e+ksa+Fip+9dAINY/g1eFT8K6zqsEtCyn9Mjl3eWosq/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZZ3f821gxz6K9X0;
+	Sat, 12 Apr 2025 01:32:16 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id D77C81402F7;
+	Sat, 12 Apr 2025 01:36:16 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 11 Apr
+ 2025 19:36:16 +0200
+Date: Fri, 11 Apr 2025 18:36:14 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+CC: <remi.buisson@tdk.com>, Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH 6/8] iio: imu: add Kconfig and Makefile for inv_icm45600
+ driver
+Message-ID: <20250411183614.00002382@huawei.com>
+In-Reply-To: <20250411-add_newport_driver-v1-6-15082160b019@tdk.com>
+References: <20250411-add_newport_driver-v1-0-15082160b019@tdk.com>
+	<20250411-add_newport_driver-v1-6-15082160b019@tdk.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] arm64: dts: ti: am68-sk: Fix regulator hierarchy
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <jai.luthra@linux.dev>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20250409134128.2098195-1-y-abhilashchandra@ti.com>
- <20250409134128.2098195-3-y-abhilashchandra@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250409134128.2098195-3-y-abhilashchandra@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
+On Fri, 11 Apr 2025 13:28:38 +0000
+Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
 
-On 4/9/2025 7:11 PM, Yemike Abhilash Chandra wrote:
-> Update the vin-supply of the TLV71033 regulator from LM5141 (vsys_3v3) to
-> LM61460 (vsys_5v0) to match the schematics. Add a fixed regulator node for
-> the LM61460 5V supply to support this change.
->
-> AM68-SK schematics: https://www.ti.com/lit/zip/sprr463
-> Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> From: Remi Buisson <remi.buisson@tdk.com>
+> 
+> Add 4 modules:
+> - inv-icm45600
+> - inv-icm45600-i2c
+> - inv-icm45600-spi
+> - inv-icm45600-i3c.
+> 
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
+
+Hi Remi,
+
+One quick comment.  A driver should be structured to build fully
+after each patch.  That means the makefile and kconfig should be introduced
+in patch 1 of the series. Obviously more stuff will be added as you go
+along.
+
+If someone just wants to pick up the patches for the core and one bus
+they should be able to do so and expect that to work.
+
+Some other areas of the kernel are more flexible on this than I am
+but for IIO at least that's they way we have always done things
+and I'm not keen to change it.  It means that we know everything
+we need to review each step in sequence is there as otherwise it
+would not build.
+
+It does mean that you need to build test each additional patch
+whenever you do a new version to be sure that the series will be
+fine for a bisection build. 
+
+The exception of 'hidden' library modules like the core one here
+that won't get built until someone selects them from another kconfig
+symbol is fine though.
+
+Thanks,
+
+Jonathan
+
 > ---
->   arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 11522b36e0ce..5fa70a874d7b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -44,6 +44,17 @@ vusb_main: regulator-vusb-main5v0 {
->   		regulator-boot-on;
->   	};
->   
-> +	vsys_5v0: regulator-vsys5v0 {
-> +		/* Output of LM61460 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vusb_main>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+>  drivers/iio/imu/Kconfig               |  1 +
+>  drivers/iio/imu/Makefile              |  1 +
+>  drivers/iio/imu/inv_icm45600/Kconfig  | 70 +++++++++++++++++++++++++++++++++++
+>  drivers/iio/imu/inv_icm45600/Makefile | 17 +++++++++
+>  4 files changed, 89 insertions(+)
+> 
+> diff --git a/drivers/iio/imu/Kconfig b/drivers/iio/imu/Kconfig
+> index 15612f0f189b5114deb414ef840339678abdc562..9d732bed9fcdac12a13713dba3455c1fdf9f4a53 100644
+> --- a/drivers/iio/imu/Kconfig
+> +++ b/drivers/iio/imu/Kconfig
+> @@ -109,6 +109,7 @@ config KMX61
+>  	  be called kmx61.
+>  
+>  source "drivers/iio/imu/inv_icm42600/Kconfig"
+> +source "drivers/iio/imu/inv_icm45600/Kconfig"
+>  source "drivers/iio/imu/inv_mpu6050/Kconfig"
+>  
+>  config SMI240
+> diff --git a/drivers/iio/imu/Makefile b/drivers/iio/imu/Makefile
+> index e901aea498d37e5897e8b71268356a19eac2cb59..2ae6344f84699b2f85fff1c8077cb412f6ae2658 100644
+> --- a/drivers/iio/imu/Makefile
+> +++ b/drivers/iio/imu/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_FXOS8700_I2C) += fxos8700_i2c.o
+>  obj-$(CONFIG_FXOS8700_SPI) += fxos8700_spi.o
+>  
+>  obj-y += inv_icm42600/
+> +obj-y += inv_icm45600/
+>  obj-y += inv_mpu6050/
+>  
+>  obj-$(CONFIG_KMX61) += kmx61.o
+> diff --git a/drivers/iio/imu/inv_icm45600/Kconfig b/drivers/iio/imu/inv_icm45600/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4fade8852a0dcf54df2bbd67b9269ed2c59f8699
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/Kconfig
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later
 > +
->   	vsys_3v3: regulator-vsys3v3 {
->   		/* Output of LM5141 */
->   		compatible = "regulator-fixed";
-> @@ -76,7 +87,7 @@ vdd_sd_dv: regulator-tlv71033 {
->   		regulator-min-microvolt = <1800000>;
->   		regulator-max-microvolt = <3300000>;
->   		regulator-boot-on;
-> -		vin-supply = <&vsys_3v3>;
-> +		vin-supply = <&vsys_5v0>;
->   		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
+> +config INV_ICM45600
+> +	tristate
+> +	select IIO_BUFFER
+> +	select IIO_KFIFO_BUF
+> +	select IIO_INV_SENSORS_TIMESTAMP
+> +
+> +config INV_ICM45600_I2C
+> +	tristate "InvenSense ICM-456xx I2C driver"
+> +	depends on I2C
+> +	select INV_ICM45600
+> +	select REGMAP_I2C
+> +	help
+> +	  This driver supports the InvenSense ICM-456xx motion tracking
+> +	  devices over I2C.
+> +	  Supported devices:
+> +	  - ICM-45605
+> +	  - ICM-45686
+> +	  - ICM-45688-P
+> +	  - ICM-45608
+> +	  - ICM-45634
+> +	  - ICM-45689
+> +	  - ICM-45606
+> +	  - ICM-45687
+> +
+> +	  This driver can be built as a module. The module will be called
+> +	  inv-icm45600-i2c.
+> +
+> +config INV_ICM45600_SPI
+> +	tristate "InvenSense ICM-456xx SPI driver"
+> +	depends on SPI_MASTER
+> +	select INV_ICM45600
+> +	select REGMAP_SPI
+> +	help
+> +	  This driver supports the InvenSense ICM-456xx motion tracking
+> +	  devices over SPI.
+> +	  Supported devices:
+> +	  - ICM-45605
+> +	  - ICM-45686
+> +	  - ICM-45688-P
+> +	  - ICM-45608
+> +	  - ICM-45634
+> +	  - ICM-45689
+> +	  - ICM-45606
+> +	  - ICM-45687
+> +
+> +	  This driver can be built as a module. The module will be called
+> +	  inv-icm45600-spi.
+> +
+> +config INV_ICM45600_I3C
+> +	tristate "InvenSense ICM-456xx I3C driver"
+> +	depends on I3C
+> +	select INV_ICM45600
+> +	select REGMAP_I3C
+> +	help
+> +	  This driver supports the InvenSense ICM-456xx motion tracking
+> +	  devices over I3C.
+> +	  Supported devices:
+> +	  - ICM-45605
+> +	  - ICM-45686
+> +	  - ICM-45688-P
+> +	  - ICM-45608
+> +	  - ICM-45634
+> +	  - ICM-45689
+> +	  - ICM-45606
+> +	  - ICM-45687
+> +
+> +	  This driver can be built as a module. The module will be called
+> +	  inv-icm45600-i3c.
+> diff --git a/drivers/iio/imu/inv_icm45600/Makefile b/drivers/iio/imu/inv_icm45600/Makefile
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..0fd6fbce0286f24504dbfe71925f9c35e717c446
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/Makefile
+> @@ -0,0 +1,17 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +obj-$(CONFIG_INV_ICM45600) += inv-icm45600.o
+> +inv-icm45600-y += inv_icm45600_core.o
+> +inv-icm45600-y += inv_icm45600_gyro.o
+> +inv-icm45600-y += inv_icm45600_accel.o
+> +inv-icm45600-y += inv_icm45600_temp.o
+> +inv-icm45600-y += inv_icm45600_buffer.o
+> +
+> +obj-$(CONFIG_INV_ICM45600_I2C) += inv-icm45600-i2c.o
+> +inv-icm45600-i2c-y += inv_icm45600_i2c.o
+> +
+> +obj-$(CONFIG_INV_ICM45600_SPI) += inv-icm45600-spi.o
+> +inv-icm45600-spi-y += inv_icm45600_spi.o
+> +
+> +obj-$(CONFIG_INV_ICM45600_I3C) += inv-icm45600-i3c.o
+> +inv-icm45600-i3c-y += inv_icm45600_i3c.o
+> 
 
-
-Please ignore previous comment , I realized you are changing parent for 
-tlv71033 not for vsys_3v3.
-
-With that
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
->   		states = <1800000 0x0>,
->   			 <3300000 0x1>;
 
