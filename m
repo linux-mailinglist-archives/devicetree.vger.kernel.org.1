@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-166101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2832A864C3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49014A864C4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:31:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDC669C5EEF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:25:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE563AA6CA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B67F23026C;
-	Fri, 11 Apr 2025 17:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1144A230D08;
+	Fri, 11 Apr 2025 17:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGGHDk57"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ladMjA1o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B41221FBB;
-	Fri, 11 Apr 2025 17:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FA221B905;
+	Fri, 11 Apr 2025 17:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744392344; cv=none; b=N1upitj5pcLtoSyNkBXD1n8LIcoPFhUx4lGFioQOzw70rLla/tSjxrhOGqReZWWkUNjojJCLbOcVA+y80B6fOZsIjbGYVye7jcHh+mHECThhay++G37t0LmvnXKTEpd4JgOF8CbYWwxVVqbMxM5B+r2K/CAmtW80yBXiuCYRAEY=
+	t=1744392432; cv=none; b=X0/I/6VysX4lVHqcH+bUs5dPElxx+I4Px7kN87o2z3dpKSDTeQmvjksSBaOoMa2Qa6iEpym9qtd8Niw5VmWc3AV9fhmaQ/3/JOhsS9W6jAa2S3xOqKpHcuwSbmarovSbz4xfk1c6SpeIdYOXEuRPqkYmTnpOgI+DnqY8y+Nz/t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744392344; c=relaxed/simple;
-	bh=PhGA/PQRX8o20BNQzD1+8NpC24hiX8vnUQGbJ76M/qU=;
+	s=arc-20240116; t=1744392432; c=relaxed/simple;
+	bh=lThX8yUtObxnNNdpSefIo+oWxDYTahO3dx8BUWqqSSA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nhXN4feEh5kfjZn66pciDNWHW5w9FhsMCA2XcCOPK9rPyOZG8AJ92vaQsCZOtHax1+TMfW1ZYHNNSeSDEqan38sYQne4fQZthMpl2ic6DUybSh6tXs3Z/xYWl69x5UJ8DG3VE4SfWvO6W9PZpqDh0MGYxKjubimDb5blzvyu4Dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGGHDk57; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A93C4CEE7;
-	Fri, 11 Apr 2025 17:25:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qeS6iUhqSX17KTF6aFEvVFDa8VBAWIta71x3ZK+Vt9L6/BoVtGHPze2LK8jfkDcjy4mJZ0/K4l9xFWrpFS7Qf65pj0B9JMiG1Ua6msc/RrbUQNJtb4/StjDr8PKpWNKVw1h+StRYVueqF8fdruN4hai7zTAwpB78ItoyTyuKPgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ladMjA1o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF85C4CEE2;
+	Fri, 11 Apr 2025 17:27:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744392343;
-	bh=PhGA/PQRX8o20BNQzD1+8NpC24hiX8vnUQGbJ76M/qU=;
+	s=k20201202; t=1744392431;
+	bh=lThX8yUtObxnNNdpSefIo+oWxDYTahO3dx8BUWqqSSA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CGGHDk574nv3ggpHYgRFSGLnGML2SsK64FsA0AnH3svGUa+R2gw447BPw9YB3NEXm
-	 kWv+YOEwLjMvVw5TBxnh3PoFiQMOp4E+bt+gmli1Tz3SxEHxu4dQKvmtnyg3fhSx6f
-	 MdSiBM3YWeKsnP7vdR7tNXQiWHDbPgWRXbwXhprnOTuX5wGNBFPt0C7dWf9NbbMrPK
-	 hzQN13bhaTGVmQpSyw/UIywWblC5Nlkl1QYdRRItCIXoIUp3z6TsWLbLwIKQq9I78P
-	 IMTQyBjKBxAyzQnxrfc7pL9cHjyZi7xKjcblImmwNs5PenDU/T084xIbeteTl5uJXg
-	 TF7QbMXcpISUQ==
-Date: Fri, 11 Apr 2025 12:25:42 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=ladMjA1o8YRPWYkPOAPLpt8mxNrrxG70sZReilZORO7FmT9YqyKf7h27MgnCWGWWx
+	 N0Y8qRktCjFX7YyMabYj7xd5MdrwTxUBPaxXcN4svKJVG+3me1cnUZXQ87EWOfjTu1
+	 y7DI4GjOhouEO4wZ6ubGUOdiFrcWLRIQZgP/b7tHJw/8uyDfO4srt+Z2rooySBVr9V
+	 kKd8kK3vw706rVXMgfJm9LHWN9CZ/mLplbLuGn419d4aGiMnt8CCWkdF2jahFetaqW
+	 Pf7+igYe8Dx4w7u5gcellyE7Fh9cR6wpp66fzCqjUy0u1tXBqtZIpXbs2afGNT96FC
+	 5Wm5R1i/4O2Lg==
+Date: Fri, 11 Apr 2025 12:27:09 -0500
+From: Rob Herring <robh@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, matthias.bgg@gmail.com,
-	yong.wu@mediatek.com, kernel@collabora.com,
-	linux-kernel@vger.kernel.org, krzk@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: memory: mtk-smi: Add support for
- MT6893
-Message-ID: <174439234231.3571303.15777518966184683751.robh@kernel.org>
-References: <20250410143958.475846-1-angelogioacchino.delregno@collabora.com>
- <20250410143958.475846-2-angelogioacchino.delregno@collabora.com>
+Cc: yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org,
+	robin.murphy@arm.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, iommu@lists.linux.dev,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: iommu: mediatek: Add binding for
+ MT6893 MM IOMMU
+Message-ID: <20250411172709.GA3571947-robh@kernel.org>
+References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
+ <20250410144008.475888-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +63,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250410143958.475846-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250410144008.475888-2-angelogioacchino.delregno@collabora.com>
 
+On Thu, Apr 10, 2025 at 04:40:07PM +0200, AngeloGioacchino Del Regno wrote:
+> Add binding for the MediaTek Dimensity 1200 (MT6893) SoC's
+> MultiMedia (MM) IOMMU.
 
-On Thu, 10 Apr 2025 16:39:57 +0200, AngeloGioacchino Del Regno wrote:
-> Add support for the Smart Multimedia Interface's Common and Local
-> Arbiter HW as found in the MediaTek Dimensity 1200 (MT6893) SoC.
+You can drop 'binding for ' in the subject. No need to say 'binding' 
+twice.
+
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/memory-controllers/mediatek,smi-common.yaml         | 1 +
->  .../bindings/memory-controllers/mediatek,smi-larb.yaml           | 1 +
->  2 files changed, 2 insertions(+)
-> 
+>  .../bindings/iommu/mediatek,iommu.yaml        |   4 +
+>  .../memory/mediatek,mt6893-memory-port.h      | 288 ++++++++++++++++++
+>  2 files changed, 292 insertions(+)
+>  create mode 100644 include/dt-bindings/memory/mediatek,mt6893-memory-port.h
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
 
