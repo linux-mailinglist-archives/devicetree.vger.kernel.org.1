@@ -1,170 +1,153 @@
-Return-Path: <devicetree+bounces-165778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDE2A856BF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:39:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D878A856C6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:39:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72CD83BFFAA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:37:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03711440B2D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B475829614A;
-	Fri, 11 Apr 2025 08:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBE92980BC;
+	Fri, 11 Apr 2025 08:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dy+fjYOl"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="UzpIvUwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01F2293B4B
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C6A2980CE
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744360677; cv=none; b=M54e7lks2z2UqVHg16GkigbqG6L9TBKy0corxIzQyxa5JzpC9mgcGSDusB7kT5AvV2BMg7kZcAZq+bzcp/s1Vo4xUDXUgYIXtfhuyB1fy+3esDUDvtgkkpBZHuAgGoTN9z+WYepC1LkT7HZUnGj0DVnyiADSZBlecUg8+xgqvps=
+	t=1744360711; cv=none; b=B5MDMzu52wLExEQCkqXDRbcLhcgD9YpwWgF3jcQ+6s2Zdo/UuILRoQ0gI2DbenFX6c34jT4SKwXa4BSM7zXC+fUg8mW/dk6BT0g3wspmNlX2ceaHwHe6rDLG4fgPult4pXhVtO+cVRegfODWWVK+1vO/RKbWp2bfsBjXcdngXRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744360677; c=relaxed/simple;
-	bh=5kt3MWtin3KNwdzDbJU//7Uxuz+S1QGZ/maTZ/hrbSs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qQmXJWPnh9tkZBDq+8k1orfjmpAoP3FEq98HkRMYS4cdOBL2RDO9dhxYapXkAHs6RrkWyzHPJSYGdxAbOXaBdf1nzEWpp2b9KXBFdiuqC6OGlJwIp4d5AEOnERcnYNQUUjx4DDQC+ZguRp2nwM8aofR5nqxH3uLgvauB75TXAaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dy+fjYOl; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c13fa05ebso1000891f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:37:55 -0700 (PDT)
+	s=arc-20240116; t=1744360711; c=relaxed/simple;
+	bh=D7R9oFDs5xYoXN43Ulwrouo3nLF61el6kbjtNoLpuyw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HVjbnTj4gYBQIlcx79o8xJbmEcL/JztLgMuGI2LlGWqws8QjMWy7V6HaHRjF/JjfsNhzN15t4ahd6U4h1MjzD2ARUAZx5wtjmlC7FMKxs+Ac7ji1cx/9xbZs2uPUlaD3mo2yerojC9Kwtu6oQPMdc4tDBIpiLlml4ReGt2BwTJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=UzpIvUwx; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e455bf1f4d3so1317628276.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:38:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744360674; x=1744965474; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=amarulasolutions.com; s=google; t=1744360708; x=1744965508; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wH2ZPuzfR/sU9gtELQf1xx9ouW+DErODBwUT5LwG1mM=;
-        b=dy+fjYOl2NWtqXJHHd4H+Tpo9L+/m3lsuYvwRfy7cD+16NN+q8tvv5gyAlQ0ra23IO
-         0C98gB9Qk4qsQXQfsD3sRaiVfwIoa64x0I/ZKzJsNADmHD9OfLWgy7apo4hEn2PEWWg9
-         zJ/s2Ceme8nWBZ4R6ljHMBWREuI5HZqI/Z00u20fltn6RwNN64mweBGMGSThN4Goureo
-         aSwEoq15ptQnQZ6pwArHiL4cz9QwxQbPuYz2J1dg+V8q4Cgt8bPcj20M7gH7pGlbSbVU
-         /olenrBVqU5Smru3g91jmBiFa9msCGO+1nblQGmsJKojRvQLNUorj7flEXND1KBhwNJT
-         S46A==
+        bh=RtU+pOoZbsLOnPjUI7YZ5FGGjZ40GzcCM59B/7LbYr4=;
+        b=UzpIvUwxO+k22fbZNAK9zkUFeyaa/VmpTJvs0do+/nfTjsFynHnh185YRbcfQ0rzcR
+         vB3E3/0ij478ZA+Qg2zv/OrH/0bL9efzaQzx+uXutMvMqJ6ivOQKWo6IlDs+jZsUJVrO
+         ZoAj3W/isU9utclcGyzHD/b6+qj6i5lTWwdLk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744360674; x=1744965474;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744360708; x=1744965508;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wH2ZPuzfR/sU9gtELQf1xx9ouW+DErODBwUT5LwG1mM=;
-        b=GlYRI/dDx1SQJVP+TZ/5DY+c997ZP23dytfa8IqWH8lBP9K6uf/cE/c1BUXoaOZ6Pm
-         c/Z9epDx0Ekc7u3zp+HCDBEWROnpqoHwmmOq2FKPcow+klfEgOSxAvFcV+2rjNAlTF/p
-         fFsZWCNW6+qKpxnLzasnMkthLj8r5pIpCO9PiZt/1Z491U1OoVY2lrtdCA/ozO7YsubP
-         lbKP8FM+X3q6U+lB7eiXAZNJ82RXLUth40/WJ/mWdbrTUNyjqnAWx0mdEUVahkzBTCHX
-         SAREUgpB6ZRz/57tMvCJ7DiXCHIFZ0rolT6C20KpXGjP1ydM5YOj2eW4q4K4OJyqX4LC
-         igPQ==
-X-Gm-Message-State: AOJu0YyJ7tXybxedWsyHPDY+vFHwJR/jKikW0aozZvtxUM/GZObLMu2/
-	t7pkPbhsxdpbtZCtgTocZvJaTcAA+OelkfhIRy+b41wGKdYUBCVWnEb/f23BKVA=
-X-Gm-Gg: ASbGnct40ztGEH0pMdvn8mOCvK/XkZwVglXG1a+0hVbBSeh60JCmoZ6wLNfp2Y9hyra
-	uUHOUq8gzIzjaVEaLUKl0wNzsyktZ0hC8xqmBzn/e60vca00xIeprhGI6HSZpsJ4eUjyYEf4oDn
-	1V9hJgaDHQxT/FmgSKNfJSFRtMeIp1PiHw6ooGj+uceQpq5iodhabJ1S3GomxxzmRprAfGy+fxO
-	tm7+zx/39O57a/gpy0SpxoJtJY4yYIPUIPRI4Hap8wJsXEl/UUc2FpLotf9UgLeGQtiO8B1K3Kj
-	mZwiF6FM2fxFNfqzqc0abvlJ5aYNOqr+dKiCWFQR+nEr0u84NLKjMrFEdUN6wg==
-X-Google-Smtp-Source: AGHT+IESQEmfqjjVD+jC6dd63FDfAGrpItTMGFb0BJ+4OP4VGIDucBWUqxZDD69YlSOe5qeibdfp9g==
-X-Received: by 2002:a05:6000:2c5:b0:38f:3224:65ff with SMTP id ffacd0b85a97d-39ea51ecb8bmr1357243f8f.5.1744360673907;
-        Fri, 11 Apr 2025 01:37:53 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae9777a0sm1326282f8f.43.2025.04.11.01.37.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 01:37:53 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Conor Dooley <conor@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Steen Hegelund <Steen.Hegelund@microchip.com>, 
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Andy Gross <agross@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
- Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Stephan Gerhold <stephan.gerhold@linaro.org>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
- linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- Andre Przywara <andre.przywara@arm.com>, 
- =?utf-8?q?Philippe_Mathieu-Daud=C3=A9?= <philmd@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Sudeep Holla <sudeep.holla@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-In-Reply-To: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
-Subject: Re: (subset) [PATCH v2 00/17] Arm cpu schema clean-ups
-Message-Id: <174436067236.3436338.6767561918297500530.b4-ty@linaro.org>
-Date: Fri, 11 Apr 2025 10:37:52 +0200
+        bh=RtU+pOoZbsLOnPjUI7YZ5FGGjZ40GzcCM59B/7LbYr4=;
+        b=Jh0TjO1DkIf6d/rcl3bkwi1l/+C+BfGTKNPqacj5joIukytBMU9fiyFEFELM5XE3lL
+         rbcg3t5AYEFqE63jvVOVf4O/nP0Z54n8qIkmGEZTftFxgkK9I52k/VPJnNtOZ3sOTfAH
+         GC3cMgfja8TaX/VsdhbFayt2brVEdf6REGvsrahBSBDBBOmFM5fHeGCQshKZ5bqyc251
+         Enh8tKuMUALQudb2rQ+H8fwuMVDytKgHA2KHlXQjB//yHCDH4iqmxFMUQ7b9m4GjwG+x
+         7NhSLT+RbD6bxdzbIGZrk4RIBW4MAiNmj8CjHmzFef5J203d2V55jEV9Rdq1UqSMa3Pa
+         v1JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGohR6CLpSSo2h1TFxLvd7asg7mmdNVNCsFR1VoVwhCa6bYsUC3+pvtzP8bM72mpURx9iWjvIEae63@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7lu2WFGMhef/6mmWtbd7cI7L03mMyUrhmVVMD++FaC7Nzht3I
+	Ijmf+VPd3wD8ZY+CS3rF1EIddeA40oMBvAd83LGnkc+LZ9Rw7XxSnqDvGC+pAkvfTUQlfLKul/a
+	gJmL+cP1fvvc9nSHuw7kT6Lb2O8kVFSD7TbL4ANUtaeFMKk5i2X0=
+X-Gm-Gg: ASbGncs/1wwGvqsoHOOsDSGEQfZSQj/Xd0G+PehBq9RthBd6xGC4h/R6+vSR4f2+YKf
+	aW8RbjGcKfvaCJqSBAwvyIQZ2LI0lLK0ddtFU7LAj/YsgETacndKMLGk8BPKDgQT2FstRIsVokF
+	IBwFi1ZO7HysCFJMfH1GU=
+X-Google-Smtp-Source: AGHT+IHCodNLsYqxPgYy8KacCIFQ8uMbF8eAgpfHHABuPW/r+cXCzHR5Dy1G6JiUbudEZgEzb8V1wt8pBrFYRs9UU4s=
+X-Received: by 2002:a05:6902:2012:b0:e6d:dfea:8f09 with SMTP id
+ 3f1490d57ef6-e704decd54bmr3276455276.26.1744360708185; Fri, 11 Apr 2025
+ 01:38:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+References: <20250306112959.242131-1-dario.binacchi@amarulasolutions.com> <20250314093503.GD12210@nxa18884-linux>
+In-Reply-To: <20250314093503.GD12210@nxa18884-linux>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Fri, 11 Apr 2025 10:38:17 +0200
+X-Gm-Features: ATxdqUF7idGp2hnH8dEoppZJLC3ZC9jhgwG1uStDtkKfsGzYjzpE_DfoJqtsu9k
+Message-ID: <CABGWkvq2X9L6P39K5OeQW4+c2OmSYGHN03mUW-96U5okO1CK5A@mail.gmail.com>
+Subject: Re: [PATCH v10 00/18] Support spread spectrum clocking for i.MX8M PLLs
+To: Peng Fan <peng.fan@oss.nxp.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Abel Vesa <abelvesa@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, 
+	linux-amarula@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Fabio Estevam <festevam@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, Mar 14, 2025 at 9:27=E2=80=AFAM Peng Fan <peng.fan@oss.nxp.com> wro=
+te:
+>
+> On Thu, Mar 06, 2025 at 12:27:49PM +0100, Dario Binacchi wrote:
+> >This version keeps the version v9 patches that can be merged and
+> >removes the patches that will need to be modified in case Peng's
+> >PR https://github.com/devicetree-org/dt-schema/pull/154 is accepted.
+> >The idea is to speed up the merging of the patches in the series
+> >that have already been reviewed and are not dependent on the
+> >introduction of the assigned-clocks-sscs property, and postpone
+> >the patches for spread spectrum to a future series once it becomes
+> >clear what needs to be done.
+> >
+> Although I give R-b, there is an idea just come out in my mind that this
+> might break OS distribution that use firmware(e.g. U-Boot) to publish
+> device tree for Linux Kernel, such as ARM System-Ready complaint OS.
+> I overlooked this point in previous patchset reviewing.
+>
+> Since this patchset is to move anatop stuff to a new driver to reflect
+> the HW truth.  And requires new entries in CCM node, so old bootloader
+> with new kernel will not boot for OS distribution, such as Fedora/openSus=
+e.
+>
+> Not sure how to keep backwards support as before. Leave to maintainers
+> to say if they are ok with this.
 
-On Thu, 10 Apr 2025 10:47:21 -0500, Rob Herring (Arm) wrote:
-> The Arm cpu.yaml schema fails to restrict allowed properties in 'cpu'
-> nodes. The result, not surprisely, is a number of additional properties
-> and errors in .dts files. This series resolves those issues.
-> 
-> There's still more properties in arm32 DTS files which I have not
-> documented. Mostly yet more supply names and "fsl,soc-operating-points".
-> What's a few more warnings on the 10000s of warnings...
-> 
-> [...]
+Many thanks to Peng for the review, and a gentle ping to the maintainers.
+This series has been ongoing for a few months and has reached version 10,
+thanks to the reviews from Krzysztof and Peng.
+I kindly ask you to consider it as well.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm64-dt)
+Thanks and regards,
+Dario
 
-[11/17] arm64: dts: amlogic: Drop redundant CPU "clock-latency"
-        https://git.kernel.org/amlogic/c/4bc28af2da876531e5183d25ae807e608c816d18
+>
+> Regards,
+> Peng
 
-These changes has been applied on the intermediate git tree [1].
 
-The v6.16/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+--=20
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+Dario Binacchi
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+Senior Embedded Linux Developer
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+dario.binacchi@amarulasolutions.com
 
--- 
-Neil
+__________________________________
 
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
