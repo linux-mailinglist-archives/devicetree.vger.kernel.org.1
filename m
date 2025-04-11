@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-165712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED5CA8526D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 06:12:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24238A852AE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 06:36:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED4A61736D8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 04:12:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7F797B0D4D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 04:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5690D27C85B;
-	Fri, 11 Apr 2025 04:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C46B1E2606;
+	Fri, 11 Apr 2025 04:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FW62hLXS"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xlD9JGhP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1F027BF7B;
-	Fri, 11 Apr 2025 04:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A702E802;
+	Fri, 11 Apr 2025 04:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744344751; cv=none; b=lbLwOppaJ/gVVoSK2DcfMdBoUlBLSFf63q4ULo/j+7OF7s1aubtQvv/JD/jKEsOBtsDliUN9D/2EOjgpL9cHfInhsg9BMOwWO7rQnAzwYO522yRe7D7NJ/9Acs2jSkBM87N7lPeWGXiKUDkTyEoiOPzggCLncAYVUj4KPGAzj1M=
+	t=1744346212; cv=none; b=J8I5FVD3WQEzLgC2/eKulApyrxkOI0D5TKMgIMsIwYmWKEEP0TSoqd+Ua3yBClC1BZvqXz0yTspy64MZcLEqIu/0ruTUhG9sI70qsmUluQRH4g8SuM03cf9mf0jumbnNSpwvm5508LnxklZglkhM4Y0g8RlAbYsSCyOopjUVXEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744344751; c=relaxed/simple;
-	bh=ySMsdsrcT7K4/6KzeJdBUXGq0fyIokY6Q83+X3lzHbk=;
+	s=arc-20240116; t=1744346212; c=relaxed/simple;
+	bh=W7AnTwCQYOMdNxgpr39KK0tlY5LPask/lwqbwunlvjA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VPdg52UyWUjM9n1yRDY1gVgilWPeYrRAoNnGcCin7RLKWySatdV7tMpkE85p+gUQucyK8m8OV46ZlpAECA0v/t4zHZA6xQvPvyeAVRnY/PB7KOVIibm1ii3zNCnLBkUBmTLI5b3AE96zeRfVBNPGfqlxi5OuDKRSWAhqJ+rgczE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FW62hLXS; arc=none smtp.client-ip=198.47.23.234
+	 In-Reply-To:Content-Type; b=f8W9CdxfjwUTbD/bbvJWi9ib7sSytNnyIgVGFdXmV9pNgzl3HUftwQes5VnzviJs+L9OeilUo2I14ch5IKJFyk+qjUdB+DA64y+lU7RUU4uKxUDjbrOphod6QVdzQpBjnS6llHy/cvxxhee1FDHpARoq24/JvTgmp/4Azk3yj+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xlD9JGhP; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53B4CE3b1473638
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53B4afq81968862
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 10 Apr 2025 23:12:14 -0500
+	Thu, 10 Apr 2025 23:36:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744344734;
-	bh=8XC15NhKFd0PY+4Z1N+K5fXmaFufMv7nE++wOrKWixg=;
+	s=ti-com-17Q1; t=1744346202;
+	bh=Ql1eWTW4uBCU2FKgu49U0o8nShopMqxONOi70oLH7rs=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=FW62hLXSq91mU6OGMd3X4DNS6b8tOBLV2Ej0PjEUI4JNcmnPg7v7oMT9LIW3VGzlp
-	 BlysRAJWkSR33YVTOfv6PAsCDBUIm9cEE31V2YoC0YH3Dv0cSh6L9/zfX6XQI+HpLK
-	 xOiLCKjwbYokjiHWtqj1gU2V75jZ5dUhKVZf0Wpk=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53B4CES5068987
+	b=xlD9JGhPOh/F+TZYDqT83i3lT/uW+I74u+p/6J0hi6VLYQIXDstY3Qn4kl+l2qTC3
+	 kaBjyQZ5NErPgvVSHsRsR8lzkQr3iuCQSieQCPRCnrH0nXP7/cWFk2XoG3icdeGBBg
+	 RYrI1y31x5v1Ts9EReuuiPGLiVXyqcDTIbA1unDI=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53B4afXr084447
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 10 Apr 2025 23:12:14 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 10 Apr 2025 23:36:41 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Apr 2025 23:12:14 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 23:36:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Apr 2025 23:12:13 -0500
+ Frontend Transport; Thu, 10 Apr 2025 23:36:41 -0500
 Received: from [172.24.227.151] (uda0510294.dhcp.ti.com [172.24.227.151])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53B4C9am074277;
-	Thu, 10 Apr 2025 23:12:10 -0500
-Message-ID: <7629a496-4495-4333-9a90-829e53e9ea84@ti.com>
-Date: Fri, 11 Apr 2025 09:42:09 +0530
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53B4aaOK100453;
+	Thu, 10 Apr 2025 23:36:37 -0500
+Message-ID: <911949c6-b025-4546-9296-681c82e6a84a@ti.com>
+Date: Fri, 11 Apr 2025 10:06:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,11 +68,12 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with
  remote processors
-To: Andrew Davis <afd@ti.com>, Judith Mendez <jm@ti.com>,
+To: Judith Mendez <jm@ti.com>,
         Devarsh Thakkar
 	<devarsht@lewv0571a.ent.ti.com>,
-        Nishanth Menon <nm@ti.com>, Hari Nagalla
-	<hnagalla@ti.com>
+        Nishanth Menon <nm@ti.com>, Andrew Davis
+	<afd@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>
 CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof
  Kozlowski <krzk+dt@kernel.org>,
@@ -88,17 +89,19 @@ References: <20250405001518.1315273-1-jm@ti.com>
  <f8f1d877-3d13-4ba7-90e1-455923458c11@ti.com>
  <fe735242-4643-432a-adaf-27e29719948a@ti.com>
  <bffd8489-1556-425d-b3f9-8fde8a7d34a7@ti.com>
- <b97c1eaa-f34c-4731-8e9e-b51faa4619c4@ti.com>
+ <45e2c2bf-68af-4c78-8f85-e25f4e7ea3fd@ti.com>
 Content-Language: en-US
 From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <b97c1eaa-f34c-4731-8e9e-b51faa4619c4@ti.com>
+In-Reply-To: <45e2c2bf-68af-4c78-8f85-e25f4e7ea3fd@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Andrew,
+Hi Judith,
 
-On 10/04/25 23:20, Andrew Davis wrote:
+On 10/04/25 23:14, Judith Mendez wrote:
+> Hi Beleswar,
+>
 > On 4/10/25 3:55 AM, Beleswar Prasad Padhi wrote:
 >> Hi Judith,
 >>
@@ -248,58 +251,40 @@ On 10/04/25 23:20, Andrew Davis wrote:
 >> Memory carveouts can be announced through Resource Table, but there 
 >> is no guarantee we will be able to allocate it (it could be mapped by 
 >> the Kernel for some other alloc), unless its pre-reserved in DT.
+>>
 >
-> That's the neat thing about the RSC_CARVEOUT item in the resource table,
-> it works both ways. The firmware can request a static address, or it can
-> use FW_RSC_ADDR_ANY for the address and Linux will go and dynamically
-> allocate it a region. Then it passes this info back to the firmware by
-> updating the resource table in memory. Firmware can then simply read this
-> carveout address from its resource table and start using it.
+> Since we do not have an IOMMU for remote cores in K3, we cannot get rid
+> of the static reserved memory carveouts, is my understanding. The linux
+> driver would have programmed the IOMMU virtual and physical addresses
+> and it would have been able to do the virtual to physical address
+> translation on its own with only the requirement size from the FW
+> resource table. 
 
 
-Ah yes, I forgot about that. We already use FW_RSC_ADDR_ANY for VRING
-allocations. We can scale it to memory carveouts in the similar way. Thanks.
-
->
-> The only time we need a static addresses would be for code sections as
-> they are not relocatable (yet). And that is the reason we have the
-> minimal carveouts we are adding in this patch. Code goes here. And
-> these carveouts are 15MB! No firmware I know of has 15MB of *code*
-> section.
->
-> As we found in the offline discussion, even our largest firmware
-> doesn't use near that much space. What that firmware is doing is picking
-> some spots in DRAM for its heap and buffer areas, and without 
-> coordinating
-> with Linux, just starts using that memory. We have to then go into DT and
-> carveout all these ranges to avoid stepping on the firmware heaps from
-> Linux.
-
-
-Yeah I have found this as well. All of those heap/buffer areas should be 
-moved
-to the resource table now.
-
->
-> With these firmware heap/buffer memory static carveouts we have to 
-> account
-> for the worst case and statically carve out enough memory for the largest
-> possible amount of memory a firmware could ever use. In some firmware
-> we ship today this is +2GB! So why should every user of this board lose
-> all this memory when they might happen to be using a more sane firmware
-> that doesn't use so much (like my Zephyr firmware), or if their firmware
-> doesn't need any heap at all (like some other firmware we have).
-
-
-Agreed on your point.
+We can still do that for K3 remote cores with just requesting carveout size.
+The remoteproc core framework will assign the dynamically allocated
+Physical Address (PA) as Device Address (DA) for the rproc[0]. Incase the PA
+collides with some existing DA for the rproc, we can configure the rproc's
+RAT (Region Address Translation Unit) to map the PA to some other DA from
+rproc's view. As Andrew pointed, we can use FW_RSC_ADDR_ANY for all of
+these carveouts.
 
 Thanks,
 Beleswar
 
+[0]: 
+https://github.com/torvalds/linux/blob/master/drivers/remoteproc/remoteproc_core.c#L768
+
+> Since we do not have this flexibility provided with
+> IOMMU, we must have static reserved carveouts so that Linux will not
+> touch these memory regions. The firmware virtual address to physical
+> adress is atm a one to one mapping. So in summary, we must have these
+> static reserved memory carveouts, but we should fix the default FW
+> to use the "standardized" sizes and request SRAM via resource table.
 >
-> Andrew
+> ~ Judith
 >
->>
+>
 >> Thanks,
 >> Beleswar
 >>
@@ -397,4 +382,5 @@ Beleswar
 >>>>>>
 >>>>>
 >>>
+>
 
