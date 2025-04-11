@@ -1,127 +1,118 @@
-Return-Path: <devicetree+bounces-166125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B7BA86619
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:19:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFBDA8661E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:20:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 689BF8C20B8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:19:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A5971B81F98
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF4727C14F;
-	Fri, 11 Apr 2025 19:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B105F27933D;
+	Fri, 11 Apr 2025 19:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="olZiSMTt"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VfxAjSzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A01F2586FE
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2AE71EDA05;
+	Fri, 11 Apr 2025 19:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744399181; cv=none; b=LbJmPd7XUrlU+iWItCpxGKIbJ/vaR0vLxElOAEFVDhWXLCw+BxfHifimw0/AwavRyVZAHLExvR39pwyWRB3meDeVsGxW6NrnZGc9Uf2y+Wlbk2Nxoezf4zYbcoouRjeQp8Y1HwAVFPB0bnu98+pPqcZBXkekuGONydUPbZzS8KI=
+	t=1744399202; cv=none; b=dFFK3UtlJWJlwl+JqHdKozTjD00crgwbp8QcbrprIXpRTCEYPSfoxVfR475JAI30l2LlLarvZD8Z1TwzS4+jKLFqeZEydWdfseDhJQ06nABNUPaPA5gdVp1n4WjHtgIgj3TYtapledWzjtKRdvHlWId6r53P8FIdtjUY/mZbtBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744399181; c=relaxed/simple;
-	bh=gPvEK8xbGtbsGJI5JrYM/W5LfB9Uq597mHZ/DTGW4w8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MyYM63pWQw7OV2IBE8Uz2bdT3s24iz5Q+FXm2KFoq8owIHD6Y6tIdlWrrvgkTgDy30g0NPQ2/sR5vM7uIjxYg0XyHr4z/rpxsG2tCoan2EuV5bGq6REvmN8DBPqRUS2ZrReOJ2GFqwhlA4vS0DKVvdRNO1yuANtp+rjkozjIU7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=olZiSMTt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53BFUcK9000667
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:19:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Kxx7MOJy6K27Jw+iBYK9PLZCI4w0geAVFknwKXfOHyk=; b=olZiSMTtkwYI5/3c
-	CSa10uNf+00+u0lk3xmoL5e57kvrJF/GqItF8pwNp9EPx9cmbTBmrN8BIHldtW7/
-	Ii/6uv7wkslH3mNHYWWZlb/cdhTGCwLaFVo16gsLH10FFi4oMiGo4Mz7nEj4A7tv
-	9xICJUOtRfRs2P9eR1DCkZ2seHTv68JQ+wKs1GCuQpbYhY0Y/ee4wIwLmiA4ukJy
-	6DvIu4XCukxr6lvoRlpOTiT7zFAGwKtbnQPq+mpkC9852IbY5n0uLH78anmicwCv
-	WBYhTlwO7FObrJEw+W2KXfIy6nljm4laY/C77DKZ2nDMj/RZBJXsfQPZAp01rWB0
-	7aitNg==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twd33emb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:19:39 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e8ff8c9dcfso4737606d6.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:19:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744399178; x=1745003978;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kxx7MOJy6K27Jw+iBYK9PLZCI4w0geAVFknwKXfOHyk=;
-        b=Pgga2MEXcAwqQ818DRn0hzEMdOkGlm6OfGTTBw67aqj4gBB7cr4p16kt1DnKYOyZsa
-         5UJYxa8ZGCoheh+4diFjvvCUHgoPNjxY5TADUMZ2w/7N9p13logy9UFNvUfscmdC8dq3
-         ve8x2Y6j535qJtAJ2VOYtG6iJcHK38wKrGxmZTJdUEb+lsxEBmfT4l82S1v3BdTmGHNM
-         lKJZL6OAkglv4g3RLEor1pc1khSQdjBTf9nVUuAGJMrT7Bk2AFCuVYZMN40J8NIXhawv
-         8uqbD3Y83Qu38oioMau79T9sLFYyccShoqD+xnYnCc17BOuwJHKUPNOJRuURGHdPy3jH
-         KPNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUMiUTnka7FcXJsuOLi6BmJIh1w2NWNH4f6MhDwA6WIHvWDjS8cHrw1bNIq/7pmTfqCpV4faL7Q3N7e@vger.kernel.org
-X-Gm-Message-State: AOJu0YxReEeoVlnufj5/N8lqHtwpUp3ruhOyCMiagB1VTt/R3bFU63Ip
-	JWZ1Vo7gEELA9yMaC3VRENlSuAz+tkGgPsOzsEwnKTOHD/2T7uwKZNjGyD3zodq9tiS1stEQGgK
-	jomi5MkTmeFZrpgLRSqj3/D9h5bNYAtR2qjFccp0ZutOgqjxfMBSR0QRh12S3
-X-Gm-Gg: ASbGnctY0pLFytW1IkWrnk/mxvKAvHFF6Mq3Xc0R6ejWL12u4HpZn+O4m4pf5QzQ2Id
-	g+IJFz0RVF/wueW06GBPTm4BbURoWp5BVw3C+ML4YcB4IbyezCEBpUOJWHzZKHApxNiSZRvrXC3
-	l4cD1/r47N0Iowcc3w6yvdjPUPlUSHBailA1qvabgQ0Ytou7SaJ9Gro/hP0HGd/w3NvK7e0w8Ql
-	RiOCJPsOpLLj1jjdcZbuVLJFMeIrbuAEcaY5kjwjdpcqiKsY2cHd5RpIf9BbAA6kruqm8ylhZHj
-	3mTfXEHZpQXFFS+av7HJAVnZEwOfm6NrqwVqiwCimbb3OunEe3Qali+vVkT4uJPX5A==
-X-Received: by 2002:a05:622a:44a:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4797756280bmr22631391cf.8.1744399178044;
-        Fri, 11 Apr 2025 12:19:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1yQN8h4mg0s3FRgdn1nqenU2AlIRQvoi0Ohbf2iXKwAU3L6tgLpfZVGtHi+4IpHe+ZFIDYw==
-X-Received: by 2002:a05:622a:44a:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4797756280bmr22631221cf.8.1744399177688;
-        Fri, 11 Apr 2025 12:19:37 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36ef56ec5sm1412167a12.22.2025.04.11.12.19.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 12:19:36 -0700 (PDT)
-Message-ID: <09a2b79d-d4f5-4ac5-8e8d-c79212b716fa@oss.qualcomm.com>
-Date: Fri, 11 Apr 2025 21:19:35 +0200
+	s=arc-20240116; t=1744399202; c=relaxed/simple;
+	bh=qYerzF/cdMUIx0P3v50QR4vUKuSy22/vJobDutje1Jc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hF3Q+gkpIeZNABvWD/g9mKZm0mvkAD7cgJu8Aj924JalBny5ILnitAnHJSSc4rOSwMBAyRlAkJnXlJ/9U2wJe/vHkFA8BM1DLYrDtJhnNg9QMbU2xPzO+FFv+2LKe+s0gJ1a15LP2VrnJGQisims8yEPcZHANwQWDUJDgkpRAOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VfxAjSzI; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4F4EE43ADE;
+	Fri, 11 Apr 2025 19:19:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744399192;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=HVUpTdeC6nDu0r8hpDYQnT/emEPdMbOx5LO+AECagUo=;
+	b=VfxAjSzIQMoeqZ8Veo8Yu+72x5N8jo1LfS/O+LT/ChJOQT1nXbvrKnt0uw8XSUgIwsZPl/
+	B+9QHmh9GM+OLX9QiUcIy1C8p4ioT2AaAsKst8aYWtRbRX72zVhW7uQcH8e3v/1r5tyt2J
+	sJJLiyb4dRY1PfnpxRYLN52/1Js3vGhCxqGSHgBLrpZG/cyNlLaEh+ZAPFaauCa7ghbeFp
+	/WmaLQlsaKAYH/Iz9ph9lmdsTcvyiJKpyBcffBCmCFPL+9n/jiVzXP9UPsMswqCt6PBvI6
+	ZC5VFF8g0adUQUYHbspnPr9DSzlZafmIoAnPh3eCzLWmgwKGijpsUR+u1+JjFg==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: [PATCH v3 0/3] drm/panel: simple: add Tianma P0700WXF1MBAA and
+ improve Tianma TM070JDHG34-00
+Date: Fri, 11 Apr 2025 21:19:43 +0200
+Message-Id: <20250411-tianma-p0700wxf1mbaa-v3-0-acbefe9ea669@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm2290: Add CCI node
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, andersson@kernel.org,
-        konradybcio@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, robh@kernel.org
-References: <20250403102256.101217-1-loic.poulain@oss.qualcomm.com>
- <20250403102256.101217-2-loic.poulain@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250403102256.101217-2-loic.poulain@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: AWlYQhBRaJ_5no6g1BkGvRcANeqbN984
-X-Proofpoint-GUID: AWlYQhBRaJ_5no6g1BkGvRcANeqbN984
-X-Authority-Analysis: v=2.4 cv=NaLm13D4 c=1 sm=1 tr=0 ts=67f96b4b cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=vtxEUVkT7waMBiOsAPUA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_07,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=763 clxscore=1015 phishscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504110122
+X-B4-Tracking: v=1; b=H4sIAE9r+WcC/4XNQQ7CIBCF4asY1mIGEEtdeQ/jgtLBklhooMGap
+ neXdmNcGJf/S+abmSSMDhM572YSMbvkgi8h9jtiOu3vSF1bmnDgEgRUdHTa95oOUAE8J8v6Rms
+ K8tSgUrZFW5NyOkS0btrY661059IY4mv7ktm6/gEzo0CZEQxErUVVw6UJYXw4fzChJyuZ+Yc5/
+ mR4YbBFZaQWVgr1zSzL8gZ2J1i4AQEAAA==
+X-Change-ID: 20250307-tianma-p0700wxf1mbaa-056be88fdef9
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ "Pu, Hui" <Hui.Pu@gehealthcare.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, stable@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvuddvieefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefgieetkeekgfdtudevueffueffveekheeiudfhfedvhfeukeeuhffhtddtvdekfeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegludelvddrudeikedrudejkedrjeehngdpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvuddprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjfhuihdrrfhusehgvghhvggrlhhthhgtrghrvgdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgto
+ hhmpdhrtghpthhtoheptghonhhorhdrughoohhlvgihsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinhgrrhhordhorhhgpdhrtghpthhtohepshgrmhesrhgrvhhnsghorhhgrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On 4/3/25 12:22 PM, Loic Poulain wrote:
-> Add Camera Control Interface (CCI), supporting two I2C masters.
-> 
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
+This short series adds power on/off timings to the Tianma TM070JDHG34-00
+panel and adds support for the the Tianma P0700WXF1MBAA panel.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+---
+Changes in v3:
+- add Fixes: and Cc:
+- remove regulator delay
+- add R-by tag by Dmitry
+- Link to v2: https://lore.kernel.org/r/20250407-tianma-p0700wxf1mbaa-v2-0-ede8c5a3f538@bootlin.com
 
-Konrad
+Changes in v2:
+- Rebased on current drm-misc-next
+- Added Conor's R-by on the bindings
+- Link to v1: https://lore.kernel.org/r/20250307-tianma-p0700wxf1mbaa-v1-0-1c31039a3790@bootlin.com
+
+---
+Luca Ceresoli (3):
+      dt-bindings: display: simple: Add Tianma P0700WXF1MBAA panel
+      drm/panel: simple: Tianma TM070JDHG34-00: add delays
+      drm/panel: simple: add Tianma P0700WXF1MBAA panel
+
+ .../bindings/display/panel/panel-simple.yaml       |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c               | 39 +++++++++++++++++++---
+ 2 files changed, 37 insertions(+), 4 deletions(-)
+---
+base-commit: fbe43810d563a293e3de301141d33caf1f5d5c5a
+change-id: 20250307-tianma-p0700wxf1mbaa-056be88fdef9
+
+Best regards,
+-- 
+Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 
