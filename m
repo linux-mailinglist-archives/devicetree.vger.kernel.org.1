@@ -1,501 +1,265 @@
-Return-Path: <devicetree+bounces-166069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E5AA863C0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:54:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96C22A862D9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:07:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D7584A1A05
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:49:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C105F7A89D5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D2221D5AA;
-	Fri, 11 Apr 2025 16:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCB120C46B;
+	Fri, 11 Apr 2025 16:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wd+J+Mbc"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="kqTqv1D8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613D821CC70;
-	Fri, 11 Apr 2025 16:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5244E1F4C92
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 16:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744390172; cv=none; b=M2JH57yVvCvlGnZQ7428rbKSRejUM0o6zMI1pWYCn1PWmbjWkSfr0I/l+/511EOpXsxmfp/9ES+mo2DtRMrLnYw0XyTOObRtzri4ImER3MfUtRWCKa93wHX1RDHKs4X8H3Tr/KsXYw9dkXVOzbwN1Y20UQcY9VfUh8+NpbTBvIk=
+	t=1744387438; cv=none; b=dRKFa0B4aMg+raACiYkjRynzpO3ESf98C0xykuoMFKt0YCLEmJM+zFUz0GPJ96EROUKGKHcNCQYwg2Ba0+7k4DpQTmRM49FG9K51HKi1jGvDGVLI+yKT1YT8KOgzBndpQMKfAvKjKhoAoZVK796mTZ8rZjeyo+1uGIEf5ldFiCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744390172; c=relaxed/simple;
-	bh=NOz5cjJCaRanStDhmScZA/AcmQvGag2EVhEaEG1KVEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=j7b+fZ0Ok60NOmmil7aFZ+L28nQ8Pp8jPBqJqFwFFw6+0BTElcNCTGbdGE1AVz81iC2U3e/hhIhKSyHV2+k8ob790vaPvMRjjc07Vx4tN/OkRR9PmJGEbxTZoa1qSF+/I4E0CQoHDA2qn91fHqYSdkZxRaCT51JgEpVIrLHE7wU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wd+J+Mbc; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53BEC02E001077;
-	Fri, 11 Apr 2025 17:58:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Vt0ruUB9NLi+cVvpgT4lg66aGgsUlr+R02KjxPZ63f8=; b=wd+J+MbcF4I0xzOr
-	ERcxLZxKiXZfUsGjwxokGRW5dr8qWikM6kFDAw4S23Trlce+vzq3oD4effpDmVmq
-	0CseWKZqNzALYidgcdOPj0BuFeaGlev8MNiZQgtezW0iukhWJrIqeoKHzwkLESQ3
-	vMVCqMoibCEQVFX/JURBye5UX4ltQrEQPaDyn98R6EpQ1ZUdefxQ7ihuNEfqD7R5
-	hGwbqxFBamlN1ezvNJAfIchiGQVh2wMJ11dcH+uTEhENoG5f2pmGM0sFzZ2k+eKH
-	6exOdlrqwBU7mShUDou9sSj7d7T9a+gT5bR/lMzHaGfbNncRzm+8DRjBGufEIaGW
-	GJhnuQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45tw8pxcs3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Apr 2025 17:58:21 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BF8F64002D;
-	Fri, 11 Apr 2025 17:56:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6E1059A3EBA;
-	Fri, 11 Apr 2025 17:55:30 +0200 (CEST)
-Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Apr
- 2025 17:55:29 +0200
-Message-ID: <6bae3c34-47a6-466a-bd57-25fa0cea63e9@foss.st.com>
-Date: Fri, 11 Apr 2025 17:55:21 +0200
+	s=arc-20240116; t=1744387438; c=relaxed/simple;
+	bh=/IB7pxPh4D63PdU9ybhC5RL3CnukcCoPGslr+QEUg2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HJZ7eG0DTLnkVU+Gai7IA39QH/JWd0+pmd6U3sCxQ4cGrw4Jnx73I9hUtTwSEykI33n1q/9h1t2X4L2w7a+ydkNwQ/5ca5D/BNjT7PEwlyPjhmeIMJnb/xGNRWA2DB/yE3oCq/EiSG/v4zrEsTJPY+6cxT1guuuGHaxsR+LGr7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=kqTqv1D8; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 476F4240101
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 18:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1744387433; bh=/IB7pxPh4D63PdU9ybhC5RL3CnukcCoPGslr+QEUg2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=kqTqv1D8zFFSRbrZiNbM71X6kzxa1MZaXqyCQue/2vuDQML4MrL5WsW1C5MeB5pWi
+	 iLD0JxcIvHZJvIXGo1VPVr3giKGGOuq6sVvhNCJRqm1L933FvouNadCzsuGHF1f7FX
+	 4vEQn9feGDlZymPTKmHfNvbs00bT2qFGH7XcflHW3UEr+CuyNUnk6z0a4Oq2pIUuSe
+	 JmiQJfpydStVQQQvlDJkCxps0NiuknLZsFKPOScjaujX0QU6t98Po7wD3X/QnoD+KA
+	 oetj7EoEzyVpcbV9aXl6GgEAtmWytfzrta69u2vy5mBNmbH0EsYTGtpqZD7cmgWkbx
+	 n/NweZ9jMV4ZQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4ZZ1h73mr2z6twf;
+	Fri, 11 Apr 2025 18:03:51 +0200 (CEST)
+Date: Fri, 11 Apr 2025 16:03:50 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Conor Dooley <conor@kernel.org>
+Cc: j.ne@posteo.net, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Crystal Wood <oss@buserror.net>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert fsl,mpic-msi
+ to YAML
+Message-ID: <Z_k9ZoNqWAiVb6Uz@probook>
+References: <20250403-msipic-yaml-v1-1-f4248475714f@posteo.net>
+ <20250404-exuberant-unvarying-b8ee5ab10b00@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/9 RESEND] PCI: stm32: Add PCIe Endpoint support for
- STM32MP25
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <johan+linaro@kernel.org>,
-        <cassel@kernel.org>, <quic_schintav@quicinc.com>,
-        <fabrice.gasnier@foss.st.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250325065935.908886-1-christian.bruel@foss.st.com>
- <20250325065935.908886-5-christian.bruel@foss.st.com>
- <dirqsnrzjoiht7vvzzwh73gf3zuwyco6lc46k6s6pkifde2uzw@icmtn7x53swc>
-From: Christian Bruel <christian.bruel@foss.st.com>
-Content-Language: en-US
-In-Reply-To: <dirqsnrzjoiht7vvzzwh73gf3zuwyco6lc46k6s6pkifde2uzw@icmtn7x53swc>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_06,2025-04-10_01,2024-11-22_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250404-exuberant-unvarying-b8ee5ab10b00@spud>
+
+On Fri, Apr 04, 2025 at 06:06:39PM +0100, Conor Dooley wrote:
+> On Thu, Apr 03, 2025 at 07:38:00PM +0200, J. Neusch=C3=A4fer via B4 Relay=
+ wrote:
+> > From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
+> >=20
+> > As part of a larger effort to bring various PowerPC-related bindings
+> > into the YAML world, this patch converts msi-pic.txt to YAML and moves
+> > it into the bindings/interrupt-controller/ directory. The conversion may
+> > necessarily be a bit hard to read because the binding is quite verbose.
+> >=20
+> > Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+> > ---
+> >  .../interrupt-controller/fsl,mpic-msi.yaml         | 141 +++++++++++++=
+++++++++
+> >  .../devicetree/bindings/powerpc/fsl/msi-pic.txt    | 111 -------------=
+---
+> >  2 files changed, 141 insertions(+), 111 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl=
+,mpic-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl=
+,mpic-msi.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..99a98864bd10c5e5b67112c=
+0149fe123b51ca26f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-m=
+si.yaml
+> > @@ -0,0 +1,141 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/fsl,mpic-msi.y=
+aml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale MSI interrupt controller
+> > +
+> > +description:
+>=20
+> I think you want some sort of chomping operator here to preserve
+> formatting.
+
+Sounds good, will do.
+
+>=20
+> > +  The Freescale hypervisor and msi-address-64
+> > +  -------------------------------------------
+> > +
+> > +  Normally, PCI devices have access to all of CCSR via an ATMU mapping=
+=2E  The
+> > +  Freescale MSI driver calculates the address of MSIIR (in the MSI reg=
+ister
+> > +  block) and sets that address as the MSI message address.
+[...]
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - fsl,mpic-msi
+> > +          - fsl,mpic-msi-v4.3
+> > +          - fsl,ipic-msi
+> > +          - fsl,vmpic-msi
+> > +          - fsl,vmpic-msi-v4.3
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,mpc8572-msi
+> > +              - fsl,mpc8610-msi
+> > +              - fsl,mpc8641-msi
+> > +          - const: fsl,mpic-msi
+> > +    description:
+>=20
+> > +      compatible list, may contain one or two entries The first is
+> > +      "fsl,CHIP-msi", where CHIP is the processor(mpc8610, mpc8572, et=
+c.) and
+> > +      the second is "fsl,mpic-msi" or "fsl,ipic-msi" or "fsl,mpic-msi-=
+v4.3"
+> > +      depending on the parent type and version.=20
+>=20
+> I think this just dupes the compatible list and should be dropped.
+
+Sounds good.
+
+>=20
+> > If mpic version is 4.3, the
+> > +      number of MSI registers is increased to 16, MSIIR1 is provided t=
+o access
+> > +      these 16 registers, and compatible "fsl,mpic-msi-v4.3" should be=
+ used.
+>=20
+> This part is kinda stating the obvious I /think/ but might not be for
+> odd reason?
+
+For part of it (using fsl,mpic-msi-v4.3 for version 4.3) yes, but the
+other part, the relation between the version and the register (MSIIR vs.
+MSIIR1) and number of shared interrupts (8 vs. 16) is only obvious for
+readers that have read the hardware reference manuals in detail.
+
+Since it's a difference that essentially depends on the value of
+"compatible", I'll rewrite it as an "if/then/else" block in the schema.
+
+>=20
+> > +      The first entry is optional; the second entry is required.
+>=20
+> I think this part is confusing and should be dropped.
+
+I'll drop it, since it's also redundant with the "oneOf: ..." list for
+the compatible property.
+
+>=20
+> > +
+> > +  reg:
+> > +    minItems: 1
+> > +    items:
+> > +      - description: Address and length of the shared message interrupt
+> > +          register set
+>=20
+> > +      - description: Address of aliased MSIIR or MSIIR1 register for p=
+latforms
+> > +          that have such an alias. If using MSIIR1, the second region =
+must be
+> > +          added because different MSI group has different MSIIR1 offse=
+t.
+>=20
+> This part is based on platform, so should it not have an if/then/else
+> below restricting it to the correct platforms?
+
+Good point, I'll do that.
+
+>=20
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 16
+> > +    description:
+> > +      Each one of the interrupts here is one entry per 32 MSIs, and ro=
+uted to
+> > +      the host interrupt controller. The interrupts should be set as e=
+dge
+> > +      sensitive. If msi-available-ranges is present, only the interrup=
+ts that
+> > +      correspond to available ranges shall be present.
+> > +
+> > +  msi-available-ranges:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    items:
+> > +      items:
+> > +        - description: First MSI interrupt in this range
+> > +        - description: Number of MSI interrupts in this range
+> > +    description:
+>=20
+> > +      Use <start count> style section to define which MSI interrupt ca=
+n be used
+> > +      in the 256 msi interrupts.
+>=20
+> I think this dupes information in the items list in a more confusing
+> manner.
+
+I'll trim it down.
+
+>=20
+> > This property is optional, without this, all
+> > +      the MSI interrupts can be used.  Each available range must begin=
+ and end
+> > +      on a multiple of 32 (i.e.  no splitting an individual MSI regist=
+er or the
+> > +      associated PIC interrupt).
+>=20
+> > MPIC v4.3 does not support this property
+> > +      because the 32 interrupts of an individual register are not cont=
+inuous
+> > +      when using MSIIR1.
+>=20
+> Sounds like another if/then/else should restrict this too.
+
+I'll move it under if/else.
 
 
-
-On 4/9/25 10:03, Manivannan Sadhasivam wrote:
-> On Tue, Mar 25, 2025 at 07:59:30AM +0100, Christian Bruel wrote:
->> Add driver to configure the STM32MP25 SoC PCIe Gen1 2.5GT/s or Gen2 5GT/s
->> controller based on the DesignWare PCIe core in endpoint mode.
->>
->> Uses the common reference clock provided by the host.
->>
->> The PCIe core_clk receives the pipe0_clk from the ComboPHY as input,
->> and the ComboPHY PLL must be locked for pipe0_clk to be ready.
->> Consequently, PCIe core registers cannot be accessed until the ComboPHY is
->> fully initialised and refclk is enabled and ready.
->>
->> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
->> ---
->>   drivers/pci/controller/dwc/Kconfig         |  12 +
->>   drivers/pci/controller/dwc/Makefile        |   1 +
->>   drivers/pci/controller/dwc/pcie-stm32-ep.c | 420 +++++++++++++++++++++
->>   drivers/pci/controller/dwc/pcie-stm32.h    |   1 +
->>   4 files changed, 434 insertions(+)
->>   create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index 0c18879b604c..4a3eb838557c 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -401,6 +401,18 @@ config PCIE_STM32
->>   	  This driver can also be built as a module. If so, the module
->>   	  will be called pcie-stm32.
->>   
->> +config PCIE_STM32_EP
->> +	tristate "STMicroelectronics STM32MP25 PCIe Controller (endpoint mode)"
->> +	depends on ARCH_STM32 || COMPILE_TEST
->> +	depends on PCI_ENDPOINT
->> +	select PCIE_DW_EP
->> +	help
->> +	  Enables endpoint support for DesignWare core based PCIe controller
->> +	  found in STM32MP25 SoC.
->> +
->> +	  This driver can also be built as a module. If so, the module
->> +	  will be called pcie-stm32-ep.
->> +
->>   config PCI_DRA7XX
->>   	tristate
->>   
->> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
->> index 576d99cb3bc5..caebd98f6dd3 100644
->> --- a/drivers/pci/controller/dwc/Makefile
->> +++ b/drivers/pci/controller/dwc/Makefile
->> @@ -29,6 +29,7 @@ obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->>   obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->>   obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
->>   obj-$(CONFIG_PCIE_STM32) += pcie-stm32.o
->> +obj-$(CONFIG_PCIE_STM32_EP) += pcie-stm32-ep.o
->>   
->>   # The following drivers are for devices that use the generic ACPI
->>   # pci_root.c driver but don't support standard ECAM config access.
->> diff --git a/drivers/pci/controller/dwc/pcie-stm32-ep.c b/drivers/pci/controller/dwc/pcie-stm32-ep.c
->> new file mode 100644
->> index 000000000000..a8e9c5a9b127
->> --- /dev/null
->> +++ b/drivers/pci/controller/dwc/pcie-stm32-ep.c
->> @@ -0,0 +1,420 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * STMicroelectronics STM32MP25 PCIe endpoint driver.
->> + *
->> + * Copyright (C) 2025 STMicroelectronics
->> + * Author: Christian Bruel <christian.bruel@foss.st.com>
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/of_gpio.h>
->> +#include <linux/phy/phy.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
->> +#include "pcie-designware.h"
->> +#include "pcie-stm32.h"
->> +
->> +enum stm32_pcie_ep_link_status {
->> +	STM32_PCIE_EP_LINK_DISABLED,
->> +	STM32_PCIE_EP_LINK_ENABLED,
->> +};
->> +
->> +struct stm32_pcie {
->> +	struct dw_pcie pci;
->> +	struct regmap *regmap;
->> +	struct reset_control *rst;
->> +	struct phy *phy;
->> +	struct clk *clk;
->> +	struct gpio_desc *perst_gpio;
->> +	enum stm32_pcie_ep_link_status link_status;
->> +	unsigned int perst_irq;
->> +};
->> +
->> +static void stm32_pcie_ep_init(struct dw_pcie_ep *ep)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->> +	enum pci_barno bar;
->> +
->> +	for (bar = 0; bar < PCI_STD_NUM_BARS; bar++)
->> +		dw_pcie_ep_reset_bar(pci, bar);
->> +}
->> +
->> +static int stm32_pcie_enable_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +
->> +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
->> +			   STM32MP25_PCIECR_LTSSM_EN,
->> +			   STM32MP25_PCIECR_LTSSM_EN);
->> +
->> +	return dw_pcie_wait_for_link(pci);
->> +}
->> +
->> +static void stm32_pcie_disable_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +
->> +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR, STM32MP25_PCIECR_LTSSM_EN, 0);
->> +}
->> +
->> +static int stm32_pcie_start_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +	struct dw_pcie_ep *ep = &pci->ep;
->> +	int ret;
->> +
->> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
->> +		dev_dbg(pci->dev, "Link is already enabled\n");
->> +		return 0;
->> +	}
->> +
->> +	ret = stm32_pcie_enable_link(pci);
->> +	if (ret) {
->> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	dw_pcie_ep_linkup(ep);
->> +
-> 
-> This callback should only be used when the epc_features::linkup_notifier flag is
-> set. That only applies to platforms supporting LINK_UP interrupt. In this case,
-> once the start_link() callback returns, it is assumed that the link is active.
-> So no need to call dw_pcie_ep_linkup().
-
-OK thank you
-
-> 
->> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
->> +
->> +	enable_irq(stm32_pcie->perst_irq);
->> +
->> +	return 0;
->> +}
->> +
->> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +
->> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
->> +		dev_dbg(pci->dev, "Link is already disabled\n");
->> +		return;
->> +	}
->> +
->> +	disable_irq(stm32_pcie->perst_irq);
->> +
->> +	stm32_pcie_disable_link(pci);
->> +
->> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
->> +}
->> +
->> +static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->> +				unsigned int type, u16 interrupt_num)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->> +
->> +	switch (type) {
->> +	case PCI_IRQ_INTX:
->> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
->> +	case PCI_IRQ_MSI:
->> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->> +	default:
->> +		dev_err(pci->dev, "UNKNOWN IRQ type\n");
->> +		return -EINVAL;
->> +	}
->> +}
->> +
->> +static const struct pci_epc_features stm32_pcie_epc_features = {
->> +	.msi_capable = true,
->> +	.align = SZ_64K,
->> +};
->> +
->> +static const struct pci_epc_features*
->> +stm32_pcie_get_features(struct dw_pcie_ep *ep)
->> +{
->> +	return &stm32_pcie_epc_features;
->> +}
->> +
->> +static const struct dw_pcie_ep_ops stm32_pcie_ep_ops = {
->> +	.init = stm32_pcie_ep_init,
->> +	.raise_irq = stm32_pcie_raise_irq,
->> +	.get_features = stm32_pcie_get_features,
->> +};
->> +
->> +static const struct dw_pcie_ops dw_pcie_ops = {
->> +	.start_link = stm32_pcie_start_link,
->> +	.stop_link = stm32_pcie_stop_link,
->> +};
->> +
->> +static int stm32_pcie_enable_resources(struct stm32_pcie *stm32_pcie)
->> +{
->> +	int ret;
->> +
->> +	ret = phy_init(stm32_pcie->phy);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = clk_prepare_enable(stm32_pcie->clk);
->> +	if (ret)
->> +		phy_exit(stm32_pcie->phy);
->> +
->> +	return ret;
->> +}
->> +
->> +static void stm32_pcie_disable_resources(struct stm32_pcie *stm32_pcie)
->> +{
->> +	clk_disable_unprepare(stm32_pcie->clk);
->> +
->> +	phy_exit(stm32_pcie->phy);
->> +}
->> +
->> +static void stm32_pcie_perst_assert(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +	struct device *dev = pci->dev;
->> +
->> +	dev_dbg(dev, "PERST asserted by host. Shutting down the PCIe link\n");
->> +
->> +	/*
->> +	 * Do not try to release resources if the PERST# is
->> +	 * asserted before the link is started.
-> 
-> Make use of 80 columns.
-> 
->> +	 */
->> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
->> +		dev_dbg(pci->dev, "Link is already disabled\n");
->> +		return;
->> +	}
->> +
->> +	stm32_pcie_disable_link(pci);
->> +
->> +	stm32_pcie_disable_resources(stm32_pcie);
->> +
->> +	pm_runtime_put_sync(dev);
->> +
->> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
->> +}
->> +
->> +static void stm32_pcie_perst_deassert(struct dw_pcie *pci)
->> +{
->> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
->> +	struct device *dev = pci->dev;
->> +	struct dw_pcie_ep *ep = &pci->ep;
->> +	int ret;
->> +
->> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
->> +		dev_dbg(pci->dev, "Link is already enabled\n");
->> +		return;
->> +	}
->> +
->> +	dev_dbg(dev, "PERST de-asserted by host. Starting link training\n");
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret < 0) {
->> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
->> +		return;
->> +	}
->> +
->> +	ret = stm32_pcie_enable_resources(stm32_pcie);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to enable resources: %d\n", ret);
->> +		goto err_pm_put_sync;
->> +	}
->> +
->> +	ret = dw_pcie_ep_init_registers(ep);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to complete initialization: %d\n", ret);
->> +		goto err_disable_resources;
->> +	}
->> +
->> +	pci_epc_init_notify(ep->epc);
->> +
->> +	ret = stm32_pcie_enable_link(pci);
->> +	if (ret) {
->> +		dev_err(dev, "PCIe Cannot establish link: %d\n", ret);
->> +		goto err_deinit_notify;
->> +	}
-> 
-> Link is supposed to be enabled only by the start_link() callback.
-
-OK. and then I need to remove the IRQ_NOAUTOEN for perst_irq, which make 
-the link_status unnecessary and results in simplifications. thank you
-
-> 
->> +
->> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
->> +
->> +	return;
->> +
->> +err_deinit_notify:
->> +	pci_epc_deinit_notify(ep->epc);
->> +
->> +err_disable_resources:
->> +	stm32_pcie_disable_resources(stm32_pcie);
->> +
->> +err_pm_put_sync:
->> +	pm_runtime_put_sync(dev);
->> +}
->> +
->> +static irqreturn_t stm32_pcie_ep_perst_irq_thread(int irq, void *data)
->> +{
->> +	struct stm32_pcie *stm32_pcie = data;
->> +	struct dw_pcie *pci = &stm32_pcie->pci;
->> +	u32 perst;
->> +
->> +	perst = gpiod_get_value(stm32_pcie->perst_gpio);
->> +	if (perst)
->> +		stm32_pcie_perst_assert(pci);
->> +	else
->> +		stm32_pcie_perst_deassert(pci);
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
->> +			     struct platform_device *pdev)
->> +{
->> +	struct dw_pcie_ep *ep = &stm32_pcie->pci.ep;
->> +	struct device *dev = &pdev->dev;
->> +	int ret;
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret < 0) {
->> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
->> +				 STM32MP25_PCIECR_TYPE_MASK,
->> +				 STM32MP25_PCIECR_EP);
->> +	if (ret) {
->> +		goto err_pm_put_sync;
->> +		return ret;
->> +	}
->> +
->> +	reset_control_assert(stm32_pcie->rst);
->> +	reset_control_deassert(stm32_pcie->rst);
->> +
->> +	ep->ops = &stm32_pcie_ep_ops;
->> +
->> +	ret = dw_pcie_ep_init(ep);
->> +	if (ret) {
->> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
->> +		goto err_pm_put_sync;
->> +	}
->> +
->> +	ret = stm32_pcie_enable_resources(stm32_pcie);
->> +	if (ret) {
->> +		dev_err(dev, "failed to enable resources: %d\n", ret);
->> +		goto err_ep_deinit;
->> +	}
->> +
->> +	ret = dw_pcie_ep_init_registers(ep);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
->> +		goto err_disable_resources;
->> +	}
->> +
->> +	pci_epc_init_notify(ep->epc);
->> +
-> 
-> You are calling dw_pcie_ep_init_registers() and  pci_epc_init_notify() from 2
-> places. I think the one in stm32_pcie_perst_deassert() should be dropped since
-> the DBI registers are available at this point itself.
-
-The DBI registers need to be rewritten as a results of phy_init() 
-resetting the PCIe core on RCC phy_reset :
-RCC phy_reset is connected to power_up_rst_n, causing the PCIe logic to 
-be reset when it should not be for a warm reset.
-I will document this bug in this part of the code.
-
-Christian
+> Rest seems fine :)
+>=20
+> Cheers,
+> Conor.
 
 
-> 
-> - Mani
-> 
+Thank you for your review!
+
+J. Neusch=C3=A4fer
 
