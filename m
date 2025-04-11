@@ -1,106 +1,148 @@
-Return-Path: <devicetree+bounces-165883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D70EA85CBC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:16:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C04A85CC7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF241890C8A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:13:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05E094491BE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACCF29DB84;
-	Fri, 11 Apr 2025 12:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449E629C322;
+	Fri, 11 Apr 2025 12:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXfReTdO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wCSiWD02"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B12629B231;
-	Fri, 11 Apr 2025 12:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFC229B21C;
+	Fri, 11 Apr 2025 12:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744373475; cv=none; b=YODbD90u8rzHqG5/+ELgF0qxShph1NPOafTv1J/ux75yZRnAqmWXB6OX6YF7Pjssjg03YTEAvVi56py2DFyKLeekwotIJiqqlVCXdayye/2pwLrK0WprW1SLUdWNzfg4v/KwuDz98TnxadmE0VFvk5GkcZ26wMTjN3xsgXJoWwk=
+	t=1744373601; cv=none; b=TIkyBfOggcobFvOgeDrFp7bx27lizWoTBZF7VnGsqe7bbl5TEVntpWndo0PQ/YhWen2fFTnqLXNzwJWIGHHGjvzS6DVhnuFtjACznGweWm6BZ+ue3HPXRqYCZssUTXTyivgXjxucQ+/KjnuR+h7OO3Oob59fx8+JOzgu/93bD8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744373475; c=relaxed/simple;
-	bh=kbUcZPoXi79WtS45+fL3/oWI2wWgCZEwrEDv3Xo/gxY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lmUneF1z3pZTDzLJHtakSDE2IGrE/1rTIvs/Z8wF6ThOARxLlTWrPJmoUheC6axdvlXnShK/tZ2knJ8DnBgQ1n2WBhR6MYyYtJ94v/cfxn3rf17nDWj9BjtqLWgGsV6Dafp1ekz5FaTQONdf/55CU0XRLlYZcLrYPIpllthuLYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXfReTdO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E48BC4CEE2;
-	Fri, 11 Apr 2025 12:11:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744373475;
-	bh=kbUcZPoXi79WtS45+fL3/oWI2wWgCZEwrEDv3Xo/gxY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=oXfReTdO98Js7+lVoMrKowkY/dHKuDTcIXRPKrWKJk5X7+RY5+egJLrKqFXdsYjEC
-	 5wLKayQ1r3Tgymu3bg2fgBKj+3MbAanhYpUzqS3NE+uAs8XITlEqaTdh6svcJc68Mn
-	 c3M/HAtl2EbjFc7+khBRMqryHMHJzNv5s4oAJdwvpSglnEjlQtOhUIRv6Tj8AXLoC1
-	 IQV+9SQstnRyR+LX+GVypm2DDXIkhOeefXaTRdElniPQFX1u9NzQvR9F+7++Tes60S
-	 vme+tAt7hKQiBD13P/PmV5PFVVCSgX487Ob9P2+rH02DvZS8hRw4kzKCRsZjC5cSlE
-	 sLUxz2hT515OA==
-From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nitheesh Sekar <quic_nsekar@quicinc.com>, 
- Varadarajan Narayanan <quic_varada@quicinc.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Praveenkumar I <quic_ipkumar@quicinc.com>, 
- George Moussalem <george.moussalem@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pci@vger.kernel.org, 20250317100029.881286-1-quic_varada@quicinc.com, 
- 20250317100029.881286-2-quic_varada@quicinc.com, 
- Sricharan Ramabadhran <quic_srichara@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250326-ipq5018-pcie-v7-0-e1828fef06c9@outlook.com>
-References: <20250326-ipq5018-pcie-v7-0-e1828fef06c9@outlook.com>
-Subject: Re: (subset) [PATCH v7 0/6] Enable IPQ5018 PCI support
-Message-Id: <174437346895.673939.17282327012259130391.b4-ty@kernel.org>
-Date: Fri, 11 Apr 2025 17:41:08 +0530
+	s=arc-20240116; t=1744373601; c=relaxed/simple;
+	bh=rm6sb2SecoZ4haaiG5ldcKEZ6rgDcMeHIli61NwBfws=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sivWFXAVY2/zYdK81/0xf1KtFx26UXX6OMCDlW5UrUxvbLTtZvD76rGtkZ6n/gk8Jqf+ZXvHjgPq2HktVYEjfpmGKd2Fw5NFQckFZfPqhqyMlc/3IF9fH7WzCgua0HUnuMIZmtRvolUDaIr9vk8QFIH3g7USDsmCCUXDQyZ1qvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wCSiWD02; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BCDCVh2068790
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Apr 2025 07:13:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744373592;
+	bh=e9LI8VdJWzvGwvWyJvwbcvffdGYsX3wJ0VFrvvQKvgI=;
+	h=From:To:CC:Subject:Date;
+	b=wCSiWD02X5Oal4gMz3HMAUcHAmPsRCjaMHrBX/lHPCZmJMvW6fFvD8TQY8TS/X5v0
+	 wTgCGlitCJY+0uvwLEfvw4wlmvD8wAhSTqEyOw0wf7XIfJphejBitkr5kuO/Tz7v7R
+	 /Dxu5trogQP/qZvh152ZnyXkci+wsToB/SjjPunE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BCDCS1123695
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Apr 2025 07:13:12 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Apr 2025 07:13:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Apr 2025 07:13:11 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BCD7aa011992;
+	Fri, 11 Apr 2025 07:13:08 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v2 RESEND] arm64: dts: ti: k3-j784s4-j742s2-main-common: Enable ACSPCIE output for PCIe1
+Date: Fri, 11 Apr 2025 17:43:07 +0530
+Message-ID: <20250411121307.793646-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+The PCIe reference clock required by the PCIe Endpoints connected to the
+PCIe connector corresponding to the PCIe1 instance of PCIe on J784S4-EVM
+and J742S2-EVM is driven by the ACSPCIE module. Add the device-tree support
+for enabling the same.
 
-On Wed, 26 Mar 2025 12:10:54 +0400, George Moussalem wrote:
-> This patch series adds the relevant phy and controller
-> DT configurations for enabling PCI gen2 support
-> on IPQ5018. IPQ5018 has two phys and two controllers,
-> one dual-lane and one single-lane.
-> 
-> Last patch series (v3) submitted dates back to August 30, 2024.
-> As I've worked to add IPQ5018 platform support in OpenWrt, I'm
-> continuing the efforts to add Linux kernel support.
-> 
-> [...]
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-Applied, thanks!
+Hello,
 
-[1/6] dt-bindings: phy: qcom: uniphy-pcie: Add ipq5018 compatible
-      commit: aae29082b6620c664e97a1e2f2062abc6a58659d
-[2/6] phy: qualcomm: qcom-uniphy-pcie 28LP add support for IPQ5018
-      commit: dfc820d2f8a8ea90bbc02269b5362e3678e58cac
+This patch is based on linux-next tagged next-20250411.
+The v2 patch is at:
+https://lore.kernel.org/r/20241209085157.1203168-1-s-vadapalli@ti.com/
+No changes since v2. The dtbs_check warnings are no longer seen with
+next-20250411 and no changes were required to the patch itself to fix
+the warnings. Hence the patch has been marked with a RESEND tag.
 
-Best regards,
+Regards,
+Siddharth.
+
+ .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi     | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+index 1944616ab357..591609f3194c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+@@ -7,6 +7,7 @@
+ 
+ #include <dt-bindings/mux/mux.h>
+ #include <dt-bindings/phy/phy.h>
++#include <dt-bindings/phy/phy-cadence.h>
+ #include <dt-bindings/phy/phy-ti.h>
+ 
+ #include "k3-serdes.h"
+@@ -126,6 +127,11 @@ audio_refclk1: clock@82e4 {
+ 			assigned-clock-parents = <&k3_clks 157 63>;
+ 			#clock-cells = <0>;
+ 		};
++
++		acspcie0_proxy_ctrl: clock-controller@1a090 {
++			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
++			reg = <0x1a090 0x4>;
++		};
+ 	};
+ 
+ 	main_ehrpwm0: pwm@3000000 {
+@@ -1093,8 +1099,8 @@ pcie1_rc: pcie@2910000 {
+ 		max-link-speed = <3>;
+ 		num-lanes = <4>;
+ 		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 333 0>;
+-		clock-names = "fck";
++		clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
++		clock-names = "fck", "pcie_refclk";
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		bus-range = <0x0 0xff>;
+@@ -1105,6 +1111,7 @@ pcie1_rc: pcie@2910000 {
+ 		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
+ 			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
+ 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
++		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
+ 		status = "disabled";
+ 	};
+ 
 -- 
-~Vinod
-
+2.34.1
 
 
