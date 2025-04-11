@@ -1,117 +1,170 @@
-Return-Path: <devicetree+bounces-166131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5FAAA86636
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:22:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27714A86640
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:25:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E60E7BA785
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:21:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF1BE1B66835
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9D0233153;
-	Fri, 11 Apr 2025 19:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC1427D790;
+	Fri, 11 Apr 2025 19:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jIM+JxK/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RFdeOe9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12ADD258CF0
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F941232395;
+	Fri, 11 Apr 2025 19:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744399350; cv=none; b=MCqRsQ5A2qQf4kvx7pv1eVw0V4NhByec/tfCp7lY2a5OMaPwUcnQrLQZdYQtlxxGNCJNM1TxWoJQE0Xt1TseqHVI7Slzywki5kIv+WTSlqWv1bcdO7gidZYK85z2cHVap7w/HrdZMfp6ikBAe5QGY5Z/zVmgjOMVFjGSFlLY7k0=
+	t=1744399492; cv=none; b=TUkGxQ23O2ZweOmbiTB4ZPZuDAa+q/vV735sv339NJLISGwF1vA8dNOTcQ1EqlH3TVXCNid1uq5NLukeeRQuJjUVazCBa6ccJX19bC6xExIyN0Irfy+DW7ON2jBYohFxCiZGCQzO9uXjewKYwINPN9dtye7hU/2f2zK9dSDbmJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744399350; c=relaxed/simple;
-	bh=EpMfVXlRTt1GrOrTqdwyTkUroj30aT9SoXpbumxN1/E=;
+	s=arc-20240116; t=1744399492; c=relaxed/simple;
+	bh=9VMbXJK31PLZybTQVziy1hqetP2iBYbxW2h7Q6gWJrk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qiev8rUByT7OqIBh+ZwFFBy+9qpIZOG2pYoQvo5dt712xu/AFeMRaSGjeVTvKAwx0WvjrxSfzQq5bx6FBPq1i1zsUXoY0yJu2LkoE/ZmzFLeIvS9CBFgrlxgK51+B2FBmXp5nis8azNKDHJpjuda+70YAotiCiTMY7huPl3k9FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jIM+JxK/; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=EpMf
-	VXlRTt1GrOrTqdwyTkUroj30aT9SoXpbumxN1/E=; b=jIM+JxK/RPdddUQ6FgxS
-	hnvs4D9UUIh2HWhlpTeGu7vgR9VvGmQUyNcEwcYSD9RU0i6GBZDQfBoQPPgz5xxw
-	4WU/qrOLIHDksM4V0Rvh+Dmr9Yse2ycW1sFXg+YYapwIcFzW3vH0l0ONkHjY3ErY
-	ptGvIRWGbi0G5gYeYB5cVDNAaaZzInRJ/RSIRIWcV2UHjw2zTF2hphUG0YJk4ahq
-	GsHWkftnUJgSh0GLvMJQut58y8iU6mzHUnxIJRU9AL7U3nXCEkLLALIt3YfGcz4r
-	d1VC6A/cC8ioJs7kyKuaewE9mnns46BRK9mPqZv8CdJbCqmR7R67CpKJGM82mfES
-	Lw==
-Received: (qmail 1401741 invoked from network); 11 Apr 2025 21:22:25 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 21:22:25 +0200
-X-UD-Smtp-Session: l3s3148p1@70FXn4UyKN0ujnsS
-Date: Fri, 11 Apr 2025 21:22:24 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: remove N1S binding
-Message-ID: <Z_lr8MjNCYXz8V89@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-References: <20250411155220.5940-2-wsa+renesas@sang-engineering.com>
- <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KpTpaGVcd9v3KaQukYijw5qR2K4pez3ke73f2EXFsWcPfEGTCW1hyQuKalCtZL5xPJGOsrBgCi6cgO52TJna0YgtOsgItpLpSq30y0lIE6qmQX1JCXS1SARPmXEIdsdSA1vsaEf5GiJcEQ1pNtBC5N9OaUD4pMoca3U1A6Ckt88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RFdeOe9u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62F25C4CEE2;
+	Fri, 11 Apr 2025 19:24:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744399491;
+	bh=9VMbXJK31PLZybTQVziy1hqetP2iBYbxW2h7Q6gWJrk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RFdeOe9uMlrjVjPwwGP2lnKd5NszvMxaneyCw/ow9MxtqIYB1MMctkYVMiErM6aw6
+	 KaLwZKJPge7fv3T/LsCCiNxzziZErcKQOd+t2OhGhFpvaGzDDpgVKJhFTSLv+7aq/i
+	 VhSdy5bfLu2i6PdN2O2aQ2/4P+B10jPVaG1RISn0366H+FMQyyZODSwNXzzgo+28nf
+	 k+kIaqM6NndPFh4Tqlm/FIcqu0lwj7lWbMjL5phi36Xgj4SDOHc0qCmVMbpOztvbVI
+	 Bt9uCkCr68KTkGJGggvx93iWM1SX1FPvrZ0U+/2m4A9VzkJTqOvuW/KV2KZQDwgioW
+	 36L9XMCRTz2gQ==
+Date: Fri, 11 Apr 2025 14:24:50 -0500
+From: Rob Herring <robh@kernel.org>
+To: Antoni Pokusinski <apokusinski01@gmail.com>
+Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexander.stein@ew.tq-group.com, linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] rtc: pcf85063: add support for RV8063
+Message-ID: <20250411192450.GA3750226-robh@kernel.org>
+References: <20250410202317.25873-1-apokusinski01@gmail.com>
+ <20250410202317.25873-4-apokusinski01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KjleNIVyskKXyFmn"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250410202317.25873-4-apokusinski01@gmail.com>
 
+On Thu, Apr 10, 2025 at 10:23:17PM +0200, Antoni Pokusinski wrote:
+> Microcrystal RV8063 is a real-time clock with SPI interface. Its
+> functionality is very similar to the RV8263 rtc.
+> 
+> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+> ---
+>  drivers/rtc/Kconfig        | 21 +++++-----
+>  drivers/rtc/rtc-pcf85063.c | 80 +++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 91 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index 838bdc138ffe..1b9be96faa13 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -483,15 +483,6 @@ config RTC_DRV_PCF8523
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called rtc-pcf8523.
+>  
+> -config RTC_DRV_PCF85063
+> -	tristate "NXP PCF85063"
+> -	select REGMAP_I2C
+> -	help
+> -	  If you say yes here you get support for the PCF85063 RTC chip
+> -
+> -	  This driver can also be built as a module. If so, the module
+> -	  will be called rtc-pcf85063.
+> -
+>  config RTC_DRV_PCF85363
+>  	tristate "NXP PCF85363"
+>  	select REGMAP_I2C
+> @@ -971,6 +962,18 @@ config RTC_DRV_PCF2127
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called rtc-pcf2127.
+>  
+> +config RTC_DRV_PCF85063
+> +	tristate "NXP PCF85063"
+> +	depends on RTC_I2C_AND_SPI
+> +	select REGMAP_I2C if I2C
+> +	select REGMAP_SPI if SPI_MASTER
+> +	help
+> +	  If you say yes here you get support for the PCF85063 and RV8063
+> +	  RTC chips.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called rtc-pcf85063.
+> +
+>  config RTC_DRV_RV3029C2
+>  	tristate "Micro Crystal RV3029/3049"
+>  	depends on RTC_I2C_AND_SPI
+> diff --git a/drivers/rtc/rtc-pcf85063.c b/drivers/rtc/rtc-pcf85063.c
+> index 03dfc58f4cd7..bcfefe823044 100644
+> --- a/drivers/rtc/rtc-pcf85063.c
+> +++ b/drivers/rtc/rtc-pcf85063.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/of.h>
+>  #include <linux/pm_wakeirq.h>
+>  #include <linux/regmap.h>
+> +#include <linux/spi/spi.h>
+>  
+>  /*
+>   * Information for this driver was pulled from the following datasheets.
+> @@ -29,6 +30,9 @@
+>   *
+>   *  https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-8263-C7_App-Manual.pdf
+>   *  RV8263 -- Rev. 1.0 — January 2019
+> + *
+> + *  https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-8063-C7_App-Manual.pdf
+> + *  RV8063 -- Rev. 1.1 - October 2018
+>   */
+>  
+>  #define PCF85063_REG_CTRL1		0x00 /* status */
+> @@ -559,6 +563,18 @@ static const struct pcf85063_config config_rv8263 = {
+>  	.force_cap_7000 = 1,
+>  };
+>  
+> +static const struct pcf85063_config config_rv8063 = {
+> +	.regmap = {
+> +		.reg_bits = 8,
+> +		.val_bits = 8,
+> +		.max_register = 0x11,
+> +		.read_flag_mask = BIT(7) | BIT(5),
+> +		.write_flag_mask = BIT(5),
+> +	},
+> +	.has_alarms = 1,
+> +	.force_cap_7000 = 1,
+> +};
+> +
+>  static int pcf85063_probe(struct device *dev, struct regmap *regmap, int irq,
+>  			  const struct pcf85063_config *config)
+>  {
+> @@ -725,14 +741,76 @@ static void pcf85063_unregister_driver(void)
+>  
+>  #endif /* IS_ENABLED(CONFIG_I2C) */
+>  
+> +#if IS_ENABLED(CONFIG_SPI_MASTER)
+> +
+> +static const struct spi_device_id rv8063_id[] = {
+> +	{ "rv8063" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(spi, rv8063_id);
 
---KjleNIVyskKXyFmn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+You need the of_device_id table too.
 
-
-> Seems like the platform is pretty dead. If you want to send a single
-> patch removing all the bindings, I can take it.
-
-Yay, consider it done (in a few minutes).
-
-Thanks!
-
-
---KjleNIVyskKXyFmn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf5a/AACgkQFA3kzBSg
-KbYvYhAAlmFkkXAR6RRuKRturPVfhNmQNCwiD89v1ZTd9G8LGAhV+CZkegNy2hRS
-S6/DeY+FVSrCriTk0wMi+6zVMDw16uDIRMxO2mNWuGvP/ar+vhjagiLnOuqV1mjc
-ADE8VBiMpGQSPMvNxTOT5k3EX8CWKWgh7GsS3VYkfUDWU59esN2f0mOuA5rorvkH
-ntRdW61GaQC/TGXYlB83Qv9RVkTNbQkVbbxHcuxap64lFva+7mJoqSqikuzoj9DO
-aCt8JyO+Dkq7LUBd7USDpjvx/aGWdK8us3NEapCtaHj1gWFgR3LqH+OyU0fNKMet
-lBVEpwkWgJkJQ9cK2hZL4M2Tetx8MGuHI9WnhTWUgIq5/Tnzoy3IFjVghvvCkOcD
-FueZc7n07jzKGKj7Mx0Dw79HXd/hcZpPMyZQjWybXqGI8f1NoltVx8qERbHN9KMX
-AnD8tavUDYAP15wLKjO5sTfjSaVR0VS89WZiMeKbDuaTmej6/TvdlAbgdVASOC2q
-kNphG37LAhdyknbUpJsvL6DcqrhF/z7lblfSkUPqRKVbfScR4Gn9KSR09OJQozmc
-dpj02NCVQhvjqpfaTXjT5vN0r5AWBl7QthIa3NX7q3WV+g2ymxmrOs5O1gbrAFaE
-kymgNDNJi1xZayGDpLHwqzFZA06Ogt3osbgAGjWkKGCd9+9fv50=
-=XyEi
------END PGP SIGNATURE-----
-
---KjleNIVyskKXyFmn--
+Rob
 
