@@ -1,154 +1,174 @@
-Return-Path: <devicetree+bounces-165757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3430CA85563
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:26:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F973A85570
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:28:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10F597B1498
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:25:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A5444457D3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6D1285409;
-	Fri, 11 Apr 2025 07:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE442857ED;
+	Fri, 11 Apr 2025 07:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGFCGQyC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JhYRYeQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0FD27E1BA;
-	Fri, 11 Apr 2025 07:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBB72036FD;
+	Fri, 11 Apr 2025 07:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744356382; cv=none; b=kNQqR2cxQRm2czEnw5z0kzVwazTHXXEq55V7BWJMSIVuMeO/QZ5ge9knbNr9QR0jxWtujUeVTMKqvZFL6LuaC53GOEfI5U5AWiL4lkVDBZqATOB9o2ditEfoZ1EQVtVM9Pcd5RGJmcXPjQzrt6pyX4ctBkUaQz3w6zhmC9DUtxk=
+	t=1744356494; cv=none; b=fLmVSADPd54XSsV/3BqDXJbozLq7/w+wFIRt3sWE0hPVaThDsk6Hy48zp0kTezQFzDbc5NHK/SlhjLgzAHySBMGJP4x4/HiUsmsqq7auQAZH4ypuLhX73/2D43rrCMgEtI2hn71vEudPAsKTBVuC+oFa1oJWkZ2UKoFEeF0zPno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744356382; c=relaxed/simple;
-	bh=5Rg6L5vCgyyzAuifngdzvR71Cxvlb+0w2mCfgATmgcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fFm7u2xkVBxroql5WnWTrRxrYKBIomTrJ0mzn6AYYYawZCoBTPl/o6gJ3nn3OBr3RGBFcekPWp7MfO7iVVQqznbcG8IhkHAqGl4hN17ntHsFt60KSAZHKRR76VBM7fDVQKny0bgvSUCvJswHnogdQbfu8LOG8dvuwLULlnARQL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGFCGQyC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24432C4CEE2;
-	Fri, 11 Apr 2025 07:26:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744356382;
-	bh=5Rg6L5vCgyyzAuifngdzvR71Cxvlb+0w2mCfgATmgcU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rGFCGQyCjTxLmWdaiiMoMRvSSsATBuLX+9GFCwSFmWkr4kDyoLU7cBPWlkzLl2vRN
-	 sOBxcLkTJJj1uEJW8qiZnKNBJeq/8KaIGUdVolR6m/b2TaSmKeh+3cTdfr+GYvjJFv
-	 pSwNR7A4iNHJ5LX0pe3LdKUyV0k8GfXzS7mcRJfyqtR5VkGVE9h9ZLaIXGzmIJ7gm1
-	 VIbnr5yEHWBICw1Dcs5ffHL6ssMpRp25Wuyqbc4SPfeQbmnU3n+Qs2tzqlT65bMDAq
-	 LxfrSgnxU2YTskh88+4BJA1TFOwNKLPes8yZwgU8WsnSUbhAdhqJLzI19iXpj4L/B9
-	 lbVqGWE74AmyQ==
-Date: Fri, 11 Apr 2025 08:26:16 +0100
-From: Lee Jones <lee@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
-Message-ID: <20250411072616.GU372032@google.com>
-References: <20250409144250.206590-1-ivecera@redhat.com>
+	s=arc-20240116; t=1744356494; c=relaxed/simple;
+	bh=ZXw7IdSYGbwpYBIfDEuJeabL5UpH+BofGjlFBgSV8gM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iWQtefmuE9xEdkkv1FTrd1tdgiOQmgl3lNiMb/8e8erACt1czPBXkZYMAQuXXaUf36r8Lcs80/mkCaKPDl2ScoqtsMnJz0K2T8JQJanP/dnTGvGtFCqoQwrD8C8Ub+T7h9PH0jyX/kQH3IJBsnFvV4j1SHlgTdX5AUTubHgunTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JhYRYeQp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B4ubJD019687;
+	Fri, 11 Apr 2025 07:28:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	q0U0ycz0cCg1vV/Qts+Pr8Y1j1A9cbNKFfAJRKW2kBQ=; b=JhYRYeQpsVZ8enrx
+	zFGAJo+O6CWnHPF+9smpDkRJo/Q7bQchHt0cUjK2rIbYQnjW6FWkCNGZoCxhPykF
+	Sm/imqKkH/vQjBSx4ZPXJJ5rbCtfLBQIp1YnkwbsYUWE0y3cA2fjJc/VK8wic6wf
+	opfv6+8QGBmsUjo5T0RJ4yVerUx0hX/I0swhpJaZfB7/NFtBWN1xtgzWv1aL/W5t
+	H8jlZLqI4Q0LmZomhpl+6pgm/MRyL9JWMj7rl7W0UcJ+vPDVmHzRWUNMdmXrT/qn
+	rLociptGcFqcYO4eIZFyflgkCS2Zdn+Y/Wnt2Xv4A+sZRnePC+6Ze/wecHtPaxAX
+	RsXQJw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twcrsqyk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Apr 2025 07:28:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53B7S6Ph013950
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Apr 2025 07:28:06 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Apr
+ 2025 00:27:59 -0700
+Message-ID: <7af5a2a5-6eac-4734-aa20-3e0f2141afef@quicinc.com>
+Date: Fri, 11 Apr 2025 12:57:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250409144250.206590-1-ivecera@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 15/18] arm64: dts: qcom: Add MXC power domain to
+ videocc node on SM8650
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>
+References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
+ <20250327-videocc-pll-multi-pd-voting-v3-15-895fafd62627@quicinc.com>
+ <12986cda-99eb-4a1b-a97b-544ea01e2dbb@oss.qualcomm.com>
+ <4d23b54e-93eb-4c1c-86d9-a70f29c23ec4@oss.qualcomm.com>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <4d23b54e-93eb-4c1c-86d9-a70f29c23ec4@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YHJJPxVZWcWl_l59HymslCK1ge66uv_U
+X-Authority-Analysis: v=2.4 cv=QuVe3Uyd c=1 sm=1 tr=0 ts=67f8c487 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
+ a=nKsp9sJ0S5QfW6cRe6gA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: YHJJPxVZWcWl_l59HymslCK1ge66uv_U
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-11_02,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ spamscore=0 malwarescore=0 mlxlogscore=728 bulkscore=0 priorityscore=1501
+ clxscore=1015 phishscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504110049
 
-On Wed, 09 Apr 2025, Ivan Vecera wrote:
 
-> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
-> provides DPLL and PTP functionality. This series bring first part
-> that adds the common MFD driver that provides an access to the bus
-> that can be either I2C or SPI.
-> 
-> The next series will bring the DPLL driver that will covers DPLL
-> functionality. And another ones will bring PTP driver and flashing
-> capability via devlink.
-> 
-> Testing was done by myself and by Prathosh Satish on Microchip EDS2
-> development board with ZL30732 DPLL chip connected over I2C bus.
-> 
-> Patch breakdown
-> ===============
-> Patch 1 - Common DT schema for DPLL device and pin
-> Patch 3 - Basic support for I2C, SPI and regmap
-> Patch 4 - Devlink registration
-> Patches 5-6 - Helpers for accessing device registers
-> Patches 7-8 - Component versions reporting via devlink dev info
-> Patches 9-10 - Helpers for accessing register mailboxes
-> Patch 11 - Clock ID generation for DPLL driver
-> Patch 12 - Export strnchrnul function for modules
->            (used by next patch)
-> Patch 13 - Support for MFG config initialization file
-> Patch 14 - Fetch invariant register values used by DPLL and later by
->            PTP driver
-> 
-> Ivan Vecera (14):
->   dt-bindings: dpll: Add device tree bindings for DPLL device and pin
->   dt-bindings: dpll: Add support for Microchip Azurite chip family
->   mfd: Add Microchip ZL3073x support
->   mfd: zl3073x: Register itself as devlink device
->   mfd: zl3073x: Add register access helpers
->   mfd: zl3073x: Add macros for device registers access
->   mfd: zl3073x: Add components versions register defs
->   mfd: zl3073x: Implement devlink device info
->   mfd: zl3073x: Add macro to wait for register value bits to be cleared
->   mfd: zl3073x: Add functions to work with register mailboxes
->   mfd: zl3073x: Add clock_id field
->   lib: Allow modules to use strnchrnul
->   mfd: zl3073x: Load mfg file into HW if it is present
->   mfd: zl3073x: Fetch invariants during probe
-> 
->  .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
->  .../devicetree/bindings/dpll/dpll-pin.yaml    |  44 +
->  .../bindings/dpll/microchip,zl3073x-i2c.yaml  |  74 ++
->  .../bindings/dpll/microchip,zl3073x-spi.yaml  |  77 ++
->  MAINTAINERS                                   |  11 +
->  drivers/mfd/Kconfig                           |  32 +
->  drivers/mfd/Makefile                          |   5 +
->  drivers/mfd/zl3073x-core.c                    | 883 ++++++++++++++++++
->  drivers/mfd/zl3073x-i2c.c                     |  59 ++
->  drivers/mfd/zl3073x-spi.c                     |  59 ++
->  drivers/mfd/zl3073x.h                         |  14 +
->  include/linux/mfd/zl3073x.h                   | 363 +++++++
->  lib/string.c                                  |   1 +
->  13 files changed, 1698 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
->  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
->  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
->  create mode 100644 drivers/mfd/zl3073x-core.c
->  create mode 100644 drivers/mfd/zl3073x-i2c.c
->  create mode 100644 drivers/mfd/zl3073x-spi.c
->  create mode 100644 drivers/mfd/zl3073x.h
->  create mode 100644 include/linux/mfd/zl3073x.h
 
-Not only are all of the added abstractions and ugly MACROs hard to read
-and troublesome to maintain, they're also completely unnecessary at this
-(driver) level.  Nicely authored, easy to read / maintain code wins over
-clever code 95% of the time.  Exporting functions to pass around
-pointers to private structures is also a non-starter.
+On 4/1/2025 9:30 PM, Konrad Dybcio wrote:
+> On 4/1/25 5:27 PM, Konrad Dybcio wrote:
+>> On 3/27/25 10:52 AM, Jagadeesh Kona wrote:
+>>> Videocc requires both MMCX and MXC rails to be powered ON to configure
+>>> the video PLLs on SM8650 platform. Hence add MXC power domain to videocc
+>>> node on SM8650.
+>>>
+>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 3 ++-
+>>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>> index 818db6ba3b3be99c187512ea4acf2004422f6a18..ad60596b71d25bb0198b26660dc41195a1210a23 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>> @@ -4959,7 +4959,8 @@ videocc: clock-controller@aaf0000 {
+>>>  			reg = <0 0x0aaf0000 0 0x10000>;
+>>>  			clocks = <&bi_tcxo_div2>,
+>>>  				 <&gcc GCC_VIDEO_AHB_CLK>;
+>>> -			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>>> +			power-domains = <&rpmhpd RPMHPD_MMCX>,
+>>> +					<&rpmhpd RPMHPD_MXC>;
+>>
+>> So all other DTs touched in this series reference low_svs in required-opps
+> 
+> actually "all" is wrong on my side, please also consider and if necessary apply
+> the same change to patch 18
+> 
+> Konrad
+>
+It is not needed for SM8650. In the initial SM8650 videocc and camcc series,
+required-opps was added for MMCX. But it was dropped based on the review comments
+in that series, after confirming that minimum non-zero level from cmd-db on MMCX
+is > retention on SM8650. And as mentioned here[1], required-opps is not mandatory
+for MXC as well.
 
-After looking at the code, there doesn't appear to be any inclusion of
-the MFD core header.  How can this be an MFD if you do not use the MFD
-API?  MFD is not a dumping area for common code and call-backs.  It's a
-subsystem used to neatly separate out and share resources between
-functionality that just happens to share the same hardware chip.
+[1]: https://lore.kernel.org/all/44dad3b5-ea3d-47db-8aca-8f67294fced9@quicinc.com/
 
--- 
-Lee Jones [李琼斯]
+Thanks,
+Jagadeesh
+
+>>
+>> Is that an actual requirement? Otherwise since Commit e3e56c050ab6
+>> ("soc: qcom: rpmhpd: Make power_on actually enable the domain") we get the
+>> first nonzero state, which can be something like low_svs_d2
+>>
+>> Konrad
 
