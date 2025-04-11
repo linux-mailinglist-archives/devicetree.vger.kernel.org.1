@@ -1,167 +1,147 @@
-Return-Path: <devicetree+bounces-165910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D92A85D69
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:43:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12117A85D44
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A07DD1885391
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:41:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F322D1BA6240
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFD92C3761;
-	Fri, 11 Apr 2025 12:37:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9232BE7C8;
+	Fri, 11 Apr 2025 12:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0oQmKPpf"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="QzEJiL1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1ED29C344
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996F32BD5AB;
+	Fri, 11 Apr 2025 12:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744375020; cv=none; b=hKxQQAPV233z41ERMsDkPT1DmdOA70CrW8xrx2J8rMKcYtFYHLOb/JwlSCxriw47b2xtCJg/b0eiMQwAvNnkp+jD/6RymDB3yIpmXQ+8h+yr6dPz8d8CTA0t+6/zKF+4avVq+/A254BvqbpLqDzqYk4DKPnZFGICMP2HGO9/AQY=
+	t=1744375010; cv=none; b=ANlW29FkCbPbQp/UGa102W9h8leXxbUs3dGiusiERsoEWJDGgI8njs6RbeJVobmrfm9cG3Rc0mBL2GCxEzi9HFf4HXXgDX4EscHdkyqSGmSoNJm49oJtS99hR60Oq2neNGD2+loJvOhQ+41UZX0/G54aWpc3COm59X3ta5rSyQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744375020; c=relaxed/simple;
-	bh=7fUfH1eE+n+zmzKhP4D/88n0duk+DQJUKxhnlJl8LM8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J+zXs/zF4+GPU4YCr9dzx0V9ZjNAqFccbcSDZ6nxeaY4CM+Qv6e6Nk7CQfiZR1nTeEtE1HG0DmSHOL8CHFn+YyyQYapVTQgcFcUYZ0YxUp4CJWgnjyEUOkx3uYgKq2+nVHVJS+Sd0lSnfiICz2bFKSKrmLXli6XEi7R1pmDybl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0oQmKPpf; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2255003f4c6so20850655ad.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:36:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744375018; x=1744979818; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uPJqCmoSsx1GevRwEqwTz+KiO5ldodlroUJvFu2/V3o=;
-        b=0oQmKPpfP4qUut/3hcryutK5usIxOqRG+Md7deKTQaAVOsjsfZZwV7b33kreEL8HT5
-         5qJAHw5VhjVT6t3f2ttK/JNHTaLob9acgitQfTYdefpsf7gvYNjsV0QvJ3e3tHhO1g4L
-         mMPqU9t8NnP+FM/MKVNd2EuJCJjBL9xVXms0GKzTvdFymq0zMI8b8QaWav8U9dDUQ+ja
-         qtV9/9TrKKR+DM5OYwXmjoZDAj5FRdv0BqvHRnUXCJwbHfRW3X+VNkuV0wrS6BB1b27r
-         PrCHiNuw2mbfiSLuhjB9p/NS/2jkkD8aErgCV5lGauY/I1MctF8VRsoTtxM74FmEsD+K
-         e2Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744375018; x=1744979818;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uPJqCmoSsx1GevRwEqwTz+KiO5ldodlroUJvFu2/V3o=;
-        b=fUIcXG95JOZ1V0WLLFY2uNo+2HgV3BLK35R5zfjx52Du2qS0Y4sqWmcb6xMsuT21eZ
-         pUZ3F+o/TcES9GcU7sqCxzA0Dlo6TYmz9wT5smlnbmnetzVNdaYhshAMFrM5KVZ4pku6
-         +xQqc1aMdqVXvk0ptJjtj36sh/KhkarTKdmGzUQ22vGzYsHKyYSM0E1c+MYAEBBPYObt
-         Tt7IEPcnaun4z8kPgKpDY3eWvrJHYQLpTLtvC2zS1Ay3CUKbh/ggFmUYzIbmMmO8tVzX
-         QVA/b0cGYw5qRyhoDpqsKKZBTB5Ck9/u88D2UEfa4KU0sCJYmaPHZWN1I8keXJtlRk2+
-         OcIA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgC+piR2gNj2e+i+032M74xMTnCVloQHx+wZeeS6LyMnNj1E15eVjM40Z5zrC8mbUbrbuHAwVH1YXu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3sGqCmW0YnpQBbML5fgEutQVS89GH6HQuJ62hg0GldmP/dx46
-	NxsZmByZd31XybIvtRKqqJt/fgguDgupf13GfnxTw+DoXd/UqAl25KRf4LBsZAg=
-X-Gm-Gg: ASbGncssX6m9eBrI0m0iHJ9oFTHK82Tbv96ig/Z/8epBt3bXPLjh++nA3W+NdPfVaeO
-	uxYYFnP+53w8QP/CIEItQ7uLwP6PXHAVg9gd0YjUIvgQYf9iPV7AYYD8BaVrbqhTgheN24+vDE6
-	gXY+uAIuJgFShHOk41fTDDjtUXpknvBMwBlYqiwozQVxuc8LcCgc3nBuRVQ0sIhRp72ngJ6UbTg
-	1hk3bG3fa+293vOg2DxUCBllHS8aWxLk3NFj5dp31c6oTUx4ydwq5fQOKFKH/eJzpmis9Ph87iA
-	wo7pa2HNpj/tD53hiHHdNGw75YnN6/I+R4sRkNmwGuc=
-X-Google-Smtp-Source: AGHT+IFpLD5B7k7fXna43PL4COCo2fb781nBQohi+uOKDq+PQ5C/xXOE6xN0MQ0jZ8H8pyV6WtJL6g==
-X-Received: by 2002:a17:902:cec9:b0:227:e980:9190 with SMTP id d9443c01a7336-22bea4fcad1mr41903285ad.44.1744375018241;
-        Fri, 11 Apr 2025 05:36:58 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:cf9d:bb30:5951:692])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-73bd22f8253sm1408292b3a.93.2025.04.11.05.36.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 05:36:57 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Fri, 11 Apr 2025 14:35:58 +0200
-Subject: [PATCH v3 5/5] arm64: dts: mediatek: Set RTC start year property
+	s=arc-20240116; t=1744375010; c=relaxed/simple;
+	bh=uRZiw/amf7efcyO7dFKqmxQne6tASXslJWHYiB9UodM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lM1R369AmhSdRyHkkjn/JYxNGvc1GI1M2V35IqnDoIGxnEivyqW3aPDbzcV7pPQlIabyjZWgnUzdRzmzOlLUsa9OWLoo7bHXLsgg2GLENDfUltVgZXY9nVxGPLIJI2HN9/tKDY6tg03QEHmbNcVaZp5cEDetL0DNO/5FhX9SjYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=QzEJiL1u; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B9mgWl001847;
+	Fri, 11 Apr 2025 08:36:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=Qm07i6YZxhNBj9/ldmhyskFcrr5
+	NVdNAXZ/sMM8b7zg=; b=QzEJiL1uotU5FsH8zlR3jLxmuK4kCoWIDfRY1cafNp/
+	U0iQSKjtCNhwgR9GQ70nVunrCVxKG+oPyP4Llu9JzTVfRBEwuJGkGYi8a+U/FR0B
+	dzv+iRj/g8JI4OUov1Nys7N4fNBkL3pO3cY1ftUX/k235RbhfMAob4OtjbCwPmDk
+	Rsz9n+nFjkInpz8FUDZGQLezGB6fXLrlsEe9BY2+RU3WM92Ww2somclQDGu/l5eo
+	NaKTS8f1z+MwwQIzBLaF6tQXPyT8jHOnmv7/o+9BxJOiOlH5xbQLcOXs4nw5c+IT
+	twIpjqSiRZNTh9bYBS9CDYYQMhukZc2gejoAyLq8Zyw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 45x8yp0br5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Apr 2025 08:36:40 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 53BCad3o001258
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Apr 2025 08:36:39 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 11 Apr 2025 08:36:38 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 11 Apr 2025 08:36:38 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 11 Apr 2025 08:36:38 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.151])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 53BCaTPK006015;
+	Fri, 11 Apr 2025 08:36:31 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v2 00/13] Add support for AD4080 ADC
+Date: Fri, 11 Apr 2025 15:36:14 +0300
+Message-ID: <20250411123627.6114-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-enable-rtc-v3-5-f003e8144419@baylibre.com>
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
-In-Reply-To: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
-To: Eddie Huang <eddie.huang@mediatek.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1631; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=7fUfH1eE+n+zmzKhP4D/88n0duk+DQJUKxhnlJl8LM8=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBn+Qy+kE39onw4c/4Fkz528PzOFaSGz5L4XeHhWzBX
- hDMFF+eJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ/kMvgAKCRArRkmdfjHURZFAEA
- CMgGOq5n82NrZ1LYEtWO5FV0efEnXxIHS7oTUff/+0zjS/Y8jlqnNx8HPZO5nwUH8Nf9LGtZBslozP
- vWuRX7cK0jNVQfcIjqh9mpcZ2kT1QJoVCsGw9gN+QqAL6mNPZVhvCwG2HIOIEsxRF69xVDOMZbGJMH
- DRGrZpV24VYPp83m3Rgz+RqqYjOsB6go3Cppb67f56Go43Wa7Bh4h5bL0jMyT9wvc47+ZzIhF8Dsnu
- tL3sRzfjBIhd456WR4crywwS+Le3HSdnF0s0KBzUmHhKd4e9llBzJ6d9jxQfZmsNvXqlatDiioEYYz
- G2WgVthTQ1zPwsLFGvmM8dAbs6P/tc1O1RRVxU1RIdOaRjwIh2+BuH6Nf9TC9a748hBugjATRYmiTX
- 5DUCslbH/zOfvqxbGqVbwjZhdyKXFSTewkXwDt1YuxWaE8spAjAFQYBu6Wcf7p79iPZy1Eoq4D2VtD
- 4VbzRlik1xMo/9KPiwY3Np5IFPJpEqx2CnO2uCx27ns+84mWkSUIPlxhQVC5yrk/qbbU/hc+7N9uCZ
- EeICxRI7pmEj546cN1sweBOzcU67+ct8Kd4CZ1plilw+i65YAUP0JXj5JJVcxsWta+SoyGzIojnLcw
- HDa/GKX3CnNeQrPYSTWlTk7V9dW560HevmEhZH0M64UhIbAGF5pDYsk1OjIw==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 9pqRGxiSPyNWbihPwkPm5hGuK-NSIvgk
+X-Authority-Analysis: v=2.4 cv=BoqdwZX5 c=1 sm=1 tr=0 ts=67f90cd8 cx=c_pps a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17 a=XR8D0OoHHMoA:10 a=HubKl35eoKcbRmig0ccA:9
+X-Proofpoint-GUID: 9pqRGxiSPyNWbihPwkPm5hGuK-NSIvgk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-11_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 adultscore=0 impostorscore=0 spamscore=0 mlxlogscore=999
+ bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504110080
 
-Set the start-year property for MT6357, MT6358 and MT6359 to have a
-consistent value between the HW registers and the RTC framework.
+The AD4080 is a high-speed, low noise, low distortion, 20-bit, Easy
+Drive, successive approximation register (SAR) analog-to-digital
+converter (ADC). Maintaining high performance (signal-to-noise and
+distortion (SINAD) ratio > 90 dBFS) at signal frequencies in excess
+of 1 MHz enables the AD4080 to service a wide variety of precision,
+wide bandwidth data acquisition applications.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt6357.dtsi | 1 +
- arch/arm64/boot/dts/mediatek/mt6358.dtsi | 1 +
- arch/arm64/boot/dts/mediatek/mt6359.dtsi | 1 +
- 3 files changed, 3 insertions(+)
+This driver aims to be extended in the future to support multiple parts that are
+not released yet:
+    AD4081
+    AD4082
+    AD4083
+    AD4084
+    AD4085
+    AD4086
+    AD4087
+    AD4088
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6357.dtsi b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-index 5fafa842d312f..d79ba87361d00 100644
---- a/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6357.dtsi
-@@ -267,6 +267,7 @@ mt6357_vusb33_reg: ldo-vusb33 {
- 
- 		rtc {
- 			compatible = "mediatek,mt6357-rtc";
-+			start-year = <1942>;
- 		};
- 
- 		keys {
-diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-index e23672a2eea4a..226259a51188f 100644
---- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-@@ -340,6 +340,7 @@ mt6358_vsim2_reg: ldo_vsim2 {
- 
- 		mt6358rtc: rtc {
- 			compatible = "mediatek,mt6358-rtc";
-+			start-year = <1968>;
- 		};
- 
- 		mt6358keys: keys {
-diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-index 150ad84d5d2b3..7f9182be79724 100644
---- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-@@ -299,6 +299,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
- 
- 		mt6359rtc: mt6359rtc {
- 			compatible = "mediatek,mt6358-rtc";
-+			start-year = <1968>;
- 		};
- 	};
- };
+
+Antoniu Miclaus (13):
+  iio: backend: add support for filter config
+  iio: backend: add support for sync process
+  iio: backend: add support for self sync
+  iio: backend: add support for sync status
+  iio: backend: add support for number of lanes
+  dt-bindings: iio: adc: add ad408x axi variant
+  iio: adc: adi-axi-adc: add filter enable/disable
+  iio: adc: adi-axi-adc: add bitslip enable/disable
+  iio: adc: adi-axi-adc: add self sync support
+  iio: adc: adi-axi-adc: add sync status
+  iio: adc: adi-axi-adc: add num lanes support
+  dt-bindings: iio: adc: add ad4080
+  iio: adc: ad4080: add driver support
+
+ .../bindings/iio/adc/adi,ad4080.yaml          |  96 +++
+ .../bindings/iio/adc/adi,axi-adc.yaml         |   2 +
+ drivers/iio/adc/Kconfig                       |  14 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4080.c                      | 653 ++++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 | 115 +++
+ drivers/iio/industrialio-backend.c            | 113 +++
+ include/linux/iio/backend.h                   |  24 +
+ 8 files changed, 1018 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+ create mode 100644 drivers/iio/adc/ad4080.c
 
 -- 
-2.25.1
+2.49.0
 
 
