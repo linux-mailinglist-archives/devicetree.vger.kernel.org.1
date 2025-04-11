@@ -1,154 +1,113 @@
-Return-Path: <devicetree+bounces-165992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B730DA860AB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:32:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC11A860AF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56C8A1899D07
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:32:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF7893B7333
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70FE61F4168;
-	Fri, 11 Apr 2025 14:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8361F3FC8;
+	Fri, 11 Apr 2025 14:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="LhZ8G4aH"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="lx/X9mL3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3061F3B96;
-	Fri, 11 Apr 2025 14:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744381935; cv=pass; b=Kp/0EYfp2DgniGxXF0h02+/ZPWDogHiufAEyABx7jtaIzWlQKkjO+8yLDcj8AKIL9gUw89nu8+uHs6j2D7dNWOqlYdgnSl1n/pleMXetplHme3SpahaHS07RxtoqPq+EKXSv6y047kszaOISz1aT9qFKo3j50I1/3Tr8q50Urt4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744381935; c=relaxed/simple;
-	bh=81e5HuC4bZMqyw6bFcdLw7bwgA2g4vw89tLXfmpe53I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cqFTMyRhdiRfR+/Vw+4A4Yj4odbcXlpuMkczOxcZTkoQ4Abc6UuYxxbLn6Sz2BPwIyeaRKKg1yBaenLapp6aRQgLXp89N6FTA+8WGHSvnmYhCAZUGw4ClWZNlSQUlb+1YzXTaHOVR9t8O2mqVXq5x0SbEEnSnMkaMU4EIiEmLT4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=LhZ8G4aH; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1744381906; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=iU5GPHPv3JH4Kee/QfUFQyYLt1uqLC8Q0t06jEaI2NsONtG5B0atnr73AReTWF4+HFBHfx0O8/H75ou47AgIY1prFa3AfsknQZYvnQnS/CU6bey+t993VtK0UsXP5Xvje6L4F0MlvwPy7af3RdC2SIIQi8MRVOOs6Tm28/SEiZo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744381906; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4bEVzwa077L98xmrJC/K3SEciVJ1LxE/oPvC3WGlF80=; 
-	b=eOQJP8AH4Vh2RF4ho2CUqImbYpn42paEp/GzjiKA+WSVwAQ73W0UEnsN/gxc2F0yF9WdBT4khYQL7dz9U0GoSgUiv3yZ0Z38csnqpQil0SmDLL7PCQ6fYw6QJlPm8ZgBCtfM309fkPt1gPj5qJNrTI+R0pYWq6Yhexs9K9fmiqk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744381906;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=4bEVzwa077L98xmrJC/K3SEciVJ1LxE/oPvC3WGlF80=;
-	b=LhZ8G4aHexSUcndCBZQ6W00cpw7UCzuAeXgHRc2ktcxKSl/EeRGVxIrJIzJ1aqlA
-	GLi8sQt8/rmczMh26qGi5DLvgcu3M0dsb5V3hv98Jr1rXclsmr4KeO+IH5dnF2KG2JE
-	oZW/p5/f9ObjOVNUD1FOyJjbBGWYWjFH2XjqNpws=
-Received: by mx.zohomail.com with SMTPS id 1744381904334406.2356180581727;
-	Fri, 11 Apr 2025 07:31:44 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 1/4] dt-bindings: phy: rockchip,inno-usb2phy: add port property
-Date: Fri, 11 Apr 2025 16:31:38 +0200
-Message-ID: <6743970.MhkbZ0Pkbq@workhorse>
-In-Reply-To: <20250410211123.GA1071510-robh@kernel.org>
-References:
- <20250407-rk3576-sige5-usb-v1-0-67eec166f82f@collabora.com>
- <20250407-rk3576-sige5-usb-v1-1-67eec166f82f@collabora.com>
- <20250410211123.GA1071510-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727851953A9
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 14:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744381924; cv=none; b=bG8xcBQoreEqE5kdPQr3aHJU/Tr85yBY1F6s0kIWaSS7Xo2wckJOdPCbtu6uH3xGsnn60PsI5SsILDp/YxRRc6PjMX45cMApqJM17cx6/DPkAhdX/ufOrpywJ45rZbIE9I1lEJVtVorZVUB9qezOzB6H7nirOFtDPA55CuS31K4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744381924; c=relaxed/simple;
+	bh=Qu0wFXDX3C/Q8/zwIin6LRpHUPLIc0gKz6BVKt5DOMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ljkifYeB0X6dE+KIFGFacdymzfgqKCmIhzgRMR2FO/qrhvZB1UYtL/brzbjp7D5/c7sa4qje5wlyrlEG5Q0YqV2E8QF0gmokzGlsco0krBCFhP+wk1rlDuXwbCtqHd8u8HYbrTL9yy8v1M3rNWH/Kj6HOcNZntyV3Ku3QKHhn7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=lx/X9mL3; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30613802a6bso21249561fa.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 07:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1744381920; x=1744986720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pzr1/LCeDjoMJ0N5C1aRla0oheJiiPXfPIMQCa/fFDo=;
+        b=lx/X9mL3tfsolwmN4+2TyVPku4j85vjx52hN5xACk2UBTRRaQS0iNxW1I6XcoKzLPp
+         7RFaqKNtvaLsbKe7B7QNGufqDr/MVFfMR1lbsC4+i3saWkRZNrGapj0CUPr2tlHHu9vo
+         Opz0js5SGjIZeTDbCnEpOyVY8Tx3lPBTpW31v3x9mem+Oaw39bf6cgeMGE4O4+AdEs8M
+         chy57/YW0MzdjbsVGm2a/Qhkl5VDVPNyzZ82ZqBCHlrZRSrydOsdBy131D/4nAHOc085
+         WQQuw5nhCsM7/c719aXoqZSRMBfMHiEHGgN1Nz9annl0JU5T+Z40OhTamXsdm+DPAOOj
+         1v1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744381920; x=1744986720;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pzr1/LCeDjoMJ0N5C1aRla0oheJiiPXfPIMQCa/fFDo=;
+        b=dkhUMyhXxQIE8OgLuj1F/eI3Z/G1csMBUAPEqk0fr4Zfg197yH1lL74jmw6uKRbadR
+         yXMJAFtc3at3iMX5AXMmojjUgub7dmOqGHYV3APKBg7qWgEp4/f113XRjNdknWVUfinp
+         /EK3DcZlibL28U2hm8Se3dNgt47pBM+BgnsNcRk7oLugXdN6CSGuTLGfITOfEmp/Vxkx
+         QYJGoMn0hN/zfIkFO4MLSDaKAuGYR5KyEhBL8vfEWVIE616uUAHg1wgf6xpP7VVLSNUG
+         kUWqetKHCP6cR4clUrqmXrlsyq2uYwglnFmBfJBWyjUx5z9v6lR4/SSreHUZXwaLZgMB
+         IfNw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhUN+6ikjxU7FRswTpo0mTgZxAeoDFGKK1fbe5DNfQQiGAWlBBIzvBXpER4VBHWm1rat/a5ASX1r9L@vger.kernel.org
+X-Gm-Message-State: AOJu0Yws8gvh0tm7jTT6idp3+c1iKk7gMEc7dgM8jFsfJu4Kp/tItZd5
+	T1PtyzBNQbNbMT5ywLOk8xo6PxsUZxn2KVv5X55WZgEnwh969/xIo+9rNtVal0E=
+X-Gm-Gg: ASbGncuIRpUQPkEJfHevPfGp9sbhvVxnva4qoav28Cub/Pze5ZjOqKw2QyGgdg46lfO
+	H//X/OZoq5WykXc8XFMveY8/Otu65BXUKveu1knL0bAI93ni4/Lj+Dz80DZ8BKUNfMA+pbOIqY9
+	6suljZYoBsYSbPZKpYPgRxKh5d+0f+KMQ2R/H2GEwVHAD2mDU05tIzH0eyyfu5a1rezbl9e/9Rn
+	WHIHUjPWMdz07TQdOOlapk2AWXTlCunLMd80Ng26p/oUNKIvGv0/fp8eOwNrdX0BXJaz56dRfN0
+	bPeEFS6nraTPTaT9L6g6dz4s+8itbW8phxHdiMiaLu774xYm
+X-Google-Smtp-Source: AGHT+IHOzCHjOnVKGRcbNyn16xCquzdj4Kl/HVE05/XzIT+ZPMUlJvq12GGJqLlhzPFSjUm/j/9RXg==
+X-Received: by 2002:a05:651c:2203:b0:30c:d32:aba8 with SMTP id 38308e7fff4ca-31049a67e57mr10002121fa.30.1744381919526;
+        Fri, 11 Apr 2025 07:31:59 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.57])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f465f87f3sm7952451fa.108.2025.04.11.07.31.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 07:31:59 -0700 (PDT)
+Message-ID: <7380a752-b77d-46ad-9b7d-e38e77e86089@tuxon.dev>
+Date: Fri, 11 Apr 2025 17:31:56 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: at91: usb_a9263: fix GPIO for Dataflash chip
+ select
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>,
+ devicetree@vger.kernel.org
+References: <20250404112742.67416-2-wsa+renesas@sang-engineering.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <20250404112742.67416-2-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thursday, 10 April 2025 23:11:23 Central European Summer Time Rob Herring wrote:
-> On Mon, Apr 07, 2025 at 08:09:14PM +0200, Nicolas Frattaroli wrote:
-> > USB connectors like to have OF graph connections to high-speed related
-> > nodes to do various things. In the case of the RK3576, we can make use
-> > of a port in the usb2 PHY to detect whether the OTG controller is
-> > connected to a type C port and apply some special behaviour accordingly.
-> > 
-> > The usefulness of having different bits of a fully functioning USB stack
-> > point to each other is more general though, and not constrained to
-> > RK3576 at all, even for this use-case.
-> > 
-> > Add a port property to the binding.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> > index 6a7ef556414cebad63c10de754778f84fd4486ee..3a662bfc353250a8ad9386ebb5575d1e84c1b5ba 100644
-> > --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> > @@ -78,6 +78,11 @@ properties:
-> >        When set the driver will request its phandle as one companion-grf
-> >        for some special SoCs (e.g rv1108).
-> >  
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +    description:
-> > +      A port node to link the PHY to a USB connector's "high-speed" port.
+
+
+On 04.04.2025 14:27, Wolfram Sang wrote:
+> Dataflash did not work on my board. After checking schematics and using
+> the proper GPIO, it works now. Also, make it active low to avoid:
 > 
-> I don't think this is correct. The HS port of the connector goes to the 
-> controller. The controller has the link to the phy.
+> flash@0 enforce active low on GPIO handle
 > 
-> If the PHY is also what handles USB-C muxing or orientation switching, 
-> then it might have ports, but then it needs input and output ports.
-> 
-> Rob
-> 
+> Fixes: 2432d201468d ("ARM: at91: dt: usb-a9263: add dataflash support")
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Hi Rob,
-
-thank you for the quick response.
-
-I've feared this would be the case, but chose to go ahead with this solution
-anyway because I'm not super stoked about the alternatives I can think of. The
-problem is that I need to go from the USB PHY node to the USB connector somehow,
-but there's no way I can see to get from the PHY node to the USB2 controller
-it's connected to, unless I'm missing something obvious.
-
-So I see two alternatives:
-1. Extend the usb connector binding to add additional ports for PHYs that handle
-   vbus detection or something, then extend either the inno2 binding or a more
-   general usb PHY binding to add that port definition.
-2. Revert to what the downstream vendor kernel does and simply add a boolean
-   flag property to the inno usb2phy binding that tells it whether it's
-   connected to a USB-C port and should therefore expect vbusdet to remain high.
-
-Let me know if there's any better alternatives I missed. If there's some OF
-driver function to enumerate all controllers a PHY is referenced by, then that
-would probably work as well, allowing me to just point the HS port to the
-controller instead as intended.
-
-If no better solutions exist then I'm partial to 2. While it makes writing
-device trees a little more error prone and I don't like vendor properties, it
-means we don't set the "all USB-C ports will always have vbusdet pulled high" in
-stone, a claim that I am not 100% confident in.
-
-Kind regards,
-Nicolas Frattaroli
-
-
+Applied to at91-dt, thanks!
 
