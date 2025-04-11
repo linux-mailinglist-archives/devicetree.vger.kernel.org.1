@@ -1,134 +1,127 @@
-Return-Path: <devicetree+bounces-165872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9303DA85C13
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D69A85C33
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:50:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D77918926FC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:41:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86F2718962B4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D70F203716;
-	Fri, 11 Apr 2025 11:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A0029AAE2;
+	Fri, 11 Apr 2025 11:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WCvDM6JX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igkt2VE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC8C20FA81
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A8B26AD9;
+	Fri, 11 Apr 2025 11:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744371646; cv=none; b=cnXXKJrl8AHJVYyPHe76Anp0SOv6TQbZpP+ddmnYgsML8uMW+v85nD4e5Q6VWpy10p59qI9Ar0nT44bliLz2vLmFKbwZuKgrib2mry0Ch2dvJUyDUoJnjcpNVscCknEbIE0IqBlY2ib4+42c8TdNjadZt3VsFZqqdGXoHNkMm9U=
+	t=1744372187; cv=none; b=INWxdNKHlYhuuA/hADqCNxR7vM4Oq7S6+e3AK5cPEGkOyF6R7pszgZV1MBOiw1NNcyFpY2CgjqXsCb06Wux66FSwS4ZsJT5SBgk9ITte0SGzbbSt19D3U/p83vPDUwxpBWH0mtZ9n4re9eSZ9LDQNqESCkv/P9O8MjHMQSdyYOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744371646; c=relaxed/simple;
-	bh=7D7DwKH4Z28/lnIj8g9PPDtM+tjAkRdvH/ab0w7e6Qc=;
+	s=arc-20240116; t=1744372187; c=relaxed/simple;
+	bh=Y1jBqB8SPrhS4Y4w/rmv4NVxsWmmjHCT1zX7FJlSn8U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sAhX0WXEawAg/yRp40nFWaUNxpqPMwPBX1V3gtaiB+8PhwhNWe9MUy3+lhW0KHirGwmDU/ELQGeUEvpd7PiTlLXZoIOOfQliU1WcK3R9Pn3SDNEF6PefdJ6Jmsc9dZNP6V4OuLVD0e+CDbcdVVW0qSnAz6NUQXNdPXrgIocCWKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WCvDM6JX; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=/y4u
-	xEyL5puU+gIeFGFN1UxWPVX2K0jI9A2dB9O4HKc=; b=WCvDM6JXTBfcINSEgghX
-	VY8rb8Dp9JRoWvMdw1K+XeM05MZYVqOJt/+WYPhHaQ2BpVjaA617bankzZEJ/pm5
-	uO+kdT9dn9gUAcEHG2MGx6uQAY0J8obLGTTAB8cEuvmHKQ+DkGa98IeXKL6msB24
-	v+e12OE3s2+zzlIjQdsTer2Wvuk5kuP+FNYjk28dXJ/2F7oBPBu0cemSg55fsOzs
-	EY7EumEDyzqYqq/2n7tK+MW1g9XdaI0lcfIfTy37cky3ScZJ6V1khFWqlxcMaYoS
-	e4XKRZiFdvI9sY7xuw/guNLxLMtEWuEiA+XAnSbozsP9nu+h1k6UP0ZpikhdgjVP
-	3A==
-Received: (qmail 1279329 invoked from network); 11 Apr 2025 13:40:39 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 13:40:39 +0200
-X-UD-Smtp-Session: l3s3148p1@UJ/oK38yaJsgAwDPXyfYALbiJ46yNPq3
-Date: Fri, 11 Apr 2025 13:40:39 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=D5eXOEtgE1ArzHc2coAbM/BqLTpkaELyqMHiQ1LK6DNj7xpgaa3QzooC9cWp1fanz/fti3IIXZJe7wmHG5nWAA8NOarArXyzAow/dB7cm7UDU8wyZ2R02npgC9Lt6Aw7vgiyM+vGuF+d+2g95dwN4mrxFu6SPWEgsH3Pz0IZ36k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igkt2VE8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E00C4CEE2;
+	Fri, 11 Apr 2025 11:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744372186;
+	bh=Y1jBqB8SPrhS4Y4w/rmv4NVxsWmmjHCT1zX7FJlSn8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=igkt2VE8p0udba4TvCkKsv0xiU0tUm3e5M/XGbSLrV7UD28g8nyd/6e7DKEwO3uVf
+	 1W9Z/VWJtH7C0QwvrphmcMBlMMUBzzsI8McD/PqLgPl0bytGjyx42SbTr6UaIJFVQt
+	 GZba/dgqwKgfGTKYKPBPgVmcs7TylcG9zE8Z07tDC061yVazw8szAHVGUaEnD82hMl
+	 WTJ/jmNJ/TsuHp1lvKcryh6e2YVBaQXjLrRxmL0aCG7A282RDNYQCc22L66GOI+7i3
+	 hn/dLsMYdhbolbmFC/lJpD+f6mzn1+LbXHIKehBxRXjrByQ0JQzRhfk7Hcr13ZMJ7K
+	 zh7nKFoWiPZ6g==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u3CtK-000000000on-156V;
+	Fri, 11 Apr 2025 13:49:51 +0200
+Date: Fri, 11 Apr 2025 13:49:50 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Christopher Obbard <christopher.obbard@linaro.org>
+Cc: Douglas Anderson <dianders@chromium.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- LEDs
-Message-ID: <Z_j_t92QksnSjg-c@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20250328153134.2881-7-wsa+renesas@sang-engineering.com>
- <20250328153134.2881-11-wsa+renesas@sang-engineering.com>
- <CAMuHMdWO0662Qk7BxgMW8nr9OpP-mjPSxYKT6Z-pp+syacrtOg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Rui Miguel Silva <rui.silva@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] arm64: dts: qcom: x1e80100: add epd hpd pinctrl
+Message-ID: <Z_kB3jOH04-zFnym@hovoldconsulting.com>
+References: <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-0-ff33f4d0020f@linaro.org>
+ <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-1-ff33f4d0020f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mn4nbnL+OdRk3A5O"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWO0662Qk7BxgMW8nr9OpP-mjPSxYKT6Z-pp+syacrtOg@mail.gmail.com>
-
-
---mn4nbnL+OdRk3A5O
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250402-wip-obbardc-qcom-t14s-oled-panel-v5-1-ff33f4d0020f@linaro.org>
 
+On Wed, Apr 02, 2025 at 03:36:32PM +0100, Christopher Obbard wrote:
+> Add edp_hpd_active pinctrl to the X1E80100 device tree.
 
-> These are called LED1-LED8 in the Board Setup Notes.
+Please squash this one with the patch adding the user.
+ 
+> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 46b79fce92c90d969e3de48bc88e27915d1592bb..5b1b80c445404fd02e9f6e5dab207610b03ff9c5 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -6389,6 +6389,11 @@ data-pins {
+>  					bias-pull-up;
+>  				};
+>  			};
+> +
+> +			edp_hpd_active: edp-hpd-active-state {
 
-Oh, where? I have a version from "Dec 14, 2020" which only calls them
-Software-LEDs or "Port0 BitX". Schematics call them DBG_LEDx. I don't
-care much. The "db" board has a "USER LED2", as long as we don't
-conflict with that name, I am fine.
+Please keep the nodes sorted by name.
 
->     color =3D <LED_COLOR_ID_ORANGE>;
+> +				pins = "gpio119";
+> +				function = "edp_hot";
 
-Hmmm, they are definitely GREEN here.
+There is no "edp_hot" function on x1e so I wonder how this has been
+tested.
 
->     function =3D LED_FUNCTION_INDICATOR;
+As I mentioned in a comment to an earlier revision this pin has been
+configured by the firmware as "edp0_hot".
 
-LED_FUNCTION_PROGRAMMING?
+Since there is also an "edp1_hot" pin, this needs to be reflected in the
+node name and label.
 
-> Perhaps you want the first one to be a heartbeat?
->=20
->     linux,default-trigger =3D "heartbeat";
+Pin configurations really do belong in board files, but unfortunately
+this was not followed for x1e. You should still include the bias
+configuration (somewhere).
 
-I recently removed a default-trigger on another board because it was in
-the way. So, I'd rather not.
+> +			};
+>  		};
+>  
+>  		stm@10002000 {
 
-Phew, starting with the PHY LEDs on this board, didn't know LED were so
-troublesome...
-
-Shall I resend only this patch and rebased on the keyboard patch? Or
-resend the both?
-
-
---mn4nbnL+OdRk3A5O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf4/7MACgkQFA3kzBSg
-KbbM+g/+JA9RSj8/Ajgtvn9dNlrwyMvp+0eIYiMKujGEpEqPlbxnMSxTcpEBQHzq
-9bVqKlXLU4vhg+IgjXdQZ/iynt/yXjOHY7BSd4LWOWm2bg/eYqNBiSPprTzJl2Cw
-ZtH15OcBuufGAXgOrXN+zGY125IkflNjvvg/bbDqZX+g2+rc7FiT8+GGp5CjqY+7
-G2J36wDtR3XHRmWSFl9vYnV1qxYX9cizX7IF926c3E7SLmLAvSZwM5RHafG3iaXS
-osdTx09Yn8frl6Q9xsVkeSRawfyq0/iW8exJQqG3ZzxewZsxezfajSpJ6U5/RWut
-9qBGJ9vfT15HY13P7qhz7zm7UgQjDLBNnsyEmkVVwqLW2QVc5l3FvT3N0AMVNTJK
-lMis3hnvqyioD4fCWXSj6l002dNEGLpF9/M1JiISQaX8146fNADQzYogPfvZqzn/
-a8yp2WOwvmfZ2IyD8E2dUVJ7cVUCwGn26DuIYvAc5rtLWOzTJ452sdLxRtcOSAeB
-ar6z8GPfAiXageEwgLjhZAeGKk88pQIRnemFkhADnPoft4ICT1CfNF8WqGcKvoHo
-5zMLcsgWQ02falfcxncwhcWsxsXMZY/8oa1OYav9G8CccMfK8mvg8Uwoqs/Lu2n6
-OTMnEiayLdsOwO4TnrADE8Kh68n3NiYkPIpnYED1M34QSRaFl0g=
-=Zj+I
------END PGP SIGNATURE-----
-
---mn4nbnL+OdRk3A5O--
+Johan
 
