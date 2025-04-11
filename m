@@ -1,168 +1,120 @@
-Return-Path: <devicetree+bounces-166026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EBDFA8625B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:52:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A365BA86298
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:00:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ED1A1B882CB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:52:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CF944E0A22
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DC52211A15;
-	Fri, 11 Apr 2025 15:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4D6221551;
+	Fri, 11 Apr 2025 15:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="T4zt6GBZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aPJL0UiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839FC35961;
-	Fri, 11 Apr 2025 15:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0BE21CC44;
+	Fri, 11 Apr 2025 15:59:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744386739; cv=none; b=GULv4SLwgCLnV3NPIsyKuJcEPIiMTtVVSbia/WUcU2OhKou/TJxOyLQruS5gT/grkujfG/9m5HdiPGQx6QcuTPLabT/S039gYzTCNpnjeQMgRG96LwtbozvlqUJB9uXlTF5xatgoiJeTfEXp5v/75r9q0OgYXOAyX6Hs8lNEr7c=
+	t=1744387142; cv=none; b=XyMzucdFXyveYyHB/lkO2FtR4FrH/j21oRZP33icksOSBy2Qf/jyQA2lBt4eOHLZ4bdtOh4gz0VgFCS3TDWSD0SZpPB9O7tkO2+X4WuuA/T1UvKpiPmyk/KKEpJMUeapM2n3jIUAaKWLT05M6r1QIjRL11fJC2k0IWIHRHAwnsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744386739; c=relaxed/simple;
-	bh=E8+IDs1XgDEHII66e1FhtR8QtgunZIE14bTYSZOPaYo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=j5KnP48F3lY2mf7IN3vxs15PO5Bzf6uxP/56c0wZH1Wki8n5kvVoBijXvE566k7ONSv4xEJbgL5jL4n3ZCkGeS+rtdNprcegDwWOhjrjmDrcSQI7Jp7M8knH6v0GBFiSYVwqLg6DD8YmMywtkk13Ty2q8rldPOog16HGS/sIeHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=T4zt6GBZ; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BFq57r1486028
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 11 Apr 2025 10:52:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744386725;
-	bh=VEBB3+nk9eRMLAfQSWyx+3KioB6f3dgvNv/THggbzWE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=T4zt6GBZzgqzkard/K33ATb/J8UEtV1ATL2CoVX6zoLf3NqE+q+B632UQ+o3WNjdQ
-	 fjCFyGf7+NwZ+fTX6DTSFxTkz+4bOVH6V1X9Wcn7XhaRRPkU2TQS1KiElgDpB9DIfk
-	 mb8Q4etS63M/MZirOyG+nGK8UOMoGI/KpWTI3Wt0=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BFq52E035194
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Apr 2025 10:52:05 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Apr 2025 10:52:05 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Apr 2025 10:52:05 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BFq1dm026503;
-	Fri, 11 Apr 2025 10:52:01 -0500
-Message-ID: <28f1e0b7-9947-43f3-9a47-f3c6ecd69b91@ti.com>
-Date: Fri, 11 Apr 2025 21:22:00 +0530
+	s=arc-20240116; t=1744387142; c=relaxed/simple;
+	bh=qsXtBiQfzv3ppOjk33t0VTHVUMSlolrvFHO5Ppcv2V0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AGOuF/fE0L0I5BajbnvHDev749EKVJRE2tzzFkdYWiT7LoLqDUmSuJjXfMHbNWYocVeVIEOhiX+imwdiXfogjiQvXcr/K17e1SYD4p5jzd+9sjAHqv4KbGLJPGQnGl+9E72lLomJvb7AaIF/ylMe5qnL1aPCda7mhlu6goIYArQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aPJL0UiE; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso16049035e9.3;
+        Fri, 11 Apr 2025 08:59:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744387139; x=1744991939; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tZr9fTRuG4cPDOtYV40TbKpOUf8PGvyr3lp6HShP6Mc=;
+        b=aPJL0UiEsm9GaMFbdc7vtXJIsSkieGg2IpoA8SExrjovu2h0Lg5a2Cj7No98ZJnW9s
+         xAt1fXhDY6TxoJECCo7Q2xg7601gYXRC8wfCNwHzLDFwkevSmTG9LzMyPrpdhqXMi2dG
+         JBWtE9cBzcCtrRtH+mFkWIbJM3NsfMdFlrne/l5Jxmwv4AS8zKhpoUPrSK2tPxd4Gfni
+         MZLI5JPHYqYJWif+sUKRweDWRchewxpbYmUABRcf2AOJYHvle1DYOAy+f5VOEP8S9bat
+         gGWoR06GFEL8U89fH3YHNnoMUZNCUihjh4T2Xb0FFZZ+mLDHNQ9p32/01YQbsR2tH//S
+         MBvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744387139; x=1744991939;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tZr9fTRuG4cPDOtYV40TbKpOUf8PGvyr3lp6HShP6Mc=;
+        b=LlYqUTZsBuwFED9UUAQdM4B79F9dDHlnXMs1pxJ9ETVclCh6uMaBuyAnJ9AWvhOCPk
+         m21gzA2vwPgV17CNVG/4XXyndxZFBsKlPpAyB9NvrWKpPCsNENCe+B+A2Ro/3iSfDHoQ
+         +ZkJDb+Y/VlQXF1cjWQ1a6hegqSfj1mDKfEiKHBxrPBhd6BeLoyvVNqYUaaoFheSjLXW
+         zRXFhla6n6Lt5WVUw7YZuUvy0lETnJNdNRgEVwmnpB68WIYN21Af0umrCjyZtQ9PFwlW
+         JIAsddZ/wjTy11R13CDdi6GIlGe1Hw3lqjoZUWQi8Gs+AMpEtLmlE2RvswjYrTwyDCEI
+         tFgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqHgmSsUWVYQ7AqgQbCpdTqHIG5mOyBbX+7B9oBmwXYO4igHBVGjWO1IuWPo5P4yhRyHiu1NUaLSfqZyd5@vger.kernel.org, AJvYcCVmuW4Z9Tc+N1YXuwjxeZPIzZZacjW8ull0DAsxlH5XpxOkzCay3llh0D2Jk86Gh0JBP7P8BWfJ41nlXgJoTA==@vger.kernel.org, AJvYcCXFnPopx/acy3fDhyKEecC2gPzA1bBa4J7aPHd39Qk6IAASol6day1k2tVsKDPpaqfhyfmKmCGimSjX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdE8TJlTTaw0WxzpILwe6T6COcVT95zXhJMXAs+bjKZ9XYTjxc
+	EYCf07LfmMRjV6G1q8HOtYCiCJ6FqE3uwzfmnb5dpzlXX6yr5zkRNZR8qlU=
+X-Gm-Gg: ASbGncsowa5b15nwbwyrosjR2Vg/PfYlD+VuJSC8SKYltkeQqIpvgovrzPhAt+f6q9c
+	bMhZgv8cWB1SRC9RspeIKYzUFW71EEtjZOgnjyUN4/27zv8RRAOXl61ZZXOHWBKc+lV3/ao3tNq
+	AnWEAke6l2a30QODPNct1EqyG0q9onNveLQQgXC46U5CA/7BSDov+MTUuncHO/EbdXJ8inASRy5
+	OlXRlgmCb/G632PYLTMn5Gi1EPVPyUdmaGIhFCOXVAUfYylP0/JF71RLs4L0f76pAIgKExQ5HtK
+	Ke13eeOTct8T7enD1XkVjYJUJauv20orv32yz+hOqKwXKvS/9dcDHsEQC0nGbKj41Ye6QjgbPS/
+	nP98jIDk=
+X-Google-Smtp-Source: AGHT+IGhrpb/YrnbELAph4aGtCS9VLS+UBEaIkjtSM/5yDy4tQaDR3ujgdcNMtWfN1WWrmsl1UJ1Vw==
+X-Received: by 2002:a05:600c:5008:b0:43c:ec28:d301 with SMTP id 5b1f17b1804b1-43f3a9aaf7fmr27769825e9.26.1744387138260;
+        Fri, 11 Apr 2025 08:58:58 -0700 (PDT)
+Received: from alex-x1.. (mob-194-230-148-227.cgn.sunrise.net. [194.230.148.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f23572d43sm86028075e9.31.2025.04.11.08.58.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Apr 2025 08:58:57 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v1 1/1] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: enable MICs LDO
+Date: Fri, 11 Apr 2025 17:54:21 +0200
+Message-ID: <20250411155852.4238-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j722s-main: Disable
- "serdes_wiz0" and "serdes_wiz1"
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <srk@ti.com>, <u-kumar1@ti.com>
-References: <20250408103606.3679505-1-s-vadapalli@ti.com>
- <20250408103606.3679505-3-s-vadapalli@ti.com>
- <7b2f69ad-48aa-4aa9-be0e-f0edae272bdb@ti.com>
- <475a1ac1-abb1-4c6e-b5b2-3f1a3399d5c4@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <475a1ac1-abb1-4c6e-b5b2-3f1a3399d5c4@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-Hi
+Particular device comes without headset combo jack, hence does not
+feature wcd codec IC. In such cases, DMICs are powered from vreg_l1b.
+Set regulator as always-on to enable microphones.
 
-On 4/11/2025 7:47 PM, Siddharth Vadapalli wrote:
-> On Fri, Apr 11, 2025 at 07:31:52PM +0530, Kumar, Udit wrote:
->
-> Hello Udit,
->
->> On 4/8/2025 4:06 PM, Siddharth Vadapalli wrote:
->>> Since "serdes0" and "serdes1" which are the sub-nodes of "serdes_wiz0"
->>> and "serdes_wiz1" respectively, have been disabled in the SoC file already,
->>> and, given that these sub-nodes will only be enabled in a board file if the
->>> board utilizes any of the SERDES instances and the peripherals bound to
->>> them, we end up in a situation where the board file doesn't explicitly
->>> disable "serdes_wiz0" and "serdes_wiz1". As a consequence of this, the
->>> following errors show up when booting Linux:
->>>
->>>     wiz bus@f0000:phy@f000000: probe with driver wiz failed with error -12
->>>     ...
->>>     wiz bus@f0000:phy@f010000: probe with driver wiz failed with error -12
->>>
->>> To not only fix the above, but also, in order to follow the convention of
->>> disabling device-tree nodes in the SoC file and enabling them in the board
->>> files for those boards which require them, disable "serdes_wiz0" and
->>> "serdes_wiz1" device-tree nodes.
->>>
->>> Fixes: 628e0a0118e6 ("arm64: dts: ti: k3-j722s-main: Add SERDES and PCIe support")
->>> Cc: stable@vger.kernel.org
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>
->>> v1 of this patch is at:
->>> https://lore.kernel.org/r/20250408060636.3413856-3-s-vadapalli@ti.com/
->>> Changes since v1:
->>> - Added "Fixes" tag and updated commit message accordingly.
->>>
->>> Regards,
->>> Siddharth.
->>>
->>>    arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 4 ++++
->>>    1 file changed, 4 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->>> index 6850f50530f1..beda9e40e931 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->>> @@ -32,6 +32,8 @@ serdes_wiz0: phy@f000000 {
->>>    		assigned-clocks = <&k3_clks 279 1>;
->>>    		assigned-clock-parents = <&k3_clks 279 5>;
->>> +		status = "disabled";
->>> +
->> Since you are disabling parent node.
->>
->> Do you still want to carry status = "disabled" in child nodes serdes0 and
->> serdes1.
-> I could drop it, but then the patches will look something like:
-> 1) Patch 1: Same as the first patch in this series
-> 2) Patch 2: Current patch + Remove status = "disabled" within serdes0/1
-> 3) Patch 3: Removed redundant status = "okay" within serdes0/1 in
->              k3-j722s-evm.dts
->
-> Updated Patch 2 and the new Patch 3 mentioned above aren't necessarily a
-> complete "Fix" and have other changes in addition to the "Fix". For that
-> reason, the changes associated with the updated patch 2 and the new patch 3
-> could be a separate series, unless you believe that they should go
-> together in the current series. Please let me know.
+Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-I don't see any use case where serdes_wiz0 is enabled and serdes0 is 
-disabled.
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index 35d97db9e1f6..4a35846b5947 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -269,6 +269,7 @@ vreg_l1b_1p8: ldo1 {
+ 			regulator-min-microvolt = <1800000>;
+ 			regulator-max-microvolt = <1800000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-always-on;
+ 		};
+ 
+ 		vreg_l2b_3p0: ldo2 {
+-- 
+2.45.2
 
-So your comment 3) is valid. you can take this clean up in other series
-
-
-For now
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
-
-> Regards,
-> Siddharth.
 
