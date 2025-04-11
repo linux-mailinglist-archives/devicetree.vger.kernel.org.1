@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-165937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A98DA85E89
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:18:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9A8A85E8A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:18:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B51EA3A5CEB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:15:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17CDF4676A6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B46131E2D;
-	Fri, 11 Apr 2025 13:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5451A190051;
+	Fri, 11 Apr 2025 13:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ezFwS2pD"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="fq/5lXZ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB6354723
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88574191F75
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744377331; cv=none; b=o1M4QaKDn72mQkboRftFIpum0Hby9sA33nMqNqUCqs3ANbB5KtLdQzFImzB7HUCSFK/CDrInEm/nNBYA1Ff9s3u155qfijapdhea6jlaPpwi5TiYqdvNHyEhI2fA2oaAazrRfDoULbE5ED77ePkp8MssXX/W09z6mrbjctHQFQw=
+	t=1744377354; cv=none; b=IDFccXDZ79Qtl6DTft4ioYPvmNWvK81Bw5Sz5dFzufAOBKniUFbJp2+Wq75XilBcEXbrpuJ6Q/kjZHX64IpYnGYkZdqetisjsuaFOqVKAiJjQqa2E9KA8mMTFfjt5a17hWYm78GDaGHGARBZqSpsDEVnARz5himyOVXzVDX300M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744377331; c=relaxed/simple;
-	bh=1swIy7rxFEZEpzVbtoG003Ve9GvpHlafYnb4ccnIdDA=;
+	s=arc-20240116; t=1744377354; c=relaxed/simple;
+	bh=11u6eTuG07TD8K0EqLQCl5SKsVXXOKBL7vzcLCZC0DE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=a4+3QA+zn5OB/hyw1c1xebI3NRA6IjZ+PtLiv5HhvwGeWkM+ypiFMGZP/VvoUezcM/hQJF00O54Bus2LgVZdUKJ+atLoqAurvjLH9X/vc16QXGsZevvHuQ4//h/E84wv4NZOc3MbiVBYRxF+fJ+11qdKYGYCWG45z73GqB1BnNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ezFwS2pD; arc=none smtp.client-ip=209.85.214.177
+	 MIME-Version; b=rFZL+Suo3bdTkeut9MpNTrM0LCEqYH79tP7O2awcLrFqcRuI9Weoxb/pkwqOLv3FhgxaRfnlSussvZQJk/qA5iPu/6XtCU/AeE/B0Q1j4Np6Ig2ydnZgl9bnSjhYcubAEec4PwKVzlYMAZXDGEtBYjD7ui+CSBCu053SsJIrTfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=fq/5lXZ2; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-227aaa82fafso15893995ad.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:15:29 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-227914acd20so24995035ad.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:15:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744377329; x=1744982129; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744377352; x=1744982152; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m/PuzfNro6+y5gilkjTT2xRfkKu3sAMB/YAOWIAOfRU=;
-        b=ezFwS2pDzDzWZIZh3ySYop5umZohIo3OIWo8pbiIKCMWM97e7RM/sd5lMOAXJhMapi
-         QPm4GaZ9ih4wi4wFxvizSsA/Wph/7Q/kESaUxUG23Wfl74/cVk8baBiJkFBMlCuH1rw2
-         nxGQoqGmBWzB8iv7w8l7veDd6ZGwR0eXB0sJVjRF5R/IQT3jOcyc/trvyhfezx91sqaG
-         F89IKrfv3A9iD8NyYXcJq7n7cS/2Vup3poDiqsu/bIZ0gCegMi+uH07KJZ/jojxRt/OD
-         NFArmOFxfyPa9QBIpmpjhrTDCL8AyywWO72UbtL0az5+XSHuFYYUqlFwjVrXIfWBGA9w
-         NPGg==
+        bh=wMxmUF14/8mW48hBEyGMdh9vHYA4geBoHm6tUaBcjb4=;
+        b=fq/5lXZ2QLA+mjGuxcM2i8ep89cyd1SEgdxFRWW1P1oVSc4unOIa2T5MzAITggSRCH
+         KSRzyHHIV5Fi9IDypOA8/RouAJLwKyY2y5HiN8K/B1DVIM/CLlIktCl6I23JB2L1W8aE
+         JyRcRL3w4d0ZOTgJsaRufmkeJIN5iOM0ePUS8ACi53+rMu1wvjavJMloZkw3b7b1cUdo
+         yloKQL2Ed9BvEEwfkh9JLYzOibD2PNgkyCv9Z3z/hAxQGoaElGGHvlI15+l0o/M6kxzx
+         hadHTkw3LZR089G1arDvUw6scOtNO31Burl50yMZyIW1SR/qHzdcKv2o2buwwpzRuQfS
+         Zbtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744377329; x=1744982129;
+        d=1e100.net; s=20230601; t=1744377352; x=1744982152;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m/PuzfNro6+y5gilkjTT2xRfkKu3sAMB/YAOWIAOfRU=;
-        b=QOic/5Ct1CtRAxtM4AFPNX951NPuYfw5d6qhHbJT45rDqJTkq4LzptpOJfx62STNBH
-         Ag6MEaAnfmkgX9y4UctBqYOnDkfhVesFxVGeXCsDdbYH+VjBEdSnC+jJBzhHTEeoTrus
-         LIGkRvMQdrXkKF2iWV7YXrL6pWmuMVojLAKlSDDIfFHj9niCiSgCrBjnwYVMrBpSm1BI
-         GKnBVuTKA4I3mh1+m21Vl5/MZ+mziQPLYaXAp6j2N52AKVxyO4qGMijrXl5KP4ef6Bqw
-         36sygoZFGVpnSa+7b7buU43AWO7mca3fhopVTIHPt0NHWDt9jvcXt9voJDXYIXZVQYw2
-         CJww==
-X-Forwarded-Encrypted: i=1; AJvYcCWKH49azb4grUcHoj9j5FQEpXP6ZO1hdDUCv5ufsSuqalUAkh8wrHywfPuBiGbl2lWEK3r4RAEUND9h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyx9MU1hxgTDls5D7vCIeMEIFmjCnLdmjLaEAwCnqnI4OM6PIIf
-	pOZWW+hw1YUCLlXGZK9t5wcjxGsP3RFByEunsgB8D35nyz6TEvzXjbRZG4jbcxQ=
-X-Gm-Gg: ASbGncs7ryvBS8x7Pkb9wELAHHdVg+W6kAQse9uttPXs4YxVYeL6K7pH6fup3Cuq7J4
-	iWgvcPfsTwRqf6jznfXsbVKbw4o5vKITlyxnjTK0UXp+lrKSN51dBoC8f8RwmI20iFGn589Rd+g
-	/wPgTbp1v/l015jlEYu7tr/+CD27YLaZXfjsnII7QQN+CHZf/1VRxB3Re5qFHZsxGfevfh4fJ4J
-	uvxOltx2vLjnTGMOMbUXJBNFzcxW18gb4rtymK5kB5emBWdw2CJyEfMI4CwfUSIb8ernQfKNDkC
-	qd59CXpyNJ5UEbT2aX17hSBm0L7hVUA=
-X-Google-Smtp-Source: AGHT+IHitAgPlQRhs5N+Pq3jnUrMsP733j1aryRrbpuBG1bREkPzJLptIcFojxxM3RnqxYYr08nnJw==
-X-Received: by 2002:a17:903:41c3:b0:223:60ce:2451 with SMTP id d9443c01a7336-22bea4adea2mr41309915ad.15.1744377329094;
-        Fri, 11 Apr 2025 06:15:29 -0700 (PDT)
+        bh=wMxmUF14/8mW48hBEyGMdh9vHYA4geBoHm6tUaBcjb4=;
+        b=lKro9gK3dQBUsHgBnK5AhQRJEiO7/xNzwMZRH8yphvbb3NK5/5u0wKOzLIq6sg64yi
+         KLbFVQLPt8wmbXgYGR1/hqABgkbJA/YSiuy/2rqh0/ILiXRb9L6XuGCimOqyXMDBYKvn
+         1UbK59NrZFa6lkAvlHE3qE/NSFd2E8OGPbBZUIxrBi4x2qJtTCHzxRLoeHfwY8Ca8TjC
+         G48OYTriDwZSU2tdPdvQY7ubs9TbWY8JpvWcwQgdnMEobqF4YW5kzNY7gYRILDgLdCM4
+         NAg+yJ9QYAr/zXTVjN9iR06c1UqnAcB2zEL8e2Y5VcJKkF7rxlDxteoaxQwk9lNXiSS9
+         nfOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUs8rlFYGV1N7T/3WzkPXt7Qks06fJN5UYUeKJJmkKkJcVkKgO6Dx5mF0HDZ1uE8B1M5gAYDMwO1iCa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhLJmHafmCSt+C3E7olcHx6/UCdiSmc2y9UdTMMr/pWfAykjVc
+	0UjS55A9utV9mI1vq2rhilXIE9oph/n1cKnY+AHpZ3uowOPoh1ZdjRqfUGddc+8=
+X-Gm-Gg: ASbGncukpRxWQwYo/9ILq1VgGy96GEykwP9jCfM+LpEAXWWdmgQkrJQD/HiMeHbojTY
+	Akt4ofp5bZT7h1++udlyhMTmPubhQQb8UJsz3sIfUm9lwo3viHvKvAHMs6a/sA5wAdL3FfcAO3m
+	5Ytj/k9HNZyBOehVlyeUkPamMwHOyx/C9BjxtRew6vmuMaNWdK28z1L/wdVzgaiFceiXRdsEzaN
+	tFSNJA5glau2lvB+do6BIy887C865X/Mo0VtBmfVkYkQ2naUxpkIQ4a8wVhfaD52MiKV3BIhWde
+	CNLHXC79EBK6S70Zu9TqrsqaaN6FvvI=
+X-Google-Smtp-Source: AGHT+IF38ohQyrU5BVLNrtAgCLmegI1hrqaZkZmcE1Ga97hpdeODRbY1vYS67kKK1t7zEi3qN8rF9A==
+X-Received: by 2002:a17:903:1b2f:b0:221:751f:cfbe with SMTP id d9443c01a7336-22bea0abfecmr45250655ad.19.1744377352063;
+        Fri, 11 Apr 2025 06:15:52 -0700 (PDT)
 Received: from localhost.localdomain ([2a12:a305:4::308a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c95cc6sm48245005ad.122.2025.04.11.06.15.21
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c95cc6sm48245005ad.122.2025.04.11.06.15.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 06:15:28 -0700 (PDT)
+        Fri, 11 Apr 2025 06:15:51 -0700 (PDT)
 From: Guodong Xu <guodong@riscstar.com>
 To: ukleinek@kernel.org,
 	robh@kernel.org,
@@ -97,9 +97,9 @@ Cc: elder@riscstar.com,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev
-Subject: [PATCH 3/9] dt-bindings: pwm: marvell,pxa: add support to spacemit K1
-Date: Fri, 11 Apr 2025 21:14:17 +0800
-Message-ID: <20250411131423.3802611-4-guodong@riscstar.com>
+Subject: [PATCH 4/9] pwm: pxa: add support for spacemit K1
+Date: Fri, 11 Apr 2025 21:14:18 +0800
+Message-ID: <20250411131423.3802611-5-guodong@riscstar.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250411131423.3802611-1-guodong@riscstar.com>
 References: <20250411131423.3802611-1-guodong@riscstar.com>
@@ -111,26 +111,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add "spacemit,k1-pwm" as a compatible string to support the PWM
-controller on the SpacemiT K1 platform.
+Add SpacemiT K1 support to the PWM PXA driver by extending the
+of_match table with the appropriate compatible string.
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
- Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/pwm/pwm-pxa.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-index 9640d4b627c2..1e3cabf6a89a 100644
---- a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-@@ -19,6 +19,7 @@ properties:
-       - marvell,pxa270-pwm
-       - marvell,pxa168-pwm
-       - marvell,pxa910-pwm
-+      - spacemit,k1-pwm
- 
-   reg:
-     # Length should be 0x10
+diff --git a/drivers/pwm/pwm-pxa.c b/drivers/pwm/pwm-pxa.c
+index dd9c6af0f672..3835eba824b9 100644
+--- a/drivers/pwm/pwm-pxa.c
++++ b/drivers/pwm/pwm-pxa.c
+@@ -37,6 +37,7 @@ static const struct platform_device_id pwm_id_table[] = {
+ 	{ "pxa27x-pwm", HAS_SECONDARY_PWM },
+ 	{ "pxa168-pwm", 0 },
+ 	{ "pxa910-pwm", 0 },
++	{ "spacemit-k1-pwm", 0 },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(platform, pwm_id_table);
+@@ -149,6 +150,7 @@ static const struct of_device_id pwm_of_match[] = {
+ 	{ .compatible = "marvell,pxa270-pwm", .data = &pwm_id_table[0]},
+ 	{ .compatible = "marvell,pxa168-pwm", .data = &pwm_id_table[0]},
+ 	{ .compatible = "marvell,pxa910-pwm", .data = &pwm_id_table[0]},
++	{ .compatible = "spacemit,k1-pwm",    .data = &pwm_id_table[0]},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, pwm_of_match);
 -- 
 2.43.0
 
