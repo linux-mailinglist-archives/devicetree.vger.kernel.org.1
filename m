@@ -1,123 +1,129 @@
-Return-Path: <devicetree+bounces-165834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4956A85A46
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:40:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B73A85A74
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABB0C7AB43B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:38:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9DFE8C231E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C59F238C2A;
-	Fri, 11 Apr 2025 10:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EC2221276;
+	Fri, 11 Apr 2025 10:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="CYvwwGY8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kNUCJnx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1DC278E67
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 10:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22454278E41;
+	Fri, 11 Apr 2025 10:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744367910; cv=none; b=oE9h4p3M9nBCdksUiYqQK9DWc5+jjSlyNfeKleD9DTE2kTlNUHjbV1ZGCEDpR8arBfRtPQbDoB+ploQwJ1nCXdGH+mN64eTPHe8t84d3NeDB7928cfJo+scnCBREGlwLkq/lJHjt75v//ggtJsaRC9evgv56OvLXTGabZ2TssdM=
+	t=1744368728; cv=none; b=kqv9uOYXE2Gjz3A3UbIhtb4ctDIzvay3PhRzD6PsysY70ghsTJYacImFjWHvY2fnWAlXBAUowokvjI0CwFD/9cW0qnPWxv4sItBA+BF+4xzLtzZ260VDO5hrGI20bYw3SNwndgvY3WVJXqnda0Wem2EPuaUEOOfOpr08tNCg8AA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744367910; c=relaxed/simple;
-	bh=LSFvTnNTsbpJ9swbTsXsXWuYKH66fTIbQ3NKlbX2TmI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pUuAsQzVmTa1U+3AGEGtFxBHQuSPOcmII++Siao6RQZFBBQm/x/p73pa3FjacH1FBSV2UB9MeQXX9bG08j/I/pHsmKnyhuN982reUk58AdttTfwDu1PJNZR5iUsi3er1UQyw3vodEHoJGbKPasmit3/S5GS540idnl+7XjEhBK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=CYvwwGY8; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=LSFv
-	TnNTsbpJ9swbTsXsXWuYKH66fTIbQ3NKlbX2TmI=; b=CYvwwGY8fapqE3k4T6vJ
-	kfy0MIemphfYiUMP85LhP+Rzr8q+Gf7bIuCDSv7kBoGT/eVwUq9+3AISYnn57lxB
-	/owSIxAggWXoLxP3lK61qVx1ZxIgQTvnasVDwo8nh7G0BDPEQx7j5wmGBV5RXyTF
-	QuE8zhpMpbW2Leg0gf1WRg/W55ku8Qd4XQmHxvEgtQD1IFTYM21lqBgVNuphPHm4
-	WRRkh4DK3RjyEPj48JQNIREGRsw8qcM6Fo03jExRpAMpkm4vJ2hG1ZvJR3YBeNWl
-	jlbJMm4hIjXlG1CH6hiTGd2RxJd2pAiwC62YnU2RAMOfqMz/NpqlP0wLqFY2kMzC
-	Sw==
-Received: (qmail 1257912 invoked from network); 11 Apr 2025 12:38:26 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 12:38:26 +0200
-X-UD-Smtp-Session: l3s3148p1@bcZkTX4yvsYujnsS
-Date: Fri, 11 Apr 2025 12:38:25 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: Re: [PATCH v4] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-Message-ID: <Z_jxIV1Oavm2J2wq@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-References: <20250324-rzn1d400-eb-v4-1-d7ebbbad1918@bootlin.com>
- <CAMuHMdVM66ni0opbUopt6mCPshoQzO5GPEUZDji39CxtkoFLSA@mail.gmail.com>
- <CAMuHMdVs07oLC=rch8qvgdaLZ9oyPah4UNaXqteAJPpK1G6POg@mail.gmail.com>
+	s=arc-20240116; t=1744368728; c=relaxed/simple;
+	bh=96btQmYImZfAOI+fu8dFlxT8V0oTt4TvrBS2WM70IP8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pix20dSXmKGjuGlowAwd8YlqiMm5r9k3WPiRvlkRY54tUFZp61udb1AYPVO/p/dWTV6McXxvv4ZKZKYWIbEFJNpSpqCEQCh8fZ7crk0+gJWil5k5U/jExH6K+qS9wkwIsgGJiCD1WqYmG3yg6d5zKOJ9aslG2DnQl7a89QUC8q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kNUCJnx4; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BApvvK2104737
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Apr 2025 05:51:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744368717;
+	bh=ufBPzefqQfv5obE5Pv0KCKQtrt8Mm1vDWW/7ZeaZFxY=;
+	h=From:To:CC:Subject:Date;
+	b=kNUCJnx4JfICJMR5w4JvRK9nedhjnW+I4ofOvhrTD8CQt+x+v9Bu28ZLXhWFUlG+L
+	 FPAC+snIyKZQQmp/22AXkeHoIXPeAfWvBOOPQLJ1q5kFlmlgKxRsQzvDwwgVIc/Q2S
+	 cS7EVWvp4mHp/3K1JQaSJiwGiZxI+3HKAofWCN04=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BApv45075026
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Apr 2025 05:51:57 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Apr 2025 05:51:56 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Apr 2025 05:51:56 -0500
+Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.72.182])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BApts9029842;
+	Fri, 11 Apr 2025 05:51:56 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <u-kumar1@ti.com>, <devarsht@ti.com>,
+        <linux-kernel@vger.kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
+Subject: [PATCH 0/7] Add DSI display support for TI's Jacinto platforms
+Date: Fri, 11 Apr 2025 16:21:48 +0530
+Message-ID: <20250411105155.303657-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SDJIJ+gmpVbSOkxP"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVs07oLC=rch8qvgdaLZ9oyPah4UNaXqteAJPpK1G6POg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hello All,
 
---SDJIJ+gmpVbSOkxP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This series adds the dts support to enable DSI on 3 platforms for TI SoCs:
+- J784S4-EVM
+- J721S2-EVM
+- AM68-SK
 
+This series *depends* upon a couple of driver series[0][1]and a config
+patch[2] that enables CDNS_DSI and CDNS_DPHY.
 
-> I will fix these while folding in "[PATCH] ARM: dts: renesas:
-> r9a06g032-rzn1d400-eb: correct LAN LED nodes" and queuing in
-> renesas-devel for v6.16.
+[0]: <https://lore.kernel.org/all/20250402-cdns-dsi-impro-v2-0-4a093eaa5e27@ideasonboard.com/>
+This series adds cdns-dsi-core fixes
 
-Thanks, Geert!
+[1]: <https://lore.kernel.org/all/20250411092307.238398-1-j-choudhary@ti.com/>
+This patch adds the necessary DSI flags that are used in cdns-dsi-core
+driver which are propagated from sn65dsi86 bridge.
 
+[2]: <https://lore.kernel.org/all/20250411095043.272488-1-j-choudhary@ti.com/>
+This patch enables the required configs for DSI.
 
---SDJIJ+gmpVbSOkxP
-Content-Type: application/pgp-signature; name="signature.asc"
+I have locally tested using kmstest utility on all 3 platforms.
 
------BEGIN PGP SIGNATURE-----
+NOTE: For higher resolutions, we need bigger CMA region.
+But for validation, the default value is enough.
+I am posting another series to add CMA region to Jacinto platforms
+similar to Sitara family soon:
+<https://lore.kernel.org/all/20240613150902.2173582-1-devarsht@ti.com/>
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf48SEACgkQFA3kzBSg
-KbakQA//dLcHMf1flK8numBv8QKSOf36e8peyc6be9wP6VshVho3MkJR+4UbKHiU
-x52tROipe5rZ7+QlM23WSXU9v8PCt55BeS9OTlIiHOvb11xQeZk/dmNejd2WZVGD
-UoDvu324Ae3iQM8mFA9b9hKDVbNEYYSZTIluv7avhPGG122J2IhTvg+PPaS0ig9g
-MWGtysg329sboMLQrMjE1cAiXefhFvyPWU4TzXHGottNYK2ArFQSb6QmTOS4WdMs
-se9666q5hKri4lZMnnoAolpQufvhuwufKB7VHQny0CGg/NtEWZcozeUcFFMvj6UD
-Zpqw3vxOOdGrGCbY65aONrUWmJu4JeswdNusDc2yAAelh+jrwEJWs4Dpb1a9cZf0
-OINJxDpBtLO+D+PtJ7pD0+l6/21t4JzX6VqtGh/5rxWdxNN1hjP2C874ybbNbXjo
-uiTp6+924TYTy0c/qFnYidkBZpnc98+O5y0Ecbw7Bf6eu8eirVPEgRnscoUVF+cE
-FINXF/ZQwzWB9qPzq1feVKnx2hbhWZYCsv6In2t6nE0AsAyAV11303q3RHAvXFja
-YqYhusTbDnZTBAT9hC6ZOhbBBQwtOFv6mO0FmUz9zJGeqsDOf8/xVj/qBVtxXgWA
-/f+ZwBFqWYgnxEbsysHmCqrPrg9KSjWadyFxchWd5k6TIT3AONA=
-=shHn
------END PGP SIGNATURE-----
+Jayesh Choudhary (5):
+  arm64: dts: ti: k3-j784s4-j742s2-main-common: add DSI & DSI PHY
+  arm64: dts: ti: k3-j784s4-j742s2-evm-common: Enable DisplayPort-1
+  arm64: dts: ti: k3-j721s2-common-proc-board: Add main_i2c4 instance
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable DisplayPort-1
+  arm64: dts: ti: k3-am68-sk: Enable DSI on DisplayPort-0
 
---SDJIJ+gmpVbSOkxP--
+Rahul T R (2):
+  arm64: dts: ti: k3-j721s2-main: add DSI & DSI PHY
+  arm64: dts: ti: k3-j721s2-som-p0: add DSI to eDP
+
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     |  96 ++++++++++++++
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 116 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  37 ++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  52 ++++++++
+ .../dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 117 +++++++++++++++++-
+ .../dts/ti/k3-j784s4-j742s2-main-common.dtsi  |  37 ++++++
+ 6 files changed, 454 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
