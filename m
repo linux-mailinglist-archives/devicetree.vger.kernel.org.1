@@ -1,168 +1,165 @@
-Return-Path: <devicetree+bounces-166118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F9E2A865A8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:42:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A635A865CB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:50:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B55B61B87A6C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:42:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309473B25BD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2913A269820;
-	Fri, 11 Apr 2025 18:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C8226FA7A;
+	Fri, 11 Apr 2025 18:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="b3gmgPBj"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="JmD3z4VB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2218A2690F0;
-	Fri, 11 Apr 2025 18:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD72268C7A
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 18:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744396911; cv=none; b=FpydZ459t7Ahbn4DxnpctBVLM/KQbAPbe7A0fxwXB8I7pTaenX1qfbeQpAROsTf9pwupuEGhc57/sJjXREjCj9g0NFuMNYh/4Bp90Nv8I6rqp2J596BVq7KKIvPCsHZ3SrlNwGVK1z0+k4zerzFMeXV31V6Hp3tLpwhzMy3p2lM=
+	t=1744397370; cv=none; b=raOEoI9J5zwwizhJCkSzdS2Ie7q/yQg3OE2nBxxhf8/LuyoWlGBrB1IyogcIeu861R8xmoy9gxlg/cUW6/d3ZhoADjAyrQTQ2efq1U+IjmsVSQv/Vx7hlG3wYlprR2236cEYom2aRZackh1U/z+MGQnPnNiIx9zRSJ1CkGB/hrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744396911; c=relaxed/simple;
-	bh=1iI4AfPrlPKUrGY6yeu/1zp9gMl5LZUj8I/yLIFJQZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MLOILKuppf+8tHReN3PiaMIAjy0rmOk4lCvg9mmMn1XM78A/G+weWQdASdYfsArESngheodF53fecVVY794+FuOL0tfdLVX2NKx3RAwHGl/ED3dngHimKA6gvJ6mj8d+1UoYQUICu6TavrL/6hBMg0ZFies9xF3TNCGZgBprP90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=b3gmgPBj; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744396909; x=1775932909;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1iI4AfPrlPKUrGY6yeu/1zp9gMl5LZUj8I/yLIFJQZk=;
-  b=b3gmgPBjzm7JSGgp//U02k+WH6FpxneP4+wnlHuzYcjJLEm1L3Hb5S7b
-   B57d77Lwlxrj4tOcQ9CC98cZzFsHJXRtIGrr/A1fnzatEExasdwfdtZD6
-   3n8BUoEV+Q2mccfw0WcMqzjzn5oZ46U+cMQq3t+Cte2mXa9diJ4m9vguc
-   LeCBmeJCXnYEIqJNSiJzBkZTG04afDbZsL9jMnysUpd+uhZP+9q0moGdN
-   6mFT/aRW2eGmr/rUjDBQoVyod4mFvXNKVa4eAEaAGDTgB3S3GDnGqn/hs
-   lAFzVJUa8rqe2q3XRC5/064MtuZPAjEuYEmFiPs9al5knaMO5Bc1k8NkD
-   A==;
-X-CSE-ConnectionGUID: MJO0Ehl1RHuT70iYESW5YQ==
-X-CSE-MsgGUID: m2V9Yo7jQQW4PFH8xLRoDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="63500548"
-X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; 
-   d="scan'208";a="63500548"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2025 11:41:48 -0700
-X-CSE-ConnectionGUID: pJSGaWLJTF2fqMRCROz6IQ==
-X-CSE-MsgGUID: nmZqz5r4RXGz8z9j0H9ajw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,205,1739865600"; 
-   d="scan'208";a="129124557"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 11 Apr 2025 11:41:43 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u3JJt-000BJc-0s;
-	Fri, 11 Apr 2025 18:41:41 +0000
-Date: Sat, 12 Apr 2025 02:40:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Praveen Talari <quic_ptalari@quicinc.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, psodagud@quicinc.com, djaggi@quicinc.com,
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
-	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
-	quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v1 4/9] soc: qcom: geni-se: Enable QUPs on SA8255p
- Qualcomm platforms
-Message-ID: <202504120240.SMbLkgHv-lkp@intel.com>
-References: <20250410174010.31588-5-quic_ptalari@quicinc.com>
+	s=arc-20240116; t=1744397370; c=relaxed/simple;
+	bh=Hl26pqtFHZFSG+1hpOMXgwzxe8ApHPTC5HGMlZ94Xz0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cYBnvu9dZvJ6p4hsuXnoqLeQDanmqrQ4y1Ky+HPmdR+G9/WOuCmdVMEcSWJhW0WzxBVaek70E+ZbY9G7HBE4WhckBXi8QlU6PvJglYl4F44yyT54QV0/e9IcGQ8S6FUB26HK+y52OoA5Ihwbli73mP5i7fF8I9ASAXQCcc6AVLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=JmD3z4VB; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-af91fc1fa90so2192029a12.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:49:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1744397367; x=1745002167; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2d/tTun9JFnIkfP1YqxhBUY8akZ/H8pYOxt1P4JGzvQ=;
+        b=JmD3z4VBxTU6eDPDWvY/0Zxmqk/hb8oCMYf8nE9Soa4Vlvz+MRS+Z9JsLk50IBWGfb
+         4C3qjXCFgSAJAFreMdgd4x63Ypp+bh44B4vnNf03FXXijTxIHVE8O08cnqxK8dUI8ybs
+         hTscUVoK6rV4kn72Tb7TFcfLi4ClDU1/xFToJIejo5OvFPsQNRFfWA7qlPdGCL4KXIBZ
+         ErBA37+3FtyXsE09Lk1IkzJreTEZXUVp1Iz+q1uDojDP7Mjpl1AdWIzSldE9P4pityNb
+         91AGl6iAOEFndRQFydhpSaOxW3nEft/VJN9DjMbF/umuQUvdQj7xoh04e2KAH/hgX2IB
+         U21Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744397367; x=1745002167;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2d/tTun9JFnIkfP1YqxhBUY8akZ/H8pYOxt1P4JGzvQ=;
+        b=wnIXTxR/+1YrUjHDUPOBk100jFW6Vptx3CkCjSZjRdIxM5O9CAAkyxCmO+JglL2D4l
+         /G9x/fLMrm4/kwsB0dSMbtV7SvllN4WEBUqt0MRYb/kvn/PVAiS79qC/jPXYWMdHOJBm
+         /zuVJkxaPO46ok5n88aSbzED1xU8DjGQvweH6YVNkZwOjkFz6FNWrHyCua3XQkL7CNiJ
+         QNmUxRQL97IZrystPGhWbSsj5fjsWx68I92htvYevPoUTcs7o25lLQW983qIRrCovDfp
+         f5z8csdKnotY2RG2n/BVfB2+n1kBAcIvp1uyPwTi/VzJkxO+wmuXwRB2xzO4WIl2iQrY
+         YtHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWXQNi1qCyhRGKvunckV7gDkZCGS8VanXD89ZHuuDb54UBq5eKJbRQFPB8p5gxX4cZenz7dLe8DlocJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKfB9PD/+PIs0/BpFSZYp5JCZsj2Aljm9K8LDO0dA6Ba0bVW61
+	dWclCUQW99RnDamkUW985jNqoO9gEbFo7Dchq19SWxaLzocfLAtAnhXQllqGiA==
+X-Gm-Gg: ASbGnctX64LRbgR75v8SToVRAkt/BFNoK74MLRCQzMmJzfrjO+wH0xHbdnwwlbwNTti
+	pdZ975hukmKbGt+xLc+UTTYsSb6upeDAl5excU/IGmWzRHI49PFdzP+R6B1Un0W12FEhhLO3DSH
+	BNmYaAnJs6eO3ROAOLn0awhOP2hiGrf0oiGujkyZnpJ83X0LtUPW2p8gpNAGby80pfFQAQvXoSc
+	b9DLexmhoYFBr1i4+mi5+0yUi8iO/a9e6a543DHWeh6Wmo7fXB7oha3OEWyjsz1w+NekAanDbS5
+	kLyY+KyYqzRqYNz40q1w3UtlZsnJcucc1axgKXWEmWaUhf0=
+X-Google-Smtp-Source: AGHT+IEhPndhi3CdSc7UE8aGaWa69pXyv+/ous+jXD14lRn9STbgK4FviyVEW9pBkxb0zitBaRkPDA==
+X-Received: by 2002:a17:90b:2d87:b0:2fe:b8b9:5aa6 with SMTP id 98e67ed59e1d1-3082367ef21mr5601706a91.31.1744397367168;
+        Fri, 11 Apr 2025 11:49:27 -0700 (PDT)
+Received: from [172.16.118.31] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-306df2fae34sm6047853a91.39.2025.04.11.11.49.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 11:49:26 -0700 (PDT)
+Message-ID: <d78e60f2-e2e5-4e6a-9724-68cc0481fd77@beagleboard.org>
+Date: Sat, 12 Apr 2025 00:19:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250410174010.31588-5-quic_ptalari@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] Add new `export-symbols` node
+To: Andrew Davis <afd@ti.com>, Jason Kridner <jkridner@beagleboard.org>,
+ Deepak Khatri <lorforlinux@beagleboard.org>,
+ Robert Nelson <robertcnelson@beagleboard.org>, nenad.marinkovic@mikroe.com,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Robert Nelson <robertcnelson@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>,
+ David Gibson <david@gibson.dropbear.id.au>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Grant Likely <grant.likely@secretlab.ca>, Dhruva Gole <d-gole@ti.com>
+Cc: devicetree-spec@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
+ <0d25b3d4-7735-4e35-8553-d6e64b8ad8f7@ti.com>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <0d25b3d4-7735-4e35-8553-d6e64b8ad8f7@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Praveen,
+On 4/11/25 23:09, Andrew Davis wrote:
 
-kernel test robot noticed the following build warnings:
+> On 4/11/25 3:00 AM, Ayush Singh wrote:
+>> `export-symbols` is designed to be a local replacement of global
+>> `__symbols__` allowing nodes to define aliases to nodes in a tree, which
+>> will take precedence over the aliases defined in the global 
+>> `__symbols__`.
+>>
+>> Having a way to allow node local aliases helps in usecases such as
+>> connectors and addon-boards, by allowing decoupling of
+>> overlays/devicetree nodes of addon-board from the base connector.
+>>
+>> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+>> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+>> ---
+>> This patch series follows the initial RFC [9] sent a few weeks ago. I
+>> will be reiterating the RFC here for anyone who might be seeing this the
+>> first time, since there was not much feedback in that thread.
+>>
+>
+> I think this is a useful tool in the effort to build a complete 
+> addon-board
+> solution. But I'm still missing how it all fits together, do you have 
+> a real
+> working overlay making use of this somewhere I could take a look at? 
+> Maybe
+> an overlay for one of the addon-boards you list below (one of the 
+> BeagleCapes
+> for instance).
+>
+> Andrew
 
-[auto build test WARNING on tty/tty-testing]
-[also build test WARNING on tty/tty-next tty/tty-linus robh/for-next driver-core/driver-core-testing driver-core/driver-core-next driver-core/driver-core-linus usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.15-rc1 next-20250411]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/opp-add-new-helper-API-dev_pm_opp_set_level/20250411-015310
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20250410174010.31588-5-quic_ptalari%40quicinc.com
-patch subject: [PATCH v1 4/9] soc: qcom: geni-se: Enable QUPs on SA8255p Qualcomm platforms
-config: arc-randconfig-001-20250412 (https://download.01.org/0day-ci/archive/20250412/202504120240.SMbLkgHv-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250412/202504120240.SMbLkgHv-lkp@intel.com/reproduce)
+Well, I do not have a completely working for MikroBUS right now, but I 
+think Herve Codina and Luca Ceresolli should have some working overlays 
+for their addon-board setups, so maybe they can link those here. I have 
+mostly been working on devicetree side of things to make it more general 
+devicetree thing rather just a Linux thing (Zephyr also needs MikroBUS 
+support). Additionally, I have been trying to get the support in base 
+fdtoverlay, so that static use-cases are also covered.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504120240.SMbLkgHv-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/qcom/qcom-geni-se.c: In function 'geni_se_probe':
->> drivers/soc/qcom/qcom-geni-se.c:953:1: warning: label 'out' defined but not used [-Wunused-label]
-     953 | out:
-         | ^~~
---
->> drivers/soc/qcom/qcom-geni-se.c:110: warning: Function parameter or struct member 'geni_se_rsc_init' not described in 'geni_se_desc'
+I will try posting a MikroBUS patch based on the kernel export-symbols 
+support patches [0] soon to maybe provide a better picture regarding how 
+all the pieces fit together. The spec patch series was supposed to be 
+for getting initial feedback regarding this particular direction, but I 
+guess to get real feedback, I need some more concrete prototypes.
 
 
-vim +/out +953 drivers/soc/qcom/qcom-geni-se.c
+Best Regards,
 
-   928	
-   929	static int geni_se_probe(struct platform_device *pdev)
-   930	{
-   931		struct device *dev = &pdev->dev;
-   932		struct geni_wrapper *wrapper;
-   933		const struct geni_se_desc *desc;
-   934		int ret;
-   935	
-   936		wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
-   937		if (!wrapper)
-   938			return -ENOMEM;
-   939	
-   940		wrapper->dev = dev;
-   941		wrapper->base = devm_platform_ioremap_resource(pdev, 0);
-   942		if (IS_ERR(wrapper->base))
-   943			return PTR_ERR(wrapper->base);
-   944	
-   945		desc = device_get_match_data(&pdev->dev);
-   946	
-   947		if (!has_acpi_companion(&pdev->dev) && desc->geni_se_rsc_init) {
-   948			ret = desc->geni_se_rsc_init(wrapper, desc);
-   949			if (ret)
-   950				return -EINVAL;
-   951		}
-   952	
- > 953	out:
-   954		dev_set_drvdata(dev, wrapper);
-   955		dev_dbg(dev, "GENI SE Driver probed\n");
-   956		return devm_of_platform_populate(dev);
-   957	}
-   958	
+Ayush Singh
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+[0]: 
+https://lore.kernel.org/all/20241209151830.95723-1-herve.codina@bootlin.com/
+
 
