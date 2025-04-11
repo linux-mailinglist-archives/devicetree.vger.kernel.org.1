@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-166166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F235A867CE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 23:00:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4367A8680C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 23:16:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D0E83B6112
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:59:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 984FC16A90B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD674290BBE;
-	Fri, 11 Apr 2025 20:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433D9290BBA;
+	Fri, 11 Apr 2025 21:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o9G11EzI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qm2xcQ3t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF9E28F93B;
-	Fri, 11 Apr 2025 20:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E93284B33;
+	Fri, 11 Apr 2025 21:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744405175; cv=none; b=horVmRzUpeJNI9kK8gHbh84dZiFxDT4Iiha/SK1Un4HfOWwhfeqr8mRsZuJJ6QTriIlv6IDEbwuwi1W+vcD4sxHQy/c8HXXjwhWWWGQzSVVImOSTI1V4F5rcJK91432uARlUfUu/uYuHd/T3wPsH8SZONqu8K6Kg92NVApSiY6U=
+	t=1744406210; cv=none; b=iXzWfjZvLeQ/zhszLC1erULF4Xi/znPS9ESWBAHd4U4NBZrpuEOOPxUDD6kjZZk439xmHIs0mbQg2eBU+spduzqPXX4X6rKsTF5DYmnelRrafVQV5TdD7AtcKoPwQpJvt//nEiwGeeazwbZ7IwSuJXUjXLfpEPzclPhiOwWl5lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744405175; c=relaxed/simple;
-	bh=UFmG9Cb1iuD+WB2whCArKkcNXxcT0k0VHxP1bG2JaYY=;
+	s=arc-20240116; t=1744406210; c=relaxed/simple;
+	bh=k1nWT9Gl30GmoaxSQzyEt6FB9frMtta2Qaej68P2cxw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OzvH7r0AQy8tKgrJvtPPsxdkW+cZKADQZa20KEyabN/TAL+KRWTVZF4g6JrF4OaxjA/AkF+6Jw+jD6ifsKQWDvfcOeCmDImGGekCoeQpVJKpwgSLHvtEQjHxWk2c2CS1yYNSzVvh5D2VM5tr9f9ZeGGFEK+FaM9jl+z/MW408Jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o9G11EzI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6E6C4CEE2;
-	Fri, 11 Apr 2025 20:59:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZbhP8N+cZwhFjFaekaBFkQD2FXj3B1fWshpswwPDH+CXkfGDyB9gUfc1GCdeSkxBo9v6759G//XuhYLsdHpq/GUsDXjWNk285ooRp8J4kgwgePHOTQjGMTqiJB5e1l8cNnVW81L2bvtOI5VtXA2bTve/1eNsE1q4N2rB61qrXxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qm2xcQ3t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39A45C4CEE2;
+	Fri, 11 Apr 2025 21:16:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744405175;
-	bh=UFmG9Cb1iuD+WB2whCArKkcNXxcT0k0VHxP1bG2JaYY=;
+	s=k20201202; t=1744406209;
+	bh=k1nWT9Gl30GmoaxSQzyEt6FB9frMtta2Qaej68P2cxw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o9G11EzIoCVarbi6i+RjudnG5oXmixtJI/CJeQQDsxcnNiot3PCmoUX0eVVxpu1aS
-	 gXbSBVNlUbBHZEI+zJ2XgIUsxvdDSCq0A3h6z487HHPwMW49ox1Sxave9q8GHXC2Yu
-	 QoDZa3SBpexx4TbpzNMLUEcmesPpseo4Y34HMBnVSvteHFt7O16EHisY+N4S3TZ/kB
-	 PDd2ZEIUpTBt8kz0nS8xFI9YpeGmuR7ty9ogLLu51gloILxGUBSXmrbB21MbAp960b
-	 qPMuP4TFGiowltyyYfvMyOTiQiIHbiJh5slsEiVqXrIeDYso8KixXXdFpXAdngscZi
-	 tg7pOiv1Yjy5w==
-Date: Fri, 11 Apr 2025 15:59:33 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	quic_kkumarcs@quicinc.com, linux-clk@vger.kernel.org,
-	quic_suruchia@quicinc.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_linchen@quicinc.com,
-	quic_leiwei@quicinc.com, Konrad Dybcio <konradybcio@kernel.org>,
-	quic_pavir@quicinc.com, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL support for
- IPQ5424 SoC
-Message-ID: <174440517329.3991355.13202379998472873935.robh@kernel.org>
-References: <20250411-qcom_ipq5424_cmnpll-v2-0-7252c192e078@quicinc.com>
- <20250411-qcom_ipq5424_cmnpll-v2-1-7252c192e078@quicinc.com>
+	b=Qm2xcQ3tHN2SVRQ6lazMXz307MQQs98FPsuztnmvnGd/VQnwnTNnC2w1bA2awKb/h
+	 cpq6cXmU4yWyHAK4v2+rF56mUyGByboScps4vXo9RYgv4wGzHfAVaoDcSQ8seP218K
+	 h90vL/JxV2Zqfaz7zmtvhTicTTwrcVKI/RXmf4LJBWtKsdW0CohEYhJhT/kVjmpSph
+	 2A/FjJSzyiXAYEsPamkndGW51Wbe1Cb9peIfLMfg+EDyC1QsoFC/o4g20bycZs/6U2
+	 xoKZEYKKbQtcSweMhV+K1/8dPoG/2p8YC+NIj6RPmr1rz+ZmWBua6tKz228yFnuIZh
+	 TeMM2LrbnvgtQ==
+Date: Fri, 11 Apr 2025 16:16:47 -0500
+From: Rob Herring <robh@kernel.org>
+To: Remi Buisson <remi.buisson@tdk.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 7/8] dt-bindings: iio: imu: Add inv_icm45600 documentation
+Message-ID: <20250411211647.GA4049879-robh@kernel.org>
+References: <20250411-add_newport_driver-v1-0-15082160b019@tdk.com>
+ <20250411-add_newport_driver-v1-7-15082160b019@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +63,172 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250411-qcom_ipq5424_cmnpll-v2-1-7252c192e078@quicinc.com>
+In-Reply-To: <20250411-add_newport_driver-v1-7-15082160b019@tdk.com>
 
+On Fri, Apr 11, 2025 at 01:28:39PM +0000, Remi Buisson wrote:
+> Document the ICM-456xxx devices devicetree bindings.
+> Describe custom sysfs API for controlling the power modes.
 
-On Fri, 11 Apr 2025 20:58:10 +0800, Luo Jie wrote:
-> The CMN PLL block in the IPQ5424 SoC takes 48 MHZ as the reference
-> input clock. The output clocks are the same as IPQ9574 SoC, except
-> for the clock rate of output clocks to PPE and NSS.
+You can drop 'documentation' from the subject.
+
 > 
-> Also, add the new header file to export the CMN PLL output clock
-> specifiers for IPQ5424 SoC.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
 > ---
->  .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       |  1 +
->  include/dt-bindings/clock/qcom,ipq5424-cmn-pll.h   | 22 ++++++++++++++++++++++
->  2 files changed, 23 insertions(+)
+>  .../ABI/testing/sysfs-bus-iio-inv_icm45600         |  37 ++++++
+
+This goes in the patch adding the sysfs files.
+
+>  .../bindings/iio/imu/invensense,icm45600.yaml      | 136 +++++++++++++++++++++
+>  2 files changed, 173 insertions(+)
+
+
+> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm45600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm45600.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..51455f0b5cb90abdd823f154e45891ad364296e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm45600.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/invensense,icm45600.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: InvenSense ICM-456xx Inertial Measurement Unit
+> +
+> +maintainers:
+> +  - Remi Buisson <remi.buisson@tdk.com>
+> +
+> +description: |
+> +  6-axis MotionTracking device that combines a 3-axis gyroscope and a 3-axis
+> +  accelerometer.
+> +
+> +  It has a configurable host interface that supports I3C, I2C and SPI serial
+> +  communication, features up to 8kB FIFO and 2 programmable interrupts with
+> +  ultra-low-power wake-on-motion support to minimize system power consumption.
+> +
+> +  Other industry-leading features include InvenSense on-chip APEX Motion
+> +  Processing engine for gesture recognition, activity classification, and
+> +  pedometer, along with programmable digital filters, and an embedded
+> +  temperature sensor.
+> +
+> +  https://invensense.tdk.com/wp-content/uploads/documentation/DS-000576_ICM-45605.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - invensense,icm45605
+> +      - invensense,icm45686
+> +      - invensense,icm45688p
+> +      - invensense,icm45608
+> +      - invensense,icm45634
+> +      - invensense,icm45689
+> +      - invensense,icm45606
+> +      - invensense,icm45687
+
+sort in alpanumeric order
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> +    description: Choose chip interrupt pin to be used as interrupt input.
+> +
+> +  drive-open-drain:
+> +    type: boolean
+> +
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor
+> +
+> +  vddio-supply:
+> +    description: Regulator that provides power to the bus
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        icm45605@68 {
+> +            compatible = "invensense,icm45605";
+> +            reg = <0x68>;
+> +            interrupt-parent = <&gpio2>;
+> +            interrupt-names = "INT1";
+> +            interrupts = <7 IRQ_TYPE_EDGE_RAISING>;
+> +            vdd-supply = <&vdd>;
+> +            vddio-supply = <&vddio>;
+> +            mount-matrix = "1", "0", "0",
+> +                           "0", "1", "0",
+> +                           "0", "0", "1";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        icm45605@0 {
+> +            compatible = "invensense,icm45605";
+> +            reg = <0>;
+> +            spi-max-frequency = <24000000>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupt-names = "INT1";
+> +            interrupts = <6 IRQ_TYPE_EDGE_RAISING>;
+> +            vdd-supply = <&vdd>;
+> +            vddio-supply = <&vddio>;
+> +            mount-matrix = "1", "0", "0",
+> +                           "0", "1", "0",
+> +                           "0", "0", "1";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i3c {
+> +        #address-cells = <3>;
+> +        #size-cells = <0>;
+> +
+> +        icm45600@68,46A00000011 {
+> +            compatible = "invensense,icm45600";
+> +            reg = <0x68 0x46A 0x84>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupt-names = "INT1";
+> +            interrupts = <5 IRQ_TYPE_EDGE_RISING>;
+> +            vdd-supply = <&vdd>;
+> +            vddio-supply = <&vddio>;
+> +            mount-matrix = "1", "0", "0",
+> +                           "0", "1", "0",
+> +                           "0", "0", "1";
+> +        };
+> +    };
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> -- 
+> 2.34.1
+> 
 
