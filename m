@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-165979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D368EA85FFB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:06:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D37DA86016
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3FA11BA56CD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:05:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDDE13A4353
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB2E1F0E32;
-	Fri, 11 Apr 2025 14:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8311A1F2377;
+	Fri, 11 Apr 2025 14:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBQ+xdRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59148635A;
-	Fri, 11 Apr 2025 14:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567336F30F;
+	Fri, 11 Apr 2025 14:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744380319; cv=none; b=Thj4Rw6KBLIc/sNoxUYfDfpMOiRCPX1pbSu0N+hJLq+gNRqFtW3VHQOf7E98n+03071h7ke0vquV6Kdx/WLTZBbSLJtA+mgmFbp3SX3GoEmAMFJdsV0AsgNtRVJ6HMAbwMeLtT3yMLWQCRsbADcO11gwxP/Ts5HmzP6CuzNGtQA=
+	t=1744380508; cv=none; b=hCEvyKvkujyqSqCaXef+JIQDturYBLPhwVPygFtY1h7LPX/NAjYqCaN//juL599zI2LEW3l9XDtqI9MlExCkUUrINtASA01l3yAsM+9kBpvzNlJ0i9xh5dQUarlykkHm1dQkmED5PFpN90KsqNIHZ6yz+QkKTGf6MEAc+s+HzyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744380319; c=relaxed/simple;
-	bh=WWH7pjgLhq7CdCx4NdmHmV8ilE+5LHo+30ZTrkElue8=;
+	s=arc-20240116; t=1744380508; c=relaxed/simple;
+	bh=nX4DIF7APuUGgpi+dZMGrR759kRdWLm5IwHTBTnZ7RU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=npFI8Iz0BXhC0r7sQ7EE3JEv/mdMJxXdOAARitJrZ/bzovwTZlOy7LJwlPnCznNKC7cd5/JcUd+Rmc/H0nPX2dJKK2QL4EughQxEkKxqbF8JMC1bg80+FGSk3ow1uOS9RXxqsdIdpvvaFkiyPcWVYcSvQ6oGbnXr6gTmEy5+BJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.27.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 901F03433FD;
-	Fri, 11 Apr 2025 14:05:15 +0000 (UTC)
-Date: Fri, 11 Apr 2025 14:05:10 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
-	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
-	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
-	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
-	elder@riscstar.com, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 7/9] riscv: dts: spacemit: Add PWM14 backlight support
- for BPI-F3
-Message-ID: <20250411140510-GYA22364@gentoo>
-References: <20250411131423.3802611-1-guodong@riscstar.com>
- <20250411131423.3802611-8-guodong@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AMG9SwHQ9zS4VQLAsYpe0CcnRPp0mzyWqaBBQaCTJTe66q4I/5DAV/Egt9b/Epr0owkzKK20d6pWfO4IPj9lIawApT3i205DIS3IUt6ALQawa398cbGj6/yjfW5zizIvw7Os/x3cFUq7rTvWW53M2ROD++jdmguAqrp53flwIzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBQ+xdRx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CFFCC4CEE2;
+	Fri, 11 Apr 2025 14:08:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744380507;
+	bh=nX4DIF7APuUGgpi+dZMGrR759kRdWLm5IwHTBTnZ7RU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KBQ+xdRxaUn4XSDExJwykf3BFFD6Qlfpa3CFVwRdFM6TTnqPMuea3fZE0FmT7AYfi
+	 bGkZy0iJCwbJ6JVJRq6ibhfYCvfghtDe+1D6zH0UyPTya1i7Z8Dd2MesZuo5lm47G5
+	 JpbojT0p392yV/vLSfM154vKVdz+ztKAVRP/qwreaGwftZzj8A9w96vGpBduPRBr5P
+	 zeTUiJAWiTFq0tzSH+ZeWt9WGTG4MpAdrwmDLEPntO1Bu7uapknv4KlArPY51j4Mmf
+	 at5QSa9W6okkRTHJFK/NFUTBHIDUdxOz6IRZGVbmy8xcyXwmU1OzswkprUAjjsM7kz
+	 hCDYkWFq7a0kg==
+Date: Fri, 11 Apr 2025 09:08:26 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: arm: samsung: document g0s board
+ binding
+Message-ID: <174438050588.3113760.16761182166000834243.robh@kernel.org>
+References: <20250321145556.1436201-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250321145556.1436201-2-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,87 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250411131423.3802611-8-guodong@riscstar.com>
+In-Reply-To: <20250321145556.1436201-2-ivo.ivanov.ivanov1@gmail.com>
 
 
-On 21:14 Fri 11 Apr     , Guodong Xu wrote:
-> Add a PWM-based backlight node for the Banana Pi BPI-F3 board,
-> using PWM14. The backlight is defined as a 'pwm-backlight' device with
-> brightness levels and a default brightness setting. PWM14 is assigned
-> a period length of 2000 nanoseconds.
+On Fri, 21 Mar 2025 16:55:53 +0200, Ivaylo Ivanov wrote:
+> Add binding for the Samsung Galaxy S22+ (SM-S906B) board, codenamed G0S,
+> which is based on the Samsung Exynos2200 SoC.
 > 
-> This configuration was used to verify PWM driver changes, with PWM14
-> tested and its waveform confirmed as correct.
-> 
-> The node status is set to "disabled", and should be enabled when the
-> display driver is ready.
-> 
-.. see comments below
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 > ---
->  .../boot/dts/spacemit/k1-bananapi-f3.dts      | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index 816ef1bc358e..d04b57ddeb46 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -28,6 +28,32 @@ led1 {
->  			default-state = "on";
->  		};
->  	};
-> +
-> +	pwm_bl: lcd_backlight {
-> +		compatible = "pwm-backlight";
-> +
-> +		pwms = <&pwm14 2000>;
-> +		brightness-levels = <
-> +			0   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-> +			40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-> +			40  40  40  40  40  40  40  40  40  41  42  43  44  45  46  47
-> +			48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63
-> +			64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79
-> +			80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
-> +			96  97  98  99  100 101 102 103 104 105 106 107 108 109 110 111
-> +			112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
-> +			128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
-> +			144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
-> +			160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
-> +			176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191
-> +			192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
-> +			208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
-> +			224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
-> +			240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
-> +		>;
-> +		default-brightness-level = <100>;
-> +		status = "disabled";
-I'm confused, has DT in board file with disabled status doesn't make sense?
-it doesn't really useful for placeholder, even worse that functionality may not
-verified, so I'd suggest sending along with display driver while at it..
-
-> +	};
->  };
->  
->  &uart0 {
-> @@ -35,3 +61,9 @@ &uart0 {
->  	pinctrl-0 = <&uart0_2_cfg>;
->  	status = "okay";
->  };
-> +
-> +&pwm14 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pwm14_1_cfg>;
-..
-> +	status = "disabled";
-ditto
-
-> +};
-> -- 
-> 2.43.0
+>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
