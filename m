@@ -1,167 +1,288 @@
-Return-Path: <devicetree+bounces-165801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDFBA857D6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:19:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 638A4A857EE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7A5466BAB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:19:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D26C19C2A58
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E0829C347;
-	Fri, 11 Apr 2025 09:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C14Hoh6b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06E72900BB;
+	Fri, 11 Apr 2025 09:21:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 634E129C32E
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 09:17:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB1020DD47;
+	Fri, 11 Apr 2025 09:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744363060; cv=none; b=Z34/I5Qy7UXXpfkYLwu3T11J8/lBZgGwG4+X8EYs/LxSRVFTxpkkCVVPl6FVTTg3f/ytKFwiubG6fMobUeNKr4SW1nLz5wUJlvQJh9FHjg8GS0qNrbLZ3kxz5vwENUzxI5rWMwaQKvZl8rrgQNZ0Tpspt89boVIJsz0GiXKDHhg=
+	t=1744363317; cv=none; b=BTJHid8bxA84GJl9cRZqc+HpzsmK2B96VhGLqr85zRVZ5ON9N+Zp+yq84lM7D/YURFROo25JNkIpnQjK7ppwFDPMdhRDbx2XuQFjEt1jhLXkzsk7lYE5BPmKOjKz7ZfM3pSNedNvkOfbnjTpa1AL9YArLMTqwVPzRGZ5k7pzupA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744363060; c=relaxed/simple;
-	bh=5riflTBovuTknbfdTdQw7WeAT90h3KdXcdIxC6zePGk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ev0adnRhfmsn9BpdjTYWH7ZXb5x+LtFNnAqItAT0v8uQz83UIHIPivCXlyclJkMRwircH+MZszzc0NLPItNbLwKijKhzFZFdxp6NvFY7Hn/dGErQ4oD/Cx21K1pitUaeEFqMlhpFuLUK2pEAYS7yN8rLNXroEbS/IOHWHksoaxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C14Hoh6b; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B5jh7L028846
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 09:17:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+zN/ZnflEHJ0aPPcnDV5LHKDgz80vZRrLIfbl8jUk1E=; b=C14Hoh6b8Akeoi0D
-	hSJsRmdyH8b+LRjrso97YSnnMWm0/Yy433ceMwNiVL1DuvzDdwlmwg812FOHT0bi
-	O3LgZU0ywlLSpfIAs7VuxO+UEJ1bC8Ws6Z3M33E0aAOiicLIvD4+c4bBBPHKM97S
-	SydhqytyVBT5ATvdbpnVFmOI5fFHBmIt2I7ocU7PUoNs9+bdJNQSMwCUkKPx7gOV
-	mn1j9+lcyiAScyV9gubLVvaV8KnlLCODdrGU4W7YIRDRoASJoPm3eTCji31EwaGx
-	bMu0La4x3idLCVm2aTnVGg3Vy+Tt7q6ORWtufk1cB+1o8AHMdg14SvHGjVT6A1ov
-	AybDlA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twbuswgf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 09:17:38 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-225505d1ca5so16647905ad.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 02:17:38 -0700 (PDT)
+	s=arc-20240116; t=1744363317; c=relaxed/simple;
+	bh=H7Yw1Y+MOSxpjEofXf8iXk05fYTb8DcMUYFugSZjra4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OaotKwfViYAnTgnLLAHr9ZxKiIuw/JmKkmozeNILathTR/DWq9Wn9dySM9hJsd4vUm5xBWOQvCp73UGOjxPbxBxGYVYNKEVGAEBZyxkH9qex19ROvrCZjEb1tvy+4U827jWQi3xDh/ZO8qxLBVBw3uEk8zPoZclnSNhs4HXEvv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-86fbb48fc7fso730950241.2;
+        Fri, 11 Apr 2025 02:21:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744363058; x=1744967858;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+zN/ZnflEHJ0aPPcnDV5LHKDgz80vZRrLIfbl8jUk1E=;
-        b=mbAyMYf5lyeFf+gjLijLmTr6zlEHirHpQ6P2Vbw56nEv6taMsXJH+8V+qwGHN+S5ba
-         M0wg+4CUe5WFKLMkEE9LkB91lM8Ubm1gsPZCBjT1BV0SKwo72eN9FcIKFNodJHi1TJW+
-         sSvbBgR2Xs0+cNEdIkKAtqM+dn/Nwfy8cKFPdcZkiKzoNrQI85xtr4BKgq6UDrI0m6od
-         VxdCV82c3bwtO3U/Gs2+o2shGzjJDCUMM+66fRMS/u2eEiEivCgzKDIPThFyp8Ke8k6N
-         r2bwAVKKdwcOZRK+aHZz/J6yM/ZZ+1GgEOaRn3b/e741f7jDz0PZeHeOyMb2toB8Rc39
-         8slg==
-X-Forwarded-Encrypted: i=1; AJvYcCUn4g9J9s5NUgtd4k5RKPuYColkiF3Xv3oyPw5uTcq4BX3kF663n1ft2YKa3P54ifzbnAVMyxJx4gX3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0ScsKalSH7G6RsoffaD2iThLA4d6+AtAJhG6Jag4MC2wFB4nR
-	+s6NYnpgcdawM4pmO6u3Lkg55yyjZ7PDeEckZUKmZpEKeBelicX+3QXPSMn2Vq0DennRkvOIWHQ
-	B8JJj6tunkAKRhEAguIilNxLVHy2AikHziXVI2KaKCtv40g5iGF3Q2vBYgNja
-X-Gm-Gg: ASbGncuiB3lHIcHOQmwVIRQ9Ee96AnZKoxZgJRpGUI3XW8Pc2X/g02Prxq1UJ5Enuuj
-	AhnGvxMWIqxGyBMrShmY3YaQ87bieV4uLtXLdLmV5MSd/8MAJ0mAJOh0hBmK9ka85mg5jkICtEz
-	UcCK4H5ZuXGsWzcO9bOv5PRpkhb66+sSS1b0/gO5sGHggN8XILZvWiFGl8vfzfwL7Zn923gBJcB
-	+h+mKAM54lFJ8O4V8pm/dF0CYt95syE5ZI1LG9Cp/HwFXVz4xLIy/7i9LsROIW68DHePmYPTAvn
-	xxf67r7k64AgU1ecip6SYZ9Y8u1BfvAbD9YiZwN8F81lBpVHGRWS
-X-Received: by 2002:a17:902:fc4f:b0:229:1717:8826 with SMTP id d9443c01a7336-22bea4c0072mr37888455ad.28.1744363057690;
-        Fri, 11 Apr 2025 02:17:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHA42sJVVVoBoIcY0aPFDP0UouVaaHPmWcn9IkuJgBJMEbNtR87gKZ+rnnOY8MF5XWTZGKE4g==
-X-Received: by 2002:a17:902:fc4f:b0:229:1717:8826 with SMTP id d9443c01a7336-22bea4c0072mr37888105ad.28.1744363057337;
-        Fri, 11 Apr 2025 02:17:37 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd22f0f28sm1043940b3a.97.2025.04.11.02.17.33
+        d=1e100.net; s=20230601; t=1744363313; x=1744968113;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rjLovJ4FotWvKMcKNs8iHNd5SJQr6b+e5HVgXb4vKfU=;
+        b=aewgs97vvOw4s15MxrCXzDSToXYHmrG1vkp/+wdRUXEZN1fhqxfoDy+T1IPdgnfyIv
+         GVWyVjYFAl67S1nSuOoffiIBUKRh5M7VfLuN1WM2UO3cPq4wABRIbVVXa8VyfBd0KOmj
+         FuXprRRshQerl1lW3B7kAjpeGD6BDaeoMxoOGZWdEAeuJPrwICzQoYCMmiLeetzzOCTs
+         faXxM1f/R3iTmzmODsnaqBZCkn8fvfncuVv+YyHB4Uw58SVf3XdDNz1Al04n+WfC1rz7
+         ghT162iVOZbNMnClgS2HJO5sMeVadX/AIAmzyEkK2VChD/flFeIvQ7RVgw8THx9inWCm
+         egzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUz5/CL6W3+7Nau/8gnLQF9eBn8m7YxPeyX1NHRceN9kDpD+abhvX4mylB8EoaOH9QWyIWopxcZYZrOpAKV@vger.kernel.org, AJvYcCVtXjhh+jlw+AQGxF5j+u5sM6W6A1OSyux5aYDvUiKm/1y96tDhprVvWeWbjZGnD0A1mPOfeLN3Eihd@vger.kernel.org, AJvYcCWwxF9D9ms2TsqUcu9Yi+Xdmahifh47z5VVNTdOAYtutJWSlwnHjO+rjf4tgzWwqnVvEabf9eRAk1vGNhobOfFfxps=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5qoF8hjyC4nu6QKfqm93KsgxowIYW5gCW/GX6rFeNw8fFbyBY
+	FTn8Bq/ECDOtzWeu8rekOcuw11lkirYt33d+02n93Wrc6VT6dBRX67Nn+20NtsM=
+X-Gm-Gg: ASbGncucSkcIcWhT3+Yw1oY8IRbMRnUnvpqdGvPBy2et0+oTFfEYX5Ra3mhgSHsu2la
+	S1K+1UPamZe3dz5/SVFznStj4KADPrEKu/i8IufBhrzgtnnVey+XF/3YunfNvnMgxFdQZ+yu/BX
+	WEl+EfUX/z9LxB0KS32bN/z6JCvZROw2RHduYNREbbkWAsM4NiG4ogewK+hmb7NFPWoysNYdejF
+	j5puan94PJiBHYUCc/oW8Xz1xvdlRaHDUS9X0qDAKgYnf+e0hVmv5Izh2dDTtQtx6hXui8HkSxx
+	QTr8/7E83OiN2NLMBPJq8TAbf9n+s++2wRneEKOBoKjofKvXm4tZWtNxM+TmvbbCTEm8PVRCz6f
+	z748sunc=
+X-Google-Smtp-Source: AGHT+IGBldzpFtWbRutMGWHJJZ1hsiVNFLVVS31Km7HgboRxEvmb71xpKV3Xg7EMub/ZPmtVtTkVaw==
+X-Received: by 2002:a05:6102:5799:b0:4bb:b589:9d95 with SMTP id ada2fe7eead31-4c9e4ec1211mr871940137.4.1744363313526;
+        Fri, 11 Apr 2025 02:21:53 -0700 (PDT)
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-875572b2b05sm987524241.30.2025.04.11.02.21.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 02:17:36 -0700 (PDT)
-Message-ID: <4a737b56-9d26-4f81-a7e3-8644ed787373@oss.qualcomm.com>
-Date: Fri, 11 Apr 2025 14:47:32 +0530
+        Fri, 11 Apr 2025 02:21:52 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5241abb9761so797222e0c.1;
+        Fri, 11 Apr 2025 02:21:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBz5j49tAbrFuDCaeD0r9yB3WMWzw1lvB0OD/S29kSiOMN/Z4kT3eSp6NDROGqr+7Ib3onCxnGowQP@vger.kernel.org, AJvYcCVKuK2Qdc67AF3ePAKYr0HQYeGu/i3Tx52h0biDGqKad40wIOb4meTPKvn8Juwe9T/Qip57FJNs2mt2OxEX@vger.kernel.org, AJvYcCXgk+xV1S37l8CnUUVwlv3gXBXt86JMz9llMufiawbgy2OPGsk77Q66Mt7uxNJ6KNIu/3h4rzX6h3FHGb575tdc4fA=@vger.kernel.org
+X-Received: by 2002:a05:6102:3c86:b0:4c3:6393:83f4 with SMTP id
+ ada2fe7eead31-4c9e4ec451dmr1055040137.2.1744363312253; Fri, 11 Apr 2025
+ 02:21:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/6] arm64: dts: qcom: ipq5424: Add the IMEM node
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250408-wdt_reset_reason-v1-0-e6ec30c2c926@oss.qualcomm.com>
- <20250408-wdt_reset_reason-v1-2-e6ec30c2c926@oss.qualcomm.com>
- <6298f149-caae-49d0-af68-c3d102d0ef7d@oss.qualcomm.com>
- <54efe237-01ea-4f98-8dbe-390d344aa6cf@oss.qualcomm.com>
- <0b71ee9a-f222-4254-bc12-4c98854f44c3@oss.qualcomm.com>
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <0b71ee9a-f222-4254-bc12-4c98854f44c3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: hIfEtQqpocesJeJ7uRI-i118lR4LhM5I
-X-Proofpoint-ORIG-GUID: hIfEtQqpocesJeJ7uRI-i118lR4LhM5I
-X-Authority-Analysis: v=2.4 cv=dbeA3WXe c=1 sm=1 tr=0 ts=67f8de32 cx=c_pps a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=NJF6hevOwqtteAhcjXIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 mlxlogscore=919 phishscore=0 mlxscore=0 spamscore=0
- malwarescore=0 clxscore=1015 adultscore=0 priorityscore=1501
- lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2504110057
+References: <20250324-rzn1d400-eb-v4-1-d7ebbbad1918@bootlin.com>
+In-Reply-To: <20250324-rzn1d400-eb-v4-1-d7ebbbad1918@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 11 Apr 2025 11:21:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVM66ni0opbUopt6mCPshoQzO5GPEUZDji39CxtkoFLSA@mail.gmail.com>
+X-Gm-Features: ATxdqUGioLDnSMiE5yPECb8cIfInNUgx2SgYqp0ZkBBBnlY32ZnpAxNbFLtbXcM
+Message-ID: <CAMuHMdVM66ni0opbUopt6mCPshoQzO5GPEUZDji39CxtkoFLSA@mail.gmail.com>
+Subject: Re: [PATCH v4] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board device-tree
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Thomas,
 
-On 4/11/2025 2:33 PM, Konrad Dybcio wrote:
-> On 4/11/25 7:01 AM, Kathiravan Thirumoorthy wrote:
->> On 4/10/2025 12:11 AM, Konrad Dybcio wrote:
->>> On 4/8/25 10:49 AM, Kathiravan Thirumoorthy wrote:
->>>> Add the IMEM node to the device tree to extract debugging information
->>>> like system restart reason, which is populated via IMEM. Define the
->>>> IMEM region to enable this functionality. Corresponding DTS and driver
->>>> changes will be added incrementally.
->>>>
->>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/ipq5424.dtsi | 9 +++++++++
->>>>    1 file changed, 9 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
->>>> index 5d6ed2172b1bb0a57c593f121f387ec917f42419..a772736f314f46d11c473160c522af4edeb900b7 100644
->>>> --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
->>>> @@ -486,6 +486,15 @@ ssphy_0: phy@7d000 {
->>>>                status = "disabled";
->>>>            };
->>>>    +        sram@8600000 {
->>>> +            compatible = "qcom,ipq5424-imem", "syscon", "simple-mfd";
->>>> +            reg = <0 0x08600000 0 0x1000>;
->>>> +            ranges = <0 0 0x08600000 0x1000>;
->>> It looks like this should be a little longer
->>
->> Yes. It is 112KB. But only first 4KB is accessible by all masters in the system, remaining regions are access protected by TZ. I shall mention this in the commit message in the next version.
-> I think we should describe the full length of it - it's only if we
-> add a subnode that we actually access it
-
-
-Sure got it.  I will describe the full length in next revision. In that 
-case, it would be the driver's responsibility not to go beyond the 
-initial 4K.
-
-
+On Mon, 24 Mar 2025 at 15:51, Thomas Bonnefille
+<thomas.bonnefille@bootlin.com> wrote:
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
 >
-> Konrad
+> The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since thi=
+s
+> configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
+> It adds support for the 2 additional switch ports (port C and D) that are
+> available on that board.
+>
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> [Thomas: move the DTS to the Renesas directory, declare the PHY LEDs]
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se=
+>
+> Tested-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> This short series adds support for the RZ/N1 Expansion Board. This board
+> is a carrier board on which a daughter board (either RZ/N1D or RZ/N1S)
+> can be plugged. The device-tree that is added by this series enables the
+> use to the 2 external switch ports that are present on this board.
+> ---
+> V4:
+>  - Drop trailing whitespaces
+>
+> V3:
+>  - Drop bindings commit as it was applied to master
+>  - Move Makefile modification to arch/arm/boot/dts/renesas/Makefile
+>  - Declare LEDs in PHY.
+>  - Use the driver default LED configuration as there was no reason to
+>    use a different one.
+
+Thanks for the update!
+
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+> @@ -0,0 +1,120 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for the RZN1D-EB Board
+> + *
+> + * Copyright (C) 2023 Schneider-Electric
+> + *
+> + */
+> +
+> +#include "r9a06g032-rzn1d400-db.dts"
+> +
+> +/ {
+> +       model =3D "RZN1D-EB Board";
+> +       compatible =3D "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
+> +                    "renesas,r9a06g032";
+> +};
+> +
+> +&mii_conv2 {
+> +       renesas,miic-input =3D <MIIC_SWITCH_PORTD>;
+> +       status =3D "okay";
+> +};
+> +
+> +&mii_conv3 {
+> +       renesas,miic-input =3D <MIIC_SWITCH_PORTC>;
+> +       status =3D "okay";
+> +};
+> +
+> +&pinctrl{
+
+Missing space.
+
+> +       pins_eth1: pins-eth1 {
+> +               pinmux =3D <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
+MII)>,
+> +                        <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(14, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(15, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(16, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(17, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(18, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(19, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(20, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(21, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(22, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(23, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>;
+> +               drive-strength =3D <6>;
+> +               bias-disable;
+> +       };
+> +
+> +       pins_eth2: pins-eth2 {
+> +               pinmux =3D <RZN1_PINMUX(24, RZN1_FUNC_CLK_ETH_MII_RGMII_R=
+MII)>,
+> +                        <RZN1_PINMUX(25, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(26, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(27, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(28, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(29, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(30, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(31, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(32, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(33, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(34, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>,
+> +                        <RZN1_PINMUX(35, RZN1_FUNC_CLK_ETH_MII_RGMII_RMI=
+I)>;
+> +               drive-strength =3D <6>;
+> +               bias-disable;
+> +       };
+> +};
+> +
+> +&switch {
+> +       pinctrl-names =3D "default";
+
+(from v2) No need to specify pinctrl-names, as it is inherited from
+r9a06g032-rzn1d400-db.dts.
+
+> +       pinctrl-0 =3D <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_et=
+h4>,
+> +                   <&pins_mdio1>;
+> +
+> +       mdio {
+> +               /* CN15 and CN16 switches must be configured in MDIO2 mod=
+e */
+> +               switch0phy1: ethernet-phy@1 {
+> +                       reg =3D <1>;
+> +                       leds {
+> +                               #address-cells =3D <1>;
+> +                               #size-cells =3D <0>;
+> +
+> +                               led@0 {
+> +                                       reg =3D <0>;
+
+color =3D <LED_COLOR_ID_GREEN>;
+
+> +                               };
+> +                               led@1 {
+> +                                       reg =3D <1>;
+
+color =3D <LED_COLOR_ID_ORANGE>;
+
+> +                               };
+
+The above should also have one of:
+
+    function =3D LED_FUNCTION_LAN;
+    function =3D LED_FUNCTION_SPEED_LAN;
+
+I don't know the LED function mapping.
+
+> +                               led@2 {
+> +                                       reg =3D <2>;
+> +                               };
+
+LED2/_INT is used as an interrupt pin, not as an LED.
+
+> +                       };
+> +               };
+> +
+> +               switch0phy10: ethernet-phy@10 {
+
+Same comments for this one.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
