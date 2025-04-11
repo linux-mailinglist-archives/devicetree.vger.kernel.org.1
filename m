@@ -1,113 +1,140 @@
-Return-Path: <devicetree+bounces-165921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9029A85D93
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:47:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63DFA85DBE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:53:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27B471BC24A2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:44:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6ABE8A2A2B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C592329C325;
-	Fri, 11 Apr 2025 12:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDF22BD5B1;
+	Fri, 11 Apr 2025 12:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jGk+NyoW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uBdknXfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EE4929B223;
-	Fri, 11 Apr 2025 12:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF762367AC
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744375375; cv=none; b=ibQU5zXGinrcXUkSJl7exk2JEegICWqVa47CCRRdb/ZtgwQ05sa0vxvgz8EerPUWZ1lD1VVQpOCt9dbqcH+oqO8xLQRSkoTVg88M6qghItdtsZiN9JZp4XisQDLoMqMbU/6/7x/RH6qWh4e2ElZrxGaTESduGU9+ecKpfBEs/8g=
+	t=1744375577; cv=none; b=Ee9TjrzRK1xoTr6HXUAArvjvg0IsiZrhlF38NL0G8p9EuX6q0kievFa8S9aeWQKjvOxrxKKRxKDFdzfPhMvdXY3ieBkZ6PMCKaDoyhsYS83E65piw09Pzt4sI/jZF8s9oNw3vPMde7Rf+Nk7Qfbm91axL4/sR0tJZynFw0YN/r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744375375; c=relaxed/simple;
-	bh=HLUNHReE0cNLO6CqkVo6sXtk4KZJ2890NAAWXXyNoFk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hSVvDAjAUwqaQ7urCp5ePpdmFz2YixL7oYTHgSZlZ0pagHqagpa/ZPnp1v6MCw9cXsvq0YILh6Sma4sV1WX9DCUDZdNVxQsJG2OV2wkiB7j1sBD/L8VoK9A6tVc9t5hLiek6fyh5tTwqE49sLK8QqHCIyPmO+spKushpT2M6ftk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jGk+NyoW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 316AEC4CEF7;
-	Fri, 11 Apr 2025 12:42:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744375375;
-	bh=HLUNHReE0cNLO6CqkVo6sXtk4KZJ2890NAAWXXyNoFk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jGk+NyoWzuBHZPmQPPUNW+Duw3aCsOpaGF8vy8VkfiP5nE5iDiDNUoX5B7BkqRRXs
-	 fK8ZCmshrQnClvb+0Daow2f4KVhuojCHmcCPYuQYjzSnSSAx7OZNgWxmvoJzP+Q2+K
-	 GkJCQpXnSj/Mq8ZBS6ZpbR8CBz+S6A/Y3D228e+d4b6Wt7JAqxjZ7L08/zgezrF5ie
-	 XEvhotfgHhmbKvmrpW1i5VGdUdXkCKPd3nqnqFq/KdLZ+IPcZ0BrmcpyRToXQ/BUPO
-	 CBaDokiU8iP2Z4V80PXAM2f0MzzWGbdTTXH5NyaI/uAXIoFGLF17h7tDGn8FEsliKv
-	 jILBuyyQQOhBw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28423C369A8;
-	Fri, 11 Apr 2025 12:42:55 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 11 Apr 2025 20:42:49 +0800
-Subject: [PATCH 7/7] arm64: dts: amlogic: S4: Add clk-measure controller
- node
+	s=arc-20240116; t=1744375577; c=relaxed/simple;
+	bh=qMsaU3AgfYd7npEUcPpNqxwxWZ1VhJND28wYGKSzw0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RN2H9IRYqbXkr6sQyI6n8jeRbxZhNmY371NyLl+rZn8p4kZvIVQMEe84p+srWQKs3QQt1OQQ0tRZPfMzS/abiFOrSTmm5kI+NZU7Q9CxeZiC84X3axk+47omrhJ8boHQ46y+3fzFiib/StWE2mD+BtN5ghdNmRvld7Qt1OI63KA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uBdknXfo; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so21166555e9.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 05:46:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744375573; x=1744980373; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PhDLvQWbhdTyN2VlzbNDlR4PYDwczdCrrExl7J1Ijlo=;
+        b=uBdknXfoDK04p53+p+44C3wW2P1L2yQqQ40vUlMU5CSA7hmeVcasAMDhsuwmf3IA5i
+         0CQ0Rvl0KRWGHoMeAMZfhkJkUapkkwhou+G/G6gbubeyQYtVxQkdOwtzUG0sh9QRp3jA
+         oBlRXit6BD2dponBXtu+UOOxBynI4cc0beBNlMDlBfh/wS/SpgRMpsa4jSDJT2zKUCBH
+         8fHVbWUiUgNPNFHVVjNaPmUkaCfjvJDBpPgcub92sZ5d4LTf1EG/ocdS/qLPqUXbm1QP
+         lq0X47+z/tABqagEBkgGE5XD2hpoQ3sa3NKEnPM3KkCCSQVGJAcXyl/DI2tsLxphQcKo
+         jZlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744375573; x=1744980373;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PhDLvQWbhdTyN2VlzbNDlR4PYDwczdCrrExl7J1Ijlo=;
+        b=UCEiUwY7klfwawSjTmskW+zl7uydOfi/4V9mqGdVwuDchbWKexdquDUYLRZDd0m7/9
+         1DPUMVzlDrFfJj7j22H/WTxezyfCZJ17vqeIsmmPwLejYHgxef+MGPOesnhaM88Ip3wE
+         iecpfF10NZNiAC0Pu83zWzHpvFKWwDSJPF7XAo5FuO0+2kgY//oLVT+3nG6WKCDLuzFx
+         1oQlH5nuxH/vb49/ed03R78twozz8hAncmj15b/pYogS9/Dd+VPWKd30sk+Wc7wZrjak
+         yX14Mvu2Tlq3bIO/4vzqhB4n2WyQreHD27WVfauNkEI5SHYWp/blFkpO/6SvQ6ZeAxVv
+         h0yw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhz7By+ntaelSUkdJMfvxCaxYjqQX5kKW6a1Ji0VHQgx0LsWji9FVGk2MtADi8oXzGw9AKivNJg2gN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyLwD57NItw1mjD8QIZjK2/pWRyQ2klyk9+T0c2qPGSOWmx1h8
+	5xBap0/KkqwjHI/RBbaODbeP6vrqk6/MJ2ac49vsZUsXN8Hur9fqpg1ADKlbPOg=
+X-Gm-Gg: ASbGncvSZVVbY3Xii6ylRnAQE1hpGAe20Sl3WyvmZci/ckvEJlR7e8gN4RSGzkxhC9F
+	4/DO2Fk6lL821YXPJSyWYfF72PiVEB8Y03sMOXduLWT5cGntYvyIQ4d6GjaiWziF0QW5U24ggrY
+	aL1as2HehpBW8aQQNwr7ghc8kF4GuNAwW9u1c7GoTN5ITpppERdAqGmmsbkuEj0//GOLvUuXw/6
+	F9SKxHoGWZuqo4oH+5MHQN2RrWa6tICE1+whrsHLwTtZHv4xrxPMfKHHmZeperMS71VsNlSTMOY
+	DwdrNAk4gUc4lEMxZKbn/L5hEnLPej4k0C+LU61w/MlcMcGlE5pZ5iHmjZR3zmouSCZAfJ8Jahd
+	9oN7awA==
+X-Google-Smtp-Source: AGHT+IFfOHu8NpwGY9QeJT4Px/nGS9JkxmRsI2hzwbDzfKKsDsEvu0wZdG1qPhsO1ljPGuw427Xyfg==
+X-Received: by 2002:a05:600c:a012:b0:43c:f3e1:a729 with SMTP id 5b1f17b1804b1-43f2eb50f83mr65513485e9.12.1744375573083;
+        Fri, 11 Apr 2025 05:46:13 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf43ccd8sm1936648f8f.72.2025.04.11.05.46.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 05:46:12 -0700 (PDT)
+Message-ID: <697dcd15-22de-46fa-b28b-0409dd18a79b@linaro.org>
+Date: Fri, 11 Apr 2025 13:46:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/20] media: iris: Update CAPTURE format info based on
+ OUTPUT format
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, stable@vger.kernel.org
+References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
+ <20250408-iris-dec-hevc-vp9-v1-2-acd258778bd6@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250408-iris-dec-hevc-vp9-v1-2-acd258778bd6@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250411-clk-measure-v1-7-cb46a78d019a@amlogic.com>
-References: <20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com>
-In-Reply-To: <20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744375372; l=767;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=itRtutR2PIVs/kAFr6Titwp0GUUTkodKKnworvlokhM=;
- b=HkLHQwUO4HrZDuTx82Q4lLAZGwoF6OGZJQla3YnGfIsydsSWucE6PSmhvIS/JMYVod6KlvVBN
- spDHf+yEF9WAKvCoQ0EuQvZixoBqSExl9cfQuYZsHWI78avK2kycxxb
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
-Reply-To: chuan.liu@amlogic.com
 
-From: Chuan Liu <chuan.liu@amlogic.com>
-
-Add the clk-measure controller node for S4 SoC family.
-
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 957577d986c0..9d99ed2994df 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -629,6 +629,11 @@ internal_ephy: ethernet-phy@8 {
- 				};
- 			};
- 
-+			clk_msr: clock-measure@48000 {
-+				compatible = "amlogic,s4-clk-measure";
-+				reg = <0x0 0x48000 0x0 0x1c>;
-+			};
-+
- 			spicc0: spi@50000 {
- 				compatible = "amlogic,meson-g12a-spicc";
- 				reg = <0x0 0x50000 0x0 0x44>;
-
--- 
-2.42.0
+On 08/04/2025 16:54, Dikshita Agarwal wrote:
+> Update the width, height and buffer size of CAPTURE based on the
+> resolution set to OUTPUT via VIDIOC_S_FMT. This is required to set the
+> updated capture resolution to firmware when S_FMT is called only for
+> OUTPUT.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: b530b95de22c ("media: iris: implement s_fmt, g_fmt and try_fmt ioctls")
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>   drivers/media/platform/qcom/iris/iris_vdec.c | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
+> index 4143acedfc57..c5d85936b3ae 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
+> @@ -171,6 +171,11 @@ int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f)
+>   		output_fmt->fmt.pix_mp.ycbcr_enc = f->fmt.pix_mp.ycbcr_enc;
+>   		output_fmt->fmt.pix_mp.quantization = f->fmt.pix_mp.quantization;
+>   
+> +		/* Update capture format based on new ip w/h */
+> +		output_fmt->fmt.pix_mp.width = ALIGN(f->fmt.pix_mp.width, 128);
+> +		output_fmt->fmt.pix_mp.height = ALIGN(f->fmt.pix_mp.height, 32);
+> +		inst->buffers[BUF_OUTPUT].size = iris_get_buffer_size(inst, BUF_OUTPUT);
+> +
+>   		inst->crop.left = 0;
+>   		inst->crop.top = 0;
+>   		inst->crop.width = f->fmt.pix_mp.width;
+>
 
 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
