@@ -1,138 +1,126 @@
-Return-Path: <devicetree+bounces-165854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF71A85B93
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:27:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A5CA85BA0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C5134622EB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:26:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BCEB19E448F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AD77238C27;
-	Fri, 11 Apr 2025 11:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF60238C0B;
+	Fri, 11 Apr 2025 11:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQncZjRG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZSrDs/NU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C5421146C;
-	Fri, 11 Apr 2025 11:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29126278E6D;
+	Fri, 11 Apr 2025 11:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744370736; cv=none; b=ImyqEZZ8quJUW2f+/iIkYURbdjLTmxnXZ4oz3zYJJzZ58IYjy2FY4aSl6nIpH+Lj9bOPQcqcJ94t0s6X700Gsk/8CKC+PXMeWQPfRI3UxPzloIGOHfcJXIXwTMDPpXBkHgiQcsrMZkH91uCCa5n8W63j4WRjQWIu7MdJtnBgQvk=
+	t=1744370820; cv=none; b=jt6RTc8DP/6ixrzNyDwm/of0HKl67uDNaxZ93qPqrQwEFeirVTQcykRGvy34fte3z8/RWuhXlWpcRVzCBYCSBpP3ST+b84LOWfr/Ln8AMDakt8+X7kRVHPmRIQh38mRSMSXG+w5nltG4UOpW2Q5M7B2lKpi9BTxukEpttNtdA4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744370736; c=relaxed/simple;
-	bh=5l3bqjZl+ty/hdXtbzKmsUlfDUP//EXNCWO3BwwnVQY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lgwymuv6AdKZ01miUvIWFZNRtluOiCqHMI6vGnCB1SiQtA782hMyWW+zAzMuga4AGSLeIYM1Vfwv4Y+B1HjLzBn8oGKAOYPl4cPCo0C4fMJxJcrHUBKX4dmKxpP8MzZdX118j6Msj5ILlRju6K5J1FSC8pMSoR4fw5mPncXSvYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQncZjRG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DB1EC4CEE2;
-	Fri, 11 Apr 2025 11:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744370735;
-	bh=5l3bqjZl+ty/hdXtbzKmsUlfDUP//EXNCWO3BwwnVQY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PQncZjRG98uxDMN44XqlPZgt2NTT1cJrmCzifzTQ06fCVUeVrzZO+mlHhzEzZTook
-	 40DFfj0FeXvdmtQvAqyO/jwcDP87tWUZW/h6Q2O4m6WxsxICdWfn4wS8aFeMKeuEf6
-	 OLojEheGa/9fonpiJPwxbKsdWX012NMXe2SkCDtvjQUXW4v7FKe7HAkaQxpb73gi5H
-	 Nb5gUb/lbzggKqlmLktJovekl56AkBz4hrHgoyVoXVhBu/I67rdCCf2GuyOIA5omEx
-	 mq3pDblo5+6DAQyOeTUJFGWMgunPGqJznLdeoOs6yJhAw+0seM00HF4yeoMhvXFjBp
-	 1Vg6AV4KtiZow==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u3CVv-000000008SK-29OY;
-	Fri, 11 Apr 2025 13:25:39 +0200
-Date: Fri, 11 Apr 2025 13:25:39 +0200
-From: Johan Hovold <johan@kernel.org>
-To: jens.glathe@oldschoolsolutions.biz,
-	Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: x1e80100-hp-x14: add
- usb-1-ss1-sbu-mux
-Message-ID: <Z_j8M2Q0J3LuANAF@hovoldconsulting.com>
-References: <20250410-hp-x14-v2-0-d36414704a0a@oldschoolsolutions.biz>
- <20250410-hp-x14-v2-1-d36414704a0a@oldschoolsolutions.biz>
+	s=arc-20240116; t=1744370820; c=relaxed/simple;
+	bh=mI/ozsZ8Y6S9acmqLsBXGFaif7oHOC/C7Y77zKPoVr0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k02MopqWFEILUSSSYKhhNEGjLGdIqd4w4K9c52S7rUhuvQfiVdAb8ckBWNL5McdniwmcIHvdYOmxGC2Cx7pAPWLBhLa/p5Rb5HDEC2+F18uM2VXuIYA4K6NkDln2+jWM7C0OuoKg6oTWyIs5/CX2HUALp3ynYCEiuDJAfdoF8J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZSrDs/NU; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BBQqvC2109141
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 11 Apr 2025 06:26:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744370812;
+	bh=h7nuwgLYxSWvEr+B62ZngX9a1kKC+J1LhPwwVf57ZJQ=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ZSrDs/NUAgyzHgZyMxpwagAp//2hRg2I4NZ1MGMOsSWj6hXpSe25WVsTh/aTr7uci
+	 g51r9zLNRwdyt4wT82dWl5mqtH4DWmxEBRM/YFbrTmLWO4cXTugLteH07JFRdoDtgU
+	 Dr+DcWjDLrA4t8uX9+4i0Fe5JuGdU/RxSXFxHmpo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BBQqS6029456
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 11 Apr 2025 06:26:52 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
+ Apr 2025 06:26:51 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 11 Apr 2025 06:26:51 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BBQpqG088464;
+	Fri, 11 Apr 2025 06:26:51 -0500
+Date: Fri, 11 Apr 2025 06:26:51 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Anurag Dutta <a-dutta@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <u-kumar1@ti.com>,
+        <vaishnav.a@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-common-proc-board: Add
+ bootph-all to HBMC nodes
+Message-ID: <20250411112651.4kt4qgiz4ikylbwi@onboard>
+References: <20250411082637.2271746-1-a-dutta@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250410-hp-x14-v2-1-d36414704a0a@oldschoolsolutions.biz>
+In-Reply-To: <20250411082637.2271746-1-a-dutta@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-[ +CC: Stephan ]
-
-On Thu, Apr 10, 2025 at 12:07:28PM +0200, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On 13:56-20250411, Anurag Dutta wrote:
+> Add bootph-all to HBMC controller and hyperflash nodes for successful
+> hyperflash boot on j721e-evm.
 > 
-> The usb_1_1 port doesn't have the PS8830 repeater, but apparently some
-> MUX for DP altmode control. After a suggestion from sgerhold on
-> '#aarch64-laptops' I added gpio-sbu-mux nodes from the x1e80100-QCP
-> tree, and this appears to work well. It is still guesswork, but
-> working guesswork.
-
-Did you confirm the three GPIOs experimentally, for example, by making
-sure that inverting the enable signal polarity breaks USB?
-
-> +	usb-1-ss1-sbu-mux {
-> +		compatible = "onnn,fsusb42", "gpio-sbu-mux";
-> +
-> +		enable-gpios = <&tlmm 179 GPIO_ACTIVE_LOW>;
-> +		select-gpios = <&tlmm 178 GPIO_ACTIVE_HIGH>;
-> +
-> +		pinctrl-0 = <&usb_1_ss1_sbu_default>;
-> +		pinctrl-names = "default";
-
+> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> ---
+> 
+> Test logs : https://gist.github.com/anuragdutta731/90a492589557c2ec2881e1de50a62006
+> 
+>  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 4421852161dd..9ada749f16ba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -570,6 +570,13 @@ &usb1 {
+>  	maximum-speed = "high-speed";
 >  };
 >  
->  &apps_rsc {
-> @@ -1424,6 +1451,30 @@ reset-n-pins {
->  		};
->  	};
->  
-> +	usb_1_ss1_sbu_default: usb-1-ss1-sbu-state {
-> +		mode-pins {
-> +			pins = "gpio177";
-> +			function = "gpio";
-> +			bias-disable;
-> +			drive-strength = <2>;
-> +			output-high;
-> +		};
+> +&hbmc {
+> +	bootph-all;
 
-This is more of a question for Stephan who added this to QCP [1], but
-why is this mode pin here and what does it do?
+Documentation/devicetree/bindings/dts-coding-style.rst
+Please add an EoL
 
-It's not part of the binding for the mux (which indeed only has two
-control signals according to the datasheet) so it looks like something
-is not modelled correctly.
-
-> +
-> +		oe-n-pins {
-> +			pins = "gpio179";
-> +			function = "gpio";
-> +			bias-disable;
-> +			drive-strength = <2>;
-> +		};
-> +
-> +		sel-pins {
-> +			pins = "gpio178";
-> +			function = "gpio";
-> +			bias-disable;
-> +			drive-strength = <2>;
-> +		};
+> +	flash@0,0 {
+> +		bootph-all;
 > +	};
+> +};
 
-Johan
+Why &hbmc, why not in the SoM.dtsi?
 
-[1] https://lore.kernel.org/all/20241212-x1e80100-qcp-dp-v1-2-37cb362a0dfe@linaro.org/
+> +
+>  &ospi1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+> -- 
+> 2.34.1
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
