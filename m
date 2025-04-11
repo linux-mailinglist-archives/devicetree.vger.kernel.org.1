@@ -1,159 +1,246 @@
-Return-Path: <devicetree+bounces-165781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55832A856D3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:41:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B70A856DF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:44:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 255D71BA7972
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:40:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9F1316EC78
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB07E2980D3;
-	Fri, 11 Apr 2025 08:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F8129617A;
+	Fri, 11 Apr 2025 08:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s25WrjgD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB5C29614C;
-	Fri, 11 Apr 2025 08:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112AF28D857
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744360794; cv=none; b=qzvhfqERT11NJYLRShHCUZdZ0WBBvRRhIqwPrsdGch+U0kGTYqR4JKpEqBs6qJpI/3yYiVhoK2wqswzpvEn24zFP3u9jqFzLzPOBVzfzc7e6vRvVckNfAIo8Yd+slqqsZrv1RGGiyPAqKpLUvEiIJnNVpvQpqdWne6RJuB6MWc8=
+	t=1744361017; cv=none; b=XTrBODVNomb8RaizPVdJ4oYB3h+K3PsOTCCNfTtSOj2vm5Iu37yLFG1At3riO1HyjNmgAFcX4q0+fEdu/2f/KBlpJLHRajnxOSobB5u/aG6wH7fP841RNkf1JXMyNdmZPl5hNgDVFp8GKN5l/OHH9huiC/0QsBJ8AaonTtmCQnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744360794; c=relaxed/simple;
-	bh=Cfxi6fEI2IFX41L3JE13Cy7FJb0PJLrt+bmOBfIv/gY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gebs152ZVV4qupsXQWV7K5cA4s8pVSI9HjVdIsntc1mDSf0wUv3AFdiHmqETuj9a1xuKuje0e5nuwV4gS3q5fTgRY8PuVQ4LYiv+ODUI3u/Tu3dCZFaK5W02be8eCLWHnYCn4U/iIhP8boTuEwSK9Zs3x4IQIYURBAyF+T6T9Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 53B8dGr5046393
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Fri, 11 Apr 2025 16:39:16 +0800 (+08)
-	(envelope-from cl634@andestech.com)
-Received: from swlinux02 (10.0.15.183) by ATCPCS34.andestech.com (10.0.1.134)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 11 Apr
- 2025 16:39:16 +0800
-Date: Fri, 11 Apr 2025 16:39:11 +0800
-From: CL Wang <cl634@andestech.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>, <tim609@andestech.com>,
-        <ycliang@andestech.com>, <cl634@andestect.com>
-Subject: Re: [PATCH V5 1/3] rtc: atcrtc100: Add ATCRTC100 RTC driver
-Message-ID: <Z_jVLzgZjnF1thbq@swlinux02>
-References: <20250110092702.1146356-1-cl634@andestech.com>
- <20250110092702.1146356-2-cl634@andestech.com>
- <20250331221541333bf9cf@mail.local>
+	s=arc-20240116; t=1744361017; c=relaxed/simple;
+	bh=ieQM3Fa2DG+TOL3wCqRWS+Fh9+UNPjyV4AvtFmtTjZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZJq5AKe4aC9pLqeds7sMUb5KZk0WQfHSq0vkmygI4Q2BSOM6u5DAgqf+NomQ8o2+r2AH4W+BHAjRwJJTpjXCrfKl6A5w8I6+5AeyZ/oHqvAKuEbFjXEJe8PtGAqjFMOtEclA1lmLHOtE8iP7Zu/rM4yHhBjIFOCeUb6weGgzhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s25WrjgD; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5ed1ac116e3so2675354a12.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:43:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744361012; x=1744965812; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=167NBAxwapel9/w4hU5o76Q6vm0N2JeJ45n3Xz0bAG0=;
+        b=s25WrjgDZGZBRpOYqx5dbNkiNui1iCBq23+08qrze40laHYkGRPxp/cIaSUe9hP3f+
+         9hX0vnqUqPPdjqZyFBZzQvmUbj2PoUxKJEJQhdM3fEkZ0QlAWTUidnWr6cOY1oVeqI/Q
+         hPkJfegl1gmE1xj8T5QlspyXZXapX4AHtOMQhse71hXVACPa/cmJMLe2tdCvJhhY/+Uq
+         D6VsWkSroH+4hs1shfMNaS1qSzNLBj3eaQWBJQUpNAfB6lI6TdBh6CcGVI8leKM+2ieL
+         UPir3mssE1ipXFiOeaPolfCFs+6+GNHridDNnyz1oydqi893tR+1NWkYWwiljPLmSqee
+         l0oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744361012; x=1744965812;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=167NBAxwapel9/w4hU5o76Q6vm0N2JeJ45n3Xz0bAG0=;
+        b=Jb+XyNyqPzIiNstZdTIs95VCKEzXGf43g64ejm2IqPMJlINJ4jhAF7HC7xckihpUy0
+         jSOCMAVtqUG9UfMmZEqwE+tuacxPngwDPclvb6+UaWiHGm84m0IRN+6yPB4Hm+ZwOpY+
+         cqm/7UcCTwAv1bZnMXilH8MspflyWUdgcDeh9uV/pp1ygsOeLn2HlWh8Kq46pQrYtTbA
+         5+mjUpWDIuEv3wCAgQZ4S0HcABPTh7mCVKwbMf+PZVWJb2Wit9OPI2ek8YN6qnR5xrpQ
+         CKokK/ENe9/voz9aVD1TklwNMZDGI85yeECfTxl6Sy/uCG7G6IZzV4OdYiyKQcNbbNuI
+         wqug==
+X-Forwarded-Encrypted: i=1; AJvYcCVOKCzzbbv/83NSsJk++FT96Pt69OdC0mJXCHTY65wO17VF/lgpPL+3tIIcMv6eUBS3vgPfIqoNuSgK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6oicJGuXAFD2Vr6mVdZzibXy9qfJAnXbhcPPpcTzrroUQnC4z
+	mdWNoBtdrp9dZV486BONOODvFz7dJVW1wOaQVXNcqEG361tUWEfS9vCv10anplo=
+X-Gm-Gg: ASbGnctv1Oer1d51SLLo7Qfdq+E6cjj4AVwJA4ot2xqczApEgCP+eDC2dYYZbMKlwWn
+	k0vT5ki3BfrWAgNj8ClOPolaiIBr/xcaXtqKpz/rSxzKVM8I0klEZe4hs85uqRXy4NikBC3e2j6
+	y2z3jTCXFOETJrUbjXIf9qvqOLoEYadfjgWY0IvcLkcKAVttqsM2Cd2Gj2DL4KKlONv7aPAOHJK
+	RmOiDzUwZ6Gi1klkRcnPp5vh3grqTgvVJ6qgMWx2MX5mBhNdN9NEMgPZe4IwV/o3Yfh3YAYLC7y
+	lszhArQmz4wTprTx/dWdOsxrTkrd5ooTbhmghun0xs938vYwyOJNGslGrhVWijY=
+X-Google-Smtp-Source: AGHT+IFn6T/u+03XqCaTEMib8NLieFyPrI8ch7ele4xHb+XEXz8Ti8RBMogOoj3tdmlCFeXtc3lXig==
+X-Received: by 2002:a05:6402:42d5:b0:5ed:1400:f879 with SMTP id 4fb4d7f45d1cf-5f37012b286mr1299928a12.32.1744361012123;
+        Fri, 11 Apr 2025 01:43:32 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:9d85:9567:3e11:a24d])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36f52a4aasm633539a12.78.2025.04.11.01.43.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Apr 2025 01:43:30 -0700 (PDT)
+Date: Fri, 11 Apr 2025 10:43:26 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Alexey Klimov <alexey.klimov@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: Remove unnecessary MM_[UD]L audio
+ routes
+Message-ID: <Z_jWLq6qJuGH3sNx@linaro.org>
+References: <20250411-cleanup-mm-routes-v1-1-ba98f653aa69@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250331221541333bf9cf@mail.local>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 53B8dGr5046393
+In-Reply-To: <20250411-cleanup-mm-routes-v1-1-ba98f653aa69@fairphone.com>
 
-Hi Alexandre,
++Cc Srini, Alexey: FYI
 
-Thank you very much for your feedback on the patch, and sorry for the delayed response.
-Below are my replies to your comments and questions. I will prepare and send the next
-version of the patch as soon as possible.
+On Fri, Apr 11, 2025 at 10:33:29AM +0200, Luca Weiss wrote:
+> Since commit 6fd8d2d275f7 ("ASoC: qcom: qdsp6: Move frontend AIFs to
+> q6asm-dai") from over 4 years ago the audio routes beween MM_DL* +
+> MultiMedia* Playback and MultiMedia* Capture + MM_UL* are not necessary
+> anymore and can be removed from the dts files. It also helps to stop
+> anyone copying these into new dts files.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-> +#define RTC_MINUTE(x)        ((x >> MIN_OFF) & MIN_MSK)      /* RTC min */
-> +#define RTC_HOUR(x)  ((x >> HOUR_OFF) & HOUR_MSK)    /* RTC hour */
-> +#define RTC_DAYS(x)  ((x >> DAY_OFF) & DAY_MSK)      /* RTC day */
+Thanks, I always forgot/postponed making this cleanup. :-)
 
-FIELD_PREP can probably replace those.
-=> That's a good suggestion. I will update this to use bitfield-related macros instead.
+Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 
-
-> +struct atcrtc_dev {
-> +     struct rtc_device       *rtc_dev;
-> +     struct regmap           *regmap;
-> +     struct delayed_work     rtc_work;
-> +     struct mutex            lock;
-
-This mutex is not necessary, simply use rtc_lock() in you interrupt handler, the rtc core is already locking before calling the rtc_ops.
-=> You're absolutely right. I will remove the mutex and clean up this
-   part accordingly.
-
-> +             usleep_range(ATCRTC_TIMEOUT_USLEEP_MIN,
-> +                          ATCRTC_TIMEOUT_USLEEP_MAX);
-> +     }
-> +     dev_err(&rtc->rtc_dev->dev, "Device is busy too long\n");
-
-Is this error message useful, what would be the user action after seeing this?
-==> This message indicates that the RTC hardware might be stuck in a busy state.
-    If this occurs, it suggests a potential hardware issue. During development, it
-    can serve as a hint to review the RTC module's design. In production, a system
-    reset might be required to recover. Based on that, I would prefer to keep this
-    error message for diagnostic purposes.
-
-
-> +static time64_t atcrtc_read_rtc_time(struct atcrtc_dev *rtc)
-
-Does this have to be in a separate function?
-=> Not necessarily. It can be merged into atcrtc_read_time(). I will
-   make this adjustment.
-
-
-> +     rtc_time64_to_tm(time, tm);
-> +     if (rtc_valid_tm(tm) < 0) {
-
-This is not necessary, the core always checks whether the tm is valid.
-=> Thanks for pointing that out. I’ll remove this check.
-
-
-> +     rem -= hour * 3600;
-> +     min = rem / 60;
-> +     sec = rem - min * 60;
-
-You already had the broken down hour, min and sec, it is not necessary to compute that again here, just fold this function in atcrtc_set_time
-=> You're right, I will simplify this part by integrating it directly
-   into atcrtc_set_time().
-
-> +     ret = atcrtc_check_write_done(rtc);
-> +     if (ret)
-> +             return ret;
-> +     regmap_update_bits(rtc->regmap, RTC_CR, RTC_EN, RTC_EN);
-
-This is losing some important information, the RTC must only be enabled once the time has been correctly set, then you can check RTC_EN in
-atcrtc_read_time() to know whether the time is actually valid or not.
-=> I will move the RTC_EN setting to atcrtc_set_time() and add a check for
-   this bit in atcrtc_read_time() to ensure the time from RTC is valid.
-
-> +     if (IS_ERR(atcrtc_dev->rtc_dev)) {
-> +             dev_err(&pdev->dev,
-> +                     "Failed to allocate RTC device: %ld\n",
-> +                     PTR_ERR(atcrtc_dev->rtc_dev));
-> +             return PTR_ERR(atcrtc_dev->rtc_dev);
-> +     }
-> +
-> +     ret = atcrtc_alarm_enable(&pdev->dev, true);
-
-Can't atcrtc_alarm_enable be part of atcrtc_hw_init so you don't have to wait twice?
-=> After reviewing your comment, I agree. I think atcrtc_alarm_enable()
-   should instead be integrated into atcrtc_set_alarm() and removed from
-   here.
-
-Thanks again for your detailed feedback. I'll revise the patch accordingly
-and send out the updated version soon.
-
-Best regards,
-CL
+> ---
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts          | 5 +----
+>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts   | 5 +----
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts             | 2 --
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts             | 6 +-----
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 6 +-----
+>  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 5 +----
+>  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 5 +----
+>  7 files changed, 6 insertions(+), 28 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> index e8148b3d6c50c670d6bc8045e42074162dc1c6d9..1089964e6c0d819e166fd5a959f7f1e6fe688d65 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> @@ -1012,10 +1012,7 @@ wcd9335: codec@1,0 {
+>  &sound {
+>  	compatible = "qcom,apq8096-sndcard";
+>  	model = "DB820c";
+> -	audio-routing = "RX_BIAS", "MCLK",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL2",  "MultiMedia2 Playback",
+> -		"MultiMedia3 Capture", "MM_UL3";
+> +	audio-routing = "RX_BIAS", "MCLK";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> index dbad8f57f2fa34575440caa7f0a19d5893efcfbb..d7fa56808747ae1290b884430d5fa5443bdd9be1 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+> @@ -156,10 +156,7 @@ &slpi_pil {
+>  &sound {
+>  	compatible = "qcom,apq8096-sndcard";
+>  	model = "gemini";
+> -	audio-routing = "RX_BIAS", "MCLK",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL2",  "MultiMedia2 Playback",
+> -		"MultiMedia3 Capture", "MM_UL3";
+> +	audio-routing = "RX_BIAS", "MCLK";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> index d485249bcda44055689b5556eec9dd057b92d0ae..a37860175d2733214f1b257e84d5cb4821033242 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -110,8 +110,6 @@ sound {
+>  		pinctrl-0 = <&lpi_i2s2_active>;
+>  		pinctrl-names = "default";
+>  		model = "Qualcomm-RB2-WSA8815-Speakers-DMIC0";
+> -		audio-routing = "MM_DL1", "MultiMedia1 Playback",
+> -				"MM_DL2", "MultiMedia2 Playback";
+>  
+>  		mm1-dai-link {
+>  			link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 4cc14ab1b9ea0f92a12a12ef4df1cdc37bf5591c..dcb998b8b05498d8f9a82ff9a984c1e237a61308 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1053,11 +1053,7 @@ &sound {
+>  		"SpkrLeft IN", "WSA_SPK1 OUT",
+>  		"SpkrRight IN", "WSA_SPK2 OUT",
+>  		"VA DMIC0", "vdd-micb",
+> -		"VA DMIC1", "vdd-micb",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL2",  "MultiMedia2 Playback",
+> -		"MultiMedia3 Capture", "MM_UL3",
+> -		"MM_DL4", "MultiMedia4 Playback";
+> +		"VA DMIC1", "vdd-micb";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index 2b2ef4dbad2fc55b27fd176baf1b4205802e1c42..adfd916270055df0a957c573868302e0d77c614d 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -777,11 +777,7 @@ &quat_mi2s_sd2_active
+>  		"DMIC2", "MIC BIAS3",
+>  		"DMIC3", "MIC BIAS3",
+>  		"SpkrLeft IN", "SPK1 OUT",
+> -		"SpkrRight IN", "SPK2 OUT",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL2",  "MultiMedia2 Playback",
+> -		"MM_DL4",  "MultiMedia4 Playback",
+> -		"MultiMedia3 Capture", "MM_UL3";
+> +		"SpkrRight IN", "SPK2 OUT";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index e8012205954e76627febda14ee51ecff9d29e4fb..7677acd08e2d176be932d3f726fe5602cf8d50d1 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -632,10 +632,7 @@ &sound {
+>  		"RX_BIAS", "MCLK",
+>  		"AMIC2", "MIC BIAS2",
+>  		"SpkrLeft IN", "SPK1 OUT",
+> -		"SpkrRight IN", "SPK2 OUT",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL3",  "MultiMedia3 Playback",
+> -		"MultiMedia2 Capture", "MM_UL2";
+> +		"SpkrRight IN", "SPK2 OUT";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> index 26217836c2707ba2f7b0030c9801d7de3a797315..d6d4e7184c5603864668057de79c7497ad361ab3 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> @@ -445,10 +445,7 @@ &sound {
+>  		"RX_BIAS", "MCLK",
+>  		"AMIC2", "MIC BIAS2",
+>  		"SpkrLeft IN", "SPK1 OUT",
+> -		"SpkrRight IN", "SPK2 OUT",
+> -		"MM_DL1",  "MultiMedia1 Playback",
+> -		"MM_DL3",  "MultiMedia3 Playback",
+> -		"MultiMedia2 Capture", "MM_UL2";
+> +		"SpkrRight IN", "SPK2 OUT";
+>  
+>  	mm1-dai-link {
+>  		link-name = "MultiMedia1";
+> 
+> ---
+> base-commit: 01c6df60d5d4ae00cd5c1648818744838bba7763
+> change-id: 20250411-cleanup-mm-routes-7b9e92962553
+> 
+> Best regards,
+> -- 
+> Luca Weiss <luca.weiss@fairphone.com>
+> 
 
