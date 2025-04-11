@@ -1,59 +1,68 @@
-Return-Path: <devicetree+bounces-166111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF849A86512
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:50:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81561A86521
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:57:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D605C177AF5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:50:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2FB51B639E6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4713F2586CC;
-	Fri, 11 Apr 2025 17:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD588258CC6;
+	Fri, 11 Apr 2025 17:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2H3sjhI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vQL8jzqT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F3723BF8F
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 17:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FC52586EA;
+	Fri, 11 Apr 2025 17:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744393838; cv=none; b=DF8AY8EU/eYdWtTjiUzga6gkslNlEoP6CQ7f3wrPoga+Gh69dZYxf0XA7vjYheh1bZOGHwn6uevoTnHN4/+FeYkt4ADvl+gvrPisV+Cv/EwzmpnNtn78kkv+tN/11EshxgzoxQQtEh3L72NMWnp0Po/RYenoWK9a5ut1W+GktTA=
+	t=1744394252; cv=none; b=bWP8Ho90u1xiy3U7X8Mnj3KuRyZ2NQJKHsSnpgSr4yKCaOIhXj82qw5ahysfaRjmWzSzFBh1aG1wXH1rwuE2oC48g5QMoRq1DjxklGm2IW6HgEuplTBX6BnSh6Ho6h028RP45po/xFoD3RjtZBilKjNgv3E4abLQ1pBsNVEfqgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744393838; c=relaxed/simple;
-	bh=UgYRPhQRBiJ7R4mPcaCowJ6V4uNk97/yxaeTPsWPQMI=;
+	s=arc-20240116; t=1744394252; c=relaxed/simple;
+	bh=1/CULNrp6gAuXONzF0vqUued6nOAitWEc5QO9k0BcfM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQ9ztcATzIleFVLtCpPz0+e3orygfq4CTVX2p3v0D9aeH+FNE3HO2M0ZCIj02J66dkHBczzDAWUgt78rz4Ws6QmVqLWyd3CCf1LKeN8DjDRQmZfwse4S1ceO7fU1tmP/XkhCsry/GguqE8NpA+Xx11KX4rCSlIWdIU0WvgUjB0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2H3sjhI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C118C4CEE2;
-	Fri, 11 Apr 2025 17:50:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=njuFd64YES7ExutJKF7BzzS90a7tRth+Ub9lSXzjkdwvv53PZmV5dUslPynaJ6fuejwYBL9nfmdc6eF+8dUl+Xdg8QqLknYFROhEfE+EsyVIYXPTy2lxAMRM49wmZc+QYzxQlvTw6NDwezOVPm2/ggffwqt5m7aHIzShs7IyktI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vQL8jzqT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADAA8C4CEE2;
+	Fri, 11 Apr 2025 17:57:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744393837;
-	bh=UgYRPhQRBiJ7R4mPcaCowJ6V4uNk97/yxaeTPsWPQMI=;
+	s=k20201202; t=1744394251;
+	bh=1/CULNrp6gAuXONzF0vqUued6nOAitWEc5QO9k0BcfM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c2H3sjhIOEtN289F9ZQj5HeFpR+hz4IfKJNw6si8S8erQFWjQv9c98j/zZUpOKhf+
-	 Ul55hNMKll9NS24QrqUe67u5viMRq2O7a1bFpsDE76FogeK9dVME6w2FvFNUgl/85t
-	 l5okiRToNExeTLMnPySMjJI+dziJ79DyEto1JfkUYU9/a9FKxeAGeyq79ZxwOHCBsC
-	 kOJTfA6zlkQtxap6bnuEcqQ7i/I6myaqNeaG5L3Fb6rz3GoBWO3sK0lp1nRb0ZLiw3
-	 zXinIhrrMzYuSvN8/ZWPjsFjTkucDCb1CFhOsg726ubw/mRvIBbBxAioK6+LTfUtf+
-	 N/C5BgJYXiSmA==
-Date: Fri, 11 Apr 2025 12:50:36 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
+	b=vQL8jzqTq0Mt9e5/JneJadi8HlMfBW1lUfP29jeKA7AXF17GrRL7EGjSF+OcxDTT+
+	 Q50Le5Uho9FyrtY+DS4gnwRNTMhp/OUFgUvRVrNTKuE3RBQ/08g1tBRNipNXvacs4I
+	 ftH0qnbINyOjg7oXIJ/ksRpF0whK+c8FL3a01Hjcl5BJrCbccsmdBbUemLNby+jJeM
+	 mf2OPQgQV7mxABw09VRCzxGJhc+rCD5IUckA9shSmPoerGfaMXVpjTtVhGXwnVRj8X
+	 xoKkQgPqQ3GtFcbeilxBgRG+WI2yZ4YZvo8719+bMdMHD8AqcjXj1QkjBycLBEidbx
+	 49MTgDL6i9Qfw==
+Date: Fri, 11 Apr 2025 12:57:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] dt-bindings: soc: fsl: fsl,ls1028a-reset: Fix maintainer
- entry
-Message-ID: <174439383495.3642695.16910474750574128734.robh@kernel.org>
-References: <185e1e06692dc5b08abcde2d3dd137c78e979d08.1744301283.git.geert+renesas@glider.be>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
+	quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
+Subject: Re: [PATCH v1 2/9] dt-bindings: serial: describe SA8255p
+Message-ID: <20250411175730.GA3642862-robh@kernel.org>
+References: <20250410174010.31588-1-quic_ptalari@quicinc.com>
+ <20250410174010.31588-3-quic_ptalari@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,24 +71,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <185e1e06692dc5b08abcde2d3dd137c78e979d08.1744301283.git.geert+renesas@glider.be>
+In-Reply-To: <20250410174010.31588-3-quic_ptalari@quicinc.com>
 
+On Thu, Apr 10, 2025 at 11:10:03PM +0530, Praveen Talari wrote:
+> From: Nikunj Kela <quic_nkela@quicinc.com>
+> 
+> SA8255p platform abstracts resources such as clocks, interconnect and
+> GPIO pins configuration in Firmware. SCMI power and perf protocols are
+> used to send request for resource configurations.
+> 
+> Add DT bindings for the QUP GENI UART controller on sa8255p platform.
+> 
+> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
 
-On Thu, 10 Apr 2025 18:11:12 +0200, Geert Uytterhoeven wrote:
-> make dt_binding_check:
-> 
->     Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml: maintainers:0: 'Frank Li' does not match '@'
-> 	    from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> 
-> Fix this by adding Frank's email address.
-> 
-> Fixes: 9ca5a7d9d2e05de6 ("dt-bindings: soc: fsl: Add fsl,ls1028a-reset for reset syscon node")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Your tags go last because you touched this last (I assume). The order 
+here would be correct if you were the original author, but Nikunj made 
+significant enough changes to change the author and also sent the 
+patches. The sender always has the last S-o-b (until the maintainer 
+adds their's when applying).
+
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
 > ---
->  .../devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../serial/qcom,sa8255p-geni-uart.yaml        | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
+> new file mode 100644
+> index 000000000000..0dbfbfa1d504
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/qcom,sa8255p-geni-uart.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/qcom,sa8255p-geni-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Geni based QUP UART interface
+> +
+> +maintainers:
+> +  - Praveen Talari <quic_ptalari@quicinc.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/serial/serial.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sa8255p-geni-uart
+> +      - qcom,sa8255p-geni-debug-uart
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: UART core irq
+> +      - description: Wakeup irq (RX GPIO)
 
-Applied, thanks!
+If this is a wakeup source, then you should have interrupt-names with 
+'wakeup' for the 2nd irq.
 
+> +
+> +  power-domains:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: power
+> +      - const: perf
+> +
+> +  reg:
+> +    maxItems: 1
+
+'reg' goes after compatible.
+
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reg
+> +  - power-domains
+> +  - power-domain-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    serial@990000 {
+> +        compatible = "qcom,sa8255p-geni-uart";
+> +        reg = <0x990000 0x4000>;
+> +        interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
+> +        power-domains = <&scmi0_pd 0>, <&scmi0_dvfs 0>;
+> +        power-domain-names = "power", "perf";
+> +    };
+> +...
+> -- 
+> 2.17.1
+> 
 
