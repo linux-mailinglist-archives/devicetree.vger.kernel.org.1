@@ -1,386 +1,198 @@
-Return-Path: <devicetree+bounces-166059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D89EA8636C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413D2A8636B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FEDF462C55
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:35:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC1D53AD080
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552C921CC51;
-	Fri, 11 Apr 2025 16:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED4A21B9F4;
+	Fri, 11 Apr 2025 16:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mil10c8x"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="L9+LgbrD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2066.outbound.protection.outlook.com [40.107.105.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65ED20F08E
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 16:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744389292; cv=none; b=pErS2Ounx/uHQ4gIQ4Qs9gVffkEHRxF+MbSDEbYU8Md5VoHnqbUS0sXkmQ6gc+m2zUaO5xO4ReJ5EY5pemeVJJlLtO5LLRlsYbMKyWSDPwy9BzNB3FTUuLWX0tURHuhWL32BVAxuWuOaEr6xrxgk5lr9FLALHUjb7cOMbKfkX18=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744389292; c=relaxed/simple;
-	bh=cUytIB6JD4u8jSksVRBv65CJh/bQDLtRlJvAHpLvoNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=klUaHJhrmdlSei5gdkL8M+p8+EKNtWVYwnRjyuT5dopkAWSzNWJ03wNNWGWVwxkZ+iFMgUSHTwaxz3+DiOJ1FZj25lkJclsICi9DCsbus9y/XbCS7V4gsWKFhKy+Q7tIrMXLtNCwW5Y0Pxb3Uzh8aLIJ71abH/UUdKvl0juEOu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mil10c8x; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53BCgFe5006870
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 16:34:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jvva2kE3vYVEBaJ0888Bum0UF9gFfTGvSCYYnphqITg=; b=mil10c8xL+HfNBzP
-	GYA6yUcePBV3DXzcJPgKMLr3bNKVTBfWXuCYFQsG5CbDk+IPON0lpjIMC3mGo10X
-	cnIatcq2HRpx0XYMIIY33HKg5eyDJH7e0cBr7VmWfDF7YG0nZRH5rPeCTclOUGLV
-	GdsCS9gyVyS17Ga1acqm2brjkkQ0oJRwX2riD8z8Xgn29No6TpnmPUlGlUCdFA2M
-	0DWfYSVZHpA9gq9FlemApC6G7MW90TLDJhOKvDkaomZQXsW0vU6omPC4UnBnv/B9
-	Spqknnh4+44peIBNeB5rWjMlGeg0cDsxT9nJHGasm4iIF132WYRKf8MOyD7sw/p1
-	iDEU7g==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45xeh3m0fr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 16:34:43 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-225429696a9so28528435ad.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 09:34:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744389282; x=1744994082;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jvva2kE3vYVEBaJ0888Bum0UF9gFfTGvSCYYnphqITg=;
-        b=Ecp6jy+7QRB2k+J6+oratR/XSqNbV611tYpgtHR35hd4XFrr5znuW1Vy+HBEf+J/u1
-         zvB30SqvzyJiHJ8yJWXkoW5WSKVed8CESw0jUAn70YgA0NoaBVgjUzQaFat1hyU+jvdv
-         ixUUbw+KM1RBKsp7fzTOOhpMQQ5HUME2yEWl+yHxodIKAnYN2vq9jYyM2AZ+RptaXd5X
-         y43sKDi5wc9AV79pgQTMmKSGzn949DyeWad0ps2nQjUHpmDpe09Fu5tuBZpzJhuAd1QL
-         vMfpzMWUeQ6lgEV9Vk3LNvetuX0GUrJVBR+9F7TFOR35QxP6/1/FNuZk+I/pSuLX65Xj
-         k1Ag==
-X-Forwarded-Encrypted: i=1; AJvYcCW23rV5gLE+dwZnyDrFjwAem9YAHAOQ3BWY1dP7nUkYjs5zDc4e2sZFPYKUH+s/Kiw0FKDpPUg20Xwv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxS6WC+SR+ZdBgfqbVbVCic1asHgqo5tZ+s5+vV8HBVXE/N1WP5
-	GnT1OUw4ON2CQUwvHi3JcTaUyOzJOrFpzJO88scuackTM083dDGR1FtxELeyIaqYqOL6+abZNyN
-	Dk6/gFV0FtweA4BZnfY2oHDKhaI2BWJ+SscNWaQhIXlOcJjvfaBTxWhwN4zTt
-X-Gm-Gg: ASbGncsj4F3lIfRnDcYv4fZrGj26le9IBDCjjXvuWjwnJc2aJo5rZrzHV1cFNmmMUuz
-	+ccHSCKMP4IZMWm+7m/HY9trnyxcl3+z8R84fEJ43IjiPnXffUQDTFN1Vtr0O27v5AiM8DoaUUT
-	NGOOCs4yfS+WERs6VR/neH2ECHKUYDME7+HvlWzv7trJIPDIdkmSyvh/N4t0FYA1LpN2co6DzYx
-	7oThjyiimloSV8sODpTP7d6mZP5EwjeaLHXLwmVaeVtBltgGX6YXpo6hZdZrdApe5rlSRStgVVo
-	v0815TyvXkGLEf/CMpqRbbrPsyTegcAdgldAib6Piq6hVqiP9UzIg7Vi6TTe7Q==
-X-Received: by 2002:a17:903:13d0:b0:216:3c36:69a7 with SMTP id d9443c01a7336-22bea50bd92mr52568245ad.45.1744389281668;
-        Fri, 11 Apr 2025 09:34:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjVbhg891hBTEU/fDXSGsCtHr9+7WqQeuL91yoDYRZ8Vj/jNkTHN9KHit1bNNOf3beOPdFtw==
-X-Received: by 2002:a17:903:13d0:b0:216:3c36:69a7 with SMTP id d9443c01a7336-22bea50bd92mr52567665ad.45.1744389281217;
-        Fri, 11 Apr 2025 09:34:41 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7b8c62dsm51759155ad.95.2025.04.11.09.34.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 09:34:40 -0700 (PDT)
-Message-ID: <3260d7de-9e8b-48ee-9d1b-13745e95d933@oss.qualcomm.com>
-Date: Fri, 11 Apr 2025 10:34:38 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273E1211713;
+	Fri, 11 Apr 2025 16:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744389338; cv=fail; b=WlVTb9IV6b42tZNiJ6A4HkuHbMqjSY1IXWRkxgxxjNO3w56UlhQgr7Rc+4gN1mIAUpDdOeb8b+6eUjsJiskgbMIoYJg8llbgAQcZaUxb4A0GM3We3qV9bCYr+o7B8IPDcKSyNMbIhGwfuN/7C8Lppz8YSXonCiM0E9m/4AyoijE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744389338; c=relaxed/simple;
+	bh=+y0XN2yoIHLZFQonQ3h/asiLvRJt4br+jMev6gpt10c=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lQJMmsi0TAYuG4QW3zTKhDcRI45sgNnReNx+sbu/vAQ1UA7ExFGdZCa5p5zmophE+bqKw3wYW0AlEEotrVVvlgXXoogYEB+hnSt4uIEvvvwZnhpa/CbEQ0fsPGiG5/pvIBrBPLPlV+MK0ukPdMoFtEx2/T4fhBjKDAQFRyroAp4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=L9+LgbrD; arc=fail smtp.client-ip=40.107.105.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xFD3GVi8ppdYAPXEC2+CnZOmcLpLsiaV3T8X66Xg1CNQD0c7I5pNjrJrNqoCfNAq9UsiIiTltcG5cBMyF/jCAJLu90fHnOCS8dfo2q0gtqbXer3kshBszLkpH0IEKUlw/LHWbAIJmWXUW9FqYqUKTgVD7x5vXHW2hqqdmNqb2XPDbvKFhAsW2crNoJoqtRwFimPTJUkpMj70jQhF2OXnqQNFqLjjXiJn2kOqpXVEkj+Gg1oR6i7cUifl8NPG2PxvBuPl6fpEMQ4Dth4IoBqxo67YezGeHRQZkhwaoqe3tf+DsgyHh/Z+bOB/qjjLGP2s5h+sj4scMf98tLYGe73VbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tq//SMPI11AIN7J8GyHHd7sspC+GKHrHHnKehhHAN5Q=;
+ b=t4Vkf0ME+PORsOQN3Y9ZdUWPJRPCzPc6hQ+mJSyiLwR23YUh4OlOLO4J0cpeY5xqKsV8O7EQJr9ea6oESTYxgymBEuMwVqj/lgynrIl+641jPKhi3pqnRcrztumD53s3vqfTqnTkp09tiFQVXRvCXueZt+R0GihnMRVzxVh1QBDmC9IZl5OpzLLeT/j/V6m6E19Oj/ww2n9aTGj0QWBbviEPraQ8m6PWkYXjxDU40aB1Uhmdh9+7p/M7K2v1m/18o9vli5UqzfnUhhNXtz3cNC1EFzIopYrtT+4T3JuDXKCvkqxM0UIXxu+OYbKMBG06SDm4mOfTiONWcoNCED9xtA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tq//SMPI11AIN7J8GyHHd7sspC+GKHrHHnKehhHAN5Q=;
+ b=L9+LgbrDr2kprq3cpPOwt7mGznP9n88RV+UMt5AOePpPWGGE0r0ti3snPDuiBAWeC802VcushmPIvwlyoR9sXpIOMYbbpZL7tegDL4gF+neeQqBGKLhr/iCX3WDHawoe4lQGgvauk7zWWYaNYIwoBnUW+RRfGEnSxDhAhBGGWMge948UVj7Pbd5pujJcnNYvfwqRhVD69Iz1pwz7puQ+D1pamGmXXKtl/ZSjlGE10Vdr35pkcMVJEAfxkes6TzO+IIZQ36DbPnNALgNJJvHHHj0U//ONIxsR62TSIynpjltBpx8u2v9fLgtP+9ZXjzxSfDiHztt4NlZRrb6+azxQCw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9692.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::20)
+ by PR3PR04MB7291.eurprd04.prod.outlook.com (2603:10a6:102:8c::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.27; Fri, 11 Apr
+ 2025 16:35:32 +0000
+Received: from AS4PR04MB9692.eurprd04.prod.outlook.com
+ ([fe80::a2bf:4199:6415:f299]) by AS4PR04MB9692.eurprd04.prod.outlook.com
+ ([fe80::a2bf:4199:6415:f299%4]) with mapi id 15.20.8606.029; Fri, 11 Apr 2025
+ 16:35:32 +0000
+From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To: marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	amitkumar.karwar@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	sherry.sun@nxp.com,
+	manjeet.gupta@nxp.com
+Subject: [PATCH v1 1/2] dt-bindings: net: bluetooth: nxp: Add support for host-wakeup
+Date: Fri, 11 Apr 2025 22:07:18 +0530
+Message-Id: <20250411163719.326558-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0214.apcprd06.prod.outlook.com
+ (2603:1096:4:68::22) To AS4PR04MB9692.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4fe::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
-To: Nipun Gupta <nipun.gupta@amd.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzk+dt@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
-        conor+dt@kernel.org, ogabbay@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-        derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de
-Cc: praveen.jain@amd.com, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        srivatsa@csail.mit.edu, code@tyhicks.com, ptsm@linux.microsoft.com
-References: <20250409173033.2261755-1-nipun.gupta@amd.com>
- <20250409173033.2261755-2-nipun.gupta@amd.com>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250409173033.2261755-2-nipun.gupta@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=VbH3PEp9 c=1 sm=1 tr=0 ts=67f944a3 cx=c_pps a=JL+w9abYAAE89/QcEU+0QA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=e5mUnYsNAAAA:8 a=zd2uoN0lAAAA:8 a=t4VSQj1yoBEbmVwKJQYA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: 9klV5dbOxXGRJ4m_prokor4RgvsMXcIn
-X-Proofpoint-ORIG-GUID: 9klV5dbOxXGRJ4m_prokor4RgvsMXcIn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_06,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 impostorscore=0 suspectscore=0 adultscore=0 spamscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504110104
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9692:EE_|PR3PR04MB7291:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31ae4f5c-8f86-4ed3-1ba5-08dd7916e08b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?GSaS2CyY0Fze/UASLcJio9CwXdTFS3MwWI70Mg3Jra4bm+wXHmojsB4KSPZt?=
+ =?us-ascii?Q?VjDRo1L/5GoFz+y0qFL53N5dLy1E4FPValYaf75Ci2fD1YvaULbB4uux3nyJ?=
+ =?us-ascii?Q?zPFDCj0xx8oIOHNYhP6eX4qwEP1NbFZgCdOf5s2w5lQkKirTpx9h6jVCYVeA?=
+ =?us-ascii?Q?HBB3pL+EInd7Absp7ywNytslXTi9Zbkub8VxU3zi8NWeKU1s0SU2nbkZUVhK?=
+ =?us-ascii?Q?KvAwJe3maagTgowOKMAcjI7sqXy9ysOkYnPaPKnsEI6wJaPGF9ZeAsM3gyPe?=
+ =?us-ascii?Q?cv5unvcrRi8NOGX4qSzZNvUrvq1B1lurESw8P03hIuEj+lG+ngKja8DtRu4t?=
+ =?us-ascii?Q?Pc/7P0C2y9pZJHFmOhkMnWbsj4VB2DxQt7HPnCm4SiV3B1E5RIe943PT4EmM?=
+ =?us-ascii?Q?yTOVh0Ngdd4UVWpp4ENg6jp0nT78Az8128erKq0saazE1In6/XOzeru9xxZj?=
+ =?us-ascii?Q?BFp+4OpT4k1DllPa+/OWJGxIzGYGDY103/AznZIB3RckxlrCFHWeCarTkwDz?=
+ =?us-ascii?Q?MCIZKFYb3Dm5qorw7KshZQ0NhEJj5DI/JM/Ck2ercXYFkS5Kmk3Y0XlfNfry?=
+ =?us-ascii?Q?8f4F9nmpn+Lvq1UJoTEmP1mx/LS4CFg0NSpNrK+iu9vH7nZ78673u0MopaOb?=
+ =?us-ascii?Q?TqsYknLL3KlqhSGO9Lty813k3HiIPoOoEvqKM3Qp69upxkGdSOvwu/+nyFRC?=
+ =?us-ascii?Q?PqWOVCjGYTtcA0KJot7DiyCtTv5V2yZNALwhg/0zu99LbUvEy5uPfp82Bo0U?=
+ =?us-ascii?Q?PdWhtAlAOunDj3lP8dTDmqy2ehyBPShUKmva0XCJIggqxWyl1EiVjr5t/WtK?=
+ =?us-ascii?Q?+FCTi3TdYd8XqEtuuEKbGNZIG0dA55Mq5FMg4UxGYnu8z6eUtqVPl+ZpVgZn?=
+ =?us-ascii?Q?/C7/IrEm/vO4HdOJK2MYbUQocDhA4F4Wt+HQwi5CYJ/XqkI79CDsjYIUPN7h?=
+ =?us-ascii?Q?jtF+m92vbnsYA7QZ8CgWxoRygTTKyvIdQfo5FZ5kEN8gtP137I6XjCq9yLXh?=
+ =?us-ascii?Q?faprb2pkmnzznyFbbbxPJXnR5vuwq0BbfoEqw/AT9LqhjVMLGVfnU8BxYlFB?=
+ =?us-ascii?Q?axgAo5dcQ7Wsy1IJHL/AtgtE93CWpR3NTKih5g3KVPGRnDJf7mQjzN94yssJ?=
+ =?us-ascii?Q?LDnkeXKvoaTKkuxZBZOYkd8qmGmPvbZVhQbc6edqxnfRPYn54+mAzA4d/PL6?=
+ =?us-ascii?Q?ndSbq4Mh3uEEGoS12jbUX1pqiqFq+fLZYTxJjo7u055yq2/EwOjspnd51wQ5?=
+ =?us-ascii?Q?lbvfLCQNZgUvUYavgrFAUs9SpFYkvDZcAa65tJVn54rtPUMmWNQOnAbPjXtB?=
+ =?us-ascii?Q?NY7ch+hPKBr2Jx5ZEquKAGrfIpxhawyRbIf2W4QGIGkxiSP7dCSClyeXkXS+?=
+ =?us-ascii?Q?Wt9SyPFBKlNubCGSbQ9NyxpLZYWKBKPb/J0xe95q2I2ZuOzQsfUIRK7ic5y9?=
+ =?us-ascii?Q?FhMBpFNDfZKyuyvE7R9pf5PcDkSN/3DoCI9o3fRR1KF4YeeXehKuGg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9692.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?/Y/MfqYwc7VT5Z+RPwKFbI7uS5iQioud4UyN4d4CW5Vay79SOQm0dkBHISi0?=
+ =?us-ascii?Q?LnDxzilCcCNYX4dhInBEAWWGmUUxTFYoya7uTRDexPCuDxcfNCwuH9/0JMZv?=
+ =?us-ascii?Q?fCX9y4CbNf7dUA/P22Sx0CzUpE0FS+DM8byxWBoJXMJD3SYxOlnwEVS+cK8T?=
+ =?us-ascii?Q?ydiQ0eZJ0nDb5wmo/tU5fF1kXRs1119iE0tksZIBaCLkVkt/hN6fRq2R6ayH?=
+ =?us-ascii?Q?GbwoJHMJ8QU3d2ZP4xMQnF6gfAwhcZwJ2sd+CQjOFFJq/ccQhvMBt+14qX8v?=
+ =?us-ascii?Q?n2jB0VFeL1FJrdd9moiLzudR0qlMC99+8D5GxEBhaNSPGE6gbpX/+0zIiR8Q?=
+ =?us-ascii?Q?lSP1UUD36Xllo8IVdHzhsNjoV+Zkl1xp4j/EGPREiEADF+k0xOhZNsxgWLum?=
+ =?us-ascii?Q?Yyl9+tqG5dxV5t3vHZsMTEEaiJylRyS62DMiIZgfqeYL3K7NLsKJ7Q+ahUyA?=
+ =?us-ascii?Q?nIN+6qyoNy+bow2a9bLg7McRM1pZi3TwPaXwlWoXdUDVHMrZkKbLs5IFiE3f?=
+ =?us-ascii?Q?N7+a5wzCvoeL3zx1i4k5bfeD8AZuLCW9VoKaWyJ8V1MEKTLJsNKHCCHdqQjv?=
+ =?us-ascii?Q?Grm7UcjiAOv9xDMVkuirGbKBJwANXejfD+/zk4pzzsCTzmQUTY5XvYTSLRcg?=
+ =?us-ascii?Q?i6lzw+tRO1sOwL8two08LrVL8w0jl80quy4Kv7XxAtGTiqNSkNd5ygmerufK?=
+ =?us-ascii?Q?9vuHi7mRrj+VL7iVUCAu8jmJZ0m5JUes5ruQf9ZDoSo4GJRj4B8rqDnIsOrj?=
+ =?us-ascii?Q?698aXgdkwD/4oH9/KnrURxcZRbgOWHY9TvH33uq+Vw81t2JMLP+gGw1JKqHl?=
+ =?us-ascii?Q?mbMuTeuL9EHgiwR/EyRlR3gJPdVWuai6gjzucWaYK55lZkVYVgzA4DNsWm+0?=
+ =?us-ascii?Q?pUiN1kOLMKBb2H/Soe83Rx//f39ODsTLttMeSUv1YZ7VxAwBZjx/YPt0GtIc?=
+ =?us-ascii?Q?Ey0GeLvjNBVxo401ZZZcaaGiI+VwOX1b3Ooay5YIvcWGYSbX1E0JnIvDKm9z?=
+ =?us-ascii?Q?pdHPzemmlLmGgf1wvQwt3EAXF7WA3zi09nY23DNCn+e7dGwBj0WQt13sUMX7?=
+ =?us-ascii?Q?tMmN70pU3W2wO/WKLTTB+QFcelTHwVRUMwmQBWN+xHvm+R0KfAECT86iXD7T?=
+ =?us-ascii?Q?xA+oFo21QgR/i0JudlbCkJWQsTdSXxWrjxGtRbGXkkYj6Rc6ALyhcuTrT8eg?=
+ =?us-ascii?Q?SbVCxp+lpHWP1ucqLmeSovDcIt4O5GvFvkTWzjXRnMQP+I1iTcdPz6NkS3rx?=
+ =?us-ascii?Q?LAFz2aXoPxgVS0PrdDJflpczv9M/2RWffNDSTuJpjQonRMXSCsIXIj5DQKbp?=
+ =?us-ascii?Q?GjhQweLpz5TW2hvjReqyG/SxqODyO3H3yrvQbP3J/+/gELVOB+KSf4Iax0pd?=
+ =?us-ascii?Q?X1YfQLlElnFPs6dtLDzqfMN1w3Cd8wVuafLM5xy8Aqk2kxbNnQnVBMlAB1j4?=
+ =?us-ascii?Q?JlHl5DnoAoqVpkRCgN6tk0EMS/bayziQRdLxE57XyjxYO/KxkJuOvonGlte/?=
+ =?us-ascii?Q?XgrNJ1qUKyIkxcmiWZG7s3OeaIhFjX4fSWSK6vhfi3N5CaU/1nDsQOtRY7Sd?=
+ =?us-ascii?Q?0CFhR9UEq7GAxz69wrXHJiNAauUs95DUXkPnfVdzhimVe2VCzfYEeWdmy7lD?=
+ =?us-ascii?Q?Sw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31ae4f5c-8f86-4ed3-1ba5-08dd7916e08b
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9692.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2025 16:35:32.3601
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pZFPepR0mxwwASZIBOx83DfmaYBm1/1AHD2o3Yei9TR3+xSSTHBxQiq0PtrAdOCFDjmJMn384WkJ+BPqMpmZ/SdSTuCyMedwjr7btAWG1pY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7291
 
-On 4/9/2025 11:30 AM, Nipun Gupta wrote:
-> The AMD PKI accelerator driver provides a accel interface to interact
+Add support for host-wakeup on GPIO interrupt.
 
-"an accel"
+Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+---
+ .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml  | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-> with the device for offloading and accelerating asymmetric crypto
-> operations.
-> 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> ---
-> 
-> Changes RFC->v2:
-> - moved from misc to accel
-> - added architecture and compile test dependency in Kconfig
-> - removed sysfs (and added debugfs in new patch 3/3)
-> - fixed platform compat
-> - removed redundant resource index 1 configuration (which was there in
->    RFC patch)
-> 
->   MAINTAINERS                     |   2 +
->   drivers/accel/Kconfig           |   1 +
->   drivers/accel/Makefile          |   1 +
->   drivers/accel/amdpk/Kconfig     |  18 +
->   drivers/accel/amdpk/Makefile    |   8 +
->   drivers/accel/amdpk/amdpk_drv.c | 736 ++++++++++++++++++++++++++++++++
->   drivers/accel/amdpk/amdpk_drv.h | 271 ++++++++++++
->   include/uapi/drm/amdpk.h        |  49 +++
->   8 files changed, 1086 insertions(+)
->   create mode 100644 drivers/accel/amdpk/Kconfig
->   create mode 100644 drivers/accel/amdpk/Makefile
->   create mode 100644 drivers/accel/amdpk/amdpk_drv.c
->   create mode 100644 drivers/accel/amdpk/amdpk_drv.h
->   create mode 100644 include/uapi/drm/amdpk.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 11f8815daa77..cdc305a206aa 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1161,6 +1161,8 @@ L:	dri-devel@lists.freedesktop.org
->   S:	Maintained
->   T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->   F:	Documentation/devicetree/bindings/accel/amd,versal-net-pki.yaml
-> +F:	drivers/accel/amdpk/
-> +F:	include/uapi/drm/amdpk.h
-> 
->   AMD PMC DRIVER
->   M:	Shyam Sundar S K <Shyam-sundar.S-k@amd.com>
-> diff --git a/drivers/accel/Kconfig b/drivers/accel/Kconfig
-> index 5b9490367a39..5632c6c62c15 100644
-> --- a/drivers/accel/Kconfig
-> +++ b/drivers/accel/Kconfig
-> @@ -28,5 +28,6 @@ source "drivers/accel/amdxdna/Kconfig"
->   source "drivers/accel/habanalabs/Kconfig"
->   source "drivers/accel/ivpu/Kconfig"
->   source "drivers/accel/qaic/Kconfig"
-> +source "drivers/accel/amdpk/Kconfig"
-
-Alphabetical order
-
-> 
->   endif
-> diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
-> index a301fb6089d4..caea6d636ac8 100644
-> --- a/drivers/accel/Makefile
-> +++ b/drivers/accel/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_DRM_ACCEL_AMDXDNA)		+= amdxdna/
->   obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
->   obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
->   obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
-> +obj-$(CONFIG_DRM_ACCEL_AMDPK)		+= amdpk/
-
-Alphabetical order
-
-> diff --git a/drivers/accel/amdpk/amdpk_drv.c b/drivers/accel/amdpk/amdpk_drv.c
-> new file mode 100644
-> index 000000000000..17c328d03db8
-> --- /dev/null
-> +++ b/drivers/accel/amdpk/amdpk_drv.c
-> @@ -0,0 +1,736 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-Deprecated SPDX tag.  Checkpatch will catch this.
-
-> +/*
-> + * Copyright (c) 2018-2021 Silex Insight sa
-> + * Copyright (c) 2018-2021 Beerten Engineering scs
-> + * Copyright (c) 2025 Advanced Micro Devices, Inc.
-> + */
-> +
-> +/*
-> + * Device Overview
-> + * ===============
-> + * AMD PKI accelerator is a device on AMD versal-net to execute public
-> + * key asymmetric crypto operations like ECDSA, ECDH, RSA etc. with high
-> + * performance. The driver provides accel interface to applications for
-> + * configuring the device and performing the required operations. AMD PKI
-> + * device comprises of multiple Barco Silex ba414 PKI engines bundled together,
-> + * and providing a queue based interface to interact with these devices on AMD
-> + * versal-net.
-> + *
-> + * Following figure provides the brief overview of the device interface with
-> + * the software:
-> + *
-> + * +------------------+
-> + * |    Software      |
-> + * +------------------+
-> + *     |          |
-> + *     |          v
-> + *     |     +-----------------------------------------------------------+
-> + *     |     |                     RAM                                   |
-> + *     |     |  +----------------------------+   +---------------------+ |
-> + *     |     |  |           RQ pages         |   |       CQ pages      | |
-> + *     |     |  | +------------------------+ |   | +-----------------+ | |
-> + *     |     |  | |   START (cmd)          | |   | | req_id | status | | |
-> + *     |     |  | |   TFRI (addr, sz)---+  | |   | | req_id | status | | |
-> + *     |     |  | | +-TFRO (addr, sz)   |  | |   | | ...             | | |
-> + *     |     |  | | | NTFY (req_id)     |  | |   | +-----------------+ | |
-> + *     |     |  | +-|-------------------|--+ |   |                     | |
-> + *     |     |  |   |                   v    |   +---------------------+ |
-> + *     |     |  |   |         +-----------+  |                           |
-> + *     |     |  |   |         | input     |  |                           |
-> + *     |     |  |   |         | data      |  |                           |
-> + *     |     |  |   v         +-----------+  |                           |
-> + *     |     |  |  +----------------+        |                           |
-> + *     |     |  |  |  output data   |        |                           |
-> + *     |     |  |  +----------------+        |                           |
-> + *     |     |  +----------------------------+                           |
-> + *     |     |                                                           |
-> + *     |     +-----------------------------------------------------------+
-> + *     |
-> + *     |
-> + * +---|----------------------------------------------------+
-> + * |   v                AMD PKI device                      |
-> + * |  +-------------------+     +------------------------+  |
-> + * |  | New request FIFO  | --> |       PK engines       |  |
-> + * |  +-------------------+     +------------------------+  |
-> + * +--------------------------------------------------------+
-> + *
-> + * To perform a crypto operation, the software writes a sequence of descriptors,
-> + * into the RQ memory. This includes input data and designated location for the
-> + * output data. After preparing the request, request offset (from the RQ memory
-> + * region) is written into the NEW_REQUEST register. Request is then stored in a
-> + * common hardware FIFO shared among all RQs.
-> + *
-> + * When a PK engine becomes available, device pops the request from the FIFO and
-> + * fetches the descriptors. It DMAs the input data from RQ memory and executes
-> + * the necessary computations. After computation is complete, the device writes
-> + * output data back to RAM via DMA. Device then writes a new entry in CQ ring
-> + * buffer in RAM, indicating completion of the request. Device also generates
-> + * an interrupt for notifying completion to the software.
-> + */
-
-Feels like this would be better served in Documentation
-
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/delay.h>
-> +#include <linux/eventfd.h>
-> +#include <drm/drm_accel.h>
-> +#include <drm/drm_ioctl.h>
-
-Alphabetical order
-
-> +
-> +#include "amdpk_drv.h"
-> +
-> +#define DRIVER_NAME "amdpk"
-> +
-> +static void amdpk_init_cq(struct amdpk_dev *pkdev, struct amdpk_cq *cq,
-> +			  int szcode, char *base)
-> +{
-> +	cq->pkdev = pkdev;
-> +	cq->generation = 1;
-> +	cq->szcode = szcode;
-> +	cq->base = (u32 *)base;
-> +	cq->tail = 0;
-> +}
-> +
-> +static int amdpk_pop_cq(struct amdpk_cq *cq, int *rid)
-> +{
-> +	u32 status = CQ_STATUS_VALID;
-> +	unsigned int sz;
-> +	u32 completion;
-> +
-> +	completion = cq->base[cq->tail + 1];
-> +	if ((completion & CQ_GENERATION_BIT) != cq->generation)
-> +		return CQ_STATUS_INVALID;
-> +
-> +	*rid = (completion >> 16) & 0xffff;
-> +	/* read memory barrier: to avoid a race condition, the status field should
-> +	 * not be read before the completion generation bit. Otherwise we could
-> +	 * get stale outdated status data.
-> +	 */
-
-Incorrect comment format.
-
-> +	rmb();
-
-Shouldn't you be using readl()?
-
-> +	status |= cq->base[cq->tail];
-> +	/* advance completion queue tail */
-> +	cq->tail += 2;
-> +	sz = 1 << (cq->szcode - 2);
-> +	if (cq->tail >= sz) {
-> +		cq->tail = 0;
-> +		cq->generation ^= 1; /* invert generation bit */
-> +	}
-> +
-> +	/* evaluate status from the completion queue */
-> +	if (completion & CQ_COMPLETION_BIT)
-> +		status |= CQ_COMPLETION_ERROR;
-> +
-> +	return status;
-> +}
-> +
-> +static const struct file_operations amdpk_accel_fops = {
-> +	.owner		= THIS_MODULE,
-> +	.open		= accel_open,
-> +	.release	= drm_release,
-> +	.unlocked_ioctl	= drm_ioctl,
-> +	.compat_ioctl	= drm_compat_ioctl,
-> +	.llseek		= noop_llseek,
-> +	.mmap		= amdpk_accel_mmap,
-> +};
-
-DEFINE_DRM_ACCEL_FOPS ?
-
-> diff --git a/include/uapi/drm/amdpk.h b/include/uapi/drm/amdpk.h
-> new file mode 100644
-> index 000000000000..e5e18fdbc2c4
-> --- /dev/null
-> +++ b/include/uapi/drm/amdpk.h
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2025 Advanced Micro Devices, Inc.
-> + */
-> +
-> +#ifndef __AMDPK_H__
-> +#define __AMDPK_H__
-> +
-> +#if defined(__cplusplus)
-> +extern "C" {
-> +#endif
-> +
-> +#define MAX_PK_REQS		256
-> +
-> +struct amdpk_info {
-> +	/** maximum available queue depth */
-
-This doesn't look like valid kerneldoc
-
-> +	unsigned int avail_qdepth;
-> +};
-
-Doesn't look like this handles compat correctly.  Did you read the 
-documentation on creating ioctls?
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+index d02e9dd847ef..ab1411c05f49 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+@@ -48,6 +48,12 @@ properties:
+     description:
+       The GPIO number of the NXP chipset used for BT_WAKE_IN.
+ 
++  host-wakeup-gpios:
++    maxItems: 1
++    description:
++      Host wakeup by falling edge interrupt on this GPIO which
++      is connected to BT_WAKE_OUT pin of the NXP chipset.
++
+   nxp,wakeout-pin:
+     $ref: /schemas/types.yaml#/definitions/uint8
+     description:
+@@ -68,6 +74,7 @@ examples:
+             firmware-name = "uartuart8987_bt_v0.bin";
+             device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+             nxp,wakein-pin = /bits/ 8 <18>;
++            host-wakeup-gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+             nxp,wakeout-pin = /bits/ 8 <19>;
+             local-bd-address = [66 55 44 33 22 11];
+         };
+-- 
+2.25.1
 
 
