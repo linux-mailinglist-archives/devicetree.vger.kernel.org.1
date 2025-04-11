@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-166099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BABEA8649E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:25:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17597A864A2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1B917B248E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60CCF167696
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F9523099C;
-	Fri, 11 Apr 2025 17:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968DD221FBB;
+	Fri, 11 Apr 2025 17:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gPZzGZiS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="up/PWyhT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A20221FCC;
-	Fri, 11 Apr 2025 17:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC8A2367D0;
+	Fri, 11 Apr 2025 17:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744392230; cv=none; b=kXD0LvGne98XNzBwkBSbVNuuxLkQhnBUNcb/Vf7/M1/9G3h4FMH7wt3meV/rDEMY4EuQaHJkPpFIvz32eg/sXNFzPw/NxB1BpuMff3ykRIm4QKLiTcTpL5RWtgjbFvKw1pEUWm5+Rs6g0hrhX4j9edHwEJmTqnD64pdYs0EmCd8=
+	t=1744392315; cv=none; b=UUB5g37A06d49mX/BZ8XXb4rSHLTCIxXpnjH9d3baUIf46xvUBU4MmeuEjAQKhzOjQEnjsI8goW6mVGl9t4w4LCVKq+1jVfInvWmf9BtvLmy9lkFAbMlXAkQlvy+PZKLizyli4yPMYTBbv8xIPJrC80iPtYmE4zk9l3Ukl2Oddo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744392230; c=relaxed/simple;
-	bh=A5RyENpGOJJhLN9yt6MaEzGOno0p/FsbaK6AG5b413c=;
+	s=arc-20240116; t=1744392315; c=relaxed/simple;
+	bh=wKL6klck+zBAXPJH7vpcgxZNxZBcOAkRLudiLM2Ns3Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M+OYZjSwF0GCh/DulnzIl7OG7OcEAI3DEY3xmJSoVU9atX4BoaRHp7C3HHIKslrfI8venBBO7ykI+GK6JSZ2t32U/n+BhULMuKZZ9E4X8M306DiPbcqCDo599aWWfy3qoVrJDAEh+eH4HjGnzp684j/wRgfbH+HMuSTMhlQqtEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gPZzGZiS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE63FC4CEE2;
-	Fri, 11 Apr 2025 17:23:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wx5kZRv4a21VW4ymkUhgwmbK19SKcMyTBm0k+gRJT2hLwZQXuhexA4+1H6rm+GYUMAKtrWITe/LVR2j16oDjBqI7wDPpvh4x8VEm71qX2CRBP4jZ9ANC8mKRieZYc9eu0/uDqsZE/IvMd7RMYwUmztEaOgUlZNhzjk/Vjg3v6bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=up/PWyhT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B2DC4CEE7;
+	Fri, 11 Apr 2025 17:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744392230;
-	bh=A5RyENpGOJJhLN9yt6MaEzGOno0p/FsbaK6AG5b413c=;
+	s=k20201202; t=1744392314;
+	bh=wKL6klck+zBAXPJH7vpcgxZNxZBcOAkRLudiLM2Ns3Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gPZzGZiSv8o4+dGZufvdny/b7NXQM30wE4PyTpmESiBZ8+89/axRN6ugXo5skuPzI
-	 cGy4wYmzcKefEY2kgaHNk9hmSdERXPZOKbCOQer6IAfHgwabtguEy5BPe4oajVk90j
-	 fTDA6jqNVMBDYJJRDQGaDN2nb1AoTUTDreFLNkle7QqscpD9y6qUdVxsqj+ypaJqik
-	 wkpyPiTOHo6w2iU+/RledY51YgIMCYv6Y9c6OnW6K+P7Z8kS0Dr33Ys13CJgZbrwmC
-	 HjDGKThmOBjjG1WioMH/6Htyw/dYnAkTn53MElgDb3nOrQTVa9H4M38QpUJTeYKND0
-	 9+dJFNlS5ne0A==
-Date: Fri, 11 Apr 2025 12:23:48 -0500
+	b=up/PWyhT0eLoiCHQaOrBL9cHonTnfSQPtDomBOSEM813K7ZiLq985bQklbdSym773
+	 O33EAI4T2+Njvk+qfa0JE0ZeejoEy/Cj3TNZBSC93t72tKBK2oJlx3vOOBicD+54QZ
+	 HL+PXJj9CO5w9qIBL1UZ9eooKlKRBkM8b8H08rCP2hOeB+EBdHusZ1mY5i2LYIQKHu
+	 QxcbmgnCsbkTILHGHUBtrIdZTvXdVR1Nn8ukV5CaFUIzNAWMTC9rgxnULBvDwgfd66
+	 HhSrBtfoe+HiEa4iLQrQYRJ8gjwbhbwEM1m9YNGcBVGRM8Fd5dmKFev/Chf+Or0bYy
+	 9B3MK0o/cyIgA==
+Date: Fri, 11 Apr 2025 12:25:13 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Gaurav Kohli <quic_gkohli@quicinc.com>
-Cc: konradybcio@kernel.org, devicetree@vger.kernel.org,
-	andersson@kernel.org, rafael@kernel.org, rui.zhang@intel.com,
-	amitk@kernel.org, lukasz.luba@arm.com, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, daniel.lezcano@linaro.org,
-	linux-arm-msm@vger.kernel.org, quic_manafm@quicinc.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: thermal: tsens: Add QCS615 compatible
-Message-ID: <174439222845.3551396.4839377552706414911.robh@kernel.org>
-References: <cover.1744292503.git.quic_gkohli@quicinc.com>
- <c8339b6ccf5ee19fefed762874560d6d8408ebba.1744292503.git.quic_gkohli@quicinc.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: lihongbo22@huawei.com, mbrugger@suse.com, linux-kernel@vger.kernel.org,
+	y.oudjana@protonmail.com, devicetree@vger.kernel.org,
+	fshao@chromium.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, mandyjh.liu@mediatek.com,
+	ulf.hansson@linaro.org, kernel@collabora.com, krzk+dt@kernel.org,
+	linux-pm@vger.kernel.org, matthias.bgg@gmail.com,
+	wenst@chromium.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: power: mediatek: Support Dimensity
+ 1200 MT6893 MTCMOS
+Message-ID: <174439231282.3566165.14821715325780672996.robh@kernel.org>
+References: <20250410143944.475773-1-angelogioacchino.delregno@collabora.com>
+ <20250410143944.475773-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,16 +65,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c8339b6ccf5ee19fefed762874560d6d8408ebba.1744292503.git.quic_gkohli@quicinc.com>
+In-Reply-To: <20250410143944.475773-2-angelogioacchino.delregno@collabora.com>
 
 
-On Thu, 10 Apr 2025 19:30:18 +0530, Gaurav Kohli wrote:
-> Add compatibility string for the thermal sensors on QCS615 platform.
+On Thu, 10 Apr 2025 16:39:42 +0200, AngeloGioacchino Del Regno wrote:
+> Add support for the Power Domains (MTCMOS) integrated into the
+> MediaTek Dimensity 1200 (MT6893) SoC.
 > 
-> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../power/mediatek,power-controller.yaml      |  2 ++
+>  .../dt-bindings/power/mediatek,mt6893-power.h | 35 +++++++++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 include/dt-bindings/power/mediatek,mt6893-power.h
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
