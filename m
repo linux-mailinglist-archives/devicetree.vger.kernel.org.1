@@ -1,94 +1,79 @@
-Return-Path: <devicetree+bounces-166195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D819A86927
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 01:29:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC20A8692A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 01:30:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 479067AE5E5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 23:27:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2C5646146B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 23:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB4A2BE7A3;
-	Fri, 11 Apr 2025 23:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D34B2BE7AD;
+	Fri, 11 Apr 2025 23:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fj/QHMnP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eArzfqjF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9A729DB7B;
-	Fri, 11 Apr 2025 23:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8134278E72
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 23:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744414131; cv=none; b=ddt5fX7LPRdsCVic2DhEKF+0jiYhSXM4aHTkSGZDRx9Ib8DNBTS7ZeMD91zOqYwHK9jOnVOlIXDV5KLZ9ncnSq4xzD+Q96EMgQEGKmckyklksVhXbRHVWN6EZSg2Sodmsbqw8aUjd7XdnUvz5ek0wzBUY8e86IeyiJ9dhEGGGpg=
+	t=1744414151; cv=none; b=V6CN+WRBtdoesN/izOZYT+iheWAKpHvsLqhPKyK+gQTbtB7N1mTK7J5IJsemswpInJKgpX3t5HZZzvvs/Fs1M4DBTJZEjUsR9+pXQvzs1HT32vR6mOU9eLG55YlIrfUOpBX2EUPSRhhF7mxpo6Eity3vzkbA8Ws+SvgTVl69ipE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744414131; c=relaxed/simple;
-	bh=dSvC1EEFJ0pyt4oMgiDtpsgtB3ByVDFhaXNFrpFOr2U=;
+	s=arc-20240116; t=1744414151; c=relaxed/simple;
+	bh=OJYsQ+v7XiUNwZtukFdPE6VB8Nuu1DBPLSvnq6QW3ZM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IbB7fRb80NbWuXCrg5PZ2CvJHhybCyvFIZ0m8W4JZ0Z5cjkpDbx2GL5Ysu4b79mcjbDONEMsBi1128AR9MK8Acc4xInOt6Q03DyAoFDOXDyd80ADQrCdwSUmMwyxB0lHOpiNl82eZBFj+6CCy6mOelZXWwOvY08zjl9AwaGpHzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fj/QHMnP; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-476ae781d21so24401071cf.3;
-        Fri, 11 Apr 2025 16:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744414127; x=1745018927; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UvhHzpdybge7k/1xu+C8wVpLlcBQbPdkbGL/bYzd4aw=;
-        b=Fj/QHMnPSKpxdAKGYSxvUfr3+if3NuUNgYIYO7T2WGHrRvGLFKKtPvEJETwZhOOg/M
-         zFCzhhOe9+W8GeHF9/hqtayGiTt7D1GbBLwvZXX09xZ6zV9ublCGOSHA21eyiygZbTP0
-         CnLIrVflgnjy4VL4y7nWLSCy8WgnI+r1GnyYpddVBt1eLici9lGF/VXaoLfsSTYuPqBe
-         pkZH9M7CljTD4uTTuqz5Z0uuS5T/20VuH/nOgm85xPFBv4PBhlwHSyXJAwwZZRUFm2Yf
-         aQwBAH1Ke4MRxXy9jxUir//gVw8rMu1eGC4rIKH8PlpNC27+RRaAk2LSbnU8sev5WfHJ
-         NnuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744414127; x=1745018927;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UvhHzpdybge7k/1xu+C8wVpLlcBQbPdkbGL/bYzd4aw=;
-        b=TmwwV23BMoGr/FFuCdQEM2s15owNS0WTJ529XZVl8VdKb/zgH4SgBZs1ZsO8Y0XV4a
-         uJBVDlltF7XI+aXIxWvpdg+EjWOjdSwVeb5DyEJVtgts8dxaZsFuGHtbzgDZyGCxGVI1
-         h4Ee0sQW9mmCJCIp5x1s+yvkD7jc+80LwtSTbrM6cOEdgRAZ4xVPFb/E8xOEQRrdvcUp
-         b3vqSfNfaWtiHMpwW+ASQonUbO+S+JPZx7TRIL3v6FmsNSlkAujUXB95bQDfYEfG04mf
-         bbqcrRJ977Bs2Ap66gAJSx3IYLJXVE4eW14KyumJe8Fhv+SDQe3Lo3YNxi6RZzXuVhpJ
-         z1Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCVYltkDE16vdJfCFZxv8MPsfcpf/UMeXqNyxsEZtda0P3R01rVZGRKUWrCzCy7lDu4mbVfxxiZruG26@vger.kernel.org, AJvYcCWzBdA0JJtAiZL/65o//BNlulMx/HuCNNUYYC/ihPDtS6iOIb7uiCr3S7e+QUdYcYqcuGGP6nTvKTHagUVL@vger.kernel.org, AJvYcCXU0NpvSXrfZ+7tiVvlq491rYM/XK4bhOf78ZqVQRGKpTfpkNP32AY6xgmduP2zx44aYK7OIrs6f2U8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOvMyEnQ86KHoc8DNOc+gCwnGJlPlsBDLDV6AMqADF2fY40U/d
-	ScphBSjB8UNjH3e93MzK9nOGxhrx7oIqCsWQIRE2atN7PJV33co2
-X-Gm-Gg: ASbGncskkyyl+LAYCLvMqg0oWm9KDIx2n6Nw68lA7xw2xu3x8pkgTICchqXIqzgXRBY
-	CttZYobeI4E5sUeXKgXjJdq/AgtcV3awt70QP87QqnyRMOPT8WNxa6f6E4J4ffoEM1PrrevIpvD
-	WMXlz8atknUh5R1SlR5EL14j2rnD8vt7cdYS2rN1OOasP0jPRwYnFpiKR4xr7OPpprifAUNot1J
-	YW8GvPFGGHviHB78KKoFkB8lXjJzjhBxaDxQ1LtHgC3tiOxrN6vw7Xjgyeo0XvNoDCtbaA+VfGo
-	hSEU90A2O3AfkB7FMvcBirwloBg=
-X-Google-Smtp-Source: AGHT+IEULaHSVU7/79T4sGgtSLDudJBk/aXEwPTYZC6UzLhe6HrogH+KkmZ3Al7QHscxwG8JxOb5sg==
-X-Received: by 2002:ac8:5fd6:0:b0:476:980c:10a8 with SMTP id d75a77b69052e-4797752ddf6mr68207601cf.21.1744414126840;
-        Fri, 11 Apr 2025 16:28:46 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4796ed9bcdcsm33442711cf.49.2025.04.11.16.28.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 16:28:46 -0700 (PDT)
-Date: Sat, 12 Apr 2025 07:28:07 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alex Elder <elder@riscstar.com>, Yixun Lan <dlan@gentoo.org>, 
-	Guodong Xu <guodong@riscstar.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com, 
-	inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
-	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 7/9] riscv: dts: spacemit: Add PWM14 backlight support
- for BPI-F3
-Message-ID: <j35vjluiykbu2gxg5zkoxm67muj5y66zn6tjwhdbnolkyeilh7@cubjbzouewiy>
-References: <20250411131423.3802611-1-guodong@riscstar.com>
- <20250411131423.3802611-8-guodong@riscstar.com>
- <20250411140510-GYA22364@gentoo>
- <d2c26d3e-787a-490e-9134-8ffe2f6b8333@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XA0+H9MDi5j1KUXAuHnVUzggYYKN1W1nCkHqaw9KHxi9QGh83HAHm7D04O7k0YylV/KJETK8z88JK41xMJOLKztq8A456N8ZETdxOjWsC2cRbUPS7q1nNLwCfhnPDSq0OnP4SNfIGBupNAsOm4A+dP4D6r7Ka7jXN4ckktQ7s4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eArzfqjF; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744414149; x=1775950149;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OJYsQ+v7XiUNwZtukFdPE6VB8Nuu1DBPLSvnq6QW3ZM=;
+  b=eArzfqjFBoZKv/zmdwXwCOegeHV9KQ1t0d1PZP8xO48hHUcmF2BSAXoA
+   xAC6QsklHIV+w9e+2CGV4GQr2L4lMGCuGan7vWBX4kKx71zNbKo3okj9D
+   uCG7WnJztZfBNCBidP3V+lrPAWQ2A6WTLGjdTBL8uAFB1xD5A2RamPc05
+   +aUMZ9hfX58dC1x8fKwt4qTGUf0/QKYfWNqzlLF3VhrpASsbvPQSZAZr1
+   PBMQaERdTbbCuwvY/Q21FV/Ekg/l25YFHN7+vwmbxmQAbfOvz7rvLM3lL
+   1GCmWtQdwogNf4GXJH6qyXeAUrz7PqGdsvoK4V3o0pvHFJhM/TxrZip3C
+   g==;
+X-CSE-ConnectionGUID: bOka/c0xQCmQBbhm7OEOyA==
+X-CSE-MsgGUID: /qM2PO8RS12lGeE3Rd16ug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="46103720"
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; 
+   d="scan'208";a="46103720"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2025 16:29:08 -0700
+X-CSE-ConnectionGUID: 9OhknDFPTe+BVkcOYOy2Nw==
+X-CSE-MsgGUID: GOGtGaBbSAWpi2xE8iassQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; 
+   d="scan'208";a="166511778"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 11 Apr 2025 16:29:05 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u3Nnz-000BR8-1g;
+	Fri, 11 Apr 2025 23:29:03 +0000
+Date: Sat, 12 Apr 2025 07:28:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev, jgg@ziepe.ca, will@kernel.org,
+	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
+	code@tyhicks.com, eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com
+Subject: Re: [PATCH v2 1/3] arm-smmu: move MSI_IOVA macro definitions
+Message-ID: <202504120700.1UwOUvMR-lkp@intel.com>
+References: <20250410225030.2528385-2-shyamsaini@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,91 +82,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d2c26d3e-787a-490e-9134-8ffe2f6b8333@riscstar.com>
+In-Reply-To: <20250410225030.2528385-2-shyamsaini@linux.microsoft.com>
 
-On Fri, Apr 11, 2025 at 09:23:29AM -0500, Alex Elder wrote:
-> On 4/11/25 9:05 AM, Yixun Lan wrote:
-> > 
-> > On 21:14 Fri 11 Apr     , Guodong Xu wrote:
-> > > Add a PWM-based backlight node for the Banana Pi BPI-F3 board,
-> > > using PWM14. The backlight is defined as a 'pwm-backlight' device with
-> > > brightness levels and a default brightness setting. PWM14 is assigned
-> > > a period length of 2000 nanoseconds.
-> > > 
-> > > This configuration was used to verify PWM driver changes, with PWM14
-> > > tested and its waveform confirmed as correct.
-> > > 
-> > > The node status is set to "disabled", and should be enabled when the
-> > > display driver is ready.
-> > > 
-> > .. see comments below
-> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > > ---
-> > >   .../boot/dts/spacemit/k1-bananapi-f3.dts      | 32 +++++++++++++++++++
-> > >   1 file changed, 32 insertions(+)
-> > > 
-> > > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > index 816ef1bc358e..d04b57ddeb46 100644
-> > > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > @@ -28,6 +28,32 @@ led1 {
-> > >   			default-state = "on";
-> > >   		};
-> > >   	};
-> > > +
-> > > +	pwm_bl: lcd_backlight {
-> > > +		compatible = "pwm-backlight";
-> > > +
-> > > +		pwms = <&pwm14 2000>;
-> > > +		brightness-levels = <
-> > > +			0   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-> > > +			40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
-> > > +			40  40  40  40  40  40  40  40  40  41  42  43  44  45  46  47
-> > > +			48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63
-> > > +			64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79
-> > > +			80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
-> > > +			96  97  98  99  100 101 102 103 104 105 106 107 108 109 110 111
-> > > +			112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
-> > > +			128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
-> > > +			144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
-> > > +			160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
-> > > +			176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191
-> > > +			192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
-> > > +			208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
-> > > +			224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
-> > > +			240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
-> > > +		>;
-> > > +		default-brightness-level = <100>;
-> > > +		status = "disabled";
-> > I'm confused, has DT in board file with disabled status doesn't make sense?
-> > it doesn't really useful for placeholder, even worse that functionality may not
-> > verified, so I'd suggest sending along with display driver while at it..
-> 
-> I think I suggested he include this.  Guodong tested PWM using
-> a backlight on a display connected to a Banana Pi PBI-F3 board.
-> The above numbers come directly from the downstream code, which
-> uses this PWM consistently as a display back light.
-> 
-> But you're right, the exact set of numbers to use is dependent
-> on the display used, so it's better to add them when the display
-> gets integrated.
-> 
-> The pwm14 node could update still be added here, but that too
-> might as well wait until there's something to use it.  So I
-> think this patch can just be dropped.
-> 
+Hi Shyam,
 
-If this patch will be applied as it is after applying the display
-driver. I recommend to preserve this patch, but move out of this
-series and resend it as RFC. If this is only for test purpose, it
-is better to move this into the cover letter and address it is for
-testing. 
+kernel test robot noticed the following build errors:
 
-In most case, patches with some unmeet dependency should follow
-maintainer's request, or has specific purposes. It also needed to
-be marked as RFC.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.15-rc1 next-20250411]
+[cannot apply to soc/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Regards,
-Inochi
+url:    https://github.com/intel-lab-lkp/linux/commits/Shyam-Saini/arm-smmu-move-MSI_IOVA-macro-definitions/20250411-070014
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250410225030.2528385-2-shyamsaini%40linux.microsoft.com
+patch subject: [PATCH v2 1/3] arm-smmu: move MSI_IOVA macro definitions
+config: arc-randconfig-001-20250412 (https://download.01.org/0day-ci/archive/20250412/202504120700.1UwOUvMR-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250412/202504120700.1UwOUvMR-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504120700.1UwOUvMR-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/iommu/arm/arm-smmu/arm-smmu.c: In function 'arm_smmu_get_resv_regions':
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1597:42: error: 'MSI_IOVA_BASE' undeclared (first use in this function); did you mean 'PCI_IO_BASE'?
+    1597 |         region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+         |                                          ^~~~~~~~~~~~~
+         |                                          PCI_IO_BASE
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1597:42: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/iommu/arm/arm-smmu/arm-smmu.c:1597:57: error: 'MSI_IOVA_LENGTH' undeclared (first use in this function)
+    1597 |         region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+         |                                                         ^~~~~~~~~~~~~~~
+
+
+vim +/MSI_IOVA_LENGTH +1597 drivers/iommu/arm/arm-smmu/arm-smmu.c
+
+021bb8420d44cf5 drivers/iommu/arm-smmu.c              Robin Murphy 2016-09-14  1590  
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1591  static void arm_smmu_get_resv_regions(struct device *dev,
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1592  				      struct list_head *head)
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1593  {
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1594  	struct iommu_resv_region *region;
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1595  	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1596  
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19 @1597  	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+0251d0107cfb0bb drivers/iommu/arm/arm-smmu/arm-smmu.c Lu Baolu     2022-10-19  1598  					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1599  	if (!region)
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1600  		return;
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1601  
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1602  	list_add_tail(&region->list, head);
+273df9635385b21 drivers/iommu/arm-smmu.c              Robin Murphy 2017-03-16  1603  
+273df9635385b21 drivers/iommu/arm-smmu.c              Robin Murphy 2017-03-16  1604  	iommu_dma_get_resv_regions(dev, head);
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1605  }
+f3ebee80b3131d4 drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1606  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
