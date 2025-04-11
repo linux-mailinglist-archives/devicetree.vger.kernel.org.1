@@ -1,65 +1,57 @@
-Return-Path: <devicetree+bounces-165881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE17A85CA4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D04A85CAF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8278A8C4D0F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:12:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A5458C488B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8664E2BE7B2;
-	Fri, 11 Apr 2025 12:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE402BEC4C;
+	Fri, 11 Apr 2025 12:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qv/HC1U2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAtcGjSu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1C729B211;
-	Fri, 11 Apr 2025 12:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC5C29CB5D
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744373449; cv=none; b=YPn5VGpL7NseUfdgTBePYy7OzOVvM2ABaeEyaqq/TXnTsDlMVIeKFjkvwBXCU1oEiFfwNGIn/ETcts8PXN4m7Ne+E0QuYeZtQhUDYNebG6yINTVkvxPyXxKqXeIRVkQimDDIXGcAXO2ru1f/R6UuCOaZnT6aXvPxBYF0Nn96ZXY=
+	t=1744373461; cv=none; b=tdf9v23szYMKnhQ8omvMzTDA3VF6x5HxtiFM2L5y8YY1Y4pys9V/W0LGRC3g1uAGlbomvg0yM5mZldCXKy8G6BAUM5Rm2nWEq+EzSlR84VEsBvq51M23fco0J2uGtkX7d3PBIPxbvCHFilceY0XoAo2fHhXBmtJ1zIwY/jJmCRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744373449; c=relaxed/simple;
-	bh=8UJVV5Fz36IAbJkObz0XEdemXb50xF/yasXI52r/U+M=;
+	s=arc-20240116; t=1744373461; c=relaxed/simple;
+	bh=41ecM6L8w8kkRS1191n4/4NDFsdX+DlRIppgjV1rIoI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oOglx+rk33V5D1dm4GLEWaEzIVl9obcu7jVlWdc06PUbLpuNnOfMoRNhMZXqEfaIUNT+UawtwyAasm2uTaeZ+kKZtgyoIKfpIJaI411zBC+9Lk5yNvkdhf6xtRag5cR5UYZz44gADe0kEFFHF4nxniEwX9wcr2o3t7i641FOU6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qv/HC1U2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72BC1C4CEE7;
-	Fri, 11 Apr 2025 12:10:45 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Ea9WFhGyM8nurTKlro0695NvsOBqPfIrsBrCoxRD/saCcDV3tEfNw+mUZzpqCxAni0QT4pTlue1NUWmhWg5z48dZmiB+qkDCEWYvg3h00xjkcqFG1l/ti3cpXPt3HtsvM1NTKR3UCjiLZQ9Izy+9gzdeo+oYbAL9ifR0IMFKszU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAtcGjSu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D531C4CEE7;
+	Fri, 11 Apr 2025 12:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744373449;
-	bh=8UJVV5Fz36IAbJkObz0XEdemXb50xF/yasXI52r/U+M=;
+	s=k20201202; t=1744373460;
+	bh=41ecM6L8w8kkRS1191n4/4NDFsdX+DlRIppgjV1rIoI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Qv/HC1U2J3/8PruNyRpxqmcsFlDP346pGbsOn5Nv6QihFVAc/z2r8jgYlms10gjh0
-	 x13ETk9epDlXd8BPCMPVVp160/0jhtnGlkZ0xXb8CrT8itRxWomLXut6ciIzjxCGFF
-	 g8vdp9zF/kI6UrFR/PGCQ9XJZyBe+W80SjluYpXg1BiN6FYhO8Tq98MZJ6k7laioUw
-	 EOLjtkI5Yndn/C7iiz8DUbyEyn47+D/75QOkGfYP5FnC2eNU9y18roqf7VYflORUVl
-	 N9v4+B5AVNWgEi7lDn43yTW2Zxo90AZmQNt3N7fY4ANL0bXiTvYUKNWAo2EkFTAxUC
-	 YZEeMQABE0aYw==
+	b=BAtcGjSudD5vzmTpscne+M3QMVDWTTzdpd7I7uB2ug3xGnz8McgamKUSVqhkIdAjD
+	 Ayu1+jPYnoLjvpi3sonmP7plJctaFF75yJPs/98kR6GISzsTTJHlX6LAssgpUlJuiO
+	 p2iRVtEw2cx0ZMeS2vmsIH6CF7gPlg14RO+wBEnhNDN3yPvDe0aKPxqIIZURBnnzN1
+	 hY7z7ROr3V9rYSSELY8QPWrvGlubMPLVproh4PcFXPoAZbGMRKdpm30L8X1aqANoMX
+	 elXWsRd8BJi8wN72V5hv7DDaSLdUArvJC04zlyIVVwoQukxREX8aCXFof+yU+s16Rk
+	 f1V+OAzvnf03g==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250410-exynos7870-usbphy-v2-0-2eb005987455@disroot.org>
-References: <20250410-exynos7870-usbphy-v2-0-2eb005987455@disroot.org>
-Subject: Re: [PATCH RESEND v2 0/3] Introduce USBDRD-PHY support for
- Exynos7870 SoC
-Message-Id: <174437344510.673939.9919903469471924069.b4-ty@kernel.org>
-Date: Fri, 11 Apr 2025 17:40:45 +0530
+To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-phy@lists.infradead.org, justin.chen@broadcom.com
+Cc: rafal@milecki.pl, alcooperx@gmail.com, 
+ bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com, 
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kishon@kernel.org
+In-Reply-To: <20250402185159.2976920-1-justin.chen@broadcom.com>
+References: <20250402185159.2976920-1-justin.chen@broadcom.com>
+Subject: Re: [PATCH v3 0/2] phy: usb: add support for bcm74110
+Message-Id: <174437345727.673939.14020168766242612778.b4-ty@kernel.org>
+Date: Fri, 11 Apr 2025 17:40:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,22 +63,22 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Thu, 10 Apr 2025 14:01:11 +0530, Kaustabh Chakraborty wrote:
-> Apart from introducing driver support and documentation, this patch series
-> also introduces a masking fix and non-functional changes.
+On Wed, 02 Apr 2025 11:51:57 -0700, justin.chen@broadcom.com wrote:
+> bcm74110 adds a freerun utmi/ref clock that saves furether power during
+> suspend states. A tune is also necessary to pass USB compliance test.
 > 
-> This patch series is a part of Exynos7870 upstreaming.
+> Justin Chen (2):
+>   dt-bindings: phy: brcmstb-usb-phy: Add support for bcm74110
+>   phy: usb: add support for bcm74110
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/3] phy: exynos5-usbdrd: use GENMASK and FIELD_PREP for Exynos5 PHY registers
-      commit: 9b6662a0f715b3f43b42c3aadf32fa6ffaa8890c
-[2/3] dt-bindings: phy: samsung,usb3-drd-phy: add exynos7870-usbdrd-phy compatible
-      commit: 23f793850e9ee7390584c0809f085d6c88de7d3f
-[3/3] phy: exynos5-usbdrd: add exynos7870 USBDRD support
-      commit: 588d5d20ca8defa5ba5d1b536ff3695f6ab7aa87
+[1/2] dt-bindings: phy: brcmstb-usb-phy: Add support for bcm74110
+      commit: 0fbceff4f873500f0d0e632ee2d1e84e9a67b1b4
+[2/2] phy: usb: add support for bcm74110
+      commit: 686b2730e4816e40e6a5432ff163993638397154
 
 Best regards,
 -- 
