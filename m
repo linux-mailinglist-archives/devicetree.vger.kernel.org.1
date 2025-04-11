@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-166110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7EFA8650C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:49:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF849A86512
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:50:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A1319E5291
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:48:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D605C177AF5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE6C2586C3;
-	Fri, 11 Apr 2025 17:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4713F2586CC;
+	Fri, 11 Apr 2025 17:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbBL8KzL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c2H3sjhI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE68620E026;
-	Fri, 11 Apr 2025 17:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F3723BF8F
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 17:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744393702; cv=none; b=IhdkZGtgAflB5h6iWjTM+g36ndkvKkNq3kDRwKnEqhd7gFjGCccSbTGO3KXgJ9b15SlnY/05tliH/eUzX2Uz08isKXKuP+w/poC91oS9WhkPwkZ2SwYp1rO0XD0if4d3YHPQ00fZGaHvipHpY6A/VN4Ny8L61qfgaP942mtNp+k=
+	t=1744393838; cv=none; b=DF8AY8EU/eYdWtTjiUzga6gkslNlEoP6CQ7f3wrPoga+Gh69dZYxf0XA7vjYheh1bZOGHwn6uevoTnHN4/+FeYkt4ADvl+gvrPisV+Cv/EwzmpnNtn78kkv+tN/11EshxgzoxQQtEh3L72NMWnp0Po/RYenoWK9a5ut1W+GktTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744393702; c=relaxed/simple;
-	bh=lfoVd2WdvvKEWN86eDOm1mDwX18E8UkAi+d0laS83N4=;
+	s=arc-20240116; t=1744393838; c=relaxed/simple;
+	bh=UgYRPhQRBiJ7R4mPcaCowJ6V4uNk97/yxaeTPsWPQMI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o24KdgGfLrBaqz5Bo/QxaE1GuiO83wI//ldNInoG8ouNk2+jIfdXb2LILX3CLDNYYj9lLDit+NE/mRBf2fh3FGanoKXsXILuZxPfObHOhI9P8ElqeJr9KZE3BaWtKjzG+udANE8X7x8JFJY/0X4T+f3PJqlGB21bRnAFNS5kG9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbBL8KzL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E94F4C4CEE2;
-	Fri, 11 Apr 2025 17:48:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QQ9ztcATzIleFVLtCpPz0+e3orygfq4CTVX2p3v0D9aeH+FNE3HO2M0ZCIj02J66dkHBczzDAWUgt78rz4Ws6QmVqLWyd3CCf1LKeN8DjDRQmZfwse4S1ceO7fU1tmP/XkhCsry/GguqE8NpA+Xx11KX4rCSlIWdIU0WvgUjB0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c2H3sjhI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C118C4CEE2;
+	Fri, 11 Apr 2025 17:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744393702;
-	bh=lfoVd2WdvvKEWN86eDOm1mDwX18E8UkAi+d0laS83N4=;
+	s=k20201202; t=1744393837;
+	bh=UgYRPhQRBiJ7R4mPcaCowJ6V4uNk97/yxaeTPsWPQMI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YbBL8KzLUS8f0W9icJQycy88I9hs0MoLv4zCFYgjJbtjewOghzGPPZyG6f8nJ4xDn
-	 yweLKfStxNC94+fOu7dpl/UoNWBkB+G12mOwykSjo05N6vGBG+bsDxEI/UYEDDLvjJ
-	 fvdxVoTPS+qOmLXeWWbRWwoftBL7+ymGRVUMUok4RsZZL6EfTLfnRTK41IGNS7nGNE
-	 eEgjfVwThhmuA8g6w0F4jJtgyO4I1FiiIjogT2jb6YgUo0MnN0wVChnNuHqeAHucbb
-	 5LyUPnZ1m3K0PVqJ/jngk2vNuddqthTjdejCTfa5FcauTgFGhBo/P/jXG9C/J3847t
-	 FAIF6xiMJ13Aw==
-Date: Fri, 11 Apr 2025 12:48:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	y.oudjana@protonmail.com, lukas.bulwahn@redhat.com,
-	u.kleine-koenig@baylibre.com, geert+renesas@glider.be,
-	amergnat@baylibre.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/3] dt-bindings: clock: mediatek: Describe MT6893
- Clock Controllers
-Message-ID: <20250411174820.GA3602673-robh@kernel.org>
-References: <20250410144110.476197-1-angelogioacchino.delregno@collabora.com>
- <20250410144110.476197-2-angelogioacchino.delregno@collabora.com>
+	b=c2H3sjhIOEtN289F9ZQj5HeFpR+hz4IfKJNw6si8S8erQFWjQv9c98j/zZUpOKhf+
+	 Ul55hNMKll9NS24QrqUe67u5viMRq2O7a1bFpsDE76FogeK9dVME6w2FvFNUgl/85t
+	 l5okiRToNExeTLMnPySMjJI+dziJ79DyEto1JfkUYU9/a9FKxeAGeyq79ZxwOHCBsC
+	 kOJTfA6zlkQtxap6bnuEcqQ7i/I6myaqNeaG5L3Fb6rz3GoBWO3sK0lp1nRb0ZLiw3
+	 zXinIhrrMzYuSvN8/ZWPjsFjTkucDCb1CFhOsg726ubw/mRvIBbBxAioK6+LTfUtf+
+	 N/C5BgJYXiSmA==
+Date: Fri, 11 Apr 2025 12:50:36 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] dt-bindings: soc: fsl: fsl,ls1028a-reset: Fix maintainer
+ entry
+Message-ID: <174439383495.3642695.16910474750574128734.robh@kernel.org>
+References: <185e1e06692dc5b08abcde2d3dd137c78e979d08.1744301283.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,96 +62,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250410144110.476197-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <185e1e06692dc5b08abcde2d3dd137c78e979d08.1744301283.git.geert+renesas@glider.be>
 
-On Thu, Apr 10, 2025 at 04:41:08PM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings to describe both the System Clock Controllers,
-> providing PLLs and main clocks, and the functional clock
-> controllers, providing peripheral clocks (i2c, multimedia, etc),
-> as found in the MediaTek Dimensity 1200 (MT6893) SoC.
+
+On Thu, 10 Apr 2025 18:11:12 +0200, Geert Uytterhoeven wrote:
+> make dt_binding_check:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>     Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml: maintainers:0: 'Frank Li' does not match '@'
+> 	    from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+> 
+> Fix this by adding Frank's email address.
+> 
+> Fixes: 9ca5a7d9d2e05de6 ("dt-bindings: soc: fsl: Add fsl,ls1028a-reset for reset syscon node")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/clock/mediatek,mt6893-clock.yaml |  56 +++
->  .../clock/mediatek,mt6893-sys-clock.yaml      |  68 +++
+>  .../devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-These just duplicate the same schema as the mt8365 bindings. Just add 
-compatibles there.
+Applied, thanks!
 
-Or I'm open to other options. The only variation among all of these 
-seems to be whether or not they have 'syscon' compatible or 
-'#reset-cells'. And for mt8188 it seems we have that wrong (see below)
-
-
-In general, it would be nice to see more clean-ups of the existing 
-Mediatek stuff before a new SoC. It makes me sad when I appear to be the 
-only one that cares.
-
-For reference, here's the top warnings for Mediatek on arm64 (999 total, 
-182 unique (stripping the dtb name), 27 undocumented compatibles). This 
-information is available daily from my CI job
-(https://gitlab.com/robherring/linux-dt/-/jobs).
-
-Mediatek has the most warnings with 182. 
-
-arch/arm64/boot/dts/mediatek:999:182
-     29  syscon@13000000 (mediatek,mt8183-mfgcfg): 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): panel-pins-default: 'panel-reset' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc1-pins-uhs:pins-cmd-dat:mediatek,pull-up-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc1-pins-uhs:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc1-pins-default:pins-cmd-dat:mediatek,pull-up-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc1-pins-default:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc0-pins-uhs:pins-ds:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc0-pins-uhs:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-     27  pinctrl@10005000 (mediatek,mt8183-pinctrl): mmc0-pins-default:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-     27  dsi@14014000 (mediatek,mt8183-dsi): ports: 'port@1' is a required property
-     27  dsi@14014000 (mediatek,mt8183-dsi): ports: 'port@0' is a required property
-     27  dsi@14014000 (mediatek,mt8183-dsi): Unevaluated properties are not allowed ('ports' was unexpected)
-     27  bt-sco (linux,bt-sco): '#sound-dai-cells' is a required property
-     22  pmic (mediatek,mt6359): regulators: 'compatible' is a required property
-     22  pmic (mediatek,mt6359): '#sound-dai-cells', 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
-     17  pinctrl@10005000 (mediatek,mt8183-pinctrl): volume-button-pins: 'voldn-btn-odl', 'volup-btn-odl' do not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-     17  pinctrl@10005000 (mediatek,mt8183-pinctrl): trackpad-pins: 'trackpad-int' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-     17  pinctrl@10005000 (mediatek,mt8183-pinctrl): touchscreen-pins: 'touch-int-odl', 'touch-rst-l' do not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-     17  pinctrl@10005000 (mediatek,mt8183-pinctrl): pp3300-panel-pins: 'panel-3v3-enable' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-     12  sound (mediatek,mt8186-mt6366-rt1019-rt5682s-sound): 'model' is a required property
-     11  pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'gpio-line-names', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', 'pinctrl-[0-9]+'
-     11  mailbox@10330000 (mediatek,mt8188-gce): 'clock-names' is a required property
-     11  mailbox@10320000 (mediatek,mt8188-gce): 'clock-names' is a required property
-     11  clock-controller@160af000 (mediatek,mt8188-camsys-yuvb): '#reset-cells' is a required property
-     11  clock-controller@1608f000 (mediatek,mt8188-camsys-rawb): '#reset-cells' is a required property
-     11  clock-controller@1606f000 (mediatek,mt8188-camsys-yuva): '#reset-cells' is a required property
-     11  clock-controller@1604f000 (mediatek,mt8188-camsys-rawa): '#reset-cells' is a required property
-     11  clock-controller@15620000 (mediatek,mt8188-imgsys-wpe3): '#reset-cells' is a required property
-     11  clock-controller@15520000 (mediatek,mt8188-imgsys-wpe2): '#reset-cells' is a required property
-     11  clock-controller@15330000 (mediatek,mt8188-ipesys): '#reset-cells' is a required property
-
-arch/arm64/boot/dts/mediatek:27
-['dlg,da9211']
-['marvell,sd8897-bt']
-['mediatek,mt2712-pcie']
-['mediatek,mt2712-scpsys', 'syscon']
-['mediatek,mt6331-regulator']
-['mediatek,mt6380-regulator']
-['mediatek,mt6779-audio', 'syscon']
-['mediatek,mt6795-timer', 'mediatek,mt6577-timer']
-['mediatek,mt6797-scpsys']
-['mediatek,mt7622-pcie']
-['mediatek,mt7622-scpsys', 'syscon']
-['mediatek,mt8173-afe-pcm']
-['mediatek,mt8173-mdp-rdma', 'mediatek,mt8173-mdp']
-['mediatek,mt8173-mdp-rdma']
-['mediatek,mt8173-mdp-rsz']
-['mediatek,mt8173-mdp-wdma']
-['mediatek,mt8173-mdp-wrot']
-['mediatek,mt8173-rt5650']
-['mediatek,mt8173-vpu']
-['mediatek,mt8183-audio']
-['mediatek,mt8183-audiosys', 'syscon']
-['mediatek,mt8183_da7219_max98357']
-['mediatek,mt8183_da7219_rt1015p']
-['mediatek,mt8183_mt6358_ts3a227_max98357']
-['mediatek,mt8183_mt6358_ts3a227_rt1015p']
-['melfas,mip4_ts']
-['winbond,w25q64jwm', 'jedec,spi-nor']
 
