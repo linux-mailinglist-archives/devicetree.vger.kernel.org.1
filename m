@@ -1,254 +1,156 @@
-Return-Path: <devicetree+bounces-166157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90C4A86725
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 22:31:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A56D7A86757
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 22:38:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 806B87B96DE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:30:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89D051BA2424
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 20:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBE622D7AA;
-	Fri, 11 Apr 2025 20:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3016428CF54;
+	Fri, 11 Apr 2025 20:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YC5GPo+i"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="HuZd3vAa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7110978F45;
-	Fri, 11 Apr 2025 20:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FAD2836BA
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 20:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744403490; cv=none; b=jaAJamPi19ahzdGF6XO1CFHVDcnMdQlt4EqZ+ghFMFRn2OiKSH1ke3rBpdCnoun53hPDx1dUINgtqO4yp/0BRjx0n5WoatfkoxqVMsCOqFgNV25KmeZKNsZVf4eg4i0bHdhvvdelP6YWo5aQrJsAys+7w2mrxPkL+TOP/hUEWNo=
+	t=1744403917; cv=none; b=TZFosdrEFCnzewO9Wq8Zk0ISWodFznZy++5h5s3u0SeYrerC12nVeA8ojxg+pifragW0WTWsHmmoDDq8LbJZVbClNQ6iIsIOTBkSWqDRpWs6G3MH6lLajqnlfIkzyUH33JMzDsvK920EJpYD9asfMrPkeeuFcqlvVlXguRJdcVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744403490; c=relaxed/simple;
-	bh=rQ83jwcYQsuFhFXQ5Ke/S1V2qDSu9sNnyysgY9kpDTM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t+p4mmgPE/wOe7Wc+uIpdwx4ee+eHLU3doIjTL1QoWkcepEbE+C5cmCNAuBNpnvzU3/BYKgGAAkndD0qGDUeMfiW44uoZeaq8QrWfDs7VkidogDJXrVy3Za+ZoZQbP7zZo6SUnbptKt2xxf5a8QpufgAbmfATIXo+WN93/PGxuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YC5GPo+i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A0ADC4CEE2;
-	Fri, 11 Apr 2025 20:31:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744403489;
-	bh=rQ83jwcYQsuFhFXQ5Ke/S1V2qDSu9sNnyysgY9kpDTM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YC5GPo+idqDrzkOXainw4gdBkddPt9xgGF1ME65ZrTN9u+DHoqnWzRqwMIk5qjYj0
-	 hU+1uh6nzM/+Ewpv1cww4qV0H1NSadhPhgOZBfJ72b0Kun2V8Yrv5REwSUr20xIUvb
-	 PdB2HlfLxuqBgHCHFzjOnMGwnreoh60p4/RJkXv2ya+ZKsxk+ncq1dzXOVo7k/R3L/
-	 QjmM+QNOlMOLAmrsbw4tPY60kSu0ILkVRo4Quxf6uEPkOMlDOTeh19A9zga/4gDnW3
-	 0b9STozIW6bsSPl5dWpKEA9lmFNLfmoeXHpPAHoFGVKGE2bwueYgqwWueYtLK/e+3U
-	 2gCfCJ+XxmL7Q==
-Date: Fri, 11 Apr 2025 15:31:28 -0500
-From: Rob Herring <robh@kernel.org>
-To: hans.zhang@cixtech.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Manikandan K Pillai <mpillai@cadence.com>
-Subject: Re: [PATCH v3 3/6] PCI: cadence: Add header support for PCIe HPA
- controller
-Message-ID: <20250411203128.GA3920652-robh@kernel.org>
-References: <20250411103656.2740517-1-hans.zhang@cixtech.com>
- <20250411103656.2740517-4-hans.zhang@cixtech.com>
+	s=arc-20240116; t=1744403917; c=relaxed/simple;
+	bh=jP2gH2HxizlXVnfCoefiIXX50CVQy/awrI7TNYRAzsk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JRs4uYoISdiQYrxR/mRAx1HgVucZC6eWgP7qyGJT+taQ5QVqCDFrcG+IPKUsE/GxUeJxbn3OMfc5zRcz9/tZFrLNEUfjZbyzrORKxhDvdR7JFztLv3Ry0UvETFULjTA4ykCo3zkPQhwBDs+qabHAtNKwbrk6VHcPVJs8B13CpsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=HuZd3vAa; arc=none smtp.client-ip=209.85.166.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-86135aeca58so76184839f.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:38:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744403913; x=1745008713; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G2ZInTEwsl47QZUkjk8fk2tvbcX5FPggXx8vW7X4elk=;
+        b=HuZd3vAaKxn6C6d2hH42QD+cWH/9GKh1OwWI/pMjqPJC+IRTZ1mAelTWKHMFQxSF5D
+         YEqy0dAByDxGN3L/ycvXZlkAmy2IBGSiYBuPCQMAMdkoGNUIZinNE9jt8IUJw9D0FHSf
+         kZjoS6NS3fSNpLV4tteaZPIprDaGB+uqM5Q2q2Ok5fZNkIhvlP2ndUS4FAxOyIO/8I/d
+         nC4oqP+EkmZGgAfUnLT1ijAjlVlJo24Zlgj9sI9QB2ydIqBPgfgkeOrOqkF3tgNO3aPv
+         +kdAcQEE/zuZPxeZos7cEOfkQR339aWkEphL0R5MGTEFetaDAiuqONimvOzmpAmdVAoM
+         gNZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744403913; x=1745008713;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G2ZInTEwsl47QZUkjk8fk2tvbcX5FPggXx8vW7X4elk=;
+        b=j8bs2/z5AhpA8AW4wLQB/VdhgzLZv/iz9ij6lDXEfe0EuXfVf6NoQUU8t3d1MzJ5pA
+         57cvyrP8OWBmzxXGO92JL79XmZRz4CDP+akwtSNMVyigypILOb9mw8cOVhclJGrkPcTW
+         1PuL1wh8v6qt36KvdKQ7fewKTg/g4ctSbP12D5XoSWkReLII/FURYSCVYV5YPwmxukpI
+         5r4W7V+kL/0rzBFRC5TYE3pJsEAheMLx2ehZ6nY4x7cwKgApWjU/8tgoA9Iq6EGkItTW
+         TMcssCHJNu53MX3sugtx+QNd1fYmpFlWTATmLVUyoi2heHuRW3/zRyDbxiQG76t2GDaU
+         tcaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZAIDsSzdtwIgf3DUA/Z/M6JNhyJ1lZx2JckwQTrq8As896KgLRoNYpBKQxkh5IUSpx3e6jOcCCiEG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8oOELvWy5U15oP1MscuqpiUvUTLsK1eTk98mq1QqS9kmS/mRr
+	LifF/0GOAJN/BshnTz+qeK93zSYEAafsWKSewYPTIJEP6ahkhRpjrNlFEj/1cR4=
+X-Gm-Gg: ASbGnct1CxHQ+56bKNZMktyON1snJqQplSbAOshE4ZbNUY5vY7gjlbdd0lEV8+3+Ik/
+	UwO5FiecTuDw1ecmeK36BqliuadWV85dQ0LPh3AJ9ckOPBR8nkRf5aVnVzP6fhQhScy8VJNx+7Z
+	I8tEd5CoYp8ZYirRRocPYLSZHq5J0/CO+4sbw0qGFX1QskgYd+Wx+L6JaWAVXBME1XVKezNxy+U
+	h38JzmpOwabsJcNXKO0txe1JEJBW47A25Xg+srNGqnKo1sDHjIq85qHaXU8BLaJjcs/z5Nm26iq
+	Y0h5z1v0lx+mfaitZC1z3b+RxKMyM/c7GTqatUgydaaqFWBO1OhroSHPc5Mc4jwZjK3lFwjizWF
+	JH9qos/mv8qNminI3ByXHXWS+
+X-Google-Smtp-Source: AGHT+IF64rFuEmhScHDoMsL9QXFX4Agysz2oW5sGUVVn3Q82xJQ20AI5xuTlCrtn92K/dBEu6SxbnQ==
+X-Received: by 2002:a92:c267:0:b0:3d6:cb9b:cbe9 with SMTP id e9e14a558f8ab-3d7ec1caab5mr44116655ab.5.1744403913131;
+        Fri, 11 Apr 2025 13:38:33 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f505e2ea1esm1420787173.123.2025.04.11.13.38.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Apr 2025 13:38:32 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: andy.shevchenko@gmail.com,
+	dlan@gentoo.org,
+	benjamin.larsson@genexis.eu,
+	bastien.curutchet@bootlin.com,
+	andriy.shevchenko@linux.intel.com,
+	u.kleine-koenig@baylibre.com,
+	lkundrak@v3.sk,
+	devicetree@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] serial: 8250_of: support an optional bus clock
+Date: Fri, 11 Apr 2025 15:38:24 -0500
+Message-ID: <20250411203828.1491595-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250411103656.2740517-4-hans.zhang@cixtech.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Apr 11, 2025 at 06:36:53PM +0800, hans.zhang@cixtech.com wrote:
-> From: Manikandan K Pillai <mpillai@cadence.com>
-> 
-> Add the required definitions for register addresses and register bits
-> for the  Cadence PCIe HPA controllers. Add the register bank offsets
-> for different platform architecture and update the global platform
-> data - platform architecture, EP or RP configuration and the correct
-> values of register offsets for different register banks during the
-> platform probe.
-> 
-> Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
-> Co-developed-by: Hans Zhang <hans.zhang@cixtech.com>
-> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
-> ---
->  .../controller/cadence/pcie-cadence-host.c    |  13 +-
->  .../controller/cadence/pcie-cadence-plat.c    |  87 +++++
->  drivers/pci/controller/cadence/pcie-cadence.h | 320 +++++++++++++++++-
->  3 files changed, 410 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> index 8af95e9da7ce..ce035eef0a5c 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> @@ -175,7 +175,7 @@ static int cdns_pcie_host_start_link(struct cdns_pcie_rc *rc)
->  	return ret;
->  }
->  
-> -static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
-> +int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
->  {
->  	struct cdns_pcie *pcie = &rc->pcie;
->  	u32 value, ctrl;
-> @@ -215,10 +215,10 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
->  	return 0;
->  }
->  
-> -static int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
-> -					enum cdns_pcie_rp_bar bar,
-> -					u64 cpu_addr, u64 size,
-> -					unsigned long flags)
-> +int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
-> +				 enum cdns_pcie_rp_bar bar,
-> +				 u64 cpu_addr, u64 size,
-> +				 unsigned long flags)
->  {
->  	struct cdns_pcie *pcie = &rc->pcie;
->  	u32 addr0, addr1, aperture, value;
-> @@ -428,7 +428,7 @@ static int cdns_pcie_host_map_dma_ranges(struct cdns_pcie_rc *rc)
->  	return 0;
->  }
->  
-> -static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
-> +int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
->  {
->  	struct cdns_pcie *pcie = &rc->pcie;
->  	struct pci_host_bridge *bridge = pci_host_bridge_from_priv(rc);
-> @@ -536,7 +536,6 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
->  		return -ENOMEM;
->  
->  	pcie = &rc->pcie;
-> -	pcie->is_rc = true;
->  
->  	rc->vendor_id = 0xffff;
->  	of_property_read_u32(np, "vendor-id", &rc->vendor_id);
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence-plat.c b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> index 0456845dabb9..b24176d4df1f 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> @@ -24,6 +24,15 @@ struct cdns_plat_pcie {
->  
->  struct cdns_plat_pcie_of_data {
->  	bool is_rc;
-> +	bool is_hpa;
+The SpacemiT UART hardware requires a bus clock to be enabled in addition
+to the primary function clock.
 
-These can be bitfields (e.g. "is_rc: 1").
+This series makes it possible to specify both clocks via DTS.  If a
+bus clock is required, it and the primary clock are fetched by name.
 
-> +	u32  ip_reg_bank_off;
-> +	u32  ip_cfg_ctrl_reg_off;
-> +	u32  axi_mstr_common_off;
-> +	u32  axi_slave_off;
-> +	u32  axi_master_off;
-> +	u32  axi_hls_off;
-> +	u32  axi_ras_off;
-> +	u32  axi_dti_off;
->  };
->  
->  static const struct of_device_id cdns_plat_pcie_of_match[];
-> @@ -72,6 +81,19 @@ static int cdns_plat_pcie_probe(struct platform_device *pdev)
->  		rc = pci_host_bridge_priv(bridge);
->  		rc->pcie.dev = dev;
->  		rc->pcie.ops = &cdns_plat_ops;
-> +		rc->pcie.is_hpa = data->is_hpa;
-> +		rc->pcie.is_rc = data->is_rc;
-> +
-> +		/* Store all the register bank offsets */
-> +		rc->pcie.cdns_pcie_reg_offsets.ip_reg_bank_off = data->ip_reg_bank_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.ip_cfg_ctrl_reg_off = data->ip_cfg_ctrl_reg_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_mstr_common_off = data->axi_mstr_common_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_master_off = data->axi_master_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_slave_off = data->axi_slave_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_hls_off = data->axi_hls_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_ras_off = data->axi_ras_off;
-> +		rc->pcie.cdns_pcie_reg_offsets.axi_dti_off = data->axi_dti_off;
+This code is available here:
+  https://github.com/riscstar/linux/tree/outgoing/serial-v4
 
-Why not just store the match data ptr instead of having 2 copies of the 
-information?
+Changes between v3 and v4:
+  - I simplified the third patch by reusing the local variable, as
+    suggested by Andy Shevchenko
+  - The first two patches are identical to what was in v3
 
-> +
->  		cdns_plat_pcie->pcie = &rc->pcie;
->  
->  		ret = cdns_pcie_init_phy(dev, cdns_plat_pcie->pcie);
-> @@ -99,6 +121,19 @@ static int cdns_plat_pcie_probe(struct platform_device *pdev)
->  
->  		ep->pcie.dev = dev;
->  		ep->pcie.ops = &cdns_plat_ops;
-> +		ep->pcie.is_hpa = data->is_hpa;
-> +		ep->pcie.is_rc = data->is_rc;
-> +
-> +		/* Store all the register bank offset */
-> +		ep->pcie.cdns_pcie_reg_offsets.ip_reg_bank_off = data->ip_reg_bank_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.ip_cfg_ctrl_reg_off = data->ip_cfg_ctrl_reg_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_mstr_common_off = data->axi_mstr_common_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_master_off = data->axi_master_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_slave_off = data->axi_slave_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_hls_off = data->axi_hls_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_ras_off = data->axi_ras_off;
-> +		ep->pcie.cdns_pcie_reg_offsets.axi_dti_off = data->axi_dti_off;
-> +
->  		cdns_plat_pcie->pcie = &ep->pcie;
->  
->  		ret = cdns_pcie_init_phy(dev, cdns_plat_pcie->pcie);
-> @@ -150,10 +185,54 @@ static void cdns_plat_pcie_shutdown(struct platform_device *pdev)
->  
->  static const struct cdns_plat_pcie_of_data cdns_plat_pcie_host_of_data = {
->  	.is_rc = true,
-> +	.is_hpa = false,
-> +	.ip_reg_bank_off = 0x0,
-> +	.ip_cfg_ctrl_reg_off = 0x0,
-> +	.axi_mstr_common_off = 0x0,
-> +	.axi_slave_off = 0x0,
-> +	.axi_master_off = 0x0,
-> +	.axi_hls_off = 0x0,
-> +	.axi_ras_off = 0x0,
-> +	.axi_dti_off = 0x0,
+Here is version 3 of this series:
+  https://lore.kernel.org/lkml/20250411154419.1379529-1-elder@riscstar.com/
 
-You can omit anything initialized to 0.
+Changes between v2 and v3:
+  - A third patch was added to disable the bus clock on suspend and
+    enable it again on resume, as requested by Yixun Lan
+  - Rob's Reviewed-by tag has been added to patch 1
+  - The first two patches are otherwise identical to what was in v2
 
->  };
->  
->  static const struct cdns_plat_pcie_of_data cdns_plat_pcie_ep_of_data = {
->  	.is_rc = false,
-> +	.is_hpa = false,
-> +	.ip_reg_bank_off = 0x0,
-> +	.ip_cfg_ctrl_reg_off = 0x0,
-> +	.axi_mstr_common_off = 0x0,
-> +	.axi_slave_off = 0x0,
-> +	.axi_master_off = 0x0,
-> +	.axi_hls_off = 0x0,
-> +	.axi_ras_off = 0x0,
-> +	.axi_dti_off = 0x0,
-> +};
-> +
-> +static const struct cdns_plat_pcie_of_data cdns_plat_pcie_hpa_host_of_data = {
-> +	.is_rc = true,
-> +	.is_hpa = true,
-> +	.ip_reg_bank_off = CDNS_PCIE_HPA_IP_REG_BANK,
-> +	.ip_cfg_ctrl_reg_off = CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK,
-> +	.axi_mstr_common_off = CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON,
-> +	.axi_slave_off = CDNS_PCIE_HPA_AXI_SLAVE,
-> +	.axi_master_off = CDNS_PCIE_HPA_AXI_MASTER,
-> +	.axi_hls_off = 0,
-> +	.axi_ras_off = 0,
-> +	.axi_dti_off = 0,
-> +};
-> +
-> +static const struct cdns_plat_pcie_of_data cdns_plat_pcie_hpa_ep_of_data = {
-> +	.is_rc = false,
-> +	.is_hpa = true,
-> +	.ip_reg_bank_off = CDNS_PCIE_HPA_IP_REG_BANK,
-> +	.ip_cfg_ctrl_reg_off = CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK,
-> +	.axi_mstr_common_off = CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON,
-> +	.axi_slave_off = CDNS_PCIE_HPA_AXI_SLAVE,
-> +	.axi_master_off = CDNS_PCIE_HPA_AXI_MASTER,
-> +	.axi_hls_off = 0,
-> +	.axi_ras_off = 0,
-> +	.axi_dti_off = 0,
->  };
+Here is version 2 of this series:
+  https://lore.kernel.org/lkml/20250409192213.1130181-1-elder@riscstar.com/
+
+Changes between v1 and v2:
+  - The DT binding was fixed to properly define the number of clocks and
+    clock names based on the compatible string, as suggested by Rob Herring
+  - Logic to look up the optional bus clock was changed as requested
+    by Andy Shevchenko
+  - The bus clock pointer (which was never used after it was enabled)
+    was renmoved from the of_serial_info structure
+
+Here is the first version of this series:
+  https://lore.kernel.org/lkml/20250408175146.979557-1-elder@riscstar.com/
+
+					-Alex
+
+Alex Elder (3):
+  dt-bindings: serial: 8250: support an optional second clock
+  serial: 8250_of: add support for an optional bus clock
+  serial: 8250_of: manage bus clock in suspend/resume
+
+ .../devicetree/bindings/serial/8250.yaml      | 30 ++++++++++++++++++-
+ drivers/tty/serial/8250/8250_of.c             | 15 +++++++++-
+ 2 files changed, 43 insertions(+), 2 deletions(-)
+
+
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+-- 
+2.45.2
+
 
