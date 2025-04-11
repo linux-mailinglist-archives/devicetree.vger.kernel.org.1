@@ -1,148 +1,120 @@
-Return-Path: <devicetree+bounces-165884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C04A85CC7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:17:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE10A85CDD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:20:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05E094491BE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:14:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AFB81891B26
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449E629C322;
-	Fri, 11 Apr 2025 12:13:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDDE2980DA;
+	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wCSiWD02"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgN0QIaO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFC229B21C;
-	Fri, 11 Apr 2025 12:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CAF208A9;
+	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744373601; cv=none; b=TIkyBfOggcobFvOgeDrFp7bx27lizWoTBZF7VnGsqe7bbl5TEVntpWndo0PQ/YhWen2fFTnqLXNzwJWIGHHGjvzS6DVhnuFtjACznGweWm6BZ+ue3HPXRqYCZssUTXTyivgXjxucQ+/KjnuR+h7OO3Oob59fx8+JOzgu/93bD8Y=
+	t=1744373782; cv=none; b=H6nIJ55OBVd7bWymd2b5VKkkYfuwae85p2PLAq48U7GRynjmK+oruvrYl0f7x2axbmhYLQBo+7+OGMXA/tGIKEOc9meUG3Bd2yTQk/+/lgesevZ2trNpWlSy6ILgIQRXHdxDa1nLxoICAhfBCtjTQpPk1u0lIy/8H5oBh9HIMKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744373601; c=relaxed/simple;
-	bh=rm6sb2SecoZ4haaiG5ldcKEZ6rgDcMeHIli61NwBfws=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sivWFXAVY2/zYdK81/0xf1KtFx26UXX6OMCDlW5UrUxvbLTtZvD76rGtkZ6n/gk8Jqf+ZXvHjgPq2HktVYEjfpmGKd2Fw5NFQckFZfPqhqyMlc/3IF9fH7WzCgua0HUnuMIZmtRvolUDaIr9vk8QFIH3g7USDsmCCUXDQyZ1qvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wCSiWD02; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53BCDCVh2068790
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 11 Apr 2025 07:13:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744373592;
-	bh=e9LI8VdJWzvGwvWyJvwbcvffdGYsX3wJ0VFrvvQKvgI=;
-	h=From:To:CC:Subject:Date;
-	b=wCSiWD02X5Oal4gMz3HMAUcHAmPsRCjaMHrBX/lHPCZmJMvW6fFvD8TQY8TS/X5v0
-	 wTgCGlitCJY+0uvwLEfvw4wlmvD8wAhSTqEyOw0wf7XIfJphejBitkr5kuO/Tz7v7R
-	 /Dxu5trogQP/qZvh152ZnyXkci+wsToB/SjjPunE=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53BCDCS1123695
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Apr 2025 07:13:12 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Apr 2025 07:13:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Apr 2025 07:13:11 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53BCD7aa011992;
-	Fri, 11 Apr 2025 07:13:08 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2 RESEND] arm64: dts: ti: k3-j784s4-j742s2-main-common: Enable ACSPCIE output for PCIe1
-Date: Fri, 11 Apr 2025 17:43:07 +0530
-Message-ID: <20250411121307.793646-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1744373782; c=relaxed/simple;
+	bh=F6AxARnd3xc3ILccMeGQR4+AdsjAK1Ng9wcvSCTdcUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Du21XTVVR6yL9BEJarwLnHLaOG/fs0KC5LM+fDBOqCjvTMZ+QTsWhV44fzHX9u0H6VGb/UlyXC4b9VuLQsmgHwLWVkUcPX5dnaSXmyWvvBIaku6ilCg+MZC467vm38rFaQZIVNADuuFb/7RvSTs9wW8R4AZZF8l1fG6jyqHJEHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgN0QIaO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13006C4CEE2;
+	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744373782;
+	bh=F6AxARnd3xc3ILccMeGQR4+AdsjAK1Ng9wcvSCTdcUs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GgN0QIaOqZwKC84+vH+4PYL6Yqoa2YbPgMzsNSS5Uokga7vW007H/vpuvWZ16f+vb
+	 G3HEFhPSwBziRClLsu7BYJ9wC7MR+J8Ot6bBgqD0YRFNCH0enAQlLyHJDqDddMwwBh
+	 CrBaSsXTxH9V65JLSZrKped29VS56QlTy23mlfTvE71ATxiGmgWdskJwk+dL4leo7d
+	 j82a2SR2BlbDvfotFq7Zv4gyBcvD0SF4zEjVaKwC3VfFn5Wu28irRy/UivCppMWmlx
+	 kN/YrUjtfpKHk1MnFmcQAU0+jjcWczr3ouPiM916K+TLUY9Gf+Fi6FyPvlY4YHCkMt
+	 z/g6jtw744FVw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u3DJ3-000000001ZR-3R9Z;
+	Fri, 11 Apr 2025 14:16:26 +0200
+Date: Fri, 11 Apr 2025 14:16:25 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: jens.glathe@oldschoolsolutions.biz,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: x1e80100-hp-x14: add
+ usb-1-ss1-sbu-mux
+Message-ID: <Z_kIGS0GLduS1H1z@hovoldconsulting.com>
+References: <20250410-hp-x14-v2-0-d36414704a0a@oldschoolsolutions.biz>
+ <20250410-hp-x14-v2-1-d36414704a0a@oldschoolsolutions.biz>
+ <Z_j8M2Q0J3LuANAF@hovoldconsulting.com>
+ <Z_kChvolKDp2JAcS@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z_kChvolKDp2JAcS@linaro.org>
 
-The PCIe reference clock required by the PCIe Endpoints connected to the
-PCIe connector corresponding to the PCIe1 instance of PCIe on J784S4-EVM
-and J742S2-EVM is driven by the ACSPCIE module. Add the device-tree support
-for enabling the same.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
-
-Hello,
-
-This patch is based on linux-next tagged next-20250411.
-The v2 patch is at:
-https://lore.kernel.org/r/20241209085157.1203168-1-s-vadapalli@ti.com/
-No changes since v2. The dtbs_check warnings are no longer seen with
-next-20250411 and no changes were required to the patch itself to fix
-the warnings. Hence the patch has been marked with a RESEND tag.
-
-Regards,
-Siddharth.
-
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi     | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 1944616ab357..591609f3194c 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -7,6 +7,7 @@
+On Fri, Apr 11, 2025 at 01:52:38PM +0200, Stephan Gerhold wrote:
+> On Fri, Apr 11, 2025 at 01:25:39PM +0200, Johan Hovold wrote:
  
- #include <dt-bindings/mux/mux.h>
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
- #include <dt-bindings/phy/phy-ti.h>
- 
- #include "k3-serdes.h"
-@@ -126,6 +127,11 @@ audio_refclk1: clock@82e4 {
- 			assigned-clock-parents = <&k3_clks 157 63>;
- 			#clock-cells = <0>;
- 		};
-+
-+		acspcie0_proxy_ctrl: clock-controller@1a090 {
-+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-+			reg = <0x1a090 0x4>;
-+		};
- 	};
- 
- 	main_ehrpwm0: pwm@3000000 {
-@@ -1093,8 +1099,8 @@ pcie1_rc: pcie@2910000 {
- 		max-link-speed = <3>;
- 		num-lanes = <4>;
- 		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 333 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
-@@ -1105,6 +1111,7 @@ pcie1_rc: pcie@2910000 {
- 		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
- 			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
- 		status = "disabled";
- 	};
- 
--- 
-2.34.1
+> > > +	usb_1_ss1_sbu_default: usb-1-ss1-sbu-state {
+> > > +		mode-pins {
+> > > +			pins = "gpio177";
+> > > +			function = "gpio";
+> > > +			bias-disable;
+> > > +			drive-strength = <2>;
+> > > +			output-high;
+> > > +		};
+> > 
+> > This is more of a question for Stephan who added this to QCP [1], but
+> > why is this mode pin here and what does it do?
+> > 
+> > It's not part of the binding for the mux (which indeed only has two
+> > control signals according to the datasheet) so it looks like something
+> > is not modelled correctly.
+> 
+> I'm afraid you have opened a "can of worms" here. :')
 
+Heh.
+
+> On the QCP, there are actually two of these muxes chained for each port.
+> One of them does the orientation switching that we are describing here,
+> the other selects between routing SBU to DP AUX or USB SBTX/SBRX. I'm
+> guessing this is meant for USB4. Given that:
+> 
+>  - We don't have any support for USB4 on QC platforms at the moment.
+>  - We're not modelling the USB4 stuff for the retimer either(?).
+>  - We have no clear overview of what/how to model for USB4.
+>  - The ports without retimer aren't advertised with USB4 support (I'm
+>    guessing the signal quality is not reliable enough without retimer).
+>  - The gpio-sbu-mux driver doesn't support shared enable-gpios.
+> 
+> ... we just went with the tradeoff of forcing DP AUX mode here by
+> setting a fixed state for the second mux. I'm not sure if the other
+> configuration is even a valid use case for the ports without retimer.
+> 
+> A comment about this would have been nice, but I didn't think of that
+> anymore when cleaning up the patches. :-)
+
+Thanks for the explanation. Makes sense.
+
+Johan
 
