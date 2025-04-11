@@ -1,161 +1,151 @@
-Return-Path: <devicetree+bounces-165775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58CC4A8567E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:27:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998B7A85691
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:32:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43CEC4C0491
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:27:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7051617A85F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F82293B50;
-	Fri, 11 Apr 2025 08:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17152293479;
+	Fri, 11 Apr 2025 08:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Deq50/M4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aUQIqskP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD3F296163
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8D37083C
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744360015; cv=none; b=FMJju8EviazW5ecGu8l52cA35O3/VTB3PFEi2Di/tkp4fle1mxdLePQ99DIHp0e9ZCFRPl/l0Sx4iX1sgB3Z8KSSapBRrD4L7WyGBHHBKwzqcElAa369yZqgrMJnhz8mJs/9TlaLb+IgHIilJ5CXxByhWHoDQhws1UNtv7r/KCA=
+	t=1744360351; cv=none; b=rBT5DaSmM8elGKqTY9ec4h50aPG+hs411kOetp33xWeUI6/IPjkuhdzOLKYWhtjjnNkHgWcWUH+Apa1BTH6rUNUmuLvxEzioG40VHsJT6A+91YMmoE3kPKbLg+vIWBargYmh7zxUSyLX42jpeGys75lkPp82KHJtdWDv3VRrmN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744360015; c=relaxed/simple;
-	bh=VoFoSA0jg7hSIJLOIKHXHZX0zceZ/JT2UFZrRC+wD4M=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=HbAsLDd6Vso4RBdzEbGrSG3aHS7p/YXd4ix8JQt2M6ObxnLDutAz11iKFdTPkpCQ5qp14aPxJyCglXaH6J5vmvYEooFREJsI8K7lf8f+wMp6Z1NHamjVU08jJBYT7+vmC7Qc3eQZ8RX4GNh89ru8dbWpbE1acJi382UfKWEg0ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Deq50/M4; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744360013;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=00Q0S17WmRjZl0Npwk/8K6zLHrHsysPjv1qRjdhJKjc=;
-	b=Deq50/M45+WmS6DvqYPmrlk/2XmJ2ICTZkuFYL+FKlletJRPkBRIwUmO8Sz6gZx70tb8yo
-	lPZaxoLFaVNbbYCSKY1bqzw5k83JVSQ3gHFfj3tRZW1/dEeoXmk6rH21LDpZc6ZjfoDt4g
-	pW/6yLG8WGCIDYds7NQY+9wui6ujKt0=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-595-eNctZsENPVWro_5no7UXhQ-1; Fri, 11 Apr 2025 04:26:51 -0400
-X-MC-Unique: eNctZsENPVWro_5no7UXhQ-1
-X-Mimecast-MFC-AGG-ID: eNctZsENPVWro_5no7UXhQ_1744360010
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-43d5ca7c86aso10535955e9.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:26:51 -0700 (PDT)
+	s=arc-20240116; t=1744360351; c=relaxed/simple;
+	bh=eQ+8kO7NALNUpw/GUPvuQGsb+cj20dj1SWw9vWWBVE0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=itIktDXw0b8EwyseSraL8W+oEuckj+JYG43BuHbopTfxwWVH1KCcQKae5N0tt90ApMeLmYlZ1qoRQJDycZoFvoiutfyBBIaiHURFzEe9Fq9F8IOY9kG194Czu/l27KLaXcmA/tQAuJ7PsOv6pajX8WRlyB10g+QxNH+RkVNlv+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aUQIqskP; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cfecdd8b2so13030735e9.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:32:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744360347; x=1744965147; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pyJXtMKyLy/gns1v7npOhaJocsF372rKr0wtnaGZSjU=;
+        b=aUQIqskPPqWiAjXaE1FKSBLY2Q8I6jw3+i53hywHTj9TWpp2rBrM/EuHF6AgNc52zS
+         nYnqUyLrnFgg1WOs4cZxiH0183CFIVb5zWbfQ9+DVBGyfsEcPoaAEBM6Vh2NB9Insr2h
+         /ZXxynWIKl3wA+SgvvUimZcQmx5/koxJlDDL2xUbgEAsOVj5nrL3cCqIU9OatQ8rSVZF
+         BWMOHzsGMP1VYwF9p23kef+/f5Y2oFDiENl3X/m2snGslELCspu3Wfh8zJ3KGmLfJlJl
+         kv7njtbklON35oaIiyfU9vtPyCmj2JIw/8t0Vx6dLnDc/Lzw+R1ZTMITv1wsL/m1SpGe
+         WOHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744360010; x=1744964810;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=00Q0S17WmRjZl0Npwk/8K6zLHrHsysPjv1qRjdhJKjc=;
-        b=fDfhPpFac1lWVbTJRLwQ3M1F3yXV3xregnyEADk/Sb7I8kWV0+t3bMRAdePKx/y1Kt
-         M6fV57HlyzOvyJWKMDKuJDLBKqpNKijEF0hd+eEI2FNzwr1KEjLXUTPsxGSj3rvzK3iY
-         ya/dIqsqHJiiR857AseRJZb2Kgu/Ao38J0JMUqaATPVFZFDev63Id2gHDbyRLi2SRVDx
-         ntXAPfWFWi7MeyBOXUBxu0R87yLqx9Vrxu5btvjRUKCyAksDZ986DMRtTS/Mr0YfwLSN
-         3WynCEztzDjBJPOgmtwB5GNxubTR5sLAqG1LGi5PeS3klVTvfsfkFwYkoGd8x4fkTpPj
-         kCFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEz4w9sAv3gA2ozGaLB3KdnPj9az7eo3e5ZtJTgR4uH7M47EOUe40PYN2WmYgOSnxDwZCRI+hCqadk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX1PCGAgpLbh+w5uXRImvZpbKcGQNSc4kWZLCFLPAKJ+xwyn9U
-	+k4s/ga0jRhK5g9qoYbujCqHc/b5Aek0hyg0CVpaKkyr85EhvHcFHCGszU5iT8mzdr8UhdaTbZc
-	MtfGLaNRx2MGQqCbgFrJuG06/u80khos7gezFZQDVH9aH5cYjN3f+lTDWOz0=
-X-Gm-Gg: ASbGnctnjboqqL06OPBLN4nnbDyaKnQ6z4P+4Th/vrRdO6WgkAyjX5Iye6bBb5NvMfw
-	43gsvURIVbeTLJm+a1CsnXgJrcSw2T+44qOeTj5D1I01vtptvKhBJlekhkPr/gq1onLK5Gh8JGD
-	JdJ0Vhn/hPWviTn/nn6m6URtliNJv0n6/IpHaRGqQCJjW5ow4ZUxMureFC+kCF/TIqy7X+yRFwI
-	msTycH2ykCdjy7yawbKwu9QuZ0UYzldmsxW+0jb2+VIWdQyDVRTN7YHu2fyCH5FH+uayFOlZ8JN
-	jNVHYZg5GNmtnJeMii4D8RKKP9MCU66oWu9TFxsYGByLPgu4PosFtvD/ifkgIYteKKpWRg==
-X-Received: by 2002:a05:600c:698c:b0:43d:49eb:963f with SMTP id 5b1f17b1804b1-43f3a9a70aemr14226005e9.24.1744360010169;
-        Fri, 11 Apr 2025 01:26:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEZKb6d7+fqXZ7A3CJpuhmceu1xTasq+foZTV7ndHM9hXVFEaFi7ujrGUL6mhaYAsYNAIUYKA==
-X-Received: by 2002:a05:600c:698c:b0:43d:49eb:963f with SMTP id 5b1f17b1804b1-43f3a9a70aemr14225655e9.24.1744360009817;
-        Fri, 11 Apr 2025 01:26:49 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233c49f7sm74871495e9.17.2025.04.11.01.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Apr 2025 01:26:49 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-In-Reply-To: <Z_iwspuiYAhARS6Y@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
- <20250408-st7571-v3-2-200693efec57@gmail.com>
- <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
- <Z_Uin2dvmbantQU4@gmail.com>
- <87ecy1g8z8.fsf@minerva.mail-host-address-is-not-set>
- <Z_YWq4ry6Y-Jgvjq@gmail.com>
- <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
- <Z_iwspuiYAhARS6Y@gmail.com>
-Date: Fri, 11 Apr 2025 10:26:47 +0200
-Message-ID: <875xjb2jeg.fsf@minerva.mail-host-address-is-not-set>
+        d=1e100.net; s=20230601; t=1744360347; x=1744965147;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pyJXtMKyLy/gns1v7npOhaJocsF372rKr0wtnaGZSjU=;
+        b=hMPap1cYS3bkqJRlXbudO3MU0vohjiL9JiyqkEfVu6zk9u4PRUrAbkNQr18j/3DrQr
+         e3Ct/SweDDo6PtxlygxtWTt38NhrALYuEAKGhGzPJxXTVnIQwc1Qde6RoJe/o5FTduTh
+         rs7q8p7b6SAniqtwlKBI0jZrfakB/2mLnY2sy/8SeldEcmeKTy9p2DGV6Xdp50NsvOEr
+         jBnqtJGIqq0DghqHM1ZNbB9t/yTWZDIUQxpIR0ddqHy/Yukipc61GaK2vfTxl/kX6Fms
+         yWdK2moWqxkNgF3Que69mSmU6iXNM33ZeflHtFtITrb3z4xGxZATE0i+WP58JLZe/PPQ
+         7iDw==
+X-Gm-Message-State: AOJu0YwvXw6NQNu9Sky676y6XtYSIiXAYA8n3IE3fg9dU4MFFuscgXVH
+	EgYu8ptp7yFg3u1fiq2E+qGaiQ7k/7sohLikPPdI/bsLdHszqVaijmHdV9vllIU=
+X-Gm-Gg: ASbGncuqXbB73Ul5S+iwxf0lv0OXjY/pBCIjz0eMCUpFQAaxxjxHQLu6E6FOrVKrGuL
+	T80eAUvybrm4oJtv/HBnwFkmzoOuVXIvAhT5iyw4bvOHsBR3+eFBhfuW9IywQ7eUjSm9oVf2b4b
+	9h1q+y8eaaowqtpVxt1Lli3N8NLmmc/EM4VZ5MkuwudAI1lIJNeJCz+TuCFD1T3LNaQejypadsb
+	niBs3xEQz4NVWMry3DQYZoyZpN8YsySTUVf08i7brn0tqKRFCdtD2O8U0RyJsMDAqdtUiCW1Exi
+	zNHQfXCjey8aCzNwqJoam4XYCI4sW6dHffVw3YaRvDb/04nzp8g+KZPgzM4Vc+X2HM4MBzGlBv3
+	RKBHCjWHO6XGAbJTBIQ==
+X-Google-Smtp-Source: AGHT+IFRP0ceYDboDUf7YhFap3N+kvOHTY96QqO4YWtRCrLo1IyOLrYHKFOroWBQKK4GWZyRGmFbMg==
+X-Received: by 2002:a05:600c:1546:b0:43c:f597:d582 with SMTP id 5b1f17b1804b1-43f3a9336e6mr13947315e9.1.1744360346497;
+        Fri, 11 Apr 2025 01:32:26 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:f77b:949e:1d61:69a8? ([2a01:e0a:3d9:2080:f77b:949e:1d61:69a8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f23572b5bsm75951255e9.28.2025.04.11.01.32.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 01:32:26 -0700 (PDT)
+Message-ID: <ab32c7bf-7788-4992-83a9-26963f520455@linaro.org>
+Date: Fri, 11 Apr 2025 10:32:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 2/3] arm64: dts: amlogic: Add A4 Reset Controller
+To: Kelvin Zhang <kelvin.zhang@amlogic.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20250320-a4-a5-reset-v5-0-296f83bf733d@amlogic.com>
+ <20250320-a4-a5-reset-v5-2-296f83bf733d@amlogic.com>
+ <e01d48c6-287b-476a-b5ca-de670375561d@linaro.org>
+ <8a0f383f-e100-4928-a040-91ec0aa9aa6f@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <8a0f383f-e100-4928-a040-91ec0aa9aa6f@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+On 11/04/2025 10:23, Kelvin Zhang wrote:
+> Hi Neil,
+> 
+> There’s a conflict in amlogic-a4-common.dtsi due to recent merges.
+> Should I rebase onto the latest code and send a v6?
 
-Hello Marcus,
+Yes please rebase on top of https://web.git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git/log/?h=v6.16/arm64-dt
 
-[...]
+Thanks,
+Neil
 
->> static const struct of_device_id st7571_of_match[] = {
->> 	/* monochrome displays */
->> 	{
->> 		.compatible = "sinocrystal,sc128128012-v01",
->> 		.data = monochrome_formats,
->> 	},
->> ...
->>         /* grayscale displays */
->> 	{
->> 		.compatible = "foo,bar",
->> 		.data = grayscale_formats,
->> 	},
->> };
->
-> A comment for v4:
->
-> I think I will go for a property in the device tree. I've implemented
-> board entries as above, but I'm not satisfied for two reasons:
->
-> 1. All other properties like display size and resolution are already
->    specified in the device tree. If I add entries for specific boards,
->    these properties will be somehow redundant and not as generic.
->
-> 2. I could not find a ST7571 with a grayscale display as a off-the-shelf
->    product.
-
-Sure, that makes sense to me.
-
-Can I ask if you could still add reasonable default values that could be set
-in the device ID .data fields ?
-
-As mentioned, I've a ST7567 based LCD and a WIP driver for it. But I could
-just drop that and use your driver, since AFAICT the expected display data
-RAM format is exactly the same than when using monochrome for the ST7571.
-
-But due the ST7567 only supporting R1, it would be silly to always have to
-define a property in the DT node given that does not support other format.
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+> 
+> On 2025/3/24 15:06, Neil Armstrong wrote:
+>>
+>> On 20/03/2025 10:42, Kelvin Zhang via B4 Relay wrote:
+>>> From: Zelong Dong <zelong.dong@amlogic.com>
+>>>
+<snip>
 
 
