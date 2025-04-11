@@ -1,213 +1,125 @@
-Return-Path: <devicetree+bounces-166014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA1AA86207
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5FFA8620C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA83E9C314D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:35:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D1733B227B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703CD21148F;
-	Fri, 11 Apr 2025 15:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7B11C863E;
+	Fri, 11 Apr 2025 15:37:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ELid6Wuq"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="iUKw9U6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BDA1F584C
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 15:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60BF1F4CB2
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 15:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744385757; cv=none; b=pwkrUedvCLH6KekPnPEmOjzdh6Lvg4E87uuKCpQH7shIGE+pOAoZgQo5NYlMI0cLYSys0U0ZifXAHwkKSKLGhDbpoGViBKgVhh1YRiL/drSA6FDeEEyf3QveHvfEjc+YCzF6mNG/jLnUNUica03KRfn8E2JbY5Sr3LRMocNfYVc=
+	t=1744385837; cv=none; b=bRqtvJaVdHq1ukcWJ76f0GjNTLSP9PMolx4/Hugmu9f2dq97tYO4Wt2lSRvF/V9zFaXqOUTID5GQXGonkFhTTVHF2NXzvl+I5QhfY31SM22idGi/yXtubZ9aEwQIMgDIPZhseu6LU5jta1NuTyRkf2saVTtkYMicxA1XkaswM+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744385757; c=relaxed/simple;
-	bh=6LB6UCvlvFB88/s52rhCdovokxut7cMvdT7ZY8sl8No=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cxPcBkLppXzl7jAuonAgh+8Ixnd923ol0Xn3bl8asdWmQveGr551M5QsEQ1AWlESDcGygKrLXPdPuXC5DDB/toPPkkFaX3uMSPWhu4VJVnHsNINPjHg0/xkzi8/3/jpyaPBOnrYo1djyGxXmGDSekN2zRLnLu9S47abbHjF9p/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ELid6Wuq; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so23472975e9.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:35:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744385752; x=1744990552; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lKaim36rDlvvtzFLUyngfIkva1VGFiay+NKjck/e1UY=;
-        b=ELid6WuqVpzoSmdTe8TeCuUfLCwqeyaPVjOGUrqXrtuMISuJ3gVcmeVVpZf6CVEwRX
-         PdS75Y6cfGDgsbm4KUPG/AIlvsekxZx34vvziUJLItkVZNoHEWyszbx4mGWaWq1n9cKx
-         hh5TeFytuitcrlkTgTIOv084nX1w63EOhkuhGU2i9c2kZ7ZR4RL5sZ/2BxHmztWcZAGA
-         PJAmWEpaH6fdjX2TZ3k42hMAnf5lRcUIZKNuJhrFQgpXmRa1QYizSkVWddp92++dDmSu
-         lZjwmnkIx5YxxYFyxDBObemY+kAiyCiX0j/av3zeAbIxy3Y1Q3GuEyAb7QgNJD0Y9LaK
-         Th5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744385752; x=1744990552;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lKaim36rDlvvtzFLUyngfIkva1VGFiay+NKjck/e1UY=;
-        b=u5ECLs46UMB/c2gmj/TdbsZ+5EmM3vCJQTlZzjf4VmFF+aNuGRdGQaW6n1fpeOTY7+
-         KToblx68jaklvKvBsLWaLlVnbjIBFygy2G5j6y2IbTuIPFDyYtk9IZa3stAvwxPAFk+g
-         l92nizlg29cAiJ1eDsQpkyaisa/YTNZIlYiL5hJBgTj/sEp1sxJQ/fRmbYBsBQxZa6yA
-         aHpb8cRbtjA17cVbJfj7OAc9b/XJTkd7QkqCtoer5p+Gk0CFx6lzE9LJU5ZCWz6sRSN3
-         s5p4H8+jGjK3wlZMWx9qH94lpkVvZW5X0dG7nZr7CQJanVvGup/MDOczzUfBM/lpo9Kf
-         NcYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXuLMmnh+IOuuwTqhDasQvH6ZxmN4EAKi5zsAyF4amNMypLrOHoX4pWWN/wVbzteJEtGVj7Ze86BfKq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvmPTMf1tJgTB1hRHO5S9qMq6kxtCN50SAB8SB4zZUDA+QUUfZ
-	vIRq6hbKettyKEeQRjB8pkEp4dZGuYmVqv5bi9XCtcrMoELN8V7QJB/7Vlw2ti4=
-X-Gm-Gg: ASbGnctSEeMmJnTs249pKz+agIGBmWvG1zEiE6BcGV+FWkZZ712bsVPKhg6VjXd3BGd
-	eb6aG/NFlI1W3pWIXjTyv6SZXX9oe1OsypBxNbNG1BgESsMvu6acIG2ocaKfRL2A8H/3Q6qAHEi
-	NXZW9E/H/yXzeBeoEZqSVUQ5NJVimKDYKcZ8gM1IT5QCmUHLuLGHuLqG66CmuDMOwGJFujmUMXa
-	O/sbpRU3r264vBGoaaiR6TiDeq+LQGF33FdEpwTuYM2i1luFn1JdErZdimy+6KO5gc6aElNHbP3
-	FoCDBtH7/WuhuaVOyKuy1MukPAZtYsiTsYhVa5F1dH/wechygDn1e1Xf6vIbEPME/nJt8sR0bjz
-	gbwm2ug==
-X-Google-Smtp-Source: AGHT+IHmLcfEt77kvPXMcWI46glOKuB81jeyuxsGo88GhaNrmPMx+9rHhUkY2slNl4+xQtTbU1h8iQ==
-X-Received: by 2002:a05:600c:83c6:b0:439:643a:c8d5 with SMTP id 5b1f17b1804b1-43f3a7db13dmr34023905e9.0.1744385752462;
-        Fri, 11 Apr 2025 08:35:52 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f2338d757sm87044235e9.5.2025.04.11.08.35.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 08:35:52 -0700 (PDT)
-Message-ID: <c1be38a9-1e3b-4e26-be4b-f4fde93468c5@linaro.org>
-Date: Fri, 11 Apr 2025 16:35:51 +0100
+	s=arc-20240116; t=1744385837; c=relaxed/simple;
+	bh=DDCedDsenMx3LoiOsAS4rTMDhX29pF/BbPfRwFTg3us=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XAdh5oCPJ3NXvHBRKqtm2zxdxqN7hF2PVCt2qMKdslide2Py1F1gBeCLBT6zGFsPdMLHo6ArNFCuAfBar6Qfptb/B5WLAhLTvi9RMM8ep0huRChqfp0vJ/XW7PGfb/kY++oAVNqzfBGuMEmZexhRwRKEO97kiTop/3VCBx6VhTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=iUKw9U6q; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=rM0P
+	vzizVt+4r2P9F3uwCc7rJavN4omFsTV8IYHzbTc=; b=iUKw9U6qIEyTp6sN9vNL
+	YTCX/XLCRcNuVIE8YviCfCbU7NTqRt75EgJKL9srjGNoDB6whXKKl9n7hPySZ98m
+	OXdBewcF3lBxLXpGfy33tavKMtSohGoNL1/+XwQgk6QcfrfC4huHaSS4hOXkm4UT
+	ecdWQb/TrtVYy25zU7kzy2SuSfhSnM37mxFzYDBo9lHNp9FCv43zxhpFrrQ2fwie
+	yJNI07NMWmEr5p4q+kRsWwGHbAC5JMv2vH2FnaQpS0oF0f2c/5LEG0L4ne1WwtTD
+	Cz7Bs/1UjEPxpvZZPyPu3msRSqn81t+xH/hUtji4R7uXHBm+kaRo5hF+rjHa5JUv
+	zA==
+Received: (qmail 1345770 invoked from network); 11 Apr 2025 17:37:10 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 17:37:10 +0200
+X-UD-Smtp-Session: l3s3148p1@Fzy8eYIyrr8ujnsS
+Date: Fri, 11 Apr 2025 17:37:09 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less
+ RZ/N1 rule
+Message-ID: <Z_k3JV1dEexJurdc@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
+ <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v5 0/8] media: qcom: iris: re-organize catalog & add
- support for SM8650
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <sSGjuqPKGTjE9al-J0RHMuA3Rk7hIh9x9RMWNefg93pJOOacQodM38LE11xl4vmO1I0OgSZFYR2sblISUxkPeg==@protonmail.internalid>
- <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
- <X6Bg8c3Qrw5uxgOgENJL1NcyPhC6JJ-KaiGVeEk_iuzjE0TFgp4ZREnObm2n9DVQGANSurRREkp0AiqERQgU4g==@protonmail.internalid>
- <fa6ab24d-80ea-42f0-b764-b8596e6b724d@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <fa6ab24d-80ea-42f0-b764-b8596e6b724d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="j5LROqLSsZoniIDc"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
 
-On 11/04/2025 12:55, Bryan O'Donoghue wrote:
-> On 10/04/2025 17:29, Neil Armstrong wrote:
->> Re-organize the platform support core into a gen1 catalog C file
->> declaring common platform structure and include platform headers
->> containing platform specific entries and iris_platform_data
->> structure.
->>
->> The goal is to share most of the structure while having
->> clear and separate per-SoC catalog files.
->>
->> The organization is based on the curent drm/msm dpu1 catalog
->> entries.
->>
->> Add support for the IRIS accelerator for the SM8650
->> platform, which uses the iris33 hardware.
->>
->> The vpu33 requires a different reset & poweroff sequence
->> in order to properly get out of runtime suspend.
->>
->> Follow-up of [1]:
->> https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org/
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->> Changes in v4:
->> - Reorganized into catalog, rebased sm8650 support on top
->> - Link to v4: https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org
->>
->> Changes in v4:
->> - collected tags
->> - un-split power_off in vpu3x
->> - removed useless function defines
->> - added back vpu3x disappeared rename commit
->> - Link to v3: https://lore.kernel.org/r/20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org
->>
->> Changes in v3:
->> - Collected review tags
->> - Removed bulky reset_controller ops
->> - Removed iris_vpu_power_off_controller split
->> - Link to v2: https://lore.kernel.org/r/20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org
->>
->> Changes in v2:
->> - Collected bindings review
->> - Reworked rest handling by adding a secondary optional table to be used by controller poweroff
->> - Reworked power_off_controller to be reused and extended by vpu33 support
->> - Removed useless and unneeded vpu33 init
->> - Moved vpu33 into vpu3x files to reuse code from vpu3
->> - Moved sm8650 data table into sm8550
->> - Link to v1: https://lore.kernel.org/r/20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org
->>
->> ---
->> Neil Armstrong (8):
->>         media: qcom: iris: move sm8250 to gen1 catalog
->>         media: qcom: iris: move sm8550 to gen2 catalog
->>         dt-bindings: media: qcom,sm8550-iris: document SM8650 IRIS accelerator
->>         media: platform: qcom/iris: add power_off_controller to vpu_ops
->>         media: platform: qcom/iris: introduce optional controller_rst_tbl
->>         media: platform: qcom/iris: rename iris_vpu3 to iris_vpu3x
->>         media: platform: qcom/iris: add support for vpu33
->>         media: platform: qcom/iris: add sm8650 support
->>
->>    .../bindings/media/qcom,sm8550-iris.yaml           |  33 ++-
->>    drivers/media/platform/qcom/iris/Makefile          |   6 +-
->>    .../media/platform/qcom/iris/iris_catalog_gen1.c   |  83 +++++++
->>    ...{iris_platform_sm8550.c => iris_catalog_gen2.c} |  85 +------
->>    ...ris_platform_sm8250.c => iris_catalog_sm8250.h} |  80 +-----
->>    .../media/platform/qcom/iris/iris_catalog_sm8550.h |  91 +++++++
->>    .../media/platform/qcom/iris/iris_catalog_sm8650.h |  68 +++++
->>    drivers/media/platform/qcom/iris/iris_core.h       |   1 +
->>    .../platform/qcom/iris/iris_platform_common.h      |   3 +
->>    drivers/media/platform/qcom/iris/iris_probe.c      |  43 +++-
->>    drivers/media/platform/qcom/iris/iris_vpu2.c       |   1 +
->>    drivers/media/platform/qcom/iris/iris_vpu3.c       | 122 ---------
->>    drivers/media/platform/qcom/iris/iris_vpu3x.c      | 275 +++++++++++++++++++++
->>    drivers/media/platform/qcom/iris/iris_vpu_common.c |   4 +-
->>    drivers/media/platform/qcom/iris/iris_vpu_common.h |   3 +
->>    15 files changed, 598 insertions(+), 300 deletions(-)
->> ---
->> base-commit: 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
->> change-id: 20250410-topic-sm8x50-upstream-iris-catalog-3e2e4a033d6f
->>
->> Best regards,
->> --
->> Neil Armstrong <neil.armstrong@linaro.org>
->>
->>
-> 
-> Please fixup this
-> 
-> 0007-media-platform-qcom-iris-add-support-for-vpu33.patch has no obvious
-> style problems and is ready for submission.
-> 0007-media-platform-qcom-iris-add-support-for-vpu33.patch:7: slighly ==>
-> slightly
-> 
-> also accounting for my comments in patches #1 and #2 you can add for the
-> series
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
 
-There's an update to the yaml you need to account for now.
+--j5LROqLSsZoniIDc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://gitlab.freedesktop.org/linux-media/users/bodonoghue/-/blob/next/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml?ref_type=heads#L25
+On Fri, Apr 11, 2025 at 08:38:58AM -0500, Rob Herring wrote:
+> On Thu, Apr 10, 2025 at 3:23=E2=80=AFAM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> >
+> > There is no need to repeat all SoC-specific compatible values in the
+> > rule for DMA-less RZ/N1 variants.  Use wildcard "{}" instead, to ease
+> > maintenance.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> >  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 +---
+> >  1 file changed, 1 insertion(+), 3 deletions(-)
+>=20
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
----
-bod
+I'll send my counterpatch in some minutes.
+
+
+--j5LROqLSsZoniIDc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf5NyEACgkQFA3kzBSg
+KbbXmw/+MusRGq+V8xGIn23wJuJ8wEn4G0I/Vjqq3OyiyiLiSZbGIh/MhmA+L2Hy
+0ORgo3WiQ1ZsQ6l5l50zD+PNHpFJiK8CtZittnfOd1ut5eo1tW56VUtW+o24tLtM
+hKvfSMyeadCkmcOxwm93rk7fInFV+7/awef9xFhqUgaQA57+BR/H4hB0XGdfCKNa
+Qn2S82UgJwudJUd+wUe9axgxxDQTqgV9/Xa/8Amo5tSwEDMFxgywztc7WU4MQv3Z
+jW1j/Vq8kbwR8ehVim3t4oc0B1/6mXxYVxuhz1b6Yf7s7783Jtpv8f+lKVNdM8+0
+G5eoR6umjjBl9iMNp5CwWZyiCT8sSz6Mmyn0lzf2vMfX5qnqWC2wrWjFa7nEarGt
+zpFerc5NLH9PxTzPoOiKYXC2hbFZWOPOvycWllZkk/WQesdMyayU2MtjiZE/ToS7
++r49XmgJWqKXZgMri+1ngRjU2NeUYNnQ2Rt6A9rgeawdIFcHbQ4mW5exj2KqkW3w
+LehF6lbK+hafvFSYwYX2YQeoQyVIXX/01faCoGc+Q+XwqDNSNrFGBycyBax4lX45
+M7I1qhAyjQ/2Z6HaR5hiG+V9axk5JYdgLixg3naixnqAr3vFjYeysdJwJ8H6xTms
++YAKuCZP31AHSW0epA0GummihGi4BBy2uncZ/NMLDf+697hp+tA=
+=qv4s
+-----END PGP SIGNATURE-----
+
+--j5LROqLSsZoniIDc--
 
