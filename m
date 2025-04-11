@@ -1,109 +1,151 @@
-Return-Path: <devicetree+bounces-165759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB96A8558A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8CEA855BB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:46:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3252518988E5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:35:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7C09189F602
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216991EFF9F;
-	Fri, 11 Apr 2025 07:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D82293B43;
+	Fri, 11 Apr 2025 07:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZRw4Gaso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF401E835D;
-	Fri, 11 Apr 2025 07:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359A528F92E
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 07:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744356924; cv=none; b=HntwkURflLF/60nTReDMvf6+ngieabLxrAKKcDhtkk2t7qqUzs2fCDEx+4SvHupCdeumdK74r/qWWGb6d2n+aTSv0r9odkBmMFe2QjCzNW5NgnbPd+obMNCLfwW31CdeuzRHYubu2yPDr9flH2DDDYscQxcwSjo9F172BJYxCxY=
+	t=1744357529; cv=none; b=ZHpdV5ugwn2K1jguihNgKmULP/Qb38TMHw461JI/OuVKKmDWg/Ps8cZv8kAWxO3uV8Kl+LZ+q26OrQt/2XIgzt6jtbmwoyEqJe9jm0X3k4fHvs/jEmnqwiTloZkz+Kqpwl1V0ZAh3u0oCtyXUw9mt7T0D8hT+FGhDyMssOVknaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744356924; c=relaxed/simple;
-	bh=puNy0gZGTOqFqAb2b0QdJORahOZ5FRTGd+gd+/a2NbE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s6EqC3WbVfNoIhWzHt+XFxbvbSWAIKyS88B6Otye98Q3PGIgwTnq57K/hyZIueMpHxrkzGmVCfDwhpXlO5lSexmFoz5IPcwG3l0RlfVDdsciuNPiHhfNiDM+w2YPZAW44p1QbJvN86ZMUcp43jV+bfyVZvctfVYNRUkaEchCnxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-520847ad493so1541500e0c.1;
-        Fri, 11 Apr 2025 00:35:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744356920; x=1744961720;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n+zG7d5UeINc2mvxds9sIv7u69XobW0SCDHU/G5G5oQ=;
-        b=SwqFNm14Jv8f9z3EpMv43tEPkCV1Irbr8xlchxzRARpEfg9ePR5OOSAQ2RXk0V3k7U
-         3NzG5IsLWq/uP8OiBHhVS38MmqqokxE7neps7hzNaUccF6OtVz8JdkSShqOvESthAedI
-         uyC6tIRUvsOx8L+KaxVmfz56fRbP0U8TIzShgSy7+A4G3YDxGWxoAPK099I9dAsWRr3i
-         lGXawN8ytW4SThn+Z/M9G/D3KGpwHyMjDCv4fSmaZCvBwaRFAo06zGaXjfDTLD+gzJiP
-         0p4lRGCbvGVd8nxHxDvJJY1K7kjK5TLEd7ZTPI8Bc6dc9mev24pZzJB1Z2XFM9h7vQRf
-         gMgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVg+uRrp6WLibtqSKw9Z703lGo5R4BqQys/rswUVSoIpY+yFpN6Kws96a3GQFr6JqaFW8T9ILUnWuoT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSkvJ30ZH+hPVaQSks8uB98CqDFy//E7G74tEf4038TVd54Eip
-	GKUWf2i8PQIrrabhPBP0kfp1CiB/L9gdjOe5+jAtdpszaEhGrDndYyBfobDR9WA=
-X-Gm-Gg: ASbGnctIFggGrPTMkneTe3zOLtXq6tBww3llG/pFVgCLhk0va5rqJGiuR39os4jY0eN
-	Qvvgj8rf1Ut+/Hj0v/9mUi2pBIOzEVc1uKQWYDA8eqQPCfUv/I5bGABYYWbHYfPF+oQ+YV/cAf3
-	lKFf7t3/Rv6RJk9urLDO/oYsAmLDEWlEACPbZN2YI6S38U5fhIVK8GgoGJN/9iYm/EIuT7CE6Qo
-	19r8IkfwKigyPEE8vrAfahBPEi/v/ap7mAYcxDQNVi/z1NEGrWg/L18L+4fRAChbBd+Nk1F7tsp
-	ETyNwlCOPJXLxZbNhqcOuHUxfpA+BWVhEeU8Kg9l7sm3ZIQWSmxs+rSe7e7/2aU/HIiBsAjnxEw
-	l3SGqix7p0op00Q==
-X-Google-Smtp-Source: AGHT+IFCFzeEluntzqNboQjyMAmeFp91QZs/OWCB8BNvoV3TASEeNbAGlvjnbc578Yey3fd9I1CiTw==
-X-Received: by 2002:a05:6122:2008:b0:526:2210:5b68 with SMTP id 71dfb90a1353d-527c34d3cd2mr1098371e0c.4.1744356920434;
-        Fri, 11 Apr 2025 00:35:20 -0700 (PDT)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd4cceesm995602e0c.4.2025.04.11.00.35.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 00:35:20 -0700 (PDT)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-86b9b1def28so1483401241.3;
-        Fri, 11 Apr 2025 00:35:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXEwDJNTBy8kZBOijmbELLLwJxaOe7LszyXKvuERMiTxjPUhM5vAmZ9F45cGabDtinB/4wUa1RvKwn8@vger.kernel.org
-X-Received: by 2002:a05:6102:32ce:b0:4c1:b2c2:61a with SMTP id
- ada2fe7eead31-4c9e505a50dmr769876137.25.1744356919695; Fri, 11 Apr 2025
- 00:35:19 -0700 (PDT)
+	s=arc-20240116; t=1744357529; c=relaxed/simple;
+	bh=yFKMfa01fVvPA/+6vycPplB6hZ2RANSH3ciaj5Nszps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WUahCmgJe570r8a6gRYAqhFRSjN+gHhHVzU0CF7j+rF2GNEN9c7HnT4bwuR4TbNShXCicdOY/9qpu6K1pV7rqgpaCQGHDCa9xXA2yvoVZxdFNHFphJCEsUC8mpmYwJICsdKrfVCE8l384qfctTBG8PEnjUiqiaDdYN0fkF7aUnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZRw4Gaso; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744357527;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CLsgjOWVS7DH/+x2sDLX0Yn/8o48chOiekDq1vSoRQw=;
+	b=ZRw4GasoGiz47scKiIZaMEcx0jkyUO+n3gksjo5vRtRURoiklZ4TcvqvepkffMz9M43Hcd
+	PlsTDDPd3x0dzMkClhf06A0RrI5tuN8HOBC1YJBVYCIYKq7LjArPT9TUNmZ+NDw7IUgPIX
+	5EfsLEEakAhR0F9AMx9VZuof9Tb2olc=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-138-xey1FPZXNUSijoA8bZBwMQ-1; Fri,
+ 11 Apr 2025 03:45:20 -0400
+X-MC-Unique: xey1FPZXNUSijoA8bZBwMQ-1
+X-Mimecast-MFC-AGG-ID: xey1FPZXNUSijoA8bZBwMQ_1744357518
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id C489F180025E;
+	Fri, 11 Apr 2025 07:45:16 +0000 (UTC)
+Received: from [10.45.225.124] (unknown [10.45.225.124])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id CE9B8180B486;
+	Fri, 11 Apr 2025 07:45:10 +0000 (UTC)
+Message-ID: <b69e1d87-7c07-4482-b156-196cb60b1870@redhat.com>
+Date: Fri, 11 Apr 2025 09:45:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250328153134.2881-7-wsa+renesas@sang-engineering.com> <20250328153134.2881-9-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250328153134.2881-9-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 11 Apr 2025 09:35:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX=s9Gaum1s4QZsbr2Jzq3hPqkcUMQpbDUbd_+usu0auA@mail.gmail.com>
-X-Gm-Features: ATxdqUEYpR3RTzFwuJSHgpkQZJVLwHPRjj3LqVgpw3UowgwVp6hAvofjITOQrhg
-Message-ID: <CAMuHMdX=s9Gaum1s4QZsbr2Jzq3hPqkcUMQpbDUbd_+usu0auA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- I2C bus
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409171713.6e9fb666@kernel.org>
+ <889e68eb-d5b5-41ae-876d-9efc45416db6@redhat.com>
+ <20250410155710.067a97f7@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250410155710.067a97f7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-On Fri, 28 Mar 2025 at 16:33, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Schematics mention a 24cs64 on the bus, but I definitely have only a
-> 24c64. So, it is only mentioned as a comment.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.16.
 
-Gr{oetje,eeting}s,
+On 11. 04. 25 12:57 dop., Jakub Kicinski wrote:
+> On Thu, 10 Apr 2025 11:18:24 +0200 Ivan Vecera wrote:
+>> On 10. 04. 25 2:17 dop., Jakub Kicinski wrote:
+>>> On Wed,  9 Apr 2025 16:42:36 +0200 Ivan Vecera wrote:
+>>>> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+>>>> provides DPLL and PTP functionality. This series bring first part
+>>>> that adds the common MFD driver that provides an access to the bus
+>>>> that can be either I2C or SPI.
+>>>>
+>>>> The next series will bring the DPLL driver that will covers DPLL
+>>>> functionality. And another ones will bring PTP driver and flashing
+>>>> capability via devlink.
+>>>>
+>>>> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+>>>> development board with ZL30732 DPLL chip connected over I2C bus.
+>>>
+>>> The DPLL here is for timing, right? Not digital logic?
+>>> After a brief glance I'm wondering why mfd, PHC + DPLL
+>>> is a pretty common combo. Am I missing something?
+>>
+>> Well, you are right, this is not pretty common combo right now. But how
+>> many DPLL implementations we have now in kernel?
+>>
+>> There are 3 mlx5, ice and ptp_ocp. The first two are ethernet NIC
+>> drivers that re-expose (translate) DPLL API provided by their firmwares
+>> and the 3rd timecard that acts primarily as PTP clock.
+>>
+>> Azurite is primarly the DPLL chip with multiple DPLL channels and one of
+>> its use-case is time synchronization or signal synchronization. Other
+>> one can be PTP clock and even GPIO controller where some of input or
+>> output pins can be configured not to receive or send periodic signal but
+>> can act is GPIO inputs or outputs (depends on wiring and usage).
+>>
+>> So I have taken an approach to have common MFD driver that provides a
+>> synchronized access to device registers and to have another drivers for
+>> particular functionality in well bounded manner (DPLL sub-device (MFD
+>> cell) for each DPLL channel, PTP cell for channel that is configured to
+>> provide PTP clock and potentially GPIO controller cell but this is
+>> out-of-scope now).
+> 
+> Okay, my understanding was that if you need to reuse the component
+> drivers across multiple different SoCs or devices, and there is no
+> "natural" bus then MFD is the go to. OTOH using MFD as a software
+> abstraction/to organize your code is a pointless complication.
+> (We're going to merge the MFD parts via Lee's tree and the all actual
+> drivers via netdev?) Admittedly that's just my feeling and not based
+> on any real info or experience. I defer to Lee and others to pass
+> judgment.
 
-                        Geert
+I followed an example of rsmu mfd driver that provides an access to the 
+bus (i2c/spi) via regmap and ptp_clockmatrix platform driver for the PTP 
+functionality of the RSMU chip. The ptp_clockmatrix device is also 
+instantiated only from rsmu mfd and it is not shared by multiple mfd 
+drivers.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
