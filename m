@@ -1,173 +1,137 @@
-Return-Path: <devicetree+bounces-165803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C03AA857EC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:23:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5997A857AE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:15:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C749C306F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:21:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08D99A4D29
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9381298980;
-	Fri, 11 Apr 2025 09:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PNQE3AxW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC441D86F7;
+	Fri, 11 Apr 2025 09:14:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64CE20DD47;
-	Fri, 11 Apr 2025 09:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9654427C865;
+	Fri, 11 Apr 2025 09:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744363305; cv=none; b=XqPEBPYvCG29DGFw51vPKzqx8UzG4hXmQs692/qnWDc9Xc5BSrOXKNwMhr/g/fpUnC8omx9UKhZrXnZtDdtYmetBObbQ012NKAMzYxjO00tWCIn6XG+aU8/kT6GwxBuGAwBPstZ8QnwARq/08WFNFBLDkdVD+0urcCldV/U2TME=
+	t=1744362848; cv=none; b=IuWX0HGExe8CB8D+xPdcaCpQkeZjGf7quIIZEN2cBfU20sz1T7Y9oK9BiU5p6+IZE6ArR4S4U2LRXVG9JtSzNTfb6Q8+UdeWJ39Hn2Mnbi9v/UkEFUze+jAykijaVCJabEFS7hStsKkBA0vKSrNuLhb06B7y0k3kVtMB3ZILQwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744363305; c=relaxed/simple;
-	bh=n80qSdW8hTLLcGl32QhQXaDVoMDW28TbTsrNFVne5NI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oXiLpiO6TtCoJwlU9aXvQBlx9Y+m9iaxkHusFdeLxSjYyETauFizR/sfbtGcAXafwmr/E+2mcnCcg+9xKwAe3Z11SZvDgpw4CsDSVfgfD+U6x00PPvsjjVqAhdH4ap8nEUjaSJhOy0DALzf0snodbQgvVWJjFJze+v5875awPLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PNQE3AxW; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53B9LZXQ1534406
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 11 Apr 2025 04:21:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744363295;
-	bh=1Wu8WdXy6XC8FsshlNNPex7drpLCmQqBKgIq5OVRccc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=PNQE3AxWNu10DHVRfn6XEj3ib/qoUB2tEyVtDAjSO043WWshf1OoNjmkqYW70OzmI
-	 EYzPTesedz0ZKpkLiYCiVkzvipKkP/24a1QYY8Q+u716OxFsceyCH4gCxaIBS4qxx6
-	 Uf3v317TTnaGhDSU6KleM7YJJ6fLKpE1qbHl/HkU=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53B9LZ2o016030
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Apr 2025 04:21:35 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Apr 2025 04:21:34 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Apr 2025 04:21:34 -0500
-Received: from pratham-Workstation-PC (pratham-workstation-pc.dhcp.ti.com [172.24.227.40])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53B9LX2I053286;
-	Fri, 11 Apr 2025 04:21:34 -0500
-From: T Pratham <t-pratham@ti.com>
-To: T Pratham <t-pratham@ti.com>, Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Kamlesh Gurudasani <kamlesh@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
-Date: Fri, 11 Apr 2025 14:43:21 +0530
-Message-ID: <20250411091321.2925308-2-t-pratham@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250411091321.2925308-1-t-pratham@ti.com>
-References: <20250411091321.2925308-1-t-pratham@ti.com>
+	s=arc-20240116; t=1744362848; c=relaxed/simple;
+	bh=E7a+VLvOKB5W9tiYzsAlpLHLtnyCT6ABiTee8X7K0bI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Y5zp1WjaCklSQLvIgNnh5Si3zcCVjCCgldMMjO787IfL1wsgXvjxVWPRpsXWKB+LTLV0pR4LSgdJX8FO073DfMqV8tAJkUTSiAotibeAemqi3DTu4xW6ywGnGqdBLBvFw7Tbm5Hzt/QM/NFFw1BgFzeYu8CBCp4o3lJLHItZvyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 627F2106F;
+	Fri, 11 Apr 2025 02:14:04 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DCDD3F6A8;
+	Fri, 11 Apr 2025 02:14:01 -0700 (PDT)
+Date: Fri, 11 Apr 2025 10:13:58 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: iuncuim <iuncuim@gmail.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
+ <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael J
+ . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+ <linux-kernel@vger.kernel.org>, Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Subject: Re: [PATCH 6/6] dt-bindings: thermal: sun8i: Add A523 THS0/1
+ controllers
+Message-ID: <20250411101358.03b100ba@donnerap.manchester.arm.com>
+In-Reply-To: <20250410165044.766460-7-iuncuim@gmail.com_quarantine>
+References: <20250410165044.766460-1-iuncuim@gmail.com>
+	<20250410165044.766460-7-iuncuim@gmail.com_quarantine>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add DT binding for Texas Instruments DTHE V2 crypto accelerator.
+On Fri, 11 Apr 2025 00:50:44 +0800
+iuncuim <iuncuim@gmail.com> wrote:
 
-DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
-only found in it.
+Hi Mikhail,
 
-Signed-off-by: T Pratham <t-pratham@ti.com>
----
- .../devicetree/bindings/crypto/ti,dthev2.yaml | 50 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/ti,dthev2.yaml
+many thanks for sending!
 
-diff --git a/Documentation/devicetree/bindings/crypto/ti,dthev2.yaml b/Documentation/devicetree/bindings/crypto/ti,dthev2.yaml
-new file mode 100644
-index 000000000000..7d55f1bff822
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/ti,dthev2.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/ti,dthev2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: K3 SoC DTHE V2 crypto module
-+
-+maintainers:
-+  - T Pratham <t-pratham@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am62l-dthev2
-+
-+  reg:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: AES Engine RX DMA Channel
-+      - description: AES Engine TX DMA Channel
-+      - description: SHA Engine TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx1
-+      - const: tx2
-+
-+required:
-+  - compatible
-+  - reg
-+  - dmas
-+  - dma-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    crypto@40800000 {
-+      compatible = "ti,am62l-dthev2";
-+      reg = <0x00 0x40800000 0x00 0x10000>;
-+
-+      dmas = <&main_bcdma 0 0 0x4700 0>,
-+             <&main_bcdma 0 0 0xc701 0>,
-+             <&main_bcdma 0 0 0xc700 0>;
-+      dma-names = "rx", "tx1", "tx2";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bfcdf2bced61..90b640385b88 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24174,6 +24174,12 @@ S:	Odd Fixes
- F:	drivers/clk/ti/
- F:	include/linux/clk/ti.h
- 
-+TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO ACCELERATOR DRIVER
-+M:	T Pratham <t-pratham@ti.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/crypto/ti,dthev2.yaml
-+
- TI DAVINCI MACHINE SUPPORT
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.34.1
+This patch needs to come earlier in the series, before the .dts patches,
+and I think ideally even before the driver patches.
+The repo needs to be clean at any given commit, as it stands right now the
+DT validation would fail if run on patch 5/6 only.
+
+More below...
+
+> From: Mikhail Kalashnikov <iuncuim@gmail.com>
+> 
+> Add dt-bindings description of the thermal sensors in the A523 processor.
+> 
+> Signed-off-by: Mikhail Kalashnikov <iuncuim@gmail.com>
+> ---
+>  .../bindings/thermal/allwinner,sun8i-a83t-ths.yaml           | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> index 3e61689f6..70ac395ef 100644
+> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> @@ -24,17 +24,21 @@ properties:
+>        - allwinner,sun50i-h5-ths
+>        - allwinner,sun50i-h6-ths
+>        - allwinner,sun50i-h616-ths
+> +      - allwinner,sun55i-a523-ths0
+> +      - allwinner,sun55i-a523-ths1
+>  
+>    clocks:
+>      minItems: 1
+>      items:
+>        - description: Bus Clock
+> +      - description: GPADC Clock
+
+The new clock needs to come last, to preserve the order for the existing
+chips.
+
+>        - description: Module Clock
+>  
+>    clock-names:
+>      minItems: 1
+>      items:
+>        - const: bus
+> +      - const: gpadc
+
+Same here, of course.
+
+And don't you need to adjust the number of clocks in the allOf: section
+below, to require exactly three clocks for the A523?
+
+Cheers,
+Andre
+
+>        - const: mod
+>  
+>    reg:
+> @@ -107,6 +111,7 @@ allOf:
+>              enum:
+>                - allwinner,sun8i-h3-ths
+>                - allwinner,sun20i-d1-ths
+> +              - allwinner,sun55i-a523-ths0
+>  
+>      then:
+>        properties:
 
 
