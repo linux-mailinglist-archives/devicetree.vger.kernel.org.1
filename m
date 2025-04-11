@@ -1,105 +1,153 @@
-Return-Path: <devicetree+bounces-166054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE950A86329
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:24:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E96C3A86327
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25EC18C052D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:23:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AB23164466
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB8721CA0A;
-	Fri, 11 Apr 2025 16:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E489121B9C4;
+	Fri, 11 Apr 2025 16:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uHtsDDWN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Is5B+Bgu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5126219EA5;
-	Fri, 11 Apr 2025 16:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D902C80;
+	Fri, 11 Apr 2025 16:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744388625; cv=none; b=AR+Aoy4kPAXc93AwHOeBR78QECqS2HRebytPNz0lfQYPJ61v2ba0wburnuyZp9og0pTpOU76YpIn1rH2vREj6CLax5rdl2a604ptSlos4qlW7IQ/8bXC2MBYz6MWFiumeCd1g6PtFi6nUHc8NORoMp/fVLEv/g7nho4N/SwrC9o=
+	t=1744388669; cv=none; b=ZmfgHXL9+pirtoh7xxfsXtASnJem+biBjVqiTYlib74vl8GPHukKNOMX6kMRZqLNYGl2M0VUSkB07h+KrWEeD7lVwX1hEFiHGKU8FiMbGYbdMaMPZbJfFJmgBGOav98EW0bF6yvxP8JhGhjICWkkFRgnAzF8o89nQ8fzr0sXFoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744388625; c=relaxed/simple;
-	bh=g/pganQZSx52qNp6jjj4GSiWZuSgoU31JNjxvldnCLY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uxvSvVoKhBBgg+bCDItkQzAor2QJFi0XZ0FFVJ22ABVmw0PWQAjWktH7zgbdlXpe8EWDYedts4Rf2jyqokwTTPmJ3oVqPse3OdYZ3N3Saj9KdOJQOlUKVvAW16+j53j8ghBpE+FqAh/mxMQ542MpsN1vIw4ZEWzpZ0iKlY8hZHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uHtsDDWN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BAB6C4CEE9;
-	Fri, 11 Apr 2025 16:23:45 +0000 (UTC)
+	s=arc-20240116; t=1744388669; c=relaxed/simple;
+	bh=HLTkaTxD7CG28J8nNqScvqtP9UC6xZ1vDO2iU2D8fBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2WyJIEcj5SHaBcnZQmZSY1yjxGWyWa3+Ld5rDX/s276vsdBBWNeOAamSMu26b1U7BmBAR8iRepkq3HkMun1HxwLLHgLIgwsh5lyf1Y3JRmUTE46STc9NYvfrKfwv20X16GONfRmMx4c7+d1brwUcOnXTUkbEx8iFAFYAwrBttY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Is5B+Bgu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5AE1C4CEE2;
+	Fri, 11 Apr 2025 16:24:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744388625;
-	bh=g/pganQZSx52qNp6jjj4GSiWZuSgoU31JNjxvldnCLY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=uHtsDDWNjwBYEsmUM7icr8cAnu2sgZzilRSQvSL3Yt1whdK8e1N+aYVlAN1f8VjbE
-	 2zgXB7F+y6eJN9vmMe+H1sTDswCA0YJ8RQKZQW16Fbb1Qhz8Ii1hnXnnX6rLI5VQOj
-	 KRTvi4M+TicjxkBN0pgY0QV9H/Pt54+mqqFuslLN5t5FX6/n0FBGBFYhnlPVA/cZta
-	 UREhHxPocCfE+Mpn6qwVMJLfZozBpmWLpXDLwks/1VtgfYowsPtEpK6lRunAQY5MPg
-	 5eU8pi+mQc/hbeewINYCvgL74wwCclCu/GE0a0euqWxWUS/XkDzvFIRiP/rnltPzsu
-	 2FTgS5LM+GFCw==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5e6167d0536so3945613a12.1;
-        Fri, 11 Apr 2025 09:23:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWJuhffQzn/tqBC8D73jaeGFwGOnRdSuyShytGatuj+5XLPDfF5jmdhxNz+aoVKlM2gRWODSCsdJTxeq2AB@vger.kernel.org, AJvYcCXGiu1uCnBC1N7ujJ/yJBTbEtyK/8T+AnUi3Gw5uBrv8LiSQ1tr+Q+YaUySfu7eWI71ro9C7CS+uovP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2EFcnY7Rce/cRd3SpGlqGs/0xaKmJ2HcNVIAiqlHp5RmzD6dp
-	Ve49G7uoX8miJXiRCOXUEght4sGRNc0RsXuAK+9jp+kXH6gHx/phEIntRgGNZPJr88sKKtkfE4G
-	AIcyUP5b6F142e9KQ3yrcc09qMQ==
-X-Google-Smtp-Source: AGHT+IHuwjMlWSeE9LYHHyXbSAAkws9dKvVGcB21xtxVyLv8RWBNnUWqa03IxQZN90/AdHGNnORtFsNCROVqplN0GiU=
-X-Received: by 2002:a05:6402:51ce:b0:5e4:9726:7779 with SMTP id
- 4fb4d7f45d1cf-5f36f78034fmr2576755a12.2.1744388623871; Fri, 11 Apr 2025
- 09:23:43 -0700 (PDT)
+	s=k20201202; t=1744388669;
+	bh=HLTkaTxD7CG28J8nNqScvqtP9UC6xZ1vDO2iU2D8fBQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Is5B+BguzA59qWVeT0IR70Xx7nsF3d95ae7vmk2mshW00sOhhwf/BQXti5ctO/rG8
+	 /I/aP/hrUOd5rt4xaS1P6OuKcCe2Qs5mCGhA3P4CVlik6NGFVQHOEKF2vTnZgkZh2B
+	 mDNluiWpU+PZcz6/alg561TOEl0vEp+GI/Yo5uiURnzV88ZeRulbO3DTtRI6jcfSNX
+	 FkjKVknWtJhCRFn39oJfaAFfQtUXMdoeb+P/IMf95+3y/+4dLOriMpWobWSoTiS1eW
+	 kvsglcWIEgsT9cQvOt8a/tRfnXeZsF9lEfcQqTrN8lJGnV+1ocA8gsrt+JB0mUvKrP
+	 EgTh5Q4/I/VUA==
+Date: Fri, 11 Apr 2025 17:24:24 +0100
+From: Conor Dooley <conor@kernel.org>
+To: jean-baptiste.maneyrol@tdk.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: imu: icm42600: add interrupt
+ naming support
+Message-ID: <20250411-subwoofer-pushiness-107d847c8a07@spud>
+References: <20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-0-19e4e2f8f7eb@tdk.com>
+ <20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-1-19e4e2f8f7eb@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250411155220.5940-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250411155220.5940-2-wsa+renesas@sang-engineering.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 11 Apr 2025 11:23:32 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
-X-Gm-Features: ATxdqUEZECOG4IEUcTzedr2PdAn1TkrPnqxsawpkiGmWrIvHKwA_4AUJi0ReCeE
-Message-ID: <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: remove N1S binding
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gCJy362GUAEnBLtu"
+Content-Disposition: inline
+In-Reply-To: <20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-1-19e4e2f8f7eb@tdk.com>
+
+
+--gCJy362GUAEnBLtu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 11, 2025 at 10:52=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> This is one of four (quite randomly) added bindings for Renesas RZ/N1S.
-> Essential bindings like clock support are missing for 8 years. With 6MB
-> of internal RAM only, N1S is not a prime candidate for running Linux,
-> unlike the DDR-RAM capable N1D. I could not find any further activity in
-> upstreaming N1S support, neither for Linux or any other OS. So, remove
-> these half-baked dangling bindings which are incomplete and look
-> unprofessional. We can happily add them back if somebody offers complete
-> support for it. Until then, let's enjoy the easier handling of a single
-> 'const'.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Thu, Apr 10, 2025 at 05:39:40PM +0200, Jean-Baptiste Maneyrol via B4 Rel=
+ay wrote:
+> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+>=20
+> Add interrupt-names field for specifying interrupt pin configured.
+>=20
+> Chips are supporting up to 2 interrupt pins with configurable interrupt
+> sources. Change interrupt to support 1 or 2 entries.
+>=20
+> Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
 > ---
->
-> This would render Geert's cleanup unnecessary:
->
-> https://lore.kernel.org/r/90c7aa143beb6a28255b24e8ef8c96180d869cbb.174427=
-1974.git.geert+renesas@glider.be
+>  .../devicetree/bindings/iio/imu/invensense,icm42600.yaml    | 13 +++++++=
++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm4260=
+0.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> index 7e4492bbd0278a336587dc5ac04da7153453da29..d4d4e5c3d8562523872a73786=
+4610c26c8fccd82 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> @@ -39,7 +39,16 @@ properties:
+>      maxItems: 1
+> =20
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> =20
+>    drive-open-drain:
+>      type: boolean
+> @@ -76,6 +85,7 @@ examples:
+>              reg =3D <0x68>;
+>              interrupt-parent =3D <&gpio2>;
+>              interrupts =3D <7 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-names =3D "INT1";
+>              vdd-supply =3D <&vdd>;
+>              vddio-supply =3D <&vddio>;
+>          };
+> @@ -95,6 +105,7 @@ examples:
+>              spi-cpol;
+>              interrupt-parent =3D <&gpio1>;
+>              interrupts =3D <2 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-names =3D "INT1";
+>              vdd-supply =3D <&vdd>;
+>              vddio-supply =3D <&vddio>;
+>          };
+>=20
+> --=20
+> 2.49.0
+>=20
+>=20
 
-To repeat from that thread, IMO, whether you drop the platform is
-orthogonal to Geert's patch.
+--gCJy362GUAEnBLtu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Seems like the platform is pretty dead. If you want to send a single
-patch removing all the bindings, I can take it.
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/lCOAAKCRB4tDGHoIJi
+0uS/AQDvorsdrJ0xeZtNY5PVoUWYc6H3zQbCI3wt0WfDkHq3sgD/Zu6+4WofITEE
+QmuyUEJ+Stpi3A+sOeAlVOXnpHWIxgg=
+=1j0R
+-----END PGP SIGNATURE-----
+
+--gCJy362GUAEnBLtu--
 
