@@ -1,230 +1,118 @@
-Return-Path: <devicetree+bounces-165858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0F0A85BA4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 019DCA85BA9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56ECF1889A61
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10C22188A61E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C38238C2A;
-	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED10238C2A;
+	Fri, 11 Apr 2025 11:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IJjia+NS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zc1P6Ea0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7903C278E6D;
-	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A91A21146C
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744370873; cv=none; b=Qh+NexDy6LdDd6Icxrl/ZupjgXKAWYiLvX2nbgmrnsmI5QgDL7fqVnYOyrsPqb1tx9I268AzhOIbQXFpY+seTWM9OBvWn3z4s1644PasQsOEtU1GCBz4bGIPxnyEgvRTulwR4tOEwXwIcq+GdbzlY/SfpxJjUm3XgkA4ZjjKt+c=
+	t=1744371000; cv=none; b=cDT7YlDUjBaG6JhvBg6rjnAzgmJU/Yoa2+dM8zuNNDMusSoO43ue7i3h52KSNWgatLvn8aopMAiUtLWRoGNxMwVEJJEpGGSBH5u97K5x6QfSLU9JV/XMK9DrNfV9LQm1MKUFcOmzyUqIHIxquks+Z8+AQQ0UezPve1c2zYA3d6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744370873; c=relaxed/simple;
-	bh=m07n1i6EW5KXoabkxKV3BA5YXAEQROFJ/PT65oveu8Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n3tO6WQjo4rx+1qXQr/m/b6JzHzEkMOjlE+TeDZDtfBZYJBQT8rC1ttARvQG2qDnmb2W2Q/KAOtiXJHNAG2J+n7uz4RzTVt9/lYhZngu86WoVpTjF3SzSsciEwZ33aY2Hoo5+VLcPjrdHxMuVJ4Uu+lmv9oo4alOy4IX+ax+ER0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IJjia+NS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1BE8FC4CEEA;
-	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744370873;
-	bh=m07n1i6EW5KXoabkxKV3BA5YXAEQROFJ/PT65oveu8Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IJjia+NS0ejaKNpKZbdoNpcxDad6FosUZLCWTlS+IKV0Fm/IzcFxkK7s7fjbAl/z5
-	 /D6WAxe5Tja4s51MKjCziakAJZhvDd0fMc69+ptU0OBIx4f1DmrliUcIeEChhSkXdv
-	 HH0KBQieuxvfE8Qn3m6sJi1yV+78DRNkTLK1imznP5apXOW6bW8r+7CJ8iZhKwFpPn
-	 lH1mLz4OTl9D15ntpsAifo3gm8x3ejpYnYjzK6vPAlErISP9XEiDHMgK5qopWx3hVI
-	 iAm1XPrCt4+9YjIHIyunAZwj9GvKw8ehMrXkJsrpnxpsrmOkgdVnCBHkvTv3rCLboa
-	 NW3mxt1M8WImg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F4F5C369A8;
-	Fri, 11 Apr 2025 11:27:53 +0000 (UTC)
-From: Kelvin Zhang via B4 Relay <devnull+kelvin.zhang.amlogic.com@kernel.org>
-Date: Fri, 11 Apr 2025 19:27:52 +0800
-Subject: [PATCH v5 3/3] arm64: dts: amlogic: Add A5 Reset Controller
+	s=arc-20240116; t=1744371000; c=relaxed/simple;
+	bh=ITobTNBm1Gc5v5V7gvduzfEIZJrc0D/tLtfm5cITmQg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CLIaZNy15JHphbaooCoFkJx1qukhfga2B1+0NeWEYOl9y9VkWytNJ4Ig5+zPUkO4VPNT0+rUV0thgtSaSJ/8q8OgmSmOnBDg5vQi+Up25Ta8Q33qs3p7gdEpDf+Kns0xHOR0x9mPQQwrbIayqyI3Ww5utM8dPSJkr+WVGH8IDbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zc1P6Ea0; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39c30d9085aso1137307f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 04:29:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744370997; x=1744975797; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OPqkV2HVldL4zhFmR5iYsDPH20L6kRmLSe3SyWadxe8=;
+        b=zc1P6Ea0UhcjXdjcxTDCo01WrMFHgj6sTXijSS4j9BrdkEmIJllxi8uD93Wdz2yL2y
+         J+O9vVmpD/8P+idr0yEXzKr1rYuXql2iTrmf+flIUKT6vpvn8nD5OaqgctjNG81icWpn
+         QfWym6DED8aKxwWH3V5ETutUnpddVnI78ksjtHjro2nlcpWPdWjcjTPDId/GwrsDimPq
+         PcoaMuhmCO9cXhqaE32tEMJO7HE7TOjbmcxTOC8IOdJwh3kuGxBsRz40jPZN4rHO8Gt+
+         e8TXyheHtRi3Kb4PgE0WuzfPUXfsg4Sg2rkb4nsPQugweli3eMvtovnvOJMw1H1z5FAD
+         GH1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744370997; x=1744975797;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OPqkV2HVldL4zhFmR5iYsDPH20L6kRmLSe3SyWadxe8=;
+        b=YYV2YjftKDHfgHp5HFi8XMudYXnArZYSfO2Cj7kOARi4mMekHNE17QVelz3/pRHWw/
+         FFW6uvBGkk5JYFB0qmrHKDdFVB2KARny6gvjV+IHUdo/1K1n9KphcMpvABX0a3QmlFNw
+         6xJpQzHixD4RKdxlkW4G0HvtO9F7+9DiW1JQw07xDYaLjq/TKW6Jom3u/X0NXrOcug3c
+         Fm1aHTpkpiW5xhiw3mOy+/W5sXt0OFp9fkJqoK+tJs8eWyWnpnd4oMKZyLp9+P4kf6W5
+         ykJaw6rS8MRTjZIyPftk1B24uY+TQ1hotHjRTlUryjpYX0vLWeQiOnPJIkHucCE40loi
+         TKhA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnQEzR3GxlHsSKW2aEB/PEQRVGRdcn4TmOXs8JSaZIW3NLVZBmX20ESfTLTC4kS2CWZr6RbVpYO5Zy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEWR1ISQQXd2cs+5ww5t9x6Vow8L/PFr7ZcovrUp/MQrtijFke
+	mX1d0EHn9J5KjBqzlsXXQT54nFusf6pMjOWuf+mCMfESFZ4H56rUHshpjCxJ4qs=
+X-Gm-Gg: ASbGncv6p3khFODup8vJdX6+Q9RQpWFg7XnRAtM9Zq7GqndnJaIy7rBgvvDkMy4OckM
+	7Fx+0cMCyrdmAFrzG3wIZUcmknyWoIrCwpL+K5Nh5ElhRhIJJFzs2MGD5TEUlJXcI55OgVLcLQ2
+	zL/lqVyGIX1w3m4roclVJ6N6NsC0ihibjaXq2VdkypjJXTk5HHNQxmg0oDB9DwoXod4bd5K0Vfe
+	Y1DPw7KMgqw0bqqLLG6sUx3V16Rp56gYKzN7HOGLIsW4Rmt/mrTEfDEp4kNLvhkY2Ifw8628VO9
+	RbAfS1aY8XyaCwA5GVLqnIQ1rRQjn0Rcj3F78V2O8GlVcDnw4s6Tvui7l8Z7VSSAW/h5mBAfOAS
+	2J3mFaUXx9a7UfWUK
+X-Google-Smtp-Source: AGHT+IG3/taatt+v25pIkOfJoKgD5wRRb35FWlNZ8G2ZXlKNOep1C2wahmiGGvzzfmex6GFbSNFb9g==
+X-Received: by 2002:a05:6000:18a5:b0:39c:2692:4259 with SMTP id ffacd0b85a97d-39ea51f5a85mr1888827f8f.21.1744370996902;
+        Fri, 11 Apr 2025 04:29:56 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f235a5ec3sm81423945e9.39.2025.04.11.04.29.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 04:29:56 -0700 (PDT)
+Message-ID: <5f10d82a-904a-46ba-b0a2-b9f1c1d307c0@linaro.org>
+Date: Fri, 11 Apr 2025 12:29:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v5 8/8] media: platform: qcom/iris: add sm8650 support
+To: neil.armstrong@linaro.org, Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
+ <20250410-topic-sm8x50-upstream-iris-catalog-v5-8-44a431574c25@linaro.org>
+ <919203d2-cae2-4ed8-8144-8303d185d773@linaro.org>
+ <8005927b-8a2a-4e7b-b317-8db29501510c@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <8005927b-8a2a-4e7b-b317-8db29501510c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250411-a4-a5-reset-v5-3-24812538dce6@amlogic.com>
-References: <20250411-a4-a5-reset-v5-0-24812538dce6@amlogic.com>
-In-Reply-To: <20250411-a4-a5-reset-v5-0-24812538dce6@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Zelong Dong <zelong.dong@amlogic.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744370870; l=4039;
- i=kelvin.zhang@amlogic.com; s=20240329; h=from:subject:message-id;
- bh=39cgxEleCRWNGiMf9dZjnPoJH+4QSAKwm+85hqJrCUk=;
- b=CltO3QzwSAqj8Ivj7TTCBRsZLKkC09HSUhpD47XnvDaYqX5BfmaDB8Pwxt6r6iDtkpM58unBO
- odors5sfLBZAN1U96gfu18fQMPow8ROgb5hrT8NOstGCYwYwSfZPtB+
-X-Developer-Key: i=kelvin.zhang@amlogic.com; a=ed25519;
- pk=pgnle7HTNvnNTcOoGejvtTC7BJT30HUNXfMHRRXSylI=
-X-Endpoint-Received: by B4 Relay for kelvin.zhang@amlogic.com/20240329 with
- auth_id=148
-X-Original-From: Kelvin Zhang <kelvin.zhang@amlogic.com>
-Reply-To: kelvin.zhang@amlogic.com
 
-From: Zelong Dong <zelong.dong@amlogic.com>
+On 11/04/2025 09:11, Neil Armstrong wrote:
+>> This LGTM one thing is I think you should convert the sm8250 stuff 
+>> into a corresponding iris_catalog_gen1.c
+> 
+> This is done in patch 1
+> 
+> Neil
 
-Add the device node and related header file for Amlogic
-A5 reset controller.
+True, patches 1 & 2 didn't hit my inbox.
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Link: https://lore.kernel.org/r/20240918074211.8067-4-zelong.dong@amlogic.com
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Never mind.
+
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h | 95 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi    |  8 +++
- 2 files changed, 103 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..cdf0f515962097c606e4c53badb19df7d21606ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-reset.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_A5_RESET_H
-+#define __DTS_AMLOGIC_A5_RESET_H
-+
-+/* RESET0 */
-+/*						0-3 */
-+#define RESET_USB				4
-+/*						5-7 */
-+#define RESET_USBPHY20				8
-+/*						9 */
-+#define RESET_USB2DRD				10
-+/*						11-31 */
-+
-+/* RESET1 */
-+#define RESET_AUDIO				32
-+#define RESET_AUDIO_VAD				33
-+/*                                              34 */
-+#define RESET_DDR_APB				35
-+#define RESET_DDR				36
-+/*						37-40 */
-+#define RESET_DSPA_DEBUG			41
-+/*                                              42 */
-+#define RESET_DSPA				43
-+/*						44-46 */
-+#define RESET_NNA				47
-+#define RESET_ETHERNET				48
-+/*						49-63 */
-+
-+/* RESET2 */
-+#define RESET_ABUS_ARB				64
-+#define RESET_IRCTRL				65
-+/*						66 */
-+#define RESET_TS_PLL				67
-+/*						68-72 */
-+#define RESET_SPICC_0				73
-+#define RESET_SPICC_1				74
-+#define RESET_RSA				75
-+
-+/*						76-79 */
-+#define RESET_MSR_CLK				80
-+#define RESET_SPIFC				81
-+#define RESET_SAR_ADC				82
-+/*						83-90 */
-+#define RESET_WATCHDOG				91
-+/*						92-95 */
-+
-+/* RESET3 */
-+/*						96-127 */
-+
-+/* RESET4 */
-+#define RESET_RTC				128
-+/*						129-131 */
-+#define RESET_PWM_AB				132
-+#define RESET_PWM_CD				133
-+#define RESET_PWM_EF				134
-+#define RESET_PWM_GH				135
-+/*						104-105 */
-+#define RESET_UART_A				138
-+#define RESET_UART_B				139
-+#define RESET_UART_C				140
-+#define RESET_UART_D				141
-+#define RESET_UART_E				142
-+/*						143*/
-+#define RESET_I2C_S_A				144
-+#define RESET_I2C_M_A				145
-+#define RESET_I2C_M_B				146
-+#define RESET_I2C_M_C				147
-+#define RESET_I2C_M_D				148
-+/*						149-151 */
-+#define RESET_SDEMMC_A				152
-+/*						153 */
-+#define RESET_SDEMMC_C				154
-+/*						155-159*/
-+
-+/* RESET5 */
-+/*						160-175 */
-+#define RESET_BRG_AO_NIC_SYS			176
-+#define RESET_BRG_AO_NIC_DSPA			177
-+#define RESET_BRG_AO_NIC_MAIN			178
-+#define RESET_BRG_AO_NIC_AUDIO			179
-+/*						180-183 */
-+#define RESET_BRG_AO_NIC_ALL			184
-+#define RESET_BRG_NIC_NNA			185
-+#define RESET_BRG_NIC_SDIO			186
-+#define RESET_BRG_NIC_EMMC			187
-+#define RESET_BRG_NIC_DSU			188
-+#define RESET_BRG_NIC_SYSCLK			189
-+#define RESET_BRG_NIC_MAIN			190
-+#define RESET_BRG_NIC_ALL			191
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-index 32ed1776891bc7d1befd01a76c76048631606f5a..b1da8cbaa25a1844312a23bc39eb876df3c60df5 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include "amlogic-a4-common.dtsi"
-+#include "amlogic-a5-reset.h"
- #include <dt-bindings/power/amlogic,a5-pwrc.h>
- / {
- 	cpus {
-@@ -50,6 +51,13 @@ pwrc: power-controller {
- };
- 
- &apb {
-+	reset: reset-controller@2000 {
-+		compatible = "amlogic,a5-reset",
-+			     "amlogic,meson-s4-reset";
-+		reg = <0x0 0x2000 0x0 0x98>;
-+		#reset-cells = <1>;
-+	};
-+
- 	gpio_intc: interrupt-controller@4080 {
- 		compatible = "amlogic,a5-gpio-intc",
- 			     "amlogic,meson-gpio-intc";
-
--- 
-2.37.1
-
-
+bod
 
