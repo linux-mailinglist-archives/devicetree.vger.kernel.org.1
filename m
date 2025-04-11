@@ -1,99 +1,147 @@
-Return-Path: <devicetree+bounces-165983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C211DA86076
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:24:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D368EA85FFB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:06:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88EA97AF620
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:19:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3FA11BA56CD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775042AF11;
-	Fri, 11 Apr 2025 14:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fivetechno.de header.i=@fivetechno.de header.b="jX3dDLhw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB2E1F0E32;
+	Fri, 11 Apr 2025 14:05:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from wp725.webpack.hosteurope.de (wp725.webpack.hosteurope.de [80.237.130.247])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CA226AD9;
-	Fri, 11 Apr 2025 14:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.237.130.247
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59148635A;
+	Fri, 11 Apr 2025 14:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744381232; cv=none; b=neD/Gddux5lZOoU3QLgv1TOX/FFvoE0lSqgIrrcKTbNq1xorrXLpGCMBeUiB+4w/6+Uc/0H+rkhPiHwV/1e413hu2HESccyk43tt5CG0Y/Qubj5Jq3M4mPNuUMCt4wE1Rka6Rq3bMBfZDY1AkYO2PosrlyG5OoCMob+/rxAj74g=
+	t=1744380319; cv=none; b=Thj4Rw6KBLIc/sNoxUYfDfpMOiRCPX1pbSu0N+hJLq+gNRqFtW3VHQOf7E98n+03071h7ke0vquV6Kdx/WLTZBbSLJtA+mgmFbp3SX3GoEmAMFJdsV0AsgNtRVJ6HMAbwMeLtT3yMLWQCRsbADcO11gwxP/Ts5HmzP6CuzNGtQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744381232; c=relaxed/simple;
-	bh=vvgbcZDknI5NuRuQtUf87K9ENMUNvdauYZFfVSl+3Jc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CiQqxBAM6eENDH21nCCCmVPKuUSz8A+lYLxBpL6+2mAl2hCznJFJIOJDD0FCmqs5CP6QhmyE5HArGeyODpwEfOJDYW1IIWZAkao2GURtBJFhTGc2YX3BK0rsQXzdQrMTzIKsCB4L5dsD83Ma5cuSKSfT259mGAyqsBCBKNwX700=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fivetechno.de; spf=pass smtp.mailfrom=fivetechno.de; dkim=pass (2048-bit key) header.d=fivetechno.de header.i=@fivetechno.de header.b=jX3dDLhw; arc=none smtp.client-ip=80.237.130.247
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fivetechno.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fivetechno.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=fivetechno.de; s=he121032; h=Content-Transfer-Encoding:MIME-Version:
-	Message-Id:Date:Subject:Cc:To:From:From:Sender:Reply-To:Subject:Date:
-	Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:In-Reply-To:References;
-	bh=3EN09kEXG7OMqR0uy2B4D2/5Ob0p4yVnh/cBhdXyJbw=; t=1744381230; x=1744813230; 
-	b=jX3dDLhwIMGOQtuQWwnYcrnbhChGW7Q/COmuqGlc9BKeF0zURu4SG5oWoAFehD5ASRDOSSZqQQP
-	odNjF4KhcfWUz2TGJfLFNqPo5yJ59rS0G7e+rVHdF7EVzRI5XI5G5/FFBK/ks/4nuQHZZI3jzZrzX
-	Xstz67ew45rvogLcQg799z54VR/qtlpuvbPSsbVhGdCd+IkJ2oPhczoVR6dMki6CFyyl7/4yaQqpW
-	9oABZTF950E6K74RlacMSidSYabYNryTYegLHFL+mbSwLBWder5xyRizZppcdXk9FAl8kxDdo79ig
-	gaqBLdsVOTSUminH1rjiGVrWTDZh9L03dakA==;
-Received: from p5098d998.dip0.t-ipconnect.de ([80.152.217.152] helo=hermes.fivetechno.de); authenticated
-	by wp725.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	id 1u3Exs-001YA2-25;
-	Fri, 11 Apr 2025 16:02:40 +0200
-X-Virus-Scanned: by amavisd-new 2.12.1 using newest ClamAV at
-	linuxbbg.five-lan.de
-Received: from roc-pc (p5b125997.dip0.t-ipconnect.de [91.18.89.151])
-	(authenticated bits=0)
-	by hermes.fivetechno.de (8.15.2/8.15.2/SUSE Linux 0.8) with ESMTPSA id 53BE2dPh013976
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
-	Fri, 11 Apr 2025 16:02:39 +0200
-From: Markus Reichl <m.reichl@fivetechno.de>
-To: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Markus Reichl <m.reichl@fivetechno.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add vcc supply to spi flash on rk3399-roc-pc.
-Date: Fri, 11 Apr 2025 16:02:21 +0200
-Message-Id: <20250411140223.1069-1-m.reichl@fivetechno.de>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1744380319; c=relaxed/simple;
+	bh=WWH7pjgLhq7CdCx4NdmHmV8ilE+5LHo+30ZTrkElue8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=npFI8Iz0BXhC0r7sQ7EE3JEv/mdMJxXdOAARitJrZ/bzovwTZlOy7LJwlPnCznNKC7cd5/JcUd+Rmc/H0nPX2dJKK2QL4EughQxEkKxqbF8JMC1bg80+FGSk3ow1uOS9RXxqsdIdpvvaFkiyPcWVYcSvQ6oGbnXr6gTmEy5+BJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.27.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 901F03433FD;
+	Fri, 11 Apr 2025 14:05:15 +0000 (UTC)
+Date: Fri, 11 Apr 2025 14:05:10 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
+	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
+	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
+	elder@riscstar.com, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 7/9] riscv: dts: spacemit: Add PWM14 backlight support
+ for BPI-F3
+Message-ID: <20250411140510-GYA22364@gentoo>
+References: <20250411131423.3802611-1-guodong@riscstar.com>
+ <20250411131423.3802611-8-guodong@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1744381230;bb283ab1;
-X-HE-SMSGID: 1u3Exs-001YA2-25
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250411131423.3802611-8-guodong@riscstar.com>
 
-Add vcc supply to the spi-nor flash chip on rk3399-roc-pc boards
-according to the board schematics ROC-3399-PC-V10-A-20180804 to avoid
-warnings in dmesg output.
 
-Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
----
- arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On 21:14 Fri 11 Apr     , Guodong Xu wrote:
+> Add a PWM-based backlight node for the Banana Pi BPI-F3 board,
+> using PWM14. The backlight is defined as a 'pwm-backlight' device with
+> brightness levels and a default brightness setting. PWM14 is assigned
+> a period length of 2000 nanoseconds.
+> 
+> This configuration was used to verify PWM driver changes, with PWM14
+> tested and its waveform confirmed as correct.
+> 
+> The node status is set to "disabled", and should be enabled when the
+> display driver is ready.
+> 
+.. see comments below
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+>  .../boot/dts/spacemit/k1-bananapi-f3.dts      | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> index 816ef1bc358e..d04b57ddeb46 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> @@ -28,6 +28,32 @@ led1 {
+>  			default-state = "on";
+>  		};
+>  	};
+> +
+> +	pwm_bl: lcd_backlight {
+> +		compatible = "pwm-backlight";
+> +
+> +		pwms = <&pwm14 2000>;
+> +		brightness-levels = <
+> +			0   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
+> +			40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
+> +			40  40  40  40  40  40  40  40  40  41  42  43  44  45  46  47
+> +			48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63
+> +			64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79
+> +			80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
+> +			96  97  98  99  100 101 102 103 104 105 106 107 108 109 110 111
+> +			112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
+> +			128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+> +			144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
+> +			160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
+> +			176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191
+> +			192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
+> +			208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
+> +			224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
+> +			240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
+> +		>;
+> +		default-brightness-level = <100>;
+> +		status = "disabled";
+I'm confused, has DT in board file with disabled status doesn't make sense?
+it doesn't really useful for placeholder, even worse that functionality may not
+verified, so I'd suggest sending along with display driver while at it..
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-index 0393da25cdfb..fc9279627ef6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-@@ -736,6 +736,7 @@ flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <30000000>;
-+		vcc-supply = <&vcc3v3_sys>;
- 	};
- };
- 
+> +	};
+>  };
+>  
+>  &uart0 {
+> @@ -35,3 +61,9 @@ &uart0 {
+>  	pinctrl-0 = <&uart0_2_cfg>;
+>  	status = "okay";
+>  };
+> +
+> +&pwm14 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pwm14_1_cfg>;
+..
+> +	status = "disabled";
+ditto
+
+> +};
+> -- 
+> 2.43.0
+> 
+
 -- 
-2.39.5
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
