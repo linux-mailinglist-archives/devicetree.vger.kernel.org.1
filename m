@@ -1,412 +1,198 @@
-Return-Path: <devicetree+bounces-165815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E5CA858A0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4E62A85B5B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75BA716DF91
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:59:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CA12164945
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401132980A8;
-	Fri, 11 Apr 2025 09:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60D9221273;
+	Fri, 11 Apr 2025 11:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="D1mIDsiD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8D929614B;
-	Fri, 11 Apr 2025 09:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD884278E50
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744365593; cv=none; b=e+VfLs8LPkFORURF9dFnji8rnezlXXeZ4Mjv2hVuuH9cAvx0e1wu37H6EZPwZ0crjQSdFEvLUIE/idT8IY9GL1oOwoBGywcffn3rpiFwPuW186EQGtaqQij04lQwrhixbPYYGl8Z0+I1ux8G1irRVsiJpdpigSUahlAg9Dp+hzo=
+	t=1744370059; cv=none; b=qtK1Z8D55m/HTB8Pokj6mdIqVKOYew05gVS0i7PEJ8HRA9D3Rg/8a3o0kJ3Twp2s1SPFWLHY0r8owvlaeYXNNYbFEf4SS6hxiA9sKp5l3ZsVpUr/OF1gMNS9zSCqtPvlwnDKZLSuv1EqSiu2MGEFZ4W7tC5cbawl/Sui/kEeWtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744365593; c=relaxed/simple;
-	bh=Plp3q+//quWDPti7MuBsyvptWonkbiUGLiG+/cDeACA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hJGzAkMNojPB7dq93T/LvYwjkAevkX9Zl6UIGXF+c93XO8T1eBhMx5l8e6bUdpkn4+dphCI3dYBylSXvi1OfgJGN8k9N5yVwGD8mFRh3pEZv66H7Xy0yTB9ZxDFK036Gm19DuGxYWVPdmvzzcxH52Ni9ypADZgX9swJDyrgMeHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D3182106F;
-	Fri, 11 Apr 2025 02:59:49 -0700 (PDT)
-Received: from [10.57.43.36] (unknown [10.57.43.36])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E30C83F6A8;
-	Fri, 11 Apr 2025 02:59:47 -0700 (PDT)
-Message-ID: <23d02991-3bc6-41e2-bb8b-a38786071c43@arm.com>
-Date: Fri, 11 Apr 2025 10:59:46 +0100
+	s=arc-20240116; t=1744370059; c=relaxed/simple;
+	bh=9Xw3Mh/wFjiiLBBXROAQuUST13ypnhOe4s9HiOsX754=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=V2m0hBMtskMusDqtKbf10nHAWCTExlWOLj8t+bFV38P0AAyODQLdMk2HAyc8IDJ5BmbzgquJCO1muwYodKPBBTgwCyQlPZInlcBXuLJ5sXNdRbV2s1xdKgDXXQ9nMxUvFdmTyp3mgZnGUg3ApXEJZSOFCIhp5Z1phRKNUjt4DHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=D1mIDsiD; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250411111414epoutp04f5042b792914089f21d8ec2b3b76d480~1P1KEwJil0679706797epoutp04l
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:14:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250411111414epoutp04f5042b792914089f21d8ec2b3b76d480~1P1KEwJil0679706797epoutp04l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1744370054;
+	bh=0OoFQEgWGWV4qLariaW+VEJCc18NgTNJXjDGI90Tkc4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=D1mIDsiDqoHnxacBbma8C9uYET30EiJ4pDlsGVqXVDBqeyJcuTt9A3wJ6cqJbnDSJ
+	 1Gyd5K2VRG5I/RMbfFI+onOGnpW58MU+sxAksbSD+981Iup471gPRZu51ZNnjmZnid
+	 UKGc9XWqnLQdc8YT24MvRa61y7qx8unJO4YQQfT4=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250411111413epcas5p34a91076073c61611c51cbc767660919a~1P1Jkuz-I1933419334epcas5p37;
+	Fri, 11 Apr 2025 11:14:13 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.179]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZYvFv5tYNz3hhTB; Fri, 11 Apr
+	2025 11:14:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	4A.14.10144.389F8F76; Fri, 11 Apr 2025 20:14:11 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250411070733epcas5p25789fe1804b84c7e00793466c057e249~1Mdx_uxv13187431874epcas5p2J;
+	Fri, 11 Apr 2025 07:07:33 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250411070733epsmtrp1271edd4020b75b269d23543ab838957e~1Mdx9w6sI1309013090epsmtrp1L;
+	Fri, 11 Apr 2025 07:07:33 +0000 (GMT)
+X-AuditID: b6c32a49-b77fe700000027a0-e4-67f8f98321a0
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	63.25.08766.5BFB8F76; Fri, 11 Apr 2025 16:07:33 +0900 (KST)
+Received: from INBRO000519 (unknown [107.122.1.150]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250411070731epsmtip23121513fc26b7213ba22a6d817c81c61~1MdwTQTFN1089410894epsmtip2x;
+	Fri, 11 Apr 2025 07:07:31 +0000 (GMT)
+From: "Faraz Ata" <faraz.ata@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <alim.akhtar@samsung.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>,
+	<suyash.bitti@samsung.com>
+In-Reply-To: <befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
+Subject: RE: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
+Date: Fri, 11 Apr 2025 12:37:19 +0530
+Message-ID: <03e501dbaab0$65bb47a0$3131d6e0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] coresight: add coresight Trace Network On Chip
- driver
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: kernel@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250411-trace-noc-v3-0-1f19ddf7699b@quicinc.com>
- <20250411-trace-noc-v3-2-1f19ddf7699b@quicinc.com>
-Content-Language: en-GB
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250411-trace-noc-v3-2-1f19ddf7699b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIiLJ9Qel8GAkpX5i6PIbvAaC3kAAM/bP3AAeJrQQOy5+zv4A==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLJsWRmVeSWpSXmKPExsWy7bCmum7zzx/pBlfa9S0ezNvGZrFm7zkm
+	i3s7lrFbzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2Txf88OdosvPx8wW8yeX+PA
+	47FpVSebx+Yl9R59W1YxenzeJBfAEpVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hp
+	Ya6kkJeYm2qr5OIToOuWmQN0mJJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwKRA
+	rzgxt7g0L10vL7XEytDAwMgUqDAhO6Pp5FTGgsV8FV2LzzE1MD7g6mLk5JAQMJE4evg2G4gt
+	JLCbUeLdD/4uRi4g+xOjREvbMXYI5xujxOl309lgOiac2Q+V2MsoMWtBExuE85JRYuLGTSwg
+	VWwCmhJ3Pj9lAkmICHQxSux8MJkVxGEWeMQoceDTP6AqDg5OATuJw580QRqEBbwk+ppuMYLY
+	LAKqEocPbQRbxytgKTHt6WsmCFtQ4uTMJ2ALmAXkJba/ncMMcZKCxM+ny1hBbBEBJ4kVL9ew
+	Q9SIS7w8egTsVAmBHRwSc07eh/rBReJRdzeULSzx6vgWdghbSuJlfxuU7SMx+eg3RpA7JQQy
+	JO6sFYEI20usXnCGFSTMDPTk+l36EGFZiamn1jFBrOWT6P39hAkiziuxYx6MrSxxcs8eVghb
+	UuLQ7ResExiVZiH5bBaSz2Yh+WAWwrYFjCyrGCVTC4pz01OLTQsM81LL4RGenJ+7iRGcbrU8
+	dzDeffBB7xAjEwfjIUYJDmYlEd724B/pQrwpiZVVqUX58UWlOanFhxhNgcE9kVlKNDkfmPDz
+	SuINTSwNTMzMzEwsjc0MlcR5m3e2pAsJpCeWpGanphakFsH0MXFwSjUw5WzfEnJ47vvDwaWc
+	3LPnrnFl1ZgaPb+Qj8kqq7J0Ts8XjccBoc1axbcMsnl9XWfvykwtSwy/X2eUfSb623zTAE3l
+	Jz9YZ9zxZLq1ZWHYd5PNT49lx/+KmiQU2/ypc2Ja4C5liQ/iivxHI8QZD8eE6v7R3lTJYMT+
+	3ervmfxz9+o+8ac8U+v8otsWtcpz9v6zeuzT9ii57Pi2ZsO2S1KTFhnIllgISS8vyzlUcPEY
+	7/tJXjcPb3n5uM59wc6tD6Jb83orDi/cvGvrNzatzzujZV5un7RcZWmEkPfk1Qc2WV7vd5g0
+	08FZyNPqZKiFwgGbmzs83A7cY12Y94brecCBt9JFCcfvsfNOtOeZ897hrRJLcUaioRZzUXEi
+	AN+PvM5ABAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOIsWRmVeSWpSXmKPExsWy7bCSvO7W/T/SDZ6817B4MG8bm8WaveeY
+	LO7tWMZuMf/IOVaLl7PusVmcP7+B3WLT42usFpd3zWGzmHF+H5PF/z072C2+/HzAbDF7fo0D
+	j8emVZ1sHpuX1Hv0bVnF6PF5k1wASxSXTUpqTmZZapG+XQJXRtPJqYwFi/kquhafY2pgfMDV
+	xcjJISFgIjHhzH72LkYuDiGB3YwSt1++ZodISEocfnqXFcIWllj57zlU0XNGic/PPzGCJNgE
+	NCXufH7KBJIQEZjAKDFly0Ywh1ngBaPEkwUnWCFaDjBKfP3SAdTCwcEpYCdx+JMmSLewgJdE
+	X9MtsEksAqoShw9tZAOxeQUsJaY9fc0EYQtKnJz5hAXEZhbQlnh68ymULS+x/e0cZojzFCR+
+	Pl0GdqqIgJPEipdr2CFqxCVeHj3CPoFReBaSUbOQjJqFZNQsJC0LGFlWMUqmFhTnpucWGxYY
+	5qWW6xUn5haX5qXrJefnbmIEx52W5g7G7as+6B1iZOJgPMQowcGsJMLbHvwjXYg3JbGyKrUo
+	P76oNCe1+BCjNAeLkjiv+IveFCGB9MSS1OzU1ILUIpgsEwenVAPT7F2zXM9tPnxlN0tCpG/O
+	3GsOPXdPx5YEth6uO11XwPmpJGr9n6lPDxs41bv2X1gcFXAlbZL8Ia66HztNps66vqzHv3Xj
+	r2VBFRsFFK9+j1zsxeNW/X7pyYtJeQ58pyMZyn/M0FrTH2679CuPdmX7jf1lB8wT8kWSC1yf
+	rea8/OjHxcJbO961Tor7cpmZh/WWlC5/7i+ue1+LPv/iWXXyWU35j3WHvkqEcC41bpG19lz7
+	YE+gQVnU001n9ltmF27dX7Pud2Gr0v8wl45P23qYDxhsq73guf9f10+nQ+W/ua+VVDNN8FIp
+	vOW74mqN0mJNNl7xH5e6dlw6W79yYnqncfnXL2cUXzjlSpn/2uwupcRSnJFoqMVcVJwIABoX
+	J+EqAwAA
+X-CMS-MailID: 20250411070733epcas5p25789fe1804b84c7e00793466c057e249
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80
+References: <CGME20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80@epcas5p3.samsung.com>
+	<20250318075635.3372599-1-faraz.ata@samsung.com>
+	<befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
 
-On 11/04/2025 09:57, Yuanfang Zhang wrote:
-> Add a driver to support Coresight device Trace Network On Chip (TNOC),
-> which is an integration hierarchy integrating functionalities of TPDA
-> and funnels. It aggregates the trace and transports to coresight trace
-> bus.
+Hello Krzysztof
+
+> Subject: Re: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
 > 
-> Compared to current configuration, it has the following advantages:
-> 1. Reduce wires between subsystems.
-> 2. Continue cleaning the infrastructure.
-> 3. Reduce Data overhead by transporting raw data from source to target.
+> On 18/03/2025 08:56, Faraz Ata wrote:
+> > +
+> > +		usi_17: usi@10d800c0 {
 > 
->    +------------------------+                +-------------------------+
->    | Video Subsystem        |                |Video Subsystem          |
->    |       +-------------+  |                |       +------------+    |
->    |       | Video TPDM  |  |                |       | Video TPDM |    |
->    |       +-------------+  |                |       +------------+    |
->    |            |           |                |              |          |
->    |            v           |                |              v          |
->    |   +---------------+    |                |        +-----------+    |
->    |   | Video funnel  |    |                |        |Video TNOC |    |
->    |   +---------------+    |                |        +-----------+    |
->    +------------|-----------+                +------------|------------+
->                 |                                         |
->                 v-----+                                   |
-> +--------------------|---------+                         |
-> |  Multimedia        v         |                         |
-> |  Subsystem   +--------+      |                         |
-> |              |  TPDA  |      |                         v
-> |              +----|---+      |              +---------------------+
-> |                   |          |              |   Aggoregator TNOC  |
-> |                   |          |              +----------|----------+
-> |                   +--        |                         |
-> |                     |        |                         |
-> |                     |        |                         |
-> |              +------v-----+  |                         |
-> |              |  Funnel    |  |                         |
-> |              +------------+  |                         |
-> +----------------|-------------+                         |
->                   |                                       |
->                   v                                       v
->        +--------------------+                    +------------------+
->        |   Coresight Sink   |                    |  Coresight Sink  |
->        +--------------------+                    +------------------+
-
-If each NOC has TraceID, how do you reliably decode the trace ?
-Is there a single NOC/TPDA in the path from Source to sink ?
-
+> Messed order. Keep nodes sorted by unit address (see DTS coding style).
 > 
->         Current Configuration                            TNOC
+>
+Thanks for your review
+Based on the DTS coding style, it is acceptable to group nodes
+of the same type together, even if it breaks the unit address ordering.
+https://docs.kernel.org/6.12/devicetree/bindings/dts-coding-style.html
+Please let me know your opinion on this.
+Do you mean I should move all the USI_ node after pwm node?
+
+> > +			compatible = "samsung,exynosautov920-usi",
+> > +				     "samsung,exynos850-usi";
+> > +			reg = <0x10d800c0 0x20>;
+> > +			samsung,sysreg = <&syscon_peric1 0x1040>;
+> > +			samsung,mode = <USI_V2_UART>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges;
+> > +			clocks = <&cmu_peric1
+> CLK_MOUT_PERIC1_NOC_USER>,
+> > +				 <&cmu_peric1
+> CLK_DOUT_PERIC1_USI17_USI>;
+> > +			clock-names = "pclk", "ipclk";
+> > +			status = "disabled";
+> > +
+> > +			serial_17: serial@10d80000 {
+> > +				compatible = "samsung,exynosautov920-
+> uart",
+> > +					     "samsung,exynos850-uart";
+> > +				reg = <0x10d80000 0xc0>;
+> > +				interrupts = <GIC_SPI 803
+> IRQ_TYPE_LEVEL_HIGH>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&uart17_bus>;
+> > +				clocks = <&cmu_peric1
+> CLK_MOUT_PERIC1_NOC_USER>,
+> > +					 <&cmu_peric1
+> CLK_DOUT_PERIC1_USI17_USI>;
+> > +				clock-names = "uart", "clk_uart_baud0";
+> > +				samsung,uart-fifosize = <64>;
+> > +				status = "disabled";
+> > +			};
+> > +		};
+> > +
+> >  		pwm: pwm@109b0000 {
+> >  			compatible = "samsung,exynosautov920-pwm",
+> >  				     "samsung,exynos4210-pwm";
 > 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> ---
->   drivers/hwtracing/coresight/Kconfig          |  13 ++
->   drivers/hwtracing/coresight/Makefile         |   1 +
->   drivers/hwtracing/coresight/coresight-tnoc.c | 186 +++++++++++++++++++++++++++
->   drivers/hwtracing/coresight/coresight-tnoc.h |  34 +++++
->   4 files changed, 234 insertions(+)
 > 
-> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-> index ecd7086a5b83e86b6bc8ea039d6d26a628334ed3..f20600d58f38568f8178f69d3f678c2df2cbca7e 100644
-> --- a/drivers/hwtracing/coresight/Kconfig
-> +++ b/drivers/hwtracing/coresight/Kconfig
-> @@ -259,4 +259,17 @@ config CORESIGHT_DUMMY
->   
->   	  To compile this driver as a module, choose M here: the module will be
->   	  called coresight-dummy.
-> +
-> +config CORESIGHT_TNOC
-> +	tristate "Coresight Trace Network On Chip driver"
-> +	help
-> +	  This driver provides support for Trace Network On Chip (TNOC) component.
-> +	  TNOC is an interconnect used to collect traces from various subsystems
-> +	  and transport to a coresight trace sink. It sits in the different
-> +	  tiles of SOC and aggregates the trace local to the tile and transports
-> +	  it another tile or to coresight trace sink eventually.
-> +
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called coresight-tnoc.
-> +
->   endif
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index 8e62c3150aebd1e82b445fafc97a0a9b44397b0e..880e9ed6bfe9c711492c6a2cd972751f56dd8010 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -34,6 +34,7 @@ obj-$(CONFIG_CORESIGHT_SINK_TPIU) += coresight-tpiu.o
->   obj-$(CONFIG_CORESIGHT_SINK_ETBV10) += coresight-etb10.o
->   obj-$(CONFIG_CORESIGHT_LINKS_AND_SINKS) += coresight-funnel.o \
->   					   coresight-replicator.o
-> +obj-$(CONFIG_CORESIGHT_TNOC) += coresight-tnoc.o
->   obj-$(CONFIG_CORESIGHT_SOURCE_ETM3X) += coresight-etm3x.o
->   coresight-etm3x-y := coresight-etm3x-core.o coresight-etm-cp14.o \
->   		     coresight-etm3x-sysfs.o
-> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2ec4ead892f0166a3e84f777679c0f73f5da0e83
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
-> @@ -0,0 +1,186 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> + #include <linux/amba/bus.h>
-> + #include <linux/coresight.h>
-> + #include <linux/device.h>
-> + #include <linux/io.h>
-> + #include <linux/kernel.h>
-> + #include <linux/module.h>
-> + #include <linux/of.h>
-> + #include <linux/platform_device.h>
-> +
-> +#include "coresight-priv.h"
-> +#include "coresight-tnoc.h"
-> +#include "coresight-trace-id.h"
-> +
-> +DEFINE_CORESIGHT_DEVLIST(trace_noc_devs, "traceNoc");
-> +
-> +static void trace_noc_enable_hw(struct trace_noc_drvdata *drvdata)
-> +{
-> +	u32 val;
-> +
-> +	/* Set ATID */
-> +	writel_relaxed(drvdata->atid, drvdata->base + TRACE_NOC_XLD);
-> +
-> +	/* Config sync CR */
-> +	writel_relaxed(TRACE_NOC_SYN_VAL, drvdata->base + TRACE_NOC_SYNCR);
-
-See my comment below about SYN_VAL. Please add a meaningful comment than
-explaining what is obvious from the code.
-
-> +
-> +	/* Set Ctrl register */
-
-Same here. Comment need not explain what is obvious from the code. But
-a description of why we choose the values below is helpful.
-
-> +	val = readl_relaxed(drvdata->base + TRACE_NOC_CTRL);
-> +
-> +	val = val & ~TRACE_NOC_CTRL_FLAGTYPE;
-> +	val = val | TRACE_NOC_CTRL_FREQTYPE;
-> +	val = val | TRACE_NOC_CTRL_PORTEN;
-> +
-> +	writel(val, drvdata->base + TRACE_NOC_CTRL);
-> +}
-> +
-> +static int trace_noc_enable(struct coresight_device *csdev, struct coresight_connection *inport,
-> +			    struct coresight_connection *outport)
-> +{
-> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (csdev->refcnt == 0)
-> +		trace_noc_enable_hw(drvdata);
-> +
-> +	csdev->refcnt++;
-> +	spin_unlock(&drvdata->spinlock);
-> +
-> +	dev_dbg(drvdata->dev, "Trace NOC is enabled\n");
-> +	return 0;
-> +}
-> +
-> +static void trace_noc_disable_hw(struct trace_noc_drvdata *drvdata)
-> +{
-> +	writel(0x0, drvdata->base + TRACE_NOC_CTRL);
-> +}
-> +
-> +static void trace_noc_disable(struct coresight_device *csdev, struct coresight_connection *inport,
-> +			      struct coresight_connection *outport)
-> +{
-> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	if (--csdev->refcnt == 0)
-> +		trace_noc_disable_hw(drvdata);
-> +
-> +	spin_unlock(&drvdata->spinlock);
-> +	dev_dbg(drvdata->dev, "Trace NOC is disabled\n");
-> +}
-> +
-> +static int trace_noc_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
-> +			__maybe_unused struct coresight_device *sink)
-> +{
-> +	struct trace_noc_drvdata *drvdata;
-> +
-> +	drvdata = dev_get_drvdata(csdev->dev.parent);
-> +
-> +	return drvdata->atid;
-> +}
-> +
-> +static const struct coresight_ops_link trace_noc_link_ops = {
-> +	.enable		= trace_noc_enable,
-> +	.disable	= trace_noc_disable,
-> +};
-> +
-> +static const struct coresight_ops trace_noc_cs_ops = {
-> +	.trace_id	= trace_noc_id,
-> +	.link_ops	= &trace_noc_link_ops,
-> +};
-> +
-> +static int trace_noc_init_default_data(struct trace_noc_drvdata *drvdata)
-> +{
-> +	int atid;
-> +
-> +	atid = coresight_trace_id_get_system_id();
-> +	if (atid < 0)
-> +		return atid;
-> +
-> +	drvdata->atid = atid;
-> +
-> +	return 0;
-> +}
-> +
-> +static int trace_noc_probe(struct amba_device *adev, const struct amba_id *id)
-> +{
-> +	struct device *dev = &adev->dev;
-> +	struct coresight_platform_data *pdata;
-> +	struct trace_noc_drvdata *drvdata;
-> +	struct coresight_desc desc = { 0 };
-> +	int ret;
-> +
-> +	desc.name = coresight_alloc_device_name(&trace_noc_devs, dev);
-> +	if (!desc.name)
-> +		return -ENOMEM;
-> +	pdata = coresight_get_platform_data(dev);
-> +	if (IS_ERR(pdata))
-> +		return PTR_ERR(pdata);
-> +	adev->dev.platform_data = pdata;
-> +
-> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->dev = &adev->dev;
-> +	dev_set_drvdata(dev, drvdata);
-> +
-> +	drvdata->base = devm_ioremap_resource(dev, &adev->res);
-> +	if (!drvdata->base)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&drvdata->spinlock);
-> +
-> +	ret = trace_noc_init_default_data(drvdata);
-> +	if (ret)
-> +		return ret;
-> +
-> +	desc.ops = &trace_noc_cs_ops;
-> +	desc.type = CORESIGHT_DEV_TYPE_LINK;
-> +	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
-> +	desc.pdata = adev->dev.platform_data;
-> +	desc.dev = &adev->dev;
-> +	desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
-> +	drvdata->csdev = coresight_register(&desc);
-> +	if (IS_ERR(drvdata->csdev))
-> +		return PTR_ERR(drvdata->csdev);
-> +
-> +	pm_runtime_put(&adev->dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static void trace_noc_remove(struct amba_device *adev)
-> +{
-> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(&adev->dev);
-> +
-> +	coresight_trace_id_put_system_id(drvdata->atid);
-> +	coresight_unregister(drvdata->csdev);
-> +}
-> +
-> +static struct amba_id trace_noc_ids[] = {
-> +	{
-> +		.id     = 0x000f0c00,
-> +		.mask   = 0x000fff00,
-
-Is the mask sufficient ? fyi, the tpdm mask was fixed in
-commit c8ea5f41b421.
-
-Suzuk
-
-
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(amba, trace_noc_ids);
-> +
-> +static struct amba_driver trace_noc_driver = {
-> +	.drv = {
-> +		.name   = "coresight-trace-noc",
-> +		.suppress_bind_attrs = true,
-> +	},
-> +	.probe          = trace_noc_probe,
-> +	.remove		= trace_noc_remove,
-> +	.id_table	= trace_noc_ids,
-> +};
-> +
-> +module_amba_driver(trace_noc_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Trace NOC driver");
-> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.h b/drivers/hwtracing/coresight/coresight-tnoc.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1291a153412c1c92be530cffe25fb56c2fca0395
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-tnoc.h
-> @@ -0,0 +1,34 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#define TRACE_NOC_CTRL      0x008
-> +#define TRACE_NOC_XLD       0x010
-> +#define TRACE_NOC_FREQVAL   0x018
-> +#define TRACE_NOC_SYNCR     0x020
-> +
-> +/* Enable generation of output ATB traffic.*/
-> +#define TRACE_NOC_CTRL_PORTEN   BIT(0)
-> +/* Sets the type of issued ATB FLAG packets.*/
-> +#define TRACE_NOC_CTRL_FLAGTYPE BIT(7)
-> +/* Sets the type of issued ATB FREQ packet*/
-> +#define TRACE_NOC_CTRL_FREQTYPE BIT(8)
-> +
-> +#define TRACE_NOC_SYN_VAL	0xFFFF
-
-TRACE_NOC_SYNCR_xx ?
-
-What does VAL indicate ? It sounds too generic to indicate anything 
-meaningful. Does it mean, allow all inputs ?
-
-Suzuki
-
-> +
-> +/*
-> + * struct trace_noc_drvdata - specifics associated to a trace noc component
-> + * @base:	memory mapped base address for this component.
-> + * @dev:	device node for trace_noc_drvdata.
-> + * @csdev:	component vitals needed by the framework.
-> + * @spinlock:	only one at a time pls.
-> + * @atid:	id for the trace packet.
-> + */
-> +struct trace_noc_drvdata {
-> +	void __iomem		*base;
-> +	struct device		*dev;
-> +	struct coresight_device	*csdev;
-> +	spinlock_t		spinlock; /* lock for the drvdata. */
-> +	u32			atid;
-> +};
-> 
+> Best regards,
+> Krzysztof
 
 
