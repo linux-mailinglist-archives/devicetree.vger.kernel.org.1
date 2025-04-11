@@ -1,167 +1,119 @@
-Return-Path: <devicetree+bounces-166145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A91A86697
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:44:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3ABAA8669B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87D287B2135
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:43:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FF1A189A753
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FF3280A3A;
-	Fri, 11 Apr 2025 19:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B5528369D;
+	Fri, 11 Apr 2025 19:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RowKJqHV"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="D+XhEpOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E0C27C17D;
-	Fri, 11 Apr 2025 19:44:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102C4283694
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744400686; cv=none; b=UvXVJmxwt/MJ/TvveWgXe8WflJrfCVvrUmaja4OOe5fAxU6Zu9jfMt6IayUAECUKs/45oWGEoHDrUt2kSnX9q7b4lJrxERISzqvAiftFIFuUDu3hK4fop3Q8lqyEKPDXt3sqIkeRXyzq7kyzTdkcx+jiE2ifgyXkOWAN/sl6bJY=
+	t=1744400722; cv=none; b=tu8fxOieogKq1XcigZASkgNIFexVChgV54yO2+hh24ACugx7pbaj+i176LSdqqPb/uQz+jtEQcVlT9bcZHcOyO4pXrr7CxmHieb8DiiuDzJVVHxUAjXzplMcMYnt78Ku7v2u0pDt+EAsqr5qa8YzykREFVjZxYksimaWu6jdIuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744400686; c=relaxed/simple;
-	bh=cvWYMueTnNI052lI0vphIrO8EfCwUMaz1n9lCvWw0Iw=;
+	s=arc-20240116; t=1744400722; c=relaxed/simple;
+	bh=0k+RRSIshNmJjhWDP0sDhEaJ74DfqYYPE9poDNlKT+4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Vb8MDcb4Q3fySF5afaPDoOEp0pEf6/Ia+O4QOKNGZPB6tIrMTnKstNjW5OO4K9YoWeJLneVjb7jBikTeBCOkA0u3AQWFk2J3ANzbAJnZPQoo6fCbQBD22OyQwVu0xXKzDjjstdYCn3n6BbAydOCok/o4kkdNIxk/k21Zb/yXkjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RowKJqHV; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac73723b2d5so468353166b.3;
-        Fri, 11 Apr 2025 12:44:44 -0700 (PDT)
+	 To:Cc:Content-Type; b=TUEydbJynmXUAy+nlbYqSpDZoFnIoET0c20JJURosUE9QiDqbq3x8/yWUgpEOyfLrsZ1BwTloviHjvjLssB6cEqxG8MM6V/IZdoZVO+UJOyERovQsWNsDDKghnqsiyP/KH24BJqGtA+eAEn90/Ls9CQkwF0GTRTB3XZxKhDTnrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=D+XhEpOS; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54b10594812so2742281e87.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:45:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744400683; x=1745005483; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1744400719; x=1745005519; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ixNsTL0ouXPTlyTlApyKLv+63+cCzL/+fZpquEKOP2o=;
-        b=RowKJqHVbLE5kDXprHeUXnPRF6MIqlsFaVwnV5Nnm7rhnz2J3PfVA88whBN1rrDjmN
-         ufF9m8tkPiwSn9/2048/fcdnEL2G51pOkLlwclosc6xFM5JAnp4TQZEUbEIC5/cOvHWS
-         ORrwU70cP8cG1OW3UyNIHihscuK632yTFCWf0OQMmKUyB1U46ZrpAsQ2w2CFKsS6UlVI
-         mooz+Np9ASpLwCPrAB4xG1XBqa2G31Z3gBHhd9NZi823Na8kF6e3mBivxxAIKTEe//C6
-         KErdgtdFUyGdWwTvlzt/So5b04nrvMpxL+uqhU8cDAuPKoEEYMuiUhDYo9Bx1mScl7Ap
-         YIMw==
+        bh=kxYbMPJ9/3WWUWhZ50uH3rQ7QOEKEgqBV9xF/3bzbaw=;
+        b=D+XhEpOSTY2iRLZNvIyJdESthVk9ylxkqTJv7FokRICCYftCzTmK6xnJDojYwW89ji
+         2AFg7ifCj9Veb3HJw873OFYIKlcMfUwFcfLXsp2HXhuitNezaqLNBx9+23vmpUuXzJDF
+         ca90T4zKAs9ScilMaX8jACwZ2Mhsys399QeR8BUlMz18Lo2iclMaj0m6Lx72mjpYlKt0
+         IXgJRRcRWK+9UTF/5UNRWF9lWXl68EAgpiNrsN5uxI+dEGhs1HdEZ9zBFtlaKhEkzmcC
+         3nYCrj3X6NYHQ+cAsW5szj5GX+YQyRsmMSNEWT/iB29b9JyVms4Kg8IkxxE2Wd/7Up6f
+         I76g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744400683; x=1745005483;
+        d=1e100.net; s=20230601; t=1744400719; x=1745005519;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ixNsTL0ouXPTlyTlApyKLv+63+cCzL/+fZpquEKOP2o=;
-        b=II89z9hbDdIkFTMn1hWqdrN/Qh9dDOEu1lKxhoUrm1pIGITy+ipw7zIdcugDY7/2YF
-         0mQisEi5XJ9s7ubdJxxH6odcDDW5brorJH1uxgwO3Zs9oxgxhTRHuIFbWbs3CEBEhZY+
-         BkIJW8KeKZ/KF5HCGGW70Oytbclf83UiwYY6qdEV5WSANb5PNAJsxQZs/1CnNx/MNoUU
-         Ryrbaf1jBs1p+aBCu6A+Yohw1W0YP/Xoqa7K7TJOMaWy5S56BxbepgB44qMsiFjUMVR+
-         +7GCEcKEju/DYUQQs30OH2PoMyAHsJ+urBfOW5829gQPNLuRFtBYj12b0EUD/pgvyDfQ
-         zzPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYEKQa+3kNfWOarH4vSZvpZmYXyfbPq4C0r6ccnZkA4+cvXG+UrH0saLV8WcxMs5LJ3PSGD6fcBgo+FPKw@vger.kernel.org, AJvYcCUi76v90+5ftXLDq5E2LB9vmQvXCO1FLf38bO8opAn3WFY4nWVGZjrDp2qY8uJWfthl4YAsOHYg32HVHNTx@vger.kernel.org, AJvYcCV4iKH83YKNRYXK4PVDVTE67fi4VbGU9WNJMmV2Lyv4nVNiI8+/Iq3DsLAfWE60eEvJSXfO349Szim3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaiROf9pHZwUO/E5kIm9NX0UkLB8/lfX3DcqHEtHL9n/mm3Omj
-	CR7pFkAWBWuE8x70i1RdoxTwtSmVwzyqaZeFI+ez/geu8+WX2f/uOWzYGIt7ik5zY2TGbNMtyxE
-	GUVn//aTTtCvahNYfaAQoGSCgmGU=
-X-Gm-Gg: ASbGnctFaD3fXP/j69Yh5x8EEFBeBcor5SJ/WIWFI6QR+Uo+20Hyepkq7mpV8+Zo6iV
-	3q6w+jzjvS0inZS2J67a0KU1b/DgXvUCdC8ciuIqLwcOl5ASlfFIADXdMUAolaGN2q5gOhH51/7
-	QLvqqeeX7JzuCvCoNRf+3pjQ==
-X-Google-Smtp-Source: AGHT+IFzcDH1iaEP6q1tsygbT4d9IKEyZV6bQHQY47gKw2g34rXwdM4yQe80wOvA0/o3z03M9J4E9lW/QhfczrM+cos=
-X-Received: by 2002:a17:907:720d:b0:aca:96a5:9861 with SMTP id
- a640c23a62f3a-acad3491f59mr366210666b.20.1744400682645; Fri, 11 Apr 2025
- 12:44:42 -0700 (PDT)
+        bh=kxYbMPJ9/3WWUWhZ50uH3rQ7QOEKEgqBV9xF/3bzbaw=;
+        b=R8DkogyKfgg80IxLpOH8vPMgXWf4w5EIlIpHaUhJlItsgvSw7t5YqJNOYyMhB0lUHq
+         RM+eIqwkat6O7xPcphvwTVEk337OWdMJI+ok1/9ncSSYLViwdhDKkSC9XC8gXEbKQ1t5
+         wibLscP2wLhasyaMt779oTZ6q554R1JfJwwiAy/3VUTTrd33ZK59jLBQktp1vEvzEISp
+         IFhrQy6JGWzaq8tJ1gzVOiiEjErvJfuhL6jOn3/S91+bdPwOuPq8bjIWLSzMM1Msvxih
+         fWOBKwKhO4XQo0DoRhy04juCHipzAuFc2bSNogD8BMHryAinWxoWt6hKvlbcVY/I5TQT
+         uWAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXjRvXy6eFDol+pb8yLfES0AM0FUvIN9Mbic6uP8IKxvs/nCZ23bU06l5Ia7XExFzgeNtErovLz/e9f@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRydTR7m/9dB0EoV0CADRXqpTWPvikUkrVE0/75uLfriaZKJO3
+	7HFxd6kbrskd6xMqmzxG9FP6k2sV/mG9ISzNLiTUB0P6ltXqV0uxy2hMyJCt7Kz40OXfC5dOjuC
+	ZsNYZCf64BMtb9W6udBQfh0hQicXxe3K/Sloq
+X-Gm-Gg: ASbGncuQF9QTYg5JMmBwusKxUQYR7S1kz+QNmEDcdyz6fBZnHK4qi0Xd/+ou9s1lfil
+	ieKocpIYRl/FQd7tmHvBehyeThSBV3KgkUv+i+r/n+Ll5Yq4rYlBAZwIHZGhB52wLfyLUuhG1xL
+	QmckrGtejGcuM5aj4FPQLr
+X-Google-Smtp-Source: AGHT+IFQGifPI7ndsGleSodbkGXAUKIZ07u6ZNQvsjF+hIGRNgR8glp2xAOBfn6+WWgANIaxwBpEYzIsWHLxnZAfzB4=
+X-Received: by 2002:a05:6512:1154:b0:549:55df:8af6 with SMTP id
+ 2adb3069b0e04-54d452d543amr1362508e87.53.1744400718920; Fri, 11 Apr 2025
+ 12:45:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250411154419.1379529-1-elder@riscstar.com> <20250411154419.1379529-4-elder@riscstar.com>
- <Z_ltyAO-OBzl0adV@surfacebook.localdomain> <a3b2d0cc-c055-4cf0-9e03-3ea73041642a@riscstar.com>
-In-Reply-To: <a3b2d0cc-c055-4cf0-9e03-3ea73041642a@riscstar.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 11 Apr 2025 22:44:06 +0300
-X-Gm-Features: ATxdqUFkskQhMsG1Fkk7AzvcChX0YXHgUTejwz7OwkLd792_lQxr49tcIoE0XwA
-Message-ID: <CAHp75VchEcpP67oPC8xD+tYrY_A0BGSJqK=1au939-W60_qQoQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] serial: 8250_of: manage bus clock in suspend/resume
-To: Alex Elder <elder@riscstar.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org, 
-	benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com, 
-	andriy.shevchenko@linux.intel.com, u.kleine-koenig@baylibre.com, 
-	lkundrak@v3.sk, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250407231746.2316518-1-sean.anderson@linux.dev>
+ <20250407232249.2317158-1-sean.anderson@linux.dev> <174438283512.3232416.2867703266953952359.robh@kernel.org>
+In-Reply-To: <174438283512.3232416.2867703266953952359.robh@kernel.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Fri, 11 Apr 2025 12:44:42 -0700
+X-Gm-Features: ATxdqUFdZE_uhkHLsbxiOOiN0d_S9dmu-M7D17wvEEtC9Aa85-uCx9f3jAHFoIs
+Message-ID: <CAGETcx8FVb91mL-LYN2=7yJGMaVsadpe_WiMn=OkEjMEHdJU3g@mail.gmail.com>
+Subject: Re: [net-next PATCH v2 14/14] of: property: Add device link support
+ for PCS
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, devicetree@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, Paolo Abeni <pabeni@redhat.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, upstream@airoha.com, 
+	Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Christian Marangi <ansuelsmth@gmail.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 11, 2025 at 10:36=E2=80=AFPM Alex Elder <elder@riscstar.com> wr=
-ote:
-> On 4/11/25 2:30 PM, Andy Shevchenko wrote:
-> > Fri, Apr 11, 2025 at 10:44:18AM -0500, Alex Elder kirjoitti:
-> >> Save the bus clock pointer in the of_serial_info structure, and use
-> >> that to disable the bus clock on suspend and re-enable it on resume.
-
-...
-
-> >>      if (!port->uartclk) {
-> >> -            struct clk *bus_clk;
-> >> -
-> >> -            bus_clk =3D devm_clk_get_optional_enabled(dev, "bus");
-> >> -            if (IS_ERR(bus_clk)) {
-> >> -                    ret =3D dev_err_probe(dev, PTR_ERR(bus_clk), "fai=
-led to get bus clock\n");
-> >> +            info->bus_clk =3D devm_clk_get_optional_enabled(dev, "bus=
-");
-> >> +            if (IS_ERR(info->bus_clk)) {
-> >> +                    ret =3D dev_err_probe(dev, PTR_ERR(info->bus_clk)=
-,
-> >> +                                        "failed to get bus clock\n");
-> >>                      goto err_pmruntime;
-> >>              }
-> >>
-> >>              /* If the bus clock is required, core clock must be named=
- */
-> >> -            info->clk =3D devm_clk_get_enabled(dev, bus_clk ? "core" =
-: NULL);
-> >> +            info->clk =3D devm_clk_get_enabled(dev, info->bus_clk ? "=
-core" : NULL);
-> >>              if (IS_ERR(info->clk)) {
-> >>                      ret =3D dev_err_probe(dev, PTR_ERR(info->clk), "f=
-ailed to get clock\n");
-> >
-> > While the first patch against this file looks okay now, this one inheri=
-ts the
-> > same problem (seems like not enought thinking about the code representa=
-tion).
-> >
-> > Instead of rewritting half of the lines you just introduced (which is a=
-lso a
-> > bad practice), add a one-liner that assigns a field to the local variab=
-le.
+On Fri, Apr 11, 2025 at 7:47=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
 >
-> So you want me to re-spin this again so that I use the local variable?
+>
+> On Mon, 07 Apr 2025 19:22:49 -0400, Sean Anderson wrote:
+> > This adds device link support for PCS devices, providing
+> > better probe ordering.
+> >
+> > Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> > ---
+> >
+> > Changes in v2:
+> > - Reorder pcs_handle to come before suffix props
+> >
+> >  drivers/of/property.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>
 
-Yes.
-
-> I understand what you're saying based on ease of review,
-
-No, not only review. Here the main issue is ping-pong between patches.
-If you know ahead that these lines should be changed, do it from the
-start. But I understand the need to have separate changes for
-logically different pieces. That's why
-
-> but this
-> is a simple patch
-
-It doesn't matter how simple it is.
-
-> and the change is very understandable, and the
-> code is no more or less clear when using the local variable.
-
-See above.
-
-> >>                      goto err_pmruntime;
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+Reviewed-by: Saravana Kannan <saravanak@google.com>
 
