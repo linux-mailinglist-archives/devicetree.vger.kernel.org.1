@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-165885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE10A85CDD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:20:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C653A85D11
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AFB81891B26
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:16:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E22893A5EBA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDDE2980DA;
-	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA30929344B;
+	Fri, 11 Apr 2025 12:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgN0QIaO"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GfYPvYj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CAF208A9;
-	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AEA213E81;
+	Fri, 11 Apr 2025 12:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744373782; cv=none; b=H6nIJ55OBVd7bWymd2b5VKkkYfuwae85p2PLAq48U7GRynjmK+oruvrYl0f7x2axbmhYLQBo+7+OGMXA/tGIKEOc9meUG3Bd2yTQk/+/lgesevZ2trNpWlSy6ILgIQRXHdxDa1nLxoICAhfBCtjTQpPk1u0lIy/8H5oBh9HIMKU=
+	t=1744374414; cv=none; b=sZdo/g7EO9Afzu0cDgkwWMuK9qiguaz1AVMuaLPysRE3hL3j7243EYTESpt2UtJAEE+TvhpaObQFNfd6EQQ8cv7frOCXA8QtaJkqvTXQb2TTLFY6ZsRDqLhGw96RSHs1t0HnZtJutyg23vBvGxPxNfM9eG3nTVw7J0k9qF0eagU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744373782; c=relaxed/simple;
-	bh=F6AxARnd3xc3ILccMeGQR4+AdsjAK1Ng9wcvSCTdcUs=;
+	s=arc-20240116; t=1744374414; c=relaxed/simple;
+	bh=FqShqnnVufRBb5rNLXSZf05DetjwYO540CrOZmPWxb0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Du21XTVVR6yL9BEJarwLnHLaOG/fs0KC5LM+fDBOqCjvTMZ+QTsWhV44fzHX9u0H6VGb/UlyXC4b9VuLQsmgHwLWVkUcPX5dnaSXmyWvvBIaku6ilCg+MZC467vm38rFaQZIVNADuuFb/7RvSTs9wW8R4AZZF8l1fG6jyqHJEHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgN0QIaO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13006C4CEE2;
-	Fri, 11 Apr 2025 12:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744373782;
-	bh=F6AxARnd3xc3ILccMeGQR4+AdsjAK1Ng9wcvSCTdcUs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GgN0QIaOqZwKC84+vH+4PYL6Yqoa2YbPgMzsNSS5Uokga7vW007H/vpuvWZ16f+vb
-	 G3HEFhPSwBziRClLsu7BYJ9wC7MR+J8Ot6bBgqD0YRFNCH0enAQlLyHJDqDddMwwBh
-	 CrBaSsXTxH9V65JLSZrKped29VS56QlTy23mlfTvE71ATxiGmgWdskJwk+dL4leo7d
-	 j82a2SR2BlbDvfotFq7Zv4gyBcvD0SF4zEjVaKwC3VfFn5Wu28irRy/UivCppMWmlx
-	 kN/YrUjtfpKHk1MnFmcQAU0+jjcWczr3ouPiM916K+TLUY9Gf+Fi6FyPvlY4YHCkMt
-	 z/g6jtw744FVw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u3DJ3-000000001ZR-3R9Z;
-	Fri, 11 Apr 2025 14:16:26 +0200
-Date: Fri, 11 Apr 2025 14:16:25 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: jens.glathe@oldschoolsolutions.biz,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: x1e80100-hp-x14: add
- usb-1-ss1-sbu-mux
-Message-ID: <Z_kIGS0GLduS1H1z@hovoldconsulting.com>
-References: <20250410-hp-x14-v2-0-d36414704a0a@oldschoolsolutions.biz>
- <20250410-hp-x14-v2-1-d36414704a0a@oldschoolsolutions.biz>
- <Z_j8M2Q0J3LuANAF@hovoldconsulting.com>
- <Z_kChvolKDp2JAcS@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qkqZRbrcPa5WwNjEguZsUkaTyYaBpzMsK9yB/bWfdLvAPEIcEKmKEmyHekUXEfn9ipeN8qLoxCgWZo08hHpxpj2/ri9RNMBhkuDMjuaWZrYYZfvBhXsSHnME9z/eEA1c1elZwsm3823TzvGq9ZONHtBi/WgIrKeuQrTpUw2sX5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GfYPvYj2; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=LrZdh+poEHqluBAWamb9c0Us0R4xYVMIWRYTWI8yWC8=; b=GfYPvYj2YpuY0FakqwJ18AYy7Z
+	l4P32HJxETjyHv46jdNXZCQJDOBqgncPzVTO2KRwdRLjW5EyLg+GM5QcoZ0fgXp7tz7wm6m3wJNOW
+	SSQTyOA/X10oRju+vgTz3UZcDRgWhYyneNcw/fVOMgg2yIoKpxan6kXEwkuBtfoBpad4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u3DT2-008nvb-JC; Fri, 11 Apr 2025 14:26:44 +0200
+Date: Fri, 11 Apr 2025 14:26:44 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, rogerq@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	srk@ti.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: ethernet-controller: add
+ 5000M speed to fixed-link
+Message-ID: <8aea379f-836c-4402-8781-ac7ae26c3529@lunn.ch>
+References: <20250411060917.633769-1-s-vadapalli@ti.com>
+ <20250411060917.633769-2-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,51 +64,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z_kChvolKDp2JAcS@linaro.org>
+In-Reply-To: <20250411060917.633769-2-s-vadapalli@ti.com>
 
-On Fri, Apr 11, 2025 at 01:52:38PM +0200, Stephan Gerhold wrote:
-> On Fri, Apr 11, 2025 at 01:25:39PM +0200, Johan Hovold wrote:
- 
-> > > +	usb_1_ss1_sbu_default: usb-1-ss1-sbu-state {
-> > > +		mode-pins {
-> > > +			pins = "gpio177";
-> > > +			function = "gpio";
-> > > +			bias-disable;
-> > > +			drive-strength = <2>;
-> > > +			output-high;
-> > > +		};
-> > 
-> > This is more of a question for Stephan who added this to QCP [1], but
-> > why is this mode pin here and what does it do?
-> > 
-> > It's not part of the binding for the mux (which indeed only has two
-> > control signals according to the datasheet) so it looks like something
-> > is not modelled correctly.
-> 
-> I'm afraid you have opened a "can of worms" here. :')
+On Fri, Apr 11, 2025 at 11:39:16AM +0530, Siddharth Vadapalli wrote:
+> A link speed of 5000 Mbps is a valid speed for a fixed-link mode of
+> operation. Hence, update the bindings to include the same.
 
-Heh.
+Yes, O.K. Technically any speed is valid for phylink fixed speed. You
+could just as well say its a 42Mbps link. But keeping with the speeds
+actually defined in 802.3 makes sense.
 
-> On the QCP, there are actually two of these muxes chained for each port.
-> One of them does the orientation switching that we are describing here,
-> the other selects between routing SBU to DP AUX or USB SBTX/SBRX. I'm
-> guessing this is meant for USB4. Given that:
-> 
->  - We don't have any support for USB4 on QC platforms at the moment.
->  - We're not modelling the USB4 stuff for the retimer either(?).
->  - We have no clear overview of what/how to model for USB4.
->  - The ports without retimer aren't advertised with USB4 support (I'm
->    guessing the signal quality is not reliable enough without retimer).
->  - The gpio-sbu-mux driver doesn't support shared enable-gpios.
-> 
-> ... we just went with the tradeoff of forcing DP AUX mode here by
-> setting a fixed state for the second mux. I'm not sure if the other
-> configuration is even a valid use case for the ports without retimer.
-> 
-> A comment about this would have been nice, but I didn't think of that
-> anymore when cleaning up the patches. :-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Thanks for the explanation. Makes sense.
-
-Johan
+    Andrew
 
