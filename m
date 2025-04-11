@@ -1,109 +1,118 @@
-Return-Path: <devicetree+bounces-165824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB85A85A04
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:27:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F870A85A1A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 12:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03DF57AD1EA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:22:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B8A61BA39BB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9F4221289;
-	Fri, 11 Apr 2025 10:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEED1E8356;
+	Fri, 11 Apr 2025 10:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XyuP/H1G"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="TmiokUKj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2AB278E51;
-	Fri, 11 Apr 2025 10:23:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C17117D2
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 10:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744367021; cv=none; b=fyLSdbLmy5uRm2rLpdp48FFIrYKk2VuS159l3ENAEQzD08E1R29szLUvVFVbu0eANRPwLrg206SS+6f5Lx0os3ssVH1MDdwlLqlqXp/K5JiesLZJgNii9cylby/5UDUU98E7Eg98oPg8RhAnhykNR2dBTSBQ2FfwAIBdtItiXAI=
+	t=1744367738; cv=none; b=GOQakkjMMsa6p3UwNKrb+UJufnn4QvF98YktaK8pSDjVg/LZr0oj67yVWPXIhfO/B6zCqIPlzNbQ9WX6Nbjhbf14RpNk+rdImcG++mxYidZbuaoqZ1T7cftP5XKhNDTMeovR7/lRa8TQBJ2jlDZww3YO21OCtgGohq6GItUO218=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744367021; c=relaxed/simple;
-	bh=nNnGjXRPBz3YI4SaNY8a/CQRpAOQ1B60ZYfwjDXFrKY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=RKv+parpZBw1Bhk5xE5YOM4v3O0v849QwELWSOZFXIlL5xNYrR/GdbmGigKr7+Ju+HuFYWIvc3Lynql/ivxy0ssVveW+UelQ7mRJ/aZiyjroUDCquEFkrgEL3lIFWOUK3O597Xx8/cIZ+nQ8v037Hmj07LR0J8MotC0ePDpuweI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XyuP/H1G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 952FCC4CEE2;
-	Fri, 11 Apr 2025 10:23:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744367020;
-	bh=nNnGjXRPBz3YI4SaNY8a/CQRpAOQ1B60ZYfwjDXFrKY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XyuP/H1Gp/7DQAflyk4VGPWDyysyouA9qc5HJ51r/8AM0Ud98Zw7XFi2ejPohS2p0
-	 XFq8/ZPqkkFYVDOcu9AaPo2S14PcsIxBNOFBCpAwzdv/Aw6l2x/vKKV/kunnvB0WzF
-	 QF8Ra6n2R/bWcrT3KGlYnepg7gwXdW0GpwI02xd+BlqlbXme63NtKjEm8+2agVaAEe
-	 8yzy03kLjfA1b15SaWQdyZUPrCR9oKww497PdDKZT2QicsjRMGn2rE6btPbj0sUkJG
-	 mGxW/DK3JYu2FDz1MLFU2IfpGyAFRRROIg+hZGLQfU9ldKQT7vsz8gv0XFIEnpiZvm
-	 fLNZnHX/OIkMg==
-Date: Fri, 11 Apr 2025 05:23:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1744367738; c=relaxed/simple;
+	bh=S7MMWBiP2EHIAd5aoKVdha9ifwO0SF1kUyI8Nuacdek=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cJc/9Of45y2xbN7K8gcJj6uksrhqDHP39JLvNVb+8HxGwp8ua1aSLiKzKouIn5tqiC+qb9E24P2lwojU156sMbTNoYtpyOObThg9oSlxdn7G8HftMtrhTIcFtnd80eT8IxSu7o+UgM0Qz1IVpWpHGGssOYMOS/EEVpW4wl57aHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=TmiokUKj; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=LGf8
+	UY9BVKPiL+qDBOW5kpdXxoI7xUtlyYa6X+i4Zfo=; b=TmiokUKjz0g1oKohRMHp
+	goLrJjOFP+pOecoIKUWAK6ezuKL+iSFjz7OBirwcYaOta84RrngD7IAc4aV3bOAE
+	/qGZH8yWM9oFPLZ9Bv0nEYQGyBUGnchnvgfJ4N4zZEqIQLyTNM3rhfErFhY1C0Sg
+	JqYRXwqxxhD2YANNhHwlbv50db0fNk6LLbv2DWyZ2YDvKyOtyWzIkrF3JYG3U/bA
+	5zlAPZCtXbW71bxjTkWhVxVfRce1sT3LrwBYf4bsxS7/nxrwHRa2FziP7UFH3sUG
+	LJJF0azRr9D8EC39LVMtcM4KOX2VHVCKsrbAlBogcKzfNssbQCS4T8jlQGGswmuy
+	TQ==
+Received: (qmail 1256927 invoked from network); 11 Apr 2025 12:35:26 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 12:35:26 +0200
+X-UD-Smtp-Session: l3s3148p1@1wixQn4yWqIujnsS
+Date: Fri, 11 Apr 2025 12:35:26 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: correct LAN
+ LED nodes
+Message-ID: <Z_jwbsfNQNkN5b6I@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20250411095425.1842-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUk3wrH=oB35v2tyrHVd9w0otqTDBmYc8fwt4w3fhXUog@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
- Praneeth Bajjuri <praneeth@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Vignesh Raghavendra <vigneshr@ti.com>, 
- "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>, 
- Manorit Chawdhry <m-chawdhry@ti.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, linux-kernel@vger.kernel.org, 
- Kamlesh Gurudasani <kamlesh@ti.com>
-To: T Pratham <t-pratham@ti.com>
-In-Reply-To: <20250411091321.2925308-2-t-pratham@ti.com>
-References: <20250411091321.2925308-1-t-pratham@ti.com>
- <20250411091321.2925308-2-t-pratham@ti.com>
-Message-Id: <174436701744.2577578.5675041796960889580.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BGECI4hn9RaXMSbo"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUk3wrH=oB35v2tyrHVd9w0otqTDBmYc8fwt4w3fhXUog@mail.gmail.com>
 
 
-On Fri, 11 Apr 2025 14:43:21 +0530, T Pratham wrote:
-> Add DT binding for Texas Instruments DTHE V2 crypto accelerator.
-> 
-> DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
-> only found in it.
-> 
-> Signed-off-by: T Pratham <t-pratham@ti.com>
-> ---
->  .../devicetree/bindings/crypto/ti,dthev2.yaml | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/ti,dthev2.yaml
-> 
+--BGECI4hn9RaXMSbo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
+> > +                                       color =3D <LED_COLOR_ID_RED>;
+>=20
+> Can you please confirm they are RED and not ORANGE, as documented in
+> the schematics?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/ti,dthev2.example.dtb: crypto@40800000 (ti,am62l-dthev2): reg: [[0, 1082130432], [0, 65536]] is too long
-	from schema $id: http://devicetree.org/schemas/crypto/ti,dthev2.yaml#
+ORANGE is also fine. For me, it looked like 'light' RED + GREEN =3D orange
+when both are active. But you could also say: 'red-ish' ORANGE + GREEN =3D
+light orange. Let's go with the schematics.
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250411091321.2925308-2-t-pratham@ti.com
+--BGECI4hn9RaXMSbo
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf48GoACgkQFA3kzBSg
+KbaTSxAAjLZC/5EIA4sZWd6eWE6Qr0tkpbPThqdaPtinqYzF695dA7GxqLzovKMj
+N5m9x95vG4yw4WMsl+ZTKoHbJHyJP69/hEcQK5wQhDjxK743LMz+Q2apepDepRr+
+5tOKqngqwwig1Kep/599UcWxVes7aWupeMgT/WwU8cmgsiB9m03V2nhcxFagnJLF
+B+0MR8MezqM4J866uGTuvZzOFDC6gYrIIxTbk0Xd2tUWqrGgWc37rvA94Epwsfne
+LtujTcAN75YsobjexCGiRQbYBacunGF+ddizTIOKAmu0Ux1Z5UaqjwO8UAieHXS8
+HO1lPsruNbzP2zAgp3CDj/aTgCaYy+anxnAulOExsdj5uYVQQyIvCev1LaF7dOPj
+B4rRoS0fhAYT/5E/TIk1J76PqU86gKQEG+9gQdeVCPV9nA+YOF7gY6DWO1b0ywau
+n4nFX+sTqQGqunK8E84xWX1QGqPVJe7ml4BTcFHyjnHdYqZMDQo0r0Ul4N3eNCPx
+aLuz2U8Sr5MChz21VrN6l62Hb6iZw/6qmXVrDV5X574FpiCuak82K4Ps8U5l54TP
+U0I6ryX9z1dyvTv+D1cq6/g9oWgpEfAiF9PzUbsALq4JCYWAyG1Gt1ztxnnwft3B
+o3gkPEGUppwT6bc4RUG+FvZra4AWYxg9nHpQe+NnyQ/OK3B9E/Y=
+=NoQG
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--BGECI4hn9RaXMSbo--
 
