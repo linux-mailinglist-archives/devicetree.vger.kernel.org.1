@@ -1,134 +1,154 @@
-Return-Path: <devicetree+bounces-165756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FF2A85554
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:19:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3430CA85563
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 09:26:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A8041B82C3A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:19:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10F597B1498
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 07:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D1827CCCB;
-	Fri, 11 Apr 2025 07:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6D1285409;
+	Fri, 11 Apr 2025 07:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGFCGQyC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92341ADC69;
-	Fri, 11 Apr 2025 07:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0FD27E1BA;
+	Fri, 11 Apr 2025 07:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744355941; cv=none; b=U4hLG3DFszUI95u1TMotmlHBZ2idux9loLFpoSE3QB8Z6kK/Dd5+mkESfMQ3bCaeVOVzAYYqptk/t/jVHnrNkXJS9Jq/uCJy+LrDzi3+4prHf/Jw5zWtcVJ23EM2B/tE7O2tKWk+CNK6SV+xN1pdO5/wtDF+LvDukG/LpPdRn7w=
+	t=1744356382; cv=none; b=kNQqR2cxQRm2czEnw5z0kzVwazTHXXEq55V7BWJMSIVuMeO/QZ5ge9knbNr9QR0jxWtujUeVTMKqvZFL6LuaC53GOEfI5U5AWiL4lkVDBZqATOB9o2ditEfoZ1EQVtVM9Pcd5RGJmcXPjQzrt6pyX4ctBkUaQz3w6zhmC9DUtxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744355941; c=relaxed/simple;
-	bh=V+MQ/tXXHgm9QAFWUQ47i0G9RJRr1GVQZaKO7ZxG8n4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DSIVxi964BmjRq0XHGEcMGQZQmgGulTdZXcgFKSqz3abp5jLZ5B45tKW5rrsvKoRfjZgtykSD25WywZTtE2isYmZbQuJldbSLEigS3FagU2Otvm+QlEPAuiw+tdL1sYElpz5Q7Vdgi3hiQcydYBqcyYblZjgVK5tPmSqdVsdZRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-86d5a786c7cso728718241.2;
-        Fri, 11 Apr 2025 00:18:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744355937; x=1744960737;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uZCr2H9xuRzm+S4rYjLCe77+cJE5VA9O5Xk8v3OZeiE=;
-        b=WbT7moD3g9lMbo6XSjTutsyk3CTT0WzcNiSkiPh04qtq7MA+7KEH8xAe6I8bOFEz0j
-         2D9Kwlzfslt5vDjnfutnI+km2Yzd+jAlH8LK+QnGxp8cNlhni+bvGmHxewn2yJO1mElK
-         LQ6Fuw7JWi+By5aidGu/HpjIoRq1vyvP4huPsSfsLiL16XiW44g0ovMw8nHAtUoSiT16
-         XwpPRDfBVrcF+UsJrCn9IrQk+ylfMABsAy0OsZFDuwq9bW6Hb61hgotdcBy2uhMX1VeF
-         9/Fl8hAOJh1EG62muxDXpbUMvp3tvMqQNYEly1WBMWolvi9YSHuBZCpmiIWQFw/nAZWm
-         HRbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCURnhHcdP0TgiqX9GbysZGnO5yS3M7gBHOFmFbl0kJUfQYQXDbth3HhpSimaKtbSqAx5Ih3xz4vGP4o@vger.kernel.org
-X-Gm-Message-State: AOJu0YwS/LN961v5ut+vg8I65/3VjIei5bYOaBSdAZPemKjOBA8C4KNg
-	D/tBm5R7c9kbg0b6IyJz3y6TGs5es7I77e9xKj0kY1CJqHYYV9fsdk56jtTYdvc=
-X-Gm-Gg: ASbGncuFPoK7EpfTKgfQCWP5iH/oTGIP7qVORZwPreCluGJbULRWX4akhdWXtMKbN0Z
-	GCefF0hzYQ2VuCFsxmDTPGLa66zP+AxEYsPtWJCEWNW0zyMOlwWBUM96Qvi0LUnQZZ7oNvmdP+M
-	pWU8lJN/hgvLNjKENB2uIqDFAKoA70QKTHn89lRnVUgylgqTuQLfB14KmqmoIjFN3EobiFrF0gR
-	mwxyi1CCJh4SkFCIYbKeWBfq5m2eW+IMPq11/OYvOuBZ+Z2ZOlDPfmbBBhDF9Xk701g85XTlQU2
-	OjfaKY+diXESJMNx9NPekBP7LhoUeazKTQGctFiJOjOStRhVO06GjZoLDrhwq6aIzAPD1I1toAz
-	99VU=
-X-Google-Smtp-Source: AGHT+IEcxJaoNxwQNk3gq5JgiysdaF4GbIX3WmRV8Bs+3z0pyZHyHvJ2qSVpdTXjwZ/x76BuOJbuQw==
-X-Received: by 2002:a05:6102:3348:b0:4c5:1fd6:5b68 with SMTP id ada2fe7eead31-4c9e4ffcc84mr760481137.19.1744355937618;
-        Fri, 11 Apr 2025 00:18:57 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c97a54e2sm929129137.18.2025.04.11.00.18.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 00:18:57 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86b9d1f729eso720584241.3;
-        Fri, 11 Apr 2025 00:18:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX8PdzanCQfXyZby7jq7eMqmzcDLi51MRL3TeL2YE8FJxsnBBHe8qUDKlLr40JFZHNAueXv3Gy3/xiI@vger.kernel.org
-X-Received: by 2002:a05:6102:5788:b0:4b9:bc52:e050 with SMTP id
- ada2fe7eead31-4c9e4ebb1a6mr870090137.2.1744355936641; Fri, 11 Apr 2025
- 00:18:56 -0700 (PDT)
+	s=arc-20240116; t=1744356382; c=relaxed/simple;
+	bh=5Rg6L5vCgyyzAuifngdzvR71Cxvlb+0w2mCfgATmgcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fFm7u2xkVBxroql5WnWTrRxrYKBIomTrJ0mzn6AYYYawZCoBTPl/o6gJ3nn3OBr3RGBFcekPWp7MfO7iVVQqznbcG8IhkHAqGl4hN17ntHsFt60KSAZHKRR76VBM7fDVQKny0bgvSUCvJswHnogdQbfu8LOG8dvuwLULlnARQL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGFCGQyC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24432C4CEE2;
+	Fri, 11 Apr 2025 07:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744356382;
+	bh=5Rg6L5vCgyyzAuifngdzvR71Cxvlb+0w2mCfgATmgcU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rGFCGQyCjTxLmWdaiiMoMRvSSsATBuLX+9GFCwSFmWkr4kDyoLU7cBPWlkzLl2vRN
+	 sOBxcLkTJJj1uEJW8qiZnKNBJeq/8KaIGUdVolR6m/b2TaSmKeh+3cTdfr+GYvjJFv
+	 pSwNR7A4iNHJ5LX0pe3LdKUyV0k8GfXzS7mcRJfyqtR5VkGVE9h9ZLaIXGzmIJ7gm1
+	 VIbnr5yEHWBICw1Dcs5ffHL6ssMpRp25Wuyqbc4SPfeQbmnU3n+Qs2tzqlT65bMDAq
+	 LxfrSgnxU2YTskh88+4BJA1TFOwNKLPes8yZwgU8WsnSUbhAdhqJLzI19iXpj4L/B9
+	 lbVqGWE74AmyQ==
+Date: Fri, 11 Apr 2025 08:26:16 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+Message-ID: <20250411072616.GU372032@google.com>
+References: <20250409144250.206590-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250328153134.2881-7-wsa+renesas@sang-engineering.com> <20250328153134.2881-8-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250328153134.2881-8-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 11 Apr 2025 09:18:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWoxfOAbyBV5P-oO6Mp4LCu830zjxU6txcbLa9bxgCdqA@mail.gmail.com>
-X-Gm-Features: ATxdqUFJbXSnCj42XhWj4cjau3Qme1VkueQa8DgetuguYiaj1sHzctRN3uxSkfI
-Message-ID: <CAMuHMdWoxfOAbyBV5P-oO6Mp4LCu830zjxU6txcbLa9bxgCdqA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] ARM: dts: renesas: r9a06g032: Describe I2C controllers
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250409144250.206590-1-ivecera@redhat.com>
 
-Hi Wolfram,
+On Wed, 09 Apr 2025, Ivan Vecera wrote:
 
-On Fri, 28 Mar 2025 at 16:33, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> To match the documentation and schematics, they are numbered from 1 and
-> not from 0.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> provides DPLL and PTP functionality. This series bring first part
+> that adds the common MFD driver that provides an access to the bus
+> that can be either I2C or SPI.
+> 
+> The next series will bring the DPLL driver that will covers DPLL
+> functionality. And another ones will bring PTP driver and flashing
+> capability via devlink.
+> 
+> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+> development board with ZL30732 DPLL chip connected over I2C bus.
+> 
+> Patch breakdown
+> ===============
+> Patch 1 - Common DT schema for DPLL device and pin
+> Patch 3 - Basic support for I2C, SPI and regmap
+> Patch 4 - Devlink registration
+> Patches 5-6 - Helpers for accessing device registers
+> Patches 7-8 - Component versions reporting via devlink dev info
+> Patches 9-10 - Helpers for accessing register mailboxes
+> Patch 11 - Clock ID generation for DPLL driver
+> Patch 12 - Export strnchrnul function for modules
+>            (used by next patch)
+> Patch 13 - Support for MFG config initialization file
+> Patch 14 - Fetch invariant register values used by DPLL and later by
+>            PTP driver
+> 
+> Ivan Vecera (14):
+>   dt-bindings: dpll: Add device tree bindings for DPLL device and pin
+>   dt-bindings: dpll: Add support for Microchip Azurite chip family
+>   mfd: Add Microchip ZL3073x support
+>   mfd: zl3073x: Register itself as devlink device
+>   mfd: zl3073x: Add register access helpers
+>   mfd: zl3073x: Add macros for device registers access
+>   mfd: zl3073x: Add components versions register defs
+>   mfd: zl3073x: Implement devlink device info
+>   mfd: zl3073x: Add macro to wait for register value bits to be cleared
+>   mfd: zl3073x: Add functions to work with register mailboxes
+>   mfd: zl3073x: Add clock_id field
+>   lib: Allow modules to use strnchrnul
+>   mfd: zl3073x: Load mfg file into HW if it is present
+>   mfd: zl3073x: Fetch invariants during probe
+> 
+>  .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
+>  .../devicetree/bindings/dpll/dpll-pin.yaml    |  44 +
+>  .../bindings/dpll/microchip,zl3073x-i2c.yaml  |  74 ++
+>  .../bindings/dpll/microchip,zl3073x-spi.yaml  |  77 ++
+>  MAINTAINERS                                   |  11 +
+>  drivers/mfd/Kconfig                           |  32 +
+>  drivers/mfd/Makefile                          |   5 +
+>  drivers/mfd/zl3073x-core.c                    | 883 ++++++++++++++++++
+>  drivers/mfd/zl3073x-i2c.c                     |  59 ++
+>  drivers/mfd/zl3073x-spi.c                     |  59 ++
+>  drivers/mfd/zl3073x.h                         |  14 +
+>  include/linux/mfd/zl3073x.h                   | 363 +++++++
+>  lib/string.c                                  |   1 +
+>  13 files changed, 1698 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>  create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+>  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
+>  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
+>  create mode 100644 drivers/mfd/zl3073x-core.c
+>  create mode 100644 drivers/mfd/zl3073x-i2c.c
+>  create mode 100644 drivers/mfd/zl3073x-spi.c
+>  create mode 100644 drivers/mfd/zl3073x.h
+>  create mode 100644 include/linux/mfd/zl3073x.h
 
-Thanks for your patch!
+Not only are all of the added abstractions and ugly MACROs hard to read
+and troublesome to maintain, they're also completely unnecessary at this
+(driver) level.  Nicely authored, easy to read / maintain code wins over
+clever code 95% of the time.  Exporting functions to pass around
+pointers to private structures is also a non-starter.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.16.
-
-> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-> @@ -268,6 +268,28 @@ uart7: serial@50004000 {
->                         status = "disabled";
->                 };
->
-> +               i2c1: i2c@40063000 {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-
-I will move these below while applying, as per
-Documentation/devicetree/bindings/dts-coding-style.rst.
-
-> +                       compatible = "renesas,r9a06g032-i2c", "renesas,rzn1-i2c", "snps,designware-i2c";
-> +                       reg = <0x40063000 0x100>;
-> +                       interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&sysctrl R9A06G032_HCLK_I2C0>, <&sysctrl R9A06G032_CLK_I2C0>;
-> +                       clock-names = "ref", "pclk";
-> +                       status = "disabled";
-> +               };
-
-Gr{oetje,eeting}s,
-
-                        Geert
+After looking at the code, there doesn't appear to be any inclusion of
+the MFD core header.  How can this be an MFD if you do not use the MFD
+API?  MFD is not a dumping area for common code and call-backs.  It's a
+subsystem used to neatly separate out and share resources between
+functionality that just happens to share the same hardware chip.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
 
