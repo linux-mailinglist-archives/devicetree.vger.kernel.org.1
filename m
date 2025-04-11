@@ -1,163 +1,117 @@
-Return-Path: <devicetree+bounces-166130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6F8A86638
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:22:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FAAA86636
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF8A2174251
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:22:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E60E7BA785
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46304279353;
-	Fri, 11 Apr 2025 19:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9D0233153;
+	Fri, 11 Apr 2025 19:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jm2hXpOS"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jIM+JxK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849B3233153;
-	Fri, 11 Apr 2025 19:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12ADD258CF0
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744399336; cv=none; b=tUWDE++iF9iBpNHz6Z2OM26ThPmZv7sXKBgI1b4eURd1sXvPgjuCu0R9yINsx9alVYoUrbKQvcUCocpilhaoJJappC1ktutQVR7XeLHaCn/4ORvd8FsEZNEyPCgYX8wtfdbWgX2GXwprF4ZbOpOPHrRuVPGoC5fWV2n+IPcMgqc=
+	t=1744399350; cv=none; b=MCqRsQ5A2qQf4kvx7pv1eVw0V4NhByec/tfCp7lY2a5OMaPwUcnQrLQZdYQtlxxGNCJNM1TxWoJQE0Xt1TseqHVI7Slzywki5kIv+WTSlqWv1bcdO7gidZYK85z2cHVap7w/HrdZMfp6ikBAe5QGY5Z/zVmgjOMVFjGSFlLY7k0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744399336; c=relaxed/simple;
-	bh=89S6jUFBdre4FBJDt9xv9Ve9zhB8mTXROUpU59oVJww=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uvz8ff3gUwnNGAtHkE7M2JepL+ZromduiL3Yu4pkKHYE99quoda+Z9ImkIVXRxULQBEwTlLPMVrSXY8hhfwLVeEoYe67rrSuf9+/bI9cW073U2KyjhY5pjGbaURq4+5yj6v1wKPYOEC6OMrXR2VhIc6PP4/VzjTPlctleIMaVtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jm2hXpOS; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e66407963fso4315339a12.2;
-        Fri, 11 Apr 2025 12:22:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744399333; x=1745004133; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xk7Wr7mkEPmLsW55w0PzOV8/ik4aRFBmHrK0Atj+A3M=;
-        b=jm2hXpOSmcg9KCrKKxCYxruXzBFQ1GbjfilgCgT+WQOp/useofOMVtWsdL+epn62P9
-         PVDBwFcZI78oUYRizCMJxXPq64ah19cc3372V57TDcr3wYzGDTjw0V51ICySBDnTerK+
-         H0z1MMdte7vSU8nP6IRRRB70E1U8Q9J7GXC7diEiPS5/BZ/WZ1ZsofY0AH3LBtAvZpdf
-         gCb3FeMuGUJ63boTqdNprDCGfPcsufR+c8zEG0ZOOrY1QqiXhQUo0AI1UTlX1KV2xIxG
-         CD6n7f9j5E9CfioR1XbwcaX1GaQLCNpZTfzcd0j/nOPqqxDh+3rVvmyMxbFi5PXoxlPR
-         LDNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744399333; x=1745004133;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xk7Wr7mkEPmLsW55w0PzOV8/ik4aRFBmHrK0Atj+A3M=;
-        b=o4pde8S8Lp0fMj20Sbqrxp22y8raDASAuTU7gcQmqAhZ2WUtO/N8COdkabmhKkJz64
-         fd+q6ZJW6mvg4jJoNHqFunoi5lvB31danRYk75lM/gVw8vD/D/0b+vuqDiUizW7VwVau
-         sukcx0vKB9zb5t+PCLcwFes8eqM/NuoTI5jZgot54/Bzdi7bDEVh49zsIdEnT8n0bwaf
-         FdolOJYX7aHXaQE71/7H1xVgm+9jIHtCDHGaRDdMHs3dJmvrpXaKQX6dRLclp5reYFZq
-         yhoBQxhLFKuW6ypRFrNwZIvjle3u1XNOsGsCSyzt2/tUfJ2zXW/DMBzlJWk6r3KL57I6
-         +z7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUXPATKSw/Kb+sX2bMlLibaQaRtQ8KuIjnkxmparu+riW96PYcDtFZ1mmd/2Rw/ldJLmXATC9Kx8Fin@vger.kernel.org, AJvYcCVSTKjE8KQqa6AY3EgjuXV4A1v7ggi8bpee4ok8/Yr56DRm8onaIBepeKRvH5yPRBcVeEAVI3dYgGCzy37M@vger.kernel.org, AJvYcCWk9NJ3ph+3x77xBZoO+kyjDdoAGaxL96WsTUrQkM6NO7tL04MhpqAunec9RGoCXtfI3gv8cuQKKJxT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLgXDZ1IUe7h66Sz9sXcEPR7agr7GiOXaK7LPZDXwszIdawB4I
-	4O9UBLNgcETHo0NosobtF67jK7PmJe/V5UReGwPoaIlbKA7CreXQjLwPXltc1CAD2gErxExR83P
-	/SR3TyKIHu5Y8zAk6LCVryS8ayV5jESxU26s=
-X-Gm-Gg: ASbGncv3RFlapjrEKx5vJRA0YPd4vhRqFzQgKWIdZJ8pSG+JDWg0envdgxJhv1kU1ix
-	IScgC+FJRXBixX8eOzKg8MUFqO4s46fABW/YjrvGRic6Se3O4TlbMupOkszs05N3+JY1Y5PuDv7
-	GVx5T3yT/uuoGTFvJUefhrww==
-X-Google-Smtp-Source: AGHT+IHafh0TzT82Q1iwtIEjA7exiMMqBkorbBoifF+rPaD2kGx/h0ceVXvgMfgp0zq3ea62NLd3qNqvroIvJGLvt54=
-X-Received: by 2002:a17:907:3d12:b0:ac3:17b6:737 with SMTP id
- a640c23a62f3a-acad36a465cmr370801166b.45.1744399332544; Fri, 11 Apr 2025
- 12:22:12 -0700 (PDT)
+	s=arc-20240116; t=1744399350; c=relaxed/simple;
+	bh=EpMfVXlRTt1GrOrTqdwyTkUroj30aT9SoXpbumxN1/E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qiev8rUByT7OqIBh+ZwFFBy+9qpIZOG2pYoQvo5dt712xu/AFeMRaSGjeVTvKAwx0WvjrxSfzQq5bx6FBPq1i1zsUXoY0yJu2LkoE/ZmzFLeIvS9CBFgrlxgK51+B2FBmXp5nis8azNKDHJpjuda+70YAotiCiTMY7huPl3k9FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jIM+JxK/; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=EpMf
+	VXlRTt1GrOrTqdwyTkUroj30aT9SoXpbumxN1/E=; b=jIM+JxK/RPdddUQ6FgxS
+	hnvs4D9UUIh2HWhlpTeGu7vgR9VvGmQUyNcEwcYSD9RU0i6GBZDQfBoQPPgz5xxw
+	4WU/qrOLIHDksM4V0Rvh+Dmr9Yse2ycW1sFXg+YYapwIcFzW3vH0l0ONkHjY3ErY
+	ptGvIRWGbi0G5gYeYB5cVDNAaaZzInRJ/RSIRIWcV2UHjw2zTF2hphUG0YJk4ahq
+	GsHWkftnUJgSh0GLvMJQut58y8iU6mzHUnxIJRU9AL7U3nXCEkLLALIt3YfGcz4r
+	d1VC6A/cC8ioJs7kyKuaewE9mnns46BRK9mPqZv8CdJbCqmR7R67CpKJGM82mfES
+	Lw==
+Received: (qmail 1401741 invoked from network); 11 Apr 2025 21:22:25 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Apr 2025 21:22:25 +0200
+X-UD-Smtp-Session: l3s3148p1@70FXn4UyKN0ujnsS
+Date: Fri, 11 Apr 2025 21:22:24 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: remove N1S binding
+Message-ID: <Z_lr8MjNCYXz8V89@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+References: <20250411155220.5940-2-wsa+renesas@sang-engineering.com>
+ <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250411-add_newport_driver-v1-0-15082160b019@tdk.com> <20250411-add_newport_driver-v1-2-15082160b019@tdk.com>
-In-Reply-To: <20250411-add_newport_driver-v1-2-15082160b019@tdk.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 11 Apr 2025 22:21:36 +0300
-X-Gm-Features: ATxdqUGv9nEafQzbmPl55jX5Pjx8laLLf3mgfmv5IDwzcpTt7W8ptj4-S2DCF6k
-Message-ID: <CAHp75Vdj81u8sXfsgBPYumFKWqsatJGHeME4rTtWM9NME6g0ZA@mail.gmail.com>
-Subject: Re: [PATCH 2/8] iio: imu: inv_icm45600: add I2C driver for
- inv_icm45600 driver
-To: remi.buisson@tdk.com
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="KjleNIVyskKXyFmn"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+DOp8YOcshTVqYcbmgbuc4etTQeeswmMUYjw1sws4mAA@mail.gmail.com>
 
-On Fri, Apr 11, 2025 at 4:28=E2=80=AFPM Remi Buisson via B4 Relay
-<devnull+remi.buisson.tdk.com@kernel.org> wrote:
->
-> From: Remi Buisson <remi.buisson@tdk.com>
->
-> Add I2C driver for InvenSense ICM-456xxx devices.
 
-...
+--KjleNIVyskKXyFmn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +/*
-> + * Copyright (C) 2025 InvenSense, Inc.
-> + */
 
-One line (instead of 3), please! This will slightly help with these
-rather longer files.
+> Seems like the platform is pretty dead. If you want to send a single
+> patch removing all the bindings, I can take it.
 
-...
+Yay, consider it done (in a few minutes).
 
-> +#include <linux/device.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
+Thanks!
 
-Here and in the rest of the files the list of the header inclusions is
-(semi-)random. You shouldn't use kernel.h and other "proxy" headers in
-the code, please follow IWYU principle.
 
-...
+--KjleNIVyskKXyFmn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +               return -ENOTSUPP;
+-----BEGIN PGP SIGNATURE-----
 
-This is wrong. Please check what other drivers return in such cases.
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmf5a/AACgkQFA3kzBSg
+KbYvYhAAlmFkkXAR6RRuKRturPVfhNmQNCwiD89v1ZTd9G8LGAhV+CZkegNy2hRS
+S6/DeY+FVSrCriTk0wMi+6zVMDw16uDIRMxO2mNWuGvP/ar+vhjagiLnOuqV1mjc
+ADE8VBiMpGQSPMvNxTOT5k3EX8CWKWgh7GsS3VYkfUDWU59esN2f0mOuA5rorvkH
+ntRdW61GaQC/TGXYlB83Qv9RVkTNbQkVbbxHcuxap64lFva+7mJoqSqikuzoj9DO
+aCt8JyO+Dkq7LUBd7USDpjvx/aGWdK8us3NEapCtaHj1gWFgR3LqH+OyU0fNKMet
+lBVEpwkWgJkJQ9cK2hZL4M2Tetx8MGuHI9WnhTWUgIq5/Tnzoy3IFjVghvvCkOcD
+FueZc7n07jzKGKj7Mx0Dw79HXd/hcZpPMyZQjWybXqGI8f1NoltVx8qERbHN9KMX
+AnD8tavUDYAP15wLKjO5sTfjSaVR0VS89WZiMeKbDuaTmej6/TvdlAbgdVASOC2q
+kNphG37LAhdyknbUpJsvL6DcqrhF/z7lblfSkUPqRKVbfScR4Gn9KSR09OJQozmc
+dpj02NCVQhvjqpfaTXjT5vN0r5AWBl7QthIa3NX7q3WV+g2ymxmrOs5O1gbrAFaE
+kymgNDNJi1xZayGDpLHwqzFZA06Ogt3osbgAGjWkKGCd9+9fv50=
+=XyEi
+-----END PGP SIGNATURE-----
 
-...
-
-> +       regmap =3D devm_regmap_init_i2c(client, &inv_icm45600_regmap_conf=
-ig);
-> +       if (IS_ERR(regmap))
-> +               return PTR_ERR(regmap);
-
-err.h is missing.
-
-...
-
-> +/*
-> + * device id table is used to identify what device can be
-> + * supported by this driver
-
-Please, respect English grammar and punctuation in all multi-line comments.
-
-> + */
-
-...
-
-> +               .data =3D (void *)INV_CHIP_ICM45688P,
-
-Just no. Please, use real pointers.
-
-...
-
-I'm not going to review anything else, the above already deserves a new ver=
-sion.
-
---=20
-With Best Regards,
-Andy Shevchenko
+--KjleNIVyskKXyFmn--
 
