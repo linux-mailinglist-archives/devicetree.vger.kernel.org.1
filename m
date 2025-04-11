@@ -1,149 +1,175 @@
-Return-Path: <devicetree+bounces-166140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0086A8667A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 761D7A86689
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 21:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95C344C1785
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:36:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFF504C3FD2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D24627F4ED;
-	Fri, 11 Apr 2025 19:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13735280A2E;
+	Fri, 11 Apr 2025 19:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Ju8bl2gP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBqvOm9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C159E27F4D9
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 19:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DBB2586FE;
+	Fri, 11 Apr 2025 19:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744400169; cv=none; b=N0S/7lnyhTUocAzwWftmd4XZ+Dmd8m6C2ickCcZDiIecAD2QAfi1hZR7KPgIcbbC0JHi9kuSd7uVQf61Q7Xl3WTbR8iUQe7vpppk5tI7RiNV65ZdYHIF+1OyTOFJb8Jgc+0HOrtDB9/OgBrXyLG/pRewlPGwRTo0TcTpFBe43J4=
+	t=1744400505; cv=none; b=eKyZTTNY6uYkAn814nIC/dWGELNCyneVZ4U0jU3Um9zT3aZN3qOobwsQGAKZc3d0bTbPLTJoCMLV6Da7D1mVD0M6YG1chclKZM4J5KaEPAWDLjG8IVtvaQ2w3pyTcTZmGElzybD/xWk/IejGZ7MFxezziBIntxFVGbg0xzKHzA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744400169; c=relaxed/simple;
-	bh=YWpsO5xUUd8r+lQC+34HlNpUYxi1N7dTXlea29z2cjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JZ2VBOZMRkEQuenOgyOYMcteAee5OjNgFRh98HbFlflGIobL9lLDHxc+EUy/fPh7FM5vg+5SjVahrEEvT+vxcbTbHG0F4XQWNJogbFnoscSvfS4Mw8nEIQTXo+iduJHabZW/aZymkUidemwN2qONL8+bY7s/yN0MferQqaNo91k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Ju8bl2gP; arc=none smtp.client-ip=209.85.166.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-85dac9728cdso50995439f.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 12:36:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744400167; x=1745004967; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v8IJA/pmXvNuiKKrx3r2PtlepPD+xmj2yEuRTpmM5lw=;
-        b=Ju8bl2gP0mV12mt8bsAgo8oJEj7o9WSc/Fc9K713oROoZXtvxVsveKZW3/74T1VkKE
-         QGP0GJEwSMaKwNQY6Bb/kZPm1CQ1w+Vq1Ezt7LYy7SQs12Uvy+lje3GhmjfzALr9FdKe
-         1E0nwTdK0BBE7TEDCCsYjDz6UHL+V00CH/p4HomCZPheBZ6xp+moH5UhiEwGKkIRuMPa
-         m3bjRlbIwGWzCEQi1mIw6T+170Vkew9P5hgBbm+rV7F+9mFEMzupy4pJYOGB2mMxk8Ah
-         WElQHTu4qM2dDVzyitOIgTxa8YTUMLCRpn4Q5E/z40hDlwlWp0/pjuxQ2pzSFvWLF2SF
-         gsaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744400167; x=1745004967;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v8IJA/pmXvNuiKKrx3r2PtlepPD+xmj2yEuRTpmM5lw=;
-        b=sqXKtjJG0cQBJxZqMCSvIbrQsl+HUyuNzk0WDD/hml/9P6AUH60mxVMqEEG5Oyz/yN
-         AAUuLpnb+tU9gbQvhCn7kuKzVYpPZWZrp/JzkRCj2bcv6W/vSnHsXNrQGaf2KtaPb+Cg
-         6C+2Z3QbnJBlZSsa6/a8A1x1fx/ZncYWvfqays9gpXNzyIUyjQI2gvRYYaLY2hw4s56s
-         ugEa3XF1K2P6HG4psX6/ZzULHkN+R9ypFmkhNXVxm8cW7TZMMs1Rt3PepnfK7rtOp/Ki
-         DnEZcBPUvxyNXINNVzSSZMKuLoRcZktI6Ru2lI4Jm18dM8/WBSilPAg3ApR7gW75xJBR
-         n9NA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkE9+3Gn9XsewXJnQKkwFQa3UUcZufXQIe77Bq5CKEbmqQhEcxfSeJPSofzfn/4/G4xMslAYfbOlhB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIhX7hWx6dH5yPsuhPb0AjKEfF78p7Z2MhylGnakxYyzM3RGBz
-	VJTQBEsM/tTfWVsYWRPBEC2uR0qF066zzG7dKhFcNKi05nAaNbbNUMfoVXX2VA8=
-X-Gm-Gg: ASbGnctno61h+rLD7TlHtAxMX8vel+2i69wht+HDJ3BNpj2WNAh65qbsg3EW1d11HEb
-	XM2nLiGTdIkHOwlEMfkkEu0ZSzPxsQyxlERX+T77S5wli0jGX3sVFmvjtd3UU19N+Ttk5Sr1Xoa
-	QTfLbFKTExHkrPIbUVlDU96rotBSD14gM7O0nP6+HfuJYPP/Xngoi4jF+BUVjyTIRTfWWLLPcnL
-	eAZX3Ka/vKTvFoTm45i/HekkDgMqUd4BZsTvBuH7iMeM6G0fDTDMNEgcoErGAh5d/Uevovxf4BR
-	i0BZ+GdovRYyM4tb6pd7vSr6CiI4eR7jxf5YJzZytwNgTMOMMa2TRcTC0FKZrTZHu6QDYaWI379
-	3escWl8YNRa8FUjk=
-X-Google-Smtp-Source: AGHT+IHpEgSqemBHCC96JM+TCmkYLDtVyLUCKWRb0L7zdDTWhisBDSszCwSCFlcKlvql0c4WxZEtlA==
-X-Received: by 2002:a05:6602:3713:b0:855:5e3a:e56b with SMTP id ca18e2360f4ac-8617cc3d525mr485687939f.12.1744400166792;
-        Fri, 11 Apr 2025 12:36:06 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-861654295d5sm107606839f.19.2025.04.11.12.36.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 12:36:06 -0700 (PDT)
-Message-ID: <a3b2d0cc-c055-4cf0-9e03-3ea73041642a@riscstar.com>
-Date: Fri, 11 Apr 2025 14:36:04 -0500
+	s=arc-20240116; t=1744400505; c=relaxed/simple;
+	bh=/wFLNpPmWUKjvlLcHH3mgD6Psd/L7xQwFmxNcgBEH1I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GG9AS1WFUW7Ms2E9y3J6OXuHLZ2tW0YM+d47wfDgRZ/iosOKYTmQ+l6YxvzZCtjMF4+Jc99/fts5uoWxzzlJTTaL/RJHgb7QwbwD6KwY927rjmwewU7duv7C4IbeHQm5MCXNtcFByrW7uJ2s8AD0FMKpVmseli6USyH/YV2hd0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBqvOm9M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6808C4CEE2;
+	Fri, 11 Apr 2025 19:41:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744400502;
+	bh=/wFLNpPmWUKjvlLcHH3mgD6Psd/L7xQwFmxNcgBEH1I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uBqvOm9Ms6X6s6eKJZcgknAjmqo1NfiDC41m1l2Bw62d0RzLP5dBKlw2Gmf61/GHM
+	 FQIYySGY4t8Obirw8UlQAIDkFAMOsFYrGa4vDaerOYukhlh3ckbmjib0GrY65yJ/X7
+	 wdk3BUoE1pfEoKdNoCDvr5xcVjsZ/0ttu6pRnmaZ8GU5CSWeRq30n6JLXXz5ezNsxd
+	 vyiKJCp9uuGqyLeaUubvSHj2BKcVhdPSEs4MIuUQWkJXKYePxc58BBVxQEaEjQW+c8
+	 tTH+etxD8MCj980d7zPPI2LczGlXkkmz15F7BmiWYuvV7WmKjk0bnRyaBahpK5B/gR
+	 tBtK7tsPRv3Fg==
+Date: Fri, 11 Apr 2025 14:41:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: renesas,sh-msiof: Add MSIOF I2S
+ Sound support
+Message-ID: <20250411194140.GA3767706-robh@kernel.org>
+References: <87h62vh5mj.wl-kuninori.morimoto.gx@renesas.com>
+ <87frifh5ls.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] serial: 8250_of: manage bus clock in
- suspend/resume
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
- benjamin.larsson@genexis.eu, bastien.curutchet@bootlin.com,
- andriy.shevchenko@linux.intel.com, u.kleine-koenig@baylibre.com,
- lkundrak@v3.sk, devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250411154419.1379529-1-elder@riscstar.com>
- <20250411154419.1379529-4-elder@riscstar.com>
- <Z_ltyAO-OBzl0adV@surfacebook.localdomain>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <Z_ltyAO-OBzl0adV@surfacebook.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87frifh5ls.wl-kuninori.morimoto.gx@renesas.com>
 
-On 4/11/25 2:30 PM, Andy Shevchenko wrote:
-> Fri, Apr 11, 2025 at 10:44:18AM -0500, Alex Elder kirjoitti:
->> Save the bus clock pointer in the of_serial_info structure, and use
->> that to disable the bus clock on suspend and re-enable it on resume.
+On Fri, Apr 11, 2025 at 01:03:27AM +0000, Kuninori Morimoto wrote:
+> Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
+> both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
+> uses Of-Graph in DT.
 > 
-> ...
+> MSIOF-SPI/I2S are using same DT compatible properties.
+> MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
+> MSIOF-SPI doesn't use  Of-Graph.
 > 
->>   	if (!port->uartclk) {
->> -		struct clk *bus_clk;
->> -
->> -		bus_clk = devm_clk_get_optional_enabled(dev, "bus");
->> -		if (IS_ERR(bus_clk)) {
->> -			ret = dev_err_probe(dev, PTR_ERR(bus_clk), "failed to get bus clock\n");
->> +		info->bus_clk = devm_clk_get_optional_enabled(dev, "bus");
->> +		if (IS_ERR(info->bus_clk)) {
->> +			ret = dev_err_probe(dev, PTR_ERR(info->bus_clk),
->> +					    "failed to get bus clock\n");
->>   			goto err_pmruntime;
->>   		}
->>   
->>   		/* If the bus clock is required, core clock must be named */
->> -		info->clk = devm_clk_get_enabled(dev, bus_clk ? "core" : NULL);
->> +		info->clk = devm_clk_get_enabled(dev, info->bus_clk ? "core" : NULL);
->>   		if (IS_ERR(info->clk)) {
->>   			ret = dev_err_probe(dev, PTR_ERR(info->clk), "failed to get clock\n");
+> Adds schema for MSIOF-I2S (= Sound).
+> Because MSIOF is no longer SPI specific device, remove spi specific schema
 > 
-> While the first patch against this file looks okay now, this one inherits the
-> same problem (seems like not enought thinking about the code representation).
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../bindings/spi/renesas,sh-msiof.yaml        | 23 +++++++++++++------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
 > 
-> Instead of rewritting half of the lines you just introduced (which is also a
-> bad practice), add a one-liner that assigns a field to the local variable.
+> diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> index 49649fc3f95a..9f73120e97c1 100644
+> --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> @@ -4,14 +4,11 @@
+>  $id: http://devicetree.org/schemas/spi/renesas,sh-msiof.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Renesas MSIOF SPI controller
+> +title: Renesas MSIOF SPI / I2S controller
+>  
+>  maintainers:
+>    - Geert Uytterhoeven <geert+renesas@glider.be>
+>  
+> -allOf:
+> -  - $ref: spi-controller.yaml#
 
-So you want me to re-spin this again so that I use the local variable?
+if:
+  properties:
+    $nodename:
+      pattern: '^spi@'
+then:
+  $ref: spi-controller.yaml#
 
-I understand what you're saying based on ease of review, but this
-is a simple patch and the change is very understandable, and the
-code is no more or less clear when using the local variable.
+Or just always use 'spi' node name even if used for i2s.
 
-					-Alex
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -70,6 +67,12 @@ properties:
+>            - description: CPU registers
+>            - description: DMA engine registers
+>  
+> +  "#address-cells":
+> +    enum: [0, 1]
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
 
+Then drop these.
 
+>    interrupts:
+>      maxItems: 1
+>  
+> @@ -146,14 +149,20 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      default: 64
+>  
+> +  # for MSIOF-I2S
+> +  port:
+> +    $ref: ../sound/audio-graph-port.yaml#/definitions/port-base
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      "^endpoint(@[0-9a-f]+)?":
+> +        $ref: audio-graph-port.yaml#/definitions/endpoint-base
+
+The correct way is:
+
+port:
+  $ref: audio-graph-port.yaml#
+  unevaluatedProperties: false
+
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+>    - clocks
+>    - power-domains
+> -  - '#address-cells'
+> -  - '#size-cells'
+>  
+>  if:
+>    not:
+> @@ -173,7 +182,7 @@ examples:
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/power/r8a7791-sysc.h>
+>  
+> -    msiof0: spi@e6e20000 {
+> +    msiof0: serial-engine@e6e20000 {
+>          compatible = "renesas,msiof-r8a7791", "renesas,rcar-gen2-msiof";
+>          reg = <0xe6e20000 0x0064>;
+>          interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+> -- 
+> 2.43.0
 > 
->>   			goto err_pmruntime;
-> 
-> 
-
 
