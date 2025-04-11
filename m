@@ -1,64 +1,82 @@
-Return-Path: <devicetree+bounces-165944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26852A85EAF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:22:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D3DA85EAE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CD917D1BB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:19:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E751B1B8177E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB92B14375C;
-	Fri, 11 Apr 2025 13:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382B61C84BC;
+	Fri, 11 Apr 2025 13:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="YJo9Ya7o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gL/1K5zF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28F902367C7
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C894D19DF61
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 13:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744377458; cv=none; b=Vzlp9DLXc1ASwTC2DtlDqJFeg/gw5lXLR7Ra3qTFXtT/mHaRNbMHByMdiIAuD8D56W3XoguvhkDfJT5Cba4m/kDXsL0sT9nrwivCAOJnLvf5KMFUx1Efyuuw/IF2AZXE7fRDt9vLCC5FmSwBj17KGKJoX32pbQeQj/RZJQXHYEI=
+	t=1744377506; cv=none; b=XO7sCFysyUNZ8UpY4fUSpM0fpxjJ9DY2iT1Zw2aId+AoVaieB8tDK9DcHnYEXJJ3wXj4PO9eTtnB2AZ0aGXzwYfydC+50VXG94hdqeVZtsMDnhqK9vM2WHaUPJ+sdafNNgMUHTjzt81qr25ZN+YwNuDMjIX4IOSAlbCG/9bJlxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744377458; c=relaxed/simple;
-	bh=0vAlQXUS7Qy2jeHeUT8fAxf4F02U5tCBQQ3d2Vwre84=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=hw3fpxgME+Y/ah4+mFDEgXAlTR+mGwTzxWGvmDkKLIA4q/4AXt+gYchrYOV7tCcl6h2FImTZc9LiJzCOqI4DqUIFH2IjHZtjs8KR0kVDQdMwQyCWJ/DikFaD8cYXDfLGrMk54N1pkFQXp3wFQN3OITDUd8NQCwHn0P/lJOA86gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=YJo9Ya7o; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744377455;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aAPMnr15UUC2IJaasw8kvWmrIDi+EshqBG8kRRliicc=;
-	b=YJo9Ya7o4iGMnbJS/u4QF2xMEiCA3szkh3fhJHwqFIShXwbO7fjCmma4x7zGCyfGeweNWS
-	oBOLT9lrr8g5LAMsF/neNkvBmHFaNtfzQdS30Q+yxAyiYRL/IorWubqquqEJAOQCRuqTs8
-	DkBipmx0mVL5CPY1dGAzQE2kLWiNl94=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-104-xSJHeetwPd2MxncaHr6QqA-1; Fri,
- 11 Apr 2025 09:17:32 -0400
-X-MC-Unique: xSJHeetwPd2MxncaHr6QqA-1
-X-Mimecast-MFC-AGG-ID: xSJHeetwPd2MxncaHr6QqA_1744377442
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 863C81800EC5;
-	Fri, 11 Apr 2025 13:17:21 +0000 (UTC)
-Received: from [10.45.225.124] (unknown [10.45.225.124])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 55E621828ABC;
-	Fri, 11 Apr 2025 13:17:16 +0000 (UTC)
-Message-ID: <46ff3480-caca-4e2c-9382-2897c611758a@redhat.com>
-Date: Fri, 11 Apr 2025 15:17:14 +0200
+	s=arc-20240116; t=1744377506; c=relaxed/simple;
+	bh=BUjqMSGXFNAQCtSnMnZLc7ifXcyak1+IAzaJHHRD/+k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=NE4lp7UyAsS4VDd5QBijOUjeSNoLWSZzBCE/nl+Y0dJv4tYhJg9V7wXJj4EXYuAIuNyARZ6GdERw5NwhW9nF6qRST9hlOfZe/fftA9vcrIcok7uZUv7aash/DOswSvGEMcz5mFqMl5whuLTmVMDFq84toHW2qFESo+6ENTTj6i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gL/1K5zF; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c266c2dd5so1615244f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 06:18:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744377502; x=1744982302; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bAgS7d7mQW64Ugh4mepLGUIYDIVFQL72jfWiNoLCjqQ=;
+        b=gL/1K5zFWzePesNp68srbCiau2LLI4vcxizrPT4LXwECcJhsBI/QUwILU3uPxdb9Yc
+         Kla6HWVW4Z5xXW/0XllmLX0I2zThkH1+oU7AZh0I1FIjlNJFBAl1gKsuy4+AWCck8gg8
+         VdQCdAIj7uyAvV1WBj9J4/g+thTHEZnWYWWoElUu08XNTZx22lb8Sg+/FzqDS3RNdr9y
+         KQVJ8ORUHtY0FB8n0slT2v5tfX3HIe7S3ZyJrX3JFiZ2pi47CM8o3/YQs2oHF5FNarrY
+         TxppeqL2dRGtHtYo8ReQ0B98/SKt1tBFoWdIQc/e5LG6ItXFVf99jxE1QAKVTrvhlkHC
+         IUIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744377502; x=1744982302;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bAgS7d7mQW64Ugh4mepLGUIYDIVFQL72jfWiNoLCjqQ=;
+        b=udNN672s8YoSgUy7y7ComE7RwtGuQDBQUqyGRwBI4vYMHiy9UzK89UizlLmbdRqrJ4
+         Syy7EcGh4syz0pzIS0MSqnd30SVsvqdyU78rYL/lebh1uVbZWef9lMkE34sRJXs/dKmj
+         z7sPhJw/5H232W4zmRDPea/wFzUIdqSjKMl2OjVjIUiX/dySsj1XAWjHiWBU411/DdYU
+         q4gNSea086nKkK2aGAeNfutrinI1EwGoC35Nc/1OfMoKyKz3wiTnJTb9RhKI4rnrfKLr
+         BxKhcx7mROnWG3hCVcoHlKSWojlguO15ot6QH1mqiPvaQslNobgW9nyMIN7/lU9jVQyq
+         Gpyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJdHgDe9tcOAfImIIIeAukehV6UAdifLlEaq8Ecg5iKg+rq49DXyi0M7rvyvz19BLeH9+ciJfOFH0T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXYH5hOwJHvBlCEU8AIXsVI/7Kj/x1wcqMLL5X5yjO+ahk1Gq0
+	bdpmm3HAl/4R9k96poXnfYmFz5DQeo4WcKRPEKlSv8ksCzs3gErJ34AhQeURFRo=
+X-Gm-Gg: ASbGncv2M54wFuTow8LyU2v5jGHxFdiOTP5e+QX9dVzjcEnJ5EdqLeH1BAGpgpdHu86
+	SEAj0kikQnoh2FSqHWPlO8znpiUUnTXta4c4uRZ4XNoZLiGTwdkUwnTiD9PnC353hRULPgaAS1q
+	3U8c3j9GOrLxZ2E49lz919BXVezwU4+KW04U/TX4biaJrBXo5ghqFsG3fsj9dowdGNAVp1USFXu
+	QM89cvX+F8b6/wSPm5Y2+KAFjhDy2uqeY4IBgUIjlizQEKsC5JAA2w0n9hEmZ6kQqn6h+RbJScN
+	pKvlhqE4+WoKKV7wlWIACacN/blqDdA+idaR2k0pCRocThfqe7H03CJJw5Rux8/uIO82OORwHE1
+	D8TyrqunCAewGy7s0uQ==
+X-Google-Smtp-Source: AGHT+IHTemPYNTUynUWh83jsKhT4widmDCcaayD2CGUwpmZyqG/QggCO0fOH8ooS57JxWfPnFAgDDA==
+X-Received: by 2002:a05:6000:2507:b0:390:e311:a8c7 with SMTP id ffacd0b85a97d-39ea51ecbecmr2515462f8f.5.1744377501994;
+        Fri, 11 Apr 2025 06:18:21 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:f77b:949e:1d61:69a8? ([2a01:e0a:3d9:2080:f77b:949e:1d61:69a8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae978023sm2004192f8f.47.2025.04.11.06.18.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 06:18:21 -0700 (PDT)
+Message-ID: <9bc74360-a74c-47f4-b8ad-3153bf47ea06@linaro.org>
+Date: Fri, 11 Apr 2025 15:18:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,66 +84,299 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
- defs
-From: Ivan Vecera <ivecera@redhat.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC v5 1/8] media: qcom: iris: move sm8250 to gen1 catalog
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-8-ivecera@redhat.com>
- <CAHp75Ve4LO5rB3HLDV5XXMd4SihOQbPZBEZC8i1VY_Nz0E9tig@mail.gmail.com>
- <b7e223bd-d43b-4cdd-9d48-4a1f80a482e8@redhat.com>
-Content-Language: en-US
-In-Reply-To: <b7e223bd-d43b-4cdd-9d48-4a1f80a482e8@redhat.com>
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
+ <VyOGKudgZHGHSwAUc_c_syksKTaFJrgQwY5885fB812reMOnISG0ito3a9NquHCtVt9W2gENP3ioyZ7e0ne_Fw==@protonmail.internalid>
+ <20250410-topic-sm8x50-upstream-iris-catalog-v5-1-44a431574c25@linaro.org>
+ <a7f41eaa-74d0-42f6-ba80-afa62a521b7e@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <a7f41eaa-74d0-42f6-ba80-afa62a521b7e@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-On 11. 04. 25 1:19 odp., Ivan Vecera wrote:
-> The range for regmap 1: (registers 0x000-0x4FF)
-> regmap_range_cfg {
->      .range_min = 0,
->      .range_max = 10 * 128 - 1, /* 10 pages, 128 registers each */
->      .selector_reg = 0x7f,      /* page selector at each page */
->      .selector_shift = 0,       /* no shift in page selector */
->      .selector_mask = GENMASK(3, 0),    /* 4 bits for page sel */
->      .window_start = 0,         /* 128 regs from 0x00-0x7f */
->      .window_len = 128,
-> };
+On 11/04/2025 13:50, Bryan O'Donoghue wrote:
+> On 10/04/2025 17:30, Neil Armstrong wrote:
+>> Re-organize the platform support core into a gen1 catalog C file
+>> declaring common platform structure and include platform headers
+>> containing platform specific entries and iris_platform_data
+>> structure.
+>>
+>> The goal is to share most of the structure while having
+>> clear and separate per-SoC catalog files.
+>>
+>> The organization is based on the current drm/msm dpu1 catalog
+>> entries.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/media/platform/qcom/iris/Makefile          |  2 +-
+>>   .../media/platform/qcom/iris/iris_catalog_gen1.c   | 83 ++++++++++++++++++++++
+>>   ...ris_platform_sm8250.c => iris_catalog_sm8250.h} | 80 ++-------------------
+>>   3 files changed, 89 insertions(+), 76 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+>> index 35390534534e93f4617c1036a05ca0921567ba1d..7e7bc5ca81e0f0119846ccaff7f79fd17b8298ca 100644
+>> --- a/drivers/media/platform/qcom/iris/Makefile
+>> +++ b/drivers/media/platform/qcom/iris/Makefile
+>> @@ -25,7 +25,7 @@ qcom-iris-objs += \
+>>                iris_vpu_common.o \
+>>
+>>   ifeq ($(CONFIG_VIDEO_QCOM_VENUS),)
+>> -qcom-iris-objs += iris_platform_sm8250.o
+>> +qcom-iris-objs += iris_catalog_gen1.o
+>>   endif
+>>
+>>   obj-$(CONFIG_VIDEO_QCOM_IRIS) += qcom-iris.o
+>> diff --git a/drivers/media/platform/qcom/iris/iris_catalog_gen1.c b/drivers/media/platform/qcom/iris/iris_catalog_gen1.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..c4590f8996431eb5103d45f01c6bee2b38b848c2
+>> --- /dev/null
+>> +++ b/drivers/media/platform/qcom/iris/iris_catalog_gen1.c
+>> @@ -0,0 +1,83 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include "iris_core.h"
+>> +#include "iris_ctrls.h"
+>> +#include "iris_platform_common.h"
+>> +#include "iris_resources.h"
+>> +#include "iris_hfi_gen1.h"
+>> +#include "iris_hfi_gen1_defines.h"
+>> +#include "iris_vpu_common.h"
 > 
-> The range for regmap 2: (registers 0x500-0x77F)
-> regmap_range_cfg {
->      .range_min = 10 * 128,
->      .range_max = 15 * 128 - 1, /* 5 pages, 128 registers each */
->      .selector_reg = 0x7f,      /* page selector at each page */
->      .selector_shift = 0,       /* no shift in page selector */
->      .selector_mask = GENMASK(3, 0),    /* 4 bits for page sel */
->      .window_start = 0,         /* 128 regs from 0x00-0x7f */
->      .window_len = 128,
-> };
+> Any reason why these aren't alphabetised ?
+
+Copied as-is, I guess the order can be important, especially the iris_core must be first.
+
+Neil
+
 > 
-> Is it now OK?
-
-No this is not good... I cannot use 2 ranges.
-
-This is not safe... if the caller use regmap 2 to read/write something 
-below 0x500 (by mistake), no mapping is applied and value is directly 
-used as register number that's wrong :-(.
-
-Should I use rather single mapping range to cover all pages and ensure 
-at driver level that regmap 2 is not used for regs < 0x500?
--or-
-what would be the best approach?
-
-I.
+> Please do so unless there's some technical reason to have in this order.
+> 
+>> +
+>> +/* Common SM8250 & variants */
+>> +static struct platform_inst_fw_cap inst_fw_cap_sm8250[] = {
+>> +    {
+>> +        .cap_id = PIPE,
+>> +        .min = PIPE_1,
+>> +        .max = PIPE_4,
+>> +        .step_or_mask = 1,
+>> +        .value = PIPE_4,
+>> +        .hfi_id = HFI_PROPERTY_PARAM_WORK_ROUTE,
+>> +        .set = iris_set_pipe,
+>> +    },
+>> +    {
+>> +        .cap_id = STAGE,
+>> +        .min = STAGE_1,
+>> +        .max = STAGE_2,
+>> +        .step_or_mask = 1,
+>> +        .value = STAGE_2,
+>> +        .hfi_id = HFI_PROPERTY_PARAM_WORK_MODE,
+>> +        .set = iris_set_stage,
+>> +    },
+>> +    {
+>> +        .cap_id = DEBLOCK,
+>> +        .min = 0,
+>> +        .max = 1,
+>> +        .step_or_mask = 1,
+>> +        .value = 0,
+>> +        .hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
+>> +        .set = iris_set_u32,
+>> +    },
+>> +};
+>> +
+>> +static struct platform_inst_caps platform_inst_cap_sm8250 = {
+>> +    .min_frame_width = 128,
+>> +    .max_frame_width = 8192,
+>> +    .min_frame_height = 128,
+>> +    .max_frame_height = 8192,
+>> +    .max_mbpf = 138240,
+>> +    .mb_cycles_vsp = 25,
+>> +    .mb_cycles_vpp = 200,
+>> +};
+>> +
+>> +static struct tz_cp_config tz_cp_config_sm8250 = {
+>> +    .cp_start = 0,
+>> +    .cp_size = 0x25800000,
+>> +    .cp_nonpixel_start = 0x01000000,
+>> +    .cp_nonpixel_size = 0x24800000,
+>> +};
+>> +
+>> +static const u32 sm8250_vdec_input_config_param_default[] = {
+>> +    HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE,
+>> +    HFI_PROPERTY_PARAM_UNCOMPRESSED_FORMAT_SELECT,
+>> +    HFI_PROPERTY_PARAM_UNCOMPRESSED_PLANE_ACTUAL_CONSTRAINTS_INFO,
+>> +    HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL,
+>> +    HFI_PROPERTY_PARAM_VDEC_MULTI_STREAM,
+>> +    HFI_PROPERTY_PARAM_FRAME_SIZE,
+>> +    HFI_PROPERTY_PARAM_BUFFER_SIZE_ACTUAL,
+>> +    HFI_PROPERTY_PARAM_BUFFER_ALLOC_MODE,
+>> +};
+>> +
+>> +static const u32 sm8250_dec_ip_int_buf_tbl[] = {
+>> +    BUF_BIN,
+>> +    BUF_SCRATCH_1,
+>> +};
+>> +
+>> +static const u32 sm8250_dec_op_int_buf_tbl[] = {
+>> +    BUF_DPB,
+>> +};
+>> +
+>> +/* platforms catalogs */
+>> +#include "iris_catalog_sm8250.h"
+>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c b/drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
+>> similarity index 59%
+>> rename from drivers/media/platform/qcom/iris/iris_platform_sm8250.c
+>> rename to drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
+>> index 5c86fd7b7b6fd36dc2d57a1705d915308b4c0f92..4d2df669b3e1df2ef2b0d2f88fc5f309b27546db 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_catalog_sm8250.h
+>> @@ -1,55 +1,10 @@
+>> -// SPDX-License-Identifier: GPL-2.0-only
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>>   /*
+>>    * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>
+>> -#include "iris_core.h"
+>> -#include "iris_ctrls.h"
+>> -#include "iris_platform_common.h"
+>> -#include "iris_resources.h"
+>> -#include "iris_hfi_gen1.h"
+>> -#include "iris_hfi_gen1_defines.h"
+>> -#include "iris_vpu_common.h"
+>> -
+>> -static struct platform_inst_fw_cap inst_fw_cap_sm8250[] = {
+>> -    {
+>> -        .cap_id = PIPE,
+>> -        .min = PIPE_1,
+>> -        .max = PIPE_4,
+>> -        .step_or_mask = 1,
+>> -        .value = PIPE_4,
+>> -        .hfi_id = HFI_PROPERTY_PARAM_WORK_ROUTE,
+>> -        .set = iris_set_pipe,
+>> -    },
+>> -    {
+>> -        .cap_id = STAGE,
+>> -        .min = STAGE_1,
+>> -        .max = STAGE_2,
+>> -        .step_or_mask = 1,
+>> -        .value = STAGE_2,
+>> -        .hfi_id = HFI_PROPERTY_PARAM_WORK_MODE,
+>> -        .set = iris_set_stage,
+>> -    },
+>> -    {
+>> -        .cap_id = DEBLOCK,
+>> -        .min = 0,
+>> -        .max = 1,
+>> -        .step_or_mask = 1,
+>> -        .value = 0,
+>> -        .hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
+>> -        .set = iris_set_u32,
+>> -    },
+>> -};
+>> -
+>> -static struct platform_inst_caps platform_inst_cap_sm8250 = {
+>> -    .min_frame_width = 128,
+>> -    .max_frame_width = 8192,
+>> -    .min_frame_height = 128,
+>> -    .max_frame_height = 8192,
+>> -    .max_mbpf = 138240,
+>> -    .mb_cycles_vsp = 25,
+>> -    .mb_cycles_vpp = 200,
+>> -};
+>> +#ifndef _IRIS_CATALOG_SM8250_H
+>> +#define _IRIS_CATALOG_SM8250_H
+> 
+> __IRIS_CATALOG_SM8250_H__ as with other header guards.
+> 
+>>
+>>   static void iris_set_sm8250_preset_registers(struct iris_core *core)
+>>   {
+>> @@ -80,33 +35,6 @@ static const struct platform_clk_data sm8250_clk_table[] = {
+>>       {IRIS_HW_CLK,   "vcodec0_core" },
+>>   };
+>>
+>> -static struct tz_cp_config tz_cp_config_sm8250 = {
+>> -    .cp_start = 0,
+>> -    .cp_size = 0x25800000,
+>> -    .cp_nonpixel_start = 0x01000000,
+>> -    .cp_nonpixel_size = 0x24800000,
+>> -};
+>> -
+>> -static const u32 sm8250_vdec_input_config_param_default[] = {
+>> -    HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE,
+>> -    HFI_PROPERTY_PARAM_UNCOMPRESSED_FORMAT_SELECT,
+>> -    HFI_PROPERTY_PARAM_UNCOMPRESSED_PLANE_ACTUAL_CONSTRAINTS_INFO,
+>> -    HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL,
+>> -    HFI_PROPERTY_PARAM_VDEC_MULTI_STREAM,
+>> -    HFI_PROPERTY_PARAM_FRAME_SIZE,
+>> -    HFI_PROPERTY_PARAM_BUFFER_SIZE_ACTUAL,
+>> -    HFI_PROPERTY_PARAM_BUFFER_ALLOC_MODE,
+>> -};
+>> -
+>> -static const u32 sm8250_dec_ip_int_buf_tbl[] = {
+>> -    BUF_BIN,
+>> -    BUF_SCRATCH_1,
+>> -};
+>> -
+>> -static const u32 sm8250_dec_op_int_buf_tbl[] = {
+>> -    BUF_DPB,
+>> -};
+>> -
+>>   struct iris_platform_data sm8250_data = {
+>>       .get_instance = iris_hfi_gen1_get_instance,
+>>       .init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
+>> @@ -147,3 +75,5 @@ struct iris_platform_data sm8250_data = {
+>>       .dec_op_int_buf_tbl = sm8250_dec_op_int_buf_tbl,
+>>       .dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_op_int_buf_tbl),
+>>   };
+>> +
+>> +#endif
+>>
+>> -- 
+>> 2.34.1
+>>
+>>
+> Once done.
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
