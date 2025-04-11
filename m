@@ -1,191 +1,246 @@
-Return-Path: <devicetree+bounces-165763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747F9A85607
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:01:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14742A8560E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 825C28A16F6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:01:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEE1A4C05DF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC78293B66;
-	Fri, 11 Apr 2025 08:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF0C293440;
+	Fri, 11 Apr 2025 08:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hWHJGG7M"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BFd7qLd4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374AA28EA7A
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9668F2036FD
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744358490; cv=none; b=g0YsWuW1EqMaGapMxfvuCLlM0Pfbtlw4LplAACvcfvqHkh06LJoPYLiSjBB+DUC74sC7h0vQhdmvpXYwi2EnLOALeONcWSD+9w7H7IcGX3Ll78zoesFsqY/8MOhdu2kzDQ6ZMLyFuRbrdfUye06tPknw5XfpwUDuqbXRqSjGpgc=
+	t=1744358547; cv=none; b=dTZkVaccrsnY6K1tmYkTqHmZUNDXShLoyPULCx0moscepFMJYPsP8RVMCT/M7cdSaXPMdfAImLRMHY1oe8xS92XAcH1CMn9FVcF+dMnikARUKzqWH+f3PodvnST9W7a27PMTnbhBI3+d8ccrQzslvlJVaNZWsAoXAPALs/XEhE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744358490; c=relaxed/simple;
-	bh=7HpYJ2qu2P7Z6iGhZXhWC2kKKmcV6NItufe2Jaqo0zk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AkWZ9zV1qkyK3QolXDxjijc6q9pgyaMjkBfMsu8KDvFvLZjLZnWkNwpZZDsqgvTZ/bJAVk7EzSVhzK9KkmN8KF91VMf2imnxEyJT8tKf7CO/T+noMoSEe9dfDwadKB7UNcVeQI/67rMCqIgR40t5/OR5jvPzodzX6E92bUhto8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hWHJGG7M; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744358487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kuoOwVeCLC2BNxuJu8PYjCz8x0OZU31drELGm05wlM4=;
-	b=hWHJGG7MNDjzkDJhftdHuqs+LVy+xW83TClsQyNpC43QOZ/7ct0f58qNYlH93bT7EgZRB0
-	YlOS346EJcKRqcAloL97qMKpobekTyclAyDdk3LuiRG1PrkjyphUfd/oGmayZWz+p4IAVJ
-	ULJ40/XIPkq7821c7czC0bIpwtbHXZE=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-133-MKaejLBYOtiCJIwWsZx4Dw-1; Fri,
- 11 Apr 2025 04:01:20 -0400
-X-MC-Unique: MKaejLBYOtiCJIwWsZx4Dw-1
-X-Mimecast-MFC-AGG-ID: MKaejLBYOtiCJIwWsZx4Dw_1744358478
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 79C7A195606B;
-	Fri, 11 Apr 2025 08:01:18 +0000 (UTC)
-Received: from [10.45.225.124] (unknown [10.45.225.124])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9668E1809BF5;
-	Fri, 11 Apr 2025 08:01:13 +0000 (UTC)
-Message-ID: <c68dd22d-f9e3-43d0-8090-e7f53265ef89@redhat.com>
-Date: Fri, 11 Apr 2025 10:01:08 +0200
+	s=arc-20240116; t=1744358547; c=relaxed/simple;
+	bh=KjBbOMBABp2wqkZDnNZYp6saAXR2kBuwY0iWJoMnE/o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IqaEiTQGVTh8tIXf4AlaNxlg8JStLxhp/6hc9tiGjbN/5SeklViF1Ejkz+TMZvegWZiX72Hx0zkn0OptnX1+aqbg/PbZ6EDtDI07RKo2JWBEWMwh2aL73WsDWRGyd1Moq+TgEoJNNO0Ke/1ly69vhnRXpE3O8zaxb7joizLUgUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BFd7qLd4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B5fUkW016413
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:02:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6zW7zReIOLTWHVfVBD0ooKWKkNzcgrHf1PMI2j0Nhy4=; b=BFd7qLd4liAUmqZI
+	JaflTA5vFsg6Bwphs/fsA0n+pr/vX4ZrsG6u0aLan4qhvd90PH2mvbEf/aCloBmi
+	Tva9Wspi0G0BCSwyHX+G3sqdo6/POygjoSf0cka4lzURJ9nSRV023J0F5kR3ITIv
+	8OgQiEgEmljFs2iOa6DPYt2SCxjwlBQUtbpAgzaz9Hl7yT8enG0Zt55BG9V8eH8g
+	phA+KGzh5CEAXlREY45cs3b9bKsftu9hVhyi+pmiCU+duRf0o71f6Xbj+7803Efi
+	biaatO8cKOY7DmIZVcWZ+S5RrYw0NMAVPLF6TquOrZ9X/vmOgcb0P2ergHZT44HL
+	MHOv6Q==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twc1sfyk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:02:24 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c544d2c34fso252245185a.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:02:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744358543; x=1744963343;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6zW7zReIOLTWHVfVBD0ooKWKkNzcgrHf1PMI2j0Nhy4=;
+        b=QBO20YF6YTQ1g4RNxeIiZHRtbrQCrQlxMtNHKZEMhK0D3WQYbH2AX+k77iLmDYUAXE
+         y6ul5Lpa5FHRzEdiG38S/0k71V+nLRcjTocme/WglDLwePfTBe2FUacyH76xmqVwxTBU
+         yJ1L6TMdi1U1nuPr/dHbV/sDpMql4clEZryuVMGrJwUeyEBedya6xZBURYKwhrS2rat1
+         veNq/1kpKGZc1UIxD/GQCBIXjI2R7OF7Yc5xEfWkaZJnprXzYHEkwsaLpFRJ07FS9JJV
+         KAv0r3kXAwrVszMgI+5tmo6kyeGvM9VO1ARcM4vkA0eIkp4tCBU1d5i7iLoPR/PJLMSz
+         H3DQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4bOVCg2ySTE/IVw2V3oM7sn2c6NdmERSWs77zNB8zsK7P00V/+jH1HkHL9D5dUopwkfFZx8PPiv/t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk3tBfK3D21Sj3g/KuymWRyaaBiKcYbSgRQEY1aedfudADXjZ0
+	AGFnrggzQGYmynKG7ZiJb9BbDVfgBQoYPPmwpYjyHApDFryLH3A1u0mkdnCklmDcxgeuVDkRMmq
+	jvsAFENHDPW6t11Iz/ekP+Rt/hkoQzOJci/47AadM3fGnEYjEnVRrrkGe9WZrp5Y0+YVAuTlktk
+	+c6Wl6pgLjvzY0pVV93MrTdyEV992yYrwAeOc=
+X-Gm-Gg: ASbGnct3forWpQ/APAT2NFQRdn5zM0646JaH/jB0sT0Kdf0JJfb5lyN1yzMlZs0NcKx
+	0ESUbvySuTcnvRxvdFf+6jSYz944Imw3e1TXIcS6Q6v8dwEcII7nFhtVQU+dFattAdmFg5Q==
+X-Received: by 2002:a05:620a:3729:b0:7c5:7a1f:4d89 with SMTP id af79cd13be357-7c7af20be07mr315077085a.54.1744358543299;
+        Fri, 11 Apr 2025 01:02:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE2IvqhPyxg7XDb4OwXoG0lMLe2viSIDhd8QRZ1holut7dtNKSKO0ppxxyVfArxRGLxZdZc6YXX3Mm8YnXZor8=
+X-Received: by 2002:a05:620a:3729:b0:7c5:7a1f:4d89 with SMTP id
+ af79cd13be357-7c7af20be07mr315073685a.54.1744358542968; Fri, 11 Apr 2025
+ 01:02:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
-To: Lee Jones <lee@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Kees Cook <kees@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250411072616.GU372032@google.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250411072616.GU372032@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+References: <20250403102256.101217-1-loic.poulain@oss.qualcomm.com>
+ <0YH8BNtmMcywwRXI3xHiLyB_zFED-XbjzCyyI1Vc4184BPadVJ-GWj23lpEwaXEHqDPiMiraMsWlOd1qA_hiog==@protonmail.internalid>
+ <20250403102256.101217-2-loic.poulain@oss.qualcomm.com> <1b649ead-f6d6-4fb0-b5ac-02cf2dba92ca@linaro.org>
+ <CAFEp6-2kamY6m_vzE0gMi-QKCRYf42RjMd7f2ud6bte=aL9mRA@mail.gmail.com> <170e4c9a-bdf4-44f7-9dd1-9eed31fa27db@oss.qualcomm.com>
+In-Reply-To: <170e4c9a-bdf4-44f7-9dd1-9eed31fa27db@oss.qualcomm.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Fri, 11 Apr 2025 10:02:12 +0200
+X-Gm-Features: ATxdqUHDyn-FwdIrMxmcERFKIVr7FD-HzoyyPETqFVlIlXwN4wD2v6Xbi9zA264
+Message-ID: <CAFEp6-2jiq+8wOz1WzWR_8R3t4GoVR7COv3iVV-mJkhZxcRYAg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcm2290: Add CCI node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, andersson@kernel.org,
+        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: EcqsWnDKKuK8OrHrMLPIHvkuU1yG4Dj3
+X-Authority-Analysis: v=2.4 cv=KtdN2XWN c=1 sm=1 tr=0 ts=67f8cc90 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=1sjH1GyyAEOjfuzXYiMA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: EcqsWnDKKuK8OrHrMLPIHvkuU1yG4Dj3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-11_02,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504110049
 
-On 11. 04. 25 9:26 dop., Lee Jones wrote:
-> On Wed, 09 Apr 2025, Ivan Vecera wrote:
-> 
->> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
->> provides DPLL and PTP functionality. This series bring first part
->> that adds the common MFD driver that provides an access to the bus
->> that can be either I2C or SPI.
->>
->> The next series will bring the DPLL driver that will covers DPLL
->> functionality. And another ones will bring PTP driver and flashing
->> capability via devlink.
->>
->> Testing was done by myself and by Prathosh Satish on Microchip EDS2
->> development board with ZL30732 DPLL chip connected over I2C bus.
->>
->> Patch breakdown
->> ===============
->> Patch 1 - Common DT schema for DPLL device and pin
->> Patch 3 - Basic support for I2C, SPI and regmap
->> Patch 4 - Devlink registration
->> Patches 5-6 - Helpers for accessing device registers
->> Patches 7-8 - Component versions reporting via devlink dev info
->> Patches 9-10 - Helpers for accessing register mailboxes
->> Patch 11 - Clock ID generation for DPLL driver
->> Patch 12 - Export strnchrnul function for modules
->>             (used by next patch)
->> Patch 13 - Support for MFG config initialization file
->> Patch 14 - Fetch invariant register values used by DPLL and later by
->>             PTP driver
->>
->> Ivan Vecera (14):
->>    dt-bindings: dpll: Add device tree bindings for DPLL device and pin
->>    dt-bindings: dpll: Add support for Microchip Azurite chip family
->>    mfd: Add Microchip ZL3073x support
->>    mfd: zl3073x: Register itself as devlink device
->>    mfd: zl3073x: Add register access helpers
->>    mfd: zl3073x: Add macros for device registers access
->>    mfd: zl3073x: Add components versions register defs
->>    mfd: zl3073x: Implement devlink device info
->>    mfd: zl3073x: Add macro to wait for register value bits to be cleared
->>    mfd: zl3073x: Add functions to work with register mailboxes
->>    mfd: zl3073x: Add clock_id field
->>    lib: Allow modules to use strnchrnul
->>    mfd: zl3073x: Load mfg file into HW if it is present
->>    mfd: zl3073x: Fetch invariants during probe
->>
->>   .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
->>   .../devicetree/bindings/dpll/dpll-pin.yaml    |  44 +
->>   .../bindings/dpll/microchip,zl3073x-i2c.yaml  |  74 ++
->>   .../bindings/dpll/microchip,zl3073x-spi.yaml  |  77 ++
->>   MAINTAINERS                                   |  11 +
->>   drivers/mfd/Kconfig                           |  32 +
->>   drivers/mfd/Makefile                          |   5 +
->>   drivers/mfd/zl3073x-core.c                    | 883 ++++++++++++++++++
->>   drivers/mfd/zl3073x-i2c.c                     |  59 ++
->>   drivers/mfd/zl3073x-spi.c                     |  59 ++
->>   drivers/mfd/zl3073x.h                         |  14 +
->>   include/linux/mfd/zl3073x.h                   | 363 +++++++
->>   lib/string.c                                  |   1 +
->>   13 files changed, 1698 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
->>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->>   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-i2c.yaml
->>   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl3073x-spi.yaml
->>   create mode 100644 drivers/mfd/zl3073x-core.c
->>   create mode 100644 drivers/mfd/zl3073x-i2c.c
->>   create mode 100644 drivers/mfd/zl3073x-spi.c
->>   create mode 100644 drivers/mfd/zl3073x.h
->>   create mode 100644 include/linux/mfd/zl3073x.h
-> 
-> Not only are all of the added abstractions and ugly MACROs hard to read
-> and troublesome to maintain, they're also completely unnecessary at this
-> (driver) level.  Nicely authored, easy to read / maintain code wins over
-> clever code 95% of the time.  Exporting functions to pass around
-> pointers to private structures is also a non-starter.
+Hi Konrad, Bryan,
 
-If you mean regmap_config exported to zl3073x-i2c/spi modules then these 
-three modules could be squashed together into single module.
+On Wed, Apr 9, 2025 at 8:39=E2=80=AFPM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 4/7/25 4:56 PM, Loic Poulain wrote:
+> > Hi Bryan,
+> >
+> >
+> > On Fri, Apr 4, 2025 at 2:10=E2=80=AFPM Bryan O'Donoghue
+> > <bryan.odonoghue@linaro.org> wrote:
+> >>
+> >> On 03/04/2025 11:22, Loic Poulain wrote:
+> >>> Add Camera Control Interface (CCI), supporting two I2C masters.
+> >>>
+> >>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> >>> ---
+> >>>   v2: Reorder commits; Update dts properties order and style
+> >>>   v3: No change for this patch
+> >>>
+> >>>   arch/arm64/boot/dts/qcom/qcm2290.dtsi | 50 ++++++++++++++++++++++++=
++++
+> >>>   1 file changed, 50 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/=
+dts/qcom/qcm2290.dtsi
+> >>> index 7fb5de92bc4c..43fcb4f40a8c 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+> >>> @@ -557,6 +557,20 @@ qup_uart4_default: qup-uart4-default-state {
+> >>>                               bias-disable;
+> >>>                       };
+> >>>
+> >>> +                     cci0_default: cci0-default-state {
+> >>> +                             pins =3D "gpio22", "gpio23";
+> >>> +                             function =3D "cci_i2c";
+> >>> +                             drive-strength =3D <2>;
+> >>> +                             bias-disable;
+> >>> +                     };
+> >>> +
+> >>> +                     cci1_default: cci1-default-state {
+> >>> +                             pins =3D "gpio29", "gpio30";
+> >>> +                             function =3D "cci_i2c";
+> >>> +                             drive-strength =3D <2>;
+> >>> +                             bias-disable;
+> >>> +                     };
+> >>> +
+> >>>                       sdc1_state_on: sdc1-on-state {
+> >>>                               clk-pins {
+> >>>                                       pins =3D "sdc1_clk";
+> >>> @@ -1603,6 +1617,42 @@ adreno_smmu: iommu@59a0000 {
+> >>>                       #iommu-cells =3D <2>;
+> >>>               };
+> >>>
+> >>> +             cci: cci@5c1b000 {
+> >>> +                     compatible =3D "qcom,qcm2290-cci", "qcom,msm899=
+6-cci";
+> >>> +                     reg =3D <0x0 0x5c1b000 0x0 0x1000>;
+> >>> +
+> >>> +                     interrupts =3D <GIC_SPI 206 IRQ_TYPE_EDGE_RISIN=
+G>;
+> >>> +
+> >>> +                     clocks =3D <&gcc GCC_CAMSS_TOP_AHB_CLK>, <&gcc =
+GCC_CAMSS_CCI_0_CLK>;
+> >>> +                     clock-names =3D "camss_top_ahb", "cci";
+> >>
+> >> do you not need an axi clock GCC_CAMSS_AXI_CLK ?
+> >
+> > AFAIU AXI is not involved for CCI.
+>
+> I'm not able to infer that from statically provided infromation, try
+> forcefully shutting the clock down (both the branch and _SRC) and
+> poking at the CCI
 
-> After looking at the code, there doesn't appear to be any inclusion of
-> the MFD core header.  How can this be an MFD if you do not use the MFD
-> API?  MFD is not a dumping area for common code and call-backs.  It's a
-> subsystem used to neatly separate out and share resources between
-> functionality that just happens to share the same hardware chip.
+CCI is a 'slow' device, both control and data flow go through register
+R/W (ahb/cnoc).
+Below is an experiment showing CAMSS AXI can be off during CCI operation.
 
-You are right, the v2 series was spliced into 2 separate series as the 
-bot warns about too big (>15 commits) series. The real MFD API usage is 
-present in the second one (or in patch 14 of the v1 patch-set) when MFD 
-cells are created for DPLL functional blocks.
+```
+$ cat /sys/kernel/debug/clk/clk_summary | grep -e camss_axi -e camss_cci
+       gcc_camss_axi_clk_src         0       0        0
+19200000    0          0     50000      ?         deviceless
+          gcc_camss_axi_clk          0       0        0
+19200000    0          0     50000      N            5c52000.camss
+              bus
+             gcc_camss_cci_clk_src   0       0        0
+37500000    0          0     50000      ?               deviceless
+                gcc_camss_cci_0_clk  0       0        0
+37500000    0          0     50000      N                  cci@5c1b000
 
-And yes, I chose the MFD for the common part because DPLL and PTP 
-functions share the same registers concurrently. And MFD could be the 
-right place for exposing these shared resources and providing 
-synchronized access to them. The device has also GPIO functionality that 
-could be potentially covered in the future.
+$ echo on > /sys/bus/platform/drivers/i2c-qcom-cci/5c1b000.cci/power/contro=
+l
 
-Or would you prefer to implement all these functional block in one 
-monolithic driver? Would it be better for maintenance?
+$ cat /sys/kernel/debug/clk/clk_summary | grep -e camss_axi -e camss_cci
+       gcc_camss_axi_clk_src         0       0        0
+19200000    0          0     50000      ?         deviceless
+          gcc_camss_axi_clk          0       0        0
+19200000    0          0     50000      N            5c52000.camss
+              bus
+             gcc_camss_cci_clk_src   1       1        0
+37500000    0          0     50000      ?               deviceless
+                gcc_camss_cci_0_clk  1       1        0
+37500000    0          0     50000      Y                  cci@5c1b000
 
-Thanks,
-Ivan
+$ cat /sys/class/i2c-dev/i2c-2/name
+Qualcomm-CCI
 
+$ i2cdetect -y -r -a 2
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: UU -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+# Dump GCC CAMSS AXI clock registers
+$ dd if=3D/sys/kernel/debug/regmap/1400000.clock-controller/registers
+count=3D8 bs=3D16 skip=3D90123
+5802c: 80000000 # CAMSS_AXI_CMD_RCGR =3D> ROOT_EN_DISABLE | ROOT_OFF
+58030: 00000000 # CAMSS_AXI_CFG_RCGR =3D> SRC_0 | BYPASS | HW_CLK_DISABLE
+[...]
+58044: 80000220 # CAMSS_AXI_CBCR =3D> CLK_DISABLE | SLEEP_CLOCK2 |
+WAKEUP_CLK2 | CLK_OFF
+58048: 00010c00 # GCC_CAMSS_AXI_SREGR =3D> MEM_CORE_ON_ACK |
+MEM_PERIPH_ON_ACK | PSCBC_SPARE_CTRL_IN
+```
+
+Regards,
+Loic
 
