@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-165845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B50A85B1A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:09:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFD0A85B65
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:20:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23DCD7AE913
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:08:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF8971721D9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 11:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79B7238C25;
-	Fri, 11 Apr 2025 11:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B49221280;
+	Fri, 11 Apr 2025 11:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ci17F/Bw"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="a2lkDOXj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C0E238C08
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4AA1EF377
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744369720; cv=none; b=IZUiq8V9AjBW6Wug9/2KSw53VWWgMmLpGwtm0kvHtmHr1PSYk9rf8d2o4cfcfPuTdTFeJS7XUFEiSHr4yr/TvOFAYQqlIMPLpxtU2cS6ATTEXGBzM2ci9fDTIm2FEHzf5VTlEFIvd4GE9NxpU6xVq4CZ2CRJ58wS7jFVjeeEB0o=
+	t=1744370394; cv=none; b=jyPyskc8In99s1IHDU/OqKSPWFNHX3sLPQ9rsq6xAY4p3t8HN8q/dPBSBVkNnSAVZFeeDAuPujM27DfQ6FyZGHDk7ekCB0CYbm+JvOtYTnKyW3rRXNkFi/GiGDxIJ58Xjjrcl4DwTjMANezWAYyPYvqycDRifvT7Hay1BDB0Xvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744369720; c=relaxed/simple;
-	bh=jUMLJ1eCvjknua9RRmRhB2m3mbtVGyEUSu411bXGwYg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=XS9bx1HDHwQANVSGxlPdSipYMMdN6sTPg/+HsZsSw3gvETll9GC77YvE4sMQdg0sz/mxk9dI6IDHziBEpuey8CxKD4226jzxq4orQRG5+Xhs/Kdc+wR0tHQ2bAoKIteZxr4wMCfNmZPYbf+p83oUc5KvtQzGFH3NhEKlIX3kAtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ci17F/Bw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53B6HPHm030647
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:08:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o79Kq++JkZecfr1axtLkeLEVdcWYqekrcVToRZ72dP4=; b=Ci17F/BwT1aKdOvv
-	wq6EajrQHGkgpJ7FvWMcLg8GakqxkYzGyw9715c3DXRH+TugoPLGcvpzEkHpesOG
-	0Fw+7LeHbZend0HtcHLBmrXaYsVFcy+xwk+AW7+lGnWlOEaSR7DsybrgnHbL3rcl
-	ftwYQGfkTm3n8+Q+V628a0XsiaZP2MmWCJt/tEn7VB4ky4eQ+R9U+F7VxsAxN0DU
-	sMMkOK5XSYOpuGZb/guZlS9dRZ00DGpG4zvpnBORtQxBUNa7F0FGEMZOyXbmKCG2
-	T8FAmkJu1IzIOUP62qpmlSm5wcfRAKTJAW0Z15ygsMyJtiBNV2tjF6yPUQWjffsS
-	KQhXvQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twftsy0c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 11:08:38 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5841ae28eso48678985a.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 04:08:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744369717; x=1744974517;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o79Kq++JkZecfr1axtLkeLEVdcWYqekrcVToRZ72dP4=;
-        b=PPHeTy02VAbnhsNXr3gPvcaba4SriRYLv2UJeh0Amm4ukag/8MMlGgzy58fDYqoE6z
-         avHZtK2jwresP+epjUd1riJWj/bXVdQouERtKyWYptnsC4YIkdzfhA2o6fN7LG7hjISZ
-         ad7Iy/G8ec84qxG9DKDdwm+5UJKbs7LqUoJzyWF1OtDojDIsf3wbgkfVJhNC4VrHaiGt
-         Oqm8makzqXTK+3Igvb7lNop4FplvCqXTfnZnpkPB/Ry7aCyweOhmJp/y9bH56V9jkZtt
-         fB47z+AO1S+Mq3j8lHn2xLp8TlfsamdAMatKF5uNL8PaI8YyTtsQjwMqNQvf7sDnPk2B
-         QueQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsMvWyKKaKoOzh2ztyvMB5hmNdGNiXx9bOGNfByuCFwip3Zyrx6/PS27T0zq+aoxKNF4zrxQ908lcF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHXDmjrUEFd6co7oXX6P36wo8wLMJ4vduU+gS1Prds1bt6ZTJI
-	ff41x/3VEgjD673xIZFq3mi/+EqWnZPvKok1dH4h3ePpPsc7U7NZqx0nBXju/KUAEA02LFQWl3v
-	jrPcM5Js2UyJl3Bk9W9NBATyojABKe74203zGXh7v2ZT5U/VxIQ32eIT7leIg
-X-Gm-Gg: ASbGncsiYsjRiTJGxdNnVXT4yrKm1w9RbRo+8CCQbS4t9NjdlNSCrnTForY8UP3GvVr
-	UPugPJ/8pbh1rzeaAwVUBdlbW7frv3NWU6siTA+E84u2IWSxkEpUUuzOdDTOHyhC14ZsTliC+hS
-	YHegYXA6W93+XRIU4Loj+A1GYjuFAEjkP7yieTA+tcOQOLbwjaXzvA3p4GxZM3PwnC/UINB7nR7
-	XzoTuXdvoSRx+UmZP8YxKnmNQW1XFFSXlNvidrPD2xsEIQh2auX0mdEQJZiswpf6GKoANDm/Kid
-	g4IeF1l34J747iEQ/js8eYZKltU7Zw6CIrRdshhyJBHXLJlqutID8Bt/quDPzRu1mw==
-X-Received: by 2002:a05:620a:270f:b0:7c7:9d87:9e2 with SMTP id af79cd13be357-7c7b1aea28emr58808785a.12.1744369717350;
-        Fri, 11 Apr 2025 04:08:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHjdXPyj+Dlz7MJrd4wV5Jmd512Lms/G0laHJzFzKIthM1oQjkGEBydvrhqVbYRgd7fDl+WIA==
-X-Received: by 2002:a05:620a:270f:b0:7c7:9d87:9e2 with SMTP id af79cd13be357-7c7b1aea28emr58807385a.12.1744369716971;
-        Fri, 11 Apr 2025 04:08:36 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36ee55388sm802149a12.3.2025.04.11.04.08.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 04:08:36 -0700 (PDT)
-Message-ID: <608c57f8-4f28-4e68-9c14-07b280126d9f@oss.qualcomm.com>
-Date: Fri, 11 Apr 2025 13:08:33 +0200
+	s=arc-20240116; t=1744370394; c=relaxed/simple;
+	bh=0r0XdZLQZTKCfWrlvdr3kIJq4bXiXhg9OZrf3YuzUpo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iXWX6mtG/08xVEOjD5MzdqXGUZGlfXqxSxgzXIo64DmiCIRPgJU8vvloKhTHpmJLWEEKdqYTi4K+kvkWd72Oi8H8tLiNA+hEQK6Uxeyk5CkcP7hZ64q/NT1DUNN1pGYxa7cenLqin9pa28sMa5ouYm7B02iW1tD1XZipCkX16z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=a2lkDOXj; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744370391;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wzPWtVMosS8yz6213SvlQbIOghMt7zjrea3KyihzWNI=;
+	b=a2lkDOXj0AFt4P9dE18K3g9OlS+7zq1JhtU6ZbWPHIPtcvHMNYxLn2bX7KzrfveOdL+NQp
+	HaRZ6F6ftIXcWuBjW5y+Zti90jZXV5nmNq25EFamt/Z+JOvPIqZbHamo+3AerZMVdmt/nP
+	IgmiRBZUERwz/1o1QxW0WNNkLA3+lYI=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-321-afkO1osCNiOUWDbyswIf-A-1; Fri,
+ 11 Apr 2025 07:19:48 -0400
+X-MC-Unique: afkO1osCNiOUWDbyswIf-A-1
+X-Mimecast-MFC-AGG-ID: afkO1osCNiOUWDbyswIf-A_1744370386
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1DC2F1800257;
+	Fri, 11 Apr 2025 11:19:46 +0000 (UTC)
+Received: from [10.45.225.124] (unknown [10.45.225.124])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 68B621801A69;
+	Fri, 11 Apr 2025 11:19:40 +0000 (UTC)
+Message-ID: <b7e223bd-d43b-4cdd-9d48-4a1f80a482e8@redhat.com>
+Date: Fri, 11 Apr 2025 13:19:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,45 +66,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 2/4] arm64: dts: qcom: ipq9574: Add MHI to pcie nodes
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
-        lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250317100029.881286-1-quic_varada@quicinc.com>
- <20250317100029.881286-3-quic_varada@quicinc.com>
+Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
+ defs
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-8-ivecera@redhat.com>
+ <CAHp75Ve4LO5rB3HLDV5XXMd4SihOQbPZBEZC8i1VY_Nz0E9tig@mail.gmail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250317100029.881286-3-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=B5+50PtM c=1 sm=1 tr=0 ts=67f8f836 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=87Z6qAKMJr3GWNWwxrsA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: L5kYdiidDaJRZotzy9MddyAgxDZq8WeQ
-X-Proofpoint-ORIG-GUID: L5kYdiidDaJRZotzy9MddyAgxDZq8WeQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-11_04,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=739
- suspectscore=0 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504110070
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <CAHp75Ve4LO5rB3HLDV5XXMd4SihOQbPZBEZC8i1VY_Nz0E9tig@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-On 3/17/25 11:00 AM, Varadarajan Narayanan wrote:
-> Append the MHI range to the pcie nodes. Append the MHI register range to
-> IPQ9574. This is an optional range used by the dwc controller driver to
-> print debug stats via the debugfs file 'link_transition_count'.
+
+
+On 10. 04. 25 7:50 odp., Andy Shevchenko wrote:
+> On Wed, Apr 9, 2025 at 5:43 PM Ivan Vecera <ivecera@redhat.com> wrote:
+>>
+>> Add register definitions for components versions and report them
+>> during probe.
 > 
-> Convert reg-names to vertical list.
+> JFYI: disabling regmap lock (independently of having an additional one
+> or not) is not recommended. With that you actually disable the useful
+> debugging feature of regmap, your device will not be present in the
+> (regmap) debugfs after that.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+I will follow Andrew's recommendation:
 
-Konrad
+1st regmap for direct registers (pages 0-9) with config like:
+
+regmap_config {
+	...
+	.lock = mutex_lock,
+	.unlock = mutex_unlock,
+	.lock_arg = &zl3073x_dev->lock
+	...
+};
+
+2nd regmap for indirect registers (mailboxes) (pages 10-15) with 
+disabled locking:
+
+regmap_config {
+	...
+	.disable_lock = true,
+	...
+};
+
+For direct registers the lock will be handled automatically by regmap 1.
+For indirect registers the lock will be managed explicitly by the driver 
+to ensure atomic access to mailbox.
+
+The range for regmap 1: (registers 0x000-0x4FF)
+regmap_range_cfg {
+	.range_min = 0,
+	.range_max = 10 * 128 - 1, /* 10 pages, 128 registers each */
+	.selector_reg = 0x7f,      /* page selector at each page */
+	.selector_shift = 0,       /* no shift in page selector */
+	.selector_mask = GENMASK(3, 0),	/* 4 bits for page sel */
+	.window_start = 0,         /* 128 regs from 0x00-0x7f */
+	.window_len = 128,
+};
+
+The range for regmap 2: (registers 0x500-0x77F)
+regmap_range_cfg {
+	.range_min = 10 * 128,
+	.range_max = 15 * 128 - 1, /* 5 pages, 128 registers each */
+	.selector_reg = 0x7f,      /* page selector at each page */
+	.selector_shift = 0,       /* no shift in page selector */
+	.selector_mask = GENMASK(3, 0),	/* 4 bits for page sel */
+	.window_start = 0,         /* 128 regs from 0x00-0x7f */
+	.window_len = 128,
+};
+
+Is it now OK?
+
+Thanks,
+Ivan
+
 
