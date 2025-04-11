@@ -1,200 +1,144 @@
-Return-Path: <devicetree+bounces-165984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C6FA8606F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C351A86091
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:28:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60B7C188FC83
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:23:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EFED1B68019
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 14:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AC51F2C52;
-	Fri, 11 Apr 2025 14:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBBC1F30D1;
+	Fri, 11 Apr 2025 14:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="fpIBZJkv"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="etBt9kzK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B113C142E83
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 14:23:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449752367D1
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 14:27:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744381414; cv=none; b=YBTgnrKJUjG28tdp7NQph4U6KFbDCIXHGLB+x2u/ioabikZugefkfpPQqMk8CxwfKJ8x3wixzMrmpayvrF7dr7KZzJ7d+DarCap0D04H9e0FUKY5gSIxsQWfFoUT3B/+UFizpIzuP8ZGCnpz/LbxEb5aK9CY42qNU2cPJmdenBY=
+	t=1744381644; cv=none; b=JE4yYVFCK26vrGg5zEiNVVXsXBI/4gMPCDuNeHVR8filscYHXuTtbwSOlhvJRSdcRIhmgx/vliNikxiMiEHgJy723PdLLot/xotTqWQ2fwYYcaf5On2oEJp72hNWkRd0ifE1tx0fulYHt6BApI3Koiqvz46LmQsYsM8QMW7pIuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744381414; c=relaxed/simple;
-	bh=eCECi8hvjc4H1yNEulfKYz4kG15vkMiOtptaPhuEBII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FrEOEt56qL4CaOLfjyV/izFHNGM194HQooqV8xIv8gNAmYDMHXeVHskuRolTGtDWOdC6C790/NSOngjhSWU3Hw7NlfNocdCAb5Lz6po7iqbW5dzusTpamTVj5aWAAi6zhkOR/MjagueLtJAXG//mW4sjnbOHYdH2mejlvk/U2N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=fpIBZJkv; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2d0920ce388so490914fac.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 07:23:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744381411; x=1744986211; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+E7p0o5spFsIl4UEBEn7tp0i54T+KYSkEhlNQklbq8A=;
-        b=fpIBZJkvuBUrKHDt3SJTjsUsjm6oT3NqjjrKxKjji2OZ6w4cXurFb9eIUFok0EuNEY
-         +fHaJQK44ihm1pnVUEvllql1ikIkvF0JoF2sphj8OiYz6c8q9/kmY9g1imo5hKdeALRR
-         POWEagXWKtciU41gTsDXHsIx1gc0SBglY9rG2nGwVRHevwm06VXLfRzrc/yJ/UNGzeBU
-         rj25hsD0caqw929A7Va+NeFk7ds9lLjIJJlg4MZv4XFwMEbuc2ZWUm4+GIXc6dGD6zcy
-         SSYmXNH82GzUv0gsTxTLlaN2PHf0BDMAfEnXz8q0iQZwY3hXoKvRvRNiY4Q/aJ3hXoL9
-         d7Xw==
+	s=arc-20240116; t=1744381644; c=relaxed/simple;
+	bh=qKrKM9zA7GTqQdCuPeaq+7zcbxqyXjrCtpoVdskcyuU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CcXn4t3AsWZqxKaaxl6ZydQC06qCboR6fiwyFECnbVcKNhwTSoauH6/j3P0R23Je/+uo6bobxKMo8MnWGHranZYzJWDlfed2ebjD8KjGxeN/z9Qg6ZiDMiMbPFIEp13aVpWBaIhrbDaDakY5Ur09QxWQZg6dV8bPzdY9ur/lXac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=etBt9kzK; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744381642;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Im7PLUkW7j3mmQzh3EFVKWQVrxz4pA7bf7TSdZHW8os=;
+	b=etBt9kzK/GM1QUBfetfP0L3vI9gvpvyt8Co8eyTeZ1+RHxV6lep+umbMtkkKI4ky2XeioI
+	Od0LK2pwEo9oFs2yYbe43p4LXRcTj3d3K1l2iRcRKImMGo6eliQUZcGXq6HIQNcD56aCVB
+	5kx0/o0F+fkf++cSvirgDq0kfajpU4E=
+Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com
+ [209.85.160.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-311-RMVjg44yPmqL8s3oixwnLQ-1; Fri, 11 Apr 2025 10:27:21 -0400
+X-MC-Unique: RMVjg44yPmqL8s3oixwnLQ-1
+X-Mimecast-MFC-AGG-ID: RMVjg44yPmqL8s3oixwnLQ_1744381640
+Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-2cbdbbae026so30100fac.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 07:27:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744381411; x=1744986211;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+E7p0o5spFsIl4UEBEn7tp0i54T+KYSkEhlNQklbq8A=;
-        b=ckIz0Nl5ZXppYieyU6ddSXA0MdzUe1uwDJks8PI8ulli69Nz9Su+YAwU6gsxDgcZwi
-         jxHeT2UVleU6toYV/FzvM7yEZit8rAMXKGVgekNz869eU82Kh6Gv3oaHlJWfGnW7YCtu
-         27k2b2fTeOvJUpQbjD0xNUMDLHJwnV+K8LJ0ruckPYMTmVpZwXejNpjUGKYtS33pSyPS
-         GMjD9VCX2pNn0g8oRujgvZxkqglsGDjrR8fRUdrVXZqhMmMLFnMzXntcfVqZWB9DWC0H
-         Shp5Pd/9c6hAipdMOyyctKQyXCeurIMWk3pM8/gB/g2JmHEeyqxE7uwVOPdtbqFjOLKn
-         hYOg==
-X-Forwarded-Encrypted: i=1; AJvYcCXqN3gCCK5i7JmGcr5dL1a1Hh+cVt1cRof0X2+KVcP7bUGimHQ6g8zJqmznBIcnpkLA2gkvDypbZbUG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHu4oNjACvYVRdheY1yogN3r4E+jWvs8Xl/efuUvoroK4IHazf
-	6ke6h9FhupNNWM+n8hg78rtzrlOcTFHZd36JPwuPtIS5d8rGbS9lGKTO8brB4yE=
-X-Gm-Gg: ASbGncvYllaB06oDAGi9UNo+EpLmfuup2NVug1nykvDG2D+44dnkabolahr389XNIhF
-	vYB3OZyxXPyRZ7egRQbjJhraP5juuwfcMcsEKl7OAnopTHzjUjJqFmQX4kgVVsNHvmytlOW6s01
-	vSNd0YSyPPh76vokdg6RTibkfCwS3inH5CF93sHB6x1tgdCqzwni4MyAs974lw8YgRgz6axXoU+
-	Y4/YzNPQZre70l3Dry9qKpcLJsZxN/JLKfSzG9Ecf2n4hWoZy5O94dXlhh7O186x4p9ppJzD7Ax
-	NYMoIJAzvrXOU+EyjzjRw2VUGbYDSqRkdXg62jZvTSCbKm0jKIYAIXsk8TLzloOIhTUJOD4DZl5
-	qltU1
-X-Google-Smtp-Source: AGHT+IFPIaNYuj9Tjx4dRLkT1R8N8HYwjaMapquLcZYIrOm6BqeSxjwlZBr9Pe67U0+m0146ayQe0A==
-X-Received: by 2002:a05:6871:a4c1:b0:29e:5de2:cffb with SMTP id 586e51a60fabf-2d0d5d8262bmr1560654fac.17.1744381411628;
-        Fri, 11 Apr 2025 07:23:31 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2d0968ea1c6sm1133431fac.5.2025.04.11.07.23.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 07:23:31 -0700 (PDT)
-Message-ID: <d2c26d3e-787a-490e-9134-8ffe2f6b8333@riscstar.com>
-Date: Fri, 11 Apr 2025 09:23:29 -0500
+        d=1e100.net; s=20230601; t=1744381640; x=1744986440;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Im7PLUkW7j3mmQzh3EFVKWQVrxz4pA7bf7TSdZHW8os=;
+        b=KOyy+6HVcNj6bUVcATulVysoSwnM9mwuf3qYhXLvFclr+yMO2J6iZsoUSccpF3fii8
+         SuscuZR8Oz4LiwpdlMD1a1ebO4UyGwa9NVA6y1EqJ6RFY9FFGEO34toV3lWVn8GX/SmI
+         dy+BQAX/sqabhkIIMT7Kn1aM3oQ91ChqQ89OoGiR8BZc5hhBc+bQGKGBX2JGpgIV4mQj
+         o50zPX129/k58X/uZiqcV1Rg6hdBP2aO3zp8apC/bsLWezCYUhvMOg31FLvZb9EplPR0
+         SCWDdata+lU7QHac8oi9lckVDvHa0e4sEcKeZSmSxWzP0h9DPpUNXDX5oEBRhl6bbmW7
+         Rd8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVJZnp1W8fOEtDev87kBIpXG1zeamGyesQzuojyWnGgUo7V2AjMNmSvc7mMyNZXy63PUA24Rz5d3Due@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxr7ey406WNg+klGswvqg1KPGhcmTk/Kiuk35h0wAwtf1Y3Whsd
+	tD6t6YGAK+RMLgozuLWV5Jxv8KWVtUCRQ0wcR0bJXOzdv5kPd8MDwx5fVc6d4INq5YXQia3HA7K
+	AT8l5b0iQrSOFk83jYwqcFJg7u7/BlTvf4OTi6RM0rmENgmWT71UMQUI5vkb/nPYh1p/ZSIxjko
+	VdCcysFocXAWL38qbo5yQFAnhoLS2yccETRg==
+X-Gm-Gg: ASbGncvNDUKeWereICaKqeiKR7rpKdC6i9B5V7xcVqPu/GRePoZeEf7zBq81JZ6Z8wJ
+	U9CAfXNhk5BmMEPsajj727uXh7dBkxgS9DNSWu52VLBIGn0VO4lpCp1AMibj3JeDftb8=
+X-Received: by 2002:a05:6871:4102:b0:2b7:fc4b:8408 with SMTP id 586e51a60fabf-2d0d5c4f9damr599365fac.2.1744381640297;
+        Fri, 11 Apr 2025 07:27:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFtyIy8awglJHeyK/BCOHDP8jLvXWR8za9vqwQmLys5HN7G2p0PJqVELul9ZwicD73ayRi27zCy73dC8JEDk38=
+X-Received: by 2002:a05:6871:4102:b0:2b7:fc4b:8408 with SMTP id
+ 586e51a60fabf-2d0d5c4f9damr599349fac.2.1744381640021; Fri, 11 Apr 2025
+ 07:27:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] riscv: dts: spacemit: Add PWM14 backlight support for
- BPI-F3
-To: Yixun Lan <dlan@gentoo.org>, Guodong Xu <guodong@riscstar.com>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de, drew@pdp7.com,
- inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org,
- tglx@linutronix.de, hal.feng@starfivetech.com, unicorn_wang@outlook.com,
- duje.mihanovic@skole.hr, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-References: <20250411131423.3802611-1-guodong@riscstar.com>
- <20250411131423.3802611-8-guodong@riscstar.com>
- <20250411140510-GYA22364@gentoo>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250411140510-GYA22364@gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250409144250.206590-1-ivecera@redhat.com> <20250411072616.GU372032@google.com>
+In-Reply-To: <20250411072616.GU372032@google.com>
+From: Michal Schmidt <mschmidt@redhat.com>
+Date: Fri, 11 Apr 2025 16:27:08 +0200
+X-Gm-Features: ATxdqUHHcxYvn-_fU1mId7EG_BUpa6k1ihUDWebZvcqQhgKIHJ5La9lAEIRJHKA
+Message-ID: <CADEbmW1XBDT39Cs5WcAP_GHJ+4_CTdgFA4yoyiTTnJfC7M2YVQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/14] Add Microchip ZL3073x support (part 1)
+To: Lee Jones <lee@kernel.org>
+Cc: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, Kees Cook <kees@kernel.org>, 
+	Andy Shevchenko <andy@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/11/25 9:05 AM, Yixun Lan wrote:
-> 
-> On 21:14 Fri 11 Apr     , Guodong Xu wrote:
->> Add a PWM-based backlight node for the Banana Pi BPI-F3 board,
->> using PWM14. The backlight is defined as a 'pwm-backlight' device with
->> brightness levels and a default brightness setting. PWM14 is assigned
->> a period length of 2000 nanoseconds.
->>
->> This configuration was used to verify PWM driver changes, with PWM14
->> tested and its waveform confirmed as correct.
->>
->> The node status is set to "disabled", and should be enabled when the
->> display driver is ready.
->>
-> .. see comments below
->> Signed-off-by: Guodong Xu <guodong@riscstar.com>
->> ---
->>   .../boot/dts/spacemit/k1-bananapi-f3.dts      | 32 +++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> index 816ef1bc358e..d04b57ddeb46 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->> @@ -28,6 +28,32 @@ led1 {
->>   			default-state = "on";
->>   		};
->>   	};
->> +
->> +	pwm_bl: lcd_backlight {
->> +		compatible = "pwm-backlight";
->> +
->> +		pwms = <&pwm14 2000>;
->> +		brightness-levels = <
->> +			0   40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
->> +			40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
->> +			40  40  40  40  40  40  40  40  40  41  42  43  44  45  46  47
->> +			48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63
->> +			64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79
->> +			80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
->> +			96  97  98  99  100 101 102 103 104 105 106 107 108 109 110 111
->> +			112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
->> +			128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
->> +			144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159
->> +			160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175
->> +			176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191
->> +			192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
->> +			208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
->> +			224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239
->> +			240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
->> +		>;
->> +		default-brightness-level = <100>;
->> +		status = "disabled";
-> I'm confused, has DT in board file with disabled status doesn't make sense?
-> it doesn't really useful for placeholder, even worse that functionality may not
-> verified, so I'd suggest sending along with display driver while at it..
+On Fri, Apr 11, 2025 at 9:26=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
+> On Wed, 09 Apr 2025, Ivan Vecera wrote:
+> > Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> > provides DPLL and PTP functionality. This series bring first part
+> > that adds the common MFD driver that provides an access to the bus
+> > that can be either I2C or SPI.
+> > [...]
+>
+> Not only are all of the added abstractions and ugly MACROs hard to read
+> and troublesome to maintain, they're also completely unnecessary at this
+> (driver) level.  Nicely authored, easy to read / maintain code wins over
+> clever code 95% of the time.
 
-I think I suggested he include this.  Guodong tested PWM using
-a backlight on a display connected to a Banana Pi PBI-F3 board.
-The above numbers come directly from the downstream code, which
-uses this PWM consistently as a display back light.
+Hello Lee,
 
-But you're right, the exact set of numbers to use is dependent
-on the display used, so it's better to add them when the display
-gets integrated.
+IMHO defining the registers with the ZL3073X_REG*_DEF macros is both
+clever and easy to read / maintain. On one line I can see the register
+name, size and address. For the indexed registers also their count and
+the stride. It's almost like looking at a datasheet. And the
+type-checking for accessing the registers using the correct size is
+nice. I even liked the paranoid WARN_ON for checking the index
+overflows.
 
-The pwm14 node could update still be added here, but that too
-might as well wait until there's something to use it.  So I
-think this patch can just be dropped.
+The weak point is the non-obvious usage in call sites. Seeing:
+  rc =3D zl3073x_read_id(zldev, &id);
+can be confusing. One will not find the function with cscope or grep.
+Nothing immediately suggests that there's macro magic behind it.
+What if usage had to be just slightly more explicit?:
+  rc =3D ZL3073X_READ(id, zldev, &id);
 
-					-Alex
+I could immediately see that ZL3073X_READ is a macro. Its definition
+would be near the definitions of the ZL3073X_REG*_DEF macros, so I
+could correctly guess these things are related.
+The 1st argument of the ZL3073X_READ macro is the register name.
+(There would be a ZL3073X_READ_IDX with one more argument for indexed
+registers.)
+In vim, having the cursor on the 1st argument (id) and pressing gD
+takes me to the corresponding ZL3073X_REG16_DEF line.
 
-> 
->> +	};
->>   };
->>   
->>   &uart0 {
->> @@ -35,3 +61,9 @@ &uart0 {
->>   	pinctrl-0 = <&uart0_2_cfg>;
->>   	status = "okay";
->>   };
->> +
->> +&pwm14 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pwm14_1_cfg>;
-> ..
->> +	status = "disabled";
-> ditto
-> 
->> +};
->> -- 
->> 2.43.0
->>
-> 
+Would it still be too ugly in your view?
+
+Michal
 
 
