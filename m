@@ -1,117 +1,133 @@
-Return-Path: <devicetree+bounces-166065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6C7A86399
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4828BA863A8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8145B7B5016
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:46:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E2B07A4025
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD24221F2C;
-	Fri, 11 Apr 2025 16:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84506221F15;
+	Fri, 11 Apr 2025 16:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="apRdzapp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AxAXb9LZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E1521D3E8;
-	Fri, 11 Apr 2025 16:45:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59662220683;
+	Fri, 11 Apr 2025 16:46:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744389953; cv=none; b=K4lrHZJzgaBY2L9nEvEOtHNyX+ScWmSVSQuQ+MWmUd0nXDKM/vJ8SRdD1PngZPHS1f0tRDUNuQAn1ekXF3kgsjZCA2W3CgyxVtGhQJKN5cDEwhMWCHYBECeWeEaQ71G2QVl7o3BSTjVoUBE/quODgz5ukw/gf1D/fmTYyCJK+g0=
+	t=1744390004; cv=none; b=XgAjL3JoGu7eGJ32TmXYmdSUAvW3YR3JXyB8GcXKpxT4lbJOWo3gXY67y8Oa8kw/QQnjFPT8vOV/Ta1GNKUIDG5dg9ioQHUmAVGY6Nv6AeSfwZ5Bx8uC8c37UI2HnEGc+yBlcsGTA9o5392aM5wbMtS07up0fALrHAdokUc/iXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744389953; c=relaxed/simple;
-	bh=FReu7ujzly8pZap8rq/c03boQMmt8+KCe6FrmfH2yCE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pAnRbNhQvSmaWCNKsDjIWMDKJMZXCYFqrNNBQHoN9o+aeMZYtqAUhh8mI6u9KQZ/mANIb+4u2nfHEYXaR+dDNaPfO5WyzQBiPiY3nHEDaSXmI2YxrpF5wv9M5OJAa95xfXNQ3qisdTgBbQGGiPr4w8bv0nGYBRaVJoGgjv8+fMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=apRdzapp; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 9C49B25F0B;
-	Fri, 11 Apr 2025 18:45:48 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 5yNZHi-ciocG; Fri, 11 Apr 2025 18:45:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1744389947; bh=FReu7ujzly8pZap8rq/c03boQMmt8+KCe6FrmfH2yCE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=apRdzappuSD49zp/c8cUCIaxLXjUZzTLuQuHDgA3xO/9JdspzAemEucN35tvbdo//
-	 L9nkGgctgEjBOeHFyrYTZiOW99ku2p3NVHOS+Dp4cabkbBZyB5lbKu4Z5NzGp+o6DB
-	 d/y6fGP/WQ8SFGBhFVHWwE4uUW6FuCj5/DpaONwtrcuQrF5CHVapjQdrV/Ary5aXge
-	 6l8Hcewr0SaOxKmyetrThMuslXyTzqhqWuhJIBMQbAY46BHLXRfg7AQAIwIIY7W6Lx
-	 TS+dUDm30LUdFEG2mMNq1fDui/Tz3qLBXY9HcQG+HTzYpvw0MQ/fls4X+JJx46S0Ty
-	 /aGTIIyqi5PVg==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Fri, 11 Apr 2025 22:15:27 +0530
-Subject: [PATCH v5 1/5] dt-bindings: arm: samsung: add compatibles for
- exynos7870 devices
+	s=arc-20240116; t=1744390004; c=relaxed/simple;
+	bh=KRJyaCNBuio27Dc7HTLuBLoaNfpbX8S+zCNEoZ10qeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r101mGMP3NFrXRXJyxq+uSyvpwmHwSwClnDJmZuPftC1yjxOM0M/KP8dV6rFrmYuJLJkyrnOW4/oeVjUDnuwFOb63vFHHseW5iXvWU3425et/Pdi24y1JTJtUeoQDSmIthO3tGBx5grEl4iPXEdYPHu7OEowP/WJ/LtnwM136/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AxAXb9LZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8FD2C4CEE2;
+	Fri, 11 Apr 2025 16:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744390003;
+	bh=KRJyaCNBuio27Dc7HTLuBLoaNfpbX8S+zCNEoZ10qeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AxAXb9LZ6ibhSYLAfgeO3lRxGhZvVDAOXyNMMyqnEpIzCtqyKwV3QS5CfIk3vCqRw
+	 ui6K41mTa8Kn7GQ1kX1mA0h7uMkmsSrzeb/1v9ywYUIxyhpIUuF0MzCFXS3VWnQk2C
+	 hiijFzbWqbD2sNAXMHLyTWe8Ty8HLgU4wOBLnJ5mlp9H6biOemikMWopvI86dZfwks
+	 bH1wk7g6DFRA7tpfHAW94RQ/5gDT72XNAiAfUk2EjI/46z/mzI92KO57ccuJtGtqaj
+	 3sCboV9+hwGbH7ILSIl2pqTheNSZW/Ifn5+8SMqdkZhVQurU2IBKTUdFzSMfKLt3dM
+	 jm/VkfAkzOEZQ==
+Date: Fri, 11 Apr 2025 17:46:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux@roeck-us.net, Conor Dooley <conor.dooley@microchip.com>,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Zev Weiss <zev@bewilderbeest.net>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Peter Yin <peteryin.openbmc@gmail.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] regulator: dt-bindings: promote infineon buck
+ converters to their own binding
+Message-ID: <20250411-stapling-unwed-21a303742ca0@spud>
+References: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
+ <20240223-blabber-obnoxious-353e519541a6@spud>
+ <CAMuHMdXXWSfDrrQUTW54FFHN464efe+672jyCjqYw4jpSPosBA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250411-exynos7870-v5-1-6b319ae36c36@disroot.org>
-References: <20250411-exynos7870-v5-0-6b319ae36c36@disroot.org>
-In-Reply-To: <20250411-exynos7870-v5-0-6b319ae36c36@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744389935; l=1423;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=FReu7ujzly8pZap8rq/c03boQMmt8+KCe6FrmfH2yCE=;
- b=CMR6Gu0sdI7dK3mhb1BomzExVt5a/C8GNsl8xIayXh1wcOc2ijItEXD495eq6Z4ogXYEbAXoQ
- q6GACmjH5DdDDpcZI9b/ZTXC48kk3BQzPNjwy4heLTn2YHiO3NoIpgI
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6wRL8umIpjJ8SWNb"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXXWSfDrrQUTW54FFHN464efe+672jyCjqYw4jpSPosBA@mail.gmail.com>
 
-Document the compatible string for Exynos7870 - "samsung,exynos7870".
 
-The following devices are also added:
- - Galaxy A2 Core       ("samsung,a2corelte")
- - Galaxy J6            ("samsung,j6lte")
- - Galaxy J7 Prime      ("samsung,on7xelte")
+--6wRL8umIpjJ8SWNb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Thu, Apr 10, 2025 at 06:15:24PM +0200, Geert Uytterhoeven wrote:
+> Hi Conor,
+>=20
+> On Fri, 23 Feb 2024 at 17:23, Conor Dooley <conor@kernel.org> wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > These devices are regulators may need to make use of the common
+> > regulator properties, but these are not permitted while only documented
+> > in trivial-devices.yaml
+> >
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Thanks for your patch, which is now commit bad582f9879812bc
+> ("regulator: dt-bindings: promote infineon buck converters
+> to their own binding") in v6.9-rc1.
+>=20
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> > @@ -0,0 +1,46 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Infineon Buck Regulators with PMBUS interfaces
+> > +
+> > +maintainers:
+> > +  - Not Me.
+>=20
+> make dt_binding_check:
+>=20
+>     Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml:
+> maintainers:0: 'Not Me.' does not match '@'
+>             from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
-diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-index fab29f95d8e62f5ea75bb0819a9d514e54f88d3c..b3be184c7e563478aa37eb16a69c08ff7f70af29 100644
---- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-+++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-@@ -212,6 +212,14 @@ properties:
-               - samsung,exynos7-espresso        # Samsung Exynos7 Espresso
-           - const: samsung,exynos7
- 
-+      - description: Exynos7870 based boards
-+        items:
-+          - enum:
-+              - samsung,a2corelte               # Samsung Galaxy A2 Core
-+              - samsung,j6lte                   # Samsung Galaxy J6
-+              - samsung,on7xelte                # Samsung Galaxy J7 Prime
-+          - const: samsung,exynos7870
-+
-       - description: Exynos7885 based boards
-         items:
-           - enum:
+Yup, and it is still "Not Me.". Shouldn't have been merged in the first
+place (or sent tbh), but someone who understands and cares for it should
+be here (Not me!)
 
--- 
-2.49.0
+--6wRL8umIpjJ8SWNb
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/lHbgAKCRB4tDGHoIJi
+0jU1AQCsqiKWTaB3RtphflqxEMzhA5Q4kq+XEHvCauo/Jr1E5QD+JHeWzHkm9cx9
++/v2EKTCVexboj6QnEuDalRsgMlsmw0=
+=MDyY
+-----END PGP SIGNATURE-----
+
+--6wRL8umIpjJ8SWNb--
 
