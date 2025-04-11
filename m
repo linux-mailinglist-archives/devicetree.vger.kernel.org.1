@@ -1,145 +1,168 @@
-Return-Path: <devicetree+bounces-166070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAD0A863CF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 18:57:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FD7A86411
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 19:08:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6934916AE6C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 16:57:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 016E23B1DC9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 17:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A5421C183;
-	Fri, 11 Apr 2025 16:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500F7225A32;
+	Fri, 11 Apr 2025 17:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GsD7TZpN"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="X0vNAYjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198A01F3FED;
-	Fri, 11 Apr 2025 16:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DB1221F03;
+	Fri, 11 Apr 2025 17:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744390633; cv=none; b=THynHfhSydEE6Db2AS+/T9+fHiLyB/SLX9ViEE1umENek1qq+t96ei/9s/7tIJ+K/ICWqYWXOjQmcCabe8wU/+/wSc2gLi5d2t1MXF6q8UDG6xegAhXxtnUQsFD6RBxwTEbdfEBZ/hoXCbklQTO7cfeiBNBU+egTLQMJ4pJtiHY=
+	t=1744390955; cv=none; b=IEiTqEidtpG+tw6wDV9wfaeG5AsBB58YSuY2uz+vrwNtdJ3ZEpT3fQ1ETis/UX8RSBK++7bDT0INfMSWtB/eppQg6HEznMA3ndfKowgQ13p11kqA2+9d46g3AVDj7h2ZSQAPbgKnyeXl83/l/UfcemKRvhvHATxX/CV+ebUKY5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744390633; c=relaxed/simple;
-	bh=A4abooR3EttvPWvNNoeHrRtS+/XpdmmTJmkN6cvnmUY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IVwhFel/VMP0/9vViYdRneq+XNKWSlMChM6Z1Wxk+ZKsxyGWcHRXYKdYXC6nWYZG/fII6E+rIWrDwXhOK6QW6b+YPvWCJ6viwImmKCtT6JH1GH7Gs517p5f8zIOVU0Jq9Hhtn4CdA2y7h51TBm7pl5nu0ndFiUXN/CTUqmFbZEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GsD7TZpN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3FC5C4CEE2;
-	Fri, 11 Apr 2025 16:57:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744390632;
-	bh=A4abooR3EttvPWvNNoeHrRtS+/XpdmmTJmkN6cvnmUY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GsD7TZpN+T66Nr+NUDt36p9sL3GPQH7pe8QitqssVurTbUDo2ia7TZsUYG7NbYbDg
-	 /Lh50TOxis6uJvnda3ECKCEXov5ECp6rh4wTwK3LM/hbd10yJnPRiNmYXSFTxR3Inu
-	 q2xR53UZl3F7HjFvx0szmUNARClIpX520qrFyQyr1kIuDifpfzm83qEoMhFVaW3aXk
-	 kTk1MMjEYJ1h0JEqc3hiZ1dwdhtRDJehpVUX3lYl1nkqy6P3ThJcZqOsDDcEc0tpnd
-	 F3IGRr9EqXK3vjt02bxS/uzJRkRwDFLDIXu/oH9cYokv3JaH4S+A0BNjc6ZWkht6Wo
-	 3ulJn4/XAe4BQ==
-Date: Fri, 11 Apr 2025 17:57:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux@roeck-us.net, Conor Dooley <conor.dooley@microchip.com>,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Zev Weiss <zev@bewilderbeest.net>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] regulator: dt-bindings: promote infineon buck
- converters to their own binding
-Message-ID: <20250411-underfed-lurk-2b6e082595b6@spud>
-References: <20240223-moonrise-feminist-de59b9e1b3ba@spud>
- <20240223-blabber-obnoxious-353e519541a6@spud>
- <CAMuHMdXXWSfDrrQUTW54FFHN464efe+672jyCjqYw4jpSPosBA@mail.gmail.com>
- <20250411-stapling-unwed-21a303742ca0@spud>
+	s=arc-20240116; t=1744390955; c=relaxed/simple;
+	bh=V3sxT0qWZ/R8AKqPO0IIuyuOMKHgyM1WtuhpqaQCYEA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Q5AxFRE+Hz0KB7lea9aiiWwjVK0y4THwSwFYeFTIvPQ7p4OwXsXT56UkwItf++NtV78HBfUVaYd2U+0FPM9GdOtKA64TzUYIYTM4BCED4pCiNqlCvEWnXT6HQPhzWoyrwaF7QY4an4uehJ0J9cD2dQ8jFPFdKFuUZ/ULgNloIBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=X0vNAYjD; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 5DF8025E06;
+	Fri, 11 Apr 2025 19:02:31 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id AK5N2RrPEfcD; Fri, 11 Apr 2025 19:02:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1744390950; bh=V3sxT0qWZ/R8AKqPO0IIuyuOMKHgyM1WtuhpqaQCYEA=;
+	h=From:Subject:Date:To:Cc;
+	b=X0vNAYjDuRRPudtiC8McVNMTOQUsMRP6MUBC5MjlwQTmr8pONjvs4xQ60VDN9EciF
+	 TuRkiHzyxhwyutz2mkH5nJmCMjwD7cUrgsD3zwH7t+a7hXFlOkCO63Aq7LMS6etSrr
+	 dqSlor4Q+A056mxWPRR8mJlf7sLEb+EehqzTxbqbbhrTk5QWz3XbMHsAk97QkZEtyI
+	 TTwZkuCkpKuAHTLYclukpfxZ1uivMBnm+SUSJgAmkTnsjUb1reVSS+fu5EKtP9yppA
+	 Ov/uRsCRiMu8MA4avB5t9mZJ7omEGaUwYC+zOol+p0rmbi9J2zlEPUNqZ9Pjj0F4RU
+	 HkKx5QeMwiePg==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH RESEND v5 0/5] Add support for the Exynos7870 SoC, along
+ with three devices
+Date: Fri, 11 Apr 2025 22:32:14 +0530
+Message-Id: <20250411-exynos7870-v5-0-fa297a7ce41a@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="epla1mZz+IrHa/xm"
-Content-Disposition: inline
-In-Reply-To: <20250411-stapling-unwed-21a303742ca0@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744390944; l=4583;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=V3sxT0qWZ/R8AKqPO0IIuyuOMKHgyM1WtuhpqaQCYEA=;
+ b=JXtJGHF4KMvnwj22OtSv9uSZp6Mm9v77sN4DY1c0vdG5heA/87k0PMyHakpDQje+FXTkBpl63
+ /Fi7dwwL9/HAOVMorJKFyNAxOr5V4TKHia09QuDDhoNpAVi/QBeNPVG
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
+Samsung Exynos 7870 (codename: Joshua) is an ARM-v8 system-on-chip that was
+announced in 2016. The chipset was found in several popular mid-range to
+low-end Samsung phones, released within 2016 to 2019.
 
---epla1mZz+IrHa/xm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series aims to add support for Exynos 7870, starting with the
+most basic yet essential components such as CPU, GPU, clock controllers,
+PMIC, pin controllers, etc.
 
-+CC Naresh
+Moreover, the series also adds support for three Exynos 7870 devices via
+devicetree. The devices are:
+ * Samsung Galaxy J7 Prime	- released 2016, codename on7xelte
+ * Samsung Galaxy J6		- released 2018, codename j6lte
+ * Samsung Galaxy A2 Core	- released 2019, codename a2corelte
 
-On Fri, Apr 11, 2025 at 05:46:38PM +0100, Conor Dooley wrote:
-> On Thu, Apr 10, 2025 at 06:15:24PM +0200, Geert Uytterhoeven wrote:
-> > Hi Conor,
-> >=20
-> > On Fri, 23 Feb 2024 at 17:23, Conor Dooley <conor@kernel.org> wrote:
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > >
-> > > These devices are regulators may need to make use of the common
-> > > regulator properties, but these are not permitted while only document=
-ed
-> > > in trivial-devices.yaml
-> > >
-> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Thanks for your patch, which is now commit bad582f9879812bc
-> > ("regulator: dt-bindings: promote infineon buck converters
-> > to their own binding") in v6.9-rc1.
-> >=20
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/regulator/infineon,ir38060.ya=
-ml
-> > > @@ -0,0 +1,46 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Infineon Buck Regulators with PMBUS interfaces
-> > > +
-> > > +maintainers:
-> > > +  - Not Me.
-> >=20
-> > make dt_binding_check:
-> >=20
-> >     Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml:
-> > maintainers:0: 'Not Me.' does not match '@'
-> >             from schema $id: http://devicetree.org/meta-schemas/base.ya=
-ml#
->=20
-> Yup, and it is still "Not Me.". Shouldn't have been merged in the first
-> place (or sent tbh), but someone who understands and cares for it should
-> be here (Not me!)
+Additional features implemented in this series include:
+ * I2C	- touchscreen, IIO sensors, etc.
+ * UART	- bluetooth and serial debugging
+ * MMC	- eMMC, Wi-Fi SDIO, SDCard
+ * USB	- micro-USB 2.0 interface
 
-You want to put your name down for this one Naresh, you're the one
-making changes to the binding etc so actually know how it works?
+Build dependencies are in these sub-series:
+ * pmu-clocks		A https://lore.kernel.org/all/20250301-exynos7870-pmu-clocks-v5-0-715b646d5206@disroot.org/
 
+Other related sub-series:
+ * gpu			A https://lore.kernel.org/all/20250318-exynos7870-gpu-v1-1-084863f28b5c@disroot.org/
+ * i2c	      		A https://lore.kernel.org/all/20250204-exynos7870-i2c-v1-0-63d67871ab7e@disroot.org/
+ * mmc			A https://lore.kernel.org/all/20250219-exynos7870-mmc-v2-0-b4255a3e39ed@disroot.org/
+ * pinctrl	  	A https://lore.kernel.org/all/20250301-exynos7870-pinctrl-v3-0-ba1da9d3cd2f@disroot.org/
+ * pmic-regulators	A https://lore.kernel.org/all/20250301-exynos7870-pmic-regulators-v3-0-808d0b47a564@disroot.org/
+ * uart			A https://lore.kernel.org/all/20250318-exynos7870-uart-v2-1-b9dcf145ae87@disroot.org/
+ * usb			A https://lore.kernel.org/all/20250301-exynos7870-usb-v3-0-f01697165d19@disroot.org/
+ * usbphy		A https://lore.kernel.org/all/20250410-exynos7870-usbphy-v2-0-2eb005987455@disroot.org/
+(Legend: [R]eviewed, [A]pplied)
 
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v5:
+- Drop the exynos7870-bootmode patchset for now.
+- Add card-detect-delay and cd-broken properties in sd-mmc nodes.
+- Drop the following applied patches:
+  [v4 1/7] dt-bindings: soc: samsung: exynos-pmu: add exynos7870-pmu compatible
+  [v4 3/7] soc: samsung: exynos-chipid: add support for exynos7870
+- Link to v4: https://lore.kernel.org/r/20250301-exynos7870-v4-0-2925537f9b2a@disroot.org
 
---epla1mZz+IrHa/xm
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v4:
+- Drop merged [PATCH v3 1/7].
+- Explicitly mention sub-series having build dependencies.
+- Include the following patch from the pmu-clocks series:
+  - dt-bindings: soc: samsung: exynos-pmu: add exynos7870-pmu compatible
+- Adjust clock header file name to match changes in pmu-clocks.
+- Change regulator node names to match changes in pmic-regulators.
+- Remove non-removable flag for the SDCard's mmc node.
+- Link to v3: https://lore.kernel.org/r/20250219-exynos7870-v3-0-e384fb610cad@disroot.org
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+- Added patches from https://lore.kernel.org/all/20250204-exynos7870-chipid-v1-0-0bf2db08e621@disroot.org/
+- Fix devicetree formatting according to the devicetree style guide.
+- Take over ownership of patches by the co-author, upon their request.
+- Link to v2: https://lore.kernel.org/r/20250204-exynos7870-v2-0-56313165ef0c@disroot.org
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/lJ4wAKCRB4tDGHoIJi
-0uWmAQCtxw5Z23ZiYT0qrn0wwzr4t2UEQ6ryapu9VWoQ38eBvAD7Bdm5DAj/ROim
-FY3SDV/9aJ5RLCCL6oItMWegBdNPpAY=
-=zhyk
------END PGP SIGNATURE-----
+Changes in v2:
+- Redo a few commit descriptions.
+- Split patchsets into multiple sub-series, subsystem-wise.
+- Link to v1: https://lore.kernel.org/r/20250203-exynos7870-v1-0-2b6df476a3f0@disroot.org
 
---epla1mZz+IrHa/xm--
+---
+Kaustabh Chakraborty (5):
+      dt-bindings: arm: samsung: add compatibles for exynos7870 devices
+      arm64: dts: exynos: add initial devicetree support for exynos7870
+      arm64: dts: exynos: add initial support for Samsung Galaxy J7 Prime
+      arm64: dts: exynos: add initial support for Samsung Galaxy A2 Core
+      arm64: dts: exynos: add initial support for Samsung Galaxy J6
+
+ .../bindings/arm/samsung/samsung-boards.yaml       |    8 +
+ arch/arm64/boot/dts/exynos/Makefile                |    3 +
+ .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts |  630 ++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    |  618 ++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts |  666 +++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7870-pinctrl.dtsi | 1022 ++++++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7870.dtsi         |  713 ++++++++++++++
+ 7 files changed, 3660 insertions(+)
+---
+base-commit: 29e7bf01ed8033c9a14ed0dc990dfe2736dbcd18
+change-id: 20250201-exynos7870-049587e4b7df
+
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
