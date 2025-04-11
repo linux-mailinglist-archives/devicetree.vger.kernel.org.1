@@ -1,185 +1,90 @@
-Return-Path: <devicetree+bounces-165965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7818CA85F65
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:44:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E922A85F6C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 15:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39E0F3B1235
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:38:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4305217642E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 13:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011361C863D;
-	Fri, 11 Apr 2025 13:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D28B1B21BF;
+	Fri, 11 Apr 2025 13:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iWU8Dx/J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KR7juRuj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220C61624D5;
-	Fri, 11 Apr 2025 13:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFDB175D48;
+	Fri, 11 Apr 2025 13:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744378725; cv=none; b=hLzzCIzUaDaXHzkoDjgEECTtsTk0Lh7yPcke5LJECssTSKthzo54b4rCkr/WnJnRiye2OXCsa8JlHUchMEiwmBkUoZrajTSi/qNM1lBTXSwumpRm3pQ3urFY9M3EFiXDmk3wCvDrlvE7eSw12xNBt+ECW+ov11eP1t88ue17Gw8=
+	t=1744378751; cv=none; b=Gu2/gyanEaznxrs3DyhBj+fbLtugq2npX9+OLie5XPLS7rcYC7jm0peBj30ADb0Yq5xPYbiwA6reu96CZZI0K7gDgGjZd06hzpwWYnrBgk263+zWUgNYYBTOSKDwWDt1GiRkLoOb0zbHmuSfo1fZAAck3723NIb6V7TZHbWEn6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744378725; c=relaxed/simple;
-	bh=9nOXjdvRPnZ2BF4Sz2SL+rND/MjoCbT+d+bZEAd8Qrk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KnfOr4sYCVBtIt5YgWeibvMr4eU6WUWGhDr5XJe9HJEUwAjfGBKNAp8o0PvNTnBQ+kTcYoV1nas9jBRp4p9mlRsTTejIiTSnvLrIbNYD1d5Icq7sjgJwvEpzHt/VxSYviJaasOrpHYJXhcKuuKaoyfktDYsfVg/K5PpV6is5XOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iWU8Dx/J; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A709143837;
-	Fri, 11 Apr 2025 13:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744378721;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Se307jMf8bJRrVTshEHtUk2COFPI+eANTJd1fN8fBls=;
-	b=iWU8Dx/JYqm/sFQgZoR26vjC41ZWuxjgOZhVY1/LATuPozDi8aQWRB4v9yfoH/bgxG53C9
-	f+X37mqdvqCDQAb7yrUuNmi3ZqDim/Hgq34MfFfSMaEOhdTQAWxq/cqwZLHvRbyz7wY5Ub
-	Ziu8XpfvAbftJkqqaiV/hVB+AFjnzn+ambnyplYjxxcz/scTZo3wvmgGdga209+onQY9IR
-	EwnENl2XV+Kkn10eSYTxDf3J90fCf+NwYjVvwuL6+HT349VivHuiQ28SzOTB1JccXcpWCi
-	3SUy8iWvfKTcAWxFdGbeGUJMSxHOitp5FqTX0odc1wUDrEz8bbzH1J8F47jAtA==
-Date: Fri, 11 Apr 2025 15:38:40 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Eddie Huang <eddie.huang@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] rtc: Fix the RTC time comparison issues adding
- cast
-Message-ID: <202504111338408af44d7b@mail.local>
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
- <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com>
+	s=arc-20240116; t=1744378751; c=relaxed/simple;
+	bh=nwdw56JvXHxd/zyJ5QMPwv3wEfR0/2J7KHJPwESoXas=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CDbKNKGAOZohh3VR1iRV3Y9BuO4PTCt1vM1xZWd2FTVJEQpk0mbwROyO8TngMe+Pn9/63NqFLGq5vQ0+mbWhNbOdWAXcKrSnS/oGbfCHYHdovW0EoLTcIuVSPC48Az7uGLdBXDydBMf4E8X6sz2iNRf1asesFnsESdcdm346qNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KR7juRuj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD11DC4AF09;
+	Fri, 11 Apr 2025 13:39:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744378750;
+	bh=nwdw56JvXHxd/zyJ5QMPwv3wEfR0/2J7KHJPwESoXas=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KR7juRuj9MZJ9pcgTM2h3rgU+KL90sGz8OEoTnqllin0xCOyQu0PszNrnOaBlmBuT
+	 vXfaOhXKOOU9We9V77f4h+JG3/UbqcnyOJp4sTbJV2UIdGMD4kLX3u9bXtk4JNCI4i
+	 IXfWHUqEawG23PZSGX4PcHUmRKgzNjLe31ldRbjqHOE1N6jUWrSvSHr8JaSQoJL6iw
+	 HVIwPdNdk3o0xEmi6UemXb/2R9o5nE5jOq/cnZUNIQCrEqVhiwCtAyMt0U/Dbbp7di
+	 /+/BMlWncKEc7oQVsPi6q24OqHmLS0Hh+rEoZAw3MvbO8rfO5u81m1XjeP6xMUn2HU
+	 bSDQoJek50Kqg==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e61375c108so2537554a12.1;
+        Fri, 11 Apr 2025 06:39:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbzlDhTKyDN4yJOPhfT5hX1gYf/oJWgG9hRIHjSKlbjKO2EYvvJjWNEeJ+tcai5dpJ61AGk2k6ZmAnQqF4bO73EY0=@vger.kernel.org, AJvYcCW7uMwlXIuSyP1azrpS+ecnt+k00iJaBIm46agcBPlPuzvypjQTILTkZOl8EgiJJ7KyHSv/Kxdy6Egj0gVa@vger.kernel.org, AJvYcCX28l2DOjed0HuzOvdRZUP6pQ7cL0blx03JZFw4v26B844T4XC46U1/PSZUrYox/Ro8OMWhQsFGSKNZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5VU8A2zo5kV4+pqL+qt5edsI+cUeHrTvzktmnUHstdf8un0rt
+	zZjiAi0irXvhUk4BCcKUwHdjRMCWOxnCr7ci9hwGx7OmqqF5fXwV+3CoiMBvyjXiXRCAz+lBlQE
+	nw0NatTByHtkLchb7PfIXc8hrIg==
+X-Google-Smtp-Source: AGHT+IHCBx9FNpODXurEkVL3DDwzD+pb0yTTZbqh9zO6eHhczvr3O47/vPCgZHqPnrj67KfN0qDwmMDySBH/2uDmTHY=
+X-Received: by 2002:a05:6402:42c4:b0:5ed:44e7:dcf with SMTP id
+ 4fb4d7f45d1cf-5f36fdc4e16mr1982670a12.24.1744378749321; Fri, 11 Apr 2025
+ 06:39:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvudduleehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetlhgvgigrnhgurhgvuceuvghllhhonhhiuceorghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeeiudeuteehhfekgeejveefhfeiudejuefhgfeljefgjeegkeeujeeugfehgefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemugekjegvmedusgdusgemledtkeegmegttghftgdphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomheprghlvgigrghnughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudefpdhrtghpthhtoheprghmvghrghhnrghtsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopegvugguihgvrdhhuhgrnhhgsehmvgguihgrthgvkhdrtghomhdprhgtphhtthhop
- ehsvggrnhdrfigrnhhgsehmvgguihgrthgvkhdrtghomhdprhgtphhtthhopehmrghtthhhihgrshdrsghgghesghhmrghilhdrtghomhdprhgtphhtthhopegrnhhgvghlohhgihhorggttghhihhnohdruggvlhhrvghgnhhosegtohhllhgrsghorhgrrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+References: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
+In-Reply-To: <90c7aa143beb6a28255b24e8ef8c96180d869cbb.1744271974.git.geert+renesas@glider.be>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 11 Apr 2025 08:38:58 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
+X-Gm-Features: ATxdqUEE-nGBS4emLkvKhAKcjF2FPzYUzyKn1zR4cfJ-MPI-ZqJeSBygBc5-d-w
+Message-ID: <CAL_Jsq+sCDEO_n_TLmyNBfhc71NNWWe2UQ21jh8+AdHH=G+KAw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: Simplify DMA-less
+ RZ/N1 rule
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/04/2025 14:35:56+0200, Alexandre Mergnat wrote:
-> The RTC subsystem was experiencing comparison issues between signed and
-> unsigned time values. When comparing time64_t variables (signed) with
-> potentially unsigned range values, incorrect results could occur leading
-> to runtime errors.
-> 
-> Adds explicit type casts to time64_t for critical RTC time comparisons
-> in both class.c and interface.c files. The changes ensure proper
-> handling of negative time values during range validation and offset
-> calculations, particularly when dealing with timestamps before 1970.
-> 
-> The previous implementation might incorrectly interpret negative values
-> as extremely large positive values, causing unexpected behavior in the
-> RTC hardware abstraction logic.
-> 
-
-range_max is explicitly unsigned, casting it to a signed value will
-break drivers.
-
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+On Thu, Apr 10, 2025 at 3:23=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> There is no need to repeat all SoC-specific compatible values in the
+> rule for DMA-less RZ/N1 variants.  Use wildcard "{}" instead, to ease
+> maintenance.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/rtc/class.c     | 6 +++---
->  drivers/rtc/interface.c | 8 ++++----
->  2 files changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/rtc/class.c b/drivers/rtc/class.c
-> index e31fa0ad127e9..1ee3f609f92ea 100644
-> --- a/drivers/rtc/class.c
-> +++ b/drivers/rtc/class.c
-> @@ -282,7 +282,7 @@ static void rtc_device_get_offset(struct rtc_device *rtc)
->  	 * then we can not expand the RTC range by adding or subtracting one
->  	 * offset.
->  	 */
-> -	if (rtc->range_min == rtc->range_max)
-> +	if (rtc->range_min == (time64_t)rtc->range_max)
->  		return;
->  
->  	ret = device_property_read_u32(rtc->dev.parent, "start-year",
-> @@ -299,7 +299,7 @@ static void rtc_device_get_offset(struct rtc_device *rtc)
->  	if (!rtc->set_start_time)
->  		return;
->  
-> -	range_secs = rtc->range_max - rtc->range_min + 1;
-> +	range_secs = (time64_t)rtc->range_max - rtc->range_min + 1;
->  
->  	/*
->  	 * If the start_secs is larger than the maximum seconds (rtc->range_max)
-> @@ -327,7 +327,7 @@ static void rtc_device_get_offset(struct rtc_device *rtc)
->  	 *
->  	 * Otherwise the offset seconds should be 0.
->  	 */
-> -	if (rtc->start_secs > rtc->range_max ||
-> +	if (rtc->start_secs > (time64_t)rtc->range_max ||
->  	    rtc->start_secs + range_secs - 1 < rtc->range_min)
->  		rtc->offset_secs = rtc->start_secs - rtc->range_min;
->  	else if (rtc->start_secs > rtc->range_min)
-> diff --git a/drivers/rtc/interface.c b/drivers/rtc/interface.c
-> index aaf76406cd7d7..93bdf06807f23 100644
-> --- a/drivers/rtc/interface.c
-> +++ b/drivers/rtc/interface.c
-> @@ -37,7 +37,7 @@ static void rtc_add_offset(struct rtc_device *rtc, struct rtc_time *tm)
->  	 */
->  	if ((rtc->start_secs > rtc->range_min && secs >= rtc->start_secs) ||
->  	    (rtc->start_secs < rtc->range_min &&
-> -	     secs <= (rtc->start_secs + rtc->range_max - rtc->range_min)))
-> +	     secs <= (time64_t)(rtc->start_secs + rtc->range_max - rtc->range_min)))
->  		return;
->  
->  	rtc_time64_to_tm(secs + rtc->offset_secs, tm);
-> @@ -58,7 +58,7 @@ static void rtc_subtract_offset(struct rtc_device *rtc, struct rtc_time *tm)
->  	 * device. Otherwise we need to subtract the offset to make the time
->  	 * values are valid for RTC hardware device.
->  	 */
-> -	if (secs >= rtc->range_min && secs <= rtc->range_max)
-> +	if (secs >= rtc->range_min && secs <= (time64_t)rtc->range_max)
->  		return;
->  
->  	rtc_time64_to_tm(secs - rtc->offset_secs, tm);
-> @@ -66,7 +66,7 @@ static void rtc_subtract_offset(struct rtc_device *rtc, struct rtc_time *tm)
->  
->  static int rtc_valid_range(struct rtc_device *rtc, struct rtc_time *tm)
->  {
-> -	if (rtc->range_min != rtc->range_max) {
-> +	if (rtc->range_min != (time64_t)rtc->range_max) {
->  		time64_t time = rtc_tm_to_time64(tm);
->  		time64_t range_min = rtc->set_start_time ? rtc->start_secs :
->  			rtc->range_min;
-> @@ -74,7 +74,7 @@ static int rtc_valid_range(struct rtc_device *rtc, struct rtc_time *tm)
->  			(rtc->start_secs + rtc->range_max - rtc->range_min) :
->  			rtc->range_max;
->  
-> -		if (time < range_min || time > range_max)
-> +		if (time < range_min || time > (time64_t)range_max)
->  			return -ERANGE;
->  	}
->  
-> 
-> -- 
-> 2.25.1
-> 
+>  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml          | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
