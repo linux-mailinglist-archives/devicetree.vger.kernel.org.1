@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-165783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-165784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418C9A856E5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:45:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0196A856E9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 10:45:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 331067A7E26
-	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:43:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D03A3B458F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Apr 2025 08:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081F02980A8;
-	Fri, 11 Apr 2025 08:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE495298990;
+	Fri, 11 Apr 2025 08:44:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="dq7bU5a0"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="enpRr1dU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0F328D857
-	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5C32980A4
+	for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 08:44:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744361083; cv=none; b=Lzyc4p/ejw4Bglw3JPEYv/DAEj+QrCiQjBSyFpxc4O4IpJ8qxLIywT6Q2zf7jLA0cSd7EAPl1fwrYgQk6zfrqut4kCBrwEYtNVTuuHksfk/pkUzP77+cXGWfqyXga6qzDbsFc5JK+SiRZz3TTYJKEhmPAPgkdVTIwIiHHezpUUg=
+	t=1744361092; cv=none; b=epobpUEwHI44Jrkhf5h3FdcKH2AwiLeftnFWU59H4lmCT2R4qrkm1FoPQGxodWtuRq4L6qI5V93gBI/S6a5JMbPjs3QEe4hmIIS85KYSIcMMVTSge5TyI1c1hgzAKzuP22H6w55Tb4myevrfINgWQd9bwL+aFCxtR/lMnsyM+xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744361083; c=relaxed/simple;
-	bh=uQms5T9GBYZwPgvuRXFc7lqMU5m7t7Nv9XiicuMUwDI=;
+	s=arc-20240116; t=1744361092; c=relaxed/simple;
+	bh=9cLwMw68mIgHIxF1qVqrql4c16I3edCul3SDUKeu+G8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gsR5im9RswRUvNJjpKQQbQYhKsMATYJN5asxtlAl0IPoTaTep+TjreI2Y/5BCkFrTX22hgnZy7uxqE6C5tVU0V/2xiLIQf5djIaOEaSQ4PjnWDZhJlAbXflM2v3fFHVHccW42FInLQZZQiQYeLtK/Aeh7XqNkQkAK0zCUN44pzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=dq7bU5a0; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=q1GOmBcLVPQkXvs4M4eWXSkj65KUBTTFo2mBUElXm0tibLsRhPiTWJom9Rj4/gUPeJx4ucijKF+t9m+UL6wVYCQZ6h0L3x4HJ1Qm8Q/kJiqgxfo6voigJryCBe7Tuw80IS0rJ2606Sr+ddF5CJnfHNwzf/vCBrB4ERqsXuMp580=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=enpRr1dU; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d0359b1fcso11698645e9.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:44:39 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39bf44be22fso980804f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Apr 2025 01:44:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1744361078; x=1744965878; darn=vger.kernel.org;
+        d=suse.com; s=google; t=1744361089; x=1744965889; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ym+swB0IGqW3GD8TUu3RUZwOm8qCGuP91NxIKul8xpM=;
-        b=dq7bU5a0KSFRSffiEK5ouQV9VLS5yS93sRok4aCUxCu/6rwFfH5ZnradTr163QTDrQ
-         Twaw8EKp6vlPa4QOqXH/l8LJPgYhZP8r55aK/MQWlEuF3m1n0SSRPyx5M8Js+dffd2Hw
-         J95jZsU8bqDJ10EDZrrzGRqLS0R829vJ6uvVgJXqfj71d26MwGmNO9/oXhL6CjtDU4fE
-         OdNP8SqXsVal6GGcXtOTeAJwIlkd60gurg0gOaRCClbAWGf2ByYOYhRV1fomQaSfHxHO
-         HS+lVAAWzKW/z/c08zwfhZGIhRfrM+SxYhweuoBXvulTbcHf0rVBcjI7+stlL6pOSweo
-         2KDg==
+        bh=zMGgS5fCEfGgSPkzbjBwVuqib9p8e2egk8zRG8FlzXk=;
+        b=enpRr1dUTuun/9ZTgkrViHTDeX58ABGjjTdR6fKYTeW0XY5NmsSDdVNp8Jgg1SjFcM
+         3rRWUwLvCxRLzvMztd9DsTx2hqXQrTc+9qnLmoeCIJsW8sGQSwgTQk81fGfwpdCEHjEH
+         M4SfRM2yIzF6U/ofPbJrF1paaTYLrW1EHAVgoPTvHyNXewEcrXFFvZHwIIrhULTp3219
+         ZImL9ImHKkIevjySCnPr7sFurQvq6jckgCdXqvuDFy5UIojlFTflQotv3APpDXrJKvfR
+         hsMx5pkklmN5mlmDyoZSbMCLB+CkwKEv1SWmn3wUOx5E0XNsW0hAyQv28Fe1DSOjufK6
+         il7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744361078; x=1744965878;
+        d=1e100.net; s=20230601; t=1744361089; x=1744965889;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ym+swB0IGqW3GD8TUu3RUZwOm8qCGuP91NxIKul8xpM=;
-        b=apbI3yaQLsEOJYmvKYcOlWx7isqJMc5jpWaN+wHTr1tUtvoVgZynUCPa58LKS/obgV
-         PikSPHQYT8SLScFbV4BpQOpRRwjD9VnrWp2tqmma5rBo/WENe9i/ktF6GENJEyNLxjkH
-         JAgAlbYhWRGYEN6D2JWvy78zWBELDUmbYmewCcieMzM4QLAoWbdFgmFMZ57l7RM/TlDt
-         Jg72QUd4J3121KeXtR9+3lL1p2iZUgu/shrqYwEQjFBfuC3hmxdNN37h03XKR4iZ1rOm
-         NziIW1gmm+6RgWdgZctZrjD6sa087gv45vJZN2I+9HGNnQU3T+h1lLD/plN31oUfadb9
-         1RQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVft5P8sQ83bMUpu0prMVzYk7OOOYcsDb1qzYl1L3gEQQNyp4dEJDeKBwAeJFn/rxJz73VLeKBVDIjt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx33NWU/CtYuomMaxDTfC7lJqksJz0bH/12NXAqkIMqdn4d7pHr
-	OjrwPW/jv9EbcNiffE8/Z2OFLHNWklvG/09XW0+P99fe+tfJbteqdzG+dVItbdg=
-X-Gm-Gg: ASbGncudSEp0Run/YJH9wzCeZF8+g3oxdCKSz4uVuscN6nqRJZxufqpYZOckNoNvgPJ
-	L/C7DFOPeKI7xPt3k1zC2Pcd0ZLvzalnm/4Ruk37s+44oHETSBkhdZRq2buOm+S09B1OKqJ0Pc8
-	ciNm/qnWU/rB240UpV1gWRF3eF34QWTFa2OHynGH0a5dJ6FTPR+cBLbiFj1eT5RHsySGyeM3sKU
-	k7ovsi12nU3kWiiZbc5Uq5MEWpG81ODQc4PMuUyRk37xDJQSylwdh5yXR9zzqfqu4NHlH/6hPnJ
-	r1cPpa022htgTct4qJChHM1vGwiww6UOasby7Q==
-X-Google-Smtp-Source: AGHT+IFKNUhGZrGZqRnXSCGsdpeGUvavp84OjEvM5R0nmvrxT8ATRqB5MuH3sqH0n0cc88cvltPmyw==
-X-Received: by 2002:a05:600c:1e0e:b0:439:8490:d1e5 with SMTP id 5b1f17b1804b1-43f2ea2a1a9mr53082445e9.4.1744361078490;
-        Fri, 11 Apr 2025 01:44:38 -0700 (PDT)
+        bh=zMGgS5fCEfGgSPkzbjBwVuqib9p8e2egk8zRG8FlzXk=;
+        b=bDjiDP3A8qURd8Y5F5Cy0PrBqh/oDcwD9eHGybRSOcjYthutYwV19RdtR4QfLFS8fd
+         brmz/rbg1R7pc+kcra0BkDAMs/7lTiPPwPdjvs1hmw3JFoiEvf/PtWNfmaAk0S0SONA3
+         0OgoOgIhtftZnv4T7S04Td0MAwYHmuxbkI5t3o3dLRnUqgNfDnizFdcm+zrtgeR5rel1
+         BFzIE0ZQ1uULzsbqN5GJqMt2uk2CBQoHnulOon8XtauvzXejL9+qbDqri3iUIJiJZ22o
+         tNecVRLEhAy55XvZCt2EJ6PJ5KJmlq46MG3WPDV+BIuW5tQCUPePT/iddSdepqpbUU+A
+         NY3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV/enh9SDwiJ6bQ/9VjbcogIUhCjc+RJPOGCu0D2lfmvdc3TikjN0lTz1BRPdncsoPx5gRso90KhJ95@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAO9RpMfFQG9KklmWrhXD2qsoAcLOJhk/tNtH8dpqBzmDCOxTI
+	8GQLmMQGkALfzv6OuUpEA8JVvC08Ls1PVC6fv2EuK0eNouBI5JyfxMy7ryTaBZM=
+X-Gm-Gg: ASbGncv0p0oCR2jsqJezQ3a1GrGXxb8Kkf7ISkx1jr0baOWj1PY+faYjMsptFIJI3+8
+	ZgBZzewqHYkZ/AkhgBypfcp6kbdJ6JvZDurmlGle2o20ByO75z8FlAvELziPLY4+/GzxTsyOJJp
+	P2QBKerwZSkxC4viCWCGda7Fw1AcnTjekbOApsfdxJCoDrExE5/Pw7umdMIkdTGnPjJAIj6XLmZ
+	VLjsVyP9iRF0hIkL6Ue4yYMOy6y0qkpfKWYVElHVfIUqjJR7h/70lJNUE5F3apDWaYB61XHW7IP
+	pxjbECNg/UHLtOT6Ni6W959PycWbouPWdIopmw==
+X-Google-Smtp-Source: AGHT+IE9HwRJqdBoFZARSKejgbKlYpB5ZyiUnFyow4d/RQYRPI6i3/YxPI/2/DT5RWcCHGw3YkUedA==
+X-Received: by 2002:a05:6000:40d9:b0:39c:1258:2dc9 with SMTP id ffacd0b85a97d-39eaaeca292mr1424739f8f.58.1744361089162;
+        Fri, 11 Apr 2025 01:44:49 -0700 (PDT)
 Received: from [192.168.2.177] ([81.0.8.231])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f206269c8sm82609535e9.16.2025.04.11.01.44.37
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f235a5b08sm78726825e9.33.2025.04.11.01.44.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 01:44:38 -0700 (PDT)
-Message-ID: <25d92af3-5aa4-4090-a60b-fff3bc30fcf4@suse.com>
-Date: Fri, 11 Apr 2025 10:44:36 +0200
+        Fri, 11 Apr 2025 01:44:48 -0700 (PDT)
+Message-ID: <2746c8a3-2d35-44bf-829a-e09c9441c2f9@suse.com>
+Date: Fri, 11 Apr 2025 10:44:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,8 +82,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: power: mediatek: Support Dimensity
- 1200 MT6893 MTCMOS
+Subject: Re: [PATCH v1 2/3] pmdomain: mediatek: Bump maximum bus protect data
+ array elements
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  robh@kernel.org
 Cc: krzk+dt@kernel.org, conor+dt@kernel.org, ulf.hansson@linaro.org,
@@ -93,7 +93,7 @@ Cc: krzk+dt@kernel.org, conor+dt@kernel.org, ulf.hansson@linaro.org,
  linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org, kernel@collabora.com
 References: <20250410143944.475773-1-angelogioacchino.delregno@collabora.com>
- <20250410143944.475773-2-angelogioacchino.delregno@collabora.com>
+ <20250410143944.475773-3-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <mbrugger@suse.com>
 Autocrypt: addr=mbrugger@suse.com; keydata=
@@ -139,86 +139,36 @@ Autocrypt: addr=mbrugger@suse.com; keydata=
  LV6nybxdRG/jp8ZQdQQixPA9azZDzuTu+NjKtzIA5qtfZfmm8xC+kAwAMZ/ZnfCsKwN0bbnD
  YfO3B5Q131ASmu0kbwY03Mw4PhxDzZNrt4a89Y95dq5YkMtVH2Me1ZP063cFCCYCkvEAK/C8
  PVrr2NoUqi/bxI8fFQJD1jVj8K0=
-In-Reply-To: <20250410143944.475773-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250410143944.475773-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 10/04/2025 16:39, AngeloGioacchino Del Regno wrote:
-> Add support for the Power Domains (MTCMOS) integrated into the
-> MediaTek Dimensity 1200 (MT6893) SoC.
+> In preparation for adding support for the MediaTek Dimensity 1200
+> MT6893 SoC, bump the maximum elements of the bp_cfg array to 7.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 Reviewed-by: Matthias Brugger <mbrugger@suse.com>
 
 > ---
->   .../power/mediatek,power-controller.yaml      |  2 ++
->   .../dt-bindings/power/mediatek,mt6893-power.h | 35 +++++++++++++++++++
->   2 files changed, 37 insertions(+)
->   create mode 100644 include/dt-bindings/power/mediatek,mt6893-power.h
+>   drivers/pmdomain/mediatek/mtk-pm-domains.h | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index 591a080ca3ff..9c7cc632abee 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -25,6 +25,7 @@ properties:
->       enum:
->         - mediatek,mt6735-power-controller
->         - mediatek,mt6795-power-controller
-> +      - mediatek,mt6893-power-controller
->         - mediatek,mt8167-power-controller
->         - mediatek,mt8173-power-controller
->         - mediatek,mt8183-power-controller
-> @@ -88,6 +89,7 @@ $defs:
->           description: |
->             Power domain index. Valid values are defined in:
->                 "include/dt-bindings/power/mt6795-power.h" - for MT8167 type power domain.
-> +              "include/dt-bindings/power/mediatek,mt6893-power.h" - for MT6893 type power domain.
->                 "include/dt-bindings/power/mt8167-power.h" - for MT8167 type power domain.
->                 "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
->                 "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
-> diff --git a/include/dt-bindings/power/mediatek,mt6893-power.h b/include/dt-bindings/power/mediatek,mt6893-power.h
-> new file mode 100644
-> index 000000000000..aeab51bb2ad8
-> --- /dev/null
-> +++ b/include/dt-bindings/power/mediatek,mt6893-power.h
-> @@ -0,0 +1,35 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/*
-> + * Copyright (c) 2025 Collabora Ltd
-> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_POWER_MT6893_POWER_H
-> +#define _DT_BINDINGS_POWER_MT6893_POWER_H
-> +
-> +#define MT6893_POWER_DOMAIN_CONN		0
-> +#define MT6893_POWER_DOMAIN_MFG0		1
-> +#define MT6893_POWER_DOMAIN_MFG1		2
-> +#define MT6893_POWER_DOMAIN_MFG2		3
-> +#define MT6893_POWER_DOMAIN_MFG3		4
-> +#define MT6893_POWER_DOMAIN_MFG4		5
-> +#define MT6893_POWER_DOMAIN_MFG5		6
-> +#define MT6893_POWER_DOMAIN_MFG6		7
-> +#define MT6893_POWER_DOMAIN_ISP			8
-> +#define MT6893_POWER_DOMAIN_ISP2		9
-> +#define MT6893_POWER_DOMAIN_IPE			10
-> +#define MT6893_POWER_DOMAIN_VDEC0		11
-> +#define MT6893_POWER_DOMAIN_VDEC1		12
-> +#define MT6893_POWER_DOMAIN_VENC0		13
-> +#define MT6893_POWER_DOMAIN_VENC1		14
-> +#define MT6893_POWER_DOMAIN_MDP			15
-> +#define MT6893_POWER_DOMAIN_DISP		16
-> +#define MT6893_POWER_DOMAIN_AUDIO		17
-> +#define MT6893_POWER_DOMAIN_ADSP		18
-> +#define MT6893_POWER_DOMAIN_CAM			19
-> +#define MT6893_POWER_DOMAIN_CAM_RAWA		20
-> +#define MT6893_POWER_DOMAIN_CAM_RAWB		21
-> +#define MT6893_POWER_DOMAIN_CAM_RAWC		22
-> +#define MT6893_POWER_DOMAIN_DP_TX		23
-> +
-> +#endif /* _DT_BINDINGS_POWER_MT6893_POWER_H */
+> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.h b/drivers/pmdomain/mediatek/mtk-pm-domains.h
+> index 2ac96804b985..7085fa2976e9 100644
+> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.h
+> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.h
+> @@ -44,7 +44,7 @@
+>   #define PWR_STATUS_AUDIO		BIT(24)
+>   #define PWR_STATUS_USB			BIT(25)
+>   
+> -#define SPM_MAX_BUS_PROT_DATA		6
+> +#define SPM_MAX_BUS_PROT_DATA		7
+>   
+>   enum scpsys_bus_prot_flags {
+>   	BUS_PROT_REG_UPDATE = BIT(1),
 
 
