@@ -1,130 +1,271 @@
-Return-Path: <devicetree+bounces-166261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD262A86BA9
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 09:47:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D425A86BAD
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 09:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4685B18964FE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:46:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83CEC19E7658
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF401A08A3;
-	Sat, 12 Apr 2025 07:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9B11990BA;
+	Sat, 12 Apr 2025 07:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="jStz93cd";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="iE5k6MIH"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tgp4H2sx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3388519AD86;
-	Sat, 12 Apr 2025 07:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B6F142624
+	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 07:53:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744443934; cv=none; b=j45BekqFvFOWG7TTZ0qFSrOO4YQ5meeevAros8NfCJjX5fVbloRmCXbLUj3QYylI4x5wjOVIk4+PKxQlcsQqdT5co1Q09nuvUPYD89mAyKuGYQvaplC285lx4XU9lpA8i8jUtTG+RcaDohLB4EyQJfNdlTDZnui0CzHFg/bN/C8=
+	t=1744444428; cv=none; b=Phk0bXLyi6dWFu+Eo51eXop33P5QRm1MoE/S3bfgjZkKftfBOaE+mNOYTp72S2ebsVJ+Pqhe8DTBE6LdL2OYHsAGkrmY3ZKxz3dqGDOqs7AToTSqE0ZejGtnh5dzpeYlgSgrhbnxx/jMRggR65VV4y7sh7ZnzDDhH5GgyyJlafE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744443934; c=relaxed/simple;
-	bh=aq36glBXKWJ4CyEzsiQJFbDCCtINN6dMSzr4bZ7fo84=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rCh2H85ZO/Y7xOpc/7WJrSnC8P9oz+pZZgTONHojcMRKIWUm5G0AeNefplO4LX1sFo8Mvjv1VDypWn/mZLZS60I9iRMtAMcx0dnX97HNfKjhZwKaAsh/BWn63jtJxDlXFnbTIGkbnTyfX5O33PmyRapgH92OLdeI2xExe64vOEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=jStz93cd; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=iE5k6MIH; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 88B8A12FB432;
-	Sat, 12 Apr 2025 00:45:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1744443932; bh=aq36glBXKWJ4CyEzsiQJFbDCCtINN6dMSzr4bZ7fo84=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jStz93cd09nE8F8fuJSKE6RIyBQg3hrCisO4exQjxE6PRzGvYRWc3idYEo3SsY3a1
-	 hE+3Tkv60KVxqL2KdnT9bj2CT3xjbveBukXcwPMsSQy69Bf831vbLdzJCVaIK5sOax
-	 GUqJ4Hw3SQEopfT/7YOkQj3IfXNNIh3VjTzHIlmFtQAfU7q7JpZTxjnUZPClJ7ZIDR
-	 8lJf4f1D7KBVwWNQfKveeyhSFkuV7q5ah5X1YT9FV4EVZpQ/PqsHb/byjpjyhAEh7m
-	 Q9tCQBT5qllzEzN53h8O72bJsWVBIz74jfJIWoYPs566SiYR2TyKFpm6LeaUGT4Ggu
-	 zAcsjvI1K6VcQ==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
- header.d=4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id WVUxCBhjmhLL; Sat, 12 Apr 2025 00:45:31 -0700 (PDT)
-Received: from localhost.localdomain (unknown [183.217.81.239])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 276E912FB41C;
-	Sat, 12 Apr 2025 00:45:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1744443931; bh=aq36glBXKWJ4CyEzsiQJFbDCCtINN6dMSzr4bZ7fo84=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iE5k6MIHr12bpehFyid4SkLPW+y6Rp5xYeHkjPUeuyLr8zv9Aw6sPzftUKj6EUnci
-	 Iq8fvuMFPUTtsYiEabpXUGwVUOI/B2WFWvEzV3+0SMhB6lKWV2B/BdBtUoRcqiEbsZ
-	 oHqINh1DXJCNehbV/oNf0R0TDWZ6TpWbrc8P0f8D1WrMT/oNtWj5/Mb504yCf2nmFb
-	 A3cxiWxR885auDTIMUoCBUrJE6KqMmB2cjF/QL5cN+2YpbAehFBjJhffQU49+vTj+w
-	 Oj5r91CyNH9xBXKxaAua1zCteTFdQdk+59gCh8oW3oRHICN5VuiqKdoZHoGHfnkSKg
-	 lO0DTJxznTpiQ==
-From: Haylen Chu <heylenay@4d2.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Haylen Chu <heylenay@4d2.org>
-Subject: [PATCH v7 6/6] riscv: defconfig: spacemit: enable clock controller driver for SpacemiT K1
-Date: Sat, 12 Apr 2025 07:44:24 +0000
-Message-ID: <20250412074423.38517-8-heylenay@4d2.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250412074423.38517-2-heylenay@4d2.org>
-References: <20250412074423.38517-2-heylenay@4d2.org>
+	s=arc-20240116; t=1744444428; c=relaxed/simple;
+	bh=GF7XQVEB7cf6bypb3+gbvXgsQgS1Zkp8WWsh1el6/s0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=E7cpMc8Opj7KYfxw4U5GcxftrTxvF9j1WDsrBL1ff8hqHF5gAAIu/7yBLQ4/OUbd7FgebyQ7psK94qeoiGomRJuKXiqvyzllBVXLnYnIVor/NNWujWHRcU+Ma7uztB6S+86V14PWWtudnigzBSVrUlGaeI2FBlg8SlXHYvEydJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tgp4H2sx; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250412075337euoutp0168103071630fdef2b1bb24a24ba3dfb1~1gvSA1rAw3172031720euoutp01E
+	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 07:53:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250412075337euoutp0168103071630fdef2b1bb24a24ba3dfb1~1gvSA1rAw3172031720euoutp01E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1744444417;
+	bh=+okiKaF78vSwt93i+78N55NQHBooGPmUv1vJFeh9orA=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=tgp4H2sxXDDUxQ6DmkoX6J2LO6IjBoq8RGmPF7ZkgH6p2mXiHS+mYOpmT/kxiGAyW
+	 IaRjKGMFJCLoPOGuRN9Tv5u1EU9ECiHBi8Q3PtcaGezcAA+w/VJq5bNpi1kmGt1uFW
+	 LmNZ5XDVHSUC8V76+v7o7qkK3xCqg/XVfADWGAbo=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250412075336eucas1p2ecadca65aca0d64cefccf968235cbdf0~1gvRJqYoD2362323623eucas1p2X;
+	Sat, 12 Apr 2025 07:53:36 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id C2.02.20409.00C1AF76; Sat, 12
+	Apr 2025 08:53:36 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250412075335eucas1p1182951499db6038021e78d9f4ecaac90~1gvQdG9NE3056730567eucas1p1o;
+	Sat, 12 Apr 2025 07:53:35 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250412075335eusmtrp156928a9b250f82ecaa281ed6c0646229~1gvQcXEIB1456814568eusmtrp1C;
+	Sat, 12 Apr 2025 07:53:35 +0000 (GMT)
+X-AuditID: cbfec7f4-c39fa70000004fb9-87-67fa1c00d656
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 78.A2.19920.FFB1AF76; Sat, 12
+	Apr 2025 08:53:35 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250412075334eusmtip1d40ddad77716aa880603d467db3a8ab2~1gvPtEH_X2732927329eusmtip1Y;
+	Sat, 12 Apr 2025 07:53:34 +0000 (GMT)
+Message-ID: <9bc1ebee-7a41-4465-8015-c156fb6b74cf@samsung.com>
+Date: Sat, 12 Apr 2025 09:53:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: firmware: thead,th1520: Add clocks
+ and resets
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-pm@vger.kernel.org, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <CAPDyKFq=BF5f2i_Sr1cmVqtVAMgr=0FqsksL7RHZLKn++y0uwg@mail.gmail.com>
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJKsWRmVeSWpSXmKPExsWy7djP87oMMr/SDa5P4bdYs/cck8X8I+dY
+	Le5d2sJk8WJvI4vFy1n32Cwu75rDZvG59wijxbbPLWwWa4/cZbe4e+8Ei8X/PTvYLf5d28hi
+	cXxtuEXL/iksDnwem1Z1snncubaHzWPzknqPlrXHmDz6/xp4vN93lc2jb8sqRo/Pm+QCOKK4
+	bFJSczLLUov07RK4Mh7+Vi14olXxf8lCtgbG+UpdjJwcEgImEp0H9zOC2EICKxgl3l5M72Lk
+	ArK/MEqsm7qBFcL5zCjxa+FNNpiOLQtfMEMkljNKbN7zkAnCecsoceLIMXaQKl4BO4lnL/6C
+	2SwCqhL3N2xigYgLSpyc+QTMFhWQl7h/awZYjbBAhMSOz5fAbBEBDYk9D8+zgtjMAg+YJJbO
+	koewxSVuPZnPBGKzCRhJPFg+H6iGg4NTIFDi0cNYiBJ5ieats8GOkxBYzikxtbmBEeJqF4np
+	5z8wQdjCEq+Ob2GHsGUkTk/uYYGw8yUebP3EDGHXSOzsOQ5lW0vcOfeLDWQXs4CmxPpd+hBh
+	R4nO15vATpAQ4JO48VYQ4gQ+iUnbpjNDhHklOtqEIKrVJKb29MItPbdiG9MERqVZSGEyC8mP
+	s5A8Mwth7wJGllWM4qmlxbnpqcVGeanlesWJucWleel6yfm5mxiBqe30v+NfdjAuf/VR7xAj
+	EwfjIUYJDmYlEV4Nxl/pQrwpiZVVqUX58UWlOanFhxilOViUxHkX7W9NFxJITyxJzU5NLUgt
+	gskycXBKNTD1WQsrNK4pqp8W9s1+kfT3MAkLV2mewvDV6ksKr+sbbF5g8GVFF8vc84EOp58c
+	8W5YNl+Qz2HznH7bz7uvxds52scre7kpXbiiMbtHQzGg70Gc5c15q55da8z34bCLjvvy8/TF
+	xFV30xkK6nbM/sd16douRaeoR2v1ZqVIxfXYP1edNWOL3IkeVkW/T57zs8RPvlA5Lxl+49fp
+	ABtFo1sM/1SO7Fqz+9QUvh/r2zM2Bbtq/0z3yf1svSvrttK5JfuOzDlv2iLfo/acKUbzbUT1
+	XJ8Zr71X+3Ez7xM/oJ/yIfMM23T7SauEhLKyd3DrX974YD1T+kPvA47xkb4T8/0f1xpcXrz8
+	ReOF/Jdz331SYinOSDTUYi4qTgQAJT5+Z9wDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLIsWRmVeSWpSXmKPExsVy+t/xu7r/pX+lG+zeJWexZu85Jov5R86x
+	Wty7tIXJ4sXeRhaLl7PusVlc3jWHzeJz7xFGi22fW9gs1h65y25x994JFov/e3awW/y7tpHF
+	4vjacIuW/VNYHPg8Nq3qZPO4c20Pm8fmJfUeLWuPMXn0/zXweL/vKptH35ZVjB6fN8kFcETp
+	2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSWpRbp2yXoZTz8rVrw
+	RKvi/5KFbA2M85W6GDk5JARMJLYsfMHcxcjFISSwlFFiY8dkRoiEjMS17pcsELawxJ9rXWwQ
+	Ra8ZJc63zmAGSfAK2Ek8e/GXHcRmEVCVuL9hEwtEXFDi5MwnYLaogLzE/VszwGqEBSIkdny+
+	BGaLCGhI7Hl4nhVkKLPAAyaJr9/WQW3oYZY4fmENG0gVs4C4xK0n85lAbDYBI4kHy+cDdXBw
+	cAoESjx6GAtiMguoS6yfJwRRLS/RvHU28wRGoVlIzpiFZNAshI5ZSDoWMLKsYhRJLS3OTc8t
+	NtQrTswtLs1L10vOz93ECIznbcd+bt7BOO/VR71DjEwcjIcYJTiYlUR4NRh/pQvxpiRWVqUW
+	5ccXleakFh9iNAUGxURmKdHkfGBCySuJNzQzMDU0MbM0MLU0M1YS53W7fD5NSCA9sSQ1OzW1
+	ILUIpo+Jg1OqganZeNeeDWsOe3rWmCu/u2Uu5RNwl1cjN5A9xXZNAW/z04n1dgUiT1xfun8x
+	TD1nki6R+e+EDIv5htXbEjUYFC23ieuX2R2ufCE5e/29JbEyPJy+P9WNhDmWfbOREfXj/Kn1
+	5WnsnguPNj6oP8ZmsEzs6LzWjBPmPBnHzk+MVr02pU9+V5GrY+5vixur0j29bqrf7/76rfLd
+	hvfS88SVpzw82WmaMT8le+f6/9M0gvVandkSvuq5365fNX3R1sdJohmvHt96vzvYdskHReWe
+	udp8BvMnrvlXfHJD8qpchsUu9ilaF6Q3PXaMlMh/Ij1h3a/Njh+kRU4aXWx5G3zDsORf/59n
+	Vvtvhihwffo/v1KJpTgj0VCLuag4EQDH0QWFcAMAAA==
+X-CMS-MailID: 20250412075335eucas1p1182951499db6038021e78d9f4ecaac90
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf
+References: <CGME20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf@eucas1p2.samsung.com>
+	<20250409093025.2917087-1-m.wilczynski@samsung.com>
+	<20250409093025.2917087-2-m.wilczynski@samsung.com>
+	<CAPDyKFpoSwKAmiWyvNt1fVyu6=NU1oVOmQLVuzX_bG=-5KrM2Q@mail.gmail.com>
+	<75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
+	<CAPDyKFq=BF5f2i_Sr1cmVqtVAMgr=0FqsksL7RHZLKn++y0uwg@mail.gmail.com>
 
-Clock controller unit, or CCU, generates various clocks frequency for
-peripherals integrated in SpacemiT K1 SoC and is essential for normal
-operation. Let's enable it as built-in driver in defconfig.
 
-Signed-off-by: Haylen Chu <heylenay@4d2.org>
----
- arch/riscv/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 3c8e16d71e17..4888529df1d8 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -250,6 +250,8 @@ CONFIG_CLK_SOPHGO_CV1800=y
- CONFIG_CLK_SOPHGO_SG2042_PLL=y
- CONFIG_CLK_SOPHGO_SG2042_CLKGEN=y
- CONFIG_CLK_SOPHGO_SG2042_RPGATE=y
-+CONFIG_SPACEMIT_CCU=y
-+CONFIG_SPACEMIT_K1_CCU=y
- CONFIG_SUN8I_DE2_CCU=m
- CONFIG_SUN50I_IOMMU=y
- CONFIG_RPMSG_CHAR=y
--- 
-2.49.0
+On 4/10/25 14:34, Ulf Hansson wrote:
+> On Thu, 10 Apr 2025 at 12:42, Michal Wilczynski
+> <m.wilczynski@samsung.com> wrote:
+>>
+>>
+>>
+>> On 4/9/25 12:41, Ulf Hansson wrote:
+>>> On Wed, 9 Apr 2025 at 11:30, Michal Wilczynski <m.wilczynski@samsung.com> wrote:
+>>>>
+>>>> Prepare for handling GPU clock and reset sequencing through a generic
+>>>> power domain by adding clock and reset properties to the TH1520 AON
+>>>> firmware bindings.
+>>>>
+>>>> The T-HEAD TH1520 GPU requires coordinated management of two clocks
+>>>> (core and sys) and two resets (GPU and GPU CLKGEN). Due to SoC-specific
+>>>> requirements, the CLKGEN reset must be carefully managed alongside clock
+>>>> enables to ensure proper GPU operation, as discussed on the mailing list
+>>>> [1].
+>>>>
+>>>> Since the coordination is now handled through a power domain, only the
+>>>> programmable clocks (core and sys) are exposed. The GPU MEM clock is
+>>>> ignored, as it is not controllable on the TH1520 SoC.
+>>>>
+>>>> This approach follows upstream maintainers' recommendations [1] to
+>>>> avoid SoC-specific details leaking into the GPU driver or clock/reset
+>>>> frameworks directly.
+>>>>
+>>>> [1] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel.org/
+>>>>
+>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>>>> ---
+>>>>  .../bindings/firmware/thead,th1520-aon.yaml   | 28 +++++++++++++++++++
+>>>>  1 file changed, 28 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>> index bbc183200400..8075874bcd6b 100644
+>>>> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>> @@ -25,6 +25,16 @@ properties:
+>>>>    compatible:
+>>>>      const: thead,th1520-aon
+>>>>
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: GPU core clock
+>>>> +      - description: GPU sys clock
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: gpu-core
+>>>> +      - const: gpu-sys
+>>>
+>>> These clocks don't look like they belong to the power-domain node, but
+>>> rather the GPU's node.
+>>>
+>>> Or is this in fact the correct description of the HW?
+>>
+>> Hi,
+>> Thank you for your input. Based on my understanding of Stephen
+>> presentation the power-domain layer could act as a middleware layer
+>> (like ACPI) that could own resources. That being said it was also stated
+>> that the proposed approach should work with already existing device
+>> trees, which implies that the DT should remain as is.
+>>
+>> So I could get the resources using attach_dev and detach_dev, but there
+>> are two problems with that:
+>>
+>> 1) The GPU driver will try to manage clocks/reset on it's own using those functions
+>>    if I provide non-stub working clocks and reset:
+>> static const struct dev_pm_ops pvr_pm_ops = {
+>>         RUNTIME_PM_OPS(pvr_power_device_suspend, pvr_power_device_resume,
+>>                        pvr_power_device_idle)
+>> };
+>>
+>> So obviously I should invent a way to tell the drm/imagination driver to
+>> NOT manage. One obvious way to do this is to introduce new flag to genpd.flags
+>> called let's say GENPD_FLAG_EXCLUSIVE_CONTROL, which would tell the consumer
+>> driver that the power management is being done only done from the PM
+>> middleware driver.
+> 
+> Something along those lines. Although, I think the below twist to the
+> approach would be better.
+> 
+> Some flag (maybe just a bool) should be set dynamically when the
+> ->attach_dev() callback is invoked and it should be a per device flag,
+> not a per genpd flag. In this way, the genpd provider driver can make
+> runtime decisions, perhaps even based on some DT compatible string for
+> the device being attached to it, whether it should manage PM resources
+> or not.
+> 
+> Additionally, we need a new genpd helper function that allows the
+> consumer driver to check if the PM resources are managed from the PM
+> domain level (genpd) or not.
+> 
+> If it sounds complicated, just let me know I can try to help put the
+> pieces together.
 
+Thanks, this sounds doable
+
+> 
+>>
+>> 2) The GPU node doesn't want to own the gpu-clkgen reset. In fact nobody
+>>    seems to want to own it, even though theoretically it should be owned by
+>>    the clk_vo as this would describe the hardware best (it's resetting the
+>>    GPU clocks). But then it would be trickier to get it from the PM driver,
+>>    making the code more complex and harder to understand. Nonetheless I
+>>    think it would work.
+> 
+> I guess it doesn't really matter to me. Perhaps model it as a reset
+> and make the GPU be the consumer of it?
+
+GPU driver maintainers already stated that they only want to consume a
+single reset line, that would be 'gpu' [1]. The 'gpu-clkgen' is an orphan in
+this situation, or a part of a SoC specific-glue code, so theoretically
+since the PM driver in our case is also a SoC glue driver we could leave
+the 'gpu-clkgen' in PM DT node.
+
+[1] - https://lore.kernel.org/all/816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com/
+> 
+>>
+>> If this sounds good to you I will work on the code.
+> 
+> Sure, let's give this a try - I am here to help review and guide the best I can.
+
+Thank you very much for your support, it’s invaluable!
+
+> 
+> [...]
+> 
+> Kind regards
+> Uffe
+> 
 
