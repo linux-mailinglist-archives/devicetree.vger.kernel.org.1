@@ -1,126 +1,145 @@
-Return-Path: <devicetree+bounces-166237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F473A86AA5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:53:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7FDA86A87
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:18:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEBE019E38F3
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 03:53:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6FB39A0337
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 03:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7E81624E4;
-	Sat, 12 Apr 2025 03:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263FB1519BA;
+	Sat, 12 Apr 2025 03:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N3g/8nXc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YtD2Km53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14091155743;
-	Sat, 12 Apr 2025 03:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F83713CF9C
+	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 03:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744430009; cv=none; b=mO6nvgdFAJHrEPIq4em9ttuESgugxdVyfEVeSZuSTw66fqbQeyMb6YoTMIx1/SryqdfPrt1IWOHcvTfQ7nPmCO1qD5i1yEFZSXy+QaruCnQnn84y63Czgo95smiXLfd1K+YMjQYjzslqXjGGBFp6/ff6FLqHyJphTBKayS9ug2M=
+	t=1744427909; cv=none; b=eTSka/6bJemknLidiSBg+kaXh6cEtd9GgOs5IveyYP931g3v9Ezu/GRuFT7VKNl0AbgyGdVidlRSYIDJdTU7TVeUSaCKVI6hUjEr8bp7XtXgrZc639Wzg57+8HfcorX2lqSiVWl4kdxrVRr+pHvowoiCMsnAsUfhWTi8s5aOAfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744430009; c=relaxed/simple;
-	bh=wTzkihgJDk+PfgalYMEfICtXY4uHOcjzu9cQSMU9SvY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gkNw0E3XED1Mi/DPRHX1fh3qtAA4cz5Eo4GS7IxOETFFlK0YG3iCU2BXNQmorlQFVriYpVkd3f9hjYef71QrBwmKqza1+62oEGJ3ITLcuUaE5f3JL1xihMB6i+3C2VqeKe0DV7WLykx+csoL4IEhc1XNosf21A+qUEby8OpNCNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N3g/8nXc; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-736dd9c4b40so3256190b3a.0;
-        Fri, 11 Apr 2025 20:53:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744430007; x=1745034807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9cCaU/9pItXeyQyKncm+hw9C0oW5ARKbMzPEkSk/lu0=;
-        b=N3g/8nXcC63yd8R5bLzSfi6P/qDJfvtchPmhEGa6m15WKADcOposL3Z99bRBJ2vBiF
-         lrg12fzCaKK66NRYx0tE1oY1dUHNI84pkrFX5p96zIT5/3CSh8ak2DJZ+8FfPTv+qLsS
-         K7U+Xo6BWrybAsxz53/Gq68B3c9OxrJl9TZ7tExrZqAcg7fJFoKlxa4x7Vr8Gmh1p+1Z
-         BCtP7e7Kx9AaXiNHKGAXkY/1/m4WDpX452Nemtzk0IWv/TmNOKWDGavgrypEqAPN8iGS
-         TAX61GFd7tRETWaxVrOlDYFIcge5rYyX1fJp8PeMT5nJ1iTFbmudHxOprwzqk071ehvb
-         g3ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744430007; x=1745034807;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cCaU/9pItXeyQyKncm+hw9C0oW5ARKbMzPEkSk/lu0=;
-        b=YgUzaXW5t7s/QhxVjFOPdE8j8he2qk3jHoV2qluthLHJbWiuuYBOxmqj3PWVTPrf+j
-         0Y5VarOf5CCYUnuYunrCsfT5NEmqETPP+A+k/rF0AgHVwaHL9oMqtnklk62ocWepNcNf
-         hOJBbDeB0fUVV4aixWjIdjd5YdKJpDvYjdrj4tXWCROdsc8ASKHMYn6pk6D2Bq/OLygt
-         XxbIyGepcT/g6PSsb4qANhr92UIkBzJRpYLextbBi3BNzLDCXHJngCoKRWOkwueatatD
-         zt9BQvGz+UDnsAmbntzTO64Kaw80wqDSsR+7NevuSGcrptlH2sMNMPzgeJHgRzstB3y8
-         wlZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVX89rz8A/Ol/tGUkZH2Z4kZWKjmad945Wy+MY5sJS9Do/ada9I4o8SIFzFCNr+shl/bD6IGW1kYB3lRjyE@vger.kernel.org, AJvYcCVdakyic5D4CmefWgPkyEcrr8syUjkI63JcQ8gMBkOMyUg/8UzodL131rZhw6UzsrXBUHW6/vdkWx0=@vger.kernel.org, AJvYcCWRBaenYOI18hidoEoRL1if2leb1lxCcSDr2I++kUMsoey8ahspiyzkXpUdQZY0ljQAXo3dsKWDbAhF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw16QyxhN+rB81xfH3MDDp+FSmiVlDb6EG7/5iTwUdgHieI473F
-	JeIwLaVAfMhTak0WRGOX553pwXOYHl8Oj7dhXBX+l1Y31s41iCco
-X-Gm-Gg: ASbGncuvgplU+8bdasapTVoE3xtZKXXvraWc0ZI+q9AEAlWhYkrnB0D76JZiBk/SGIZ
-	MjaynB/P1DvuF1Elc55wUhtnXP4z0BG1FoxGABME0rU9pO/ePxPS+7YXCErOqV60Rirk7v99/+g
-	5PrHJagQe4RH3ayPnFCjv/RBsWXd2h6aw8AcjhdEtrvIIjNnoHj6UeNgS7FBGiS40C1L/FZ8PUJ
-	k+o3x7PgrZFegLn4FdEVx8X+yHBD2TAfROTN+cURjTQYhr6uxbhGxt9c4u/+IprD20w9X+KxNyh
-	12NsFugVqOIXGM1XBqmOktlzhZ/Z3jI9oEsxNZKKETI5
-X-Google-Smtp-Source: AGHT+IEIMF5fg8Rc1Bjc1V7Y1P75rom0e3KD+7LFsWsIXn/FP8KnbU+SQpMciMlE4vYfRTYAuGDRbQ==
-X-Received: by 2002:a05:6a20:6f08:b0:1f3:1e5c:c655 with SMTP id adf61e73a8af0-201795227d9mr7520801637.6.1744430007203;
-        Fri, 11 Apr 2025 20:53:27 -0700 (PDT)
-Received: from [192.168.101.248] ([212.192.12.80])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd2198c00sm2594765b3a.10.2025.04.11.20.53.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 20:53:26 -0700 (PDT)
-Message-ID: <5084c2dc-d268-4268-a827-2ae445782a4e@gmail.com>
-Date: Sat, 12 Apr 2025 03:53:08 +0300
+	s=arc-20240116; t=1744427909; c=relaxed/simple;
+	bh=5eRW5rxiHznaS29DsjlvBn1/iGmaCk4FYmbVdFXA/TM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MEMHiz4QFQeG7TmBBUlZPXlN2tVTTyMsfTwIC2/r7Jia+/4HTp1bBbYsZNkzxQY81c46XBGC/B8Js1IvIbebUy72gZREWbil6tsqrhBaGEob+LJYqxUTyj5hBdrAa997zaAkzGNoEQgre9UnsAWG7c/AzzQqPQSz0xYanJawRds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YtD2Km53; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744427907; x=1775963907;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5eRW5rxiHznaS29DsjlvBn1/iGmaCk4FYmbVdFXA/TM=;
+  b=YtD2Km53pPK5vFS1jmTXa0f2/j6UGI7k7dOaCNj1CZ3Y90ItaiOXZwHd
+   KdsErXw+J0tLxNy38L/3xys/x1/sVXz8x4XThbv7f/nSGnkK69eQRBbu3
+   80s5oyBqVbqYub34lOnGjgunUdyQqnxay7+QPxdYhb0bKwj0es3m65gfS
+   oyDd4N8mho4yW3rmihnr37XNUx/hpy2xIRSo5KmAxdStzJ8oTON40DET/
+   ka98Aiz52UyyiXtxdFT3os4dXXvMN8FhH7GDV9VIg5y1Qgf/N4vCDM17S
+   f1yH0INbRxzlhMj3p9mn/THQlnGwGwoTThaiEuu16eqxZX4uYC9MXWAkx
+   Q==;
+X-CSE-ConnectionGUID: 7fRMfixJRwavD7j7fHc2wg==
+X-CSE-MsgGUID: bY+HDSxKQ3yNWDJHEK+mVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="45120224"
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; 
+   d="scan'208";a="45120224"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Apr 2025 20:18:26 -0700
+X-CSE-ConnectionGUID: q+jyXXBuRWOmAYFAkaeg5A==
+X-CSE-MsgGUID: WaJlrbmWTlSWu6DOVsrunQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; 
+   d="scan'208";a="160326412"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 11 Apr 2025 20:18:23 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u3RNt-000BXi-0f;
+	Sat, 12 Apr 2025 03:18:21 +0000
+Date: Sat, 12 Apr 2025 11:17:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, jgg@ziepe.ca,
+	will@kernel.org, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
+Subject: Re: [PATCH v2 1/3] arm-smmu: move MSI_IOVA macro definitions
+Message-ID: <202504121044.VSL6FbCC-lkp@intel.com>
+References: <20250410225030.2528385-2-shyamsaini@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] Add support for A523 Thermal system
-From: Mikhail Kalashnikov <iuncuim@gmail.com>
-To: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
- <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-References: <20250411003827.782544-1-iuncuim@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20250411003827.782544-1-iuncuim@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250410225030.2528385-2-shyamsaini@linux.microsoft.com>
+
+Hi Shyam,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.15-rc1 next-20250411]
+[cannot apply to soc/for-next joro-iommu/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Shyam-Saini/arm-smmu-move-MSI_IOVA-macro-definitions/20250411-070014
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250410225030.2528385-2-shyamsaini%40linux.microsoft.com
+patch subject: [PATCH v2 1/3] arm-smmu: move MSI_IOVA macro definitions
+config: arm-randconfig-001-20250412 (https://download.01.org/0day-ci/archive/20250412/202504121044.VSL6FbCC-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250412/202504121044.VSL6FbCC-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504121044.VSL6FbCC-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1597:35: error: use of undeclared identifier 'MSI_IOVA_BASE'
+    1597 |         region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+         |                                          ^
+>> drivers/iommu/arm/arm-smmu/arm-smmu.c:1597:50: error: use of undeclared identifier 'MSI_IOVA_LENGTH'
+    1597 |         region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+         |                                                         ^
+   2 errors generated.
 
 
-On 4/11/25 03:38, Mikhail Kalashnikov wrote:
-> This patch series adds temperature sensor support for the Allwinner A523
-> family of processors (same die with H728/A527/T527)
+vim +/MSI_IOVA_LENGTH +1597 drivers/iommu/arm/arm-smmu/arm-smmu.c
 
-Based on 6.15-rc1 with dts patches from
+021bb8420d44cf drivers/iommu/arm-smmu.c              Robin Murphy 2016-09-14  1590  
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1591  static void arm_smmu_get_resv_regions(struct device *dev,
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1592  				      struct list_head *head)
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1593  {
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1594  	struct iommu_resv_region *region;
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1595  	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1596  
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19 @1597  	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+0251d0107cfb0b drivers/iommu/arm/arm-smmu/arm-smmu.c Lu Baolu     2022-10-19  1598  					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1599  	if (!region)
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1600  		return;
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1601  
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1602  	list_add_tail(&region->list, head);
+273df9635385b2 drivers/iommu/arm-smmu.c              Robin Murphy 2017-03-16  1603  
+273df9635385b2 drivers/iommu/arm-smmu.c              Robin Murphy 2017-03-16  1604  	iommu_dma_get_resv_regions(dev, head);
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1605  }
+f3ebee80b3131d drivers/iommu/arm-smmu.c              Eric Auger   2017-01-19  1606  
 
-https://lore.kernel.org/linux-sunxi/20250307005712.16828-1-andre.przywara@arm.com/T/#t
-
-> Mikhail Kalashnikov (6):
->    thermal/drivers/sun8i: add gpadc clock
->    thermal/drivers/sun8i: replace devm_reset_control_get to shared
->    thermal/drivers/sun8i: Add support for A523 THS0/1 controllers
->    arm64: dts: allwinner: A523: Add SID controller node
->    arm64: dts: allwinner: A523: Add thermal sensors and zones
->    dt-bindings: thermal: sun8i: Add A523 THS0/1 controllers
->
->   .../thermal/allwinner,sun8i-a83t-ths.yaml     |   5 +
->   .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 145 +++++++++++++++++
->   drivers/thermal/sun8i_thermal.c               | 154 +++++++++++++++++-
->   3 files changed, 300 insertions(+), 4 deletions(-)
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
