@@ -1,215 +1,431 @@
-Return-Path: <devicetree+bounces-166301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ACC4A86E06
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 18:02:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FA3A86E0E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 18:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E7EB1897E2C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 16:03:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C544817BF56
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 16:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347A01F03E0;
-	Sat, 12 Apr 2025 16:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80CA51FECBD;
+	Sat, 12 Apr 2025 16:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rvG+V6kl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2107.outbound.protection.outlook.com [40.107.215.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1040C1AF4D5;
-	Sat, 12 Apr 2025 16:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.107
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744473773; cv=fail; b=MNH0opYxzTjW6Ueyrvj7RGS5PaRigRUNcoL+YS6wLGFD3a849NtRGf2ecABUsTSBFJJUT5Q1g9qg7Lfblf4xkpUwN6XGAsFwgshTEHFH3YfQDH716+ED1nTrrG1tLxlOZGA9IpKhBY+xy9K420JdSMNJIGgiaN/zg6Dy7ZWpYNg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744473773; c=relaxed/simple;
-	bh=i6vdrfWmmDgQpk35E+zggObarLAfouvqabAFg+MaXk4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ELXoOCEGOahgecGlWw0JyKsE1OVpfNHrMk2NeFfWqyZeaUxSC9+eu1+WM8zOVU3yu6uM+cZU3bmC31+1C0+pK0Qym2shscg0Ts2IrxkCZ6Ovb+xZFCbfkZ8p4qXvWmzmXfbush1wePu5Sky4q/De1mWA7sI3BwltuenipbSeE7Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.215.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WhfsNgqnc8pVtR5RksmDW650Ye47LzHRtKvbsnm+mU2S5cstiXES/XfL5UPxgl/d0RpIJJRZ+2f5nB1/LZZaRlFKkKeJ/Dpw+oLFToFFeArbTDDjvAOM3VuDo+iZccha57R0vUtx0M+C7iBq0l6UaBa69gmtPCrSIa+08Sk/K2cGCU3yI9UPDZ4nT4oTOWSkxHtmovObSazdFfHjx1BePldw8n/GNPMCn4UrkwyKCHQg2PSgsP2yIpyQOPjOZzQ5a3uQsh5p8R8kkRoE7Sdv3Hz9dPRWcdLNtnNhN32guUg1DW3jLOiIk6uolI46i1tDycMHPPNvok3mAyyRa4ehlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vjcLWuEEFZ8x73venkAxYeuLchSROMehltySMaO+nqU=;
- b=URGnG/juM6Qu++1sqMZSxwWUW4r4KaILTFuUhdRFqZfS02Y+wL6TGiAi+D5YDZfqttl5UPz17RdPL37eT6uM9PPn4eLK47dk0kSyg8whHOQ/jpUlaa9By9msEOPXKMkg1l7HuGblx/3oljBWvrudY1GYOQZFdjPn9s2Yx5GUIRPSW/nanvGCwFfsgsW3+nvqTVQtUzBqTjOvmd3vFKo9f5cQXFnqEvUcyH5C4XviWbkVyPVgDWeiNuaJEesJjdahlmPxHhDC+CljSjucKjF6K0Hg10KutcxEvbSdHqghcYxK8JwsXXkvENI9L82Dqn9hzkzpPRIyRwR8Ho8sYl/Sog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR01CA0168.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::24) by JH0PR06MB6850.apcprd06.prod.outlook.com
- (2603:1096:990:4d::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.31; Sat, 12 Apr
- 2025 16:02:45 +0000
-Received: from HK3PEPF0000021A.apcprd03.prod.outlook.com
- (2603:1096:4:28:cafe::6c) by SG2PR01CA0168.outlook.office365.com
- (2603:1096:4:28::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.29 via Frontend Transport; Sat,
- 12 Apr 2025 16:02:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- HK3PEPF0000021A.mail.protection.outlook.com (10.167.8.36) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.12 via Frontend Transport; Sat, 12 Apr 2025 16:02:44 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 3BDAF41604EB;
-	Sun, 13 Apr 2025 00:02:43 +0800 (CST)
-Message-ID: <94d08e9b-9718-4ee2-be9f-469177f7e4db@cixtech.com>
-Date: Sun, 13 Apr 2025 00:02:39 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0845BAF0;
+	Sat, 12 Apr 2025 16:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744474067; cv=none; b=flhchFiBMOHMsxKvKwoD4AsEgfq1m2c15RPG5ETY8+oBvWsKVZI/e89TEcxTmnsXeYcsbtc6viLDiehu7/VgwIZNh6zl62l2QsZd/BPRJapgMEgXpJowYHhJy0vlqe7GSjSHKBHF8VB37bB4KkkPJmalN2E4afDFZQ/YIULFBUc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744474067; c=relaxed/simple;
+	bh=lmuYPty/lZmLcal0gRqAtGX3aUvqVaa1WHACrU34TIg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=faLSVVUXS3nDjBHOwViyB7lJRk3ukiUUVhWhQuhcNgsZkZ6O5E4NMoygXe0xqBVCGZn8FU5MbqagD7gGdD2ueQp5YJfuylwV7NXEVvJXZDtgH1F6/fpLJS8z+Ya4eqAqCmjRCbuta2DoocqCcHRMCSTSD6SLLMp6C3S4HVGGlLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rvG+V6kl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA85EC4CEE3;
+	Sat, 12 Apr 2025 16:07:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744474066;
+	bh=lmuYPty/lZmLcal0gRqAtGX3aUvqVaa1WHACrU34TIg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rvG+V6klLrizDm03pgJoi7CQPUW1HlsIcBUOc8tgLUGKFdDeRBrO+V0+CDQrmRTMV
+	 I7tMjD4WTlDf9dO0D4F+pBDiHzl+OWG2JV0bCBNyb+RdVXN9CJHiey16OK3l7p8mHP
+	 C9Ce7sQLJcC04g0zBG+ztNkMTXlzFhCyoLc9DcIPpQzuOOCq1mdgaNJCSFmCNa4IHO
+	 ZHDNvTUtxTenplDrPWSve98MxGe6CXifQgUIjgw8npwbGRDM/0bEs37K5KD8H1b5Ud
+	 LcJ8ZEBioxRBHKgZ/Bcr/kNxux0vTvBZnmnco9U2TOOAWb8EwKghqQ0Vb2n9iS5q6I
+	 k6cB1wKB0i+/Q==
+Date: Sat, 12 Apr 2025 17:07:37 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
+ <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
+ <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v1 1/7] dt-bindings: iio: adc: Add AD4170
+Message-ID: <20250412170737.2789c5be@jic23-huawei>
+In-Reply-To: <d2f8e8227022afe411005882cfd269124cd81e01.1744200264.git.marcelo.schmitt@analog.com>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+	<d2f8e8227022afe411005882cfd269124cd81e01.1744200264.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP
- controller
-From: Hans Zhang <hans.zhang@cixtech.com>
-To: Rob Herring <robh@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Manikandan K Pillai <mpillai@cadence.com>
-References: <20250411103656.2740517-1-hans.zhang@cixtech.com>
- <20250411103656.2740517-6-hans.zhang@cixtech.com>
- <20250411202420.GA3793660-robh@kernel.org>
- <07457d00-82bb-4096-ba07-6cc7b7d118e3@cixtech.com>
-Content-Language: en-US
-In-Reply-To: <07457d00-82bb-4096-ba07-6cc7b7d118e3@cixtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021A:EE_|JH0PR06MB6850:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5ae1a2b-3469-448c-7716-08dd79db7649
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RWJReHg0L1lPVS9QcmZMRG1Gb0ZFY3dLck9uVE0vS255a0lPUkNNc0p0SXhW?=
- =?utf-8?B?K0lQN2czajY0Y3VxbmMvTUllbGJULzQrQUlqMzRqVkJnblNpYjl3QWFSSTAy?=
- =?utf-8?B?SThMRmJhRHF0UUZ1OEJMWS8vNWR6endDdTNZbGNEbll3dUpieVBEaWJLV1FE?=
- =?utf-8?B?b2plOUpYK0lyVlNUT3ZuaEQvOUJWTFBpdFVoYVlXMlc0anNtUWErWjhucXFw?=
- =?utf-8?B?QzJ5MURBcFlVUjhQbGZOc0E5aHpEbzk3K1NjcWYwdVZab2cvTHFiZEdzSUo0?=
- =?utf-8?B?MTA5ZXJnc3lVMEtpVmFjRUx6bWdRYTAxR2tFTHZGRm5wNUNNTEx0dzcycDBX?=
- =?utf-8?B?UEltWThRVFE5dG84cDdDVjRONktLMGd6R3JKb1BseUlTalhZVzhaRVdibTRt?=
- =?utf-8?B?R2NEZHU5S3ZscU5VNzNBSktib21MN2R6RWZmQ2FMZnFPZ291UjZKNXVSTStT?=
- =?utf-8?B?Z3BNZmhIWTZMSmpEUytneGcyUTNrSUdPTFJiS1p6V0xHOWN6UnF3TTVBclox?=
- =?utf-8?B?cUQ1UjdnU0pRMXE0Q0trR2FOV3BGTUZUa3p3LytMLy9lbldvd0ExSkNlb3VL?=
- =?utf-8?B?N3pZZUpsQ1oxTjFCRC9ESkNweFFPakJMWEFOTHoydmFMd1lqclBCUFVFSVVi?=
- =?utf-8?B?R0dXNzVOVTFHMDBORFE2QWErbVBCTWRCYitHckJBbldjS0VERXZxZ05lVGFx?=
- =?utf-8?B?UVh5V0JiNTFEVUJvanRVM0VZd1NXOGN4TDJtczdMVnRBK1FldCtMVnptNmk3?=
- =?utf-8?B?L2NaL0lDTWxlbnJVMElUbDMwRWRQQTN2Ny9FN1JIYnVuVDVJVlJJOGlIYTc3?=
- =?utf-8?B?aWRmMW1leWNyaG0zZUd2Z2ZJMWorK3hyZjFTMmZGcDJ1NTVZT2t6eVhQbUFy?=
- =?utf-8?B?QUV5RHpCSVJxOW41aXBaWkh0M2RzZUFCTTdkUTUzZjdxVHFic3YxT1dab2JG?=
- =?utf-8?B?U2djWnpsZDI5RHJqVi9KTUhkZTZZT1ZlYXNYTDF5a0IxYmVtTzZ5WFhVb2ZI?=
- =?utf-8?B?WFJxMTIrVEV5bDVZZzhLdjhsQTkvU0JzTERXQ3k0eGh4Y3AzaVFCWmp4TTB2?=
- =?utf-8?B?RXB5WlpJNTRkUVJUcTlCVU01a2d5NktrTzg2YUR4bVEvVUFFVjdhTzE2d3JK?=
- =?utf-8?B?ck5ZQ0wvd2ZxbkFmYkFjYmV2SHE1QWlpNGtpSVJQbWtMM1ZZWXRiUXNtRnRG?=
- =?utf-8?B?eDJGNndpNWJ6RmF4dmYwV1FaMlJYU0ZNRm5BRm9YUkVvUi9NeGFXb0gyeUxO?=
- =?utf-8?B?Y0x5emY4VjcwNUxCSFdpZldLcFR5dTF2dks4cjhjNE41QVFoOHdUWmJBS0Ns?=
- =?utf-8?B?T01LcjhNK1cvS082TFB2VC8vS09qNHFLUWM4RHhqRk5OOG0zMWtpTXp3SUlp?=
- =?utf-8?B?M2cwWGdiTnRhNG5KRmVLK3ZXUmVzZ1dHZWRTWDkySE8yVlNLbFJPcnNDZTBy?=
- =?utf-8?B?WkdSSTNaR1Z0SWJWd1hhaHpKbUhsSWFnMlFaNklBb3BabTZiOFJUUjVGV25p?=
- =?utf-8?B?SUJXZFc2Y0EwZEZabkRDckZCYlptME9HQ0FRUU1wQVhYd091Y1dmYkswVThy?=
- =?utf-8?B?ZlZRQUV1Ukh4LzFvVmhQV201RWNwZDFsOHVWYlBzVnNqbTV2TUNGS21KSzNW?=
- =?utf-8?B?cFk2Z2MrbUJjZ0JwbnBQdUorUlBVejhndEdJS2NmRGpEd1hpbTkzU3d2Z2FB?=
- =?utf-8?B?VEl5R0t3R2x3S0hlQThGUnVUUDI0SmNybEIrdWI2R2VPWDRWbE9SWmg2NDY5?=
- =?utf-8?B?QngycS9jaytSQmlrNmdrS1lYcWd4d3hUcWwyK0VIYTVvZnRhV3hmTXhrL2Zy?=
- =?utf-8?B?MWtSaEFiY0tCcmpQY1dKSUcrK2d3VTE0QTRQbGtqOWNwMXhJbU1TNEtVN1ZK?=
- =?utf-8?B?ald1bVpCV3ZBME5sc0pLYnMyZmo3bmVmdCtiWkRlaEpDUitvZmVQQzBsZWVL?=
- =?utf-8?B?L2RwZ2YxaEtWanBGd0lRWVlQeEhuUEVuWWI2Nkd0SVd0aHRJdms0V2NVTFdr?=
- =?utf-8?B?RFdQRU1qSGh3eFJlczBJQXVIMUJlYWhkanNtVHZGeVdOSWxKMFRnaTlobUdp?=
- =?utf-8?Q?AWA33P?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2025 16:02:44.3303
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5ae1a2b-3469-448c-7716-08dd79db7649
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021A.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6850
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 9 Apr 2025 09:24:18 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+
+> Add device tree documentation for AD4170 and similar sigma-delta ADCs.
+> The AD4170 is a 24-bit, multichannel, sigma-delta ADC.
+>=20
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> The AD4170 design has features to aid interfacing with weigh scale and RTD
+> sensors that are expected to be setup with external circuitry for proper
+> sensor operation. A key characteristic of those sensors is that the circu=
+it
+> they are in must be excited with a pair of signals. The external circuit
+> can be excited either by voltage supply or by AD4170 excitation signals.
+> The sensor can then be read through a different pair of lines that are
+> connected to AD4170 ADC.
+>=20
+>  .../bindings/iio/adc/adi,ad4170.yaml          | 527 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 534 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml
+> new file mode 100644
+> index 000000000000..93fe3b4648a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml
+> @@ -0,0 +1,527 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4170.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4170 and similar Analog to Digital Converters
+> +
+> +maintainers:
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD4170 series of Sigma-delta Analog to Digital Converte=
+rs.
+> +  Specifications can be found at:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4170-4.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4190-4.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4195-4.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +$defs:
+> +  sensor-node:
+> +    type: object
+> +    description: |
+> +      Common properties of external sensor circuitry connected to the AD=
+C.
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          Channel number. Connects the sensor to the channel with this n=
+umber
+> +          of the device.
+> +        minimum: 1
+> +        maximum: 16
+> +
+> +      diff-channels:
+
+Maybe add some comments to the file. I was very confused on what this def
+is for, but now I think it's just an adaption of an ADC channel to a specif=
+ic
+sensor type.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        maxItems: 2
+> +        minItems: 2
+> +        description: |
+> +          ADC analog input pins to which the sensor circuit is connected.
+> +          The first value specifies the positive input pin, the second
+> +          specifies the negative input pin. See adc.yaml for details.
+> +
+> +      bipolar:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description: If provided, the channel is to be used in bipolar m=
+ode.
+> +
+> +      adi,sensor-type:
+> +        description: Type of sensor connected to the device.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +
+> +      adi,ac-excited:
+
+All the existing excitation related bindings are
+adi,excitation-*
+
+Maybe adi,excitation-ac for this one?
+
+> +        type: boolean
+> +        description: |
+> +          Whether the external circuit has to be AC or DC excited.
+
+Hmm. The concept of a DC excitation source confused me a bit, but I guess
+that's just a current source.=20
+
+> +
+> +      adi,excitation-pins:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description: |
+> +          ADC pins used for external circuit excitation. Some applicatio=
+ns
+> +          require optimum matching between excitation currents. Using ex=
+citation
+> +          current pairs minimizes the excitation current mismatch and the
+> +          excitation current drift matching on the ADC. Must describe ei=
+ther 1
+> +          or 2 pairs of pins. E.g. <0 1>; <2 3>; <0 1>, <2 3>.
+> +
+> +      adi,excitation-current-microamp:
+We have an existing rtd specific version of this but I guess it can be used=
+ for other
+things with this chip so fair enough to generalize it.
 
 
+> +        description: |
+> +          Excitation current in microamperes to be output to each excita=
+tion pin
+> +          specified by adi,excitation-pins property.
+> +        enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+> +        default: 0
+> +
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on the spec=
+ific
+> +          channel. Valid values are:
+> +          0: Differential reference voltage REFIN+ - REFIN=E2=88=92.
+> +          1: Differential reference voltage REFIN2+ - REFIN2=E2=88=92.
+> +          2: Internal 2.5V referece (REFOUT) relative to AVSS.
+> +          3: Analog supply voltage (AVDD) relative AVSS.
+> +          If this field is left empty, the first external reference is s=
+elected.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+> +      - bipolar
+> +      - adi,sensor-type
+> +      - adi,excitation-pins
+> +      - adi,reference-select
 
-On 2025/4/12 23:45, Hans Zhang wrote:
->>> +     /*
->>> +      * Clear AXI link-down status
->>> +      */
->>
->> That is an odd thing to do in map_bus. Also, it is completely racy
->> because...
->>
->>> +     regval = cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE, 
->>> CDNS_PCIE_HPA_AT_LINKDOWN);
->>> +     cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE, 
->>> CDNS_PCIE_HPA_AT_LINKDOWN,
->>> +                          (regval & GENMASK(0, 0)));
->>> +
->>
->> What if the link goes down again here.
->>
-> 
-> Hi Rob,
-> 
-> Thanks your for reply. Compared to Synopsys PCIe IP, Cadence PCIe IP has 
-> one more register - CDNS_PCIE_HPA_AT_LINKDOWN.  When the PCIe link 
-> appears link down, the register -CDNS_PCIE_HPA_AT_LINKDOWN bit0 is set 
-> to 1.  Then, ECAM cannot access config space. You need to clear 
-> CDNS_PCIE_HPA_AT_LINKDOWN bit0 to continue the access.
-> 
-> In my opinion, this is where Cadence PCIe IP doesn't make sense.  As 
-> Cadence users, we had no choice, and the chip had already been posted to 
-> silicon.
+If it is required, why specify defaults above?
 
-Supplement: Prior to this series of patches, in the current linux master 
-branch, Cadence first generation PCIe IP has the following code:
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4170
+> +      - adi,ad4190
+> +      - adi,ad4195
+> +
 
-void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
-			       int where)
-{
-	......
-	/* Clear AXI link-down status */
-	cdns_pcie_writel(pcie, CDNS_PCIE_AT_LINKDOWN, 0x0);
-	......
-}
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    unevaluatedProperties: false
+> +    description: |
+> +      Represents the external channels which are connected to the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number.
+> +        items:
+> +          minimum: 0
+> +          maximum: 15
+> +
+> +      diff-channels:
+> +        description: |
+> +          This property is used for defining the inputs of a differential
+> +          voltage channel. The first value is the positive input and the=
+ second
+> +          value is the negative input of the channel.
+> +
+> +          Besides the analog input pins AIN0 to AIN8, there are special =
+inputs
+> +          that can be selected with the following values:
+> +          17: Internal temperature sensor
+> +          18: (AVDD-AVSS)/5
+> +          19: (IOVDD-DGND)/5
+> +          20: DAC output
+> +          21: ALDO
+> +          22: DLDO
+> +          23: AVSS
+> +          24: DGND
+> +          25: REFIN+
+> +          26: REFIN-
+> +          27: REFIN2+
+> +          28: REFIN2-
+> +          29: REFOUT
+> +          For the internal temperature sensor, use the input number for =
+both
+> +          inputs (i.e. diff-channels =3D <17 17>).
+> +        items:
+> +          enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 23, =
+24, 25,
+> +                 26, 27, 28, 29]
+> +
+> +      single-channel: true
+> +
+> +      common-mode-channel: true
+> +
+> +      bipolar: true
+> +
+> +      adi,sensor-type:
 
-It seems that all Cadence PCIe IPs have this problem.
+This wants a fuller description somewhere in the binding.  What are the pos=
+sible types?
+Also why do we need them here if the sensor-nodes refer to channels?
 
-> 
-> Therefore, when we design the second-generation SOC, we will design an 
-> SPI interrupt. When link down occurs, an SPI interrupt is generated. We 
-> set CDNS_PCIE_HPA_AT_LINKDOWN bit0 to 0 in the interrupt function.
-> 
-> If there are other reasons, please Manikandan add.
-> 
-> 
-> 
-> In addition, by the way, ECAM is not accessible when the link is down. 
-> For example, if the RP is set to hot reset, the hot reset cannot be 
-> unreset. In this case, you need to use the APB to unreset. We mentioned 
-> an RTL bug to Cadence that we currently can't fix with our first or 
-> second generation chips. Cadence has not released RTL patch to us so far.
-> 
-> This software workaround approach will also later appear in the Cixtech 
-> PCIe controller series patch.
-> 
-> 
-> Best regards,
-> Hans
+> +        description: Sensor type for direct ADC sensors.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        const: 0
+> +
+> +      adi,buffered-positive:
+> +        description: |
+> +          Enable precharge buffer, full buffer, or skip reference buffer=
+ing of
+> +          the positive voltage reference. Because the output impedance o=
+f the
+> +          source driving the voltage reference inputs may be dynamic, RC
+> +          combinations of those inputs can cause DC gain errors if the r=
+eference
+> +          inputs go unbuffered into the ADC. Enable reference buffering =
+if the
+> +          provided reference source has dynamic high impedance output. N=
+ote the
+> +          absolute voltage allowed on positive reference inputs (REFIN+,
+> +          REFIN2+) is from AVSS =E2=88=92 50 mV to AVDD + 50 mV when the=
+ reference
+> +          buffers are disabled but narrows to AVSS to AVDD when reference
+> +          buffering is enabled or in precharge mode.
+> +          0: Reference precharge buffer.
+> +          1: Full Buffer.
+> +          2: Bypass reference buffers (buffering disabled).
+I'm not seeing a reason (from this description) to ever pick 0.
+Maybe talk about what the precharge buffer alone gets you.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1, 2]
+> +        default: 0
+> +
+> +      adi,buffered-negative:
+> +        description: |
+> +          Enable precharge buffer, full buffer, or skip reference buffer=
+ing of
+> +          the negative voltage reference. Because the output impedance o=
+f the
+> +          source driving the voltage reference inputs may be dynamic, RC
+> +          combinations of those inputs can cause DC gain errors if the r=
+eference
+> +          inputs go unbuffered into the ADC. Enable reference buffering =
+if the
+> +          provided reference source has dynamic high impedance output. N=
+ote the
+> +          absolute voltage allowed on negative reference inputs (REFIN-,
+> +          REFIN2-) is from AVSS =E2=88=92 50 mV to AVDD + 50 mV when the=
+ reference
+> +          buffers are disabled but narrows to AVSS to AVDD when reference
+> +          buffering is enabled or in precharge mode.
+> +          0: Reference precharge buffer.
+> +          1: Full Buffer.
+> +          2: Bypass reference buffers (buffering disabled).
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1, 2]
+> +        default: 0
+> +
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on the spec=
+ific
+> +          channel. Valid values are:
+> +          0: Differential reference voltage REFIN+ - REFIN=E2=88=92.
+> +          1: Differential reference voltage REFIN2+ - REFIN2=E2=88=92.
+> +          2: Internal 2.5V referece (REFOUT) relative to AVSS.
+> +          3: Analog supply voltage (AVDD) relative AVSS.
+> +          If this field is left empty, the internal reference is selecte=
+d.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1, 2, 3]
+> +        default: 2
+> +
+> +    required:
+> +      - reg
+> +
+> +    allOf:
+> +      - oneOf:
+> +          - required: [single-channel]
+> +            properties:
+> +              diff-channels: false
+> +          - required: [diff-channels]
+> +            properties:
+> +              single-channel: false
+> +              common-mode-channel: false
+> +
+> +  "^weighscale@":
+> +    $ref: '#/$defs/sensor-node'
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      diff-channels: true
+> +      bipolar: true
+> +
+> +      adi,sensor-type:
+> +        description: Weigh scale sensor.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        const: 1
+> +
+> +      adi,excitation-pins:
+> +        description: |
+> +          ADC pins to use for weigh scale bridge circuit excitation. Must
+> +          describe either 1 or 2 pairs of pins. E.g. <0 1>; <2 3>; <0 1>=
+, <2 3>.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 2
+> +        maxItems: 4
+> +        items:
+> +          minimum: 0
+> +          maximum: 20
+> +
+> +      adi,excitation-current-microamp:
+> +        description: |
+> +          Excitation current in microamperes to be output to each excita=
+tion pin
+> +          specified by adi,excitation-pins property. If not provided and
+> +          adi,ac-excited is true, use predefined ACX1, ACX1 negated, ACX=
+2, and
+> +          ACX2 negated signals to AC excite the weigh scale bridge. Those
+> +          singals are output on GPIO2, GPIO0, GPIO3, and GPIO1, respecti=
+vely.
+> +        enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+Why the repeat? This description is already in the sensor-node definition.
+
+> +
+> +      adi,power-down-switch-pin:
+> +        description: |
+> +          Number of the GPIO used as power-down switch for the bridge ci=
+rcuit.
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1]
+> +
+
+In general, can we reduce repetition of docs across the sensor types so we =
+don't
+repeat anything?
+
+J
 
