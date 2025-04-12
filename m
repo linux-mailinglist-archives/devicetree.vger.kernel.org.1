@@ -1,132 +1,122 @@
-Return-Path: <devicetree+bounces-166306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9D6A86E3D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 19:04:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CDA6A86E49
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 19:09:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469DB16FB61
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:04:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0765189F2E0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6211F9A8B;
-	Sat, 12 Apr 2025 17:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAFE200BBC;
+	Sat, 12 Apr 2025 17:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uSCqJOD0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bTNCdUzm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EDBA1662E7;
-	Sat, 12 Apr 2025 17:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866B86BFCE;
+	Sat, 12 Apr 2025 17:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744477481; cv=none; b=H/G0pkTmvvUfMoEreAboTDCiY34MKFMdLCQSoChSEmIVwI4n1w/bFxRRLddiPguSB/LRYDk1H5lf3GOJov8GZuSGisg1gL1vw/lUGFq+2QpDOKHIEGQpx7+R2YkNYtPl8OmlmKcvtwQUXLc8IesMfaGkl9J+u3tuTgqrnM2QHVc=
+	t=1744477766; cv=none; b=sJr4vNdW7RL4HY3Sh0HWY3gE9t5dsWcOZ5I5lLOnLjAIc9en4XcGHbWGGaIhNxvQCdPl1FHVNphBzjFHjreK75S3+bnM18s9mT/vznNSTmc3Qc9HXZVzANxYw0BjmACx4DeMxe2+QnkICwij2eqTFpeLeYO7AIvwMt1lAWXBFZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744477481; c=relaxed/simple;
-	bh=9Hh3y1adPkFB/uc/FlYasejGcYGxbWwcKdlxTL4OqIs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WIVaBncpEf/QozMHo0QKVgTJCYp7oauaEO4VVPx79hf8VwUbB0Tkm6vAdF1Lted4s/OPTSRNlMR66BfGFkL/2MqMFcw8Kph5D0m7Q9CSN7HbKcC9AULUCYEyPzIQnHOAmTKC10FSV0z9O3lb1jrphw/YfnqHGuoiCDRHj0msadg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uSCqJOD0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 745D6C4CEE3;
-	Sat, 12 Apr 2025 17:04:38 +0000 (UTC)
+	s=arc-20240116; t=1744477766; c=relaxed/simple;
+	bh=0AfTfcTDNqBJUpHIEtVuw3wm5u8+gYscdgy87EVwLo0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=JSCTCIQapIJmlgh91LSgNTcNQozZGtx1T4BgWf+a8HQezdJwSCDdp1kuepFwEgMBqjJm5UWySSRIvv9AtKx0R5vx5+qcXYPCj3uaAmOk/WH2KNaOP0d8Ku2oOJIcoJegVYTcIhJRTuBnQf7RfTDdF8rKRqYXs4lNYxtHSWo44VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bTNCdUzm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7E59C4CEE3;
+	Sat, 12 Apr 2025 17:09:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744477480;
-	bh=9Hh3y1adPkFB/uc/FlYasejGcYGxbWwcKdlxTL4OqIs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uSCqJOD0q7qxBhWbnZqOqowbX2wFxyckklTAjY+NzSz/14k7zP2UKKOken3E/2IQP
-	 KAkUFVuOAb+eTF32Q0hwI2TTw/yxge8vkmdOhOc7KxN6goY071Ka/QLEoZW8Me1emr
-	 QQPMtAdMBoxTBUr/4jT/dbTkP2kVc+fudwt14O7/3OcYJx54mmmhZ3gGN6gnc+6Gef
-	 NjGegD2/FYs2u0xDa0/ALm4tkDwDfDDDiS/RFxW0nuxZlVnZec6uBrkLziFI4MfhMz
-	 ddhAQCx7AHSTwPKPAgXl7QrBa0gYiOK2K8acVRghE45ZN92+c9Tw1y42sz+W5w2udD
-	 qe3a2oRZ33HVA==
-Date: Sat, 12 Apr 2025 18:04:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 10/13] iio: adc: adi-axi-adc: add sync status
-Message-ID: <20250412180434.34f1426b@jic23-huawei>
-In-Reply-To: <20250411123627.6114-11-antoniu.miclaus@analog.com>
-References: <20250411123627.6114-1-antoniu.miclaus@analog.com>
-	<20250411123627.6114-11-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1744477766;
+	bh=0AfTfcTDNqBJUpHIEtVuw3wm5u8+gYscdgy87EVwLo0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=bTNCdUzmxxvUvgUTxZPk91QJEYLOn/6SYDZA9YhmnJhMv4FSdUDSPpTFN7KyqzTTc
+	 lichVb7RzvhfUwCqZShO4DuvMaJbvuzq5hxcAXoWu4WhPeQpPW3mKn7yC1Qc9sB392
+	 WMmGErm8sgwlelWXei+FtQU2iMzvRpOaNdq2xHpJ8Y83faSsBjLjoYXE4ELDBx/2Ml
+	 XjM9zb+AIf3Y2hr4n/Hp3+0o3Py5qkqON3sRBBfl9+WIFlMeWAFd0raBvxKGEneTUW
+	 r/YtAesh6pIhSOHH6kshLyB/KikFGLxmFxsH/MgYtMgXKitRXYdh4gZ+jvfXzlWt4Q
+	 FnLIxTMjpo2zg==
+Date: Sat, 12 Apr 2025 12:09:24 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Nicholas Piggin <npiggin@gmail.com>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Naveen N Rao <naveen@kernel.org>, 
+ devicetree@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
+ Crystal Wood <oss@buserror.net>, Madhavan Srinivasan <maddy@linux.ibm.com>
+To: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+In-Reply-To: <20250412-fslpmc-yaml-v2-1-98c0948a2921@posteo.net>
+References: <20250412-fslpmc-yaml-v2-1-98c0948a2921@posteo.net>
+Message-Id: <174447776411.1354506.14019622197188509443.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: powerpc: Convert fsl/pmc.txt to YAML
 
-On Fri, 11 Apr 2025 15:36:24 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> Add support for checking the ADC sync status.
+On Sat, 12 Apr 2025 14:49:38 +0200, J. Neuschäfer wrote:
+> This patch rewrites pmc.txt into YAML format. Descriptive texts are
+> expanded or shortened in a few places to better fit today's conventions.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> The list of compatible strings (and combinations of them) is based on
+> existing device trees in arch/powerpc as well as compatible strings
+> already mentioned in the plain-text version of the binding.
+> 
+> One thing I didn't handle are soc-clk@... nodes as seen in
+> Documentation/devicetree/bindings/powerpc/fsl/pmc.yaml.
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 > ---
-> no changes in v2.
->  drivers/iio/adc/adi-axi-adc.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> Changes in v2:
+> - Rebase on v6.15-rc1
+> - Link to v1: https://lore.kernel.org/r/20250315-fslpmc-yaml-v1-1-10ba354a85c2@posteo.net
+> ---
 > 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index 017685854895..0d12c0121bbc 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -56,6 +56,9 @@
->  #define   AXI_AD408X_CNTRL_3_SELF_SYNC_EN_MSK	BIT(1)
->  #define   AXI_AD408X_CNTRL_3_FILTER_EN_MSK	BIT(0)
->  
-> +#define ADI_AXI_ADC_REG_SYNC_STATUS		0x0068
-> +#define   ADI_AXI_ADC_SYNC			BIT(0)
-> +
->  #define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
->  #define   ADI_AXI_ADC_DRP_LOCKED		BIT(17)
->  
-> @@ -453,6 +456,21 @@ static int axi_adc_ad408x_self_sync_disable(struct iio_backend *back)
->  				 AXI_AD408X_CNTRL_3_SELF_SYNC_EN_MSK);
->  }
->  
-> +static int axi_adc_sync_status_get(struct iio_backend *back, bool *sync_en)
-> +{
-> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = regmap_read(st->regmap, ADI_AXI_ADC_REG_SYNC_STATUS, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*sync_en = (bool)FIELD_GET(ADI_AXI_ADC_SYNC, val);
+> Note: The examples include a consumer (sata@19000), to demonstrate how
+> sleep specifiers work. I've heard that "unrelated" nodes in examples are
+> generally discouraged, but I'm not sure if it's better to keep it or to
+> drop it in this example.
+> ---
+>  .../devicetree/bindings/powerpc/fsl/pmc.txt        |  63 --------
+>  .../devicetree/bindings/powerpc/fsl/pmc.yaml       | 159 +++++++++++++++++++++
+>  2 files changed, 159 insertions(+), 63 deletions(-)
+> 
 
-Trivial but implicit casting from a bool to an int is fine.  I.e. drop
-the (bool) as it doesn't add anything.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +
-> +	return 0;
-> +}
-> +
->  static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
->  						 struct iio_dev *indio_dev)
->  {
-> @@ -600,6 +618,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
->  	.test_pattern_set = axi_adc_test_pattern_set,
->  	.chan_status = axi_adc_chan_status,
->  	.interface_type_get = axi_adc_interface_type_get,
-> +	.sync_status_get = axi_adc_sync_status_get,
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
-> @@ -647,6 +666,7 @@ static const struct iio_backend_ops adi_ad408x_ops = {
->  	.data_alignment_disable = axi_adc_ad408x_bitslip_disable,
->  	.self_sync_enable = axi_adc_ad408x_self_sync_enable,
->  	.self_sync_disable = axi_adc_ad408x_self_sync_disable,
-> +	.sync_status_get = axi_adc_sync_status_get,
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/powerpc/fsl/pmc.example.dtb: sata@19000 (fsl,mpc8377-sata): 'sleep' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ata/fsl,pq-sata.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/powerpc/fsl/pmc.example.dtb: sata@19000 (fsl,mpc8377-sata): 'cell-index' is a required property
+	from schema $id: http://devicetree.org/schemas/ata/fsl,pq-sata.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250412-fslpmc-yaml-v2-1-98c0948a2921@posteo.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
