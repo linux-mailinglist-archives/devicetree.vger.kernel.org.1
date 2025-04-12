@@ -1,139 +1,149 @@
-Return-Path: <devicetree+bounces-166264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3D2A86BD5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:34:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D11A86C56
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 12:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E9AD4462C2
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 08:34:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E9D3B7B6C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23281922ED;
-	Sat, 12 Apr 2025 08:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4299B1A83EE;
+	Sat, 12 Apr 2025 10:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="N6kCjtyW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sLsGqeoX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4731AAC9;
-	Sat, 12 Apr 2025 08:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17054193402;
+	Sat, 12 Apr 2025 10:04:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744446883; cv=none; b=rIE5/CpYSCxdYVY6gcIFRn2FjZeuhkDhjR+lAjvsx4rqpfNGzcnY9zMEOD6bM+cYPiToVGHrA7jBFbw2+qmN+uPW4BWeFPLlyzS+9f2DAl32aUGsxw6tRKTxL5PoSArPmPkTF5s30C5/eRd+gzxApFakTF/9UNSZUbFgPwH75d0=
+	t=1744452280; cv=none; b=fgqCb6OR9Dy8XBhsdm+3cw3NO6jrRcsoUcN5RrGrgGKbxbCmLAUTm02nsVh++2EBBYkAXmrWutj5KRPnuWiCtX8U0Q/3P0MF8zqKZFEf82Z4v0uTIQghuwkAbcXsUy6PX70h1oWxH0L0kCFxJd5iBTgtSHUNSuaKiSPDbaYgxck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744446883; c=relaxed/simple;
-	bh=uY1OzpWq1YuTlBMN+P0DZuRjCGRt3R3FZeEoAtM9qDo=;
+	s=arc-20240116; t=1744452280; c=relaxed/simple;
+	bh=2lo3tH8bxtbasyCHIvu2dU4b+0ohfe5cOcqF6bKusYI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uNq6izgA5E+gN8vWcrK8/S7j7AzTkqhfssvteiLRIwq8T7KWGLU6xXNgPBwSCcqdaxIy5hOPBtgStnHamEmBwonhKY1BjXlOvID04nT/NgIQBy6sr89wReHxUoTNKH24bdQwy9Gnj6HKCZ2UVHuhPoTZ+rWfT9C26JQmfLgZCkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=N6kCjtyW; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1744446873; bh=uY1OzpWq1YuTlBMN+P0DZuRjCGRt3R3FZeEoAtM9qDo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=N6kCjtyW+zT3K6fq+BuZYYFMZXt6w1xHyupWm5kjViEZK+ojhu4Q5QRGZjjU8mo2Y
-	 1cjsfC9ARNpXFpbdzP57sDq+V42GI5q1AV+ksHAEf648LqleWKBUwl/ysm5VLP1DuC
-	 gQ2RrnLIUJ+LvY4lEkkTYAHUad8XdXa2iejhOFMs=
-Message-ID: <cc84ef26-6c33-42d0-a11f-4d6b31d8beee@lucaweiss.eu>
-Date: Sat, 12 Apr 2025 10:34:33 +0200
+	 In-Reply-To:Content-Type; b=VVaqGXT1JbQqffF9MvnIjVETsIxmqYz4pRjd8CBM1paLnZJm97aBuJTZud1ULpiLmZf/vnEEbSIrZwxMiCYXzc9n4BDjrYO6zCLWoZEk0TkE+rydawPUKEksZlWglwEksXdc4y0RSauB4KVymlaKC28gr6L1W9y8KeJnRK9wJvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sLsGqeoX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B5DBC4CEE3;
+	Sat, 12 Apr 2025 10:04:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744452279;
+	bh=2lo3tH8bxtbasyCHIvu2dU4b+0ohfe5cOcqF6bKusYI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sLsGqeoXq2eGVCEabMHDb9nymqhjuewH2Xcixc/l77lFCuink9OlixxIU81X3qiwe
+	 oyn0xlP24P/6ezuJrWm/bYBEyarUJRCFJNOjokmv85v0n8ihiSyUbG0jiBgmdMVZxD
+	 1pCvtYfufuFCEgvKLX8peVfMPMczn0j8HY4ZuuayX+df3RgOzC7v9fmfJGkMnP/O5V
+	 zsMEwnC5WT1fXu/bSt8eGPId/csMeerf/u+gMKq+zyp5y6FZ758p32gno46OUVct2r
+	 22gw8kGroXr7Bh02c2uJ4wZuSs372gKq1/gsR3PEBCJCRr94opMKo6ZiHixoMlJhyO
+	 jdPLiMfgJFzWQ==
+Message-ID: <859a4fc2-45f5-4d72-9727-7979e4c15bd5@kernel.org>
+Date: Sat, 12 Apr 2025 12:04:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: qcom: msm8953: Add uart_5
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Felix Kaechele <felix@kaechele.ca>
-References: <20250406-msm8953-uart_5-v1-1-7e4841674137@lucaweiss.eu>
- <e87220f1-bf8e-4014-834f-ae99c0b032ca@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am62l: add initial
+ infrastructure
+To: Bryan Brattlof <bb@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250407-am62lx-v4-0-ce97749b9eae@ti.com>
+ <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
+ <20250409-calculating-hungry-mosquito-f8cfeb@shite>
+ <20250411182608.cpxr357humjq6ln7@bryanbrattlof.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Luca Weiss <luca@lucaweiss.eu>
-In-Reply-To: <e87220f1-bf8e-4014-834f-ae99c0b032ca@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250411182608.cpxr357humjq6ln7@bryanbrattlof.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/10/25 6:45 PM, Konrad Dybcio wrote:
-> On 4/6/25 3:52 PM, Luca Weiss wrote:
->> From: Felix Kaechele <felix@kaechele.ca>
+On 11/04/2025 20:26, Bryan Brattlof wrote:
+>>> +
+>>> +		usb0_phy_ctrl: syscon@45000 {
+>>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
+>>> +			reg = <0x45000 0x4>;
+>>> +			bootph-all;
+>>> +		};
+>>> +
+>>> +		usb1_phy_ctrl: syscon@45004 {
+>>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
+>>> +			reg = <0x45004 0x4>;
 >>
->> Add the node and pinctrl for uart_5 found on the MSM8953 SoC.
+>> No, you do not get syscon per register. The entire point of syscon is to
+>> collect ALL registers. Your device is the syscon, not a register.
 >>
->> Signed-off-by: Felix Kaechele <felix@kaechele.ca>
->> [luca: Prepare patch for upstream submission]
->> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->> ---
->>   arch/arm64/boot/dts/qcom/msm8953.dtsi | 32 ++++++++++++++++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
->> index af4c341e2533ef2cca593e0dc97003334d3fd6b7..3d6ab83cbce4696a8eb54b16fdb429e191f44637 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
->> @@ -767,6 +767,20 @@ spi_6_sleep: spi-6-sleep-state {
->>   				bias-disable;
->>   			};
->>   
->> +			uart_5_default: uart-5-default-state {
->> +				pins = "gpio16", "gpio17", "gpio18", "gpio19";
->> +				function = "blsp_uart5";
->> +				drive-strength = <16>;
 > 
-> This guy's strongly biased! But it looks like that's on purpose for
-> these older SoCs..
+> My understanding from [0] was that we would need to break this up into 
+> smaller syscon nodes because the alternative would be to mark the entire 
+> region as a syscon and every other node using it would need to use it's 
+> base + offset which was kinda undesirable especially for the small 
+> number of drivers that need data from this region.
 > 
->> +				bias-disable;
->> +			};
->> +
->> +			uart_5_sleep: uart-5-sleep-state {
->> +				pins = "gpio16", "gpio17", "gpio18", "gpio19";
->> +				function = "gpio";
->> +				drive-strength = <2>;
->> +				bias-disable;
->> +			};
->> +
->>   			wcnss_pin_a: wcnss-active-state {
->>   
->>   				wcss-wlan2-pins {
->> @@ -1592,6 +1606,24 @@ blsp2_dma: dma-controller@7ac4000 {
->>   			qcom,controlled-remotely;
->>   		};
->>   
->> +		uart_5: serial@7aef000 {
->> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
->> +			reg = <0x07aef000 0x200>;
->> +			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP2_UART1_APPS_CLK>,
->> +				 <&gcc GCC_BLSP2_AHB_CLK>;
->> +			clock-names = "core",
->> +				      "iface";
->> +			dmas = <&blsp2_dma 0>, <&blsp2_dma 1>;
->> +			dma-names = "tx", "rx";
-> 
-> Matches what the computer says
-> 
-> It's more usual to send these together with a user, but I don't mind
+>     a-device {
+>         clocks = <&epwm_tbclk 0>;
 
-This seems to be used with the out-of-tree dts
-apq8053-lenovo-cd-18781y.dts
 
-I'm just sometimes trying to reduce the out-of-tree diff of the
-msm8953-mailine tree on GitHub
+Hm? That's how you use the syscon, so how it can be undesirable?
 
-Regards
-Luca
+Anyway, one register is not a device, so no device node per register.
 
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Konrad
+In the link you provided I was repeating the same, so you got same
+review in multiple places.
 
+Best regards,
+Krzysztof
 
