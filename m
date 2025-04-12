@@ -1,120 +1,148 @@
-Return-Path: <devicetree+bounces-166319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC7AA86EA3
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 20:11:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1786BA86EA5
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 20:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43895189023B
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 18:11:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311D516E0B0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 18:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740E6207DF3;
-	Sat, 12 Apr 2025 18:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0906A20E03F;
+	Sat, 12 Apr 2025 18:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mmsEAa59"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQKkqdjF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBDB1A23B1;
-	Sat, 12 Apr 2025 18:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3FA1A23B1;
+	Sat, 12 Apr 2025 18:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744481498; cv=none; b=ni5+9jz6oFsxia0wbKtswvNmQtm6OpI41QFTiDZ9WUJMQqV4VXena+RpYe/qGbPrZy6rhlGGPjbwci8y8yX/G10+HW0uvZlNeFCS2DQL5KCo7MZXdNC2xfiqXSeX2DR4GiHnkoN9CrczWdrSeKrX3hmKxu2aJp+8sRkq8u78vL0=
+	t=1744481512; cv=none; b=p17H8u2SKvZiQZclMlOCVUxrLn04DyVIFqVZx/AyDROryC0/WAZV66Slbqu8NsW6IZGYnOyUYxk5iUoL/v22ULi1fQs22ajN5L219W/j2TOqlgHs0dbVBVTQIeQ7izjYkc9lPvsP6SdJBx6l9mJBg1KqzTvjrjYBZHUBQn/t2HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744481498; c=relaxed/simple;
-	bh=b3HaXXW+MR1VOkMnYXtzpEuVhn4y0K81DcGV47y/ueg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rbKUh2DYTaLsgKVAmTZb93J/ehrwl8jHix1NsatIxWofZW9MoNOzQOknsXclb+VFLz/4v6AJDgApMUARbrUmmCUd9QajKZYFSIOtNh8GgN5pjUT4s17QA0XQpLhbDbeITjitSSO30zJc+6wWMOA0YK9aAcrtA1pwdb+07M8KQtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mmsEAa59; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A616C4CEE3;
-	Sat, 12 Apr 2025 18:11:30 +0000 (UTC)
+	s=arc-20240116; t=1744481512; c=relaxed/simple;
+	bh=Q6nJWiAgaLLt3sM9/J4br6bIcdSMELZhvALVMehVIJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FCbDGaFyP5dqfFUTRWLFicn4JruGskWEfOAxzfOluI4N2TARDctz4HGmnXlfhYEVlZem3P4xYD8nCdpRnFnW4muuad3VET4noVSGLKmRePVBRb0qGw58h/4IQfVwgEEkmgQdigSApju7pKwg/Nt/pdvYloOGagkxYTiui5GrAE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQKkqdjF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F7AC4CEE3;
+	Sat, 12 Apr 2025 18:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744481497;
-	bh=b3HaXXW+MR1VOkMnYXtzpEuVhn4y0K81DcGV47y/ueg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mmsEAa59dTWc4y15WeR8qPZcy1o85rX7iSQrRXWxqfJsPyfKbhnmdzeb4buEDW/bD
-	 I2IGLnW+dIggXRY7Gpa4W6JAmJ8C0GOLuigBDxLn9bbJlq2rko5CSGuZ7nAfUOGLoo
-	 uM+2dA3vnEWaNt2X72wPt3LgTkEeVQGsbd3PRMUjuQp+eYXK4tfi7X9Fhf/KzEDEn6
-	 hzRsDF2Gb1jXabhNNR5obU24ed8MxfpnjY3jXr8KFnSePNU9JQkygO6PZTd3n685Po
-	 edqSAzcmQu0JKO9KxzeAEOL6zNVDV0VLC/I2+1izvSZ2CNoxKE5PkfWmGYXnAuCsuX
-	 lZpXd8M6l0c8A==
-Date: Sat, 12 Apr 2025 19:11:26 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
- <marcelo.schmitt@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>,
- <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <lgirdwood@gmail.com>,
- <broonie@kernel.org>, <jonath4nns@gmail.com>, <dlechner@baylibre.com>, Pop
- Paul <paul.pop@analog.com>
-Subject: Re: [PATCH v5 13/14] iio: adc: ad7768-1: add filter type and
- oversampling ratio attributes
-Message-ID: <20250412191126.06c19115@jic23-huawei>
-In-Reply-To: <e5ea27f88607d1cc12daecf310c18f71383a3bbe.1744325346.git.Jonathan.Santos@analog.com>
-References: <cover.1744325346.git.Jonathan.Santos@analog.com>
-	<e5ea27f88607d1cc12daecf310c18f71383a3bbe.1744325346.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1744481512;
+	bh=Q6nJWiAgaLLt3sM9/J4br6bIcdSMELZhvALVMehVIJY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TQKkqdjFc9B3xAX+ovk5LQliJO7E5IUvVxDJXT7krWWc33U3LrQoFbyo1fSZ5M8GL
+	 WC22G2DIQDVvySnLAhaH6JFZJ16C4xYr3TIT11eurjwRpLKAHqpupsZixONBePDVbe
+	 MzBSLpgdEoP9TNpDK/tOgVVMDO17gredUR1OtscZ+pA9w/OtkIR4ZtNJsCsXa8islk
+	 OSm6RlUg9hSS5PCiOxr/gyX1fBhfhKkerSNHmV8q9Zw1xJ2yLJoEH3Vb4PkeUhWaig
+	 xBjG8EuFcc5h3/Q0msh1Zz5y0gxXiSCa72n8DMXdvum5qH2vsO6jfvSTJg/qa3hxh6
+	 xXnSSwGSICqbw==
+Date: Sat, 12 Apr 2025 13:11:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	chaitanya chundru <quic_krichai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+	amitk@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v5 7/9] PCI: PCI: Add pcie_link_is_active() to determine
+ if the PCIe link is active
+Message-ID: <20250412181151.GA1417992-robh@kernel.org>
+References: <20250412-qps615_v4_1-v5-0-5b6a06132fec@oss.qualcomm.com>
+ <20250412-qps615_v4_1-v5-7-5b6a06132fec@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250412-qps615_v4_1-v5-7-5b6a06132fec@oss.qualcomm.com>
 
-
-
->  
-> -static int ad7768_set_dig_fil(struct ad7768_state *st,
-> -			      enum ad7768_dec_rate dec_rate)
-> +static int ad7768_set_sinc3_dec_rate(struct ad7768_state *st,
-> +				     unsigned int dec_rate)
->  {
-> -	unsigned int mode;
-> +	unsigned int max_dec_rate;
-> +	u8 dec_rate_reg[2];
->  	int ret;
->  
-> -	if (dec_rate == AD7768_DEC_RATE_8 || dec_rate == AD7768_DEC_RATE_16)
-> -		mode = AD7768_DIG_FIL_FIL(dec_rate);
-> -	else
-> -		mode = AD7768_DIG_FIL_DEC_RATE(dec_rate);
-> +	/*
-> +	 * Maximum dec_rate is limited by the MCLK_DIV value
-> +	 * and by the ODR. The edge case is for MCLK_DIV = 2
-> +	 * ODR = 50 SPS.
-> +	 * max_dec_rate <= MCLK / (2 * 50)
-> +	 */
-> +	max_dec_rate = st->mclk_freq / 100;
-> +	dec_rate = clamp_t(unsigned int, dec_rate, 32, max_dec_rate);
-> +	/*
-> +	 * Calculate the equivalent value to sinc3 decimation ratio
-> +	 * to be written on the SINC3_DECIMATION_RATE register:
-> +	 *  Value = (DEC_RATE / 32) -1
-> +	 */
-> +	dec_rate = DIV_ROUND_UP(dec_rate, 32) - 1;
-> +	dec_rate_reg[0] = FIELD_GET(AD7768_SINC3_DEC_RATE_MSB_MSK, dec_rate);
-> +	dec_rate_reg[1] = FIELD_GET(AD7768_SINC3_DEC_RATE_LSB_MSK, dec_rate);
-Looks like a larger big endian value. It's a little messy because of
-the 12 bit mask but I think still clearer as
-
-	u16 regval = FIELD_PREP(GENMASK(11, 0), dec_rate);
-	
-	unaligned_put_be16(dec_rate_reg, regval);
-
-Avoids the use of masks to get bytes from the dec_rate value which is
-is sort of backwards.
-
-
-> +	ret = regmap_bulk_write(st->regmap, AD7768_REG_SINC3_DEC_RATE_MSB,
-> +				dec_rate_reg, 2);
-> +	if (ret)
-> +		return ret;
+On Sat, Apr 12, 2025 at 07:19:56AM +0530, Krishna Chaitanya Chundru wrote:
+> Introduce a common API to check if the PCIe link is active, replacing
+> duplicate code in multiple locations.
 > 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  drivers/pci/hotplug/pciehp.h      |  1 -
+>  drivers/pci/hotplug/pciehp_ctrl.c |  7 ++++---
+>  drivers/pci/hotplug/pciehp_hpc.c  | 33 +++------------------------------
+>  drivers/pci/pci.c                 | 26 +++++++++++++++++++++++---
+>  include/linux/pci.h               |  4 ++++
+>  5 files changed, 34 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/pci/hotplug/pciehp.h b/drivers/pci/hotplug/pciehp.h
+> index 273dd8c66f4eff8b62ab065cebf97db3c343977d..acef728530e36d6ea4d7db3afe97ed31b85be064 100644
+> --- a/drivers/pci/hotplug/pciehp.h
+> +++ b/drivers/pci/hotplug/pciehp.h
+> @@ -186,7 +186,6 @@ int pciehp_query_power_fault(struct controller *ctrl);
+>  int pciehp_card_present(struct controller *ctrl);
+>  int pciehp_card_present_or_link_active(struct controller *ctrl);
+>  int pciehp_check_link_status(struct controller *ctrl);
+> -int pciehp_check_link_active(struct controller *ctrl);
+>  void pciehp_release_ctrl(struct controller *ctrl);
+>  
+>  int pciehp_sysfs_enable_slot(struct hotplug_slot *hotplug_slot);
+> diff --git a/drivers/pci/hotplug/pciehp_ctrl.c b/drivers/pci/hotplug/pciehp_ctrl.c
+> index d603a7aa74838c748f6ac2d22ffb8b8cfe64e469..36468a9c31d669ec916e867ecfb7a8220cfab157 100644
+> --- a/drivers/pci/hotplug/pciehp_ctrl.c
+> +++ b/drivers/pci/hotplug/pciehp_ctrl.c
+> @@ -230,7 +230,8 @@ void pciehp_handle_disable_request(struct controller *ctrl)
+>  
+>  void pciehp_handle_presence_or_link_change(struct controller *ctrl, u32 events)
+>  {
+> -	int present, link_active;
+> +	bool link_active;
+> +	int present;
+>  
+>  	/*
+>  	 * If the slot is on and presence or link has changed, turn it off.
+> @@ -260,8 +261,8 @@ void pciehp_handle_presence_or_link_change(struct controller *ctrl, u32 events)
+>  	/* Turn the slot on if it's occupied or link is up */
+>  	mutex_lock(&ctrl->state_lock);
+>  	present = pciehp_card_present(ctrl);
+> -	link_active = pciehp_check_link_active(ctrl);
+> -	if (present <= 0 && link_active <= 0) {
+> +	link_active = pcie_link_is_active(ctrl->pcie->port);
+> +	if (present <= 0 && !link_active) {
+>  		if (ctrl->state == BLINKINGON_STATE) {
+>  			ctrl->state = OFF_STATE;
+>  			cancel_delayed_work(&ctrl->button_work);
+> diff --git a/drivers/pci/hotplug/pciehp_hpc.c b/drivers/pci/hotplug/pciehp_hpc.c
+> index 8a09fb6083e27669a12f1a3bb2a550369d471d16..278bc21d531dd20a38e06e5d33f5ccd18131c2c3 100644
+> --- a/drivers/pci/hotplug/pciehp_hpc.c
+> +++ b/drivers/pci/hotplug/pciehp_hpc.c
+> @@ -221,33 +221,6 @@ static void pcie_write_cmd_nowait(struct controller *ctrl, u16 cmd, u16 mask)
+>  	pcie_do_write_cmd(ctrl, cmd, mask, false);
+>  }
+>  
+> -/**
+> - * pciehp_check_link_active() - Is the link active
+> - * @ctrl: PCIe hotplug controller
+> - *
+> - * Check whether the downstream link is currently active. Note it is
+> - * possible that the card is removed immediately after this so the
+> - * caller may need to take it into account.
+
+You've lost this somewhat important comment that still exists after this 
+patch.
+
+Rob
 
