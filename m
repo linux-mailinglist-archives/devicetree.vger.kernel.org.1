@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-166267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C473A86C5F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 12:11:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9362A86C6B
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 12:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E534B18922CB
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63F503BC03F
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CD81B3F3D;
-	Sat, 12 Apr 2025 10:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27ECD1C5D50;
+	Sat, 12 Apr 2025 10:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S91cKhCF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wfl4QIQz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0B4192D77;
-	Sat, 12 Apr 2025 10:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB30D4C8F;
+	Sat, 12 Apr 2025 10:13:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744452683; cv=none; b=Ierr5H0hCBIDkaeE++t7DAb4dJt26gK4pp4X2aMN4Jv3TTKpamSLEM4mx4JSLTNZe0ai4KuMuzq2jOR1c7t88K3BGE/hLSLq6oa0qZSG7qkKMJ9X7kg4RNXHwQFdVAOUqUjMqKCbVseNdDEX+IypGHATsZ2iXFZWD4uYdswpEW4=
+	t=1744452815; cv=none; b=IccPL8gl6EmCEAQU0frmb+qFGIcd+pgmTYaw98sMokxiKHe+KlR6iwb0XaYLdBNlSY2maY8lUBk0zS+8K+ITPI4zbmpP3j2k8ieNGFanl9YLF1jzr+y8G4uoNptSgJcOlVcQ/y7YBEqpLb4s3RaF8dQiCZax/veWFQh1HXU81lQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744452683; c=relaxed/simple;
-	bh=RNflmceC0PXkskPu8wmVlsRy34v1ud7Y93OVVupX/Vk=;
+	s=arc-20240116; t=1744452815; c=relaxed/simple;
+	bh=hdx7dilpviHAvfEHdp6u08ropQkeLaHjQudkCe/Si8c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vv/UjSv4r/BKryBMPH1k73kmIM0kon+nFlWpaj+g503Xwhs7MmZuz5vcNsnC5PjFftYYMr5ZMNR63vFqdwbnP5KrpkCbl7ACrIRBF44A31cm0UEQD3qmX2mrxh/SrlPNeloclhe89XtPpzedYJ/22uVV85Vk9e6yr3B+qr82hGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S91cKhCF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983D2C4CEE3;
-	Sat, 12 Apr 2025 10:11:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LEkmCSmXhQsfGx2KpNjB43dLYsYFMoHnWONP9KoZMStJM9P4jy8IxugodDFZjYmeG9Na1/onNQ3+1dp4x119aUrqjsYUVzgNwKUMcNRaC06sNk58b1JdwMHIngxX0g8gFp3lzCFm9L427uUytZ6cAxI6rDyy1H5sBkEwi9FTg5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wfl4QIQz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44E0EC4CEE3;
+	Sat, 12 Apr 2025 10:13:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744452682;
-	bh=RNflmceC0PXkskPu8wmVlsRy34v1ud7Y93OVVupX/Vk=;
+	s=k20201202; t=1744452814;
+	bh=hdx7dilpviHAvfEHdp6u08ropQkeLaHjQudkCe/Si8c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S91cKhCF3WenA0c8+gv8j+s5O7CFNwdzbVaieyIuBXfkFVs15UH8oDyCMJFYqdT9L
-	 8oScioMe+9JLVQZiJlK/ozFTcAdKelwxHWSuJR0U/x33nx4CkNTvK2FD7n+DQrUzA0
-	 9SOGGDAoZltouDjaYL3CEVjeDMFaFaPbV1+DO/+iyfSQPSp3MXpfV3L30aBIpNdlN1
-	 JyAvFIed7WpLqMiNvuSwa0VwbD9zC+eRZfVp1+GZzYTgiuAySdV7Cd9qb28eZQZcuA
-	 YSfnC50bsyJ/XS3idOTPeeezyQX5LNaQ2N6uK8NtJjy/yBOWAXOQ706oTUMGzmbTOy
-	 qKAPG+iVTaKnA==
-Message-ID: <a52969f2-8ea2-41e5-b4c8-8a03220cbf51@kernel.org>
-Date: Sat, 12 Apr 2025 12:11:17 +0200
+	b=Wfl4QIQza6CjnvtazfAP38NucKldwu6LU2YpvL+QDNN/qFFc2CFpc0KedCU+q9hmF
+	 si5Vgbm41aVb1oBcdtCyo9uR3gfl9pE2uWrH7eh6oRdjUfOEzAimI36UuAKKCRpY9/
+	 h75xxcZvNEQ2EifeaCgKaKjcuSu1GCuBDxHMuYC9dg9wJGMiToZsZLsHJ+ToidQYtw
+	 CXGRrmCLmPIDs/dejyGLHUWo0tqmMqOH3DaHVyWxcFKvJST5J9+1JL9pfeALBCE79w
+	 UhhuFZYJ3mFGh6XM4BrwPS98e8M/a/lEsOpExQeX/4ScJ9TzhyIWc0ohUGU+HV0M/H
+	 QN8ddxACQwxZg==
+Message-ID: <9714498c-6d89-4e1c-87dc-1b6779e913e1@kernel.org>
+Date: Sat, 12 Apr 2025 12:13:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
-To: Faraz Ata <faraz.ata@samsung.com>, alim.akhtar@samsung.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- rosa.pila@samsung.com, dev.tailor@samsung.com, suyash.bitti@samsung.com
-References: <CGME20250318074801epcas5p3de68627a3e64ebc2a95ed33a3f485e80@epcas5p3.samsung.com>
- <20250318075635.3372599-1-faraz.ata@samsung.com>
- <befe7d30-1727-4540-9072-f21ef96ea504@kernel.org>
- <03e501dbaab0$65bb47a0$3131d6e0$@samsung.com>
+Subject: Re: [PATCH v2 01/12] dt-bindings: mediatek: Add mediatek,
+ mt8196-jpgdec compatible
+To: =?UTF-8?B?S3lyaWUgV3UgKOWQtOaZlyk=?= <Kyrie.Wu@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kyrie.wu@mediatek.corp-partner.google.com"
+ <kyrie.wu@mediatek.corp-partner.google.com>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20250410063006.5313-1-kyrie.wu@mediatek.com>
+ <20250410063006.5313-2-kyrie.wu@mediatek.com>
+ <20250410-wandering-righteous-hound-ac5edd@shite>
+ <b4745bd99e28cf90581320f8ddb591f76b1c91b9.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,36 +117,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <03e501dbaab0$65bb47a0$3131d6e0$@samsung.com>
+In-Reply-To: <b4745bd99e28cf90581320f8ddb591f76b1c91b9.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/04/2025 09:07, Faraz Ata wrote:
-> Hello Krzysztof
+On 11/04/2025 04:54, Kyrie Wu (吴晗) wrote:
+> On Thu, 2025-04-10 at 08:39 +0200, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> On Thu, Apr 10, 2025 at 02:29:54PM GMT, kyrie.wu wrote:
+>>> Add mediatek,mt8196-jpgdec compatible to binding document.
+>>>
+>>> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
+>>
+>> Usual mediatek comment - looks like copy paste of username. Please
+>> reach
+>> to your colleagues how to fix it.
 > 
->> Subject: Re: [PATCH v2] arm64: dts: exynos: Add DT node for all UART ports
->>
->> On 18/03/2025 08:56, Faraz Ata wrote:
->>> +
->>> +		usi_17: usi@10d800c0 {
->>
->> Messed order. Keep nodes sorted by unit address (see DTS coding style).
->>
->>
-> Thanks for your review
-> Based on the DTS coding style, it is acceptable to group nodes
-> of the same type together, even if it breaks the unit address ordering.
+> Dear Krzysztof,
+> 
+> Do I need to change the username like that: Kyrie Wu <
+> kyrie.wu@mediatek.com>?
 
-That's accepted alternative because some subsystems do that way. I don't
-think we ever applied such rule to Samsung? Do you have any prior
-reference about this? I accepted mess in the past, but that does not
-mean that mess is the rule.
+And what did your colleagues say? Please use Mediatek resources prior
+asking community for review.
 
-> https://docs.kernel.org/6.12/devicetree/bindings/dts-coding-style.html
-> Please let me know your opinion on this.
-> Do you mean I should move all the USI_ node after pwm node?
+> 
+> Thanks.
+>>
+>>> ---
+>>>  .../bindings/media/mediatek,mt8195-jpegdec.yaml           | 8
+>>> ++++++--
+>>>  1 file changed, 6 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/media/mediatek,mt8195-
+>>> jpegdec.yaml
+>>> b/Documentation/devicetree/bindings/media/mediatek,mt8195-
+>>> jpegdec.yaml
+>>> index e5448c60e3eb..28a9a9bfdbf8 100644
+>>> --- a/Documentation/devicetree/bindings/media/mediatek,mt8195-
+>>> jpegdec.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-
+>>> jpegdec.yaml
+>>> @@ -14,7 +14,9 @@ description:
+>>>
+>>>  properties:
+>>>    compatible:
+>>> -    const: mediatek,mt8195-jpgdec
+>>> +    enum:
+>>> +      - mediatek,mt8195-jpgdec
+>>> +      - mediatek,mt8196-jpgdec
+>>
+>> And devices are not compatible?
+> 
+> Sorry, I don't understand the question exactly. Do you mean using the
+> compatible string of MT8195 for both MT8195 and MT8196?
 
-Please it according to sorting by unit address.
+No, expressing compatibility with fallbacks or explaining in commit msg
+the hardware, e.g. why these are not compatible.
 
 
 Best regards,
