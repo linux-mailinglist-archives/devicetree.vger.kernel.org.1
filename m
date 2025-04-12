@@ -1,227 +1,324 @@
-Return-Path: <devicetree+bounces-166254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDC3EA86B7C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 09:13:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE85A86B96
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 09:45:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9C3217C9A0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:13:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1A438C7ECE
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FE818CBFB;
-	Sat, 12 Apr 2025 07:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E3B199238;
+	Sat, 12 Apr 2025 07:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OXtbElK6";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="p0Yatvxq"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="1r5bNx/t";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="dbvTXwak"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DA816DECB;
-	Sat, 12 Apr 2025 07:13:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744442017; cv=fail; b=f7WfrtZ7H51b1CL2qnGbIgGHlDBhti75/rt4tbUeDycMc3QdBerOmwo+hfvn9qrho/uFhR2UZP3y9qMRQgMvsLqxjLxKxsNkyhJI8qVBsTu20+UouwMMrRUQeYE415JeRbISLzrInkoQOFc8ixBwMxnhea/eBSNPmGZ+zGBBWOY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744442017; c=relaxed/simple;
-	bh=d/HlhCzD1/aoxrWXkfhVYicodsUu0mfwA4W0FDWCDnw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=A7h/x+0pCYA6GVn6J5ouM+Qp1UjTgI80d6cIwgmgsuWPj7+fCqNwwibefKMY0SUvTOq3TUfk4UHoBH48/gyLg0Zckp34Rn/z2pRvZ/uCRffSMYrRTgssvpxGdspUJk97FQknrWwexxYKwoGv7/0QYd9eCcN43Bg+3CYoinxrAfU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=OXtbElK6; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=p0Yatvxq; arc=fail smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9fc684c6176d11f08eb9c36241bbb6fb-20250412
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=d/HlhCzD1/aoxrWXkfhVYicodsUu0mfwA4W0FDWCDnw=;
-	b=OXtbElK6KfySwK8LJt5sUIWcCXdNcps2Tw7BSmSjOPfZdIdfs/mo99WhE3JHYLhlYx3/CDU53dLXqXBgOJY5JW5tuDVKpk5i2DQ2zyY94vYiAkvni5OgKDIrgNPJdutDZ0z0g2RpsRTKytFv/Gv4/HVfvHYbgvqWX/7pkwOvkoM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:084e8b39-2615-4fe1-8966-e05fbcf574f0,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:91d7848d-f5b8-47d5-8cf3-b68fe7530c9a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111,TC:nil,Conte
-	nt:0|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
-	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 9fc684c6176d11f08eb9c36241bbb6fb-20250412
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <yong.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1472649485; Sat, 12 Apr 2025 15:13:24 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Sat, 12 Apr 2025 15:13:23 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Sat, 12 Apr 2025 15:13:23 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FWPbZe8Hr8/gIprUUZ2h0irBa1MNaieiZPYyePv5dGirMxW708OaNi7p6soKsHaQ+REP3VpwRMNVjkFleNj1jg5/K/LYaeVKiZD6b6XFG1kbT2a951rgB+BBUtoKsXC9shyleI7UToYtQeNuUvjks99EkxR1ropVU4Dv5pLpwEkRnel67oYSaJE+kfJhIpN7HiUF1fW09jO+alJAcXgUykHL67gOKGkXRsGF/FPOy+YwCgFo2oefKe9PpfuqIvAR+AYyv5p7G1rDTEZQ185mlHcL/J3TPhGgeBjHIWYWuqTfOeTfieeDXjx90pFfLoul6xIL/WNZPEHcD6YMPhgpjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d/HlhCzD1/aoxrWXkfhVYicodsUu0mfwA4W0FDWCDnw=;
- b=nK4rd6vzIZNb5Hd0I3KUBiR5etToZctM0UqrhiRfNvDxBmOdbrqyz0r3B2fi+e0usQTHIwRqQod1zfGuJBfM3Fw3MQ5E7QpH494RiHtOt77NhPuOcEEWK4AF42x0LytaHsKnsppYxAvtd6WXzkgKdnRqmg3kilmcjQRyn8a/JI1D39RDAPq/311FecdIKPhlmhzkCI5cC6rvVCmfpwlm6Nccm/GV8MfWgjH9surPfoZGHP/8tAt666EHdYYlAqGNACut8/4BhCWgXbnfloTqBM/Tq2NGS60p1kaGP0lmPpCC2GPlx1uIyyo3uA7jzcUZC7F1zStA1gxZvSPNs+4w9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d/HlhCzD1/aoxrWXkfhVYicodsUu0mfwA4W0FDWCDnw=;
- b=p0YatvxqRXt8zOClGs6UNAkmuBWx1mXuO2DtnglWSPQ/J2rERwv7QyGG0cn8bwvVscjBJo7KgiTZPo8j6nPztjyCK1I3sTGkJuCVMo/0Bv+cmJdVup8Oru45Y7vPOw//3tXIfQ6OGfZjiBXihh8Q2XCeoCUuGJeQJr3I7pnwQUk=
-Received: from SI2PR03MB5885.apcprd03.prod.outlook.com (2603:1096:4:142::7) by
- SEZPR03MB6596.apcprd03.prod.outlook.com (2603:1096:101:78::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8632.23; Sat, 12 Apr 2025 07:13:21 +0000
-Received: from SI2PR03MB5885.apcprd03.prod.outlook.com
- ([fe80::683a:246a:d31f:1c0]) by SI2PR03MB5885.apcprd03.prod.outlook.com
- ([fe80::683a:246a:d31f:1c0%5]) with mapi id 15.20.8632.025; Sat, 12 Apr 2025
- 07:13:21 +0000
-From: =?utf-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"kernel@collabora.com" <kernel@collabora.com>, "robin.murphy@arm.com"
-	<robin.murphy@arm.com>, "joro@8bytes.org" <joro@8bytes.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "iommu@lists.linux.dev"
-	<iommu@lists.linux.dev>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "will@kernel.org"
-	<will@kernel.org>
-Subject: Re: [PATCH v1 2/2] iommu/mediatek: Add support for Dimensity 1200
- MT6893 MM IOMMU
-Thread-Topic: [PATCH v1 2/2] iommu/mediatek: Add support for Dimensity 1200
- MT6893 MM IOMMU
-Thread-Index: AQHbqiarQPyLOV0TK0CwfOLW7l2BYLOfoG8A
-Date: Sat, 12 Apr 2025 07:13:21 +0000
-Message-ID: <b87ee4066ae403826f43eace44be542c0a00755d.camel@mediatek.com>
-References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
-	 <20250410144008.475888-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250410144008.475888-3-angelogioacchino.delregno@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SI2PR03MB5885:EE_|SEZPR03MB6596:EE_
-x-ms-office365-filtering-correlation-id: ef5cb788-e26e-43b2-bece-08dd799181cd
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|7416014|1800799024|376014|7053199007|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?YUhRYmRoc0ZwTjRJYVJkRmhQYWxSY1dQVmtPZUMxMnNmZXlnUVZENlVYQStl?=
- =?utf-8?B?dGllcUVGbmliSlJoZWdvV21OOVg3aDU4dHdwNktiSjMzeG90REJPVHgvK3h0?=
- =?utf-8?B?ME5VU3hHaTgyb3lMTUNMREJjZXVFaS9IUFdNa3lzQmRzdy9kREVMbS8vaWcz?=
- =?utf-8?B?ZytpaDdjTGEySlZGTjhxVUIrOFJ0OFNDdGJHblpHY0szK2pPMzNRdWpLeTZ6?=
- =?utf-8?B?c3RXSVpPME4wU2srelk5ZFk4bkNtWW9qQnZqSGs1NE00eWRId0xUYnBkVXh6?=
- =?utf-8?B?Nk9WTEhMVHZDaVhjdThPSDlhL1gwV2JESHN5ZllScDRqYjJWa1VQVWY0Rkdr?=
- =?utf-8?B?YldPVFk4WW1JeXJERUJBRXdsM2hIM0Jjd0p2T1VFR2xIdUhpR2Nxa3ZzTjlY?=
- =?utf-8?B?V0ptdlVlME9QSnlZNlZYd21WbUt4aEtLOTRRZ2ZOR2dzb2o1SlhzaTBkbG1E?=
- =?utf-8?B?QnFpSFpJeVlQOFNvb0JOcEJueHRVVHIvWmpMSkxtZ3g1VkNDajlIUHZjaTNm?=
- =?utf-8?B?OFVraGhIcGM5OExzUjRxYWg0d0t1Zk1rQmpzVEkwWW1IUitEbEcwUmR5NXRR?=
- =?utf-8?B?V1FBNmhTcnY4OTBiS3VzUndIcDBka3U5Nkptd1U0QkxOQzFJOVZaRlNXZUtv?=
- =?utf-8?B?UCsxNHZKZmgydGptS3VVMU1JRjdRQ1pVNnpHRGwvZFpnbkZ4VlVuSGM3T0xs?=
- =?utf-8?B?cVNBSnRQK2MxaUxSNmlTZlhEbEhaQTFhSE9oazFBdzRzb21nY3JKalJPVTll?=
- =?utf-8?B?ckNIVkcyL3B5Y2NwOVp0LzdTcmtSZDNpeVFkUGxFTjdzeC9BcVBVZ3dDQWJS?=
- =?utf-8?B?SVdBd1NNRDRkZFRxN0YvUUIxRGZjT24zQkoxTXZKNG9DVVYzQmJHQ05tMDBn?=
- =?utf-8?B?ckI1cGtMNVcrdW9UWXh5QjBySmdiWXdNL1c0TzF4U1pZWEdXbHM5dTh5cUl2?=
- =?utf-8?B?T01Mblp3QVBvZlJJcld0U0EyWEVWR0M5Z0R1NDZ6akIralY3aFlkQUZYTkcv?=
- =?utf-8?B?REYrZlVuZWlqRkxOOWUzc21zVVF6SkhxR0RPY1k3R3VOOFhKY2F5Z2Qzd2VT?=
- =?utf-8?B?b1IxeUN5ZVVBVVp3Zi9UUVBXdENrZVhIOHFZamFRMGtjbWREeDdTalFOd2Rm?=
- =?utf-8?B?ODNoOVFKeEZWcHRtY2syYVY0d0JFWHFaRmJ4Ulc3U255VkdmTjF6ampxdlJq?=
- =?utf-8?B?UkhiME1VQzBETUdwV2J6ek9vUmNjT2E2Y0Z5dWQ5K1ZTV2lGcmVMU0JBSG9S?=
- =?utf-8?B?Q01kUUViZmpWN2lBblg5bW0rd0JDbVRkOFlqUGJoTGd0QlpXYVN1UjBFajBp?=
- =?utf-8?B?Tm0ycnlKN2Zud0U2Tk1TOHhGZWQ4MFFNalNvWE5IbzhpK1NJMW02R2NzekFP?=
- =?utf-8?B?cWt4dUhmTFVZYnFZaHRMcW5LOUtYWmhmeFNpZlAxL0lsaDJ3RDE5VklyUGM0?=
- =?utf-8?B?cEN2bnVYcXQ0ZU13eVkrNmdlZ0ZZN1o0SkxpZG90Nmd0T3FiZHpOUjJRb3p3?=
- =?utf-8?B?UnFIN0RRSlA1RERKVkpjR0IwSlVsa1NhbEJNUGludHVVZEYyTTJrVlg4Q0Uz?=
- =?utf-8?B?V1JMQlViR2JoSFRBU2NwTGV1dDgyeHBqZXJYa240cWRUL2RKWEFRZEdMUjR3?=
- =?utf-8?B?WVR0UXlNcnZsVWxhQlJLRFc4NFAvb0RTVUp1VXgvY3lYb2cxTGF0bDM1ME95?=
- =?utf-8?B?TWpIM0F1UmxSL3dpaFEyb2d6TGlUWWNmNzN1NnAzd3Y5ME9zTzJ3TXgzRlpQ?=
- =?utf-8?B?T3BFSlZMc0EwS1RTanRuczBBcEo5MHFwODNxZ3ZZNDRUandJSzdBZ1lsZHRi?=
- =?utf-8?B?QW5pVXMvWlh6TzZtZjhweEZ5Vmx3a3VPNitsa0dFRlAwM3o5Y3NMcUUrQzNt?=
- =?utf-8?B?cjFCZmNJZGdNdTNmUEp4VjBpV3hRNXprb0ZacUJTQmY1Vlk2amQzblorRFI5?=
- =?utf-8?B?OFNtTGp2TGkyR0piR3JFL1pPalIyUW81TDJiamFBVmIxODJGOEw2N2VlU1hS?=
- =?utf-8?Q?JJ36/k3kVS+dBYc2ukj6wr7kwCeZCI=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI2PR03MB5885.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(7053199007)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NlFhd2tKMk1NeHNpcTBqbkpVQ2s3OVIrblVjY1l0RXhoNkpnTFdFWHdhNGN4?=
- =?utf-8?B?U1NEY0ZGdXVNU2NQVzZBMEFmQU9MS3RrU3JNcldrK2lvbUxwdTBHTkhhWVFm?=
- =?utf-8?B?QWJKRk15RXRKTG9XWlNha005dVhDQWprVVhTNVpnT3J4ZlhwUzJJQk1zTjNn?=
- =?utf-8?B?dnkxM0MwZDhOcG9VMC90MGd3R21YSTdGZHJLQkdGV01lN1V3SGMwRyt6aU43?=
- =?utf-8?B?b1F0NWp0aXhoN1lGN1lSM1F1emxWb0FZNVJwSit2WkhWUnpRc3YzbVNYaE5P?=
- =?utf-8?B?N3hzQ25UZnBOYVpKZWxQMmNJRzZ1bXBqbmtXYituM29Bdm9SVWJ3Qkw2NXRl?=
- =?utf-8?B?NldiVVQ2QXU0USs1am5pREtVL0RoYXZzZ3FUSVEvREphbFFtejNYL3lwVVcz?=
- =?utf-8?B?MTFiR2RSMDlnd2poaEdtOFRGbG52VzE4anVibmY0eTZCQTFOcVBtRjNkZEs5?=
- =?utf-8?B?Q1lFZTN2V2pKeXBGdnpOZkQrZHNyOVhYL3Rqelk5UzFBcWdhMFA5ckk4ODE3?=
- =?utf-8?B?N2JaOGVaYytUSEppRXl4M1Z0LzJQOXVCWXBmZzd5USt4K05KNm1za1doV3B2?=
- =?utf-8?B?bit4Wk9MMjNoSzYwRTNQYU9CNkhqODBuZ0d1TE45Q254V2dsM1NnbjNGYVBE?=
- =?utf-8?B?UlhJVUNONm5USllyN0VVYVVBZ2dMRnNwMXdoejBBSDAvbmVEYlFobEZGVXhN?=
- =?utf-8?B?Q28wUU03SWkvWHY4V2ZtcWJ2VFR6Nm9uZEoxU0JEbysreTZCd3ZHeGdFQ1hV?=
- =?utf-8?B?WVUzUDcweXhWaHFpNlJ4cVZ0YmNzZkJ1RFlBYTZhb3FHVDVhREUrM0twRHNp?=
- =?utf-8?B?ck5idVY5amEwZmkxS094b0JyOUExcjhFSGpsVWZxNVl1OG5ka29WaXRYcnhh?=
- =?utf-8?B?TEF2cFl2eHpHNVF3UUl0bjI5U3hmR3VISUJmOFRJZUdpL01mSXQ0K20weUZw?=
- =?utf-8?B?Wkxmc0x4OFRMRk1yS0plU0xyVEhmbVgyUXVDSnhpdHpCZEQxSFVFYlh2UHU4?=
- =?utf-8?B?N1NGeUxlcHhJZ0pOTlQxVkQyZVpjVWZMNDNSYlZUWHY0eG1McUxZNEhObkFP?=
- =?utf-8?B?VHB0R0dJWEVnRGovODh0ZDVWT2N4ZEFWejB2VmxZSGw5THBnVHVIbzZyOGp5?=
- =?utf-8?B?cTlXcFZXbG1ydEpCS3ZmR3IrTWZHcWNSUnc2OU1sZ2FSUmxHT3Z2cXQ1VmlE?=
- =?utf-8?B?WFBKeWViZGFVdWZFcjRHK09WdDJVWDNxajZGN2tpKytqWkQrUHN6UVQ5cVhO?=
- =?utf-8?B?cXFuZzQ3ZHVWSFZCYU5ITnNLdVAxZWFFbGNMWkpYVk9lMFl1emE1V01qc3ln?=
- =?utf-8?B?Z3FCVzBydFZSRC9hSWZxb0VDbjNMRTRSMjhhY1poU1BRMGpOV2R2VHVUWlVw?=
- =?utf-8?B?cXoxWk8wRFYzVFhTVmtLbXE4L25zbUtyK0d4dGNwV3FRMHE3c2FRS2JBWHV5?=
- =?utf-8?B?d0V0L2g0V2M4RGNqbjZCMnpHMHFzMWp6Ni9NTFhNY2NHVXZSQnFhSjVQSjBz?=
- =?utf-8?B?Z3BkOXVIV1R6dVdLWHh4YXNOVDk0MnN0OEU0WWVxN2lXR1MrZEs1ays3NXVw?=
- =?utf-8?B?WGg0VHc4K0l6bHQ5RkZLLzFvT2tlUDdQZDZXeEo5M0pkVTFkNVQvNk9iUkpI?=
- =?utf-8?B?bXV3MnViYng4bXVJUnN2MG1LTnZiWnhmNllNMUR3ejF6U0NHNHp3TEM4QVpK?=
- =?utf-8?B?djBQRjh4c2ZiLytWdjJiY1hWSHUrRU5JeWk4b091ZjU2V29WZW11eDhFYm92?=
- =?utf-8?B?d3ZET3phZVZzNkpSemxLK2VIaTZ3emZiK2JXRzJrUXNrZmdNdHVNcnlYNW5Q?=
- =?utf-8?B?M3E3Y3RFL1lDWE1vTXN0bGwxL0tmOWVtT2NjQnV1azdHYzk4bmFaOU9hajkv?=
- =?utf-8?B?MzVQRW1lekdQN1g2TUhZajgwYU1QMTJKN0U4OGlEQ2lwb0RBNE9hdmZxSWZV?=
- =?utf-8?B?UFFQczlzbFZ6SlE1THU5Y3JlenNuT2ttYW56cG1BdXVnbjN0bmMyUFRHN2t1?=
- =?utf-8?B?WTdPdit6cmlKOExYZFJZU2NkN2RLMnVsdDZLUkpXRVRFUitjZlBuUVlDRk1S?=
- =?utf-8?B?djkzYW9HUGc5cVgxZFpNbHp2VUp6aU44dXI2RU1xeTdzYytIdWVnTCtLODhh?=
- =?utf-8?Q?zO/vghK4GCq8l5PKOOBmwwq8W?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9DA31E9E262B104C852C20E98068D631@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7C418CBFB;
+	Sat, 12 Apr 2025 07:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744443908; cv=none; b=GcHwqDtVwdow7nHoYKzW4LRT/oBnitsmlwSvbkMoxfx6AvnPHPTd0rW/iSU+krRYeV7SOYbruIH7740bk92x03kY+xARTCMVharE3zFmj/mCbagkS6+BD6Y9ZK4sb3HC5Uj2YOobX9yAJDHAjhGgaIMqnWO8YjSGhRR/VMzs3Ek=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744443908; c=relaxed/simple;
+	bh=XT2I/mbglNP1KZWN+fuBec3Gzj2B8e2RrSln33PdIAQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bDswEGz88u3y3ZtKyk8kRWvS0OzfTGV83yR57cVwqArYneGiliURojd8dCWQ2CldM4f7frtsycI/xSlro1JH1P85f/y9Mty7wuwXxRQ2REogrwmp1JHSg6YhbsxJd1is8lZf/nG0Vvbs3j6aZBBt+2d8tp1c1MCx3ZIr6LQHIgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=1r5bNx/t; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=dbvTXwak; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 4C55812FB435;
+	Sat, 12 Apr 2025 00:44:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1744443899; bh=XT2I/mbglNP1KZWN+fuBec3Gzj2B8e2RrSln33PdIAQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=1r5bNx/tTlTnuFJ5XgvysqwtTsB6MpMsRdKaMdUwFPPMe0RTgWbFkJ7vWOk964D+c
+	 m4/KMURSN3hjuUrHuMxK22kmk46If2ASw648Camb7KQsbLOH7cxKBeWtGBmiHUD89I
+	 UgoNCT4BqTJxdGuggvI1GY4RpE4+FF3l8UYDeKxQ5VgQjBxTWtvPE8s6h3zQDRPAFI
+	 4umtomD7TEDk251J2FzquX3RGSuabvpKhJP0Ra66tsIrmPPscq30tBzzfIinjKidI/
+	 ePFeiWd+2QakL5BX74QxIwvKZtox+184/iyowLorMyVKNxVkzsHcrW8nFdVegotx3g
+	 vAalPv9F9RlIw==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
+ header.d=4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id MuxFHKcnHgpb; Sat, 12 Apr 2025 00:44:56 -0700 (PDT)
+Received: from localhost.localdomain (unknown [183.217.81.239])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 5443D12FB41C;
+	Sat, 12 Apr 2025 00:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1744443896; bh=XT2I/mbglNP1KZWN+fuBec3Gzj2B8e2RrSln33PdIAQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dbvTXwakpbzCUEn+aTLyyKSDEKzOpn+2o1eZBSE+5ns9JFpic+zBlqle+Gtv8JupC
+	 K+3HuUyg3lWURXPFetniNEybzqF0mERVIGWkujRLq5EkHdEYArCrctdlU1XQ1+NKsc
+	 5Ab9a3orWyhCx1veXGsiG3t3guy6+FhBzRlFGNRpWnKVorhEkIrv9vccE5oR4tU8HM
+	 6me/M3t1w8SxirTq84R+WjuF136PTOgAYVO/R282fBSj5rwepjmUBXuqrTsJxyv7p6
+	 PCAyg1QicD996X3T6JQjJ9p92sjm5LtaMC2OjYcsUnanZ1J9pleutWy7oTdSfWskLX
+	 56IAdHJLqyefQ==
+From: Haylen Chu <heylenay@4d2.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Haylen Chu <heylenay@4d2.org>
+Subject: [PATCH v7 0/6] Add clock controller support for SpacemiT K1
+Date: Sat, 12 Apr 2025 07:44:18 +0000
+Message-ID: <20250412074423.38517-2-heylenay@4d2.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SI2PR03MB5885.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef5cb788-e26e-43b2-bece-08dd799181cd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Apr 2025 07:13:21.1076
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YCyxQMS1bHi6NRlQwd2tpjgEn01FeL3xikNr/IcwV4yZz2o88tdHvQcr2TD5KxGiX47paczm8+jWkAa6q638PA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6596
-X-MTK: N
+Content-Transfer-Encoding: 8bit
 
-T24gVGh1LCAyMDI1LTA0LTEwIGF0IDE2OjQwICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gDQo+IEFkZCBzdXBwb3J0IGZvciB0aGUgdHdvIE1NIElPTU1VcyBmb3Vu
-ZCBpbiB0aGUgTWVkaWFUZWsgRGltZW5zaXR5DQo+IDEyMDAgKE1UNjg5MykgU29DLCB1c2VkIGZv
-ciBkaXNwbGF5LCBjYW1lcmEsIGltZ3N5cyBhbmQgdnB1Lg0KPiANCj4gU2luY2UgdGhlIE1UNjg5
-MyBTb0MgaXMgYWxtb3N0IGZ1bGx5IGNvbXBhdGlibGUgd2l0aCBNVDgxOTIsIGFsc28NCj4gbW92
-ZSB0aGUgbXQ4MTkyX2xhcmJfcmVnaW9uX21zayBiZWZvcmUgdGhlIG5ld2x5IGludHJvZHVjZWQg
-bXQ2ODkzDQo+IHBsYXRmb3JtIGRhdGEsIGFzIHRoZSBsYXJiIHJlZ2lvbnMgZnJvbSBtdDgxOTIg
-YXJlIGZ1bGx5IHJldXNlZC4NCj4gDQo+IE5vdGUgdGhhdCB0aGUgb25seSBkaWZmZXJlbmNlIHdp
-dGggTVQ4MTkyIGlzIHRoYXQgTVQ2ODkzIG5lZWRzIHRoZQ0KPiBTSEFSRV9QR1RBQkxFIGZsYWcu
-DQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyA8DQo+IGFu
-Z2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IFlv
-bmcgV3UgPHlvbmcud3VAbWVkaWF0ZWsuY29tPg0K
+The clock tree of SpacemiT K1 is managed by several independent
+multifunction devices, some of them are
+
+- Application Power Manage Unit, APMU
+- Main Power Manage Unit, MPMU
+- APB Bus Clock Unit, APBC
+- APB Spare, APBS
+
+These four devices provide hardware bits for three purposes: power
+management, reset signals and clocks. Not every device is capable of all
+the three functionalities,
+
+- APMU, MPMU: power, reset, clock
+- APBC: clock, reset
+- APBS: clock (PLL clocks)
+
+This series adds support for clock hardwares in these four regions,
+which covers most peripherals except DDR and the realtime processor.
+
+Tested on BananaPi-F3 board. With some out-of-tree drivers, I've
+successfully brought up I2C, RTC, MMC and ethernet controllers.
+
+It has been a very long time since I sent v1 of the series, thanks for
+everyone making suggestions and keeping track. I'm looking forward for
+furthermore reviews, or getting it finally merged.
+
+Changed from v6
+- Update copyright date
+- Collect reviewed-by tags
+- k1-pll binding
+  - replace tabs with space in binding header
+- driver
+  - remove the file accidentally added in v6
+  - remove undesired rates from PLL2 configuration entries
+  - update comment for PLL{1,2} rates
+  - misc style changes
+  - remove CLK_IS_CRITICAL from uart0 clocks and cpu_c1_hi_clk
+- TWSI8 support
+  - Add a comment to describe the quirk
+- defconfig change
+  - improve the commit message
+- Link to v6: https://lore.kernel.org/all/20250401172434.6774-1-heylenay@4d2.org/
+
+Changed from v5
+- Correct "Spacemit" to "SpacemiT" in commit messages and code
+- Always use space instead of TAB in comments for consistency
+- dt-bindings
+  - Rename binding header to "spacemit,k1-syscon.h"
+  - apply review tags
+- driver code
+  - remove "default" properties from Kconfig
+  - misc style and naming improvements
+  - make ccu_read() directly return the read value, drop ccu_poll() and
+    reorder the arguments to ccu_{read,update} macros
+  - drop ccu_common.reg_swcr2
+  - clock tree for K1
+    - define PLL3 with the correct offset of SWCR3 register
+    - synchronize PLL configuration entries with the vendor kernel
+    - reformat clocks definitions
+    - explain why PLLs require the MPMU syscon to function
+    - log a message when failing to register a clock
+    - simplify clock registration with ARRAY_SIZE()
+  - ddn
+    - correctly handle masks which doesn't start from BIT(0) when
+      calculating the best rate
+    - improve precision of frequency calculation
+    - derive _{den,num}_shift from corresponding masks with __ffs()
+  - mix
+    - match the full mask of gate in ccu_gate_is_enabled()
+    - add a note about "frequency change" bit and simplify FC-triggering
+      logic
+    - drop unnecessary local variables and initialization from clock
+      operations
+    - round to the closest rate in ccu_mix_calc_best_rate()
+    - change names of all mix subtypes to follow the order of mux ->
+      factor/div -> gate -> fc
+    - drop unused _flags argument from CCU_GATE_FACTOR_DEFINE()
+  - pll
+    - ensure PLLs are initialized to a known state
+    - drop extra check in ccu_pll_enable()
+    - round to the closest rate in ccu_pll_round_rate()
+- TWSI8 support
+  - Split cleanly from the main driver commit
+- devicetree
+  - drop extra "*-cells" and "ranges" properties
+- Enable SpacemiT K1 CCU in RISC-V defconfig
+- Link to v5: https://lore.kernel.org/all/20250306175750.22480-2-heylenay@4d2.org/
+
+Changed from v4
+- bindings:
+  - Drop CLK_*_NUM macros from binding headers
+  - Rename spacemit,k1-ccu.yaml to spacemit,k1-pll.yaml, change to
+    describe only the PLL in APBS region
+  - k1-syscon.yaml
+    - drop spacemit,k1-syscon-apbs, it should be the PLL device
+    - drop child nodes
+    - describe the syscons as clock, reset and power-domain controllers
+    - drop "syscon" from the compatible list, as these syscons aren't
+      compatible with the generic one
+- driver:
+  - misc style fixes and naming improvements
+  - drop unused fields from data structures
+  - drop unused clock types: CCU_DDN_GATE
+  - ddn type:
+    - improve the comments
+    - dynamically calculate appropriate rates
+    - hardcode the x2 factor
+  - mix type
+    - drop val_{disable,enable} for gate subtype
+    - drop unncessary polling when enabling a gate
+    - encode subtypes directly in struct ccu_mix
+    - generate clock names from identifiers of the data structure
+    - rename CCU_DIV2_FC_MUX_GATE_DEFINE to CCU_DIV_SPLIT_FC_MUX_GATE
+  - pll type:
+    - correctly claim the parent clock
+    - make rate tables const
+    - drop SWCR2-related fields
+    - combine fields of registers as a whole instead of working with
+      each field
+  - clock tree for k1:
+    - removed duplicated offsets
+    - drop the placeholder 1:1 factor, pll1_d7_351p8
+    - workaround the quirk of TWSI8 clocks
+    - fix the definition of ripc_clk, wdt_bus_clk, dpu_bit_clk and
+      timers_*_clk
+    - drop structure spacemit_ccu_priv and spacemit_ccu_data
+    - rework clock registration
+    - split the PCIe clocks correctly (there're three distinct clocks
+      for each PCIe port)
+- devicetree:
+  - adapt the new binding
+- Link to v4: https://lore.kernel.org/all/20250103215636.19967-2-heylenay@4d2.org/
+
+Changed from v3
+- spacemit,k1-ccu binding
+  - allow spacemit,mpmu property only for controllers requiring it
+    (spacemit,k1-ccu-apbs)
+- spacemit,k1-syscon binding
+  - drop unnecessary *-cells properties
+  - drop unrelated nodes in the example
+- driver
+  - remove unnecessary divisions during rate calucalation in ccu_ddn.c
+  - use independent clk_ops for different ddn/mix variants, drop
+    reg_type field in struct ccu_common
+  - make the register containing frequency change bit a sperate field in
+    ccu_common
+  - unify DIV_MFC_MUX_GATE and DIV_FC_MUX_GATE
+  - implement a correct determine_rate() for mix type
+  - avoid reparenting in set_rate() for mix type
+  - fix build failure when SPACEMIT_CCU and SPACEMIT_CCU_K1 are
+    configured differently
+- use "osc" instead of "osc_32k" in clock input names
+- misc style fixes
+- Link to v3: https://lore.kernel.org/all/20241126143125.9980-2-heylenay@4d2.org/
+
+Changed from v2
+- dt-binding fixes
+  - drop clocks marked as deprecated by the vendor (CLK_JPF_4KAFBC and
+    CLK_JPF_2KAFBC)
+  - add binding of missing bus clocks
+  - change input clocks to use frequency-aware and more precise names
+  - mark input clocks and their names as required
+  - move the example to the (parent) syscon node and complete it
+  - misc style fixes
+- misc improvements in code
+- drop unnecessary spinlock in the driver
+- implement missing bus clocks
+- Link to v2: https://lore.kernel.org/all/SEYPR01MB4221829A2CD4D4C1704BABD7D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
+
+Changed from v1
+- add SoC prefix (k1)
+- relicense dt-binding header
+- misc fixes and style improvements for dt-binding
+- document spacemit,k1-syscon
+- implement all APBS, MPMU, APBC and APMU clocks
+- code cleanup
+- Link to v1: https://lore.kernel.org/all/SEYPR01MB4221B3178F5233EAB5149E41D7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
+
+Haylen Chu (6):
+  dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+  dt-bindings: clock: spacemit: Add spacemit,k1-pll
+  clk: spacemit: Add clock support for SpacemiT K1 SoC
+  clk: spacemit: k1: Add TWSI8 bus and function clocks
+  riscv: dts: spacemit: Add clock tree for SpacemiT K1
+  riscv: defconfig: spacemit: enable clock controller driver for
+    SpacemiT K1
+
+ .../bindings/clock/spacemit,k1-pll.yaml       |   50 +
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |   80 ++
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |   75 ++
+ arch/riscv/configs/defconfig                  |    2 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/spacemit/Kconfig                  |   18 +
+ drivers/clk/spacemit/Makefile                 |    5 +
+ drivers/clk/spacemit/ccu-k1.c                 | 1164 +++++++++++++++++
+ drivers/clk/spacemit/ccu_common.h             |   48 +
+ drivers/clk/spacemit/ccu_ddn.c                |   83 ++
+ drivers/clk/spacemit/ccu_ddn.h                |   47 +
+ drivers/clk/spacemit/ccu_mix.c                |  268 ++++
+ drivers/clk/spacemit/ccu_mix.h                |  218 +++
+ drivers/clk/spacemit/ccu_pll.c                |  157 +++
+ drivers/clk/spacemit/ccu_pll.h                |   86 ++
+ .../dt-bindings/clock/spacemit,k1-syscon.h    |  247 ++++
+ 17 files changed, 2550 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/spacemit,k1-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+ create mode 100644 drivers/clk/spacemit/Kconfig
+ create mode 100644 drivers/clk/spacemit/Makefile
+ create mode 100644 drivers/clk/spacemit/ccu-k1.c
+ create mode 100644 drivers/clk/spacemit/ccu_common.h
+ create mode 100644 drivers/clk/spacemit/ccu_ddn.c
+ create mode 100644 drivers/clk/spacemit/ccu_ddn.h
+ create mode 100644 drivers/clk/spacemit/ccu_mix.c
+ create mode 100644 drivers/clk/spacemit/ccu_mix.h
+ create mode 100644 drivers/clk/spacemit/ccu_pll.c
+ create mode 100644 drivers/clk/spacemit/ccu_pll.h
+ create mode 100644 include/dt-bindings/clock/spacemit,k1-syscon.h
+
+-- 
+2.49.0
+
 
