@@ -1,156 +1,124 @@
-Return-Path: <devicetree+bounces-166308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E624CA86E4B
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 19:09:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5D8A86E53
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 19:12:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 306F0189F569
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE6E88C0416
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0063520468C;
-	Sat, 12 Apr 2025 17:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DE4202F70;
+	Sat, 12 Apr 2025 17:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWRVIa6s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MsPugt83"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAD02040A8;
-	Sat, 12 Apr 2025 17:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA541EBA07;
+	Sat, 12 Apr 2025 17:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744477767; cv=none; b=Xj2bPrtRO4nfayeTVDfh0uNhoa2RK4zOwpt8/dhFpmqR4BSBS0pKi1b772ofXjImduhmitcC6MNkRVZftlcj/81YAiaGAeDcriSwXOwe9vJqIj8TZLePUtbIvA8NewAiX6z6K/6OMHUyXwnv/tqbp/PGKKumEfNaU9HR0NeiKLk=
+	t=1744477958; cv=none; b=HEyhWmwFHiptze7c0PlhkTF2SU8kkWldLqs5kO6mZxOTG1OPO/Sc4gU75fYByGl50FXZPPSKsDNeQeIGV1Hdq8PWrmKWFiFpo4XisGkzg7JMDmUFQ+wY4ZgabGv1EiW9FGXaXQdUOSrw9Z/JIHjpZzRKUA51bDdSKwB2B90Ucgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744477767; c=relaxed/simple;
-	bh=3ld2o6Mj/F94jH7yDDeMdOra5lZxxX/tPTJX7Yh+cYE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=p0Ta4r4AFtCEI9JEnQ7HfzG2+DDUGUfvuyQX+ary5uT5lwc8YJmBIM44XlQSofGFxAlSjFMSuZZwEeyojq+RnUi7F5JTAIUYsT2MjjNRSQymxvYY86CT2XI5YBsDCvGhmEk6J4K2By2EhL86OpKTfE14s1OKZ7tyRkTdaNSVfXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWRVIa6s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08093C4CEE5;
-	Sat, 12 Apr 2025 17:09:26 +0000 (UTC)
+	s=arc-20240116; t=1744477958; c=relaxed/simple;
+	bh=YrGktRLoxIndoQ5EBLFpMKbRXSGz9qVyqaiXPao7YVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LgVH5i6e/uo2A9vgcDvYj6sFJCuSUSqrQFttc9TghfKCU+afN/ZNWhnEMMYxSKcMEjvwxXMejrLVIF8OaRleDChVObBxQ8ZW//yyh2j4dPuo9LoNJMWRoZ69BXueUNZ6kXRBRwzAM782ObhYkCtt/zvf55SLdC3NKZDwGzMkpJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MsPugt83; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4905BC4AF09;
+	Sat, 12 Apr 2025 17:12:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744477767;
-	bh=3ld2o6Mj/F94jH7yDDeMdOra5lZxxX/tPTJX7Yh+cYE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=IWRVIa6sQUgho1AjQlyyF1dR2vufCEmTq5gfMz6DO89U8OuHsnIbwwUFu1fxxmr6+
-	 BLz2rnOjdLDRYzOxg7nfywH0THh5hUeHHf1E/ZwEUFt/2pgaUo/c2Ng5kYhiKKNXFJ
-	 Al+SEkYxWCrzi7MUCzebwi0KcDKaAUClL3IZEI34S7THE1Cx7GAUT8OtdTKm4x4xmu
-	 wf/ddAueD5ctLxkxcb7AnVLoDyZbdiaU5BnTBRt2sGw+maqs/GpQOPjbsBw9I6gBpZ
-	 q29EMBZGXGGSU4CbJYJ+x5ELE8ADYaX37sNResOcYTYCLnhx4IbIUclRItuVsF4wNR
-	 x8LOU/42YAXxA==
-Date: Sat, 12 Apr 2025 12:09:26 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1744477958;
+	bh=YrGktRLoxIndoQ5EBLFpMKbRXSGz9qVyqaiXPao7YVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MsPugt837K7SR+Kmb7nLMSoSYl6/So02pte6V304TcyW1xAuhnNcNaYRL9HGPoak1
+	 PCKB/f+GsN/wg9bsNj/Z4tQsluN5J8qjn5mmn31ApvcgcLIGLTR6jEA12ap9MdEUYE
+	 vEMJdIjesHxZA6GyaDsmfNO3xNvQB6W/q1pIUiHa0ghWXw0hwIc0hXD+4uvZRAY992
+	 wkNVehePtbC8zMHnl1ktcg4pca96tNj07ngiCcI3WHnt3CooYQBAhyLqg1oHe06Na4
+	 P+FixSYdlyxK5S/YeMl4jka7ZEFiL8bKX8r1lSBuo/e9DHW242c65sHOzHtlUmAHHH
+	 +TlkMl0PZFdlg==
+Date: Sat, 12 Apr 2025 12:12:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Pavel Machek <pavel@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: leds: Allow differently named multicolor
+ leds
+Message-ID: <20250412171237.GA1347507-robh@kernel.org>
+References: <20250412-multi-led-v2-1-56af86908744@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>, Crystal Wood <oss@buserror.net>, 
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Frank Li <Frank.Li@nxp.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mtd@lists.infradead.org, 
- Naveen N Rao <naveen@kernel.org>, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Richard Weinberger <richard@nod.at>, 
- Nicholas Piggin <npiggin@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, David Airlie <airlied@gmail.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>
-To: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-In-Reply-To: <20250412-ppcyaml-elbc-v5-4-03f0e577139f@posteo.net>
-References: <20250412-ppcyaml-elbc-v5-0-03f0e577139f@posteo.net>
- <20250412-ppcyaml-elbc-v5-4-03f0e577139f@posteo.net>
-Message-Id: <174447776475.1354537.103427368501741372.robh@kernel.org>
-Subject: Re: [PATCH v5 4/4] dt-bindings: memory-controllers: Convert
- fsl,elbc to YAML
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250412-multi-led-v2-1-56af86908744@posteo.net>
 
+On Sat, Apr 12, 2025 at 03:04:32PM +0200, J. Neusch‰fer wrote:
+> In some cases, for example when using multiple instances of
+> leds-group-multicolor, a board may have multiple multi-leds which can't
+> be distinguished by unit address. In such cases it should be possible to
+> name them differently, for example multi-led-a and multi-led-b. This
+> patch adds another node name pattern to leds-class-multicolor.yaml to
+> allow such names.
 
-On Sat, 12 Apr 2025 15:16:05 +0200, J. Neusch√§fer wrote:
-> Convert the Freescale localbus controller bindings from text form to
-> YAML. Compared to the .txt version, the YAML binding contains a new
-> usage example with FCM NAND flash, and a full list of compatible strings
-> based on current usage in arch/powerpc/boot/dts/.
+Really, multi-led-0, multi-led-1, etc. would be preferred like we have 
+in other places.
+
 > 
-> Note that the both the compatible strings and the unit address format
-> are kept as-is, for compatibility with existing kernels and device
-> trees, as well as unit address readability. This results in dts
-> validation warnings:
-> 
->   Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0:
->   simple-bus unit address format error, expected "100000000"
-> 
-> Signed-off-by: J. Neusch√§fer <j.ne@posteo.net>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: J. Neusch‰fer <j.ne@posteo.net>
 > ---
-> 
-> V5:
-> - fix reference to fsl/lbc.txt in
->   Documentation/devicetree/bindings/display/ssd1289fb.txt
-> 
-> V4:
-> - no changes
-> 
-> V3:
-> - move this patch after the GPCM/FCM patches to dtschema/dtc warnings
->   due to missing bindings for fsl,elbc-gpcm-uio and fsl,elbc-fcm-nand
-> - add "simple-bus" again, for compatibility with existing DTs/drivers
->   based on discussion with Crystal Wood and Rob Herring
-> - fix fsl,pq2-localbus compatible properties based on mgcoge.dts / ep8248e.dts
->   (was missing "simple-bus")
-> - add board-control (bcsr) example again, now using the compatible
->   string listed in Documentation/devicetree/bindings/board/fsl,bcsr.yaml
-> - remove interrupt-parent property from example
-> - rework the commit message
-> 
 > V2:
-> - fix order of properties in examples, according to dts coding style
-> - move to Documentation/devicetree/bindings/memory-controllers
-> - clarify the commit message a tiny bit
-> - remove unnecessary multiline markers (|)
-> - define address format in patternProperties
-> - trim subject line (remove "binding")
-> - remove use of "simple-bus", because it's technically incorrect
-> ---
->  .../devicetree/bindings/display/ssd1289fb.txt      |   2 +-
->  .../bindings/memory-controllers/fsl,elbc.yaml      | 158 +++++++++++++++++++++
->  .../devicetree/bindings/powerpc/fsl/lbc.txt        |  43 ------
->  3 files changed, 159 insertions(+), 44 deletions(-)
+> - Add Krzysztof's review tag
+> - mention leds-group-multicolor in the commit message
+> - rebase on 6.15-rc1
 > 
+> Link to v1: https://lore.kernel.org/r/20250209-multi-led-v1-1-5aebccbd2db7@posteo.net
+> ---
+>  Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> index bb40bb9e036ee00e06d21e2321ecd5a7d471c408..c22af25b6430be71300c0e37f696cd61112ea190 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> @@ -21,7 +21,9 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^multi-led(@[0-9a-f])?$"
+> +    oneOf:
+> +      - pattern: "^multi-led(@[0-9a-f])?$"
+> +      - pattern: "^multi-led-.*$"
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Combine these:
 
-yamllint warnings/errors:
+'^multi-led(-.+|@[0-9a-f])?$'
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:29.23-34.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:36.31-39.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/board-control@1,0: simple-bus unit address format error, expected "100000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:41.31-46.15: Warning (simple_bus_reg): /example-0/localbus@f0010100/simple-periph@2,0: simple-bus unit address format error, expected "200000000"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:82.23-89.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/flash@0,0: simple-bus unit address format error, expected "0"
-Documentation/devicetree/bindings/memory-controllers/fsl,elbc.example.dts:91.22-97.15: Warning (simple_bus_reg): /example-1/localbus@e0005000/nand@1,0: simple-bus unit address format error, expected "100000000"
+oneOf is best avoided because the error messages aren't so great.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250412-ppcyaml-elbc-v5-4-03f0e577139f@posteo.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>  
+>    color:
+>      description: |
+> 
+> ---
+> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+> change-id: 20250209-multi-led-9991e205befd
+> 
+> Best regards,
+> -- 
+> J. Neusch‰fer <j.ne@posteo.net>
+> 
 
