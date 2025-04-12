@@ -1,227 +1,285 @@
-Return-Path: <devicetree+bounces-166295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1744FA86D6D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 16:09:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E00E5A86DA2
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 16:19:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1D09173510
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 14:09:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E89521B63765
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 14:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2D9154BE4;
-	Sat, 12 Apr 2025 14:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5995E1EBA09;
+	Sat, 12 Apr 2025 14:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDJUvVok"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="BG9fppbe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3EF32367CC;
-	Sat, 12 Apr 2025 14:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A2B1D619F
+	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 14:19:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744466980; cv=none; b=Fijd/8idow5NdYpi5AFXxhmd4pSKY4dpjg4gaJu151N7Hy1EyMiIpBce2W4CxVHVjo/hQaPI8puJO2JshefN2cUio0ApF/D7H6ZJrPmZ5LRIdNMSamfSmtbmNA2wH0fn+eWuH7wANShbsIwqg3uJHyzXajwa5Kb8e8Wv9bf7Kwc=
+	t=1744467562; cv=none; b=JMd2MsDme+/Cy5s1rB9LO8jewsjVWfUZCb6diR7kkZVXaEyLzDt5vNzOfdCWhLjitdYwN3ibdUUO9sPUfxSHYXrBPMbR98h1pSB3XxRfsMw+UIN4wSgI/Muj2+89z5HTw1KdkH4gV3I1uwh02z4miuVuy0ujk9FkIyaj+WsTIfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744466980; c=relaxed/simple;
-	bh=tMRlI8+sSKuu9ZmukwLQTti70ORkwjFUDohaNELHm3I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=X9xiG98PtvrJaf6xb5bSzkWodjS7A0l00DPU7uCpKh8zp/tpk3vRP8jhPUge2jWbWt+tjJBT/818/Stplx886cKTmCcXPF9ap6rxE8PGKOpNR0AULBB97r4yl0/eka28IjY6LU3P3owpaLFVRU0XjoJ34Bk42vit7lZ17LzoMY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDJUvVok; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 26261C4CEE3;
-	Sat, 12 Apr 2025 14:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744466980;
-	bh=tMRlI8+sSKuu9ZmukwLQTti70ORkwjFUDohaNELHm3I=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=WDJUvVok9f1AnfhvVQLBUhea5yz4QTA0voOOM/ooZe0MuJLJ4CNm5gIPHXHksP9Zp
-	 n3sb9MAMThntj/7MMO5D4uHDVa4YQayA1+v0B2UOdC4ldaq/5Lyf9iJojbzc7mYKdf
-	 7DM+uCraHhbAiYQkLILG3eblkQecbZn91FZYi1EP0lmKVEex508w9L9fCoqY6QiZf2
-	 1s2EnAVXrW25pj8h8p5KEFiMN6lGnqh6eOIhh2RJ9HCM7lrvydylyOUlkhEEtiqTZt
-	 6Skyhp/iTJ+Qbp526jem07a2phhmg30szOHpNnPVdeChYFdUaM42s+QzYznNjgLdax
-	 C/uN5kLGc1fIw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0531FC369AE;
-	Sat, 12 Apr 2025 14:09:40 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Sat, 12 Apr 2025 15:55:38 +0200
-Subject: [PATCH v4] dt-bindings: powerpc: Add Freescale/NXP MPC83xx SoCs
+	s=arc-20240116; t=1744467562; c=relaxed/simple;
+	bh=+dDevdafqQ32QcXMdXXjtMEflCBC+WxeuY0QrOwC+mI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:In-Reply-To:
+	 Content-Type:References; b=ZJX+Us8QG+TWK6ZrSV3F/iCOntw9EbxghB0qlGXXTSdyHLGMe3DwpHzUREzRpXjMjtq126YcEte8O6wBc6oSKViKQAtbGF6/Qh5806R+/31KDAY7aCg3iFurZG9xpxJ+zDqNtaJjY5UBpTK9M/9zI23nuIbUxHzjAzJ9mdrwbnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BG9fppbe; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250412141059euoutp01f064dfdb44992313dbb173567b6d5f7d~1l4xId-Pt1792417924euoutp01b
+	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 14:10:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250412141059euoutp01f064dfdb44992313dbb173567b6d5f7d~1l4xId-Pt1792417924euoutp01b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1744467059;
+	bh=9KezgrRa6es4JcT+4kYWjYIOmYWn6gXe5sAC1YUkZfQ=;
+	h=Date:Subject:From:To:Cc:In-Reply-To:References:From;
+	b=BG9fppbeW6mo00qlehL6bcEBGNzTtD/T1cZSQxlKbg2olY1BeI15/P2lpzCA7PrWB
+	 OFBKgqRoBpF39sfg76E/pEG2R+l19kFWcObH0Xxw36dBcca37D6Qne1q9b/0uRr9q2
+	 HeBslFWGRNc//tqf7oOlshLZ3GOhRe0vY/4t5J5g=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250412141058eucas1p2feb9017db063748a836b1b083466e283~1l4wj1SjW1499714997eucas1p2E;
+	Sat, 12 Apr 2025 14:10:58 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges1new.samsung.com (EUCPMTA) with SMTP id 31.56.20821.2747AF76; Sat, 12
+	Apr 2025 15:10:58 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250412141058eucas1p101684164d8de27c655010ebe4c8b6e75~1l4v6nCSI1684516845eucas1p1E;
+	Sat, 12 Apr 2025 14:10:58 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250412141058eusmtrp24d1f9ca0d33b3ddc116860cdbfcf3b91~1l4v520Ue2732027320eusmtrp2M;
+	Sat, 12 Apr 2025 14:10:58 +0000 (GMT)
+X-AuditID: cbfec7f2-b09c370000005155-50-67fa7472805b
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 69.96.19920.1747AF76; Sat, 12
+	Apr 2025 15:10:58 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250412141057eusmtip11e596436a0d1a77b336532b5b575c4b5~1l4vId8VH0825008250eusmtip1t;
+	Sat, 12 Apr 2025 14:10:57 +0000 (GMT)
+Message-ID: <3ccbf872-355c-4fec-ab9a-6f2f396625d7@samsung.com>
+Date: Sat, 12 Apr 2025 16:10:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: firmware: thead,th1520: Add clocks
+ and resets
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Frank Binns
+	<frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	p.zabel@pengutronix.de, m.szyprowski@samsung.com,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-pm@vger.kernel.org, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Content-Language: en-US
+In-Reply-To: <9bc1ebee-7a41-4465-8015-c156fb6b74cf@samsung.com>
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250412-ppcyaml-soc-v4-1-bd34f4613d31@posteo.net>
-X-B4-Tracking: v=1; b=H4sIANlw+mcC/23MSw7CIBSF4a00dyyGRzXUUfdhOqDXiyXRQoAQm
- 4a9ix07/E9yvh0SRUcJbt0OkYpLzq8t+lMHuJj1Scw9WoPk8sKl5CwE3Mz7xZJHhoaEFT1apQd
- ojxDJus+h3afWi0vZx+3Ai/qt/52imGCzxkGbq5hRmDH4lMmfV8ow1Vq/F6KQAacAAAA=
-X-Change-ID: 20250220-ppcyaml-soc-cae1f14cf389
-To: Scott Wood <oss@buserror.net>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744466978; l=4043;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=6plfv1l6lzxqkUoN3xWxPFcjS2rxaHYhhOY/zeHTkAc=;
- b=lb4ghCUhlUAhV9xnysDHjXOBUe4iE8OSsf2qv12XoN8Ph2gJR6gadDhcf5HTp1+pXe9+oWbN7
- kvkZJId0swnCiKK7IFm5AP7jtsTrexZZPorHMEM8EHVpYObW2vLUXIO
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
-
-From: "J. Neuschäfer" <j.ne@posteo.net>
-
-Add a new binding for MPC83xx platforms, describing the board compatible
-strings used in currently existing device trees.
-
-Note that the SoC bus is called immr@... in many existing devicetrees,
-but this contradicts the simple-bus binding.
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-Changes in v4:
-- Rebase on v6.15-rc1
-- Link to v3: https://lore.kernel.org/r/20250220-ppcyaml-soc-v3-1-b8c98a61bc1a@posteo.net
----
-
-V4:
-- Try to list all existing compatible strings for MPC83xx boards
-
-V3:
-- split out as a single patch
-- otherwise no changes
-
-V2:
-- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
-  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-1-8137b0c42526@posteo.net/
-- trim subject line
-- fix property order to comply with dts coding style
-- add Rob Herrings's R-b tag
----
- .../bindings/powerpc/fsl/fsl,mpc83xx.yaml          | 93 ++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..9e37d155c5829a652d1e4e59536b6586a58d530e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/powerpc/fsl/fsl,mpc83xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale PowerQUICC II Pro (MPC83xx) platforms
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: MPC83xx Reference Design Boards
-+        items:
-+          - enum:
-+              - fsl,mpc8308rdb
-+              - fsl,mpc8315erdb
-+              - fsl,mpc8360rdk
-+              - fsl,mpc8377rdb
-+              - fsl,mpc8377wlan
-+              - fsl,mpc8378rdb
-+              - fsl,mpc8379rdb
-+
-+      - description: MPC8313E Reference Design Board
-+        items:
-+          - const: MPC8313ERDB
-+          - const: MPC831xRDB
-+          - const: MPC83xxRDB
-+
-+      - description: MPC8323E Reference Design Board
-+        items:
-+          - const: MPC8323ERDB
-+          - const: MPC832xRDB
-+          - const: MPC83xxRDB
-+
-+      - description: MPC8349E-mITX(-GP) Reference Design Platform
-+        items:
-+          - enum:
-+              - MPC8349EMITX
-+              - MPC8349EMITXGP
-+          - const: MPC834xMITX
-+          - const: MPC83xxMITX
-+
-+      - description: Keymile KMETER1 board
-+        const: keymile,KMETER1
-+
-+      - description: MPC8308 P1M board
-+        const: denx,mpc8308_p1m
-+
-+patternProperties:
-+  "^soc@.*$":
-+    type: object
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - enum:
-+                  - fsl,mpc8315-immr
-+                  - fsl,mpc8308-immr
-+              - const: simple-bus
-+          - items:
-+              - const: fsl,mpc8360-immr
-+              - const: fsl,immr
-+              - const: fsl,soc
-+              - const: simple-bus
-+          - const: simple-bus
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    / {
-+        compatible = "fsl,mpc8315erdb";
-+        model = "MPC8315E-RDB";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        soc@e0000000 {
-+            compatible = "fsl,mpc8315-immr", "simple-bus";
-+            reg = <0xe0000000 0x00000200>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            device_type = "soc";
-+            ranges = <0 0xe0000000 0x00100000>;
-+            bus-frequency = <0>;
-+        };
-+    };
-+
-+...
-
----
-base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-change-id: 20250220-ppcyaml-soc-cae1f14cf389
-
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJKsWRmVeSWpSXmKPExsWy7djP87pFJb/SDVaf0bFYs/cck8X8I+dY
+	Le5d2sJkse7pBXaLF3sbWSxezrrHZnF51xw2i8+9Rxgttn1uYbNYe+Quu8WSHbsYLe7eO8Fi
+	8X/PDnaLf9c2slgcXxtu0bJ/CouDgEfPzjOMHptWdbJ53Lm2h81j85J6j5a1x5g8+v8aeLzf
+	d5XNo2/LKkaPz5vkAjijuGxSUnMyy1KL9O0SuDL2vmxmL/ijW/H84mKmBsb3Kl2MnBwSAiYS
+	v979Z+pi5OIQEljBKNH0+RUzhPOFUWL9/hmMEM5nRom2vhcsXYwcYC3zziRCxJczSsyduBCq
+	4y2jxPee5Wwgc3kF7CSO77gNZrMIqEosmrifGSIuKHFy5hMWEFtUQF7i/q0Z7CC2sECExI7P
+	l8BsNgEjiQfL57OCLBMRKJNonZoAEmYWeMAksXSWPIQtLnHryXwmEJtTwF5iZ89fNoi4vETz
+	1tlg90gI7OaUWLbhByPEny4ST1sus0LYwhKvjm9hh7BlJP7vhBgkIZAv8WDrJ2YIuwZo6HEo
+	21rizrlfbCD3MAtoSqzfpQ8RdpTofL2JFRImfBI33gpCnMAnMWnbdGaIMK9ER5sQRLWaxNSe
+	Xril51ZsY5rAqDQLKUxmIXlsFpJnZiHsXcDIsopRPLW0ODc9tdgwL7Vcrzgxt7g0L10vOT93
+	EyMw9Z3+d/zTDsa5rz7qHWJk4mA8xCjBwawkwsvl/CtdiDclsbIqtSg/vqg0J7X4EKM0B4uS
+	OO+i/a3pQgLpiSWp2ampBalFMFkmDk6pBqaZLvbRvIflrB6VKLdqFHZNWFh++VvWxot+JSoV
+	P7TmBk4zyLdW92z44JK97pSm87fbbU5mKn0bNRcwtPxft/Jp4IUNTHzeR924HZhZZzvzv7j3
+	eUlUN58h3zuOnDn/5zQ75F814dyZsG1p0VrFY/cDyi0vbcxaOq96afgfji2TJ6vP172Tf/WV
+	e93O33LzIvbbJh9lX2LulfiO//fNJdccJLe0qv3KkTj3aZ1RxtIPUybmZky9I3xwYy2j8S/9
+	S5596hZ+NjWp1zO9v1kHxc3zX65SG9bC0bb09iJnY6fW9r8FnKor87UmR/b5C4datHjva/dd
+	NFHgoN2WT+5Pptye0fBtiuHjzsUcyo4nFiixFGckGmoxFxUnAgAIg/OD7AMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLIsWRmVeSWpSXmKPExsVy+t/xu7pFJb/SDa6tYbRYs/cck8X8I+dY
+	Le5d2sJkse7pBXaLF3sbWSxezrrHZnF51xw2i8+9Rxgttn1uYbNYe+Quu8WSHbsYLe7eO8Fi
+	8X/PDnaLf9c2slgcXxtu0bJ/CouDgEfPzjOMHptWdbJ53Lm2h81j85J6j5a1x5g8+v8aeLzf
+	d5XNo2/LKkaPz5vkAjij9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX07WxS
+	UnMyy1KL9O0S9DL2vmxmL/ijW/H84mKmBsb3Kl2MHBwSAiYS884kdjFycQgJLGWU2L10HXsX
+	IydQXEbiWvdLFghbWOLPtS42iKLXjBIrfuwHK+IVsJM4vuM2G4jNIqAqsWjifmaIuKDEyZlP
+	wJpFBeQl7t+aAVYvLBAhsePzJTCbTcBI4sHy+awgtohAmcT1V0cZQRYwCzxgkvj6bR3UtoPM
+	Eud27wKbyiwgLnHryXwmEJtTwF5iZ89fNpAXmAXUJdbPE4IokZdo3jqbeQKj0Cwkd8xC0j0L
+	oWMWko4FjCyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAuN927Gfm3cwznv1Ue8QIxMH4yFG
+	CQ5mJRFeLudf6UK8KYmVValF+fFFpTmpxYcYTYFhMZFZSjQ5H5hw8kriDc0MTA1NzCwNTC3N
+	jJXEed0un08TEkhPLEnNTk0tSC2C6WPi4JRqYPLZw/88YN0yJd7fUyX1ItWuv56VZCwkddBp
+	1rd25gSR4mKTXpFE/RfCCqvPWX2Ineyqk8Um4OLMMjldxjnMqkzFZ1tx6ptZ3t+ktpnqdjor
+	zrKKbVhwJO5EzNsfiXezd/CuaJlb7G1zpYQlLOOHTNLK6HX1WW8n5Sx3+vkh69fqU/+ORc4+
+	zs99I+nK3bOqSSty5sZ92OW+Zu3FXSb+TdJbJy26HCJ3+5O29c8FCt5vGXN3163V03Z+43Cg
+	/U6cB0tB1Ya+nffDpGedn3FeTL62yOPzqwl+mx9yswX8Dsu7O+POS4eVGh+Ed/7vVus4y59U
+	5PXA56pVyw32q+3r1tqJb2sIVf3Qe+xUZ7nDdyWW4oxEQy3mouJEAHrSHgeAAwAA
+X-CMS-MailID: 20250412141058eucas1p101684164d8de27c655010ebe4c8b6e75
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf
+References: <CGME20250409093031eucas1p2222e9dc4d354e9b66b7183922c0fb3cf@eucas1p2.samsung.com>
+	<20250409093025.2917087-1-m.wilczynski@samsung.com>
+	<20250409093025.2917087-2-m.wilczynski@samsung.com>
+	<CAPDyKFpoSwKAmiWyvNt1fVyu6=NU1oVOmQLVuzX_bG=-5KrM2Q@mail.gmail.com>
+	<75f97336-6cb5-47fc-ac88-5fe7842e2838@samsung.com>
+	<CAPDyKFq=BF5f2i_Sr1cmVqtVAMgr=0FqsksL7RHZLKn++y0uwg@mail.gmail.com>
+	<9bc1ebee-7a41-4465-8015-c156fb6b74cf@samsung.com>
 
 
+
+On 4/12/25 09:53, Michal Wilczynski wrote:
+> 
+> 
+> On 4/10/25 14:34, Ulf Hansson wrote:
+>> On Thu, 10 Apr 2025 at 12:42, Michal Wilczynski
+>> <m.wilczynski@samsung.com> wrote:
+>>>
+>>>
+>>>
+>>> On 4/9/25 12:41, Ulf Hansson wrote:
+>>>> On Wed, 9 Apr 2025 at 11:30, Michal Wilczynski <m.wilczynski@samsung.com> wrote:
+>>>>>
+>>>>> Prepare for handling GPU clock and reset sequencing through a generic
+>>>>> power domain by adding clock and reset properties to the TH1520 AON
+>>>>> firmware bindings.
+>>>>>
+>>>>> The T-HEAD TH1520 GPU requires coordinated management of two clocks
+>>>>> (core and sys) and two resets (GPU and GPU CLKGEN). Due to SoC-specific
+>>>>> requirements, the CLKGEN reset must be carefully managed alongside clock
+>>>>> enables to ensure proper GPU operation, as discussed on the mailing list
+>>>>> [1].
+>>>>>
+>>>>> Since the coordination is now handled through a power domain, only the
+>>>>> programmable clocks (core and sys) are exposed. The GPU MEM clock is
+>>>>> ignored, as it is not controllable on the TH1520 SoC.
+>>>>>
+>>>>> This approach follows upstream maintainers' recommendations [1] to
+>>>>> avoid SoC-specific details leaking into the GPU driver or clock/reset
+>>>>> frameworks directly.
+>>>>>
+>>>>> [1] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel.org/
+>>>>>
+>>>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>>>>> ---
+>>>>>  .../bindings/firmware/thead,th1520-aon.yaml   | 28 +++++++++++++++++++
+>>>>>  1 file changed, 28 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>>> index bbc183200400..8075874bcd6b 100644
+>>>>> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+>>>>> @@ -25,6 +25,16 @@ properties:
+>>>>>    compatible:
+>>>>>      const: thead,th1520-aon
+>>>>>
+>>>>> +  clocks:
+>>>>> +    items:
+>>>>> +      - description: GPU core clock
+>>>>> +      - description: GPU sys clock
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: gpu-core
+>>>>> +      - const: gpu-sys
+>>>>
+>>>> These clocks don't look like they belong to the power-domain node, but
+>>>> rather the GPU's node.
+>>>>
+>>>> Or is this in fact the correct description of the HW?
+>>>
+>>> Hi,
+>>> Thank you for your input. Based on my understanding of Stephen
+>>> presentation the power-domain layer could act as a middleware layer
+>>> (like ACPI) that could own resources. That being said it was also stated
+>>> that the proposed approach should work with already existing device
+>>> trees, which implies that the DT should remain as is.
+>>>
+>>> So I could get the resources using attach_dev and detach_dev, but there
+>>> are two problems with that:
+>>>
+>>> 1) The GPU driver will try to manage clocks/reset on it's own using those functions
+>>>    if I provide non-stub working clocks and reset:
+>>> static const struct dev_pm_ops pvr_pm_ops = {
+>>>         RUNTIME_PM_OPS(pvr_power_device_suspend, pvr_power_device_resume,
+>>>                        pvr_power_device_idle)
+>>> };
+>>>
+>>> So obviously I should invent a way to tell the drm/imagination driver to
+>>> NOT manage. One obvious way to do this is to introduce new flag to genpd.flags
+>>> called let's say GENPD_FLAG_EXCLUSIVE_CONTROL, which would tell the consumer
+>>> driver that the power management is being done only done from the PM
+>>> middleware driver.
+>>
+>> Something along those lines. Although, I think the below twist to the
+>> approach would be better.
+>>
+>> Some flag (maybe just a bool) should be set dynamically when the
+>> ->attach_dev() callback is invoked and it should be a per device flag,
+>> not a per genpd flag. In this way, the genpd provider driver can make
+>> runtime decisions, perhaps even based on some DT compatible string for
+>> the device being attached to it, whether it should manage PM resources
+>> or not.
+>>
+>> Additionally, we need a new genpd helper function that allows the
+>> consumer driver to check if the PM resources are managed from the PM
+>> domain level (genpd) or not.
+>>
+>> If it sounds complicated, just let me know I can try to help put the
+>> pieces together.
+> 
+> Thanks, this sounds doable
+> 
+>>
+>>>
+>>> 2) The GPU node doesn't want to own the gpu-clkgen reset. In fact nobody
+>>>    seems to want to own it, even though theoretically it should be owned by
+>>>    the clk_vo as this would describe the hardware best (it's resetting the
+>>>    GPU clocks). But then it would be trickier to get it from the PM driver,
+>>>    making the code more complex and harder to understand. Nonetheless I
+>>>    think it would work.
+>>
+>> I guess it doesn't really matter to me. Perhaps model it as a reset
+>> and make the GPU be the consumer of it?
+> 
+> GPU driver maintainers already stated that they only want to consume a
+> single reset line, that would be 'gpu' [1]. The 'gpu-clkgen' is an orphan in
+> this situation, or a part of a SoC specific-glue code, so theoretically
+> since the PM driver in our case is also a SoC glue driver we could leave
+> the 'gpu-clkgen' in PM DT node.
+
+Frank, Matt
+Just to make sure, I would like to ask what you think about this ? Would
+you be open to have an extra reset that would be managed from the
+generic PM driver in your GPU DT node ?
+
+Regards,
+Michał
+
+> 
+> [1] - https://lore.kernel.org/all/816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com/
+>>
+>>>
+>>> If this sounds good to you I will work on the code.
+>>
+>> Sure, let's give this a try - I am here to help review and guide the best I can.
+> 
+> Thank you very much for your support, it’s invaluable!
+> 
+>>
+>> [...]
+>>
+>> Kind regards
+>> Uffe
+>>
 
