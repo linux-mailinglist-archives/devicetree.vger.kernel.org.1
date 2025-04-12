@@ -1,244 +1,372 @@
-Return-Path: <devicetree+bounces-166298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD63DA86DEE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:19:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5FAA86DF5
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 17:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFB2116F1EB
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 15:19:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D8E819E7B0C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 15:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601371EDA08;
-	Sat, 12 Apr 2025 15:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A3A1F0E25;
+	Sat, 12 Apr 2025 15:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C2Pnlx+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2100.outbound.protection.outlook.com [40.107.215.100])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF74D19CC34;
-	Sat, 12 Apr 2025 15:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744471165; cv=fail; b=jViSRe6BkhBfiO3dwDLLHld438orZqh+pSqPbMj0YYiHLOEZSupEWoqtaeNoOMyyyYbWf5+50fFlrzlK+NcZcbpJ/xUM8wg71ugSFnBN1cuTdUsuHJpyyaSjohL/+wNbGF0XUPP/8RuMmhfS0mf1ruC8lqeI3j3EZL55VAokUP4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744471165; c=relaxed/simple;
-	bh=cDh/0MijDAqZbx8PjF6m/15X/1d4wM+9zG/4MdiGlco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D2lXYCj/FqBaqHItGTJ0FT1ANzUP6GNMDXhXblo6IonGuc7AoAxSsnCd//49IB0rUV6mlMSayM/KNvz15LqJGACCEdz6Cy0ZXDx3DTiszi/JwmXJ9wdBWNF0z1gzTqC7QwTEdMgu4aSgQYsi3NB4NKqR6tHMPOL0LkybyyzFY7w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.215.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZLcfa4ZQktjb7OzD0faEmKansJQy86R7Zpb3y5HYXb7zvkFhiKtwzes/273G22zu7NaAK0yeybG+t+tUR0NjuADaVb7ayLqeJHnSM9IVWvarDJ1RnVwurecQ1iTFc5xBY9ycLTtiSMElXprggHJQwYx64veA4DawHwy9x2tS8+6EdCSpj5w7Pyq9vBH+qPbCP4124aofIf6Z7sd23vx5isJKuIixCj+g7vhp2/uEGTJ3rRIIAAt2WbAIX4HoLluAeDJsyAyfBTf8DbAKMYmqlUkaMWyhLpzuTxs834ZA2LrqbGFJj0yTb9qguS3Eu1pVLXPN08Nb8kIiQfvn2tw2OQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uYJF0J/HIUfPZD15VHY5gmTyAmQWdqf+2jMK5JMc7nk=;
- b=WOXwlL3B2ISZHig5uhC+pi33miZ7/pePo6dztpXNCqVZQe8a6Ta9jacDLc5zbssw7BITRMM7jzyIoAsopmKJcYhhAADmiqefDPZh7RgOnu81ObiynAS7VcyAOm+U3dVW8YPGie7RKR35jcqRrrg4CLD7HlzziNcxpj36Q0PcCxOHd68GIPucBYp0JiubvI9aSrVQrjqY5Ugut6MZGfZgKebjCTpgL4ZJZuyKzh4GLO1LJ2bLNunbtNJP83jCnLRnfYlzYyHwVXBT+VqDO4d8OQcZzOXfNgwhn1VnDSzi1xBBxthCH9jKo3OOsI+VL7RzqNcfiA/tq6T7REJEP92AvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR01CA0129.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::33) by SEZPR06MB6232.apcprd06.prod.outlook.com
- (2603:1096:101:f2::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Sat, 12 Apr
- 2025 15:19:14 +0000
-Received: from HK3PEPF0000021C.apcprd03.prod.outlook.com
- (2603:1096:4:40:cafe::a7) by SG2PR01CA0129.outlook.office365.com
- (2603:1096:4:40::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.29 via Frontend Transport; Sat,
- 12 Apr 2025 15:19:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- HK3PEPF0000021C.mail.protection.outlook.com (10.167.8.38) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.12 via Frontend Transport; Sat, 12 Apr 2025 15:19:12 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 8C1A141604EB;
-	Sat, 12 Apr 2025 23:19:10 +0800 (CST)
-Message-ID: <78124cca-e10d-4b32-8760-d825ac88dffe@cixtech.com>
-Date: Sat, 12 Apr 2025 23:19:07 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A21F155743;
+	Sat, 12 Apr 2025 15:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744472315; cv=none; b=aqnJnsyEdpFDB4Qs1f1OMTGPiQGNtCpUvMC3XNBMOxPZQ5APCOu/lMQVPuMWbLwTOufAWA3ir4h3AbqiSIbRvvixY/8uSMfdrzLM2w7MJlt0h7ZKleKxcseH16fDh3K0S7usSSkt2pKioybmSZSnsJF3UBTIi8R8Iyn8MAmkYTo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744472315; c=relaxed/simple;
+	bh=nYXK62oZrIkWHjJiviigGvB6gRLznolm2IMTno6Q7Ns=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mRgqGzAW9eX6Pt6JraIETND+Wed9ImxVTKOFCKhTfKljp58pGI84Rjdtmemm5ZYtQ3tcqrQB1e891PQkcIG1Yio5FAz5u1a6beIT6aQfsrc/AOeIOMCfPd8B/o3hVB9eLo79MHt7kkMmTJA4nzj3EdUsU0KaWyR5K+or+BsIqy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C2Pnlx+I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE450C4CEE3;
+	Sat, 12 Apr 2025 15:38:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744472314;
+	bh=nYXK62oZrIkWHjJiviigGvB6gRLznolm2IMTno6Q7Ns=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=C2Pnlx+IoLjQWBjxW7J3f/em9MwxcdaPEH1DllbF5ixqwNPCCx0IV5C0U0RIoqQmY
+	 UXkPmQ01tVDpQKiX0jBMitcvaOW04u0hgVJzi4wepTEjELY6OeEjYohAuDsOR3b3tY
+	 fRblfjXWF633tyG5gwb9/aCcjvrMdhzLuQdja7bXKxc+JmoTtAyTnTqHPt2l5c+bNv
+	 SXkMnDMxRqzGP1tMOjj7UY0qau7IsoGLWqIiujnzKGxPOuNpyTsoA8W4E1ExqQM/FL
+	 i+Wz7Vf+QTSlZ6FDh0EpsI0kjCEt/aJV41AayfvxMEvP4lrTAsYkojo9kZSyVjw0CO
+	 hGWvB7w/A6S8A==
+Date: Sat, 12 Apr 2025 16:38:25 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Gyeyoung Baek <gye976@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v3 3/4] iio: chemical: add support for winsen MHZ19B CO2
+ sensor
+Message-ID: <20250412163825.250a9435@jic23-huawei>
+In-Reply-To: <20250409024311.19466-5-gye976@gmail.com>
+References: <20250409024311.19466-1-gye976@gmail.com>
+	<20250409024311.19466-5-gye976@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/6] PCI: cadence: Add header support for PCIe HPA
- controller
-To: Rob Herring <robh@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Manikandan K Pillai <mpillai@cadence.com>
-References: <20250411103656.2740517-1-hans.zhang@cixtech.com>
- <20250411103656.2740517-4-hans.zhang@cixtech.com>
- <20250411203128.GA3920652-robh@kernel.org>
-Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <20250411203128.GA3920652-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021C:EE_|SEZPR06MB6232:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e419490-0d2a-4d29-7b20-08dd79d56158
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZU41OWtjVHpNRHFkeDgwL2xPS242YTZQelVVdzBkQ2xlaHpQRGNmb0gwL3Ur?=
- =?utf-8?B?aUhnc0s1b2FMdWc3NVZtRmlSWXJxNzVLbmJGeTBtS2x0WVB5a3Vsd29MVWNC?=
- =?utf-8?B?WjJBRGZ2aC9JNTl2THk5bVRkOUZWWkdDWFVUVEZZOUFnb1ZyK1JybXNvRkN5?=
- =?utf-8?B?NFFmeG1sYksrNTN0NDROZDVuL3llYmg4ZlBJcmF1bFBkQktSLzBIWFhIV3lQ?=
- =?utf-8?B?aS92L2JPQTNrQ0xPaEc4R2wxb0c3dVlaNDVMNlordmR1eHp3a0docVRRdm0v?=
- =?utf-8?B?bXh6VUhCczdGRmlGMGNOUmM4MVFsbHN0WWdjR1NqMkF2UmpRa1J5Y1phaTRz?=
- =?utf-8?B?YTBnNTAydTQvNGVRVlEzODBkeWJQVWdnYnJneE9IaGZwQjRnWHBYQ0pQQWsy?=
- =?utf-8?B?RGw3a3FLLy9jYU5zdkNqQ21nNlZPZEdCeWc4V2pZOHdSU0J1Ti9JRk40aGRN?=
- =?utf-8?B?MEhuNi9OT2xHaWpSa2F3QXhvNGxLQ0FDZUpUK1VHZkl3NUtNcFV2WFhna0Fh?=
- =?utf-8?B?MEk2YVdDQVJUMHNCNEg2WFVCWG81Qm9rUGo5Q3h5MU5ZbUhQNkZmU3l2Skl1?=
- =?utf-8?B?cGQyREV0K2lEK0hJMWczL2VUY2xZQWg4UUgyRjczbDlZajduWTBjMkRCMEVn?=
- =?utf-8?B?SElTWHpzcytkVW9CeUg2eitOR1Y4dkh1b2t5UXdLYjFlZzRNejc1bTFKaVI2?=
- =?utf-8?B?UXNhNFc1eXAyN2dJeHFrR0lRYWpZcDhoelVwOHpxM1ZveExMMnVBSVBQZFdR?=
- =?utf-8?B?VDM4WGsrcDBQS1RDejVzQjlLemdjaUZMNXdNM0p0THRZZ1p6NmdiS3F0WW4r?=
- =?utf-8?B?MjlxckN3L0NkdmpNczV3Qys4N0k3cGkzaWV4aGJ6NENnY1BsZnpURzJqdFU0?=
- =?utf-8?B?S2h4RHd4dXpTb29pR3dGU3g0SGRtUmpJOHR4WjZYZlJvc3NWRlRUOUEwelBW?=
- =?utf-8?B?aHRWdENlUyswbTVmZUdETk1XTzVGQjZablZQWUNZRXlJTndidk9CL0RxN2N1?=
- =?utf-8?B?dkNiZnF1djFUYVVzUzErSmdWamRKSkpPbGR0aHBoRytZajJwNmdaYnh1Rkg0?=
- =?utf-8?B?RmhIR09zQnVWdnhzOUJYVGV0eTdjR2ZpcHQyTnc5L1d6SzNWbkQ2VjBGNmU4?=
- =?utf-8?B?OXJDUVR6MjZ3M2xvSksrRGp5bTVZczIxb2oxTWd1ZHJPWkFWZTQzeHZ0RnVz?=
- =?utf-8?B?MlZrdGkxOUIzNzlSOXVqZFR0R2VxajV4VFJEbzgya3JWMU1PR01UVDFKQlNB?=
- =?utf-8?B?Ri94SjdyU1FzbFM2S0htRGxydms2dnJVUG5SWDNWTzZ0WlN6VU5XOGJXaGZF?=
- =?utf-8?B?SG1TWVlxNGMxc3FIb3FXMTdyeU0zZjc3d3BFZkdXaUpOeXlFZmlGRVlNTTd1?=
- =?utf-8?B?R080WFZyejVMTkNhcStzWWxRZU5MRkxocHk5QnBDczFrMTBqYzl1aDgvK2Jt?=
- =?utf-8?B?Rjk5T3d3MGUvekJ4ZFE0eU5QbzF1SVR0UWhzcXNzMkVuOWJKTktRYUdrYVFL?=
- =?utf-8?B?SVlISGVOdXdUY2FFZVp2RzJ0SzlrQUhwZmx5NHlsVnNLdUJSb1NCMmlJS3pu?=
- =?utf-8?B?dHV2aEZONXJIZFpObjBiWWhmNTZBM285akoxZW5UUFo0dEVpOTV0ejI5VVNr?=
- =?utf-8?B?aWtMRlM4ZHJITkhWb1hDUktkVTlTWllPYkthUUhRdnBQZWVUeWhNaW1MWkdO?=
- =?utf-8?B?VnVTbzRVME94QS9BTDI4QlMzSkdiZm1KbGFBOFlObzNXKzhBcWdleVJyaC8v?=
- =?utf-8?B?M1FOUzEvYVdpZVhlaVUxMVRkL21oUWZYeU1xcFV0SjM1VUZENmUrOURzV25H?=
- =?utf-8?B?NHdjWm1hNXBabnJpZ29oeHI5OFBSVW1UOUNPeW5IVmtDd1llL2lMTVJTZG81?=
- =?utf-8?B?WVVmZ0VxbVFIZTNxMzZNb0JrOVd1RmNQZUhsUFQ4RkJSSTd1bEZtRzRBMmdY?=
- =?utf-8?B?d0VrU1JqWWtPWVBrVWxaSXFEcGlYVlE4UHBuVnpHTmgvTjBXSDRJS205L1l3?=
- =?utf-8?B?U2xKOHQzQnFaTWVUcTRaR3ZRRzJkY1RFNlY3UDRheTlCNk5TOHFNaWpxaURr?=
- =?utf-8?Q?V2glp1?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2025 15:19:12.2161
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e419490-0d2a-4d29-7b20-08dd79d56158
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021C.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB6232
 
+On Wed,  9 Apr 2025 11:43:10 +0900
+Gyeyoung Baek <gye976@gmail.com> wrote:
 
-On 2025/4/12 04:31, Rob Herring wrote:
->> diff --git a/drivers/pci/controller/cadence/pcie-cadence-plat.c b/drivers/pci/controller/cadence/pcie-cadence-plat.c
->> index 0456845dabb9..b24176d4df1f 100644
->> --- a/drivers/pci/controller/cadence/pcie-cadence-plat.c
->> +++ b/drivers/pci/controller/cadence/pcie-cadence-plat.c
->> @@ -24,6 +24,15 @@ struct cdns_plat_pcie {
->>
->>   struct cdns_plat_pcie_of_data {
->>        bool is_rc;
->> +     bool is_hpa;
+> Add support for winsen MHZ19B CO2 sensor.
 > 
-> These can be bitfields (e.g. "is_rc: 1").
+> Datasheet:
+> https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
 > 
+> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
 
-Hi Rob,
+Hi Gyeyoung,
 
-Thanks your for reply. Will change.
+A few additional comments inline.
 
->> +     u32  ip_reg_bank_off;
->> +     u32  ip_cfg_ctrl_reg_off;
->> +     u32  axi_mstr_common_off;
->> +     u32  axi_slave_off;
->> +     u32  axi_master_off;
->> +     u32  axi_hls_off;
->> +     u32  axi_ras_off;
->> +     u32  axi_dti_off;
->>   };
->>
->>   static const struct of_device_id cdns_plat_pcie_of_match[];
->> @@ -72,6 +81,19 @@ static int cdns_plat_pcie_probe(struct platform_device *pdev)
->>                rc = pci_host_bridge_priv(bridge);
->>                rc->pcie.dev = dev;
->>                rc->pcie.ops = &cdns_plat_ops;
->> +             rc->pcie.is_hpa = data->is_hpa;
->> +             rc->pcie.is_rc = data->is_rc;
->> +
->> +             /* Store all the register bank offsets */
->> +             rc->pcie.cdns_pcie_reg_offsets.ip_reg_bank_off = data->ip_reg_bank_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.ip_cfg_ctrl_reg_off = data->ip_cfg_ctrl_reg_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_mstr_common_off = data->axi_mstr_common_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_master_off = data->axi_master_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_slave_off = data->axi_slave_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_hls_off = data->axi_hls_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_ras_off = data->axi_ras_off;
->> +             rc->pcie.cdns_pcie_reg_offsets.axi_dti_off = data->axi_dti_off;
-> 
-> Why not just store the match data ptr instead of having 2 copies of the
-> information?
+Jonathan
 
-Will change.
+> diff --git a/drivers/iio/chemical/mhz19b.c b/drivers/iio/chemical/mhz19b.c
+> new file mode 100644
+> index 000000000000..d9a16e022b36
+> --- /dev/null
+> +++ b/drivers/iio/chemical/mhz19b.c
+> @@ -0,0 +1,347 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * mh-z19b co2 sensor driver
+> + *
+> + * Copyright (c) 2025 Gyeyoung Baek <gye976@gmail.com>
+> + *
+> + * Datasheet:
+> + * https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
+> + */
+> +
+> +#include <linux/cleanup.h>
 
-> 
->> +
->>                cdns_plat_pcie->pcie = &rc->pcie;
->>
->>                ret = cdns_pcie_init_phy(dev, cdns_plat_pcie->pcie);
->> @@ -99,6 +121,19 @@ static int cdns_plat_pcie_probe(struct platform_device *pdev)
->>
->>                ep->pcie.dev = dev;
->>                ep->pcie.ops = &cdns_plat_ops;
->> +             ep->pcie.is_hpa = data->is_hpa;
->> +             ep->pcie.is_rc = data->is_rc;
->> +
->> +             /* Store all the register bank offset */
->> +             ep->pcie.cdns_pcie_reg_offsets.ip_reg_bank_off = data->ip_reg_bank_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.ip_cfg_ctrl_reg_off = data->ip_cfg_ctrl_reg_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_mstr_common_off = data->axi_mstr_common_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_master_off = data->axi_master_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_slave_off = data->axi_slave_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_hls_off = data->axi_hls_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_ras_off = data->axi_ras_off;
->> +             ep->pcie.cdns_pcie_reg_offsets.axi_dti_off = data->axi_dti_off;
->> +
->>                cdns_plat_pcie->pcie = &ep->pcie;
->>
->>                ret = cdns_pcie_init_phy(dev, cdns_plat_pcie->pcie);
->> @@ -150,10 +185,54 @@ static void cdns_plat_pcie_shutdown(struct platform_device *pdev)
->>
->>   static const struct cdns_plat_pcie_of_data cdns_plat_pcie_host_of_data = {
->>        .is_rc = true,
->> +     .is_hpa = false,
->> +     .ip_reg_bank_off = 0x0,
->> +     .ip_cfg_ctrl_reg_off = 0x0,
->> +     .axi_mstr_common_off = 0x0,
->> +     .axi_slave_off = 0x0,
->> +     .axi_master_off = 0x0,
->> +     .axi_hls_off = 0x0,
->> +     .axi_ras_off = 0x0,
->> +     .axi_dti_off = 0x0,
-> 
-> You can omit anything initialized to 0.
+Do you use this?
 
-Will change.
+> +#include <linux/completion.h>
+> +#include <linux/device.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/serdev.h>
+> +#include <linux/unaligned.h>
+> +
+> +struct mhz19b_state {
+> +	struct serdev_device *serdev;
+> +	struct regulator *vin;
 
-Best regards,
-Hans
+As inline, you shouldn't need to keep this around if you use
+the devm based management for the regulator.
+
+> +
+> +	/*
+> +	 * serdev receive buffer.
+> +	 * When data is received from the MH-Z19B,
+> +	 * the 'mhz19b_receive_buf' callback function is called and fills this buffer.
+> +	 */
+> +	char buf[9];
+
+Use the CMD_SIZE define below for this 9 (having moved it up).
+
+> +	int buf_idx;
+> +
+> +	/* must wait the 'buf' is filled with 9 bytes.*/
+> +	struct completion buf_ready;
+> +};
+> +
+> +/*
+> + * commands have following format:
+> + *
+> + * +------+------+-----+------+------+------+------+------+-------+
+> + * | 0xFF | 0x01 | cmd | arg0 | arg1 | 0x00 | 0x00 | 0x00 | cksum |
+> + * +------+------+-----+------+------+------+------+------+-------+
+> + */
+> +#define MHZ19B_CMD_SIZE 9
+> +
+> +#define MHZ19B_ABC_LOGIC_CMD		0x79
+> +#define MHZ19B_READ_CO2_CMD		0x86
+> +#define MHZ19B_SPAN_POINT_CMD		0x88
+> +#define MHZ19B_ZERO_POINT_CMD		0x87
+> +
+> +#define MHZ19B_ABC_LOGIC_OFF_CKSUM	0x86
+> +#define MHZ19B_ABC_LOGIC_ON_CKSUM	0xE6
+> +#define MHZ19B_READ_CO2_CKSUM		0x79
+> +#define MHZ19B_ZERO_POINT_CKSUM	0x78
+Can we not just calculate these from the buffer contents?
+
+> +
+> +/* ABC logic in MHZ19B means auto calibration. */
+> +
+> +#define MHZ19B_SERDEV_TIMEOUT	msecs_to_jiffies(100)
+> +
+> +static uint8_t mhz19b_get_checksum(uint8_t *packet)
+> +{
+> +	uint8_t i, checksum = 0;
+> +
+> +	for (i = 1; i < 8; i++)
+> +		checksum += packet[i];
+> +
+> +	checksum = 0xff - checksum;
+> +	checksum += 1;
+> +
+> +	return checksum;
+> +}
+> +
+> +static int mhz19b_serdev_cmd(struct iio_dev *indio_dev,
+> +	int cmd, void *arg)
+> +{
+> +	struct mhz19b_state *st = iio_priv(indio_dev);
+> +	struct serdev_device *serdev = st->serdev;
+> +	struct device *dev = &indio_dev->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * cmd_buf[3,4] : arg0,1
+> +	 * cmd_buf[8]	: checksum
+> +	 */
+> +	uint8_t cmd_buf[MHZ19B_CMD_SIZE] = {
+> +		0xFF, 0x01, cmd,
+> +	};
+> +
+> +	switch (cmd) {
+> +	case MHZ19B_ABC_LOGIC_CMD: {
+> +		bool enable = *((bool *)arg);
+Given you could just pass and u16 for the argument and use 0 /1 for
+the bool.  The u16 works directly for the ppm value where needed for span
+point
+
+> +
+> +		if (enable) {
+> +			cmd_buf[3] = 0xA0;
+> +			cmd_buf[8] = MHZ19B_ABC_LOGIC_ON_CKSUM;
+All these checksums should be easy enough to calculate which would be
+simpler to follow than writing constants like this.
+
+You are already doing so for the span point one so do that for them
+all.
+
+> +		} else {
+> +			cmd_buf[3] = 0;
+> +			cmd_buf[8] = MHZ19B_ABC_LOGIC_OFF_CKSUM;
+> +		}
+> +		break;
+> +	} case MHZ19B_READ_CO2_CMD: {
+> +		cmd_buf[8] = MHZ19B_READ_CO2_CKSUM;
+> +		break;
+> +	} case MHZ19B_SPAN_POINT_CMD: {
+> +		uint16_t ppm = *((uint16_t *)arg);
+For kernel internal code use the older types u16 etc
+
+> +
+> +		put_unaligned_be16(ppm, &cmd_buf[3]);
+> +		cmd_buf[MHZ19B_CMD_SIZE - 1] = mhz19b_get_checksum(cmd_buf);
+Using index value of 8 for all these for consistency.
+> +		break;
+> +	} case MHZ19B_ZERO_POINT_CMD: {
+> +		cmd_buf[8] = MHZ19B_ZERO_POINT_CKSUM;
+> +		break;
+> +	} default:
+> +		break;
+> +	}
+> +
+> +	/* write buf to uart ctrl syncronously */
+> +	ret = serdev_device_write(serdev, cmd_buf, MHZ19B_CMD_SIZE, 0);
+> +	if (ret != MHZ19B_CMD_SIZE) {
+> +		dev_err(dev, "write err, %d bytes written", ret);
+> +		return -EINVAL;
+> +	}
+> +
+> +	switch (cmd) {
+> +	case MHZ19B_READ_CO2_CMD:
+> +		ret = wait_for_completion_interruptible_timeout(&st->buf_ready,
+> +			MHZ19B_SERDEV_TIMEOUT);
+> +		if (ret < 0)
+> +			return ret;
+> +		if (!ret)
+> +			return -ETIMEDOUT;
+> +
+> +		ret = mhz19b_get_checksum(st->buf);
+> +		if (st->buf[MHZ19B_CMD_SIZE - 1] != mhz19b_get_checksum(st->buf)) {
+> +			dev_err(dev, "checksum err");
+> +			return -EINVAL;
+> +		}
+> +
+> +		ret = get_unaligned_be16(&st->buf[2]);
+
+return get_unaligned_be16()
+
+> +		return ret;
+> +	default:
+> +		/* no response commands. */
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int mhz19b_read_raw(struct iio_dev *indio_dev,
+> +	struct iio_chan_spec const *chan,
+> +	int *val, int *val2, long mask)
+
+Generally, unless we have very long lines align the following sets of parameters
+with just after the (
+static int mhz19b_read_raw(struct iio_dev *indio_dev,
+			   struct iio_chan_spec const *chan,
+			   int *val, int *val2, long mask)
+
+Same applies in various other places in the code.
+
+> +{
+> +	int ret = mhz19b_serdev_cmd(indio_dev, MHZ19B_READ_CO2_CMD, NULL);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*val = ret;
+> +	return IIO_VAL_INT;
+> +}
+
+
+> +
+> +static const struct serdev_device_ops mhz19b_ops = {
+> +	.receive_buf = mhz19b_receive_buf,
+> +	.write_wakeup = serdev_device_write_wakeup,
+> +};
+> +
+> +static int mhz19b_probe(struct serdev_device *serdev)
+> +{
+> +	int ret;
+> +	struct device *dev = &serdev->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct mhz19b_state *st;
+> +
+> +	serdev_device_set_client_ops(serdev, &mhz19b_ops);
+> +
+> +	ret = devm_serdev_device_open(dev, serdev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = serdev_device_set_baudrate(serdev, 9600);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	serdev_device_set_flow_control(serdev, false);
+> +
+> +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct mhz19b_state));
+
+sizeof(*st) is both more compact and obviously correct with out a reader
+having to go check if the st in..
+
+> +	if (!indio_dev)
+> +		return ret;
+> +	dev_set_drvdata(dev, indio_dev);
+> +
+> +	st = iio_priv(indio_dev);
+
+this line is the same size as we passed to devm_iio_device_alloc()
+
+> +	st->serdev = serdev;
+> +
+> +	init_completion(&st->buf_ready);
+> +
+> +	st->vin = devm_regulator_get(dev, "vin");
+> +	if (IS_ERR(st->vin))
+> +		return PTR_ERR(st->vin);
+> +
+> +	ret = regulator_enable(st->vin);
+
+Don't mix devm and non devm calls in probe.  In this case you introduced
+a race where the power is turned off before we remove the userspace
+interfaces which is unlikely to go well...
+
+	ret = devm_regulator_get_enabled(dev, "vin);
+	if (ret)
+		return ret;
+
+and no need for a remove.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name = "mh-z19b";
+> +	indio_dev->channels = mhz19b_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(mhz19b_channels);
+> +	indio_dev->info = &mhz19b_info;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static void mhz19b_remove(struct serdev_device *serdev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(&serdev->dev);
+> +	struct mhz19b_state *st = iio_priv(indio_dev);
+> +
+> +	regulator_disable(st->vin);
+
+As above - remove will be unnecessary once the regulator is also
+device managed (devm_...)
+
+J
 
