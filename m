@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-166265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D11A86C56
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 12:05:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA959A86C5B
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 12:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91E9D3B7B6C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:04:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 601F719E297D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 10:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4299B1A83EE;
-	Sat, 12 Apr 2025 10:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5717119CD1D;
+	Sat, 12 Apr 2025 10:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sLsGqeoX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AMH7yNWz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17054193402;
-	Sat, 12 Apr 2025 10:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C55DDDAB;
+	Sat, 12 Apr 2025 10:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744452280; cv=none; b=fgqCb6OR9Dy8XBhsdm+3cw3NO6jrRcsoUcN5RrGrgGKbxbCmLAUTm02nsVh++2EBBYkAXmrWutj5KRPnuWiCtX8U0Q/3P0MF8zqKZFEf82Z4v0uTIQghuwkAbcXsUy6PX70h1oWxH0L0kCFxJd5iBTgtSHUNSuaKiSPDbaYgxck=
+	t=1744452415; cv=none; b=Am8VdcnrHAt1lXCFtQjJkB1y7ecer08TEQ6yOMlRyWMT/YWQmvqaRVwzOFvwz6t9GQtZNE3ZZi2MeuxC05cjzN/dzsyItpkJqjXvZn5+0xuyemswPFjXYOats0uJxMt7W64lXhf6VQMZjKCkpO+YCvlEdjBdh+zURD6ne2lPP3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744452280; c=relaxed/simple;
-	bh=2lo3tH8bxtbasyCHIvu2dU4b+0ohfe5cOcqF6bKusYI=;
+	s=arc-20240116; t=1744452415; c=relaxed/simple;
+	bh=DGBEY6Nzx3c1xUOICUz1fgJAzTomHbyF0+Cw80fMWUY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VVaqGXT1JbQqffF9MvnIjVETsIxmqYz4pRjd8CBM1paLnZJm97aBuJTZud1ULpiLmZf/vnEEbSIrZwxMiCYXzc9n4BDjrYO6zCLWoZEk0TkE+rydawPUKEksZlWglwEksXdc4y0RSauB4KVymlaKC28gr6L1W9y8KeJnRK9wJvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sLsGqeoX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B5DBC4CEE3;
-	Sat, 12 Apr 2025 10:04:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GuPddKVEzWbNq+1nZ+3UcIyUiX6rl5bT7dCyCI6FGNXKomcG8Fw6aQ/pPnjCJ9ifSGZODT8IBv0fcecT+VVxglT2gxc+Z+tOQnKXzi8CtKYjIqQ/iQXDBTGA3TQYx0sIJDBajqjh6W88avzBCmDV7ZR7NCqgOCwNc2Kc4a1YW4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AMH7yNWz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 031B7C4CEE3;
+	Sat, 12 Apr 2025 10:06:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744452279;
-	bh=2lo3tH8bxtbasyCHIvu2dU4b+0ohfe5cOcqF6bKusYI=;
+	s=k20201202; t=1744452414;
+	bh=DGBEY6Nzx3c1xUOICUz1fgJAzTomHbyF0+Cw80fMWUY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sLsGqeoXq2eGVCEabMHDb9nymqhjuewH2Xcixc/l77lFCuink9OlixxIU81X3qiwe
-	 oyn0xlP24P/6ezuJrWm/bYBEyarUJRCFJNOjokmv85v0n8ihiSyUbG0jiBgmdMVZxD
-	 1pCvtYfufuFCEgvKLX8peVfMPMczn0j8HY4ZuuayX+df3RgOzC7v9fmfJGkMnP/O5V
-	 zsMEwnC5WT1fXu/bSt8eGPId/csMeerf/u+gMKq+zyp5y6FZ758p32gno46OUVct2r
-	 22gw8kGroXr7Bh02c2uJ4wZuSs372gKq1/gsR3PEBCJCRr94opMKo6ZiHixoMlJhyO
-	 jdPLiMfgJFzWQ==
-Message-ID: <859a4fc2-45f5-4d72-9727-7979e4c15bd5@kernel.org>
-Date: Sat, 12 Apr 2025 12:04:33 +0200
+	b=AMH7yNWznk2UZuSS3HmFqwhk+mHm6BODVeQw8IJCf5ReP3WhImyrU8RHxYrLSTKZ3
+	 LyoyHqJfsBIJffG/OMTa/K6E1ugqPHYMP/Kn723tYOyWPP0asr+iP5HYRjtU+/ZCUH
+	 r5UKvzXck94i62hNN9BXAAp9gXbGRgCkyy0xzgLcjSfIkpuvsyC3GfzPSZNdAYsbSM
+	 7nIBwGNnKn3c9Glid0MBDyMN6040ogr5p6jb7vlItfG2D2K+AvKLeoXW0lpLIa7yKU
+	 PYcf/ozARPL9cwgnoc+CudH4aL/CJlEyMxjz7JfmEJMGzKKlCywhR4PrQ9i353DIg2
+	 NvSdNMZtkwsug==
+Message-ID: <9fa738c8-e993-4ca1-8bed-cd31029cadec@kernel.org>
+Date: Sat, 12 Apr 2025 12:06:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-To: Bryan Brattlof <bb@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250407-am62lx-v4-0-ce97749b9eae@ti.com>
- <20250407-am62lx-v4-2-ce97749b9eae@ti.com>
- <20250409-calculating-hungry-mosquito-f8cfeb@shite>
- <20250411182608.cpxr357humjq6ln7@bryanbrattlof.com>
+Subject: Re: [PATCH v1] dt-bindings: trivial: Document TPS53685
+To: Chiang Brian <chiang.brian@inventec.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <b9379597-2827-4391-88a9-b2ac23227a35@kernel.org>
+ <20250411124739.2725364-1-chiang.brian@inventec.corp-partner.google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,42 +101,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250411182608.cpxr357humjq6ln7@bryanbrattlof.com>
+In-Reply-To: <20250411124739.2725364-1-chiang.brian@inventec.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/04/2025 20:26, Bryan Brattlof wrote:
->>> +
->>> +		usb0_phy_ctrl: syscon@45000 {
->>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
->>> +			reg = <0x45000 0x4>;
->>> +			bootph-all;
->>> +		};
->>> +
->>> +		usb1_phy_ctrl: syscon@45004 {
->>> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
->>> +			reg = <0x45004 0x4>;
+On 11/04/2025 14:47, Chiang Brian wrote:
+> On 14/03/2025 07:11, Chiang Brian wrote:
 >>
->> No, you do not get syscon per register. The entire point of syscon is to
->> collect ALL registers. Your device is the syscon, not a register.
+>> On 14/03/2025 04:28, Chiang Brian wrote:
+>>> Add undocumented tps53685 into compatible in dt-bindings
+>>>
+>>> Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> index fadbd3c041c8..c98d69facb48 100644
+>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> @@ -380,6 +380,8 @@ properties:
+>>>            - ti,tps53676
+>>>              # TI Dual channel DCAP+ multiphase controller TPS53679
+>>>            - ti,tps53679
+>>> +            # TI Dual channel DCAP+ multiphase controller TPS53685 with AMD-SVI3
+>>> +          - ti,tps53685
 >>
+>> There is no user of such compatible, so how can it be undocumented?
 > 
-> My understanding from [0] was that we would need to break this up into 
-> smaller syscon nodes because the alternative would be to mark the entire 
-> region as a syscon and every other node using it would need to use it's 
-> base + offset which was kinda undesirable especially for the small 
-> number of drivers that need data from this region.
-> 
->     a-device {
->         clocks = <&epwm_tbclk 0>;
+> The following link is the patch which I would like to add support tps53685,
+> and I think it is the user of the compatible:
 
+So that patch introduces undocumented compatible? That patchset needs to
+be fixed instead - this belongs there. The commit msg here is not
+correct: there is no undocumented compatible.
 
-Hm? That's how you use the syscon, so how it can be undesirable?
+Please also read submitting patches in DT or just simply look how every
+other patchset is sent. Every.
 
-Anyway, one register is not a device, so no device node per register.
-
-In the link you provided I was repeating the same, so you got same
-review in multiple places.
 
 Best regards,
 Krzysztof
