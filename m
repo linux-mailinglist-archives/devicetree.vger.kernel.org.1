@@ -1,220 +1,134 @@
-Return-Path: <devicetree+bounces-166234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5F3A86A8D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:23:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D24BA86AA1
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:53:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 756247A4805
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 03:22:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1AA19E3896
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 03:53:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5F91519BA;
-	Sat, 12 Apr 2025 03:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FpFW3Tcf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D711531F9;
+	Sat, 12 Apr 2025 03:53:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E3C153598;
-	Sat, 12 Apr 2025 03:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1EA15CD78;
+	Sat, 12 Apr 2025 03:52:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.95.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744428190; cv=none; b=Gn4EzOCEO7Bfdt5UX66WQvzU9P5I7sufFN9yugSE7ITSQ1xz+dfwAIzCoiXapmFcafHbJpsxQxR1MrVAO5yj+mvBzfJEsIhF53ikAbtovib96I/bKcoQDNnYHktlhOWy46gUrUAanxkylNTgqUpZblCWG2SU788IF/y/ffLawLA=
+	t=1744429982; cv=none; b=a8AlXMQKYFFtRAiBIfkgun/pr0SZGCqHOj+45mHRMa4yBgHmFB6pMpFiTG58mBA+1IQFIIe0O6ej64/9A/QH1ajh/YiqjtXua0SsyS69rekrwIx/01fgTLH2PcwOLjx8aojoAmktrnFYr9WvoDv2eMHj8tHlWZcIQ30j1LQIvmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744428190; c=relaxed/simple;
-	bh=15mC8N/IVOI/DJJEiVb9JnPFb5VlGOkpZqpGnbha37Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=raWyJ1smOyCz5zBxmEINWWXGb7FcQT5HBHaK3zBb4pJdQDXG7Eede9EeZnWqV8ap4C7BV77636q0Euj25ofBE4LxznNzF8/vcZut5GsvigXiCT+qaBBYsmDSKGZxb3WABMiVP7sRGT7geRHt8806AOX8O8tvU0tXUF6lgFUWLSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FpFW3Tcf; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2264aefc45dso39043285ad.0;
-        Fri, 11 Apr 2025 20:23:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744428188; x=1745032988; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=qzdL81Jyh3UxGHmety0a5OygH9kp/fKWifGpubcZjhA=;
-        b=FpFW3TcfyrENZbRz2HFVO5Ulawe1Xw5VoJmWiLrGw31CKBQDj+8qLFIDuJcWbyYUYy
-         JxSrTmeKqFx9maRz60bBNsE2W45rzu/WxUvQtkh/lKDKIoY2V5I8qPPlZoZvgqsj8xHh
-         k50dw7wb7PcRwaWWWd9Hiwx4VjPEFF5v7GvEq2y0IolJZC5UcgC3gEaDw7mqfvdq4k/J
-         5s7AARpqI4tYSlGAZPBe4Cki/Kkupkq3EzQHdIpJBOkdPb/+liPF03XVjo/EmOY7TtH2
-         dEXDHuMQSPoziS+tEUfR8npkzy/KXCle16jvLEta9vIQrrfyonq/UtK6TGgWbobxIntO
-         uF/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744428188; x=1745032988;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qzdL81Jyh3UxGHmety0a5OygH9kp/fKWifGpubcZjhA=;
-        b=juO9cIhYmjwrLYCHMiLkCzdBYlZoAgi7n4odVCuJGlxfumiINv4Th8zgNuOp59GxGm
-         mzbOPk2mLNGqmzJ3suYl4dAYz+cPjglGB3GBQnrrggc/vwvi0ecRIUOdzZMEYhZ+DMEJ
-         4iWQw+i/L/+DufDBV4+aRh1F4tv+xIzQWPAD0iD+dFJRazoz/cC1otxs8JMtl+CuZ9M3
-         TUNoMq5XhnMjjv7/Gb2iWbiKtHSFxR5PPXlfNqPmiRtEKQ8QaExv/c2FVeEyAvtKSoqd
-         ytw/3TJP92Lmove2ucF0Sb1z0wu0AzdozCXYWkig4t7wQ5Ss5lWKknVtoxeO6s/YLEaf
-         xJSg==
-X-Forwarded-Encrypted: i=1; AJvYcCV204r3g5+MIGYpW4HL/6F5qdoPI/AnILWNDzyfUrMMeDOtvE1fYFfKSYAvhatzoggWaVe7MAOhwqLIo8Tk@vger.kernel.org, AJvYcCVyU8Q2Kx21i8nUZ2w2u8qXITpHFvVBxDh6GwGqkbYYRgO/VF2wBeGb/1/n4diXInlz4Rm67b+QYziM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdqAehsNczH2kLSORc3PaXf7c8ReJbOwdSqYl91KRntMKcDEkA
-	pmGZblJjlq7a9YOnoA+Z5ATYbIZ+eMU5LusIpmd1G2GgLqlIJfYP
-X-Gm-Gg: ASbGncsEs7VHaezaih6iS9/uM8xf1tWf7a9TG8WK8VPpsFacmS3kERh0tPmXaBEH3Nf
-	VyIlngro/UMpD8KkuhABhIP3Ifg0PVrNEPoQYxgKx3Pd/PO0m8KwapQFwhU0mGGkILGMrpwC5Nw
-	KOdxkjDVPUWmEV9FI15wfoZ+si/YvkHnjCb+PvOc1Rlr+WTkX50+QAQm3B+eJzEnLtuiuMlhH3j
-	+6g55dY5vhenGqSYEzYe+x46vBq9Yhd5Yvc/tYJoKkn5N0BSe4AgRjmYEIXQM5ofCB2jdOwZDx7
-	Ngbx2LHPXn2VcEpcP6OxO8LFA6ZoVWu3me91dVJzE3MGkYw9VasGaMRGDBk07n6ZgN8m9BgUgkc
-	SCnpTMLzN7/c5+da378KLw+NU
-X-Google-Smtp-Source: AGHT+IEVTMy3h3SG1oqoxklB0Ybn6ixnKcqGyxV/XkXR6HugTs+1D6ktDrP6Y4SA8MALsdmp4uaRkg==
-X-Received: by 2002:a17:903:3d05:b0:220:e655:d77 with SMTP id d9443c01a7336-22bea4f1825mr72911955ad.36.1744428187598;
-        Fri, 11 Apr 2025 20:23:07 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7c93b2esm58569695ad.137.2025.04.11.20.23.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 20:23:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <485cec53-4e98-4abc-8e5f-96a8a0efb563@roeck-us.net>
-Date: Fri, 11 Apr 2025 20:23:05 -0700
+	s=arc-20240116; t=1744429982; c=relaxed/simple;
+	bh=r4/JMs6C2Dvw1bW8VHdZlPi+YkDCZTs1eOaXxjGw/oM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g2vDr3xPSBuO2kFHgZWy06EAOlxUngqcQJxQRfPw4T0x/ZxNW9yzPC55MtAr5U4VOZqEg8Y+jR/R+PgTP2FrS5lpY5uyb9QVso899Latx9/CG4hDLOYjQv2qaiDVvxLkxV/7nBoufzu5tYPWb/C+f2Gu+SQVGlPLBIzADZaSDBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.95.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 35C8D2C4C0D2;
+	Sat, 12 Apr 2025 05:52:25 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 031171E092; Sat, 12 Apr 2025 05:52:56 +0200 (CEST)
+Date: Sat, 12 Apr 2025 05:52:56 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczy??ski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	chaitanya chundru <quic_krichai@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+	amitk@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v5 7/9] PCI: PCI: Add pcie_link_is_active() to determine
+ if the PCIe link is active
+Message-ID: <Z_njmA49Gda-m0aH@wunner.de>
+References: <20250412-qps615_v4_1-v5-0-5b6a06132fec@oss.qualcomm.com>
+ <20250412-qps615_v4_1-v5-7-5b6a06132fec@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
- Timer
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, wim@linux-watchdog.org
-Cc: linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
- S32@nxp.com, ghennadi.procopciuc@nxp.com, thomas.fossati@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, alexandru-catalin.ionita@nxp.com
-References: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
- <20250410082616.1855860-2-daniel.lezcano@linaro.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250410082616.1855860-2-daniel.lezcano@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250412-qps615_v4_1-v5-7-5b6a06132fec@oss.qualcomm.com>
 
-On 4/10/25 01:26, Daniel Lezcano wrote:
-> Describe the Software Watchdog Timer available on the S32G platforms.
+On Sat, Apr 12, 2025 at 07:19:56AM +0530, Krishna Chaitanya Chundru wrote:
+> Introduce a common API to check if the PCIe link is active, replacing
+> duplicate code in multiple locations.
 > 
-> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Cc: Thomas Fossati <thomas.fossati@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Reviewed-by: Lukas Wunner <lukas@wunner.de>
 
-> ---
->   .../bindings/watchdog/nxp,s32g2-swt.yaml      | 54 +++++++++++++++++++
->   1 file changed, 54 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml b/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
-> new file mode 100644
-> index 000000000000..8f168a05b50c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/nxp,s32g2-swt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP Software Watchdog Timer (SWT)
-> +
-> +maintainers:
-> +  - Daniel Lezcano <daniel.lezcano@kernel.org>
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nxp,s32g2-swt
-> +      - items:
-> +          - const: nxp,s32g3-swt
-> +          - const: nxp,s32g2-swt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Counter clock
-> +      - description: Module clock
-> +      - description: Register clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: counter
-> +      - const: module
-> +      - const: register
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    watchdog@40100000 {
-> +        compatible = "nxp,s32g2-swt";
-> +        reg = <0x40100000 0x1000>;
-> +        clocks = <&clks 0x3a>, <&clks 0x3b>, <&clks 0x3c>;
-> +        clock-names = "counter", "module", "register";
-> +        timeout-sec = <10>;
-> +    };
+One heads-up and one nit:
 
+> --- a/drivers/pci/hotplug/pciehp_hpc.c
+> +++ b/drivers/pci/hotplug/pciehp_hpc.c
+> @@ -584,7 +557,7 @@ static void pciehp_ignore_dpc_link_change(struct controller *ctrl,
+>  	 * Synthesize it to ensure that it is acted on.
+>  	 */
+>  	down_read_nested(&ctrl->reset_lock, ctrl->depth);
+> -	if (!pciehp_check_link_active(ctrl))
+> +	if (!pcie_link_is_active(ctrl_dev(ctrl)))
+>  		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
+>  	up_read(&ctrl->reset_lock);
+>  }
+
+Heads-up:  There's a trivial merge conflict here with what's queued on
+pci.git/hotplug.  No need for you to respin because I expect this will be
+merged through a different topic branch anyway, but Bjorn and the other
+maintainers will see the merge conflict when generating the next branch.
+
+
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -1945,6 +1945,7 @@ pci_release_mem_regions(struct pci_dev *pdev)
+>  			    pci_select_bars(pdev, IORESOURCE_MEM));
+>  }
+>  
+> +bool pcie_link_is_active(struct pci_dev *dev);
+>  #else /* CONFIG_PCI is not enabled */
+>  
+>  static inline void pci_set_flags(int flags) { }
+> @@ -2093,6 +2094,9 @@ pci_alloc_irq_vectors(struct pci_dev *dev, unsigned int min_vecs,
+>  {
+>  	return -ENOSPC;
+>  }
+> +
+> +static inline bool pcie_link_is_active(struct pci_dev *dev)
+> +{ return false; }
+>  #endif /* CONFIG_PCI */
+
+Nit:  Seems like this would still fit within 80 chars:
+
+static inline bool pcie_link_is_active(struct pci_dev *dev) { return false; }
+
+That said, all existing callers of this function as well as the new one
+introduced by this series are only compiled in the CONFIG_PCI=y case,
+so I'm not sure the inline stub is necessary at all?
+
+Thanks,
+
+Lukas
 
