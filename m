@@ -1,126 +1,128 @@
-Return-Path: <devicetree+bounces-166243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8996CA86B06
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:28:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B99FFA86B11
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 07:36:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F38863B933C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:27:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA60816E8D0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 05:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A240B190051;
-	Sat, 12 Apr 2025 05:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A984417B502;
+	Sat, 12 Apr 2025 05:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JS8U7cNv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CIC8k86K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C727918DF86;
-	Sat, 12 Apr 2025 05:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA8C73176;
+	Sat, 12 Apr 2025 05:33:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744435658; cv=none; b=ttKjcCKyACbszxEPWJdophTpOE71k+KIWKdscOafwIV3/idJRtNSiW2h/k5rBj6+WrJd72mAE3Cb+NZca5xdxQga+ci0y5Ut0rBmF4fqlfY0dfA5XdrmYBhoVYp8vgl5hfhuwZHsz0cI2r68sLoMInyGxSQWJpuELup9zhHnCP4=
+	t=1744436026; cv=none; b=EGYfCvxmrplumjkHGcicryBvh0X0sIhg9BZXpz4NdVQviRkN43c47OL5ly4uxKqDlTZ3KFFe0o1zXlyXfZwCasZibxI9R6fTtBcDoL1SnwHr5d6Dl9rhfHZcpTKvcg6PzB/1t+dgI/FwpACQOXlj2yGGWVoGC3XImWQNZF6ztGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744435658; c=relaxed/simple;
-	bh=UbNAdcJkPJR1yLoSvYG2KAcD0rE5t6Mp5K7FwIsl1zo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F2xjhThD30AglNx7UmuznaMnFoMM9UhR/QSmB+QHzv0tK5Uj8bGmYQIoEikF1Gwq4V0HmZ7gSsX7M9nRj4eFpMFEqnPlW2A+BXyhuWDos3V0WF31AuqzPY1G0TxJ41TkSF82cmGp1WfRMQUT8CuOFn2e4RTWaPQgcI+EvPi4cZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JS8U7cNv; arc=none smtp.client-ip=198.47.23.234
+	s=arc-20240116; t=1744436026; c=relaxed/simple;
+	bh=cLD7jAJ87R+FYIqblGG4tPh3QkWnbkDjxYPKBxls3JI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wd9/r5jymezaTuhwm53r795PTUzlhkd+ja8x3kY3FvYynwVqMbRtPC2+fx2T4Bh3Ed+4ULUyRnnX7vK6PwpMKoaq3EfmD6A9ublxY9Qdb/pudoqLp4z2MV9Ihb86LHlFcV7AMZ5Ymp0P254pvYWUeW5cAg7wtrGb1PfCBaF5iM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CIC8k86K; arc=none smtp.client-ip=198.47.19.245
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53C5ROvr1725208
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53C5XclW1614445
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 12 Apr 2025 00:27:24 -0500
+	Sat, 12 Apr 2025 00:33:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744435644;
-	bh=4iQXfyalqbVzM2bdCPJ05L1KZPH9N7iukdGOBcfEl0U=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=JS8U7cNvnCPtElZzaRzdyeaVyZWVG+sIC5NhTlox62iaoXeNirK2b4TlwW64XEOhZ
-	 /sNCZusz3O6MEky63ooW7qHT+5wFWqTLVEz3T6R8+rtJ88zP9KbvAT2p2SYHf/Qmw1
-	 oLlSv17kOBV7r/MrkJihrG9eWJVSDxJH4XQqPZh0=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53C5ROku006758
+	s=ti-com-17Q1; t=1744436018;
+	bh=HL7rKUTQWHzPt0OWlfsDjec/OxS1CHnG4JHuLvAXp+E=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=CIC8k86K9V57lJlP9m9TPMXaJOizCeEcSt9p7TaAMpvpCtQdqdp+2PAbezOYSrqSX
+	 hxJAOwFztUYQaSuYI8OxtR2xaDIN6EQGcq6av6CziDKdL2c4bfvCtf8z3OIeDdiCYs
+	 EoknYeAmSVVgs64A4azQRGZoiNViczkzzzTfWx2c=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53C5XcKQ111783
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 12 Apr 2025 00:27:24 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Sat, 12 Apr 2025 00:33:38 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 12
- Apr 2025 00:27:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2025 00:33:38 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 12 Apr 2025 00:27:24 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53C5RCVT121011;
-	Sat, 12 Apr 2025 00:27:20 -0500
+ Frontend Transport; Sat, 12 Apr 2025 00:33:37 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53C5XaW3128327;
+	Sat, 12 Apr 2025 00:33:37 -0500
+Date: Sat, 12 Apr 2025 11:03:36 +0530
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <u-kumar1@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j722s-evm: drop redundant status within serdes0/serdes1
-Date: Sat, 12 Apr 2025 10:57:12 +0530
-Message-ID: <20250412052712.927626-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250412052712.927626-1-s-vadapalli@ti.com>
-References: <20250412052712.927626-1-s-vadapalli@ti.com>
+To: "Kumar, Udit" <u-kumar1@ti.com>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <stable@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-j722s-main: Disable
+ "serdes_wiz0" and "serdes_wiz1"
+Message-ID: <4d9746fb-5145-4195-94ce-f4b40bc19d0a@ti.com>
+References: <20250408103606.3679505-1-s-vadapalli@ti.com>
+ <20250408103606.3679505-3-s-vadapalli@ti.com>
+ <7b2f69ad-48aa-4aa9-be0e-f0edae272bdb@ti.com>
+ <475a1ac1-abb1-4c6e-b5b2-3f1a3399d5c4@ti.com>
+ <28f1e0b7-9947-43f3-9a47-f3c6ecd69b91@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <28f1e0b7-9947-43f3-9a47-f3c6ecd69b91@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Since serdes0 and serdes1 are now enabled by default within the SoC
-file, it is no longer necessary to enable them in the board file.
+On Fri, Apr 11, 2025 at 09:22:00PM +0530, Kumar, Udit wrote:
+> Hi
+> 
+> On 4/11/2025 7:47 PM, Siddharth Vadapalli wrote:
+> > On Fri, Apr 11, 2025 at 07:31:52PM +0530, Kumar, Udit wrote:
 
-Hence, remove the redundant 'status = "okay"' within the serdes0 and
-serdes1 device-tree nodes.
+[...]
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+> > > Since you are disabling parent node.
+> > > 
+> > > Do you still want to carry status = "disabled" in child nodes serdes0 and
+> > > serdes1.
+> > I could drop it, but then the patches will look something like:
+> > 1) Patch 1: Same as the first patch in this series
+> > 2) Patch 2: Current patch + Remove status = "disabled" within serdes0/1
+> > 3) Patch 3: Removed redundant status = "okay" within serdes0/1 in
+> >              k3-j722s-evm.dts
+> > 
+> > Updated Patch 2 and the new Patch 3 mentioned above aren't necessarily a
+> > complete "Fix" and have other changes in addition to the "Fix". For that
+> > reason, the changes associated with the updated patch 2 and the new patch 3
+> > could be a separate series, unless you believe that they should go
+> > together in the current series. Please let me know.
+> 
+> I don't see any use case where serdes_wiz0 is enabled and serdes0 is
+> disabled.
+> 
+> So your comment 3) is valid. you can take this clean up in other series
+> 
+> 
+> For now
+> 
+> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-Hello,
-
-This patch depends on the following series:
-https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250408103606.3679505-1-s-vadapalli@ti.com/
-as indicated in the cover-letter.
+I have posted the cleanup series at:
+https://lore.kernel.org/r/20250412052712.927626-1-s-vadapalli@ti.com/
+The cleanup series applies on top of the current series.
 
 Regards,
 Siddharth.
-
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index 0bf2e1821662..34b9d190800e 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -848,7 +848,6 @@ &serdes_wiz0 {
- };
- 
- &serdes0 {
--	status = "okay";
- 	serdes0_usb_link: phy@0 {
- 		reg = <0>;
- 		cdns,num-lanes = <1>;
-@@ -863,7 +862,6 @@ &serdes_wiz1 {
- };
- 
- &serdes1 {
--	status = "okay";
- 	serdes1_pcie_link: phy@0 {
- 		reg = <0>;
- 		cdns,num-lanes = <1>;
--- 
-2.34.1
-
 
