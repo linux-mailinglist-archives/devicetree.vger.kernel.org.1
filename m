@@ -1,147 +1,83 @@
-Return-Path: <devicetree+bounces-166293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E19DA86D52
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 15:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE46A86D5E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 15:56:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B09917784A
-	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 13:42:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BC7D44630F
+	for <lists+devicetree@lfdr.de>; Sat, 12 Apr 2025 13:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775001E5B82;
-	Sat, 12 Apr 2025 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32BE1DDA32;
+	Sat, 12 Apr 2025 13:55:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEBD190685
-	for <devicetree@vger.kernel.org>; Sat, 12 Apr 2025 13:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773961DFED;
+	Sat, 12 Apr 2025 13:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744465315; cv=none; b=Ol+U12PRzXmEqM0Xm6USeLOuEUczEETraa2U8AoYkMbyw4xWlraTb2DtZRBuRIMo9DO2dW585q2LNdd4GONUqTqhVm7ebSu/lpepTOiz289jOVfMXtjidgp9xVj9V8HP6DtKMHCawcnA8LWnEG1bBy3VhIcgFLhgIJHfQDJLWGE=
+	t=1744466159; cv=none; b=MDZY5IJRuXNVti1P+wnDTt1euRUzjosjlmuYvWz9lJPrJNuNitomZwz6YHJT6ILMVLm46VEgh4tvy0088NufuPlD/ETRf2XSQmQXReClRXhEyE3rNmedCN6bP/MhOgThYAZJRmVIVYZSlG9k8k8/WoHwocRFeWlxRF709T/EPco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744465315; c=relaxed/simple;
-	bh=N8HcNW9CyPWC3bVBg970kSePn67+9k+JEyZ2haoX0WA=;
+	s=arc-20240116; t=1744466159; c=relaxed/simple;
+	bh=+6wEJrVQgRWapbNpAFHkDEtn6wDDNb/Tzgc9b0oM3Vs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=de/LlgoYpGlouOrLxxHqsbTO4S5Ek00yBAkch3IJAUukFnyO24Ai03Uwu8KXn6AGvouyTUOJCpXdOaD/mEaL/QbCeJT+SwmJQsGU+ADUgk+uPCkXRlJBBBZ/WokXzCsAifb1VhrLlk/y88UoxfLHBTUejki7W5TO/n0Gq5nkx90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1u3b6o-0001Jb-4t; Sat, 12 Apr 2025 15:41:22 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1u3b6k-004b7M-3B;
-	Sat, 12 Apr 2025 15:41:19 +0200
-Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
+	 Content-Type:Content-Disposition:In-Reply-To; b=hTmubBatxtCmbzvquyfmBLMaABugWbSxRAzYEx0Pe4v6w+mLYy6XuPzv99Fmr9i/JCMNT0gDyt6Hsz8/GjYw4164xdH/qFfrVxzzctBtXdlsbwc1iOOwivdzxM8O7gYcd/h7JEVidlZpNY/VTHCjEairCJtFwltznRrmV0C0atw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.27.72])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 7F9563F66F8;
-	Sat, 12 Apr 2025 13:41:18 +0000 (UTC)
-Date: Sat, 12 Apr 2025 15:41:17 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Primoz Fiser <primoz.fiser@norik.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, upstream@lists.phytec.de, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 10/13] arm64: dts: freescale: imx93-phyboard-segin: Add
- CAN support
-Message-ID: <20250412-tentacled-rugged-bee-fd7e9c-mkl@pengutronix.de>
-References: <20250410090251.1103979-1-primoz.fiser@norik.com>
- <20250410090251.1103979-11-primoz.fiser@norik.com>
- <Z/fifUQ4M2doQbHx@lizhi-Precision-Tower-5810>
- <ef74e49d-c413-4719-a174-42df91384469@norik.com>
- <Z/knehHQeTTUXgr3@lizhi-Precision-Tower-5810>
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 443283439C7;
+	Sat, 12 Apr 2025 13:55:56 +0000 (UTC)
+Date: Sat, 12 Apr 2025 13:55:51 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: ALOK TIWARI <alok.a.tiwari@oracle.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: spacemit: add clock and reset
+ property
+Message-ID: <20250412135551-GYA24603@gentoo>
+References: <20250412-02-k1-pinctrl-clk-v1-0-e39734419a2d@gentoo.org>
+ <20250412-02-k1-pinctrl-clk-v1-1-e39734419a2d@gentoo.org>
+ <194dfb6c-d290-49f7-b060-3654307c4887@oracle.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gxqnwwxty7chqrbx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z/knehHQeTTUXgr3@lizhi-Precision-Tower-5810>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <194dfb6c-d290-49f7-b060-3654307c4887@oracle.com>
 
+Hi ALOK,
 
---gxqnwwxty7chqrbx
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 10/13] arm64: dts: freescale: imx93-phyboard-segin: Add
- CAN support
-MIME-Version: 1.0
+On 17:01 Sat 12 Apr     , ALOK TIWARI wrote:
+> 
+> 
+> On 12-04-2025 12:28, Yixun Lan wrote:
+> > SpacemiT K1 SoC's pinctrl controller requires two clocks in order
+> > to work propertly, also has one reset line from hardware persepective.
+> 
+> typo in commit message
+> propertly -> properly
+> persepective -> perspective
+> 
+thanks for catching this..
+will wait for more comments, and fix in next version
 
-On 11.04.2025 10:30:18, Frank Li wrote:
-> On Fri, Apr 11, 2025 at 10:08:21AM +0200, Primoz Fiser wrote:
-> > Hi Frank,
-> >
-> > On 10. 04. 25 17:23, Frank Li wrote:
-> > > On Thu, Apr 10, 2025 at 11:02:48AM +0200, Primoz Fiser wrote:
-> > >> Add support for CAN networking on phyBOARD-Segin-i.MX93 via the flex=
-can1
-> > >> interface. The CAN1_EN regulator enables the SN65HVD234 CAN transcei=
-ver
-> > >> chip.
-> > >
-> > > Can you use drivers/phy/phy-can-transceiver.c to enable CAN phy inste=
-ad
-> > > of use hacked regulator-flexcan1-en.
-> >
-> > Sorry can't do.
-> >
-> > This doesn't align with other i.MX PHYTEC products using flexcan such as
-> > imx8mp-phyboard-pollux-rdk.dts.
-> >
-> > Even the i.MX93 EVK uses the same mechanism.
->=20
-> I think previous method is NOT good enough. Suggest involve CAN and PHY
-> maintainer to discuss these.
-
-Since d80bfde3c57a ("can: flexcan: add transceiver capabilities"), which
-git mainline with v6.15-rc1 there is proper PHY support in the flexcan
-driver. So from my point of view, there's no need to stick to regulator
-hack.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---gxqnwwxty7chqrbx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmf6bXoACgkQDHRl3/mQ
-kZwtKQf/UtcudIKJDifikEV0AghboYKzi7fNrlv6P2KToZkTzAEVzcIRd+nmtol3
-I1/xj7uJeFMIXZcjIFT/jvdLx7xot2SkQS0p1y3C96NMbeh6aAj9rtA0VYFN7y0C
-PIQXb1K5YC4a4bZjcJO+JaJ2yE3PlZbwOKLP668zJyc+QCrg0bkLVsoYR4/x6liQ
-nKQ2+qV40GzfUf00Z6qX4fCjZbRo7g49HWktiizh4pkbryBu7A1+f2Nrl3AN2ZCM
-C7wafDh0zsN0DedbscwTJTVR1tQ1yP3YDwmQ2bYw2qs4wXqfnGTawgu7G38C4JO9
-UM3PFskg4VWWndjcTNIKkc6L6VryyA==
-=mCyB
------END PGP SIGNATURE-----
-
---gxqnwwxty7chqrbx--
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
