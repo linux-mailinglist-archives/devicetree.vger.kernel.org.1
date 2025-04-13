@@ -1,114 +1,101 @@
-Return-Path: <devicetree+bounces-166418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C002A873D4
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 22:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E75A87430
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 00:12:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DE7116EDB5
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 20:40:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B0CC16F81C
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 22:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681351EE7C4;
-	Sun, 13 Apr 2025 20:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="Kqg8AlIs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1226818DB0E;
+	Sun, 13 Apr 2025 22:12:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E3E131E49;
-	Sun, 13 Apr 2025 20:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6F518B47C;
+	Sun, 13 Apr 2025 22:12:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744576796; cv=none; b=mkmr4/YEdc9vsel9jDcmIfxixMkVsSZDgYvlk7Ay8XbCOgiqRWF0fh1MZfWaQ10dJzLeAVlAO1MPgEN/Mn8srFE4heHTyC/t+Fs2QzyTCu4cJ7qc2aPrKXzfm5KMEgVlOusez2FCkl0OAsyqy9jbCPhnvI6pe9GVMoa7jsl7RLQ=
+	t=1744582370; cv=none; b=eqgN0oW2VLZchl8yH0Rxe5YG2Rh5pfiYCzJNhVMWXKcqoFluV1wuvw0j7AjI4ooWrB0ZeQE0pjHKXjSQfUJtvMsVtRdnCeAi4xZZpVhJrJNhgg65bNliNXDwO+GQXcu3tay5r5Uc7MmtwyuQvrcJ4uebHZ4Rvoxu6dgIdav8758=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744576796; c=relaxed/simple;
-	bh=Nw8QcptVhVAt+7InQoYP9i5Ze37D9ghFp28rjZFWcVY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YfE6LRcPzjGB7JQjT7wlRzmlsv5g2LiGpO3WW01Xx4zXNaIYIcz9R8jCjxttbIv2yCB9vcGBYYw8SKPZJ2DfekTfloySv9Lxkt8p5wo3Ue+y0YCNKqN2IqXXSZRPmw/9AUenILBnLh7HqkgteCDi4VyeN/kDHQRKOSpU/g3XyiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=Kqg8AlIs; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 9966140E023A;
-	Sun, 13 Apr 2025 20:39:48 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Z9Kj-hpq-4OT; Sun, 13 Apr 2025 20:39:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1744576784; bh=gPLzKBqSBKNRAJiY7TN5psrgTIFFhLEvXzNfFCfBUvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kqg8AlIshxd5u9C8KBuy3Wp7l9B12d0HNDARJc+0gmNSYgSb/PwgK6IXnOAX1n4kW
-	 lDZj46WnPEM60mVCk63IJLHHzyMoC2IUTb9Jc2GQ61OA1c/vbGkBktSNZqK8OLZefR
-	 qwITABkf8pln7yanVWdLmnEor2t57I0v/D9vnM4+0wEJgEzbbTmR6hNjQWg976oId7
-	 hsHsnve0kuFEvT3LU/l8gUwJ+Hc4R551cZj0NhES8qEzMGJaKk9ZNDDxkqBXRieZK5
-	 L8NIKNtqs5gOetx3eiR04e8v11r6CiYJYCOzjqKnIGdv0zjEjOnGxWdlKZzZKoXQgl
-	 Ye3K0Z08X19wVKThVBZkUl0SOJYsDk2y9ou+iqTx0/mDFg05rIpRYKnRjY8SBp36Io
-	 2SyaolQSfjwiyGDNDp1qJW+nMcX65x55Ow9khk+0OdcPdw3mXMrH8eZTUb/sCGNVAl
-	 AEJACqOCG+AJ4ZLEkE2ykOyFVZ/7PLySYd3pBxXxagIZ9zu1aaiQO3sGszANYnHfOr
-	 IaolcUYqXGT7LO4cMEHeRaMT+vbh3LKyR9qy0dAlDvWl8PAx1JzPTZRPYZa6nIkOLO
-	 wgKI+2BFLw7dZJEQ8lcC/IaOm+Ikm3ES2GYgQKsg6Ke/f7op+nFEXHzL2Bo26P/88i
-	 39Ocw9tlCtxZa1kbQwArM+EM=
-Received: from zn.tnic (p579690ee.dip0.t-ipconnect.de [87.150.144.238])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 572ED40E0214;
-	Sun, 13 Apr 2025 20:39:29 +0000 (UTC)
-Date: Sun, 13 Apr 2025 22:39:23 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Vijay Balakrishna <vijayb@linux.microsoft.com>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Tyler Hicks <code@tyhicks.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [v7 PATCH 0/2] Add L1 and L2 error detection for A53, A57 and A72
-Message-ID: <20250413203923.GAZ_wg-_lYFt5hkfbh@fat_crate.local>
-References: <1744409319-24912-1-git-send-email-vijayb@linux.microsoft.com>
+	s=arc-20240116; t=1744582370; c=relaxed/simple;
+	bh=j7o4TmN6qMjf7TFwhhk0Y8oqqNUQI2mLCa//MN18WCE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Jt9eNMcgXTjUQG4CytrpNqv19mBrPCFa6VpGmX8Eu42CC1UlQmTgjQBVyxmw2tuQzVdFnbZHR3yB2t3aINczV4pqqWjb+pgqUzTUV1qaZlHBLAj3yKmZRCsRFZaeQNMAAtN4VMv9CowyEI9U92/HIVPznofBi4ouLGzcX+W1P8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C820B169E;
+	Sun, 13 Apr 2025 15:12:44 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E0F7D3F59E;
+	Sun, 13 Apr 2025 15:12:42 -0700 (PDT)
+Date: Sun, 13 Apr 2025 23:11:45 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Mikhail Kalashnikov <iuncuim@gmail.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li
+ <tiny.windzz@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Rafael J
+ . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Subject: Re: [PATCH 0/6] Add support for A523 Thermal system
+Message-ID: <20250413231128.75983a60@minigeek.lan>
+In-Reply-To: <5084c2dc-d268-4268-a827-2ae445782a4e@gmail.com>
+References: <20250411003827.782544-1-iuncuim@gmail.com>
+	<5084c2dc-d268-4268-a827-2ae445782a4e@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1744409319-24912-1-git-send-email-vijayb@linux.microsoft.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 11, 2025 at 03:08:37PM -0700, Vijay Balakrishna wrote:
-> Hello,
+On Sat, 12 Apr 2025 03:53:08 +0300
+Mikhail Kalashnikov <iuncuim@gmail.com> wrote:
+
+Hi,
+
+> On 4/11/25 03:38, Mikhail Kalashnikov wrote:
+> > This patch series adds temperature sensor support for the Allwinner A523
+> > family of processors (same die with H728/A527/T527)  
 > 
-> This is an attempt to revive [v5] series. I have attempted to address comments
-> and suggestions from Marc Zyngier since [v5]. Additionally, I have extended
-> support for A72 processors. Testing on a problematic A72 SoC has led to the
-> detection of Correctable Errors (CEs). I am eager to hear your suggestions and
-> feedback on this series.
+> Based on 6.15-rc1 with dts patches from
+> 
+> https://lore.kernel.org/linux-sunxi/20250307005712.16828-1-andre.przywara@arm.com/T/#t
 
-Did you not read Marc's note:
+Chen-Yu merged those patches already, to the sunxi repo on kernel.org,
+under the dt-for-6.16 branch, so you can reference that instead, and
+also base any new patches on that.
 
-https://lore.kernel.org/all/86a58kl51r.wl-maz@kernel.org/
+Cheers,
+Andre
 
-or
+> 
+> > Mikhail Kalashnikov (6):
+> >    thermal/drivers/sun8i: add gpadc clock
+> >    thermal/drivers/sun8i: replace devm_reset_control_get to shared
+> >    thermal/drivers/sun8i: Add support for A523 THS0/1 controllers
+> >    arm64: dts: allwinner: A523: Add SID controller node
+> >    arm64: dts: allwinner: A523: Add thermal sensors and zones
+> >    dt-bindings: thermal: sun8i: Add A523 THS0/1 controllers
+> >
+> >   .../thermal/allwinner,sun8i-a83t-ths.yaml     |   5 +
+> >   .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 145 +++++++++++++++++
+> >   drivers/thermal/sun8i_thermal.c               | 154 +++++++++++++++++-
+> >   3 files changed, 300 insertions(+), 4 deletions(-)
+> >  
+> 
 
-https://lore.kernel.org/all/86frigkmtd.wl-maz@kernel.org/
-
-?
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
 
