@@ -1,98 +1,89 @@
-Return-Path: <devicetree+bounces-166374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A3AA871DC
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 13:25:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 952E4A8720D
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 15:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2612A3B8164
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 11:24:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2F241894AC4
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 13:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7481ACED7;
-	Sun, 13 Apr 2025 11:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6201AAA11;
+	Sun, 13 Apr 2025 13:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I/4sMryO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEuWOA//"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D23E2EAE6;
-	Sun, 13 Apr 2025 11:24:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA9C1E519;
+	Sun, 13 Apr 2025 13:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744543460; cv=none; b=jsFPn8FfKDXMUOoY91gFFlcym60OILql3pR41IB57ztu7sMdC89ManTx0iHGJOoW+7oWgkkDoMU6VKq5DTD0afBoI1/3GUzOCbbTcMPzMxXjkrNxcFmw+Oxqons5zglz5TfjwqMGDuTPvqp/5XzoQJhQ3AoOmvGQOc8I1lAAubc=
+	t=1744549709; cv=none; b=XxX1Ue1Bq7bGFlzgZDf9U3xfreD8qtFoEUjhYOIMM6AXd368GOrzaEY642eflnBgbm3IfTgxS6xNubZOORk0o8coppGtesckWAqd1IUSAUMuwvuZmtihoaABhQm8tnLFf8gqAfwz/ezBCDsVi1F6MUS8Fxou/4Z+YAfcid9Dq/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744543460; c=relaxed/simple;
-	bh=DDw9I/rKL9Fwdw4yysv0cE8plOm+XIU0FGjdP/9dtzw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QaggZkWGYVXCcozcLnPgspDKIrEPIMRJTiTBC0sw+eyFQZzXD9b0Dx99UOahNnsOHCkt/5JW4kG0JpllfafrQ0sHd5AfX+UEY8uH6G/uHlLQvImx/M/dh8VZwnnRfPtp/ixEnYlb9KKERTA54DpsqIGYAWcl7Vt/4upYQ+P2b7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/4sMryO; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1744549709; c=relaxed/simple;
+	bh=dd/290aZNY5O/JLWsp6iT01AgdGYQcXC8+O//KRhEpg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FkN130uKOqbMc6qA0rvI0KnQgRGdH7SpOJm/TCMhnR5j2jPY2R5gzX3Ajsa3Z5lAWuDWi63mvvtCILODtAc/0HzmnOvvbVZUTfkofB0ehPOh85G+RVkWDhjeUZheizZ5ADXFs13Xf5smez3caXM2qbuAATDiHIBTgPPQwm3lgDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nEuWOA//; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac345bd8e13so586392566b.0;
-        Sun, 13 Apr 2025 04:24:16 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c0dfba946so2162269f8f.3;
+        Sun, 13 Apr 2025 06:08:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744543455; x=1745148255; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pV5pvhlP3z9/i9gZ7xkKad5WjQ7amsdYTRJcK6GrCe8=;
-        b=I/4sMryOfJ/HVmC+3SOkY2RpsP5n70HQYFcGkUppDbKK7wiTq6mmWrnFmTRrxRTcX8
-         qjDRgJRnbNplxddqxV9V7laJ36t/DW1/t/pMIwtI/GeKh+H3YcWTQ45L2bPylM2U2K6h
-         MzGnh48KqPSXUmXO344UtFA6uFC6kOKU5sesyJZI2ci808gOn8+mGaUENZ3DdpEGUHTT
-         zLvUxicMOLC6HrcFyDU8IjDtCbyAOykpIGG4TEnlRf9xYXpAwHRbc0exJ5KODuSev2dL
-         jAuLwaXf7llMC1xxovfQ/rm1Y9Lhwf1SGJTlx3Dj6LL9sVj7gWUN0GB3lmOWjQWEMRdb
-         WHuA==
+        d=gmail.com; s=20230601; t=1744549706; x=1745154506; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=spwwddOcr2bxy5oZCe+k46ppxSM8rzeZ93fwj//zW8g=;
+        b=nEuWOA//0HHPR/R/ScH9YAwADh5MccqPRjWZsaqFR6K7/OmfYOHlAZdsTcvFrtdOKg
+         vetQF9/ieHeR12qr3H/kHWFAwLY22alN9YFlxsEB+Ef0dfkYAObqd3/A6wjIJYjjDRf6
+         XEGNWFuXeGM6aIcKgZnHelQ9l1L/FRBUzpSMn3oZoUpnP9UmNRUkz4KPfgT54EducUfY
+         uNYGDrAK4T7FWygJCbkdv3+FURdbQQCfHlMb6GbkO52QdZT77na5CEj4OIQm/2+ThK4K
+         h6c1cK6wUI4WqSgB3YJrTSt1rGJkAiuUBU0BU1MhCqCERHP70lOaNoyCaIyIFuRXsRnA
+         tWnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744543455; x=1745148255;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pV5pvhlP3z9/i9gZ7xkKad5WjQ7amsdYTRJcK6GrCe8=;
-        b=FKibE4O44t4N/ZqCmvKw6SGhzRaiaIEtYBiPVHrUvMzSIQwaAJ3nT5PV/XjZ9BXUPO
-         /oeDagUPjMjhGPWD/mUr5LlUGzELYHY1U1ocnw+UrFlx0SZ/fw+F0f3c1Kjr1eOvfPQn
-         b99OWAhKHrR1EWz/mwYPLnPNrmoTvkzokiAUZYqnnI5G3SXpGTFhpvtph7Ky0QssFLph
-         P8SccXhY6fcfgHElcApldeyMLryXz7qhWx51YiNGtW/drWST1sAdkXj5ksI0PoVslcGH
-         TBsZwxbNTjJgY/qpTeHacah9HXwV8+HRPUCmSyUjU1gzvASv1hNq/7lT7+XYTq13NJlD
-         yIbw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8iOpPAIO77iZ4YFFNhAY8wmmVpGNfk1pInhAofSeB1imrBihM9Gg9qD3bNhqe4ii0jskp/iZT3YGJ3q0E@vger.kernel.org, AJvYcCWkPL8WDR/IgEOLVpNWTwnf7dIneUb3UD+Y0DfyA2cqV/FAg7CSaHMeN4nTa+PfXONPxk7sUuDJVjLa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjLzK4gN0RXyuN46HQnF2CmkWbOJQQSDyALv0LVYSQvem8/4FJ
-	3RQ5luFS+GopLFZdHrWHVfVfXnJTBhiTb9W5Xidnwj7WPIF5YfkZ
-X-Gm-Gg: ASbGncsC3IS5v14AFRzZa8Ehc6eEGYyBRy4ha0fki0WbsqXXWSaSuoRMO/BIjY+y6Bg
-	8BERV6iMOZVW4F7J6fYUGhUky6SiWvZMMEwYWSEWs9DnC3QW5KB+nN7marg5iQ4W7nQAFIPauVF
-	dE5cxgYG+KE5BTbZQzTwXByIRvSIx8pDvHKnt+nL8cv7Z5vCt+Z/0gnmFFsgdVJ8IAbwjjmlokL
-	gIPtj4j0LJ4023cWCA1GSDUbTcrFleatmOWveJlUU7Wynm0gjDbgC41Vs3aQFvFdaqjGTWpGDa0
-	B4bqR8ESJhy6WoqEj0aXh/G6U4ayNcCv6AbGOwdhhds=
-X-Google-Smtp-Source: AGHT+IG5dOnzb/UohUJfAgEwg/4nxH/vXRYsX6u1LpLZ0wyeDwcIBNO0TUyxGqk3oKRJ8lOF+E5H+Q==
-X-Received: by 2002:a17:907:86a7:b0:ac7:b47d:ca0e with SMTP id a640c23a62f3a-acad36daab0mr963247466b.57.1744543455266;
-        Sun, 13 Apr 2025 04:24:15 -0700 (PDT)
-Received: from xeon.. ([188.163.112.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb4110sm733529766b.91.2025.04.13.04.24.14
+        d=1e100.net; s=20230601; t=1744549706; x=1745154506;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=spwwddOcr2bxy5oZCe+k46ppxSM8rzeZ93fwj//zW8g=;
+        b=jAbNWjx39hiiLIWLlqEs1lboPf7ej7ACfa2b82mgXVS4FTPRO2cpwwCU3GY8Yi1dY9
+         4ygkbLgig3/CM1fTB4iQ2BSS9fzmoF99Y2lmOK5cqLQZf0DIXWirE8QJAtbqd/7OfmFH
+         oUcxosSOxt2iclxDLax+mo8vo5bInjugioXESKH+CHSoQcRMTUYZhHHiQ7fqz8AWtnsR
+         eUmAtUjgZNPyPYk7e1ry9OkzoLCHvDEJKq40LP2RnAUcGZjYUEkyzoeKQwWcTcs9v7TH
+         tgV2BVxURBv/+bo1qM252lZw2H5+U3k8BbEBkX54wPX1VgA1u/AyUjnKjRPIp9zCD3kX
+         W9dg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpUq57/NLAK0aeXzVHZGnyxNIKToSDR/w6IZ9TAjE/wFYclZkKEXdHclXZxCLLRk7Q95FEP281yGaxHAQu@vger.kernel.org, AJvYcCXPQk1WJSxF2rXiyOZGvppvm3YA4XcGHGVszbtfLJd9Xwk5k6QnlJtI5ej0nhCDif/dhn7pj4FYdPgT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzyIuI+PjXSbBNaOXtesbbMxJrtPp8habU9yzMA6zCv+phUN6u
+	KxYoInz1qku1b7lgD8z51TdIccy/hAW8NA2uHwml25xjiwUQk77k8Lwuf1vA
+X-Gm-Gg: ASbGnctuI1/MxUeCYwWq6IoJM28kkX1dE8m/T47AXu6cZf22JMJWVaIwqL3DedZ50Ye
+	EMu5Jh9QwET7eyKj40QK7+vXWjp/aruvw2tJs84QLxH4RXzMSEpRK13Auq3g20+QE17XTyPjNdn
+	1PXItIBxXSMlYKZewq/2DhfEx+EIqTC1/AeZZL9bX946baaj45FxbZcZnQe1Gbz6CgTK8v4JvGZ
+	WEee8B73Ova7PkifgkNHEzmXJX247orxaCNu11/P7ySPsaRfME9pHXIf7xrQVgaFiACDbOrgGQ5
+	7WVGtEpyGVho5R8F9vOoxrmfeIwRf4IzusAp6gTcaIv/PaPVv5gURUmfFjQ=
+X-Google-Smtp-Source: AGHT+IFI9TKLIfmu02S6gG9cSjfcuxz7gzLxeYfdxtdAlboYNo2/2d6+nltWLgOa1eaE2njphuuOjw==
+X-Received: by 2002:a05:6000:18ac:b0:390:eacd:7009 with SMTP id ffacd0b85a97d-39eaaebdc03mr6390604f8f.42.1744549705467;
+        Sun, 13 Apr 2025 06:08:25 -0700 (PDT)
+Received: from localhost.localdomain ([37.161.110.238])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf445737sm7739348f8f.88.2025.04.13.06.08.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Apr 2025 04:24:14 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
+        Sun, 13 Apr 2025 06:08:24 -0700 (PDT)
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	robh@kernel.org,
+	alexander.stein@ew.tq-group.com
+Cc: linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] drm: panel: Add support for Renesas R69328 based MIPI DSI panel
-Date: Sun, 13 Apr 2025 14:24:01 +0300
-Message-ID: <20250413112401.12543-5-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250413112401.12543-1-clamor95@gmail.com>
-References: <20250413112401.12543-1-clamor95@gmail.com>
+	Antoni Pokusinski <apokusinski01@gmail.com>
+Subject: [PATCH v4 0/3] add support for RV8063 SPI rtc
+Date: Sun, 13 Apr 2025 15:07:52 +0200
+Message-Id: <20250413130755.159373-1-apokusinski01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,348 +92,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Maxim Schwalm <maxim.schwalm@gmail.com>
+This patch series adds support for the Microcrystal RV8063 real time
+clock module with SPI interface. This device is very similar to RV8263
+(which however uses I2C), so I decided to extend the existing driver instead 
+of creating a new one.
 
-Driver adds support for panels with Renesas R69328 IC
-
-Currently supported compatible is:
-- jdi,dx12d100vm0eaa
-
-Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
+RV8063 datasheet: https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-8063-C7_App-Manual.pdf
 ---
- drivers/gpu/drm/panel/Kconfig                |  13 +
- drivers/gpu/drm/panel/Makefile               |   1 +
- drivers/gpu/drm/panel/panel-renesas-r69328.c | 282 +++++++++++++++++++
- 3 files changed, 296 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-renesas-r69328.c
+Changes since v3:
+* dt-binding: fix indentation in spi example
+* pcf85063 driver: add of_match_table
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index e8723f42cafb..86c66f818a11 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -618,6 +618,19 @@ config DRM_PANEL_RENESAS_R61307
- 	  This panel controller can be found in LG Optimus Vu P895 smartphone
- 	  in combination with LCD panel.
- 
-+config DRM_PANEL_RENESAS_R69328
-+	tristate "Renesas R69328 720x1280 DSI video mode panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for JDI dx12d100vm0eaa
-+	  IPS-LCD module with Renesas R69328 IC. The panel has a 720x1280
-+	  resolution and uses 24 bit RGB per pixel.
-+
-+	  This panel controller can be found in LG Optimus 4X P895 smartphone
-+	  in combination with LCD panel.
-+
- config DRM_PANEL_RONBO_RB070D30
- 	tristate "Ronbo Electronics RB070D30 panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 61d8853df1a7..37e4e13165a9 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -62,6 +62,7 @@ obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM68200) += panel-raydium-rm68200.o
- obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM692E5) += panel-raydium-rm692e5.o
- obj-$(CONFIG_DRM_PANEL_RAYDIUM_RM69380) += panel-raydium-rm69380.o
- obj-$(CONFIG_DRM_PANEL_RENESAS_R61307) += panel-renesas-r61307.o
-+obj-$(CONFIG_DRM_PANEL_RENESAS_R69328) += panel-renesas-r69328.o
- obj-$(CONFIG_DRM_PANEL_RONBO_RB070D30) += panel-ronbo-rb070d30.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS581VF01) += panel-samsung-ams581vf01.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS639RQ08) += panel-samsung-ams639rq08.o
-diff --git a/drivers/gpu/drm/panel/panel-renesas-r69328.c b/drivers/gpu/drm/panel/panel-renesas-r69328.c
-new file mode 100644
-index 000000000000..207067b29473
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-renesas-r69328.c
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/array_size.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+#define R69328_MACP		0xb0 /* Manufacturer Access CMD Protect */
-+#define   R69328_MACP_ON	0x03
-+#define   R69328_MACP_OFF	0x04
-+
-+#define R69328_GAMMA_SET_A	0xc8 /* Gamma Setting A */
-+#define R69328_GAMMA_SET_B	0xc9 /* Gamma Setting B */
-+#define R69328_GAMMA_SET_C	0xca /* Gamma Setting C */
-+
-+#define R69328_POWER_SET	0xd1
-+
-+struct renesas_r69328 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+
-+	struct regulator *vdd_supply;
-+	struct regulator *vddio_supply;
-+	struct gpio_desc *reset_gpio;
-+
-+	bool prepared;
-+};
-+
-+static inline struct renesas_r69328 *to_renesas_r69328(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct renesas_r69328, panel);
-+}
-+
-+static void renesas_r69328_reset(struct renesas_r69328 *priv)
-+{
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(priv->reset_gpio, 0);
-+	usleep_range(2000, 3000);
-+}
-+
-+static int renesas_r69328_prepare(struct drm_panel *panel)
-+{
-+	struct renesas_r69328 *priv = to_renesas_r69328(panel);
-+	struct device *dev = &priv->dsi->dev;
-+	int ret;
-+
-+	if (priv->prepared)
-+		return 0;
-+
-+	ret = regulator_enable(priv->vdd_supply);
-+	if (ret) {
-+		dev_err(dev, "failed to enable vdd power supply\n");
-+		return ret;
-+	}
-+
-+	usleep_range(10000, 11000);
-+
-+	ret = regulator_enable(priv->vddio_supply);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable vddio power supply\n");
-+		return ret;
-+	}
-+
-+	usleep_range(10000, 11000);
-+
-+	renesas_r69328_reset(priv);
-+
-+	priv->prepared = true;
-+	return 0;
-+}
-+
-+static int renesas_r69328_enable(struct drm_panel *panel)
-+{
-+	struct renesas_r69328 *priv = to_renesas_r69328(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = priv->dsi };
-+
-+	/* Set address mode */
-+	mipi_dsi_dcs_write_seq_multi(&ctx, MIPI_DCS_SET_ADDRESS_MODE, 0x00);
-+	mipi_dsi_dcs_set_pixel_format_multi(&ctx, MIPI_DCS_PIXEL_FMT_24BIT << 4);
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&ctx);
-+
-+	mipi_dsi_msleep(&ctx, 100);
-+
-+	/* MACP Off */
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_MACP, R69328_MACP_OFF);
-+
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_POWER_SET, 0x14, 0x1d,
-+					 0x21, 0x67, 0x11, 0x9a);
-+
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_GAMMA_SET_A, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00);
-+
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_GAMMA_SET_B, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00);
-+
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_GAMMA_SET_C, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00, 0x00, 0x1a,
-+					 0x20, 0x28, 0x25, 0x24, 0x26, 0x15, 0x13,
-+					 0x11, 0x18, 0x1e, 0x1c, 0x00);
-+
-+	/* MACP On */
-+	mipi_dsi_generic_write_seq_multi(&ctx, R69328_MACP, R69328_MACP_ON);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 50);
-+
-+	return 0;
-+}
-+
-+static int renesas_r69328_disable(struct drm_panel *panel)
-+{
-+	struct renesas_r69328 *priv = to_renesas_r69328(panel);
-+	struct mipi_dsi_multi_context ctx = { .dsi = priv->dsi };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&ctx);
-+	mipi_dsi_msleep(&ctx, 60);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
-+
-+	return 0;
-+}
-+
-+static int renesas_r69328_unprepare(struct drm_panel *panel)
-+{
-+	struct renesas_r69328 *priv = to_renesas_r69328(panel);
-+
-+	if (!priv->prepared)
-+		return 0;
-+
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+
-+	usleep_range(5000, 6000);
-+
-+	regulator_disable(priv->vddio_supply);
-+	regulator_disable(priv->vdd_supply);
-+
-+	priv->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode renesas_r69328_mode = {
-+	.clock = (720 + 92 + 62 + 4) * (1280 + 6 + 3 + 1) * 60 / 1000,
-+	.hdisplay = 720,
-+	.hsync_start = 720 + 92,
-+	.hsync_end = 720 + 92 + 62,
-+	.htotal = 720 + 92 + 62 + 4,
-+	.vdisplay = 1280,
-+	.vsync_start = 1280 + 6,
-+	.vsync_end = 1280 + 6 + 3,
-+	.vtotal = 1280 + 6 + 3 + 1,
-+	.width_mm = 59,
-+	.height_mm = 105,
-+};
-+
-+static int renesas_r69328_get_modes(struct drm_panel *panel,
-+				    struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &renesas_r69328_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs renesas_r69328_panel_funcs = {
-+	.prepare = renesas_r69328_prepare,
-+	.enable = renesas_r69328_enable,
-+	.disable = renesas_r69328_disable,
-+	.unprepare = renesas_r69328_unprepare,
-+	.get_modes = renesas_r69328_get_modes,
-+};
-+
-+static int renesas_r69328_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct renesas_r69328 *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->vdd_supply = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(priv->vdd_supply))
-+		return dev_err_probe(dev, PTR_ERR(priv->vdd_supply),
-+				     "Failed to get vdd-supply\n");
-+
-+	priv->vddio_supply = devm_regulator_get(dev, "vddio");
-+	if (IS_ERR(priv->vddio_supply))
-+		return dev_err_probe(dev, PTR_ERR(priv->vddio_supply),
-+				     "Failed to get vddio-supply\n");
-+
-+	priv->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-+						   GPIOD_OUT_LOW);
-+	if (IS_ERR(priv->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	priv->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, priv);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
-+
-+	drm_panel_init(&priv->panel, dev, &renesas_r69328_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ret = drm_panel_of_backlight(&priv->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&priv->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&priv->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void renesas_r69328_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct renesas_r69328 *priv = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&priv->panel);
-+}
-+
-+static const struct of_device_id renesas_r69328_of_match[] = {
-+	{ .compatible = "jdi,dx12d100vm0eaa" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, renesas_r69328_of_match);
-+
-+static struct mipi_dsi_driver renesas_r69328_driver = {
-+	.probe = renesas_r69328_probe,
-+	.remove = renesas_r69328_remove,
-+	.driver = {
-+		.name = "panel-renesas-r69328",
-+		.of_match_table = renesas_r69328_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(renesas_r69328_driver);
-+
-+MODULE_AUTHOR("Maxim Schwalm <maxim.schwalm@gmail.com>");
-+MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-+MODULE_DESCRIPTION("Renesas R69328-based panel driver");
-+MODULE_LICENSE("GPL");
+Changes since v2:
+* dt-binding: send as patch 1/3, not patch 3/3
+* dt-binding: fix indentation in spi example
+* dt-binding: fix order of enums: rv8063 before rv8263
+
+Changes since v1:
+* pcf85063 driver: drop MODULE_ALIAS, add id_table
+* dt-binding: add "pcf85063" to the commit message
+
+
+Antoni Pokusinski (3):
+  dt-bindings: rtc: pcf85063: add binding for RV8063
+  rtc: pcf85063: create pcf85063_i2c_probe
+  rtc: pcf85063: add support for RV8063
+
+ .../devicetree/bindings/rtc/nxp,pcf85063.yaml |  33 +++-
+ drivers/rtc/Kconfig                           |  21 +-
+ drivers/rtc/rtc-pcf85063.c                    | 182 +++++++++++++++---
+ 3 files changed, 199 insertions(+), 37 deletions(-)
+
 -- 
-2.43.0
+2.25.1
 
 
