@@ -1,534 +1,154 @@
-Return-Path: <devicetree+bounces-166385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3978FA8725C
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 17:21:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 262AEA8729A
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 18:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F2D916C091
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 15:21:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFFDA3A7475
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 16:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CC41DF971;
-	Sun, 13 Apr 2025 15:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC2B1DD539;
+	Sun, 13 Apr 2025 16:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PbGWRnN6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MikeDy2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70AD17A305;
-	Sun, 13 Apr 2025 15:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688BD1E5B9E
+	for <devicetree@vger.kernel.org>; Sun, 13 Apr 2025 16:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744557668; cv=none; b=uGSITnnLkYrJ/HyQj6Rr63nAXL/BX1+QaYtLeA4I0N9tM3GXC/4NHAMhL6h1YWPB9l7nfrvDYw4vWMDj7XCwXrHBi/pmeTgbkrZIWqOnhR52cjictUkU3MifiQccB61zRAG5q6W4wOUMKj7izyu9alWIXugw0+SPvHH59XBZGpg=
+	t=1744562128; cv=none; b=KbrJ2zosp8/Sixw1gw6NL7uCrODMPqsWAH0T4FuW8rUiTWGXvamtICHGZDGs83N0WQ2L7xQ1VGQCiyaOGGu9DhSIMa1TagStCb7tv9yeHv+gj4rmbP0xvMQXzzB5djlqtAKGyRquWHzS1POakgwdlS0tYn0MIwZLiHsBLvb+q8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744557668; c=relaxed/simple;
-	bh=mWSV7q4R7AU22zsW1y55cXlr9PzlUODn/8fSB8Oz9zc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JmeYYd7dppodxyxEhak16qqj4sc5a6yp334Ep/LN1tWVaGROgzNr5oHQTB0n+gN5qfrrA6pU1LEtYDrwQPpQdKfb43ljnlJ7aWsZHKfoLdAXRF8HRjvUfe4SO1eMMMcrBjWdHO84mkyGBnxme1OTBL77HOlfiafc2o2AeUhmqYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PbGWRnN6; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so1994684f8f.1;
-        Sun, 13 Apr 2025 08:21:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744557664; x=1745162464; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ZxsfLHGhHdw+hcp2OihXnDXrtegA0EYiD0UHSzUaZ4=;
-        b=PbGWRnN6xXhA+QBU0lX1202LTr+jXZJM/CuaKN2Q8TffC/XZTIncbp5bfgd9rgztIB
-         H5iMdBfLMfpFexiSlIonjXJ54Chje+cz5hszUXZ7/rutd+0markeWW4uYJ/AIbM3q4rg
-         A66CaQf0JP+7Q2HJ/7XGCZOWHZ0jLLnvw9p8AkbXc6tVl+HA7IMmiEjALt+OCXJ68VIo
-         8pMo4iSjFhDYAZshfn1RMspJKbdhimzLxJaNWIh7s+je7cToFul99jad24eyyDi343L7
-         v9H7bLVUPF1CROWeZsqKgYmgnGo3zILu6yl8WFcYNt32DjLcwCCihNlGD3yfjf+rXIpV
-         B5wg==
+	s=arc-20240116; t=1744562128; c=relaxed/simple;
+	bh=RB0Is3RsXE4ayIze9bhVA06wlRHIFRumqGpp63ItTVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YFZ9HbQwJB7GOCQy6sSbIDvzfHk4yWkVvm6JN7/5PP0p0nyvprJUuOher5mk72uetekOGUV4PveQrv4amPWReX7pf/gM8smH74rqvcMRyFVZtEJbSvuRIZsxmy6UydJNdGfpV5Dfx8DbS0u0Ef0YU0LlZQ+8rKfxMxyCizY5Szo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MikeDy2o; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53DEoHdN015083
+	for <devicetree@vger.kernel.org>; Sun, 13 Apr 2025 16:35:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=HHDGRlqVtQyxh83zlwnFTMpQ
+	Jn3llTrejkQ0QtY9TUg=; b=MikeDy2oM6IDwZvBeICfrVy6g2JuSn1wycCTDOJy
+	ewpYcbNKm1lkqdvXr3OCB4shtXjbWN+TBdYtBVgcPSAIi6/zQM4I56WAMY5FjJ4h
+	dn7FDu0fQaDrk9cbqdTUNneHMfwnhGAHMRgtP9+qGg0YI2MiVtKSWjj7orm7QRUX
+	ZGYJvM8W3c972lOf/HW79X8durgIMCEro9e2RyIRBJM4dT+kPhHllv31StHI1gpl
+	YVcdKhNbB2lQZ4txeZXjvuvtLb2NNGTae32ixYaZr6rsvoaJahePKgP/MXwS8FxG
+	TttBkWSNZP1X/DghyQqyFoUQgRtCXFdMHmN7mxebRRJ+EQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6ad3w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 13 Apr 2025 16:35:26 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c544d2c34fso526749485a.1
+        for <devicetree@vger.kernel.org>; Sun, 13 Apr 2025 09:35:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744557664; x=1745162464;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ZxsfLHGhHdw+hcp2OihXnDXrtegA0EYiD0UHSzUaZ4=;
-        b=e+0Vtiis094a4b0m9XjI0Ssk63YPesCQZU+532YV8oMVqASGl0+pjVg7BSIwZg8ccO
-         wrek+MZscIJLpLipaaYIZcS9eReM0eOpDw+w+L3CSRuJQMEsxACCwFG/EnuJ5U4RU8z2
-         WZYGbg5JsGRRcuYTUmlVOmgjTv/MNJUO+kXQ4odeK7AxFF9vw1rldrHWnuh6fxNkpxjo
-         lQsK+WOqX2bJn8/EP7PnpQzy56pNMF2tAEOLo8kWrF06i0PyP3CeKKx43QIkRNSTIpc3
-         8+wOdDOkJ9rUaYpcuKBAxkJvkw6PTkbA6855GjkQTLdRJWxrqHtdRnMIXGSCZLLDOk73
-         Ydag==
-X-Forwarded-Encrypted: i=1; AJvYcCUc/GcMZJR2T2lN7K6o4qwNHjc5xA9DIqkrdyxIRDp8MwrsBYCiKkUM/Z7erP+F6FfAGTNLWF9rJ3o=@vger.kernel.org, AJvYcCXChZaUdVKqjFxs2alAgVifwlUXGqYdmWnFeYpQAmTy2R7NDLXDpGNhMrY+ABjuRfGJ5H2z1ISslwgX@vger.kernel.org, AJvYcCXN5GDv9zEZA+1+zwXSX52Xzu6QIh2e8ctpkoirn3kJ8plWDmNu2fdjOH6O/VH/FfhVU89W7WzsaoJLokA=@vger.kernel.org, AJvYcCXSZTZP29afsPNuHtSlOXEDkutFuzITNsVcXqeM+SDNPbzLc8aXG54dVqKN4QDfmh7KHCQoxfNpc/KYOxRi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwosGJQdfSFXZQ7P6MCqa3ewjDy+xoLXSa6eG9Q5vnYkbKcpcua
-	hvrjiwG+O6ibAzk66ouAtTLGEz/wOfoi95LOo6M0Xd/2dG13qWmHdAFHQhJ5lFZqynKWzDe4i8M
-	jKtFxoTl3av56Zgd8kV3CoLoLhpo=
-X-Gm-Gg: ASbGncuSeNejlswiSnm2mZmvrLpk/6ieSuaKaqIvBxlxDeaf3k2iXhwiMwEwLlm4e03
-	m28W4CKTVGeu+Cqr4CJ2+yC/WYgvVYWRMIgdoONUWv3Iid517Bv48gq8n4V7c9FU7i+6WCJ3bh1
-	LLx8ap0bJSWtZ/lWdYT5M2z9ZJ4LX1pSht/A==
-X-Google-Smtp-Source: AGHT+IGjHNiNv8xmMNLFj/VRqKMFKwkKPYf8eGYGtYSTGt34DuGz6ijuodgiCwqBlQh9UvOz9mRx87GXDJeXuB50mYA=
-X-Received: by 2002:a05:6000:40d9:b0:39c:1258:2dc9 with SMTP id
- ffacd0b85a97d-39eaaeca292mr7797745f8f.58.1744557663831; Sun, 13 Apr 2025
- 08:21:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744562125; x=1745166925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HHDGRlqVtQyxh83zlwnFTMpQJn3llTrejkQ0QtY9TUg=;
+        b=KPlK+C9Ld+OwEvDza+zNdJoHUGn+BZc2z4a3TaStOdrq1Ov2+wqCrgWgVZJbaROqaF
+         ujaqv4HjsoWBpBL4OCGUn9oEXZ6kAQNV2A2uPRBrcBDnEwmAn0c24bzZmp/ivR3z2y4w
+         Pb6FyWgrUAZKl2Ng05NgM2K7G/TNwROqrTpVhvoSqjoWCdljUHxSIDw95+bz4mt+MHlu
+         7WLxZ1zhwn4lpnqTQ6/haz22heVe4SC6x8s59d7xazJdcvdj9UjGK6Jwp0Iv7TWWxBaX
+         jH8kd/JugjCn8aYxOxqCI7wX7XRlND3nHf5D0WG8cCqPNW5fy3x3keIYAgkw1C2tRiw/
+         hbKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXh9C0LfVDkkbIVlAIpiqSpdmz9ENJ+mIprGa+NATvwPVNsuV9nu/+/UKItgtG67j5EAtXoKT5BfjTh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyrhwrw1/OJzdNOBD2XTHIr5YHhggKFf3sCeMRYgxNOFlrlb9ao
+	8ZjSgwvsW0o9gKQgghlaj78gjdbL4ILxyyr0+kau8iqmpT/RYD0a+dtvaWBIPNl3aVdpD9fQj1y
+	ExdO++CAljLlp4FF9f7zay3miVRjGcQ2T4pBBF8AdtsNA5jB2N3PPffVv/Ika
+X-Gm-Gg: ASbGncvWA8EbjUNh35/2SV7HS94LDzjeiI8jRtuNIXsRoO+7sBykUM1908fGiZGdHej
+	F9S/eKCwWRoxicEvfX6DpyZaYwR8eA6vLvv1+aIy/zVII21vnve8xBZnnL0Aaz1LMHMGVcW9Ur6
+	6ArbfEkhwLQ1pOy8kSjrregATOnp+itIDpC2HJ7cOEpUnqcecFiDIVYT/v/dhOvn6Az79pqdPZJ
+	3T64lhAyZKpM8gqeyyKLP2V3Xw3MubLAnSgJ6sFzH6UsjvJxNW8ZLcPYcrCfP05pwatJph/pOVv
+	LxWYwfnHYwqFW4xlsmq8Zuyxzq3rOotQ0vG4E0FE8YstIVGNyrK9XNfWKGKBm91RZa5b9kkSFY8
+	=
+X-Received: by 2002:a05:620a:2684:b0:7c5:50ab:ddf7 with SMTP id af79cd13be357-7c7af20babcmr1365619185a.52.1744562125100;
+        Sun, 13 Apr 2025 09:35:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZ2SmFOwzSyR099QmLh/foSM29GY2hyA1aduFy1joD+oyH331vhHReKlrLXjjTN89o+aPFZg==
+X-Received: by 2002:a05:620a:2684:b0:7c5:50ab:ddf7 with SMTP id af79cd13be357-7c7af20babcmr1365615385a.52.1744562124627;
+        Sun, 13 Apr 2025 09:35:24 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d23c8afsm888868e87.101.2025.04.13.09.35.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Apr 2025 09:35:22 -0700 (PDT)
+Date: Sun, 13 Apr 2025 19:35:19 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+        Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v5 2/9] arm64: dts: qcom: qcs6490-rb3gen2: Add TC9563
+ PCIe switch node
+Message-ID: <ethalrlraf4lnaefcmks4buffqfsuxasmfjmajhlz66zoqtzvi@37hh57nbfrmd>
+References: <20250412-qps615_v4_1-v5-0-5b6a06132fec@oss.qualcomm.com>
+ <20250412-qps615_v4_1-v5-2-5b6a06132fec@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250413111033.11408-1-clamor95@gmail.com> <20250413111033.11408-4-clamor95@gmail.com>
- <1d27b3b5-0ece-4abe-acd7-3a3c86490dae@oracle.com>
-In-Reply-To: <1d27b3b5-0ece-4abe-acd7-3a3c86490dae@oracle.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sun, 13 Apr 2025 18:20:52 +0300
-X-Gm-Features: ATxdqUH5j-izEnwu2HVtZQvn83SOvfJ_NgRHUbo_7xu1_ql0JGxo0yv3KOatEzA
-Message-ID: <CAPVz0n3+gbAmxqevwXnepJUpr+rEtM5znMf82gvTFRzANbB4ig@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] power/supply: Add driver for Pegatron Chagall battery
-To: ALOK TIWARI <alok.a.tiwari@oracle.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
-	Heiko Stuebner <heiko@sntech.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250412-qps615_v4_1-v5-2-5b6a06132fec@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: krGkTl9YNDzafZJ9FbcL5coRamR-oPMS
+X-Proofpoint-GUID: krGkTl9YNDzafZJ9FbcL5coRamR-oPMS
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=67fbe7ce cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=2cuD_6P_uzM7HzBj738A:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-13_07,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504130126
 
-=D0=BD=D0=B4, 13 =D0=BA=D0=B2=D1=96=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 18:1=
-6 ALOK TIWARI <alok.a.tiwari@oracle.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
->
->
-> subject  -> "power: supply:"
->
-> On 13-04-2025 16:40, Svyatoslav Ryhel wrote:
-> > The Pegatron Chagall is an Android tablet utilizing a customized Cypres=
-s
-> > CG7153AM microcontroller (MCU) as its battery fuel gauge. It supports a
-> > single-cell battery and features a dual-color charging LED.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >   drivers/power/supply/Kconfig           |  12 +
-> >   drivers/power/supply/Makefile          |   1 +
-> >   drivers/power/supply/chagall-battery.c | 308 ++++++++++++++++++++++++=
-+
-> >   3 files changed, 321 insertions(+)
-> >   create mode 100644 drivers/power/supply/chagall-battery.c
-> >
-> > diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfi=
-g
-> > index 9f2eef6787f7..d0fc9db524bd 100644
-> > --- a/drivers/power/supply/Kconfig
-> > +++ b/drivers/power/supply/Kconfig
-> > @@ -107,6 +107,18 @@ config BATTERY_ACT8945A
-> >         Say Y here to enable support for power supply provided by
-> >         Active-semi ActivePath ACT8945A charger.
-> >
-> > +config BATTERY_CHAGALL
-> > +     tristate "Pegatron Chagall battery driver"
-> > +     depends on I2C
-> > +     depends on LEDS_CLASS
-> > +     help
-> > +       Say Y to include support for Cypress CG7153AM IC based battery
-> > +       fuel gauge with custom firmware found in Pegatron Chagall based
-> > +       tablet line.
-> > +
-> > +       This driver can also be built as a module. If so, the module wi=
-ll be
-> > +       called chagall-battery.
-> > +
-> >   config BATTERY_CPCAP
-> >       tristate "Motorola CPCAP PMIC battery driver"
-> >       depends on MFD_CPCAP && IIO
-> > diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makef=
-ile
-> > index 59c4a9f40d28..4ecf48a33fdd 100644
-> > --- a/drivers/power/supply/Makefile
-> > +++ b/drivers/power/supply/Makefile
-> > @@ -23,6 +23,7 @@ obj-$(CONFIG_CHARGER_ADP5061)       +=3D adp5061.o
-> >   obj-$(CONFIG_BATTERY_ACT8945A)      +=3D act8945a_charger.o
-> >   obj-$(CONFIG_BATTERY_AXP20X)        +=3D axp20x_battery.o
-> >   obj-$(CONFIG_CHARGER_AXP20X)        +=3D axp20x_ac_power.o
-> > +obj-$(CONFIG_BATTERY_CHAGALL)        +=3D chagall-battery.o
-> >   obj-$(CONFIG_BATTERY_CPCAP) +=3D cpcap-battery.o
-> >   obj-$(CONFIG_BATTERY_CW2015)        +=3D cw2015_battery.o
-> >   obj-$(CONFIG_BATTERY_DS2760)        +=3D ds2760_battery.o
-> > diff --git a/drivers/power/supply/chagall-battery.c b/drivers/power/sup=
-ply/chagall-battery.c
-> > new file mode 100644
-> > index 000000000000..1a278331efe7
-> > --- /dev/null
-> > +++ b/drivers/power/supply/chagall-battery.c
-> > @@ -0,0 +1,308 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
->
-> Blank line require
->
-> > +#include <linux/array_size.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/devm-helpers.h>
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/leds.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/power_supply.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define CHAGALL_REG_LED_AMBER                                0x60
-> > +#define CHAGALL_REG_LED_WHITE                                0x70
-> > +#define CHAGALL_REG_BATTERY_TEMPERATURE                      0xa2
-> > +#define CHAGALL_REG_BATTERY_VOLTAGE                  0xa4
-> > +#define CHAGALL_REG_BATTERY_CURRENT                  0xa6
-> > +#define CHAGALL_REG_BATTERY_CAPACITY                 0xa8
-> > +#define CHAGALL_REG_BATTERY_CHARGING_CURRENT         0xaa
-> > +#define CHAGALL_REG_BATTERY_CHARGING_VOLTAGE         0xac
-> > +#define CHAGALL_REG_BATTERY_STATUS                   0xae
-> > +#define   BATTERY_DISCHARGING                                BIT(6)
-> > +#define   BATTERY_FULL_CHARGED                               BIT(5)
-> > +#define   BATTERY_FULL_DISCHARGED                    BIT(4)
->
-> ' ' after "#define", remove extra ' '
->
-> > +#define CHAGALL_REG_BATTERY_REMAIN_CAPACITY          0xb0
-> > +#define CHAGALL_REG_BATTERY_FULL_CAPACITY            0xb2
-> > +#define CHAGALL_REG_MAX_COUNT                                0xb4
-> > +
-> > +#define CHAGALL_BATTERY_DATA_REFRESH                 5000
-> > +#define TEMP_CELSIUS_OFFSET                          2731
-> > +
-> > +static const struct regmap_config chagall_battery_regmap_config =3D {
-> > +     .reg_bits =3D 8,
-> > +     .val_bits =3D 8,
-> > +     .max_register =3D CHAGALL_REG_MAX_COUNT,
-> > +     .reg_format_endian =3D REGMAP_ENDIAN_LITTLE,
-> > +     .val_format_endian =3D REGMAP_ENDIAN_LITTLE,
-> > +};
-> > +
-> > +struct chagall_battery_data {
-> > +     struct regmap *regmap;
-> > +     struct led_classdev amber_led;
-> > +     struct led_classdev white_led;
-> > +     struct power_supply *battery;
-> > +     struct delayed_work poll_work;
-> > +     u16 last_state;
-> > +};
-> > +
-> > +static void chagall_led_set_brightness_amber(struct led_classdev *led,
-> > +                                          enum led_brightness brightne=
-ss)
-> > +{
-> > +     struct chagall_battery_data *cg =3D
-> > +             container_of(led, struct chagall_battery_data, amber_led)=
-;
-> > +
-> > +     regmap_write(cg->regmap, CHAGALL_REG_LED_AMBER, brightness);
-> > +}
-> > +
-> > +static void chagall_led_set_brightness_white(struct led_classdev *led,
-> > +                                          enum led_brightness brightne=
-ss)
-> > +{
-> > +     struct chagall_battery_data *cg =3D
-> > +             container_of(led, struct chagall_battery_data, white_led)=
-;
-> > +
-> > +     regmap_write(cg->regmap, CHAGALL_REG_LED_WHITE, brightness);
-> > +}
-> > +
-> > +static void chagall_leds_status_update(struct chagall_battery_data *cg=
-, int state)
-> > +{
-> > +     switch (state) {
-> > +     case POWER_SUPPLY_STATUS_FULL:
-> > +             led_set_brightness(&cg->amber_led, LED_OFF);
-> > +             led_set_brightness(&cg->white_led,  LED_ON);
-> > +             break;
-> > +
->
-> no Blank line.
->
-> > +     case POWER_SUPPLY_STATUS_CHARGING:
-> > +             led_set_brightness(&cg->white_led, LED_OFF);
-> > +             led_set_brightness(&cg->amber_led,  LED_ON);
-> > +             break;
-> > +
->
-> no Blank line.
->
-> > +     default:
-> > +             led_set_brightness(&cg->amber_led, LED_OFF);
-> > +             led_set_brightness(&cg->white_led, LED_OFF);
-> > +             break;
-> > +     }
-> > +}
-> > +
-> > +static const enum power_supply_property chagall_battery_properties[] =
-=3D {
-> > +     POWER_SUPPLY_PROP_STATUS,
-> > +     POWER_SUPPLY_PROP_PRESENT,
-> > +     POWER_SUPPLY_PROP_VOLTAGE_NOW,
-> > +     POWER_SUPPLY_PROP_VOLTAGE_MAX,
-> > +     POWER_SUPPLY_PROP_CURRENT_NOW,
-> > +     POWER_SUPPLY_PROP_CURRENT_MAX,
-> > +     POWER_SUPPLY_PROP_CAPACITY,
-> > +     POWER_SUPPLY_PROP_TEMP,
-> > +     POWER_SUPPLY_PROP_CHARGE_FULL,
-> > +     POWER_SUPPLY_PROP_CHARGE_NOW,
-> > +};
-> > +
-> > +static const unsigned int chagall_battery_prop_offs[] =3D {
-> > +     [POWER_SUPPLY_PROP_TEMP] =3D CHAGALL_REG_BATTERY_TEMPERATURE,
-> > +     [POWER_SUPPLY_PROP_VOLTAGE_NOW] =3D CHAGALL_REG_BATTERY_VOLTAGE,
-> > +     [POWER_SUPPLY_PROP_CURRENT_NOW] =3D CHAGALL_REG_BATTERY_CURRENT,
-> > +     [POWER_SUPPLY_PROP_CAPACITY] =3D CHAGALL_REG_BATTERY_CAPACITY,
-> > +     [POWER_SUPPLY_PROP_CURRENT_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
-CURRENT,
-> > +     [POWER_SUPPLY_PROP_VOLTAGE_MAX] =3D CHAGALL_REG_BATTERY_CHARGING_=
-VOLTAGE,
-> > +     [POWER_SUPPLY_PROP_STATUS] =3D CHAGALL_REG_BATTERY_STATUS,
-> > +     [POWER_SUPPLY_PROP_CHARGE_NOW] =3D CHAGALL_REG_BATTERY_REMAIN_CAP=
-ACITY,
-> > +     [POWER_SUPPLY_PROP_CHARGE_FULL] =3D CHAGALL_REG_BATTERY_FULL_CAPA=
-CITY,
-> > +};
-> > +
-> > +static int chagall_battery_get_value(struct chagall_battery_data *cg,
-> > +                                  enum power_supply_property psp, u32 =
-*val)
-> > +{
-> > +     if (psp >=3D ARRAY_SIZE(chagall_battery_prop_offs))
-> > +             return -EINVAL;
-> > +     if (!chagall_battery_prop_offs[psp])
-> > +             return -EINVAL;
-> > +
-> > +     /* Battery data is stored in 2 consecutive registers with little-=
-endian */
-> > +     return regmap_bulk_read(cg->regmap, chagall_battery_prop_offs[psp=
-], val, 2);
-> > +}
-> > +
-> > +static int chagall_battery_get_property(struct power_supply *psy,
-> > +                                     enum power_supply_property psp,
-> > +                                     union power_supply_propval *val)
-> > +{
-> > +     struct chagall_battery_data *cg =3D power_supply_get_drvdata(psy)=
-;
-> > +     int ret;
-> > +
-> > +     switch (psp) {
-> > +     case POWER_SUPPLY_PROP_PRESENT:
-> > +             val->intval =3D 1;
-> > +             break;
-> > +
-> > +     default:
-> > +             ret =3D chagall_battery_get_value(cg, psp, &val->intval);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             switch (psp) {
-> > +             case POWER_SUPPLY_PROP_TEMP:
-> > +                     val->intval -=3D TEMP_CELSIUS_OFFSET;
-> > +                     break;
-> > +
-> > +             case POWER_SUPPLY_PROP_VOLTAGE_MAX:
-> > +             case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> > +             case POWER_SUPPLY_PROP_CURRENT_MAX:
-> > +             case POWER_SUPPLY_PROP_CURRENT_NOW:
-> > +             case POWER_SUPPLY_PROP_CHARGE_FULL:
-> > +             case POWER_SUPPLY_PROP_CHARGE_NOW:
-> > +                     val->intval *=3D 1000;
-> > +                     break;
-> > +
-> > +             case POWER_SUPPLY_PROP_STATUS:
-> > +                     if (val->intval & BATTERY_FULL_CHARGED)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_FULL;
-> > +                     else if (val->intval & BATTERY_FULL_DISCHARGED)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_NOT_C=
-HARGING;
-> > +                     else if (val->intval & BATTERY_DISCHARGING)
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_DISCH=
-ARGING;
-> > +                     else
-> > +                             val->intval =3D POWER_SUPPLY_STATUS_CHARG=
-ING;
-> > +                     break;
-> > +
->
-> no blank line is required between a case label.
->
-> > +             default:
-> > +                     break;
-> > +             }
-> > +
-> > +             break;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void chagall_battery_poll_work(struct work_struct *work)
-> > +{
-> > +     struct chagall_battery_data *cg =3D
-> > +             container_of(work, struct chagall_battery_data, poll_work=
-.work);
-> > +     u32 state;
-> > +     int ret;
-> > +
-> > +     ret =3D chagall_battery_get_value(cg, POWER_SUPPLY_PROP_STATUS, &=
-state);
-> > +     if (ret)
-> > +             return;
-> > +
-> > +     if (state & BATTERY_FULL_CHARGED)
-> > +             state =3D POWER_SUPPLY_STATUS_FULL;
-> > +     else if (state & BATTERY_DISCHARGING)
-> > +             state =3D POWER_SUPPLY_STATUS_DISCHARGING;
-> > +     else
-> > +             state =3D POWER_SUPPLY_STATUS_CHARGING;
-> > +
-> > +     if (cg->last_state !=3D state) {
-> > +             cg->last_state =3D state;
-> > +             power_supply_changed(cg->battery);
-> > +     }
-> > +
-> > +     chagall_leds_status_update(cg, state);
-> > +
-> > +     /* continuously send uevent notification */
-> > +     schedule_delayed_work(&cg->poll_work,
-> > +                           msecs_to_jiffies(CHAGALL_BATTERY_DATA_REFRE=
-SH));
-> > +}
-> > +
-> > +static const struct power_supply_desc chagall_battery_desc =3D {
-> > +     .name =3D "chagall-battery",
-> > +     .type =3D POWER_SUPPLY_TYPE_BATTERY,
-> > +     .properties =3D chagall_battery_properties,
-> > +     .num_properties =3D ARRAY_SIZE(chagall_battery_properties),
-> > +     .get_property =3D chagall_battery_get_property,
-> > +     .external_power_changed =3D power_supply_changed,
-> > +};
-> > +
-> > +static int chagall_battery_probe(struct i2c_client *client)
-> > +{
-> > +     struct chagall_battery_data *cg;
-> > +     struct device *dev =3D &client->dev;
-> > +     struct power_supply_config cfg =3D { };
-> > +     int ret;
-> > +
-> > +     cg =3D devm_kzalloc(dev, sizeof(*cg), GFP_KERNEL);
-> > +     if (!cg)
-> > +             return -ENOMEM;
-> > +
-> > +     cfg.drv_data =3D cg;
-> > +     cfg.fwnode =3D dev_fwnode(dev);
-> > +
-> > +     i2c_set_clientdata(client, cg);
-> > +
-> > +     cg->regmap =3D devm_regmap_init_i2c(client, &chagall_battery_regm=
-ap_config);
-> > +     if (IS_ERR(cg->regmap))
-> > +             return dev_err_probe(dev, PTR_ERR(cg->regmap), "cannot al=
-locate regmap\n");
-> > +
-> > +     cg->last_state =3D POWER_SUPPLY_STATUS_UNKNOWN;
-> > +     cg->battery =3D devm_power_supply_register(dev, &chagall_battery_=
-desc, &cfg);
-> > +     if (IS_ERR(cg->battery))
-> > +             return dev_err_probe(dev, PTR_ERR(cg->battery), "failed t=
-o register power supply\n");
-> > +
-> > +     cg->amber_led.name =3D "power::amber";
-> > +     cg->amber_led.max_brightness =3D 1;
-> > +     cg->amber_led.flags =3D LED_CORE_SUSPENDRESUME;
-> > +     cg->amber_led.brightness_set =3D chagall_led_set_brightness_amber=
-;
-> > +
-> > +     ret =3D devm_led_classdev_register(dev, &cg->amber_led);
-> > +     if (ret)
-> > +             return dev_err_probe(dev, ret, "failed to register amber =
-LED\n");
-> > +
-> > +     cg->white_led.name =3D "power::white";
-> > +     cg->white_led.max_brightness =3D 1;
-> > +     cg->white_led.flags =3D LED_CORE_SUSPENDRESUME;
-> > +     cg->white_led.brightness_set =3D chagall_led_set_brightness_white=
-;
-> > +
-> > +     ret =3D devm_led_classdev_register(dev, &cg->white_led);
-> > +     if (ret)
-> > +             return dev_err_probe(dev, ret, "failed to register white =
-LED\n");
-> > +
-> > +     led_set_brightness(&cg->amber_led, LED_OFF);
-> > +     led_set_brightness(&cg->white_led, LED_OFF);
-> > +
-> > +     ret =3D devm_delayed_work_autocancel(dev, &cg->poll_work, chagall=
-_battery_poll_work);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     schedule_delayed_work(&cg->poll_work, msecs_to_jiffies(CHAGALL_BA=
-TTERY_DATA_REFRESH));
->
-> a '\n' before return is customary
->
-> > +     return 0;
-> > +}
-> > +
-> > +static int __maybe_unused chagall_battery_suspend(struct device *dev)
-> > +{
-> > +     struct i2c_client *client =3D to_i2c_client(dev);
-> > +     struct chagall_battery_data *cg =3D i2c_get_clientdata(client);
-> > +
-> > +     cancel_delayed_work_sync(&cg->poll_work);
->
-> a '\n' before return
->
-> > +     return 0;
-> > +}
-> > +
-> > +static int __maybe_unused chagall_battery_resume(struct device *dev)
-> > +{
-> > +     struct i2c_client *client =3D to_i2c_client(dev);
-> > +     struct chagall_battery_data *cg =3D i2c_get_clientdata(client);
-> > +
-> > +     schedule_delayed_work(&cg->poll_work, msecs_to_jiffies(CHAGALL_BA=
-TTERY_DATA_REFRESH));
->
-> a '\n' before return is customary
->
-> > +     return 0;
-> > +}
-> > +
-> > +static SIMPLE_DEV_PM_OPS(chagall_battery_pm_ops,
-> > +                      chagall_battery_suspend, chagall_battery_resume)=
-;
-> > +
-> > +static const struct of_device_id chagall_of_match[] =3D {
-> > +     { .compatible =3D "pegatron,chagall-ec" },
-> > +     { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, chagall_of_match);
-> > +
-> > +static struct i2c_driver chagall_battery_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "chagall-battery",
-> > +             .pm =3D &chagall_battery_pm_ops,
-> > +             .of_match_table =3D chagall_of_match,
-> > +     },
-> > +     .probe =3D chagall_battery_probe,
-> > +};
-> > +module_i2c_driver(chagall_battery_driver);
-> > +
-> > +MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-> > +MODULE_DESCRIPTION("Pegatron Chagall fuel gauge driver");
-> > +MODULE_LICENSE("GPL");
->
->
->
-> Thanks,
-> Alok
+On Sat, Apr 12, 2025 at 07:19:51AM +0530, Krishna Chaitanya Chundru wrote:
+> Add a node for the TC9563 PCIe switch, which has three downstream ports.
+> Two embedded Ethernet devices are present on one of the downstream ports.
+> As all these ports are present in the node represent the downstream
+> ports and embedded endpoints.
+> 
+> Power to the TC9563 is supplied through two LDO regulators, controlled by
+> two GPIOs, which are added as fixed regulators. Configure the TC9563
+> through I2C.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 129 +++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi         |   2 +-
+>  2 files changed, 130 insertions(+), 1 deletion(-)
+> 
 
-Acknowledged. Thank you.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+-- 
+With best wishes
+Dmitry
 
