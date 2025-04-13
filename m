@@ -1,107 +1,79 @@
-Return-Path: <devicetree+bounces-166416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32A46A873B7
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 22:00:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC645A873C5
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 22:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FB96170EAD
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 20:00:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 783E83B36B7
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 20:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9F51F3FD9;
-	Sun, 13 Apr 2025 20:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA951EF38E;
+	Sun, 13 Apr 2025 20:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I7etbMb4"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZcGKUAeh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C904B1EEA39;
-	Sun, 13 Apr 2025 20:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A92C78F4C;
+	Sun, 13 Apr 2025 20:09:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744574421; cv=none; b=gGsdImHwFSBWuC7bz0nNJx2ihrTtF0q7kLaess+IYJhH48pnDiZEYWfXadiNNhceZ8f1m2dn4oEdISLgRv260MpIR1WuR90bd/A4MRjdG1FIPmD52/SXBfENUrS/1GX1uHHnqJhEhwqS9EBvNNHyw3t8qi63vmyP9MR0kJkdv8w=
+	t=1744574963; cv=none; b=AjTRXL/orHFXYqAVoH4voQN1Mc/Sq5KwJv9Yy+XoI8C2y7q6Cfm7w3eYG3au7s0wG+n47Rr56Oa1axr/3o6dw8gAu1Fi9Ce/5JSGt1bTYKxqNP5YQOu1L6epHJiS6/xhkDGE33Q+zMFV9SxAoqNatbRNSMS/2KUiX4Rn83NqSuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744574421; c=relaxed/simple;
-	bh=+Fq0MhmsH1itLSjdDC0e0AQDvHDYfYtdZa0fZk4m4G8=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UIBc5r6tPvPY245XbyXxfUnG3+AFRh1cUZuSuLexWmrLhX0pEuj9eVBjPl1/g/SJKMpaVUWHnXBxkKpE5xu/h80ZQzuMwCBrvBDRPS6I2OjYjCaqeJAWWtXCPD9/8N/HCGydSYYZHcHBIeq9j1qPZ6VpPplt3vq5JCZhPcy2u9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I7etbMb4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18373C4CEE7;
-	Sun, 13 Apr 2025 20:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744574421;
-	bh=+Fq0MhmsH1itLSjdDC0e0AQDvHDYfYtdZa0fZk4m4G8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I7etbMb4XdA3KK4rodjXK+gs7WJKkTNURpYg1Dm3lmMi0djrpCanbW0EMa1nU7NgG
-	 2m9IMgPYgfqHVSx3hNRxMTiGSv596a7uN8rGHOVN4C2Y6+5refmXtRlnnNYx1t68WI
-	 ThOA3/zPpfS2ql5xJy7ecnRSV9lHnVMRbDbJW7qX/GlkALVy1Xyl8JfuN9V1NAZ7Fp
-	 VFjpzfocCRa1cc4gVTkn9hclofT6PEcML1iQJb1X4y4mGvpGdXlGssK20oAL4hI2py
-	 vFuYL+IiJOje9CSjjDInkdrDbO15+Giymo5Njey3/KkhpB48k0zKHvb2tTdb+uodP4
-	 0+q2UgFBlyqSg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1u43V4-0051hr-Fo;
-	Sun, 13 Apr 2025 21:00:18 +0100
-Date: Sun, 13 Apr 2025 21:00:23 +0100
-Message-ID: <87v7r7ygq0.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org,	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,	linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev,	Alyssa Rosenzweig <alyssa@rosenzweig.io>,	Janne
- Grunau <j@jannau.net>,	Hector Martin <marcan@marcan.st>,	Sven Peter
- <sven@svenpeter.dev>,	Bjorn Helgaas <bhelgaas@google.com>,	Lorenzo
- Pieralisi <lpieralisi@kernel.org>,	Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?=
- <kw@linux.com>,	Rob Herring <robh@kernel.org>,	Krzysztof Kozlowski
- <krzk+dt@kernel.org>,	Mark Kettenis <mark.kettenis@xs4all.nl>
-Subject: Re: [PATCH v3 01/13] PCI: apple: Set only available ports up
-In-Reply-To: <k3wj3wkk3cymyacboalkhe2fa7jvkpuehq4knpsouoyhvoavpl@bafg4oakp4lr>
-References: <20250401091713.2765724-1-maz@kernel.org>
-	<20250401091713.2765724-2-maz@kernel.org>
-	<k3wj3wkk3cymyacboalkhe2fa7jvkpuehq4knpsouoyhvoavpl@bafg4oakp4lr>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1744574963; c=relaxed/simple;
+	bh=g5Kl44xfliZtc3F8mEZvzsmuva57Nej/HbnbF9B9CTc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eXooqcVi3So/EP2TZdp22ymz3Jx5VVsweyE4eCMwmAOxuXQI96O8bKxIYQ9gcduNLX6kRTDDENmx1LcXCUSLoK10YZ7ReDwrrGhc31d8V2Cy1EEoZ1C3PIVOpIpjCm4QEAB6oplUixqcFpz4f98tsh+SkUxSG12aS1laF1JOE4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZcGKUAeh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=4+bWvLNfqVXKoM92yRwQ99BQCTFezGqLq0CQ17PjyRk=; b=ZcGKUAeh7QEUUa1hdlTLhnNbV/
+	iwc2eD/oDOI5JIH62/PG9XxJIzQV3QExdX6K+g5ZBNZrdW8JqakiMP/tZ3fWTI8ZRp5gSii7IKKIq
+	gglFdW0PxMfuww6tSpdbHmNFgmoYdq6CJGpkQROcxxo7bOSd0T+BYj47VyfysMOPmh/s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u43dh-0095hS-QW; Sun, 13 Apr 2025 22:09:13 +0200
+Date: Sun, 13 Apr 2025 22:09:13 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: remove max-speed = 1G for RGMII for
+ ethernet
+Message-ID: <a21ccb50-1f32-47b4-b37d-d8250a505afb@lunn.ch>
+References: <E1u3bkm-000Epw-QU@rmk-PC.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: manivannan.sadhasivam@linaro.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, alyssa@rosenzweig.io, j@jannau.net, marcan@marcan.st, sven@svenpeter.dev, bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, krzk+dt@kernel.org, mark.kettenis@xs4all.nl
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1u3bkm-000Epw-QU@rmk-PC.armlinux.org.uk>
 
-On Sun, 13 Apr 2025 17:57:35 +0100,
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+On Sat, Apr 12, 2025 at 03:22:40PM +0100, Russell King (Oracle) wrote:
+> The RGMII interface is designed for speeds up to 1G. Phylink already
+> imposes the design limits for MII interfaces, and additional
+> specification is unnecessary. Therefore, we can remove this property
+> without any effect.
 > 
-> On Tue, Apr 01, 2025 at 10:17:01AM +0100, Marc Zyngier wrote:
-> > From: Janne Grunau <j@jannau.net>
-> > 
-> > Iterating over disabled ports results in of_irq_parse_raw() parsing
-> > the wrong "interrupt-map" entries, as it takes the status of the node
-> 
-> 'as it doesn't take account'?
-> 
-> > into account.
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-No, I really mean it in the positive form. of_irq_parse_raw() checks
-of_device_is_available(), and gets really confused if walking from a
-disabled port. You end up with the interrupt for the next *available*
-port, and everything goes pear shaped from then onwards.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-So IMO "as it takes into account" describes pretty accurately the
-situation.
-
-	M.
-
--- 
-Jazz isn't dead. It just smells funny.
+    Andrew
 
