@@ -1,145 +1,129 @@
-Return-Path: <devicetree+bounces-166348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6225A870E5
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 09:28:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C94A87121
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 10:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2E701702A3
-	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 07:28:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAA357A4AE6
+	for <lists+devicetree@lfdr.de>; Sun, 13 Apr 2025 08:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7814513B7B3;
-	Sun, 13 Apr 2025 07:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3234437A;
+	Sun, 13 Apr 2025 08:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pjeyJO30"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="cDGfs988"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961BB17D2;
-	Sun, 13 Apr 2025 07:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68049185B48;
+	Sun, 13 Apr 2025 08:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744529324; cv=none; b=HS8tkE7cyUr23H3Z2czRjpAWzU+shzzBI+JV0TzJ8+oLavaVusbXgnvHLVe1gB3SzZ3nOE6bTfOTrk9dceB4cB0BzVx6JSz8w5TOrhosRFFyDX2mMenlb/uysOukc5f8FhP/E0pW+XagQ15pzEG/XxwOLVVvyhMQflODERv/mlk=
+	t=1744534697; cv=none; b=cpwD3NVlO9QmubSIFMgZTVLZd7arqceU8jZegBQRehax1QTru8ikxZaqkl3H+8XZQY2CWdjF8B2U1qSWQ2o/V8pjRUTv5pKlz/LhaTOSh63Oz/d/ODl5+Yf92EiHMbb9rXsPyqpgIZT7UM+kfNYNUhQ4h85iZZnvl0AfHYHhTLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744529324; c=relaxed/simple;
-	bh=NXEKLHaF1+KLRLshoTNV0FzfFjglVHdsJ6t8SiAalZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=txcRvoHC6xMUb9vl3dmLhX/qvadrSMTAgpI5CFbjlQdWBCRa+KykzIUTWLluvnnRyP2KqYTAb4pqU8ijos8Alnq973ufHOJMvN9QzJHxx3yImCjsH5/8qvup+fHOSZPhUDuexJnkbbC06a5TXjoE18wTt9Ov4hZpAhmm1lBo0j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pjeyJO30; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53D6SlYZ015804;
-	Sun, 13 Apr 2025 07:28:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TV2G4ayNZVH6RqUh4cLu5U8chB+M0HOeW5civVHVLGg=; b=pjeyJO30qxqfQog/
-	H7oXOMK3DbE5b9edKknrmPnxOwXjtRZqXRJBE6T+wVcs0osT/E66mk7VYCKQrihk
-	iUsDgIrJM+Zq2+snSASWBbxLIWhCIz1gVJKDnGjWUB9SduQdkYD+a4gzvi2EHt78
-	aw9V/EVX/VyiC72CfWDcmqyGZ8yFjlmc8HZPw02CtEJQlkTVYscHur0YSrBglBOi
-	u4ybLS5kvm/+8+9ZDaNEHBL2ja13zD7/tARkEvrqN2TIKFDTPmRuBEYd4F8xVzeU
-	2JSo30fN++IXWZ5S/hAc3WRgXNl4ZNz+AvMKN9h3gouF/940SlJqLppwwOGNmWqz
-	g2Uc5A==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbphnt8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 13 Apr 2025 07:28:20 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53D7SKaY026486
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 13 Apr 2025 07:28:20 GMT
-Received: from [10.216.54.67] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 13 Apr
- 2025 00:28:16 -0700
-Message-ID: <84c07b53-a564-4c71-b172-676303700314@quicinc.com>
-Date: Sun, 13 Apr 2025 12:58:13 +0530
+	s=arc-20240116; t=1744534697; c=relaxed/simple;
+	bh=MHLdY3b1/dBwpiIDGQwINLz2AvTaYEyjenFWp0RCNPo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pKKDywKUU7lDbGgO68xDyIvXCMjapmeEXJ8pv9P7frA1PbRNa41EnA/o4K/tf2CP6EXW4HlmmVFGSG4bdPPIt9gPg9JIkbGIzI6KL7fiuRm9/ZypBBr2ztZuaRWga7IHp/3UJ+p444FB8WgHMuccqxucs96gccSjVGRfR8DApzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=cDGfs988; arc=none smtp.client-ip=134.0.28.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+	by mxout2.routing.net (Postfix) with ESMTP id 108B65FC6A;
+	Sun, 13 Apr 2025 08:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1744534692;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SkS+vSuo1znIoysQeehovZJ1m0kqebSTrJLxr1xkdnM=;
+	b=cDGfs988LIIYqcjiBKSyw6TwXfDQDp1uPMMGUitip6CDKhA7ECg11X5UOhErtB/remUPCz
+	3UnW6VKdgwOqndaB9+6KGu2jRN0BGd569DiE+0gDk1SwxQ6T6IAhABO/UQxA9+lMm1wDtI
+	ZCZpacRkyp9eOA3WwXE7i3BsBOvg/6k=
+Received: from frank-u24.. (fttx-pool-194.15.86.153.bambit.de [194.15.86.153])
+	by mxbox1.masterlogin.de (Postfix) with ESMTPSA id CA8EE4006C;
+	Sun, 13 Apr 2025 08:58:10 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Sam Shih <sam.shih@mediatek.com>,
+	MandyJH Liu <mandyjh.liu@mediatek.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC 0/5] Add mt7988 XS-PHY
+Date: Sun, 13 Apr 2025 10:58:00 +0200
+Message-ID: <20250413085806.8544-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] Add Qualcomm i3c controller driver support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        <alexandre.belloni@bootlin.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>
-References: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
- <eb6e8452-db37-47f7-9265-fd47d4cb69b8@oss.qualcomm.com>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <eb6e8452-db37-47f7-9265-fd47d4cb69b8@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Gbn7J30uD-AVqgBfqPkb7-XXvDrK1OTu
-X-Proofpoint-GUID: Gbn7J30uD-AVqgBfqPkb7-XXvDrK1OTu
-X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=67fb6794 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=0rxOekHK3ONI6NxZAb0A:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-13_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504130056
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 29a3ad43-8079-44b9-9f98-200054c44558
 
+From: Frank Wunderlich <frank-w@public-files.de>
 
+Mediatek XS-Phy is a high speed phy used for pcie and usb on mt7988 platform.
 
-On 4/12/2025 4:50 AM, Konrad Dybcio wrote:
-> On 4/11/25 1:35 PM, Mukesh Kumar Savaliya wrote:
->> This patchset adds i3c controller support for the qualcomm's QUPV3 based
->> Serial engine (SE) hardware controller.
->>
->> The I3C SE(Serial Engine) controller implements I3C master functionality
->> as defined in the MIPI Specifications for I3C, Version 1.0.
->>
->> This patchset was tested on Kailua SM8550 MTP device and data transfer
->> has been tested in I3C SDR mode.
->>
->> Features tested and supported :
->>    Standard CCC commands.
->>    I3C SDR mode private transfers in PIO mode.
->>    I2C transfers in PIO mode.
->>
->> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> ----
->> Link to V3: https://lore.kernel.org/lkml/20250403134644.3935983-1-quic_msavaliy@quicinc.com/T/
->> v3->v4:
->>   - Dropped "clock-names" property from dt-bindings as suggested by krzysztof.
->>   - Makefile: Correct order sequence for i3c-qcom-geni.c.
->>   - Indentation corrected around print statement.
->>   - geni_i3c_probe() : Exit with return 0 instead of ret for success.
->>   - Added sparse annotations around i3c_geni_runtime_get_mutex_lock()/_unlock().
-> 
-> So this is the third time I got this revision in my inbox, previous were
-> <20250410084813.3594436-1-quic_msavaliy@quicinc.com> 10.04
-> <20250331164648.2321899-1-quic_msavaliy@quicinc.com> 31.03
-> 
-> b4 should be automatically upticking the revision counter, please don't mess
-> with it manually
-Sorry Konrad, i could not understand what's the problem or what you are 
-trying to say.
+It requires a topmisc power controller to switch between USB and PCI mode.
+This topmisc system controller is also used by ethernet-node which is not
+upstreamed yet.
+---
+regading syscon-fallback...i know that it should be avoided ;)
 
-Do you suspect something (Which i didnt get) is seen as manually changed ?
+based on these commits:
 
-> 
-> Konrad
-> 
-> 
+ba5095ebbc7a ("mfd: syscon: Allow syscon nodes without a "syscon" compatible")
+5728c92ae112 ("mfd: syscon: Restore device_node_to_regmap() for non-syscon nodes")
+
+I tried to get it working without syscon by changing
+
+instance->type_sw = syscon_node_to_regmap(args.np);
+to
+device_node_to_regmap()
+
+then xsphy was probed sucessfully, but all pcie (not only the one with xsphy)
+stopped working.
+
+for ethernet its driver uses syscon_regmap_lookup_by_phandle which needs to
+be patched in syscon driver to also use device_node_to_regmap instead of
+syscon_node_to_regmap (with create=true). But have not tried this.
+
+regarding the pcie issue when dropping the syscon compatible i would leave
+this compatible, but send this patchset as RFC. Maybe anyone can solve this.
+
+Daniel Golle (1):
+  phy: mediatek: xsphy: support type switch by pericfg
+
+Frank Wunderlich (4):
+  dt-bindings: phy: mtk-xs-phy: Add mt7988 compatible
+  dt-bindings: phy: mtk-xs-phy: support type switch by pericfg
+  dt-bindings: power: Add binding for MediaTek MT7988 topmisc power
+    controller
+  arm64: dts: mediatek: mt7988: Add xsphy for ssusb0/pcie2
+
+ .../bindings/phy/mediatek,xsphy.yaml          | 17 ++++
+ .../power/mediatek,power-controller.yaml      | 35 +++++---
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi     | 39 +++++++++
+ drivers/phy/mediatek/phy-mtk-xsphy.c          | 85 ++++++++++++++++++-
+ 4 files changed, 164 insertions(+), 12 deletions(-)
+
+-- 
+2.43.0
 
 
