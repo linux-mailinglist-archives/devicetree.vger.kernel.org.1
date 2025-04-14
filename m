@@ -1,281 +1,187 @@
-Return-Path: <devicetree+bounces-166646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F7DA87E4A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:00:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCFFA87E52
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:01:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50CB23A76EF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:00:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01DAA175F34
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8187B266590;
-	Mon, 14 Apr 2025 11:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE98F280A25;
+	Mon, 14 Apr 2025 11:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="noPcnKfU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IRH4OrXj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2063.outbound.protection.outlook.com [40.107.20.63])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDE21392;
-	Mon, 14 Apr 2025 11:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744628426; cv=fail; b=fchbmhRRiPuuwk0YXh1SQoCSe2h8pm6MWQ6xpaTS8bMSs+YmB6cBVFgSeFMTllMtsQlutgUoMZkMwuy1HT+e/auOAR836KXTM9kjanT+/Vxqwrl7O7k5UYfRWd6koYKowh4Ep1MIHAyZ8sw7ZmB7zBXOV9fEoEutGs/azWhoqyM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744628426; c=relaxed/simple;
-	bh=ZLhjOJibIEiPqDID4B7+VYff65i4wgOVijIhEe9om9w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=PzBK4AolOwvj1IEOVAXu6iKYBTkPSuUpOwAHo4PLo3TTpg4WIGMHLO7PYpSUhha+c3vOcz3HW+svEjGsRqq/NTjyT9maC0GL2bJrnCkFtu1TVFzrQDibc6tGhoRcZe0Q1mJUZ/HbKmOe+7E0bwTBbZQXCykJG2gRo2+EzkVkwCU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=noPcnKfU; arc=fail smtp.client-ip=40.107.20.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M99nQ9y1COSHRAxW0lI6O61SsCc7Bx7kRAX9REUzjXCm6xvUz8HurIwyAYFs4H0c7gLa7HTlOcKh2Th7HArrt5gLaOHF2RrUEP0P5OwW0taZfmlI/iVgoE76yFcZ2hdQgBwzmjF0xOyPY4MsCT0jpYv5EzXu/db8KujJoGzSpMsMQXI6vLtgWNiofdzrYcFQknk56evqs6AJPPOtx1cX7wOhLZvHgBJFgllKfR7J34A7g4Pn67FJMQujeDKNkAk3ow+s1R6WCrhjxgWdPeAS0hf41FK447GNAyZs7QZkk71LHSdPUmNYFWWg4woRVGKZIBQQeTg5brLtYvr2RROrGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lSlbC7n3FFJEHjQ+PrxEhHdch8lYUKFfWC1DRazZVKI=;
- b=QVWoCk3nkG0wEdk8AzYmVKVkvO/wtvzzfjuEH+RJKKZRTk6MtFFpQvthDD/3jGts2/FagcME762cDgvc4azj7E+lv4kh2EZoF0+0pma2kX47RXtP1pWnCwJkVae86lzewG+KVZn48+fFH687yanLAp1N6l0BZyMcMToC1dCcLbghq6a7B4AvTkrCzFkrZIFw8A9eSpPNpeGnw/hAdlaVvMpJ6ocN0yG7kt9hOiXZbC1rTqBzZ5IGidt+yDtKFmnt/efJumghALBIC9VHl1oYXwKUqZ1to5PqBbefsd9V0aWHxb90JYVu7HX+rrfXLWEQ2/DDRnyCD8oELIM54zNQHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lSlbC7n3FFJEHjQ+PrxEhHdch8lYUKFfWC1DRazZVKI=;
- b=noPcnKfUiKekeTkYb6aTkOB67TNYuzt5io55QZO/5LBA1viQLfi+f+p6+8zf/oRMNgKjwBwYazAj2G7kdCn19CACgIzm64eCWcQSQObkYoe2tGHn/OUcFNvZF8ouxpDzulnjM/RZF8FmedsFhQH5rF1gdmZzWGq0dPgbuiuKSFB7QzBUOjCSyEiaP25HHx9t9lc/PP9yZPOxs44LuW/fWmMjmI06PRC/431fF0InTT8aPXm8GTozSbiVt9q+dWeRCtUwVpjuMAl+f0nbTWNV/+jrLdz5BXwxCAuy1E5J/JhkBnvXRMQb3zFpWeSYlUKC435At280wlJBRUTSi4BMRA==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DB9PR04MB8122.eurprd04.prod.outlook.com (2603:10a6:10:25d::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Mon, 14 Apr
- 2025 11:00:20 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8632.030; Mon, 14 Apr 2025
- 11:00:20 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Peng Fan <peng.fan@nxp.com>, Sudeep Holla <sudeep.holla@arm.com>
-CC: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Cristian Marussi
-	<cristian.marussi@arm.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dan
- Carpenter <dan.carpenter@linaro.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "arm-scmi@vger.kernel.org"
-	<arm-scmi@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
-Thread-Topic: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
-Thread-Index: AQHbqGLe3kxhTr5dw0mXAVP8MdrZO7Oi8B4AgAAF/qCAAAVbgIAABZIQgAAEh6A=
-Date: Mon, 14 Apr 2025 11:00:20 +0000
-Message-ID:
- <PAXPR04MB84598733FA39A7402E91DA1988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20250408-imx-lmm-cpu-v4-0-4c5f4a456e49@nxp.com>
- <20250408-imx-lmm-cpu-v4-5-4c5f4a456e49@nxp.com>
- <20250414-wonderful-cute-bandicoot-accb6b@sudeepholla>
- <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <20250414-tiny-classic-barnacle-5f8c8f@sudeepholla>
- <PAXPR04MB84593BB91063D13BB05BEB5988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
-In-Reply-To:
- <PAXPR04MB84593BB91063D13BB05BEB5988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DB9PR04MB8122:EE_
-x-ms-office365-filtering-correlation-id: 11380109-46bd-49e1-14a4-08dd7b438c76
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?tIa2SoKoeN9PtXTjoZU0w4UE5j1cW+eDsi/gZOJQWQszGLzwGExTdHekAhKW?=
- =?us-ascii?Q?F8N5EVhIZzhkDkUwveibLTV200GTlwBo0DLLsyJJIgEiiddGbbkyZw+rmAHJ?=
- =?us-ascii?Q?6I9HlCBZv13ldaiTiyltR6986WVFXnIaS/8TI5Lmrw4zLxCzcZv1SobRt/W3?=
- =?us-ascii?Q?VgSqS15HbnldslrWhGtqy3hNp0N3ujFbFZjoeYwTgpezKmpmWndCbBatE6zr?=
- =?us-ascii?Q?qcZWn0UB2O7s7z7M9plo93tLO/6f/BFKYpFgV70v8z2m1XGDjT8JxSMJYodB?=
- =?us-ascii?Q?BwcFJu7bq0M8WG+vKBkCXgBvbhhAasZcKbxnDPHb8jnByaONI1y/gKnm/eVg?=
- =?us-ascii?Q?DNcdTZpCfAw2B/CnLpGk+m49Hn840ScLkdWdpqABk6w8RieJYf5aFFR0CB4r?=
- =?us-ascii?Q?U2sr25qGMar0vfR8i8PkgonsPwiKSd6nKNzy3lfAgsWWK7/ibGw6Un7zS/Nl?=
- =?us-ascii?Q?YhBQsk/fZ++tjob4VNeKhl/RxUedYqSf3NuflAuGjUgVhTzWaiLYlmzYY1b3?=
- =?us-ascii?Q?4VvA4CioolyMnYJpUqLZTdC1uTphTPdcwcOHB0sRZHqsiX5UsyG3ZuqaUUoJ?=
- =?us-ascii?Q?tBv38T8xhuGG9d5wZ1S+rPMhAshDhr/wdQ/CbRvh8rmfA9J8NWg8xKtbzWmJ?=
- =?us-ascii?Q?kFtI4QDpkyqMq39Ct+RcteueMRZVA/bJnI9gqG13T79qy4yb1VgsUx3IJKKK?=
- =?us-ascii?Q?pTkummXprMZeLL5JPGL5spFKALtgIRtu0jevtYhVgNEoZ6atJA67mKYDUMrI?=
- =?us-ascii?Q?mz7O9pE0VYUdBx/1My2p8k6A0xWbaevPvOanSNMTcOx9ENXzhaik5GRJy+QD?=
- =?us-ascii?Q?7LIMAiLh8aYwYIcaqX7aCHwIFW1UtVyfx26PDGEJlhTPnVYZb37bQySDVmYB?=
- =?us-ascii?Q?2goRFHDN48tJk7fczP3UBfcgLemYt9TjwsNJhvSJ0bZW8IvhD/Z/HgJIG/GM?=
- =?us-ascii?Q?wLHj1CH0J8cQjT/0LMxVi70JZdhA+xtxSXCmnkDUZVNsYXaF3nR3AFBFAzwP?=
- =?us-ascii?Q?9tglmmwGRuuiGGLO1gB0GUF0neiWFzXeJGE0r0WuXpD+YH8jhOMhhm/JiaZV?=
- =?us-ascii?Q?8NFRKn4BBcH2dAtydNMcVTdC+1Ee/D6iSTORzTDNTfALvQJzPd/RqFLoV6N6?=
- =?us-ascii?Q?lR5wCmO6FbZrhLt9l9p5Kmu7p2tBr+TOIBVFAHyeo0zoQI3/dGW1QPqc/HfI?=
- =?us-ascii?Q?Q3dPLK1BpS6QleWo6MCKmI0F09/UssO42n4y3CNi591eOte51LeKA8s6/Tv0?=
- =?us-ascii?Q?11NmHPcSjfYzL8m/AzqGy4/+tqTAFx5X0HAPaUk4Ce6Eg4Z7iyCcrLKTvzRE?=
- =?us-ascii?Q?OroJFGnZz/+OIBq33Z9bT7ECr7VFYu6xUveokTJ4GOT5oA8WGn92BaGI5FZ4?=
- =?us-ascii?Q?HSya/4uhujzUhjKfYMyH0O9HrMleERzqET5SCIUcmIRxeY3dDQ4te8Kr9mjU?=
- =?us-ascii?Q?ZxzcrkzqB8zW+t39KpGQbDVZXNFQDDZi5N20q6nx//t4Wl48xGTXlw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Gj/3SKd+XYBuwXPzCwLn8KyAConI1Hqm1mc9VMQ33E9zOds0BRSiaOY4afXa?=
- =?us-ascii?Q?dQwqUC18yMgN2FnqYibxsSXfKxRj+IKr/0mH2NWMahornlfo2jbKvxWW+Qnl?=
- =?us-ascii?Q?LOKsnD3k4lS+wfsZdvirq40fTxK5fkrNEnzO8PTGsorvHNGBaIZ9c/YZGtp6?=
- =?us-ascii?Q?swLV/EQ9gN+Jf+LLqfYN7Q/138sAapgAhjjxqQISw59f/gUUUkokvBwxuvjf?=
- =?us-ascii?Q?uX/9SwlpaIfYu7uof4WaywsIFx/84JPaSsiztcmaKcTrrGxuQIf+6gPGfTDr?=
- =?us-ascii?Q?A+o2qBsVTceZgKXXqt8ZeIkekvV59ZHaorxFIv7IwOca1rveFziNbDL2L8MW?=
- =?us-ascii?Q?NvljAtydUAYoBHO4IYoBGTB5D1rkoA11u4kzO4R4FZ+hmndMSwbAfeXJiRTu?=
- =?us-ascii?Q?ab5/EWW9GezakaxR8VSHkgNA7FhJYW0C50zUJIER6doq/gafJLt0GGKA+dFw?=
- =?us-ascii?Q?Xm9228Ac3WHhky7MU/KCYh4SRjuoV5Vb5909P/XJGlQsKwWKrWJTCEa1Tya5?=
- =?us-ascii?Q?gHWoP98NP/XW2T9yIsG4IBu60OmSj1WxnZqlGO6vIXEjO/lTlubdkDkTyaoI?=
- =?us-ascii?Q?oeDk5RU2aM7EkMnoGoAsLckUIeamTSu5lMKB/OVpzmsjk7xoTvxFi6/476Mf?=
- =?us-ascii?Q?1cmqXN3PByzPZR/E6B56iDVIBnXQ37pIsRHFZM8m6XuohBO+1O8QOYX7VXuY?=
- =?us-ascii?Q?q9JqufuFTZoGnlws2bk69jiPdlmwmRMGzJAuofSFAhHMK3IOU+DZj0AMw6Lu?=
- =?us-ascii?Q?YysdYs3pXMXHjKHxXFvOOr+54FYlMO7u7ODmtIUqSywX40syTC8uMj2NEXu0?=
- =?us-ascii?Q?9oXO0MMlKi+PVYMyriUxVl9ySvnzENLSwbWNxxxvJ++F6YBTx7yvcwnhmuRM?=
- =?us-ascii?Q?ysvk+nF5lc/PX7O/rphe/PM7w0vgJDNXz8+OTQkEGciSRWfYudgXslk9CLso?=
- =?us-ascii?Q?0zViP3AzyZ0qIfGqZS4FWWtLbzW6dSCitFiww8W5SlWacGzkVUvQU9TV9KdQ?=
- =?us-ascii?Q?eXBG3WrmQZmBac0ToTO/U98TmdNcj3v3tEK+U7EJB4eT8pW0idF+KN4X72Ju?=
- =?us-ascii?Q?YJDVDBvdxsputcwOHVn6QajrcJNKW43+xUudZTseIf8G39bj8SR1WqnqQSYQ?=
- =?us-ascii?Q?H/myypYz/8t08etO0tZDbnT2pcmBOMz+OaRb0lfT5HBSRpFd7lIhkx6w2dSv?=
- =?us-ascii?Q?lFqsWRbN8c7CJ1A3uHmJ4tIzU4dlowosHw/lfFNoBaikxpC49xqDTX4OBAJQ?=
- =?us-ascii?Q?WzfmnRGhZR/ct8MEqrvKRHNAiGbqJGCxqXxZ9PBwNEzvCJWXCzdfsBZvKy5o?=
- =?us-ascii?Q?irRHHhu1DZeAwnNTj96LwynOmAr2J9k39utibZ1V2Me8Lr70SK9aIxDNCKOx?=
- =?us-ascii?Q?ZJd9NI9D2fRK7/3iiOrd6ZFJ6zWig0in0FjpAtZ4Xn1Rzzl8jcKtjRs1DL70?=
- =?us-ascii?Q?K31F+N6mV/RG6dRERy57GvpAbE4/taD/T3ANFdSqcsJJjspg+jmK5hZrVzM7?=
- =?us-ascii?Q?qP41eHvdhkm7roqRtfE5hIX2bEKwOf7vxUr/nvMw2StU4Rm4m54VgeRwLyFV?=
- =?us-ascii?Q?cTVJnYoqmPuTzlKAH4Q=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510EE27F4E8
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744628507; cv=none; b=s2JybaEE1QlBUp+vPnATTL/0kumd3u8d5S9GZqThzgHe+eDZVTRP4MQQJcwI2wYlJIzQRt5ev2Q7mD5DIzJyMBVsz1bhuockHZgX1l0YdmdPBpcHyVy5tHiY6eulqG1BMPLynYJfpV6ubmSVaSnhUwlMnZ0VSaA1x7t3EUjqpm4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744628507; c=relaxed/simple;
+	bh=9cvX1CJ3U5uc9zTD4idqlNc6XJkc/PTIQgCpgJhNuUg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HvP1hVTTWmagodNwkR0fs3OKMYiq+dWeyvs88sRrzUC5mLgoiTu7UpcMBKctnpt5E+i8GPaGNwgaLeLTH8GfBrzjHNS1gs4ge/SLuYhKGSQhxTGhHShYISoZJQw1IeKUne44nCbCeBnfr12b9034sAymNZj5LJZL2sdqGKYAGko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IRH4OrXj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99sGm016395
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:01:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AwhFYLcRsvN/5O2x/zPOJHH24568TbvM4q5YBcWwvdQ=; b=IRH4OrXjrF8UutOY
+	GBf1PKgjFlk10wkDRsCWGHf9o6AaEXZhofCdVkovBaFdkTkf7yV8zu+ogEquGVb6
+	ST7VZXRKJ/IA4eES2q73rqAq3+i2gHGM4HpPNpSr2wwOgPUFgZFlTR8/AL9UqiR0
+	zsCWllHJyNULVJ5/Zby3sTqU1jvSX/r1Dgj16HI+b3iUr9zU48rZUitl2vWDJxOH
+	aEKoQisubDdRmMvlmN/Yz9ijgsHUG+hN/qg4g4imu4XQB2VXYFCFF3zDV+/xpaCz
+	3DpnO0zoJsnjLltC+ttKUCEd9BgAr1FoAluRpCJM++nTHGyE2RjGmjivlcW3RHtv
+	lv2txg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfgjc9pm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:01:43 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c76062c513so110842185a.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 04:01:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744628503; x=1745233303;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AwhFYLcRsvN/5O2x/zPOJHH24568TbvM4q5YBcWwvdQ=;
+        b=GBY9FvaX7XJXAjDCwjK4rTJ1oZYFNhDNYdwSuhIbexiPD8M2ClOHJzyLnmAycfof2/
+         2w7JSfc48l9A3x4NkEZnwzbWpHKadE9OQB1k9uehKY+MuGmL1a5kqwc1C0LmXkYd3hZi
+         lT4NRMYPS910VoKx/a4DXDgNrbK5ZAGlbUqsYk20coOQ6uwrzlr2gVuN10NtGy83f2Rz
+         i/szcPXpAD7F62A3fFMHCWdC8ED+UfvjQoCb8z2aWibhT1fzVFwsygVilfNrTm+/Jn6D
+         ICuu/pqt7q0bo7so4qWbyzPIkwOjTVXwHbi7ON6UFSgK6m3kO0U1Kjilyo+JZDhsL1Bh
+         W2VQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW8rIPzgEz75f/1ZHBjV5GycgfKzbom/yc5/1hqZZUludiI1aGPHjcNU1jl61AbJ7U7Y9tblMB39GtA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPevYhiEt8iyYmIg04/1h6QtL36ri/uC7H8Vkt57jzslZWuHtE
+	CXKI6SWRWTiMa4aYsO3w5O7G/Yq9tg1vD0lVP+B5nVsvqEhZ7bIorIjW4IfC59kuuA7gRqIwVTs
+	bbHluBhZPS/6R9kkhiPX2MiZwLqAWb1bs9F6UD4aECdj0loGT0d8g1d9aBRck
+X-Gm-Gg: ASbGncuQLVxTaMMWJWWM3/4qkunhcbqXxNFm320tE2QeU+QIPpI+qdKLoC9Y1PuNZns
+	2qLJ93VVTpbtqahdMfpWAWcYB7qxRfLi7PBA3oekgxmA4Tkl7y5NruSujpCdA5a+T/c4Q9LJXCW
+	/S3PlV/TrIyhHgYFFaK3uND/5hpqIhINdAp8weC9oDh5ALNSa9mqAA1qp6akaMkDQU9HtoSHGdW
+	ot/4vE+kp55xagjKxnKnM1WQ/ckdfdMuDXdPUOyRZaCUW6EU+DgYiOpE2d883AAX5ju6XvcPGb3
+	+EQXq3h6g35qgwgSDwtfLa3e9ohKzf4Ks5VIk7Cp+sPs0UA/5IsjEF336vk6rZpBNA==
+X-Received: by 2002:a05:620a:254d:b0:7c3:e1ef:e44d with SMTP id af79cd13be357-7c7af04c112mr642841785a.0.1744628502716;
+        Mon, 14 Apr 2025 04:01:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEK97vOdYIq2mdoALIGz5F0Dh2fRVfBH0Km89YvV3CijLmngOzHMeK37HY+4moc2F10MzIcDw==
+X-Received: by 2002:a05:620a:254d:b0:7c3:e1ef:e44d with SMTP id af79cd13be357-7c7af04c112mr642838785a.0.1744628501979;
+        Mon, 14 Apr 2025 04:01:41 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb42casm874884866b.88.2025.04.14.04.01.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 04:01:41 -0700 (PDT)
+Message-ID: <e22daaae-57fc-4523-b594-87d202d255f3@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 13:01:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11380109-46bd-49e1-14a4-08dd7b438c76
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2025 11:00:20.5618
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HoE9ZIB/oF6WnkiMsGOxkp6o47Savnq2PoQ3x4DrJd1E9gDkEgtoDqXLivQ+8putnK2q+Cgu3sKfYNffyEDKBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8122
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
+ <20250228-a623-gpu-support-v2-5-aea654ecc1d3@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250228-a623-gpu-support-v2-5-aea654ecc1d3@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: haed3UR41Pndsy74di8G3zCzd-M1sO5T
+X-Proofpoint-ORIG-GUID: haed3UR41Pndsy74di8G3zCzd-M1sO5T
+X-Authority-Analysis: v=2.4 cv=Cve/cm4D c=1 sm=1 tr=0 ts=67fceb17 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=515PL6qApFHJgk_UoXMA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=608 mlxscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140080
 
-> Subject: RE: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM
-> driver
->=20
-> Hi Sudeep,
->=20
-> > Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM
-> driver
-> >
-> > On Mon, Apr 14, 2025 at 09:57:43AM +0000, Peng Fan wrote:
-> > > Hi Sudeep,
-> > >
-> > > > Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI
-> LMM
-> > > > driver
-> > > >
-> > > > On Tue, Apr 08, 2025 at 04:44:29PM +0800, Peng Fan (OSS)
-> wrote:
-> > > > > From: Peng Fan <peng.fan@nxp.com>
-> > > > >
-> > > > > The i.MX95 System manager exports SCMI LMM protocol for
-> linux
-> > to
-> > > > > manage Logical Machines. The driver is to use the LMM
-> Protocol
-> > > > > interface to boot, shutdown a LM.
-> > > > >
-> > > > > Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-> > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > > > ---
-> > > > >  drivers/firmware/arm_scmi/vendors/imx/Kconfig |  3 +-
-> > > > >  drivers/firmware/imx/Kconfig                  | 11 ++++
-> > > > >  drivers/firmware/imx/Makefile                 |  1 +
-> > > > >  drivers/firmware/imx/sm-lmm.c                 | 91
-> > > > +++++++++++++++++++++++++++
-> > > > >  include/linux/firmware/imx/sm.h               | 14 +++++
-> > > > >  5 files changed, 119 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > > > b/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > > > index
-> > > > >
-> > > >
-> >
-> b5f13d0e40155e485f4d1696e9550645d888ef44..4c24e17425f83081
-> > > > 0f8ba376ece9
-> > > > > db93c8cded6d 100644
-> > > > > --- a/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > > > +++ b/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > > > @@ -26,7 +26,8 @@ config IMX_SCMI_CPU_EXT  config
-> > > > IMX_SCMI_LMM_EXT
-> > > > >  	tristate "i.MX SCMI LMM EXTENSION"
-> > > > >  	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
-> > > > > -	default y if ARCH_MXC
-> > > > > +	depends on IMX_SCMI_LMM_DRV
-> > > > > +	default y if ARCH_MXC && ARM64
-> > > >
-> > > > I can't understand the ARM64 dependency on this and next patch.
-> > >
-> > > ARCH_MXC both supports ARM32 and ARM64.
-> > >
-> > > To i.MX ARM32 platform, there is no plan to enable SCMI, so only
-> set
-> > y
-> > > for ARCH_MXC ARM64 platforms.
-> > >
-> >
-> > OK but why is it different for IMX_SCMI_MISC_DRV. I really don't see
-> > any dependency. If it is not supported today fine, but do you need
-> any
-> > issue to use it or compile it for arm32 ?
->=20
-> Seems my over-thinking.
-> There is no ARM64 dependency. No issue.
-> I just think there is no need to default build in this driver for i.MX
-> ARM32 platform, because no i.MX ARM32 platform supports SCMI.
->=20
-> But after a rethink, ARM64 dependency could be dropped, because
-> there was already a dependency ARM_SCMI_PROTOCOL(i.MX ARM32
-> not select this option), so we could follow same as
-> IMX_SCMI_MISC_DRV.
+On 2/27/25 9:07 PM, Akhil P Oommen wrote:
+> From: Jie Zhang <quic_jiezh@quicinc.com>
+> 
+> Add gpu and gmu nodes for qcs8300 chipset.
+> 
+> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
 
-Oops, I just checked wrong Kconfig under drivers/firmware/arm_scmi/
-vendors/imx
+[...]
 
-Build this for ARM32 i.MX is ok, I just think no need. So add
-a ARM64 dependency.
+> +		gmu: gmu@3d6a000 {
+> +			compatible = "qcom,adreno-gmu-623.0", "qcom,adreno-gmu";
+> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
 
-For IMX_SCMI_MISC_DRV, I could not recall clearly, seems I forgot
-to add.  But anyway, w/o ARM64 should be both fine.
+size = 0x26000 so that it doesn't leak into GPU_CC
 
-I tested ARM32 build with imx_v6_v7_defconfig, no issue.
+> +			      <0x0 0x03de0000 0x0 0x10000>,
+> +			      <0x0 0x0b290000 0x0 0x10000>;
+> +			reg-names = "gmu", "rscc", "gmu_pdc";
+> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hfi", "gmu";
+> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
+> +				 <&gpucc GPU_CC_CXO_CLK>,
+> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
+> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
 
-Thanks,
-Peng.
+This should only be bound to the SMMU
 
->=20
-> Please let me know if I need post new version for this and Dan's
-> comments. Anyway, no rush.
->=20
-> Thanks,
-> Peng.
->=20
-> >
-> > --
-> > Regards,
-> > Sudeep
+> +			clock-names = "gmu",
+> +				      "cxo",
+> +				      "axi",
+> +				      "memnoc",
+> +				      "ahb",
+> +				      "hub",
+> +				      "smmu_vote";
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
+> +					<&gpucc GPU_CC_GX_GDSC>;
+> +			power-domain-names = "cx",
+> +					     "gx";
+> +			iommus = <&adreno_smmu 5 0xc00>;
+> +			operating-points-v2 = <&gmu_opp_table>;
+> +
+> +			gmu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-200000000 {
+> +					opp-hz = /bits/ 64 <200000000>;
 
+It looks like this clock only has a 500 Mhz rate 
+
+Konrad
 
