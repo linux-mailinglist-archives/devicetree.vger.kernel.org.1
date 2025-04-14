@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-166611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4D4A87D0D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:09:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E419A87D11
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82F67162372
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:09:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C14DE7A644E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:08:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A85C266EF3;
-	Mon, 14 Apr 2025 10:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A44266B72;
+	Mon, 14 Apr 2025 10:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3qSA8Sz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TT1h/IjK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A784522F
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:08:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DBE266B42;
+	Mon, 14 Apr 2025 10:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744625300; cv=none; b=WDtx90SFvT1o71SLuE9h9F55MT+iYWR9WoWYwhCIaQrshXTGQ+4N+8FAwUg5guqZCY9ip9k2psBiUByvlPRtuqqHmUhOyzwFZEo9Pp3LojtcutykUnXrF+lILNCWLVcwH8BVb5s2LmYY/unJCl58jLoJbBC/43wIWrMsGaxJJo0=
+	t=1744625363; cv=none; b=joNNXwV9UbGnyin0bphUUm8q6MAqhGQVHXqfn5kyILcXKBagIhPmLvSHMluyKUZW0eDPcf23EyYOFcXIpKLJ7KsoRtiFyQa/h3xXoaAfvyjirQv1L3+jO1bklWavtmUrmQZ+ZFl8eSKGkgS61V5lPZFwY0YSQ8bBvD8jmTcGSQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744625300; c=relaxed/simple;
-	bh=hI5exL8lVprwxjKyBwz1haJkb+ldoxiXow/seg0QwZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PosJTL9s1rjJJz1ur70RO4wtYYFuzYfntZP5mUd9VR+QeS68sJpvkGf1gE+EPdBxR2DfKUrH2Mqq+nA0uEbV/Dz68cwgGB2UKzSVQKXNJAb4PeKOWUFoWiFLfiLyhNQ9tCSWGZ+y7royVCTP6u884hIRK2guHbi79q0k2SBrY7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3qSA8Sz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99t6w029074
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:08:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1744625363; c=relaxed/simple;
+	bh=aUq8W3G9onRt3bSXFhEouZArmCCiY8IhU0Kx/aGl0Wo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d7vbnfM0T+6bfjbLAIJCtNaOEDXBLeHna3aFQn2SO/W+rN7E57qz4U2IGPEIngxj8v7bYMu8o0uVkhhSs5QafvkRohJb+pUJ7e9QiEnJviRYX6SY+fU0pmnkoWiCJ+VImv8ufwrem0W5jsNCp6RMKiG77OtmUhwkQFSNKMtwNFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TT1h/IjK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99rZB016340;
+	Mon, 14 Apr 2025 10:09:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iAPOu8FTHZQiUawy5teQOSK8iVJhCxgNvfNjhCFVeS8=; b=d3qSA8SzB23MwR0Z
-	kugFKL/fCG92rdQklMzld68n3xq07ZCHMjKFg3VeF6lcQsVxozg3RVfoEwp2IDSG
-	k9Qi1/2NoCiTqJfHgGGhNziDLVA0N+aKI4CH0AeyKwKXsIv7qnyQySBDSV1XN+vq
-	0lld2uAkOkcE9V4fSgs7cZWqkFK+PvPXtVjKhLh57fY265TJnjU5LzstR+ec6DH7
-	CXtFFD/fdEIAYbLiYxuuDJGQv2OQCh5KS+CsAKvTuI7MNRDDph9dndyRtgTWV4ia
-	nETdspqGFOA7Vp7Vs/PFbEXTBjWY1z1JAD4bFdmgePRVQ3NyeR3nvhyqEzCDOoBW
-	p0pSTg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfs146ms-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:08:17 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e8fb83e15fso9234936d6.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 03:08:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744625296; x=1745230096;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iAPOu8FTHZQiUawy5teQOSK8iVJhCxgNvfNjhCFVeS8=;
-        b=CucPqUb6R6dQfpotexepM4mzctouztCyMcuaeuiA6Mby1NeYegpHlsim1YLL2YDPui
-         h+l0Nt0cVIjpTIuA1mOq7PopztKJkX59T2ufUaxj82C4oSVuRCtuhAtKZIRlgEADSN38
-         E7nOKh9zIK4/Thgjblt+B7z1STYBtg73Y8Lj6/juKC0gKL0oRR29/U0SL0PQUrOPq4f0
-         73cM6bYXg3u2B4D2RE60j7gC5R8OYUlL4+mDAsNPu5y+iedxwmNyfJM3evo97OSaKLan
-         BOltskyVojEq0crrrxI0s+GYvFx5Krr9g3hUOtYyimm6a/CHlVn0JL4OfdbnG4Za5+OW
-         bSDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHZ6gyJ2b60em+u0/518F2GTDVRDC9P34QeH7pPIQ1VRhr/hACTIR8lzP3KTMTh/BjBl8RrC+rfnFL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmCmZRreIODmtdP2nhh2yg3jAp66tGqAcMxBoFRRhEAY+K+Bwi
-	weGWIsGTzA9cOPjTdOuPCqvL5cK5U1yF4/5U4jDfDDMWu+yC2fVBGkNb7FVURITGkjSP/cvsrqK
-	ZPDxiQQ2FUFZxyffoE/PBlBAQwD+7QP9Le/ttJ7c/QTWowtsreYw5+cDrFdVE
-X-Gm-Gg: ASbGncvuZ3DoxD+K1Xxu/KwnGFeGuM2QOV5BS39NHfU92n6x4+FTzBJgSGrhzC2c390
-	toVmQnx3QVOxL37D0NNzsPOSPE7vDoj8eKgVXmyCsElr6j9OHLIUNF3mFIzxfHHcknghpfn4VNs
-	5PAC3ecydj9GIegyJq6cKz2vpJNDOufHZaNaE6Lg9SWoXpJw/WJw6XPSJtnPCBcv36VDyZULzbm
-	GCL6+mY+ffyR0rs60cs/9fBwStGZC+Kzj0/afC19/OjiH9l5Bf0qptcV2+QtMzczwTHD6/4AQN4
-	n+KW1xYZbaGKBraU9mFHYHgiJO8KmCFkM1z0sm9DwV5ohiWj/h1BI8pGd6eibVQyBQ==
-X-Received: by 2002:a05:620a:d8a:b0:7c5:6fee:1634 with SMTP id af79cd13be357-7c7af0c1fc0mr640417185a.3.1744625296288;
-        Mon, 14 Apr 2025 03:08:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkIZWUYjPc9DMV0+IzC+9l1y0nHMActJ4TmxNbh2ot2IBhc4gOyrgI/EtejUkizlU/wxPYNA==
-X-Received: by 2002:a05:620a:d8a:b0:7c5:6fee:1634 with SMTP id af79cd13be357-7c7af0c1fc0mr640415285a.3.1744625295827;
-        Mon, 14 Apr 2025 03:08:15 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ccd69asm872424966b.159.2025.04.14.03.08.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 03:08:15 -0700 (PDT)
-Message-ID: <518663e1-8bed-46b6-95dd-142b98e567b3@oss.qualcomm.com>
-Date: Mon, 14 Apr 2025 12:08:12 +0200
+	dWPDlV0aqyLqi0ktAVzjEBr7Msw8l78IaAlVD9PFxiY=; b=TT1h/IjKHMqUlljX
+	+6unZDH3zP3QfJXQAvRWDRmvjc7P4aBw/ju84Jx3lEAfA2D6NAAjvdrp17CmlTfs
+	VePq3rZDINXxTfCSflQnrbA/G0WyVKxWxfQ+ynov26U3XSfY1VhWoVYTy+hmxTqj
+	Oy/Akebe2L9tSLwSLBHAIFzvcUdTaOmkZnvcf0t7BfPjRta4WgFhkd0dIrU7gk7D
+	6UWQwJcRppPZQhkelRmIsLr1+vkixMsOGjqmKk7aa2UvoSouVRDdhBlP6fFdI0hP
+	HbrTUOLW6p2j7dTeUPFFf4Mlq9nOm/r5lHd7/N9xAqEg84A9a9n6tXBsa7f+IZvV
+	XtTHXw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfgjc5b1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 10:09:14 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EA9DnE012261
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 10:09:13 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 03:09:07 -0700
+Message-ID: <efe91d3f-a2e3-4bee-a7e5-36ea4fc0968a@quicinc.com>
+Date: Mon, 14 Apr 2025 15:39:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,73 +65,205 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] i3c: master: Add Qualcomm I3C controller driver
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
-        linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
- <20250411113516.87958-3-quic_msavaliy@quicinc.com>
- <a1e85e39-4be6-4793-aee4-d990e1e46bdb@oss.qualcomm.com>
- <bca32a29-23c7-446f-9307-cc36d3f1ee44@quicinc.com>
+Subject: Re: [PATCH v3 06/18] clk: qcom: common: Add support to configure clk
+ regs in qcom_cc_really_probe
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Vladimir
+ Zapolskiy" <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov
+	<lumag@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>
+References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
+ <20250327-videocc-pll-multi-pd-voting-v3-6-895fafd62627@quicinc.com>
+ <aidlp3iq6pxym52tp63w35tpcctw4443yihvcwsdszk62xbwfp@esqpmsc4e6qd>
+ <f1125370-c16a-4c20-a01d-2221fb12fdcb@quicinc.com>
+ <CAO9ioeWmuPhBPivthidXTFfnXRBx9rd=iX5aqjB4bMcCKueXeg@mail.gmail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <bca32a29-23c7-446f-9307-cc36d3f1ee44@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=P9I6hjAu c=1 sm=1 tr=0 ts=67fcde91 cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=sL-q8L-RPyKcODZA9a4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: a_1MdQYFDxxqEqwlD0Nd_XwdOUUTwxHw
-X-Proofpoint-ORIG-GUID: a_1MdQYFDxxqEqwlD0Nd_XwdOUUTwxHw
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <CAO9ioeWmuPhBPivthidXTFfnXRBx9rd=iX5aqjB4bMcCKueXeg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: X9NEYt8utD8CHYrA1nJQiVSqsh-Msqn2
+X-Proofpoint-ORIG-GUID: X9NEYt8utD8CHYrA1nJQiVSqsh-Msqn2
+X-Authority-Analysis: v=2.4 cv=Cve/cm4D c=1 sm=1 tr=0 ts=67fcdeca cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=x0jix2-gbSxKepSfYNQA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 impostorscore=0 phishscore=0 suspectscore=0
- mlxscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- mlxlogscore=807 classifier=spam authscore=0 authtc=n/a authcc=
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140073
+ definitions=main-2504140072
 
-On 4/14/25 10:53 AM, Mukesh Kumar Savaliya wrote:
-> Hi Konrad, responding to one comment which is not working as suggested by you.
-> 
-> On 4/12/2025 4:45 AM, Konrad Dybcio wrote:
->> On 4/11/25 1:35 PM, Mukesh Kumar Savaliya wrote:
->>> Add support for the Qualcomm I3C controller driver, which implements
->>> I3C master functionality as defined in the MIPI Alliance Specification
->>> for I3C, Version 1.0.
->>>
->>> This driver supports master role in SDR mode.
->>>
->>> Unlike some other I3C master controllers, this implementation
->>> does not support In-Band Interrupts (IBI) and Hot-join requests.
->>>
->>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>> ---
 
-[...]
 
->>> +    if ((m_stat &
->>> +        (M_RX_FIFO_WATERMARK_EN | M_RX_FIFO_LAST_EN)) &&
->>> +        !gi3c->cur_is_write && gi3c->cur_buf) {
+On 4/11/2025 2:21 PM, Dmitry Baryshkov wrote:
+> On Fri, 11 Apr 2025 at 10:14, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
 >>
->> The indentation here is confusing, please align the `(M_RX..` with `m_stat &`
-> I have tried to implement this, but always giving me warning as below.
-> Tried many ways, but same issue, hence keeping it like this.
-> In fact, earlier also i faced same issue hence i wrote it this way.
+>>
+>>
+>> On 3/27/2025 6:20 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Mar 27, 2025 at 03:22:26PM +0530, Jagadeesh Kona wrote:
+>>>> Add support to configure PLLS and clk registers in qcom_cc_really_probe().
+>>>> This ensures all required power domains are enabled and kept ON by runtime
+>>>> PM code in qcom_cc_really_probe() before configuring the PLLS or clock
+>>>> registers.
+>>>>
+>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>>> ---
+>>>>  drivers/clk/qcom/common.c | 28 ++++++++++++++++++++++++++++
+>>>>  drivers/clk/qcom/common.h | 19 +++++++++++++++++++
+>>>>  2 files changed, 47 insertions(+)
+>>>>
+>>>> diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
+>>>> index 9cbf1c5296dad3ee5477a2f5a445488707663b9d..c4d980c6145834969fada14863360ee81c9aa251 100644
+>>>> --- a/drivers/clk/qcom/common.c
+>>>> +++ b/drivers/clk/qcom/common.c
+>>>> @@ -14,6 +14,8 @@
+>>>>  #include <linux/of.h>
+>>>>
+>>>>  #include "common.h"
+>>>> +#include "clk-alpha-pll.h"
+>>>> +#include "clk-branch.h"
+>>>>  #include "clk-rcg.h"
+>>>>  #include "clk-regmap.h"
+>>>>  #include "reset.h"
+>>>> @@ -285,6 +287,29 @@ static int qcom_cc_icc_register(struct device *dev,
+>>>>                                                   desc->num_icc_hws, icd);
+>>>>  }
+>>>>
+>>>> +static void qcom_cc_clk_pll_configure(const struct qcom_cc_desc *desc,
+>>>> +                                  struct regmap *regmap)
+>>>> +{
+>>>> +    int i;
+>>>> +
+>>>> +    for (i = 0; i < desc->num_alpha_plls; i++)
+>>>> +            qcom_clk_alpha_pll_configure(desc->alpha_plls[i], regmap);
+>>>> +}
+>>>> +
+>>>> +static void qcom_cc_clk_regs_configure(const struct qcom_cc_desc *desc,
+>>>> +                                   struct regmap *regmap)
+>>>> +{
+>>>> +    struct qcom_clk_reg_setting *clk_regs = desc->clk_regs;
+>>>> +    int i;
+>>>> +
+>>>> +    for (i = 0; i < desc->num_clk_cbcrs; i++)
+>>>> +            qcom_branch_set_clk_en(regmap, desc->clk_cbcrs[i]);
+>>>> +
+>>>> +    for (i = 0 ; i < desc->num_clk_regs; i++)
+>>>> +            regmap_update_bits(regmap, clk_regs[i].offset,
+>>>> +                               clk_regs[i].mask, clk_regs[i].val);
+>>>
+>>> I think there are other semantic functions which we don't want to
+>>> convert to offset-mask-val tuples. See drivers/clk/qcom/clk-branch.h.
+>>> I'd suggest to move setup steps to a driver callback. We can improve it
+>>> later on if it is found to make sense, but it won't block this series
+>>> from being merged.
+>>>
+>>
+>> Yes, there are other wrapper functions as well but they are unused in most
+>> clock controllers. We will check more on how we can improve this in a separate
+>> series.
 > 
-> CHECK: Alignment should match open parenthesis
-> #468: FILE: drivers/i3c/master/i3c-qcom-geni.c:405:
-> +       if ((m_stat & (M_RX_FIFO_WATERMARK_EN | M_RX_FIFO_LAST_EN)) &&
+> Please do it the other way around. Implement a generic callback, then
+> we can check how to sort things out.
+> 
 
+Yeah, but since this series doesn't require any misc register settings update, I
+will remove the above regmap_update_bits() code for now. I will check further on
+this and post a separate series for it.
 
-Maybe let's define something like
+Thanks,
+Jagadeesh
 
-bool hw_pending_read = m_stat & M_RX...
-
-Konrad
+>>
+>> Thanks,
+>> Jagadeesh
+>>
+>>>> +}
+>>>> +
+>>>>  int qcom_cc_really_probe(struct device *dev,
+>>>>                       const struct qcom_cc_desc *desc, struct regmap *regmap)
+>>>>  {
+>>>> @@ -315,6 +340,9 @@ int qcom_cc_really_probe(struct device *dev,
+>>>>                      return ret;
+>>>>      }
+>>>>
+>>>> +    qcom_cc_clk_pll_configure(desc, regmap);
+>>>> +    qcom_cc_clk_regs_configure(desc, regmap);
+>>>> +
+>>>>      reset = &cc->reset;
+>>>>      reset->rcdev.of_node = dev->of_node;
+>>>>      reset->rcdev.ops = &qcom_reset_ops;
+>>>> diff --git a/drivers/clk/qcom/common.h b/drivers/clk/qcom/common.h
+>>>> index 9c10bc8c197cd7dfa25ccd245763ad6acb081523..01b1ae52f2dc580350409d6244578944cce571f0 100644
+>>>> --- a/drivers/clk/qcom/common.h
+>>>> +++ b/drivers/clk/qcom/common.h
+>>>> @@ -25,6 +25,19 @@ struct qcom_icc_hws_data {
+>>>>      int clk_id;
+>>>>  };
+>>>>
+>>>> +/**
+>>>> + * struct qcom_clk_reg_setting - Represents miscellaneous clock register settings
+>>>> + * @offset: address offset for the clock register
+>>>> + * @mask: bit mask indicating the bits to be updated
+>>>> + * @val: Encoded value to be set within the specified bit mask
+>>>> + *       (e.g., if writing 7 to bits 4-7, mask = 0xF0 and val = 0x70)
+>>>> + */
+>>>> +struct qcom_clk_reg_setting {
+>>>> +    u32 offset;
+>>>> +    u32 mask;
+>>>> +    u32 val;
+>>>> +};
+>>>> +
+>>>>  struct qcom_cc_desc {
+>>>>      const struct regmap_config *config;
+>>>>      struct clk_regmap **clks;
+>>>> @@ -38,6 +51,12 @@ struct qcom_cc_desc {
+>>>>      const struct qcom_icc_hws_data *icc_hws;
+>>>>      size_t num_icc_hws;
+>>>>      unsigned int icc_first_node_id;
+>>>> +    u32 *clk_cbcrs;
+>>>> +    size_t num_clk_cbcrs;
+>>>> +    struct clk_alpha_pll **alpha_plls;
+>>>> +    size_t num_alpha_plls;
+>>>> +    struct qcom_clk_reg_setting *clk_regs;
+>>>> +    size_t num_clk_regs;
+>>>>      bool use_rpm;
+>>>>  };
+>>>>
+>>>>
+>>>> --
+>>>> 2.34.1
+>>>>
+>>>
+> 
+> 
+> 
 
