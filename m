@@ -1,63 +1,82 @@
-Return-Path: <devicetree+bounces-166578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5751A87B64
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:05:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BD5A87B7A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 741DC1882E22
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:05:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C20AF188E050
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3075A25E445;
-	Mon, 14 Apr 2025 09:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0BE25E804;
+	Mon, 14 Apr 2025 09:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UMQffY0Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fg5v5Bro"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D8B259CA4;
-	Mon, 14 Apr 2025 09:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448E425D525
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744621492; cv=none; b=ia8etcHAgBYCNZLjkhl349RJwUd0n86JzM7QXcZFUXLHukDjdL7aGF2t+VGy6moNrhpB0dyGwVqeqWvPh/zgDM+5L2yUSBEImJOl9+Y6G/VLIYRTLg3pDvaQxa4JNkuJ+Y/4Xdj5ZUmgDEVUkfRqLjdfz4x+TVPtkpRL5B4+m6o=
+	t=1744621642; cv=none; b=qIOaBq/qOPPaWqTWym3EvDafTJELYMWsokTseAe64mQt33kHxSlb/fWUZwyxwlVTZ+sbTI3FKoTALAtGtHG6Q8/9o3BnSPZ5lcuBiAXykblfnRPXK71r0vWo+Ziuwm9PzJSbaczoNMTJR9WeyEOwVPGKBOGEAp8F2fgpx9zEE3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744621492; c=relaxed/simple;
-	bh=VkgWh8fHdxfZghfLXtADSZaxTp3bEfee++iyxI23+PQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=UXU759yVWz8Yz6OOqtyyMvW6eoosUcCdMKH/gPmlH2QIKqJt5DAddQAaTpJ9DgqLBz9XqBKtvVipdRE65bX0u+uSh8iA89gmW0BlnFVZakXPwXBaa8f7q4U+AyiZ4zHziNRbCmvM0Pit8LnPcdJDTT0rMXRZXnapjutkVn3CI8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UMQffY0Y; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53DK7apW007124;
-	Mon, 14 Apr 2025 09:04:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qWeIftUqA7jWcE1yp2JuYYMKDxEXUWoRSywTQ1SU8z0=; b=UMQffY0Y495wm1cV
-	O6j+A7ngvkTFoOj9js7MqW2XVQUax7t0G681Q08k+6OFyUdrGYN76rwSgAVw7u4K
-	trCCM2UuLVBYAmXmPze+N8ZZXYsGpzK4S9SbBYn1VmDIjhvZAOSqkwyKgNo3jhfH
-	zUaneI74hciFUELURdq8RFnUgCXKwRktDmw9FCmbAtHzRiYQOj64SwxlpUpn157a
-	zTGduw3WAqopZjImkpXGt/1Yz6FkxrldkL9taPiKM/sY+Vas/LtDo3zM8/MwCiIn
-	qtt7QMx4MIHm2nTrXsu1vxRnFunnwvGcKrcXfC2raTk5hkwHKni/JYB0TWdN8vOo
-	Phwmiw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvj44d0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 09:04:34 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53E94XhG013725
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 09:04:33 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
- 2025 02:04:29 -0700
-Message-ID: <20c8df59-6e36-48a4-ba98-e1006de9e09b@quicinc.com>
-Date: Mon, 14 Apr 2025 14:34:26 +0530
+	s=arc-20240116; t=1744621642; c=relaxed/simple;
+	bh=dS2J48Tel/PGxALiJ+H9EoR5oWMWjKA4HJYOU2Iofi8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gEF2bYfb1uZu7XjkCCgYgWRf9xy0G1ZgKpgPAsrP8Epr732IdVxzEi0cFCDP4sH1PS/WYNInAQJhD583dxUzDzayPwKuM1gqKdhOlwUeHzBUMFLKIFuYp+Kk10HXaJ/Rc3T1OVDKFhXa1JHNVyKipFC/fDE4qn1yyBtESXua3ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fg5v5Bro; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso2440564f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 02:07:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744621637; x=1745226437; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iL/haXdSm106SCcZ5Ysvk5qBhczHsIzy7mtrRHEv0Ec=;
+        b=Fg5v5BroC2MOjYx7/A6JQyhournpbG7Gx1BwYCOf6i2k6638PzicEOFZPdGxxOHO5O
+         n8aJvDcy6oxJpJ+dZo26mLLtFIHbQgmeQJvQjumwrNt0UAR3b7Qq+W5jN/0GtU1+CHo8
+         XN3MNJZ8GlL3BhonaVEDwRfp/nTlJKq9Y13dWWxyLQET1z2/Ph5gr4OeDSXpBoEOKIc6
+         630hPZgmZmfsgFzr0xMqCdOu4RDCAhGymtaVdZoYkeAk4/lp53M+54cEJQxiS8nHjdlB
+         KzLXeZ8SL3YWwnbNztzr8ZYUqJ/w6MG1URSEf6IZC+4gXF0J+sV1J1XXG+V0tMEnrnPd
+         zXGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744621637; x=1745226437;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=iL/haXdSm106SCcZ5Ysvk5qBhczHsIzy7mtrRHEv0Ec=;
+        b=MBkWWa4Gt/fMcQlFHpHB84id0Y2vTyfWOiPUtC9dY74EP5GHjvVZtuasbCRTzwSPrm
+         zsne8NiK8nz50Tyjg36LCk+qBvBhGzc3vMz0sLC7lpFC12SkCOkaa8a6bRM6ooWWkGrK
+         HdzleZpSxzmRbBvKexgRcUbFi09VcGgWQ3qmugVpBGSFPkEYl5HCz1i89k3Ou6cqlXkH
+         p4d/8t7lMVYhGCJMmPL/9CmHqb/IaOJHkqu6D/NOwuqSTwPcubu5SO6axN1EuM9naQJ7
+         eOMy+y+OTgKgARtctqvyhgoXwLdl9RZizB+q1eWaTEgr2WTnP7vdiUPHLPTjgJceW0yi
+         24IA==
+X-Forwarded-Encrypted: i=1; AJvYcCVK8DZNdJI/SXUDxIvI5hLIcU91TfqIAh88QVPQiYQw182QkwJaUxEjLQGsYQqRynW8J+Yy5y8Gb1jb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdIS/tRZLakukVq0+MVsHCs69xc6ru8q9dtbo38TG9KOUAUdqG
+	CFKyuUZnnicZ8QIblSjScDpa7e19l+sIxhJXu0HhToFjYimWJlzdC6/s7ihbvKI=
+X-Gm-Gg: ASbGncsvpVux8+5oIZcjlsVOQse1kfwjKHOgpwSLVDv+qMJR74+/dGndqqn8FhgcDp0
+	Xwp2KR1qC9yyFf/yrh/EFJHDiCH9aZWM2pD+sI95mGYF1usk4RsTiIvK9cyPiiThVOdCIN5sYYa
+	eUlzMyl/GaI8xAGHHrU9sQ7XFpcQMIqlv3t4xhJywRQX66UAITbnI8wDHXVY4BieB2hMYaZNk6q
+	dAj0I7Yeh62fBwP4KixaNL7KZsvNj0EZ4Rm+JF2ajm9s81yTO3Ksb2/IXLht8LXRfzwWvXVxxV4
+	bNxR8ns7Va4JYotEdHL8Bj0jLT6fSrLQwwo58ha6CYU2KOnusg+GMXhpl2QvgTyWWtzMBWHa/6P
+	I/AECKRZmaAHbDfX1+Q==
+X-Google-Smtp-Source: AGHT+IGugi0LSYjtu7nYw3KeGaxFf9/4/JKVTxixNTHluzsbP0RIUM/GNmnSdPADtHwyVqrVeW9+Zg==
+X-Received: by 2002:a5d:5f4e:0:b0:39c:13fd:e6cd with SMTP id ffacd0b85a97d-39d8f4de009mr11848792f8f.29.1744621637529;
+        Mon, 14 Apr 2025 02:07:17 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:bf8a:3473:5c13:9743? ([2a01:e0a:3d9:2080:bf8a:3473:5c13:9743])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae96c074sm10156075f8f.28.2025.04.14.02.07.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 02:07:17 -0700 (PDT)
+Message-ID: <d7241218-388a-4749-a4c7-fafd9b10f352@linaro.org>
+Date: Mon, 14 Apr 2025 11:07:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,173 +84,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] ASoC: renesas: rsnd: allow to use ADG only
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jaroslav
- Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-spi@vger.kernel.org>
-References: <87h62vh5mj.wl-kuninori.morimoto.gx@renesas.com>
- <87bjt3h5lc.wl-kuninori.morimoto.gx@renesas.com>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <87bjt3h5lc.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC v5 1/8] media: qcom: iris: move sm8250 to gen1 catalog
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
+ <20250410-topic-sm8x50-upstream-iris-catalog-v5-1-44a431574c25@linaro.org>
+ <vhfuhjruok7gupoeo2uloe525k7oycd5gkh67zzz4wbiwrczpt@i3qknymfu4px>
+ <f637965b-dff5-45d4-b6be-de8c68c6c397@linaro.org>
+ <gkgd7gelin2hbkm2ltsifibxs6laluc66yx5k5uupfa2p4sswc@ypkyrj25njew>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <gkgd7gelin2hbkm2ltsifibxs6laluc66yx5k5uupfa2p4sswc@ypkyrj25njew>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67fccfa2 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=yC-0_ovQAAAA:8 a=_P2YCQLOWNFUlFncCNoA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: bTcI2Mr-JVBXktXIw4RGWQwqpitO5Khr
-X-Proofpoint-ORIG-GUID: bTcI2Mr-JVBXktXIw4RGWQwqpitO5Khr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_02,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- clxscore=1011 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=833
- spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140065
 
-
-
-On 4/11/2025 6:33 AM, Kuninori Morimoto wrote:
-> Audio clock generator (= ADG) can be used standalone, but current driver
-> will be error in such use case. Makes it as not error.
-will be error ?
-Makes it as not error ?
-
-I could not get exact problem here. seems you need to write properly.
-> And, current driver registers it as fixed rate clock, but actual clkout
-> was handled when SSI start works. Setup clkout setting when it was probed.
-> Otherwise it can't be used ADG only.
+On 14/04/2025 09:39, Dmitry Baryshkov wrote:
+> On Fri, Apr 11, 2025 at 10:14:02AM +0200, Neil Armstrong wrote:
+>> On 10/04/2025 21:44, Dmitry Baryshkov wrote:
+>>> On Thu, Apr 10, 2025 at 06:30:00PM +0200, Neil Armstrong wrote:
+>>>> Re-organize the platform support core into a gen1 catalog C file
+>>>> declaring common platform structure and include platform headers
+>>>> containing platform specific entries and iris_platform_data
+>>>> structure.
+>>>>
+>>>> The goal is to share most of the structure while having
+>>>> clear and separate per-SoC catalog files.
+>>>>
+>>>> The organization is based on the current drm/msm dpu1 catalog
+>>>> entries.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>    drivers/media/platform/qcom/iris/Makefile          |  2 +-
+>>>>    .../media/platform/qcom/iris/iris_catalog_gen1.c   | 83 ++++++++++++++++++++++
+>>>>    ...ris_platform_sm8250.c => iris_catalog_sm8250.h} | 80 ++-------------------
+>>>
+>>> I'd suggest _not_ to follow DPU here. I like the per-generation files,
+>>> but please consider keeping platform files as separate C files too.
+>>
+>> This would duplicate all tables, do we really want this ?
 > 
-Same here, its not clearly explaining.
-> Because of this fixup, current rsnd_adg_get_clkout() function name will be
-> strange. Rename get -> init.
+> No. Keep the tables that are shared in iris_catalog_gen1.c, keep
+> platform data in iris_catalog_sm8250.c and iris_catalog_sm8550.c (and
+> later iris_catalog_sm8650.c)
+
+This won't work, we need ARRAY_SIZE() for most of the tables
+
+Neil
+
 > 
-same here too. Please write in some verbose which says something.
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->   sound/soc/renesas/rcar/adg.c  | 28 ++++++++++++++++------------
->   sound/soc/renesas/rcar/core.c |  7 ++++++-
->   2 files changed, 22 insertions(+), 13 deletions(-)
+>>
+>> I want just to add SM8650 support, not to entirely rework the
+>> whole iris driver.
+>>
+>> Neil
+>>
+>>>
+>>>>    3 files changed, 89 insertions(+), 76 deletions(-)
+>>>>
+>>>
+>>
 > 
-> diff --git a/sound/soc/renesas/rcar/adg.c b/sound/soc/renesas/rcar/adg.c
-> index 191f212d338c..db980e4642b8 100644
-> --- a/sound/soc/renesas/rcar/adg.c
-> +++ b/sound/soc/renesas/rcar/adg.c
-> @@ -377,16 +377,9 @@ int rsnd_adg_ssi_clk_try_start(struct rsnd_mod *ssi_mod, unsigned int rate)
->   int rsnd_adg_clk_control(struct rsnd_priv *priv, int enable)
->   {
->   	struct rsnd_adg *adg = rsnd_priv_to_adg(priv);
-> -	struct rsnd_mod *adg_mod = rsnd_mod_get(adg);
->   	struct clk *clk;
->   	int ret = 0, i;
->   
-> -	if (enable) {
-> -		rsnd_mod_bset(adg_mod, BRGCKR, 0x80770000, adg->ckr);
-> -		rsnd_mod_write(adg_mod, BRRA,  adg->brga);
-> -		rsnd_mod_write(adg_mod, BRRB,  adg->brgb);
-> -	}
-> -
->   	for_each_rsnd_clkin(clk, adg, i) {
->   		if (enable) {
->   			ret = clk_prepare_enable(clk);
-> @@ -504,13 +497,14 @@ static void rsnd_adg_unregister_clkout(struct rsnd_priv *priv)
->   		clk_unregister_fixed_rate(clk);
->   }
->   
-> -static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
-> +static int rsnd_adg_init_clkout(struct rsnd_priv *priv)
->   {
->   	struct rsnd_adg *adg = priv->adg;
->   	struct clk *clk;
->   	struct device *dev = rsnd_priv_to_dev(priv);
->   	struct device_node *np = dev->of_node;
->   	struct property *prop;
-> +	struct rsnd_mod *adg_mod = rsnd_mod_get(adg);
->   	u32 ckr, brgx, brga, brgb;
->   	u32 req_rate[ADG_HZ_SIZE] = {};
->   	uint32_t count = 0;
-> @@ -537,7 +531,7 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
->   	 */
->   	prop = of_find_property(np, "clock-frequency", NULL);
->   	if (!prop)
-> -		goto rsnd_adg_get_clkout_end;
-> +		goto rsnd_adg_init_clkout_end;
->   
->   	req_size = prop->length / sizeof(u32);
->   	if (req_size > ADG_HZ_SIZE) {
-> @@ -633,7 +627,7 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
->   
->   	if (!(adg->brg_rate[ADG_HZ_48]  && req_Hz[ADG_HZ_48]) &&
->   	    !(adg->brg_rate[ADG_HZ_441] && req_Hz[ADG_HZ_441]))
-> -		goto rsnd_adg_get_clkout_end;
-> +		goto rsnd_adg_init_clkout_end;
->   
->   	if (approximate)
->   		dev_info(dev, "It uses CLK_I as approximate rate");
-> @@ -682,11 +676,21 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
->   				    &adg->onecell);
->   	}
->   
-> -rsnd_adg_get_clkout_end:
-> +rsnd_adg_init_clkout_end:
->   	adg->ckr = ckr;
->   	adg->brga = brga;
->   	adg->brgb = brgb;
->   
-> +	/*
-> +	 * setup default clkout
-> +	 */
-> +	if (0 == (req_rate[0] % 8000))
-> +		ckr = 0x80000000; /* use BRGB output */
-> +
-> +	rsnd_mod_bset(adg_mod, BRGCKR, 0x80770000, adg->ckr | ckr);
-> +	rsnd_mod_write(adg_mod, BRRA,  adg->brga);
-> +	rsnd_mod_write(adg_mod, BRRB,  adg->brgb);
-> +
->   	return 0;
->   
->   err:
-> @@ -764,7 +768,7 @@ int rsnd_adg_probe(struct rsnd_priv *priv)
->   	if (ret)
->   		return ret;
->   
-> -	ret = rsnd_adg_get_clkout(priv);
-> +	ret = rsnd_adg_init_clkout(priv);
->   	if (ret)
->   		return ret;
->   
-> diff --git a/sound/soc/renesas/rcar/core.c b/sound/soc/renesas/rcar/core.c
-> index 30afc942d381..4f4ed24cb361 100644
-> --- a/sound/soc/renesas/rcar/core.c
-> +++ b/sound/soc/renesas/rcar/core.c
-> @@ -1482,8 +1482,13 @@ static int rsnd_dai_probe(struct rsnd_priv *priv)
->   	int dai_i;
->   
->   	nr = rsnd_dai_of_node(priv, &is_graph);
-> +
-> +	/*
-> +	 * There is a case that it is used only for ADG (Sound Clock).
-> +	 * No DAI is not error
-> +	 */
->   	if (!nr)
-> -		return -EINVAL;
-> +		return 0;
->   
->   	rdrv = devm_kcalloc(dev, nr, sizeof(*rdrv), GFP_KERNEL);
->   	rdai = devm_kcalloc(dev, nr, sizeof(*rdai), GFP_KERNEL);
 
 
