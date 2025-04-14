@@ -1,200 +1,146 @@
-Return-Path: <devicetree+bounces-166747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD3BA884FE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:31:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA5CA88505
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0500161FCC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:27:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FE971904772
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025502C2593;
-	Mon, 14 Apr 2025 14:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558132C0322;
+	Mon, 14 Apr 2025 14:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OOObsEyz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mCxAurar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EAD2820AD;
-	Mon, 14 Apr 2025 14:03:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C309028A1EA;
+	Mon, 14 Apr 2025 14:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744639426; cv=none; b=sk7j/K0xYz/2EXn4KfdaMJdoFUHzn7ZYRy3k5ib2mDEpLXxS2Un0xNxSQv9jyI/OgRYlS3A86kzlcLBTgq4/9hAOJsefRimwEYs47unB4wsiEm50UplNFwcxtGucQkzTLqjpaPT+sMVUQEK7aSJP8pqFdU3JQnrfMd+EpSr8lDs=
+	t=1744639210; cv=none; b=SVtOZb8XIf5q9bzXulJfpZe4ZA3U95VKJ5KxOLjFk2JZejvxXGlEMYUuv8OZG9k6JKjoSwB15YpnavIxR4+cZ18YAn6XdeEyx5RODPPbxkqsPlik+DvoZjdMWr65mO+9R6NCByGuaXao4mtW45Q6zesH1tD1kH+RTJ8IshP7vK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744639426; c=relaxed/simple;
-	bh=U3FzFjHA6Fkro3jO+W5B2+lHYgcq86DaT9A/iPun6ts=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=Phs7X+Ze0BffwoHy3EKFtARK95XBIs/VFrH8Z8sC7y5jtvjsaRDpz1Jb+W/TlBHZPovWFCxqZyw2P3bDNOqMTZVj/rrYMeLTfTPPszTr82jlIPXYwrxvp1APMtvGdWFCiuO2BSUqsp6lU95KRDeZXqCSJBK96sNb+V4vmtcMkHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OOObsEyz; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53ECsOaa017111;
-	Mon, 14 Apr 2025 16:03:26 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	AXBT3Gx49OIy8DXLSl7KoI0jOZ+YAa+TLsMsUTA/Dt4=; b=OOObsEyzzjEjvwnu
-	cH7LPVAmKJ3JygUwty9UIFQ/TSuUXnHve4rbZGsgO07BlL7GQ29k/0NFClsHE0Md
-	vJ5vPJ0zeuVHGgmDZL40DY2s/+JFq/U94176Hm1bP8mYaOFml7X5VuOWhfqLRLJk
-	iPBrnq7tIYC3zwDPqJgkrjLaCdpcJSUiyKw4tjUPwEUNlrIu9b0K0W9fln1u+V0q
-	4z/KsPm57RESOEsPoZaTun0UXAStaG/xkeVSzBlNVE4ObKfaMkSbgoLYNx74nK+o
-	iWJqNQRyEXb9k6G+dEJn4g4ljLAa1rMfwe4gFEX/TZaZVimMs5o99VKJ3uC2Bzc3
-	3qTJGw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45yf2gr5j9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 16:03:26 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7752440049;
-	Mon, 14 Apr 2025 16:02:16 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 53C46981A1E;
-	Mon, 14 Apr 2025 15:59:34 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 14 Apr
- 2025 15:59:34 +0200
-Received: from [10.48.86.121] (10.48.86.121) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 14 Apr
- 2025 15:59:33 +0200
-Message-ID: <be981c5c-5252-4650-a148-c2f51d83a430@foss.st.com>
-Date: Mon, 14 Apr 2025 15:59:32 +0200
+	s=arc-20240116; t=1744639210; c=relaxed/simple;
+	bh=uO+eV4aZVfBwQEB4CC07gNteKYe4Wixr9odzUwRols4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2u3MTKuUJxBul+PmbIsAfJTX6ZQ4Da0pHsRdJhSK0mmTso12Rk+45flJerYee3VjV/7nqOGVwwrq+VCbVHreXawJ4wU4Pg+U5JJb3Czm6q7ZQ5m3xorjivxw1dUoGaBJ++7VUaByOjZMDiQXJfwtjRaR9G6RLy6Jb1+fjA1FtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mCxAurar; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7399a2dc13fso5836103b3a.2;
+        Mon, 14 Apr 2025 07:00:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744639208; x=1745244008; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VC1oKsvn3gXo/XMH+Dp5lmVzBwV+v49dkge2W+EDw4w=;
+        b=mCxAurarGo5GDqBZPmr0TLqXy4PPLg/ex5MfOAincp+g1U361ytb/sm4/kcHHeYLZO
+         7tXmnhsmE1gqilbCKPf4p5N71j60H3bI/50yfWcF2LyIh5PIhhg2xHmApl8mdI4jn9H6
+         W23vLp7O6aPEadCxd54JEEh6SAdf7UN49GyOhkFwESU768Wk3cYrPFDk9mOrgXvG/xjZ
+         nUghyKkSynku1ObVlEOYPDMjbSS8Zv/Vo4DfwtRNfYcHZpQVCy+LpU/pyTw1Jw38na9r
+         Cl1kFt6oBU5BFexw+fh3n68WePjTiHUR7wjq3fhwNI/sq1jXfPomwWUKd7hafyCGSk8U
+         +TCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744639208; x=1745244008;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VC1oKsvn3gXo/XMH+Dp5lmVzBwV+v49dkge2W+EDw4w=;
+        b=ocSzbnSa7jmiL3OSdDQ1qS4BaIhV1YXMHuMF4HeIANXR/+srXBPhmLT7Nsvke047Gw
+         eC0ztRj9hRppd6L5sZjNJSxiAUm+XcyNaJuzCl3S9/uBBp+tfb1h523AjwgIV/qYrsqb
+         Tu82rO9L8Ecal+qfMBFA4SrigUokiQFXqnLovd+kCvg+6eJZpMtU1dSWEZBsT5tAfq9m
+         z/PYUUdgCi7px9f1fsiaSTuGs6tFInd84kEPja4S1iYz97TsYy1wpXUGDIAxkIeCGpLa
+         iBcOPKHFVNjO8z8AR/wvH9QkeAOdWVunE1NHZ/8vTGetrUonseOmGxmsYzi/TUWJryPl
+         m/vg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6a1JB5b8LTTK5wFk8rejtBsAoueA9I8V1W0RhSSehq4BohBA5lZy0EnsHnRm7AioO9EhJ5EiijpTu@vger.kernel.org, AJvYcCVGzTR8SdavgAoF7T+2qEGSN/MEHaFp68xGWIe7xrN1Hs0txz56FoEKX6AZio87y+8UBDIyaqJlj1Xz0bOC@vger.kernel.org, AJvYcCXBJEMWLj42VqKodjFd7cES3lxZSmKUwc0dCmWeTP/PGgo88ysTeP1aTgUlSkBaBkZxPtV+HxAuZJAC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvaHBdz5M2969OETqby//R6zlFRDSjHaO0zlY895c4AFtMK3CD
+	Rt2m2U9vAIcUpcTNRiOQBRWYmkFOxqA7t1YE7Jk8c6X0Qk/Za1Y0
+X-Gm-Gg: ASbGncuUDoaz/VNw5iQf1JG39OenAwN6F3pfiAtE7RcthZ+3q1QozGOeqeZ6kTOvzsT
+	28E6MHnKGiyHNJAj0AhbHg6hHeiAvWeIQFwIcHCmFGhaXD4YZRCmLk+q7vJd5bza6dIjd46Ec0e
+	tl1S7PI+DtlkBIuoHy+6DnREJIdAd7kJLwayOnRep3yJdQ7083NK7ePb83ENmsv08aIf2TI6Zc+
+	TgAXPdFZXuS7asazql+tdDMxo+gEPH08eu2rXUT/VSb8diO1nsDE+Y5sVYvNMNUAfcmOt/tngVV
+	+E1baf+3gp1XtgpNyWe5XILahR7s7Q6jnHGdDCRXXAcBn4fT
+X-Google-Smtp-Source: AGHT+IEkvLlbcPEcypR/Qtt7sHwVK3dG3MFbG7DrjmG7RajsJrDFKOd6e/1/23IkcgiQxLcY6pjA2A==
+X-Received: by 2002:a05:6a00:3a25:b0:739:b1df:2410 with SMTP id d2e1a72fcca58-73bd12a1eacmr16940619b3a.20.1744639207554;
+        Mon, 14 Apr 2025 07:00:07 -0700 (PDT)
+Received: from localhost ([2804:30c:92d:f600:d5e4:543:c403:4767])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-73bd22f0fddsm6603043b3a.112.2025.04.14.07.00.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 07:00:06 -0700 (PDT)
+Date: Mon, 14 Apr 2025 11:01:16 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v1 2/7] iio: adc: Add basic support for AD4170
+Message-ID: <Z_0VLLmnefbzOj2y@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+ <5f79007f0b9f9f67360d04fb904b6a59111a4ebe.1744200264.git.marcelo.schmitt@analog.com>
+ <9c115086bd574b6c778a093143ebf54e14d7202b.camel@gmail.com>
+ <Z_k3e1DfxmcJgQeu@debian-BULLSEYE-live-builder-AMD64>
+ <20250412171920.531993c1@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Subject: Re: [PATCH v16 0/6] Introduction of a remoteproc tee to load signed
- firmware
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
-References: <20250325095833.3059895-1-arnaud.pouliquen@foss.st.com>
-Content-Language: en-US
-Organization: STMicroelectronics
-In-Reply-To: <20250325095833.3059895-1-arnaud.pouliquen@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250412171920.531993c1@jic23-huawei>
 
-Hello Bjorn,
+> > > > +	ret = devm_regulator_get_enable_read_voltage(dev, "refin1n");
+> > > > +	if (ret < 0 && ret != -ENODEV)
+> > > > +		return dev_err_probe(dev, ret, "Failed to get REFIN- voltage.\n");
+> > > > +
+> > > > +	/* Negative supplies are assumed to provide negative voltage */
+> > > > +	st->vrefs_uv[AD4170_REFIN1N_SUP] = ret == -ENODEV ? -ENODEV : -ret;  
+> > > 
+> > > Maybe to early for me but the comment does not make it clear to me why the negation?
+> > > Won't the regulator return a negative voltage?  
+> > 
+> > devm_regulator_get_enable_read_voltage(), regulator_get_voltage(), and anything
+> > about reading the regulator voltage returns either a positive voltage value or
+> > a negative error code. I couldn't find out how to read a negative voltage with
+> > regulator API. So, for now, this is making the simplifying assumption that
+> > the negative end of external reference supplies is always below GND level (even
+> > though they could be positive).
+> 
+> Hmm. We went around this a long time back but I can't remember what the outcome was...
+> https://lore.kernel.org/linux-iio/544AC56F16B56944AEC3BD4E3D59177137546EF3FC@LIMKCMBX1.ad.analog.com/ 
+> looks like the thread.
+> 
+> Take a look at dac/ad5791.c for example of a negative reference
 
-Gentle reminder.
+AD5791 references are always either only negative (V_REFNF, V_REFNS) or only
+positive (V_REFPS, V_REFPF) so the driver is fine with only adding a negative
+sign to the voltage obtained from the negative supply.
 
-For your information, I proposed to Mathieu that he wait for your first review,
-as this revision is intended to address your comments on revision 15."
+AD4170 external references can be set to a negative voltage in some setups, or
+to positive voltages on other setups. They're also constrained on the resulting
+nominal reference voltage (REFIN+ − REFIN−) which is typically 2.5V but can
+range from 1V minmum AVDD maximum. From that perspective, maybe this could be
+abstracted as a differential voltage supply? Though, the multiplexer in the
+chip can bet set to connect individual REFIN+, REFIN−, ..., REFIN2- supplies
+ends to ADC analog inputs so an API like get_voltage(reg, &voltage)) would make
+it easier to handle those configurations.
+
+From the mentioned thread, I see no hard objection to extending the regulator
+framework in that sense so I'll start working on something to provide better
+support for these cases where we have negative voltage.
 
 Thanks,
-Arnaud
-
-
-On 3/25/25 10:58, Arnaud Pouliquen wrote:
-> Main updates from version V15[1]:
-> - Removed the rproc_ops:load_fw() operation introduced in the previous version.
-> - Returned to managing the remoteproc firmware loading in rproc_tee_parse_fw to
->   load and authenticate the firmware before getting the resource table.
-> - Added spinlock and dev_link mechanisms in remoteproc TEE to better manage
->   bind/unbind.
-> 
-> More details are available in each patch commit message.
-> 
-> [1] https://lore.kernel.org/linux-remoteproc/20241128084219.2159197-7-arnaud.pouliquen@foss.st.com/T/
-> 
-> Tested-on: commit 0a0ba9924445 ("Linux 6.14-rc7")
-> 
-> Description of the feature:
-> --------------------------
-> This series proposes the implementation of a remoteproc tee driver to
-> communicate with a TEE trusted application responsible for authenticating
-> and loading the remoteproc firmware image in an Arm secure context.
-> 
-> 1) Principle:
-> 
-> The remoteproc tee driver provides services to communicate with the OP-TEE
-> trusted application running on the Trusted Execution Context (TEE).
-> The trusted application in TEE manages the remote processor lifecycle:
-> 
-> - authenticating and loading firmware images,
-> - isolating and securing the remote processor memories,
-> - supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
-> - managing the start and stop of the firmware by the TEE.
-> 
-> 2) Format of the signed image:
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
-> 
-> 3) OP-TEE trusted application API:
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
-> 
-> 4) OP-TEE signature script
-> 
-> Refer to:
-> https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
-> 
-> Example of usage:
-> sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
-> 
-> 
-> 5) Impact on User space Application
-> 
-> No sysfs impact. The user only needs to provide the signed firmware image
-> instead of the ELF image.
-> 
-> 
-> For more information about the implementation, a presentation is available here
-> (note that the format of the signed image has evolved between the presentation
-> and the integration in OP-TEE).
-> 
-> https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
-> 
-> 
-> 
-> Arnaud Pouliquen (6):
->   remoteproc: core: Introduce rproc_pa_to_va helper
->   remoteproc: Add TEE support
->   remoteproc: Introduce release_fw optional operation
->   dt-bindings: remoteproc: Add compatibility for TEE support
->   remoteproc: stm32: Create sub-functions to request shutdown and
->     release
->   remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-> 
->  .../bindings/remoteproc/st,stm32-rproc.yaml   |  58 +-
->  drivers/remoteproc/Kconfig                    |  10 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/remoteproc_core.c          |  52 ++
->  drivers/remoteproc/remoteproc_internal.h      |   6 +
->  drivers/remoteproc/remoteproc_tee.c           | 619 ++++++++++++++++++
->  drivers/remoteproc/stm32_rproc.c              | 139 +++-
->  include/linux/remoteproc.h                    |   4 +
->  include/linux/remoteproc_tee.h                |  90 +++
->  9 files changed, 935 insertions(+), 44 deletions(-)
->  create mode 100644 drivers/remoteproc/remoteproc_tee.c
->  create mode 100644 include/linux/remoteproc_tee.h
-> 
-> 
-> base-commit: 0a0ba99244455fea8706c4a53f5f66a45d87905d
+Marcelo
 
