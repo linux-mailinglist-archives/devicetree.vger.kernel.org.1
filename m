@@ -1,149 +1,117 @@
-Return-Path: <devicetree+bounces-166918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06ECDA88EBD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:00:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5073A88F1B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:29:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 995623B6B54
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 21:59:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B42E3B1FC5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DC91F3BAB;
-	Mon, 14 Apr 2025 21:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385BC1F460F;
+	Mon, 14 Apr 2025 22:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="A9surNlw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBkQLXzj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044C51BE23F;
-	Mon, 14 Apr 2025 21:58:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069121B0F3C;
+	Mon, 14 Apr 2025 22:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744667894; cv=none; b=ofFkNUd2E0jnkiPCGVWZogS+TBGychzyERxqaLa2Ro2Hi5dg2f3/jQ7Sb2Sh/zvNJz4Sg8HoaLzWuJPQEJOCiQgr+MqYdOlVy/MySB0faP/zMHjH9mkq1X4A9YDP4IB13nFt/7eWp3o4RTpL+7qx4IR4OHAtjKWiULVbCy/bAuE=
+	t=1744669774; cv=none; b=q16QYPr9dYildzE6w2jnNRcJvYVD1GgzUs9++lIPbEcChiTFXouWnjiiqC/hT4C/sD1zJN1kL3UQc1GLqczbMc7i/euG5JQCy4ioEaX5YpQxmgJMrZBWrrssXMJnw3kxf6yhJ9T23c3sZZHRSGIVMBBDYcKduAYn8y4plQwIPsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744667894; c=relaxed/simple;
-	bh=RHUquyOtqABkuvgbGR7rh7/n9TrlEFwyuSBpSmEkwaY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ohS1+GSoinKKrF7i3iWeb/l7Lq/mOA6+eYfM1TZFuqqJ+dzB0KpHYyISwYWAn5Bj8HB5D6zU5hLzOh4UYmncE3avAs1eJ8ofdJ3M97pNsh9+vYdMU1bSkoAMjN2FiMCMSMHpUlKYeu16VxfEgiW7kcTOWEP10KNAObA5mcUfU/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=A9surNlw; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9E1AF41CFD;
-	Mon, 14 Apr 2025 21:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744667888;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mKkSHxlGKWwLAVWzC2ngK+QD6aN8k+ksqhaW6x0BrfQ=;
-	b=A9surNlwNl1Sh8hothZthwuoJ54i2YTw7bQLtr8+Bn2tspofyF/qkhK7uqKMIdV58CI4YW
-	L3CJt5cceI3qZa6lPgOGcIJgqLBaTKTz/wMVv8n2ajk5j3knnabov2GzGWKZ3mJ1OHs6Df
-	XIMZocbJFiJu+GW/cy6AFBEc0nmpxTcN+rT9Z4tHDaw1sAttHD29ZYzyGtU+iK9qCMFqAG
-	95ohkEw3+zhdwt2Eiu41rsBqlGhvc5tgSHOMDTlXcXF3uFKGXV7O0m0T5iyQQ6BZHcprwP
-	jNdRXL+pab7xYClw6jJU1NJx5kblCxghvSzsL9aEkXYWfEGjf1Z4Qpz8b6KnLA==
-Date: Mon, 14 Apr 2025 23:58:07 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Alexandre Mergnat <amergnat@baylibre.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] rtc: mt6397: Remove start time parameters
-Message-ID: <20250414215807b1b6b008@mail.local>
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
- <20250109-enable-rtc-v3-4-f003e8144419@baylibre.com>
- <20250411133609a1295543@mail.local>
- <202504111339359e840246@mail.local>
- <968001f7-96d1-4ad5-8c36-28cac5dc30f1@collabora.com>
- <97cfeafe-7044-4f06-b2e6-e4a158419473@baylibre.com>
- <vpf4apahhpovhrqje4i647nldszen2pglbm5fdmar7bsyg7uao@3ymuod45ftlj>
+	s=arc-20240116; t=1744669774; c=relaxed/simple;
+	bh=MVlqs/ATqHLPaxxaiCF96uREsAduXa5I6ciuYSAoyY4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Xzb4KKL/RETnPyqKJ+M4MU2HGvKOv8sxOJIgkA63n3lMfjr8/e0pctGzIT5SAtKmCnqI3uv0BIYqdlBq6cxNTWGWwVdEhWhcPLi91DUStehLBSel0WRPt4gpe4vZdaVis7xRfX+YG+eyqOZq3tIlApHGXi8j4OmqP8UGXKms2n8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBkQLXzj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 359CDC4CEE9;
+	Mon, 14 Apr 2025 22:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744669773;
+	bh=MVlqs/ATqHLPaxxaiCF96uREsAduXa5I6ciuYSAoyY4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QBkQLXzjgmTSicJ4PFikso2I2Z5kVvuLAeNdpBP4+qrDAY5E0X2iKJqTGZXrN88vQ
+	 eVJNJWuESjme3Rr6Z9NgPYdEr1n4HLoLXygL3NLibGrlAEJ1X1FrvN5y2HYoXoyGGg
+	 13sMAeI0jNJcp0ETo9/F4M7c2tQfuLzLh0pHns3yMLBW5RpiZqq7KdbcRiDVWBHPES
+	 6gls1PqBA2lZFJ3Ih9C1vf02htkTJXkkLj3S/N+QkdIGEBVZgRK4w8hXOAXsvimZth
+	 VBqKFHNCAeaXBHYq83dIa/+vIyjHyvYga2wNlsAZFOn+zFtOSlbgA25UtI2yK70xYR
+	 MbvuBohwZXktQ==
+Date: Mon, 14 Apr 2025 17:29:31 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <vpf4apahhpovhrqje4i647nldszen2pglbm5fdmar7bsyg7uao@3ymuod45ftlj>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvvdduieelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtudenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeevudevhfdvheelgfeileefteduuefghefguefgkeeljeeufeeutedtffeuteeivdenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehurdhklhgvihhnvgdqkhhovghnihhgsegsrgihlhhisghrvgdrtghomhdprhgtphhtthhopegrmhgvrhhgnhgrthessggrhihlihgsrhgvrdgtohhmpdhrtghpthhto
- heprghnghgvlhhoghhiohgrtggthhhinhhordguvghlrhgvghhnohestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopegvugguihgvrdhhuhgrnhhgsehmvgguihgrthgvkhdrtghomhdprhgtphhtthhopehsvggrnhdrfigrnhhgsehmvgguihgrthgvkhdrtghomhdprhgtphhtthhopehmrghtthhhihgrshdrsghgghesghhmrghilhdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alexandre.belloni@bootlin.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, linux-kernel@vger.kernel.org, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+To: "Rob Herring (Arm)" <robh@kernel.org>
+In-Reply-To: <20250414214135.1680076-1-robh@kernel.org>
+References: <20250414214135.1680076-1-robh@kernel.org>
+Message-Id: <174466977142.1877467.9140482106900041765.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: PCI: Convert marvell,armada8k-pcie to
+ schema
 
-On 14/04/2025 23:34:48+0200, Uwe Kleine-König wrote:
-> > > Yes, you're stuck with this. Devicetree has to be retrocompatible.
-> > > 
-> > > Besides, this start_secs is what gets used by default, and the start-year
-> > > devicetree property should take precedence and effectively override the
-> > > start_secs default.
-> > > 
-> > > Just keep it there.... :-)
+
+On Mon, 14 Apr 2025 16:41:33 -0500, Rob Herring (Arm) wrote:
+> Convert the marvell,armada8k-pcie binding to DT schema. The binding
+> uses different names for reg, clocks, and phys which have to be added
+> to the common Synopsys DWC binding.
 > 
-> It would work to keep setting start_secs but allow overwriting that
-> value in the device tree. But see below.
->  
-
-This is already the case.
-
-> > When you boot your board for the first time, is the date January 2nd 1968 ?
-> > If not, that mean it is used as a finetune offset year.
-> > IMHO, mktime64(1968, 1, 2, 0, 0, 0) is a workaround for the rtc framework
-> > issue we try to solve in this serie because start_secs is negative (1968 <
-> > 1970). Now framework handle the negative value properly, even if you keep
-> > mktime64(1968, 1, 2, 0, 0, 0) , the device time will change. I prefer to
-> > notify you.  :)
+> The "marvell,reset-gpio" property was not documented. Mark it deprecated
+> as the "reset-gpios" property can be used instead. The "msi-parent"
+> property was also not documented.
 > 
-> I don't understand everything you wrote here, but as far as I see it,
-> rtc_time64_to_tm() not being able to handle dates before 1970 is the
-> main issue here. This is of course only relevant, because your hardware
-> occasionally contains such a date. The technically right fix is to
-> extend rtc_time64_to_tm() to work for dates >= 1900-01-01. (An
-> alternative would be to assume that a hardware read returning a date
-> before 1970 is invalid. If you refuse to write dates before 1970 that
-> should give a consistent behaviour. But the original approach is the
-> nicer one.)
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/pci/marvell,armada8k-pcie.yaml   | 100 ++++++++++++++++++
+>  .../devicetree/bindings/pci/pci-armada8k.txt  |  48 ---------
+>  .../bindings/pci/snps,dw-pcie-common.yaml     |   3 +-
+>  .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
+>  MAINTAINERS                                   |   2 +-
+>  5 files changed, 106 insertions(+), 51 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/pci-armada8k.txt
 > 
 
-Yes, the assumption is that dates before 1970 are definitively invalid.
-I still believe we live in a world were the time doesn't go back ;)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Android *was* the only OS requiring to be able to set 01/01/1970. This
-changed after they realized that some hardware is not able to do that.
+yamllint warnings/errors:
 
-> > TBH, it's hard to follow the logic, so I've a question:
-> > If I push in my V4 a framework fix that drivers using year < 1970 will need
-> > to have a new start_secs or start-year value to stay aligned with there
-> > previous value, do you will accept it ?
-> 
-> Doesn't the need to shift the start year simply goes away once
-> rtc_time64_to_tm() is fixed for negative time values?
-> 
-> So I would expect that going forward with just patches #1 and #2 should
-> result in a fixed driver regarding the breakage you're seeing. (I'm
-> unsure about patch #3, I'll address that in a reply to the respective
-> mail.)
-> 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/marvell,armada8k-pcie.example.dtb: pcie@f2600000 (marvell,armada8k-pcie): interrupts: [[0], [32], [4]] is too long
+	from schema $id: http://devicetree.org/schemas/pci/marvell,armada8k-pcie.yaml#
 
-This is also what I think but I don't think I'm going to allow the
-rtc_valid_tm() change. It shouldn't matter as the check should always
-happen after offsetting/windowing.
+doc reference errors (make refcheckdocs):
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250414214135.1680076-1-robh@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
