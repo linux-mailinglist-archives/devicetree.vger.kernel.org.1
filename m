@@ -1,268 +1,328 @@
-Return-Path: <devicetree+bounces-166920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A418A88F1F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:30:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5B3AA88F38
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A2ED161ADF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:30:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18109188E7A4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EB51EA7F9;
-	Mon, 14 Apr 2025 22:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2711F4188;
+	Mon, 14 Apr 2025 22:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gdjcp/WI"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="R00/mslx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D411AF0C9
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 22:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D841B4227;
+	Mon, 14 Apr 2025 22:47:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744669831; cv=none; b=bQwAtwYzAEg2gip8rfKCEmBbc+yaZeKTvqNcpv5Sy1AqKFVMoYk0ECSv2TvvIGLmjuqR+zvwCEGuYNPHLylAUaIXgTwIBEcAgYG8+ntEcNhsMdk4Ly6+bMBZ1d/YHG0wjJsPSF8NNtUAXQmxfpu+Tq9aMQgmtOxNJ471Xi1PL2w=
+	t=1744670837; cv=none; b=bw9iHJ7exk8tmsEWCk0lzTGeeakQYkP0NoEgX2TVzTRbhpA0rVv0yDhP1Nwjv/ycq0o9MNCFkJdSTY25UaAyO5u1sM/ceWwfYWJ9WyCoESdD+WMO/tDfQmi5jpyWVbEeJIExmw7oJeIPU2HP7lBCL6nyzuwUujL6ISWF03O+pSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744669831; c=relaxed/simple;
-	bh=qQBx3gwR7BoGNGR16e3u+TKdmh6EonNUcNYeazUzxLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/Pt4oPO5rEsxIRFC4DsulKs90CXvvLrEjBUsRS7DKEkquVJ+qnGHThekLobFO9IIahHMHjiU7JToKG/eiLZCAp0juKbv7fZbv262K8+gKyYu9gSWgNSu9Rjse+GeZgIouWaf8bCakwpJF9kzIlRXaTGk+nug/TXdfpgKa+bqFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gdjcp/WI; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5efe8d9ebdfso9198166a12.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 15:30:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744669827; x=1745274627; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oJUU5/KwFR6EBw6HmiWZSj5H1CAAPNYinIfo2az6p00=;
-        b=gdjcp/WIV3gt+SboT9sxx8vm8OeWUKH211hGSr3SnDH+5634HqmHDUT4hlhTd8qH3r
-         JwRUSbhY6q1isNOfIP7BxqvqEl9LzDCcR8qo3QZ+LCFqmAkAkpMwjsGbwjUNaVhiTDPL
-         SZt8g9K0lXbcoVq7hokJCE11toyptL3t8bqaZjlMc9N97r+uQequ1EmQ9eVAQjI9oJrO
-         nYPNHWkb3WR4EIVZIekc2xsPnbWtIOuHW+4aNemm4abwfUE4fYWtrBmv0oabLOOGFaF6
-         R6lioOq4JHra8OShcXbldbeTl5jHPJWxWk9ePVk+xGxOxSbd25ltfF4zwb7G0ranjUw4
-         X1uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744669827; x=1745274627;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oJUU5/KwFR6EBw6HmiWZSj5H1CAAPNYinIfo2az6p00=;
-        b=LJ1F4k6pN4KpvRFrPUwYjsYZdh17XfN14vxsN8nK5YSlhRkqhCoIHi0j6BX7rbFUeL
-         28AeDbMPtYFbn0XWLPeKfoo0lidM4Fk0PP56NwIyyr0EID/z8UXWgofeu0/teC7mBiO3
-         F/wbiTHnJvIK19qLBOf/LSMuVARrI9otvatV2li5EVetDoBMM3Vi0TP8nWvzfFxtL24g
-         X6oaGZ5IDsHAQjytbcfubHLVy3QrWOKgSIamBdDFr4q+wXOn7bttoK6pLDx3USBCT3CC
-         xhrHc/VTHtb4glIE9JZjJBZdh8sv8jah2rup1p2R+JPGgVPplRqahknvsw/ARMUhLZZZ
-         3d9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUEb2iYfv2MJv+xh6COT2fuWtjLn6zmK9+mVocPo7tVvqsoyQykonKKqu62u/n/xD1y7oazGoZqfEil@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC1kh3F5O9+c9Ao6ICpxWkaxkVahO7fye6tLS1MfHpesicqfZF
-	zG+Yiz8syUJDipsFNxldPdYNV/Lts9tkoPAhRRUKAudGuahCEX6mvzcwl5TDKzg=
-X-Gm-Gg: ASbGnctaFtkHpoeIIAwSnd8Z7VWji26jrKR4i1kBXeUrRwZxZdOLXknjQi69Y+0NozH
-	w+dxG32lMJ43pboD0Bwm3SbGlCJPlhqwgJVJ9JK1K33/OdJkL4zKvrJQqr+I/KKXnjy/pXcj9AB
-	6rBWohKXf/dxF+w7UyVH5g43X6kIAkoErKI/WtvxQSYB/HR4+Ny5pgH74+1fRfXKKf01uP1x+xV
-	FhXT/3pMkjRwrNAJnfEWOBpz9UB2XZbVQqI/0W8um/mMkQGICtQf/3X16jdVPpf71QK/f/cIxbg
-	S3sNgoASbrndzWwF7MzWfGcQbrqBGhJceIiq3SPeDjg5mg==
-X-Google-Smtp-Source: AGHT+IHZhK+qYZqSi1SpL+1u6PEyVqPY3kj7P/rJwDZYHQs5W9C/B5usPcBT3HSPzMoZrr6flIoa1w==
-X-Received: by 2002:a05:6402:3214:b0:5f4:370d:96c4 with SMTP id 4fb4d7f45d1cf-5f4370d9b5amr5203042a12.0.1744669827520;
-        Mon, 14 Apr 2025 15:30:27 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with UTF8SMTPSA id 4fb4d7f45d1cf-5f36ee54d84sm5746425a12.8.2025.04.14.15.30.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 15:30:26 -0700 (PDT)
-Date: Tue, 15 Apr 2025 00:30:25 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Eddie Huang <eddie.huang@mediatek.com>, 
-	Sean Wang <sean.wang@mediatek.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] rtc: Fix the RTC time comparison issues adding
- cast
-Message-ID: <erttkpna2hzg7zuddzlocaou2wqcwmgcxfhldwdt55yleie6dm@nfg374fv66fq>
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
- <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com>
+	s=arc-20240116; t=1744670837; c=relaxed/simple;
+	bh=RxryHdwOZ9kDfrKZbgcL/NGf38Ir7I11ysksXudtjY4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lf52i+XO9b+HBKVXfvrXmI9G4HhVyddVxC6pEk9XWRpdAHVg9P4WZdpxGaT9xw/kRQ8m7DejbKpymKLpr+HVaH14rZA07oLO+lSHBFjxCpiwNniO3hFpNodsCWgsYa8Ielps3h7k6xPTCJVagomOwqPfHsS7vR9r3wyHurdmwQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=R00/mslx; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from romank-3650.corp.microsoft.com (unknown [131.107.159.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id D5443210C425;
+	Mon, 14 Apr 2025 15:47:14 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com D5443210C425
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1744670835;
+	bh=HpAGsTBmcoskz1Q+42pgzCH4Q9YqUAeAFU1vo4KRGnA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=R00/mslxfADcAgZXcnXlJZyYB/t7y+r/KhalfhIlzFcP6z2tv7fFDp5tDmmcMmHMA
+	 uXSSkEkFOZYz5SDIbIKkeu83H8n7Jchzi1FaPM7/7aGt9U8v0Yp8Kjt+JhcxiruRN9
+	 8eokQb8oaWFUNQb7A4oQ3Dk/EVcl3kvkxOCud3fk=
+From: Roman Kisel <romank@linux.microsoft.com>
+To: arnd@arndb.de,
+	bhelgaas@google.com,
+	bp@alien8.de,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	dan.carpenter@linaro.org,
+	dave.hansen@linux.intel.com,
+	decui@microsoft.com,
+	haiyangz@microsoft.com,
+	hpa@zytor.com,
+	joey.gouly@arm.com,
+	krzk+dt@kernel.org,
+	kw@linux.com,
+	kys@microsoft.com,
+	lenb@kernel.org,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	mark.rutland@arm.com,
+	maz@kernel.org,
+	mingo@redhat.com,
+	oliver.upton@linux.dev,
+	rafael@kernel.org,
+	robh@kernel.org,
+	rafael.j.wysocki@intel.com,
+	ssengar@linux.microsoft.com,
+	sudeep.holla@arm.com,
+	suzuki.poulose@arm.com,
+	tglx@linutronix.de,
+	wei.liu@kernel.org,
+	will@kernel.org,
+	yuzenghui@huawei.com,
+	devicetree@vger.kernel.org,
+	kvmarm@lists.linux.dev,
+	linux-acpi@vger.kernel.org,
+	linux-arch@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	x86@kernel.org
+Cc: apais@microsoft.com,
+	benhill@microsoft.com,
+	bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: [PATCH hyperv-next v8 00/11] arm64: hyperv: Support Virtual Trust Level Boot
+Date: Mon, 14 Apr 2025 15:47:02 -0700
+Message-ID: <20250414224713.1866095-1-romank@linux.microsoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tsmmcnqrrufeyjni"
-Content-Disposition: inline
-In-Reply-To: <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This patch set allows the Hyper-V code to boot on ARM64 inside a Virtual Trust
+Level. These levels are a part of the Virtual Secure Mode documented in the
+Top-Level Functional Specification available at
+https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/vsm.
+
+The OpenHCL paravisor https://github.com/microsoft/openvmm/tree/main/openhcl
+can serve as a practical application of these patches on ARM64.
+
+For validation, I built kernels for the {x86_64, ARM64} x {VTL0, VTL2} set with
+a small initrd embedded into the kernel and booted VMs managed by Hyper-V and
+OpenVMM off of that.
+
+Starting from V5, the patch series includes a non-functional change to KVM on
+arm64 which I tested as well.
+
+[V8]
+    - Use the Linux derfined macro __ASSEMBLY__ instead of the gcc's pre-defined
+      macro __ASSEMBLER__ to follow the kernel coding style.
+      ** Thank you, Marc! **
+
+[V7]
+    https://lore.kernel.org/linux-hyperv/20250407201336.66913-1-romank@linux.microsoft.com/
+    - Used another approach not to increase the number of warnings produced when
+      building with CHECK_ENDIAN.
+      ** Thank you, Arnd! **
+
+     - Adjusted the function parameter formatting to match the rest of the code.
+      ** Thank you, Bjorn! **
+
+    - Removed the now unused local variable.
+      ** Thank you, kernel robot! **
+
+    - Fixed the description in the VMBus DT binding patch.
+      ** Thank you, Krzysztof! **
+
+    - Adjusted the function names and comments to better reflect what they do,
+      used the suggested approach to handling UUIDs to make code more readable
+      and maintainable on big-endian.
+    - Replaced ifdeffery with a stub function to make the code more readable.
+      ** Thank you, Mark! **
+
+    - Fixed the Kconfig not to build the VTL mode code on 32-bit kernels.
+      ** Thank you, Michael! **
+
+    - Fixed the indentation and the comment style.
+      ** Thank you, Rafael! **
+
+[V6]
+    https://lore.kernel.org/linux-hyperv/20250315001931.631210-1-romank@linux.microsoft.com/
+    - Use more intuitive Kconfig update.
+    - Remove ifdef for getting IRQ number
+    ** Thank you, Arnd! **
+
+    - Simplify code for finding the parent IRQ domain.
+    ** Thank you, Bjorn! **
+
+    - Remove a superfluous check.
+    ** Thank you, Dan! **
+
+    - Make the commit title and descrtiption legible.
+    - Don't set additionalProperties to true.
+    ** Thank you, Krzysztof! **
+
+    - Fix spelling in the commit title and description.
+    - Trade-offs for options in Kconfig.
+    - Export the new symbol as hyperv-pci can be built as a module.
+    ** Thank you, Michael! **
+
+    - Simplify code for getting IRQ number.
+    ** Thank you, Rob! **
+
+    - Add comment to clarify when running in VTL mode is reported.
+    ** Thank you, Wei! **
+
+[V5]
+  https://lore.kernel.org/linux-hyperv/20250307220304.247725-1-romank@linux.microsoft.com/
+    - Provide and use a common SMCCC-based infra for the arm64 hypervisor guests
+      to detect hypervisor presence.
+    ** Thank you, Arnd! **
+
+    - Fix line wraps to follow the rest of the code.
+    - Open-code getting IRQ domain parent in the ACPI case to make the code
+      better.
+    ** Thank you, Bjorn! **
+
+    - Test the binding with the latest dtschema.
+    - Clean up the commit title and description.
+    - Use proper defines for known constants.
+    ** Thank you, Krzysztof! **
+
+    - Extend comment on why ACPI v6 is checked for.
+    - Reorder patches to make sure that even with partial series application
+      the compilation succeeds.
+    - Report VTL the kernel runs in.
+    - Use "X86_64" in Kconfig rather than "X86".
+    - Extract a non-functional change for hv_get_vmbus_root_device() into
+      a separate patch.
+    ** Thank you, Michael! **
+
+[V4]
+    https://lore.kernel.org/linux-hyperv/20250212014321.1108840-1-romank@linux.microsoft.com/
+    - Fixed wording to match acronyms defined in the "Terms and Abbreviations"
+      section of the SMCCC specification throughout the patch series.
+      **Thank you, Michael!**
+
+    - Replaced the hypervisor ID containing ASCII with an UUID as
+      required by the specification.
+      **Thank you, Michael!**
+
+    - Added an explicit check for `SMCCC_RET_NOT_SUPPORTED` when discovering the
+      hypervisor presence to make the backward compatibility obvious.
+      **Thank you, Saurabh!**
+
+    - Split the fix for `get_vtl(void)` out to make it easier to backport.
+    - Refactored the configuration options as requested to eliminate the risk
+      of building non-functional kernels with randomly selected options.
+      **Thank you, Michael!**
+
+    - Refactored the changes not to introduce an additional file with
+      a one-line function.
+      **Thank you, Wei!**
+
+    - Fixed change description for the VMBus DeviceTree changes, used
+      `scripts/get_maintainers.pl` on the latest kernel to get the up-to-date list
+      of maintainers as requested.
+      **Thank you, Krzysztof!**
+
+    - Removed the added (paranoidal+superfluous) checks for DMA coherence in the
+      VMBus driver and instead relied on the DMA and the OF subsystem code.
+      **Thank you, Arnd, Krzysztof, Michael!**
+
+    - Used another set of APIs for discovering the hardware interrupt number
+      in the VMBus driver to be able to build the driver as a module.
+      **Thank you, Michael, Saurabh!**
+
+    - Renamed the newly introduced `get_vmbus_root_device(void)` function to
+      `hv_get_vmbus_root_device(void)` as requested.
+      **Thank you, Wei!**
+
+    - Applied the suggested small-scale refactoring to simplify changes to the Hyper-V
+      PCI driver. Taking the offered liberty of doing the large scale refactoring
+      in another patch series.
+      **Thank you, Michael!**
+
+    - Added a fix for the issue discovered internally where the CPU would not
+      get the interrupt from a PCI device attached to VTL2 as the shared peripheral
+      interrupt number (SPI) was not offset by 32 (the first valid SPI number).
+      **Thank you, Brian!**
+
+[V3]
+    https://lore.kernel.org/lkml/20240726225910.1912537-1-romank@linux.microsoft.com/
+    - Employed the SMCCC function recently implemented in the Microsoft Hyper-V
+      hypervisor to detect running on Hyper-V/arm64. No dependence on ACPI/DT is
+      needed anymore although the source code still falls back to ACPI as the new
+      hypervisor might be available only in the Windows Insiders channel just
+      yet.
+    - As a part of the above, refactored detecting the hypervisor via ACPI FADT.
+    - There was a suggestion to explore whether it is feasible or not to express
+      that ACPI must be absent for the VTL mode and present for the regular guests
+      in the Hyper-V Kconfig file.
+      My current conclusion is that this will require refactoring in many places.
+      That becomes especially convoluted on x86_64 due to the MSI and APIC
+      dependencies. I'd ask to let us tackle that in another patch series (or chalk
+      up to nice-have's rather than fires to put out) to separate concerns and
+      decrease chances of breakage.
+    - While refactoring `get_vtl(void)` and the related code, fixed the hypercall
+      output address not to overlap with the input as the Hyper-V TLFS mandates:
+      "The input and output parameter lists cannot overlap or cross page boundaries."
+      See https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/hypercall-interface
+      for more.
+      Some might argue that should've been a topic for a separate patch series;
+      I'd counter that the change is well-contained (one line), has no dependencies,
+      and makes the code legal.
+    - Made the VTL boot code (c)leaner as was suggested.
+    - Set DMA cache coherency for the VMBus.
+    - Updated DT bindings in the VMBus documentation (separated out into a new patch).
+    - Fixed `vmbus_set_irq` to use the API that works both for the ACPI and OF.
+    - Reworked setting up the vPCI MSI IRQ domain in the non-ACPI case. The logic
+      looks a bit fiddly/ad-hoc as I couldn't find the API that would fit the bill.
+      Added comments to explain myself.
+
+[V2]
+    https://lore.kernel.org/all/20240514224508.212318-1-romank@linux.microsoft.com/
+    - Decreased number of #ifdef's
+    - Updated the wording in the commit messages to adhere to the guidlines
+    - Sending to the correct set of maintainers and mail lists
+
+[V1]
+    https://lore.kernel.org/all/20240510160602.1311352-1-romank@linux.microsoft.com/
+
+Roman Kisel (11):
+  arm64: kvm, smccc: Introduce and use API for getting hypervisor UUID
+  arm64: hyperv: Use SMCCC to detect hypervisor presence
+  Drivers: hv: Enable VTL mode for arm64
+  Drivers: hv: Provide arch-neutral implementation of get_vtl()
+  arm64: hyperv: Initialize the Virtual Trust Level field
+  arm64, x86: hyperv: Report the VTL the system boots in
+  dt-bindings: microsoft,vmbus: Add interrupt and DMA coherence
+    properties
+  Drivers: hv: vmbus: Get the IRQ number from DeviceTree
+  Drivers: hv: vmbus: Introduce hv_get_vmbus_root_device()
+  ACPI: irq: Introduce acpi_get_gsi_dispatcher()
+  PCI: hv: Get vPCI MSI IRQ domain from DeviceTree
+
+ .../bindings/bus/microsoft,vmbus.yaml         | 16 ++++-
+ arch/arm64/hyperv/mshyperv.c                  | 53 ++++++++++++--
+ arch/arm64/kvm/hypercalls.c                   | 10 +--
+ arch/x86/hyperv/hv_init.c                     | 34 ---------
+ arch/x86/hyperv/hv_vtl.c                      |  7 +-
+ drivers/acpi/irq.c                            | 16 ++++-
+ drivers/firmware/smccc/kvm_guest.c            | 10 +--
+ drivers/firmware/smccc/smccc.c                | 17 +++++
+ drivers/hv/Kconfig                            |  6 +-
+ drivers/hv/hv_common.c                        | 31 ++++++++
+ drivers/hv/vmbus_drv.c                        | 53 +++++++++++---
+ drivers/pci/controller/pci-hyperv.c           | 72 +++++++++++++++++--
+ include/asm-generic/mshyperv.h                |  6 ++
+ include/hyperv/hvgdk_mini.h                   |  2 +-
+ include/linux/acpi.h                          |  5 +-
+ include/linux/arm-smccc.h                     | 64 +++++++++++++++--
+ include/linux/hyperv.h                        |  2 +
+ 17 files changed, 325 insertions(+), 79 deletions(-)
 
 
---tsmmcnqrrufeyjni
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 3/5] rtc: Fix the RTC time comparison issues adding
- cast
-MIME-Version: 1.0
+base-commit: 628cc040b3a2980df6032766e8ef0688e981ab95
+-- 
+2.43.0
 
-Hello Alex,
-
-On Fri, Apr 11, 2025 at 02:35:56PM +0200, Alexandre Mergnat wrote:
-> The RTC subsystem was experiencing comparison issues between signed and
-> unsigned time values. When comparing time64_t variables (signed) with
-> potentially unsigned range values, incorrect results could occur leading
-> to runtime errors.
->=20
-> Adds explicit type casts to time64_t for critical RTC time comparisons
-> in both class.c and interface.c files. The changes ensure proper
-> handling of negative time values during range validation and offset
-> calculations, particularly when dealing with timestamps before 1970.
->=20
-> The previous implementation might incorrectly interpret negative values
-> as extremely large positive values, causing unexpected behavior in the
-> RTC hardware abstraction logic.
->=20
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  drivers/rtc/class.c     | 6 +++---
->  drivers/rtc/interface.c | 8 ++++----
->  2 files changed, 7 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/rtc/class.c b/drivers/rtc/class.c
-> index e31fa0ad127e9..1ee3f609f92ea 100644
-> --- a/drivers/rtc/class.c
-> +++ b/drivers/rtc/class.c
-> @@ -282,7 +282,7 @@ static void rtc_device_get_offset(struct rtc_device *=
-rtc)
->  	 * then we can not expand the RTC range by adding or subtracting one
->  	 * offset.
->  	 */
-> -	if (rtc->range_min =3D=3D rtc->range_max)
-> +	if (rtc->range_min =3D=3D (time64_t)rtc->range_max)
->  		return;
-
-For which values of range_min and range_max does this change result in a
-different semantic?
-
-Trying to answer that question myself I wrote two functions:
-
-	#include <stdint.h>
-
-	int compare_unsigned(uint64_t a, int64_t b)
-	{
-		return a =3D=3D b;
-	}
-
-	int compare_signed(uint64_t a, int64_t b)
-	{
-		return (int64_t)a =3D=3D b;
-	}
-
-When I compile this (with gcc -Os) the assembly for both functions is
-the same (tested for x86_64 and arm32).
-
->  	ret =3D device_property_read_u32(rtc->dev.parent, "start-year",
-> @@ -299,7 +299,7 @@ static void rtc_device_get_offset(struct rtc_device *=
-rtc)
->  	if (!rtc->set_start_time)
->  		return;
-> =20
-> -	range_secs =3D rtc->range_max - rtc->range_min + 1;
-> +	range_secs =3D (time64_t)rtc->range_max - rtc->range_min + 1;
-
-In the case where no overflow (or underflow) happens, the result is the
-same, isn't it? If there is an overflow, the unsigned variant is
-probably the better choice because overflow for signed variables is
-undefined behaviour (UB).
-
-Respective demo program looks as follows:
-
-	#include <stdint.h>
-
-	int test_unsigned(uint64_t a)
-	{
-		return a + 3 > a;
-	}
-
-	int test_signed(int64_t a)
-	{
-		return a + 3 > a;
-	}
-
-Using again `gcc -Os`, the signed variant is compiled to a function that
-returns true unconditionally while the unsigned one implements the
-expected semantic.
-
->  	/*
->  	 * If the start_secs is larger than the maximum seconds (rtc->range_max)
-> @@ -327,7 +327,7 @@ static void rtc_device_get_offset(struct rtc_device *=
-rtc)
->  	 *
->  	 * Otherwise the offset seconds should be 0.
->  	 */
-> -	if (rtc->start_secs > rtc->range_max ||
-
-The original comparison uses unsigned semantics. With start_secs signed
-and range_max unsigned, this might become true if start_secs is less
-than 0.
-
-> +	if (rtc->start_secs > (time64_t)rtc->range_max ||
-
-This new comparison has a similar problem: If range_max is bigger than
-INT64_MAX, its value interpreted as signed 64bit integer might be a
-negative number and so this comparison might become true unexpectedly.
-
-So even if UB doesn't play a role here (I'm not sure), it's not clear to
-me why you consider the issue of the unsigned comparison worse than the
-signed one.
-
-If this is indeed beneficial, it needs a better explanation than "When
-comparing time64_t variables (signed) with potentially unsigned range
-values, incorrect results could occur leading to runtime errors.".
-
-Maybe you have to replace
-
-	rtc->start_secs > rtc->range_max
-
-by:
-
-	rtc->start_secs >=3D 0 && rtc->start_secs > rtc->range_max
-
-instead?
-
->  	    rtc->start_secs + range_secs - 1 < rtc->range_min)
->  		rtc->offset_secs =3D rtc->start_secs - rtc->range_min;
->  	else if (rtc->start_secs > rtc->range_min)
-
-I didn't check the other hunks.
-
-All in all I would suggest to split this series in two:
-
- - Adding support for mt6357 in the rtc-mt6359 driver
- - Fixing overflow issues in the rtc core
-
-Given that I don't understand the intend of this patch, I cannot say if
-it should be included in the 2nd series, or if this is yet another
-standalone topic.
-
-Best regards
-Uwe
-
---tsmmcnqrrufeyjni
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmf9jH4ACgkQj4D7WH0S
-/k51FwgAsL7mzjW04I3FbsimeTdILk9y1+3zCv9FAZYVpWnaNgF1Ug6wloE92sfC
-A6VZrP7eNxWVQ9EcrpIqph4n6AnLEukD2eY9MeSndzqnJJQWJuJ06aafMX7DvkJh
-lvvXOn6lX1VI0gjX/pYu4ayTiJ2iBLyXJXM5Pk1E2raJJfF1r5cuRJPXPk0HNwgL
-pHIOgpIQKEO1OxYFY8Q7W/af63h/ZmqvQadBh4gPEpDGDKvHG5DgA3G2BMAhqiDX
-fvNL/hqBmRa8FC7e274ACveXF00oTDU5uGP/ezWx+U5J2K5wIb3kBzd1BDhIaNFS
-oOLoIX9qnbCZ1GOtLtXWLAkT7Wjm4A==
-=bJIL
------END PGP SIGNATURE-----
-
---tsmmcnqrrufeyjni--
 
