@@ -1,80 +1,87 @@
-Return-Path: <devicetree+bounces-166641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9034A87DE7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1E6A87DEF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:47:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 496491896004
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:46:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AE69188C60B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAE826B964;
-	Mon, 14 Apr 2025 10:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BBD277001;
+	Mon, 14 Apr 2025 10:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3KVBQ6oW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VwHz/LfM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECBF267722
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5061D276040
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744627577; cv=none; b=AM3p95T407MIK2DxnozQjDc2ekP498O2LMtOmwHDh0hMclaxh0gldUwn1fR1mnZIRS3wCFsDUwsOvdlpc6KKd6l9Q/MRIDeg4iPZrO2Ct0bq5ZSeyKNpXN2ErHAu1h6MPTQ6Ty4eKYPkWkZHtblVg8GqCONxBA+TK3RRuoAliFU=
+	t=1744627662; cv=none; b=PLz89HPN9d3FeXOQfPjH2Y7sucWZfl4pGbG+z+CxF2QX0RRlyPk60RELVSr+ydt8tdVDvc3cRzygxkBhhbqzaR0u0bzqUuVDyjILciAjVwVcCkeOaH5w/aohExch49fmR0zQjskXdZrOla3Er+fhooqaweIUeo/38zvHYVAJw/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744627577; c=relaxed/simple;
-	bh=B7DTrBTXvAxbCk7xCnLUt+Ohx6sQFJivOn/iFkNcHxk=;
+	s=arc-20240116; t=1744627662; c=relaxed/simple;
+	bh=wxuBbqGByqSECpl/rppsp33LJpWUnwZMAHdHED9K2W4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u5eVXKy0HEWxu212O89285YcXuLoFnAZWhBKOjuDiRHpLjrjZe/f77i/5lkVKx0CcJLQMfH0me84XXoKg8WsXbOc1NlMlw5BEC5KQ6ya+wzgP3ZYeaWF71u1kfeX4G3tXt8LK0oAFOwHgn858iRwLoVuVNKkWwWn8ndQKbbhXq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3KVBQ6oW; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d0782d787so29466845e9.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 03:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744627573; x=1745232373; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eQeOb9Qy+K52HTOoxzaFzGj3ukur32nTu1ttrDF5hoQ=;
-        b=3KVBQ6oWRY8woSAFEDskgtvRnzX+qN+VkrWxHN4LybdkhTkA5zlbfxLPtJG3+6+kZM
-         7iyd9lHBG1wX0SNKZl08mtqFUPXNIVVW2kRSaSEzv9Pdce7MJ8AFWIEeBDBSNENlijOB
-         FFmcmlxVfckG6m5cVRhUP5BRe6870nqoIbUDgtr6Jtd97MX1InuxEVSbdPCwxoRIkwUp
-         RPWgHpFfGqUtQvT+hKft/sswCQO9Wrs7bqRUFVP6efKJvFmkl+4/OoBhfdv71VsMD6Kl
-         qRCzxej1Ewbn7ZJwnMjAowJqkME2sfyQkQozjts0grgXiSLbGrg/+fPpYk4hAJzydi33
-         HNWw==
+	 In-Reply-To:Content-Type; b=AZVExvyKRkrFshxSDtpnjfTbJ3atbOUVmGX3ndNCSxm7VNv953uXGaWdoKg5nA/vONBf0Ct1PRMk74muJ92SSDD6dx8XFvoe8g9DAJcVsZGagbr//MfRdR1ZX+hoEgzHr+aAAi3mh4nX3RKHN7keRK6sjhJ2fMQECCNx2wLmKOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VwHz/LfM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qoG031444
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:47:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bM2RV+Suw/zbUWzXn09cRjN5HRnOqD2gtwnQ2MvP//E=; b=VwHz/LfMJr68b0g5
+	D/uyNEG9msNUIWBa4XjaeNk3JLDyCqnHD/rpIJupzzOfAEga3PQz/Il2P0+dTrAu
+	HmKniWCT/DtopJ4teirBhf5ohQ9s+qsxerQGXta3Z21zlGMC0NHgYWmzmhe2JySi
+	krJuEyKtSnqR9LHAZTS7ZupRiwVDi5N26K22kWCzgWdzEqqTHyHB6ElXnxHZrNTL
+	PkYOKag2gRTZgGfoWe/mhzivAOU5CO2hA6XET3xXeJc46lb3pYLam1zee/cwuTrP
+	gF2u0sDpV/SZ7kJAz5B0jE1d3Og2XQ57vVAF0Lm6239i9DSHQrZNuQrSlMLuYyLc
+	q37uKQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygxjv5nv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:47:39 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e8f3766737so9774656d6.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 03:47:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744627573; x=1745232373;
+        d=1e100.net; s=20230601; t=1744627658; x=1745232458;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eQeOb9Qy+K52HTOoxzaFzGj3ukur32nTu1ttrDF5hoQ=;
-        b=Tx2sY0DjrBf+iCt1rzkcVxQQ4nD15loLtER4aF0M9UvDa+Mzu6fJa0qK2kSKCr+k+R
-         b/4//M3dJeAjgGRd/pzyTGoSTCgJXKBLBMIcSay6EcM6nMrgfiC9xLnjidpYm/J5O+Fc
-         Mwzz2DjB5yUHMuBlPUDCAfYCV+j/OWEl48ld1NP1RhUrEBhub0teOMZFCr0UesbRcJK/
-         lq6vzRRlzHUTtlJpF0fb7c4f3mjqPWbiEKjvZsp5vpUrKh8QR4VUXLTLFoR6B0173xJ7
-         Bu8ebKlMMbhMwB5bH+ylTD2jP388Mn0jKPQTKXeABUc/+Ab98e7lO4EqfoBGA1iODau0
-         hqmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI0jSQAMN5LjnVivs/c5o/Of0nSGOBiQqCxlOBJFC8tg2wgo+kbwa9r3q7qPzLCHzDd2KX4iCftbMU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfSs18QStSuGwX35Oq+zmLteEfBIsYOVDYj4WApNozgUxQ0+tk
-	33e29WCMrnBSitvg/AFQtiEPcSpwrEJMd5QfaOjVO2X6Mp1NN/7oTgNDrzwvpvk=
-X-Gm-Gg: ASbGncvbltfHIeA3K+sNCLH4ae9/S4wd94A9Pb3cI4fGMAvpfJxSKMJmCr1LIvr/InX
-	tYRJnzkqQlglqoXolhNQtHBY8YyMdxQBteXQ/2nJS7iqB6l5ERfFcuYnxGchEuu3L7zXJ3rzqUK
-	pxCd6PG9Wn+J1RShA2vJZBt7fcqHtiQ/ynoq8f5XZ2FroHe++ktcUTm/UVdi8rpEZxm/UusDsjK
-	D8uiZ1l8wHRDh7F/XzksYj/NkTzmVau/1sZMeuWfbqjQKDWt3MujyLyQ39PLzJ5GQKw4TSTdSm0
-	JueRHSUaAsv0h68fAICIwNz+RXxzfL8Qq6mOek/GYS92y1waT7W1sU2AvoWrGx5XUksuJf1+O2H
-	bfuOj68z8HOj9
-X-Google-Smtp-Source: AGHT+IEmlVyIZCmc7s6u9Mvm5ekiBlQHJoP4+G1Yv7tVnhDgdM9pPkqdPRM+lbmSVeVP2abLwsQOOg==
-X-Received: by 2002:a05:600c:a04:b0:43c:ef55:f1e8 with SMTP id 5b1f17b1804b1-43f3a93f7c6mr99598855e9.13.1744627572680;
-        Mon, 14 Apr 2025 03:46:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:5ee:79d0:2dda:96f4:b94d:164c? ([2a01:e0a:5ee:79d0:2dda:96f4:b94d:164c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae964002sm10490898f8f.8.2025.04.14.03.46.11
+        bh=bM2RV+Suw/zbUWzXn09cRjN5HRnOqD2gtwnQ2MvP//E=;
+        b=aS100dltaI2o+O5aFS4KysHtRmErHL6gdI7xy2SmePabDhBoHUjsHLwShIAjkWMw97
+         HaOjBqID3l6p6C2+lP5EXN0GNogl4va5eMZGQptXFACUgU7OGb+w3bmN8J60VIll6aKo
+         iG7WMpDajeGQz5jmHx+bagtXAFccvrGQTr0ReXqYYdTPac84ENoyVlxwCq0/AuwDyjDa
+         6mYHq0TcwT0McaGNy7tHAs5apzweVTZW/7bi8ehxahxL1gmWBU/L/IdI2wTS6pzOjtKH
+         tTg6Ku5RWkaGAznWEDbFJg1lqEdxEGojYScEzSK5ETPH1TeyAMT7Xw7kXwpG/Hfh5gmk
+         k9QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFaLS1si7IAByoZ8GZwtdUmO0maUzyvGyNT5CDzKquSUfc49dfKz2L9+xnW4xjiM3sLDM7UlHVnjAk@vger.kernel.org
+X-Gm-Message-State: AOJu0YydM1UhaO8FiaM6U/DztNGZFxOLle6efpJ6P9tG55Jc/TJ9XURL
+	EPg4DXhS7NW+Yprn4ibf3ekD+zyFQidbyZ9idLZpkhWQXUUtAgtqIJ1LmW9VCA7mH3RB1QrZgJ0
+	0lTqOqS7y6im2RqlBI6CyX+6nQPOmD82yxws9gWwg5yco1M2N43xRoTa0Sx8q
+X-Gm-Gg: ASbGncvtv3jU0qf2lDM43VQWIAwCWHvvfunnsCKKifeNINefY/e3P75e1cklifIZZJS
+	8yBhS034fiHkydFypABRtYTXtgpdE8tsC8IiAPszI4gfMytNNMaCFtok8y2iyMKTLlha3Dc8aal
+	B+PriEkQRL4gscY9khQdyhBnMclOefgA/zjrNsOoYpOK0ZRtyBWVaqHEp6z/xGptMBmgm/IZCrN
+	7j30luTsIoqK7z6s0UatcEKlu28qDp7VvVEu2RcY7L149mLyieJlCtaD1nv1z/EfqD8q1SPkTAt
+	6ON7UETIbwdRdfc/fnT9lOL6zTIyFxXBtHvvkFKrD1uIGDGkBEbFog89IkTjqroyQA==
+X-Received: by 2002:a05:6214:c2f:b0:6e8:fbaf:fad8 with SMTP id 6a1803df08f44-6f230d993ccmr60971526d6.5.1744627657913;
+        Mon, 14 Apr 2025 03:47:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFu72AAkR/AXWzXk/CwAV6q6at62CYqDKg85ggMLzHIgAENoMhkZ9LxzZcd/K/JgZzp/29Hdg==
+X-Received: by 2002:a05:6214:c2f:b0:6e8:fbaf:fad8 with SMTP id 6a1803df08f44-6f230d993ccmr60971346d6.5.1744627657290;
+        Mon, 14 Apr 2025 03:47:37 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1bea588sm899736466b.67.2025.04.14.03.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 03:46:12 -0700 (PDT)
-Message-ID: <a36aa4a4-9e00-4b98-8b98-db182ee9bd80@baylibre.com>
-Date: Mon, 14 Apr 2025 12:46:11 +0200
+        Mon, 14 Apr 2025 03:47:36 -0700 (PDT)
+Message-ID: <218c9580-de47-41a6-a3ae-8b7477fafe30@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 12:47:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,66 +89,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] rtc: Fix the RTC time comparison issues adding
- cast
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Eddie Huang <eddie.huang@mediatek.com>, Sean Wang
- <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
- <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com>
- <202504111338408af44d7b@mail.local>
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: ipq5424: Add PCIe PHYs and
+ controller nodes
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
+References: <20250402102723.219960-1-quic_mmanikan@quicinc.com>
+ <20250402102723.219960-2-quic_mmanikan@quicinc.com>
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <202504111338408af44d7b@mail.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250402102723.219960-2-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=WecMa1hX c=1 sm=1 tr=0 ts=67fce7cb cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=xjS2aVtHvALSJzGC0oAA:9 a=QEXdDO2ut3YA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: L7Rb4MCqEWUrhkV4nTunYXtNpgkj2yxf
+X-Proofpoint-ORIG-GUID: L7Rb4MCqEWUrhkV4nTunYXtNpgkj2yxf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 mlxscore=0
+ impostorscore=0 mlxlogscore=999 spamscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140078
+
+On 4/2/25 12:27 PM, Manikanta Mylavarapu wrote:
+> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+> found on IPQ5424 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+
+[...]
+
+> +		pcie0_phy: phy@84000 {
+> +			compatible = "qcom,ipq5424-qmp-gen3x1-pcie-phy",
+> +				     "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+> +			reg = <0x0 0x00084000 0x0 0x2000>;
+
+This is 0x1000-wide
+
+> +			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE0_AHB_CLK>,
+> +				 <&gcc GCC_PCIE0_PIPE_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg_ahb",
+> +				      "pipe";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
+> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
+> +			reset-names = "phy",
+> +				      "common";
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "gcc_pcie0_pipe_clk_src";
+> +
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pcie1_phy: phy@8c000 {
+> +			compatible = "qcom,ipq5424-qmp-gen3x1-pcie-phy",
+> +				     "qcom,ipq9574-qmp-gen3x1-pcie-phy";
+> +			reg = <0x0 0x0008c000 0x0 0x2000>;
+
+So is this
+
+> +			clocks = <&gcc GCC_PCIE1_AUX_CLK>,
+> +				 <&gcc GCC_PCIE1_AHB_CLK>,
+> +				 <&gcc GCC_PCIE1_PIPE_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg_ahb",
+> +				      "pipe";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE1_AUX_CLK>;
+> +			assigned-clock-rates = <20000000>;
+> +
+> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
+> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
+> +			reset-names = "phy",
+> +				      "common";
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "gcc_pcie1_pipe_clk_src";
+> +
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
 
 
+> +		pcie3: pcie@40000000 {
+> +			compatible = "qcom,pcie-ipq5424", "qcom,pcie-ipq9574";
+> +			reg = <0x0 0x40000000 0x0 0xf1c>,
+> +			      <0x0 0x40000f20 0x0 0xa8>,
+> +			      <0x0 0x40001000 0x0 0x1000>,
+> +			      <0x0 0x000f8000 0x0 0x3000>,
+> +			      <0x0 0x40100000 0x0 0x1000>,
+> +			      <0x0 0x000fe000 0x0 0x1000>;
+> +			reg-names = "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "parf",
+> +				    "config",
+> +				    "mhi";
+> +			device_type = "pci";
+> +			linux,pci-domain = <3>;
+> +			num-lanes = <2>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x00100000>,
+> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x0fd00000>;
 
-On 11/04/2025 15:38, Alexandre Belloni wrote:
-> On 11/04/2025 14:35:56+0200, Alexandre Mergnat wrote:
->> The RTC subsystem was experiencing comparison issues between signed and
->> unsigned time values. When comparing time64_t variables (signed) with
->> potentially unsigned range values, incorrect results could occur leading
->> to runtime errors.
->>
->> Adds explicit type casts to time64_t for critical RTC time comparisons
->> in both class.c and interface.c files. The changes ensure proper
->> handling of negative time values during range validation and offset
->> calculations, particularly when dealing with timestamps before 1970.
->>
->> The previous implementation might incorrectly interpret negative values
->> as extremely large positive values, causing unexpected behavior in the
->> RTC hardware abstraction logic.
->>
-> range_max is explicitly unsigned, casting it to a signed value will
-> break drivers.
+I think the BAR spaces on all these hosts are only 32 MiB long
 
-Ok, It should be fine for all drivers using range_max =
-   U32_MAX
-   RTC_TIMESTAMP_END_2099
-   RTC_TIMESTAMP_END_9999
-   (1 << 14) * 86400ULL - 1
-
-Whereas drivers using range_max = U64_MAX going in trouble:
-   rtc-goldfish.c
-   rtc-ps3.c
-   rtc-st-lpc.c
-   rtc-sun4v.c
-
-Is it ok for you if I fix the drivers to avoid issue with signed range_max ? Because, at the end, 
-you can't keep comparison operations between signed and unsigned variable, it lead to future issues.
-
-Otherwise, I've another working implementation which remove all comparison operation and drivers 
-doesn't require to be modify.
-
-
--- 
-Regards,
-Alexandre
+Konrad
 
