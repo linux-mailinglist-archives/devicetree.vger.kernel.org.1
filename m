@@ -1,164 +1,178 @@
-Return-Path: <devicetree+bounces-166847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E56BA88A4C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:48:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C717A88A61
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 797E81891A11
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:48:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE593B0F2B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA561257AE8;
-	Mon, 14 Apr 2025 17:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D781628B506;
+	Mon, 14 Apr 2025 17:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BeawCdJR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WX+P93mK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DC019F416;
-	Mon, 14 Apr 2025 17:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8A61A08AB;
+	Mon, 14 Apr 2025 17:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744652821; cv=none; b=LRayiuqQi4GjEDs6XxdclY4FGdxgDbyzhWr+rLP+lfhsFt+ynvn5kI82rjJocF3d1GIa6fxDHI+pyemHbkaPkxR8wUVmxBpKfE5qEClf1BkuD/6mVUvMu5XfvS7AprZlRko+ANFZa+8rl6d55MD1M4sz5Jok3Mz3aheY0AIBC9U=
+	t=1744652982; cv=none; b=nW9f4FKE2fMhY1/4zTt2MmFRX6M646FDI1LI9g6h74Zjl2qP9fzAzAgkmcqtdVpxgVyS2AX/Eyvn2a+S4C0r/fggSmkB9Ijp6BAicv5zXF+dUYDhfRdic/eVlhnbghRPIR1mbx8IENB9BSZ9si52qIvebkntbfwFxeIIH+BHxbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744652821; c=relaxed/simple;
-	bh=1Zv8lTmcI/PFiiojhYLcEn53jAUhNU90QYC3xNWV2mU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y9nlh2AbU4dT/aj3SbGMvnz0aZB/N0eRbCBXMdTIPJoT34PgY7UmyrnWgZsvY+fyPR26KZAZsQQ4KE9Fzc1YZAETKzj60kr2/LT1lXp6gfzxpZE7DSIanv4X1G7JtRc30QA+ir7VdOvbBZK5Dm8PIHEDzVdS4DhaNS6Mkr5Lbt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BeawCdJR; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-5262475372eso1989649e0c.2;
-        Mon, 14 Apr 2025 10:46:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744652819; x=1745257619; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6mnOCYFSjWFOoLwt3RQzlywXL3wyhVGlM01HXZ4BM00=;
-        b=BeawCdJRArepCrSRFG1uaVMsadZgNDqAh1vtavMEdYcpstpxFvae1MB3Nx7i6FmuT1
-         bMaTm9uBtqwl9u70cK4ua9Z80FtWumsXTq+VHyGg3lOvCwNr6Mhp5M5UUCxcqAkFYdaT
-         a4qOYiUipdUHej3aEdJQcIqCp4L79AIKNe++IyujdJebeFliZcZ6kSkB20XocMXqrqlG
-         uYVhxFohXvXdwqqOXUBGEJ55yzSmz5dUO/JK69lKqXEt/EkMIOmhEZVvOpJXsVVIMItl
-         MnFt9hIw3lidsJKRmmodsG+7qqOu+8U4smuyNQklLbmDDD8kQtzU57mWsiRN98Hm4sDg
-         JOZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744652819; x=1745257619;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6mnOCYFSjWFOoLwt3RQzlywXL3wyhVGlM01HXZ4BM00=;
-        b=rWuqJBTcODBxSc8DESzj4794aRO0W+jFfWnx/khS0Gim2eNYsw20W3LYyaF+dlgEbQ
-         RW6dHsk+1ak+FacwOMHnm0tVOmDW6UnjqXd2SJ0V5nixtAtHzdAtvrCayQSATSAkBRhm
-         +gaQruGBd8Cdk54/PSjgM2ToyvNqHboLRTOGVjAITu314eHZKzgSjE2Jq5501ySGPDNL
-         NRn7FQglRUL9xFy9Pzmvm6FiMdvk71RUaUTKcNvyQCQ5mM8BwA3IfmXQZAabXS7/QfP1
-         ULNNO4igqflxS2Bps8K3o1UzmpFOyBQDwM/qgLOqVpW9H3PdVpzsh2ifsPc9E3p1TBvX
-         LgrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUla2B1P9vZIWvixVa6u5uiDd+Y1PvolFCfIk9DqjVzCHBRVTmIFYXd4w9LZ+y/TwcQzBRD0DMRX3sf8pML@vger.kernel.org, AJvYcCVFi6MRlA/Ze3MaxcC+IG21ANAunoMc1etDJR1gmR4OYIf7faKofVFGSdCMy/erUoSlL+7nfK8c48aN@vger.kernel.org, AJvYcCWy03jGesHx5lKAZ92Dz27GRcswBkoU1VeIQiSneI48GITVsaX3t77n2cGWGjaZoBnPhBjnVWhUx6GN1GxZvISg2nw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfTbfbimNIJRhIHwKuHjlNbjFPoqvI5KdOfgp5hAK9aSLGGNcj
-	aN5rrv+XAuklEKSaTFa+yMfzfEJb24Z0yU5/iHzjFq504iD9XPEUzsp89G2tMyO/ToPZa8z5Uel
-	UioQj0hn2appXs1wvNJzFMKT+6ig=
-X-Gm-Gg: ASbGncv4PGyYQO3qsT2UeFI4xyxl1qBhVJE//+b2tpfzAhE2NCM8XkvlHG0eGs+pb3x
-	KlOID4hJwxUaaba6T89gVK5W1FAqawexVUxedwBJM0INQf0ESNMZhOpRyE+pL4QskK4An37/mEN
-	AdzszPNlAVd3NktUt6ek3D3hBuTOqNk5OPHEwUz2WoWQYIGpFx1lydPA==
-X-Google-Smtp-Source: AGHT+IHG+me+Cap139G7KRdec+4aFe6GDDoeldpdn6aC6YTRk3PACqIlElTLgCQ91Nr/5vmRgW/fw2fjaajOvUpED2Q=
-X-Received: by 2002:a05:6122:2521:b0:526:1dde:3613 with SMTP id
- 71dfb90a1353d-527c32bb4d3mr7714686e0c.0.1744652818891; Mon, 14 Apr 2025
- 10:46:58 -0700 (PDT)
+	s=arc-20240116; t=1744652982; c=relaxed/simple;
+	bh=ulqrosDqiUlPlEkamQ1xyIFEuty/JmTNovXKiA2L3IU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DVa99rxHYQQhsd+j+KZfn19bVakVs61hA8Jtk38khH6zpvtk1P1pg661gE9BASAh1C9bZJe/jNnQt1bW1QFBkqwZi/WT/uIrCeoTw5eDs9wzmijvpeWK2IxvwvBXnz9937VXcM4u7OB/rpiqSX/fNQ5kpzfZakFKetoamNVLjPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WX+P93mK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qtg011395;
+	Mon, 14 Apr 2025 17:49:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3yPyywTlsnu2wroIHMQvuyXG7piAsNEAqqurWw7fZ5g=; b=WX+P93mKx4PK3NOj
+	xh6vf6nHiXCBBWURnrOTWK0PFFCFi4dcv/bVkOXZem4aHPSif9elmQmHb8N4J0f3
+	PpqeVeeBu8RuRTL2pLeAT6VG47PWtk+neOiRYRblfAxE+hiZ3dRMYdG4BK6blZea
+	9hF+qYzygsFV4WwWbg3f/XlLFQ6Ye4wsdly/FdcEYjCffbIFoPnALi335BNxyn6S
+	peYjhh4APdN2RVDdlBhdcwK+zITRgUiByUAQlFoABQy4WGYumyb/Vbpi09smeXGp
+	o5kdDY6XFpzlzn2/rWUaG67zUxqlcJNf6RCfLaUub5kPiaLqbCCJbJSRknJBFKde
+	L8nkAw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wdbvm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 17:49:22 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EHnLCv028213
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 17:49:21 GMT
+Received: from [10.216.13.250] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 10:49:13 -0700
+Message-ID: <de05fd91-b8d2-4799-a57b-ccc6e9fbafd9@quicinc.com>
+Date: Mon, 14 Apr 2025 23:19:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414130020.248374-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250414130020.248374-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <9c32c9aa-3895-4969-8a33-059c4ad93143@oracle.com> <TYCPR01MB1209398B324FDB1691D80545FC2B32@TYCPR01MB12093.jpnprd01.prod.outlook.com>
- <d71cea86-034c-4448-92de-217ea9d1d018@oracle.com>
-In-Reply-To: <d71cea86-034c-4448-92de-217ea9d1d018@oracle.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 14 Apr 2025 18:46:33 +0100
-X-Gm-Features: ATxdqUHW-vVe9VFrhj0vHaDmswgScuhI_hHpx6AYlPoesNf-zZb2WZLb4ffhwwY
-Message-ID: <CA+V-a8tJoBPBBQ+66m1P3fxJfFXsFg0fWajCoG0GOQRwEapqAg@mail.gmail.com>
-Subject: Re: RE: [PATCH v4 2/3] reset: Add USB2PHY port reset driver for
- Renesas RZ/V2H(P)
-To: ALOK TIWARI <alok.a.tiwari@oracle.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 9/9] serial: qcom-geni: Enable Serial on SA8255p
+ Qualcomm platforms
+To: Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: <psodagud@quicinc.com>, <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20250410174010.31588-1-quic_ptalari@quicinc.com>
+ <20250410174010.31588-10-quic_ptalari@quicinc.com>
+ <4183462f-7e4c-4da2-8f6b-0dadf26e1b2a@kernel.org>
+Content-Language: en-US
+From: Praveen Talari <quic_ptalari@quicinc.com>
+In-Reply-To: <4183462f-7e4c-4da2-8f6b-0dadf26e1b2a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=67fd4aa2 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=ju1iAOFsNRn_4Ngbc6QA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Jaq6r0Om7_7zFUCmQPg-SgGrNwa1g1rG
+X-Proofpoint-GUID: Jaq6r0Om7_7zFUCmQPg-SgGrNwa1g1rG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_07,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140129
 
-Hi ALOK,
+HI
 
-On Mon, Apr 14, 2025 at 5:51=E2=80=AFPM ALOK TIWARI <alok.a.tiwari@oracle.c=
-om> wrote:
+On 4/14/2025 1:39 PM, Jiri Slaby wrote:
+> On 10. 04. 25, 19:40, Praveen Talari wrote:
+>> The Qualcomm automotive SA8255p SoC relies on firmware to configure
+>> platform resources, including clocks, interconnects and TLMM.
+>> The driver requests resources operations over SCMI using power
+>> and performance protocols.
+>>
+>> The SCMI power protocol enables or disables resources like clocks,
+>> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+>> such as resume/suspend, to control power states(on/off).
+>>
+>> The SCMI performance protocol manages UART baud rates, with each baud
+>> rate represented by a performance level. The driver uses the
+>> dev_pm_opp_set_level() API to request the desired baud rate by
+>> specifying the performance level.
+>>
+>> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+>> ---
+>>   drivers/tty/serial/qcom_geni_serial.c | 150 +++++++++++++++++++++++---
+>>   1 file changed, 136 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/tty/serial/qcom_geni_serial.c 
+>> b/drivers/tty/serial/qcom_geni_serial.c
+>> index 9649297d4a9e..40b71d4b7590 100644
+>> --- a/drivers/tty/serial/qcom_geni_serial.c
+>> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> ...
+>> @@ -1624,8 +1669,27 @@ static int geni_serial_resources_on(struct 
+>> uart_port *uport)
+>>       return ret;
+>>   }
+>>   -static int geni_serial_resource_init(struct qcom_geni_serial_port 
+>> *port)
+>> +static int geni_serial_resource_state(struct uart_port *uport, bool 
+>> power_on)
+>> +{
+>> +    return power_on ? geni_serial_resources_on(uport) : 
+>> geni_serial_resources_off(uport);
+>> +}
+>> +
+>> +static int geni_serial_pwr_init(struct uart_port *uport)
+>>   {
+>> +    struct qcom_geni_serial_port *port = to_dev_port(uport);
+>> +    int ret;
+>> +
+>> +    ret = dev_pm_domain_attach_list(port->se.dev,
+>> +                    &port->dev_data->pd_data, &port->pd_list);
+>> +    if (ret <= 0)
+>> +        return -EINVAL;
 >
-> Hi Fabrizio,
->
-> On 14-04-2025 21:13, Fabrizio Castro wrote:
-> > Hi Alok,
-> >
-> > Thanks for your email.
-> >
-> >> From: ALOK TIWARI <alok.a.tiwari@oracle.com>
-> >> Sent: 14 April 2025 14:46
-> >> Subject: Re: [PATCH v4 2/3] reset: Add USB2PHY port reset driver for R=
-enesas RZ/V2H(P)
-> >>
-> >>
-> >>> +static int rzv2h_usbphy_reset_assert(struct reset_controller_dev *rc=
-dev,
-> >>> +                                unsigned long id)
-> >>> +{
-> >>> +   struct rzv2h_usb2phy_reset_priv *priv =3D rzv2h_usbphy_rcdev_to_p=
-riv(rcdev);
-> >>> +   struct device *dev =3D priv->dev;
-> >>> +   int ret;
-> >>> +
-> >>> +   ret =3D pm_runtime_resume_and_get(dev);
-> >>> +   if (ret) {
-> >>
-> >> nit: it will good if we check similar to reset-rzg2l-usbphy-ctrl.c
-> >> pm_runtime_resume_and_get -> 0 on success, or a negative error code
-> >> otherwise.
-> >> 1 =E2=86=92 if the device was resumed and incremented usage count
-> >> 0 =E2=86=92 if the device was already active or successfully resumed
-> >> if (ret < 0)
-> >
-> > No.
-> >
-> > As you can see from:
-> > https://urldefense.com/v3/__https://github.com/torvalds/linux/blob/mast=
-er/include/linux/pm_runtime.h*L444__;Iw!!ACWV5N9M2RV99hQ!Ly8gpEBQHhYXOeCcKQ=
-avVHfM1XUSy1IubKnHjuQAgvfkK0jrMXc0ebBcvFRvNDcpaJwoUOk1JLLuzih2fLd7JReyapWOo=
-uY$
-> >
-> > pm_runtime_resume_and_get returns a negative error code or 0 (when
-> > successful).
-> >
-> > The same explanation applies to your other comments.
-> >
->
-> Thanks to you for the explanation.
-> I got you point.
->
-> so We are keeping different styles of error checks:
-> In reset-rzv2h-usb2phy.c, we check using if (error),
-> Whereas in reset-rzg2l-usbphy-ctrl.c, we use if (error < 0)."
-> https://github.com/torvalds/linux/blob/master/drivers/reset/reset-rzg2l-u=
-sbphy-ctrl.c#L148
->
-Thanks for pointing that out. I'll update reset-rzg2l-usbphy-ctrl.c to
-use the same style of error checks for consistency.
+> Any reason to reroute every (sane) error code into EINVAL?
 
-Cheers,
-Prabhakar
+i opted for EINVAL instead of EBUSY because i don't want the probe to be 
+re-executed if the firmware does not support SE.
+Let me know if you have any suggestions.
+
+Thanks,
+
+Praveen Talari
+
 
