@@ -1,194 +1,147 @@
-Return-Path: <devicetree+bounces-166698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3303FA880E5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:57:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68772A880EF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4121177D57
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:57:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BEF23AC325
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D485A2BEC3C;
-	Mon, 14 Apr 2025 12:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0CA78F40;
+	Mon, 14 Apr 2025 13:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="iikD1J/q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="URyGnStN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E188029AAF8;
-	Mon, 14 Apr 2025 12:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744635421; cv=pass; b=DyQy+vaSfGCw75n1m7QPFCm3NgFf3aBwwL/xCfJTnd5mG2ZMYrP2Jow8/dNR+EtCPnwCHjLt9tTiWGbYEG2bsrLmLPVf33dAc2I2ucyQgALM+QL2fYNA6UyneD++NyOlkqYxz/k2Gh33td3JNx7r29/NE4n0j66vOTbfGrYh2Bg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744635421; c=relaxed/simple;
-	bh=VUOkR5sUA0G3NJTjmivVhKube3A6Xr80jMqBw3M0FqQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GwE1keLDJ/3HS9+2ohFRMOUTdsc4SkcTDifo8BwlDABJuMqQQ8uW9z0Yag34TJ/NTOTuFRtpRpHgn20oK08YXBXnOgWLZ5OTGPM96NmCLpyJqoZgG3sBSBX7+brzB2te/uMFHrDXbI030FqtRiEtBze3SVelccD/g81wg9v9cQM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=iikD1J/q; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1744635360; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UI597fmXtOSb+2G6X3WD0BJck4aQlhdbIYlvgYtlZXCezM1758SpojGW84WEpgvuX0ojC/xbsq4CNRdQtzJGH6QkKu4RQboLOzMGuSDa2/lK7SoLUtnld06ZZwyjMhBcr8eMIc22i1JK6xAXGPyIFRd8QmLmyh2IKidXJWLkQJY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744635360; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=2SFcmr+j/cQ+KV0XcTEr8Yx/IrB/lqPJKyq9x9rOqDM=; 
-	b=NFvJoVPLpyIq5+IsxJBnqaqAnd3hYw1FHYQeT4/QPQU2i1y8BCKnbs5CGony7cQ3dbq7EfNLPu9yEE/CdCO/fWuAXtyRvraV+q0cweE9UHMRghwqUOmDTSnHpWPJ/j3pkp/dJLmOsqmqXS2EJXatQEMVpHdM1xL22iWD3pz331o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
-	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744635360;
-	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=2SFcmr+j/cQ+KV0XcTEr8Yx/IrB/lqPJKyq9x9rOqDM=;
-	b=iikD1J/q/Qu4ulEKf6I2r8Lj+AlDwh0chOcNmvs50KLpDXFa38L159aDIAsTmmwg
-	82JkPYeLw5jHKGcFzjDJSvvULJseuD/PsTPYgGDe6J0B1LxSimhdHeoVhEf7R9gT6eD
-	kBUyloZGekInPd0NQdehOA7dy+AR43MEdgB4AtAM=
-Received: by mx.zohomail.com with SMTPS id 1744635356934791.9442392785247;
-	Mon, 14 Apr 2025 05:55:56 -0700 (PDT)
-Message-ID: <956d76b0-4f82-4f95-8f70-70896d488bd3@collabora.com>
-Date: Mon, 14 Apr 2025 09:55:45 -0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B042563;
+	Mon, 14 Apr 2025 13:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744635627; cv=none; b=bC5z1auSt8RMJevmlcmjDZyUEEh2PYGkCmNux+s4ks/8JPHNXklXSgxrw5TUZN1el2YWutLmrLyZsuci+vMcHkRXH9Rs74GZHjocfiPYjdj4KeqG8fecwhkfiDgFkVZcfH8lwcrTwfa3f+wI6yX1F+EK5LWwIuVcDwdDPVnJDJg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744635627; c=relaxed/simple;
+	bh=kxhMQT89cblfTxhyzZotmrfRaRQzzN1FS+ulDyL3SRg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FI9l9rP6vxVtTEDnx8Kmwp71znFseC3S4Kafo3/RE9/FcYfaSgvOhvTykwDo+NRYzA6c6gjrwRXOHyr+WpfaNtzEjYdu8F5qnuDzQtIK1UYQg02lf5KpWPBFcHQj7TxHynOPsSk81JuhAeSa3Vyi8UvrUfwKL+rbg9CRUt8bLXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=URyGnStN; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43d0c18e84eso21331495e9.3;
+        Mon, 14 Apr 2025 06:00:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744635624; x=1745240424; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/PADDJQ5jx6lytkcg+MwyiXvCQl+JVcNopjVMW/AGvU=;
+        b=URyGnStNQon2CPTE6gsH6IK67U+wWMfYqhE1m2e5OAVgj37sXozYKZ3HZge/qwhoPK
+         g7kBMwvdZPFVsOju83jbG72fbSsW8egWZP6AtDu+pH1ycf6mRfDcP+R+MRs6hBp70Mco
+         GK5EvqBZrzEEtXF/+UMp3KGDxFeMcKjeIl62o0VsKTYlqYNuxx+aiK5/oi6RQlwV1hJF
+         IjXMZlYDkqwIU/2TXx5kl/QK5dftEOphjETqKe8T9yC0vBc+8JYVMUzzsb+lgaG6Suvk
+         Wiz4I6I8HtsCemAFoelH6VfY4CM/R5yEleuAqw6THXfBlyfM+dqk2Ev1K2Qs+2e3X+eY
+         bF0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744635624; x=1745240424;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/PADDJQ5jx6lytkcg+MwyiXvCQl+JVcNopjVMW/AGvU=;
+        b=AOxShwjk15ZNuJTMxYpw2JNYWU9A/JBTEpIMsXh1IyBkBRcUNOX3/8S5BFe3GVGtkE
+         vC41ULtBmNDtPz7lEtWYuDze6ItBTaGxRE5bMe/vE30hfCFEtT/EsEuSV7N66KnFdl6B
+         bQr75po5HV+AAy7yem6AalUJ281UGWyT5DdWdWfql2IJpnmoqX5clQPGGgOLMroPskP6
+         P46WQYoP4HQ4oPdma3IPXfkBX5u0xmh9vFjFiBXYZQe0JnUABo+4gWbgbMCZBIrLYEA+
+         m5wYRmsP85BoS7kW+ssZvA8OdkVbpNSAy5P+YKFlnxgnnmgCfY2aY0/JRahl/VtFe89k
+         Aitw==
+X-Forwarded-Encrypted: i=1; AJvYcCVGNjrw2H/iwtkeExN1D67dhPLs+TkCj6yeFF5WoazY55HDBvgjIsr0vGZyJsxXyhSsSR3aeXOj/bK3@vger.kernel.org, AJvYcCXEsGV5MrMk0qOxikkLydoft0y2qBFW0muYzlkXIylq9UBxXqPX46W9Y3iL3tspxX8PSor+7SrBJZEwUMNC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvBSa/4fBXH28TVbdbn9Gc3ROgtXlRiGyhHI4A5YwHX+NrT5gP
+	tkkO6tN7zeX66EfX3j3FN77xcVuE/uzO7KxkUbtlZTz2yxgES13WkFPPt0hn
+X-Gm-Gg: ASbGncv3TNho20czHAk4xsxP7Q8iga42r1mzrrvBVJnVxakUqjbQpRfZXTdLfiBDQcA
+	dEjVGi4KS4ahq9D/dvgsFXgn002kzFUXAeGYfnFsdnW2oTBOrFsRyCXJsegaDV4i2NRB/al2xM7
+	60NkIWoo+A1z0JRQ9wsg+tXFG4u3qiqi4940B08Ooisfd9nXskbsdkRO0JsLah4q+MpZ8OQ2Ilw
+	/3NQLCvNYxIatlk6rM91K8NXqygqx0XK5CqcJOZBjBJMd3RoTmvDpvPmJ3NWcx/2VgfJtMlhnoj
+	RqFYNXDJx+LvnSQ0OtCdkbod96k6+j96mD3AB4IQJwOa3sbqSHLlj7gY7+bqovN3
+X-Google-Smtp-Source: AGHT+IHkvdhbEoLRtJXbNr4yhhUbScaZlLezhYsuQK8q6ykHSA5O7H37Bh3gFNZOj2zly4JSisQJTQ==
+X-Received: by 2002:a5d:5982:0:b0:391:3aab:a7d0 with SMTP id ffacd0b85a97d-39ea51f5b18mr7863632f8f.19.1744635624050;
+        Mon, 14 Apr 2025 06:00:24 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:eb55:397c:6c6:e937])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae979663sm11214681f8f.51.2025.04.14.06.00.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 06:00:23 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/3] Add USB2PHY Port Reset Control driver for Renesas RZ/V2H(P) SoC
+Date: Mon, 14 Apr 2025 14:00:17 +0100
+Message-ID: <20250414130020.248374-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/10] riscv: dts: eswin: add HiFive Premier P550 board
- device tree
-To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Min Lin <linmin@eswincomputing.com>,
- Pritesh Patel <pritesh.patel@einfochips.com>, Yangyu Chen
- <cyy@cyyself.name>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Yu Chien Peter Lin <peterlin@andestech.com>,
- Charlie Jenkins <charlie@rivosinc.com>,
- Kanak Shilledar <kanakshilledar@gmail.com>,
- Darshan Prajapati <darshan.prajapati@einfochips.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>, rafal@milecki.pl,
- Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250410152519.1358964-1-pinkesh.vaghela@einfochips.com>
- <20250410152519.1358964-11-pinkesh.vaghela@einfochips.com>
-Content-Language: en-US
-From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-In-Reply-To: <20250410152519.1358964-11-pinkesh.vaghela@einfochips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-Hi Pinkesh,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 4/10/25 12:25 PM, Pinkesh Vaghela wrote:
-> From: Min Lin <linmin@eswincomputing.com>
-> 
-> Add initial board data for HiFive Premier P550 Development board
-> 
-> Currently the data populated in this DT file describes the board
-> DRAM configuration, UART and GPIO.
-> 
-> Signed-off-by: Min Lin <linmin@eswincomputing.com>
-> Co-developed-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-> Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-> Tested-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
->   arch/riscv/boot/dts/Makefile                  |  1 +
->   arch/riscv/boot/dts/eswin/Makefile            |  2 ++
->   .../dts/eswin/eic7700-hifive-premier-p550.dts | 29 +++++++++++++++++++
->   3 files changed, 32 insertions(+)
->   create mode 100644 arch/riscv/boot/dts/eswin/Makefile
->   create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index 64a898da9aee..29a97a663ea2 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0
->   subdir-y += allwinner
->   subdir-y += canaan
-> +subdir-y += eswin
->   subdir-y += microchip
->   subdir-y += renesas
->   subdir-y += sifive
-> diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-> new file mode 100644
-> index 000000000000..224101ae471e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/eswin/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_ESWIN) += eic7700-hifive-premier-p550.dtb
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> new file mode 100644
-> index 000000000000..131ed1fc6b2e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (c) 2024, Beijing ESWIN Computing Technology Co., Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "eic7700.dtsi"
-> +
-> +/ {
-> +	compatible = "sifive,hifive-premier-p550", "eswin,eic7700";
-> +	model = "SiFive HiFive Premier P550";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
+Hi All,
 
-Although commit log says that this includes DRAM configuration, looks 
-like it's missing? In order to test this patchset, had to add this 
-following memory definition (picked from vendor kernel repository):
+This patch series adds support for the USB2PHY Port Reset control driver
+for the Renesas RZ/V2H(P) SoC. The changes include documenting the USB2PHY
+Port Reset control bindings and adding the driver.
 
-     L50: memory@80000000 {
-             compatible = "sifive,axi4-mem-port", "sifive,axi4-port", 
-"sifive,mem-port";
-             device_type = "memory";
-             reg = <0x0 0x80000000 0x7f 0x80000000>;
-             sifive,port-width-bytes = <32>;
-     };
+v3->v4
+- Added Reviewed-by tag from Krzysztof Kozlowski for patch 1/3
+- Updated commit message for patch 1/3 as per review comments
 
-Regards,
+v2->v3
+- Dropped Acks from Conor and Fabrizio, due to below changes
+- Renamed binding renesas,rzv2h-usb2phy-ctrl.yaml to
+  renesas,rzv2h-usb2phy-reset.yaml
+- Renamed node name in example to reset-controller
+- Renamed function names in reset-rzv2h-usb2phy.c
+- Kept the reset line in asserted state during probe
+- Added comment for rzv2h_init_vals[]
+- Added entry in MAINTAINERS file
+
+v1->v2
+- Dropped binding postfix in subject line for patch 1/2
+- Moved acquiring the ctrl2 pin in deassert callback
+- Updated ctrl_status_bits
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: reset: Document RZ/V2H(P) USB2PHY reset
+  reset: Add USB2PHY port reset driver for Renesas RZ/V2H(P)
+  MAINTAINERS: Add entry for Renesas RZ/V2H(P) USB2PHY Port Reset driver
+
+ .../reset/renesas,rzv2h-usb2phy-reset.yaml    |  56 ++++
+ MAINTAINERS                                   |   8 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-rzv2h-usb2phy.c           | 241 ++++++++++++++++++
+ 5 files changed, 313 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+ create mode 100644 drivers/reset/reset-rzv2h-usb2phy.c
 
 -- 
-Ariel D'Alessandro
-Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
-Registered in England & Wales, no. 5513718
+2.49.0
 
 
