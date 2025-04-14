@@ -1,147 +1,172 @@
-Return-Path: <devicetree+bounces-166828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBE1A88945
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:02:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C66A88964
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 692611782DE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:02:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EBE91894E89
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:10:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB7A27B515;
-	Mon, 14 Apr 2025 17:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C046A288CB9;
+	Mon, 14 Apr 2025 17:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haXXUUQ5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QiqoNO8c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B04539A;
-	Mon, 14 Apr 2025 17:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13D6270EA4;
+	Mon, 14 Apr 2025 17:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744650165; cv=none; b=FBRCHYgh8EJvnuLCAMHLhGvmV0pSj9ohVqoIz7zZWk9nSnx/wCcD49X2PsJUbM5KVN20v3c+zjp2eJjb8quDNExj4Qaq1i+ShD9FV8tW7apxge0ROVaGlHhtF3MS6MPz5Mrc9jKoL8i+tEfn4DSW3u0Lmn4e/Hd+R2poWqzfr0k=
+	t=1744650613; cv=none; b=eYHfZYBNnkLk2HcBbDTDRYNgtQF/G+u8WP0bByEIuecWMeXUroqNc0LrAg2WelTeTl+5w9n5fW0h2Yct4KtagSUqIUZ+vpK3h9TJU/rlzYC7ahyxFgDYVKic/gHZAT9AY4wQor/19KgMXGjvUKokg9yXwjMUM45GcZWDpdrAnDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744650165; c=relaxed/simple;
-	bh=KqFT3PKAxBM7aneYNA4QM0R7Gd1DemUhbyEfOOJZdwc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghxVq4wfI9T/VpgrrQGHQ4EcZ6hXTesPpkVkT5G+1EJo1y6TDFT15KIhdF58v0UVv7YA+eKu6o4NP0UfDbl6TFM09v8etH55NAbK8lbB1PXKUZI7jkBzuKVVgJvnHNSk08DB0NyLncxbi4fcHgEQ3obX4jtDcEreSX6OjjxGcm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haXXUUQ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BD4FC4CEEB;
-	Mon, 14 Apr 2025 17:02:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744650164;
-	bh=KqFT3PKAxBM7aneYNA4QM0R7Gd1DemUhbyEfOOJZdwc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=haXXUUQ5j7/xdMK6YjwHt6lr9C50Nl/g7bFmEYMZvNiz+gF0wIYn0k0JlsN7AgIIr
-	 4iu+74zlC0pGVbnny4GpZcvFCtRv7UbXiLj/Jktoz55Xw4OI0gFEF9IMr5JRkbS89a
-	 FWUp+fMSf5UkmLfyLJ4Oh8mMhzRX4zRBtIyxizLmg1yK8LXnD6fzQ4a/5VdOID9XcX
-	 dE75rVIJSiBbQRqIjkmlXD+Sz1tODj0aRj329Hqs8wN3tRMUOekPmkiQJuBXhlIRBs
-	 zzEUQdKKdZxKbNiIRzd4lVHI7DTVE6ie+lpUtXY7UaT3cQKWd5+rfYxv5sIPEdod6N
-	 ZZHwk4psw8ppw==
-Date: Mon, 14 Apr 2025 18:02:33 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>, zhouyanjie@wanyeetech.com,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
-	linux-rockchip@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 03/17] arm64: dts: microchip: sparx5: Fix CPU node
- "enable-method" property dependencies
-Message-ID: <20250414-fragile-same-9cd06114cd85@spud>
-References: <20250410-dt-cpu-schema-v2-0-63d7dc9ddd0a@kernel.org>
- <20250410-dt-cpu-schema-v2-3-63d7dc9ddd0a@kernel.org>
- <20250411-ebay-exerciser-392c42daf5ba@spud>
- <CAL_JsqJza-bufzjZ415THyDDQaOfk8F+JRFvFxzNwObG=NKVJQ@mail.gmail.com>
+	s=arc-20240116; t=1744650613; c=relaxed/simple;
+	bh=FAlvD9qGBi/bC3IDlLdVswbdnPKWhDIbA50Ndmh/eMo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ivPG7D/WmYNZ5FI4PDr9sQ9CdN/u50Lut7lO7c27twd/Gc7umIMCBq2/+VuDVd9+rSX4b3BsHCOD45n02OK06EpbFcAcYVJkuKxPP5IoIQJvFdkgHpVf8LL4x+mivt1oMXMaMnW/e29qN7o7CjUwbI4ixg87IB6jWRzl3tCP+R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QiqoNO8c; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2a81e41e3so821626666b.1;
+        Mon, 14 Apr 2025 10:10:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744650610; x=1745255410; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ptCoH/mbfNPZTY4S28oJpjLyfUNDXfkMFU+31cHM30U=;
+        b=QiqoNO8cu/KHscIcPKEQ8JAlX09IRyr3Yd+g74Aaewpqgd4jZ6klgAbyjtCgMWkl8P
+         RgoD0jSxUX2gP18p8FDh+5xjoJQJVgZVMs1wWtJG0lJmYe41QbJ34BaAEcjEadcnOs24
+         QHvQ1j/kLmfkkj3yML/YhukyIkWk4i8k9uW1M0rJBJojyobfsc133kwlwc5XsRnO0Tdu
+         KxG/KEc1DDKYzhZo5rD8MUDl1RJX9QO9G6Gs9+QGj05LlWyPJxH8ytppHIqaUv+QJg2D
+         TaiKXJGjnB+TdA7+m6ZzwaJyYvC+R5hrdeVA7LG7yveqVR7RQnVfSMeKNyIWe8NVeTSs
+         E1rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744650610; x=1745255410;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ptCoH/mbfNPZTY4S28oJpjLyfUNDXfkMFU+31cHM30U=;
+        b=IAALv1Z+cCX2HXqm5BaVwhiCMdFa1KRsz9WySvBJQnM9gAz8z4066eLB3zsGJF6KZU
+         97/2l9hcPU1MqGVeKLOke/UUlwKDkc/xdk0nSBnu8nUQyo9FXscmssPvp8odg+If5D93
+         b/RtW+MaS4Wsm0WXGeQQ+6uqEjcJVXiyr7el+EDTaBW3el3tzEO877OhumEX2uKkWEvs
+         eEJ5P2Bmoalgw7Ms90dS89Wh2H7PBdmrW9pu+J4PvFvA3H0kcs3OeL41PED7OeNt96Ec
+         wAQDTAiDn51QRwyqABFxTku+yPQPhL469GMP8wPCK660t9mzkVapsABoTKmRnq4bDFDn
+         poxg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6A1ohmPbJQe7CqzUZrHHUMQg/tIxkZN6c3kvTRNMaBzMuTb2pNU76JReUyX+qaNdz5Eecj4PI@vger.kernel.org, AJvYcCVHtI8xzzmV2eSDW7bnxkZGrvQ9XS+I4soZoHDAqeJ9vQA0oihBvSfN7kZ3w8fZRqhXkBRXDAhXL/Li63PL@vger.kernel.org, AJvYcCWrmMMIlQMnlorpWCvr6+ZHO84mq1RTRJm1/0/EX5KXtHqSf3wMgnFgxUUwhpiSHnVClj0/LzMXF8jD@vger.kernel.org, AJvYcCXs4SbAGsE9g2f+eRKmyQn/Xpo2NCopNl/fgYT44ouvqhRIyuTQQWVspLGXf8lqv7lw+/TUgsa7fWYYpUldXyBZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgNWe6eT2MAXHeqrfpvawTWVMVSj8xIrRQVC9Wrle67RgOLKMm
+	6FZFfvP5q9cpDiCwopy6QLY6LXI4bf5+M8go0HNGbHA0NByZ+TYx+oqywBuBI4dYx2YAG+tUkXK
+	6F9f70T4+wSnd4oncNH5BzldPGe0YgiXVLFQ=
+X-Gm-Gg: ASbGncupgURfiLAMg+qTm9LT8p0Sq/bP3/pAqxuML8H0fANYv1Vlv1YmSNynj71fAiA
+	Skim+Dx2fVZync1L/eyW1S4Cl/stwuZIQQD03fZMid6kCmonNeVpR5Ui2oMK7NdPsj/b7q1pkVd
+	RkL1f6QwrO2eFoc+3Tq1fzHw==
+X-Google-Smtp-Source: AGHT+IE10rNQRIF2h7h0sW56pVRl3UH9iw/JjGfWGqw2oImvoIxqgE+Ipm7pwF2M/aj/ZmbfUKqcTh8LUsJ7g7ChCEE=
+X-Received: by 2002:a17:906:db05:b0:aca:c4a6:cd90 with SMTP id
+ a640c23a62f3a-acad34395c7mr1288965866b.5.1744650609941; Mon, 14 Apr 2025
+ 10:10:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pt+1yttKuNYLWgzQ"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJza-bufzjZ415THyDDQaOfk8F+JRFvFxzNwObG=NKVJQ@mail.gmail.com>
-
-
---pt+1yttKuNYLWgzQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20250407172836.1009461-1-ivecera@redhat.com> <20250407172836.1009461-2-ivecera@redhat.com>
+ <Z_QTzwXvxcSh53Cq@smile.fi.intel.com> <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
+ <Z_ys4Lo46KusTBIj@smile.fi.intel.com> <f3fc9556-60ba-48c0-95f2-4c030e5c309e@redhat.com>
+ <79b9ee2f-091d-4e0f-bbe3-c56cf02c3532@redhat.com> <b54e4da8-20a5-4464-a4b7-f4d8f70af989@redhat.com>
+ <CAHp75Ve2KwOEdd=6stm0VXPmuMG-ZRzp8o5PT_db_LYxStqEzg@mail.gmail.com>
+ <CAHp75Vc0p-dehdjyt9cDm6m72kGq5v5xW8=YRk27KNs5g-qgTw@mail.gmail.com>
+ <CAHp75Vej0MCAV7v7Zom8CXqh3F6f3QXevW93pOkXSLEZn7Yxfg@mail.gmail.com> <ad5ada81-d611-41bb-8358-3675f90767f1@redhat.com>
+In-Reply-To: <ad5ada81-d611-41bb-8358-3675f90767f1@redhat.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 14 Apr 2025 20:09:32 +0300
+X-Gm-Features: ATxdqUFYN8tmWUda0Ypk9VQ3-hD55ed-lfLUKHgTNK0s5T1fXVI2QCwvL3PGsTc
+Message-ID: <CAHp75VdkLnm42DS2+kebYUWyXAhyNgswwDNynNJ-weo3DZ=G+Q@mail.gmail.com>
+Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Andy Shevchenko <andy@kernel.org>, netdev@vger.kernel.org, 
+	Michal Schmidt <mschmidt@redhat.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, 
+	Kees Cook <kees@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 11, 2025 at 03:26:50PM -0500, Rob Herring wrote:
-> On Fri, Apr 11, 2025 at 11:22=E2=80=AFAM Conor Dooley <conor@kernel.org> =
-wrote:
+On Mon, Apr 14, 2025 at 5:53=E2=80=AFPM Ivan Vecera <ivecera@redhat.com> wr=
+ote:
+> On 14. 04. 25 4:16 odp., Andy Shevchenko wrote:
+> > On Mon, Apr 14, 2025 at 5:13=E2=80=AFPM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> >> On Mon, Apr 14, 2025 at 5:10=E2=80=AFPM Andy Shevchenko
+> >> <andy.shevchenko@gmail.com> wrote:
+> >>> On Mon, Apr 14, 2025 at 5:07=E2=80=AFPM Ivan Vecera <ivecera@redhat.c=
+om> wrote:
+> >>>> On 14. 04. 25 1:52 odp., Ivan Vecera wrote:
 > >
-> > On Thu, Apr 10, 2025 at 10:47:24AM -0500, Rob Herring (Arm) wrote:
-> > > The "spin-table" enable-method requires "cpu-release-addr" property,
-> > > so add a dummy entry. It is assumed the bootloader will fill in the
-> > > correct values.
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > Reviewed-by: Daniel Machon <daniel.machon@microchip.com>
-> > > Tested-by: Daniel Machon <daniel.machon@microchip.com>
+> > ...
 > >
-> > This is already applied, guess I forgot to merge it into the branch that
-> > appears in linux next. I'll do that now..
->=20
-> Sometimes I check next, but in this case I just looked at replies for
-> which there were none. I dislike submitting dts changes because it's a
-> range of AWOL maintainers, only applying around some rcN (so up to 2
-> months later), silently applying, and applied but never in linux-next
-> (until in soc tree).
+> >>>> Long story short, I have to move virtual range outside real address
+> >>>> range and apply this offset in the driver code.
+> >>>>
+> >>>> Is this correct?
+> >>>
+> >>> Bingo!
+> >>>
+> >>> And for the offsets, you form them as "page number * page offset +
+> >>> offset inside the page".
+> >>
+> >> Note, for easier reference you may still map page 0 to the virtual
+> >> space, but make sure that page 0 (or main page) is available outside
+> >> of the ranges, or i.o.w. ranges do not overlap the main page, even if
+> >> they include page 0.
+> >
+> > So, you will have the following layout
+> >
+> > 0x00 - 0xnn - real registers of page 0.
+> >
+> > 0x100 - 0xppp -- pages 0 ... N
+> >
+> > Register access either direct for when direct is required, or as
+> > 0x100 + PageSize * Index + RegOffset
+>
+> Now, get it...
+>
+> I was a little bit confused by code of _regmap_select_page() that takes
+> care of selector_reg.
+>
+> Btw, why is this needed? why they cannot overlap?
+>
+> Let's say I have virtual range <0, 0xfff>, window <0, 0xff> and window
+> selector 0xff>.
+> 1. I'm calling regmap_read(regmap, 0x8f, ...)
+> 2. The regmap looks for the range and it finds it (0..0xfff)
+> 3. Then it calls _regmap_select_page() that computes:
+>     window_offset =3D (0x8f - 0x000) % 0x100 =3D 0x8f
+>     window_page =3D (0x8f - 0x000) / 0x100 =3D 0
+> 4. _regmap_select_page() set window selector to 0 and reg is updated to
+>     reg =3D window_start + window_offset =3D 0x8f
+>
+> And for window_selector value: regmap_read(regmap, 0xff, ...) is the
+> same except _regmap_select_page() checks that the given address is
+> selector_reg and won't perform page switching.
+>
+> When I think about it, in my case there is no normal page, there is only
+> volatile register window <0x00-0x7e> and only single direct register
+> that is page selector at 0x7f.
 
-Let's add "send the b4 ty email" to the list of things that I did not
-do, but thought that I had done.
+Because you are effectively messing up with cache. Also it's not
+recommended in general to do such due to some registers that might
+need to be accessed directly. And also note, that each time you access
+this you will call a selector write _each_ time you want to write the
+register in the map (if there is no cache, or if cache is messed up).
 
---pt+1yttKuNYLWgzQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/0/qQAKCRB4tDGHoIJi
-0llIAQCfeSIfGZefusGStXxy21uaJUGlki/H/XzQ1dq4t278oAD9GMv/CXNEj8CG
-oPoSllLdscFoA/5qVRjJh0erPiNF8gA=
-=q+yA
------END PGP SIGNATURE-----
-
---pt+1yttKuNYLWgzQ--
+--=20
+With Best Regards,
+Andy Shevchenko
 
