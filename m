@@ -1,164 +1,231 @@
-Return-Path: <devicetree+bounces-166674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A652BA87FF3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:04:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD80A87FFB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13C201891B5F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:04:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7283162EFC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0D12BE7A1;
-	Mon, 14 Apr 2025 12:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB97727EC83;
+	Mon, 14 Apr 2025 12:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L440nwe+"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lg/kMsby";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Tl4qp1yp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2912BD598;
-	Mon, 14 Apr 2025 12:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341C976410;
+	Mon, 14 Apr 2025 12:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744632217; cv=none; b=t8Pr1jhay5YziFlHzVf5fQ839WDDfJ7vR7oULk47how7cqclQ8z+190BeY69kVFUa5D3kC8ymyp9gNNjYBkYMrzkHpF0+6dE23rrSZxTGZc3WMYefCMefnkh7pOhdcL13lDlybyPDfYDYwcXM9gd6gio+2Y/UKSGS7mCHPr1Xdw=
+	t=1744632417; cv=none; b=VjZO2YdrCAZemTMrO9rzUXFMPL9ss3VEoR0DSZnF0uxLgldBDso5QFOd/VwTn4hTtVwceFy41DAmaOpg21LQQZkyV8p5LLtYJck7LX5IrdRl3a3m/QmzSe1Y28fA8REmaXrI3NomBR1V4vm85mxyfotjQUSaE0zAF/ercXC3Yow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744632217; c=relaxed/simple;
-	bh=/bxomSJIGHyvt+5hFy0R5oVEwYMlY3ZvIOs419TYitg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L5zlhrFdSgMFjBV5+ggbtvViJikO9huUdSt70660vceR9MHLGaFY4sTRNcNPCQLk97iQygKhJ3jO4xbJT0nGKrcEFUGucVuKAEhXP+WD0C4ZPkzBOzVdMLFIp4djfutThN8V85GDA9641+mDC0KPAt73ZhvlTqFYLRsxt6ZFgqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L440nwe+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C732EC4CEEC;
-	Mon, 14 Apr 2025 12:03:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744632216;
-	bh=/bxomSJIGHyvt+5hFy0R5oVEwYMlY3ZvIOs419TYitg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L440nwe+sacWG4uCza+Iytyk2p5qHKHSdHROmIU1GcbXyBeQxTN2hAKUY3MzlTQPY
-	 W6uE5taQxcqTkIt9mTWCwfBSD13ZvyAzC7x7Li5GrGDDQisMA2nw07zSZpPgeGfAZj
-	 hR6XU1XCD1Y0C/jE/0NCX5tbCym7skZTxQyAXEqly+bxOLnvCi0vnqKh7+MSKBvdb4
-	 +lNrQd9vtxPQO9rXfTi0yhA7dOo7c3Smz3MLwuLjlJYg5PbqBMZaA+R6EZ9AGgCDeS
-	 RoccKY24x8jV03i3FGD22harPZ9J4LV9E6onlOdlqjCaMsONOX3e7M6b2GPYTTcwUO
-	 cOkZAZTdI60xA==
-Message-ID: <bb24afca-61c9-4c37-b98d-b2316ed79f98@kernel.org>
-Date: Mon, 14 Apr 2025 14:03:29 +0200
+	s=arc-20240116; t=1744632417; c=relaxed/simple;
+	bh=WcLtvxpwzwPgtQtkLcpRaZQLmb6t05vi+h9aREg9uzI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sL6RqLP9dqH7anHnGdmb80CARVZ2IALen70ifxnE9Nz6sgy6BcE2A/J51uINHtettTezljMYo+Nx39aIDF2+mlTB6ybc0fAuKAX8gdY3SFYay6OzWGGAGgieSWKTMcE9PB+YNbFQXDE8XVVTZ6YeIPFeMOmAcag8ZlWfU30xkBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=lg/kMsby; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Tl4qp1yp reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1744632413; x=1776168413;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=0qRngjH5NfK8k3qCBdkRYGMa0moa4Ms3X3uCZG/AMm0=;
+  b=lg/kMsbyuGx1Ws0rHxwaJWElv9SSKX+ZYssJzZihLs/sC0bUSeJxuiKZ
+   DAIKha5vbqVScW//bOIlzxHQu9PFaZUm0dKhfYerIpg7i1ryHXyP4wzCv
+   rohBl1Adma6faMFv+K1wuxU9BaGA5V0FC2FCyh5f4TDapYilPvWbVzcKY
+   VtE78nwM1HEjSVi7weaUirEVNoOELUCSTKSflg0I6nquaiUSmxQM0f6Co
+   trKkB6ZQc6TcvazrE19OPBV/bYvfI6Kl6rTLqdcxejIKkuWUrvM0+6H3j
+   R0AmSMu+5UZxfQ7EI0Oo8uznfrILv2EDFBet/mD6MBO7TzRap/GPdh0z3
+   Q==;
+X-CSE-ConnectionGUID: kH924yWkRCymE1jkCKaZGw==
+X-CSE-MsgGUID: tgjbru6kQT2ztrblDagr2w==
+X-IronPort-AV: E=Sophos;i="6.15,212,1739833200"; 
+   d="scan'208";a="43513528"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 14 Apr 2025 14:06:44 +0200
+X-CheckPoint: {67FCFA54-F-903EAEAC-E04C76C8}
+X-MAIL-CPID: E1346D004478E871A011FAD80CD6DD9E_5
+X-Control-Analysis: str=0001.0A006378.67FCFA53.003E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 60C11160F74;
+	Mon, 14 Apr 2025 14:06:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1744632399;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0qRngjH5NfK8k3qCBdkRYGMa0moa4Ms3X3uCZG/AMm0=;
+	b=Tl4qp1ypBg1TFonNEIdoGASEqRt8LFOamSTfyjhS+4n69oR0qt2D3mwv0+5Jr8UlF3oi/z
+	prGKl+D49I9qlAX5db8g94IB5w81Qi0OMxBymjretiwb+ihk9UAK4DnoZLmM0HBe1NXsSh
+	QxPt3L5X6lX3S7v0qPIGcm2tPFMQxjo2mx+x9+IeaCDOOpOMQWYRhbYEmQGpMrKnxQ9vRh
+	TFgMthFmB7TbTC4Lht3SoL1tL9Zy57kYlrRGie57ZQ63+D7+KHMfmIMwU3D8YztSbjZUAe
+	XxnlRkWhTeOoMuEAFdOQ4VjtbZykuYYgxMPbwAcz5EoXEzVfcfDyYEyFP4eLfw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>, hongxing.zhu@nxp.com
+Subject:
+ Re: [PATCH 4/5] arm64: dts: imx95: add PCIe's msi-map and iommu-map property
+Date: Mon, 14 Apr 2025 14:06:37 +0200
+Message-ID: <2778503.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <Z/kqVYPOV1Em+6H2@lizhi-Precision-Tower-5810>
+References:
+ <20250128211559.1582598-1-Frank.Li@nxp.com> <1970445.taCxCBeP46@steina-w>
+ <Z/kqVYPOV1Em+6H2@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/11] ASoC: dt-bindings: mediatek,mt8196-mt6681: add
- mt8196-mt6681 document
-To: =?UTF-8?B?RGFycmVuIFllICjlj7bpo54p?= <Darren.Ye@mediatek.com>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "broonie@kernel.org" <broonie@kernel.org>, "brgl@bgdev.pl" <brgl@bgdev.pl>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "tiwai@suse.com"
- <tiwai@suse.com>, "robh@kernel.org" <robh@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "perex@perex.cz"
- <perex@perex.cz>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20250407120708.26495-1-darren.ye@mediatek.com>
- <20250407120708.26495-12-darren.ye@mediatek.com>
- <6a9bd37e-ffec-4365-891a-64259c0cc115@kernel.org>
- <b67a231529c2f8cf0053d8180df95da94ef6d6d2.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <b67a231529c2f8cf0053d8180df95da94ef6d6d2.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 14/04/2025 09:08, Darren Ye (叶飞) wrote:
-> On Mon, 2025-04-07 at 15:12 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 07/04/2025 14:06, Darren.Ye wrote:
->>> +
->>> +allOf:
->>> +  - $ref: sound-card-common.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>
->> Drop
-> 
-> Drop oneOf ?
+Hi,
 
-Yes
+Am Freitag, 11. April 2025, 16:42:29 CEST schrieb Frank Li:
+> On Fri, Apr 11, 2025 at 08:53:02AM +0200, Alexander Stein wrote:
+> > Hi,
+> >
+> > Am Mittwoch, 9. April 2025, 16:59:21 CEST schrieb Frank Li:
+> > > On Wed, Apr 09, 2025 at 12:14:48PM +0200, Alexander Stein wrote:
+> > > > Hi Frank,
+> > > >
+> > > > Am Donnerstag, 27. M=E4rz 2025, 19:48:33 CEST schrieb Frank Li:
+> > > > > [snip]
+> > > > > Finially we get realtek PCI card
+> > > > >
+> > > > > it quite complex, there are one PCIe switch to split it to two pc=
+i bus.
+> > > > >
+> > > > >  lspci -t
+> > > > > -[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-03.0-[03]----00.0
+> > > > >                                            \-07.0-[04]----00.0
+> > > >
+> > > > Interesting. Mine looks slightly different:
+> > > >
+> > > > $ lspci -t
+> > > > -[0000:00]---00.0-[01-ff]----00.0-[02-04]--+-01.0-[03]----00.0
+> > > >                                            \-02.0-[04]----00.0
+> > > >
+> > > > >
+> > > > >
+> > > > > 0000:00:00.0 PCI bridge: Philips Semiconductors Device 0000
+> > > > > 0000:01:00.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port =
+PCIe x1 Gen2 Packet Switch
+> > > > > 0000:02:03.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port =
+PCIe x1 Gen2 Packet Switch
+> > > > > 0000:02:07.0 PCI bridge: ASMedia Technology Inc. ASM1182e 2-Port =
+PCIe x1 Gen2 Packet Switch
+> > > >
+> > > > It seems you have a newer hardware revision. I have
+> > > > 0000:01:00.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
+> > > > 0000:02:01.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
+> > > > 0000:02:02.0 PCI bridge: Pericom Semiconductor Device a303 (rev 03)
+> > > >
+> > > > PCIe bridges.
+> > > >
+> > > > > 0000:03:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.=
+ RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+> > > > > 0000:04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.=
+ RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller (rev 09)
+> > > > >
+> > > > > It need below change
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm6=
+4/boot/dts/freescale/imx95.dtsi
+> > > > > index 9bb26b466a061..9dbf395b9a67b 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > > > @@ -1660,10 +1660,18 @@ pcie0: pcie@4c300000 {
+> > > > >                         power-domains =3D <&scmi_devpd IMX95_PD_H=
+SIO_TOP>;
+> > > > >                         /* pcie0's Devid(BIT[7:6]) is 0x00, strea=
+m id(BIT[5:0]) is 0x10~0x17 */
+> > > > >                         msi-map =3D <0x0 &its 0x10 0x1>,
+> > > > > -                                 <0x100 &its 0x11 0x7>;
+> > > > > +                                 <0x100 &its 0x11 0x1>,
+> > > > > +                                 <0x218 &its 0x12 0x1>,
+> > > > > +                                 <0x238 &its 0x13 0x1>,
+> > > > > +                                 <0x300 &its 0x14 0x1>,
+> > > > > +                                 <0x400 &its 0x15 0x1>;
+> > > > >                         iommu-map =3D <0x000 &smmu 0x10 0x1>,
+> > > > > -                                   <0x100 &smmu 0x11 0x7>;
+> > > > > -                       iommu-map-mask =3D <0x1ff>;
+> > > > > +                                   <0x100 &smmu 0x11 0x1>,
+> > > > > +                                   <0x218 &smmu 0x12 0x1>,
+> > > > > +                                   <0x238 &smmu 0x13 0x1>,
+> > > > > +                                   <0x300 &smmu 0x14 0x1>,
+> > > > > +                                   <0x400 &smmu 0x15 0x1>;
+> > > > > +                       //iommu-map-mask =3D <0x1ff>;
+> > > > >                         fsl,max-link-speed =3D <3>;
+> > > > >                         status =3D "disabled";
+> > > > >
+> > > > >
+> > > > > Only 8 stream id assign to PCIe0 device, it is hard to dynamaic a=
+lloce one,
+> > > > > or need extra works
+> > > >
+> > > > Uh, this looks awefully complicated. Even worse this doesn't work on
+> > > > my hardware. I need mappings for IDs 0x208 and 0x210, so I replaced=
+ 0x218
+> > > > and 0x238 from your diff into my numbers.
+> > > >
+> > > > So I take that PCIe bridges are not supported properly. What would =
+be
+> > > > necessary to support this?
+> > >
+> > > I remember bridge use msi to do port power managements.
+> > >
+> > > ITS msi-map can distribute difference irq to difference cores beside =
+iommu
+> > > address protection. It is quite userful for nvme or network devices, =
+which
+> > > have multi queues. Of course, we need more elegant solution.
+> > >
+> > > My card use difference pcie switch chip. But suppose it should work a=
+fter
+> > > you update RID information.
+> >
+> > Yep, after adjusting RID mapping, it works here.
+>=20
+> Are you sure it work after adjusting RID mapping? you said
+> "I take that PCIe bridges are not supported properly"
+>=20
+> So I am confused. If it works, I can think how to allocate a stream elega=
+nt.
 
->>> +
->>> +examples:
->>> +  - |
->>> +    sound {
->>> +        compatible = "mediatek,mt8196-mt6681-sound";
->>> +        model = "mt8196-mt6681";
->>> +        mediatek,platform = <&afe>;
->>
->> Make the example complete.
-> mt8196 pinctrl in mt8196-afe, does it have to be set in the machine
-> driver?
+Sorry, this sounded misleading. I was referring to the current state.
+Without additional adjustments PCIe bridges might not work, AFAIU.
+If I adjust the RID mapping, the Ethernet hardware having 2 bridges works on
+my platforms.
 
-I don't understand what do you ask me. Machine driver is not relevant to
-this and I did not mention it. You have in the binding few properties
-which are not present in DTS example. Why?
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Best regards,
-Krzysztof
+
 
