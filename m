@@ -1,197 +1,104 @@
-Return-Path: <devicetree+bounces-166798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762BBA88719
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:28:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11B4A88760
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:37:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74B94168CF7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:28:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0B9E1902743
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50F6279911;
-	Mon, 14 Apr 2025 15:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F67F2749F0;
+	Mon, 14 Apr 2025 15:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLJ5YZa4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126AF274642;
-	Mon, 14 Apr 2025 15:27:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3134C7C;
+	Mon, 14 Apr 2025 15:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744644422; cv=none; b=sq6roskqF47De0PunvhVSQWLTcMEZ9cIHD/MeargdjNYa6aA3Ux9D4vZjSPGTLDKJ0V4XWexlLCf0I0bDRejCP4kkKPTj+joaD5TiIuxd7B7ihvNp9vWGpu1jCZts+wcQk2jc07Qe0DtmnhgXw5qJQj32zqR8Jmz/GWDX02M17o=
+	t=1744644448; cv=none; b=qpP4cDufuxFmcVm+C9Ctj1pNyj9HCXIprDYqp+ZW4bbutm0CsLveqV9iSKrQ1SKDO1RzeHFV3VbkpL82Nmcyu9dSX/v1d8XvTHDrAf3hNIE7cP6vLv6O0AnQ6IYPFgqE2204R/Paw1p0MqgnFcG9r3Tm5m7XdQ6u0JdtuF9lTYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744644422; c=relaxed/simple;
-	bh=myCQWYQ5yFgd2BuNSiywex37N2f8bLHvBD8YV269Ips=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nbSkVvBfbnuAyqdztd/ki0CuOHPUGxjDx0chebThjcBpSPbWCxLuLUSgZ5xJeLNm+NGoa6ZY0yjbD4jsvIbHHb8c+grBWXW638nd5HPlBPFYKvHY97fowkbFC/kwjdWumjSoSHwHzaiY4ALrY833T1MjabYZA0DZDOK/e3C4mXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Zbrk92D4Yz9vGD;
-	Mon, 14 Apr 2025 17:26:57 +0200 (CEST)
-From: Remo Senekowitsch <remo@buenzli.dev>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: [PATCH v2 5/5] samples: rust: platform: Add property read examples
-Date: Mon, 14 Apr 2025 17:26:30 +0200
-Message-ID: <20250414152630.1691179-6-remo@buenzli.dev>
-In-Reply-To: <20250414152630.1691179-1-remo@buenzli.dev>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
+	s=arc-20240116; t=1744644448; c=relaxed/simple;
+	bh=xOz4bqQ06a6dRshKQPZ0CbVIQt48i1yKdpWjSoQ9OEE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=GvaSGohHdRRkjIiqArB0411/YTb2SY7NSY90RcZaAqSW8sqx84uqq+10PmEH1i+FikGPVuk080r0QgpIN2MTW6xZImC6GdmkrkkyX2+o5F+8iP8B5UmOYxD5Ao1KlaevcXYXB24a9th8/95okaKTKoyY1zz8ndBh/WnVl65fVXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLJ5YZa4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FED9C4CEE2;
+	Mon, 14 Apr 2025 15:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744644447;
+	bh=xOz4bqQ06a6dRshKQPZ0CbVIQt48i1yKdpWjSoQ9OEE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=TLJ5YZa4gSz7hyRClUzRPtCjVQc/VW1NSezb3F8PkpZfBndSsLNJ5LCRDR/PJ2kaB
+	 lvK6Sg6MUJXjaYmzWcVFxuhnrizqfJinu7LvbeZhUyUQiMG31SNVhS9grritk1uy77
+	 0Sr3AzSYcoDUlTZY619o7soHWwLknjeSbCyfOnq0k12LRgQFLRNJXvE6T3gGYMht61
+	 9OxDiVkklROcLXd1WS7a30Z7rUZe5RwKuePInTyzmzwY0HRL9aK+WBvq/qfocdjEVQ
+	 MrkQgjyUmkwh6eQbkXooPujG/mUmuasvsaFIxK+zD0v8AzToc4dAQexTAHp+CK7z9H
+	 UYL9xc7HqvAQA==
+Date: Mon, 14 Apr 2025 10:27:25 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4Zbrk92D4Yz9vGD
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lee@kernel.org, 
+ pavel@kernel.org, linux-doc@vger.kernel.org, linux-leds@vger.kernel.org, 
+ knezic@helmholz.com, corbet@lwn.net, linux-kernel@vger.kernel.org, 
+ krzk+dt@kernel.org
+To: Ante Knezic <ante.knezic@helmholz.de>
+In-Reply-To: <35c7f697070b3939727f1115d3a279e280f72cd6.1744636666.git.knezic@helmholz.com>
+References: <cover.1744636666.git.knezic@helmholz.com>
+ <35c7f697070b3939727f1115d3a279e280f72cd6.1744636666.git.knezic@helmholz.com>
+Message-Id: <174464444574.455759.7081664205185002557.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add binding for WL-ICLED
 
-Add some example usage of the device property read methods for
-DT/ACPI/swnode properties.
 
-Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
----
- drivers/of/unittest-data/tests-platform.dtsi |  3 +
- samples/rust/rust_driver_platform.rs         | 69 +++++++++++++++++++-
- 2 files changed, 69 insertions(+), 3 deletions(-)
+On Mon, 14 Apr 2025 15:28:50 +0200, Ante Knezic wrote:
+> From: Ante Knezic <knezic@helmholz.com>
+> 
+> WL-ICLED is a RGB LED with integrated IC from Wurth Elektronik.
+> Individual color brightness can be controlled via SPI protocol.
+> 
+> Signed-off-by: Ante Knezic <knezic@helmholz.com>
+> ---
+>  .../bindings/leds/leds-wl-icled.yaml          | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
+> 
 
-diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-index 4171f43cf..50a51f38a 100644
---- a/drivers/of/unittest-data/tests-platform.dtsi
-+++ b/drivers/of/unittest-data/tests-platform.dtsi
-@@ -37,6 +37,9 @@ dev@100 {
- 			test-device@2 {
- 				compatible = "test,rust-device";
- 				reg = <0x2>;
-+
-+				test,u32-prop = <0xdeadbeef>;
-+				test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
- 			};
- 		};
- 
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index 8120609e2..0284f1840 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -2,7 +2,7 @@
- 
- //! Rust Platform driver sample.
- 
--use kernel::{c_str, of, platform, prelude::*};
-+use kernel::{c_str, of, platform, prelude::*, str::CString};
- 
- struct SampleDriver {
-     pdev: platform::Device,
-@@ -22,18 +22,81 @@ impl platform::Driver for SampleDriver {
-     const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_TABLE);
- 
-     fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
--        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
-+        let dev = pdev.as_ref();
-+
-+        dev_dbg!(dev, "Probe Rust Platform driver sample.\n");
- 
-         if let Some(info) = info {
--            dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
-+            dev_info!(dev, "Probed with info: '{}'.\n", info.0);
-         }
- 
-+        Self::properties_parse(dev)?;
-+
-         let drvdata = KBox::new(Self { pdev: pdev.clone() }, GFP_KERNEL)?;
- 
-         Ok(drvdata.into())
-     }
- }
- 
-+impl SampleDriver {
-+    fn properties_parse(dev: &kernel::device::Device) -> Result<()> {
-+        if let Ok(idx) = dev.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
-+        {
-+            dev_info!(dev, "matched compatible string idx = {}\n", idx);
-+        }
-+
-+        if let Ok(str) = dev
-+            .property_read::<CString>(c_str!("compatible"))
-+            .required()
-+        {
-+            dev_info!(dev, "compatible string = {:?}\n", str);
-+        }
-+
-+        let prop = dev.property_read_bool(c_str!("test,bool-prop"));
-+        dev_info!(dev, "bool prop is {}\n", prop);
-+
-+        if dev.property_present(c_str!("test,u32-prop")) {
-+            dev_info!(dev, "'test,u32-prop' is present\n");
-+        }
-+
-+        let prop = dev
-+            .property_read::<u32>(c_str!("test,u32-optional-prop"))
-+            .or(0x12);
-+        dev_info!(
-+            dev,
-+            "'test,u32-optional-prop' is {:#x} (default = {:#x})\n",
-+            prop,
-+            0x12
-+        );
-+
-+        // Missing property without a default will print an error
-+        let _ = dev
-+            .property_read::<u32>(c_str!("test,u32-required-prop"))
-+            .required()?;
-+
-+        let prop: u32 = dev.property_read(c_str!("test,u32-prop")).required()?;
-+        dev_info!(dev, "'test,u32-prop' is {:#x}\n", prop);
-+
-+        // TODO: remove or replace with u16? `Property` is not implemented for
-+        // unsigned integers, as suggested by Andy Shevchenko.
-+
-+        let prop: [i16; 4] = dev.property_read(c_str!("test,i16-array")).required()?;
-+        dev_info!(dev, "'test,i16-array' is {:?}\n", prop);
-+        dev_info!(
-+            dev,
-+            "'test,i16-array' length is {}\n",
-+            dev.property_count_elem::<u16>(c_str!("test,i16-array"))?,
-+        );
-+
-+        let prop: KVec<i16> = dev
-+            .property_read_array_vec(c_str!("test,i16-array"), 4)?
-+            .required()?;
-+        dev_info!(dev, "'test,i16-array' is KVec {:?}\n", prop);
-+
-+        Ok(())
-+    }
-+}
-+
- impl Drop for SampleDriver {
-     fn drop(&mut self) {
-         dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
--- 
-2.49.0
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-wl-icled.example.dtb: icled@1 (we,131x000): 'cs-gpios', 'reg' do not match any of the regexes: '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/leds/leds-wl-icled.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/35c7f697070b3939727f1115d3a279e280f72cd6.1744636666.git.knezic@helmholz.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
