@@ -1,152 +1,117 @@
-Return-Path: <devicetree+bounces-166613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874CDA87D23
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:11:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DBBA87D2F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:13:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E7D81884165
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:11:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1ACD162229
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5AA4265CC5;
-	Mon, 14 Apr 2025 10:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4312676D2;
+	Mon, 14 Apr 2025 10:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N/FqTFkl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N7z+9n9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B121AA1E4;
-	Mon, 14 Apr 2025 10:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BBF266586;
+	Mon, 14 Apr 2025 10:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744625449; cv=none; b=oqttf7AeHvHR9TT+W94WZBmgDbg/RkydWrdqivSQ3eWuSlzzRxP6rVR0+3eiGJib2kV8ByjuU1MIMLpbXOXMoAoa/yDgLIf6jNGoWfptVcTxjoUS3OwDGoGoqICmI5cjWnH19wHCINtfvIVz5aoZSLlPyzIl6ZZXiHjCZhwkNIU=
+	t=1744625576; cv=none; b=mfUiC5yJg/KPbsjSSewpEFx8e/DnxJtym1sm/mfI1owytHxfKdPRFdx+JEaQ5S9VoJ/33c03UwXwSm18gKVJzrvnmzgPcyIz/YU54/cGxUOFXge37dNvdUASNMRf5S7ADC0daCbPa96othWkcXTTfS84gU+ybkxdl2G3+XoMdGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744625449; c=relaxed/simple;
-	bh=G0FnNWx81bWmPA1gSVkMoikJguZFW3QUhmyHkJfTlcM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DGJ9iak+poMbPGgXXpGTfzH9BVjFF3XVQnf8eIfFDkknD2cotBXGa6EeRXB7PewGrFD9W//y2DsZbiv2Pz5k/tbVtKWN2HnsEEgX3oUoT3YFiTR9PVG7fmL+AikpZGY79PzdiKxrAmSboSZqI2m6SfHgBnnC/MqVo7ebSiHYuTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N/FqTFkl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E9A7iZ004753;
-	Mon, 14 Apr 2025 10:10:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TPd6RANhdHQovz3xlyW4dKnmJXedwf2HYCGIkivOVyY=; b=N/FqTFklUWvcBdte
-	G9EFP+W7eXTksZm0mm940QX4zeu5898RwXTRJXrBMI3BTWoP6pKpTL+ILhn98nN/
-	9imYSF9FFuqGOfo+hgsPhCCJcTnIxRJ4OrSTsKrGHRVEXyx9PgIzkUQ2wXPe6FBF
-	NW3sIvp4VmbJEv8jvKUmaAm+sLLmDXEGkyJwxhRN0qGWW4+TfCHE31eq4DMcYqST
-	CvKvg//U9EWz9Z/Oa4Wi3BfypyzHFKb1EQsOt2WLrtNy9aZVV62oOlF1biwE8gHa
-	AbL0pxBsHNaSa8hzS+aafqyovbq03GLWTGCW+e54PXkbSkgw9ZUwNU5iOLiuek8V
-	+GxUDg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbpm0v4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 10:10:39 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EAAUef030645
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 10:10:31 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
- 2025 03:09:53 -0700
-Message-ID: <423f8ae0-259a-4140-94e2-c41f559e2a15@quicinc.com>
-Date: Mon, 14 Apr 2025 15:39:50 +0530
+	s=arc-20240116; t=1744625576; c=relaxed/simple;
+	bh=8/5+Mwb/Pk1qbvhX1PLg4XvpKaWqdiHo6PVGtnDXOBg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fZRy5xkmrUFEruEWFsG5m0Ke1vrcRiEIKUWwT3/B6uT83il7V8cp3lYGTI2IxTh2YyBJSJUN2bACnN+frbAX5nmBsRoJUS+nTyWcPytYoPEOTszFAAPMNueYz3JoBVHcOWrpmsaSp59UFJ1DIrgAktq7mvMkgK6A7Ofv/Ah16Mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7z+9n9c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9C372C4CEE2;
+	Mon, 14 Apr 2025 10:12:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744625575;
+	bh=8/5+Mwb/Pk1qbvhX1PLg4XvpKaWqdiHo6PVGtnDXOBg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=N7z+9n9csvtmDw/fgYSTpxhxWxm35QRaPKu/HS+l72nzsdaB8BwzzAf3I8JZ8BmBg
+	 h8/E7hOJUHgZFcD8Pj1MCo6z1NYD7MBsKRJJ8dpltXD/eiaD7ZoaOV30yPk5IpNjJB
+	 pgqMT5HiGwzXMIGnx4dJXwjSMZcCXv2PjFDZKMYZ9aMGDKv+ioCe4P8UMHHJlN+d4f
+	 Ahyf5JnOBZ7IwmnbyKAwVOjRRhKWJE7LYb5ovK6ikxxLe01rrlHrGcOaVSu5vf5NCq
+	 PqqeyuhU/3n46CUvMopoVn4qFwzI/R7iiayP8XG2zHD67yx1JH/4zFA5f+rsm7ql16
+	 w9s/Pxn9bj9Cw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BB4EC369B2;
+	Mon, 14 Apr 2025 10:12:55 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/7] soc: amlogic: clk-measure: Add clk-measure support
+ for C3 and S4
+Date: Mon, 14 Apr 2025 18:12:27 +0800
+Message-Id: <20250414-clk-measure-v2-0-65077690053a@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] Add Qualcomm i3c controller driver support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        <alexandre.belloni@bootlin.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>
-References: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
- <eb6e8452-db37-47f7-9265-fd47d4cb69b8@oss.qualcomm.com>
- <84c07b53-a564-4c71-b172-676303700314@quicinc.com>
- <04ed2ec1-9393-4d02-b7c8-54d6b0aecabc@oss.qualcomm.com>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <04ed2ec1-9393-4d02-b7c8-54d6b0aecabc@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UE2OyGHsU9JIRpX673lWad_hQJ8D9wbd
-X-Proofpoint-GUID: UE2OyGHsU9JIRpX673lWad_hQJ8D9wbd
-X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=67fcdf1f cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=5eYQsLlqKkl2WO7_BZgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140074
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIvf/GcC/23MQQ7CIBCF4as0sxYDtEXblfcwXVAY24mlGFCia
+ bi72LXL/yXv2yBiIIzQVxsETBTJryXkoQIz63VCRrY0SC5b3gjBzHJnDnV8BWS2rk2rRyWV6qA
+ 8HgFv9N6161B6pvj04bPjSfzW/04SjDMzNkqfzpaLTl+0W/xE5mi8gyHn/AVxRZfkqAAAAA==
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744625573; l=1253;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=8/5+Mwb/Pk1qbvhX1PLg4XvpKaWqdiHo6PVGtnDXOBg=;
+ b=ZH0NEy35W5gs/Tu2051Lyxrw35300elFLKMkQjYgn1ytG5I5ExkRe0Ac/OHwoZohJ3lnXRu65
+ XNKR6HG9AfuASs6Z2IWOLeUazeEMbq6wNKIRYHw59Rdgr+/tk2OucSD
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+Reply-To: chuan.liu@amlogic.com
 
+Add clk-measure support for C3/S4 SoCs.
 
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Changes in v2:
+- 1 Rename the clk-measure register.
+- 2 Remove unused registers.
+- 3 Share reg_offset across multiple chips.
+- Link to v1: https://lore.kernel.org/r/20250411-clk-measure-v1-0-cb46a78d019a@amlogic.com
 
-On 4/14/2025 2:48 PM, Konrad Dybcio wrote:
-> On 4/13/25 9:28 AM, Mukesh Kumar Savaliya wrote:
->>
->>
->> On 4/12/2025 4:50 AM, Konrad Dybcio wrote:
->>> On 4/11/25 1:35 PM, Mukesh Kumar Savaliya wrote:
->>>> This patchset adds i3c controller support for the qualcomm's QUPV3 based
->>>> Serial engine (SE) hardware controller.
->>>>
->>>> The I3C SE(Serial Engine) controller implements I3C master functionality
->>>> as defined in the MIPI Specifications for I3C, Version 1.0.
->>>>
->>>> This patchset was tested on Kailua SM8550 MTP device and data transfer
->>>> has been tested in I3C SDR mode.
->>>>
->>>> Features tested and supported :
->>>>     Standard CCC commands.
->>>>     I3C SDR mode private transfers in PIO mode.
->>>>     I2C transfers in PIO mode.
->>>>
->>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>>> ----
->>>> Link to V3: https://lore.kernel.org/lkml/20250403134644.3935983-1-quic_msavaliy@quicinc.com/T/
->>>> v3->v4:
->>>>    - Dropped "clock-names" property from dt-bindings as suggested by krzysztof.
->>>>    - Makefile: Correct order sequence for i3c-qcom-geni.c.
->>>>    - Indentation corrected around print statement.
->>>>    - geni_i3c_probe() : Exit with return 0 instead of ret for success.
->>>>    - Added sparse annotations around i3c_geni_runtime_get_mutex_lock()/_unlock().
->>>
->>> So this is the third time I got this revision in my inbox, previous were
->>> <20250410084813.3594436-1-quic_msavaliy@quicinc.com> 10.04
->>> <20250331164648.2321899-1-quic_msavaliy@quicinc.com> 31.03
->>>
->>> b4 should be automatically upticking the revision counter, please don't mess
->>> with it manually
->> Sorry Konrad, i could not understand what's the problem or what you are trying to say.
->>
->> Do you suspect something (Which i didnt get) is seen as manually changed ?
-> 
-> Yes, normally each 'b4 send' upticks the revision counter, but here we got
-> a couple submissions all with v4
-> 
-Sorry for confusion, first one was sent to internal for review (limited 
---to list). Later i send to upstream.
-> Konrad
+---
+Chuan Liu (7):
+      soc: amlogic: clk-measure: Define MSR_CLK's register offset separately
+      dt-bindings: soc: amlogic: C3 supports clk-measure
+      dt-bindings: soc: amlogic: S4 supports clk-measure
+      soc: amlogic: clk-measure: Add support for C3
+      soc: amlogic: clk-measure: Add support for S4
+      arm64: dts: amlogic: C3: Add clk-measure controller node
+      arm64: dts: amlogic: S4: Add clk-measure controller node
+
+ .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |   2 +
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        |   5 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |   5 +
+ drivers/soc/amlogic/meson-clk-measure.c            | 374 ++++++++++++++++++++-
+ 4 files changed, 371 insertions(+), 15 deletions(-)
+---
+base-commit: 37021be47d02d2913d6767795a6f4c72b4e63a4f
+change-id: 20250411-clk-measure-d33c5ab62669
+
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
+
 
 
