@@ -1,137 +1,230 @@
-Return-Path: <devicetree+bounces-166757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D52CA885B3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:51:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE45A88585
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33651900BDE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:38:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D08F817F0DB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AD34315A;
-	Mon, 14 Apr 2025 14:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30277274FFB;
+	Mon, 14 Apr 2025 14:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b4e+6L91"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1s4t2kD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84FFC2FD;
-	Mon, 14 Apr 2025 14:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07572274FE7;
+	Mon, 14 Apr 2025 14:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744640203; cv=none; b=BCN+BkYq2SktATsVQYTsxJHV9Ya/ZBf1NUYdZPMiasRjjrxmFrjxiFCLlICLd87spSRcDjBqa6iyk7xOqL42h3+s5ndl5tQG+6DXWVxqrkpr6Pw06N0xeoTjt44At4BUiTYydDguVtm1ppJLTQ9Qdy6awzFwpiJBvCUxALKHu5U=
+	t=1744640571; cv=none; b=d2+N3CD6MIR9GbJp0t10kBWvUwvbH7hkwdHeE+TclPv8isSzCaET8vdbARg9KD+jflSOXBMXC+FdEkejd2mZTbjP4u+uzXCH6QACAm9ErguJdJ5SvTFT7ij078qJ3taLIFs/t/EzmqFlQJ67OyZttY7LmfQCoRfYBdvz8S86ytE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744640203; c=relaxed/simple;
-	bh=diwh9sJlAZ6JHvbBFHjJH33QtdeJPgUadGdsqmCAdfM=;
+	s=arc-20240116; t=1744640571; c=relaxed/simple;
+	bh=J1MHietiZvsPKVDE5/U3rEBuftv5MbrgbBjOGLDvYsE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bpCc/+1irMEHTVNyb/AQ0AFGUcsxz6W+NLkf/PM/T75wAmoeW5IPc8t/ln+0cF5pVRBErzaUmq1Xo5crnTxl9c/kymFMHpzIfuXRRPWrYIm42HkRO6W7MAMhiA9DX+uqYkhao8kuE4SsNfepeSFG60H7GsyGp0bYLXU9exXkS18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b4e+6L91; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso690878166b.1;
-        Mon, 14 Apr 2025 07:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744640200; x=1745245000; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=diwh9sJlAZ6JHvbBFHjJH33QtdeJPgUadGdsqmCAdfM=;
-        b=b4e+6L91zeggrpOwJiiLJHlL2w7B2JppKvYy6VvGXWj8CkzHmjzTvpaEcSL4Nw4A5H
-         /6KGD1JDcdKi0PWTNXYUzmEWjOAJ9I6YzSSvIy5w2g9OJEW8VyRvj1BPPPtaxoYu4YYo
-         a+r17gOyd1iWQfJ093vOto+jxOe/EdDl+QkGWv/yqvKqi1J9WtPZeDeZwxq9HPjI2/Bz
-         Q4yo+F/pn6CrEo3TMAW37Es4M80Io9qcxuVkxEaFP8eK9X3Tj9JAvNK8vEQFzTY7qOBc
-         EX5QCZTK1snfTmWzjBODu57UAumdvZ3SE5Ev8q759t+HyqB4+wFyyfCgFBfY8XXqY0rb
-         4rMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744640200; x=1745245000;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=diwh9sJlAZ6JHvbBFHjJH33QtdeJPgUadGdsqmCAdfM=;
-        b=aLNxYG1rh3aY1Vu0BEalt4fcwTYQveUVnASW9Z/nOCERwTOx1tjh51XX3B0RQcihyu
-         59Qqsves3oTLA22sNUriThaRqzEx2BIHBJ9Djox5KNQCgaq8eg9niTLa8K/NtR9RXGu1
-         gnKRwpkB95jMrrhqkOp0hT/6O3VsFqUEUWA0lCydGJ+pGs7HgoiX19Od5X/3KvEB6WMW
-         9e607bx5FpewMv+UTtusIMstMOEK6g4fMy3OZF002CYM679pDeHcQnNPgSBbWqEdsISw
-         jQiXw8gRAs6CN0Ib39uHjCPKw4yIqKa4yxsDrSbZbWRaqoYnHBtcTVnlOrLSRj1lugsX
-         UO2g==
-X-Forwarded-Encrypted: i=1; AJvYcCU+93o06I3mpAf6VUoTQFPbKbQ56/Je2hrHMuhY0isP3oJVGdNLO3r5zP2ayFnaCPHx9wL5olrcGe67Bbbq@vger.kernel.org, AJvYcCVQDkxwqUyd0jqILg9OnpyaL2uexqlk7bfhq4yuCocr0tlDbLe54X0mEYua1mMoZ3bP17ED9q3Uh5p5PoFMzI00@vger.kernel.org, AJvYcCWNhdmLNjh1r3uc4zV7nKhvszRJng1WFow9UIpkowoirEXFGyyaKgLGms3JqLKXZKIVKfTOOw5ZKctw@vger.kernel.org, AJvYcCXrbQnitQX5gt/HM/2R9BJVBYYO8z/y1xC4DM2669etc9kNsD+N4vg9hwZ5qNkoe9v99pfnRxyA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz3/lMLrioRodzvNRGkA5csD0T+aRwYHe5qcyDynXpXgv3M2uX
-	PiNRhQ4ETHsYE4N30EpYt0EAJE0B74Cizdy6JlazSmXQYouo/zFZ5InoFED2CuSqdLMw91vH0Ga
-	MYihFa5ddIL2BaQIpGEHOLuTcC8E=
-X-Gm-Gg: ASbGncu4sxa14NMAtzXGUMJG1DmfFahCy9krXVjMXfad8FaLxFVgjFJLf2I8EZjHEgZ
-	3hLooehrEjL9+iWPIkb2Fp+PDSqtTBp2pJaDKo6RbfP4o+GKTxyfsb3a21TEvwLc575SFt8h/5h
-	rVZPN5zqMotRCzdKuc/gUn+A==
-X-Google-Smtp-Source: AGHT+IF/dyYWGh6vTRn9WISWNs+JWALOiRcPmlW21EE0KFIxAgk2tzzM8tV4hVd0FH0lpQbw1g1Vk0LIeGq8/fYkMB0=
-X-Received: by 2002:a17:906:9fcb:b0:ac3:f1dc:f3db with SMTP id
- a640c23a62f3a-acad3482777mr1214389166b.13.1744640199893; Mon, 14 Apr 2025
- 07:16:39 -0700 (PDT)
+	 To:Cc:Content-Type; b=nYqYYuAEZbBHfMASOGfdMdwFzgurdALbDNi6GDnwOTakX5TqUcSoXRS2yudgB7m6CnTWk8YThf5CuROBr0/Hx98ofNmFB+Ezx+VvSRLpIcf+CXZMS55TPXPAh7S7Z4wFYaovlM0v5v2DnKg/abArbbjmODNFZW3HKx+r80qf3Gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1s4t2kD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD4EC4CEE2;
+	Mon, 14 Apr 2025 14:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744640570;
+	bh=J1MHietiZvsPKVDE5/U3rEBuftv5MbrgbBjOGLDvYsE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=F1s4t2kD2adU4pmBIV1heZSSiHaT9g0JrMqm7KaFCN80D3LMh0BDZpx13Vqijbjl1
+	 BVfumjNc6lORGXn16nlsnhIEMtQ6ENEdAg1n8aNMcSJr9z/7j5zz/IRU6iP/qSQGp0
+	 dJOv36OAjNO92axVRHbOsGeDkCaj0UaeJpt/5yW/0aW9zV+P3YH1JSjylZxtAbrE7s
+	 9kHoTasaE9aw9rEUY13eorvbDTLPbCmXYmOzktKDTpuuj0Cxq1J9JNEu4BGkUfmd3V
+	 zM/nqfQ5LH7exttNvd+yxr4xeEvXlx3f5YyPZHGprRzDO5+fDZjQr3UijduPfnHlMU
+	 5oTLNvfF6YezQ==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5ed43460d6bso6978823a12.0;
+        Mon, 14 Apr 2025 07:22:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU6Y1ZfgIR1D+ZWufEoIccmitMaS4cSGiuErOPafTPShJdp753mgadqAZerb/3/rjtlKByJQa5WjeZiC9/C@vger.kernel.org, AJvYcCWT8zjd4OW60TsYepc6+6izXVry58tLIiLSt/N+TarEmuiMOkbPT+6eSHse292abJJXqHYky+MM8LBS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVbAUtnHcdrdnb0hSSiEOFcggZwgHjAIkp1FUq0UQ6s0RvCa/C
+	P7LMt/Xrpp1YchRvBbbwFy3SzWCXB9x/Oc3tG445IdCf9AGRt+pocSwKDq4Bl3226LwxC8WbQeg
+	Dk1nvnPnJ6c+KHYdyF8sBGtCeFw==
+X-Google-Smtp-Source: AGHT+IFoA2QqamDXch8nyGUFZYs4yy7+kWv81Iq7qbLCVH51Gxp43p0ni/wWkr5Z2E7Q+eWsFkOGFlX3gRFXfcYTtAE=
+X-Received: by 2002:a05:6402:3553:b0:5e8:bf8b:4396 with SMTP id
+ 4fb4d7f45d1cf-5f36f647570mr11801484a12.13.1744640569054; Mon, 14 Apr 2025
+ 07:22:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407172836.1009461-1-ivecera@redhat.com> <20250407172836.1009461-2-ivecera@redhat.com>
- <Z_QTzwXvxcSh53Cq@smile.fi.intel.com> <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
- <Z_ys4Lo46KusTBIj@smile.fi.intel.com> <f3fc9556-60ba-48c0-95f2-4c030e5c309e@redhat.com>
- <79b9ee2f-091d-4e0f-bbe3-c56cf02c3532@redhat.com> <b54e4da8-20a5-4464-a4b7-f4d8f70af989@redhat.com>
- <CAHp75Ve2KwOEdd=6stm0VXPmuMG-ZRzp8o5PT_db_LYxStqEzg@mail.gmail.com> <CAHp75Vc0p-dehdjyt9cDm6m72kGq5v5xW8=YRk27KNs5g-qgTw@mail.gmail.com>
-In-Reply-To: <CAHp75Vc0p-dehdjyt9cDm6m72kGq5v5xW8=YRk27KNs5g-qgTw@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 14 Apr 2025 17:16:02 +0300
-X-Gm-Features: ATxdqUGEaankkXek3ZluXxWOTF2i2W4gz9IvUXvOR0KII6dhJTmYpm-3LghKjzo
-Message-ID: <CAHp75Vej0MCAV7v7Zom8CXqh3F6f3QXevW93pOkXSLEZn7Yxfg@mail.gmail.com>
-Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andy Shevchenko <andy@kernel.org>, netdev@vger.kernel.org, 
-	Michal Schmidt <mschmidt@redhat.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, 
-	Kees Cook <kees@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250414083243.59664-1-bsz@amazon.de>
+In-Reply-To: <20250414083243.59664-1-bsz@amazon.de>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 14 Apr 2025 09:22:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJdk_UtCEEVrakO8azjxWeLLDGTfWAVqtoPS99VQz3jWQ@mail.gmail.com>
+X-Gm-Features: ATxdqUHE6vbzzhRs55bf91_PCgZ2uLkWQ65QnUjEUkOFxOfp0jQxJz8Gov6b02s
+Message-ID: <CAL_JsqJdk_UtCEEVrakO8azjxWeLLDGTfWAVqtoPS99VQz3jWQ@mail.gmail.com>
+Subject: Re: [PATCH] fdt: arch/arm64: Delete the rng-seed property after use
+To: Bartosz Szczepanek <bsz@amazon.de>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Alexander Graf <graf@amazon.de>, =?UTF-8?B?SmFuIEggLiBTY2jDtm5oZXJy?= <jschoenh@amazon.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 14, 2025 at 5:13=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Mon, Apr 14, 2025 at 5:10=E2=80=AFPM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Mon, Apr 14, 2025 at 5:07=E2=80=AFPM Ivan Vecera <ivecera@redhat.com=
-> wrote:
-> > > On 14. 04. 25 1:52 odp., Ivan Vecera wrote:
-
-...
-
-> > > Long story short, I have to move virtual range outside real address
-> > > range and apply this offset in the driver code.
-> > >
-> > > Is this correct?
-> >
-> > Bingo!
-> >
-> > And for the offsets, you form them as "page number * page offset +
-> > offset inside the page".
+On Mon, Apr 14, 2025 at 3:33=E2=80=AFAM Bartosz Szczepanek <bsz@amazon.de> =
+wrote:
 >
-> Note, for easier reference you may still map page 0 to the virtual
-> space, but make sure that page 0 (or main page) is available outside
-> of the ranges, or i.o.w. ranges do not overlap the main page, even if
-> they include page 0.
+> As a part of platform boot, device tree is being read to extract
+> randonmess bits. The 'rng-seed' property is used for that purpose.
+> After reading the value, the field was overridden with NOP instead of
+> being deleted or zeroed. The problem is that NOPed fields are later not
+> reused, and kexec code appended this property every time DTB is prepared:
+>
+>   /* add rng-seed */
+>   if (rng_is_initialized()) {
+>           void *rng_seed;
+>           ret =3D fdt_setprop_placeholder(dtb, off, FDT_PROP_RNG_SEED,
+>                           RNG_SEED_SIZE, &rng_seed);
+>           if (ret)
+>                   goto out;
+>           get_random_bytes(rng_seed, RNG_SEED_SIZE);
+>   }
+> (source: arch/arm64/kernel/machine_kexec_file.c)
+>
+> Taken together, DTB grew at each kexec by 140 bytes ie. size of the
+> newly added (and not overwritten) rng-seed property. ARM64 sets a hard
+> limit on FDT size at 2MB, which means that after at most 14,979 kexecs
+> DTB exceeded the limit causing catastrophic (but silent) failure in
+> setup_machine_fdt().
 
-So, you will have the following layout
-
-0x00 - 0xnn - real registers of page 0.
-
-0x100 - 0xppp -- pages 0 ... N
-
-Register access either direct for when direct is required, or as
-0x100 + PageSize * Index + RegOffset
+Just like 2MB should be enough for anyone, 14979 kexecs should be enough. ;=
+)
 
 
---=20
-With Best Regards,
-Andy Shevchenko
+> This commits addresses the issue as follows:
+>  1. Call to fdt_nop_property is replaced with overwriting the rng-seed
+>     value with zeros.
+>  2. Zeroed rng-seed gets special treatment and is not accepted as valid
+>     seed. Warning is emitted on zeroed value.
+
+How do you get a zeroed seed if you delete the property when zeroed?
+Sure, any random bootloader could do that, but that has nothing to do
+with kexec. And does it really hurt to add 0s to the random pool? A
+warning is fine. In any case, none of this is specific to DT seeds. It
+all belongs in the core if it is a problem.
+
+>  3. Kexec_file code is modified to delete the zeroed property if it
+>     can't fill it with valid seed.
+>  4. Proper error handling is added for the case when DTB exceeds 2MB.
+>
+> The change was tested in QEMU arm64 environment. To do so, kernel
+> containing the change was built and included in buildroot initramfs.
+> Subsequently, kernel was started in QEMU. Using kexec_file, new kernel
+> was loaded and kexec reboot was issued. DTB size was noted in this step.
+> After new kernel has booted, another kexec_file was issued. DTB size
+> was confirmed not to change.
+>
+> Signed-off-by: Bartosz Szczepanek <bsz@amazon.de>
+> ---
+>  arch/arm64/kernel/machine_kexec_file.c |  5 +++++
+>  drivers/of/fdt.c                       | 18 +++++++++++++++---
+>  drivers/of/kexec.c                     | 12 +++++++++++-
+>  3 files changed, 31 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/m=
+achine_kexec_file.c
+> index af1ca875c52c..af0e39f6c96d 100644
+> --- a/arch/arm64/kernel/machine_kexec_file.c
+> +++ b/arch/arm64/kernel/machine_kexec_file.c
+> @@ -170,6 +170,11 @@ int load_other_segments(struct kimage *image,
+>         /* trim it */
+>         fdt_pack(dtb);
+>         dtb_len =3D fdt_totalsize(dtb);
+> +       if (dtb_len > MAX_FDT_SIZE) {
+> +               pr_err("DTB exceeds the maximum size: 0x%lx > 0x%x", dtb_=
+len, MAX_FDT_SIZE);
+
+You can't check restrictions of the kexec'ed kernel in the current
+kernel. That restriction could be removed at any point and might not
+be a problem for the kexec'ed kernel.
+
+> +               goto out_err;
+> +       }
+> +       pr_info("DTB successfully created at 0x%lx (length 0x%lx)", (unsi=
+gned long)dtb, dtb_len);
+>         kbuf.buffer =3D dtb;
+>         kbuf.bufsz =3D dtb_len;
+>         kbuf.mem =3D KEXEC_BUF_MEM_UNKNOWN;
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index aedd0e2dcd89..8c2895cee682 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1019,6 +1019,18 @@ int __init early_init_dt_scan_memory(void)
+>         return found_memory;
+>  }
+>
+> +static int check_randomness_nonzero(const uint8_t *rng_seed, int len)
+> +{
+> +       int i;
+> +
+> +       for (i =3D 0; i < len; i++)
+> +               if (rng_seed[i] !=3D 0)
+> +                       return true;
+> +
+> +       pr_warn("Provided rng-seed value is all zeros!");
+> +       return false;
+> +}
+> +
+>  int __init early_init_dt_scan_chosen(char *cmdline)
+>  {
+>         int l, node;
+> @@ -1039,11 +1051,11 @@ int __init early_init_dt_scan_chosen(char *cmdlin=
+e)
+>         early_init_dt_check_for_elfcorehdr(node);
+>
+>         rng_seed =3D of_get_flat_dt_prop(node, "rng-seed", &l);
+> -       if (rng_seed && l > 0) {
+> +       if (rng_seed && l > 0 && check_randomness_nonzero(rng_seed, l)) {
+>                 add_bootloader_randomness(rng_seed, l);
+>
+> -               /* try to clear seed so it won't be found. */
+> -               fdt_nop_property(initial_boot_params, node, "rng-seed");
+> +               /* Zero out the rng-seed property */
+> +               memset((void *)rng_seed, 0, l);
+>
+>                 /* update CRC check value */
+>                 of_fdt_crc32 =3D crc32_be(~0, initial_boot_params,
+> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+> index 5b924597a4de..f5bfbac77a66 100644
+> --- a/drivers/of/kexec.c
+> +++ b/drivers/of/kexec.c
+> @@ -453,8 +453,18 @@ void *of_kexec_alloc_and_setup_fdt(const struct kima=
+ge *image,
+>                         goto out;
+>                 get_random_bytes(rng_seed, RNG_SEED_SIZE);
+>         } else {
+> -               pr_notice("RNG is not initialised: omitting \"%s\" proper=
+ty\n",
+> +               pr_notice("RNG is not initialised: deleting \"%s\" proper=
+ty\n",
+>                           "rng-seed");
+> +               /*
+> +                * The rng-seed property may exist as zeroed stub. If so,
+> +                * remove it to not confuse the incoming kernel.
+> +                */
+> +               ret =3D fdt_delprop(fdt, chosen_node, "rng-seed");
+> +               if (ret =3D=3D -FDT_ERR_NOTFOUND)
+> +                       /* It's fine */
+> +                       ret =3D 0;
+> +               else if (ret)
+> +                       goto out;
+>         }
+>
+>         ret =3D fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", =
+NULL, 0);
+> --
+> 2.47.1
+>
 
