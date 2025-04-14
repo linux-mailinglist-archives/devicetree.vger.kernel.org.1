@@ -1,260 +1,141 @@
-Return-Path: <devicetree+bounces-166766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE373A8863E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:04:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA144A8870E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D6A6584779
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:52:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D609D167DE4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979BC2797A5;
-	Mon, 14 Apr 2025 14:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B66274653;
+	Mon, 14 Apr 2025 15:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VtHJcBNk"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="iZD/OC4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mail-m15586.qiye.163.com (mail-m15586.qiye.163.com [101.71.155.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E738279792;
-	Mon, 14 Apr 2025 14:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7789A42A92;
+	Mon, 14 Apr 2025 15:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744641985; cv=none; b=UkxHf6lyot4CiAEs7sh9H6Zb5BvdJaYgdJXwRdvCQYBUMmKr/pAlK303uP6DHezXhi880CnxREZUoj7BQ+MbYUkShnc8/BqEcznTMTMUweluIeWqnAJNMNMsdZ2NinEA8KwgflW6fAy43ollUP0rCt2imwQpz2MctFf40qbke7M=
+	t=1744644412; cv=none; b=mf3GYP0cTTakZaw92yrYFUyHQUOmI9j45AX/Puohb5v2KebjJHxAaxL9GBZHgP1bIEazvCcKeZzXg6qjeyIqvuAzVpywhRMLTwZVyMEGUX9Sup6y+XM+0HnpLwQwTZIX9YPYekkWxN8yzlsawikbNY7dxuuxusFmaROf5+EEEL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744641985; c=relaxed/simple;
-	bh=KmvEpwG/vemFi0gA2h80I0MoHs5yC8NuctYgm5tH/dU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I/RJo4HneCevC12ID+F9MMbqAPWJEyi5s7Plm89gZSqBYcBDmAyHi5C6fBnYF0Sg32By4d+r926NHE/EoANeIDjj+ey7imJD4rzUTt+3e6ohlWr7vyZYX6Df4hKOuCAzYIn8ZsUs6w1CTOTfkFZT+4HSlosaCK6s/euK5abUPc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VtHJcBNk; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4C238439B1;
-	Mon, 14 Apr 2025 14:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744641981;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gJRcB4OlXVDhcr55oeZrW5pgLpuewAdHBuFl9mPcETE=;
-	b=VtHJcBNk5ebtVbBodnxqNHRmAbNyJDP78VsAhoJJIBjug/3FcgJSZ5r+7pc5m9EzXYJnWy
-	t563upBzsYPRQxwLL/VGHvRCYJiHX8Kv5PnO0s3mGay0UyJnhUZiwtFpt+oOu5igo/dbvP
-	2XV+PqN2MaL1tpsYm19PHWLZyfm8sh9W0XIw9oxnJ3fynF+YoB4jiyh/lWSpqeHWpjwXwk
-	auW3kNBz96Qm6iau+4EAgsdnjAswEucdlxuACcL3QNxrH7RtkSj5PcCUKF/vGgK3nvNw9T
-	U2lN+3jJXaAOkCZwS/us/uejgNKqyK3Jl8dKtxkdeX1e9pwp+n8bvP8/fgoe8A==
-Date: Mon, 14 Apr 2025 16:46:17 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>, Andrew Davis <afd@ti.com>
-Cc: Jason Kridner <jkridner@beagleboard.org>, Deepak Khatri
- <lorforlinux@beagleboard.org>, Robert Nelson
- <robertcnelson@beagleboard.org>, nenad.marinkovic@mikroe.com, Geert
- Uytterhoeven <geert@linux-m68k.org>, Robert Nelson
- <robertcnelson@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd
- Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, David Gibson
- <david@gibson.dropbear.id.au>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Grant Likely <grant.likely@secretlab.ca>, Dhruva Gole <d-gole@ti.com>,
- devicetree-spec@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] Add new `export-symbols` node
-Message-ID: <20250414164617.51038dd4@bootlin.com>
-In-Reply-To: <d78e60f2-e2e5-4e6a-9724-68cc0481fd77@beagleboard.org>
-References: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
-	<0d25b3d4-7735-4e35-8553-d6e64b8ad8f7@ti.com>
-	<d78e60f2-e2e5-4e6a-9724-68cc0481fd77@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1744644412; c=relaxed/simple;
+	bh=1iiEALXoYkJLnXjqez/9uboLZ8pTi6TNO0dFLtbhpQo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LfKcJc9j857kfAY3xwrygtlK9zkiYsADVlM4mbaLu1K07bwqQ5mwEV9RnHcCizGhvR1LMktZ41easxUrpeMr6RKW3J1UeCSl6g9Li2XfSFN6t63kQuwffbPeY7RqmR29tzF+oPpxVyO5jljYRRxv+sqHeQzvW6ntBFCYkEq9dvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=iZD/OC4K; arc=none smtp.client-ip=101.71.155.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [124.72.37.3])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 11d4dc641;
+	Mon, 14 Apr 2025 22:51:12 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: andersson@kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v9 0/2] rockchip: Add rk3576 pcie dts nodes
+Date: Mon, 14 Apr 2025 22:51:08 +0800
+Message-Id: <20250414145110.11275-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvvddtkedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvuddprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheprghfugesthhirdgtohhmpdhrtghpthhtohepjhhkrhhiughnvghrsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheplhhorhhfohhrlhhinhhugiessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehrohgsvghrthgtnhgvlhhsohhnsegsvggrghhlvggsohgrrhgurdhorhhgp
- dhrtghpthhtohepnhgvnhgrugdrmhgrrhhinhhkohhvihgtsehmihhkrhhovgdrtghomhdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehrohgsvghrthgtnhgvlhhsohhnsehgmhgrihhlrdgtohhm
-X-GND-Sasl: herve.codina@bootlin.com
-
-Hi Ayush, David,
-
-On Sat, 12 Apr 2025 00:19:16 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
-
-> On 4/11/25 23:09, Andrew Davis wrote:
-> 
-> > On 4/11/25 3:00 AM, Ayush Singh wrote:  
-> >> `export-symbols` is designed to be a local replacement of global
-> >> `__symbols__` allowing nodes to define aliases to nodes in a tree, which
-> >> will take precedence over the aliases defined in the global 
-> >> `__symbols__`.
-> >>
-> >> Having a way to allow node local aliases helps in usecases such as
-> >> connectors and addon-boards, by allowing decoupling of
-> >> overlays/devicetree nodes of addon-board from the base connector.
-> >>
-> >> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> >> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> >> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
-> >> ---
-> >> This patch series follows the initial RFC [9] sent a few weeks ago. I
-> >> will be reiterating the RFC here for anyone who might be seeing this the
-> >> first time, since there was not much feedback in that thread.
-> >>  
-> >
-> > I think this is a useful tool in the effort to build a complete 
-> > addon-board
-> > solution. But I'm still missing how it all fits together, do you have 
-> > a real
-> > working overlay making use of this somewhere I could take a look at? 
-> > Maybe
-> > an overlay for one of the addon-boards you list below (one of the 
-> > BeagleCapes
-> > for instance).
-> >
-
-We (me and Luca) have a working device-tree and overlay.
-
-Our base device tree is the following (simplified but relevant part for
-this topic are available):
-/ {
-	...
-
-	addon_connector0: addon-connector0 {
-		compatible = "gehc,sunhv1-addon-connector";
-
-		/*
-		 * addon-connector node is a nexus node
-		 *  - 2 interupt lines are wired to the connector
-		 *  - 1 gpio line is wired to the connector
-		 *  - 1 PWM is wired to the connector
-		 */
-		#interrupt-cells = <2>;
-		#address-cells = <0>;
-		interrupt-map = <0 IRQ_TYPE_LEVEL_LOW    &gpio4 1 IRQ_TYPE_LEVEL_LOW>,
-				<0 IRQ_TYPE_EDGE_FALLING &gpio4 1 IRQ_TYPE_EDGE_FALLING>,
-				<1 IRQ_TYPE_LEVEL_LOW    &i2c3_mux 1 1 IRQ_TYPE_LEVEL_LOW>,
-				<1 IRQ_TYPE_EDGE_FALLING &i2c3_mux 1 1 IRQ_TYPE_EDGE_FALLING>;
-		#gpio-cells = <2>;
-		gpio-map-mask = <0xf 0x0>;
-		gpio-map-pass-thru = <0x0 0xf>;
-		gpio-map = <0 0 &gpio4 1 0>;
-		#pwm-cells = <3>;
-		pwm-map-mask = <0xffffffff 0 0>;
-		pwm-map-pass-thru = <0 0xffffffff 0xffffffff>;
-		pwm-map = <0 0 0 &pwm1 0 57000 0>;
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSEoZVkpMGEhLGENCQ0JLGFYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSU9VTElVSExVSFlXWRYaDxIVHRRZQVlPS0hVSktJSEJIQ1VKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a9634c86d2a03afkunm11d4dc641
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6P1E6PAw*KjIBKCIRSgs#EkwX
+	FU8aCgNVSlVKTE9PTU9JSUxIQ0lMVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKSU9VTElVSExVSFlXWQgBWUFJTUhNNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=iZD/OC4KppITphC8tbsX4PwJw6hHwNbJFgEM5bNyDTHCWkMwnb49j42ECGwPfTJxzV0sU7PDBpN+M9E8u2qZ6Spy1SLAQdizv6R3P15UPNkVUgw5OtuTQBgffFfuboRQvs2DNH/0wi+MUuR0C4oTH+slONI4ZTJ+wVFyDOsi2ko=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=CXlbWKegeuuphuVD8v7XhITmdjJpr+DU67mdolnYNJ8=;
+	h=date:mime-version:subject:message-id:from;
 
 
-		devices {
-			/*
-			 * 'no bus' devices such as fixed-regulators or
-			 * fixed-clocks will be added in this node by the
-			 * overlay.
-			 */
-			#address-cells = <0>;
-			#size-cells = <0>;
-		};
+Hi Bjorn,
 
-		/*
-		 * This is the i2c bus wired at the connector. It is
-		 * handled by the i2c5 adapter available in the SoC.
-		 * The overlay will add devices in this node. Those
-		 * devices are devices available on the addon-board and
-		 * connected to this i2c bus
-		 */
-		i2c-addon {
-			i2c-parent = <&i2c5>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-		};
+This patch set adds support for rk3576 pcie by adding the dts node,
+and this series is a re-base on v6.15-rc1 and collect tags without code
+change.
 
-		export-symbols {
-			/*
-			 * The 'addon_connector' symbol can be used from the
-			 * overlay to reference this connector
-			 */
-			addon_connector = <&addon_connector0>;
-		};
-	};
-};
+Please help take the dt-binding to PCI tree if there is no more change request.
+
+Thanks,
+Kever
 
 
-Then following overlay is applied at the addon-connector0 node and described
-the addon board connected to the connector:
+Changes in v9:
+- Collect review tag
+- rebase on 6.15-rc1
+- Add test tag
 
-/ {
-	fragment@0 {
-		target-path = "";
+Changes in v8:
+- Collect review tag and add Co-developed-by tag.
 
-		__overlay__ {
-			devices {
-				reg_addon_3v3: regulator-addon-3v3 {
-					compatible = "regulator-fixed";
-					regulator-name = "3V3_ADDON";
-					regulator-min-microvolt = <15000000>;
-					regulator-max-microvolt = <15000000>;
-					regulator-always-on;
-				};
+Changes in v7:
+- Move the rk3576 device specific schema out of common.yaml
+- re-order the properties.
 
-				reg_addon_12v0: regulator-addon-12v0 {
-					compatible = "regulator-fixed";
-					regulator-name = "12V0_ADDON";
-					vin-supply = <&reg_addon_3v3>;
-					regulator-min-microvolt = <12000000>;
-					regulator-max-microvolt = <12000000>;
-					gpios = <&tca6424_addon 12 GPIO_ACTIVE_HIGH>;
-					enable-active-high;
-				};
+Changes in v6:
+- Fix make dt_binding_check and make CHECK_DTBS=y
 
-				/*
-				 * This backligh is a PWM driven backlight.
-				 * It uses the PWM #0 available at the connector
-				 */
-				backlight_addon: backlight-addon {
-					compatible = "pwm-backlight";
-					power-supply = <&reg_addon_12v0>;
-					pwms = <&addon_connector 0 57000 0>;
-					brightness-levels = <0 255>;
-					num-interpolated-steps = <255>;
-					default-brightness-level = <255>;
-				};
-			};
+Changes in v5:
+- Add constraints per device for interrupt-names due to the interrupt is
+different from rk3588.
 
-			i2c-addon {
-				#address-cells = <1>;
-				#size-cells = <0>;
+Changes in v4:
+- Fix wrong indentation in dt_binding_check report by Rob
 
-				/*
-				 * This IO expander uses the interrupt #0
-				 * available at the connector.
-				 * It is a device connected to the i2c-addon bus
-				 * available at the connector.
-				 */
-				tca6424_addon: gpio@23 {
-					compatible = "ti,tca6424";
-					status = "okay";
-					reg = <0x23>;
-					gpio-controller;
-					#gpio-cells = <2>;
-					interrupt-parent = <&addon_connector>;
-					interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-					interrupt-controller;
-					#interrupt-cells = <2>;
-					vcc-supply = <&reg_addon_3v3>;
-				};
-			};
-		};
-	};
-};
+Changes in v3:
+- Fix dtb check broken on rk3588
+- Update commit message
+- Update the subject
 
+Changes in v2:
+- remove required 'msi-map'
+- add interrupt name 'msi'
+- Update clock and reset names and sequence to pass DTB check
 
-Best regards,
-Hervé
+Kever Yang (2):
+  dt-bindings: PCI: dw: rockchip: Add rk3576 support
+  arm64: dts: rockchip: Add rk3576 pcie nodes
+
+ .../bindings/pci/rockchip-dw-pcie-common.yaml |  10 +-
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  55 ++++++++-
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 108 ++++++++++++++++++
+ 3 files changed, 165 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
 
 
