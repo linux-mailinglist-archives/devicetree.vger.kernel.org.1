@@ -1,117 +1,125 @@
-Return-Path: <devicetree+bounces-166755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7639BA8853D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA66A88535
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:38:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F35816B37A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:34:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADF1B165501
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:33:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE2124728C;
-	Mon, 14 Apr 2025 14:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDF62749CC;
+	Mon, 14 Apr 2025 14:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hBbBEZgz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LHuUm7tB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814B723D2AF;
-	Mon, 14 Apr 2025 14:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD20523D289;
+	Mon, 14 Apr 2025 14:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744639866; cv=none; b=qw/xBGJcke7Th8wUoJnRWHTk1g4cyPzJuZa0xbUzdjyoiVAhyuiNJjNCrpCVJZPemtdYPiDBVtFb5HVOtWmKkADR0c/+++cd8nIeOYSpifG9JSS6QcAqNrvJGrjK2vWtq9VSE4W/oGbfDPZXTsz8g1So7IXcLPgETlKAyDx8DxI=
+	t=1744639809; cv=none; b=m+Rdu16kAxa45Ww+GaEkyPI0X8oMhEgbyr8cd/lJCD2oLDN6eNYkPwwp97fS8L3pQ2U2QmIX80rFJmsMFXICtuaaxK6qmcY6UVHOnqXPdxvOXaK/LHv4tQBeRqIr3oUeDg2/TF7Ki5NkqVND2HdZc8pWqmlL6pTJjYW4XOcUmr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744639866; c=relaxed/simple;
-	bh=2UF1+d4niNyOW8VA+r1HnFvlvMrBYZBQGW+6Ol6wzTU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UlBh/kyw75YekILOkiSORSRmIYgJs25bLrLCRFqjsqbvq4LfHeJbBpiaQMUcbPuh8dznqLYEzKMitZrZ1lh2UISRdH1ubeb+347BgmYWr803Pp7sagSXMypR2vfIgNHUiQlapa0QMJ+qTfHlaOqVa3j94CFEL8htnHaAcdUbvqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hBbBEZgz; arc=none smtp.client-ip=209.85.218.46
+	s=arc-20240116; t=1744639809; c=relaxed/simple;
+	bh=vlliZdXZ++kEiIyM6dC/4E9eSNr05QSQUnNnkDinvRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ATBJH9zslvKTV/ZK3tG3aHgRKrvGIG6KiRdh8+7494wRxTNjTJ8xjakx8J2CQ2QdT2pR7v6l2c7ZK5h1J5V8+ZMq3ZoQjAv2X0IkzMInpyDMVSN+vLeF9jvLMp3ASPYAYDugMjH6saOWrBrGUB8veKQTuICWdj795NjH4hZYhjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LHuUm7tB; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ac2dfdf3c38so860975966b.3;
-        Mon, 14 Apr 2025 07:11:04 -0700 (PDT)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2279915e06eso45253395ad.1;
+        Mon, 14 Apr 2025 07:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744639863; x=1745244663; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2UF1+d4niNyOW8VA+r1HnFvlvMrBYZBQGW+6Ol6wzTU=;
-        b=hBbBEZgzBI6VAJ6QJ6z801z8cKRKRp5BlHt0wxbfGYh1i/Ll3CxXYFDLVqysnVUP5z
-         JyQpuqDe9+x4JfPxkaABK7vFZyungHo24DmlP8b5bSKTqr6ndNvU2hUQ9oLvJkTpvBud
-         xe9IKcLwoA5yBapuHXNpuKTGt/NDBAreczuk6lzwroAj7IAFdmgDb7s3xYYC3SvJORRS
-         4fdDrF3mbGDbSe8wfzvYYsxaaXoA/R+IYO3Xy++YCCqKBc1O7JQ/J4Nle31grjiymSeB
-         AFPXF+5H5XeajHxGOb0ku04lPSb2qQie2s+ShQ8pcullZsHVZ5YP2x0ul9kaEC07xgCy
-         L0yA==
+        d=gmail.com; s=20230601; t=1744639806; x=1745244606; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nmOn+oFj0d7pHr8fRjRfQJH33DMT3557rnDIwg1ASzo=;
+        b=LHuUm7tB2fDglyG1K7Ljs709wcIfHSV9ch4NUGW+/BOPVMJZaR5hlttDfPqO4ZHfmL
+         lNxr3/Tg6FMEkswnfxL2J0+DiFBIAj6FpCsBxSRofmJVQ2QHe+Lr5KwH1QJ1nfuLw98E
+         uIq8/4cpgpmiAPoaUEXhqDtlYsEX5O1TcAnOF9AY38A0c1l6+qqq4ExBLNPkPkhH70bJ
+         9ctVq3rjiWWpeSJF0oABUYT5PxILRA75M5FRRQfP4/uhShO40HG0PvZejavYTRdaBHQ4
+         x31xLSNK1uvISQld0Q2mnMNMohu7HVb94pWiKtRnAEq0/8aUHiXFwbBpVCNox7oR8R3H
+         4UWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744639863; x=1745244663;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2UF1+d4niNyOW8VA+r1HnFvlvMrBYZBQGW+6Ol6wzTU=;
-        b=IRvP1J4IX+WVmW7iZtAB6gb5OdHMtsoB/kwW69Ndd1U8EfbX+/QowuxvVK6MvPOBPB
-         njk5cjVg1eb3Bpmiz9EXwg5QoI6YovFfad4O1oUtheYvLQnbp+aV4q3WCq6QvEG4JnTc
-         TcOINzO+7g4OQNc34kK7Nq1zmiuOib0A4iNvrxKgqdlqI8E8C0FZ5nj4uMl7OXXhygZX
-         UEdaL5QbR8XXmt7JW0QFK7ykksPIX3HG7/c9ecrL1wKXp9LFXYcopqAaddU1cEFwE9X7
-         codxZrKslJT1xr6wI0CbnFi2T9CA3MIk1zE0LJp1bKrX4Hb1zQXHPj90yElt3ZOk+5/C
-         xDog==
-X-Forwarded-Encrypted: i=1; AJvYcCVYaYylHIFMlOa1oorNbhHcM+TcGZFjrD2zKrTEwh/p2yuhKDBpzcW0nPMCjONf8+Gu30zeZexqFMANqmeIz8S+@vger.kernel.org, AJvYcCVnGs/s7NT/NBDmN5q0/LHH8rhx+ghYw2ZiVhPRZdPUWKUVmw1G5w5Avm8Ys3M1eAO6nXBbY9b6ZsizX8wj@vger.kernel.org, AJvYcCWz8+UJ+4Lc8y3ZC/PKML+lKOMh9JkXSO9lzdw1I72j6cHQIC1co2vbTMBHXqvGU61Zd3Pd6YjV@vger.kernel.org, AJvYcCX827BtMS4phjE+Xrm+BxwmiSXnAiVHnQfcW8rABY4lYLzgW1BxCRaVs4CooFIlGAGmFtQdlDlYfdyW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTPTSV5vK8dc4rN6zGoEK2FiQGo5ivQlEel852BMhd1as+26ed
-	0X/D3iS2tfP3myfc8HW3L2jw4hhvWs+f0nExtY7iIYNgvErfuV0yaWe0pJKCYbpElBIiPqX40Au
-	0rfdV6P2/aeGWgOLYMDfzmvosR+Y=
-X-Gm-Gg: ASbGncuyfV11xZW2rPKbazH9qPAIQ8zuAKV54lnZ7s2nQ23wdzNYTqnyvi83ASBZ8hQ
-	H7OXuV1bpnlrfTVaKIo/GVHPMb3Mlv2k9HxxFOG1G+gyoKaYqry8O66fDerczsfo9LEkVAIjSQo
-	LjJ0A1A6yCEUDxIO0S1zgQTA==
-X-Google-Smtp-Source: AGHT+IFoPgrticcftSCZx1LGPInW+lGPNUg8jlDa6rvGb7o/dXr02rm19k0XwSHPZJei1J02/SX8L17QergcAsaWUv8=
-X-Received: by 2002:a17:907:728e:b0:ac7:391a:e158 with SMTP id
- a640c23a62f3a-acad36c3b7fmr979623666b.59.1744639862468; Mon, 14 Apr 2025
- 07:11:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744639806; x=1745244606;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nmOn+oFj0d7pHr8fRjRfQJH33DMT3557rnDIwg1ASzo=;
+        b=sa/9sGZW3p++wcVIHRtfFFAU9Vywe6zYR27WPf9l3pNhUzzNOZoeWQDa8hBEyifsdG
+         zSpq7/LESfHQx9tsiFxqcbBveUrZ7QCXls8OTLwBcJnwpDKxAajx3CYq78Lg0PT9uoPL
+         7pgA6xYqb7jMQgVpCc1ZcW/2ZOPdQd0vbsnIvwTqQ1jT4ppEzwIYDyhkx4vJEymMvtT2
+         xptCYQYn7fdA30qIrjMz3bDAZ6S/1c71BugHUk0Lf+WIDNPhCM8tDsbA2GRNfnfanCrQ
+         /pd7VP+wvbFl+BPTrh4x9iH313OzUuWtgdSuCEiNi3lSaD2H+5nwO/iwrg7k/AxfImro
+         RRAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUW82xb2qpUHzNEkZF1VqXQzewaJGNAKhr5ylFhOEgkN10/WPywdfeSyl7pa/fFbYwtkLfikFxNZAKg@vger.kernel.org, AJvYcCWGNcK3zfIF43iStgs2qAuCobkrFwraT7L/md8zWZSMgra1fz36qj7znTFFsKDxB3hwqJsuTW00LA7nBAHF@vger.kernel.org, AJvYcCWgycH0HpcEDmUEaw90g2lLtuPPiDxVW6suIDQ9tS/bLt608slIs+fbcc0isIJTp2W9WLRjot6Btenb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnT+NBbPT8nxmo/p3J8TKI1v6x/7vCXucZWyNHDt6UPvkfEwNv
+	nmUkrK7dfn/UDC6nBsxmRxS9UYf62UeTXHPzU7BhtZqGkXAouGL0
+X-Gm-Gg: ASbGncuCK3AHSC2t6J5ZR3HKbGcajpnhPwUKdpjEI1PpUPBxmKwetw4XFr1HIYT8x7B
+	vhL+Bkfswt9dNAdwuY9bx50cggf1TymmrKARF5vshatNp0sitKFAWUOpZ5egcfU0GR9+OfP5KsG
+	yXzP9L7MF+FJNOb1WEOjcJdV4tvql/ddgMkHkWARa1hBxlZnOBXb/7i2u+AJFAP2/qbarNg5m/J
+	cZdBC1hN1JPPe0XrKLQhOwqMQQAa/t7a5aFkNR6uBDvE3WQtxVvN/pEHkIY4VPbYb4YqQw9jqwK
+	BOOLWuYNo/ZufmG8B+rlGzSC+YwZAEZuc8qfrWCm9KOLKWqu
+X-Google-Smtp-Source: AGHT+IFpmOSTusA5gVrkDDqkyM7yH2msjLo0wNeGVBrKewB442d3eRoBO5F5zv2OQxq14VNIJLn64g==
+X-Received: by 2002:a17:902:fc4b:b0:21f:85d0:828 with SMTP id d9443c01a7336-22bea4f183bmr214847625ad.41.1744639805632;
+        Mon, 14 Apr 2025 07:10:05 -0700 (PDT)
+Received: from localhost ([2804:30c:92d:f600:d5e4:543:c403:4767])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-22ac7ccca88sm99049045ad.256.2025.04.14.07.10.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 07:10:04 -0700 (PDT)
+Date: Mon, 14 Apr 2025 11:11:13 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v1 5/7] iio: adc: ad4170: Add GPIO controller support
+Message-ID: <Z_0XgTYnDXd2x0b9@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+ <247566f848cdf2a245a8b6da6a84c22e155beeb7.1744200264.git.marcelo.schmitt@analog.com>
+ <6669da27c78714d76ff21f810cd57045e90d701a.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407172836.1009461-1-ivecera@redhat.com> <20250407172836.1009461-2-ivecera@redhat.com>
- <Z_QTzwXvxcSh53Cq@smile.fi.intel.com> <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
- <Z_ys4Lo46KusTBIj@smile.fi.intel.com> <f3fc9556-60ba-48c0-95f2-4c030e5c309e@redhat.com>
- <79b9ee2f-091d-4e0f-bbe3-c56cf02c3532@redhat.com> <b54e4da8-20a5-4464-a4b7-f4d8f70af989@redhat.com>
-In-Reply-To: <b54e4da8-20a5-4464-a4b7-f4d8f70af989@redhat.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 14 Apr 2025 17:10:25 +0300
-X-Gm-Features: ATxdqUEK9qElNdnTKa2QHn3BaDCna6lMjxXsS9Z11fOG73o2nUUr80_22U4xjJ8
-Message-ID: <CAHp75Ve2KwOEdd=6stm0VXPmuMG-ZRzp8o5PT_db_LYxStqEzg@mail.gmail.com>
-Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andy Shevchenko <andy@kernel.org>, netdev@vger.kernel.org, 
-	Michal Schmidt <mschmidt@redhat.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Lee Jones <lee@kernel.org>, 
-	Kees Cook <kees@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Apr 14, 2025 at 5:07=E2=80=AFPM Ivan Vecera <ivecera@redhat.com> wr=
-ote:
-> On 14. 04. 25 1:52 odp., Ivan Vecera wrote:
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6669da27c78714d76ff21f810cd57045e90d701a.camel@gmail.com>
 
 ...
+> > +static int ad4170_gpio_get_direction(struct gpio_chip *gc, unsigned int
+> > offset)
+> > +{
+> > +	struct iio_dev *indio_dev = gpiochip_get_data(gc);
+> > +	struct ad4170_state *st = iio_priv(indio_dev);
+> > +	unsigned int val;
+> > +	int ret;
+> > +
+> > +	if (!iio_device_claim_direct(indio_dev))
+> > +		return -EBUSY;
+> > +
+> 
+> This claim_direct() makes me wonder if there's any overlap between the GPIO func
+> and normal readings? Like, imagine a consumer requests a gpio and no buffering
+> is happening so all is good. However, there's nothing stopping us for enabling
+> buffering afterwards, right? Wouldn't that be an issue? If there are shared
+> pins, I can see this also being an issue even for single shot reading...
+> Otherwise, I wonder why we have this iio_device_claim_direct() calls? Is it just
+> for using the internal IIO lock?
 
-> Long story short, I have to move virtual range outside real address
-> range and apply this offset in the driver code.
->
-> Is this correct?
+We need read/write to AD4170 registers to configure/set/read GPIOs so the intent
+of claiming direct mode here is to avoid that from happening while we are doing
+something else (e.g. a buffered capture). I'm now considering to also lock on the
+state mutex to prevent concurrent run with the single-shot read routine.
 
-Bingo!
-
-And for the offsets, you form them as "page number * page offset +
-offset inside the page".
-
---=20
-With Best Regards,
-Andy Shevchenko
+Thanks,
+Marcelo
 
