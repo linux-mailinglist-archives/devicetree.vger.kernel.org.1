@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-166671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7BDA87FBD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0246DA87FD4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F5583A89A5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:52:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F9A1650E5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B411729AAF8;
-	Mon, 14 Apr 2025 11:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312E22580E7;
+	Mon, 14 Apr 2025 11:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="eGlky/3j"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="hkXw8muY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1067326B971
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48D7539A;
+	Mon, 14 Apr 2025 11:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744631550; cv=none; b=rbuoPwkdKjT3ND8hNwplx8VgcU0bM4WFmtb1V5B+9Y+G9sGejNZ42jNcVnix82UmZwyBHCt70yryWEbM4TG/46byoWCRHZY9+B81bpWyWyTD6Wgj6F9dbzceWG0Z8HCCbZJWcv0aRxuLYWpqNq4+8b47HzlfEoEkrKvwE+FfH7c=
+	t=1744631769; cv=none; b=dZx/te/jr0ppfF5cd0UgHjzcYSLbhECA+zw7ZfhJ6VK8XYVgDGzcl2tTTCQGBB74qgLaFiba+7vemBVWjUMkEszTmjfofy4QmOnxLnbslaeJoMPj/99A59AyNW4PYGXOV0fNSxhC6CAWQikdHhCizinAPBScbA7XAonlOV10qF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744631550; c=relaxed/simple;
-	bh=D91Ia1pGKZJkmlOIZvvVBQnMUMbHaF4O3dvtsIBon9s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eHyx8aEfQBnPqRISgLrOUR7B/S6BoTkqXG02UB8ET8FfF9Zyx6JFr95Uvz+kuakmTHBmwLR/I0tGo2VZCgFZGg1/O4oaFSgk+xOzD6mo4sNkcHOnHlgsQY+QTX8D8Psosy7LPamb3LLK7MjwHy5XmdUY/XFT+nmDQrXmVm8Ipz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=eGlky/3j; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744631547;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=00kkU7VDnxwaz8Oj1ywsgzfiYZTZml1BEDq6NOcZlJk=;
-	b=eGlky/3jvTbC886gUPzWLGsfu79cIhV32NLIo0TL5wPB0rFuO146qaFJmCNYNIac0+Ox6E
-	koLhGloZNGC4YkQQVi3CgJwwzhHwP8r9QIUYmdoSPzYZZwbnMp14FKfhjA+H0jSgC20rww
-	gHObnWJSjdfB1al7LZJqWSotcL30L9c=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-620-wGqhvCzaMKWjkn9M7OImMg-1; Mon,
- 14 Apr 2025 07:52:24 -0400
-X-MC-Unique: wGqhvCzaMKWjkn9M7OImMg-1
-X-Mimecast-MFC-AGG-ID: wGqhvCzaMKWjkn9M7OImMg_1744631542
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id F2B3A180034D;
-	Mon, 14 Apr 2025 11:52:21 +0000 (UTC)
-Received: from [10.44.32.81] (unknown [10.44.32.81])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 877E3180B487;
-	Mon, 14 Apr 2025 11:52:16 +0000 (UTC)
-Message-ID: <79b9ee2f-091d-4e0f-bbe3-c56cf02c3532@redhat.com>
-Date: Mon, 14 Apr 2025 13:52:15 +0200
+	s=arc-20240116; t=1744631769; c=relaxed/simple;
+	bh=HEMRU5ogTyYI/vOgZEsmrPMUZkbUYpcAVVYG0vTlpWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=o127gXk4nMsQqxNiCgeDySHZp+g9qjmvMcPcrdG+5cYpGGoWO4CdTmmfT0gP/443jxS9poPQj6E+RvuFweyyPum3npwIZU09z4Gp68NkgbfWNe2J7qR9WVf/s2185DInd7x/DYf1PFvxh6n8haCbrUroVlF4u7yxfEBzCmti7Vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=hkXw8muY; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744631761; x=1745236561; i=wahrenst@gmx.net;
+	bh=OreeNdyrrGiGJumVjXwzjTBKuHbR9pl0eB7Dt3B4zzc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=hkXw8muYvurpmWkA5D0R2aZZM3YLd+3hXbxIsxsEDGPzGa4moLFP7gBSVJBrqi+6
+	 Zp4Y2mpKIMypSStpHeqkWnUmkkroI5ydlmWUny94rpWm8YToANCnmU+6ixJwtrKrg
+	 IgvrWt1BJNSdZ9WvotQIyPU3Q8Dgc1Jl8WCBNPN6GEZa5yrO+egKUgJc9nJvnx5wk
+	 rKRSRVMCXLeW7GCqLUD+Nv1+IsW+DOsCsWrk4s61YlkLuo0vSrVhQXS7qLTuwVsPk
+	 y1sr7D3GalHtNvyGky+6uaDTv9IDoEnxQfI72MUhXOCs7uKStNxILoi2I6bd/4koB
+	 XYOpUs8aIr+PIDyd3w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MDQeK-1tuuEY2qgw-008QzD; Mon, 14
+ Apr 2025 13:56:00 +0200
+Message-ID: <45c1a50c-2ecd-4201-85e5-9a0e94f06fa3@gmx.net>
+Date: Mon, 14 Apr 2025 13:55:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,87 +58,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
-From: Ivan Vecera <ivecera@redhat.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v8 11/13] arm64: dts: bcm2712: Add external clock for RP1
+ chipset on Rpi5
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250407172836.1009461-1-ivecera@redhat.com>
- <20250407172836.1009461-2-ivecera@redhat.com>
- <Z_QTzwXvxcSh53Cq@smile.fi.intel.com>
- <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
- <Z_ys4Lo46KusTBIj@smile.fi.intel.com>
- <f3fc9556-60ba-48c0-95f2-4c030e5c309e@redhat.com>
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <cover.1742418429.git.andrea.porta@suse.com>
+ <7c26a0b52e00a39930ba02f7552abdd1be4c828c.1742418429.git.andrea.porta@suse.com>
 Content-Language: en-US
-In-Reply-To: <f3fc9556-60ba-48c0-95f2-4c030e5c309e@redhat.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <7c26a0b52e00a39930ba02f7552abdd1be4c828c.1742418429.git.andrea.porta@suse.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:czG4GMQht2nXD2Mp++EOANKZEP+5pkXc4oz+r+gufql0lTqXjuM
+ Y8+JfqD3AYyuaFqqm863fyxublyZoJgRCh2hj4D1WaeSDHF++0qxu2XBaNtajrRIOgOhxjR
+ HtcYdQV1zN2Jl1MVmGY01Y2SH+UYmwZTcSOb0EW5MgLaCWrvbOYYPBZMsh66zeac9xZyqSm
+ OrcgCaFCW2lDKA9iuuqdg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:vEW4EQv+njU=;qowLx6dw0PwcUYvBP81aJOvYU0C
+ KYT5EDL/HOu92YhV9xMyNbTJ4wt1vQpl5IGofiaK//7K6ebfVMhT7KeEGmvjSmRJnvjxGAvDu
+ 10ybIOFv4Zh0KTE3YVN8By8HkzUM22tVeRWq6khQUmDNd2TZdyx7aGRuzWrR0RDWEWyegcYqk
+ zNxe7JLbi7QSjgWq3nfk+yMnaiZgWsQddlXd4P9YaWjue0TR2XTc/Fie88FZAlqmVkb4F4ORH
+ p06z3ni4fRK+3RpbZfH3ZUiAwd7OuGYVAf+Xdovm0GcaeQYtuF5AtD6NVAlpylvy6OXMNwxm7
+ 7FldIrVkcuG+rGnebie+TyRp+gtS4s3U104JPkeJDm8T4aXkGwtlqcEaQtRaij0No41Wl4fFx
+ ZGx19bM4Zaf6o3r3WqQrP1tqNlEIPvm1D6w+iWk64yJCbB3dJ8GPJ+TuNzY0OagHIgeYT2zi9
+ k1N9MuEBNjGbZQ+FQqmc3KbAYHmXlieH9HfzGPKyOZwAC5LO2t/rcBgkeTmcT2B3zYnb7w35e
+ Sas5NuiOa6MAUosm6+QK1e2ttQJN0Ff0ZSksLF/O8gIr64rqySbkPe774hduPKdaP98tbo+F8
+ OnQTQxprcYzzxouOBDh4QpVrewBlu6XiG3pmIxuaSq74Ju48JLQlcLJnuqyPotnZk8tTwVmN3
+ ZUFiNIV8pMRs/zuEjLoZjZHkhheI9vdMY4YwQj7JLG5JXHcElVym7e0ghjTppF8WOmpfC+PRe
+ qTVT8agweSHBJ7HVXDWT3YIDKRGFwdVl2m/g4qeyWI57U/iXjTgqVZBn6kF07seaV8j7cRM6t
+ 9o+zU2tRrGhtrNtAfDeBszDaa03vcO2zz8K/75daxwRuK08BnESJjIoKfaOis4Pn6WXdWdP4a
+ KSggrOZg+Ekc/NOQhwat8wm2y24m7Wwrx+SrsNg6ykZGH7GitSzd+mnkgq+c6+oMAS3a0IMn6
+ sqPiM1x06NryP4mmt72SiMNvcN8CON2SATlxRbTKF94XmAOGXmCwvlp5liET4kC001AhXFZk5
+ KC3HZru1+5nmPEGNG86V+1gIqydAYkuP9Kgo/wyuAIVTH3cvG83pgPPqJZRDZrP/zvDoUGZ0w
+ awceQ+GrwNcKwb/6u/vrIuyBsm8CxndYDSUa8eGYomMMSdBHWfHLa+/CIWDhakSyMlLg4R9B8
+ yRdx2X3rHI9HbPVjoAPKmWPKwu1v1FZ4J3m3NGVdPQteyIu+uaTlBGn+ET59+AxlvgqizbtUT
+ 7U5dlX554FaPxTELGFG5dfK2GyF3Z27N2a7NneRQ3kQxE8e1st2PCp0OC2b3vDtfxFW0utvqF
+ BrFJNqYKdkP+mPdiRI1+AMSHEug3yBopu1iPt8M1C4fxeJO9ZCNE5cG+U0ZLpzeJCDyY3XBDe
+ zNDPtAPBJbWOpnAkYoY5n1TMa/jV1GLb/O4EVxYuSk5CrMfpH8CeeUs8lLVOyaZpbhvWMemnH
+ g54GcnHPTN1vXEIhXZ03o/FxBZrfUYuZnhVpPRbExq9W11E+d
 
+Hi Andrea,
 
-
-On 14. 04. 25 1:39 odp., Ivan Vecera wrote:
-> 
-> 
-> On 14. 04. 25 8:36 dop., Andy Shevchenko wrote:
->>> What is wrong here?
->>>
->>> I have a device that uses 7-bit addresses and have 16 register pages.
->>> Each pages is from 0x00-0x7f and register 0x7f is used as page selector
->>> where bits 0-3 select the page.
->> The problem is that you overlap virtual page over the real one (the 
->> main one).
->>
->> The drivers you mentioned in v2 discussions most likely are also buggy.
->> As I implied in the above question the developers hardly get the 
->> regmap ranges
->> right. It took me quite a while to see the issue, so it's not 
->> particularly your
->> fault.
-> Hi Andy,
-> 
-> thank you I see the point.
-> 
-> Do you mean that the selector register should not be part of the range?
-> 
-> If so, does it mean that I have to specify a range for each page? Like 
-> this:
-> 
->      {
->          /* Page 0 */
->          .range_min    = 0x000,
->          .range_max    = 0x07e,
->          .selector_reg    = ZL3073x_PAGE_SEL,
->          .selector_mask    = GENMASK(3, 0),
->          .selector_shift    = 0,
->          .window_start    = 0,
->          .window_len    = 0x7e,
->      },
->      {
->          /* Page 1 */
->          .range_min    = 0x080,
->          .range_max    = 0x0fe,
->          .selector_reg    = ZL3073x_PAGE_SEL,
->          .selector_mask    = GENMASK(3, 0),
->          .selector_shift    = 0,
->          .window_start    = 0,
->          .window_len    = 0x7e,
->      },
-> ...
-> 
-> 
-> Thank you,
-> Ivan
-Sorry,
-.window_len = 0x7f /* Exclude selector reg */
-
-I.
+Am 19.03.25 um 22:52 schrieb Andrea della Porta:
+> The RP1 found on Raspberry Pi 5 board needs an external crystal at 50MHz=
+.
+> Add clk_rp1_xosc node to provide that.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+i'm fine with the patch content, but I think this is necessary before
+Patch 9 is applied?
+> ---
+>   arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm=
+64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> index fbc56309660f..1850a575e708 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> @@ -16,6 +16,13 @@ chosen: chosen {
+>   		stdout-path =3D "serial10:115200n8";
+>   	};
+>
+> +	clk_rp1_xosc: clock-50000000 {
+> +		compatible =3D "fixed-clock";
+> +		#clock-cells =3D <0>;
+> +		clock-output-names =3D "rp1-xosc";
+> +		clock-frequency =3D <50000000>;
+> +	};
+> +
+>   	/* Will be filled by the bootloader */
+>   	memory@0 {
+>   		device_type =3D "memory";
 
 
