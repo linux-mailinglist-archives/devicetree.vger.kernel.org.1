@@ -1,179 +1,173 @@
-Return-Path: <devicetree+bounces-166607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5D2A87CBF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:03:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60FD6A87CC5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84BE71885660
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:02:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E1851886BBD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDA6190679;
-	Mon, 14 Apr 2025 10:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4141F25E471;
+	Mon, 14 Apr 2025 10:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="OwQcbk2s"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bl2kTNjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB862258CEE
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0DB257AC8;
+	Mon, 14 Apr 2025 10:04:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744624946; cv=none; b=bUbX8h0dnJCbOmbUetwrCqAWDpXw4SVRvjAQQPBqhUMUtrEPKvvsUJ7UFebuiQfo9F1qdB18s+WGr0kebT6WV6zN6jRsJgfcvr2BQTPJxZl45E/CU8yxay+hl6xMqcS8bJSUa5fdpxsGKbMbWQety4gIIVfdKfKuPV7zJwlm57o=
+	t=1744625053; cv=none; b=MTV8GL63yWM+9F2dcLpdz+Jj9oXSXncllCh7kme5dCeWmV1Sky403JkGbaO5+8f4xIfyB0HgalaDUrsaUBwobZsr8HURslhNbsO49+ITrfVADTVnO/GN4apn4+3Z8QewqU0UJb3HcUHzLbYT8G58zqYQ0tDYcX6BvSSb4V1PXVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744624946; c=relaxed/simple;
-	bh=FfLFviB1dgFGoRFmstXijEl6bx0DXQ/QuRWLNagTGrc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fzijjcp1dQ/TsoeTf06CYsbwGDqxIHmRJ/efhoXQdQcneznA3miMCRxG7e8rIxaWQXI5oJ5gGm1qtsB3qn1nsRjaejXlcMIVYdtVHyq5YWh4nCXNU080Hza7pjbIO5c4WeoFd/RvQRv0bnuPoAMT6EUtKVufyfy/GabluO3Ngvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OwQcbk2s; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-type:content-transfer-encoding; s=k1; bh=g
-	C+3HXcqHlrIg8k1i6gZ+tETFXVfKFnaUdkkcsMJ0/k=; b=OwQcbk2sWQSHPtRUQ
-	GDkuybFKPqT3ZkeMMvlEkSm5butJPjmxLN8a3ZHC/pbhLj5kJeXWfWGweSCdkwrn
-	w0hurVnPyFgLHV7nT3j3M+KuuCCnTIx/BZDdxMaCSxzw5Au7K5r77qH2Q0y9OMuK
-	iDcJ17So7wcGQqUIsb8000gvRviTu1LUWbOlQrO1i6iykDP634HHX+WQAWRaIJM8
-	WG7sL5l/snGGLBmGms/XPSkxScu8rqGceB/FfAxY+H142k7ee2mSmdDcCygZaAkD
-	YkmUDHkHZLUnIfeOftA+aQPbAULfqtMx0iBWGx1v07xLuay+MTJNsKCDLUbsCGg5
-	4T5PA==
-Received: (qmail 2241609 invoked from network); 14 Apr 2025 12:02:20 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Apr 2025 12:02:20 +0200
-X-UD-Smtp-Session: l3s3148p1@DgvOJboybJcujnth
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: Add GMAC1 port
-Date: Mon, 14 Apr 2025 12:01:13 +0200
-Message-ID: <20250414100206.7185-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1744625053; c=relaxed/simple;
+	bh=WG9PaJz5Ij2QEAgSW+06zGhgRIzXBSAv3szM6gdSwso=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Q8bjHmrEotY82OxC2uXmZjthmlP78gY4Um5H3a4aCZQxcTeN5GByHnaYByUPQicMuoWXf3iwVap9Mk6pvtSDIafh1tePoMFgvOh8vOmaNP1mU+EUwTm6luOxcIAUOTPnHLd43SpK17/ALC/Vg6Fok1+P0/MAJjPs+ja0XqMWp0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bl2kTNjO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99mCR028993;
+	Mon, 14 Apr 2025 10:03:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cRPLfy2uJJmtyi5JccFjWXd9aKPL46uk82fq4phKWro=; b=bl2kTNjO3qn75rEB
+	f6Qvzz37v0xwPZhACqPCzw59OKE9nUPu6mUsHZyZ/D8acRvSehhhS9w+FFJRxjuS
+	iGdrtrpmY6XZ8E0r4Vy+sDhoc5kac+ba/PQHv3lWZuk1ukHVTjXxh00YxvOIDZYR
+	DrN8Bs01mY6MaS9KdpAfV5WtHVi5kbY2sxrUiZv8SODW6oN7IzXXwMwiuarRueZC
+	12cCMDZPQetVGcCakYSlu0QxLsrjt5ax1wWHHLCsAZORjzoSE+2bLgnXV5zkP26y
+	IUHP4ZAWB4b5Ll3YF/BaPrCRTtnxRsKD4M4JRdFwY75XH/gbfBuCeQvixfSbR5JZ
+	LqhmdA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfs1462a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 10:03:54 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EA3r8J017866
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 10:03:53 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 03:03:46 -0700
+Message-ID: <e65414bf-acd6-4e47-bbab-d47e0ff81651@quicinc.com>
+Date: Mon, 14 Apr 2025 15:33:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/10] dt-bindings: display: msm: document DSI
+ controller and phy on SA8775P
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-4-quic_amakhija@quicinc.com>
+ <20250312-calm-steadfast-cricket-fe9dd8@krzk-bin>
+ <654d409e-2325-46e7-a064-ed9e64277e69@quicinc.com>
+ <a168a473-c363-4041-8e3e-84fa44e92b10@kernel.org>
+ <zpmr6cpiixyu2sj7r7oqpqsge6dcqw6xszldf7ugznmcrxqsme@efiwnggcn5qx>
+ <a654d62e-502a-4a47-96c4-a44c14860e54@kernel.org>
+ <767e11cd-e338-4e00-a8e7-2e15f3da84b4@oss.qualcomm.com>
+ <04d90c1b-1b73-4b6a-b7fc-351754fbb16b@kernel.org>
+ <bcc44dcc-8b8a-427a-9a38-8dc6d59c13e3@oss.qualcomm.com>
+ <bfab7272-5a41-4072-82a8-0f7401b2affc@kernel.org>
+ <vw4qkj6wtets6dx4irslusnyz2oztjljymzzcmomqxlcphxnvd@gpxrdgzhu5xu>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <vw4qkj6wtets6dx4irslusnyz2oztjljymzzcmomqxlcphxnvd@gpxrdgzhu5xu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=P9I6hjAu c=1 sm=1 tr=0 ts=67fcdd8a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=5Xq4O0xs5KunBNiUOD0A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: ZtTx-SX1Ic77Jw0-I654mLR5wxWoP_xL
+X-Proofpoint-ORIG-GUID: ZtTx-SX1Ic77Jw0-I654mLR5wxWoP_xL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 impostorscore=0 phishscore=0 suspectscore=0
+ mlxscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140072
 
-This port bypasses the switch and is directly connected to the GMAC.
+Hi Krzysztof/Dmitry,
 
-Co-developed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+On 4/10/2025 2:46 PM, Dmitry Baryshkov wrote:
+> On Thu, Apr 10, 2025 at 08:08:17AM +0200, Krzysztof Kozlowski wrote:
+>> On 09/04/2025 17:24, Dmitry Baryshkov wrote:
+>>> On 09/04/2025 09:07, Krzysztof Kozlowski wrote:
+>>>> On 08/04/2025 22:26, Dmitry Baryshkov wrote:
+>>>>>>>>>>> +          - const: qcom,sa8775p-dsi-ctrl
+>>>>>>>>>>> +          - const: qcom,mdss-dsi-ctrl
+>>>>>>>>>>
+>>>>>>>>>> Drop fallback
+>>>>>>>>>>
+>>>>>>>>>    
+>>>>>>>>> Hi Krzysztof,
+>>>>>>>>>
+>>>>>>>>> I couldn't understand the meaning of "Drop fallback", could please elaborate it ?
+>>>>>>>> Look at SM8750 example on the lists. Keep only front compatible.
+>>>>>>>
+>>>>>>> Why?
+>>>>>>
+>>>>>> To make things simpler and shorter.
+>>>>>
+>>>>> I'd prefer consistency. Previous platforms use qcom,mdss-dsi-ctrl.
+>>>> Then you should have objected month(s) ago when Rob asked for dropping
+>>>> fallback and since then we consistently drop it.
+>>>
+>>> Well... It's still not merged. is it?
+>>> For SM8750 it kinda makes sense, because the clock handling is different 
+>>> from all other current platforms. For the existing devices... I'm not 
+>>> that sure.
+>> How does it differ? The clock handling does not matter - this is just
+>> select of schema for the child node.
+> 
+> Ah.... I'm sorry, I misinterpreted the email. Yes, having only a single
+> compat here is perfectly fine. Please excuse me for the confusion.
+> 
 
-Based on renesas-dts-for-v6.16 as of today.
+Thanks, for the review.
 
- .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
+I will write single compatible string. Will update it in next patchset.
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
-index e539df514d1e..975446b2ac97 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
-@@ -15,6 +15,42 @@ / {
- 		     "renesas,r9a06g032";
- };
- 
-+&gmac1 {
-+	pinctrl-0 = <&pins_eth0>, <&pins_mdio0>;
-+	pinctrl-names = "default";
++  "^dsi@[0-9a-f]+$":
++    type: object
++    additionalProperties: true
++    properties:
++      compatible:
++        contains:
++          const: qcom,sa8775p-dsi-ctrl
 +
-+	status = "okay";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&phy_mii0>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+
-+		phy_mii0: ethernet-phy@8 {
-+			reg = <8>;
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					default-state = "keep";
-+				};
-+
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_ORANGE>;
-+					function = LED_FUNCTION_ACTIVITY;
-+					default-state = "keep";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c2 {
- 	/* Sensors are different across revisions. All are LM75B compatible */
- 	sensor@49 {
-@@ -23,6 +59,11 @@ sensor@49 {
- 	};
- };
- 
-+&mii_conv1 {
-+	renesas,miic-input = <MIIC_GMAC1_PORT>;
-+	status = "okay";
-+};
-+
- &mii_conv2 {
- 	renesas,miic-input = <MIIC_SWITCH_PORTD>;
- 	status = "okay";
-@@ -34,6 +75,23 @@ &mii_conv3 {
- };
- 
- &pinctrl {
-+	pins_eth0: pins-eth0 {
-+		pinmux = <RZN1_PINMUX(0, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(1, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(2, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(3, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(4, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(5, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(6, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(7, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(8, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(9, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(10, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(11, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+
- 	pins_eth1: pins-eth1 {
- 		pinmux = <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
- 			 <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-@@ -68,6 +126,11 @@ pins_eth2: pins-eth2 {
- 		bias-disable;
- 	};
- 
-+	pins_mdio0: pins-mdio0 {
-+		pinmux = <RZN1_PINMUX(150, RZN1_FUNC_MDIO0_GMAC0)>,
-+			 <RZN1_PINMUX(151, RZN1_FUNC_MDIO0_GMAC0)>;
-+	};
-+
- 	pins_sdio1: pins-sdio1 {
- 		pinmux = <RZN1_PINMUX(95, RZN1_FUNC_SDIO)>,
- 			 <RZN1_PINMUX(97, RZN1_FUNC_SDIO)>,
--- 
-2.47.2
+
+Thanks,
+Ayushi
+
+
 
 
