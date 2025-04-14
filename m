@@ -1,157 +1,113 @@
-Return-Path: <devicetree+bounces-166682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A700A8801B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:12:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F74A88016
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 233F41895DD9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:12:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C3021745C2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE0B2BE7D3;
-	Mon, 14 Apr 2025 12:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D609529CB4B;
+	Mon, 14 Apr 2025 12:11:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="crTp8vSG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgNn8jNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61C02BD59C
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:11:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA9C29AB18;
+	Mon, 14 Apr 2025 12:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744632703; cv=none; b=RctbUVvF8lnxVR9yN1hTWPYPkDxdsXDTnVMz3hD1B/ltf8gjxb3AlaGOC0hUzafVLPX4RaBhfRFZpF3t1OEAFU7l1Xe1mlFb8VR0DXXbZYCrZz+FB2QI0ox5K55w1bUfRC92WPJ1xHcQsGiBns9vBU3xQLFyyWh4VqgmMmcMRH4=
+	t=1744632701; cv=none; b=edFaKJsS8sy+y1o0qGNnP2jBtQAigYtiZs4dZLGCe/jwFUm+G3pPqdwX80QliA0FaKcZVOpIOkt+OII7GhZweCCitcW2/q9GySaqCWqtRKVdwNmgcJjxSQ7JTi08dEH2Zf65WmG4MvLc9GyIuSJJpqmx2g756lHTUGYs/Te4BXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744632703; c=relaxed/simple;
-	bh=MHKff+VqoBKdhrqA43cQV2jXjP7i/bHFRphfsvRFksc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cgii5JyQY1BNfB667KzstRpEP6sEhgullFzSiswCuh3o7gQ6KQIlpzI+CU3oWqjEde8resl3BaOP9wPd0f17B6YeJ4Jh8M9uQiwxIg58bhGc5JZnvQ7lzxvqkcfH+nXmJHDHPuFzhd9LKKjGpeCMZRklou6cQjcirz+jBltOn3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=crTp8vSG; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53ECBTL62151049
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 14 Apr 2025 07:11:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744632690;
-	bh=X1IFU/hnbem1sYOgooD5MSIx7+OsM6dKMaxDZm3kAPA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=crTp8vSGexXVAep0VjsClYlEkM2TsperzpbGVedlKnpOSAvZeq98ZHvL3vsxQzWTR
-	 9xesTFusleokXqQ9Q9C2kaxU30yZL+uSwhVvAZp2ZYElMoJKSQPUaKk5/g10uurTBD
-	 NL+Q6TZNbDY3q07pfeoHdRbRbxVAP+VXgcEB5AY8=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53ECBTwJ099694
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 14 Apr 2025 07:11:29 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
- Apr 2025 07:11:29 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 14 Apr 2025 07:11:29 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53ECBTtj082970;
-	Mon, 14 Apr 2025 07:11:29 -0500
-Date: Mon, 14 Apr 2025 07:11:29 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Dominik Haller <D.Haller@phytec.de>
-CC: "robh@kernel.org" <robh@kernel.org>,
-        "kristo@kernel.org"
-	<kristo@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "vigneshr@ti.com"
-	<vigneshr@ti.com>,
-        "m-chawdhry@ti.com" <m-chawdhry@ti.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "upstream@lists.phytec.de"
-	<upstream@lists.phytec.de>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: Add basic support for
- phyBOARD-Izar-AM68x
-Message-ID: <20250414121129.srke66ozlydeceux@widget>
-References: <20250411101004.13276-1-d.haller@phytec.de>
- <20250411101004.13276-2-d.haller@phytec.de>
- <20250411122942.3gh2prc6cqrynfva@darkish>
- <0f37e6867a057c713f9da7b3bdfac06bdc7f4184.camel@phytec.de>
+	s=arc-20240116; t=1744632701; c=relaxed/simple;
+	bh=0M3qRoyPJwBJF72GEzdV/WEuh/2ElnDu876t8GQlNEM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=AIy/AQXt9GGDcaTPrL6RKz18HBVo1xhz/bOPpnmgi/fW7Z4jsWO06P9ncUV46gAVtoXr/V4inLKId/hP64b/WznQR+g8Hc3/1k4nhuvo0ztVYmbP1T5+7AI5wyhO72Bf9R2CNRcgHNIu4xgBS7YoG9RtiV0fo+GraRupvMnhPDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgNn8jNt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAB0C4CEE2;
+	Mon, 14 Apr 2025 12:11:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744632700;
+	bh=0M3qRoyPJwBJF72GEzdV/WEuh/2ElnDu876t8GQlNEM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=cgNn8jNtfy2oO8wAUQLMgWIpNQLRz1lZOb382FKfW3unhP3t8UUssZqahm/xiXKwf
+	 jvyQf+qft3aRwiGecrB/XqIfK0O+SX/mAb2RmLslRAOXgFB/6nqsW6+I+FjIM03Gwo
+	 /EFjaFhaZ32i62Fb4I8xdkb4+WN0Ifx2KFb7g+PXGqXc6huLQYxmxvU2OHcQFVqmuT
+	 62u5U6JnCQlCCrDSJGWczsNcPf2HgdRgFVd+aKt1hzI8Dr37fap4hTJdAbVdUn9X60
+	 S8CHLCpQ7lRxl+D9uudlcFW/YRXFu3QtbtHGqECqssGHGGzqjFqtd/fQnoJK7Ig8MZ
+	 i9XZOUlB/TygQ==
+Date: Mon, 14 Apr 2025 07:11:38 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0f37e6867a057c713f9da7b3bdfac06bdc7f4184.camel@phytec.de>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+To: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <20250414-clk-measure-v2-2-65077690053a@amlogic.com>
+References: <20250414-clk-measure-v2-0-65077690053a@amlogic.com>
+ <20250414-clk-measure-v2-2-65077690053a@amlogic.com>
+Message-Id: <174463269823.14040.7362554560667126238.robh@kernel.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: soc: amlogic: C3 supports
+ clk-measure
 
-On 11:28-20250414, Dominik Haller wrote:
-> On Fri, 2025-04-11 at 07:29 -0500, Nishanth Menon wrote:
-> > Quick look comments below.
-> >
-> > On 12:10-20250411, Dominik Haller wrote:
-> > > The phyCORE-AM68x/TDA4x [1] is a SoM (System on Module) featuring
-> > > TI's
-> > > AM68x/TDA4x SoC. It can be used in combination with different
-> > > carrier
-> > > boards. This module can come with different sizes and models for
-> > > DDR,
-> > > eMMC, SPI NOR Flash and various SoCs from the AM68x/TDA4x (J721S2)
-> > > family.
-> > >
-> > > A reference carrier board design, called phyBOARD-Izar is used for
-> > > the
-> > > phyCORE-AM68x/TDA4x development kit [2].
-> > >
-> > >     Supported features:
-> > >       * Debug UART
-> > >       * 2x SPI NOR Flash
-> > >       * eMMC
-> > >       * 2x Ethernet
-> > >       * Micro SD card
-> > >       * I2C EEPROM
-> > >       * I2C RTC
-> > >       * 2x I2C GPIO Expander
-> > >       * LEDs
-> > >       * USB 5 Gbit/s
-> > >       * PCIe
-> >
-> > Can we drop the whitespace prefix?
-> >
-> > >
-> > > For more details see the product pages for the SoM and the
-> > > development kit:
-> > >
-> > > [1]
-> > > https://www.phytec.eu/en/produkte/system-on-modules/phycore-am68x-tda4x/
-> > > [2]
-> > > https://www.phytec.eu/en/produkte/development-kits/phyboard-izar/
-> > >
-> > > Signed-off-by: Dominik Haller <d.haller@phytec.de>
-> > > ---
-> >
-> > Could you share the bootlog in the diffstat along with output of
-> > deferred_devices Using the default defconfig -> I want to make sure
-> > there are no defconfig updates needed.
-> I'll add a bootlog using the default defconfig to the v2 with the style
-> fixes.
-> deferred_devices is empty.
-> PCIe and the TMP102 temperature sensors are not enabled with the
-> defconfig as of v6.15-rc1. I plan to send a separate patch with
-> CONFIG_SENSORS_TMP102=m but if you can queue that in with the
-> devicetree I can simply add that to this series.
 
-you can  post it as a single series and I can pick to the correct
-branches.
+On Mon, 14 Apr 2025 18:12:29 +0800, Chuan Liu wrote:
+> C3 adds support for clk-measure.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml    | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml: maintainers:0: 'Frank Li' does not match '@'
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+
+doc reference errors (make refcheckdocs):
+Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
+Warning: Documentation/arch/powerpc/cxl.rst references a file that doesn't exist: Documentation/ABI/testing/sysfs-class-cxl
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
+Documentation/arch/powerpc/cxl.rst: Documentation/ABI/testing/sysfs-class-cxl
+MAINTAINERS: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+lib/Kconfig.debug: Documentation/dev-tools/fault-injection/fault-injection.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250414-clk-measure-v2-2-65077690053a@amlogic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
