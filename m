@@ -1,182 +1,179 @@
-Return-Path: <devicetree+bounces-166784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02CAA8862C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:02:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D97B1A886EE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:22:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3B687A1481
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:00:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17634580CDF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4556227A938;
-	Mon, 14 Apr 2025 14:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715DD279783;
+	Mon, 14 Apr 2025 15:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NlzZEn9q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I/W44lMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EEB2522A2;
-	Mon, 14 Apr 2025 14:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9447274662;
+	Mon, 14 Apr 2025 15:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744642725; cv=none; b=DBtHvA2/EmSUvwhTNz0b2JRv9csl9Z36jXMfJhTVSxx7ru+7hAa95RPtSWEc0Mf7mXC8bfpa5Jt1YXdYG9gLOV7H9eFi749ErHFF6wpJ+jTAo3G/42CS4ymef4z+mhRR3Yz2MEyhFtI+FNQsP28Qch8EFFmN2zpKiJ/wMpPhcZc=
+	t=1744642822; cv=none; b=GUEy9AMBdZGBkvBEhoF0TeTg33X7POmR9ZcOVufZAA6mugdLrbyvqI8sn4rE8VoSx5Jdz51kvrAD+mZG3Z7tGigdyI0QKaDJl/Xw0WloqeF2u1uIU+WjcgzSFyfFsl8zxxR+VEIBMb9KEv9ELEKq7KE3amapT0x9Xna0EIWumBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744642725; c=relaxed/simple;
-	bh=QDqC8cgaxxrZO/k+8+as3kewWSJMLkdCjrayksbChw4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ovvbb9NcdNCnmnFJaxkatxE8KeNuaJUUBAofA0ucBOCLEUv6zt9iuUcMPftOQaGXr8l2RcitpDseDwbPqtzb4lUkEFNbNuC6zsOQUZpWMsRpGk06dsVc0sFgvPnU1HP6xI1vXVrJ34LcFn89L90fFUC2LrbUyiXE75xEOlpio0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NlzZEn9q; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1744642822; c=relaxed/simple;
+	bh=LnGYMCgY8o3nqU9dYoIpDmeiZgFuXlxSQGxnfJCjUwQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N5EZnt0rUsIvn7EfUtkNXA33c9g5JOQ+gxtqmJ2oJQiSpa035DiqWWmL9MOLhQFPn6tE/3LOrvu1TYOhh/rvzbSIUZu5x8cnJlEMyh26Tnd9ycDX9g8xSp9p5m9XvIf7XWhhF1bsZ8SYB1xR0kjYQfOcUXTpHLXTgTWgp3H22fU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/W44lMi; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-736aa9d0f2aso5048772b3a.0;
-        Mon, 14 Apr 2025 07:58:43 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22548a28d0cso65733035ad.3;
+        Mon, 14 Apr 2025 08:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744642723; x=1745247523; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q8maSB2f2Prtrk+QZuEtUe9jm5FhyXuMpnjZGxdwtAI=;
-        b=NlzZEn9qBmlZhlFRxQ9AtOg07WNMPkIwXVmkWjaMjgIzaDuaC1LohSlf8JOWY1ztxy
-         4eAdzfOUAl4h/ATm8gOxi0XJXX8qUuvZtag0MTStUIFDx71KyCMgfavJvMhIEuTTnX7e
-         eArFEE0afSVlUSxUlr1UQh6GhKZsx8HgzDjUccHHJAvLvxhnPmGnu14NjJZBr91iuCfl
-         WndlZbVBKIR2HM9y4T0EhfUsLbG9VCyKDxL6uquoxzhmiL8Jgx8REEvQMz0SZgPDuUCz
-         LuFsSLxsG8Q2JxagqGqBl11Zux5NbCtspPwLy9VH0UgmMNtTevcYvvjN7NZFUveCpzpJ
-         WD4A==
+        d=gmail.com; s=20230601; t=1744642818; x=1745247618; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=5kLS/6RXQ66h4Cm91JvQtjGIa3JCgrOEQRFQVcgiCPw=;
+        b=I/W44lMiK+J45Wftih8YS4z2LbMwbWi+XWLlEy1MA7YOr6Mw/q7wzZYBhaMd+68VWs
+         2BaD2wjw0cm/45L3MHEHDIzmGQ7Iu4jlOgBeSoVCY0O+Lo39sSeR+5DqzGz01pvEF4Qq
+         alRKSD+47Q4CRs9GrVJl2NEtLIY1KVGgFPHbWdSGa3MHdRDeqUGPy91Qtxh5PLTh3nyd
+         010JQqnBjEnWh2GMztLmgZpvUb7TMfCu+odgSTfxfnobWPeIARPAoMwTvkO/pFLnR1i8
+         mP3bJ1Ml7bufefRykXfbYydo8evOOw7Bwu5arhjiStntqitFzxz3h7HDHzEW2dKqoqKh
+         xBoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744642723; x=1745247523;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q8maSB2f2Prtrk+QZuEtUe9jm5FhyXuMpnjZGxdwtAI=;
-        b=CsYT9a7NVUFnV7BKtVoUOL28T/mgAlnoeOLJ4FzWE6SMMuPc2NGGdNzS4ezPGgVS2v
-         VVpm4qfuOG+a0ydsWqeZ8+CmBWp5H7xIfs5UkD4wpw9V/0ooc3cZakPvZPle+iaRIOAa
-         5hTzutlhcBIfwZx2ji5sldadUl++In4XdgVkxKUsany5u3YbQCyph9Rp1g9HEJyeDl4V
-         wDJQIsmI6oJJRp6SEcnS/tlmD7/SsEkTov7Ftp0kKrEGOJz6DOKMIjyJCDxDYvtIp+lN
-         P6jtarDLyfxaDc4Lfp0TF3EHqW3B/qii4nkB6gCt3q6pYfsaswwcrNi693aKZvxG06kG
-         HM0g==
-X-Forwarded-Encrypted: i=1; AJvYcCWrOx1di1de/+5xjVUpW5HcT0vCLj4V9XYSPNYvQGt5ZDPlz0mEMLaai669Dd0cuForKCGLot3zxpebMak=@vger.kernel.org, AJvYcCXMYYRlMuBEHsTHZYE3J+OIG5Dc8RYUjWTsxzeyAG6v12RpzmIBqrRJMB8dgbLTNHAYB3SphpByXSHGUg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIc6ZAXwyELBg17JdWHLIxu0LvGnM0QoGzmxZjZV/pDcZZJHsC
-	AXRbvDC8qeWqvFpDMpJ0THZCWgpNBbb+LCc5jWnHSaG0C9Jehy6m
-X-Gm-Gg: ASbGnctw6r8zyuX8eDsrH8kY9zZObplwZD6EqENNCAGyt52+74vzSttjvOjm0aUlSs6
-	hNBWy3D/HZfWorIo97Q4cUa1+Nr4pAXjVThNHEOm0pxe4loGlnEJjiRVeO96Q7RkTawDdtqpkIy
-	Gfm3cbYj/5U8cKuK6WoxdFVkvRHsNnSqQfdOkhPXRqmJ5zraEVC+qlOfTlOGc8L0UfoIbOj1J+A
-	7COW/dJ9OuAadAwNmIfILFDfpQTNrqteWsBjFrso0CFICFTIiJQUQ1CJcxO0yK+f8EQ95XPbhvL
-	dseuM3MoHQ8obodvYJoEtSsi4teMDyp01hUVJVAHlskjQQ+XJo/4sQ==
-X-Google-Smtp-Source: AGHT+IH6TUb4w6CkwJKqaESEmRhri88QPNteJqCuSu1Js7zeTvNlFP6vHujel33GS/TdxmaNhN2K3w==
-X-Received: by 2002:a05:6a00:4653:b0:736:3c2b:c38e with SMTP id d2e1a72fcca58-73bd11fb5ddmr13362815b3a.13.1744642722660;
-        Mon, 14 Apr 2025 07:58:42 -0700 (PDT)
-Received: from localhost.localdomain ([123.16.133.44])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd22f1071sm6632165b3a.120.2025.04.14.07.58.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 07:58:42 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: pavel@kernel.org,
-	lee@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net
-Cc: devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v5 5/5] arm64: dts: Add LP5812 LED node for Raspberry Pi 4 Model B
-Date: Mon, 14 Apr 2025 21:57:42 +0700
-Message-Id: <20250414145742.35713-6-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250414145742.35713-1-trannamatk@gmail.com>
-References: <20250414145742.35713-1-trannamatk@gmail.com>
+        d=1e100.net; s=20230601; t=1744642818; x=1745247618;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5kLS/6RXQ66h4Cm91JvQtjGIa3JCgrOEQRFQVcgiCPw=;
+        b=MZDeVnP8PcjIQyfUoz6U4koxhoySKQ/S7d689HTjR3X1D2NZ9ejL68DyebrjzXO13w
+         796/VaDZ2Hj+3ohEYPhwMkhGSFNegxtAvHEKP4F+08hxO14bLtZhui0D4yQjanaCaPWf
+         8vN6SynHZ7O8omBrBnVGEGcsU0mcVEG6e3oLEAQDZQuZZWnsdTNpgV8qRamCHQaCxC7J
+         c6kpEOSbAA7u0A9I0AGms9KkaGWRBpDbBqFzVNs/JxFpsLKMhjhDWizh+OZVd+3UZZHH
+         qqylMxZjtsSRGXRYf8DIjSAfo58H9mEqDO1sy8Szc/IWtu6JtrNP5++bhcxR91044nMr
+         s/CA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3uDKr0Z4Nbhoaf3wIFx54rTJ1SQCsCH+s/r4AV4Gk76NHomiqCWKI0z1q+M03hobkpHnmzmvLuqLq@vger.kernel.org, AJvYcCVWbHilmD0WxiIs7rQmz8+0oOiUv/0XxbRcsHTTqnjfo/sz2YFhLvuRBF1IDZ9JYyZe2LBwnVcaPaFZzSXH@vger.kernel.org, AJvYcCXRd1fIA9SmtWRfPOgVxZHYK8310lqYnkgU/WtbNhICRU6zt+MlKyX+3fVcJ63MPzQ+qExJ5RjS2C7PYAznmsM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgArEfSSw+6XNATil+gzSuDIB6MEATCu7bDEqtQzwu3JSihfBC
+	mgzD0xWm70V2Xw43CegivpIIZzmiwQoG8TZOz6/ruUI+/rXxP2Il
+X-Gm-Gg: ASbGncsL2iVCc75WIW+VsVXcvx/FZ9Oa9eyvswAV27cBY1c7zYsWNrPqlDl4DHOk/TT
+	TtQLZrnucy2Ax1uYOOL+UDxSDU+RFByOiRdW81ifuFfA5nLqzcYlTqAK35pNEKmZeIW9BL2DH1c
+	N8Wqr14AdW/vdpcWN4gw3dgtu6djHv6Wgx1jWfgdjEnOeUb8wdK2M+vRS8anuEiVDzx9l1+g+0L
+	wQM4hPtdY8AGDQB4sXZFQcc/LugCcavGHqXkNGc9zxJPATmZw4Uo9ZTDXH5Oony5aF0LRHXpMt3
+	XyltdWAzf16An7KjsU26ms8rxHS2XltTb+rkTF0Zi0RV7z2eHINV9l1IsIIgkljzmvQSfjxKZS2
+	ihCsKfhkiNhTWmA==
+X-Google-Smtp-Source: AGHT+IHqBXbTHQD4lPtB456t+zFykKlRJiHynnOhc3Db4nt5B88XORp2NkZCBZwkWo8idEIhJzlAEQ==
+X-Received: by 2002:a17:902:d4c2:b0:223:2aab:4626 with SMTP id d9443c01a7336-22bea4952cdmr166451955ad.11.1744642817775;
+        Mon, 14 Apr 2025 08:00:17 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7b6508esm99898635ad.52.2025.04.14.08.00.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 08:00:17 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <91a0f271-3261-43bd-acb6-81a404ba0e1c@roeck-us.net>
+Date: Mon, 14 Apr 2025 08:00:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: fsl,scu-wdt: Document
+ imx8qm
+To: Thomas Richard <thomas.richard@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
+References: <20250414-imx8qm-watchdog-v2-0-449265a9da4e@bootlin.com>
+ <20250414-imx8qm-watchdog-v2-1-449265a9da4e@bootlin.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20250414-imx8qm-watchdog-v2-1-449265a9da4e@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add the LP5812 LED driver node to the Device Tree for Raspberry Pi 4 B.
-This enables the LED connected to the LP5812 to be controlled via I2C.
+On 4/14/25 07:57, Thomas Richard wrote:
+> Add an entry for 'fsl,imx8qm-sc-wdt' as imx8qm also contains the SCU
+> watchdog block.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
 
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
----
- .../arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-index 353bb50ce542..0dec6ce44c6c 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
-@@ -152,6 +152,66 @@ &hdmi1 {
- 	status = "okay";
- };
- 
-+&i2c1 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led-controller@1b {
-+				compatible = "ti,lp5812";
-+				reg = <0x1b>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				led@0 {
-+					reg = <0x0>;
-+					chan-name = "a0";
-+				};
-+				led@1 {
-+					reg = <0x1>;
-+					chan-name = "a1";
-+				};
-+				led@2 {
-+					reg = <0x2>;
-+					chan-name = "a2";
-+				};
-+				led@3 {
-+					reg = <0x3>;
-+					chan-name = "b0";
-+				};
-+				led@4 {
-+					reg = <0x4>;
-+					chan-name = "b1";
-+				};
-+				led@5 {
-+					reg = <0x5>;
-+					chan-name = "b2";
-+				};
-+				led@6 {
-+					reg = <0x6>;
-+					chan-name = "c0";
-+				};
-+				led@7 {
-+					reg = <0x7>;
-+					chan-name = "c1";
-+				};
-+				led@8 {
-+					reg = <0x8>;
-+					chan-name = "c2";
-+				};
-+				led@9 {
-+					reg = <0x9>;
-+					chan-name = "d0";
-+				};
-+				led@a {
-+					reg = <0xa>;
-+					chan-name = "d1";
-+				};
-+				led@b {
-+					reg = <0xb>;
-+					chan-name = "d2";
-+				};
-+		};
-+};
-+
- &led_act {
- 	gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
- };
--- 
-2.25.1
+> ---
+>   Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
+> index 8b7aa922249b..1d9f15ec6657 100644
+> --- a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
+> @@ -20,6 +20,7 @@ properties:
+>       items:
+>         - enum:
+>             - fsl,imx8dxl-sc-wdt
+> +          - fsl,imx8qm-sc-wdt
+>             - fsl,imx8qxp-sc-wdt
+>         - const: fsl,imx-sc-wdt
+>   
+> 
 
 
