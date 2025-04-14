@@ -1,198 +1,97 @@
-Return-Path: <devicetree+bounces-166817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860DAA88826
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:12:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 591F7A88897
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:29:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9976A178609
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:10:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B0A37A4A12
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C0E27F73E;
-	Mon, 14 Apr 2025 16:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D50D284681;
+	Mon, 14 Apr 2025 16:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cy4uJE7x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sK929LWN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1A71993B9;
-	Mon, 14 Apr 2025 16:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5B0279903;
+	Mon, 14 Apr 2025 16:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744646963; cv=none; b=oS0wYLPwIVIxGnTh7T+UkY5jpVM2saAPTrrME1UshqA+/KQwO32K98aSralRR7KE/KonZ3A+WGQ3iDVYML2ln/OnhaEqx+6UpaBbcLjabmDsLD4e48pKsTbYhV0KPr5JUXm1YcNRHgvevEpj+23iZnqjSk/bbQdvlDLi79dnYDo=
+	t=1744648126; cv=none; b=X3dS0ZVXpvQuyaoxrLoP4L6Fmc9Ubpb0D/WRhgV0xYuBgIlOYw43HyNvRMoOod1hbOukGPYWFRWEttyBG2Su+AHzqOedsZHIM6F4Wm5uSLARzyxSe5U0cCjE93OWK3x3JkLVMxOCwKkTBsuIGKCYNWDykwXhLuQYUFpTKdrcQSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744646963; c=relaxed/simple;
-	bh=Wu+iGoA5VQw9S9rnUscSyi0f1HVvgz1n3Iw5Dm90KtU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EqknfHGzXG3xfp8DdymDFnvyoxod7lHdjLWfy5VRs66PgHiKR7rs/rLG83L80AXJ4tnSHjnyhPZ+NvQEMZS+JD0DlD9Dyy0WIbX/xcKqF/HmDh7mvNBXTt53QFNkFAmaDxzcHomkWqJ6DpuWWPdVaRh3cVWHXaWMlQlmuPulRBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cy4uJE7x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FE7C4CEE2;
-	Mon, 14 Apr 2025 16:09:18 +0000 (UTC)
+	s=arc-20240116; t=1744648126; c=relaxed/simple;
+	bh=P/fa8u8mypyH0+6vdYrtZjJEaFzYh19+DjXazRmCLPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZrJI3DAnTPTYoTrhSbqUdGvh31oYVxQ5S3D2j2SgdmUTj4uqeM4RXqV2HpKlQdJ0qoj7Zu4M+PwBaK3Qja1LmBCASB/oc8yLsvMzGWwz4awrOG7ARdCFK/11QWBB3SX/Do1XlEwBdAPkuOKSCX5UoXMP7SYRX3qkdLy9j167kf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sK929LWN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C61C4CEEB;
+	Mon, 14 Apr 2025 16:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744646962;
-	bh=Wu+iGoA5VQw9S9rnUscSyi0f1HVvgz1n3Iw5Dm90KtU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cy4uJE7xJCjiyViNEYO0Z8oK8OcF/1u0n/wp5KkWho0R17WVVX9+D/27It9szFAlT
-	 AX+vXWFY5ogITt88D5yp1u609Hv1t0x1D4i6Ayqy9ETXdKFsIhT6Qgo1I6ic5tRx1e
-	 5R+1pEShWilLxJG3zfnuy/NikFnUTkz4CkMrJ1jqIpJWuGPdswgoIdC2tvYI3bbQdE
-	 tRDjZG2ipoaSOe27b8Rano/6WVJKJ88lxql4rPLbwXxaQ2fgidIQzGNHksyEXKyLtr
-	 0mBVfSJ709CZacDqmgDEblKLH1U7mQjzjsAjeTtfm5CCzYvlCpoWf6NkNPigZQ7W+2
-	 1wL4RVgtPghgQ==
-Date: Mon, 14 Apr 2025 18:09:16 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] rust: property: Add child accessor and iterator
-Message-ID: <Z_0zLK7K3G7QK3gT@cassiopeiae>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
- <20250414152630.1691179-4-remo@buenzli.dev>
+	s=k20201202; t=1744648126;
+	bh=P/fa8u8mypyH0+6vdYrtZjJEaFzYh19+DjXazRmCLPg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=sK929LWNbvs845GbWY+rfc/M02ZlGNFxZwVDINnN5mSSEZOVzRx5BbM9eiPNLwD8W
+	 VChZqkmLlSEFvE002cJO/oAZil7ruyP3ou8ywNsmPTUr9U+KvFoTT7byucRGAgYYlJ
+	 3EzZvxi/TGFTic4AqyIL3GIrzC4L/P7jfKTEhAJyXKi2cTafz1/KXrppnOyyvRrfVF
+	 NeqVXmnJNA9Gf9rxd8wW/13nU5uM4BDkclidQoiC4i2sLxuxrq54NrpHxfodDdyb/I
+	 LCNHQaUuLSSDP4ke82MUU/9YDqui7lhAO1Bv2W3wzoUoHmTnpHKQmc4DAwuE2FIhPw
+	 9wZ39T/yFzK9A==
+Date: Mon, 14 Apr 2025 09:28:44 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, "Russell
+ King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro
+ <fabrizio.castro.jz@renesas.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next v5 0/3] Add GBETH glue layer driver for Renesas
+ RZ/V2H(P) SoC
+Message-ID: <20250414092844.77999958@kernel.org>
+In-Reply-To: <CA+V-a8uqkG+u_ZXztPe7R0BNV6BA46KgGRHRW-G3axBt566pEQ@mail.gmail.com>
+References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	<20250407104447.072449cd@kernel.org>
+	<CA+V-a8uqkG+u_ZXztPe7R0BNV6BA46KgGRHRW-G3axBt566pEQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250414152630.1691179-4-remo@buenzli.dev>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 14, 2025 at 05:26:28PM +0200, Remo Senekowitsch wrote:
->  impl Device {
-> @@ -68,6 +68,16 @@ pub fn property_read<'fwnode, 'name, T: Property>(
->      ) -> PropertyGuard<'fwnode, 'name, T> {
->          self.fwnode().property_read(name)
->      }
-> +
-> +    /// Returns first matching named child node handle.
-> +    pub fn get_child_by_name(&self, name: &CStr) -> Option<ARef<FwNode>> {
-> +        self.fwnode().get_child_by_name(name)
-> +    }
-> +
-> +    /// Returns an iterator over a node's children.
-> +    pub fn children<'a>(&'a self) -> impl Iterator<Item = ARef<FwNode>> + 'a {
-> +        self.fwnode().children()
-> +    }
->  }
+On Mon, 14 Apr 2025 09:52:03 +0100 Lad, Prabhakar wrote:
+> > On Mon,  7 Apr 2025 13:03:14 +0100 Prabhakar wrote:  
+> > > This patch series adds support for the GBETH (Gigabit Ethernet) glue layer
+> > > driver for the Renesas RZ/V2H(P) SoC. The GBETH IP is integrated with
+> > > the Synopsys DesignWare MAC (version 5.20). The changes include updating
+> > > the device tree bindings, documenting the GBETH bindings, and adding the
+> > > DWMAC glue layer for the Renesas GBETH.  
+> >
+> > This was posted prior to the "net-next is OPEN" announcement:
+> > https://lore.kernel.org/all/20250407055403.7a8f40df@kernel.org/
+> >
+> > In the interest of fairness towards those who correctly wait
+> > for the tree to be open I will ask you to repost this again,
+> > in a couple of days.
+> >  
+> Are you ok for me to now respin this series?
 
-Since those functions are within the impl Device block, please move them to
-device.rs.
-
->  
->  /// A reference-counted fwnode_handle.
-> @@ -89,6 +99,22 @@ pub fn property_read<'fwnode, 'name, T: Property>(
->  pub struct FwNode(Opaque<bindings::fwnode_handle>);
->  
->  impl FwNode {
-> +    /// # Safety
-> +    ///
-> +    /// Callers must ensure that the reference count was incremented at least
-> +    /// once, and that they are properly relinquishing one increment. That is,
-> +    /// if there is only one increment, callers must not use the underlying
-> +    /// object anymore -- it is only safe to do so via the newly created
-> +    /// [`ARef`].
-
-Please compile multiple safety requirements into a list.
-
-> +    unsafe fn from_raw(raw: *mut bindings::fwnode_handle) -> ARef<Self> {
-> +        // SAFETY: As per the safety requirement, raw has an incremented
-> +        // refcount which won't be decremented elsewhere. It also it not null.
-
-Same here.
-
-> +        // It is safe to cast from a `*mut fwnode_handle` to `*mut FwNode`,
-> +        // because `FwNode` is  defined as a `#[repr(transparent)]` wrapper
-> +        // around `fwnode_handle`.
-
-This should be CAST: instead.
-
-> +        unsafe { ARef::from_raw(ptr::NonNull::new_unchecked(raw.cast())) }
-> +    }
-> +
->      /// Obtain the raw `struct fwnode_handle *`.
->      pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
->          self.0.get()
-> @@ -243,6 +269,53 @@ fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
->  
->          FwNodeDisplayPath(self)
->      }
-> +
-> +    /// Returns first matching named child node handle.
-> +    pub fn get_child_by_name(&self, name: &CStr) -> Option<ARef<Self>> {
-> +        // SAFETY: `self` and `name` are valid.
-
-I'd say that `&self` is valid by its type invariant.
-
-> +        let child =
-> +            unsafe { bindings::fwnode_get_named_child_node(self.as_raw(), name.as_char_ptr()) };
-> +        if child.is_null() {
-> +            return None;
-> +        }
-> +        // SAFETY: `fwnode_get_named_child_node` returns a pointer with refcount incremented.
-
-Please cover all safety requirements from from_raw().
-
-> +        Some(unsafe { Self::from_raw(child) })
-> +    }
-> +
-> +    /// Returns an iterator over a node's children.
-> +    pub fn children<'a>(&'a self) -> impl Iterator<Item = ARef<FwNode>> + 'a {
-> +        let mut prev: Option<ARef<FwNode>> = None;
-> +
-> +        core::iter::from_fn(move || {
-> +            let prev_ptr = match prev.take() {
-> +                None => ptr::null_mut(),
-> +                Some(prev) => {
-> +                    // We will pass `prev` to `fwnode_get_next_child_node`,
-> +                    // which decrements its refcount, so we use
-> +                    // `ARef::into_raw` to avoid decrementing the refcount
-> +                    // twice.
-> +                    let prev = ARef::into_raw(prev);
-> +                    prev.as_ptr().cast()
-> +                }
-> +            };
-> +            // SAFETY: `self.as_raw()` is valid. `prev_ptr` may be null,
-> +            // which is allowed and corresponds to getting the first child.
-> +            // Otherwise, `prev_ptr` is valid, as it is the stored return
-> +            // value from the previous invocation. `prev_ptr` has its refount
-> +            // incremented and it won't be decremented anymore on the Rust
-> +            // side. `fwnode_get_next_child_node` decrements the refcount of
-> +            // `prev_ptr`, so the refcount is handled correctly.
-
-Please also compile this into a list.
-
-> +            let next = unsafe { bindings::fwnode_get_next_child_node(self.as_raw(), prev_ptr) };
-> +            if next.is_null() {
-> +                return None;
-> +            }
-> +            // SAFETY: `fwnode_get_next_child_node` returns a pointer with
-> +            // refcount incremented.
-
-You rather need to justify why the next you pass into from_raw() is valid.
-
-> +            let next = unsafe { FwNode::from_raw(next) };
-> +            prev = Some(next.clone());
-> +            Some(next)
-> +        })
-> +    }
->  }
->  
->  // SAFETY: Instances of `FwNode` are always reference-counted.
-> -- 
-> 2.49.0
-> 
+yessir
 
