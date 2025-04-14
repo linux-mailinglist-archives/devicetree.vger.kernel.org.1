@@ -1,190 +1,386 @@
-Return-Path: <devicetree+bounces-166722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74FEA88474
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:19:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F95A8846E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:19:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B0F11886513
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:12:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0393F17F599
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DEAC27B51C;
-	Mon, 14 Apr 2025 13:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CA028BA91;
+	Mon, 14 Apr 2025 13:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GpRsMp1v"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="d8bFB+MN";
+	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="J0Pbp7HI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C58324729F
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744638299; cv=none; b=XMOCq6pmHPthRmHP3AMB64fKvJXeIb9R1L6uIaV3YG9eXSrEsaWqTTbcqq/dKNhlRbwLakpwdxI0Iirr8EmWMSS9KkBhDc6gu8IUCLRicJtIMPrUusyjDpVnV6JJXif1zFoTv2Wrza/AZ7skevALF0U/hpAMf4rjRh5NObo1ilM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744638299; c=relaxed/simple;
-	bh=oMxfmg52YvUwwyoTMwpAjNp7TiVHpTjomzMZyD1fhqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZbVxZ0AVqCJnpEIEjPjvUswdB0Q68ogpsJFrmLgN3peYL2fS11rflhg88nXUUEXO03o4aBDPn8bMHHz2n/FhIYFwea8hmbX4XHf6zLgNQqpsEUXtX+LVQ5JYPQNmYqHb/1ymEdaNFvLPdUnuwef3qta2gPhgbcNhY8k5CGBYp6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GpRsMp1v; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qb6001780
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:44:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GGyhxlay54IRFzuBkra/A/yq80IVczLJEIsYnlPDjgA=; b=GpRsMp1vvSyRCbYZ
-	8AUyply8bOhmTnKkUYgtKyT2XoW9oAi0r4k8KzwbNLM76Ne2pqPvlFToQJbSK+2w
-	ivukfjTndJnP7Lf/7b84SxpvudvmV1Nrj4xly1MTelzyGLynBrdJYZo1aRhBmnMy
-	mxV2iefMqzk8a8pGm4ijPEAjBKyp3Er8/NgltMA9sDVx90u55iOwD1dOwnCrZxlI
-	sL5ICCR0DPbyANCPn2AX9v5gzP95ytEg94UvRMhPRpTa5S1AltW5j5z1yxOJo1PZ
-	CsMk3NbYbek1Mv6DzfhJEduYM3DX9HdvvRj59zgvDk/UkHxdM6iMY/2pK9qdYBwZ
-	PSlhfw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydhq4xmm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:44:54 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6ece59c3108so9788906d6.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 06:44:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744638294; x=1745243094;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GGyhxlay54IRFzuBkra/A/yq80IVczLJEIsYnlPDjgA=;
-        b=vqykp/g9P8EEpbZTahKrsX0FJAc/u9x8dlhCrPKWwxoTXB9hVHbR0M0YwhUIOGD/DE
-         tpRnC68Vzuvspaz4a9XjsJLnT/dE4ub42d28xGsZRJ24O8tPmsz/xEO/W2AhvMdxl/Tx
-         1p/FhTua2Ebr9qwRjiaGlASRZC0XBcZwbgzG0Izj9jBzEPxyxte1mlsy2MjLIt0+nI0T
-         NJ04Z1SuZOCgNpwY3vgB6Ux1zeUuN7UF5Ro61+Pb7bqq+ZvvbktkHHkBBusqBxHaRt5s
-         yINt02aaOGMGvblOjHtVxQg4rv+t17GJ4c60pNslVDiRteF59ROLmZoatwGkDWrwlKcD
-         9xow==
-X-Forwarded-Encrypted: i=1; AJvYcCW6D9ShrxKbXCsTDxtkE1RCn4KJBq752soNC1TztEoJTuPSyG2A8wipDJZKonEHABubhwcYRW39mwms@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpZ3XmgAgVSpcOcYTsKukJOlwe/6xa6qbFDJxNb7eUBmPSE76v
-	QgGLNNzRoVDxagrgpEyan524w2/QTm0GnRFCj33TKz4H+Mmuzx5PPz8wv+JWF0izehVUn62nFHY
-	CAM1i8QtazNOGlWMmq89+6Jw737pznjqFXnBvCH6PQn1sSHAqP7yO8gQ8bako
-X-Gm-Gg: ASbGncvZGFy0HXH0lxyE1i+T+d38Q0RVzHkuxXXmZNW0eJmhfKxPPxlig5gfGMwd7Bv
-	4ksfLMyV04p6iauQgzWy5JAzjDNkqtrFRYmzwX9ZNBw8zhjrhySh6YlHnQnxIpat+ASh/rrxxe6
-	IOnALWngjP6v2/Qfm3bs1Q0jOZ9bp6qbAbxaPjUPONgliekGfwyr6EzHQ4ySM83pvnpyjzbCATr
-	I7dztnQVnk3VzPTMJN7woWP86ed3NKuq59myzLzVCmppBwZ3RWYYNycb18uVkg38FnYJAWgRhJq
-	BQ/4/S74wUQyEyHZYwDm5zFjpWM33zWhf3c4tcJUXZUqb/+EmhbMtjBCHTLnwSulBg==
-X-Received: by 2002:a05:6214:19e5:b0:6e8:fcd2:360e with SMTP id 6a1803df08f44-6f23f15d812mr61942656d6.8.1744638293959;
-        Mon, 14 Apr 2025 06:44:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEZVo5rWcpGuTu3YsE5z95sRrLd11UcEgqrLzSlXM3gKn6ONHCheTTQxg6qNFAYdN3dceNSIA==
-X-Received: by 2002:a05:6214:19e5:b0:6e8:fcd2:360e with SMTP id 6a1803df08f44-6f23f15d812mr61942526d6.8.1744638293402;
-        Mon, 14 Apr 2025 06:44:53 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ccd205sm928040066b.141.2025.04.14.06.44.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 06:44:52 -0700 (PDT)
-Message-ID: <6e98b5ca-3ff1-44c3-928f-e993cf29215f@oss.qualcomm.com>
-Date: Mon, 14 Apr 2025 15:44:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F50423D29D;
+	Mon, 14 Apr 2025 13:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.177.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744638407; cv=fail; b=oXydDgRd7QXNJjRGSlkpnGmO477WSlhkGq6TXJNvSgAg8y1s89TEjc/IjT1l7lHtgnUdwTxSgj2S/X3zPYPWa1apCHvUfLfxyD2xeNYVO0DIzyrq8f6ZfHwj7SKLIl3iRC1KR25WjtcxYkAFiKIE4IXblXqWehonoByOtGVtMyA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744638407; c=relaxed/simple;
+	bh=UlOwe3JnUWBYH/JnIoJmn7LIXhdPPjUVce9EHDMr2wQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=SkhazIb1y6EG5aQE4+ErMR93mwaP3MtcxjNTaRXa1MlKsEhqvJYkxxx1MbfspKduf17EZZXTY7vFQpGsXxTTmZVaJJpGspxg3R0qbny7dt+nRBDdhcak5DVw7w5ExAnVPTeDkxksJeSy0+W+rZE7dQB4js0dj/FcAmF7oR4w06o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=d8bFB+MN; dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b=J0Pbp7HI; arc=fail smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53ED7ZFT003145;
+	Mon, 14 Apr 2025 13:46:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2023-11-20; bh=C9icYFq/8eIB9CpFsDT3D3cMyI+dAmu9GwHhBrsnAao=; b=
+	d8bFB+MNBD0ZTCavf+EFxu2UFUSsTXHNGzus5reG+B+2QjwjOKniPFlvAo/yVMGL
+	CGLVms7k4iEktlBGkBb+9vShYSE6uW01brkKbWW3W5oCbGtMU3kS7f3Hlu1bSVnb
+	Ea6cZ881lElgzIAQbuD7x8crZTQLJ5kJU+svXDWnC26rtccGgLQWe1vCSclOIODo
+	ncL3yku1whaBsUzmydnmRB3JtqfmoQi4dBj10CI2e2VG/up45pJmQPbs5aKisGaW
+	8QM7sMRynZWF3v6pbluiXNEHXumHUhfuOIzVASNYdyhxQ/3e3dTXpEx6+xwZVhNs
+	5+m8BT3eAqWrmnj5A7R6mw==
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4612y60355-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 14 Apr 2025 13:46:27 +0000 (GMT)
+Received: from pps.filterd (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 53EC35FC031030;
+	Mon, 14 Apr 2025 13:46:26 GMT
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2048.outbound.protection.outlook.com [104.47.66.48])
+	by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 460db91qdg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 14 Apr 2025 13:46:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zvz49Sx/FPKwLhdtL7D6UFh9eJDr54pAYhlqZ/VZrg8wHNo58R6329jfqNRO7Nz0maBQFnD1On0jQP76k7KxfLr+2p04ECvO/w0hpP2xkiPe01JI7vC577FAqwZZ4gJaThpBgjX0UTSsVdxxr9t9Rk9iu8/0EoMzHGZPbAV6cMTRH1qRBJEmPF+OfFIXZn5E5eX89pvPCLWAlMY+oig4WWnArYgLlJUUcYMYG67YlM/HmIglys0TzQtla4mf8unWLAKmW4547GFh5lEIHBrEUdQN4kRaZ2eR+XSP1a7CFluSqvmfuM6dk0z/zO2zXTtBGGWPSFf4qQqm0sk2m9Tr6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C9icYFq/8eIB9CpFsDT3D3cMyI+dAmu9GwHhBrsnAao=;
+ b=Sgja/UhOa0E5vyYHcMwablUy+LMXfx8dA7Ha/cJgKFD6h1t3y/dA4xP5kZsMUqr2eGW/wJWnmcCkfW+q8DALs4CYJVcZ+/bcE/25wZMsjCunA2l9ygBJ0t+n+whWpeUHTg7FqUcbUJ3VgWFNcIy+jbJQ059dTn0drAWhVGQ84+a54RicLbgh0Hsn1EBKZ73VmL7+hhrmvqiDEoJkEy8gXqlU6hh1lsxfMeCHLVZw3As5OMX02JVrIl+OZ7SBcgVoXI9uMITuXXOYBJ0cAEo/mBBwfF32prZZpOmaZ1I195T6dH53EWB20VskOvaFIDQkTSiKf6ObOuQnWCa2gB9O9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C9icYFq/8eIB9CpFsDT3D3cMyI+dAmu9GwHhBrsnAao=;
+ b=J0Pbp7HIMfL856GtAcqgRtLSKhXsQCitbHUlyTJfknvrmzm5/LYU7CWC9o26VnuplmVJJMf0n1wuMxjE9nlbYGvLnAxx4+yJLopoz2gz25xhKDR+h+MdS83+YwD4ZKiU5/N+gM+cx79i+1EqUGF1vu1WSNKdfHhqcQexx7sK1b4=
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com (2603:10b6:5:3a6::12)
+ by BLAPR10MB5058.namprd10.prod.outlook.com (2603:10b6:208:320::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Mon, 14 Apr
+ 2025 13:46:23 +0000
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c]) by DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c%6]) with mapi id 15.20.8632.035; Mon, 14 Apr 2025
+ 13:46:23 +0000
+Message-ID: <9c32c9aa-3895-4969-8a33-059c4ad93143@oracle.com>
+Date: Mon, 14 Apr 2025 19:16:15 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] reset: Add USB2PHY port reset driver for Renesas
+ RZ/V2H(P)
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250414130020.248374-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250414130020.248374-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Language: en-US
+From: ALOK TIWARI <alok.a.tiwari@oracle.com>
+In-Reply-To: <20250414130020.248374-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2PR01CA0198.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:189::7) To DS7PR10MB5328.namprd10.prod.outlook.com
+ (2603:10b6:5:3a6::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: sa8775p: Add support for camss
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
-        todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
-        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
-        will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Suresh Vankadara <quic_svankada@quicinc.com>
-References: <20250210155605.575367-1-quic_vikramsa@quicinc.com>
- <20250210155605.575367-3-quic_vikramsa@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250210155605.575367-3-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Eft5b2ebVEY-84iFDt2A5wusdOjdwKJ_
-X-Authority-Analysis: v=2.4 cv=C7DpyRP+ c=1 sm=1 tr=0 ts=67fd1156 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=KVm0XDNadgfEQVUGQ2gA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Eft5b2ebVEY-84iFDt2A5wusdOjdwKJ_
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR10MB5328:EE_|BLAPR10MB5058:EE_
+X-MS-Office365-Filtering-Correlation-Id: 835ccb31-64ba-4833-1d9d-08dd7b5abe83
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZWM3Z1gyRkFIM2FSbjg0d0JoTjVpUU8zalVEMnJiQ1RBQlZqMDZzZ2UxYkpU?=
+ =?utf-8?B?WTJiRnJjMVRJaHdyWVZKK0xVZGNJZUR5dk53dVVONThKOXFkQit0SG1IcVRq?=
+ =?utf-8?B?Sm9mdUx4NExmK09qSHYwS1dBV1p6RUJaQUNqWkhvejNFazNiYjlmYk55dFd5?=
+ =?utf-8?B?UVVLNlpUNWRxSXFjQks5UkI4WFVCRTRLQlFlN3E4N1d4TldnRHJaZVdmNkZF?=
+ =?utf-8?B?UFNiT0daUzBQTnVTMC9Ec2NtZ3hkeGFrMEVsVVlJcU9rbTlVR0w4ZmhNMEZk?=
+ =?utf-8?B?WmlNZndPeVJ0aFN3Q2c3Um1aV2VVMktmYTlWRFcxNXVVeThKL1pBdEYwVkl5?=
+ =?utf-8?B?OGl4N0RDMmZmNGhiVGRjZkR1RXZaTXl3cmRvRm9nQ0xlZEFZaldUeldxRUFK?=
+ =?utf-8?B?U01neTJqVnE4eVNaVlF4L1hXRXg5S1BLWEhFd1FLRkx4bkI3MStnWTdDTjFN?=
+ =?utf-8?B?U21taFRVYnAxVHN2OXc4S3ZrRGVQVzNkQlZEdHJWdnU5UEdQUCtsN1dET1N6?=
+ =?utf-8?B?bUNGdnMwLysxRGt1QW5tbUp5YjNtRm5xWllvbERXek5CUVp0RDBIR0Q5UEli?=
+ =?utf-8?B?QWRrT2doZUw5WnM3UWVpT2tPdUN2eHA3U1IzR2hhdWRLY0RSS1ZGVW9IQ1lS?=
+ =?utf-8?B?ZGVMdVhtUlV6ZXFSd2JtUUIyUnpPQzJKR2xkU3F0ODg2bmxyc0tpd3ltbTF2?=
+ =?utf-8?B?QVpydjcrSmRkekJsVXgvTWorSXNXb0hUeUY5YWU3dm1jeU9HYlAvLzBnclRW?=
+ =?utf-8?B?WW1SWmhHUDhNMlF0dFhuQVFybzhVTFNheFhPcnAzSmVLbE9QUFBxcy9Nd0JV?=
+ =?utf-8?B?V1NPNFNvbU9GNWFtZTBpd3JvK3VJRXRWaEpESmVsem9uT2k4QjFvUGpqam9D?=
+ =?utf-8?B?VThHRWtHM3dFVlJJWk5DQUE4NzNnWGVUQlpnYUpSbTh6YTdMQTBoODFPVlZo?=
+ =?utf-8?B?UlRuWU5BdnpsVVA1ek15UGhjM1JoeWxMcHlmN0JNUk5iTDhQYXNSYjhpTGdi?=
+ =?utf-8?B?SHJTN2kzcWFEVHcwQTBjOGF1MlByd2YvdWs4cWdteDh4VVIwR2tkeVQrU2pK?=
+ =?utf-8?B?UUFhSU0xNGxVTGJ0amJ0ek0zbU95UmVPOXdlbTBTZGhtUHQzV0w1TTcxeE1Y?=
+ =?utf-8?B?RkFqRTkrWXJYYS9URHZzN0pzTU9VeWF2cndrM1c5QjFjZXBFVU5YYndESGsy?=
+ =?utf-8?B?OGRpSXdYN24vV3ZqS2ZZeHJ5WFp3T1ZvRVVSTGpsRXZGOE1HUytmeTdodFpK?=
+ =?utf-8?B?c0JUSkhpdXNwRks0SGdNbm1UVzdsTnc0Tnd2TzZUU2JqVG5WVGhmSTNhTldl?=
+ =?utf-8?B?K2JYZE8xVFJNbWNRWk5OM2xXMnJ1QjMzNzBnQ28xR3ZCdzExaks3N3ZrK1NC?=
+ =?utf-8?B?WjNBMjlWZFBvYXdzQ1dzTEdGOUhYYWw2YjE2MDNHRFM3UnhzN3NrUFFFdUM1?=
+ =?utf-8?B?enlsMVJpY1h2Y2phRHhzWXQyLzVtVjYwU2ZlcU5rUlR5cjQ5Sk9tdHpKMkxp?=
+ =?utf-8?B?T05uVUx4QXBsNGQ4Z0RLSjRBS05NUi9QY3pUb1lvK3ZTRUZzM0l1WHF3ZE02?=
+ =?utf-8?B?YVVxREdtMSt0Wmp5K1RFM1RvTWc5VnJWWGJZb0pLS2I5S3Joakhwd0pLNmE0?=
+ =?utf-8?B?T2pHTk1QcDNONFEvWVlNUitPVUpFWFQ1MEg3STd2Y3VHNWRWb2xqSUw2T051?=
+ =?utf-8?B?Q2VLaHc3a1c0ZzgwK2dwNnQzYVNWRE5PYkZsbHNaU1lMQzAwZUZpczdDU0lP?=
+ =?utf-8?B?Tzczem52MUVjSk03UUNRdWpLTGNPU1pHWldZUkF1MklQbzQyTlA1a3l0djZG?=
+ =?utf-8?B?U2ZjenIxWE82OUZaZkNqamFDeDlITFV0OTNIUnZLZXhCa0o0aERmYkdZWGZC?=
+ =?utf-8?B?NkZGQVBqYXM0SHcyd0JOWlRwREM3dmFIdTF4RmFsM0REZHlWRmhIM3liSTg0?=
+ =?utf-8?Q?S98mCZqjPao=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR10MB5328.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WXhDV2JlUTdDWDJTV2xvZHA4ZnRHRmNJaXYyaDZqRjczZUZ5L25uaHlJYVBG?=
+ =?utf-8?B?OElER2ZDSGIrTTZZaWNoVHN5L3lacmJ5UlRlYWRTdldWV2I5cmVqbzM0c2dQ?=
+ =?utf-8?B?eHV5Vi9ZT2EyVjlkaGtTTWlhWVd3TE02bEQ0cDhLUk9yVjZPYmJHLzRFeXBo?=
+ =?utf-8?B?d1htamM0TmxQTWJ3TVFuekx4QVZDbE1NeExXNDJhQlpMS1FpQWhTS2U4WlBw?=
+ =?utf-8?B?WjVLbUIzekorMlFFVkowZGNsZWlnMzBVbXMzZ1R0aThnSnFTb2pjakZocWtr?=
+ =?utf-8?B?aExncjBpR1J3clVOZjhaNkJUYmNvbFdlcW4zdFBzeWxqQS83UVdvWTJ1MXJR?=
+ =?utf-8?B?eFgzSFFacTZ4MXlwNlpaNFlYUWMwUVBBWDE3bTRwWUxaQ1orY1k1L2dTaXBI?=
+ =?utf-8?B?Z0NISFpTYnViTHVNd2hJTXNOSXBSUDBUdzluR1hVS0VFckN4cWJwb0piMWp5?=
+ =?utf-8?B?NW5nTEljSmR3Ty9BUFZhT0h3a2dCaGczQW1OT0x5TUVSd2U3bEpPR2xQQVUy?=
+ =?utf-8?B?Nk9XeFNWTUt6ZUVmdTg0SCtHclBBYXlDam4xOXY3SDhVbEtvQTR3VEczcVFK?=
+ =?utf-8?B?NHkxaW94LzhTMGkxM2tCY2RpaSt6aVlhWm5vb2I1UitBK242UVNJcHlQdXZP?=
+ =?utf-8?B?TEZXWk8zaHFOZVlpbjBKek5MY3BOVzN2aFROZWtkZWpFY1RrRDJHbUNBQWZ2?=
+ =?utf-8?B?Z0lYMTRGalRoY21HdGV1ZUxnbTJjbWJGNm50K1ZVYVBkM1o2SFdWVU5hY3Zh?=
+ =?utf-8?B?WUNVcnVxa2JZV2ZpS2sycnd1bmNMeFpVZGEySHlxRE9FTDNIYXB1bmZTK2E2?=
+ =?utf-8?B?ZlVUZ3NVZE9YaFhHVm1sYUNQTVM2Vk45eVdJWHlnTmczM3JHb25Qc3VIQk5D?=
+ =?utf-8?B?bmZFcEFpU1JUWHlLN0taLzBQTDhGVnVIcjIvMXhtVEFOQnVjTlRsNDJmSXVP?=
+ =?utf-8?B?R1lzY1lpdVd6RFpscjduc2VVbmpqbEs4ZHhTbXUxVExiVW52dFJkYnZidlZW?=
+ =?utf-8?B?YUZQZ3oyc2RrbllhMGdpbDRaV2lWdXd2RDlUejQ3MjhyTXYzV29rQmo1Q3Vo?=
+ =?utf-8?B?dkhYSXl5RDRhSUo2K0w3empjcFZreVpTZkN3QmxJYy9nZStYZERKMXZJa2p0?=
+ =?utf-8?B?SFN3MjJwRStaZjlnOW9CelcxamZnL1hCekFZMm9adC9iQjlUblV3bFNhSERa?=
+ =?utf-8?B?d3JNeGVPaXF3NkZZNU1IK3VkUVFFb2VhbjVBZytIV2FReFpXOFEzSjB1R2JV?=
+ =?utf-8?B?ejJoSi9CQTF2WkJxWlY0MHg1QjFnaU45UWlmOUlOU3U3VitGdFVQMlBLbG1S?=
+ =?utf-8?B?Vkx1ejM2L3dQUWVLTkI3ZnBGbUpYWVVDYXN3L2FWMEcxbVJ4blo1Mlg3bndt?=
+ =?utf-8?B?UmwybmhOTndDdXcyNGdTMHhoYXZMYU1OYWV2TUxLWVlDMHJWbHRjalZ0TmRY?=
+ =?utf-8?B?QkRWaWtLWWtpTDdoL25CZjdsMWZXQkl3ZlIxb0NENFJkdHB6TUlHWFVqUzVF?=
+ =?utf-8?B?WDF0RklMUXRhUHM1NUtFUCtaNlJNMEtJWVRqeDFGU2ZJWjhsTWJMTnp3L2Vq?=
+ =?utf-8?B?K3hvTHZKLzJVcDRibFRZMllveDhabFdlRjNnNjVpU0o2WHNHWXQyTGdRaUNG?=
+ =?utf-8?B?cEpmZG5NZ1c1UWRwMTJlcGwrcVVhVm1OSDRBaW8yUnN4Rlo4MEgxcjBIeXhm?=
+ =?utf-8?B?N0JqUE1WNzB1UG9XT1Rqak1RN1VwZUpDNldQcFBCeGY4T2dJV2d1V00wUHdE?=
+ =?utf-8?B?bFYxaFM3NjhUYTJtQkcxeFlNVHRuaHprdzQrQWFjQnpoQ3p5L2xHN2dKSTY0?=
+ =?utf-8?B?V3dJSVZsNHRGNDhXbGdSdFFpT3h1eGpXeFlUZHJVUVRSWkZyR1dlNUpweExL?=
+ =?utf-8?B?N2FxamZFalBBNkhDVmhSMlZ6UzRKcVRCMXZmRkduc2Y0alZwSVRwbHVueVYw?=
+ =?utf-8?B?WHlSMDRzSFhDMmoyeGlRTkdQMmMybTNjTmRjL3FaVFF3NXhZdFJHZ3NzNFVB?=
+ =?utf-8?B?K0JtaFRleTdLdFFucFZON1g2eHFyMDRWMmI3T3NXd1NoVnR3N3ZxL1JjZk95?=
+ =?utf-8?B?QnZRbEFWb20yT2xJOVdHNE40MTROTEErQklaZ0dib2dwVEJrVm5xV1FUR1Uv?=
+ =?utf-8?B?S2lWQlBHbHJqSFhhZUc1L1RVK0hObGdtdktqU2NVUXJaNnUrZGplWUJKTDBS?=
+ =?utf-8?B?TEE9PQ==?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	BgPo3I5LXIh4iQG04QI9ZoiTPG4HqhZngwZppfFsAaO8iLwypGWrjbfnzrCl+hQnYu3qNE24+9ueTKnHh1tVvjxmUnrkAYqP5A2hK6A3yX6vg50yIve3syQPTq1e6JkGzfn2K+moQAQoBHn8+r8zhdxAS7bF4UnzrjGJY29GvnIpBMQpRA9i6n5ny5YB6qGofqi9vVbUXY5mzjIJgHncVotznF3m7gBUpSgmtiaffEd8kdpxgXp2AeaYyCgKnvS8fJc0IojbYYfzDrnaAyuKi1ed2QcJG02G7GFcecfTIaOGgNi9y5rBMhIzyN+qxV8qn5RuzcVQUBFj/R43M+BBoWR0epxEWxotQRfWkKJFVJYvNaiGyw2KV4BTARYkORrE77xwLWR0f6VejEFL6nFVNr9/K+Nx4fBqEha/dmiH/Hp65GbhOJ65Gip4gJcFZ8i27GSvhI9mzsD/PCfS79B7aPdKzOBDzhUVMfPTgMvmZlfKtyBfmghd6wp4xIAmP9+xs43P9Txeuw/9xJImunbpZoJdhQq09921BMJzNDoeudu0XLEsFR94FsWaFKn6m03SWnGXnYe0oCrJ+anw2GjF8yOlXLUbuKjS4CP3vDvU3Xs=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 835ccb31-64ba-4833-1d9d-08dd7b5abe83
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR10MB5328.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2025 13:46:23.3209
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: akSHgqIsjnVJ6NIBsWs83yTvEDOY1mEHs/NCJd8aIV2qxAXwIE9N4NHUaHIz0WeMQ4jXCesaKGa9rt1tFZNeQ8Ap8FTSJzrobbGBmtxwwqQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB5058
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 suspectscore=0 clxscore=1015 spamscore=0 bulkscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 adultscore=0 phishscore=0
+ mlxscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502280000
  definitions=main-2504140099
+X-Proofpoint-GUID: thPGJVXptErMRs63yPIhjVR2TSca0sl_
+X-Proofpoint-ORIG-GUID: thPGJVXptErMRs63yPIhjVR2TSca0sl_
 
-On 2/10/25 4:56 PM, Vikram Sharma wrote:
-> Add changes to support the camera subsystem on the SA8775P.
-> 
-> Co-developed-by: Suresh Vankadara <quic_svankada@quicinc.com>
-> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 187 ++++++++++++++++++++++++++
->  1 file changed, 187 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 3394ae2d1300..83640fef05d2 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/interconnect/qcom,icc.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/clock/qcom,sa8775p-camcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
-> @@ -3796,6 +3797,192 @@ videocc: clock-controller@abf0000 {
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		camss: isp@ac7a000 {
-> +			compatible = "qcom,sa8775p-camss";
+
+> +static int rzv2h_usbphy_reset_assert(struct reset_controller_dev *rcdev,
+> +				     unsigned long id)
+> +{
+> +	struct rzv2h_usb2phy_reset_priv *priv = rzv2h_usbphy_rcdev_to_priv(rcdev);
+> +	struct device *dev = priv->dev;
+> +	int ret;
 > +
-> +			reg = <0x0 0xac7a000 0x0 0x0f01>,
-> +			      <0x0 0xac7c000 0x0 0x0f01>,
-> +			      <0x0 0xac84000 0x0 0x0f01>,
-> +			      <0x0 0xac88000 0x0 0x0f01>,
-> +			      <0x0 0xac8c000 0x0 0x0f01>,
-> +			      <0x0 0xac90000 0x0 0x0f01>,
-> +			      <0x0 0xac94000 0x0 0x0f01>,
-These I think should begin 0x1000 earlier and as a result be 0x1000
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret) {
 
-longer
-I also believe this is an off-by-one.. there's nothing past a certain
-register in there, but 0xf00 is what I believe makes more sense here
+nit: it will good if we check similar to reset-rzg2l-usbphy-ctrl.c
+pm_runtime_resume_and_get -> 0 on success, or a negative error code 
+otherwise.
+1 → if the device was resumed and incremented usage count
+0 → if the device was already active or successfully resumed
+if (ret < 0)
 
-[...]
+> +		dev_err(dev, "pm_runtime_resume_and_get failed\n");
+> +		return ret;
+> +	}
+> +
+> +	rzv2h_usbphy_assert_helper(priv);
+> +
+> +	pm_runtime_put(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzv2h_usbphy_reset_deassert(struct reset_controller_dev *rcdev,
+> +				       unsigned long id)
+> +{
+> +	struct rzv2h_usb2phy_reset_priv *priv = rzv2h_usbphy_rcdev_to_priv(rcdev);
+> +	const struct rzv2h_usb2phy_reset_of_data *data = priv->data;
+> +	struct device *dev = priv->dev;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
 
-> +				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
-> +				 <&gcc   GCC_CAMERA_HF_AXI_CLK>,
-> +				 <&gcc   GCC_CAMERA_SF_AXI_CLK>,
+pm_runtime_resume_and_get -> 0 on success, or a negative error code 
+otherwise.
+if (ret < 0)
 
-Please don't forcefully align these
+> +	if (ret) {
+> +		dev_err(dev, "pm_runtime_resume_and_get failed\n");
+> +		return ret;
+> +	}
+> +
+> +	scoped_guard(spinlock, &priv->lock) {
+> +		writel(data->reset_deassert_val, priv->base + data->reset_reg);
+> +		writel(data->reset2_release_val, priv->base + data->reset2_reg);
+> +		writel(data->reset_release_val, priv->base + data->reset_reg);
+> +	}
+> +
+> +	pm_runtime_put(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzv2h_usbphy_reset_status(struct reset_controller_dev *rcdev,
+> +				     unsigned long id)
+> +{
+> +	struct rzv2h_usb2phy_reset_priv *priv = rzv2h_usbphy_rcdev_to_priv(rcdev);
+> +	struct device *dev = priv->dev;
+> +	int ret;
+> +	u32 reg;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
 
-[...]
+pm_runtime_resume_and_get -> 0 on success, or a negative error code 
+otherwise.
+if (ret < 0)
 
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> +					<&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
+> +	if (ret) {
+> +		dev_err(dev, "pm_runtime_resume_and_get failed\n");
+> +		return ret;
+> +	}
+> +
+> +	reg = readl(priv->base + priv->data->reset_reg);
+> +
+> +	pm_runtime_put(dev);
+> +
+> +	return (reg & priv->data->reset_status_bits) == priv->data->reset_status_bits;
+> +}
+> +
+> +static const struct reset_control_ops rzv2h_usbphy_reset_ops = {
+> +	.assert = rzv2h_usbphy_reset_assert,
+> +	.deassert = rzv2h_usbphy_reset_deassert,
+> +	.status = rzv2h_usbphy_reset_status,
+> +};
+> +
+> +static int rzv2h_usb2phy_reset_of_xlate(struct reset_controller_dev *rcdev,
+> +					const struct of_phandle_args *reset_spec)
+> +{
+> +	/* No special handling needed, we have only one reset line per device */
+> +	return 0;
+> +}
+> +
+> +static int rzv2h_usb2phy_reset_probe(struct platform_device *pdev)
+> +{
+> +	const struct rzv2h_usb2phy_reset_of_data *data;
+> +	struct rzv2h_usb2phy_reset_priv *priv;
+> +	struct device *dev = &pdev->dev;
+> +	struct reset_control *rstc;
+> +	int error;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "failed to match device\n");
+> +
+> +	priv->data = data;
+> +	priv->dev = dev;
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	rstc = devm_reset_control_get_shared_deasserted(dev, NULL);
+> +	if (IS_ERR(rstc))
+> +		return dev_err_probe(dev, PTR_ERR(rstc),
+> +				     "failed to get deasserted reset\n");
+> +
+> +	spin_lock_init(&priv->lock);
+> +	dev_set_drvdata(dev, priv);
+> +
+> +	error = devm_pm_runtime_enable(dev);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "Failed to enable pm_runtime\n");
+> +
+> +	error = pm_runtime_resume_and_get(dev); 
 
-The last one should probably be always-on, given we're doing all
-voting on the APPS RSC as of right now
+nit: it will good if we check similar to reset-rzg2l-usbphy-ctrl.c
+pm_runtime_resume_and_get -> 0 on success, or a negative error code 
+otherwise.
+if (error < 0)
 
-otherwise looks reasonable
+> +	if (error)
+> +		return dev_err_probe(dev, error, "pm_runtime_resume_and_get failed\n");
+> +
+> +	for (unsigned int i = 0; i < data->init_val_count; i++)
+> +		writel(data->init_vals[i].val, priv->base + data->init_vals[i].reg);
+> +
+> +	/* keep usb2phy in asserted state */
+> +	rzv2h_usbphy_assert_helper(priv);
+> +
+> +	pm_runtime_put(dev);
+> +
+> +	priv->rcdev.ops = &rzv2h_usbphy_reset_ops;
+> +	priv->rcdev.of_reset_n_cells = 0;
+> +	priv->rcdev.nr_resets = 1;
+> +	priv->rcdev.of_xlate = rzv2h_usb2phy_reset_of_xlate;
+> +	priv->rcdev.of_node = dev->of_node;
+> +	priv->rcdev.dev = dev;
+> +
+> +	return devm_reset_controller_register(dev, &priv->rcdev);
+> +}
+> +
 
-Konrad
+
+Thanks
+Alok
+
 
