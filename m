@@ -1,165 +1,225 @@
-Return-Path: <devicetree+bounces-166585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BCCA87BB2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:18:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD00A87BBF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF3A11890C15
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:18:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E611E3A8257
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BD22620D1;
-	Mon, 14 Apr 2025 09:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E45625E47E;
+	Mon, 14 Apr 2025 09:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IVhNOIRC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K9L9GkCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDE525E81D
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743541A8401;
+	Mon, 14 Apr 2025 09:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744622287; cv=none; b=iwxIVtov7ET+GVH6p1GX/i3emsmS9+7RhRZ4TJyg5k1ij4Lq9U7lKRuc8ZfTrP0/FBKa1JUtqgccUpa7ClwCMn6ZEwmD8/fuw/v3f7Jh5q3kNR5FltWYOpGFhYpCy5Ne5vsAN0w66hvmusQY7L0M9KOTgbB6jhrapvo1LWVOU0I=
+	t=1744622453; cv=none; b=dUVcRIplNOp+B2qd1zXiuMq292/6qjsXHTXN22kxF2D2le+zb8fa836aXvM5WwE3Zhgp3VF1kujVmk4poIUt7+H3DWKLwGkowx0f3vb/gGwna/QtU3sA9T7S0RqStmphwTHsiJJJutLuBB0X+OUP4LhmH87oOiAa4QJd5tp/y+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744622287; c=relaxed/simple;
-	bh=b8gcyIitXwq9zfPGj1TTyeB6iiYH/NPcTALQqB5eb88=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5uh6ze1vHlZwsSopw2nkh1R9Dwqi4LilYAzR8tc+nLBY2mu6YXGWYhjPVNLggIdeiCvdsXMZOfmwc5li6kXEXabpL5oqVqS/V4CE5BM+ZhZJZ5AKZoghdtn8JqjEz0YbRmHOEybvnmcBHqxBjZqoCdsENRWVIY70L5R9T15VEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IVhNOIRC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qgp002930
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:18:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9n6fUwx7dsdIHqmGM9lTq0LMxBs5RvxrZgMfBBeiHZw=; b=IVhNOIRCd08r00/4
-	Xq1isB6u2/D2jXogCcMM9qAiKSwQHsiU2fEq7dqq6A8oz7sP6iMEjW5kSEyXbX3Z
-	1KrJjn5sBGMmr7QoVGRdji+qi6c/hOQ7nro/EHopuFstrTVVJTWG0Foh/Iy8JN9/
-	Hd2FKJs6kZCy1V42LvA6TjzLMB9abrdm34/+mI3hyvfgbs3TtD1/5/8HgV3jeRaF
-	sqC9qOD6vVDvoG5Alf5gFK+/HFHO3nGlaQ9DBthp4fL+roPuhH+oh32m4mISWf2D
-	KHpa/HQDNcQ8a2C7amplFyrG7m7P/cdhwY77OSYEp5jTuPPezBmqLikd8zf9Zs+y
-	ilXYVQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhbpkv4f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:18:05 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6eeeaf707b0so2556956d6.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 02:18:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744622284; x=1745227084;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9n6fUwx7dsdIHqmGM9lTq0LMxBs5RvxrZgMfBBeiHZw=;
-        b=htVQINAFH6FaUJ5wrSTbIXTgwc3unlQxjDhxEYNaLPCCZ5olbsn9hivB9m9RD4ZwFt
-         bbIl3BoB/7RT855tP+dRqybtBX9iiKcz6bBXqkUy/eV4iCSSZ8umldzsjDYoWZgDlgUJ
-         B/0LZh+rRbMLwevAvSysjBZWBawLyfzzcwdlXVxZeW8IdboksxSusvMgHrInTjK36Idi
-         CLoSfXBhRu9N1DDPuhcB0XzUgrJzThyfiquk9AsMCBrrEhINcnfd6sosTkkWf6+UWKyA
-         eGp/271FEMy6LUImW3e/lxn2X5xxNAUHciVTSkeb3FNscSv7yL62ndMdiB0nl0YLsyAW
-         pnuw==
-X-Forwarded-Encrypted: i=1; AJvYcCWomEpiFIxzvxqFbJFfHq4pDEEQK81c57lO45WPtRABxvDNPaJgaYFT8AAC+DI7NkcbSBMX/WGY3Cxv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHsWVjsyKIriLyHgHniibYRS+2SodmpZT+xyLQzq3vRKJFOy1i
-	+5X4ArT7YAAbt1TRYlbMkIG79Ei4TRylJ/SWzxrYBESj/yuT/hnPHjJuXK0iLHkVysIafwNyaZr
-	zXanHjoyKV4qtJZmfJ4d0M+CrLCtIsF07lehBrS0MOAo9CgxQyhBBddy+T9rC
-X-Gm-Gg: ASbGncsloHWwDd9YXnm0pVhncIHErXw/mTVA1GVIE+8A6RQiJA6pRHiI+N56JrLeptq
-	KGR3byNSAu/Icdgu20dXBTMFiY8oSvwhLdCnMfF7dodCidGtXLv8pgsvKkWVxHUnWLLFMucDB/6
-	hcaZwptNE7nGmkPsAQUSEVd92k6mj4cqBrfOpYnBVJr4gL4ylPoLBCsRmKPnv7ZeeUOv6Xs+600
-	iDiMubww/gxxkcWvnQ2yd7ii1khDp5f8LWAtORGtehaW5O6DATIwwrAo+oPXp+9vXyWuE8f47OH
-	SWFxYF1izOlklc6VLMPTC3iB7y4cKRdrdPqEezI5KsOfgVEPD4OwxQNQMxT6jBkFLg==
-X-Received: by 2002:a05:6214:627:b0:6e4:29f8:1e9e with SMTP id 6a1803df08f44-6f223228651mr69610246d6.0.1744622283540;
-        Mon, 14 Apr 2025 02:18:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFluLUS0n50qcCegrTq8Pm42HzMF5shZXnI+wDunODqc0e6WM8+H5gnO9csrzFiy43bwKo2CQ==
-X-Received: by 2002:a05:6214:627:b0:6e4:29f8:1e9e with SMTP id 6a1803df08f44-6f223228651mr69610026d6.0.1744622283016;
-        Mon, 14 Apr 2025 02:18:03 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1be9152sm860014966b.42.2025.04.14.02.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 02:18:02 -0700 (PDT)
-Message-ID: <04ed2ec1-9393-4d02-b7c8-54d6b0aecabc@oss.qualcomm.com>
-Date: Mon, 14 Apr 2025 11:18:00 +0200
+	s=arc-20240116; t=1744622453; c=relaxed/simple;
+	bh=bz1n5Vi8wBxB9B2+kQXtaqVfb20MXtUZpsz3bQ93BJ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WsJ19xZMgqAa97wD6VvaMyQHKYnmticjYeVNo65BRtmsexkS8GpUAZY24wrYmMJya2K5JawaovK5QXRD00A60Xprc8U6uB+pAPRf4CV69MZPwDTapQqkyPLdR4Z5ZspBmkWcqRQlUXUn8Li/lEbCMSS2lJV4Vh+WPH+ayK2jgMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K9L9GkCg; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744622450; x=1776158450;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bz1n5Vi8wBxB9B2+kQXtaqVfb20MXtUZpsz3bQ93BJ8=;
+  b=K9L9GkCgj6hdsC6ZDizk8nVpbWIHHJ9gVdPFa8u6HpPs3QrotjMaWu3Z
+   GN9uIwnHmd8mp06pOnnxLZvvkkUrXnAdD9cUFcT2V2y3ab+3hzfbSsUTj
+   ksRJ9EQZ7FY85riFX1PUulxPt3g7tO8o3AYYhhsuB9kgPjj6bav/Xa7f/
+   wOdq7bmDzIO0wlVAhNo5yt0wCjhVv+Oi/gZ55lET/x3vGZR/ZmFhecKhx
+   qGRdJnZtx+gTf/pp99JuAYQAs8PhxGQAWyvV7dpy5N6HLzHn524XiszbP
+   V1LgPHsigLlC+neNbbFK7uGFWyB5i163B3223niIp8/SEkBduPx5nUBoz
+   g==;
+X-CSE-ConnectionGUID: EXRBzIUPRIK6MDvEe5LGUQ==
+X-CSE-MsgGUID: Ex2IiMuOSo+/ZHCNq5Jt2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="57071613"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
+   d="scan'208";a="57071613"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 02:20:50 -0700
+X-CSE-ConnectionGUID: 9YIxMUhpQ8WDg5wUXXbL1A==
+X-CSE-MsgGUID: L2c9Ba6lRjKWPYBikVug5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
+   d="scan'208";a="129617713"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 14 Apr 2025 02:20:36 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u4FzW-000Dz8-0S;
+	Mon, 14 Apr 2025 09:20:34 +0000
+Date: Mon, 14 Apr 2025 17:20:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Manikandan K Pillai <mpillai@cadence.com>,
+	Hans Zhang <hans.zhang@cixtech.com>
+Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and
+ EP controller
+Message-ID: <202504141719.svx3rf5x-lkp@intel.com>
+References: <20250411103656.2740517-6-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] Add Qualcomm i3c controller driver support
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
-        linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250411113516.87958-1-quic_msavaliy@quicinc.com>
- <eb6e8452-db37-47f7-9265-fd47d4cb69b8@oss.qualcomm.com>
- <84c07b53-a564-4c71-b172-676303700314@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <84c07b53-a564-4c71-b172-676303700314@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 9aEfHSl9eJ3lt54T6E1mMCVEMR-V06wc
-X-Proofpoint-GUID: 9aEfHSl9eJ3lt54T6E1mMCVEMR-V06wc
-X-Authority-Analysis: v=2.4 cv=I+plRMgg c=1 sm=1 tr=0 ts=67fcd2cd cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=Nc8cXWw94qvZg0M5jZYA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_02,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140067
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250411103656.2740517-6-hans.zhang@cixtech.com>
 
-On 4/13/25 9:28 AM, Mukesh Kumar Savaliya wrote:
-> 
-> 
-> On 4/12/2025 4:50 AM, Konrad Dybcio wrote:
->> On 4/11/25 1:35 PM, Mukesh Kumar Savaliya wrote:
->>> This patchset adds i3c controller support for the qualcomm's QUPV3 based
->>> Serial engine (SE) hardware controller.
->>>
->>> The I3C SE(Serial Engine) controller implements I3C master functionality
->>> as defined in the MIPI Specifications for I3C, Version 1.0.
->>>
->>> This patchset was tested on Kailua SM8550 MTP device and data transfer
->>> has been tested in I3C SDR mode.
->>>
->>> Features tested and supported :
->>>    Standard CCC commands.
->>>    I3C SDR mode private transfers in PIO mode.
->>>    I2C transfers in PIO mode.
->>>
->>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->>> ----
->>> Link to V3: https://lore.kernel.org/lkml/20250403134644.3935983-1-quic_msavaliy@quicinc.com/T/
->>> v3->v4:
->>>   - Dropped "clock-names" property from dt-bindings as suggested by krzysztof.
->>>   - Makefile: Correct order sequence for i3c-qcom-geni.c.
->>>   - Indentation corrected around print statement.
->>>   - geni_i3c_probe() : Exit with return 0 instead of ret for success.
->>>   - Added sparse annotations around i3c_geni_runtime_get_mutex_lock()/_unlock().
->>
->> So this is the third time I got this revision in my inbox, previous were
->> <20250410084813.3594436-1-quic_msavaliy@quicinc.com> 10.04
->> <20250331164648.2321899-1-quic_msavaliy@quicinc.com> 31.03
->>
->> b4 should be automatically upticking the revision counter, please don't mess
->> with it manually
-> Sorry Konrad, i could not understand what's the problem or what you are trying to say.
-> 
-> Do you suspect something (Which i didnt get) is seen as manually changed ?
+Hi,
 
-Yes, normally each 'b4 send' upticks the revision counter, but here we got
-a couple submissions all with v4
+kernel test robot noticed the following build warnings:
 
-Konrad
+[auto build test WARNING on a24588245776dafc227243a01bfbeb8a59bafba9]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/dt-bindings-pci-cadence-Extend-compatible-for-new-RP-configuration/20250414-094836
+base:   a24588245776dafc227243a01bfbeb8a59bafba9
+patch link:    https://lore.kernel.org/r/20250411103656.2740517-6-hans.zhang%40cixtech.com
+patch subject: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP controller
+config: powerpc64-randconfig-001-20250414 (https://download.01.org/0day-ci/archive/20250414/202504141719.svx3rf5x-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250414/202504141719.svx3rf5x-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504141719.svx3rf5x-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pci/controller/cadence/pcie-cadence.c:303:12: warning: variable 'ctrl0' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+     303 |                 desc1 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(fn);
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/cadence/pcie-cadence.h:342:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN'
+     342 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK, devfn)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:115:3: note: expanded from macro 'FIELD_PREP'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:68:3: note: expanded from macro '__BF_FIELD_CHECK'
+      68 |                 BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      69 |                                  ~((_mask) >> __bf_shf(_mask)) &        \
+         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      70 |                                         (0 + (_val)) : 0,               \
+         |                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      71 |                                  _pfx "value too large for the field"); \
+         |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:557:2: note: expanded from macro 'compiletime_assert'
+     557 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:545:2: note: expanded from macro '_compiletime_assert'
+     545 |         __compiletime_assert(condition, msg, prefix, suffix)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:537:7: note: expanded from macro '__compiletime_assert'
+     537 |                 if (!(condition))                                       \
+         |                     ^~~~~~~~~~~~
+   drivers/pci/controller/cadence/pcie-cadence.c:323:46: note: uninitialized use occurs here
+     323 |                              CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(r), ctrl0);
+         |                                                                   ^~~~~
+   drivers/pci/controller/cadence/pcie-cadence.c:303:12: note: remove the 'if' if its condition is always true
+     303 |                 desc1 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(fn);
+         |                          ^
+   drivers/pci/controller/cadence/pcie-cadence.h:342:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN'
+     342 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK, devfn)
+         |         ^
+   include/linux/bitfield.h:115:3: note: expanded from macro 'FIELD_PREP'
+     115 |                 __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+         |                 ^
+   include/linux/bitfield.h:68:3: note: expanded from macro '__BF_FIELD_CHECK'
+      68 |                 BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
+         |                 ^
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:557:2: note: expanded from macro 'compiletime_assert'
+     557 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+         |         ^
+   include/linux/compiler_types.h:545:2: note: expanded from macro '_compiletime_assert'
+     545 |         __compiletime_assert(condition, msg, prefix, suffix)
+         |         ^
+   include/linux/compiler_types.h:537:3: note: expanded from macro '__compiletime_assert'
+     537 |                 if (!(condition))                                       \
+         |                 ^
+   drivers/pci/controller/cadence/pcie-cadence.c:291:39: note: initialize the variable 'ctrl0' to silence this warning
+     291 |         u32 addr0, addr1, desc0, desc1, ctrl0;
+         |                                              ^
+         |                                               = 0
+   1 warning generated.
+--
+>> drivers/pci/controller/cadence/pcie-cadence-host.c:122:3: warning: variable 'desc0' is uninitialized when used here [-Wuninitialized]
+     122 |                 desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0;
+         |                 ^~~~~
+   drivers/pci/controller/cadence/pcie-cadence-host.c:80:18: note: initialize the variable 'desc0' to silence this warning
+      80 |         u32 addr0, desc0, desc1, ctrl0;
+         |                         ^
+         |                          = 0
+   1 warning generated.
+
+
+vim +303 drivers/pci/controller/cadence/pcie-cadence.c
+
+   286	
+   287	void cdns_pcie_hpa_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie,
+   288							      u8 busnr, u8 fn,
+   289							      u32 r, u64 cpu_addr)
+   290	{
+   291		u32 addr0, addr1, desc0, desc1, ctrl0;
+   292	
+   293		desc0 = CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_NORMAL_MSG;
+   294		desc1 = 0;
+   295	
+   296		/* See cdns_pcie_set_outbound_region() comments above. */
+   297		if (pcie->is_rc) {
+   298			desc1 = CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS(busnr) |
+   299				CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(0);
+   300			ctrl0 = CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS |
+   301				CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN;
+   302		} else {
+ > 303			desc1 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(fn);
+   304		}
+   305	
+   306		addr0 = CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS(17) |
+   307			(lower_32_bits(cpu_addr) & GENMASK(31, 8));
+   308		addr1 = upper_32_bits(cpu_addr);
+   309	
+   310		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   311				     CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(r), 0);
+   312		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   313				     CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR1(r), 0);
+   314		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   315				     CDNS_PCIE_HPA_AT_OB_REGION_DESC0(r), desc0);
+   316		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   317				     CDNS_PCIE_HPA_AT_OB_REGION_DESC1(r), desc1);
+   318		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   319				     CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0(r), addr0);
+   320		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   321				     CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR1(r), addr1);
+   322		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+   323				     CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(r), ctrl0);
+   324	}
+   325	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
