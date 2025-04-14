@@ -1,137 +1,125 @@
-Return-Path: <devicetree+bounces-166821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34FDA888CC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:42:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303B2A888D9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BB5F17B027
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:42:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A19F33B505A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39942284697;
-	Mon, 14 Apr 2025 16:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C49289358;
+	Mon, 14 Apr 2025 16:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="hX8TYN1P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dLjjFtT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270A419E7D1
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 16:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9341A289340;
+	Mon, 14 Apr 2025 16:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744648936; cv=none; b=SMC43YtOsfmqhXoKaQe9TDtrxGl9nDqVW6+WIs0W0cNgTNl/pom1IdG63Kikkmg1V8dvqMOtdnAjAJBbiu22/RhrDN8zxMn5KwPcSyE6sXivKK8s4XFiRw6YSJgRHA+HTEJdGjcrrVzkkA9OLHCDctLRpYRcVvFu4u1LuonKgGk=
+	t=1744649108; cv=none; b=FFQ3htaeNQHHIwjaJbTsZ3VjCeIJTxgn7lLj9ydyjJfDBsHZZH9moP4BENE9T3eFfde/J33WYkgzc1GDbGN6hLfh7jSL1Pi90nXBjPWEe+ydgxCXCKeNsqM1K3Pfp3jnsG/Rg9h5zeIklHpP3GrE41e9WRID20yKpa1UxNn/QoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744648936; c=relaxed/simple;
-	bh=/66OOPt3HW87DIGt0O3zeDKL07onErJWuovRqfFxozI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hsOrAJMWWruxhA2sTnDqQWfssJMLbXenhtencv0UbVI3mKQxiI0yzwxsjTaztUZdEAmxO+d9CPsDhfu+UGt78ubNlthyGueWIR6+G4eDT7MyB6ANFmNroI92RnkKj0SuhCo5TjBRNv5t1TUYkd7siC0vB/N4A7Tv1xZWYhgPYEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=hX8TYN1P; arc=none smtp.client-ip=209.85.166.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3d589ed2b47so14210135ab.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:42:12 -0700 (PDT)
+	s=arc-20240116; t=1744649108; c=relaxed/simple;
+	bh=CyRmz6WDnLlgE/Au89ERUZt3OIYiAJnvydjXIw1skME=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pXElyqOi5TuT/y+RS3oHFnsar2eyvGbjLjkxSgcGlsPg6OFe5mid7D0GNpUNM2mnyu85kGhWwXpQZnOx/1Z6NqBaaeRxnxrj5D8o7bvLT1Yil8fL/w7Z5UFjaSYlinDzyPRLZK9fz6hbYCcPX3fs3ftlKUn62onWWpTZFZbDFzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dLjjFtT0; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff6ce72844so849775a91.2;
+        Mon, 14 Apr 2025 09:45:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1744648932; x=1745253732; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4Nkt4V2QTjnSapTTILkS8+oLHV4hk8aXAHawaxgiQGU=;
-        b=hX8TYN1PYNy/nmPF/II5MiG+V8PfyrF+NkeYDgiX+Yc+bjR9Q3d74Eso8mtqQ6FHeN
-         0c+nulRxKECsUzPCFrSpRfYhBcY/Nf1Ft/8EkFh9EwExgspoplikFdCB5FKGVWbx3Gmr
-         mr6BbyX9jm8UUOVDlSPv06fU2CI1G+yvYhfPLNiZnNDv+dqBw24rH1gHyrkPcEqx6ZKF
-         odUJG2kHQyRESc08O8EKti8rnQdtwH2+o5Ha+UFJj7Y2ACdaT0IXfnVTJEJtSfmsjm0h
-         bKilJZI4/vmxycBxsmDXqudtUVfgQVN07LUXSZXdN/vlQUwksZsehlbK/pLOZIj/T3uO
-         tSfg==
+        d=gmail.com; s=20230601; t=1744649106; x=1745253906; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CyRmz6WDnLlgE/Au89ERUZt3OIYiAJnvydjXIw1skME=;
+        b=dLjjFtT0BqdIHXpMLrPbFKTTx3/APgx/zgrgg5/9xtD5PIkJMf1BPhQNMEiXSJHqYN
+         iZN3U437zC/AO2BSiNQyIQ3htV5kJ03zQWVgqBT2XLu8nJEGRWs0YbDm5+HV5M9C1T+3
+         XYY4RGL3nxF8QTXuNKstAc9eGviX5GPWAE56q1iBV/INDsQIIUuFRuhjQ4+HRQzK/dTw
+         nL14V3+uVgQmZSvEdH1oaXS1+Dz3I0ZcoWh6ZEYNZRrmY+OxOWcEQpiEVFnd/InKPqnK
+         /x+BVtqVpWuDT4L1R88437lh0rce+PSSV0xVWV9J5fJtxu2sktx6TLUkDW6bvI4wwG4U
+         wrBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744648932; x=1745253732;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Nkt4V2QTjnSapTTILkS8+oLHV4hk8aXAHawaxgiQGU=;
-        b=f3fzlsVRj4zk8d1EkOp5bRFjuIPwZt5fLwkquF8qMmr7emC7wN2GrmPTN/8mGV2k3T
-         3gM1HWG/NV7H4SFRA9Yu9b/4w64dy2GQckVOtYB7ndsTyX/tRMrRUJlF/ZZihcGQ9D6A
-         4YjGREdfqook4w+M9JYl7Fd8VE6rWP/mjk76MLlUiGvQbntU4CD/Jvz37TnyufdTFfji
-         Q772gFMX2LI02SBKmQx0cnuNiXYM7VKFY12Uwn8vWH5l2H7N5mJ1KaOcC02rWjFPU6xN
-         o6/gG/cWqf8LI7jKXXpCkK94tj9F27D9Dmxw8sHBChxkvAdw8NhJoVeasfNks5UF+CET
-         DsLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvRucNFvwpt7zp0BnH7wy8kvvK1xD1v07owbm6Jq+ZEdyKpqYeKhbyuxDrj/jySo5j7VXHJ8eas7xa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqEgIh3d+A7rWbIKnE+dNhDWWDrhoKiL2xfc3hos71lDfhRVPg
-	aD6AQqJOWExjQGItv1XCor1wKifnCJ0ReLZUEdHPCcW8B/7ynU6H6m2aLSXZKEg=
-X-Gm-Gg: ASbGncsrb9mLh10Z/7mal3W+AUzX8vD8hM+cmqz7x5ztBIwFB5lPiwk5flKq4Awc5+m
-	nMQd5jRhqVDbial0u+bGFvSzhGbOL7PsakeJ8wZdccjcnlyNIvtcgUoJoawta3svxI2RjQtPQDx
-	WplLxX+2bApqvezp6mcdfxwXdvNrBv0iFBX6f6r6a0bpEVb/pIjyR1YxLqKrNzOY/cuWS3YE8Xu
-	S7EbSJWjrB7L8KHWb23kfBYbEIj0pnvNTI6lOC3htiQD956pi2f2vVlFh7BTI++3VqgophjCL/Z
-	Fe9bOki3qaYyIeWd0UlNVz8GPHst7WNT4ZzKWktHi7hupwitZFdfKej/og==
-X-Google-Smtp-Source: AGHT+IHXcv1gAGtPs5um9SWMJJd18WOJ6IiYOGvEA56wWlYHbTbN9OhrdEHa3Nng5MJO18XCSyHZBw==
-X-Received: by 2002:a05:6e02:338b:b0:3d5:bdac:c927 with SMTP id e9e14a558f8ab-3d7ec27c9eemr148288925ab.18.1744648932034;
-        Mon, 14 Apr 2025 09:42:12 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.6.166])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3d7dba9bb63sm27527735ab.38.2025.04.14.09.42.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 09:42:11 -0700 (PDT)
-Message-ID: <9a51fbfb-cd06-489d-8deb-4323eca496fe@sifive.com>
-Date: Mon, 14 Apr 2025 11:42:09 -0500
+        d=1e100.net; s=20230601; t=1744649106; x=1745253906;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CyRmz6WDnLlgE/Au89ERUZt3OIYiAJnvydjXIw1skME=;
+        b=JpKYw6v54FDajcIr0ZBboILak/UHF1ndXnOBaKS+cHoEVJe+0ffTFqVvHfCCLKhYIZ
+         D4bLGiUW14LjFk2CNR+opTm8DGoC7GnjffFFbxxd//+v3O1p0i47mnWr3oyYAGHu1/sI
+         baDztz77BDgn915e7RswRjoo9eJFAtIgKIqk9SgHV18+80uOjlXKW9Cxsjkp8IfTrCjG
+         DQdAZyvlKjCyamshHu7Tpe7hy3SQP880ief5xrJBLCjRaG6oYOZOpi+vaLyhwR0Jd4kR
+         VafPs0fCRZfmMECbYUtTEo0SiZxPCbSq+/mm6Iy6s5YJ20VVWUDQ5C3N2wea32DIZG9r
+         3xrg==
+X-Forwarded-Encrypted: i=1; AJvYcCURNjv5HPvK39/Sfvyqe4KwcbY1Cj+ADVqgTju/QngjqdXyoH6GkjMH60VZCl5R/0qxfDvG48KusQqFakwUir0=@vger.kernel.org, AJvYcCUu4XVHs7tsBXLiXVaKSldpiRjgWmijLMMrMtPtsQ09L+Jw5W8xomybvsUWieMoRBpCGHU4cXMIGSzj@vger.kernel.org, AJvYcCVHXWLd9+ytwY2AN/Kn01PyLnA1zp2ck0tQjNBZXIBjf/BzLgSTqPRJ9BgQde9ZUyWbYUTyx1ah2HXnRazu@vger.kernel.org
+X-Gm-Message-State: AOJu0YznnfYAyIC9S1rfZLihsm7Lr6uXyQDSv+XaCR7yWy48aU7v53gY
+	4bhdmu5dKkTDCk9aIiKEXUCra4v/k37fDXlNJq06DDusk3a+lpy6mQN0glQBsnuaFYWtPf5jDmG
+	ssWvy+flKysIt28HQaTwsw67YC4w=
+X-Gm-Gg: ASbGncvrYwJXD43KVazbt7VkvUUfcnmtxbboMILaV6NhbAjYxUI8bB2I3Kys453NfcC
+	/GDOs58wclEeA5MSq393ZAjxdKrv8U/LE4h9TeRnTILG1pgAe404WVFamt+RBCS+iSmCQL6+8rq
+	+XuRjP782KFbOnxsi1gu/80QcWTeevFBop
+X-Google-Smtp-Source: AGHT+IFFO/6s6YgrPEO3OnxOg96c+7vd2ZcP2QQOQbeI5zAqmfo8OAJafhVQhOHi2OQPh5zM8jjw1Stv0z3LdLO72T4=
+X-Received: by 2002:a17:90b:1a88:b0:2fe:b2ea:30f0 with SMTP id
+ 98e67ed59e1d1-3084e75a57emr284165a91.4.1744649105757; Mon, 14 Apr 2025
+ 09:45:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] riscv: dts: spacemit: Add pinctrl configurations for
- PWM0-PWM19
-To: Inochi Amaoto <inochiama@gmail.com>, Guodong Xu <guodong@riscstar.com>,
- ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, dlan@gentoo.org,
- p.zabel@pengutronix.de, drew@pdp7.com, geert+renesas@glider.be,
- heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
- unicorn_wang@outlook.com, duje.mihanovic@skole.hr
-Cc: elder@riscstar.com, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-References: <20250411131423.3802611-1-guodong@riscstar.com>
- <20250411131423.3802611-7-guodong@riscstar.com>
- <ujkfb3ajvoebrkvoepztgh3afzw5dq7djefvdddiboo5gxu63x@dlflpzwpv26u>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <ujkfb3ajvoebrkvoepztgh3afzw5dq7djefvdddiboo5gxu63x@dlflpzwpv26u>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250414152630.1691179-1-remo@buenzli.dev>
+ <CANiq72mJubnGyqSk3sqKVa7g9HvnJvmRg=gJ2kaBtbMMVWWC8g@mail.gmail.com> <D96HP1UV49SY.1U1BFA14P8XHE@buenzli.dev>
+In-Reply-To: <D96HP1UV49SY.1U1BFA14P8XHE@buenzli.dev>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 14 Apr 2025 18:44:53 +0200
+X-Gm-Features: ATxdqUErYkDDBOGFPEFB-nfL3C3C2TIMbtTywdzeB3ydwzNNRQdwTBq8nO3zs6g
+Message-ID: <CANiq72=ru+M0W2Gw5bYD4zMD-mkMU0He-tAX4Tna9g-ddbC-0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] More Rust bindings for device property reads
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Inochi,
+On Mon, Apr 14, 2025 at 6:07=E2=80=AFPM Remo Senekowitsch <remo@buenzli.dev=
+> wrote:
+>
+> Junio Hamano recently wrote on the Git mailing list[1] that he wants
+> his contributors to do this, so the original message-ID can be used as
+> a "patch set ID". A quick glace at the archive[2] confirms that people
+> work this way. I assumed the kernel community would appreciate this
+> as well.
 
-On 2025-04-11 5:50 PM, Inochi Amaoto wrote:
-> On Fri, Apr 11, 2025 at 09:14:20PM +0800, Guodong Xu wrote:
->> Add pinctrl configurations for PWM0 to PWM19 in the SpacemiT K1
->> device tree source file. Each PWM instance is assigned multiple
->> pinmux configurations corresponding to different GPIOs and
->> function modes.
->>
->> Configurations include:
->> - Mapping GPIOs to appropriate pinctrl nodes for PWM functionality
->> - Specifying bias-pull-up and drive-strength attributes
->>
->> These updates ensure proper pin multiplexing and drive strength
->> settings for PWM signals on the SpacemiT K1 SoC when selected.
->>
->> Signed-off-by: Guodong Xu <guodong@riscstar.com>
->> ---
->>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 315 +++++++++++++++++++
->>  1 file changed, 315 insertions(+)
->>
-> 
-> I think this is too much, I think it is necessary to leave
-> already used one.
+I see, thanks for the reference!
 
-If your concern is about compiled DTB size, you can use /omit-if-no-ref/ for
-each of these nodes, so only the pinmux nodes actually referenced by a
-controller are included in the DTB.
+I don't think it is a good idea for long series, given how some
+clients render things, e.g. GMail just shows the new version in a
+single linear thread and it gets really confusing.
 
-Regards,
-Samuel
+Even in a nested/tree render, like Lore's option, it is harder to see
+and/or compare the versions, in my opinion. Perhaps Lore could be
+improved here (e.g. offering (auto-)folding of versions) -- most of
+the time we only care about the last version (and perhaps last - 1)
+anyway.
 
+I think `b4` behavior of subject+author works OK, but an explicit
+change-id would be nice. Reusing the Message-ID for that would only
+really work well if we could control the UI for everyone, I think.
+
+Cheers,
+Miguel
 
