@@ -1,170 +1,120 @@
-Return-Path: <devicetree+bounces-166808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C7CA887B0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:46:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891BFA88796
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BFC33B26B8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:43:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AC50188C838
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800B52798F0;
-	Mon, 14 Apr 2025 15:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551322749DA;
+	Mon, 14 Apr 2025 15:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mOkodUOk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A077252295;
-	Mon, 14 Apr 2025 15:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8101247299;
+	Mon, 14 Apr 2025 15:38:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744645416; cv=none; b=mM9jcUC1pjFOE2XnZBvjKmaxRn6M54swB25N9sWz1DecGdOahP/LdbPcCWrYxGN6c4qM3UrddGPye0+9OM+TCyiLvn4bTU+oNtHDnh5KRiC3y9mpOMnxFTyh46ql12Rl23BMtT1uT+XU6Br/8bjAJGM/qR6wSSN7hbbDPsw1eGA=
+	t=1744645114; cv=none; b=atg/6bmF9/1/zoJYqnvdxI8OOfyAeFB0ocgrpEmd8uNl+36P6ZBWDN4n8ACsStfbhyZ0+hBf5NomI9PbJHPAgjbv8aF8xQZy4UxFO9jrGPsmCQVLfhJsPvFvn9JqaaQwpZmhdLBEvatRAVvH2Dkuf2DgJC5bjXcHRK1UbkRQRHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744645416; c=relaxed/simple;
-	bh=Tkk57IwElxqXIkI2v9lTSkM3kXzBNPN57prvrUMVkiQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qExVtZx886sWwBM55GU5er2I2kMWXtTdKHSA5EctPDLPYrthfKAj/ugnbWenjHNTJ3Z6xrRtsRuzyrsp2C55Yh6b037P/yMhUppLb4d7eUt8wQoTcV7cMKVSmE5KM3u+8S18wRtMV3fjst6cqXNzWdvDnz8HBvMvuNVm0GeH7TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: cGrC+luCTY+SUvSx9SfAQw==
-X-CSE-MsgGUID: B8r3E4ThQ06ZFEp0r10dcw==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 15 Apr 2025 00:38:23 +0900
-Received: from localhost.localdomain (unknown [10.226.92.176])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9F41A4003ED7;
-	Tue, 15 Apr 2025 00:38:20 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
-Date: Mon, 14 Apr 2025 16:38:07 +0100
-Message-ID: <20250414153818.214811-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1744645114; c=relaxed/simple;
+	bh=RuecTKg0iaNM2FTHixYTxLi4zj7VKfj4amF92wuExCg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Rz9PZr8/38+cuqTWrkCpNKuxniPpe1V87TI00NZPs/IfU1A2vEockmDe6mhZN0t8/26WynqITgMLaqpJ/lxMdRLZjHIQ7VKRJBumzLORyhe6Q9RX0PNizvkUKM56t8NccJM5FOsdcKrfvcDe9T6UCP8wqyv5aR5Hf3Fk4oCe5DQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mOkodUOk; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b07698318ebso122644a12.2;
+        Mon, 14 Apr 2025 08:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744645112; x=1745249912; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7hTVE72PCT4HpQ9Apgj1j1o70imaRSlg41FJYH8UsUw=;
+        b=mOkodUOkYFh91YD9qDudqktn+oBiGjWvUybCk0XRA/WWQ4Ai33PY/WLuWn4AKOVQmO
+         ua2Hzy8PEV2IRs9qDS2f1g15+ee3N7ZfKmSDsqKRdnrCpLtFaqxaP5KZgjGD3JUJzNX0
+         RDGd8wEQvUCe8KWfoFDG0OvniPeqokiWDNCC0eyYjilVmy3RTLXEkpdZoofWFVyQ29Qk
+         ZnGVUjMysMruvXtHr5Qb07oBZ+ZToZ7LX9qOuf2o3f+l+WBmKrXYN9+4b0XEExWxt5As
+         wU8ayOoEUORnzCXO7+rNCQI8ME2H/9u8J3zS/y9BsGh5X421TD7FKanhCqet3CCMbZdn
+         /sww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744645112; x=1745249912;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7hTVE72PCT4HpQ9Apgj1j1o70imaRSlg41FJYH8UsUw=;
+        b=LLrXOYx8N0by2DCNQoeGShgw9KOdIDUmPHpzFLQrjOKth0Aji+Nstai3Kergsy/5Qd
+         IO8Ndel+4fikDJar2FifPXzhH/itPteKoBTHm9vmH5SuOCqOA3C0zGmXks4UsHQKVnG0
+         oioc674dtBS7b4VaqAaMJV1ljfW1vEJ8rucIECKO3/IrrkEwYUV/ly3EhtG72afjLJUw
+         ZA1nrEETGa7m7njzWMT5TSLjO/dAP/PrKsDMldMlJoVBLfz7YCIQBjxGF9UpWbr93pYF
+         ZaJFCilEYQfm3uT112Ncqd4NhD2UP2Lv8cEeHKXqOSS68WzrAOD7z+2/HONdqTlnHN84
+         SoTA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9iTC6g9fJdhgHf5Mos0SEnyR2D3SI9wZSFjwn2OsHR5jRrP2hWV+S6ViYcWYbF+2KUOqu+WbKiBiOBTiU@vger.kernel.org, AJvYcCWvhKlJTGKfoVF9mRBHFODW8KBIbTPH3MuUADt5W8+TzZ9SOyEDotar52fTjNRUvrUb3NLjXJN7J+k+@vger.kernel.org, AJvYcCWzvFfAsmHeFYn5pkdRpaje2QqTVa3V07CkQ5YcLRsB8mMabCsy0y7A5rlj5rPgEP5dhZLjbuwg857TGRFtlt8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkQsR2vNcHgL2Bjfa8bvKE21BjR05TRx1lwTHL9gZpB0Rq9e50
+	fAuNePaafKDX+gEV53V+HPw03k+Youq/M10oILdd8lHwOjWwhWtUDakha6emgN3tgUloSSkw/Xz
+	CCXzMmYz3zlQQ91gsoV0qz7ZnDJA=
+X-Gm-Gg: ASbGncsOH9qmggji9+k+26Y8dk19a7fVvY6G3zV0yVCmoKDaITf20mrk095b8zoEJpa
+	XiolzHgyXwU3xzd0fRpPAxyRyWTNFMuWvXvfKL4/7oeXFN7lqOpV1/2Ciia3d2mLeDTxEvGTEp0
+	eFSsdZY8Fgf6SrYXLh7lqAkg==
+X-Google-Smtp-Source: AGHT+IEl7wHf0Sakgfm/WJeSfZvJ7q2i4J1DoJtq8lyP7HES/L27EXmyf/TNfYuKtRGxT9VdHhTRtMrGWU2WyCxoBIg=
+X-Received: by 2002:a17:90b:1c8c:b0:306:e6ec:dc82 with SMTP id
+ 98e67ed59e1d1-3084e76898dmr133828a91.6.1744645111895; Mon, 14 Apr 2025
+ 08:38:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250414152630.1691179-1-remo@buenzli.dev>
+In-Reply-To: <20250414152630.1691179-1-remo@buenzli.dev>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 14 Apr 2025 17:38:18 +0200
+X-Gm-Features: ATxdqUHT3bhfx4obPIev5V4LNaD5n_eUigTkiTFuP1PQG7JIim9RVDEyLqHrD9g
+Message-ID: <CANiq72mJubnGyqSk3sqKVa7g9HvnJvmRg=gJ2kaBtbMMVWWC8g@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] More Rust bindings for device property reads
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
-USER_SW3. Add a DT node in device tree to instantiate the gpio-keys driver
-for these buttons.
+On Mon, Apr 14, 2025 at 5:26=E2=80=AFPM Remo Senekowitsch <remo@buenzli.dev=
+> wrote:
+>
+> changes in v2:
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 27 +++++++++++++++++
- .../boot/dts/renesas/renesas-smarc2.dtsi      | 30 +++++++++++++++++++
- 2 files changed, 57 insertions(+)
+If possible (no need to resend, it is just a suggestion), please
+submit new versions (especially multi-patch ones) in a new thread,
+otherwise in some clients (including lore.kernel.org) it gets harder
+to read.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 5d7983812c70..246327a19527 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -8,9 +8,18 @@
- /dts-v1/;
- 
- /* Switch selection settings */
-+#define SW_LCD_EN		0
- #define SW_SD0_DEV_SEL		0
- #define SW_SDIO_M2E		0
- 
-+#define PMOD_GPIO4		0
-+#define PMOD_GPIO6		0
-+#define PMOD_GPIO7		0
-+
-+#define  KEY_1_GPIO		RZG3E_GPIO(3, 1)
-+#define  KEY_2_GPIO		RZG3E_GPIO(8, 4)
-+#define  KEY_3_GPIO		RZG3E_GPIO(8, 5)
-+
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
- #include "r9a09g047e57.dtsi"
-@@ -33,6 +42,24 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
- 	};
- };
- 
-+&keys{
-+#if PMOD_GPIO4
-+	/delete-node/ key-1;
-+#endif
-+
-+#if SW_LCD_EN || PMOD_GPIO6
-+	/delete-node/ key-2;
-+#endif
-+
-+#if SW_LCD_EN || PMOD_GPIO7
-+	/delete-node/ key-3;
-+#endif
-+};
-+
-+#if SW_LCD_EN && PMOD_GPIO4 && PMOD_GPIO6 && PMOD_GPIO7
-+	/delete-node/ keys;
-+#endif
-+
- &pinctrl {
- 	scif_pins: scif {
- 		pins = "SCIF_TXD", "SCIF_RXD";
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index fd82df8adc1e..84fb955ad77b 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -12,8 +12,13 @@
-  * SW_SDIO_M2E:
-  *     0 - SMARC SDIO signal is connected to uSD1
-  *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-+ *
-+ * GPIO keys are enabled by default. Use PMOD_GPIO macros to disable them
-+ * if needed.
-  */
- 
-+#include <dt-bindings/input/input.h>
-+
- / {
- 	model = "Renesas RZ SMARC Carrier-II Board";
- 	compatible = "renesas,smarc2-evk";
-@@ -27,6 +32,31 @@ aliases {
- 		serial3 = &scif0;
- 		mmc1 = &sdhi1;
- 	};
-+
-+	keys: keys {
-+		compatible = "gpio-keys";
-+
-+		key-1 {
-+			interrupts-extended = <&pinctrl KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_1>;
-+			label = "USER_SW1";
-+			debounce-interval = <20>;
-+		};
-+
-+		key-2 {
-+			interrupts-extended = <&pinctrl KEY_2_GPIO IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_2>;
-+			label = "USER_SW2";
-+			debounce-interval = <20>;
-+		};
-+
-+		key-3 {
-+			interrupts-extended = <&pinctrl KEY_3_GPIO IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_3>;
-+			label = "USER_SW3";
-+			debounce-interval = <20>;
-+		};
-+	};
- };
- 
- &scif0 {
--- 
-2.43.0
+> Link: https://www.kernel.org/doc/html/latest/process/submitting-patches.h=
+tml#the-canonical-patch-format [2]
 
+By the way, since I am here: to link to docs, nowadays there is
+docs.kernel.org which is nicer/shorter:
+
+    https://docs.kernel.org/process/submitting-patches.html#the-canonical-p=
+atch-format
+
+I hope that helps!
+
+Cheers,
+Miguel
 
