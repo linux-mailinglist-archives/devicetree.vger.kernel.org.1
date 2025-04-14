@@ -1,126 +1,156 @@
-Return-Path: <devicetree+bounces-166624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBCAA87D47
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:15:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89260A87D62
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7199A18932BE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:15:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC6C7188B7C7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A892A26656B;
-	Mon, 14 Apr 2025 10:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 194C025D204;
+	Mon, 14 Apr 2025 10:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="pb9uZvtX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4042025F96A;
-	Mon, 14 Apr 2025 10:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA5519DF5B;
+	Mon, 14 Apr 2025 10:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744625726; cv=none; b=LgNq3VznTflIL1N1CCPW64prtgciF5ks+DynhxmVFdSyqMomYdbB6vYsXFLZwmmspDRdJX8wOC1J4Xu4RPO2+TMDIbpjR1ivaAyTKdKGOVcl+wIsDOcN9P0j+JF2djZChCexchtTU5lVm98IgKVxpvFD/crhjlUGfGubkffIyfM=
+	t=1744625970; cv=none; b=BziG/IOOKkMuD4E9huaK8oHtuNNDM+PUFlPk2Qyh99mTXedluFJYI6yLbraBZvAEghU+0xKs4dvaAo9KJVAGEPNZ1vKdxtbCYeDs3inY4EkZpNUMfV9h0wHdMoezxvON6jXDzeHr6iObKNyVPJbjdYtL/DMxVt8A2ysoXhNfI3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744625726; c=relaxed/simple;
-	bh=8pjSY5TGS66p72VQ8UWjz+9rF2ckIGkBQ9YNQuNRxHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gy3eAI/EHfnopbtk8TcErlpc+bT2ArLlbGnC8M6rOeQJZGOZLkf2C0Ss21ssG2Klb1qxWEM/r9QRVwW3W9mXlfRqnYbsws8jRx1WVDEqetQQ/zh8JoumxgyYds1xnne538dXVD5m+NOYP0OR1BYr9MKPTfhDFVneNjY44Xx0zrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 41DBB1007;
-	Mon, 14 Apr 2025 03:15:22 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E12813F694;
-	Mon, 14 Apr 2025 03:15:20 -0700 (PDT)
-Date: Mon, 14 Apr 2025 11:15:17 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	"Pengutronix Kernel Team" <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, "Rob Herring" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
-Message-ID: <20250414-tiny-classic-barnacle-5f8c8f@sudeepholla>
-References: <20250408-imx-lmm-cpu-v4-0-4c5f4a456e49@nxp.com>
- <20250408-imx-lmm-cpu-v4-5-4c5f4a456e49@nxp.com>
- <20250414-wonderful-cute-bandicoot-accb6b@sudeepholla>
- <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1744625970; c=relaxed/simple;
+	bh=8AUDCa2bFbhDxocnhMJLUL4mVzjPvMbbO5QvuwMN9u4=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=o7UsvOx6LXfGYyaVOG+7uex9gA3Wytm4dlxoXV5aAcX70lTi6yMNmxwsA6yzzTVIa6KS2ELTLGaL82MEek/42vAIy4fiX5hoqL7wmL/wi7bm3nCGL6oFhxIzeZizNM+rBFEblu4GoNaki1UofEeOcLQ7Rcr8qejTNXoOnvyAZhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=pb9uZvtX; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1744625955; x=1745230755; i=frank-w@public-files.de;
+	bh=Nz/9LoleswJOBMWWarfwfjIyzjFuTnSEnL/vauq1sKg=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=pb9uZvtXdzGEjcgCHOiS+oh6j4V6S2FQLH82vu7wakvgOBX+GhWI9DNIIG/KlOYy
+	 Q+pAlRpxvF4vrS/uUD4e12SFg2VYHI8t0XMZj4IMwbiS72oMIa9fwUwEPMW1rmXNA
+	 uZ6eSIqovyxPqCGrW98wMwlx6DlxYNnD/zPNjuIlBLonZOpBmG2Lhqn/3IgLKnZ79
+	 261/VR2h8FZF3no2vk293JJcLGIIHBieji0nAsCVHlkK3XUARxpJxqXhQGFbYXkBX
+	 8v/BNPl6FHfWPEgFXuEAfNj5t5NoUXj7KmeY3f+0FYT4HPoC1kWUFpSPIh8VEyaZ2
+	 pMJNzI4FmfHhixD16g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.148.208]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1My32L-1t6QUm1hDL-014uo4; Mon, 14
+ Apr 2025 12:19:15 +0200
+Date: Mon, 14 Apr 2025 12:19:14 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <linux@fw-web.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ Daniel Golle <daniel@makrotopia.org>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2=5D_arm64=3A_dts=3A_mediatek=3A_mt7?=
+ =?US-ASCII?Q?988a-bpi-r4=3A_allow_hw_variants_of_bpi-r4?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <c8f9f019-a238-47c8-a900-9ca48ce09503@collabora.com>
+References: <20250412102109.101094-1-linux@fw-web.de> <c8f9f019-a238-47c8-a900-9ca48ce09503@collabora.com>
+Message-ID: <4469DD7C-1C73-4767-867B-729819C2E1B4@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:7N69bXK+N3CyD9yoadxJ+FNeOP1TdMUlX1+6VoOVQDAAEp790hl
+ tb9IDasVWc79xuwtucNLQrhtJDVyVxuoyiOP03reEP+SU6F0EpEPqgCWA31UbMMOG2ZHsiF
+ Zi3JU+pMyba8343VHHrZ08U/fX/4XMfEbOF47yDOmfYb3TOmWkGAMG0CZzxDU3ufwwKPakr
+ IQcmKlP3gkrmYn0liaVMQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:oOI1oI2Z4BA=;xPw9U0HDGPXNc/8qxdsPfLjU219
+ qSDCrcrU4djg3UhmCAWTDuWM1vKG+vWVQXZyUmqwqcWqyGntoWjyJY/Jnd/W1S2Nz4REr3cga
+ iRYIzL/0SuAT0OXShwfT0Tlzh0uSbbNmiZozG/xlP6pRez9rlEHmluFn6tDl3oqIjdBInouA0
+ GZcYsepbWcJD3G0hSmNxArOoGUMdnSTdHWi/wtidDi/tHZd52ZLutZn1SzcWc/ItGToPzdgnd
+ PphdErxKjrKFUDnZts+KY3K54J1NUGJ86og+fUdwtXnc9pP8Onp3Spm70d6Z60yEUzIWO7CJ1
+ i46EWAyDbZjhbVevEmMfnw0f2fvt+hQMJBDVdeDPJzN3x3c1SAweyW3KUlX8WcZkNMc9VCVXW
+ SB8bKn6lEqfkk668oFKD0D36jejVr9XmWJz3RoBouXbjh4A87U+0/87OIyLZOpP9uIxBKnczh
+ sA6NLc0ey6rFCTdBmjp9+UBv83i0v1onIwL5O8WA0PspkolM8bO2MiYcNiGwRkYvp9yFp1Dx5
+ 8iYEATClWcFIKf3soiUwl2pAke2XVnjI5TijNWvuW5dJakKaKVNB3SmVMBPrH75zaESL51RN1
+ BXBaeF0582VlLEldHf+/rzU3ucP4AruWLrT0ngK0GQY5MqO8wTeIpTPtn/sUMKJUePRldOanC
+ fzffB56qZqRDrjasaxDXIDtpJMRLjFbqT6ZXbNGa+7IcGLbECzaY/soyK50AINhmVmc3TG439
+ DaLwA9+AENoJKEMO5rY4LgwJeuo5qSZqqQazZMoVtnGAKUwa5/YHlaOMECkNS/qWZzMy7z2M0
+ jBIPLsQ+yMWkDFbzsSHJ43eledJVLeCnFvjjhQSA/O+vYQYj/t+PkZOyoGcpoz3ewMQWCGmv7
+ rU+dAsNWzsqlfHELinIqDoy35aHaM4Ghpy02tKPD1An3rFB3q9thljXORUqcDOkrXNKWGmh1A
+ J/N+qlvPr+543bCYvhm8Mchwkd0NoLFSazU3k241XndpIgu4GOFejOPZIFLA3HVH37WFmomNi
+ hfrRdCn/wsKZOP1SjQwpTHuC3/PldeBfuBS85OFpsS1Lzlu3UEJYKHm8EJcY0jBRF94/ikpeN
+ r8ROj0uJg2YntBJfTGCgsZCVasAKCKa/qxaPc9M70HCxtnVeCih2Uv8U3sebQAZy9gJ+zhkRJ
+ qOtHEfcnWXGth3yjW/t/WklvHfpuyBGGhxHMN+HgENSI2eo9u6xuKebOsNCqrapfuCsZQ22Tv
+ RKOgSFxvpX3Svq4lRxwT8FOkyg4q6U3MG+zI/dBOqi64+FqcZ0UAlJRk2VSsnziKssK2fBed3
+ BA+Q2JMILPEFE0Ets6v164lO+RamTEJ7ZkSM6O5uCvH6ZUEfrOFnyyWgYEIycKo7lsLDI2zrX
+ oN3J5++EAbHOIdCbAZY+XLmpPvlujgfLqEIClMjHD2ag9geT1UIbQoC+gu6boFEOnn8EhAufH
+ TAGdCnzTFDZenv5XUH2beX+lUWCw1LVzLHX/g4XHvpu0v1tDb
 
-On Mon, Apr 14, 2025 at 09:57:43AM +0000, Peng Fan wrote:
-> Hi Sudeep,
-> 
-> > Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM
-> > driver
-> > 
-> > On Tue, Apr 08, 2025 at 04:44:29PM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > The i.MX95 System manager exports SCMI LMM protocol for linux to
-> > > manage Logical Machines. The driver is to use the LMM Protocol
-> > > interface to boot, shutdown a LM.
-> > >
-> > > Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  drivers/firmware/arm_scmi/vendors/imx/Kconfig |  3 +-
-> > >  drivers/firmware/imx/Kconfig                  | 11 ++++
-> > >  drivers/firmware/imx/Makefile                 |  1 +
-> > >  drivers/firmware/imx/sm-lmm.c                 | 91
-> > +++++++++++++++++++++++++++
-> > >  include/linux/firmware/imx/sm.h               | 14 +++++
-> > >  5 files changed, 119 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > b/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > index
-> > >
-> > b5f13d0e40155e485f4d1696e9550645d888ef44..4c24e17425f83081
-> > 0f8ba376ece9
-> > > db93c8cded6d 100644
-> > > --- a/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > +++ b/drivers/firmware/arm_scmi/vendors/imx/Kconfig
-> > > @@ -26,7 +26,8 @@ config IMX_SCMI_CPU_EXT  config
-> > IMX_SCMI_LMM_EXT
-> > >  	tristate "i.MX SCMI LMM EXTENSION"
-> > >  	depends on ARM_SCMI_PROTOCOL || (COMPILE_TEST && OF)
-> > > -	default y if ARCH_MXC
-> > > +	depends on IMX_SCMI_LMM_DRV
-> > > +	default y if ARCH_MXC && ARM64
-> > 
-> > I can't understand the ARM64 dependency on this and next patch.
-> 
-> ARCH_MXC both supports ARM32 and ARM64.
-> 
-> To i.MX ARM32 platform, there is no plan to enable SCMI, so only
-> set y for ARCH_MXC ARM64 platforms.
-> 
+Am 14=2E April 2025 11:27:23 MESZ schrieb AngeloGioacchino Del Regno <angel=
+ogioacchino=2Edelregno@collabora=2Ecom>:
+>Il 12/04/25 12:21, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+snip
+>This should at least have some different compatible, if not probably also=
+ a
+>different model string - as it's a different device=2E
+>
+>	compatible =3D "bananapi,bpi-r4-2g5", "bananapi,bpi-r4", "mediatek,mt798=
+8a";
+>	model =3D "Banana Pi BPI-R4 (2=2E5GbE)";
+>	chassis-type =3D "embedded";
+>
+>=2E=2Esnip=2E=2E
+>
+>a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edtsi b/arch/arm6=
+4/boot/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edtsi
+>> new file mode 100644
+>> index 000000000000=2E=2E1ab09ed2f151
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4=2Edtsi
+>> @@ -0,0 +1,403 @@
+>> +// SPDX-License-Identifier: GPL-2=2E0-only OR MIT
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/gpio/gpio=2Eh>
+>> +#include <dt-bindings/regulator/richtek,rt5190a-regulator=2Eh>
+>> +
+>> +#include "mt7988a=2Edtsi"
+>> +
+>> +/ {
+>> +	compatible =3D "bananapi,bpi-r4", "mediatek,mt7988a";
+>> +	model =3D "Banana Pi BPI-R4";
+>> +	chassis-type =3D "embedded";
+>
+>Please keep compatible/model/chassis-type in dts files=2E
 
-OK but why is it different for IMX_SCMI_MISC_DRV. I really don't see
-any dependency. If it is not supported today fine, but do you need any
-issue to use it or compile it for arm32 ?
+Ok, should i add specific compatible to existing board (like 2sfp)? Just t=
+hinking how binding should look like=2E
 
--- 
-Regards,
-Sudeep
+Else is there an example for adding optional compatible without adding a c=
+omplete block in binding?
+
+>Cheers,
+>Angelo
+
+
+regards Frank
 
