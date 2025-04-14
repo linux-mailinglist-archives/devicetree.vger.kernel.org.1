@@ -1,109 +1,252 @@
-Return-Path: <devicetree+bounces-166602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10616A87C83
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:56:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F68A87C8E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:57:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 600A23B1EEF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:55:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B478A188406A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951AD264FB4;
-	Mon, 14 Apr 2025 09:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3233325F7BB;
+	Mon, 14 Apr 2025 09:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="R2ZS19zn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZHx+w8bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEBEF26658F;
-	Mon, 14 Apr 2025 09:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6094E257AFA;
+	Mon, 14 Apr 2025 09:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744624523; cv=none; b=l6mOpgbcbeBGuEhDqlSX9Y5XyyicPhdkhloOMv5BdEDy2gXsncgBUa49COsRM4b1IMTaqzn0+GNklHCq7lXrB9L7kLVhr8WhinVSoGzOTGkCzMkUfkGtIKGXWpzT2ttyLQc8C966Gt0RVsE4gRJNGcM1beTVj3DyBSffgB5p1fw=
+	t=1744624640; cv=none; b=uhjOM43zQ4oDFIkcUJwlnwuLuD2iN06AtwCS0x2fu6ZMKHeB0x6obdr6cqqfP6TdwijjB+RWkMe+BNLCmLMT8o4dgMg3gE++ngwrBB8RcKTkc8WZ0vIOY/a/xwj06nyvgLb/Awl6kbbHx9G8ZI51bc3CssOgKmwL5sUI6koIbh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744624523; c=relaxed/simple;
-	bh=T4ONN1Yz2fGzXLrkieW4iad4t1ImsJfvVmB6Bgbe1kk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SKqwhWPzfa+M1YMIYfmLV4+g1vYH5qO+vbE0czph9yN/iOPn8qYWqp/uvf29MasSGEcK9Be4MLmThO5HH5cOIIjFrfE/CKDXQV8NDupRAsOR0RQL4gU/idytuHcewrL+hoCCDVXolWtdB3WwjGC8zkcwFUqqlgKK3qWPmbC9eqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=R2ZS19zn; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744624520;
-	bh=T4ONN1Yz2fGzXLrkieW4iad4t1ImsJfvVmB6Bgbe1kk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=R2ZS19znVleLmVEzPH8Mx7/PHjELy3JlvA3R+Y1tDL1ZgZLaT7S+NxAvawocHksgV
-	 KWuCAEG3E9fvh8IS+v+C+b6RcZXDux4UDZypOV+L+uove+NA8o1jCzzU8wV/VurEjY
-	 XhmKiIG37Qaj1R+AwOqhVRoDvxVvivy+2wn3AmxKprp3jszdEXIdt1y9B8ipdRunDS
-	 bClxquv5mL1ZzuDgd0EsaqF6sRxxEwi1vhe7IUUK+S3BUo1XggGvh0E1Wv2HcQqF+X
-	 XgIQXgsftC+CnTwxfM+p5Vkoo2uqL8Qq+jVGMeDm4D/s5RB/6MnmG88mqVOsQ4TvPx
-	 bq64wTDZfnQQA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5629B17E0809;
-	Mon, 14 Apr 2025 11:55:19 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	henryc.chen@mediatek.com,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: (subset) [PATCH v1 0/5] MediaTek Dimensity 1200 - Add DVFSRC support
-Date: Mon, 14 Apr 2025 11:55:11 +0200
-Message-ID: <174462444556.45823.17207667106071511415.b4-ty@collabora.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410144019.475930-1-angelogioacchino.delregno@collabora.com>
-References: <20250410144019.475930-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1744624640; c=relaxed/simple;
+	bh=7GgL3xtvI7pnGeuvq9RVd04janbGJVSlvm5BxXVmlgQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TG6CkPW8aFgZyMD3JFNiLry3LAIKkiIHj+CnKE4VRqKlioBZZk3paXkLJv2X0qTCtoLBMbvTdIAwp5ZN/eHGdfURTg1KXF25p8rkbM2CG8GQKSrzmAj5TYA0bzzmsC8cpVo8EEaG30TEAS63kKOCVl1pQ4I/JasjJqWe7ONQRxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZHx+w8bl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qRt011398;
+	Mon, 14 Apr 2025 09:56:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4VHC8WYpl+uLggBA75zLhVV+Fe7u1dbbrYvZ0DxrmwE=; b=ZHx+w8blJmgNpPdx
+	ZuI3JHLeJJ0EpXJT9Ql1p0pzljSctU6IqOmkcWjmvFvL0DaVexXTM/08XA6ySM5o
+	6HG3jxqUIinw+R9LFxJfIsiQrc6OmW+heO8sB77+Eromy1i4v2bJAxWJW4Cj3HcN
+	ckbQYSU2r7BMkKd1v9pl7YtuUXV+rZyJOQ+qUCczugtsY0L7a2Jyut58Rn9W1iak
+	YOvRUtKSc2/iq+enK+jjyQ2ovoYtw+BRn+CV2q3pHfbEXVRnMjPWtyLHX5uAjr1J
+	clJV25yfr36AJRivRDT+/vO9tbJnVIsqHzlZ3R7bvHJGzJYP++Ji7hubdSa4xfWk
+	b4V8Iw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wc2u6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:56:54 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53E9ur1R006022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:56:53 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 02:56:46 -0700
+Message-ID: <bb277124-a225-450b-acfe-0acd0f94b263@quicinc.com>
+Date: Mon, 14 Apr 2025 15:26:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
+ to DP bridge nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robdclark@gmail.com>, <dmitry.baryshkov@linaro.org>,
+        <sean@poorly.run>, <marijn.suijten@somainline.org>,
+        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andrzej.hajda@intel.com>,
+        <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <quic_abhinavk@quicinc.com>,
+        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>,
+        <quic_jesszhan@quicinc.com>
+References: <20250404115539.1151201-1-quic_amakhija@quicinc.com>
+ <20250404115539.1151201-8-quic_amakhija@quicinc.com>
+ <nxnqwh2mzvnxv5ytwjsyulxr6ct6mhv3z3v6q4ojrjhhclwv2i@55nb56hnwi3y>
+ <0f4eca6c-67df-4730-88b3-a277903deabc@quicinc.com>
+ <wzqct2y67h6bkazxv3se77slsheaw5rspgcrcfjm7ngr5t4alw@nktpqrt5woky>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <wzqct2y67h6bkazxv3se77slsheaw5rspgcrcfjm7ngr5t4alw@nktpqrt5woky>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=67fcdbe7 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=8v7svmj6aq3A3Q3kazgA:9
+ a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 8Z-j7vyNj4iUSOfE710VIG7ZGQwXoleI
+X-Proofpoint-GUID: 8Z-j7vyNj4iUSOfE710VIG7ZGQwXoleI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140072
 
-On Thu, 10 Apr 2025 16:40:14 +0200, AngeloGioacchino Del Regno wrote:
-> In preparation for adding basic support for the OnePlus Nord 2 5G
-> DN2103 smartphone, this series adds support for the DVFSRC regulators
-> and prepares the DVFSRC driver to also set bandwidth limits for the
-> DVFSRC EMI Interconnect found in the MediaTek Dimensity 1200 (MT6893)
-> SoC.
+Hi Dmitry,
+
+On 4/11/2025 1:31 AM, Dmitry Baryshkov wrote:
+> On Thu, Apr 10, 2025 at 06:37:54PM +0530, Ayushi Makhija wrote:
+>> Hi Dmirity/Konard
+>>
+>> On 4/7/2025 1:42 AM, Dmitry Baryshkov wrote:
+>>> On Fri, Apr 04, 2025 at 05:25:36PM +0530, Ayushi Makhija wrote:
+>>>> Add anx7625 DSI to DP bridge device nodes.
+>>>>
+>>>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 208 ++++++++++++++++++++-
+>>>>  1 file changed, 207 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>>>> index 175f8b1e3b2d..8e784ccf4138 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>>>> @@ -28,6 +28,13 @@ chosen {
+>>>>  		stdout-path = "serial0:115200n8";
+>>>>  	};
+>>>>  
+>>>> +	vph_pwr: vph-pwr-regulator {
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "vph_pwr";
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>>> +	};
+>>>> +
+>>>>  	vreg_conn_1p8: vreg_conn_1p8 {
+>>>>  		compatible = "regulator-fixed";
+>>>>  		regulator-name = "vreg_conn_1p8";
+>>>> @@ -128,6 +135,30 @@ dp1_connector_in: endpoint {
+>>>>  			};
+>>>>  		};
+>>>>  	};
+>>>> +
+>>>> +	dp-dsi0-connector {
+>>>> +		compatible = "dp-connector";
+>>>> +		label = "DSI0";
+>>>> +		type = "full-size";
+>>>> +
+>>>> +		port {
+>>>> +			dp_dsi0_connector_in: endpoint {
+>>>> +				remote-endpoint = <&dsi2dp_bridge0_out>;
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>> +
+>>>> +	dp-dsi1-connector {
+>>>> +		compatible = "dp-connector";
+>>>> +		label = "DSI1";
+>>>> +		type = "full-size";
+>>>> +
+>>>> +		port {
+>>>> +			dp_dsi1_connector_in: endpoint {
+>>>> +				remote-endpoint = <&dsi2dp_bridge1_out>;
+>>>> +			};
+>>>> +		};
+>>>> +	};
+>>>>  };
+>>>>  
+>>>>  &apps_rsc {
+>>>> @@ -517,9 +548,135 @@ &i2c11 {
+>>>>  
+>>>>  &i2c18 {
+>>>>  	clock-frequency = <400000>;
+>>>> -	pinctrl-0 = <&qup_i2c18_default>;
+>>>> +	pinctrl-0 = <&qup_i2c18_default>,
+>>>> +		    <&io_expander_intr_active>,
+>>>> +		    <&io_expander_reset_active>;
+>>>
+>>> These pinctrl entries should go to the IO expander itself.
+>>>
+>>>>  	pinctrl-names = "default";
+>>>> +
+>>>>  	status = "okay";
+>>>> +
+>>>> +	io_expander: gpio@74 {
+>>>> +		compatible = "ti,tca9539";
+>>>> +		reg = <0x74>;
+>>>> +		interrupts-extended = <&tlmm 98 IRQ_TYPE_EDGE_BOTH>;
+>>>> +		gpio-controller;
+>>>> +		#gpio-cells = <2>;
+>>>> +		interrupt-controller;
+>>>> +		#interrupt-cells = <2>;
+>>>> +
+>>>> +		gpio2-hog {
+>>>
+>>> This needs a huuge explanation in the commit message. Otherwise I'd say
+>>> these pins should likely be used by the corresponding anx bridges.
+>>
+>> Thanks, for the review.
+>>
+>> Previously, I was referring to the downstream DT and misunderstood the use of gpio-hog.
+>> After reading the schematic, I realized that gpio2, gpio3, gpio10, and gpio11 are all input pins
+>> to the IO expander TC9539. We have already configured gpio2 and gpio10 as interrupts in the
+>> ANX7625 bridges, so the gpio-hog is not required. It is working without the gpio-hog configuration.
 > 
-> The interconnect driver wasn't touched at all because the intended
-> change here was to enable support for the DVFSRC regulators but, as
-> those anyway required new platform data, laying the groundwork for
-> the interconnect came natural and would've been unreasonable to just
-> skip that as it anyway consists in one small struct and nothing else.
+> Please make sure that there are pinctrl entries for all pins.
 > 
-> [...]
 
-Applied to v6.15-next/soc, thanks!
+Thanks, for the review.
 
-[1/5] dt-bindings: soc: mediatek: dvfsrc: Add support for MT6893
-      commit: ba3297872a237c8949e812ffa72c64e81da38cec
-[4/5] soc: mediatek: mtk-dvfsrc: Rename and move bw constraints data
-      commit: b06785283ec1c24fadce95390047feb9db840051
-[5/5] soc: mediatek: mtk-dvfsrc: Add support for Dimensity 1200 MT6893
-      commit: e5ea18102c9d3bc2fcb186a6e9f43c5a4aba4f98
+While declaring the pinctrl entries inside the io_expander node, I am getting below error while checking the DTBS check against DT-binding.
 
-Patch 5/5: Fixed to remove unused dvfsrc_bw_constr_mt6893 before applying.
+Error : /local/mnt/workspace/amakhija/linux_next_11042025/linux/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb: gpio@74: 'dsi0-int-pin-state', 'dsi1-int-pin-state' do not match any of the regexes:
+        '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+' from schema $id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
 
-Cheers,
-Angelo
+        io_expander: gpio@74 {
+                compatible = "ti,tca9539";
+                reg = <0x74>;
+                interrupts-extended = <&tlmm 98 IRQ_TYPE_EDGE_BOTH>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                interrupt-controller;
+                #interrupt-cells = <2>;
 
+                pinctrl-0 = <&io_expander_intr_active>,
+                            <&io_expander_reset_active>;
+                pinctrl-names = "default";
+
+                dsi0_int_pin: dsi0-int-pin-state {
+                        pins = "gpio2";
+                        input-enable;
+                        bias-disable;
+                };
+
+                dsi1_int_pin: dsi1-int-pin-state {
+                        pins = "gpio10";
+                        input-enable;
+                        bias-disable;
+                };
+
+        };
+
+I couldn't find any devicetree example of tca9539 which is using pinctrl. The gpio-pca95xx.yaml DT binding does not match with any regex of the patterns properties.
+
+Thanks,
+Ayushi
 
