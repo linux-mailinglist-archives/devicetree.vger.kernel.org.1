@@ -1,113 +1,180 @@
-Return-Path: <devicetree+bounces-166681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F74A88016
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:11:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F495A8801D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C3021745C2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:11:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756A818991DB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D609529CB4B;
-	Mon, 14 Apr 2025 12:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71ABF29CB4E;
+	Mon, 14 Apr 2025 12:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cgNn8jNt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xtm/BFNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA9C29AB18;
-	Mon, 14 Apr 2025 12:11:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D290225A2AB;
+	Mon, 14 Apr 2025 12:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744632701; cv=none; b=edFaKJsS8sy+y1o0qGNnP2jBtQAigYtiZs4dZLGCe/jwFUm+G3pPqdwX80QliA0FaKcZVOpIOkt+OII7GhZweCCitcW2/q9GySaqCWqtRKVdwNmgcJjxSQ7JTi08dEH2Zf65WmG4MvLc9GyIuSJJpqmx2g756lHTUGYs/Te4BXQ=
+	t=1744632727; cv=none; b=BXaCxdydxA+YLrGhoMyKBT0gwOE+I/VKZSL4olVTH99NC983r4ty9Zi38GyVKG4v1nWib611T6ZC0f5bKpx+eJy5HG9JGNH7+g4d9jHn2zKfy8zIQId+NkqCsvAYpQreY4zmlqUePV9Xe7uWJiuDczJ6zzBucgv0OQJpozznGIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744632701; c=relaxed/simple;
-	bh=0M3qRoyPJwBJF72GEzdV/WEuh/2ElnDu876t8GQlNEM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=AIy/AQXt9GGDcaTPrL6RKz18HBVo1xhz/bOPpnmgi/fW7Z4jsWO06P9ncUV46gAVtoXr/V4inLKId/hP64b/WznQR+g8Hc3/1k4nhuvo0ztVYmbP1T5+7AI5wyhO72Bf9R2CNRcgHNIu4xgBS7YoG9RtiV0fo+GraRupvMnhPDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgNn8jNt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAB0C4CEE2;
-	Mon, 14 Apr 2025 12:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744632700;
-	bh=0M3qRoyPJwBJF72GEzdV/WEuh/2ElnDu876t8GQlNEM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=cgNn8jNtfy2oO8wAUQLMgWIpNQLRz1lZOb382FKfW3unhP3t8UUssZqahm/xiXKwf
-	 jvyQf+qft3aRwiGecrB/XqIfK0O+SX/mAb2RmLslRAOXgFB/6nqsW6+I+FjIM03Gwo
-	 /EFjaFhaZ32i62Fb4I8xdkb4+WN0Ifx2KFb7g+PXGqXc6huLQYxmxvU2OHcQFVqmuT
-	 62u5U6JnCQlCCrDSJGWczsNcPf2HgdRgFVd+aKt1hzI8Dr37fap4hTJdAbVdUn9X60
-	 S8CHLCpQ7lRxl+D9uudlcFW/YRXFu3QtbtHGqECqssGHGGzqjFqtd/fQnoJK7Ig8MZ
-	 i9XZOUlB/TygQ==
-Date: Mon, 14 Apr 2025 07:11:38 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1744632727; c=relaxed/simple;
+	bh=7HiWJUY7k3PBjq+nyjLuTF5RMOFecFY79b69z1xvKkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q+grnK+mkZq1TGw11A5mILG/IakKQLtFG+NsHeaL+TwlaQJyOcsZdJChupH5CsLTxB4O0TFHXlqczx9RGZBFREkCbYlEpa8CDmy1U6FtpbgJjeVJ7iExCX7Bc8BCc4FIhFoUCyakGQFXxkdg1aHgWU40POh+cLQyORc1u0gV7WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xtm/BFNm; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7370a2d1981so3154516b3a.2;
+        Mon, 14 Apr 2025 05:12:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744632725; x=1745237525; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1NVHglvUlYKOGcz6TwIpfPLcwNgLnD8HxMiutrlB7jI=;
+        b=Xtm/BFNmvXWSVuDNPf9Cg7W6Q4O1UQ7/0j0YGLAWQK3OgFrExazip+KiK19Uh6GGS+
+         MGWAsR/5hfUZSW9VLRxH+oB1PYn+wZxK//ZQGU2nKvLOvQcPWYPUdydRk2GuuK38KFIq
+         yb8DPluhltxHyDAI/zUtPQl/3hZKRQoz9loLDS8QaUJtE9K51JmVDp2W96LLNP3VUHWV
+         v7qYANzNUsLwb1jvKf/pKoMQVGWLg5Y3kSRlSk9jWO/mGAKszkfMxK4gXOAhsxHe9RI0
+         26BJQWkpoyP9tUKCAOaE41pBwh5YSgWitz3hYhW2sSV88oLvUjgmgow9RLI1UfvpGgOV
+         t8jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744632725; x=1745237525;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1NVHglvUlYKOGcz6TwIpfPLcwNgLnD8HxMiutrlB7jI=;
+        b=WbLAmXswXX5ylfGHPTug6OkWXs8Hf1qlyLTo+4OHO6EdCKgzO4WYSAwwH7N0xAOS6A
+         krDDFA9mgLN+9wpDQLr8SUErM9QZ27BYqT84jpLmNtMP8vaLZJqzC+UFHkVuhEXk2mRo
+         uooknkVv80/308DIaIaycJVVr3nlxmrAh1pqE5CQHxS1ldlOx2TSnHZhkGtzxG/7c23W
+         R+GVaQaHMOgTd6Wz9B9WBaOYSbyPuDbDm4coCZ2mNuqsZZ0U5tiFrLhddHmYuYlPmk+C
+         DeXSNhCMJV3WBfICWAhZDsjNt2wuONw1ogSJijZ5kUZS56AAjWdtTM471WxTniHoo39N
+         2Irg==
+X-Forwarded-Encrypted: i=1; AJvYcCUA5b+nOTor7wjPydz4Fu8Ne8uAiuilvbTsVJzjZcn/cpITNivI5ObcwuB0DdwlEgO6BjeUWmKJoD5q@vger.kernel.org, AJvYcCUVeULhvQbTID3ZHwhmzuqCOW5v3Gfgbk1JTfo93Rttje3HWiMh5ctP7PXVBmDlFbLFQ84JVup/W+XvHYKC@vger.kernel.org, AJvYcCVXIYJZNjs0cLN9RO428DmK9AXhmSndG/Gw2pDhS/GwMvA6coHH9DRr+vAydgx+h6X00cUASdrPxp0C@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+flAXPamKdGYpD8Y21wdfasVjOcmjwUvbIFD2ZJkkVBTG2Se1
+	I/c++UYkWKfT08NA1PdPf9MNqhvbX7a1Ki2K4tgu3AxfphGc4NBdj0xWz/25jzo=
+X-Gm-Gg: ASbGncu7xxzu7iGlBbVqCJ+zxiEWddWgBDlLUTfyY5WMlb7PL20RM14rkgqvQXZXBjI
+	UM+zoQKyBIy0dtikOQWPHZATmVr9ux0uWZQXkXgCNbpmxN32mXQrvJvf6XuzZNG93gFczp6HKjA
+	pBLE8h93FtilWeO+kCuYy5IUPkppkwL4R3yt8Sj8hiPARkJ6BjX12/OlMkXr8MRuwAl7++gNT+e
+	Rxo4CDZovJZ85Vu82W+BUNKWvtg1Lqk98QGD2fUi+G3m1qA1dze/ROfDjIY0aIBzqGL1fZwyVqh
+	lS8q2jcxC4FNjKOKwaNFMUmcpKve6UU5I6Z53EXpVRSkdt7d
+X-Google-Smtp-Source: AGHT+IF+TIVrbFGinU7ywTDvjK5W6y83fY1DKIZT07Xcs1cZRpqvJc3wIS0iwg8lLbaz6rT1AlurdQ==
+X-Received: by 2002:a05:6a20:d49a:b0:1ee:dd60:194f with SMTP id adf61e73a8af0-201799683ecmr16377045637.26.1744632724786;
+        Mon, 14 Apr 2025 05:12:04 -0700 (PDT)
+Received: from localhost ([2804:30c:92d:f600:d5e4:543:c403:4767])
+        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b06161333a8sm4331209a12.7.2025.04.14.05.12.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 05:12:03 -0700 (PDT)
+Date: Mon, 14 Apr 2025 09:13:12 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v1 2/7] iio: adc: Add basic support for AD4170
+Message-ID: <Z_z72J_gcZqW14CE@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com>
+ <5f79007f0b9f9f67360d04fb904b6a59111a4ebe.1744200264.git.marcelo.schmitt@analog.com>
+ <20250412174710.33afb04d@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-To: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <20250414-clk-measure-v2-2-65077690053a@amlogic.com>
-References: <20250414-clk-measure-v2-0-65077690053a@amlogic.com>
- <20250414-clk-measure-v2-2-65077690053a@amlogic.com>
-Message-Id: <174463269823.14040.7362554560667126238.robh@kernel.org>
-Subject: Re: [PATCH v2 2/7] dt-bindings: soc: amlogic: C3 supports
- clk-measure
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250412174710.33afb04d@jic23-huawei>
 
+Hi Jonathan,
 
-On Mon, 14 Apr 2025 18:12:29 +0800, Chuan Liu wrote:
-> C3 adds support for clk-measure.
+Thank you for reviewing this set.
+Clarifying some bits inline. Will apply all other suggested changes.
+
+Thanks,
+Marcelo
+
+On 04/12, Jonathan Cameron wrote:
+> On Wed, 9 Apr 2025 09:24:35 -0300
+> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  .../devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml    | 1 +
->  1 file changed, 1 insertion(+)
+> > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+> > 
+> > Add support for the AD4170 ADC with the following features:
+> > - Single-shot read.
+> > - Analog front end PGA configuration.
+> > - Digital filter and sampling frequency configuration.
+> > - Calibration gain and offset configuration.
+> > - Differential and pseudo-differential input configuration.
+> > 
+> > Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+> > Co-developed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> Hi.
 > 
+> Clearly this is a massive driver, even with it broken up like this.
+> So it might take a few cycles to review enough that we don't find
+> new things :(
 
-My bot found errors running 'make dt_binding_check' on your patch:
+No worries. Yeah, I tried my best to make it concise but this is still not small
+piece of code.
 
-yamllint warnings/errors:
+> 
+> I can't think of a good way to split it up further though
+> 
+> Jonathan
+> 
+> > diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
+> > new file mode 100644
+> > index 000000000000..0d24286ac2ab
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/ad4170.c
+> 
+> 
+...
+> > +static int ad4170_regulator_setup(struct ad4170_state *st)
+> > +{
+> > +	struct device *dev = &st->spi->dev;
+> > +	int ret;
+> > +
+> > +	/* Required regulators */
+> > +	ret = devm_regulator_get_enable_read_voltage(dev, "avdd");
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "Failed to get AVDD voltage.\n");
+> > +
+> > +	st->vrefs_uv[AD4170_AVDD_SUP] = ret;
+> > +
+> > +	ret = devm_regulator_get_enable_read_voltage(dev, "iovdd");
+> 
+> If no channel uses this reference is it not optional?  Maybe not worth the
+> complexity of handling that.  We have sometime bothered to do so in the past
+> by first figuring out which references are in use, then trying to get the
+> appropriate regulators with small changes for cases like this where
+> it needs to be enabled but we might not need the voltage.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/fsl,ls1028a-reset.yaml: maintainers:0: 'Frank Li' does not match '@'
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+We can set the channel multiplexer to use IOVDD reference as diff chan negative
+input. Similar thing can be done for the other reference supplies. I think
+the examples in dt-binding don't use IOVDD but they could. Since the driver is
+supporting other regulators, maybe support IOVDD too?
 
-doc reference errors (make refcheckdocs):
-Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
-Warning: Documentation/arch/powerpc/cxl.rst references a file that doesn't exist: Documentation/ABI/testing/sysfs-class-cxl
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
-Documentation/userspace-api/netlink/netlink-raw.rst: :doc:`rt_link<../../networking/netlink_spec/rt_link>`
-Documentation/arch/powerpc/cxl.rst: Documentation/ABI/testing/sysfs-class-cxl
-MAINTAINERS: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-lib/Kconfig.debug: Documentation/dev-tools/fault-injection/fault-injection.rst
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250414-clk-measure-v2-2-65077690053a@amlogic.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> 
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "Failed to get IOVDD voltage.\n");
+> > +
+> > +	st->vrefs_uv[AD4170_IOVDD_SUP] = ret;
+> > +
+> > +	/* Optional regulators */
+> > +	ret = devm_regulator_get_enable_read_voltage(dev, "avss");
+> > +	if (ret < 0 && ret != -ENODEV)
+> > +		return dev_err_probe(dev, ret, "Failed to get AVSS voltage.\n");
+> > +
 
