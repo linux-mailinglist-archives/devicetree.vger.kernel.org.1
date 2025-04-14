@@ -1,395 +1,172 @@
-Return-Path: <devicetree+bounces-166884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBE7A88BFD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 21:12:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7A9A88C0A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 21:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FD231899913
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:12:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B2C717BFA2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C248C28BAAD;
-	Mon, 14 Apr 2025 19:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D123628BA86;
+	Mon, 14 Apr 2025 19:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YwOXZP9o"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="WiReNg3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8720328A1DA;
-	Mon, 14 Apr 2025 19:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0B1823814F
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 19:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744657950; cv=none; b=oqEOVLDVUCQiDCBEr0RVtTtPRGg0W4anxait3cLTDsb2eyMy3u6Han8oJA5N+EWYxmb+HxPKSZfUBFQuBHgrq552p0e9idZb1RU29IHddqmHsc8dgEbjP+T0gpmIISsRep/UYoelmJZARhIzzkE8CkV6HF1nv3tFV3oRXSCI2wM=
+	t=1744658244; cv=none; b=bDMSV07rve30RwkQtsXRkdqUl2/k185rscCit1JGXwp5EUzhRc3WpJH9Twu8auZSkiesNiUjvDV19LSNc4ShkmN38opVECWxZ7deRe/vQDjnXILTxTRw7HZNnEmTH9Zhr8cHbGFB5UaTp1rtUhrfyxUvvpSmVZ1djeBVPmvqUHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744657950; c=relaxed/simple;
-	bh=6BqgelGhI6z4Y+nuFdm2UZwyVMhVkDOkptQV5GFW2ww=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WP0094AQNYqk0i3CDuxelz/KqfU7b+EIkaoglE9bjo1PIB8V0kPaMNfVT0FCOGemeK5YhzwTCua+2ah7pIril1fOLDCtPsS61ih17/tXHIbAVSS46p2QVvCvPoxJvFWu1VIWs7iTZiXq2iEOL0JUmjiTYQtf2zyMOlZjVeUdCRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwOXZP9o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 58162C4CEE2;
-	Mon, 14 Apr 2025 19:12:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744657950;
-	bh=6BqgelGhI6z4Y+nuFdm2UZwyVMhVkDOkptQV5GFW2ww=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=YwOXZP9oUQrIkjckCiga6ktjbWj+V3K4nTVJSiXpj0ITpu5PwNRPa7PtvDkuemePW
-	 pqMleumOZ238lUV9p0/sPTbrHGZOox1NFM/xBwvvxB2EKbIrPQscZP1xUiB4FCs5nE
-	 V/LFZ09oZnYRgEcAp1rP6mNJdfOUM8RKeFb3JT/AVFPCzDiYY874oC9NNYJayO8NHc
-	 l9tvqv62kSaIsbYacxghFhs4ByVuY9TNm5crSYMFwVr4pSvZEhNRfdePO40Eh1R57a
-	 ELhXmaZ8WAojKYKL+oDikCJTWF4v4YwnKG6MQKqAu3UicttAnKGO62dtrzxrrhahXR
-	 oE0wrpOCBaBmg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4926BC369B2;
-	Mon, 14 Apr 2025 19:12:30 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Mon, 14 Apr 2025 21:12:29 +0200
-Subject: [PATCH v2] media: dt-bindings: media: i2c: align filenames format
- with standard
+	s=arc-20240116; t=1744658244; c=relaxed/simple;
+	bh=oZwsWyN19YQuLxvi70G/U0IIHVAnZHz9qoqnnkeShL8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WYTyUCktOlvi5xIoADtzYPIfucEMkrCCJfMa+vbM+2yZ3L8Lp8zrN5KQ71SzsR5Toxg8PxbFzB/enBcNXVOgWTwXZrpxwF/tDnm2eqMhOp4pVcYqkPD12mb9JTOFCl3661V9hUxsv/hvlhtt4N4f4/UWNGnSOfDBm+anoiPW1uI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=WiReNg3l; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-85517db52a2so86620239f.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:17:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744658241; x=1745263041; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NOnX2shAz2EreIKfS+XNRjetpp9PVDTaCPEwF/lvRS8=;
+        b=WiReNg3ltf06AJz+dZ5PQQf92X9ZKOz0Qjmbwf/wY8EX6voqW+yx0qsXbeL3oBxKqP
+         eZhMD5BjkLY5/TsLiavNXOmsEM9r7Aik7Pufufv3Q02pCpYmdZNQ8o6sXh4KkKCds88t
+         F6SH99obRBtuUnYq0jZpikRcKjs+QciWT2o0ivc8dVlDPHSUf9BGGRRqgDKGGdzttoEV
+         lIAhPOhvQAOxeg/EZStL8W5WVnPyDUL8v0kiaNlufdV2nrmCQi9SLNsK5a1ghnMqGDC4
+         3WIcqlIInp+uOker8gLx7Ze0S7VO+3d/CBRxBCv3fYx7/aFNDSGUqqLbUvGrOdYXNrKb
+         MCaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744658241; x=1745263041;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NOnX2shAz2EreIKfS+XNRjetpp9PVDTaCPEwF/lvRS8=;
+        b=P5VGXuZU0UljOo+8l18YSdXsbQbHcfXMA1jdePQcluA2xdvaXDp9isEr6MZYLdxYQI
+         Nq+AANmJC1etUBd2+quN8BLH1c8UsTmWyqrRDjUY3iWcaJmsSh6fzKBEgT+YJNjmVEqq
+         KLovuDdRURQSap57TYtsPILiKmAL9IMZrTL6YBFPGPZbDMmRYcaG2gDIhN72snoaa7PM
+         +rLf04Gbe1X/RIK/HGXMdsKvB4IqLDQa7ipjA8bc8DbsW/IunQA31odaPMSgwSmaKgPJ
+         fNUyn+GLq/+bWNIvNM5/KuPh6MKLeb3O6n6hgoKHgwH9N4d6O0QqNc+2DIRUciqqjwBx
+         Wj0g==
+X-Forwarded-Encrypted: i=1; AJvYcCXhA35fIYj1H2nGrpHx3pjRKM7RRyok7KLJdT7lXEjWK8izK2KuDEGUQESo+bcbsmyOcKJBJGihniP1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0kdUcEqo2s/2RMy0wDie/Rn/4U99TtCdBGkd0mt8cifydoxby
+	+pp61z8QXiUda81XJzmSlQyQJoFNGXEc3izXQj9CZ5wyFIEl/wJs5qSblJBqJyE=
+X-Gm-Gg: ASbGncvXwlgnYl3TDv1kFHuwTA537QFKOYde7JYzsWGjnCSllMCfVPLxdXSZuqcYl+b
+	U028bCQGgg1L9ekdxnmUIZXiF9CnwqQowqIJcdJ/sSCWzMjTZIbbvTJG3jFKKaytmUTxn3tc3+o
+	7PnmXaRobS1iB+lZjgyRC7j0AGbUByo6a/ksO1WAag+CuUoMmoVG6M2Cgr0nRQ5bm5oI859p9An
+	c5pvCB9KhpgwfDs9h2jweD9sWoW0r9J6vNjCZZahMrhkgMwRSaPwvL5OhimyxUDOeKJutiQna2t
+	uUV+Hrx7ZSZVTQKCJkNwmF9jMMwJC2CRb9lxP341raxfUoBJfNP7Z+Rmn3WwY2ze//fPD2JHaIX
+	k/fv+n/olwctjIQ==
+X-Google-Smtp-Source: AGHT+IF+wewcSr2YJ4blAeH5OccXBibu/mClWnQWAdm112vnTse7zLtH44BvxSZA8DZrAtcKFRUvag==
+X-Received: by 2002:a05:6e02:2145:b0:3d5:890b:d9df with SMTP id e9e14a558f8ab-3d7ec266fd2mr117489655ab.15.1744658241457;
+        Mon, 14 Apr 2025 12:17:21 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f505e026d1sm2715662173.94.2025.04.14.12.17.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 12:17:21 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: p.zabel@pengutronix.de,
+	dlan@gentoo.org,
+	heylenay@4d2.org,
+	guodong@riscstar.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/7] clk: spacemit: add K1 reset support
+Date: Mon, 14 Apr 2025 14:17:07 -0500
+Message-ID: <20250414191715.2264758-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250414-media-i2c-align-filenames-v2-1-e133749e0d45@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIABxe/WcC/43OQQqDMBCF4atI1h1JgiHaVe9RXAxm1AGNJQliK
- 9690U23Xf6L9/F2ESkwRXEvdhFo5ciLz6FvhehG9AMBu9xCS21kpSqYyTEC6w5w4sFDzxN5nCm
- CrZ0iiw4NaZH3r0A9b5f9bHP3YZkhjYHwJ2rZqMYYZUtV1VZKUOBwZffgjVPZfU5n5JiW8L4ur
- urU/ty2x3F8ARqwiV/hAAAA
-X-Change-ID: 20250414-media-i2c-align-filenames-78d1e7ada5e2
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Hans Verkuil <hverkuil@xs4all.nl>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Ramesh Shanmugasundaram <rashanmu@gmail.com>, 
- Tim Harvey <tharvey@gateworks.com>, Akinobu Mita <akinobu.mita@gmail.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=14828; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=mHA4VTRSwJqrHD9O7Hk/y42cNsbaTKLbs1trwGNiN7s=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn/V4dI1Uqb5A2eVfK55PAo3SrBDt0/GSIzl/Ko
- eow13167vCJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ/1eHQAKCRBgAj/E00kg
- cprOD/9STCZP+f4B2Gk/JAq0OtZXl4f79OQCKH7JBc60tXtqV0c2hPRAPo0eQ7dabxfOLad9la+
- uMu4QKvLrGO5iumZDEEgtwL6iXGjfy81A565o4/6iyfXJLTGRmycma+nwq2OdKJXF+HhieTYt+M
- hBzD8ZVn/nkQFe/KaNEq4qHKF6i0L5gLCK1IFaD2RhK/vGR2vPCBnf2+v3sqTSpX9Uh3M2PZC/l
- nS2iuzpKQ4heCsX7bHYCy0CTWmL9R7ZZeWEXEgQlVOsm1mK8CN8LzH50pw6U0o5ijsPLaPCli66
- v6gIxKDgrzfEAk8aRSc2N/bopsa+UtGMDKDk25dtloI9uuf5CaKeHA0MLPnR4QwekHiYhtKdPgC
- wHTJRjYTLfp2RxXnNOs315BIMB0XcxUcgMeW6/i6i9YIH9is+pAXfjT7R7ohXkrC4CNWqlFNz+H
- q5wToEqXWoRtwOcuuAprxxfwFqRl9t/ZcLIYkx6Xgp2z1pCeIR9pZnIvVUmQIDAVsgGOP7LRsCr
- RKW69UvxjRgXIdn/lmyP1JRX2MsgXkAmSp6mr+r4LH+Vu+Qp/ese05VWPTubW7E4A5/FnmtZlz2
- hyGFaDVa362I0WwYG6hfXpgr6wzkmOjq0Kaqta2tg3HAE1LXWj6ieT/kfU8gBb5C5a7T7W6oOtp
- vTgqt6gE0BWikDQ==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
 
-From: David Heidelberg <david@ixit.cz>
+This series adds reset controller support for the SpacemiT K1 SoC.
 
-Append missing vendor and align with other sony definitions.
+As before, this version is built upon the clock controller driver that
+Haylen Chu has out for review (currently at v7):
+  https://lore.kernel.org/lkml/20250412074423.38517-2-heylenay@4d2.org/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-Changes in v2:
-- Omit touching ad5820.txt which is being converted to YAML by another
-  patch in parallel.
-- Link to v1: https://lore.kernel.org/r/20250209195517.148700-1-david@ixit.cz
----
- .../media/i2c/{adp1653.txt => adi,adp1653.txt}      |  0
- .../media/i2c/{adv7180.yaml => adi,adv7180.yaml}    |  2 +-
- .../media/i2c/{adv7343.txt => adi,adv7343.txt}      |  0
- .../media/i2c/{adv748x.yaml => adi,adv748x.yaml}    |  2 +-
- .../media/i2c/{adv7604.yaml => adi,adv7604.yaml}    |  2 +-
- .../media/i2c/{mt9v032.txt => aptina,mt9v032.txt}   |  0
- .../media/i2c/{max2175.txt => maxim,max2175.txt}    |  0
- .../media/i2c/{mt9m111.txt => micron,mt9m111.txt}   |  0
- .../media/i2c/{tda1997x.txt => nxp,tda1997x.txt}    |  0
- .../media/i2c/{mt9m001.txt => onnn,mt9m001.txt}     |  0
- .../media/i2c/{ov2640.txt => ovti,ov2640.txt}       |  0
- .../media/i2c/{ov2659.txt => ovti,ov2659.txt}       |  0
- .../media/i2c/{ov7670.txt => ovti,ov7670.txt}       |  0
- .../media/i2c/{ov7740.txt => ovti,ov7740.txt}       |  0
- .../media/i2c/{ov9650.txt => ovti,ov9650.txt}       |  0
- .../media/i2c/{imx219.yaml => sony,imx219.yaml}     |  2 +-
- .../media/i2c/{ths8200.txt => ti,ths8200.txt}       |  0
- .../media/i2c/{tvp514x.txt => ti,tvp514x.txt}       |  0
- .../media/i2c/{tvp5150.txt => ti,tvp5150.txt}       |  0
- .../media/i2c/{tvp7002.txt => ti,tvp7002.txt}       |  0
- .../i2c/{tc358743.txt => toshiba,tc358743.txt}      |  0
- MAINTAINERS                                         | 21 ++++++++++++---------
- 22 files changed, 16 insertions(+), 13 deletions(-)
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v4
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adp1653.txt b/Documentation/devicetree/bindings/media/i2c/adi,adp1653.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/adp1653.txt
-rename to Documentation/devicetree/bindings/media/i2c/adi,adp1653.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-rename to Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-index 9ee1483775f60905d300fe909f10052a00183fbe..dee8ce7cb7ba2e9e8c3d6018c164f63bb612ad1b 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/adv7180.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/adi,adv7180.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Analog Devices ADV7180 analog video decoder family
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7343.txt b/Documentation/devicetree/bindings/media/i2c/adi,adv7343.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/adv7343.txt
-rename to Documentation/devicetree/bindings/media/i2c/adi,adv7343.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv748x.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-rename to Documentation/devicetree/bindings/media/i2c/adi,adv748x.yaml
-index d6353081402bed849467e2cd003d80fe0e9d2734..254987350321bcff7ef255d2b4decdf5fa26bce7 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adi,adv748x.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/adv748x.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/adi,adv748x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Analog Devices ADV748X video decoder with HDMI receiver
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adi,adv7604.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-rename to Documentation/devicetree/bindings/media/i2c/adi,adv7604.yaml
-index 7589d377c686450bb0065de94091f9f6678b9413..6c403003cdda1ea0ac33a2b6be6d7477fb5fd44a 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adi,adv7604.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/adv7604.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/adi,adv7604.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Analog Devices ADV7604/10/11/12 video decoder with HDMI receiver
-diff --git a/Documentation/devicetree/bindings/media/i2c/mt9v032.txt b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v032.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/mt9v032.txt
-rename to Documentation/devicetree/bindings/media/i2c/aptina,mt9v032.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/max2175.txt b/Documentation/devicetree/bindings/media/i2c/maxim,max2175.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/max2175.txt
-rename to Documentation/devicetree/bindings/media/i2c/maxim,max2175.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/mt9m111.txt b/Documentation/devicetree/bindings/media/i2c/micron,mt9m111.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/mt9m111.txt
-rename to Documentation/devicetree/bindings/media/i2c/micron,mt9m111.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/tda1997x.txt b/Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/tda1997x.txt
-rename to Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/mt9m001.txt b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m001.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/mt9m001.txt
-rename to Documentation/devicetree/bindings/media/i2c/onnn,mt9m001.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov2640.txt b/Documentation/devicetree/bindings/media/i2c/ovti,ov2640.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ov2640.txt
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov2640.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov2659.txt b/Documentation/devicetree/bindings/media/i2c/ovti,ov2659.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ov2659.txt
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov2659.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov7670.txt b/Documentation/devicetree/bindings/media/i2c/ovti,ov7670.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ov7670.txt
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov7670.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov7740.txt b/Documentation/devicetree/bindings/media/i2c/ovti,ov7740.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ov7740.txt
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov7740.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov9650.txt b/Documentation/devicetree/bindings/media/i2c/ovti,ov9650.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ov9650.txt
-rename to Documentation/devicetree/bindings/media/i2c/ovti,ov9650.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-similarity index 97%
-rename from Documentation/devicetree/bindings/media/i2c/imx219.yaml
-rename to Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-index 07d088cf66e0bde362b12d3494e5c91a1dd96bf3..8b23e5fc6a24f5ce55986b44218f82b8281875bc 100644
---- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/media/i2c/imx219.yaml#
-+$id: http://devicetree.org/schemas/media/i2c/sony,imx219.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Sony 1/4.0-Inch 8Mpixel CMOS Digital Image Sensor
-diff --git a/Documentation/devicetree/bindings/media/i2c/ths8200.txt b/Documentation/devicetree/bindings/media/i2c/ti,ths8200.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/ths8200.txt
-rename to Documentation/devicetree/bindings/media/i2c/ti,ths8200.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/tvp514x.txt b/Documentation/devicetree/bindings/media/i2c/ti,tvp514x.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/tvp514x.txt
-rename to Documentation/devicetree/bindings/media/i2c/ti,tvp514x.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/tvp5150.txt b/Documentation/devicetree/bindings/media/i2c/ti,tvp5150.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-rename to Documentation/devicetree/bindings/media/i2c/ti,tvp5150.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/tvp7002.txt b/Documentation/devicetree/bindings/media/i2c/ti,tvp7002.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/tvp7002.txt
-rename to Documentation/devicetree/bindings/media/i2c/ti,tvp7002.txt
-diff --git a/Documentation/devicetree/bindings/media/i2c/tc358743.txt b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358743.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/media/i2c/tc358743.txt
-rename to Documentation/devicetree/bindings/media/i2c/toshiba,tc358743.txt
-diff --git a/MAINTAINERS b/MAINTAINERS
-index af3537005de35dfd0ded11bdc2b9c63e10c70e93..aed17acd8845f24ebbe99b5a12763ae8cbf4623d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -528,6 +528,7 @@ ADP1653 FLASH CONTROLLER DRIVER
- M:	Sakari Ailus <sakari.ailus@iki.fi>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/media/i2c/adi,adp1653.txt
- F:	drivers/media/i2c/adp1653.c
- F:	include/media/i2c/adp1653.h
- 
-@@ -1596,14 +1597,14 @@ M:	Lars-Peter Clausen <lars@metafoo.de>
- L:	linux-media@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
--F:	Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-+F:	Documentation/devicetree/bindings/media/i2c/adi,adv7180.yaml
- F:	drivers/media/i2c/adv7180.c
- 
- ANALOG DEVICES INC ADV748X DRIVER
- M:	Kieran Bingham <kieran.bingham@ideasonboard.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-+F:	Documentation/devicetree/bindings/media/i2c/adi,adv748x.yaml
- F:	drivers/media/i2c/adv748x/*
- 
- ANALOG DEVICES INC ADV7511 DRIVER
-@@ -1616,7 +1617,7 @@ ANALOG DEVICES INC ADV7604 DRIVER
- M:	Hans Verkuil <hverkuil-cisco@xs4all.nl>
- L:	linux-media@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-+F:	Documentation/devicetree/bindings/media/i2c/adi,adv7604.yaml
- F:	drivers/media/i2c/adv7604*
- 
- ANALOG DEVICES INC ADV7842 DRIVER
-@@ -14480,7 +14481,7 @@ M:	Ramesh Shanmugasundaram <rashanmu@gmail.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media.git
--F:	Documentation/devicetree/bindings/media/i2c/max2175.txt
-+F:	Documentation/devicetree/bindings/media/i2c/maxim,max2175.txt
- F:	Documentation/userspace-api/media/drivers/max2175.rst
- F:	drivers/media/i2c/max2175*
- F:	include/uapi/linux/max2175.h
-@@ -16553,7 +16554,7 @@ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media.git
--F:	Documentation/devicetree/bindings/media/i2c/mt9v032.txt
-+F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9v032.txt
- F:	drivers/media/i2c/mt9v032.c
- F:	include/media/i2c/mt9v032.h
- 
-@@ -18007,7 +18008,7 @@ OMNIVISION OV7740 SENSOR DRIVER
- L:	linux-media@vger.kernel.org
- S:	Orphan
- T:	git git://linuxtv.org/media.git
--F:	Documentation/devicetree/bindings/media/i2c/ov7740.txt
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov7740.txt
- F:	drivers/media/i2c/ov7740.c
- 
- OMNIVISION OV8856 SENSOR DRIVER
-@@ -18048,7 +18049,7 @@ R:	Sylwester Nawrocki <s.nawrocki@samsung.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media.git
--F:	Documentation/devicetree/bindings/media/i2c/ov9650.txt
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov9650.txt
- F:	drivers/media/i2c/ov9650.c
- 
- OMNIVISION OV9734 SENSOR DRIVER
-@@ -18253,6 +18254,7 @@ S:	Maintained
- W:	https://linuxtv.org
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- T:	git git://linuxtv.org/mhadli/v4l-dvb-davinci_devices.git
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov2659.txt
- F:	drivers/media/i2c/ov2659.c
- F:	include/media/i2c/ov2659.h
- 
-@@ -22554,7 +22556,7 @@ M:	Dave Stevenson <dave.stevenson@raspberrypi.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media.git
--F:	Documentation/devicetree/bindings/media/i2c/imx219.yaml
-+F:	Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
- F:	drivers/media/i2c/imx219.c
- 
- SONY IMX258 SENSOR DRIVER
-@@ -23686,6 +23688,7 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- W:	https://linuxtv.org
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
-+F:	Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
- F:	drivers/media/i2c/tda1997x.*
- 
- TDA827x MEDIA DRIVER
-@@ -24523,7 +24526,7 @@ TOSHIBA TC358743 DRIVER
- M:	Hans Verkuil <hverkuil-cisco@xs4all.nl>
- L:	linux-media@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/i2c/tc358743.txt
-+F:	Documentation/devicetree/bindings/media/i2c/toshiba,tc358743.txt
- F:	drivers/media/i2c/tc358743*
- F:	include/media/i2c/tc358743.h
- 
+Between version 3 and version 4:
+  - Now based on Haylen Chu's v7 clock code, built on v6.15-rc2.
+  - Added Krzysztof's Reviewed-by on the first patch.
 
----
-base-commit: b425262c07a6a643ebeed91046e161e20b944164
-change-id: 20250414-media-i2c-align-filenames-78d1e7ada5e2
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250409211741.1171584-1-elder@riscstar.com/
 
-Best regards,
+Between version 2 and version 3 there was no feedback, however:
+  - Haylen posted v6 of the clock series, and it included some changes
+    that affected the logic in this reset code.
+  - I was informed that defining CCU nodes without any clocks led to
+    warnings about "clocks" being a required property when running
+    "make dtbs_check".  For that reason, I made clock properties
+    optional for reset-only CCU nodes.
+  - This code is now based on v6.15-rc1, which includes a few commits
+    that were listed as dependencies previously.
+
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Added Rob's Reviewed-by tag on the first patch
+  - Renamed the of_match_data data type (and one or two other symbols) to
+    use "spacemit" rather than "k1".
+  - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+    sympols with "reset" or "RESET" respectively.
+  - Eliminated rcdev_to_controller(), which was only used once.
+  - Changed a function that unsafely did a read/modify/write of a register
+    to use regmap_update_bits() instead as suggested by Haylen.
+  - Eliminated a null check for a pointer known to be non-null.
+  - Reordered the assignment of reset controller device fields.
+  - Added a "sentinel" comment as requested by Yixun.
+  - Updated to be based on Linux v6.14 final.
+
+Here is the first version of this series.
+  https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
+
+					-Alex
+
+Alex Elder (7):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  clk: spacemit: rename spacemit_ccu_data fields
+  clk: spacemit: add reset controller support
+  clk: spacemit: define existing syscon resets
+  clk: spacemit: make clocks optional
+  clk: spacemit: define new syscons with only resets
+  riscv: dts: spacemit: add reset support for the K1 SoC
+
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 +
+ drivers/clk/spacemit/ccu-k1.c                 | 330 +++++++++++++++++-
+ .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 +++++++
+ 4 files changed, 482 insertions(+), 23 deletions(-)
+
+
+base-commit: 846ce0a9d3e86830a3c6253c3b62104b369d6a95
 -- 
-David Heidelberg <david@ixit.cz>
-
+2.45.2
 
 
