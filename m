@@ -1,189 +1,170 @@
-Return-Path: <devicetree+bounces-166802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB8BA88792
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:42:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C7CA887B0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:46:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6446F1885451
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:38:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BFC33B26B8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23512749F9;
-	Mon, 14 Apr 2025 15:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800B52798F0;
+	Mon, 14 Apr 2025 15:43:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8CE252297;
-	Mon, 14 Apr 2025 15:38:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A077252295;
+	Mon, 14 Apr 2025 15:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744645098; cv=none; b=me1pDa8eMGB/aHGkh+d9qiSJGZiOfHRDvTe0BNwQU4OpIva5fWFrgBGxNGb4kEOMFaeQKn9ySrwGIVbkuvS7rNJv/3FTFHH/tFLcIrKu4JIz0fo5DyADtDDIJOvh6xkR3ISWTmR6wHNBj64Z8jT9ntQUVfCAwYW9jF/wh66t04Q=
+	t=1744645416; cv=none; b=mM9jcUC1pjFOE2XnZBvjKmaxRn6M54swB25N9sWz1DecGdOahP/LdbPcCWrYxGN6c4qM3UrddGPye0+9OM+TCyiLvn4bTU+oNtHDnh5KRiC3y9mpOMnxFTyh46ql12Rl23BMtT1uT+XU6Br/8bjAJGM/qR6wSSN7hbbDPsw1eGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744645098; c=relaxed/simple;
-	bh=0aZVGbEl/02D251casMOEEUyC3c3T0vU3dfpYMvmlIM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hk7og3gmia3zpUU6uYpm5h5z0xBajBxjbEi6dLCNxkBLTDQk+l3AJ0+gPPXDbtm2bafy/kq9xBujVdhMaAshMGBQ6Abnrupk0gIS2tyRUIGBxA2HQONLujDoWY+nWV3yMeVmb96mfdpiBo5v42fh9sZDd3tK/YmbwrEF9oZbzN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 137701007;
-	Mon, 14 Apr 2025 08:38:13 -0700 (PDT)
-Received: from [192.168.1.102] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EE7993F66E;
-	Mon, 14 Apr 2025 08:38:10 -0700 (PDT)
-Message-ID: <50a06ba8-0a99-40d2-8601-778ebf451f6a@arm.com>
-Date: Mon, 14 Apr 2025 16:37:59 +0100
+	s=arc-20240116; t=1744645416; c=relaxed/simple;
+	bh=Tkk57IwElxqXIkI2v9lTSkM3kXzBNPN57prvrUMVkiQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qExVtZx886sWwBM55GU5er2I2kMWXtTdKHSA5EctPDLPYrthfKAj/ugnbWenjHNTJ3Z6xrRtsRuzyrsp2C55Yh6b037P/yMhUppLb4d7eUt8wQoTcV7cMKVSmE5KM3u+8S18wRtMV3fjst6cqXNzWdvDnz8HBvMvuNVm0GeH7TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: cGrC+luCTY+SUvSx9SfAQw==
+X-CSE-MsgGUID: B8r3E4ThQ06ZFEp0r10dcw==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 15 Apr 2025 00:38:23 +0900
+Received: from localhost.localdomain (unknown [10.226.92.176])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9F41A4003ED7;
+	Tue, 15 Apr 2025 00:38:20 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
+Date: Mon, 14 Apr 2025 16:38:07 +0100
+Message-ID: <20250414153818.214811-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-To: Johan Hovold <johan@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun Gupta
- <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, Charan Teja Kalla <quic_charante@quicinc.com>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <Z_jMiC1uj_MJpKVj@hovoldconsulting.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <Z_jMiC1uj_MJpKVj@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2025-04-11 9:02 am, Johan Hovold wrote:
-> Hi Robin,
-> 
-> On Fri, Feb 28, 2025 at 03:46:33PM +0000, Robin Murphy wrote:
->> In hindsight, there were some crucial subtleties overlooked when moving
->> {of,acpi}_dma_configure() to driver probe time to allow waiting for
->> IOMMU drivers with -EPROBE_DEFER, and these have become an
->> ever-increasing source of problems. The IOMMU API has some fundamental
->> assumptions that iommu_probe_device() is called for every device added
->> to the system, in the order in which they are added. Calling it in a
->> random order or not at all dependent on driver binding leads to
->> malformed groups, a potential lack of isolation for devices with no
->> driver, and all manner of unexpected concurrency and race conditions.
->> We've attempted to mitigate the latter with point-fix bodges like
->> iommu_probe_device_lock, but it's a losing battle and the time has come
->> to bite the bullet and address the true source of the problem instead.
-> 
->> @@ -426,6 +438,12 @@ static int iommu_init_device(struct device *dev)
->>   		ret = -ENODEV;
->>   		goto err_free;
->>   	}
->> +	/*
->> +	 * And if we do now see any replay calls, they would indicate someone
->> +	 * misusing the dma_configure path outside bus code.
->> +	 */
->> +	if (dev->driver)
->> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
->>   
->>   	if (!try_module_get(ops->owner)) {
->>   		ret = -EINVAL;
->> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
->> index e10a68b5ffde..6b989a62def2 100644
->> --- a/drivers/iommu/of_iommu.c
->> +++ b/drivers/iommu/of_iommu.c
->> @@ -155,7 +155,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->>   		dev_iommu_free(dev);
->>   	mutex_unlock(&iommu_probe_device_lock);
->>   
->> -	if (!err && dev->bus)
->> +	/*
->> +	 * If we're not on the iommu_probe_device() path (as indicated by the
->> +	 * initial dev->iommu) then try to simulate it. This should no longer
->> +	 * happen unless of_dma_configure() is being misused outside bus code.
->> +	 */
-> 
-> This assumption does not hold as there is nothing preventing iommu
-> driver probe from racing with a client driver probe.
+RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
+USER_SW3. Add a DT node in device tree to instantiate the gpio-keys driver
+for these buttons.
 
-Not sure I follow - *this* assumption is that if we arrived here with 
-dev->iommu already allocated then __iommu_probe_device() is already in 
-progress for this device, either in the current callchain or on another 
-thread, and so we can (and should) skip calling into it again. There's 
-no ambiguity about that.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 27 +++++++++++++++++
+ .../boot/dts/renesas/renesas-smarc2.dtsi      | 30 +++++++++++++++++++
+ 2 files changed, 57 insertions(+)
 
->> +	if (!err && dev->bus && !dev_iommu_present)
->>   		err = iommu_probe_device(dev);
->>   
->>   	if (err && err != -EPROBE_DEFER)
-> 
-> I hit the (now moved) dev_WARN() on the ThinkPad T14s where the GPU SMMU
-> is probed late due to a clock dependency and can end up probing in
-> parallel with the GPU driver.
-
-And what *should* happen is that the GPU driver probe waits for the 
-IOMMU driver probe to finish. Do you have fw_devlink enabled?
-
-> [    3.805282] arm-smmu 3da0000.iommu: probing hardware configuration...
-> [    3.806007] arm-smmu 3da0000.iommu: SMMUv2 with:
-> [    3.806843] arm-smmu 3da0000.iommu:  stage 1 translation
-> [    3.807562] arm-smmu 3da0000.iommu:  coherent table walk
-> [    3.808253] arm-smmu 3da0000.iommu:  stream matching with 24 register groups
-> [    3.808957] arm-smmu 3da0000.iommu:  22 context banks (0 stage-2 only)
-> [    3.809651] arm-smmu 3da0000.iommu:  Supported page sizes: 0x61311000
-> [    3.810339] arm-smmu 3da0000.iommu:  Stage-1: 48-bit VA -> 40-bit IPA
-> [    3.811130] arm-smmu 3da0000.iommu:  preserved 0 boot mappings
-> 
-> [    3.829042] platform 3d6a000.gmu: Adding to iommu group 8
-> 
-> [    3.992050] ------------[ cut here ]------------
-> [    3.993045] adreno 3d00000.gpu: late IOMMU probe at driver bind, something fishy here!
-> [    3.994058] WARNING: CPU: 9 PID: 343 at drivers/iommu/iommu.c:579 __iommu_probe_device+0x2b0/0x4ac
-> 
-> [    4.003272] CPU: 9 UID: 0 PID: 343 Comm: kworker/u50:2 Not tainted 6.15.0-rc1 #109 PREEMPT
-> [    4.003276] Hardware name: LENOVO 21N2ZC5PUS/21N2ZC5PUS, BIOS N42ET83W (2.13 ) 10/04/2024
-> 
-> [    4.025943] Call trace:
-> [    4.025945]  __iommu_probe_device+0x2b0/0x4ac (P)
-> [    4.030453]  iommu_probe_device+0x38/0x7c
-> [    4.030455]  of_iommu_configure+0x188/0x26c
-> [    4.030457]  of_dma_configure_id+0xcc/0x300
-> [    4.030460]  platform_dma_configure+0x74/0xac
-> [    4.030462]  really_probe+0x74/0x38c
-
-Indeed this is exactly what is *not* supposed to be happening - does 
-this patch help at all?
-
-https://lore.kernel.org/linux-iommu/09d901ad11b3a410fbb6e27f7d04ad4609c3fe4a.1741706365.git.robin.murphy@arm.com/
-
-If not then I guess I do need to do something to explicitly distinguish 
-the "iommu_device_register() is still running" state after all...
-
-Thanks,
-Robin.
-
-> [    4.030464]  __driver_probe_device+0x7c/0x160
-> [    4.030465]  driver_probe_device+0x40/0x110
-> [    4.030467]  __device_attach_driver+0xbc/0x158
-> [    4.030468]  bus_for_each_drv+0x84/0xe0
-> [    4.030470]  __device_attach+0xa8/0x1d4
-> [    4.030472]  device_initial_probe+0x14/0x20
-> [    4.030473]  bus_probe_device+0xb0/0xb4
-> [    4.030476]  deferred_probe_work_func+0xa0/0xf4
-> 
-> [    4.030501] ---[ end trace 0000000000000000 ]---
-> [    4.031269] adreno 3d00000.gpu: Adding to iommu group 9
-> 
-> Johan
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+index 5d7983812c70..246327a19527 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+@@ -8,9 +8,18 @@
+ /dts-v1/;
+ 
+ /* Switch selection settings */
++#define SW_LCD_EN		0
+ #define SW_SD0_DEV_SEL		0
+ #define SW_SDIO_M2E		0
+ 
++#define PMOD_GPIO4		0
++#define PMOD_GPIO6		0
++#define PMOD_GPIO7		0
++
++#define  KEY_1_GPIO		RZG3E_GPIO(3, 1)
++#define  KEY_2_GPIO		RZG3E_GPIO(8, 4)
++#define  KEY_3_GPIO		RZG3E_GPIO(8, 5)
++
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
+ #include "r9a09g047e57.dtsi"
+@@ -33,6 +42,24 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
+ 	};
+ };
+ 
++&keys{
++#if PMOD_GPIO4
++	/delete-node/ key-1;
++#endif
++
++#if SW_LCD_EN || PMOD_GPIO6
++	/delete-node/ key-2;
++#endif
++
++#if SW_LCD_EN || PMOD_GPIO7
++	/delete-node/ key-3;
++#endif
++};
++
++#if SW_LCD_EN && PMOD_GPIO4 && PMOD_GPIO6 && PMOD_GPIO7
++	/delete-node/ keys;
++#endif
++
+ &pinctrl {
+ 	scif_pins: scif {
+ 		pins = "SCIF_TXD", "SCIF_RXD";
+diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+index fd82df8adc1e..84fb955ad77b 100644
+--- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
++++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+@@ -12,8 +12,13 @@
+  * SW_SDIO_M2E:
+  *     0 - SMARC SDIO signal is connected to uSD1
+  *     1 - SMARC SDIO signal is connected to M.2 Key E connector
++ *
++ * GPIO keys are enabled by default. Use PMOD_GPIO macros to disable them
++ * if needed.
+  */
+ 
++#include <dt-bindings/input/input.h>
++
+ / {
+ 	model = "Renesas RZ SMARC Carrier-II Board";
+ 	compatible = "renesas,smarc2-evk";
+@@ -27,6 +32,31 @@ aliases {
+ 		serial3 = &scif0;
+ 		mmc1 = &sdhi1;
+ 	};
++
++	keys: keys {
++		compatible = "gpio-keys";
++
++		key-1 {
++			interrupts-extended = <&pinctrl KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_1>;
++			label = "USER_SW1";
++			debounce-interval = <20>;
++		};
++
++		key-2 {
++			interrupts-extended = <&pinctrl KEY_2_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_2>;
++			label = "USER_SW2";
++			debounce-interval = <20>;
++		};
++
++		key-3 {
++			interrupts-extended = <&pinctrl KEY_3_GPIO IRQ_TYPE_EDGE_FALLING>;
++			linux,code = <KEY_3>;
++			label = "USER_SW3";
++			debounce-interval = <20>;
++		};
++	};
+ };
+ 
+ &scif0 {
+-- 
+2.43.0
 
 
