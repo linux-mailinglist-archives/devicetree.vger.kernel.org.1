@@ -1,228 +1,183 @@
-Return-Path: <devicetree+bounces-166801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A77CDA88765
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:37:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9B1A88795
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:43:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A447817169D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:37:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 677703B4379
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD782749DA;
-	Mon, 14 Apr 2025 15:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ROUdZb/A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82DE625E804;
+	Mon, 14 Apr 2025 15:39:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956171A9B48;
-	Mon, 14 Apr 2025 15:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A4225229C;
+	Mon, 14 Apr 2025 15:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744645061; cv=none; b=eaVv2Ll58/yvhaYjArbNGuB0yLtFY8DHJ6dqADcfonDq8IPwLzoGm/itm/ZGxTRRuzQ+5cJsklW5k5SkAZ6CCrjs//AihlgnWsfqyMFAyCWFzMP8Dw2ebUfC5nlDBgyGKyOgL0DBCeCDsdwdQNBFSqWCXlez4mxEk2tX22j8qD4=
+	t=1744645142; cv=none; b=txNlNpyNzfTHmz4gQYNgw8E6o0ev3Bi0flSxVF/PV5FaxqkksPBSAIF2PlctD5lPkADewYQWUfoQvAhmspDWq3RRlUNVPJRcq5gIR6iVOBRlRe5uAK7uJBNePWWJlGq9jDPNQNtCae/UEQWwakDr3zwzEXEHSmXNxmsxarYi3EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744645061; c=relaxed/simple;
-	bh=9eA0G2YnsWGbHG56g49nbEXD6xFoAGUKbnrZB7bpMaE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZMsnB9wPlElG6hRi60uEYBBu/dAaI2Oc5svpsBrPm2KbN9ZGV+M4FyjAgSOb2/fqSOflJPxL+c/uRgzG2mabVCRpQVPKBdAoFZbbFLCYLf4fZVKFe2YPp6CQ8xS3jkHuiMQzDuwZqR/GCtNcHB8M/fFkeif3wnJPcZrjtnkFtsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ROUdZb/A; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1744645142; c=relaxed/simple;
+	bh=qnq7kNGVVHXkTZ92DSUahynUCtaPEVn+gI84YfDmRaI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=N3IUh69B+K95Dho8MgjgocWzmOpS2dRtgEE21KviMpoL/72WfcOve300KoSZpw3CIyb53lPvXb2u0veJYbipDSw1uulvqtzLM6QLD4WOLlThssB8uM3EgrQpJ50yxYyTKbG4H5mqmwaRhZi537NV+MeOPMYhmCAGlc+LEkwf5OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-301918a4e1bso3506680a91.1;
-        Mon, 14 Apr 2025 08:37:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744645059; x=1745249859; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Mokm6ZH48h5sXQ5iAT2NSE+CCCr/3eOYDxIfr/1engI=;
-        b=ROUdZb/A7gBJBzaGTOQa37RaWCxJSfLBTZ6YRoTom7zwiD0ddOafdsZtJ6Fe2QYGqB
-         iutwSPIyC/EMF0avAQ9kaAPSx9mQ0yS0jWyyfox4Wpg2cSx/LbuI5+c5/0SNgfZwiZot
-         hjcufoxftlg0C75kBlQZtAWgtJPQzh0ZfJo6+sMOcOIirxFcEMUbIh3Z5sUdAjjmQLiW
-         vYuieKgANvTYe/goWkQy83o0GjnUXQGu6/PTphfrRVLhFiAfwuwN+qDVn5j3Jc1bsqTw
-         rtCL8pfS9tlDAhjIgMWN/zhOxh2eJkmpnomP39IOap55Goh9vCZyOFajYeW17prW/g5k
-         JPcg==
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-86cce5dac90so1886712241.0;
+        Mon, 14 Apr 2025 08:39:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744645059; x=1745249859;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mokm6ZH48h5sXQ5iAT2NSE+CCCr/3eOYDxIfr/1engI=;
-        b=vNul2fgg1QetpxYF1tP8KPsZ/BIaRQ6jvMll6r118sfd8iOy59hlGgASI5GTad0zmC
-         GaMVZ9fLViufsMch7wtof/hIQs9uSj3CDIF5/rdHfjNX0tFYS7h8yK3ioP8+0ni78bR8
-         PkAW4wIFr9O5S2DwdoIq8sHRp/FvgcFUrg3oCtaqEWOL5C8tQ054N2hjPXQUM506eTR1
-         BjUTvjsO17FEgLJMIGrccHvftdhZra2KYnzLmfPCMP5PODsVTdUPXkjEcYLXKTb97N1M
-         H8fTDf5fK8fEFRLFmNINesK1Mf9WD5+8dW0u0gqp82QGf/pL7Uth7ELHDUvyzJkuu4ms
-         IEXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpi/071cVygeuVu60tbuwCLb8k7jEC2HwgTduXhiZuBZJmOYhDfokh9L0+WzzQZiVlM8RvqDh8z0Yd@vger.kernel.org, AJvYcCVFkLx5wKxixYXaA3IgRoBfqqE3hn7ENVGuiH/f+wSuVWhVAxXRGZwtDuCPTXOpC5jZuXGQUKH0EbVkTZr6@vger.kernel.org, AJvYcCVV7F+oOAlCniZXKHv632MffdXDt6bgzxSGjgr22rJGsJcehJee+e0pGrW5aKq9aDNC6algI6JMCOma@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw10j0Ipn7Cul/2ZJqF0AZs8Q5Ox0lYrgAZyJRHFV9KBgsr9vQQ
-	WUBHcy2HvDlAsOJlzHvQPuw7LaYC+p70DeJhQCKUAFNFZqtRb0H2
-X-Gm-Gg: ASbGncu3BqpTfiXLYVghSOek0WmhR4gi50QASflI57wCdrvhQ3+N67n9BryIWjtn/qT
-	npcpH3V6rRM2E3YI8BBMf2jUYFj4/h5LGHz3YWCd36Fb7MOxpt1ggFeVglRCdyuI+QgVio9Ao5Y
-	VTrf/5r0Td2+DxZVRq7m6at0s68qWTUFfcjAt0L0iRYlVqQxi4NgtwIvum1eVjVC5dZJV2bn83p
-	WLBYT/PPol0vOhl4rqRTnx319m9EUr7OmllKc0jGPW1x9fp5g3OScE51HAyLG+WNeGDzKy5Rihx
-	bovYsNwFOI6vSCphIHPorUrHMy5Pd2HrA965K9Asx42PSuMCEosZFnFq77Q=
-X-Google-Smtp-Source: AGHT+IGZsxgQ60vAJuvwxmwilDb8mJqLVo6mioN8QshkEcroQC5a2lPwjRGuXJKzKyRTL3DGpS4BOw==
-X-Received: by 2002:a17:90b:2891:b0:2ee:db8a:2a01 with SMTP id 98e67ed59e1d1-308237ce138mr14871891a91.30.1744645058550;
-        Mon, 14 Apr 2025 08:37:38 -0700 (PDT)
-Received: from localhost ([2804:30c:92d:f600:d5e4:543:c403:4767])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-306dd2fe1a4sm6679448a91.0.2025.04.14.08.37.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 08:37:37 -0700 (PDT)
-Date: Mon, 14 Apr 2025 12:38:46 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 7/7] iio: adc: ad4170: Add support for weigh scale and
- RTD sensors
-Message-ID: <Z_0sBomGtMKXysgJ@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1744200264.git.marcelo.schmitt@analog.com>
- <56e76070b72d15950bf1fb01e68e94c42e79905b.1744200264.git.marcelo.schmitt@analog.com>
- <149672e84f09fb178c90856920e3cfd4f140529d.camel@gmail.com>
+        d=1e100.net; s=20230601; t=1744645138; x=1745249938;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ExSgT36WSD1AgMlCEyNaAuN9+bBCrTgldtgtmdSH1wc=;
+        b=fRo7K3nhmqh7NNvI8Vq1JIhFiXAghUEpdeDUvVcirKHE14HbzIw9YmKJZp8yHVKmnD
+         ZoXJsdJkt9WQvF3/Gku/5AuPHp1eFvmwu5c/5Vu1nn1j63zvg3r1M7gq8Ya/6uvOUZ4F
+         A+AaGiSFGg5ch/tEWKmo7JSl53M1rMFdtLztJ6RYVPqDIqXLBDSLZatEouPlgOTMY9gx
+         R4sv7orM7w7mzjfzMZNRok0WA8o9acR73GSYyCTfmUZhzg2Gxv5R0WdNHtKgcVUEgZdp
+         NyeZUvvUn3Y6uHdWS03bykUtHY/D4lN8ILuaBBdLDYB7t6HiotW4+dmC2FLKsXxLw+cs
+         eSTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmyPsl8RxFF72tUso7ZLRxjXWxWpULK9bHQNTGGCWvPA87ry0TzvvOCx6QA+W2UfvL5nWOfr4AW1zrsAKBmucVPBs=@vger.kernel.org, AJvYcCVNqees2hiiHRds2FmtxYQTeOPIGjDGs2Lp820/OfoNkUJ1SFTNGpFmGXj0zeiF6xhltjmNIUlzn3cJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBYnrzOTBoB3JHqops5gLQv/UgVE7MmLyQvjM1NcB1PNLjSNtR
+	09POGeqwEmqnkHPqv2Z+2roSo1H+GiPsyiDcvCYdb3aT271YXfiz4yv8caJU
+X-Gm-Gg: ASbGncsOLcadE/JEEZRVJ4XFZUPR5/g7vdfDr0LGV45NjzrE2E+4TSZSI42E1VzU8G/
+	GAVsqVG+5iMliugwRewQmjMyFFS+TcvxzpNuicn3wcxY9J/Yw63X7ujH17kQR7DGbRmUojCEJPR
+	P57pLGrDX85PQMIHNmQjtpeeso3NZSqpDIQXuKXYDCaRrde5kd0I8EehAIwDXqw+j8tDncGIikp
+	sLVeDNx7l0vbMVY0aAf3NoSyUIM8erURTNq5C1wWrYccPEfzIZGh+cl9QqL9RF0Gya0QbpATjWr
+	Z+RQ5LWEJPIQtr2l6NRQV5BhbllKCyehTySe0IFXtRu876KQI4ICUU8j+F7znFQq1oFWyAbRCUR
+	r+Uc4WeQ=
+X-Google-Smtp-Source: AGHT+IE27hw74iIJA64w91EWv96W9NwpbcJYx42q7Msj+obK7lUJg0GyuMJS7wUEsGFY0sua9kwd9Q==
+X-Received: by 2002:a05:6102:441a:b0:4c4:df5b:330f with SMTP id ada2fe7eead31-4c9e4fff708mr7861638137.17.1744645138101;
+        Mon, 14 Apr 2025 08:38:58 -0700 (PDT)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c98afc1csm2224888137.22.2025.04.14.08.38.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 08:38:57 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-52617ceae0dso1333900e0c.0;
+        Mon, 14 Apr 2025 08:38:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVmkL8rRk7+ybN9HpVt612ziln8OQ4tPINjpyAr6NP0VZak6uoSvmYyvWm7bj43FcAxHTn0h/4PiyzM@vger.kernel.org, AJvYcCWko1mhIvVR5DZPeQamQ9OWxe8b4YWj5O8H3h1KXjszhrxa+N3o3b/lhPnca4SqktZuysb8R9u5CNZAwCf0SVC7Q+U=@vger.kernel.org
+X-Received: by 2002:a05:6122:1681:b0:51f:3eee:89f4 with SMTP id
+ 71dfb90a1353d-527c35be349mr8492726e0c.9.1744645137610; Mon, 14 Apr 2025
+ 08:38:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <149672e84f09fb178c90856920e3cfd4f140529d.camel@gmail.com>
+References: <20250320164121.193857-1-biju.das.jz@bp.renesas.com> <20250320164121.193857-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250320164121.193857-3-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 14 Apr 2025 17:38:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVVAqP30iK25tnOyy+pLBusKQn-agvSAw-Xuy9Vds1Nmg@mail.gmail.com>
+X-Gm-Features: ATxdqUF_blPCBbaxPTFvmznTYE28mhV50nlYJVG9732Ija_HtDBK3sM_sQXHRE8
+Message-ID: <CAMuHMdVVAqP30iK25tnOyy+pLBusKQn-agvSAw-Xuy9Vds1Nmg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: r9a09g047e57-smarc: Enable CANFD
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-...
-> > +static int ad4170_setup_rtd(struct ad4170_state *st,
-> > +			    struct fwnode_handle *child,
-> > +			    struct ad4170_setup *setup, u32 *exc_pins,
-> > +			    int num_exc_pins, int exc_cur, bool ac_excited)
-> > +{
-> > +	int current_src, ret, i;
-> > +
-> > +	for (i = 0; i < num_exc_pins; i++) {
-> > +		unsigned int pin = exc_pins[i];
-> > +
-> > +		current_src |= FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_PIN_MSK,
-> > pin);
-> > +		current_src |= FIELD_PREP(AD4170_CURRENT_SRC_I_OUT_VAL_MSK,
-> > exc_cur);
-> > +
-> > +		ret = regmap_write(st->regmap16, AD4170_CURRENT_SRC_REG(i),
-> > +				   current_src);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	if (ac_excited)
-> > +		setup->misc |= FIELD_PREP(AD4170_MISC_CHOP_IEXC_MSK,
-> > +					  num_exc_pins == 2 ? 0x2 : 0x3);
-> > +
-> > +	return 0;
-> > +}
-> 
-> In the above I do not see any explicit GPIO configuration which makes me wonder
-> if having the RTD is mutual exclusive with having GPIOs?
+Hi Biju,
 
-For RTD sensors, it's recommended to use a different excitation mechanism which
-is configured in CURRENT_SOURCE and MISCELLANEOUS registers. The current source
-for RTD sensor excitation could come from a GPIO, but only implemented support
-for outputting the current from an analog pin. Will handle the case of using
-GPIOs in v2.
+On Thu, 20 Mar 2025 at 17:41, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable CANFD on the RZ/G3E SMARC EVK platform.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Split the patch into two.
+>  * Enabling CANFD done in this patch and CAN Transceiver on next patch.
+>  * Defined the macros SW_LCD_EN and SW_PDM_EN  which routes signals to
+>    CAN0 and CAN1 based on SYS.5 and BOOT.6 switches.
 
-> 
-> > +
-> > +static int ad4170_setup_bridge(struct ad4170_state *st,
-> > +			       struct fwnode_handle *child,
-> > +			       struct ad4170_setup *setup, u32 *exc_pins,
-> > +			       int num_exc_pins, int exc_cur, bool
-> > ac_excited)
-> > +{
-> > +	int current_src, ret, i;
-> > +
-> > +	if (!ac_excited)
-> > +		return 0;
-> 
-> Same as above, if !ac_excited, can't we use the GPIOs? because
-> ad4170_validate_excitation_pins() just unconditionally sets
-> AD4170_GPIO_AC_EXCITATION. Or maybe this DT property is only adding
-> complexity... See below
+Thanks for the update!
 
-I see, maybe AD4170_GPIO_EXCITATION would better describe the function. 
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> @@ -8,6 +8,8 @@
+>  /dts-v1/;
+>
+>  /* Switch selection settings */
+> +#define SW_LCD_EN              0
+> +#define SW_PDM_EN              0
+>  #define SW_SD0_DEV_SEL         0
+>  #define SW_SDIO_M2E            0
+>
+> @@ -33,7 +35,36 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
+>         };
+>  };
+>
+> +&canfd {
+> +       pinctrl-0 = <&canfd_pins>;
+> +       pinctrl-names = "default";
+> +
+> +#if (!SW_PDM_EN)
+> +       channel1 {
+> +               status = "okay";
+> +       };
+> +#endif
+> +
+> +#if (!SW_LCD_EN)
+> +       channel4 {
+> +               status = "okay";
+> +       };
+> +#endif
+> +};
+> +
+>  &pinctrl {
+> +       canfd_pins: canfd {
+> +               can1_pins: can1 {
+> +                       pinmux = <RZG3E_PORT_PINMUX(L, 2, 3)>, /* RX */
+> +                                <RZG3E_PORT_PINMUX(L, 3, 3)>; /* TX */
+> +               };
+> +
+> +               can4_pins: can4 {
+> +                       pinmux = <RZG3E_PORT_PINMUX(5, 2, 3)>, /* RX */
+> +                                <RZG3E_PORT_PINMUX(5, 3, 3)>; /* TX */
+> +               };
+> +       };
+> +
+>         scif_pins: scif {
+>                 pins = "SCIF_TXD", "SCIF_RXD";
+>                 renesas,output-impedance = <1>;
+> diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> index fd82df8adc1e..1d3a844174b3 100644
+> --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
+> @@ -29,6 +29,10 @@ aliases {
+>         };
+>  };
+>
+> +&canfd {
+> +       status = "okay";
+> +};
 
-...
-> > +
-> > +			st->gpio_fn[3] |= AD4170_GPIO_OUTPUT;
-> > +			st->gpio_fn[2] |= AD4170_GPIO_OUTPUT;
-> > +			st->gpio_fn[1] |= AD4170_GPIO_OUTPUT;
-> > +			st->gpio_fn[0] |= AD4170_GPIO_OUTPUT;
-> 
-> Not sure if you gain much with having the funcs OR'ed like this... If I'm not
-> missing nothing it's only about logging in ad4170_validate_excitation_pins()?
-> It's up to you but I would consider using bitmaps (unsigned long) for this and
-> just test the bits.
-> 
-Ah, yes, a bitmap is what was trying to do but misimplemented it.
-There are 4 possible functions for AD4170 GPIOs.
-(1) Power-down switches (currently not supported);
-(2) External sensor excitation;
-(3) GPIO;
-(4) CHANNEL_TO_GPIO (not eager to support that).
+I am wondering why you split this in two patches?
+I believe CAN-FD does not work without adding the CAN transceivers,
+which is only done in the next patch?
 
-If a GPIO is used for external circuit excitation, we don't want to export it as
-a GPIO. If the GPIO were set a power-down switch we would also not expose it.
+> +
+>  &scif0 {
+>         status = "okay";
+>  };
 
-...
-> > +
-> > +	ac_excited = fwnode_property_read_bool(child, "adi,ac-excited");
-> > +
-> > +	num_exc_pins = fwnode_property_count_u32(child, "adi,excitation-
-> > pins");
-> > +	if (num_exc_pins != 2 && num_exc_pins != 4)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				     "Invalid number of excitation pins\n");
-> 
-> Can't we assume that a valid num_exc_pins property means ac_excited = true?
-> Because that looks to be the logic in ad4170_validate_excitation_pins().
+Gr{oetje,eeting}s,
 
-Unfortunately, no. The user may want and set AD4170 to DC excite the external
-circuit. They may want to use the same set of excitation pins, but not enable
-channel chop or output current chop (leading to DC excitation). Well, we may
-choose to not support the DC case in the driver I guess, but since this is
-already fairly complicated, why not going an step further to support it fully?
+                        Geert
 
-> 
-> > +
-> > +	ret = fwnode_property_read_u32_array(child, "adi,excitation-pins",
-> > +					     exc_pins, num_exc_pins);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				     "Failed to read adi,excitation-pins\n");
-> > +
-...
-> > @@ -2081,6 +2412,10 @@ static int ad4170_parse_firmware(struct iio_dev
-> > *indio_dev)
-> >  
-> >  	/* Only create a GPIO chip if flagged for it */
-> >  	if (device_property_read_bool(&st->spi->dev, "gpio-controller")) {
-> > +		for (i = 0; i < AD4170_NUM_GPIO_PINS; i++)
-> > +			if (st->gpio_fn[i] != AD4170_GPIO_UNASIGNED)
-> > +				return 0;
-> 
-> I think you could improve this... You're taking an all or nothing approach.
-> IIUC, we can have cases where only two GPIOs are in use which means we could use
-> the other 2? There the gpiochio init_valid_mask() call that you could
-> potentially use.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Isn't gpiochio init_valid_mask() only to distinguish between GPIOs that can
-(or cannot) be used as interrupts? Not sure AD4170 GPIOs can be used for
-interrupts at all (think they can't) so didn't implement init_valid_mask().
-
-Thanks,
-Marcelo
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
