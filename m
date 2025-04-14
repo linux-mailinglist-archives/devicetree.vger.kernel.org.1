@@ -1,244 +1,471 @@
-Return-Path: <devicetree+bounces-166582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA0CA87B9F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:14:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F02A87BAB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:17:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00A1E3AE0DB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:14:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6D683B0445
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F2325DCF4;
-	Mon, 14 Apr 2025 09:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F2E25D212;
+	Mon, 14 Apr 2025 09:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="G6NA5rbe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jc7rz72Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011028.outbound.protection.outlook.com [52.103.67.28])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8031A83E8;
-	Mon, 14 Apr 2025 09:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744622085; cv=fail; b=BaY75nGe4ZKEckzmpZvbDyJMLX6Y6O8CBoJgmP0LVxUHbksm9W5Yog/VMHXWAx8WHhboF79nO2hL/eS1bpM+ybo7S0c2ZYQuecrT+060ByZtwYtZ466UpvdT0oqtOsTDo+glF8sCszjRKuQE5ydcWmxH5gvNm8ZfLZGfBiKrPcg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744622085; c=relaxed/simple;
-	bh=4FWuM+jzKQpc1rQQsQ6C2elv7KqH99ISVdLubDT36xg=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Yo3XI1ajYyf8+S9sFAaJpgyr+8NYKnxjgCZGXRdovjpOZwMxhTQ5NcPg9koLbHrx6cdrgjDt8f3FaLYJteYiab4Bn74WPXYMv1Fxd9VJCJt2/rT41tQbF8GlRo7AOdWz/Q7TdNkgghKWZi84OnNwV0OrssdCoPUACqenTtbAnqk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=G6NA5rbe; arc=fail smtp.client-ip=52.103.67.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EiHjrlaqisnLJYMwmsKJ62FRwhwcAHC2OXhwVic4nmf8zitfUEaIrik6F6wqw0d+aHX2i9cPXadB2TqdylNcIa+M+Bgf2l9osMcr2gxnDvR6UYL0dveOWE5jUz1lFl5jjY/tdNYo0/JNdqlta8rMujQ2BjkcfasLKboA9lfsgM5zJTNKHAiy8FEYIcAQJ+YZtKuEo8cWezPDnO5UMb5F1TWxcc5aEbujeAaJKdc1zxmv/5u+CIrOu7ZFxqNw4tKMXKNq7XLvVj5yIZacrSLJ6jAgsAFylHdm1IbSMDALxE1fve+gF1S3QbKoQ8l8a+Arx3abDKKf8iWLNjckmCpRVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hCqe590WnLijPuhofzHvkr/57N/rrcC1w/Do6TTqr9U=;
- b=oarj5T1clxuOHfp/0N7Z2H7R3cwKSUfdK5D5sN0EekQYJf71lPPnqeSddh9D7GOLDZPgEXxjUXc66s8xSjehmnRRCe0psooinm62kcS3gWtrbyPIGWlg2RG3rIVdL1+1l+dFirapit3jTOXiJwAvTdpsfkosV8tszhVkAZ9ckNnGm8Fwl3ISnICzrUJB+KEVotDxC7OPWOUskJgyr4RAjcLbrtmXz3/q6rHmeRUwvUzuOSfzPU5A98Rwu4NE8rb/e0J6MHI6S7jIg4E7aVQTBBlYy//QWymQU6oCVMwAXBh4f0OTI0Mx9JJbV6FY9pgiXCtaV1m1205fEX4THQ0XzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hCqe590WnLijPuhofzHvkr/57N/rrcC1w/Do6TTqr9U=;
- b=G6NA5rbeSmNfqtqPtDGu/2OOVZfyvGOxXR4pkN4WJD6XUMZS80sFB3ypsTHagCNaEGlN2lS3txTaVmpllDXXq2cauSIDMJGSwAAxt3uPR1S4Yh4kOJiZEO7BwsJcKTuJNLpEUads4xvtEG1Yvx9tbaz9EyhAFMsFv8waPsNR0PyboOl77jWWKe+1Kpf1AwiaNnHtW6E9Q7kPwyda9xhjFSyz388I9zckWz34JKStFhAdSRVxGPLuUV6lO2bO5KyPWLr3ipAxbnMPoymnC7YiZmtTzkZOoAg7OjE39xsHiy7lC8/DeKqdmiLxDvlhgZep9laSDXjqHKs4lTCXKpB2vg==
-Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
- by MA0P287MB1158.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:e5::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.34; Mon, 14 Apr
- 2025 09:14:34 +0000
-Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- ([fe80::ca81:3600:b1e4:fcf4]) by MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- ([fe80::ca81:3600:b1e4:fcf4%5]) with mapi id 15.20.8632.030; Mon, 14 Apr 2025
- 09:14:34 +0000
-Message-ID:
- <MA0P287MB22628A1AF7C3B2DAAE837CE3FEB32@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 14 Apr 2025 17:14:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 3/3] rtc: sophgo: add rtc support for Sophgo CV1800
- SoC
-From: Chen Wang <unicorn_wang@outlook.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Yangyu Chen <cyy@cyyself.name>, linux-kernel@vger.kernel.org,
- sophgo@lists.linux.dev, devicetree@vger.kernel.org,
- linux-rtc@vger.kernel.org, Inochi Amaoto <inochiama@gmail.com>
-References: <20250315224921.3627852-1-alexander.sverdlin@gmail.com>
- <20250315224921.3627852-4-alexander.sverdlin@gmail.com>
- <PN0PR01MB103935B34205CB22313838F34FED92@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <PN0PR01MB103935B34205CB22313838F34FED92@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0020.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::9) To MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:100::6)
-X-Microsoft-Original-Message-ID:
- <c1ccca7b-e8b5-4529-ad94-339f38f5bc3e@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9AF51A2632;
+	Mon, 14 Apr 2025 09:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744622240; cv=none; b=otINe15meeqbQ/OQKhDYCBPGV6Zx6btlAtxlmlca9S/MafiLI8+dqV6p6I9oihbaTv4/hEmzYF69gaFHTYVd1YLteczWc3sODpKFdIJwDYNHzg0mSwCgoyka/GXZOlGu6UkCqIRCS11ZfhmGRUxI3amR0YbBt9SNj9ouDNWcIu4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744622240; c=relaxed/simple;
+	bh=Bdp/NSQsVWsrELSLLXeq2ouozOSpEzi22+6vW+WR800=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ESC17PDLZxrf8ZSYw9ovLCiYKEabsm9ltuNIFEokqWBpS15DbeoiZPoPnQ6jsR7vCLoD3zA0jJrS4e2gQvKz9N0vwbakNYb/gQwsx6H4Drv5+do8aLEr+tCABOVuRiiDBlnpQqrth6hVtkGxAYUQywOEsXsFxu5Tg77AYPg6E3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jc7rz72Y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99tT2017899;
+	Mon, 14 Apr 2025 09:17:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UzS8rTTeThF/iGF+Bt5ZZ+UGBfBFV8zbebtpZEU+tk8=; b=jc7rz72YXqiuHVU5
+	iiI7VSx5DDr9g0FxEZoJSth6yeY4+4J9oqbs7Nor0lXyjrLGCBmQKlRHa/jCnBFy
+	Q5O+aWNfggplaQyWJ8kPMM0UKYsrfPiOZTwPb1pyLM8ZpdvowMi6WQURllSx/yNW
+	2lEb1m4Nsg+MwLuUTki5C3BIvWcbRUIB6ERwkPnPMcYAV530416BWp+FbZ+0yiAO
+	IV6WuC01edG3MXeoLGMt2kEY5qe743aT+yZw+i0cydr+e5LmvuPDDkD1x0vaGxKe
+	Z1yy/f4OqVnNswysHnYfhUn+UxRLexIZyQFodtDFAwMvFAuIUIArOIzeGyvaUNUS
+	zI82Ww==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf4vc2da-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:17:03 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53E9H2WY004549
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:17:02 GMT
+Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 02:16:58 -0700
+Message-ID: <257fb0a5-7bf7-4a04-9f8d-d8759351584c@quicinc.com>
+Date: Mon, 14 Apr 2025 17:16:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2262:EE_|MA0P287MB1158:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea3f6693-0471-40ea-eb71-08dd7b34c4d6
-X-MS-Exchange-SLBlob-MailProps:
-	znQPCv1HvwU46ctkesNAQSdI89rGQphJ+gc8QXuxDDJtfUwNAKIwPDADJyjBrIR3BB/pjsODJjE5U0ttIKLQbBOjIQV8JADDiy++SIogqIXJaZC5AOlSWbwDACRw9Xpe8nZqqWJKDMUBZWnoisMF4rmNsRxMBxa96BzZbIAys+O8KmlQitHQAw4yweLOss0Vsro3Os/kxgOwlIn9jzYK2oV3CGhBalHENKjzySFJH6twqDPsgT2BDkEwnBJFnqYwY5VC7VuQyEAHiEKT+oHhO9x7JDp01xd2LsH9X95Jj5wJe17v+yXn9T2cMBxtNwBdglMUB1IW0YbSSsSa737ceAMejQaZDAzM0mz46yjZVzmqCW0S0tJQMci8ZxkHwRwDbURlpRRiEpqhNKwY/FUCIVad+/bjhklH8RDLoQ/KTF3mmIeQy1vcVn16EkT2P9Flxi90uFauJK76GG6lIk5VxZICsVum7sq8UeM4uVjkLkr+sWxuaJgmOJEA4yrJSs5NaGF3uAGFaJNmV51Sq22A911fV4LAq4dLGjk4v1IY/6VG0sGRCVtIPtW/svy/VUWHd6P2oXbKwnJV4i1CQyTvv5jokJDkGSVQr8XWiLqMLhXxRyWp1EklKNM/4YIsiXYd5Nc0FF8TRWLHPLAnRniauM+7TV4GXKG2mIvQ3I/WERHgbHqDUDHzKa3UaxKTCQKO5gkbwe5YGFxAqRkpJwL6OX+cHCeNUM6SjC/gTLJlxE2bblNTQ/ufMdSz0p016Wo0r+P4fKm7owM=
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199028|5072599009|6090799003|19110799003|8060799006|15080799006|7092599003|10035399004|440099028|3412199025|4302099013|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TEkyWkRHUlB6bkUyZmt2aTV6eFMwUll0TWt5Q0FLb0llU2FGWTZLWElHUFJz?=
- =?utf-8?B?QUpTaW5RSjk3TElWR2tkL1hGS0lCcE91NmU5U1lHUWl6VXNKbjdpQ09nbkNw?=
- =?utf-8?B?ZzdmdGY1UkNoWkZ6V0NUbDJGTUE0Y2NXdnUwVnlWdklNaEk0S3BuV1dPNUwr?=
- =?utf-8?B?T1MyWVhtc2duelJwbGM4RjRndDNJVTRUTm5ab2hWUHVyRzh3Z3A2cjFnbXpV?=
- =?utf-8?B?Y3dmcXM2TUpaVnRYVW5sMEpDWExOeXd0Rm8xUzlLdTlONXV2Z0hiZTYwVTRv?=
- =?utf-8?B?aEh6eS9EUTVHa1NUNmx0YXBCSjJRYzcyZGg4M25uUnRqNGhtcXFoZDRHczFj?=
- =?utf-8?B?cjdNamg1ZGQ5cnc2RXNpdFNoMjVsZ09YbWNDdTE1ZWRJYXhMWVFVRTkwU28z?=
- =?utf-8?B?UTdPSkl1cSt0Rzc1d0MrNXB6THh1clFhRlRZSUgvazdtaWdxYm84TS9saFZQ?=
- =?utf-8?B?UUpZQ3NjWUs2bSsrSG85ZnV2N1hHUy9tZW85Q2IxeFNBWmZaVkFWSnE1VUg5?=
- =?utf-8?B?ODZQQWIzRnNpR2MwT2x3RWwwT1kwVHR1Z1VOdUMxYTVVWXBXWU9JZ1pBUzda?=
- =?utf-8?B?aDdZb05xajVEQVB2VnVOZ2hmZ0xwSUE1M29hMzRETlcrdlRxanByVUVNUHRz?=
- =?utf-8?B?YWxEMHdFZjhURVU3cGhoN3hUOFFsS3Y2MXBXQmVMS2ZIekxLZnpZMkhpUFp3?=
- =?utf-8?B?dldsY28wbGFlS1hXWmVPOHAycnFvVmwrSzc0M2lhR3UzTTQwQ3duV2g3dE5L?=
- =?utf-8?B?dFFyY28wN3JiSHRpbFRqMVlUcDArbEovZG9GdmRjbjBWQ3NxYkRHRVI0U0xT?=
- =?utf-8?B?b05weXpYYWRIckk2eWxybWtrcTRVN3NJbU1TdE85UjdYU1VWMDRhelNKcGg5?=
- =?utf-8?B?azNRajR5QytjdWZmOGpkc2NWTU1yQXlaN0l1TFpHQ1YyME5BcEFMMGxaVDZ4?=
- =?utf-8?B?VVo5c3Y4MDdsdDI2OU5rbjBvVEpQWTBDQlFWSnpTTGxPUVpnNXlSNnlhSjdo?=
- =?utf-8?B?SFhBclUzYlBYQm5pejFCcUVweDJ6ZkY4b0pvNTNFYTV5K1BGdUlvU0FqNGpT?=
- =?utf-8?B?SU5wSHNDRkhsSEdFKzkyUjlFN3RrZFZUTE5qZENzNVh5WDJ6MEdFZWEyUVFD?=
- =?utf-8?B?RFQvZE40Vk5EMHVTRzJtSUFlRWxrNnhoUmhnUE5oajJ0MWdFbm0yUzJudmIw?=
- =?utf-8?B?ZnhuU0ZmbUFVemJlamNTblFxOHdhSW5JNlZQSC82a3Arek1pd2VIMGk3NnU1?=
- =?utf-8?B?ZW9VQ25sUlpxUCs0S0lHYSt5eU4vWnZoS0lzZDhOSWhvQkVIbEV0L2tpNTFa?=
- =?utf-8?B?VFZlMHUvcUVHcXVYSFhFUVVzbVM2QnpidDVTTXErY0p6Um85UzZ1NkZCamVR?=
- =?utf-8?B?eTJlcEZDbVdFQW1wZkJmMkJPNEQ0QWFhSHRiUGwvU2VsdEhzdTRIRktPUEh6?=
- =?utf-8?B?OEhPZVhRUGFTbTZWTEU3a0czeGd5VUVRLzlvNGV6YVlwZ0FiaEdXVHNSL3Ns?=
- =?utf-8?B?RFJBS041c1VRTExqT2d2b0Z3UFZHb1BtQzhCcHFJRjZjUGhhMlB4ckxSbXZx?=
- =?utf-8?B?OHFNallGS0I3WlBzM04xK1ZuSEpxbUxsQ05JOUtQWmNySUNCVnR5N2JiaU82?=
- =?utf-8?B?TktUenh3QkxYRFczTnVJRUwyL0F2V3NWcncxTUtVRDhCb1Z2VTJHRnRHVmZM?=
- =?utf-8?Q?jNCfYPQ4H6upihZOrTlf?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aG1kSllnU2gzRDRSSnRvTHllRDI0aVBkYkxucnNLYmJLVG1OYml4UWZ0Z1JB?=
- =?utf-8?B?VHEvc2d6MlZ4VktZTG1WUEM5OEF0U0c4TTM2dTRUQkFtSVZjdjBza2VMRHo0?=
- =?utf-8?B?cFI3ZHdEbUl1Ni84dm81Wi9paHhySU5Ib2Q3bVBLYTBrVHVmTEZKSnE0Q1Ry?=
- =?utf-8?B?VThQclJYY2J1cjcrTWhmbElKRjBxODdSby9DOFd0UHIzdGJ0MVg4VXdMOTJJ?=
- =?utf-8?B?SzNRaXpWMEdDU1ZzTHFmTFlSZnBZVUhDZ05XWkJleWFxS1Zuckl4dE85SUpr?=
- =?utf-8?B?VVhxWDdwUFljdWxGY2huZEFKU0dXQk9IbTVXRXhrQklKOXhzQm9wL21BejZa?=
- =?utf-8?B?dXBtNUw5TlltMmhpa1NSV1FubmM0QWRFVjJQL244aVZoa0QvTmZWUUFoRlIy?=
- =?utf-8?B?MlpuZG9iVlNDUkNRajdxNk1TSmVWVGdjam10a1B6blR0WFZ6RW5KYUpENEVP?=
- =?utf-8?B?bDNkeFVSbVNIVUVKN2RkbGdWdndvbVB4N3YzSndzSks4c2JNVEtUQmpQbjdu?=
- =?utf-8?B?NnRsK2Y1cW45OWNjMitWVDlCRnJabTFlb21lZDFpWHRlTmwvOUtqU0tRenNP?=
- =?utf-8?B?ZnZWV0QyNnBURnpOZCtYZ29jTUFjK3VObnRxSUJ4QzZjc254bWFmbWJGdlk5?=
- =?utf-8?B?WFQ4WDl0Sm5jSzNPYzFrYjl2MGtzaW1MVld3dlFNbCtqRVoxblI3YW5iZG82?=
- =?utf-8?B?K2JyNmFzcUFmeGIweXc5UjRSNlFsQzI0RTcyN2lmR250WDRTQ1dVZ0FwSXdS?=
- =?utf-8?B?N1k1MUpUTHFKb0V4RWJKRmlweXFJb2lqcVNReWQyT3oxRnJCZ2JSMHFVdzhp?=
- =?utf-8?B?Tjk3SUEyMiswRm90STlwNEZ0eEVKWUlJdmlnVnRwRzdUbHdLbkRYaW0rUU9E?=
- =?utf-8?B?ZTNKODhtUjhhd1M4d3hHbkg2MklEVitzNWMydlFOcWpMNDYvY2dMUkFJZHo4?=
- =?utf-8?B?U3UyckhFWGtIYVZYNHRKZHdmRXY0VU42SHVkdjhEaktUM2xXWmlDMDAxTGVV?=
- =?utf-8?B?VFZLZnBsb3FxU1J5ZEpTTDdqcTlicmJObFpraHZueHY1bkFoSi9iV1dYcG9n?=
- =?utf-8?B?WlIyTUt0Tjl1UE95WTZTUkZ1VlRya25WYSt3L0V4c0JJR2VKY21XbVpRZExW?=
- =?utf-8?B?M0RMTUpBcFBoQldQMnNENjlRa3NUczJEdU5LRWUwN1dBTVFHY29kNzVOc0JG?=
- =?utf-8?B?SUF2ZjBGSDBJKzFkTzJmVlJKNXdvUXAzUzhzSnV5ckV4SnNHeTZWR2dRQ2Yx?=
- =?utf-8?B?bmJ3MTluVFhpc3RVbTJWY3ZtOG9rdE1hakYrbUYyV2NyWmFwc2wvSzFRd2Ev?=
- =?utf-8?B?b0l4MTM1TmdldnJMSktYdlFqems5OUJ5R1FIRVhhcXk2VDRoMEgzVFhNTyts?=
- =?utf-8?B?SXRhdWN0cGpKVFV5akwzbmVvZWNkVXpld3BRZEFWVVk2NHcxQ3lZNUhBRmZB?=
- =?utf-8?B?eGNRS0FJTlJxTktIS1BoVXNmUVpMQ0pVZEpxcGw5VHd1bWxnR0g4L2wxUnIr?=
- =?utf-8?B?akFpcVdZTGZhMm1BYTJLektKWTdxeGp6cTB0Rld1cHBDdjByd0M4bW1KaWc0?=
- =?utf-8?B?amdhTSt1dlJVdUVSMFBuekYwTHdoc0h0eGY3dzVWMkFzVG50VHcxUCtlN2xa?=
- =?utf-8?B?cDNFYkZrQWtiLytUQnhvYjBmKzBHamdFNXUzQ1YvUzRqOFJvczcvNXZuRzhZ?=
- =?utf-8?B?Q1UvekRtUnRISDcrZTkzYTBiZXVhUklzTSs5a3dzcnRJTStpM1J3bERabXF0?=
- =?utf-8?Q?QjwxN7ZSDNJU4IhQ/bMaEMxBvTchRB14DDOQKHz?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea3f6693-0471-40ea-eb71-08dd7b34c4d6
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2025 09:14:33.0444
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1158
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] coresight: add coresight Trace Network On Chip
+ driver
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>
+CC: <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250411-trace-noc-v3-0-1f19ddf7699b@quicinc.com>
+ <20250411-trace-noc-v3-2-1f19ddf7699b@quicinc.com>
+ <23d02991-3bc6-41e2-bb8b-a38786071c43@arm.com>
+Content-Language: en-US
+From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+In-Reply-To: <23d02991-3bc6-41e2-bb8b-a38786071c43@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BWJCxXqZF4J66aZr1SmBzZUSxOJgkc24
+X-Authority-Analysis: v=2.4 cv=IZ6HWXqa c=1 sm=1 tr=0 ts=67fcd28f cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=QP5JmWE8YpjSW6ngeHcA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=RVmHIydaz68A:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: BWJCxXqZF4J66aZr1SmBzZUSxOJgkc24
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_02,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 mlxscore=0 bulkscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140067
 
-Hi, Alexander Sverdlin,
 
-I just find there is an exiting "REAL TIME CLOCK (RTC) SUBSYSTEM" 
-section in MAINTAINERS, seems we should not pick the rtc file in "SOPHGO 
-DEVICETREES and DRIVERS".
 
-Chen
-
-On 2025/3/19 8:31, Chen Wang wrote:
-> Hi, Inochi,
->
-> I see Alexander add "drivers/rtc/rtc-cv1800.c" in "SOPHGO DEVICETREES 
-> and DRIVERS" of MAINTAINERS, would you like to take this?
->
-> Regards,
->
-> Chen
->
-> On 2025/3/16 6:49, Alexander Sverdlin wrote:
->> From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+On 4/11/2025 5:59 PM, Suzuki K Poulose wrote:
+> On 11/04/2025 09:57, Yuanfang Zhang wrote:
+>> Add a driver to support Coresight device Trace Network On Chip (TNOC),
+>> which is an integration hierarchy integrating functionalities of TPDA
+>> and funnels. It aggregates the trace and transports to coresight trace
+>> bus.
 >>
->> Implement the RTC driver for CV1800, which able to provide time alarm.
+>> Compared to current configuration, it has the following advantages:
+>> 1. Reduce wires between subsystems.
+>> 2. Continue cleaning the infrastructure.
+>> 3. Reduce Data overhead by transporting raw data from source to target.
 >>
->> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
->> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+>>    +------------------------+                +-------------------------+
+>>    | Video Subsystem        |                |Video Subsystem          |
+>>    |       +-------------+  |                |       +------------+    |
+>>    |       | Video TPDM  |  |                |       | Video TPDM |    |
+>>    |       +-------------+  |                |       +------------+    |
+>>    |            |           |                |              |          |
+>>    |            v           |                |              v          |
+>>    |   +---------------+    |                |        +-----------+    |
+>>    |   | Video funnel  |    |                |        |Video TNOC |    |
+>>    |   +---------------+    |                |        +-----------+    |
+>>    +------------|-----------+                +------------|------------+
+>>                 |                                         |
+>>                 v-----+                                   |
+>> +--------------------|---------+                         |
+>> |  Multimedia        v         |                         |
+>> |  Subsystem   +--------+      |                         |
+>> |              |  TPDA  |      |                         v
+>> |              +----|---+      |              +---------------------+
+>> |                   |          |              |    Aggregator TNOC  |
+>> |                   |          |              +----------|----------+
+>> |                   +--        |                         |
+>> |                     |        |                         |
+>> |                     |        |                         |
+>> |              +------v-----+  |                         |
+>> |              |  Funnel    |  |                         |
+>> |              +------------+  |                         |
+>> +----------------|-------------+                         |
+>>                   |                                       |
+>>                   v                                       v
+>>        +--------------------+                    +------------------+
+>>        |   Coresight Sink   |                    |  Coresight Sink  |
+>>        +--------------------+                    +------------------+
+> 
+> If each NOC has TraceID, how do you reliably decode the trace ?
+> Is there a single NOC/TPDA in the path from Source to sink ?
+
+Not each TNOC has TraceID, there is only one TNOC has TraceID for one path
+from Source to sink. In the example, only the aggregator TNOC has traceID. 
+Decode trace relying on TraceID + Inport number.
+It can has mutiple TNOC/TPDA in one path. 
+
+> 
+>>
+>>         Current Configuration                            TNOC
+>>
+>> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
 >> ---
->> Changelog:
->> v14:
->> - platform device name "cv1800-rtc" -> "cv1800b-rtc"
->> v13:
->> - Change in the Kconfig dependency caused by the move of the previous
->>    patch from MFD into SOC
->> v12:
->> - added MAINTAINERS entry
->> - depends on cv1800-rtcsys MFD driver
->> - use syscon for regmap
->> - get named clock from parent MFD
->> - corresponding platform device is expected to be instantiated by MFD 
->> stub
->> Changes since v10:
->> - only start RTC on set_time;
->> Changes since v9:
->> - further simplified bitmask macros;
->> - unconditional RTC start (rtc_enable_sec_counter()), otherwise
->> didn't start on SG2000;
->> - dropped ANA_CALIB modification (has been forgotten in v8 with
->> the drop of SW calibration to switch to HW calibration);
->> - successfully tested on SG2000;
+>>   drivers/hwtracing/coresight/Kconfig          |  13 ++
+>>   drivers/hwtracing/coresight/Makefile         |   1 +
+>>   drivers/hwtracing/coresight/coresight-tnoc.c | 186 +++++++++++++++++++++++++++
+>>   drivers/hwtracing/coresight/coresight-tnoc.h |  34 +++++
+>>   4 files changed, 234 insertions(+)
 >>
+>> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
+>> index ecd7086a5b83e86b6bc8ea039d6d26a628334ed3..f20600d58f38568f8178f69d3f678c2df2cbca7e 100644
+>> --- a/drivers/hwtracing/coresight/Kconfig
+>> +++ b/drivers/hwtracing/coresight/Kconfig
+>> @@ -259,4 +259,17 @@ config CORESIGHT_DUMMY
+>>           To compile this driver as a module, choose M here: the module will be
+>>         called coresight-dummy.
+>> +
+>> +config CORESIGHT_TNOC
+>> +    tristate "Coresight Trace Network On Chip driver"
+>> +    help
+>> +      This driver provides support for Trace Network On Chip (TNOC) component.
+>> +      TNOC is an interconnect used to collect traces from various subsystems
+>> +      and transport to a coresight trace sink. It sits in the different
+>> +      tiles of SOC and aggregates the trace local to the tile and transports
+>> +      it another tile or to coresight trace sink eventually.
+>> +
+>> +      To compile this driver as a module, choose M here: the module will be
+>> +      called coresight-tnoc.
+>> +
+>>   endif
+>> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
+>> index 8e62c3150aebd1e82b445fafc97a0a9b44397b0e..880e9ed6bfe9c711492c6a2cd972751f56dd8010 100644
+>> --- a/drivers/hwtracing/coresight/Makefile
+>> +++ b/drivers/hwtracing/coresight/Makefile
+>> @@ -34,6 +34,7 @@ obj-$(CONFIG_CORESIGHT_SINK_TPIU) += coresight-tpiu.o
+>>   obj-$(CONFIG_CORESIGHT_SINK_ETBV10) += coresight-etb10.o
+>>   obj-$(CONFIG_CORESIGHT_LINKS_AND_SINKS) += coresight-funnel.o \
+>>                          coresight-replicator.o
+>> +obj-$(CONFIG_CORESIGHT_TNOC) += coresight-tnoc.o
+>>   obj-$(CONFIG_CORESIGHT_SOURCE_ETM3X) += coresight-etm3x.o
+>>   coresight-etm3x-y := coresight-etm3x-core.o coresight-etm-cp14.o \
+>>                coresight-etm3x-sysfs.o
+>> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..2ec4ead892f0166a3e84f777679c0f73f5da0e83
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
+>> @@ -0,0 +1,186 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> + #include <linux/amba/bus.h>
+>> + #include <linux/coresight.h>
+>> + #include <linux/device.h>
+>> + #include <linux/io.h>
+>> + #include <linux/kernel.h>
+>> + #include <linux/module.h>
+>> + #include <linux/of.h>
+>> + #include <linux/platform_device.h>
+>> +
+>> +#include "coresight-priv.h"
+>> +#include "coresight-tnoc.h"
+>> +#include "coresight-trace-id.h"
+>> +
+>> +DEFINE_CORESIGHT_DEVLIST(trace_noc_devs, "traceNoc");
+>> +
+>> +static void trace_noc_enable_hw(struct trace_noc_drvdata *drvdata)
+>> +{
+>> +    u32 val;
+>> +
+>> +    /* Set ATID */
+>> +    writel_relaxed(drvdata->atid, drvdata->base + TRACE_NOC_XLD);
+>> +
+>> +    /* Config sync CR */
+>> +    writel_relaxed(TRACE_NOC_SYN_VAL, drvdata->base + TRACE_NOC_SYNCR);
+> 
+> See my comment below about SYN_VAL. Please add a meaningful comment than
+> explaining what is obvious from the code.
+sure, will update.
+> 
+>> +
+>> +    /* Set Ctrl register */
+> 
+> Same here. Comment need not explain what is obvious from the code. But
+> a description of why we choose the values below is helpful.
+sure, will update.
+> 
+>> +    val = readl_relaxed(drvdata->base + TRACE_NOC_CTRL);
+>> +
+>> +    val = val & ~TRACE_NOC_CTRL_FLAGTYPE;
+>> +    val = val | TRACE_NOC_CTRL_FREQTYPE;
+>> +    val = val | TRACE_NOC_CTRL_PORTEN;
+>> +
+>> +    writel(val, drvdata->base + TRACE_NOC_CTRL);
+>> +}
+>> +
+>> +static int trace_noc_enable(struct coresight_device *csdev, struct coresight_connection *inport,
+>> +                struct coresight_connection *outport)
+>> +{
+>> +    struct trace_noc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    if (csdev->refcnt == 0)
+>> +        trace_noc_enable_hw(drvdata);
+>> +
+>> +    csdev->refcnt++;
+>> +    spin_unlock(&drvdata->spinlock);
+>> +
+>> +    dev_dbg(drvdata->dev, "Trace NOC is enabled\n");
+>> +    return 0;
+>> +}
+>> +
+>> +static void trace_noc_disable_hw(struct trace_noc_drvdata *drvdata)
+>> +{
+>> +    writel(0x0, drvdata->base + TRACE_NOC_CTRL);
+>> +}
+>> +
+>> +static void trace_noc_disable(struct coresight_device *csdev, struct coresight_connection *inport,
+>> +                  struct coresight_connection *outport)
+>> +{
+>> +    struct trace_noc_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    if (--csdev->refcnt == 0)
+>> +        trace_noc_disable_hw(drvdata);
+>> +
+>> +    spin_unlock(&drvdata->spinlock);
+>> +    dev_dbg(drvdata->dev, "Trace NOC is disabled\n");
+>> +}
+>> +
+>> +static int trace_noc_id(struct coresight_device *csdev, __maybe_unused enum cs_mode mode,
+>> +            __maybe_unused struct coresight_device *sink)
+>> +{
+>> +    struct trace_noc_drvdata *drvdata;
+>> +
+>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
+>> +
+>> +    return drvdata->atid;
+>> +}
+>> +
+>> +static const struct coresight_ops_link trace_noc_link_ops = {
+>> +    .enable        = trace_noc_enable,
+>> +    .disable    = trace_noc_disable,
+>> +};
+>> +
+>> +static const struct coresight_ops trace_noc_cs_ops = {
+>> +    .trace_id    = trace_noc_id,
+>> +    .link_ops    = &trace_noc_link_ops,
+>> +};
+>> +
+>> +static int trace_noc_init_default_data(struct trace_noc_drvdata *drvdata)
+>> +{
+>> +    int atid;
+>> +
+>> +    atid = coresight_trace_id_get_system_id();
+>> +    if (atid < 0)
+>> +        return atid;
+>> +
+>> +    drvdata->atid = atid;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int trace_noc_probe(struct amba_device *adev, const struct amba_id *id)
+>> +{
+>> +    struct device *dev = &adev->dev;
+>> +    struct coresight_platform_data *pdata;
+>> +    struct trace_noc_drvdata *drvdata;
+>> +    struct coresight_desc desc = { 0 };
+>> +    int ret;
+>> +
+>> +    desc.name = coresight_alloc_device_name(&trace_noc_devs, dev);
+>> +    if (!desc.name)
+>> +        return -ENOMEM;
+>> +    pdata = coresight_get_platform_data(dev);
+>> +    if (IS_ERR(pdata))
+>> +        return PTR_ERR(pdata);
+>> +    adev->dev.platform_data = pdata;
+>> +
+>> +    drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+>> +    if (!drvdata)
+>> +        return -ENOMEM;
+>> +
+>> +    drvdata->dev = &adev->dev;
+>> +    dev_set_drvdata(dev, drvdata);
+>> +
+>> +    drvdata->base = devm_ioremap_resource(dev, &adev->res);
+>> +    if (!drvdata->base)
+>> +        return -ENOMEM;
+>> +
+>> +    spin_lock_init(&drvdata->spinlock);
+>> +
+>> +    ret = trace_noc_init_default_data(drvdata);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    desc.ops = &trace_noc_cs_ops;
+>> +    desc.type = CORESIGHT_DEV_TYPE_LINK;
+>> +    desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
+>> +    desc.pdata = adev->dev.platform_data;
+>> +    desc.dev = &adev->dev;
+>> +    desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
+>> +    drvdata->csdev = coresight_register(&desc);
+>> +    if (IS_ERR(drvdata->csdev))
+>> +        return PTR_ERR(drvdata->csdev);
+>> +
+>> +    pm_runtime_put(&adev->dev);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void trace_noc_remove(struct amba_device *adev)
+>> +{
+>> +    struct trace_noc_drvdata *drvdata = dev_get_drvdata(&adev->dev);
+>> +
+>> +    coresight_trace_id_put_system_id(drvdata->atid);
+>> +    coresight_unregister(drvdata->csdev);
+>> +}
+>> +
+>> +static struct amba_id trace_noc_ids[] = {
+>> +    {
+>> +        .id     = 0x000f0c00,
+>> +        .mask   = 0x000fff00,
+> 
+> Is the mask sufficient ? fyi, the tpdm mask was fixed in
+> commit c8ea5f41b421.
+will update mask to 0x00ffff00.
+> 
+> Suzuk
+> 
+> 
+>> +    },
+>> +    {},
+>> +};
+>> +MODULE_DEVICE_TABLE(amba, trace_noc_ids);
+>> +
+>> +static struct amba_driver trace_noc_driver = {
+>> +    .drv = {
+>> +        .name   = "coresight-trace-noc",
+>> +        .suppress_bind_attrs = true,
+>> +    },
+>> +    .probe          = trace_noc_probe,
+>> +    .remove        = trace_noc_remove,
+>> +    .id_table    = trace_noc_ids,
+>> +};
+>> +
+>> +module_amba_driver(trace_noc_driver);
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("Trace NOC driver");
+>> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.h b/drivers/hwtracing/coresight/coresight-tnoc.h
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..1291a153412c1c92be530cffe25fb56c2fca0395
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/coresight/coresight-tnoc.h
+>> @@ -0,0 +1,34 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#define TRACE_NOC_CTRL      0x008
+>> +#define TRACE_NOC_XLD       0x010
+>> +#define TRACE_NOC_FREQVAL   0x018
+>> +#define TRACE_NOC_SYNCR     0x020
+>> +
+>> +/* Enable generation of output ATB traffic.*/
+>> +#define TRACE_NOC_CTRL_PORTEN   BIT(0)
+>> +/* Sets the type of issued ATB FLAG packets.*/
+>> +#define TRACE_NOC_CTRL_FLAGTYPE BIT(7)
+>> +/* Sets the type of issued ATB FREQ packet*/
+>> +#define TRACE_NOC_CTRL_FREQTYPE BIT(8)
+>> +
+>> +#define TRACE_NOC_SYN_VAL    0xFFFF
+> 
+> TRACE_NOC_SYNCR_xx ?
+> 
+> What does VAL indicate ? It sounds too generic to indicate anything meaningful. Does it mean, allow all inputs ?
+> 
+The value of TRACE_NOC_SYNCR register. it means the number of data words that are issued between two 'SYNC' packets.
+
+> Suzuki
+> 
+>> +
+>> +/*
+>> + * struct trace_noc_drvdata - specifics associated to a trace noc component
+>> + * @base:    memory mapped base address for this component.
+>> + * @dev:    device node for trace_noc_drvdata.
+>> + * @csdev:    component vitals needed by the framework.
+>> + * @spinlock:    only one at a time pls.
+>> + * @atid:    id for the trace packet.
+>> + */
+>> +struct trace_noc_drvdata {
+>> +    void __iomem        *base;
+>> +    struct device        *dev;
+>> +    struct coresight_device    *csdev;
+>> +    spinlock_t        spinlock; /* lock for the drvdata. */
+>> +    u32            atid;
+>> +};
 >>
->>   MAINTAINERS              |   1 +
->>   drivers/rtc/Kconfig      |  12 +++
->>   drivers/rtc/Makefile     |   1 +
->>   drivers/rtc/rtc-cv1800.c | 218 +++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 232 insertions(+)
->>   create mode 100644 drivers/rtc/rtc-cv1800.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index ac15e448fffb..be8fee50a49c 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -22354,6 +22354,7 @@ L:    sophgo@lists.linux.dev
->>   W:    https://github.com/sophgo/linux/wiki
->>   T:    git https://github.com/sophgo/linux.git
->>   S:    Maintained
->> +F:    drivers/rtc/rtc-cv1800.c
->>   N:    sophgo
->>   K:    sophgo
->
-> [......]
->
->
->
+> 
+
 
