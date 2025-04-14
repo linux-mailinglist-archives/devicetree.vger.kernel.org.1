@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-166691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56852A8809D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5178AA880A0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:41:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3DA81896C33
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:40:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943DF188DF84
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39412BE7B1;
-	Mon, 14 Apr 2025 12:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9832BE7CD;
+	Mon, 14 Apr 2025 12:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="JpMtNzdn"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="kK9pTKrV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A1B149C41
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E82B2BE7C8
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744634414; cv=none; b=KtGOS9SqtSBIXG5jLagYHfWn97ZJkyx1jp2seFmcqWakziRAtq/VkPNurW9KbVXyrRxigzYFsP/8Q/QISp2vnPN8pJAUZjP6BDW2pVaGojeKOvHraK2mxOuMqtlbYrodAOhr4Qr797yH5HHD4YNMDh+hqLMbZlT/crQ0ZTTfH+0=
+	t=1744634444; cv=none; b=AtWEgp736c3cHw2A6tm89UsiMzXsIkw6VVr9ryv+opXsdTqA5HwO1G/CWgYrJlH5L5JcOXNpZFsYWoUlsbs9050BK1/o4LkcnsOpLO1iBSSZkBjoqH2Si+zp9NHH8B2Va7Uxlx89hOFMan5pUaZABZhKhVzAqPdtnbpBABDN2Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744634414; c=relaxed/simple;
-	bh=rpIHE//hKP8VhrsONThnQAnp41zdFJC48uql62litoE=;
+	s=arc-20240116; t=1744634444; c=relaxed/simple;
+	bh=D1V8ghNFhSQVvyCHqapThgtbdBVpNPOOv/+xtuw1fLY=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=B3b2Ea2lanBp5a1ieTZMTpAvSShm35Xjuksi3WsqQx4WGk35TCTp5nd+bYOGSgFoP65eP2Tjlp3wCFQKvwlK7LFio0xJhtPdWC1zp1fpp0yGs4G9n6XGECPpYHzuImz9D2ZtK+8mM//wmgHlDWLDxEBvnWevvhZVV/CmKxGZcuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=JpMtNzdn; arc=none smtp.client-ip=209.85.219.52
+	 Content-Type:MIME-Version; b=krnfVOjrE6gLLlY/DPFdPY8yqlVpOkTfhNiXoGVLAsNUF+XDbjwcHeFl5JYUUxBAS+rIoUnXSbR6XZJNeRBfdCujg3FmfJTGo+PBK0MgXgtZtDp0lN7hAYozXVuJerJGQ4cRqwkpQ2xjiuJDamZKvI0tKALlZx0Nb4grLdwMzPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=kK9pTKrV; arc=none smtp.client-ip=209.85.160.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6e8efefec89so39442686d6.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 05:40:12 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4775ce8a4b0so69099071cf.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 05:40:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1744634412; x=1745239212; darn=vger.kernel.org;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1744634441; x=1745239241; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=rpIHE//hKP8VhrsONThnQAnp41zdFJC48uql62litoE=;
-        b=JpMtNzdn6glDwgrLGd3IIHZHqNUV8ZNKyQkhB4OjH1L8qcKxg5K9N8kO2JMa/n+Ht3
-         cXu3XVBU+TTprn7k78BNCuzmOWz0OwRL7+qzbmUnpSqCtm7S1OrAya4kyicnWG9/c5PY
-         Bh2WaRGWIwX7YgsPge4jq6QdpUGNTnufX/QByKZt0HuXmh0Y8XD0hdDZ/WbrEXPslTNa
-         G69kJHvreNfPvZuO0lCZ6D2TEhM5Vnss8NtQzapm8GQgHBOsrgMKIjHTcyQMAZP29Pl6
-         UTwkUBgBey1kN1yOnYi0xaABkzv6b8YsNio+ePo8Y1/ADhvdD17pI7qHDCnBReWDdH4f
-         205w==
+        bh=D1V8ghNFhSQVvyCHqapThgtbdBVpNPOOv/+xtuw1fLY=;
+        b=kK9pTKrVuB4og9r2Z/xRPl4iPOsx2BnkpigmntR3UA2SUmRZc8P7Ho+s5ii82AK2by
+         fzl22L5Nb7auDkyAwZ92hua78rwCsE5tDFS/05dmMIcq6+/GFyioMHLGWdOv0inN8oXY
+         lWHGPNAKKxqcLiZfIosG6qbaypXVQV7sJl74c1V+1sEI8pprM3AwlyOskJiqHEy2A9Kn
+         xrstPj6QLX/QolAhoKigcwloS2KO0CvhiTU/7O6K0w8lE/yngs9aCW6FUCTnfWNCMoTm
+         m44bvEeItL4fA3xqJpXAKSOB9GeeAYnynRfvpl168SjsQILvbCBSfGGBGmD2asHP6jBz
+         r1gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744634412; x=1745239212;
+        d=1e100.net; s=20230601; t=1744634441; x=1745239241;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rpIHE//hKP8VhrsONThnQAnp41zdFJC48uql62litoE=;
-        b=Cw7WI7OSS+VEVAadgWx/+Rv1c2+lzNoPFYkMJKolhbnAODFXB7DVPBE+QvbBTygNPr
-         boCF/Wc94LKsTqiKZgqLeut5QOlZLPCtqwqQ5Q9Ji8iJ1/gWfwT9p1IFPH/v86lDHzVD
-         x4indtEd7LkwQB+3mDStx/Tin9Qk+Iq3UKNvh5ngMg6wc0jyzCd0T7zyLAhFPeFgQsFt
-         2+WuhFzKuGWvmxBm1aZELHg8HXB1fHBulY2DH5unlmUcBrwgS+NrpQTH9jNJ5ANHvpo1
-         Id6BLVqgGIfSz/25dxyQdC0pvkYAaFV98thjzxFfrtHBIWdl1LC95PKt3NpyJTrZQUHT
-         vexg==
-X-Forwarded-Encrypted: i=1; AJvYcCWq/NoSeI/ObhgxxeMEdbnD4dwgRp1+UK0qTyMp90w8HCkgjUHM8rPOsXF2mcy/b5cDan4VHW4q/V76@vger.kernel.org
-X-Gm-Message-State: AOJu0YweY6AeFp45hPJaM1EXdNfeihECyWcRpGK/i+RrcAbEPIEYp5v+
-	tNKg+aZyzrDJZrfjEo2YUUTf+P7opc6nkONFBfxSQxAPuiE+BiACxk8j7WIwAPU=
-X-Gm-Gg: ASbGncs3cndCPZREnAWVwKPs2RZNyHuFNlo4ggr0xDSDmY7DJErPvYRiZyg9cOq8vad
-	iAAPkF9X5cBYEa49v/5DlYCky/zs3BJ+eXLbFg+UtoGiHBQPT7H6y9DKgCJyM8VCv4DPpOHkxJM
-	IZgvM1ZXXV7njLPPGmI1v0fkKWPbiK95pN0xu4c/k/Lz/7V/3UXfnYuSEHJuRRG7pxq0Mc13tmK
-	DjxTAS1K1uTf5J7DH1VlHKnFdsrPWHcWC+0uz74SweCkekMX1GR5b/gGYMdE5D34LxTJdI7awZz
-	JCQVeKtv32tNIXpM1KSjlgNSADojfD7HWqIw8KaWxIjTOg==
-X-Google-Smtp-Source: AGHT+IEkbFkFwojQpGraee89v+X8dSxjfxKK65sER14n9Mv9RQD0FEdieKFkmsXCfg907A7TCfC9Lw==
-X-Received: by 2002:ad4:5763:0:b0:6e8:fe16:4d44 with SMTP id 6a1803df08f44-6f23f180df4mr213244336d6.31.1744634411886;
-        Mon, 14 Apr 2025 05:40:11 -0700 (PDT)
+        bh=D1V8ghNFhSQVvyCHqapThgtbdBVpNPOOv/+xtuw1fLY=;
+        b=wDRjb1um/Uxo7wHMLsARJTuqOuirnDrcqZ0+PbvOrian1Z82vrhy1kvfYYXBzLv8r2
+         3Ok8ar0+UC1/5Fktzi7aHwEML8aElIIu3OPUWJUg6QqeJG8HkD94ua8JJwxdWRbuwlkp
+         OL9IUY7H5iJ/oziu0keZA32OuOqSKf1Qhxdy7D1kB/lAL0oFQnbNhD5ktGFvoMPehRRK
+         csrCDKICDS/ymqGkhNuh5Wva5TZxPtn2rk0PzBKcOiGfVt9JTKIy92gGisFgDrgIHHaj
+         9JU2W4+WSDCbDWj33FZnptzDexIyxNX/qR5ztRQe1OlaIIdOvIqGn/i9YxVEe4ZVXv0x
+         ay/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVFQBi/+B/NfCmMKkKRtvCjwLgkqTYEPLuH3AO4Eg2orYxfn2CFIMOkXTM0NmE0VD3o/EWTaepjov2k@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB9AhdvQOyXhGH+cqTNKPbO0CWYBBngu+kfeBrrFg3VRh2FN7N
+	4CUDxlWVGBoqV+gd1jj6z52b3V2nIKzZD+tOe+U4ZWhIrj5LFEgZDd1NKkYUKhE=
+X-Gm-Gg: ASbGncu1oXNQV43XwYYuK3Dxf9LJwOc17TkktJ9mexUocjRDh608E8emZggcvEgA08L
+	Poc+w5CZRrh7gSQA636yCnOxndqmmmlHvQteXT6r/67VIPTeaduD4b3aJnvEIJduirw8Yg94FtK
+	YJrgKCyCHe9r+RK3YSxCb5Xy7+jZd/GprfOMJf9qaNnCRZrjADyrGr5mnipjJ8dewF72xId2HGL
+	28AkR2eVjNN+QzcClAbciu7JIdYhBH2HH74PJzPDuzpfppi0+lttoqO1f1H5BhkOCIXpJmpEUfG
+	SLDHvGFcpGsNU36Gw+sBfdeXexbH/857x3R64ZPBw6gFq0Fyx7+AoFC2
+X-Google-Smtp-Source: AGHT+IHzRC5MPk4gCdZQDiLMvimp8F/pyevk6/f63+hfdgj8+aLB0yoSTDhdEMEr6WLqPX5YOYzzJQ==
+X-Received: by 2002:a05:622a:1892:b0:477:6f2c:4a07 with SMTP id d75a77b69052e-4797750fda2mr191211911cf.4.1744634441327;
+        Mon, 14 Apr 2025 05:40:41 -0700 (PDT)
 Received: from ?IPv6:2606:6d00:11:e976::c41? ([2606:6d00:11:e976::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f0dea08007sm82522326d6.86.2025.04.14.05.40.10
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4796eb2b4easm73431781cf.34.2025.04.14.05.40.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 05:40:11 -0700 (PDT)
-Message-ID: <a43b8d8f51577fdf579f1bd602eadfdafcd21c08.camel@ndufresne.ca>
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: mediatek: Add compatibles
- for MT8188 MDP3
+        Mon, 14 Apr 2025 05:40:40 -0700 (PDT)
+Message-ID: <e79a3bfb0cb57fea17ad7852ce3b4fe720c2cbd2.camel@ndufresne.ca>
+Subject: Re: [PATCH v1 2/3] dt-bindings: media: mediatek: mdp3: Add
+ compatibles for MT8188 MDP3
 From: Nicolas Dufresne <nicolas@ndufresne.ca>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
 	chunkuang.hu@kernel.org
@@ -87,12 +87,12 @@ Cc: p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
  linux-media@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
  kernel@collabora.com, 	sebastian.fricke@collabora.com,
  macpaul.lin@mediatek.com
-Date: Mon, 14 Apr 2025 08:40:09 -0400
-In-Reply-To: <20241218105320.38980-2-angelogioacchino.delregno@collabora.com>
+Date: Mon, 14 Apr 2025 08:40:39 -0400
+In-Reply-To: <20241218105320.38980-3-angelogioacchino.delregno@collabora.com>
 References: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
-	 <20241218105320.38980-2-angelogioacchino.delregno@collabora.com>
+	 <20241218105320.38980-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.0 (3.56.0-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -101,78 +101,182 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-TGUgbWVyY3JlZGkgMTggZMOpY2VtYnJlIDIwMjQgw6AgMTE6NTMgKzAxMDAsIEFuZ2Vsb0dpb2Fj
-Y2hpbm8gRGVsIFJlZ25vIGEgw6ljcml0wqA6Cj4gQWRkIGNvbXBhdGlibGUgc3RyaW5ncyBmb3Ig
-dGhlIEFBTCwgQ09MT1IsIE1FUkdFIGFuZCBQQURESU5HCj4gaGFyZHdhcmUgY29tcG9uZW50cyBm
-b3VuZCBpbiBNZWRpYVRlaydzIE1UODE4OCBTb0MuCj4gCj4gVGhpcyBoYXJkd2FyZSBpcyBjb21w
-YXRpYmxlIHdpdGggTVQ4MTk1Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8g
-RGVsIFJlZ25vIDxhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+CgpBY2tl
-ZC1ieTogTmljb2xhcyBEdWZyZXNuZSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY29tPgoK
-PiAtLS0KPiDCoC4uLi9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGFhbC55YW1s
-wqDCoMKgwqDCoMKgwqAgfMKgIDQgKysrKwo+IMKgLi4uL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0
-ZWsvbWVkaWF0ZWssY29sb3IueWFtbMKgwqDCoMKgwqAgfMKgIDQgKysrKwo+IMKgLi4uL2JpbmRp
-bmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssbWVyZ2UueWFtbMKgwqDCoMKgwqAgfMKgIDQg
-KysrKwo+IMKgLi4uL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWsscGFkZGluZy55
-YW1swqDCoMKgIHwgMTAgKysrKysrKy0tLQo+IMKgNCBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRp
-b25zKCspLCAzIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxhYWwueWFtbCBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVr
-LGFhbC55YW1sCj4gaW5kZXggY2YyNDQzNDg1NGZmLi4xNDc5MDM1ZGE0MDkgMTAwNjQ0Cj4gLS0t
-IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVk
-aWF0ZWssYWFsLnlhbWwKPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-ZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxhYWwueWFtbAo+IEBAIC0yNSw2ICsyNSwxMCBAQCBw
-cm9wZXJ0aWVzOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gbWVkaWF0ZWssbXQ4MTczLWRpc3At
-YWFsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBtZWRpYXRlayxtdDgxODMtZGlzcC1hYWwKPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVrLG10ODE5NS1tZHAzLWFhbAo+ICvCoMKgwqDC
-oMKgIC0gaXRlbXM6Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAtIGVudW06Cj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIC0gbWVkaWF0ZWssbXQ4MTg4LW1kcDMtYWFsCj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoCAtIGNvbnN0OiBtZWRpYXRlayxtdDgxOTUtbWRwMy1hYWwKPiDCoMKgwqDCoMKgwqAg
-LSBpdGVtczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGVudW06Cj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVrLG10MjcxMi1kaXNwLWFhbAo+IGRpZmYgLS1naXQgYS9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRl
-ayxjb2xvci55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
-bWVkaWF0ZWsvbWVkaWF0ZWssY29sb3IueWFtbAo+IGluZGV4IDdkZjc4NmJiYWQyMC4uNzk5YzBi
-OGZjMWY5IDEwMDY0NAo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGNvbG9yLnlhbWwKPiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxjb2xvci55YW1s
-Cj4gQEAgLTI3LDYgKzI3LDEwIEBAIHByb3BlcnRpZXM6Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-LSBtZWRpYXRlayxtdDgxNjctZGlzcC1jb2xvcgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gbWVk
-aWF0ZWssbXQ4MTczLWRpc3AtY29sb3IKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVr
-LG10ODE5NS1tZHAzLWNvbG9yCj4gK8KgwqDCoMKgwqAgLSBpdGVtczoKPiArwqDCoMKgwqDCoMKg
-wqDCoMKgIC0gZW51bToKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBtZWRpYXRlayxt
-dDgxODgtbWRwMy1jb2xvcgo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogbWVkaWF0ZWss
-bXQ4MTk1LW1kcDMtY29sb3IKPiDCoMKgwqDCoMKgwqAgLSBpdGVtczoKPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAtIGVudW06Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVr
-LG10NzYyMy1kaXNwLWNvbG9yCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLG1lcmdlLnlhbWwgYi9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxtZXJn
-ZS55YW1sCj4gaW5kZXggZGFlODM5Mjc5OTUwLi40MTVhMjViYzE4ZmEgMTAwNjQ0Cj4gLS0tIGEv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0
-ZWssbWVyZ2UueWFtbAo+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLG1lcmdlLnlhbWwKPiBAQCAtMjUsNiArMjUsMTAgQEAg
-cHJvcGVydGllczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVrLG10ODE3My1kaXNw
-LW1lcmdlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBtZWRpYXRlayxtdDgxOTUtZGlzcC1tZXJn
-ZQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gbWVkaWF0ZWssbXQ4MTk1LW1kcDMtbWVyZ2UKPiAr
-wqDCoMKgwqDCoCAtIGl0ZW1zOgo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBlbnVtOgo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIG1lZGlhdGVrLG10ODE4OC1tZHAzLW1lcmdlCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBtZWRpYXRlayxtdDgxOTUtbWRwMy1tZXJnZQo+IMKg
-wqDCoMKgwqDCoCAtIGl0ZW1zOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IG1lZGlh
-dGVrLG10Njc5NS1kaXNwLW1lcmdlCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogbWVk
-aWF0ZWssbXQ4MTczLWRpc3AtbWVyZ2UKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWsscGFkZGluZy55YW1sIGIv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0
-ZWsscGFkZGluZy55YW1sCj4gaW5kZXggYmUwN2JiZGM1NGUzLi44Njc4Nzg2NmNlZDAgMTAwNjQ0
-Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0
-ZWsvbWVkaWF0ZWsscGFkZGluZy55YW1sCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWsscGFkZGluZy55YW1sCj4gQEAgLTIw
-LDkgKzIwLDEzIEBAIGRlc2NyaXB0aW9uOgo+IMKgCj4gwqBwcm9wZXJ0aWVzOgo+IMKgwqAgY29t
-cGF0aWJsZToKPiAtwqDCoMKgIGVudW06Cj4gLcKgwqDCoMKgwqAgLSBtZWRpYXRlayxtdDgxODgt
-ZGlzcC1wYWRkaW5nCj4gLcKgwqDCoMKgwqAgLSBtZWRpYXRlayxtdDgxOTUtbWRwMy1wYWRkaW5n
-Cj4gK8KgwqDCoCBvbmVPZjoKPiArwqDCoMKgwqDCoCAtIGVudW06Cj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoCAtIG1lZGlhdGVrLG10ODE4OC1kaXNwLXBhZGRpbmcKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-IC0gbWVkaWF0ZWssbXQ4MTk1LW1kcDMtcGFkZGluZwo+ICvCoMKgwqDCoMKgIC0gaXRlbXM6Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBtZWRpYXRlayxtdDgxODgtbWRwMy1wYWRkaW5n
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBtZWRpYXRlayxtdDgxOTUtbWRwMy1wYWRk
-aW5nCj4gwqAKPiDCoMKgIHJlZzoKPiDCoMKgwqDCoCBtYXhJdGVtczogMQo=
+Le mercredi 18 d=C3=A9cembre 2024 =C3=A0 11:53 +0100, AngeloGioacchino Del =
+Regno a =C3=A9crit=C2=A0:
+> Add compatible strings for the FG, HDR, RSZ, STITCH, TCC, TDSHP
+> and WROT hardware components found in MediaTek's MT8188 SoC.
+>=20
+> This hardware is compatible with MT8195.
+>=20
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
+Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+> ---
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-fg.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 | 8 ++++++--
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-hdr.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 8 ++++++--
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-rsz.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 1 +
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-stitch.yaml=C2=A0=C2=A0=
+ | 8 ++++++--
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-tcc.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 8 ++++++--
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-tdshp.yaml=C2=A0=C2=A0=
+=C2=A0 | 8 ++++++--
+> =C2=A0.../devicetree/bindings/media/mediatek,mdp3-wrot.yaml=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 1 +
+> =C2=A07 files changed, 32 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yam=
+l b/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+> index 03f31b009085..40fda59fa8a8 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
+> @@ -16,8 +16,12 @@ description:
+> =C2=A0
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> -=C2=A0=C2=A0=C2=A0 enum:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195-mdp3-fg
+> +=C2=A0=C2=A0=C2=A0 oneOf:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195=
+-mdp3-fg
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8188-mdp3-fg
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8195-mdp3-fg
+> =C2=A0
+> =C2=A0=C2=A0 reg:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.ya=
+ml b/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+> index d4609bba6578..d9f926c20220 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
+> @@ -16,8 +16,12 @@ description:
+> =C2=A0
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> -=C2=A0=C2=A0=C2=A0 enum:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195-mdp3-hdr
+> +=C2=A0=C2=A0=C2=A0 oneOf:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195=
+-mdp3-hdr
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8188-mdp3-hdr
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8195-mdp3-hdr
+> =C2=A0
+> =C2=A0=C2=A0 reg:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.ya=
+ml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> index f5676bec4326..8124c39d73e9 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> @@ -20,6 +20,7 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,m=
+t8183-mdp3-rsz
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - mediatek,mt8188-mdp3-rsz
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - mediatek,mt8195-mdp3-rsz
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: med=
+iatek,mt8183-mdp3-rsz
+> =C2=A0
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-stitch=
+.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+> index d815bea29154..1d8e7e202c42 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-stitch.yaml
+> @@ -16,8 +16,12 @@ description:
+> =C2=A0
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> -=C2=A0=C2=A0=C2=A0 enum:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195-mdp3-stitch
+> +=C2=A0=C2=A0=C2=A0 oneOf:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195=
+-mdp3-stitch
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8188-mdp3-stitch
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8195-mdp3-stitch
+> =C2=A0
+> =C2=A0=C2=A0 reg:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.ya=
+ml b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> index 14ea556d4f82..6cff7c073ce4 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
+> @@ -17,8 +17,12 @@ description:
+> =C2=A0
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> -=C2=A0=C2=A0=C2=A0 enum:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195-mdp3-tcc
+> +=C2=A0=C2=A0=C2=A0 oneOf:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195=
+-mdp3-tcc
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8188-mdp3-tcc
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8195-mdp3-tcc
+> =C2=A0
+> =C2=A0=C2=A0 reg:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.=
+yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+> index 8ab7f2d8e148..cdfa27324738 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-tdshp.yaml
+> @@ -16,8 +16,12 @@ description:
+> =C2=A0
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> -=C2=A0=C2=A0=C2=A0 enum:
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195-mdp3-tdshp
+> +=C2=A0=C2=A0=C2=A0 oneOf:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,mt8195=
+-mdp3-tdshp
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8188-mdp3-tdshp
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: mediatek=
+,mt8195-mdp3-tdshp
+> =C2=A0
+> =C2=A0=C2=A0 reg:
+> =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.y=
+aml b/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+> index 53a679338402..b6269f4f9fd6 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+> @@ -20,6 +20,7 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - mediatek,m=
+t8183-mdp3-wrot
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - mediatek,mt8188-mdp3-wrot
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - mediatek,mt8195-mdp3-wrot
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: med=
+iatek,mt8183-mdp3-wrot
+> =C2=A0
 
