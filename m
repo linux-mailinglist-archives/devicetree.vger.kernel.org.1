@@ -1,123 +1,179 @@
-Return-Path: <devicetree+bounces-166606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ACB5A87C99
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:58:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5D2A87CBF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 247747A1349
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:57:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84BE71885660
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884FF264FB4;
-	Mon, 14 Apr 2025 09:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDA6190679;
+	Mon, 14 Apr 2025 10:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDcbPhRp"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="OwQcbk2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E0C18BC3F;
-	Mon, 14 Apr 2025 09:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB862258CEE
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 10:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744624687; cv=none; b=B2/u+rOU5Pfor9sXGvMXhfC2qfVTokMGd3VEzqB1rHVYofAZ0VXAfQWBGeVuA7iDTzrGC4jWpGKn/n1HhRNypVNvPvYvIEXlQRsxBI9qcMwcQ540yjvybwufj2U434MyvJTz1TIlQRXJhu+XcYBfB0kEF+ONPB6COqq7ClQ/FbY=
+	t=1744624946; cv=none; b=bUbX8h0dnJCbOmbUetwrCqAWDpXw4SVRvjAQQPBqhUMUtrEPKvvsUJ7UFebuiQfo9F1qdB18s+WGr0kebT6WV6zN6jRsJgfcvr2BQTPJxZl45E/CU8yxay+hl6xMqcS8bJSUa5fdpxsGKbMbWQety4gIIVfdKfKuPV7zJwlm57o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744624687; c=relaxed/simple;
-	bh=uaSJgPqB1v1GlnR5cJtgoNbh6JzLoEdGEFovlyKRAxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rwhn0Kp4iQ9E1VdOzFRc2gy53OpEK4pmndTPLZroMnZwR3zaSqtPxPdHRntvcnPfBJC72of52xTTyJJqlZyRZTHLBZBDbDxy1jMVI7CNR+JWGL6qd1pOKWdqXJlrqKQ2fB3mhObt/XePYE/THikpFvCh9bjXh+Y59zd4fYWkKBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nDcbPhRp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3983C4CEE5;
-	Mon, 14 Apr 2025 09:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744624685;
-	bh=uaSJgPqB1v1GlnR5cJtgoNbh6JzLoEdGEFovlyKRAxo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nDcbPhRpNXrv4rtCzBXqAWis4gfMqYYtxXMQrktM2iGPk8YXGOjFCGtnzEReghBlD
-	 csqOxEbzxcB5UAd+ZtsYhGC6A3XNaX1L+U882/7tRmh2AfCeAr4Yx2fr8EjUqLIzwC
-	 KtyeRc6gmcditYUROzPtyL/hKEQVh0obll5HTjjzN9ItRcO2jmYziFg0SOVUyikNXr
-	 4D8bA4VMYFNMuZpPEaMCIyhZ5qn2HiwgbkHY1Ll670zLGQRUgjoF/9MhVJcAVEJKG/
-	 c8ZOCy1jcdk4nfHQn5TxCN9PZZb0PrS81JGexNQgXRdCGxGKk+skuKVnUIyRUfDLcF
-	 M12X/IeOW3iKA==
-Message-ID: <c923c877-3d34-47c1-96ae-5ba6c3a39ebd@kernel.org>
-Date: Mon, 14 Apr 2025 12:58:00 +0300
+	s=arc-20240116; t=1744624946; c=relaxed/simple;
+	bh=FfLFviB1dgFGoRFmstXijEl6bx0DXQ/QuRWLNagTGrc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fzijjcp1dQ/TsoeTf06CYsbwGDqxIHmRJ/efhoXQdQcneznA3miMCRxG7e8rIxaWQXI5oJ5gGm1qtsB3qn1nsRjaejXlcMIVYdtVHyq5YWh4nCXNU080Hza7pjbIO5c4WeoFd/RvQRv0bnuPoAMT6EUtKVufyfy/GabluO3Ngvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OwQcbk2s; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-type:content-transfer-encoding; s=k1; bh=g
+	C+3HXcqHlrIg8k1i6gZ+tETFXVfKFnaUdkkcsMJ0/k=; b=OwQcbk2sWQSHPtRUQ
+	GDkuybFKPqT3ZkeMMvlEkSm5butJPjmxLN8a3ZHC/pbhLj5kJeXWfWGweSCdkwrn
+	w0hurVnPyFgLHV7nT3j3M+KuuCCnTIx/BZDdxMaCSxzw5Au7K5r77qH2Q0y9OMuK
+	iDcJ17So7wcGQqUIsb8000gvRviTu1LUWbOlQrO1i6iykDP634HHX+WQAWRaIJM8
+	WG7sL5l/snGGLBmGms/XPSkxScu8rqGceB/FfAxY+H142k7ee2mSmdDcCygZaAkD
+	YkmUDHkHZLUnIfeOftA+aQPbAULfqtMx0iBWGx1v07xLuay+MTJNsKCDLUbsCGg5
+	4T5PA==
+Received: (qmail 2241609 invoked from network); 14 Apr 2025 12:02:20 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Apr 2025 12:02:20 +0200
+X-UD-Smtp-Session: l3s3148p1@DgvOJboybJcujnth
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: Add GMAC1 port
+Date: Mon, 14 Apr 2025 12:01:13 +0200
+Message-ID: <20250414100206.7185-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V10 3/7] interconnect: qcom: Add multidev EPSS L3 support
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Odelu Kukatla <quic_okukatla@quicinc.com>,
- Mike Tipton <quic_mdtipton@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250324183203.30127-1-quic_rlaggysh@quicinc.com>
- <20250324183203.30127-4-quic_rlaggysh@quicinc.com>
-Content-Language: en-US
-From: Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20250324183203.30127-4-quic_rlaggysh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 24.03.25 20:31, Raviteja Laggyshetty wrote:
-> EPSS on SA8775P has two instances, necessitating the creation of two
-> device nodes with different compatibles due to the unique ICC node ID
-> and name limitations in the interconnect framework. Add multidevice
-> support for the OSM-L3 provider to dynamically obtain unique node IDs
-> and register with the framework.
-> EPSS topology includes a single master-slave pair within the same
-> provider, the node linking logic is simplified by directly connecting
-> the master node to the slave node.
-> 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->   drivers/interconnect/qcom/osm-l3.c | 36 ++++++++++--------------------
->   1 file changed, 12 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-> index 6a656ed44d49..43e67d2116b9 100644
-> --- a/drivers/interconnect/qcom/osm-l3.c
-> +++ b/drivers/interconnect/qcom/osm-l3.c
-> @@ -1,6 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
->    * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
->    */
->   
->   #include <linux/args.h>
-> @@ -48,16 +49,10 @@ struct qcom_osm_l3_icc_provider {
->   /**
->    * struct qcom_osm_l3_node - Qualcomm specific interconnect nodes
->    * @name: the node name used in debugfs
-> - * @links: an array of nodes where we can go next while traversing
-> - * @id: a unique node identifier
-> - * @num_links: the total number of @links
->    * @buswidth: width of the interconnect between a node and the bus
->    */
->   struct qcom_osm_l3_node {
->   	const char *name;
-> -	u16 links[OSM_L3_MAX_LINKS];
+This port bypasses the switch and is directly connected to the GMAC.
 
-Please remove also the #define for OSM_L3_MAX_LINKS, as it's unused now.
+Co-developed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-> -	u16 id;
-> -	u16 num_links;
->   	u16 buswidth;
->   };
->
+Based on renesas-dts-for-v6.16 as of today.
 
-BR,
-Georgi
+ .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+index e539df514d1e..975446b2ac97 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+@@ -15,6 +15,42 @@ / {
+ 		     "renesas,r9a06g032";
+ };
+ 
++&gmac1 {
++	pinctrl-0 = <&pins_eth0>, <&pins_mdio0>;
++	pinctrl-names = "default";
++
++	status = "okay";
++	phy-mode = "rgmii-id";
++	phy-handle = <&phy_mii0>;
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		compatible = "snps,dwmac-mdio";
++
++		phy_mii0: ethernet-phy@8 {
++			reg = <8>;
++			leds {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				led@0 {
++					reg = <0>;
++					color = <LED_COLOR_ID_GREEN>;
++					function = LED_FUNCTION_LAN;
++					default-state = "keep";
++				};
++
++				led@1 {
++					reg = <1>;
++					color = <LED_COLOR_ID_ORANGE>;
++					function = LED_FUNCTION_ACTIVITY;
++					default-state = "keep";
++				};
++			};
++		};
++	};
++};
++
+ &i2c2 {
+ 	/* Sensors are different across revisions. All are LM75B compatible */
+ 	sensor@49 {
+@@ -23,6 +59,11 @@ sensor@49 {
+ 	};
+ };
+ 
++&mii_conv1 {
++	renesas,miic-input = <MIIC_GMAC1_PORT>;
++	status = "okay";
++};
++
+ &mii_conv2 {
+ 	renesas,miic-input = <MIIC_SWITCH_PORTD>;
+ 	status = "okay";
+@@ -34,6 +75,23 @@ &mii_conv3 {
+ };
+ 
+ &pinctrl {
++	pins_eth0: pins-eth0 {
++		pinmux = <RZN1_PINMUX(0, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(1, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(2, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(3, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(4, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(5, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(6, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(7, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(8, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(9, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(10, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
++			 <RZN1_PINMUX(11, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
++		drive-strength = <6>;
++		bias-disable;
++	};
++
+ 	pins_eth1: pins-eth1 {
+ 		pinmux = <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+ 			 <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+@@ -68,6 +126,11 @@ pins_eth2: pins-eth2 {
+ 		bias-disable;
+ 	};
+ 
++	pins_mdio0: pins-mdio0 {
++		pinmux = <RZN1_PINMUX(150, RZN1_FUNC_MDIO0_GMAC0)>,
++			 <RZN1_PINMUX(151, RZN1_FUNC_MDIO0_GMAC0)>;
++	};
++
+ 	pins_sdio1: pins-sdio1 {
+ 		pinmux = <RZN1_PINMUX(95, RZN1_FUNC_SDIO)>,
+ 			 <RZN1_PINMUX(97, RZN1_FUNC_SDIO)>,
+-- 
+2.47.2
+
 
