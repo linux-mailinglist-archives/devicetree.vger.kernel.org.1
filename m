@@ -1,150 +1,237 @@
-Return-Path: <devicetree+bounces-166676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79FAFA87FFF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:08:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D62A88006
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABEA53A18DA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:07:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BE9D3A62A5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD2329DB7F;
-	Mon, 14 Apr 2025 12:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010612BD591;
+	Mon, 14 Apr 2025 12:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="eBYdtTrT"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Adt+S7Q5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A1E29CB40;
-	Mon, 14 Apr 2025 12:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 286A529C34F;
+	Mon, 14 Apr 2025 12:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744632462; cv=none; b=QV/iVxihO70WGXc4DfjomCTtmqBF1/WuR5nyZDWNHFO0uqAuzWMY3OYqxKEmme5PDx29WzTxkuRRRK0z2gMvfS3oa+iHxRKCqZY3lBcZ29yARXOWdX+UrZCsHo9RWaM3/J5pzQkNe9RJkk4FksVMebuouhawUs/qg/wQDigTCkE=
+	t=1744632596; cv=none; b=cHxe2IWBYvciOO81NoB/HqYV6WAAYMu6pFZ1FYgoc3ItGTofvC20hK94JXGWWZOHBHNtn904+1N7dArNmrWsv+Uau5eMz68cH6XB/OXZGusG0a7nU57KbUdpJpxJP3NhycW5861Nso0XVrAD0t6YnCAMZjK/EBzKePvb+IH5EyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744632462; c=relaxed/simple;
-	bh=i7fjaaffP15XqkniyfX75okb0C6c8PrElL3LeRzWROM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oruzzaswpZezPgmNGLvb/wc4+v+gStkH+Ztz1wm8V8HDSycmLV2JI3r2E5gDOK2VnWoc6MWnRrpK52kPnuDvYvSgB2hfHI0gY/FwPLAtb55SvjZ25CdwxNVbbw1qRXyNbKVPX9wBAdJQsdiww/7rh5m6FbzQYq+IOXPrKtq8mZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=eBYdtTrT; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:2dc0:c767:bd08:cc70:b57a])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 98DEF4CE;
-	Mon, 14 Apr 2025 14:05:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744632337;
-	bh=i7fjaaffP15XqkniyfX75okb0C6c8PrElL3LeRzWROM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eBYdtTrTSjty2OFqvMHEBm3LzQykQ/BAtHcpCLiKmRTDE75RUuAz/mbzgnjYthV9l
-	 21W0gW7ZbNgPsSn0uc0jzJov4/C9tPw8ZMLzsWz2iXQrNnevvKgDdHbf1jn1Y6kebI
-	 LR97sDij1fnLgnKdUfu4TyMbyUiV0YGHjPsg1Ga8=
-Date: Mon, 14 Apr 2025 17:37:31 +0530
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>, 
-	Shawn Guo <shawnguo2@yeah.net>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, m.felsch@pengutronix.de, 
-	bsp-development.geo@leica-geosystems.com, stefan.klug@ideasonboard.com, laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-Message-ID: <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
-References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
- <ZxYiCv6SpLq9uh08@dragon>
+	s=arc-20240116; t=1744632596; c=relaxed/simple;
+	bh=3wFAQ0bfmajHT5gHApNJl6KfzdiirBoLJLZBwl7ntrs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=aEgFeHmd1P5QgI2vkbP8kHE5EpGEp1wK5CAyf4PFx20zwurdo0jf96aeVRnEjN1ONG55YHZIZiZ43Jj4nndOjCxCPm6jJhCbKCRbSVBvKJn19Ne9Cjj+LuTK8kQ/to7FxS4+XeK5Xp0+KfaalMLe5JuZW7NSRz6PUVqQ8z7XkOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Adt+S7Q5; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744632571; x=1745237371; i=wahrenst@gmx.net;
+	bh=Xp75qIMm57nPPVP8J/rsf6yDNuT8ofPVgHhiAuNSxeI=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Adt+S7Q58ZFbuxAVqbEHCpygKTx6tn4q8QFotlb4nz9t3K9hHxvdOH/1pAT7pDKq
+	 7K00hQI/NjI8dhXowu96FesxpdRIAkVhl1AETvGYXKo7gqF3fv+Fwx4ND4ER/RD2y
+	 ELkGEIzv+5pCMk6VBKZbfg3Ix86aTtbSsWt/fENeELl+/i3HHem1d++0CE5u+KUhl
+	 NgqMqn4ICiQFQn6id9mrXwC7AMh+1c8O1Qe7YgMaeNSLE1uILdOvMmsERdUwLF/Jl
+	 +xl7Pcjbxqrt6LNfi0ot6A0mu+Wp3iTkvLGpZVMmJDlJOOShnLQsJH+YlHLKBL9pf
+	 Ly//gAj0bMnUHv2S/A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MXXyP-1tWtt73HQ7-00Jmb6; Mon, 14
+ Apr 2025 14:09:30 +0200
+Message-ID: <23ac3d05-5fb7-4cd8-bb87-cf1f3eab521d@gmx.net>
+Date: Mon, 14 Apr 2025 14:09:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="b2c4etq6n6kvcnzt"
-Content-Disposition: inline
-In-Reply-To: <ZxYiCv6SpLq9uh08@dragon>
-
-
---b2c4etq6n6kvcnzt
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 05/13] clk: rp1: Add support for clocks provided by RP1
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <cover.1742418429.git.andrea.porta@suse.com>
+ <370137263691f4fc14928e4b378b27f75bfd0826.1742418429.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <370137263691f4fc14928e4b378b27f75bfd0826.1742418429.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-MIME-Version: 1.0
+X-Provags-ID: V03:K1:jVwfn61L1l623hq7JXUK39FgY+Ke6mJ2vq3rv9zPlizsfdYXY7A
+ 2eFM7o4p/xMmoEYRWw3X5rZ9EwLs3HX0RNGwjh32MBVmJ5tPIWKJD3TZOSZ5mQ9ScVCGxhS
+ vZxFeauGQHcerGX4V2kn7p5gOHGCNFF+iuDo1OHP9HHq1BHKzBHpm8KosKpBNLrmbKyMqZa
+ ufvid/6nBIWqMTvIQqIYw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:tB7vyzX7o7A=;RW1rgnOFo0RixCKF/d2mYwqmzGx
+ gSFo/UeVvOCf8bVNC1Pj3NvNg4zJkY2004QcR9y+HC+L9+2uD13HLgztYw34Eqy/JQFtZnJSh
+ tsP1fuZth67d3KlO5JOyvYsSToFt2mGGZCPx/jhttn2z6otSqiviaOL0CjzN2I1vpxQpaib+e
+ HpTPgSz2QuMBb11T2VbJtGnA7hl9YwHqfL9VpD0cRn+E7HiSXxn/kg0AfwgOES61fERkhXxXX
+ N8CqWE4HHFISvUiC964Z8hB+AE5Gn3LwmQ4c2+FJeIOG6CPRjzlMjIWj10Ucncaj91yFH/p2y
+ CsjdMjb2SwMOP3LzZVzujsM2AaoFmLkGd0TMGhP2oRkMxMos/Vzg6/9kH5aFAPojtRI3weHgZ
+ mBKwKjhhpWuxjbBKH8Kw/TtEI+hArfK25tHFEmHM/xLZtODPYIEDRxCP0Ajz//YOHVbn2zXZV
+ GkcQzwL0Nr1DmTIC6TMM1I8FE2PRerSZS3/OIJxTUtjWq6kWunHUzak5KymWS5qLSHPp/joxD
+ V1s7ZzdV53RFNVC4eEJxNeVyPUdoL02WLzuMAYcJ4rEoxOO6LCSM1eqiNGKy+vB56rQQt8p0+
+ YaIhNK4URPD4bPcQzCZuGVzUKItTkxWZo+uqd6ZFNBjmrwWhQzh8g5eYZmGuUZVkq2wggYGUp
+ kdpPgEKHa58d8XSwi9ZK3Rz4NKk9Gqq4YHaKljiEgFF856gzEvLaAT28quohPIz3Qk8s7elrs
+ 721i8oM45qWxYxeoe8nXLalgEUfdajTRc2lsI6vZDKNPzmI2tm0W5iXXznsPLnuyzuFHlAmh/
+ Nq1uEtn80MHmaXPa9jluhzG2TJvd9UH6RRX4iDWvRQPkeIVuDX9pxZ1D4rY0eNUO2r4BkmTo3
+ VIFvwwPS6WNJUnXOJsS225ihQIxBao3xVA8pzL9pFpKdmA56O0RiAdfLGRThRxbeptsHFq3ag
+ sQXdvxBQWfpeUjlT0xYEn7EDFjlsCBSeyzGSvrrbGnjPvaeqaHGMsmr+Bh4gUtlHfy5FihEbq
+ Ydud5f8o1RCCbMtl1JFKrbfb/KPKF0IOLCbySmGELYixS75meuWv+UzBksXhIWSZJJxPwk+AK
+ S/KvqBqKiUBQWMkbBy6R9Yl+Bi9LjmWwnQhnJajIp1ksZU+I+q6CKi2FwRJuHr1BcZ5/OcY6n
+ Xg0mmgKkb7028ajltzj5lHq3xoa6vy58CfZyxMRSj5q46oQNCmFdJbc5ijAv0Laiheg01kcuB
+ PgKlduTSecrLH5OQpUT+C98gY7zi0EeHf8S2hE2wnL1RwP4ddWOHoeomzOF8EzyxeLSXwA5C+
+ B2x/genRqFN6zZMzhsFkcVtBuozi3z6AI2DP92pkRH1wbAZpWxEoxf1b8xYZnVQ4og66l02y/
+ rhyKF2O/8nZYHtPRC2ORjtO1vRVK9m/Dbdo5E3aM25e3tya4bp/Gk1PgQuDefWuNp2Ym2Bos9
+ 1dHlIJr5UGJta6dClhb240M3P0aNwZQRADOsrn9mmblCnJoFT
 
-Hi Catalin, Shawn,
+Hi Andrea,
 
-On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
-> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
-> > So far, only WFI is supported on i.MX8mp platform. Add support for
-> > deeper cpuidle state "cpu-pd-wait" that would allow for better power
-> > usage during runtime. This is a port from NXP downstream kernel.
-> >=20
-
-Since the introduction of this patch in mainline, I am facing sluggish=20
-network performance with my Debix Model-A board with i.MX8mp SoC.
-
-The network latency jumps to >1s after almost every other packet:
-
-PING debix (10.0.42.5) 56(84) bytes of data.
-64 bytes from debix (10.0.42.5): icmp_seq=3D1 ttl=3D64 time=3D1008 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D2 ttl=3D64 time=3D0.488 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D3 ttl=3D64 time=3D1025 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D4 ttl=3D64 time=3D0.810 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D5 ttl=3D64 time=3D590 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D6 ttl=3D64 time=3D0.351 ms
-^C
---- debix ping statistics ---
-7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
-rtt min/avg/max/mdev =3D 0.351/437.416/1024.755/459.370 ms, pipe 2
-darkapex at freya in ~
-
-If I revert the patch, or disable the deeper cpuidle state through=20
-sysfs, the issue goes away.
-
-# echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
-
-PING debix (10.0.42.5) 56(84) bytes of data.
-64 bytes from debix (10.0.42.5): icmp_seq=3D1 ttl=3D64 time=3D0.482 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D2 ttl=3D64 time=3D2.28 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D3 ttl=3D64 time=3D2.26 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D4 ttl=3D64 time=3D0.848 ms
-64 bytes from debix (10.0.42.5): icmp_seq=3D5 ttl=3D64 time=3D0.406 ms
-^C
---- debix ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4051ms
-rtt min/avg/max/mdev =3D 0.406/1.255/2.280/0.842 ms
-
-> > Signed-off-by: Catalin Popescu=20
-> > <catalin.popescu@leica-geosystems.com>
->=20
-> Applied, thanks!
->=20
->=20
-
-Thanks,
-Jai
-
---b2c4etq6n6kvcnzt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmf8+oMACgkQQ96R+SSa
-cUUNPg//anR3yxnNmlggeRsPCsaXgpxgH5UJ7tzVGaft9KVR/F/gw/8q2uj9AfTu
-uOfUd2n31EPxw+JLA3YDL7SNENesWvNnPAmKYIhajou7fgsm1q+gejvni8XntT3A
-uxI1ewvh8irH9fDFNNLrxkVLKpTowPUXEwHxCMC/SdxugUxUk0yOJdX+N9Rm5xw2
-VeRxmnj6v0Tv9x0ZRZPKNyTVDncRhFia6r4UJWTWCbGZotzKqNK8NbTmlsZ76pw6
-RPNwoRNs6GSZnY0kOLv16PN5PkVKSB8/NwUcPcsqAJXNqx28Bu9jzHjvdLPZ5XDo
-WWrcC9eK30I8H/Fb6X1r9qZ6B99UiMgAu0rVI8WdOkkHN0MZMGvICq4FSMgOyFhc
-+W5Hf6b61EnPAVRRYb3LxrQL41r3D5c3N7ZMyGCri2DeOft9X2L1KeE0W7txBSnX
-s2iofxxOBc/p0qP0wsm+Q60Sm7VH9NbA1POhT1/UL0m5xl7Y1wlHXovGrUNL9q71
-8WlGI1+H1vAhZxelmZofWV8AgmZKrC3tHReGdQqk2q2lhOyfS1zNYWYPQwcR8agm
-t0MdrTPDHi4LtpYQSBr6BvWhHf8Wsd+9z9jTWeP2bB4i9sVncybB2lnYrE1g0l1V
-VCfKJ5GncNuftXQULhFsY9qu9iaVIMXVbHDSlyhyn7pyDFmY+uo=
-=mTz8
------END PGP SIGNATURE-----
-
---b2c4etq6n6kvcnzt--
+Am 19.03.25 um 22:52 schrieb Andrea della Porta:
+> RaspberryPi RP1 is an MFD providing, among other peripherals, several
+> clock generators and PLLs that drives the sub-peripherals.
+> Add the driver to support the clock providers.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>   MAINTAINERS           |    5 +
+>   drivers/clk/Kconfig   |    9 +
+>   drivers/clk/Makefile  |    1 +
+>   drivers/clk/clk-rp1.c | 1512 +++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 1527 insertions(+)
+>   create mode 100644 drivers/clk/clk-rp1.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 896a307fa065..75263700370d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19748,6 +19748,11 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
+>   F:	drivers/media/platform/raspberrypi/rp1-cfe/
+>
+> +RASPBERRY PI RP1 PCI DRIVER
+> +M:	Andrea della Porta <andrea.porta@suse.com>
+> +S:	Maintained
+> +F:	drivers/clk/clk-rp1.c
+> +
+>   RC-CORE / LIRC FRAMEWORK
+>   M:	Sean Young <sean@mess.org>
+>   L:	linux-media@vger.kernel.org
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 713573b6c86c..cff90de71409 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -88,6 +88,15 @@ config COMMON_CLK_RK808
+>   	  These multi-function devices have two fixed-rate oscillators, clock=
+ed at 32KHz each.
+>   	  Clkout1 is always on, Clkout2 can off by control register.
+>
+> +config COMMON_CLK_RP1
+> +	tristate "Raspberry Pi RP1-based clock support"
+> +	depends on MISC_RP1 || COMPILE_TEST
+> +	default MISC_RP1
+> +	help
+> +	  Enable common clock framework support for Raspberry Pi RP1.
+> +	  This multi-function device has 3 main PLLs and several clock
+> +	  generators to drive the internal sub-peripherals.
+> +
+>   config COMMON_CLK_HI655X
+>   	tristate "Clock driver for Hi655x" if EXPERT
+>   	depends on (MFD_HI655X_PMIC || COMPILE_TEST)
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index bf4bd45adc3a..ff3993ed7e09 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -84,6 +84,7 @@ obj-$(CONFIG_CLK_LS1028A_PLLDIG)	+=3D clk-plldig.o
+>   obj-$(CONFIG_COMMON_CLK_PWM)		+=3D clk-pwm.o
+>   obj-$(CONFIG_CLK_QORIQ)			+=3D clk-qoriq.o
+>   obj-$(CONFIG_COMMON_CLK_RK808)		+=3D clk-rk808.o
+> +obj-$(CONFIG_COMMON_CLK_RP1)            +=3D clk-rp1.o
+>   obj-$(CONFIG_COMMON_CLK_HI655X)		+=3D clk-hi655x.o
+>   obj-$(CONFIG_COMMON_CLK_S2MPS11)	+=3D clk-s2mps11.o
+>   obj-$(CONFIG_COMMON_CLK_SCMI)           +=3D clk-scmi.o
+> diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
+> new file mode 100644
+> index 000000000000..72c74e344c1d
+> --- /dev/null
+> +++ b/drivers/clk/clk-rp1.c
+> @@ -0,0 +1,1512 @@
+> +// SPDX-License-Identifier: GPL-2.0
+...
+> +
+> +static int rp1_pll_divider_set_rate(struct clk_hw *hw,
+> +				    unsigned long rate,
+> +				    unsigned long parent_rate)
+> +{
+> +	struct rp1_clk_desc *divider =3D container_of(hw, struct rp1_clk_desc,=
+ div.hw);
+> +	struct rp1_clockman *clockman =3D divider->clockman;
+> +	const struct rp1_pll_data *data =3D divider->data;
+> +	u32 div, sec;
+> +
+> +	div =3D DIV_ROUND_UP_ULL(parent_rate, rate);
+> +	div =3D clamp(div, 8u, 19u);
+> +
+> +	spin_lock(&clockman->regs_lock);
+> +	sec =3D clockman_read(clockman, data->ctrl_reg);
+> +	sec &=3D ~PLL_SEC_DIV_MASK;
+> +	sec |=3D FIELD_PREP(PLL_SEC_DIV_MASK, div);
+> +
+> +	/* Must keep the divider in reset to change the value. */
+> +	sec |=3D PLL_SEC_RST;
+> +	clockman_write(clockman, data->ctrl_reg, sec);
+> +
+> +	/* TODO: must sleep 10 pll vco cycles */
+Is it possible to implement this with some kind of xsleep or xdelay?
+> +	sec &=3D ~PLL_SEC_RST;
+> +	clockman_write(clockman, data->ctrl_reg, sec);
+> +	spin_unlock(&clockman->regs_lock);
+> +
+> +	return 0;
+> +}
+> +
+>
 
