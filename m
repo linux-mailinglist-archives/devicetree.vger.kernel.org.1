@@ -1,139 +1,93 @@
-Return-Path: <devicetree+bounces-166649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA305A87E7F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FD1A87EC5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:16:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84E13175F54
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:09:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900421764D1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:15:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C2828FFD4;
-	Mon, 14 Apr 2025 11:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34BBF2D3A84;
+	Mon, 14 Apr 2025 11:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bm83xP1t"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Jy7KsT7T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D207BDF42;
-	Mon, 14 Apr 2025 11:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214E627EC91
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:12:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744628961; cv=none; b=nXSy1s99Pg6nm/gVRyijlkjIxYFKwPBZw9FP/1hLb5CI5nQP795U+RvN5s3ltIdIrvaU7FwccNHVzFYEuIWLznc0W3ODk4uVoc14FjUyJk783ZeAR3rmgYlZMb55kAbPU6HxOwLUJByZ56eYNo95VykaLoXyPyCKV46aL/Mifms=
+	t=1744629165; cv=none; b=Bvt4EwGaGEUA54PQ4ptcauy0AILqi6uAtDrxtHmKVHor3ViKiG6Pk0od8UbCq3o3M1YssRWNCneqIpJ0zjy0yxBAjBv77aGUpQ5luv3x9ybU6b/3DF1R5WGG8vm6r/VgbegLNDy8aOHSg+8KjRByiUrYctOw2ChDH2HjlUu7cjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744628961; c=relaxed/simple;
-	bh=wjnJnWMkojXnEo1V8ScaOLq3IF7OMdLybc1gyWhzlmI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ISiavuy50rncFW8y6kSXqKMOeB1BDly7yS5kV96Ob4Lsfja0kMVXE8dYAAtN4w1ZUyVxmp/ef2YdceSGfXDl+84aD+gvMybpZ6iEJtDRDVg4pwqxLQuPb7QHTGEj/wu4irE33ssYq9QQht3b+nCBrrITyp7ZRJ3v49JJ27oGQKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bm83xP1t; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744628955;
-	bh=wjnJnWMkojXnEo1V8ScaOLq3IF7OMdLybc1gyWhzlmI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bm83xP1tD0JnIrATrbQIMEtpktlE/Z1bIw1eXJGyGVv1ngWG1Hro9fHFlmCy7g/GX
-	 Qn2A4ntb4XnkqFJO0J+0h6YAodB5abD4pjeEQFiWvtwApTKkShnIIGIWWCNW9JZRQk
-	 FofNz1nxl8itoPV4dRoHgYmBdVqvdpesiUk6Rdaq/ElUPqHUry2ysa2Vvyjef3+Izj
-	 mG6OX0Zp9gSUX/IM5z5qt4kRMKAFCJO+JXeaKmZ9wJ1ltT0atdhHTWMI8ql3yYLIv8
-	 vBUTkP96MILKzAH01LORDHQipJUWx60mLLoLArD2OGq9ubX64BsrE44tyo780JFp8j
-	 rreUitkY3193w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 224D717E00AC;
-	Mon, 14 Apr 2025 13:09:15 +0200 (CEST)
-Message-ID: <968001f7-96d1-4ad5-8c36-28cac5dc30f1@collabora.com>
-Date: Mon, 14 Apr 2025 13:09:14 +0200
+	s=arc-20240116; t=1744629165; c=relaxed/simple;
+	bh=dortTU+yJBLsP5gkHyoSI9rkyc/vP2fYW0eCLR+36mw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YrmCeJZ20blQqNGzVW6ehQHiyMxRRwc15zpZxr5DmgVbW42/oPyrwjdcL6lHIYNLFSRj+MZlWtO+uisc9B+k6xG4/eemQX+7ckkcHziqhhWYCa+WLhQakguSB7joCCPg36Xp5GzDqyXBVHlYZtfZNIzRhLe33ze52h8BxfVIYuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Jy7KsT7T; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=jeuyOoKfBW6dzL
+	2II+vz4GMreRmAuX8fAw4x9taGFcI=; b=Jy7KsT7Try/illiyoGw/XEd8rICle5
+	MJeSPSjFVOP/EEpACpDnq9Jyjdi1LrQSsi8hvC1wCtajCO6K2X51ZHImVc82zYbZ
+	a0Jg6Qf2lrPRvg8b/f7qRxvcsvA9BE8jXGw24I8FKazrgGl07EkTCXBbzf7eW0mD
+	zFWUlSY4ZeUCVqoUO0cA5X1NgURkfuMj0zgE9tPcy+Xek7NDTW8MQGKZJvFUwp4x
+	FGtvWhkTP0qkKjc1d1AhWNc/VnjYLTsmg2wx9fWjUNMcsw/jXfRZJBRsrZ6MS1ZE
+	cG9xIw7XO2HQMomujjMcsDW11nOg3lEGOMf59tFuJl9Y21xYF4osLu1g==
+Received: (qmail 2268485 invoked from network); 14 Apr 2025 13:12:37 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Apr 2025 13:12:37 +0200
+X-UD-Smtp-Session: l3s3148p1@hvA0IbsyaJoujnth
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [RFC PATCH 0/2] ARM: dts: renesas: r9a06g032: rework UARTs
+Date: Mon, 14 Apr 2025 13:12:18 +0200
+Message-ID: <20250414111218.7641-4-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] rtc: mt6397: Remove start time parameters
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Eddie Huang <eddie.huang@mediatek.com>, Sean Wang
- <sean.wang@mediatek.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
- <20250109-enable-rtc-v3-4-f003e8144419@baylibre.com>
- <20250411133609a1295543@mail.local> <202504111339359e840246@mail.local>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <202504111339359e840246@mail.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 11/04/25 15:39, Alexandre Belloni ha scritto:
-> On 11/04/2025 15:36:12+0200, Alexandre Belloni wrote:
->> On 11/04/2025 14:35:57+0200, Alexandre Mergnat wrote:
->>> The start time parameters is currently hardcoded to the driver, but
->>> it may not fit with all equivalent RTC that driver is able to support.
->>>
->>> Remove the start_secs and set_start_time value setup because it
->>> will be handled by the rtc_device_get_offset function using the
->>> start-year DTS property.
->>>
->>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->>> ---
->>>   drivers/rtc/rtc-mt6397.c | 2 --
->>>   1 file changed, 2 deletions(-)
->>>
->>> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
->>> index 692c00ff544b2..d47626d47602f 100644
->>> --- a/drivers/rtc/rtc-mt6397.c
->>> +++ b/drivers/rtc/rtc-mt6397.c
->>> @@ -291,8 +291,6 @@ static int mtk_rtc_probe(struct platform_device *pdev)
->>>   	rtc->rtc_dev->ops = &mtk_rtc_ops;
->>>   	rtc->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_1900;
->>>   	rtc->rtc_dev->range_max = mktime64(2027, 12, 31, 23, 59, 59);
->>> -	rtc->rtc_dev->start_secs = mktime64(1968, 1, 2, 0, 0, 0);
->>> -	rtc->rtc_dev->set_start_time = true;
->>>   
->>
->> This is going to break the time for people upgrading their kernel, you
->> are unfortunately stuck with this.
->>
-> 
-> To be clear, the breakage will happen when upgrading the kernel but not
-> the device tree with 5/5
-> 
+The intention of this series is to enable the UART attached to the
+9-pin-SubD connector on the extentsion board (patch 2). I got confused
+while doing this, because currently the uarts are counted from 0 in the
+SoC DTSI while they start from 1 in the documentation and the
+schematics. Thus, patch 1 renames the labels accordingly. However, the
+series is still RFC because I am calling for opinions if we maybe also
+want to fix the pinmux defines like this one 'RZN1_FUNC_UART2? to the
+official numbering?
 
-Yes, you're stuck with this. Devicetree has to be retrocompatible.
+Looking forward to comments...
 
-Besides, this start_secs is what gets used by default, and the start-year
-devicetree property should take precedence and effectively override the
-start_secs default.
+Based on renesas-dts-for-v6.16 as of today + my GMAC1 patch sent a few
+minutes ago.
 
-Just keep it there.... :-)
+Wolfram Sang (2):
+  ARM: dts: renesas: r9a06g032: rename uart port labels
+  ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe 9-pin SubD-serial
+    port
 
-Cheers,
-Angelo
+ .../boot/dts/renesas/r9a06g032-rzn1d400-db.dts   |  4 ++--
+ .../boot/dts/renesas/r9a06g032-rzn1d400-eb.dts   | 15 +++++++++++++++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi         | 16 ++++++++--------
+ 3 files changed, 25 insertions(+), 10 deletions(-)
 
->>>   	return devm_rtc_register_device(rtc->rtc_dev);
->>>   }
->>>
->>> -- 
->>> 2.25.1
->>>
->>
->> -- 
->> Alexandre Belloni, co-owner and COO, Bootlin
->> Embedded Linux and Kernel engineering
->> https://bootlin.com
-> 
-
-
+-- 
+2.47.2
 
 
