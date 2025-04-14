@@ -1,267 +1,194 @@
-Return-Path: <devicetree+bounces-166663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E58A87F34
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:37:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50996A87F3B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:38:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 427CA1895949
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 079ED3B2D84
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70CA2980BA;
-	Mon, 14 Apr 2025 11:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B84429617A;
+	Mon, 14 Apr 2025 11:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FBlrnFEB"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="H0sFDIZs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1192980AC
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:37:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91731A9B4A;
+	Mon, 14 Apr 2025 11:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744630644; cv=none; b=qww9ZVAVrtby0WzZDhBYFf0P4jJ/E/WuV3DTl3jCikiknKZx9UW65jCJHGQn8sQgKmHtypV43ClfbaX9uh67Wm71vwlMzuSyi4G6RHjf1kluvLb07avIDTQgfmUm4rVS/UIH+LY2BVRNsvbOYmUORJ+n0fC0uX6NLiT+18oo1Go=
+	t=1744630732; cv=none; b=m3wH0s99TFfqUGhrgmKNb27R9ALMPS4/jaY9XSuFtmWtJYre/7A8kkJX7nlrj2DV5dvLyI6CEgHJzP4CCh3hO6+xDLTFG7q40rKdOHSmETENQ9oS0mf14/wbpzFSdz2T2JJ+bsKvIgsp0DfDd6BZgu+RU7zG69YfMBMxDS7fNm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744630644; c=relaxed/simple;
-	bh=oGZ6xM8AWaXT8X3mogpWhv7okTX7LwNl+X1QYCAsue0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K/RPtT53D3lVEF3X1yELerGRvdEaSXB8MBn3wK90O3z8JYM4SIDozBhrswWCsb7DSOA1NL4xTT2NHTYR0a5PFMX4cOEdxtLLELMvMgqF8vYbQhBKNbcJn+XtDT/eidLa2FL2sPN+crTjpSdkzZXaGmbJVsllaWh0nfzCWhQnSa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FBlrnFEB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99mbf012971
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:37:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=m+XZ5UGJ/cw2rjUWCkVkP2GZ
-	xzsxlJK/WCISXUsWDgk=; b=FBlrnFEBEUZZeLsBrt4qkNM8rnE0w0y81jObOsym
-	2jr5tnCrgDgIFWI5rb+uWYIIeYsCicDsYMZ+Hp8EgXn3D2e2M6wDu7sVJM33UMhO
-	0hWOMuerdNbmkIBCHn4fACvefH4VyTrhG0L0Le3qp5EScsUc8Xof4A3qpv+SaNeu
-	JSoJpz90WjscpEXaAydj3azBFH1Mey0Q1xqehv9N6yeDrMCWdT1B66UU18XzQyK2
-	t/BXe//WjZvzo5H1s1qlSdReVWr6KbzwA7fTXK3G0B+ZhMl+qvgAiZlcm95gdWXh
-	WDBBkOgUQJWJ1cIo3zd4+Mk+nx/MC1tEJMqlfqrFsUaDRw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygj94c4q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 11:37:21 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5c77aff78so1293364885a.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 04:37:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744630641; x=1745235441;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m+XZ5UGJ/cw2rjUWCkVkP2GZxzsxlJK/WCISXUsWDgk=;
-        b=kz/RQ4lOa4NtLL+dN4gLo81RjYD1wGHvgDMmvE+hoZ2LJNnZWgbH9eBkz4QLxFxbik
-         J9qokcndyH5PVOJzBZ6IzZIkZf/67hEoXW0sEeNNr3iHtK8ajVSmnihBX9sbPsNqpGZC
-         VflAZBvOW8AE6UGGeeE8HDT2Q6ST83hIYF1L9aXQN+KU4DyzPyKGD/ipSRxt8oT3PJjm
-         8s3FrkctjGSY6VWvJQ6kkIeerijoiG0isqX7MSOaJk8gYoFmdboM+Jvm7957Fvc/M0/G
-         fZqDQW+XYJWHdEX7aYKQ7d5nPxYh/2NP56QjllBB4ZyUjgZKt57SYe3lOJlxDgVrDuIM
-         RW+w==
-X-Forwarded-Encrypted: i=1; AJvYcCU2SRpD/7FiozAyQZsJCIeFiBsh1zczGgW7m2HpAxNFtJT4+vWjSky8Trhv5PDYY0Qll+LqCgr2Er08@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywe/YsGWKn/0Ka2DjRXqws8rmhjgz5O1UV0F/yAbnQXTk0UX/NY
-	c5gUNO7FMUy6eCs4dZL0fLBNlmX1ESZzFQnCpW14HnJnxTbf3xJTwfh0alce8DdGgp7w0ZjWqZX
-	agnLEdVaXszXbaInZ3eCpWCcRYJ1oRX+Ry1Mdrq3AGTwJwxdxOg0akxtk19B2
-X-Gm-Gg: ASbGncu6n63PSQLtEd/048m02KD1aTOXoCGNbEUEsViCwTCHZMjjgzmW2qF5aujwp9e
-	pDk714grC+K1XmdlSMSecfLE2BwDT3CJ9E5fu1eFmg9Bpixt8EjwFDDxK4XO8Cs1ianpS4rgDmE
-	PAUDJxILg0/AX6xxcw9mNYdDPRCBfvJSLIWWaYBFQgeaBdQBqQm9XqVrckem6V/pbXy9yYfEHOu
-	HBet/neJ+fwPx5lc2BMW6UfRlbN2tyOWNywTF83+/dS9EmViEVNS6pF7xGRvGIZ3sWpEcP2jpbw
-	y9I3W1adlxLC6qkbdtX+CPCu59kN3tJaodGS21on71zHh+Y9nFC0ziyzMpx2+oclheG0lyL6/UY
-	=
-X-Received: by 2002:a05:620a:4614:b0:7c5:4de8:bf65 with SMTP id af79cd13be357-7c7af11fe6dmr2323420485a.36.1744630640825;
-        Mon, 14 Apr 2025 04:37:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFbw+g6u8oZDQ91VXBKSLoF7oGbpWST7/9WsxZFJCG+ePEvjN0CGI7O5W9I4H6AJsXJ84jRzg==
-X-Received: by 2002:a05:620a:4614:b0:7c5:4de8:bf65 with SMTP id af79cd13be357-7c7af11fe6dmr2323412585a.36.1744630640230;
-        Mon, 14 Apr 2025 04:37:20 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d510b43sm1082671e87.201.2025.04.14.04.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 04:37:18 -0700 (PDT)
-Date: Mon, 14 Apr 2025 14:37:16 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sar2130p: add display nodes
-Message-ID: <umhperyjdgiz4bo6grbxfhe44wiwoqb3w3qrzg62gf3ty66mjq@pddxfo3kkohv>
-References: <20250314-sar2130p-display-v2-0-31fa4502a850@oss.qualcomm.com>
- <20250314-sar2130p-display-v2-10-31fa4502a850@oss.qualcomm.com>
- <c14dfd37-7d12-40c3-8281-fd0a7410813e@oss.qualcomm.com>
+	s=arc-20240116; t=1744630732; c=relaxed/simple;
+	bh=tw8NicR85wtZWn7+Of5iPSQ4ltvwsaFU5yYg/jkmpFA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=OB4ZKpkdozPf0cc8Jq7ehoZ1lNtgveD5kGX1GS2UiomOebP3vyB2iKqFQCqSeD4v2yu54SpAh/X/uBxv7HL6neGRaSItUPqaGh58Tw4L/7Mfv9BdZa0wi+QnaUiJkUPFSwFnI0XrFZ2BpsrgunG2+ToPXARIk66MpKucuCuS0+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=H0sFDIZs; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744630711; x=1745235511; i=wahrenst@gmx.net;
+	bh=5Yqz6YDLmosCf4LwVIBid/uZpaNuifGBNUOWF1Ok3z8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=H0sFDIZsvbu7eadEOfhvpsig557h5T4fVsdqhIrBvDjjyxf+kw5m2dYClZv3FATR
+	 rpATfe2E5LMuvoZL8B+aKpyj9Bwg6//OnkxVxgdoXrv68ycU9zOh7uIVb8CLp9w0I
+	 VzBOxdVZvAvqby0MLfPVA7ztYVMQijJ3rtzDfCXt0Hh/vgaU0FltcFkW1Z+af9u2C
+	 913J6HX7dOF21eWTKxsYC4hwGs4yvnVHVXlNnef9DAy+MGPXvImJzcJgNKeOk03oB
+	 zO6aC/1IhSLQgshoySKcyTB1EBJzg6aItmds8ZWWjpkWREKzfjphWDQDJ1/7TzqjH
+	 pZEyJzAGIDZaxAaRqg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M1poA-1u26Hv1PB2-00DKvJ; Mon, 14
+ Apr 2025 13:38:31 +0200
+Message-ID: <abb3405a-45fb-4425-a817-89a03b0c16c4@gmx.net>
+Date: Mon, 14 Apr 2025 13:38:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c14dfd37-7d12-40c3-8281-fd0a7410813e@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: 3ae7DAw762SE-g2LtUDKc5MQmH-YhQLx
-X-Authority-Analysis: v=2.4 cv=PruTbxM3 c=1 sm=1 tr=0 ts=67fcf371 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=Dsw0btoO4blozC8r0tUA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: 3ae7DAw762SE-g2LtUDKc5MQmH-YhQLx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 clxscore=1015 spamscore=0 mlxscore=0 mlxlogscore=598
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140084
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 10/13] arm64: dts: Add overlay for RP1 device
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <cover.1742418429.git.andrea.porta@suse.com>
+ <ab9ab3536baf5fdf6016f2a01044f00034189291.1742418429.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <ab9ab3536baf5fdf6016f2a01044f00034189291.1742418429.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:m8JLxCwdInGWwVIBpPbWU85afGcQak8XuDSiAyyOP0EmeklFBz0
+ hl4x34oAp+KNiLjDCLAoxHrznsBPvcnDWCFB193V4upZYpMs40GI2TqwkaQ6gaacflG7bOQ
+ EMPaxpr1mFixC81q0mbv+LRK8wc44QYFoCnKnP6uT1vlasOa6ZQCCtek/T2Kz9SKVqA1bFJ
+ wdUbubZcymN48TQHDXT0w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:EhsPipdgz2M=;g3X/9zeu8NWjQ6d/rmQ0irfcxJ/
+ XzlBaf60rX/TLoFVsn5MVtvPRLvOEiKdfGSUC2bX2UBW0EpJOJWfagXAKhkfoBkCMlwm+tZpw
+ yYaJ+bIiqADOU/+GZ3dSVaQMzLVKMESLZJorEtoqtT49HEFCVfMAVFrcxlr/FnodYVTuvqBLI
+ 2jd+2LK6QUd6RMo3b5S1tiP3NkJTLX65UIGJb+EX3QKlzcBbuDtqET0D5edbUxhgiK+1aEPao
+ RqNr7IiJFI9AP4Yk5T3RjT5KsrBN+BJ7kt5Z9V/lQvOqwL9RDiMH94pi/6xu9MCZ3TeN8n4Lk
+ WC0tILwnOgBUzD2ZYLdI1yjpGzRSOYNN3y5NGaK1kYHJ29X2kyN+H0HZD1em6uskGWU3v5B6o
+ +Jsi+HUlsphsvY9OM8lubZC9dqQ2DzWvUZkKS7dzSO1ugQcH3nt/UXxzAyh7xKYClx0WUgFvh
+ QJ1a4rI4nl43TZ4E7uoLMWHAwn+cdy+iFFUQcCSC0J/WYgvhm9NtLaloCHypcu4DECk/EN1KM
+ yf57bYcS92ZavxWNGeoNMOSwd/zp0hMQPBF1BSPVPWOZZ5z1iBaK9k4o36xnLrDNZrVJeD4OP
+ IcLtxlUtrRE5KH/+F9jWouP9eNhK+hesGmYyvY/P7RnDdBeGfdXjPc9oKEk1OJqHN4wLXFzik
+ roe44AAeU5YSHd3NZ8j/5tDyKiRklQYpjlqVbAnd4jIVpXZK/o6DZWiyZRmhcCtPP0ZMgeUro
+ ytiZQqeQMCDdYBupYDfclhA+Zgh72EYTt8OUImEIdiDMILHbUtZk/RyXn39oY+cRiKa2LBUK/
+ 0ElUSPw4u++83Pu+kOYpXRuf0lmJ3obBHSgkdKbNh6AVWlbHuvnEKXRaAbhROt1b2c1a5S2/H
+ JvrGHvmGwapmXSL/y7bKIZRbIwEsnff8fsyKRBQyRd6w1smn1gK2A9UEuuIvWQ7egeQo1i4PL
+ l+fDr4/1GbDzkXXDlHHg5d6eBEAIJMIhKWs8eaIt/Fa9wOTDj0xUF8Dr6gvAhrqJ0ZEkZ9oF0
+ mtD2MCFsFlpijH8E3NeRoJCAI0wuEbGPD5dvv6K+vIo+LyQpKjdUNw5PZVWNFR3smQdC4u7oh
+ XYu9Zv4PO6cu+8A6HIJ6KvmYj0GCVxzUkXkZsE3ZdmlA/W09eZmJzNG3b/vQOQdGY18GoJsZw
+ 3TRjhx1bvUtr/jUtoSSaTPJ1iJAtK2nfLkrv8i/rJqBko+T7nDfLx1KIqKoOGZWkks1r8f5zU
+ aqN2d+8ChDTNSFENFKtnofG/2w/7U7vnkncD134pe6x9S/0xaZwBIsGyAQD2G5oSsHR+Wr3/o
+ yiC8Jdj9mo1q/5fKhnM4RLVQNrUfWocUhqMig2BqR8ovSxtNEInnV/QlaAxcPG8+iKRqjnIak
+ HpFb5XQquykn9MQLQx6/9+vrpAyceuUW9Tx1hEBYooWafXQerd482sXlUw1Riuw8zk3NuYQ7a
+ 3wMVDcCP5dcHNixEAYB82cPXEpmg=
 
-On Mon, Apr 14, 2025 at 01:13:28PM +0200, Konrad Dybcio wrote:
-> On 3/14/25 7:09 AM, Dmitry Baryshkov wrote:
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > 
-> > Add display controller, two DSI hosts, two DSI PHYs and a single DP
-> > controller. Link DP to the QMP Combo PHY.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> 
-> [...]
-> 
-> > +			mdss_mdp: display-controller@ae01000 {
-> > +				compatible = "qcom,sar2130p-dpu";
-> > +				reg = <0x0 0x0ae01000 0x0 0x8f000>,
-> > +				      <0x0 0x0aeb0000 0x0 0x2008>;
-> 
-> size = 0x3000
+Hi Andrea,
 
-Existing platforms (including SM8650) use 0x2008 here. Would you like to
-change all the platforms and why?
+just a nit. Could you please add "broadcom:" to the subject?
 
-> 
-> [...]
-> 
-> > +
-> > +			mdss_dp0: displayport-controller@ae90000 {
-> > +				compatible = "qcom,sar2130p-dp",
-> > +					     "qcom,sm8350-dp";
-> > +				reg = <0x0 0xae90000 0x0 0x200>,
-> > +				      <0x0 0xae90200 0x0 0x200>,
-> > +				      <0x0 0xae90400 0x0 0xc00>,
-> > +				      <0x0 0xae91000 0x0 0x400>,
-> > +				      <0x0 0xae91400 0x0 0x400>;
-> > +				interrupt-parent = <&mdss>;
-> > +				interrupts = <12>;
-> > +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> > +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> > +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-> > +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-> > +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-> > +				clock-names = "core_iface",
-> > +					      "core_aux",
-> > +					      "ctrl_link",
-> > +					      "ctrl_link_iface",
-> > +					      "stream_pixel";
-> > +
-> > +				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-> > +						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-> > +				assigned-clock-parents = <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> > +							 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-> > +
-> > +				phys = <&usb_dp_qmpphy QMP_USB43DP_DP_PHY>;
-> > +				phy-names = "dp";
-> > +
-> > +				#sound-dai-cells = <0>;
-> > +
-> > +				operating-points-v2 = <&dp_opp_table>;
-> > +				power-domains = <&rpmhpd RPMHPD_MMCX>;
-> > +
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@0 {
-> > +						reg = <0>;
-> > +
-> > +						mdss_dp0_in: endpoint {
-> > +							remote-endpoint = <&dpu_intf0_out>;
-> > +						};
-> > +					};
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +
-> > +						mdss_dp0_out: endpoint {
-> > +							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-> > +						};
-> > +					};
-> > +				};
-> > +
-> > +				dp_opp_table: opp-table {
-> > +					compatible = "operating-points-v2";
-> > +
-> > +					opp-162000000 {
-> > +						opp-hz = /bits/ 64 <162000000>;
-> > +						required-opps = <&rpmhpd_opp_low_svs_d1>;
-> > +					};
-> 
-> > +
-> > +					opp-270000000 {
-> > +						opp-hz = /bits/ 64 <270000000>;
-> > +						required-opps = <&rpmhpd_opp_low_svs>;
-> > +					};
-> > +
-> > +					opp-540000000 {
-> > +						opp-hz = /bits/ 64 <540000000>;
-> > +						required-opps = <&rpmhpd_opp_svs_l1>;
-> > +					};
-> Weirdly enough the 540 rate isn't in the clock plan for the pclk
-> and so isn't 162
+Am 19.03.25 um 22:52 schrieb Andrea della Porta:
+> Define the RP1 node in an overlay. The inclusion tree is
+> as follow (the arrow points to the includer):
+>
+>                        rp1.dtso
+>                            ^
+>                            |
+> rp1-common.dtsi ----> rp1-nexus.dtsi
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+> This patch can be considered optional, since it fills just the second
+> scenario as detailed in [1], which is the RP1 DT node loaded from a dtb
+> overlay by the FW at early boot stage.
+> This may be useful for debug purpose, but as such not strictly necessary=
+.
+>
+> [1] https://lore.kernel.org/all/CAMEGJJ0f4YUgdWBhxvQ_dquZHztve9KO7pvQjoD=
+WJ3=3Dzd3cgcg@mail.gmail.com/#t
+> ---
+>   arch/arm64/boot/dts/broadcom/Makefile |  3 ++-
+>   arch/arm64/boot/dts/broadcom/rp1.dtso | 11 +++++++++++
+>   2 files changed, 13 insertions(+), 1 deletion(-)
+>   create mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
+>
+> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts=
+/broadcom/Makefile
+> index 4836c6da5bee..58293f9c16ab 100644
+> --- a/arch/arm64/boot/dts/broadcom/Makefile
+> +++ b/arch/arm64/boot/dts/broadcom/Makefile
+> @@ -13,7 +13,8 @@ dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
+>   			      bcm2837-rpi-3-b.dtb \
+>   			      bcm2837-rpi-3-b-plus.dtb \
+>   			      bcm2837-rpi-cm3-io3.dtb \
+> -			      bcm2837-rpi-zero-2-w.dtb
+> +			      bcm2837-rpi-zero-2-w.dtb \
+> +			      rp1.dtbo
+>  =20
+>   subdir-y	+=3D bcmbca
+>   subdir-y	+=3D northstar2
+> diff --git a/arch/arm64/boot/dts/broadcom/rp1.dtso b/arch/arm64/boot/dts=
+/broadcom/rp1.dtso
+> new file mode 100644
+> index 000000000000..ab4f146d22c0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/rp1.dtso
+> @@ -0,0 +1,11 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&pcie2 {
+> +	#address-cells =3D <3>;
+> +	#size-cells =3D <2>;
+> +
+> +	#include "rp1-nexus.dtsi"
+> +};
 
-Nevertheless we need them for the DP to work.
-
-> 
-> > +
-> > +					opp-810000000 {
-> > +						opp-hz = /bits/ 64 <810000000>;
-> > +						required-opps = <&rpmhpd_opp_nom>;
-> > +					};
-> > +				};
-> > +			};
-> 
-> [...]
-> 
-> > +				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
-> > +						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-> > +				assigned-clock-parents = <&mdss_dsi0_phy 0>,
-> > +							 <&mdss_dsi0_phy 1>;
-> 
-> Krzysztof recently introduced defines for these
-
-Ack, I will update once we resolve two remaining points.
-
-> 
-> Konrad
-
--- 
-With best wishes
-Dmitry
 
