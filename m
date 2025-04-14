@@ -1,41 +1,87 @@
-Return-Path: <devicetree+bounces-166714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E80FA88159
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:14:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 567B4A88186
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:17:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CF091643FC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:14:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FBA9188940D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 13:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BA32D1F6F;
-	Mon, 14 Apr 2025 13:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130B44C9F;
+	Mon, 14 Apr 2025 13:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LbrucH6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029902BEC2D;
-	Mon, 14 Apr 2025 13:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7842846447
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744636436; cv=none; b=QybrmnmpWoFVCJVbZndD5PTDEqd6RrBO0UFMP5K9ZsVvlhSfnME80LNyPQg7QSZbjvbEhHIWcr3zc4TpUeKq+DSaIReVLwG7Ui2cmwo3CY10b7zTaBDbi3sbHG5rA4SclvNv3lXj9GqpQp80huHrwSLt1NsQbVBt9vvl6Q3W17k=
+	t=1744636633; cv=none; b=nZXQvBMKFUN5ykWRRf4LsK1cCzGBXm8hEllIvmLGBsjyd7Jyv/JkyAhCjF2X2rZ6NirfZx8rmxSBq7KFqeGKfvjxwj94q86XKl/qNseq2yztWbEh+jYiPsyJaD/jgeAccFzN0dG6gAkkJBIPFshgFiaPreJRr+4GfOlq7QnP7zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744636436; c=relaxed/simple;
-	bh=1lQ7JQW5S4G+/LBdiOzM9bdyiUOGo93ut2ZCIvpNqNo=;
+	s=arc-20240116; t=1744636633; c=relaxed/simple;
+	bh=Zrb43kFWTVR3Ap7CSrwLk4KdL5IDZkubcFHeBrO1oPE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BxwiZ9j1eSeV1eQAd6T8C8nlJY4JTmcYzLxfLFKm6JdhUib5spHQQRDAXGfJNaSSrlDm7Aue1eluvcvnk/qZz9BKGiW0UkKQmGSEaA5d7/+EBX454cO6ToRYw1G4b1eqGlVH3chfcd6tXBE7LgQo14Zg8gqx++gJuSq7/9Tw854=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: Q88s0WCoTpy8kQw+Z7mjWQ==
-X-CSE-MsgGUID: BdcF5JAqRmKL37V0LnFwwQ==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 14 Apr 2025 22:13:47 +0900
-Received: from [10.226.92.218] (unknown [10.226.92.218])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 71E9041C595F;
-	Mon, 14 Apr 2025 22:13:39 +0900 (JST)
-Message-ID: <f20e6589-37d9-458b-af82-92fb1ed0db18@bp.renesas.com>
-Date: Mon, 14 Apr 2025 14:13:37 +0100
+	 In-Reply-To:Content-Type; b=VrRMekApqSf7e2DR66Tii46w2pBMt4KM3P83w9Si3CKNk3G3BF+GcxfRNSgV2bSgs8aGLPbwRi6eRIZPUKFNFZr4x2nHeY8ipwKwXeLpm1/zbbLmGqVw/M1+JXM24ONwo7tzgYtyE/PFu6tdeCM77crJCySACLgAv74YpzOaGKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LbrucH6q; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99otk031351
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:17:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jhLo8hSG2Sld52yb+t7u12oLKb8fAopxH7KGEdG/7u4=; b=LbrucH6qkNHhnwDq
+	VqnpY1Uu8aBi8aT+FJVkIaU8ZYRL/rz6ufU4ip4mnCqLAYkJ0OaPiY/j23TFaE0l
+	YKkTRQftvLF3mpuXf8/NMJMH23E2XduSwpoAk25TMveScHlywqdbT73Wnr8QcUk7
+	8pS9v275A7I20BwTvszBWhrW+5fJZU10moodSdyHboSQMArAvJkkcGmO5gHsbvoj
+	kvY1sx8Wij1X+IkEgRBeqh/VuqSk9/u2zCs3ghYDfAQ2vwt45Gn7mEW68TkGet/x
+	seRCC4ZdBquBDq2XzX5ncnoLAfaWJU2ecqNK7uERhnuOvlHcundxmb8mc3A2TiDs
+	nupA+A==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygxjvhtw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:17:10 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c7789335f7so17993785a.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 06:17:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744636629; x=1745241429;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhLo8hSG2Sld52yb+t7u12oLKb8fAopxH7KGEdG/7u4=;
+        b=xPycSos3rl4zDwHPQF8TeDqygREmr0SWHl6g+6MrckbkhzNO/XEyPUZqLgnPLqsTi/
+         wKHoNZFvjBwV53ghfr/7anHlHwyVJvKa07OKwwHkftmkmzE7oRW0p3VbwWuFDSk73VBj
+         55vrrOxZYoSR3ofEqeIWpS910J/QUP1UeL5+IuqEh1hTKaO3DiwQc/ZQWwQRr5qhS5tV
+         /I5F5MYRg+cYqsizcb2wSWu1AtJDdyAFf2rtXZrTKUuTctqJ/VLLrKtCAtCvX9pUXvww
+         a/2LDA3yrdUyi6nWZ1h6V1sUCzL6UHpFwueMF+SOyvdzxRRRrq86WCUKL6ARSfqplVvt
+         XKZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUG8a3FGx9oeqlUQTIVDtqF9OEnEHIzXI4s9xVvvrCC2nRmdws7StqPgQdzGt7Oleq0AYMD17C6q60E@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvN1nB9sDRTpG2ocAQE1CVJIPcxFx+srE6NEjX/SjRtyHGiI/0
+	rdutXpzX+yyBJN+j6op+RfZwpBcmzP/F6mWX4ROauwBMWn7Qf3Fd0u+OtdL/q0N1i+PNuGz3o4E
+	0++xVJUhLwWGyYzVYVgq/h+RsbrXxH90uoxp5RzyFRePp0K1BjFq54x6bWMov
+X-Gm-Gg: ASbGncs+lS83ck9Kq2HsTQAJGany0LV6rLb2FS/2+p+xgi34Q8thk3a1yP2/IDYs8xN
+	9TjKPeiDr459ttyZ0cv8zEZJCFI17XQCVYItjYNWueOdQMVuDwwus6mgdOz4FWwvM0R+JV2go71
+	2bpOgqJDaJ4VT3pFvAABgZ4lXO/o2JIA/3Kit0wRX79+emzsUJxmQAFl/dktClzzSRAPWA8rAfp
+	DVKO/tlpKXBQuHFGDNc28K5ttWB6/+ZTzS5XZ/e6ZWxrMiGy9+Y1T+2MCdYtcGIe/sXkmxRrfCD
+	SSyFKdDvqyEDEHSN6d+CTOqrwbYzffxDZGpAxqtWhCyxVs+9YTQqu8I7yGva6Z/0vw==
+X-Received: by 2002:a05:620a:4093:b0:7c3:d1b9:e667 with SMTP id af79cd13be357-7c7af1037bfmr760507485a.5.1744636629138;
+        Mon, 14 Apr 2025 06:17:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEt6LiWKzY6fMPs2bAMNAcdjvfSSy0XirJTkEaglVnC5MXIbVEOqGO5m0fSpi/xvMwYDjLw1Q==
+X-Received: by 2002:a05:620a:4093:b0:7c3:d1b9:e667 with SMTP id af79cd13be357-7c7af1037bfmr760496185a.5.1744636626494;
+        Mon, 14 Apr 2025 06:17:06 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36ef61911sm4872735a12.32.2025.04.14.06.17.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 06:17:05 -0700 (PDT)
+Message-ID: <629bcae5-f999-448c-885f-4737ac0c64c3@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 15:17:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,210 +89,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Language: en-GB
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------5XZcBvmkaTabxuEc9swqfILM"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------5XZcBvmkaTabxuEc9swqfILM
-Content-Type: multipart/mixed; boundary="------------ueneKmR1e1Faq6614lRwIjUE";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Message-ID: <f20e6589-37d9-458b-af82-92fb1ed0db18@bp.renesas.com>
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add DWMAC glue layer for
- Renesas GBETH
-References: <20250407120317.127056-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250407120317.127056-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-
---------------ueneKmR1e1Faq6614lRwIjUE
-Content-Type: multipart/mixed; boundary="------------Zc6ku6fXf3RcrzFBSscMfX9c"
-
---------------Zc6ku6fXf3RcrzFBSscMfX9c
+Subject: Re: [PATCH v3 2/4] soc: qcom: llcc-qcom: Add support for LLCC V6
+To: Melody Olvera <quic_molvera@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250324-sm8750_llcc_master-v3-0-2afd5c0fdbde@quicinc.com>
+ <20250324-sm8750_llcc_master-v3-2-2afd5c0fdbde@quicinc.com>
+ <0ca929c6-6ff5-4ab0-8ebf-aed3cc5f350b@oss.qualcomm.com>
+ <92b6ea9d-0b13-472f-afad-2b67d869a0bb@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <92b6ea9d-0b13-472f-afad-2b67d869a0bb@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=WecMa1hX c=1 sm=1 tr=0 ts=67fd0ad6 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=gk2TToWdodi_jzWV97IA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: B_4Ka0_TJBsNK0X-ECnnv1131XY0OGcG
+X-Proofpoint-ORIG-GUID: B_4Ka0_TJBsNK0X-ECnnv1131XY0OGcG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 mlxscore=0
+ impostorscore=0 mlxlogscore=999 spamscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140097
 
-Hi Prabhakar,
+On 4/9/25 11:16 PM, Melody Olvera wrote:
+> 
+> 
+> On 3/26/2025 6:39 AM, Konrad Dybcio wrote:
+>> On 3/24/25 9:29 PM, Melody Olvera wrote:
+>>> Add support for LLCC V6. V6 adds several additional usecase IDs,
+>>> rearrages several registers and offsets, and supports slice IDs
+>>> over 31, so add a new function for programming LLCC V6.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>> ---
+>> [...]
+>>
+>>> +
+>>> +    if (config->parent_slice_id && config->fixed_size) {
+>>> +        attr2_val |= FIELD_PREP(ATTR2_PARENT_SCID_MASK, config->parent_slice_id);
+>>> +        attr2_val |= ATTR2_IN_A_GROUP_MASK;
+>>> +    }
+>> This is fragile if parent_slice_id == 0, but let's say this is not an issue
+>> for now..
+> 
+> Agreed, but I don't anticipate that being an issue. I don't think any slice ID is/will be 0.
+> 
+>>
+>>> +
+>>> +    attr3_val = MAX_CAP_TO_BYTES(config->max_cap);
+>>> +    attr3_val /= drv_data->num_banks;
+>>> +    attr3_val >>= CACHE_LINE_SIZE_SHIFT;
+>>> +
+>>> +    ret = regmap_write(drv_data->bcast_regmap, attr0_cfg, attr0_val);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    ret = regmap_write(drv_data->bcast_regmap, attr1_cfg, attr1_val);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    ret = regmap_write(drv_data->bcast_regmap, attr2_cfg, attr2_val);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    ret = regmap_write(drv_data->bcast_regmap, attr3_cfg, attr3_val);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    slice_offset = config->slice_id % 32;
+>>> +    reg_offset = (config->slice_id / 32) * 4;
+>>> +
+>>> +    wren = config->write_scid_en << slice_offset;If I'm reading the wrappers right, you should be able to drop both the
+>> shifting and intermediate variables with regmap_assign_bits()
+> 
+> I'm not so sure. I tried with regmap_assign_bits and it seems the correct way to use it would be roughly:
+> 
+> regmap_assign_bits(drv_data->bcast_regmap,
+>             cfg->reg_offset[LLCC_TRP_WRS_EN], BIT(config->slice_id),
+>             (bool)config->write_scid_en);
+> 
+> but the third argument is an unsigned int (the BIT(config->slice_id)). I tried just putting the slice_id there,
+> but got some bizarre results leading me to believe that's not the correct way to use this api. If I'm missing
+> something, let me know, but AFAICT, this is six one way, a half-dozen another.
 
-On 07/04/2025 13:03, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Add the DWMAC glue layer for the GBETH IP found in the Renesas RZ/V2H(P=
-)
-> SoC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Yeah let's not waste time on this
 
-[snip]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c =
-b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
-> new file mode 100644
-> index 000000000000..a0f7cacea810
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * dwmac-renesas-gbeth.c - DWMAC Specific Glue layer for Renesas GBETH=
-
-> + *
-> + * The Rx and Tx clocks are supplied as follows for the GBETH IP.
-> + *
-> + *                         Rx / Tx
-> + *   -------+------------- on / off -------
-> + *          |
-> + *          |            Rx-180 / Tx-180
-> + *          +---- not ---- on / off -------
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corporation
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +
-> +#include "dwmac4.h"
-
-I'm looking at this while working on RZ/T2H Ethernet support, clangd
-says inclusion of dwmac4.h is not needed here and compilation succeeds
-with the include removed.
-
-Thanks,
-
---=20
-Paul Barker
---------------Zc6ku6fXf3RcrzFBSscMfX9c
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------Zc6ku6fXf3RcrzFBSscMfX9c--
-
---------------ueneKmR1e1Faq6614lRwIjUE--
-
---------------5XZcBvmkaTabxuEc9swqfILM
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZ/0KAQUDAAAAAAAKCRDbaV4Vf/JGvVy9
-AQC8bBQR7l5ED4UfiLb0EhysVsbVdBOhfqkFNise9GXRIAD+OwNb0RGxiJZGo/+yeHP1gGhfWVRI
-+rBlwKWwdQaQ6A4=
-=dLCZ
------END PGP SIGNATURE-----
-
---------------5XZcBvmkaTabxuEc9swqfILM--
+Konrad
 
