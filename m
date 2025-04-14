@@ -1,304 +1,161 @@
-Return-Path: <devicetree+bounces-166833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4EEA88989
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 897E1A88998
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A80C174FCB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:15:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 950A017A7FA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DDC28A1DC;
-	Mon, 14 Apr 2025 17:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE5C28934A;
+	Mon, 14 Apr 2025 17:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="JOvvIrKn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZ8f2c9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4BA289360;
-	Mon, 14 Apr 2025 17:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395571F236B;
+	Mon, 14 Apr 2025 17:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744650909; cv=none; b=dE6R3Pr4pVNaSWblfKJOnwKbWKmzVRNByeJLwzHH/hQz4X+RBhw06kSpi3ETl4emo1G8we4sj8S8yR1KHlB0LCYruyERwB3+beVfjqXtGhFq+y4jnH7tpRp20gSSyRuDR1D7yh4g8svMUf41xYFZg0dm0DvOz3QvHgnDQOULt2I=
+	t=1744651188; cv=none; b=UvC30c+BF0elcM4NUSeaUBaozCaNSsJw6AySu6YNL5oMqlX6aB3o5qoti4j2JrHWd0YZV0DL1K67O8ryh9Y0/xRqhNjqf4Meh/M6r43hKkWH94UlkANzhmp3rhakXfqT4u+m+OP0DSt6+zGsTBkJVOq5TJ4hvXVtqLM0m/JcJYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744650909; c=relaxed/simple;
-	bh=dlGf92UFV+ckbKnZntoWZ+oVvS5yIxAL0pi0RWf0AKM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mbnj6jvSd4IT1SohiCRcOSdUK3pJIwn+zXD1BE+pJgkggsJTsp9e+jHZgeHbXvcteQxPShIamL/6SXvvhERLueckFN7TQFF8sKqoeE9tGJcYwgfNZOsH3uVMDOVvEdvODFKB6In5LvqIBoFikAjFtaSEzbYbSYPQUfsdWWZCk3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=JOvvIrKn; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id E9B931FC15;
-	Mon, 14 Apr 2025 19:15:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1744650904;
-	bh=T3bc8Op2Zld0Q0DNhuVhhUQ2pn3oSrVd6mywcjBGb5Y=; h=From:To:Subject;
-	b=JOvvIrKnPfFHjN+Y+8h6mkeF4XMJU/ZJtqpayVsgMPiAtTCsHVhc1fYbjjFHcf5af
-	 nfM7Y0Lmgf/PpmJ0n4Y3zjjexl3Rpxt7fG909MvWftfjVGSRUIKHtvEoE5DTf+Buuk
-	 XYZXgTPjR8iU8fvzD8LnRNzTztd/kVUoaoH1SgNewCOAwRT+bfMQmPQbZsj5oOT6F+
-	 JCyuGn9IjHjoyOsuLNedWYKPKFwq9/MfSqz0uijzj3GzUOdlZdHgai1xgOWYRdtGjE
-	 VM6EzdkR3J373xWCtClzOzP8A7UVHdl35DWzlvfQ9gDE20BxOxS53z8DN9bIS4dfFR
-	 L8UqISN7tnwnw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] power: reset: add Toradex Embedded Controller
-Date: Mon, 14 Apr 2025 19:14:55 +0200
-Message-Id: <20250414171455.155155-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250414171455.155155-1-francesco@dolcini.it>
-References: <20250414171455.155155-1-francesco@dolcini.it>
+	s=arc-20240116; t=1744651188; c=relaxed/simple;
+	bh=z37GMPLQfQqtOQrNOtRcvsIzo/ZNg3+Bc9JSK7Jgb08=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jylm6NB7eI/TvUC3ChU4FTrYAU1pip7n8ANijToTvFcrvOgY1qCfFuiISFjc2qOCF/KrG+RU8Gp/8xZI9Y1Nsf3Zcm5Gal/tFcJrlt+jLX8olI5HMUQJ0OJS43wkorImg/DieyEzZ/W3YxMUb9OlbTvuZbGl/PetOhvi6TcruG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZ8f2c9l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C958C4CEE2;
+	Mon, 14 Apr 2025 17:19:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744651187;
+	bh=z37GMPLQfQqtOQrNOtRcvsIzo/ZNg3+Bc9JSK7Jgb08=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AZ8f2c9lqfQZuQfWRr3KwemWv7exS/LcHLgCoLIJY1DNeczSaMQ2+K/p3z/mVRHXf
+	 5fYgsygYh/xIH5tIyU6QCvN2kjL9ycG1XsUaTCvSMyNM4nLwmEiQOuIVQJBGnIU6Wi
+	 eH72/9HbUpRpNs98Zbzt7Vw2DVusLEdBAFtqH9l7CD88Y6x5GgcdBgeL04Bde+YmwC
+	 uvjY5W2kBUh85KIg46dZSjcc6e1uqYGFbQIOnKSpCtulOiaTYwdjG2KKrMZ9DZebqt
+	 cv8y7JFEPsnuR9d4g+wONPywfX0U+hqROxapwUq2PEVZlBBIUUt0Kmcio/GxuCMMnk
+	 0927u0k2ScVQw==
+Date: Mon, 14 Apr 2025 18:19:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Prathosh.Satish@microchip.com,
+	krzk@kernel.org, netdev@vger.kernel.org, vadim.fedorenko@linux.dev,
+	arkadiusz.kubalewski@intel.com, jiri@resnulli.us, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
+	kees@kernel.org, andy@kernel.org, akpm@linux-foundation.org,
+	mschmidt@redhat.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 02/14] dt-bindings: dpll: Add support for Microchip
+ Azurite chip family
+Message-ID: <20250414-residual-unblended-c21c7bc6eeb2@spud>
+References: <20250409144250.206590-3-ivecera@redhat.com>
+ <20250410-skylark-of-silent-symmetry-afdec9@shite>
+ <1a78fc71-fcf6-446e-9ada-c14420f9c5fe@redhat.com>
+ <20250410-puritan-flatbed-00bf339297c0@spud>
+ <6dc1fdac-81cc-4f2c-8d07-8f39b9605e04@redhat.com>
+ <CY5PR11MB6462412A953AF5D93D97DCE5ECB72@CY5PR11MB6462.namprd11.prod.outlook.com>
+ <bd7d005b-c715-4fd9-9b0d-52956d28d272@lunn.ch>
+ <7ab19530-d0d4-4df1-9f75-060c3055585b@redhat.com>
+ <4e331736-36f2-4796-945f-613279329585@lunn.ch>
+ <7e6bf69b-0916-4ad9-b42f-8645f5c95d5d@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2OKUgsrCAQgxlv5y"
+Content-Disposition: inline
+In-Reply-To: <7e6bf69b-0916-4ad9-b42f-8645f5c95d5d@redhat.com>
 
-From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 
-Toradex SMARC iMX8MP and SMARC iMX95 SoM modules use a small Embedded
-Controller (EC) to manage power and reset functions and related SMARC
-signals.
+--2OKUgsrCAQgxlv5y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This driver implements power-off and reboot handlers, communicating with
-the EC via I2C to issue the appropriate power management commands.
+On Fri, Apr 11, 2025 at 11:56:15AM +0200, Ivan Vecera wrote:
+>=20
+>=20
+> On 10. 04. 25 11:12 odp., Andrew Lunn wrote:
+> > On Thu, Apr 10, 2025 at 08:33:31PM +0200, Ivan Vecera wrote:
+> > >=20
+> > >=20
+> > > On 10. 04. 25 7:36 odp., Andrew Lunn wrote:
+> > > > > Prathosh, could you please bring more light on this?
+> > > > >=20
+> > > > > > Just to clarify, the original driver was written specifically w=
+ith 2-channel
+> > > > > > chips in mind (ZL30732) with 10 input and 20 outputs, which led=
+ to some confusion of using zl3073x as compatible.
+> > > > > > However, the final version of the driver will support the entir=
+e ZL3073x family
+> > > > > > ZL30731 to ZL30735 and some subset of ZL30732 like ZL80732 etc
+> > > > > > ensuring compatibility across all variants.
+> > > >=20
+> > > > Hi Prathosh
+> > > >=20
+> > > > Your email quoting is very odd, i nearly missed this reply.
+> > > >=20
+> > > > Does the device itself have an ID register? If you know you have
+> > > > something in the range ZL30731 to ZL30735, you can ask the hardware
+> > > > what it is, and the driver then does not need any additional
+> > > > information from DT, it can hard code it all based on the ID in the
+> > > > register?
+> > > >=20
+> > > > 	Andrew
+> > > >=20
+> > > Hi Andrew,
+> > > yes there is ID register that identifies the ID. But what compatible =
+should
+> > > be used?
+> > >=20
+> > > microchip,zl3073x was rejected as wildcard and we should use all
+> > > compatibles.
+> >=20
+> > You have two choices really:
+> >=20
+> > 1) You list each device with its own compatible, because they are in
+> > fact not compatible. You need to handle each one different, they have
+> > different DT properties, etc. If you do that, please validate the ID
+> > register against the compatible and return -ENODEV if they don't
+> > match.
+> >=20
+> > 2) You say the devices are compatible. So the DT compatible just
+> > indicates the family, enough information for the driver to go find the
+> > ID register. This does however require the binding is the same for all
+> > devices. You cannot have one family member listing 10 inputs in its
+> > binding, and another family member listing 20.
+> >=20
+> > If you say your devices are incompatible, and list lots of
+> > compatibles, you can then use constraints in the yaml, based on the
+> > compatible, to limit each family member to what it supports.
+> >=20
+> > My guess is, you are going to take the first route.
+>=20
+> Yes, this looks reasonable... in this case should I use
+> microchip,zl3073x.yaml like e.g. gpio/gpio-pca95xx.yaml?
 
-During probe, the driver logs the Embedded Controller ID (unique ID for
-each SMARC board supported) in hex format along with the firmware version.
+No, please pick one of the compatibles in the file and name the same as
+one of those.
 
-Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
-v1: https://lore.kernel.org/lkml/20250407114947.41421-1-francesco@dolcini.it/
----
- MAINTAINERS                           |   1 +
- drivers/power/reset/Kconfig           |  13 +++
- drivers/power/reset/Makefile          |   1 +
- drivers/power/reset/tdx-ec-poweroff.c | 150 ++++++++++++++++++++++++++
- 4 files changed, 165 insertions(+)
- create mode 100644 drivers/power/reset/tdx-ec-poweroff.c
+--2OKUgsrCAQgxlv5y
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddb279436f8..ad811c003c51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24413,6 +24413,7 @@ M:	Emanuele Ghidoli <ghidoliemanuele@gmail.com>
- M:	Francesco Dolcini <francesco@dolcini.it>
- S:	Maintained
- F:	Documentation/devicetree/bindings/power/reset/toradex,smarc-ec.yaml
-+F:	drivers/power/reset/tdx-ec-poweroff.c
- 
- TORTURE-TEST MODULES
- M:	Davidlohr Bueso <dave@stgolabs.net>
-diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 60bf0ca64cf3..e71f0af4e378 100644
---- a/drivers/power/reset/Kconfig
-+++ b/drivers/power/reset/Kconfig
-@@ -216,6 +216,19 @@ config POWER_RESET_ST
- 	help
- 	  Reset support for STMicroelectronics boards.
- 
-+config POWER_RESET_TORADEX_EC
-+	tristate "Toradex Embedded Controller power-off and reset driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This driver supports power-off and reset for SMARC Toradex SoMs,
-+	  for example the SMARC iMX8MP and SMARC iMX95, using Toradex
-+	  Embedded Controller (EC).
-+
-+	  Say Y here if you have a Toradex SMARC SoM.
-+
-+	  If unsure, say N.
-+
- config POWER_RESET_TPS65086
- 	bool "TPS65086 restart driver"
- 	depends on MFD_TPS65086
-diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 10782d32e1da..1b9b63a1a873 100644
---- a/drivers/power/reset/Makefile
-+++ b/drivers/power/reset/Makefile
-@@ -24,6 +24,7 @@ obj-$(CONFIG_POWER_RESET_QNAP) += qnap-poweroff.o
- obj-$(CONFIG_POWER_RESET_REGULATOR) += regulator-poweroff.o
- obj-$(CONFIG_POWER_RESET_RESTART) += restart-poweroff.o
- obj-$(CONFIG_POWER_RESET_ST) += st-poweroff.o
-+obj-$(CONFIG_POWER_RESET_TORADEX_EC) += tdx-ec-poweroff.o
- obj-$(CONFIG_POWER_RESET_TPS65086) += tps65086-restart.o
- obj-$(CONFIG_POWER_RESET_VERSATILE) += arm-versatile-reboot.o
- obj-$(CONFIG_POWER_RESET_VEXPRESS) += vexpress-poweroff.o
-diff --git a/drivers/power/reset/tdx-ec-poweroff.c b/drivers/power/reset/tdx-ec-poweroff.c
-new file mode 100644
-index 000000000000..3302a127fce5
---- /dev/null
-+++ b/drivers/power/reset/tdx-ec-poweroff.c
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Toradex Embedded Controller driver
-+ *
-+ * Copyright (C) 2025 Toradex
-+ *
-+ * Author: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/reboot.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+
-+#define EC_CHIP_ID_REG                  0x00
-+#define EC_CHIP_ID_SMARC_IMX95          0x11
-+#define EC_CHIP_ID_SMARC_IMX8MP         0x12
-+
-+#define EC_VERSION_REG_MAJOR            0x01
-+#define EC_VERSION_REG_MINOR            0x02
-+#define EC_ID_VERSION_LEN               3
-+
-+#define EC_CMD_REG                      0xD0
-+#define EC_CMD_POWEROFF                 0x01
-+#define EC_CMD_RESET                    0x02
-+
-+#define EC_REG_MAX                      0xD0
-+
-+static const struct regmap_range volatile_ranges[] = {
-+	regmap_reg_range(EC_CMD_REG, EC_CMD_REG),
-+};
-+
-+static const struct regmap_access_table volatile_table = {
-+	.yes_ranges	= volatile_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(volatile_ranges),
-+};
-+
-+static const struct regmap_range read_ranges[] = {
-+	regmap_reg_range(EC_CHIP_ID_REG, EC_VERSION_REG_MINOR),
-+};
-+
-+static const struct regmap_access_table read_table = {
-+	.yes_ranges	= read_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(read_ranges),
-+};
-+
-+static const struct regmap_config regmap_config = {
-+	.reg_bits	= 8,
-+	.val_bits	= 8,
-+	.max_register	= EC_REG_MAX,
-+	.cache_type	= REGCACHE_RBTREE,
-+	.rd_table	= &read_table,
-+	.volatile_table = &volatile_table,
-+};
-+
-+static int tdx_ec_cmd(struct regmap *regmap, u8 cmd)
-+{
-+	int err = regmap_write(regmap, EC_CMD_REG, cmd);
-+
-+	if (err)
-+		dev_err(regmap_get_device(regmap), "Failed to send command 0x%02X: %d\n", cmd, err);
-+
-+	return err;
-+}
-+
-+static int tdx_ec_power_off(struct sys_off_data *data)
-+{
-+	struct regmap *regmap = data->cb_data;
-+	int err;
-+
-+	err = tdx_ec_cmd(regmap, EC_CMD_POWEROFF);
-+
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_restart(struct sys_off_data *data)
-+{
-+	struct regmap *regmap = data->cb_data;
-+	int err;
-+
-+	err = tdx_ec_cmd(regmap, EC_CMD_RESET);
-+
-+	return err ? NOTIFY_BAD : NOTIFY_DONE;
-+}
-+
-+static int tdx_ec_register_power_off_restart(struct device *dev, struct regmap *regmap)
-+{
-+	int err;
-+
-+	err = devm_register_sys_off_handler(dev, SYS_OFF_MODE_RESTART,
-+					    SYS_OFF_PRIO_FIRMWARE,
-+					    tdx_ec_restart, regmap);
-+	if (err)
-+		return err;
-+
-+	return devm_register_sys_off_handler(dev, SYS_OFF_MODE_POWER_OFF,
-+					     SYS_OFF_PRIO_FIRMWARE,
-+					     tdx_ec_power_off, regmap);
-+}
-+
-+static int tdx_ec_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	u8 reg_val[EC_ID_VERSION_LEN];
-+	struct regmap *regmap;
-+	int err;
-+
-+	regmap = devm_regmap_init_i2c(client, &regmap_config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	err = regmap_bulk_read(regmap, EC_CHIP_ID_REG, &reg_val, EC_ID_VERSION_LEN);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot read id and version registers\n");
-+
-+	dev_info(dev, "Toradex Embedded Controller id %x - Firmware %u.%u\n",
-+		 reg_val[0], reg_val[1], reg_val[2]);
-+
-+	err = tdx_ec_register_power_off_restart(dev, regmap);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Cannot register system restart handler\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused of_tdx_ec_match[] = {
-+	{ .compatible = "toradex,smarc-ec" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_tdx_ec_match);
-+
-+static struct i2c_driver tdx_ec_driver = {
-+	.probe			= tdx_ec_probe,
-+	.driver			= {
-+		.name		= "toradex-smarc-ec",
-+		.of_match_table = of_tdx_ec_match,
-+	},
-+};
-+module_i2c_driver(tdx_ec_driver);
-+
-+MODULE_AUTHOR("Emanuele Ghidoli <emanuele.ghidoli@toradex.com>");
-+MODULE_DESCRIPTION("Toradex SMARC Embedded Controller driver");
-+MODULE_LICENSE("GPL");
--- 
-2.39.5
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/1DrQAKCRB4tDGHoIJi
+0tgQAQDiMG2LA+SQ4PGFUrDaU4IzQmjpflF0phs6a37CN+1gnwEA/FHtd04YGCSz
+Oc9nrC2QJLVRLTQhkJ6c3IA9ypnSrwU=
+=DfiI
+-----END PGP SIGNATURE-----
+
+--2OKUgsrCAQgxlv5y--
 
