@@ -1,208 +1,178 @@
-Return-Path: <devicetree+bounces-166549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E676A87A75
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:33:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8DCA87A78
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB9B7188F468
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:33:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 818693AA5F0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD961A5B94;
-	Mon, 14 Apr 2025 08:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA3E259CA8;
+	Mon, 14 Apr 2025 08:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="KL8P6W3D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cWRCYD4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F96D2367A0;
-	Mon, 14 Apr 2025 08:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44EBC2367A0;
+	Mon, 14 Apr 2025 08:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744619595; cv=none; b=IxTFkGRjJGS1uRJbxEoGEhVashu7u5bKpb8xIeSOfoZCM3pSGwDylbxtmvKJnVmw3BSZhZaU7meJnpyYUJgchHTWqAb7DmBhNXPZ/bVlThm9kf38sixxQDCQGouLxYloLkZbCLXrDxFA8AD2msvlIRI/9mMa67IhnzrNfqNS6Ek=
+	t=1744619726; cv=none; b=EjWj3J7KguI4jLMbHzc2n4ZVK7Dy1rj4V/iNBSD3L9gjK+I60PYisn7c4OQjO4KkUcrlyuzs0gunIDln1QVqD9WjkuGnYtmKSMwgL5G4q8PpEjs+eZyw1pcPzVk5xVtKLDbHosuZjGiJTvgZgxxCrhwvnaInROBdthVuNquvioY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744619595; c=relaxed/simple;
-	bh=5TwohWfQF4JaAOWUMnRdwgZRXnieC2tLf2TPxNPYzLs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FUc2KnkzJ/SyGKTnQepBsqRDnb3Uvp903cMWta/Jydf9EDiJ+NqH+iCCHlnWi0tQdYnSOJNrZTcpI84+C6kt+3c9WZ+3TN8K8Vp9aJaiL3vv//0RfpryAhshaw2gPcyD/l3b32qpTmCIuv61i7aArffVIe4wNJsEx+eirH1jeeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=KL8P6W3D; arc=none smtp.client-ip=99.78.197.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+	s=arc-20240116; t=1744619726; c=relaxed/simple;
+	bh=jNMQtR9jmoHsBvBUeA+7pLFndTA9N0330V8tjJxI7og=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CvUrxYk4kibY3suqkGxNmyF8n0nybLWAcx6+UOAO1Rl7S7JYiRecXNt/jI6jh5TL577kCuh2nDb/JUwyLCLE5sd9iczfPvDjRgjZRPxCNs40DMvqJkf5cJzx6ZbQnZ71eovDtvjUHctM8EbnN5WmGBk5RfBnFDX9zYVGzAyPJic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cWRCYD4O; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-523f670ca99so1709323e0c.1;
+        Mon, 14 Apr 2025 01:35:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1744619593; x=1776155593;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=SLWNDAF0JZiAUCm/AxF5RSwmZmjZzyfu4AiJa0g8FhI=;
-  b=KL8P6W3DHo+bkNSkuuWuuq/BPBXptq3QxpNEzvgpm/0Dh38snMx+y1s2
-   0GtLMkGg0I6D4BW5rW8t22O0eT1xFH5HtjTymUZWLEyurVZhfB4EfpIcA
-   0jwB3UhMiwl2pj6gWVgHbZZPwpbXBDKv4zMnybvTAtiXeYSbvtp09h5Hn
-   U=;
-X-IronPort-AV: E=Sophos;i="6.15,211,1739836800"; 
-   d="scan'208";a="395591120"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
-  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 08:33:11 +0000
-Received: from EX19MTAEUB001.ant.amazon.com [10.0.43.254:33266]
- by smtpin.naws.eu-west-1.prod.farcaster.email.amazon.dev [10.0.10.242:2525] with esmtp (Farcaster)
- id a1d5a350-33ad-40ee-b565-0d87d5ec1661; Mon, 14 Apr 2025 08:33:10 +0000 (UTC)
-X-Farcaster-Flow-ID: a1d5a350-33ad-40ee-b565-0d87d5ec1661
-Received: from EX19D029EUC001.ant.amazon.com (10.252.61.252) by
- EX19MTAEUB001.ant.amazon.com (10.252.51.28) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Mon, 14 Apr 2025 08:33:10 +0000
-Received: from dev-dsk-bsz-1b-e2c65f5d.eu-west-1.amazon.com (10.13.227.240) by
- EX19D029EUC001.ant.amazon.com (10.252.61.252) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Mon, 14 Apr 2025 08:33:07 +0000
-From: Bartosz Szczepanek <bsz@amazon.de>
-To: <bsz@amazon.de>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
-	<will@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan
-	<saravanak@google.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Alexander Graf <graf@amazon.de>,
-	=?UTF-8?q?Jan=20H=20=2E=20Sch=C3=B6nherr?= <jschoenh@amazon.de>
-Subject: [PATCH] fdt: arch/arm64: Delete the rng-seed property after use
-Date: Mon, 14 Apr 2025 08:32:43 +0000
-Message-ID: <20250414083243.59664-1-bsz@amazon.de>
-X-Mailer: git-send-email 2.47.1
+        d=gmail.com; s=20230601; t=1744619724; x=1745224524; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zK+fEyrb2ftsLjekq6LH08+qiCqnVgfTErFfTfbVUZo=;
+        b=cWRCYD4OwKmEEwheY/lZcgnTeRS3das9wuRRxrDAjIbnCudU8SSnyRxSyWBKynXTat
+         I2w5Mba7WJg18ExPNdxZTsb7HbrNFSq1xaULeYNKwcWmhp1abpjPNyHjpYSX5+n32jZ6
+         Lx4JrORn+Cyb3hBvmgj7brCnQ5T8tJ7qVsJXc7ywDtC9TsYNT/0O4+8K+P/99mmmkGUn
+         I9nLbSBPGWpuoLjnqT+4OF8ElF8UnEIeuwkCCxuHvpBrzfVkxoENBtPt2qh6J6MnugNl
+         ROyfIaCq1LyvGAs2Zd6cjT6/1uv4IioumT5IMDh3qucCIMArfHvGInhIlsqE/dT6UxbK
+         WXRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744619724; x=1745224524;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zK+fEyrb2ftsLjekq6LH08+qiCqnVgfTErFfTfbVUZo=;
+        b=IJpju/kRtuJNQHzJBUZYognM+7PUq5K1+966/eLZEb+pz7bNw+vR6JEFE3wNta2Jze
+         rc+207aza8tmRf827cQvAa33b2caV945WW8b13N/WbSTSPdFOjPdWEGX1j/xSKMIBPAt
+         0fZkHLEVRiaW0W+3gU+Rty3woqpj6Z++I/ie5C10oNwhNShdiYmEZRzHlUunuuk2m0tB
+         XO4shR6GLV5lVjzcSVVfBw+hIwCXlVrqfsZvxwCigzZtIRvEvbyFIk98HfJt4qvfyb0l
+         F7fy77GGYhaYPfX/ZQAFiGYrvyl9spgVazRIfg7VP7w1JHgfm0MUgUd2zTLE7d9n7LMq
+         Jvpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUndc51ACaaNyOY3a45y0R5/6yUHwpg2VjzXVynp/JeL0ybaDF9hnTC5GF95PeJiKd37v02sZRdx47R@vger.kernel.org, AJvYcCUwcjL04CIQQLcPYY5tVBqsKA405y6NKVivrGBYbHJ4jM/bMTv619f4we6LoX2EM+JOxHr27bQG/b08@vger.kernel.org, AJvYcCVAlM6xsKGtzp5CD4TLfLLEzS3GQpq8RnBRHZnhJwBpYm3mJ7OJEugJDHpctVwhD7I9Zl/SHWLBDVskWg==@vger.kernel.org, AJvYcCVMRLAvI69/Gd3G3AIciPRcTdq2GxJSloaadhaM4O5VH/lZB2CRiKkL5puwmWEWW8QFSzyevKPnyIB+8dTY@vger.kernel.org, AJvYcCXLa5sfLK5m7bG3Xuke2lUIFmQBTkLvJUCcAOTY3aamSEvH+neg988w6WDtOAUV1EvohMK0vaLG6v5STlhITYLFPiU=@vger.kernel.org, AJvYcCXUUYCG6jzIUsMynyG4Jvay7RHzZ3E9Xff8UF7Y7rIhGl0VYN4NJoIFQR9RAT+Kv3Snf1kNzlkBH1BL3ckg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfNITrT3FmyxP8zdZ1ayt71THU8YekquGZOMouYhvDFQH7HMCw
+	U/GGtkZHtuJeZrhgvTiGhUlPXh0yNvo6wHOQgETk/nbjOIvMtqb2RiOO8M/QaybYEsm2K0NUAlu
+	+F73NkGgROiXv1U7RKqZX9Rywmgo=
+X-Gm-Gg: ASbGncsXH1aQucxULp1A1Qy7yi5x67kGnIUST3yxSBeJbHeNDBZbP3htascd1QxcliT
+	Od9fgj0nYrKgLMa/4nktn3WrBuEE6idwGNVR/noSVsuvIqPCVRkvxCJTaUxD0fR6BqjlxVKjBAD
+	qSRR1ANvkuwoMh0BfB0bO1Dg==
+X-Google-Smtp-Source: AGHT+IGOGLfbW0SukWnxCHAABG5TfaOM526iSCc+9ulIg98XxOeWn3MdJv3wnW4Cc7Fzp1V5Oe6Fufo5S7bAzWHW7mA=
+X-Received: by 2002:a05:6122:21a0:b0:526:2210:5b64 with SMTP id
+ 71dfb90a1353d-527c35babbdmr6629870e0c.9.1744619723871; Mon, 14 Apr 2025
+ 01:35:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EX19D042UWB004.ant.amazon.com (10.13.139.150) To
- EX19D029EUC001.ant.amazon.com (10.252.61.252)
+References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250407191628.323613-11-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWRokrL3EPKQbhHhCL84h1fZ7L3LjM0gFw96iqv36EiVA@mail.gmail.com>
+In-Reply-To: <CAMuHMdWRokrL3EPKQbhHhCL84h1fZ7L3LjM0gFw96iqv36EiVA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 14 Apr 2025 09:34:57 +0100
+X-Gm-Features: ATxdqUFdznh3Sv9gHBH-n-mlporoTOmehWlxOa_he4pKtDtsqhX1d-1Ft9ky9fQ
+Message-ID: <CA+V-a8sv94q3Z0eHfgPPrg0GKAP+cJgFdD0uBzPfmfLxL3Su8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] pinctrl: renesas: rzg2l: Add support for RZ/V2N SoC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-As a part of platform boot, device tree is being read to extract
-randonmess bits. The 'rng-seed' property is used for that purpose.
-After reading the value, the field was overridden with NOP instead of
-being deleted or zeroed. The problem is that NOPed fields are later not
-reused, and kexec code appended this property every time DTB is prepared:
+Hi Geert,
 
-  /* add rng-seed */
-  if (rng_is_initialized()) {
-          void *rng_seed;
-          ret = fdt_setprop_placeholder(dtb, off, FDT_PROP_RNG_SEED,
-                          RNG_SEED_SIZE, &rng_seed);
-          if (ret)
-                  goto out;
-          get_random_bytes(rng_seed, RNG_SEED_SIZE);
-  }
-(source: arch/arm64/kernel/machine_kexec_file.c)
+Thank you for the review.
 
-Taken together, DTB grew at each kexec by 140 bytes ie. size of the
-newly added (and not overwritten) rng-seed property. ARM64 sets a hard
-limit on FDT size at 2MB, which means that after at most 14,979 kexecs
-DTB exceeded the limit causing catastrophic (but silent) failure in
-setup_machine_fdt().
+On Thu, Apr 10, 2025 at 11:20=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, 7 Apr 2025 at 21:16, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add pinctrl support for the Renesas RZ/V2N SoC by reusing the existing
+> > RZ/V2H(P) pin configuration data. The PFC block is nearly identical, wi=
+th
+> > the only difference being the absence of `PCIE1_RSTOUTB` on RZ/V2N.
+> >
+> > To accommodate this, move the `PCIE1_RSTOUTB` entry to the end of the
+> > `rzv2h_dedicated_pins` array and set `.n_dedicated_pins` to
+> > `ARRAY_SIZE(rzv2h_dedicated_pins) - 1` in the RZ/V2N OF data.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Suggestion for improvement below.
+>
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -2304,7 +2304,6 @@ static struct rzg2l_dedicated_configs rzv2h_dedic=
+ated_pins[] =3D {
+> >         { "SD1DAT3", RZG2L_SINGLE_PIN_PACK(0xc, 3, (PIN_CFG_IOLH_RZV2H =
+| PIN_CFG_SR |
+> >                                                     PIN_CFG_IEN | PIN_C=
+FG_PUPD)) },
+> >         { "PCIE0_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 0, (PIN_CFG_IOLH_=
+RZV2H | PIN_CFG_SR)) },
+> > -       { "PCIE1_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 1, (PIN_CFG_IOLH_=
+RZV2H | PIN_CFG_SR)) },
+> >         { "ET0_MDIO", RZG2L_SINGLE_PIN_PACK(0xf, 0, (PIN_CFG_IOLH_RZV2H=
+ | PIN_CFG_SR |
+> >                                                      PIN_CFG_IEN | PIN_=
+CFG_PUPD)) },
+> >         { "ET0_MDC", RZG2L_SINGLE_PIN_PACK(0xf, 1, (PIN_CFG_IOLH_RZV2H =
+| PIN_CFG_SR |
+> > @@ -2359,6 +2358,14 @@ static struct rzg2l_dedicated_configs rzv2h_dedi=
+cated_pins[] =3D {
+> >         { "ET1_RXD1", RZG2L_SINGLE_PIN_PACK(0x14, 5, (PIN_CFG_PUPD)) },
+> >         { "ET1_RXD2", RZG2L_SINGLE_PIN_PACK(0x14, 6, (PIN_CFG_PUPD)) },
+> >         { "ET1_RXD3", RZG2L_SINGLE_PIN_PACK(0x14, 7, (PIN_CFG_PUPD)) },
+> > +
+> > +       /*
+> > +        * This pin is only available on the RZ/V2H(P) SoC and not on t=
+he RZ/V2N.
+> > +        * Since this array is shared with the RZ/V2N SoC, this entry s=
+hould be placed
+> > +        * at the end. This ensures that on the RZ/V2N, we can set
+> > +        * `.n_dedicated_pins =3D ARRAY_SIZE(rzv2h_dedicated_pins) - 1,=
+`.
+> > +        */
+> > +       { "PCIE1_RSTOUTB", RZG2L_SINGLE_PIN_PACK(0xe, 1, (PIN_CFG_IOLH_=
+RZV2H | PIN_CFG_SR)) },
+> >  };
+>
+> Alternatively, you can replace the single array by a structure
+> containing two arrays, one for common pins, and a second
+> for V2H-only pins, like the common and automotive arrays in
+> e.g. drivers/pinctrl/renesas/pfc-r8a7791.c.  That would get rid of
+> the literal "- 1" (and the need for a comment ;-), and would protect
+> against future mistakes.
+>
+My initial intention was to do the above, but it was generating a lot
+of diff so choose this approach. I'll switch back to above in v3.
 
-This commits addresses the issue as follows:
- 1. Call to fdt_nop_property is replaced with overwriting the rng-seed
-    value with zeros.
- 2. Zeroed rng-seed gets special treatment and is not accepted as valid
-    seed. Warning is emitted on zeroed value.
- 3. Kexec_file code is modified to delete the zeroed property if it
-    can't fill it with valid seed.
- 4. Proper error handling is added for the case when DTB exceeds 2MB.
-
-The change was tested in QEMU arm64 environment. To do so, kernel
-containing the change was built and included in buildroot initramfs.
-Subsequently, kernel was started in QEMU. Using kexec_file, new kernel
-was loaded and kexec reboot was issued. DTB size was noted in this step.
-After new kernel has booted, another kexec_file was issued. DTB size
-was confirmed not to change.
-
-Signed-off-by: Bartosz Szczepanek <bsz@amazon.de>
----
- arch/arm64/kernel/machine_kexec_file.c |  5 +++++
- drivers/of/fdt.c                       | 18 +++++++++++++++---
- drivers/of/kexec.c                     | 12 +++++++++++-
- 3 files changed, 31 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-index af1ca875c52c..af0e39f6c96d 100644
---- a/arch/arm64/kernel/machine_kexec_file.c
-+++ b/arch/arm64/kernel/machine_kexec_file.c
-@@ -170,6 +170,11 @@ int load_other_segments(struct kimage *image,
- 	/* trim it */
- 	fdt_pack(dtb);
- 	dtb_len = fdt_totalsize(dtb);
-+	if (dtb_len > MAX_FDT_SIZE) {
-+		pr_err("DTB exceeds the maximum size: 0x%lx > 0x%x", dtb_len, MAX_FDT_SIZE);
-+		goto out_err;
-+	}
-+	pr_info("DTB successfully created at 0x%lx (length 0x%lx)", (unsigned long)dtb, dtb_len);
- 	kbuf.buffer = dtb;
- 	kbuf.bufsz = dtb_len;
- 	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index aedd0e2dcd89..8c2895cee682 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1019,6 +1019,18 @@ int __init early_init_dt_scan_memory(void)
- 	return found_memory;
- }
- 
-+static int check_randomness_nonzero(const uint8_t *rng_seed, int len)
-+{
-+	int i;
-+
-+	for (i = 0; i < len; i++)
-+		if (rng_seed[i] != 0)
-+			return true;
-+
-+	pr_warn("Provided rng-seed value is all zeros!");
-+	return false;
-+}
-+
- int __init early_init_dt_scan_chosen(char *cmdline)
- {
- 	int l, node;
-@@ -1039,11 +1051,11 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	early_init_dt_check_for_elfcorehdr(node);
- 
- 	rng_seed = of_get_flat_dt_prop(node, "rng-seed", &l);
--	if (rng_seed && l > 0) {
-+	if (rng_seed && l > 0 && check_randomness_nonzero(rng_seed, l)) {
- 		add_bootloader_randomness(rng_seed, l);
- 
--		/* try to clear seed so it won't be found. */
--		fdt_nop_property(initial_boot_params, node, "rng-seed");
-+		/* Zero out the rng-seed property */
-+		memset((void *)rng_seed, 0, l);
- 
- 		/* update CRC check value */
- 		of_fdt_crc32 = crc32_be(~0, initial_boot_params,
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 5b924597a4de..f5bfbac77a66 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -453,8 +453,18 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 			goto out;
- 		get_random_bytes(rng_seed, RNG_SEED_SIZE);
- 	} else {
--		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
-+		pr_notice("RNG is not initialised: deleting \"%s\" property\n",
- 			  "rng-seed");
-+		/*
-+		 * The rng-seed property may exist as zeroed stub. If so,
-+		 * remove it to not confuse the incoming kernel.
-+		 */
-+		ret = fdt_delprop(fdt, chosen_node, "rng-seed");
-+		if (ret == -FDT_ERR_NOTFOUND)
-+			/* It's fine */
-+			ret = 0;
-+		else if (ret)
-+			goto out;
- 	}
- 
- 	ret = fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", NULL, 0);
--- 
-2.47.1
-
+Cheers,
+Prabhakar
 
