@@ -1,161 +1,195 @@
-Return-Path: <devicetree+bounces-166834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897E1A88998
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:19:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABA9A889AE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:22:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 950A017A7FA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:19:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2AF43A5F57
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE5C28934A;
-	Mon, 14 Apr 2025 17:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD75289360;
+	Mon, 14 Apr 2025 17:22:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZ8f2c9l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bbxuNxJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395571F236B;
-	Mon, 14 Apr 2025 17:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B915C23D28C;
+	Mon, 14 Apr 2025 17:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744651188; cv=none; b=UvC30c+BF0elcM4NUSeaUBaozCaNSsJw6AySu6YNL5oMqlX6aB3o5qoti4j2JrHWd0YZV0DL1K67O8ryh9Y0/xRqhNjqf4Meh/M6r43hKkWH94UlkANzhmp3rhakXfqT4u+m+OP0DSt6+zGsTBkJVOq5TJ4hvXVtqLM0m/JcJYA=
+	t=1744651322; cv=none; b=JXpjbRV0rRB3BQ2rQWWrtRh4WT4qFVJucsPg7geWLO5LVFX7mPvgpSs6AYINCT3cV94vGLT6zqNcHWotdoOZ5T4Z+KK4BnjgmsVy79BUt1DdTUux14C4os5Syv/NKK3jq1gAZpf4n9KPfUQC21PqyR1wR+H/TX8NKPdPFqydkQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744651188; c=relaxed/simple;
-	bh=z37GMPLQfQqtOQrNOtRcvsIzo/ZNg3+Bc9JSK7Jgb08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jylm6NB7eI/TvUC3ChU4FTrYAU1pip7n8ANijToTvFcrvOgY1qCfFuiISFjc2qOCF/KrG+RU8Gp/8xZI9Y1Nsf3Zcm5Gal/tFcJrlt+jLX8olI5HMUQJ0OJS43wkorImg/DieyEzZ/W3YxMUb9OlbTvuZbGl/PetOhvi6TcruG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZ8f2c9l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C958C4CEE2;
-	Mon, 14 Apr 2025 17:19:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744651187;
-	bh=z37GMPLQfQqtOQrNOtRcvsIzo/ZNg3+Bc9JSK7Jgb08=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AZ8f2c9lqfQZuQfWRr3KwemWv7exS/LcHLgCoLIJY1DNeczSaMQ2+K/p3z/mVRHXf
-	 5fYgsygYh/xIH5tIyU6QCvN2kjL9ycG1XsUaTCvSMyNM4nLwmEiQOuIVQJBGnIU6Wi
-	 eH72/9HbUpRpNs98Zbzt7Vw2DVusLEdBAFtqH9l7CD88Y6x5GgcdBgeL04Bde+YmwC
-	 uvjY5W2kBUh85KIg46dZSjcc6e1uqYGFbQIOnKSpCtulOiaTYwdjG2KKrMZ9DZebqt
-	 cv8y7JFEPsnuR9d4g+wONPywfX0U+hqROxapwUq2PEVZlBBIUUt0Kmcio/GxuCMMnk
-	 0927u0k2ScVQw==
-Date: Mon, 14 Apr 2025 18:19:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Prathosh.Satish@microchip.com,
-	krzk@kernel.org, netdev@vger.kernel.org, vadim.fedorenko@linux.dev,
-	arkadiusz.kubalewski@intel.com, jiri@resnulli.us, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org,
-	kees@kernel.org, andy@kernel.org, akpm@linux-foundation.org,
-	mschmidt@redhat.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 02/14] dt-bindings: dpll: Add support for Microchip
- Azurite chip family
-Message-ID: <20250414-residual-unblended-c21c7bc6eeb2@spud>
-References: <20250409144250.206590-3-ivecera@redhat.com>
- <20250410-skylark-of-silent-symmetry-afdec9@shite>
- <1a78fc71-fcf6-446e-9ada-c14420f9c5fe@redhat.com>
- <20250410-puritan-flatbed-00bf339297c0@spud>
- <6dc1fdac-81cc-4f2c-8d07-8f39b9605e04@redhat.com>
- <CY5PR11MB6462412A953AF5D93D97DCE5ECB72@CY5PR11MB6462.namprd11.prod.outlook.com>
- <bd7d005b-c715-4fd9-9b0d-52956d28d272@lunn.ch>
- <7ab19530-d0d4-4df1-9f75-060c3055585b@redhat.com>
- <4e331736-36f2-4796-945f-613279329585@lunn.ch>
- <7e6bf69b-0916-4ad9-b42f-8645f5c95d5d@redhat.com>
+	s=arc-20240116; t=1744651322; c=relaxed/simple;
+	bh=gJgT0qrecLMzwnzdXiMBAhrh8hbJvLs/ROx2YqYfSmU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KbW0mak62dSdJFD5Zzmn9XsduA9/+zslt7zbncrxKSiGChN0tSg3bvIX1RsaXeigQ35648Agi/wd2Zy5QEuHOBzRanvi1raK5z3wM35c++WPGiubrbSxtwluWWfYNXqxJunDsaTgTrX/TmY7kCLZm5jydlc7BcU2gCaA5pRlV0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bbxuNxJA; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-abbb12bea54so913141266b.0;
+        Mon, 14 Apr 2025 10:22:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744651319; x=1745256119; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YUEA8pywsL8vY7oJIHJ8TdBZH9QlbHYCO4W71W5N3vo=;
+        b=bbxuNxJAGo/PZz3brVUdRgiEwVfpQVAkIy2UttPS+RoOmoOq0y0anRAVoJif6xmyMr
+         multwFQRHNCi88e84kgVdh6vVZV84qGF3kjRfy6tfpQ49iCeS6Dd7e1cjXyWzCLVUfB6
+         HYDrS78H+hevtn7CY2nxEoO2fcd+fY3aSriXUboASjhaugS71cM+ihBivcHPt+NJOu20
+         +BSU4RABxsYL80ZocXjxQdGktq6vH06F/Jhu8TwTRbO+hbTmQdNnFXZsNcMjXvkPlQp5
+         TdcHm81KmHmbEVhwEofMhsncpv6iG1Bml5xFWnPhL2NPJyo6XAUYJCGCJewNRhl/TWBZ
+         zgUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744651319; x=1745256119;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YUEA8pywsL8vY7oJIHJ8TdBZH9QlbHYCO4W71W5N3vo=;
+        b=J+kBVt6lSrS7VfTqedO+qi+RMivcx5udKeGTmL0PsXUV63JLapGNA9v5sbnvm+1hFA
+         U1WXmbF7ce/bqPDz43Lrj0yKm5Xj+TFrz4x2u1i/nWarZJ44nQxfpoLUAtNrXom8lT+1
+         1qp8gi6TE24rVw12DRV6tn0+jH/ii79PFdzJahDDvBvaNy1SYMqHtavOnC5Yvclw56eY
+         UFxBHaMaX6eTTKjug9OLUHjYj9Fb5oQNa0Urn/OfFa00xqF3B/kBNmPf7wzyZwWB3INT
+         2/eCbU5kQgdsBqM3Aqc1LtjYKrpjeThTeV8M+Wl+tU9cWnQnLwMmc7dYhHOFVQjL2PED
+         SJVg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3ZCf2lSTwVlREiRb7x7hcJbL3rVDnl/UxUFSKA2IMbBi19yuDOQyeCM9jhIZaJ2DUZ70jA0OSjUI4@vger.kernel.org, AJvYcCWs0FhiNkIs7AghXZTToPx3EX/0XWffYxwR/uQRpHZ6IWZiNEpPIJaR14Dwf0x6nvjOOvXuiWRwCprk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz979CEgUowm6lCa6aH97agJXOztsoeetElUOCyOBhsZcmXGqQI
+	+oDA4yxvEKeIzQZM+F2KOg4L4SzBcmgmuyOsGPVYZJoE1Oi7yYlk2nqN2BxnES3njMQMz9dSy0U
+	cdZa0Da81vbrSLa/NZ2lLKWxRELM=
+X-Gm-Gg: ASbGncvpxc66qEGTwVQ9988IIwSUiFOYmahB+HDpSGGixwQYpuhpys/f10o9wE3IX1y
+	hjeP3RXuov9oT5iR+/SjQEmAttWodnnRtoDwGZkp1pZE1UUtmVVoIYIkXTbaY8mMiJtszA483gE
+	Wt6NYjvEnT7VXCfAFQDihpcg==
+X-Google-Smtp-Source: AGHT+IHBpvvtSFgiAORqhcujhn7TqejWSBy+Cnaku323HHIyY3ursXQw4Rtz2ozfIvIF0zvF2a0AlGf3m09O3UecLv4=
+X-Received: by 2002:a17:906:80c7:b0:acb:893:8c40 with SMTP id
+ a640c23a62f3a-acb08938d38mr199884366b.19.1744651318757; Mon, 14 Apr 2025
+ 10:21:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2OKUgsrCAQgxlv5y"
-Content-Disposition: inline
-In-Reply-To: <7e6bf69b-0916-4ad9-b42f-8645f5c95d5d@redhat.com>
-
-
---2OKUgsrCAQgxlv5y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250409024311.19466-1-gye976@gmail.com> <20250409024311.19466-5-gye976@gmail.com>
+ <CAHp75VfMHdw-6vrELbjjD3T323uDz7U9wRP5YSk2jZ26wBuLTQ@mail.gmail.com> <CAKbEznsVxexdrXX72G-tCUHjznx6na1h8MrCFPKrHd27GXht8A@mail.gmail.com>
+In-Reply-To: <CAKbEznsVxexdrXX72G-tCUHjznx6na1h8MrCFPKrHd27GXht8A@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 14 Apr 2025 20:21:22 +0300
+X-Gm-Features: ATxdqUGiVarrwRMChuG8fuKSNeFGp1L83JXj5Yb3sfJZQ0h1yMSyTfQjXA_OkFE
+Message-ID: <CAHp75VeU5sERbVz-4OxkJNC-pjT3B5AvfAMj09LXd6v4MdeDeg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
+To: gyeyoung <gye976@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Apr 11, 2025 at 11:56:15AM +0200, Ivan Vecera wrote:
->=20
->=20
-> On 10. 04. 25 11:12 odp., Andrew Lunn wrote:
-> > On Thu, Apr 10, 2025 at 08:33:31PM +0200, Ivan Vecera wrote:
-> > >=20
-> > >=20
-> > > On 10. 04. 25 7:36 odp., Andrew Lunn wrote:
-> > > > > Prathosh, could you please bring more light on this?
-> > > > >=20
-> > > > > > Just to clarify, the original driver was written specifically w=
-ith 2-channel
-> > > > > > chips in mind (ZL30732) with 10 input and 20 outputs, which led=
- to some confusion of using zl3073x as compatible.
-> > > > > > However, the final version of the driver will support the entir=
-e ZL3073x family
-> > > > > > ZL30731 to ZL30735 and some subset of ZL30732 like ZL80732 etc
-> > > > > > ensuring compatibility across all variants.
-> > > >=20
-> > > > Hi Prathosh
-> > > >=20
-> > > > Your email quoting is very odd, i nearly missed this reply.
-> > > >=20
-> > > > Does the device itself have an ID register? If you know you have
-> > > > something in the range ZL30731 to ZL30735, you can ask the hardware
-> > > > what it is, and the driver then does not need any additional
-> > > > information from DT, it can hard code it all based on the ID in the
-> > > > register?
-> > > >=20
-> > > > 	Andrew
-> > > >=20
-> > > Hi Andrew,
-> > > yes there is ID register that identifies the ID. But what compatible =
-should
-> > > be used?
-> > >=20
-> > > microchip,zl3073x was rejected as wildcard and we should use all
-> > > compatibles.
-> >=20
-> > You have two choices really:
-> >=20
-> > 1) You list each device with its own compatible, because they are in
-> > fact not compatible. You need to handle each one different, they have
-> > different DT properties, etc. If you do that, please validate the ID
-> > register against the compatible and return -ENODEV if they don't
-> > match.
-> >=20
-> > 2) You say the devices are compatible. So the DT compatible just
-> > indicates the family, enough information for the driver to go find the
-> > ID register. This does however require the binding is the same for all
-> > devices. You cannot have one family member listing 10 inputs in its
-> > binding, and another family member listing 20.
-> >=20
-> > If you say your devices are incompatible, and list lots of
-> > compatibles, you can then use constraints in the yaml, based on the
-> > compatible, to limit each family member to what it supports.
-> >=20
-> > My guess is, you are going to take the first route.
->=20
-> Yes, this looks reasonable... in this case should I use
-> microchip,zl3073x.yaml like e.g. gpio/gpio-pca95xx.yaml?
+On Mon, Apr 14, 2025 at 6:49=E2=80=AFPM gyeyoung <gye976@gmail.com> wrote:
 
-No, please pick one of the compatibles in the file and name the same as
-one of those.
+...
 
---2OKUgsrCAQgxlv5y
-Content-Type: application/pgp-signature; name="signature.asc"
+> > > +#include <linux/kernel.h>
+> >
+> > No usual driver has a business to include the  kernel.h. Just follow
+> > the IWYU principle and make sure what you include is what you use
+> > here.
+>
+> I thought "linux/kernel.h" was a globally essential header.
 
------BEGIN PGP SIGNATURE-----
+Not at all, it's a big mess which no driver should use.
+And on top of that (to any header) you should not use 'proxy' headers.
+It's a bad style and practice with the real consequences as build time
+and headache for the others who want to clean up header dependencies
+in the future.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ/1DrQAKCRB4tDGHoIJi
-0tgQAQDiMG2LA+SQ4PGFUrDaU4IzQmjpflF0phs6a37CN+1gnwEA/FHtd04YGCSz
-Oc9nrC2QJLVRLTQhkJ6c3IA9ypnSrwU=
-=DfiI
------END PGP SIGNATURE-----
+...
 
---2OKUgsrCAQgxlv5y--
+> > > +       /*
+> > > +        * serdev receive buffer.
+> > > +        * When data is received from the MH-Z19B,
+> > > +        * the 'mhz19b_receive_buf' callback function is called and f=
+ills this buffer.
+> > > +        */
+> > > +       char buf[9];
+> >
+> > Should it be DMA-safe?
+>
+> I'm not sure if I understood your point correctly,
+> This code isn't DMA-safe. I'm currently understanding why DMA-safe is nec=
+essary.
+> (but actually other drivers implementing 'serdev ops' use non-DMA-safe bu=
+ffers.)
+> I will verify this part and then send the next patch.
+
+Because some of the UART drivers may enable DMA by default if it's
+available and your code won't work on them, right? But double check if
+serdev makes it DMA-safe before use.
+
+...
+
+> > > +       case MHZ19B_ABC_LOGIC_CMD: {
+> > > +               bool enable =3D *((bool *)arg);
+> >
+> > Oh, no. The boolean type is a tricky one and here you probably break
+> > all the possible implementation defined behaviours esp. on bigendian
+> > systems.
+>
+> > > +               uint16_t ppm =3D *((uint16_t *)arg);
+> >
+> > Do you guarantee the alignment?
+>
+> So far, the arg has been the address of a u16 type stack variable, so
+> there was no error.
+> But I'll edit this by referring to the alignment documentation.
+
+Easier to use the proper accessor, i.e. one of get_unaligned*() calls here.
+
+...
+
+> > Also why do you have ' < 0' parts? Please, double check that you use
+> > this form of the errorcheck if and only if the callee may return a
+> > positive value.
+>
+> Yes, this function returns either a positive value(0 ~ 2000),
+> depending on the cmd argument.
+> So 'if (ret < 0)' is more appropriate than 'if (ret)' in this case.
+
+I see, so make sure that only those that may return positive values
+will have the  < 0 filter, and others (that return 0 or negative error
+code) use the regular form.
+
+...
+
+> > > +static const struct attribute_group mhz19b_attr_group =3D {
+> > > +       .attrs =3D mhz19b_attrs,
+> > > +};
+> >
+> > ATTRIBUTE_GROUP() ?
+>
+> I looked into the API and found only ATTRIBUTE_GROUPS(),
+> But using ATTRIBUTE_GROUPS() requires the attribute_group value to be
+> declared as an array ending with a NULL entry. Would this be OK?
+> then i'll use ATTRIBUTE_GROUPS().
+
+Indeed, only if you use that array, otherwise the original code is OK.
+
+...
+
+> > > +       for (int i =3D 0; i < len; i++)
+> >
+> > Why signed?
+>
+> Would it be better to declare 'i' as 'size_t' to match the type of 'len'?
+> then I'll change 'int i' to 'size_t i'.
+
+It will be consistent.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
