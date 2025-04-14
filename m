@@ -1,183 +1,160 @@
-Return-Path: <devicetree+bounces-166787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16441A88692
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:13:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F5EA886E8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0D4E1782F4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:08:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F6B01903031
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5612741D3;
-	Mon, 14 Apr 2025 15:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6339253945;
+	Mon, 14 Apr 2025 15:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/riDFF/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3FA252297
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 15:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D802522B8;
+	Mon, 14 Apr 2025 15:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744643283; cv=none; b=UdPg2/aCm/a104b4Zel71xVghoo9WJXpa0XOW7LJpAbbsleW81IB0mwKUwmZR+LbLP3jU4apl6ttwTN8N56sAajFzA/BoGA9sdLB2Ex/dBhEBSLCrQ4kYbWFwadPRAwy1jNjeoExcd/kB6vVBo0DmSvwwDGGf3dHJ7C0IqRd7RM=
+	t=1744643421; cv=none; b=hNtHWe/tAyBV0U7SnR15JaD1zEj/u3Lp3Yu0WEuPP586BnXo0EnJOb+nhIlAZr8owamOHBf9W6rwXqhXjisURFiAGUZvgaUAvM8LbsPq+pguC8mwWW+Rldoa0MZxtRrAw8rwFjXMa/h385TKD90zQ6XjIAPjl6BFxxxdePK2YiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744643283; c=relaxed/simple;
-	bh=ZROa7ba+Tkf2H7KfI4XoW3zq+YrkEbgkkYJjDRSy650=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dKhH8Pi9ackTSoVhQHJFj4oTzhM5F5WA6vKZ+92BqVSgXyyyCL3kymvkzYFrz8Ksd/tNHRE1IKCx9NpD8NG8DKPclS0liTfO70UZpZMIOtUX9MSaUzVllyDRvQqklX8mUfW5ZVXvUB7CwJgB1xvcKYT2/NwH+ipOEO/RgSUVHbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u4LPV-0003gu-7u; Mon, 14 Apr 2025 17:07:45 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u4LPU-000Gw5-2v;
-	Mon, 14 Apr 2025 17:07:44 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1u4LPU-000L3u-2Y;
-	Mon, 14 Apr 2025 17:07:44 +0200
-Date: Mon, 14 Apr 2025 17:07:44 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH 3/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <Z_0kwPIE7Kyphdi1@pengutronix.de>
-References: <20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de>
- <20250408-clk-cdce6214-v1-3-bd4e7092a91f@pengutronix.de>
- <5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org>
- <Z_U6fUGbOV2SdO_C@pengutronix.de>
- <20250411151552.GA3258510-robh@kernel.org>
+	s=arc-20240116; t=1744643421; c=relaxed/simple;
+	bh=KxBG+gde4lDYVWsqYDMHBQ3/20Kwb2mxcfmmWEVCeag=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F1ImQ1RBM+TmWuaGoEEluXg/FMSY1i5qQ2QgbSbkM5px0Drn5zZq6/txfdFY6RUHNaE+EX4O+7bBTLXwknOPYF46mytkpQ7OstTUCb1kBInu0svhJproQAkpluL9xiFpZvcTZa3f03Smjkl1BZ/7h2XF02QNPT/J/y2tPSMx8kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D/riDFF/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92759C4CEE2;
+	Mon, 14 Apr 2025 15:10:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744643420;
+	bh=KxBG+gde4lDYVWsqYDMHBQ3/20Kwb2mxcfmmWEVCeag=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=D/riDFF/TzuL2Nzp7lzABAjv0Y1h9etuQqJGYurvqwFAsTduTjKzLEC0oobOqF85X
+	 XN+LIM4R705aj+7QP6yoLsWFnvRC23NKyFQT1LDA+yRtlFDqmSM84eGXFbnSijHdL/
+	 rbOk66kSKyk6n2x7b03BhGU2T2m679wAZBqhchlWBj59ZtvxF3EG+qe+0ItFRx3RUJ
+	 Y9RE01ru2Jy/ypyrhgCpeE4IRhjUjrNE+TgVSx6amsIPej1RXW2eIjzUY8TjlmD9As
+	 VarlhWMI4GF+DvZM5p3EYQR1OcfGIucVx5vmirZu28q4FccO6PV0JyalU/ldKW4GrC
+	 cAwqCObVag4hw==
+Message-ID: <2badc360-9bfa-400a-acca-ab82f8cc5a95@kernel.org>
+Date: Mon, 14 Apr 2025 17:10:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250411151552.GA3258510-robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor
+ LP5812 LED Driver
+To: Nam Tran <trannamatk@gmail.com>, pavel@kernel.org, lee@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250414145742.35713-1-trannamatk@gmail.com>
+ <20250414145742.35713-2-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250414145742.35713-2-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Apr 11, 2025 at 10:15:52AM -0500, Rob Herring wrote:
-> On Tue, Apr 08, 2025 at 05:02:21PM +0200, Sascha Hauer wrote:
-> > On Tue, Apr 08, 2025 at 04:27:23PM +0200, Krzysztof Kozlowski wrote:
-> > > On 08/04/2025 14:00, Sascha Hauer wrote:
-> > > > +
-> > > 
-> > > A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-> > > prefix is already stating that these are bindings.
-> > > See also:
-> > > https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> > > 
-> > > 
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - ti,cdce6214
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    minItems: 1
-> > > > +    maxItems: 2
-> > > > +
-> > > > +  clock-names:
-> > > > +    minItems: 1
-> > > > +    items:
-> > > > +      - const: priref
-> > > > +      - const: secref
-> > > 
-> > > So one input is optional?
-> > 
-> > The chip has two clock inputs and to be operational it needs at least
-> > one clock, could be priref or secref or both.
-> > 
-> > Is there a proper way to express this situation?
-> 
-> If I understand correctly that only 'secref' is possible then you want:
-> 
-> items:
->   - enum: [ priref, secref ]
->   - const: secref
-> 
-> (By default, entries have to be unique, so that eliminates 'secref' in 
-> both)
+On 14/04/2025 16:57, Nam Tran wrote:
+> +
+> +description: |
+> +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
+> +  For more product information please see the link below:
+> +  https://www.ti.com/product/LP5812#tech-docs
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,lp5812
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
 
-Valid combinations shall be:
+No need for supply?
 
-- only secref
-- only priref
-- priref and secref.
+> +
+> +patternProperties:
+> +  "^led@[0-9a-b]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 0xb
+> +
+> +      chan-name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description: LED channel name
 
-Background is: The CDCE6214 has a mux on these inputs, so you can select
-one of both in software. In our case only one input is actually used,
-but which one it is depends on the board designer. There are likely
-usecases in which both inputs are connected to different clocks so you
-want to decide during runtime depending on usecase.
+My comment stay valid. I don't think LEDs have channels, datasheet also
+has nothing about channels, so again - use existing properties. Or
+better drop it - I don't see any point in the name. The reg already
+defines it.
 
-> > > Looks the same here. Anyway having these as subnodes is too much. You
-> > > have fixed number of clocks, so you need one or two array properties in
-> > > top-level.
-> > 
-> > There are several properties I haven't yet modeled, like
-> > 
-> > - 1.8V / 2.5V output
-> > - sync_delay
-> > - LVDS common-mode trim increment/decrement
-> > - differential buffer BIAS trim
-> > - slew rate
-> > - BIAS current setting for XTAL mode
-> > - load capacity for XTAL mode
-> > 
-> > I don't know which of them will ever be supported, but I thought having a
-> > node per pin would add a natural place to add these properties. Do you
-> > still think arrays would be more appropriate?
-> 
-> Assuming they are connected to something in DT (if not, why care), you 
-> could add a flags cell so the consumer side can define what they need.
+However after dropping this, your example has nodes with only reg -
+what's the point of them? Why no properties from common.yaml are
+applicable? If they are not applicable, then the entire subnode should
+be dropped - you don't need them to describe the hardware.
 
-Let's see if I got that right. Do you mean something like:
-
-	cdce6214: clock-generator@67 {
-		compatible = "ti,cdce6214";
-		#clock-cells = <2>;
-		...
-	};
-
-	some-consumer {
-		clocks = <&cdce6214 4 CDCE6214_SLEW_RATE_MAX | CDCE6214_BIAS(14)>;
-	};
-
-That would work for the outputs. What about the inputs?
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
 
