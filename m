@@ -1,548 +1,221 @@
-Return-Path: <devicetree+bounces-166723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4CDA88465
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:19:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D2EDA88421
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:13:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C88FA17586F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:12:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F161160D42
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CBC28B4F5;
-	Mon, 14 Apr 2025 13:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93067274667;
+	Mon, 14 Apr 2025 13:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="d0TkDnFA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZXJVnQvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www253.your-server.de (www253.your-server.de [188.40.28.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A76B2472B7;
-	Mon, 14 Apr 2025 13:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.28.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135C9274660
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744638389; cv=none; b=ixESazQ5yMgXtOoS19Xf/An5DoyJghWoc8hg9oVytk5izdO5soCfXzrZSi6ZkLK7WLxBXEla4M5bHDUsHNMtPlcJw29DJxLPPT4+YtyEYO5v6Znmhr8ld4i3Apd4XpsnJGxP2Hq/e+VyvKpJUPQ/2uL8zLbazv2Q76XISoLHewU=
+	t=1744637589; cv=none; b=C3YLAbDOr519/1JUAlis5ac55zkGIQ3ztSmc75CMCDhbNEpYgvGXAq6TnVvv9n4YMDB++IGJlgqohQUyKwSdRp60D59UGX0GKVlawuyRwXDpda4PErhTurgcSdAyBW69pOKyd3MN/k9WPSxUi5lMmyN734m/mIVW/X+43cn1mNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744638389; c=relaxed/simple;
-	bh=xmsOnDOjo3Gh0c8VjCn6ItGeDlnjjCWP+KrNE+An+XU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 In-Reply-To:References; b=p3b2N3rS9ss4raaOD3lnMAScCo+jbWYomIdFqA9dDlLobbCzreFXOwVugH3D24SrwvXgwgSxY+xhDoCSTAp6p9XJIgy9saq2guw3C8xoQ13ZLQEWN4DfCL5PKPec71wd7DTUC1uuDs4Z+3/W/YZjvOR1YJlHTpe/WkFF0sBy/vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=helmholz.de; spf=fail smtp.mailfrom=helmholz.de; dkim=pass (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b=d0TkDnFA; arc=none smtp.client-ip=188.40.28.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=helmholz.de
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=helmholz.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
-	; s=default2501; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=BHZt5LYaNN8WM8VT/BDNr4lbPIgy0/I77v+TYnQnxow=; b=d0TkDnFAaY4lQ+DVtf2MbRPeXm
-	oHEYwJkcJ3eGfMxOn88OKkV9ubIquhun9Iw4JHdmyX8hR5IagNh5Q7AB/kA69LtMFOTdKKSqHbN96
-	nK9ax4EOXTZ/5y36IiaJTwzy25YjX1SC/ZJVZLOeLb1BCGhFpUiF60lzmtXMZCD0bHLCVMgIvR7Nh
-	y+3SJdtyC4Pb92COPBYoCy8AU3wiih0fpEZYRhSlaOjoyZOoBb2ufWURVXRKj0d5/OvqUFzDSCeUf
-	QfSU4ECxnc3u6qkiKARFAko9FE2eTEftZDYYD8KMKD/XrU4RA50bmcD631TxttDHEUaDHxI9GGdz0
-	JKxcuLFQ==;
-Received: from sslproxy08.your-server.de ([78.47.166.52])
-	by www253.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ante.knezic@helmholz.de>)
-	id 1u4JsV-0008nn-07;
-	Mon, 14 Apr 2025 15:29:35 +0200
-Received: from [217.6.86.34] (helo=linuxdev.helmholz.local)
-	by sslproxy08.your-server.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-	(Exim 4.96)
-	(envelope-from <ante.knezic@helmholz.de>)
-	id 1u4JsU-000Eer-1p;
-	Mon, 14 Apr 2025 15:29:34 +0200
-From: Ante Knezic <ante.knezic@helmholz.de>
-To: linux-leds@vger.kernel.org
-Cc: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	knezic@helmholz.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH 3/3] leds: add WL-ICLED SPI driver
-Date: Mon, 14 Apr 2025 15:28:51 +0200
-Message-Id: <d8c165eb992b73f58c2fd7dc6c4ac3b2db38248f.1744636666.git.knezic@helmholz.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1744636666.git.knezic@helmholz.com>
-References: <cover.1744636666.git.knezic@helmholz.com>
-In-Reply-To: <cover.1744636666.git.knezic@helmholz.com>
-References: <cover.1744636666.git.knezic@helmholz.com>
-X-Authenticated-Sender: knezic@helmholz.com
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27608/Mon Apr 14 10:34:28 2025)
+	s=arc-20240116; t=1744637589; c=relaxed/simple;
+	bh=Mexb/ka+sQ+udJbUyAzq/FcB1dlwaiJ5OOI0XY1Z16M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j6Yn5MYKrVSuQlt5NETwTlfFyGey6G/aBg269pMEblZ/72XJH1VBPWaIpltxYnJ2ANHbksO5lZvBab3vqZDcaAjP1TlKEuL5t2gbJWESDYMz3TZBqNUGuQDfIfRfoG7JUhMBGYez9RPCKCRLft1jJdOCuBKR3TwNtq4s/dM7AcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZXJVnQvH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99t2H015786
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:33:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	70R4Wlq0wxgmzbbhGoHPYqBhEc6uJKRw9xgtm6cqfWc=; b=ZXJVnQvHzGhSCElD
+	5QwxJMEYJ2K6PvoIjTgd1Ru0kaenp1HCw4bTmsA1RTTAr4TX8lOxbYEfMA74iIj3
+	SnLTQepLSSuR2WH/oN/XEBuWuuNifaFgdLwFDmsG10/ARnF4BKMJcoWlsfA8Rw56
+	HcNkFbOYtApDqMklpgFzjMWdLDCEOajeV7i01VjS70LzFBdBlajdyxTk6srefvT8
+	QVW2SSADLynSe2S5avT6TNnTDxuIwSPvbH76EoHcQSK82YLoYCo+UeDZ1eD0eLQs
+	Zhf+QQmOgCmsG+IH8vw3bzvTUDQwRZqPsEiYbOwgvlQMW8IoAbO9xwKwU9jm5RSM
+	mi7IxA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6cpq4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:33:07 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c53d5f85c9so107037285a.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 06:33:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744637586; x=1745242386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=70R4Wlq0wxgmzbbhGoHPYqBhEc6uJKRw9xgtm6cqfWc=;
+        b=VzaGOLMmMl6HJ35Z8FDjPsB12yTBZ7ffFjp1reZpQr3aMficQnUv/QsrJzZJO5vbJd
+         gVxiLJc5KP+A5XndLf7UNcrNWjt2Y74E3bWxjog/fBrZe36w7+imTp5SooOtuxmSiR1M
+         SjZZ4eBtftQvzb33AoXrSWM5hCn2U1esF9eRP7DpKb8PmkUpJb0DVztbqp7vT9ZHlFdQ
+         bGW0eSm4fosPfmAc76Osh3fpeU2MFHq8voTieLQo5uuSV/QBNV5jjp+vv7n5VjAvU3gB
+         /ZxJc/TBHbCPkWdyD9JZEZTTD9XDXidT47NAKNwfXeu87meN4MCeCSthqQaIuWHBQQ0Q
+         WMwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXHwSu+a+cB9klDwny4h0BJhg4yAzOeS38z4Xj1lpEkv1/Pq1bohAl+jwNjp0C+86+63PZxH1b6pESN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdfpWCBBqp7AdxbD3NGxXjK9IAjUra1+wB8rBhykdE1OpA8drY
+	ZpTNoqK2pOA0KFFwKQ7FahT1Qwe7Y7PFldNHEwmZ0hsLAI4lMhWtd1urCcLyfMYhQNkIW1FRWWN
+	oSrquPL0EiEgzsx4qLQZY9ohoL/LDYI2bvAfYpj3qflceg2N/UgKWQ4W+J+Jb
+X-Gm-Gg: ASbGncuQLOLOz0dCi24nU18c/IzdvbRE0RdM6yBGPYSz0MJ1SMwOHJMpej2asBfKvTQ
+	T/8eCQpLKfbYr29DZ/F4c1qzGS6oTEkZ2LcEIGALfPteFPpnByRh+bNZ6ifNoddftFujKsKcW6m
+	scBsyQoD5WH9x0yisYrIKAPU3U27MSTMyZ0TGYzmfg49EqAb7Z6/DQD1zCF7ANGCKAjh49Xb68d
+	/Qb8L4LT0yton2yetFMIuZad0a74qq0bcCrw7xSEcE/JLoMloA2YRs2VigBC/wCRnG6umXqbn64
+	ej7jwBZydMjvEQIl2df2XYaZL8vgmDBqyVp8oEM0yZcw2CtYO/4CJ6whWhMAJREKDw==
+X-Received: by 2002:a05:620a:29c3:b0:7c3:c9d4:95e3 with SMTP id af79cd13be357-7c7af1cc7aemr678415185a.10.1744637585549;
+        Mon, 14 Apr 2025 06:33:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHUe0npc3TLvwqNR6wtqiM2/SmP6DFIWYIL1xzlzV8bbpOCM08P2ZwhZmEGjvipD7cMspjgRw==
+X-Received: by 2002:a05:620a:29c3:b0:7c3:c9d4:95e3 with SMTP id af79cd13be357-7c7af1cc7aemr678413785a.10.1744637585021;
+        Mon, 14 Apr 2025 06:33:05 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36ee54ff7sm4900378a12.15.2025.04.14.06.33.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 06:33:04 -0700 (PDT)
+Message-ID: <84945c27-f4c2-444b-81bd-27a58f9afeea@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 15:33:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: sa8775p: add support for video
+ node
+To: Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sumit.garg@oss.qualcomm.com,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20250321-dtbinding-v4-0-6abd4575bff4@quicinc.com>
+ <20250321-dtbinding-v4-2-6abd4575bff4@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250321-dtbinding-v4-2-6abd4575bff4@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: _0kUNyaBSc1hRQVJJpiJzeSB8MbdWX96
+X-Proofpoint-GUID: _0kUNyaBSc1hRQVJJpiJzeSB8MbdWX96
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=67fd0e93 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=_X3inPpGauY9ifWkZVMA:9
+ a=V8wHjwFqwvvTs-IB:21 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140098
 
-From: Ante Knezic <knezic@helmholz.com>
+On 3/21/25 4:19 AM, Vikash Garodia wrote:
+> Video node enables video on Qualcomm SA8775P platform.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 71 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 3394ae2d13003417a15e64c9e47833725ec779e6..6e4644b95fb678fd201310463709d7482d72d6e2 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
+>  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
+>  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
+> +#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+>  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> @@ -3783,6 +3784,76 @@ llcc: system-cache-controller@9200000 {
+>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
+> +		iris: video-codec@aa00000 {
+> +			compatible = "qcom,sa8775p-iris", "qcom,sm8550-iris";
+> +
+> +			reg = <0x0 0x0aa00000 0x0 0xf0000>;
+> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+> +					<&videocc VIDEO_CC_MVS0_GDSC>,
+> +					<&rpmhpd SA8775P_MXC>,
+> +					<&rpmhpd SA8775P_MMCX>;
+> +			power-domain-names = "venus",
+> +					     "vcodec0",
+> +					     "mxc",
+> +					     "mmcx";
+> +			operating-points-v2 = <&iris_opp_table>;
+> +
+> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_CLK>;
+> +			clock-names = "iface",
+> +				      "core",
+> +				      "vcodec0_core";
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +					<&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "cpu-cfg",
+> +					     "video-mem";
+> +
+> +			memory-region = <&pil_video_mem>;
+> +
+> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+> +			reset-names = "bus";
+> +
+> +			iommus = <&apps_smmu 0x0880 0x0400>,
+> +				 <&apps_smmu 0x0887 0x0400>;
+> +			dma-coherent;
+> +
+> +			status = "disabled";
+> +
+> +			iris_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-366000000 {
+> +					opp-hz = /bits/ 64 <366000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>,
+> +							<&rpmhpd_opp_svs_l1>;
+> +				};
+> +
+> +				opp-444000000 {
+> +					opp-hz = /bits/ 64 <444000000>;
+> +					required-opps = <&rpmhpd_opp_nom>,
+> +							<&rpmhpd_opp_nom>;
+> +				};
+> +
+> +				opp-533333334 {
+> +					opp-hz = /bits/ 64 <533333334>;
 
-Add support for WL-ICLED RGB LEDs with integrated controller.
-Device enables individual color control via SPI interface and
-can be interfaced via single wire connection (MOSI line only)
-or by two wire connection (MOSI and CLK).
+I believe this should be 530-zeroes, not 533 and a third
 
-Signed-off-by: Ante Knezic <knezic@helmholz.com>
----
- drivers/leds/Kconfig         |  10 +
- drivers/leds/Makefile        |   1 +
- drivers/leds/leds-wl-icled.c | 406 +++++++++++++++++++++++++++++++++++
- 3 files changed, 417 insertions(+)
- create mode 100644 drivers/leds/leds-wl-icled.c
+other than that
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a104cbb0a001..a8100a7ee72b 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -950,6 +950,16 @@ config LEDS_SPI_BYTE
- 	  for controlling the brightness. Currently the following controller is
- 	  supported: Ubiquiti airCube ISP microcontroller based LED controller.
- 
-+config LEDS_WL_ICLED
-+	tristate "LED Support for WL-ICLED RGB LEDs"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	depends on LEDS_CLASS_MULTICOLOR
-+	help
-+	  Say yes to get support for the Wurth Elektronik WL-ICLED series RGB
-+	  LEDs with integrated controller.
-+
- config LEDS_TI_LMU_COMMON
- 	tristate "LED driver for TI LMU" if COMPILE_TEST
- 	select REGMAP
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 2f170d69dcbf..42e8849fa619 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -106,6 +106,7 @@ obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
- obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
- obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
- obj-$(CONFIG_LEDS_SPI_BYTE)		+= leds-spi-byte.o
-+obj-$(CONFIG_LEDS_WL_ICLED)		+= leds-wl-icled.o
- 
- # LED Userspace Drivers
- obj-$(CONFIG_LEDS_USER)			+= uleds.o
-diff --git a/drivers/leds/leds-wl-icled.c b/drivers/leds/leds-wl-icled.c
-new file mode 100644
-index 000000000000..ce44ed4d1fe5
---- /dev/null
-+++ b/drivers/leds/leds-wl-icled.c
-@@ -0,0 +1,406 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// LED driver for Wurth Elektronik WL-ICLED
-+// Copyright (C) Systeme Helmholz - https://www.helmholz.de
-+
-+#include <linux/leds.h>
-+#include <linux/spi/spi.h>
-+#include <linux/led-class-multicolor.h>
-+
-+#define WL_ICLED_LEDS_PER_IC 3
-+#define WL_ICLED_MAX_BRIGHTNESS 255
-+
-+#define WL_ICLED_32E_CMD_WRITE 0x7
-+#define WL_ICLED_32E_CMD_SLEEP 0x5
-+#define WL_ICLED_32E_CMD_SHIFT 5
-+#define WL_ICLED_32E_MAX_GAIN 31
-+#define WL_ICLED_32E_GAIN_MASK 0x1f
-+#define WL_ICLED_32E_START_FRAME_SIZE 4
-+
-+#define WL_ICLED_48E_MAX_GAIN 15
-+#define WL_ICLED_48E_MAX_PWM 4095
-+#define WL_ICLED_48E_GAIN_SHIFT 12
-+#define WL_ICLED_48E_PWM_MASK 0xfff
-+
-+enum wl_icled_type {
-+	WL_ICLED_SINGLE_WIRE,
-+	WL_ICLED_TWO_WIRE,
-+};
-+
-+struct wl_icled_led {
-+	struct led_classdev_mc	mc_cdev;
-+	struct wl_icled	*priv;
-+	int brightness;
-+};
-+
-+struct wl_icled_info {
-+	int model_id;
-+	int color_sequence[WL_ICLED_LEDS_PER_IC];
-+	void (*encode)(u8 *buf, struct wl_icled_led *led);
-+	enum wl_icled_type type;
-+	size_t bytes_per_led;
-+	unsigned int speed_hz;
-+};
-+
-+enum wl_icled_model {
-+	WL1315X246,     /*1315050930246 */
-+	WL1315X002,     /*1315050930002*/
-+	WL131X000,      /*1313210530000*/
-+			/*1312020030000*/
-+	WL131161X,      /*1311610030140 */
-+	WL131212X,      /*1312121320437 */
-+};
-+
-+struct wl_icled {
-+	const struct wl_icled_info *icled_info;
-+	struct device *dev;
-+	struct mutex lock;
-+	struct spi_device *spi;
-+	size_t count;
-+	u8 *buf;
-+	struct wl_icled_led leds[];
-+};
-+
-+static void wl_icled_encode_24bit(u8 *buf, struct wl_icled_led *led)
-+{
-+ /* WE 1315050930002, 1313210530000 and 1312020030000 control sequence:
-+  * +---------------------------+---+----------------------------+
-+  * |            LED 1          |...|         LED n              |
-+  * +---------------------------+--------------------------------+
-+  * |  GREEN  |  RED   |  BLUE  |...|  GREEN   |  RED   |  BLUE  |
-+  * +---------+--------+--------+--------------+--------+--------+
-+  * |    8    |   8    |    8   |...|     8    |   8    |    8   |
-+  * +---------------------------+---+----------------------------+
-+  */
-+	u8 pattern_true, pattern_false;
-+	int i, j;
-+
-+	pattern_false = 0xc0;
-+	pattern_true = (led->priv->icled_info->model_id == WL1315X002) ?
-+			0xf0 : 0xfc;
-+
-+	for (i = 0; i < WL_ICLED_LEDS_PER_IC; i++) {
-+		for (j = 7; j >= 0; j--, buf++)
-+			*buf = led->mc_cdev.subled_info[i].brightness & BIT(j) ?
-+			       pattern_true : pattern_false;
-+	}
-+}
-+
-+static void wl_icled_encode_48bit(u8 *buf, struct wl_icled_led *led)
-+{
-+ /* WE-1312121320437 control sequence:
-+  * +--------------------------+---+--------------------------+
-+  * |            LED 1         |...|            LED n         |
-+  * +--------------------------+---+--------------------------+
-+  * |  RED   |  GREEN |  BLUE  |...|  RED   |  GREEN |  BLUE  |
-+  * +--------+--------+--------+---+--------+--------+--------+
-+  * |GAIN|PWM|GAIN|PWM|GAIN|PWM|...|GAIN|PWM|GAIN|PWM|GAIN|PWM|
-+  * +----+---+----+---+----+---+---+----+---+----+---+----+---|
-+  * | 4  |12 | 4  |12 | 4  |12 |...| 4  |12 | 4  |12 | 4  |12 |
-+  * +---------------------------------------------------------+
-+  */
-+	u8 pattern_true, pattern_false;
-+	int i, j;
-+
-+	pattern_false = 0xc0;
-+	pattern_true = 0xfc;
-+
-+	for (i = 0; i < WL_ICLED_LEDS_PER_IC; i++) {
-+		unsigned int brightness;
-+		u16 led_sequence;
-+
-+		brightness = led->mc_cdev.subled_info[i].brightness;
-+
-+		led_sequence = ((brightness * WL_ICLED_48E_MAX_PWM)/
-+				WL_ICLED_MAX_BRIGHTNESS) &
-+				WL_ICLED_48E_PWM_MASK;
-+		led_sequence |= ((brightness * WL_ICLED_48E_MAX_GAIN)/
-+				WL_ICLED_MAX_BRIGHTNESS) <<
-+				WL_ICLED_48E_GAIN_SHIFT;
-+
-+		for (j = 15; j >= 0; j--, buf++)
-+			*buf = led_sequence & BIT(j) ?
-+			       pattern_true : pattern_false;
-+	}
-+
-+}
-+
-+static void wl_icled_encode_32bit(u8 *buf, struct wl_icled_led *led)
-+{
-+ /* WE 1315050930246 and 1311610030140 control sequence:
-+  * |--------------+------+------+-----------------------+-------------+
-+  * |  Start Frame | Flag | Gain |      PWM  level       |  End Frame  |
-+  * +--------------+------+------+-----------------------+-------------+
-+  * |              |             |LED1 | LED2| LED3| LEDn|             |
-+  * |              +-------------+-----+-----+-----+-----+             |
-+  * |              | 3bit | 5bit |B|G|R|B|G|R|B|G|R|B|G|R|             |
-+  * +--------------+-------------+-----------------------+-------------+
-+  * |   3 bytes    |    1 byte   |        n * 3 bytes    |(n+7)/8bytes |
-+  * +--------------+-------------+-----------------------+-------------+
-+  */
-+	int i;
-+
-+	*buf = (WL_ICLED_32E_CMD_WRITE << WL_ICLED_32E_CMD_SHIFT) |
-+	       (((led->brightness * WL_ICLED_32E_MAX_GAIN)/
-+		WL_ICLED_MAX_BRIGHTNESS) & WL_ICLED_32E_GAIN_MASK);
-+	buf++;
-+
-+	for (i = 0; i < WL_ICLED_LEDS_PER_IC; i++, buf++)
-+		*buf = led->mc_cdev.subled_info[i].brightness;
-+}
-+
-+static const struct wl_icled_info wl_icled_info_tbl[] = {
-+
-+	[WL1315X246] = {/* 1315050930246 */
-+		.model_id = WL1315X246,
-+		.color_sequence = { LED_COLOR_ID_BLUE,
-+				    LED_COLOR_ID_GREEN,
-+				    LED_COLOR_ID_RED },
-+		.bytes_per_led = 4,
-+		.encode = wl_icled_encode_32bit,
-+		.type = WL_ICLED_TWO_WIRE,
-+	},
-+	[WL1315X002] = { /*1315050930002*/
-+		.model_id = WL1315X002,
-+		.color_sequence = { LED_COLOR_ID_GREEN,
-+				    LED_COLOR_ID_RED,
-+				    LED_COLOR_ID_BLUE },
-+		.bytes_per_led = 24,
-+		.encode = wl_icled_encode_24bit,
-+		.speed_hz = 5333333,
-+		.type = WL_ICLED_SINGLE_WIRE,
-+	},
-+	[WL131X000] = { /*1313210530000*/ /*1312020030000*/
-+		.model_id = WL131X000,
-+		.color_sequence = { LED_COLOR_ID_GREEN,
-+				    LED_COLOR_ID_RED,
-+				    LED_COLOR_ID_BLUE },
-+		.bytes_per_led = 24,
-+		.encode = wl_icled_encode_24bit,
-+		.speed_hz = 6666666,
-+		.type = WL_ICLED_SINGLE_WIRE,
-+	},
-+	[WL131161X] = { /*1311610030140 */
-+		.model_id = WL131161X,
-+		.color_sequence = { LED_COLOR_ID_GREEN,
-+				    LED_COLOR_ID_BLUE,
-+				    LED_COLOR_ID_RED },
-+		.bytes_per_led = 4,
-+		.encode = wl_icled_encode_32bit,
-+		.type = WL_ICLED_TWO_WIRE,
-+	},
-+	[WL131212X] = { /*1312121320437 */
-+		.model_id = WL131212X,
-+		.color_sequence = { LED_COLOR_ID_RED,
-+				    LED_COLOR_ID_GREEN,
-+				    LED_COLOR_ID_BLUE },
-+		.bytes_per_led = 48,
-+		.encode = wl_icled_encode_48bit,
-+		.speed_hz = 6666666,
-+		.type = WL_ICLED_SINGLE_WIRE,
-+	},
-+};
-+
-+static int wl_icled_sync(struct wl_icled *priv)
-+{
-+	size_t i, len;
-+	int ret;
-+	u8 *buf;
-+
-+	buf = priv->buf;
-+	len = priv->icled_info->bytes_per_led * priv->count;
-+
-+	if (priv->icled_info->type == WL_ICLED_TWO_WIRE) {
-+		/* Prepare start frame: 4 bytes of 0 */
-+		for (i = 0; i < WL_ICLED_32E_START_FRAME_SIZE; i++, buf++)
-+			*buf = 0;
-+
-+		/* Prepare end frame: N/2 bits (rounded to first byte) of 1s */
-+		buf += priv->icled_info->bytes_per_led * priv->count;
-+		for (i = 0; i < (priv->count + 15)/16; i++, buf++)
-+			*buf = 0xff;
-+
-+		len = buf - priv->buf;
-+		buf = priv->buf + WL_ICLED_32E_START_FRAME_SIZE;
-+	}
-+
-+	for (i = 0; i < priv->count; i++)
-+		priv->icled_info->encode(buf +
-+					(priv->icled_info->bytes_per_led * i),
-+					 &priv->leds[i]);
-+
-+	if (priv->icled_info->type == WL_ICLED_SINGLE_WIRE) {
-+		struct spi_transfer t = {
-+			.tx_buf	= priv->buf,
-+			.len = len,
-+			.speed_hz = priv->icled_info->speed_hz,
-+			.bits_per_word = SPI_NBITS_OCTAL,
-+		};
-+		struct spi_message m;
-+
-+		spi_message_init(&m);
-+		spi_message_add_tail(&t, &m);
-+
-+		ret = spi_sync(priv->spi, &m);
-+	} else {
-+		ret = spi_write(priv->spi, priv->buf, len);
-+	}
-+
-+	return ret;
-+}
-+
-+static int wl_icled_set_brightness(struct led_classdev *cdev,
-+				   enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_dev = lcdev_to_mccdev(cdev);
-+	struct wl_icled_led *led = container_of(mc_dev,
-+						struct wl_icled_led,
-+						mc_cdev);
-+	int ret;
-+
-+	mutex_lock(&led->priv->lock);
-+	led->brightness = brightness;
-+	led_mc_calc_color_components(&led->mc_cdev, brightness);
-+	ret = wl_icled_sync(led->priv);
-+	mutex_unlock(&led->priv->lock);
-+
-+	return ret;
-+}
-+
-+static int wl_icled_probe_dt(struct wl_icled *priv, size_t count)
-+{
-+	struct led_init_data init_data = {};
-+	struct mc_subled *mc_led_info;
-+	struct fwnode_handle *child;
-+	struct wl_icled_led *led;
-+	int ret, i;
-+	u32 reg;
-+
-+	device_for_each_child_node(priv->dev, child) {
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret < 0 || reg >= count) {
-+			dev_err(priv->dev, "reg property is invalid\n");
-+			fwnode_handle_put(child);
-+
-+			return ret ? -EINVAL : ret;
-+		}
-+
-+		led = &priv->leds[reg];
-+		led->priv = priv;
-+		led->mc_cdev.num_colors = WL_ICLED_LEDS_PER_IC;
-+		led->mc_cdev.led_cdev.brightness_set_blocking =
-+							wl_icled_set_brightness;
-+
-+		mc_led_info = devm_kcalloc(priv->dev,
-+					   led->mc_cdev.num_colors,
-+					   sizeof(*mc_led_info), GFP_KERNEL);
-+		if (!mc_led_info) {
-+			fwnode_handle_put(child);
-+			return -ENOMEM;
-+		}
-+
-+		for (i = 0; i < WL_ICLED_LEDS_PER_IC; i++)
-+			mc_led_info[i].color_index =
-+				priv->icled_info->color_sequence[i];
-+
-+		led->mc_cdev.subled_info = mc_led_info;
-+		init_data.fwnode = child;
-+		ret = devm_led_classdev_multicolor_register_ext(priv->dev,
-+								&led->mc_cdev,
-+								&init_data);
-+		if (ret) {
-+			dev_err(priv->dev,
-+				"failed to register LED device, err %d", ret);
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	for (i = 0; i < count; i++) {
-+		/* make sure all leds got assigned */
-+		if (priv->leds[i].priv != priv) {
-+			dev_err(priv->dev, "reg property is invalid\n");
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int wl_icled_probe(struct spi_device *spi)
-+{
-+	struct wl_icled	*dev;
-+	size_t count, buf_len;
-+	int ret;
-+
-+	count = device_get_child_node_count(&spi->dev);
-+	if (!count) {
-+		dev_err(&spi->dev, "LEDs are not defined in device tree!");
-+		return -ENODEV;
-+	}
-+
-+	dev = devm_kzalloc(&spi->dev, struct_size(dev, leds, count),
-+			    GFP_KERNEL);
-+	if (!dev)
-+		return -ENOMEM;
-+
-+	mutex_init(&dev->lock);
-+	dev->count	= count;
-+	dev->dev	= &spi->dev;
-+	dev->spi	= spi;
-+
-+	dev->icled_info = device_get_match_data(&spi->dev);
-+
-+	buf_len = count * dev->icled_info->bytes_per_led;
-+
-+	if (dev->icled_info->model_id == WL131161X ||
-+	    dev->icled_info->model_id == WL1315X246) {
-+		/* account for START and END frames */
-+		buf_len += WL_ICLED_32E_START_FRAME_SIZE;
-+		buf_len += (count + 15)/16;
-+	}
-+
-+	dev->buf = devm_kzalloc(&spi->dev, buf_len, GFP_KERNEL);
-+	if (!dev->buf)
-+		return -ENOMEM;
-+
-+	ret = wl_icled_probe_dt(dev, count);
-+	if (ret)
-+		return ret;
-+
-+	spi_set_drvdata(spi, dev);
-+
-+	return 0;
-+}
-+
-+static void wl_icled_remove(struct spi_device *spi)
-+{
-+	struct wl_icled *priv = spi_get_drvdata(spi);
-+
-+	mutex_destroy(&priv->lock);
-+}
-+
-+static const struct of_device_id wl_icled_dt_ids[] = {
-+	{ .compatible = "we,1315x246", .data = &wl_icled_info_tbl[WL1315X246]},
-+	{ .compatible = "we,1315x002", .data = &wl_icled_info_tbl[WL1315X002]},
-+	{ .compatible = "we,131x000", .data = &wl_icled_info_tbl[WL131X000]},
-+	{ .compatible = "we,131161x", .data = &wl_icled_info_tbl[WL131161X]},
-+	{ .compatible = "we,131212x", .data = &wl_icled_info_tbl[WL131212X]},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, wl_icled_dt_ids);
-+
-+static struct spi_driver wl_icled_driver = {
-+	.probe		= wl_icled_probe,
-+	.remove		= wl_icled_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= wl_icled_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(wl_icled_driver);
-+
-+MODULE_DESCRIPTION("LED driver for Wurth Elektronik WL-ICLEDs");
-+MODULE_AUTHOR("Ante Knezic <knezic@helmholz.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
+Konrad
 
