@@ -1,147 +1,196 @@
-Return-Path: <devicetree+bounces-166478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E5F7A876A4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:13:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B50DCA876DF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFAB63AB476
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 04:13:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 826DB3A87F0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 04:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B62919CC3C;
-	Mon, 14 Apr 2025 04:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9631419E806;
+	Mon, 14 Apr 2025 04:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gOAi+vag"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MI0jWEIL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7A2192B8C;
-	Mon, 14 Apr 2025 04:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0B9194A6C
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 04:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744604018; cv=none; b=M23d16fhmyYmRgQKps/HQ2QyW8ouj2+DU1IVo/dn3DWyOGIMF/W/47xtHvREgtzDcJHWvKtnPalQXciJY1NvSsHtyMzscfr+76yfAiCJCkR9woz7yiXAR/q3s1+cuRuoJvT9ZWRAog5PwZ5nWST9QSDWQvvir3tvZiJ5Zr7PXc8=
+	t=1744604508; cv=none; b=WIb+TVdmMOL73kSfQ0gSZba5Q4YknWnE/zWyfrt9SFRWRPn273deI0GyqfsXiqkCaOhWrrRykDvz3LsV60IOLOgl+SpekX9NRiJukioNiI/o+I9W2kirT+hiiAmKN1qZA57bEf+Vv2rqlq9bCdx3LE7DRFDbSfJwzkd4CtTBW9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744604018; c=relaxed/simple;
-	bh=CB8pu/44ToFwI9NWz+1xSf7PMSuFUI0+WvVfiTyezjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dc6sjNZVVHD7PQr5dLp66PQ0qtAIB8IhG9zaNs6gDRi6yRc+nrAytSSbjeuzGuVmchVXTqmeXMyDXWhu1+Xa0I4Qrwi82fPVX6KqMv5P1IQhwVWMcYy8wpzFPudz+B0ixNF0Bsq/OeNm8i7QoLrtmjcI/zAI6sL3W1QBXuRscdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gOAi+vag; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744604016; x=1776140016;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CB8pu/44ToFwI9NWz+1xSf7PMSuFUI0+WvVfiTyezjM=;
-  b=gOAi+vagrTK9bezNbQDOcFRIz7U0WJhcMn/SKgMIdsVC6QC/kZyfo2mo
-   2wKxLYdxFjBA+QlfvhTpJUedSvv8f4mR/CnT4/+vgDvmWRRtr3FhPZgaV
-   gp0iMsMAcGgaXdHJNvEJSIoE3Eo2gtsUMgFeI9Z91r/ezO24X6ayJELif
-   d9MmxZBdOvdJOMEB3uAE96RUulFH80fZdfS/bI3ffiXPxNGXg1FqhfmLY
-   GB7byRUXpBAM5PzTjxcFrX3VIhq4QfZ2eNZoFmmjAosyyAJ/EcxWFwiVS
-   2q8FWq7J91QIUYaG/y5KMUga0zrFR4rNcSHsO/jHECgkaIIrQIWL6KKVc
-   w==;
-X-CSE-ConnectionGUID: I9ztO0mJTsS5spLvxTdo/w==
-X-CSE-MsgGUID: mfQSlc4NSkC6OkULop8aMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46069616"
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
-   d="scan'208";a="46069616"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2025 21:13:35 -0700
-X-CSE-ConnectionGUID: e1diT5iITya16f02jEWIeA==
-X-CSE-MsgGUID: qW0vI5rURz6dohE7ULXZaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
-   d="scan'208";a="160657009"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 13 Apr 2025 21:13:33 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u4BCM-000DXK-1K;
-	Mon, 14 Apr 2025 04:13:30 +0000
-Date: Mon, 14 Apr 2025 12:13:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
-	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Manikandan K Pillai <mpillai@cadence.com>,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and
- EP controller
-Message-ID: <202504141101.J2GJGhRZ-lkp@intel.com>
-References: <20250411103656.2740517-6-hans.zhang@cixtech.com>
+	s=arc-20240116; t=1744604508; c=relaxed/simple;
+	bh=TQ2XuJsuSjCYY9Sr0D87ughaklctGZthjIEj5rhAbrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ll8Ys1+7GM+3Z/q9o/3LlOXg+h7UKVIcZINTB7aj6ROorvwQ0PAWyqcqpNZ+3PqFl7fZmo6LeD5kDXRrFGm+XLd6LodoiXZTaYIMpXdjQuENnhfkfbGf0VZEMLbqpAqSqrcP2OZMM57fTZKpvgTtY4DCes8ZDbOBOc3/Tqh//O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MI0jWEIL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53DLZfkx006192
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 04:21:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	v1062Qb00rdFXbKWOZt6famOxoqeq892jzAre1MombI=; b=MI0jWEILVHMt2AcS
+	XFwlhBQRn8gK7noR6O1l4pt0l0XCxTsqqVLbNRIPp02OBaeNC6f2OyhxMcsL20cM
+	OObdLxHf1NUAhGLCxCPqSKBYbU7eqZuCA0XV5hKyHnYhvWZKhJvQ7WUlWm52dqB3
+	VptvArV8r9NeJZ4U40FqqLs3LY57WRaV3LmhAsG5qVdHOGvSxVBVzT+CjMpA9jq+
+	R+5WbhWOHclg7eVoTMdB6TNR5J98ZCXSELa0UumVlk4lwRZMHJETnt+tWeVYAe2u
+	11T5FPVPyf8CmSggkefbHAa+cJ97dqAVaeFj6Gv8plAthzCdB3pUuT68HqbSGJRo
+	X3fX4A==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wb82r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 04:21:45 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2ff78dd28ecso4988589a91.1
+        for <devicetree@vger.kernel.org>; Sun, 13 Apr 2025 21:21:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744604504; x=1745209304;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v1062Qb00rdFXbKWOZt6famOxoqeq892jzAre1MombI=;
+        b=qdSdWq3tKwsMovQJSP1H4DWxv2jK2PekMQujYPJFFmf1Y0gwz0yPiBal7whMb5m+tA
+         bjcspKarpzl6wDzqE4BaYZW9a81D1vIdTstptKoht/cOp2Tp/ht9n3T5VnLRAC6332dc
+         Q4IzynWpDleglq77yfiZyN/g85+3nj2f9cLPg1M0O29CLnAId0zhm5JwHLzzB6Dd06Rs
+         /k6KnEoXdJDJghIeaxo0uIFmCCmj/lLKplaZpgogJarYJdjK5A5MxHHzVkt+Np4XlsDH
+         Tt4nGqoPhbsKwOfp3g2feJc5vrX5qgdAc1XMD8FCkIn67BYvjvNPr3ml/IzgbUKbHIU1
+         Iz2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUmI8CTNtwLZYYxN45JnEplmLUAjGi0JFFwY5ZFh/zhEgGvdox1ksgmDwp3qZ/rwcslJwrQnUgFzmLZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbMWbnZQBlTitVbNmmWSOhBduqsQp9jqnFZWEOybaB2CI22usH
+	eyzISNVPdX7/HAtMKf5Besk0uH90NxI6c7SzQfH8POn9VQTODJbJo8k6fKLgDCMxySbq0epyH2M
+	4VkEWBvi9iMFRKHwvw9HDToI9gfFkiJ4vVoxh4HTvBBENDvGJ0X4obl2MiYuH
+X-Gm-Gg: ASbGncusd7UZ9+KD+cr8DKjoLFMxXaKq6mdeCeGuFcHlxoxWkItDcmtcDi/vHlmwiwR
+	TNJlwzRr7S2x5lKBHf1Hy/bLOZzd2bZLdlAQJOnfdKOpBFskCrMe7Bqx1At6llTZacNT2jGLCIv
+	WJV3/OOieWpxcNvFgSXXX9mmcweZ780Vc8H9cXCQUiPrVBjSOaiTzeWjiwg7E1P88t9jiAk7viS
+	qhob2l5rlcgtf2IdNsOeVkWjajfO/8QfMGbhtyRovoO/Oixgb377gr9Bu9e8qG1U8K5f17uCajB
+	0WTJ2Dh9G6yBcolPFZbeDUFIza7QBqjL3/X6pYA62Q==
+X-Received: by 2002:a17:90b:3808:b0:2ff:6608:78cd with SMTP id 98e67ed59e1d1-30823646b04mr16670435a91.9.1744604504088;
+        Sun, 13 Apr 2025 21:21:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHgLh9KbrEwTxyAmeC0D1o+Gbjg5afrIg3u0yS7IjiKO0bk4BGXPzyV29VIQvaXYKiAsiEiIg==
+X-Received: by 2002:a17:90b:3808:b0:2ff:6608:78cd with SMTP id 98e67ed59e1d1-30823646b04mr16670397a91.9.1744604503461;
+        Sun, 13 Apr 2025 21:21:43 -0700 (PDT)
+Received: from [10.92.199.136] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-306df403d40sm10120276a91.49.2025.04.13.21.21.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Apr 2025 21:21:43 -0700 (PDT)
+Message-ID: <9cc84d20-90e8-069d-db0f-21386c5b0a98@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 09:51:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250411103656.2740517-6-hans.zhang@cixtech.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 7/9] PCI: PCI: Add pcie_link_is_active() to determine
+ if the PCIe link is active
+Content-Language: en-US
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+        Dmitry Baryshkov <lumag@kernel.org>
+References: <20250412-qps615_v4_1-v5-0-5b6a06132fec@oss.qualcomm.com>
+ <20250412-qps615_v4_1-v5-7-5b6a06132fec@oss.qualcomm.com>
+ <Z_njmA49Gda-m0aH@wunner.de> <Z_vw_i1P_Y2gCYrR@wunner.de>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <Z_vw_i1P_Y2gCYrR@wunner.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=67fc8d59 cx=c_pps a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=DLE-xEQoUa54y48t:21 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=a1gpy7YTC9TOQ5gj66gA:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: J1OPRHXRoTRZyDvUBFAQTlPJSwSBkzHE
+X-Proofpoint-GUID: J1OPRHXRoTRZyDvUBFAQTlPJSwSBkzHE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_01,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=697 spamscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140030
 
-Hi,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on a24588245776dafc227243a01bfbeb8a59bafba9]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/dt-bindings-pci-cadence-Extend-compatible-for-new-RP-configuration/20250414-094836
-base:   a24588245776dafc227243a01bfbeb8a59bafba9
-patch link:    https://lore.kernel.org/r/20250411103656.2740517-6-hans.zhang%40cixtech.com
-patch subject: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP controller
-config: arc-randconfig-001-20250414 (https://download.01.org/0day-ci/archive/20250414/202504141101.J2GJGhRZ-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250414/202504141101.J2GJGhRZ-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504141101.J2GJGhRZ-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   In file included from drivers/pci/controller/cadence/pcie-cadence-host.c:13:
-   drivers/pci/controller/cadence/pcie-cadence-host.c: In function 'cdns_pci_hpa_map_bus':
->> drivers/pci/controller/cadence/pcie-cadence.h:309:9: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     309 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK, \
-         |         ^~~~~~~~~~
-   drivers/pci/controller/cadence/pcie-cadence-host.c:108:17: note: in expansion of macro 'CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS'
-     108 |         addr0 = CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(12) |
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
->> drivers/pci/controller/cadence/pcie-cadence-plat.c:59:23: error: 'cdns_pcie_hpa_startlink' undeclared here (not in a function); did you mean 'cdns_pcie_hpa_start_link'?
-      59 |         .start_link = cdns_pcie_hpa_startlink,
-         |                       ^~~~~~~~~~~~~~~~~~~~~~~
-         |                       cdns_pcie_hpa_start_link
->> drivers/pci/controller/cadence/pcie-cadence-plat.c:58:35: warning: 'cdns_hpa_plat_ops' defined but not used [-Wunused-const-variable=]
-      58 | static const struct cdns_pcie_ops cdns_hpa_plat_ops = {
-         |                                   ^~~~~~~~~~~~~~~~~
 
 
-vim +/FIELD_PREP +309 drivers/pci/controller/cadence/pcie-cadence.h
+On 4/13/2025 10:44 PM, Lukas Wunner wrote:
+> On Sat, Apr 12, 2025 at 05:52:56AM +0200, Lukas Wunner wrote:
+>> On Sat, Apr 12, 2025 at 07:19:56AM +0530, Krishna Chaitanya Chundru wrote:
+>>> Introduce a common API to check if the PCIe link is active, replacing
+>>> duplicate code in multiple locations.
+>>>
+>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>
+>> Reviewed-by: Lukas Wunner <lukas@wunner.de>
+> 
+> Looking at this with a fresh pair of eyeballs, I realize there's an issue
+> here, so unfortunately I have to retract the Reviewed-by:
+> 
+> pcie_link_is_active() differs from the existing pciehp_check_link_active()
+> in that it returns 0 not only if the link is down, but also if the
+> Config Space read returns with an error.
+> 
+> In particular, if Config Space of a hotplug bridge is inaccessible,
+> 0 is returned instead of -ENODEV with this patch.  That can happen if
+> the hotplug bridge itself has been hot-removed, which is common with
+> Thunderbolt, but also on servers with nested PCIe switches.
+> 
+> The existing invocations of pciehp_check_link_active() do the right
+> thing if the hotplug bridge has been hot-removed, but after this patch
+> they no longer do.  For example in this hunk ...
+> 
+>>> --- a/drivers/pci/hotplug/pciehp_hpc.c
+>>> +++ b/drivers/pci/hotplug/pciehp_hpc.c
+>>> @@ -584,7 +557,7 @@ static void pciehp_ignore_dpc_link_change(struct controller *ctrl,
+>>>   	 * Synthesize it to ensure that it is acted on.
+>>>   	 */
+>>>   	down_read_nested(&ctrl->reset_lock, ctrl->depth);
+>>> -	if (!pciehp_check_link_active(ctrl))
+>>> +	if (!pcie_link_is_active(ctrl_dev(ctrl)))
+>>>   		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
+>>>   	up_read(&ctrl->reset_lock);
+>>>   }
+> 
+> ... pciehp_request() will be called if the hotplug bridge was
+> hot-removed, which isn't the right thing to do.  The current
+> behavior is to do nothing.
+> 
+> I realize I steered you in the wrong direction because in my
+> review of your v4 I asked why pcie_link_is_active() doesn't
+> return a bool:
+> 
+> https://lore.kernel.org/all/Z72TRBvpzizcgm9S@wunner.de/
+> 
+> So I sincerely apologize for that!  You actually did the right
+> thing in v4 by returning a negative int if the Config Space read
+> returned an error.
+> 
 
-fc9e872310321c Manikandan K Pillai 2025-04-11  304  
-fc9e872310321c Manikandan K Pillai 2025-04-11  305  /* Region r Outbound AXI to PCIe Address Translation Register 0 */
-fc9e872310321c Manikandan K Pillai 2025-04-11  306  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(r) (0x1010 + ((r) & 0x1f) * 0x0080)
-fc9e872310321c Manikandan K Pillai 2025-04-11  307  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK GENMASK(5, 0)
-fc9e872310321c Manikandan K Pillai 2025-04-11  308  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(nbits)           \
-fc9e872310321c Manikandan K Pillai 2025-04-11 @309  	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK, \
-fc9e872310321c Manikandan K Pillai 2025-04-11  310  		   ((nbits) - 1))
-fc9e872310321c Manikandan K Pillai 2025-04-11  311  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK GENMASK(23, 16)
-fc9e872310321c Manikandan K Pillai 2025-04-11  312  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) \
-fc9e872310321c Manikandan K Pillai 2025-04-11  313  	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK, devfn)
-fc9e872310321c Manikandan K Pillai 2025-04-11  314  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK GENMASK(31, 24)
-fc9e872310321c Manikandan K Pillai 2025-04-11  315  #define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(bus) \
-fc9e872310321c Manikandan K Pillai 2025-04-11  316  	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK, bus)
-fc9e872310321c Manikandan K Pillai 2025-04-11  317  
+Ok, No problem. I will revert v4 patch i.e returning int instead of
+bool. I will wait for few days for any other new review comments.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+- Krishna Chaitanya.
+> Thanks,
+> 
+> Lukas
 
