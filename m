@@ -1,90 +1,116 @@
-Return-Path: <devicetree+bounces-166683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F495A8801D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:12:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6FD8A8802A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:14:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 756A818991DB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:12:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9611F3A6D1F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71ABF29CB4E;
-	Mon, 14 Apr 2025 12:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250B429DB8C;
+	Mon, 14 Apr 2025 12:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xtm/BFNm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZNnmEjje"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D290225A2AB;
-	Mon, 14 Apr 2025 12:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E85627CB2E
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744632727; cv=none; b=BXaCxdydxA+YLrGhoMyKBT0gwOE+I/VKZSL4olVTH99NC983r4ty9Zi38GyVKG4v1nWib611T6ZC0f5bKpx+eJy5HG9JGNH7+g4d9jHn2zKfy8zIQId+NkqCsvAYpQreY4zmlqUePV9Xe7uWJiuDczJ6zzBucgv0OQJpozznGIY=
+	t=1744632863; cv=none; b=mKG52WXaWo0GlHLY1LxAQ+DKavcbxvifK/EUwHBZY035f0p3Gb3liwFrjltUyykFRsqF5lasddngApQTYabZr6gNq10RDUmh9/OrEAKH7NPtirSzSEPmFtp/AIIJcxaPz4Do5plQxSFGkShCml0zUwQ2bFG9aMq+mqtsJPLN8oQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744632727; c=relaxed/simple;
-	bh=7HiWJUY7k3PBjq+nyjLuTF5RMOFecFY79b69z1xvKkQ=;
+	s=arc-20240116; t=1744632863; c=relaxed/simple;
+	bh=rzumaZ7iog0sCf444cKDLVPB1GndQIrZZhy1nlc+LS0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q+grnK+mkZq1TGw11A5mILG/IakKQLtFG+NsHeaL+TwlaQJyOcsZdJChupH5CsLTxB4O0TFHXlqczx9RGZBFREkCbYlEpa8CDmy1U6FtpbgJjeVJ7iExCX7Bc8BCc4FIhFoUCyakGQFXxkdg1aHgWU40POh+cLQyORc1u0gV7WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xtm/BFNm; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7370a2d1981so3154516b3a.2;
-        Mon, 14 Apr 2025 05:12:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744632725; x=1745237525; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1NVHglvUlYKOGcz6TwIpfPLcwNgLnD8HxMiutrlB7jI=;
-        b=Xtm/BFNmvXWSVuDNPf9Cg7W6Q4O1UQ7/0j0YGLAWQK3OgFrExazip+KiK19Uh6GGS+
-         MGWAsR/5hfUZSW9VLRxH+oB1PYn+wZxK//ZQGU2nKvLOvQcPWYPUdydRk2GuuK38KFIq
-         yb8DPluhltxHyDAI/zUtPQl/3hZKRQoz9loLDS8QaUJtE9K51JmVDp2W96LLNP3VUHWV
-         v7qYANzNUsLwb1jvKf/pKoMQVGWLg5Y3kSRlSk9jWO/mGAKszkfMxK4gXOAhsxHe9RI0
-         26BJQWkpoyP9tUKCAOaE41pBwh5YSgWitz3hYhW2sSV88oLvUjgmgow9RLI1UfvpGgOV
-         t8jQ==
+	 Content-Type:Content-Disposition:In-Reply-To; b=KcgaKMXNxXqkQMK70AWKNUFzxCFDWP2BdTd7IZXbVBlcfojQlWP539Ho+azATtODCc+IE/lY3kXdsmDBbwqiGr3a0Iw6etICZIQ6JbcdTDTr5Br3N46I+DZjdGTtmMHJVMV6Bxwat5qzdJ/6Bl2WerXVa30GYi3KYLokQvXYDk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZNnmEjje; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99tKk029074
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:14:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=bGrXNa6dHXvr4kroK+MTw5NQ
+	iqX7zWwS0Ak/+A0yv10=; b=ZNnmEjjePUV+BrjhfwfZTyG1deE26VgjPzjuXCo2
+	YWBhbuGcHoo2EGQ7wYQa84DJiFY6uKeFTtqeAq2pA4PidWV0R6BqXsNcSSbf8MBe
+	YF0B3Y7ghr7H95bhvH9LgPrqCSdABJrEiOPd5UpukkduE75MokYhKwkrc6nQwGON
+	1WPuc2Z2hQA1rfj82vrIGp/zNwzMH2ygBfWAFOtNX7k6ch8kF/5ijpbVTnYBZTwi
+	njM6B/f7Ox90/VGAKNDEnn+Z7cORaoJQxSkMSPUzkunN++eE+slgLMUCYwFYX4RW
+	gTjDEUB0NwlU3JemWDeeJiW8oyF+fZxUNvumTEkU/zMIuw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfs14hd0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 12:14:18 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5750ca8b2so678036885a.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 05:14:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744632725; x=1745237525;
+        d=1e100.net; s=20230601; t=1744632858; x=1745237658;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1NVHglvUlYKOGcz6TwIpfPLcwNgLnD8HxMiutrlB7jI=;
-        b=WbLAmXswXX5ylfGHPTug6OkWXs8Hf1qlyLTo+4OHO6EdCKgzO4WYSAwwH7N0xAOS6A
-         krDDFA9mgLN+9wpDQLr8SUErM9QZ27BYqT84jpLmNtMP8vaLZJqzC+UFHkVuhEXk2mRo
-         uooknkVv80/308DIaIaycJVVr3nlxmrAh1pqE5CQHxS1ldlOx2TSnHZhkGtzxG/7c23W
-         R+GVaQaHMOgTd6Wz9B9WBaOYSbyPuDbDm4coCZ2mNuqsZZ0U5tiFrLhddHmYuYlPmk+C
-         DeXSNhCMJV3WBfICWAhZDsjNt2wuONw1ogSJijZ5kUZS56AAjWdtTM471WxTniHoo39N
-         2Irg==
-X-Forwarded-Encrypted: i=1; AJvYcCUA5b+nOTor7wjPydz4Fu8Ne8uAiuilvbTsVJzjZcn/cpITNivI5ObcwuB0DdwlEgO6BjeUWmKJoD5q@vger.kernel.org, AJvYcCUVeULhvQbTID3ZHwhmzuqCOW5v3Gfgbk1JTfo93Rttje3HWiMh5ctP7PXVBmDlFbLFQ84JVup/W+XvHYKC@vger.kernel.org, AJvYcCVXIYJZNjs0cLN9RO428DmK9AXhmSndG/Gw2pDhS/GwMvA6coHH9DRr+vAydgx+h6X00cUASdrPxp0C@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+flAXPamKdGYpD8Y21wdfasVjOcmjwUvbIFD2ZJkkVBTG2Se1
-	I/c++UYkWKfT08NA1PdPf9MNqhvbX7a1Ki2K4tgu3AxfphGc4NBdj0xWz/25jzo=
-X-Gm-Gg: ASbGncu7xxzu7iGlBbVqCJ+zxiEWddWgBDlLUTfyY5WMlb7PL20RM14rkgqvQXZXBjI
-	UM+zoQKyBIy0dtikOQWPHZATmVr9ux0uWZQXkXgCNbpmxN32mXQrvJvf6XuzZNG93gFczp6HKjA
-	pBLE8h93FtilWeO+kCuYy5IUPkppkwL4R3yt8Sj8hiPARkJ6BjX12/OlMkXr8MRuwAl7++gNT+e
-	Rxo4CDZovJZ85Vu82W+BUNKWvtg1Lqk98QGD2fUi+G3m1qA1dze/ROfDjIY0aIBzqGL1fZwyVqh
-	lS8q2jcxC4FNjKOKwaNFMUmcpKve6UU5I6Z53EXpVRSkdt7d
-X-Google-Smtp-Source: AGHT+IF+TIVrbFGinU7ywTDvjK5W6y83fY1DKIZT07Xcs1cZRpqvJc3wIS0iwg8lLbaz6rT1AlurdQ==
-X-Received: by 2002:a05:6a20:d49a:b0:1ee:dd60:194f with SMTP id adf61e73a8af0-201799683ecmr16377045637.26.1744632724786;
-        Mon, 14 Apr 2025 05:12:04 -0700 (PDT)
-Received: from localhost ([2804:30c:92d:f600:d5e4:543:c403:4767])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b06161333a8sm4331209a12.7.2025.04.14.05.12.03
+        bh=bGrXNa6dHXvr4kroK+MTw5NQiqX7zWwS0Ak/+A0yv10=;
+        b=lHGdKfoX6qKZV/S1MEbE6o8LOHLn2uJjOnnD014IclkjqogaBCLpQ5bOkGW84/PVNV
+         kJuPiacbsgIGRZDfUoEyxrZM5bmj3SamQI4p6TxUYoZHoo3QpbkBIzGJScxon3HLlrcx
+         8ClTwLejgs/Q2M4ahMhNvlSkHlQGD0HA/iDm13c74B/T3q7+yEueJzeHKPjYM6NBkAb6
+         FP29BNKYXEX5CR/b98CPMnW35EM3sCRD/2P4WRg4F4RBVQAa0WYuDe6Ora7pKbzgjnwi
+         CX+dJmhZ6ttI5ZyKvE6mqEvBStfhC1gtyhOxanRMCFI8TlN7W5HKmO6Ee8y4+sUq2986
+         7eEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPhTl1VIyLFxV3UKkAfY/HW0C5LfrWwhrnOTAOqI68Nmgc1ZGDiE+OLhyg8Lq6BuXR8Gq/qh37aiGD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlR4Mp6sjBgIaazGJPpap8lkSx4a3t1J248G5MduHxGOJHibbG
+	wUGcJZkPvcQNJcKj46cHEDiPkUSocltlVgp7Zy7cBLzOL2YjHjgOwgXzjbC/duwfzEcP1mjU+no
+	qnvTqqgyi/cXOAXz+xvjbnV4qOavwZ+hoONeMP0nvKt8SxvXcYjTjKMwUTal4
+X-Gm-Gg: ASbGnctCsvpDBIBaIV3wrHnduja+yJNBbx4OMKRLggaMxTkFmoHKAFcFJsynKDwSffi
+	1XeYmndOLGAU7NjO0w0hIww+3cXGTgMX5b8lYxDb2Iv1Ory3WNcMBtHhdFoVu+tLLq+pf4zfMW9
+	dz3l4uqoWAGcu9zxZ+BtDlrAK45uwyVTIHZps0+6XCoTa7kDX1Ti+Sx1orRpnsXncUD7eAHXfCa
+	9UuQzhsjaQCnOQ66xjaGL2d4xjumhkpsyQym26xbNtpG3ZVvUzGRDlbmQesfeCFNV0Qza5PKt1Q
+	guuQ+35ZKMzuU1J+oNfUC63RrIo7oBIzT8zzyYKLnIoqMtOMHV25oiOFHkY7mcbXi2nNIuqeTNY
+	=
+X-Received: by 2002:a05:620a:40c7:b0:7c5:4001:3e9f with SMTP id af79cd13be357-7c7af0e0f5emr1701934085a.29.1744632857835;
+        Mon, 14 Apr 2025 05:14:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFxzp5iYZiEnUZWE3gvlgW+sXTiIEbnk35cNdFG+zRQtIEUe8+f5w9ReiZy8l+u4jZmVg+wwA==
+X-Received: by 2002:a05:620a:40c7:b0:7c5:4001:3e9f with SMTP id af79cd13be357-7c7af0e0f5emr1701928685a.29.1744632857299;
+        Mon, 14 Apr 2025 05:14:17 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d2386b6sm1128164e87.72.2025.04.14.05.14.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 05:12:03 -0700 (PDT)
-Date: Mon, 14 Apr 2025 09:13:12 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 2/7] iio: adc: Add basic support for AD4170
-Message-ID: <Z_z72J_gcZqW14CE@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1744200264.git.marcelo.schmitt@analog.com>
- <5f79007f0b9f9f67360d04fb904b6a59111a4ebe.1744200264.git.marcelo.schmitt@analog.com>
- <20250412174710.33afb04d@jic23-huawei>
+        Mon, 14 Apr 2025 05:14:16 -0700 (PDT)
+Date: Mon, 14 Apr 2025 15:14:14 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sar2130p: add display nodes
+Message-ID: <fd2dtxhbfvgpiwy7rc5z4hrrmuthet7bmp6iespdcvxgaz5uhe@ivg2gun7sb6q>
+References: <20250314-sar2130p-display-v2-0-31fa4502a850@oss.qualcomm.com>
+ <20250314-sar2130p-display-v2-10-31fa4502a850@oss.qualcomm.com>
+ <c14dfd37-7d12-40c3-8281-fd0a7410813e@oss.qualcomm.com>
+ <umhperyjdgiz4bo6grbxfhe44wiwoqb3w3qrzg62gf3ty66mjq@pddxfo3kkohv>
+ <8fe8c0f8-71d5-4a85-96e5-17cb4773820d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,88 +119,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250412174710.33afb04d@jic23-huawei>
+In-Reply-To: <8fe8c0f8-71d5-4a85-96e5-17cb4773820d@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=P9I6hjAu c=1 sm=1 tr=0 ts=67fcfc1a cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=nRcdhEhJI-3p1s1dT_wA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: OICRTkRMjRP_NN7BeUHOsklHkOohLdDX
+X-Proofpoint-ORIG-GUID: OICRTkRMjRP_NN7BeUHOsklHkOohLdDX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 impostorscore=0 phishscore=0 suspectscore=0
+ mlxscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=607 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140089
 
-Hi Jonathan,
-
-Thank you for reviewing this set.
-Clarifying some bits inline. Will apply all other suggested changes.
-
-Thanks,
-Marcelo
-
-On 04/12, Jonathan Cameron wrote:
-> On Wed, 9 Apr 2025 09:24:35 -0300
-> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-> 
-> > From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+On Mon, Apr 14, 2025 at 01:39:56PM +0200, Konrad Dybcio wrote:
+> On 4/14/25 1:37 PM, Dmitry Baryshkov wrote:
+> > On Mon, Apr 14, 2025 at 01:13:28PM +0200, Konrad Dybcio wrote:
+> >> On 3/14/25 7:09 AM, Dmitry Baryshkov wrote:
+> >>> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>>
+> >>> Add display controller, two DSI hosts, two DSI PHYs and a single DP
+> >>> controller. Link DP to the QMP Combo PHY.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>> ---
+> >>
+> >> [...]
+> >>
+> >>> +			mdss_mdp: display-controller@ae01000 {
+> >>> +				compatible = "qcom,sar2130p-dpu";
+> >>> +				reg = <0x0 0x0ae01000 0x0 0x8f000>,
+> >>> +				      <0x0 0x0aeb0000 0x0 0x2008>;
+> >>
+> >> size = 0x3000
 > > 
-> > Add support for the AD4170 ADC with the following features:
-> > - Single-shot read.
-> > - Analog front end PGA configuration.
-> > - Digital filter and sampling frequency configuration.
-> > - Calibration gain and offset configuration.
-> > - Differential and pseudo-differential input configuration.
-> > 
-> > Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> > Co-developed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> Hi.
+> > Existing platforms (including SM8650) use 0x2008 here. Would you like to
+> > change all the platforms and why?
 > 
-> Clearly this is a massive driver, even with it broken up like this.
-> So it might take a few cycles to review enough that we don't find
-> new things :(
+> The last register is base+0x2004 but the region is 0x3000-sized on 2130
 
-No worries. Yeah, I tried my best to make it concise but this is still not small
-piece of code.
+As I wrote, this still applies to other existing platforms. I think up
+to now we were using a mixture of 'last actual register' and 'documented
+space size' with VBIF using the former one. Should we switch all
+platforms to use the latter one for this region? In such a case I'll
+update this one and all other platforms. Otherwise I'd prefer uniformity
+and still use 0x2008 here like other platforms do.
 
-> 
-> I can't think of a good way to split it up further though
-> 
-> Jonathan
-> 
-> > diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
-> > new file mode 100644
-> > index 000000000000..0d24286ac2ab
-> > --- /dev/null
-> > +++ b/drivers/iio/adc/ad4170.c
-> 
-> 
-...
-> > +static int ad4170_regulator_setup(struct ad4170_state *st)
-> > +{
-> > +	struct device *dev = &st->spi->dev;
-> > +	int ret;
-> > +
-> > +	/* Required regulators */
-> > +	ret = devm_regulator_get_enable_read_voltage(dev, "avdd");
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to get AVDD voltage.\n");
-> > +
-> > +	st->vrefs_uv[AD4170_AVDD_SUP] = ret;
-> > +
-> > +	ret = devm_regulator_get_enable_read_voltage(dev, "iovdd");
-> 
-> If no channel uses this reference is it not optional?  Maybe not worth the
-> complexity of handling that.  We have sometime bothered to do so in the past
-> by first figuring out which references are in use, then trying to get the
-> appropriate regulators with small changes for cases like this where
-> it needs to be enabled but we might not need the voltage.
-
-We can set the channel multiplexer to use IOVDD reference as diff chan negative
-input. Similar thing can be done for the other reference supplies. I think
-the examples in dt-binding don't use IOVDD but they could. Since the driver is
-supporting other regulators, maybe support IOVDD too?
-
-> 
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to get IOVDD voltage.\n");
-> > +
-> > +	st->vrefs_uv[AD4170_IOVDD_SUP] = ret;
-> > +
-> > +	/* Optional regulators */
-> > +	ret = devm_regulator_get_enable_read_voltage(dev, "avss");
-> > +	if (ret < 0 && ret != -ENODEV)
-> > +		return dev_err_probe(dev, ret, "Failed to get AVSS voltage.\n");
-> > +
+-- 
+With best wishes
+Dmitry
 
