@@ -1,227 +1,214 @@
-Return-Path: <devicetree+bounces-166527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CC3A87957
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:47:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2691A87964
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3C1A1627D6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 07:47:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A62C7A7728
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 07:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E4618859B;
-	Mon, 14 Apr 2025 07:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC85257AD7;
+	Mon, 14 Apr 2025 07:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XPuZMVH/"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="slTdjORr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010053.outbound.protection.outlook.com [52.101.229.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28202628C;
-	Mon, 14 Apr 2025 07:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744616857; cv=none; b=Ta6400gbdx1KnIwFdu0Bu49ava4Skdbwylq5gtGG85DMECEFD57i15dCyrwAAJ3g9voJwVMBz0agRXbTdn2aJgbh7RMp8ZNakCbUDvkEy+auKzpN2Uy4GFOhBpRI2UnIoppCo9Yccu1+j2LV5k8lJxOf0uCRQZoJQ7OTpTAZDm8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744616857; c=relaxed/simple;
-	bh=cJVe3apFs6nVj9y2qjiGhvwIV6g3h3nboUFjSdFy8gM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XbQmyMAtJTd4tHKkcFNeW4u48c2HkOip0MEFkGFEVxnrxonjgl/8cW2q3TwSWXuhVsLygO29UIUZKdLLBCIkajdqgoLk6hCqSAJdlRFh3IyBGVr25oYVew+2tS/wP5r1PKyOvMJ/OfmOUw7wblXF/TVtMlHPrI3Z//0qcmNByF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XPuZMVH/; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744616856; x=1776152856;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cJVe3apFs6nVj9y2qjiGhvwIV6g3h3nboUFjSdFy8gM=;
-  b=XPuZMVH/RGLY9BLTMpGeW2rvCObFTyRi9ZdlAUZX4apcLUx8eyr9X2H8
-   YI1kZhExFfpluG+8zEPsBfIzQ0o2+psr0h8iKwvhWL6PY9OORVnb13N+S
-   5B31BPNZGOlbH7t+moEkXp1JQOqtUkHNbNilxsgRF66HfOZbOZtCPpQQ8
-   3w+oOPaVWF3uXnvjolT+OQjEt0aGMI7JBI1vsX0zf9m13CL9Zq1pRRCeR
-   xY0Ep2Hyj3CxoPNzEWW8JC9APJMu8dmINFSz0jGJaoQvogdPZw+ckf2Aq
-   nzkU3OU2oJgSzXrcASMVJ8VnVt2U0evadFcUFnW9kv8Ma1/OA+o3DCVn2
-   w==;
-X-CSE-ConnectionGUID: 4kMA9sn7RbuzCHC9v6gsJQ==
-X-CSE-MsgGUID: mNQt36SnS8ybCkGvRz8gAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46083351"
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
-   d="scan'208";a="46083351"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 00:47:32 -0700
-X-CSE-ConnectionGUID: ELGUn/CtQW+FwiUdM/EBCw==
-X-CSE-MsgGUID: 1aNZkmdaQum7hxE92/guUw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
-   d="scan'208";a="129503739"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 14 Apr 2025 00:47:27 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u4EXM-000Du6-20;
-	Mon, 14 Apr 2025 07:47:24 +0000
-Date: Mon, 14 Apr 2025 15:47:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
-	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Manikandan K Pillai <mpillai@cadence.com>,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: Re: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and
- EP controller
-Message-ID: <202504141523.v9N9MrDJ-lkp@intel.com>
-References: <20250411103656.2740517-6-hans.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113AE1ACECD;
+	Mon, 14 Apr 2025 07:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744617024; cv=fail; b=Hx0MevQTn+zCyDNZJicubBKyYvK2I38wBt2bxhTgxJUx+NV5W9f7hMRN++TsQWcW6oTpBp0x773kykwCm06QokZEj62Lz0ml19S2rGZlwt/YfrXRk2Jn97cXj5rR5A+c9z0T3ivcykftBlTYI7W+qf1UNFKlCy9UybhHFCO6bm8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744617024; c=relaxed/simple;
+	bh=GvZg3+QFaqME62dO3sTOII5I+5OuhoqQ+fhVG3DMfm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=k92dn/p9nnkiwKscVdJdYaXx4+RpZfhnQVkqU748CMZURudc4TKAj5ZmRqRTBJi6ecU+2i4UZp4Pl9eaIZ89LKdc5at5kOYrQSiaOAbXYXeldKSXcP/e0SeKoNIJ9RE0LN0ZXT3SYkqP1am1nHjhpAs8dDdJISjjeXGLupuXWlA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=slTdjORr; arc=fail smtp.client-ip=52.101.229.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JqFKIu2SMqo6dda/7YivBJpfpbLNlDvS8oufa78U3MDJtEEXeL0L8jt/Bns9Nl414Xd4VFuPWrgkwBvAYlt8w6oigHE4gRt8/BazSgkMQGsuumAEw6tBb02a3bzlCsG4amhlrGaUrrF6Sn3RtxktLPuMszeyoHeWnS/Nk6K4UEM3Nx5MiPvCAcAen98RAjIn6Vh3cWVdbrS+9ZPUC8LrrXkdpvimcaH3aFANBe9Hhh9VgU5AZIswJi9QAHDohbvqNXgoL3uSuFSFY+qDudSS6llLXxb+MR6S3nN5yfH4b+ErIkLIGieMfIdxuo4ZOwp7PtXU9qeZJ+PfD839nFtn+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fU7arI0dc/u2J1GzKAmTnC+80yF7o82gB38Hf9pZlIY=;
+ b=hMZ1vRZ3roH1ysys1QpR4ELlQgt2SZ70/nUaQuNHukSG8m1OMEjZ6yPOjfPw5MoyKjOcawgUDfiGHjYHvDFkMoThSn3r2GnqROtCESqoX/kn5rR6KMA2zs22Uk3L4TP0waJOuSYVWpIU4arIJ3Yg2yFq7ELJPsphSvSwJbiCL+5Znh8At3WCOFGH7BLY3/mxf1e4PSl6DOTGRi0dm+FCjWhbYVQ1m8WND6Erj280/K5BT8g3lyf9eQN+AbggqU1xYGMmhbMyfz9dzCgh/+weypiuQ72Ji09ujsZrjTW9Oib47aUXct4A3CdkBVyfgg/kWQhN4q5tuF6fJKq4IkIAcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fU7arI0dc/u2J1GzKAmTnC+80yF7o82gB38Hf9pZlIY=;
+ b=slTdjORr/Hc0WgIdfhL8RhJlZKYumJMDFeVkEuMKg0LUXcwwKqf7TUCXUAZ/ImJjG8ziYLfOsVmG7J1prlPnsXV3HTPRyqO3u/Amhh6JumzDK+TGFgDuJENLORwbEmMvURwb9ZhrPTBS6LMoiLAD8wj1tRYWKhQpbozc08GKDgw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com (2603:1096:604:35e::5)
+ by TYCPR01MB6608.jpnprd01.prod.outlook.com (2603:1096:400:ae::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.33; Mon, 14 Apr
+ 2025 07:50:14 +0000
+Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com
+ ([fe80::244d:8815:7064:a9f3]) by OS9PR01MB13950.jpnprd01.prod.outlook.com
+ ([fe80::244d:8815:7064:a9f3%5]) with mapi id 15.20.8632.030; Mon, 14 Apr 2025
+ 07:50:14 +0000
+Date: Mon, 14 Apr 2025 09:49:56 +0200
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
+	linux-media@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 00/17] media: rzg2l-cru: Add support for RZ/G3E (CSI2,
+ CRU)
+Message-ID: <Z_y-JJathHn5hBBQ@tom-desktop>
+References: <20250411170624.472257-1-tommaso.merciai.xr@bp.renesas.com>
+ <CAMuHMdWNGPTD=hPPZ1KxPYrJrokZJyydDreevABDt+yZpm-e7A@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWNGPTD=hPPZ1KxPYrJrokZJyydDreevABDt+yZpm-e7A@mail.gmail.com>
+X-ClientProxiedBy: FR4P281CA0156.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ba::18) To OS9PR01MB13950.jpnprd01.prod.outlook.com
+ (2603:1096:604:35e::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250411103656.2740517-6-hans.zhang@cixtech.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS9PR01MB13950:EE_|TYCPR01MB6608:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae21ee40-6312-406a-c60d-08dd7b28fde4
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|366016|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?98pJK9B2G8O8qsb1EgMBFU8BcG7oQmQhnOFpK3tbgVRes6aC/+t+wA7HvOeG?=
+ =?us-ascii?Q?VdIvWUFZ+cQz4CzOv1z0lP/GeFsH6qqRYOmWdSPIkMLxPHxYR084Fv8WCECf?=
+ =?us-ascii?Q?MZMyV5YEVZ29V51u6FdD0Tt+xK5hxxMCTmCAOhPBTQnidv1gDHeCKHFXkYVi?=
+ =?us-ascii?Q?MyxwcPBjW/m6bPwITftH8J7VuKvqfwMnKVzNQ+w0HyfiInYunBgZ/XNy9xwO?=
+ =?us-ascii?Q?lAdVtg6EmsZaGbwoP09YnKo//TuJJIJ3NnqpsPUwcT0bIT3wLL8+y4/CYVXq?=
+ =?us-ascii?Q?3Bhp8/Uc7f2ETRm2t7TLK8vI10mrfA1ZUarsugzkpSpO4J4dO9vEXxzLNo/f?=
+ =?us-ascii?Q?kBnOG2V6Hac1gzfqRw6eKnTYEtn2ao5iiAgt7o+KOOaW57RnM+Hq5crakfRK?=
+ =?us-ascii?Q?Xkkcu0gjzONYIU92EDYQaTXD/80BY/jYfbMOkbKSCHiJHhzfbqU7P11RQ3W3?=
+ =?us-ascii?Q?G31PbFL4oJNOG4vEYweulnYGb3jI9KK6PGhrDuMgrrskMBIKkGBssQop3Sj6?=
+ =?us-ascii?Q?WH/NL33Ns/idBFZW3QrnuBol+bO6k50PHlBp1xy55s91solZeW9zoI9DOIZQ?=
+ =?us-ascii?Q?XLL0EXDlAL3djZkhmMjfp9i57CoJYIDVyNBm8iXZQvdXE+n0Tk3kVzZllYWj?=
+ =?us-ascii?Q?52l8dVISrLXsTb5Cn+5WroHdUIBefQtHfuV5r1PG0djTHbnH754Rfc9kAFnn?=
+ =?us-ascii?Q?tx8WxFrMCGX+sx9Rbcc1aIh8H5Q+U8+0Owb+X3xN8WNpr/LbVUWmtxFEU/Id?=
+ =?us-ascii?Q?Vxq8dAg4TdbagqBJGDm/ZT4iFk49VEk5+XK8qE0Llu/3yar448dbXiHRtIFC?=
+ =?us-ascii?Q?gHPF1y6tk6PU39schzx9ZB5XoQWF9mpmLoyWYnr+kU8U4sSxbJMfN+cL2Ljq?=
+ =?us-ascii?Q?DmKD0PZAMniTf3BI8Z0aJ2VIfnseFE1gsv/z85XCPJa3vBiLiBYdNyDxtoQ+?=
+ =?us-ascii?Q?XnNv4h3LrxDrYJuMRK7qeWUuJ+an9pKF9qK2cY2IfEwTsqLzm2QhUG8z41Lr?=
+ =?us-ascii?Q?GMVvg2BZudxnDd9cEYUW/UhjqgfsSyON3uD012WmnT0PwB1OcIVoY5elkhvk?=
+ =?us-ascii?Q?rN/OAjcWSihO1+bGQiDdovwnJdepdLJCokT9idU1w9HTBD7yu8WnQNgGZ3bK?=
+ =?us-ascii?Q?z9VKrWhFMKPqQEXy40FweIWhJ5nd2/d29KeiqddpYBv/lBQI58qzWYkOPUCG?=
+ =?us-ascii?Q?0p/ymLZsrfZpbyqsDVINGKhl8eGF5mu/q6UhqfRkV6VM/sWdrfgeh9J0R6th?=
+ =?us-ascii?Q?i57Gbf5vm8V0cxGOv0+czDDmzDkYV/ISxo1h/Hf06XpFrG9+t5c/l8CPFCpn?=
+ =?us-ascii?Q?kU16Rzy+kAKHyrIApdf6546a8nih2xmd0SCkry6NmfW6rbqyjekO4KWW0MdD?=
+ =?us-ascii?Q?peuoChvr4Lfe/BBXd1vqU2br1chJoT2DkQ4iSxOHlsdwVcX/NY0MyfcwA52p?=
+ =?us-ascii?Q?SUcu2FFiHhoHY7J+GDKeXDafNlOnSrUhraXT90yb0eAeEVc+beMONQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS9PR01MB13950.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vCdbbniBS64NBk1208BbXDPHcV8zmJNpZ1eL4fT/SXnmdbOgim74trydqLt6?=
+ =?us-ascii?Q?bkf7T2Kun7PE/G62fn290T5tEtBdhdXknFlOu8Hfoq7tb22F1Q0ktf9eI9JI?=
+ =?us-ascii?Q?Dlnzv7Gqh3bdV3Rn/0XXTeSiP9311WC2xJOIm7t2NFYfAFYNSUN3/rSh68cy?=
+ =?us-ascii?Q?4E3nvVXlgmEF++6NAzyR1NUrC4P6oYareKzTvv1DhunZSqOmUI00aEOFcjD+?=
+ =?us-ascii?Q?Ekoj30KYUynMZtoRpkr+/FWLqEBn+8WoCLqIErfY1zF3Cnrjlken4QMvn7VI?=
+ =?us-ascii?Q?P8ifZ7MajSrERg/mrSZYXWpTnWoh/qQJXTtCbwro48TsZ6t+9cjm77LsTNw6?=
+ =?us-ascii?Q?UvY+3HpHdo2vGQfbMZkvy5lyAct7GuNRzjcG0oQtKF9WMJmYOKBDfvwF4ZnX?=
+ =?us-ascii?Q?15fMupN+AJqfi5HRMb1toztSZI9wEEMDypR0Gusjfpu8bnW3EsxPAj6VtgQp?=
+ =?us-ascii?Q?RJ4R+E454pXFC2WaVoYXiYbu2tr4GVbIHhkS13ECrQe9ZaNnlD0OdrmxmY+V?=
+ =?us-ascii?Q?nTRRWLNn56X3Z57whFk+rqgIaGO+ouRZSGkbmhSxoiZLLX0+1I5a8NoAf0Fv?=
+ =?us-ascii?Q?Ma+3ZCMyLNQ2NvGO5skw/8tXonnTJ1oh440BfIKH+aBHgy6x/Kl5bim6BNSZ?=
+ =?us-ascii?Q?YnIy/wRPb+r+4nz7DCpTmsza5XYFF/AJkuXlGUoWspgq3szvm171dgBjXSSH?=
+ =?us-ascii?Q?paJAtUHSLhEcqajIXlncAIZeAzK3NlYEqXTvfH+rUZv8vGHHK+sVm68BMpp3?=
+ =?us-ascii?Q?naioJds19gPkV1suyG1whFSlf+kMrMhHmLevQGvdoeDIanKhTLH/l4jZcShP?=
+ =?us-ascii?Q?eNDZEV4qHsCtxZNYFi8PZpBGw52OB6F6aMEyMrQH9brni3/8LRSDg8J25U/Q?=
+ =?us-ascii?Q?SpftZ4QJI6B5D+3rtUhrQ+L0nYBidLAQMNlYv7t/R4NuyBeVzYwzGSochQLI?=
+ =?us-ascii?Q?lGTqvvBg8aVjGhxFm73HXpakAQpjRtRk3b354ewicP5kefgBJUY1g1mGdU3X?=
+ =?us-ascii?Q?GEL6EiZaIu/l7F0ZCacLvmMO+g78ILX7svN4r/EnZmBPyjzT3N1jU/+jIN8V?=
+ =?us-ascii?Q?FF5XmMghL6IuK5jf8AuqXkb1poraAUtHOiqkwIrwmiVCcUC1atwLmm3YzBy4?=
+ =?us-ascii?Q?BMtUICd3U7bEqJq6x9K66RefrOs+LkzFN6xFjRaBJgLs1Pq4ko1kxlm1C0vx?=
+ =?us-ascii?Q?Knp/TLzjPfYbs44IzenD0k4yExiBuATLjE0Wo4HaI5QpW7+nxC7iEK8MJ8LF?=
+ =?us-ascii?Q?K4qslYhj88bdQvjbK+8PGroQOGRj9EwQrMn1pOlp95Nlc9deCXclI+q0dpPv?=
+ =?us-ascii?Q?/X65gaYZamgJRoNookY+0fnPk2fNqd3AXR3aT2OxfQb8egj8aggCMSaOJyP3?=
+ =?us-ascii?Q?bAuFAWdf3/GvaZ+0TdZQ2oNhWcCeLqXYZ89xiHjeYVkKa5VLtTiHaipAMdgj?=
+ =?us-ascii?Q?rrZ5Zaoe4asoAF8S+PXKTHnfP+b33XzBHZIsFqJldI5naftiXahTyw39fklS?=
+ =?us-ascii?Q?AzjCwMQQM0VH3cOx+MpT6IO4k7W+q3TGsT3/Ss7aRCdQzqvK7gT8ocniBuRy?=
+ =?us-ascii?Q?N/rEdXnJylmlXgYhevnixJX6E1YCt/DL+AF6xTPsZ4KVC/LYa+SnawbiM6os?=
+ =?us-ascii?Q?LX/UfuMRLANLfVD7MldTWl0=3D?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae21ee40-6312-406a-c60d-08dd7b28fde4
+X-MS-Exchange-CrossTenant-AuthSource: OS9PR01MB13950.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2025 07:50:14.8399
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lEhlONbzGm9qeZDanoKFgHMqvmBSy9D4UOMHbUmvu8jXbudmEqKqULTNDSebivg8EhKzqE1uWX8bU/PEXAmpm3v5876WdhSAifDBni3p6UX80vuY8aet/kaOdsAwZJzC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6608
 
-Hi,
+Hi Geert,
+Thanks for your comment.
 
-kernel test robot noticed the following build errors:
+On Mon, Apr 14, 2025 at 09:40:22AM +0200, Geert Uytterhoeven wrote:
+> Hi Tommaso,
+> 
+> On Fri, 11 Apr 2025 at 19:06, Tommaso Merciai
+> <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > In preparation of supporting the CRU/CSI2 IPs found into the Renesas RZ/G3E
+> > SoC, this series adds driver/dt-bindings support.
+> > This adds also some minor fixes into rzg2l-csi2 and rzg2l-core drivers.
+> 
+> [...]
+> 
+> Thanks for the update!
+> 
+> Can you please summarize what was changed in v7, compared to v6
+> which you posted just one day earlier?
+> Thanks again!
 
-[auto build test ERROR on a24588245776dafc227243a01bfbeb8a59bafba9]
+Sorry.
+I posted per patch recap and not here into the cover letter.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/dt-bindings-pci-cadence-Extend-compatible-for-new-RP-configuration/20250414-094836
-base:   a24588245776dafc227243a01bfbeb8a59bafba9
-patch link:    https://lore.kernel.org/r/20250411103656.2740517-6-hans.zhang%40cixtech.com
-patch subject: [PATCH v3 5/6] PCI: cadence: Add callback functions for RP and EP controller
-config: x86_64-buildonly-randconfig-002-20250414 (https://download.01.org/0day-ci/archive/20250414/202504141523.v9N9MrDJ-lkp@intel.com/config)
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250414/202504141523.v9N9MrDJ-lkp@intel.com/reproduce)
+v6->v7:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504141523.v9N9MrDJ-lkp@intel.com/
+ PATCH 11/17:
+  - Collected tag
+  - Drop the cru->info check into rzg2l_cru_probe()
 
-All errors (new ones prefixed by >>):
+ PATCH 17/17:
+  - Fixed indentation + missing space into rzg3e_cru_get_current_slot()
 
->> drivers/pci/controller/cadence/pcie-cadence-host.c:108:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     108 |         addr0 = CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(12) |
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:309:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS'
-     309 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK, \
-         |         ^
-   drivers/pci/controller/cadence/pcie-cadence-host.c:574:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     574 |         value = CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL(ctrl) |
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:263:2: note: expanded from macro 'CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL'
-     263 |         FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL_MASK, c)
-         |         ^
-   drivers/pci/controller/cadence/pcie-cadence-host.c:610:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     610 |         addr0 = CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS(aperture) |
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:361:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS'
-     361 |         FIELD_PREP(CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS_MASK, ((nbits) - 1))
-         |         ^
-   drivers/pci/controller/cadence/pcie-cadence-host.c:663:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     663 |         desc1 = CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS(busnr);
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:339:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS'
-     339 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS_MASK, bus)
-         |         ^
-   4 errors generated.
---
->> drivers/pci/controller/cadence/pcie-cadence.c:199:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     199 |                             CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY(delay));
-         |                             ^
-   drivers/pci/controller/cadence/pcie-cadence.h:375:2: note: expanded from macro 'CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY'
-     375 |         FIELD_PREP(CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY_MASK, delay)
-         |         ^
-   drivers/pci/controller/cadence/pcie-cadence.c:221:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     221 |         addr0 = CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(nbits) |
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:309:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS'
-     309 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK, \
-         |         ^
-   drivers/pci/controller/cadence/pcie-cadence.c:293:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     293 |         desc0 = CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_NORMAL_MSG;
-         |                 ^
-   drivers/pci/controller/cadence/pcie-cadence.h:333:2: note: expanded from macro 'CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_NORMAL_MSG'
-     333 |         FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x10)
-         |         ^
-   3 errors generated.
+Thanks & Regards,
+Tommaso
 
-
-vim +/FIELD_PREP +108 drivers/pci/controller/cadence/pcie-cadence-host.c
-
-    72	
-    73	void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn,
-    74					   int where)
-    75	{
-    76		struct pci_host_bridge *bridge = pci_find_host_bridge(bus);
-    77		struct cdns_pcie_rc *rc = pci_host_bridge_priv(bridge);
-    78		struct cdns_pcie *pcie = &rc->pcie;
-    79		unsigned int busn = bus->number;
-    80		u32 addr0, desc0, desc1, ctrl0;
-    81		u32 regval;
-    82	
-    83		if (pci_is_root_bus(bus)) {
-    84			/*
-    85			 * Only the root port (devfn == 0) is connected to this bus.
-    86			 * All other PCI devices are behind some bridge hence on another
-    87			 * bus.
-    88			 */
-    89			if (devfn)
-    90				return NULL;
-    91	
-    92			return pcie->reg_base + (where & 0xfff);
-    93		}
-    94	
-    95		/*
-    96		 * Clear AXI link-down status
-    97		 */
-    98		regval = cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE, CDNS_PCIE_HPA_AT_LINKDOWN);
-    99		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE, CDNS_PCIE_HPA_AT_LINKDOWN,
-   100				     (regval & GENMASK(0, 0)));
-   101	
-   102		desc1 = 0;
-   103		ctrl0 = 0;
-   104	
-   105		/*
-   106		 * Update Output registers for AXI region 0.
-   107		 */
- > 108		addr0 = CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(12) |
-   109			CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) |
-   110			CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(busn);
-   111		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-   112				     CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(0), addr0);
-   113	
-   114		desc1 = cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE,
-   115					    CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0));
-   116		desc1 &= ~CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK;
-   117		desc1 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(0);
-   118		ctrl0 = CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS |
-   119			CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN;
-   120	
-   121		if (busn == bridge->busnr + 1)
-   122			desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0;
-   123		else
-   124			desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE1;
-   125	
-   126		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-   127				     CDNS_PCIE_HPA_AT_OB_REGION_DESC0(0), desc0);
-   128		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-   129				     CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0), desc1);
-   130		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
-   131				     CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(0), ctrl0);
-   132	
-   133		return rc->cfg_base + (where & 0xfff);
-   134	}
-   135	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
