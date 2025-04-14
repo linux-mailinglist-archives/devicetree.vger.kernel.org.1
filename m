@@ -1,168 +1,134 @@
-Return-Path: <devicetree+bounces-166896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D692A88CAC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:03:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56820A88CF7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D5CB189B86B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:02:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FEFE3B3AC6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4ED61F3BB4;
-	Mon, 14 Apr 2025 20:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604C61DF97C;
+	Mon, 14 Apr 2025 20:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kZfvKh6g"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GUICQXqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E0F1DAC92
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 20:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234CE1D5CDD
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 20:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744660848; cv=none; b=Htmo6DVbuvxzHaUzmqSqGurkl9RF7CIhB8A+eEBn1key/0AoahQ+fpzOVpADEY28tACVlFelHuG3hxOBUCBwWU2MAebdjigHEWGkWp+17maLed8gRVjoEnl5NqbtevlDkLbPQ27/Et04tWKfpFzavsmcg5F4Yi1+j5qpK9TKKYs=
+	t=1744662070; cv=none; b=GhklKtiGeXsIrP+FBlCXJF6gWCgm0lnRDlHVA/9sSO5wyNwqpsjqpGOX6nO9j6shVmcDUkPUGt/lp03fb8J8ZDh5a+p7UUt+owkEIGn0v95lo5W8AZzDQeDzOSdttGk9GIFGwTTGVNSGU1PEBpAtnBKxveuqWNY1uFB3d6LcoYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744660848; c=relaxed/simple;
-	bh=Nw0LcWGPT7ovb/UapvxLHTltKihzzl3S+Aj3yFzA+Kg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qPkmwHpUfa6L9/s+NDb94Dm4z63pl3UR27o2DpCFyeaZr08ws3GGjoHOH1Q2ZQbPsLr9tfou0qFiTK3lp+2xJAonhDadvXq+aqWxPAxt4ZJKGoE0S6K3lJrPGDUEkKNpCJEXFJ5ofbZWxdHWz+gK0UAkXvhWwkyrO0FKXzz3B5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kZfvKh6g; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43ede096d73so34816835e9.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744660844; x=1745265644; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I+dr467YMrCXRlo27LgBCAnCDb+4zH3txMsyWAkJpXA=;
-        b=kZfvKh6gMXpNUV6sClVyHYdPqfb+wW1IM/qlKhhPFRHyQJb+GhloSOAV896kTNzjmI
-         gd9Ea/2REUYl8wgmFykz0blSSxnOb99j6LJKDleNlqMckgjXDITuoUiZ10P0VinxdNa7
-         N8MhKxnfjxVOg6I+JUMbGtzDPwjvSz1J21m5hH2mzJ3Ms9i4a9VMruNKWBDKq95P3eTx
-         dSLT3X0lFjab/jQMZeT3N9c9H4vHGLDuFr5rFl2ZM3IVr4Cau+YYIo06CZXq/2bZipue
-         We8DMpHIzYN4P6kgGcovvr9o9+rdRI7T6SfUlLyMvKBYIhlXjcVVYtAY7Menu4IZ+Hl4
-         aBsw==
+	s=arc-20240116; t=1744662070; c=relaxed/simple;
+	bh=IHxH+ITR2MyYN82fNQQ7nDWZbhuT/sr8/lromKSu78I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lWq9RcB1x30bo9EJlXVGZz8/NX1CEZ6f05a6rUjoh1SUC8hoeZ5oFSjJnuBx8q18vW8SVUbMzHhGhzYp/42QdVWJxazSqqT/6pX/YbfL1NJRaEUCegVK4n6MmumQgXbHkR08VtybKScKtI5vexp0OVt6NgW2hO3R+XAwJtauyzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GUICQXqr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53EJdB9X030642
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 20:21:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fD1kH8AdGKUlHf5k0cz3xyJc207+khrE5Z3bUIWX2lg=; b=GUICQXqrHwzWYDGE
+	LG4fKOHNFG/fnfMiWd5+iuToFru32S9mKs4jiBGSPtSDeTNh1u4aMYhtM1HksmeA
+	2O9E9UZXe6b6WWr68IlTYRNacZa8FuUBH0RXlYse+2xa5vZk85ctVjNyXJXpwZfW
+	n4V9p429FBXZTo9EDXcx36OLx7xwfDNi+UREU9PLcJzjKRChJ/eksICDBqgfq73J
+	899eoefJe6aL5DSZBqOvbsrTj+uQQhe7QsCFCgwvnGhk4ZfBiX4HdlPjpCjTft7s
+	oKZyvWZNqb+2Iry2P4Fc04Kxqx0PhMtzUcHJl/lOChXLNrIdJ3YBEmJrMvRhNC8R
+	gm4MKA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvj5w1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 20:21:04 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4766ce9a08cso9208331cf.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 13:21:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744660844; x=1745265644;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I+dr467YMrCXRlo27LgBCAnCDb+4zH3txMsyWAkJpXA=;
-        b=Rg/MWfinZ4q5OI3kbzLqAyVHItHfVf2T0UKEQfyg0xwpfdKaooK172jMU6/9mTtNuN
-         d99iTSO8PPAfpJjzrMFRx/4FMkbtpHnTP/V+01MdnVaKYKezLORvvLIig0X1vPRV4qo3
-         Ve6CVtHX7FFqpfhdfnDI5PUSKpLqTJGHstwAEgYWRUzvpbDHmQ5ibxYKsCBHMSm7c142
-         Qu4UZiFV6Hq7jQE8a62l6ZHJHAVW1HSeQmsPBCf6t2NP9r+gyJlN2ILKsNo8ErXwWSG6
-         x8pQTzAPeeOPMTOSQ52L1EIiJ7o82XQuVV4h1Z6a7VcHwZXcRlROXBflK0/dGd0rmnqp
-         ea1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXWfVpg8YhXuW5UKQeAPVT0t3JbMQy2jVVCktC6LQVtn0joaCfINckv5Sd5WBJps6UFHGlCgeGobSNQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8WsLL+D6zaF3ZMNkyyjT8rM0E7l7PSIng8X9hzh7hY1oQVvkF
-	AoR7wjkfnLh1BFIU3HGqYzYkPuEQvboTWkqwlyr/vhhWkRA8y8ayOnS61wmEhgU=
-X-Gm-Gg: ASbGncv/Hwo1uXN5liedGPiFzXD4bIxxHBDxyA6C1VB/wX6VjK8QGirvivWbDhZXayM
-	Wy5m6EJOYbmoZUOE+BtMwMDMLN/2f4B7Sx/iIHvrO3qpYp2cpsH14qg9oIbn9pdXq9EVwxiesMp
-	Oeeu2HdOD5FsYngL5GOevGZdbjLl92EZmhwJmsRGgt33dLmgNIcNxCGeHNlOIEhtT0xv/tBuKp6
-	tZWu4zg2voi5aiA2ColHYVrOOzN9ns0SoYpAMmsnXHEB/UpFsmYpY/SM5Q8DvU3Fzi7w8H2Y395
-	wCIHpIk/PmA9/dlSt3Fbbiuw0A1vf0v9r6uaYxCkuLsihMTwwGg0e0RFmbzCLFpddoVEHSSj83x
-	30qXDgeERSCGRgo968VVftCA=
-X-Google-Smtp-Source: AGHT+IG6KMFrnxI51KOYugO7FGCSBaq/lcvpClmyxP06XlPfwq97MevV0T43qHWbhAawMclBkpDoXg==
-X-Received: by 2002:a5d:6daa:0:b0:39c:310a:f87e with SMTP id ffacd0b85a97d-39ea51f59eamr11814936f8f.16.1744660843596;
-        Mon, 14 Apr 2025 13:00:43 -0700 (PDT)
-Received: from archlinux (host-87-15-70-119.retail.telecomitalia.it. [87.15.70.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae9640a9sm11987383f8f.10.2025.04.14.13.00.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 13:00:42 -0700 (PDT)
-Date: Mon, 14 Apr 2025 21:59:16 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ad7606: add SPI offload support
-Message-ID: <alstwly2ya6qtb3usscpwavofzpinakmtx4dugt3aoey3fyjqz@sfnxwjt72jjj>
-References: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
- <20250403-wip-bl-spi-offload-ad7606-v1-3-1b00cb638b12@baylibre.com>
- <20250414192422.039817b7@jic23-huawei>
+        d=1e100.net; s=20230601; t=1744662063; x=1745266863;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fD1kH8AdGKUlHf5k0cz3xyJc207+khrE5Z3bUIWX2lg=;
+        b=bKG0a+bM8oplEbeU9DUC7tm1GFEmvBYywRhK7ydqnahNYb6GyPcwb2sVTFlpj3CCOX
+         nlHJJZ1urDruN163UWXdWQh88/MfB8LsISJx2ozIEiGcpXULhdxIpyV4iZkRj6pDbKnp
+         g1LXGnH6BUPFI0vuBGHyGD4JO1zhCT9RpEq8ttOcGHOQMKE0mKRem9yjN58iXRS38qv6
+         I1aV7nQ8sgVcv/kVDjRAIQaSr6ek1PKffnecFKJH9C7b4r2WZtdMmefVOXtz4HALMKOW
+         UvASEckj4DQXDe/FipdbXsQ+ICHIJxS6tgo+ZfUN4tK3qrioK2qSw9i9k+zKHlKsMj6A
+         Y0uQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWufwaWdVu1UKlPRex2Xz2XIXVs/+biG88lYFwZVkn74sWyh6v35AEfWPnA5wmFobPIdT75NdPkQths@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0ASmjiTkUr3qPZL6Rei/A+2H84AuD/ydTxp6hdk2UkR6bA8FM
+	BF/T34RLUWWd1vhIFlgKejRCSGSGUQnLwlVB+E5ykO8BiP6okpiAmJWktjTAXh0Rvngf9jQP5e+
+	a/gbSNzgyU++Ab1Ju8etexRG4k9WibjMh+RPQ06m6Vg4kMhb/n1IjZnO0S2dG
+X-Gm-Gg: ASbGnct/sSSbpynJ356eAGyJNMJF/ZOyO5scCAswuscYGD3EKS9wvra2Wo2BJR6NX2U
+	MXjwws9LW0EPX1/wLOU3rut+gy6gRD7fUkx2CE3NRNXcxwa9WfADh6wK3yIZTGiFxPaMrq9G6T0
+	E1DgG//6zed0MCvEIpAdQWeRHvyAvN0mz50Knz0id9I0QAH/yt0NieaWmIMwg5kFO5BNzoPE/ol
+	x+c+HC2kNYp1e63sBBScTARAoiL6HrxAhvB9ChIselPRZ08qzbXJUjjYBXuTU7AZ+ZtzhjZXxuk
+	VNZ2XhIh32nxZ2xmuaNIhxQqx3mEMdYmLByrq9BVFCLqwmDQd/RuK0Gf+NgzBDf+vw==
+X-Received: by 2002:ac8:7d4d:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-479775c6474mr73469601cf.12.1744662062846;
+        Mon, 14 Apr 2025 13:21:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEQmk8erDwTZPoMnwnKO/lkX8ikdJXyaa7kJzITObjAr+gigb+AnzYJwbVS5NUMmzICm5veAw==
+X-Received: by 2002:ac8:7d4d:0:b0:471:ea1a:d9e with SMTP id d75a77b69052e-479775c6474mr73469311cf.12.1744662062133;
+        Mon, 14 Apr 2025 13:21:02 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5f36ee551besm5410518a12.6.2025.04.14.13.21.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Apr 2025 13:21:01 -0700 (PDT)
+Message-ID: <c36c32a9-3d07-4406-a3f3-9e2d345682ff@oss.qualcomm.com>
+Date: Mon, 14 Apr 2025 22:20:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250414192422.039817b7@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x:
+ enable MICs LDO
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20250412124956.20562-1-alex.vinarskis@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250412124956.20562-1-alex.vinarskis@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67fd6e30 cx=c_pps a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=1SN7V59r7WJZvlfn_q4A:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: 4y6dUpiA78HPziFz6SdpRdTlU7B5kN7r
+X-Proofpoint-ORIG-GUID: 4y6dUpiA78HPziFz6SdpRdTlU7B5kN7r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_07,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140148
 
-On 14.04.2025 19:24, Jonathan Cameron wrote:
+On 4/12/25 2:49 PM, Aleksandrs Vinarskis wrote:
+> Particular device comes without headset combo jack, hence does not
+> feature wcd codec IC. In such cases, DMICs are powered from vreg_l1b.
+> Describe all 4 microphones in the audio routing. vdd-micb is defined
+> for lpass-macro already.
 > 
-> > +static int ad7606_spi_offload_probe(struct device *dev,
-> > +				    struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad7606_state *st = iio_priv(indio_dev);
-> > +	struct spi_device *spi = to_spi_device(dev);
-> > +	struct spi_bus_data *bus_data;
-> > +	struct dma_chan *rx_dma;
-> > +	struct spi_offload_trigger_info trigger_info = {
-> > +		.fwnode = dev_fwnode(dev),
-> > +		.ops = &ad7606_offload_trigger_ops,
-> > +		.priv = st,
-> > +	};
-> > +	int ret;
-> > +
-> > +	bus_data = devm_kzalloc(dev, sizeof(*bus_data), GFP_KERNEL);
-> > +	if (!bus_data)
-> > +		return -ENOMEM;
-> > +	st->bus_data = bus_data;
-> > +
-> > +	bus_data->offload = devm_spi_offload_get(dev, spi,
-> > +						 &ad7606_spi_offload_config);
-> > +	ret = PTR_ERR_OR_ZERO(bus_data->offload);
-> > +	if (ret && ret != -ENODEV)
-> > +		return dev_err_probe(dev, ret, "failed to get SPI offload\n");
-> > +	/* Allow main ad7606_probe function to continue. */
-> > +	if (ret == -ENODEV)
-> > +		return 0;
-> > +
-> > +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				     "failed to register offload trigger\n");
-> > +
-> > +	bus_data->offload_trigger = devm_spi_offload_trigger_get(dev,
-> > +		bus_data->offload, SPI_OFFLOAD_TRIGGER_DATA_READY);
-> > +	if (IS_ERR(bus_data->offload_trigger))
-> > +		return dev_err_probe(dev, PTR_ERR(bus_data->offload_trigger),
-> > +				     "failed to get offload trigger\n");
-> > +
-> > +	/* TODO: PWM setup should be ok, done for the backend. PWM mutex ? */
-> > +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev,
-> > +							     bus_data->offload);
-> > +	if (IS_ERR(rx_dma))
-> > +		return dev_err_probe(dev, PTR_ERR(rx_dma),
-> > +				     "failed to get offload RX DMA\n");
-> > +
-> > +	ret = devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev,
-> > +		rx_dma, IIO_BUFFER_DIRECTION_IN);
-> > +	if (ret)
-> 
-> should be ret;  Thanks to 0-day for the report and fixed up.
-> 
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> ---
 
-thanks for fixing it.
+Looks good, thanks
 
-Regards,
-angelo
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> > +		return dev_err_probe(dev, PTR_ERR(rx_dma),
-> > +				     "failed to setup offload RX DMA\n");
-> > +
-> > +	/* Use offload ops. */
-> > +	indio_dev->setup_ops = &ad7606_offload_buffer_setup_ops;
-> > +
-> > +	st->offload_en = true;
-> > +
-> > +	return 0;
-> > +}
+Konrad
 
