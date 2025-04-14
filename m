@@ -1,152 +1,133 @@
-Return-Path: <devicetree+bounces-166933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4D0A88FAB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:55:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F10A88FE5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 638EB7A4CC9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 22:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 584233A9900
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 23:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C801E1DE9;
-	Mon, 14 Apr 2025 22:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6637D1F30C3;
+	Mon, 14 Apr 2025 23:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oM1Vx58j"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a86v1JiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572E31B0412;
-	Mon, 14 Apr 2025 22:54:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0FE1F3BAB;
+	Mon, 14 Apr 2025 23:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744671263; cv=none; b=tiNYhX7NuJnNew6+eMblNUie5CjKDzq1vKFfefAAIZvjlZ6pdn8fLUqAjxHIA4w6t/tfSaPtH5H5BjSAoULevk+lG7Ua44VyopVxvWQFcSNRgJL4uNIX2gnl/ZPsldFuYwfCS4l67wwMddalZX/VVDYRPOKVqt3/8h0jiy5GOXo=
+	t=1744672076; cv=none; b=kuxjIz49eSbH0h5EdLdepRgu+uVrdLX6n6FercXC9ayUv9d1izNt9zb53kCWkAkEXq/LKCifv8YsSSMTfC+ftSV/+0hcWGWUlEnaRscudDqfsUSawsrVlFnJbNSaHRMpB5rV5QoiGDq22O6/Cgbjha7pRU43fn3jFvR+zngWn4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744671263; c=relaxed/simple;
-	bh=ghPGn+DUPYc+Jh9QH/Xyzy1W+UjOc9wYqcXMeDG62fc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xq+flI8LsA8lJbyLNt8fe6NbYNSh3QBHySf4nFD97aiMkGdnRiMOo0HTIdbhgo/dAuleNvgkQk6BmXlnnqjH7KrwdhPXDabCErthjTkCsc3WZb908WCZq2JTiK+eb7Xisy755/kr8sO/MKSjbCzPjAp5Cx7SxJb1sFPe1SFWxbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oM1Vx58j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA22C4CEE2;
-	Mon, 14 Apr 2025 22:54:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744671262;
-	bh=ghPGn+DUPYc+Jh9QH/Xyzy1W+UjOc9wYqcXMeDG62fc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=oM1Vx58jytipBJXdWNnXqHQgB+IyN8/IWkn7e7XxhtZ0cNBmkyRL0kqlCL0Oa0Rxf
-	 YuZbA1sr3oYTR2Njig+Y6mXtjpbgz+u0WquK/pkdrsfpQpPdIPf29r7YPwtcEZnqos
-	 cV9eD+XIlu/O/TeTmh/H1jndfWnQnyw2JyMB2TeEbhytmCKauDeHprNhWuMCY+dsql
-	 FtAPHXhLhA0ISG3XN2sf1eidEp+rcvW4QxirSCllqDgDCDI/xPHKT8kk0i8xGWTHtS
-	 1KyMqMBJ0K0Y6wMM9BlwxA2qp04E7j5outt1hz9cA1NqRlLySWCwe1r27stHG3gdYF
-	 yi12Pu8rU9ZbA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: phy: rockchip: Convert RK3399 PCIe PHY to schema
-Date: Mon, 14 Apr 2025 17:53:09 -0500
-Message-ID: <20250414225311.1913480-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1744672076; c=relaxed/simple;
+	bh=pdohs8XjjtXgKPx35fyVy8Lq8yyCfOTR2OR3dtGJgGU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NiAmKdao+5R2LJSJf0JoRjkxIPtrJCRd73P54Us3CSSXKMD00qbKGpKjwiw0h+bZkuV9XPww9fzXKYJjjgejidBsjc1ek9bYZdDiI2WMT0IMhud81256zGOMG++Iltr1TO6rAzQJRY//6LAZB+0/ps81n6yQsjUTSD0cNisaiEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a86v1JiF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53EKe2qL026322;
+	Mon, 14 Apr 2025 23:07:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	smbDjsn4I0f5lxymO+nMDRzDQGKePRBCFUmhofM/1wA=; b=a86v1JiFIhf1wzZP
+	i+5ApOADexfGBtQoeDJr/9nZJ7GO0iv9VBLpWlW73BUEpPRxgBarTLR7S6caPXJ8
+	Owr+mnwkRkiVX7FuiSfdw7VlRMB8F9sGRQ3hRnHD76FosbkfCIx/VBPgMk/i5mwD
+	5tYXgDJIbjxf+W37m4CaMnetBBdURR7jk1dUy21md6ALT4GO0meX8pomJ4jlMpye
+	1NZ61KEx2kef/gHtODCTTq6HAXtHtm5zytCf+4tFJ3ONivwK9giUvSo6Lr+7thzC
+	R/ncsm0Bp84EVgKwxHHzPuUGPC1R01yXGT61NWTA4hXPFUyMnigLENTQJHUm9fFs
+	+5RBvA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygxjww5h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 23:07:51 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EN7pvE029393
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 23:07:51 GMT
+Received: from [10.71.109.146] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 16:07:50 -0700
+Message-ID: <cb36624d-a990-468a-b16b-32b2488af845@quicinc.com>
+Date: Mon, 14 Apr 2025 16:07:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] soc: qcom: llcc-qcom: Add support for SM8750
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley
+	<conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Satya Durga
+ Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250324-sm8750_llcc_master-v3-0-2afd5c0fdbde@quicinc.com>
+ <20250324-sm8750_llcc_master-v3-3-2afd5c0fdbde@quicinc.com>
+ <1b783592-e59a-4e85-b727-d38b11411a9c@oss.qualcomm.com>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <1b783592-e59a-4e85-b727-d38b11411a9c@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=WecMa1hX c=1 sm=1 tr=0 ts=67fd9547 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=zUQA3q2U9849VbpNnzkA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Or3OE_B8DJj8we5BP8I6AR9fH8hx_MEj
+X-Proofpoint-ORIG-GUID: Or3OE_B8DJj8we5BP8I6AR9fH8hx_MEj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_08,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 mlxscore=0
+ impostorscore=0 mlxlogscore=794 spamscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140167
 
-Convert the Rockchip RK3399 PCIe PHY to DT schema format. Move the
-example to the GRF binding as that has the complete block.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/phy/rockchip-pcie-phy.txt        | 36 -------------------
- .../devicetree/bindings/soc/rockchip/grf.yaml | 13 +++++--
- 2 files changed, 11 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
 
-diff --git a/Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt b/Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
-deleted file mode 100644
-index b496042f1f44..000000000000
---- a/Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Rockchip PCIE PHY
-------------------------
--
--Required properties:
-- - compatible: rockchip,rk3399-pcie-phy
-- - clocks: Must contain an entry in clock-names.
--	See ../clocks/clock-bindings.txt for details.
-- - clock-names: Must be "refclk"
-- - resets: Must contain an entry in reset-names.
--	See ../reset/reset.txt for details.
-- - reset-names: Must be "phy"
--
--Required properties for legacy PHY mode (deprecated):
-- - #phy-cells: must be 0
--
--Required properties for per-lane PHY mode (preferred):
-- - #phy-cells: must be 1
--
--Example:
--
--grf: syscon@ff770000 {
--	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
--	#address-cells = <1>;
--	#size-cells = <1>;
--
--	...
--
--	pcie_phy: pcie-phy {
--		compatible = "rockchip,rk3399-pcie-phy";
--		#phy-cells = <0>;
--		clocks = <&cru SCLK_PCIEPHY_REF>;
--		clock-names = "refclk";
--		resets = <&cru SRST_PCIEPHY>;
--		reset-names = "phy";
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 2f61c1b95fea..fc328c4a35e4 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -201,8 +201,8 @@ allOf:
- 
-         pcie-phy:
-           type: object
--          description:
--            Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
-+          $ref: /schemas/phy/rockchip,rk3399-pcie-phy.yaml#
-+          unevaluatedProperties: false
- 
-       patternProperties:
-         "^phy@[0-9a-f]+$":
-@@ -326,6 +326,15 @@ examples:
-         #phy-cells = <0>;
-       };
- 
-+      pcie-phy {
-+        compatible = "rockchip,rk3399-pcie-phy";
-+        #phy-cells = <1>;
-+        clocks = <&cru SCLK_PCIEPHY_REF>;
-+        clock-names = "refclk";
-+        resets = <&cru SRST_PCIEPHY>;
-+        reset-names = "phy";
-+      };
-+
-       phy@f780 {
-         compatible = "rockchip,rk3399-emmc-phy";
-         reg = <0xf780 0x20>;
--- 
-2.47.2
+On 4/14/2025 6:24 AM, Konrad Dybcio wrote:
+> On 3/24/25 9:29 PM, Melody Olvera wrote:
+>> Add system cache table and configs for SM8750 SoCs.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+> [...]
+>
+>> +		.usecase_id = LLCC_WRCACHE,
+>> +		.slice_id = 31,
+>> +		.max_cap = 512,
+>> +		.priority = 1,
+>> +		.fixed_size = true,
+>> +		.bonus_ways = 0xffffffff,
+> This should still be .activate_on_init = true
+>
 
+Apologies; must have missed this when redoing the table. Will fix.
+
+Thanks,
+Melody
 
