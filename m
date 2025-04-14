@@ -1,230 +1,182 @@
-Return-Path: <devicetree+bounces-166758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE45A88585
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:45:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C975A88563
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:42:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D08F817F0DB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:41:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 512A67A7527
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30277274FFB;
-	Mon, 14 Apr 2025 14:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8202951C2;
+	Mon, 14 Apr 2025 14:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1s4t2kD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WWlt2Eto"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07572274FE7;
-	Mon, 14 Apr 2025 14:22:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3631B27FD5A;
+	Mon, 14 Apr 2025 14:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744640571; cv=none; b=d2+N3CD6MIR9GbJp0t10kBWvUwvbH7hkwdHeE+TclPv8isSzCaET8vdbARg9KD+jflSOXBMXC+FdEkejd2mZTbjP4u+uzXCH6QACAm9ErguJdJ5SvTFT7ij078qJ3taLIFs/t/EzmqFlQJ67OyZttY7LmfQCoRfYBdvz8S86ytE=
+	t=1744640737; cv=none; b=sa3PpRbIuGgr1xKY+I1njEeYB57iqAeVf6e75ymbJS7v5S6Xf4iJ8Jw13d5Oafsbp5OWqxks0zMIHRNOUBXxojiyYyswC+r4kTqWyUK0kq9xqWRbzvj5uZBIIxrkQZTsmjlCKsf3BtM96jig+SSGL4h1waGKVsNeS7c2Cv0oB0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744640571; c=relaxed/simple;
-	bh=J1MHietiZvsPKVDE5/U3rEBuftv5MbrgbBjOGLDvYsE=;
+	s=arc-20240116; t=1744640737; c=relaxed/simple;
+	bh=4M1D99PAVqvZi96MOYQWeD6ZcQwnEQ4Bpbi2arizon8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nYqYYuAEZbBHfMASOGfdMdwFzgurdALbDNi6GDnwOTakX5TqUcSoXRS2yudgB7m6CnTWk8YThf5CuROBr0/Hx98ofNmFB+Ezx+VvSRLpIcf+CXZMS55TPXPAh7S7Z4wFYaovlM0v5v2DnKg/abArbbjmODNFZW3HKx+r80qf3Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1s4t2kD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD4EC4CEE2;
-	Mon, 14 Apr 2025 14:22:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744640570;
-	bh=J1MHietiZvsPKVDE5/U3rEBuftv5MbrgbBjOGLDvYsE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=F1s4t2kD2adU4pmBIV1heZSSiHaT9g0JrMqm7KaFCN80D3LMh0BDZpx13Vqijbjl1
-	 BVfumjNc6lORGXn16nlsnhIEMtQ6ENEdAg1n8aNMcSJr9z/7j5zz/IRU6iP/qSQGp0
-	 dJOv36OAjNO92axVRHbOsGeDkCaj0UaeJpt/5yW/0aW9zV+P3YH1JSjylZxtAbrE7s
-	 9kHoTasaE9aw9rEUY13eorvbDTLPbCmXYmOzktKDTpuuj0Cxq1J9JNEu4BGkUfmd3V
-	 zM/nqfQ5LH7exttNvd+yxr4xeEvXlx3f5YyPZHGprRzDO5+fDZjQr3UijduPfnHlMU
-	 5oTLNvfF6YezQ==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5ed43460d6bso6978823a12.0;
-        Mon, 14 Apr 2025 07:22:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU6Y1ZfgIR1D+ZWufEoIccmitMaS4cSGiuErOPafTPShJdp753mgadqAZerb/3/rjtlKByJQa5WjeZiC9/C@vger.kernel.org, AJvYcCWT8zjd4OW60TsYepc6+6izXVry58tLIiLSt/N+TarEmuiMOkbPT+6eSHse292abJJXqHYky+MM8LBS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVbAUtnHcdrdnb0hSSiEOFcggZwgHjAIkp1FUq0UQ6s0RvCa/C
-	P7LMt/Xrpp1YchRvBbbwFy3SzWCXB9x/Oc3tG445IdCf9AGRt+pocSwKDq4Bl3226LwxC8WbQeg
-	Dk1nvnPnJ6c+KHYdyF8sBGtCeFw==
-X-Google-Smtp-Source: AGHT+IFoA2QqamDXch8nyGUFZYs4yy7+kWv81Iq7qbLCVH51Gxp43p0ni/wWkr5Z2E7Q+eWsFkOGFlX3gRFXfcYTtAE=
-X-Received: by 2002:a05:6402:3553:b0:5e8:bf8b:4396 with SMTP id
- 4fb4d7f45d1cf-5f36f647570mr11801484a12.13.1744640569054; Mon, 14 Apr 2025
- 07:22:49 -0700 (PDT)
+	 To:Cc:Content-Type; b=NLdPWbhTAV5FcK0Ewc8DH/kYtBHOy8qeoWqGfbh1Y7o73MGOVuHFYWn2mRbPwRIR6uRUdnun9rD0tXjGFeFpEC0Qjipu0hRkAYlP7A1FLX8pFcSI1MG5qQouJxubirHRwrWmISJS8uR30cnMUmrVqMu41a5zWzzDciaHwfgpsTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WWlt2Eto; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac289147833so882154766b.2;
+        Mon, 14 Apr 2025 07:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744640734; x=1745245534; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0+i03KpPoesYplL/qUIjpUO++rCb/s/V2SLn3HX44rs=;
+        b=WWlt2EtoJrK2pDfD+x91wBOv3XwvN4eLM9mCpehMWB10GPGRoV90RRM1wXA66mHoBs
+         waZ/UjxtcYoDDgE4J/XM7L3d3Wh0IgqasczzFTY3VacJ9osYR3zw9pSGLSkzFE6DvxiV
+         d8CPN+3hCc6Ruhq9ySTR63cfDzdRtUQHUveVXWZodyRKwS8LZFc3UHvXD7JNKiCrIIk9
+         1kV4TyJE2U0dzRJI5pyZf2MCV/wE+BG/N3XXnqMNHLfTPQPSBwyMkYvhRrZBdSYxo8x3
+         bf3eMTtvAyNhamPq9POi8hO58cA4OIkSM8B0TBQFI6h5iM2/H7eaJyu0CZTpTcQ6tov4
+         7VhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744640734; x=1745245534;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0+i03KpPoesYplL/qUIjpUO++rCb/s/V2SLn3HX44rs=;
+        b=tDMMFLSb9a2QgCiwLmPrLFBkHcIEfnzuuDAlais4Z9czFQF2V9ZMSp+tVHZEVdC0xt
+         6v0J6hX3quzweGcQFDgPr9R14VNUt1e4m+0AX3SmiKhKXY6p14uwQonA4QNeMHIo4yKK
+         ZkU3BAAw8lGk6O3eou7lmVaAcDkXKPyewjQ+/gYXsbeAVfSboZv4EOotwgR5Z6c61l9j
+         XbYjuFO3PUYjiGOmNxqk3U06E92/D9NV8sniU+Ug/dae00wWM8u2bhqGukLcN/X6df3b
+         x9fGoBvqafkh+j8KV/U98k+2xV6/6FzDLHCrBbHL8Sk2KRHZ1uO4eLGcO4CEM/hjGJ1P
+         iT7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWVQTNFG1bqc4sgt0XHzWeU5QM/7l04KTYiI2sCR2bted/liyhUtoLW7dcHn1dhy7AitPIMqLUDL6Dv@vger.kernel.org, AJvYcCWq5nreiIj/ZQA6XllMTYgQpr+n985HuusVpBh8uu2dpOte3qy3WH4DAM3wEVb1n4DoS8eE63e5W0t/jJRl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFHEoNAwzoP7VllRDRxSNkkTEsjclxRi8wGt0G2IiMjt4kPiA8
+	HXxxf/pgCqT7oaqVivYhwcafM451O9Ioxc8Na/Vd3pRHNCUofjEbjmKQQvHYDyZJsjkhtd4zFBj
+	H+EzEZIDlAxuWgSSR6MJmtrF7kOJGvksuqEI=
+X-Gm-Gg: ASbGncu3Yy7b3E9DLtoblhQ15KzkLT/1kG7AU2YkGq5xNZGNyLJzDNpx4/srhKjyuQc
+	lcElPwQjkWojdtkLK9JWYuAMPjOUJbI4zuyazslfWSMoTwii1DkDJqeidUfB1DwwJqYH+iBvGUV
+	LYU0H/3i4WRyyB9g/u0FkdPw==
+X-Google-Smtp-Source: AGHT+IEYDHe/CyayPDTDqvHH4oIbkb5IHFVr7IgvWmBdzKWAYSHg3a4OGWTd63RP+MkrvE177Dbl49YlDHB/xdWMl9k=
+X-Received: by 2002:a17:907:7e81:b0:ac3:3d10:6f with SMTP id
+ a640c23a62f3a-acad345696fmr932095366b.8.1744640734274; Mon, 14 Apr 2025
+ 07:25:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414083243.59664-1-bsz@amazon.de>
-In-Reply-To: <20250414083243.59664-1-bsz@amazon.de>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 14 Apr 2025 09:22:37 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJdk_UtCEEVrakO8azjxWeLLDGTfWAVqtoPS99VQz3jWQ@mail.gmail.com>
-X-Gm-Features: ATxdqUHE6vbzzhRs55bf91_PCgZ2uLkWQ65QnUjEUkOFxOfp0jQxJz8Gov6b02s
-Message-ID: <CAL_JsqJdk_UtCEEVrakO8azjxWeLLDGTfWAVqtoPS99VQz3jWQ@mail.gmail.com>
-Subject: Re: [PATCH] fdt: arch/arm64: Delete the rng-seed property after use
-To: Bartosz Szczepanek <bsz@amazon.de>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Alexander Graf <graf@amazon.de>, =?UTF-8?B?SmFuIEggLiBTY2jDtm5oZXJy?= <jschoenh@amazon.de>
+References: <cover.1744200264.git.marcelo.schmitt@analog.com> <247566f848cdf2a245a8b6da6a84c22e155beeb7.1744200264.git.marcelo.schmitt@analog.com>
+In-Reply-To: <247566f848cdf2a245a8b6da6a84c22e155beeb7.1744200264.git.marcelo.schmitt@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 14 Apr 2025 17:24:56 +0300
+X-Gm-Features: ATxdqUGWdI8hC2QgSnrOE_-PLsI5VnqZbkBRp-jyeE-Ur815irq6_hSV1BgqeX8
+Message-ID: <CAHp75VfyZ-f+KMVjyFVMitmQA65enJwHV+nBdC=XqE_Pz5cP1g@mail.gmail.com>
+Subject: Re: [PATCH v1 5/7] iio: adc: ad4170: Add GPIO controller support
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marcelo.schmitt1@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 14, 2025 at 3:33=E2=80=AFAM Bartosz Szczepanek <bsz@amazon.de> =
-wrote:
+On Wed, Apr 9, 2025 at 3:26=E2=80=AFPM Marcelo Schmitt
+<marcelo.schmitt@analog.com> wrote:
 >
-> As a part of platform boot, device tree is being read to extract
-> randonmess bits. The 'rng-seed' property is used for that purpose.
-> After reading the value, the field was overridden with NOP instead of
-> being deleted or zeroed. The problem is that NOPed fields are later not
-> reused, and kexec code appended this property every time DTB is prepared:
+> The AD4170 has four multifunctional pins that can be used as GPIOs. The
+> GPIO functionality can be accessed when the AD4170 chip is not busy
+> performing continuous data capture or handling any other register
+> read/write request. Also, the AD4170 does not provide any interrupt based
+> on GPIO pin states so AD4170 GPIOs can't be used as interrupt sources.
 >
->   /* add rng-seed */
->   if (rng_is_initialized()) {
->           void *rng_seed;
->           ret =3D fdt_setprop_placeholder(dtb, off, FDT_PROP_RNG_SEED,
->                           RNG_SEED_SIZE, &rng_seed);
->           if (ret)
->                   goto out;
->           get_random_bytes(rng_seed, RNG_SEED_SIZE);
->   }
-> (source: arch/arm64/kernel/machine_kexec_file.c)
->
-> Taken together, DTB grew at each kexec by 140 bytes ie. size of the
-> newly added (and not overwritten) rng-seed property. ARM64 sets a hard
-> limit on FDT size at 2MB, which means that after at most 14,979 kexecs
-> DTB exceeded the limit causing catastrophic (but silent) failure in
-> setup_machine_fdt().
+> Implement gpio_chip callbacks so to make AD4170 GPIO pins controllable
 
-Just like 2MB should be enough for anyone, 14979 kexecs should be enough. ;=
-)
+callbacks to
 
+> through the gpiochip interface.
 
-> This commits addresses the issue as follows:
->  1. Call to fdt_nop_property is replaced with overwriting the rng-seed
->     value with zeros.
->  2. Zeroed rng-seed gets special treatment and is not accepted as valid
->     seed. Warning is emitted on zeroed value.
+...
 
-How do you get a zeroed seed if you delete the property when zeroed?
-Sure, any random bootloader could do that, but that has nothing to do
-with kexec. And does it really hurt to add 0s to the random pool? A
-warning is fine. In any case, none of this is specific to DT seeds. It
-all belongs in the core if it is a problem.
-
->  3. Kexec_file code is modified to delete the zeroed property if it
->     can't fill it with valid seed.
->  4. Proper error handling is added for the case when DTB exceeds 2MB.
->
-> The change was tested in QEMU arm64 environment. To do so, kernel
-> containing the change was built and included in buildroot initramfs.
-> Subsequently, kernel was started in QEMU. Using kexec_file, new kernel
-> was loaded and kexec reboot was issued. DTB size was noted in this step.
-> After new kernel has booted, another kexec_file was issued. DTB size
-> was confirmed not to change.
->
-> Signed-off-by: Bartosz Szczepanek <bsz@amazon.de>
-> ---
->  arch/arm64/kernel/machine_kexec_file.c |  5 +++++
->  drivers/of/fdt.c                       | 18 +++++++++++++++---
->  drivers/of/kexec.c                     | 12 +++++++++++-
->  3 files changed, 31 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/m=
-achine_kexec_file.c
-> index af1ca875c52c..af0e39f6c96d 100644
-> --- a/arch/arm64/kernel/machine_kexec_file.c
-> +++ b/arch/arm64/kernel/machine_kexec_file.c
-> @@ -170,6 +170,11 @@ int load_other_segments(struct kimage *image,
->         /* trim it */
->         fdt_pack(dtb);
->         dtb_len =3D fdt_totalsize(dtb);
-> +       if (dtb_len > MAX_FDT_SIZE) {
-> +               pr_err("DTB exceeds the maximum size: 0x%lx > 0x%x", dtb_=
-len, MAX_FDT_SIZE);
-
-You can't check restrictions of the kexec'ed kernel in the current
-kernel. That restriction could be removed at any point and might not
-be a problem for the kexec'ed kernel.
-
-> +               goto out_err;
-> +       }
-> +       pr_info("DTB successfully created at 0x%lx (length 0x%lx)", (unsi=
-gned long)dtb, dtb_len);
->         kbuf.buffer =3D dtb;
->         kbuf.bufsz =3D dtb_len;
->         kbuf.mem =3D KEXEC_BUF_MEM_UNKNOWN;
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index aedd0e2dcd89..8c2895cee682 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1019,6 +1019,18 @@ int __init early_init_dt_scan_memory(void)
->         return found_memory;
->  }
->
-> +static int check_randomness_nonzero(const uint8_t *rng_seed, int len)
+> +static int ad4170_gpio_direction_output(struct gpio_chip *gc,
+> +                                       unsigned int offset, int value)
 > +{
-> +       int i;
+> +       struct iio_dev *indio_dev =3D gpiochip_get_data(gc);
+> +       struct ad4170_state *st =3D iio_priv(indio_dev);
+> +       int ret;
 > +
-> +       for (i =3D 0; i < len; i++)
-> +               if (rng_seed[i] !=3D 0)
-> +                       return true;
+> +       if (!iio_device_claim_direct(indio_dev))
+> +               return -EBUSY;
 > +
-> +       pr_warn("Provided rng-seed value is all zeros!");
-> +       return false;
+> +       ret =3D regmap_clear_bits(st->regmap16, AD4170_GPIO_MODE_REG,
+> +                               BIT(offset * 2));
+> +       if (ret)
+> +               goto err_release;
+> +
+> +       ret =3D regmap_set_bits(st->regmap16, AD4170_GPIO_MODE_REG,
+> +                             BIT(offset * 2 + 1));
+> +
+> +err_release:
+> +       iio_device_release_direct(indio_dev);
+> +
+> +       ad4170_gpio_set(gc, offset, value);
+
+This is incorrect ordering, you will have glitches. Can you set the
+value beforehands? Or is it broken hardware?
+
+> +       return ret;
 > +}
-> +
->  int __init early_init_dt_scan_chosen(char *cmdline)
->  {
->         int l, node;
-> @@ -1039,11 +1051,11 @@ int __init early_init_dt_scan_chosen(char *cmdlin=
-e)
->         early_init_dt_check_for_elfcorehdr(node);
->
->         rng_seed =3D of_get_flat_dt_prop(node, "rng-seed", &l);
-> -       if (rng_seed && l > 0) {
-> +       if (rng_seed && l > 0 && check_randomness_nonzero(rng_seed, l)) {
->                 add_bootloader_randomness(rng_seed, l);
->
-> -               /* try to clear seed so it won't be found. */
-> -               fdt_nop_property(initial_boot_params, node, "rng-seed");
-> +               /* Zero out the rng-seed property */
-> +               memset((void *)rng_seed, 0, l);
->
->                 /* update CRC check value */
->                 of_fdt_crc32 =3D crc32_be(~0, initial_boot_params,
-> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-> index 5b924597a4de..f5bfbac77a66 100644
-> --- a/drivers/of/kexec.c
-> +++ b/drivers/of/kexec.c
-> @@ -453,8 +453,18 @@ void *of_kexec_alloc_and_setup_fdt(const struct kima=
-ge *image,
->                         goto out;
->                 get_random_bytes(rng_seed, RNG_SEED_SIZE);
->         } else {
-> -               pr_notice("RNG is not initialised: omitting \"%s\" proper=
-ty\n",
-> +               pr_notice("RNG is not initialised: deleting \"%s\" proper=
-ty\n",
->                           "rng-seed");
-> +               /*
-> +                * The rng-seed property may exist as zeroed stub. If so,
-> +                * remove it to not confuse the incoming kernel.
-> +                */
-> +               ret =3D fdt_delprop(fdt, chosen_node, "rng-seed");
-> +               if (ret =3D=3D -FDT_ERR_NOTFOUND)
-> +                       /* It's fine */
-> +                       ret =3D 0;
-> +               else if (ret)
-> +                       goto out;
->         }
->
->         ret =3D fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", =
-NULL, 0);
-> --
-> 2.47.1
->
+
+...
+
+> +static int ad4170_gpio_init(struct iio_dev *indio_dev)
+> +{
+> +       struct ad4170_state *st =3D iio_priv(indio_dev);
+
+> +       st->gpiochip =3D (struct gpio_chip) {
+> +               .label =3D "ad4170_gpios",
+> +               .base =3D -1,
+> +               .ngpio =3D 4,
+> +               .parent =3D &st->spi->dev,
+> +               .can_sleep =3D true,
+> +               .get_direction =3D ad4170_gpio_get_direction,
+> +               .direction_input =3D ad4170_gpio_direction_input,
+> +               .direction_output =3D ad4170_gpio_direction_output,
+> +               .get =3D ad4170_gpio_get,
+> +               .set_rv =3D ad4170_gpio_set,
+> +               .owner =3D THIS_MODULE,
+> +       };
+
+I think it would be better to have it field by field initialised.
+
+> +       return devm_gpiochip_add_data(&st->spi->dev, &st->gpiochip, indio=
+_dev);
+> +}
+
+...
+
+> +       /* Only create a GPIO chip if flagged for it */
+> +       if (device_property_read_bool(&st->spi->dev, "gpio-controller")) =
+{
+> +               ret =3D ad4170_gpio_init(indio_dev);
+> +               if (ret < 0)
+
+< 0 ? What is the meaning of the positive values that you expect from
+this function?
+
+> +                       return ret;
+> +       }
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
