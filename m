@@ -1,230 +1,140 @@
-Return-Path: <devicetree+bounces-166644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22FF6A87E23
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:55:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64F73A87E3F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:57:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6127B7A8E8C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:53:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B88A3B3BFE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC2727CB39;
-	Mon, 14 Apr 2025 10:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4552D27E1B4;
+	Mon, 14 Apr 2025 10:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OVcLs8kp"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="qYm6Eu8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F26627CB2E;
-	Mon, 14 Apr 2025 10:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C4D26B976;
+	Mon, 14 Apr 2025 10:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744628099; cv=none; b=OJu7hLFOuUqHarmjY2KFGZKoEHMIaXsHpe9otCWSpwjK7ZrSeWOBw43mOC3xpmJncQmrVuiMqgM3720c4VN0mxFkTxHF7W5z3BN1qNz6SxHQqNOOLDfd1L4st3WWH1v35GKlYm3xZr9ItEhH8kCCar+/Onlkr+GSotSZHvbJUMY=
+	t=1744628240; cv=none; b=nsUE+CbCIPTG42jQ7K8Humw4k+mRmTrgn2V/SaYByXgZ4YBeFJIEXgACUFoA4mBap/tKN4zKyEFAVEohfgi7dCk6/tDsE/dSF/9ixaoWs/ux8P/w2uj/VNrMTQ+CtR/uyBG0EOY0CYbhFf4YJ4h5gqtL6GKqWxilG/mWhWozjO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744628099; c=relaxed/simple;
-	bh=PogYEh6yK0izoEyQMmmryQwDMp4cJbN4Ay3InPJFHhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IpOKKuQcVOd+13+++1cSiVthwvoPZjMhrVzBukB5SIrKkEXuQvKN8CS73JpARcOgMsiTfb7lqNG10fPqiFaesuMLzbZyU0i2q3egbDZRNifREJd+QmeImb8eY1oW8L2a2TgX26TSLQJINoyFAcuD1ZaaUUS6R3H57cJiwWZNytA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OVcLs8kp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53E99qg6001766;
-	Mon, 14 Apr 2025 10:54:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cZ/lDXu7qiesb1vmPom54xx1ZrNlSDlA7rR1BqQX3cM=; b=OVcLs8kp1ECQRJwH
-	CwDxzAbRYuo6WHIdRt9BJueRXv3GtmMFCTylFw784LSalnRtDDB06An8ZvJMAW+a
-	zx9gsv4K/NqBmCxj64UtelO5z2q2rQ/S6b8+CO06Ovgby+p+Qow3Cv1qSW+/m4BY
-	MTtsY2Tt2a/On8f93u/+A8ULdPz+mmRA5YZLiFWLz/ZdTHcb50IqfXzrs23PpqXA
-	qqX8NhmebhQMAE8lQfZeSmVFVCKkKuel6dBvlNaBM6k2Fr8bAkIcMFqExtL9OjZd
-	g1+ZJvfTdW/Hy4X6Wl+05jfcj1NBDacbJ418ITfY/QsioK5a0gvIKcewoUSpAopo
-	AGSIDQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydhq4g91-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 10:54:48 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53EAslwJ005866
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Apr 2025 10:54:47 GMT
-Received: from [10.206.101.41] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
- 2025 03:54:43 -0700
-Message-ID: <96953447-cff5-98d4-053e-8cc31778849c@quicinc.com>
-Date: Mon, 14 Apr 2025 16:24:40 +0530
+	s=arc-20240116; t=1744628240; c=relaxed/simple;
+	bh=bPZlkgcUPRfvJOxv8cjuqePT1o85uVCyswf1SssPMwc=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=BPu4gef5sLnp9w5313JKPiiuN0/IJEd8xnjzIpplh2pHDT0az+Ngdrtpg3UV8c8NBcNyMyeVP0mlcYwyz1o8TCs6YQ4/NQhbfrd1EQumo/2WaN/SVSpoDwQBjg43XEfvuiczeF/z6okDmh1dGnZbiwCivU8PUE9M9qO68tyeorg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=qYm6Eu8H; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1744628230; x=1745233030; i=frank-w@public-files.de;
+	bh=Dox/3saUSMc6oBn1CpgQrpJElpnKUg5l+Q9XBb5++k4=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=qYm6Eu8HjkxRq+gksNLYnlblLxQeP/SfqiGgjk/IZYaMAvhpdeEKBD9rMyZAM5xM
+	 ZpcQ+vcehLK7IxyovlXIBVVFEUd8IxJvIjwaBm49zeZul6hi7HhDUthrdxKaTGwG6
+	 0gP/fq4PhkH8BHtcXWDMCBjI+S33NCPZshFiJpS5vbkwPQdri2p1Vx24T4Ed/3jr6
+	 Eif0GWfm4Wv3TeW6uUj3j6qIpM2ZVvZXI8faJ2LDGiQDV8Y4bvlNlxZ0Ol8Mx+ddq
+	 4ISXphfQS1gzcPKL3o0G8NmKWHIT5jT1tCCUobengwlg7TGYmxNoDjtdf+A0ei20N
+	 IyWxTr2+4dX8LBIQ+w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.148.208]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1ML9yc-1tnA5U2KKg-00KTDb; Mon, 14
+ Apr 2025 12:57:10 +0200
+Date: Mon, 14 Apr 2025 12:57:06 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <linux@fw-web.de>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+CC: Daniel Golle <daniel@makrotopia.org>, Sam Shih <sam.shih@mediatek.com>,
+ MandyJH Liu <mandyjh.liu@mediatek.com>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_5/5=5D_arm64=3A_dts=3A_mediatek=3A?=
+ =?US-ASCII?Q?_mt7988=3A_Add_xsphy_for_ssusb0/pcie2?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <e243cca4-40d7-4cd6-804a-7e63bb5581b0@collabora.com>
+References: <20250413085806.8544-1-linux@fw-web.de> <20250413085806.8544-6-linux@fw-web.de> <e243cca4-40d7-4cd6-804a-7e63bb5581b0@collabora.com>
+Message-ID: <E469EB89-A879-4B03-A3DF-C96D207E946D@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH RFC v5 0/8] media: qcom: iris: re-organize catalog & add
- support for SM8650
-Content-Language: en-US
-To: <neil.armstrong@linaro.org>, Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>
-CC: <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>
-References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
- <2740b178-34cc-4b95-a8da-7e6862cabc92@linaro.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <2740b178-34cc-4b95-a8da-7e6862cabc92@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: XCRZg9Rz-JzV0yEaT2iAi7iIkQ61qA8X
-X-Authority-Analysis: v=2.4 cv=C7DpyRP+ c=1 sm=1 tr=0 ts=67fce978 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=fPU9YJLUV81MxjcyFtsA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: XCRZg9Rz-JzV0yEaT2iAi7iIkQ61qA8X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-14_03,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=999
- priorityscore=1501 suspectscore=0 clxscore=1015 spamscore=0 bulkscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504140079
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yi7cluxJXDq4OrQaFqXXh5JHsaAJJapY8vwQzCpkAbguc1XlrM5
+ 4Sdn2WvMB5StASOjsrQk4j+LwJh6ZnFxqayr4OGRuIqK9fj8sF9hXDWUfm5Rsy/dbM+Oabn
+ uQ+J6oY5hVmp/Z+sdVHpMBXBdn3FghQBYSG6OyH7gCdIbYf62ADzYgd8c5SUNpVoP84n9wR
+ qBqeARj2vXUvi9LqpESCg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:8QFW5mxT33E=;p9eKydGBnkydZTV5Tm8SBn3MzjQ
+ zrEOtq6nYRDx84ugB0KbO22SzU8HCOwAg3QP8DZSk7r0aksEaBJ+3rapipjBW4neZOHrTfRsn
+ Qp9r3s1mQiPQ1okWqdXSxl4rVC5z/GhSrqbO5keQrh9MjF6Q0YqGRr+EM/RwYveBlYaqY4xrS
+ NMrH6uN4b5tBsxBhLWcVY3UzIm0BToz4iDgid1e76Pt4ivZJ/K7mQvFdCBQ1m2U0QQe28mZSj
+ yqTKfrezqLu2Yzc9ANdjtT1gWriDSkUcBMsBQX/gUqIP0urMzKFiL2t2L+7WEtea77nkSsJ17
+ Q1ep/vfvqrxhGL1fkBWPfDyGGP7k+gtCu3S/g81VdA3AN1msv2RRA5GSX97vf2cR6YBtSjZfe
+ vkQig0b/U/J/Kv+sJlrcuAB13QbU03LMVzox6dSsIZh1PGOkk52NwffcoqmfLLL+5G5DNidvw
+ zkadNDsfhN1xCmfF28SA0B7qB58b5S/55ihNqeVExyMp6GPJu0wvmX/fkEOGt6CJABqYXLSLR
+ X78yJFURF4Ww6Vh7W3KI7vzCR103tAQuRVQKHD1YN7D93HaN+x8yp1K+GOoLxLRwwz2p4Qsb8
+ 5FwYv8ktLf2rcHw2jTQcZhuktJOnBlbldXWuPP+y5B5uS2Q/HIE1bcgPviLx/zeBmmFY1dH42
+ 82Sy9JAV1Kdc4Yj652ONnQ+4VjSLDxS3H/ht8vY50qAP+UIn4GcUVxRW9mNlLW5rUcKrNz2Ts
+ UAYv27mou96tsYraliQ+BUDmkWnYJsS0d+d0dUKKEpTcB5+/XLSmOaGqCyJnWclA+x6lg2LBJ
+ AuzMOLLBabSvIVXkgBCvPORzdGtdcjkIu8Dnks8JHvr4uTiFNavC4WSj2GwO3z3eKz9QOoiRk
+ tS93ukqYYyoSxZm8cgcDwZ+25NT4IfO2s1KRcoSI+zB6PCaunoSEyvyO0ytN0EPmKrT4LJFrn
+ vgleb0Mv9nQlOv76GFkxE6FKETr/n3/qOEdLJTyDbWkf9ZsTXzPpNVO1VwGJvSnJTa+V/k4ba
+ X4X6Dpq0lUm3biCw6fEyyYP1oZ42NjCZTfGXAAVPMA5GR3+jzAyEgzSPp/qzL0iK5c8NYPrXi
+ nb216mq/VAyxIkf7g3LuJdoBfWD8ZLwDhQTIx6WDzXvidxxPvixxl0BNO5TZYv4nwz6XuRI7b
+ HXOmUg70tx8YJLTJLKTuCxPeKV/SAXc4E0dP3whvXmOJfF7H/4sOgqWtEKRoYjSgPmPdyRxnz
+ szIAvbEjsLCsbNzZ9iuEtYFOsf9eHW7kUi7+husJIWa2dNFKHhVfkpv4gOrRZpiZ73av0QgY3
+ h4PTdgydjIwkIJGUf6kQqfJ+teC9TtFSoL4G/opL5viSTh6Nr3+J+iaIzFx3Kxbbac5WvfBxh
+ EC1qdOY4yCcJpv2LjqVGG04rTbkntjSThe1e4gpUfwYYfgXfcEetgU0tD4NsqWFV1Ur4vrK80
+ DaUL2EXDN5eAncNe5vWCtYPBbzbiWOn25KJRQBbCxrMevMQrH
 
-Hi Neil,
+Am 14=2E April 2025 12:27:30 MESZ schrieb AngeloGioacchino Del Regno <angel=
+ogioacchino=2Edelregno@collabora=2Ecom>:
+>Il 13/04/25 10:58, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
 
-On 4/14/2025 1:05 PM, Neil Armstrong wrote:
-> Hi Vikash, Dikshita,
-> 
-> On 10/04/2025 18:29, Neil Armstrong wrote:
->> Re-organize the platform support core into a gen1 catalog C file
->> declaring common platform structure and include platform headers
->> containing platform specific entries and iris_platform_data
->> structure.
->>
->> The goal is to share most of the structure while having
->> clear and separate per-SoC catalog files.
->>
->> The organization is based on the curent drm/msm dpu1 catalog
->> entries.
-> 
-> Any feedback on this patchset ?
-Myself and Dikshita went through the approach you are bringing here, let me
-update some context here:
-- sm8550, sm8650, sm8775p, qcs8300 are all irisv3, while qcs8300 is the scaled
-down variant i.e have 2 PIPE vs others having 4. Similarly there are other
-irisv3 having 1 pipe as well.
-- With above variations, firmware and instance caps would change for the variant
-SOCs.
-- Above these, few(less) bindings/connections specific delta would be there,
-like there is reset delta in sm8550 and sm8650.
+>> +		xs-phy@11e10000 {
+>
+>That shall be just "phy@addr"
 
-Given above, xxx_gen1.c and xxx_gen2.c can have all binding specific tables and
-SOC platform data, i.e sm8650_data (for sm8650). On top of this, individual SOC
-specific .c file can have any delta, from xxx_gen1/2.c) like reset table or
-preset register table, etc and export these delta structs in xxx_gen1.c or
-xxx_gen2.c.
+Ok
 
-Going with above approach, sm8650.c would have only one reset table for now.
-Later if any delta is identified, the same can be added in it. All other common
-structs, can reside in xxx_gen2.c for now.
+>> +			compatible =3D "mediatek,mt7988-xsphy",
+>> +				     "mediatek,xsphy";
+>> +			#address-cells =3D <2>;
+>> +			#size-cells =3D <2>;
+>> +			ranges;
+>> +			status =3D "disabled";
+>> +
+>> +			xphyu2port0: usb-phy@11e10000 {
+>
+>Perhaps just u2port0/u3port0 like done on the other MediaTek SoC DTs is b=
+etter
+>for consistency :-)
 
-Regards,
-Vikash
-> 
-> Thanks,
-> Neil
-> 
->>
->> Add support for the IRIS accelerator for the SM8650
->> platform, which uses the iris33 hardware.
->>
->> The vpu33 requires a different reset & poweroff sequence
->> in order to properly get out of runtime suspend.
->>
->> Follow-up of [1]:
->> https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org/
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->> Changes in v4:
->> - Reorganized into catalog, rebased sm8650 support on top
->> - Link to v4:
->> https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org
->>
->> Changes in v4:
->> - collected tags
->> - un-split power_off in vpu3x
->> - removed useless function defines
->> - added back vpu3x disappeared rename commit
->> - Link to v3:
->> https://lore.kernel.org/r/20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org
->>
->> Changes in v3:
->> - Collected review tags
->> - Removed bulky reset_controller ops
->> - Removed iris_vpu_power_off_controller split
->> - Link to v2:
->> https://lore.kernel.org/r/20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org
->>
->> Changes in v2:
->> - Collected bindings review
->> - Reworked rest handling by adding a secondary optional table to be used by
->> controller poweroff
->> - Reworked power_off_controller to be reused and extended by vpu33 support
->> - Removed useless and unneeded vpu33 init
->> - Moved vpu33 into vpu3x files to reuse code from vpu3
->> - Moved sm8650 data table into sm8550
->> - Link to v1:
->> https://lore.kernel.org/r/20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org
->>
->> ---
->> Neil Armstrong (8):
->>        media: qcom: iris: move sm8250 to gen1 catalog
->>        media: qcom: iris: move sm8550 to gen2 catalog
->>        dt-bindings: media: qcom,sm8550-iris: document SM8650 IRIS accelerator
->>        media: platform: qcom/iris: add power_off_controller to vpu_ops
->>        media: platform: qcom/iris: introduce optional controller_rst_tbl
->>        media: platform: qcom/iris: rename iris_vpu3 to iris_vpu3x
->>        media: platform: qcom/iris: add support for vpu33
->>        media: platform: qcom/iris: add sm8650 support
->>
->>   .../bindings/media/qcom,sm8550-iris.yaml           |  33 ++-
->>   drivers/media/platform/qcom/iris/Makefile          |   6 +-
->>   .../media/platform/qcom/iris/iris_catalog_gen1.c   |  83 +++++++
->>   ...{iris_platform_sm8550.c => iris_catalog_gen2.c} |  85 +------
->>   ...ris_platform_sm8250.c => iris_catalog_sm8250.h} |  80 +-----
->>   .../media/platform/qcom/iris/iris_catalog_sm8550.h |  91 +++++++
->>   .../media/platform/qcom/iris/iris_catalog_sm8650.h |  68 +++++
->>   drivers/media/platform/qcom/iris/iris_core.h       |   1 +
->>   .../platform/qcom/iris/iris_platform_common.h      |   3 +
->>   drivers/media/platform/qcom/iris/iris_probe.c      |  43 +++-
->>   drivers/media/platform/qcom/iris/iris_vpu2.c       |   1 +
->>   drivers/media/platform/qcom/iris/iris_vpu3.c       | 122 ---------
->>   drivers/media/platform/qcom/iris/iris_vpu3x.c      | 275 +++++++++++++++++++++
->>   drivers/media/platform/qcom/iris/iris_vpu_common.c |   4 +-
->>   drivers/media/platform/qcom/iris/iris_vpu_common.h |   3 +
->>   15 files changed, 598 insertions(+), 300 deletions(-)
->> ---
->> base-commit: 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
->> change-id: 20250410-topic-sm8x50-upstream-iris-catalog-3e2e4a033d6f
->>
->> Best regards,
-> 
+Mt7988 also have a tphy where we have it named tphyu3port=2E Leaving this =
+imho would increase confusion=2E
+
+>Cheers!
+>
+
+
+regards Frank
 
