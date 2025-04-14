@@ -1,133 +1,148 @@
-Return-Path: <devicetree+bounces-166499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7C2A87828
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:49:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CFE4A8782D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:49:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58F6C3B2138
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:48:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5442B1684E8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37A71BE23F;
-	Mon, 14 Apr 2025 06:48:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="mP0VR8Ne"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE531AF0C7;
+	Mon, 14 Apr 2025 06:49:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631C01B414E
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 06:48:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8501B412B
+	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 06:49:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744613319; cv=none; b=qbGlWI4cXhzNJU0U0JBvtpXSF4QWTu/RACCyfoKjgg5GSihsXYV57NEUdlTYYiHmNa/J3CkbIJisoAI1TCpVV43XjjLlBCRLVtsyH0jca2JPkih6A0Cgm8SDNkx9oZ98LaEYIqVbSPAc0RmLYdZWenmAgx0J//Dmv9LnuxLwTE8=
+	t=1744613380; cv=none; b=I82x82bDZWYqCoTj8C5KybOT6pVgnsJ7UBm8qRI7bvzGcMrhAkILQQD6HxiiNuONEku3A8Xf1CjSgjhUy2f4E641I06u+qlAd41H+qN6MvQoEZ/3+1Vvuk4tvffRaOpu5jWmxXEOahKp6rU9QQRCNnXlZasd3mYpqgLJ7pwavPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744613319; c=relaxed/simple;
-	bh=Lw2KXpWu8jDdtPhTEqm4VVhJ0ttQl0BjqJFnfi/RPI4=;
+	s=arc-20240116; t=1744613380; c=relaxed/simple;
+	bh=HszDIsDDdPi+LLqbGeL2rwAlUkU1fiYytm1bZ60r5cA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KR7kpwQtN6C/0M73NnkqqguEyL7X/fzgUH4RzfR+xjdT1S4++CdXv25pACq75OFOKSjD+f+aYTLicwfu2T+zxV6hzZo0Eo7u8klxKVmib4F2zBTjdRgmsDZPQi5mJaPKxNnw8ss7SJNO27aUtSnK65bNt/oRE1vGzggskmhekXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=mP0VR8Ne; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 14 Apr 2025 12:18:18 +0530
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1744613305;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YaBBYXHfLF++cExY9hjSu3QHr8Mvyrqh9+FHlLk33ro=;
-	b=mP0VR8NeyztZF6hFVhgFhodcSN3xqJXCf+sxhThfbf+3vD4UsKkMYQ+TOj7bGCKMz+YypF
-	RIwGyf88gDMgqqjy+yBfuvhM7ikDNifrSIWS6g/nc/4St2JbZAGHCTuZ+1c6De+eQAwIR+
-	zCUD3IJWTTbjQXv86+Zabg8xkDGJApU=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Jai Luthra <jai.luthra@linux.dev>
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, vaishnav.a@ti.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, u-kumar1@ti.com, stable@vger.kernel.org
-Subject: Re: [PATCH v2 5/7] arm64: dts: ti: k3-am62x: Remove clock-names
- property from IMX219 overlay
-Message-ID: <tosg63tki3b7xqr4kiioav3pjq3hwmj5vygb4d4ju46o7eyyfz@yowubjrrnsvh>
-X-PGP-Key: http://jailuthra.in/files/public-key.asc
-References: <20250409134128.2098195-1-y-abhilashchandra@ti.com>
- <20250409134128.2098195-6-y-abhilashchandra@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pnlVV/1DSyJxRboYrTwP9FCCyAvWBOQSoGGdNXD5ihEUxhpwFUyvLzFbYSrGig1uMNzK/fzIpMMiyqUJ+RWfZq4TuHol9E2gK4V+TEK4dilWynJK3YhlUrpHG7jqRHDfuup37/tSRghzSG480OxX5KF1n77fRzE7k1XMnekPZ/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u4Dd7-0006Bf-4K; Mon, 14 Apr 2025 08:49:17 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u4Dd6-000CoZ-2M;
+	Mon, 14 Apr 2025 08:49:16 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1u4Dd6-000Aoc-1x;
+	Mon, 14 Apr 2025 08:49:16 +0200
+Date: Mon, 14 Apr 2025 08:49:16 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de,
+	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v3 2/3] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <Z_yv7NKXs-JlmV63@pengutronix.de>
+References: <20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de>
+ <20250410-clk-cdce6214-v3-2-d73cf9ff3d80@pengutronix.de>
+ <20250411172149.GA3468525-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="udmjswxldcpwpkxo"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250409134128.2098195-6-y-abhilashchandra@ti.com>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20250411172149.GA3468525-robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Fri, Apr 11, 2025 at 12:21:49PM -0500, Rob Herring wrote:
+> On Thu, Apr 10, 2025 at 12:34:57PM +0200, Sascha Hauer wrote:
+> > The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+> > Differential Outputs, Two Inputs, and Internal EEPROM. This patch adds
+> > the device tree binding for this chip.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 155 +++++++++++++++++++++
+> >  include/dt-bindings/clock/ti,cdce6214.h            |  24 ++++
+> >  2 files changed, 179 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> > new file mode 100644
+> > index 0000000000000..12737e67dcf2d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> > @@ -0,0 +1,155 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/ti,cdce6214.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: TI CDCE6214 programmable clock generator with PLL
+> > +
+> > +maintainers:
+> > +  - Sascha Hauer <s.hauer@pengutronix.de>
+> > +
+> > +description:
+> 
+> Needs '>' modifier
 
---udmjswxldcpwpkxo
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 5/7] arm64: dts: ti: k3-am62x: Remove clock-names
- property from IMX219 overlay
-MIME-Version: 1.0
+Ok.
 
-Thanks for the fix,
+> 
+> > +  Ultra-Low Power Clock Generator With One PLL, Four Differential Outputs,
+> > +  Two Inputs, and Internal EEPROM
+> > +
+> > +  https://www.ti.com/product/CDCE6214
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,cdce6214
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 1
+> 
+> How can you have 2 clocks, but only 1 name? See my reply on v2.
 
-On Wed, Apr 09, 2025 at 07:11:26PM +0530, Yemike Abhilash Chandra wrote:
-> The IMX219 sensor device tree bindings do not include a clock-names
-> property. Remove the incorrectly added clock-names entry to avoid
-> dtbs_check warnings.
->=20
-> Fixes: 4111db03dc05 ("arm64: dts: ti: k3-am62x: Add overlay for IMX219")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+maxItems: 1 is wrong. Should be 2.
 
-Reviewed-by: Jai Luthra <jai.luthra@linux.dev>
+Sascha
 
-> ---
->  arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/a=
-rm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
-> index 76ca02127f95..7a0d35eb04d3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
-> @@ -39,7 +39,6 @@ ov5640: camera@10 {
->  				reg =3D <0x10>;
-> =20
->  				clocks =3D <&clk_imx219_fixed>;
-> -				clock-names =3D "xclk";
-> =20
->  				reset-gpios =3D <&exp1 13 GPIO_ACTIVE_HIGH>;
-> =20
-> --=20
-> 2.34.1
->=20
-
---udmjswxldcpwpkxo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmf8r7IACgkQQ96R+SSa
-cUUWUw/9EANMG5P9O57SqaT7wfQ/VnxxlUUfXTqeHoYXuwDgLK/gIxA2AxlJzf1z
-PjUvXjnwdn/2xnJzUlOJihlLkvqoG9oAaKKG3LUUx2AV5TA5jpX38M3ifvTjn5WK
-8tIBq0EtGH8sC3vbx2RT7L3Lu1nA021oUXj8IK9IGtcCh4afVB2bGCDQmghY12WO
-2P4XKVrMg11LUfm7Xpmo2JB6Nlc2P+lleh8UVr4kXhDtKp5MAJAJhEw+n7rfTUYU
-FBpZOPNIwzxQNRhSVGY9n70A6vCzM6Z2zVPIwXHOX0IOAqBFywqrlF9iV+znyWoK
-2wngiE5gcOxcsCjXuZSVCCtXz03yKvt4ELHGqy5t/N7Z6n3pL1ZY+WNcpqrGokMV
-8EOYQKV+Wmon965m9T/HntHHxzAdnD2KF6bcM8Un7HK+Zit1SwMAmq5Ffml0IrMl
-u8m9rNUL3enJgPrgy9JE3ZvqaMtbgQAxYUOuA7Gcx8uD3MvoR5KrIZZge0uWF9OI
-w8QASdBjVSuucWJKathj5CSE6fBHBj4QY2Fqy1Kd2qCopbCwVZ4gPuEDoyoe5GwV
-TlRR2aPcINRH/ehtZMUN77r8Szl0YasXgskYQu42XRNSwcYE2J/Vf+B8SmaBVCsF
-4t1aDcsGWZY3efzRSv4pdimo83qz96p8R468u5ngKyiPuo8QU5Y=
-=tCJn
------END PGP SIGNATURE-----
-
---udmjswxldcpwpkxo--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
