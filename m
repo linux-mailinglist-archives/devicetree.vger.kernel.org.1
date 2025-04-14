@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-166877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A98A88B86
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:42:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC81A88BB1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03671724FD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:42:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBA767A2F30
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C550B289340;
-	Mon, 14 Apr 2025 18:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02ABD1AF0AE;
+	Mon, 14 Apr 2025 18:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTqHg4f2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S8IuGRn2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92055192D6B;
-	Mon, 14 Apr 2025 18:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97781A5BB1;
+	Mon, 14 Apr 2025 18:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744656155; cv=none; b=F32nHFE02EMTH8NG+yc0uEnQuaz/xJIEZO5W31OZ3H1Y5K6/QB1jREczFKh8Anu7WXHpsDSHs9D83OOAUFkEB/Va4YSX5nCtgklQdCPbVKqQbzgYtpysY/lrzszqoOFYcLuzlzDJi3M8bLcLgsFUiAUJA5quAq437YXZA0S7HvM=
+	t=1744656357; cv=none; b=XmlFM8oiHaLXLMQIb9rL9piCeSvYYfbFZjwD0xS3YgyvgOd8vvwZBoz2OB2B35Ey3JODb7Qdjs47ZaQInYRFVewhpi6XTp9+3/G16LzQR61yrAq9KSnJc7S6/hipugB+PGPmJ9EekaFVeVPnOnY8d7Q39aAwtCN/HXdOMrwneNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744656155; c=relaxed/simple;
-	bh=lm7gUm0R/Mv3PLgPYbMGJSstDs4voIh/QeUwm11ZtEM=;
+	s=arc-20240116; t=1744656357; c=relaxed/simple;
+	bh=Q+ArbtoUYHF9rW7RmtIkv3LRhYSlJIYQ+VVn8GGi6bk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TMusOouQui9bfJvpVRSIC6yqd9wIiP5WLIlx8ToyP5k9qhG2mi5M95erUNlaExASXOt0enC2Rn1Cj27EWnvxEMeKkx/Kl0SRBQWCkKvDIZw66Qiga7XhS99+xKJhnrdBlSeagzSdywsesKnwBgZqJHdRt3NvOi7AmVBl8d6ep4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTqHg4f2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8ED9C4CEE2;
-	Mon, 14 Apr 2025 18:42:30 +0000 (UTC)
+	 MIME-Version:Content-Type; b=dGaIrkD5mCgsW++E1LuBRWbAEg5EmRDp0vHTUymRHhpigzxdCIAHs/1XRqWZSLOx2ySo4B5WLl5FPnjbsc9vbyHpkZoFr4aHGiGnY1GIMlANMORwPfuVgKvcPKmSHVusgtp2A/YmquxI0AjA02AfTJxqRxcOAoXrOp3SmBfyvkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S8IuGRn2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A3AC4CEE5;
+	Mon, 14 Apr 2025 18:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744656155;
-	bh=lm7gUm0R/Mv3PLgPYbMGJSstDs4voIh/QeUwm11ZtEM=;
+	s=k20201202; t=1744656357;
+	bh=Q+ArbtoUYHF9rW7RmtIkv3LRhYSlJIYQ+VVn8GGi6bk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qTqHg4f2irPR9LtcFjMewRc1xEpdIG7i/BxuXeEQcEOyozFsfUHdmOvinkVBU1RFn
-	 CMXe+Lxygjs3v3s4wzOLaRHMNGEtrHgtyqZDr+S0ban3g8q3gigakBpkq6mWisb0lw
-	 TzG64IuEdNnSroC91rw7glexnw4XxelWJ897jjgr9fPGdwFXycAfhC7sLF5lEYwIK/
-	 PvSaDfxHEwBI6SGwAAcSmsUgKADRHGg3Zoddrbi9qX2pVY4qnMRGuTo2nqV58ru5gk
-	 NJVJgPhpyeLOyI2eINpDlzXQRbipq0536R8+fQUgVpZHNQA+H7x38g71epKgEY3jrS
-	 i6J067K6AUGOA==
-Date: Mon, 14 Apr 2025 19:42:27 +0100
+	b=S8IuGRn2FGs+y0ChWAs0HGqqeUM7B9v3Y1QIjDgHqkVOn6M1ZIETBr/bprujigXeF
+	 xflvYJhpUmLXg5GZnGRb9vcc3Jzg6gvMY2npb7iASSHiUpQWO0jzQqdJPdEeJMYyj/
+	 Ul7r/Q7pmXD/UPKt75c0myhmdxI+kTmNFtm2OqHK55pvqp0kNjEqdOf/Fp+cC9LAs5
+	 VGUzgr9RyBa9fnWNoLDG6avcVExASmkbywescYFAvtrQx7n9MnjB5T4ggYafto/N5e
+	 upW9nXGKW+XQnr3yaOq7Xw8wYIuGV8Fs/XECn/IbVTwi0A1ne7LiVDED6LBOv0r1bU
+	 /RcHRMoskwVRA==
+Date: Mon, 14 Apr 2025 19:45:49 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Ana-Maria Cusco
- <ana-maria.cusco@analog.com>, lars@metafoo.de,
- Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 2/7] iio: adc: Add basic support for AD4170
-Message-ID: <20250414194227.7a49301e@jic23-huawei>
-In-Reply-To: <Z_z72J_gcZqW14CE@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1744200264.git.marcelo.schmitt@analog.com>
-	<5f79007f0b9f9f67360d04fb904b6a59111a4ebe.1744200264.git.marcelo.schmitt@analog.com>
-	<20250412174710.33afb04d@jic23-huawei>
-	<Z_z72J_gcZqW14CE@debian-BULLSEYE-live-builder-AMD64>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: jean-baptiste.maneyrol@tdk.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: imu: inv_icm42600: switch to use generic
+ name irq get
+Message-ID: <20250414194549.4786338a@jic23-huawei>
+In-Reply-To: <Z_zD0uvJn_Fz1SOF@smile.fi.intel.com>
+References: <20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-0-19e4e2f8f7eb@tdk.com>
+	<20250410-iio-imu-inv-icm42600-rework-interrupt-using-names-v4-2-19e4e2f8f7eb@tdk.com>
+	<Z_zD0uvJn_Fz1SOF@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,49 +66,33 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Mon, 14 Apr 2025 11:14:10 +0300
+Andy Shevchenko <andy@kernel.org> wrote:
 
-> ...
-> > > +static int ad4170_regulator_setup(struct ad4170_state *st)
-> > > +{
-> > > +	struct device *dev = &st->spi->dev;
-> > > +	int ret;
-> > > +
-> > > +	/* Required regulators */
-> > > +	ret = devm_regulator_get_enable_read_voltage(dev, "avdd");
-> > > +	if (ret < 0)
-> > > +		return dev_err_probe(dev, ret, "Failed to get AVDD voltage.\n");
-> > > +
-> > > +	st->vrefs_uv[AD4170_AVDD_SUP] = ret;
-> > > +
-> > > +	ret = devm_regulator_get_enable_read_voltage(dev, "iovdd");  
+> On Thu, Apr 10, 2025 at 05:39:41PM +0200, Jean-Baptiste Maneyrol via B4 Relay wrote:
+> > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
 > > 
-> > If no channel uses this reference is it not optional?  Maybe not worth the
-> > complexity of handling that.  We have sometime bothered to do so in the past
-> > by first figuring out which references are in use, then trying to get the
-> > appropriate regulators with small changes for cases like this where
-> > it needs to be enabled but we might not need the voltage.  
+> > Use generic fwnode_irq_get_byname() for getting interrupt pin using
+> > interrupt name. Only INT1 is supported by the driver currently.
+> > 
+> > If not found fallback to first defined interrupt to keep compatibility.  
 > 
-> We can set the channel multiplexer to use IOVDD reference as diff chan negative
-> input. Similar thing can be done for the other reference supplies. I think
-> the examples in dt-binding don't use IOVDD but they could. Since the driver is
-> supporting other regulators, maybe support IOVDD too?
-
-That's fine. In a few drivers where we have muxes that can use many different
-regulators, we allow for regulators to not be provided if no channels use them.
-It may not be worth the effort.  If anyone comes along later with a board
-wired that way then we can relax the requirement at that point.
-
+> ...
 > 
-> >   
-> > > +	if (ret < 0)
-> > > +		return dev_err_probe(dev, ret, "Failed to get IOVDD voltage.\n");
-> > > +
-> > > +	st->vrefs_uv[AD4170_IOVDD_SUP] = ret;
-> > > +
-> > > +	/* Optional regulators */
-> > > +	ret = devm_regulator_get_enable_read_voltage(dev, "avss");
-> > > +	if (ret < 0 && ret != -ENODEV)
-> > > +		return dev_err_probe(dev, ret, "Failed to get AVSS voltage.\n");
-> > > +  
+> > -	return inv_icm42600_core_probe(regmap, chip, client->irq,
+> > +	return inv_icm42600_core_probe(regmap, chip,
+> >  				       inv_icm42600_i2c_bus_setup);  
+> 
+> It's only 81 character, I doubt it will be a problem to have it on one line.
+> 
+> ...
+> 
+> > -	return inv_icm42600_core_probe(regmap, chip, spi->irq,
+> > +	return inv_icm42600_core_probe(regmap, chip,
+> >  				       inv_icm42600_spi_bus_setup);  
+> 
+> Ditto.
+> 
 
+tweaked and pushed out.
 
