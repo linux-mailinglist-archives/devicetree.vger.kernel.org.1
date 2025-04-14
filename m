@@ -1,265 +1,554 @@
-Return-Path: <devicetree+bounces-166844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78860A88A35
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:46:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED100A88A43
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 19:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3AA07A7AC5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:45:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 912E7189ADBD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7079628B501;
-	Mon, 14 Apr 2025 17:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D68928DEE5;
+	Mon, 14 Apr 2025 17:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SlMmxK+0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Bm1lAKfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C5B18BC3B;
-	Mon, 14 Apr 2025 17:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A706428DEF2;
+	Mon, 14 Apr 2025 17:44:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744652611; cv=none; b=PRYIo+diWT2BFJASb8uch/9wskoRjjDOdfjBMs8Fr5VEs+BOjh8n4h03bbWfjMxImU7In0srsEDImiJuTMwDIdQgwqGgCMmTP4UWyMBvxsVMqnlK+cjcdBU4CB7CkNUFzEHGixwnKr4WvblIWhi9VovkRjLbjK5WJiDyrXoFkh8=
+	t=1744652646; cv=none; b=PAfrm9FX1bAGbdHcOSc3i3sj22iNguLlSBQF1oc5Ots4hA3mnPIm1UydXPD3Br62NH1SiHtFzH+PXQYwAsFwu0PhKXMoSfUdP1q4giRddtXwAAGq7zTJLYcWyPYz5+0qVnxbC+IeVmd/WZzc2xCnyhDnRa+NTp3le0cqC8wsqrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744652611; c=relaxed/simple;
-	bh=/GAusDKonHkaX5JIM0jxXotA46d8ZqdLMObqUaMOPX0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dSO1Sj6yMB8EZwlYF9fv0skCFGt8uArVkqCEwCJWk6hPjhN+ptETiqymhZJrZI9ZOA0lgs4/MozczQDtviEXrswTGMLRbD0AeKeLRXIxu2us/kWQ7N3dqz56qQszEJqhVi9vfrz/Lhv2dzELM50h5Eq9ljYgZcyh6ZwchNiovxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SlMmxK+0; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-528ce9731dbso502638e0c.0;
-        Mon, 14 Apr 2025 10:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744652608; x=1745257408; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rH7WH3HsjYW5TTPLagNRBD13zhunmFxlYbALOshn7VE=;
-        b=SlMmxK+0yDO8S+7FVjnJnj4M9jccJpNkTfoG/vrETlav3ir2aZs588Ft2n96dEDd8W
-         mr9sYlMx7+NYXrdmOf6f5EBYhcLpa2Aia1Judw50Tz3Um1aQ/dfY13KouIjPGedyoS+8
-         gnUotgJOy/+DoCBrb4qQHDNb9znjKG33XXXC1PVuA8GC6npHWbwneBkTc1ropoEza9A1
-         A+1Z3NeL59klekbgSQSmVHHXExldQKiCJwhoAedq+O+28jRbawfIAKgJCCJqn9gjP/G2
-         /YMU0Wh6Kqob5lNqVnQZ6OozrzmZsPe4b0L9NaH5GXCjRhXPzjg9M/+rGSjtY82FCTtR
-         mETg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744652608; x=1745257408;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rH7WH3HsjYW5TTPLagNRBD13zhunmFxlYbALOshn7VE=;
-        b=rcfP6uhIanOXEFlWQRXfyHuPkfkmZUBD1e8QAx3jixM5d9XYovUoMRqI7NzwQMSJL+
-         fMsLqJ9e4P2tgyNnnGYl2BlTP4/WvDUmCvK6pryyONnTLR1JfgdAmPBRf+yxnv6Gffr5
-         yR6NTbSvDDEAYhhANT9Hc5z6MQuYL6v9uMJ5dtlmYeBU+X50Lykxe5v9Vzp7yXdvhvi8
-         zSkWtmJY5EdwuduvLQ6Wb/46ndEB63p+A2plywEpvpvJdYAxAq8DLA+P3ZF0zgAEIujI
-         MEloOdc953vjUrVSQQ86Qp4arHhY+3iuuSZzNhqTo42PBN1sLMxHcY8bW/1g8bdgyLCF
-         chIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUHWXpYO84CCpaw+AGIaqxondjCVmyK5uSJgLDsz44EqN0VZZQ+QaXgmK9ppICYmXSPbsggo3iNpDO+quU8yBzIOaA=@vger.kernel.org, AJvYcCVQQfKsnMrwB19fzGL1/lEmZPGtaugbCf4CjDtrSuVydAPYKjFaYZMGRkLzWDqCC65zhnu8DAWu+PMVKTDM@vger.kernel.org, AJvYcCX6afre3m38U2kOl/csJzYQyJNCGXU3D3435elvSV9u7TjGf+gYzYimzwHAu5JkpNkFbA0jBFyJF0t6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS/26/JeyW0G5a36UiPMDOM0pQbT7e9h8tE/Ajc5fkBpamagOI
-	arl10VEcq1JldTvoYVGLUFZVhAcWKxGFjsh9zhV1lSnHUto1Kf1hApBubrknu2XvxNfnc2D0neE
-	AcwCXSPoXjrOZrAYLATe2fYL861g=
-X-Gm-Gg: ASbGncskaF1RJLGJ5aX3ma8TRKMsJOezSdJgtZzG4T72/2WgPbsfiyIRVhbRBse77TE
-	5iHja72owoYYV5W6uqcfq6hdJhvAOKZC2IXfTzr3yIJnizE6LyPzkNehrtVGC5f3LYUhf7bS7v6
-	A5qjKSleEaw7CNKX0XWFZYMp6qgtgOOo0qnFzQT55bsR7jIFBD3EQX6A==
-X-Google-Smtp-Source: AGHT+IH/2ShLH6ygnla8obiETi0DL3OWDXWWuqzVvQNeVdlFWV1DXiaR9E/+sLhY2ShC6RZO0XGE9m6pgLB6cJ13UHw=
-X-Received: by 2002:a05:6122:2218:b0:518:7ab7:afbb with SMTP id
- 71dfb90a1353d-527c35c618cmr8115322e0c.8.1744652608087; Mon, 14 Apr 2025
- 10:43:28 -0700 (PDT)
+	s=arc-20240116; t=1744652646; c=relaxed/simple;
+	bh=OMnziA6T0qoDcBH0LxvjdH9kmVpEqTJ8xTY8ymKyFHw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Nkv3tLGrZJSf0zsmX+2f0H4bECbHFzusVBf52vo2O+Zyp5dPmmotDEx8MRTF9Dzv61Tg/w68Uc2AGaqXjAvZw3WkdQUlwdEZ1kA78CKUWC+B6NFs+oCZ0UJiQZeqfL+BVp+zGmpH8cYlhHRb3I5jMWOVLfnhPn7uFPOvxQGcXOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Bm1lAKfl; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53EHhkq02220803
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 14 Apr 2025 12:43:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744652626;
+	bh=uSa+mwmKRsBHbiI7E5dH/18NMyqtwpzqZyLK302xmvo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Bm1lAKflwAMgYAOCL2yVsM2jB/fBUu3cn1FssnlehWq6jbcwdnhFGtpOkaQ0gZKiy
+	 tnQGJ1/oyRbco7PFdmQi19tAi/12G9iF+CFgwog6SSPDSQ6oHlzaSBUwohh+6fYcqQ
+	 B51L9202lDKSXg9tvYPehbLnuSnTLVOBA906nzUc=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53EHhk8m016722
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 14 Apr 2025 12:43:46 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
+ Apr 2025 12:43:45 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 14 Apr 2025 12:43:45 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53EHhjq3117844;
+	Mon, 14 Apr 2025 12:43:45 -0500
+Message-ID: <b3391234-ea53-4a18-a1e3-b8a92d9dff5d@ti.com>
+Date: Mon, 14 Apr 2025 12:43:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414130020.248374-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250414130020.248374-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB113469552384EB52CED89FDC286B32@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113469552384EB52CED89FDC286B32@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 14 Apr 2025 18:43:02 +0100
-X-Gm-Features: ATxdqUF--DR9eGbhr3mqR0ytKAIwOyhaD_1ZbdVw5yb_38zz8L0tik_MAKXKxVE
-Message-ID: <CA+V-a8uxZRnAC7u2wX10qrQKVVbjJ1yhzN91yQRKQXb=hZWs3A@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] reset: Add USB2PHY port reset driver for Renesas RZ/V2H(P)
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dma-buf: heaps: Introduce a new heap for reserved
+ memory
+To: "T.J. Mercier" <tjmercier@google.com>, Maxime Ripard <mripard@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        John Stultz <jstultz@google.com>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?=
+	<christian.koenig@amd.com>,
+        Mattijs Korpershoek <mkorpershoek@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linaro-mm-sig@lists.linaro.org>
+References: <20250407-dma-buf-ecc-heap-v3-0-97cdd36a5f29@kernel.org>
+ <20250407-dma-buf-ecc-heap-v3-2-97cdd36a5f29@kernel.org>
+ <CABdmKX0=Er-y41roEuZjGZ95YzMxt-mPd9K5982fm_eWhtX5vw@mail.gmail.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <CABdmKX0=Er-y41roEuZjGZ95YzMxt-mPd9K5982fm_eWhtX5vw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Biju,
+On 4/11/25 3:26 PM, T.J. Mercier wrote:
+> On Mon, Apr 7, 2025 at 9:29 AM Maxime Ripard <mripard@kernel.org> wrote:
+>>
+>> Some reserved memory regions might have particular memory setup or
+>> attributes that make them good candidates for heaps.
+>>
+>> Let's provide a heap type that will create a new heap for each reserved
+>> memory region flagged as such.
+>>
+>> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> 
+> This patch looks good to me, but I think it'd be good to add more
+> justification like you did at
+> https://lore.kernel.org/all/20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org
+> 
+>> ---
+>>   drivers/dma-buf/heaps/Kconfig         |   8 +
+>>   drivers/dma-buf/heaps/Makefile        |   1 +
+>>   drivers/dma-buf/heaps/carveout_heap.c | 360 ++++++++++++++++++++++++++++++++++
+>>   3 files changed, 369 insertions(+)
+>>
+>> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
+>> index a5eef06c422644e8aadaf5aff2bd9a33c49c1ba3..c6981d696733b4d8d0c3f6f5a37d967fd6a1a4a2 100644
+>> --- a/drivers/dma-buf/heaps/Kconfig
+>> +++ b/drivers/dma-buf/heaps/Kconfig
+>> @@ -1,5 +1,13 @@
+>> +config DMABUF_HEAPS_CARVEOUT
+>> +       bool "Carveout Heaps"
+>> +       depends on DMABUF_HEAPS
+>> +       help
+>> +         Choose this option to enable the carveout dmabuf heap. The carveout
+>> +         heap is backed by pages from reserved memory regions flagged as
+>> +         exportable. If in doubt, say Y.
+>> +
+>>   config DMABUF_HEAPS_SYSTEM
+>>          bool "DMA-BUF System Heap"
+>>          depends on DMABUF_HEAPS
+>>          help
+>>            Choose this option to enable the system dmabuf heap. The system heap
+>> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
+>> index 974467791032ffb8a7aba17b1407d9a19b3f3b44..b734647ad5c84f449106748160258e372f153df2 100644
+>> --- a/drivers/dma-buf/heaps/Makefile
+>> +++ b/drivers/dma-buf/heaps/Makefile
+>> @@ -1,3 +1,4 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>> +obj-$(CONFIG_DMABUF_HEAPS_CARVEOUT)    += carveout_heap.o
+>>   obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)      += system_heap.o
+>>   obj-$(CONFIG_DMABUF_HEAPS_CMA)         += cma_heap.o
+>> diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..f7198b781ea57f4f60e554d917c9277e9a716b16
+>> --- /dev/null
+>> +++ b/drivers/dma-buf/heaps/carveout_heap.c
+>> @@ -0,0 +1,360 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +#include <linux/dma-buf.h>
+>> +#include <linux/dma-heap.h>
+>> +#include <linux/genalloc.h>
+>> +#include <linux/highmem.h>
+>> +#include <linux/of_reserved_mem.h>
+>> +
+>> +struct carveout_heap_priv {
+>> +       struct dma_heap *heap;
+>> +       struct gen_pool *pool;
+>> +};
+>> +
+>> +struct carveout_heap_buffer_priv {
+>> +       struct mutex lock;
+>> +       struct list_head attachments;
+>> +
+>> +       unsigned long num_pages;
+>> +       struct carveout_heap_priv *heap;
+>> +       dma_addr_t daddr;
+>> +       void *vaddr;
+>> +       unsigned int vmap_cnt;
+>> +};
+>> +
+>> +struct carveout_heap_attachment {
+>> +       struct list_head head;
+>> +       struct sg_table table;
+>> +
+>> +       struct device *dev;
+>> +       bool mapped;
+>> +};
+>> +
+>> +static int carveout_heap_attach(struct dma_buf *buf,
+>> +                               struct dma_buf_attachment *attachment)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = buf->priv;
+>> +       struct carveout_heap_attachment *a;
+>> +       struct sg_table *sgt;
+>> +       unsigned long len = priv->num_pages * PAGE_SIZE;
+>> +       int ret;
+>> +
+>> +       a = kzalloc(sizeof(*a), GFP_KERNEL);
+>> +       if (!a)
+>> +               return -ENOMEM;
+>> +       INIT_LIST_HEAD(&a->head);
+>> +       a->dev = attachment->dev;
+>> +       attachment->priv = a;
+>> +
+>> +       sgt = &a->table;
+>> +       ret = sg_alloc_table(sgt, 1, GFP_KERNEL);
+>> +       if (ret)
+>> +               goto err_cleanup_attach;
+>> +
+>> +       sg_dma_address(sgt->sgl) = priv->daddr;
+>> +       sg_dma_len(sgt->sgl) = len;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +       list_add(&a->head, &priv->attachments);
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       return 0;
+>> +
+>> +err_cleanup_attach:
+>> +       kfree(a);
+>> +       return ret;
+>> +}
+>> +
+>> +static void carveout_heap_detach(struct dma_buf *dmabuf,
+>> +                                struct dma_buf_attachment *attachment)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +       struct carveout_heap_attachment *a = attachment->priv;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +       list_del(&a->head);
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       sg_free_table(&a->table);
+>> +       kfree(a);
+>> +}
+>> +
+>> +static struct sg_table *
+>> +carveout_heap_map_dma_buf(struct dma_buf_attachment *attachment,
+>> +                         enum dma_data_direction direction)
+>> +{
+>> +       struct carveout_heap_attachment *a = attachment->priv;
+>> +       struct sg_table *table = &a->table;
+>> +       int ret;
+>> +
+>> +       ret = dma_map_sgtable(a->dev, table, direction, 0);
+>> +       if (ret)
+>> +               return ERR_PTR(-ENOMEM);
+> 
+> Not ERR_PTR(ret)? This is already converted to ENOMEM by
+> dma_buf_map_attachment before leaving the dmabuf code, but it might be
+> nice to retain the error type internally. The two existing heaps
+> aren't consistent about this, and I have a slight preference to
+> propagate the error here.
+> 
+>> +
+>> +       a->mapped = true;
+>> +
+>> +       return table;
+>> +}
+>> +
+>> +static void carveout_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>> +                                       struct sg_table *table,
+>> +                                       enum dma_data_direction direction)
+>> +{
+>> +       struct carveout_heap_attachment *a = attachment->priv;
+>> +
+>> +       a->mapped = false;
+>> +       dma_unmap_sgtable(a->dev, table, direction, 0);
+>> +}
+>> +
+>> +static int
+>> +carveout_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
+>> +                                      enum dma_data_direction direction)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +       struct carveout_heap_attachment *a;
+>> +       unsigned long len = priv->num_pages * PAGE_SIZE;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +
+>> +       if (priv->vmap_cnt > 0)
+>> +               invalidate_kernel_vmap_range(priv->vaddr, len);
+>> +
+>> +       list_for_each_entry(a, &priv->attachments, head) {
+>> +               if (!a->mapped)
+>> +                       continue;
+>> +
+>> +               dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
+>> +       }
+>> +
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int
+>> +carveout_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
+>> +                                    enum dma_data_direction direction)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +       struct carveout_heap_attachment *a;
+>> +       unsigned long len = priv->num_pages * PAGE_SIZE;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +
+>> +       if (priv->vmap_cnt > 0)
+>> +               flush_kernel_vmap_range(priv->vaddr, len);
+>> +
+>> +       list_for_each_entry(a, &priv->attachments, head) {
+>> +               if (!a->mapped)
+>> +                       continue;
+>> +
+>> +               dma_sync_sgtable_for_device(a->dev, &a->table, direction);
+>> +       }
+>> +
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int carveout_heap_mmap(struct dma_buf *dmabuf,
+>> +                             struct vm_area_struct *vma)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +       unsigned long len = priv->num_pages * PAGE_SIZE;
+>> +       struct page *page = virt_to_page(priv->vaddr);
+>> +
+>> +       return remap_pfn_range(vma, vma->vm_start, page_to_pfn(page),
+>> +                              len, vma->vm_page_prot);
+>> +}
+>> +
+>> +static int carveout_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +
+>> +       iosys_map_set_vaddr(map, priv->vaddr);
+>> +       priv->vmap_cnt++;
+>> +
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static void carveout_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
+>> +{
+>> +       struct carveout_heap_buffer_priv *priv = dmabuf->priv;
+>> +
+>> +       mutex_lock(&priv->lock);
+>> +
+>> +       priv->vmap_cnt--;
+>> +       mutex_unlock(&priv->lock);
+>> +
+>> +       iosys_map_clear(map);
+>> +}
+>> +
+>> +static void carveout_heap_dma_buf_release(struct dma_buf *buf)
+>> +{
+>> +       struct carveout_heap_buffer_priv *buffer_priv = buf->priv;
+>> +       struct carveout_heap_priv *heap_priv = buffer_priv->heap;
+>> +       unsigned long len = buffer_priv->num_pages * PAGE_SIZE;
+>> +
+>> +       gen_pool_free(heap_priv->pool, (unsigned long)buffer_priv->vaddr, len);
+>> +       kfree(buffer_priv);
+>> +}
+>> +
+>> +static const struct dma_buf_ops carveout_heap_buf_ops = {
+>> +       .attach         = carveout_heap_attach,
+>> +       .detach         = carveout_heap_detach,
+>> +       .map_dma_buf    = carveout_heap_map_dma_buf,
+>> +       .unmap_dma_buf  = carveout_heap_unmap_dma_buf,
+>> +       .begin_cpu_access       = carveout_heap_dma_buf_begin_cpu_access,
+>> +       .end_cpu_access = carveout_heap_dma_buf_end_cpu_access,
+>> +       .mmap           = carveout_heap_mmap,
+>> +       .vmap           = carveout_heap_vmap,
+>> +       .vunmap         = carveout_heap_vunmap,
+>> +       .release        = carveout_heap_dma_buf_release,
+>> +};
+>> +
+>> +static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
+>> +                                             unsigned long len,
+>> +                                             u32 fd_flags,
+>> +                                             u64 heap_flags)
+>> +{
+>> +       struct carveout_heap_priv *heap_priv = dma_heap_get_drvdata(heap);
+>> +       struct carveout_heap_buffer_priv *buffer_priv;
+>> +       DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+>> +       struct dma_buf *buf;
+>> +       dma_addr_t daddr;
+>> +       size_t size = PAGE_ALIGN(len);
+> 
+> This PAGE_ALIGN is not needed since dma_heap_buffer_alloc requires all
+> heap allocations to be page aligned before this function is called.
+> 
+> 
+> 
+> 
+> 
+>> +       void *vaddr;
+>> +       int ret;
+>> +
+>> +       buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
+>> +       if (!buffer_priv)
+>> +               return ERR_PTR(-ENOMEM);
+>> +
+>> +       INIT_LIST_HEAD(&buffer_priv->attachments);
+>> +       mutex_init(&buffer_priv->lock);
+>> +
+>> +       vaddr = gen_pool_dma_zalloc(heap_priv->pool, size, &daddr);
+>> +       if (!vaddr) {
+>> +               ret = -ENOMEM;
+>> +               goto err_free_buffer_priv;
+>> +       }
+>> +
+>> +       buffer_priv->vaddr = vaddr;
+>> +       buffer_priv->daddr = daddr;
+>> +       buffer_priv->heap = heap_priv;
+>> +       buffer_priv->num_pages = size >> PAGE_SHIFT;
+>> +
+>> +       /* create the dmabuf */
+>> +       exp_info.exp_name = dma_heap_get_name(heap);
+>> +       exp_info.ops = &carveout_heap_buf_ops;
+>> +       exp_info.size = size;
+>> +       exp_info.flags = fd_flags;
+>> +       exp_info.priv = buffer_priv;
+>> +
+>> +       buf = dma_buf_export(&exp_info);
+>> +       if (IS_ERR(buf)) {
+>> +               ret = PTR_ERR(buf);
+>> +               goto err_free_buffer;
+>> +       }
+>> +
+>> +       return buf;
+>> +
+>> +err_free_buffer:
+>> +       gen_pool_free(heap_priv->pool, (unsigned long)vaddr, len);
+>> +err_free_buffer_priv:
+>> +       kfree(buffer_priv);
+>> +
+>> +       return ERR_PTR(ret);
+>> +}
+>> +
+>> +static const struct dma_heap_ops carveout_heap_ops = {
+>> +       .allocate = carveout_heap_allocate,
+>> +};
+>> +
+>> +static int __init carveout_heap_setup(struct device_node *node)
+>> +{
+>> +       struct dma_heap_export_info exp_info = {};
+>> +       const struct reserved_mem *rmem;
+>> +       struct carveout_heap_priv *priv;
+>> +       struct dma_heap *heap;
+>> +       struct gen_pool *pool;
+>> +       void *base;
+>> +       int ret;
+>> +
+>> +       rmem = of_reserved_mem_lookup(node);
+>> +       if (!rmem)
+>> +               return -EINVAL;
+>> +
+>> +       priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+>> +       if (!priv)
+>> +               return -ENOMEM;
+>> +
+>> +       pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
+>> +       if (!pool) {
+>> +               ret = -ENOMEM;
+>> +               goto err_cleanup_heap;
+>> +       }
+>> +       priv->pool = pool;
+>> +
+>> +       base = memremap(rmem->base, rmem->size, MEMREMAP_WB);
 
-Thank you for the review.
+Why add a mapping here? What if the carveout is never mapped by the CPU
+(or maybe it shouldn't be mapped for some reason). Instead you could
+make the map at map time. I do it that way in our evil vendor tree
+version of this driver for reference[0].
 
-On Mon, Apr 14, 2025 at 2:05=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for the patch.
->
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: 14 April 2025 14:00
-> > Subject: [PATCH v4 2/3] reset: Add USB2PHY port reset driver for Renesa=
-s RZ/V2H(P)
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Implement a USB2PHY port reset driver for the Renesas RZ/V2H(P) SoC.
-> > Enable control of USB2.0 PHY reset and power-down operations, including=
- assert and deassert
-> > functionalities for the PHY.
-> >
-> > Leverage device tree (OF) data to support future SoCs with similar USB2=
-PHY hardware but varying
-> > register configurations. Define initialization values and control regis=
-ter settings to ensure
-> > flexibility for upcoming platforms.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  drivers/reset/Kconfig               |   7 +
-> >  drivers/reset/Makefile              |   1 +
-> >  drivers/reset/reset-rzv2h-usb2phy.c | 241 ++++++++++++++++++++++++++++
-> >  3 files changed, 249 insertions(+)
-> >  create mode 100644 drivers/reset/reset-rzv2h-usb2phy.c
-> >
-> > diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig index 99f6f9=
-784e68..6c7dbd8ca580 100644
-> > --- a/drivers/reset/Kconfig
-> > +++ b/drivers/reset/Kconfig
-> > @@ -225,6 +225,13 @@ config RESET_RZG2L_USBPHY_CTRL
-> >         Support for USBPHY Control found on RZ/G2L family. It mainly
-> >         controls reset and power down of the USB/PHY.
-> >
-> > +config RESET_RZV2H_USB2PHY
-> > +     tristate "Renesas RZ/V2H(P) (and similar SoCs) USB2PHY Reset driv=
-er"
-> > +     depends on ARCH_RENESAS || COMPILE_TEST
-> > +     help
-> > +       Support for USB2PHY Port reset Control found on the RZ/V2H(P) S=
-oC
-> > +       (and similar SoCs).
-> > +
-> >  config RESET_SCMI
-> >       tristate "Reset driver controlled via ARM SCMI interface"
-> >       depends on ARM_SCMI_PROTOCOL || COMPILE_TEST diff --git a/drivers=
-/reset/Makefile
-> > b/drivers/reset/Makefile index 31f9904d13f9..30d0fb4ac965 100644
-> > --- a/drivers/reset/Makefile
-> > +++ b/drivers/reset/Makefile
-> > @@ -31,6 +31,7 @@ obj-$(CONFIG_RESET_QCOM_AOSS) +=3D reset-qcom-aoss.o
-> >  obj-$(CONFIG_RESET_QCOM_PDC) +=3D reset-qcom-pdc.o
-> >  obj-$(CONFIG_RESET_RASPBERRYPI) +=3D reset-raspberrypi.o
-> >  obj-$(CONFIG_RESET_RZG2L_USBPHY_CTRL) +=3D reset-rzg2l-usbphy-ctrl.o
-> > +obj-$(CONFIG_RESET_RZV2H_USB2PHY) +=3D reset-rzv2h-usb2phy.o
-> >  obj-$(CONFIG_RESET_SCMI) +=3D reset-scmi.o
-> >  obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
-> >  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o diff --git a/drivers/=
-reset/reset-rzv2h-usb2phy.c
-> > b/drivers/reset/reset-rzv2h-usb2phy.c
-> > new file mode 100644
-> > index 000000000000..737b768829c9
-> > --- /dev/null
-> > +++ b/drivers/reset/reset-rzv2h-usb2phy.c
-> > @@ -0,0 +1,241 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Renesas RZ/V2H(P) USB2PHY Port reset control driver
-> > + *
-> > + * Copyright (C) 2025 Renesas Electronics Corporation  */
-> > +
-> > +#include <linux/cleanup.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/reset-controller.h>
-> > +
-> > +struct rzv2h_usb2phy_regval {
-> > +     u16 reg;
-> > +     u16 val;
-> > +};
-> > +
-> > +struct rzv2h_usb2phy_reset_of_data {
-> > +     const struct rzv2h_usb2phy_regval *init_vals;
-> > +     unsigned int init_val_count;
-> > +
-> > +     u16 reset_reg;
-> > +     u16 reset_assert_val;
-> > +     u16 reset_deassert_val;
-> > +     u16 reset_status_bits;
-> > +     u16 reset_release_val;
-> > +
-> > +     u16 reset2_reg;
-> > +     u16 reset2_acquire_val;
-> > +     u16 reset2_release_val;
-> > +};
-> > +
-<snip>
-> > +static const struct reset_control_ops rzv2h_usbphy_reset_ops =3D {
-> > +     .assert =3D rzv2h_usbphy_reset_assert,
-> > +     .deassert =3D rzv2h_usbphy_reset_deassert,
-> > +     .status =3D rzv2h_usbphy_reset_status,
-> > +};
-> > +
-> > +static int rzv2h_usb2phy_reset_of_xlate(struct reset_controller_dev *r=
-cdev,
-> > +                                     const struct of_phandle_args *res=
-et_spec) {
-> > +     /* No special handling needed, we have only one reset line per de=
-vice */
-> > +     return 0;
-> > +}
-> > +
-> > +static int rzv2h_usb2phy_reset_probe(struct platform_device *pdev) {
-> > +     const struct rzv2h_usb2phy_reset_of_data *data;
-> > +     struct rzv2h_usb2phy_reset_priv *priv;
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct reset_control *rstc;
-> > +     int error;
-> > +
-> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     data =3D of_device_get_match_data(dev);
-> > +     if (!data)
-> > +             return dev_err_probe(dev, -ENODEV,
-> > +                                  "failed to match device\n");
->
-> This check is not needed as there is always data.
->
-Agreed, I will drop this.
+>> +       if (!base) {
+>> +               ret = -ENOMEM;
+>> +               goto err_release_mem_region;
+>> +       }
+>> +
+>> +       ret = gen_pool_add_virt(pool, (unsigned long)base, rmem->base,
+>> +                               rmem->size, NUMA_NO_NODE);
+>> +       if (ret)
+>> +               goto err_unmap;
+>> +
+>> +       exp_info.name = node->full_name;
 
-> > +
-> > +     priv->data =3D data;
-> > +     priv->dev =3D dev;
-> > +     priv->base =3D devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(priv->base))
-> > +             return PTR_ERR(priv->base);
-> > +
-> > +     rstc =3D devm_reset_control_get_shared_deasserted(dev, NULL);
-> > +     if (IS_ERR(rstc))
-> > +             return dev_err_probe(dev, PTR_ERR(rstc),
-> > +                                  "failed to get deasserted reset\n");
-> > +
-> > +     spin_lock_init(&priv->lock);
-> > +     dev_set_drvdata(dev, priv);
-and this too and send a new version.
+So this is the only part that concerns me. We really got the user exposed
+naming wrong with the CMA Heap IMHO (probably should have been always called
+"default_cma" or somthing, instead it changes based on how the default CMA
+area was defined).
 
+If the name of the heap is how users select the heap, it needs to be consistent.
+And naming it after the node makes the DT name into ABI. It also means it will
+change based on device, or even based on how it is created. What if this same
+reserved region is defined by ACPI instead of DT in some cases, or from kernel
+command-line, etc.. Makes for bad ABI :(
 
-Cheers,
-Prabhakar
+Maybe in addition to the "export" property, in the DT node we have a "heap-name"
+that can be set which then defines what name is presented to userspace. At
+very least that allows us to kick the can down the road till we can figure out
+what good portable Heap names should look like.
+
+Andrew
+
+[0] https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/drivers/dma-buf/heaps/carveout-heap.c?h=ti-linux-6.12.y
+
+>> +       exp_info.ops = &carveout_heap_ops;
+>> +       exp_info.priv = priv;
+>> +
+>> +       heap = dma_heap_add(&exp_info);
+>> +       if (IS_ERR(heap)) {
+>> +               ret = PTR_ERR(heap);
+>> +               goto err_cleanup_pool_region;
+>> +       }
+>> +       priv->heap = heap;
+>> +
+>> +       return 0;
+>> +
+>> +err_cleanup_pool_region:
+>> +       gen_pool_free(pool, (unsigned long)base, rmem->size);
+>> +err_unmap:
+>> +       memunmap(base);
+>> +err_release_mem_region:
+>> +       gen_pool_destroy(pool);
+>> +err_cleanup_heap:
+>> +       kfree(priv);
+>> +       return ret;
+>> +}
+>> +
+>> +static int __init carveout_heap_init(void)
+>> +{
+>> +       struct device_node *rmem_node;
+>> +       struct device_node *node;
+>> +       int ret;
+>> +
+>> +       rmem_node = of_find_node_by_path("/reserved-memory");
+>> +       if (!rmem_node)
+>> +               return 0;
+>> +
+>> +       for_each_child_of_node(rmem_node, node) {
+>> +               if (!of_property_read_bool(node, "export"))
+>> +                       continue;
+>> +
+>> +               ret = carveout_heap_setup(node);
+>> +               if (ret)
+>> +                       return ret;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +module_init(carveout_heap_init);
+>>
+>> --
+>> 2.49.0
+>>
 
