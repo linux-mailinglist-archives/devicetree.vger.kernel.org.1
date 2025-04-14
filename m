@@ -1,131 +1,130 @@
-Return-Path: <devicetree+bounces-166857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C08A88AF3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C164A88B20
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 20:31:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB595189922A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:24:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E603B1888ED6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 18:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 410D828B4F5;
-	Mon, 14 Apr 2025 18:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFDC156236;
+	Mon, 14 Apr 2025 18:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QbJwJVMh"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="A9M8M+KD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9F5280A4D;
-	Mon, 14 Apr 2025 18:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744655070; cv=none; b=G7s+EM6LaOZrYgFfZPFS066T5EOiYnd39TMWjtH4j1ECVQaZ6QNdqF3AbreJl/Zo87dLSfZcjWFxZ8FCbbwBBUJj3AT35D4G8DIE9wHMD5NZDITA2rmSa9TlvXUzOwvh22eZl882VgylQdYAzIcGuLHnq4LQ18KB7oRHh116BVA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744655070; c=relaxed/simple;
-	bh=u1SSCsR65+z/52ozbHPvT+TScO/1kMgnydsLbhQEYF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=arlKctBRkrihHoMqdBIJqc9I+FPXlKqXyVvhr/3tlPHdaoH5RxPYYAj+G2fZxV2cmdw5hjX/XLdXGmWwWcltJUig011XJPv5p0f1xsdYz+SluINWzOZpp5i2QkgPgg1fmC7J7/modIaI2e+9EuiDI/vU04G1qFtDqVRMUMfok64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QbJwJVMh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF52C4CEE2;
-	Mon, 14 Apr 2025 18:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744655069;
-	bh=u1SSCsR65+z/52ozbHPvT+TScO/1kMgnydsLbhQEYF8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QbJwJVMh+kwVSRlafiLsR9NsZhKRc23wpBBil5TPnGF46i+c6S3NjHpChwxmGT7g8
-	 jkfyhK+4pXh/3o8KSmPU8HwplLS/H5CMpbQrq+Xi4Iw6cJLQMM86syEILgfdVM31W2
-	 dQnxVc8iKpwaoF3eR7jCTnbozSpgv3QUhpGYsOoGb6ra/cSAqdVNWx6nvB17MWtw49
-	 htu0GCew+cwGs/DtlIkTCVS1feL0ba/UrmKhcbyhZ3EAiTql0mAyPlzQzYZaruTT8N
-	 XB5btK3BTlJCkbA4IKM5TyHI68uj7hn61huKFzGai1m8cRlmCd7I+VpNsmKS73zk0r
-	 tUpOlLE+bgY1w==
-Date: Mon, 14 Apr 2025 19:24:22 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ad7606: add SPI offload support
-Message-ID: <20250414192422.039817b7@jic23-huawei>
-In-Reply-To: <20250403-wip-bl-spi-offload-ad7606-v1-3-1b00cb638b12@baylibre.com>
-References: <20250403-wip-bl-spi-offload-ad7606-v1-0-1b00cb638b12@baylibre.com>
-	<20250403-wip-bl-spi-offload-ad7606-v1-3-1b00cb638b12@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB96A192D6B;
+	Mon, 14 Apr 2025 18:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744655472; cv=pass; b=NU+MEJ93Ydn5e9P0EXQXhalMKtGf98XU7I9uVJfYMlAKprr2YsFOMhmweIxAhO8oJTNR8TbVuXkIBmTOCUlkgVcrABS/yLyjkPEw88VkhsaCUbjJVwXHFIthU5tb44fyVGBdLR+2qtCuBd6ozQD+YgGHamLR0N3IJ1VigQ9h+ZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744655472; c=relaxed/simple;
+	bh=nvfI6Dtjl9c8eSOHzN5OCdhlcKHF1Xh3nblGQq//xxs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IeGshxuTcNH31/qnDmBSVjhrinPRiwFihQqHOQX4I210mbG9sRBhDlhWB3Z/sUdectzHTuKdvmE320XpgZjS5p9f9J17KUK3OjtLHSSR9sIqHI/KHAYs+wwde/yW9tLnqsR1AvxfMIM8533LoI9C0MjwrnyloQ1AwgCbfrYgmwg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=A9M8M+KD; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1744655447; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=aK9QbFLPjjNWwlAHM+7jqXXYkZSyotrm4OpqYBZ6Z+7vjhqlvez1f+PL379uk9xzqoSF6iITw0vcbLi/5d56FqTSxfckQ8bVg5OlU5oCF3kg4cd/t22MRnH8JVTkmi91wGUqj/PNsc2dHlDKILWgCHoGv596aKqZGHKYDCjqwiA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1744655447; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=0W68kifwClbmxOD9uB2cLoC+ZOmDFfEOuSDxczncg7A=; 
+	b=NnanDKGIw2jbi6e5Xc8Wy7BWebenhI2JPjGlWQZaOSjFO/+adLpumbi87vt34Pw9mygqSwkmkjWTIbSQKpBMHvR5Ce9B0Wlk/LiqOkwmLtFuKdfMt3clvw1c54CtQ49kEH49mBfTBBzoFLO/2aVawi+VBEAGE7vkb6hem77sVRI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744655447;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=0W68kifwClbmxOD9uB2cLoC+ZOmDFfEOuSDxczncg7A=;
+	b=A9M8M+KDKMG7ngJrCcR8EyH1YFAWoOsBiMjvc5f7DXQ9x4mceV+16Cb+JYnRFbp5
+	eMN9g8GulITK60NJnEJuO3cH3+5U6KzGHHzzub8twfHPEIJQdWiKFIJ5hp1zIgDdA2t
+	lqyBWjpaLaPs6cnIcPL++Vy6dfuJ4pV/lyRvktOI=
+Received: by mx.zohomail.com with SMTPS id 1744655444841430.53710170104966;
+	Mon, 14 Apr 2025 11:30:44 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: heiko@sntech.de, Kever Yang <kever.yang@rock-chips.com>
+Cc: andersson@kernel.org, Kever Yang <kever.yang@rock-chips.com>,
+ Shawn Lin <Shawn.lin@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>,
+ Finley Xiao <finley.xiao@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ Andy Yan <andy.yan@rock-chips.com>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 2/2] arm64: dts: rockchip: Add rk3576 pcie nodes
+Date: Mon, 14 Apr 2025 20:30:38 +0200
+Message-ID: <5019259.31r3eYUQgx@workhorse>
+In-Reply-To: <20250414145110.11275-3-kever.yang@rock-chips.com>
+References:
+ <20250414145110.11275-1-kever.yang@rock-chips.com>
+ <20250414145110.11275-3-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+
+On Monday, 14 April 2025 16:51:10 Central European Summer Time Kever Yang wrote:
+> rk3576 has two pcie controllers, both are pcie2x1 work with
+> naneng-combphy.
+> 
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> Tested-by: Shawn Lin <Shawn.lin@rock-chips.com>
+> ---
+> 
+> Changes in v9:
+> - rebase on 6.15-rc1
+> - Add test tag
+> 
+> Changes in v8: None
+> Changes in v7:
+> - re-order the properties.
+> 
+> Changes in v6: None
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3:
+> - Update the subject
+> 
+> Changes in v2:
+> - Update clock and reset names and sequence to pass DTB check
+> 
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 108 +++++++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+> 
+
+Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Successfully used this on an ArmSoM Sige5 RK3576 board. PCIe works.
+Properties look correct, though the `ranges = ` doesn't separate out the
+different ranges into individual `<cells>` but this doesn't seem to make
+any difference and doesn't cause any warnings either. The only added
+warning is "simple-bus unit address format error" which seems like a
+bug in the thing generating the warning and not the device-tree itself,
+as it doesn't seem to notice that the address of the node is within the
+regs array, just not as the first cell.
+
+I think this looks good for merging, I'll also send out a Sige5 enablement
+patch shortly.
+
+Thank you!
+
+Regards,
+Nicolas Frattaroli
 
 
-> +static int ad7606_spi_offload_probe(struct device *dev,
-> +				    struct iio_dev *indio_dev)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	struct spi_device *spi = to_spi_device(dev);
-> +	struct spi_bus_data *bus_data;
-> +	struct dma_chan *rx_dma;
-> +	struct spi_offload_trigger_info trigger_info = {
-> +		.fwnode = dev_fwnode(dev),
-> +		.ops = &ad7606_offload_trigger_ops,
-> +		.priv = st,
-> +	};
-> +	int ret;
-> +
-> +	bus_data = devm_kzalloc(dev, sizeof(*bus_data), GFP_KERNEL);
-> +	if (!bus_data)
-> +		return -ENOMEM;
-> +	st->bus_data = bus_data;
-> +
-> +	bus_data->offload = devm_spi_offload_get(dev, spi,
-> +						 &ad7606_spi_offload_config);
-> +	ret = PTR_ERR_OR_ZERO(bus_data->offload);
-> +	if (ret && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "failed to get SPI offload\n");
-> +	/* Allow main ad7606_probe function to continue. */
-> +	if (ret == -ENODEV)
-> +		return 0;
-> +
-> +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to register offload trigger\n");
-> +
-> +	bus_data->offload_trigger = devm_spi_offload_trigger_get(dev,
-> +		bus_data->offload, SPI_OFFLOAD_TRIGGER_DATA_READY);
-> +	if (IS_ERR(bus_data->offload_trigger))
-> +		return dev_err_probe(dev, PTR_ERR(bus_data->offload_trigger),
-> +				     "failed to get offload trigger\n");
-> +
-> +	/* TODO: PWM setup should be ok, done for the backend. PWM mutex ? */
-> +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev,
-> +							     bus_data->offload);
-> +	if (IS_ERR(rx_dma))
-> +		return dev_err_probe(dev, PTR_ERR(rx_dma),
-> +				     "failed to get offload RX DMA\n");
-> +
-> +	ret = devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev,
-> +		rx_dma, IIO_BUFFER_DIRECTION_IN);
-> +	if (ret)
-
-should be ret;  Thanks to 0-day for the report and fixed up.
-
-> +		return dev_err_probe(dev, PTR_ERR(rx_dma),
-> +				     "failed to setup offload RX DMA\n");
-> +
-> +	/* Use offload ops. */
-> +	indio_dev->setup_ops = &ad7606_offload_buffer_setup_ops;
-> +
-> +	st->offload_en = true;
-> +
-> +	return 0;
-> +}
 
