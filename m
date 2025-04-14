@@ -1,144 +1,160 @@
-Return-Path: <devicetree+bounces-166638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47BEEA87DAE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:29:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45545A87DCC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:39:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C74E1886994
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF44172AF2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55630265CC5;
-	Mon, 14 Apr 2025 10:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F40269B1B;
+	Mon, 14 Apr 2025 10:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CyLabfru"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="irPMeEc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94FF33997;
-	Mon, 14 Apr 2025 10:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5BF3269AF8;
+	Mon, 14 Apr 2025 10:39:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744626590; cv=none; b=lQLZb7aFB6bbpe2I/U+gQaBg1Ut+r0Hdrssjv0c727gJU1usaOdr4QMYgw4fPX9Qi5qqqXkRGB0AqSrEg/TWmPyl49lSny/IzmiTBiJmSaYjZI2lMk0dxGJTSV5OY6Upia50OdCuA/btcWzcLvt7boPXSktYvlfsXDjn9cDKrjY=
+	t=1744627149; cv=none; b=IPGpkEwpAB5hhTJEjJe4NBKpGJWOz3AgwilC2vNvIlvLKtvPMEvgYZT1OI/3Xx088cDAJLUZivH5JppU0jLnIoyiV2sCubrUMvDW9FH2EXfo4+lIVCMuESSvnxVznXkbFE0nSJiSZRpX/5QDqHVwnB/VMvuDxOELGvshFX4GCqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744626590; c=relaxed/simple;
-	bh=WXgwEdzSaX+Y4rUWpW9RwNeaypZtrXrH4OUahsqCvQs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pp5/NmfnhTg5fkMERIOORHtJFKXxkyAy3Eky6tEW71RlSMOM6NE09Q6Mt1dcaFSe4TPA5UG4k8UUVvg8DNraiRxLTRDIcau/8qGo8O9BPgU51RAiq0nJ4+X31z+1iX2KAhD7f7ieXM0f2M8G1eyEMSfB0SSnMxs8M65vjscj7D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CyLabfru; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744626588; x=1776162588;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WXgwEdzSaX+Y4rUWpW9RwNeaypZtrXrH4OUahsqCvQs=;
-  b=CyLabfrufKaHrDiROU2pLM72MTWusrwRhxbKf5vraf42z5gIpaCjtj3L
-   vmFhksXiTG8iRBAwH+GpSBXYBSAm/vtLajkbKsuXBmUe2XzE0EA3chF+9
-   hgYDRBFnMMQ8byIbBLFyo0Nm9uqBs4T2SNfu3agd9tC4/kO12m3tZPm04
-   MwMiOGepSs5ucLdq9pcIGeQOW9XiEJUN7gFemrqXCsrBVPF8JBJnKLa71
-   zY7dHouHvR3tXbKwxqINy9kJbErLsrXATIFDGTrurkF9eByI8LVPvalg5
-   /p6m8dbapP0j888odLyuo8szltuEBuwz7gk1DpNwmo/6Q+Fm75GanUGNE
-   Q==;
-X-CSE-ConnectionGUID: fIkSATCiRwWXgC+MOO9jgg==
-X-CSE-MsgGUID: /wjse7vhTXi2V6G7JK8XaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="33701338"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; 
-   d="scan'208";a="33701338"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 03:29:47 -0700
-X-CSE-ConnectionGUID: Q1oHgF+hQ42aTWXeZ5VwYg==
-X-CSE-MsgGUID: CF7aM6O+QrSUlhJBHKpxtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; 
-   d="scan'208";a="134755301"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 03:29:42 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1u4H4N-0000000CCxF-0A55;
-	Mon, 14 Apr 2025 13:29:39 +0300
-Date: Mon, 14 Apr 2025 13:29:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 07/12] gpio: regmap: Allow to allocate regmap-irq
- device
-Message-ID: <Z_zjki8ShybzpWDk@smile.fi.intel.com>
-References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
- <20250409-mdb-max7360-support-v6-7-7a2535876e39@bootlin.com>
- <Z_aiubEgXLaDpsoq@smile.fi.intel.com>
- <D92U6CMH9WWM.3JLM1KLZF4WF8@bootlin.com>
+	s=arc-20240116; t=1744627149; c=relaxed/simple;
+	bh=3BSPRW9jz/E3iNNoZi54sVfpQpmzvqtMnqdlBCHCKoU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k8SQRNnP0XRCEPMTf3p8iNFJd07O3px4X6HtkIu58cdw9nc95Rp8ZsjohGvbKHTr5B/KqUxpPEfwTZ97mOuMxjZQFZnuaYX7U5W/yz3gm8SRA7CM86GgNLQUSc7gBqzMQo9fe+Z34FS0oyDlv6/UKCGpjvWLjTfMaZMw13W3szw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=irPMeEc0; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=GJ15JUHCXfYbdtaJeMwKFzeg6ws2+tweG0+4stR4TQI=; b=irPMeEc0lLDwmLPSFjfwDUUpPK
+	Y3tKexLT3gUSq6zpx6zjfEKxfyDDcgLgAj/xb7GDhG/6UMDENF4sHSZybs1e1RcY5dqXF2epEeihG
+	LDfZ5UzhN/EAxviBZHqTtUd21a1Wqlm9jalJdAnFUytadOFppuLJb0/hffmR7Cba2aAxJS3aIE4bP
+	jZVMMpibz1NgWteF1WFBQAyrmyUonBqjkGQ2Z2jGegxqjwZ3Z4wTfhpP/4/fakrHfanjgCa3eZWK4
+	UyjsppPH4atzpmA2QAiCOPE+6NpLWk0J1mrQ4QnhrZkiE0I8hlcyyExnBeDIsOxZ2wSqO9hM4zpO/
+	4jJMxIGQ==;
+Received: from [89.212.21.243] (port=36324 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1u4HDU-00DwF3-2f;
+	Mon, 14 Apr 2025 12:39:04 +0200
+Message-ID: <ff6320e5-1c83-4cab-9cfe-4df6877952b8@norik.com>
+Date: Mon, 14 Apr 2025 12:39:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D92U6CMH9WWM.3JLM1KLZF4WF8@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/13] arm64: dts: freescale: imx93-phyboard-segin: Drop
+ eMMC no-1-8-v flag
+To: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ upstream@lists.phytec.de
+References: <20250410090251.1103979-1-primoz.fiser@norik.com>
+ <20250410090251.1103979-7-primoz.fiser@norik.com>
+ <254efe04-09c6-4225-a869-126026642091@gmx.net>
+Content-Language: en-US
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <254efe04-09c6-4225-a869-126026642091@gmx.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Thu, Apr 10, 2025 at 11:03:46AM +0200, Mathieu Dubois-Briand wrote:
-> On Wed Apr 9, 2025 at 6:39 PM CEST, Andy Shevchenko wrote:
-> > On Wed, Apr 09, 2025 at 04:55:54PM +0200, Mathieu Dubois-Briand wrote:
+Hi Stefan,
 
-...
-
-> >> +#ifdef CONFIG_REGMAP_IRQ
-> >> +	if (config->regmap_irq_chip) {
-> >> +		struct regmap_irq_chip_data *irq_chip_data;
-> >> +
-> >> +		ret = devm_regmap_add_irq_chip_fwnode(config->parent, dev_fwnode(config->parent),
-> >> +						      config->regmap, config->regmap_irq_irqno,
-> >> +						      config->regmap_irq_flags, 0,
-> >> +						      config->regmap_irq_chip, &irq_chip_data);
-> >> +		if (ret)
-> >> +			goto err_free_gpio;
-> >> +
-> >> +		irq_domain = regmap_irq_get_domain(irq_chip_data);
-> >> +	} else
-> >> +#endif
-> >> +	irq_domain = config->irq_domain;
-> >
-> >> +
-> >
-> > This is blank line is not needed, but I not mind either way.
+On 12. 04. 25 18:23, Stefan Wahren wrote:
+> Hi Primoz,
 > 
-> I can remove it, but as the line above is potentially part of the
-> "else", I have a small preference for keeping it.
+> Am 10.04.25 um 11:02 schrieb Primoz Fiser:
+>> Drop redundant 'no-1-8-v' flag from usdhc1 (eMMC) node. Flag is now set
+>> by default in the SOM include file (imx93-phycore-som.dtsi).
+>>
+>> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> i think, Patch 5 and this one should be squashed together.
 
-Yes, but it's still coupled with the flow. But okay to leave as is.
+I intentionally split these series into SoM and board related patches.
 
-> >> +	if (irq_domain) {
-> >> +		ret = gpiochip_irqchip_add_domain(chip, irq_domain);
-> >>  		if (ret)
-> >>  			goto err_remove_gpiochip;
-> >>  	}
+I see no benefit in squashing #5 and #6.
+
+Also, I already got Frank's Reviewed-by tag on this patch.
+
+Thus I would like to keep them separate as is.
+
+Thanks,
+BR,
+Primoz
+
+> 
+> Regards
+>> ---
+>>   arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts | 5 -----
+>>   1 file changed, 5 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>> b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>> index 85fb188b057f..902b523fc92c 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>> +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>> @@ -40,11 +40,6 @@ &lpuart1 {
+>>       status = "okay";
+>>   };
+>>
+>> -/* eMMC */
+>> -&usdhc1 {
+>> -    no-1-8-v;
+>> -};
+>> -
+>>   /* SD-Card */
+>>   &usdhc2 {
+>>       pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> 
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
+--
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
