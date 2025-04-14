@@ -1,137 +1,139 @@
-Return-Path: <devicetree+bounces-166490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF73A877C6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:15:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B7CA877FB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 08:36:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DB0188CF3B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:16:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C065216E805
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 06:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E6F199EBB;
-	Mon, 14 Apr 2025 06:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="enDnc/g7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DF21AB6C8;
+	Mon, 14 Apr 2025 06:36:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB2F64D;
-	Mon, 14 Apr 2025 06:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4C39461;
+	Mon, 14 Apr 2025 06:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744611349; cv=none; b=MkJQTLkUREolsEfdkcq16Z1hZ7K97SKn3nicbEbtrzxhQV3Z/GuZ80CcRu4ZePg6I5tkXPrU3eyrAhYaM84C6+5+N9gR+skjuce7So/ANqGDZh9haUwgRAJVfFKbyj3vHYXRQlaRJeshClz+ckeSwR6fzBHee22HmK3pq1dm+VM=
+	t=1744612587; cv=none; b=V0+LEswBAc5i4r8bCxDNatmoiKMY/Az90NyfqJ7Hezp7RmpocZip+VKppxwCLRCVcXQgyuJDEL8rQCmM1CLlC/xQdzU5WYBgQ8iMIH/p80rMvtEN9FcXhVShGKejrHZaR+tH8w5w4B9POoe4xnIRrMq7gty/sfFiiA9B3s/rjqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744611349; c=relaxed/simple;
-	bh=UJ/RWRlDV7zKKAfftCWu26aDq4GEVcBmM5GR1+w6ZEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lc+ObKF7ppEq8wbjRQCD9j0XwHxRy0L6El9LbK3jZPXuP1slkSE6KzDXrzxl3TZtdSCefqVuNv34mtgQf0DOL/ZnogiZpB8xliIBd36fc6AMtnOVIYQe+9jnP5nSg3AOcwxq3OdRjb/wk14yX+RjF7alxTzo8wv1bb2yLp+7dC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=enDnc/g7; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30ddad694c1so39048231fa.2;
-        Sun, 13 Apr 2025 23:15:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744611346; x=1745216146; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YjcF2WJUuCtRN/KG1IsSFo708u3n1AwBwA8993WsM/M=;
-        b=enDnc/g7L27PUVzNAok4LAopqnLvmfRGh13tYmXXG7yeQ3vCla5JOZk7/f6I6RsM1c
-         VtAuHQkvHmG2nJH2waRBwrQScEmi1n21Qy0TyXDkAAPbQH5woY9DhatYhrT8kqhwEfZK
-         bTvitlc8liqUrIVNBXWRqkULBoo3druoUaYLTR/ubVhOCCp9+00GVCVwW4jpOd9afViJ
-         He4yq/afJuzzizTQO6igQLpT1ESHYaCvwTqKwpS29x6CkIrNSrvnCuR+5Zv1n0QlwopJ
-         uRzwXltA7mtrrgt9LeolhMBRVgU68G7LbUYUmYtAkzv8Lv0oeY2+yrTOZCdev84iv9hU
-         SC/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744611346; x=1745216146;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YjcF2WJUuCtRN/KG1IsSFo708u3n1AwBwA8993WsM/M=;
-        b=F0cByAGK+lBBvuhj2ndnL8fiYh6y4oy8/VMe+poJ2hVs4cX6+IzanA/VgFI+OHj+rj
-         UbQhn38k2+SR91DES/lMHJZZX3T1ieT0tmLK6uDUG5ToGG2IDpdtp5zwasEVnW71Ju7C
-         7CCdeZ+RjyIy6TnhNEIs+DL6gf+3L61ru8dgK2O6NYZIfobnOJb3sAxyyqb3vd/8dl/t
-         3u+8PFeXt2IPOATt0QxZfSE8594PsX4kCNpebwlTvhd2MJ1Lu20NqVV59IFhwLB10/m0
-         lApUhH3834PWDuIG48IIO6+2yDQB715KLJ3ZTvoicQyR0JuF+ToUS7bxREmy2CvwlkWc
-         KphQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOzfBndqeP2ZVZIDpHAI9hZHwZosNiQnGClTMY/IKC0pOGEIhSmOFS0/ISSdCiMEvkUvMXRu+pMs+AS96q@vger.kernel.org, AJvYcCWE188yrerZ7lxlYPrf9tDcgH+Jr3t0yz2M9ZTKPzHKP8VkpZb1zo62wnA/9aUCHP0cxdtzbdGaGL2Q@vger.kernel.org, AJvYcCWfO7WTNWfaqPXge6xC3K+iu6PncPupCSEgRRYZC6RDwcLQKhNlt94OcfNuhSHQvbgrPz1HbYsTw3Gi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxas6RX4iFoBZPxfQMTsCztAk7268JBih08oZ7gBCeInEtWEg3M
-	JnRb41k2N6PqlBb+3KmwlPnxlFXfDVlyRfdrQo0d6CsTZCj4TFkd
-X-Gm-Gg: ASbGncuGl6gCKld12wVf29H0lhPQgHv+/UyHTnPhHSvYV4HoVUlc/BRkooWWYqG/a7Z
-	0jxVr0qz+mTHUPhf27e5byYP+wOZ5YCRvXI1LmLoWSgduOnyMUDiKfdE8ZPhDxJoGGXxuJc9YSk
-	lk6a/ulw7JVFzba6RPTs9n7lTghxEHBi69iRvAFuGRR5ILsee9Az6UrF3gLQFNqIIcjVM4N+/9j
-	q1Kc5srVXG5ZGWAIJLczIAMvgBHphNSRDCR6KuP6upwSnbJWx4HE5J3dJkS5B8FuyZKTcGevO7m
-	t50gNkzJ31b35xg4UfnPGOgki7a1QNBxHZNlFvdbAAhMe4QUOG0P4C3UUjYyQ51bOeAIPo/Jbre
-	Nca2vyf3Pf6XkWT/QE8IyxA==
-X-Google-Smtp-Source: AGHT+IESXdygoKOi7ura1Pv1kh/pO5a5AqCwYTwFhNnVbWVyYagbC+892+upURVMW7rDkcW0EO4DzA==
-X-Received: by 2002:a2e:b8cd:0:b0:30c:111d:d7b8 with SMTP id 38308e7fff4ca-310499d56fdmr29792181fa.10.1744611345747;
-        Sun, 13 Apr 2025 23:15:45 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f464eb11esm15543821fa.58.2025.04.13.23.15.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Apr 2025 23:15:45 -0700 (PDT)
-Message-ID: <022605b1-dd61-467d-85f3-ec60a8d1da8f@gmail.com>
-Date: Mon, 14 Apr 2025 09:15:44 +0300
+	s=arc-20240116; t=1744612587; c=relaxed/simple;
+	bh=Kt6zZL3qwYe3T/6wCjXt8RSMNjqz6aTlMHNVxRv1JTk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vCIDMXEo/q1bB+PbE468AD65XAoy/sb36lVofvnEFlV0IL6i0MGt2q79PPWr599yWhJmI614U6EAKf/viYiOJHjiGVyIqSKCUunSQuN1QAHetS0CNnQCytuSWYhJLh3DUdAAxBgPSvXeZHhLE2sZR+1e+dvjq18njRek8NqHWhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: qijxJlCJSSiT7E5X0QS2TA==
+X-CSE-MsgGUID: wgsF3KS8Sd2u7N3kCUuUtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="49872934"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
+   d="scan'208";a="49872934"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2025 23:36:25 -0700
+X-CSE-ConnectionGUID: tKrMwEcIR+6eiqIM4QFn0w==
+X-CSE-MsgGUID: 51+4ks8WT4+ifV71S0N2IQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; 
+   d="scan'208";a="130275780"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Apr 2025 23:36:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1u4DQX-0000000C9Uq-01JE;
+	Mon, 14 Apr 2025 09:36:17 +0300
+Date: Mon, 14 Apr 2025 09:36:16 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 01/28] mfd: Add Microchip ZL3073x support
+Message-ID: <Z_ys4Lo46KusTBIj@smile.fi.intel.com>
+References: <20250407172836.1009461-1-ivecera@redhat.com>
+ <20250407172836.1009461-2-ivecera@redhat.com>
+ <Z_QTzwXvxcSh53Cq@smile.fi.intel.com>
+ <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] iio: adc: ti-adc128s052: Add support for adc102s021
-To: Jonathan Cameron <jic23@kernel.org>,
- Sukrut Bellary <sbellary@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Nishanth Menon <nm@ti.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250408132120.836461-1-sbellary@baylibre.com>
- <20250412141047.4273a8b1@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250412141047.4273a8b1@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <eeddcda2-efe4-4563-bb2c-70009b374486@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 12/04/2025 16:10, Jonathan Cameron wrote:
-> On Tue,  8 Apr 2025 06:21:18 -0700
-> Sukrut Bellary <sbellary@baylibre.com> wrote:
+On Wed, Apr 09, 2025 at 08:40:22AM +0200, Ivan Vecera wrote:
+> On 07. 04. 25 8:05 odp., Andy Shevchenko wrote:
+> > On Mon, Apr 07, 2025 at 07:28:28PM +0200, Ivan Vecera wrote:
+
+...
+
+> > > +/*
+> > > + * Regmap ranges
+> > > + */
+> > > +#define ZL3073x_PAGE_SIZE	128
+> > > +#define ZL3073x_NUM_PAGES	16
+> > > +#define ZL3073x_PAGE_SEL	0x7F
+> > > +
+> > > +static const struct regmap_range_cfg zl3073x_regmap_ranges[] = {
+> > > +	{
+> > > +		.range_min	= 0,
+> > 
+> > Are you sure you get the idea of virtual address pages here?
 > 
->> The patch series adds the support for adc102s021 and family.
->>
->> The family of devices are easier to
->> support since they all (no matter the resolution) seem to respond in
->> 12-bits with the LSBs set to 0 for the reduced resolution devices.
+> What is wrong here?
 > 
-> This has raced against Matti's series
-> https://lore.kernel.org/linux-iio/cover.1744022065.git.mazziesaccount@gmail.com/
-> Support ROHM BD79104 ADC
+> I have a device that uses 7-bit addresses and have 16 register pages.
+> Each pages is from 0x00-0x7f and register 0x7f is used as page selector
+> where bits 0-3 select the page.
+
+The problem is that you overlap virtual page over the real one (the main one).
+
+The drivers you mentioned in v2 discussions most likely are also buggy.
+As I implied in the above question the developers hardly get the regmap ranges
+right. It took me quite a while to see the issue, so it's not particularly your
+fault.
+
+> > > +		.range_max	= ZL3073x_NUM_PAGES * ZL3073x_PAGE_SIZE,
+> > > +		.selector_reg	= ZL3073x_PAGE_SEL,
+> > > +		.selector_mask	= GENMASK(3, 0),
+> > > +		.selector_shift	= 0,
+> > > +		.window_start	= 0,
+> > > +		.window_len	= ZL3073x_PAGE_SIZE,
+> > > +	},
+> > > +};
+
+...
+
+> > > +	zldev->regmap = devm_regmap_init_i2c(client,
+> > > +					     zl3073x_get_regmap_config());
+> > 
+> > It's perfectly a single line.
 > 
-> With hindsight that wasn't obvious from the patch series name though
-> which should ideally have been
-> iio: adc: ti-adc128s052: Support ROHM BD79104 ADC
+> I tried to follow strictly 80 chars/line. Will fix.
 
-Oh, right. Sorry about that!
+Yes, but in some cases when it gains in readability it is allowed to use longer
+lines even if one sticks with stricter 80 characters limit.
 
-> Please rebase on the iio testing branch on kernel.org or on top of that series.
-> Technically I've only applied the first 7 patches so far, but the 8th
-> should be a simple change from that v3.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-I can also rebase the 8th on top of these changes if these get in before 
-I rework the 8th.
-
-> Matti, you volunteered as maintainer :)  Hence please take a look at
-> this one.
-
-Sure. Thanks for CC'ing me. I didn't have this driver included in my 
-mail filters yet.
-
-Yours,
-	-- Matti
 
 
