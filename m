@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-166785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97B1A886EE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:22:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01B1EA8868F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 17:12:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17634580CDF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:03:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECE82175057
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 15:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715DD279783;
-	Mon, 14 Apr 2025 15:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFC525C701;
+	Mon, 14 Apr 2025 15:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I/W44lMi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JW8wXwza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9447274662;
-	Mon, 14 Apr 2025 15:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F46D2522B8;
+	Mon, 14 Apr 2025 15:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744642822; cv=none; b=GUEy9AMBdZGBkvBEhoF0TeTg33X7POmR9ZcOVufZAA6mugdLrbyvqI8sn4rE8VoSx5Jdz51kvrAD+mZG3Z7tGigdyI0QKaDJl/Xw0WloqeF2u1uIU+WjcgzSFyfFsl8zxxR+VEIBMb9KEv9ELEKq7KE3amapT0x9Xna0EIWumBQ=
+	t=1744643118; cv=none; b=EWw/Icv3A4dlsxmd1CIc7mh1d48gKInOAH01nDSbbycqb8jYL4k4G3i5biYdcOqwIlbH7b9CLPsRQUaIrPO/+/3HFlW/lQFYhU621Jv3EqjyYI3PeMjNMvZr6XO3cmC8XuYgcNHbMICChl1jHDPBm38hZE9RrasJssvXjddodbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744642822; c=relaxed/simple;
-	bh=LnGYMCgY8o3nqU9dYoIpDmeiZgFuXlxSQGxnfJCjUwQ=;
+	s=arc-20240116; t=1744643118; c=relaxed/simple;
+	bh=0ddkWrCnDxuASh5UGMzNXMJkRN6l5tMwit1KYIl0GYE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N5EZnt0rUsIvn7EfUtkNXA33c9g5JOQ+gxtqmJ2oJQiSpa035DiqWWmL9MOLhQFPn6tE/3LOrvu1TYOhh/rvzbSIUZu5x8cnJlEMyh26Tnd9ycDX9g8xSp9p5m9XvIf7XWhhF1bsZ8SYB1xR0kjYQfOcUXTpHLXTgTWgp3H22fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/W44lMi; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22548a28d0cso65733035ad.3;
-        Mon, 14 Apr 2025 08:00:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744642818; x=1745247618; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=5kLS/6RXQ66h4Cm91JvQtjGIa3JCgrOEQRFQVcgiCPw=;
-        b=I/W44lMiK+J45Wftih8YS4z2LbMwbWi+XWLlEy1MA7YOr6Mw/q7wzZYBhaMd+68VWs
-         2BaD2wjw0cm/45L3MHEHDIzmGQ7Iu4jlOgBeSoVCY0O+Lo39sSeR+5DqzGz01pvEF4Qq
-         alRKSD+47Q4CRs9GrVJl2NEtLIY1KVGgFPHbWdSGa3MHdRDeqUGPy91Qtxh5PLTh3nyd
-         010JQqnBjEnWh2GMztLmgZpvUb7TMfCu+odgSTfxfnobWPeIARPAoMwTvkO/pFLnR1i8
-         mP3bJ1Ml7bufefRykXfbYydo8evOOw7Bwu5arhjiStntqitFzxz3h7HDHzEW2dKqoqKh
-         xBoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744642818; x=1745247618;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5kLS/6RXQ66h4Cm91JvQtjGIa3JCgrOEQRFQVcgiCPw=;
-        b=MZDeVnP8PcjIQyfUoz6U4koxhoySKQ/S7d689HTjR3X1D2NZ9ejL68DyebrjzXO13w
-         796/VaDZ2Hj+3ohEYPhwMkhGSFNegxtAvHEKP4F+08hxO14bLtZhui0D4yQjanaCaPWf
-         8vN6SynHZ7O8omBrBnVGEGcsU0mcVEG6e3oLEAQDZQuZZWnsdTNpgV8qRamCHQaCxC7J
-         c6kpEOSbAA7u0A9I0AGms9KkaGWRBpDbBqFzVNs/JxFpsLKMhjhDWizh+OZVd+3UZZHH
-         qqylMxZjtsSRGXRYf8DIjSAfo58H9mEqDO1sy8Szc/IWtu6JtrNP5++bhcxR91044nMr
-         s/CA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3uDKr0Z4Nbhoaf3wIFx54rTJ1SQCsCH+s/r4AV4Gk76NHomiqCWKI0z1q+M03hobkpHnmzmvLuqLq@vger.kernel.org, AJvYcCVWbHilmD0WxiIs7rQmz8+0oOiUv/0XxbRcsHTTqnjfo/sz2YFhLvuRBF1IDZ9JYyZe2LBwnVcaPaFZzSXH@vger.kernel.org, AJvYcCXRd1fIA9SmtWRfPOgVxZHYK8310lqYnkgU/WtbNhICRU6zt+MlKyX+3fVcJ63MPzQ+qExJ5RjS2C7PYAznmsM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgArEfSSw+6XNATil+gzSuDIB6MEATCu7bDEqtQzwu3JSihfBC
-	mgzD0xWm70V2Xw43CegivpIIZzmiwQoG8TZOz6/ruUI+/rXxP2Il
-X-Gm-Gg: ASbGncsL2iVCc75WIW+VsVXcvx/FZ9Oa9eyvswAV27cBY1c7zYsWNrPqlDl4DHOk/TT
-	TtQLZrnucy2Ax1uYOOL+UDxSDU+RFByOiRdW81ifuFfA5nLqzcYlTqAK35pNEKmZeIW9BL2DH1c
-	N8Wqr14AdW/vdpcWN4gw3dgtu6djHv6Wgx1jWfgdjEnOeUb8wdK2M+vRS8anuEiVDzx9l1+g+0L
-	wQM4hPtdY8AGDQB4sXZFQcc/LugCcavGHqXkNGc9zxJPATmZw4Uo9ZTDXH5Oony5aF0LRHXpMt3
-	XyltdWAzf16An7KjsU26ms8rxHS2XltTb+rkTF0Zi0RV7z2eHINV9l1IsIIgkljzmvQSfjxKZS2
-	ihCsKfhkiNhTWmA==
-X-Google-Smtp-Source: AGHT+IHqBXbTHQD4lPtB456t+zFykKlRJiHynnOhc3Db4nt5B88XORp2NkZCBZwkWo8idEIhJzlAEQ==
-X-Received: by 2002:a17:902:d4c2:b0:223:2aab:4626 with SMTP id d9443c01a7336-22bea4952cdmr166451955ad.11.1744642817775;
-        Mon, 14 Apr 2025 08:00:17 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7b6508esm99898635ad.52.2025.04.14.08.00.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 08:00:17 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <91a0f271-3261-43bd-acb6-81a404ba0e1c@roeck-us.net>
-Date: Mon, 14 Apr 2025 08:00:15 -0700
+	 In-Reply-To:Content-Type; b=WeiCUHJYfiGEITJpMHmYxPMAkmwIuvDQi6Fojt9KYgcyBqUeKSIWjiVCn39nBAaZiSJb6xjQHz7mWeI2itGBLd6m2AUH1bS2N1bPK8lQ+lrsSXQHYx6saOwp7TmXAFo8ZJig+IyjUtAkl7iABcjGr1qdUsGiLLM/Qu/JanYS8tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JW8wXwza; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45CAAC4CEE2;
+	Mon, 14 Apr 2025 15:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744643117;
+	bh=0ddkWrCnDxuASh5UGMzNXMJkRN6l5tMwit1KYIl0GYE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JW8wXwzaVh0JI6KZnsUY8aD+Iut5QDrkiQKRKymo/ibe0NnmgVjW43/VU92HgJ+xI
+	 EJ9Hwu26zKtfaJAnHWzn8VuUO7C7Rv61exin8tPs8hRl3vKBiBwKRIvLlD73X/CY3M
+	 tHL1zIi4e6jGvcLDjlBAOWox655ZCBwrQshAU/v1TY2eH4eKovOvt38qSj8h+QR3/q
+	 slwjILSAXjyyyt+VgRa1Rz/CQDfCTiS276N+NAn7ub7JLRq87teutp0FZMq3xXyHH9
+	 XocP95NwZpySipm+n9nkn89UcThfvOsd7jmnc9YvIacy3f8WYlRbVr76dL+dFyT8mX
+	 wswWBK5yYrzuA==
+Message-ID: <af6893c1-e103-4744-bb6c-630371d56783@kernel.org>
+Date: Mon, 14 Apr 2025 17:05:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,96 +50,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: fsl,scu-wdt: Document
- imx8qm
-To: Thomas Richard <thomas.richard@bootlin.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-References: <20250414-imx8qm-watchdog-v2-0-449265a9da4e@bootlin.com>
- <20250414-imx8qm-watchdog-v2-1-449265a9da4e@bootlin.com>
+Subject: Re: [PATCH v5 0/5] leds: add new LED driver for TI LP5812
+To: Nam Tran <trannamatk@gmail.com>, pavel@kernel.org, lee@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250414145742.35713-1-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250414-imx8qm-watchdog-v2-1-449265a9da4e@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250414145742.35713-1-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4/14/25 07:57, Thomas Richard wrote:
-> Add an entry for 'fsl,imx8qm-sc-wdt' as imx8qm also contains the SCU
-> watchdog block.
+On 14/04/2025 16:57, Nam Tran wrote:
+> This patch series adds support for the TI/National Semiconductor LP5812
+> 4x3 matrix RGB LED driver. The driver supports features such as autonomous
+> animation and time-cross-multiplexing (TCM) for dynamic LED effects.
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
+> Signed-off-by: Nam Tran <trannamatk@gmail.com>
 > ---
->   Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-> index 8b7aa922249b..1d9f15ec6657 100644
-> --- a/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-> @@ -20,6 +20,7 @@ properties:
->       items:
->         - enum:
->             - fsl,imx8dxl-sc-wdt
-> +          - fsl,imx8qm-sc-wdt
->             - fsl,imx8qxp-sc-wdt
->         - const: fsl,imx-sc-wdt
->   
-> 
+> Changes in v5:
+> - Rebase on v6.15-rc2
+> - Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
+> - Address Krzysztof's review comments
+Which ones? What changed?
 
+Best regards,
+Krzysztof
 
