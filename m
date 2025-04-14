@@ -1,150 +1,237 @@
-Return-Path: <devicetree+bounces-166573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6EF0A87B4B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5751A87B64
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 11:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BE3A1893E63
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:02:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 741DC1882E22
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6B52620D1;
-	Mon, 14 Apr 2025 09:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3075A25E445;
+	Mon, 14 Apr 2025 09:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="BWt7J/s9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UMQffY0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C2F261575
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 09:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D8B259CA4;
+	Mon, 14 Apr 2025 09:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744621300; cv=none; b=URl6KTY7PqrZ7zuHfwIuwcmR64sFEV7OUhlFMguoGrGC68J0Oq0Uuy4+8icEdBZX2DmraRNhgfDT1iFgo1jaH7PrWyujEyGw8SpyQjkl0W3gVliZj2mAZTZPOaTMd3sNHAUfuFriWXQnBd2bpkyVWTcyyE9hQWF/JlRQFLEYeoQ=
+	t=1744621492; cv=none; b=ia8etcHAgBYCNZLjkhl349RJwUd0n86JzM7QXcZFUXLHukDjdL7aGF2t+VGy6moNrhpB0dyGwVqeqWvPh/zgDM+5L2yUSBEImJOl9+Y6G/VLIYRTLg3pDvaQxa4JNkuJ+Y/4Xdj5ZUmgDEVUkfRqLjdfz4x+TVPtkpRL5B4+m6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744621300; c=relaxed/simple;
-	bh=NL2TGpDIJnKJLRnd23h9LgHRVuBV+Ktt+8xcaN6KIFI=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uApdhSWhvc84ssH6e13HBcnhBb7SMtUsiGbArTpxltGvgCeXV/sY3oPZq2DANhCxDI+ZUmb2ZdVe82SyyPnw2xeqgAx2Mgq/5Y13hJelrnp+AVa9mrOB6tXLlqwR6QkJUFOHtIrHb0rfQcXCYe3B10Ic1hvudve33l0eae1V/x4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=BWt7J/s9; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac25520a289so693983766b.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 02:01:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1744621296; x=1745226096; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FPOEfxN91t6VGg4utPDevtYddqW0HAL5VO9JP2cPRZo=;
-        b=BWt7J/s9YV/VAOEc7OQF2YUju7YbYeIpodRYNsYtyweNtzkQWUaNq6rFFh0nNbpv9L
-         idr0VZ9J78Nl8S34s9+ZJtl7DFyE3vNr8SEZ87JdZy4hImG1WlnI2RjpSfkHs6BmWW2B
-         87Wm1xcJ2Wz+zjLBnPYAhMQ+C6P8/+PlGIpysxb2v5mGH4VIPIOGSSMxh5Ag8LA3jLk3
-         RVdaghf11CqCg6skFuM+3LaigbGU9f7Uiy6T6rqIYeiUrI8xlj9mi6m5xyUYNUKRVlfr
-         UqRV6QgDzRXAt5ulhv68I7aDg41Sh4eoJiGIOijRHIEaJ5W2tAstR4nYmEFNvUqCY9Dl
-         iBGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744621296; x=1745226096;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FPOEfxN91t6VGg4utPDevtYddqW0HAL5VO9JP2cPRZo=;
-        b=vDb+d1Rr4369XT1uxqRNyXTGCXSnLQJrYK7dL0HA8Psr3ql6/Q0awbVFyT1TC87Sor
-         B8INmYyqQvsju0flm/mAnf9P6NxEDHIR52147PLu6MhN3xTHqI1+IYAA13vJJQ+gxHsB
-         RBylIvkagiB4C5f2QNlOoNRi7T7YVfuISPxd1XhLuGgcgUN0OvespSCpq9b6NJ7yVLeI
-         n7VCwajSN1C2X5WZQMj4pIhM9S5jORfnNt3JbyCa9YU6uKGrSPnJdrBBOLmy2v5xx/Vv
-         F2pF5Rqk/3kqvpnz2gcd72odNeVA3C5ZylK33E6MxXJ8I2Gc8OK/qhi7NwAMxXBuQMgW
-         bs6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXVxV3Q4ln9/wIwyrE9G1yvdOX71S6LvhK/SOaf11RwZCv6lccSxcwDqBVIZCRumzDLlwmIu7hjWGtn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5c1YYBBY2ba8WHNahjJg2VWR7w6ODMcK7EGzXHkCh4JPkzh73
-	KhdiIhq+4dPmItsca8u5GRDq28t/Xt7JexJaj7QqBWYZ/AFTMhGF76epAn/0xFw=
-X-Gm-Gg: ASbGnculo3gKRjB2nJLEu7YEAOMgyb2187ZRBaVFMA6vxrQf7nJ4z5jVW3UN9tUI8nu
-	XhjQ5Ei0cEjCPpMtfwpwqf0124/URr/IYZrlX2+WI8rRp44qD915LID3Gt0ne+CgX9Cgw5uQrSx
-	VLhdC/QSnlXZTqFH2q4RDjuEy6druongCEhm+BQV11G+pG/SMnaiWgR6y0zHNk2o0UuJQyNnLJd
-	6lcnhan0xODW2ER7XjzmidWxzdpgdy+GrUBXcK8Hheloe47mV96fSzw4Vsj1XyxFg9QoMA0ZVmX
-	1r2BjamDF3rBzTwEaOzxY5+Qs4CXBL4Ua/NMT6oyQeoqfBxTViUdEXSwao0nz3RyaHRCKcLEfnO
-	5E/Qm9g==
-X-Google-Smtp-Source: AGHT+IFmbGr9kZB05oV1EN/0KfR241wQsclfRn1B+/FEvNm78/Bf5RFw5+zsFio1fzhhJ8sSkqIJlQ==
-X-Received: by 2002:a17:906:730e:b0:ac4:4d2:3867 with SMTP id a640c23a62f3a-acad3499ff8mr901526366b.23.1744621296460;
-        Mon, 14 Apr 2025 02:01:36 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ce7fdcsm883504566b.176.2025.04.14.02.01.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 02:01:36 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 14 Apr 2025 11:02:58 +0200
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com
-Subject: Re: [PATCH v8 00/13] Add support for RaspberryPi RP1 PCI device
- using a DT overlay
-Message-ID: <Z_zPQpyjZXzVxroB@apocalypse>
-References: <cover.1742418429.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1744621492; c=relaxed/simple;
+	bh=VkgWh8fHdxfZghfLXtADSZaxTp3bEfee++iyxI23+PQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UXU759yVWz8Yz6OOqtyyMvW6eoosUcCdMKH/gPmlH2QIKqJt5DAddQAaTpJ9DgqLBz9XqBKtvVipdRE65bX0u+uSh8iA89gmW0BlnFVZakXPwXBaa8f7q4U+AyiZ4zHziNRbCmvM0Pit8LnPcdJDTT0rMXRZXnapjutkVn3CI8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UMQffY0Y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53DK7apW007124;
+	Mon, 14 Apr 2025 09:04:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qWeIftUqA7jWcE1yp2JuYYMKDxEXUWoRSywTQ1SU8z0=; b=UMQffY0Y495wm1cV
+	O6j+A7ngvkTFoOj9js7MqW2XVQUax7t0G681Q08k+6OFyUdrGYN76rwSgAVw7u4K
+	trCCM2UuLVBYAmXmPze+N8ZZXYsGpzK4S9SbBYn1VmDIjhvZAOSqkwyKgNo3jhfH
+	zUaneI74hciFUELURdq8RFnUgCXKwRktDmw9FCmbAtHzRiYQOj64SwxlpUpn157a
+	zTGduw3WAqopZjImkpXGt/1Yz6FkxrldkL9taPiKM/sY+Vas/LtDo3zM8/MwCiIn
+	qtt7QMx4MIHm2nTrXsu1vxRnFunnwvGcKrcXfC2raTk5hkwHKni/JYB0TWdN8vOo
+	Phwmiw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvj44d0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:04:34 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53E94XhG013725
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Apr 2025 09:04:33 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 02:04:29 -0700
+Message-ID: <20c8df59-6e36-48a4-ba98-e1006de9e09b@quicinc.com>
+Date: Mon, 14 Apr 2025 14:34:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1742418429.git.andrea.porta@suse.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/9] ASoC: renesas: rsnd: allow to use ADG only
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jaroslav
+ Kysela <perex@perex.cz>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-spi@vger.kernel.org>
+References: <87h62vh5mj.wl-kuninori.morimoto.gx@renesas.com>
+ <87bjt3h5lc.wl-kuninori.morimoto.gx@renesas.com>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <87bjt3h5lc.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67fccfa2 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=yC-0_ovQAAAA:8 a=_P2YCQLOWNFUlFncCNoA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: bTcI2Mr-JVBXktXIw4RGWQwqpitO5Khr
+X-Proofpoint-ORIG-GUID: bTcI2Mr-JVBXktXIw4RGWQwqpitO5Khr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-14_02,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1011 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=833
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504140065
 
-Hi,
 
-On 22:52 Wed 19 Mar     , Andrea della Porta wrote:
-> RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting
-> a pletora of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM,
-> etc.) whose registers are all reachable starting from an offset from the
-> BAR address.  The main point here is that while the RP1 as an endpoint
-> itself is discoverable via usual PCI enumeraiton, the devices it contains
-> are not discoverable and must be declared e.g. via the devicetree.
+
+On 4/11/2025 6:33 AM, Kuninori Morimoto wrote:
+> Audio clock generator (= ADG) can be used standalone, but current driver
+> will be error in such use case. Makes it as not error.
+will be error ?
+Makes it as not error ?
+
+I could not get exact problem here. seems you need to write properly.
+> And, current driver registers it as fixed rate clock, but actual clkout
+> was handled when SSI start works. Setup clkout setting when it was probed.
+> Otherwise it can't be used ADG only.
 > 
-...
+Same here, its not clearly explaining.
+> Because of this fixup, current rsnd_adg_get_clkout() function name will be
+> strange. Rename get -> init.
+> 
+same here too. Please write in some verbose which says something.
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>   sound/soc/renesas/rcar/adg.c  | 28 ++++++++++++++++------------
+>   sound/soc/renesas/rcar/core.c |  7 ++++++-
+>   2 files changed, 22 insertions(+), 13 deletions(-)
+> 
+> diff --git a/sound/soc/renesas/rcar/adg.c b/sound/soc/renesas/rcar/adg.c
+> index 191f212d338c..db980e4642b8 100644
+> --- a/sound/soc/renesas/rcar/adg.c
+> +++ b/sound/soc/renesas/rcar/adg.c
+> @@ -377,16 +377,9 @@ int rsnd_adg_ssi_clk_try_start(struct rsnd_mod *ssi_mod, unsigned int rate)
+>   int rsnd_adg_clk_control(struct rsnd_priv *priv, int enable)
+>   {
+>   	struct rsnd_adg *adg = rsnd_priv_to_adg(priv);
+> -	struct rsnd_mod *adg_mod = rsnd_mod_get(adg);
+>   	struct clk *clk;
+>   	int ret = 0, i;
+>   
+> -	if (enable) {
+> -		rsnd_mod_bset(adg_mod, BRGCKR, 0x80770000, adg->ckr);
+> -		rsnd_mod_write(adg_mod, BRRA,  adg->brga);
+> -		rsnd_mod_write(adg_mod, BRRB,  adg->brgb);
+> -	}
+> -
+>   	for_each_rsnd_clkin(clk, adg, i) {
+>   		if (enable) {
+>   			ret = clk_prepare_enable(clk);
+> @@ -504,13 +497,14 @@ static void rsnd_adg_unregister_clkout(struct rsnd_priv *priv)
+>   		clk_unregister_fixed_rate(clk);
+>   }
+>   
+> -static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
+> +static int rsnd_adg_init_clkout(struct rsnd_priv *priv)
+>   {
+>   	struct rsnd_adg *adg = priv->adg;
+>   	struct clk *clk;
+>   	struct device *dev = rsnd_priv_to_dev(priv);
+>   	struct device_node *np = dev->of_node;
+>   	struct property *prop;
+> +	struct rsnd_mod *adg_mod = rsnd_mod_get(adg);
+>   	u32 ckr, brgx, brga, brgb;
+>   	u32 req_rate[ADG_HZ_SIZE] = {};
+>   	uint32_t count = 0;
+> @@ -537,7 +531,7 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
+>   	 */
+>   	prop = of_find_property(np, "clock-frequency", NULL);
+>   	if (!prop)
+> -		goto rsnd_adg_get_clkout_end;
+> +		goto rsnd_adg_init_clkout_end;
+>   
+>   	req_size = prop->length / sizeof(u32);
+>   	if (req_size > ADG_HZ_SIZE) {
+> @@ -633,7 +627,7 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
+>   
+>   	if (!(adg->brg_rate[ADG_HZ_48]  && req_Hz[ADG_HZ_48]) &&
+>   	    !(adg->brg_rate[ADG_HZ_441] && req_Hz[ADG_HZ_441]))
+> -		goto rsnd_adg_get_clkout_end;
+> +		goto rsnd_adg_init_clkout_end;
+>   
+>   	if (approximate)
+>   		dev_info(dev, "It uses CLK_I as approximate rate");
+> @@ -682,11 +676,21 @@ static int rsnd_adg_get_clkout(struct rsnd_priv *priv)
+>   				    &adg->onecell);
+>   	}
+>   
+> -rsnd_adg_get_clkout_end:
+> +rsnd_adg_init_clkout_end:
+>   	adg->ckr = ckr;
+>   	adg->brga = brga;
+>   	adg->brgb = brgb;
+>   
+> +	/*
+> +	 * setup default clkout
+> +	 */
+> +	if (0 == (req_rate[0] % 8000))
+> +		ckr = 0x80000000; /* use BRGB output */
+> +
+> +	rsnd_mod_bset(adg_mod, BRGCKR, 0x80770000, adg->ckr | ckr);
+> +	rsnd_mod_write(adg_mod, BRRA,  adg->brga);
+> +	rsnd_mod_write(adg_mod, BRRB,  adg->brgb);
+> +
+>   	return 0;
+>   
+>   err:
+> @@ -764,7 +768,7 @@ int rsnd_adg_probe(struct rsnd_priv *priv)
+>   	if (ret)
+>   		return ret;
+>   
+> -	ret = rsnd_adg_get_clkout(priv);
+> +	ret = rsnd_adg_init_clkout(priv);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/sound/soc/renesas/rcar/core.c b/sound/soc/renesas/rcar/core.c
+> index 30afc942d381..4f4ed24cb361 100644
+> --- a/sound/soc/renesas/rcar/core.c
+> +++ b/sound/soc/renesas/rcar/core.c
+> @@ -1482,8 +1482,13 @@ static int rsnd_dai_probe(struct rsnd_priv *priv)
+>   	int dai_i;
+>   
+>   	nr = rsnd_dai_of_node(priv, &is_graph);
+> +
+> +	/*
+> +	 * There is a case that it is used only for ADG (Sound Clock).
+> +	 * No DAI is not error
+> +	 */
+>   	if (!nr)
+> -		return -EINVAL;
+> +		return 0;
+>   
+>   	rdrv = devm_kcalloc(dev, nr, sizeof(*rdrv), GFP_KERNEL);
+>   	rdai = devm_kcalloc(dev, nr, sizeof(*rdai), GFP_KERNEL);
 
-since there has been no feedback for a while, a gentle reminder about this
-patchset. 
-Several patches have at least one Reviewed-by tag, with the exception of:
-
-- PATCH 5, 8: those are, respectively, the driver for RP1 clock and misc core
-  which have no major rework since the inception.
-
-- PATCH 9, 10: those are new patches, where the most relevant change is a
-  rearrangement of the dts include hierarchy to be flexible enough to support
-  both the dtb overlay approach and the monolithic dtb.
-
-- PATCH 13: just enables OF_OVERLAY config option. Some metric data have been
-  added to help evaluating the impact.
-
-Many thanks,
-
-Andrea
 
