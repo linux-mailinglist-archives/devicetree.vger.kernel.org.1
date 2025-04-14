@@ -1,167 +1,144 @@
-Return-Path: <devicetree+bounces-166637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B85A87DAA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:28:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47BEEA87DAE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 12:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A79316545B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:28:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C74E1886994
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 10:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF48726563C;
-	Mon, 14 Apr 2025 10:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55630265CC5;
+	Mon, 14 Apr 2025 10:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S9nq3Eq3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CyLabfru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50CC264FB2;
-	Mon, 14 Apr 2025 10:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94FF33997;
+	Mon, 14 Apr 2025 10:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744626455; cv=none; b=F9liBDofahQomgN8WdNrQhl8+bSq7pcSliu3mNoHtjMYItKodc2sRFaD5DgI97uHiw56nAg4ae1fGkn0Avcs0r++CsyHZ7gD1S5xHAq9R/mXRWpQ6tjvJM9maeN/eWgtEIRK9DRIrQX5kv+wGIZ41a12LQm+Ii4wjXUNpi1Et24=
+	t=1744626590; cv=none; b=lQLZb7aFB6bbpe2I/U+gQaBg1Ut+r0Hdrssjv0c727gJU1usaOdr4QMYgw4fPX9Qi5qqqXkRGB0AqSrEg/TWmPyl49lSny/IzmiTBiJmSaYjZI2lMk0dxGJTSV5OY6Upia50OdCuA/btcWzcLvt7boPXSktYvlfsXDjn9cDKrjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744626455; c=relaxed/simple;
-	bh=kh41PVQ169ONxY8zyLUhq7Qb7ay3Ohg0lpouG+/0TLU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rbY8XFlRccwSIZpSRfk2YNd2ia8BC0oE1gjj2l4Fsj3zdMpSFvJC2dnD/Fs86/fhEBDDGRJkxwfGMYaYQiq0HAabE5nbFfRaQh1aOw80aNxsjFDzlCcExmHl0+aNGG2xli3C/61NtZYVCDqLiFjQzu7+kYoPhrMtG/BOIi+oQdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S9nq3Eq3; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744626451;
-	bh=kh41PVQ169ONxY8zyLUhq7Qb7ay3Ohg0lpouG+/0TLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S9nq3Eq3LbgcNAFS71/6y0Loiki36qKw4lTfmjLUQIg569/6wtxPY33vUfuackdB2
-	 jIUUgl6E4af0L+/hPW/2bbvBspm7c+li4HdhUiNSOKspXpujLCNcWoKEFGCtDfpiit
-	 ujYWEPyEq30v2l8yJd2TYnk8lIfR8bfYUAFyY9CtNozZm0nY/dSavqjYOIgH6B+beS
-	 M28pmaVNC6YsJ4jVTe+V6wFZLTeKmD62r20+VJwLLQmrpYgG0arFjvIBRnxSEzoWuC
-	 EfFKDv+Bux+rDy2OWXm7uFWcqrEuh0ZNm4kY2MyMmL98PicI57Io57ma468ZE6GG3u
-	 aEunzGofAW6Ew==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0B9FD17E1034;
-	Mon, 14 Apr 2025 12:27:30 +0200 (CEST)
-Message-ID: <e243cca4-40d7-4cd6-804a-7e63bb5581b0@collabora.com>
-Date: Mon, 14 Apr 2025 12:27:30 +0200
+	s=arc-20240116; t=1744626590; c=relaxed/simple;
+	bh=WXgwEdzSaX+Y4rUWpW9RwNeaypZtrXrH4OUahsqCvQs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pp5/NmfnhTg5fkMERIOORHtJFKXxkyAy3Eky6tEW71RlSMOM6NE09Q6Mt1dcaFSe4TPA5UG4k8UUVvg8DNraiRxLTRDIcau/8qGo8O9BPgU51RAiq0nJ4+X31z+1iX2KAhD7f7ieXM0f2M8G1eyEMSfB0SSnMxs8M65vjscj7D4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CyLabfru; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744626588; x=1776162588;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WXgwEdzSaX+Y4rUWpW9RwNeaypZtrXrH4OUahsqCvQs=;
+  b=CyLabfrufKaHrDiROU2pLM72MTWusrwRhxbKf5vraf42z5gIpaCjtj3L
+   vmFhksXiTG8iRBAwH+GpSBXYBSAm/vtLajkbKsuXBmUe2XzE0EA3chF+9
+   hgYDRBFnMMQ8byIbBLFyo0Nm9uqBs4T2SNfu3agd9tC4/kO12m3tZPm04
+   MwMiOGepSs5ucLdq9pcIGeQOW9XiEJUN7gFemrqXCsrBVPF8JBJnKLa71
+   zY7dHouHvR3tXbKwxqINy9kJbErLsrXATIFDGTrurkF9eByI8LVPvalg5
+   /p6m8dbapP0j888odLyuo8szltuEBuwz7gk1DpNwmo/6Q+Fm75GanUGNE
+   Q==;
+X-CSE-ConnectionGUID: fIkSATCiRwWXgC+MOO9jgg==
+X-CSE-MsgGUID: /wjse7vhTXi2V6G7JK8XaQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="33701338"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; 
+   d="scan'208";a="33701338"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 03:29:47 -0700
+X-CSE-ConnectionGUID: Q1oHgF+hQ42aTWXeZ5VwYg==
+X-CSE-MsgGUID: CF7aM6O+QrSUlhJBHKpxtg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; 
+   d="scan'208";a="134755301"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 03:29:42 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1u4H4N-0000000CCxF-0A55;
+	Mon, 14 Apr 2025 13:29:39 +0300
+Date: Mon, 14 Apr 2025 13:29:38 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 07/12] gpio: regmap: Allow to allocate regmap-irq
+ device
+Message-ID: <Z_zjki8ShybzpWDk@smile.fi.intel.com>
+References: <20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com>
+ <20250409-mdb-max7360-support-v6-7-7a2535876e39@bootlin.com>
+ <Z_aiubEgXLaDpsoq@smile.fi.intel.com>
+ <D92U6CMH9WWM.3JLM1KLZF4WF8@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 5/5] arm64: dts: mediatek: mt7988: Add xsphy for
- ssusb0/pcie2
-To: Frank Wunderlich <linux@fw-web.de>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- Daniel Golle <daniel@makrotopia.org>, Sam Shih <sam.shih@mediatek.com>,
- MandyJH Liu <mandyjh.liu@mediatek.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250413085806.8544-1-linux@fw-web.de>
- <20250413085806.8544-6-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250413085806.8544-6-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <D92U6CMH9WWM.3JLM1KLZF4WF8@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Il 13/04/25 10:58, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Thu, Apr 10, 2025 at 11:03:46AM +0200, Mathieu Dubois-Briand wrote:
+> On Wed Apr 9, 2025 at 6:39 PM CEST, Andy Shevchenko wrote:
+> > On Wed, Apr 09, 2025 at 04:55:54PM +0200, Mathieu Dubois-Briand wrote:
+
+...
+
+> >> +#ifdef CONFIG_REGMAP_IRQ
+> >> +	if (config->regmap_irq_chip) {
+> >> +		struct regmap_irq_chip_data *irq_chip_data;
+> >> +
+> >> +		ret = devm_regmap_add_irq_chip_fwnode(config->parent, dev_fwnode(config->parent),
+> >> +						      config->regmap, config->regmap_irq_irqno,
+> >> +						      config->regmap_irq_flags, 0,
+> >> +						      config->regmap_irq_chip, &irq_chip_data);
+> >> +		if (ret)
+> >> +			goto err_free_gpio;
+> >> +
+> >> +		irq_domain = regmap_irq_get_domain(irq_chip_data);
+> >> +	} else
+> >> +#endif
+> >> +	irq_domain = config->irq_domain;
+> >
+> >> +
+> >
+> > This is blank line is not needed, but I not mind either way.
 > 
-> First usb and third pcie controller on mt7988 need a xs-phy to work
-> properly.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 39 +++++++++++++++++++++++
->   1 file changed, 39 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> index 88b56a24efca..10525d977007 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> @@ -334,6 +334,8 @@ usb@11190000 {
->   				 <&infracfg CLK_INFRA_133M_USB_HCK>,
->   				 <&infracfg CLK_INFRA_USB_XHCI>;
->   			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-> +			phys = <&xphyu2port0 PHY_TYPE_USB2>,
-> +			       <&xphyu3port0 PHY_TYPE_USB3>;
->   			status = "disabled";
->   		};
->   
-> @@ -398,6 +400,9 @@ pcie2: pcie@11280000 {
->   			pinctrl-0 = <&pcie2_pins>;
->   			status = "disabled";
->   
-> +			phys = <&xphyu3port0 PHY_TYPE_PCIE>;
-> +			phy-names = "pcie-phy";
-> +
->   			#interrupt-cells = <1>;
->   			interrupt-map-mask = <0 0 0 0x7>;
->   			interrupt-map = <0 0 0 1 &pcie_intc2 0>,
-> @@ -548,6 +553,40 @@ tphyu3port0: usb-phy@11c50700 {
->   			};
->   		};
->   
-> +		topmisc: power-controller@11d10000 {
-> +			compatible = "mediatek,mt7988-topmisc", "syscon",
-> +				     "mediatek,mt7988-power-controller";
-> +			reg = <0 0x11d10000 0 0x10000>;
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		xs-phy@11e10000 {
+> I can remove it, but as the line above is potentially part of the
+> "else", I have a small preference for keeping it.
 
-That shall be just "phy@addr"
+Yes, but it's still coupled with the flow. But okay to leave as is.
 
-> +			compatible = "mediatek,mt7988-xsphy",
-> +				     "mediatek,xsphy";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			xphyu2port0: usb-phy@11e10000 {
+> >> +	if (irq_domain) {
+> >> +		ret = gpiochip_irqchip_add_domain(chip, irq_domain);
+> >>  		if (ret)
+> >>  			goto err_remove_gpiochip;
+> >>  	}
 
-Perhaps just u2port0/u3port0 like done on the other MediaTek SoC DTs is better
-for consistency :-)
-
-Cheers!
-
-> +				reg = <0 0x11e10000 0 0x400>;
-> +				clocks = <&infracfg CLK_INFRA_USB_UTMI>;
-> +				clock-names = "ref";
-> +				#phy-cells = <1>;
-> +			};
-> +
-> +			xphyu3port0: usb-phy@11e13000 {
-> +				reg = <0 0x11e13400 0 0x500>;
-> +				clocks = <&infracfg CLK_INFRA_USB_PIPE>;
-> +				clock-names = "ref";
-> +				#phy-cells = <1>;
-> +				mediatek,syscon-type = <&topmisc 0x218 0>;
-> +			};
-> +		};
-> +
->   		clock-controller@11f40000 {
->   			compatible = "mediatek,mt7988-xfi-pll";
->   			reg = <0 0x11f40000 0 0x1000>;
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
