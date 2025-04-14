@@ -1,222 +1,146 @@
-Return-Path: <devicetree+bounces-166443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8DB3A8750C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 02:45:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFDFA87519
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 02:54:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A8F6188F561
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 00:45:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67DDC189085A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 00:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451B214F9EB;
-	Mon, 14 Apr 2025 00:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A38114F9EB;
+	Mon, 14 Apr 2025 00:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="cp2qI8y/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d1/yWyBe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010020.outbound.protection.outlook.com [52.101.228.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E48D14B07A;
-	Mon, 14 Apr 2025 00:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744591508; cv=fail; b=XYtGGy1seJhcqvDxsr1YIBY/IP3DLBzHbzDWP9iwTic4MepR1tiaPKS+pQ++kX8SNkZkfWhcM24RwJ8RDSYIWxYr2Xw8nURYDp90dP1S4wai7co1k0hDvizbTECUAyJagsqrdbY/IRD3YKGfuFUMBqwgpB7enKUtPQu3g+TyCtA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744591508; c=relaxed/simple;
-	bh=kngjR/znO1IotHE7dsbRh4gg/o56tFcWtT7z3rbIVrE=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=gpg2L4+DzqoidkTsC0tWBY9L2td1K+4LA8B+Ub7yBJP6jmaSAeqlwJzuuybRaDDXH/kWwaKbnXcTlI5mrow8rrZBWvP+QbSLLezxkU48cWdvT33kIS4xPR9qyFzZ+Q770O4hsRW9kNtxqz190+x7meHBHMvpNmAuc8olOno7qiY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=cp2qI8y/; arc=fail smtp.client-ip=52.101.228.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=glTXmbsYU2RFLC+9ZHX8cqSGzy5f0zcQ8MVlDB1OeXcGb4jalCG8SUH5kUQAgP5tCh8mWiHjoH1+WYIe0y/illRG4mBg0pcpvvzIu/aKbOuf70vQv5b3Sn8A6/N+Lc8T90DqTH7K81o2suaUB6A+m4xHhBsJ0dJh55qP5PVuF2A9uEwLEStcPBYCacIvt1IpXHsjpDPHLVUGQsITabhRooXaQl+nILf/7qIhaNqlok/c8zNpEix2LXtgq18Qu+hsNM+PndfWlo72PNDEFdA0bNPKEEWodMlN24adSXbUI/v1M39abfYXnucoFSIzB1bq4penKCR6QfaKe+9XZ43WvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oEIhNgKj2+FWyx0l0GSz8v1BsWTU/KHaJ4b255uM2i8=;
- b=S5/F3J54Z7bRXN11oh0L5Rl7s4iFcpReR2ORyQq63wqlboy5VgLHQDKvhCSJi1y6RXx5eTCjK7OU0ksJXZkLkREVji7wZIAC33ALu2y9BDhJYYVzmrQ2a5epQL4nvoWXk8IqJBSTvc/I9YnAWH7xHPszAW+834MMMGe/Ts446Gkipu5wc7ElL38+lnN/ZODFmQTLbXCg73s+KAUI/e9tK6iCQzU4Tf5gvqZHY20er8p7plHQIG3Mri3psdy3PjGPprZi3rpmdQKgSUENqfeMN3Jx6zltTuPc4sjJAxJk4URkniLWLryN5inneZ3ZP7DELulPViybGiOS19p4HKsl0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oEIhNgKj2+FWyx0l0GSz8v1BsWTU/KHaJ4b255uM2i8=;
- b=cp2qI8y/AnOovRtHx8G38315CCnzOQ+pKR4E/JsEW9srTXh3/a9Hg3rcVEuFqTAlzECk7OB/SYqL4Qdp+gq5+14XQ8PxjjvVKf2GvnM5m6jTG9uyzi7WhL4jKcDfve/nC6n1Te7u3ljo2+a/7bhjVAzHcgqnnEMqBOKilZF8fxU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYYPR01MB12862.jpnprd01.prod.outlook.com
- (2603:1096:405:157::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Mon, 14 Apr
- 2025 00:44:58 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8632.030; Mon, 14 Apr 2025
- 00:44:58 +0000
-Message-ID: <87h62rr2pi.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 1/9] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
-In-Reply-To: <20250411194140.GA3767706-robh@kernel.org>
-References: <87h62vh5mj.wl-kuninori.morimoto.gx@renesas.com>
-	<87frifh5ls.wl-kuninori.morimoto.gx@renesas.com>
-	<20250411194140.GA3767706-robh@kernel.org>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Mon, 14 Apr 2025 00:44:58 +0000
-X-ClientProxiedBy: TYAPR01CA0156.jpnprd01.prod.outlook.com
- (2603:1096:404:7e::24) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E79AD21;
+	Mon, 14 Apr 2025 00:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744592058; cv=none; b=A6nclFJWGaZhn6X89jxFDLu7ctDSIVyzvtrprr22N49zAfYGShB4Nipu6ytYRcGa1Mfo/cjkY+pVvuDdRCE1rT/UMHsxe4pMN+WwiaC3IkKGfsLA7uDFnmxn52vqrkULMALUQXQWPSdliNCDzKHdgplo+J6EWaxwZUUOPP20d1Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744592058; c=relaxed/simple;
+	bh=qgC/Ro2YCevvViw7+wQ4N9W6yfmfYdFYPh0FG4Rejzs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yd2vuYihkWC9XgE8RqKzF6zDEnqoaAIrY9iZK2X3ApHjTx5vMWj0BOIP0Psxf4a/DtxoV+/+skX5/ygQe7izZjBx6Jue2gWv3JRPIRHPl+F/Mo/HY8wTYcJ2w8DEzPZA7b01w2SuPMbvqpqHM7dXrAssWpFro/N5A9vyW3sfukE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d1/yWyBe; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-476b4c9faa2so47824831cf.3;
+        Sun, 13 Apr 2025 17:54:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744592055; x=1745196855; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=asGs9dXkrGA46BHiM7NeGGpvrCsy2QV43JKsFZnCKvA=;
+        b=d1/yWyBeoS5Qr2poFHlTAuPuBJ8ETCg5gJ7ZYete3FF7pXDUQHr66bjlNpSMWqj/Tt
+         Z2HyrV1+R7sDZXSSZZ/pww0HY4PYzMOrn2P82paTM5Z2F69nyFCGuwG/bpJKGGakp+Yp
+         Tr+yEqhLoxYRbL5BB6JGQEgki+Qb58roSYqsy9zGPQf7G5sssBbeWOTT7267yTKQo5wJ
+         Q/37RPftdVxR669D2SHrSbSJyf4l+Z166AaS1G8kAnk0ufhGKcl4eZA/mPJyfuzvtw5T
+         kKgbUd7stDy0khn19tH+eakH95UFJcvyFA0xhTHhjRJKxwqiOYoBSSLcmjL0jnAzLB9O
+         a71A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744592055; x=1745196855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=asGs9dXkrGA46BHiM7NeGGpvrCsy2QV43JKsFZnCKvA=;
+        b=N51onTCniPjpdBI/ftIfPK6QNrjq5PEuopGuqklR4cSJyV55F5oLckh9mWM2v+EZNd
+         fY4GI0SDpIQKIT2U6n8SnTFk7wVtigBauUMnD3I8iq8MtFwoWPSeHXqvKrmymL56O1s2
+         jAMEaW7ZJOvjNc7laZPobZ0z+zmVzjoyOPyxa83JCrAcKX7bB6nFtRL641iIsUckeiEc
+         inum68Yi4Sb4tssa4oBd856D3xJFhGH+uZNuZwGqtEpCbl9T5qAMdWdAIzO9vS8k4z2y
+         Km/rGpVEES4YQwiwgdbO3YlUnH7LwwvcG2DJXsERDFUERn06zeYS1YLMKvt0qnoDung8
+         uuFw==
+X-Forwarded-Encrypted: i=1; AJvYcCU43qqsdID+9MqI6gMEXZNrdkS6JCQ6Xm8lUO1aAOnUQjNmkrfLmGuYU0Bdxlpi5rZO9PYBXGKxolwU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeHAqL9hrnyMXeML6PcUeGR1GpY7TSjbvzw0FzDXjbui+9znrz
+	IzUH7wjXw2aQ1YMM0iGzs2g0srjfKeV2J9gjiIOSa69ZUIym8LH1
+X-Gm-Gg: ASbGncuTAxRZJRUSC6h3454z7/i6/XMX3Z20WORl021GkhQVmr05typu+7w90Um0HFW
+	tFSTlZRCx2CQmkaYrE0oEhfYuGVs4QGotzhuWA/TF0B6ifdJJxPug0uqGDFkAU7/gE+KoW53Uw8
+	swvnFCd3z3TH0VfDRTO0SvpgJ3AeIevzlaRShf25T1Ob/8obX/ZF1ZhVR10fASQamn1+WvR45py
+	5xiqy602/bBzfwhnkv9gBUDwOZSgJfLWhJjUlMx9XRKuiFM9ivkM/6AVakOYt9+8ySUn6X5d04w
+	N8D4zzSuh5EZL9rj
+X-Google-Smtp-Source: AGHT+IE/g553Jq6yYD7LJpfkVi+E7INfcm4IyV0loUESRRflBjB6CD+tv0Ju2q/t0uPdjZL7ZYpN9g==
+X-Received: by 2002:ac8:5d16:0:b0:476:9f3e:1806 with SMTP id d75a77b69052e-479775e3614mr176219131cf.46.1744592055398;
+        Sun, 13 Apr 2025 17:54:15 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-4796ea65130sm64422851cf.0.2025.04.13.17.54.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Apr 2025 17:54:15 -0700 (PDT)
+Date: Mon, 14 Apr 2025 08:53:33 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>, 
+	Chen Wang <wangchen20@iscas.ac.cn>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 3/4] irqchip/sg2042-msi: introduce configurable
+ chipinfo for sg2042
+Message-ID: <rss7pih2lpzi65vw57exbr57qby6edsb5dvsntcvkllp32t6ou@nbub4ubbrd4i>
+References: <20250413224922.69719-1-inochiama@gmail.com>
+ <20250413224922.69719-4-inochiama@gmail.com>
+ <MA0P287MB226272482F161A5C6A74638DFEB32@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYYPR01MB12862:EE_
-X-MS-Office365-Filtering-Correlation-Id: d91c1239-5c60-4b0c-e6e3-08dd7aed94f2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|1800799024|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?pb1fAzyrWrsSQ32rLpdjhYAX9mBnCimNwjCOFONGyZtLcQHy3rSSMnVvERvA?=
- =?us-ascii?Q?lptlo2cPn9HAjtH6WZ8POsCwjLF4Wrrx+nvYc9GkpnT05klTtMT/rEbP8INR?=
- =?us-ascii?Q?2GmYTj/JxeR5Z6j/xq56vWRuzPTt4GBQlJMZS8hIjDjEoAsgLD1N7UKl0haF?=
- =?us-ascii?Q?wbZSF5DusHH2H/uFAmEO2vfgjxDH/gtIWOH09cZet+eZ/AGzMiwJyYiJB1F3?=
- =?us-ascii?Q?aWWa65Heps1QwOeBAhBYcEShFJrDRIoLboQ0XgeFgfvaA69CgYlEYh4eSfD3?=
- =?us-ascii?Q?1pSylWpGXIpLeyrGg2fJOGPtfVNY6U5uxXulmgzgNClistb+255J1pxzvv9D?=
- =?us-ascii?Q?08MAFBydTnOaP8sCakIZx8SeK8bn3O8drCuJKsSuh5l+LXHHvuRq3AIox9a0?=
- =?us-ascii?Q?Cc2yjKAr47NXL5T6bLrmTynoYXC3RHPfcDnhPKamMMlL4icHZImbaPDI2jhg?=
- =?us-ascii?Q?RvdEI7attoJWFO7JnVlJUua7DggCxv/4f8FmdYW0IwNqVimkFl4GLrzK+KI8?=
- =?us-ascii?Q?YpqBN5RfeaGFKKA1TfPDxSNS1q0xOGe1dBlmTX6w0poMJaNQfE4JxgyiT0PS?=
- =?us-ascii?Q?UO9I+oLrB3fH5Kq8wK8G2xJtBo4TNt48+FWx2iXEaOwrzRwD1g5UkIhXAGxy?=
- =?us-ascii?Q?8XGuxeaMXs6YGMbUSjrdwv3vpK5c3QDmDWFYXxnCwRs82eBgV4IqVKbJSCb1?=
- =?us-ascii?Q?XwxmK5kB8+jXXPiKi9rnvvWiG/MJ6QIMDcZbfd8wfh/6pYhlJVuZ2jd44eP5?=
- =?us-ascii?Q?7BZO9SVohsP+pQ8+eW1zhjUVWV9AghGYiet8+Ke1HKHzgDtOgPdUQFgNU5Q0?=
- =?us-ascii?Q?h6H4Tm9TDK5Mk5Rmh2v1pjeZT3iXx0QbiqL5HY9aW/4uFuyarlLR/w4YemTW?=
- =?us-ascii?Q?hTtecKLx5rJbKrFTz31gef72DRhv/9UZlR9CEZh+fv9QAYUqjwofOIKqKpNV?=
- =?us-ascii?Q?yMXTEnF7t/FAPtj6KXNLUknLfD0R+pauhot1w3Yyg55hK+zjM6hBKxA+blU1?=
- =?us-ascii?Q?1k8NVT0m4FnfrNhEypRa2G4RHzFBEN86I5dNgTMXPLs+SacnPiP4h4E8rZTt?=
- =?us-ascii?Q?+a+X7fH+1a1woGU4JaVBX/WG6Qf5BjviwRLFSNftHT5qjAJMcFNBCZKqIxmS?=
- =?us-ascii?Q?xvyzfldI6pEf8k9yfhSee98hvbdP+GJPKDqTZ9I+CgGqkFY/VHdeS/2YIqva?=
- =?us-ascii?Q?Bm0KgEleq6Xh5YsLucB4mLte9rBIeXeh/Ztjt4XA9SmL6mOkO3ZY3OYqpaDK?=
- =?us-ascii?Q?FU+FqY+CF/7ZHJibByBgCSgohVbgQNTj9hjAkxfzUgKJrtwHMDJPL2QGnTDy?=
- =?us-ascii?Q?Sg9U+VobiSdpvjEURZP40uCWf2NZco3daYTppuNYMRvDH361dzfl96siectW?=
- =?us-ascii?Q?/8BA91BvSoe2u4m1ZllG9C+LOpEi8jwm9BC1X41J7Vowownj4wq1BJQIPS0P?=
- =?us-ascii?Q?b9oI7IwS+jg3/fb+ym2rngPSBru5GON1bnMOnohkqGLdgBFD9rggIA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(1800799024)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?bDnpwGbIC4zNiYSeiD641zFEGfHteu3wRoBdz9Q5Zf8Fwk/ctJR+QAw+5AB/?=
- =?us-ascii?Q?aM1TPW6F4qwIlcxjafCBn5Li8CW5hqOlk15+2oRiYDuuUHvb8GTeYVus+q1M?=
- =?us-ascii?Q?m7lRdj33JAlFtFjhENqx1hxqAJDwgMquEORSLnwRHjc3yTZa7imKwRsbu+pB?=
- =?us-ascii?Q?0H+k7HwhbqLjZ0JNDeAUbpBQsI+aSiFd7501erCPn2lqgfVXRY5WVYcAgAnf?=
- =?us-ascii?Q?UTLatG4DKOJxv434TilEqrbhVf9eAozr74whpxeeiAqgwa2psKBpAnQ+UIKM?=
- =?us-ascii?Q?e6dg6ypeUJk7SkgmL/lAHZBcRhQ3Jhtvi7GjaS4A8vEElrNg7JJuzAx2tYW5?=
- =?us-ascii?Q?IZ3zwjWLSduopbexkiVMU18aktaIFo/SVlewbhp9MhjeZ9TiuiuObQUeVa1+?=
- =?us-ascii?Q?k8UDpOxOun0cBcoTG7F+Lw/lI5hyWSeMBIG5NmBxQN9MY43saE49trx9uUav?=
- =?us-ascii?Q?65JN4fAt2sf4kj3Zcec8m1iZbw28aAUNHCUUiX1uq2m3ziKsEnyNzByN92v4?=
- =?us-ascii?Q?K1zDfovT6wsg0ITz+eYGWV+T4k1sCEhDB/XBA7oP2stCi4pkT+qvUYR9T5Rl?=
- =?us-ascii?Q?bzwahIza60Efhcq3D4c94IVtGwO859eGHs76TaLNAxBDU3+oURWYVyS8iPoo?=
- =?us-ascii?Q?ckUeRJ/xoB355RxZStJteeM2NdlTk0x1EkPynyEDPqeqlBajQikwLFHVNgUw?=
- =?us-ascii?Q?1PUoadO9NZlIlhw3KeoyUXa7PY+j1eSkklhwGggbT5gPCn/mqJYCOXQrPIlh?=
- =?us-ascii?Q?lXFZNCGRrOS9TEkzO6dFkyExuB3+QqnvxWVrULysyO8I0r9C4Ukm5cGL8bN6?=
- =?us-ascii?Q?PbxTfudn5N0yMik9eS7JjMXkgs4NM9hacK8PGPXRmGyGZXj7skUOwWFhHCNO?=
- =?us-ascii?Q?dbfdR4bWksUxoxOfQ6WfAdKCwEkjBB6DIDH0J3+ozoLFN+KrDQTlnRjEQaf2?=
- =?us-ascii?Q?fVsylrMyO4Hz4X6cztaoz9RODXM6miotx07Sslz4vsrqDq2xOBR7y+oqxuEF?=
- =?us-ascii?Q?rV9VbO5Bd+LPCnWSA7cJmCMAKp7zGgVKvsyRfhuVLAYQMgPuyf84wXQb+zDn?=
- =?us-ascii?Q?e06seSTvSNXDmNh6jra/hgTeoiy4kaIpYXj8MbwBu4LWg35eeap4wUzNgtVs?=
- =?us-ascii?Q?ocZmL4YMgi62O4YNCUKtQv/6Pab29vnVhugyh59cPXNSmrt2INwY8VMwubGK?=
- =?us-ascii?Q?q7kqgHbWBSil4+tuOP0N6N81aNxvakPp8oAiYwHjHpJvWRXB+iuAy1NmrmyB?=
- =?us-ascii?Q?lVVTP1a34uJ8ur0nSpNXoBot4b/2BS2WxhJ4Xj+xQpST9U0hFBDRhiJDgX18?=
- =?us-ascii?Q?tbtO+KrePkK/AA+GiKqn9LYCFKDNZ2LKbgU5ujE61cymqCx1wooq/+FM86UA?=
- =?us-ascii?Q?ruYoUA6n+zzHCqU15wnGbe8ZyhzQjMzZ6kUEPvM+7o+WGX/awwSGvCaRzrla?=
- =?us-ascii?Q?aT1tIn2v4u8ruyQTizik6kVZ6cNZ1odb0IN0RQG1MWi6iVvenYLcn+5tKfT5?=
- =?us-ascii?Q?UQvr2VNJ71JD4PEFGy86nta8xVNTHUoscDhnRVlo4PIf+dRqSHK5yXI0e/4/?=
- =?us-ascii?Q?7HFvs2W5DU9nslulBXe4gga69E0zF4loePn/7Oii5FdLF28yGRMRXKWcNlbG?=
- =?us-ascii?Q?+5a64QB7m5qS0idwku2UrBQ=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d91c1239-5c60-4b0c-e6e3-08dd7aed94f2
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2025 00:44:58.3590
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 68eFgyIonds+TmhwKrem3lgkTJrgxxyi2hhCQWUn464K9hh3wR/71Kecf6za+xX+PNVGQM7xU7eR3G+sqBhwlOhjqUbPzethoI0gYVddSm8lgVx7JUI2vMqlfvKjLCqU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12862
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB226272482F161A5C6A74638DFEB32@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 
-
-Hi Rob
-
-> > Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
-> > both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
-> > uses Of-Graph in DT.
+On Mon, Apr 14, 2025 at 08:44:46AM +0800, Chen Wang wrote:
+> hi, Inochi,
+> 
+> On 2025/4/14 6:49, Inochi Amaoto wrote:
+> > As the controller on SG2044 uses different msi_parent_ops and irq_chip,
+> > it is necessary to add a structure to hold the configuration across
+> > controllers.
 > > 
-> > MSIOF-SPI/I2S are using same DT compatible properties.
-> > MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
-> > MSIOF-SPI doesn't use  Of-Graph.
+> > Add the chipinfo structure and implement necessary logic for it.
 > > 
-> > Adds schema for MSIOF-I2S (= Sound).
-> > Because MSIOF is no longer SPI specific device, remove spi specific schema
-> > 
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> > Tested-by: Chen Wang <wangchen20@iscas.ac.cn> # SG2042
 > > ---
-(snip)
-> if:
->   properties:
->     $nodename:
->       pattern: '^spi@'
-> then:
->   $ref: spi-controller.yaml#
+> >   drivers/irqchip/irq-sg2042-msi.c | 52 ++++++++++++++++++++++++++------
+> >   1 file changed, 42 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
+> > index c9bff7ba693d..1001c1117b00 100644
+> > --- a/drivers/irqchip/irq-sg2042-msi.c
+> > +++ b/drivers/irqchip/irq-sg2042-msi.c
+> > @@ -19,18 +19,33 @@
+> >   #include "irq-msi-lib.h"
+> > -#define SG2042_MAX_MSI_VECTOR	32
+> > +struct sg204x_msi_chip_info {
+> > +	const struct irq_chip		*irqchip;
+> > +	const struct msi_parent_ops	*parent_ops;
+> > +};
+> > +/**
+> > + * struct sg204x_msi_chipdata - chip data for the SG204x MSI IRQ controller
+> > + * @reg_clr:		clear reg, see TRM, 10.1.33, GP_INTR0_CLR
+> > + * @doorbell_addr:	see TRM, 10.1.32, GP_INTR0_SET
 > 
-> Or just always use 'spi' node name even if used for i2s.
-(snip)
-> > +  "#address-cells":
-> > +    enum: [0, 1]
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
+> I remember asking some questions about this last time, but you didn't
+> respond.
 > 
-> Then drop these.
-(snip)
-> > +  # for MSIOF-I2S
-> > +  port:
-> > +    $ref: ../sound/audio-graph-port.yaml#/definitions/port-base
-> > +    unevaluatedProperties: false
-> > +    patternProperties:
-> > +      "^endpoint(@[0-9a-f]+)?":
-> > +        $ref: audio-graph-port.yaml#/definitions/endpoint-base
-> 
-> The correct way is:
-> 
-> port:
->   $ref: audio-graph-port.yaml#
->   unevaluatedProperties: false
 
-Thanks. will fix in v3
+Oh, I forgot to respond this. Since the SG2044 document is not opened
+public for now. I think it is possible to leave this for someone to
+reference it. Also, I find nothing about this address in my copy of the
+document, and was told it follows a similar design of SG2042. So I
+think it is OK to reserve it at least for now.
 
-Best regards
----
-Kuninori Morimoto
+Regards,
+Inochi
+
+
 
