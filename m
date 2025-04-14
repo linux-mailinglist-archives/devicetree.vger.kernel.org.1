@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-166734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6307FA8851E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:35:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5337A884EA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 16:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E424564536
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:19:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A74A1903ABA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 14:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CB02973A8;
-	Mon, 14 Apr 2025 13:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0464F297A64;
+	Mon, 14 Apr 2025 13:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tgn8kIJ4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6A+4fEX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3462750ED;
-	Mon, 14 Apr 2025 13:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA28F2973DB;
+	Mon, 14 Apr 2025 13:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744638989; cv=none; b=MOI0raMI5MQ1c66iv3bKygbeGsFPNngUSDJsadFkT4TdFAw7zzHyQdhrOSAmRBsilFdLFho6DHCkbO9syzR7ahY9WNMDDaOOsZob20g6iMAP5gfYe1v9IlM+CZzSYTW60Ruz+7s3CV8OWkD6NJhkHQzPfqIUC3rwM2qaAZRYYXY=
+	t=1744639001; cv=none; b=BYMSAiKEHV1RjeISveDUOa+YvlC/DCfbycG2h5kY36mJbqZlV9GRFAQOAxE1IMzD1cn7PMAjhcNA4+ZBRaoXIGb/qsVelMDglK5Ovw9sXxiNHGuEmfAQK3aejCTAdq7i3a8MRqVLggIBsekIThXNm4A9Xmujvs25eLMdaV9W39M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744638989; c=relaxed/simple;
-	bh=gLm2vzhJ3uDuzn0pKBioj0Z4oIo5DgZwBOkT+5Uz7Jk=;
+	s=arc-20240116; t=1744639001; c=relaxed/simple;
+	bh=/efdcXBCkp25/Whv4nPqxxiDxKeXYrIljk214SJcbtk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=RxyZZc78rt/X9NaUSa35f0varvwqHhRApxWZAXw2B6Vl91az+iTBbQp5o6DkKnW7GG+bUoQ3Dqz9i2zMYL0AmHclUnv8dkAtMOHkE1azNy8DeF8QKShA0OYkwSI6PgTe2pjVnR4IrUbj2aq8mUPp3sHcHUuM/+Gq6GjO3YmPp7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tgn8kIJ4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBDD5C4CEE9;
-	Mon, 14 Apr 2025 13:56:26 +0000 (UTC)
+	 MIME-Version:Content-Type; b=HzZaWRQ0dDfbYmDDKuQCfv4hJ2a5NYLJgIY6j92J/A5jzBoHSyRiK+ZYSZqMTK4sJwomVpzqZZbeer/qoy9Is14deVvDMTp8DqpTjrqglL/lmtsXN6rOjFug8FBOcCcTkGc+V/3NLBQbQjU6IXQFbAD0Ue9OYtNFFTkbjj2HNwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6A+4fEX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F7CC4CEEC;
+	Mon, 14 Apr 2025 13:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744638989;
-	bh=gLm2vzhJ3uDuzn0pKBioj0Z4oIo5DgZwBOkT+5Uz7Jk=;
+	s=k20201202; t=1744639000;
+	bh=/efdcXBCkp25/Whv4nPqxxiDxKeXYrIljk214SJcbtk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=tgn8kIJ43cUnJ00H+doTmdn6hE4DV1WXNb8122G+3FmRzY/sAvJY80Lg76yQgAAJh
-	 nAXjqet2dDAsEY649IlgtDZ2HCRqW6a2KPabaiwTFMAbfmGcIcrQw1rsRf4o+5JxhC
-	 Zz5JgFWkmDLns5uX43DwmhUqp6nBmURwu4sG6VoNY3z8Z8kiEF/gEWqwUFEtRoSf+u
-	 rxypn5aE+rO/EvQ5GnO7qQk16T8ohNpl2N14QGkuGe+ipa0XdUW2izuvFcUz5y5ya0
-	 LZgd29uwfKddDsjtt49dA63lsCPNPA63c90p419QiviyYAg9dLWn9bMdwv748dOlPb
-	 YbZeBQCh/m5hQ==
+	b=k6A+4fEXe7SHkW6I6+sdgDNidr/hWTyi5YOiRu2mVojqOAxbbfHtKzflStaYBmy2u
+	 a16daAogKddexBTxm7P9VUpnEvnAbNFPU8e7x8A6K7kkTPy3Kk7nE1PDz6L+tbZ/1V
+	 /zX+Om0AGw7RNg6k9+6ANrc1/PfyE519FdavAIC5JtNn/ywktWbiKXZnlXtsEP01/f
+	 mgL+1ZalDZIa1gqErc1oE1ea2tzdW2pjlVe23B6HmW+KBvcluU5F91/3mvZ2gJZG/j
+	 R7iY6fMS38QZGq3DoBhHB1wAx4DS7GU0bidyNVCa1+wcrDXq5p0Mkbf5WA5yBSisWa
+	 cpG20PRBe0LHw==
 From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, cy_huang@richtek.com
-Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Otto lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>, 
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <cover.1743774849.git.cy_huang@richtek.com>
-References: <cover.1743774849.git.cy_huang@richtek.com>
-Subject: Re: (subset) [PATCH 0/4] ASoC: Add Richtek rt9123 and rt9123p
- support
-Message-Id: <174463898663.86688.15893765350438287910.b4-ty@kernel.org>
-Date: Mon, 14 Apr 2025 14:56:26 +0100
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Keguang Zhang <keguang.zhang@gmail.com>
+Cc: linux-mips@vger.kernel.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20250409-loongson1-ac97-v2-0-65d5db96a046@gmail.com>
+References: <20250409-loongson1-ac97-v2-0-65d5db96a046@gmail.com>
+Subject: Re: [PATCH v2 0/4] Add support for Loongson-1 AC97
+Message-Id: <174463899776.86688.5147297198063500549.b4-ty@kernel.org>
+Date: Mon, 14 Apr 2025 14:56:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +64,12 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-c25d1
 
-On Fri, 04 Apr 2025 22:22:10 +0800, cy_huang@richtek.com wrote:
-> This patch series adds Richtek rt9123 and rt9123p support.
-> It's a 3.2W mono Class-D audio amplifier.
+On Wed, 09 Apr 2025 18:29:30 +0800, Keguang Zhang wrote:
+> Add the driver and dt-binding document for Loongson-1 AC97.
+> Add the dt-binding document for Realtek ALC203 Codec.
+> Add DT support for the AC97 generic codec driver.
 > 
-> ChiYuan Huang (4):
->   ASoC: dt-bindings: Add bindings for Richtek rt9123
->   ASoC: codecs: Add support for Richtek rt9123
->   ASoC: dt-bindings: Add bindings for Richtek rt9123p
->   ASoC: codecs: Add support for Richtek rt9123p
 > 
-> [...]
 
 Applied to
 
@@ -83,10 +77,14 @@ Applied to
 
 Thanks!
 
-[3/4] ASoC: dt-bindings: Add bindings for Richtek rt9123p
-      commit: 4a046b67d2d267daf884798ee8509a502abe7a58
-[4/4] ASoC: codecs: Add support for Richtek rt9123p
-      commit: 38c2585c7439cc678ae105dd826f10321db29552
+[1/4] ASoC: dt-bindings: Add Loongson-1 AC97 Controller
+      commit: d60007fc9b739d939d5b6148c25805f206c836f9
+[2/4] ASoC: dt-bindings: Add Realtek ALC203 Codec
+      commit: 0142b45000457b9d112d40d5685d0898e51ed52f
+[3/4] ASoC: loongson: Add Loongson-1 AC97 Driver
+      commit: 1fc55a2baef5289c9535ce10a4f5f37664ce854a
+[4/4] ASoC: ac97: Add DT support
+      commit: 436a3cc8afbf34bb68166c2c5c19ca5113c0c756
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
