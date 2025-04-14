@@ -1,212 +1,171 @@
-Return-Path: <devicetree+bounces-166529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC04BA87985
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:55:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48723A8798A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 09:56:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB3E216B7F5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 07:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2324716BEC9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Apr 2025 07:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867C72586E0;
-	Mon, 14 Apr 2025 07:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF5D258CC6;
+	Mon, 14 Apr 2025 07:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="f5UWmerM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d8zrUHoJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF192580F4
-	for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 07:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252452580F4;
+	Mon, 14 Apr 2025 07:56:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744617334; cv=none; b=Qh9OiLgLmlfH+AGsOFxbo7pQw944ZC+yTWETvK9jRXeHSpK43YxD/cUgt9i1ixgy0XZBo8OGVdTHxUetaM85LHb5gkLiWgMeROsCf6L9P5JF64EBgrv/nSlL2OvI9riBY5g1qrDgfdMJdQBcVBVdVYh0jrQ6W1E2y2LvhfZ5XKY=
+	t=1744617381; cv=none; b=DWjNV7Zfkwher+AbkJojEDthptvl5AOR+6N35vYcg18a/qQqQjKYCF1xPNk8PgCwh5fQVHhJTOjBzzWrLRvvvwqofWALoI2qkPp1826fw37vc89O62R7S9gF0fscmkyllurTgHEjlK2tS62Rl5WrORchFjkETUMhkb3zLygjcIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744617334; c=relaxed/simple;
-	bh=wjNxOzatIMQ/Kiz1EXdXpytR1voiNFIQ15IZqnNJ+ec=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=AmR3Z/zSEfUZ/c7hjy0ZvabQh0cTIGrEC9FB3PzR22S5+4IYua3AJFWzZf22cdWElSvraLcsFw033cDt1nlveHnqPnQKYd51U4z4nRaLb/TACd30pixXB0ZaGTFLs7thG5M1tct4KY6KKED2mrkyRgv5cQtbrB89/wa6apVFzUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=f5UWmerM; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744617331;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VyGy8TpTRsYSW6wLWDE/VjeSgPcgxN9oD2qpQCJJZhc=;
-	b=f5UWmerMEIUR5oAuPwULPcZpcOUcVI9VBdR6IjoM83FK5uOQ9307ai9ntCbY9Ge5lCNyeb
-	a0Dpb+t4f7kinFasljQjIod4jDmaJgYOeXovYyPr0xWjsjI/QuOTEW+rIpflKcPuN6VBug
-	qb/PmvwN596A8S3Mxzw7KzeEWRKqLpw=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-2-v5TMc3Z7MOSr2EIuhWNyVA-1; Mon, 14 Apr 2025 03:55:29 -0400
-X-MC-Unique: v5TMc3Z7MOSr2EIuhWNyVA-1
-X-Mimecast-MFC-AGG-ID: v5TMc3Z7MOSr2EIuhWNyVA_1744617328
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-39d8e5ca9c2so2621758f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 00:55:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744617328; x=1745222128;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VyGy8TpTRsYSW6wLWDE/VjeSgPcgxN9oD2qpQCJJZhc=;
-        b=JaYhnFNiJhCkFbVH5PPTMYlKORnsPlQftFj4Z0AViSIfj/f/bZkKD305HFQVW9Osf8
-         KTRXCsU+mYRNBV0xWdTHhE7Y4JTUPnm4vWjgPUBqOTcwWVdbnU3y0XBK4xMPdqXrGQNU
-         FUMVM+6nh5Mvd49mDIQARkf7kPlUxAf2hpOOgoU4N5JF0Yr0aX10MAbA+Q8tgWOPopi1
-         DHIuTr3A2sw3aFsY/gaP4EeEdQzAl8W5iK4zw8n8kl8D5Ox442SNzLbsRsc9RpopQXdp
-         /MydFzNFsBj0lMitKAyGTOfrliFkf1pIPihGCEvkaGY2WJjYSwu41S4ArufilCpW3LFG
-         6k2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUaO+KBvUsLsQPr77MPI7kS8UvxUuL4g6qVNRXxzMlMQmVpKD7puILd9c7+6cleeGYB6xupnIqKO7u4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPwe6T8lANfl4oWuq6A6MnBpbStbjaL2TvWsVwWXyTIFeDrTnq
-	z0FzVCsiMQQV6ew3r6ZKBlkJRUmlqguydaq7d9GYvIhx+AJ+vJ8L4xxwZ5kt98rwaEvNqtzzg8h
-	91YIAzyY1GUdx8vzagqX2j6Qsng1YMykYGvlfO3dPrvDcBes9Ji3Nkj2IZ7I=
-X-Gm-Gg: ASbGncuczAaIcfTjUqlXtWLp1SciMiP0W9tczkGbW9HqOh+lrEn+Tuw24VT+SpuSil+
-	LKTklYPa1ZPtsl7/HVLx13wIEZdlOaIMUJJUjjD7W2Dahk0g3QC8NyKjZABozeHduuOYMWfPBAc
-	O5Br5OW7g1WrymugrrnPEMBGKLW6/YgFKLTVlbi2leUZYfD8Zi9Q3ZKaMcI78CD+GlQSfe0iKVL
-	NMtlXjaBjiBHbmuV56o/bcLJS8WrJz9Tx6lRBfFZ/r+xDscKJmu6MrOESMMfioHK1I49T21f1jY
-	hslFRlbtbdsCLOu/7WgnpONR5NFZrxV2tNHOWEw+5x0T
-X-Received: by 2002:a05:6000:2586:b0:39c:e28:5f0d with SMTP id ffacd0b85a97d-39ea52171d4mr8935036f8f.25.1744617327906;
-        Mon, 14 Apr 2025 00:55:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IETQUkn0hF6FLm9NcXpYwCxUXih2R9GqT9ocdhEggOG/wqrLcDmZ7Cdgh4Umo12Ue468Vucbw==
-X-Received: by 2002:a05:6000:2586:b0:39c:e28:5f0d with SMTP id ffacd0b85a97d-39ea52171d4mr8935008f8f.25.1744617327462;
-        Mon, 14 Apr 2025 00:55:27 -0700 (PDT)
-Received: from localhost ([2a01:cb1d:968a:da00:a3a9:3006:4689:68f6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf43cdfdsm10378556f8f.61.2025.04.14.00.55.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 00:55:26 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Zimmermann <tzimmrmann@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/st7571-i2c: add support for Sitronix ST7571
- LCD controller
-In-Reply-To: <Z_oOkb2Lx3HNhnSK@gmail.com>
-References: <20250408-st7571-v3-0-200693efec57@gmail.com>
- <20250408-st7571-v3-2-200693efec57@gmail.com>
- <87cydn9bkx.fsf@minerva.mail-host-address-is-not-set>
- <Z_Uin2dvmbantQU4@gmail.com>
- <87ecy1g8z8.fsf@minerva.mail-host-address-is-not-set>
- <Z_YWq4ry6Y-Jgvjq@gmail.com>
- <87bjt5fz51.fsf@minerva.mail-host-address-is-not-set>
- <Z_iwspuiYAhARS6Y@gmail.com>
- <875xjb2jeg.fsf@minerva.mail-host-address-is-not-set>
- <Z_oOkb2Lx3HNhnSK@gmail.com>
-Date: Mon, 14 Apr 2025 09:55:25 +0200
-Message-ID: <87v7r76utu.fsf@minerva.mail-host-address-is-not-set>
+	s=arc-20240116; t=1744617381; c=relaxed/simple;
+	bh=H0UZyiGK0U4XtBmKKSGcyyYCPhHYdwXd/Yxs4BUF8xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cnCupd/xrTQ1opMMgBOzxZYbKcG4XJRubAHjRS8iKu+7kmkR3MavTtxswXzOwDn6esvwsguiFOowCn/5vC6RW4OQseCDnlAMfSgwUauoUa1ldNTeErpBtmpNqkKI6/7A2VrqqsaFFUp7LDpJ1SECIna3453cAMhYGAw/WARwLos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d8zrUHoJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC1CC4CEEA;
+	Mon, 14 Apr 2025 07:56:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744617376;
+	bh=H0UZyiGK0U4XtBmKKSGcyyYCPhHYdwXd/Yxs4BUF8xg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d8zrUHoJQUxOf6EtkfsSaTAiIFKTBKluonx9i+64fD4b92fofT5FYMrnNRn8qxHqq
+	 xkTUK+bekgVshFnfeQzycGQ3sRHuQOMOFK4rsK0x70+U90utZV6jyAm7VWXaNKfrzn
+	 1BVZanA9Mff6OPt7NYawjS/A93BUcZzuQeGrB0IsjyJRj8v/SygoH1g6ODoM4nPYC/
+	 IFXCLUBnBURAq30I1ig9AsT1kew/fo7k1pOUA8ctNLFOuAJUok9y988FVxqSj6xqwG
+	 ejz4eKSEB7kB6fvIWg8efSfvFKA+2u64kjUFKi1XeYzdG987YP07fMCfCZZqQuC53D
+	 /oiGHsxRcp+QA==
+Message-ID: <abbfc13d-d6f5-485f-a73d-6a89e15f0ff6@kernel.org>
+Date: Mon, 14 Apr 2025 09:56:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 4/9] soc: qcom: geni-se: Enable QUPs on SA8255p
+ Qualcomm platforms
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250410174010.31588-1-quic_ptalari@quicinc.com>
+ <20250410174010.31588-5-quic_ptalari@quicinc.com>
+Content-Language: en-US
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ xsFNBE6S54YBEACzzjLwDUbU5elY4GTg/NdotjA0jyyJtYI86wdKraekbNE0bC4zV+ryvH4j
+ rrcDwGs6tFVrAHvdHeIdI07s1iIx5R/ndcHwt4fvI8CL5PzPmn5J+h0WERR5rFprRh6axhOk
+ rSD5CwQl19fm4AJCS6A9GJtOoiLpWn2/IbogPc71jQVrupZYYx51rAaHZ0D2KYK/uhfc6neJ
+ i0WqPlbtIlIrpvWxckucNu6ZwXjFY0f3qIRg3Vqh5QxPkojGsq9tXVFVLEkSVz6FoqCHrUTx
+ wr+aw6qqQVgvT/McQtsI0S66uIkQjzPUrgAEtWUv76rM4ekqL9stHyvTGw0Fjsualwb0Gwdx
+ ReTZzMgheAyoy/umIOKrSEpWouVoBt5FFSZUyjuDdlPPYyPav+hpI6ggmCTld3u2hyiHji2H
+ cDpcLM2LMhlHBipu80s9anNeZhCANDhbC5E+NZmuwgzHBcan8WC7xsPXPaiZSIm7TKaVoOcL
+ 9tE5aN3jQmIlrT7ZUX52Ff/hSdx/JKDP3YMNtt4B0cH6ejIjtqTd+Ge8sSttsnNM0CQUkXps
+ w98jwz+Lxw/bKMr3NSnnFpUZaxwji3BC9vYyxKMAwNelBCHEgS/OAa3EJoTfuYOK6wT6nadm
+ YqYjwYbZE5V/SwzMbpWu7Jwlvuwyfo5mh7w5iMfnZE+vHFwp/wARAQABzSFKaXJpIFNsYWJ5
+ IDxqaXJpc2xhYnlAa2VybmVsLm9yZz7CwXcEEwEIACEFAlW3RUwCGwMFCwkIBwIGFQgJCgsC
+ BBYCAwECHgECF4AACgkQvSWxBAa0cEnVTg//TQpdIAr8Tn0VAeUjdVIH9XCFw+cPSU+zMSCH
+ eCZoA/N6gitEcnvHoFVVM7b3hK2HgoFUNbmYC0RdcSc80pOF5gCnACSP9XWHGWzeKCARRcQR
+ 4s5YD8I4VV5hqXcKo2DFAtIOVbHDW+0okOzcecdasCakUTr7s2fXz97uuoc2gIBB7bmHUGAH
+ XQXHvdnCLjDjR+eJN+zrtbqZKYSfj89s/ZHn5Slug6w8qOPT1sVNGG+eWPlc5s7XYhT9z66E
+ l5C0rG35JE4PhC+tl7BaE5IwjJlBMHf/cMJxNHAYoQ1hWQCKOfMDQ6bsEr++kGUCbHkrEFwD
+ UVA72iLnnnlZCMevwE4hc0zVhseWhPc/KMYObU1sDGqaCesRLkE3tiE7X2cikmj/qH0CoMWe
+ gjnwnQ2qVJcaPSzJ4QITvchEQ+tbuVAyvn9H+9MkdT7b7b2OaqYsUP8rn/2k1Td5zknUz7iF
+ oJ0Z9wPTl6tDfF8phaMIPISYrhceVOIoL+rWfaikhBulZTIT5ihieY9nQOw6vhOfWkYvv0Dl
+ o4GRnb2ybPQpfEs7WtetOsUgiUbfljTgILFw3CsPW8JESOGQc0Pv8ieznIighqPPFz9g+zSu
+ Ss/rpcsqag5n9rQp/H3WW5zKUpeYcKGaPDp/vSUovMcjp8USIhzBBrmI7UWAtuedG9prjqfO
+ wU0ETpLnhgEQAM+cDWLL+Wvc9cLhA2OXZ/gMmu7NbYKjfth1UyOuBd5emIO+d4RfFM02XFTI
+ t4MxwhAryhsKQQcA4iQNldkbyeviYrPKWjLTjRXT5cD2lpWzr+Jx7mX7InV5JOz1Qq+P+nJW
+ YIBjUKhI03ux89p58CYil24Zpyn2F5cX7U+inY8lJIBwLPBnc9Z0An/DVnUOD+0wIcYVnZAK
+ DiIXODkGqTg3fhZwbbi+KAhtHPFM2fGw2VTUf62IHzV+eBSnamzPOBc1XsJYKRo3FHNeLuS8
+ f4wUe7bWb9O66PPFK/RkeqNX6akkFBf9VfrZ1rTEKAyJ2uqf1EI1olYnENk4+00IBa+BavGQ
+ 8UW9dGW3nbPrfuOV5UUvbnsSQwj67pSdrBQqilr5N/5H9z7VCDQ0dhuJNtvDSlTf2iUFBqgk
+ 3smln31PUYiVPrMP0V4ja0i9qtO/TB01rTfTyXTRtqz53qO5dGsYiliJO5aUmh8swVpotgK4
+ /57h3zGsaXO9PGgnnAdqeKVITaFTLY1ISg+Ptb4KoliiOjrBMmQUSJVtkUXMrCMCeuPDGHo7
+ 39Xc75lcHlGuM3yEB//htKjyprbLeLf1y4xPyTeeF5zg/0ztRZNKZicgEmxyUNBHHnBKHQxz
+ 1j+mzH0HjZZtXjGu2KLJ18G07q0fpz2ZPk2D53Ww39VNI/J9ABEBAAHCwV8EGAECAAkFAk6S
+ 54YCGwwACgkQvSWxBAa0cEk3tRAAgO+DFpbyIa4RlnfpcW17AfnpZi9VR5+zr496n2jH/1ld
+ wRO/S+QNSA8qdABqMb9WI4BNaoANgcg0AS429Mq0taaWKkAjkkGAT7mD1Q5PiLr06Y/+Kzdr
+ 90eUVneqM2TUQQbK+Kh7JwmGVrRGNqQrDk+gRNvKnGwFNeTkTKtJ0P8jYd7P1gZb9Fwj9YLx
+ jhn/sVIhNmEBLBoI7PL+9fbILqJPHgAwW35rpnq4f/EYTykbk1sa13Tav6btJ+4QOgbcezWI
+ wZ5w/JVfEJW9JXp3BFAVzRQ5nVrrLDAJZ8Y5ioWcm99JtSIIxXxt9FJaGc1Bgsi5K/+dyTKL
+ wLMJgiBzbVx8G+fCJJ9YtlNOPWhbKPlrQ8+AY52Aagi9WNhe6XfJdh5g6ptiOILm330mkR4g
+ W6nEgZVyIyTq3ekOuruftWL99qpP5zi+eNrMmLRQx9iecDNgFr342R9bTDlb1TLuRb+/tJ98
+ f/bIWIr0cqQmqQ33FgRhrG1+Xml6UXyJ2jExmlO8JljuOGeXYh6ZkIEyzqzffzBLXZCujlYQ
+ DFXpyMNVJ2ZwPmX2mWEoYuaBU0JN7wM+/zWgOf2zRwhEuD3A2cO2PxoiIfyUEfB9SSmffaK/
+ S4xXoB6wvGENZ85Hg37C7WDNdaAt6Xh2uQIly5grkgvWppkNy4ZHxE+jeNsU7tg=
+In-Reply-To: <20250410174010.31588-5-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+On 10. 04. 25, 19:40, Praveen Talari wrote:
+> On the sa8255p platform, resources such as clocks,interconnects
+> and TLMM (GPIO) configurations are managed by firmware.
+> 
+> Introduce a platform data function callback to distinguish whether
+> resource control is performed by firmware or directly by the driver
+> in linux.
+> 
+> The refactor ensures clear differentiation of resource
+> management mechanisms, improving maintainability and flexibility
+> in handling platform-specific configurations.
+> 
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> ---
+>   drivers/soc/qcom/qcom-geni-se.c | 78 +++++++++++++++++++++------------
+>   1 file changed, 50 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index 4cb959106efa..5e2add1e04d3 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -105,6 +105,8 @@ struct geni_wrapper {
+>   struct geni_se_desc {
+>   	unsigned int num_clks;
+>   	const char * const *clks;
+> +	int (*geni_se_rsc_init)(struct geni_wrapper *wrapper,
+> +				const struct geni_se_desc *desc);
+>   };
+>   
+>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+> @@ -891,10 +893,44 @@ int geni_icc_disable(struct geni_se *se)
+>   }
+>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+>   
+> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
+> +				 const struct geni_se_desc *desc)
+> +{
+> +	struct device *dev = wrapper->dev;
+> +	int ret;
+> +	int i;
+> +
+> +	wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
 
-Hello Marcus,
+I thought min_t is no longer needed in these cases?
 
-[...]
+> +
+> +	for (i = 0; i < wrapper->num_clks; ++i)
 
->> >
->> > A comment for v4:
->> >
->> > I think I will go for a property in the device tree. I've implemented
->> > board entries as above, but I'm not satisfied for two reasons:
->> >
->> > 1. All other properties like display size and resolution are already
->> >    specified in the device tree. If I add entries for specific boards,
->> >    these properties will be somehow redundant and not as generic.
->> >
->> > 2. I could not find a ST7571 with a grayscale display as a off-the-shelf
->> >    product.
->> 
->> Sure, that makes sense to me.
->> 
->> Can I ask if you could still add reasonable default values that could be set
->> in the device ID .data fields ?
->> 
->> As mentioned, I've a ST7567 based LCD and a WIP driver for it. But I could
->> just drop that and use your driver, since AFAICT the expected display data
->> RAM format is exactly the same than when using monochrome for the ST7571.
->> 
->> But due the ST7567 only supporting R1, it would be silly to always have to
->> define a property in the DT node given that does not support other format.
->
-> Sure!
-> I've looked at the ST7567 datasheet and it seems indeed to be a very similar.
-> Both in pixel format and registers are the same.
->
+FWIW i should be unsigned too.
 
-Thanks for confirming, that was my understanding too.
-
-> I think specify a init-function (as those will differ) and constraints will
-> be enough to handle both chips.
->
-> I will prepare .data with something like this
->
-> struct st7571_panel_constraints {
-> 	u32 min_nlines;
-> 	u32 max_nlines;
-> 	u32 min_ncols;
-> 	u32 max_ncols;
-> 	bool support_grayscale;
-> };
->
-> struct st7571_panel_data {
-> 	int (*init)(struct st7571_device *st7571);
-> 	struct st7571_panel_constraints constraints;
-> };
->
-> struct st7571_panel_data st7571_data = {
-> 	.init = st7571_lcd_init,
-> 	.constraints = {
-> 		.min_nlines = 1,
-> 		.max_nlines = 128,
-> 		.min_ncols = 128,
-> 		.max_ncols = 128,
-> 		.support_grayscale = true,
-> 	},
-> };
->
-> static const struct of_device_id st7571_of_match[] = {
-> 	{ .compatible = "sitronix,st7571", .data = &st7571_data },
-> 	{},
-> };
->
-
-That's great! Exactly what I had in mind.
-
->
-> I can add an entry for the ST7567 when everything is in place.
-> The chip does not support the I2C interface, so it has to wait until
-
-Yes, but there are designs with carrier boards that support I2C. For
-example, I have  [1] and [2]. The former comes with an I2C interface
-and uses the ST7567S IC variant, while the latter comes with a 4-wire
-SPI interface and uses a ST7567P IC variant.
-
-But don't worry about it. Since I've these displays and your driver now
-allows for different IC families after adding the mentioned indirection
-layer, it should be very trivial for me to add support for these on top.
-
-> I've split up the driver though, which will be right after this series.
->
-
-Nice, thanks again.
-
+thanks,
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+js
+suse labs
 
