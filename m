@@ -1,146 +1,154 @@
-Return-Path: <devicetree+bounces-167496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9440EA8A83A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8AEA8A879
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7D03BBCAF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 19:38:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DDAA3A2F5A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 19:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8607A250C09;
-	Tue, 15 Apr 2025 19:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C812528E6;
+	Tue, 15 Apr 2025 19:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwXmHwmr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yjun66OB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51ECC250BE1;
-	Tue, 15 Apr 2025 19:38:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E723209;
+	Tue, 15 Apr 2025 19:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744745934; cv=none; b=MRWlCj2NgRCpij9CUuxaRQ0zOy+/cA/3uqgAT8D028qcHngTeOYksBkZZoaeCBNX+QbDApxEhLYHxG2IFdbyZKuBBrBsAJ51HZlcmCkmG9SIXy6qoqJ4jJDwk3fzgNTB0SetUnBIdsMcYkaeFjd3QqTrY5AOr+nAkzez2J5T+sg=
+	t=1744746699; cv=none; b=tYyb9ZgUopMKKGUo52/IhBoJRWYGMKv2kb74RMx6lGAExlo5n4esNyIU74OV0HcrLl2W4Ve9ElWmDxEQcXy9DCcAnFC4i1N8z4PHyRin7CyRYw2kbZujK2QJDRTBVXB2OKfqrGFrGkUIEJK9XfbJtsYd3OEJoQKvTaLlnMw0TDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744745934; c=relaxed/simple;
-	bh=+X8PZp7ZJAtaPIiDYEIFalIVsT/0lgcDfgcWZzUFk0s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bi/lIPaFhFHWbapyshCUhY5XUO2mxXNY9u3pc8UYHqLXJ/910xwgxbAUuPIZHJDfOnAsHepRv7kOFplJPRSw1/HGhSNfAFPNcacNtBKCnSKPNNPRAwmEtfMahoOMdlsrBNT4lhVBHDQBS8+0jlCTXsX9gDr/T8omVD8n2PN4SdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwXmHwmr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 996C0C4CEF1;
-	Tue, 15 Apr 2025 19:38:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744745933;
-	bh=+X8PZp7ZJAtaPIiDYEIFalIVsT/0lgcDfgcWZzUFk0s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QwXmHwmr9n+SApeHzUas+OtoRZJMrhoeh0R81kyW0D+KMv7H0dYo6A0zVAIE14s6l
-	 9OioSxFrNEzCZqkR/ZPwAP8Mt7QfkHTwZXdB9+TeUcGUXgwRDHGnHg0CyH6VskKTM8
-	 bCDj7haedPkBA+8xnkLnjIfr0vcYnTTdaBRXNz6RbgCJFX2bVULWtPtwJmkIVdEGxn
-	 BxaHnstuq1TeVO5g3PiMSCbHCzIfMgZmxH7n4wX3SZ6F9kBOA7Kh6yk5l23wyzruAy
-	 6M/5t2SIRmRgrcIU7QC0aIODXbZZEbfY75ctd2n+299mrucX5kX9JVaJdIoGd+c1be
-	 wHoAGPF3Wu57g==
-Date: Tue, 15 Apr 2025 14:38:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
+	s=arc-20240116; t=1744746699; c=relaxed/simple;
+	bh=V0nRazvic6zQK6oczCfT44BRsWeJTyKRfajIM079CY4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E/5wdI/PF8K86m7d9kr5BNlaLIOAVsAZZSs/d5fZZJvW//w/YnHJjirWmueCtryWh5DrkiBlLHjWCo8zRqdHZEDrluFp5XxZa/bPzBh0WrAjP81/qLPwuYeCDoil/zptRUAJTKtI0FZ5MaOVWuWkg8F/P6CweQHr5sxBY975i8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yjun66OB; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c31e4c3e5so3767204f8f.0;
+        Tue, 15 Apr 2025 12:51:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744746696; x=1745351496; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOPLX6FvWgZ/DgOAhmcsnleBRAoFzHewqjNAL903fbo=;
+        b=Yjun66OBycy62mtw5IXUTgC4ARHDtqeJ9Pkhz51NkrneCmYzZBzP5nGNNCVzweGdZD
+         u8RC4sFLZrWVnB8AfWaoLG/K6Il6VGy0yYkeF8yK08lh797y7o+yQAi7/10Zt4Buqrp7
+         tXH+zJB9aUqd0k4LxkmlUP+EsuudpBDMJi9Wmj1x6MI43jU0Ldr448V4EyTXz/ItCBU3
+         t0PkpBfW5TvhiXvwG0kAdldM2CwjhtrBWojgUAUcIOwf9i/unO6Ah+PgEazJGwlu9CD+
+         1oK6orYIx50Du3o7O9nD2lT9rbTp7QhOe+VKcsrN5mD0hz6mmIzga4y7nmmpgpCXQ3U0
+         hMtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744746696; x=1745351496;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rOPLX6FvWgZ/DgOAhmcsnleBRAoFzHewqjNAL903fbo=;
+        b=pHMF8sXPxCo4MdfxXkwteuoKyu7nLr7Rt4bRiiZKIiaShKdm/UJP6yuGMWbY/DOCfu
+         dZBog4LMk55u9wRs2BoSk08Y5Kq5S7rSwVDFxWITWZHrqokEMRhITuyEI0/BAMZcvMM+
+         KP5aNFbWcL8cmXjDCDmNPAlvnanJYALCIfiaxz4JggexG7qG3/JnB6QcHE1+t4lxxHgw
+         r60s8xszqDH3CIIHiFB9nvEmufW/ocX5ZGbKEdp7ywYbPvl4HyqNL/YXQ50RTgF5oxFN
+         Rre7Ugv3K3tXDJ71u4mPQgFHotcinw16zUW9VGoNHWocwfMXgk1KhR7xrQxdBMt3wUtp
+         THrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+V4Ei6SI2rqrpmwQM8jwQ4l5OYVkM6AN/MzF4x9CeShWFi4wL38WMD8ZyTX9OWep5KGskTZlUzaWeIzts@vger.kernel.org, AJvYcCXmqgjlWGH6Oit4jn/hPjL2qUWEo97c0+b7nJ2JjrgHYiK4qfKqAHeN0gAeaElcF+YRwadNB5hKUcsG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTL/YtNi5+DmuTXWQdgTK08U1LqwjHx96m7L0XYpJJMbCIes3S
+	xmxYzK9adkYLhaM0OqJC5hzwEpSPObA0FMxe7gNqQRW9Zj4xyUFm
+X-Gm-Gg: ASbGncuieCP3tkcUaqC8DYjfRBpmdFMyUxtO15aOpfFJ9y2fzM39L+mOQzy9EDKmv+Y
+	RnURhVqj8GtKIWzjP/2WYQmOC7mIZve5l95u12979hP/VwrRpv/rB4fn+PMN/EVF7Ds+WIkpOq+
+	4/L+zNjzvNbESxSvVweualcV8PQCo4JLzNZFru7WhNsJwEgA+GjI7IFNYo+cqSrv9jokzeUV5Zi
+	OLRxDggQ+SN5byuEUEZZXeeSkkpTozkivhnTND7jNt3zDzxAavsNAA28ORPm7lKqR+F1/LDalcy
+	G9iijROADJs4q+XvZF4d2Vy2rz54NaZH4ynT/MjssK614lXMOmNckNz4mgzLmHZL
+X-Google-Smtp-Source: AGHT+IFDLfYxrLB7ZGnCV9FZdtLOxXHxV7bBUEIx9+S7ONVpCsaOYNlCZx45VfOuyMPzxymkWWHmHQ==
+X-Received: by 2002:a05:6000:4014:b0:391:47d8:de3d with SMTP id ffacd0b85a97d-39ee2737bd9mr650244f8f.16.1744746695916;
+        Tue, 15 Apr 2025 12:51:35 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:1883:aa4:a265:bc12])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4404451c67dsm14169335e9.3.2025.04.15.12.51.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Apr 2025 12:51:35 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: spacemit: add clock support for K1 SoC
-Message-ID: <20250415193851.GA846160-robh@kernel.org>
-References: <20250412-02-k1-pinctrl-clk-v1-0-e39734419a2d@gentoo.org>
- <20250412-02-k1-pinctrl-clk-v1-2-e39734419a2d@gentoo.org>
- <20250412182737.GA1425287-robh@kernel.org>
- <20250412223431-GYA25375@gentoo>
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v5 0/3] Add USB2PHY Port Reset Control driver for Renesas RZ/V2H(P) SoC
+Date: Tue, 15 Apr 2025 20:51:28 +0100
+Message-ID: <20250415195131.281060-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250412223431-GYA25375@gentoo>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Apr 12, 2025 at 10:34:31PM +0000, Yixun Lan wrote:
-> Hi Rob,
-> 
-> On 13:27 Sat 12 Apr     , Rob Herring wrote:
-> > On Sat, Apr 12, 2025 at 02:58:11PM +0800, Yixun Lan wrote:
-> > > For SpacemiT K1 SoC's pinctrl, explicitly acquiring clocks in
-> > > the driver instead of relying on bootloader or default hardware
-> > > settings to enable it.
-> > > 
-> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > > ---
-> > >  drivers/pinctrl/spacemit/pinctrl-k1.c | 10 ++++++++++
-> > >  1 file changed, 10 insertions(+)
-> > > 
-> > > diff --git a/drivers/pinctrl/spacemit/pinctrl-k1.c b/drivers/pinctrl/spacemit/pinctrl-k1.c
-> > > index 67e867b04a02ea1887d93aedfdea5bda037f88b1..3805fb09c1bc3b8cf2ccfc22dd25367292b397b9 100644
-> > > --- a/drivers/pinctrl/spacemit/pinctrl-k1.c
-> > > +++ b/drivers/pinctrl/spacemit/pinctrl-k1.c
-> > > @@ -2,6 +2,7 @@
-> > >  /* Copyright (c) 2024 Yixun Lan <dlan@gentoo.org> */
-> > >  
-> > >  #include <linux/bits.h>
-> > > +#include <linux/clk.h>
-> > >  #include <linux/cleanup.h>
-> > >  #include <linux/io.h>
-> > >  #include <linux/of.h>
-> > > @@ -721,6 +722,7 @@ static int spacemit_pinctrl_probe(struct platform_device *pdev)
-> > >  {
-> > >  	struct device *dev = &pdev->dev;
-> > >  	struct spacemit_pinctrl *pctrl;
-> > > +	struct clk *func_clk, *bus_clk;
-> > >  	const struct spacemit_pinctrl_data *pctrl_data;
-> > >  	int ret;
-> > >  
-> > > @@ -739,6 +741,14 @@ static int spacemit_pinctrl_probe(struct platform_device *pdev)
-> > >  	if (IS_ERR(pctrl->regs))
-> > >  		return PTR_ERR(pctrl->regs);
-> > >  
-> > > +	func_clk = devm_clk_get_optional_enabled(dev, "func");
-> > > +	if (IS_ERR(func_clk))
-> > > +		return dev_err_probe(dev, PTR_ERR(func_clk), "failed to get func clock\n");
-> > > +
-> > > +	bus_clk = devm_clk_get_optional_enabled(dev, "bus");
-> > > +	if (IS_ERR(bus_clk))
-> > > +		return dev_err_probe(dev, PTR_ERR(bus_clk), "failed to get bus clock\n");
-> > 
-> > Do you really need these to be optional? Yes, it maintains 
-> >
-> Yes, the motivation here to make it optional is maintaining the 
-> compatibility, to not break the case of using old dtb with new kernel,
-> since the serial console device (uart0) is activated now [1]
-> 
-> IIUC, from the DT perspective, it's mandatory to keep this compatibility?
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-It's up to the platform. It's only mandatory to understand you are 
-breaking compatibility when you do.
+Hi All,
 
-> 
-> In dt-binding of patch [1/2], the clocks/clock-names has been described as 
-> required property, so it's sort of mandatory from DT's view.
-> 
-> One lesson I learned is that the pinctrl dt node shouldn't be activated
-> untill all prerequisite dependencies meet.. it's ok to push the driver,
-> but should postpone the DT part..
-> 
-> > compatibility, but if this platform isn't stable, then do you really 
-> > need that?
-> > 
-> I don't get what's your meaning of "isn't stable" here, the fact won't
-> change for K1 SoC: the pinctrl controller requires two clocks
+This patch series adds support for the USB2PHY Port Reset control driver
+for the Renesas RZ/V2H(P) SoC. The changes include documenting the USB2PHY
+Port Reset control bindings and adding the driver.
 
-You required 1 clock and now you require 2. That's not stable. 
-Generally, early on with platforms, their DT is not complete enough to 
-maintain compatibility. There's also likely not many users or h/w 
-availability for compatibility to be an issue. So requiring the DT to be 
-in-sync with the kernel is not a problem.
+v4->v5
+- Added Reviewed-by tag from Biju Das for patch 2/3
+- Dropped NULL check for of_device_get_match_data() in probe()
+- Dropped dev_set_drvdata() in probe()
 
-Rob
+v3->v4
+- Added Reviewed-by tag from Krzysztof Kozlowski for patch 1/3
+- Updated commit message for patch 1/3 as per review comments
+
+v2->v3
+- Dropped Acks from Conor and Fabrizio, due to below changes
+- Renamed binding renesas,rzv2h-usb2phy-ctrl.yaml to
+  renesas,rzv2h-usb2phy-reset.yaml
+- Renamed node name in example to reset-controller
+- Renamed function names in reset-rzv2h-usb2phy.c
+- Kept the reset line in asserted state during probe
+- Added comment for rzv2h_init_vals[]
+- Added entry in MAINTAINERS file
+
+v1->v2
+- Dropped binding postfix in subject line for patch 1/2
+- Moved acquiring the ctrl2 pin in deassert callback
+- Updated ctrl_status_bits
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: reset: Document RZ/V2H(P) USB2PHY reset
+  reset: Add USB2PHY port reset driver for Renesas RZ/V2H(P)
+  MAINTAINERS: Add entry for Renesas RZ/V2H(P) USB2PHY Port Reset driver
+
+ .../reset/renesas,rzv2h-usb2phy-reset.yaml    |  56 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-rzv2h-usb2phy.c           | 236 ++++++++++++++++++
+ 5 files changed, 308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+ create mode 100644 drivers/reset/reset-rzv2h-usb2phy.c
+
+
+base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
+-- 
+2.49.0
+
 
