@@ -1,198 +1,288 @@
-Return-Path: <devicetree+bounces-167544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B50A8ABB8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:02:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A83A8ABC0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:03:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D8BE7A5E8F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80E2F3BA949
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A639025E839;
-	Tue, 15 Apr 2025 23:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86A42D86B3;
+	Tue, 15 Apr 2025 23:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="AQbHAxsj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hqEzR59W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010020.outbound.protection.outlook.com [52.101.229.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48082226CF6;
-	Tue, 15 Apr 2025 23:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744758160; cv=fail; b=b5NRYY+U3dek2j2JuuLkcNxEc6wy7W/gaWnfXU5gsUR/hQWIz/Qn73+XxzF/qaW3hLs8a712iEMc3/5qapuS52UGHS7ylazBUs18NoLPVk6+4xKiTHsqUN+H+vJJr42cgGCyKFJewPLj26fbV5uIop4naiNZ+PuR1U4R2T+g+oU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744758160; c=relaxed/simple;
-	bh=4+XtwPtrLAGnLJJIin/teqWuUwMcIQlbMH2eTTvTk/c=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=T6ZY38utcwsaQ47pIGyLAWNdPLTeHXstNpNcZE4z9ATxIuAZH13LfrjTO94ZcWdRMvgQfB+zyUcwmoKjrENmtuEUmpOyxlf1cDZQOJ9N65N7HZTQFu/fClpRckIAy8PjFmv/+/YJ1uMitOqa+U/qfXeZclaGdzo9h5NMSmVEwA0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=AQbHAxsj; arc=fail smtp.client-ip=52.101.229.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TOKUyx713DN75EuEc2Ge0GwYSHCbObwRMmu/0MYd24PNSkyQefc2+5baFrTLMkhAAlCaCZ+N6xmkdNAptUx87hhsAI6Z/UCTcCryLXFJNUHQCvUz4Q1a/8XcfPXEZxMqiiLuXfePAGQoH5wF8L+LbyBi3zdKDNTfP+uQ15JbpODX9hOSNIVsJQb+fpympsPgcpKJzfAXaikUNGy3miBUqvognnqXTZp8tPX0yk9xdNnOwQOXE4bGT+xOr95vcHK9NewTL1LLh+vrt04hFrPYgBL+wY3wjbu9cMIUUDo53lGP8Nt9yVn1mcF4lSg6heU9pHNq6noLPGkcYwAJykOvEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ksvlep3/Opfwn8NwA13b1NwHPB3D7drxMf8JK+6GnlY=;
- b=gG+5yBGVeLRd4fiSLjgS0UY8wsahPXetsCY3hPg9OOC9rh1luopsFz6h5/eB/HVrvQUNnPJua2Velgu3q2g4vlO+t0jK+aGu3+tvQvlHaqnaQxSudfL0kpjrHRKvn7CXeSrKNMSj2bwtthhTSX8qIYRPbtBjYXk09PcFPfgQ7vyWG5hwLeBCZK2ezGGAgrMZ9BdDlm8/3HNCAlXfFCaOcCYTfLcu5NML4bY2UQglyaXh+/SuWaHjUu9Fuk9tzQxLYqlbwd20LoGVm6/lYvkQrUdg5p+VUD4Kn1Yed3vwqKNfYtabWiy7MFe/7WWamHbdvLnbjV3N/kCmEHsbBAeFUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ksvlep3/Opfwn8NwA13b1NwHPB3D7drxMf8JK+6GnlY=;
- b=AQbHAxsj6sZJ4k1LrwxIOCw6wJ3I5HTekVblzRh2TcmPewCX6CT0FLGS/c+GRJRPSTrOLPI7DpOaHPCCx+687U6qb3jCljsXvXAANk1iCTHoB8qsmY1BvgyjxPRViO4rZRG+9cufBfAu1izr8jWTTAPMYlAn8NXEK0ArRiYj0iQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYCPR01MB6143.jpnprd01.prod.outlook.com
- (2603:1096:400:4b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.31; Tue, 15 Apr
- 2025 23:02:32 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8632.036; Tue, 15 Apr 2025
- 23:02:32 +0000
-Message-ID: <87lds181vc.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-	ALOK TIWARI <alok.a.tiwari@oracle.com>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v3 02/10] spi: sh-msiof: use dev in sh_msiof_spi_probe()
-In-Reply-To: <CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
-	<87wmbm1a4b.wl-kuninori.morimoto.gx@renesas.com>
-	<CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 15 Apr 2025 23:02:32 +0000
-X-ClientProxiedBy: TYCP286CA0081.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b3::7) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03A529DB90;
+	Tue, 15 Apr 2025 23:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744758188; cv=none; b=Uxj2CdNy7OBLBSVbFxGjWFg81pKk0vWoeSxzHa22v1XXqcuwQiSOhC3X2fPnI6DfoJFu7pKNgd3/TytoVVbU0rzTSwVMAi4YxD5PS/2tVqi+amPBWq7S97Qq6K5FFsp0xJl3SzmI2Jd2+srUUiWEu8If+C7Ysj/ktf70w96twEo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744758188; c=relaxed/simple;
+	bh=JZRovcjiwQ33A3xUCMsFycF3ql2BDyl9qeX4yMmp6bA=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iKRSftGgBYL2CMwfWhz9pFK4Ebk0wqaTNX0NzIJfTNoNsd1rFxhbF52wq8ixlzS6g6Sct8YgdBRvVyiO841Y51yFubDQ+t7wVfuqegLa0x5QsgPo3r1mK19PaCHaVVqwGfMcT0/GasJa/8LcvQ9s+Kfx2LFxBU86oL91aB3liAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hqEzR59W; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7c54b651310so816908785a.0;
+        Tue, 15 Apr 2025 16:03:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744758186; x=1745362986; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:feedback-id:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Q21DKRIHxJEvdt+r1VLoxzAfD1ZQ4fXtiMyb7UHuaZI=;
+        b=hqEzR59W4HhSxePeWOTGxNpwgJPYr/WM4A62sqbNmUn1QQi5g1OHicjbKDu4+i0Pd4
+         RbXKvJLmezjtTZFBgvcZBxS27uuzmbIfkwA1iQsbiFJteBc/G1UorqUF5BfImvV7v74I
+         vApbt1ha5+Q3GexZp/b+gVWwo9vCm9/QN3h0RqNe6Lp7eqv2gtd1/9B0OgNbE/YLvy5l
+         j1LRvjKj51QHZ5r6nfF8GUeu8D37w4jsOj4pl6Ks88Qx29s80a7g17cu5i7BTswtaV7E
+         rlw4REa8iIf/Pi1jgwR5JE/+WY72fXW5FJrV+aOS6PCmiZXQVuIjT38qGaWXyIpEUyWa
+         Brqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744758186; x=1745362986;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:feedback-id:message-id:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q21DKRIHxJEvdt+r1VLoxzAfD1ZQ4fXtiMyb7UHuaZI=;
+        b=mUrwMpiecvYnYgEkm2uyRDqwqCSEeSOrGEhO3LE4icQw0SeVDicrfpgGch5Rq169x+
+         IHSTf9UUAWA5H1UGrHRTgiZKkEBA9Uq5C7q4QR0hQkisMxRyodJWlbkyFCCtQHjoSpjV
+         ei5yOdhtBi56GdQyAamSqiHzkI+coeBvNGnJ9tu+P61fAU8fBSVurYUfUOMyvddfl1Of
+         xY5C2a/KDP7vyUtVJ6DGeMWJjVzX9usEg1PDqNrYDo5v3kirG7BQI6sx7APpB3XYO7EM
+         BFCYXocmpkN6hJCEBwqI079O5iM8ZQAwoy1n3SxpkQqJYC/9XnBAlgej2RH0joDMNqAN
+         Ywhw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3Ijq2ErJCo3hETPn3rVmSttq4vXKMCL9sWYf+ZREC/Mjdb0cUvbVnhJ2nJfkIe0I8g1GIBtVm7NV5egg=@vger.kernel.org, AJvYcCU8GEY4P1jVp0TtmilVzbzJA07UGRo7izGNcCm+/+G9VmYzZbO4RhQVtv90A2Nj9lG4yFHc44b42KwS@vger.kernel.org, AJvYcCUUtGH8qh/J5DM2zPkM67X0tnqowLGkaJJE1zHPlaKmkkZF285hLSsIBUThNYAD7vawuzqR7M0MjInwmj8Zntdr@vger.kernel.org, AJvYcCV9SwtRrS53UjNZvz4WSWrrcYia6tPrPjBoFChGHW1HnVVyc4s8lvZo6uFVtDLPLi9IUdazlPay7L3ShTNw@vger.kernel.org, AJvYcCWPBjMqqu76ifmHVYufb8A8ndS3NAr+kNZmk4sxiQ1dVPW/HLmTHp8PrQBiJdwsjuqdA1oVy2beyCzR@vger.kernel.org, AJvYcCWyfFwA2Hg/NtHFkMIpvcAjfYEfwEEyIFoRvk+cujRPRMxeMe6y/j0mHTjFDLNOHm4ehQ76vLt9FiQ7PjfZG5U=@vger.kernel.org, AJvYcCWzlaNeGQc9TDqP8v2lPZpubzry4eAnn0ibyqxKS1B3vNfU7pul8oe7KZ5SRLQI9vnkcob0ZiY63HDcFFMF@vger.kernel.org, AJvYcCXHcL9ZikTZFzIoWTKhVshXHQ2VXRKOozsEP+CayaxkcG/gB6FM0E5aqW2Hw7nB3PuLXqA4OghN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxe5047ksgl1xC6hXsQqhjwSlnq1oW1P4JaE53yomeaHUQruZVR
+	UZj6ytotYT/rQWl6KG6J/sCQMPd53YCEKkZG0JF+9khhAW0VDD1m
+X-Gm-Gg: ASbGnctxY7Ie9ks5Lwcuz7daJSGS0eTIzHSyLZbkW2nWYzBcDCPYhG4w2j4MaGXbkRW
+	jDT9dOibMajY+SgXTwbON45ex1mYuu5NOrhF9fCyZmC46uoxKrm0ARcXGmTixUnwhZuhqwNDPWL
+	jq5qfGchLRmiS3TJ2vfoLHSgPGXrqEbghloO4LYTqplctoIFHLds3jzPb1wCN8zGaNFaXhlNd8U
+	SUZQd/U1LrYC31cXzFvaXIKz/Ms/0xFDUacTcc7c7RU8wlJ6+n/DBrWliOyick3qUR+/MI4ZrDW
+	8596+y2a3lEo4DCk8HjxxLcNggA+/dz+9w83u/tlpPys+5MvXlWB9w6fFoUy01FzywxcX8MeW7z
+	8yvF+bobI4+ThwQoojlL0Rpn5N2LPfQI=
+X-Google-Smtp-Source: AGHT+IFD/29vIxMjxOFxQ8BkiE/LEbZtqORNAZrDSp4aJ594XboCIC4xgBiV7FVPqr3EbX3zcQVpqw==
+X-Received: by 2002:a05:620a:459f:b0:7c5:4c6d:7fa5 with SMTP id af79cd13be357-7c91428098amr221292185a.48.1744758185614;
+        Tue, 15 Apr 2025 16:03:05 -0700 (PDT)
+Received: from fauth-a2-smtp.messagingengine.com (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a896a708sm969451385a.58.2025.04.15.16.03.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Apr 2025 16:03:05 -0700 (PDT)
+Message-ID: <67fee5a9.050a0220.25fe78.76d2@mx.google.com>
+X-Google-Original-Message-ID: <Z_7lpfy3H74dI1Ad@winterfell.>
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfauth.phl.internal (Postfix) with ESMTP id C4F0F1200043;
+	Tue, 15 Apr 2025 19:03:03 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-02.internal (MEProxy); Tue, 15 Apr 2025 19:03:03 -0400
+X-ME-Sender: <xms:p-X-Zz3WUcQHo5SPerJTk_Pdw6EezJuTH-lYjWN5uKuxBZn4sbkqSQ>
+    <xme:p-X-ZyEihct8Y5-jYRn-hwKhJNfUEQet1OPd2N-am8r60UUrmWLlmSgr1LcjP_tKs
+    b9VG5Lbohie4BDeIg>
+X-ME-Received: <xmr:p-X-Zz6GJVAyNj9lTiZEOMLtdkuSmnFOQWBwbEVDi79-oJdfu-HslPmbdD8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvvdegjeeiucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
+    vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
+    hlrdgtohhmqeenucggtffrrghtthgvrhhnpeehudejhfekieevvddvgeehhfdutdeggfel
+    gedugfejhffggeelkeeuffdthfetgeenucffohhmrghinhepihgushdrrghspdhkvghrnh
+    gvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+    ohhmpegsohhquhhnodhmvghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvge
+    ehtdeigedqudejjeekheehhedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhm
+    sehfihigmhgvrdhnrghmvgdpnhgspghrtghpthhtohepgeejpdhmohguvgepshhmthhpoh
+    huthdprhgtphhtthhopehtrghmihhrugesghhmrghilhdrtghomhdprhgtphhtthhopehm
+    rghsrghhihhrohihsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehnrghthhgrnheskh
+    gvrhhnvghlrdhorhhgpdhrtghpthhtohepohhjvggurgeskhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtoheprghlvgigrdhgrgihnhhorhesghhmrghilhdrtghomhdprhgtphhtthhope
+    hgrghrhiesghgrrhihghhuohdrnhgvthdprhgtphhtthhopegsjhhorhhnfegpghhhsehp
+    rhhothhonhhmrghilhdrtghomhdprhgtphhtthhopegsvghnnhhordhlohhsshhinhesph
+    hrohhtohhnrdhmvgdprhgtphhtthhopegrrdhhihhnuggsohhrgheskhgvrhhnvghlrdho
+    rhhg
+X-ME-Proxy: <xmx:p-X-Z41IoaAkSc3EBgjWc6FXL709swaRQ4uUE1JmJ7uwRMFyWIM8qw>
+    <xmx:p-X-Z2FWGrBqGBVjFOLFXxauA-nSn0cOk80DjxXcxIfFi4pNOTsFBw>
+    <xmx:p-X-Z5-JJOXIKKn2Ask5SGKUS8sj6aH_plq-OmVqa5Dc4Y2gCsioRQ>
+    <xmx:p-X-ZzkEZZfroB1PnsAsuNes8k_rpPpUslzDA-16Zho9eYd0LiRujQ>
+    <xmx:p-X-ZyHPCpMV7Nst1ncTZ1st-JDeh20IBOZOttD2KMdbEi0SFLxqXbnu>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 15 Apr 2025 19:03:02 -0400 (EDT)
+Date: Tue, 15 Apr 2025 16:03:01 -0700
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Frederic Weisbecker <frederic@kernel.org>,	Lyude Paul <lyude@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+	Anna-Maria Behnsen <anna-maria@linutronix.de>,
+	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v8 6/6] rust: enable `clippy::ref_as_ptr` lint
+References: <20250409-ptr-as-ptr-v8-0-3738061534ef@gmail.com>
+ <20250409-ptr-as-ptr-v8-6-3738061534ef@gmail.com>
+ <67fe9975.c80a0220.1b5785.66e7@mx.google.com>
+ <CAJ-ks9mzyfvsxkyud_wLXfhLD_zP95bivCQ9i2aC-3ea=Y7+0A@mail.gmail.com>
+ <67fea2d6.050a0220.8fa7f.6690@mx.google.com>
+ <CAJ-ks9=G1ajyT8gwLHyvHW09Z2gG=Geg7LDS6iyRyqx_wyp5Sg@mail.gmail.com>
+ <67fec6c1.0c0a0220.f907e.c6dd@mx.google.com>
+ <CAJ-ks9mZ4qqRwQTWyGYgPy9kf3=od=zbvX67ELVgctU0t6qHuQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB6143:EE_
-X-MS-Office365-Filtering-Correlation-Id: c835fa9c-6009-4f9d-1e6c-08dd7c719a88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?SJYtDBYdbQvLcqHucPHBtisaIjm9LY6w2DXiahkGcMKDgmchjW7fVodj+WXH?=
- =?us-ascii?Q?Abk9Yci0rwo9u+8Mu0T7a1l9W2O59ErT5fdWXdBvwetq6YVITbXPdEsif4tW?=
- =?us-ascii?Q?pLQw21mYh253tjGnqgkXxf+jYz0uHP0TmsXE7Vkc+7fzzQDecJkNXa6Tb+qU?=
- =?us-ascii?Q?ftus2e8vcpwkh99Pq/jpyBFyHb1hcc4DbZ8BO0ruGIjM4+PYef8LDSTgp4Zj?=
- =?us-ascii?Q?G/cjSW4yrxq/XXjlb6aO7Fx7lIAo5csum88yt2+iz4Q56f28G5WvKVcPNc6W?=
- =?us-ascii?Q?eLVZ55C3nkSZPl8T8eKvqvR7WzNG3/33RgGrRxU/Hkala5BrxGBCCFGs3CYp?=
- =?us-ascii?Q?HbhlFi+iaVZ++Rpzi7tWgiwN3fGFcemeNm84UB0XriawIh9EhVtyBjWQneY5?=
- =?us-ascii?Q?qPXRhCshP4t3QHknO60BALRQ2LKle+RVApxmQ96We+dwurzQynhKbDrWnVFg?=
- =?us-ascii?Q?iIcTLmIMLp3/FHcxpReK1JWsJ5knXfcA2phEq4IsxK+r62ge6KjU5xosp03J?=
- =?us-ascii?Q?WYt0WjsDXgMZi6vJNBF/L6rOZkH9kWqkvmyFXlnO/IF2PC2qPcWylQksqR18?=
- =?us-ascii?Q?nfQ1n1NaHnd84ukoz2MkXPRCAqqQsEDp4bLjP9vx+ShrTGuXXks73RTcAlS4?=
- =?us-ascii?Q?GeWfR+8PYLoy8IwtAPVB97084kbcgTsGykaaHoj3tH78hYyabFew6xborHBp?=
- =?us-ascii?Q?yAzrGz3I5hL20GSaR72Nsm4LPjHmSHmpbRBEIGKke+IptzQv0oe3CaMXBDoD?=
- =?us-ascii?Q?TM/luIrrtYbKclQvj8KxwaDAKPlj1QPNnJiqeTXDqMXv+xjOk+X7SR75+1lA?=
- =?us-ascii?Q?tR0m3s/I7U/HA7ScnaeqwT9ng4G3nlKobrd8BjL7sGI2uFDC9IzNecUVhvDD?=
- =?us-ascii?Q?B6xBAy6nE03iPCQi1rHAN/Vl8noKcuvIq0oHSw4d3k2fDbpM7wUIuYRuzpFB?=
- =?us-ascii?Q?OOKi7VkB8l/DMUoE/mnJVjNoNUtJiDRHwO/OZSsH0cSjjnNp7DaHeNY0ifM1?=
- =?us-ascii?Q?NBGg8vHxA2hxOOQ+4VisuYT0ipRgv4jP/GVyz1oZsADH6sI2vKlOZbriec4p?=
- =?us-ascii?Q?mTryxP0jIvimk787trGR2gLKOTVHVrmJbUCf7tcdOyG5KPCwgCU7MjqdJTGz?=
- =?us-ascii?Q?HxAw7tiDM/uWDKq1KUTF3Rw1nALANlF1rHOISLgyTfHgY0XyAF+nNt2zHMqc?=
- =?us-ascii?Q?umGdhd3b5dzSePxwE5waK/YFwfgrfRjjWpWQ59BGWlS0ijSL7ILHVzEhdLoL?=
- =?us-ascii?Q?9T/qDbsfYcloKgpsgXQMpW6f+jXD4cYMqm1nBVtYzdI8M1OtjuOrUcFHXWhO?=
- =?us-ascii?Q?o3vAst6XvmOIdFhfaHTZn6PtbJbSbxk6S255ZQTMGU1h70evH2DvadP1BNlg?=
- =?us-ascii?Q?zqfV6wPn2gNXy0LWzv5V7maB6Na03oDzaZbsx924P6WpmbV1zpLFwJucTT+r?=
- =?us-ascii?Q?Arjf4xFSVd3z27mp4tc8E0a64ZSjUdi4Py9/TRWbOWl/WR3vfHVDTw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Bdw6UWcC6yR9rMO1AIrRjnLS/iMWZlMaPI61+iWaedneWZH85wpVhzHm5OYe?=
- =?us-ascii?Q?28nADjwQenplzSWIr90MUkMpO/Cp3LivSXmaSh7fZqLsXd4JkR72Qi1WTuVh?=
- =?us-ascii?Q?7rnBlL/A/vmGU6UIILfITHSqicg46rqCOSSXQ3l0E3XrTTvmzcnNt0DpVrcj?=
- =?us-ascii?Q?gDX63Nw+ELuC92fVZx8tfzjetZUeUiRrhwj8DKznKxm4/FFQn1pX2UdoUOb9?=
- =?us-ascii?Q?ssT614hxTw26qrwu8SHsuXM+wgUNiYBx0zNJSgZMUXmiPuromYmbbWv1jtWt?=
- =?us-ascii?Q?RxTKv1TqhSjykZH8vP6nK0dMa7DDACe1mb1O5DCuudIyh/oiE4yapV0/CTIY?=
- =?us-ascii?Q?StujzVHU+aStD1wlQJO4csqrwfQ/IqVwkXMhRBMetOMTE5afD0B1RuuG9614?=
- =?us-ascii?Q?8WsX4wyaNOZTPmv+L4bC1kIr1vKTZFsvYmXW35qMpzwabFsBU5ylfcFQkSfu?=
- =?us-ascii?Q?atVG2aJaMnNJ5eWbN8+XYNtPoiuY+qgdZzVX32rr1/F5FY3+S1KwJ2l1bZxL?=
- =?us-ascii?Q?r7BOj+zFaG+QZGJVx3Y7RYB9it0QZF8cxH7gzBK/u2S9POXbK6GDjX1nMfY+?=
- =?us-ascii?Q?uvLddm7sVu9WBzFud0uKcaTuulYnEfk6crY0Pr4O/pAnDLl1jiOGEYSwTwBq?=
- =?us-ascii?Q?wLGT4Vehv98Eq865DnlMz1ed26nThJui1z1hBnesZxZLEQPpFntHGAKQ+4rp?=
- =?us-ascii?Q?e5McpYcBl/N6ol7j5o5m/E81rB2hhih+XsTK5i/TuSpxfkV2SEfeerKBYmSr?=
- =?us-ascii?Q?qVO0I0EBifBz4w4k7IK4hrCQHAfpZUUF8t+WqZd/5gi+M3wgciO/ScRA+7cI?=
- =?us-ascii?Q?O0cGbPXPBJNSK355noqBh9AglbKmVPZIDXxGkwa0nltrD4XYDTi6mccSOxly?=
- =?us-ascii?Q?DCeXXMZ7gB0hi96Fd4mW/szIw1b9i0czh/eHm4vt6WlhUni26kZVPXp1nKwV?=
- =?us-ascii?Q?u3NeyPojOVsBMn+k9QlnpxUxAKbsiIhc9oIfP9ey6k7Cpt6A945Ahgh0iCmJ?=
- =?us-ascii?Q?2UKvmmyPngWTLPBK3Oyt87yl/h4kfAWMFskpxzWV/XGy+e6X81zbLLs6VS+M?=
- =?us-ascii?Q?NsOutFQuwnmpkn4rS16lC03qrE648qNfmGjH2p4IwajhLm+ykGmVSJ3WWszQ?=
- =?us-ascii?Q?21Xd+0tNNRLRMWYC1ooolfMkoV52Oi8hNwV2/dhmaalKp31PAeVdqTXRdiVw?=
- =?us-ascii?Q?ofuXOHb5/BHjBSa0XzbM0fj3GUGK8JOzSGorjm2L8glreS9U3/9arhQ8mzzN?=
- =?us-ascii?Q?iiCtic9NIUu0c9QZEeERZVtShCxEdoJw1zmw5hW4m5iybROnZDb1jV9jqwWf?=
- =?us-ascii?Q?J83mkF8Tspy8RwddCYuAFZS0zdbHvLnWdznU0/pipJS7Bfphi1rxhf8D1lPx?=
- =?us-ascii?Q?nIvYYRD56oGYCbo+WCAKCHrVnwOQq/ScL+2hwtyIm1hyTLYz0XimRzrjvytc?=
- =?us-ascii?Q?IBlFGnVRLk6EfbFYr0ADnCadnQ3ItwhDAg0ZG+1RGlYDCMyx8RHdtEb64OUC?=
- =?us-ascii?Q?OkgZO8pSrxLspsH+I5Rbi3o7JoABSSrsVKS8gavqMebkb99bFgqsfxIue1fy?=
- =?us-ascii?Q?dw8xIZu8+FyZhukBVzg54BTaRWSkJRjoK8CQqKI9YsdbdxzmOD97iOvRHqoM?=
- =?us-ascii?Q?Q4hy4uevEZDDG+DzKCMdyUo=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c835fa9c-6009-4f9d-1e6c-08dd7c719a88
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 23:02:32.3301
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8GrEqOox9gB5+4BpnbqLxbZZrOH+HfyLhBFsrO4uikqgh0rs1v50mxnIPiQqrtghVPt+H1cY13hvgmPVt5r4zuutx2X/Liu5K7k3/3D34smpLSfP/IUNeIEehM1KoIwu
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ-ks9mZ4qqRwQTWyGYgPy9kf3=od=zbvX67ELVgctU0t6qHuQ@mail.gmail.com>
 
-
-Hi Geert
-
-> > sh_msiof_spi_probe() is using priv->dev everywhare,
+On Tue, Apr 15, 2025 at 04:59:01PM -0400, Tamir Duberstein wrote:
+[...]
+> > > > > > > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
+> > > > > > > index 4063f09d76d9..37cc03d1df4c 100644
+> > > > > > > --- a/rust/kernel/device_id.rs
+> > > > > > > +++ b/rust/kernel/device_id.rs
+> > > > > > > @@ -136,7 +136,8 @@ impl<T: RawDeviceId, U, const N: usize> IdTable<T, U> for IdArray<T, U, N> {
+> > > > > > >      fn as_ptr(&self) -> *const T::RawType {
+> > > > > > >          // This cannot be `self.ids.as_ptr()`, as the return pointer must have correct provenance
+> > > > > > >          // to access the sentinel.
+> > > > > > > -        (self as *const Self).cast()
+> > > > > > > +        let this: *const Self = self;
+> > > > > >
+> > > > > > Hmm.. so this lint usually just requires to use a let statement instead
+> > > > > > of as expression when casting a reference to a pointer? Not 100%
+> > > > > > convinced this results into better code TBH..
+> > > > >
+> > > > > The rationale is in the lint description and quoted in the commit
+> > > > > message: "Using `as` casts may result in silently changing mutability
+> > > > > or type.".
+> > > > >
+> > > >
+> > > > Could you show me how you can silently change the mutability or type? A
+> > > > simple try like below doesn't compile:
+> > > >
+> > > >         let x = &42;
+> > > >         let ptr = x as *mut i32; // <- error
+> > > >         let another_ptr = x as *const i64; // <- error
+> > >
+> > > I think the point is that the meaning of an `as` cast can change when
+> > > the type of `x` changes, which can happen at a distance. The example
+> >
+> > So my example shows that you can only use `as` to convert a `&T` into a
+> > `*const T`, no matter how far it happens, and..
 > 
-> everywhere
-
-Grr, thank you for pointing it.
-
-> > -       ret = devm_request_irq(&pdev->dev, i, sh_msiof_spi_irq, 0,
-> > -                              dev_name(&pdev->dev), p);
-> > +       ret = devm_request_irq(dev, i, sh_msiof_spi_irq, 0, dev_name(&pdev->dev), p);
+> I don't think you're engaging with the point I'm making here. Suppose
+> the type is `&mut T` initially and `as _` is being used to convert it
+> to `*mut T`; now if the type of `&mut T` changes to `*const T`, you have
+> completely different semantics.
 > 
-> Looks like you missed one instance ;-)
 
-Because it can be 1 line now.
+You're right, I had some misunderstanding, the "`_`" part of `as _`
+seems to be a red herring, the problematic code snippet you meant can be
+shown as (without a `as _`):
 
-> With the above fixed:
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+	f(x as *mut T); // f() takes a `*mut T`.
 
-Thanks
+where it compiles with `x` being either a `&mut T` or `*const T`, and
+`as` has different meanings in these cases.
 
+> >
+> > > shown in the clippy docs uses `as _`, which is where you get into real
+> > > trouble.
+> > >
+> >
+> > ... no matter whether `as _` is used or not. Of course once you have a
+> > `*const T`, using `as` can change it to a different type or mutability,
+> > but that's a different problem. Your argument still lacks convincing
+> > evidences or examples showing this is a real trouble. For example, if
+> > you have a `x` of type `&i32`, and do a `x as _` somewhere, you will
+> > have a compiler error once compilers infers a type that is not `*const
+> > i32` for `_`. If your argument being it's better do the
+> > reference-to-pointer conversion explicitly, then that makes some sense,
+> > but I still don't think we need to do it globablly.
+> 
+> Can you help me understand what it is I need to convince you of? There
+> was prior discussion in
+> https://lore.kernel.org/all/D8PGG7NTWB6U.3SS3A5LN4XWMN@proton.me/,
+> where it was suggested to use this lint.
+> 
+> I suppose in any discussion of a chance, we should also enumerate the
+> costs -- you're taking the position that the status quo is preferable,
+> yes? Can you help me understand why?
+> 
 
-Thank you for your help !!
+In this case the status quo is not having the lint, which allows users
+to convert a raw pointer from a reference with `as`. What you proposed
+in patch is to do the conversion with a stand-alone let statement, and
+that IMO doesn't suit all the cases: we are dealing with C code a lot,
+that means dealing raw pointers a lot, it's handy and logically tight if
+we have an expression that converts a Rust location into a raw pointer.
+And forcing let statements every time is not really reasonble because of
+this.
 
-Best regards
----
-Kuninori Morimoto
+Also I didn't get the problematic code the lint can prevent as well
+until very recent discussion in this thread.
+
+I would not say the status quo is preferable, more like your changes in
+this patch complicate some simple patterns which are reasonable to me.
+And it's also weird that we use a lint but don't use its suggestion.
+
+So in short, I'm not against this lint, but if we only use let-statement
+resolution, I need to understand why and as you said, we need to
+evaluate the cost.
+
+> >
+> > > > also from the link document you shared, looks like the suggestion is to
+> > > > use core::ptr::from_{ref,mut}(), was this ever considered?
+> > >
+> > > I considered it, but I thought it was ugly. We don't have a linter to
+> > > enforce it, so I'd be surprised if people reached for it.
+> > >
+> >
+> > I think avoiding the extra line of `let` is a win, also I don't get why
+> > you feel it's *ugly*: having the extra `let` line is ugly to me ;-)
+> 
+> I admit it's subjective, so I'm happy to change it. But I've never
+> seen that syntax used, and we lack enforcement for either one, so I
+> don't find much value in arguing over this.
+> 
+
+If the original code use "as" for conversion purposes, I think it's good
+to be consistent and using from_ref() or from_mut(): they are just
+bullet-proof version of conversions, and having a separate let statement
+looks like a distraction to me. If for new code, and the author has a
+reason for let statement, then it's fine.
+
+Regards,
+Boqun
 
