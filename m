@@ -1,72 +1,74 @@
-Return-Path: <devicetree+bounces-167327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6822AA89F0F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:11:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0465A89F17
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:12:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD271188E2B8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:11:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 675293ABEF6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81A8297A72;
-	Tue, 15 Apr 2025 13:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1412973D9;
+	Tue, 15 Apr 2025 13:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A/1IqjfD"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SyhUf/n/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9F5297A6C;
-	Tue, 15 Apr 2025 13:11:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C548D2957C7;
+	Tue, 15 Apr 2025 13:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744722682; cv=none; b=tJ1f86Zmw9kM7uKyBhXg7Gl169XJqJ2tHJPx3YZZhX+MP3bVDU/2WSdUdtsXI3bMxFwjbE/ajFhQcBTEvIQ2Zr7nGUg/r938WB1d84G0tJjT+naQ6e8T29G5HgrRRqYgNKeK3ECWPKy7ABvx+PS5T2x1r9xLzIRP11UsdeDPhM8=
+	t=1744722752; cv=none; b=YpK3u1OUXm2XGrCjajPPpW2pvVYFwbgiOuTqonUtYdYwAVZB9SyWoj/snaoEr2Oiuh59FNg+dp9IwG7qtiWZRSAX+dTT4N2yrt6KUHs3OXA1d4hVZm6S1zcdvirVsFTv+I6gwleZ6Wt7R53Ka1Vob76lk4KsdHzIzMqCCYviK1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744722682; c=relaxed/simple;
-	bh=v8TJgpASVjg0/9Rhs8onAf+pfIazFy/KYb3K3LTKVuQ=;
+	s=arc-20240116; t=1744722752; c=relaxed/simple;
+	bh=BeHlrz5CIQlk/1kDDh2XFjvzQ+Ov07K+rokHvYu2Nj4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kETiJwwZLnY5b77PuftUZm3WoCk1tX414RtJX42WGcbmqc0hLR24m/QOQU6G1MKM7GFja5TQBt03xeBMfYYwotTVds7k3u68ewjiOfkhXiekrT9wsbYrYKBmzHLiT1Ii+liKm95Rr3fdU2WJnU03LKYlrLDVzO7N0q1iBcv6qI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A/1IqjfD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC3AC4CEEB;
-	Tue, 15 Apr 2025 13:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744722681;
-	bh=v8TJgpASVjg0/9Rhs8onAf+pfIazFy/KYb3K3LTKVuQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A/1IqjfDL3pIuDcquYN5U7ufCXvWXd9EZEOEKEBKiZgsDrK+Fi05L9aXCH/kAAiWj
-	 zHce/bcue0MxFpSpuau5p+Q+WWpDErApmXu/UI2/pQWGYRaW7b8SPqUYnzb4yLcHw4
-	 Wue5SNv8efD0tsQJx7pz/V3YZ3oO+I6Poj+IeesFpRU5O/RWHy/rW6wckRtyvWsWrX
-	 2CVETuP2Z7hBt1N0FWFrpzc8V+ZjqOp9El/O23pKMzSAA02MVJwd5xWeXXJTWo9rh0
-	 j5zF1f8Cyup7xcxQoAjJsPqnwOZewz+KXjfxGEFbgrksqgnsXGMxBTYqlUyplAD4q6
-	 Ebi3cszaPg1dA==
-Date: Tue, 15 Apr 2025 15:11:15 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Remo Senekowitsch <remo@buenzli.dev>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] rust: Add bindings for reading device properties
-Message-ID: <Z_5a87L9hYz0Pbc8@cassiopeiae>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
- <20250414152630.1691179-3-remo@buenzli.dev>
- <Z_1Jfs5DXD2vuzLj@cassiopeiae>
- <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev>
- <Z_4rVyUjK1dlnTsT@pollux>
- <D9760KMM0PSB.HONQ7MUG8OTN@buenzli.dev>
- <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qlPRqLKcMRdQJSzv7K+ZOsZXq4m1jCL2XvVGd06vAC6tJJqqem3SaipeALns9EBPeXCZrK8I0dPxRDgxj2P0vFXb0JaQJb48QdYZVp3YJeHP8l89NtW3p7kUG7pnwKgkQqdVaPsvmLHvWNl++udiVOFvdGJJ1r/7/BIa/SDpYCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SyhUf/n/; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=S+9AKP7zQ1+iMRVWZx18hsEz57eDtfhGlOAA50AWGAU=; b=SyhUf/n/OF9SyPoLA1ckdHwam6
+	5WaQP2y7KmbnQjEBT4QA5bWMeKLM0hBfi+nzMnWSov05efBfqdCcy/VRO6BApbaoyKMQMrYHrMukf
+	u2rgHQFqsw7Z4wPUihGUMayHx1i3aLoJpiB/JQqoLl+5qtmG8EmXQOUJ4v2Gs1SJgLaA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u4g5B-009RlD-7A; Tue, 15 Apr 2025 15:12:09 +0200
+Date: Tue, 15 Apr 2025 15:12:09 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Whitcroft <apw@canonical.com>,
+	Dwaipayan Ray <dwaipayanray1@gmail.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH net-next 4/4] checkpatch: check for comment explaining
+ rgmii(|-rxid|-txid) PHY modes
+Message-ID: <a0904f35-8f26-4278-9090-9bbeef905ef7@lunn.ch>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <16a08c72ec6cf68bbe55b82d6fb2f12879941f16.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <20250415131548.0ae3b66f@fedora.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +77,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
+In-Reply-To: <20250415131548.0ae3b66f@fedora.home>
 
-On Tue, Apr 15, 2025 at 07:46:19AM -0500, Rob Herring wrote:
-> 
-> A reasonable split here is possibly splitting the fwnode and the
-> Device versions of the API. In any case, I think we've discussed this
-> enough and I don't care to discuss it more, so whatever reasonable
-> split you come up with is fine with me.
+> My Perl-fu isn't good enough for me to review this properly... I think
+> though that Andrew mentioned something along the lines of 'Comment
+> should include PCB somewhere', but I don't know if this is easily
+> doable with checkpatch though.
 
-+1
+Maybe make it into a patchset, and change a few DTS files to match the
+condition. e.g.
 
-Let's wait for some more feedback on the Property trait impl for primitives,
-CString, etc. before moving on.
+arm/boot/dts/nxp/ls/ls1021a-tsn.dts:/* RGMII delays added via PCB traces */
+arm/boot/dts/nxp/ls/ls1021a-tsn.dts-&enet2 {
+arm/boot/dts/nxp/ls/ls1021a-tsn.dts-    phy-mode = "rgmii";
+arm/boot/dts/nxp/ls/ls1021a-tsn.dts-    status = "okay";
+
+This example is not great, but...
+arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         phy-mode = "rgmii";
+arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi:                         /* 2ns RX delay is implemented on PCB */
+arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         tx-internal-delay-ps = <2000>;
+arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         rx-internal-delay-ps = <0>;
+
+There is one more i know of somewhere which i cannot find at the
+moment which uses rgmii-rxid or rgmii-txid, an has a comment about
+delay.
+
+	Andrew
 
