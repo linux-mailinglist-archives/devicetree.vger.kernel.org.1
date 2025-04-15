@@ -1,109 +1,153 @@
-Return-Path: <devicetree+bounces-167081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2A4A89536
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:35:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E81A8953A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AA823A5DB3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:35:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6452E3A61FE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F8527990F;
-	Tue, 15 Apr 2025 07:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C65F27A112;
+	Tue, 15 Apr 2025 07:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s+oo7O0h"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OQ3cErnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6692B2750E6
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 07:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5359A27A108;
+	Tue, 15 Apr 2025 07:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744702530; cv=none; b=hRd0tSqJdxhr2ZPUiqr283pGiEHeKgVfABhHC4BFSoNuLRxwAJaGL/QM6WyBwi7tPUjgBp3BYOtBPL4fiqNvnoiIrRkLq/vpj6kFgUCSjzvd1m5tPL7QhL3egymavL6bdzusAwVSt2WwftouAvVdzeo90PxisFjxTeAmkcaCJzU=
+	t=1744702608; cv=none; b=sGf8K9CCcHjVAUd3lLA/lorjF+80fYC4O37lkJkdG2oxaRPA73CuSZafe7bn801BqLJrbHaU8NR7xFjbY0PgGxsqOEF3o1lQN+DQ85og5T9hHD3pamGG1beYHhmp5r78yUJQzBF6wp7VkdDdX4Um6EJptvM4fx764VuTZwIg9bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744702530; c=relaxed/simple;
-	bh=/t01dfXvGRgfX4KTskLD9RHr8QjggEKBR5una7CkTdM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wez+vb2JF8VSuW1CsFuriC5f7bKmg5hUuNGAzdo8WcJTPt39Tkl7cGrUNrGHaNCTiJJjw2it8u95REpwkCW4HGlagrQU16pstLhg5jlQnl+TALTvS43Wex4xfRUyAxuc1H5hvBrj53rAN80KUv5RUy7OiGtbIB0tzqy3MnaWIW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s+oo7O0h; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bfed67e08so51144271fa.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 00:35:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744702526; x=1745307326; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z5s8lHjULdMShwAF8jjer9y5ggl6mu2Z2yK+KvFB6hE=;
-        b=s+oo7O0hziTMTn6ffzLugD78KNSlG1XVVmBSNq7/dA2+BW+COsqPeulYH1zmbHlyXD
-         YRiFIof75U2YhtqwpQOc4yHyBTmuwwaNjI9STsEKbAuHlHbhGEJhGavHL6jwgqQ6K1Q8
-         u4T5uVapy/DQM8ExQU4KQE5sFdt7QdIgLpAmVtIzavjMn4ci77v0VtHX2K8sl+obp34G
-         GHgVk1E5oiRb59saVQLjCA2W8y5XWTmcG6bPqRVFHyJl28t+hBio6SXIB5BNOX+ienNf
-         ntV0TX487Fw+Gngj+c9Y5JiENlGQRJ82XYkt+0FFvVvjEo/HefvdGyiHqPI7/GzadqRm
-         liAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744702526; x=1745307326;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z5s8lHjULdMShwAF8jjer9y5ggl6mu2Z2yK+KvFB6hE=;
-        b=auk4Uf8tq7vTy91HI7PPdkwffSbglD1rbjS4u+/EMYUMKc5rKvoy3M0HKtw99GcQqG
-         +Gqi/t3NLKhxUh96J3odbmaz3OVCbmqdtYvKx5FKZvvdbEVvrrhy0rOxKgFoIrTmZkPy
-         LoWoj/2hq8O8A8SCzZx+2MgE2HJWFm5e5+jex6OJKnao2oOL/xU3gR8OtIdng9P6t9hn
-         ALoXZ5sMiTT/j3WsHN9YK2qibAUQug8rxGW1mtrtVjYoyXpa8/gpwafPgR2XbwHSr+Io
-         Xj4sbe3fIdoC4MZtxkKheqNbUErGwlcuuBTpkhALk8RJBvL2osJgWqSUeBIoVJsz25WB
-         Z2ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5upyuT9JmOJXrHYKY+W6zPaCD7C2hfZzdWoY/bvo3R92NAclTYzDLHzjhpKvsFfqraifYiHNj2+K0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBJunWoi/zDtKHYN1uU1VwBWw2VD7hidzyMvnQsUHSU0cua23f
-	/6NXzbE+U8OUDIpzA7WQDHqvbWDsntDNHJY/wYI4jHlJbJZBtrUxGFuxneFT9Zl1Qy/4TocDzfE
-	KY5tRYhHkDr4N8OGOR7KA0OZe4wbcIJ8Q6Rs5qw==
-X-Gm-Gg: ASbGncuNccJztKvuMHaSxcEMe/nI9tAaH4sx00amUd3PTRQip413qtIh9pEXBY7hk4u
-	YA4Q0t2CeJS2ZpzISAlsBps3E+C1aqJDK6MOafTSDHjXNA6nPHSWq3zGMTTKqm1PebAddvEaz17
-	mglIQ191UP1FPjEhZo8LcSWqUWnF0yfrXW
-X-Google-Smtp-Source: AGHT+IF/f3ma4C5o9c0efnyvduCTab9wDDK72+7lhXFZsmhgzu8nGsMsG6D4c0qe2PhRQIiyrICHnRVYY1XaZjetoDw=
-X-Received: by 2002:a05:651c:30c1:b0:30d:b3d1:a71 with SMTP id
- 38308e7fff4ca-31049a80682mr54317271fa.33.1744702526493; Tue, 15 Apr 2025
- 00:35:26 -0700 (PDT)
+	s=arc-20240116; t=1744702608; c=relaxed/simple;
+	bh=Gyqan9yP4T12N6ZMRWgle82MYUjBp6SE0Fd8GLFRa4M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FYdtNcVOWo1HGqWyE8C8gOUX8DG5VQF14xeAvhcJKWJcHz9swTmkovOfzw8wyfzVPIJGuCq9zsQmucjQOhws0wsQ+mdrr2nJtbLLZbw8vdg4KlqUUxfUN6y79D5/Upx7rURHqHn7J1Fp8BI5mnBc69Wn/UQ8oRgi1gYecRgTkro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OQ3cErnZ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1744702604;
+	bh=Gyqan9yP4T12N6ZMRWgle82MYUjBp6SE0Fd8GLFRa4M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OQ3cErnZenuC4mmP4FMwxHNVrjpN86+MlVyREFmpaMcqiJW6/QPaM5zgBvCTGlcRz
+	 +SfMEAGeHUnnHdBxDDG63RKjzzejYguNsvJUaXv6rTrQlMTQDGca9oOFnCRnHrZyCr
+	 VsKCs3qi/vAwzwbxKKBMnlIpo1vlH7wv+LuHwviH3ODapO4eJAsyQ/LUTv2JhPOSLi
+	 75p6CGbfqiCqBxfC40Ri1eUKg2jhuktbjcUPWtKSYyL8tcafGLJszA41FaQONzB9y/
+	 8zmN4vyB8j31+WKo3qwZTId7ip+8GnEgwi69/uGNDKFpgopnMv2fVBlXtp8eFaQ+XU
+	 5BHXEWTRojqTw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BDC8C17E0ABE;
+	Tue, 15 Apr 2025 09:36:43 +0200 (CEST)
+Message-ID: <36fe0778-399a-4406-8516-54b968cd9073@collabora.com>
+Date: Tue, 15 Apr 2025 09:36:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250412-03-k1-gpio-v8-0-1c6862d272ec@gentoo.org> <20250415023234-GYA29961@gentoo>
-In-Reply-To: <20250415023234-GYA29961@gentoo>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 15 Apr 2025 09:35:15 +0200
-X-Gm-Features: ATxdqUFrvoN3oToav7nR6RzJi6WKzvpJz5pszWK5ULoM2MOJjET7tU5z2QtEKvY
-Message-ID: <CACRpkdZ6A0xORRQBnNNPFcNHg3xL=U3_xAcePmaDN3_ZYMzsaA@mail.gmail.com>
-Subject: Re: [PATCH v8 0/5] riscv: spacemit: add gpio support for K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>, 
-	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt7988a-bpi-r4: allow hw
+ variants of bpi-r4
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Wunderlich <frank-w@public-files.de>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20250412102109.101094-1-linux@fw-web.de>
+ <c8f9f019-a238-47c8-a900-9ca48ce09503@collabora.com>
+ <Z_0AdtyvehR9SHnU@pidgin.makrotopia.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <Z_0AdtyvehR9SHnU@pidgin.makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 15, 2025 at 4:32=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+Il 14/04/25 14:32, Daniel Golle ha scritto:
+> On Mon, Apr 14, 2025 at 11:27:23AM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 12/04/25 12:21, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Sinovoip has released other variants of Bananapi-R4 board.
+>>> The known changes affecting only the LAN SFP+ slot which is replaced
+>>> by a 2.5G phy with optional PoE.
+>>>
+>>> Just move the common parts to a new dtsi and keep differences (only
+>>> i2c for lan-sfp) in dts.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>> v2:
+>>> - added basic dts for 2g5 variant
+>>> - moved i2c used for sfp-lan to board dts
+>>> ---
+>>>    arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+>>>    .../mediatek/mt7988a-bananapi-bpi-r4-2g5.dts  |   5 +
+>>>    .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 404 +-----------------
+>>>    .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 403 +++++++++++++++++
+>>>    4 files changed, 414 insertions(+), 400 deletions(-)
+>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-2g5.dts
+>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+>>> index 58484e830063..a1ebc9aa4ba6 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>>> @@ -22,6 +22,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4.dtb
+>>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-2g5.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-emmc.dtbo
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7988a-bananapi-bpi-r4-sd.dtbo
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+>>> @@ -107,4 +108,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
+>>>    DTC_FLAGS_mt7986a-bananapi-bpi-r3 := -@
+>>>    DTC_FLAGS_mt7986a-bananapi-bpi-r3-mini := -@
+>>>    DTC_FLAGS_mt7988a-bananapi-bpi-r4 := -@
+>>> +DTC_FLAGS_mt7988a-bananapi-bpi-r4-2g5 := -@
+>>>    DTC_FLAGS_mt8395-radxa-nio-12l := -@
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-2g5.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-2g5.dts
+>>> new file mode 100644
+>>> index 000000000000..76eca976b968
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-2g5.dts
+>>> @@ -0,0 +1,5 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "mt7988a-bananapi-bpi-r4.dtsi"
+>>
+>> This should at least have some different compatible, if not probably also a
+>> different model string - as it's a different device.
+>>
+>> 	compatible = "bananapi,bpi-r4-2g5", "bananapi,bpi-r4", "mediatek,mt7988a";
+> 
+> Imho it doesn't make sense to declare compatibility with the
+> "bananapi,bpi-r4" as the "bananapi,bpi-r4-2g5" is NOT compatible with the
+> "bananapi,bpi-r4". It's a different board and using firmware meant for the
+> "bananapi,bpi-r4-2g5" on the "bananapi,bpi-r4" (or vice versa) will result
+> in a non-working Ethernet port.
+> 
 
-> Hi Bartosz,
->   I think this version is good to go, if you agree,
-> can you take patch [1,2 / 5] through gpio tree?
+Is this device a BananaPi R4 variant, or is it a completely different device?
 
-I agree with this, it's the final piece making use of all the nice
-infrastructure we put in for threecell GPIO and threecell
-IRQ so let's merge patches 1+2!
+If this is a completely different device, then it's not even a BananaPi R4,
+otherwise this is compatible with BananaPi R4, with a small variation :-)
 
-Yours,
-Linus Walleij
+Cheers,
+Angelo
 
