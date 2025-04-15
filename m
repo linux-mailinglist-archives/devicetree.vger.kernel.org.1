@@ -1,180 +1,179 @@
-Return-Path: <devicetree+bounces-167034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC36A89375
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:37:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A21FA89391
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2A277A9431
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 05:36:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C40D01895056
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 05:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6422DFA32;
-	Tue, 15 Apr 2025 05:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45D1274FD3;
+	Tue, 15 Apr 2025 05:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y0xH+fao"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vf0g2K/8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D5117E4;
-	Tue, 15 Apr 2025 05:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87742AEF1;
+	Tue, 15 Apr 2025 05:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744695468; cv=none; b=cUGVXIa23+cmqT9je83eNIitxIyse6BxHw1tH4SRYRZyWC3r4T/ubCkT+IB6T+srUcrvWWO0d8vQDCDmtR8YyYSYo8cEStcGNrFNO1E9po56/UU71hWDjK/6bljc2PvQuoIQEyKZ5Z9ts+lRMlFHqYHTMfMmKfwmPLttD36ycFE=
+	t=1744696766; cv=none; b=O/F5sWiuj5knI88FtWYKBFuHyW8ZaQkSl6zTZJVGXIVGLb5btIeApVYXstectQLQevkc3MTtDilQ8NcPYRXjZAdDvubCnBx0aNu0p0YVj5r+BtciUPZaGpoo59f8/3A3lHbcXOTbDZlAwhaIll1rtEIxrlVsP5Cr+X3D6E7chro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744695468; c=relaxed/simple;
-	bh=OT/ow3Rit2Pzbgm9XllYJ2znWiqfnw6Tcq4OVwMhSxk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CgYG3hiQa6u2qKcrJlN5pwEu8+hKJoQvqVlGKyXcTlGkenDIKLZlLeNz7otr5yff7PMmfQgQ3HvZgOiZ8V2su4xZM7kJKAriV6mfJrpqCYUv6Xy5ElkzE+uC9Was8mp73TRKmXDXttxV3YV74TNg8lXpJfSSw0eZGoESNcc9pxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y0xH+fao; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1744696766; c=relaxed/simple;
+	bh=0/iKWo+r1gsd20hjlsFUjIvxOQIo6ura3X6TyTbKPlI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VLdLSe8yixEErm0geEvmdGL41WirjWekvljuhrKvSg41QsFUIKm3UbE20ukFQNZojAwiDDr8Qkcyt9xmu8wa7vwzPkYmrQUnu8S3XRq8vn1Lz9c13rlmXwuovcogupJJJw3J6Tjgp05eOjDW5Ia84EaIVE8W02bNbGjMFEoDWVw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vf0g2K/8; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7370a2d1981so4018692b3a.2;
-        Mon, 14 Apr 2025 22:37:46 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5499614d3d2so5891027e87.3;
+        Mon, 14 Apr 2025 22:59:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744695465; x=1745300265; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=8flXeGMcN8DVz3lPVeuDpme2GWkR5Yqy7lgnki0syIw=;
-        b=Y0xH+faoFLmtCdAa/8CvkALUhfhwDg9rPjf2Ro3coMJ77PqwUm6kJwC0onpHUt/sb7
-         tbve7+LUOBLq/BBUqkkptMad9VxRsrEdv/b/W3na38qOdZ7pmH6+m0bH7yM+jHa0Mz0X
-         byCXpZLK2e4J5Bb9k//fMNKdpmSaFcQ+dOv4BSPUU21LeOYsnaP0rZ2WM1ZcPjGj1glN
-         1F2XYhRmnp3ySyXbtrMkTd+FINOQaUvtCl6/NKnBZ07DwFOaeLRA/wofZlgBkzl5LgeA
-         tyWhffSaT/FDsqAy5Q1d6FYwDilT5Zb+HZ31SdX3lJ9uNWXBD85J3yQaqD/FO8OONyeZ
-         knEg==
+        d=gmail.com; s=20230601; t=1744696763; x=1745301563; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HKAsQQ31HaeqnieY3QpbMjvyrHHsHhhxynf4LJdeVRE=;
+        b=Vf0g2K/8LW4Us+Jtgzm/o81QvioFmEBnhyIz90Y3GDgss4ZCWmpxbu92kg1LkVYKIg
+         o2ey3F7ChHSZSxynIFfh0NAvf0jx92rZLbw/VjA6JNO/AuQQP4s7JZ/um/ZhzKQnrnSm
+         lcRnmQTB/iuYALS8KBNK9agiqguLji1TNRdnWfrlJ6045//kXazTa8tC1CO9wLsQjCVc
+         31gerdRBbZK4tYkWY27vCIxyxtG7qhX5m+2KhEIIS0eemCLjdSmoLZpjZUMFq9IJj2++
+         HImUDhoyHJ5pd+YnMxWZG/DZ9juojJGI0gOuZTcaHF223AXp4uoG+bk7XzNOfl8w/fTC
+         rqoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744695465; x=1745300265;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8flXeGMcN8DVz3lPVeuDpme2GWkR5Yqy7lgnki0syIw=;
-        b=TNGinE+FpzhgimVlWxiwqg5oOZYIstvlrzfLEyDgVY8mlG6UkG2+p4ktBzhWyJBYM7
-         E1MPKiPsbg+pftdogkimmqffoGNRh35GttWOYuAvpVCbzsZ0vETQuEDh9Uv0/P8L49PX
-         PMVUP7qRciC/Ir1/pqjSDXJSmff3fBi/KOWf0ouzFxMurcvCNmCc+8XN9HYBHYH4ADhy
-         G+x4IinQNud58X81kslViOtWiM+lfan/M7sysItJ2DpudlXwF5geYQer0xEmUZDyhphd
-         Ji9R20/mt8PjHz0nwkGOXNeh/pTGFMBUgbhOHd3IcfVkK/VMcl3ac/3i4ryJkuHxMsEE
-         8D5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWbcbQmAf9UAAjhv4xXh4CTYJ5XVfEsqt/gOj9RELY0DOvPdnQORbxkurTiwdh/8BAppg7t8RockuJ1u8+bF5o=@vger.kernel.org, AJvYcCWw0M8c0To4y1e6nKlr8DIMlUjhrdIbPwx6d4SjJsi+j28ao+SIqp0HVHeoqRi6wD3fiHTyuYCnD3ih@vger.kernel.org, AJvYcCX08etJojYqdgAlEhjfBWEVuAKXuMVgTMK3/QT24sy/6h2tPXfyCR3IIVdKo7LTQOaLzzpPH4ZekiyENGLC@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywg2iO7Ww9Hym2IhlVS9txTPfpfAlWlIgO8G99hkA0MrT6sWvsb
-	egoA29mFSmsYYMRmmco9IeIbqkyt3WG48klgUlTiHJ4znEILT1yx
-X-Gm-Gg: ASbGncvrsPZdRXRh0pdGT9d93XnuL1FbX6k1bKCv2TsCEOGLn/FmQmsyMLuw7wMabK7
-	0I28mp6jCFg20/hMannKEiCDfpu+0Z3T3RYOitTawvW7eXdAWRiYpmycOuVVW87HmTbaM0aOXBK
-	jpdSRVkLkQU+dfMdUj3ykxmtuoYzCSYhQCxDHVeg0om8EE5XAu44AMwHMOEp6hvmXT8XqnuQRmJ
-	Qb3ZIZ6ixzxK6IunSGMrAUOmohXKIG5cszf3vK9kOmwptTfqn0UTUI2K1YoxONp+UfnVWg2r7HQ
-	IVr9ILWEZble+nDHv4p1TPmwF6OG+fKTqIAWHFk9y4hpdseuZJz2ty5GmqMBJboXrefq6bJ/CH4
-	3LHQ/i99fy/XvZQDe68HoLq/t
-X-Google-Smtp-Source: AGHT+IGij4jcp0JaBuCtT/GgQB93ABcvo0Rbgg4vLD44uasnLdON39Wb0zLiyoGB2w7OeD+4Alnwyg==
-X-Received: by 2002:a05:6a20:4389:b0:1f5:5903:edd3 with SMTP id adf61e73a8af0-201797a3bccmr22389174637.11.1744695465415;
-        Mon, 14 Apr 2025 22:37:45 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b0a639a4ed3sm614426a12.55.2025.04.14.22.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Apr 2025 22:37:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <be917c00-5de0-41ac-917e-6a787b5bfd96@roeck-us.net>
-Date: Mon, 14 Apr 2025 22:37:43 -0700
+        d=1e100.net; s=20230601; t=1744696763; x=1745301563;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HKAsQQ31HaeqnieY3QpbMjvyrHHsHhhxynf4LJdeVRE=;
+        b=QYsDt2S3a2FhBz7ihxVT0zr1luqsHcOPPkBtSfPJqTy9BQUp6KMkxXjIUALEjz/0k4
+         r5ZsdZ83eY/pHx+jJqBPM8iZXqocGLNMxHxjYV0TJNevmzpuVD7CgiwaVtFHYKWvRen8
+         hyn1LZ/2GzfRuKfbMLKTx/zYGnEDY2o3TGCRg09TrHT+8S/azXP00yakmOkcjYyeKnxq
+         aFIZDF31R5KQjbTOHzwHjyam5JEbPfWIVrRPUC1bP2ns4wwiG8MvmgCm78Yw1Xxd7C/3
+         6kPlS1AzdNtrQOdeNKGo+rIGz3IF1PMgF0ypxpNCnia92T2LmhNKhlb3ehZLlqKe4ykV
+         YNiA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJM1nTvtkFsYDS6fx/YbORPqu648Eebc5a6koBcemq/zGuUs9R/+E4DStC1+lf0gf6lZZ0hKCehNRn@vger.kernel.org, AJvYcCXVf0FGtGRu0BF0ML+4x3N6iFbhKGSioYz4Kqqqk7v0QIMZYWi1mNTSWG3nvnLkHGQpUwf9s9NHBUYGFprk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvYZQ6OZsmlkE+pw+4eeSdutSGWUKXqOvyI9DXhdtkseN5C31t
+	OEBr10IdnQ96Lugmlw6WuNpnT9DMMdAdS88B7cU/db+IsQSkqYKq
+X-Gm-Gg: ASbGncsOhxGONign2vZd1LSYPfo8Via7DcTdBnUc/EXr4yHg9zbraC8rdhfhKAFPNrQ
+	Rv2+yOQWQbhoOcc91d3GfmfyAwhooXXdEnSLYEyO1TEdSE4eUlFs5i8f+71GadDeGs7UirpcfEd
+	n3NNjdvl+VP/KqeJ/epRdYvxPTsfSllMM79kLsuLFp+3AWHoNBKJ3sl4K17aUH92k5QcqQIpQMj
+	qZrnbeiOfZBxQhoQDZZwbhsxUP4WfOfCge/HUUzrgpLg4o5pf9WV+s0pbUKn5q42gdVis7JH0z2
+	vnAArtNh1EXKGxU0SAeRqe+ucIGreRfKavd7WppoZjYko1d6cCl4FPKX4H6iAxeQbTdReMX68fr
+	FX/c6dlT+v69632sAvyY=
+X-Google-Smtp-Source: AGHT+IF8+Ejb264AH5+djL4JLAXmUaTSHRl3I4zB5uwYZJaPJIfsyNBhhD1/+SfSFbJXq/PKfBiHww==
+X-Received: by 2002:a05:6512:3b0b:b0:549:893a:1eff with SMTP id 2adb3069b0e04-54d452947a0mr4474164e87.24.1744696762648;
+        Mon, 14 Apr 2025 22:59:22 -0700 (PDT)
+Received: from [192.168.2.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d238820sm1325471e87.80.2025.04.14.22.59.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 22:59:21 -0700 (PDT)
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+Subject: [PATCH v4 0/3] Add support for Sitronix ST7571 LCD controller
+Date: Tue, 15 Apr 2025 07:58:57 +0200
+Message-Id: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/7] dt-bindings: watchdog: Add rk3562 compatible
-To: Kever Yang <kever.yang@rock-chips.com>, heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Jamie Iles <jamie@jamieiles.com>, linux-watchdog@vger.kernel.org,
- Wim Van Sebroeck <wim@linux-watchdog.org>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>
-References: <20250415051855.59740-1-kever.yang@rock-chips.com>
- <20250415051855.59740-3-kever.yang@rock-chips.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250415051855.59740-3-kever.yang@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKH1/WcC/2XO3wqDIBiH4VsJj+fwb+aOdh9jB2afJawaGrIR3
+ fssKIId/j58XpxRhOAholsxowDJRz8OeYhLgWxnhhawb/JGjDBJBKE4TkoqijWvWK2ts4Q7lB+
+ /Azj/2UKPZ96dj9MYvls30fW6J9ieSBQTzCVtyloD1MLc297419WOPVoTiZ2ZOBjLTFhVGZM/0
+ Mg/xs+sOhjPjBFSag4OrFRntizLD+Fx/psKAQAA
+X-Change-ID: 20250401-st7571-9382b9cfc03f
+To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, 
+ Thomas Zimmermann <tzimmrmann@suse.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2538;
+ i=marcus.folkesson@gmail.com; h=from:subject:message-id;
+ bh=0/iKWo+r1gsd20hjlsFUjIvxOQIo6ura3X6TyTbKPlI=;
+ b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBn/fWj4DdATMn7xfQ9ZrzuSjQFfm8ODmsQLUY8o
+ Ddq39rD0F+JAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZ/31owAKCRCIgE5vWV1S
+ MsoiD/9nbU3ua17vEwFCYnM9/o3k0N1CdNygwBSP4HAskQfpqYdhJa9z/OX4cdNQAIeAN6NkCAn
+ 4hDc6NrNwB0/Z/RMPSfyrruV7LGXt7Jb1hHgzTBZbb7yNYPXw6XdeiHzyWzvSPJzRUxI3WhjLIt
+ KI11y7uAi4138NVB/BvtgDVsOiw9LlJe0WrnkxY6g1NGk4fPGrC17Vb0GlaNFr6djHOB48pYA3T
+ WzsD5rWhsVbb5qyP0nwBm42LdSKiPVoDfXHonpKhTetFtJF45ONOhj2WsnHNCpSheujgUU5fZMQ
+ dQ+dTkfBpNyAnFyuHLGcCsVL6LpKmnZac8ibVpA3XkGRWcgnrxgXV0+nZX2qMntWK+hq+ybpl92
+ lHcd4cYXTsWW0+8fqGloPYGZ236SRT6ZuFYBpvyEKjPATxZ57p21EUJBQcssv8X3fu9CqvoZjI9
+ KUehoeBdfwJJtMO03uxyGCc0ifW/s/Jh/eL42MT6k78xdJRXEaLqFKZO6F6u7FXRzLIsMFSXZjE
+ VIQRLscNdGEI2jINp4qfazuqaG//L4Y0cy0MmMrRLt3UzqNWb5SeIjivTAw6qhE/lSzSHTKwiIr
+ QByG2vqtjwA7nmR4yJFSBVTllBJMp9IkAEL6EoIF76MLPLiUznfsY3praUmJaex1BZmZ1zL4hy9
+ zjrq7F8VtGsw3gA==
+X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
+ fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-On 4/14/25 22:18, Kever Yang wrote:
-> Add rockchip,rk3562-wdt for rk3562.
-> 
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+This series add support for the ST7571 LCD Controller.
+It is a 4 gray scale dot matrix LCD controller that supports several
+interfaces such as SPI, I2C and a 8bit parallell port.
+The controlelr supports both monochrome and grayscale displays.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+This driver only supports the I2C interface, but all common parts could
+easily be put into a common file to be used with other interfaces.
+I only have I2C to test with.
 
-> ---
-> 
-> Changes in v4:
-> - Collect ack tag
-> 
-> Changes in v3:
-> - Collect reveiw tag
-> 
-> Changes in v2: None
-> 
->   Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> index 1efefd741c06..ef088e0f6917 100644
-> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> @@ -28,6 +28,7 @@ properties:
->                 - rockchip,rk3328-wdt
->                 - rockchip,rk3368-wdt
->                 - rockchip,rk3399-wdt
-> +              - rockchip,rk3562-wdt
->                 - rockchip,rk3568-wdt
->                 - rockchip,rk3576-wdt
->                 - rockchip,rk3588-wdt
+The device is a little defiant, it tends to NAK some commands, but all
+commands takes effect, hence the I2C_M_IGNORE_NAK flag.
+
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+---
+Changes in v4:
+- (dt-binding) Add sitronix,grayscale property
+- Describe why ignore_nack may be needed
+- Make drm_to_st7571 an inline function
+- Add support to clear screen
+- Change from C2 to R2
+- Add support for XRGB8888
+- Use dev_err_probe() where appropriate
+- Make Kconfig config depend on MMU
+- Introduce device data to prepare for support for other chips
+- Add support for drm_encoder_helper_funcs.atomic_en(dis)able
+- Link to v3: https://lore.kernel.org/r/20250408-st7571-v3-0-200693efec57@gmail.com
+
+Changes in v3:
+- (dt-binding) Use 'Controller' rather than 'Panel' in texts
+- (dt-binding) Constrain the reg property
+- (dt-binding) Remove panel-timing description
+- (dt-binding) Change description
+- Mostly cosmetic changes in the driver code
+- Don't call drm_atomic_helper_shutdown() in remove()
+- Link to v2: https://lore.kernel.org/r/20250404-st7571-v2-0-4c78aab9cd5a@gmail.com
+
+Changes in v2:
+- Reworked pretty much the whole driver to not use obsolete code.
+- Use panel and timing bindings to specify resolution and panel size
+- Link to v1: https://lore.kernel.org/r/20250402-st7571-v1-0-351d6b9eeb4a@gmail.com
+
+---
+Marcus Folkesson (3):
+      dt-bindings: display: Add Sitronix ST7571 LCD Controller
+      drm/st7571-i2c: add support for Sitronix ST7571 LCD controller
+      MAINTAINERS: add entry for Sitronix ST7571 LCD Controller
+
+ .../bindings/display/sitronix,st7571.yaml          |  73 ++
+ MAINTAINERS                                        |   6 +
+ drivers/gpu/drm/tiny/Kconfig                       |  11 +
+ drivers/gpu/drm/tiny/Makefile                      |   1 +
+ drivers/gpu/drm/tiny/st7571-i2c.c                  | 994 +++++++++++++++++++++
+ 5 files changed, 1085 insertions(+)
+---
+base-commit: 1e26c5e28ca5821a824e90dd359556f5e9e7b89f
+change-id: 20250401-st7571-9382b9cfc03f
+
+Best regards,
+-- 
+Marcus Folkesson <marcus.folkesson@gmail.com>
 
 
