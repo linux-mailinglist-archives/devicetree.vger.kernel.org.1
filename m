@@ -1,126 +1,144 @@
-Return-Path: <devicetree+bounces-167430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A60DA8A334
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:44:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F85BA8A353
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:47:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FE1C3A9BED
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:44:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4596217B1E0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540B829899D;
-	Tue, 15 Apr 2025 15:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA52429A3FC;
+	Tue, 15 Apr 2025 15:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IwW8zjkJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SUOUXvKe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B9515666D;
-	Tue, 15 Apr 2025 15:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69FB29A3ED;
+	Tue, 15 Apr 2025 15:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744731888; cv=none; b=GxLUdCFXh3qpqZGwjJMwQ36oH1rILQLrf0PlPVIRk9f3nBcX7uqtjpjsrgR5IdrqebMcH8nf3FNdcT9ctn9nJQaGXy8dLVlA3rLnInUN+D3+J+aUi3Kb7UQeu4s610xeF2EhlBXUazCxk5euUtgEi3ww6Pg/ExqwSZJOoD+oMh4=
+	t=1744732049; cv=none; b=Lw7sStBjykIggpUOq+GXjTFmR+WjHbD+/60Qpgw2qH/V037t7PRNOKoljR3SxnYW5RIwJR4pH9dkPhTsekTznnZdiUszxbyL5EML26K68AYcdZblJWvxL2U2YH9cfJHu8BlXgPzOSn/0/0xhcQRycDJXrzaJwyKwGiVZIhFgHWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744731888; c=relaxed/simple;
-	bh=Vrb+QrUsWVVFvI2F0UZfe4QQqdD3L6phA4xFafvfH9U=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BFxWDXPirryht+LjhqjUODgAhKiad7rh6vqmDoyO1OWYg8iQSjM7g21dOhXlH2/VkGKv0wEBJUeQE5CnKyS3I48z+WSPrirZ6mewXO3g2LNCTjeCdaJ5T5aHdGkUqddPCm0FHgAw5L7ss4seUFRu1mGbh1Kc2Ii8O3keKFVM2mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IwW8zjkJ; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFiPk2069362
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 15 Apr 2025 10:44:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744731865;
-	bh=0eieUaBlN0MYYufzpPs6EQyqEgGcndbJW3BMvC5o174=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=IwW8zjkJc55sdoA2uJlFlGmXczQl1Rq8WHw/wUHtrBv50FiXKVdLttLzI6niz0XcA
-	 d+PX1xAtt5loRu9XwwBDbI9RhL+zSZWXjwEF4IVLtyiyiJGcWgDJtvTFpSzwZIVWOz
-	 HA9Ms/9cDSoRRuj1ap+rDKo4lLTIidmg6rsPEI2s=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFiPg2047806
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 15 Apr 2025 10:44:25 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Apr 2025 10:44:24 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Apr 2025 10:44:24 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FFiOdI002440;
-	Tue, 15 Apr 2025 10:44:24 -0500
-Date: Tue, 15 Apr 2025 10:44:24 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Matt Coster <Matt.Coster@imgtec.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Frank Binns <Frank.Binns@imgtec.com>,
-        Luigi Santivetti
-	<Luigi.Santivetti@imgtec.com>,
-        Alessio Belle <Alessio.Belle@imgtec.com>,
-        Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Randolph Sapp <rs@ti.com>,
-        Darren Etheridge <detheridge@ti.com>,
-        Michal
- Wilczynski <m.wilczynski@samsung.com>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH DO NOT MERGE v6 17/18] arm64: dts: ti: k3-am62: New GPU
- binding details
-Message-ID: <20250415154424.62mswstk34ifxgxi@quarry>
-References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
- <20250410-sets-bxs-4-64-patch-v1-v6-17-eda620c5865f@imgtec.com>
- <f15355f7-0b95-462a-873b-cd682fc530f2@imgtec.com>
+	s=arc-20240116; t=1744732049; c=relaxed/simple;
+	bh=bbkjmiJcxIoYe1Svw2F1maJ0updDHydTwr2isqonX3U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EG7EABHCiw3tzJkKCrE3g674Mn3y01KwnfYwbEz0zu0ncFV8Vs/QyL1nVrCtzZga+DJu6Hyz0LIu6WiMID2CHjzGyIFSPRNFpOqEXjKR15047DSjW4jiqldcF0Q9o0b8usAZHrYPbWlrj5bvMz0PisddKfxdhdhSVjv1U1rs7sE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SUOUXvKe; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7B29C725;
+	Tue, 15 Apr 2025 17:45:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1744731923;
+	bh=bbkjmiJcxIoYe1Svw2F1maJ0updDHydTwr2isqonX3U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SUOUXvKeXcxohklxFHUkWWXRp0PbligOUf+58jeoCTYXSLluDxiPm7W4J1mvx7zGT
+	 7Gic2UrUhA7FZTS7I/HHcCQy+S+f6KVM5mJ1B069/KntDGu2FYaENisZg7C3J33xWd
+	 +3dsmvNnfTy/N+W5ih9LAzE/vMibEOVXybehxp4k=
+Date: Tue, 15 Apr 2025 18:47:24 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
+	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	"stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
+Message-ID: <20250415154724.GG9439@pendragon.ideasonboard.com>
+References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
+ <ZxYiCv6SpLq9uh08@dragon>
+ <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
+ <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f15355f7-0b95-462a-873b-cd682fc530f2@imgtec.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
 
-On 12:41-20250415, Matt Coster wrote:
-> On 10/04/2025 10:55, Matt Coster wrote:
-> > Use the new compatible string introduced earlier (in "dt-bindings: gpu:
-> > img: More explicit compatible strings") and add a name to the single power
-> > domain for this GPU (introduced in "dt-bindings: gpu: img: Power domain
-> > details").
+Hi Catalin,
+
+On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
+> Hi Jai,
 > 
-> Hi Nishanth, Vignesh & Tero,
-> 
-> Now that P1-16 have landed in a DRM tree, what would be required to get
-> this and the subsequent patch landed? Can they be reviewed and applied
-> as-is, or would you like me to send them as a separate series?
+> This issue was already reported by Stefan. The problem is that I don't 
+> have a Debix board to investigate.
+> The main difference b/w WFI and cpu-pd-wait is that the first doesn't 
+> call PSCI/TF-A. So, the issue looks to be related to some settings in 
+> the TF-A.
 
+Jai, are you using mainline U-Boot and TF-A, or a downstream version of
+either (or both) ?
 
-Matt,
+> What I don't get is why I don't see this issue neither on our IMX8MP 
+> specific design nor on the EVK, which uses the same PHY as the Debix board.
+>
+> On 14/04/2025 14:07, Jai Luthra wrote:
+> > On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
+> >> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
+> >>> So far, only WFI is supported on i.MX8mp platform. Add support for
+> >>> deeper cpuidle state "cpu-pd-wait" that would allow for better power
+> >>> usage during runtime. This is a port from NXP downstream kernel.
+> >>>
+> > Since the introduction of this patch in mainline, I am facing sluggish
+> > network performance with my Debix Model-A board with i.MX8mp SoC.
+> >
+> > The network latency jumps to >1s after almost every other packet:
+> >
+> > PING debix (10.0.42.5) 56(84) bytes of data.
+> > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=1008 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=0.488 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=1025 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.810 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=590 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=6 ttl=64 time=0.351 ms
+> > ^C
+> > --- debix ping statistics ---
+> > 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
+> > rtt min/avg/max/mdev = 0.351/437.416/1024.755/459.370 ms, pipe 2
+> > darkapex at freya in ~
+> >
+> > If I revert the patch, or disable the deeper cpuidle state through
+> > sysfs, the issue goes away.
+> >
+> > # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
+> >
+> > PING debix (10.0.42.5) 56(84) bytes of data.
+> > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=0.482 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=2.28 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=2.26 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.848 ms
+> > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=0.406 ms
+> > ^C
+> > --- debix ping statistics ---
+> > 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
+> > rtt min/avg/max/mdev = 0.406/1.255/2.280/0.842 ms
+> >
+> >>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> >>
+> >> Applied, thanks!
 
-Please post the patches in a separate series along with any defconfig
-changes required for the platforms.
-
+-- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Laurent Pinchart
 
