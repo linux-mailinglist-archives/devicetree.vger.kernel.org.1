@@ -1,549 +1,221 @@
-Return-Path: <devicetree+bounces-166964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B657A89135
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:23:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DCC8A8914C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BE6A17BE37
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:23:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46AAA7A3689
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BB3214A7A;
-	Tue, 15 Apr 2025 01:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B3137081F;
+	Tue, 15 Apr 2025 01:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YtPP1+fX"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="YJuY3bgU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010032.outbound.protection.outlook.com [52.101.228.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8069205E26
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 01:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744680127; cv=none; b=EIlICX3zoiuIif9fFHecS/Rpz8/4JWW753+zCi/ZtkM3UuTVuDYSntPDBI0o5diH776z883/HxcQXAgpgsYMe9iRh6wITkYgy/FF36V3Bk5UoLsSCzlsmeUabLir6Bw4FWjBClNHrWrdo0enoji/cICGFhhp96fF26XRCl8G5S8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744680127; c=relaxed/simple;
-	bh=+5/A3HpALBqUAQtH4uLB07biQeduLnRFjvrsKfrOt7k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o5+qhOWZb4FnZYdwtZ4DYElSi9ICEx6z0mj3TxNQiB8324QIgMN3IxveVAhSkjtfVJe3sV6qoJQEwcNDjSrvFdtAmKlakrERnPFY8OJcunxeffvnaYVzT3iBUJKw5/+JSMvZKG8fDknqCVEcNW9A1urS1uCo/nGRG5AXInNAxFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YtPP1+fX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F15Qje021456
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 01:22:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	V8hD0tWfGMXHgoXT9lMggKnO35G/qy70wvPbpWnT1Cg=; b=YtPP1+fXhpjHUZvI
-	KR2Y+MfSWGhL8u7hx1fLmEbNLR/MUzeUdCelhBsko2KEIEA4cH3K5cQxtfV/Uww8
-	xDLYYuduDWbphTuDZ7/+KrGQHu6KD+qR49NB90c0xYJCj9VZ4627lFA9mO7dW4Dk
-	zid7wyplTC/mbQFNyZvg1bgHlI0mw/nfiJF+vO0wpeMLiRfBDX/KO8ASegzBQlvD
-	nhXQklgIu6zXCEobndABd4eb3deXBeN0bUv2NYh6AAlbsNxSd+cwajFBzWncGqeZ
-	JhfrLx2N5Q/NFtkSjW9QD0KUTMJxqm5Pj9u8SwI3+x7eIzbin2sUzR9+lk/Y27gg
-	0uqeXA==
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com [209.85.160.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf69pa1h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 01:22:03 +0000 (GMT)
-Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-2c70bdbbb1bso4131566fac.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 18:22:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744680123; x=1745284923;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V8hD0tWfGMXHgoXT9lMggKnO35G/qy70wvPbpWnT1Cg=;
-        b=Er640BiPxewXxQSkZO3pSmzbojcbfTuSz7bYYNoThZXf4rXf0dmsfs8QGs1SKK19zH
-         L8paKsTlkfNfYSL3ilbh0FVwlAfWH+v68d8rdMO6WKygDDAZQeePeU3iC3qEUvaklSNI
-         NSHIPYFAlYI/ZUY3u97DimcnsP9fZ5oiqWOT/FV89lY2DxymhbrPGTHLRvznZK3jDfNP
-         2cdx4oxHViktiSrDF47iQmaJyy5FQmis6SQKv6YV4KSJfAi78gZ02AlxXXYJR7b017Dm
-         oPeAovt+bEGweyBI5AJA0/R1DrshIRIsVaKIS0Sc4NDbMETTP8bWhmo6yqN50h1+g92k
-         XlAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXH67l2xquPBr2nBKdswqLvywxnFDgDN9QLk+pzSc5wZom5ugFMaQoPS3yftYfxYj6tSHNzWXIeOFs2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHhi0nAn4yJmVLyMpiLifZmW6+AVf3RQpClvzfJitUSBwnYZDc
-	+oh9t00UGEYgt6uBEOCwRhF+OeW6eSFNu3078zHFmdhVfQQjb28BZPGsAlQSbtI2ZiirmSkOkoo
-	z1fpk1Sq600dTQ7SDUNv8Ba2+OZvCM1rHNTD/TBYjTHMf1Z914SvXzqThDmv9
-X-Gm-Gg: ASbGncvyRr9mxII13jzHXdACws1HT2Sz8NUIuMyrUQ0qNbXw77WUK5NaQx6t9vXO09L
-	hJFU6YP6rw8w4xDZQCrkMUDJ80uyF6puAr8e8a6D7xG8ZmtXjE7IMiGbXWXMtzmDGPiDJAUgMOf
-	GZ6DFEFdKb/5AkkUxXdrC1WWZKpxZgitHqwTj+UnJEexlABYljp47efyqovojXy6DqF2bMzkoA9
-	nRbTE7BHubIQBVYBijnSKLc1prISyDfB1K24jFUzZLijvOgWmjW34OE+z1sExJ9eDC4gr5Pijt0
-	t2l0M2avfwaRYt/CYSDlKtMWiQYEqGnAXYP9A6n+dMkQhj10/Xh3MFVKLTtH4jBA2QZ6Q+o/f+v
-	WLtiGWJg2ujY=
-X-Received: by 2002:a05:6870:fe91:b0:2c2:27c8:5864 with SMTP id 586e51a60fabf-2d0d5cd3d12mr9204961fac.14.1744680122768;
-        Mon, 14 Apr 2025 18:22:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHt2OTe4yLk4/T2nST8NPOD1d6U+n5GJsu0PPBBDYnEgc1PKdGDKH+qmKiRE9MBUlNHR5+gaQ==
-X-Received: by 2002:a05:6870:fe91:b0:2c2:27c8:5864 with SMTP id 586e51a60fabf-2d0d5cd3d12mr9204937fac.14.1744680122380;
-        Mon, 14 Apr 2025 18:22:02 -0700 (PDT)
-Received: from [192.168.86.65] (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2d0968e090esm2652538fac.6.2025.04.14.18.22.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 18:22:01 -0700 (PDT)
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Date: Mon, 14 Apr 2025 20:21:55 -0500
-Subject: [PATCH v7 6/6] usb: dwc3: qcom: Transition to flattened model
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A5FF9DA;
+	Tue, 15 Apr 2025 01:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744680811; cv=fail; b=Ct/mVDvvAI/dOuct/8kzumY26DZBNCxzYPILoS8bgE11Kt0Z0bppv2IhQCjhsIH6mrR9l4hSl4tSm65hQjY/qoWOAuKis//uC0AB4FGoLdIVONWvwjzZssbspeQJTgEYFpPqoezDwbnm+ZiQp6ip0X8qkfj1JH9j7tzKWq/3hKw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744680811; c=relaxed/simple;
+	bh=by1mKWs2I2PK1LMkF3/yEZ7518234hyTf3BYc8/ueNI=;
+	h=Message-ID:From:Subject:To:Cc:Content-Type:Date:MIME-Version; b=ET0AFArl056NhYpK+U6h/w4fPBBhncWLNXc2oaSMyegWNfmtOJWsVcHRUFQmbS+YRFvWLYPfXMyNt8PCHufsvbgqsDqet+3/1qaFOIY3Kmznap/fvMtiwHmJ/6a6tuE2KKfezCdb9bD51YSCSXFep6SNUkHvRh8vqHk/3Jy/wVA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=YJuY3bgU; arc=fail smtp.client-ip=52.101.228.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KTRINTQZq6A2DQk35IsBGbXbOXW/mWQpvU70PZxOhx0JFa0C3gzPbpUhi6pfY6MtoYEn6OtdhxGceu0Nhf8wjj8tMRSX7Qr3b2DkhRzOxxG0MrTYhKERxf+19CIK39f8qnRR1xaFuP7HryFkLXLxd8fAmp+rKRKX3McKkVtm6bJrQjv/0cYE/Bipsz3rnO/rxoD6jV2scd8/serb7Nhtj40yBDrd8iAxmWVWsUhqiLE0kwhGAN4+MJCPW1FpJ1dRSzfwTowpvk3PIWlaxXwhbR6vEJDYFTX+im1BHMEhnQjgivN5Tw1DwhI0XV8jiwhX6ms5BKpIL00WYdlK6LBlpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O5xsC8iTiQ1OVouFDk4kusESfUMU5cSf9eY0/6dEltU=;
+ b=wr+0A6SDPvHxTO1zro3BN+V2e57NTojEx5b3WedEGcA70whMiGR4G3BzAM9uA2MFu+xe9dewAmJQuMpjh/nnDKaE/zZpIdl7YWQtD1Woki6Sn9CxMem8AYJat8fuuRxNsWNlzVAIME9UyRbN7R2TC2hL4t6V6Ae6ZOknY/ifAAs2Sd8s8kp/THyq6JQnO62QOv3GQQCx3EWgcapYpgfxono2x0VkExJ2aWliGxss0UWqnSGZ7B0QKFYHwNtg17PrJyzzvDYO5r8tewvnep/6m5qorc5CtLfFKwaoCaLjZJl48chSaJjmmH4+PdTsuqS78qDnQ5ttEcwUKRHjTZeHtA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O5xsC8iTiQ1OVouFDk4kusESfUMU5cSf9eY0/6dEltU=;
+ b=YJuY3bgUsb6/sWVAWTblamdcbgZ0Zv2QFC/c9VBvQPefOwg6HkfysTz9yUgOIwmeO7MBhB4pczziw813vdfoo7zmC5RWQ30lJdEc69QUzFCFDNvk87N8tyKaCqnsICh5YS7FAQdWBiTpA5Rm6XuqNsKPHeUwqqpFAgKvllrmrcM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TY3PR01MB10906.jpnprd01.prod.outlook.com
+ (2603:1096:400:3af::14) by TYCPR01MB9536.jpnprd01.prod.outlook.com
+ (2603:1096:400:193::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.36; Tue, 15 Apr
+ 2025 01:33:22 +0000
+Received: from TY3PR01MB10906.jpnprd01.prod.outlook.com
+ ([fe80::592:9b7b:ef57:2dd8]) by TY3PR01MB10906.jpnprd01.prod.outlook.com
+ ([fe80::592:9b7b:ef57:2dd8%6]) with mapi id 15.20.8632.030; Tue, 15 Apr 2025
+ 01:33:22 +0000
+Message-ID: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v3 00/10] ASoC: add Renesas MSIOF sound driver
+To: Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>
+Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 15 Apr 2025 01:33:21 +0000
+X-ClientProxiedBy: TYCP301CA0025.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::12) To TY3PR01MB10906.jpnprd01.prod.outlook.com
+ (2603:1096:400:3af::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250414-dwc3-refactor-v7-6-f015b358722d@oss.qualcomm.com>
-References: <20250414-dwc3-refactor-v7-0-f015b358722d@oss.qualcomm.com>
-In-Reply-To: <20250414-dwc3-refactor-v7-0-f015b358722d@oss.qualcomm.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=12897;
- i=bjorn.andersson@oss.qualcomm.com; h=from:subject:message-id;
- bh=+5/A3HpALBqUAQtH4uLB07biQeduLnRFjvrsKfrOt7k=;
- b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBn/bSz5y5w1gPobsvKUJ40FnOw54slF2LYjUVSU
- drbh5xHMu2JAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZ/20sxUcYW5kZXJzc29u
- QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcUEUg//bXM292MMxde0G9NuhMvzOkpJWOj2ISHYw7/CflP
- DqPIWya/5HUc1XKcIIbq6KH1Y7eC8ZSFQUJQWl5HbhlAjvAbZgFpvEuQ0RJpOHIxfxm4nTFYXaP
- v/BXmyTBDmRd7mn3o09D6/UKt/57bnLuXBToT5HtoeUaf6VU2S1n/LkaN+rEoRf922j5MCGIbKW
- mXfLxBtlWb/+tAehmCkqeLVrK/+eVW1zfIm+KrePybBJqerq7TH1izom8WlElL0mP9UP6ZTk0Of
- U/xtF9mdlb3/60aF0iPWKZEnUA1ePdBpXGRwRzUOHhM4Cc6cztG03hLJ1bfQUatMGk4cJX3tBM3
- OlF4i3ddOsipcRxqjScPXsOO8KgAKQVIbgIJ6Seob3n/K+K8AcPV1CNghGN8lEDq9/lPnf1W7vh
- yVHnnc7Mfu5/Y4DOkLidDuDwaFFzL2eyESG/CTS529D7rqg6JtfZYUr3QqxDsArRkyxcONgCmqO
- WzD+1Cyhz22EF1UUy86esTnZ4vsIkHP55+SUn4mMW/Gb5E+nwrkd3R72zd1fP39EgcjqGv0y6O1
- cW1XEpMVK+Psjsn4PjTv32LWo5Qw0lnADs08sboCBb5PNAblhEbDJtHpIxr0vHgsDRar71V6Gqs
- euLyqLvTizqOcr5Ihr95u3uwwk2RHTLdbrbUE1o6UuOg=
-X-Developer-Key: i=bjorn.andersson@oss.qualcomm.com; a=openpgp;
- fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
-X-Proofpoint-GUID: PK8h9pFQ_safVRkwiBjr8w8KK9xJsC3p
-X-Authority-Analysis: v=2.4 cv=JNc7s9Kb c=1 sm=1 tr=0 ts=67fdb4bb cx=c_pps a=Z3eh007fzM5o9awBa1HkYQ==:117 a=DaeiM5VmU20ml6RIjrOvYw==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=jIQo8A4GAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=oNyuIvTq0u59PHEm3sEA:9
- a=QEXdDO2ut3YA:10 a=eBU8X_Hb5SQ8N-bgNfv4:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: PK8h9pFQ_safVRkwiBjr8w8KK9xJsC3p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-15_01,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- suspectscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504150005
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY3PR01MB10906:EE_|TYCPR01MB9536:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3289bfe9-0141-4d5c-6fbb-08dd7bbd821a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|1800799024|376014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?/GlP31ZpMv6BIRrZC+i7ATzDKrssEhrO00B9K5V3ISFM+ou6PADBqgsYRCNe?=
+ =?us-ascii?Q?52JDaFELVEJeBiBTsLmD4v5rkzZ/Tj3eBQRoimNqgf6iEbU6UYs14tpEuK2T?=
+ =?us-ascii?Q?bNGT1rwYYx/9L95x/vHkHAooCxOogtrDj3rwfAwWKTwpabDqD+oR93fH+435?=
+ =?us-ascii?Q?ABZlgkgBZK9zj5+mOeBpkmpOvjAbFmNf8QE5HvvotpYfvev2FHehu+ufn2E6?=
+ =?us-ascii?Q?3R4UXZDvJlBzO9oKxxAgD2bxX7783AF5Cewsw1tccTcEHzDpd/Zca5jUOOsc?=
+ =?us-ascii?Q?5eN4NRU5Vt+PJYKgb4LgaqNLpnnlbQaHm09mXUPGSfw0OqZuLYdEAr/Le2ZW?=
+ =?us-ascii?Q?9GYE6nD5da9diCP8BW/U6SB5t5Sw0Gfqi+oIPOn5Kj/jxNV1cnl4MifANdjB?=
+ =?us-ascii?Q?YqetezYz9ymBZ2yeAZhibhERuCFTDuDAncmhidrUdBM181N6cNcZvT5XNW7Q?=
+ =?us-ascii?Q?yvMv1LXGf2JXFD5MiyhQYQSzvh80EXWq1eoWITjCpYP/okfJIRt9Wr7OHTSn?=
+ =?us-ascii?Q?Arn16Wr5OKlFIEuA4Xy3a5t+uVz6HMbaXyCt/2SWjd6uoEHy0FGKAPG5nhuF?=
+ =?us-ascii?Q?ccf+aeSmIfmkZ6kHJ9A7RztlU53TsaQ15QX4n1umydUsRVicKtjEozNu87kB?=
+ =?us-ascii?Q?0alvA50uyd1Qv1iBk2B2259AAWeNO4Wx4SRJRm/hvyvQudQv60HXh/TGOmsS?=
+ =?us-ascii?Q?5uAdR6WFmXZNVmGavopQRWSvKNqnmt9bEVizPVTHzZPUnp4eDpK6Fux+Fm/w?=
+ =?us-ascii?Q?7m6okIDD4OcXDVb3/LCRmS2y0s36Z112CBXv7Lxp55zzbgIB1Goy4oZP5AZ5?=
+ =?us-ascii?Q?9Y7u12j2ZsdbvG2/SWUbbAqSRIe68JAVNQ8WNYoOBqvb8P8SFeiQ3ijMPZ0I?=
+ =?us-ascii?Q?Z72gRwRtM8G9kssHtmN4cFzUpshRtP/amvOhT7rYv30AR/O/0VG6LoL6ZLYK?=
+ =?us-ascii?Q?hlvVcCnfIhIp9cIrgRYijYTlQXcX4KWL0Bpethy8e9qlC1PgGuscQRVAU7FP?=
+ =?us-ascii?Q?taE2BAUFkFaFVVvcYaox1oRvppj3zmBo+kbLI09K8B6Yoan1/sag5KnJjUVR?=
+ =?us-ascii?Q?7kyc5/R3gpYa1Beubz/QI/6KMPduUtYea4MQdzO6M1TPDZG7fRm7saYagd6g?=
+ =?us-ascii?Q?AWr51zblE/Ywc13hUP5TTjb21M0i33eITHg+mHiG10mYRSQQ5d6K3u0Y1c0m?=
+ =?us-ascii?Q?ZMfzfIpnFrVev/kZQJWEWZ/NxBetobtHym6R4hFhwKD2UI+N3FzdACYUNM7l?=
+ =?us-ascii?Q?rXnVPwdgcRb2X1Ibo8WqJIibeVKZrkNfx+B1e5ChKEiBBFssrkogChGjfsuV?=
+ =?us-ascii?Q?J017nVyXrtCYtBhYo63TWqjLBmQc3PV4JOPyKfB2xdP7Uq8JMdi7I+dtta+s?=
+ =?us-ascii?Q?a6YB0iyhk3GkYOpXkub3pJ+vwVLqhNByLMy552qEfUugbZ88W2RWHLr9DPNJ?=
+ =?us-ascii?Q?62irOe+ZFzDv6/rKr6LbFSbrhajOA9EZ5lxgefQk6+V1n5BVDgiteKWN5GgA?=
+ =?us-ascii?Q?9hL8GyD4bKGQoTJHw8TMyZpaUvvNHLgB1N/G?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB10906.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(376014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?jYf3kkmch3UIF9ohXIoJN6/vyIM/hewPoqDwvRzq2pQ/0j4mrA2+fpHcfYLd?=
+ =?us-ascii?Q?JzOosnnP04HoZklflHRTvtRD7+Kb1Qmtp5/tAP9U+nREN2JEHrsxeyepDJ/W?=
+ =?us-ascii?Q?wGO6JanUKDGRTTQokV/XJmndDME1QVyYlAvpDJvNBH2gZ4bk6LDQ0inXH46R?=
+ =?us-ascii?Q?tAizq+oBXU/RfZVUFuu5L66PT1X1GWDOP8fPcxB/rJtLqalLSfLXE6pOjpNw?=
+ =?us-ascii?Q?ozxjOWIDcjdlXHMOwQWe9jpEEj6f8GBY99L2hQM5Cr8fH0Q2rRERRe1fenRV?=
+ =?us-ascii?Q?N0G25OqCF4YDBOiR7Z1ujSBfidbNFqNB5ooebNp8m1s3kfUvYU/1sqPd+q1p?=
+ =?us-ascii?Q?DcVwIJPF4ueCX+EV3ndzU2G3dksU+gM4Hq9I6YoAKuGycl02J6iIocw2uNfz?=
+ =?us-ascii?Q?/6Cx0sE4jesmRMvNdPvVL5GoFvQgY81Fx00OHhka8CZoScjENaV96k950IRW?=
+ =?us-ascii?Q?BoLoqKW9ScjrleZuZNiFxkaq/g59+QSw4Ru7bqukahx1hH5Mlocnx6LLvlH9?=
+ =?us-ascii?Q?RIlpNAzlvyQsAhzvKROvZRqr9xfrjk4m90rh2+lcOyPY22Q/4BPh05IomIqY?=
+ =?us-ascii?Q?NljsWsWdwIxmpPJTIYP75xcnBVlgHBqlFwDYiDgULaBir3tm+GfXLdFDtDTb?=
+ =?us-ascii?Q?G8/0zAfMQ9fCLngjLUljoG/RljyF5UigKiiasWD3zomqUyVNa9nQtw/W+qUy?=
+ =?us-ascii?Q?0da5U65aThCxcz1oj3ByBCX2whtWJpTwsP1VtiQX3GRL2dDrXA8wwvVfZfPM?=
+ =?us-ascii?Q?lGfh01KeLRKYYYP3ar94kk1q5LMWzFSoM2c0Niwvu4unnoKVrfZOw2YcaaCb?=
+ =?us-ascii?Q?wL87owPGadyEtwT93Y1sGQ4nQv04DrFxVBbuVsKP+5d/yUhUtq9RVcEhmOR+?=
+ =?us-ascii?Q?OomItwGUghLPVwYnCTzgp0t3/pixbdvoqRNwIYtDsR5vqHG4HU/vA+kITUc3?=
+ =?us-ascii?Q?rpOsZoTK5GWSWQHSDvWkooxC9Jnh+QorxuqHzCGrNY0/NxkMefODTcO8UrVV?=
+ =?us-ascii?Q?nbAkKYIVhQoQRcO0ZPZl/ZI2Rn49BtHLBzK9Qo2g0xp7oXGbLaH/wXKwk9Vp?=
+ =?us-ascii?Q?jBEqJs0FmsnGgmJJfbVEU2fr5jfZeW+wWv61Wa4MZhvYmPz8tA2h9rHVPzQ6?=
+ =?us-ascii?Q?3N9nOVxAfwTWrIZKkO1lM0+yfUCNjj4Ye+qE/c0HdPIYwvW/8SccsB19IKzS?=
+ =?us-ascii?Q?k4X1LtEhqYJrewlHOorMT/Mh0YUsZ0cvtEARDMy5B0shX5bomwn25IySH0b7?=
+ =?us-ascii?Q?zbs8VK+HlItxlM4ppb9kLYGZ/GGE0LI+KUGrNJ3mXJOoQqL+hGnVLuaqcu5E?=
+ =?us-ascii?Q?pwO+BrUxgKEmB7qQPJ2ZMed+Iv5AfnrR6nfYl5JI3zHESreEBHdFK63QtShI?=
+ =?us-ascii?Q?PqqA7PWHOfLiIWe94vHttGYkBHZt3nGoDxwAFI+KGoiUaMZu2uuxxh2VRILN?=
+ =?us-ascii?Q?wFHXR2Ij5cMYSFZuErjt/CGu5Eh3QovUholzYa1Rg7BlQdv7YCX74XOo2odb?=
+ =?us-ascii?Q?B1Nu8PC12k1FiryiDsNEdyKcD0otvRGiSlcyuDWbUPDvXHzYZ7d+7l+2tsP2?=
+ =?us-ascii?Q?vW/EDy/cwg9mLFyCCUImjK9D6b+blRR5WIBuTemo8siSlnIgaG5DWIC01vVR?=
+ =?us-ascii?Q?UY6uJV7iuFVjyrAiPk7aXbs=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3289bfe9-0141-4d5c-6fbb-08dd7bbd821a
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB10906.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 01:33:21.9640
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 83CXPv+bMCm0mQj+/VsUNqWVCeuCwDWfIc9/QV+/OXLTgFBWJLB7G+QT0HBkNq8og01RRFYeSqxmjBwax5q3wSSVoFBB2nMEBPMO+NwBml/gQyPTqHfg7P7+/rCcLDmP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9536
 
-The USB IP-block found in most Qualcomm platforms is modelled in the
-Linux kernel as 3 different independent device drivers, but as shown by
-the already existing layering violations in the Qualcomm glue driver
-they can not be operated independently.
 
-With the current implementation, the glue driver registers the core and
-has no way to know when this is done. As a result, e.g. the suspend
-callbacks needs to guard against NULL pointer dereferences when trying
-to peek into the struct dwc3 found in the drvdata of the child.
-Even with these checks, there are no way to fully protect ourselves from
-the race conditions that occur if the DWC3 is unbound.
+Hi Mark, Rob, Krzysztof
+Cc Geert
 
-Missing from the upstream Qualcomm USB support is handling of role
-switching, in which the glue needs to be notified upon DRD mode changes.
-Several attempts has been made through the years to register callbacks
-etc, but they always fall short when it comes to handling of the core's
-probe deferral on resources etc.
+Renesas MSIOF can work as both SPI and I2S.
+Current Linux supports MSIOF-SPI. This patch-set adds new MSIOF-I2S.
 
-Moving to a model where the DWC3 core is instantiated in a synchronous
-fashion avoids above described race conditions.
+Because it is using same HW-IP, we want to share same compatible for both
+MSIOF-SPI/I2S case. MSIOF-I2S (Sound) will use Audio-Graph-Card/Card2 which
+uses Of-Graph, but  MSIOF-SPI is not use Of-Graph.
+So, this patch-set assumes it was used as MSIOF-I2S if DT is using Of-Graph,
+otherwise, it is MSIOF-SPI (This assumption will works if SPI *never*
+use Of-Graph in the future).
 
-It is however not feasible to do so without also flattening the
-DeviceTree binding, as assumptions are made in the DWC3 core and
-frameworks used that the device's associated of_node will the that of
-the core. Furthermore, the DeviceTree binding is a direct
-representation of the Linux driver model, and doesn't necessarily
-describe "the USB IP-block".
+Link: https://lore.kernel.org/r/87h62vh5mj.wl-kuninori.morimoto.gx@renesas.com
+Link: https://lore.kernel.org/r/875xjeb0wu.wl-kuninori.morimoto.gx@renesas.com
 
-The Qualcomm DWC3 glue driver is therefor transitioned to initialize and
-operate the DWC3 within the one device context, in synchronous fashion.
+v2 -> v3
+	- Tidyup MSIOF dt-bindings schema ([1/10])
+	- Add SPI tidyup patch ([02/10])
+	- Tidyup git-log comment ([04/10)
+	- Tidyup ADG handling ([05/10])
+	- Tidyup typo ([07/10])
+	- Add Reviewed-by ([10/10])
 
-To provide a limited time backwards compatibility, a snapshot of the
-driver is retained in a previous commit. As such no care is taken in the
-dwc3-qcom driver for the qcom,dwc3 backwards compatibility.
+v1 -> v2
+	- Merge I2S DT bindings into SPI DT
+	- add "dt-bindings: " in Subject ([1/9])
+	- use dev instead of pdev->dev ([2/9])
+	- use __free() ([3/9])
+	- Add Geert's Reviewed-by ([3/9])
+	- Tidyup top NOTE ([6/9])
+	- Remove unused defines ([6/9])
+	- remove "probed" ([6/9])
+	- remove MODULE_ALIAS([6/9])
+	- rename "spi" to "serial-engine" ([7/9])
+	- add MSIOF on defconfig ([9/9])
 
-Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
-Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
----
- drivers/usb/dwc3/dwc3-qcom.c | 177 ++++++++++++++++++++++++-------------------
- 1 file changed, 99 insertions(+), 78 deletions(-)
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 9d04c2457433bd6bcd96c445f59d7f2a3c6fdf24..d512002e1e88da9523ff82454e653bac55c1409d 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -4,7 +4,6 @@
-  * Inspired by dwc3-of-simple.c
-  */
- 
--#include <linux/cleanup.h>
- #include <linux/io.h>
- #include <linux/of.h>
- #include <linux/clk.h>
-@@ -14,7 +13,6 @@
- #include <linux/kernel.h>
- #include <linux/extcon.h>
- #include <linux/interconnect.h>
--#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/phy/phy.h>
- #include <linux/usb/of.h>
-@@ -23,6 +21,7 @@
- #include <linux/usb/hcd.h>
- #include <linux/usb.h>
- #include "core.h"
-+#include "glue.h"
- 
- /* USB QSCRATCH Hardware registers */
- #define QSCRATCH_HS_PHY_CTRL			0x10
-@@ -73,7 +72,7 @@ struct dwc3_qcom_port {
- struct dwc3_qcom {
- 	struct device		*dev;
- 	void __iomem		*qscratch_base;
--	struct platform_device	*dwc3;
-+	struct dwc3		dwc;
- 	struct clk		**clks;
- 	int			num_clocks;
- 	struct reset_control	*resets;
-@@ -92,6 +91,8 @@ struct dwc3_qcom {
- 	struct icc_path		*icc_path_apps;
- };
- 
-+#define to_dwc3_qcom(d) container_of((d), struct dwc3_qcom, dwc)
-+
- static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
- {
- 	u32 reg;
-@@ -116,6 +117,11 @@ static inline void dwc3_qcom_clrbits(void __iomem *base, u32 offset, u32 val)
- 	readl(base + offset);
- }
- 
-+/*
-+ * TODO: Make the in-core role switching code invoke dwc3_qcom_vbus_override_enable(),
-+ * validate that the in-core extcon support is functional, and drop extcon
-+ * handling from the glue
-+ */
- static void dwc3_qcom_vbus_override_enable(struct dwc3_qcom *qcom, bool enable)
- {
- 	if (enable) {
-@@ -260,7 +266,7 @@ static int dwc3_qcom_interconnect_init(struct dwc3_qcom *qcom)
- 		goto put_path_ddr;
- 	}
- 
--	max_speed = usb_get_maximum_speed(&qcom->dwc3->dev);
-+	max_speed = usb_get_maximum_speed(qcom->dwc.dev);
- 	if (max_speed >= USB_SPEED_SUPER || max_speed == USB_SPEED_UNKNOWN) {
- 		ret = icc_set_bw(qcom->icc_path_ddr,
- 				USB_MEMORY_AVG_SS_BW, USB_MEMORY_PEAK_SS_BW);
-@@ -303,25 +309,14 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
- /* Only usable in contexts where the role can not change. */
- static bool dwc3_qcom_is_host(struct dwc3_qcom *qcom)
- {
--	struct dwc3 *dwc;
--
--	/*
--	 * FIXME: Fix this layering violation.
--	 */
--	dwc = platform_get_drvdata(qcom->dwc3);
--
--	/* Core driver may not have probed yet. */
--	if (!dwc)
--		return false;
--
--	return dwc->xhci;
-+	return qcom->dwc.xhci;
- }
- 
- static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom, int port_index)
- {
--	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
- 	struct usb_device *udev;
- 	struct usb_hcd __maybe_unused *hcd;
-+	struct dwc3 *dwc = &qcom->dwc;
- 
- 	/*
- 	 * FIXME: Fix this layering violation.
-@@ -498,7 +493,7 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
- static irqreturn_t qcom_dwc3_resume_irq(int irq, void *data)
- {
- 	struct dwc3_qcom *qcom = data;
--	struct dwc3	*dwc = platform_get_drvdata(qcom->dwc3);
-+	struct dwc3 *dwc = &qcom->dwc;
- 
- 	/* If pm_suspended then let pm_resume take care of resuming h/w */
- 	if (qcom->pm_suspended)
-@@ -700,40 +695,14 @@ static int dwc3_qcom_clk_init(struct dwc3_qcom *qcom, int count)
- 	return 0;
- }
- 
--static int dwc3_qcom_of_register_core(struct dwc3_qcom *qcom, struct platform_device *pdev)
--{
--	struct device_node	*np = pdev->dev.of_node;
--	struct device		*dev = &pdev->dev;
--	int			ret;
--
--	struct device_node *dwc3_np __free(device_node) = of_get_compatible_child(np,
--										  "snps,dwc3");
--	if (!dwc3_np) {
--		dev_err(dev, "failed to find dwc3 core child\n");
--		return -ENODEV;
--	}
--
--	ret = of_platform_populate(np, NULL, NULL, dev);
--	if (ret) {
--		dev_err(dev, "failed to register dwc3 core - %d\n", ret);
--		return ret;
--	}
--
--	qcom->dwc3 = of_find_device_by_node(dwc3_np);
--	if (!qcom->dwc3) {
--		ret = -ENODEV;
--		dev_err(dev, "failed to get dwc3 platform device\n");
--		of_platform_depopulate(dev);
--	}
--
--	return ret;
--}
--
- static int dwc3_qcom_probe(struct platform_device *pdev)
- {
-+	struct dwc3_probe_data	probe_data = {};
- 	struct device_node	*np = pdev->dev.of_node;
- 	struct device		*dev = &pdev->dev;
- 	struct dwc3_qcom	*qcom;
-+	struct resource		res;
-+	struct resource		*r;
- 	int			ret, i;
- 	bool			ignore_pipe_clk;
- 	bool			wakeup_source;
-@@ -742,7 +711,6 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	if (!qcom)
- 		return -ENOMEM;
- 
--	platform_set_drvdata(pdev, qcom);
- 	qcom->dev = &pdev->dev;
- 
- 	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
-@@ -771,8 +739,15 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 		goto reset_assert;
- 	}
- 
--	qcom->qscratch_base = devm_platform_ioremap_resource(pdev, 0);
-+	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!r)
-+		goto clk_disable;
-+	res = *r;
-+	res.end = res.start + SDM845_QSCRATCH_BASE_OFFSET;
-+
-+	qcom->qscratch_base = devm_ioremap(dev, res.end, SDM845_QSCRATCH_SIZE);
- 	if (IS_ERR(qcom->qscratch_base)) {
-+		dev_err(dev, "failed to map qscratch region: %pe\n", qcom->qscratch_base);
- 		ret = PTR_ERR(qcom->qscratch_base);
- 		goto clk_disable;
- 	}
-@@ -792,17 +767,21 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	if (ignore_pipe_clk)
- 		dwc3_qcom_select_utmi_clk(qcom);
- 
--	ret = dwc3_qcom_of_register_core(qcom, pdev);
--	if (ret) {
--		dev_err(dev, "failed to register DWC3 Core, err=%d\n", ret);
-+	qcom->dwc.dev = dev;
-+	probe_data.dwc = &qcom->dwc;
-+	probe_data.res = &res;
-+	probe_data.ignore_clocks_and_resets = true;
-+	ret = dwc3_core_probe(&probe_data);
-+	if (ret)  {
-+		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
- 		goto clk_disable;
- 	}
- 
- 	ret = dwc3_qcom_interconnect_init(qcom);
- 	if (ret)
--		goto depopulate;
-+		goto remove_core;
- 
--	qcom->mode = usb_get_dr_mode(&qcom->dwc3->dev);
-+	qcom->mode = usb_get_dr_mode(dev);
- 
- 	/* enable vbus override for device mode */
- 	if (qcom->mode != USB_DR_MODE_HOST)
-@@ -815,20 +794,15 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 
- 	wakeup_source = of_property_read_bool(dev->of_node, "wakeup-source");
- 	device_init_wakeup(&pdev->dev, wakeup_source);
--	device_init_wakeup(&qcom->dwc3->dev, wakeup_source);
- 
- 	qcom->is_suspended = false;
--	pm_runtime_set_active(dev);
--	pm_runtime_enable(dev);
--	pm_runtime_forbid(dev);
- 
- 	return 0;
- 
- interconnect_exit:
- 	dwc3_qcom_interconnect_exit(qcom);
--depopulate:
--	of_platform_depopulate(&pdev->dev);
--	platform_device_put(qcom->dwc3);
-+remove_core:
-+	dwc3_core_remove(&qcom->dwc);
- clk_disable:
- 	for (i = qcom->num_clocks - 1; i >= 0; i--) {
- 		clk_disable_unprepare(qcom->clks[i]);
-@@ -842,12 +816,11 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 
- static void dwc3_qcom_remove(struct platform_device *pdev)
- {
--	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
--	struct device *dev = &pdev->dev;
-+	struct dwc3 *dwc = platform_get_drvdata(pdev);
-+	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
- 	int i;
- 
--	of_platform_depopulate(&pdev->dev);
--	platform_device_put(qcom->dwc3);
-+	dwc3_core_remove(&qcom->dwc);
- 
- 	for (i = qcom->num_clocks - 1; i >= 0; i--) {
- 		clk_disable_unprepare(qcom->clks[i]);
-@@ -857,17 +830,20 @@ static void dwc3_qcom_remove(struct platform_device *pdev)
- 
- 	dwc3_qcom_interconnect_exit(qcom);
- 	reset_control_assert(qcom->resets);
--
--	pm_runtime_allow(dev);
--	pm_runtime_disable(dev);
- }
- 
--static int __maybe_unused dwc3_qcom_pm_suspend(struct device *dev)
-+#ifdef CONFIG_PM_SLEEP
-+static int dwc3_qcom_pm_suspend(struct device *dev)
- {
--	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
- 	bool wakeup = device_may_wakeup(dev);
- 	int ret;
- 
-+	ret = dwc3_pm_suspend(&qcom->dwc);
-+	if (ret)
-+		return ret;
-+
- 	ret = dwc3_qcom_suspend(qcom, wakeup);
- 	if (ret)
- 		return ret;
-@@ -877,9 +853,10 @@ static int __maybe_unused dwc3_qcom_pm_suspend(struct device *dev)
- 	return 0;
- }
- 
--static int __maybe_unused dwc3_qcom_pm_resume(struct device *dev)
-+static int dwc3_qcom_pm_resume(struct device *dev)
- {
--	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
- 	bool wakeup = device_may_wakeup(dev);
- 	int ret;
- 
-@@ -889,30 +866,74 @@ static int __maybe_unused dwc3_qcom_pm_resume(struct device *dev)
- 
- 	qcom->pm_suspended = false;
- 
-+	ret = dwc3_pm_resume(&qcom->dwc);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- }
- 
--static int __maybe_unused dwc3_qcom_runtime_suspend(struct device *dev)
-+static void dwc3_qcom_complete(struct device *dev)
- {
--	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+
-+	dwc3_pm_complete(dwc);
-+}
-+
-+static int dwc3_qcom_prepare(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+
-+	return dwc3_pm_prepare(dwc);
-+}
-+#else
-+#define dwc3_qcom_complete NULL
-+#define dwc3_qcom_prepare NULL
-+#endif /* CONFIG_PM_SLEEP */
-+
-+#ifdef CONFIG_PM
-+static int dwc3_qcom_runtime_suspend(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
-+	int ret;
-+
-+	ret = dwc3_runtime_suspend(&qcom->dwc);
-+	if (ret)
-+		return ret;
- 
- 	return dwc3_qcom_suspend(qcom, true);
- }
- 
--static int __maybe_unused dwc3_qcom_runtime_resume(struct device *dev)
-+static int dwc3_qcom_runtime_resume(struct device *dev)
- {
--	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
-+	int ret;
- 
--	return dwc3_qcom_resume(qcom, true);
-+	ret = dwc3_qcom_resume(qcom, true);
-+	if (ret)
-+		return ret;
-+
-+	return dwc3_runtime_resume(&qcom->dwc);
-+}
-+
-+static int dwc3_qcom_runtime_idle(struct device *dev)
-+{
-+	return dwc3_runtime_idle(dev_get_drvdata(dev));
- }
-+#endif /* CONFIG_PM */
- 
- static const struct dev_pm_ops dwc3_qcom_dev_pm_ops = {
- 	SET_SYSTEM_SLEEP_PM_OPS(dwc3_qcom_pm_suspend, dwc3_qcom_pm_resume)
- 	SET_RUNTIME_PM_OPS(dwc3_qcom_runtime_suspend, dwc3_qcom_runtime_resume,
--			   NULL)
-+			   dwc3_qcom_runtime_idle)
-+	.complete = dwc3_qcom_complete,
-+	.prepare = dwc3_qcom_prepare,
- };
- 
- static const struct of_device_id dwc3_qcom_of_match[] = {
-+	{ .compatible = "qcom,snps-dwc3" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, dwc3_qcom_of_match);
+Kuninori Morimoto (10):
+  dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
+  spi: sh-msiof: use dev in sh_msiof_spi_probe()
+  spi: sh-msiof: ignore driver probing if it was MSIOF Sound
+  ASoC: renesas: rsnd: allow to use ADG as standalone
+  ASoC: renesas: rsnd: care BRGA/BRGB select in rsnd_adg_clk_enable()
+  ASoC: renesas: rsnd: enable to use "adg" clock
+  ASoC: renesas: add MSIOF sound support
+  arm64: dts: renesas: r8a779g0: tidyup MSIOF node name
+  arm64: dts: renesas: sparrow hawk: Add MSIOF Sound support
+  arm64: defconfig: add Renesas MSIOF sound support
+
+ .../bindings/spi/renesas,sh-msiof.yaml        |  43 +-
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     |  12 +-
+ .../dts/renesas/r8a779g3-sparrow-hawk.dts     |  98 +++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/spi/spi-sh-msiof.c                    |  42 +-
+ sound/soc/renesas/Kconfig                     |   7 +
+ sound/soc/renesas/rcar/Makefile               |   3 +
+ sound/soc/renesas/rcar/adg.c                  |  32 +-
+ sound/soc/renesas/rcar/core.c                 |   7 +-
+ sound/soc/renesas/rcar/msiof.c                | 566 ++++++++++++++++++
+ 10 files changed, 766 insertions(+), 45 deletions(-)
+ create mode 100644 sound/soc/renesas/rcar/msiof.c
 
 -- 
-2.49.0
+2.43.0
 
 
