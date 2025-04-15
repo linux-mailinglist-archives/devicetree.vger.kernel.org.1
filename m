@@ -1,204 +1,109 @@
-Return-Path: <devicetree+bounces-167080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398B2A8951E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:31:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2A4A89536
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:35:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C42617E354
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:31:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AA823A5DB3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164122417C8;
-	Tue, 15 Apr 2025 07:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F8527990F;
+	Tue, 15 Apr 2025 07:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s+oo7O0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E95224A043;
-	Tue, 15 Apr 2025 07:31:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6692B2750E6
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 07:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744702272; cv=none; b=W5RvCGZJYahOX/3zfOd9ozguYrx71Lg53mNJ5B234LjOU14/J/Hwj3ZSmaZ2NAuRrPlBQfoSyeRCVRKE8qmJWA7wKWjjZ1gnMPxoCk2UvXnrpeWTNn2hmkYdsMifE4H/b949XselwqIIqRNcC2rwdG1s/kcXAksAKtZZqut0IvY=
+	t=1744702530; cv=none; b=hRd0tSqJdxhr2ZPUiqr283pGiEHeKgVfABhHC4BFSoNuLRxwAJaGL/QM6WyBwi7tPUjgBp3BYOtBPL4fiqNvnoiIrRkLq/vpj6kFgUCSjzvd1m5tPL7QhL3egymavL6bdzusAwVSt2WwftouAvVdzeo90PxisFjxTeAmkcaCJzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744702272; c=relaxed/simple;
-	bh=VTZCWyCGjdciP3aZHJhTk6E9mLATfcs0U4wCy0CbtGU=;
+	s=arc-20240116; t=1744702530; c=relaxed/simple;
+	bh=/t01dfXvGRgfX4KTskLD9RHr8QjggEKBR5una7CkTdM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rOVPlTo1bUfePfTbzCjra6EgMadFcTcnQ4xjNYqtgJlLoV189ezLp/pStyaTQy1sGEVYxMPzxFUMVBpIlz7FdedrFUEvXwCNT4J4hnry1aIdbVUS3Hnnxkm/+yjT9+ZGmtw36XZNHTYdETwQjLqzrI3g4PLm69Mr46LH5V4DMBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-525b44ec88aso2451048e0c.3;
-        Tue, 15 Apr 2025 00:31:09 -0700 (PDT)
+	 To:Cc:Content-Type; b=Wez+vb2JF8VSuW1CsFuriC5f7bKmg5hUuNGAzdo8WcJTPt39Tkl7cGrUNrGHaNCTiJJjw2it8u95REpwkCW4HGlagrQU16pstLhg5jlQnl+TALTvS43Wex4xfRUyAxuc1H5hvBrj53rAN80KUv5RUy7OiGtbIB0tzqy3MnaWIW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s+oo7O0h; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bfed67e08so51144271fa.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 00:35:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744702526; x=1745307326; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z5s8lHjULdMShwAF8jjer9y5ggl6mu2Z2yK+KvFB6hE=;
+        b=s+oo7O0hziTMTn6ffzLugD78KNSlG1XVVmBSNq7/dA2+BW+COsqPeulYH1zmbHlyXD
+         YRiFIof75U2YhtqwpQOc4yHyBTmuwwaNjI9STsEKbAuHlHbhGEJhGavHL6jwgqQ6K1Q8
+         u4T5uVapy/DQM8ExQU4KQE5sFdt7QdIgLpAmVtIzavjMn4ci77v0VtHX2K8sl+obp34G
+         GHgVk1E5oiRb59saVQLjCA2W8y5XWTmcG6bPqRVFHyJl28t+hBio6SXIB5BNOX+ienNf
+         ntV0TX487Fw+Gngj+c9Y5JiENlGQRJ82XYkt+0FFvVvjEo/HefvdGyiHqPI7/GzadqRm
+         liAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744702268; x=1745307068;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IGw5spwHw8NIdX95wcfYNhGWI1R6yaJkvthw0sRY1HE=;
-        b=wfWH+/Ztq0+3RycVU5UAFi8QA6R8FTLU7+3NHy67IlPbHiGjFT69phqdFtRdGeDaiH
-         FmtiofoyiWgSDChubPEpBfVBdXAAXcAjRUkwG9qrasvJ6jq53Cum55LCpkFdkw6KcKJv
-         yZeYye8mYW61CMzIyB/l6xHdY/gjV+TglM/8VraqetS0Cjt1FyzwAmdBqipGhzwzIi0f
-         HsWRgfSdprc4YkWxZWnGFa1E36j3aRYAfsaS37iHCjE60p9l6JuQF15x3b2OvU7WEiMO
-         PMJ9HURFt8dA9R+UoxakW7lX8KRM88mp+WCKN1ZEebjLerfiediqm4LNddXWvPZdNd8/
-         peyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUIVmgNjd9sj833wLF+YXftJFzpOnsxEW8L4CCukRmZZtgjzmOmDvlaacBXTD4nZe1y0PB8gzCQBxDCP8=@vger.kernel.org, AJvYcCWVrg7bv97ANX2smnQdvTAWbB3s6vJjJEX5JhAUQPKcarw89jgOG2IxuU7Npa1HJNHg/v/N78C56QR6AYc7QSzpP6A=@vger.kernel.org, AJvYcCX/df+EwSDeCOkYR9bGirwwlmR9jZ3K0wz6j3/VLpjbexwZ+3lakIZo33rFCUJa6MR7G27BmIS6bde9@vger.kernel.org, AJvYcCXHBvdcxFM+iKcVYW4jkKdmxrqQz0Cbz1Fl0YJ90VitxU6QmZ4TStPKF5fEdTOAJRUyWJaZIBcdk/wH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEfw5uh9/luy46Mwweji+Jb9Qov6hwrcTSN6eFQeqpTJlggAS8
-	3zQLmZx1BQu/gUtW7xR68UMqvRPyc/yPjbRnJ3G9098mb+u8gzMWsKud1YrY
-X-Gm-Gg: ASbGncsoaXgKh/CFXqyacG51xmWO5cW4Luw9US/tuNzV610JCJ5s/fTRHs8H8EkrVDV
-	GTSEVlFiaq77itEIvJhkPiT4XWR2j4WLZAmxCfibj1qpjWh1RRz3T3lINBaJt+2VlgYWzWJ97og
-	42m2qtmvWkyLesyUwhiIHoIwuPZeXcs+pn4+zXHCxskgjfRDUDjgvq4dbZaEEpzqi4G8DP91zA7
-	kzDJ6TG3vselpVjqTQKn9HKkCo0sJlDVokoRgsTzk3KzcB1qNRdL8R2VAARlehbrq6g03XOdjLg
-	lGImqxnQQFKGoQ9QYsvwdRzyTZRyVl+3cPO9tnoE0KIIvofES1bD9aecmu6ML//SocfI0Iw+RJh
-	fjI7/7vkZ/XxdDme5DA==
-X-Google-Smtp-Source: AGHT+IGbEYFoAWecDGlS6CiSHgeDQgxz+wOiqMKSXznm3SEV7fRlVBWhHmmjN54WUunr0GsfRHQKJQ==
-X-Received: by 2002:a05:6122:512:b0:520:5a87:66eb with SMTP id 71dfb90a1353d-527c34956f9mr10680173e0c.3.1744702268541;
-        Tue, 15 Apr 2025 00:31:08 -0700 (PDT)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-875560e3077sm2577525241.2.2025.04.15.00.31.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 00:31:08 -0700 (PDT)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5241abb9761so2202769e0c.1;
-        Tue, 15 Apr 2025 00:31:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUg1GzQrvuZ//+2HhdKKWxBryRD7EBjkhJv+KOXKDZJRx2LC83u7bqIahpbuAcS4LLsiEUHbbxfFecYDho=@vger.kernel.org, AJvYcCVa0aazrxUgnU8YhCaORduQOKfQNeckF1jdZumicBE/9UYgafKQq785W1GzT1KRbdkEZkc+m9cloAF0@vger.kernel.org, AJvYcCWnA0ahEC9P/ss9bqCPDtcmTJtRx6GEpDe9UueBXBKquvmsKxzJgGoDxc4hJx70rkx4EdNrUFJGdXapR+flKsSIFZs=@vger.kernel.org, AJvYcCXl5ZaZplbqEgA//FLrsYw+QAIi1clZXNqsoolXFVzJYWu6kIEMarGHaRAQJxNCCIk53/TOZXsJOkqR@vger.kernel.org
-X-Received: by 2002:a05:6122:8282:b0:520:5185:1c31 with SMTP id
- 71dfb90a1353d-527c35c2351mr10043766e0c.9.1744702268047; Tue, 15 Apr 2025
- 00:31:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744702526; x=1745307326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z5s8lHjULdMShwAF8jjer9y5ggl6mu2Z2yK+KvFB6hE=;
+        b=auk4Uf8tq7vTy91HI7PPdkwffSbglD1rbjS4u+/EMYUMKc5rKvoy3M0HKtw99GcQqG
+         +Gqi/t3NLKhxUh96J3odbmaz3OVCbmqdtYvKx5FKZvvdbEVvrrhy0rOxKgFoIrTmZkPy
+         LoWoj/2hq8O8A8SCzZx+2MgE2HJWFm5e5+jex6OJKnao2oOL/xU3gR8OtIdng9P6t9hn
+         ALoXZ5sMiTT/j3WsHN9YK2qibAUQug8rxGW1mtrtVjYoyXpa8/gpwafPgR2XbwHSr+Io
+         Xj4sbe3fIdoC4MZtxkKheqNbUErGwlcuuBTpkhALk8RJBvL2osJgWqSUeBIoVJsz25WB
+         Z2ZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5upyuT9JmOJXrHYKY+W6zPaCD7C2hfZzdWoY/bvo3R92NAclTYzDLHzjhpKvsFfqraifYiHNj2+K0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBJunWoi/zDtKHYN1uU1VwBWw2VD7hidzyMvnQsUHSU0cua23f
+	/6NXzbE+U8OUDIpzA7WQDHqvbWDsntDNHJY/wYI4jHlJbJZBtrUxGFuxneFT9Zl1Qy/4TocDzfE
+	KY5tRYhHkDr4N8OGOR7KA0OZe4wbcIJ8Q6Rs5qw==
+X-Gm-Gg: ASbGncuNccJztKvuMHaSxcEMe/nI9tAaH4sx00amUd3PTRQip413qtIh9pEXBY7hk4u
+	YA4Q0t2CeJS2ZpzISAlsBps3E+C1aqJDK6MOafTSDHjXNA6nPHSWq3zGMTTKqm1PebAddvEaz17
+	mglIQ191UP1FPjEhZo8LcSWqUWnF0yfrXW
+X-Google-Smtp-Source: AGHT+IF/f3ma4C5o9c0efnyvduCTab9wDDK72+7lhXFZsmhgzu8nGsMsG6D4c0qe2PhRQIiyrICHnRVYY1XaZjetoDw=
+X-Received: by 2002:a05:651c:30c1:b0:30d:b3d1:a71 with SMTP id
+ 38308e7fff4ca-31049a80682mr54317271fa.33.1744702526493; Tue, 15 Apr 2025
+ 00:35:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com> <87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 15 Apr 2025 09:30:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
-X-Gm-Features: ATxdqUGJna7AxHia-Op7KClT4HpJfHRHVf9wGRzfALZvGSP0kVUzM1m0vvE3Efc
-Message-ID: <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
-Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S
- Sound support
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+References: <20250412-03-k1-gpio-v8-0-1c6862d272ec@gentoo.org> <20250415023234-GYA29961@gentoo>
+In-Reply-To: <20250415023234-GYA29961@gentoo>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 15 Apr 2025 09:35:15 +0200
+X-Gm-Features: ATxdqUFrvoN3oToav7nR6RzJi6WKzvpJz5pszWK5ULoM2MOJjET7tU5z2QtEKvY
+Message-ID: <CACRpkdZ6A0xORRQBnNNPFcNHg3xL=U3_xAcePmaDN3_ZYMzsaA@mail.gmail.com>
+Subject: Re: [PATCH v8 0/5] riscv: spacemit: add gpio support for K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Alex Elder <elder@riscstar.com>, Yangyu Chen <cyy@cyyself.name>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Morimoto-san,
+On Tue, Apr 15, 2025 at 4:32=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
 
-On Tue, 15 Apr 2025 at 03:33, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> Renesas MSIOF (Clock-Synchronized Serial Interface with FIFO) can work as
-> both SPI and I2S. MSIOF-I2S will use Audio Graph Card/Card2 driver which
-> uses Of-Graph in DT.
->
-> MSIOF-SPI/I2S are using same DT compatible properties.
-> MSIOF-I2S         uses Of-Graph for Audio-Graph-Card/Card2,
-> MSIOF-SPI doesn't use  Of-Graph.
->
-> Adds schema for MSIOF-I2S (= Sound).
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Hi Bartosz,
+>   I think this version is good to go, if you agree,
+> can you take patch [1,2 / 5] through gpio tree?
 
-Thanks for the update!
+I agree with this, it's the final piece making use of all the nice
+infrastructure we put in for threecell GPIO and threecell
+IRQ so let's merge patches 1+2!
 
-> --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> @@ -4,14 +4,11 @@
->  $id: http://devicetree.org/schemas/spi/renesas,sh-msiof.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> -title: Renesas MSIOF SPI controller
-> +title: Renesas MSIOF SPI / I2S controller
->
->  maintainers:
->    - Geert Uytterhoeven <geert+renesas@glider.be>
->
-> -allOf:
-> -  - $ref: spi-controller.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -146,24 +143,38 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      default: 64
->
-> +  # for MSIOF-I2S
-> +  port:
-> +    $ref: ../sound/audio-graph-port.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
->    - interrupts
->    - clocks
->    - power-domains
-> -  - '#address-cells'
-> -  - '#size-cells'
-> -
-> -if:
-> -  not:
-> -    properties:
-> -      compatible:
-> -        contains:
-> -          const: renesas,sh-mobile-msiof
-> -then:
-> -  required:
-> -    - resets
-> +
-> +allOf:
-> +  # additional "required""
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: renesas,sh-mobile-msiof
-> +    then:
-> +      required:
-> +        - resets
-> +
-> +  # "MSIOF-SPI" specific
-> +  - if:
-> +      properties:
-> +        $nodename:
-> +          pattern: '^spi@'
-
-This condition does not match what you wrote in the cover letter:
-the controller is used in I2S mode when a port(s) subnode is present,
-and in SPI mode when no port(s) subnode is present.
-
-> +    then:
-> +      allOf:
-> +        - $ref: spi-controller.yaml#
-
-Documentation/devicetree/bindings/spi/spi-controller.yaml indeed
-requires that the node-name matches "^spi(@.*|-([0-9]|[1-9][0-9]+))?$".
-The controller's node is located in the SoC-specific .dtsi, where its
-intended use case is not yet known, and its node name cannot easily be
-overridden in the board .dts that specifies the use case.  Hence the
-node name must always be "spi" (and cannot be e.g. "serial-engine").
-Let's hope there is no other use case for MSIOF that requires using
-a different node name...
-
->
->  unevaluatedProperties: false
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
 
