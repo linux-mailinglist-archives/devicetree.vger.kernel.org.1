@@ -1,143 +1,132 @@
-Return-Path: <devicetree+bounces-167443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5AC0A8A3F5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 18:21:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565DFA8A439
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 18:34:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02C65442DC2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:21:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF06189E28B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A03829A3D7;
-	Tue, 15 Apr 2025 16:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78659297A60;
+	Tue, 15 Apr 2025 16:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="Oc+37UzU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lDtzA1Fo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8919727A939;
-	Tue, 15 Apr 2025 16:21:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1D81DF963;
+	Tue, 15 Apr 2025 16:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744734064; cv=none; b=YG7/zzWEYSqP7KqUsI42bjFWeSjg4gb5zTv81WRpwBZFNeFYvhfx8s8+ShmS5gHrSgDkXjIpuX4PeWu2KlpT0te88oWdutBMmiYPfMSYOCfvZvuLKNzyXoe0vN0aPN2uxLL8qBMSQEqv4utdqxWLP9WxaMOUpZ5pIxs4jeT26z8=
+	t=1744734878; cv=none; b=opNb0M4ihV1TQfHvYf+U2xrymJnfF8xL7TdOmFrcd5+Ij+LGJ3n/hHVlNvAZp5+DB8hNT2sbf6CpgIshp6QPutE/ilQelssNQMKtX2+uCE9tyiGovVN1vOIKkZfUusqOe5Rv71Fb++pPFGcRElZKc1A/8fu8l3ZOymGlWZDQ2/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744734064; c=relaxed/simple;
-	bh=9rvDUkc9AzEzDs7Y0UJm5bGH0Ey49R/ShQQjp1GriZA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=bIAc5UMumb5mROiKfpLV4Gh259sCxSQtSVJrje6dzWsP9INBmBIf71KHZlnJCS07mHgICKKgY7odlwHEF/lXRxTcKc9HumjEJNCDWzNjPKzawyYQfYrEPcI0bnn6DiIIRC9gjnDoGXdPXSoJ85d6v++xsDxUAfCI9749oH3/AUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=Oc+37UzU; arc=none smtp.client-ip=91.207.212.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F72bDe005506;
-	Tue, 15 Apr 2025 17:20:37 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=r
-	BrCGBHOdEE0m6TcePtZyZoT/zN5bKmKoNH8Un1rSoA=; b=Oc+37UzU0+d7TwPVb
-	lDq9eQgffmX+HKTG9OOb6VkATUzvA31TrdFKSdbQPuAJokJNUSXvKkDC/JdSo5il
-	vVGcVO5mDhHK3SkZWNsDoSpIk+qeVjUKJZjJk1mW8RuvXqQbNDSBr4W1+XV8peZN
-	IgVU0IAu3ZKyG19DwQQ0Prsw0SyRjFwLd0zOwO8FG0xNuR5DrYYAJGfypeZgPJTe
-	stsTaZhzIjwCO29YN2jVuhaeFpKjHyGya2n/90AEnFZQhHSGrYRwWGF6dzUV7Uza
-	gVEEMMkWtSAxJlrBV7dEKnK+xkGox5tRBndCupEEGcvFwNZF+dWagSpvQ0W/1did
-	s0ZOQ==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 45yeeua1mx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 15 Apr 2025 17:20:37 +0100 (BST)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.6.134) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 15 Apr 2025 17:20:35 +0100
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Tue, 15 Apr 2025 17:20:25 +0100
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
+	s=arc-20240116; t=1744734878; c=relaxed/simple;
+	bh=97gm5W0r3azJQxTc+o1GBu6+7gHPltvUIellyROuN9Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DpqJUxil1tqZGhNHTLHBJEnU/rX02/8THI02THuY6EnLfZVpzptMoXkzjd0l3fF75Nu8WJBQS3yQzu/E/434SkOBi91duVIgNCITsSFPydKgSGeNXCQl6BeoFZf1GTdYc0rpGbqD1c4rqf+Alg8IYTiPGH+sn/GZVSy85nYMZdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lDtzA1Fo; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FGYRMV071702
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 11:34:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744734868;
+	bh=iFq+f28rvVPKPSrubIQp1tokt+o0pF9109v9jVjSGIo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=lDtzA1FoWC9cSnfpYWCdhYJpszR/YkBTzbinL0HRYQxpLJ50Nt+NbGPXtSmxhT7aB
+	 WL4SOmdHi3ysvYV6GgjcdlF84LpYDt3y6dD5VtWrUDfkDo4yYVWQQCK6x+ydv7Jv1F
+	 YX/xLyjKxE+sOW0cTc041kx4Fh/2s0ozHt9qkiRI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FGYRnV057982
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 15 Apr 2025 11:34:27 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
+ Apr 2025 11:34:27 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 15 Apr 2025 11:34:27 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FGYQOS059307;
+	Tue, 15 Apr 2025 11:34:26 -0500
+Message-ID: <fe5583ca-d476-4e57-b412-3dd4fe4ff82c@ti.com>
+Date: Tue, 15 Apr 2025 11:34:26 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 01/11] arm64: dts: ti: k3-am62: Add ATCM and BTCM cbass
+ ranges
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
+        Beleswar
+ Prasad <b-padhi@ti.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        Devarsh Thakkar <devarsht@lewv0571a.ent.ti.com>
+References: <20250415153147.1844076-1-jm@ti.com>
+ <20250415153147.1844076-2-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250415153147.1844076-2-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com>
-References: <20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com>
-In-Reply-To: <20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
-        "Alessio Belle" <alessio.belle@imgtec.com>,
-        Alexandru Dadu
-	<alexandru.dadu@imgtec.com>,
-        Luigi Santivetti <luigi.santivetti@imgtec.com>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1663;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=9rvDUkc9AzEzDs7Y0UJm5bGH0Ey49R/ShQQjp1GriZA=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMaT/aw88X9e7MCXGwOXJlrOPV+1SSgt2+dA78/zUXefyG
- Mr3Xnn6t6OUhUGMg0FWTJFlxwrLFWp/1LQkbvwqhpnDygQyhIGLUwAmsjSY4X+Q86J1i9iP8PtM
- 9dg5KWjX+yeTL0eEb3rCUv+uWHyvryoPwz/VrdU59x6s2/mlPvVPeeW+lu9dEquY5zH/f/317Lb
- 7ReycAA==
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Authority-Analysis: v=2.4 cv=Ga0XnRXL c=1 sm=1 tr=0 ts=67fe8755 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=UtEzwyU9vMAA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=sozttTNsAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
- a=Ff_bzIi4o_8fsuxLidAA:9 a=QEXdDO2ut3YA:10 a=S-JV1fTmrHgA:10 a=j2-svP0xy3wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: SC8cNNLZAnouocO4QdwxtxPvt4vZ51hh
-X-Proofpoint-ORIG-GUID: SC8cNNLZAnouocO4QdwxtxPvt4vZ51hh
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The J721S2 binding is based on the TI downstream binding in commit
-54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-but with updated compatible strings.
+On 4/15/25 10:31 AM, Judith Mendez wrote:
+> Add cbass ranges for ATCM and BTCM on am62x device, without
+> these, remoteproc driver fails to probe and attach to the DM
+> r5 core and IPC communication is broken.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
 
-The clock[2] and power[3] indices were verified from docs, but the
-source of the interrupt index remains elusive.
+Acked-by: Andrew Davis <afd@ti.com>
 
-[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-[2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-[3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
----
-This patch was previously sent as [DO NOT MERGE]:
-https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
- 		/* reserved for MAIN_R5F1_1 */
- 		status = "reserved";
- 	};
-+
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = <0x4e 0x20000000 0x00 0x80000>;
-+		clocks = <&k3_clks 130 1>;
-+		clock-names = "core";
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
-
--- 
-2.49.0
-
+>   arch/arm64/boot/dts/ti/k3-am62.dtsi | 8 ++++++--
+>   1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> index bfb55ca113239..59f6dff552ed4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> @@ -86,7 +86,9 @@ cbass_main: bus@f0000 {
+>   			 /* Wakeup Domain Range */
+>   			 <0x00 0x00b00000 0x00 0x00b00000 0x00 0x00002400>, /* VTM */
+>   			 <0x00 0x2b000000 0x00 0x2b000000 0x00 0x00300400>,
+> -			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
+> +			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>,
+> +			 <0x00 0x78000000 0x00 0x78000000 0x00 0x00008000>, /* DM R5 ATCM*/
+> +			 <0x00 0x78100000 0x00 0x78100000 0x00 0x00008000>; /* DM R5 BTCM*/
+>   
+>   		cbass_mcu: bus@4000000 {
+>   			bootph-all;
+> @@ -103,7 +105,9 @@ cbass_wakeup: bus@b00000 {
+>   			#size-cells = <2>;
+>   			ranges = <0x00 0x00b00000 0x00 0x00b00000 0x00 0x00002400>, /* VTM */
+>   				 <0x00 0x2b000000 0x00 0x2b000000 0x00 0x00300400>, /* Peripheral Window */
+> -				 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
+> +				 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>,
+> +				 <0x00 0x78000000 0x00 0x78000000 0x00 0x00008000>, /* DM R5 ATCM*/
+> +				 <0x00 0x78100000 0x00 0x78100000 0x00 0x00008000>; /* DM R5 BTCM*/
+>   		};
+>   	};
+>   
 
