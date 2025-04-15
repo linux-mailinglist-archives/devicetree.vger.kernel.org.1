@@ -1,101 +1,186 @@
-Return-Path: <devicetree+bounces-166997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC760A89298
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 05:39:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C148A892B2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:05:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ED5D3B592C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:39:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9317717C268
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 04:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C86218858;
-	Tue, 15 Apr 2025 03:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BA512A177;
+	Tue, 15 Apr 2025 04:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="N33YyMZq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kyJ4FqAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32117.qiye.163.com (mail-m32117.qiye.163.com [220.197.32.117])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE07A21859F;
-	Tue, 15 Apr 2025 03:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F212DFA5B;
+	Tue, 15 Apr 2025 04:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744688391; cv=none; b=ZY7SQDEfIC4eCvzrlVlUWNWiYnreM8xGidC+96VjBaCoSmWaS5dL7MFhecJW7aRj1S23cKL6rD2JZvqXTFHroJ0yIh8o2ETaJAwglq3NQnImYRa7nDZjJNY71srkybr45cYF/4u9dBN69qgzP6FMZD2FqDW+Rikai0+VEV2PzSU=
+	t=1744689926; cv=none; b=uE/tXPN71vETBhxSGorRa6zTMwmnZIBxNnrD9AQ/ljp9gbG5Z7PSwp+Cj6NFkmiF7jDi1QknX26p6BO3IFhMZjGzLISemFzXces+vARkT8zVGZ3/T7O9hG1B/cemfJBQMt4yaJyU5sx11SVrdrZ5vo/L2rqqvvk2RvMLvIonsiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744688391; c=relaxed/simple;
-	bh=ADq8GedsFcLtR5YrIYxDPdZL5XrMmwc0SkTS6B6Fl2E=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fyxR8u0/6wMZFRuOUXcUcFvObiQMMBGpSHIjJKMaSM/gdKD6gPWRvUgDWdko0xHXhCn/32PdBHY0O2h6oV7ynqNLAFp3O13HmhVzMVuQO0F68eztuiCSUEJj7SBPgVMUxYOP6NQg2MV7S9slCHKCbKKeX2AB9SYR89Q0LppBgP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=N33YyMZq; arc=none smtp.client-ip=220.197.32.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 11e3d2162;
-	Tue, 15 Apr 2025 11:39:42 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: [PATCH v2 1/2] dt-bindings: rockchip-thermal: Support the RK3562 SoC compatible
-Date: Tue, 15 Apr 2025 11:39:39 +0800
-Message-Id: <20250415033940.47914-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1744689926; c=relaxed/simple;
+	bh=5onrEStEUDN1ilDvDavwzaUS7EYoBW9R6M/pH0wIpFA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=byzYWUw99xTYXPt0SkYbXcGg/teOAynPVBdiuON1eY/ZYZQc+8SQL3IlgV5FCm8Cp+5Ft7qlJO76Dd/4qbwQXE9UL2+38Bb/NwDL8zvWc0iHaUwZp4R04r9BrqzSz8ctZj9jfqaJ8xJ3ds8RMoNQHl3lniIeJUairp6EuUD9TyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kyJ4FqAx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F15qKk016117;
+	Tue, 15 Apr 2025 04:05:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4Z/ubR0bHVlEbalLwcZhfcjQS1Ooe1tunvKxpZnMAE0=; b=kyJ4FqAxG0wxTqIZ
+	+RRcGPR4dcthiw6HhEIaZ58fyuN+1AQkzp0JaGFboD9TpJYz1bURj+pWg+rK9B0N
+	FZw9xv1dfTD54a0iIVk2ZKVRqOQtBQO1TfBasjEqLaG6DAMmY51wlw+DDPTnojUI
+	zq72wrXwWLkFE75QIjpFBCk0OHeGQc3EL+4Go9ec8YG6Nhc3gmrYJMK8m6uH1Wpf
+	+WZA/OFsxgKGq0A4yxNgA13+KuiDraNH7vXI1bbJR7t9FsjiwPdFb85gGuQHsc4x
+	Guky79WjFYh18FX66O53j8iovFDmny3SWNH8Ct2ResxpHCTIV4stLQrO5YSOmiZC
+	O2VLgg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yhfcxfwf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 04:05:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53F45FUG018011
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 04:05:15 GMT
+Received: from [10.217.216.178] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 14 Apr
+ 2025 21:05:10 -0700
+Message-ID: <0db798bf-04b3-40b5-af90-7dda5b606727@quicinc.com>
+Date: Tue, 15 Apr 2025 09:35:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHhhJVktNS0pCTUtDSx0ZSlYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-X-HM-Tid: 0a963788044203afkunm11e3d2162
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MTY6Sio6LDJRKBohPksjLDYZ
-	DBAKCT9VSlVKTE9PTUNDSENPQkxDVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUpMSU03Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=N33YyMZqBQWAADFsHHYVkwM5CpZdGJC7buuowxQEqP5pwbiUAT0k2BcbsHeand2+okwtZugZvAJf15gYcKVTeCJuRpIBfZ6ednIVXZfw0qKHCBdKPIsdOXirM1x1I8XwNKBruM5I5/ay9pIsJUw9jQQqzMBN+dpDz417sjgP+o0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=nsAist8AxtC7M4LMr9CEpwZWddUC1Wkb4AeT8FbLZpM=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm6350: Add video clock
+ controller
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jagadeesh Kona
+	<quic_jkona@quicinc.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
+ <20250324-sm6350-videocc-v2-4-cc22386433f4@fairphone.com>
+ <1c09fee5-9626-4540-83fb-6d90db2ce595@oss.qualcomm.com>
+ <9eb6dfd7-2716-4150-9392-98e26892d82d@quicinc.com>
+ <e3dda8bf-e19e-4dde-83a4-7876ca81e5e6@oss.qualcomm.com>
+ <69fba227-ed47-4004-9451-777ca19b687f@quicinc.com>
+ <cfa4003c-e8b0-40f6-821d-07f8d44752af@oss.qualcomm.com>
+Content-Language: en-US
+From: Taniya Das <quic_tdas@quicinc.com>
+In-Reply-To: <cfa4003c-e8b0-40f6-821d-07f8d44752af@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=CfUI5Krl c=1 sm=1 tr=0 ts=67fddafb cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=6H0WHjuAAAAA:8
+ a=hCl-885K2BfM0JJyIxAA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: _tEFsNCWhbbuowJCJmuc1XYFWd2n2vik
+X-Proofpoint-ORIG-GUID: _tEFsNCWhbbuowJCJmuc1XYFWd2n2vik
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_01,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 malwarescore=0 impostorscore=0 spamscore=0 phishscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0 clxscore=1011
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504150024
 
-Add a new compatible for tsadc on RK3562 SoCs.
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
 
-Changes in v2: None
+On 4/12/2025 12:56 AM, Konrad Dybcio wrote:
+> On 4/11/25 1:37 PM, Jagadeesh Kona wrote:
+>>
+>>
+>> On 4/11/2025 2:42 PM, Konrad Dybcio wrote:
+>>> On 4/11/25 9:15 AM, Jagadeesh Kona wrote:
+>>>>
+>>>>
+>>>> On 4/1/2025 10:03 PM, Konrad Dybcio wrote:
+>>>>> On 3/24/25 9:41 AM, Luca Weiss wrote:
+>>>>>> Add a node for the videocc found on the SM6350 SoC.
+>>>>>>
+>>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 14 ++++++++++++++
+>>>>>>  1 file changed, 14 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>>>> index 42f9d16c2fa6da66a8bb524a33c2687a1e4b40e0..4498d6dfd61a7e30a050a8654d54dae2d06c220c 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+>>>>>> @@ -1952,6 +1952,20 @@ usb_1_dwc3_ss_out: endpoint {
+>>>>>>  			};
+>>>>>>  		};
+>>>>>>  
+>>>>>> +		videocc: clock-controller@aaf0000 {
+>>>>>> +			compatible = "qcom,sm6350-videocc";
+>>>>>> +			reg = <0x0 0x0aaf0000 0x0 0x10000>;
+>>>>>> +			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
+>>>>>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>>>>>> +				 <&sleep_clk>;
+>>>>>> +			clock-names = "iface",
+>>>>>> +				      "bi_tcxo",
+>>>>>> +				      "sleep_clk";
+>>>>>> +			#clock-cells = <1>;
+>>>>>> +			#reset-cells = <1>;
+>>>>>> +			#power-domain-cells = <1>;
+>>>>>> +		};
+>>>>>
+>>>>> You'll probably want to hook up some additional power domains here, see
+>>>>>
+>>>>> https://lore.kernel.org/linux-arm-msm/20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com/
+>>>>>
+>>>>
+>>>> On SM6350, videocc doesn't need multiple power domains at HW level, it is only on CX rail which would be ON
+>>>> when system is active, hence power-domains are not mandatory here.
+>>>
+>>> 6350 doesn't have either MMCX nor a split MX - shouldn't both normal
+>>> CX and MX be in there?
+>>>
+>>
+>> All clocks & GDSC's of SM6350 videocc are only on CX rail, so it requires only CX power domain. But when HLOS
+>> is active, CX rail will be ON and operate at a level above retention, which is sufficient for videocc to operate.
+>> Hence clock driver don't need to explicitly vote on CX rail.
+>>
+>> The same is not true for other rails like MMCX and Split MX(MXC), hence clock drivers had to explicitly vote on
+>> those rails.
+> 
+> I'm worried about MX being undervolted for higher OPPs
+> 
 
- Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml | 1 +
- 1 file changed, 1 insertion(+)
+From a videocc PoV there is no requirement of Mx on SM6350. The CX
+levels would be taken care by Video SW driver from their defined OPP. Mx
+at system level would be catered via the BW votes.
 
-diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-index b717ea8261ca..f55f2045fc84 100644
---- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-@@ -20,6 +20,7 @@ properties:
-       - rockchip,rk3328-tsadc
-       - rockchip,rk3368-tsadc
-       - rockchip,rk3399-tsadc
-+      - rockchip,rk3562-tsadc
-       - rockchip,rk3568-tsadc
-       - rockchip,rk3588-tsadc
-       - rockchip,rv1108-tsadc
--- 
-2.25.1
+> Konrad
 
 
