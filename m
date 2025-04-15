@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-167060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92BBA894CA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E096A894D4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D4A18952E5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:21:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BAAC1895A40
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:22:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE91275856;
-	Tue, 15 Apr 2025 07:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E19279907;
+	Tue, 15 Apr 2025 07:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuEtssGh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/H49rnO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132C21F0E47;
-	Tue, 15 Apr 2025 07:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE20D27584E;
+	Tue, 15 Apr 2025 07:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744701692; cv=none; b=MTcpS29UDVXrr6x33cn+7o1/oEKFj/a+9mdWhpQCjgavuMn4XW/HBiF5pDavNA0wGSuJ7p+7QDzSw8xUYAG1dUYn8PYwBLPiBhOTr5j7AsUuQ/wBlHFaj42UduIzw2VQ8j53JnIjZu6GCAF6Kfei0kLELMPgtWZxa/xonZmNCQM=
+	t=1744701757; cv=none; b=sm/keWiyi/orZdUz/K3Z0z9IU+s7uYsxGq0/yasWhdCHta+x/LmYXumAr3WV34/cO5Xjn0fsosQhgbesPxsDw8vlF+s/7kFwsZgrJXrxQEf5y3N2i0RW28yh6443E54wlVX1jMAOtz/iypDuYjUjvb/nBY/6qBUjQQ119cZvgog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744701692; c=relaxed/simple;
-	bh=ppCh1rXKzyooyLzB8X2IQ2Oju9H3qJQ74QV/enWha4E=;
+	s=arc-20240116; t=1744701757; c=relaxed/simple;
+	bh=gGQsWopTglD7RnUawVXrkYWdyJ6cqm+d3Pz6GO0PWzg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b0LUwBFnxlFsD4lPsEPw7NK//Zaft5cMNtBloAyf3+fFSv+FsPTvGMLrpMsas2cDNvKPGQBdfdXjTdHVyM801uVEvGvJXHkWNcIDEzy0nZIpMhIfd3mKLG+rcgz6OxwdJCm8YKqeBswYt+kt3+94MeYMzaKQPsydQrRVQtR/0qQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuEtssGh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94DDDC4CEE9;
-	Tue, 15 Apr 2025 07:21:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=I0yHpvRD/4xsuBxC8R8YO49YenBVGmvcTdknxkeViT1EFYn2RusVLlk1inWBXgQ3Ar8oK8Dgd2GGapWljqE7o8yJiKL76UuGd9voQvderXK+bfgzEqbufwNdhSNNS/sKAHQDfc3pk1BVJpodvzBIhUfqAuXn/mfRraa4z1xO0WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/H49rnO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C25C4CEDD;
+	Tue, 15 Apr 2025 07:22:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744701691;
-	bh=ppCh1rXKzyooyLzB8X2IQ2Oju9H3qJQ74QV/enWha4E=;
+	s=k20201202; t=1744701756;
+	bh=gGQsWopTglD7RnUawVXrkYWdyJ6cqm+d3Pz6GO0PWzg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uuEtssGhD3d79YbN1rycbVffJyVi1oCudolVNpDRqTH2EoaHV+W4jC0ApwH/N8cmP
-	 1pyR/yBu94ec4p4W3AVE56vhOdEdeBf2/Qxae0Ar7kriY13Bl3qwtaAmLgBQWbtCf6
-	 5G3rQT6Bc7fIRuZSQ7gba9bnaLBnbycriCXOHCf/hLSdxcIYCgfC2PFb/SpGJc6jkK
-	 yYR9rmaE6AtHXBRAU2IpyweaefZs8oHQZBZmTSFIvnN7grYrHvmIurVBnASRaWUy2+
-	 ekcfm7NeJGuueJuqxC7xftkO8uBAuctu99UAlMdrENm3sWGvBu+ChMshO3CB4hvHL0
-	 Rhn9Rkx4zV6LQ==
-Message-ID: <b64511fa-a8e3-450e-aa4c-f47181314f76@kernel.org>
-Date: Tue, 15 Apr 2025 09:21:24 +0200
+	b=R/H49rnO9Kw2/IsuHlA312swOiymOEkf07Vek+JFqtLuQv9nIu9V/djb84rD92wdu
+	 NyjmwTzoOLeNjKdpTjWURdQtpypRIrOFGMCthQwF6DJPqYhkLsWiaaf7ir5cR/7Tus
+	 tziDED3TQOSegRItb7jiHPQErlM8c8pUM5k1dTCLEKSmINsV/oi1W0qhURqJeElRTU
+	 adPicK7KjU5bRU3ve1NZkeN2TzDvC5KRzP4gQId4uRD47T+uoWmSg+hWF1luMryIQa
+	 4FJa2zCuNRu57p/ijED5AN7grmYnlrftSqXRWWNVhmv9SZHkqACYpu/V8c/1jf4n9h
+	 SHnSt4gKPqaBQ==
+Message-ID: <c82085a7-c725-4a26-82c1-817dac508916@kernel.org>
+Date: Tue, 15 Apr 2025 09:22:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] Add support for Sitronix ST7571 LCD controller
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: Add Sitronix ST7571 LCD
+ Controller
 To: Marcus Folkesson <marcus.folkesson@gmail.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -58,8 +59,9 @@ To: Marcus Folkesson <marcus.folkesson@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmrmann@suse.de>
+ linux-kernel@vger.kernel.org
 References: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
+ <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,28 +107,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
+In-Reply-To: <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/04/2025 07:58, Marcus Folkesson wrote:
-> This series add support for the ST7571 LCD Controller.
-> It is a 4 gray scale dot matrix LCD controller that supports several
-> interfaces such as SPI, I2C and a 8bit parallell port.
-> The controlelr supports both monochrome and grayscale displays.
-> 
-> This driver only supports the I2C interface, but all common parts could
-> easily be put into a common file to be used with other interfaces.
-> I only have I2C to test with.
-> 
-> The device is a little defiant, it tends to NAK some commands, but all
-> commands takes effect, hence the I2C_M_IGNORE_NAK flag.
-> 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
-> Changes in v4:
-> - (dt-binding) Add sitronix,grayscale property
-Mention that this is the reason of dropping Review.
+> +title: Sitronix ST7571 Display Controller
+> +
+> +maintainers:
+> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
+> +
+> +description:
+> +  Sitronix ST7571 is a driver and controller for 4-level gray
+> +  scale and monochrome dot matrix LCD panels.
+> +
+> +allOf:
+> +  - $ref: panel/panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sitronix,st7571
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sitronix,grayscale:
+> +    type: boolean
+> +    description:
+> +      Display supports 4-level grayscale.
+
+That's fully deducible from compatible, no? Or does it depend on actual
+panel, but then what else depends on the panel?
 
 Best regards,
 Krzysztof
