@@ -1,163 +1,130 @@
-Return-Path: <devicetree+bounces-167259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB6BA89B88
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:11:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA433A89BA5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:14:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85454189E41D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:11:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E3AF189D80B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B81288C98;
-	Tue, 15 Apr 2025 11:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939AC28E600;
+	Tue, 15 Apr 2025 11:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kXFJs50T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2170717C98;
-	Tue, 15 Apr 2025 11:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F612750F6;
+	Tue, 15 Apr 2025 11:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744715479; cv=none; b=PlSM3hwPB8ojlj/92W2ftG2R2orhf8FqanjIVcfOImhkDCuysE/Y3QRrkbrn2u16ynn6m599chwJUVFmZD8oSjTnYT4+C9mSSdWuDbQzM08buDtjgdTLNe45NNGi9nTXlBIlpkeu9CCq2FgmIXD2zFlvPRy8ZzhUDrSzNEVM57s=
+	t=1744715660; cv=none; b=JwuVvfQORY8mRS19Mmd1W1jZDCB904FV+8JXjb/e73SpQcJ3sp3dwfg/in/RlazLWx0T5SQUsqx/9axmIe69uhFpNOAfXeQUYPOMT9O5dwppMTlga6PmtQX3+B70ZHs1s1/TGU3O5h2CP/PwDw9QnSE+FuAFBihboX15PRLPCVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744715479; c=relaxed/simple;
-	bh=PQP9aQ4AewNgvBkjS7rl4kENezRz6vX7JiNLpToEyK4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=IHqSZFEsIezSp9d6xxyvQ2OwwF5Cfbpn7/GMG752HCssM0b0jl8wgxpVQh2Mux7UyRbY8JMIGsmeFgIxWKUTTgdaPBfEwtOr6/GfGn+KIkNdZdQhbT1APBSuMUdDitcO+aOs1PN0eUV/okjZsFFLo/oAhaZxzxddvqQeEv4USws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZcM0b59Smz9t2W;
-	Tue, 15 Apr 2025 13:11:11 +0200 (CEST)
+	s=arc-20240116; t=1744715660; c=relaxed/simple;
+	bh=VSYZ2mUxG+UAY8gtPu189D6tK5iCkuGDwKXyFbDgnpM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CUIsPH4vCqAO81Uc4nfE4l0nzIH9RzG79KFLrnZnfKQstPxklQg1XWWdRGCOredXKVTQT1yhi3dQF/zk2Z9oSRvKoLoAXAT9QEKlFLrWWRkj/p/55nT2R3HDsT8MrkROw3gYwFBJBkZ1oBx8n81JoS8MuHw1hEfCmPm6o7ZJiaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kXFJs50T; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FBDv8S2975116
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 06:13:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744715637;
+	bh=Kg2NnHcrGc9RkC6KDeqvn/0+/AwqkcPgEQ1yg+2Ozm4=;
+	h=From:To:CC:Subject:Date;
+	b=kXFJs50TpXcISr3WXqVtI89G9hbECLV3QTFJ+DdE41OIDlGaqbJiQ/8mePP99X7nd
+	 9KGGskrNs/RPtwTJQjmJo+wu/m+sA7Uc6U+sH8Pk1F8O8BjXolz8gYx1FpvDZDVVsk
+	 cDoilLMdhXU3nTDiRre6S/lkc7eeA+7e7uSJ0Og8=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FBDvxh122629
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 15 Apr 2025 06:13:57 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
+ Apr 2025 06:13:56 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 15 Apr 2025 06:13:56 -0500
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FBDqI5051431;
+	Tue, 15 Apr 2025 06:13:53 -0500
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <jai.luthra@linux.dev>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Subject: [PATCH v3 0/7] Fix dtbs_check warnings in CSI overlays
+Date: Tue, 15 Apr 2025 16:43:21 +0530
+Message-ID: <20250415111328.3847502-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 15 Apr 2025 13:11:07 +0200
-Message-Id: <D9760KMM0PSB.HONQ7MUG8OTN@buenzli.dev>
-Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v2 2/5] rust: Add bindings for reading device properties
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-To: "Danilo Krummrich" <dakr@kernel.org>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
- <20250414152630.1691179-3-remo@buenzli.dev> <Z_1Jfs5DXD2vuzLj@cassiopeiae>
- <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev> <Z_4rVyUjK1dlnTsT@pollux>
-In-Reply-To: <Z_4rVyUjK1dlnTsT@pollux>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue Apr 15, 2025 at 11:48 AM CEST, Danilo Krummrich wrote:
-> On Tue, Apr 15, 2025 at 01:55:42AM +0200, Remo Senekowitsch wrote:
->> On Mon Apr 14, 2025 at 7:44 PM CEST, Danilo Krummrich wrote:
->> > On Mon, Apr 14, 2025 at 05:26:27PM +0200, Remo Senekowitsch wrote:
->> >> The device property API is a firmware agnostic API for reading
->> >> properties from firmware (DT/ACPI) devices nodes and swnodes.
->> >>=20
->> >> While the C API takes a pointer to a caller allocated variable/buffer=
-,
->> >> the rust API is designed to return a value and can be used in struct
->> >> initialization. Rust generics are also utilized to support different
->> >> types of properties where appropriate.
->> >>=20
->> >> The PropertyGuard is a way to force users to specify whether a proper=
-ty
->> >> is supposed to be required or not. This allows us to move error
->> >> logging of missing required properties into core, preventing a lot of
->> >> boilerplate in drivers.
->> >
->> > The patch adds a lot of thing, i.e.
->> >   * implement PropertyInt
->> >   * implement PropertyGuard
->> >   * extend FwNode by a lot of functions
->> >   * extend Device by some property functions
->> >
->> > I see that from v1 a lot of things have been squashed, likely because =
-there are
->> > a few circular dependencies. Is there really no reasonable way to brea=
-k this
->> > down a bit?
->>=20
->> I was explicitly asked to do this in the previous thread[1].
->
-> I'm well aware that you were asked to do so and that one reason was that
-> subsequent patches started deleting code that was added in previous ones
-> (hence my suspicion of circular dependencies and that splitting up things=
- might
-> not be super trivial).
->
->> I'm happy
->> to invest time into organizing files and commits exactly the way people
->> want, but squashing and splitting the same commits back and forth
->> between subsequent patch series is a waste of my time.
->
-> I don't think you were asked to go back and forth, but whether you see a
-> reasonable way to break things down a bit, where "reasonable" means witho=
-ut
-> deleting code that was just added.
+There are a bunch of new warnings generated using CONFIG_OF_ALL_DTBS.
+This configuration applies DTB and overlay together to generate test DTBs,
+which are then validated using dtbs_check.
 
-I was asked to squash two specific commits. The first was making the
-read method generic. That was the one that deleted much code. Totally
-reasonable, and the generic stuff might be discarded anyway, so I won't
-be moving stuff back and forth.
+This patch series fixes all warnings related to sensor overlays on
+jacinto platforms and a few minor warnings on sitara as well.
 
-However, the second commit was the one introducing PropertyGuard. That
-was a beautifully atomic commit, no circular dependencies in sight. If
-this commit is to be split up, one of the smaller ones would without
-doubt look exactly the same as the one before. I provided a link[1]
-to the exact email telling me to squash that exact patch to avoid any
-confusion.
+To fix some of the warnings, missing power regulator nodes are added on
+the J721E-SK and the regulator hierarchy on the AM68-SK is corrected.
 
->> Do reviewers not typically read the review comments of others as well?
->
-> I think mostly they do, but maintainers and reviewers are rather busy peo=
-ple.
-> So, I don't think you can expect everyone to follow every thread, especia=
-lly
-> when they get lengthy.
->
->> What can I do to avoid this situation and make progress instead of
->> running in circles?
->
-> I suggest to investigate whether it can be split it up in a reasonable wa=
-y and
-> subsequently answer the question.
+IMX219 Logs: https://gist.github.com/Yemike-Abhilash-Chandra/3a2f8d0f2f5710108d8ca82eeba17bdf
+OV5640 Logs: https://gist.github.com/Yemike-Abhilash-Chandra/7801f74d28ed5895a15049ce9f0fbe60
 
-The point is that I agree with you that the PropertyGuard patch can be
-split out. And possibly more: I think a reasonable person could make a
-separate commit for every `property_read_<type>` method. And I'm happy
-to do that if it's the way to go.  But if I do that, send a v3 and then
-someone else asks me to squash it again (because they didn't read this
-exchange between you and me...) then I would've wasted my time.
+Changelog:
+Changes in v3:
+- Change the PIN_INPUT to PIN_OUTPUT to control the regulator in j721e-sk.dts
+- Rebase on top of next-20250415
+- Collect R/B tags
 
-> With your contribution you attempt to add a rather large portion of prett=
-y core
-> code. This isn't an easy task and quite some discussion is totally expect=
-ed;
-> please don't get frustrated, the series goes pretty well. :)
+Changes in v2:
+- Split commits containing logically separate changes into individual patches.
+- Use fixes and stable according to ./Documentation/process/stable-kernel-rules.rst
+- Rebase on top of next-20250409
 
-I'm trying, but I can't say I have a good first impression of doing
-code review over a mailing list. Doing open-heart surgery with a
-pickfork and writing documents in Microsoft Word both seem like more
-productive and enjoyable activities to me.
-=20
-Link: https://lore.kernel.org/rust-for-linux/20250326171411.590681-1-remo@b=
-uenzli.dev/T/#m68b99b283a2e62726ee039bb2394d0741b31e330 [1]
+v2: https://lore.kernel.org/all/20250409134128.2098195-1-y-abhilashchandra@ti.com/
+
+Yemike Abhilash Chandra (7):
+  arm64: dts: ti: j721e-sk: Add DT nodes for power regulators
+  arm64: dts: ti: am68-sk: Fix regulator hierarchy
+  arm64: dts: ti: k3-j721e-sk: Remove clock-names property from IMX219
+    overlay
+  arm64: dts: ti: k3-j721e-sk: Add requiried voltage supplies for IMX219
+  arm64: dts: ti: k3-am62x: Remove clock-names property from IMX219
+    overlay
+  arm64: dts: ti: k3-am62x: Rename I2C switch to I2C mux in IMX219
+    overlay
+  arm64: dts: ti: k3-am62x: Rename I2C switch to I2C mux in OV5640
+    overlay
+
+ .../boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso  |  3 +-
+ .../boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso  |  2 +-
+ .../dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  |  2 +-
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     | 13 ++++++-
+ .../dts/ti/k3-j721e-sk-csi2-dual-imx219.dtso  | 35 +++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 31 ++++++++++++++++
+ 6 files changed, 79 insertions(+), 7 deletions(-)
+
+-- 
+2.34.1
+
 
