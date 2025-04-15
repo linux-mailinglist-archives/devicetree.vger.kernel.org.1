@@ -1,171 +1,250 @@
-Return-Path: <devicetree+bounces-167435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22350A8A377
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9BC8A8A399
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 18:03:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 261C017DEA6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:56:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F01D443CF2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B06020C02E;
-	Tue, 15 Apr 2025 15:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bwqJEDEd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A8427F749;
+	Tue, 15 Apr 2025 16:03:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED36C1F5434;
-	Tue, 15 Apr 2025 15:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88482DFA2D;
+	Tue, 15 Apr 2025 16:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744732573; cv=none; b=kle3uXJ0Mn7j3SWBUt0VzmjIN0LwUXXv82Qm9tr2qhzsrJlAeLrq8QIT2x0+49IxcXgKm5lK6X66UZWv6GdwT2Pv0EYaELJL9TZYmNXEiRdzNuFnF7up4yct5adv6b4vlRuSaruYmmH0GEkzJ9rdI0ImVoUp7PzP7scgLYnRX5M=
+	t=1744732989; cv=none; b=CGC1Gcof32UxAPIny54TJuf55uinW0rx0zLcUDRkFsq4Skoz3ZM97jA8hOb3eumC8oVi6iG4U4/3xTElydS2Mgda+3YRGhbCPSHg5OAx/jKEb4btnPCjxHpsBmAtU90AGmtUOcg8P76L63/IWZyGosnc9UYdEkCvMLZ8oK8rpgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744732573; c=relaxed/simple;
-	bh=vcJXMf6s/aWuafjr/5uHRa9qfBGrAhiwmMJfm0EH7x8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o3fJzvwATQgW+J0d1uCZ4Wje/2dxLDsnYv2DQhcRxqdT+/g+QODVZ7+lzINYeAl9kffWnHASKMQZQqGkOU4w+9AynzMptXUHrMGN/mz8yjH0eECaj49tBJaOvTqdd/0kKVVFrgFRB+I2X+dZ1XoDkb4Eec6hikUJ4Mt5jDTbc+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bwqJEDEd; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A281F11AA;
-	Tue, 15 Apr 2025 17:54:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744732446;
-	bh=vcJXMf6s/aWuafjr/5uHRa9qfBGrAhiwmMJfm0EH7x8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bwqJEDEdl7dnOKaQcyctBMXqZl6JKLldVLbHbj8uVocbee0h5hvXo8CFpX/S/rk/K
-	 1y04rKbPHMMqCjvLhS+N9Max54tja3efXAj/1kANtHkoOlAKiKwREa7rqoZbkrFP8U
-	 flmAwG1trN+7ZwlRF7v1hirWx350ZPrxXrJM6SNk=
-Date: Tue, 15 Apr 2025 18:56:07 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250415155607.GI9439@pendragon.ideasonboard.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+	s=arc-20240116; t=1744732989; c=relaxed/simple;
+	bh=Hzmc5byleNFyCDdpw7V0x8g7q/DvdasFY7cNHTnX7hY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MZ6eRhRX7lcI+iCockbolgvMAg19N9IlP8rp4+XUVfYU8u5TQAw02u4rW5EcTpedBcUeRsp773dAWJIq7f4cn5pOXnt6h4tHH/GCirzPK20QdEEwlYU19hxGszZkW77iGxT6ODtKUfygkVyPxZdd1+4OO8yui4Rkq84Ff9xjn2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-70576d2faa1so22148637b3.3;
+        Tue, 15 Apr 2025 09:03:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744732985; x=1745337785;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TuEbYlZMiJuO8E2YPXwmbMAltImu0P0byOBQlAv2mMo=;
+        b=DCOpTiSQxOgJUZ4TaDngHCBuPEu35Xvep5Xkp47hseyXbRzGZyJBqrdcyCr1qbjIK4
+         KvP1MvAcN0NUW9thVfKSJwLxVBPY2Ro0S4jOlNhU5nBh6O6WjY93+qFmjGqdZp6D2weV
+         nIowrTELWFiYiJUlgRKMdn15D3mzmlhmsw8bcdgRUtG4MjQHT6VlUtoyZwPlHo1N5XFv
+         atlNmwtr9bRilTf+UTh2BT6m9zEQNeJRYuUEqeyx2tefrq5iQ12DpWcrvLIoYfQ9yjnq
+         2rPR7j3rUJ3fHJYDpfwhP9V2akGja8iHha8h8AXl7DvyZjb1ctU11T2w+WI4bHQRqa+6
+         u/sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcC/TtfqAZap6hidit/mEof9387fd6B5GcM5Ej7leW+wJKkM+BH/8+/SamypHXoU0h3TsPCwtvEBky@vger.kernel.org, AJvYcCVohkvj1d2K+pk3INd0lZBcNuTP5yatRWDcptAaa6g4MP8qFIZvt2aAunax+fiJ0eAIldCOcfw7Pf7d8bpt6QdW1Po=@vger.kernel.org, AJvYcCWR7OW7kaGNiP07aXO6uqsfh/Rdu8Ub6JAJUpZ3Gbf9578cO/qHxz5AEN6W/5zokK1eoNqA+xVCA+lL542K@vger.kernel.org, AJvYcCWv63EB0YtsmBeYzLbqm+gp17/9yMrWWmhfvFnPOVL05pcmyKTKBiQNENkEx4Awfnr6H1UVrhEZKjeH@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywz1xqRdn50pX9yia3OXVCKnKhRrPsRbCJQA9RiKPL8u7yLRdKd
+	TlP6Am2uxoNQQqmh+u1PVDxjNZZpT5Fvcn1fhTR9yM4N8r/yZSe0w7PqZ5Dg
+X-Gm-Gg: ASbGncuWIkUhZ1wqa8gXUPRIUM2BJ+lncWI6pmx5l5Pp46KHj/CWqvhRGVDMzORAIh9
+	N069b7g4INrWPXckLftSTRg9CmoRgn2S3AUHEm7swF0cvaX2YIzIdg7Uz3C2lkNKLQMhmIQJnVC
+	h8pfAagjOWGrGBDELUpQa2mO73OWqSdJ76Wy10qk+q9Qyj4QDGCfFMTUrwanU0Fwozv3TIn1J/I
+	Vttk2MKxJyU8RVZ67xI0fRTC+Lzork/8xhIW5NAuuoliQlU9h9KFGiZjyMbd9oIRaYiPKhNyER/
+	AxlZ407hTjiegoGw7WgukvOuAHGo7c5/LdMY3DXujDQL4QFnhZr2qu2YxoVi3TZ/iadh9QbIo37
+	+iFdXtYI=
+X-Google-Smtp-Source: AGHT+IEQjeguuj3kW49E0aLJcog5tbt6WB7qvI5MYHzzjd27grqxYE+yakeUXAde4gMhNxmDrMaHGQ==
+X-Received: by 2002:a05:690c:25c4:b0:6fd:42ed:c90 with SMTP id 00721157ae682-705599c9cc1mr273759707b3.16.1744732985109;
+        Tue, 15 Apr 2025 09:03:05 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-7053e372b6dsm36993467b3.88.2025.04.15.09.03.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 09:03:04 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e6582542952so4590660276.3;
+        Tue, 15 Apr 2025 09:03:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVhF9LbkD2oXNG+aWFcw9BEw/H1v6uoXe2b1OWcIUSSWQyTgvLLSEBiJb4W3YND15LDCf/AFxYP1dFp@vger.kernel.org, AJvYcCXSDtM4Fsr7Gr3b/HO/iSm8LPgFKHn+UvnVeMuMfRBEQ4mcSvKsA+AfZwb6Xrg2/Gnl7o7NHNXYgAoYWsK5@vger.kernel.org, AJvYcCXiCwv5tlRmvmln6oDwlnZNCSRgATtkMPLD0V4gflMkvmbi4Doo+V3o7W/sXprWonvZy4ts7jHAAhGUNHMSnzIC4mA=@vger.kernel.org, AJvYcCXvdaP77L/wwYSamDhKZJRNTROmdSZ4oEusXy1xEOBxQp/jeE9ekUn2y1A1SmffzFor1JpVcpMDl5l2@vger.kernel.org
+X-Received: by 2002:a05:6122:1d0a:b0:525:9dd5:d55a with SMTP id
+ 71dfb90a1353d-527c35e7a47mr11730397e0c.8.1744732671704; Tue, 15 Apr 2025
+ 08:57:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
+References: <20250408200916.93793-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250408200916.93793-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250408200916.93793-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 17:57:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW9WhKeMyKfdiLWmLC8mabNe-4ROW5uCZhx6z503GE0Ug@mail.gmail.com>
+X-Gm-Features: ATxdqUHtuz_A-xS1tTTRA3AiVheg582GK6_Rn09grQ8w2iOfDNKRllrwvo1MBQw
+Message-ID: <CAMuHMdW9WhKeMyKfdiLWmLC8mabNe-4ROW5uCZhx6z503GE0Ug@mail.gmail.com>
+Subject: Re: [PATCH v2 01/15] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Nuno,
+Hi Prabhakar,
 
-On Tue, Apr 15, 2025 at 03:49:16PM +0100, Nuno Sá via B4 Relay wrote:
-> The adp5585 MFD driver was introduced in 6.11 adding support for gpio
-> and PWM. However, the gpio part of it was already supported as part of
-> the keyboard driver:
-> 
-> https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
-> 
-> On top of that it also overlapped with my refactoring of the above driver [1]
-> to drop usage of platform data and use FW properties instead.
-> 
-> Now, it actually makes sense for this device to be supported under MFD
-> and since the "legacy" input device depends on platform data that is not
-> defined anywhere the plan in this series is to add support for the
-> keyboard and adp5589 devices as part of the MFD driver. Once the MFD
-> driver supports all that's supported in the Input one, we drop it...
-> 
-> For DT Maintainers:
-> 
-> The compatible for adp5589 is part of trivial devices. To me, it makes
-> sense to remove it in the patch where we drop the driver but doing so
-> would result in a warning when adding the same compatible for the MFD
-> bindings. Hence, I remove it in that patch. Is that ok?
-> 
-> Uwe:
-> 
-> In my eval board, I could see that reading the GPIO value (when
-> configured as input) does not work when OSC_EN is not set. Therefore,
-> commit ("pwm: adp5585: don't control OSC_EN in the pwm driver") could
-> very well have a Fixes tag. However I'm not 100% sure it's a real issue
-> or something special to my eval board.
-> 
-> It would be nice if Laurent or Liu could test the PWM bits or even
-> check that the above is also an issue for their platform.
+On Tue, 8 Apr 2025 at 22:09, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add support for PLLDSI and PLLDSI divider clocks.
+>
+> The `renesas-rzv2h-dsi.h` header file is added to share the PLL divider
+> algorithm between the CPG and DSI drivers.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I'll give it a try, but it will need to wait until next week.
+Thanks for your patch!
 
-> [1]: https://lore.kernel.org/linux-input/d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com/
-> 
-> BTW the series is based on linux-next/master
-> 
-> ---
-> Changes in v2:
-> - Patch 5:
->    * Do not nest if:then:else::if:then.
-> - Patch 6:
->    * Make use of the adp5585 info variables and adp5589 volatile regs.
-> - Patch 9:
->    * Use standard "poll-interval" property (and move it before vendor
->      properties).
-> - Patch 10:
->    * Make sure to include bitfield.h.
-> 
-> - Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
-> 
-> ---
-> Nuno Sá (17):
->       dt-bindings: mfd: adp5585: ease on the required properties
->       mfd: adp5585: enable oscilator during probe
->       pwm: adp5585: don't control OSC_EN in the pwm driver
->       mfd: adp5585: make use of MFD_CELL_NAME()
->       dt-bindings: mfd: adp5585: document adp5589 I/O expander
->       mfd: adp5585: add support for adp5589
->       gpio: adp5585: add support for the ad5589 expander
->       pwm: adp5585: add support for adp5589
->       dt-bindings: mfd: adp5585: add properties for input events
->       mfd: adp5585: add support for key events
->       gpio: adp5585: support gpi events
->       Input: adp5585: Add Analog Devices ADP5585/89 support
->       Input: adp5589: remove the driver
->       mfd: adp5585: support getting vdd regulator
->       dt-bindings: mfd: adp5585: document reset gpio
->       mfd: adp5585: add support for a reset pin
->       pwm: adp5585: make sure to include mod_devicetable.h
-> 
->  .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
->  .../devicetree/bindings/trivial-devices.yaml       |    2 -
->  MAINTAINERS                                        |    1 +
->  drivers/gpio/Kconfig                               |    1 +
->  drivers/gpio/gpio-adp5585.c                        |  299 +++++-
->  drivers/input/keyboard/Kconfig                     |   21 +-
->  drivers/input/keyboard/Makefile                    |    2 +-
->  drivers/input/keyboard/adp5585-keys.c              |  221 ++++
->  drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
->  drivers/mfd/adp5585.c                              |  808 ++++++++++++++-
->  drivers/pwm/pwm-adp5585.c                          |   57 +-
->  include/linux/mfd/adp5585.h                        |  153 ++-
->  12 files changed, 1709 insertions(+), 1162 deletions(-)
-> ---
-> base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
-> change-id: 20250311-dev-adp5589-fw-e04cfd945286
-> --
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+> @@ -196,6 +225,253 @@ static int rzv2h_cpg_pll_clk_enable(struct clk_hw *hw)
+>         return ret;
+>  }
+>
+> +static unsigned long rzv2h_cpg_plldsi_div_recalc_rate(struct clk_hw *hw,
+> +                                                     unsigned long parent_rate)
+> +{
+> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
+> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
+> +       struct ddiv ddiv = dsi_div->ddiv;
+> +       u32 div;
+> +
+> +       div = readl(priv->base + ddiv.offset);
+> +       div >>= ddiv.shift;
+> +       div &= ((2 << ddiv.width) - 1);
+> +
+> +       div = dsi_div->dtable[div].div;
+> +
+> +       return DIV_ROUND_CLOSEST_ULL(parent_rate, div);
+> +}
+> +
+> +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> +                                              struct clk_rate_request *req)
+> +{
+> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
+> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
+> +       struct rzv2h_plldsi_parameters *dsi_dividers = &priv->plldsi_div_parameters;
+> +       unsigned long long rate_mhz;
+> +
+> +       /*
+> +        * Adjust the requested clock rate (`req->rate`) to ensure it falls within
+> +        * the supported range of 5.44 MHz to 187.5 MHz.
+> +        */
+> +       req->rate = clamp(req->rate, 5440000UL, 187500000UL);
+> +
+> +       rate_mhz = req->rate * MILLI * 1ULL;
 
--- 
-Regards,
+The first multiplication overflows on 32-bit systems.
+Probably you wanted to use mul_u32_u32() instead?
 
-Laurent Pinchart
+More review later, I fell too deep in the wrong rabbit hole ("mhz !=
+megaHertz"), again...
+
+> --- /dev/null
+> +++ b/include/linux/clk/renesas-rzv2h-dsi.h
+> @@ -0,0 +1,207 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Renesas RZ/V2H(P) DSI CPG helper
+> + *
+> + * Copyright (C) 2025 Renesas Electronics Corp.
+> + */
+> +
+> +#include <linux/limits.h>
+> +#include <linux/math.h>
+> +#include <linux/math64.h>
+> +#include <linux/units.h>
+> +
+> +#define OSC_CLK_IN_MEGA                (24 * MEGA)
+> +
+> +struct rzv2h_plldsi_div_limits {
+> +       struct {
+> +               u64 min;
+> +               u64 max;
+
+u32 should be sufficient?
+
+> +       } fvco;
+> +
+> +       struct {
+> +               u16 min;
+> +               u16 max;
+> +       } m;
+> +
+> +       struct {
+> +               u8 min;
+> +               u8 max;
+> +       } p;
+> +
+> +       struct {
+> +               u8 min;
+> +               u8 max;
+> +       } s;
+> +
+> +       struct {
+> +               s16 min;
+> +               s16 max;
+> +       } k;
+> +
+> +       struct {
+> +               u8 min;
+> +               u8 max;
+> +       } csdiv;
+> +};
+> +
+> +struct rzv2h_plldsi_parameters {
+> +       u64 freq_mhz;
+> +       s64 error_mhz;
+> +       u16 m;
+> +       s16 k;
+> +       u8 csdiv;
+> +       u8 p;
+> +       u8 s;
+> +};
+> +
+> +#define RZV2H_CPG_PLL_DSI_LIMITS(name)                                 \
+> +       static const struct rzv2h_plldsi_div_limits (name) = {          \
+> +               .m = { .min = 64, .max = 533 },                         \
+> +               .p = { .min = 1, .max = 4 },                            \
+> +               .s = { .min = 0, .max = 6 },                            \
+> +               .k = { .min = -32768, .max = 32767 },                   \
+> +               .csdiv = { .min = 2, .max = 32 },                       \
+> +               .fvco = { .min = 1600 * MEGA, .max = 3200 * MEGA }      \
+
+Please initialize the members in declaration order.
+
+
+> +       }                                                               \
+> +
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
