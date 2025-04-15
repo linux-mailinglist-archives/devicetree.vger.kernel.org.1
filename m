@@ -1,254 +1,347 @@
-Return-Path: <devicetree+bounces-167307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79153A89E3C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:36:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3308A89E67
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D36F442F64
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:36:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E8423AE61B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9052973B7;
-	Tue, 15 Apr 2025 12:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438E92973BC;
+	Tue, 15 Apr 2025 12:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lB0/A0ED"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="Sd+r9ho9";
+	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="clMFosTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0AE2951B7;
-	Tue, 15 Apr 2025 12:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744720516; cv=none; b=EF+mvGK7kEqaLLb3bEphYmvp0QsejZds3gq4hwhTqhar2moU4/7hukKw35KmI3/0ao8mVyw3rECVKIV/U169fqt21G4nHu8I8NGA9yFTgrasKbyas2QtJG12pHbo97NWPmMAnbTosWxssj1mAAP/w8T3gI7n6aK87agMD/MrLDM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744720516; c=relaxed/simple;
-	bh=0tHLerMV6DlGI+35IBhWTxbPC+y2e6dojGFAg7wfhmo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V+0XYgW5WPDufHOjGf4xKmbWQc6Uaj8kGVkwupxyDzsZCS3wv3RvOL1EAMbewvfuXZMMwBOeAUVz3g9mO7PdV6LyPREMFzPql8rO5r4xqX8KVdGCrrM+sYUH+O8kc2TEFKk+Lx/+MzehUpkmXAqfk3MFw2zuB0C9kXLdujYoU8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lB0/A0ED; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39c0dfba946so3968509f8f.3;
-        Tue, 15 Apr 2025 05:35:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA9E2973BF;
+	Tue, 15 Apr 2025 12:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.180.163
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744720935; cv=fail; b=HCxsQDPbjQGx1k5M0o/TatlhqPt34VOKPDw2NBx1866oWhOGf4FwXZPWxWCASx/oMmT7naWCW/CibvIz4KgEAZNa+HPEHzsxnsomYYmJqlIymIkEB95V6umoWiIcaNjKdQqoojgCSnQAHJv1sEgi8mTHamOSJBiCam+dIjxbepg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744720935; c=relaxed/simple;
+	bh=4APAYLSn2Y5hpLOXf81ELkL4jpx8L5ChJKlpifjfSsE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=sVTOaYmfcQnKdj5+T3anzxTTSX/Z+nxritrS4sIWuf0DJFhP7/C90eIrdwFbmGvOF241PtAGpXeTufT2xc1sOtvlt8lGRQJWKqm8SIe53UQ0Gw0AdDpmVGUwUD+/Syg95tel/OgJWlQm+pAGxuIkUIleYivHkSq7O8HGBWnWI0Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=Sd+r9ho9; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=clMFosTY; arc=fail smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F7bPR8015459;
+	Tue, 15 Apr 2025 13:41:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=dk201812; bh=BbzNK8v3cn5+9nsC22zq41hUr
+	WL8ycUWG1fvEk9zuoY=; b=Sd+r9ho9nOU5vcOIvVSd5bws8e6xYExTFfCw0OExL
+	LyjOAtmZnPDCayn/Ga0k7I2uVVaDy24IJmuVGuTdMCdOMIYpRnwpI2tKta0+5vJl
+	QhUg+8U8cWBp/6+fIpTmsdjEurdWXmDEkeM9RzI+ZBF/cx++FSeB4tDU0V70SIoR
+	ESNhAKstqB4qLtcB6GPcAkOWrj3TnfieyoToMpftuax+YnD6vHFiy1H0IKFkpHEU
+	9ZeP/FkrWWW/moDZvCixl8fgAPq9TBbo8EzP/zKdK34vTJZtlHtsJuTICdLj3Cbw
+	7jZ4aIXFur9FcwKAM2Tmcigs2Wtk3J/H7yADu4b99hikw==
+Received: from lo0p265cu003.outbound.protection.outlook.com (mail-uksouthazlp17012050.outbound.protection.outlook.com [40.93.67.50])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 45yg8vt5u2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 13:41:39 +0100 (BST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UmUgS5WNVMJWhHxJbeTPrtmQvANHSzxScqaAusdG4A7yAdRfz6aYuensac5Pvub+rR1KWEgKO1yuNgAQ1qewK1AX23g9WvTm3rpfpJ/RsAiuxG8VJXE3yuCZ/Z8PXwBFajDnQCKJY8ta44GBkyu9blipxaT96LXza7qLqHiiE/VX2cTVC6XZ3nn5L+qU0+9Fk147k+R/oX/iEPsJl9cyR1DehuWgIRUH/1u5WQzqGGBse7FgZBPARtDLB8hhE/6SwBQugQuTCBWWhQF1NnmQ0IpQkJ2QbcpBWfPj2mCCcdAc8tQNSZr1gGA1FHS2uMjWWKqeHOG+y664eCLvub9m+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BbzNK8v3cn5+9nsC22zq41hUrWL8ycUWG1fvEk9zuoY=;
+ b=AENfct9B5MAsYm3Wi+MywVwZL7LpL75O7aputE/vMIDDqSxGDjOA9exXgyEx0wtDIZNnNNZWNMkrK4x8SnmnVvewzxfI3s8PGn+tF8nj7lg4evrPLTNT9OOa8i4ocg1fp8hVa3EvU64aBwN02taPS6RHOiMBU/3bTJX8tFHgqJAQwZW/GyKyeoDf0IzHZgslnv01LpvE/uouJAW+VJ5kLwVV6MZnsPKynPHL7sYIkChZa41uaqfd78XntoIPNfd3WuyLlZex1QrSYbTNXZK518aK+dfNdaJzjxlNwfyUa9grwdBxG54M6cjN61z+9kCdpCvd7REigGVQ+0po+8LRBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
+ dkim=pass header.d=imgtec.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744720512; x=1745325312; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KWuV9uJoZ07PEkyHV2JlFFyyQd1zk6rcsz1/NLprY1g=;
-        b=lB0/A0EDw9U/v2fLik6oOiREZzqQz1JaHD9M5mpxU/euJQQxJ/LhBvCqZ7GRgvQhRs
-         v5ol3Xdajn4S3cD9/OKz+vfC3/WNRNWPbD5u1byNuEskY82DZJz9zPUmbsWG68ptW8l7
-         v5UnY1l0MpiRRQ5vnz7bMKQFHXrAGVJjy69Fd7ZOSbhu7peMJrfoZrk7dRAOzNNVWyGv
-         0PGF66+38cgeUQrjw9uALeVauXA2iPXeSUeVpHVSLrrzfTII77iwBz63FHEC2TuxTDis
-         Dlk+eETdmUQu9SuXCwp9N2osZfWPdTjJb16wdWthrKX5cR+xb3YWkEVJ+A0b5k4gRPTv
-         4l4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744720512; x=1745325312;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KWuV9uJoZ07PEkyHV2JlFFyyQd1zk6rcsz1/NLprY1g=;
-        b=o3KxF3x1PIxxdJPzv4vPHJ8X1PazdW95GMygXCrotGDQ3jEcbKNUVNb3btvlVEEaFi
-         8mJKkUGE7bhj+jeCmd+Q8xfdrp5VTtZiZAIE/FwoL9h87BAFurRL05uv0lyvdo9LkUBf
-         6xQqTmwVBTVUqSJbK3/naBv2/AriVrNmGTuzMNzpweZw7Uzpq/URlNjCpa9aky1SABNy
-         WPfz471+kDAc/S5ntOkd2Z4QfJyzKvWN0RksXpvFJwp616hsDHpl40DVWevKhd8/lZQD
-         lx9Ubk0ZdUOMK6xtZM/4eCVZrbq2cMSX7SFISeFpasrVkcvQs8gNoL7UGobtH0pNPkEs
-         dMJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU7tGJOXhlF8zkyNel4BVGGNft0gQqSU/ZpA22NJJ+r6LbiwhlmrlYknM8nQhXj0slFHFMDc81AnUKZnA8D@vger.kernel.org, AJvYcCUKMZuVTX9PLBGAqM8inR4qCZvIenECjGv8QGykfajUc7ukcdR3RsN20LpBIamBRirqusM//wG+JZsM@vger.kernel.org, AJvYcCVH/GplxnIl1J4ratEw2riMdBXdzYdYsndk1+n1vSI+t5T4tEK9LQgiLiQSZodTMYv28RGFXMFggCTR@vger.kernel.org, AJvYcCVHfg8w5voKecA8rIs3XmhhOLyx9FAfyu3uNqkxWNa6AoNTFcheG16E7au9iP0JDxtZ07XLC1EaiDJ0npaZCYRP9uc=@vger.kernel.org, AJvYcCVMEbk+Nc6FdN7x8bZVnHxvfT73Uh80GsDUetVSRhPZAXC6LhvB6fra4gIz0xO0aKc8/zZ0cTnotMAo/n8B@vger.kernel.org, AJvYcCWUdHxTiBiIly8uPAWhpEOGG2EIryzC9gBbpc79iWr9w21t4j+aucI/NPq8Ti0B5BMlz9atv+A+Uhr87A==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybm8H1XB4l4wt14qYgUbl523cmi4sybtNOkfj+1k0ga+2EKcHh
-	GZp1XmMVVpcVSJFoc6nIQZwz1dWMyTHpoG+3p5f1Rv1L6cMbA6HzJxWzuJoUUrtPmdIBCdK6cwl
-	tq1MULv76hgTLM5bh8kRALiK6fgI=
-X-Gm-Gg: ASbGncvv4ZqqzuqtyHQ+8t42Ms8iI3qzU4WlKwQIv3MzQXJ29l75LrdzefFLsp/i8i8
-	0WsOrDs3wY0HrS0ZanaBF7lneJhCgD3TRzGXFZLGWQH8i1wRkjylxRXBIKWHX0M7DN5UvDD6o+5
-	eGwVcsQ2qBKfhbqmznjokju1JPY8+tztvX+TAiYyxjbN8wjeceqa/kJw==
-X-Google-Smtp-Source: AGHT+IHBUB9kEPSKwgKd2txljGHU1ssO7E0I6WrF9zh7ERI+GYHfCd+4aTvgWTLxE4QVOPz363Sd+wVhzo036TDs7k0=
-X-Received: by 2002:a05:6000:2483:b0:39c:11c0:eb95 with SMTP id
- ffacd0b85a97d-39ea52009dbmr11190787f8f.17.1744720512543; Tue, 15 Apr 2025
- 05:35:12 -0700 (PDT)
+ d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BbzNK8v3cn5+9nsC22zq41hUrWL8ycUWG1fvEk9zuoY=;
+ b=clMFosTYsPCh9Su4WopoCnm0hr2xfo/nJiCxKYEdA06hFPYYeI1u0Yzn9tBE/L+JZaEZOvCEmrkyzBAi42v/BaEDxv8c9VHArDs9yQ7Tu8VW3z4InRSs2IIxdhJSQmNc5ILiGahgjP6sxqS6X/5ohCg7aX914Ztvt6oaJ4y7Ts0=
+Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::8) by
+ LO7P265MB7762.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:414::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.22; Tue, 15 Apr 2025 12:41:35 +0000
+Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9d:6b2f:9881:1e15]) by CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9d:6b2f:9881:1e15%3]) with mapi id 15.20.8655.018; Tue, 15 Apr 2025
+ 12:41:35 +0000
+From: Matt Coster <Matt.Coster@imgtec.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>
+CC: Frank Binns <Frank.Binns@imgtec.com>,
+        Luigi Santivetti
+	<Luigi.Santivetti@imgtec.com>,
+        Alessio Belle <Alessio.Belle@imgtec.com>,
+        Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Randolph Sapp <rs@ti.com>,
+        Darren Etheridge <detheridge@ti.com>,
+        Michal
+ Wilczynski <m.wilczynski@samsung.com>,
+        "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH DO NOT MERGE v6 17/18] arm64: dts: ti: k3-am62: New GPU
+ binding details
+Thread-Topic: [PATCH DO NOT MERGE v6 17/18] arm64: dts: ti: k3-am62: New GPU
+ binding details
+Thread-Index: AQHbqf6zN3wXIDnun0SR8Isnm2r3GbOks3MA
+Date: Tue, 15 Apr 2025 12:41:35 +0000
+Message-ID: <f15355f7-0b95-462a-873b-cd682fc530f2@imgtec.com>
+References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
+ <20250410-sets-bxs-4-64-patch-v1-v6-17-eda620c5865f@imgtec.com>
+In-Reply-To: <20250410-sets-bxs-4-64-patch-v1-v6-17-eda620c5865f@imgtec.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CWXP265MB3397:EE_|LO7P265MB7762:EE_
+x-ms-office365-filtering-correlation-id: 2feec3e4-6cf6-4673-2f66-08dd7c1adbaa
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|4053099003|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?TVhVZkNIV29RemlOb2Rnb3NORHRTMVNCOTE4NHNnWUlsSENEcnhiYWgrUkQx?=
+ =?utf-8?B?V3h1ekV4UkRNK3pkcFRYRE82S2tQU1NGR2NhQ3BHN0x3bjFrMTg1MStaazFR?=
+ =?utf-8?B?VTJRMm53bWlFbFFVTUpZZDhuS1dmK25CN1ljbnpOa1ZqMTlWZzdIZjJFL2pB?=
+ =?utf-8?B?QXhHVTB5Y1l1ZzFzaGF5ZnpMVnprSDZPdUwwcWd1Z0N2MGliNGc2dWpZQnJa?=
+ =?utf-8?B?czZLd2EvenlKUWtlN0Rzazd3YVdmLzhza3UwejBPc0J1QXBIUGVNSG5CUHhw?=
+ =?utf-8?B?OXNmYVNvbGpWREhxUU8wRUlod2N1TlNlNXhXL3RhVXFMUHQwMVUzL2FkNmth?=
+ =?utf-8?B?N1hpYU1CQTlaaXUyK0pIMEU0ZHZacWpEeUVDOG81ZjNBd2lQYm5wS2NnTC95?=
+ =?utf-8?B?V25JLzBvVHFWZzZ4UlA5cWhEYVlSbWJKeHJzRHdVMUp1bkQyaFF4Nm5KaFRp?=
+ =?utf-8?B?eVd0L3lKN0RpcUY0Njlmb2gzcW1uK05zN3hiY0h3SUsrR3ZGcGpaTnNEMTlB?=
+ =?utf-8?B?eHR4RklKZW1NajQvZ2FZR0E4enYwa2FnOFdieTVLV1pFb1V5emFCOStDRnNC?=
+ =?utf-8?B?R0hNam0xam1kUFdZU3VFV2dyUncyemowTGswczJaMVVmOTAvS1VIZkxQVzR5?=
+ =?utf-8?B?UDF2T2dhK0JnVEJKSGNIRHZVd055dW9sY25aeS9ad29WU3F4K1BLOHBvSGly?=
+ =?utf-8?B?N2k3MzNDaXBnYXRsYlZ4K1NmemN0MWV2N0pnVDNwSW9Md2MvYW4rSDBJZ0hP?=
+ =?utf-8?B?STNYeWFlYjJmcWlhQWdoNzNieTZ3aFhWcUtBV3hodU5HYm1BbjFyRDNBSWxR?=
+ =?utf-8?B?Q0Jpb3QvRXRKTERYYVJPVkt3K2oySlZTWWJ2T0xvUVNiN3F2akdNdmFxWnNB?=
+ =?utf-8?B?Wk5wbmxyVnVxaTFLTkRjRXplV25Cd2RMVktsNjFZSGw0NlRWY2hNYytJdXlr?=
+ =?utf-8?B?cEpnU1Nwc3M3cENWYUhzUGJ3T2ZnWHpSU0gwUEFiTmo5N0h2VzNQWHJQNWti?=
+ =?utf-8?B?TWJzZ212ZFc3ZmFtQ1N3MXY1NUt0ZXc2ZmU1eFFOaTVjRlk1RTZqQnNTZ3JP?=
+ =?utf-8?B?TTJNbnZuNkZQVFJGakh1cEZxL3FiTmZFSFZPVktIUEliRzVkUFZFaGFxcTI5?=
+ =?utf-8?B?WkpGa0ZraG02WE9wOFlEY3JRR2VrbFNUY25Zbms1SFd3Nk9SYm1GcE1lRkNK?=
+ =?utf-8?B?a1FqNmZoMFp4NkR4aUphQXc2OEI0R2Q0RlJWM3BxU0d3RHFYdFhUUE8wSDhl?=
+ =?utf-8?B?TnZOZ0gvOTE4ak1sQ2ZLYmZpMFRDV2dOY2poUGJMVTg2L0VSOHVBTC96RFRF?=
+ =?utf-8?B?NHR3b0swWHVxYUcrcDBVYlFtSzN2WXdSTU9ES1V4R05LSkVlL09MOHJpNm9E?=
+ =?utf-8?B?c1VyVzhrNlJIenhsKzJXNitmaTliK3ErRmdVanBFNUVkZ1Z3N3BrNTRLc3pK?=
+ =?utf-8?B?L29qRjRoV2V3ZUJqekJta3JuSy8zVG05SXlZMlkvUkNwQ09tejZ0K2F1VEQ5?=
+ =?utf-8?B?RjcvcEY3ZlVZSWR6aEV1U0hoWlhDWSt2MStyanFwYXhVbnFKa29PaCtEbHMz?=
+ =?utf-8?B?ZWF3NTFhUFVJYm9VdzUyTnhjY2RWR1lhL1NMdGhjMGVsVXl3UFR5MnJHcjRK?=
+ =?utf-8?B?d3AxN0M3R3d5ZUc1S3dINjA1amZMeUVjcnVnNGZtQjZPdkVsK1JZTmIxR2JY?=
+ =?utf-8?B?M3M5MG1neDZBUis0TWZLSHZkMmVSM1dUS1dOU25XV1laNndsQmZBUjRKQ0JN?=
+ =?utf-8?B?MU9aZ2lkQVVDeWttTXUwVjk0UHo1N0hpOWZjM1MxY2ZMamFKaW1rZm5KVEdP?=
+ =?utf-8?B?SDBtZVBBdVIreVdsdmFkMFpZZlBBTHV6d0JZVnVOVTRSSGRwbmRET2xTVWpk?=
+ =?utf-8?B?eWdUaFZlbFBsT3RPcjlORk5oejNhM1hTNlR2azQrZXh1VThIczFCUkFBVmkr?=
+ =?utf-8?B?eU9DL2xLb3YvQVdnVzYzZm90U1J6V29WQTNDSWFxVHdybzNLcDVuSFM4aHVk?=
+ =?utf-8?Q?6s/hvay+u8/olndeftmQptWFL0K6MI=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(4053099003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Y3JJZDZydk9sMVNVMDRZL3RRY3kvYXl0S2R0MFRMeWZ3TDMzQVBGcEdhKytT?=
+ =?utf-8?B?LzhGT1paVkhaWHc0QmNRSEZXRlp3R3I2NldobnpubFVLWGQ2ZkRpbXliR3lz?=
+ =?utf-8?B?LzRXcWgySlh3ZDJuZ0JUYzQvS1BXa0JCYWhnZ2hyd1BWOTNVUHl0L29EelNs?=
+ =?utf-8?B?YVQ3TlhOSWdyNDFMcEg4MUtaRmhZTSt1d1RNVXExSWJRTERPWDZ1ek50eXNt?=
+ =?utf-8?B?RVZGQmE5S0RwTjVoNDdkWngveFhFZ0xzUWRGbWRXV2hlY3Z5WjBvTjYvQ3l3?=
+ =?utf-8?B?RUpUYnZDamM1NFJ1MTBGdWo4QVVPV0I3djRsNkRKMUZuRDBmSWF6VGJ2YTFr?=
+ =?utf-8?B?ZDRhaTR2eXJzbGdmWmQ5OFY5S0ZTeDRMTHZ6Rm42VWREMWFpVCt1dGZRTWd4?=
+ =?utf-8?B?clErb1h5V2cxdlkreGhGMFNZNnZHMkpvd2ZML0NweHdYYWJhbVB4V0lVbEV4?=
+ =?utf-8?B?N1IyUTV6OEdlTnJTWTMzRGN5SXpWcitvNnpsY3BwYS9xSlNLbDNjV2xJOFlH?=
+ =?utf-8?B?TmlKeXQzdnNORytLK1JJVCs4bG5ZSEdLamlISW9iWjlUQm4yci9tcGVzbVRE?=
+ =?utf-8?B?MDk1OFlpUVFXeGJxS1dBSkp5RXEwajNoZVdSckg4RUpuOFUrVzQ1aURnUWp2?=
+ =?utf-8?B?c2IzekZXbVM2SkRaRkhXMVI0VWN3MkZmK2dPMzRaVWNKMlNwYkRnRkpnNnRS?=
+ =?utf-8?B?Nlp0Q2xsemZYUzZ4WUk1Y0MvMThocWhLdThrTDM4Tzh0b0Z2bWxKR0YvbHNS?=
+ =?utf-8?B?cmQzdFgyalFuWm92NzZDdFl5MWJoT0RIdmlJb3M4c3AwaXBtYjFiT3I4ZkJy?=
+ =?utf-8?B?amFsUjRIell2bFlXcGs2YURtWG4vZy9pNTFMWm9lOHBRR2lreTB0Z0ZsdXhY?=
+ =?utf-8?B?alByeE56Z1ZJK3hFWWk4RlVydlhOMU5IWFdCS0JHOEdoTnRKcWxzeHNpZkxj?=
+ =?utf-8?B?SmU2ZkFWQjNFUlhBRE15bER2WlVQY1JyR1ljSHhKbTFVS1laRS9UbzQwVlpK?=
+ =?utf-8?B?VmthVDR1K2NnMlpyNHBSMld5dmUwbDIwY1owNmxJTFAwdzNCNC9PMHBLcnJx?=
+ =?utf-8?B?VlFSMkhhVSs2UmRaVEJoRVl1K2FhVStWNmlabkk2Yjg3WW81N09sMlRiRnQ1?=
+ =?utf-8?B?R3hlUmtrTnRWTUMyb2JuUStCbjBSeWdmUXVROWo0MWRneEd4L0VEQnM5N3RO?=
+ =?utf-8?B?ajJSUkpSQkpsMXRGWm9BNDRTSWFWK0JXejNEQjV3NjNuYUZYLytvM0FqN2Zi?=
+ =?utf-8?B?eUREeURTVWRUZmF6dkhJc3RrRC9vbzVqUkJ6Z01DcjRxQVZMNjNQYzhHcWJa?=
+ =?utf-8?B?MjUwbXdBWHpYZFpVeXQ1Q1czNHRXMnluUWw3OVQxSjZra0h6WXM1UGdYTzJX?=
+ =?utf-8?B?ZmJmVXhjTCtoVGJXYlpPd0NqS2IyaUZwMmtYYVpyTHlVeWF2QkEzNmVxeDVP?=
+ =?utf-8?B?NktGSWJURkFRZnJZSWVGVHYxRFVxVDd4d0NJTm50SU9qOUxvV20zOFBlRHhy?=
+ =?utf-8?B?OU10WGt2MnE4WDVpTkpFbmFlZGE0YVI3eUVldVhCQnRISko2MThzS1VKZ2pw?=
+ =?utf-8?B?YkpjZXpXT0ZiSWNsOFZnbjk4NEhXWHN4YjlXRDVQYXJxMGE5Q3dpQWgvaHl2?=
+ =?utf-8?B?OWRta0pscU1qajIzbTBCTmp3a3ZxaHFMeUcxRWQxZmlHMWM2T0oyMEo3OGFa?=
+ =?utf-8?B?dUNmbDBrMkhUSjVkc3N5ZGpveHNkeXY2TmZuSXVlUTZYVFUrSkxCZVIzZTRs?=
+ =?utf-8?B?OVN3WVJJUmlNVTBINUMvTHh2SE40OGdTZElXbFQ0SHhRV2lWNXhzaDdDTUEx?=
+ =?utf-8?B?RUVXcWp1YW5EalpmWG9KakY5YmdpVFk1REtsWE9vV2ZoUWl4SjgwZ0pHVitn?=
+ =?utf-8?B?MDdGUHl3Z3V5M2E5NDc3cHdsaERmdXVzcXJzUjc5aFpMMm5EVm5hQkw0T2Mx?=
+ =?utf-8?B?REhWUUFTZGttNWdUK2VRZEdQdDJuTktuTUtZRHB2TVVjMFlraDVOanptbEZj?=
+ =?utf-8?B?czBwWVBqc290Y0pWUEZIZG1ybmIrc05raUtGN0cwOTdCelFqR3FxUHF6Nk12?=
+ =?utf-8?B?YmZ2WXRjZUk1NUJtWHJ4QVZOTHl2dzEyMHVHUWdlMXdld09PYVhoOTJ1T0Nz?=
+ =?utf-8?B?amc4cUc4QThkQ1I4WXEzK2hMRjZ2ZnJnMXBpc1VLOVp0OVFuN29sL2haRXRV?=
+ =?utf-8?B?MHc9PQ==?=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="------------obGn4LxPcwNiOcpogGaru9JN"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407191628.323613-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CA+V-a8useBh5m+MqGXQwQJhuemehm=bPidL6XydR-FOmVN9QNQ@mail.gmail.com>
- <CAMuHMdU+U8D8iQdks72=Kki2HL+bo8tw9gA1S4D3c4hOphLTuA@mail.gmail.com>
- <CA+V-a8tH9BLjy5aG1qkRJnUFO_4VARu6rW4fQzHoSxvaMgo1Xg@mail.gmail.com> <CAMuHMdVT0R_ypz7sLxLzYU+v-Cj94Pd4FaFJsdQq-c_Evx5neA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVT0R_ypz7sLxLzYU+v-Cj94Pd4FaFJsdQq-c_Evx5neA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 15 Apr 2025 13:34:46 +0100
-X-Gm-Features: ATxdqUEjCg3cMLO6JXC6UUfB1YApx1RelExOS_EQIX8JNeUH3Dj9IueCJgAeFmU
-Message-ID: <CA+V-a8tPKb2zrXtRZcs5G=4-wBg6sr7hYxYxqV=W0+FmyyY=YQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/12] Add support for Renesas RZ/V2N SoC and EVK
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Jiri Slaby <jirislaby@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: imgtec.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2feec3e4-6cf6-4673-2f66-08dd7c1adbaa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2025 12:41:35.2404
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: O3bGtirjQxGJNpVw8nBuDzJMrEoJ84fCuhQhxQQPtTxt+NWYxE3Se048gfPuyuKd245Ary/aqUmCwB4yJn+q7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO7P265MB7762
+X-Proofpoint-GUID: 16a0V1RLRVJyecZPOAHiwaMAvOdrrVch
+X-Authority-Analysis: v=2.4 cv=OMsn3TaB c=1 sm=1 tr=0 ts=67fe5404 cx=c_pps a=dcRbu0n7HPsro7Pn5Q0Myw==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=XR8D0OoHHMoA:10
+ a=NgoYpvdbvlAA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=iICKLq0zw37mt1Z5_6UA:9 a=QEXdDO2ut3YA:10 a=r0LeN75o1xWKwdVsTeoA:9 a=FfaGCDsud1wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-ORIG-GUID: 16a0V1RLRVJyecZPOAHiwaMAvOdrrVch
+
+--------------obGn4LxPcwNiOcpogGaru9JN
+Content-Type: multipart/mixed; boundary="------------q8107VUZJRzIpXMVcJwKU2tO";
+ protected-headers="v1"
+From: Matt Coster <matt.coster@imgtec.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>
+Cc: Frank Binns <frank.binns@imgtec.com>,
+ Luigi Santivetti <luigi.santivetti@imgtec.com>,
+ Alessio Belle <alessio.belle@imgtec.com>,
+ Alexandru Dadu <alexandru.dadu@imgtec.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Randolph Sapp <rs@ti.com>,
+ Darren Etheridge <detheridge@ti.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Message-ID: <f15355f7-0b95-462a-873b-cd682fc530f2@imgtec.com>
+Subject: Re: [PATCH DO NOT MERGE v6 17/18] arm64: dts: ti: k3-am62: New GPU
+ binding details
+References: <20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com>
+ <20250410-sets-bxs-4-64-patch-v1-v6-17-eda620c5865f@imgtec.com>
+In-Reply-To: <20250410-sets-bxs-4-64-patch-v1-v6-17-eda620c5865f@imgtec.com>
+
+--------------q8107VUZJRzIpXMVcJwKU2tO
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Geert
+On 10/04/2025 10:55, Matt Coster wrote:
+> Use the new compatible string introduced earlier (in "dt-bindings: gpu:=
 
-On Tue, Apr 15, 2025 at 1:04=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, 15 Apr 2025 at 11:28, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
- wrote:
-> > On Mon, Apr 14, 2025 at 2:40=E2=80=AFPM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> > > On Mon, 14 Apr 2025 at 13:19, Lad, Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> > > > On Mon, Apr 7, 2025 at 8:16=E2=80=AFPM Prabhakar <prabhakar.csengg@=
-gmail.com> wrote:
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > >
-> > > > > This patch series adds initial support for the Renesas RZ/V2N (R9=
-A09G056)
-> > > > > SoC and its evaluation board (EVK). The Renesas RZ/V2N is a visio=
-n AI
-> > > > > microprocessor (MPU) designed for power-efficient AI inference an=
-d
-> > > > > real-time vision processing. It features Renesas' proprietary AI
-> > > > > accelerator (DRP-AI3), delivering up to 15 TOPS AI performance, m=
-aking
-> > > > > it ideal for applications such as Driver Monitoring Systems (DMS)=
-,
-> > > > > industrial monitoring cameras, and mobile robots.
-> > > > >
-> > > > > Key features of the RZ/V2N SoC:
-> > > > >   Processing Power:
-> > > > >     - Quad Arm Cortex-A55 cores at 1.8GHz for high-performance co=
-mputing
-> > > > >     - Single Arm Cortex-M33 core at 200MHz for real-time processi=
-ng
-> > > > >     - 1.5MB on-chip SRAM for fast data access
-> > > > >     - LPDDR4/LPDDR4X memory interface for high-speed RAM access
-> > > > >
-> > > > >   AI and Vision Processing:
-> > > > >     - DRP-AI3 accelerator for low-power, high-efficiency AI infer=
-ence
-> > > > >     - Arm Mali-C55 ISP (optional) for image signal processing
-> > > > >     - Dual MIPI CSI-2 camera interfaces for multi-camera support
-> > > > >
-> > > > >   High-Speed Interfaces:
-> > > > >     - PCIe Gen3 (2-lane) 1ch for external device expansion
-> > > > >     - USB 3.2 (Gen2) 1ch (Host-only) for high-speed data transfer
-> > > > >     - USB 2.0 (Host/Function) 1ch for legacy connectivity
-> > > > >     - Gigabit Ethernet (2 channels) for network communication
-> > > > >
-> > > > >   Industrial and Automotive Features:
-> > > > >     - 6x CAN FD channels for automotive and industrial networking
-> > > > >     - 24-channel ADC for sensor data acquisition
-> > > > >
-> > > > > LINK: https://tinyurl.com/renesas-rz-v2n-soc
-> > > > >
-> > > > > The series introduces:
-> > > > > - Device tree bindings for various subsystems (SYS, SCIF, SDHI, C=
-PG, pinctrl).
-> > > > > - RZ/V2N SoC identification support.
-> > > > > - Clock and pinctrl driver updates for RZ/V2N.
-> > > > > - Initial DTSI and device tree for the RZ/V2N SoC and EVK.
-> > > > >
-> > > > > These patches have been tested on the RZ/V2N EVK with v6.15-rc1 k=
-ernel,
-> > > > > logs can be found here:
-> > > > > https://gist.github.com/prabhakarlad/aa3da7558d007aab8a2885500055=
-65d3
-> > > > >
-> > > > > @Geert, Ive rebased the patches on top of v6.15-rc1 + renesas-dts=
--for-v6.16
-> > > > > + renesas-clk-for-v6.16 branches. Also these patches apply on top=
- of the below
-> > > > > series [1] and [2]. I had to sort the order in Makefile for patch=
- [3] to
-> > > > > avoid conflicts.
-> > > > > [1] https://lore.kernel.org/all/20250401090133.68146-1-prabhakar.=
-mahadev-lad.rj@bp.renesas.com/
-> > > > > [2] https://lore.kernel.org/all/20250403212919.1137670-1-thierry.=
-bultel.yh@bp.renesas.com/#t
-> > > > > [3] https://lore.kernel.org/all/20250403212919.1137670-13-thierry=
-.bultel.yh@bp.renesas.com/
-> > > > >
-> > > > > Note, dtbs_check will generate the below warnings this is due to =
-missing
-> > > > > ICU support as part of initial series. I will be sending a follow=
--up patch
-> > > > > series to add ICU support which will fix these warnings.
-> > > > > arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dtb: pinctrl@1=
-0410000 (renesas,r9a09g056-pinctrl): 'interrupt-controller' is a required p=
-roperty
-> > > > >         from schema $id: http://devicetree.org/schemas/pinctrl/re=
-nesas,rzg2l-pinctrl.yaml#
-> > > > > arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dtb: pinctrl@1=
-0410000 (renesas,r9a09g056-pinctrl): '#interrupt-cells' is a required prope=
-rty
-> > > > >         from schema $id: http://devicetree.org/schemas/pinctrl/re=
-nesas,rzg2l-pinctrl.yaml#
-> > > > >
-> > > > > v1->v2:
-> > > > > - Added acks from Rob.
-> > > > > - Squashed the RZ/V2N EVK and SoC variant documentation into a si=
-ngle
-> > > > >   commit.
-> > > > > - Updated the commit messages.
-> > > > > - Added RZV2N_Px, RZV2N_PORT_PINMUX, and RZV2N_GPIO macros in
-> > > > >   SoC DTSI as we are re-using renesas,r9a09g057-pinctrl.h
-> > > > >   in pictrl driver hence to keep the consistency with the
-> > > > >   RZ/V2H(P) SoC these macros are added.
-> > > > > - Dropped `renesas,r9a09g056-pinctrl.h` header file.
-> > > > > - Followed DTS coding style guidelines
-> > > > > - Dropped defconfig changes from the series.
-> > > > > - Dropped SDHI dt-binding patch as its already applied to mmc -ne=
-xt tree.
-> > > > >
-> > > > > Cheers,
-> > > > > Prabhakar
-> > > > >
-> > > > > Lad Prabhakar (12):
-> > > > >   dt-bindings: soc: renesas: Document Renesas RZ/V2N SoC variants=
- and
-> > > > >     EVK
-> > > > >   soc: renesas: Add config option for RZ/V2N (R9A09G056) SoC
-> > > > >   dt-bindings: soc: renesas: Document SYS for RZ/V2N SoC
-> > > > >   soc: renesas: sysc: Add SoC identification for RZ/V2N SoC
-> > > > >   dt-bindings: serial: renesas: Document RZ/V2N SCIF
-> > > > >   dt-bindings: clock: renesas: Document RZ/V2N SoC CPG
-> > > > >   clk: renesas: rzv2h-cpg: Sort compatible list based on SoC part=
- number
-> > > > >   clk: renesas: rzv2h: Add support for RZ/V2N SoC
-> > > > >   dt-bindings: pinctrl: renesas: Document RZ/V2N SoC
-> > > > >   pinctrl: renesas: rzg2l: Add support for RZ/V2N SoC
-> > > > >   arm64: dts: renesas: Add initial SoC DTSI for RZ/V2N
-> > > > >   arm64: dts: renesas: Add initial device tree for RZ/V2N EVK
-> > > > >
-> > > > Would it be OK if I send version 3 containing only patches 4/12 and=
- 10/12?
-> > >
-> > > For patch 4/12: yes, that is fine. Thx!
-> > > For patch 10/12: I have already applied it.
-> > >
-> > For patch 10/12 ("pinctrl: renesas: rzg2l: Add support for RZ/V2N
-> > SoC") will that be part of renesas-pinctrl-for-v6.16 branch (which is
-> > yet to be pushed)?
->
-> Sorry, my bad; I misread the patch number. I have not applied 10/12 yet.
->
-Thanks, I'll send out a v3 (for patch 10/12) addressing the review comments=
-.
+> img: More explicit compatible strings") and add a name to the single po=
+wer
+> domain for this GPU (introduced in "dt-bindings: gpu: img: Power domain=
+
+> details").
+
+Hi Nishanth, Vignesh & Tero,
+
+Now that P1-16 have landed in a DRM tree, what would be required to get
+this and the subsequent patch landed? Can they be reviewed and applied
+as-is, or would you like me to send them as a separate series?
 
 Cheers,
-Prabhakar
+Matt
+
+>=20
+> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+> ---
+> Changes in v6:
+> - None
+> - Link to v5: https://lore.kernel.org/r/20250326-sets-bxs-4-64-patch-v1=
+-v5-17-e4c46e8280a9@imgtec.com
+> Changes in v5:
+> - None
+> - Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1=
+-v4-17-d987cf4ca439@imgtec.com
+> Changes in v4:
+> - None
+> - Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1=
+-v3-17-143b3dbef02f@imgtec.com
+> Changes in v3:
+> - None
+> - Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1=
+-v2-7-3fd45d9fb0cf@imgtec.com
+> Changes in v2:
+> - None
+> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1=
+-v1-7-4ed30e865892@imgtec.com
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot=
+/dts/ti/k3-am62-main.dtsi
+> index 7d355aa73ea2116723735f70b9351cefcd8bc118..d17b25cae196b08d24adbe7=
+c913ccaba7eed37eb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -691,12 +691,14 @@ ospi0: spi@fc40000 {
+>         };
+>=20
+>         gpu: gpu@fd00000 {
+> -               compatible =3D "ti,am62-gpu", "img,img-axe";
+> +               compatible =3D "ti,am62-gpu", "img,img-axe-1-16m", "img=
+,img-axe",
+> +                            "img,img-rogue";
+>                 reg =3D <0x00 0x0fd00000 0x00 0x20000>;
+>                 clocks =3D <&k3_clks 187 0>;
+>                 clock-names =3D "core";
+>                 interrupts =3D <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+>                 power-domains =3D <&k3_pds 187 TI_SCI_PD_EXCLUSIVE>;
+> +               power-domain-names =3D "a";
+>         };
+>=20
+>         cpsw3g: ethernet@8000000 {
+>=20
+> --
+> 2.49.0
+>=20
+
+
+--=20
+Matt Coster
+E: matt.coster@imgtec.com
+
+--------------q8107VUZJRzIpXMVcJwKU2tO--
+
+--------------obGn4LxPcwNiOcpogGaru9JN
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCZ/5T/gUDAAAAAAAKCRB5vBnz2d5qsK4J
+AQD9uHKMbp2KFZORVrKpjrqcHifoLXX5RN8eY6lWi45flwD/S27Ar/NFW9r+moPBdKSK9rZ4Tce+
+psIP6z6jsB1bUAo=
+=yuOt
+-----END PGP SIGNATURE-----
+
+--------------obGn4LxPcwNiOcpogGaru9JN--
 
