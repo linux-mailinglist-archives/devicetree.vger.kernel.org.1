@@ -1,125 +1,144 @@
-Return-Path: <devicetree+bounces-167098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CB3A895F5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:03:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9BBA89606
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:07:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FBD4189AE77
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:03:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6115E188A36C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64822798F7;
-	Tue, 15 Apr 2025 08:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Skp41ukG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AEB2750E7;
+	Tue, 15 Apr 2025 08:06:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE318274640;
-	Tue, 15 Apr 2025 08:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77378634;
+	Tue, 15 Apr 2025 08:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744704216; cv=none; b=Y7GiQPoR/KPVXuVXIdPnQ6UDwvSO5WH5GCdhGqZj7DOmuazSSPIQL8+Oww5MlikwPhKGX2zgatndJtlisVq3dUGEKMv3kXHiYT9hOTQBnBVCn62QHQ0DzdDapL+qIR5hLOFJyQfoa40Yo5d0yCp40onYtF2kRE8eDAkmbtNpbRE=
+	t=1744704415; cv=none; b=ZF+1++cKIHfjr41rUITofCYzwk2rOTUWiaL6t9FylafC+aszwGgPuEpqedNsVMJuusp8DISSufKBkUlqYEqNw/pdADT+4k/LbbTNkcSUYN1f2abh5SkRiJ1jJYVhfeCiQhhKj0YK59hyNGHOVYxDamWkXm3pE2pXHDrGYAS5CaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744704216; c=relaxed/simple;
-	bh=ttOQPAQ/Uc62DAVNnKwV0MrGQwvtrfTUwUz94ORRQxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hifGE0eUwoS3jQPekBKaHVHYog9pbW3cXC0mFYXUrHih7MMFcT2f9qmGXfeFyB3AsQ8oY4h2iryhy9eo+L1GqbR+n0lFwq5CkiNkhY87QPsM8sdiKCzkneYzcm4FG85sKcrGBmlg7b+WA1J8k5y71ebvcNjLMBw9SNm+vwp8lSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Skp41ukG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38771C4CEE9;
-	Tue, 15 Apr 2025 08:03:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744704216;
-	bh=ttOQPAQ/Uc62DAVNnKwV0MrGQwvtrfTUwUz94ORRQxY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Skp41ukGS21uqruwNSsKX5SSSHZPte6khx3xyyCjscAlcdmn+/Wk0CA+LklWoTErQ
-	 B1xPpV1tROha86foWNGJVywgxryZnCU1u3BDhva/u0fEONjaZb1jbB8NY5AcieJ3g/
-	 C2PYSg/9gHAsy3A3hTuxUQYw5Tb86naqGlhB2iip7iTvkosRhMKKBzaS1FW/hsCFpz
-	 GNfXGY725uaML0Yh01ofwAmulff9MvvnrI4GFOqag3scCXwInvwcghgxWGnAyGEOee
-	 3VN6ifaS1VbgkUB0XHIkN90DK+WQtilKCBoaGb7KhrqifadpQkTBytTv4gy1zoCQQR
-	 YSgLFP9w2kJuA==
-Message-ID: <2ab6de54-ca06-407c-a95f-d86c7b8fd7e0@kernel.org>
-Date: Tue, 15 Apr 2025 10:03:31 +0200
+	s=arc-20240116; t=1744704415; c=relaxed/simple;
+	bh=awYdlis9cPibtfloHg93X0xSUHByIq02xs3+kKcj3B0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WgolaQHQVc7AXgGUZCX3D0pw6/IT5kDxeqcKK0msJ5CyS7ck3rhWUzroiitM9RLF0dVxQDTS6QfXIxxO81NPx7iysXtHeybiRao4A15z2XDgzAC4Nhk1/V+v6WikovOCmZcQtc1rXYtwQoca4IyhAm1s4+6nMuqIvD29VOqu/bE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-523ffbe0dbcso5319211e0c.0;
+        Tue, 15 Apr 2025 01:06:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744704412; x=1745309212;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xoE7Sk3NEK10ejGR4MyJLM/QRd7ud4cKRNAMK4SJy3M=;
+        b=vjZ71TShD/60d2TF4bk8PC9zwbYZTKOdudCOkcidI7eltBp0jPQgXkYEqxqTteAIwO
+         7jpcmHkT/kB7TOwooKefnYGWMl7q3Ki31cdUu35DzucKozfRBt+q04N+Peh91MUiWW3e
+         9GU7sZ/Oqv1Wop9dqfA0sgHgaJbuFCik6hij2ukrTScZN8jDiYKz84B7CeFQEd540IVE
+         g9kNpt8/5EnbBCsXbmKm77jcMCNbm6wODbWV3xuTO6iz17C+pFz5tlF7LecFK8uPu/sH
+         YdqxIJNgibs+QK0trBsHF9YuvO8VYQ2FotWgBAdAGG2mEIJKZfxzx1QJHN5gA4maYAfN
+         IRBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTXZ8Qz3ZVW5g7LVh7dQVpzmYf4ShVnLf/HVSwLvV5PqY2/nFH+agm0YgZhFS6Xjhh3nyONRsY28Yw@vger.kernel.org, AJvYcCWYnszFm/dQAYrjbJdQi6h9uR+0ffo/8sW8ncJ8YqRiV99gB8U2TdVrOxl+P/vxWvNaNz50zn2VCk9k@vger.kernel.org, AJvYcCXL7/PH65V73oYgg6OKT1nzIHSVHLwJU4ah8PTlUiLBf/57afQWNH1DNr2rM9Kpo8Tih9c2cSG9Sxox1F0Y3rGvZnA=@vger.kernel.org, AJvYcCXk9+jDep9qAt8q9HSobNZ6q6zaa3yY47SqNhEwhyF5W0o7rVITs9v8I68L74DX82klCiOf3u82vH6aoYk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqz1XC6+J1j6qC86+G9/0oPMdBXZKUPBGZfiMBRPtMd8JsWap6
+	ksxRr9ilXGK2o5s1HvfQny0aIzWNHRsOquDhJaDxYJpwb1Lj/9ZyeqcTbKR+
+X-Gm-Gg: ASbGncv8gebf9o7/zuKdKpDJkm1MPHUgkiPAzrPIqY+4q5b7ixgdUdXAioKOsBlZr7P
+	6TvNGgPWs8WLPAeV3+mRHZ9tYhtxuVOn1H0X9ZodMKgwxJ+sJYTtodBFinm8v2JB9PC/79R2Rpb
+	enOZUV9BM5tZVuBGyqd/J0Myxm4LL+77oFqWiie59w8BPSb430KPSKpnz0ZeQNV22w73FqM7QHy
+	m3t9B6cKivd7/JtSQoNL2PXyGdUT9vxkIBNp33Vhj0AJ5cQDaGaVBHLcXmsLUwL8ez/iLhvppQe
+	BGnd1XFliH5hnx3qHg0WWFa6CuMHKfivFOZwPMu1BGA27qm+3TgFAs4zhNhI7kFOwBB4lAqML0m
+	qxXc=
+X-Google-Smtp-Source: AGHT+IHkVgit3zGoO4zwXJVvkQr2Y1PlvE1YgURPwmmKl+7re032t461pzPyiYRkWB6UTtz3lV2NjA==
+X-Received: by 2002:a05:6122:d95:b0:520:61ee:c7f9 with SMTP id 71dfb90a1353d-527c35b020amr9138502e0c.7.1744704411649;
+        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd9b999sm2577221e0c.26.2025.04.15.01.06.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4c6cf5e4cd5so163202137.2;
+        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV9gQ/+mHAmN7eVliyf0u0mbZO4/slJ+hasj8Q1XMKo2q4bt6Hx/ooX9jd93az2KKKl6MrF8pFZsUpK@vger.kernel.org, AJvYcCWBxYVKou3zOPYNwuftGRutgHNArfgEkfSYTovtAgOXCw6JH0djd5utFIj3L+ZCnOlF+d6KcsbgPAAX@vger.kernel.org, AJvYcCWgt6C046I9p7JU/WTzS+EDtlQDuI/NKtcx7pub+BF1jCJpk2oGSl+ZYZk6TZZjBwpj9dbca9dVhkZDdwU323ueFuM=@vger.kernel.org, AJvYcCXTsBSR3pmaWrWGp3TQ6UYWkdkd9zK895wR9KzVP+QwgeXRyIF2w2EOeCEot6Byzs58EUqBtXUkELr3GY4=@vger.kernel.org
+X-Received: by 2002:a05:6102:3e92:b0:4c5:1bb6:8165 with SMTP id
+ ada2fe7eead31-4c9e4f12ee4mr11188743137.12.1744704410919; Tue, 15 Apr 2025
+ 01:06:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: Add Sitronix ST7571 LCD
- Controller
-To: Marcus Folkesson <marcus.folkesson@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
- <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com> <87wmbm1a4b.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87wmbm1a4b.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 10:06:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
+X-Gm-Features: ATxdqUECV1MuAkt2dYlWZdeAGp9tizsog1IG4v0PoorYJ-_KQ05iwfNaUiWR2-U
+Message-ID: <CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
+Subject: Re: [PATCH v3 02/10] spi: sh-msiof: use dev in sh_msiof_spi_probe()
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 15/04/2025 07:58, Marcus Folkesson wrote:
-> Sitronix ST7571 is a dot matrix LCD controller supporting
-> both 4bit grayscale and monochrome LCDs.
-> 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
+Hi Morimoto-san,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for your patch!
 
-Best regards,
-Krzysztof
+On Tue, 15 Apr 2025 at 03:34, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> sh_msiof_spi_probe() is using priv->dev everywhare,
+
+everywhere
+
+> but makes code long. Create struct device *dev and use it.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+> --- a/drivers/spi/spi-sh-msiof.c
+> +++ b/drivers/spi/spi-sh-msiof.c
+
+> @@ -1334,15 +1333,14 @@ static int sh_msiof_spi_probe(struct platform_device *pdev)
+>                 goto err1;
+>         }
+>
+> -       ret = devm_request_irq(&pdev->dev, i, sh_msiof_spi_irq, 0,
+> -                              dev_name(&pdev->dev), p);
+> +       ret = devm_request_irq(dev, i, sh_msiof_spi_irq, 0, dev_name(&pdev->dev), p);
+
+Looks like you missed one instance ;-)
+
+>         if (ret) {
+> -               dev_err(&pdev->dev, "unable to request irq\n");
+> +               dev_err(dev, "unable to request irq\n");
+>                 goto err1;
+>         }
+>
+>         p->pdev = pdev;
+> -       pm_runtime_enable(&pdev->dev);
+> +       pm_runtime_enable(dev);
+>
+>         /* Platform data may override FIFO sizes */
+>         p->tx_fifo_size = chipdata->tx_fifo_size;
+
+With the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
