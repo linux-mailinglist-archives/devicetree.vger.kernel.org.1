@@ -1,77 +1,107 @@
-Return-Path: <devicetree+bounces-166946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB440A89062
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 02:17:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 782EBA890A6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 02:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CACCB189959B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:17:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EFC17D3A1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F221CD1F;
-	Tue, 15 Apr 2025 00:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D87C189903;
+	Tue, 15 Apr 2025 00:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmOc4dKx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LMKbyZl7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5354F1A29A;
-	Tue, 15 Apr 2025 00:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4650217A306;
+	Tue, 15 Apr 2025 00:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744676234; cv=none; b=GND9hImpy85geSKJyVR1x4crPZNHCatMp/kzhxznufiqaxn48g8m1UTJO3wvi1JivmtcHKZuywQw6V4QF6t4pTmYLOpLpf4gHvq6ZjDKBCuRurZp9AiKxgF9POMINgF14yaIIdY4hYo1Gx4ihyQL4zTgRVKF5lL6YpeGuZmlCZk=
+	t=1744677004; cv=none; b=ZFZ12ac5p0qVkyUbH1kDuqpsh3X0d8JNGYP9olFtd70SoG8jdB5Men6Q3DLu/S6q8VSfMZy06kc/W9YyjkYuTdzRupHqvfdIuAUGv2wKMrg9dragt+d3jEZy+5M1OmZ64KESMEa+fMcqKl89kStRIXsuDz/xlDQo/siHp9aVXtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744676234; c=relaxed/simple;
-	bh=u8pUDLjTJYg0M7lx8nH/iZVN19UT7IjeebixwVF3GWo=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=tGG8Yh32kzRGKd4XcfPsvJmsA5dNHlgbq5NlsINWpfzTwCp88jRSwmThx4twDAPQbMnfZAL0k6UIqjl+RMO8nIGf5qRuQu0sbKP/GlEHm2bW6GnTG8P1pkj0rU57fc2jOAcVF/a8ETTGYXnqtueAod886InkYM9sw8OUJfcHnqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmOc4dKx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B86F5C4CEE2;
-	Tue, 15 Apr 2025 00:17:13 +0000 (UTC)
+	s=arc-20240116; t=1744677004; c=relaxed/simple;
+	bh=I813wV1g/WIA6BY+EHdHQRWe4RgiC2zmO2F7GmKy+nE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=kaU9fK/5T2SuK8PgJNeZCV7Tp/fGqeLydlR/u8g1Ou2bVjHf5NpraMGIWHglOxSbCO55CA257GG1d4bUyRofG3nDbtqvyz1PVYJutgAQvi+hKdh/4mvPo5HxVfMwW6hbKoAUbGVv51QNfl1+rnvDzSCD7LIuZ4by+Z7hzGNEpWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LMKbyZl7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 941DEC4CEED;
+	Tue, 15 Apr 2025 00:30:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744676233;
-	bh=u8pUDLjTJYg0M7lx8nH/iZVN19UT7IjeebixwVF3GWo=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=GmOc4dKxSbt8DH+9plUWbWoiDbdrlVcVnMOzzA2tON8bTTt0aDzKDCJlFQ+878V1Z
-	 rKo6oloFxv/lapdi8ojCoG1XgUd3PWBYWBAqZ0imC30oBzJjJKm+1/wx8tlGNZTkrF
-	 kbu301SZrXLy2IHWY8OzqtEw1W84WvycbdObw+cduXEJ1Ro5YvFVO35aEVsyjZPmDr
-	 S3fpPVH3XycaUiWck++UnzrgwjVWn0qKEdPhgXVcphQ5TRUGGUIcqbxuJLzfg+VlpZ
-	 XG3ENnEjgq5Od/LVCUKq5VluxXKVH8+26GbjFThuCAu5+Px0REO/7CwViOqMD0NY/8
-	 BmCtSY87R/8bQ==
-Message-ID: <8494f5e76de6544e3d83b5b763ca42a2@kernel.org>
+	s=k20201202; t=1744677003;
+	bh=I813wV1g/WIA6BY+EHdHQRWe4RgiC2zmO2F7GmKy+nE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LMKbyZl7mEsiaIPEtIdqbWP4H1Ipny5a/CZFjuYKI7RI1ix3URXs43Bu0GZIvXiLW
+	 ZhI6WPM+sjPJQrWYke2oGagT3ChhzR5KaGiPVCLa8QxQsIx9lvb5I5LTywPAAjQY/l
+	 lZTLq2bB5Xhw1Ju+MPLs216vXWhIi+JgGjuR/5JlRsKTnNf6V1ppSshQY4tzuQOp3O
+	 CyOGIAMRSuG9pnw3Ktade0T1nR2t08CAPcajYvp515BxHHUQqXY58AxxLVee6XTqcU
+	 kNzOPiyADnnpCGYqPhBvmhMImfG9HEQvf4C1/rD72XOR+J4EWWR6iXTYVZ72Y6r2W7
+	 Qj69ckNJtBt/Q==
+Date: Mon, 14 Apr 2025 19:30:01 -0500
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250409-spmi-v4-2-eb81ecfd1f64@gmail.com>
-References: <20250409-spmi-v4-0-eb81ecfd1f64@gmail.com> <20250409-spmi-v4-2-eb81ecfd1f64@gmail.com>
-Subject: Re: [PATCH v4 2/3] spmi: add a spmi driver for Apple SoC
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>, Jean-Francois Bortolotti <jeff@borto.fr>
-To: Alyssa Rosenzweig <alyssa@rosenzweig.io>, Conor Dooley <conor+dt@kernel.org>, Janne Grunau <j@jannau.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>, Sven Peter <sven@svenpeter.dev>, fnkl.kernel@gmail.com
-Date: Mon, 14 Apr 2025 17:17:11 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-phy@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+In-Reply-To: <20250414225311.1913480-1-robh@kernel.org>
+References: <20250414225311.1913480-1-robh@kernel.org>
+Message-Id: <174467700194.2177524.2394978588221841695.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: phy: rockchip: Convert RK3399 PCIe PHY to
+ schema
 
-Quoting Sasha Finkelstein via B4 Relay (2025-04-09 14:52:13)
-> From: Jean-Francois Bortolotti <jeff@borto.fr>
->=20
-> The connected PMU contains several useful nvmem cells such as RTC offset,
-> boot failure counters, reboot/shutdown selector, and a few others.
-> In addition M3+ machines have their USB-PD controller connected via SPMI.
->=20
-> Signed-off-by: Jean-Francois Bortolotti <jeff@borto.fr>
-> Reviewed-by: Sven Peter <sven@svenpeter.dev>
-> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> Co-developed-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+
+On Mon, 14 Apr 2025 17:53:09 -0500, Rob Herring (Arm) wrote:
+> Convert the Rockchip RK3399 PCIe PHY to DT schema format. Move the
+> example to the GRF binding as that has the complete block.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
+>  .../bindings/phy/rockchip-pcie-phy.txt        | 36 -------------------
+>  .../devicetree/bindings/soc/rockchip/grf.yaml | 13 +++++--
+>  2 files changed, 11 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rockchip-pcie-phy.txt
+> 
 
-Applied to spmi-next
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/rockchip/grf.example.dtb: syscon@ff770000 (rockchip,rk3399-grf): pcie-phy: False schema does not allow {'compatible': ['rockchip,rk3399-pcie-phy'], '#phy-cells': 1, 'clocks': [[4294967295, 138]], 'clock-names': ['refclk'], 'resets': [[4294967295, 135]], 'reset-names': ['phy']}
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/rockchip/grf.example.dtb: syscon@ff770000 (rockchip,rk3399-grf): pcie-phy: Unevaluated properties are not allowed ('#phy-cells', 'clock-names', 'clocks', 'compatible', 'reset-names', 'resets' were unexpected)
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+Documentation/devicetree/bindings/soc/rockchip/grf.example.dtb: /example-0/syscon@ff770000/pcie-phy: failed to match any schema with compatible: ['rockchip,rk3399-pcie-phy']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250414225311.1913480-1-robh@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
