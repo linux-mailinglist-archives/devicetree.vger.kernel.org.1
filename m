@@ -1,121 +1,109 @@
-Return-Path: <devicetree+bounces-167043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D85FA893D7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB34A89420
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D580177BD5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:21:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97B811794CA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED6F279791;
-	Tue, 15 Apr 2025 06:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617282441A6;
+	Tue, 15 Apr 2025 06:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruAXXydm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fA0XE7bl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52597275114
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 06:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0DF1F55F8;
+	Tue, 15 Apr 2025 06:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744698055; cv=none; b=Sia6zcAFQeHlciUg36hKWM0tl2zWocqk++h7ySvKk89TLcMPxN4gDhOJGG+RblXbCtgKglZcoSdP8GOddvfuyLBBexEHXA1RYTlpPeBDCalxeTDEKmaehxzkMtH5r31N/5WDi3Z6aDMRI59nYdIJOgTcNNGvTpX4gRH/dOwSb3c=
+	t=1744699792; cv=none; b=aC0nypW7W/bgDKgQkefAF2o+WaD/vJRRDTUzbyon6YtEli7fTL4VUSeVEHUXwvAVAdyxKL8yyr5cWLwHn4+NJ2xf1hm0MgtCIhHynmdYOhX2K9r2gi2DaMK9k4JpVoDqdTzR554SCJm+EMcksQhhU9tqQQrYdrUAdhkpGtx737Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744698055; c=relaxed/simple;
-	bh=15dopjAkrKSs5ScMZ+NYEAva1LfA/eDSoY1MTLaL05k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=hAoGwViRJfYercP3ijLbe07VxDFVKbdQwXHW0kZt4GopNhcGBUF3+IfbQ9jqqUdGJwoH96AXG43X20yOQaTwn630hCbVMCHI6el41CXjv8mjeYVdElSjeRAvV6HTN/CUIOmf4pAEnYA1PwV8ZhINMF4xSqSV4x5+gxU45rlkeYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ruAXXydm; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e8484bb895so1496713a12.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 23:20:52 -0700 (PDT)
+	s=arc-20240116; t=1744699792; c=relaxed/simple;
+	bh=kJzx0/ptwNomLA7kasvYM1WLB6lv6Uu5JbFGyyL9hDI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PvkB8SU9S7U7VeqgDCbT7c1aQ38QSm3lGqk6ccSMMG8sfyIfAF9M7p/SWeTWRRaAE/Ilp35sq0Ngo3ufH5z7/lPh45O+fnJskFn9FO5nUbKB19zanewpnATRIFR5ZYuVa5Y9qFh8btVpLTQYt+zwEIP0ZfHL3Z1+McFMs3dFEcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fA0XE7bl; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b09c090c97eso962461a12.1;
+        Mon, 14 Apr 2025 23:49:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744698051; x=1745302851; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1744699790; x=1745304590; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oTt43XJFM8d74lWj5+YE+mCHEBEmob8rG+QikYcC3hM=;
-        b=ruAXXydm1sbUdzoNjfuMCVIW3f+dEsw8LlyrOvQa4cPID51dafQZydGvALUad5Age5
-         ZGo41Y1PJlqF6WP2vfTg9i1TNYVbz+IYupBwBPBFvvZBRukIQ39C9PfV3Q2G0QIWt1NL
-         fO+OCumBDINY8fqGmMFLSLnHrMPs4+zNUXHslswMYyFcOGJA1XQx6FXTpiUIpiAvAd0n
-         y3kGE5o28YCdlUsUj9k8kcIb660gY8P6+O/yHEjq/laqpK3JF/6v7IQeOkOIuE+XShYn
-         ejI/HsLzFH0j8TGHuL9miRtQ6kHWKaMh6kIZnSDkHvY96KYHEqSmoN7DjpuX46g5DqjG
-         jp5w==
+        bh=kJzx0/ptwNomLA7kasvYM1WLB6lv6Uu5JbFGyyL9hDI=;
+        b=fA0XE7blk31XHkji0RZuXKjmcbTEInPPzk3BZlY/qk8vPdy6mJnPymyhR2TIbMEO+C
+         kn1seVTszJWXHSX/ID4tEF+s6yLr14ATeFxVExPFtdx0Bu/hn4aPHcm+J5jn5NDVpgI4
+         crfRmhpdz6MSoC+u5RrWuZTLlEIcEOnhbQJY8AcPFmf817PyqLcbq591BBgaMRYY2tuw
+         oXVsOx3cG5EKnqom+g65L2hj2CWtuUgDW+PiUbKT9+aUgHa9wMz6sKHucn0qxifvQc+h
+         znEBLY59Gd6ibyGaZm0M8iLOOgwTN4zXsc4k1xe+T/8/f/JISZ1/b/uELZk/jdJDscNr
+         KoQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744698051; x=1745302851;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744699790; x=1745304590;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oTt43XJFM8d74lWj5+YE+mCHEBEmob8rG+QikYcC3hM=;
-        b=Xj1RnEGpU9Q2ueVJ4S4xBaPwi2TA/Jwc6ETKp5GEP9ro/VzctptJaveMmDFbQAp2jZ
-         N/mq+4oc1tt7LRn+1Ij5sbiaiGR6k3anhBu/5h2yDAF0ORanL33Ybol9b0edISvWWxms
-         2Znb/ktU/vQeLP+bQwpzkIoVz/NISJ82KgEf12/M90y37I6xdjZEPPfnayTIz+7DY3v6
-         AfA7l6mXyBB74yzNybOIUaMnvT7h0e1v3SqXcAUMLVvuli1C8khQPuZugj7fgDhIeRwB
-         8mjihhWyR74MQIfOPXdYI/sE+N+3ZpMPbeE87ZzoZF30hVEJA5Y77T16zFqk0H6RVjCP
-         WSJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXgZbNkXreO3yJXFDJOJ7nT6PBff0svMIWTleRvRRl/vKHKcnYoSvOo7vwZzseTrSCp5ecDpsoMhAAz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/a0Fyz28AjrY39irDxmKJgpScSWMb3BiTYwP9xXf295tSFB7q
-	QXhX5ZUbA0UZLplAiwVq2VZF7SEADsHp1ENyVaWWK6GEKAJ3VI35/lLT8bjBB00=
-X-Gm-Gg: ASbGnctgxNaa11+mBiGUNhTLWXPSze8ThORVyor9fce+Ak80Ej+wJMI3i0JOGzx1LzS
-	aQQkmYZVfRSuQjmFyF496AL+x0IBniHV32xMzpgxPIOhjGTmL+gtVhA1zx2rPKc3HDWrk5TZW8E
-	yhX2JhySQWI8lS3eFt99+Ljhl+3JQ6ylJZqVep9mB3zwgACFMYZmleV3653bfDoBp78+BQYw1KJ
-	VyhEaP25suG/Ea2F9CvfdHmV9QrEqzK6ZxLsTdfrut0v+GVOHv1rRm9x0nq0Xva0nC/eTfhnIA1
-	M9Bab1ipNASIo/ccdo3s/g89b72IpH80tkFxeW1ubqvJ+obRXEbgVnLWf1nIdfJFCPxcWsy/77n
-	5rfSGGZq9Xvto4y8=
-X-Google-Smtp-Source: AGHT+IEN0ddkfxeUgfcu3uOUBPG5D5WB3HL16m1L/qkNsUmiRD8iOuxqK/rPwSxrQiytFN9HNB8I7Q==
-X-Received: by 2002:a17:907:bc87:b0:ac0:b71e:44e0 with SMTP id a640c23a62f3a-acad34d87admr480746866b.9.1744698051564;
-        Mon, 14 Apr 2025 23:20:51 -0700 (PDT)
-Received: from [192.168.1.26] (46.150.74.144.lvv.nat.volia.net. [46.150.74.144])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb4129sm1053861866b.98.2025.04.14.23.20.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 23:20:51 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: yong.wu@mediatek.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: krzk@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-In-Reply-To: <20250410143958.475846-1-angelogioacchino.delregno@collabora.com>
-References: <20250410143958.475846-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v1 0/2] MediaTek Dimensity 1200 - Add SMI support
-Message-Id: <174469805024.15476.6855555365246052771.b4-ty@linaro.org>
-Date: Tue, 15 Apr 2025 08:20:50 +0200
+        bh=kJzx0/ptwNomLA7kasvYM1WLB6lv6Uu5JbFGyyL9hDI=;
+        b=bX4ikwSuemZqA1FCDvvLUr0Y8cfhNkyh0XN7ErWgJewfZGpTINWCGyPN4O/ILbDMph
+         GXNlovM50eTIHISyOrAZr2ep/E50XzprKtZXIUdstPz5VgrfNeLLjY1rg3S2IFxDYgHo
+         ZhlK6xBkgoOc2PUFBLfdjwN+UbGV5is/ZCLi9EZPKCePPletfzYXvSD0qS1rCIKoW3ln
+         kZpA/q629Rx5a5C5NQZ/DBjZxXHq+hn2E+M7tnlLRyPpMzS2aY+t6TrKRRXco3mF09Ic
+         UBzIst9Yws20oPEq52u06wlMmvtd6NVgsypN9m59p/Yycqr+MFJyAgidoKBXnGe/2dmP
+         ntvw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/3lpIqr74UKO8qinfeacV8fFOVKsT4ZdW8q6KjZBksLj7semGAe4j66/ya2N2F2wEBZXwqlNRkOFdf2J2@vger.kernel.org, AJvYcCUKlhTvRJtsLm0fOnveYIyv7FQljbvvsBpWUz5mspXkwDJFmPmmpo5R+ae98kuc/E2q9QI64RB4N/1+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrB/ZswS5AQEEiE7rxXFuBgmkjqaJkbflQfKgQXBU3XuzLklnV
+	K2vY9Pi3+HfHYg2OIzIUAhgUehUn1vqMSXK5ibkgcomwXUuJHp+sDwIPHBB9MYqSdoudhCQ1b+S
+	UbTrt4g4Gha415TKauk5YCoL8EzE=
+X-Gm-Gg: ASbGncsfADCgn+HUpJw+LAbfv+Kg42tsrw8Zv0XUXyERFBDgJ2pndcmZY4tNnCwgUTK
+	HCxqABUOq7ACM+7p3JykrwnaWbJETyJahGkRvUpYi/dLimBwvpG5/t0d/MmT2BPGbyp8j6ieP4B
+	uGa0Y4568rZS+xGT+ufg==
+X-Google-Smtp-Source: AGHT+IFMZUtkQbu7mm7ZLs+kY0QKdEKtmThlD5QKRWrM4g1DvYwjmO6k9i/uFm77B2cDKAYrjrYbbSSoguq6moDT3Ig=
+X-Received: by 2002:a17:90b:3850:b0:2ea:a9ac:eee1 with SMTP id
+ 98e67ed59e1d1-3082377bff7mr24287491a91.10.1744699790057; Mon, 14 Apr 2025
+ 23:49:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+References: <20250414123827.428339-1-ivitro@gmail.com> <20250414123827.428339-2-ivitro@gmail.com>
+In-Reply-To: <20250414123827.428339-2-ivitro@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 15 Apr 2025 09:51:34 +0300
+X-Gm-Features: ATxdqUF2mlCy5wLvRgtr9F6qqRWxDpa7csK2QzF8vZDYH555TrufO2MOn5eZ-98
+Message-ID: <CAEnQRZAb9DBVQTZZ-rDkn3aBHjQSxKHe+Ru8d88wr_oNfk6ebQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: add Toradex SMARC iMX8MP
+ SoM and carrier
+To: Vitor Soares <ivitro@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Vitor Soares <vitor.soares@toradex.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Apr 14, 2025 at 3:39=E2=80=AFPM Vitor Soares <ivitro@gmail.com> wro=
+te:
+>
+> From: Vitor Soares <vitor.soares@toradex.com>
+>
+> Add DT compatible strings for Toradex SMARC iMX8MP SoM and
+> Toradex SMARC Development carrier board.
+>
+> Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-im=
+x-8m-plus
+> Link: https://www.toradex.com/products/carrier-board/smarc-development-bo=
+ard-kit
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 
-On Thu, 10 Apr 2025 16:39:56 +0200, AngeloGioacchino Del Regno wrote:
-> In preparation for adding basic support for the OnePlus Nord 2 5G
-> DN2103 smartphone, this series adds support for the Smart Multimedia
-> Interface and Local Arbiters of the MediaTek Dimensity 1200 (MT6893) SoC.
-> 
-> AngeloGioacchino Del Regno (2):
->   dt-bindings: memory: mtk-smi: Add support for MT6893
->   memory: mtk-smi: Add support for Dimensity 1200 MT6893 SMI
-> 
-> [...]
-
-Applied, thanks!
-
-[1/2] dt-bindings: memory: mtk-smi: Add support for MT6893
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/98a4109320f9b7007475a9d6706d3434cd8aafb4
-[2/2] memory: mtk-smi: Add support for Dimensity 1200 MT6893 SMI
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/bd4f5f6c84d074d9347b55731891729f136d35c8
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
