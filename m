@@ -1,168 +1,122 @@
-Return-Path: <devicetree+bounces-166953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFA2A8910C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E7E3A89111
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:16:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D85617A20E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:14:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CB4D17A278
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7897019D88B;
-	Tue, 15 Apr 2025 01:14:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AD01E521C;
+	Tue, 15 Apr 2025 01:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Bv9SyjWl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Eee3aKhU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CEA14B086;
-	Tue, 15 Apr 2025 01:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A44C2E62C;
+	Tue, 15 Apr 2025 01:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744679672; cv=none; b=JYZbmUAt0T+/Vb9f6BX53/9j3qy1PAZWgxXOk1yYPLnCEMr3pBtjZA0ZLZN54IM+cWGIM99NrceYmw6ALU3yCK+mMXsIPq/+jnsIRw66IbWAKTgjqdtMYtY5l88lYGTrrOmvRurpXkpCUWRj2OQn2Ii8AQcjCfbnI/ffI27jkGI=
+	t=1744679797; cv=none; b=hrP7Rc3fOUTqW1LheUknOqEOmE7XnFrI6FDhxwTKYEO1C19MHAHnFvvxt83H44gQGHO2/8ErFowI8ahyfhM0cpgHIM8d5v4OtP9vRr+mMhay7AYPzvq1qtN7VrSaUPcf4O3j6PDLvLgWjlqE26gbqt7ugRKq+7tH81pOj+lGIoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744679672; c=relaxed/simple;
-	bh=rXmuGoKCamG0aferad+Cy5qugPfOd4555bj0JzARQhw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bZPZMluCbIzYf875GdBLOE4Dwj7HD1JLdk2KHQL6HJDTFIQPzMcb8/OhRGFJvUcB6aNdl2APR/zgs6cfYPdVyoHl5w5c1hak5LlLeQuQ0paSFmHKnLu4oKPJffJqbMkNFixf6lse2lT368OertCeW3Gt3ZpuyOw1T0zwcHGpZIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Bv9SyjWl; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=AG/3kjVmrNGLgYCiQZuEWEAuFBhu8RV+zxauPZqiHqs=; b=Bv9SyjWlDgWfsXr3YOTr8YLh7w
-	1rimb65VwUpbf6+2hYKMOeMkY1eAT7bORo1AzoeFKRtbxu6a1DkTEvKmSDEoX/z2NDqC5r/4caVp3
-	ah9BIbPu/YCjTLG9VSheWaWlqM6Rp3fb+IrOr4fdZaNIoosJsBoP/yP+EyHosVk9nzBc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u4UsP-009JeN-IZ; Tue, 15 Apr 2025 03:14:13 +0200
-Date: Tue, 15 Apr 2025 03:14:13 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.or
-Subject: Re: [net-next PATCH v7 5/6] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-Message-ID: <8760a101-4536-474f-a0db-5b88ed4c0ec2@lunn.ch>
-References: <20250410095443.30848-1-ansuelsmth@gmail.com>
- <20250410095443.30848-6-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1744679797; c=relaxed/simple;
+	bh=3AB+ECf5kRFUMb8Ghyva4AZG28Wl4rG6qolNBiF49po=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q/cJb+clvQP3C8ukfY67Gx+ZdfsQO9s5V7n83U1EUmWlNm81+GaEAWx0mG+c6Hb2Q9OZjOS2rxPCYsEo5AIuQAiDWHY10YWms/2AJcPXUOQsLaeXIn6SF0brw9eSFjd1V4Sxfr89I1aYZCoeLMT4NTRrqwmHraFxs9lAnu09WbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Eee3aKhU; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3011737dda0so4109476a91.1;
+        Mon, 14 Apr 2025 18:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744679795; x=1745284595; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5Nuj753ea7qfkVgx/WDLsxf+XIOdvwBj7hh/Oj4q+pg=;
+        b=Eee3aKhUu6ijcDmM554IoPl9bWFVYNQ8qZ9tJbPeK2awAmGZaFN5WLZNETKBaqxFbv
+         Dgbb6ZUv8PAoUcpLpWCWpISP/PWdB8BM7GbgaKBHpGXtPXI+2phq5GmWCIVa0awBxTAf
+         CWubK0BVjtxVTEHsnJkrZNaJ6Sd4qrLDf823Q1gVR15tYq69/etHxGzYdUH8vkVeMCY/
+         M/4+JT5ZKwvNH8gCviYAu+Rk5erEnsLEqTYNRZOOC7jfXeEZiPTbYoUqju2s7BkJ72PS
+         wIGpQAz8FAgmrocTXmrBPqEWKtPY/OuyfzBwyayVr6dJ/EHvHGmcMI09drtvF/YqKUVg
+         FVxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744679795; x=1745284595;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5Nuj753ea7qfkVgx/WDLsxf+XIOdvwBj7hh/Oj4q+pg=;
+        b=fuSmOeSzsmNyoDLLaIgESBI7bCfPuTkQu4Uel90Osnitdx0dBjLINVU/dxj/NcL+gZ
+         w+rPawYJ8Y4lg88uqEse9F+DnwSyqUtRqb8xj3fTPZwTcnRNiCZHxAkjGX1hL5PohzjE
+         leB4WqIXKi93pA+dcaJzttc/3rAFMsXHat+Digc3g1htAufsevsENCIMJ8YR1www20vK
+         SJjy90Vlkg3h7BfOe/AqY7hugtbX91dp3piXjKRbpk6rGzXK+Vov9ymrMJu54/sqdcNz
+         7gx9LMv67MZrpKjX8ij+u6/HDhlVMzgcmcHPB5IBXx3mdAZNRmCjB7PD6GGNsGMH14qa
+         Hm/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUYkIWU64yzEAXOjiSGxi9j6LsZWG77KUtZJd6fl4rGjVGEMLZQ99/DlDb+bCnCH9N2YdLLP8UmtVgJ@vger.kernel.org, AJvYcCXs28TN/+ov1/CnhlNCwikfVvLi/7FBYmP4jPM2WUSVGBN8dASokJz9cqIfIE9kMI0rMovQeNj2QA4l@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbcL90Z57q19uRDlolph2zKzKlxTyS92EMtA95jti3UvoNTuVd
+	FXLi3+yK74uk8FuNJG6NL5wjoBt+0DI7SE28dBgvz0CB7/LY4hdOTVrAKEF9DokLsKPugHd1jMI
+	ikSMLXxhgtcqjDfq/qhDtQ6SOHJo=
+X-Gm-Gg: ASbGncsRFBA5qhCDllK2lhX0fHrdWIUF2CqsS3xahQ9vwabKqP7996pQ8v7B3EWeNNo
+	m0RCIE7aIbVuiORFi6rLAMRebpNgCO6VAtAUbwRKLDY3DbpYvGWbOELQ8u2FRBK1E0phyQuOXe2
+	w5rmfssvfAFLdjfBFzw3tWeQ==
+X-Google-Smtp-Source: AGHT+IGgzIi9F7lrPtwIjA/TgWVY27GzdEaPDW+rB2zEcrkEC9WU+5JbizaK/UgvXU+4DZVPqT404HSnJ4WznO/cmtk=
+X-Received: by 2002:a17:90a:e183:b0:2fa:15ab:4df5 with SMTP id
+ 98e67ed59e1d1-308237c1177mr17682632a91.34.1744679794805; Mon, 14 Apr 2025
+ 18:16:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250410095443.30848-6-ansuelsmth@gmail.com>
+References: <20250409024311.19466-1-gye976@gmail.com> <20250409024311.19466-5-gye976@gmail.com>
+ <CAHp75VfMHdw-6vrELbjjD3T323uDz7U9wRP5YSk2jZ26wBuLTQ@mail.gmail.com>
+ <CAKbEznsVxexdrXX72G-tCUHjznx6na1h8MrCFPKrHd27GXht8A@mail.gmail.com> <CAHp75VeU5sERbVz-4OxkJNC-pjT3B5AvfAMj09LXd6v4MdeDeg@mail.gmail.com>
+In-Reply-To: <CAHp75VeU5sERbVz-4OxkJNC-pjT3B5AvfAMj09LXd6v4MdeDeg@mail.gmail.com>
+From: gyeyoung <gye976@gmail.com>
+Date: Tue, 15 Apr 2025 10:16:23 +0900
+X-Gm-Features: ATxdqUEiwFZntbAkoQGSF2tTQBTaV6RNaL9vi1FwBU_O_Jnsedb1BjG3xpiQYhc
+Message-ID: <CAKbEznsAJ1U+QBs_ZM66Apa-ji4i2BAihP8w++EnAh=8eDaogg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] iio: chemical: add support for winsen MHZ19B CO2 sensor
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +#define AEON_MAX_LDES			5
+On Tue, Apr 15, 2025 at 2:21=E2=80=AFAM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Mon, Apr 14, 2025 at 6:49=E2=80=AFPM gyeyoung <gye976@gmail.com> wrote=
+:
+>
+> ...
+>
+> > > > +#include <linux/kernel.h>
+> > >
+> > > No usual driver has a business to include the  kernel.h. Just follow
+> > > the IWYU principle and make sure what you include is what you use
+> > > here.
+> >
+> > I thought "linux/kernel.h" was a globally essential header.
+>
+> Not at all, it's a big mess which no driver should use.
+> And on top of that (to any header) you should not use 'proxy' headers.
+> It's a bad style and practice with the real consequences as build time
+> and headache for the others who want to clean up header dependencies
+> in the future.
 
-AEON_MAX_LEDS?
+Now I see. I had been referring to some legacy examples, but looking
+at it again,
+It makes more sense to explicitly include only what's needed.
+Thank you for pointing out the good practice.
 
-> +#define AEON_IPC_DELAY			10000
-> +#define AEON_IPC_TIMEOUT		(AEON_IPC_DELAY * 100)
-> +#define AEON_IPC_DATA_MAX		(8 * sizeof(u16))
-
-> +
-
-> +static int aeon_ipc_rcv_msg(struct phy_device *phydev,
-> +			    u16 ret_sts, u16 *data)
-> +{
-
-It would be good to add a comment here about what the return value
-means. I'm having to work hard to figure out if it is bytes, or number
-of u16s.
-
-> +	struct as21xxx_priv *priv = phydev->priv;
-> +	unsigned int size;
-> +	int ret;
-> +	int i;
-> +
-> +	if ((ret_sts & AEON_IPC_STS_STATUS) == AEON_IPC_STS_STATUS_ERROR)
-> +		return -EINVAL;
-> +
-> +	/* Prevent IPC from stack smashing the kernel */
-> +	size = FIELD_GET(AEON_IPC_STS_SIZE, ret_sts);
-> +	if (size > AEON_IPC_DATA_MAX)
-> +		return -EINVAL;
-
-This suggests size is bytes, and can be upto 16?
-
-> +
-> +	mutex_lock(&priv->ipc_lock);
-> +
-> +	for (i = 0; i < DIV_ROUND_UP(size, sizeof(u16)); i++) {
-> +		ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_DATA(i));
-> +		if (ret < 0) {
-> +			size = ret;
-> +			goto out;
-> +		}
-> +
-> +		data[i] = ret;
-
-and this is looping up to 8 times reading words.
-
-> +static int aeon_ipc_get_fw_version(struct phy_device *phydev)
-> +{
-> +	char fw_version[AEON_IPC_DATA_MAX + 1];
-> +	u16 ret_data[8], data[1];
-
-I think there should be a #define for this 8. It is pretty fundamental
-to these message transfers.
-
-> +	u16 ret_sts;
-> +	int ret;
-> +
-> +	data[0] = IPC_INFO_VERSION;
-
-Not a normal question i would ask for MDIO, but are there any
-endianness issues here? Since everything is in u16, the base size for
-MDIO, i doubt there is.
-
-> +	ret = aeon_ipc_send_msg(phydev, IPC_CMD_INFO, data,
-> +				sizeof(data), &ret_sts);
-> +	if (ret)
-> +		return ret;
-
-> +	ret = aeon_ipc_rcv_msg(phydev, ret_sts, ret_data);
-> +	if (ret < 0)
-> +		return ret;
-> +
-
-but ret is in bytes, not words, so we start getting into odd
-situations. Have you seen the firmware return an add number of bytes
-in its message? If it does, is it clear which part of the last word
-should be used.
-
-> +
-> +	/* Make sure FW version is NULL terminated */
-> +	memcpy(fw_version, ret_data, ret);
-> +	fw_version[ret] = '\0';
-
-
-Given that ret is bytes, this works, despite ret_data being words.
-
-	Andrew
+Thanks,
+Gyeyoung
 
