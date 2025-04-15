@@ -1,108 +1,182 @@
-Return-Path: <devicetree+bounces-167384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C714BA8A18B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACF6A8A19C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE41C3BC422
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:48:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7E763A6C00
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E867296D18;
-	Tue, 15 Apr 2025 14:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9018296D3F;
+	Tue, 15 Apr 2025 14:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UM3LOCZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8735027F749;
-	Tue, 15 Apr 2025 14:48:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53C81C84A2;
+	Tue, 15 Apr 2025 14:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744728505; cv=none; b=DVKuPnPfV6e16PhOns0wLdA2QpQPY9xAVhkHF2HxsBbcf5mticJLTdeLzIrGD6AygsCGKdmatsYPxu2dTR8qX5PE/0YaacVcTu5+SJ8bBzstrki7vAxl/SKvcrlPso3gZWjUJiJ1Ubi9LJjKPby52y/l6YWwMvRgje329302YIs=
+	t=1744728559; cv=none; b=p33kryhs1iBOpF/k8G0sOtZuxYxw31GyK/R5q1HbaRHJWOJ07eN7qSmh9RcFNsyDXpf6do1tAM96+bajI/iRk/LGiUOmxU9ChPc7wYA9UJoyPqkZWfjs6UGKC3yAiwE4myVHcVQE0fQVjJJPi6tXX2yZc3rOgQ9jsF5dUJioVnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744728505; c=relaxed/simple;
-	bh=dL3GBIFDMlroIuYc/uiPg97dQ44gPEpRL5p9zMC4w/A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sTTTPm7bW5gy0yXG7TZVLeva8TMrKVen7ERsCCRCXcwwZxuBpgGHJsdAYtYeKAWgaF5BDz60K3/nfMG/XPh8HKZhLqPuvZb0qJ6GKZhLp5JGabnQyU4IxRRDBkYgJvhP7k1aSaD57vnf6icZKjiBfTTgGRzsfMQDbWdf8RojaHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0DB9C15A1;
-	Tue, 15 Apr 2025 07:48:21 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F45B3F694;
-	Tue, 15 Apr 2025 07:48:19 -0700 (PDT)
-Date: Tue, 15 Apr 2025 15:48:17 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
-Message-ID: <20250415-exotic-scarlet-seriema-c0e223@sudeepholla>
-References: <20250408-imx-lmm-cpu-v4-0-4c5f4a456e49@nxp.com>
- <20250408-imx-lmm-cpu-v4-5-4c5f4a456e49@nxp.com>
- <20250414-wonderful-cute-bandicoot-accb6b@sudeepholla>
- <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <20250414-tiny-classic-barnacle-5f8c8f@sudeepholla>
- <PAXPR04MB84593BB91063D13BB05BEB5988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <PAXPR04MB84598733FA39A7402E91DA1988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <20250414-ebony-slug-of-felicity-421b0f@sudeepholla>
- <20250415091016.GB10243@nxa18884-linux>
+	s=arc-20240116; t=1744728559; c=relaxed/simple;
+	bh=1YZSRaVDusksRM573pWwDi4SZBCKuSaeLIow9Kp3l3I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Mm9EUZVniSvX0NSY42uTFQ0sBZHd1YMLsPXmZnKmiEPLwUeC3ZY2lvJyY4XvutR1jsbYlT7NJwhvcuclu6v6cXhciebdrDn+I0rl9J/0Tub+eXA8yZhL8Xswp4tj9LuJItuA8Ff21OVawcjigo0DSQAX2MnS0K1z/SCO5i7TdTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UM3LOCZ+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 232A2C4CEEB;
+	Tue, 15 Apr 2025 14:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744728559;
+	bh=1YZSRaVDusksRM573pWwDi4SZBCKuSaeLIow9Kp3l3I=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=UM3LOCZ+j+l42mq9moS6IN+XAJ14rcWF/yTFXb+i4yMHVa4+44Un9ORFZF7vOeXRP
+	 Rl9stWHc2bEHLsdklU41WZ3JCFBiar692j2uaNWghVqJtRIwB8o7pBx5BCjJzGBL3g
+	 vYTs213TgkinqNGqZ1J7ouu3Yq6zvw3pmjSwXD+/JDJT0q+uOgp5+2ktXcaOuTrGbv
+	 RlYnZUNhrwdL8cCDwg/bWf2/Qd8VMhax/k+hcT7DeAgMHWGZsvJvvGc8vJ2eR9KCOW
+	 WLjY5aFeWUKnD+9+XmXnVsQUISusWGsxSN79If9mRAQRyxasDxjEpxQ+g2090DXu5/
+	 Sw6/NJ32tUE5A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13818C369AB;
+	Tue, 15 Apr 2025 14:49:19 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Date: Tue, 15 Apr 2025 15:49:16 +0100
+Message-Id: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250415091016.GB10243@nxa18884-linux>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOxx/mcC/13MQQ7CIBCF4as0s3YMUDCtq97DdIEwtCRaGjCoa
+ bi72MSNy/8l79sgUfSU4NxsECn75MNSQxwaMLNeJkJva4NgQrGWc7SUUdtVqa5H90Ri0jjbSyW
+ 6E9TTGsn51w5extqzT48Q37uf+Xf9Ue0/lTkyFIw6ZuXVStKDXvQtTEcT7jCWUj6Zld7srQAAA
+ A==
+X-Change-ID: 20250311-dev-adp5589-fw-e04cfd945286
+To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Liu Ying <victor.liu@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744728559; l=3998;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=1YZSRaVDusksRM573pWwDi4SZBCKuSaeLIow9Kp3l3I=;
+ b=w0G5TNF3ytrz+ne3xbnvovn3y0/E5PqAb7Y/asbnYDqtM/Z73hQZEnaSQAOWjHoZdmXfWh3V6
+ Fe2KiJys+hFAiR6I8Z3ceeR9Wyvihg6p9RL3r1COFyC8eUccipAM0bQ
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-On Tue, Apr 15, 2025 at 05:10:16PM +0800, Peng Fan wrote:
-> On Mon, Apr 14, 2025 at 12:17:34PM +0100, Sudeep Holla wrote:
-> >On Mon, Apr 14, 2025 at 11:00:20AM +0000, Peng Fan wrote:
-> >> 
-> >> Oops, I just checked wrong Kconfig under drivers/firmware/arm_scmi/
-> >> vendors/imx
-> >> 
-> >> Build this for ARM32 i.MX is ok, I just think no need. So add
-> >> a ARM64 dependency.
-> >> 
-> >
-> >OK, I will drop the ARM64 dependency when applying. I also don't understand
-> 
-> Thanks for helping on this.
-> 
-> >the dependency on i.MX firmware LMM and CPU drivers in the scmi vendor
-> >protocol as the dependency should be other way around. But I see Arnd had
-> >fixed it so I will keep it as you have posted to keep them all aligned.
-> Not dig into much on this.
-> I just followed what Arnd did when I prepared the patchset to avoid
-> potential build issue as reported before.
-> 
+The adp5585 MFD driver was introduced in 6.11 adding support for gpio
+and PWM. However, the gpio part of it was already supported as part of
+the keyboard driver:
 
-Yes, I am keeping it based on those changes. I need to spend sometime to
-understand why it was done so and see if anything can be improved. It is
-not straightforward to understand that dependency, for me looks like it
-is in reverse direction.
+https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
 
-Anyway I have pushed it tentatively, will let you know once it is finalised.
+On top of that it also overlapped with my refactoring of the above driver [1]
+to drop usage of platform data and use FW properties instead.
 
--- 
-Regards,
-Sudeep
+Now, it actually makes sense for this device to be supported under MFD
+and since the "legacy" input device depends on platform data that is not
+defined anywhere the plan in this series is to add support for the
+keyboard and adp5589 devices as part of the MFD driver. Once the MFD
+driver supports all that's supported in the Input one, we drop it...
+
+For DT Maintainers:
+
+The compatible for adp5589 is part of trivial devices. To me, it makes
+sense to remove it in the patch where we drop the driver but doing so
+would result in a warning when adding the same compatible for the MFD
+bindings. Hence, I remove it in that patch. Is that ok?
+
+Uwe:
+
+In my eval board, I could see that reading the GPIO value (when
+configured as input) does not work when OSC_EN is not set. Therefore,
+commit ("pwm: adp5585: don't control OSC_EN in the pwm driver") could
+very well have a Fixes tag. However I'm not 100% sure it's a real issue
+or something special to my eval board.
+
+It would be nice if Laurent or Liu could test the PWM bits or even
+check that the above is also an issue for their platform.
+
+[1]: https://lore.kernel.org/linux-input/d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com/
+
+BTW the series is based on linux-next/master
+
+---
+Changes in v2:
+- Patch 5:
+   * Do not nest if:then:else::if:then.
+- Patch 6:
+   * Make use of the adp5585 info variables and adp5589 volatile regs.
+- Patch 9:
+   * Use standard "poll-interval" property (and move it before vendor
+     properties).
+- Patch 10:
+   * Make sure to include bitfield.h.
+
+- Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
+
+---
+Nuno Sá (17):
+      dt-bindings: mfd: adp5585: ease on the required properties
+      mfd: adp5585: enable oscilator during probe
+      pwm: adp5585: don't control OSC_EN in the pwm driver
+      mfd: adp5585: make use of MFD_CELL_NAME()
+      dt-bindings: mfd: adp5585: document adp5589 I/O expander
+      mfd: adp5585: add support for adp5589
+      gpio: adp5585: add support for the ad5589 expander
+      pwm: adp5585: add support for adp5589
+      dt-bindings: mfd: adp5585: add properties for input events
+      mfd: adp5585: add support for key events
+      gpio: adp5585: support gpi events
+      Input: adp5585: Add Analog Devices ADP5585/89 support
+      Input: adp5589: remove the driver
+      mfd: adp5585: support getting vdd regulator
+      dt-bindings: mfd: adp5585: document reset gpio
+      mfd: adp5585: add support for a reset pin
+      pwm: adp5585: make sure to include mod_devicetable.h
+
+ .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
+ .../devicetree/bindings/trivial-devices.yaml       |    2 -
+ MAINTAINERS                                        |    1 +
+ drivers/gpio/Kconfig                               |    1 +
+ drivers/gpio/gpio-adp5585.c                        |  299 +++++-
+ drivers/input/keyboard/Kconfig                     |   21 +-
+ drivers/input/keyboard/Makefile                    |    2 +-
+ drivers/input/keyboard/adp5585-keys.c              |  221 ++++
+ drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
+ drivers/mfd/adp5585.c                              |  808 ++++++++++++++-
+ drivers/pwm/pwm-adp5585.c                          |   57 +-
+ include/linux/mfd/adp5585.h                        |  153 ++-
+ 12 files changed, 1709 insertions(+), 1162 deletions(-)
+---
+base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
+change-id: 20250311-dev-adp5589-fw-e04cfd945286
+--
+
+Thanks!
+- Nuno Sá
+
+
 
