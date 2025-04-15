@@ -1,222 +1,171 @@
-Return-Path: <devicetree+bounces-167432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AC1A8A35C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:49:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D86CEA8A366
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:51:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDCDC18970DA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:49:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A25BC188362C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6BF919DF48;
-	Tue, 15 Apr 2025 15:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hQkwtl1j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9766A1F4622;
+	Tue, 15 Apr 2025 15:51:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2080.outbound.protection.outlook.com [40.107.21.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB6FC2F2;
-	Tue, 15 Apr 2025 15:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744732163; cv=fail; b=bqbI+W+bY2fXVLNG9tr5gIHdqUTPr5s+308kyeOyq3x3MchLnaIu1svvMyNi12tqABqshgtFEbLwd9/T8Lm3EBQOpegp/yri6H7FZkvk6eoCn4RypZ0s2ZqHEZFK6hWnT878zsNRsAKyeNCKn3otOlyifDuhz1hBwfQ5QAGJ7X4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744732163; c=relaxed/simple;
-	bh=KDFp3xF3OVftmpJsFZeJDMZYxgZ6U+8UlhhPA+L0+bA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=BWg4fXugReEKaOYDEEp41BkCCSIQe78oS8IK0nWVzdYDG1WfXGK4uMq0Wr+taaGfwjxFYjTroL1mFjUgOevURURBof3J0JdW+5cykXV8NeJGJbgLEZeniGeL+oxEqspQRKVMy0RzAHoj/hQqHQzTgc8mVkwP/YBXayP4pOwmrL8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hQkwtl1j; arc=fail smtp.client-ip=40.107.21.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IpwKSTleP8OqUU+duHcTX/9iZYJWR+6t8JfJrTcB0PW0zISx3L/ngLFAbZhva6JNUz4f6MllJ4977YpN+NOR+GJRydLoePPAwDWg05Cyx2t6I7M6un9xFF+fjr3FzZo+QxeBgv1opbac4PGqUyrFSYVfNmwHvE/IBQwv3rnl+IYITDBWenam44t0rCZOV6CXn83/hTEBxsD1pytPyxODCQeLi1/1EXGX+z9DJWF1BVAtvjsygtLFvLjQw7HqFf6WKJr5l5f+Zx9oPdDUXW4GWP4C+rOLLU3S80O2Kt9YXcClGY/R9jvPTN1vP1Qlkkhct06uWwJIddMJ85qkavSDBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TOib8Yg5arhhjBlq0DPplC8uYkK7g+mdmKw7dQ6lFVo=;
- b=HKnt+KQbrDn7Xkpz5l6zRAUfMVNrtJNcBnjhZr+zxVdKJxK0ge8yqMgSWVnjCJ1+dwXd3U+6pKOzNNlTLKFeqeXacsfi852ULRffx7tJ3dFW9Hdc0BSFlKrRxAoRefQ+BSLv+zajaaI8kUa1wNzYfYl10zsULI+XTecrKGVtaxCybd9C4wk0MY9OpLOWJycQmvLC/qPNc6lJ1E6SLJbh2i+W3SSizrWaaosbx2sZDgzTjEfQZR586P3XWFlHYmgzIzAk6uUrb4eg8wu8cIVoJFV+g8SBLTZ1jE4aAg49LhNPbJ0gL3bkpDwTLSkxW1zKf49DpcqhhkGiNatS64BC5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TOib8Yg5arhhjBlq0DPplC8uYkK7g+mdmKw7dQ6lFVo=;
- b=hQkwtl1jSVH7OdplUSCQFFq/Ni4rnVXRkqpTYenfpdt8V+ePSDxgIrgRv67UYH8xT6T0HQZnUauKCXlnI2HMcAIlch7LRNITr2sQw1NZCixLfsx/I2DN1CBi8+ya59RP8NQmoeccLwkvXVNaSgYWBjDScTbQkC6s9za4uQa0kATlFEnumZnjVxj//wtNiUxv3IuQVtdDJfL9nVvyqBYhk/qF3B7aU60uCnAl3vy+gSlrNInk+QzUGvpqH3awJjmCmRrprYzKSG4CeeIFPj9mSlmTOQNvfsqxw4RelOn+KI31UPZ5KEhhBSpYNL7V3Osq6Y7iPgdLQ+jP5qQyMgSXEw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by DU0PR04MB9323.eurprd04.prod.outlook.com (2603:10a6:10:356::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.32; Tue, 15 Apr
- 2025 15:49:15 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d%4]) with mapi id 15.20.8632.030; Tue, 15 Apr 2025
- 15:49:15 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: interrupt-controller: Add missed fsl tzic controller
-Date: Tue, 15 Apr 2025 11:48:58 -0400
-Message-Id: <20250415154859.3381515-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0113.namprd03.prod.outlook.com
- (2603:10b6:a03:333::28) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10654315C;
+	Tue, 15 Apr 2025 15:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744732281; cv=none; b=bpZtupQu1YXlW8BISfJpFrpUU6iknp5ulr3ZCNq2FpyxA2FIF/42NhFNb0p7ln0rMk+qmpt2woFdwjryjMEPHXVuEo2qHniVlYpkU/xnj0CfXN1NFVUOhGXSPEjaIe066UNyLMEIk0maLdvUQW8DSKKXQXivWXTaMlqVbH2KBDQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744732281; c=relaxed/simple;
+	bh=h8pYCryFTyz3ogsg8CjJtivghY5nNbY3fs8XAmTefAw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ky6mrXNYtS6EaTFbysALQe2CeNeZaKSLxMEaPCwY/obF3StyPxCueNW4FwL3nK5RCYPhGsGNQ9GBjOyqYBs4DzoRIOlXwoedK+R9ZOCPWt2jYcDVgUnTNmyTsALDziTFtYRZBiRwb9HLr4s7qgxkW+Sx0DkZvMw1Io4TDkpd6j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86d75f4e9a1so2183782241.3;
+        Tue, 15 Apr 2025 08:51:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744732273; x=1745337073;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VQOaA84/gJX5YcmA1yI2UrffzTTDGmIxxE06BR+8a5Q=;
+        b=GvuaecnYUyp5NRqywkySyYs91mVAzaLNan/VqrKgJ+/l+VP/iZksfZUpX1m+VQ9k/Z
+         W/A2Wx1N13rQeMk2mCgvXPWkuE1duuDJiubpvqcFxO61E0aDjHkZ3JNDUCpDtSwhL6qR
+         77r4+B/WhXlCmxkLimlcTzlEg6fG60BPhPwS9V023hGXchLF9jYOyfF+RN3Q+tZw1P4U
+         O7MDee8WLzfzp3aSlv+Zn7yEXLcwB8RMj/NfJMByIPBxqe1q3ilM6bxuAGnjC0sbGeDF
+         3IB9jUmlzXJTne+GaZpG9s+m85KOAeNYynKVmVshIUQAYg4xnXMaxP7qWAuUKIkkOaZi
+         gDdg==
+X-Forwarded-Encrypted: i=1; AJvYcCUo8kLC6Y6+BMlBTMhR1C+MAASYZAAZ2WZM1DONIjtdBZhfFd/GO0E49RT5LtHoOExCbfGFSTm+epZc@vger.kernel.org, AJvYcCV+NTbFm3HN79BaEbjRVZWY1781hK5HB7TQxnTMd083i4Z/kH70WdKOcc4F5hgPxOIbB1dn+RxPGEHb8x8n@vger.kernel.org, AJvYcCVqjNUONnEFIkF9nKIEvmWlfjDNyqOpNLI8CB407AI0UitLKikNaEUacOmtQPRmyYdxnv3Sw+qMDCEKaK0xOYXg+L8=@vger.kernel.org, AJvYcCX8gcHuM931Sl9+wbJogeYfAwaPLYAsRnhXeqSm4DbPFfS9cOkNZWlVF+zUnlbxOc3rOFSfvYJtOnGM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG2ssW/jCV1frT4xSZs4rVM4Eikm5mSDd2HtJocN8yD95aoWEU
+	xeQTCxp3xSHQjdbRxfFNePdmgcyPInSJPnTSYhZROzIea/PhMmUrFvDd/iA/
+X-Gm-Gg: ASbGncuyuPzWKbsU40dRmFMMo6GHugTkKc23CUoyhouEEf60p5kDXKSLOsGWS2EFaX7
+	8mR4G0QT5O9zZdYLQJXOIAqlYqQBK8rioYcze0wN+fQ0Vc/5Pcr1q79kZUpNYO1NREsetj8Mz+z
+	4jWBYZzgf9gQ3XZ9/Mi4WS5ZiGmlx2C3StDqiMM/ynpm5Dx1/cURZ7tq07dGwBHIMtCrMcA5kPi
+	OV7+7B8k5E8aLv249H/K5KQi8YwcwD+KmPhxdPDAxhjMbi+wcy8eWMWZZT190jKqWViEjoiWkJV
+	uNM6vNUkdtoMpeSVr942cwE5Orgrd8YG8/IYdN6ViJDfigBkSYLTqKwC5OFJXIEaLMSQi2MizFQ
+	j0Tw=
+X-Google-Smtp-Source: AGHT+IGYm29SA0ta3+Nwv6yv8KhX8nXsE95hHyFYJ2IqxbBzl85keeoOy3oHLK5c9YeIwEBcUzeFXw==
+X-Received: by 2002:a05:6102:2ad3:b0:4c3:6568:3e18 with SMTP id ada2fe7eead31-4c9e4f1f1a5mr12426613137.15.1744732273403;
+        Tue, 15 Apr 2025 08:51:13 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c98ee49csm2585306137.26.2025.04.15.08.51.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 08:51:11 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4c3183ec801so197087137.1;
+        Tue, 15 Apr 2025 08:51:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUEFUm8AOCY9eqowOPSW7hT4RmM3xgG/+vr5RD49z3DnHsmnd8Nv6zFBVXZtp8poSyK6rC91ns6U7sJ@vger.kernel.org, AJvYcCVB2n2bJP2RGKFUP5UU3lIt07UMzETHsj1xt7xXS3ZYU54MgwaL7qaBRq8Tumm8FwFo0Or2ymaHEVL65WLK4xjPpLI=@vger.kernel.org, AJvYcCVsG7Kvb6QBkEii/C75r9lIJ+u33AYdZmFgkJDIeMUCZYJ8UeA3tz3zOanIkPFlbi81S5NLgQO8/kla@vger.kernel.org, AJvYcCWthxuQMya7V16yYqaEkK3NfV7CT4uj7t8IzjXRKu5aSDOgdu+4Xe/oLypybb1pC+rNRlofiEHI8PCveopU@vger.kernel.org
+X-Received: by 2002:a05:6102:c05:b0:4c1:6feb:83aa with SMTP id
+ ada2fe7eead31-4c9e4ee9fe6mr12739669137.9.1744732271060; Tue, 15 Apr 2025
+ 08:51:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DU0PR04MB9323:EE_
-X-MS-Office365-Filtering-Correlation-Id: b563a7fc-9801-4605-b31b-08dd7c351319
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Twt2tqaq6HbnPRlTSySsroN88AhJ1aID7W4pavj8kaIBSgAwRh+ath21Oi5u?=
- =?us-ascii?Q?9+hBao699L0U89/uq1rkf9nc+ABK/ZdeFf2w5MESHSb3nWy9T1jopugmKLLj?=
- =?us-ascii?Q?aZf+6+mKApmJENCJPIsAR7ZTRH96kBc8XhBtTMkYX0RopG9RpAo01IDwU186?=
- =?us-ascii?Q?COlVuCASki7CSY1ZMXBjp2WvKjr9nV8ZIvjlL5TYmKGl2iyZY9YZ5wZeC+zI?=
- =?us-ascii?Q?TGI+iWLoNCgQE+XXDvMRCrJ+LmOLnJtnrbB9SI/GO834NR2JcqTagzFIGEht?=
- =?us-ascii?Q?xBch0GQDjr92gUJu2XOlu2j69Rk5g3nCL2ULY3aDPg+vKbfT3x+yhFMqyQEQ?=
- =?us-ascii?Q?Ky5YdqvsD1zHZsMli25FCTXy7tlYbDl2LljDjO84ccIASwfwhuBLyfS7tg3m?=
- =?us-ascii?Q?DM2xtWsSFNAEdHxyUvdzQ+Of0Y18vpwfWS5S+5tMvDc7d2ey6xYxde0zrH7y?=
- =?us-ascii?Q?SkOcA9CtN/941m4R6NikxyrmzMmjwVTHxZU+qsxu1td+tJHxKee0l8eb5yB5?=
- =?us-ascii?Q?5UOYe8jzcLnYNPy+QUxJkO9r1HFuyodJfUJh9jqbTOU/8wn0ztFv4538x6w0?=
- =?us-ascii?Q?wwpZAzhHZZZ7aEwXkSUFVucxPQoTIm5/PF5RJqaoKVLIJ2b8kEbgKtDlUzmi?=
- =?us-ascii?Q?o+gxtBYSJLJvxrftArSzFX4mfRWR+VxgFaBcOlIcu73tzAiNGR4KUMF4B7v2?=
- =?us-ascii?Q?tS32ya74qbUiCZZNi/mofNjkFwbuoZwt4Xs+4eHkRRDwWhMSFQcmVeaBCcb9?=
- =?us-ascii?Q?qudFrmYG4Qi/AmH2DpHO85ZHmioagWmR7iAjRjoQHXdTGH6J7aUGvyFJZJLv?=
- =?us-ascii?Q?69nrgMHeOyZKVI9ZMBwDD9Lkh255UwQeT9r5RhuspeZiB23zKhCN64RLAxRj?=
- =?us-ascii?Q?By2bXB8LmZddgyw2JxbxpBzZkjgditnHi1igiemffcF4zdBdGdntFSMpsiUr?=
- =?us-ascii?Q?cB4fD8BHyTuX3Q+ju7LLb7KeO9njvuz9TIJBsVZkkwC5OIinYBmmxCX9aHyM?=
- =?us-ascii?Q?QJvEu25dVD0I6qcOHGQW3+SSlLhJ8AfInxrxstvTHnoiIO1UaZVZZfFG7qfL?=
- =?us-ascii?Q?4s0mYug23Jr1jLPq95n8uvjZeG74GNztbdr/Z647zsf0K0zLgvHr90gle+Fh?=
- =?us-ascii?Q?crJkAJhr11DzFFvZNzl8yXKCiRmIKj7xhnZVL6Ly4HnFCDP7AwD3o6bYjQm8?=
- =?us-ascii?Q?IUg/sotSoxNc0JsHDV9xb9ThvwSCNbJ8xIk1B7ZO2wEnGOzwCtCdx4MJ0oUw?=
- =?us-ascii?Q?4pXziduMSn7HFkJo2C3I135M8fJXOiWkiYeFU8fR471pPLsEmhMebTrjV+Iu?=
- =?us-ascii?Q?VLV1qNEsI6WuW+K3GzPai+bFP2aB1BD91tY6xctWqDnbBfMxtpoxS1jfri10?=
- =?us-ascii?Q?N0Jux4kA/hlqbPgkJePWkh4m41Le2SrQgpd7Uiaik+hxFkTvXaxJ+Rcp92vn?=
- =?us-ascii?Q?NW5TPTEZHH8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?dFcOrcORboVpnyBO+cHpVuWFD+y1CRISr2wQyJEp0ZBuF+P93qpdE39UPBNx?=
- =?us-ascii?Q?u0DThcHgesiqxfpEf26k4V94Guk0waruO9nOwGKDt7dPhIQ96YMmN+skWmzn?=
- =?us-ascii?Q?DTEnwMS6lP98narM2Q+sR19q5dI6g/gKwimD5ljmr+t8Rb3VFu34bMGpXQlx?=
- =?us-ascii?Q?Ld4SWdhpKQsb1Fn82E2RpyuwJ6jR2wxYsKWAg30MOH6Pybgy6Hwv9Z/aQcLi?=
- =?us-ascii?Q?tafYeefnx/RkLvL3I3C4JUmHPg131aEvZulc3YZB3mDpPz4LmixVzF1skRz2?=
- =?us-ascii?Q?/BYVXDh5lzoSrZKdok16h+yPhhfWkJoXMf4Z4b7r95Sf8hvp8QNh9FaMSTBn?=
- =?us-ascii?Q?i1rZUfrJxOEcWNZeJkX7cBskZuJenYdOiUaR/ksaAMmjEUmMp49R+SfuNPQJ?=
- =?us-ascii?Q?pAnt6/AkbT4XsopVm04vs//rny72lgAY+kyt8Z7IV7KSE8f/YF6U5xHaOrIW?=
- =?us-ascii?Q?togqFEW9YWSmrKGO7K1dHOXmPBYyARNd/ysXWkglNJuB83o0hLvbnPbbaNk0?=
- =?us-ascii?Q?v1LGCXCT8l4JpaK/nA4sA8PlLIufBa5Mbo2vjbSQk+EKNG06S16mNcQYkK+8?=
- =?us-ascii?Q?ijP0Gj5jFnJ5tcRf0dyTJUnqwk0qD2/v4YSfrwliHcnXUFiuFZQr8RwoHiAv?=
- =?us-ascii?Q?MZ3lGEiBL22m4riZWcr1J6NzrYJHaEFtVUp5H6O25Zkd9Vimtv+XH/GmHomN?=
- =?us-ascii?Q?2JL7y/ioWJjq5++B0EhIA0i+pSs6bshvpqQJCWvgzPsuRfsCBdpzGrFuhKsK?=
- =?us-ascii?Q?od1Wy2tc2ylnKc9RaqhoV955OIoLmxYMYDY3JOmBNWhk5mNlvPnawgARRLyo?=
- =?us-ascii?Q?w0E82IcXRDKhrfdc6mmAu552L0CVx7Suz4T1sevN3z4aeAxN5RMb92Xp9ZrS?=
- =?us-ascii?Q?67/4T3cp/Mx9Dg/kNZ3NTYhKIIS1taHfrYVJnUePelNpp+uSZ3gFKnKNaLJF?=
- =?us-ascii?Q?IiQQ3BXKUPdImOegSev3l6TEEVUPlJ6xKkJogcektgFn3rq7q++sMXEBKN7v?=
- =?us-ascii?Q?zqevDKQ2cD8Dl1KS3qCzOkA+ly/wAN6ZHMDLGdpx4LFrUunD7NLM+5em9qET?=
- =?us-ascii?Q?ik1178lB/1DfRPGrVKkOrasTl3LB3LtCLt8fuMHN8UYU5UPub1rZokeGkIFT?=
- =?us-ascii?Q?vWJA3TwcFvN0KVGBgGXULOKgqjIt5u6Lyq487+sYhBKy/It5D+RngRV9u2FJ?=
- =?us-ascii?Q?2F8f4PRak2Buyjn0jrHHIV1+QdrAfmR1mqW6QGpx7KVePSsctUFX5pUwsdDy?=
- =?us-ascii?Q?aAUZY+7FgZCEl8Fr0kUpu30Gf1sw3U/f/4QmO+CiSWyIWGkTgc/vgDjwm5s+?=
- =?us-ascii?Q?Asona6JyZaQPX25V//uXtuGNypcdWJ18inZ5vxol2RrC6709dCntzWz0Vc1R?=
- =?us-ascii?Q?/XJqQcM66tBQr53Hs5fMyIarfKsO+tb7cvHEsuAgsY8PiAfOirOdmNnvJPVU?=
- =?us-ascii?Q?nxvuhffdpaflbNPZwFr/3i4bwfddrGUL4moSSuqW35pn7jKSPPcJIBrH/htn?=
- =?us-ascii?Q?cob1gDx0mfc/kgwmk8CLenyec4owHGFgKItUP8jwMQ96y83V9o98zV9ALIXb?=
- =?us-ascii?Q?vSQXz+cxXKITpFGepE8=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b563a7fc-9801-4605-b31b-08dd7c351319
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 15:49:15.4534
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CimLDqczdS3EyQqrUSVGAFlywuBzqjkOEcdsUYTNmMFnISxzGP87dgKV9f/bxpPjAyjIIBDxX/Z+qncNfCUQ1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9323
+References: <20250408200916.93793-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250408200916.93793-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250408200916.93793-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 17:50:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWj91VbxRbb_pZ23ySbvjzzgfTgy83GXTEtC9CAS=d5Sg@mail.gmail.com>
+X-Gm-Features: ATxdqUGU1HbZIqRGMDrZbhA-dxUGjQxgUi_EpOym7TmGQkaFVWVIrulXG2lf2bU
+Message-ID: <CAMuHMdWj91VbxRbb_pZ23ySbvjzzgfTgy83GXTEtC9CAS=d5Sg@mail.gmail.com>
+Subject: Re: [PATCH v2 02/15] clk: renesas: r9a09g057: Add clock and reset
+ entries for DSI and LCDC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add missed fsl tzic interrupt controller binding doc.
+Hi Prabhakar,
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../interrupt-controller/fsl,tzic.yaml        | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,tzic.yaml
+On Tue, 8 Apr 2025 at 22:09, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add clock and reset entries for the DSI and LCDC peripherals.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2:
+> - No changes
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,tzic.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,tzic.yaml
-new file mode 100644
-index 0000000000000..5f2c8761a31de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,tzic.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/fsl,tzic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale tzic Interrupt controller
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx51-tzic
-+              - fsl,imx53-tzic
-+          - const: fsl,tzic
-+      - items:
-+          - const: fsl,imx50-tzic
-+          - const: fsl,imx53-tzic
-+          - const: fsl,tzic
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    tz-interrupt-controller@fffc000 {
-+        compatible = "fsl,imx53-tzic", "fsl,tzic";
-+        reg = <0x0fffc000 0x4000>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+    };
--- 
-2.34.1
+You did change CSDIV0_DIVCTL2 to the NO_RMW-variant...
 
+> --- a/drivers/clk/renesas/r9a09g057-cpg.c
+> +++ b/drivers/clk/renesas/r9a09g057-cpg.c
+
+> @@ -148,6 +182,12 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
+>         DEF_SMUX(".smux2_gbe0_rxclk", CLK_SMUX2_GBE0_RXCLK, SSEL0_SELCTL3, smux2_gbe0_rxclk),
+>         DEF_SMUX(".smux2_gbe1_txclk", CLK_SMUX2_GBE1_TXCLK, SSEL1_SELCTL0, smux2_gbe1_txclk),
+>         DEF_SMUX(".smux2_gbe1_rxclk", CLK_SMUX2_GBE1_RXCLK, SSEL1_SELCTL1, smux2_gbe1_rxclk),
+> +       DEF_FIXED(".plleth_lpclk_div4", CLK_DIV_PLLETH_LPCLK, CLK_PLLETH, 1, 4),
+> +       DEF_CSDIV(".plleth_lpclk", CLK_CSDIV_PLLETH_LPCLK, CLK_DIV_PLLETH_LPCLK,
+> +                 CSDIV0_DIVCTL2, dtable_16_128),
+
+The clock names look strange to me: "plleth_lpclk_div4" sounds like it is
+"plleth_lpclk" divided by four, but that is not the case here.
+
+> +
+> +       DEF_PLLDSI_DIV(".plldsi_sdiv2", CLK_PLLDSI_SDIV2, CLK_PLLDSI,
+> +                      CSDIV1_DIVCTL2, dtable_2_32),
+>
+>         DEF_DDIV(".pllgpu_gear", CLK_PLLGPU_GEAR, CLK_PLLGPU, CDDIV3_DIVCTL1, dtable_2_64),
+>
+
+> --- a/drivers/clk/renesas/rzv2h-cpg.h
+> +++ b/drivers/clk/renesas/rzv2h-cpg.h
+
+> @@ -117,6 +118,8 @@ struct smuxed {
+>
+>  #define CSDIV0_DIVCTL0 DDIV_PACK(CPG_CSDIV0, 0, 2, CSDIV_NO_MON)
+>  #define CSDIV0_DIVCTL1 DDIV_PACK(CPG_CSDIV0, 4, 2, CSDIV_NO_MON)
+> +#define CSDIV0_DIVCTL2 DDIV_PACK_NO_RMW(CPG_CSDIV0, 8, 2, CSDIV_NO_MON)
+
+The documentation says:
+
+    DIVCTL2[3:2] is reserved.
+    When writing, read modify write is needed.
+
+So the NO_RMW-logic seems to be inverted?
+
+> +#define CSDIV1_DIVCTL2 DDIV_PACK(CPG_CSDIV1, 8, 4, CSDIV_NO_MON)
+>
+>  #define SSEL0_SELCTL2  SMUX_PACK(CPG_SSEL0, 8, 1)
+>  #define SSEL0_SELCTL3  SMUX_PACK(CPG_SSEL0, 12, 1)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
