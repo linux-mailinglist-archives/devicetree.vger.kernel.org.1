@@ -1,106 +1,150 @@
-Return-Path: <devicetree+bounces-167413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26ED8A8A2A6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:27:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C09A8A2C9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:33:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37AE017EC76
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:27:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8943E1900C0D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2763220E6EB;
-	Tue, 15 Apr 2025 15:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB162BE0F2;
+	Tue, 15 Apr 2025 15:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="f96StIq7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O3/NUCpt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA8520E003;
-	Tue, 15 Apr 2025 15:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1BA82BCF6B;
+	Tue, 15 Apr 2025 15:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744730866; cv=none; b=Zcpv4BQc/YrO58LJy2P2mdxojtwIHSF5YDfaYjuCm+afrgu1TvzlIQKFuCIcR+Mm/JBGry6i/n2r+4MTrzMwaH85AVmzwtIA9rF3GwNSkbZPKRU/b1rkfosbR5aEFg0+rXK/+kZjiWBf6DmnUAfT/uiTD7x8PuctiWUQLkdpn4c=
+	t=1744731129; cv=none; b=rHH/rzko5riuvW5V/xpw//h5OqkjjbkS8R6cwI7QRUHETxLFilQxRVHtI6Z0IaEhrOe6dReONm5YHzhZTa0Kgt6r9O8pFAatGtthc4KjH7t0mHELYB+7eYTSzZZ5rh7a1xdJ9EHx0fAUSF3y6Z7ktlihYQHZ2+KUieq2ULfQ1Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744730866; c=relaxed/simple;
-	bh=VErCuvMt2wWRUemVF5KwKivhZmgRpbT0ckqDN43FWYw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EVAg/+mEBs/+5er+Fcd/blILhbRSIAQbIQGxFWptjLqcrXwa/slfkJiHKt5zqO4cxRCAt9bzpw3b0Cpn0rZ9Ski0YRP8je2xApnMAQTDJVRK0yNl3WS2GD4eUQVZUUP265KXAs3hm8FlFAs7/sGnEi1a7WX7ugdQDy9Xyz/yoiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=f96StIq7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oml1Mrnp47RusR5d0ApAKkTSky1zT7/Gd1S7AMinXF0=; b=f96StIq7u2cg4/MtulmKNAp16A
-	1OO3m/xvx3je0VnrZwj+YB4U8Civ6zLKNI1Pucg9kLD/hU0/wiD11+A0p7CP++SyR98rp4KN+EfaE
-	wz5adawaEkkukTZnuA0pAJIyACMaWt3JJkgjKwLPlNiccEJESrZjkZhZx7+k43yeTNlE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u4iCH-009TLQ-L9; Tue, 15 Apr 2025 17:27:37 +0200
-Date: Tue, 15 Apr 2025 17:27:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: add initial device tree for
- TQMa8XxS
-Message-ID: <aa21556c-8c79-4d03-b6db-3b4cf450fc3a@lunn.ch>
-References: <20250415133301.443511-1-alexander.stein@ew.tq-group.com>
- <20250415133301.443511-2-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1744731129; c=relaxed/simple;
+	bh=pR+2be8KjUpoEIGKLrGHrHSH8M+uMTDpPZLmH0ZkC0Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ElNZwSY4+EJnJ9aFyHzqg8Pp4FyAWnvF+EhgmfS/3po6W2RAO870V32K4BbPwaN/NPwbEBrMWq/j+7hSN4EVnI+EqlSlBl71AprQs+SgauGc7Qnr4XbF80ikh/hxjvw1pEr2elcwOWQcAF9XrdRcJ5voQszTZKIkTtp/6G/KEbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O3/NUCpt; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFVmJ02394443
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 10:31:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744731108;
+	bh=/O1xD+HqXmJLec8GsMhbvUyB/KEUfoAfhy8hElpuE1I=;
+	h=From:To:CC:Subject:Date;
+	b=O3/NUCpthye8NpfW5dBKyKfQTup4eTndAS4hqAzxfn1kQxRMOQ8VCOmUfEuaHVWnJ
+	 zL22x5DKP/rgreJtjhl5bRXCxebywBvuNZOHtyN7mE4y0ebfR0NpO+haxA0b7wS4Ts
+	 7G7E7rj1HokTvmQWKKF7TBCl6dVRsO8vfZGTOALw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFVmji040442
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 15 Apr 2025 10:31:48 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
+ Apr 2025 10:31:47 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 15 Apr 2025 10:31:47 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FFVlZq109804;
+	Tue, 15 Apr 2025 10:31:47 -0500
+From: Judith Mendez <jm@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
+        Beleswar
+ Prasad <b-padhi@ti.com>, Andrew Davis <afd@ti.com>,
+        Markus Schneider-Pargmann
+	<msp@baylibre.com>,
+        Devarsh Thakkar <devarsht@lewv0571a.ent.ti.com>
+Subject: [PATCH v7 00/11] Add R5F and C7xv device nodes
+Date: Tue, 15 Apr 2025 10:31:36 -0500
+Message-ID: <20250415153147.1844076-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250415133301.443511-2-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	fsl,magic-packet;
-> +	mac-address = [ 00 00 00 00 00 00 ];
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_ethphy0>;
-> +			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-> +			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-> +			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +			ti,dp83867-rxctrl-strap-quirk;
-> +			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-> +			reset-gpios = <&lsio_gpio3 22 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <500000>;
-> +			reset-deassert-us = <50000>;
-> +			enet-phy-lane-no-swap;
-> +			interrupt-parent = <&lsio_gpio1>;
-> +			interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
+For am62x and am62ax devices, this patch series adds device nodes
+for the R5F subsystem and C7xv DSP subsystem found in their
+respective voltage domain, based on the device TRMs [0][1].
 
-EDGE_FALLING is very likely to be wrong. PHYs are generally level
-triggered, not edge.
+This patch series also includes patches for enabling IPC for am62x SK,
+am62ax SK, and am62px SK by reserving memory and binding the mailbox
+assignments for each remote core.
 
-	Andrew
+Also reserve timers used by C7x DSP for am62ax SK board and timers used
+by MCU FW for AM642 SK and EVM boards as per firmware requirements.
+
+Changes since v6:
+- Fix comments in patch 11/11 (no functional change)
+- Pick up review tags
+
+Links
+v6: https://lore.kernel.org/linux-devicetree/20250405001518.1315273-1-jm@ti.com/
+v5: https://lore.kernel.org/linux-devicetree/20250210221530.1234009-1-jm@ti.com/
+v4: https://lore.kernel.org/linux-devicetree/20250206235200.3128163-1-jm@ti.com/
+v3: https://lore.kernel.org/linux-devicetree/20250204011641.1523561-1-jm@ti.com/
+v2: https://lore.kernel.org/linux-devicetree/20250131214611.3288742-1-jm@ti.com/
+v1: https://lore.kernel.org/linux-devicetree/20250127221631.3974583-1-jm@ti.com/
+
+[0] https://www.ti.com/lit/pdf/spruj16
+[1] https://www.ti.com/lit/pdf/spruiv7
+[2] https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
+[3] https://lore.kernel.org/linux-devicetree/4740c3f8-5051-4e25-af91-b45735ffef31@ti.com/
+
+Devarsh Thakkar (3):
+  arm64: dts: ti: k3-am62a-wakeup: Add R5F device node
+  arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors
+  arm64: dts: ti: k3-am62p5-sk: Enable IPC with remote processors
+
+Hari Nagalla (6):
+  arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F node
+  arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc node
+  arm64: dts: ti: k3-am62x-sk-common: Enable IPC with remote processors
+  arm64: dts: ti: k3-am62a7-sk: Reserve main_timer2 for C7x DSP
+  arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
+  arm64: dts: ti: k3-am64: Reserve timers used by MCU FW
+
+Jai Luthra (1):
+  arm64: dts: ti: k3-am62a-main: Add C7xv device node
+
+Judith Mendez (1):
+  arm64: dts: ti: k3-am62: Add ATCM and BTCM cbass ranges
+
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +-
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  12 ++
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 106 +++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  50 ++++++++-
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  34 +++++-
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  20 ++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  20 ++++
+ 10 files changed, 306 insertions(+), 19 deletions(-)
+
+
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+-- 
+2.49.0
+
 
