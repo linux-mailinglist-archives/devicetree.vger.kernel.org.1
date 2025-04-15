@@ -1,53 +1,61 @@
-Return-Path: <devicetree+bounces-166991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1AEA891FC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 04:46:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEB27A89242
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 04:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C35518986FE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 02:46:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F9823AF5DF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 02:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D6920E6E4;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB612DFA41;
+	Tue, 15 Apr 2025 02:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="caNP6SHe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ohCLHh1Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD78205ADB;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FD02DFA26;
+	Tue, 15 Apr 2025 02:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744685158; cv=none; b=e+8q5o2wTz6zp2BpVdtmTnM7XAfsK6orkPskjOUyi8t0LNDd0wkqJK9cgrp1sSI6EatRbwk17ik7lcsk0qkPbd74ICx/ak1mRVAScL8B5sKpRnb2AOyyb1s29nRDOxdrp9qsg9zD/KWxVNyGNjmhhrC0aaGv+GExN6YEjN/PIi0=
+	t=1744685566; cv=none; b=UZmfVbYL7KO5r9gSvmyOage/N6dpqy7oDIadb2PdVfF48GtSEUQUP5dwMcQRhq6beqRiJlnZvQHs3Fh48wD0LxUC/SW2bhrCZJuD7YljsJahZrCOlMb1GfVZBj0NDQrw/cIsLUPSAdgW10BPqWDYpIhwUzLWcsxh1sKZLXjNYkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744685158; c=relaxed/simple;
-	bh=eNT2DnaFtau75otXvoSolGN5m1XSsI2mM3CYJJA0yaE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hzA2cNBCTYUZe65JhSryIRS2GnO6JDMLlSvM3mxEk6QcaIGxoG5xg8iUGC0EW4sTu6KKIgPSUO3nlR4Fvo8WTPLhVjevyjD0lV0RmOUjINdzCYyTUbICaDPfe3xNlj/E4GJxK2Rpp279JpMe9akmtOEDuYsRqcAe+ClrAjvgPVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=caNP6SHe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3364BC4CEFD;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
+	s=arc-20240116; t=1744685566; c=relaxed/simple;
+	bh=D3fHJzips5mW3Ekv3PXGxBas7u/4KPS9mKPQsZ87I3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hycwtjbOZircQpvft+nyi9SaIejsyzZX7KF8g7xES7aJopTLER3lmhFR33RV0HQhfakxoyyAzavOfv6uDS1wFBGAu9+//PGVbHPfLEAv7QV3KL423WvWqIX7TvijDpYoqnzoFLMXoxuubTXlCdK2/jVcDsA9rk5tJ/SRSsNtNQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ohCLHh1Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA0FC4CEE2;
+	Tue, 15 Apr 2025 02:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744685158;
-	bh=eNT2DnaFtau75otXvoSolGN5m1XSsI2mM3CYJJA0yaE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=caNP6SHesjBv9W8pk7XtNpw0ohOioGZ+mdNkqa4qtGPF9db3jjJKrm49BQU7qjqDS
-	 cvkBrQS9NcBf45axdnFHKcLBL83dx8qJuG+3NzLsWbB5aSym7JsCyOfnDv7voSNbP3
-	 YU6eZiqkJpwk11T3yfK+JpdI7T25GTWrwOWYWpMJiwQrMwCwDYimjyP1KQFbTtLlli
-	 G/Dio0DVgBi4NREH6fwHR55G750UpRW6JWI4U/t7QhQ54KCY9E32BADfwQ3er3sMk2
-	 ZPQbiwD+22rv/jjb3R2yrCM4PisAE57F3pGFq2VF3KK5oNdSfF5UEJ4gu8RtD7tDYo
-	 syuxRO6PsFdCA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25514C369BC;
-	Tue, 15 Apr 2025 02:45:58 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Tue, 15 Apr 2025 10:45:30 +0800
-Subject: [PATCH v3 7/7] arm64: dts: amlogic: S4: Add clk-measure controller
- node
+	s=k20201202; t=1744685564;
+	bh=D3fHJzips5mW3Ekv3PXGxBas7u/4KPS9mKPQsZ87I3c=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ohCLHh1Yma0e41b/axzEao6RgMe6NgeCuBW/g3nAEAZbno22OjGlxldjikPK74MRs
+	 AK10ciWi3BodwOGiYmRx/KaxOGkjFX3Gcb5zvvxXrFE40fzNuz/gsnMy6w1U1RD2m5
+	 zIG0ES2Mfuryq6VikIKyHt2e0dMbSqiigNzOnbKfhz/I44Chmp9DAfxxD433gwfKLd
+	 0tbbpaFtIOtSNJ+IPITE4CBCqXzMRTsZa86/4j0GoXyb+vAwM8/4qnBXGQk7PlrpAA
+	 trqv3GEYkzjADGo2xoMsOKs9UPziWrZ5W7PkdmTEXvVcpJIml6rb8UYdy8YUt8iW5G
+	 af5EVzscgvccw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: (subset) [PATCH v2 1/1] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: enable MICs LDO
+Date: Mon, 14 Apr 2025 21:52:37 -0500
+Message-ID: <174468553409.331095.207120209579526273.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250412124956.20562-1-alex.vinarskis@gmail.com>
+References: <20250412124956.20562-1-alex.vinarskis@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,60 +63,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250415-clk-measure-v3-7-9b8551dd33b4@amlogic.com>
-References: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
-In-Reply-To: <20250415-clk-measure-v3-0-9b8551dd33b4@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744685155; l=824;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=A6JIk28+NZPU2Eh+mMPRGxQPj1l3aQ0UYp+1TpAudD4=;
- b=X1Y5uuDxGW5jE7qTJI6N3V35nAflYKrcp+V2LQetx3I7xN7FJz/iQVMpKRESAiGNPuMPSeQhJ
- YEBjd2Ixq4YCik4Xi8I0Xk8zBt94QEqzZ7a6GdEQDu993zCLwiOYDS5
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
-Reply-To: chuan.liu@amlogic.com
+Content-Transfer-Encoding: 8bit
 
-From: Chuan Liu <chuan.liu@amlogic.com>
 
-Add the clk-measure controller node for S4 SoC family.
+On Sat, 12 Apr 2025 14:49:18 +0200, Aleksandrs Vinarskis wrote:
+> Particular device comes without headset combo jack, hence does not
+> feature wcd codec IC. In such cases, DMICs are powered from vreg_l1b.
+> Describe all 4 microphones in the audio routing. vdd-micb is defined
+> for lpass-macro already.
+> 
+> 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 957577d986c0..9d99ed2994df 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -629,6 +629,11 @@ internal_ephy: ethernet-phy@8 {
- 				};
- 			};
- 
-+			clk_msr: clock-measure@48000 {
-+				compatible = "amlogic,s4-clk-measure";
-+				reg = <0x0 0x48000 0x0 0x1c>;
-+			};
-+
- 			spicc0: spi@50000 {
- 				compatible = "amlogic,meson-g12a-spicc";
- 				reg = <0x0 0x50000 0x0 0x44>;
+[1/1] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: enable MICs LDO
+      commit: 337921764e31907ea46df02c1d8dd1ae8f2802f5
 
+Best regards,
 -- 
-2.42.0
-
-
+Bjorn Andersson <andersson@kernel.org>
 
