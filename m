@@ -1,133 +1,121 @@
-Return-Path: <devicetree+bounces-167042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 080CAA893A5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:03:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D85FA893D7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:21:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB43A3AC92E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:03:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D580177BD5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F35C274FDE;
-	Tue, 15 Apr 2025 06:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED6F279791;
+	Tue, 15 Apr 2025 06:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LzsXnkDk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruAXXydm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2AF72676CF;
-	Tue, 15 Apr 2025 06:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52597275114
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 06:20:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744697016; cv=none; b=I80t84dfDwgRdhpJmb1FJHapqdSZUYAHS2uFs1cJobmtPtbdAZk0Q2HFPPYeGHxMIXwI494vk8Z8D3Huv3PbjtwVJ36/n0ZYu48boiV2QkYVBpdg+r9QT6CGArVxAJzeP1zAUlw6q5gOJpPahyr6BVT/EZpBFoEx7mFLSnenYhs=
+	t=1744698055; cv=none; b=Sia6zcAFQeHlciUg36hKWM0tl2zWocqk++h7ySvKk89TLcMPxN4gDhOJGG+RblXbCtgKglZcoSdP8GOddvfuyLBBexEHXA1RYTlpPeBDCalxeTDEKmaehxzkMtH5r31N/5WDi3Z6aDMRI59nYdIJOgTcNNGvTpX4gRH/dOwSb3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744697016; c=relaxed/simple;
-	bh=1rAlMKxFcKG3m9iioOpwIrKVBWl7YN1ASBOO9Vp687I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GlW/BKY2ABxNmzNS/WAj1oaYRUj44uJkL7tICsl511l496zUG9Kg59IdEVC7iuCGSiboGtfCubaQpb2EtIo4v5dlpbJ9Oagsu6vvjXxbiNWZ4TcD+tF4l5/KAhMWJZcVH1I3IS0iMIWcJRoEeRGZU+ijS20/pK7uLrlFYZmQ+TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LzsXnkDk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E5F6C4CEDD;
-	Tue, 15 Apr 2025 06:03:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744697015;
-	bh=1rAlMKxFcKG3m9iioOpwIrKVBWl7YN1ASBOO9Vp687I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LzsXnkDkm+wXzUaOo8ATvbq0hGp/r0zLt4UaTk/nyI7HDmLwVBKhr5dmcC9FW/4sB
-	 yKbzd1LTZlbILFDS8LOBmWp+y05iLYtuFAPLR7SguaR0IeMWy1Igtyn+GTStYD7eqj
-	 NiUuWTxulqGW9JVYwx/5R53O4etBJwrLAr+1SbzgerQTAAn0mtWEF3FFG4X4LFyXtr
-	 HCNqTnhi7QisZQk8sRuO97JRRsF3389rcvO3nlDl2iN6DrHUCaD1T5/PmZzcpovyeE
-	 0W4/sr1EQjSlrFQbXLMzNjTtZH8kcAi2oi/PjKIhCqrRBnchRpZXBO+F+hbk4rZzCY
-	 qUCkxC6Sh6hjA==
-Message-ID: <cc351443-f481-4fcd-ac85-1fc01d1d7097@kernel.org>
-Date: Tue, 15 Apr 2025 08:03:27 +0200
+	s=arc-20240116; t=1744698055; c=relaxed/simple;
+	bh=15dopjAkrKSs5ScMZ+NYEAva1LfA/eDSoY1MTLaL05k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hAoGwViRJfYercP3ijLbe07VxDFVKbdQwXHW0kZt4GopNhcGBUF3+IfbQ9jqqUdGJwoH96AXG43X20yOQaTwn630hCbVMCHI6el41CXjv8mjeYVdElSjeRAvV6HTN/CUIOmf4pAEnYA1PwV8ZhINMF4xSqSV4x5+gxU45rlkeYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ruAXXydm; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e8484bb895so1496713a12.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Apr 2025 23:20:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744698051; x=1745302851; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oTt43XJFM8d74lWj5+YE+mCHEBEmob8rG+QikYcC3hM=;
+        b=ruAXXydm1sbUdzoNjfuMCVIW3f+dEsw8LlyrOvQa4cPID51dafQZydGvALUad5Age5
+         ZGo41Y1PJlqF6WP2vfTg9i1TNYVbz+IYupBwBPBFvvZBRukIQ39C9PfV3Q2G0QIWt1NL
+         fO+OCumBDINY8fqGmMFLSLnHrMPs4+zNUXHslswMYyFcOGJA1XQx6FXTpiUIpiAvAd0n
+         y3kGE5o28YCdlUsUj9k8kcIb660gY8P6+O/yHEjq/laqpK3JF/6v7IQeOkOIuE+XShYn
+         ejI/HsLzFH0j8TGHuL9miRtQ6kHWKaMh6kIZnSDkHvY96KYHEqSmoN7DjpuX46g5DqjG
+         jp5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744698051; x=1745302851;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oTt43XJFM8d74lWj5+YE+mCHEBEmob8rG+QikYcC3hM=;
+        b=Xj1RnEGpU9Q2ueVJ4S4xBaPwi2TA/Jwc6ETKp5GEP9ro/VzctptJaveMmDFbQAp2jZ
+         N/mq+4oc1tt7LRn+1Ij5sbiaiGR6k3anhBu/5h2yDAF0ORanL33Ybol9b0edISvWWxms
+         2Znb/ktU/vQeLP+bQwpzkIoVz/NISJ82KgEf12/M90y37I6xdjZEPPfnayTIz+7DY3v6
+         AfA7l6mXyBB74yzNybOIUaMnvT7h0e1v3SqXcAUMLVvuli1C8khQPuZugj7fgDhIeRwB
+         8mjihhWyR74MQIfOPXdYI/sE+N+3ZpMPbeE87ZzoZF30hVEJA5Y77T16zFqk0H6RVjCP
+         WSJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXgZbNkXreO3yJXFDJOJ7nT6PBff0svMIWTleRvRRl/vKHKcnYoSvOo7vwZzseTrSCp5ecDpsoMhAAz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/a0Fyz28AjrY39irDxmKJgpScSWMb3BiTYwP9xXf295tSFB7q
+	QXhX5ZUbA0UZLplAiwVq2VZF7SEADsHp1ENyVaWWK6GEKAJ3VI35/lLT8bjBB00=
+X-Gm-Gg: ASbGnctgxNaa11+mBiGUNhTLWXPSze8ThORVyor9fce+Ak80Ej+wJMI3i0JOGzx1LzS
+	aQQkmYZVfRSuQjmFyF496AL+x0IBniHV32xMzpgxPIOhjGTmL+gtVhA1zx2rPKc3HDWrk5TZW8E
+	yhX2JhySQWI8lS3eFt99+Ljhl+3JQ6ylJZqVep9mB3zwgACFMYZmleV3653bfDoBp78+BQYw1KJ
+	VyhEaP25suG/Ea2F9CvfdHmV9QrEqzK6ZxLsTdfrut0v+GVOHv1rRm9x0nq0Xva0nC/eTfhnIA1
+	M9Bab1ipNASIo/ccdo3s/g89b72IpH80tkFxeW1ubqvJ+obRXEbgVnLWf1nIdfJFCPxcWsy/77n
+	5rfSGGZq9Xvto4y8=
+X-Google-Smtp-Source: AGHT+IEN0ddkfxeUgfcu3uOUBPG5D5WB3HL16m1L/qkNsUmiRD8iOuxqK/rPwSxrQiytFN9HNB8I7Q==
+X-Received: by 2002:a17:907:bc87:b0:ac0:b71e:44e0 with SMTP id a640c23a62f3a-acad34d87admr480746866b.9.1744698051564;
+        Mon, 14 Apr 2025 23:20:51 -0700 (PDT)
+Received: from [192.168.1.26] (46.150.74.144.lvv.nat.volia.net. [46.150.74.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb4129sm1053861866b.98.2025.04.14.23.20.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Apr 2025 23:20:51 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: yong.wu@mediatek.com, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: krzk@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+ matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+In-Reply-To: <20250410143958.475846-1-angelogioacchino.delregno@collabora.com>
+References: <20250410143958.475846-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v1 0/2] MediaTek Dimensity 1200 - Add SMI support
+Message-Id: <174469805024.15476.6855555365246052771.b4-ty@linaro.org>
+Date: Tue, 15 Apr 2025 08:20:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/9] dt-bindings: memory: Document RZ/G3E support
-To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Biju Das <biju.das.au@gmail.com>
-References: <20250401143537.224047-1-biju.das.jz@bp.renesas.com>
- <20250401143537.224047-2-biju.das.jz@bp.renesas.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250401143537.224047-2-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 01/04/2025 16:35, Biju Das wrote:
-> diff --git a/include/dt-bindings/clock/renesas,r9a09g047-cpg.h b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-> index 1d031bf6bf03..98df165579e1 100644
-> --- a/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-> +++ b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-> @@ -17,5 +17,6 @@
->  #define R9A09G047_CM33_CLK0			6
->  #define R9A09G047_CST_0_SWCLKTCK		7
->  #define R9A09G047_IOTOP_0_SHCLK			8
-> +#define R9A09G047_SPI_CLK_SPI			9
 
-That's not really a related change. Clock is there regardless whether
-you implement or not implement SPI. Putting this here makes it just
-conflict-prone and adds a need for Ack.
+On Thu, 10 Apr 2025 16:39:56 +0200, AngeloGioacchino Del Regno wrote:
+> In preparation for adding basic support for the OnePlus Nord 2 5G
+> DN2103 smartphone, this series adds support for the Smart Multimedia
+> Interface and Local Arbiters of the MediaTek Dimensity 1200 (MT6893) SoC.
+> 
+> AngeloGioacchino Del Regno (2):
+>   dt-bindings: memory: mtk-smi: Add support for MT6893
+>   memory: mtk-smi: Add support for Dimensity 1200 MT6893 SMI
+> 
+> [...]
 
->  
->  #endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__ */
+Applied, thanks!
 
+[1/2] dt-bindings: memory: mtk-smi: Add support for MT6893
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/98a4109320f9b7007475a9d6706d3434cd8aafb4
+[2/2] memory: mtk-smi: Add support for Dimensity 1200 MT6893 SMI
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/bd4f5f6c84d074d9347b55731891729f136d35c8
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
