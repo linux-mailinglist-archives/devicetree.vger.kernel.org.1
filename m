@@ -1,211 +1,109 @@
-Return-Path: <devicetree+bounces-167301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A25A89DC0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:21:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA1BA89DE0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:23:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E6C218821EC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71C2B17B798
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27DCD1F561C;
-	Tue, 15 Apr 2025 12:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J3nEr8/T"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E601DDC08;
+	Tue, 15 Apr 2025 12:20:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B591FF1B0;
-	Tue, 15 Apr 2025 12:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9697127B509;
+	Tue, 15 Apr 2025 12:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744719513; cv=none; b=Ujf5HFXpdIYb7HSeZTOPMc0IHonnv46XJrGunOCr11+FFPU7TAJyyik+4T9o484H5YqqHh/iW+tRbemlxoC7aprrDKO6v/Sf/dARmgf1qIvcCn2c85vyISqc+pU51f1gI/9z21P5PxdgJs3nC45rvIyqF1KI0CONCoirdJMnOvU=
+	t=1744719600; cv=none; b=RYjVgN5K5boNAMgLio8P+qE1xlo2T5TX24C2y8Kyvne914041ubneOYYO0wDfuU8x0/+7RfBlWqCXnpGrsuSzteihk6+2CfcB8ZGeYu4YdpolujT5DERBlcGPqs/olCzfnOd/arvwjDrB9b9ZbwK2FAv1A/vfySlgMvWq1eSxSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744719513; c=relaxed/simple;
-	bh=atFAuwFrqsVLkfoO7LubzvIfTLvQEcb6RWqoGJEiPss=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yoki3k5jRMjY5sX58WpfOeRENg2O7a7JvV768gpdro4ojaxLC+k/wP6zxYhmmsFCoMTQ/CbmjTiuZI8cNPUwFIMPVpmWEx0GIF8tvkUirdEUwhsgTR6yTK6F3wtv7vQZnGbndu0USr74UUvj+xW3R8WpvzvKWaRgAo+XEXmN7OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J3nEr8/T; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tBRD022959;
-	Tue, 15 Apr 2025 12:18:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pH3u8oVUx94lPPJSWYtRRTsZwY4inY7vNjLnJSUYblc=; b=J3nEr8/THWLYg7Ad
-	vU/D64XNhXaq6TIYRT4MLrrXCHUrMUs3hOXcJ0nmqBjvtpLToK26VySUG3pHvyS1
-	WMY3oa25HjydIEBFSyoQM9rcyzHZAKxnpUnPFMW7VKrG7yCUYc/pAqeYi2AN76lF
-	bYJZOSH8AKIGQXypD1h1c/QNCt/kkAimEtvXuQX9u8+G8+k1f4LteUbfmvS4P7i6
-	jRADUzLXrZdpdxdfvJa4IipLPo0fKA/pPzrqISJ+YgZBxg46k27FcqgY/JnFGZe3
-	MOPfqJLNI0JwUHlkZx64KSTl1UG6t1CdU/5RDciJUl0VMr4h39xCRqGh7HPHjbzc
-	/wwNIQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygj980bq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Apr 2025 12:18:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53FCIQ38030904
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 15 Apr 2025 12:18:26 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Apr
- 2025 05:18:22 -0700
-Message-ID: <c14863c8-5930-4ab9-8448-947ff5a44dbc@quicinc.com>
-Date: Tue, 15 Apr 2025 17:48:19 +0530
+	s=arc-20240116; t=1744719600; c=relaxed/simple;
+	bh=rHyvAHy87o8YK32YTDCQoPojU/LLd83jT+O2Lb0lMyw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PNUsfAEdkcC5UVnNykcXNsDSb3EjCvW/ANUKUviJD+TyUp7+KtyTkl3huKPDr3kNR5os56nlD6pNLnnWHAJqu7ZD6Ud4AAZlQlox4kFCD4Hp/ewMp3OZBuF5fUrR5YRIDgyueBewtP3NAK5KtlnLhj0x2j+ycEmyI+/2XjDzHhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4c315dd9252so259486137.1;
+        Tue, 15 Apr 2025 05:19:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744719597; x=1745324397;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=no/Eok31sk2EZ2vY4EXOj+z7BfV0O6ffw0mIU9CJuLc=;
+        b=XczjM6PmNN0sPtP7lIeTILF/+he/kw867yVUE1hqd4/lHVPTWVg+B+08sEjnXcViq1
+         RhWDBZMzXncxXxPUl5UYdNNZ9r1Fbgj61GcBmZwHmQm5eUj6YtwyEjTQGtIA2Dwoh6/L
+         EQmUe9R7/pR90MFKALmjZwcA3TZ3OCXS+iSsmJJau6WyP73RWC44V33U5/swq0ESjdBQ
+         XZ1kfFLVfqOlv1gXU7Zp8+3zRNT+PwVl47NHVrDjRAIOPfLU/kzEvxiuN3WefpO8+D3f
+         Y+qRZPV6ORNjAnoJqyZkyDG3agxHLPweGbb3xUFkUChneNOqRxu7LN6ikWVYlhCeWITI
+         jYGg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3Zw7NpSjsUYtKv0Ux0HCZn/emzi5cSgvnNu2gw8H0yiXwYEJWygaVrVX9oRwx7CUTY87xD6ST5lKsNd6CZ7W8ePc=@vger.kernel.org, AJvYcCXlbYPcrfi7DQxY8YRlsUm/4wBScPTfsKzD0FPNrK2uHn1sNyCHGDDJwMJPubnu78vWEWAQaTS0VLxCMe5e@vger.kernel.org, AJvYcCXtN0rZz4i1M1VZaAjsp3jxEmcPalA5wTsbcRMG2YyzAXiopLSlWK4YrFegTBrdm51D88dRAgmEYWFd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW35wt3F579nMeVF4GuXSae0l/d1jPsJEx4Cp4//NinNo1KpPQ
+	ewS2cAyDHrnuLkJkbn10NmR0jWGxHeWpa4g1YbaPdIblrfpMu+UgpBMUIjWB
+X-Gm-Gg: ASbGncvhWAtwABTX8HtXhG9oDlNa3bz9uJCzAnY0ZdB1a0cTOIGbiTRuprjFDVR5Lh1
+	Q/gaADkbXHPsD4fD/zBBMBsSuN+PNm1HL/Ym1vCuK80ypyBqXXkR1WWdOC7RJT7Wrg4WCv+JI4B
+	OPhkIFnwomPdgmLD8dIR9g6VrJwr+JApZKCVe0uhs1FnvUDf1evn4lBf39gUVn0E+6z57gip6kY
+	R9P0vtAFYXI+Ct7NOw1tiNjMkzr2zVAUAUqVMfEzXhEtbGTIcf89l4W4qETQSohgLvowzv6idCS
+	vZC9NNhiLvzPFi0HrO+KizUXMM+LZ4e8B+BXCJlk2Eh0zt6tws5n5oMJRr0Yhvcv7rQ+CXrvDlx
+	/P5U=
+X-Google-Smtp-Source: AGHT+IGzEgX6yU3eYd7NEIdIrfCyIOYSCQDY2XSlVbWyRsRYskfDcMmueeK1f6pOGNlzZzWjMNt9MQ==
+X-Received: by 2002:a05:6102:32cc:b0:4bb:dfd8:4195 with SMTP id ada2fe7eead31-4cb42d3ede7mr2100655137.3.1744719597190;
+        Tue, 15 Apr 2025 05:19:57 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c9738490sm2661893137.1.2025.04.15.05.19.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 05:19:56 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4c315dd9252so259480137.1;
+        Tue, 15 Apr 2025 05:19:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVogE36qwc3gTuUGkBQ1TowFdBUDWT2LKQOFeK/gVxbt0PgG5L5gUJe+M4OX+d5q3aXPjoE3ljZO+AXOeUl@vger.kernel.org, AJvYcCWPhJKKF4lNUR3yd6YAen9VwjgP0KFDL3yF3ocnJ2CAVX0Oo+zCzB3yt/7cRKZxRBbYYzfcQg7thTTl@vger.kernel.org, AJvYcCWs7HK6SQwtiOrn2bHzY+Un1UHUazKahJsTOJI3QiDkMcuNhCy3XKA5yrCXZSH4Gyolg1qpeqx4E3y09AUmUP+vHR8=@vger.kernel.org
+X-Received: by 2002:a05:6102:4a08:b0:4c3:69f:5be with SMTP id
+ ada2fe7eead31-4cb42e70f68mr1520007137.7.1744719596714; Tue, 15 Apr 2025
+ 05:19:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: ipq5424: Add PCIe PHYs and
- controller nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-References: <20250402102723.219960-1-quic_mmanikan@quicinc.com>
- <20250402102723.219960-2-quic_mmanikan@quicinc.com>
- <218c9580-de47-41a6-a3ae-8b7477fafe30@oss.qualcomm.com>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <218c9580-de47-41a6-a3ae-8b7477fafe30@oss.qualcomm.com>
+References: <20250329121258.172099-1-john.madieu.xa@bp.renesas.com> <20250329121258.172099-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250329121258.172099-2-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 14:19:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXKXbsy25c4287aOCtiJ8PzMu7xqPhfrSu+_UGaxLiWPQ@mail.gmail.com>
+X-Gm-Features: ATxdqUExH8rYrWVwACLU5pkYzEfWeUqbdV3fTVfBtp2jaIn_s3Yrc7HUmpuWcBA
+Message-ID: <CAMuHMdXKXbsy25c4287aOCtiJ8PzMu7xqPhfrSu+_UGaxLiWPQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: rzg3e-smarc-som: Add I2C2 device pincontrol
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, magnus.damm@gmail.com, 
+	robh@kernel.org, biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org, 
+	john.madieu@gmail.com, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ch2tyRC0yCFLeh-7zsS2Z5e-kZ5r-H8A
-X-Authority-Analysis: v=2.4 cv=PruTbxM3 c=1 sm=1 tr=0 ts=67fe4e93 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=Up9O-4L68c34P-V2CXsA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: ch2tyRC0yCFLeh-7zsS2Z5e-kZ5r-H8A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-15_05,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 clxscore=1015 spamscore=0 mlxscore=0 mlxlogscore=999
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504150087
 
+On Sat, 29 Mar 2025 at 13:13, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> Add device node for i2c2 pincontrol. Also enable i2c2 device node on dtsi
+> with 1MHz clock frequency as it is connected to PMIC raa215300 on RZ/G3E
+> SoM.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.16.
 
-On 4/14/2025 4:17 PM, Konrad Dybcio wrote:
-> On 4/2/25 12:27 PM, Manikanta Mylavarapu wrote:
->> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
->> found on IPQ5424 platform. The PCIe0 & PCIe1 are 1-lane Gen3
->> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
-> 
-> [...]
-> 
->> +		pcie0_phy: phy@84000 {
->> +			compatible = "qcom,ipq5424-qmp-gen3x1-pcie-phy",
->> +				     "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->> +			reg = <0x0 0x00084000 0x0 0x2000>;
-> 
-> This is 0x1000-wide
-> 
+Gr{oetje,eeting}s,
 
-Okay, sure.
+                        Geert
 
->> +			clocks = <&gcc GCC_PCIE0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE0_AHB_CLK>,
->> +				 <&gcc GCC_PCIE0_PIPE_CLK>;
->> +			clock-names = "aux",
->> +				      "cfg_ahb",
->> +				      "pipe";
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
->> +			assigned-clock-rates = <20000000>;
->> +
->> +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
->> +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
->> +			reset-names = "phy",
->> +				      "common";
->> +
->> +			#clock-cells = <0>;
->> +			clock-output-names = "gcc_pcie0_pipe_clk_src";
->> +
->> +			#phy-cells = <0>;
->> +			status = "disabled";
->> +		};
->> +
->> +		pcie1_phy: phy@8c000 {
->> +			compatible = "qcom,ipq5424-qmp-gen3x1-pcie-phy",
->> +				     "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->> +			reg = <0x0 0x0008c000 0x0 0x2000>;
-> 
-> So is this
-> 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Okay, sure.
-
->> +			clocks = <&gcc GCC_PCIE1_AUX_CLK>,
->> +				 <&gcc GCC_PCIE1_AHB_CLK>,
->> +				 <&gcc GCC_PCIE1_PIPE_CLK>;
->> +			clock-names = "aux",
->> +				      "cfg_ahb",
->> +				      "pipe";
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE1_AUX_CLK>;
->> +			assigned-clock-rates = <20000000>;
->> +
->> +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
->> +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
->> +			reset-names = "phy",
->> +				      "common";
->> +
->> +			#clock-cells = <0>;
->> +			clock-output-names = "gcc_pcie1_pipe_clk_src";
->> +
->> +			#phy-cells = <0>;
->> +			status = "disabled";
->> +		};
-> 
-> 
->> +		pcie3: pcie@40000000 {
->> +			compatible = "qcom,pcie-ipq5424", "qcom,pcie-ipq9574";
->> +			reg = <0x0 0x40000000 0x0 0xf1c>,
->> +			      <0x0 0x40000f20 0x0 0xa8>,
->> +			      <0x0 0x40001000 0x0 0x1000>,
->> +			      <0x0 0x000f8000 0x0 0x3000>,
->> +			      <0x0 0x40100000 0x0 0x1000>,
->> +			      <0x0 0x000fe000 0x0 0x1000>;
->> +			reg-names = "dbi",
->> +				    "elbi",
->> +				    "atu",
->> +				    "parf",
->> +				    "config",
->> +				    "mhi";
->> +			device_type = "pci";
->> +			linux,pci-domain = <3>;
->> +			num-lanes = <2>;
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +
->> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x00100000>,
->> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x0fd00000>;
-> 
-> I think the BAR spaces on all these hosts are only 32 MiB long
-> 
-
-I have confirmed with the hardware team that the specified BAR register space is accurate.
-256MB for all PCIe controllers.
-
-Thanks & Regards,
-Manikanta.
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
