@@ -1,212 +1,245 @@
-Return-Path: <devicetree+bounces-167356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34178A8A033
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:54:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8587A8A052
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4145C1903B5B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:54:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CE88581000
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 996DA296D18;
-	Tue, 15 Apr 2025 13:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DA01A3056;
+	Tue, 15 Apr 2025 13:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LMZ3lR7U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g5nMr8Mj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08EA01F4C82
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 13:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4264D15746E;
+	Tue, 15 Apr 2025 13:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744725209; cv=none; b=IeEzNVRVMCJkshclhpBrrVVz/lTlB+8A5jn0apQXvyEgP5OcW2bzEvs91qEQJzMzkF38H3Pz1dBFvXkJ/vSzyEWCMKXTqVnYI2BtD4IL4s6akOg8pWLOf5vyf9N7QNh/zexspY+h9rPzX20fKMv8yAiBXlVtEH7xxkYwSdM8ra4=
+	t=1744725261; cv=none; b=Iy+wf5N34K1X+qiC4Igoml09/W3faQoj3dYsPX7Q8zYunvjmN2q9+9lCEApO9GW4VamXy2dmHsQe5qbLOF79yPd99TaPpY4KmLVaz6CBQyArm09mIowb+2IFNSitGb2znqJFM1x6cqYHtE5o+qvCeZ66kcuEeUJydnVHTL/x7cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744725209; c=relaxed/simple;
-	bh=vHHaCmn/9aX14sPYqzMHTDqRNgtEpmUR2XVR9kxw4us=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R0t/H4f7Fpg9P85b+IHY3D0p7hwn6iB6RCXp3ihqPDvwrMFEyA2zCOYoJdeXpWrNkoOjqM+eAGrb/TYYg7lGxYAe1ammi6Hk17TEKOPnwLvttpW86cplhC/Z0E+15wzPGMuzAkDoUe0FLh0uMF0+czzWqjI1O4211o3pDQIJRIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LMZ3lR7U; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5e5bc066283so9131238a12.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 06:53:26 -0700 (PDT)
+	s=arc-20240116; t=1744725261; c=relaxed/simple;
+	bh=zBkHuXnANZVP3lW1YInnfwbWrJ1LhDettt+qmAX2aMU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SVXPEOeEqBRFKN8Urra/bpN2e+Q+Qjbi+r4D6QfLBUQlEDzNyWyySkPag0iGNpUjgRfHyQpUUk1IO8kcDYVL9RtUZXJe8Ved0xmgMKi8Fhb30I+dZNe+XVzoMPNfD0ZIULLEL63j6ukWQqeoKodHLJYo5M6ZR97IgTxAE1ytdBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g5nMr8Mj; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39ac8e7688aso3386515f8f.2;
+        Tue, 15 Apr 2025 06:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744725205; x=1745330005; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y4l6FA9ivn6gypUQ5rfKT4sB7wf6dagDvJ3RDh2XcgA=;
-        b=LMZ3lR7UIsJ9tfCDq+sA6fcKM2jFaPcqVG015fmPGAT5WMYmxD2nnLkHWN5wvnMLO7
-         p5tV7ZsTsgr8HT8/m+ENLr5zCrsQ8ULfFKj+zFRDm6ZF80B0ybYzDK7eIIKPhnBbe/cC
-         AlTl5xWFZ1KfKwHDPIRk84RiPzFGrWQE92G1uY0/GovRkbUaec0o0sV1cNNvJTNSMY1t
-         w6mSoU18P9o9RxbTaPB3muXBJDhFJh9Hu6LSDImktT9q2iibYw/AXbw2FcaQosp5EpGf
-         /0zw64yU6XXaxVXB/8Wg+oAvEGq4ikU8BELQUg5y3Q05p/xBmef2bG4Ji0WYfIikLDzE
-         a4rQ==
+        d=gmail.com; s=20230601; t=1744725256; x=1745330056; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dxTErC+KnB5NGpCTc9/w/rpBQLv25Jj15o+pnsH3W3I=;
+        b=g5nMr8Mj4ub4Ri5D9sdjMlKSBeRSX1s3UtLLK5zM8DQmGRQmVK92k5Dw/Wo+DZABVB
+         ZHsO3x73q4x5VlWq1KwLJg9VG22erbGumiEFkyYNloYCwW/YW06UicmeoLOyfbdkbzYs
+         spf7k8VhHM/dzq62yYlcehBsRmjUC4CFUtAuZPhMdB7lia4fL3EjtEwGb2q6xenqSjXi
+         vIDpXPQg1P5ELrmG9WyoAZiGZZ8lhj3WvCOsRE9zjqUjdjcQq5OOa9XQjlf4kGSerNMB
+         4WyVw1Owjrx6/W+qDJ9iVmZDBYhkHGJCHCAKkatCzX/Njq12i4ZubjVelOLHAhaBk61w
+         IKAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744725205; x=1745330005;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744725256; x=1745330056;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Y4l6FA9ivn6gypUQ5rfKT4sB7wf6dagDvJ3RDh2XcgA=;
-        b=slNf89oOMsbSpTvN82OsyXIOIE5mZPqC4Tp2/j0bfwuGyMVkUsgAKqOXzMSRqSGk2d
-         fwUSBpqin/WLu8yggikpNuTe1MrS3t1zfe6/r41yj4yrPIqdPBeqk1RJUvK9uBjQfPLk
-         cTLecguyrcfEts9LQMOv3EQ5i1bgspR8E/GbjX3uHXTGvWnRCzS1RUTCRThDrttF87nz
-         jocv1w2nSb2lvFd4f+c8QtJEW2QcTo+6QyGR02pZ3r/vDDCF1jc0hPmeUdxj5JiD+jn4
-         0broV2gPTBIYxE0O9yUh2Pj/80J+BhhwewKEh6/1vHrZtk4Wvm9Cfso/Nx7VHiCShZ0N
-         XT2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXfonuXV1ZJQfkUZWtgJIWcJZla5zUJ+cbHh80GVajYHro+wqjqOQFC+pYUVLLio/nvwh01wlmEiehP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZLcL8bNJhaZYLVF6t0z69GEEvx7pjv6BKM7B1SXNshqVgBHVR
-	cZu7dZ39Ut8bfTFwmBijrWLkiMkxOpykLSWLltwCRYb/qjbwxMbDb1XXF//qR/M=
-X-Gm-Gg: ASbGnctBNp0Xn/scK+OcZsvviiw8DT+q9mZPqnHuchoVg2eWOMJT255cD/QXx4ipEZo
-	Ydmv9DCdwz/BJxUTZ4lLd2boL35+rDS7aHbLR+tO8K53VnlA7xn0qu+wgc/1ULe84vgSkaZbIUB
-	FR77uWMhzdL9PfDJntC8LNOxJmUOyev+DyEEulDIaGy0t2Pdam7IDlp3qGcOOxApcoHwalG4mvZ
-	/z7QhmEVihEhR8JJtLVT7ymXmyT/gBOiaYY7PGR8RFUbEZWRndhJMtYJrOEIFOqTwb9N0FiyJWc
-	JIi2GNBElM5nEqbZEPexzXBItS0iDuzVaWJ7qzPdWnRSj00vBT+qCa4=
-X-Google-Smtp-Source: AGHT+IGLoagUswLH/ZZJxI5K2dTSGE3DxsOQWCM3VHaHo3ThpnYQbzNk4zQXdqBSRKUbftY/ghk2xw==
-X-Received: by 2002:a17:906:db06:b0:ac6:ecd8:a235 with SMTP id a640c23a62f3a-acad34c1a5bmr1656932066b.28.1744725205043;
-        Tue, 15 Apr 2025 06:53:25 -0700 (PDT)
-Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:7b18:2529:5ce1:343d])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acadcc21a44sm681379166b.177.2025.04.15.06.53.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 06:53:24 -0700 (PDT)
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Tue, 15 Apr 2025 15:52:51 +0200
-Subject: [PATCH 8/8] arm64: dts: qcom: msm8916/39: Drop generic UART
- pinctrl templates
+        bh=dxTErC+KnB5NGpCTc9/w/rpBQLv25Jj15o+pnsH3W3I=;
+        b=qf4610B1XyCxAmIxHj8Inx4DzdyHTYvgN74gp1frjSilPzynLTue+RbPs9fczuMSNs
+         VrnOPWo3iYzcZPWw2UsqAhWw9hQS0/Acd67UmXCOBG2rizN80BCt4KZuw0vMBf7kYWHh
+         gu3+WF32fgNSvHTJKteuGHiW2rpQFsPXDasxua8jaH7QHw/fvERUYU7HLrh2p5DcXYKu
+         qhksyCxrUZOTdzWnPRbK+LQLD4SGCU0geUZCCY6l66ynTF2Z+mkDxCtXjmFyN6zdW566
+         o1IkNC9ABOAa4jnNJTr5B/XzHDamNE2yPQZAppXke/SQz3mXEXqp2Ad+jLDVs8iIz7n0
+         72BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCre7fp0Ea4PQsuPrGUy01BYD0i81/WnUpEH4ZPOisSODTSLBM/WpE5N/AME3jAqxHAYonBpZc@vger.kernel.org, AJvYcCVUi3fuRrRxjF/TEsbKNOW8lm2kj4fFWHO8Dng6DUjeIoPyj5YqjiSkd0gHKWU+UVnfzxateQvSNMHco+0KoSg2GWs=@vger.kernel.org, AJvYcCVhMKTi99MCWPIH8qVmXAwgo0Mu6QXBcwPnecYHa3j5+5z4XNTc4Q1K6K24XOfctBFKGpoeocQ4PdFD@vger.kernel.org, AJvYcCXoTjIao/bdytctOFPZg2s3ahN2bXBO6XpREfXLKih+eVJ4A2KuwH/dsXGmlp7C72xef5fu+ObZDs7STr1q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyp5eM4pbnopimWnkqfvum2scnB67QDizXhUIKs3LqOzAYMKd36
+	oUI7G0FnE/KbRgNWbKRQSf3VShgE09Ap9Fr2Y3o4DDT+ZSPYWjeMqbQB3lcoNd/q9pN+Q6XyxjN
+	WrJCAtYJ7DLStv8UUWdjOJRtjhCg=
+X-Gm-Gg: ASbGncvNnClGKo8TxjWZfTWhgCh4URT2ByV4c7evAYmtMm42JuqQeGiqVRaZfr+9XPo
+	ouUzwFhTmmt64Ki7+qqJVspx3sX0Rj2NZaMdtpoy9U2+/WHzF/fg6RNft/fth+55fyAtJww1gAY
+	9XyuMCUb6hpyZ9KPzorpyo7uNZ2t8IRmJvQeNFgKdO+7vKcSNw+u0e6A==
+X-Google-Smtp-Source: AGHT+IHIlDUG50nBX2u1LH9CaXEXWCjuUqqrtu+RUgth3OiXGHRpRs4KPtJjbrXWad3okXBSN+tXr8a7mC+87EouhWY=
+X-Received: by 2002:a05:6000:18af:b0:391:4743:6dc2 with SMTP id
+ ffacd0b85a97d-39ea52120e2mr13543818f8f.25.1744725256350; Tue, 15 Apr 2025
+ 06:54:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250415-msm8916-console-pinctrl-v1-8-a1d33ea994b9@linaro.org>
-References: <20250415-msm8916-console-pinctrl-v1-0-a1d33ea994b9@linaro.org>
-In-Reply-To: <20250415-msm8916-console-pinctrl-v1-0-a1d33ea994b9@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sam Day <me@samcday.com>, Casey Connolly <caleb.connolly@linaro.org>
-X-Mailer: b4 0.14.2
+References: <20250415125642.241427-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250415125642.241427-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <c9d8f97470c3c5a8c0214af266b9579086460ba1.camel@pengutronix.de>
+In-Reply-To: <c9d8f97470c3c5a8c0214af266b9579086460ba1.camel@pengutronix.de>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 15 Apr 2025 14:53:50 +0100
+X-Gm-Features: ATxdqUE9J0buGzHkD1AbdOnLT3zfOWdA_YFucRbFLlm3VKoGvgJwL6K9gejz2HM
+Message-ID: <CA+V-a8tr=6ZgKSF5=CmRvrMO8ZSwtfD-cqSpi=5+5WwB-_pj_Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v6 3/4] net: stmmac: Add DWMAC glue layer for
+ Renesas GBETH
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Now that all boards use either the customized console UART pinctrl
-templates or define the UART pinctrl directly in the board DT file,
-drop the old inconsistent generic pinctrl templates to reduce potential
-confusion.
+Hi Philipp,
 
-No functional change.
+Thank you for the review.
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 24 +-----------------------
- arch/arm64/boot/dts/qcom/msm8939.dtsi | 23 +----------------------
- 2 files changed, 2 insertions(+), 45 deletions(-)
+On Tue, Apr 15, 2025 at 2:38=E2=80=AFPM Philipp Zabel <p.zabel@pengutronix.=
+de> wrote:
+>
+> On Di, 2025-04-15 at 13:56 +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add the DWMAC glue layer for the GBETH IP found in the Renesas RZ/V2H(P=
+)
+> > SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+> >  .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 148 ++++++++++++++++++
+> >  3 files changed, 160 insertions(+)
+> >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-g=
+beth.c
+> >
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/=
+ethernet/stmicro/stmmac/Kconfig
+> > index 3c820ef56775..2c99b23f0faa 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > @@ -131,6 +131,17 @@ config DWMAC_QCOM_ETHQOS
+> >         This selects the Qualcomm ETHQOS glue layer support for the
+> >         stmmac device driver.
+> >
+> > +config DWMAC_RENESAS_GBETH
+> > +     tristate "Renesas RZ/V2H(P) GBETH support"
+> > +     default ARCH_RENESAS
+> > +     depends on OF && (ARCH_RENESAS || COMPILE_TEST)
+> > +     help
+> > +       Support for Gigabit Ethernet Interface (GBETH) on Renesas
+> > +       RZ/V2H(P) SoCs.
+> > +
+> > +       This selects the Renesas RZ/V2H(P) Soc specific glue layer supp=
+ort
+> > +       for the stmmac device driver.
+> > +
+> >  config DWMAC_ROCKCHIP
+> >       tristate "Rockchip dwmac support"
+> >       default ARCH_ROCKCHIP
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net=
+/ethernet/stmicro/stmmac/Makefile
+> > index 594883fb4164..91050215511b 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> > @@ -20,6 +20,7 @@ obj-$(CONFIG_DWMAC_LPC18XX) +=3D dwmac-lpc18xx.o
+> >  obj-$(CONFIG_DWMAC_MEDIATEK) +=3D dwmac-mediatek.o
+> >  obj-$(CONFIG_DWMAC_MESON)    +=3D dwmac-meson.o dwmac-meson8b.o
+> >  obj-$(CONFIG_DWMAC_QCOM_ETHQOS)      +=3D dwmac-qcom-ethqos.o
+> > +obj-$(CONFIG_DWMAC_RENESAS_GBETH) +=3D dwmac-renesas-gbeth.o
+> >  obj-$(CONFIG_DWMAC_ROCKCHIP) +=3D dwmac-rk.o
+> >  obj-$(CONFIG_DWMAC_RZN1)     +=3D dwmac-rzn1.o
+> >  obj-$(CONFIG_DWMAC_S32)              +=3D dwmac-s32.o
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c =
+b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+> > new file mode 100644
+> > index 000000000000..8674b7605d83
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
+> > @@ -0,0 +1,148 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * dwmac-renesas-gbeth.c - DWMAC Specific Glue layer for Renesas GBETH
+> > + *
+> > + * The Rx and Tx clocks are supplied as follows for the GBETH IP.
+> > + *
+> > + *                         Rx / Tx
+> > + *   -------+------------- on / off -------
+> > + *          |
+> > + *          |            Rx-180 / Tx-180
+> > + *          +---- not ---- on / off -------
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corporation
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/device.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/reset.h>
+> > +
+> > +#include "stmmac_platform.h"
+> > +
+> > +struct renesas_gbeth {
+> > +     struct plat_stmmacenet_data *plat_dat;
+> > +     struct reset_control *rstc;
+> > +     struct device *dev;
+> > +     void __iomem *regs;
+>
+> This doesn't seem to be used anywhere.
+>
+I'll get rid of it.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 9f1796222c597afd45dd31131b198f3574e97885..4175abc20fa7d26180ea4c69a0e1972222261354 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1232,21 +1232,6 @@ blsp_spi6_sleep: blsp-spi6-sleep-state {
- 				bias-pull-down;
- 			};
- 
--			blsp_uart1_default: blsp-uart1-default-state {
--				/* TX, RX, CTS_N, RTS_N */
--				pins = "gpio0", "gpio1", "gpio2", "gpio3";
--				function = "blsp_uart1";
--				drive-strength = <16>;
--				bias-disable;
--			};
--
--			blsp_uart1_sleep: blsp-uart1-sleep-state {
--				pins = "gpio0", "gpio1", "gpio2", "gpio3";
--				function = "gpio";
--				drive-strength = <2>;
--				bias-pull-down;
--			};
--
- 			blsp_uart1_console_default: blsp-uart1-console-default-state {
- 				tx-pins {
- 					pins = "gpio0";
-@@ -1271,13 +1256,6 @@ blsp_uart1_console_sleep: blsp-uart1-console-sleep-state {
- 				bias-pull-down;
- 			};
- 
--			blsp_uart2_default: blsp-uart2-default-state {
--				pins = "gpio4", "gpio5";
--				function = "blsp_uart2";
--				drive-strength = <16>;
--				bias-disable;
--			};
--
- 			blsp_uart2_console_default: blsp-uart2-console-default-state {
- 				tx-pins {
- 					pins = "gpio4";
-@@ -1295,7 +1273,7 @@ rx-pins {
- 				};
- 			};
- 
--			blsp_uart2_sleep: blsp_uart2_console_sleep: blsp-uart2-sleep-state {
-+			blsp_uart2_console_sleep: blsp-uart2-console-sleep-state {
- 				pins = "gpio4", "gpio5";
- 				function = "gpio";
- 				drive-strength = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index 16c16ec0f4560a7102f8ffef20c58fbec81dee38..3ee61acc0f96aaf79a182d21920b3664a0daa5fc 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -905,20 +905,6 @@ blsp_spi6_sleep: blsp-spi6-sleep-state {
- 				bias-pull-down;
- 			};
- 
--			blsp_uart1_default: blsp-uart1-default-state {
--				pins = "gpio0", "gpio1", "gpio2", "gpio3";
--				function = "blsp_uart1";
--				drive-strength = <16>;
--				bias-disable;
--			};
--
--			blsp_uart1_sleep: blsp-uart1-sleep-state {
--				pins = "gpio0", "gpio1", "gpio2", "gpio3";
--				function = "gpio";
--				drive-strength = <2>;
--				bias-pull-down;
--			};
--
- 			blsp_uart1_console_default: blsp-uart1-console-default-state {
- 				tx-pins {
- 					pins = "gpio0";
-@@ -943,13 +929,6 @@ blsp_uart1_console_sleep: blsp-uart1-console-sleep-state {
- 				bias-pull-down;
- 			};
- 
--			blsp_uart2_default: blsp-uart2-default-state {
--				pins = "gpio4", "gpio5";
--				function = "blsp_uart2";
--				drive-strength = <16>;
--				bias-disable;
--			};
--
- 			blsp_uart2_console_default: blsp-uart2-console-default-state {
- 				tx-pins {
- 					pins = "gpio4";
-@@ -967,7 +946,7 @@ rx-pins {
- 				};
- 			};
- 
--			blsp_uart2_sleep: blsp_uart2_console_sleep: blsp-uart2-sleep-state {
-+			blsp_uart2_console_sleep: blsp-uart2-console-sleep-state {
- 				pins = "gpio4", "gpio5";
- 				function = "gpio";
- 				drive-strength = <2>;
+> > +};
+> > +
+> > +static const char *const renesas_gbeth_clks[] =3D {
+> > +     "tx", "tx-180", "rx", "rx-180",
+> > +};
+> > +
+> > +static int renesas_gbeth_clks_config(struct renesas_gbeth *gbeth, bool=
+ enabled)
+> > +{
+> > +     struct plat_stmmacenet_data *plat_dat;
+> > +     int ret;
+> > +
+> > +     plat_dat =3D gbeth->plat_dat;
+> > +     if (enabled) {
+> > +             ret =3D reset_control_deassert(gbeth->rstc);
+> > +             if (ret) {
+> > +                     dev_err(gbeth->dev, "Reset deassert failed\n");
+> > +                     return ret;
+> > +             }
+> > +
+> > +             ret =3D clk_bulk_prepare_enable(plat_dat->num_clks,
+> > +                                           plat_dat->clks);
+> > +             if (ret)
+> > +                     reset_control_assert(gbeth->rstc);
+> > +     } else {
+> > +             clk_bulk_disable_unprepare(plat_dat->num_clks, plat_dat->=
+clks);
+> > +             ret =3D reset_control_assert(gbeth->rstc);
+> > +             if (ret)
+> > +                     dev_err(gbeth->dev, "Reset assert failed\n");
+> > +     }
+> > +
+> > +     return ret;
+> > +}
+>
+> Apart from the plat_dat assignment, this function has two completely
+> separate paths. I'd fold its contents into renesas_gbeth_init/exit().
+>
+OK, I'll fix that in v7.
 
--- 
-2.47.2
-
+Cheers,
+Prabhakar
 
