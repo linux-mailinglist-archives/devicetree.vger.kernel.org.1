@@ -1,113 +1,106 @@
-Return-Path: <devicetree+bounces-167054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8F71A89435
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:55:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EB4A89449
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:58:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F4B417B3A4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:55:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D2AC188E65F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 06:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C8D27A122;
-	Tue, 15 Apr 2025 06:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AEC27A10C;
+	Tue, 15 Apr 2025 06:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YeAcuRnD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iIvNmK+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E062798F1;
-	Tue, 15 Apr 2025 06:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4335A27991F;
+	Tue, 15 Apr 2025 06:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744700070; cv=none; b=hCI/8lpNDXVTvC/xlqCcsfbhyNbrE2CSu51EkrK1sdFvfw46jmmyolEy4TZ2jdn9C5mas2+3JJQ/5fiEiYjCD0V8nOlAH6wnMGIEzy9dXRGiQyFmqGlH2RyZY3MjV/eizR/6+EKTLu1+h1SGVI5hycYUJPvgZ1wh3fbSXa/2IrE=
+	t=1744700180; cv=none; b=VhPrv9RQbvteTfcPPUC089IOMbeltHcio4ebgOh1DMYmNtvfi87d6u3UaZwWOYRl/R5G4wFWMZG0HuS1Kid0crn3pRf8Zt7LqL8ewPPy9fwTeSHnGHttB/Wp77/FalFH01BGlDixAoMaqWWWpJDDIlNjwTBOPjGyAXb/ryOuSog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744700070; c=relaxed/simple;
-	bh=k9OqEDY3JEcssGMHTHMMKW2DIA2hSwtYUS+Auc8BG6o=;
+	s=arc-20240116; t=1744700180; c=relaxed/simple;
+	bh=uv7i/A+xKRCxebwBNDHz/b4HBL+FjuvQmgw0J3Ek2tk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gTu9JKTKqm++BC0bnTFgy9jEpb30VDYua6ScdHK744Tnuvrm8h65StY+AneTzeEsgLzUaMuRQGfW1S25UvcrYRro94AwOS8pVuJ7+lxbcZlCL/L/xNM687UplSXNen5IH3vB6vSFdc6zCnCe7d9I844uKDyiLc/Gg9ByjFYKA/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YeAcuRnD; arc=none smtp.client-ip=209.85.216.44
+	 To:Cc:Content-Type; b=P3DTxE1zqRi3hdWSzKnDls6bWOuozEWq/EeI2iF1OgRHa1eEuUfFyrLyK9Fo+eoty+A451bpkp/fjpMfB75zHwWyIMoS6XfF/+FaF37f3yROd2LjC9cOuwmy8b/nu3C1YsYGnR8MdqGoONh0izXf0LmtWFANO0j94IZPt9P1nIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iIvNmK+a; arc=none smtp.client-ip=209.85.215.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-301cda78d48so4758292a91.0;
-        Mon, 14 Apr 2025 23:54:28 -0700 (PDT)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-af52a624283so4220916a12.0;
+        Mon, 14 Apr 2025 23:56:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744700068; x=1745304868; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744700178; x=1745304978; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k9OqEDY3JEcssGMHTHMMKW2DIA2hSwtYUS+Auc8BG6o=;
-        b=YeAcuRnDeuqTfqDHy7y9FkPQheLIJEGKQS8j98CJ1BPZfU2KqG0gBod7R1xCgilx2G
-         2dM9G6PxPHifdrSII+lS+JcAu15c2uzBgRWD5zfQf/m0m+DuFDE6CjZ8QsZxhfwslg+J
-         iSWKLLK1KDOO0VXHbJnsF4yI4tz+3fGLlQBZ7CqNabDbW+7xuybj48ZE+HvUwc8gOD6U
-         IANmDiyQz+fViWJAMl1OqtfD1K3IKqZW2d6TA1M2jkFd7MssSOkOmUx3EO2PyOSANE3Q
-         HAKs9r3G1fIlNGrT8klw5vgrrzXYIrlMPkLmNgYkSPIJGNOKci00Ptv3kbVI7ca2cDh4
-         o7sA==
+        bh=uv7i/A+xKRCxebwBNDHz/b4HBL+FjuvQmgw0J3Ek2tk=;
+        b=iIvNmK+amHP8X2BWEdsHyloSvaXVDHTB9qMz+unekO2ZGXoe4LxAkgwJjn7APsnHKc
+         Y9V5XBlMEn7nYnRgXiERl+JKAfOKxw4WvexUUQwEME5+N+pzFadMC/PmNkK2UN400wro
+         Ly2ChiCRP8jLgK7w538NU/C/rsWvL/huaEMoueJZWkQo3+5zQFk/30fdN+yuFqjFwEIV
+         ncs6egLf8q59v1IzlaHHyVvaJ2SPB7bQl/DA+zMeXAXc8izdTK3e8K/Sb8qgF7TQHKrJ
+         VgS/ySAfv1sVs2J6DHm6lmK4vOrGIUgcEB19wxup9sIFLgO0PFfGGYbZEkB3sLUo36G9
+         fKtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744700068; x=1745304868;
+        d=1e100.net; s=20230601; t=1744700178; x=1745304978;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=k9OqEDY3JEcssGMHTHMMKW2DIA2hSwtYUS+Auc8BG6o=;
-        b=PTG833+8M2EWXpW8Ewd6vG1rG2YGrujxrbMuatF/9+iES5aLzFwhu9Y5pYOVlLoWvo
-         a89+/H/2j4kZMYeQwq4P1sWHUFKRrby0xHyz93TAABHvMJ04P/Ma3HmDXeq5nf85vex1
-         yJgJUyMHTZbswkjbw2+gCnyb/hd79CHjzPxqatNjFNonJZBKSJAAArYh2Vp7BBf05kQX
-         7kR0wFbWYvN0qOlYzLwsii+3JcHs5fUKqsZ2wOFWDm83kHLuhwJEA5ZoDizVIeoGFaXa
-         /7wCAvFApDOH8KeUiN7st35Rgn8qltF+Q8iivuXCmevCJdumfrRmUsV7keNfg/rA17Xb
-         Lcug==
-X-Forwarded-Encrypted: i=1; AJvYcCVzs1ku5CKVu5XyrUrAC7aImaTZwbnk3IKil55946Y/DjXPBL6FBBtM0S5GGtI0x/kHVT6AcFvrxwKOSmrT@vger.kernel.org, AJvYcCXTIBZHJveIUji0nzwqzjDhneCON06e99vAd5AX0BItdDzovVcQLMMdboBdHR6u5R/yP1b5AGmYTJao@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPCV5a38xP1PpHlE3sh6dxs9NQBjh7irFNJ/2yS48847Vc8ZJo
-	dC0xuiKqwCdORLjb79pyi78+IvBtOu3F1bHjbs9iLal9Y/j4I6uMtQM9hY6lm8D+U6ONtJnaS5p
-	H19LafQwcGLCXyEj+6K58tjNY2rtzivFYVhHotQ==
-X-Gm-Gg: ASbGnctTtvglAvOCSIT2ADG2w0oYxASXlozLn3Wz5Hvjcs2405Hb8nSEvuKeveQIQPf
-	3iU2vdfR12OYKNI4Hn27JkcQC8+uGlYNAUvvJ0thk2o2i7z+YwZbTJaMV0FT+PaGk0fCyKWduS1
-	1D5C3+mFoeCueCLfavkA==
-X-Google-Smtp-Source: AGHT+IGsWWhYe9e4mWSJsic/j7kKIeW7DfXwjL4Jb4i7m9zXmuDIJPuuX3HEnkVvhnsbqUdqK2dIfJphOjrZOmuAgmI=
-X-Received: by 2002:a17:90b:2811:b0:2ee:c291:765a with SMTP id
- 98e67ed59e1d1-30823639c94mr21764256a91.8.1744700068456; Mon, 14 Apr 2025
- 23:54:28 -0700 (PDT)
+        bh=uv7i/A+xKRCxebwBNDHz/b4HBL+FjuvQmgw0J3Ek2tk=;
+        b=Z6UmKoUyZi46QKwRmr4ECaoFcR9UxJK6QiWJnhuYT5isLglzi6CDAOTUnnKoZCvrAZ
+         arSdSRJjE03bjomaRAbGu2GWoaj4f5lFgapiePSZHghKwzrCF59pFI5zpg06Euj0Bgxx
+         9dsGsVwvoF1qqK1zLDJDfj/ldHDvKAlq8IrQM8HJwUkXAVDKRAMZUJ38P8XWMUmqc2T5
+         71qWnJ+WKGo2SfWLeztZ513dB4WUpF3lO5UaI9KtareqTMsgZ2/Y90vUqMgHatXiuw2E
+         l+VqBlOiZhZLzKy00awEj3wSJUukViH9SXeQJYzzubYynE7SrRb/v9rK+zdIu77Dl/N8
+         aFOg==
+X-Forwarded-Encrypted: i=1; AJvYcCU55qWE51Q9qoBkQFX1jKLZLRey61FGV47pPkkCvsL2FyUuzst+8c5Nc1wI+gMcSznWBUGFbRWFYY16@vger.kernel.org, AJvYcCWKpK09Hw3EsJIYi2aEUhXL47bGiP1c9CUfChmI1PlF5eyOIQLvxf+7zktS5L6IHgaBchQ2WpSWfoydaTVT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmmvtJ/L4xfQdlZ1TGETOI6lcBDhF9UpsX8M1tjK7f+FXHwdoA
+	iHYotU+MIJ+eoYPEDqh9XdcNMtDq0ktjXXgZYHsH7ysP4SQ2f162Fa7gnFiEkRWjgww8G1bBK1p
+	ORkgA2lffpv3n9H7khg60aIAVpOi4bwR/qcNcOQ==
+X-Gm-Gg: ASbGncvR3qzkoOB4ohkPHWotAc6Iq7kHggdxSebjm48ZJevkJmADBsgy38/7wf32YOg
+	WQiaHVD9D1JnG9wOACwx+efDRBAasChuF8BFpqPZwkgAqVoOGI92nQ2kLoDsp2HrrJK2hxjDf3A
+	2iAJp/31ij1KbKZsOIaQ==
+X-Google-Smtp-Source: AGHT+IG6NnOFJlKScP+Wamh79XovR7K0CPgG97m4Wp+PToKHbCYOR7nSiLCr5HD0lc3ekUswv3GSc/IBDvySxyjSaD4=
+X-Received: by 2002:a17:90b:58c5:b0:2fc:aaf:74d3 with SMTP id
+ 98e67ed59e1d1-3084f2fbb88mr3226588a91.4.1744700178357; Mon, 14 Apr 2025
+ 23:56:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414123827.428339-1-ivitro@gmail.com> <20250414123827.428339-3-ivitro@gmail.com>
-In-Reply-To: <20250414123827.428339-3-ivitro@gmail.com>
+References: <20250415043311.3385835-1-primoz.fiser@norik.com> <20250415043311.3385835-14-primoz.fiser@norik.com>
+In-Reply-To: <20250415043311.3385835-14-primoz.fiser@norik.com>
 From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 15 Apr 2025 09:56:14 +0300
-X-Gm-Features: ATxdqUGxqJNdcd-JZaoJQzqSGgpBMKry2SLqzTD77e0YfcWpcDRWqQ9RF6-oALY
-Message-ID: <CAEnQRZBt7mgi2ep8j5U=8DWA+KfO_nGfczXrSxAy_HaSeGNTMA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add Toradex SMARC iMX8MP
-To: Vitor Soares <ivitro@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vitor Soares <vitor.soares@toradex.com>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Hiago De Franco <hiago.franco@toradex.com>
+Date: Tue, 15 Apr 2025 09:58:04 +0300
+X-Gm-Features: ATxdqUFzmx2uRpXUocIpbqqLeApK-nJ7IdkiHEJrpoo6ZYi5WSR7a6jQ2PJwfmo
+Message-ID: <CAEnQRZDtHWTEHMkhd6BqtqYXCkOcAEj1eNYDdkQ2FV3a4QDbvg@mail.gmail.com>
+Subject: Re: [PATCH v2 13/15] arm64: dts: freescale: imx93-phyboard-segin: Add
+ I2S audio
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	upstream@lists.phytec.de
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 14, 2025 at 3:39=E2=80=AFPM Vitor Soares <ivitro@gmail.com> wro=
-te:
+On Tue, Apr 15, 2025 at 7:37=E2=80=AFAM Primoz Fiser <primoz.fiser@norik.co=
+m> wrote:
 >
-> From: Vitor Soares <vitor.soares@toradex.com>
+> Add support for I2S audio found on phyBOARD-Segin-i.MX93. Audio codec
+> TLV320AIC3007 is connected to SAI1 interface as a DAI master. MCLK is
+> provided from the SAI's internal audio PLL (19.2 MHz).
 >
-> Add DT support for Toradex SMARC iMX8MP SoM and Toradex SMARC Development
-> carrier board.
->
-> Link: https://www.toradex.com/computer-on-modules/smarc-arm-family/nxp-im=
-x-8m-plus
-> Link: https://www.toradex.com/products/carrier-board/smarc-development-bo=
-ard-kit
-> Co-developed-by: Hiago De Franco <hiago.franco@toradex.com>
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
-
-Audio part looks good to me.
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
 Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
