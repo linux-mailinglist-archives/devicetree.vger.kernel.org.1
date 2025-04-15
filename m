@@ -1,112 +1,86 @@
-Return-Path: <devicetree+bounces-167402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99A5A8A1D9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:50:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 666D7A8A1E2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:52:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6822C3BC6E7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:50:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62810441B09
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 472F22BCF4D;
-	Tue, 15 Apr 2025 14:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C38B297A60;
+	Tue, 15 Apr 2025 14:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GSqfS8Nm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uf5NBddi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8CA29B790;
-	Tue, 15 Apr 2025 14:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44819535D8;
+	Tue, 15 Apr 2025 14:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744728561; cv=none; b=PT1qb7dvsabD3AUFur+8dBA0WJocfdtrBpbWz+NOAW3RvlT7OIY/XBD+KM84P2wNjoRrfXIOc86FAAdd3TbL0ymr2GR/qwu0Ig+NMokIBGAwgXclaUneRjILj2Vdrb/oy3z5UwsuwBjixnDbdOLgs98x+j5U1OYxOVCmn720L88=
+	t=1744728733; cv=none; b=uuqB8mWF7vFKRWc1YwCJeTQePYf50zSqBew7I5S82mEnzYcBAIOzkEk6STF76RgNvvuJm7vrRl05o+fK2BIVzGqQOvOm2NuVsAbU4a5yoroKMuMwA1DUzzSctipVgf5Es4voI/8sM0nwyALdqFtX12tJ675zRvEFCnHayT9UBeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744728561; c=relaxed/simple;
-	bh=jqGE0xVu8yWKFkliI8yVbSzznb3JK3p4yllxFur7jU8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qp+riBP0AUkfSgiSU7rUdJChDvB1O2fopNWthINrsuQaECTY3QEn6IKLeE6OWimv7POTLt3GGpSOE1s4ZBpL8qiPxmLZDeGKPyJwzckSdKBAGUI88EpnZvQPb9uJVZxZal9xRJeZ0wyaDv3ZCh7nAPb1XUaSeDHXV9fTlzSedfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GSqfS8Nm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 48349C2BCC9;
-	Tue, 15 Apr 2025 14:49:20 +0000 (UTC)
+	s=arc-20240116; t=1744728733; c=relaxed/simple;
+	bh=snCmSC3+XllzjenNJuiYQQLOeMF1tUGdj1sBr7T4mIQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HKcxCfNwn40rpiQ8mokhTxGfFkDHfPQqWeWP6py3zcGDaPxO9C2P0qq5yfXEZgaW4xr6fAvxWoQSVWQbRZ8PwOIotM2UwfoUFO8enqqHlGz5bWc80vDUILpSyp3Nc1eQaaCZSjqIs5UVGJxuTJwDlZey39tyBZIcZCf2Y4J14f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uf5NBddi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B893CC4CEEE;
+	Tue, 15 Apr 2025 14:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744728560;
-	bh=jqGE0xVu8yWKFkliI8yVbSzznb3JK3p4yllxFur7jU8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GSqfS8NmE9pkSUb5BD9VdrvsDOA342KHzo0j8CPPjuA7boatuzTCQS9JelfXiaScb
-	 MRcMMpINsvSLHWfFZc5oii55Vgn1Tt6XvkGjr6NyulbL2cSeavq6ktOdbOeIIdnVdd
-	 n/QKhYJ4/iSEeZ3D1JBlZpIxCnxqj+FzUIA6b9tR1zyivKoikrMF5zyaXncVKTYApm
-	 ePDw6kfhkY3mTlraFtJu+9bslBF4RX/HBwzBRaCU8WbzhKQKEtFAkR0JDDQOiQMdCy
-	 SCGzXhGZzgXEfTkEfq+ayo16vxNWR6fCZs27zZXxv13Ak+qtffuzQc3o1fEMEnDhxL
-	 BSVrlXbjSDKuQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3165DC369B8;
-	Tue, 15 Apr 2025 14:49:20 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Tue, 15 Apr 2025 15:49:33 +0100
-Subject: [PATCH v2 17/17] pwm: adp5585: make sure to include
- mod_devicetable.h
+	s=k20201202; t=1744728732;
+	bh=snCmSC3+XllzjenNJuiYQQLOeMF1tUGdj1sBr7T4mIQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Uf5NBddiATB3RryAFZESQswmTpJLcveWI1tafe6mo8n5v44sRHJIVPg9AJL2rSpWe
+	 uO3Xjg0NLjXQ9eR1QAkwV3hpkI3TNZO3gzvZwTc1ZZWqf2D0KUJNoJ8OByN/PYG1Hm
+	 q5/lZl0aNgH4dqFYVGsp7Pudi3GU2iGLYmyD7Vay09MmQs4Ojb9kPqGvpj384rmT1S
+	 JUfpt+jcK7CjIGx3Y9f2gpc/TcCongTNvF7CqHsXLv871FPBT0SltXp3u+b1i5Z7wn
+	 NZZmFem0s6HuFfwrQdGW6Sci6ZkiG1I0kxtbIFqv4uXD+2IN/W+9aNLtyykjFb28cd
+	 MHZBATTF4o75A==
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso12404179a12.1;
+        Tue, 15 Apr 2025 07:52:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV74UHwbZfckA5/N05HacBCreBkO0XsBm5ENkye2Ss03i1IFMVq/iuYBoPbJaa4K0De7ODWFlu34DeMU5UP@vger.kernel.org, AJvYcCVeYknn6UIRy8UjN8WQWrw0rXhf8d/W7aPoVYQtGPWMACBw6NORYoEUgJbeFopakLxt2T94xhWVFYuZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+kYnGPBJf5MKpdO8aCPW4zfXKwhZEgNRZXBNlRmzi6XAZECAu
+	D91ZqZa9tUoEYUQrCdyfK6+qohQGDsrlUBQHy4LTTnEXAleHmGiezuCG766GWCCweJ5e8qpu2s8
+	xGcTkhjXc3QEYTu3acu4dDAG4lw==
+X-Google-Smtp-Source: AGHT+IElNRejW7H0MvMKqVJd83SYHEviVdbU4tEY6r816KeYkX6joN56eHCYOKnpTL5DFaiKBdwIU12luYEJVqfMFTA=
+X-Received: by 2002:a05:6402:210f:b0:5ec:8aeb:812a with SMTP id
+ 4fb4d7f45d1cf-5f45dff3335mr3104516a12.14.1744728731365; Tue, 15 Apr 2025
+ 07:52:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250415-dev-adp5589-fw-v2-17-3a799c3ed812@analog.com>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-In-Reply-To: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Liu Ying <victor.liu@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744728560; l=672;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=v3TMENAZmJN0myQWjbTc/kqchul9OyTcCJ5PkGOgx9M=;
- b=OjgEv0txZLX702otZ+LNkY9LUqm7zC6znXqY0Nwn0XHuWxDxlpDFu1UAY2W9H33MD6MD7/173
- DISti+oXRK0DheBq5ztqTVeuwfVdpb35Rg93oiYNHGywrjgwLRhkWGg
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
+References: <tencent_FFC8E7A5A76050982D28F811C81F936D9205@qq.com>
+In-Reply-To: <tencent_FFC8E7A5A76050982D28F811C81F936D9205@qq.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 15 Apr 2025 09:51:59 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
+X-Gm-Features: ATxdqUG4c4EClp3gS0m6AEGJjtYgevxH2MgIUqsCDzJiOk0kU1YmnC23zzTKW2c
+Message-ID: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved-mem: Warn for missing initfn in __reservedmem_of_table
+To: Liya Huang <1425075683@qq.com>
+Cc: Saravana Kannan <saravanak@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nuno Sá <nuno.sa@analog.com>
+On Tue, Apr 15, 2025 at 9:16=E2=80=AFAM Liya Huang <1425075683@qq.com> wrot=
+e:
+>
+> For the data in __reservedmem_of_table, its function pointer initfn might
+> be NULL. However, __reserved_mem_init_node() only considers non-NULL case=
+s
+> and ignores NULL function pointers.
 
-Explicitly include mod_devicetable.h for struct platform_device_id.
+If initfn is NULL, there's no point to the entry and that's a bug.
+Unless you have a build time check, there's no point to add this.
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/pwm/pwm-adp5585.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
-index cc8ac8f9e5669b4ffca06d4117a29f030393f48f..85308257724a338da4d2416c8d01e48e08bd0856 100644
---- a/drivers/pwm/pwm-adp5585.c
-+++ b/drivers/pwm/pwm-adp5585.c
-@@ -20,6 +20,7 @@
- #include <linux/mfd/adp5585.h>
- #include <linux/minmax.h>
- #include <linux/module.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/platform_device.h>
- #include <linux/pwm.h>
- #include <linux/regmap.h>
-
--- 
-2.49.0
-
-
+Rob
 
