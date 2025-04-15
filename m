@@ -1,142 +1,76 @@
-Return-Path: <devicetree+bounces-167381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A30DA8A14F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:37:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC096A8A185
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:48:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D7B417FA1A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:37:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 424DE3AEE83
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA0D2957C3;
-	Tue, 15 Apr 2025 14:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF4E297A49;
+	Tue, 15 Apr 2025 14:47:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132F31F542A;
-	Tue, 15 Apr 2025 14:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AE7EEA9;
+	Tue, 15 Apr 2025 14:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744727835; cv=none; b=nK++ybV7X6d+hSSaxtcd83xb4skXqAJ941qnw5VaudGEwEcbtbdo2u3risJCVE3vKXibNgBDI6dxxgcO1avwulnPz8PQChx3o2F3zFzWiaceW/ffajmVyyqFUH4dWaUFd9M34iigybDOGdt54DoEb70+JNnJIBYzJtH+rxeQ5Kk=
+	t=1744728458; cv=none; b=ozTrwAP1lxFDyQJzNEXi0gqZLopHiTnRTjYEXF1EcmV2or1xBuyALeMBxJLXKtU6zMiXHOP+qKgBv1sae78A6fweka6vbfehQj8Ei2Wsk+3XXswQUr38uNOOT/olMl3DnBscJ7HuzveYN+PPasIBFKRzA/w/e3ud8PeTDXEB8W8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744727835; c=relaxed/simple;
-	bh=v+5nPIaVw4dIfMohDVDgmLZ9z/YWY11lJq5+q+6e/XA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mVDswWwMDRFYrs9RbSw6J10XjNIjEX96bXgfdWJ+CR4947ZdkOTQgoUs2za2iFWN2LSsaRDaawRMsj49aBULGus1atgeVWCVzMfHrjGtKMw42MLkqlNKxpZsGk1aDmutI7H/fndrCEqIt9Um0xqqCqKkR/YvJPxV+AQ7TAGrJj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c559b3eb0bso248600985a.1;
-        Tue, 15 Apr 2025 07:37:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744727831; x=1745332631;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ndn02FsK8/Eesm/o3Ea8LatTEFSj3YZKBnO8xo3WNRQ=;
-        b=Th4oFhgCv2vTdJKx5PAdBPkTZtJYOQPeMgR6dJiDQM5s+0YuFTTfI3L2Fyeh/BJRHy
-         616xuduCID4LZ6vrlAFrH3AzU7NdCXaEvTMF793i8n7KTKTZwADVIuvitd55GhJ/7BYy
-         qxQoQ5U/QDM9dFMeG826wVwgBCRThvTaBkTZNF7+LcOrUa1iOkd/uH9xt4ZtQ5NBkj1s
-         dJUJj/bKcDugvZ567zT9RUNoCBc397W1mFdScgIWWpibCL/RBD686NUBVwxjtP8fqBAU
-         l3oFEe1CnNXdD690OYjvG59aITuePvy2htXH7ogvg5KHNvX1HuM3vWoNN4+gbLNnC9uO
-         kiEw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0atZMsH6FmI/dXaaKmJYEbj7Zngk7ieeiJ5Ivns2UaHOfgf8LdIjEdAMpiDRfE8+1dGJ2sFS9sXSPKeNzUqVP1/0=@vger.kernel.org, AJvYcCVLy49zl6rQfpsDAMPygWUSabBcR/+M31HFYw6WrXchPLisc+TUta5/2TJ87+9xx3gJM5/PGVM2pSnJ@vger.kernel.org, AJvYcCVh0/Hm3kaV1CGZ1WIw/U/LAjN2WXxCN6kR3UbFdqWuma+dZzUO5qFzOWRarP3/mzEkOxPJ87VOmQO376q8@vger.kernel.org, AJvYcCWI8cqAvzwvsY1syjPIe8XRp84tYVHFv7CxX225swqLygZ2G1RqiXVMnmIK3ElHSymrhNVywa8DUAZX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx53REs7A28H+hLs7zyYmLGY5+se1CWqtZsSNZDTqRhZqWQewSR
-	bigjlu58auRoHum1kEGAv8mV5GDON7PQThA3REx8jXg08Rt3lwqpa/NtuH79
-X-Gm-Gg: ASbGncvpenD9gWYpIeW9z+S8l5PCp2E4ZFtbkMLQr8XQ22lfS8KACYZ0WfOckKWcfHi
-	atKiUEIm+PdFzf/dvJ9DnHyWOvv5ME3qpENIxcaXTg11xep+PNDLbE4dtX7RoNazDTPtjAdocFI
-	LYsMFgGKdW8WEj6nNlyvN5qreKSRohwfaML4pYlP+JzVm9NAf5YR7dlqhPFz7D4GPtC3/QnpwhM
-	epPMWMXMgZ+6DEiW8pkPEMqcPPyAmI1/3FccQthUVQkoCGSDNJ2fD8UJy/3S2ujSKfLJoMsifm5
-	M8M6QtDiJFw2ABe2hdJry5lpWdIXEvbbEhC6qiWZTHG7QJaBeK1EoKJqGto/+skAsoGvVx5QcX2
-	XsuC3NxA=
-X-Google-Smtp-Source: AGHT+IEysmQyX0FskRPHlfgO+VP2EHxEwUbWVgvIYMbzTnK2xZGvfpaK10sKAtCciR0bpbnlG1aa0Q==
-X-Received: by 2002:a05:620a:2894:b0:7c5:6ef2:2767 with SMTP id af79cd13be357-7c7af0b8e8emr2379830685a.2.1744727831267;
-        Tue, 15 Apr 2025 07:37:11 -0700 (PDT)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com. [209.85.222.170])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a8a1c772sm919161085a.115.2025.04.15.07.37.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 07:37:10 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7c08f9d0ef3so334626085a.2;
-        Tue, 15 Apr 2025 07:37:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV0i2lHmnBJwOyJQVjAqORoAjK96jwNDNR7EEAn+/XNkNYqx+N4XCwviUfTKH8ejSoKW3kshFfTp6Hv@vger.kernel.org, AJvYcCVy/5A433YebF7WS6n9F54PjoL3OSsNeQb0x0zwF40z9EeJahV87ii8peUrtqlkOyURnElUET1oixw/@vger.kernel.org, AJvYcCW6nINOkh5bzTlF6evkZoSMaqYF1Q0A0jt8Zda/j+pGkH3Rfift9/1DBl6MSgM2AlKE5SD7b9lGXzloComC@vger.kernel.org, AJvYcCWgV0eWUPD+jK6SKYK67UdnPR50zPAwYyQAV+mtQoVwZa+rEe7PVvZyLwhj8GM4i4GX9BCppRuBQYvrDpGZMjEiNEE=@vger.kernel.org
-X-Received: by 2002:a05:620a:2551:b0:7c5:59a6:bae6 with SMTP id
- af79cd13be357-7c7af0b986bmr2471959685a.3.1744727830360; Tue, 15 Apr 2025
- 07:37:10 -0700 (PDT)
+	s=arc-20240116; t=1744728458; c=relaxed/simple;
+	bh=yehWU6Cn1U0Ig31Ss4U++BRxjRmpPRpJ3DovWt/2v+w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=PWwWFzEk8vJHIfX42NSP3VAPSAJNo0RGUQfhKwyruiU7XS1zpREw2cspsys84dx8ojLs3/36IQoH5MTQ5hC08oXubLoNJUyZqDuBHTVJSTxAEukDsPsoBreiT+U7OE7MaO426AsRDLceAeptal/L39Ke5WrWPije6RDWL0/h93U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZcRp62VGNz9tRl;
+	Tue, 15 Apr 2025 16:47:26 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250407165202.197570-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407165202.197570-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250407165202.197570-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 15 Apr 2025 16:36:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXDDBS1POX3AmvTLWBbYcpXjnZm6sNqRpKfghF4uPGsUA@mail.gmail.com>
-X-Gm-Features: ATxdqUH5Nfk6EW6k8yol2jY5nLSm1u8ViA4knYi9nabGyPXVfselxPiovvadZ9E
-Message-ID: <CAMuHMdXDDBS1POX3AmvTLWBbYcpXjnZm6sNqRpKfghF4uPGsUA@mail.gmail.com>
-Subject: Re: [PATCH v2 9/9] clk: renesas: r9a09g057: Add clock and reset
- entries for GBETH0/1
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 15 Apr 2025 16:47:21 +0200
+Message-Id: <D97AM4S7VLL2.260GHNH82O60I@buenzli.dev>
+From: "Remo Senekowitsch" <remo@buenzli.dev>
+To: "Rob Herring" <robh@kernel.org>
+Cc: "Danilo Krummrich" <dakr@kernel.org>, "Saravana Kannan"
+ <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
+ <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
+ "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
+ <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v2 2/5] rust: Add bindings for reading device properties
+References: <20250326171411.590681-1-remo@buenzli.dev>
+ <20250414152630.1691179-1-remo@buenzli.dev>
+ <20250414152630.1691179-3-remo@buenzli.dev> <Z_1Jfs5DXD2vuzLj@cassiopeiae>
+ <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev> <Z_4rVyUjK1dlnTsT@pollux>
+ <D9760KMM0PSB.HONQ7MUG8OTN@buenzli.dev>
+ <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
 
-Hi Prabhakar,
-
-On Mon, 7 Apr 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue Apr 15, 2025 at 2:46 PM CEST, Rob Herring wrote:
 >
-> Add clock and reset entries for GBETH instances. Include core clocks for
-> PTP, sourced from PLLETH, and add PLLs, dividers, and static mux clocks
-> used as clock sources for the GBETH IP.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Adding PropertyGuard changes the API. I don't think it makes sense to
+> review the API without it and then again with it.
 
-Thanks for your patch!
-
-> --- a/drivers/clk/renesas/r9a09g057-cpg.c
-> +++ b/drivers/clk/renesas/r9a09g057-cpg.c
-
-> @@ -78,6 +87,19 @@ static const struct clk_div_table dtable_2_64[] = {
->         {0, 0},
->  };
->
-> +static const struct clk_div_table dtable_2_100[] = {
-> +       {0, 2},
-> +       {1, 10},
-> +       {2, 100},
-> +       {0, 0},
-> +};
-> +
-> +/* Mux clock tables */
-> +static const char * const smux2_gbe0_rxclk[] = { ".plleth_gbe0", "et0-rxc-rxclk" };
-> +static const char * const smux2_gbe0_txclk[] = { ".plleth_gbe0", "et0-txc-txclk" };
-> +static const char * const smux2_gbe1_rxclk[] = { ".plleth_gbe1", "et1-rxc-rxclk" };
-> +static const char * const smux2_gbe1_txclk[] = { ".plleth_gbe1", "et1-txc-txclk" };
-
-The "et[01]-[rt]xc-[rt]xclk" clocks are not created by this driver.
-IIUIC, they are actually Ethernet PHY signals.
-How is this supposed to work?
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+We could add the PropertyGuard first and introduce the users later.
+Then they are in separate patches and the API doesn't change.
 
