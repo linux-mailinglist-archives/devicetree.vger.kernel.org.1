@@ -1,269 +1,173 @@
-Return-Path: <devicetree+bounces-167147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA566A89891
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:48:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 916FBA89899
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:49:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6DB17F204
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:48:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 385AD3ABF05
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D931EEA39;
-	Tue, 15 Apr 2025 09:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDED288C9A;
+	Tue, 15 Apr 2025 09:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwQUxlN3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HR2rNzqq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9D545C18;
-	Tue, 15 Apr 2025 09:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D064E1EEA39
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:49:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744710494; cv=none; b=JGYueDHD7B3mE2WJeqdTHdYcuh+VDuEUAty7nLG5y8TUjZmw+kInUUKO6QdZiovmg/5Sisn9RVszZfqbjRZKVZi0/aFy81A94SSjbtqZHjCmw9RQ4EtQRdlEm14vreb6oqIX3W8bpfsF7teM2fx9TaG3eIP63g2ksjYceZFY8bo=
+	t=1744710588; cv=none; b=dRp6lbhSwrQ/Ld5VwCgjCM5Y9OAc0rOBoQQCTSI9dTzJsgQJudNi989U3OVQrkHZ+J//TX6xPz5IUREBMMexzY+xJYdhlYAavB749beFHjqlnlcjiINehgBuAiv/k0pTEoJc9evOpccGk+sJYiyL7X5O62ZIk8MwFR3iT74hIC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744710494; c=relaxed/simple;
-	bh=yUDOtL59iR5TIGbk9FlCT53L9VrFtzpvAbsj9EwZ4Nc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YoXMDM25/7em2/Xon3RzNSrkRKyjDYdLnSIoKp+I6706DWQGZ9DdBYPkjRoJu+dX5XuVcN+h+iruvdrx+2Gaj5jP3oXlhKSxUmTt0dh8X1KeSlaKUMc27/daBaRhnV/pEsFjQ8APrcsbe3CioMsryUXxyBtesGO27IHHQqm7qgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwQUxlN3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ACDAC4CEDD;
-	Tue, 15 Apr 2025 09:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744710494;
-	bh=yUDOtL59iR5TIGbk9FlCT53L9VrFtzpvAbsj9EwZ4Nc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LwQUxlN3IhuTC9DttPgBP/p4Zzm3jgByNlywNderSDuuqMNJr33MxEb2UQY29oPkk
-	 eRi8bIbxCgfiMYkxA4MmIlLJ+Eo9uy7DcEzDIikFkBBzoSeeyoeYD/n5fRTS78OdIq
-	 82d0a+Ex6UAD0Qw0+/9JTkmf9JceR7zgANkLKJr/3d9l0KinXJtjKKa29kguXhTJWG
-	 MqSgBG2KVEVe8liD41gRzvW3MppGwnLoL0Mvtq2TSWORM65KjL82CVfvVwOlDPb8ae
-	 geA8XoUKUEGecyKuLbAXw/Q/Qycprv5xHLTR2vWj9DjhiL3peCx8FWx1xc3qVf7IkM
-	 CMcx/0cJG90Ow==
-Date: Tue, 15 Apr 2025 11:48:07 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] rust: Add bindings for reading device properties
-Message-ID: <Z_4rVyUjK1dlnTsT@pollux>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
- <20250414152630.1691179-3-remo@buenzli.dev>
- <Z_1Jfs5DXD2vuzLj@cassiopeiae>
- <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev>
+	s=arc-20240116; t=1744710588; c=relaxed/simple;
+	bh=52LpJpjDjE4yBWBRZ4EBwCQtvWp1jBAGSwaH4q8wP3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YaMYg3gYGPPcqmZtM2ugisZKTKFenWXs+iRLuptMUvVSfsTVpn0eNf+t+3prHJPWPIgRrima4Y4jeHOFAhNgWjqSTX4wPaOhAZv6TbY6IuA6QhB4yisA9j3FpLG4XW93jfe4CgINboKDYb2eA0Af8Qz21XwK9Jy+NZK549J/djA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HR2rNzqq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tHPS013131
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:49:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KOIM5yPpo9MViTBKkLNoXdzuS8SDS+QNfkUos1BVNLM=; b=HR2rNzqqCQRNtosu
+	jEyA4Dwg+NNBmGGuCP+gFkw6Sr3hJ7PnCrYM15v3TrbbxWlWj2G+WYbGAcbRFd42
+	kapFPavs0vYmmIcTTg69pEtU9PzAapxIIsqm6A2GTa5Qt8IQCqN69eMogWNqoRby
+	Rqa8IGGo0sz52m3mMvnBsonowiawCWbZynuGm68L/Ku0+HaiLdcwvMXdVlyXNJxq
+	P/Jnh2niB/eBa1v4GseskiAOZsVQDwVDnssPhA3Se7nCxGTOHVYJS+1EYoMTNKWl
+	M1h7HIMsbL+w54teqwkwUXKGRIWwUkNxzCCcGhNojgUsAPKqumjKdjNrvLo+E1du
+	44q52g==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6fj1m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:49:44 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c54767e507so882466985a.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 02:49:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744710584; x=1745315384;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KOIM5yPpo9MViTBKkLNoXdzuS8SDS+QNfkUos1BVNLM=;
+        b=UO83AxlFhnhNwY8VRST/T416vbqJ8eL/2KAeXULTGBXIyxYeHxQkb+wVFLJ6E3V/aN
+         8pTmlCRMW8cItAE/qbET2xvfXv1RwGkCg2lyRdxNTcTkVZ7Bo5Cw8UBTyV7p3wlP4Yxj
+         9UfTM7oM2SpcZXGJIcl1J1oHhfFLDd6lOQDpDTp9rFbrYiS6zwXvASvZq+gR4TZzhdZL
+         QEv4d9mki13Ba1YTd36EEjvYH7yrGvoBUr+SCiSmyF6qVFiMsHqN2TI4E8tO94xNFHWu
+         4hv7z+09nyAkucClMWR0O+YTERXZIuFJEafYkDvVvz2bKQOilImarNr1/faw54EHMwXu
+         5Wbw==
+X-Forwarded-Encrypted: i=1; AJvYcCX0Vrk1ih7qiukq37VRG6GCsjF+V8tfzA3ONpYtJpX58hXYW33kXwBc2ZdZkS13wVIO/2qc6GDTr9vo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZjVXupDDTxL8EAkNOCtvd7+zsuaj3EInuqhld/6OMZvVc2pxS
+	6WrJl9JIhY2FDiqo02kmIday/skAOyBG8oe4hpje83QhRAAbCRF3Kg+NL7AQTcIvum+3qxzR7hx
+	wBhE8BwjG7rUu6GqxdhOQ1RkzwUSqsLFlLk83IoX9xJNO9LKmtqvBekF2TP2H
+X-Gm-Gg: ASbGncsVwgxv/gZo5UcE1+sjB0k0SvRAVXEMujOu65lQUGz6HXU4xaq2vf+RrIlGNIi
+	yRA57lcO6BkkprUqzG602s5rJ7Rgyd3yaTVtNHG6I6AzkrBqUKN4WSs0NkeyqlvXTpjz+OG17i6
+	3mOwamKpRw5ux+dn87BsYDW5vUT2EW9WN7Wvca9JOMy6zB7bfOkmMltXIguEAVW6zvNRNF6PSkF
+	5nmYVgO5WiJGA4DiXK0m3c4AIbrRjZ9isVmg1tkZg3f32ul7471CoAVeigp8IbZMcIMJ8Z/vlKm
+	QdwfZieSlPMWHPmpBTjHwJMHljLxhQZ+0rpat5bWlf0x5z4I/kSIf2DXHcUCwTgW9X9rnpqAgha
+	QiForIhH+G9ORBsUxp7NG3QVgXXpRg580rUvBdfSs7y7tGqckjzsCGH/CrCzW
+X-Received: by 2002:a05:620a:424c:b0:7c5:5909:18d8 with SMTP id af79cd13be357-7c7af0d3d1emr1773054985a.14.1744710583708;
+        Tue, 15 Apr 2025 02:49:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFoHRiOt8l67E2P0R7QBa24QR77cwJMkGHiQzo6vMvNgAnJNTeO3hOBWB7ssd17odFt1mGM6Q==
+X-Received: by 2002:a05:620a:424c:b0:7c5:5909:18d8 with SMTP id af79cd13be357-7c7af0d3d1emr1773051985a.14.1744710583367;
+        Tue, 15 Apr 2025 02:49:43 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:aa:77bc:64e0:30e4:f6ff:5bd? (2001-14bb-aa-77bc-64e0-30e4-f6ff-5bd.rev.dnainternet.fi. [2001:14bb:aa:77bc:64e0:30e4:f6ff:5bd])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f46623c2bsm20611601fa.111.2025.04.15.02.49.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 02:49:42 -0700 (PDT)
+Message-ID: <10e8c3dc-fbeb-42e1-b810-d80e768ecf6b@oss.qualcomm.com>
+Date: Tue, 15 Apr 2025 12:49:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 10/10] arm64: dts: qcom: sar2130p: add display nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org
+References: <20250415-sar2130p-display-v3-0-62314b1c9023@oss.qualcomm.com>
+ <20250415-sar2130p-display-v3-10-62314b1c9023@oss.qualcomm.com>
+ <96e38ebb-5847-485a-8bf6-50e7b10ce572@oss.qualcomm.com>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <96e38ebb-5847-485a-8bf6-50e7b10ce572@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: gFYP_jQijeB_69RRc8aSN4xgy74kJGJe
+X-Proofpoint-GUID: gFYP_jQijeB_69RRc8aSN4xgy74kJGJe
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=67fe2bb9 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=01dcSNK4EstfxtfeDswA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504150068
 
-On Tue, Apr 15, 2025 at 01:55:42AM +0200, Remo Senekowitsch wrote:
-> On Mon Apr 14, 2025 at 7:44 PM CEST, Danilo Krummrich wrote:
-> > On Mon, Apr 14, 2025 at 05:26:27PM +0200, Remo Senekowitsch wrote:
-> >> The device property API is a firmware agnostic API for reading
-> >> properties from firmware (DT/ACPI) devices nodes and swnodes.
-> >> 
-> >> While the C API takes a pointer to a caller allocated variable/buffer,
-> >> the rust API is designed to return a value and can be used in struct
-> >> initialization. Rust generics are also utilized to support different
-> >> types of properties where appropriate.
-> >> 
-> >> The PropertyGuard is a way to force users to specify whether a property
-> >> is supposed to be required or not. This allows us to move error
-> >> logging of missing required properties into core, preventing a lot of
-> >> boilerplate in drivers.
-> >
-> > The patch adds a lot of thing, i.e.
-> >   * implement PropertyInt
-> >   * implement PropertyGuard
-> >   * extend FwNode by a lot of functions
-> >   * extend Device by some property functions
-> >
-> > I see that from v1 a lot of things have been squashed, likely because there are
-> > a few circular dependencies. Is there really no reasonable way to break this
-> > down a bit?
+On 15/04/2025 12:44, Konrad Dybcio wrote:
+> On 4/15/25 11:39 AM, Dmitry Baryshkov wrote:
+>> From: Dmitry Baryshkov <lumag@kernel.org>
+>>
+>> Add display controller, two DSI hosts, two DSI PHYs and a single DP
+>> controller. Link DP to the QMP Combo PHY.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>> ---
 > 
-> I was explicitly asked to do this in the previous thread[1].
-
-I'm well aware that you were asked to do so and that one reason was that
-subsequent patches started deleting code that was added in previous ones
-(hence my suspicion of circular dependencies and that splitting up things might
-not be super trivial).
-
-> I'm happy
-> to invest time into organizing files and commits exactly the way people
-> want, but squashing and splitting the same commits back and forth
-> between subsequent patch series is a waste of my time.
-
-I don't think you were asked to go back and forth, but whether you see a
-reasonable way to break things down a bit, where "reasonable" means without
-deleting code that was just added.
-
-> Do reviewers not typically read the review comments of others as well?
-
-I think mostly they do, but maintainers and reviewers are rather busy people.
-So, I don't think you can expect everyone to follow every thread, especially
-when they get lengthy.
-
-> What can I do to avoid this situation and make progress instead of
-> running in circles?
-
-I suggest to investigate whether it can be split it up in a reasonable way and
-subsequently answer the question.
-
-With your contribution you attempt to add a rather large portion of pretty core
-code. This isn't an easy task and quite some discussion is totally expected;
-please don't get frustrated, the series goes pretty well. :)
-
+> [...]
 > 
-> Link: https://lore.kernel.org/rust-for-linux/20250326171411.590681-1-remo@buenzli.dev/T/#m68b99b283a2e62726ee039bb2394d0741b31e330 [1]
+>> +			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ACTIVE_ONLY
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
+>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>> +					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+>> +			interconnect-names = "mdp0-mem", "cpu-cfg";
 > 
-> >> +    /// helper used to display name or path of a fwnode
-> >> +    ///
-> >> +    /// # Safety
-> >> +    ///
-> >> +    /// Callers must provide a valid format string for a fwnode.
-> >> +    unsafe fn fmt(&self, f: &mut core::fmt::Formatter<'_>, fmt_str: &CStr) -> core::fmt::Result {
-> >> +        let mut buf = [0; 256];
-> >> +        // SAFETY: `buf` is valid and `buf.len()` is its length. `self.as_raw()` is
-> >> +        // valid because `self` is valid.
-> >> +        let written = unsafe {
-> >> +            bindings::scnprintf(buf.as_mut_ptr(), buf.len(), fmt_str.as_ptr(), self.as_raw())
-> >> +        };
-> >
-> > Why do we need this? Can't we use write! right away?
-> 
-> I don't know how, can you be more specific? I'm not too familiar with
-> how these formatting specifiers work under the hood, but on the face of
-> it, Rust and C seem very different.
+> The first path should be always on, so that if CPUSS collapses,
+> the display may stay on
 
-See below.
+Ack, I'll fix that and send the next iteration tonight.
 
 > 
-> >> +        // SAFETY: `written` is smaller or equal to `buf.len()`.
-> >> +        let b: &[u8] = unsafe { core::slice::from_raw_parts(buf.as_ptr(), written as usize) };
-> >> +        write!(f, "{}", BStr::from_bytes(b))
-> >> +    }
-> >> +
-> >> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
-> >> +    /// printing the name of a node.
-> >> +    pub fn display_name(&self) -> impl core::fmt::Display + use<'_> {
-> >> +        struct FwNodeDisplayName<'a>(&'a FwNode);
-> >> +
-> >> +        impl core::fmt::Display for FwNodeDisplayName<'_> {
-> >> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-> >> +                // SAFETY: "%pfwP" is a valid format string for fwnode
-> >> +                unsafe { self.0.fmt(f, c_str!("%pfwP")) }
-
-I think this could just use write!() and fwnode_get_name(), right?
-
-> >> +            }
-> >> +        }
-> >> +
-> >> +        FwNodeDisplayName(self)
-> >> +    }
-> >> +
-> >> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
-> >> +    /// printing the full path of a node.
-> >> +    pub fn display_path(&self) -> impl core::fmt::Display + use<'_> {
-> >> +        struct FwNodeDisplayPath<'a>(&'a FwNode);
-> >> +
-> >> +        impl core::fmt::Display for FwNodeDisplayPath<'_> {
-> >> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-> >> +                // SAFETY: "%pfwf" is a valid format string for fwnode
-> >> +                unsafe { self.0.fmt(f, c_str!("%pfwf")) }
-
-This one is indeed a bit more tricky, because it comes from
-fwnode_full_name_string() in lib/vsprintf.c.
-
-Maybe it would be better to replicate the loop within fwnode_full_name_string()
-and call write! from there.
-
-> >> +            }
-> >> +        }
-> >> +
-> >> +        FwNodeDisplayPath(self)
-> >> +    }
-> >>  }
-> >>  
-> >>  // SAFETY: Instances of `FwNode` are always reference-counted.
-> >> @@ -73,3 +257,200 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
-> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
-> >>      }
-> >>  }
-> >> +
-> >> +/// Implemented for several types that can be read as properties.
-> >> +///
-> >> +/// Informally, this is implemented for strings, integers and arrays of
-> >> +/// integers. It's used to make [`FwNode::property_read`] generic over the
-> >> +/// type of property being read. There are also two dedicated methods to read
-> >> +/// other types, because they require more specialized function signatures:
-> >> +/// - [`property_read_bool`](Device::property_read_bool)
-> >> +/// - [`property_read_array_vec`](Device::property_read_array_vec)
-> >> +pub trait Property: Sized {
-> >> +    /// Used to make [`FwNode::property_read`] generic.
-> >> +    fn read(fwnode: &FwNode, name: &CStr) -> Result<Self>;
-> >> +}
-> >> +
-> >> +impl Property for CString {
-> >> +    fn read(fwnode: &FwNode, name: &CStr) -> Result<Self> {
-> >> +        let mut str: *mut u8 = ptr::null_mut();
-> >> +        let pstr: *mut _ = &mut str;
-> >> +
-> >> +        // SAFETY: `name` is non-null and null-terminated. `fwnode.as_raw` is
-> >> +        // valid because `fwnode` is valid.
-> >> +        let ret = unsafe {
-> >> +            bindings::fwnode_property_read_string(fwnode.as_raw(), name.as_char_ptr(), pstr.cast())
-> >> +        };
-> >> +        to_result(ret)?;
-> >> +
-> >> +        // SAFETY: `pstr` contains a non-null ptr on success
-> >> +        let str = unsafe { CStr::from_char_ptr(*pstr) };
-> >> +        Ok(str.try_into()?)
-> >> +    }
-> >> +}
-> >
-> > I think it would be pretty weird to have a function CString::read() that takes a
-> > FwNode argument, no? Same for all the other types below.
-> >
-> > I assume you do this for
-> >
-> > 	pub fn property_read<'fwnode, 'name, T: Property>(
-> > 	   &'fwnode self,
-> > 	   name: &'name CStr,
-> > 	)
-> >
-> > but given that you have to do the separate impls anyways, is there so much value
-> > having the generic variant? You could still generate all the
-> > property_read_{int}() variants with a macro.
-> >
-> > If you really want a generic property_read(), I think you should create new
-> > types instead and implement the Property trait for them instead.
+> other than that
 > 
-> Yeah, that would be workable. On the other hand, it's not unusual in
-> Rust to implement traits on foreign types, right? If the problem is
-> the non-descriptive name "read" then we can change it to something more
-> verbose. Maybe `CStr::read_from_fwnode_property` or something. It's not
-> meant to be used directly, a verbose name wouldn't cause any damage.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
 
-Yeah, if we keep this approach, I'd prefer a more descriptive name.
 
-However, I'd like to hear some more opinions from other members of the Rust team
-on this one.
+-- 
+With best wishes
+Dmitry
 
