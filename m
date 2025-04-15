@@ -1,133 +1,157 @@
-Return-Path: <devicetree+bounces-167151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1847A898A9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:52:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EB8A898AB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2BDE17E676
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:52:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E458B17E04E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5599F289357;
-	Tue, 15 Apr 2025 09:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C541D619F;
+	Tue, 15 Apr 2025 09:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pAR6955Z"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="bLhOgagt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF264C74
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F464C74;
+	Tue, 15 Apr 2025 09:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744710727; cv=none; b=skm8VZA5crMyiGewJvtX0QqoEzjYaNORkDQlmp1lxsfTcTkyzGMN+SAk2o8Xjx01MxP3WgkxDlGWAsEFMh47jKn7XugiazhDZvXx+yZwEEJfb7eUczTPdQlC2zQwNDhKpKUouxmvVbJoBSBZIn7AUKfS3vuiKkP5Ej9fDyCnNW4=
+	t=1744710770; cv=none; b=CNcPiUJ+WeOwEuPcwCXxq4Jf2g+Qqkazs60q0txgDdlc5kByng25hQScupyAxk1wKVWNyUGBSQzCv0ud7G+BY3iove8GmxipwbmBbGpHT3YLze/hYGw75lnlQkFG6NsJ7Ztv2AN3kiv5h4sN1C1Ck4nxK51XdhNMIVeahMBQ85w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744710727; c=relaxed/simple;
-	bh=5qAle5UfrhH2Z+dS32kl8cqwoturGrnYekj2LzhEugM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k4UhOrRNvSGZo7T9Z9ERt0lN1G/S3icPG5gNChBKx1h4Xxej0L1bNz+YIfI6OaoAcYlnjpnBzLvY24H3cHOjD315JIminSN/FRUosucbEEjTqVlZoZ4yizfSHJ+Y5HhnVna4/ORg8HDDUYpaEZwIL1bQbsfcoVTQKrkrZ1tStMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pAR6955Z; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tG1M002198
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:52:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ebp25KTVcY1mUAqA9R7DsK7wGxUkxQQ3jeK5351XBkw=; b=pAR6955ZBN+rB+Xu
-	Ug2zNd10LaLaYRvzPKm2NsQkiyUtPKGRyaLHgaruAuxeshAn6v2SyMpKeKSnbVm3
-	5Is1o2h5kNsOzAeaskQqzmCfIdKMvGs5vD/+mms/2KxuNYqySHXZE0eVr2R8dZ+k
-	n9XqCRxU4uMMnpnCelU7pFqByzzJnh0ugW4DLh9vHCGPCxkWKWNjo7VabkCZgS36
-	+hlPjhFy7KnqEKJMOx9uDr7gzhie/j5OjC/K9+ZzHBzfE7+wSck1hZ12dKSzH/TH
-	JF8ZIE9kxLuhVXHyW1kLGYVn3oWlyeR9dd+Un0JrUdg0aDq0t6mPR+7s7Y+R/THv
-	v9iGGw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf4vfnpb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:52:03 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5af539464so128187685a.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 02:52:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744710722; x=1745315522;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ebp25KTVcY1mUAqA9R7DsK7wGxUkxQQ3jeK5351XBkw=;
-        b=dG4BA3l5Dby41a6VyVUxytF8Ay/o4tI0Bf0ZtutFP31OeDD2SUwM3a7CG5wOTHCfNg
-         Ix6p4CVHbFvJk/viBKWUY3CFDBhl4z5UX/fW1Rv8tM+WnnoCALcmWuPQoqSYYyqp2zxO
-         TEHENL9ZtdxtMWgurKDFU0YZeG+5PkBre+U90ktEIwHrMAdVf+JBiaPFf/vrwp2nWcJr
-         IV4rQ3WMlRbUFyk4pSdSq/TD+QUJKEirPRVa5l33o2Kk53cLbOMbcVX2cxMOf4CMCTep
-         1cD92MG5J6vhq0DjC5EXzfkOCnz5H3l4VyhX6oF4cIcoRbYc39/cGof/l9KVmbefW3iw
-         LrQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWpfiBiBlSCU27OO4o0I7dItc5DwJawwMKdfCfGxD++AjlD6Xsu7mym6/J3oLXLvHHC01iWjS3N5PM9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxs/tTq/fZer/JfD9kQGe/9AhG64wdYmFKqUi7f977Q2F6xY5nC
-	iJ9pBpF13ppYia5Nuf3oenOtdbb1wrp5/xw5FVJjKyV50bmti3rw6ODyxfyfWseLTFRPEtaMieh
-	6Nm/cY2dU8X9ul4K0bugBiJY+yg38GEiwFEIWHupeuaLbKNC88DNn3dOMgW00
-X-Gm-Gg: ASbGncvpuUKk1lby6g0L1DHt1kWIzVnfjZXUghFxIYhV9uovQlPAaVpYp+4AemLZtf/
-	GglUWFOZ2cYxNt1V5CzvamAzoO7a2GbtZcs6FqegwkGLxJHOZU61uzgemmLdOYOJ5rF34xVZ4R+
-	bINeLXH69J0PassrpLtNILRltTw0TKaJujvgmDChbJrbHMwyd3QQSvjeXYlywq+eszYWtaV/drw
-	51O/M8MwyTTKW9KPVbVPrYQ44vH+fuJMej+9yWhZ6OO0eX3/R0faFgRafVwiNp+qzpP/Kw69Mi/
-	GciHuxUDOJq+0ZdkNwsFzkZVz7uR3I+22PFNy/vgMpYKw2iHWCfYPHjOVuVq4HpkbMc=
-X-Received: by 2002:a05:620a:28d6:b0:7c3:bcb2:f450 with SMTP id af79cd13be357-7c7e5b706c3mr148947185a.15.1744710722566;
-        Tue, 15 Apr 2025 02:52:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE6eE3aexRTtrLGQXx+8WtgcWasctyUV4noEcYBOFknm9DaHBEdqfmSXMP2iUTUVqabA0Ebxg==
-X-Received: by 2002:a05:620a:28d6:b0:7c3:bcb2:f450 with SMTP id af79cd13be357-7c7e5b706c3mr148945185a.15.1744710722203;
-        Tue, 15 Apr 2025 02:52:02 -0700 (PDT)
-Received: from [192.168.65.246] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb40c0sm1076488366b.109.2025.04.15.02.51.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 02:52:01 -0700 (PDT)
-Message-ID: <c9a91cf2-f9c3-4687-a68d-c34209c4520c@oss.qualcomm.com>
-Date: Tue, 15 Apr 2025 11:51:59 +0200
+	s=arc-20240116; t=1744710770; c=relaxed/simple;
+	bh=flvzDfsqbS3vR0XK7ckJ2rQ8OFXa7GhkGw8Wjc8yplM=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=oe9b/aVJ+l5VPv3IZqnd467XbKcZ9aDHW+Hw11jv0aILPZjwVlHzxnyRbY38MQGoyZBMG9YYCOw/mx4WeNH2FbE1IcGwF00LLFrEgXvE8VcGJ1bxF2BJbr8IhghipLwg/UyXsvx+JfIkgbBeGtcuZUubedb6pIukbJhyDilXl9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=bLhOgagt; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1744710739; x=1745315539; i=frank-w@public-files.de;
+	bh=Q+JckBEpsrRgqh5xztZTHuIFUl86FPQgA/jK6oZPRJI=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=bLhOgagtIW/xrGe5Nq/eT10+fZL8R9146+562WV+19hEvp0m7LLIPpLGoQOaaZHO
+	 0exsQBy34S+clURVRsFvn72m0tvnPd3HWlwkv2sNYgJ9MKSDYaP45u+oRCzNA8YXI
+	 nHHCj5z9JdXGda+7Fhjgf4V7dWD6pwzccFQ6DXScBl1gBV66l5U25iBbohq7/wopV
+	 kq8h3eSBqOiQfGPwTTdpn1DFUI6+1QbKv4DY12M5RRM2Q+HWKypRGIltIliw8T7xp
+	 1rlbboCruan5kxl3GsRUMzk3IROhb+9XbMM1XPB3/5RnMSQi/WAy81AQPlsc5frQQ
+	 pnEc9YdM80A9d08pQQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.148.30]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MK3Rs-1tjEjN2Nri-00WfPz; Tue, 15
+ Apr 2025 11:52:19 +0200
+Date: Tue, 15 Apr 2025 11:52:19 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <linux@fw-web.de>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+CC: Daniel Golle <daniel@makrotopia.org>, Sam Shih <sam.shih@mediatek.com>,
+ MandyJH Liu <mandyjh.liu@mediatek.com>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_3/5=5D_dt-bindings=3A_power=3A_Add_binding?=
+ =?US-ASCII?Q?_for_MediaTek_MT7988_topmisc_power_controller?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <700af1ab-f43e-4583-8f0e-27e5d4424338@collabora.com>
+References: <20250413085806.8544-1-linux@fw-web.de> <20250413085806.8544-4-linux@fw-web.de> <700af1ab-f43e-4583-8f0e-27e5d4424338@collabora.com>
+Message-ID: <2EA2BDB0-E1C9-49BC-98FC-5048905AA036@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sdx75-idp: Enable QPIC BAM &
- QPIC NAND support
-To: Kaushal Kumar <quic_kaushalk@quicinc.com>, vkoul@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        manivannan.sadhasivam@linaro.org, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, andersson@kernel.org,
-        konradybcio@kernel.org, agross@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-References: <20250415072756.20046-1-quic_kaushalk@quicinc.com>
- <20250415072756.20046-6-quic_kaushalk@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250415072756.20046-6-quic_kaushalk@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: _dVie3JpATa8J-4gd_eaOHK3S8eP8PeS
-X-Authority-Analysis: v=2.4 cv=IZ6HWXqa c=1 sm=1 tr=0 ts=67fe2c43 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=WWQFUNGd85j635JlVwcA:9 a=QEXdDO2ut3YA:10
- a=-9l76b1btMQA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: _dVie3JpATa8J-4gd_eaOHK3S8eP8PeS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-15_04,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- mlxlogscore=721 mlxscore=0 bulkscore=0 impostorscore=0 suspectscore=0
- phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504150069
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:MDFMwq9Ryka5EQJIRTUvtko9P8AePKbzPUmE9xDrQQAss83aXKG
+ STQ21SuCC3A5uykYtRZaAicAhA1RltYfOdeAToH7BRl+YKP3qTUx0a6e4kSZJLqAI9f3JhH
+ mmHa9PT41UQI4sFR00UU7pvbVse2JVC0ngcXy0evqylC+5T+BVSCrJSZaPfuYBNICBOCFvc
+ 9JesmxM19WSuIqrNJAuig==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:VK/pb+WoYXA=;bPDdGMYPFqQHNaVWNdlgFR7Fp8y
+ rWQIkRE4B0iktDbhYZVOJ/v+gBRvcvY/3aV9Wha4vYf2j0y/nv6MBybsVgCLw/KbEmhUFN+EC
+ miXg2SbKxGRQYeQoiJJmcq3Jgt51pe5Iqdix7p3Dw59AJhcYlwGpMkzomNa3nrXNWJDOgfOeW
+ V01cIc1eZbqLgU3mCtfzWvVTCdb0Vdb9WvctQ2b7NlkoFBRNZf/EKpMZ0iPSyM0sxfx+Tzjcr
+ KxUi06ed7sJBrAg3JGFYyfPFnNGBbjqaaSEhaawnu2xaF9ED0bXwS9gEcvBKH1v1Fz6JHQKn8
+ BQzFd8lPgYKYP++r4ZPip1MJhfP5z6Il6IfZgmkaCkFosHYHDE8nikNQFCRnpl1gJ4hGGNf6Q
+ 8gQYev9dAz+1G0a2YviaQAaGVAVXj2iqUXX/nCtvTUKB+dO6LHGEB6VSGV/4La3anEZWfFFMs
+ fN7yana8+8OUlMDV+WmGHlDZHvXB4F5B/Z6NwMjJ9hxWm9W94O8U+UxpR+w8nJO7k4ngJc3/g
+ 1+0IHh54E7Z56ZWhWaOlDvT44ur47m4t9pkjRffWkmNbnKejJu3SzoZ7fBTVkquCPdtkXK3Po
+ ds4Y2phhrjfoonw741eFyci8ZxTo4RnVXouL6WDf8lPAHo1w1tr1tsJwkx0iDHjRzkEVZ4VHB
+ B859Os0XrOCUTHnWupGSNKMhUoYBO2sxBXTv8cWCZFNaJbw2PbVSIEzSCvVPdhllmAXIRa1y2
+ SSoJfBx9zFiLHbSxYK0bh2U0MqcogQ3+HM8sfvX5Nt3ltmviqw/x8+bTaRayOc72BdMGIwgA+
+ KSFEvM6mtwtmv4AR/WVQx87VcEkk4BbuUOge/fxXMx5MIAAzUJYmu0/TjHzqchOmdYwsKbs1/
+ SkeXC01UCbo8//5K4kdSnF7Y1i29xHLT1m/XzjXjcV7XtVzt2Qgs/BoAs35wVJ+VxKBpZM4YR
+ MCenaYaG+lCQ/lFcN0T0Yvq5NM+Q9BLN1xSgcJeY2Jy83rs3bWA/LdgvXcVifRlrIqCWyB0b1
+ OVA2v2pstzt2XYbGbjyfr7M0qcIf44KofgGOZFhf1gpOEemS6ocydFx3zoCk1bAPzowZ8gpgi
+ t6eIUjG9sn8zBDoy/hWN9XdI3/4ULnfoXWZk9kBh9Xvini4EtbEcc0elP3kJokaVoKomC0t/y
+ xwX72h+Pl50fFFvyu5sgKINi4DL6LmF3XBALJ+7xN/aUD3FcIa0EilzBLOQME3cCtZhgK1SjV
+ W3+ALpBPt4DJ7o3eIBmrvOApT3W7qR5P/2dse8rSNipSBhYExhPlf5QyNpY6vAiPCCH59KkNk
+ a3c3KYko2/Ln0PVgJf14fKP/85eO6Cs1mkFc1mq8fxxUs64kKZOkNNkXSfYGJfo5TKJHrqXHq
+ 1+EwjzhS91yh/KUqfzxpURFlVfsKa/dOiWxElJF0RIaQON+l4o4bxXXtzm5prRmXLCheCmEKL
+ //Dmaufb4GZf9Zbp0NzkLsYdERI/JEmzLGHHvJ08LpZAQEaj2O+seThgZ6keyZBvTytMRSS6O
+ jjmEHWUwYJ9+s2qCwJc=
 
-On 4/15/25 9:27 AM, Kaushal Kumar wrote:
-> Enable QPIC BAM and QPIC NAND devicetree nodes for Qualcomm SDX75-IDP
-> board.
-> 
-> Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
-> ---
+Hi Angelo,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Am 14=2E April 2025 12:25:23 MESZ schrieb AngeloGioacchino Del Regno <ange=
+logioacchino=2Edelregno@collabora=2Ecom>:
+>Il 13/04/25 10:58, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Topmisc is a systemcontroller used for xs-phy and ethernet on  mt7988=
+=2E
+>> Add binding for it=2E
+>
+>That's the wrong binding=2E=2E=2E check mfd/syscon=2Eyaml :-)
+>
+>P=2ES=2E: Is there any reset controller in topmisc? Any clock?
+>      If yes, syscon=2Eyaml is also wrong, and you need a driver for that=
+=2E
+>      Remember: If it turns out *later* that this has clk/resets and the
+>      bindings are already set for just a syscon, it's gonna be way harde=
+r!
+>
+>Cheers,
+>Angelo
 
-Konrad
+Ok based on the power-domain-cells property i guessed powercontroller is t=
+he right place=2E
+
+But based on your suggestion i tried moving compatible to syscon binding a=
+nd made dtbs_check here=2E
+
+I can confirm dropping the unexpected properties reported by syscon bindin=
+g (power-domain-cells,clock-cells,adress-cells and size-cells) are not need=
+ed for function (xsphy and ethernet)=2E
+
+For verifying that there are really no clocks/resets in topmisc (have not =
+found it in public available register documents) i asked mtk (waiting for a=
+nswer)=2E
+
+Also got it working without the syscon compatible by changing ethernet dri=
+ver too (after this change xsphy was also working)=2E
+
+Eth:
+https://github=2Ecom/frank-w/BPI-Router-Linux/commit/d866e648717800b6f6395=
+ad36c38f9effcf0498d
+Xsphy:
+<https://github=2Ecom/frank-w/BPI-Router-Linux/commit/0121a94df99700487704=
+ca056b210b13db07e90c>
+
+regards Frank
 
