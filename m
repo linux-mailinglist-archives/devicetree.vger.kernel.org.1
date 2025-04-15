@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-167529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADCEA8AAAA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 00:00:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66CB5A8AADE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 00:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 174F33B9FEC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 22:00:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 170DA174BA2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 22:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F0A263F4C;
-	Tue, 15 Apr 2025 22:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507162741DC;
+	Tue, 15 Apr 2025 22:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qaVvA/gb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUL+er06"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68CD2741BA;
-	Tue, 15 Apr 2025 22:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15AAF126C02;
+	Tue, 15 Apr 2025 22:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744754421; cv=none; b=ffXlbTHrF87zDDKG0Exga5L8xLr7aNcUEwIg81nJ6n92IlOIM5sbdveKnNYNV7f3/YndsjTLNouyGu7pNh+kdvazk7Pir5Q/1AqfO1ycDR1kndKlhDBxLQW3ya3WuQOz+q2hwZay0jLPBvtbU+C8LbKJDWHl/YcXbcwL/66PWMU=
+	t=1744754937; cv=none; b=q4JCJiMEs+h+ZUpaCklAco9f73ScY7CxQWZaMjYiCvp66SUXdX+9mdbEZxOrYY2BJxpLNgLTXSbVG+zC5cm9JKDevgWm307VR8CY/VppdvbcaNbr+6Drltl2m+gRqdA1FKHFQdzZBBp2jfntG94Ljxa8VGb9QHAPKFpHf7t+t4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744754421; c=relaxed/simple;
-	bh=daV67HKQogBs7ZdA8Rq6MMRQKj4oNdZ1uIGfugsJiwg=;
+	s=arc-20240116; t=1744754937; c=relaxed/simple;
+	bh=tyVsM8sNu2PCOz+arnoETnAj/qNuujBFl5CZuIgb6qU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HFa58sDKhigGe7+bXMmaqmu/BtO3Pjk1GihK/4QhQCLMOG62TxY1i4rwkP0QJR2rJ4rJepTvprGBHQcxhbQTOl5Z2xYJVnbe2I8PT9NOL8kjkS3Xn/2Dh9BdL/h98HkAp2QdP8SbcpJ+G1U8EBQcLJuZ+nr3MPG25xfLRWTZmTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qaVvA/gb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 794D0C4CEE7;
-	Tue, 15 Apr 2025 22:00:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QvFgtjSWK8VEqzNW8mAItku5OuV4j1FEnPynFHXFPJYHQqDA58yPagu9soxJYqMZGRGOkRY1NMyFntfwjCsEbMX2lQ6xzQPu7I4qEer4j56uMgQt6P68eXJKJrEhNVgUY2dueGRL99M+TCLQqD2QyFwJd9sypc7uASsRej0j/9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUL+er06; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24E63C4CEE7;
+	Tue, 15 Apr 2025 22:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744754417;
-	bh=daV67HKQogBs7ZdA8Rq6MMRQKj4oNdZ1uIGfugsJiwg=;
+	s=k20201202; t=1744754935;
+	bh=tyVsM8sNu2PCOz+arnoETnAj/qNuujBFl5CZuIgb6qU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qaVvA/gbI1uG0oD9RYALexMxPoA68JkoRyMpOEltdrHZUb5TmxA7Ws/XHrOqq7Wzs
-	 DzQUOY5LM5BolQYZBFePnmJ88wEXUlSiGP8AxbcRcGtNr+dR2BY8xwIzIQ2nx5v7Aw
-	 bb92SmSxM6DWqa8PbOo1P8pC5Ff0pw98akLBwS7Aec7/GlaKunwuiJ58tdj8qFVKrw
-	 iqVvdq8K1an76WP9oO0r8eu4fY1RCpby87ETMdEHKdq/8QxBEuWEc5m4p2dqru3Dcf
-	 DweeUhub94SXclwzx295Eb9UukARCyQkp+Vta/7HMoucfk90qrCuKgh0RHD7OQtYa/
-	 cThQFsd1KaHoA==
-Date: Tue, 15 Apr 2025 17:00:15 -0500
+	b=LUL+er06cdomuT2To0Vp+vl3RezE21eS9FHO39xYrxl13ItAS72cgNN1YDbw2sDoI
+	 jZUM/ht2DCGfCQaOp4g3ktg4fzLibFvaacZA5KDdh4rrxDAhJnGlOgRTyfsjnfVGOZ
+	 rfLw4v57o6nzJQXAMX1FG97HnypSpNKjwJ/AvgDZKW8bmOjgWAsz8OFRckuSetUJbF
+	 h0KpuhqmWYAaBuooEoYERzR+4RL9c7X/EHqyMPCfwCRh1ZVi7tFK0Tqgki7uWm4FP5
+	 OmXmrl5M1eFTenfphFKy6xfN4WQrh6WhZSGrw5NtFjPXPxj7ExiMR1Btj2Agl3onuA
+	 i9k7R/0At5mgg==
+Date: Tue, 15 Apr 2025 17:08:53 -0500
 From: Rob Herring <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Caleb Connolly <caleb.connolly@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_mrana@quicinc.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: qcom: Move phy, wake & reset
- gpio's to root port
-Message-ID: <20250415220015.GA897840-robh@kernel.org>
-References: <20250414-perst-v2-0-89247746d755@oss.qualcomm.com>
- <20250414-perst-v2-1-89247746d755@oss.qualcomm.com>
- <ody5tbmdcmxxzovubac4aeiuxvrjjmwujqmo6uz7kczktefcxz@b6i5bkwpvmzl>
- <6db146b9-ad63-42c7-9f33-83ecf64ed344@linaro.org>
- <tsnvoy2spr2dtqt3q2cnvl7rxobjgcgxntxb6rjtjdeej625i5@35je7sp3xqea>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
+Subject: Re: [net-next v5 1/6] dt-bindings: net: Add MTIP L2 switch
+ description
+Message-ID: <20250415220853.GA903775-robh@kernel.org>
+References: <20250414140128.390400-1-lukma@denx.de>
+ <20250414140128.390400-2-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,71 +69,125 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <tsnvoy2spr2dtqt3q2cnvl7rxobjgcgxntxb6rjtjdeej625i5@35je7sp3xqea>
+In-Reply-To: <20250414140128.390400-2-lukma@denx.de>
 
-On Tue, Apr 15, 2025 at 01:11:35PM +0530, Manivannan Sadhasivam wrote:
-> On Mon, Apr 14, 2025 at 02:50:19PM +0200, Caleb Connolly wrote:
-> > 
-> > 
-> > On 4/14/25 10:04, Dmitry Baryshkov wrote:
-> > > On Mon, Apr 14, 2025 at 11:09:12AM +0530, Krishna Chaitanya Chundru wrote:
-> > > > Move the phy, phy-names, wake-gpio's to the pcie root port node instead of
-> > > > the bridge node, as agreed upon in multiple places one instance is[1].
-> > > > 
-> > > > Update the qcom,pcie-common.yaml to include the phy, phy-names, and
-> > > > wake-gpios properties in the root port node. There is already reset-gpio
-> > > > defined for PERST# in pci-bus-common.yaml, start using that property
-> > > > instead of perst-gpio.
-> > > > 
-> > > > For backward compatibility, do not remove any existing properties in the
-> > > > bridge node.
-> > > > 
-> > > > [1] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
-> > > > 
-> > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> > > > ---
-> > > >   .../devicetree/bindings/pci/qcom,pcie-common.yaml      | 18 ++++++++++++++++++
-> > > >   .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml      | 17 +++++++++++++----
-> > > >   2 files changed, 31 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> > > > index 0480c58f7d998adbac4c6de20cdaec945b3bab21..16e9acba1559b457da8a8a9dda4a22b226808f86 100644
-> > > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> > > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> > > > @@ -85,6 +85,24 @@ properties:
-> > > >     opp-table:
-> > > >       type: object
-> > > > +patternProperties:
-> > > > +  "^pcie@":
-> > > > +    type: object
-> > > > +    $ref: /schemas/pci/pci-pci-bridge.yaml#
-> > > > +
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        maxItems: 1
-> > > > +
-> > > > +      phys:
-> > > > +        maxItems: 1
-> > > > +
-> > > > +      wake-gpios:
-> > > > +        description: GPIO controlled connection to WAKE# signal
-> > > > +        maxItems: 1
-> > > > +
-> > > > +    unevaluatedProperties: false
-> > > 
-> > > Please mark old properties as deprecated.
-> > 
-> > Since this is a trivial change, just moving two properties, I don't see why
-> > it makes sense to deprecate -- just remove the old properties, and move over
-> > all the platforms at once.
-> > 
+On Mon, Apr 14, 2025 at 04:01:23PM +0200, Lukasz Majewski wrote:
+> This patch provides description of the MTIP L2 switch available in some
+> NXP's SOCs - e.g. imx287.
 > 
-> This will be an ABI break. You should not remove properties all of a sudden
-> without first deprecating them (even if you convert all upstream DTS at once).
-> ABI is for older DTS also.
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+> Changes for v2:
+> - Rename the file to match exactly the compatible
+>   (nxp,imx287-mtip-switch)
+> 
+> Changes for v3:
+> - Remove '-' from const:'nxp,imx287-mtip-switch'
+> - Use '^port@[12]+$' for port patternProperties
+> - Drop status = "okay";
+> - Provide proper indentation for 'example' binding (replace 8
+>   spaces with 4 spaces)
+> - Remove smsc,disable-energy-detect; property
+> - Remove interrupt-parent and interrupts properties as not required
+> - Remove #address-cells and #size-cells from required properties check
+> - remove description from reg:
+> - Add $ref: ethernet-switch.yaml#
+> 
+> Changes for v4:
+> - Use $ref: ethernet-switch.yaml#/$defs/ethernet-ports and remove already
+>   referenced properties
+> - Rename file to nxp,imx28-mtip-switch.yaml
+> 
+> Changes for v5:
+> - Provide proper description for 'ethernet-port' node
+> ---
+>  .../bindings/net/nxp,imx28-mtip-switch.yaml   | 141 ++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml b/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> new file mode 100644
+> index 000000000000..6f2b5a277ac2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,imx28-mtip-switch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
+> +
+> +maintainers:
+> +  - Lukasz Majewski <lukma@denx.de>
+> +
+> +description:
+> +  The 2-port switch ethernet subsystem provides ethernet packet (L2)
+> +  communication and can be configured as an ethernet switch. It provides the
+> +  reduced media independent interface (RMII), the management data input
+> +  output (MDIO) for physical layer device (PHY) management.
+> +
+> +$ref: ethernet-switch.yaml#/$defs/ethernet-ports
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,imx28-mtip-switch
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  phy-supply:
+> +    description:
+> +      Regulator that powers Ethernet PHYs.
+> +
+> +  clocks:
+> +    items:
+> +      - description: Register accessing clock
+> +      - description: Bus access clock
+> +      - description: Output clock for external device - e.g. PHY source clock
+> +      - description: IEEE1588 timer clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +      - const: enet_out
+> +      - const: ptp
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Switch interrupt
+> +      - description: ENET0 interrupt
+> +      - description: ENET1 interrupt
+> +
+> +  pinctrl-names: true
+> +
+> +  ethernet-ports:
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      ethernet-port:
+> +        type: object
+> +        unevaluatedProperties: false
 
-+1
+This is going to fail if you have any property other than 'reg'. But 
+then it will never be applied because you never have a node called
+'ethernet-port' since you have more than 1 child node. You need this 
+under 'patternProperties' and 'additionalProperties: true' instead. And 
+please test some of the requirements here. Like a reg value of 3 or 
+remove 'phy-mode'.
 
-Rob
-
+> +
+> +        properties:
+> +          reg:
+> +            items:
+> +              - enum: [1, 2]
+> +            description: MTIP L2 switch port number
+> +
+> +        required:
+> +          - reg
+> +          - label
+> +          - phy-mode
+> +          - phy-handle
 
