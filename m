@@ -1,129 +1,135 @@
-Return-Path: <devicetree+bounces-167110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFCAA896A1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:31:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EB6A8969C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FAA6440D85
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:30:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE10C16FF19
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FEE28A1E3;
-	Tue, 15 Apr 2025 08:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a3U2rZCA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8978288CBE;
+	Tue, 15 Apr 2025 08:27:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255E528A1C3;
-	Tue, 15 Apr 2025 08:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AC8275108;
+	Tue, 15 Apr 2025 08:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744705660; cv=none; b=uhGqyJ3gKv0OhEq+azKqovJkGD0eRKJ81pN6ilcMuOs1JbDNFthzgMJs7Y1xoF0sB5MBuubnZ+cV0DvlHwDU8YXvj61e5NBQ6/MOuX1ubal34yxA8XEKG/oJBFpKZu8JwKI6+em61AHUe1AdtXzWOWUrWJXFE2KmQ6KWe2LcfD8=
+	t=1744705656; cv=none; b=N7aQen95imfh0v8wheOJQDMWU/jfWDWeY6dCVp7tyQPyQTO2xet0Fw7nDe6aUvNrlDy5AGqZw8qLSF5vrHdCWsHRo6vMK/8FxQ/L/QflrxdqFJ0ZxQ6FYKscOCzMjB7BbpjS0LP3yktIU7Sa6QoWb+I4SM7YoSqAuwFd6nTKdhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744705660; c=relaxed/simple;
-	bh=/NWQer13qfQtTS0IPMGbnftEkMcL2u4+nq/Oeev8wi0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g2FtpTNqrf2qNe6vYD1ifY16slJv20q4VLrwZyb6zdhQ8Sf/zycqDNLv7C9iRU9uGOGAazkbP6rTR9+u+m61OrJHALdylmccFRl92o2K52FER8U9u61l4xVklDtBxjHJSKeu/gJPJlGWS268YG2hlo1rBrQXl98obLEoe+/qaz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a3U2rZCA; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744705659; x=1776241659;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=/NWQer13qfQtTS0IPMGbnftEkMcL2u4+nq/Oeev8wi0=;
-  b=a3U2rZCARQVjrpZuRLpKnGGoK0EogJN4Rl2Bs0ifXJGJlXfGd8C+URFa
-   ibRBGomjzlQelZDt4Dyg8cfvnyogzDm2/AZ74NimLWcKP4WgXlKwK0GcH
-   6i3APbuWdnRJIPtP4QkJ0JwjGh33u2WAprFJ6PmwoTN8o6DX3Hcj9o7lP
-   YnPZVM2qH/5QyEeVmwhQ7f0Mvbbv0kCbea8VAiLV6p+WFUGLYUPzFvV6j
-   5kUq3SUMG/2qQDCFKGMdZC5FvVPLMGELYj/wYfT1RZrmwyHlWCKEzfXik
-   h06Xlg8pf7FotgFCxVmmJD7YnpMwaonvwu0wDClGLK7Dy5hnw95rtaEx5
-   A==;
-X-CSE-ConnectionGUID: tHaVRnPaRlKIeVA+SX4+KA==
-X-CSE-MsgGUID: 9RCRcqzHTL63RxL8gsfq0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45914696"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="45914696"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2025 01:26:32 -0700
-X-CSE-ConnectionGUID: qrpIY++ySUCX/8SUuS4vUA==
-X-CSE-MsgGUID: xgVmuuT2QAu6SMtEtu38Ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="130374897"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2025 01:26:26 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1u4bcd-0000000CUHm-0iFL;
-	Tue, 15 Apr 2025 11:26:23 +0300
-Date: Tue, 15 Apr 2025 11:26:22 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Yu-Hsian Yang <j2anfernee@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	javier.carrasco.cruz@gmail.com, gstols@baylibre.com,
-	tgamblin@baylibre.com, alisadariana@gmail.com,
-	antoniu.miclaus@analog.com, eblanc@baylibre.com,
-	jstephan@baylibre.com, matteomartelli3@gmail.com,
-	angelogioacchino.delregno@collabora.com, herve.codina@bootlin.com,
-	marcelo.schmitt@analog.com, chanh@os.amperecomputing.com,
-	KWLIU@nuvoton.com, yhyang2@nuvoton.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: add support for Nuvoton NCT7201
-Message-ID: <Z_4YLq_uR_6uroNd@smile.fi.intel.com>
-References: <20250409012351.2543450-1-j2anfernee@gmail.com>
- <20250409012351.2543450-3-j2anfernee@gmail.com>
- <Z_aeEuIk9brES6dM@smile.fi.intel.com>
- <CA+4VgcKG2EEsicysds0zu7y1xDhg88m3heGUBaQZ7-MVWanCaw@mail.gmail.com>
+	s=arc-20240116; t=1744705656; c=relaxed/simple;
+	bh=O047sYGEO2FirIMFno5oKvIviUxzQ/1Tzd4nTsphlx0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fFg5SWw/qJmcvCG8y3mhuzyaJDmcUN0JOdBtWKUXldah1G8N0yRfHf/54T3l0dDWgSSEJb6xVFH5u9FzX5LT2HdFFg9hihLLXDfKqj0GcEmA34JJDhTVVHFAXrAGKZkd/hpJ/XwLfGXNleIJOWV1vuzX8UwY+KisagR6HArPNek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-5259327a937so2162934e0c.0;
+        Tue, 15 Apr 2025 01:27:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744705653; x=1745310453;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nGO+Xd6zIarjSEl7i+vxsyo+MvDN3vL+Ovlv+BhPKuI=;
+        b=oqGezmJSPJ1zttrFEMKizRLe1YWf/aXyjWwnxaK808ToyKIfe/3tSdHuqltiOGnmVA
+         rsoJmNETBqIKh9oHM/S5gCzPNoCFNl8he571uFsEMSw9tm09raYfhxBArJ3lozsgVb9Z
+         LAqDmlaYCHO+9mh9HFYOMApL0ywfcPmehJMd3EJaQ0aocUJ9jvzOrV1XPDdQzckWAECe
+         WzV/DAjbDYerm3JxTSVzPs4d33Je6+VN9Yf6BmWldpB7m0Y6dzBL6gtKify4/lJKZn1l
+         HmgprNzP0/VBh6WrRhkQQCrdeeDYfpnpc9x/VbsAOa+DPFhMXXPcRCCcKFyohW76SDl9
+         jwyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVy8BZYK80aVbijx+t02NyoH+doZ6x84jLsjLjNiGkQYVGm9hVF7WCo1hycBIWWKmEWFZCF+i1iHQ4+@vger.kernel.org, AJvYcCWZYzUgJbakYOkwHO+Danbt68NPmwpPjJ/dZHQTVOJjSYZ0iajM+LBjKfuEtgUgVQKhNbUi/yUjhv+h@vger.kernel.org, AJvYcCX+seipiCOzrMURx8Y4Lz1/rGMWr8glpLQ7I1rKCM52yK1sYccKv1I9e031B662hmU4MLQtXdR2c2wfWOGJVKdpQtI=@vger.kernel.org, AJvYcCXwyxzgvd6uD9B0xz+m5pXZ5WzwzgeUSxqwxisd/GEQOHVSi0CPZB/jcm9lBopDW8WQ1bmenS62XsOKUvo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8BlPb4fqwv/GZ1DhL7cZfsXk57AWt+j1sfIJ7AMGf3HKIkxBM
+	CBNQdMqyGXq7k/dI8yXLzgKL+PiYCXPUGAruExdiUv9J7oHEVGmIcvz4ijR/
+X-Gm-Gg: ASbGnctJ1txoncqtw4kPYuGIMw+mBuxCZiePpbeuvLpKVJPARCGywPrzE4bsHtCq+y6
+	0SSuuhMQVNbiGEjyQXprLc+QIolvlmDSaHm3x72xCEM8ARTERlSiXTCEdPSmkzrzJ5rG9Vt0I8f
+	iix8t6ONTxUKFUXqTgaAprjAt4FyCgYK0UtoX7lqvTln5NzPe7tBS+hyNyDSMkmxuDqQ4L6HcIa
+	7J9C0Tbg5ySsAY1RoFgHFlfVKe6681qvnfwNQfiWl036Iq/PuP8RQLaPH4VFLtc6dObpbNMZNkx
+	ax/z6jiY29Wverw9cltXqS7YSvog70TFoXKHo8zb0jM8oV57JuVdmSEiKCduLwFk6E7C8/R5ArC
+	Lv5Q=
+X-Google-Smtp-Source: AGHT+IGI+2o4aOh25eWfRZJbdubs1qXRO7GFBB/L8qTwHtlnsUL5mrO8zNGcR7dxPPg223Kyu1gTsg==
+X-Received: by 2002:a05:6102:290d:b0:4c1:8f9b:19f1 with SMTP id ada2fe7eead31-4c9e4f12ed9mr10973893137.11.1744705652692;
+        Tue, 15 Apr 2025 01:27:32 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c9c976969fsm2528514137.12.2025.04.15.01.27.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 01:27:32 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4c32d6ddd50so81709137.0;
+        Tue, 15 Apr 2025 01:27:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVZ6oC4lsj4E+O4/ozhbF5EH0khqoGxBn2gu6QVKJRT+qs6zKH/xvQr2rlYREkxvlgVy1l5h3wGk0dZdyRhcyT0MF4=@vger.kernel.org, AJvYcCWdXjvjsZQTDyOatguskUO9tvbR2QyBgOwZk5b8Y/B6bmI8sj5y7ByAGBk3frxarkHK5bLsH4WhdQH9@vger.kernel.org, AJvYcCWvuBZolil8VUNgVNYgTTpnkFw2c3CvqrFc08vp9od7GcBDSdsBCJyJU2yoKSrOY9TXDoqywx0L/oYLl/Q=@vger.kernel.org, AJvYcCXhFYAU1U4vCOeLAn5REA56NS66wJgA5CPWP61jKMkXrRBtNSeF8y9dbQabfAiCbTsBDw6+VH+ZIMzl@vger.kernel.org
+X-Received: by 2002:a05:6102:c4a:b0:4b6:d108:cac1 with SMTP id
+ ada2fe7eead31-4c9e4eec888mr11050940137.9.1744705651860; Tue, 15 Apr 2025
+ 01:27:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+4VgcKG2EEsicysds0zu7y1xDhg88m3heGUBaQZ7-MVWanCaw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com> <87o6wy1a3a.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87o6wy1a3a.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 10:27:18 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXX-An5=Q9Eunyy5pLwaJ8A3k333-OUQ9B=+xyKP1m0mg@mail.gmail.com>
+X-Gm-Features: ATxdqUEIJsRkcyk194C5WDQ-k8_ecv3OZ-eRHLxN4ZrL9IbC3X6gIAUyq2lPs10
+Message-ID: <CAMuHMdXX-An5=Q9Eunyy5pLwaJ8A3k333-OUQ9B=+xyKP1m0mg@mail.gmail.com>
+Subject: Re: [PATCH v3 08/10] arm64: dts: renesas: r8a779g0: tidyup MSIOF node name
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Apr 14, 2025 at 09:40:35PM +0800, Yu-Hsian Yang wrote:
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> 於 2025年4月10日 週四 上午12:19寫道：
-> > On Wed, Apr 09, 2025 at 09:23:51AM +0800, Eason Yang wrote:
+Hi Morimoto-san,
 
-...
+On Tue, 15 Apr 2025 at 03:34, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> MSIOF will be used as both SPI or I2S. The node name is not "spi".
+> Rename it to "serial-engine".
+>
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-> > Here and elsewhere why ' < 0' is used? Do you expect positive return values
-> > from those?
-> 
-> In regmap_read function, A value of zero will be returned on success,
-> a negative errno will be returned in error cases.
-> We don't have a positive return case.
+Thanks for your patch!
 
-So, can we remove ' < 0' parts where they are not required, please?
+> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> @@ -1250,7 +1250,7 @@ tpu: pwm@e6e80000 {
+>                         status = "disabled";
+>                 };
+>
+> -               msiof0: spi@e6e90000 {
+> +               msiof0: serial-engine@e6e90000 {
 
-...
+Unfortunately this means that this instance can no longer be used in
+SPI mode without changing the node name back.  E.g. with [1]:
 
-> > > +     chip->client = client;
-> >
-> > How exactly is _client_ used elsewhere? Shouldn't it be just a struct device
-> > pointer?
-> 
-> Yes, it is just a struct device pointer.
-> In nct7201_init_chip(chip), we would use the chip->client->dev as
-> dev_err_probe() parameter
+    serial-engine@e6ea0000: Unevaluated properties are not allowed
+('#address-cells', '#size-cells', 'cn5@0' were unexpected)
 
-Just save there struct device *dev and use chip->dev instead.
+>                         compatible = "renesas,msiof-r8a779g0",
+>                                      "renesas,rcar-gen4-msiof";
+>                         reg = <0 0xe6e90000 0 0x0064>;
+
+[1] "arm64: dts: renesas: white-hawk: cn5: Add overlay for MSIOF1"
+    https://web.git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/commit/?h=topic/renesas-overlays&id=0b4f1af2c454b49b9f266900dcb578dc311b1475
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
