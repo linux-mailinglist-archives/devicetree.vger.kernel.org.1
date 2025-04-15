@@ -1,204 +1,206 @@
-Return-Path: <devicetree+bounces-167119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EC9A89757
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:02:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DECC4A895EA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0673944157E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:02:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E37097A1A07
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8508C1EDA24;
-	Tue, 15 Apr 2025 09:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F9C24395C;
+	Tue, 15 Apr 2025 08:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BeLY7cr6"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="dd03ZOnN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012027.outbound.protection.outlook.com [52.101.71.27])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8622C250C08;
-	Tue, 15 Apr 2025 09:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744707767; cv=none; b=RF8frRqzR1ZVPr7qgHcqzB+CDyP+nmc/A0FZVLvk4avB3pUKNLTGE95UHzHD54QRt/N8++Q6l++uM4w1LyNZbFXmli1ZK2BHkhX+rVhv/Y5qtvOHPO5qCrANZ5QmpoDQ7asYosAszwgFYqxYKU1GVdw8zd0otThFgiwE7oS50eg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744707767; c=relaxed/simple;
-	bh=yj/RHUQGrD0Vpi8ZhlvyunY1m7y5SFpPBaG4vllJlMA=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fU81mBthMNHJFOArM0DEFyBOJySmAQyM6YF/9O4bPPcEZ4y9yIIomdPuy7CibQPospPWCQQN92X9XLAK+1ByLBs5hR6V5ONh1nDTrld6QJiwfJQP80NkOUzbeEcx8DiDAstr+4luWPwqM9qxzSL+0bLc+8w5Nd2VZ+pDw0P298U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BeLY7cr6; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cfdc2c8c9so28422885e9.2;
-        Tue, 15 Apr 2025 02:02:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744707764; x=1745312564; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XuOhBO9CEP87bc9yIeteLcDK+2xvcpSt8YSWodUU3cI=;
-        b=BeLY7cr61dffaMg3/id5+xKWJTw8bvHtq0Zfi++0WlZnO4zmsaWBV0WcVMsnK+NkiS
-         0yBMrT+HYUOnqD3FlduBj/lJlw1Pg1n0PW2WIzRUuhassfjw3zhLIm14lZPyL9F6glAd
-         WnCy5Fr/NDTYFv4F8N/GTXZjA50MPS9Sb+GkK9+UQ0AMSQd5fgazOxzbGzGBJPlaablg
-         L7HnL9Lzx3w+inHNW4iQx5FnJyq6e3f/m/Y+y6nOxHZ2Umr/3K1odjDcRV35SRlN5TpC
-         qUPSaMI9nMo/ysKJLdwJ0pq6/5nmwYcXezFe3v5CLNA/CyxWjW7o3LGQvZbvVwYfey9t
-         CxLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744707764; x=1745312564;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=XuOhBO9CEP87bc9yIeteLcDK+2xvcpSt8YSWodUU3cI=;
-        b=LjFGRY84fyi1WokZSu7wtH5GbSs1XeDo+YJzSNaILFh+yZGtPIWF1mqlsSS3NZtcCO
-         Do44YlGoBpHRAXMCXW2KKxEddf5ZLsQhN10A25W1N34uRRp4sL5qm+I/CqcP1lw5Dgh2
-         biSGvsd+QZ7y48NulyMtIR+Vg1UHDM658W7jOF/+8sewbzzAqioQhnzoD6a6wVj1MeAj
-         iBOCN/zmpdCyYnUlFcjVz/xLuS34l8fYsXWlyU0JA5QalK4oht+XVyLtL7jBd4l2cD8E
-         qJ5pr32vRnZoVd6V3Ms/YGqqdMzk3ettLoTYBl8UGatz8sCiCwEIRPGIYCJe4KDyq2eO
-         jtNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+zU8mxGYRrwiGXtAhbZ718GaTHt6y6onVn6hmBf1r2wOMxxNKBAfH2CJHdJcbtvucgEUNLxDxfvod@vger.kernel.org, AJvYcCXhxMcs+Za64HIx+lM9dDD3HiCWMyeil3zMjrWzgrIgWxBgmIouvIPa9nibA4ubIIh4bhCQ27d0ztzX@vger.kernel.org, AJvYcCXqenpyecod3K2lOpS/AKNIe4URUsPaBF9y2F5ImbywXzvp0TK1tVRaSUEczI5yCJ40VFDAngEUh9L/muZG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvjTAfhoLjvUE3aWa3RFh6hXnsm0nciWt1OHDCCAkiuGAzpk4p
-	dgyB4K++r0tCUMqi8ZkdQX7ZCQTwAAGrQr2lbO9nz2sJHIxHSMwC
-X-Gm-Gg: ASbGncug+q4sAWpLK9vzgNRlKaZbAwRwbm7SzainhEIf38RbFaqIEJVJQo5dJmb9dmw
-	klBdXlscUmC+Lokt5kNP8PBriE1+VDMe4gCAlgKvGq6q9G5VW50HXdyGr3wN4O0AfAsw5HLJtSi
-	KN9JGwAtw0s1BBH5GOMgoas2xk70q6rqVbDbLX45S5YU47Or8BExupkeNv1sd/XB+je8oz1ZUW5
-	ynee0stOl2bv63kiwS9EIgf7dP536BJOlZ1DOpOlBxxX5bwNcrBWmj9tF6gzyZaZMqX2zHtbHqE
-	oI/6TMZF/DMhq5HXuumD7+smP0Q7zgp3dUQfvPMG3X1ZmSXH7JZ4b8V9XOKJ4G5uWzgxtxbc7Ah
-	U+cqMWMn+Aadh
-X-Google-Smtp-Source: AGHT+IGYDL9j6sFTjksYWjwTttmrgFprBoCq+0+CwtwUeQRKTRd8YhvTbGJwWQrxoE0oK1qcKi6JJA==
-X-Received: by 2002:a5d:64a9:0:b0:39c:1efb:ec8e with SMTP id ffacd0b85a97d-39ea51d3205mr11549315f8f.6.1744707763590;
-        Tue, 15 Apr 2025 02:02:43 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43f233c49f7sm199255635e9.17.2025.04.15.02.02.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 02:02:43 -0700 (PDT)
-Message-ID: <85458f261a66815507170a980b17fb45135548bd.camel@gmail.com>
-Subject: Re: [PATCH v2 03/13] iio: backend: add support for self sync
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
-	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Tue, 15 Apr 2025 10:02:45 +0100
-In-Reply-To: <20250411123627.6114-4-antoniu.miclaus@analog.com>
-References: <20250411123627.6114-1-antoniu.miclaus@analog.com>
-	 <20250411123627.6114-4-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C80F4ED;
+	Tue, 15 Apr 2025 08:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.27
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744704103; cv=fail; b=MzJBrkKf9fHdMyk1+4264rSe1K1xsuE8Ol8J5YcqvMQjPCGjzImgAn8sN0fvOf1daUKmIeYH67mPOuiKt4RkFbnu/7LijwECAJnqZ/Q06ZmFIk7BwJIpF2uNWB1m8WCuogx1qM0y+Xhxs3iUJiHtaFgjtjAsYb/fJ1xc0/ZOTKc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744704103; c=relaxed/simple;
+	bh=mEn3jwy72RUACHqhQBP5WPteiK8ji+L6wc+O9b/rZX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=CjcSdjUQPsPq4DPQ3/wiS6JX9uqwU+E7sUzsv0hBknjG74gg6OIoKvtL/xW9yRNI++8UnR+PzTKcBjBgItp42itBy2Owx1YXOqYS0MxQ+fakyGBcshyc064+PBgfRj1y8BM/MCHUaLDYWvyxljlbeUByAP1O7+zR4y1N1DEXnss=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=dd03ZOnN; arc=fail smtp.client-ip=52.101.71.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=avuVoS7kNAzVQDMP7fqcgOJygVEKS1waEELERqzoxy2SQiYeJu88lPR5TwlaIHFnyvia6rvxXh63wzz1zI5/ZxFjN6G0eqwWJprnIF3govkiyP14Lx3TppTgdKWvXQkTO+f85CvG5cTuepDQVun/GC5GNDvUfSr49MNTrH1EEIViDtyaZ6kCzke5V7+wFwmnFk+m/uypjdKyAW4/7kXSq2IF8DzzHHEAqROqOVmeMQ/byZU4ecLc4+H81n/KrdFSTjdAv8xLqXibRmlThWftyfRMx+m3fJMuNfJkjYIhb04CjJTQrZMr95N/wWaWbg7fukrg4a7sGjvihcORuPp2Qw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D6+ROBLxQmYGrXQg4DLIErH9yhI6FI/5cCrGTY1BmtE=;
+ b=HbdwDjj/wUMgujwOVbjqmeg6ojULZjAYFibCQJl1TDcvNeIGbHn4HiN6X2A+ys2lxdnUMXNQ3dkDBDIaqhlmxKVL5JYCFgzR+/y96duDBgz5pTMCJyFxGTmyWKdX+VpVYe5IPad1cM99ulbL2nsrO9VuvO5NWr2bMZEFYuafrTe/hsoxDDivaQaDKcBM91TxySkFbvCL0yXpxBGzqrfqIXY6OySM4V19dxSi4TOSft4TwymgPpIIXMhvD+ElzwS2gdsZmYg/BOxpqeIZlChvM37YrDE9w520ob/IcLAr8+u5tEOwgKCrKwSVN7nd0BIkymk3NJ4uJOU4X1Sgto2fWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D6+ROBLxQmYGrXQg4DLIErH9yhI6FI/5cCrGTY1BmtE=;
+ b=dd03ZOnNmieu05CHxJE/4rMupewgzlwiZIN+87ALVImUD+LcZmIJ7F0iKew5UoawO7rhmT13KjxInuFUL6y995ER2Nkt0U2BejqAEg+7gNXzceGupHPlsb8UzJ3exBhiTwQcepfmvf+h0/QZk2L/J+oggUtv3gjrUM6uhO884hcaJR0jktHzUQIpgDBrb0JQCPPgGkEAzmRPLpMQLmCyejApRFxLjhAKsAvYNzBHB1RgCmJfs1F8bFELQpwOOrTzczsBQMgBCbDtdKiUa8iZFKlGHkGjNd9dZGxzdzDzMi31YlX2+zdV5Nwul5w1QiOkYSu+M3zllYygfY9ddKUIjw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by PA1PR04MB10117.eurprd04.prod.outlook.com (2603:10a6:102:454::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Tue, 15 Apr
+ 2025 08:01:38 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8632.030; Tue, 15 Apr 2025
+ 08:01:38 +0000
+Date: Tue, 15 Apr 2025 17:10:16 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Peng Fan <peng.fan@nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
+Message-ID: <20250415091016.GB10243@nxa18884-linux>
+References: <20250408-imx-lmm-cpu-v4-0-4c5f4a456e49@nxp.com>
+ <20250408-imx-lmm-cpu-v4-5-4c5f4a456e49@nxp.com>
+ <20250414-wonderful-cute-bandicoot-accb6b@sudeepholla>
+ <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <20250414-tiny-classic-barnacle-5f8c8f@sudeepholla>
+ <PAXPR04MB84593BB91063D13BB05BEB5988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <PAXPR04MB84598733FA39A7402E91DA1988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <20250414-ebony-slug-of-felicity-421b0f@sudeepholla>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250414-ebony-slug-of-felicity-421b0f@sudeepholla>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI2PR06CA0016.apcprd06.prod.outlook.com
+ (2603:1096:4:186::22) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PA1PR04MB10117:EE_
+X-MS-Office365-Filtering-Correlation-Id: deb1a11b-6c12-40fe-dde3-08dd7bf3bff6
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?+fBh3669vw9F9ft0OoMYO0kV1EH6dvcIL6PmfEWlDNjgVYVP0slHhM6CnaQd?=
+ =?us-ascii?Q?yxmuFIWVv73QvpciVTptwIdh6VpFnoB/D6FgfnWN8uYcIwwAIxm5P+0vJoxW?=
+ =?us-ascii?Q?q2LViJxu4KCvVDx9Kcgo5XbYPwdQiDcMhmBp5FMCjj1eVgz3PKhxNzV/hfBg?=
+ =?us-ascii?Q?QJnybZJKORcQBbaa/DsLWFXoirSWy8uhW1Q8PCIOed8cEKhJKb0eEXqPTI8P?=
+ =?us-ascii?Q?hCoCvzMZQYl3PLOqY9xXgPL+6BTX4Z7ZfkdYMGcIKQecUQsLol09wHoFZ/lu?=
+ =?us-ascii?Q?e4ywTPMJo9jGXwsFazt0WS6FgXRbs3WhfY/HQzlsHXWCpnekXlKeeQ3Bmaux?=
+ =?us-ascii?Q?fHD0fwfYOlT8vRkpxbFPafiL+tapr6HGSp+7r80OGApIxPCovnPyYvRNLu7T?=
+ =?us-ascii?Q?bS77BbCuxz4jUhcQfvPKa3MfS3N2x+C6/ZH/kOoL+j0IjN00pADlXKUv2Edu?=
+ =?us-ascii?Q?piGOpIXiGbgk7s1EcutsJb/+nnJ3UPF2KPsFg244TyvfouQudBAw0dcrcT4x?=
+ =?us-ascii?Q?jRzdbc3RQfB4tVpMnHw3MO3lM3vC+OfMfde7iv3GE9xyKTmRZA1+ZkAPzlQg?=
+ =?us-ascii?Q?6OZ4VE9XinBrGEpbPq+TBYkSACMIMuPU9x5Ox6x5NbF4Xy7DSKt9Gftab4aX?=
+ =?us-ascii?Q?331x9WTV/Wyjys0Qf0F6o+J265j6l5pmWsRUy/DFYqThqf07tsknx5CuD8A6?=
+ =?us-ascii?Q?PyMPvnzYKFPq772wMnNL9f2cnegpCZFyEEg2bRLfidqlF+WVoamwXFWzb0pE?=
+ =?us-ascii?Q?m/rilaDW6CXDb9TxSKeNn7hjIBvdJi0wd1yvWvF4BmQ1z4FS651JM4gmHOP2?=
+ =?us-ascii?Q?S3ptQil1rLQvyjjiC96EBHk/zPPJhv+f0BsjSGoL7o+2fzVbgvytC0OtdhkV?=
+ =?us-ascii?Q?NN7Vd613Ysm7isSx0oJgjzZqRrAgqpP+VTvGqRCsV0mVAmgD7cRtshrPQUzD?=
+ =?us-ascii?Q?jUpjoQCtdiCNLI/vWIuQ4R/W45CjNk6yqn0hXat4QoKCbjT575OM9lXLdUbJ?=
+ =?us-ascii?Q?KE0RK0nq9cf16gk0hCvKPwJdMJP4LCi4CgcU87XmImeHUO5lLtqZwH1BaDMD?=
+ =?us-ascii?Q?2E5pcPeEL+WuvBmHmOIj4ioKMaxkwNATWnxG4UZQrpLVGb4oBixrmlPSFrOD?=
+ =?us-ascii?Q?xJqK4UIyxDQjSNT5ekCDkda6MSXq1h9JXW90fpzg0jRHjC6UzkBAvOQ8M+1k?=
+ =?us-ascii?Q?o5bhMGuNAHEFZ6KRlJlaS0syknnVCEZ6aYghIGpT6387Nqm6MucgHH8h9E+R?=
+ =?us-ascii?Q?eU2NBVi1Nh0g4vuRohh3+T08LJiHOzr8Pscku4lsFj31k9rvGvxaJjJ/7XE2?=
+ =?us-ascii?Q?JABi55NFN4lHLkVcnF2QbW/SJPXSdjCf3GtSmy85XBizAg3Htg+7jWD4d+2b?=
+ =?us-ascii?Q?lIGqRVySpZhyL/7asJXAh/xE7tuxcSHvOccbKmO4IIdEjFQwAWh4M1jdYzIl?=
+ =?us-ascii?Q?fBnSyXkTRYZPxOikYFgo1iVJIdllN2+L6temmOvV0YJ4lBWvrAVgGw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?3PENLZ8r+107KeV1KdKADb1UzlE1mkoiv94mWBpULocHDSGGZSQ6pmCIlaQg?=
+ =?us-ascii?Q?s7oFg1SBdfUyqTNXTqptPUzn3RKLSXzRO0S7QyfSJEDUY5lXt2zokict8h4t?=
+ =?us-ascii?Q?w9ZSLMln5dCQlvKWrYWloFiPBDPwk+Vme6EAB7NKjUCtgZhNAQucbEB3bPTa?=
+ =?us-ascii?Q?y2JCPPNswClrqePdLeQ50cczmsDYmqijdpCW+IbaG3PEsfuGAZITrX/3FuwP?=
+ =?us-ascii?Q?ugmaSZlfJMyFdp9pDxWxuA0D9N9IB0+qpY+n6rAiOj5nbsyFD3a2+x2sTqlL?=
+ =?us-ascii?Q?o5kVl/MK0pTql4kLspPty1W8vPKc99DZF+jV3ZZK8dAmno7H5HBEL66jZOai?=
+ =?us-ascii?Q?MM/CaLK21j6JX049cGQN0PKGUS5vsia9Cb7aO/dc5hsps0+NI5M3Z908N98i?=
+ =?us-ascii?Q?6/b361Q+hkL40+M9gnnezGUrbE+G0K2R3Hp7SnzwL8T253uE0Kby3syw3aU2?=
+ =?us-ascii?Q?wkqI9KbXWequgCs9xnJdZGS9DH9rTbPFau/kmYQ5rqYCax9u9n6c0hhlOTq+?=
+ =?us-ascii?Q?a2ObjprN9Vcqm+2wDjOLZNOXp7TRzM4KvEWPB3Vq3h8tcL+Mg8pl/lsmTNCk?=
+ =?us-ascii?Q?b7FqKvBx0i6VVvvh1IaVMZoG64im9ONnH805cvGBbAVXhcq0wukTUVA8alMv?=
+ =?us-ascii?Q?uWSGsB8w+p/hs+cI9AJZXXneGzhNcNHO01IihZEFhpAQOojHT0LVzhxa5CRY?=
+ =?us-ascii?Q?yuYJjPslfsGObLR/McqfuNS6XVW0lFnLUQqBQ+4rCq/TxIloImQJR7xo8vhl?=
+ =?us-ascii?Q?x03DjmJ+B763dyM0Idgxz9oE29GQCeenlF76dtW4fYV6n+14wH78FDnL+PEN?=
+ =?us-ascii?Q?eLt1hE5UI1HO1quOQvfRSMJoTBbh8QST47djSPvmQImA76DiYQCUd4OU1hSZ?=
+ =?us-ascii?Q?WTOtcrVF8aNdzxkpc/u6UWHMueIEQnDe7bi7fsZFjdtQfTL6+3xu0GcfKlqK?=
+ =?us-ascii?Q?XdvI7a15zniMuD5//8ig4vU3WEyq6Ok9znOKIoTNZVSspKUnzDPsBDttzRrt?=
+ =?us-ascii?Q?XkJD3K9Oif6VCJYEc3VsPgsNFjJzsYZ0DVvBitD9x14g6rz0FgCLU9dFZk9Q?=
+ =?us-ascii?Q?9hFPTB9xC7GSu0ZDhDhOYITVWtfm/HenZ/4Uf5NBp+tqi6zjpsKZonzuBb0J?=
+ =?us-ascii?Q?z542ptlDYozX7TrDp0jyX6aNCLKQPU9ZudzCJmw4B/RADHPeb32nLxebEXKJ?=
+ =?us-ascii?Q?A4CFkf76zz30vOy6JKWou5DTNGuyXbHVLrXXeH/UtkbUHz6xxJO3pbOKMWh3?=
+ =?us-ascii?Q?S1YPRFGGenwovx4tnjdhtwB4ivNQu4ZKGsdN3Ta9coFqAwxj5o/frYmT3RL8?=
+ =?us-ascii?Q?mY83iq8pYe0Bybed0xpK1fAPpOnFq2BKFuyB5gW/JJJJAfdFtaMTYijtTTiQ?=
+ =?us-ascii?Q?UqQz6QJ4i64UZH25YtCRTmeiWPagED34bM/KdUBCi5x4Ts4kpmhK+nx3puFK?=
+ =?us-ascii?Q?erUIVOTKoKXJBxIEPOw1bhBPbFk1Oz41WflNRPJRnjzLhqisqL3f9p5Qc6wd?=
+ =?us-ascii?Q?mb/tIYGj3CZDJj6dJxlry8ry4IbME2BTVEW+N90wlSCI/y12ziGkS+fuT1za?=
+ =?us-ascii?Q?7NXvGfEXQDZPlsbtaCsjb+GMCiSlSkI7XS9it7JZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: deb1a11b-6c12-40fe-dde3-08dd7bf3bff6
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 08:01:38.6537
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xoa6qVS+c2MUZT7vXcrz+2Fg5DVMRD83O8qlqBwOj1ZmN9AJO+zTAetYxVR9ggYIyiggcI8t1e4eb1ZTFbOrQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10117
 
-On Fri, 2025-04-11 at 15:36 +0300, Antoniu Miclaus wrote:
-> Add iio backend support for self sync enable/disable.
-> When disabled data capture synchronization is done
-> through CNV signal, otherwise through bit-slip.
->=20
+On Mon, Apr 14, 2025 at 12:17:34PM +0100, Sudeep Holla wrote:
+>On Mon, Apr 14, 2025 at 11:00:20AM +0000, Peng Fan wrote:
+>> 
+>> Oops, I just checked wrong Kconfig under drivers/firmware/arm_scmi/
+>> vendors/imx
+>> 
+>> Build this for ARM32 i.MX is ok, I just think no need. So add
+>> a ARM64 dependency.
+>> 
+>
+>OK, I will drop the ARM64 dependency when applying. I also don't understand
 
-It is still not clear what API's will come out of this but you need to impr=
-ove
-the commit description (and the API docs). Note that the above is very focu=
-sed
-on your use case and you're just using the same names defined in the device=
- docs
-and hdl IP. While that might be ok for the device drivers commits, it is no=
-t
-that nice for something that "tries" to be more generic.
+Thanks for helping on this.
 
-This is true for all the new API's being introduced...
+>the dependency on i.MX firmware LMM and CPU drivers in the scmi vendor
+>protocol as the dependency should be other way around. But I see Arnd had
+>fixed it so I will keep it as you have posted to keep them all aligned.
+Not dig into much on this.
+I just followed what Arnd did when I prepared the patchset to avoid
+potential build issue as reported before.
 
-- Nuno S=C3=A1
+Thanks,
+Peng
 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> no changes in v2.
-> =C2=A0drivers/iio/industrialio-backend.c | 30 +++++++++++++++++++++++++++=
-+++
-> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 6 ++++++
-> =C2=A02 files changed, 36 insertions(+)
->=20
-> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
-o-
-> backend.c
-> index 60578267643d..cb23433b22c6 100644
-> --- a/drivers/iio/industrialio-backend.c
-> +++ b/drivers/iio/industrialio-backend.c
-> @@ -830,6 +830,36 @@ int iio_backend_data_alignment_disable(struct iio_ba=
-ckend
-> *back)
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_data_alignment_disable, "IIO_BACKE=
-ND");
-> =C2=A0
-> +/**
-> + * iio_backend_self_sync_enable - Enable the self sync data capture.
-> + * @back: Backend device
-> + *
-> + * Data capture synchronization is done through bit-slip.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_self_sync_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, self_sync_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_self_sync_enable, "IIO_BACKEND");
-> +
-> +/**
-> + * iio_backend_self_sync_disable - Disable the self sync data capture.
-> + * @back: Backend device
-> + *
-> + * Data capture synchronization is done through CNV signal.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_self_sync_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, self_sync_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_self_sync_disable, "IIO_BACKEND");
-> +
-> =C2=A0/**
-> =C2=A0 * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate)=
- mode
-> =C2=A0 * @back: Backend device
-> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
-> index beff66d18151..6d006cb0da5a 100644
-> --- a/include/linux/iio/backend.h
-> +++ b/include/linux/iio/backend.h
-> @@ -104,6 +104,8 @@ enum iio_backend_interface_type {
-> =C2=A0 * @filter_disable: Disable filter.
-> =C2=A0 * @data_alignment_enable: Enable sync process.
-> =C2=A0 * @data_alignment_disable: Disable sync process.
-> + * @self_sync_enable: Enable the self sync data capture.
-> + * @self_sync_disable: Disable the self sync data capture.
-> =C2=A0 * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
-> =C2=A0 * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
-> =C2=A0 * @data_stream_enable: Enable data stream.
-> @@ -158,6 +160,8 @@ struct iio_backend_ops {
-> =C2=A0	int (*filter_disable)(struct iio_backend *back);
-> =C2=A0	int (*data_alignment_enable)(struct iio_backend *back);
-> =C2=A0	int (*data_alignment_disable)(struct iio_backend *back);
-> +	int (*self_sync_enable)(struct iio_backend *back);
-> +	int (*self_sync_disable)(struct iio_backend *back);
-> =C2=A0	int (*ddr_enable)(struct iio_backend *back);
-> =C2=A0	int (*ddr_disable)(struct iio_backend *back);
-> =C2=A0	int (*data_stream_enable)(struct iio_backend *back);
-> @@ -202,6 +206,8 @@ int iio_backend_filter_enable(struct iio_backend *bac=
-k);
-> =C2=A0int iio_backend_filter_disable(struct iio_backend *back);
-> =C2=A0int iio_backend_data_alignment_enable(struct iio_backend *back);
-> =C2=A0int iio_backend_data_alignment_disable(struct iio_backend *back);
-> +int iio_backend_self_sync_enable(struct iio_backend *back);
-> +int iio_backend_self_sync_disable(struct iio_backend *back);
-> =C2=A0int iio_backend_ddr_enable(struct iio_backend *back);
-> =C2=A0int iio_backend_ddr_disable(struct iio_backend *back);
-> =C2=A0int iio_backend_data_stream_enable(struct iio_backend *back);
+>
+>-- 
+>Regards,
+>Sudeep
 
