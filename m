@@ -1,55 +1,64 @@
-Return-Path: <devicetree+bounces-167170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F38A89930
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:01:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 077EFA89943
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:02:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA517189F973
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:00:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3A9E188D839
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D433D28B519;
-	Tue, 15 Apr 2025 10:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F57D28A1C8;
+	Tue, 15 Apr 2025 10:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DwHUv9d1"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="I3XfMDFL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94DD1F17E8;
-	Tue, 15 Apr 2025 10:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3042E24CEE4
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744711214; cv=none; b=HR4q1Xva4pc+MTO0JWprNR/pg+BV2Cc5eHZIJNx7UKZ2koEHaC31fmasQLU6qE6n4BWhSHGpDNla6dI1GcNnB24S2zvtT+wWJgfX1dMTyrvXTNJ31rMsbwZ14GD3O9UEv7Ak6S49LSVRci9wB8vnDfTmhgPnDkarSiXzrAR7AuA=
+	t=1744711319; cv=none; b=B5cpN/+DrlFZld5xq7hOclsry9didqowVCYa9xNXwZa7NrSt0rPTaeFzdT4BCN4SqNQHPW5360OEukTlA4mAkWtJ1Cp48eEaR0t8u/Q6B+/+1pzb/FrWw2QaAunzzfcft2CzrGftXM26kR+tb9mu8VTm+sgQ3Js1nDivFmSvGGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744711214; c=relaxed/simple;
-	bh=9yw0Qzz1F9KcriheuD2Lay5nFwu3/DTc+aJ7BlFLoTg=;
+	s=arc-20240116; t=1744711319; c=relaxed/simple;
+	bh=FFl5sm7Pdvz6wgDPyj/MaZX9FxPABLdOMgxgZjnyAZ4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PU/Yg4aNeogy6mdAyO986GqiEmeMwMc6jg2EBUClmhmb2KiX5MjRlrBXdf/mKH8c/uNcWbb0e4jW8rZVAC+BeHPYlDrvETpe2MgF40ZSPXK5IGsZMdpGA0DXaUUbzjkFagsBWROucVLg3LcTfC8gPAf3EUHB0NNsEE1Lo5kVl98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DwHUv9d1; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744711210;
-	bh=9yw0Qzz1F9KcriheuD2Lay5nFwu3/DTc+aJ7BlFLoTg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DwHUv9d1qTN+uPe8HwwTS+BIN8TB0IIPrqWppWKEa6OHF2/zGpdeH4DkkM0vnOxk5
-	 1n3kY72+9K554uTmWtJxThiJFOYDc5/815u3xZE2/nFY0dPOMRJ/1mZrWiL4QvqoWh
-	 V8xmlhAcLRoeBoT3g8wIzoVgot/pahpErOJH4iyXlPUeOPCqgliBAcZkoAa0xq8eBc
-	 D0fvajYGv5N5b896UpLKVs7PwhcTiNr//tm8zPltooPJG2pr2HjQaBquBP+OyBEWP4
-	 ZfX96iMBdrhAySsvZrSgDdy8IWjHnrjbQBbH4tCeus4czUZbE9Jre50OmW40KyINOt
-	 ZdzKBlFhlQjaQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 In-Reply-To:Content-Type; b=n4Jkohq+iVhv68WoY+sVGfDfwb0ELag+S3KfAcfE7OACxZy0CmhzqYRN46O6ntTdLE2URySFHx3R31eSJD2lh6AM0YrEe5VO9j9nGE1KQWYUCkG5uC014MlKnD4XRYTsgVGix8Z2zo6IRbsEKgwpnwZ/6gK+1EgePwnqi8ElS1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=I3XfMDFL; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1744711317;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Og5QmpBeRfTcKCNY2isgPCvYLtP+0K9FKE9am/x/sVw=;
+	b=I3XfMDFLK93Yb9qGTpjqfICnD8KPnCfy3JvVlVsbDk584fKbGMA5D7u/ruCXUCnURHdD9p
+	DxkAv0o3zsMoJLsYk+w8zdqjwTFyoFcG/K/YLP1kxbh2NT5r3ggWAUteBh9Nr3kXdk/IMZ
+	Con8rNwmUeb5EJASkBIzMLtIUJe0fGE=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-515-OLk8wTxMNGq241XKqSO-yg-1; Tue,
+ 15 Apr 2025 06:01:52 -0400
+X-MC-Unique: OLk8wTxMNGq241XKqSO-yg-1
+X-Mimecast-MFC-AGG-ID: OLk8wTxMNGq241XKqSO-yg_1744711310
+Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8BF1F17E0FA7;
-	Tue, 15 Apr 2025 12:00:09 +0200 (CEST)
-Message-ID: <385e75f7-9b45-46cf-9202-1951c7e0fe5e@collabora.com>
-Date: Tue, 15 Apr 2025 12:00:09 +0200
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BF2901800259;
+	Tue, 15 Apr 2025 10:01:49 +0000 (UTC)
+Received: from [10.43.2.2] (unknown [10.43.2.2])
+	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id ACA4219560AD;
+	Tue, 15 Apr 2025 10:01:44 +0000 (UTC)
+Message-ID: <9de10e97-d0fa-4dee-b98a-e4b2a3f7019c@redhat.com>
+Date: Tue, 15 Apr 2025 12:01:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,110 +66,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 23/23] drm/mediatek/hdmi: Use
- syscon_regmap_lookup_by_phandle_args
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
- <jitao.shi@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
- "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
- =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
-References: <20250409131318.108690-1-angelogioacchino.delregno@collabora.com>
- <20250409131318.108690-24-angelogioacchino.delregno@collabora.com>
- <a73ae86c406de1002c7fcff9f34c2eeaaa5f03dc.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
+ defs
+To: Andrew Lunn <andrew@lunn.ch>, Andy Shevchenko <andy@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Michal Schmidt <mschmidt@redhat.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20250409144250.206590-1-ivecera@redhat.com>
+ <20250409144250.206590-8-ivecera@redhat.com>
+ <df6a57df-8916-4af2-9eee-10921f90ff93@kernel.org>
+ <c0ef6dad-ce7e-401c-9ae1-42105fcbf9c4@redhat.com>
+ <098b0477-3367-4f96-906b-520fcd95befb@lunn.ch>
+ <003bfece-7487-4c65-b4f1-2de59207bd5d@redhat.com>
+ <8c5fb149-af25-4713-a9c8-f49b516edbff@lunn.ch>
 Content-Language: en-US
-In-Reply-To: <a73ae86c406de1002c7fcff9f34c2eeaaa5f03dc.camel@mediatek.com>
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <8c5fb149-af25-4713-a9c8-f49b516edbff@lunn.ch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 
-Il 15/04/25 10:14, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
+On 10. 04. 25 11:54 odp., Andrew Lunn wrote:
+> ...
 > 
-> On Wed, 2025-04-09 at 15:13 +0200, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Use syscon_regmap_lookup_by_phandle_args() which is a wrapper over
->> syscon_regmap_lookup_by_phandle() combined with getting the syscon
->> argument.  Except simpler code this annotates within one line that given
->> phandle has arguments, so grepping for code would be easier.
->>
->> There is also no real benefit in printing errors on missing syscon
->> argument, because this is done just too late: runtime check on
->> static/build-time data.  Dtschema and Devicetree bindings offer the
->> static/build-time check for this already.
+> So a small number of registers in the regmap need special locking. It
+> was not clear to me what exactly those locking requirements are,
+> because they don't appear to be described.
 > 
-> Please rebase this patch to the first patch of this series.
-> I would like to apply refinement patch first then apply hdmi v2 patches.
+> But when i look at the code above, the scoped guard gives the
+> impression that i have to read id, revision, fw_vr and cfg_ver all in
+> one go without any other reads/writes happening. I strongly suspect
+> that impression is wrong. The question then becomes, how can i tell
+> apart reads/writes which do need to be made as one group, form others
+> which can be arbitrarily ordered with other read/writes.
 > 
-
-Please use the original patch if it still applies, then:
-
-20250112134708.46100-1-krzysztof.kozlowski@linaro.org
-
-Cheers,
-Angelo
-
-> Regards,
-> CK
+> What i suggest you do is try to work out how to push the locking down
+> as low as possible. Make the lock cover only what it needs to cover.
 > 
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> [Angelo: Rebased over HDMIv2/DDCv2 series cleanups]
->> Reviewed-by: CK Hu <ck.hu@mediatek.com>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 7 ++-----
->>   1 file changed, 2 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> index 784bc05c9541..00a638a3caf4 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> @@ -269,12 +269,9 @@ static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *hdmi, struct device *dev, struc
->>           * MMSYS_CONFIG device and the register offset of the HDMI_SYS_CFG
->>           * registers it contains.
->>           */
->> -       hdmi->sys_regmap = syscon_regmap_lookup_by_phandle(np, "mediatek,syscon-hdmi");
->> +       hdmi->sys_regmap = syscon_regmap_lookup_by_phandle_args(np, "mediatek,syscon-hdmi",
->> +                                                               1, &hdmi->sys_offset);
->>          if (IS_ERR(hdmi->sys_regmap))
->> -               return PTR_ERR(hdmi->sys_regmap);
->> -
->> -       ret = of_property_read_u32_index(np, "mediatek,syscon-hdmi", 1, &hdmi->sys_offset);
->> -       if (ret)
->>                  return dev_err_probe(dev, ret,
->>                                       "Failed to get system configuration registers\n");
->>
->> --
->> 2.49.0
->>
+> Probably for 95% of the registers, the regmap lock is sufficient.
 > 
+> Just throwing out ideas, i've no idea if they are good or not. Create
+> two regmaps onto your i2c device, covering different register
+> ranges. The 'normal' one uses standard regmap locking, the second
+> 'special' one has locking disabled. You additionally provide your own
+> lock functions to the 'normal' one, so you have access to the
+> lock. When you need to access the mailboxes, take the lock, so you
+> know the 'normal' regmap cannot access anything, and then use the
+> 'special' regmap to do what you need to do. A structure like this
+> should help explain what the special steps are for those special
+> registers, while not scattering wrong ideas about what the locking
+> scheme actually is all over the code.
 
+Hi Andrew,
+the idea looks interesting but there are some caveats and disadvantages.
+I thought about it but the idea with two regmaps (one for simple 
+registers and one for mailboxes) where the simple one uses implicit 
+locking and mailbox one has locking disabled with explicit locking 
+requirement. There are two main problems:
+
+1) Regmap cache has to be disabled as it cannot be shared between 
+multiple regmaps... so also page selector cannot be cached.
+
+2) You cannot mix access to mailbox registers and to simple registers. 
+This means that mailbox accesses have to be wrapped e.g. inside 
+scoped_guard()
+
+The first problem is really pain as I would like to extend later the 
+driver with proper caching (page selector for now).
+The second one brings only confusions for a developer how to properly 
+access different types of registers.
+
+I think the best approach would be to use just single regmap for all 
+registers with implicit locking enabled and have extra mailbox mutex to 
+protect mailbox registers and ensure atomic operations with them.
+This will allow to use regmap cache and also intermixing mailbox and 
+simple registers' accesses won't be an issue.
+
+@Andy Shevchenko, wdym about it?
+
+Thanks,
+Ivan
 
 
