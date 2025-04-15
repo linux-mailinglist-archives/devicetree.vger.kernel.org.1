@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-167061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E096A894D4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:22:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A02A894E3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:26:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BAAC1895A40
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:22:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE88D16E0A8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E19279907;
-	Tue, 15 Apr 2025 07:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD499275105;
+	Tue, 15 Apr 2025 07:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/H49rnO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VfLwaAOT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE20D27584E;
-	Tue, 15 Apr 2025 07:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953B710F2;
+	Tue, 15 Apr 2025 07:26:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744701757; cv=none; b=sm/keWiyi/orZdUz/K3Z0z9IU+s7uYsxGq0/yasWhdCHta+x/LmYXumAr3WV34/cO5Xjn0fsosQhgbesPxsDw8vlF+s/7kFwsZgrJXrxQEf5y3N2i0RW28yh6443E54wlVX1jMAOtz/iypDuYjUjvb/nBY/6qBUjQQ119cZvgog=
+	t=1744701967; cv=none; b=MuXkpa49LTwWfPJsp6MXigcTloSuIWOkjpFzZvfyNoHVURanCBbm28S0Mw8ic4wkkmlr5K32OBR4CYdgkUI81pPX/FAVuClm+yDfubC3s/r9JgGH2Algl0TH42V7CWZDIYRX3toBN43KA72rGLdpRoKv0xllCX46zbH4YQ8LwG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744701757; c=relaxed/simple;
-	bh=gGQsWopTglD7RnUawVXrkYWdyJ6cqm+d3Pz6GO0PWzg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I0yHpvRD/4xsuBxC8R8YO49YenBVGmvcTdknxkeViT1EFYn2RusVLlk1inWBXgQ3Ar8oK8Dgd2GGapWljqE7o8yJiKL76UuGd9voQvderXK+bfgzEqbufwNdhSNNS/sKAHQDfc3pk1BVJpodvzBIhUfqAuXn/mfRraa4z1xO0WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/H49rnO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C25C4CEDD;
-	Tue, 15 Apr 2025 07:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744701756;
-	bh=gGQsWopTglD7RnUawVXrkYWdyJ6cqm+d3Pz6GO0PWzg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R/H49rnO9Kw2/IsuHlA312swOiymOEkf07Vek+JFqtLuQv9nIu9V/djb84rD92wdu
-	 NyjmwTzoOLeNjKdpTjWURdQtpypRIrOFGMCthQwF6DJPqYhkLsWiaaf7ir5cR/7Tus
-	 tziDED3TQOSegRItb7jiHPQErlM8c8pUM5k1dTCLEKSmINsV/oi1W0qhURqJeElRTU
-	 adPicK7KjU5bRU3ve1NZkeN2TzDvC5KRzP4gQId4uRD47T+uoWmSg+hWF1luMryIQa
-	 4FJa2zCuNRu57p/ijED5AN7grmYnlrftSqXRWWNVhmv9SZHkqACYpu/V8c/1jf4n9h
-	 SHnSt4gKPqaBQ==
-Message-ID: <c82085a7-c725-4a26-82c1-817dac508916@kernel.org>
-Date: Tue, 15 Apr 2025 09:22:30 +0200
+	s=arc-20240116; t=1744701967; c=relaxed/simple;
+	bh=gexzkna3532lP1292T+3u7k+7579AwNhCBaiG48e/ig=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=fUJivRT3fXXRq3uGm6UPkXOAMI99A9vJs8P3JQdSaobi5shIwqcmOErW1Bj2eQUt3whQKgy+Lt91sE53ASoI4+mmUznOaeH0OOiYYvJ/0/ghSRoN426NRxx5DI561CP8tXLcNeZgooVgZ37RJYZnWVIjgFT2bxHDvtN2fJbw4Y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VfLwaAOT; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1744701963;
+	bh=gexzkna3532lP1292T+3u7k+7579AwNhCBaiG48e/ig=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=VfLwaAOTqt0rkldA6m+sC5Leio/nx3iXCEvQFuLaWHwme2tzURuBSfEPJ2uvppO6P
+	 6a6ykFP5VgDHggJlvD38OIRr8wmldySQ5UpLHL6t4y4akogGbesn6RhwCU/jvlC83M
+	 FSSrxmBZrVeQNJqYl9zfBcWUDa+HDVhllFq1HH24v9g5d1kMHM+FLBUx4H6jTdlKJ6
+	 szTsWU6stkPLJyPwcVhSQnyNzgTpJbfRXgDhyKV81L5PIC+7q3KYhAE+UxzkceL6RE
+	 rZaaGhEB6DwH2da/ZAegGq92JRYimsPcRrWieBO9NnltEIUlMTGVEYyw0ofxJsdBpm
+	 lQkVJsqsWZ6Og==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 10CC117E0CA7;
+	Tue, 15 Apr 2025 09:26:03 +0200 (CEST)
+Message-ID: <af9ce106-474c-468c-87fe-8305708a4d11@collabora.com>
+Date: Tue, 15 Apr 2025 09:26:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,95 +57,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: Add Sitronix ST7571 LCD
- Controller
-To: Marcus Folkesson <marcus.folkesson@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
- <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Add jack
+ detection with accdet
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?=
+ <nfraprado@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250304-genio700-accdet-dts-v1-1-86d77c5cc745@collabora.com>
+ <174462439206.45420.6727023772221653939.b4-ty@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250415-st7571-v4-1-8b5c9be8bae7@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <174462439206.45420.6727023772221653939.b4-ty@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 15/04/2025 07:58, Marcus Folkesson wrote:
-> +title: Sitronix ST7571 Display Controller
-> +
-> +maintainers:
-> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
-> +
-> +description:
-> +  Sitronix ST7571 is a driver and controller for 4-level gray
-> +  scale and monochrome dot matrix LCD panels.
-> +
-> +allOf:
-> +  - $ref: panel/panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sitronix,st7571
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  sitronix,grayscale:
-> +    type: boolean
-> +    description:
-> +      Display supports 4-level grayscale.
+Il 14/04/25 11:53, AngeloGioacchino Del Regno ha scritto:
+> On Tue, 04 Mar 2025 18:43:49 -0300, Nícolas F. R. A. Prado wrote:
+>> Enable audio jack detection for the Genio 700 and 510 EVK boards. This
+>> is handled by the MT6359 ACCDET block, which on these boards has the
+>> HP_EINT pin pulled high and connected to a normally open 3.5mm jack.
+>>
+>> Add a phandle to the accdet in the sound card node so the machine sound
+>> driver can initialize the accdet.
+>>
+>> [...]
+> 
+> Applied to v6.15-next/dts64, thanks!
+> 
+> [1/1] arm64: dts: mediatek: mt8390-genio-common: Add jack detection with accdet
+>        commit: 691712b065d349bde7d5561aa8e1857d38b7c65a
+> 
+I dropped this as I have just acknowledged that bindings were not accepted.
 
-That's fully deducible from compatible, no? Or does it depend on actual
-panel, but then what else depends on the panel?
-
-Best regards,
-Krzysztof
+Cheers,
+Angelo
 
