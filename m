@@ -1,96 +1,190 @@
-Return-Path: <devicetree+bounces-167091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE09A8959E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C29C2A895BA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:55:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E38B9189CF88
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:50:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F9BB1898832
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A2923E25B;
-	Tue, 15 Apr 2025 07:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A01C24C67A;
+	Tue, 15 Apr 2025 07:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WWI9D+B9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAMWoD50"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84B3194C86;
-	Tue, 15 Apr 2025 07:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFB2194C86;
+	Tue, 15 Apr 2025 07:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744703409; cv=none; b=rGEQXQbqfD6hFGIXy8bXuL+A2Hw+UWTLxK0WO1yx44KpR5rrrN62tC3pC77qZRrPYBIPUGnzgym7zzw5IKnFd+DX9fKAi4Dd6/9NX9AvL4ykM7ylOKEhjkgjvD1BQN/Z/799kMkUJmTLK/nZ8R4Z8TdVG9UlofQlzaBnqCPvLW8=
+	t=1744703738; cv=none; b=dygVGLhAp8bS4VvnA/RCvAVWqi5TfK7je5xp7C45H/qnNZNXrob0cAo7vDFtjh+mYM/60oGYGhJ+LvYdKFnkLL1TFKIU5x4MMRaJ5JNTxUfsU1KihUTfQO+rgJzLTPtROJTN9BvbjNJZ5xN+/QQc3Pm70c/qAMJW9Ud+SlA/LJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744703409; c=relaxed/simple;
-	bh=ZSydm9Jlx+I1aH900HrLtzFJRplcxK22NCacX8LxP4s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YqwU725Au27WtiU7qAS/TufRbCtdfLxq6NnoH94LRo/eTaBBu1NCchnc1wugeF/Ha+9oDigX3k0ojua5S9FxKDIA/bUiqGdyvjIRAmxa/FkJIPZSY0zaVl2q24XxkxKSwHlVVuQxw13V/hGDkrWTta83k7mouNKrECm7cmuG2j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WWI9D+B9; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744703405;
-	bh=ZSydm9Jlx+I1aH900HrLtzFJRplcxK22NCacX8LxP4s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=WWI9D+B9tLo4kylUCqMTuhqvPIDHD7Qzag0J/WLsfI1ZLdrb2taQv8V5YscJjQK4/
-	 MNxKLWcZKjAdFQBV6JuK/pXIrDLr23zsmLp0O2ykMMAlDm1OE6+Fp8TX7l8bpCOLCR
-	 AJhEz8Xu74ppF+hz/6NL7FGvSerfwn6j21imTQiMAX/AFLH3N5Z08/BqgkHCSJpGcX
-	 Y+ifpIQqN3WrM7ozbTKF5wOowgM9sUr3QVfKW+uOg/mMNbT3hYp5E7kBbfZIIs2cQH
-	 zNg5l8ljLiQrLcN2Lh9XxtAaqmwCQyEuBynbVptCmofRiIXp/sNiP7VjoZT0IDpvCu
-	 xmjNStevdO9WA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F1F2417E05EA;
-	Tue, 15 Apr 2025 09:50:04 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Alexandre Mergnat <amergnat@baylibre.com>, 
- Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, 
- Chris-qj chen <chris-qj.chen@mediatek.com>, 
- MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
- Chen-Yu Tsai <wenst@chromium.org>, Tommy Chen <tommyyl.chen@mediatek.com>
-In-Reply-To: <20240925080515.16377-1-macpaul.lin@mediatek.com>
-References: <20240925080515.16377-1-macpaul.lin@mediatek.com>
-Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8195: Add power domain for
- dp_intf0
-Message-Id: <174470340491.18036.10677308762787483666.b4-ty@collabora.com>
-Date: Tue, 15 Apr 2025 09:50:04 +0200
+	s=arc-20240116; t=1744703738; c=relaxed/simple;
+	bh=SfLVHsoY/QAXKrai3AX+QQVNRS3TPHWbMePbzgi022w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fJVBbjbc+MDoYmZNSHpZ+RruB8g2UMHsg/E7N7sL2jqxJchJuFoD0q92+hmdL7+dGFgZJ7p+eYaslCv0YS2Xq7VqTP4EtYvG5A6HJ6826myOPeS9mlJh/MOnjGV/5vwq1NCit4jxHAWb2W1Iu9hfimp7y8qVQv6Fow64MHLE8RY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAMWoD50; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5D2CC4CEDD;
+	Tue, 15 Apr 2025 07:55:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744703738;
+	bh=SfLVHsoY/QAXKrai3AX+QQVNRS3TPHWbMePbzgi022w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KAMWoD50iF7dn8HbeSqrfhwq+k9/9WTxoioDlcoI10nMivxsaWqAAVXVBuxHciHwV
+	 XJdR7nPdSOZWwfygd0dvIwqMdg3+SAroKSM27h6W8jlh+Z7GAG/CgFmHt21H4RIJsA
+	 7Dc9yoZx2cKuZoxm/Sbmn5apFOG0N+6jFjbuy0LzFeLI3+piR55KfICWJ0/WnM5w/1
+	 2aqqH1LpOw6iMKenTWjI8HlfUdziQfVqvTnIaQFxiIK5YjmskW3Bi2unk0obcLYK5o
+	 HXD61Q737t8VqyaGhcpd7ulnabhOG5iDK7GPoyWaltb6BmXts/MYp9KTxOVfroIPls
+	 l+Gcrm/BOOXBw==
+Date: Tue, 15 Apr 2025 09:55:33 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: linux-leds@vger.kernel.org, lee@kernel.org, pavel@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, 
+	knezic@helmholz.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add binding for WL-ICLED
+Message-ID: <20250415-dashing-impartial-baboon-70d086@shite>
+References: <cover.1744636666.git.knezic@helmholz.com>
+ <35c7f697070b3939727f1115d3a279e280f72cd6.1744636666.git.knezic@helmholz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <35c7f697070b3939727f1115d3a279e280f72cd6.1744636666.git.knezic@helmholz.com>
 
-On Wed, 25 Sep 2024 16:05:15 +0800, Macpaul Lin wrote:
-> During inspecting dtbs_check errors, we found the power domain
-> setting of DPI node "dp_intf0" is missing. Add power domain setting
-> to "MT8195_POWER_DOMAIN_VDOSYS0" for "dp_intf0"
+On Mon, Apr 14, 2025 at 03:28:50PM GMT, Ante Knezic wrote:
+> From: Ante Knezic <knezic@helmholz.com>
 > 
+> WL-ICLED is a RGB LED with integrated IC from Wurth Elektronik.
+> Individual color brightness can be controlled via SPI protocol.
 > 
+> Signed-off-by: Ante Knezic <knezic@helmholz.com>
+> ---
+>  .../bindings/leds/leds-wl-icled.yaml          | 88 +++++++++++++++++++
 
-Applied to v6.15-next/dts64, thanks!
+Filename based on compatible. Choose one compatible and use it here.
 
-[1/1] arm64: dts: mediatek: mt8195: Add power domain for dp_intf0
-      commit: c6419e4f2ae22bf1404ac39e88c9bf0de8767874
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml b/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
+> new file mode 100644
+> index 000000000000..bf79c7a1719b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-wl-icled.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-wl-icled.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LED driver for WL-ICLEDs from Wurth Elektronik.
 
-Cheers,
-Angelo
+driver as Linux driver? Then drop and describe hardware.
 
+Also drop full stop
+
+> +
+> +maintainers:
+> +  - Ante Knezic <ante.knezic@helmholz.de>
+> +
+> +description: |
+> +  The WL-ICLEDs are RGB LEDs with integrated controller that can be
+> +  daisy-chained to arbitrary number of LEDs. Communication with LEDs is
+> +  via SPI interface and can be single or two wire, depending on the model.
+> +  For more product information please see the link below:
+> +  https://www.we-online.com/en/components/products/WL-ICLED
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - we,1315x246
+> +      - we,1315x002
+> +      - we,131x000
+> +      - we,131161x
+> +      - we,131212x
+
+Is that a wildcard in each compatible?
+
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  '^led@[0-9a-f]$':
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +        description:
+> +          This property denotes the LED position in the daisy chain
+> +          series. It is a zero based LED identifier.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+
+Missing ref to spi periph schema. See other bindings.
+
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        icled@1 {
+
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+led-controller
+
+> +            compatible = "we,131x000";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <1>;
+> +            cs-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +
+> +            led@0 {
+> +                reg = <0>;
+> +                color = <LED_COLOR_ID_RGB>;
+> +                function = "error";
+
+Use standard defines.
+
+> +            };
+> +
+> +            led@1 {
+> +                reg = <1>;
+> +                color = <LED_COLOR_ID_RGB>;
+> +                function = "warning";
+
+Best regards,
+Krzysztof
 
 
