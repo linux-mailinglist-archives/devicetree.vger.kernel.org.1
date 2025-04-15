@@ -1,133 +1,119 @@
-Return-Path: <devicetree+bounces-167440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C52D5A8A3D7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 18:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BEC2A8A3F1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 18:21:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EB983B5D79
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3C243AD1C4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1E520E003;
-	Tue, 15 Apr 2025 16:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC8221507F;
+	Tue, 15 Apr 2025 16:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pztQCA3m"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="wY4dHVhd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38802DFA41;
-	Tue, 15 Apr 2025 16:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70EE1F4188;
+	Tue, 15 Apr 2025 16:20:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744733699; cv=none; b=W424lMifkqOYvkzCi0CTCpZ7IPwuwuyvrbRaWb4OuAJrFnrZHhK9ZjcFPmrmIf5OSmul+DfWBLZUXKrQYku/kWhLaxxAym6WyqqSf/Hohp7wwyaQ8BWWrOaQyQemofWZAcJimqm8H6u0y2hNZieeB02eRt+6JobzZXiBZUDwO+k=
+	t=1744734061; cv=none; b=RfwogzfpYMiKnkUlDxxKkFk3FZNtUunRof2H+b6A+L/aeu+7/IqqNerwrNW6q6lcTeKItXaP4c7ugEq0DYADAusx1AFtRlRYLhf58QIMgwuU/8/LsKjBS6CZkM7KYU3eRtsjQXewthJRqCLol4uxc3iC1WKFIGXbWkfDRtrEZ4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744733699; c=relaxed/simple;
-	bh=U/rKNYDUD8j6QMOYLJ34Ll3gyPFM6SLKNxk//x2JQP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nm7ucF6UbYQxmjmbeXLawz2Aq4/7Rjl+b8UfzgZmkqQ7XtK1B22Vrg8DNOhnABlONGtvxqHz3GG8FsE60locFTTKJL4+7Mm2LBCdsuEODIpxuaGlC1OagcwzoMJUVmxNTqtMsiF+XFKzaj5FSj3uR3NtlmFILd19gW/YtIvj1R8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pztQCA3m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 743E4C4CEEB;
-	Tue, 15 Apr 2025 16:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1744733698;
-	bh=U/rKNYDUD8j6QMOYLJ34Ll3gyPFM6SLKNxk//x2JQP0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pztQCA3m4GCim/1wSoY8Mu8F8hiIGUr0WM7lChdgo6fkoAulk7Da+VoWMtvINe60v
-	 o0eezdUCv+z2WE8DZF6zM1Ra2I8U+5eiZLlBGNASYIpAQD0Z16N9YYS0vmCWJ1gINx
-	 ehq9XyP/8CEQDI9/XyTxr1znYNaP1Pjy2m31UCRc=
-Date: Tue, 15 Apr 2025 18:14:55 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com
-Subject: Re: [PATCH v8 08/13] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <2025041530-random-cheek-125d@gregkh>
-References: <cover.1742418429.git.andrea.porta@suse.com>
- <3fbc487bc0e4b855ffbee8ed62cfb6bf3b0592e8.1742418429.git.andrea.porta@suse.com>
- <2025041557-masculine-abrasive-c372@gregkh>
- <20250415165505.0c05bc61@bootlin.com>
- <2025041531-dubiously-duchess-276a@gregkh>
- <Z_5-Jjbu6XoHGmxN@apocalypse>
+	s=arc-20240116; t=1744734061; c=relaxed/simple;
+	bh=R6oJbOSdI93M6ihDGiGprnVl9fh+A4F0YVOXmGTzuEU=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=kNfSvaConybwZV3Kjq7Cf2yj4Cv5VlWF4wUyKGMPe9ohidyMMYGHxoxrS2tlWw3CJ+ja4nVr7iZImPoobyBsyzIUvlFMC75qQ/hBKktjkkuqlGBaj6es29DUnq0IdduWylXQYMVzuc1h6S4qzqrb+Sn940EfvWoeih8dMxH4f3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=wY4dHVhd; arc=none smtp.client-ip=91.207.212.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
+	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F7w6Y5029858;
+	Tue, 15 Apr 2025 17:20:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=dk201812; bh=MdbgZzGrpf3fbja1j7+Yz6F
+	ptArFQVzlNAO/yRnhqUY=; b=wY4dHVhd2akXI4tZJ7bJZgQ2+D+3PgGbWhgfEGZ
+	CToE39my81fTVmOj3uIQIxFRBfwOVQDjh0q37xL4tvoQYGlSr4W2zT9nl4YyVDy7
+	sI3j1pUhvj4ehqHNrQfHXcCIljegyuzMycmX1r2w9eIlvEFKQpv6TE0MX/1/V1Un
+	+x60AfY8IZr5eoM6ZFIUpneVcPHk32ahqgpI11hVSLbwTGNHVrjppIfeUamJ/LLp
+	T5cqFtPMpSbrP1Ye4CnmvPGLH99x2m1vFFqxcRbJxYVJsMM1hOyW01i8tbqHmX3b
+	lIQpExuhyB/xa9+hWVFhki1iZQYvzf7P4/Ks9zrXrRe2X3g==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 45yeeua1mv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Tue, 15 Apr 2025 17:20:35 +0100 (BST)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ (172.25.6.134) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 15 Apr 2025 17:20:34 +0100
+From: Matt Coster <matt.coster@imgtec.com>
+Subject: [PATCH 0/2] Imagination BXS-4-64 MC1 GPU support (DTS changes)
+Date: Tue, 15 Apr 2025 17:20:23 +0100
+Message-ID: <20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z_5-Jjbu6XoHGmxN@apocalypse>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEiH/mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDE0NT3aSKYl0TXTMT3ZSSYt1kSwuTFAMLczNTUzMloJaCotS0zAqwcdG
+ xtbUAQUia+F4AAAA=
+X-Change-ID: 20250415-bxs-4-64-dts-c984d0876556
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+        "Alessio Belle" <alessio.belle@imgtec.com>,
+        Alexandru Dadu
+	<alexandru.dadu@imgtec.com>,
+        Luigi Santivetti <luigi.santivetti@imgtec.com>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=824; i=matt.coster@imgtec.com;
+ h=from:subject:message-id; bh=R6oJbOSdI93M6ihDGiGprnVl9fh+A4F0YVOXmGTzuEU=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMaT/aw+80r1sosreTPHNq9bwXFbk+5AlFPjz/IQl/qd8u
+ vdU39/6vKOUhUGMg0FWTJFlxwrLFWp/1LQkbvwqhpnDygQyhIGLUwAmMuEuwy9mZ47tLD/nqMSE
+ Bf9kmHjw4Kt9Ir5VaU1vHht9km2Y7sjDyHD7pkccc77gwY25nCxsak+z1GP0GpVquVuWed1NP2y
+ hzgkA
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Authority-Analysis: v=2.4 cv=Ga0XnRXL c=1 sm=1 tr=0 ts=67fe8753 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=UtEzwyU9vMAA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=zVSXwL2RMzKZDUOSOyAA:9
+ a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-GUID: 2SfXehZXwoaluiDtpteBdrc6yWZFut3X
+X-Proofpoint-ORIG-GUID: 2SfXehZXwoaluiDtpteBdrc6yWZFut3X
 
-On Tue, Apr 15, 2025 at 05:41:26PM +0200, Andrea della Porta wrote:
-> Hi Greg,
-> 
-> On 17:14 Tue 15 Apr     , Greg Kroah-Hartman wrote:
-> > On Tue, Apr 15, 2025 at 04:55:05PM +0200, Herve Codina wrote:
-> > > Hi Greg,
-> > > 
-> > > On Tue, 15 Apr 2025 16:06:43 +0200
-> > > Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
-> > > 
-> > > > On Wed, Mar 19, 2025 at 10:52:29PM +0100, Andrea della Porta wrote:
-> > > > > The RaspberryPi RP1 is a PCI multi function device containing
-> > > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > > > and others.  
-> > > > 
-> > > > So shouldn't this be using the auxbus code?  That's designed to "split
-> > > > up" PCI devices such that you can share them this way.
-> > > > 
-> > > > Or did that get rejected somewhere previously?
-> > > > 
-> > > 
-> > > It doesn't use auxbus probably for the exact same reason that the
-> > > one given for the LAN966x PCI device driver [0] and [1].
-> > > 
-> > > Avoid all boiler plate needed with auxbus whereas drivers already exist
-> > > as platform drivers. Internal devices are handled by those platform drivers.
-> > > Those devi just need to be described as platform devices and device-tree is
-> > > fully relevant for that description.
-> > > 
-> > > [0] https://lore.kernel.org/all/CAL_Jsq+1r3SSaXupdNAcXO-4rcV-_3_hwh0XJaBsB9fuX5nBCQ@mail.gmail.com/
-> > > [1] https://lore.kernel.org/all/Y9kuxrL3XaCG+blk@kroah.com/
-> > 
-> > I really hate creating platform devices below a PCI device, so I'll keep
-> > complaining about this every time people try to do it.
-> 
-> I agree with you, but as Herve has already pointed out this would mean incurring
-> in significant work to adapt drivers for all the peripherals (there are quite a
-> few), while with this approach they would be left untouched.
+Now that the binding and driver changes to support the Imagination
+BXS-4-64 [1] have landed in a DRM tree, here are the corresponding DTS
+changes without the [DO NOT MERGE] tag.
 
-We have no problem with reworking existing drivers, especially if they
-will be doing the correct thing.  Don't let that be an excuse, it
-doesn't work with me, sorry :)
+This GPU is found in the TI AM68 family of SoCs, with initial support
+added to the k3-j721s2 devicetree and tested on a TI SK-AM68 board.
 
-greg k-h
+[1]: https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-0-eda620c5865f@imgtec.com
+
+---
+Matt Coster (2):
+      arm64: dts: ti: k3-am62: New GPU binding details
+      arm64: dts: ti: k3-j721s2: Add GPU node
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   |  4 +++-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+---
+base-commit: 81f6e0e0f3505809dd78eab129106f1c0cf2baf1
+change-id: 20250415-bxs-4-64-dts-c984d0876556
+
 
