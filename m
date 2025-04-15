@@ -1,135 +1,156 @@
-Return-Path: <devicetree+bounces-167500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917BEA8A886
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:53:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 830ADA8A88A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B13863BD1CE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 19:53:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 843FB7AA02A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 19:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C137A256C6E;
-	Tue, 15 Apr 2025 19:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DE72512E7;
+	Tue, 15 Apr 2025 19:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hbhJS7k3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FvlUpeIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C052550DE;
-	Tue, 15 Apr 2025 19:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E691AA1E0;
+	Tue, 15 Apr 2025 19:53:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744746705; cv=none; b=an/IjJC3WjODFd2mqI+IJKSLnQYT1FLVAozDqSwnU7xYe04PSNSrVHFeSqqnG/yFajP2a4rjtnQ8kXqEjMmHurTVx61b3dVcT4gJ/A5apbhHORGVWUB4n4Kh7FOE7lNvvstejEnLWGkhjctbsuZ7SxMJGHtVJQ3kO9K65eO1afI=
+	t=1744746840; cv=none; b=gCip2SbrOf+qotL3HY3civvac0gzL9gqd7n17e7JvQTg33GnoBDiXyL4ePnWl1v0j85DqR9sFCd7sMUMgyR0M6KLfF4fLBeRnLd6vjoVqebqGgTFsD/mwQ1DQni49xVsWeXztMO5ixdwINUqoDKE3PkMV3Go/GsAYOBx+Zd9f8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744746705; c=relaxed/simple;
-	bh=slZmxp++QhIB/d1vWbc5Di4/dmlQ7NU7kBrPsD0giv8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p5cQgosYNMpPOAZiKXRawSuu+XdDs0xNf+P7SkKLccm7x/E2nz8rcTtY5vjJHAyJPr6MaH74RWl2Bu93Ki8oRFqoIQ5EOdKYkCtlMVKMgoESaRHbGqwrNQGSlN8tY8a24GyzGc3ARaz5KldE3Ga8QwqQKGKuchoJaC0tA04n2jM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hbhJS7k3; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1744746840; c=relaxed/simple;
+	bh=MtlRpin66LdEuCzJZkyiSshjRX+kayiWy7AB1/kjInU=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=JidnjbMnRIrEfuxiS2G7lp6TUZJejs68RZH7oPRzOBltfh813DaCvFmY7fNVLXUkLqM+9lF8E5bdb9cqAdl3vrHhNhaOvHlDikIwojfIfz8tfu06pYeUwJM/BDS0GUXdW4jP7C86OdisaVvHr/rEWh4UFrUs1mBf9DbOAwphqrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FvlUpeIk; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43d0618746bso47124435e9.2;
-        Tue, 15 Apr 2025 12:51:42 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so10298748a12.2;
+        Tue, 15 Apr 2025 12:53:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744746701; x=1745351501; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NQPAcNlalkLy8oJ9CIcK6WyWW0X8sA33xHew3+Clh4E=;
-        b=hbhJS7k33FfOoVDY7ACb8jK7QRxHaplKZ7kdL7uIsYWXeUPLRLPw9mPDinaCb0j1W7
-         GbKbgfQmWVHJwMAu62ln81beGCZQ+KmhQejrqIeo+5VgBXQCZIrELJL12aWKBj+tL4mK
-         y2mabz2XbkkbxW4NWaDNjQMqhYHO6ebnhH0kZkJejQaWl6GvMazthikyT5ri3veLgtvf
-         7GzpwJVfD2t5Ow1kHyKsCrUdy+pNAjmoO9GQX/UFj4iVM4V+zpXcHf5yf7h9LcBBCD+c
-         6Bf3VXxG3ewte0fOZurw0bSKffMhtQJWTYDNfu+ze/8sPRTTlxWIYrmi57XUAnobWeLw
-         8BQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744746701; x=1745351501;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20230601; t=1744746836; x=1745351636; darn=vger.kernel.org;
+        h=content-transfer-encoding:autocrypt:subject:from:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NQPAcNlalkLy8oJ9CIcK6WyWW0X8sA33xHew3+Clh4E=;
-        b=AXSBQwH54bVNaTEiDu5bEcNj6i/p+tl4kneu0K0bignwVXC3QMUU6BPQOAHaI8b81H
-         FAZ6JbnPDGkfuF3aKuYkN/g+Wkq+bU6fc+JGZWUvlBW/yoVRO4aGzsYVkNahCnCrdbFs
-         kvd4m7+V4N+nY67ticVjZCElZEGFfRZDrgDmz2/F2Kh1HxbNmu/2HFLICrw6KByEcv6B
-         04caObgokYvIFE/CLHzwSVIhMHseThi+RrySEfJC4k0AYqOf97IsaZ/bQoGp7Yp6IKbf
-         lnmh4HaQAl3z+N15zcPHLaPacXra2WkgzuA2315SDm0HZnKndZgy8kT1zxQO5hDPvnwi
-         LyAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZpfrq4qWNBfGomg/81qqpUloo9oeiRNnG/talR7QICV9ojmpWsDUXWwHE34QGNdncRfyxjm6e+5sn@vger.kernel.org, AJvYcCVIMXr1KUGeeTIyT0hyGsw2gxEB8QSQ/mtKPm7uNZBhy0Auwzn56zbEW1WxAyhwd9aQsYA4EN5dyV2wGnCy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGn2kBBcoos4w3ZVHI6tJmMjCgpovXNQYLiK0InxSzrJ8vdxww
-	lALhaf2tv9c/NbJ563aUCei4G9dOuFl3icY/PWwflD8gVZKSqmK9
-X-Gm-Gg: ASbGncvRiAWL10dTswiaWljS63RzzmWDAH4IOeVpuzpq5NEJPFfSOiZwhMXgcwslLbb
-	/V87oz/G4PKbopWi7Mz/UkYaHBayqoylTxhvyRiMrat4k70rIbJOMGtbArrjHkDhB28KEY6z87W
-	+mSuNHEF1c4ZEQ09NboCWgaIqTUR8cutOaU96i6f7uY8Z+rw4/p6B72iFdgVExrU9buj7GxFpOr
-	M7zXZs8DpaKd+87r+ovFmVxGPj4pDI/BHO/rUAVmoDBsAQypxKQ6Bn59IkW0cYblSDpO51TAYyv
-	aWBuSkfjpQeiDKZfL6uxm1b7RtIpI94GKcnrG/0lbwyF5wlyntB4mG4elY99UnXO
-X-Google-Smtp-Source: AGHT+IE4rAkHboQ7//hlbqk4UZSW6zTq1/RUlX9NCL5z1569iJqvd/G+oaZH/PDtiCoKzjHRBjKUVA==
-X-Received: by 2002:a05:600c:1c88:b0:43c:f597:d584 with SMTP id 5b1f17b1804b1-4405a104ba9mr2691095e9.29.1744746700723;
-        Tue, 15 Apr 2025 12:51:40 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:1883:aa4:a265:bc12])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4404451c67dsm14169335e9.3.2025.04.15.12.51.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 12:51:39 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v5 3/3] MAINTAINERS: Add entry for Renesas RZ/V2H(P) USB2PHY Port Reset driver
-Date: Tue, 15 Apr 2025 20:51:31 +0100
-Message-ID: <20250415195131.281060-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250415195131.281060-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250415195131.281060-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        bh=43+Pow839Bzbs0w9Jaldz/DIk2TKaVOfUwaFp1PwmgU=;
+        b=FvlUpeIk7BiPLfjJFJNeIe2j7kNY8wImDIkNTHipJ9CQXi7uSrR2eFEgpuMtuwhybI
+         2LS3cZwlnr6QNujOii+wSmuiToIy3HDpaVx9XqkTlqVjowCrrtzgTBjrrRzQnXnAE4ax
+         mFusKk9Dwz+K2DzrAGUTI/JAahDoqFsQWUmQLfwesRAf8qVk31SKrJtMpWp6IbErLxZo
+         tkKmUftZF6p3x4zwEr8cLqbmieMhDV2SF4WAtINVodmSweaFCcwzgxWASVD2rk1iKW1m
+         XBIMm019PJoanDYprC9ec63h2U9pAZ/anPgQq6SjqD8mvwrZiRENzeLx83vi/W+Zw5zh
+         //uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744746836; x=1745351636;
+        h=content-transfer-encoding:autocrypt:subject:from:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=43+Pow839Bzbs0w9Jaldz/DIk2TKaVOfUwaFp1PwmgU=;
+        b=psOv8Vp4l53Hj3+mJUOOCYYlheDQRKV/YeF4wqTQZSb7hwMgWFNA+xYHZu8MqO9VnI
+         51jONS8qoqn2SbeK/LXozfxxINJ62avvopY5k4+xi5i+SLc8E7KK8b/onhKPkwLViUak
+         ZqjG65DU7CwxFHLTQFCRdYI1OM86j5meEBePXCxhraHkimnma7VCPoF8k9w+mAEQTfnN
+         brSxg2Q+vVGgWpFasEW74i4/TK57HWhU0K348kAqjJeRh37Hpj3gFbU4ss/AMoKiLmSz
+         EOtKsGkmihR7EDOjs0QxUFvCImxYneGMcaHzXfVWbiWVIzGhH90gzmJi/mzVIA/MPp+F
+         8IoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVE35HhqdbqwnC2JWhFNp0qO2vFJiGYmzmKCHOVFfaXueIAb40tTJDJFg7Q0El7M9hIFw7LUu0zajY2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjErTEZkpzfUFlx69BLMi82TJPUFtjZAJn8qvUnCCCx+ELm/3O
+	4erTOM0rbx9QP6eoLjCtti696hTUcrTKdcxZI1LcW+YKpvXl1F/y
+X-Gm-Gg: ASbGnct+JzpS/9w18hqCX8A4HnrzqDHzUSkZrFxvSU1vFhSuuHq1hMd5kD1QYs+jatl
+	keb/Y3xWKoib26JRR+49qVFgoNvyfCbfGeNA5sU2l2ticzRdcyYqV3pfVpxwqZha02CHgJe8zdr
+	zuPWRrMLUjn8bCLEH6bgxpstqIh4MPRhb2Qnv1gtC5Z3++tZmYCubtg3Dt2VhkzJJkhZ7gGaG33
+	v/gjJ4yLJ/+2NGO9WZgpWNbpDnIN279Y0ntqBRt41BjA+KQqDrlmSSVOmmALFPvbDbfwZQq4uYr
+	Ih8XrmAYTg0WCDQn2mdHRDQu8XqCWOWtbWpb3fH8WnvWP3d6cZZx7EJw6i1Zy0dyNob3BrE+j8y
+	PUAAC2EXEBhbnQmjW/ByIrNK88PB32Xk3YTCOQpEcFtLV/B5MddH5gbYP9YPz6EReY0TQtx47y/
+	aIogREwUCIuI+SW898XyQmAJbnQyUrYk2w
+X-Google-Smtp-Source: AGHT+IE7D9bHuwV9kxdL6z6LOzKL/va0CrzLR5H8bVmnIip+zaSUvlljIgraiXIq3Fn79YC5i2wJjg==
+X-Received: by 2002:a05:6402:510a:b0:5e5:b388:2a0e with SMTP id 4fb4d7f45d1cf-5f49a176c0fmr324511a12.7.1744746836186;
+        Tue, 15 Apr 2025 12:53:56 -0700 (PDT)
+Received: from ?IPV6:2a02:3100:9dee:8100:1d74:fdeb:d1fd:499e? (dynamic-2a02-3100-9dee-8100-1d74-fdeb-d1fd-499e.310.pool.telefonica.de. [2a02:3100:9dee:8100:1d74:fdeb:d1fd:499e])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5f36f50567esm7476142a12.61.2025.04.15.12.53.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 12:53:55 -0700 (PDT)
+Message-ID: <ee9a647e-562d-4a66-9f9b-434fed05090d@gmail.com>
+Date: Tue, 15 Apr 2025 21:54:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
+ David Miller <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH net-next 0/2] net: phy: remove checks for unused eee-broken
+ flags
+Autocrypt: addr=hkallweit1@gmail.com; keydata=
+ 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
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+These flags have never had a user, so remove support for them.
 
-Add a new MAINTAINERS entry for the Renesas RZ/V2H(P) USB2PHY Port Reset
-driver.
+Heiner Kallweit (2):
+  dt-bindings: net: ethernet-phy: remove eee-broken flags which have
+    never had a user
+  net: phy: remove checks for unused eee-broken flags
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../devicetree/bindings/net/ethernet-phy.yaml | 24 -------------------
+ drivers/net/phy/phy-core.c                    |  8 -------
+ 2 files changed, 32 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b5acf50fc6af..a8d8eabf9ecf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20684,6 +20684,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.yaml
- F:	drivers/usb/gadget/udc/renesas_usbf.c
- 
-+RENESAS RZ/V2H(P) USB2PHY PORT RESET DRIVER
-+M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-+M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+L:	linux-renesas-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-+F:	drivers/reset/reset-rzv2h-usb2phy.c
-+
- RENESAS RZ/V2M I2C DRIVER
- M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- L:	linux-i2c@vger.kernel.org
 -- 
 2.49.0
 
