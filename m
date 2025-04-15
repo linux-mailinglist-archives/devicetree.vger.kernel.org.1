@@ -1,86 +1,108 @@
-Return-Path: <devicetree+bounces-167519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF64EA8AA5C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:48:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE55DA8AA71
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DE993BF325
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:48:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E0B51781F1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29602580FB;
-	Tue, 15 Apr 2025 21:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AED324C669;
+	Tue, 15 Apr 2025 21:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8GdjGKy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UvITnljo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFDF2571B5;
-	Tue, 15 Apr 2025 21:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16FC241682;
+	Tue, 15 Apr 2025 21:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744753711; cv=none; b=shoE/zm1MZHu7Qnp4imkw8Puvjlc+s/vYg0y/CftFF4L7nrIcj6xCiZgvVjtUdroqHVTdFePTGn8mjlZIiAFxa2qq0UOQFEDgEOieSdgGmaOcQi+aKRd4T9GEbk3uXBmkPITnJMa0adXtMF5fZfRWBFNIdt8qvAeo1a4EmU5FoE=
+	t=1744753803; cv=none; b=V/ysiMSPY+UhxQXlOlpzw4FJfJBjGuQVv8pLiHUZwd1YUZxaZ3wt9ZPn2zVdi+0qTct+my9vp3iBNPQMToQPzQ6vlUagM9llir2ZkmwpL2WhFJXKonT5HeMSMeNGzKH2/KFeDuuwh7xpPspb9s/m6A2PdQyUUSb2+R8kaQgxhj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744753711; c=relaxed/simple;
-	bh=vg2ZoJT5wdMRs33As6ZuOrUTti2euO5Vt02+P+ipmcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bnoHuzUzXT0CMaUMhi43SfYKPncTH1ph5xhT8RnQQ3bymUGk9iTP81yrtGfa4hTo9HmlSU6/5aFVA2Y9+Gzlqz/KHhQI3hBJyOXhI6snRnGF1eu+8eWpV0y7PAcaWurAlgHIv9RmxLZ/GE+rAbq9+jY53cssfkMtThUd4e+gbzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8GdjGKy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 054FEC4CEE7;
-	Tue, 15 Apr 2025 21:48:30 +0000 (UTC)
+	s=arc-20240116; t=1744753803; c=relaxed/simple;
+	bh=rnLKnKJ37AYMItioe33j29TXhHxMtqTKAClrMafDmBQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jXyVKPjuV4oZ6gLWywcVhelgWrm9/aTNOQuW6Ezt88McbauvVDrLq/9M9NKK45whrpSUyocg02kwoPS1aeXCZlyxi9dRPPSpvYzT7rKSFJoFDlCIPiZ1G8boyVIu+Bj9exCnvvmM2nu7c2yPHVfqUo4W/NOocNaDuiKUzdyVlao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UvITnljo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA908C4CEE7;
+	Tue, 15 Apr 2025 21:50:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744753711;
-	bh=vg2ZoJT5wdMRs33As6ZuOrUTti2euO5Vt02+P+ipmcU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F8GdjGKy8ZSA0v7ioClITQo+70LyAyHE/hPTUr8sUTgN0bPi2N7vlhH+bIRaebdM+
-	 Jkcpyk/6LQxuNwAUg/H3kcmA7IeObDR59ofbmWtYndD1lNJ/owWppsmf+iazMcV87d
-	 9+94WNGfkfdwxJSFHXuVxnfQRSvLTtNds+FDN6MYe9QzeiMGsfwE9NexLVXB1o1I7a
-	 UmIzyk0tb8bTd/2ulx/YXRI5eJF9tvuo96vAXJScQ84q5CL0EZu3qU8tHdgAn/Q4zw
-	 1KD4Kp5ORxBqLkLApkDgWCkJ6zJSDtpnjkfWetB2tUTVWn49YocEFH5KUDeBjI/NKX
-	 DzlnsJ6e1Ia0A==
-Date: Tue, 15 Apr 2025 16:48:29 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-tegra@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: Document Pegatron
- Chagall fuel gauge
-Message-ID: <174475370881.885498.12340209522588997087.robh@kernel.org>
-References: <20250413111033.11408-1-clamor95@gmail.com>
- <20250413111033.11408-3-clamor95@gmail.com>
+	s=k20201202; t=1744753803;
+	bh=rnLKnKJ37AYMItioe33j29TXhHxMtqTKAClrMafDmBQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=UvITnljohZpowWJlrOoTmM6KT0ZIoHOoQh7bgFcSPx15gRUJUY/xcR1vRb/bQStoY
+	 GHaBLgXzKTQmYFzNZlun4+FRnnFZMVfFlSZusa/Sq0F6WVZ45KfSt3FzIjB+xRcn8m
+	 qhSx+6myJaIofyUgF38iRF6I0cZtJbdKvAp1YlFm7ReCOgnC49Dz59pGmIc58PjNGg
+	 PQXj8+/Is2c+JDZNYVT7PRHDU86jC5vA8W9xSymUQnD3mZ9v1WNpe7mJUxJznEAcOL
+	 pRzjmGj28e2x+voxrCQ5Ldt5CTh99IDW5MwMwHxtfjH2D+ir8chyGuNnAcQxw2q+FO
+	 h9lemMnnHtONg==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, 
+ Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
+In-Reply-To: <20250410094212.1155529-1-rf@opensource.cirrus.com>
+References: <20250410094212.1155529-1-rf@opensource.cirrus.com>
+Subject: Re: [PATCH v2 0/2] ASoC: Add codec driver for Cirrus Logic CS48L32
+ DSP
+Message-Id: <174475380165.1274591.2603826977531435653.b4-ty@kernel.org>
+Date: Tue, 15 Apr 2025 22:50:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250413111033.11408-3-clamor95@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-
-On Sun, 13 Apr 2025 14:10:31 +0300, Svyatoslav Ryhel wrote:
-> Add binding for Pegatron Chagall tablets battery monitor.
+On Thu, 10 Apr 2025 10:42:10 +0100, Richard Fitzgerald wrote:
+> The CS48L32 is a high-performance low-power audio DSP with analog and
+> PDM digital inputs and support for low-power always-on voice-trigger
+> functionality.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../power/supply/pegatron,chagall-ec.yaml     | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/pegatron,chagall-ec.yaml
+> This series adds the devicetree bindings and the ASoC codec driver.
 > 
+> Changes since V1:
+> - Remove bogus use of 'i' local variable in dev_dbg() statement in
+>   cs48l32_init_inputs()
+> 
+> [...]
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: Add Cirrus Logic CS48L32 audio DSP
+      commit: ac03495d7359285a007ec4fdc08d3843bb5d6b7e
+[2/2] ASoC: cs48l32: Add driver for Cirrus Logic CS48L32 audio DSP
+      commit: e2bcbf99d045f6ae3826e39d1ed25978de17cbfe
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
