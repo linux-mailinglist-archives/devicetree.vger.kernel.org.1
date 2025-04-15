@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-167366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7C7A8A0C5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:16:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10169A8A0BA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:13:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DC05164089
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:16:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51B5B189DEA1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5550F1B043F;
-	Tue, 15 Apr 2025 14:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7204927B4EB;
+	Tue, 15 Apr 2025 14:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="YBOd96xh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="p/RHqChc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-239.mail.qq.com (out203-205-221-239.mail.qq.com [203.205.221.239])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F5933DF;
-	Tue, 15 Apr 2025 14:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C0D1FC7F1;
+	Tue, 15 Apr 2025 14:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744726569; cv=none; b=JT/Dd1eX/HkQgz5Ou+5eRKeVtOzk4c3tJsTU1alo0+71s8VQySJRqT/g0OhxePS/1gQyk8I3ccKxOAUsSK57YP5Amy6Evg9SBITKRq3AXHYos+C0R3q66bpA/8+0rKFp2hjvIEq2qMyOyxd0fgzdBbFzglmnJoHVWWNj7dArs/s=
+	t=1744726380; cv=none; b=eFvokx/NwEkQhfXi2w5SM4q+cX6aR3ipz3BEyuXEM9QlNoY7jJozK/rj2ocuXOyGElwkBl9X+8OBUdbvoiia3u6xbGvlhtDIyvqgtHBIhoKg+aveuun9d0K5iszs3HI/HU8JGWkNymLCKWv32iHTMPiXNYwcvBCGaV9CKDD0oLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744726569; c=relaxed/simple;
-	bh=YajqJaU+cdevNobpRRwoU0DM5ACvTlKj0Vk4kI7vuaA=;
-	h=Message-ID:From:Date:Subject:MIME-Version:Content-Type:To:Cc; b=ao7haT0xjqHV5GL4Nm0BvdbJHbHztV+i9C8DMbQTd8MjEs5YJ3xeMn3A5VHhNhVO982VQy8zeaxFssl8ysaSRSGKOFBjXI+igWyqQTV/EGc8altUqRljwXLo0E0bV+9hW3UJRQMswnTZUkJtGRbuGpg+JaTBrkjVrdbenmTYavc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=YBOd96xh; arc=none smtp.client-ip=203.205.221.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1744726255; bh=rBJo6st9z2yzfDHSl0qbQgIY7HkO12X5NQA4RWLYm1k=;
-	h=From:Date:Subject:To:Cc;
-	b=YBOd96xhqcLZgifby9dpZDOtoqCg3n8YVpgJyubx9zsqTNEka53N/Zjd4HKZwJdBQ
-	 ZT3IFIK8Ofm4pErd9uVCyR2wXsTBMRqerUGUhW2WurIzHbLV3RtctZJdYVeoN+T9aq
-	 oDVCNeH91Zu3oUqNNhTLEOJLyL9g6jtkP9q35WqA=
-Received: from [127.0.1.1] ([112.48.46.45])
-	by newxmesmtplogicsvrszc11-0.qq.com (NewEsmtp) with SMTP
-	id 2B59F4B2; Tue, 15 Apr 2025 22:10:53 +0800
-X-QQ-mid: xmsmtpt1744726253tc7gykvuz
-Message-ID: <tencent_FFC8E7A5A76050982D28F811C81F936D9205@qq.com>
-X-QQ-XMAILINFO: MqG4KXyEKpQynimtTjnsfWKU/iNyybHLWdjy5ge0jzsMhX/7Zzy40x5wTiOhtT
-	 kTbYc11mO6zcZj8MSuG7IG4HX7f8gJVDt8ndZWXXJBuGf3HdbLsROiEgoTdfQZ9yyZIXZ+OzjZot
-	 u4dNjWPrhODE2SmuowqgdLEXNX/Agv6UreQamdxIm9u0C7JHOL2qDMFN+NRRaY93lTENoRCXyaQ0
-	 o9BX39TKYMGRg9ehkbyyyK/LZBfLZut/SgNJvJT18MlwNbKc0PmzTXf+diOwQJZe7JSWAqCaOcZ3
-	 466VunPqAtCWHb5MzC4DoFgfKHLR2aRrNqXDeVTKb7Q7eAuaO0YUCmOXwZ3wh1hO9+DM5atZDfHR
-	 mcHslDEadDVzCoT7QgrpUq5gE1MgWyUx1QNukmKBghKH27gbGRj2jYCI4fUMsiqo6D/aylwZZ0TH
-	 Z1wkE7wg1RRi2qBDm2VFnYjO7Q9bUm8LpBXkqB5TKXWVgks38rA4DG+jzuScJBdtPiKoxugD1+Ip
-	 +xk41bCQWzEPh2tRm0VymZ3Piq06vRujXbFyacIZm/ELrr0Popj6KezrwlWUA+pDi3bZfkB6mGSQ
-	 B42EbFz0JXcra4bTnQO+68NAkEY8WWCHvxFlNl2ePPf4FhAHVRXGLBYBb3zfSxs0NwUGvQcwEGNF
-	 FRUQiEANupNMyjGxz+vWRULdAqLYowuvXlBsFWFmqH1CRAHI7UJnhs6eNaIlcWVdovZQVCjXydJk
-	 9VgQdNeTbF+C/viHmz1Y7z+FelOBaXr2/s/lZ0ERoDnkzEnV2LssDnCMkvubDNf3DlY+5oRkY0ak
-	 n5g1anG/de6tvbfLRdThLkJm0lhLJvUA0yWej/yMdHzwGufJi4Qg7EE6+hhsXSdhFOJu8MoF92T7
-	 1cgPIyoxSQVA5vshVc2o03RRuG7OFKphiPtyGtRNPzXF/nefbzjC5Atnny7AGcrD/4fEwVgjJT/+
-	 XQdBjf4RH47a3BV+b6bXv6hqTts3MKiV1ciPSX49eEsjpgOF1h8DA2iLtn7xNZcWWLKZwpvkrdSz
-	 lrMjOryS8TC4TG4oGV2Bl8mxXyqGb10u7bO9+EhkLZ44kYBdXJosEOUVeYEUGo2C05JNw35g==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-From: Liya Huang <1425075683@qq.com>
-Date: Tue, 15 Apr 2025 22:10:40 +0800
-Subject: [PATCH] of: reserved-mem: Warn for missing initfn in
- __reservedmem_of_table
+	s=arc-20240116; t=1744726380; c=relaxed/simple;
+	bh=xK2LkYSeBxb14Vlfe6VfU2/wPR+W/1fTwZEbUWZJGgQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iiaFxDbktfoIEQ5DSw84/R2KjfG/VxCpIfXmeBE6sgo/SmtUmB2V1zb7yRJAqQt1+9HIJFKGqCnSLEFtpq6WqvIllew0ZFNhvmOqD8vIW3F2FqxK0vkzcAGK+ifF29XCrUuoe06+zPOr1Y96TG8cK8dMA2SErww5zrla951uwQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=p/RHqChc; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1744726376;
+	bh=xK2LkYSeBxb14Vlfe6VfU2/wPR+W/1fTwZEbUWZJGgQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p/RHqChcX4FNsKxL65WMJUOImMkYAxDiG2sjW2jRGBIQnljNhwumM9hPGIAvUSQsl
+	 ZpjWDbWXvHF77gwRXMojrW/SLXsXL9HUy56HwnIhFUM2xgHTu6UKm0Ka6ujtvvlar7
+	 6vCxYVBVQ2WCnHth+gaxfU8jWdOkI65nQ61+oI+3nsdhmN6lQE9eUiw+/EsGJ8ElC6
+	 b9sWs9DiWIiLKLDOUv0k3f34cLIeVlVd19Ctz72DDQQw78V1R1CTz0uHaJ2z8ILlsc
+	 /Rb7aIetv28NRvFcni0JE2kUipCZGZT7MVElmEljSBp5AJK31XS6dJqEV3apQeUhbK
+	 3hzpS0Kzx5OdQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2948A17E017D;
+	Tue, 15 Apr 2025 16:12:55 +0200 (CEST)
+Message-ID: <95b965c2-1f03-423b-86a1-cd22784b480d@collabora.com>
+Date: Tue, 15 Apr 2025 16:12:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 3/5] dt-bindings: power: Add binding for MediaTek MT7988
+ topmisc power controller
+To: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Daniel Golle <daniel@makrotopia.org>, Sam Shih <sam.shih@mediatek.com>,
+ MandyJH Liu <mandyjh.liu@mediatek.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250413085806.8544-1-linux@fw-web.de>
+ <20250413085806.8544-4-linux@fw-web.de>
+ <700af1ab-f43e-4583-8f0e-27e5d4424338@collabora.com>
+ <2EA2BDB0-E1C9-49BC-98FC-5048905AA036@public-files.de>
+ <bbb81e79-95da-4cf9-9eef-7cbaea191ebb@collabora.com>
+ <AC7CF61A-A8A0-40B7-B5B5-51C56A1D3E81@public-files.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <AC7CF61A-A8A0-40B7-B5B5-51C56A1D3E81@public-files.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-OQ-MSGID: <20250415-__reserved_mem_init_node-v1-1-2e48f58311b3@qq.com>
-X-B4-Tracking: v=1; b=H4sIAN9o/mcC/x3M0QpAMBSH8VfRubZCm/Aq0ontj3NhtElK3t1y+
- V38vocigiBSlz0UcEmU3aco84zsOvoFSlxqqorKFLo0ijkgmQuON2wsXk72u4Oqm9ZOaJ3RVlP
- iR8As97/uh/f9AJ+lNpRqAAAA
-X-Change-ID: 20250415-__reserved_mem_init_node-689cbe9d54c4
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Liya Huang <1425075683@qq.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744726254; l=1774;
- i=1425075683@qq.com; s=20250415; h=from:subject:message-id;
- bh=YajqJaU+cdevNobpRRwoU0DM5ACvTlKj0Vk4kI7vuaA=;
- b=9o2Fq5RQqe5zg02Foh10Qq5KYRisrT4mOL8ynZbzn5qaLFSMWjEk30XBTyUxSye8bd5lvg0u4
- t2SFHQgPmF8AaDTn+A4/OOUFHnfN9MhiwSkdI5as6tV5bmqcrrk4JI0
-X-Developer-Key: i=1425075683@qq.com; a=ed25519;
- pk=nSnzeGGcMXBimuyIWYIZpZRN8DboZqwr67IqWALwrGs=
 
-For the data in __reservedmem_of_table, its function pointer initfn might
-be NULL. However, __reserved_mem_init_node() only considers non-NULL cases
-and ignores NULL function pointers.
+Il 15/04/25 16:03, Frank Wunderlich ha scritto:
+> Am 15. April 2025 11:59:06 MESZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+>> Il 15/04/25 11:52, Frank Wunderlich ha scritto:
+>>> Hi Angelo,
+>>>
+>>> Am 14. April 2025 12:25:23 MESZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+>>>> Il 13/04/25 10:58, Frank Wunderlich ha scritto:
+>>>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>>>
+>>>>> Topmisc is a systemcontroller used for xs-phy and ethernet on  mt7988.
+>>>>> Add binding for it.
+>>>>
+>>>> That's the wrong binding... check mfd/syscon.yaml :-)
+>>>>
+>>>> P.S.: Is there any reset controller in topmisc? Any clock?
+>>>>        If yes, syscon.yaml is also wrong, and you need a driver for that.
+>>>>        Remember: If it turns out *later* that this has clk/resets and the
+>>>>        bindings are already set for just a syscon, it's gonna be way harder!
+>>>>
+>>>> Cheers,
+>>>> Angelo
+>>>
+>>> Ok based on the power-domain-cells property i guessed powercontroller is the right place.
+>>
+>> power-domain-cells, but without any power domain assignment, so that was wrong :)))
+>>
+>>>
+>>> But based on your suggestion i tried moving compatible to syscon binding and made dtbs_check here.
+>>>
+>>> I can confirm dropping the unexpected properties reported by syscon binding (power-domain-cells,clock-cells,adress-cells and size-cells) are not needed for function (xsphy and ethernet).
+>>>
+>>> For verifying that there are really no clocks/resets in topmisc (have not found it in public available register documents) i asked mtk (waiting for answer).
+>>>
+>>> Also got it working without the syscon compatible by changing ethernet driver too (after this change xsphy was also working).
+>>
+>> Perfect, a bit of a cleanup and you're done, then!
+>>
+>> Cheers!
+>>
+>>>
+>>> Eth:
+>>> https://github.com/frank-w/BPI-Router-Linux/commit/d866e648717800b6f6395ad36c38f9effcf0498d
+>>> Xsphy:
+>>> <https://github.com/frank-w/BPI-Router-Linux/commit/0121a94df99700487704ca056b210b13db07e90c>
+>>>
+>>> regards Frank
+>>
+>>
+>>
+> 
+> Got response from MTK and basicly topmisc contains a powercontroller (for cpu and internal 2g5) but currently not needed because ATF already switch this on. The second part is the pcs/phy muxing and 3rd some unneeded switches (where i have no detailed information). But no clocks or resets as these are handled in the connected platform driver (xsphy/ethernet).
+> 
+> So my original binding imho made more sense.
+> 
+> The syscon binding seems to need syscon fallback and shows error about unexpected "compatible" property. The binding itself does not contain any properties but references syscon-common where iiuc compatible property must have at least 2 items and requires the "syscon" fallback.
+> 
+> Mtk suggests splitting topmisc into the 2 blocks by only using the mux part as syscon with splitting the reg. If powerdomain really is needed then a second topmisc node could be added and bound to a new driver.
+> 
 
-Therefore, a check for the possibility of initfn being NULL has been added
-here, along with skipping the initfn() and issuing a warning.
+I agree with MediaTek's suggestion. Split it, that just makes more sense.
 
-To: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Liya Huang <1425075683@qq.com>
----
-For the data in __reservedmem_of_table, its function pointer initfn might 
-be NULL. However, __reserved_mem_init_node() only considers non-NULL cases
-and ignores NULL function pointers.
+Besides, if the first part (the power controller in topmisc) is managed by ATF it's
+a good idea to avoid touching anything in there from the kernel :-)
 
-Therefore, a check for the possibility of initfn being NULL has been added
-here, along with skipping the initfn() and issuing a warning.
----
- drivers/of/of_reserved_mem.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index ee2e31522d7ef69d816127a9003c423d5fb4023d..0a7cc599c0ca68001b2395759310f3585f247db9 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -496,6 +496,11 @@ static int __init __reserved_mem_init_node(struct reserved_mem *rmem)
- 		if (!of_flat_dt_is_compatible(rmem->fdt_node, compat))
- 			continue;
- 
-+		if (!initfn) {
-+			pr_warn("no init function for %s\n", rmem->name);
-+			continue;
-+		}
-+
- 		ret = initfn(rmem);
- 		if (ret == 0) {
- 			pr_info("initialized node %s, compatible id %s\n",
+> But this would need a bit more of testing.
+> regards Frank
 
----
-base-commit: 8ffd015db85fea3e15a77027fda6c02ced4d2444
-change-id: 20250415-__reserved_mem_init_node-689cbe9d54c4
-
-Best regards,
--- 
-Liya Huang <1425075683@qq.com>
 
 
