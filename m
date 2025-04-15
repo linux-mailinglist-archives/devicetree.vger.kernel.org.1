@@ -1,318 +1,349 @@
-Return-Path: <devicetree+bounces-167281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FDFA89C5E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:31:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83EBBA89C74
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:32:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A2AF3BBE07
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:28:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 796B23B9F72
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44DE29CB31;
-	Tue, 15 Apr 2025 11:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E2B296D32;
+	Tue, 15 Apr 2025 11:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L6L8Scty"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OsfjWfjw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF0528E609;
-	Tue, 15 Apr 2025 11:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AABD2951DD;
+	Tue, 15 Apr 2025 11:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744716265; cv=none; b=AXBUNrUAPOWaSRB0MI5SgE2ArAj4OOGUDWbxO00mnP3lioRNNaxrEbql/HCvhECA+lEYH5GSKFeWo4qnfsa4VxNGbEyN5qXZ+Iph36XAo5/muYRjTCBsDBs0Wq7Qh3kCoxhAkyTTvfom3rI6gHS40R0/M/SDyPsvhOIlOOTX1AI=
+	t=1744716432; cv=none; b=EeAvhMjjzy1t8hZz1KR9TdnNawzfm+GiHvBEDMZYwwgYZksoMMlkRCrvKUC2AfsAMVqRnW95pfpWPVeknQuHOHMSn9XiZ/uhOz/xlg8UJ7YdnXB/sxvTcyJSsmhRD6ciRwvWujOjF0eTK+huVU4mdl4+EdGqqe/PF63Exgieml4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744716265; c=relaxed/simple;
-	bh=O/DIg1N6fb8zPatRjNFTmfTiNYT3NSBz0LuOqeRSbPM=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FVwoMXtZUfje2R0Xivw4OCDmVp+OnuZO6A9UDS1o/5e/l3GAk66+wdyfWipJZyQPZ8Fa6LLWNf2ufAR/gdol3i1jcr9BvVrbElTIrQFZnlnZvOtWFDhO8CF6ymfk7YCmB4Bo9Ld/9xf5uCN8H1NHDlw8sJ/WvQrOh+1UeEoQk6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L6L8Scty; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf257158fso38485025e9.2;
-        Tue, 15 Apr 2025 04:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744716262; x=1745321062; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ynT09J8hxHl3dYCL6DhSzuVwAwBo68S1e5NgOzza1wc=;
-        b=L6L8SctypmN3Dg2ETYnSTJSIzVHesR1wKqoIZEjDQHR1k0usqoJP0tcWg+ITKPFebq
-         hmQTwH16fHnpy64uR7PCM6LDckkmGm13TZ7S6TvMwQ/8DMNC7woBOKhTyGgcbRBxvP20
-         1MPKqpk1DDJXmYjDYbKrJM81md07B64Hg3TGZ+5qDJnjcb2qfPb5SnCyrA+Fw+0P7wcR
-         MbQrZQ1W1CWfmrFxm/t07OD/P0jIVjbMSyxx1fmG2iaX6S+2SanSUQTMILeNsESAagN3
-         QAAi/n14ssoTObyek0kaDNTimE+P6fI6mlx0CCw92MUZvf+qjye9hYVcpTRKvEzJzEgW
-         11AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744716262; x=1745321062;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ynT09J8hxHl3dYCL6DhSzuVwAwBo68S1e5NgOzza1wc=;
-        b=QEoyNhIFd18MYC3nm/50LqX1yE27olcMwdzN2Jt5Y2rxECpiORLcsT9isas/Wqgd/W
-         DybUN0HYgfP9Ux/FfNOUq7Snfn345b5O7MGCWMh+TAcjBYEijjdtdC2d/MvIjR+1KODo
-         mDtqwgMw9tdthI3KVMjHxuz8X8IlWCTb9HM+JaoMBvGKki24L3QrY5FgjlHWbfJs3sBR
-         IcudYGFmmdOPiXZw30DgN+B7aZR7vmoo9KZF5N/7rmvVPHegDyvAEWya8WWp8xocyUSt
-         odEkrqtxe+BrrOJs7tWi+xl0rQ6amzjmqifwFwxMTzKzkMVC6jPA+q0PHyg4DsrJUNgJ
-         5Z7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVOhPfBC1weX137u9ORyTCtatyZbe5wdC81tE4lkV9lgwOQLlH97JAxJXLSJdXn6MttWTm5Hich@vger.kernel.org, AJvYcCVnQNBGRaBe1lDQrEE08apxRMBIjtZUZGRYaHAAdr537FOVHWkIm4hXOssyQovFKGvbOY8T8hC7byWl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlWUnWKE/346UszyR/xeN4/mr0jepbJ9ltt3mfnOoOtcFIF7Pl
-	+qE093eJlvSciwjfhTkmSQiEzDeWXUeQhciq4wZqB6MfKQEvSKgK
-X-Gm-Gg: ASbGncuynjkv2eFBrWZg4tv11tPcviWvcWEhNmkpIIRqiXY9SACj2ngWjkWfDS8WgS/
-	2ZFIKbOoktlq1pi5lZJom5j+a4MbdaVAJ8rONHOH+HfscR8IImz4cAhzpx14UiY/zXNAIqTjoC6
-	bc8Da/dqWidWF/ciH0/I/1G22cDZwE3gKf/lXm+/rI6TWcKlPEBXsLduR3mUoQ/UNZrH2OOXTzB
-	JGAfwg40hFAQ7KvpHin1vSwfA7bh32RNtgPG5sKjVjzM18+GL+iG4DEpF+mhS83giy9U7jMKFx0
-	7Sat1NLv2WLgjO5M4A51c4nmXfJVRZAoZIEhfJjpe+eX9Qk/dvNxFrdbDuH6Ne2z0I2jb3j6muI
-	tQBfgGZQ1n0i+
-X-Google-Smtp-Source: AGHT+IF9qHXYHWvV7YvPtLmXZfGEXP7FE8MPbmSNCmTo1jCDJZv0BVbO0zV1Eq7gQfSztur3bAi1QA==
-X-Received: by 2002:a05:600c:c87:b0:43d:abd:ad0e with SMTP id 5b1f17b1804b1-43f4aafa03amr92832885e9.18.1744716261866;
-        Tue, 15 Apr 2025 04:24:21 -0700 (PDT)
-Received: from Ansuel-XPS. (host-95-249-95-100.retail.telecomitalia.it. [95.249.95.100])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eaf43ce0asm13987368f8f.70.2025.04.15.04.24.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 04:24:21 -0700 (PDT)
-Message-ID: <67fe41e5.5d0a0220.1003f3.9737@mx.google.com>
-X-Google-Original-Message-ID: <Z_5B4J-weY45HLYw@Ansuel-XPS.>
-Date: Tue, 15 Apr 2025 13:24:16 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.or
-Subject: Re: [net-next PATCH v7 5/6] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-References: <20250410095443.30848-1-ansuelsmth@gmail.com>
- <20250410095443.30848-6-ansuelsmth@gmail.com>
- <Z_4o7SBGxHBdjWFZ@shell.armlinux.org.uk>
+	s=arc-20240116; t=1744716432; c=relaxed/simple;
+	bh=7TJQx3IMV/A2ryyGm2UIlixLZbwBnwx5FIYesxZj4FQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nwnlOnIVdxF65vb8Ww7dOG32srDOChljxHm275kfVu8r7Lq6qxUamTiwW6zBgHaaBz4FFCouxZ9P6aSEqavB205nntkArfH69+Jcbf4FHjAXCcZ9XVxJyIuZNrPx7ClzsSZJOsTjY3WlboG97E7bdUVZwNtpih7jqvKk0XRHiy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OsfjWfjw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tE4V025107;
+	Tue, 15 Apr 2025 11:27:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lykgQOfeGEqHOp25JYV315tz/jO/anVTc0jDSSawRS0=; b=OsfjWfjwhHFTZjKk
+	U0ZLeQ9UujEDafN2O5mm9FMvmZWmDz9SQK9oa8JSB5619FVrji06pxXpfp+X6R3X
+	2Jyf8kR16XDrYMY2T0h6qeMmLXau/KYOHaXaJvJb/RpStt18HiKCbZhMI8+mqGo2
+	Q4DQVyGkRFLxkdK2RoJ0PUXAM51uE5CVWU2hx2bLmsWXvmSE4Ain9zVcJ435e2SY
+	XinwbZzF6JLA+FYg2X7V2DrtWU4QpyemFDzjiv46C9eXIB7lyJZtwxgGhXXD8zDj
+	0QtGM60aQaut47Acf14o9dyhGeA6QK9tU2FMdVc1cvbKzZVS77P0+yKJp4lrqgO4
+	/w9Zhw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wfuq8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 11:27:01 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53FBR0Bv012854
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 11:27:00 GMT
+Received: from [10.204.100.69] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 15 Apr
+ 2025 04:26:56 -0700
+Message-ID: <69b2e66c-e9c7-37b5-e395-f7e2fd639261@quicinc.com>
+Date: Tue, 15 Apr 2025 16:56:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z_4o7SBGxHBdjWFZ@shell.armlinux.org.uk>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH RFC v5 0/8] media: qcom: iris: re-organize catalog & add
+ support for SM8650
+Content-Language: en-US
+To: <neil.armstrong@linaro.org>, Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Bryan
+ O'Donoghue" <bryan.odonoghue@linaro.org>
+References: <20250410-topic-sm8x50-upstream-iris-catalog-v5-0-44a431574c25@linaro.org>
+ <2740b178-34cc-4b95-a8da-7e6862cabc92@linaro.org>
+ <96953447-cff5-98d4-053e-8cc31778849c@quicinc.com>
+ <eb469388-d2f9-447a-aa80-41795991a4ad@linaro.org>
+ <5b50ad93-0885-d908-fd13-3a597966115c@quicinc.com>
+ <0c4fcd81-8e1f-4b4b-a345-c08caeb599c8@linaro.org>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <0c4fcd81-8e1f-4b4b-a345-c08caeb599c8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=67fe4286 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=hxa3wIg7PJYNgx_Mp2kA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: KB5EytKCQ8cAn1lpttkY8-i1v5tmzbka
+X-Proofpoint-GUID: KB5EytKCQ8cAn1lpttkY8-i1v5tmzbka
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_05,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504150080
 
-On Tue, Apr 15, 2025 at 10:37:49AM +0100, Russell King (Oracle) wrote:
-> On Thu, Apr 10, 2025 at 11:53:35AM +0200, Christian Marangi wrote:
-> > +#define VEND1_IPC_DATA0			0x5808
-> > +#define VEND1_IPC_DATA1			0x5809
-> > +#define VEND1_IPC_DATA2			0x580a
-> > +#define VEND1_IPC_DATA3			0x580b
-> > +#define VEND1_IPC_DATA4			0x580c
-> > +#define VEND1_IPC_DATA5			0x580d
-> > +#define VEND1_IPC_DATA6			0x580e
-> > +#define VEND1_IPC_DATA7			0x580f
-> 
-> Do you use any of these other than the first? If not, please remove
-> them, maybe adding a comment before the first stating that there are
-> 8 registers.
->
 
-No since the macro is used. Also from Andrew request I will declare the
-max number of IPC data register so yes I can drop.
+On 4/15/2025 1:54 PM, neil.armstrong@linaro.org wrote:
+> Hi,
+> 
+> On 14/04/2025 21:48, Vikash Garodia wrote:
+>>
+>> On 4/14/2025 5:39 PM, neil.armstrong@linaro.org wrote:
+>>> Hi,
+>>>
+>>> On 14/04/2025 12:54, Vikash Garodia wrote:
+>>>> Hi Neil,
+>>>>
+>>>> On 4/14/2025 1:05 PM, Neil Armstrong wrote:
+>>>>> Hi Vikash, Dikshita,
+>>>>>
+>>>>> On 10/04/2025 18:29, Neil Armstrong wrote:
+>>>>>> Re-organize the platform support core into a gen1 catalog C file
+>>>>>> declaring common platform structure and include platform headers
+>>>>>> containing platform specific entries and iris_platform_data
+>>>>>> structure.
+>>>>>>
+>>>>>> The goal is to share most of the structure while having
+>>>>>> clear and separate per-SoC catalog files.
+>>>>>>
+>>>>>> The organization is based on the curent drm/msm dpu1 catalog
+>>>>>> entries.
+>>>>>
+>>>>> Any feedback on this patchset ?
+>>>> Myself and Dikshita went through the approach you are bringing here, let me
+>>>> update some context here:
+>>>> - sm8550, sm8650, sm8775p, qcs8300 are all irisv3, while qcs8300 is the scaled
+>>>> down variant i.e have 2 PIPE vs others having 4. Similarly there are other
+>>>> irisv3 having 1 pipe as well.
+>>>> - With above variations, firmware and instance caps would change for the
+>>>> variant
+>>>> SOCs.
+>>>> - Above these, few(less) bindings/connections specific delta would be there,
+>>>> like there is reset delta in sm8550 and sm8650.
+>>>>
+>>>> Given above, xxx_gen1.c and xxx_gen2.c can have all binding specific tables and
+>>>> SOC platform data, i.e sm8650_data (for sm8650). On top of this, individual SOC
+>>>> specific .c file can have any delta, from xxx_gen1/2.c) like reset table or
+>>>> preset register table, etc and export these delta structs in xxx_gen1.c or
+>>>> xxx_gen2.c.
+>>>>
+>>>> Going with above approach, sm8650.c would have only one reset table for now.
+>>>> Later if any delta is identified, the same can be added in it. All other common
+>>>> structs, can reside in xxx_gen2.c for now.
+>>>
+>>> Thanks for reviewing, but...
+>>> Sorry I don't understand what you and Dmitry are asking me...
+>>>
+>>> If I try really hard, you would like to have:
+>>>
+>>> iris_catalog_sm8550.c
+>>> - iris_set_sm8550_preset_registers
+>>> - sm8550_icc_table
+>>> - sm8550_clk_reset_table
+>>> - sm8550_bw_table_dec
+>>> - sm8550_pmdomain_table
+>>> - sm8550_opp_pd_table
+>>> - sm8550_clk_table
+>> Move or rename existing 8550.c as xxx_gen2.c. This is with the existing
+>> assumption that everything under 8550.c is common for all gen2 to come in future.
+>>>
+>>> iris_catalog_sm8650.c
+>>> - sm8650_clk_reset_table
+>>> - sm8650_controller_reset_table
+>> yes, since reset is the only delta.
+>>>
+>>> iris_catalog_gen2.c
+>>> - iris_hfi_gen2_command_ops_init
+>>> - iris_hfi_gen2_response_ops_init
+>>> ...
+>>> - sm8550_dec_op_int_buf_tbl
+>>>
+>>> and:
+>>> - struct iris_platform_data sm8550_data
+>>> - struct iris_platform_data sm8650_data
+>> all this goes to xxx_gen2.c as well.
+> 
+> Yeah so this is exactly my current approach, except it use .h files
+> for each SoC for simplicity.
+> 
+>>
+>>> using data from iris_catalog_sm8550.c & iris_catalog_sm8550.c
+>>>
+>>> So this is basically what I _already_ propose except
+>>> you move data in separate .c files for no reasons,
+>>> please explain why you absolutely want distinct .c
+>>> files per SoC. We are no more in the 1990's and we camn
+>>> defintely have big .c files.
+>> Its not about the size of file alone, it is easy to understand later what would
+>> be the delta in the SOCs and what would common. For ex, just navigating through
+>> sm8650.c, anyone can comment that reset is the delta.
+> 
+> What's the problem with the current approach with .h file for each SoC ?
+> 
+>>>
+>>> And we still have a big issue, how to get the:
+>>> - ARRAY_SIZE(sm8550_clk_reset_table)
+>>> - ARRAY_SIZE(sm8550_bw_table_dec)
+>>> - ARRAY_SIZE(sm8550_pmdomain_table)
+>>> ...
+>>>
+>>> since they are declared in a separate .c file and you
+>>> need a compile-time const value to fill all the _size
+>>> attribute in iris_platform_data.
+>> I have not tries this, but isn't extern-ing the soc structs (in your case reset
+>> tables) into xxx_gen2.c enough here ? Also i think the tables you are pointing
+>> here, lies in the xxx_gen2.c only, so i am sure above ones would not be an issue
+>> at all. The only delta struct is reset table, lets see if extern helps.
+> 
+> No it doesn't, because I wrote C for the last 25 years, and I tried it already,
+> I also tried to export a const int with the table size, and it also doesn't work.
+Got it, i tried too, it didn't work.
+> 
+> The 3 only ways are:
+> 1) add defines with sizes for each table
+This leaves manual update everytime.
 
-> > +static int aeon_ipcs_wait_cmd(struct phy_device *phydev, bool parity_status)
-> > +{
-> > +	u16 val;
-> > +
-> > +	/* Exit condition logic:
-> > +	 * - Wait for parity bit equal
-> > +	 * - Wait for status success, error OR ready
-> > +	 */
-> > +	return phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, VEND1_IPC_STS, val,
-> > +					 FIELD_GET(AEON_IPC_STS_PARITY, val) == parity_status &&
-> > +					 (val & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_RCVD &&
-> > +					 (val & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_PROCESS &&
-> > +					 (val & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_BUSY,
-> > +					 AEON_IPC_DELAY, AEON_IPC_TIMEOUT, false);
-> 
-> Hmm. I'm wondering whether:
-> 
-> static bool aeon_ipc_ready(u16 val, bool parity_status)
-> {
-> 	u16 status;
-> 
-> 	if (FIELD_GET(AEON_IPC_STS_PARITY, val) != parity_status)
-> 		return false;
-> 
-> 	status = val & AEON_IPC_STS_STATUS;
-> 
-> 	return status != AEON_IPC_STS_STATUS_RCVD &&
-> 	       status != AEON_IPC_STS_STATUS_PROCESS &&
-> 	       status != AEON_IPC_STS_STATUS_BUSY;
-> }
-> 
-> would be better, and then maybe you can fit the code into less than 80
-> columns. I'm not a fan of FIELD_PREP_CONST() when it causes differing
-> usage patterns like the above (FIELD_GET(AEON_IPC_STS_STATUS, val)
-> would match the coding style, and probably makes no difference to the
-> code emitted.)
-> 
+> 2) add a NULL entry at the end of each table, and update all code using those
+> tables
+Does not sound right to update the code, just to get the size.
 
-You are suggesting to use a generic readx function or use a while +
-sleep to use the suggested _ready function?
+> 3) declare in the same scope, which is my current proposalThe proposal in the RFC is about moving the common structs to 8550.h, rather, it
+can be kept in xxx_gen2.c.
+8550.h can have the delta part (i.e reset tables) and can be included in
+xxx_gen2.c. sm8650_data can reside in xxx_gen2.c, soc headers just brings the
+delta structs which can be overridden from common in xxx_gen2.c
+I am good with the header approach which contains the delta over and above
+xxx_gen2.c.
 
-> > +}
-> > +
-> > +static int aeon_ipc_send_cmd(struct phy_device *phydev,
-> > +			     struct as21xxx_priv *priv,
-> > +			     u16 cmd, u16 *ret_sts)
-> > +{
-> > +	bool curr_parity;
-> > +	int ret;
-> > +
-> > +	/* The IPC sync by using a single parity bit.
-> > +	 * Each CMD have alternately this bit set or clear
-> > +	 * to understand correct flow and packet order.
-> > +	 */
-> > +	curr_parity = priv->parity_status;
-> > +	if (priv->parity_status)
-> > +		cmd |= AEON_IPC_CMD_PARITY;
-> > +
-> > +	/* Always update parity for next packet */
-> > +	priv->parity_status = !priv->parity_status;
-> > +
-> > +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_CMD, cmd);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Wait for packet to be processed */
-> > +	usleep_range(AEON_IPC_DELAY, AEON_IPC_DELAY + 5000);
-> > +
-> > +	/* With no ret_sts, ignore waiting for packet completion
-> > +	 * (ipc parity bit sync)
-> > +	 */
-> > +	if (!ret_sts)
-> > +		return 0;
-> > +
-> > +	ret = aeon_ipcs_wait_cmd(phydev, curr_parity);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_STS);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	*ret_sts = ret;
-> > +	if ((*ret_sts & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_SUCCESS)
-> > +		return -EINVAL;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int aeon_ipc_send_msg(struct phy_device *phydev,
-> > +			     u16 opcode, u16 *data, unsigned int data_len,
-> > +			     u16 *ret_sts)
-> > +{
-> > +	struct as21xxx_priv *priv = phydev->priv;
-> > +	u16 cmd;
-> > +	int ret;
-> > +	int i;
-> > +
-> > +	/* IPC have a max of 8 register to transfer data,
-> > +	 * make sure we never exceed this.
-> > +	 */
-> > +	if (data_len > AEON_IPC_DATA_MAX)
-> > +		return -EINVAL;
-> > +
-> > +	mutex_lock(&priv->ipc_lock);
-> > +
-> > +	for (i = 0; i < data_len / sizeof(u16); i++)
-> > +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_DATA(i),
-> > +			      data[i]);
-> > +
-> > +	cmd = FIELD_PREP(AEON_IPC_CMD_SIZE, data_len) |
-> > +	      FIELD_PREP(AEON_IPC_CMD_OPCODE, opcode);
-> > +	ret = aeon_ipc_send_cmd(phydev, priv, cmd, ret_sts);
-> > +	if (ret)
-> > +		phydev_err(phydev, "failed to send ipc msg for %x: %d\n",
-> > +			   opcode, ret);
-> > +
-> > +	mutex_unlock(&priv->ipc_lock);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int aeon_ipc_rcv_msg(struct phy_device *phydev,
-> > +			    u16 ret_sts, u16 *data)
-> > +{
-> > +	struct as21xxx_priv *priv = phydev->priv;
-> > +	unsigned int size;
-> > +	int ret;
-> > +	int i;
-> > +
-> > +	if ((ret_sts & AEON_IPC_STS_STATUS) == AEON_IPC_STS_STATUS_ERROR)
-> > +		return -EINVAL;
-> > +
-> > +	/* Prevent IPC from stack smashing the kernel */
-> > +	size = FIELD_GET(AEON_IPC_STS_SIZE, ret_sts);
-> > +	if (size > AEON_IPC_DATA_MAX)
-> > +		return -EINVAL;
-> > +
-> > +	mutex_lock(&priv->ipc_lock);
-> > +
-> > +	for (i = 0; i < DIV_ROUND_UP(size, sizeof(u16)); i++) {
-> > +		ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_DATA(i));
-> > +		if (ret < 0) {
-> > +			size = ret;
-> > +			goto out;
-> > +		}
-> > +
-> > +		data[i] = ret;
-> > +	}
-> > +
-> > +out:
-> > +	mutex_unlock(&priv->ipc_lock);
+Regards,
+Vikash
+> Neil
 > 
-> I think the locking here is suspicious.
+>>
+>> Regards,
+>> Vikash
+>>>
+>>> So I recall my goal, I just want to add sm8650 support,
+>>> and I'm not the owner of this driver, and I'm really happy
+>>> to help, but giving me random ideas to solve your problem
+>>> doesn't help us at all going forward.
+>>>
+>>> Neil
+>>>
+>>>>
+>>>> Regards,
+>>>> Vikash
+>>>>>
+>>>>> Thanks,
+>>>>> Neil
+>>>>>
+>>>>>>
+>>>>>> Add support for the IRIS accelerator for the SM8650
+>>>>>> platform, which uses the iris33 hardware.
+>>>>>>
+>>>>>> The vpu33 requires a different reset & poweroff sequence
+>>>>>> in order to properly get out of runtime suspend.
+>>>>>>
+>>>>>> Follow-up of [1]:
+>>>>>> https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org/
+>>>>>>
+>>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>>> ---
+>>>>>> Changes in v4:
+>>>>>> - Reorganized into catalog, rebased sm8650 support on top
+>>>>>> - Link to v4:
+>>>>>> https://lore.kernel.org/all/20250409-topic-sm8x50-iris-v10-v4-0-40e411594285@linaro.org
+>>>>>>
+>>>>>> Changes in v4:
+>>>>>> - collected tags
+>>>>>> - un-split power_off in vpu3x
+>>>>>> - removed useless function defines
+>>>>>> - added back vpu3x disappeared rename commit
+>>>>>> - Link to v3:
+>>>>>> https://lore.kernel.org/r/20250407-topic-sm8x50-iris-v10-v3-0-63569f6d04aa@linaro.org
+>>>>>>
+>>>>>> Changes in v3:
+>>>>>> - Collected review tags
+>>>>>> - Removed bulky reset_controller ops
+>>>>>> - Removed iris_vpu_power_off_controller split
+>>>>>> - Link to v2:
+>>>>>> https://lore.kernel.org/r/20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org
+>>>>>>
+>>>>>> Changes in v2:
+>>>>>> - Collected bindings review
+>>>>>> - Reworked rest handling by adding a secondary optional table to be used by
+>>>>>> controller poweroff
+>>>>>> - Reworked power_off_controller to be reused and extended by vpu33 support
+>>>>>> - Removed useless and unneeded vpu33 init
+>>>>>> - Moved vpu33 into vpu3x files to reuse code from vpu3
+>>>>>> - Moved sm8650 data table into sm8550
+>>>>>> - Link to v1:
+>>>>>> https://lore.kernel.org/r/20250225-topic-sm8x50-iris-v10-v1-0-128ef05d9665@linaro.org
+>>>>>>
+>>>>>> ---
+>>>>>> Neil Armstrong (8):
+>>>>>>          media: qcom: iris: move sm8250 to gen1 catalog
+>>>>>>          media: qcom: iris: move sm8550 to gen2 catalog
+>>>>>>          dt-bindings: media: qcom,sm8550-iris: document SM8650 IRIS
+>>>>>> accelerator
+>>>>>>          media: platform: qcom/iris: add power_off_controller to vpu_ops
+>>>>>>          media: platform: qcom/iris: introduce optional controller_rst_tbl
+>>>>>>          media: platform: qcom/iris: rename iris_vpu3 to iris_vpu3x
+>>>>>>          media: platform: qcom/iris: add support for vpu33
+>>>>>>          media: platform: qcom/iris: add sm8650 support
+>>>>>>
+>>>>>>     .../bindings/media/qcom,sm8550-iris.yaml           |  33 ++-
+>>>>>>     drivers/media/platform/qcom/iris/Makefile          |   6 +-
+>>>>>>     .../media/platform/qcom/iris/iris_catalog_gen1.c   |  83 +++++++
+>>>>>>     ...{iris_platform_sm8550.c => iris_catalog_gen2.c} |  85 +------
+>>>>>>     ...ris_platform_sm8250.c => iris_catalog_sm8250.h} |  80 +-----
+>>>>>>     .../media/platform/qcom/iris/iris_catalog_sm8550.h |  91 +++++++
+>>>>>>     .../media/platform/qcom/iris/iris_catalog_sm8650.h |  68 +++++
+>>>>>>     drivers/media/platform/qcom/iris/iris_core.h       |   1 +
+>>>>>>     .../platform/qcom/iris/iris_platform_common.h      |   3 +
+>>>>>>     drivers/media/platform/qcom/iris/iris_probe.c      |  43 +++-
+>>>>>>     drivers/media/platform/qcom/iris/iris_vpu2.c       |   1 +
+>>>>>>     drivers/media/platform/qcom/iris/iris_vpu3.c       | 122 ---------
+>>>>>>     drivers/media/platform/qcom/iris/iris_vpu3x.c      | 275
+>>>>>> +++++++++++++++++++++
+>>>>>>     drivers/media/platform/qcom/iris/iris_vpu_common.c |   4 +-
+>>>>>>     drivers/media/platform/qcom/iris/iris_vpu_common.h |   3 +
+>>>>>>     15 files changed, 598 insertions(+), 300 deletions(-)
+>>>>>> ---
+>>>>>> base-commit: 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
+>>>>>> change-id: 20250410-topic-sm8x50-upstream-iris-catalog-3e2e4a033d6f
+>>>>>>
+>>>>>> Best regards,
+>>>>>
+>>>
 > 
-> aeon_ipc_send_msg() takes the lock, writes the registers, and waits for
-> the success signal, returning the status, and then drops the lock.
-> 
-> Time passes.
-> 
-> aeon_ipc_rcv_msg() is then called, which extracts the number of bytes to
-> be read from the returned status, takes the lock, reads the registers,
-> and then drops the lock.
-> 
-> So, what can happen is:
-> 
-> 	Thread 1			Thread 2
-> 	aeon_ipc_send_msg()
-> 					aeon_ipc_send_msg()
-> 	aeon_ipc_rcv_msg()
-> 					aeon_ipc_rcv_msg()
-> 
-> Which means thread 1 reads the reply from thread 2's message.
-> 
-> So, this lock does nothing to really protect against the IPC mechanism
-> against races.
-> 
-> I think you need to combine both into a single function that takes the
-> lock once and releases it once.
->
-
-Mhhh I think I will have to create __ function for locked and non-locked
-variant. I think I woulkd just handle the lock in the function using
-send and rcv and maybe add some smatch tag to make sure the lock is
-taken when entering those functions.
-
--- 
-	Ansuel
 
