@@ -1,162 +1,116 @@
-Return-Path: <devicetree+bounces-167087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2404FA89555
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:40:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A07A89554
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33F8016E566
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:40:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63EE37A9410
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4393E2741C6;
-	Tue, 15 Apr 2025 07:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E0F274FC3;
+	Tue, 15 Apr 2025 07:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="EVuhjwAw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cB4JSxG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD6624B28;
-	Tue, 15 Apr 2025 07:40:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744702848; cv=pass; b=DBXHTtn6LPZpZ5xWBIUNcSnQWs+ciHeTbfueKPt/iaJECSLKhhCoZagl86AzRD6XBrxnPY2E3E/nkiKpE8HV24rErQXXCIfEUIqHvO7xI1Kfq8S9QvJVx7S9Xa3xo1OKpQNuAhrXdCd0Vlhug6+FMTfiNV16AF3zOd6pgkDNfGc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744702848; c=relaxed/simple;
-	bh=yU0uVlGtDXeaxlwOodUHke+tqbdX1S3tQgjMGMTi7t8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=buzCz3kLhFI4cEd1IjqNbIXGAYkOrOthRcp3fr5K1c0SSANbeJA2MY2h99jpw23VxoHqVWCYAbkXnNzxnVheG2f+58vBUAXxUMvbd4aoGzgDW5319/MgO0+FaJK2ECj49+Rf7gHO44k7P11HOW7uV9fIeM7dj0Yi9slxXRqVXLg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=EVuhjwAw; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1744702774; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=NkU8spe0vKT08V1fXVABu5/53/gQbYk4BNMrFwDPZsuuvccHpPHSsVbcfjrjR/bQGLUg9Ta0Mg02gUixO06nxIxeTPQSKi3jUFH83n25ZCq62lGhw4Led0V0GjA7GTAh5rgreZW4JKllVNYa6Gz6Hs8LKWCS6YZEq7z7qodE7DA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1744702774; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=yU0uVlGtDXeaxlwOodUHke+tqbdX1S3tQgjMGMTi7t8=; 
-	b=Y7ZPpfE+id/ntFmKRy7y2NAhV1gzFzurNoW0ZjmrU75LSbbfQn2BVs//6r53AB1Bc+Zy8jQLy9PGjv6Zd7vZU1xDRpoS9RRqtDyBbLlyN7wHOp8Zza+oiI2lDUSLuPtk0CznX7rat0ZZG8MMvtHwNZw/MT/1D1OGX7JAJCl0QQE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
-	dmarc=pass header.from=<sjoerd@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744702774;
-	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=yU0uVlGtDXeaxlwOodUHke+tqbdX1S3tQgjMGMTi7t8=;
-	b=EVuhjwAwRYM7/0zcg7r0GCMTJSTlVHZMZxkNQFQxVzGr6goyPp8DbT7Ng4UWe5VX
-	H2iA36/QNHPm/XrnD6QsdJzrkrACjX0HSj5+gX+Z81sYUllypQmYHKKqpqVtfvF/o4l
-	v0qUEpQ/qmRJ6tFUcmenLs0EYQHBlQJSv8Yvo/n4=
-Received: by mx.zohomail.com with SMTPS id 17447027670091011.7454237538764;
-	Tue, 15 Apr 2025 00:39:27 -0700 (PDT)
-Message-ID: <096a8318629dea9073ad6c4807a2f1dedc6b0cd6.camel@collabora.com>
-Subject: Re: [PATCH v3 10/10] riscv: dts: eswin: add HiFive Premier P550
- board device tree
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: Samuel Holland <samuel.holland@sifive.com>, Ariel D'Alessandro	
- <ariel.dalessandro@collabora.com>, Pinkesh Vaghela	
- <pinkesh.vaghela@einfochips.com>, Conor Dooley <conor@kernel.org>, Rob
- Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Thomas Gleixner	 <tglx@linutronix.de>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt	
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Daniel Lezcano	
- <daniel.lezcano@linaro.org>, Min Lin <linmin@eswincomputing.com>, Pritesh
- Patel	 <pritesh.patel@einfochips.com>, Yangyu Chen <cyy@cyyself.name>, Lad
- Prabhakar	 <prabhakar.mahadev-lad.rj@bp.renesas.com>, Yu Chien Peter Lin	
- <peterlin@andestech.com>, Charlie Jenkins <charlie@rivosinc.com>, Kanak
- Shilledar <kanakshilledar@gmail.com>, Darshan Prajapati
- <darshan.prajapati@einfochips.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Heiko Stuebner <heiko@sntech.de>, Aradhya
- Bhatia	 <a-bhatia1@ti.com>, rafal@milecki.pl, Anup Patel
- <anup@brainfault.org>, 	devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, 	linux-kernel@vger.kernel.org,
- "kernel@collabora.com" <kernel@collabora.com>
-Date: Tue, 15 Apr 2025 09:39:21 +0200
-In-Reply-To: <0dc3bb03-3708-4134-96bf-d5f95187e8bb@sifive.com>
-References: <20250410152519.1358964-1-pinkesh.vaghela@einfochips.com>
-	 <20250410152519.1358964-11-pinkesh.vaghela@einfochips.com>
-	 <956d76b0-4f82-4f95-8f70-70896d488bd3@collabora.com>
-	 <0dc3bb03-3708-4134-96bf-d5f95187e8bb@sifive.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300C5129A78
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 07:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744702834; cv=none; b=EcjTchonLyzTazl0pTzL6hfhpXKv0MXV0nAsRwRNiByrf76JBOvsTZN+W1x9XT/xbZjOarMsYtuFshS2vc0GGpbNJGwLQ0xQclr76LNr9ugEFjBdZCdlxnFkfkQpJag3CeMVK2FE4Gc42k0aLY7UpomuZ6y/fc//SzVMd+ZoSAw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744702834; c=relaxed/simple;
+	bh=bPPsVA86aRMmKsehM2IabqFVi4bzGyyaypZ1MvkVduM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cehqTmBu7lKa2xTjg1PambfCSs4z1irw4n7vxWxA+SmbPla2rq+a/0EEgq+AF7lqB2HAxmZfQOGnBIWcylBRv5qtFpfOSeDHgSgoQ4SbBd1j2mColLGrQy3Cc5okgWduqUFbBHlt67SNZgrM99XX3mu0NDx5oo7DBOR7KGd6lzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cB4JSxG6; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30db1bd3bddso51111191fa.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 00:40:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744702830; x=1745307630; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bPPsVA86aRMmKsehM2IabqFVi4bzGyyaypZ1MvkVduM=;
+        b=cB4JSxG6BRqYZ9ZsnGMSOWDfp9AmdWXX24vNa53PUvyUZYNBjWdpxdbkdCLHeQwiw3
+         pO83lLqarymylP/z0NgPUlDiiCuLSW3w4NzlQfEZ2aGKF3EWsYTOM7493Zbiv9edKNDV
+         OGJz3L/5cMCRU2cJrSZtoL1U6rNqg6M/1zMhV5RLI5uAUN/h6rd0c2f7aXGxFbJWLLnV
+         7X634LQvqQfSvXkXJUYyN4ODk458lKJfsD/i4gIET2HzXI0hHI053zX0xfMlzrGAzKGo
+         iD3hxRAdrx+iBYRs6OZbF0zrC3K4VmpVFBRAqQidjT9PIivuif4EY1vsZmYfkm9hawlX
+         U+Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744702830; x=1745307630;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bPPsVA86aRMmKsehM2IabqFVi4bzGyyaypZ1MvkVduM=;
+        b=l/PMqF8DkchT3shI9wko9cqS7lHy3zIYAe6iiud+ENAR/7sPJAtOmqTO6qLMvOC1Xd
+         GotNfszn19k/wUdqXVD00O6kiHWNZpOpUDqYvHNnvrsY2lsSBfF7vEwRmDTWqWXVmVsL
+         wgOLI19W1YfoSh1xAHWFWrctmlqNf/DkSPLI1VjDtc+SzqLiBxyXZtmXsRhGaf6vLB4i
+         Tc8TIFEgmDCTs22bGy/njL+Ga7xZcoJPQU7fa/Du74dXlozjOoU6rSuxkiLOKSLtNYki
+         UCYgFC66S6Xu3DY34lQVEfHiRPjk1vIS+wS4y7Yd01wXIwSq8jTDJt9vhadpOF/X7LDi
+         FJJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWCQ1Wzsr8etWS1cp/O1Q3SKrsR23hlOU3sSVs510k3xFNqUont/KPoOCNCln4pvPsuunGpVj50rYNU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0zt4rx8U54hO8TLVUxjIM+1X+KRevETCKAjUujoxaMnFoIRsJ
+	9VG4jpckuI0Rm0mP7eD0i7vQCbItFkEtRGWHsSZS5mBisCyYv0QstGVUbjpOxcVGMScmewY6RP+
+	JWvUrIeHKC12Ha9lN3mQ1L7ottE+SUrsQsM03Ng==
+X-Gm-Gg: ASbGncv3yXk+U2Dy+gTFlQvLJPEdr1v5VJxEdHUaXHxBbZ0YP1nTtvJJvYpztreSbDN
+	eW3IBv3bzHUTUs+TyFjeZvU2Q/rhPxXY0ckVwivYJm6JUTlZxJS8vlZ/doykTv0mr6XKnEY4FPF
+	z0CFhETu1Cx0jhfd2xRwXrZMsSGpCAc5RU
+X-Google-Smtp-Source: AGHT+IFWYF5PBFz8bdBMKs/hFSmP9qdyePV80JdSmzpOU6YbNPT0plMuK8UpwqvumIMhMZzLrddrNlq7JqXr9GLcwmY=
+X-Received: by 2002:a2e:9214:0:b0:30c:3099:13d0 with SMTP id
+ 38308e7fff4ca-31049a01919mr40215891fa.21.1744702830214; Tue, 15 Apr 2025
+ 00:40:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+References: <20250403-a5-pinctrl-v3-0-a8c067e22295@amlogic.com> <20250403-a5-pinctrl-v3-1-a8c067e22295@amlogic.com>
+In-Reply-To: <20250403-a5-pinctrl-v3-1-a8c067e22295@amlogic.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 15 Apr 2025 09:40:18 +0200
+X-Gm-Features: ATxdqUGH5zAtbvjbTyVv3OZBDQWbnPFIqXVT2OLZ9OTJTUgQ_9-qW1g1gPLhhII
+Message-ID: <CACRpkdZATVbE8nrk7_B2jE7MOqqeruV25mRdZaXdGNJ_kh1S1w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
+ compatible string for A5
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hey,
+Hi Xianwei,
 
-On Mon, 2025-04-14 at 11:00 -0500, Samuel Holland wrote:
-> Hi Ariel,
->=20
-> On 2025-04-14 7:55 AM, Ariel D'Alessandro wrote:
-> > Hi Pinkesh,
-> >=20
-> > On 4/10/25 12:25 PM, Pinkesh Vaghela wrote:
-> > > From: Min Lin <linmin@eswincomputing.com>
-> >=20
-<snip>
+On Thu, Apr 3, 2025 at 10:33=E2=80=AFAM Xianwei Zhao via B4 Relay
+<devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
 
-> > Although commit log says that this includes DRAM configuration, looks l=
-ike
-> > it's
-> > missing? In order to test this patchset, had to add this following memo=
-ry
-> > definition (picked from vendor kernel repository):
-> >=20
-> > =C2=A0=C2=A0=C2=A0 L50: memory@80000000 {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 comp=
-atible =3D "sifive,axi4-mem-port", "sifive,axi4-port",
-> > "sifive,mem-port";
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 devi=
-ce_type =3D "memory";
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =
-=3D <0x0 0x80000000 0x7f 0x80000000>;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sifi=
-ve,port-width-bytes =3D <32>;
-> > =C2=A0=C2=A0=C2=A0 };
->=20
-> That is a misstatement in the commit message. The memory node is not incl=
-uded
-> in
-> the static devicetree because the amount of RAM installed on the board is
-> variable. It is the responsibility of firmware to provide the memory map,
-> either
-> through EFI or by patching the memory node into the DT at runtime. I beli=
-eve
-> the
-> current BSP U-Boot does the former but not the latter.
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>
+> Amlogic A5 SoCs uses the same pintrl controller as A4 SoCs. There is
+> no need for an extra compatible line in the driver, but add A5
+> compatible line for documentation.
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Amount of RAM being variable is pretty common on devices using FDT these da=
-ys;
-Typically the dts still gets a memory node that's a reasonable default, wit=
-h the
-expectation that e.g. u-boot will fix it up. If you look at other risc-v
-devicetrees in upstream they (almost?) all come with a pre-defined memory n=
-ode.
-For the P550 board a default memory node for 16G ram seems reasonable (as t=
-hat
-seems the minimal SKU?)
+Patch applied!
 
-That all being said. Indeed the sifive BSP u-boot doesn't seem to call the
-relevant `fdt_fixup_memory` to fixup the memory node, hence us having issue=
-s
-booting with u-boot directly (without going through EFI). Honestly this was=
- a
-bit of a surprise to me as only most other architectures that's just done b=
-y
-common code, but that doesn't seem to be the case for risc-v (either upstre=
-am or
-downstream)
+Please funnel 2/2 through the SoC tree.
 
---=20
-Sjoerd Simons
-Collabora
+Yours,
+Linus Walleij
 
