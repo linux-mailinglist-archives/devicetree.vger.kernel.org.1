@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-167331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22403A89F46
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:20:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005B7A89F7A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:33:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A533A7664
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:20:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 429401887FAA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC9B297A41;
-	Tue, 15 Apr 2025 13:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130311BC4E;
+	Tue, 15 Apr 2025 13:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xlH8rjaF"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Riz0HDuv";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Aye+2S9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4231C6FF5;
-	Tue, 15 Apr 2025 13:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F2EA932;
+	Tue, 15 Apr 2025 13:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744723247; cv=none; b=i4jDBQ9tq6RSv4PUUjj/7S3N+YDZ+aWET3oWPqQsa4MsAoVC87MVYaP5J7s+K1iy38w48+fJEdAub3Fsbenoi08iLTztzcuyKKGfmmpiPNkJSuOHtFiHUmbRD1u6gIcOiUgvioO6WyGJGTBPrY+9hINAnD8IvYPYYrUw0lA/gyY=
+	t=1744723999; cv=none; b=tUHxX8di39B2eACZHXb9bBU0DC48hrxnGixc/UjBhc5BRtXDoqwYF20O05LjSweuBZibakfF0LyPZGPETvNLBQ+iQBFaJPGDNIyKl6//qjrio6y6eBejRLBmJ121jEMRAPtVI27m3jbC5XpalhmUr1qplVsQJEf+FWmLCvKne18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744723247; c=relaxed/simple;
-	bh=0COEkxB+APvNdF+miKKyOTbBKTDK5TdhHuMca6Jb0OQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ngV3YwHzmFhJskX6m0z24TkP20TkqlYZlCNuJSfPnPi7fqREk+XRRFjSZjzrlRjXeILbI7RSXWwGPPK64vEMn90kEGlD2QjX39oqr8N65vQ0UDJMvhxHDmL+XQyVHkevAmTekUh6+vl0RkyRpIVCIpXWHob2gZ5Mv9pm0rZz5yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xlH8rjaF; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=zwXoAPOSd7TPYyFwNb3wZwJZIOBKCyO+D+dc+pl8JG0=; b=xlH8rjaFC+RAnQBZCoJmZEEd0E
-	D24kM63bpE+zT98wgG3mJZJIgEhEmxpiIVkYqIai0Gkuqv+z5hDasP9a7SmjGc5rNDr8V0jh5D81O
-	wPKei3YG3MRZttrcOKTXxzyYFNbcxuljK4qjvy2NaKNqo/yDE1FouImJPkQRFRM0Ff5E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u4gDE-009RsY-Ta; Tue, 15 Apr 2025 15:20:28 +0200
-Date: Tue, 15 Apr 2025 15:20:28 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1744723999; c=relaxed/simple;
+	bh=IBF9J0ep9cjAC9XCYOJFD2EZwlaLg4Ku/1yVlWlYkPg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kYUEMYrR1otZ4sM0Hxlcsi7VXx0arjNBDPBlkMOo84k9pbu0CqqQWBJWhI5bUESuJbetgacbSiwpbSKwMNSRSjuO0zW1j6cm8QsICh1ef7Q9JeZ2DRWdr4Qiv0Or0EyRPd+tSFZfzCqm1+RGPrwAxer3EeWC/1cNGkdL+wvHryw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Riz0HDuv; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Aye+2S9O reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1744723996; x=1776259996;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=R2SZvhgWOcXu74APsWOF5IGVz2bjc0yiT34pBzEhPzg=;
+  b=Riz0HDuvtBiuXTfAo5GRjnCc+OHY7Lzkgq2SEF2jqi2RpsJnHLRHXGK6
+   gisPoH0WlX6YRO1LQ8EVxsMlRDw0dfPzT72iUlW2buoJY/ovrJ7eCexPq
+   2DBDFKfGSQZreqURqLUaTng6GD03lYw5xcIWR2eYQhHdKR95kcfVV8YA7
+   0nfuPbyEOjjx7JyMrEEFokyL/IW99bMWvoXap3rlextocqchIDkdLDzpP
+   aMcqngfnbd5PSP8hXza5kSPPmVrM4LbSyAWzUmV8oxZ1MnJFlSwq1hHMZ
+   TsPfdg2xmZiH5YNwhlaN1/+E3FWzRqqeNO+WhM7SwAg9Cq93pHIW2e/pB
+   g==;
+X-CSE-ConnectionGUID: FzvENSeBT/eNc8+aXFsG1Q==
+X-CSE-MsgGUID: iKjBA6smT3i4jVEC3eJDkQ==
+X-IronPort-AV: E=Sophos;i="6.15,213,1739833200"; 
+   d="scan'208";a="43543921"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 15 Apr 2025 15:33:12 +0200
+X-CheckPoint: {67FE6017-19-903EAEAC-E04C76C8}
+X-MAIL-CPID: 41A4BAF9440150BB2E011C50814F7D8B_5
+X-Control-Analysis: str=0001.0A006397.67FE6014.0029,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 072EA16352A;
+	Tue, 15 Apr 2025 15:33:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1744723987;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=R2SZvhgWOcXu74APsWOF5IGVz2bjc0yiT34pBzEhPzg=;
+	b=Aye+2S9OSazLcxSrARooQIIqEveTec8F0AuUZg7N0qxWL4N3rFbkLV0m/aKsaWjujxk4KJ
+	iVbqYFijDFu5vULgJ3uzsKQI6FeOpEV+cWnb2ocKKBc5EYWUGOftgpoXCUhRPcaDbvOTQ8
+	QLsngYPwAJDruKTEh2ffEyatPXO17Cl4Swmi/H9PpurvFivHiuUAWLQ1YwVThexqDYj+EP
+	B+z3T+aXfrcaWgSvHxXSrsx/9yHiC8dit59WZCd04ziXxRkpJFSD0cyA5qDAfrAe5ATeFG
+	o5cx6e2F+E7h8wbwrElMBJo0vtNblnMYym0EF3LEpGkZefwH9FNGInu1HGsfsA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andy Whitcroft <apw@canonical.com>,
-	Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH net-next 4/4] checkpatch: check for comment explaining
- rgmii(|-rxid|-txid) PHY modes
-Message-ID: <9d73f6ac-9fee-446b-b011-e664a7311eca@lunn.ch>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <16a08c72ec6cf68bbe55b82d6fb2f12879941f16.1744710099.git.matthias.schiffer@ew.tq-group.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Markus Niebel <Markus.Niebel@tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	linux-renesas-soc@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/2] dt-bindings: arm: add TQMa8XxS boards
+Date: Tue, 15 Apr 2025 15:32:58 +0200
+Message-ID: <20250415133301.443511-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <16a08c72ec6cf68bbe55b82d6fb2f12879941f16.1744710099.git.matthias.schiffer@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-> +  **UNCOMMENTED_RGMII_MODE**
-> +    Historially, the RGMII PHY modes specified in Device Trees have been
-> +    used inconsistently, often referring to the usage of delays on the PHY
-> +    side rather than describing the board.
-> +
-> +    PHY modes "rgmii", "rgmii-rxid" and "rgmii-txid" modes require the clock
-> +    signal to be delayed on the PCB; this unusual configuration should be
-> +    described in a comment. If they are not (meaning that the delay is realized
-> +    internally in the MAC or PHY), "rgmii-id" is the correct PHY mode.
+From: Markus Niebel <Markus.Niebel@tq-group.com>
 
-It is unclear to me how much ctx_has_comment() will return. Maybe
-include an example here of how it should look. I'm assuming:
+TQMa8XxS is a SOM series featuring NXP i.MX8X SoC.
+They are called TQMa8XQPS and TQMa8XDPS respectively.
+MB-SMARC-2 is a carrier reference design.
 
-/* RGMII delays added via PCB traces */
-&enet2 {
-    phy-mode = "rgmii";
-    status = "okay";
+Signed-off-by: Markus Niebel <Markus.Niebel@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-fails, but
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index a6fd347de03fe..1c5fcd69e93e6 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1333,6 +1333,22 @@ properties:
+               - const: tq,imx8qxp-tqma8xqp     # TQ-Systems GmbH TQMa8XQP SOM (with i.MX8QXP)
+               - const: fsl,imx8qxp
+ 
++      - description:
++          TQMa8XxS is a series of SOM featuring NXP i.MX8X system-on-chip
++          variants. It has the SMARC-2.0 form factor and is designed to be placed on
++          different carrier boards. MB-SMARC-2 is a carrier reference design.
++        oneOf:
++          - items:
++              - enum:
++                  - tq,imx8qxp-tqma8xqps-mb-smarc-2 # TQ-Systems GmbH TQMa8QXPS SOM on MB-SMARC-2
++              - const: tq,imx8qxp-tqma8xqps         # TQ-Systems GmbH TQMa8QXPS SOM
++              - const: fsl,imx8qxp
++          - items:
++              - enum:
++                  - tq,imx8dxp-tqma8xdps-mb-smarc-2 # TQ-Systems GmbH TQMa8XDPS SOM on MB-SMARC-2
++              - const: tq,imx8dxp-tqma8xdps         # TQ-Systems GmbH TQMa8XDPS SOM
++              - const: fsl,imx8dxp
++
+       - description: i.MX8ULP based Boards
+         items:
+           - enum:
+-- 
+2.43.0
 
-&enet2 {
-    /* RGMII delays added via PCB traces */
-    phy-mode = "rgmii";
-    status = "okay";
-
-passes?
-
->  
->  Commit message
->  --------------
-> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> index 784912f570e9d..57fcbd4b63ede 100755
-> --- a/scripts/checkpatch.pl
-> +++ b/scripts/checkpatch.pl
-> @@ -3735,6 +3735,17 @@ sub process {
->  			}
->  		}
->  
-> +# Check for RGMII phy-mode with delay on PCB
-> +		if ($realfile =~ /\.dtsi?$/ && $line =~ /^\+\s*(phy-mode|phy-connection-type)\s*=\s*"/ &&
-
-I don't grok perl. Is this only looking a dtsi files? .dts files
-should also be checked.
-
-Thanks for working on this, it will be very useful.
-
-	Andrew
 
