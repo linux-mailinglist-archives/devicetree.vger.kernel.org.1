@@ -1,106 +1,114 @@
-Return-Path: <devicetree+bounces-167328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0465A89F17
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:12:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F452A89F20
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:13:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 675293ABEF6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:12:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 907E2443B54
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1412973D9;
-	Tue, 15 Apr 2025 13:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SyhUf/n/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E9A297A48;
+	Tue, 15 Apr 2025 13:13:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C548D2957C7;
-	Tue, 15 Apr 2025 13:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A7E2820B0;
+	Tue, 15 Apr 2025 13:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744722752; cv=none; b=YpK3u1OUXm2XGrCjajPPpW2pvVYFwbgiOuTqonUtYdYwAVZB9SyWoj/snaoEr2Oiuh59FNg+dp9IwG7qtiWZRSAX+dTT4N2yrt6KUHs3OXA1d4hVZm6S1zcdvirVsFTv+I6gwleZ6Wt7R53Ka1Vob76lk4KsdHzIzMqCCYviK1M=
+	t=1744722779; cv=none; b=Tvqzvwbh+iHeKgsPVVyH8GLRjLg6LrJ9uOgXco1nEFJOqxwa7ccLyspTaGgTkqOpQaTGp93Id5HUFTVR5fKrmEB2nj6LYtzVskNYETMHgNWPulCgqBcxyhHEyP2dCbM7sve6f8mfplZn6PzKhpwhIlrIkqY6Qm/+etVwtslMCdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744722752; c=relaxed/simple;
-	bh=BeHlrz5CIQlk/1kDDh2XFjvzQ+Ov07K+rokHvYu2Nj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qlPRqLKcMRdQJSzv7K+ZOsZXq4m1jCL2XvVGd06vAC6tJJqqem3SaipeALns9EBPeXCZrK8I0dPxRDgxj2P0vFXb0JaQJb48QdYZVp3YJeHP8l89NtW3p7kUG7pnwKgkQqdVaPsvmLHvWNl++udiVOFvdGJJ1r/7/BIa/SDpYCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SyhUf/n/; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=S+9AKP7zQ1+iMRVWZx18hsEz57eDtfhGlOAA50AWGAU=; b=SyhUf/n/OF9SyPoLA1ckdHwam6
-	5WaQP2y7KmbnQjEBT4QA5bWMeKLM0hBfi+nzMnWSov05efBfqdCcy/VRO6BApbaoyKMQMrYHrMukf
-	u2rgHQFqsw7Z4wPUihGUMayHx1i3aLoJpiB/JQqoLl+5qtmG8EmXQOUJ4v2Gs1SJgLaA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u4g5B-009RlD-7A; Tue, 15 Apr 2025 15:12:09 +0200
-Date: Tue, 15 Apr 2025 15:12:09 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Whitcroft <apw@canonical.com>,
-	Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Roger Quadros <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH net-next 4/4] checkpatch: check for comment explaining
- rgmii(|-rxid|-txid) PHY modes
-Message-ID: <a0904f35-8f26-4278-9090-9bbeef905ef7@lunn.ch>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <16a08c72ec6cf68bbe55b82d6fb2f12879941f16.1744710099.git.matthias.schiffer@ew.tq-group.com>
- <20250415131548.0ae3b66f@fedora.home>
+	s=arc-20240116; t=1744722779; c=relaxed/simple;
+	bh=II8WfqWmBa0u/1Ud+4A6+S3+jfYeVrIHrFaibEYV3WA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V6Sx5wRZaAZpPqz33ug/IkSw3Yzh1OzfJMtqL0xe07wchxGlN0dj2BCTobElQ36DG5hRlqqntX1wWOPa3jj+kDEHmvitXjm1I3IsOAQURCOoKdnrJoCRlej+F8gHZLiZGCHmmg7ULHI+RSaZsV/2pq5VynEtY3IPpf/HIig4CwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c59e7039eeso772681985a.2;
+        Tue, 15 Apr 2025 06:12:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744722776; x=1745327576;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K6O/BJeErtsOvgZOv8LjuIOrFRcKVVensh0XWZV1Eoo=;
+        b=QsCqxN/iJmypdaRloWlEsDE4mLeN+0/aTyY+ura3HzB92xJ2v/Z97vkiYJz1M7LRGg
+         rW20Poe+QltopwOZ86vfao2PUYcOoOTPJS828mhoVMfsfwyBn4BXl3jYfOMedfv/qhSc
+         6Ii2SQkxMwZ5K1ZKcNn8gMEBwUIMLAbg6+i7Gfa92vPAcEOYacpWAwUeH0cXfAR5SmSA
+         t+TJqhXq6P1LXhkApwo/RfcmnsQKsTypMav5ugJ0hqB0z9UVAsDq1+8vYlxMmzft7sd3
+         ATY8Ga1ofEN+OGZ3275HzGEM3t8wpYvyvwsYokNYEuDy9TacJJM1OO50aPYZU1IbDwgW
+         r42A==
+X-Forwarded-Encrypted: i=1; AJvYcCUPMv+oaYgL3umTQYIx1hNxhIfllxYgH2SqqRa5bB9xbljXfJxsrqLdxs7EzRx6+F5kii6N5ghdbOF0hm01@vger.kernel.org, AJvYcCUjjP6rRB7ciPJDCvS0t6pjJ32b3lxynPZ3w106Q1JNhhfd6+wmIbwZEqc/4gKMlvl+G8R/lSOgDTUB@vger.kernel.org, AJvYcCUzGUvJKQ5Zkbe4ejg1ScSyqoUUJz2g8cbw3l4jiBomVt2IrciJx4cLYJkc7oodXTkKEHucq1wtxWVI@vger.kernel.org, AJvYcCV/oNmG7FnkRaoQxS4028BtkVoOwTtN/AIxk1pTufLXDgHwVFZMXRKAnzqkGxvMPcmbsdXHSqBGYuoCJJ+EB6/+DZc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFMvA6L06btrQpcm6JojQ3CmZdDDunOAchKCSH3idIsEspOyhA
+	0hF4bNbbdQIIuBhicf4bEWJcu9CJnn5JeNvx0W9Jq6qg3cYjgRc2xblCWWWM
+X-Gm-Gg: ASbGncvbXZMHL24vGOoR4SdoBzOSWhr3UKxr1MFfQrY1Rma8AUOHoPGJmf+d14x86fP
+	NuVs9T1uvPanNtdOjP+P2gw4Vc0/ZCMX6Kix4o08WujftUQX0GQHtThvev7qOKeEpEVnoSwUbSt
+	CMHy2kKW29zY96NVteaAV+98IU2bLF2o+sAtRTUH9xAg6jnIeuSp2gNUamiFdedoqZiHuZYk14P
+	u6vCegScZitR10DGbnMnMvpBe5u+KKjcvHYuhwg5RVv6iMgliE1vRa177A3vQosxtZ9HhYJuN5u
+	dDqaRMrXz57ic9YBJcEf+8MlAwdxz2Dmsl0Fvkutjuquw62751XPYU3Wm075WKn0omjMKd3vMM7
+	K05CXZ00=
+X-Google-Smtp-Source: AGHT+IFvEbtlcTy7OAGj3TbDr6+RilAwJ+Rkk6nifb8AOWeiki61CW7bB2Rywi+TF5zZVT1bTRYkVA==
+X-Received: by 2002:a05:620a:d93:b0:7c5:674c:eecc with SMTP id af79cd13be357-7c7af12dc43mr2364564485a.32.1744722775802;
+        Tue, 15 Apr 2025 06:12:55 -0700 (PDT)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com. [209.85.222.174])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a8a0dc9fsm906115285a.96.2025.04.15.06.12.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 06:12:55 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c081915cf3so693192485a.1;
+        Tue, 15 Apr 2025 06:12:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUPOfXtL+tD03krDWy5tjwhIfEVsKAjtcadpDcZ9/SsBpuEVRkLpnnytJFlhJIwSqb4rfdut+pNE03l@vger.kernel.org, AJvYcCVUI2HKfYJKRwUyVn2OF/Sz6qtSG0mElOjYhZHHkKfsb5cbh97g0iwDw3egj7Kui5GLWCcCm5Ut+ai2WjkQ@vger.kernel.org, AJvYcCWaxDWIwDMWiXMTAFZBYMlRWoUflIm1OjA1RhLFW0AWOOuYXAILGKoMGt4rTZTySh13NLITFmoN7K0Na2P4SdwFayo=@vger.kernel.org, AJvYcCXz7m9upCdlzuvtWp0xmWI60bxWtSvCLP6mNt0wsAakxmnmoNfNVGzgWFZyk0Fe/JRANtAoZuhW00ig@vger.kernel.org
+X-Received: by 2002:a05:620a:f0b:b0:7c7:5ad8:aece with SMTP id
+ af79cd13be357-7c7af126989mr2643432285a.25.1744722775107; Tue, 15 Apr 2025
+ 06:12:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250415131548.0ae3b66f@fedora.home>
+References: <20250407165202.197570-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250407165202.197570-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250407165202.197570-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 15 Apr 2025 15:12:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXr76BBXJJ-EHf3rCEAknsDCesn0AhnRcSHHSzpLk-6Ng@mail.gmail.com>
+X-Gm-Features: ATxdqUH9HUes13_WK517nkwq-HYNdrkhCnl7W9u-lJtD6AwpRvVE_3bTSo20vsk
+Message-ID: <CAMuHMdXr76BBXJJ-EHf3rCEAknsDCesn0AhnRcSHHSzpLk-6Ng@mail.gmail.com>
+Subject: Re: [PATCH v2 4/9] clk: renesas: rzv2h-cpg: Use str_on_off() helper
+ in rzv2h_mod_clock_endisable()
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-> My Perl-fu isn't good enough for me to review this properly... I think
-> though that Andrew mentioned something along the lines of 'Comment
-> should include PCB somewhere', but I don't know if this is easily
-> doable with checkpatch though.
+On Mon, 7 Apr 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Replace hard-coded "ON"/"OFF" strings with the `str_on_off()` helper in
+> `rzv2h_mod_clock_endisable()`.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Maybe make it into a patchset, and change a few DTS files to match the
-condition. e.g.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.16.
 
-arm/boot/dts/nxp/ls/ls1021a-tsn.dts:/* RGMII delays added via PCB traces */
-arm/boot/dts/nxp/ls/ls1021a-tsn.dts-&enet2 {
-arm/boot/dts/nxp/ls/ls1021a-tsn.dts-    phy-mode = "rgmii";
-arm/boot/dts/nxp/ls/ls1021a-tsn.dts-    status = "okay";
+Gr{oetje,eeting}s,
 
-This example is not great, but...
-arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         phy-mode = "rgmii";
-arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi:                         /* 2ns RX delay is implemented on PCB */
-arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         tx-internal-delay-ps = <2000>;
-arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi-                         rx-internal-delay-ps = <0>;
+                        Geert
 
-There is one more i know of somewhere which i cannot find at the
-moment which uses rgmii-rxid or rgmii-txid, an has a comment about
-delay.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-	Andrew
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
