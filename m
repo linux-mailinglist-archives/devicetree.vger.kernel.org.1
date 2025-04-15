@@ -1,153 +1,109 @@
-Return-Path: <devicetree+bounces-167269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A66A89BC6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:17:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC0BA89C30
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8177E7AA010
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:15:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 012997A8F9A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4B22918C8;
-	Tue, 15 Apr 2025 11:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A819E294A1F;
+	Tue, 15 Apr 2025 11:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qWLvaPMA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4755428DF1B;
-	Tue, 15 Apr 2025 11:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D84292926;
+	Tue, 15 Apr 2025 11:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744715774; cv=none; b=Sp4SAno9W6h6U4+JIR+JIFdYVy4T63/o16o5NZ4RzVirBeRPcMciidXZAxSc9XMCWxpF/QfZlQQLANL2Ou7oOrJJEkQ6nBXx/JoBotBoKaORlOD1cbXfXkWyr3gVNd28PYBXqxcw77Itud+pRiMP8iZUyCNafqrJhSxqKkremU8=
+	t=1744715951; cv=none; b=sdniiZGRcrrv6holtQwJN4sK97GhQgiQkl1HumZU24TVlagF/1UvJoeqG0sX/oToxp+GAQOFkX2qAmIS9jub1hrX4FZovVewZUEIuid2IoM/iLfkx6rgYZ5aL2a46W/VYimVZsAT1qnmo/Zy/hPyuWlzjqYKhYHLQ0nlsPoL/xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744715774; c=relaxed/simple;
-	bh=5iKPeLfe+KY5VI1Go+puKIveebGuCrXULEoSoppAAIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FYveb85lrdWoxxkPmHtBwUKWMmK9zAqNbRqE9Vn/ZS52JGPaHe8KdPK4i/FaNffhdtb5xZ5GZC/x4xO9fnynMgid91K8vyESZ484S1rRfw6zbDzrwS+NH62zB8f/DCGXxkN/SmLMZVLZGOjpEgtq2+CXl6Spf2KCkMVsI1WmPHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: erN71jLsQoCJoidjnryWNg==
-X-CSE-MsgGUID: heaZCdngR82ZXCX/vbalkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="56879500"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="56879500"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2025 04:16:12 -0700
-X-CSE-ConnectionGUID: Uv3FJW/xQTWIk681BM9g/Q==
-X-CSE-MsgGUID: AWh8EXZsRZCTQ934IwhDZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="130050741"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2025 04:16:07 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1u4eGp-0000000CWgt-3qMi;
-	Tue, 15 Apr 2025 14:16:03 +0300
-Date: Tue, 15 Apr 2025 14:16:03 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
-	netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 07/14] mfd: zl3073x: Add components versions register
- defs
-Message-ID: <Z_4_8wnetwpoWuwG@smile.fi.intel.com>
-References: <20250409144250.206590-1-ivecera@redhat.com>
- <20250409144250.206590-8-ivecera@redhat.com>
- <df6a57df-8916-4af2-9eee-10921f90ff93@kernel.org>
- <c0ef6dad-ce7e-401c-9ae1-42105fcbf9c4@redhat.com>
- <098b0477-3367-4f96-906b-520fcd95befb@lunn.ch>
- <003bfece-7487-4c65-b4f1-2de59207bd5d@redhat.com>
- <8c5fb149-af25-4713-a9c8-f49b516edbff@lunn.ch>
- <9de10e97-d0fa-4dee-b98a-e4b2a3f7019c@redhat.com>
+	s=arc-20240116; t=1744715951; c=relaxed/simple;
+	bh=3FEQn9pdx3rTfTXp4lu8m61whoJlpJ2IYTpRR5tSsso=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y/T9qzwgVR7cZcj6niqWQohRcdhcQ/lxWuTHcZEKkAUYvsSxq2oStyuR0d2VW4+/HpBYqWxWLLb7kIAyycQ2kt82WgUCozt72YFBNS359jHvuvToeKCEc8zvh1/TvA1fZVoOiGAflwBG4SMndSEGImhbRIMGAeN+sTSG7ajv/hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qWLvaPMA; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F7RY1A002730;
+	Tue, 15 Apr 2025 13:18:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=hVtqs8Vv0HUnb0Ez+Qkit5
+	ofDEeHme3L4CqxhioE4KQ=; b=qWLvaPMASIBb6v52ZYZUcHFERdRS5LH/je/muW
+	XUFNmbk9ZnPCw89gAYB/wwPEr3j2lWBGzO2xuEfK2ssQI39syGPDJtkzjk2jO7B9
+	kmgc2S1+6l/dCI74xoApm5TOBXhSbsCnr75MUyDr433ygwPrvjTwzhJ9ezn1Cx/8
+	eaD1iEZRsQMHXm5kCAR3xNMAb/F6EBpXlmSbG3vE3muq4mgiD8/ajRuhkW/9DFms
+	wngLUDLSyYaWgzGKgF8CvMltgBPqy5Onf8B/Ing49w1me/YyvIhxoRgJrnAJ1lZb
+	ZWvtLuRVgDXf675AhQJ/KSJ3dkq/Sjodh2JXfLi1OZNmAtUQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45yfh1vvwe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 15 Apr 2025 13:18:43 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0715040049;
+	Tue, 15 Apr 2025 13:17:46 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A08D96F1F27;
+	Tue, 15 Apr 2025 13:17:07 +0200 (CEST)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 15 Apr
+ 2025 13:17:07 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <maz@kernel.org>, Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v2 0/6] Fix interrupt controller node for STM32MP2 SoCs
+Date: Tue, 15 Apr 2025 13:16:48 +0200
+Message-ID: <20250415111654.2103767-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9de10e97-d0fa-4dee-b98a-e4b2a3f7019c@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_05,2025-04-10_01,2024-11-22_01
 
-On Tue, Apr 15, 2025 at 12:01:43PM +0200, Ivan Vecera wrote:
-> On 10. 04. 25 11:54 odp., Andrew Lunn wrote:
+Fix GIC compatible and register access for STM32MP2
+This serie replaces the original stm32mp25 patch:
+ "arm64: dts: st: Adjust interrupt-controller for aarch64"
 
-...
+Changes in v2:
+   - Apply fixes to stm32mp21 and stm32mp23 SoCs family
 
-> > So a small number of registers in the regmap need special locking. It
-> > was not clear to me what exactly those locking requirements are,
-> > because they don't appear to be described.
-> > 
-> > But when i look at the code above, the scoped guard gives the
-> > impression that i have to read id, revision, fw_vr and cfg_ver all in
-> > one go without any other reads/writes happening. I strongly suspect
-> > that impression is wrong. The question then becomes, how can i tell
-> > apart reads/writes which do need to be made as one group, form others
-> > which can be arbitrarily ordered with other read/writes.
-> > 
-> > What i suggest you do is try to work out how to push the locking down
-> > as low as possible. Make the lock cover only what it needs to cover.
-> > 
-> > Probably for 95% of the registers, the regmap lock is sufficient.
-> > 
-> > Just throwing out ideas, i've no idea if they are good or not. Create
-> > two regmaps onto your i2c device, covering different register
-> > ranges. The 'normal' one uses standard regmap locking, the second
-> > 'special' one has locking disabled. You additionally provide your own
-> > lock functions to the 'normal' one, so you have access to the
-> > lock. When you need to access the mailboxes, take the lock, so you
-> > know the 'normal' regmap cannot access anything, and then use the
-> > 'special' regmap to do what you need to do. A structure like this
-> > should help explain what the special steps are for those special
-> > registers, while not scattering wrong ideas about what the locking
-> > scheme actually is all over the code.
-> 
-> Hi Andrew,
-> the idea looks interesting but there are some caveats and disadvantages.
-> I thought about it but the idea with two regmaps (one for simple registers
-> and one for mailboxes) where the simple one uses implicit locking and
-> mailbox one has locking disabled with explicit locking requirement. There
-> are two main problems:
-> 
-> 1) Regmap cache has to be disabled as it cannot be shared between multiple
-> regmaps... so also page selector cannot be cached.
-> 
-> 2) You cannot mix access to mailbox registers and to simple registers. This
-> means that mailbox accesses have to be wrapped e.g. inside scoped_guard()
-> 
-> The first problem is really pain as I would like to extend later the driver
-> with proper caching (page selector for now).
-> The second one brings only confusions for a developer how to properly access
-> different types of registers.
-> 
-> I think the best approach would be to use just single regmap for all
-> registers with implicit locking enabled and have extra mailbox mutex to
-> protect mailbox registers and ensure atomic operations with them.
-> This will allow to use regmap cache and also intermixing mailbox and simple
-> registers' accesses won't be an issue.
-> 
-> @Andy Shevchenko, wdym about it?
+Christian Bruel (6):
+  arm64: dts: st: Adjust interrupt-controller for stm32mp25 SoCs
+  arm64: dts: st: Use 128kB size for aliased GIC400 register access on
+    stm32mp25 SoCs
+  arm64: dts: st: Adjust interrupt-controller for stm32mp21 SoCs
+  arm64: dts: st: Use 128kB size for aliased GIC400 register access on
+    stm32mp21 SoCs
+  arm64: dts: st: Adjust interrupt-controller for stm32mp23 SoCs
+  arm64: dts: st: Use 128kB size for aliased GIC400 register access on
+    stm32mp23 SoCs
 
-Sounds like a good plan to me, but I'm not in the exact area of this driver's
-interest, so others may have better suggestions.
+ arch/arm64/boot/dts/st/stm32mp211.dtsi | 8 ++++----
+ arch/arm64/boot/dts/st/stm32mp231.dtsi | 9 ++++-----
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 9 ++++-----
+ 3 files changed, 12 insertions(+), 14 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
