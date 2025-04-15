@@ -1,208 +1,227 @@
-Return-Path: <devicetree+bounces-167542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3525BA8ABB1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:00:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F873A8ABB4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:01:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEF0B190351C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:01:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34ADE3BBA5E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4AA2D86AF;
-	Tue, 15 Apr 2025 23:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B20725D20F;
+	Tue, 15 Apr 2025 23:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="J6ODt8uA"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LNinphU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010020.outbound.protection.outlook.com [52.101.229.20])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5042D86A8;
-	Tue, 15 Apr 2025 23:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744758049; cv=fail; b=O03emc2/R+sMAs9Nd/wA6tkLkXkerEWh+yN1/Pe9c2jAeZt773ACnB2EBvadVG84XRlAnifBXqD3X+dRNcHCn4fYHhDYJi4BobjPn566L+Fnd68WcQcvQ/rwwKVb/T8nQ1nVImOskqedBW/EUg+mstZL+YCPSDLjh1eHXxCTsaU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744758049; c=relaxed/simple;
-	bh=5C3SV5EFsHRkT2ii+6FQz/GrlwW+HjA2+wzYmouLsTs=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=XiadI4np/uC2UzNRaRY2batLPUJec3McGkdzaS355le1eFnaIxJBbu0xnUvMCtFFWZrCsfZCMROjJPx/wQAexXvOKGlnUMm2y2fzEwMYZNJQoD+K4/oc1Mi5cT5hbZQ00g4sj6NAXufkmKnFAf8YYoKlovCVmViygnMvm/JNWiw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=J6ODt8uA; arc=fail smtp.client-ip=52.101.229.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nRHZhmABv+SQRwRKWgEvrW4Nymeaf8Kkv2v3r0mmbKp43t8trH8AeXXetfcCtY0H/iwExkyyBeLDTJ1CGGXMaaIdHlQuhqZc2+qeJHP8pi9bssX/De6fDdglPZQTYjFiy2OirzMQWsaJ8rYSc3YN/Yz+oU6/MunhuljIWmSjL4U27VFEHmMznt55x8mU7nEHlPqfAAZtuXA2wHi85Zy/2y7hkMvCXZ8ElIEPgxvLjS4hwsXIVw2DvPO8bYNvljTL4YKYEfAA03OdcmlvirLH4BVic2gV1VVDtTVevg0TsEl5hGgIp74nPdsGf/FesEM170i3+gT4VAWtF8s6KRFgaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e40hGaE0KKWdPUhVMG0vbvyEnyxPh3PwUNgPmxxKaAE=;
- b=pBH+swsUCwe+2Tvk3Lgh0cdSx9iTdhjzsBQAQkz5L5jyUNygFxM4/KNrqWmg+FN1y7Rm3/mgOkOAkwdgtjCJpBrpm6O0+2pnRU1HVaE6sXmWXPRIoKUwh0gyd1qTdKQgM13BFuWB+k5zBPrBI04mgc9ENFlRTbUktdaLC5EyB8UlslRzilqhWfIbQeOCqQzeoUZ6UqwjhqB2DSBa2eY29PKrWJXelg0SNhoAYIr7eGyOIb2or1tMy1b/jnQD3IQfuYq/b2xWlrXBFF+b+UYR2HXfA25s2uTYFByQMZeBHrqfVqMsD3D1/Udqj+nurRIkirnYTz4M7VOkpZhotBXYWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e40hGaE0KKWdPUhVMG0vbvyEnyxPh3PwUNgPmxxKaAE=;
- b=J6ODt8uAXeCExh4A6xb8VQkrBZY0yQrdW+GL8fZCJjBEo7TrQoinz0EZFMNpAwuPc/rAZiuL2Kp3q0tEGqoV5Xb8AlCmjrfvLCAHS/dBPoYq/2LBLnCOP+iT9XFeyIRGqzmd1TDNEJNgDJzkkO5qKl8fSfryTkWvt49aBMgepCU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYCPR01MB6143.jpnprd01.prod.outlook.com
- (2603:1096:400:4b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.31; Tue, 15 Apr
- 2025 23:00:39 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8632.036; Tue, 15 Apr 2025
- 23:00:38 +0000
-Message-ID: <87msch81yh.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-	ALOK TIWARI <alok.a.tiwari@oracle.com>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
-In-Reply-To: <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
-	<87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com>
-	<CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 15 Apr 2025 23:00:38 +0000
-X-ClientProxiedBy: TYCP301CA0028.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:381::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CBB2405E4;
+	Tue, 15 Apr 2025 23:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744758089; cv=none; b=JjA4HEtKE5RYf831cNmX3GXqCAZvt8LXbP85RjkRrO1A59619RrNq83O94iNz9Z5T3iPkiQNdEtwlVvW+M+1VVYgRG0/QlrosLc6vu56GXTmjbzerhVeh/Sbve3koyWM4RFdGuKs8afK9rVHUOB2zqS1qAyD9pZflqBDvFIl3mE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744758089; c=relaxed/simple;
+	bh=reONu9DCX8yIdj7GLfXXkccHOkCnNJe0Ef9D9h6QGQk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C1ifjyJ51UhTty0Rn9oos38J/7Oqj7f5Bo4b+Du9ineY0/SC/dH8fGCJR8C4efna77tzHNKDa/ip3R9ju31vMGlIdgaL8hWJyRUI1rH/0sKRwVYDa60jYlfn16cPOrY/FJSa6BzOGJFq/12Veu6fnviwx0297X7WuRb5rDV24IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=LNinphU2; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 16373353;
+	Wed, 16 Apr 2025 00:59:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1744757963;
+	bh=reONu9DCX8yIdj7GLfXXkccHOkCnNJe0Ef9D9h6QGQk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LNinphU21VM8OFnnSnZNbt5K+oDpNQ119G58IJinl3fPGKbpdtvWtuwTZNeC4uVwP
+	 zDUZYnkigre8k9BnHfz0utab+c0D7EoR7/Bq2dh/mlLw9pv+KOD0yWcF4k9fYySv4X
+	 g0VC6PFm+O/41wyVA4Q2yQinKO8r452Bwp7rsM8U=
+Date: Wed, 16 Apr 2025 02:01:24 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+	Jai Luthra <jai.luthra@ideasonboard.com>,
+	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	"stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
+Message-ID: <20250415230124.GJ9439@pendragon.ideasonboard.com>
+References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
+ <ZxYiCv6SpLq9uh08@dragon>
+ <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
+ <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
+ <20250415154724.GG9439@pendragon.ideasonboard.com>
+ <20250415155239.GH9439@pendragon.ideasonboard.com>
+ <20250415181423.qderfey4wpmp2bjm@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB6143:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab7a727a-9a1a-40f1-d4d9-08dd7c7156e1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?tnk8tHgPn3KpZ7rgb3Tp2RhH3tO6rIiebA8eDbFGvOemEXTjls/GqhGm15iQ?=
- =?us-ascii?Q?233pR9/YHv0mQ/+V00fJz2/IYghVJ+DJ/o8Vhzo4Vw66M6zbIXLzRY1HC78C?=
- =?us-ascii?Q?wKUfH9PwbUKXAndDH2TDa149ZGHW0rk7wOd/Ri0p+EKNIPkBsnplE6LzearE?=
- =?us-ascii?Q?CzYVCoCAbE0qe5BJuL8PFMr/2liiLXg9WNeAX2bYkJ/KqFn9FAysjDOJU7De?=
- =?us-ascii?Q?aOjy3dgF0+OIlF4B+FVEHzbxEutvELEhA/Epb+pkcrPWj1+cqTkqtsh9h+zt?=
- =?us-ascii?Q?oOACjMPQCIsWIqY5FaIRb9itM/Dhvidj621bvSXXXzfp1Q5qD6Cl4Va6V0Q4?=
- =?us-ascii?Q?KDQmXqeAghF9J0PtkUuJsv9XL4jKI6PDjhmJuEK4KsBeKXYcA1DL+8Vt8l2m?=
- =?us-ascii?Q?tc0moVT+WVkpP2vSKpqpsNZakHk3d9XGi19nBgfyVjsnxi3g2tXOe1KDowz1?=
- =?us-ascii?Q?ejnNOmFQC21p6uLrBnV+RuIeWxQODSg7nDvBgitZxNQ2Pyg6U9IRvF7CzhB6?=
- =?us-ascii?Q?wrZzqNkGRU34vFaJamElubvmZZizVPEW1NW1U8DSnOeiBCbxtWw9RJSGIp4h?=
- =?us-ascii?Q?gPrGrOaufD2hwlz0/13ltWgmsSIn/EYacpzfVL+/7Jd/asAkeqdU0hBcBKK+?=
- =?us-ascii?Q?e6LjSjMrtYhD7SB+lcZa8iZE+g+lka7VtEiXD5upXhmqbqFXpVMSkYV7DMy+?=
- =?us-ascii?Q?M//eogQTce8GYa2KwQhiFEpFkc2/l0qpvZoUBpnvSGdLTQW0OUDaukeIK3ms?=
- =?us-ascii?Q?miVUPB6TqLbLc2TkmButsOi3ouHyxwtGky1GZgzTvK2rf39ac2gMVUlXwyb2?=
- =?us-ascii?Q?+9KVUfUZ9tbzG7uUg5okAxEl5WAe3tBCNf4Y7mA96zLZULfPjWi0JQPFOdEK?=
- =?us-ascii?Q?NRjob3fQ/yYgPFqSRYz2WM0leNcB8iaJwCmzxRhF0A9jxqBed8ckN9bSX3yE?=
- =?us-ascii?Q?vI9D8K98FOzVp5iYwHi5McN/YyO2p978NOkkt0WhKHUBVqFkN2vhmcioOHXO?=
- =?us-ascii?Q?j6HRpiWPQ9eZog6sBzgkJTmYuFet0cpYq+8gDNuMJyoPrxcqIvo8mQjx7d6k?=
- =?us-ascii?Q?At1Y4Ymdg3b+QSO7EZ6IhzlbWtlPw0IpI4XvrS1C7DrtGBi3XMi+URqhBZ0H?=
- =?us-ascii?Q?21zNZYEqY09E9VIx01zx5M04Ia+3R7W5gOI//Bwa34U5lXaGhqsY7r1Cs+JG?=
- =?us-ascii?Q?ApgHHEKS1tRt4Gl4iW6Km0nXgJg06trVchluzFykPaPEiEPG14TMb+VyQ7px?=
- =?us-ascii?Q?g2ceK9sxr+9yDG1akGk3YGl29JhkmXNYdsAo2Q0sTyOzKrycVPHgURuNrd4e?=
- =?us-ascii?Q?wOZMVwaAFyfHrU5MUWre3eWOYTDLFJ4pZ5SXPRQ5Q+H2kgbKvXF1iUgKbAkx?=
- =?us-ascii?Q?Xw4WsNrQcQYAoDUbdXn1ELRututM1FssCwbYbPwBWz4Y8vGmAMXqNTYXAw+C?=
- =?us-ascii?Q?ysSXxQQSjN40OCMZO1phlMocAjnwNMkj5zUKaI2AnrvSKViOngYoXg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?eJq9rEgV6QajBYFn15QPmeLX11oFykJbTfyxM/94LewbLXpNB1418/37bwC8?=
- =?us-ascii?Q?cruqNWIU6MNAsx9y7/rkqkiRpchOLjj9q9OKGIzB/sWtZRCJtdZo3PMPLapH?=
- =?us-ascii?Q?GNwQwLSVbj44lI3mcAeIAFwrt3VIQVYTRNLiCD5U/P4nJmN65tnapJtDDvqX?=
- =?us-ascii?Q?TXorp5gBbs3JyFUOl+lpV5kTAJjN3AOX0TgEHEBg5dyIfJTpjwDWg9HTS4wv?=
- =?us-ascii?Q?s2cZezfPZpeVChpquBhhIT1FX1elK7kjCzucPOKgiWDeqSCGsfQlyOjDWuv0?=
- =?us-ascii?Q?PHtUusaKKE9j0+Q49nleFEIzwT1aJrAPqePc2nkbpNixuTMMgrdU8B1RobZp?=
- =?us-ascii?Q?0D9V1+3FLjrYEQFNK8ipJ2DKLK2C4Z8q9N9A3qd/g+Wpmy2SL7ERO0jVa0Vx?=
- =?us-ascii?Q?QQ6oTdhjBbhbbLDGatQ+EBtb1w1QGBGgv4E7RD3b28yKPc9YuXKq3p1wa9Xh?=
- =?us-ascii?Q?dFTKADi17eFQPpIbk1CB3KEc6NJPVcL08qs6uO9HDTiLBx6PbVDK62pvTUn3?=
- =?us-ascii?Q?KGX30MqP09T/TxZm/UnsA89i2xShs3ovbuKtPHKlYdxlb8FuJOLkWSyXBC1w?=
- =?us-ascii?Q?aAA5KTCyo+qf+fG2JDUjl0zIvkJiMTcjfmewReh37WQFKtk55LGPo0I35Afi?=
- =?us-ascii?Q?Ba6FzOMzG94wmPA3i1OZNNjasZuCvG75w1Wps2fKaBmP4lfOKYEQ8AuaUZqb?=
- =?us-ascii?Q?ZSxfZ9J8Lp/LHGxtqEfBFQBohI47VDGk/M/7WcnHt3vCAhpQm+uVuXh3gklW?=
- =?us-ascii?Q?n3zfytg1Kj7OFz35Zz+NgHEvZv/MrGOAjdlz7fqlyec0246WhbIM6fa/f0uN?=
- =?us-ascii?Q?pgY0d2L4GkTcxz3AixsxraGo48duiUPG4hqkG88+yHx7ntilfLcXp4IsguNj?=
- =?us-ascii?Q?3RvDT8KOvTWlV0AS53kkC+KTHoLtuz8wmNhton1VP4kGbgCJtMK/wvlyR6v6?=
- =?us-ascii?Q?TMlXa655THtcPeaTMC2xZKaX4s897Azts9LXjFcmg6n/HeV/c0/k1wC647d5?=
- =?us-ascii?Q?85T/zjHnrCQo0SkWe5vngSnll6gj0GgF+7kt5rTBjvpDqc6pE66q5drrsWmj?=
- =?us-ascii?Q?8+SIR9H63PQ8WpqBRH4h9HX02xcSdyJiE8mQMn4Irch3WJVf4hCRh7/C74nG?=
- =?us-ascii?Q?NWWx2RT9pu2oqRv85PDBLvTOU5JAeqSY82pVK51sDQGflpRqqoEUuX84STkL?=
- =?us-ascii?Q?ArAuGcqwqc0ndZDZ8MRORcku0PXlsk7vYqPKV0NJyST8C25XB+4vIwhFJpE/?=
- =?us-ascii?Q?zr/ZpFnMmvtJ47I/cf9Cpk5kgfZLsuDFMqYxzMjaETxnlpgCxiuMOx+L/LRz?=
- =?us-ascii?Q?884YF9b/4O+CtFJCRragFbuU5iQy4d302LIBIIfwp/7GRtWofrNmEv7lLS2y?=
- =?us-ascii?Q?XYchN22G8TmmaPWEcrb5epUUJlBFVPcRYQLslpO1FU4D0x7f6utuH0Ypel4Z?=
- =?us-ascii?Q?alvv+miKWYjTlvSuSZX2dB+NJuE4vCS8jYy/RikdyCChYEsRK7aNURhGg85s?=
- =?us-ascii?Q?6f97nIjQ0+YTLSZU0cKsstdwtENdaO2BmozPz/5CWwHZjSXcBpc/g4W5VDZf?=
- =?us-ascii?Q?Rq00zjvFUqnKuT1uP9eR8FN/tBnaPYXAqHS6kbmXWUM8IrWoZssQZiEa07Od?=
- =?us-ascii?Q?9HYfnnYdyexe5QYlXfLUHaU=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab7a727a-9a1a-40f1-d4d9-08dd7c7156e1
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 23:00:38.8811
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0y6mU6tHuxu068aOOubn4XJ9g8x6D+x1n1SN0vghJH2xj/Uyso3xFIYF78+QZZg/ipKnjAlRTXYqN8RKUhTicJM2Dx8zbBtMwygpu/IIMLG2IemRWnU3Kt4JDD81Hu7v
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6143
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250415181423.qderfey4wpmp2bjm@pengutronix.de>
 
+Hi Marco,
 
-Hi Geert
-
-Thank you for your review
-
-> > +  # "MSIOF-SPI" specific
-> > +  - if:
-> > +      properties:
-> > +        $nodename:
-> > +          pattern: '^spi@'
+On Tue, Apr 15, 2025 at 08:14:23PM +0200, Marco Felsch wrote:
+> On 25-04-15, Laurent Pinchart wrote:
+> > On Tue, Apr 15, 2025 at 06:47:26PM +0300, Laurent Pinchart wrote:
+> > > On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
+> > > > Hi Jai,
+> > > > 
+> > > > This issue was already reported by Stefan. The problem is that I don't 
+> > > > have a Debix board to investigate.
+> > > > The main difference b/w WFI and cpu-pd-wait is that the first doesn't 
+> > > > call PSCI/TF-A. So, the issue looks to be related to some settings in 
+> > > > the TF-A.
+> > > 
+> > > Jai, are you using mainline U-Boot and TF-A, or a downstream version of
+> > > either (or both) ?
+> > 
+> > Actually, same question for Calatin :-)
+> > 
+> > I'm running mainline U-Boot 2025.01 and TF-A rel_imx_5.4.70_2.3.6 (from
+> > https://github.com/nxp-imx/imx-atf) and don't seem to experience the
+> > issue:
 > 
-> This condition does not match what you wrote in the cover letter:
-> the controller is used in I2S mode when a port(s) subnode is present,
-> and in SPI mode when no port(s) subnode is present.
-> 
-> > +    then:
-> > +      allOf:
-> > +        - $ref: spi-controller.yaml#
-> 
-> Documentation/devicetree/bindings/spi/spi-controller.yaml indeed
-> requires that the node-name matches "^spi(@.*|-([0-9]|[1-9][0-9]+))?$".
-> The controller's node is located in the SoC-specific .dtsi, where its
-> intended use case is not yet known, and its node name cannot easily be
-> overridden in the board .dts that specifies the use case.  Hence the
-> node name must always be "spi" (and cannot be e.g. "serial-engine").
-> Let's hope there is no other use case for MSIOF that requires using
-> a different node name...
+> Interessting, can you share your imx-atf build-config please?
 
-Hmm... OK
+I've followed the instructions in the doc/board/nxp/imx8mp_evk.rst file
+(in the U-Boot source):
 
-So what we can do is keep spi@xxx node name, and check whether it has
-Of-Graph, and select spi-controller.yaml
+```
+Get and Build the ARM Trusted firmware
+--------------------------------------
 
-Thank you for your help !!
+Get ATF from: https://github.com/nxp-imx/imx-atf
+branch: imx_5.4.70_2.3.0
 
-Best regards
----
-Kuninori Morimoto
+.. code-block:: bash
+
+   $ make PLAT=imx8mp bl31
+```
+
+I had to patch the TF-A makefile as follows to fix errors with recent
+versions of gcc:
+
+```
+diff --git a/Makefile b/Makefile
+index 2ae12fda741a..46512993c6e0 100644
+--- a/Makefile
++++ b/Makefile
+@@ -285,7 +285,8 @@ ASFLAGS			+=	$(CPPFLAGS) $(ASFLAGS_$(ARCH))			\
+ 				-ffreestanding -Wa,--fatal-warnings
+ TF_CFLAGS		+=	$(CPPFLAGS) $(TF_CFLAGS_$(ARCH))		\
+ 				-ffreestanding -fno-builtin -Wall -std=gnu99	\
+-				-Os -ffunction-sections -fdata-sections
++				-Os -ffunction-sections -fdata-sections		\
++				-Wno-error=array-bounds
+
+ ifeq (${SANITIZE_UB},on)
+ TF_CFLAGS		+=	-fsanitize=undefined -fno-sanitize-recover
+@@ -300,9 +301,11 @@ GCC_V_OUTPUT		:=	$(shell $(CC) -v 2>&1)
+ ifneq ($(findstring armlink,$(notdir $(LD))),)
+ TF_LDFLAGS		+=	--diag_error=warning --lto_level=O1
+ TF_LDFLAGS		+=	--remove --info=unused,unusedsymbols
++TF_LDFLAGS		+=	-Wl,--no-warn-rwx-segment
+ else
+ TF_LDFLAGS		+=	--fatal-warnings -O1
+ TF_LDFLAGS		+=	--gc-sections
++TF_LDFLAGS		+=	--no-warn-rwx-segment
+ endif
+ TF_LDFLAGS		+=	$(TF_LDFLAGS_$(ARCH))
+
+```
+
+> I checked the code base and found a missing SLPCR_A53_FASTWUP_STOP_MODE
+> during the imx_set_sys_lpm() which is called during
+> .pwr_domain_suspend(). Can you check/trace if pwr_domain_suspend() was
+> entered?
+
+I'm no TF-A expert, can you tell me how to check/trace that ?
+
+> > # cat /sys/devices/system/cpu/cpu*/cpuidle/state1/disable
+> > 0
+> > 0
+> > 0
+> > 0
+> > 
+> > $ ping debix
+> > PING debix.farm.ideasonboard.com (192.168.2.230) 56(84) bytes of data.
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=1 ttl=64 time=1.03 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=2 ttl=64 time=0.800 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3 ttl=64 time=0.935 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=4 ttl=64 time=0.902 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=5 ttl=64 time=0.738 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=6 ttl=64 time=0.939 ms
+> > 
+> > > > What I don't get is why I don't see this issue neither on our IMX8MP 
+> > > > specific design nor on the EVK, which uses the same PHY as the Debix board.
+> > > >
+> > > > On 14/04/2025 14:07, Jai Luthra wrote:
+> > > > > On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
+> > > > >> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
+> > > > >>> So far, only WFI is supported on i.MX8mp platform. Add support for
+> > > > >>> deeper cpuidle state "cpu-pd-wait" that would allow for better power
+> > > > >>> usage during runtime. This is a port from NXP downstream kernel.
+> > > > >>>
+> > > > > Since the introduction of this patch in mainline, I am facing sluggish
+> > > > > network performance with my Debix Model-A board with i.MX8mp SoC.
+> > > > >
+> > > > > The network latency jumps to >1s after almost every other packet:
+> > > > >
+> > > > > PING debix (10.0.42.5) 56(84) bytes of data.
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=1008 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=0.488 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=1025 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.810 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=590 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=6 ttl=64 time=0.351 ms
+> > > > > ^C
+> > > > > --- debix ping statistics ---
+> > > > > 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
+> > > > > rtt min/avg/max/mdev = 0.351/437.416/1024.755/459.370 ms, pipe 2
+> > > > > darkapex at freya in ~
+> > > > >
+> > > > > If I revert the patch, or disable the deeper cpuidle state through
+> > > > > sysfs, the issue goes away.
+> > > > >
+> > > > > # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
+> > > > >
+> > > > > PING debix (10.0.42.5) 56(84) bytes of data.
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=0.482 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=2.28 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=2.26 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.848 ms
+> > > > > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=0.406 ms
+> > > > > ^C
+> > > > > --- debix ping statistics ---
+> > > > > 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
+> > > > > rtt min/avg/max/mdev = 0.406/1.255/2.280/0.842 ms
+> > > > >
+> > > > >>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> > > > >>
+> > > > >> Applied, thanks!
+
+-- 
+Regards,
+
+Laurent Pinchart
 
