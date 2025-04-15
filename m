@@ -1,71 +1,64 @@
-Return-Path: <devicetree+bounces-167434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD61A8A369
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22350A8A377
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E87304412F6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:52:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 261C017DEA6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5381F4622;
-	Tue, 15 Apr 2025 15:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B06020C02E;
+	Tue, 15 Apr 2025 15:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ZlsxAtck"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bwqJEDEd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E284C1EEA59;
-	Tue, 15 Apr 2025 15:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED36C1F5434;
+	Tue, 15 Apr 2025 15:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744732363; cv=none; b=c2JNZd/OmHo0HhJMwGUQ4WPI8unGjsV7ImFjMjfRStfSJMl34Pi1PWf9HrN8KsF25qEey/6dRfdwm8Pn/CvO9Nh8eSpD53lqSP0OtnwLzCuCCl2cpqd+iM5akzFfI8sz3F4kpT6HSHqvXYlI/aXLo41PcNC+vq0Q2wA8UdxB2go=
+	t=1744732573; cv=none; b=kle3uXJ0Mn7j3SWBUt0VzmjIN0LwUXXv82Qm9tr2qhzsrJlAeLrq8QIT2x0+49IxcXgKm5lK6X66UZWv6GdwT2Pv0EYaELJL9TZYmNXEiRdzNuFnF7up4yct5adv6b4vlRuSaruYmmH0GEkzJ9rdI0ImVoUp7PzP7scgLYnRX5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744732363; c=relaxed/simple;
-	bh=xGINZiurunNqT7Sjhf4GRxno/zL+xXdahm7qTRDteUU=;
+	s=arc-20240116; t=1744732573; c=relaxed/simple;
+	bh=vcJXMf6s/aWuafjr/5uHRa9qfBGrAhiwmMJfm0EH7x8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R8XeyktgaAS0GsFO6yhH3SoAh5mqMkUzBBra55EyMtEAaFMgjPEzvjugvWsrrAHJQtT2NXakqMbxtQUZHgCqlR7j1TmoTYYP0qF25wD26Ch14WwkDHGh22/uf5j08gJ8phdgq3s4Zd7nn2UcNopQZCdRwdy9rlBpYlnmPftWyfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ZlsxAtck; arc=none smtp.client-ip=213.167.242.64
+	 Content-Type:Content-Disposition:In-Reply-To; b=o3fJzvwATQgW+J0d1uCZ4Wje/2dxLDsnYv2DQhcRxqdT+/g+QODVZ7+lzINYeAl9kffWnHASKMQZQqGkOU4w+9AynzMptXUHrMGN/mz8yjH0eECaj49tBJaOvTqdd/0kKVVFrgFRB+I2X+dZ1XoDkb4Eec6hikUJ4Mt5jDTbc+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bwqJEDEd; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC9B5725;
-	Tue, 15 Apr 2025 17:50:37 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A281F11AA;
+	Tue, 15 Apr 2025 17:54:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744732238;
-	bh=xGINZiurunNqT7Sjhf4GRxno/zL+xXdahm7qTRDteUU=;
+	s=mail; t=1744732446;
+	bh=vcJXMf6s/aWuafjr/5uHRa9qfBGrAhiwmMJfm0EH7x8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZlsxAtckn2HJvPc+WvLK7jai4kCXy66sIrWFMzm0ZD0J1IHu3LGnY9gTB9/URPu9s
-	 ZDw2Tugemhs1jtEigETtiZCjgFTzsBEFHA4es126qGhZIReagbyIKcZnWHbvtJQXUT
-	 BjzwHE+SrBs4Ynx0a4KOcc59xgMSYZig9Cl2t5d0=
-Date: Tue, 15 Apr 2025 18:52:39 +0300
+	b=bwqJEDEdl7dnOKaQcyctBMXqZl6JKLldVLbHbj8uVocbee0h5hvXo8CFpX/S/rk/K
+	 1y04rKbPHMMqCjvLhS+N9Max54tja3efXAj/1kANtHkoOlAKiKwREa7rqoZbkrFP8U
+	 flmAwG1trN+7ZwlRF7v1hirWx350ZPrxXrJM6SNk=
+Date: Tue, 15 Apr 2025 18:56:07 +0300
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
-	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	"stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-Message-ID: <20250415155239.GH9439@pendragon.ideasonboard.com>
-References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
- <ZxYiCv6SpLq9uh08@dragon>
- <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
- <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
- <20250415154724.GG9439@pendragon.ideasonboard.com>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Message-ID: <20250415155607.GI9439@pendragon.ideasonboard.com>
+References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,91 +67,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250415154724.GG9439@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
 
-On Tue, Apr 15, 2025 at 06:47:26PM +0300, Laurent Pinchart wrote:
-> Hi Catalin,
+Hi Nuno,
+
+On Tue, Apr 15, 2025 at 03:49:16PM +0100, Nuno Sá via B4 Relay wrote:
+> The adp5585 MFD driver was introduced in 6.11 adding support for gpio
+> and PWM. However, the gpio part of it was already supported as part of
+> the keyboard driver:
 > 
-> On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
-> > Hi Jai,
-> > 
-> > This issue was already reported by Stefan. The problem is that I don't 
-> > have a Debix board to investigate.
-> > The main difference b/w WFI and cpu-pd-wait is that the first doesn't 
-> > call PSCI/TF-A. So, the issue looks to be related to some settings in 
-> > the TF-A.
+> https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
 > 
-> Jai, are you using mainline U-Boot and TF-A, or a downstream version of
-> either (or both) ?
+> On top of that it also overlapped with my refactoring of the above driver [1]
+> to drop usage of platform data and use FW properties instead.
+> 
+> Now, it actually makes sense for this device to be supported under MFD
+> and since the "legacy" input device depends on platform data that is not
+> defined anywhere the plan in this series is to add support for the
+> keyboard and adp5589 devices as part of the MFD driver. Once the MFD
+> driver supports all that's supported in the Input one, we drop it...
+> 
+> For DT Maintainers:
+> 
+> The compatible for adp5589 is part of trivial devices. To me, it makes
+> sense to remove it in the patch where we drop the driver but doing so
+> would result in a warning when adding the same compatible for the MFD
+> bindings. Hence, I remove it in that patch. Is that ok?
+> 
+> Uwe:
+> 
+> In my eval board, I could see that reading the GPIO value (when
+> configured as input) does not work when OSC_EN is not set. Therefore,
+> commit ("pwm: adp5585: don't control OSC_EN in the pwm driver") could
+> very well have a Fixes tag. However I'm not 100% sure it's a real issue
+> or something special to my eval board.
+> 
+> It would be nice if Laurent or Liu could test the PWM bits or even
+> check that the above is also an issue for their platform.
 
-Actually, same question for Calatin :-)
+I'll give it a try, but it will need to wait until next week.
 
-I'm running mainline U-Boot 2025.01 and TF-A rel_imx_5.4.70_2.3.6 (from
-https://github.com/nxp-imx/imx-atf) and don't seem to experience the
-issue:
-
-# cat /sys/devices/system/cpu/cpu*/cpuidle/state1/disable
-0
-0
-0
-0
-
-$ ping debix
-PING debix.farm.ideasonboard.com (192.168.2.230) 56(84) bytes of data.
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=1 ttl=64 time=1.03 ms
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=2 ttl=64 time=0.800 ms
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3 ttl=64 time=0.935 ms
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=4 ttl=64 time=0.902 ms
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=5 ttl=64 time=0.738 ms
-64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=6 ttl=64 time=0.939 ms
-
-> > What I don't get is why I don't see this issue neither on our IMX8MP 
-> > specific design nor on the EVK, which uses the same PHY as the Debix board.
-> >
-> > On 14/04/2025 14:07, Jai Luthra wrote:
-> > > On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
-> > >> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
-> > >>> So far, only WFI is supported on i.MX8mp platform. Add support for
-> > >>> deeper cpuidle state "cpu-pd-wait" that would allow for better power
-> > >>> usage during runtime. This is a port from NXP downstream kernel.
-> > >>>
-> > > Since the introduction of this patch in mainline, I am facing sluggish
-> > > network performance with my Debix Model-A board with i.MX8mp SoC.
-> > >
-> > > The network latency jumps to >1s after almost every other packet:
-> > >
-> > > PING debix (10.0.42.5) 56(84) bytes of data.
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=1008 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=0.488 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=1025 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.810 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=590 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=6 ttl=64 time=0.351 ms
-> > > ^C
-> > > --- debix ping statistics ---
-> > > 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
-> > > rtt min/avg/max/mdev = 0.351/437.416/1024.755/459.370 ms, pipe 2
-> > > darkapex at freya in ~
-> > >
-> > > If I revert the patch, or disable the deeper cpuidle state through
-> > > sysfs, the issue goes away.
-> > >
-> > > # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
-> > >
-> > > PING debix (10.0.42.5) 56(84) bytes of data.
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=0.482 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=2.28 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=2.26 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.848 ms
-> > > 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=0.406 ms
-> > > ^C
-> > > --- debix ping statistics ---
-> > > 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
-> > > rtt min/avg/max/mdev = 0.406/1.255/2.280/0.842 ms
-> > >
-> > >>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-> > >>
-> > >> Applied, thanks!
+> [1]: https://lore.kernel.org/linux-input/d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com/
+> 
+> BTW the series is based on linux-next/master
+> 
+> ---
+> Changes in v2:
+> - Patch 5:
+>    * Do not nest if:then:else::if:then.
+> - Patch 6:
+>    * Make use of the adp5585 info variables and adp5589 volatile regs.
+> - Patch 9:
+>    * Use standard "poll-interval" property (and move it before vendor
+>      properties).
+> - Patch 10:
+>    * Make sure to include bitfield.h.
+> 
+> - Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
+> 
+> ---
+> Nuno Sá (17):
+>       dt-bindings: mfd: adp5585: ease on the required properties
+>       mfd: adp5585: enable oscilator during probe
+>       pwm: adp5585: don't control OSC_EN in the pwm driver
+>       mfd: adp5585: make use of MFD_CELL_NAME()
+>       dt-bindings: mfd: adp5585: document adp5589 I/O expander
+>       mfd: adp5585: add support for adp5589
+>       gpio: adp5585: add support for the ad5589 expander
+>       pwm: adp5585: add support for adp5589
+>       dt-bindings: mfd: adp5585: add properties for input events
+>       mfd: adp5585: add support for key events
+>       gpio: adp5585: support gpi events
+>       Input: adp5585: Add Analog Devices ADP5585/89 support
+>       Input: adp5589: remove the driver
+>       mfd: adp5585: support getting vdd regulator
+>       dt-bindings: mfd: adp5585: document reset gpio
+>       mfd: adp5585: add support for a reset pin
+>       pwm: adp5585: make sure to include mod_devicetable.h
+> 
+>  .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
+>  .../devicetree/bindings/trivial-devices.yaml       |    2 -
+>  MAINTAINERS                                        |    1 +
+>  drivers/gpio/Kconfig                               |    1 +
+>  drivers/gpio/gpio-adp5585.c                        |  299 +++++-
+>  drivers/input/keyboard/Kconfig                     |   21 +-
+>  drivers/input/keyboard/Makefile                    |    2 +-
+>  drivers/input/keyboard/adp5585-keys.c              |  221 ++++
+>  drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
+>  drivers/mfd/adp5585.c                              |  808 ++++++++++++++-
+>  drivers/pwm/pwm-adp5585.c                          |   57 +-
+>  include/linux/mfd/adp5585.h                        |  153 ++-
+>  12 files changed, 1709 insertions(+), 1162 deletions(-)
+> ---
+> base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
+> change-id: 20250311-dev-adp5589-fw-e04cfd945286
+> --
 
 -- 
 Regards,
