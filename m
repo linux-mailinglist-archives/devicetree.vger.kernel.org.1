@@ -1,188 +1,91 @@
-Return-Path: <devicetree+bounces-167550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C02A8AC0B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:25:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D484A8AC0D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D947C1901510
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:25:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E1B47AD360
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF182D8DC4;
-	Tue, 15 Apr 2025 23:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ADCF2D8DB7;
+	Tue, 15 Apr 2025 23:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="iEYWZcvu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIo8SYty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828F82D8DBA
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 23:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6820C2222C5;
+	Tue, 15 Apr 2025 23:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744759533; cv=none; b=KOTAZ50kBF7QpwiK1oFJKDHWVhsPyfLJbk/c3g9WMgJ55DlH3i/WHy+0t9bYUoBqwnRrEgQZ6Dv+o1BdYgJJwMUEOurBAzNag9ppo47evYJahez7WUWEcJZ1onmEFPOiCH/gME766BG759IpcX9CMX28yWCY7RkELXjYz5G9/Kw=
+	t=1744759627; cv=none; b=E7UMylWhu449vTbRDxCm386lKMFZ4YawTGcIJ1vAweRVOsMOV6vLkWd5vyN7yhCU6pVIQvPoQIVwLBeKUyauHiFSODb27kIhyIC4CsVkmp+21Z1fOFMpfOWdLPzaZnja4TQh/PLpQewd5my9IMmN2Sg/IA75q9lLu22vFijw6Qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744759533; c=relaxed/simple;
-	bh=c8DBvaJrvgzsKkIA8gytUTCThGm7eqgoKYGFWa7di9o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J6RgiZzQT6hhSVMldw1FQd6+/OtFZMzoV1ZpCVbLsO8DMnkf9QV3xif7PhcakfXPjsxE9yEB52PQ9TZYGaJwF+PG/vXwJ7NPz0YEr5r2b7Up8XfVRBobglkWyowHZZz4k5CS8kxqqFSgUKbEzIYhbz4heDe9S6li0uSZ5195yn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=iEYWZcvu; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-73712952e1cso5907357b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 16:25:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1744759529; x=1745364329; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Typi1g6KX7Ehfn4YypTfJOkSrzPqdsOWJwM5fjFePI0=;
-        b=iEYWZcvuHYCIyHTo9B/Mi9GegXyeH1OoMW/I8TRJNkF3DnVMzsY4643YVdNiXFezI3
-         jE8529fR82laqtbOjam6tCUmrPe/De9CQby7n8ncLZGhtiZ5rmDHKk9m3CAtdsWAAmp2
-         Cvem1Rw2rvfx0OyDOSEOXKgwIRf042+5tiKrVKvLGpUYDkDgRerXc8jRPaDPFggEewVA
-         0Dk2WQ6/DibfncaT4ByixkrDtwbJYzACp/zleLXJ665KDJZqkrzMpNoW+0vUFSf1Ua2m
-         w4wXahAfsivlM0945etEFlfquEYabEqoY6a1088PI1N1PG3Z44mG+TAwoL1fQwRpcEf0
-         0wRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744759529; x=1745364329;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Typi1g6KX7Ehfn4YypTfJOkSrzPqdsOWJwM5fjFePI0=;
-        b=rIM6d5EPxHIJ/FOj7p0TihLT3n2+bkR4KHV4zoN6g78qmmAVZ9VrBGErHF4oNMdIoA
-         JoaksF+UJtsU9A3k46rsa318kWiFmMAThSQn9LK78WPYkUEMO7DcL6ViYhtJEo4rqAYS
-         YTUv+sdcr/zfJMi1Nj2ndQNv7bnqSg6fcoXDstDtPN+2+Y+hyMJwmBif9lL2GJeup3+F
-         CLwO8xFxOF0U4Ncz0Ni5WnKXeDJydUtdr5hYxxHko7QhVdloz2BUXxf1RKaOSX2z9S+6
-         TASjZa2c65ivG0nLGUasWoD9XnA3u6dLWjs6Rcm5oOmZDnJQTChwl7lPgMyLa5Mg+3ko
-         QYLA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1nVnjOhTHfZ8whel78W+u85Lk4xgBc/GOe1/L19EH5vJw8b1hA6isP5awmkouGGNroeEMrnS6BJIa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGAIdMCyQmL/mXsq5Daf9Nvp6OPqYGGd86VRBQDY+lLciXerVL
-	qqncQmg8t94AjGu+hhvb1Y2wRIZxrIU6GBTgKsqu0/fgCATysG444Pk3Tq+RNGU=
-X-Gm-Gg: ASbGncsbqkCDV57SN9J1iUK1q2bWq4fI8IGcFSeCWEYOwBBEEs7pFmWxK1aS27UzdD0
-	WfaYV0JoAJ2DmcDC6VL4scmqByWnc08lPfSpUuDD8vvvPOe229aXZycGtGD54LVaaJaOzQBlr5v
-	oWPKDaMQfPe4moYeM5yJuaxH607GMJYTwQtzc858soTDNGb/okLqe0Zmav8tozls4nttg6NyG7K
-	yCQ0r2mCOzEd0EYNNr3p6u1bVJrXaXomjtEaUL5V9vAvJoZd+CQ/0dW1lNFgLxhYKaecIigMtMr
-	f++daYARlj7Jt2uxHmNkFY68Ft13VIjEU9zu6QsHU2yFYIuCD0Bigx01/6d4mGc7eI06kxKe5z0
-	q8bueFBP4aerUfHW9TjurkcLHxZ0=
-X-Google-Smtp-Source: AGHT+IEzphQP3s7FZ5e4GcCAa2R4BFsGamVOHIKYq0Z6d5ikKqoVlCyBOojccFabDl5OP2cE0NKWaA==
-X-Received: by 2002:a05:6a00:a2a:b0:736:9f20:a175 with SMTP id d2e1a72fcca58-73c1f8d3744mr1737009b3a.2.1744759529366;
-        Tue, 15 Apr 2025 16:25:29 -0700 (PDT)
-Received: from wak-linux.svl.corp.google.com ([2a00:79e0:2e5b:9:ef0:9d76:c8a5:f522])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd21c5e98sm9443850b3a.57.2025.04.15.16.25.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 16:25:28 -0700 (PDT)
-From: "William A. Kennington III" <william@wkennington.com>
-To: Avi Fishman <avifishman70@gmail.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Tali Perry <tali.perry1@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	"William A. Kennington III" <william@wkennington.com>
-Subject: [PATCH] arm64: dts: Fix nuvoton 8xx clock properties
-Date: Tue, 15 Apr 2025 16:25:21 -0700
-Message-ID: <20250415232521.2049906-1-william@wkennington.com>
-X-Mailer: git-send-email 2.49.0.604.gff1f9ca942-goog
+	s=arc-20240116; t=1744759627; c=relaxed/simple;
+	bh=3Sir4+T4AwfnNy/8QK8vbEwvLVe1miGWHDLZq0uyyT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=II1JmNqBD/0GrUsLEmTOJ7GKtQVGXsFSAwJ+X409vyjneOiNs0zxbHkBDdr/XVZHCQHmuteK6l9l4vRTQCyFNgNmv+g6JL8i3dVnanERZ5g1C0ElFGn/6J/CkMdkkaEPZWGkZCwp+lN2c3LJOEjP00OpEQ7P6RZeuzBdfSqDLWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIo8SYty; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E89C4CEE7;
+	Tue, 15 Apr 2025 23:27:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744759626;
+	bh=3Sir4+T4AwfnNy/8QK8vbEwvLVe1miGWHDLZq0uyyT4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hIo8SYtyHoSoPk7lqB1o5VyWLcsrN9ObJNjJM7opi7LfMakYyW9skhMN2wELTC95b
+	 fMamKvJNicBpVQLjaXFK/JUL6H7aCuVUcpbfLv9u9RPqtYVMy2ZNhTRBd+kC4NZaXN
+	 50SIVZFqhi/vt9fXL4M3n3gOUT4kKtQ1JQKmachq0VjrIAD+2yhWgZeSn8/7gi2DWX
+	 Pu7fj8RRmRicIPjcQGqXF9A6qs+TVgBUV6VO0CdCwbtgZOpUMCsIuyKEgxo0Mm/Mqr
+	 /kjVcANx6I7v6ppDZLd72i+ENJMIDM1CjUs40JFZQ7kGDl+Qvthn98ZW6tfxlKrp9k
+	 HMwkNp/vaogpA==
+Date: Tue, 15 Apr 2025 18:27:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: patchwork-bot+bluetooth@kernel.org
+Cc: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
+	luiz.dentz@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, amitkumar.karwar@nxp.com,
+	sherry.sun@nxp.com, manjeet.gupta@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: bluetooth: nxp: Add support for
+ host-wakeup
+Message-ID: <20250415232704.GA956317-robh@kernel.org>
+References: <20250414175952.403002-1-neeraj.sanjaykale@nxp.com>
+ <174474844000.2765712.3519619421796978194.git-patchwork-notify@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <174474844000.2765712.3519619421796978194.git-patchwork-notify@kernel.org>
 
-The latest iteration of the clock driver got rid of the separate clock
-compatible node, merging clock and reset devices.
+On Tue, Apr 15, 2025 at 08:20:40PM +0000, patchwork-bot+bluetooth@kernel.org wrote:
+> Hello:
+> 
+> This series was applied to bluetooth/bluetooth-next.git (master)
+> by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+> 
+> On Mon, 14 Apr 2025 23:29:51 +0530 you wrote:
+> > Add support for host wakeup on interrupt.
+> > 
+> > Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> > ---
+> > v2: Use interrupt instead of host-wakeup-gpios. (Rob Herring)
+> > v3: Fix errors in dt_binding_check. (Neeraj Kale)
+> > 
+> > [...]
+> 
+> Here is the summary with links:
+>   - [v3,1/2] dt-bindings: net: bluetooth: nxp: Add support for host-wakeup
+>     https://git.kernel.org/bluetooth/bluetooth-next/c/f68f62f57917
 
-Signed-off-by: William A. Kennington III <william@wkennington.com>
----
- .../boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 16 ++++++----------
- .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts     |  8 ++++++++
- 2 files changed, 14 insertions(+), 10 deletions(-)
+I happen to have no more comments in this case, but please let DT 
+maintainers have a chance to ack/review bindings.
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index ecd171b2feba..4da62308b274 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -47,17 +47,13 @@ ahb {
- 		interrupt-parent = <&gic>;
- 		ranges;
- 
--		rstc: reset-controller@f0801000 {
-+		clk: rstc: reset-controller@f0801000 {
- 			compatible = "nuvoton,npcm845-reset";
- 			reg = <0x0 0xf0801000 0x0 0x78>;
- 			#reset-cells = <2>;
- 			nuvoton,sysgcr = <&gcr>;
--		};
--
--		clk: clock-controller@f0801000 {
--			compatible = "nuvoton,npcm845-clk";
-+			clocks = <&refclk>;
- 			#clock-cells = <1>;
--			reg = <0x0 0xf0801000 0x0 0x1000>;
- 		};
- 
- 		apb {
-@@ -81,7 +77,7 @@ timer0: timer@8000 {
- 				compatible = "nuvoton,npcm845-timer";
- 				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x8000 0x1C>;
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				clock-names = "refclk";
- 			};
- 
-@@ -153,7 +149,7 @@ watchdog0: watchdog@801c {
- 				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x801c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -162,7 +158,7 @@ watchdog1: watchdog@901c {
- 				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x901c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -171,7 +167,7 @@ watchdog2: watchdog@a01c {
- 				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0xa01c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-index eeceb5b292a8..a20f95c60a62 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-@@ -19,6 +19,14 @@ chosen {
- 	memory@0 {
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
-+
-+	refclk: refclk-25mhz {
-+		compatible = "fixed-clock";
-+		clock-output-names = "ref";
-+		clock-frequency = <25000000>;
-+		#clock-cells = <0>;
-+	};
-+
- };
- 
- &serial0 {
--- 
-2.49.0.604.gff1f9ca942-goog
-
+Rob
 
