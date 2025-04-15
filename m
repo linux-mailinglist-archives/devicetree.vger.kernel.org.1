@@ -1,179 +1,121 @@
-Return-Path: <devicetree+bounces-167177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 992E9A899C7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:20:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C17A899CC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 921B6168D65
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:20:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BCFC189E285
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C252918DE;
-	Tue, 15 Apr 2025 10:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="MkFV+lBr";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KS5my13j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE6727FD68;
+	Tue, 15 Apr 2025 10:20:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7404291171;
-	Tue, 15 Apr 2025 10:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A6920C488
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744712361; cv=none; b=AEGRG6q7FebqWxcEf0KOIGa18SdH+nHnqUowTK27kbq5Lxkmf6Az+mLnTBmCXnNBlpJLmc6J1HlHhzjb4PhihcxqbxHUUSU/8WASU5LfU+9vxTYxso/+iSqR1ydxsC9wZzmTeRcC6spGwxmt3lpBTs8nXUpmFyszI3uv9BE6hpA=
+	t=1744712457; cv=none; b=qcYcHqkzBMe79IUvHFj/dfA2CxPX44i1HEb1vPPF/Y+hLGZJIIvlPShHH3JIokn0nrM1+MvOhMTPkXKpaTiWkcHLOgAt67jSvN8MLZSdq2s0IA71nH4YRI5XEbjpA0PfDOu/jocY/6j5oASJueR9tKts4r0bivqmClUF7FwpJcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744712361; c=relaxed/simple;
-	bh=GLxiJlf0l4/8f/3cOIsp8spLAwZmy6rGL3fBo0ibedo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ENKmWS1c2Y9XuLSx7SMNtH9qKxcrDtKABbgQ4SklMaPOhms34KUoe7+n8eRURs6W+nhCsPFAit5LBdKhjy9LegYOjRWPN6GEOM7jL+pctw6XcDCJya7vx7Jl4udfs2Er5kTgHLayN9isis9COjhriq6MROOkFYrR2J5BdV9KKzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=MkFV+lBr; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KS5my13j reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1744712358; x=1776248358;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=L3mgdLsAzzZaK/mOx+qOWZRMUeWUqc13Mm441pFDAiY=;
-  b=MkFV+lBryBJNa6igRNWDBlpagU2YrcuUvlZWeby+D6BMtlBWLga7re+Q
-   OGD7e2TIXUnyrIEy23+T8+HRkmnl2KgB34Nnbmq1HFJXLytAzrttBBu9D
-   il2/Ks3ry6lTiRPIeb+R2qy5OS8NjcAvz/1SLTVz2aht7mL7u9DHGhQ8L
-   T44hoVwfdHpm39KRZuboMquQa8wowu2HujjweBO2fLuJ55Nw1xob0QGIi
-   0GwQXEQczlUgPFiEfF66lp/M9jjxPe2tbx4pSI52RPtMZzDqmBQipa8sN
-   bc9Xs/tVhsFka/f25xRUgvY8AMso9e+Fk7I9X0UM/aGnGK1Usdjbmsl5i
-   A==;
-X-CSE-ConnectionGUID: IwmrXv6VTCSAI3p/xks4FQ==
-X-CSE-MsgGUID: 3bL/W/GHSWOL+S5bi73eFg==
-X-IronPort-AV: E=Sophos;i="6.15,213,1739833200"; 
-   d="scan'208";a="43537792"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 15 Apr 2025 12:19:16 +0200
-X-CheckPoint: {67FE32A5-B-7141A0B0-E6EDEC14}
-X-MAIL-CPID: 5C0A9FF98528448249FF1B25666F25D4_3
-X-Control-Analysis: str=0001.0A00639F.67FE32A3.002A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB06016489A;
-	Tue, 15 Apr 2025 12:19:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1744712352;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L3mgdLsAzzZaK/mOx+qOWZRMUeWUqc13Mm441pFDAiY=;
-	b=KS5my13jufA8VQYzVUolMCKej6Q6tnssyGOSXTJ5vvYPOztf4WkrwHSB161oYHAaXSR5Di
-	LU0epMxqooehsceu3dwjHl2Te7f8qmll6KsaNXzfcPOEmAqcr1APAsOPDup/VWeZu3J2r/
-	VRahVBSu+/J7QqeEoucuEShtkKDdob90Qex2OofXap8YdqpdwwUollbCo2cVBlYfg7pwHz
-	FYpxJD67+pTSdEZpd4q0U15HUuNstBYn0YdDGFZ8bIfRgFGO2nnkHeNh+t6TstazSpGo2G
-	o7a0U9Ac5NsiMfKrEJn98eJefYeWxc0nD+814nZJxy9Z6c+ckH30du2wfZIj/A==
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Whitcroft <apw@canonical.com>
-Cc: Dwaipayan Ray <dwaipayanray1@gmail.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Joe Perches <joe@perches.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tero Kristo <kristo@kernel.org>,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH net-next 4/4] checkpatch: check for comment explaining rgmii(|-rxid|-txid) PHY modes
-Date: Tue, 15 Apr 2025 12:18:04 +0200
-Message-ID: <16a08c72ec6cf68bbe55b82d6fb2f12879941f16.1744710099.git.matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+	s=arc-20240116; t=1744712457; c=relaxed/simple;
+	bh=ysjcld4I1d/TEaaccvq+g9ufZqs0JEJ/wvx67sEcKBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jDH9DkKp9evHqK6xqNFLOMOwSBN9GiRtc+Mja1RBCeThLPiSK6Y3IiYKkMZOUUt/qjE+OunL+LxFWv67eaLyw/Fh/Wp8zUS+CdbVpMcmdw0K7NJVX/q5ts126RIWCEGeuYd5VXUvl0XwP5vsQgXeBx1atkSLe4fpxm6nuJMndHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1u4dPD-0004Ii-B1; Tue, 15 Apr 2025 12:20:39 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1u4dPC-000P2J-0G;
+	Tue, 15 Apr 2025 12:20:38 +0200
+Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id A99013F9BB4;
+	Tue, 15 Apr 2025 10:20:37 +0000 (UTC)
+Date: Tue, 15 Apr 2025 12:20:37 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfgang Grandegger <wg@grandegger.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: remove RZ/N1S bindings
+Message-ID: <20250415-glittering-dangerous-coati-1c90b1-mkl@pengutronix.de>
+References: <20250411194849.11067-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sc425bfm6fmj3k36"
+Content-Disposition: inline
+In-Reply-To: <20250411194849.11067-2-wsa+renesas@sang-engineering.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Historially, the RGMII PHY modes specified in Device Trees have been
-used inconsistently, often referring to the usage of delays on the PHY
-side rather than describing the board; many drivers still implement this
-incorrectly.
 
-Require a comment in Devices Trees using these modes (usually mentioning
-that the delay is relalized on the PCB), so we can avoid adding more
-incorrect uses (or will at least notice which drivers still need to be
-fixed).
+--sc425bfm6fmj3k36
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: remove RZ/N1S bindings
+MIME-Version: 1.0
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
----
- Documentation/dev-tools/checkpatch.rst |  9 +++++++++
- scripts/checkpatch.pl                  | 11 +++++++++++
- 2 files changed, 20 insertions(+)
+On 11.04.2025 21:47:57, Wolfram Sang wrote:
+> Except for these four quite random bindings, no further upstream
+> activity has been observed in the last 8 years. So, remove these
+> fragments to reduce maintenance burden.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-diff --git a/Documentation/dev-tools/checkpatch.rst b/Documentation/dev-tools/checkpatch.rst
-index abb3ff6820766..8692d3bc155f1 100644
---- a/Documentation/dev-tools/checkpatch.rst
-+++ b/Documentation/dev-tools/checkpatch.rst
-@@ -513,6 +513,15 @@ Comments
- 
-     See: https://lore.kernel.org/lkml/20131006222342.GT19510@leaf/
- 
-+  **UNCOMMENTED_RGMII_MODE**
-+    Historially, the RGMII PHY modes specified in Device Trees have been
-+    used inconsistently, often referring to the usage of delays on the PHY
-+    side rather than describing the board.
-+
-+    PHY modes "rgmii", "rgmii-rxid" and "rgmii-txid" modes require the clock
-+    signal to be delayed on the PCB; this unusual configuration should be
-+    described in a comment. If they are not (meaning that the delay is realized
-+    internally in the MAC or PHY), "rgmii-id" is the correct PHY mode.
- 
- Commit message
- --------------
-diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-index 784912f570e9d..57fcbd4b63ede 100755
---- a/scripts/checkpatch.pl
-+++ b/scripts/checkpatch.pl
-@@ -3735,6 +3735,17 @@ sub process {
- 			}
- 		}
- 
-+# Check for RGMII phy-mode with delay on PCB
-+		if ($realfile =~ /\.dtsi?$/ && $line =~ /^\+\s*(phy-mode|phy-connection-type)\s*=\s*"/ &&
-+		    !ctx_has_comment($first_line, $linenr)) {
-+			my $prop = $1;
-+			my $mode = get_quoted_string($line, $rawline);
-+			if ($mode =~ /^"rgmii(?:|-rxid|-txid)"$/) {
-+				CHK("UNCOMMENTED_RGMII_MODE",
-+				    "$prop $mode without comment -- delays on the PCB should be described, otherwise use \"rgmii-id\"\n" . $herecurr);
-+			}
-+		}
-+
- # check for using SPDX license tag at beginning of files
- 		if ($realline == $checklicenseline) {
- 			if ($rawline =~ /^[ \+]\s*\#\!\s*\//) {
--- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--sc425bfm6fmj3k36
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmf+MvIACgkQDHRl3/mQ
+kZzTpQgAlPTcKlZ2xk6+ME/4NOQ2N/EBzvg7QNZBqJfusX9dxxdc0o4dklimbHdf
+epiZ9f5sw+DLcWQxm4Ll7LB/jzW4XyMC+lZkS57AiOSpCCuLMunyjhld7Nv/3Q7+
+PsHh0sBe7xvdxw1f3vLL0+nmG9TS3SosuqUZZMczwmN0Q6fPcUMEBN5W+X7+MIvM
+3NghO/IjopmjQiDZSveHzXCpLuW/JRQOSUpad9+Fuyh1T4In4mBrPCQ/JtyFNGSk
+QzTN8PYPuiT2xDQ5CRTm9PKr9Do9XRc+JAYSUdt5F3MV5XVfuG3ouBnoXVnkkCM0
+lufydvGLYi+EcDGT/so8Kc7TSirIrg==
+=erlw
+-----END PGP SIGNATURE-----
+
+--sc425bfm6fmj3k36--
 
