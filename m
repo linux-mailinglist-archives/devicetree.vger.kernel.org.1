@@ -1,656 +1,188 @@
-Return-Path: <devicetree+bounces-167179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD3CA899EA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C66FA899F9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3088916C79B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:25:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F434178673
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DD327FD4D;
-	Tue, 15 Apr 2025 10:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDCF28E5EE;
+	Tue, 15 Apr 2025 10:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XQZFHNX5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BzdINMk5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970E2288C9A;
-	Tue, 15 Apr 2025 10:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7AB28DF06
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744712701; cv=none; b=KwJudcQxMYsnBiJU3pSUKaAGIxGMml16oDP0baqjrLKsDfWcGliH2k1PJM2YpgBwEbVdC575uF+gCGVwcvaNlIvDELD/8jhMxO77D2vC93jyaZlPT2JfJps6sYWXgOSGNi6awv8IHtFUm7Iy+eTcuYdSp2dG2Qybk+7alt/GhcI=
+	t=1744712808; cv=none; b=jjDekP3PkGJn0asK4xUhwWPrfUbMS4qLq2F/uPXO38sISD9MHNdUxbKyWQDhvQcDlzLHJP+o5XIQZpcpUOD9g1pWwTH0ttIGmYPdBw+4Jfa+3mitypzlAlEMgM0V9FoIZT/1wg79rXB97jNQvjCcQz9RaQPEDIxX7uFBsiAZ2Ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744712701; c=relaxed/simple;
-	bh=fll9s794bO1sjjOKmZ4h8P9dJ/S6mxX7VbWTAbXeGnA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HJ8XBMg/wnphNxPu2ZY+Y5gjvCDh8EHSIOg5bYeVQInaDaLCPRGmSQ2QawoCXTalmqlRgqaz0s1q9bdfrHNMm0HHeeom65a8ih009X2Gl8SozH2kZl9oPbOEK4QqH9r3Jf1Lx00fj9dMK7z72COPZnch5gp9pedJEEi7HK3cWms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XQZFHNX5; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F349043974;
-	Tue, 15 Apr 2025 10:24:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1744712696;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bRRdzyIB3MJCdWTf/5ZNH8IZENeUIiD6dUIkzGb/zY8=;
-	b=XQZFHNX5S5ZOvdozlhQ9kcT7OvmkdwRrU7AEUDEzOhPBbplqBT1ZQJv7V/QCeUN4+ids3f
-	mGPX4mbMnGAWqwu6U3XOg4YarUlS4btchLxWYQAp+0p0xiFEUGW4/SAtt6/heVFE05Xk5B
-	Q+A/DxyRbTLZpyU4sLXsWVqHv/l4nGCtdrwHEX2LY894VogiMdVWeBBEIZwQ3kFupMI+n8
-	BvW4rouXSQhN8qEMgMz51PsBnU66nnbC7+pvpwM0LW/Pm6lVAMixPG45FxwUUDztXZnr1R
-	b918nc996L4mYyMfrtsFAhlkX49+l382HY+ns437r8XLDK9NjZ/gFv/MToGJdQ==
-Date: Tue, 15 Apr 2025 12:24:53 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Andrew Davis <afd@ti.com>, Jason Kridner <jkridner@beagleboard.org>,
- Deepak Khatri <lorforlinux@beagleboard.org>, Robert Nelson
- <robertcnelson@beagleboard.org>, nenad.marinkovic@mikroe.com, Geert
- Uytterhoeven <geert@linux-m68k.org>, Robert Nelson
- <robertcnelson@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd
- Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, David Gibson
- <david@gibson.dropbear.id.au>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Grant Likely <grant.likely@secretlab.ca>, Dhruva Gole <d-gole@ti.com>,
- devicetree-spec@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] Add new `export-symbols` node
-Message-ID: <20250415122453.68e4c50f@bootlin.com>
-In-Reply-To: <fd4368bb-bb8a-4a27-9b1d-56b3e92b52af@beagleboard.org>
-References: <20250411-export-symbols-v3-1-f59368d97063@beagleboard.org>
-	<0d25b3d4-7735-4e35-8553-d6e64b8ad8f7@ti.com>
-	<d78e60f2-e2e5-4e6a-9724-68cc0481fd77@beagleboard.org>
-	<20250414164617.51038dd4@bootlin.com>
-	<17e41207-251b-483a-9c15-a9a5d2626755@ti.com>
-	<fd4368bb-bb8a-4a27-9b1d-56b3e92b52af@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1744712808; c=relaxed/simple;
+	bh=QYugMVfYVvLSYRveE8OjurOVSqQAHtx2Ux3lVhzLO5Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V37fVYGb68BzBg4sMeOVVeIeMsuJRqDzYLDSqqoCYKBcgbTAeMsXPV1g4oA2f83CHSB1jPs0/5zfHYG71SW17YCuCAmqnRqkQ3lzWbvmLKlMu/x3BKZUvx2g1ihZ9l6P5socf66pt7coSzt1SGnSdW/4XHF2gCxVP1vy/pIh7i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BzdINMk5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tHUe013131
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:26:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=X/WtKN1AECy0M/BWY9LX4p
+	Jp2RATeXAuAQYhMYyXc9g=; b=BzdINMk5OcOGEqCtWc/Z/sRJLoxuuLkbUUnYAo
+	PUOcJjxxalNxcUCJTB9Pa17uviu54C1pyEgDd42znTbd0CW1Bt2AaWGVGMA6uIuC
+	bPlvXA5RE1lOcLqpoLqfVwocO7Nd8VSMzqvfApCTeCa3mPQjctoflREt1REK6noA
+	7gpTZEusx16bXeRbOvLgHFHC+ZZRqaBk1CvanRE+SVUFrzwDr376rEv0XjXuNzhG
+	6RBqdwqbYn5mktMVMxvv102Osvq63tQn6FhYeHmF//yJbg2WVR7vCYaBcGnynRgG
+	gHNOXQ3ZyG8E+wO7n9L2tIz2TqktRvMaM8/6esDeP1q4dZ6Q==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ygd6fng4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:26:44 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c0c1025adbso1113940185a.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 03:26:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744712802; x=1745317602;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X/WtKN1AECy0M/BWY9LX4pJp2RATeXAuAQYhMYyXc9g=;
+        b=hbXkMlfq6wwzGQSblRfkHTBxvlkQ/51ACoucXHB7ezKUY29ou1bGMURcsURez/SS98
+         nmeNIOuqB+974dPjJQ09NCjJNAmXOXSxOiYnhwx63EOb0nz/VhQPIB7yOpZKdtsy5vxA
+         QKWSl7u0hE/4/XahqpnnM7qTXA6zeJu8NAxqOlwjblFg4fbBXsrVea6CfIxRhYuQ2HcS
+         hxudV7xXeS/UB/jpZ7TY7RzBJlxCVHt0rtIUNQhURDMDkrpSGbyE/XMGkSnsZSMIcDUm
+         6JJLvnETA8DOAJl8ZSve5CztaKOg2+rgElODpgHN+VxlGZbdAw7SCqZ0sH0ySJjOMYxH
+         TjVw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2F14aHGINeI3SZJJK5TDELJSUdDpB2femQWdqkwP2AVX/BYp7+MNBtE8nY4d9tPtQgRJ/gcGO8GPO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3bSRyvje60nLu2gaYTiLUJ8kAqJU5fJqHrMVqF30dRoneMrNe
+	CJXWHoVX4LgI8aa/zoTo21S4mbuioUBYjhx2npCr4PM25b/CVkIg2dr4xnpewkRUe5lUgqfCSI4
+	eDJluqD6YWiJLx9mStR8iIauGpMDFXvfLBBzGnQg+88OTCXY6BBEAzb3BobK1
+X-Gm-Gg: ASbGncsFKNv8ct8Mp/O5o6Jn+KY5xKkxoxCHsQ4IsddQzqGkoftga20ZpLzmCrarvao
+	7yGIgDiEACtYPZFKwM3MVHQLYNTika/nphjWhELLA6fMcmmPRoyKO1WnkCQrcynU2jMdB86aVjL
+	MbfXNGOPL1VzuVc+ibMJ+LmM/r2OaNSa9MYEYubRGCTqTJqZq8PFO2Ld23DKM/fg7EoVgqbORjw
+	A9E2FN1hPW/0bZ7/JBGR2su/lSuT9yH0q6gwbm1rjlqi+gI2eRDTQNOc3qQNimQZoQaQeXS1Y8+
+	nFMT2hEEkiuZP4Xr9rPvCmx+uMaLdHHwmH5ACK98W+AUVSutxHreQQnpAc5SiwncdMxEQVJQhy6
+	3S0GUw0fruluwbm41LvLolelM
+X-Received: by 2002:a05:620a:6a1b:b0:7c7:b5dc:2e36 with SMTP id af79cd13be357-7c7b5dc2feamr1377173885a.18.1744712801828;
+        Tue, 15 Apr 2025 03:26:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGQkB9B4cRRHGs0lS8BPNTKw2hR8mld5Rx8as+s6ViIlEv/ui2RElc5xqoCFN3WDYStZYgb7w==
+X-Received: by 2002:a05:620a:6a1b:b0:7c7:b5dc:2e36 with SMTP id af79cd13be357-7c7b5dc2feamr1377171485a.18.1744712801368;
+        Tue, 15 Apr 2025 03:26:41 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d5035f5sm1384005e87.117.2025.04.15.03.26.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Apr 2025 03:26:40 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH 00/20] arm64: dts: qcom: minor display-related fixups
+Date: Tue, 15 Apr 2025 13:25:58 +0300
+Message-Id: <20250415-drm-msm-dts-fixes-v1-0-90cd91bdd138@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvvdefvdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepfeevgfefffejteefveffkefffefgtedugedvhfevjedvgeekieelffeihfeuvdeknecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvgeeimeejjeeltdemvdeitgegmegvvddvmeeitdefugemheekrgenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemvdegieemjeejledtmedviegtgeemvgdvvdemiedtfegumeehkegrpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddupdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehjkhhrihgunhgvrhessggvrghglhgvsghorghrugdro
- hhrghdprhgtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehnvghnrggurdhmrghrihhnkhhovhhitgesmhhikhhrohgvrdgtohhmpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtoheprhhosggvrhhttghnvghlshhonhesghhmrghilhdrtghomh
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADY0/mcC/x3LQQqAIBBA0avErBuwUKOuEi1Cx5qFFU5EIN49a
+ fn4/AxCiUlgajIkelj4PCq6tgG3r8dGyL4aetUbpTuDPkWMEtHfgoFfEhyUtToEG9xooX5Xoj/
+ UbV5K+QAwxBF4YwAAAA==
+X-Change-ID: 20250415-drm-msm-dts-fixes-70664ff6fc96
+To: cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2793;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=QYugMVfYVvLSYRveE8OjurOVSqQAHtx2Ux3lVhzLO5Y=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBn/jRaadylFo01oh/vF/7fLQSN3VZAz0tNEwYj8
+ YTK2uQYcTmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ/40WgAKCRCLPIo+Aiko
+ 1YxMCACR0VCSUdyKFhnoaLva/hZ3hlHqubOjopbLrCjgdkioDrIcOq/ixAmu5SAjtVFC96MLScW
+ bS7bO2i/E6+IKplFazuT4kC+HUAOcXfayvfvMA09KaQfI1bC8K73THyt+585Zd894esYcA5ADn5
+ fF7wAIAxVw+YkBMiIrRa8BL8sh642kjHqoMMlmpAeK5k/3cnbC/co5G/qxV7ZnIIjwVP8EOVlwH
+ vcVO9Z3Ty/gGtf4fR3Rkw+hbDKn2FdUcpEpkMX9hm4ewMHZcj+U4pYySacOA5Hc02c77y56iIfo
+ G/D/AwFVXZjRCJfqxcos97iyXeTkaEbe/Bfr5S93oeN5mnJO
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-ORIG-GUID: f45LHfwOmeiJjEeh-tNjv7_a4Ccc_d2o
+X-Proofpoint-GUID: f45LHfwOmeiJjEeh-tNjv7_a4Ccc_d2o
+X-Authority-Analysis: v=2.4 cv=ANaQCy7k c=1 sm=1 tr=0 ts=67fe3464 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=baB_RGo8eP4_a948qH4A:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=542 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504150073
 
-Hi Andrew,
+Based on the patch review by Konrad:
+- Change VBIF size to 0x3000 as defined by memory map
+- Use new DSI clock defines on SC7280
+- Use TAG_ALWAYS for MDP->EBI memory interface on SA8775P
 
-In complement of Ayush comments, here are mine.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+---
+Dmitry Baryshkov (20):
+      arm64: dts: qcom: sc7280: Use the header with DSI phy clock IDs
+      arm64: dts: qcom: sa8775p: mark MDP interconnects as ALWAYS on
+      arm64: dts: qcom: msm8998: use correct size for VBIF regions
+      arm64: dts: qcom: qcm2290: use correct size for VBIF regions
+      arm64: dts: qcom: sa8775p: use correct size for VBIF regions
+      arm64: dts: qcom: sc7180: use correct size for VBIF regions
+      arm64: dts: qcom: sc7280: use correct size for VBIF regions
+      arm64: dts: qcom: sc8180x: use correct size for VBIF regions
+      arm64: dts: qcom: sc8280xp: use correct size for VBIF regions
+      arm64: dts: qcom: sdm670: use correct size for VBIF regions
+      arm64: dts: qcom: sdm845: use correct size for VBIF regions
+      arm64: dts: qcom: sm6115: use correct size for VBIF regions
+      arm64: dts: qcom: sm6125: use correct size for VBIF regions
+      arm64: dts: qcom: sm6350: use correct size for VBIF regions
+      arm64: dts: qcom: sm8150: use correct size for VBIF regions
+      arm64: dts: qcom: sm8250: use correct size for VBIF regions
+      arm64: dts: qcom: sm8350: use correct size for VBIF regions
+      arm64: dts: qcom: sm8450: use correct size for VBIF regions
+      arm64: dts: qcom: sm8550: use correct size for VBIF regions
+      arm64: dts: qcom: sm8650: use correct size for VBIF regions
 
-On Mon, 14 Apr 2025 22:43:29 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
-
-> On 4/14/25 22:04, Andrew Davis wrote:
-> > On 4/14/25 9:46 AM, Herve Codina wrote:  
-> >> Hi Ayush, David,
-> >>
-> >> On Sat, 12 Apr 2025 00:19:16 +0530
-> >> Ayush Singh <ayush@beagleboard.org> wrote:
-> >>  
-> >>> On 4/11/25 23:09, Andrew Davis wrote:
-> >>>  
-> >>>> On 4/11/25 3:00 AM, Ayush Singh wrote:  
-> >>>>> `export-symbols` is designed to be a local replacement of global
-> >>>>> `__symbols__` allowing nodes to define aliases to nodes in a tree, 
-> >>>>> which
-> >>>>> will take precedence over the aliases defined in the global
-> >>>>> `__symbols__`.
-> >>>>>
-> >>>>> Having a way to allow node local aliases helps in usecases such as
-> >>>>> connectors and addon-boards, by allowing decoupling of
-> >>>>> overlays/devicetree nodes of addon-board from the base connector.
-> >>>>>
-> >>>>> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> >>>>> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> >>>>> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
-> >>>>> ---
-> >>>>> This patch series follows the initial RFC [9] sent a few weeks ago. I
-> >>>>> will be reiterating the RFC here for anyone who might be seeing 
-> >>>>> this the
-> >>>>> first time, since there was not much feedback in that thread.  
-> >>>>
-> >>>> I think this is a useful tool in the effort to build a complete
-> >>>> addon-board
-> >>>> solution. But I'm still missing how it all fits together, do you have
-> >>>> a real
-> >>>> working overlay making use of this somewhere I could take a look at?
-> >>>> Maybe
-> >>>> an overlay for one of the addon-boards you list below (one of the
-> >>>> BeagleCapes
-> >>>> for instance).
-> >>>>  
-> >>
-> >> We (me and Luca) have a working device-tree and overlay.
-> >>
-> >> Our base device tree is the following (simplified but relevant part for
-> >> this topic are available):
-> >> / {
-> >>     ...
-> >>
-> >>     addon_connector0: addon-connector0 {
-> >>         compatible = "gehc,sunhv1-addon-connector";
-> >>
-> >>         /*
-> >>          * addon-connector node is a nexus node
-> >>          *  - 2 interupt lines are wired to the connector
-> >>          *  - 1 gpio line is wired to the connector
-> >>          *  - 1 PWM is wired to the connector
-> >>          */
-> >>         #interrupt-cells = <2>;
-> >>         #address-cells = <0>;
-> >>         interrupt-map = <0 IRQ_TYPE_LEVEL_LOW    &gpio4 1   
-> >> IRQ_TYPE_LEVEL_LOW>,  
-> >>                 <0 IRQ_TYPE_EDGE_FALLING &gpio4 1   
-> >> IRQ_TYPE_EDGE_FALLING>,  
-> >>                 <1 IRQ_TYPE_LEVEL_LOW    &i2c3_mux 1 1   
-> >> IRQ_TYPE_LEVEL_LOW>,  
-> >>                 <1 IRQ_TYPE_EDGE_FALLING &i2c3_mux 1 1   
-> >> IRQ_TYPE_EDGE_FALLING>;  
-> >>         #gpio-cells = <2>;
-> >>         gpio-map-mask = <0xf 0x0>;
-> >>         gpio-map-pass-thru = <0x0 0xf>;
-> >>         gpio-map = <0 0 &gpio4 1 0>;  
-> >
-> > This isn't a thing, or do you plan to add nexus nodes / map bindings 
-> > for all possible
-> > enumerated items in DT? Not sure this will scale well :/
-
-I map using nexus nodes only resources (gpio, pwm, ...) connected to
-the connector. What do you mean by all possible enumerated items in DT?
-
-> >  
-> >>         #pwm-cells = <3>;
-> >>         pwm-map-mask = <0xffffffff 0 0>;
-> >>         pwm-map-pass-thru = <0 0xffffffff 0xffffffff>;
-> >>         pwm-map = <0 0 0 &pwm1 0 57000 0>;
-> >>
-> >>
-> >>         devices {  
-> >
-> > What is this node? I'm assuming this is something the "connector 
-> > driver" for
-> > this connector will look for and populate subnodes? What about simple 
-
-This node ('devices') is here to offer an entry point to fixed-regulators,
-fixed-clocks, ... Those device are soldered on the addon board and are not
-connected to any busses (i2c, spi, ...). They need to be described and this
-node allows to describe them. It was proposed in our connector binding:
-   https://lore.kernel.org/lkml/20240813151901.GA953664-robh@kernel.org/
-
-This node indeed, is taken into account by the connector driver with a call
-to of_platform_default_populate().
-
-Where do you put your fixed-clock and fixed-regulator soldered on your addon
-board in your DT description (overlay) proposal ?
-
-
-> > connectors
-> > where no driver should be needed?  
-
-A connector needs a driver. This point has been confirmed by Rob Herring:
-  https://lore.kernel.org/all/CAL_JsqKg0NpDi1Zf1T+f2rYw5UuVfK7+kjWj1_edFWH8EStjXw@mail.gmail.com/
-
-> 
-> Well, I don't think there are many connectors that do not need a driver. 
-> Or well, as long as the connector wants to use nexus nodes, it needs a 
-> driver. At least for GPIOs and PWMs, nexus nodes work pretty well.
-
-Nexus node are not handled by the connector driver.
-The related translation is handled by the core OF with
-of_parse_phandle_with_args_map():
-  https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/of/base.c#L1441
-
-> 
-> The reason nexus nodes cannot be used without driver is well they appear 
-> as gpio-controller, which means without a driver, any device using them 
-> enters differed probing.
-
-Nexus node can be used without drivers. They are just a translation described
-in the DT. The connector driver itself has nothing to do to have nexus node
-translation working.
-
-> 
-> >  
-> >>             /*
-> >>              * 'no bus' devices such as fixed-regulators or
-> >>              * fixed-clocks will be added in this node by the
-> >>              * overlay.
-> >>              */
-> >>             #address-cells = <0>;
-> >>             #size-cells = <0>;
-> >>         };
-> >>
-> >>         /*
-> >>          * This is the i2c bus wired at the connector. It is
-> >>          * handled by the i2c5 adapter available in the SoC.
-> >>          * The overlay will add devices in this node. Those
-> >>          * devices are devices available on the addon-board and
-> >>          * connected to this i2c bus
-> >>          */
-> >>         i2c-addon {
-> >>             i2c-parent = <&i2c5>;  
-> >
-> > What if this I2C instance is not enabled (maybe not an issue for I2C,
-> > but some devices should have their status left disabled unless something
-> > is connected, SPI for instance).
-
-No, why do you need to disable SPI controller if nothing is connected to the
-SPI busses. Again this bus is wired to the connector and once an addon board
-is connected, a device can be connected to the bus.
-
-For a SPI controller, set in low power (suspend/resume) when nothing is
-connected and so the bus is not used, I understand.
-Set to 'disabled' status seems to me incorrect.
-
-The meaning of 'disabled' status in my understanding is the device is not used.
-As the related bus connected to the connector and available for any addon board,
-the device is "used".
-
-Can you clarify this point?
-
-> >
-> > And this (I2C) only works because there is this `i2c-parent` thing, 
-> > but that
-> > isn't the case for most (e.g. there is no spi-parent, mdio-parent, etc..)
-
-Yes and it can be easily extended to SPI and other busses.
-I don't see any blocking point with this point.
-
-This 'i2c-parent' handling is part of 'i2c bus extension' series, I sent.
-SPI and other can be updated to follow the exact same strategy.
-   https://lore.kernel.org/lkml/20250205173918.600037-1-herve.codina@bootlin.com/
-
-> > My proposal[0] handles that by giving standard names to the provider 
-> > phandles
-> > that conforming add-on board overlays can reference directly.
-> >  
-> >>             #address-cells = <1>;
-> >>             #size-cells = <0>;
-> >>         };
-> >>
-> >>         export-symbols {
-> >>             /*
-> >>              * The 'addon_connector' symbol can be used from the
-> >>              * overlay to reference this connector
-> >>              */
-> >>             addon_connector = <&addon_connector0>;
-> >>         };
-> >>     };
-> >> };
-> >>
-> >>
-> >> Then following overlay is applied at the addon-connector0 node and 
-> >> described  
-> >
-> > *How* is this "applied at the addon-connector0 node"?
-
-In my use-case, this overlay is applied by the connector driver using
-of_overlay_fdt_apply(). The target node (the connector of_node) is passed 
-as parameter to the function.
-   https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/of/overlay.c#L981
-
-> >
-> > Again I'm going to guess this is if we are able to modify the 
-> > `fdtapply` tool
-> > to accept connection points as a new command line parameter. And then 
-> > somehow
-> > do the same for all other projects that apply DT overlays (U-Boot, 
-> > Zephyr, etc.).  
-> 
-> I do have patches that add it to fdtoverlay. But most driver based 
-> solutions will probably rely on some EEPROM or sysfs entry as well.
-
-Exactly, in our case, we have an EEPROM soldered on all kind of addon-board
-we support for our vendor specific connector.
-
-We load a first overlay describing needed hardware to access this EEPROM.
-All supported addon-board used the same EEPROM and need the same hardware
-to access it.
-
-Thanks to this EEPROM, we can identify the addon board and so apply a
-second overlay to describe the specific hardware available on the addon
-board we identified.
-
-> 
-> 
-> >
-> > And in that case, we would have to pass in the name of the connector 
-> > anyway,
-> > so having that name be the only item in `export-symbols` doesn't get 
-> > us anything
-> > new, we could have just passed the connector name directly.
-
-See below my example involving power supplies.
-
-> >
-> > BTW, this is solved in my proposal[0] with adapter/shim overlays. 
-> > Which allow for
-> > this to work without any modifying the overlay tooling. Maybe there is 
-> > a way we
-> > can put this new `export-symbols` node in the adapter overlay to avoid 
-> > passing
-> > in the connector name directly to the tooling.. I have to think on this.  
-> 
-> The problem with the __symbols__ proposal is the following:
-> 
-> 1. Path references are not supported in overlays.
-> 
-> I have tried to add them as well, but full support for path references 
-> is not possible in overlays, at least right now. The reason for this can 
-> be found here [0].
-> 
-> There is a possibility of adding a new node: `__symbols_phandle__`, but 
-> that seems too linux specific.
-> 
-> Note: It is not possible to use aliases due to the reasons discussed 
-> here [1].
-> 
-> 
-> 2. Global modification
-> 
-> The __symbols__ based approach directly adds nodes to different parts of 
-> the devicetree, outside of the connector. That is a security problem. We 
-> need a way to isolate any devicetree modification to a single node.
-> 
-> I had a discussion here [2] regarding why the sysfs based interface for 
-> overlays is not merged in mainline, and at least to me, it seems for 
-> mainline support, the modifications need to be strictly isolated as much 
-> as possible. But of course, maybe I misunderstood something.
-> 
-> 
-> 3. Pollutes the global symbols
-> 
-> Export-symbols are local to the connector node, which brings a lot of 
-> benefits since it is not possible to accidentally refer to the wrong 
-> phandle. Can be avoided with careful naming.
-> 
-> Additionally, I am not completely sure how connector versioning would be 
-> handled here. Maybe the symbols should have naming convention that 
-> accounts for the version, but that seems like it can get difficult to 
-> scale pretty fast.
-> 
-> 
-> 4. It requires all symbols to be generated
-> 
-> I don't personally have a problem with this, but it has come up in some 
-> other discussions.
-> 
-> 
-> >  
-> >> the addon board connected to the connector:
-> >>
-> >> / {
-> >>     fragment@0 {
-> >>         target-path = "";
-> >>
-> >>         __overlay__ {
-> >>             devices {
-> >>                 reg_addon_3v3: regulator-addon-3v3 {
-> >>                     compatible = "regulator-fixed";  
-> >
-> > Is this really a fixed regulator on the add-on board or is this being 
-> > feed
-> > from the main board's PMIC but you have no good way to model that 
-> > connection
-> > with this scheme? This breaks the regulator/power dependency graph. If a
-> > device on the add-on board powers down, that information is no longer 
-> > sent
-> > back to the parent PMIC and the power rail will be needlessly left 
-> > enabled.
-
-A power-supply from the base board is wired to the connector ?
-Right:
-
---- Base DT ---
-	/* The regulator used or can also be a child node of the PMIC */
-	regulator_wired_to_addon: regulator_3v3 {
-		compatible = "xxxx"
-		regulator-min-microvolt = <330000>;
-		regulator-max-microvolt = <330000>;
-        }
-
-        addon_connector0: addon-connector0 {
-		...
-		export-symbols {
-			/*
-			 * The 'addon_connector' symbol can be used from the
-			 * overlay to reference this connector
-			 */
-			addon_connector = <&addon_connector0>;
-			
-			/*
-			 * The 3v3 power supply available at the connector */
-			 */
-			addon_connector_pwr_3v3: <&regulator_wired_to_addon>;
-
-		};
-
-
-The addon board has a device that use this 3v3 provided at the connector
-
---- Overlay ---
-
-	fragment@0 {
-		target-path = "";
-
-		__overlay__ {
-			...
-			i2c-addon {
-				/*
-				 * An I2C device that is powered by the 3v3
-				 * available at the connector
-				 */
-				foo@10 {
-					compatible = "bar,foo";
-					reg = <0x10>;
-					...
-					vcc-supply = <&addon_connector_pwr_3v3>;
-				};
-			};
-		};
-	};
-
-I don't see anything incorrect or blocking in that description.
-involving export-symbols.
-
-> >
-> > This is why I was looking for a full complete example, not a 
-> > simplified one.
-> > I'm having to make too many assumptions here to give this 
-> > `export-symbols`
-> > thing a proper review.  
-> 
-> 
-> I will try sending patches for PocketBeagle 2 connector since that is 
-> probably complex enough to catch the corner cases. But well, it will be 
-> at least a bit simplified (SPI devices will be missing). The reason 
-> being there are other open items outside of export-symbols:
-> 
-> 1. SPI chipselect.
-> 
-> - That is a required property for SPI devices in dt, but there is no way 
-> (that I know of) to decouple that in a connector addon-board setup
-
-Chip select are described at SPI controller node -> described in the base dts.
-
-The SPI lines wired to the connector should be described as a "SPI bus
-extension". This extension described at SPI controller node similar to
-"I2C bus extension".
-Note: For I2C bus extension sent upstream, the extension is also described
-      at the I2C controller node) see
-        https://lore.kernel.org/lkml/20250205173918.600037-1-herve.codina@bootlin.com/
-
-For SPI, a description for translating SPI chip selects from the controller
-point of view to the connector can be doable easily.
-Something to tell: "The chip-select number 5 of this controller is wired to
-the chip-select number 0 defined by the pin 'SPI CS' at the connector"
-
-And then, devices added in the SPI extension at the connector will used this
-chip-select.
-
-
-In other words, something like the following:
-
---- base board ---
-	spi0: spi@1000 {
-		comptible = "xxxxx":
-		reg = 0x1000;
-
-		spi-bus-extension@0 {
-			cs-map = <5 0>	/* For this extension, CS number 5
-					 * from the controller point of view
-					 * becomes CS number 0 from the addon
-					 * board point of view
-					 */
-          		spi-bus = <&spi_addon>;
-		};
-	};
-
-	addon_connector0: addon-connector0 {
-		...
-		/*
-		 * This is the SPI bus wired at the connector. It is
-		 * handled by the spi@1000 controller available in the SoC.
-		 * The overlay will add devices in this node. Those
-		 * devices are devices available on the addon-board and
-		 * connected to this SPI bus
-		 */
-		spi-addon {
-			spi-parent = <&spi0>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-		};
-	};
-
-
---- Overlay ---
-
-	fragment@0 {
-		target-path = "";
-
-		__overlay__ {
-			...
-			spi-addon {
-				/*
-				 * An SPI device in the addon board using
-				 * at the CS number 0 of the connector
-				 */
-				flash@0 {
-					compatible = "jedec,spi-nor";
-					reg = <0>;
-					spi-max-frequency = <40000000>;
-				};
-			};
-		};
-	};
-
-Andrew, with your proposal how can you decouple the Chip Select?
-I didn't see anything about SPI in your "Add generic Overlay for Grove
-Sunlight Sensor" series you pointed out.
-Maybe I missed it.
-
-Do you have any other idea to do that?
+ arch/arm64/boot/dts/qcom/msm8998.dtsi  |  4 ++--
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi  |  2 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi  | 10 +++++-----
+ arch/arm64/boot/dts/qcom/sc7180.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi   | 13 ++++++++-----
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi  |  2 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi |  4 ++--
+ arch/arm64/boot/dts/qcom/sdm670.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm6125.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi   |  2 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi   |  2 +-
+ 18 files changed, 31 insertions(+), 28 deletions(-)
+---
+base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
+change-id: 20250415-drm-msm-dts-fixes-70664ff6fc96
 
 Best regards,
-Hervé
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-> 
-> 
-> TechLab cape also exposes a MikroBUS connector on it, so I guess I can 
-> test how board chaining looks like as well.
-> 
-> 
-> >
-> > Andrew
-> >
-> > [0] https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
-> >  
-> >>                     regulator-name = "3V3_ADDON";
-> >>                     regulator-min-microvolt = <15000000>;
-> >>                     regulator-max-microvolt = <15000000>;
-> >>                     regulator-always-on;
-> >>                 };
-> >>
-> >>                 reg_addon_12v0: regulator-addon-12v0 {
-> >>                     compatible = "regulator-fixed";
-> >>                     regulator-name = "12V0_ADDON";
-> >>                     vin-supply = <&reg_addon_3v3>;
-> >>                     regulator-min-microvolt = <12000000>;
-> >>                     regulator-max-microvolt = <12000000>;
-> >>                     gpios = <&tca6424_addon 12 GPIO_ACTIVE_HIGH>;
-> >>                     enable-active-high;
-> >>                 };
-> >>
-> >>                 /*
-> >>                  * This backligh is a PWM driven backlight.
-> >>                  * It uses the PWM #0 available at the connector
-> >>                  */
-> >>                 backlight_addon: backlight-addon {
-> >>                     compatible = "pwm-backlight";
-> >>                     power-supply = <&reg_addon_12v0>;
-> >>                     pwms = <&addon_connector 0 57000 0>;
-> >>                     brightness-levels = <0 255>;
-> >>                     num-interpolated-steps = <255>;
-> >>                     default-brightness-level = <255>;
-> >>                 };
-> >>             };
-> >>
-> >>             i2c-addon {
-> >>                 #address-cells = <1>;
-> >>                 #size-cells = <0>;
-> >>
-> >>                 /*
-> >>                  * This IO expander uses the interrupt #0
-> >>                  * available at the connector.
-> >>                  * It is a device connected to the i2c-addon bus
-> >>                  * available at the connector.
-> >>                  */
-> >>                 tca6424_addon: gpio@23 {
-> >>                     compatible = "ti,tca6424";
-> >>                     status = "okay";
-> >>                     reg = <0x23>;
-> >>                     gpio-controller;
-> >>                     #gpio-cells = <2>;
-> >>                     interrupt-parent = <&addon_connector>;
-> >>                     interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-> >>                     interrupt-controller;
-> >>                     #interrupt-cells = <2>;
-> >>                     vcc-supply = <&reg_addon_3v3>;
-> >>                 };
-> >>             };
-> >>         };
-> >>     };
-> >> };
-> >>
-> >>
-> >> Best regards,
-> >> Hervé
-> >>  
-> 
-> Best Regards
-> 
-> Ayush Singh
-> 
-> 
-> [0]: 
-> https://lore.kernel.org/devicetree-compiler/6b2dba90-3c52-4933-88f3-b47f96dc7710@beagleboard.org/T/#m8259c8754f680b9da7b91f7b7dd89f10da91d8ed
-> 
-> [1]: 
-> https://lore.kernel.org/all/20241110-of-alias-v2-0-16da9844a93e@beagleboard.org/T/#t
-> 
-> [2]: 
-> https://lore.kernel.org/all/9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org/
-> 
 
