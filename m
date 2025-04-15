@@ -1,327 +1,267 @@
-Return-Path: <devicetree+bounces-167111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E8BA89707
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:44:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28EC3A8971A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD82F3B9D2B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:44:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FA24189E0D7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7BC27A93C;
-	Tue, 15 Apr 2025 08:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475752135C9;
+	Tue, 15 Apr 2025 08:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4sN4Akx"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="V1X7Pl44";
+	dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="HrjJPifU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2771DE8B0;
-	Tue, 15 Apr 2025 08:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744706666; cv=none; b=ZtB3RWlh+UHSKXgmj+NsnEkJBdiiMObVEH/aH0+ma+Ipkjt1H3v6kV/yYxQeuRRIpMhY6E9W/KNpxB+e/5ihVpjuS5J5aeJLPk55hd7qKNLH7fjy0O7RHYUjcqpvAzu6sLzEFH9iukTuz+nn2x24T7Hl6FbtAoiKrDH/AJhvDSM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744706666; c=relaxed/simple;
-	bh=tTQC2d50IWaHk+pOnbgalVH8CC4lcqM8R16udFXoxsE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n5AhF9ofcBBqVlzbTC3yUzaRRKkwmA8Pw3lJf0p5kqbbmKRgt4O00YNeXh2Oz2QxrzlBc27APUTkAk8HHgGA3DQUSnJTh4RwTOXF9k5rlhRKU7NKyZpO/HV8nYBeXPPTxmIHu5BUXd5yL3iAvfNEoJCZsSuQhILqivnCFavKzjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4sN4Akx; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1744706664; x=1776242664;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tTQC2d50IWaHk+pOnbgalVH8CC4lcqM8R16udFXoxsE=;
-  b=C4sN4Akx1eCb1wXo5RoaU4yqOpI75yK8y8Ls9KHfpdAtpcUMbGd1VMX3
-   KjS8f/Zz8BXMtBh5R32OZVIjoAuYDfp4TkCNF0n6mNjYlRCszMPA84acm
-   kFdZTQ8PLrrxhOXQ8zipAALT76GuNBrqub/Kj+OnbKoIXw+XSWAF6P76q
-   HSTB/Zq3cjVaW3XGWfZQQ1mXAAb+sgSCDGGf02G9+qGBmwuoHZ4Ps5mk1
-   KJ/BKbrkItSwvnnqJG9uJ9gZ0BlIf8QfnoseOV60abSFHA3AFzX21XB91
-   41/v+ButXFA8ok0M28YMEch/7LUdWwHIA+vGhLIaXjQMTYHovq1D0XmbB
-   w==;
-X-CSE-ConnectionGUID: PrtPQIieQEa/gYTBwV/peQ==
-X-CSE-MsgGUID: M+2r/EByT6OmFFpFfGx8Ag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="63745014"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="63745014"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Apr 2025 01:44:23 -0700
-X-CSE-ConnectionGUID: Dd7Wr1IVSUeIPUZVeoOEZQ==
-X-CSE-MsgGUID: xlzBoADzQ/GGkY8cyvRjUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; 
-   d="scan'208";a="130593508"
-Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 15 Apr 2025 01:44:18 -0700
-Received: from kbuild by b207828170a5 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1u4btv-000FQo-2S;
-	Tue, 15 Apr 2025 08:44:15 +0000
-Date: Tue, 15 Apr 2025 16:44:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	chaitanya chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	quic_vbadigan@quicnic.com, amitk@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	jorge.ramirez@oss.qualcomm.com,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v5 8/9] PCI: pwrctrl: Add power control driver for tc9563
-Message-ID: <202504151632.tCoey9d8-lkp@intel.com>
-References: <20250412-qps615_v4_1-v5-8-5b6a06132fec@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678371DE4CE;
+	Tue, 15 Apr 2025 08:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.177.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744707037; cv=fail; b=b9rsQv+jm+sbFHPUQ5YylhhCKtT03TqwsjnH+MBk52F3lTWfJ2pDECACm1T84ivqLNJn1nValUUKVN+K3HeryQV8ssu1z/nYU3NvJ7jsmXVaPk1dPV+hkiJqFvPN84leDjmB862YfqiAfJ7qabcBwhp+Bm9Zil2rFhiOn1VC6CY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744707037; c=relaxed/simple;
+	bh=8iTfNKxcAZxQSe2FMUQxDCyo+m2LC1WFCmNKHUoxEWw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=GfI6vHxoTE8R0cBtFZuh66YYTeHHki5SbgihUF+PdprCBDXJEeonoN/h8QHYrr7mQ6QI03FLODTPCOKl06xcj3AZxRsILBXESMYcWCzkoIIe8+kzoNXqhbfif5enlsL2xjcq6X54f2yNpoxUgUe4rR0RVhpNRkPSStRsTI2pKfc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=V1X7Pl44; dkim=pass (1024-bit key) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b=HrjJPifU; arc=fail smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F6fotK032430;
+	Tue, 15 Apr 2025 08:50:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2023-11-20; bh=HSjePUF+lUvEFtAf2AhfGZib87mKkmS2A4PQh8BqJSI=; b=
+	V1X7Pl44SeTNP8bzSKrqjTHtrPOGMjxA0sM/mOEY+TPwI2iYXjsWkTzl8mR4MPxJ
+	yy8w1YJXIOB9Ao3XQfuxLI5bs0uaTWvRIVMYX/6EhT6iVPzaUXUiUXp1JQ5aoi/P
+	dU60uX8yAzPTztnqZx8xgeAGo9ia5bzBThJ9+1ylzz//L02tIMIp6qe7wXk0rE3/
+	p+rguEi1D0IrcQTH0Hm9ohuZ7ctA7MvoH3DdCJwx8NxukbLxkkAKstlVwH7lV28L
+	Q2YVKpZoDCsVrzKFrg+Kvf0YM6H80bQ7AY1yM0W4emQAEubr+AeggecKL/6gxeAh
+	snPcSZcXb5pcVVcORjTIgQ==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4617ju99d5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 08:50:15 +0000 (GMT)
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 53F7AT2h008553;
+	Tue, 15 Apr 2025 08:50:15 GMT
+Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazlp17010002.outbound.protection.outlook.com [40.93.1.2])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 460d2pq1mn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 08:50:15 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=raJKUvIXcBCSanV7SXqVOZFOTFrA89+VuTIwOEE0FTsUasGLbes/kBot5+t8DN9OvoTXMq19p+978n2oCnmt4YbN9ZCmvrbGfNky44LWGfsD22eAsDeyw+JYynB1+Ff6ryXs8P7fOJX3440XbZ42V62w3oCz4UE486wVrVjEqZises7yPUhlLj8I5XAYOKGdyRBSU8WQaGinSrf8OZsz/3rt5LSJASHostXQu5zZrd+E1snUrfg5UAM/0ywEtF4/BLAsNGWH3VVYTqyVf/+rLOJqYqWu6gkzum1WICBGXxPv5sfHXbcc+0UZHbkSzh+yNRYK38t+UpA8yRhXmmsDHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HSjePUF+lUvEFtAf2AhfGZib87mKkmS2A4PQh8BqJSI=;
+ b=jSQ/jNtWFmZRTLVdd8vTYX6pQGBdomXSXuba6bZMSUwR9ClnytOsn1iDshGXu3KBZRCk3HQH0Yq9OexJL9QMetO5s2FSA4D78A6KulgTWtPOHfjxP5buX4yX9R2xyq9kbau2nO43Q8vKFQCeHo18tlR6rVh+CQ9UYBaP8iJP5WpHPzY+k/TagolymglAaDBQc9hWWxWzfn7G2zNizF1FF3jpkrPcmaYZMs7awybWjiR5dbJeS3u7Xe/EOJn6CWq5kSQqsS6jmMTwznqYob5GuC2w7rAKdA6TxFWFBIyAJc92W4HXDWqGUg70PFyv1pHRz+ao34nQ8bheBc5C1WDFLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HSjePUF+lUvEFtAf2AhfGZib87mKkmS2A4PQh8BqJSI=;
+ b=HrjJPifUtc0q96afPTIFwRvYsuwNecjDMP9WCXO2oZ6OS3HUNQ1jPAxLrcbw4l5U7RaZ8eiNSbISl+Z52XfCJ5E1ida7BHs6txHtWMEe1Pth23jLhb726Qsk9mE2Ybp1CU/pIp4a+Xvxutvbvmy7a4kPe3RncOw3DF7yt18Px1o=
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com (2603:10b6:5:3a6::12)
+ by MW4PR10MB6369.namprd10.prod.outlook.com (2603:10b6:303:1ec::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.31; Tue, 15 Apr
+ 2025 08:50:12 +0000
+Received: from DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c]) by DS7PR10MB5328.namprd10.prod.outlook.com
+ ([fe80::ea13:c6c1:9956:b29c%6]) with mapi id 15.20.8632.035; Tue, 15 Apr 2025
+ 08:50:12 +0000
+Message-ID: <aedc9fed-ba6c-4e22-9641-53ff0df8cb06@oracle.com>
+Date: Tue, 15 Apr 2025 14:20:03 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/10] ASoC: renesas: add MSIOF sound support
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
+References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
+ <87plhe1a3f.wl-kuninori.morimoto.gx@renesas.com>
+Content-Language: en-US
+From: ALOK TIWARI <alok.a.tiwari@oracle.com>
+In-Reply-To: <87plhe1a3f.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0049.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::13) To DS7PR10MB5328.namprd10.prod.outlook.com
+ (2603:10b6:5:3a6::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250412-qps615_v4_1-v5-8-5b6a06132fec@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR10MB5328:EE_|MW4PR10MB6369:EE_
+X-MS-Office365-Filtering-Correlation-Id: 232bc625-525d-466c-f727-08dd7bfa8863
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YkF1V3M5Ty9DWHRHTEFMZVZVU3hoc1FqK3AvRkc5dHBpVGcxZGQvUkMwanQ1?=
+ =?utf-8?B?cFh3K1pkMUxmemZyNUVZazZUTlRyNklkTWVJOVp1cml1UDZ6WjNUVXRhZURK?=
+ =?utf-8?B?bHZOd3dyam5OU1pScE5MU3VGSGt6d2wwenFqRWtBZjBQU1dhcTlPUUtaSVlU?=
+ =?utf-8?B?ZEhlZ2llbEtrUER4MnRSRzdNbG9oaUMzMHFrdk9qd2l4WEtIOHE0bzR0Y0FR?=
+ =?utf-8?B?QUxyZXlnMWZQOHk3V1piS3JUZTBESDIvWTRldEFNWUNmS0l0TmFIZVBVUVZE?=
+ =?utf-8?B?dm5kMnNOeGFXUzJEZVM0b2dGMTVzeVhneHhOQWc3S1ZJUVY3ckllaDZCNEp3?=
+ =?utf-8?B?amtyUTlrOGNYZWFaVU1ya3JiTzlJcWs0RGxjcEwyblc3TWdxYmJ6UTI4Y0Ji?=
+ =?utf-8?B?ZE9kQkF1R25PQjZxTjZmd1pnc0lIMVRua3R2b3ZCSHV0UU11WFJZS3IwT0RN?=
+ =?utf-8?B?SjF0dzJFMlpMVWpzSzA0dTV0Rjg1MVJqdy9mWDMzV01lMGVrNnlzdm5hVGxH?=
+ =?utf-8?B?bTB5YS9KVXZ3SVFjRmNQaUhRTXZDVUpmQ1IxUG9aVVFCdDQxZEZjZnpiMFpo?=
+ =?utf-8?B?QmJhWEVGb0VXc3ZjdjNmMW5NWTBuVDd4ZzhsWWEzOEp1bmU4dmFOMUpHbjhk?=
+ =?utf-8?B?VXo5ZURNbURTTGNPb2VLNHJZd0RiZnJaYm5DVXZnYkVqWG1qaWhVdnM3RXVk?=
+ =?utf-8?B?VE1aeXVuTSs3RUxieUd4aUlObW5tM3pSWW40eXUyRFBJcVZKbGoyOW1oTnpV?=
+ =?utf-8?B?ZTBzU0pvWHpqYkgrS09iZC9YSko3WHUxdmFKVm5SV3E2ZG9oNVlkMzFSNisz?=
+ =?utf-8?B?ZE1XM25EVDlaL2dUMmpUcXcwZDVrMldQN2tpbTFmMjVBb1FaaEJDajJaa2Ns?=
+ =?utf-8?B?NEs5MGkzR1BhZGVvZExGcmFPZmViL1Rrb2kxbTA5UnYrTTh4a2ZWNFZRcEoy?=
+ =?utf-8?B?WHR1MDdHUHkrcWNLUE5vNFVtMlZBZ1RxZEdaTXdKTElDYVJsUXh3c3UvRkYy?=
+ =?utf-8?B?cTdtQ3VGQTJ4ZTR6VFZOOVhsaE96eDFhemR4VU91Rnk5WExuQWxSS3dYamJx?=
+ =?utf-8?B?cjdsVFd4ZnI5SjFqYk9OZTdSdUZWM3NBcmIvQm9FcDhqMUxLOE5LY0Y3bDR5?=
+ =?utf-8?B?TDZLQ2VZbzhET1B4VVU5aWVmeWVvMXIwY2RLdktONS9OMTlkT3hWUjVJTE4z?=
+ =?utf-8?B?UThaSUJmZEtLbHN0R1RESE1ldUkxM0NiYS9ubVF3WU9BMkkwNFh3aXBoM3BY?=
+ =?utf-8?B?VklvNTJMS2ZPRVd0QlJHZjUvVVNyc2xxbmhiNmxGYmErRk1YQm15eDIyWHBO?=
+ =?utf-8?B?TVFGMDdUT2dPdE5US1ZERC95NDBiVWw4bFRJd2dHblFFWGE3NEhaaC9VNlhD?=
+ =?utf-8?B?a3NwVVhNOEpFdUI2RkNXMEYrMWM3NS9UM09ZUExKNTdYcGV5RHRtU3I2N2Fk?=
+ =?utf-8?B?Q1RXcngzQlBHYmdzVS9PSERRMCtncThhUXp4dlBKeXBydUxOZkdwTk4wUXNL?=
+ =?utf-8?B?N1FaQlBrNCtGODV4WlVGSVB1dWRiVWdpVWFOS0lYMWRyeEpueWJkb2hsMm5R?=
+ =?utf-8?B?WEtBazNiUGMwSlhDenJDNmtwOUlVODNwUUFyU0VFakhiNlZ4c1JqT1pRd0Jy?=
+ =?utf-8?B?cXFxNlMreUJ3OE5zNklzSS9RU0o5eUw0Z3RodFNRUmQ5ZUxGOTFUTXZKYVNl?=
+ =?utf-8?B?M01oKzVJY3p3MWRqUmVnWFhZdVVINVpmRFd6NXZkSGJtWWFPZnNMY29GMWhn?=
+ =?utf-8?B?aUUxeWRJbGFRVG1yRjczak05ZHRoaHpmU3F4bjQ2U2lZdzRqaTV4a2Z0WGFq?=
+ =?utf-8?B?SG9aVG4xa2ZUTjI4YXA5RVBpQTZkZjZ0REtDWkdGWW1jSUo4MERVcldvSElx?=
+ =?utf-8?B?TkhRNnVwbmprRHl1dWVDaU5tanZyNkJwZE9KenRvZTZXVjZQR0Y0Rko5WHl5?=
+ =?utf-8?B?NWdxTkVOZE5aM3VmdURqMmZ3aVIxaTBocHI2UGJlVmg4Y1YzdnIraE10S3BM?=
+ =?utf-8?B?aGVwcWV0NnRBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR10MB5328.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SVQvNmRoWUJ4WUE4MUdLek5Zak1WbmtJbm13VXpzTGtnNXQ4bGxqOWQ2Sm9L?=
+ =?utf-8?B?RFV0N09IZ1pwRWF5OHI4TFh5dGRhZ0pMcmhsUkRqMkZhOFF1aDdnK0RCNmZD?=
+ =?utf-8?B?RnpncGtxWWhaQnNLL3BqSHQxck4wQkMzMHBINDhrZk1lZnQ2Tm9GYkd2cmdH?=
+ =?utf-8?B?cEdleTRJdjhjRmtIMDFIY3A1cjhtYSttUnNWR2lOTUVQKzVNUmt1SlNCSXVW?=
+ =?utf-8?B?Q2Nvd0hCWm5rc21QSkxVV1dPSjVTejBTRmxtSGhwOW1pVm9veTZ2ejY0SlpG?=
+ =?utf-8?B?WWIrUndJSm02aklUT0FxU0drYkV0WjBScVZSUStlQkhyKzBXR3dCUnA1TTJu?=
+ =?utf-8?B?U2d6aWhtMG95S0d2ZkcrSVhXTUJZbnBZQlg1RmozK0lHcXpXWHplQS9TZWhY?=
+ =?utf-8?B?a21vY2ZtSEFzdVNOMFlUU3hmZXllc2NzcHN0V21nTVFzOFFyY3lHTzNIaFJt?=
+ =?utf-8?B?dlJrZUswcU9rWU5hbW1GYUkrWWN3QkJFa2dxbWhOV1Q0cW9hTk1NOStmdXhk?=
+ =?utf-8?B?Y0pKbzFHdGd3ckV3TWYwODdIZjNTUUpaRlU5THJSZW9vRGUwSFNOalVESk0r?=
+ =?utf-8?B?eEx3ZTJFdk4zMktzamxvclc3OCtJZ2NPNVVIWWFXTG9tUjNXL04vMmtOMG4z?=
+ =?utf-8?B?OW16eUhWc0VGWGN5OW1hRXEzT1BkMzFXUGppZEJWZ2lGZmdZanZUWktqRTdV?=
+ =?utf-8?B?bVdvTWQxK2VSYUFYdHk2U3VydW90ck5xTDFKcHRaeGc4VlJ0M0dhbXhSY2FG?=
+ =?utf-8?B?a3hGSGMxQytCdjhxNENUdDZqT3BZbmV4NFE4ODJxRzBYNlgyb2xub3RNKzdo?=
+ =?utf-8?B?a0dzc2xGN0tPbm9YbFp0Z1hRaXdEd3VsWUdTMkpyQTY0ODBUQlZaN3NnbjVC?=
+ =?utf-8?B?V2ZySGdKZTBLRG9xRWV5VzI3OUtDMmFxaTNvdW5JRy9Nc0kzQkwxMEtBWnlW?=
+ =?utf-8?B?M2sxWjkwMGs4aHVwVFErb3hzWXl6dW8vakxIMk1OTjIwWHNwSjBDWVIvM2Vh?=
+ =?utf-8?B?ZUhiUEFkRzRxSkI4ZmxqcUJ6WnE4aGhmRWI0Qlc0dUQ2VkVZVXRPZmJpYTRJ?=
+ =?utf-8?B?MXZ1TGZkMFh4OUQ2bk1WdEl6VmNEeFJYcjNGTGhQb3hLcHBMYUtMMnhUNDNP?=
+ =?utf-8?B?Z0czK0FzZVhnc1Q1NmlhYVN1Ykw4YnZ1NFhuaTBXSnNXN0RNY1BQZTZPcmFm?=
+ =?utf-8?B?YU0xTXF3YUV1b1JMaExlS1RPT2J3Nm5IOFJsRzhaU1ZpbEl6WWR4bEdHRXBU?=
+ =?utf-8?B?R29xLy94NU1HUzB1aE51bkdKRkxYb25aQkIxWUhQSjNOVXBuZG5ENHI1R0ow?=
+ =?utf-8?B?WElFclpSTGRxWHJGSFFBQWl4WFRpdXM1dUdBUHY4RHFvZm1JRE1nQy96dy84?=
+ =?utf-8?B?SnNoMjkwNzZ5R09hYjVKYU1XY29uOHNyTkxzSlZ0alNTd0E1UDlwUnZSbklv?=
+ =?utf-8?B?anBTbHVGb0NPN0VhWk9TaGxBNFQzN3ZGa29HUGMwTENxd0FLMEh2UTI5ZlFJ?=
+ =?utf-8?B?SGhPT1MvcjFDOC83LzJlQ0JhS2RUc2ZRZlhTaDVJNlgyb1psVk9rcHhzQlRR?=
+ =?utf-8?B?R0VsZ3N4T0xEL2tITGRaUGZUcEFQMURjRTJDUmNYdyt5bzBJUkFsVUFKcDRt?=
+ =?utf-8?B?S1A3YXZHS0dNQ2ladVhuS3I5Y1Znc21MUjNYM1NXVVovaUZ3NVN3dWlDNUhU?=
+ =?utf-8?B?SDF2emZycEZlU1JObFBNbmNjVks3M1F0a3U5WWU4dERDU1RTKzN2aU43ZmEz?=
+ =?utf-8?B?OHJPRGpXdHl6akZ2U0VQOW5BMTdsbHRBSWJGakw3Y2lEME8yeWthdmgxaFhx?=
+ =?utf-8?B?SURWWFJTdk92THdPS0hyaytyYmY0U2JxaXN3SUdsOE92SG9ia0R0TUJsOWVW?=
+ =?utf-8?B?NTg2ZGNSdTB5bGp6dzZ4OHUxTlNpbnRXUUYxZ2hQRytYYmxma0tYR2NlSlMz?=
+ =?utf-8?B?RHJCS2pMSXpKdzJ2MWtFekNmYk5yZHFiUi84YnE1YXh3ck5lcWU4MUIzRHRC?=
+ =?utf-8?B?VWJueGdRUUxSVjBmczhmb3ZMeXpXaVg1SHNUM0IrVFluTWZFdHN5UEIyelF1?=
+ =?utf-8?B?cWExTjhzVUYzMXFFdHE1MHFxNG5oYUM1MjgwOWlHaFhLU05mcFBmU0NPWjNC?=
+ =?utf-8?Q?afXsunJqqE21GMqRYXzIIOp3Z?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	9XHtz3b0nuOBgtUjL1L1wW3aTZNR9ySOqGSKfPeTn+jY14bFY5bXY4yvU5Of5pfXzPbKgVC+aS+ZK6SgkZ3zBBj0BFh5ZtSJsAk49Zi2qz4jb/C+fZ7kLbWuN9nexqxfT9Y8tAx1Ck4aQRKsys2z0/AtNWNoxfrnkooaz+qNLDEQ0076nEKEUCTo5T7asjlOSUVO9/Npnn1FlptowhT3zb5l3ZFrF445ymZSHPrAaGfYaJMkv8otqXhyfdPLKbPr7Scml9NS48On5eD6C3CiootkEE+vdMb/9FhuUeHoVfdCpszStYBt+DmB3Nc100KOhRZcGADybkyonzASKyTV8uYniLvui4pummSGNQOjq4DwTRVII/oN92e9f8JFjaKv8qzf9aFynErjWaoRoKG/hg/XfGpypE6QE0NQY2lLQ7pfxFSOimQsRIbkCz4phCIt/rVYLCfhPMS80vkAf+Bkyai/p/XPtYLXB9MGGWMI2z5/hpOOjVYRsdLceSlyDLGvN1SqopvZJtA8zs4SADzKokcRf1keXhm4yw/xxUh2HNER2FRzCnzlpugV6hv/OtOaFN5mDSXLxQHs5sG0fHfokn4+dW/wKEae9xaVZLtAGw4=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 232bc625-525d-466c-f727-08dd7bfa8863
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR10MB5328.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 08:50:12.0164
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NZO9ooeGSpf9ZzKU2vXMuk5goJWniF8zsOGDXt/Ffsi0SpnAV53113wXCxzpVMptlsSSqwA+++HxXXJEw5TLb1TqdiXTp0UMOXxyems83n0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6369
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-15_04,2025-04-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 adultscore=0
+ phishscore=0 bulkscore=0 suspectscore=0 mlxscore=0 mlxlogscore=854
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2502280000 definitions=main-2504150060
+X-Proofpoint-GUID: WoQU3CO6J0_72FRl7covpokqycTSAx-X
+X-Proofpoint-ORIG-GUID: WoQU3CO6J0_72FRl7covpokqycTSAx-X
 
-Hi Krishna,
 
-kernel test robot noticed the following build errors:
+Hi Morimoto-san,
 
-[auto build test ERROR on f4d2ef48250ad057e4f00087967b5ff366da9f39]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-Chaitanya-Chundru/dt-bindings-PCI-Add-binding-for-Toshiba-TC9563-PCIe-switch/20250414-123816
-base:   f4d2ef48250ad057e4f00087967b5ff366da9f39
-patch link:    https://lore.kernel.org/r/20250412-qps615_v4_1-v5-8-5b6a06132fec%40oss.qualcomm.com
-patch subject: [PATCH v5 8/9] PCI: pwrctrl: Add power control driver for tc9563
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250415/202504151632.tCoey9d8-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250415/202504151632.tCoey9d8-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202504151632.tCoey9d8-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c:419:2: error: call to undeclared function 'gpiod_set_value'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     419 |         gpiod_set_value(ctx->reset_gpio, 1);
-         |         ^
-   drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c:433:2: error: call to undeclared function 'gpiod_set_value'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     433 |         gpiod_set_value(ctx->reset_gpio, 0);
-         |         ^
->> drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c:535:20: error: call to undeclared function 'devm_gpiod_get'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     535 |         ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-         |                           ^
->> drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c:535:49: error: use of undeclared identifier 'GPIOD_OUT_HIGH'
-     535 |         ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-         |                                                        ^
-   4 errors generated.
+Thanks for your patch!
+Sorry, I did not ask you earlier.
 
 
-vim +/gpiod_set_value +419 drivers/pci/pwrctrl/pci-pwrctrl-tc9563.c
+On 15-04-2025 07:04, Kuninori Morimoto wrote:
+> +	/* Check MSIOF as Sound mode or SPI mode */
+> +	struct device_node *port __free(device_node) = of_graph_get_next_port(dev->of_node, NULL);
+> +	if (!port)
+> +		return -ENODEV;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res)
+> +		return -ENODEV;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq <= 0)
+> +		return -ENODEV;
 
-   416	
-   417	static void tc9563_pwrctrl_power_off(struct tc9563_pwrctrl_ctx *ctx)
-   418	{
- > 419		gpiod_set_value(ctx->reset_gpio, 1);
-   420	
-   421		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-   422	}
-   423	
-   424	static int tc9563_pwrctrl_bring_up(struct tc9563_pwrctrl_ctx *ctx)
-   425	{
-   426		struct tc9563_pwrctrl_cfg *cfg;
-   427		int ret, i;
-   428	
-   429		ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-   430		if (ret < 0)
-   431			return dev_err_probe(ctx->pwrctrl.dev, ret, "cannot enable regulators\n");
-   432	
-   433		gpiod_set_value(ctx->reset_gpio, 0);
-   434	
-   435		 /* wait for the internal osc frequency to stablise */
-   436		usleep_range(10000, 10500);
-   437	
-   438		ret = tc9563_pwrctrl_assert_deassert_reset(ctx, false);
-   439		if (ret)
-   440			goto power_off;
-   441	
-   442		for (i = 0; i < TC9563_MAX; i++) {
-   443			cfg = &ctx->cfg[i];
-   444			ret = tc9563_pwrctrl_disable_port(ctx, i);
-   445			if (ret) {
-   446				dev_err(ctx->pwrctrl.dev, "Disabling port failed\n");
-   447				goto power_off;
-   448			}
-   449	
-   450			ret = tc9563_pwrctrl_set_l0s_l1_entry_delay(ctx, i, false, cfg->l0s_delay);
-   451			if (ret) {
-   452				dev_err(ctx->pwrctrl.dev, "Setting L0s entry delay failed\n");
-   453				goto power_off;
-   454			}
-   455	
-   456			ret = tc9563_pwrctrl_set_l0s_l1_entry_delay(ctx, i, true, cfg->l1_delay);
-   457			if (ret) {
-   458				dev_err(ctx->pwrctrl.dev, "Setting L1 entry delay failed\n");
-   459				goto power_off;
-   460			}
-   461	
-   462			ret = tc9563_pwrctrl_set_tx_amplitude(ctx, i, cfg->tx_amp);
-   463			if (ret) {
-   464				dev_err(ctx->pwrctrl.dev, "Setting Tx amplitube failed\n");
-   465				goto power_off;
-   466			}
-   467	
-   468			ret = tc9563_pwrctrl_set_nfts(ctx, i, cfg->nfts);
-   469			if (ret) {
-   470				dev_err(ctx->pwrctrl.dev, "Setting nfts failed\n");
-   471				goto power_off;
-   472			}
-   473	
-   474			ret = tc9563_pwrctrl_disable_dfe(ctx, i);
-   475			if (ret) {
-   476				dev_err(ctx->pwrctrl.dev, "Disabling DFE failed\n");
-   477				goto power_off;
-   478			}
-   479		}
-   480	
-   481		ret = tc9563_pwrctrl_assert_deassert_reset(ctx, true);
-   482		if (!ret)
-   483			return 0;
-   484	
-   485	power_off:
-   486		tc9563_pwrctrl_power_off(ctx);
-   487		return ret;
-   488	}
-   489	
-   490	static int tc9563_pwrctrl_probe(struct platform_device *pdev)
-   491	{
-   492		struct pci_host_bridge *bridge = to_pci_host_bridge(pdev->dev.parent);
-   493		struct pci_dev *pci_dev = to_pci_dev(pdev->dev.parent);
-   494		struct pci_bus *bus = bridge->bus;
-   495		struct device *dev = &pdev->dev;
-   496		enum tc9563_pwrctrl_ports port;
-   497		struct tc9563_pwrctrl_ctx *ctx;
-   498		struct device_node *i2c_node;
-   499		int ret, addr;
-   500	
-   501		ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-   502		if (!ctx)
-   503			return -ENOMEM;
-   504	
-   505		ret = of_property_read_u32_index(pdev->dev.of_node, "i2c-parent", 1, &addr);
-   506		if (ret)
-   507			return dev_err_probe(dev, ret, "Failed to read i2c-parent property\n");
-   508	
-   509		i2c_node = of_parse_phandle(dev->of_node, "i2c-parent", 0);
-   510		ctx->adapter = of_find_i2c_adapter_by_node(i2c_node);
-   511		of_node_put(i2c_node);
-   512		if (!ctx->adapter)
-   513			return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find I2C adapter\n");
-   514	
-   515		ctx->client = i2c_new_dummy_device(ctx->adapter, addr);
-   516		if (IS_ERR(ctx->client)) {
-   517			dev_err(dev, "Failed to create I2C client\n");
-   518			i2c_put_adapter(ctx->adapter);
-   519			return PTR_ERR(ctx->client);
-   520		}
-   521	
-   522		ctx->supplies[0].supply = "vddc";
-   523		ctx->supplies[1].supply = "vdd18";
-   524		ctx->supplies[2].supply = "vdd09";
-   525		ctx->supplies[3].supply = "vddio1";
-   526		ctx->supplies[4].supply = "vddio2";
-   527		ctx->supplies[5].supply = "vddio18";
-   528		ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies), ctx->supplies);
-   529		if (ret) {
-   530			dev_err_probe(dev, ret,
-   531				      "failed to get supply regulator\n");
-   532			goto remove_i2c;
-   533		}
-   534	
- > 535		ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-   536		if (IS_ERR(ctx->reset_gpio)) {
-   537			ret = dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
-   538			goto remove_i2c;
-   539		}
-   540	
-   541		pci_pwrctrl_init(&ctx->pwrctrl, dev);
-   542	
-   543		port = TC9563_USP;
-   544		ret = tc9563_pwrctrl_parse_device_dt(ctx, pdev->dev.of_node, port);
-   545		if (ret) {
-   546			dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-   547			goto remove_i2c;
-   548		}
-   549	
-   550		/*
-   551		 * Downstream ports are always children of the upstream port.
-   552		 * The first node represents DSP1, the second node represents DSP2, and so on.
-   553		 */
-   554		for_each_child_of_node_scoped(pdev->dev.of_node, child) {
-   555			ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port++);
-   556			if (ret)
-   557				break;
-   558			/* Embedded ethernet device are under DSP3 */
-   559			if (port == TC9563_DSP3)
-   560				for_each_child_of_node_scoped(child, child1) {
-   561					ret = tc9563_pwrctrl_parse_device_dt(ctx, child1, port++);
-   562					if (ret)
-   563						break;
-   564				}
-   565		}
-   566		if (ret) {
-   567			dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-   568			goto remove_i2c;
-   569		}
-   570	
-   571		if (!pcie_link_is_active(pci_dev) && bridge->ops->stop_link)
-   572			bridge->ops->stop_link(bus);
-   573	
-   574		ret = tc9563_pwrctrl_bring_up(ctx);
-   575		if (ret)
-   576			goto remove_i2c;
-   577	
-   578		if (!pcie_link_is_active(pci_dev) && bridge->ops->start_link) {
-   579			ret = bridge->ops->start_link(bus);
-   580			if (ret)
-   581				goto power_off;
-   582		}
-   583	
-   584		ret = devm_pci_pwrctrl_device_set_ready(dev, &ctx->pwrctrl);
-   585		if (ret)
-   586			goto power_off;
-   587	
-   588		platform_set_drvdata(pdev, ctx);
-   589	
-   590		return 0;
-   591	
-   592	power_off:
-   593		tc9563_pwrctrl_power_off(ctx);
-   594	remove_i2c:
-   595		i2c_unregister_device(ctx->client);
-   596		i2c_put_adapter(ctx->adapter);
-   597		return ret;
-   598	}
-   599	
+nit: -EINVAL will be more relevant here
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENODEV;
+
+nit: not sure why -ENOMEM not return
+
+> +
+> +	priv->base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	ret = devm_request_irq(dev, irq, msiof_interrupt, 0, dev_name(dev), priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->dev	= dev;
+> +	priv->phy_addr	= res->start;
+> +
+> +	spin_lock_init(&priv->lock);
+> +	platform_set_drvdata(pdev, priv);
+
+
+Thanks,
+Alok
 
