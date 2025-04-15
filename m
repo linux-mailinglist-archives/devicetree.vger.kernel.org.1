@@ -1,308 +1,195 @@
-Return-Path: <devicetree+bounces-167526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645D9A8AA81
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:52:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51DB8A8AA8C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DD3C3A96AA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 652F74415EF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA2825D917;
-	Tue, 15 Apr 2025 21:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539B722686F;
+	Tue, 15 Apr 2025 21:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrWxDEgR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qd7buMXE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C5F257458;
-	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295BB21C18C;
+	Tue, 15 Apr 2025 21:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744753964; cv=none; b=X+JYtbjkNdpWb2TvOwuimQQZprW/lklNK/M7qOYGBnSSnSx3G0SwN4c+Tc+WYdwHG4UWO+lD359OSOsCO8PIwg/xKtFP951A2X7ZKvMSzb/rTzfuiIburNL3AZk2ZAQ4+6dzwsxHEdFTwXnIKV05+vEMNqsJJeG4n9DZF/gHoBg=
+	t=1744754124; cv=none; b=OgsTMfnk3OmuDN2T15yHA6oemjpVTVfngru/Nvu1dHJeFrjqWYPQQCV7U7Xa38DaVv52SuE2vodbZEAdXHUyzvqgBmpeKszi9y+8uMjcIDpLw57cbmfVwbjNH/7MgmYbukeqWbShWzQ5P3x+gr7tcnT2MlnPlUG2aVbK69zESwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744753964; c=relaxed/simple;
-	bh=PVTDyzSaiIpFn2vPpTAguPeJMOjp9i2ibxMxEsqpwtU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=luJEO/2QQjhh1NwTjgYdV0Dqq+S7/x0gAZNpeUQdKXUN4Q2Oz7Iqnw91IB86SMQ4Aiwp86cuxfJGMyxv5qwjk8KHk9nXTU6jIS9/RAGgoBnpDrNjp7BYflfWju+tOODSykVfmqbnLZ4iX3hCb6nlGtB5R4O4FFLVp0IdUmcRPa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrWxDEgR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 98794C4CEEF;
-	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
+	s=arc-20240116; t=1744754124; c=relaxed/simple;
+	bh=Irh4ZUoJ9T5Hybpb0m56g235zNm/FuCOcynTFFvhkek=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y2v69UwYGueGiJqfCXXTbu+sNylgDKnlY760YE9wQgT7K+6IXdHZmtxYy38Pg1RdO4Nk/+97EZxdf6Aoww3Tjxli9RNWjYY/NE7yQ8gxADQKiqsnDBvSduB4QsM71EQHCBHB0cUhLxXsNRF6TOjGMnJ/hRi/7kqxgQ+xKiin+v8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qd7buMXE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58B7FC4CEE7;
+	Tue, 15 Apr 2025 21:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744753963;
-	bh=PVTDyzSaiIpFn2vPpTAguPeJMOjp9i2ibxMxEsqpwtU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=RrWxDEgRTK0ZhOd9MR4BMDNEXRcE5G/gjnmwtUjBP9KmWSqgL4BULz+k/afSa4MgT
-	 CQqsW41hnNrFQABLehM4kxETZUhayV8MlQ6RSgW/Mg3+/aWxU5hMTQjtyc64Xld+l6
-	 kb4H/HwTxNm/L9CSewRwAKPy1V6Z3+mL52EXY7YtEybROQ6Qg5tyQ+BSyasOSvoWwt
-	 VfumhB34E+4s0eKC3u92eiCN/1t7X8HXICLEGRWBAoULY459dCRUnJ5gMsWNolMD2u
-	 QUXoXytECeWN4WphHAL3M+2HS1N2dJj9cztv4ZQRRda+HKBIZwcZBJCcLrejWlZRdc
-	 /ltw25iRNkQPg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EA72C369C2;
-	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Tue, 15 Apr 2025 23:52:36 +0200
-Subject: [PATCH 3/3] arm64: dts: apple: Add PMU NVMEM
+	s=k20201202; t=1744754123;
+	bh=Irh4ZUoJ9T5Hybpb0m56g235zNm/FuCOcynTFFvhkek=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qd7buMXEcTbOLQGc45T2Y0lUb/U2b9/kI4fA/2bVx58Sw4Fv7FmB7GP4fyhsRH/K1
+	 mhrkJN25k690EgRBIke2FSNk3u1VkdL9j4F0IBpitd+llhWEvZXNqpqHcDQxUbaqEj
+	 Di6z3Ngid4604b2TLeX1GabaWkQMPzJaokqqdXUhDYNy/2/T2mP0sPbMqTKlcqPIBn
+	 KHeFuenpGTjv7Se1246wUE3PIIH3tAI2ScMA0Ed4Tvm0h/bI234IcR83spZPYlOcyp
+	 cBPyWgKmkaF7AUlftC1uCkA6s1k8e21d2GyaruSkOdOWmcEM+vXZLy5lujR8dq0Vui
+	 47T+9PieiSunw==
+Date: Tue, 15 Apr 2025 16:55:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: display: panel: Document Renesas
+ R61307 based DSI panel
+Message-ID: <20250415215521.GA885658-robh@kernel.org>
+References: <20250413112401.12543-1-clamor95@gmail.com>
+ <20250413112401.12543-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250415-spmi-nvmem-v1-3-22067be253cf@gmail.com>
-References: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com>
-In-Reply-To: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com>
-To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>, Hector Martin <marcan@marcan.st>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744753962; l=6050;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=FkRZ7GthVmmbSujIkVNnHCgsxe2R4byiyM8zrad9aQk=;
- b=S9noVN4xTQB1SJbqDHNgWXzSMmzjFVX+fRWTLRXOciHR2Sy3C/qKKNwyTbNWTmspqZJpPnVtO
- EDTq4fBajrJBOSTVksgxKk7sENUihDeYFmybk/ZaZCE2iWK8OQET+zR
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250413112401.12543-2-clamor95@gmail.com>
 
-From: Hector Martin <marcan@marcan.st>
+On Sun, Apr 13, 2025 at 02:23:58PM +0300, Svyatoslav Ryhel wrote:
+> R61307 is liquid crystal driver for high-definition amorphous silicon
+> (a-Si) panels and is ideal for tablets and smartphones.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../display/panel/renesas,r61307.yaml         | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
+> new file mode 100644
+> index 000000000000..a98d2d2e02d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/renesas,r61307.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R61307 based DSI Display Panel
+> +
+> +maintainers:
+> +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> +
+> +description:
+> +  The Renesas R61307 is a generic DSI Panel IC used to control LCD panels.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +        # KOE/HITACHI TX13D100VM0EAA 5.0" XGA TFT LCD panel
+> +      - hit,tx13d100vm0eaa
+> +      - koe,tx13d100vm0eaa
 
-Add device tree entries for NVMEM cells present on the PMU
+Usuually when the display IC is known, there's a fallback compatible for 
+it. Then 'renesas' vendor prefix on the properties makes more sense.
 
-Signed-off-by: Hector Martin <marcan@marcan.st>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- arch/arm64/boot/dts/apple/t6001.dtsi      |  1 +
- arch/arm64/boot/dts/apple/t6002.dtsi      |  1 +
- arch/arm64/boot/dts/apple/t600x-die0.dtsi | 50 +++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/apple/t8103.dtsi      | 50 +++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/apple/t8112.dtsi      | 50 +++++++++++++++++++++++++++++++
- 5 files changed, 152 insertions(+)
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vcc-supply:
+> +    description: Regulator for main power supply.
+> +
+> +  iovcc-supply:
+> +    description: Regulator for 1.8V IO power supply.
+> +
+> +  backlight: true
+> +
+> +  renesas,gamma:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      0 - disabled
+> +      1-3 - gamma setting A presets
+> +    enum: [0, 1, 2, 3]
+> +
+> +  renesas,inversion:
+> +    type: boolean
+> +    description: switch between line and column inversion. The line
+> +      inversion is set by default.
 
-diff --git a/arch/arm64/boot/dts/apple/t6001.dtsi b/arch/arm64/boot/dts/apple/t6001.dtsi
-index 620b17e4031f069874aaabadbf06b7b29ec4031e..d2cf81926f284ccf7627701cc82edff31d4d72d6 100644
---- a/arch/arm64/boot/dts/apple/t6001.dtsi
-+++ b/arch/arm64/boot/dts/apple/t6001.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/apple-aic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/apple.h>
-+#include <dt-bindings/spmi/spmi.h>
- 
- #include "multi-die-cpp.h"
- 
-diff --git a/arch/arm64/boot/dts/apple/t6002.dtsi b/arch/arm64/boot/dts/apple/t6002.dtsi
-index a963a5011799a0480f88688fb4372a31f0bbf806..e36f422d257d8fe3a62bfa6e0f0e0dc6c34608a4 100644
---- a/arch/arm64/boot/dts/apple/t6002.dtsi
-+++ b/arch/arm64/boot/dts/apple/t6002.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/apple-aic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/apple.h>
-+#include <dt-bindings/spmi/spmi.h>
- 
- #include "multi-die-cpp.h"
- 
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index 4c224e686ffe5602329f7f394d3354559c4130ab..9e4402b0bdc085a32d26048ccf1ac4ea20c1e0c2 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -50,6 +50,56 @@ nub_spmi0: spmi@2920a1300 {
- 		reg = <0x2 0x920a1300 0x0 0x100>;
- 		#address-cells = <2>;
- 		#size-cells = <0>;
-+
-+		pmu1: pmu@f {
-+			compatible = "apple,maverick-pmu", "spmi-nvmem";
-+			reg = <0xf SPMI_USID>;
-+
-+			nvmem-layout {
-+				compatible = "fixed-layout";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+
-+				pm_setting: pm-setting@1405 {
-+					reg = <0x1405 0x1>;
-+				};
-+
-+				rtc_offset: rtc-offset@1411 {
-+					reg = <0x1411 0x6>;
-+				};
-+
-+				boot_stage: boot-stage@6001 {
-+					reg = <0x6001 0x1>;
-+				};
-+
-+				boot_error_count: boot-error-count@6002 {
-+					reg = <0x6002 0x1>;
-+					bits = <0 4>;
-+				};
-+
-+				panic_count: panic-count@6002 {
-+					reg = <0x6002 0x1>;
-+					bits = <4 4>;
-+				};
-+
-+				boot_error_stage: boot-error-stage@6003 {
-+					reg = <0x6003 0x1>;
-+				};
-+
-+				shutdown_flag: shutdown-flag@600f {
-+					reg = <0x600f 0x1>;
-+					bits = <3 1>;
-+				};
-+
-+				fault_shadow: fault-shadow@867b {
-+					reg = <0x867b 0x10>;
-+				};
-+
-+				socd: socd@8b00 {
-+					reg = <0x8b00 0x400>;
-+				};
-+			};
-+		};
- 	};
- 
- 	wdt: watchdog@2922b0000 {
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index bdb1cb9e406a441e458b1c735359b0148146e91b..03bfe1cb173de009b4cd46508e24358008cf42f5 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -747,6 +747,56 @@ nub_spmi: spmi@23d0d9300 {
- 			reg = <0x2 0x3d0d9300 0x0 0x100>;
- 			#address-cells = <2>;
- 			#size-cells = <0>;
-+
-+			pmu1: pmu@f {
-+				compatible = "apple,sera-pmu", "spmi-nvmem";
-+				reg = <0xf SPMI_USID>;
-+
-+				nvmem-layout {
-+					compatible = "fixed-layout";
-+					#address-cells = <1>;
-+					#size-cells = <1>;
-+
-+					pm_setting: pm-setting@d001 {
-+						reg = <0xd001 0x1>;
-+					};
-+
-+					rtc_offset: rtc-offset@d100 {
-+						reg = <0xd100 0x6>;
-+					};
-+
-+					boot_stage: boot-stage@9f01 {
-+						reg = <0x9f01 0x1>;
-+					};
-+
-+					boot_error_count: boot-error-count@9f02 {
-+						reg = <0x9f02 0x1>;
-+						bits = <0 4>;
-+					};
-+
-+					panic_count: panic-count@9f02 {
-+						reg = <0x9f02 0x1>;
-+						bits = <4 4>;
-+					};
-+
-+					boot_error_stage: boot-error-stage@9f03 {
-+						reg = <0x9f03 0x1>;
-+					};
-+
-+					shutdown_flag: shutdown-flag@9f0f {
-+						reg = <0x9f0f 0x1>;
-+						bits = <3 1>;
-+					};
-+
-+					fault_shadow: fault-shadow@a67b {
-+						reg = <0xa67b 0x10>;
-+					};
-+
-+					socd: socd@ab00 {
-+						reg = <0xab00 0x400>;
-+					};
-+				};
-+			};
- 		};
- 
- 		pinctrl_nub: pinctrl@23d1f0000 {
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index 950d1f906ba3023c1d118179207a2099345aae94..55ab72cf627efe2e3295409b9af1b2128b829801 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -787,6 +787,56 @@ nub_spmi: spmi@23d714000 {
- 			reg = <0x2 0x3d714000 0x0 0x100>;
- 			#address-cells = <2>;
- 			#size-cells = <0>;
-+
-+			pmu1: pmu@e {
-+				compatible = "apple,stowe-pmu", "spmi-nvmem";
-+				reg = <0xe SPMI_USID>;
-+
-+				nvmem-layout {
-+					compatible = "fixed-layout";
-+					#address-cells = <1>;
-+					#size-cells = <1>;
-+
-+					pm_setting: pm-setting@f801 {
-+						reg = <0xf801 0x1>;
-+					};
-+
-+					rtc_offset: rtc-offset@f900 {
-+						reg = <0xf900 0x6>;
-+					};
-+
-+					boot_stage: boot-stage@f701 {
-+						reg = <0xf701 0x1>;
-+					};
-+
-+					boot_error_count: boot-error-count@f702 {
-+						reg = <0xf702 0x1>;
-+						bits = <0 4>;
-+					};
-+
-+					panic_count: panic-count@f702 {
-+						reg = <0xf702 0x1>;
-+						bits = <4 4>;
-+					};
-+
-+					boot_error_stage: boot-error-stage@f703 {
-+						reg = <0xf703 0x1>;
-+					};
-+
-+					shutdown_flag: shutdown-flag@f70f {
-+						reg = <0xf70f 0x1>;
-+						bits = <3 1>;
-+					};
-+
-+					fault_shadow: fault-shadow@867b {
-+						reg = <0x867b 0x10>;
-+					};
-+
-+					socd: socd@8b00 {
-+						reg = <0x8b00 0x400>;
-+					};
-+				};
-+			};
- 		};
- 
- 		pinctrl_smc: pinctrl@23e820000 {
+The property name is odd since there's always some sort of 
+inversion. Perhaps renesas,column-inversion? 
 
--- 
-2.49.0
+> +
+> +  renesas,contrast:
+> +    type: boolean
+> +    description: digital contrast adjustment
 
+I would have expected contrast to be more than boolean. Is this 
+something any a-Si panel would support or somehow Renesas specific?
 
+> +
+> +  reset-gpios: true
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - port
+> +  - backlight
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@1 {
+> +            compatible = "koe,tx13d100vm0eaa";
+> +            reg = <1>;
+> +
+> +            reset-gpios = <&gpio 176 GPIO_ACTIVE_LOW>;
+> +
+> +            renesas,gamma = <3>;
+> +            renesas,inversion;
+> +            renesas,contrast;
+> +
+> +            vcc-supply = <&vcc_3v0_lcd>;
+> +            iovcc-supply = <&iovcc_1v8_lcd>;
+> +
+> +            backlight = <&backlight>;
+> +
+> +            port {
+> +                panel_in: endpoint {
+> +                    remote-endpoint = <&dsi_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.43.0
+>
 
