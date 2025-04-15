@@ -1,584 +1,131 @@
-Return-Path: <devicetree+bounces-167139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE808A89857
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9488CA8986E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7E0F1675A0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:42:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3815440010
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F2629290A;
-	Tue, 15 Apr 2025 09:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8DA28B4F0;
+	Tue, 15 Apr 2025 09:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LGcQfTJH"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="QPSqwTMl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A88291143
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:39:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C11C2820D0
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744709999; cv=none; b=JG1kxR47rkb3YyzHIOkMnshJA/sGkGsTYPO7jvlwD5Y9u8TkbcgJUf7U7brU06xF+hKcaSnrqYiLpWrvzmO8D81HteSLs1yruwTpsYiKXyZN/WKyTlf5jl/TL212URxFs1OJyRG0vcQ9Bl4g6QllTr3tiVUNdEm0sLhQFYpA2Wc=
+	t=1744710158; cv=none; b=jgN7a7lW3GkH0P9mhB19PodH7CGeSm43Qe19cywF2HbScU5S3ysZi3/8jv8Q6nDsRCG/D9AhExwqgINOHLgA49Jzv8TTsUaLpQE7Jp+tvxiGxkFJ0jWhVkC9ELUENwwp7qtFT/g4QLw5eyxhOLA32satc3ORh7mx5Jd9IKrRh9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744709999; c=relaxed/simple;
-	bh=jaKQo/tCjKokY1uC7q+CT6lVIBJ+umoz8JRUUn+uT78=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gEtM1x0mY+2QLbWR3sJ+D6z3SNLwmEdEesRgsjrR5imiQ+vEL2kHp3aUSiFL1MtdQRWt2aKxWM6SZGKNRdzXZzy78qqVOlkXCuf+paVlhkLo4z38H8Yii2B1fYhtC7Eya6hqyaLvAiNI+bL0EPHgPJLxYyKWlpfEjQ/pBEWEn48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LGcQfTJH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tCar025066
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:39:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	X3DP1KuIzXvoheUhhkp4eN5f13XfN3f7+MsTSdIWyo4=; b=LGcQfTJHBmYG2QdE
-	qeYWeXPXjbcoKwlvTiM+xVu/pdCcWfrdd8egsWLMq8/nSni3LbKFgs3Ct4GxuFuf
-	yl0apaJAuYexeL3cBT5qkkui0Eyp/6EGozL8WtglKnSQ5Po9OEshthLyDfi7BNY0
-	AZedUs42Ci6nHuGqlrG+gMd6GQLmPaLw1UPWaso5EXTz1WyYQtG+A1SH3iMA+PXG
-	30SNp9VdqSDisqNS+x/inANwxzWkaacyyRcK+mgm22YrkjzeZx3JT/RoTrwQMfOh
-	O8+ylBc8rB2vPehT3VWHGOlL/LdkR/PyV8NZpgeyO3BGdyzfgSFpJKrT08RDmuIo
-	cUwgSw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yg8wfh7p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:39:54 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c54a6b0c70so488010085a.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 02:39:54 -0700 (PDT)
+	s=arc-20240116; t=1744710158; c=relaxed/simple;
+	bh=rvPK/Dg5T2im/RIHeiod+rLhyhXLcDICeW5UPJLeBGc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uqmFO05H28IG0Iss9daGrGZX6mql0Daxe5VULXL8uz5+g7t4glqJGKgFuSC0cM0Lp3A0uw0srORm/vlLuqxdpMKte4TJiNA9FtQP3QdZQ5vMVfWtq3l59cy0h+JVYqN/hXYCYyOuOHaEirdBrxQJjk4L+1fSg6pypbi++gQA6F8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=QPSqwTMl; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2264aefc45dso78324215ad.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 02:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1744710156; x=1745314956; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cBaoORDclgJIxRjLsgxp6IQxhEhL0T0NDAX9n9Trx5U=;
+        b=QPSqwTMlDFRxts7YsVmvtlCYyL+FG21cZwk9QQjNa4t0acDmb9K7+z3LKF4O0waP5F
+         +I+jQjdiPNtuD7dMOdxp6N/jgThFN+AGECXxYOtc0xqPnTYWAM6gezu1le95d9B6Mb6P
+         +NAdHqFJaWO0irvmasbaQhn0tGuLNl0xV+9C8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744709994; x=1745314794;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X3DP1KuIzXvoheUhhkp4eN5f13XfN3f7+MsTSdIWyo4=;
-        b=GcbeTVQ3I+Z5d7EMTqcpboih4ib1pFMu5jw3+NornhCSAP1RWYUuKeFmx34B2sjUEb
-         7EgSA3JnoPGcxixSl/6SoQAIQIRfm8+juNriPrOpfEaosww4X0EHqPdtVyY8jgao7ayX
-         zoMsCe5+dISuiRYbYpo8uXskebS9sCNe0tfrg3w6CaajufAeroogshAKBzLy+5L4oRnW
-         bshMrBOvFtAoJeNJZj1WGp6uPhqZpLjAC8V1qOl/IKX24PRK+Lc/6M3n5i7hC6FrpmgG
-         VjejLNh6zvNN+sCruFyRctXptOTi0CNuI/HUvg3exXyvtvnSjgODNUiCzRZZi+4JghW+
-         RAoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWs/1uIssVB5jRRimVvrF9XDI2KJcCB1Gp8IRsclBW5x0aBFPelLI1htaJjIk8fX/R4+MgcIuAP55Tl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlbChIlKEQnIZAkXkZ20fKc7bmTjoww0ZtQV45NOAYzQSjxXZ2
-	2/tmMttVH9NuH+bmukgqaGBjfimw0eXgHvWy++KNWzO4nU4PuvDqh8t6qze3jJqHqwiQQ7pgpRc
-	v02bOiQUAw/NyMlkUuEP0TJnAqM1qS3IgbFf9y0YKja8Mze1NWA0t/VN/ny5H
-X-Gm-Gg: ASbGnctlMvZ5mUULwtafM4Zd2ivCIKNt/4Z0mnPSR+ZOeJE8sWoyvjmwp2IgCL29y6E
-	3Zga8GMWtXJN8Qe//VVDHmuQggRLYoHdfKVvY/TVT++e53d9qFOumQQiVS+/oHiQL9TJ/6BuM1q
-	QkdAD2gMyn9Rls4x3HQHlvMiQvKfZy/OOfQKct09rPblGLvJ98BWSy1BJW9nXhBZLzkNo2Otq4z
-	/v7LzDy54lseEmbyV+ab0XMTowDEQFZ50rG/OQlY/uCA9BsZeA/31E0M9AbwJtUUvjuyANElChU
-	Avg/FPeqQf3QFC8xQFOkZCzvmdFROBjLBPoSEjkEl+gMNJQ9Lv7gEGdka7aAJQULVUH95hXJl2i
-	cOhSS2owSkwimPzqn7bjSpnhQ
-X-Received: by 2002:a05:620a:3941:b0:7c5:e370:5b1 with SMTP id af79cd13be357-7c7af0b983cmr2584765785a.7.1744709993834;
-        Tue, 15 Apr 2025 02:39:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHhEsUrI9JGMcHJIQdLPzJECRSXMuxZIkBQvKi6yorXhuvCGWRbam2l8IoOqe1Oztk24ed2mg==
-X-Received: by 2002:a05:620a:3941:b0:7c5:e370:5b1 with SMTP id af79cd13be357-7c7af0b983cmr2584761885a.7.1744709993355;
-        Tue, 15 Apr 2025 02:39:53 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f464cbc60sm20141901fa.24.2025.04.15.02.39.52
+        d=1e100.net; s=20230601; t=1744710156; x=1745314956;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cBaoORDclgJIxRjLsgxp6IQxhEhL0T0NDAX9n9Trx5U=;
+        b=P8dvfzXpyjUSWmbKdDe8adrGy8lkjwnHhdI75elcLPU4S4wpw//s0PaaxYrYJxGDk0
+         Q6WmuBuJMYkPb+J7FoVfmLd93Ne9JRQav8lAOU6t3ec+MrNoHqZoBd0zWDAkZ/c7UKu0
+         3fPV4LWjl+zngdOdKPoYHrXgzRqCPN+q3UXrpnNlf5XIKXZGRhQr3mWsx961HeLkzUZx
+         kWKGDZpI/nFnoqWdcdtWEKH/SRb9hNS2lWC7AM5WwmRS30JaiNs34RSHcXVmvEG7GLPs
+         nMzg6IzksdaartGEjPzAsuUmcqxFJ2I6Beq6h6RGFOMPRkNJUIvZfLBsd53ZYuDHXRiE
+         W1og==
+X-Forwarded-Encrypted: i=1; AJvYcCWdbMzQIc3LLzd8vo4bieKayqQ/PH660uWIAAS1YQuhmWfjkpPG5uet0xeIlyTlw7S2t6FHjmBn/DOt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+ZlFllGQjl2Gq5PGPLVRa5k2cnqKgOjSS+po5Obd+xXJcp5AM
+	FIPxmZRSc0LdWLBUSbqNR4QfTZCgk2SjXQkBbjyXtR4BQHxNtp6OY+YXaEKItA==
+X-Gm-Gg: ASbGnct96WCd64dQkijom1azuRK4H1g7B0XN69is4KHmBTjRYUN607R1jl4AoaSWXmx
+	SfVb2N6v8QkEL4UR0LemOvDr3GImYw87xOH/9aebj4ojqyXq1vW4FefPFjOfxRF8YWEyDLBDOCY
+	/3UylCr/fZWEeqhkjG3e7ZCB8LhiR2xo2xhNzqx6x1Whe0OhZLC5rAuUrY0WjiyzHr1cn3B+Kfz
+	/bVd2+Ki2UtcEjCnS02GiOQFrxFjXT7nFrD0vAm4qOVz7JJk48zsKgtFOGii3MDvjaXNT0hT6S7
+	qCTXNzTzsH1bN1Pp3K0igZEId5SaOAOtyZzoGOlWgV8gtd+vx2XK8HJsUGtzCLYC
+X-Google-Smtp-Source: AGHT+IHVvAZ1ygtLt+QZlSxzIJDMWWSa3m/mDTZEHZmrVvlbbotGb9BvVB2zRgsynJ3aC8i0qEwfeQ==
+X-Received: by 2002:a17:902:dac3:b0:224:f12:3734 with SMTP id d9443c01a7336-22bea4bd79bmr179704025ad.30.1744710156249;
+        Tue, 15 Apr 2025 02:42:36 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:7d0d:86ea:ee84:cd08])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7ccca5asm113135215ad.254.2025.04.15.02.42.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 02:39:52 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 15 Apr 2025 12:39:38 +0300
-Subject: [PATCH v3 10/10] arm64: dts: qcom: sar2130p: add display nodes
+        Tue, 15 Apr 2025 02:42:35 -0700 (PDT)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>
+Cc: Stephen Boyd <swboyd@chromium.org>,
+	linux-kernel@vger.kernel.org,
+	Pin-yen Lin <treapking@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH v2 0/4] Introduce usb-hub.yaml binding and add support for Parade PS5511
+Date: Tue, 15 Apr 2025 17:41:57 +0800
+Message-ID: <20250415094227.3629916-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.49.0.777.g153de2bbd5-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250415-sar2130p-display-v3-10-62314b1c9023@oss.qualcomm.com>
-References: <20250415-sar2130p-display-v3-0-62314b1c9023@oss.qualcomm.com>
-In-Reply-To: <20250415-sar2130p-display-v3-0-62314b1c9023@oss.qualcomm.com>
-To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11504;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=/eDiGUtPG1uX9BDXZTrPxa9llmv6JxW6//ctZSlL0vM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBn/ilXDx6ZjMcbTyJOW308myXwjAo0FFIqlU2Wu
- AE47wVJ1VaJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ/4pVwAKCRCLPIo+Aiko
- 1XXRCACkdlcEh6NwjmRmdnbjxiCjwZt/TqiGQWExprZZy2xDis406JOxryE/aHxoHhs0tAYAH3F
- Is8Op3v1V9yMz54WNDIwneMPbaAzXh1iuR9Y0T/izjkkT9JE4hZp433oxLrKi2LjzuK4lUL03lD
- JMOIvD+CtbLUxFGtkYGenns8AmqrotCH0rXaJXNcQ7+7qdAuWnVtOFJ7lzrQFfZ8n/IfmxhuLWA
- M7Rqk0oKXXYKPf+yQBqmaKYSHQ6KNBbed0R+6pR6HlhJKwmhtxaocLvcmmF+IOEGeDNynTiuzcU
- nNTUtt9YJygBsSiQ61kTq3IrNSjcZh66e2rGVKWqELiL5UiC
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=E9TNpbdl c=1 sm=1 tr=0 ts=67fe296a cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=qobt-ayf5lTqXTu-rvoA:9
- a=APn_b-CA19tBE8nr:21 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: N5GLRwJS7PU5izXhM0Wpc6mQoMoOX7xb
-X-Proofpoint-GUID: N5GLRwJS7PU5izXhM0Wpc6mQoMoOX7xb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-15_04,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=999 spamscore=0 priorityscore=1501
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504150067
+Content-Transfer-Encoding: 8bit
 
-From: Dmitry Baryshkov <lumag@kernel.org>
 
-Add display controller, two DSI hosts, two DSI PHYs and a single DP
-controller. Link DP to the QMP Combo PHY.
+This series introduces usb-hub.yaml for on-board USB hubs, and use it for
+the newly-added Parade PS5511 binding and the existing Realtek RTS5411
+hub controller.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sar2130p.dtsi | 395 +++++++++++++++++++++++++++++++++
- 1 file changed, 395 insertions(+)
+Also add support for Parade PS5511 in onboard_usb_dev.c
 
-diff --git a/arch/arm64/boot/dts/qcom/sar2130p.dtsi b/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-index b45e9e2ae0357bd0c7d719eaf4fc1faa1cf913f2..1bd0eace87e0bf171270b411391aee2e1a136dd4 100644
---- a/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sar2130p.dtsi
-@@ -3,9 +3,11 @@
-  * Copyright (c) 2024, Linaro Limited
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sar2130p-gcc.h>
- #include <dt-bindings/clock/qcom,sar2130p-gpucc.h>
-+#include <dt-bindings/clock/qcom,sm8550-dispcc.h>
- #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
-@@ -1915,6 +1917,7 @@ port@2 {
- 					reg = <2>;
- 
- 					usb_dp_qmpphy_dp_in: endpoint {
-+						remote-endpoint = <&mdss_dp0_out>;
- 					};
- 				};
- 			};
-@@ -2012,6 +2015,398 @@ usb_1_dwc3_ss: endpoint {
- 			};
- 		};
- 
-+		mdss: display-subsystem@ae00000 {
-+			compatible = "qcom,sar2130p-mdss";
-+			reg = <0x0 0x0ae00000 0x0 0x1000>;
-+			reg-names = "mdss";
-+
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+
-+			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&gcc GCC_DISP_HF_AXI_CLK>,
-+				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+
-+			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
-+
-+			power-domains = <&dispcc MDSS_GDSC>;
-+
-+			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+			interconnect-names = "mdp0-mem", "cpu-cfg";
-+
-+			iommus = <&apps_smmu 0x2000 0x402>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			status = "disabled";
-+
-+			mdss_mdp: display-controller@ae01000 {
-+				compatible = "qcom,sar2130p-dpu";
-+				reg = <0x0 0x0ae01000 0x0 0x8f000>,
-+				      <0x0 0x0aeb0000 0x0 0x3000>;
-+				reg-names = "mdp",
-+					    "vbif";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <0>;
-+
-+				clocks = <&gcc GCC_DISP_AHB_CLK>,
-+					 <&gcc GCC_DISP_HF_AXI_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-+					 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+					 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				clock-names = "bus",
-+					      "nrt_bus",
-+					      "iface",
-+					      "lut",
-+					      "core",
-+					      "vsync";
-+
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+				assigned-clock-rates = <19200000>;
-+
-+				operating-points-v2 = <&mdp_opp_table>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						dpu_intf1_out: endpoint {
-+							remote-endpoint = <&mdss_dsi0_in>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						dpu_intf2_out: endpoint {
-+							remote-endpoint = <&mdss_dsi1_in>;
-+						};
-+					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dp0_in>;
-+						};
-+					};
-+				};
-+
-+				mdp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-200000000 {
-+						opp-hz = /bits/ 64 <200000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-325000000 {
-+						opp-hz = /bits/ 64 <325000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-514000000 {
-+						opp-hz = /bits/ 64 <514000000>;
-+						required-opps = <&rpmhpd_opp_turbo>;
-+					};
-+				};
-+			};
-+
-+			mdss_dp0: displayport-controller@ae90000 {
-+				compatible = "qcom,sar2130p-dp",
-+					     "qcom,sm8350-dp";
-+				reg = <0x0 0xae90000 0x0 0x200>,
-+				      <0x0 0xae90200 0x0 0x200>,
-+				      <0x0 0xae90400 0x0 0xc00>,
-+				      <0x0 0xae91000 0x0 0x400>,
-+				      <0x0 0xae91400 0x0 0x400>;
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-+				clock-names = "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+					      "ctrl_link_iface",
-+					      "stream_pixel";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-+				assigned-clock-parents = <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-+
-+				phys = <&usb_dp_qmpphy QMP_USB43DP_DP_PHY>;
-+				phy-names = "dp";
-+
-+				#sound-dai-cells = <0>;
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						mdss_dp0_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						mdss_dp0_out: endpoint {
-+							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-+						};
-+					};
-+				};
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-162000000 {
-+						opp-hz = /bits/ 64 <162000000>;
-+						required-opps = <&rpmhpd_opp_low_svs_d1>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0: dsi@ae94000 {
-+				compatible = "qcom,sar2130p-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
-+				reg = <0x0 0x0ae94000 0x0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <4>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&gcc GCC_DISP_HF_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi0_phy DSI_BYTE_PLL_CLK>,
-+							 <&mdss_dsi0_phy DSI_PIXEL_PLL_CLK>;
-+
-+				operating-points-v2 = <&mdss_dsi_opp_table>;
-+
-+				phys = <&mdss_dsi0_phy>;
-+				phy-names = "dsi";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi0_in: endpoint {
-+							remote-endpoint = <&dpu_intf1_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi0_out: endpoint {
-+						};
-+					};
-+				};
-+
-+				mdss_dsi_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-187500000 {
-+						opp-hz = /bits/ 64 <187500000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-300000000 {
-+						opp-hz = /bits/ 64 <300000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-358000000 {
-+						opp-hz = /bits/ 64 <358000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			mdss_dsi0_phy: phy@ae95000 {
-+				compatible = "qcom,sar2130p-dsi-phy-5nm";
-+				reg = <0x0 0x0ae95000 0x0 0x200>,
-+				      <0x0 0x0ae95200 0x0 0x280>,
-+				      <0x0 0x0ae95500 0x0 0x400>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				status = "disabled";
-+			};
-+
-+			mdss_dsi1: dsi@ae96000 {
-+				compatible = "qcom,sar2130p-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
-+				reg = <0x0 0x0ae96000 0x0 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <5>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&gcc GCC_DISP_HF_AXI_CLK>;
-+				clock-names = "byte",
-+					      "byte_intf",
-+					      "pixel",
-+					      "core",
-+					      "iface",
-+					      "bus";
-+
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-+				assigned-clock-parents = <&mdss_dsi1_phy 0>,
-+							 <&mdss_dsi1_phy 1>;
-+
-+				operating-points-v2 = <&mdss_dsi_opp_table>;
-+
-+				phys = <&mdss_dsi1_phy>;
-+				phy-names = "dsi";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						mdss_dsi1_in: endpoint {
-+							remote-endpoint = <&dpu_intf2_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						mdss_dsi1_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			mdss_dsi1_phy: phy@ae97000 {
-+				compatible = "qcom,sar2130p-dsi-phy-5nm";
-+				reg = <0x0 0x0ae97000 0x0 0x200>,
-+				      <0x0 0x0ae97200 0x0 0x280>,
-+				      <0x0 0x0ae97500 0x0 0x400>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&rpmhcc RPMH_CXO_CLK>;
-+				clock-names = "iface", "ref";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				status = "disabled";
-+			};
-+		};
-+
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sar2130p-dispcc";
-+			reg = <0x0 0x0af00000 0x0 0x20000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&gcc GCC_DISP_AHB_CLK>,
-+				 <&sleep_clk>,
-+				 <&mdss_dsi0_phy DSI_BYTE_PLL_CLK>,
-+				 <&mdss_dsi0_phy DSI_PIXEL_PLL_CLK>,
-+				 <&mdss_dsi1_phy DSI_BYTE_PLL_CLK>,
-+				 <&mdss_dsi1_phy DSI_PIXEL_PLL_CLK>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
-+				 <0>, /* dp1 */
-+				 <0>,
-+				 <0>, /* dp2 */
-+				 <0>,
-+				 <0>, /* dp3 */
-+				 <0>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sar2130p-pdc", "qcom,pdc";
- 			reg = <0x0 0x0b220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
+Patch 1 introduces usb-hub.yaml as the bindings for on-board USB hubs
+Patch 2 adds the binding for Parade PS5511
+Patch 3 modifies realtek,rts5411.yaml to adapt usb-hub.yaml
+Patch 4 adds the support for Parade PS5511 in onboard_usb_dev.c
+
+Link to v1: https://lore.kernel.org/all/20250328082950.1473406-1-treapking@chromium.org/
+
+
+Changes in v2:
+- Introduce usb-hub.yaml
+- Modify parade,ps5511 and realtek,rts5411 to use usb-hub.yaml
+- Minor fixes on parade,ps5511.yaml
+
+Pin-yen Lin (4):
+  dt-bindings: usb: Introduce usb-hub.yaml
+  dt-bindings: usb: Add binding for PS5511 hub controller
+  dt-bindings: usb: realtek,rts5411: Adapt usb-hub.yaml
+  usb: misc: onboard_usb_dev: Add Parade PS5511 hub support
+
+ .../bindings/usb/parade,ps5511.yaml           | 115 ++++++++++++++++++
+ .../bindings/usb/realtek,rts5411.yaml         |  47 ++-----
+ .../devicetree/bindings/usb/usb-hub.yaml      |  91 ++++++++++++++
+ drivers/usb/misc/onboard_usb_dev.c            |   3 +
+ drivers/usb/misc/onboard_usb_dev.h            |   9 ++
+ 5 files changed, 231 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-hub.yaml
 
 -- 
-2.39.5
+2.49.0.777.g153de2bbd5-goog
 
 
