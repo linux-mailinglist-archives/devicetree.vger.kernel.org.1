@@ -1,162 +1,138 @@
-Return-Path: <devicetree+bounces-167157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D943A898C3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:54:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41646A898EA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 11:57:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39E223B498B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:54:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C05E7A9D32
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E8528A1FF;
-	Tue, 15 Apr 2025 09:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1625292903;
+	Tue, 15 Apr 2025 09:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8b3qWxF"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="NvdEg70P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968392820D0;
-	Tue, 15 Apr 2025 09:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C722918FB
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 09:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744710867; cv=none; b=soqajfzSsVtp0uYRp7iYhCqSUhlg66Qbze8VP08OLqjM04SYH0tJRQejy/DyM30zk9VIHRWWB9pEQRzLpKN1dmZ5WkjEVF09jA358vrUXEubM8c4Q0Rk3DD1sQcDOA/XwHlzugbMIcpsro5lbNcX9B2CWgc7/el4uKuVk+DP4bw=
+	t=1744710908; cv=none; b=JafCA2itmkP2qChVFNZY6wVmLbMb5Ej/DHCy3tzaUtNHAt8yQvAK4ZGBuwE7935GE4rsp1vLxUtwKhENuamhPuDz4L/jQkLMxjssPWORZCislthCzKIeC2D1tUUMn+lM3TbUOLeg4ffeXNDNPXEXIYMhgj8IKDyd66FPYrYtXzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744710867; c=relaxed/simple;
-	bh=lK37py1zOsfETjH0W+RywbZi9Hhk9oH0kO5ktf/YyEc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GlEEyPDArVq5uCAoTtwCNDGZ8euOBcyaEgilsO9lOqmv3w+yA5zNMLVPczzq5diVAckYeiMiKhmypwnhkENAdq3bfMzeSo+7Iz+p1RXpXKijjF6lUCOm/J8IrIGZvahPzIBpaBHn99CP/nkLVkuyRbiEyqZpn5P5F9ganCLjB88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8b3qWxF; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-736b350a22cso4467869b3a.1;
-        Tue, 15 Apr 2025 02:54:25 -0700 (PDT)
+	s=arc-20240116; t=1744710908; c=relaxed/simple;
+	bh=L0R8xGjLChjgStq7fgUrJ09AFQFLRTNk5cUsHXiRm/c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IER0hPf7IytUJZuqA5uPD1NXnXkqMduN1qvheVSCFo0ZHZU3SXxeVcvS9aOHNq3/RJsAp+QTj8pQrM3F/DipJW8nixqNhZSe5a/lfzzPxs0iTSAd6R6htEO79TDmQgXUVnNRDxIYTgsCzilF9tyEzT/WKV7/qyYl8GXV6hCHAxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=NvdEg70P; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e66407963fso9854729a12.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 02:55:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744710865; x=1745315665; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744710904; x=1745315704; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nYpGhwmmgnLY8txDgIEQRH5jdUdNpNJ3RHDmtFvhBCk=;
-        b=m8b3qWxFJHpIekW8/0L/S6uaaoqhB1HwoZo+KtH3WIT0bsurI5UsKhGjNqr54VH/AD
-         pYoXrI1A5F6Zfu4W0J0TQGnH8i5KuUy7Y/lBq9cQQh08nnYW373AuqIPR53alvfQtGEw
-         PzSX832pQ26YKbekAW++zGsXcCA9q6r4b+3gF/EomJ8qhamC0/Z0ZaeQMnvrf/+xBeGx
-         G5oRdbabl2rHG6kbniS9ZKUJZyji1MBhCKgvqoYPQAItC3UxGCU/4q+cE6/ZQslfCFh6
-         SklmANm2FYTvlaYpR2JIXqfNFPszrDGtI+P+CmqsPJ0HE+rm5+BRsdPlXgDKf5i2O0h8
-         THKg==
+        bh=6Sd6Yg3rC21jnGehy22uUVz7lDVf6VWqh6Q2Fhe7kCA=;
+        b=NvdEg70PipU0O6XlqoRNzzBLAKA/q2ZenLdVSng2WxCmNNZCqRt8rmlFTkPLytc9Kc
+         c0P0xV93/XSYTZjwAwPiWT/QB26WxQquxSDzBnu0sHt2Oic5vZ9PU2upeFDmrDOdpYPI
+         G2J7fLW6oUQpjpdwvs57PxqFUkln7KlajAUJ96N89Uo2IHAPuguzF+jElnOFiM7/r8sY
+         8wP3aCr0KMvvj5B9dMMy6rMYc68T2cArgoW4rSCYhmiiOmaOfUOh8PKQl2tj2zQXIF+k
+         vU8iWHtgiUBS+ol+MIjFesX3nNEGQRegXTQdX81/njwlCL4qH5VjXTAOy9v+vSFZEv0D
+         3LRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744710865; x=1745315665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744710904; x=1745315704;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nYpGhwmmgnLY8txDgIEQRH5jdUdNpNJ3RHDmtFvhBCk=;
-        b=BAyHCc6Ac7uTx0vPcowphD0wo0IegwEZKNWZ5wX4+RWdsyik71YLhjJhruodHmrzH+
-         EApLfE0gw03jWsyPDXkR4Ueo2LpwhXaJWoyGYB6jLCX/JnI7WmcBYQiltv1JuFt6BqKC
-         FfO6W3cmtI72m6PPL13f/tKUknSGmC7MEI0+/TMdmfEcZzfoYgDrrktGI54psFoVHE5u
-         QcSFabhyG9U+L+B3ma5ymTV9ox/3LfolGXl8Kq6BZ2uh7MmdksK9++gmE+m+5dHU2JEb
-         aw2sfVMIb/1QQTpd+2FesaVGWTp/qtdXvTe3yIgzZQoQ8DnTQP7EFCyzycxZ4lBXRd5K
-         ChDw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1jtYjoQADk6k6jPJ9TO5RrIBzw5ahgQ6Nk1E7ZuSgIzrHcsIsCRyiaCl2zrP/QSHidBPB1Ak0S3YxKgPH@vger.kernel.org, AJvYcCU4opwbDLi1JYWTYnNTEEa5KNS5DPSDopL5gn3S/V8+akUh3zBHOcusRQTyAKuJRXSjG1fZ4lql1FaX@vger.kernel.org, AJvYcCXDW9sX6fwpg45ZtZOmgAPqVKQ66oVKVH6pmBn/qhX0Mb/IsbOtCyZ9XKIlfANt+y136IrJuj3/dH1rqw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYkb7FyX3s9DXJQuCRlRzGwRMGsCLDoUYSswH8sv3CrmUrto3m
-	IysB8YgdnLzguatdkQdDtX63u0ZwXWQmx3FIxSbUG1auwmuEYQue7pD3FA==
-X-Gm-Gg: ASbGnctBNITVCIw9gO75h+zrRSOFY8NuITVUhBEMCL7LRm9CBhpRHVBdo70iV/Jld6x
-	Ee32cwemDfVs+vVMIx7FDxIy4UVXOKmuglW+BKgTx7iutnZVipBq7bULTaxLfIi1ME4v6LRVchI
-	gMI+L5A7jj9l8o8ptkBlsttzvReWlyxiuJX8WVfSO1DjjZsDwPiX3kebAOFwFno2hMgZlJKTnxT
-	LMuA+rY/aK+ZlCnZiwQNVXY9rpcIBSgSQXToSkWQ4j5wsVYvGMDX880vBVmGKDKXKrg/DUpvdnI
-	1R3+Xl7EO9ijMS6UbQ20L4havxfK+ada5bx5HusCML0gVoYPmJo22OM=
-X-Google-Smtp-Source: AGHT+IFjNHbcTufXh8fFzrFcTeMoEjvYjAzqkO8JWy4aZMguP6+TutUuL10puZf3uD4t34dThiEozg==
-X-Received: by 2002:a05:6a00:4fc7:b0:737:9b:582a with SMTP id d2e1a72fcca58-73bd12b3127mr24417976b3a.24.1744710864577;
-        Tue, 15 Apr 2025 02:54:24 -0700 (PDT)
-Received: from localhost.localdomain ([116.106.96.242])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd21c335asm8335575b3a.50.2025.04.15.02.54.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 02:54:24 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: krzk+dt@kernel.org
-Cc: pavel@kernel.org,
-	lee@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
-Date: Tue, 15 Apr 2025 16:53:58 +0700
-Message-Id: <20250415095358.8044-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <2badc360-9bfa-400a-acca-ab82f8cc5a95@kernel.org>
-References: <2badc360-9bfa-400a-acca-ab82f8cc5a95@kernel.org>
+        bh=6Sd6Yg3rC21jnGehy22uUVz7lDVf6VWqh6Q2Fhe7kCA=;
+        b=G3rNUGiOIXJraK8oHCYD3wBEMMnw1g3xXqM37RgtBkUValB+1Tgc2/keimgzDRqVcB
+         lH0sc+Ffu052+2BwXA0n3wM3PEzOf8eImkNGHQY7GKQG3bKka5wBvrswFcXP4U8kehUh
+         mawlXQ6c0BlIM7smhcHc5g6XZEIZiNKhjstpJyhOxwXi5jTVwG4kL5GNDmtWwCCqMc/q
+         s3u/6vP0Fda31lZVWjiHZ8/JiYLGIScdVRLktwztx2ZpsxkKMkWYQfRVpUbm+GKUf6VK
+         47g0213vVNaEN5PK7PegGr6m8AaEaMnDaotNEw14RSXKvVGwkwQzWTp7kAh/ND7cLkTX
+         gSuA==
+X-Forwarded-Encrypted: i=1; AJvYcCWpLJVH65jAOqcYp+SGTAYKpWoAZtLIclmMIiaxVVfKQwm/mTwaT2Fyoeeb8c94mPBs1QWxBwrFRYKh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRp1U25JueBciIEd+J/fMa2mBFDWJHC+RduLCfJWoWYj9AUDVh
+	BVmW510AZznuMrMDIRFZKNATZQX+p88d5IynsqnT8LtF/2nsax3D4yb/SpblS2jUuD4mQ7IwBGK
+	CPKMUkmF3VGmH3e+kyAkVuIW1BaKJMGRxIPtyOA==
+X-Gm-Gg: ASbGnctl2z1mKJscIw7S7m7FER186NoOrg4ZEh1ufH6eL00Clvspzdgp9kN+btb3gf5
+	Q5NeeAtE7ia1SiYA25LSkZHaB2+c2y5VUrwWaqaCd9n5zJIZDXg2aEd79v99MEDK32b9MRlBgjA
+	kkK6vg0y/l62xGkVShFDZtSBY1mQ==
+X-Google-Smtp-Source: AGHT+IHAU8wJfJDF4eNSdv0Zm5P/kiq6Yogbh7eiqNmQ6osroOUsaiP2v1/BjbNJSKe15J8jBc9YnfV5U+5wxjTv07U=
+X-Received: by 2002:a17:906:7154:b0:aca:dd0c:cfc8 with SMTP id
+ a640c23a62f3a-acadd0cd3bamr1109850866b.10.1744710904488; Tue, 15 Apr 2025
+ 02:55:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250411131423.3802611-1-guodong@riscstar.com>
+ <20250411131423.3802611-2-guodong@riscstar.com> <20250411-confider-spinster-35f23040d188@spud>
+ <89b6142bacecd4a7742341b88dc1e28c4454527a.camel@pengutronix.de>
+In-Reply-To: <89b6142bacecd4a7742341b88dc1e28c4454527a.camel@pengutronix.de>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Tue, 15 Apr 2025 17:54:52 +0800
+X-Gm-Features: ATxdqUGYHln9nntZsdf9jj-vYb0_3U3ad99wI0oBwmwTA_WUeFe5BkvwdaXHs0w
+Message-ID: <CAH1PCMZnJDcYKJR35WirQT95hte0NWvGBe4fjDuyZEgagvunAA@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property resets
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Conor Dooley <conor@kernel.org>, ukleinek@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, dlan@gentoo.org, 
+	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org, 
+	tglx@linutronix.de, hal.feng@starfivetech.com, unicorn_wang@outlook.com, 
+	duje.mihanovic@skole.hr, elder@riscstar.com, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 14 Apr 2025, Krzysztof Kozlowski wrote:
+On Tue, Apr 15, 2025 at 4:53=E2=80=AFPM Philipp Zabel <p.zabel@pengutronix.=
+de> wrote:
+>
+> On Fr, 2025-04-11 at 17:44 +0100, Conor Dooley wrote:
+> > On Fri, Apr 11, 2025 at 09:14:15PM +0800, Guodong Xu wrote:
+> > > Add an optional resets property for the Marvell PWM PXA binding.
+> > >
+> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.ya=
+ml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > > index 9ee1946dc2e1..9640d4b627c2 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > > +++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+> > > @@ -31,6 +31,9 @@ properties:
+> > >    clocks:
+> > >      maxItems: 1
+> > >
+> > > +  resets:
+> > > +    maxItems: 1
+> >
+> > Do any of the currently supported devices use a reset? If not, then add
+> > this in tandem with the new compatible and only allow it there please.
+>
+> Also, if spacemit,k1-pwm can not work without the reset being
+> deasserted, mark it as required.
+>
 
-> On 14/04/2025 16:57, Nam Tran wrote:
-> > +
-> > +description: |
-> > +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
-> > +  For more product information please see the link below:
-> > +  https://www.ti.com/product/LP5812#tech-docs
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,lp5812
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> 
-> No need for supply?
+Thank you Philipp. spacemit,k1-pwm can not work without the reset.
+I will add that in the next version.
 
-Since the hardware uses an external power supply,
-we decide not to include the supply property in the binding.
+-Guodong
 
-> > +
-> > +patternProperties:
-> > +  "^led@[0-9a-b]$":
-> > +    type: object
-> > +    $ref: common.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +    properties:
-> > +      reg:
-> > +        minimum: 0
-> > +        maximum: 0xb
-> > +
-> > +      chan-name:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        description: LED channel name
-> 
-> My comment stay valid. I don't think LEDs have channels, datasheet also
-> has nothing about channels, so again - use existing properties. Or
-> better drop it - I don't see any point in the name. The reg already
-> defines it.
-
-The channel was named for the output channel to each LED, not the LED channels.
-They are not required properties because we can control entirely the LEDs of LP5812 through the indexes (regs property),
-but the person who wants to develop LP5812's matrix-related features can use the "channels" for easy mapping.
-
-> 
-> However after dropping this, your example has nodes with only reg -
-> what's the point of them? Why no properties from common.yaml are
-> applicable? If they are not applicable, then the entire subnode should
-> be dropped - you don't need them to describe the hardware.
-
-Actually, the "color" property can be applied, but the LP5812 is a matrix LED,
-so specifying a particular LED color is not necessary when developing LP5812 features.
-
-Best regards,
-Nam Tran
+> The driver can still use reset_control_get_optional.
+>
+> regards
+> Philipp
 
