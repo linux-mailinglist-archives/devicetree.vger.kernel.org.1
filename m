@@ -1,124 +1,137 @@
-Return-Path: <devicetree+bounces-167346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48247A8A00A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:51:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9ECA8A017
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:53:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 404B63BDF5E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:50:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC6FA17E5E2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 13:53:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BC81C84B7;
-	Tue, 15 Apr 2025 13:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F4117A306;
+	Tue, 15 Apr 2025 13:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hmwheYuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E2719F11E;
-	Tue, 15 Apr 2025 13:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0778F13C8EA;
+	Tue, 15 Apr 2025 13:52:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744724931; cv=none; b=qnjBdbc6+7XdaWLB/aNi9VZ1cNhph52sEC9vKj9MSPImWZHrzrwc5+doC9Ch45I/i5WeVpCrvVTOcxnwk2Sp4MJtNtSLAatmUZ0etDKToQbbiZRq/mp88oDdLBk5t4ihnmL3q4iH440k5R8lA2O1I+h5MsouALS3so3QyOVjnhA=
+	t=1744725177; cv=none; b=hBv8sPmca7vacmnM1zY1zxjfw5ZF0d63K7xcRW7yowfrT3YBaheBctxaPKp7ynkE0quGDWUfkPqH/n2yiv/vS2AOvGRQilN8ulUaaf5fVA8wRHfStzgY6bXchb68pKlNxG6SkfiJSC7IBi+piJutlz7YCsjs2Tdf2ExZrCU5lt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744724931; c=relaxed/simple;
-	bh=f+I+70mvDeUxlvE287MehxIaRGNimM4VHnTJL/puwjU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XpDk52w5FdVwkaajwH8yHpbQnVZAjILX+Ph6sDrLm34zLu1nzhh+J7DmOXdSBC0JCqlF8anrBh9Pmpa5rKGpegz/MeGMt5GkYX/r2xf2cJOurYMj56se00bHhymDqhQ4OkGgO25W3pAjX3oK2Gf5QYtXhgUBk1G3nYwi8C661x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6344015A1;
-	Tue, 15 Apr 2025 06:48:45 -0700 (PDT)
-Received: from gentoo-vm (unknown [10.57.44.57])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B2B13F59E;
-	Tue, 15 Apr 2025 06:48:44 -0700 (PDT)
-Date: Tue, 15 Apr 2025 13:48:38 +0000
-From: Kajetan Puchalski <kajetan.puchalski@arm.com>
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: soc@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	jassisinghbrar@gmail.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, maz@kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Fugang Duan <fugang.duan@cixtech.com>, 
-	Guomin Chen <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>
-Subject: Re: [PATCH v6 09/10] arm64: dts: cix: add initial CIX P1(SKY1) dts
- support
-Message-ID: <7cnhezft5jzvtdjx6m2vjmtaxgla33j4fynd6ef4c6b7dh5pvo@4cbxewawilqp>
-References: <20250415072724.3565533-1-peter.chen@cixtech.com>
- <20250415072724.3565533-10-peter.chen@cixtech.com>
+	s=arc-20240116; t=1744725177; c=relaxed/simple;
+	bh=ENRqfqGuVy+bkDKYMYO5JKLL1z9uiCfJpBqOTrbE9Bs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PLLLhldBfkCoi6EFqwzzy64WWktgeaw7pC9kmMNdHXRb9UqkJsrcOWoh78gznQYk7Cv/lLfgzU81Cm8aW9Xd4tQXwrTxVR7t4of7dQsRwpIfZOHEbFha5MCIaUbIjgsEc1nZ0dMxkLfaDv8iBsYTdVP6HqRXBKkCTBiQVYIBryA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hmwheYuV; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3912d2c89ecso5292920f8f.2;
+        Tue, 15 Apr 2025 06:52:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744725174; x=1745329974; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1TwZ3MTtKiM7l1EeKd00zGsHBWMHnKmuqThclAOg/Kg=;
+        b=hmwheYuVpy22zMZ/DoQVZveajuZsKkeSZKZwr5OiKwye1oxlsOtVDM8PhFKaWE3qlQ
+         1D/rh1to7gaLAm4wpITaPha5kN4u6pQpNJf3gxrgh0pWKyFcyU2kzeK94Bhgs4gNMuZd
+         NAqz+heIwqskrbzzJlGUORFtJnfNUpwLhrQE3T+wYDIqyIUI0t92d+qiIoC/jFfHxVdU
+         uLfIJHt5NuqADinUwemMVGBVWS2pY3Py4GQIbD844jMS80s4QPbbF6fE92QFZErtEuRa
+         BN8NVDdCr6UlfaiYRPWnbDS6r5W4mPlNsdFQukkoxkZSAbwEFLw/YLlEJMH+goOZhRtC
+         qclA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744725174; x=1745329974;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1TwZ3MTtKiM7l1EeKd00zGsHBWMHnKmuqThclAOg/Kg=;
+        b=hBFFKLMiCT6jqqfgzBt8koUbLOrZMgJ0YEWbn27s3x3Zg+EXWOdAcDndFxi/KrVfXz
+         VUHcsN+xsj4/uUYKMx38YdUzlGqNMiw9U50Wi1Got5KtNdF5BGRSWSpkIHEJlsvwUGIE
+         jXzoMuP4i5NFw7cmHqozP8Xpez+FoZ77TLkP7tZ7637Q7ucjY0/KvZZetLXqRVGto7k5
+         2FsugSF0Sm855lx0PWAzmVqr/EdoVy/1f5dlbQr2tV010uGl2Xr86W0WsKtzj1y+8/1X
+         +opbOHje5b9efNYEtKuuSoMmj72IYRvOyO0cUJKCOjP8V32hu1c+JURRovL+kQ3GB3nJ
+         DrZw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6tVaDWg1QHzILB+xC2xyiSk/58o4GVuJg9mWQSqIkNSlYTQ1zePn05+hN6hyOjHz4dcXgX9ca4ToN0zGyN8yj7n0=@vger.kernel.org, AJvYcCU87+dvssu0nDPsFUxWcRDc9E06WM0wF4pxtk6uQTF5jkNrRd7xk4BdF/BnlY01n06JNB7RoUNm@vger.kernel.org, AJvYcCWIIh4hoFaBzlLNEzLiqHrzp78FSdAo87+GJA3nUpHLjojdGm4Jtb4tsvSewkN5v3HgatXlDtZqL2ur@vger.kernel.org, AJvYcCWN2VocoTM+gUMzCEP/EXcQECIwfrKbAwzy5Axv+b6O+kjI3167jdZ+XSD9GSMg7aRQuCRe2geq+OIaQhiT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUAmPztUmr1k1DKlENgKHwcxtnAavgMJcupLWvbtGKkIcvYKIQ
+	Zgwn++LxdYPaOcXTZd8RUmfMXeO15XpBy0ufrdnStd6SJzo/QcC+ZDvDfiusstDa/kWdB4q3pxf
+	BzGYOVBfdp3IcjCfKDTuPY+boul0=
+X-Gm-Gg: ASbGncvJ0gDsn27w/xthZEvJNlIg8lJTxES4sBJl435CGpjHSaWt99fjFQnAhlno3Pf
+	m/ZGr2B3udbSa/WKWMksLtkNJ0hHEZgFGpkmDJXSi1pReU+KPePdihJsx+oYoVkV/yJp24jtU5m
+	UdKHuIYld5QO0KOtPyHeVTOkcyzw69vGZZ281gjEG0CUxtq0CtBTbId5WatXeEndaI
+X-Google-Smtp-Source: AGHT+IHK+m8VrLrlFlxV6nZ8ThujVJZ2WLpJFiDSDa8zctkcFlgA9baoyjBybS2403268oDSkrugum4D+6yxW9qAQH4=
+X-Received: by 2002:a05:6000:2905:b0:39c:2688:612b with SMTP id
+ ffacd0b85a97d-39ea51ee489mr13637534f8f.7.1744725174186; Tue, 15 Apr 2025
+ 06:52:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250415072724.3565533-10-peter.chen@cixtech.com>
-User-Agent: NeoMutt/20250109-134-7b7c50
+References: <20250415125642.241427-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250415125642.241427-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <Z_5hc151mud_UM1C@shell.armlinux.org.uk>
+In-Reply-To: <Z_5hc151mud_UM1C@shell.armlinux.org.uk>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 15 Apr 2025 14:52:27 +0100
+X-Gm-Features: ATxdqUGwNzRsl8J8RvInaxREfU9EplttUyDfCX4lENAuX3MnWfvUzlpS2hWxJag
+Message-ID: <CA+V-a8sTN_vUDxL7V_64U3hs2-AB2Go66_gELe4Bkx0po2734Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v6 3/4] net: stmmac: Add DWMAC glue layer for
+ Renesas GBETH
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 15, 2025 at 03:27:23PM +0800, Peter Chen wrote:
-> CIX SKY1 SoC is high performance Armv9 SoC designed by Cixtech,
-> and Orion O6 is the motherboard launched by Radxa. See below for
-> detail:
-> https://docs.radxa.com/en/orion/o6/getting-started/introduction
-> In this commit, it adds sky1 base, mailbox, clock (scmi firmware baseed)
-> and uart, and the kernel could boot up to console.
+Hi Russell,
 
-The commit message style is supposed to be in imperative tone, i.e. "Add sky1 base".
+On Tue, Apr 15, 2025 at 2:39=E2=80=AFPM Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+>
+> On Tue, Apr 15, 2025 at 01:56:41PM +0100, Prabhakar wrote:
+> > Add the DWMAC glue layer for the GBETH IP found in the Renesas RZ/V2H(P=
+)
+> > SoC.
+>
+> I think we're almost there, but now that the trees have parted, we can
+> start seeing other bits of wood :)
+>
+:)
 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Fugang Duan <fugang.duan@cixtech.com>
-> Signed-off-by: Guomin Chen <Guomin.Chen@cixtech.com>
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-> ---
+> > +struct renesas_gbeth {
+> > +     struct plat_stmmacenet_data *plat_dat;
+> > +     struct reset_control *rstc;
+> > +     struct device *dev;
+> > +     void __iomem *regs;
+>
+> This appears to be only written, never read. Do you need it?
+>
+No, I can get rid of it.
 
-I've tested this on my own Orion O6 with 6.15-rc2, the UART does work and the kernel
-does boot up to the expected point. Feel free to add the tag if you'd like.
+> I think that's the last thing I can spot in this driver, so with that
+> fixed, please add:
+>
+Thanks, along with this I'll fold renesas_gbeth_clks_config() contents
+into renesas_gbeth_init/exit() as suggested by Philipp.
 
-Tested-by: Kajetan Puchalski <kajetan.puchalski@arm.com>
-
-> +++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright 2025 Cix Technology Group Co., Ltd.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sky1.dtsi"
-> +/ {
-> +	model = "Radxa Orion O6";
-> +	compatible = "radxa,orion-o6", "cix,sky1";
-> +
-> +	aliases {
-> +		serial2 = &uart2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +			size = <0x0 0x28000000>;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
+> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+>
+Cheers,
+Prabhakar
 
