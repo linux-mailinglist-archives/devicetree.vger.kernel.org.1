@@ -1,57 +1,71 @@
-Return-Path: <devicetree+bounces-167528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD628A8AA92
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:56:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADCEA8AAAA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 00:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0E26441B43
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:56:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 174F33B9FEC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 22:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9098B25487E;
-	Tue, 15 Apr 2025 21:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F0A263F4C;
+	Tue, 15 Apr 2025 22:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2IDSzD6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qaVvA/gb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617932248AB;
-	Tue, 15 Apr 2025 21:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68CD2741BA;
+	Tue, 15 Apr 2025 22:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744754186; cv=none; b=MpeHY5yO335gL871qwJG0q4MmEDeeYoqq0kUKqY6YJh81u4VtFPoF5WhrQsnQ6m1nrfIR8KJvU+zMNUptQqihVMdEh8xhlCp9mhgo9DBkB/HHEPH+w+ymqr2m3WCqbzSF1pHcpYpiV7xknGBPFr10PnS3VVSZetazPJT+fXLcYg=
+	t=1744754421; cv=none; b=ffXlbTHrF87zDDKG0Exga5L8xLr7aNcUEwIg81nJ6n92IlOIM5sbdveKnNYNV7f3/YndsjTLNouyGu7pNh+kdvazk7Pir5Q/1AqfO1ycDR1kndKlhDBxLQW3ya3WuQOz+q2hwZay0jLPBvtbU+C8LbKJDWHl/YcXbcwL/66PWMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744754186; c=relaxed/simple;
-	bh=Vo/YKkJ/8t7MWgy4qvcqRwSc3jZbe8FFEUN84uQGTQM=;
+	s=arc-20240116; t=1744754421; c=relaxed/simple;
+	bh=daV67HKQogBs7ZdA8Rq6MMRQKj4oNdZ1uIGfugsJiwg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ImoD8KCnTwcEQVTM8t8JQ07INLOD1Wizsv5TGJadEwwem9lKOSp/bqmLNCySlNgdK5k1hUl9oKgy4tkKyDoXpICDO1MUpjhNdLTj3cLXormWn/cCt5aT+Cemd0PEhw0yc2ThDeKR9LQJVJb3h3K3LkWzK3fKXzEYvQZeUweOaDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2IDSzD6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EEFFC4CEE7;
-	Tue, 15 Apr 2025 21:56:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HFa58sDKhigGe7+bXMmaqmu/BtO3Pjk1GihK/4QhQCLMOG62TxY1i4rwkP0QJR2rJ4rJepTvprGBHQcxhbQTOl5Z2xYJVnbe2I8PT9NOL8kjkS3Xn/2Dh9BdL/h98HkAp2QdP8SbcpJ+G1U8EBQcLJuZ+nr3MPG25xfLRWTZmTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qaVvA/gb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 794D0C4CEE7;
+	Tue, 15 Apr 2025 22:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744754186;
-	bh=Vo/YKkJ/8t7MWgy4qvcqRwSc3jZbe8FFEUN84uQGTQM=;
+	s=k20201202; t=1744754417;
+	bh=daV67HKQogBs7ZdA8Rq6MMRQKj4oNdZ1uIGfugsJiwg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r2IDSzD6Kl5nwaZoIdLcD6+WF8g5Tmol0Ffd8tTdPEvmDuYHUNBw1OpU5UFDwATzk
-	 Zjx4aAYSKftDnaFVDbDnTRyCuBDgZkqDyPWyFXbYLlZ2Uk+NL4NheyqZ1fnMWs3Fwm
-	 xV2gmbhNDCKmID211P2qWYsl0MtDHx7ad3WFGp7nHhi+UGv+iK3FdrCr/zxWW27gF+
-	 pHWq+2EmLIg42/vj0cTNWCfR4FBqAU/Wwkfec9nhJCXdzmqWgsmMdOTB6q+xqz9QpU
-	 SCoLm0bHvqWPtQ0eTzp/xV2zQHyaL5kt1SY9kIvQ3is+C7Ld9dHGoD0kDUlyDv/1MA
-	 FLADkDwxK1Afw==
-Date: Tue, 15 Apr 2025 16:56:24 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: samuel@sholland.org, linux-sunxi@lists.linux.dev, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, wens@csie.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Add Orange Pi 3 LTS board
-Message-ID: <174475418391.894498.2952286031502803448.robh@kernel.org>
-References: <20250413134318.66681-1-jernej.skrabec@gmail.com>
- <20250413134318.66681-2-jernej.skrabec@gmail.com>
+	b=qaVvA/gbI1uG0oD9RYALexMxPoA68JkoRyMpOEltdrHZUb5TmxA7Ws/XHrOqq7Wzs
+	 DzQUOY5LM5BolQYZBFePnmJ88wEXUlSiGP8AxbcRcGtNr+dR2BY8xwIzIQ2nx5v7Aw
+	 bb92SmSxM6DWqa8PbOo1P8pC5Ff0pw98akLBwS7Aec7/GlaKunwuiJ58tdj8qFVKrw
+	 iqVvdq8K1an76WP9oO0r8eu4fY1RCpby87ETMdEHKdq/8QxBEuWEc5m4p2dqru3Dcf
+	 DweeUhub94SXclwzx295Eb9UukARCyQkp+Vta/7HMoucfk90qrCuKgh0RHD7OQtYa/
+	 cThQFsd1KaHoA==
+Date: Tue, 15 Apr 2025 17:00:15 -0500
+From: Rob Herring <robh@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: qcom: Move phy, wake & reset
+ gpio's to root port
+Message-ID: <20250415220015.GA897840-robh@kernel.org>
+References: <20250414-perst-v2-0-89247746d755@oss.qualcomm.com>
+ <20250414-perst-v2-1-89247746d755@oss.qualcomm.com>
+ <ody5tbmdcmxxzovubac4aeiuxvrjjmwujqmo6uz7kczktefcxz@b6i5bkwpvmzl>
+ <6db146b9-ad63-42c7-9f33-83ecf64ed344@linaro.org>
+ <tsnvoy2spr2dtqt3q2cnvl7rxobjgcgxntxb6rjtjdeej625i5@35je7sp3xqea>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,21 +74,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250413134318.66681-2-jernej.skrabec@gmail.com>
+In-Reply-To: <tsnvoy2spr2dtqt3q2cnvl7rxobjgcgxntxb6rjtjdeej625i5@35je7sp3xqea>
 
-
-On Sun, 13 Apr 2025 15:42:56 +0200, Jernej Skrabec wrote:
-> Orange Pi 3 LTS board is similar to Orange Pi 3, with slightly different
-> hardware but mostly same functionality. It has less options than
-> original variant. eMMC was optional before, now it's always included.
-> 2 GB RAM is now standard, previous variant also has 1 GB RAM version.
+On Tue, Apr 15, 2025 at 01:11:35PM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Apr 14, 2025 at 02:50:19PM +0200, Caleb Connolly wrote:
+> > 
+> > 
+> > On 4/14/25 10:04, Dmitry Baryshkov wrote:
+> > > On Mon, Apr 14, 2025 at 11:09:12AM +0530, Krishna Chaitanya Chundru wrote:
+> > > > Move the phy, phy-names, wake-gpio's to the pcie root port node instead of
+> > > > the bridge node, as agreed upon in multiple places one instance is[1].
+> > > > 
+> > > > Update the qcom,pcie-common.yaml to include the phy, phy-names, and
+> > > > wake-gpios properties in the root port node. There is already reset-gpio
+> > > > defined for PERST# in pci-bus-common.yaml, start using that property
+> > > > instead of perst-gpio.
+> > > > 
+> > > > For backward compatibility, do not remove any existing properties in the
+> > > > bridge node.
+> > > > 
+> > > > [1] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
+> > > > 
+> > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > > > ---
+> > > >   .../devicetree/bindings/pci/qcom,pcie-common.yaml      | 18 ++++++++++++++++++
+> > > >   .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml      | 17 +++++++++++++----
+> > > >   2 files changed, 31 insertions(+), 4 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> > > > index 0480c58f7d998adbac4c6de20cdaec945b3bab21..16e9acba1559b457da8a8a9dda4a22b226808f86 100644
+> > > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> > > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> > > > @@ -85,6 +85,24 @@ properties:
+> > > >     opp-table:
+> > > >       type: object
+> > > > +patternProperties:
+> > > > +  "^pcie@":
+> > > > +    type: object
+> > > > +    $ref: /schemas/pci/pci-pci-bridge.yaml#
+> > > > +
+> > > > +    properties:
+> > > > +      reg:
+> > > > +        maxItems: 1
+> > > > +
+> > > > +      phys:
+> > > > +        maxItems: 1
+> > > > +
+> > > > +      wake-gpios:
+> > > > +        description: GPIO controlled connection to WAKE# signal
+> > > > +        maxItems: 1
+> > > > +
+> > > > +    unevaluatedProperties: false
+> > > 
+> > > Please mark old properties as deprecated.
+> > 
+> > Since this is a trivial change, just moving two properties, I don't see why
+> > it makes sense to deprecate -- just remove the old properties, and move over
+> > all the platforms at once.
+> > 
 > 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+> This will be an ABI break. You should not remove properties all of a sudden
+> without first deprecating them (even if you convert all upstream DTS at once).
+> ABI is for older DTS also.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
++1
+
+Rob
 
 
