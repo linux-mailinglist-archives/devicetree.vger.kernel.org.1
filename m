@@ -1,95 +1,127 @@
-Return-Path: <devicetree+bounces-166976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F4CA8918D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:44:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13737A891A2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:56:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076A91772A9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:44:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF364189C56D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 715331C84C0;
-	Tue, 15 Apr 2025 01:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38908207DF7;
+	Tue, 15 Apr 2025 01:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gkT1XCiF"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="pvpKKiLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2401A5BA8;
-	Tue, 15 Apr 2025 01:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE37019F133;
+	Tue, 15 Apr 2025 01:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.155.65.254
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744681448; cv=none; b=bgjLPt0Y7XyVDLCEv+6DC+LMf2T9EZkpXnCkdWtWdzQd2s8ygooQnCRIPVoEEeJ914MUN5xEFu4TeqyNKcDFCOOjQ2acyiYhRh3kh45ZpnkPGQFhhmAKVGKznqL7EVS08J3YVt5RZIK1ec+VaA56tk6wV2AapQCNf8brsj71frY=
+	t=1744682140; cv=none; b=LanjK9NLIXOHk9pdw1IJbSF6HCgtFqbWoBzKFW1yn0/6b9VYJe56ZFPkTbzicpq/1R42p/7Pumfe+5Z0+oT4NA4sJlt8xl88MWnuMic1yNJF4P4Kdse7EfKLqgLpcnRsB4I8U2tDbxs5SCMEY1kGSelm9nKU5VxGbH41LbkCo6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744681448; c=relaxed/simple;
-	bh=5/BeXwKcj97t82jM+9oYwA9IQD7JHFcv3WYKpcXTkHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OkvF7n2MGT5RjMy0eYKgDPgCkD1367YKbGVW4WE9Avrr+xqsDn+dkEEuyayqHfqzKtqmKN5ulX9XDSFPcptGq/BMWgGG7MA8Lh1SdvsBaTZpnBGMgM0QBOKbeb1P7KoRz21VSQQqvHFChF0PPWoukVlRT/SmT1pJ0Pd1KYDBvCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gkT1XCiF; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=wGR7nK8EU+Cj5W9ySk84JYng8rysMk1dgDF+70d6Bc8=; b=gkT1XCiFMPbPvAozaSPSIi2XnW
-	7ylKKmYfn5zEZNYYZb8vFvCYJOsVlqoJAYTK9KVIxklBr4X/NwyS2mkh+jVnyd8898ni4BXUR3UOE
-	ut9/u80pzzVHjE5+nrAGEWQ7cBye7POaHgaQOP/YdOv0Orw03jhVVcnp4WQZKyqWeLK0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u4VL9-009Jyv-LS; Tue, 15 Apr 2025 03:43:55 +0200
-Date: Tue, 15 Apr 2025 03:43:55 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1744682140; c=relaxed/simple;
+	bh=mmlFdSrZIvUW02iX5eikNG9SIqXXY+rcuo4Mu16wSY4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S/Y5xNmmhV8yErzFfDdBM/oO1A1n7eB7NHmEO8+xWB0gPOUMtas7spfJgfxCcAqygHfp/u1xPOGR5NzWlx9WIQ/vskQtj44RfqKiFQVOU6FtUntAG6AaOVNUIRsFStBZ6GbYEXFWKgJGBKoJ3ER6+yTWRg1oPNKFnxDQN6xX498=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=pvpKKiLn; arc=none smtp.client-ip=43.155.65.254
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1744682090;
+	bh=wnkPaXEk6qnYCo+vvtWUioDSPxFUMrg19yw3XdC2wC4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=pvpKKiLnzxT2FnGg12YQopnGAxFS6dDaf45OAClNaQ+2LqcdaeSQUmZnQ4PU74Usi
+	 kg2nCVJZHqp9/lmbfx44wFbD5vv9eh/4MQeyFSojUpk0xwRvCZKQKNb3JqFM2rhDVI
+	 fPthn3g6EnW6fXKlTGG2dvZ53SetVcRhfdXc2g7Q=
+X-QQ-mid: izesmtp87t1744682086tba17c408
+X-QQ-Originating-IP: fKMTSp+kc+w90RdYckDRM+y8DxFPMNasfY7wqVQrQR0=
+Received: from localhost.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 15 Apr 2025 09:54:44 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 17149853333597941837
+EX-QQ-RecipientCnt: 20
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
-Subject: Re: [net-next v5 4/6] net: mtip: The L2 switch driver for imx287
-Message-ID: <45a4fe47-d590-442a-9073-39472a49d52d@lunn.ch>
-References: <20250414140128.390400-1-lukma@denx.de>
- <20250414140128.390400-5-lukma@denx.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Alexey Charkov <alchark@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add support for RK3588 EVB2 board
+Date: Tue, 15 Apr 2025 01:54:39 +0000
+Message-ID: <3B59B383C82BCCCA+20250415015441.371214-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250414140128.390400-5-lukma@denx.de>
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: izesmtp:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: OCFGt05vYz7YvWpe1uePm5eULD9aSIb3h30C2kLwI6I8RuW9oQyu/npC
+	P10Yi0xxJzADchGsRXCTk7XYog1tUQJVmgeMReY45F2X3ZcCEzFHERJBwERZGZiy8H7qMNv
+	GoOyB+xWO70+LwoZ98Dk0Bv1YK5rioJ9/X1sLbIBNUiplTfOkjYKSrKjm5pomDdUb/V2Eb2
+	lrM2EcRYQu3r1WIvpDiUij2U+7XhXfXjNKuNtZruvm2mc3J/1D3cb6G5/RmzaIf3BLhV/a7
+	UqihwMHe1ZEcK9TfQRstJ5Bk9oatQ1q16B/WH99YWYHgkKfB1mhKSUpE3xrfCCCNStIl3Xd
+	rJ/VucsF7cXflqBiOiQPKHTKkvI3zc5ic1Dfa4bOOK+l6am0rrEL6uAjgYFPsikJPwCGjZk
+	5LrJiezijk5cz5zLP+josrXYf1J3O+6c1nbQU9kH8lVXyVSj4wYcDNY9klQtyl6pmBLGj9e
+	vdp6G7s1MfFKaJWOGWK3rYC2y27CwoHKUHVh4Z4PnGPbYXsyxs1EgaRzntIG4vnYPBKq5Ef
+	jF7FDwQe0t8FDyhb3ORT0s0LKpsNlrInkhzu7YQwhWcx6uH158GgJDU70jJaZaPnB4A5nv0
+	OjjYMEag52v6hOnZv46Njoph+qQvQMWGFHWZmyIzskkMCNNVnBriulHWQ1S3QADeiPghMfG
+	2ddmYa7UKDmZHZ4MCSlQ85i8j1B7EIxPsaW+Wn0QCr7KGVmhjhJ6yUYQ+9Ns7zQQtuF5lYx
+	Tco81aa10T/u+Pff/FM1UqHU0WO1sp+nFMKbQWsUWCN20qLDENnFJxB9Fcmz7lIBrzwtgAG
+	i0p4dS9Xok/gJyB4ES9Qc//mr5UBVX1KTjwEBGaVxR4d69nl5z8Vt0WN7kAKyEhpA9z6U3y
+	+ofewRHTbSS1rh98mDIzssfmBjt/OsmqbsPPA4yFnYmTPWmXvki8lHjJ//2MhY6mw3KjJWQ
+	aLkfbguE+SmNhv29MI2SWQzMd0/4qq3vbxsMjrvytk9wptklcEzDh3+4P
+X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
+X-QQ-RECHKSPAM: 0
 
-On Mon, Apr 14, 2025 at 04:01:26PM +0200, Lukasz Majewski wrote:
-> This patch series provides support for More Than IP L2 switch embedded
-> in the imx287 SoC.
-> 
-> This is a two port switch (placed between uDMA[01] and MAC-NET[01]),
-> which can be used for offloading the network traffic.
-> 
-> It can be used interchangeably with current FEC driver - to be more
-> specific: one can use either of it, depending on the requirements.
-> 
-> The biggest difference is the usage of DMA - when FEC is used, separate
-> DMAs are available for each ENET-MAC block.
-> However, with switch enabled - only the DMA0 is used to send/receive data
-> to/form switch (and then switch sends them to respecitive ports).
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+General features for rk3588 evb2 board:
+- Rockchip RK3588
+- LPDDR4/4X
+- eMMC5.1
+- RK806-2x2pcs + DiscretePower
+- 1x HDMI2.1 TX / HDMI2.0 RX
+- 1x full size DisplayPort
+- 3x USB3.0 Host
+- 1x USB2.0 Host
+- WIFI/BT
 
-    Andrew
+Chaoyi Chen (2):
+  dt-bindings: arm: rockchip: Add rk3588 evb2 board
+  arm64: dts: rockchip: Add rk3588 evb2 board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   4 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588-evb2-v10.dts     | 931 ++++++++++++++++++
+ 3 files changed, 935 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+
+--
+2.49.0
+
 
