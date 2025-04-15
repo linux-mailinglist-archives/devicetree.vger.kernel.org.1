@@ -1,702 +1,208 @@
-Return-Path: <devicetree+bounces-167541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCFC9A8ABAD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:00:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3525BA8ABB1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1FCC16AED6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:00:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEF0B190351C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2768C2C3747;
-	Tue, 15 Apr 2025 22:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4AA2D86AF;
+	Tue, 15 Apr 2025 23:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FIYCpdsu"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="J6ODt8uA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010020.outbound.protection.outlook.com [52.101.229.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 052202C2ACB;
-	Tue, 15 Apr 2025 22:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744757990; cv=none; b=MxhzvnMJJ5MapGe9RkUi0CjVt0sBrWQCHpEKYxF8N/680/xxFfJmPBfrocBt8VXDxCYGKTTpu/zMqIZNRnekzGl4xhdkhrmPg/4HFGWGuQBhZezM0SJROZRVPRIS7SifCNVt8jZOD435wlXeXEb+WJLhPNYtemduwhDhjKplh+w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744757990; c=relaxed/simple;
-	bh=jc9N03k1QfgtPfW9d9hzwd7WCh2/6f8pEQfg0YWGMlU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qJ41nnsm3vWW/Yszk2ybD4m1h/B7FCqGF5pQUuX5H5cLob8lEx32LNW+aubeoqSah5TDWnOox0j+DYEVwlakvmc30yVV+Rl9D31/YEclbRm7nq4AILG8An+FDtoONDzMxD8VM/j5qSLcLrRHtDBT1rz9/TpyOyp2KYhceas7/Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FIYCpdsu; arc=none smtp.client-ip=209.85.166.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-3d46fddf43aso44719785ab.3;
-        Tue, 15 Apr 2025 15:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744757987; x=1745362787; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JD5gqJgl0o904ungOO+PQFcT58GKy6PoIttE79uySS8=;
-        b=FIYCpdsu3CWjiVpTTxoDVY0gPT0GSFUDc07ZtMwdpuVPZAbC1ea2SJ18AbHWVBmt2L
-         zZego+KHey6C7seuPTTVs/1unPWQ51mgcQG8APYqGAIII11QUHazJPdEtGyreOklKWZ2
-         HD+i+vRhUtT+LBkZgOx186RHppcDCw0yvrckU0Vio8vbBs106qExOnP0qWXcVLL0NjmC
-         KbJwNg8lAPo0ssTGpncIjzUT4Ylm79MoSU2bPpUDMezY+lrsN6YFv0xYV1pdMyNs7JFm
-         JWXjuycKsvjE8zYAaYQo+BRIZ2YN4HlNEwg3EqqpbwrQe6c2v1oOagE1tXbki6wZvJfo
-         YQgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744757987; x=1745362787;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JD5gqJgl0o904ungOO+PQFcT58GKy6PoIttE79uySS8=;
-        b=D/I+/8Uwl1F1Dq0CdpqW8SGfhqf35Cbqk8a2HthnyAuGOzeetOzOA5pC/paSI/IrAt
-         v1tZW7w2XpM1aoYeS4tCSqhkZqKfzBkgmOFCBB3H6pRpz6Q/m9Qt/lj2gcPSRhIwTlEB
-         oRS41dAbFp3b+PmXmS5CQfrphvycYMXqIgvmvKRCzLg/+E/JCi027kh64v9QP5ae1UB8
-         vmsTMtsAJ6qjzAf+NYggJgh0MCh0ur/p6VyKD7aoPf8Frwdi0YJf3nI2dlT8ytvlT8O9
-         +kdfRo2OpQhth9KhML42tU8D4mGbEI3xC6Q9K77+bhXEryHrqkdMZ8mj/LZ+FW9VHYoG
-         sJ3g==
-X-Forwarded-Encrypted: i=1; AJvYcCULSzKfB5/MnRw0tzVonIsx22OR3VM7UUrk2vtCqSWqOTN2TZKld6ms8TQsKbDetLgqgk5g46K/F1uJo49P@vger.kernel.org, AJvYcCXVaYDf5cpuHmwr3yT8TCaMEjmX8LOEPf+WM7tDrpPO+VqIs+DN+iDawHmahEqoRpggiqpGTNYZ13qx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQYFr1DBLXGB238EyQg4f17AtXMTtKLZHN10yRgtqyvkBl2mPb
-	WIhsDGJmkNxc7bKjxJEPLTirbmYKRFOQmy5DqmMzADOD3eH5W3F0
-X-Gm-Gg: ASbGncsZKpKzGbOX74ZeqlDrac8Y29fW55Ogdw+V+yMCA9+eeVgPJ+2t1BrL8ie9MR2
-	kO1nbJkw0kOMx/aTwd0DKvuNTijPPHVxWQxhI0HXHBkbnCAVpuE1WRfdSY/zfr4EfSOwohChvMQ
-	sGAEhxWfMHI1CwqqD3rGWAXE5d5GWRC+Iezp+e5w0T62S87Sudo7A2hkjJO92QUcR1EG3q/ioWN
-	noVBV7r+mYZqwejp2BTljl02LHPijn2vvUCFA6vT4JhB1xJndcIuiOywg/088zz0vZ7GflbsXWf
-	V942etXpiURgrliH5DW3aM9zbhDTC7MkR2Fji+vBoPcSQzBZvE+HOk5IyjSdIzgUlLqEHaXeQX6
-	F
-X-Google-Smtp-Source: AGHT+IGpMiPfTzR40QNSAj6EDFVf4XLqvKGDcUTaU7AUhVx9rRQ5+OjTWJMgthJkRWXzj9Kjq0kMrw==
-X-Received: by 2002:a05:6e02:1aad:b0:3cf:c9ad:46a1 with SMTP id e9e14a558f8ab-3d812546cdfmr11947175ab.13.1744757987052;
-        Tue, 15 Apr 2025 15:59:47 -0700 (PDT)
-Received: from hestia.. (24-220-158-153-dynamic.midco.net. [24.220.158.153])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f505d175edsm3382356173.55.2025.04.15.15.59.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 15:59:46 -0700 (PDT)
-From: Robert Nelson <robertcnelson@gmail.com>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Robert Nelson <robertcnelson@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5042D86A8;
+	Tue, 15 Apr 2025 23:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.20
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744758049; cv=fail; b=O03emc2/R+sMAs9Nd/wA6tkLkXkerEWh+yN1/Pe9c2jAeZt773ACnB2EBvadVG84XRlAnifBXqD3X+dRNcHCn4fYHhDYJi4BobjPn566L+Fnd68WcQcvQ/rwwKVb/T8nQ1nVImOskqedBW/EUg+mstZL+YCPSDLjh1eHXxCTsaU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744758049; c=relaxed/simple;
+	bh=5C3SV5EFsHRkT2ii+6FQz/GrlwW+HjA2+wzYmouLsTs=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=XiadI4np/uC2UzNRaRY2batLPUJec3McGkdzaS355le1eFnaIxJBbu0xnUvMCtFFWZrCsfZCMROjJPx/wQAexXvOKGlnUMm2y2fzEwMYZNJQoD+K4/oc1Mi5cT5hbZQ00g4sj6NAXufkmKnFAf8YYoKlovCVmViygnMvm/JNWiw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=J6ODt8uA; arc=fail smtp.client-ip=52.101.229.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nRHZhmABv+SQRwRKWgEvrW4Nymeaf8Kkv2v3r0mmbKp43t8trH8AeXXetfcCtY0H/iwExkyyBeLDTJ1CGGXMaaIdHlQuhqZc2+qeJHP8pi9bssX/De6fDdglPZQTYjFiy2OirzMQWsaJ8rYSc3YN/Yz+oU6/MunhuljIWmSjL4U27VFEHmMznt55x8mU7nEHlPqfAAZtuXA2wHi85Zy/2y7hkMvCXZ8ElIEPgxvLjS4hwsXIVw2DvPO8bYNvljTL4YKYEfAA03OdcmlvirLH4BVic2gV1VVDtTVevg0TsEl5hGgIp74nPdsGf/FesEM170i3+gT4VAWtF8s6KRFgaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e40hGaE0KKWdPUhVMG0vbvyEnyxPh3PwUNgPmxxKaAE=;
+ b=pBH+swsUCwe+2Tvk3Lgh0cdSx9iTdhjzsBQAQkz5L5jyUNygFxM4/KNrqWmg+FN1y7Rm3/mgOkOAkwdgtjCJpBrpm6O0+2pnRU1HVaE6sXmWXPRIoKUwh0gyd1qTdKQgM13BFuWB+k5zBPrBI04mgc9ENFlRTbUktdaLC5EyB8UlslRzilqhWfIbQeOCqQzeoUZ6UqwjhqB2DSBa2eY29PKrWJXelg0SNhoAYIr7eGyOIb2or1tMy1b/jnQD3IQfuYq/b2xWlrXBFF+b+UYR2HXfA25s2uTYFByQMZeBHrqfVqMsD3D1/Udqj+nurRIkirnYTz4M7VOkpZhotBXYWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e40hGaE0KKWdPUhVMG0vbvyEnyxPh3PwUNgPmxxKaAE=;
+ b=J6ODt8uAXeCExh4A6xb8VQkrBZY0yQrdW+GL8fZCJjBEo7TrQoinz0EZFMNpAwuPc/rAZiuL2Kp3q0tEGqoV5Xb8AlCmjrfvLCAHS/dBPoYq/2LBLnCOP+iT9XFeyIRGqzmd1TDNEJNgDJzkkO5qKl8fSfryTkWvt49aBMgepCU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB6143.jpnprd01.prod.outlook.com
+ (2603:1096:400:4b::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.31; Tue, 15 Apr
+ 2025 23:00:39 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8632.036; Tue, 15 Apr 2025
+ 23:00:38 +0000
+Message-ID: <87msch81yh.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Nishanth Menon <nm@ti.com>,
-	Andrew Davis <afd@ti.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Judith Mendez <jm@ti.com>,
-	Andrei Aldea <a-aldea@ti.com>,
-	Dhruva Gole <d-gole@ti.com>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Deepak Khatri <lorforlinux@beagleboard.org>,
-	Ayush Singh <ayush@beagleboard.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: Add k3-am62-pocketbeagle2
-Date: Tue, 15 Apr 2025 17:59:40 -0500
-Message-ID: <20250415225940.3899486-2-robertcnelson@gmail.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250415225940.3899486-1-robertcnelson@gmail.com>
-References: <20250415225940.3899486-1-robertcnelson@gmail.com>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>,
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+	ALOK TIWARI <alok.a.tiwari@oracle.com>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: Re: [PATCH v3 01/10] dt-bindings: renesas,sh-msiof: Add MSIOF I2S Sound support
+In-Reply-To: <CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
+References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com>
+	<87y0w21a4h.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdXwJGj-xTqEgtsNNX2UR4kPnJ5m2H+KbULdjX7dmUoW8A@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 15 Apr 2025 23:00:38 +0000
+X-ClientProxiedBy: TYCP301CA0028.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB6143:EE_
+X-MS-Office365-Filtering-Correlation-Id: ab7a727a-9a1a-40f1-d4d9-08dd7c7156e1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tnk8tHgPn3KpZ7rgb3Tp2RhH3tO6rIiebA8eDbFGvOemEXTjls/GqhGm15iQ?=
+ =?us-ascii?Q?233pR9/YHv0mQ/+V00fJz2/IYghVJ+DJ/o8Vhzo4Vw66M6zbIXLzRY1HC78C?=
+ =?us-ascii?Q?wKUfH9PwbUKXAndDH2TDa149ZGHW0rk7wOd/Ri0p+EKNIPkBsnplE6LzearE?=
+ =?us-ascii?Q?CzYVCoCAbE0qe5BJuL8PFMr/2liiLXg9WNeAX2bYkJ/KqFn9FAysjDOJU7De?=
+ =?us-ascii?Q?aOjy3dgF0+OIlF4B+FVEHzbxEutvELEhA/Epb+pkcrPWj1+cqTkqtsh9h+zt?=
+ =?us-ascii?Q?oOACjMPQCIsWIqY5FaIRb9itM/Dhvidj621bvSXXXzfp1Q5qD6Cl4Va6V0Q4?=
+ =?us-ascii?Q?KDQmXqeAghF9J0PtkUuJsv9XL4jKI6PDjhmJuEK4KsBeKXYcA1DL+8Vt8l2m?=
+ =?us-ascii?Q?tc0moVT+WVkpP2vSKpqpsNZakHk3d9XGi19nBgfyVjsnxi3g2tXOe1KDowz1?=
+ =?us-ascii?Q?ejnNOmFQC21p6uLrBnV+RuIeWxQODSg7nDvBgitZxNQ2Pyg6U9IRvF7CzhB6?=
+ =?us-ascii?Q?wrZzqNkGRU34vFaJamElubvmZZizVPEW1NW1U8DSnOeiBCbxtWw9RJSGIp4h?=
+ =?us-ascii?Q?gPrGrOaufD2hwlz0/13ltWgmsSIn/EYacpzfVL+/7Jd/asAkeqdU0hBcBKK+?=
+ =?us-ascii?Q?e6LjSjMrtYhD7SB+lcZa8iZE+g+lka7VtEiXD5upXhmqbqFXpVMSkYV7DMy+?=
+ =?us-ascii?Q?M//eogQTce8GYa2KwQhiFEpFkc2/l0qpvZoUBpnvSGdLTQW0OUDaukeIK3ms?=
+ =?us-ascii?Q?miVUPB6TqLbLc2TkmButsOi3ouHyxwtGky1GZgzTvK2rf39ac2gMVUlXwyb2?=
+ =?us-ascii?Q?+9KVUfUZ9tbzG7uUg5okAxEl5WAe3tBCNf4Y7mA96zLZULfPjWi0JQPFOdEK?=
+ =?us-ascii?Q?NRjob3fQ/yYgPFqSRYz2WM0leNcB8iaJwCmzxRhF0A9jxqBed8ckN9bSX3yE?=
+ =?us-ascii?Q?vI9D8K98FOzVp5iYwHi5McN/YyO2p978NOkkt0WhKHUBVqFkN2vhmcioOHXO?=
+ =?us-ascii?Q?j6HRpiWPQ9eZog6sBzgkJTmYuFet0cpYq+8gDNuMJyoPrxcqIvo8mQjx7d6k?=
+ =?us-ascii?Q?At1Y4Ymdg3b+QSO7EZ6IhzlbWtlPw0IpI4XvrS1C7DrtGBi3XMi+URqhBZ0H?=
+ =?us-ascii?Q?21zNZYEqY09E9VIx01zx5M04Ia+3R7W5gOI//Bwa34U5lXaGhqsY7r1Cs+JG?=
+ =?us-ascii?Q?ApgHHEKS1tRt4Gl4iW6Km0nXgJg06trVchluzFykPaPEiEPG14TMb+VyQ7px?=
+ =?us-ascii?Q?g2ceK9sxr+9yDG1akGk3YGl29JhkmXNYdsAo2Q0sTyOzKrycVPHgURuNrd4e?=
+ =?us-ascii?Q?wOZMVwaAFyfHrU5MUWre3eWOYTDLFJ4pZ5SXPRQ5Q+H2kgbKvXF1iUgKbAkx?=
+ =?us-ascii?Q?Xw4WsNrQcQYAoDUbdXn1ELRututM1FssCwbYbPwBWz4Y8vGmAMXqNTYXAw+C?=
+ =?us-ascii?Q?ysSXxQQSjN40OCMZO1phlMocAjnwNMkj5zUKaI2AnrvSKViOngYoXg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?eJq9rEgV6QajBYFn15QPmeLX11oFykJbTfyxM/94LewbLXpNB1418/37bwC8?=
+ =?us-ascii?Q?cruqNWIU6MNAsx9y7/rkqkiRpchOLjj9q9OKGIzB/sWtZRCJtdZo3PMPLapH?=
+ =?us-ascii?Q?GNwQwLSVbj44lI3mcAeIAFwrt3VIQVYTRNLiCD5U/P4nJmN65tnapJtDDvqX?=
+ =?us-ascii?Q?TXorp5gBbs3JyFUOl+lpV5kTAJjN3AOX0TgEHEBg5dyIfJTpjwDWg9HTS4wv?=
+ =?us-ascii?Q?s2cZezfPZpeVChpquBhhIT1FX1elK7kjCzucPOKgiWDeqSCGsfQlyOjDWuv0?=
+ =?us-ascii?Q?PHtUusaKKE9j0+Q49nleFEIzwT1aJrAPqePc2nkbpNixuTMMgrdU8B1RobZp?=
+ =?us-ascii?Q?0D9V1+3FLjrYEQFNK8ipJ2DKLK2C4Z8q9N9A3qd/g+Wpmy2SL7ERO0jVa0Vx?=
+ =?us-ascii?Q?QQ6oTdhjBbhbbLDGatQ+EBtb1w1QGBGgv4E7RD3b28yKPc9YuXKq3p1wa9Xh?=
+ =?us-ascii?Q?dFTKADi17eFQPpIbk1CB3KEc6NJPVcL08qs6uO9HDTiLBx6PbVDK62pvTUn3?=
+ =?us-ascii?Q?KGX30MqP09T/TxZm/UnsA89i2xShs3ovbuKtPHKlYdxlb8FuJOLkWSyXBC1w?=
+ =?us-ascii?Q?aAA5KTCyo+qf+fG2JDUjl0zIvkJiMTcjfmewReh37WQFKtk55LGPo0I35Afi?=
+ =?us-ascii?Q?Ba6FzOMzG94wmPA3i1OZNNjasZuCvG75w1Wps2fKaBmP4lfOKYEQ8AuaUZqb?=
+ =?us-ascii?Q?ZSxfZ9J8Lp/LHGxtqEfBFQBohI47VDGk/M/7WcnHt3vCAhpQm+uVuXh3gklW?=
+ =?us-ascii?Q?n3zfytg1Kj7OFz35Zz+NgHEvZv/MrGOAjdlz7fqlyec0246WhbIM6fa/f0uN?=
+ =?us-ascii?Q?pgY0d2L4GkTcxz3AixsxraGo48duiUPG4hqkG88+yHx7ntilfLcXp4IsguNj?=
+ =?us-ascii?Q?3RvDT8KOvTWlV0AS53kkC+KTHoLtuz8wmNhton1VP4kGbgCJtMK/wvlyR6v6?=
+ =?us-ascii?Q?TMlXa655THtcPeaTMC2xZKaX4s897Azts9LXjFcmg6n/HeV/c0/k1wC647d5?=
+ =?us-ascii?Q?85T/zjHnrCQo0SkWe5vngSnll6gj0GgF+7kt5rTBjvpDqc6pE66q5drrsWmj?=
+ =?us-ascii?Q?8+SIR9H63PQ8WpqBRH4h9HX02xcSdyJiE8mQMn4Irch3WJVf4hCRh7/C74nG?=
+ =?us-ascii?Q?NWWx2RT9pu2oqRv85PDBLvTOU5JAeqSY82pVK51sDQGflpRqqoEUuX84STkL?=
+ =?us-ascii?Q?ArAuGcqwqc0ndZDZ8MRORcku0PXlsk7vYqPKV0NJyST8C25XB+4vIwhFJpE/?=
+ =?us-ascii?Q?zr/ZpFnMmvtJ47I/cf9Cpk5kgfZLsuDFMqYxzMjaETxnlpgCxiuMOx+L/LRz?=
+ =?us-ascii?Q?884YF9b/4O+CtFJCRragFbuU5iQy4d302LIBIIfwp/7GRtWofrNmEv7lLS2y?=
+ =?us-ascii?Q?XYchN22G8TmmaPWEcrb5epUUJlBFVPcRYQLslpO1FU4D0x7f6utuH0Ypel4Z?=
+ =?us-ascii?Q?alvv+miKWYjTlvSuSZX2dB+NJuE4vCS8jYy/RikdyCChYEsRK7aNURhGg85s?=
+ =?us-ascii?Q?6f97nIjQ0+YTLSZU0cKsstdwtENdaO2BmozPz/5CWwHZjSXcBpc/g4W5VDZf?=
+ =?us-ascii?Q?Rq00zjvFUqnKuT1uP9eR8FN/tBnaPYXAqHS6kbmXWUM8IrWoZssQZiEa07Od?=
+ =?us-ascii?Q?9HYfnnYdyexe5QYlXfLUHaU=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab7a727a-9a1a-40f1-d4d9-08dd7c7156e1
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2025 23:00:38.8811
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0y6mU6tHuxu068aOOubn4XJ9g8x6D+x1n1SN0vghJH2xj/Uyso3xFIYF78+QZZg/ipKnjAlRTXYqN8RKUhTicJM2Dx8zbBtMwygpu/IIMLG2IemRWnU3Kt4JDD81Hu7v
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6143
 
-BeagleBoard.org PocketBeagle 2 is an upgraded version of the popular
-PocketBeagle.  It is based on Texas Instruments AM6232 or AM6254 SoC.
-Its dual or quad A53 cores can provide higher performance than classic
-PocketBeagle. The new design comes with pre-soldered headers, a 3-pin
-JST-SH 1.00mm UART debug port, a USB-C port, Texas Instruments
-MSPM0L1105 Cortex-M0+ MCU for ADC, 512MB RAM, and a LiPo Battery charger.
 
-MSPM0L1105 firmware source: https://openbeagle.org/pocketbeagle/mspm0-adc-eeprom
-* EEPROM 24c32 emulation
-* ADC ad7291 emulation
+Hi Geert
 
-https://www.beagleboard.org/boards/pocketbeagle-2
-https://openbeagle.org/pocketbeagle/pocketbeagle-2
+Thank you for your review
 
-Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Nishanth Menon <nm@ti.com>
-CC: Andrew Davis <afd@ti.com>
-CC: Roger Quadros <rogerq@kernel.org>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: Judith Mendez <jm@ti.com>
-CC: Andrei Aldea <a-aldea@ti.com>
-CC: Dhruva Gole <d-gole@ti.com>
-CC: Jason Kridner <jkridner@beagleboard.org>
-CC: Deepak Khatri <lorforlinux@beagleboard.org>
-CC: Ayush Singh <ayush@beagleboard.org>
+> > +  # "MSIOF-SPI" specific
+> > +  - if:
+> > +      properties:
+> > +        $nodename:
+> > +          pattern: '^spi@'
+> 
+> This condition does not match what you wrote in the cover letter:
+> the controller is used in I2S mode when a port(s) subnode is present,
+> and in SPI mode when no port(s) subnode is present.
+> 
+> > +    then:
+> > +      allOf:
+> > +        - $ref: spi-controller.yaml#
+> 
+> Documentation/devicetree/bindings/spi/spi-controller.yaml indeed
+> requires that the node-name matches "^spi(@.*|-([0-9]|[1-9][0-9]+))?$".
+> The controller's node is located in the SoC-specific .dtsi, where its
+> intended use case is not yet known, and its node name cannot easily be
+> overridden in the board .dts that specifies the use case.  Hence the
+> node name must always be "spi" (and cannot be e.g. "serial-engine").
+> Let's hope there is no other use case for MSIOF that requires using
+> a different node name...
+
+Hmm... OK
+
+So what we can do is keep spi@xxx node name, and check whether it has
+Of-Graph, and select spi-controller.yaml
+
+Thank you for your help !!
+
+Best regards
 ---
-Changes since v2:
- - cleanup unused serial aliases
- - cleanup unused sdhci0 (un-populated) aliases
- - cleanup unused main_i2c1 (un-populated) aliases
- - add missing main_i2c0 aliases
- - fix bootph, function, color, gpios order in leds nodes
- - drop local cpsw disable, needs to be moved to k3-am62-main
- - MSPM0L1105 add firmware source and note where emulated
- - usb0 add note about Type-C connector, but only wired for USB 2.0
- - usb1 add compatible note with original PocketBeagle expansion boards
-Changes since v1:
- - fix '_' in main-i2c2-default-pins
- - aliases i2c match original pocketbeagle
- - add mcu_m4fss with reseved memory and mailbox
- - drop unused main_gpio0_pins_default pinmux
- - drop unused main_gpio1_pins_default pinmux
- - drop unused main_spi2_pins_gpio pinmux
- - Reserve 128MiB of global CMA
----
- arch/arm64/boot/dts/ti/Makefile               |   1 +
- .../boot/dts/ti/k3-am62-pocketbeagle2.dts     | 518 ++++++++++++++++++
- 2 files changed, 519 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 03d4cecfc001..4f8fcb69a2c1 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-nand.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am62-pocketbeagle2.dtb
- 
- # Boards with AM62Ax SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-new file mode 100644
-index 000000000000..50d8d9a076a0
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-@@ -0,0 +1,518 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * https://www.beagleboard.org/boards/pocketbeagle-2
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2025 Robert Nelson, BeagleBoard.org Foundation
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "k3-am625.dtsi"
-+
-+/ {
-+	compatible = "beagle,am62-pocketbeagle2", "ti,am625";
-+	model = "BeagleBoard.org PocketBeagle2";
-+
-+	aliases {
-+		serial0 = &wkup_uart0;
-+		serial1 = &main_uart1;
-+		serial2 = &main_uart6;
-+		serial3 = &main_uart0;
-+		mmc1 = &sdhci1;
-+		usb0 = &usb0;
-+		usb1 = &usb1;
-+		i2c0 = &main_i2c0;
-+		i2c2 = &main_i2c2;
-+		i2c3 = &wkup_i2c0;
-+	};
-+
-+	chosen {
-+		stdout-path = &main_uart6;
-+	};
-+
-+	memory@80000000 {
-+		/* 512MB RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x20000000>;
-+		device_type = "memory";
-+		bootph-pre-ram;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* global cma region */
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x00 0x8000000>;
-+			linux,cma-default;
-+		};
-+
-+		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cb00000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9cc00000 0x00 0xe00000>;
-+			no-map;
-+		};
-+
-+		secure_tfa_ddr: tfa@9e780000 {
-+			reg = <0x00 0x9e780000 0x00 0x80000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9db00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9db00000 0x00 0xc00000>;
-+			no-map;
-+		};
-+	};
-+
-+	vsys_5v0: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vdd_3v3: regulator-2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vsys_5v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vdd_mmc1: regulator-3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		regulator-always-on;
-+		vin-supply = <&vdd_3v3>;
-+		gpio = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv: regulator-4 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "sd_hs200_switch";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vdd_3v3>;
-+		gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+		bootph-all;
-+	};
-+
-+	adc_vref: regulator-5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "default";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins_default>;
-+		bootph-all;
-+
-+		led-1 {
-+			function = LED_FUNCTION_HEARTBEAT;
-+			color = <LED_COLOR_ID_GREEN>;
-+			linux,default-trigger = "heartbeat";
-+			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+			bootph-all;
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			color = <LED_COLOR_ID_GREEN>;
-+			linux,default-trigger = "mmc1";
-+			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+			bootph-all;
-+		};
-+
-+		led-3 {
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			bootph-all;
-+		};
-+
-+		led-4 {
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			bootph-all;
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	led_pins_default: led-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x000c, PIN_OUTPUT, 7) /* (E25) OSPI0_D0.GPIO0_3 */
-+			AM62X_IOPAD(0x0010, PIN_OUTPUT, 7) /* (G24) OSPI0_D1.GPIO0_4 */
-+			AM62X_IOPAD(0x0014, PIN_OUTPUT, 7) /* (F25) OSPI0_D2.GPIO0_5 */
-+			AM62X_IOPAD(0x0018, PIN_OUTPUT, 7) /* (F24) OSPI0_D3.GPIO0_6 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
-+			AM62X_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_i2c2_pins_default: main-i2c2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x00b0, PIN_INPUT_PULLUP, 1) /* (K22) GPMC0_CSn2.I2C2_SCL */
-+			AM62X_IOPAD(0x00b4, PIN_INPUT_PULLUP, 1) /* (K24) GPMC0_CSn3.I2C2_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14/A13) UART0_RXD */
-+			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart1_pins_default: main-uart1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x194, PIN_INPUT, 2) /* (B19/B18) MCASP0_AXR3.UART1_CTSn */
-+			AM62X_IOPAD(0x198, PIN_OUTPUT, 2) /* (A19/B17) MCASP0_AXR2.UART1_RTSn */
-+			AM62X_IOPAD(0x1ac, PIN_INPUT, 2) /* (E19/D15) MCASP0_AFSR.UART1_RXD */
-+			AM62X_IOPAD(0x1b0, PIN_OUTPUT, 2) /* (A20/D16) MCASP0_ACLKR.UART1_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart6_pins_default: main-uart6-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x001c, PIN_INPUT, 3) /* (J23) OSPI0_D4.UART6_RXD */
-+			AM62X_IOPAD(0x0020, PIN_OUTPUT, 3) /* (J25) OSPI0_D5.UART6_TXD */
-+		>;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x23c, PIN_INPUT, 0) /* (A21/C18) MMC1_CMD */
-+			AM62X_IOPAD(0x234, PIN_INPUT, 0) /* (B22/A20) MMC1_CLK */
-+			AM62X_IOPAD(0x230, PIN_INPUT, 0) /* (A22/A19) MMC1_DAT0 */
-+			AM62X_IOPAD(0x22c, PIN_INPUT, 0) /* (B21/B19) MMC1_DAT1 */
-+			AM62X_IOPAD(0x228, PIN_INPUT, 0) /* (C21/B20) MMC1_DAT2 */
-+			AM62X_IOPAD(0x224, PIN_INPUT, 0) /* (D22/C19) MMC1_DAT3 */
-+			AM62X_IOPAD(0x240, PIN_INPUT, 7) /* (D17/C15) MMC1_SDCD.GPIO1_48 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0244, PIN_OUTPUT, 7) /* (P25) GPMC0_CLK.GPIO1_49 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01f4, PIN_INPUT_PULLUP, 0) /* (D16) EXTINTn */
-+		>;
-+		bootph-all;
-+	};
-+
-+	vdd_3v3_sd_pins_default: vdd-3v3-sd-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0000, PIN_OUTPUT, 7) /* (H24) OSPI0_CLK.GPIO0_0 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	usb1_pins_default: usb1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0258, PIN_INPUT, 0) /* (F18) USB1_DRVVBUS */
-+		>;
-+		bootph-all;
-+	};
-+
-+	epwm2_pins_default: epwm2-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01e8, PIN_OUTPUT, 8) /* (B17) I2C1_SCL.EHRPWM2_A */
-+		>;
-+	};
-+};
-+
-+&epwm2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&epwm2_pins_default>;
-+};
-+
-+&mailbox0_cluster0 {
-+	mbox_m4_0: mbox-m4-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&main_uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart1_pins_default>;
-+	bootph-pre-ram;
-+	status = "reserved";
-+};
-+
-+&main_uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart6_pins_default>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+	bootph-all;
-+	status = "okay";
-+
-+	ad7291: adc@20 {
-+		/* Emulated with MSPM0L1105 */
-+		compatible = "adi,ad7291";
-+		reg = <0x20>;
-+		vref-supply = <&adc_vref>;
-+	};
-+
-+	eeprom: eeprom@50 {
-+		/* Emulated with MSPM0L1105 */
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&main_i2c2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c2_pins_default>;
-+	clock-frequency = <400000>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&mcu_m4fss {
-+	mboxes = <&mailbox0_cluster0 &mbox_m4_0>;
-+	memory-region = <&mcu_m4fss_dma_memory_region>,
-+			<&mcu_m4fss_memory_region>;
-+	status = "okay";
-+};
-+
-+&mcu_pmx0 {
-+	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C6/A7) WKUP_UART0_CTSn */
-+			AM62X_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (A4/B4) WKUP_UART0_RTSn */
-+			AM62X_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (B4/B5) WKUP_UART0_RXD */
-+			AM62X_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (C5/C6) WKUP_UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_MCU_IOPAD(0x004c, PIN_INPUT_PULLUP, 0)	/* (B9) WKUP_I2C0_SCL */
-+			AM62X_MCU_IOPAD(0x0050, PIN_INPUT_PULLUP, 0)	/* (A9) WKUP_I2C0_SDA */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	disable-wp;
-+	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
-+	cd-debounce-delay-ms = <100>;
-+	bootph-all;
-+	ti,fails-without-test-cd;
-+	status = "okay";
-+};
-+
-+&usbss0 {
-+	bootph-all;
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	/* This is a Type-C socket, but wired as USB 2.0 */
-+	dr_mode = "peripheral";
-+	bootph-all;
-+};
-+
-+&usbss1 {
-+	ti,vbus-divider;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	/* Compatible with original PocketBeagle, expansion boards assumed this was pre-setup as host */
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb1_pins_default>;
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by Device Manager firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
-+	status = "reserved";
-+};
-+
-+&wkup_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <100000>;
-+	bootph-all;
-+	status = "okay";
-+
-+	tps65219: pmic@30 {
-+		compatible = "ti,tps65219";
-+		reg = <0x30>;
-+		buck1-supply = <&vsys_5v0>;
-+		buck2-supply = <&vsys_5v0>;
-+		buck3-supply = <&vsys_5v0>;
-+		ldo1-supply = <&vdd_3v3>;
-+		ldo2-supply = <&buck2_reg>;
-+		ldo3-supply = <&vdd_3v3>;
-+		ldo4-supply = <&vdd_3v3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&gic500>;
-+		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+
-+		bootph-all;
-+		system-power-controller;
-+		ti,power-button;
-+
-+		regulators {
-+			buck1_reg: buck1 {
-+				regulator-name = "VDD_CORE";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck2_reg: buck2 {
-+				regulator-name = "VDD_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck3_reg: buck3 {
-+				regulator-name = "VDD_1V2";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1_reg: ldo1 {
-+				/*
-+				 * Regulator is left as is unused, vdd_sd
-+				 * is controlled via GPIO with bypass config
-+				 * as per the NVM configuration
-+				 */
-+				regulator-name = "VDD_SD_3V3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-allow-bypass;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2_reg: ldo2 {
-+				regulator-name = "VDDA_0V85";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3_reg: ldo3 {
-+				regulator-name = "VDDA_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4_reg: ldo4 {
-+				regulator-name = "VDD_2V5";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
--- 
-2.47.2
-
+Kuninori Morimoto
 
