@@ -1,115 +1,113 @@
-Return-Path: <devicetree+bounces-167250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F82BA89B2F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E40A89B49
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:57:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ECE63B9874
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:53:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB1463A4113
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A02291167;
-	Tue, 15 Apr 2025 10:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC7328BABF;
+	Tue, 15 Apr 2025 10:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z1Z5ubms"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mCfuv+ac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1E6291160;
-	Tue, 15 Apr 2025 10:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3437E288C98;
+	Tue, 15 Apr 2025 10:54:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744714111; cv=none; b=T2cJlb+tTK6cbZ6I9I22EKfZqv0J3rzXq+kM7xoPZNxBdJx5oAcV27aW8uUXu95B1kEFK+Su/TJLkGFb96EeEWY0LAeWaDKRcWy3wbhBJzxtWnplgGLFibe/o2FElFsgAWTcgXlITliHbX87Avyq8stIL7kEoFaXGyaiOSu6vB0=
+	t=1744714492; cv=none; b=VuGtO581w3nQvJkX0XtAPzNGcSHskd07oLv//Fw7efHOJEHXA3JdVn23qZd71H8ftiJ/6/gwwemWYmXW2LKg0Um2f5CHFGjnS/682VMBEhhBxlqpdBap0VZFxr10SuBz3FeeOvG2Rf3GTjUyYk9zmYM2wKDrvUT0BQ0Q3w6hO7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744714111; c=relaxed/simple;
-	bh=CgTZtSnpeBEZpCMbBFIaZGn3QwWWlHR/mJgp6BEyfeI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CgFWSIewiDZqfHqi0/QPqK4bUlN+8ouqaWHkN74aK4BpkdY4oUBl4ObFIZvPI9yS+grDqdFssSWK3/lfkVJadnkqU+W4N1hg8GIRuXxJByh1o8nU6dUb7iNRWkrtv3DTDIVRmKiOminLieF+w9oZukQU/Y6JV5zKwSLha+ALDtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z1Z5ubms; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1744714107;
-	bh=CgTZtSnpeBEZpCMbBFIaZGn3QwWWlHR/mJgp6BEyfeI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z1Z5ubmsLjUbXF45H/YDyate0WEabrgAxtWqnITNe4AZe8+b4Ke3aUNvnzNa6M+jf
-	 0Lr/j/xOs8miKATlJEsQCnnDINXtXLJPhvpR3iV4k2noMV7X3Ii9t0LRLZeCsenJrZ
-	 X0fg1LRNTAUDCzundGbkKCLQGV6lmAYvFrfvahKBiBKkfBd+Yjq3MKUsCg5oOCXAFL
-	 BHdDaXENi6hf1QoTYs6jtpoBO4WdPUNgN/J2G51nv8ggueii5kTBhzJKYwd5GYcBLG
-	 hiwjeMpuSpUgbuSnvJNrmcakF5nAoHSGwE0ovGdp2qw3UPs0YcfGIbk6LRNrj2nzI8
-	 spay6QgJ9m8sQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 40E9917E09B5;
-	Tue, 15 Apr 2025 12:48:26 +0200 (CEST)
-Message-ID: <bc094a07-2a4c-4048-8c15-b096db62f142@collabora.com>
-Date: Tue, 15 Apr 2025 12:48:25 +0200
+	s=arc-20240116; t=1744714492; c=relaxed/simple;
+	bh=+ob3/6QHUlCNUnyCHrMdoUGCcUP4Ey19rJzogGictWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q1BLQOJP/cpb94qG/xCMEp6WvxOWauriTNsW4daHkQnSdOvJWPWx1yohsWJiCOK4HY+PRKfawrAxV+iP2PVC5F3DE9KiQtssa46Xpff6/eF/kwF4oZDx+Zv+VFUYnGdFT2ASfxSjT30+D9HOaKaDGII3NGJBlA17D+5/Zp5ijFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mCfuv+ac; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 415CF439EF;
+	Tue, 15 Apr 2025 10:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1744714488;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mU1L0OE4kqRPKvQXu+iydZ3XN/8SOPqiZLDwwEQ+2VQ=;
+	b=mCfuv+acyWBVEOk80bVR88MWbZihQzFzcW+stWpRN/l17K3BaXZZDLLn2DQo5PMG0YfFR/
+	KoQPbiuhOBwwrDvnsX85xi3qgQmPIpZFdnFBd0YNRFxRvvyoxDmdJWmaWzfPmWvuUNTSc1
+	v5Ir/o134mD+MulWaQkAdGTbsafUtdbilckUjHhFrig1dHF83cU5n2DDVoJVFktwMErPFC
+	qRLwJ0UtjLv6/u++ARoKBvHAgaNfnhhoLnLGpbyAciMy/yLtFpQnZWdCKe104bnfOT12H4
+	SdBOoPsbEm8ZaYgc82l5dMJ6KKgfKtmYmXW6sSj7tPprSNqoOs3BhROFmvQi8A==
+Date: Tue, 15 Apr 2025 12:54:45 +0200
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Whitcroft <apw@canonical.com>, Dwaipayan Ray
+ <dwaipayanray1@gmail.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>, Joe
+ Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Siddharth Vadapalli
+ <s-vadapalli@ti.com>, Roger Quadros <rogerq@kernel.org>, Tero Kristo
+ <kristo@kernel.org>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux@ew.tq-group.com
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <20250415125445.27d6ed8d@fedora.home>
+In-Reply-To: <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+	<218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 17/23] drm/mediatek: mtk_hdmi: Split driver and add
- common probe function
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com,
- jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com,
- ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com,
- jason-jh.lin@mediatek.com
-References: <20250415104321.51149-1-angelogioacchino.delregno@collabora.com>
- <20250415104321.51149-18-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250415104321.51149-18-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvvdeffedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudfgleelvddtffdvkeduieejudeuvedvveffheduhedvueduteehkeehiefgteehnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejpdhhvghlohepfhgvughorhgrrdhhohhmvgdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehmrghtthhhihgrshdrshgthhhifhhfvghrsegvfidrthhqqdhgrhhouhhprdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvhesl
+ hhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Il 15/04/25 12:43, AngeloGioacchino Del Regno ha scritto:
-> In preparation for adding a new driver for the HDMI TX v2 IP,
-> split out the functions that will be common between the already
-> present mtk_hdmi (v1) driver and the new one.
+Hi Matthias,
+
+On Tue, 15 Apr 2025 12:18:01 +0200
+Matthias Schiffer <matthias.schiffer@ew.tq-group.com> wrote:
+
+> As discussed [1], the comments for the different rgmii(-*id) modes do not
+> accurately describe what these values mean.
 > 
-> Since the probe flow for both drivers is 90% similar, add a common
-> probe function that will be called from each driver's .probe()
-> callback, avoiding lots of code duplication.
+> As the Device Tree is primarily supposed to describe the hardware and not
+> its configuration, the different modes need to distinguish board designs
+> (if a delay is built into the PCB using different trace lengths); whether
+> a delay is added on the MAC or the PHY side when needed should not matter.
 > 
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   drivers/gpu/drm/mediatek/Kconfig           |   11 +-
->   drivers/gpu/drm/mediatek/Makefile          |    1 +
->   drivers/gpu/drm/mediatek/mtk_hdmi.c        |  538 +-----
->   drivers/gpu/drm/mediatek/mtk_hdmi.c.orig   | 1769 ++++++++++++++++++++
->   drivers/gpu/drm/mediatek/mtk_hdmi_common.c |  422 +++++
->   drivers/gpu/drm/mediatek/mtk_hdmi_common.h |  188 +++
->   6 files changed, 2398 insertions(+), 531 deletions(-)
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi.c.orig
-
-CK, I just acknowledged that a .orig file slipped through and got sent out with
-this patch....
-
-Truly sorry for that, can you please fix that up while applying without having me
-send another patchbomb?
-
-Many thanks,
-Angelo
-
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.h
+> Unfortunately, implementation in MAC drivers is somewhat inconsistent
+> where a delay is fixed or configurable on the MAC side. As a first step
+> towards sorting this out, improve the documentation.
 > 
+> Link: https://lore.kernel.org/lkml/d25b1447-c28b-4998-b238-92672434dc28@lunn.ch/ [1]
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+
+Thanks for doing that ! I've tried to document that as well in the
+past but it didn't go anywhere and was more clumsy. I think your wording
+is clear and helpful.
+
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+Maxime
 
