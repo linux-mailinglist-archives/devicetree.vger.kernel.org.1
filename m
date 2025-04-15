@@ -1,57 +1,52 @@
-Return-Path: <devicetree+bounces-167522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596B1A8AA78
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:50:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6FEA8AA82
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 23:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C932D190334E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:50:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC14D7A2CE6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 21:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ADE127465D;
-	Tue, 15 Apr 2025 21:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B72D25D20F;
+	Tue, 15 Apr 2025 21:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sM9nrx14"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZTC875YD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60528274648;
-	Tue, 15 Apr 2025 21:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CCA257AF5;
+	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744753811; cv=none; b=udCAHT6y+ZHVJyvPcfEwMtDbgcAm8vEQGgz5l0PkhGB3IGTdS/cXYTOhXxYkUGFcWPzj9brj8Ne5l1yMi9Y6XJeyJcj2mQ7Tj8EkKRuGC/JyX4iZ/dwhDF4BzO7g2kYMIlWXX89n7PFspj+JNl+FfQPzxQoQoX0EX2JoPW0ujTk=
+	t=1744753964; cv=none; b=kwyfoRohFxj0nE1Xk7GoHc5fxBVdc8CyYw+wlWgB8TsyrMFqUSMMzNTq9OYgKxp7HkD+QPZqLZ033rvckvEn5YmcwHlVt33zr/y8viX1yuKQh5NX+tQWcmCiU6pZlR+zVL2vDF32mHiJIyEKSm1oftsV3FwfT7lVMyqq4pN2d94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744753811; c=relaxed/simple;
-	bh=kjmJsLGhEPG4vwN9i9+AIrSj3DmyBR619z4HNv/pKGM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lkHOvxen6Vamy0ao6+eagjTcddzLbgMr2une//vljOIPUMqCMg/tpB+igDVzOVexKbn/GhDaNCaIEuPnQH0yx+QNSAKgHfaUDWERa1T8s3WeH0mhnqUhkvo7HQJwmeQusNjJ+pMYdSNyeByU/QGSZE5s8dhC/d/tr3Pq+FuGh68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sM9nrx14; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EFD1C4CEE7;
-	Tue, 15 Apr 2025 21:50:08 +0000 (UTC)
+	s=arc-20240116; t=1744753964; c=relaxed/simple;
+	bh=jBNCv2rda4YJZMZlnqUFKXhD2YixBW/bajeGa6Tnahg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M9O0oHMFl6EQTBpfMpel9HETD4+VZJB2kgWGJgAMu9OUvUYtpp1nQBwUA5vEJqd8gS5buxztphoGWEor02HIEBA3eSNF1zyiHD71sHINqW8dKQ75nNKgdl3Cwz8jDxRJk+WAiukw2htURX4ebzdzdv+ddCdajCFcfomb3qoklZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZTC875YD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 73842C4CEE7;
+	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744753809;
-	bh=kjmJsLGhEPG4vwN9i9+AIrSj3DmyBR619z4HNv/pKGM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=sM9nrx14HPiUaVJSkHqCYVce6uPVBw++yH3avO/T6uC3A8Unui5K4MV+f81vYvG2c
-	 HS+JAv2uHZ+tFPX5HvF5P8ULXNYVNCteZyf69IXXhb+u3WZg6P6trTw9L9+cphMUvk
-	 IHF17IKFsVLteJlqpXRUOqh223etwO2DJQvX08qdE0r8LUAvtn9RTlefPpJT7V+Gcn
-	 pt7E7TJqZhgxnO25OAs2UAZMY1/h8apoSIPjr6hcdkvv6yt4fb9M3xG7PPPbp0y39b
-	 4aTRGgfnz3ljVTnVmtkPXoHVc2ZBpsacNUr8MM+qtj2d7fzUca7EgfSmcsolEOVOsE
-	 8tJB0IdaX2dEA==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, 
- Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-In-Reply-To: <20250415115016.505777-1-rf@opensource.cirrus.com>
-References: <20250415115016.505777-1-rf@opensource.cirrus.com>
-Subject: Re: [PATCH v4 0/2] ASoC: Add codec driver for Cirrus Logic CS48L32
- DSP
-Message-Id: <174475380824.1274591.7177149819961610298.b4-ty@kernel.org>
-Date: Tue, 15 Apr 2025 22:50:08 +0100
+	s=k20201202; t=1744753963;
+	bh=jBNCv2rda4YJZMZlnqUFKXhD2YixBW/bajeGa6Tnahg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ZTC875YDSXTbhMKwBPJqLXIDR4ehZNUQyv27RtLDUGt2lWnURr5FL53iytvdRoQ0k
+	 DNtByinSi0TTzxSAb5GBdpuiqqHHxoaz4R7fpmjDEhpcTkzkWoVCIJHvo5JaKQhTbw
+	 NOFEFM+SI/PWr07PCTXx8P/czUGezvVP/Aog3+LMoNIaaZeXNM47H5yElOxkn/sxfx
+	 TNR5DnBs+x2+5GT0lMSwIg5cie3u6EVVL4lF4fpEODX9PP/wmzKe8VV/0XPGLpHKr9
+	 a4Bdt4QYs/RDPhH7QL/IQvaAbYExNREcpFsRCaO2C8AYB8EqZhX58md6uRu651L1kd
+	 EWbLYuOxG0dFA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6138DC369BD;
+	Tue, 15 Apr 2025 21:52:43 +0000 (UTC)
+From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
+Subject: [PATCH 0/3] Generic SPMI NVMEM cell driver
+Date: Tue, 15 Apr 2025 23:52:33 +0200
+Message-Id: <20250415-spmi-nvmem-v1-0-22067be253cf@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,49 +55,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+X-B4-Tracking: v=1; b=H4sIACLV/mcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDE0NT3eKC3EzdvLLc1FzdVAMLM2NTY0MzQ3NTJaCGgqLUtMwKsGHRsbW
+ 1ABuu0b9cAAAA
+X-Change-ID: 20250415-spmi-nvmem-e08635316175
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>, Hector Martin <marcan@marcan.st>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744753962; l=1432;
+ i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
+ bh=jBNCv2rda4YJZMZlnqUFKXhD2YixBW/bajeGa6Tnahg=;
+ b=z/bozObO8yi+GVG8sufEa3NcrtwV6CqAU6PzOgE14u6VKIBZuU8qylsUv97vpKOw9XrAYnnts
+ RA/RVyk+lJwCJ3/TPasI9fumkGl32BPZfim4W4o7J+IHeyGvfsrR/2T
+X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
+ auth_id=283
+X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Reply-To: fnkl.kernel@gmail.com
 
-On Tue, 15 Apr 2025 12:50:14 +0100, Richard Fitzgerald wrote:
-> formance low-power audio DSP with analog and
-> PDM digital inputs and support for low-power always-on voice-trigger
-> functionality.
-> 
-> This series adds the devicetree bindings and the ASoC codec driver.
-> 
-> Changes in V4:
-> - Removed bogus updates to MAINTAINERS that were leftover from an
->   older version of this code that had other files that are now deleted.
-> 
-> [...]
+Hi.
 
-Applied to
+This patch series adds a driver for exposing a set of SPMI registers
+as NVMEM cells. This is used on Apple ARM platforms to store the RTC
+offset and to communicate platform power state between the OS and
+boot firmware.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The NVMEM cell consumer drivers will be sent in a further series.
 
-Thanks!
+Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+---
+Hector Martin (2):
+      nvmem: Add spmi-nvmem driver
+      arm64: dts: apple: Add PMU NVMEM
 
-[1/2] ASoC: dt-bindings: Add Cirrus Logic CS48L32 audio DSP
-      commit: ac03495d7359285a007ec4fdc08d3843bb5d6b7e
-[2/2] ASoC: cs48l32: Add driver for Cirrus Logic CS48L32 audio DSP
-      commit: e2bcbf99d045f6ae3826e39d1ed25978de17cbfe
+Sasha Finkelstein (1):
+      dt-bindings: spmi: Add generic SPMI NVMEM
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ .../devicetree/bindings/nvmem/spmi-nvmem.yaml      | 44 +++++++++++++++
+ MAINTAINERS                                        |  2 +
+ arch/arm64/boot/dts/apple/t6001.dtsi               |  1 +
+ arch/arm64/boot/dts/apple/t6002.dtsi               |  1 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi          | 50 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi               | 50 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi               | 50 +++++++++++++++++
+ drivers/nvmem/Kconfig                              | 14 +++++
+ drivers/nvmem/Makefile                             |  2 +
+ drivers/nvmem/spmi-nvmem.c                         | 62 ++++++++++++++++++++++
+ 10 files changed, 276 insertions(+)
+---
+base-commit: 2e0e70c95077172b29a5b13716c4b159d578e82c
+change-id: 20250415-spmi-nvmem-e08635316175
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Best regards,
+-- 
+Sasha Finkelstein <fnkl.kernel@gmail.com>
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
