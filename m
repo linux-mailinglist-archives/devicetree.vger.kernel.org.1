@@ -1,259 +1,133 @@
-Return-Path: <devicetree+bounces-167059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2328A894BC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B92BBA894CA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 09:21:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A83F189432F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:19:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D4A18952E5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5A227991D;
-	Tue, 15 Apr 2025 07:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE91275856;
+	Tue, 15 Apr 2025 07:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nDScuucj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuEtssGh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B2C23D2B8
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 07:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132C21F0E47;
+	Tue, 15 Apr 2025 07:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744701523; cv=none; b=V06z8Vk7xYyxmr1dGHx3KlNTW6j+BeXT0LXc3sWucYLwByKjOIVTwWcYfbThw+zPE9VXqYpY5+fw+hZC71UHM73CvtiO22o/C4icKUTJxzXk2AKpIabNFQuhJycRSL2Kou35/TQMZL8G6mTBegHNZ9mqcD2xJ8und+rVvvVNHF8=
+	t=1744701692; cv=none; b=MTcpS29UDVXrr6x33cn+7o1/oEKFj/a+9mdWhpQCjgavuMn4XW/HBiF5pDavNA0wGSuJ7p+7QDzSw8xUYAG1dUYn8PYwBLPiBhOTr5j7AsUuQ/wBlHFaj42UduIzw2VQ8j53JnIjZu6GCAF6Kfei0kLELMPgtWZxa/xonZmNCQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744701523; c=relaxed/simple;
-	bh=jjxXLOtaUU5zGI7uHmJIeqVNnv25Zreg+4XVdIUySb0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KoSj41cnXviaJkUvVqC/VzE7lZBOsKxyQao3WoJMW7JEFhVtMiuXcMoj+JlsuiNRHTcspHV7cvt5VAg/4ItLV89FaS6e/UgQcwlXayD02FrCvBdamySmseeGafoDcrxGgRC+pHXL3NMhyc+F3B0ONOQquIRYy8CQn7ikg8zRQWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nDScuucj; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2279915e06eso55082775ad.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 00:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744701521; x=1745306321; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MjVkJWHmX8v3mt1102Wpc+/VjkT959RAvTZUx+eidcw=;
-        b=nDScuucj0e9im4kMj2cY5iKH9UbjaKlKhm+gghi1Yo3+rmKcBwKWb4IGhbrrNsFSRE
-         NsTLXD+OmDEE0IQpcv54wONsNYjkjHNf3FIub1xXxIZllISjH77c3rYYNzjhoKqfQZXj
-         7N3LU7Mg8LrL6PWFASklw9KOrgBGK6StL4GH/Zcu1AU8CenC/jVGk8BZ2AGOv2nJZkfT
-         B1FU/npNbvFCvm+QT04pQpZ91Y3deWeU29Y8D0Q+vuw2yt92jnp7B78plm//YvrGqHnj
-         YrPPQ3joKdZiR49IS2hrM3aLDE+4jvrUAcfL7QtCoZinhOsLciVqHs1V+HlvkByoqcGG
-         ijhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744701521; x=1745306321;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MjVkJWHmX8v3mt1102Wpc+/VjkT959RAvTZUx+eidcw=;
-        b=wYi8pW3iyZNlJK3ywPs174xk2KgqcZpSQHYVg80uc7anv67n0N3K18GvHDAXoJ8psy
-         ecE6zkQcTJAfr2coEMsoL4sfhplefmK8nY7d0/IwNFDw/HUZvG8s9A2n8vqkkWEkG45P
-         6yAqLgS385ZylDvHoOb+z4h39vApdv/DZLPqeow1eAgG+Q+AaDLaA5R3g61n/T6C6Cw1
-         UY3BqMTN+Np/Q+0YHh5+qh7DsDe776JbdMw8akwHyg10hvAySRhWC12jcFgRhVkbjuXg
-         2RDRn7gx2oqT9cCpOY7Gtdsd0xPsctRQW1DYdV7UoPt0J/z7WdEU/cAFwQXL+ORusW54
-         NfmA==
-X-Forwarded-Encrypted: i=1; AJvYcCXe7+m4qJx3DKCIlwvpzT68btqWrzxbDkAUBasoyJK166dbT9gvwq9XJZTskYf60yXRXOQSOp6km4Av@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCKbcirX5fbGFVhrtzK9H4jF9u1PF0wbfvCfm1YJOGPzv3/ah1
-	t+3UpFszD++nPLmqGel5lOqSBWOzFwRsDq30Kc777JTvJi3YE+mmE/4Ly+5eZg==
-X-Gm-Gg: ASbGnct3FBZdtvg7M3V0CIX0CLOaJkZJ56XgVOAdy1Q/NdSzql9orYE0wdKXRN7ZTic
-	48OoJvqSjj5ydPU0dQqeeMCddlHoQqh2q8gj6k8hPAKWnJUibG7SiG0BHZb7VrcbCythElzz3Cp
-	KdaZ3M8NaW/SJxupM2C0KM7i8DQcpnYshd0T6jY/K4MaTqTR0L18lKFwFHwlOw2Ams5nurG3tLV
-	JxMyb0IDdsZ23bbsPEeQdHSZ0jJZvwiQA1HQg+JXYNQ3i3KsTwTzToPIhd+ErDg/v8yLPmHuw/U
-	mbUyIv09xz8bcaYSwF0E+nTR17XgDO6d6dGKU54zeD65Y4zPjBCIrsoZ51rP
-X-Google-Smtp-Source: AGHT+IElyXCOb4OPYmCjdN/6HrTiolToBMZfQbUehYU59w0I4aTlufDp7vFNPzJ0Nd7+qwAQOi33Xw==
-X-Received: by 2002:a17:902:d4c8:b0:223:6657:5008 with SMTP id d9443c01a7336-22bea4bd865mr185866395ad.24.1744701521616;
-        Tue, 15 Apr 2025 00:18:41 -0700 (PDT)
-Received: from thinkpad ([120.60.71.35])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22ac7b8b18esm110805445ad.82.2025.04.15.00.18.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 00:18:41 -0700 (PDT)
-Date: Tue, 15 Apr 2025 12:48:34 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
-Subject: Re: [LINUX PATCH v7 2/2] PCI: xilinx-cpm: Add support for PCIe RP
- PERST# signal
-Message-ID: <lopqatqgd4ql5qdtlph2irw2b4ed6dbnjsgncd7idlsz2tjlhn@rdvfj2ma2wx5>
-References: <20250414030842.857176-1-sai.krishna.musham@amd.com>
- <20250414030842.857176-3-sai.krishna.musham@amd.com>
+	s=arc-20240116; t=1744701692; c=relaxed/simple;
+	bh=ppCh1rXKzyooyLzB8X2IQ2Oju9H3qJQ74QV/enWha4E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b0LUwBFnxlFsD4lPsEPw7NK//Zaft5cMNtBloAyf3+fFSv+FsPTvGMLrpMsas2cDNvKPGQBdfdXjTdHVyM801uVEvGvJXHkWNcIDEzy0nZIpMhIfd3mKLG+rcgz6OxwdJCm8YKqeBswYt+kt3+94MeYMzaKQPsydQrRVQtR/0qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuEtssGh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94DDDC4CEE9;
+	Tue, 15 Apr 2025 07:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744701691;
+	bh=ppCh1rXKzyooyLzB8X2IQ2Oju9H3qJQ74QV/enWha4E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uuEtssGhD3d79YbN1rycbVffJyVi1oCudolVNpDRqTH2EoaHV+W4jC0ApwH/N8cmP
+	 1pyR/yBu94ec4p4W3AVE56vhOdEdeBf2/Qxae0Ar7kriY13Bl3qwtaAmLgBQWbtCf6
+	 5G3rQT6Bc7fIRuZSQ7gba9bnaLBnbycriCXOHCf/hLSdxcIYCgfC2PFb/SpGJc6jkK
+	 yYR9rmaE6AtHXBRAU2IpyweaefZs8oHQZBZmTSFIvnN7grYrHvmIurVBnASRaWUy2+
+	 ekcfm7NeJGuueJuqxC7xftkO8uBAuctu99UAlMdrENm3sWGvBu+ChMshO3CB4hvHL0
+	 Rhn9Rkx4zV6LQ==
+Message-ID: <b64511fa-a8e3-450e-aa4c-f47181314f76@kernel.org>
+Date: Tue, 15 Apr 2025 09:21:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250414030842.857176-3-sai.krishna.musham@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] Add support for Sitronix ST7571 LCD controller
+To: Marcus Folkesson <marcus.folkesson@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmrmann@suse.de>
+References: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250415-st7571-v4-0-8b5c9be8bae7@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 14, 2025 at 08:38:42AM +0530, Sai Krishna Musham wrote:
-> Add support for handling the PCIe Root Port (RP) PERST# signal using
-> the GPIO framework, along with the PCIe IP reset. This reset is
-> managed by the driver and occurs after the Initial Power Up sequence
-> (PCIe CEM r6.0, 2.2.1) is handled in hardware before the driver's probe
-> function is called.
+On 15/04/2025 07:58, Marcus Folkesson wrote:
+> This series add support for the ST7571 LCD Controller.
+> It is a 4 gray scale dot matrix LCD controller that supports several
+> interfaces such as SPI, I2C and a 8bit parallell port.
+> The controlelr supports both monochrome and grayscale displays.
 > 
-> This reset mechanism is particularly useful in warm reset scenarios,
-> where the power rails remain stable and only PERST# signal is toggled
-> through the driver. Applying both the PCIe IP reset and the PERST#
-> improves the reliability of the reset process by ensuring that both
-> the Root Port controller and the Endpoint are reset synchronously
-> and avoid lane errors.
+> This driver only supports the I2C interface, but all common parts could
+> easily be put into a common file to be used with other interfaces.
+> I only have I2C to test with.
 > 
-> Adapt the implementation to use the GPIO framework for reset signal
-> handling and make this reset handling optional, along with the
-> `cpm_crx` property, to maintain backward compatibility with existing
-> device tree binaries (DTBs).
+> The device is a little defiant, it tends to NAK some commands, but all
+> commands takes effect, hence the I2C_M_IGNORE_NAK flag.
 > 
-> Additionally, clear Firewall after the link reset for CPM5NC to allow
-> further PCIe transactions.
-> 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 > ---
-> Changes for v7:
-> - Use platform_get_resource_byname() to make cpm_crx and cpm5nc_fw_attr
->   optional
-> - Use 100us delay T_PERST as per PCIe spec before PERST# deassert.
-> 
-> Changes for v6:
-> - Correct version check condition of CPM5NC_HOST.
-> 
-> Changes for v5:
-> - Handle probe defer for reset_gpio.
-> - Resolve ABI break.
-> 
-> Changes for v4:
-> - Add PCIe PERST# support for CPM5NC.
-> - Add PCIe IP reset along with PERST# to avoid Link Training Errors.
-> - Remove PCIE_T_PVPERL_MS define and PCIE_T_RRS_READY_MS after
->   PERST# deassert.
-> - Move PCIe PERST# assert and deassert logic to
->   xilinx_cpm_pcie_init_port() before cpm_pcie_link_up(), since
->   Interrupts enable and PCIe RP bridge enable should be done after
->   Link up.
-> - Update commit message.
-> 
-> Changes for v3:
-> - Use PCIE_T_PVPERL_MS define.
-> 
-> Changes for v2:
-> - Make the request GPIO optional.
-> - Correct the reset sequence as per PERST#
-> - Update commit message
-> ---
->  drivers/pci/controller/pcie-xilinx-cpm.c | 97 +++++++++++++++++++++++-
->  1 file changed, 94 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
-> index 13ca493d22bd..c46642417d52 100644
-> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
-> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
-> @@ -6,6 +6,8 @@
->   */
->  
->  #include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/interrupt.h>
->  #include <linux/irq.h>
->  #include <linux/irqchip.h>
-> @@ -21,6 +23,13 @@
->  #include "pcie-xilinx-common.h"
->  
->  /* Register definitions */
-> +#define XILINX_CPM_PCIE0_RST		0x00000308
-> +#define XILINX_CPM5_PCIE0_RST		0x00000318
-> +#define XILINX_CPM5_PCIE1_RST		0x0000031C
-> +#define XILINX_CPM5NC_PCIE0_RST		0x00000324
-> +
-> +#define XILINX_CPM5NC_PCIE0_FRWALL	0x00000140
-> +
->  #define XILINX_CPM_PCIE_REG_IDR		0x00000E10
->  #define XILINX_CPM_PCIE_REG_IMR		0x00000E14
->  #define XILINX_CPM_PCIE_REG_PSCR	0x00000E1C
-> @@ -93,12 +102,16 @@ enum xilinx_cpm_version {
->   * @ir_status: Offset for the error interrupt status register
->   * @ir_enable: Offset for the CPM5 local error interrupt enable register
->   * @ir_misc_value: A bitmask for the miscellaneous interrupt status
-> + * @cpm_pcie_rst: Offset for the PCIe IP reset
-> + * @cpm5nc_fw_rst: Offset for the CPM5NC Firewall
->   */
->  struct xilinx_cpm_variant {
->  	enum xilinx_cpm_version version;
->  	u32 ir_status;
->  	u32 ir_enable;
->  	u32 ir_misc_value;
-> +	u32 cpm_pcie_rst;
-> +	u32 cpm5nc_fw_rst;
->  };
->  
->  /**
-> @@ -106,6 +119,8 @@ struct xilinx_cpm_variant {
->   * @dev: Device pointer
->   * @reg_base: Bridge Register Base
->   * @cpm_base: CPM System Level Control and Status Register(SLCR) Base
-> + * @crx_base: CPM Clock and Reset Control Registers Base
-> + * @cpm5nc_fw_base: CPM5NC Firewall Attribute Base
->   * @intx_domain: Legacy IRQ domain pointer
->   * @cpm_domain: CPM IRQ domain pointer
->   * @cfg: Holds mappings of config space window
-> @@ -118,6 +133,8 @@ struct xilinx_cpm_pcie {
->  	struct device			*dev;
->  	void __iomem			*reg_base;
->  	void __iomem			*cpm_base;
-> +	void __iomem			*crx_base;
-> +	void __iomem			*cpm5nc_fw_base;
->  	struct irq_domain		*intx_domain;
->  	struct irq_domain		*cpm_domain;
->  	struct pci_config_window	*cfg;
-> @@ -475,12 +492,57 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie *port)
->   * xilinx_cpm_pcie_init_port - Initialize hardware
->   * @port: PCIe port information
->   */
-> -static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
-> +static int xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
->  {
->  	const struct xilinx_cpm_variant *variant = port->variant;
-> +	struct device *dev = port->dev;
-> +	struct gpio_desc *reset_gpio;
-> +	bool do_reset = false;
-> +
-> +	if (port->crx_base && (variant->version < CPM5NC_HOST ||
-> +			       (variant->version == CPM5NC_HOST &&
-> +				port->cpm5nc_fw_base))) {
-> +		/* Request the GPIO for PCIe reset signal and assert */
-> +		reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +		if (IS_ERR(reset_gpio))
-> +			return dev_err_probe(dev, PTR_ERR(reset_gpio),
-> +					     "Failed to request reset GPIO\n");
-> +		if (reset_gpio)
-> +			do_reset = true;
-> +	}
-> +
-> +	if (do_reset) {
-> +		/* Assert the PCIe IP reset */
-> +		writel_relaxed(0x1, port->crx_base + variant->cpm_pcie_rst);
-> +
-> +		/*
-> +		 * "PERST# active time", as per Table 2-10: Power Sequencing
-> +		 * and Reset Signal Timings of the PCIe Electromechanical
-> +		 * Specification, Revision 6.0, symbol "T_PERST".
-> +		 */
-> +		udelay(100);
+> Changes in v4:
+> - (dt-binding) Add sitronix,grayscale property
+Mention that this is the reason of dropping Review.
 
-You don't need this delay unless the above 'cpm_pcie_rst' controls refclk.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Krzysztof
 
