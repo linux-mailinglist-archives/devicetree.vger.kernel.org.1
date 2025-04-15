@@ -1,193 +1,178 @@
-Return-Path: <devicetree+bounces-167203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8A4A89A50
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:34:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80788A89A63
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B856189FDB4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:33:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE697188DC7A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E4B28B50F;
-	Tue, 15 Apr 2025 10:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE40D2750F2;
+	Tue, 15 Apr 2025 10:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Fpvav24r"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ons7m0hO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49234.qiye.163.com (mail-m49234.qiye.163.com [45.254.49.234])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9312227A119;
-	Tue, 15 Apr 2025 10:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27FE1CEAA3;
+	Tue, 15 Apr 2025 10:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744713137; cv=none; b=RoWDKGL+H3//yGBEXQJufa9Gp2lOSAvMe5+N4qTHGQs9YinhDUcqHf7SN5+sc3GY+B5wcGwW5MaFBwhI4fT9OUewY5rGXPK7RDjKjolzPbP69B90uAS+edCiy682ltKsPt+TjhIbYFZhKzNr+fkF30pQIt/E6xU9NFXfUILfc1A=
+	t=1744713421; cv=none; b=XdBy9D4ahPnW4kAktUYee3b9SzSoXrgQaxN/Ru5799uyTAsJSWOr3G2V1sZWalcRICHetme0mQVw0QQiBO1xiEz5KJCqM9iDYILBAfMdlKqYDKBSrC9Iz1PSRktQQBDSJYOSFN+dGuX/m/ote7Zw09CzpGeAzVc27NSN+JY2zNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744713137; c=relaxed/simple;
-	bh=pHjveY6KoURnQuwE5Fd0lcHQLQ3u3khaDsZ0Fw6YzOQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bUPLntsTTi4zCy8saExqVIf0IezFvqbeyNZhfrwr9X2pS1I4E/gmiy79LaiNukQBQ0qis2gJzelj5WuyUPuygmsK39epdHJK/vguECRKAMQXQcKRfAgk/l7Y0XoY2fyWcgcLft9OucVSOl59msKVlkyozyBtQ3zDW/fiLuf2zPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Fpvav24r; arc=none smtp.client-ip=45.254.49.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 11f2f600c;
-	Tue, 15 Apr 2025 18:32:07 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 1/3] dt-bindings: nvmem: rockchip,otp: Add support for rk3562 and rk3568
-Date: Tue, 15 Apr 2025 18:32:01 +0800
-Message-Id: <20250415103203.82972-2-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250415103203.82972-1-kever.yang@rock-chips.com>
-References: <20250415103203.82972-1-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1744713421; c=relaxed/simple;
+	bh=wx4mo1LEKkoBZxLsIQ9KT/z2lr/0ddIEgTR9LY19wIY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OPjRDmrTr7v35UqjJ9j3V8mK/e1zBA2jS1ITfS1fN2zg3+vlk5orN97KgRPfWXrSEs1r3GkNhnyYcu+G8rzwJPF2A57IbJ6zf+5ZOiU6huI/jz+KMQg/yRaTyaLY219oQjQYB9fKzHxGX7gVtw6Eo1FgC21N0ydfoLZx4qN0GJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ons7m0hO; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FAaXB32330796
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 15 Apr 2025 05:36:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744713394;
+	bh=CM1FfPxfT6qnGQR4NUV0eAkHxH46NNtG6XNVqSWakkc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ons7m0hOXmjdWeM8ngfIhGEh25WQ/OKmnzeqD8KBWTVxgFA6gcDtM3AkeT+k5TfFa
+	 rm40vZh6RA3UuZ2YVaFCkPVmtG3G+0Aeb6e2N9jqQB5EoK8DKCXkgwIiVc9v5dzOeQ
+	 zpxFFM6SC3gQk4ObqM05Q5ERQP1VlvidXZnpqbv8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FAaXrB008560
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 15 Apr 2025 05:36:33 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
+ Apr 2025 05:36:33 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 15 Apr 2025 05:36:33 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FAaWR6017032;
+	Tue, 15 Apr 2025 05:36:32 -0500
+Date: Tue, 15 Apr 2025 16:06:31 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Andy Whitcroft <apw@canonical.com>,
+        Dwaipayan Ray
+	<dwaipayanray1@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Joe
+ Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>,
+        Nishanth Menon
+	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>,
+        Roger Quadros <rogerq@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux@ew.tq-group.com>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
+ update descriptions of RGMII modes
+Message-ID: <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
+References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
+ <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaQ0xIVkkeGkhDTEMdSkIYGVYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-X-HM-Tid: 0a963901956e03afkunm11f2f600c
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6PRw*NzJRMBgIMh4dIi4w
-	GgpPCiJVSlVKTE9PTEpISklDQklDVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUhNTU43Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=Fpvav24r00q9fYbGPkYAhH/bkoQv1u1vQmhEWGHRQNhoex6kebUG3A5krHs2i2h3fOqORNA6vqk3FqWVIAZbfmLkhzl6y/o+57CdlQgp/2FV4Bdn3tFyQDgB0e8PCWYxSQfY3QrqyNm1ytP5ozwjq0Ghp04uvIoTNLqI11gjDo4=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=iiNUR2t26Uu7+OW1iXl8pE11P0d1ljLW8CEOcUnql5c=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add compatible entry for the otp controller in rk3562 and rk3568, add schema
-for different clock names for new entry.
+On Tue, Apr 15, 2025 at 12:18:01PM +0200, Matthias Schiffer wrote:
+> As discussed [1], the comments for the different rgmii(-*id) modes do not
+> accurately describe what these values mean.
+> 
+> As the Device Tree is primarily supposed to describe the hardware and not
+> its configuration, the different modes need to distinguish board designs
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+If the Ethernet-Controller (MAC) is integrated in an SoC (as is the case
+with CPSW Ethernet Switch), and, given that "phy-mode" is a property
+added within the device-tree node of the MAC, I fail to understand how
+the device-tree can continue "describing" hardware for different board
+designs using the same SoC (unchanged MAC HW).
 
-Changes in v3:
-- update the clock name from "usr" to "otp" and re-order to sync with
- other soc.
+How do we handle situations where a given MAC supports various
+"phy-modes" in HW? Shouldn't "phy-modes" then be a "list" to technically
+descibe the HW? Even if we set aside the "rgmii" variants that this
+series is attempting to address, the CPSW MAC supports "sgmii", "qsgmii"
+and "usxgmii/xfi" as well.
 
-Changes in v2:
-- Update the commit message and add maxItems in schema.
+> (if a delay is built into the PCB using different trace lengths); whether
+> a delay is added on the MAC or the PHY side when needed should not matter.
+> 
+> Unfortunately, implementation in MAC drivers is somewhat inconsistent
+> where a delay is fixed or configurable on the MAC side. As a first step
+> towards sorting this out, improve the documentation.
+> 
+> Link: https://lore.kernel.org/lkml/d25b1447-c28b-4998-b238-92672434dc28@lunn.ch/ [1]
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> ---
+>  .../bindings/net/ethernet-controller.yaml        | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 45819b2358002..2ddc1ce2439a6 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -74,19 +74,21 @@ properties:
+>        - rev-rmii
+>        - moca
+>  
+> -      # RX and TX delays are added by the MAC when required
+> +      # RX and TX delays are part of the board design (through PCB traces). MAC
+> +      # and PHY must not add delays.
+>        - rgmii
+>  
+> -      # RGMII with internal RX and TX delays provided by the PHY,
+> -      # the MAC should not add the RX or TX delays in this case
+> +      # RGMII with internal RX and TX delays provided by the MAC or PHY. No
+> +      # delays are included in the board design; this is the most common case
+> +      # in modern designs.
+>        - rgmii-id
+>  
+> -      # RGMII with internal RX delay provided by the PHY, the MAC
+> -      # should not add an RX delay in this case
+> +      # RGMII with internal RX delay provided by the MAC or PHY. TX delay is
+> +      # part of the board design.
+>        - rgmii-rxid
+>  
+> -      # RGMII with internal TX delay provided by the PHY, the MAC
+> -      # should not add an TX delay in this case
+> +      # RGMII with internal TX delay provided by the MAC or PHY. RX delay is
+> +      # part of the board design.
 
- .../bindings/nvmem/rockchip,otp.yaml          | 53 ++++++++++++++++---
- 1 file changed, 46 insertions(+), 7 deletions(-)
+Since all of the above is documented in "ethernet-controller.yaml" and
+not "ethernet-phy.yaml", describing what the "MAC" should or shouldn't
+do seems accurate, and modifying it to describe what the "PHY" should or
+shouldn't do seems wrong.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-index a44d44b32809..8b257662f282 100644
---- a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-@@ -14,6 +14,8 @@ properties:
-     enum:
-       - rockchip,px30-otp
-       - rockchip,rk3308-otp
-+      - rockchip,rk3562-otp
-+      - rockchip,rk3568-otp
-       - rockchip,rk3588-otp
- 
-   reg:
-@@ -25,19 +27,15 @@ properties:
- 
-   clock-names:
-     minItems: 3
--    items:
--      - const: otp
--      - const: apb_pclk
--      - const: phy
--      - const: arb
-+    maxItems: 4
- 
-   resets:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
- 
-   reset-names:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
- 
- required:
-   - compatible
-@@ -62,12 +60,45 @@ allOf:
-       properties:
-         clocks:
-           maxItems: 3
-+        clock-names:
-+          items:
-+            - const: otp
-+            - const: apb_pclk
-+            - const: phy
-         resets:
-           maxItems: 1
-         reset-names:
-           items:
-             - const: phy
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - rockchip,rk3562-otp
-+              - rockchip,rk3568-otp
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: otp
-+            - const: apb_pclk
-+            - const: phy
-+            - const: sbpi
-+        resets:
-+          minItems: 4
-+          maxItems: 4
-+        reset-names:
-+          items:
-+            - const: otp
-+            - const: apb
-+            - const: phy
-+            - const: sbpi
-+
-   - if:
-       properties:
-         compatible:
-@@ -78,8 +109,16 @@ allOf:
-       properties:
-         clocks:
-           minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: otp
-+            - const: apb_pclk
-+            - const: phy
-+            - const: arb
-         resets:
-           minItems: 3
-+          maxItems: 3
-         reset-names:
-           items:
-             - const: otp
--- 
-2.25.1
+>        - rgmii-txid
+>        - rtbi
+>        - smii
 
+Regards,
+Siddharth.
 
