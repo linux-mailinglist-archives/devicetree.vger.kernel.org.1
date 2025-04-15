@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-167208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70163A89A74
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:38:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A347A89A7E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1335A3A8690
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:38:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 329C57A25EA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F4B28467B;
-	Tue, 15 Apr 2025 10:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2168328A1CE;
+	Tue, 15 Apr 2025 10:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DAKIuBGs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J4/FSqK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F81445C18
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9203279912
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744713501; cv=none; b=iQrDQ3s0SF55iAuwxYJ9jSfHA1h5vDEdDRo9bPH7LXZpj3vpLLmBB+i4aiz1r0cXQ/7PjskXqeSbpj+JdLXNFSkXe5BJjhJ8UI7zis+t3GrWHw/JHc6iwxltDcOxVpouibgtaZ8wULMVjrPl770FGhtfO+euLInSaGxqVsTxQrM=
+	t=1744713687; cv=none; b=SSgtxC/cBpaZZ4ubfz6a3PID+wpKj21t/yyd/B8gxjOOYhc9yq+UmWcahe2pt81sILcf+WOYxpR47eRJRaC9O6WvBfaSy9nwwPJJdo9rkvHRjbR82lofiIE9vMWDazwHJIOpRIsMZfsRNZ1jrK5tCa2sNBNZtBgPh/YGWmbs1KQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744713501; c=relaxed/simple;
+	s=arc-20240116; t=1744713687; c=relaxed/simple;
 	bh=PqtFIuf2PaqgdiInwLbpBw6+hS8F+gVD8HwKtn8pZqA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r2HVL80y8CIFceWh6N/xEvgYYF/XWxfHOLaxAoqiviOO/+milSfB+5AtB7RM1g4+Jd38IUo7SQBW8uwuW61PhwzJwx9fSiLXIZtP8jAL7UqDaSsDeBJpZfdnVoBKI7+lD4G9+gj6Wu1fOznCK/7cNm8vuSvPG86bOPXOnAy1/DY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DAKIuBGs; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=CKMQRcQOzp8Rf/N0vZqysm8eA/IherNqHNEMlZoW2ZIgWFxoDUD/gBBPVEA4CLIjLSZ7UKjnT2JMsf4hwx87egAE4oSPHgKfkHVbL4GySVy64WqMV3ywP1pj69CwCPROFjH+0L6Evk2so88l3UNmwWMsybvXqbUG5jgDIgD9yfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J4/FSqK7; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8td4I012914
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:38:19 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53F8tG2g005836
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:41:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i+0K8i6mH8nJR7NC8EwJps6/hl4dOeR4gugtJgCdwYo=; b=DAKIuBGslzmC90d8
-	igEHKmc0pSBOGB4loaStmcIxQIE+djcZgFpD1yPWFQCA+1k5Nq8i4yI2JqvOUFu1
-	ud3yCmPL0lqzO2VmBmdRmTLnXrSEzhWX2qKIMkp90B3JqdrdSaech5p6tkM76n08
-	J2IbkITJtSvLkglOZ/eD0Orbtvm6RKTN/Lay80/GQ++QF6z82O+J0pmDirsKho+F
-	w+voO19aacwBLE6DgW7C0FVvhAO1k4d1Myh3gF53wr+EvaaoGyKh6asZ5N2ZGAGg
-	gGGN8F7VpdfKkNNPC1w+RJW92oILzT43U6vIiRXqVSMX91pXP3LMWUPIV1z/XIwP
-	rnaWeA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydhq7xq8-1
+	i+0K8i6mH8nJR7NC8EwJps6/hl4dOeR4gugtJgCdwYo=; b=J4/FSqK7Q66nyXT+
+	XyPwrbjGtFsAhLXsGJif+dz6X3ZRxiR01DhmA5hOLFvLS78sd8U5wuDPqNh/AKLI
+	xWkwPJk8yHVJItxY/WNEI0ymV/vtlWUBILVSh24JF+hnHf1tTqRJQaGiMlAus2Of
+	xMmUMm36PpBH+MbCeZAMsOdhrBBa97LfmRzrPCDw713cABnTWCwf5IecUM0ra451
+	Syx+s6M/xepgmUNq9XK4dH1/CnyxaNfZZ7ht0xlYk1OLfn0XY3NfJDi2EcuF81SJ
+	+h0K8QRdX5YksHOER0I6CSI+LmZVcBji0PieKDwLxfP5UfMF3zo1ItTphGmqnZz/
+	n8Eoag==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvj7wdu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:38:19 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5466ca3e9so73689485a.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 03:38:19 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 10:41:25 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6eeb8a269a7so16726276d6.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 03:41:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744713498; x=1745318298;
+        d=1e100.net; s=20230601; t=1744713684; x=1745318484;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
         bh=i+0K8i6mH8nJR7NC8EwJps6/hl4dOeR4gugtJgCdwYo=;
-        b=uKq29UvlrtGqEyy3MLdHSvvM0AQrIgD90rUCASThyH97VZlGsl40zFEcjvmSS/NzKf
-         v+bxhejOE+dVtI4OCwB0JmyNLs7E8okxXolsEGZpiria4fb6ZVRqCcBQH+PKKBtLY2h7
-         RO78KY40nbir8OONhmtuB5BiVULrvJx/JQ3Z/+MShV9S+mD0mE3v6jgyS4ahu1IaX+WS
-         8V2zg2184MnuWWWbXKaVBvuOSrRsD0fWGRZyZmqmNi7AR8yXOoLxHjJftWeTTYPUSGKq
-         B9jz8QRje3HTzBjYQk4HtEPHzKrIaoEbFKvUXnYCopJFWDXqAO8MtDMh54COYBTYESAT
-         ysDA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8ZdjwNDjlKXlRyCV+JA/b3sVv6HkMgk9EjPFV3RHksEcAwBpHpJppJwpVUF8V3xUZYyPxEbOP63HD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTsyAT3tSbvk8upb0OmhRxj2GD6iIyMK7TrokmvZrdUG/ZnYfO
-	vQpDHh5xoqd6WZyf8YC6duiniv9Y57yb9+AEJvsg3F9jc0QmqvggMXBBj2OfbwLvvcjuFljvVzS
-	jaYmaWn2GkpMKdFdNq3C8TdZKLZISdEQ1rC3EOG6V6/WtS7RZkm49Uo5Xqqa2
-X-Gm-Gg: ASbGnct+0Nzoyzw3MiAMUqw3Z+YaOvPkSgO9W/mYOTvtQ5eoS62jYLl+b47wckIN2I+
-	YzawsFEHGiPTCXP2Gb+Y5eTDuY6+r5+f4VtOEKpmtprTL+0WBEaKbJZ+Q+hK38f+dtCu74bt8Db
-	lQK1Rx7wfdIgWS09iIFTOp2d06KZmNiItohearcY4bWd1BQ1na/qgXWprOLVMmL1RQwV01jnHDC
-	bMIZq1VfVqb9nYmEkNr9SO/DDZvQTzwmWZ8VT7cOoeogHZWIctt+702iwiZXapm00RoZQ0kNHu2
-	Y10apyvA2wPlAB9Q7NIyYhh5JaBsyoLu/hLM9evCKp0N8DDo2e/5c+z83+VknKiZrQ8=
-X-Received: by 2002:a05:620a:c4e:b0:7c0:bb63:5375 with SMTP id af79cd13be357-7c7af0d639amr683710485a.4.1744713498457;
-        Tue, 15 Apr 2025 03:38:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFr2c2Hq3La3xC+9vQrVhYp8UOHdk/3NrDTbHhU2V7nHXc7gt67jkJ49F0mbvhNt1w9L3YZgA==
-X-Received: by 2002:a05:620a:c4e:b0:7c0:bb63:5375 with SMTP id af79cd13be357-7c7af0d639amr683709485a.4.1744713498173;
-        Tue, 15 Apr 2025 03:38:18 -0700 (PDT)
+        b=PRT0wIBTKHPn+PGGq2/XYMZSO9ALHPFDUIlXoUPBFdTvBcUWYFOxJlaFyXcBKKfhOg
+         qzlMbOV8i12MFn4JzLhU1/5Th2kJ8eJ72eyubbK3SMalk42P6QzYteStFu5WCNf1c1y8
+         K7xsPwOgUpLdDnSADZ5u8E1sZG44GEjMmycnl/KFdp9vZ13c/PatmG2l28KksoEHGF9y
+         IP4l9eN0pz3mkm4nJxVrFkzZBV3J4cIQhCACwHrx0XqO7gdSJpaCv3DlotISe/+ONXzS
+         jvqJ1Avt/wP29cwy8mmrS4udjQIOQISATj7RbzkSEYKhmGAO0dhMnAVw10IM92trQVq0
+         rnZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUabaBWydcLpcsEtb1jRga0NGf4bD+mstrE2WFazR42Dz4Eb5c4+I91sVTZ/ENmHKBc7wsE0f7tL47W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxf+Xd3jxgmuV503euQmZcgV9k3Z1JX+ncLfrHx5ErlfxMIWE4x
+	eJnpyPfWJ7RvyHQmflI8UKXNkZZ5GkRDU23Zy41LgTCxHNJjx5ovfIg1eZKi6fxiX49p8VuEkIi
+	d6+D2nT3jYQTmIjajTTaggKtI7grLRkoTdzJ5syM0jXeadYt50IYiaE/NNLm5
+X-Gm-Gg: ASbGncv9YpqjEZgpsxc9btoFYwRC0FEh8tObWeX6t6H+f1qbB3I5PQ55kyYFBdEMd0w
+	HSUTzDOBPGTrLwdIH2X3W0J0tq7rf6+LkZIXTIDCYHnOZgjMyzOdo6TBI9zkAV4oBKXuMYw6HrX
+	kM1bTEpjaD5YO27JQtrtRhqT738hrxsVYWlY57nYbKXXNK+f0/Oc01K8FxpjXUmoH7M4ND3q5qt
+	qQySyRmrCvRNJD+XQrQnqi45T/oPDqsWTH2YSEgQMoblTllLQXApJDQZ9mq0BbSByCqkG/BGaG9
+	8vnTNySkAqBdMuB/GiZaxMRmboRESX/IKcSMkcYXl23XC5PvrX98Q4ryQjCezaOVHPk=
+X-Received: by 2002:a05:6214:e4a:b0:6ed:2289:6623 with SMTP id 6a1803df08f44-6f23f191ce8mr95478036d6.10.1744713683834;
+        Tue, 15 Apr 2025 03:41:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1tPAainIF3cRDQQRrIeVRg/M/xThr3zwMMsYVBqA+QZn27ts9nKnwLdK6uEovJGnWc4aQow==
+X-Received: by 2002:a05:6214:e4a:b0:6ed:2289:6623 with SMTP id 6a1803df08f44-6f23f191ce8mr95477936d6.10.1744713683552;
+        Tue, 15 Apr 2025 03:41:23 -0700 (PDT)
 Received: from [192.168.65.246] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1ce806asm1067346166b.181.2025.04.15.03.38.16
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f465f84e5sm20180971fa.105.2025.04.15.03.41.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 03:38:17 -0700 (PDT)
-Message-ID: <b0850091-14b1-49eb-b426-a4b3e431d62e@oss.qualcomm.com>
-Date: Tue, 15 Apr 2025 12:38:15 +0200
+        Tue, 15 Apr 2025 03:41:23 -0700 (PDT)
+Message-ID: <78f4e00f-8842-4821-a012-c6ac59320dd0@oss.qualcomm.com>
+Date: Tue, 15 Apr 2025 12:41:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/20] arm64: dts: qcom: qcm2290: use correct size for
+Subject: Re: [PATCH 05/20] arm64: dts: qcom: sa8775p: use correct size for
  VBIF regions
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
         cros-qcom-dts-watchers@chromium.org,
@@ -101,25 +101,25 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 References: <20250415-drm-msm-dts-fixes-v1-0-90cd91bdd138@oss.qualcomm.com>
- <20250415-drm-msm-dts-fixes-v1-4-90cd91bdd138@oss.qualcomm.com>
+ <20250415-drm-msm-dts-fixes-v1-5-90cd91bdd138@oss.qualcomm.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250415-drm-msm-dts-fixes-v1-4-90cd91bdd138@oss.qualcomm.com>
+In-Reply-To: <20250415-drm-msm-dts-fixes-v1-5-90cd91bdd138@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: ZjhTuhOTZNiH2k6UL1Qa_X3XtTomIOH4
-X-Authority-Analysis: v=2.4 cv=C7DpyRP+ c=1 sm=1 tr=0 ts=67fe371b cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=da4WsfccAxvekxWPt1gA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: ZjhTuhOTZNiH2k6UL1Qa_X3XtTomIOH4
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67fe37d5 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=da4WsfccAxvekxWPt1gA:9 a=QEXdDO2ut3YA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-GUID: QX14ZfukonQPZUx2XaG5aF6Tdi6al_yW
+X-Proofpoint-ORIG-GUID: QX14ZfukonQPZUx2XaG5aF6Tdi6al_yW
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-04-15_05,2025-04-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=607
- priorityscore=1501 suspectscore=0 clxscore=1015 spamscore=0 bulkscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=607
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
  classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504150074
+ definitions=main-2504150075
 
 On 4/15/25 12:26 PM, Dmitry Baryshkov wrote:
 > Use allocated region size for VBIF regions as defined by the docs
