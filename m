@@ -1,144 +1,160 @@
-Return-Path: <devicetree+bounces-167099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9BBA89606
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD0FA89607
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6115E188A36C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:07:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98E24188E0A2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AEB2750E7;
-	Tue, 15 Apr 2025 08:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69E927A933;
+	Tue, 15 Apr 2025 08:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="qxHviqfs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77378634;
-	Tue, 15 Apr 2025 08:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF86E2797B0;
+	Tue, 15 Apr 2025 08:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744704415; cv=none; b=ZF+1++cKIHfjr41rUITofCYzwk2rOTUWiaL6t9FylafC+aszwGgPuEpqedNsVMJuusp8DISSufKBkUlqYEqNw/pdADT+4k/LbbTNkcSUYN1f2abh5SkRiJ1jJYVhfeCiQhhKj0YK59hyNGHOVYxDamWkXm3pE2pXHDrGYAS5CaA=
+	t=1744704434; cv=none; b=QKZ5yR3SS2GjIy4YbHmb/2OdOsW+D1hLTN7Ftf1IaE+/zo0DsuSYtlGFI1qy6OMb2wcPTDNwFCSdYfFgKS/eDHHnoQUKkw0ttNphHj5Dz/ZXye6y+FmPqinaTkMu6bQsAwuHunovJzqBmUM5V8BHaj5hPT3UpZnKmxpkRh0gtes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744704415; c=relaxed/simple;
-	bh=awYdlis9cPibtfloHg93X0xSUHByIq02xs3+kKcj3B0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WgolaQHQVc7AXgGUZCX3D0pw6/IT5kDxeqcKK0msJ5CyS7ck3rhWUzroiitM9RLF0dVxQDTS6QfXIxxO81NPx7iysXtHeybiRao4A15z2XDgzAC4Nhk1/V+v6WikovOCmZcQtc1rXYtwQoca4IyhAm1s4+6nMuqIvD29VOqu/bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-523ffbe0dbcso5319211e0c.0;
-        Tue, 15 Apr 2025 01:06:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744704412; x=1745309212;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xoE7Sk3NEK10ejGR4MyJLM/QRd7ud4cKRNAMK4SJy3M=;
-        b=vjZ71TShD/60d2TF4bk8PC9zwbYZTKOdudCOkcidI7eltBp0jPQgXkYEqxqTteAIwO
-         7jpcmHkT/kB7TOwooKefnYGWMl7q3Ki31cdUu35DzucKozfRBt+q04N+Peh91MUiWW3e
-         9GU7sZ/Oqv1Wop9dqfA0sgHgaJbuFCik6hij2ukrTScZN8jDiYKz84B7CeFQEd540IVE
-         g9kNpt8/5EnbBCsXbmKm77jcMCNbm6wODbWV3xuTO6iz17C+pFz5tlF7LecFK8uPu/sH
-         YdqxIJNgibs+QK0trBsHF9YuvO8VYQ2FotWgBAdAGG2mEIJKZfxzx1QJHN5gA4maYAfN
-         IRBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTXZ8Qz3ZVW5g7LVh7dQVpzmYf4ShVnLf/HVSwLvV5PqY2/nFH+agm0YgZhFS6Xjhh3nyONRsY28Yw@vger.kernel.org, AJvYcCWYnszFm/dQAYrjbJdQi6h9uR+0ffo/8sW8ncJ8YqRiV99gB8U2TdVrOxl+P/vxWvNaNz50zn2VCk9k@vger.kernel.org, AJvYcCXL7/PH65V73oYgg6OKT1nzIHSVHLwJU4ah8PTlUiLBf/57afQWNH1DNr2rM9Kpo8Tih9c2cSG9Sxox1F0Y3rGvZnA=@vger.kernel.org, AJvYcCXk9+jDep9qAt8q9HSobNZ6q6zaa3yY47SqNhEwhyF5W0o7rVITs9v8I68L74DX82klCiOf3u82vH6aoYk=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxqz1XC6+J1j6qC86+G9/0oPMdBXZKUPBGZfiMBRPtMd8JsWap6
-	ksxRr9ilXGK2o5s1HvfQny0aIzWNHRsOquDhJaDxYJpwb1Lj/9ZyeqcTbKR+
-X-Gm-Gg: ASbGncv8gebf9o7/zuKdKpDJkm1MPHUgkiPAzrPIqY+4q5b7ixgdUdXAioKOsBlZr7P
-	6TvNGgPWs8WLPAeV3+mRHZ9tYhtxuVOn1H0X9ZodMKgwxJ+sJYTtodBFinm8v2JB9PC/79R2Rpb
-	enOZUV9BM5tZVuBGyqd/J0Myxm4LL+77oFqWiie59w8BPSb430KPSKpnz0ZeQNV22w73FqM7QHy
-	m3t9B6cKivd7/JtSQoNL2PXyGdUT9vxkIBNp33Vhj0AJ5cQDaGaVBHLcXmsLUwL8ez/iLhvppQe
-	BGnd1XFliH5hnx3qHg0WWFa6CuMHKfivFOZwPMu1BGA27qm+3TgFAs4zhNhI7kFOwBB4lAqML0m
-	qxXc=
-X-Google-Smtp-Source: AGHT+IHkVgit3zGoO4zwXJVvkQr2Y1PlvE1YgURPwmmKl+7re032t461pzPyiYRkWB6UTtz3lV2NjA==
-X-Received: by 2002:a05:6122:d95:b0:520:61ee:c7f9 with SMTP id 71dfb90a1353d-527c35b020amr9138502e0c.7.1744704411649;
-        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd9b999sm2577221e0c.26.2025.04.15.01.06.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4c6cf5e4cd5so163202137.2;
-        Tue, 15 Apr 2025 01:06:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV9gQ/+mHAmN7eVliyf0u0mbZO4/slJ+hasj8Q1XMKo2q4bt6Hx/ooX9jd93az2KKKl6MrF8pFZsUpK@vger.kernel.org, AJvYcCWBxYVKou3zOPYNwuftGRutgHNArfgEkfSYTovtAgOXCw6JH0djd5utFIj3L+ZCnOlF+d6KcsbgPAAX@vger.kernel.org, AJvYcCWgt6C046I9p7JU/WTzS+EDtlQDuI/NKtcx7pub+BF1jCJpk2oGSl+ZYZk6TZZjBwpj9dbca9dVhkZDdwU323ueFuM=@vger.kernel.org, AJvYcCXTsBSR3pmaWrWGp3TQ6UYWkdkd9zK895wR9KzVP+QwgeXRyIF2w2EOeCEot6Byzs58EUqBtXUkELr3GY4=@vger.kernel.org
-X-Received: by 2002:a05:6102:3e92:b0:4c5:1bb6:8165 with SMTP id
- ada2fe7eead31-4c9e4f12ee4mr11188743137.12.1744704410919; Tue, 15 Apr 2025
- 01:06:50 -0700 (PDT)
+	s=arc-20240116; t=1744704434; c=relaxed/simple;
+	bh=+m+uNy+59Q122M1MZy6kii8sx83LYMOv463vHliVczo=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=NhUdra+ZDLjk+pLJBDLoY+S51dGXJXurvfEI2UbA1gbUioDB6sQTLeAIsy9GnE31l1ZfLz2oaAnG2rEwSBXNgJU1+j3VB4Bi6iblHqYKRL1zu6mlUE1HWkYpgIJuLkR+NwoYZOA73qbegNLyv2BIJP/C+OO2X53nvJ15b4xjjYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=qxHviqfs; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1744704420; x=1745309220; i=frank-w@public-files.de;
+	bh=XClP9NrLHwO9fwyHdOh4Auz1PVrNeq/TxoOgtoY90n0=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=qxHviqfsMTqZ1v990RvfJ9bRejEDPM0U7zJhNy/0Jz/s823RYlcXko39BUK7gDBk
+	 ZhsuG+0A9/Y8gHs1taDTTVHTmEsa9qJFT5ASKK93XvH4uU+unsxSIAddfWIrRZK+6
+	 zzohCcaWpcFIE0fdCHQbysIfaEHC+NfO5+j9DfW2RdGQURNPoCJdX0Vq6rxc5MzhR
+	 5WN7K8KKXsA0jKHeZWFXybZxdZzY1B0wnx98xesCkFU4krFxaUITraweE3cyDUAIO
+	 2uWpljywdxKA7muLP95/90h1xtnDfFIOfnszdYQ2n0Kbemr4xffaYsMmjzrQNqubR
+	 8EGNdXS+0u518+F8xA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.148.30]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MxDkw-1t7P002D2u-00zhBt; Tue, 15
+ Apr 2025 10:07:00 +0200
+Date: Tue, 15 Apr 2025 10:07:01 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Daniel Golle <daniel@makrotopia.org>
+CC: Frank Wunderlich <linux@fw-web.de>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2=5D_arm64=3A_dts=3A_mediatek=3A_mt7?=
+ =?US-ASCII?Q?988a-bpi-r4=3A_allow_hw_variants_of_bpi-r4?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <36fe0778-399a-4406-8516-54b968cd9073@collabora.com>
+References: <20250412102109.101094-1-linux@fw-web.de> <c8f9f019-a238-47c8-a900-9ca48ce09503@collabora.com> <Z_0AdtyvehR9SHnU@pidgin.makrotopia.org> <36fe0778-399a-4406-8516-54b968cd9073@collabora.com>
+Message-ID: <D7682B25-5BEF-46D1-A5FD-32D2AAF84EFF@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87zfgi1a5a.wl-kuninori.morimoto.gx@renesas.com> <87wmbm1a4b.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87wmbm1a4b.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 15 Apr 2025 10:06:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
-X-Gm-Features: ATxdqUECV1MuAkt2dYlWZdeAGp9tizsog1IG4v0PoorYJ-_KQ05iwfNaUiWR2-U
-Message-ID: <CAMuHMdU3ieWELcj8Z2zQRJ4gsjz25nK+CZi1qDJByUUS9f1teg@mail.gmail.com>
-Subject: Re: [PATCH v3 02/10] spi: sh-msiof: use dev in sh_msiof_spi_probe()
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-spi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:pa0vggB9lm+W0OPebuX0jYpX0yjxP/JpOSgB44M0VVskPM3DXyD
+ 9LogsfM/xLxC6PLuk+GPj2lPIj+CtvYDf3dqHiqwYp+1+ps1ov8I/5nqfuf8HkliFx46miv
+ 2ji2rqWXr0YnZB4RZbPRjU72vNPHSgRp7NBP74IVwtTQSLijfJwg3ShW2lHmIExQfDiS1mI
+ S5jTXNRgwb52P104LTVSg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:urNve2rXxnY=;yiVEU3OJuoqbJPWsNk3xJFPrslb
+ 6XgS7F0953EiOMGLEpbanm9yU02fg8ccgzjIi0iXX3k0JbeVJmatpmQ0OxrvwBozA9scOQwtB
+ LeWsYLKdKmMC7QK5IiZDJQNu3aqlCFRUFY+GdZBJBsLsEq9w/NACKuhqn4MWuWQhUSWE7fOnC
+ PrX5inR6etO5xToJwZsDUisQ+SMdnidz9banxNUDlKnRcmDN0vP+ejNP+wwc8oKTnRXC+NXT9
+ VhJoIvkkjeS2MuibBDBFH/4kzziiCM2GBZTjU69EGpCtS/PSX6VYbL+BU4O0nnY5HBoqzbckv
+ /SuHRxbQLbf9HWGHgwtpCVKhM/riHH0iT3IbtPmnBz0HeTf1QbykqDmdN4v3IqpXjbp3T5p8k
+ 1pLnRsKOlP+M1CKqTIqY274QCeAE9KeIGE6AIQMkEr3nLT2evNKLemkG/ne9+RNncC/WO0aPF
+ KTkP0IS1TqjHtgKd6vXdxSaYbqzJ9wPHOu6/AES0HiIqEL+Y8lFR70PZfELIH7arD2RyKdl9J
+ Igu0F9CtNCKZmcBVOgfHuTGrKHRE+lhZk229WhmKgNPhgEOFK5zHlNlPYPCvcRT5jA2U48rk0
+ HZyOzDTdqWxeMA+lTTmoFKDHLFkKchhz15QjnMq9QKbxuWJYgOMp3cen6Hi72vZQwzaoQ2XBy
+ b3+Emgoie2bcxIvittQuIGqQMHkhnHm/9Yd6KiChBPUnXGT7JbeYFbKSFj73RWQ10Kj+5u94F
+ AnaTrqIQhYT6FQxGcpjPM3dNj39H/93cp5srg8MYx+6GnVOAcWfwLWsgjTUHDVHje08mkfMsN
+ 4cnJ+3fZHF2BYOHw4bVcJ7YnpC1F9XPX9+ryNE47Erez086ZTT6Mhyr9EqKFG68lKzlnjx4An
+ dl2hTJSW/u5LJHj0Rlz1pB7ngcHAfcNq7akmimLdUPIloS9kk8PVl7tUo5ZqLQAx9rTrzcg8R
+ Snh9QekEJwREWFzPX6WqGSWTUr78SXEjlTOiIZclYuq8ijLAqSBYJ8EZolMRaT+mOieEEsGYL
+ JNEeMdgdjMG8YV14fJl1j/EalciKqiN9NPmtmKghF3ALIVD9V2Beu8E5CPA3L2osLQN5sd7lU
+ YAKSO51USU4lq3J4/XaUzvSA5vbfh8MuX1LsbyYsvZHs16JkRtqPv1io+9WZuATW/2Rvx80zf
+ 8zuje60L1jI87s/w7Kr2LUbbF7KlbFDWF3NI8vZXAVGYOtTnAVvxQV2CCmdRMBZP3ToA8X9r7
+ 8dTnfIJrnnd2rqukxpcuof4UVfcsD3UJ8Za4ofC7FPScImpdXYFMXXwbeyy2hRET1f8RXe2E5
+ BSxa8e4dkzAdAmFGiJc2WnHcm+H0ibda5TzgR9M5zfmOO8D3m0K+vMt/oAJNT8CjALXAOcHxu
+ VXZMc66BXlRBdfnotXsGsbyJJCqA+cqwBBdpgz/Ae8MJ3IgBdCv0bvttpfExjDPiuz2kscm36
+ kGEPDeYkQPSpHY6Ilqqq3Ml01/vHudSElaMy3TzjSMSrSZJrr
 
-Hi Morimoto-san,
+Am 15=2E April 2025 09:36:43 MESZ schrieb AngeloGioacchino Del Regno <angel=
+ogioacchino=2Edelregno@collabora=2Ecom>:
+>Il 14/04/25 14:32, Daniel Golle ha scritto:
+>> On Mon, Apr 14, 2025 at 11:27:23AM +0200, AngeloGioacchino Del Regno wr=
+ote:
+>>> Il 12/04/25 12:21, Frank Wunderlich ha scritto:
+>>>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>>>=20
+>>>> Sinovoip has released other variants of Bananapi-R4 board=2E
+>>>> The known changes affecting only the LAN SFP+ slot which is replaced
+>>>> by a 2=2E5G phy with optional PoE=2E
+>>>>=20
+>>>> Just move the common parts to a new dtsi and keep differences (only
+>>>> i2c for lan-sfp) in dts=2E
 
-Thanks for your patch!
-
-On Tue, 15 Apr 2025 at 03:34, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> sh_msiof_spi_probe() is using priv->dev everywhare,
-
-everywhere
-
-> but makes code long. Create struct device *dev and use it.
+>>> This should at least have some different compatible, if not probably a=
+lso a
+>>> different model string - as it's a different device=2E
+>>>=20
+>>> 	compatible =3D "bananapi,bpi-r4-2g5", "bananapi,bpi-r4", "mediatek,mt=
+7988a";
+>>=20
+>> Imho it doesn't make sense to declare compatibility with the
+>> "bananapi,bpi-r4" as the "bananapi,bpi-r4-2g5" is NOT compatible with t=
+he
+>> "bananapi,bpi-r4"=2E It's a different board and using firmware meant fo=
+r the
+>> "bananapi,bpi-r4-2g5" on the "bananapi,bpi-r4" (or vice versa) will res=
+ult
+>> in a non-working Ethernet port=2E
+>>=20
 >
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>Is this device a BananaPi R4 variant, or is it a completely different dev=
+ice?
 
-> --- a/drivers/spi/spi-sh-msiof.c
-> +++ b/drivers/spi/spi-sh-msiof.c
+The only difference is that sfp-lan is replaced by RJ45 socket with mt7988=
+ internal phy=2E
 
-> @@ -1334,15 +1333,14 @@ static int sh_msiof_spi_probe(struct platform_device *pdev)
->                 goto err1;
->         }
->
-> -       ret = devm_request_irq(&pdev->dev, i, sh_msiof_spi_irq, 0,
-> -                              dev_name(&pdev->dev), p);
-> +       ret = devm_request_irq(dev, i, sh_msiof_spi_irq, 0, dev_name(&pdev->dev), p);
+>If this is a completely different device, then it's not even a BananaPi R=
+4,
+>otherwise this is compatible with BananaPi R4, with a small variation :-)
 
-Looks like you missed one instance ;-)
+Sinovoip now announces a R4Pro with some more changes (e=2Eg=2E an externa=
+l 2=2E5g switch),but we have no detailed shematic yet=2E It looks they also=
+ plan a R4lite which is based on different SoC (afair mt7987),but this is f=
+or sure different device (and so not using this bpi-r4=2Edtsi)=2E
 
->         if (ret) {
-> -               dev_err(&pdev->dev, "unable to request irq\n");
-> +               dev_err(dev, "unable to request irq\n");
->                 goto err1;
->         }
->
->         p->pdev = pdev;
-> -       pm_runtime_enable(&pdev->dev);
-> +       pm_runtime_enable(dev);
->
->         /* Platform data may override FIFO sizes */
->         p->tx_fifo_size = chipdata->tx_fifo_size;
+But basicly all are named BPi-R4=2E I guess R4Pro will also get own dts as=
+ too much changed=2E
 
-With the above fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>Cheers,
+>Angelo
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+regards Frank
 
