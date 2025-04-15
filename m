@@ -1,76 +1,108 @@
-Return-Path: <devicetree+bounces-167383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC096A8A185
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C714BA8A18B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 16:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 424DE3AEE83
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:47:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE41C3BC422
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 14:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF4E297A49;
-	Tue, 15 Apr 2025 14:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E867296D18;
+	Tue, 15 Apr 2025 14:48:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9AE7EEA9;
-	Tue, 15 Apr 2025 14:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8735027F749;
+	Tue, 15 Apr 2025 14:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744728458; cv=none; b=ozTrwAP1lxFDyQJzNEXi0gqZLopHiTnRTjYEXF1EcmV2or1xBuyALeMBxJLXKtU6zMiXHOP+qKgBv1sae78A6fweka6vbfehQj8Ei2Wsk+3XXswQUr38uNOOT/olMl3DnBscJ7HuzveYN+PPasIBFKRzA/w/e3ud8PeTDXEB8W8=
+	t=1744728505; cv=none; b=DVKuPnPfV6e16PhOns0wLdA2QpQPY9xAVhkHF2HxsBbcf5mticJLTdeLzIrGD6AygsCGKdmatsYPxu2dTR8qX5PE/0YaacVcTu5+SJ8bBzstrki7vAxl/SKvcrlPso3gZWjUJiJ1Ubi9LJjKPby52y/l6YWwMvRgje329302YIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744728458; c=relaxed/simple;
-	bh=yehWU6Cn1U0Ig31Ss4U++BRxjRmpPRpJ3DovWt/2v+w=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=PWwWFzEk8vJHIfX42NSP3VAPSAJNo0RGUQfhKwyruiU7XS1zpREw2cspsys84dx8ojLs3/36IQoH5MTQ5hC08oXubLoNJUyZqDuBHTVJSTxAEukDsPsoBreiT+U7OE7MaO426AsRDLceAeptal/L39Ke5WrWPije6RDWL0/h93U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZcRp62VGNz9tRl;
-	Tue, 15 Apr 2025 16:47:26 +0200 (CEST)
+	s=arc-20240116; t=1744728505; c=relaxed/simple;
+	bh=dL3GBIFDMlroIuYc/uiPg97dQ44gPEpRL5p9zMC4w/A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sTTTPm7bW5gy0yXG7TZVLeva8TMrKVen7ERsCCRCXcwwZxuBpgGHJsdAYtYeKAWgaF5BDz60K3/nfMG/XPh8HKZhLqPuvZb0qJ6GKZhLp5JGabnQyU4IxRRDBkYgJvhP7k1aSaD57vnf6icZKjiBfTTgGRzsfMQDbWdf8RojaHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0DB9C15A1;
+	Tue, 15 Apr 2025 07:48:21 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F45B3F694;
+	Tue, 15 Apr 2025 07:48:19 -0700 (PDT)
+Date: Tue, 15 Apr 2025 15:48:17 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 5/7] firmware: imx: Add i.MX95 SCMI LMM driver
+Message-ID: <20250415-exotic-scarlet-seriema-c0e223@sudeepholla>
+References: <20250408-imx-lmm-cpu-v4-0-4c5f4a456e49@nxp.com>
+ <20250408-imx-lmm-cpu-v4-5-4c5f4a456e49@nxp.com>
+ <20250414-wonderful-cute-bandicoot-accb6b@sudeepholla>
+ <PAXPR04MB8459195AAF65D38AFA1D4F9688B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <20250414-tiny-classic-barnacle-5f8c8f@sudeepholla>
+ <PAXPR04MB84593BB91063D13BB05BEB5988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <PAXPR04MB84598733FA39A7402E91DA1988B32@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <20250414-ebony-slug-of-felicity-421b0f@sudeepholla>
+ <20250415091016.GB10243@nxa18884-linux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 15 Apr 2025 16:47:21 +0200
-Message-Id: <D97AM4S7VLL2.260GHNH82O60I@buenzli.dev>
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-To: "Rob Herring" <robh@kernel.org>
-Cc: "Danilo Krummrich" <dakr@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v2 2/5] rust: Add bindings for reading device properties
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250414152630.1691179-1-remo@buenzli.dev>
- <20250414152630.1691179-3-remo@buenzli.dev> <Z_1Jfs5DXD2vuzLj@cassiopeiae>
- <D96RNFS3N8L2.33MSG7T019UQM@buenzli.dev> <Z_4rVyUjK1dlnTsT@pollux>
- <D9760KMM0PSB.HONQ7MUG8OTN@buenzli.dev>
- <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+wGopPRcdp6t0h2cu03vrxxP3=msNmpju4nqq9XENmng@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250415091016.GB10243@nxa18884-linux>
 
-On Tue Apr 15, 2025 at 2:46 PM CEST, Rob Herring wrote:
->
-> Adding PropertyGuard changes the API. I don't think it makes sense to
-> review the API without it and then again with it.
+On Tue, Apr 15, 2025 at 05:10:16PM +0800, Peng Fan wrote:
+> On Mon, Apr 14, 2025 at 12:17:34PM +0100, Sudeep Holla wrote:
+> >On Mon, Apr 14, 2025 at 11:00:20AM +0000, Peng Fan wrote:
+> >> 
+> >> Oops, I just checked wrong Kconfig under drivers/firmware/arm_scmi/
+> >> vendors/imx
+> >> 
+> >> Build this for ARM32 i.MX is ok, I just think no need. So add
+> >> a ARM64 dependency.
+> >> 
+> >
+> >OK, I will drop the ARM64 dependency when applying. I also don't understand
+> 
+> Thanks for helping on this.
+> 
+> >the dependency on i.MX firmware LMM and CPU drivers in the scmi vendor
+> >protocol as the dependency should be other way around. But I see Arnd had
+> >fixed it so I will keep it as you have posted to keep them all aligned.
+> Not dig into much on this.
+> I just followed what Arnd did when I prepared the patchset to avoid
+> potential build issue as reported before.
+> 
 
-We could add the PropertyGuard first and introduce the users later.
-Then they are in separate patches and the API doesn't change.
+Yes, I am keeping it based on those changes. I need to spend sometime to
+understand why it was done so and see if anything can be improved. It is
+not straightforward to understand that dependency, for me looks like it
+is in reverse direction.
+
+Anyway I have pushed it tentatively, will let you know once it is finalised.
+
+-- 
+Regards,
+Sudeep
 
