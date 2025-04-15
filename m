@@ -1,160 +1,130 @@
-Return-Path: <devicetree+bounces-167100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD0FA89607
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D93EA8960A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98E24188E0A2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:07:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B40C5188EC9C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 08:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69E927A933;
-	Tue, 15 Apr 2025 08:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1889B194C86;
+	Tue, 15 Apr 2025 08:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="qxHviqfs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2xyBPUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF86E2797B0;
-	Tue, 15 Apr 2025 08:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17BF13D539;
+	Tue, 15 Apr 2025 08:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744704434; cv=none; b=QKZ5yR3SS2GjIy4YbHmb/2OdOsW+D1hLTN7Ftf1IaE+/zo0DsuSYtlGFI1qy6OMb2wcPTDNwFCSdYfFgKS/eDHHnoQUKkw0ttNphHj5Dz/ZXye6y+FmPqinaTkMu6bQsAwuHunovJzqBmUM5V8BHaj5hPT3UpZnKmxpkRh0gtes=
+	t=1744704502; cv=none; b=GIeuliAtejE8lp/LGjBsvp4KMLOtTe6NLFB3jOTzTfK/qQ7tdKOAf+LqHSB26tBD0pJ6mkKIUgYN1otmbmtqzq5+evgmD4TaO0uLrl35IjMTU2We9VkQFmUF2Qi9cOw5Qe2yTDpN+X/1OVsD9n+9B7v664AJK1hqWea8JaV9+O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744704434; c=relaxed/simple;
-	bh=+m+uNy+59Q122M1MZy6kii8sx83LYMOv463vHliVczo=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=NhUdra+ZDLjk+pLJBDLoY+S51dGXJXurvfEI2UbA1gbUioDB6sQTLeAIsy9GnE31l1ZfLz2oaAnG2rEwSBXNgJU1+j3VB4Bi6iblHqYKRL1zu6mlUE1HWkYpgIJuLkR+NwoYZOA73qbegNLyv2BIJP/C+OO2X53nvJ15b4xjjYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=qxHviqfs; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1744704420; x=1745309220; i=frank-w@public-files.de;
-	bh=XClP9NrLHwO9fwyHdOh4Auz1PVrNeq/TxoOgtoY90n0=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=qxHviqfsMTqZ1v990RvfJ9bRejEDPM0U7zJhNy/0Jz/s823RYlcXko39BUK7gDBk
-	 ZhsuG+0A9/Y8gHs1taDTTVHTmEsa9qJFT5ASKK93XvH4uU+unsxSIAddfWIrRZK+6
-	 zzohCcaWpcFIE0fdCHQbysIfaEHC+NfO5+j9DfW2RdGQURNPoCJdX0Vq6rxc5MzhR
-	 5WN7K8KKXsA0jKHeZWFXybZxdZzY1B0wnx98xesCkFU4krFxaUITraweE3cyDUAIO
-	 2uWpljywdxKA7muLP95/90h1xtnDfFIOfnszdYQ2n0Kbemr4xffaYsMmjzrQNqubR
-	 8EGNdXS+0u518+F8xA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([217.61.148.30]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MxDkw-1t7P002D2u-00zhBt; Tue, 15
- Apr 2025 10:07:00 +0200
-Date: Tue, 15 Apr 2025 10:07:01 +0200
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Daniel Golle <daniel@makrotopia.org>
-CC: Frank Wunderlich <linux@fw-web.de>, Matthias Brugger <matthias.bgg@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2=5D_arm64=3A_dts=3A_mediatek=3A_mt7?=
- =?US-ASCII?Q?988a-bpi-r4=3A_allow_hw_variants_of_bpi-r4?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <36fe0778-399a-4406-8516-54b968cd9073@collabora.com>
-References: <20250412102109.101094-1-linux@fw-web.de> <c8f9f019-a238-47c8-a900-9ca48ce09503@collabora.com> <Z_0AdtyvehR9SHnU@pidgin.makrotopia.org> <36fe0778-399a-4406-8516-54b968cd9073@collabora.com>
-Message-ID: <D7682B25-5BEF-46D1-A5FD-32D2AAF84EFF@public-files.de>
+	s=arc-20240116; t=1744704502; c=relaxed/simple;
+	bh=VY+BI83+U62fNIjSJ7wZ0e9O8YlwQ1ENtS67jWwGC38=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d5HUhE+3erMSwAgrfHJVJH3VHnMXJiNDsSu6qNcRZSChzDCAYyFFDchn3gpCsc4rvt28LYCJ4ed0iXytn0ffIsCehopnI9gwxKYy/NWv1s4l33j63d2qO12GozLEIygAyPoPe9WKBJaHGsqmBIw4CTxxAZycIu+J3rYZx0kBUdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2xyBPUq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C43F3C4CEDD;
+	Tue, 15 Apr 2025 08:08:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744704501;
+	bh=VY+BI83+U62fNIjSJ7wZ0e9O8YlwQ1ENtS67jWwGC38=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e2xyBPUqMNLhOrAXNHcjWw0mRb6xsy8l2AiEhAO6HouM3bkxEj/JAgFDAKtQSlrs4
+	 m93VH51bjGPzXvSEpII7CwhjYF/fGEDg8YYgiipRQBWlL4OXQxfa0mgLKSRMqHBnZL
+	 T++QP26VRKNKwV4CbHFmvtAhGxF5kOteSdkZ5y4Ufzdjs8FW0BDDbhYrZs7OL4MOmR
+	 VOyjclC5MFc9iwFRmUJ7teMM9Tqei4+e4iTVxaEpTe281mcc2QpksEp4bPhj5tIRvC
+	 XvfU5vy3x9RSB0lfuCjM9N6J4a2FCW4BniGR7nR+YsGlAIcQeBJroWOE4stIFDqTOo
+	 pT8CZt5Agg1gw==
+Date: Tue, 15 Apr 2025 10:08:14 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, ast@kernel.org
+Subject: Re: [PATCH 20/24] irqchip/gic-v5: Add GICv5 LPI/IPI support
+Message-ID: <Z/4T7lpXSFgomIai@lpieralisi>
+References: <20250408-gicv5-host-v1-0-1f26db465f8d@kernel.org>
+ <20250408-gicv5-host-v1-20-1f26db465f8d@kernel.org>
+ <Z/jgL52ZVdcxTEkP@lpieralisi>
+ <87plhjrpit.ffs@tglx>
+ <Z/kM/+uBsD9DAGjF@lpieralisi>
+ <mcyioyevok6tixna2xwk5q3d6x5b5spyucc4fiiy3h4v5jwxbj@bw6ewonqm2ks>
+ <Z/zGzjyrEMYMd8cI@lpieralisi>
+ <4vtbkgtp5c7vdfdzof46l3fjwwsd66j3tynxub4png57zcau7h@k2treu5vgn42>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:pa0vggB9lm+W0OPebuX0jYpX0yjxP/JpOSgB44M0VVskPM3DXyD
- 9LogsfM/xLxC6PLuk+GPj2lPIj+CtvYDf3dqHiqwYp+1+ps1ov8I/5nqfuf8HkliFx46miv
- 2ji2rqWXr0YnZB4RZbPRjU72vNPHSgRp7NBP74IVwtTQSLijfJwg3ShW2lHmIExQfDiS1mI
- S5jTXNRgwb52P104LTVSg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:urNve2rXxnY=;yiVEU3OJuoqbJPWsNk3xJFPrslb
- 6XgS7F0953EiOMGLEpbanm9yU02fg8ccgzjIi0iXX3k0JbeVJmatpmQ0OxrvwBozA9scOQwtB
- LeWsYLKdKmMC7QK5IiZDJQNu3aqlCFRUFY+GdZBJBsLsEq9w/NACKuhqn4MWuWQhUSWE7fOnC
- PrX5inR6etO5xToJwZsDUisQ+SMdnidz9banxNUDlKnRcmDN0vP+ejNP+wwc8oKTnRXC+NXT9
- VhJoIvkkjeS2MuibBDBFH/4kzziiCM2GBZTjU69EGpCtS/PSX6VYbL+BU4O0nnY5HBoqzbckv
- /SuHRxbQLbf9HWGHgwtpCVKhM/riHH0iT3IbtPmnBz0HeTf1QbykqDmdN4v3IqpXjbp3T5p8k
- 1pLnRsKOlP+M1CKqTIqY274QCeAE9KeIGE6AIQMkEr3nLT2evNKLemkG/ne9+RNncC/WO0aPF
- KTkP0IS1TqjHtgKd6vXdxSaYbqzJ9wPHOu6/AES0HiIqEL+Y8lFR70PZfELIH7arD2RyKdl9J
- Igu0F9CtNCKZmcBVOgfHuTGrKHRE+lhZk229WhmKgNPhgEOFK5zHlNlPYPCvcRT5jA2U48rk0
- HZyOzDTdqWxeMA+lTTmoFKDHLFkKchhz15QjnMq9QKbxuWJYgOMp3cen6Hi72vZQwzaoQ2XBy
- b3+Emgoie2bcxIvittQuIGqQMHkhnHm/9Yd6KiChBPUnXGT7JbeYFbKSFj73RWQ10Kj+5u94F
- AnaTrqIQhYT6FQxGcpjPM3dNj39H/93cp5srg8MYx+6GnVOAcWfwLWsgjTUHDVHje08mkfMsN
- 4cnJ+3fZHF2BYOHw4bVcJ7YnpC1F9XPX9+ryNE47Erez086ZTT6Mhyr9EqKFG68lKzlnjx4An
- dl2hTJSW/u5LJHj0Rlz1pB7ngcHAfcNq7akmimLdUPIloS9kk8PVl7tUo5ZqLQAx9rTrzcg8R
- Snh9QekEJwREWFzPX6WqGSWTUr78SXEjlTOiIZclYuq8ijLAqSBYJ8EZolMRaT+mOieEEsGYL
- JNEeMdgdjMG8YV14fJl1j/EalciKqiN9NPmtmKghF3ALIVD9V2Beu8E5CPA3L2osLQN5sd7lU
- YAKSO51USU4lq3J4/XaUzvSA5vbfh8MuX1LsbyYsvZHs16JkRtqPv1io+9WZuATW/2Rvx80zf
- 8zuje60L1jI87s/w7Kr2LUbbF7KlbFDWF3NI8vZXAVGYOtTnAVvxQV2CCmdRMBZP3ToA8X9r7
- 8dTnfIJrnnd2rqukxpcuof4UVfcsD3UJ8Za4ofC7FPScImpdXYFMXXwbeyy2hRET1f8RXe2E5
- BSxa8e4dkzAdAmFGiJc2WnHcm+H0ibda5TzgR9M5zfmOO8D3m0K+vMt/oAJNT8CjALXAOcHxu
- VXZMc66BXlRBdfnotXsGsbyJJCqA+cqwBBdpgz/Ae8MJ3IgBdCv0bvttpfExjDPiuz2kscm36
- kGEPDeYkQPSpHY6Ilqqq3Ml01/vHudSElaMy3TzjSMSrSZJrr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4vtbkgtp5c7vdfdzof46l3fjwwsd66j3tynxub4png57zcau7h@k2treu5vgn42>
 
-Am 15=2E April 2025 09:36:43 MESZ schrieb AngeloGioacchino Del Regno <angel=
-ogioacchino=2Edelregno@collabora=2Ecom>:
->Il 14/04/25 14:32, Daniel Golle ha scritto:
->> On Mon, Apr 14, 2025 at 11:27:23AM +0200, AngeloGioacchino Del Regno wr=
-ote:
->>> Il 12/04/25 12:21, Frank Wunderlich ha scritto:
->>>> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>>>=20
->>>> Sinovoip has released other variants of Bananapi-R4 board=2E
->>>> The known changes affecting only the LAN SFP+ slot which is replaced
->>>> by a 2=2E5G phy with optional PoE=2E
->>>>=20
->>>> Just move the common parts to a new dtsi and keep differences (only
->>>> i2c for lan-sfp) in dts=2E
+On Mon, Apr 14, 2025 at 10:37:57AM -0400, Liam R. Howlett wrote:
 
->>> This should at least have some different compatible, if not probably a=
-lso a
->>> different model string - as it's a different device=2E
->>>=20
->>> 	compatible =3D "bananapi,bpi-r4-2g5", "bananapi,bpi-r4", "mediatek,mt=
-7988a";
->>=20
->> Imho it doesn't make sense to declare compatibility with the
->> "bananapi,bpi-r4" as the "bananapi,bpi-r4-2g5" is NOT compatible with t=
-he
->> "bananapi,bpi-r4"=2E It's a different board and using firmware meant fo=
-r the
->> "bananapi,bpi-r4-2g5" on the "bananapi,bpi-r4" (or vice versa) will res=
-ult
->> in a non-working Ethernet port=2E
->>=20
->
->Is this device a BananaPi R4 variant, or is it a completely different dev=
-ice?
+[...]
 
-The only difference is that sfp-lan is replaced by RJ45 socket with mt7988=
- internal phy=2E
+> > I can go for an IDA unless someone see a point in pursuing the current
+> > approach - that I would update according to feedback, at least with
+> > this thread you get the full picture.
+> 
+> Eventually, we plan to swap out the backing of the IDA to use the maple
+> tree.  I think we could add range support as part of this change.
+> 
+> If you were to add an interface to contiguous allocate a number of IDAs
+> by putting your loop in the IDA interface, we'd be able to switch that
+> to a range store during the conversion and keep the use case visible
+> during the planning stages.
+> 
+> Having that interface would make it obvious the change is necessary and
+> wouldn't be missed.
 
->If this is a completely different device, then it's not even a BananaPi R=
-4,
->otherwise this is compatible with BananaPi R4, with a small variation :-)
+Yep understood but on the other hand it would force me to allocate a set
+of contiguous IDs, which is a bit cumbersome with the current IDA
+(alloc them one by one - if any fails to be contiguous restart, rince,
+repeat - it is a double whammy).
 
-Sinovoip now announces a R4Pro with some more changes (e=2Eg=2E an externa=
-l 2=2E5g switch),but we have no detailed shematic yet=2E It looks they also=
- plan a R4lite which is based on different SoC (afair mt7987),but this is f=
-or sure different device (and so not using this bpi-r4=2Edtsi)=2E
+I allocate a range because I know the maple tree handle them efficiently
+and to be honest, a range allocator is all I need, there isn't any in
+the core kernel (there are plenty - on purpose - range allocators, BPF
+range tree and GICv3 ITS LPIs allocator are good examples, I could reuse
+them instead of reinventing the wheel).
 
-But basicly all are named BPi-R4=2E I guess R4Pro will also get own dts as=
- too much changed=2E
+FWIW, when Alexei implemented the BPF arena he vetted other examples.
 
->Cheers,
->Angelo
+https://lore.kernel.org/bpf/20241105212001.38980-1-alexei.starovoitov@gmail.com/
 
+I don't think the code I wrote is that complex either and it minimizes
+entry storage waste - probably you don't want to see it in the kernel
+because it is not a MT usage you'd expect - storage wise, I need to
+measure it but I think it definitely requires fewer bytes than a
+preallocated bitmap - when the IDA range API is in I would be glad
+to swap to it.
 
-regards Frank
+> Unfortunately, I don't really have a timeline on changing the IDA to the
+> maple tree.
+
+I understand, it is a chicken and egg situation, see above.
+
+> Please keep me Cc'ed on whatever you decide.
+
+I'd need something promptly, so I will go for a simple solution (bitmap
+or IDA 1-by-1) if the current MT one has to be scrapped.
+
+Thank you,
+Lorenzo
 
