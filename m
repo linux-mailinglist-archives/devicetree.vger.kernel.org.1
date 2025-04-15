@@ -1,167 +1,124 @@
-Return-Path: <devicetree+bounces-167422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7815DA8A2CB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:34:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A20A8A2D8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 17:34:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE6587A6F83
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:32:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A8493A431F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 15:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466A42BCF76;
-	Tue, 15 Apr 2025 15:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1C623496F;
+	Tue, 15 Apr 2025 15:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DZTBSGFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Last2mY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01902BCF48;
-	Tue, 15 Apr 2025 15:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B832066F7;
+	Tue, 15 Apr 2025 15:34:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744731128; cv=none; b=Ga8DgWkHm0V9ArxIVSshldCXhel3JJTJ5VBLAdBeg7s8euM4ZdC6ovOu0fF3DLGtOCoiGUr99gIEwNSQJuRXZNmUKM4SGaXEeCtSUfKjqalnI+mtesHE9VB5KlJu6fUdSmMpkLaLiXtycw8iLXNIKMJIKkLx1be3ZYxhJYBR3GI=
+	t=1744731257; cv=none; b=tb2A4WiT+KRkNDEGx+Yk/RZbhy7f+YTpNVTkgZXG4nsYx3Aav/gPvkNbZtyI6AQTwOfFYNMyDBQIv+4dDOnQjaqSlK6l1LUMEFXOdeM18CnpfKCnDYHBJtzs3DVj7n3PQmNdW62Oj5l+Am6MEUsnQsYm5OzYZQQtjqAA7HrS2tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744731128; c=relaxed/simple;
-	bh=uqnQ6iQfwoTKyx+UAVviMlNC66JIEOEeY3SmhfJwsKU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CN6ZwMVtaX1SHca8kvpC2FX8jT90LS93XDFStb8tb1gpUh9ALoT2G1PgFCXdl6hvUceejftZGz2BJZUB0vpFLFcY8R1maMidt2Vv+o6QO6lKXsyEej5TLCBR1bJXDf41orImUqBslAv5PyM2ebreVEAArgXWEz+wP7UQZ6sx5SA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DZTBSGFr; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFVmDA2394455
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 15 Apr 2025 10:31:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744731108;
-	bh=z1WpXqEl1iERpryNUd4cUuG7eXXEHYFWJ4BFIY8KG2g=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=DZTBSGFrEiEa81UJPMplqTY7iBnhyayouA6p69Ac6tcNHZwYpNN2lPLNzGv1uyRz9
-	 ZVqSByNxfucTnhZ4V+pqqq58JbU2otLWCtX0xiMaZ9IFX+92HUqzvQhNJV2dMk0pp6
-	 KJ4SOCtw9gLtzAPUjuBk1PHWn9mAnbb0LPWLHNWg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53FFVmIO018874
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 15 Apr 2025 10:31:48 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Apr 2025 10:31:48 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Apr 2025 10:31:48 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53FFVla3109804;
-	Tue, 15 Apr 2025 10:31:48 -0500
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar
- Prasad <b-padhi@ti.com>, Andrew Davis <afd@ti.com>,
-        Markus Schneider-Pargmann
-	<msp@baylibre.com>,
-        Devarsh Thakkar <devarsht@lewv0571a.ent.ti.com>
-Subject: [PATCH v7 11/11] arm64: dts: ti: k3-am64: Reserve timers used by MCU FW
-Date: Tue, 15 Apr 2025 10:31:47 -0500
-Message-ID: <20250415153147.1844076-12-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250415153147.1844076-1-jm@ti.com>
-References: <20250415153147.1844076-1-jm@ti.com>
+	s=arc-20240116; t=1744731257; c=relaxed/simple;
+	bh=cpqtdMgP4pXsa/EYlUpj/7STbyGdrcFn3fsprhqFbKM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=qlO9V8S6lEb/JN2zSF0MQABYq8+WYqzLrP8HZe0nNA+bF/InDz07OaA4R1pSGklNmeT3cWg3BSL/NaxEMgF/dVIqRR7WS6vpXBx3CU8H2evw0uRBVim7S4ugnmTS2ZynvDf6XKEmExGrlqG41LfmypaSVg4ACNrvmJPZVGeqlFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Last2mY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF4AC4CEEC;
+	Tue, 15 Apr 2025 15:34:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744731256;
+	bh=cpqtdMgP4pXsa/EYlUpj/7STbyGdrcFn3fsprhqFbKM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Last2mY7nOCCfKDpbUTfU2HNd42ZOhle2TyyuZnwCrtU+hM0tI5VFPEBV2ArdtUPv
+	 gs0qgGBN4T3I4C4mVt/955WwZiMuKIRBCzKX5E12koWMev3zu0CQ8fFIg8hlO0aVKk
+	 E0dNnvIOUkHLx8aqPoH557bWQ3O1orD18SHFIwXATQxl3WrAyWIXAwZ5beLZVIGect
+	 SLi7OunkCFMctAcHcNk1OE5eG7QU0Ni7OLUqbZw/wXXAsuaY32b7jnge8MWEQHWaea
+	 88XpzhgqKHT5Iw1nLh00MNRF34DRXORMqJPHzRbkS8xvZcjRHAF2tuBFnCfKle4PMC
+	 3687B/yfm2DdA==
+Date: Tue, 15 Apr 2025 10:34:14 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: =?utf-8?q?=C5=81ukasz_Czechowski?= <lukasz.czechowski@thaumatec.com>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Quentin Schulz <quentin.schulz@cherry.de>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org
+To: Quentin Schulz <foss+kernel@0leil.net>
+In-Reply-To: <20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de>
+References: <20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de>
+Message-Id: <174473125440.400068.8321160690827825721.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: usb: usb-device: allow multiple
+ compatibles
 
-From: Hari Nagalla <hnagalla@ti.com>
 
-AM64x device has 4 R5F cores in the main domain. TI MCU firmware uses
-main domain timers as tick timers in these firmwares. Hence keep them
-as reserved in the Linux device tree.
+On Tue, 15 Apr 2025 16:34:27 +0200, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> The dt-core typically allows multiple compatibles[1] but usb-device
+> currently forces a single compatible.
+> 
+> This is an issue when multiple devices with slightly different productID
+> all behave the same. This would require the driver to keep updating its
+> compatible matching table and the bindings to include this new productID
+> instead of doing what is usually done: have two compatibles, the
+> leftmost which matches exactly the HW device definition, and the
+> rightmost one as a fallback which is assumed to be 100% compatible with
+> the device at hand. If this assumption turns out to be wrong, it is easy
+> to work around this without having to modify the device tree by handling
+> the leftmost compatible in the driver.
+> 
+> [1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/dt-core.yaml#L21-L25
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+> This came up while working on fixing USB on an RK3399 Puma which has an
+> onboard USB hub whose productID isn't in any driver compatible list
+> but which can be supported by a driver with a slightly different
+> productID matching another variant of the same IC, from the same
+> datasheet.
+> 
+> See https://lore.kernel.org/linux-rockchip/20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com/
+> ---
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 20 ++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 20 ++++++++++++++++++++
- 2 files changed, 40 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index f8ec40523254b..5623ab354a1d5 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -796,6 +796,26 @@ &mcu_m4fss {
- 	status = "okay";
- };
- 
-+/* main_timer8 is used by r5f0-0 */
-+&main_timer8 {
-+	status = "reserved";
-+};
-+
-+/* main_timer9 is used by r5f0-1 */
-+&main_timer9 {
-+	status = "reserved";
-+};
-+
-+/* main_timer10 is used by r5f1-0 */
-+&main_timer10 {
-+	status = "reserved";
-+};
-+
-+/* main_timer11 is used by r5f1-1 */
-+&main_timer11 {
-+	status = "reserved";
-+};
-+
- &serdes_ln_ctrl {
- 	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 33e421ec18abb..1deaa0be0085c 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -710,6 +710,26 @@ &mcu_m4fss {
- 	status = "okay";
- };
- 
-+/* main_timer8 is used by r5f0-0 */
-+&main_timer8 {
-+	status = "reserved";
-+};
-+
-+/* main_timer9 is used by r5f0-1 */
-+&main_timer9 {
-+	status = "reserved";
-+};
-+
-+/* main_timer10 is used by r5f1-0 */
-+&main_timer10 {
-+	status = "reserved";
-+};
-+
-+/* main_timer11 is used by r5f1-1 */
-+&main_timer11 {
-+	status = "reserved";
-+};
-+
- &ecap0 {
- 	status = "okay";
- 	/* PWM is available on Pin 1 of header J3 */
--- 
-2.49.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb-device.yaml: properties:compatible:items: {'pattern': '^usb[0-9a-f]{1,4},[0-9a-f]{1,4}$'} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250415-dt-binding-usb-device-compatibles-v1-1-90f3cff32aa0@cherry.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
