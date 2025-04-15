@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-167169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88880A89918
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:00:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F38A89930
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 12:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D7B816D725
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:00:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA517189F973
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 10:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BEE28BA89;
-	Tue, 15 Apr 2025 09:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D433D28B519;
+	Tue, 15 Apr 2025 10:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyDm4/is"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DwHUv9d1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E870A28A1FF;
-	Tue, 15 Apr 2025 09:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94DD1F17E8;
+	Tue, 15 Apr 2025 10:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744711178; cv=none; b=PJYzoWQLgumv07dfqo2dkZpLf9AR9WKSFvW9lhSbChKhQ6fltVE/ihKBVo0PUdmkZ4MZjroboRCFZHppZ9D8EqqgFcrZDm1eiwykgOwOSOE/p9uJUjVGo3WWH7j3wVbw+HMAu6QU2PLvZl8x88FT4xG185ik1JZ1USCclOnWU9A=
+	t=1744711214; cv=none; b=HR4q1Xva4pc+MTO0JWprNR/pg+BV2Cc5eHZIJNx7UKZ2koEHaC31fmasQLU6qE6n4BWhSHGpDNla6dI1GcNnB24S2zvtT+wWJgfX1dMTyrvXTNJ31rMsbwZ14GD3O9UEv7Ak6S49LSVRci9wB8vnDfTmhgPnDkarSiXzrAR7AuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744711178; c=relaxed/simple;
-	bh=euHgQKWy7m/Bwe0bvPTHrnQTC1b1TT8VNBAji6xaiPM=;
+	s=arc-20240116; t=1744711214; c=relaxed/simple;
+	bh=9yw0Qzz1F9KcriheuD2Lay5nFwu3/DTc+aJ7BlFLoTg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AMUruf435lohmSkf/nU6EZOzJMRFfEP2Knmj0q1ynu/Sez8YxxvNeUAnC/A6ZpyZ6pyUPzFcMQ4jh11ExWuM7RFW2QpWiq74bFdpx8ogUTPkJG3piMtWYGzjeBBJcFPT/o7Iwu/G112HAkZPR2MrOUW0sXvrgChvAn+aLhiPsEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyDm4/is; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F03AC4CEDD;
-	Tue, 15 Apr 2025 09:59:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744711177;
-	bh=euHgQKWy7m/Bwe0bvPTHrnQTC1b1TT8VNBAji6xaiPM=;
+	 In-Reply-To:Content-Type; b=PU/Yg4aNeogy6mdAyO986GqiEmeMwMc6jg2EBUClmhmb2KiX5MjRlrBXdf/mKH8c/uNcWbb0e4jW8rZVAC+BeHPYlDrvETpe2MgF40ZSPXK5IGsZMdpGA0DXaUUbzjkFagsBWROucVLg3LcTfC8gPAf3EUHB0NNsEE1Lo5kVl98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DwHUv9d1; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1744711210;
+	bh=9yw0Qzz1F9KcriheuD2Lay5nFwu3/DTc+aJ7BlFLoTg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NyDm4/isljwyyO/P0Yc4cnqWwVEkF42h89X/7qR+ZVuZBmsKwXZ8DtneiDhQdeB7P
-	 vg4Nu5vk1A6MEuf0iVGcoRTgWZB8nuBBs2FN1mzflLL/8Z87zkswv+3QQxOQ2uyj2A
-	 bE9pDM3D+s7PLGaR6Lzc+j9V4u9Wc0r8iZEoumQY49IRyJuxqmdHitZMIWvhYmjB/o
-	 n2W7QGmDYZkpqsdNvNXx0RehEC9/ihOE3wbM84RuCTP7i62GFDXYLCZaFcApXxliIF
-	 Kp6LKtunSM+l2H1OTFrYdM/27lw5h69Mi+vTVvLFHI9YznwBnYZuK6Y/tXJwlmbhcZ
-	 d9tmEgmoOwGKQ==
-Message-ID: <a22eff98-86db-47db-a310-5d00dcba14fa@kernel.org>
-Date: Tue, 15 Apr 2025 11:59:33 +0200
+	b=DwHUv9d1qTN+uPe8HwwTS+BIN8TB0IIPrqWppWKEa6OHF2/zGpdeH4DkkM0vnOxk5
+	 1n3kY72+9K554uTmWtJxThiJFOYDc5/815u3xZE2/nFY0dPOMRJ/1mZrWiL4QvqoWh
+	 V8xmlhAcLRoeBoT3g8wIzoVgot/pahpErOJH4iyXlPUeOPCqgliBAcZkoAa0xq8eBc
+	 D0fvajYGv5N5b896UpLKVs7PwhcTiNr//tm8zPltooPJG2pr2HjQaBquBP+OyBEWP4
+	 ZfX96iMBdrhAySsvZrSgDdy8IWjHnrjbQBbH4tCeus4czUZbE9Jre50OmW40KyINOt
+	 ZdzKBlFhlQjaQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8BF1F17E0FA7;
+	Tue, 15 Apr 2025 12:00:09 +0200 (CEST)
+Message-ID: <385e75f7-9b45-46cf-9202-1951c7e0fe5e@collabora.com>
+Date: Tue, 15 Apr 2025 12:00:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,143 +57,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: leds: add TI/National Semiconductor
- LP5812 LED Driver
-To: Nam Tran <trannamatk@gmail.com>, krzk+dt@kernel.org
-Cc: pavel@kernel.org, lee@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- corbet@lwn.net, devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <2badc360-9bfa-400a-acca-ab82f8cc5a95@kernel.org>
- <20250415095358.8044-1-trannamatk@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v8 23/23] drm/mediatek/hdmi: Use
+ syscon_regmap_lookup_by_phandle_args
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+ <jitao.shi@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ =?UTF-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
+ "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?= <TommyYL.Chen@mediatek.com>,
+ =?UTF-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?= <Ives.Chenjh@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+References: <20250409131318.108690-1-angelogioacchino.delregno@collabora.com>
+ <20250409131318.108690-24-angelogioacchino.delregno@collabora.com>
+ <a73ae86c406de1002c7fcff9f34c2eeaaa5f03dc.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250415095358.8044-1-trannamatk@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <a73ae86c406de1002c7fcff9f34c2eeaaa5f03dc.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 15/04/2025 11:53, Nam Tran wrote:
-> On Mon, 14 Apr 2025, Krzysztof Kozlowski wrote:
+Il 15/04/25 10:14, CK Hu (胡俊光) ha scritto:
+> Hi, Angelo:
 > 
->> On 14/04/2025 16:57, Nam Tran wrote:
->>> +
->>> +description: |
->>> +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
->>> +  For more product information please see the link below:
->>> +  https://www.ti.com/product/LP5812#tech-docs
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ti,lp5812
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  "#address-cells":
->>> +    const: 1
->>> +
->>> +  "#size-cells":
->>> +    const: 0
+> On Wed, 2025-04-09 at 15:13 +0200, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
 >>
->> No need for supply?
-> 
-> Since the hardware uses an external power supply,
-> we decide not to include the supply property in the binding.
-
-So there is power supply? If so, must be in the binding. Bindings
-describe given hardware (LP5812), not your particular board/setup.
-
-> 
->>> +
->>> +patternProperties:
->>> +  "^led@[0-9a-b]$":
->>> +    type: object
->>> +    $ref: common.yaml#
->>> +    unevaluatedProperties: false
->>> +
->>> +    properties:
->>> +      reg:
->>> +        minimum: 0
->>> +        maximum: 0xb
->>> +
->>> +      chan-name:
->>> +        $ref: /schemas/types.yaml#/definitions/string
->>> +        description: LED channel name
 >>
->> My comment stay valid. I don't think LEDs have channels, datasheet also
->> has nothing about channels, so again - use existing properties. Or
->> better drop it - I don't see any point in the name. The reg already
->> defines it.
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Use syscon_regmap_lookup_by_phandle_args() which is a wrapper over
+>> syscon_regmap_lookup_by_phandle() combined with getting the syscon
+>> argument.  Except simpler code this annotates within one line that given
+>> phandle has arguments, so grepping for code would be easier.
+>>
+>> There is also no real benefit in printing errors on missing syscon
+>> argument, because this is done just too late: runtime check on
+>> static/build-time data.  Dtschema and Devicetree bindings offer the
+>> static/build-time check for this already.
 > 
-> The channel was named for the output channel to each LED, not the LED channels.
+> Please rebase this patch to the first patch of this series.
+> I would like to apply refinement patch first then apply hdmi v2 patches.
+> 
 
-I don't understand what you want to say. Please explain why existing
-label property is not correct here.
+Please use the original patch if it still applies, then:
 
-> They are not required properties because we can control entirely the LEDs of LP5812 through the indexes (regs property),
+20250112134708.46100-1-krzysztof.kozlowski@linaro.org
 
-I did not ask about this.
+Cheers,
+Angelo
 
-> but the person who wants to develop LP5812's matrix-related features can use the "channels" for easy mapping.
-
-easy mapping of what? Please show me the usage.
-
+> Regards,
+> CK
 > 
 >>
->> However after dropping this, your example has nodes with only reg -
->> what's the point of them? Why no properties from common.yaml are
->> applicable? If they are not applicable, then the entire subnode should
->> be dropped - you don't need them to describe the hardware.
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> [Angelo: Rebased over HDMIv2/DDCv2 series cleanups]
+>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 7 ++-----
+>>   1 file changed, 2 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> index 784bc05c9541..00a638a3caf4 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> @@ -269,12 +269,9 @@ static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *hdmi, struct device *dev, struc
+>>           * MMSYS_CONFIG device and the register offset of the HDMI_SYS_CFG
+>>           * registers it contains.
+>>           */
+>> -       hdmi->sys_regmap = syscon_regmap_lookup_by_phandle(np, "mediatek,syscon-hdmi");
+>> +       hdmi->sys_regmap = syscon_regmap_lookup_by_phandle_args(np, "mediatek,syscon-hdmi",
+>> +                                                               1, &hdmi->sys_offset);
+>>          if (IS_ERR(hdmi->sys_regmap))
+>> -               return PTR_ERR(hdmi->sys_regmap);
+>> -
+>> -       ret = of_property_read_u32_index(np, "mediatek,syscon-hdmi", 1, &hdmi->sys_offset);
+>> -       if (ret)
+>>                  return dev_err_probe(dev, ret,
+>>                                       "Failed to get system configuration registers\n");
+>>
+>> --
+>> 2.49.0
+>>
 > 
-> Actually, the "color" property can be applied, but the LP5812 is a matrix LED,
-> so specifying a particular LED color is not necessary when developing LP5812 features.
 
-This does not help me much and based on this I see no points in
-describing individual LEDs, because the only missing information is
-number of them but even that is fixed for given device, isn't it?
 
-Best regards,
-Krzysztof
 
