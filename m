@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-167029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16760A89360
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:28:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2F9A8936C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 07:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B93E43AF364
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 05:28:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5044017821C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 05:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0DB12741B3;
-	Tue, 15 Apr 2025 05:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3347274667;
+	Tue, 15 Apr 2025 05:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1cDkLLk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KsdjjogM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7723424C67A;
-	Tue, 15 Apr 2025 05:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BB319992D;
+	Tue, 15 Apr 2025 05:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744694916; cv=none; b=usK6Zpt1k8zlB3o9JLoXl+UbfBEcKjv+4ConsgpUO8BuAT9n2bNxDF9u+A6PU13tpWj9P3v+6WrtNU2i3/BDvjHGeQnqXBjXTMLWudM/mvBhJBtbwIxDLzWJ4JS6GMxPwFSvq5mv7kwLG2fxCnYPrqaAlFmwfutql3rN6I+aiAA=
+	t=1744695270; cv=none; b=Kw1MDudVqGay3i6HdU0KXz+wvA6hTZO7aBYqdB57qylfa482ObB0kEzOMtFigO3oau4fWP6X2pTPOcEMfUgLQyid+g0+3MQ3fYuv4UNm0h3oO6NzunP6h155VyyIyO0kJLyahn5fggFL4koMBEu+jFA83U8k5+msp/gI6iAZ63g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744694916; c=relaxed/simple;
-	bh=4YUY3Q0KwhuNRg5IXnl3ohiC9TIhP/hPPob/XU3qvNw=;
+	s=arc-20240116; t=1744695270; c=relaxed/simple;
+	bh=45o6nO1ZdabDZRp2mosO2ayRd8wFBJ7ZpP9Jr4qOmK0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gKjPP6eJnq9sHTFLZB8TTUgT/DHiSLjlNBsLhToD2LXRR+2c/mvJ/i/4KOqgDjg9beCZMt9E+9lGFp8DYtPWTO12f9TLPGR3iv04aH1YWzxDWaVsHiOpB1TPs12HDfpnqCYFkRHRTk2q+4s+KMTEPZTyHiXU9Rls8GOR7pGm4RA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1cDkLLk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1197DC4CEDD;
-	Tue, 15 Apr 2025 05:28:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WahbjdBTo+9U936yautCBrFWV1RLinzbA7hZurPQnR5aKT2/d7panB3MgtwOyXpl135/syu50O9DI/t0rCrRHVPcSqO3ErBpcU36kjTseGK7GeZmL1aZvhWmbUmfYUM9dnz6z5QBZppOFPHAz8KqQCHLk8CNsjn7PFPux0Moxws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KsdjjogM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98203C4CEDD;
+	Tue, 15 Apr 2025 05:34:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744694915;
-	bh=4YUY3Q0KwhuNRg5IXnl3ohiC9TIhP/hPPob/XU3qvNw=;
+	s=k20201202; t=1744695270;
+	bh=45o6nO1ZdabDZRp2mosO2ayRd8wFBJ7ZpP9Jr4qOmK0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p1cDkLLk+9aHsiQyq4hUVt3Lr8S/onWYeUrC2r4qC6KFwErfe1PsZZeNJpooq3ZCA
-	 6ajwsGRWCksf07VIaOcY8EVV/I4QXwrh0BR3QquWYAZDuKIQ6qhZdo5t7yQRoreNhd
-	 UkjhaSfBOUeMtHYHVVocNRXNolQZ6F5ChrgBzQhESZutC0YFg/qx+Ow1pemK9RDawU
-	 +dXb2EvHy0laVvCM69XZV359mZ8pwNNGyEYZP/R/dLOcgsKOnvwkKDK9kOC59rilVd
-	 7aFaIXBfVNZeqKs8zAc+cQueWtEdnrsUXSfM+ayVLxIr3miAN4eQ04MEGxXSfueIfp
-	 zhdnfB/dyJ3XQ==
-Message-ID: <bf9c11bf-332d-4a67-9ba9-c5b3bd1caae4@kernel.org>
-Date: Tue, 15 Apr 2025 07:28:31 +0200
+	b=KsdjjogMSU35get7rJpSvvMy+VkhJhyymfpDK8TmQz4J351HR9pBWxdxfB0c8SYRg
+	 yNKWwIwAqH96h642SSEh4QVPZ12p54L78O74Z+6CQGzWl7dRly9L/yyi9wWKUxReH/
+	 6d9uokbC/D95wk460z2A3wlNtGXvggrypCsyFqX2V8oqmeorWpx9rhnpdIPnXLAsG/
+	 iIwtTv6+bmv1aDGpfcwoa/oWLmE7p28W5smy97fLA9lsbix6nzPSrgsJWt27YzUqSH
+	 H6H1IjW7zosBrHbNoG62r7+QaloK/AQQ2vpvYCi49nW1fv3zjeBLfKOco488CmD/q7
+	 /jM6Hg676nIWg==
+Message-ID: <4b741da1-6540-4e5c-aa32-098420cab3c2@kernel.org>
+Date: Tue, 15 Apr 2025 07:34:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add
- rk3562
-To: Kever Yang <kever.yang@rock-chips.com>, heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-phy@lists.infradead.org,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20250415050005.52773-1-kever.yang@rock-chips.com>
+Subject: Re: [RESEND PATCH v7 1/2] dt-bindings: PCI: xilinx-cpm: Add `cpm_crx`
+ and `cpm5nc_fw_attr` properties
+To: "Musham, Sai Krishna" <sai.krishna.musham@amd.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "cassel@kernel.org" <cassel@kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Simek, Michal" <michal.simek@amd.com>,
+ "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>,
+ "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+References: <20250414032304.862779-1-sai.krishna.musham@amd.com>
+ <20250414032304.862779-2-sai.krishna.musham@amd.com>
+ <20250414-naughty-simple-rattlesnake-bb75bb@shite>
+ <IA1PR12MB6140D67181ED0003799228DACDB32@IA1PR12MB6140.namprd12.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,18 +115,119 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250415050005.52773-1-kever.yang@rock-chips.com>
+In-Reply-To: <IA1PR12MB6140D67181ED0003799228DACDB32@IA1PR12MB6140.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/04/2025 07:00, Kever Yang wrote:
-> Add compatible for the USB2 phy in the Rockchip RK3562 SoC.
+On 14/04/2025 14:23, Musham, Sai Krishna wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 > 
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> ---
+> Hi Krzysztof,
+> 
+> Thanks for the review.
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, April 14, 2025 12:32 PM
+>> To: Musham, Sai Krishna <sai.krishna.musham@amd.com>
+>> Cc: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+>> manivannan.sadhasivam@linaro.org; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; cassel@kernel.org; linux-pci@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Simek, Michal
+>> <michal.simek@amd.com>; Gogada, Bharat Kumar
+>> <bharat.kumar.gogada@amd.com>; Havalige, Thippeswamy
+>> <thippeswamy.havalige@amd.com>
+>> Subject: Re: [RESEND PATCH v7 1/2] dt-bindings: PCI: xilinx-cpm: Add `cpm_crx`
+>> and `cpm5nc_fw_attr` properties
+>>
+>> Caution: This message originated from an External Source. Use proper caution
+>> when opening attachments, clicking links, or responding.
+>>
+>>
+>> On Mon, Apr 14, 2025 at 08:53:03AM GMT, Sai Krishna Musham wrote:
+>>> Add the `cpm_crx` property to manage the PCIe IP reset, and
+>>> `cpm5nc_fw_attr` property to clear firewall after link reset, while
+>>> maintaining backward compatibility with existing device trees.
+>>>
+>>> Also, incorporate `reset-gpios` in example for GPIO-based handling of
+>>> the PCIe Root Port (RP) PERST# signal for enabling assert and deassert
+>>> control.
+>>>
+>>> The `reset-gpios` and `cpm_crx` properties must be provided for CPM,
+>>> CPM5 and CPM5_HOST1. For CPM5NC, all three properties - `reset-gpios`,
+>>> `cpm_crx` and `cpm5nc_fw_attr` must be explicitly defined to ensure
+>>
+>> This we see from the diff, but why they must be defined?
+>>
+>>> proper functionality.
+>>
+>> What functionality?
+>>
+> 
+> For our controller, if cpm_crx is not provided lane errors will be observed.
+> Specifically for CPM5NC, if cpm5nc_fw_attr property is not provided, the firewall
+> is not cleared after reset and further PCIe transactions will not be allowed.
+> Therefore, these properties must be defined.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This must be in the commit msg.
+
+> 
+>>>
+>>> Include an example DTS node and complete the binding documentation for
+>>> CPM5NC. Also, fix the bridge register address size in the example for
+>>> CPM5.
+>>>
+>>> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+>>> ---
+>>> Changes for v7:
+>>> - Update CPM5NC device tree binding.
+>>> - Add CPM5NC device tree example node.
+>>> - Update commit message.
+>>>
+>>> Changes for v6:
+>>> - Resolve ABI break.
+>>> - Update commit message.
+>>>
+>>
+>> ...
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - xlnx,versal-cpm5nc-host
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          items:
+>>> +            - description: CPM system level control and status registers.
+>>> +            - description: Configuration space region and bridge registers.
+>>> +            - description: CPM clock and reset control registers.
+>>> +            - description: CPM5NC Firewall attribute register.
+>>> +          minItems: 2
+>>> +        reg-names:
+>>> +          items:
+>>> +            - const: cpm_slcr
+>>> +            - const: cfg
+>>> +            - const: cpm_crx
+>>> +            - const: cpm5nc_fw_attr
+>>> +          minItems: 2
+>>
+>> Why interrupts are not required for this variant? Why isn't this an
+>> interrupt controller?
+>>
+> 
+> MSI and MSI-X interrupts are handled via GIC, so msi-map property is
+> required for interrupt handling.
+> Legacy interrupt support is not available, and Error interrupt support will be
+> added in future, once it is added corresponding DT changes will be added.
+
+I don't think commit msg explained this.
+
+> 
+
+
 
 Best regards,
 Krzysztof
