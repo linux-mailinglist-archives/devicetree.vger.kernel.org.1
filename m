@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-166951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-166952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB9CA890EC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 02:54:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1669A890F5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 03:01:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 365577A8FF8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 00:53:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB917189BBD4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Apr 2025 01:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D80F839F4;
-	Tue, 15 Apr 2025 00:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D1125776;
+	Tue, 15 Apr 2025 01:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bNPI7d46"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NsiQEVla"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E656E1798F;
-	Tue, 15 Apr 2025 00:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9165A927;
+	Tue, 15 Apr 2025 01:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744678479; cv=none; b=BgwQKjwJCz+a5UMSqNHkl1YRZEFAs763UB3AEkSFus/UPOOZISSEbM46CrgqVKiWU8QdlN+q6Bh63jZry3W/9dG6xvldPdNyFHs7RH+X2SsWjwmn3e7uIpTBWbb9OFTm9IbAHtfo4KDKCpUfOBs/9hsl0Msza8b7f1PsNgkiKHc=
+	t=1744678871; cv=none; b=Lv/EciC7mUfyCPJbQFiT+tm5DFCKzxRwISmPlB1AYgpVhEYXVVOiKGa6H60KbpSEtkaBuolO+lxM28YcFVEnyfjjWI0h1NCWm8dliHHv9SfFzhJsqBgmHhWEOh+xiIwN6KQe07n823I6LA+EMj9lXqlEnYQeAZRCrOoNLMzJxak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744678479; c=relaxed/simple;
-	bh=oEEe+Vlyh8duApf1eRzAoSMI6LUSSwNRyi7o8cZw1Ng=;
+	s=arc-20240116; t=1744678871; c=relaxed/simple;
+	bh=v4w5DfE/sYNT5ehoSrvg4/ugdIQziaDkEkahrOSBX+4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GTFJ8v57eG6Z3jS6R9z7Aoq4QR5j79zbMwEpR4CFF6LyuPeK5cIR7XFLvwjNIW2IfbHkmn0hUf+otwZtUj/txz5RhW+rnGh2d/v5Po5AZXelFIz/RsNEt2uSmAm5Ws08vpZbfVmDwj+/d84RHNPDk4lp7GNH5dH3owRDm98OaJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bNPI7d46; arc=none smtp.client-ip=209.85.222.179
+	 Content-Type:Content-Disposition:In-Reply-To; b=fjzYw70uiuPN5H0v/1AWG5UKxAHDVomSLUn4CFtFYzOnzOtaoRES65KwBS+xzUOHiu/DZ63BnrHkacljkzqFL8t9mDApsQI6/ah10c1jWHvIJUhJt0b2JtARkbkCI2Nnlg2xyGp0xY6ry3DboI7w2OAL61272ibtq0A206lgBT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NsiQEVla; arc=none smtp.client-ip=209.85.222.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c559b3eb0bso219951685a.1;
-        Mon, 14 Apr 2025 17:54:37 -0700 (PDT)
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-86c29c0acdfso1829632241.3;
+        Mon, 14 Apr 2025 18:01:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744678477; x=1745283277; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1744678867; x=1745283667; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YEdjQ1o+VNN956ebuUdrdZKlZGMV3rwstW2yOoX5VUI=;
-        b=bNPI7d46+9xYp5ZXB0SEcSMvjsrhsK1PDi5Uwic6Z9wECBHRSqR3sjiV5kmCpI6iI5
-         kj59YgxVAllW1CSS8zmxFa2AUk36wiyDzDa1e9vO6I19Q3rxDwYNNuwN86sD0qvcMXPy
-         9rj4Rui3IfmndAM7lZ7tqc6KrtPW9wXySBFCnpUkFr48VrdrtmHN6i+O9C/rPS3jcHcd
-         wKR4ne05aLWrFJQ5HFnsyVxGirOSSe2qaVPva2wgljbVoRtHgrFHuGP6mi9mW8IfXgOJ
-         TAivccX6jld+EHmlr3hZsRhOLxogzYTbVfynQCyjug3Y8U3+KIoDks7d9XLy8zixMpPq
-         uYvg==
+        bh=uy7YAJZKOai1D7ABZjjN+bQn5zDwS2Ij5HcVijKw7Bs=;
+        b=NsiQEVlarlggrztHhxjByXNwNK2nHTq/k1cvNk5bWSinxehFyY38lgw5iwJEV3JoJm
+         pEnSiSV/TtgH8ZfYeNuSSACmRiG+GJr/yugCdr/nLDc4tBsS65FLYfgwKKsjoeavTmYa
+         GaI0sDJ9yZMVrt6m6lqEG0TTT8W5kHmUPTAgrFD013hwfLBcbLs1PuEjWM7oXPAlACHu
+         7qKhOug4QO1bK6Dh8gHlM5Q688Rs73z7wdsC6RLaobOoTKFrM99E5cMDk497843l6+l+
+         8GapjYJXFXX4pCQKsDTSuqPAF3f/cW3QrJpO6PCMfI+++O4kIPqfOIUVwFuy0dvKtDTA
+         Sghg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744678477; x=1745283277;
+        d=1e100.net; s=20230601; t=1744678867; x=1745283667;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YEdjQ1o+VNN956ebuUdrdZKlZGMV3rwstW2yOoX5VUI=;
-        b=eSjY8DlXK95ORwkFO9063YOcxm/u3SCvzwzJE0K567if7aV4daT++584uAz7gRR4Aw
-         91zNbitvXj5fj4uKHp9OfCcL/jrEi4xyWtKLmZ+E263bn63onwTWLLERYzOeDYSkBzOA
-         lqvsUynAkhjgm3C8yo0Ujn6exineboAY4+usG/tyIx6WHgegetrM//OmDsBrlq+mwOHY
-         CwbEfqZ4AZFrRU3RQCY95w0rGZYLyHi97kO4qrerpRHcgr0M21s48McidPwXF4HxDmGu
-         9LXMeI60DUcZ6qOgJ4oOmt7vXS4Ltha4x2e/7aKoHFOHBLCZV2MtOtkOwYZdiW3Ypx14
-         UO2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWLTG+GbJq+VKmt8PGxUERIIFiagS4QJwUnoKOrCtAmBuWOWUQADSYhblKg9wYigjN2nULicJntnJQf@vger.kernel.org, AJvYcCX5WK73wyxLyv3QNynC94P3SWnE4AiJQzDmdNPKC0XgDOiQ3dIjB58Qy1X7U17Sv9W/6Vc2MLi9VDdOxgyK@vger.kernel.org, AJvYcCXy92rvp6Cd0ACgV6rCVjo9RcOepQDDrS8IfKNDlT1p+mZVVDTrjqkcPlDdjRyDi7TNnrui7SCcvgzD@vger.kernel.org
-X-Gm-Message-State: AOJu0YySMqWDwimt5iVa9cTx1dD6x0c1kJEeKxq8+kiqypqCAYkBCgdc
-	HsnQfxU1BKDDeMXJC/jgUQF+Kuw+xhaIZU/zMgirRTcDr/pnr4Xk
-X-Gm-Gg: ASbGncvP6nsaCKD5ZMwoO4lbmDh5pUd0SJCIRW66p7CjgC5ZZTx/yghgZU/ybPKwWbr
-	HtJ8T0y+yo6yQqfp+lTabI5Ko1mPAygKL4y1hmZew0GLdx3H+n1VGKWn6R1GaJlWQRg/dY3B9fc
-	mi+IcMQ2zGN/d5YO0QQkal/HL649fv2cv3hQ5DP7DFxbbvV6/4RG4clBGtA5B7FMNkx+1QMZXQd
-	jfkQydjiR3zhr0+0q1Wbn7Xw5Wu+7dSL5Y3fgMNmYV+KpL/pCJIHqWIvGHgFkDwD8zKNE2/uDBP
-	yVMky5sF1aEDYvoY
-X-Google-Smtp-Source: AGHT+IEcFMzFgzOuAefnSoezpAomkQ7g6BkNkYnHYntZ7e4If6A8R5STXqAMatQY2FwcPEjpF4L2qw==
-X-Received: by 2002:a05:620a:4055:b0:7c5:4be5:b0b1 with SMTP id af79cd13be357-7c7af1133b7mr2147815585a.35.1744678476628;
-        Mon, 14 Apr 2025 17:54:36 -0700 (PDT)
+        bh=uy7YAJZKOai1D7ABZjjN+bQn5zDwS2Ij5HcVijKw7Bs=;
+        b=QQ7yaYNBxfS6FpnN/WvMJaqloFyEFEX8ti6GffOQKg6JlPXc6mThbfCvbFhGlzfv99
+         H/6Fzize50VqkMKj+3ICYxe6wr5NavtYyg2AQQAbvuACEaLuGOk/gwA5F59k6ubkUs5t
+         fFdwe2joTWIZg8dOPq4lqmDUv9PjhiVJlMBa0GTme0tk4tMoXPHC/YdGSfqCDF7VTZ9k
+         w9CiimlK51651WZJ3zD5ZB4pfwIskIH1G+T3orajzStjemI6bUqKs972GC4hYuFW4xXC
+         yKB4XizLE+2E9gVVL6r5/XZClCALjfxFWSdrlvEsz6dMdvqheyoThSACAh0xST4nAefb
+         yc1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUOHHsEU8AgNwV3NcnrdQ/6uNoS7rdr5o0/uAIMJHLguNSoKo8E+WYnwLlWPE0c0S+/Q5wkCodNaqfb@vger.kernel.org, AJvYcCX0J0NAjNEboUl/pIhYIFNotK0aY7vcAlkgKrDrhZtpxgt3SyQXGIzfHOCmjExT7eyGTSd85pp9Hz9G1GEM@vger.kernel.org, AJvYcCXTaMZtcxuronaHt719o3xufSPJ8dnX9sv4zKWQPHGDSnIVnUHVDy4fR9pnsH0j5oIMBbTxbjnxJzie@vger.kernel.org
+X-Gm-Message-State: AOJu0YylD7DWC7QfK0iZoBp+HvUigm9Vqj1NG7MXSVa+u2yYafoJwzY6
+	QrZYSBFtzfQH1S5T4xt7FWMG1kmfq4LH8asocaltkuI3KsIGwlNW
+X-Gm-Gg: ASbGncuklF7ZDVjJPbyyvblZDCfENwcQEunyC0YjMDA5VO+ZvoDSg6gHo35VI5hcV4M
+	6sImfG57E7sdJFMngsbRyCsbT5CeyUhy4WEAIkrMesEvpfflKpU4lBlflsB2XIHax7pfZ0+0s0c
+	RKueAYWfCd52+NORxCP/4S2g3kOVGxnsQr9Lzemvwq37kpVq6etjUXDEg6OA8Cl4M+jCDmUXhzz
+	PJqNemPLWec7W5A5hd8nxxHo1lwTM779+VYE8WLKcWqYk/mfAKusIePvx/HnwSdZ5ovxXJ8gwsV
+	bLuhyGHUsyvBgen/
+X-Google-Smtp-Source: AGHT+IEg5WHo6qDq3mTM3+gnVU2hOs9hdPqiMDeyWKuT5X6RpeIxFCETbXntue45FyG12HX43MWGmQ==
+X-Received: by 2002:a05:6102:5489:b0:4c1:924e:1a2a with SMTP id ada2fe7eead31-4c9e504c3aemr10457091137.25.1744678866709;
+        Mon, 14 Apr 2025 18:01:06 -0700 (PDT)
 Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7c7a89f9938sm816112785a.69.2025.04.14.17.54.35
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f0de970badsm92754026d6.26.2025.04.14.18.01.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Apr 2025 17:54:36 -0700 (PDT)
-Date: Tue, 15 Apr 2025 08:53:53 +0800
+        Mon, 14 Apr 2025 18:01:06 -0700 (PDT)
+Date: Tue, 15 Apr 2025 09:00:24 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
+To: Haylen Chu <heylenay@4d2.org>, 
 	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>, 
@@ -82,13 +82,13 @@ To: Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
 Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
 	Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: [PATCH v7 6/6] riscv: defconfig: spacemit: enable clock
- controller driver for SpacemiT K1
-Message-ID: <f2gpmtaxfbt3ltgrz26uyu2gzffrp6gstov22qvguiz4md33lw@y26mzzc4wnnd>
+	Jisheng Zhang <jszhang@kernel.org>, Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+	Inochi Amaoto <inochiama@gmail.com>
+Subject: Re: [PATCH v7 3/6] clk: spacemit: Add clock support for SpacemiT K1
+ SoC
+Message-ID: <smgd2dymwnxkuvi4nevukt2fxcz3b5vuqt6wnuc2cf2bqaxisf@vtj7qnd5ws4t>
 References: <20250412074423.38517-2-heylenay@4d2.org>
- <20250412074423.38517-8-heylenay@4d2.org>
- <eadb0ac9-f46b-4525-a198-0c6c289084f3@riscstar.com>
+ <20250412074423.38517-5-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,29 +97,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <eadb0ac9-f46b-4525-a198-0c6c289084f3@riscstar.com>
+In-Reply-To: <20250412074423.38517-5-heylenay@4d2.org>
 
-On Mon, Apr 14, 2025 at 01:12:32PM -0500, Alex Elder wrote:
-> On 4/12/25 2:44 AM, Haylen Chu wrote:
-> > Clock controller unit, or CCU, generates various clocks frequency for
-> > peripherals integrated in SpacemiT K1 SoC and is essential for normal
-> > operation. Let's enable it as built-in driver in defconfig.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@4d2.org>
+On Sat, Apr 12, 2025 at 07:44:21AM +0000, Haylen Chu wrote:
+> The clock tree of K1 SoC contains three main types of clock hardware
+> (PLL/DDN/MIX) and has control registers split into several multifunction
+> devices: APBS (PLLs), MPMU, APBC and APMU.
+> 
+> All register operations are done through regmap to ensure atomiciy
+> between concurrent operations of clock driver and reset,
+> power-domain driver that will be introduced in the future.
+> 
+> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+> ---
+>  drivers/clk/Kconfig               |    1 +
+>  drivers/clk/Makefile              |    1 +
+>  drivers/clk/spacemit/Kconfig      |   18 +
+>  drivers/clk/spacemit/Makefile     |    5 +
+>  drivers/clk/spacemit/ccu-k1.c     | 1154 +++++++++++++++++++++++++++++
+>  drivers/clk/spacemit/ccu_common.h |   48 ++
+>  drivers/clk/spacemit/ccu_ddn.c    |   83 +++
+>  drivers/clk/spacemit/ccu_ddn.h    |   47 ++
+>  drivers/clk/spacemit/ccu_mix.c    |  268 +++++++
+>  drivers/clk/spacemit/ccu_mix.h    |  218 ++++++
+>  drivers/clk/spacemit/ccu_pll.c    |  157 ++++
+>  drivers/clk/spacemit/ccu_pll.h    |   86 +++
+>  12 files changed, 2086 insertions(+)
+>  create mode 100644 drivers/clk/spacemit/Kconfig
+>  create mode 100644 drivers/clk/spacemit/Makefile
+>  create mode 100644 drivers/clk/spacemit/ccu-k1.c
+>  create mode 100644 drivers/clk/spacemit/ccu_common.h
+>  create mode 100644 drivers/clk/spacemit/ccu_ddn.c
+>  create mode 100644 drivers/clk/spacemit/ccu_ddn.h
+>  create mode 100644 drivers/clk/spacemit/ccu_mix.c
+>  create mode 100644 drivers/clk/spacemit/ccu_mix.h
+>  create mode 100644 drivers/clk/spacemit/ccu_pll.c
+>  create mode 100644 drivers/clk/spacemit/ccu_pll.h
 > 
 
-> I know Inochi wanted this to be "m", but you can see that
-> SOPHGO sets it to "y".  Meanwhile SIFIVE uses a default
-> value for its CLK_SIFIVE and CLK_SIFIVE_PRCI config options.
-> 
-> I'm not going to solve this, so I'll just say this looks good.
-> 
+If possible, split the patch into multiple one by the compatible
+so others can review easily. Otherwise, it is LGTM.
 
-The clock and pinctrl are exceptions for me, It is OK for me to set
-"y" for these two device in defconfig. The thing I only asked for is 
-a tristate entry in the kconfig, so we can go with a module if 
-necessary.
-
-Regards,
-Inochi
+Reviewed-by: Inochi Amaoto <inochiama@outlook.com>
 
