@@ -1,353 +1,131 @@
-Return-Path: <devicetree+bounces-167839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F936A90730
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8DFA90735
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62D9B189B301
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:02:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BE29189D6B3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAD51FAC34;
-	Wed, 16 Apr 2025 15:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3C11FCFF8;
+	Wed, 16 Apr 2025 15:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DKEN7RTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287AD1C54B2;
-	Wed, 16 Apr 2025 15:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58C51FC0ED
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744815714; cv=none; b=B1cxyR7vy79WWXpTOjeEue3b2Vi5DwcWmrxtL1N18MAWVm8rhuNhxEXXZ5liJ8caQJ0JwwkdxYcbo6yKSOci7cDacVjg1PJ1tSEu9nMweLhYvb31JZjrDgXkejxiqm2YRVOirZ0j99Wmw5qkwEOBOBjzSN3OB2G5h7PA5NLRe+k=
+	t=1744815719; cv=none; b=oQhxohj6WDymvFfpjQd29Il4QvVPDkIt1kHATQzRgHaBh0pIvqemJJbPIbdplU6GBo3WYb8/Dexp8nRHlVpeB6mEKJqK/Rc1nI6SYfa17kyWsZrTQOT38jGheZ4R+chEfLZqV/4OYdX8mgh9RbVOXa8K8EI1eHmNP61U9WeN+HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744815714; c=relaxed/simple;
-	bh=EuG4cI7tkGPfXlD2E3oHBytMj0EmaXZJU53+wAWDb58=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LiKk55uNh8z2L9Bgnt6xexsCo2FcBM5HaYAq3u3h4anvcCQs21WvGNY8ySdteTaj0n8iixRM0WXCnaXQJImn8PZ0WkRLp0qJYX0Mg6rsTqIBN0uRKth8ohayV3HAM00azDQ8t4eJBFXnGSnAzydSqaiKjwxsJs0AFBvY3BtJmgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 497501595;
-	Wed, 16 Apr 2025 08:01:49 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 124A63F66E;
-	Wed, 16 Apr 2025 08:01:48 -0700 (PDT)
-Date: Wed, 16 Apr 2025 16:01:46 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Boris
- Brezillon <boris.brezillon@collabora.com>, Steven Price
- <steven.price@arm.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/5] pmdomain: sunxi: add H6 PRCM PPU driver
-Message-ID: <20250416160146.5338e791@donnerap.manchester.arm.com>
-In-Reply-To: <CAPDyKFqne4VLemkkgS948whoNm4pOdvp_CCJ4SSBJOBzt9k2Nw@mail.gmail.com>
-References: <20250221005802.11001-1-andre.przywara@arm.com>
-	<20250221005802.11001-3-andre.przywara@arm.com>
-	<CAPDyKFqne4VLemkkgS948whoNm4pOdvp_CCJ4SSBJOBzt9k2Nw@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1744815719; c=relaxed/simple;
+	bh=q+pwn+mTg05s/EzUlLJnkTpgVmwJvA1ZdeBL481JB0c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tDPdtXfMy/m/8vey03BIRzFnErQXoiqInZUQZQ6cqZy0Y4Ob8rmg0gW7urllHkMGJW/4bQl/dmIpkjHwmd7Q9xNMXYDo0UDqKml77ye0IT0sKHWn2YP782i+f6dJMDCPEAFxIJP2UC3TxJ4Q+eJEHGW182Nt/F64fuDQhz1mmrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DKEN7RTJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9nPwe026659
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:01:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OFYziKxJG8xVp8i/T0EL0nwln/WDTU0Zw36EWWYoZO4=; b=DKEN7RTJjU9VBohb
+	anNsJDKr7ZDtUfG6uNu/AeBNJWGyFJPY5IhYhEiOiTXEAC9nw3p3gqeeyDr76b0W
+	sN1vX86hjGt6GigKL4hpPMzMB+HFvnM/yDydln81AFW0JOowo3sGQjjpLJgV4oNV
+	dSCDnL4U9RM/VAn+NXsDnw4DcKVZnnOTJvq6d/TOMGJoABXFOT8ERg9OGpASGmBW
+	tq0jHEqGau+v9N/J7vU1DAUWcTV26HaVl6MaWkNO+7/ZnzSV7m6LGhKQlhR3uGGp
+	2yhlV+EgVoKOY1i4Bj3Z1Lpz6Yt92XRJNV/l6n5kHjjd2s8C+42R3STnIwsTKmRh
+	GFX6VQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvjc3f6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:01:55 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e8fec7ab4dso14175566d6.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 08:01:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744815714; x=1745420514;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OFYziKxJG8xVp8i/T0EL0nwln/WDTU0Zw36EWWYoZO4=;
+        b=jPgrWh5u3E+IDk+MYKM1duTKQGmpcSp3743Ht0NtHZ+kNaBkQx/2dNlnxUQq3FyVZx
+         KCif8jRpzvLsbLnvFMzGLIu0RkzqfF2/J3jb32i7DLrc65ZyNzrDcimjZFI38Eq+sIIn
+         nlr+KGAbue9FEXtGqy1RPdu2OmMM+h2PUBlSXlguLCGW0kNFxdJGnvwLkFq1wBsRNjVd
+         lDMZn10GMrL87GBG/VO03wOd0R7wt2fnGe6hC8KzwLiy0e1byRS5gAhconkDcIC9Ujd6
+         23wl+FJPvNHjZnzxeIA4K2XzGQCWem4pNA6MFfcNzAuk6iOGMIRLqgp+kDa7ed3khSFh
+         YYfA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzaLJ7BeqxHL1QbbG60HjlwA/n33BhVvC26vpmY/ALJZtpfCCN4IqHcZYvs1DeehDvMQdv8xKhO0rO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxss+CkeLpzjbzsoZ+qJa+fNftUSS1WrfNKn4jmnYlCOWCJvQOP
+	0Lq8O8+xTmOWv00mXtEffp91UKQKUgwyE4+EJ8iv+4TMOSgVS+2lWcguZxmfzz2VZWq0tbhodsN
+	5H6u4iQTMqesoeoJODEVQ06Dto+E6+LTpnNUw6YYKOXeduKoGHSLy0PJGVBwn
+X-Gm-Gg: ASbGncu4mt8Hq4CMbdtl76NucoM4/cwBGjrNphlkSwhKbHXanY2jHOtwt5kDUDmGqrX
+	c8StxFH3yth0x2nrDu4XFD1SFtaG771Feo6Ii9aM43wRM9sCu2vwaZpTauYejzUqZ4O0Dl9vAne
+	/AVmmTAZuSYH2ExzUi3s1BHDMHUlmGgqnISCZkbQC4fRr24AQ+yjmAr2WK4Gb5ba90O/gS5r56X
+	eOxsel1p+Ga5ifBso9noVJIyHeGFmx9HJZrh2XrvCv8wKjz2nyptP65e6Vv2FAOAG9HVRifb3rS
+	jyUFw1hWbwM4l97B432Hmh+3J10pehl1Q+V99ERoXAaDt4s0EMF2F/bfdTqb0P/Pq3Q=
+X-Received: by 2002:a05:6214:2386:b0:6e8:9f7e:8116 with SMTP id 6a1803df08f44-6f2b2f5707dmr12167636d6.5.1744815714462;
+        Wed, 16 Apr 2025 08:01:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IELlRZxT4JGjUFMDcyO4UGKfpFEuuZ1EimZ1MIk+XizDS3GTqyqLgfM+L0mkHYpw7kfYzTbdA==
+X-Received: by 2002:a05:6214:2386:b0:6e8:9f7e:8116 with SMTP id 6a1803df08f44-6f2b2f5707dmr12167276d6.5.1744815713910;
+        Wed, 16 Apr 2025 08:01:53 -0700 (PDT)
+Received: from [192.168.65.178] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3cd6257bsm143250266b.13.2025.04.16.08.01.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 08:01:53 -0700 (PDT)
+Message-ID: <9f09d4db-b586-4a9f-b15c-6cc2a8af2934@oss.qualcomm.com>
+Date: Wed, 16 Apr 2025 17:01:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: ipq5424: Add PCIe PHYs and
+ controller nodes
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20250416122538.2953658-1-quic_mmanikan@quicinc.com>
+ <20250416122538.2953658-2-quic_mmanikan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250416122538.2953658-2-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67ffc664 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=wBC3ykCyNm9gZvjdBcsA:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: roCWWxaOwXbPRnJJrWsGCOnAWGQ6OgI3
+X-Proofpoint-ORIG-GUID: roCWWxaOwXbPRnJJrWsGCOnAWGQ6OgI3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=923
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160123
 
-On Thu, 27 Feb 2025 23:43:29 +0100
-Ulf Hansson <ulf.hansson@linaro.org> wrote:
-
-Hi Ulf,
-
-sorry for the delay, I actually changed to code according to your comments
-back then already, just now find time to come back to this.
-
-> On Fri, 21 Feb 2025 at 02:00, Andre Przywara <andre.przywara@arm.com> wrote:
-> >
-> > The Allwinner Power Reset Clock Management (RPCM) block contains a few
-> > bits that control some power domains. The most prominent one is the one
-> > for the Mali GPU. On the Allwinner H6 this domain is enabled at reset, so
-> > we didn't care about it so far, but the H616 defaults to it being disabled.
-> >
-> > Add a power domain driver for those bits. Some BSP code snippets and
-> > some spare documentation describe three bits, slightly different between
-> > the H6 and H616, so add three power domains for each SoC, connected to
-> > their compatible string.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/pmdomain/sunxi/Kconfig              |  10 +
-> >  drivers/pmdomain/sunxi/Makefile             |   1 +
-> >  drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c | 191 ++++++++++++++++++++
-> >  3 files changed, 202 insertions(+)
-> >  create mode 100644 drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c
-> >
-> > diff --git a/drivers/pmdomain/sunxi/Kconfig b/drivers/pmdomain/sunxi/Kconfig
-> > index 17781bf8d86d7..43eecb3ea9819 100644
-> > --- a/drivers/pmdomain/sunxi/Kconfig
-> > +++ b/drivers/pmdomain/sunxi/Kconfig
-> > @@ -8,3 +8,13 @@ config SUN20I_PPU
-> >         help
-> >           Say y to enable the PPU power domain driver. This saves power
-> >           when certain peripherals, such as the video engine, are idle.
-> > +
-> > +config SUN50I_H6_PRCM_PPU
-> > +       tristate "Allwinner H6 PRCM power domain driver"
-> > +       depends on ARCH_SUNXI || COMPILE_TEST
-> > +       depends on PM
-> > +       select PM_GENERIC_DOMAINS
-> > +       help
-> > +         Say y to enable the Allwinner H6/H616 PRCM power domain driver.
-> > +         This is required to enable the Mali GPU in the H616 SoC, it is
-> > +         optional for the H6.
-> > diff --git a/drivers/pmdomain/sunxi/Makefile b/drivers/pmdomain/sunxi/Makefile
-> > index ec1d7a2fb21db..c1343e1237599 100644
-> > --- a/drivers/pmdomain/sunxi/Makefile
-> > +++ b/drivers/pmdomain/sunxi/Makefile
-> > @@ -1,2 +1,3 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> >  obj-$(CONFIG_SUN20I_PPU)               += sun20i-ppu.o
-> > +obj-$(CONFIG_SUN50I_H6_PRCM_PPU)       += sun50i-h6-prcm-ppu.o
-> > diff --git a/drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c b/drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c
-> > new file mode 100644
-> > index 0000000000000..1c6b0c78b222d
-> > --- /dev/null
-> > +++ b/drivers/pmdomain/sunxi/sun50i-h6-prcm-ppu.c
-> > @@ -0,0 +1,191 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) Arm Ltd. 2024
-> > + *
-> > + * Allwinner H6/H616 PRCM power domain driver.
-> > + * This covers a few registers inside the PRCM (Power Reset Clock Management)
-> > + * block that control some power rails, most prominently for the Mali GPU.
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_domain.h>
-> > +#include <linux/reset.h>
-> > +
-> > +/*
-> > + * The PRCM block covers multiple devices, starting with some clocks,
-> > + * then followed by the power rails.
-> > + * The clocks are covered by a different driver, so this driver's MMIO range
-> > + * starts later in the PRCM MMIO frame, not at the beginning of it.
-> > + * To keep the register offsets consistent with other PRCM documentation,
-> > + * express the registers relative to the beginning of the whole PRCM, and
-> > + * subtract the PPU offset this driver is bound to.
-> > + */
-> > +#define PD_H6_PPU_OFFSET               0x250
-> > +#define PD_H6_VDD_SYS_REG              0x250
-> > +#define PD_H616_ANA_VDD_GATE                   BIT(4)
-> > +#define PD_H6_CPUS_VDD_GATE                    BIT(3)
-> > +#define PD_H6_AVCC_VDD_GATE                    BIT(2)
-> > +#define PD_H6_GPU_REG                  0x254
-> > +#define PD_H6_GPU_GATE                         BIT(0)
-> > +
-> > +struct sun50i_h6_ppu_pd {
-> > +       struct generic_pm_domain        genpd;
-> > +       void __iomem                    *reg;
-> > +       u32                             gate_mask;
-> > +       bool                            negated;
-> > +};
-> > +
-> > +#define FLAG_PPU_ALWAYS_ON     BIT(0)
-> > +#define FLAG_PPU_NEGATED       BIT(1)
-> > +
-> > +struct sun50i_h6_ppu_desc {
-> > +       const char *name;
-> > +       u32 offset;
-> > +       u32 mask;
-> > +       unsigned int flags;
-> > +};
-> > +
-> > +struct sun50i_h6_ppu_desc sun50i_h6_ppus[] = {
-> > +       { "AVCC", PD_H6_VDD_SYS_REG, PD_H6_AVCC_VDD_GATE },
-> > +       { "CPUS", PD_H6_VDD_SYS_REG, PD_H6_CPUS_VDD_GATE },
-> > +       { "GPU", PD_H6_GPU_REG, PD_H6_GPU_GATE },
-> > +       {}
-> > +};  
+On 4/16/25 2:25 PM, Manikanta Mylavarapu wrote:
+> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+> found on IPQ5424 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
 > 
-> I suggest we define a new struct (perhaps sun50_domain_data!?) that
-> has a struct sun50i_h6_ppu_desc* member along with a size_t member to
-> keep the number of the domains, set by using ARRAY_SIZE().
-> 
-> In this way we don't need the additional NULL domain at the end - and
-> we can also avoid looping through the array during probe  to count
-> them.
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
 
-OK, I implemented it that way, indeed removes the need for the extra
-iteration of all entries.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> > +
-> > +struct sun50i_h6_ppu_desc sun50i_h616_ppus[] = {
-> > +       { "PLL", PD_H6_VDD_SYS_REG, PD_H6_AVCC_VDD_GATE,
-> > +               FLAG_PPU_ALWAYS_ON | FLAG_PPU_NEGATED },
-> > +       { "ANA", PD_H6_VDD_SYS_REG, PD_H616_ANA_VDD_GATE, FLAG_PPU_ALWAYS_ON },
-> > +       { "GPU", PD_H6_GPU_REG, PD_H6_GPU_GATE, FLAG_PPU_NEGATED },
-> > +       {}
-> > +};
-> > +#define to_sun50i_h6_ppu_pd(_genpd) \
-> > +       container_of(_genpd, struct sun50i_h6_ppu_pd, genpd)
-> > +
-> > +static bool sun50i_h6_ppu_power_status(const struct sun50i_h6_ppu_pd *pd)
-> > +{
-> > +       bool bit = readl(pd->reg) & pd->gate_mask;
-> > +
-> > +       return bit ^ pd->negated;
-> > +}
-> > +
-> > +static int sun50i_h6_ppu_pd_set_power(const struct sun50i_h6_ppu_pd *pd,
-> > +                                     bool set_bit)
-> > +{
-> > +       u32 reg = readl(pd->reg);
-> > +
-> > +       if (set_bit)
-> > +               writel(reg | pd->gate_mask, pd->reg);
-> > +       else
-> > +               writel(reg & ~pd->gate_mask, pd->reg);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int sun50i_h6_ppu_pd_power_on(struct generic_pm_domain *genpd)
-> > +{
-> > +       const struct sun50i_h6_ppu_pd *pd = to_sun50i_h6_ppu_pd(genpd);
-> > +
-> > +       return sun50i_h6_ppu_pd_set_power(pd, !pd->negated);
-> > +}
-> > +
-> > +static int sun50i_h6_ppu_pd_power_off(struct generic_pm_domain *genpd)
-> > +{
-> > +       const struct sun50i_h6_ppu_pd *pd = to_sun50i_h6_ppu_pd(genpd);
-> > +
-> > +       return sun50i_h6_ppu_pd_set_power(pd, pd->negated);
-> > +}
-> > +
-> > +static int sun50i_h6_ppu_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev = &pdev->dev;
-> > +       struct genpd_onecell_data *ppu;
-> > +       struct sun50i_h6_ppu_pd *pds;
-> > +       const struct sun50i_h6_ppu_desc *desc;
-> > +       void __iomem *base;
-> > +       int ret, i, count;
-> > +
-> > +       desc = of_device_get_match_data(dev);
-> > +       if (!desc)
-> > +               return -EINVAL;
-> > +
-> > +       for (count = 0; desc[count].name; count++)
-> > +               ;
-> > +
-> > +       pds = devm_kcalloc(dev, count, sizeof(*pds), GFP_KERNEL);
-> > +       if (!pds)
-> > +               return -ENOMEM;
-> > +
-> > +       ppu = devm_kzalloc(dev, sizeof(*ppu), GFP_KERNEL);
-> > +       if (!ppu)
-> > +               return -ENOMEM;
-> > +
-> > +       ppu->num_domains = count;
-> > +       ppu->domains = devm_kcalloc(dev, count, sizeof(*ppu->domains),
-> > +                                   GFP_KERNEL);
-> > +       if (!ppu->domains)
-> > +               return -ENOMEM;
-> > +
-> > +       platform_set_drvdata(pdev, ppu);
-> > +
-> > +       base = devm_platform_ioremap_resource(pdev, 0);
-> > +       if (IS_ERR(base))
-> > +               return PTR_ERR(base);
-> > +
-> > +       for (i = 0; i < count; i++) {
-> > +               struct sun50i_h6_ppu_pd *pd = &pds[i];
-> > +
-> > +               pd->genpd.name          = desc[i].name;
-> > +               pd->genpd.power_off     = sun50i_h6_ppu_pd_power_off;
-> > +               pd->genpd.power_on      = sun50i_h6_ppu_pd_power_on;
-> > +               if (desc[i].flags & FLAG_PPU_ALWAYS_ON)
-> > +                       pd->genpd.flags = GENPD_FLAG_ALWAYS_ON;
-> > +               pd->negated             = !!(desc[i].flags & FLAG_PPU_NEGATED);
-> > +               pd->reg                 = base + desc[i].offset - PD_H6_PPU_OFFSET;
-> > +               pd->gate_mask           = desc[i].mask;
-> > +
-> > +               ret = pm_genpd_init(&pd->genpd, NULL,
-> > +                                   !sun50i_h6_ppu_power_status(pd));
-> > +               if (ret) {
-> > +                       dev_warn(dev, "Failed to add GPU power domain: %d\n", ret);
-> > +                       return ret;
-> > +               }
-> > +               ppu->domains[i] = &pd->genpd;
-> > +       }
-> > +
-> > +       ret = of_genpd_add_provider_onecell(dev->of_node, ppu);
-> > +       if (ret)
-> > +               dev_warn(dev, "Failed to add provider: %d\n", ret);  
-> 
-> If of_genpd_add_provider_onecell() fails, shouldn't we remove the
-> genpds in the error path?
-
-Ah, good point, I was put off by the name "init" in pm_genpd_init(), but I
-see that it does an allocation in there, so would need to be paired with
-the remove on the error path.
-I also added a goto to deal with a failed init in the middle of the loop
-above, so that it cleans up the already registered genpds.
-I tested this lightly by faking an error return for the 3rd
-pm_genpd_init() call, and seeing the other genpds being cleaned up.
-
-So thanks for your comments and the heads up, v2 incoming.
-
-Cheers,
-Andre
-
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct of_device_id sun50i_h6_ppu_of_match[] = {
-> > +       { .compatible   = "allwinner,sun50i-h6-prcm-ppu",
-> > +         .data         = &sun50i_h6_ppus },
-> > +       { .compatible   = "allwinner,sun50i-h616-prcm-ppu",
-> > +         .data         = &sun50i_h616_ppus },
-> > +       { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, sun50i_h6_ppu_of_match);
-> > +
-> > +static struct platform_driver sun50i_h6_ppu_driver = {
-> > +       .probe  = sun50i_h6_ppu_probe,
-> > +       .driver = {
-> > +               .name                   = "sun50i-h6-prcm-ppu",
-> > +               .of_match_table         = sun50i_h6_ppu_of_match,
-> > +               /* Power domains cannot be removed while they are in use. */
-> > +               .suppress_bind_attrs    = true,
-> > +       },
-> > +};
-> > +module_platform_driver(sun50i_h6_ppu_driver);
-> > +
-> > +MODULE_AUTHOR("Andre Przywara <andre.przywara@arm.com>");
-> > +MODULE_DESCRIPTION("Allwinner H6 PRCM power domain driver");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.46.3
-> >  
-> 
-> Kind regards
-> Uffe
-
+Konrad
 
