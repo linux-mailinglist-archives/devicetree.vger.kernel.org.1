@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-167818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87792A90689
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:33:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71571A9069F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93111891FFA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:33:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD5723AF890
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7F12F2A;
-	Wed, 16 Apr 2025 14:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B941B3930;
+	Wed, 16 Apr 2025 14:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FsGmMWHM"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A8A04PMj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011030.outbound.protection.outlook.com [40.107.130.30])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011023.outbound.protection.outlook.com [52.101.70.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96464186E2E
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.30
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956901B87E9
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.23
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744814002; cv=fail; b=FA4Pt13s5uMs3a8RW1IvIkaEVAdxqwbo5xaqNTLtFDDmBVhZHBo0JUzIpZLoWqwcER7HKHo/hxDPREqbQC7R64HvpdYfoGJ/vHmcazCC95S+bPtSZJXWzQW8aOXTdaX0cCVpUErurt+TgbX8QJuwrXUu9hJyWtDhTkKY7dSnG68=
+	t=1744814273; cv=fail; b=Ywp1uoPC/lTkDSZ4i7RlwplPrJQRwXKcf+TkSMEze3WeC8q34t2EAnDhXaUqFcAfw891yBXvygDj5PyFXXG7P/Ogqmy4hcb9q5ar6lF+YpmhjKel054lDxlpde3YkgWhvi6vbyMw6FbI6QQ47QusKDFg305zu5b3paSCclTp0Mc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744814002; c=relaxed/simple;
-	bh=ZEbc9da789j0MptjZfIUrW8zuFmmQdSzUMXnaW0+Ff4=;
+	s=arc-20240116; t=1744814273; c=relaxed/simple;
+	bh=jsq2R/jekSpiL5sy0MqcOJzT1o+VGaJnqmCQvCLUdNg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=bDOHmhtU3jPmClE4VYQ9ovTZ7dM/bmujP+w9xHsSI04sV8Nuo4Z3e983zHav0ugTKg5PkiLCUF29el+YO2wFB6L/bknBEtevdxuMzgIpzGMamRQewjrbc64nowAmRgwpJ5PcCFAaF9EQf9QDTreh3O1IX9rBp+R17szs9LIHzGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FsGmMWHM; arc=fail smtp.client-ip=40.107.130.30
+	 Content-Disposition:In-Reply-To:MIME-Version; b=B+fsaRSFeWNH0irIRZ7z9iaIwsgGiFApGQaIvIBInbKgONcB7HlxlgtnGG5fPSM0Y6FWdlbc3fi/lEYuidTFaIFCJ1uIRBwaPkNqY/2EJ37sFMu7DRI9xXL65hgPJDwzZgowb9PIJbrowOFmy2Kt0ueKoiSm1gb76VEM+5gifsI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A8A04PMj; arc=fail smtp.client-ip=52.101.70.23
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iXnUzHO6rYZVv5PPVaMGHtZ9RHTo7kETnhDwWQVr6uie81CH3rJA+quGAsq7BOa1JDFb1S6GRqiwDLQfaF2TcGfyAD0eqxfltq8uHwr1t1Y1tDw8l6cVj0iWHHYqFNFzVEJJ1JVQdpYo8gtbXEag+p0V0o4lotLY6133UvLw06SKpE1gGEXQv5rPK6FZqHAwE3K106TDF2/vaEKAa8RZZFG7f9z1+wjRqHLWgIhJac6qixGFinootYA9jMj+5MBQ0J2lXyAnprAgO31j+pjyRcoHPXZtGQLHppTrUWEuIFX5mxRGctJQEPBsg2co4Pf4VGzS8GN6jfFQqPRO048SWQ==
+ b=g53Vc9uG57i/zaUmGgVkKS/RK5438ePgumiyIz2b1arydsWfFL6ouLvDhoHHHf0L8MUh90BEtzqPeqBT0/B1ErCrhwNZgVhyw9ZT7akeRKWGEnBzpiaDL4zj36ETxi2Qc4mCuxum0DpMe3xF5075is3GhWVYxCuOiByapBKZGdq9v1V86oLZPWWCoF12EpwENvnVSo5FRymk6SvGsIHCjO9QKbZDdRXMdlhSHfxklMoCbnnYNh/dt6Nx9wy4sIXO1anBez346oth1LH7/8//+Cj8dLxPF5Gd4BJidRDoU6Zs8mZfbY14mieQZ3DGs+o4xwR3pMW57XTPS75zKtWpyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=71kTG4onuqFpLScJTlp2ZVmpgvzmV/VrABEdNRr1oH0=;
- b=k1pJrzO86gwGQsoo6wjAsfOCDyVyD1sWZPdvOc62gokj85Y1V9k7CjOI6PuZrEz65M5zaM3im2DhswIgxNnJm12d2iNBQw1G8VgxYotdPeVlGMT6w7baD84uhFNcrraEF5LAT0zWIv+3WlKODaSsKXaAZnc8PadCpfYDdlYPPJD5R2UjkC6S7v66Wr8GtBJpSV9f6f+XXxBrqQMl0vuG9E2t1EmGUoG4EdloNROWg+hmBIRznowFd4moxEmRDJl7Ds/K5jAVu9YhrcMWRdKOQoQkLJgl8k794RslnTPRWhRgrqRnyCCw0RXLQ3837OLhPUHCWpkg7gD+wN+edY+m+A==
+ bh=ZxtZNDpuOX3ph1LdTbSZ2VLKBBrBdk3g3DbzYGvhtWU=;
+ b=C6jBw5a+c9J88StYxEHtFFcx8tQ8mjzcLt2nU1kT5ulONHIwOrcF/4MkbTt0mZRvPd0zOOKAjMSRZBEkGD7tBl7xxtmnt1GX9+Ss/CnvpP+f6UbEj2+jkbz3qu4AZm8afU1Pm97PVugEMy/8LHGfFYAsn8g+hgzZW5hBb+JVey6kCopcC1kqeG6LEYu2k/LS/Mzoq9Ge2niakLj7MAGDh1WAYGOb97cNUIze6fgmzRdfkOJp0+KHE5g2TS2keN2M922+B/e7rqKvoLw5GybYD4z1uWxXUBi71UGB1ckAF0E2Vi/6iTes/NWq8ge/aaoZXvXJP1yX8krUPnIiqdKVDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=71kTG4onuqFpLScJTlp2ZVmpgvzmV/VrABEdNRr1oH0=;
- b=FsGmMWHMQXjR5pTvOOHFVawt1IkJafLZUS/KpHKTYasAz8RP6Qs/3K6663nM6/X9rzELuAaxK7mFHjLn+43Y/pmjiFqiGsqOB1QwTPpDoI6/BoTHw8QYhgtfDKjHG8r7KTwG8oRWn5QzSDX8aa/EL+Mu+WZqfFZ9EGypb82njtViYQylgNiCudJdMwDa8VoKaoarZEnUJKXIpJ1c6WhMVX0JBJ5q0X/RtebBDKxvfMjSJa7AEhVN2rye0cCCJjU5XjHhft1HZAULoZTF0KeblLt1nU/dFX/f3qhXEaJbUupM28Tjr34Kz7NWc2JeLUny8wG3diMADAlwq24KkHCwzA==
+ bh=ZxtZNDpuOX3ph1LdTbSZ2VLKBBrBdk3g3DbzYGvhtWU=;
+ b=A8A04PMjVPEduGeY+9GbqFwm8+kmOuZI8wwK8y5HKacAqgYbbWjJR5Edi8hIQ8ESs8YHporJRhO1yOCiE7qAfiaBr4hCUuhXdtBJPyBx2C2XRwt2ah4z4DijuRjYVqc6Vh4bjSdieewwzzgtWy8YQJf3h9LVgXMVSXKFC7FfJRLYDcuEoiTNq0WPKx0wC18sOvyEhzAZXVfi6TkhhPPOPaMtHxtMdUYVTQBLUE7gvVhNdE3wNlT+nIscP+ZYmKPTHpGoQhZl7MzzzoLgW+XqWTVcQYpAkX0rztC8qvJUUT0ivEc42TpRL5yfitOgLn3VXdU8lPIOXAldzium95KEGg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB8517.eurprd04.prod.outlook.com (2603:10a6:10:2d0::20) with
+ by PAXPR04MB8767.eurprd04.prod.outlook.com (2603:10a6:102:20e::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.22; Wed, 16 Apr
- 2025 14:33:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.36; Wed, 16 Apr
+ 2025 14:37:48 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.035; Wed, 16 Apr 2025
- 14:33:17 +0000
-Date: Wed, 16 Apr 2025 10:33:10 -0400
+ 14:37:48 +0000
+Date: Wed, 16 Apr 2025 10:37:41 -0400
 From: Frank Li <Frank.li@nxp.com>
 To: Xu Yang <xu.yang_2@nxp.com>
 Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com,
 	robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
 	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH 2/3] extcon: ptn5150: Add Type-C orientation switch
- support
-Message-ID: <Z/+/pgmR4n71iTkE@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH 3/3] extcon: ptn5150: Try to get usb role switch from
+ connector fwnode
+Message-ID: <Z//AtayeLP6zRGBT@lizhi-Precision-Tower-5810>
 References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
- <20250416105940.1572672-2-xu.yang_2@nxp.com>
+ <20250416105940.1572672-3-xu.yang_2@nxp.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250416105940.1572672-2-xu.yang_2@nxp.com>
-X-ClientProxiedBy: SJ0PR03CA0371.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+In-Reply-To: <20250416105940.1572672-3-xu.yang_2@nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0180.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
  (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,230 +80,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8517:EE_
-X-MS-Office365-Filtering-Correlation-Id: d5b49c7e-e5b2-46da-c558-08dd7cf3a0b9
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8767:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7d62b2a-c893-4035-5814-08dd7cf441f9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|52116014|366016|38350700014;
+	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?objUBMZJ5K83Rtp65Qbe80MY6n79X9PkShnMltESfxqs/RsX31B828xc/Qi/?=
- =?us-ascii?Q?+wUTR+HG2awvwei/bHB6PqFaJITK1x716S4WqxGSbp9MNC/6OQFX34YvqBMB?=
- =?us-ascii?Q?iez0B4j1YJcvLJeadq9sGKjx5WChTbDMXLBs1omWsxZaVr4YUu4z8rUExp01?=
- =?us-ascii?Q?xYZkmaoLllZPFDJBOTMMGL2fUBVj+i6cs23Br5NQtDqUg/B72imgVBlFIpDF?=
- =?us-ascii?Q?ZgQ8DPBYpM7tkwMN43RwphcugY4h5evMpy5btympT41KZq06RxPzlHZoH+Lx?=
- =?us-ascii?Q?Pd/RagDiuhw79Wa/mzEg7NnJkS074hkyftjB7vUG5A8L+WuHuXt3ffJiZN6O?=
- =?us-ascii?Q?ERaZybc0Bdudk63z1+x5qhOd3hLXBRLXp+N0VYBgjWGOCU6bBL2pUcrtSVWc?=
- =?us-ascii?Q?KNSQUsp/8Exqrh0bAvagW6z/wv7ysH8hleCwXg593CpgptUWMVsj0DIWdAAm?=
- =?us-ascii?Q?vLtHYL/eCIj0zjBiIDN2Z9E/t3lbYU9DoeYvvXOFqqDbTN029GQGV2tV2Rez?=
- =?us-ascii?Q?Ig4p6KllCFNdmf6nUMFdErG2sWQz03LBvZekNSegngF/aive+0PGs2T6MrjD?=
- =?us-ascii?Q?PHezUmbjdBBWpq+3kmAL50heax53gx/Wbr8uorno4kNMmR06g9ALOUQLenOU?=
- =?us-ascii?Q?U8SIWDQ+7fwH6OF0k454xn80nNzbAqiwMIGiixZwd7ePEtNNaSvVXj63K9v6?=
- =?us-ascii?Q?M3zvlFDbG13h3fFrTI3dQtNeRn/+PdLHAMG30eoFLwU+KnBAbU7TGC/XMQ/u?=
- =?us-ascii?Q?dyOf9av++0NaIn74WtsVFFdTseF+oQNAL6yVX6NdDRxbzRddziSPJKcIz21g?=
- =?us-ascii?Q?mVeXKL72NVFJNQoVUsXbaOZgwbcVuOaPMryQdNOBTUQCStC8L89OCGY5jBIP?=
- =?us-ascii?Q?mnH+n6cEhv7ew21xuaT3/c9wf0c6c8rwDdIQ/6eF7KmrGsMDXq3x18ZrNCYf?=
- =?us-ascii?Q?KDLIlsvUahmpl7d/5Ul8GVTS5RVYicixnGgJxejMZt/nOYv4qDSfv3ih5yMz?=
- =?us-ascii?Q?m/ZDjJFDxek+ID9sO80SpCNWEX3freamlehcmyDZIdW8/050p+sJObZ2gtLW?=
- =?us-ascii?Q?lsfughHzogGbZIMRbNIGlxtEVTOirGrkU8hOOTFNU63caXAgDp8ydIY/kE6R?=
- =?us-ascii?Q?crXODQZ2G6AdbSYF3oxnCBxXKfvwShlHjWQ+BGC+VPIXcm+98mYkdsvpGq6H?=
- =?us-ascii?Q?S42wDlrDjfX7Wbf3FFkxRK2b1wZbYbauu9eFedEsDR5QKhEnnPFFT9Pw5Apx?=
- =?us-ascii?Q?zm2rWFRJGz7VG4TjrCC1DgCEDSUs/9q5eMrF83kmCAGnh4m54Aodt5++Uu4I?=
- =?us-ascii?Q?LkOlefFLck2VSYImF2SQy2eOYnXGdCgsDgIaSPMY8/qF1oCp0cuul2gJu1uz?=
- =?us-ascii?Q?N9DbcxWB7wqqGlCdP9TLkFaL8ILmWa9SmIs2nzl16BPD9YqtpCOLKCyqTlBA?=
- =?us-ascii?Q?/2p50vjN6tpcVPSqXdDSUGL+Xf6rSyxU1ULMLkBF4/6NRrflLrVauw=3D=3D?=
+	=?us-ascii?Q?ytky4oNrj76IJ5kHuwhg6kLlsGAfBWxR+TQhoLjfk6yvBCTv1Xs/yeRlRqHu?=
+ =?us-ascii?Q?YFfy6lx4NKs9z7ZsT6HgQ8n8n3JSeN0F3NnLU0R/Q8FJ0tDnGDUP1/US/KOt?=
+ =?us-ascii?Q?Jz9XVvgtBBPKr/Fl5to2xuEcC1EKdLfX/3GZjxTLWNuXa2FKcfvezfEkHr5b?=
+ =?us-ascii?Q?U/m5KYtxcUKjpEJ4Qf+MPlGtQ+suT0nFi+RJ+gQXXMHneWPwGlYj1Lk6PnI9?=
+ =?us-ascii?Q?UbWpnT5Yb210h7Z1qv9mqAxKEOWwVlk2e1NrcHcjEtOJe7p29CcsXsigm3ww?=
+ =?us-ascii?Q?cmZIcblaYIxH4czLoOVuHdWjFZ1NwVp40SORir4N5AOKn4kpn2HFSgjinmXB?=
+ =?us-ascii?Q?zmpruz3dKc8fBfRCmkBN5EsfNj1ORCeQMxxtvZhK51SwfHdRBMA+ozf98COU?=
+ =?us-ascii?Q?jg/qTGkrDQkZBsUDNd7gpb7eC6CYC//VWvFukAekPwDlHhobQP1CqFiuF2pE?=
+ =?us-ascii?Q?B0ReDkj9IRzWKkNMd0FXtUhOReDS6stozNoWOQiQLvOldS5J4FWiTdAuNILc?=
+ =?us-ascii?Q?otpkqHCD5MLCnQA3lSmUexNRWlRbW7cMxdgOAmQgcpOyzikxyYYOCcgDZLwd?=
+ =?us-ascii?Q?kzkzBDkGn9w8NbHoXPVlxsAWtbtR6vfb1lSJc1MznKvDrJ6EaNj2iAouHR+C?=
+ =?us-ascii?Q?eNczVjxNrc0gvf2Q3OEqqIFjgAp6gt9wnFUEpUZFlifGlg54Tq3Fsl7nnHg/?=
+ =?us-ascii?Q?C1aa5PR+fPheKW1GE6BJS0Q2b7SMhNXPmY371muqflDD/1WDoyyLp+WcgQRP?=
+ =?us-ascii?Q?5psyqv5X8sFAdgUmd2uQ/LzFk3pZ1u/5j0hSffmAcrxgcgBYY4BDmldJVg4n?=
+ =?us-ascii?Q?FrpIVBRep7ehJk3//9Ti6lfFZufHkcB7kbpNCrmiRLMHgaA+YI69JpsLgsCH?=
+ =?us-ascii?Q?dGKkaiotEpFSZwgJ7IFRAHXncv11nrJeK9eHPHCO3wig8mqp6Pfvy14H1fNA?=
+ =?us-ascii?Q?zA57b7Rc+9rrLWoV6T1E+XBKaZ8y9jv79pRPX+/4ULH/b+Kr8TmgTRjYV+yg?=
+ =?us-ascii?Q?wHtDjCZEIXPkqgTTqwBPlFFU967C8K8EAGIdZ2mMe4Eh78l5wtDh1Pgn9rX/?=
+ =?us-ascii?Q?V9YA1ZS1NL7FVleMDHdDZFIXCCKNmeIzBnI5QGM3GrRZiReeDRR+LKa/5pR4?=
+ =?us-ascii?Q?/KQVZH3EsgOOUvZU3COAzUR8ZvOh88w/I1S3kRMED/tF55AyCjazHI1Msli8?=
+ =?us-ascii?Q?SwODCCYyHl2lYs5PBrk01Mv6tJiX23uUF6oKiacie5iPFeX+BOvk6zO1J0C9?=
+ =?us-ascii?Q?X9XAXG1Ei9YhXyzxrJISJCHhWvVeg5iIxupCCoT7LOga9wFyu50xZIhCS3zl?=
+ =?us-ascii?Q?kqldNiNh60cTInUoE0VaGH5PPzFivbH/fjKhGgvCI4gUVmDSNczQp6kF2ijv?=
+ =?us-ascii?Q?ESCXaDBFL+KzzaSuWI6N0Soq2CcP3StY5BHhiKwqf4rohad8z1+8zM+ndJGX?=
+ =?us-ascii?Q?zUYG89IOIbXZB6dd4EZ9SdZ8h5d05XqOQDMbdyuXZ4JDubz3au151oj6qysH?=
+ =?us-ascii?Q?fRtS72VqSK9XSuo=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?GahwKdIt9a3K7AiREcJzzci5lCe3s9e1YUMEm9ieEOR+6DC/nOUfiA9mifE3?=
- =?us-ascii?Q?/HR68t+fyMCkfWi7YStkJvi+uEvqP2OzCoskSZ1VzSaOTpR3Ncn4Cn2uOdG6?=
- =?us-ascii?Q?chIaRIiPrX7DJDSHMn6q3jSYCbdsNoYpDuOKytC28Cxie/2gtbryAIJzXuC+?=
- =?us-ascii?Q?oUUezrKq3MIU8Yk7pHFLE0cpOaQpY1RdbXAO0DYLE01O6axMM4huxI91d4Kb?=
- =?us-ascii?Q?shgnYQqw3MEIDE5K9b+KHrNmSKxPujRxv+8Mmb+UyqVzkfK6OO3ZoiogU2lC?=
- =?us-ascii?Q?4Zanf+VgjtwJhUhCjKDq59r1KO0d3qJymMbwrEXnjaAZ8Cw7rVS5oZazip4/?=
- =?us-ascii?Q?MxjOShimu7aJxrCqfCJGtHmJEeZ6NLtVL2KG8TQErmA/GbLgaIJTyonYZveY?=
- =?us-ascii?Q?LluFCGPKnJv+TxvICI+rwOFLh5lXTKMfgHcYTk3WcDXrOTdcs5onl1I2cYyX?=
- =?us-ascii?Q?0UWtU7EgmcsGS5nmO7JPcZIvkZdj9CpVNf+oxEPqk0gHzO5m8DKmlcffdjvt?=
- =?us-ascii?Q?5FEPtjh4dLCUNeQi2lGnM0c/A7nd3SjTvjkUYnUEPh4CvN++EVzoYatOO61J?=
- =?us-ascii?Q?e2TooOlfc1zCLatR8zzpxAsqpuHgBzZ7zL88Pt/WOVxBo9F90Hku+avpZF0G?=
- =?us-ascii?Q?jGhf7KlZAqWuB3HpFl8/upl/e745zcH6Wko7pIasp0lXMduDuexjMQ8qCBjr?=
- =?us-ascii?Q?P5G8UoahktY+PytGtuYt4AcSKNGJwNA64HWX9w4l+HvGpyez7SCIRYPDqMjU?=
- =?us-ascii?Q?CKSMupXdNr3naAUhPfyp14v6vhEAElsIbKGohc3kqXw6aXv+wcLwno2y5vUB?=
- =?us-ascii?Q?nmwzrZ3qIer+Ubbk8Kjkt5dal9Whk3NH3qpAPd7k4h8hEQ9uT3bu20+A/og1?=
- =?us-ascii?Q?OCMW2AmC3+xj5DteD9Y9CV3hMJZ6E3TEfIH9WaSwKFTENbsKbJlxJCFoIYTF?=
- =?us-ascii?Q?qdsVCjS8DuRbs5yFfy9iCfxZBPKbmD48RD97iudB9YyB+4lRXs2+hjSGlzuG?=
- =?us-ascii?Q?H4jrkkF/hfTWmVVWhTG72StjrbtBXUxKIfTmJCVOr9ddhcIqkJ7ihCGmmHzI?=
- =?us-ascii?Q?h+x7PZZjJav/JsLIhbpl0fU6AXqCK8WpcVkdi6xLDwkAv7hr1AGi+qhIcyK+?=
- =?us-ascii?Q?Jx3kGuWoo6d83CpvZBAyF3hRTzebV30ggxj6i0wokM6L4rRQ9QMcuQV9Dj+W?=
- =?us-ascii?Q?7yUek/X0HQ7icjZksnZU0l6/p5SrQt2RQCISHFSCt0RZ+BEUAc6HxoUK7iun?=
- =?us-ascii?Q?rQZZpbXBsH3oN/MMU19MPMhVKJWD9+IOGEK8M+WC8gX/4mI/abgzBLJdGzng?=
- =?us-ascii?Q?fD3MsZvF4uaPDq3YDK/U10pAl8ATOKngofbmQ/HOotqxoAxBRFZvZJLY6H5n?=
- =?us-ascii?Q?Kzujb70H/4+gZd7F5XOmmFVj1N4txA6cgTWt1NAmfCGjY+k4qroYXh91VD51?=
- =?us-ascii?Q?WPq5cRXRkjQVYCBrJvbd2ik6LlSETO6WnCgwTmYbdbJt39HdDL5GLEr8IPZk?=
- =?us-ascii?Q?Fy+XGToqFdafqT72yuBDMuNPKcZ+wBH+vySfd0iRQDqCMMswnvoDyBQRHwMm?=
- =?us-ascii?Q?3bht7Qx6rvg+VAAt6jCvbVj908h6fChwGqH7l+za?=
+	=?us-ascii?Q?iRyAf1VZLGQ80f2hfIGv059b2ZypMdLN2N8O+BJb+EBTfcd64hXA4ggLD8sK?=
+ =?us-ascii?Q?XMZ8Pp/9aDUyEpLl0BQVXTgq5jNouic73siBTrH/Ub9xsb3YCpbV5UYNP6p8?=
+ =?us-ascii?Q?m56NpNyEjIEZE97tqPUabCwXPzqI/V6qv/doR2i6uf1rxBo/gKUn8bUv8lIE?=
+ =?us-ascii?Q?ZGgGZGAxlrt1N9OAQhUz2UsA7w8U+WkCBb9bFHjB+J5+1tYgFYzvl/EnaFs5?=
+ =?us-ascii?Q?aLb9lkm6odnoU5ir6yXqC2RTtw9YUjCpI1Z2X+va5tKMPVIGSoth2KtpsygP?=
+ =?us-ascii?Q?ov5eR1AzM55IHJ3W6mnTl9tDecfQ63XbDpVNvYrPrbK0Qrp/IkQc3sYHLJn6?=
+ =?us-ascii?Q?MG2BbWHffUCPKFRlWLPOa/grbMNAYtg5uXBZL+RCiq/T88AtZO7FnnYbp/1O?=
+ =?us-ascii?Q?0Z2HeeICeopbR1ZsssW/Nvld0Hj2ik4u+uJrCqAPc4j0SQJN+QmM5oTbx7Bc?=
+ =?us-ascii?Q?+0163pO8EfmUigA5G60TqmNdya9pmrxAE9iVynugpB9aiMPo2hrFPjkhfGLP?=
+ =?us-ascii?Q?2tKmmBpERB0zbowoIZlzd5MXm/NziG+Yeh1+x6VDTirgJAGE1fOzi5nuMfmG?=
+ =?us-ascii?Q?qVai4XeJF2NoqBQiNvgl+JLDYVSi65IBdPHK/NjMz2qeAxXHy02kPKb2QUdY?=
+ =?us-ascii?Q?q21kjK6q9gQ4/x5LiEMBPlR3253OXgEyzUEh+qv7slSqUXnTExY/kwHc0MUb?=
+ =?us-ascii?Q?bqMe4yBtvDYYnlVcbqD8GcHtEFaPTeYdN5Zwl/KbPCj1tcymFmLDLAbLOEGH?=
+ =?us-ascii?Q?2e+t3Zwpt0MoR8FSRatJzX5n85fKWdQT5+2DInVRrrLPQltx7BPNz4SgHfUj?=
+ =?us-ascii?Q?drOzRma2fEWjyQWpZNSpygaJgKSg9TjYk8OTDmAYaYXGznPzGgON5PHH5vbw?=
+ =?us-ascii?Q?jh2akOWTlMeB8Z7ty8eDg0gapsZFYgbXYHHffCErk4LOBdP3k3csJUmqRx3k?=
+ =?us-ascii?Q?Qq37sAfQiOor1AsbgVYG+I3dkmtaE1AblMPfVYLThc/dTdGUI/CBY+6LkzBl?=
+ =?us-ascii?Q?C5QV9wV3mva7ezmwjXL6s+oe0HVWraVIGyy1oDol+hfTRVarlQ7+iuaRheeu?=
+ =?us-ascii?Q?Kj9GHMAcMZgTItSEO/VD6U9rkHRt3HJbF9/7d0ckeFcudzmX5M4rxQslwr3y?=
+ =?us-ascii?Q?327BIeX6/yxHHS3VHiLTPUNxmKWfYFBBRbS6f2iSDyno7b+G6IDp7Nwd7pxm?=
+ =?us-ascii?Q?5voCbKWqWoZVU6/G6bkJv+iERS0iuMy6ifGCOveoOIv406t0kr+KvUPnzvMu?=
+ =?us-ascii?Q?rgF7DpYkRxTrNuI2iTIgHctwwoEGxSfZnkcRt++Q5TAoDmVVrTfbEoSQr10M?=
+ =?us-ascii?Q?+lu7pLvVvs/dgEvodfRd8g323lzmXDeMFt/SA5VYgavfYM7Q63geF/FCUpur?=
+ =?us-ascii?Q?pPAZhrkHGD4JUMdfLXM5S9lkIRarbF56qmp+mcswDpIf3x196r/dKYdj6ork?=
+ =?us-ascii?Q?sjxOZBTnZO8XsDHYz4/Z+cTk1eVnbheGDMrNZBvlpd979trvnGfsGrXZNlCy?=
+ =?us-ascii?Q?pdQ+D9AkaopfxN3lIcbpK98egoMascmX+bMuRiLqHWZhuW9WNlzmKsR7isz2?=
+ =?us-ascii?Q?QivJEhNp7EIs/tQpaOx6rwRSLWztf+6F8Moc6ljB?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5b49c7e-e5b2-46da-c558-08dd7cf3a0b9
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7d62b2a-c893-4035-5814-08dd7cf441f9
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 14:33:17.3646
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 14:37:47.9143
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GzoEOBwZEsdAufptqdM6eJUhdbCOHneQM0fWIc5+km3HdexeYMPJOxlN9eSPsw6RO1+iabRZ7xF20GUPIVNQtA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8517
+X-MS-Exchange-CrossTenant-UserPrincipalName: s0I0ZZRrpDJsmPIeCNFo/NFybisYAMJjIC3Txv6bl4QtcbtLF/hMCrktF3Z+cIIuJ3hDzDInaUefsxuhw31Ryg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8767
 
-On Wed, Apr 16, 2025 at 06:59:39PM +0800, Xu Yang wrote:
-> PTN5150 is able to detect CC polarity. The field[1:0] of CC status
-> register (04H) will keep the result.
->
->   00: Cable Not Attached
->   01: CC1 is connected (normal orientation)
->   10: CC2 is connected (reversed orientation)
->   11: Reserved
->
-> Sometimes this information is necessary, so add orientation switch
-> support to correctly set orientation of multiplexer.
+On Wed, Apr 16, 2025 at 06:59:40PM +0800, Xu Yang wrote:
+> Since PTN5150 is a Type-C chip, we normally need to describe some
+> properties under connector node. Due to this, the port node will
+> locate at connector node in the future. To support it, we need to
+> get usb role switch via connector fwnode. For compatibility, this
+> will not remove usb_role_switch_get() function.
 
-Add orientation switch support to correctly set orientation of
-multiplexer according to CC status.
+Your patch 2 already return error if there not connector, which already
+broken compatibility.
 
+You should handle compatibility in patch 2 or before patch 2.
+
+Frank
 >
 > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > ---
->  drivers/extcon/Kconfig          |  1 +
->  drivers/extcon/extcon-ptn5150.c | 40 +++++++++++++++++++++++++++++++++
->  2 files changed, 41 insertions(+)
+>  drivers/extcon/extcon-ptn5150.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
-> index a6f6d467aacf..fd4ec5dda0b7 100644
-> --- a/drivers/extcon/Kconfig
-> +++ b/drivers/extcon/Kconfig
-> @@ -145,6 +145,7 @@ config EXTCON_PTN5150
->  	tristate "NXP PTN5150 CC LOGIC USB EXTCON support"
->  	depends on I2C && (GPIOLIB || COMPILE_TEST)
->  	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
-> +	depends on TYPEC || !TYPEC
->  	select REGMAP_I2C
->  	help
->  	  Say Y here to enable support for USB peripheral and USB host
 > diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
-> index 78ad86c4a3be..b7e05d921c79 100644
+> index b7e05d921c79..160998e163f0 100644
 > --- a/drivers/extcon/extcon-ptn5150.c
 > +++ b/drivers/extcon/extcon-ptn5150.c
-> @@ -18,6 +18,7 @@
->  #include <linux/extcon-provider.h>
->  #include <linux/gpio/consumer.h>
->  #include <linux/usb/role.h>
-> +#include <linux/usb/typec_mux.h>
->
->  /* PTN5150 registers */
->  #define PTN5150_REG_DEVICE_ID			0x01
-> @@ -38,7 +39,11 @@
->  #define PTN5150_REG_DEVICE_ID_VERSION		GENMASK(7, 3)
->  #define PTN5150_REG_DEVICE_ID_VENDOR		GENMASK(2, 0)
->
-> +#define PTN5150_POLARITY_CC1			0x1
-> +#define PTN5150_POLARITY_CC2			0x2
-> +
->  #define PTN5150_REG_CC_PORT_ATTACHMENT		GENMASK(4, 2)
-> +#define PTN5150_REG_CC_POLARITY			GENMASK(1, 0)
->  #define PTN5150_REG_CC_VBUS_DETECTION		BIT(7)
->  #define PTN5150_REG_INT_CABLE_ATTACH_MASK	BIT(0)
->  #define PTN5150_REG_INT_CABLE_DETACH_MASK	BIT(1)
-> @@ -53,6 +58,7 @@ struct ptn5150_info {
->  	int irq;
->  	struct work_struct irq_work;
->  	struct mutex mutex;
-> +	struct typec_switch *orient_sw;
->  	struct usb_role_switch *role_sw;
->  };
->
-> @@ -72,6 +78,7 @@ static const struct regmap_config ptn5150_regmap_config = {
->  static void ptn5150_check_state(struct ptn5150_info *info)
->  {
->  	unsigned int port_status, reg_data, vbus;
-> +	enum typec_orientation orient = TYPEC_ORIENTATION_NONE;
-
-Move to first variable to keep reverse christmas order
-
->  	enum usb_role usb_role = USB_ROLE_NONE;
->  	int ret;
->
-> @@ -81,6 +88,23 @@ static void ptn5150_check_state(struct ptn5150_info *info)
->  		return;
+> @@ -352,6 +352,8 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
 >  	}
 >
-> +	orient = FIELD_GET(PTN5150_REG_CC_POLARITY, reg_data);
-> +	switch (orient) {
-> +	case PTN5150_POLARITY_CC1:
-> +		orient = TYPEC_ORIENTATION_NORMAL;
-> +		break;
-> +	case PTN5150_POLARITY_CC2:
-> +		orient = TYPEC_ORIENTATION_REVERSE;
-> +		break;
-> +	default:
-> +		orient = TYPEC_ORIENTATION_NONE;
-> +		break;
-> +	}
-> +
-> +	ret = typec_switch_set(info->orient_sw, orient);
-> +	if (ret)
-> +		dev_err(info->dev, "failed to set orientation: %d\n", ret);
-> +
-
-Does it need return error here?
-
-Frank
-
->  	port_status = FIELD_GET(PTN5150_REG_CC_PORT_ATTACHMENT, reg_data);
->
->  	switch (port_status) {
-> @@ -152,6 +176,12 @@ static void ptn5150_irq_work(struct work_struct *work)
->  				dev_err(info->dev,
->  					"failed to set none role: %d\n",
->  					ret);
-> +
-> +			ret = typec_switch_set(info->orient_sw,
-> +					       TYPEC_ORIENTATION_NONE);
-> +			if (ret)
-> +				dev_err(info->dev,
-> +					"failed to set orientation: %d\n", ret);
->  		}
->  	}
->
-> @@ -219,12 +249,14 @@ static void ptn5150_work_sync_and_put(void *data)
->
->  	cancel_work_sync(&info->irq_work);
->  	usb_role_switch_put(info->role_sw);
-> +	typec_switch_put(info->orient_sw);
->  }
->
->  static int ptn5150_i2c_probe(struct i2c_client *i2c)
->  {
->  	struct device *dev = &i2c->dev;
->  	struct device_node *np = i2c->dev.of_node;
-> +	struct fwnode_handle *connector;
->  	struct ptn5150_info *info;
->  	int ret;
->
-> @@ -311,6 +343,14 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
->  	if (ret)
->  		return -EINVAL;
->
-> +	connector = device_get_named_child_node(dev, "connector");
-> +	if (connector) {
-> +		info->orient_sw = fwnode_typec_switch_get(connector);
-> +		if (IS_ERR(info->orient_sw))
-> +			return dev_err_probe(info->dev, PTR_ERR(info->orient_sw),
-> +					"failed to get orientation switch\n");
-> +	}
-> +
 >  	info->role_sw = usb_role_switch_get(info->dev);
+> +	if (!info->role_sw && connector)
+> +		info->role_sw = fwnode_usb_role_switch_get(connector);
 >  	if (IS_ERR(info->role_sw))
 >  		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
+>  				     "failed to get role switch\n");
 > --
 > 2.34.1
 >
