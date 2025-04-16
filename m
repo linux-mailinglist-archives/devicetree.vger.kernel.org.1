@@ -1,286 +1,353 @@
-Return-Path: <devicetree+bounces-167846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF81A9076A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:12:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FB4A90774
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 975BD190504B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:12:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB47F4462AB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:15:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B542E202C31;
-	Wed, 16 Apr 2025 15:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E747207DF9;
+	Wed, 16 Apr 2025 15:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="s13wtH4/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iShgXaC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3387201113;
-	Wed, 16 Apr 2025 15:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744816330; cv=fail; b=ZIZ3+/a9+l29kUZSkfX8+49ousQWXwcclxyLCiw6OaKMGmPkO61+3eo531wu+UNyxwc31keVvhKLo53Y5oZjoovj7jlIvd0V5CQmRVatFBKWrfUXEQlKDfpxL7A835Y0X4nRYB23FnFAGCRSkK8Oa9KVwuuCFtrmiTuSqIMUuQ4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744816330; c=relaxed/simple;
-	bh=6MspGUhvhfaqUhAnUQye//YzrAudd8iyBrIOd4gpIRo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=bnLc3O3Yb5Nu8IR0p4V7cQvZIdkumyEeQXNucNND70tJMYRhEIr30fVwxUQQtcwjpSblyWCCs+uuW3gGuCx5TGf5vSFSh+CllpjZXPgtFL5k9ZLSJf/X65prRMHCQXXnb1HOzsn4mzm+qGyaG3WZ0khresFUXvEBA9b3AXeQ9zk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=s13wtH4/; arc=fail smtp.client-ip=40.107.94.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GaN0CrTPWSi2d4C2ZGQKUjHMnh6VjKXTEq7Jfgs/TbifFScUwcxnFUwFBPiM5ML8CcqGEbMZqctKEY4LMrZz2lmbAOYcOBbpDdp+rPpSb+VpnZ3VuSKF+uAqAnqLLDkdLGmphp0WHrWFnK9uF4P3hMwXUiYUKNM5zpCYZmW1nDxxJzXOb3qP8h+TJ9P9J4fDTMxA6Gw0c/7qAIJgTH+4UELgk3h+c62JBzOPOV+6Y9ATXpwriUFdY4PPlS18KJ+4/slGH7FWb15LJDrG00Y0LiPTjc8usJKzr+tIxLHG7hxW8kknwRFJ3KuWUfijhHfVr4FebDAYD/C+VNKIxQWMvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=99K4pJelFCdWNnht9cJFR+tbi3R38NsH3m38VJ+mAYs=;
- b=JcxWvn+JAV6ZjC6RX0ifflwCEZqKpx0vgKKLxUiuR7CNfTmjBld9ENPs1fg5vhDu/VjjroBK7BWtCUm8CzG2zLDvVRjRI9ZHpeXHaHeQwDEmMBfsdqBuaGjtE7dwZJ8bhVlx129G8lo7Q7iZ6UrIq63qogh+8LbV9QEdjxzWQ07LG5rtlNpjIqyAxwnkZgZzFBCGxli804GPpNcoJ7QEJgfcpqc+fD9PBVjm3Poz4bEGbGNmbY81m6R4yldaoU+pgYBHxzsanWm1J1Dv/zMZ7FFZ5fGK0XG4YoaUDXdLdoPkk4Yr14LLCm4rQqSp4N5sKqZNpw7pwBvjZGMiujEbMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=99K4pJelFCdWNnht9cJFR+tbi3R38NsH3m38VJ+mAYs=;
- b=s13wtH4/1cmHHUPI2Wg5XMjjHt7pZK2YTzbuxb2SiO0hdeHEJqMvKmvqnfFeIq2gjZ81aqZIFbniUzgEBAtJPXbVnpNhm0QbJBWVavvIrLbhhvW/WndPyV7v4JIAsdf7YRt7G+tTHNH+vUqyvDCWz2IM2A8NJANwuI2QVukGS40=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CH3PR12MB9193.namprd12.prod.outlook.com (2603:10b6:610:195::14)
- by SJ2PR12MB8650.namprd12.prod.outlook.com (2603:10b6:a03:544::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.36; Wed, 16 Apr
- 2025 15:12:05 +0000
-Received: from CH3PR12MB9193.namprd12.prod.outlook.com
- ([fe80::7818:d337:2640:e6c7]) by CH3PR12MB9193.namprd12.prod.outlook.com
- ([fe80::7818:d337:2640:e6c7%5]) with mapi id 15.20.8632.025; Wed, 16 Apr 2025
- 15:12:05 +0000
-Message-ID: <deaefc59-f6e4-2d4d-b91d-0ba7db9dfbf4@amd.com>
-Date: Wed, 16 Apr 2025 20:41:50 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
-Content-Language: en-US
-To: Lukas Wunner <lukas@wunner.de>, herbert@gondor.apana.org.au
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, davem@davemloft.net,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
- gregkh@linuxfoundation.org, robh@kernel.org, conor+dt@kernel.org,
- ogabbay@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de,
- praveen.jain@amd.com, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
- srivatsa@csail.mit.edu, code@tyhicks.com, ptsm@linux.microsoft.com,
- linux-crypto@vger.kernel.org, Ignat Korchagin <ignat@cloudflare.com>,
- David Howells <dhowells@redhat.com>
-References: <20250409173033.2261755-1-nipun.gupta@amd.com>
- <20250409173033.2261755-2-nipun.gupta@amd.com>
- <20250410-sly-inventive-squirrel-ddecbc@shite>
- <bf851be7-74a5-8f9d-375b-b617691b6765@amd.com> <Z_wH_uCx558T0__c@wunner.de>
-From: "Gupta, Nipun" <nipun.gupta@amd.com>
-In-Reply-To: <Z_wH_uCx558T0__c@wunner.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4P287CA0111.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:2ad::8) To CH3PR12MB9193.namprd12.prod.outlook.com
- (2603:10b6:610:195::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989EF206F0C;
+	Wed, 16 Apr 2025 15:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744816524; cv=none; b=T1neVYN6LRetKdQ5kFuN5Uuqpm9e4pOMAIM8mgufs+xl7kb1E3QY9Od6OjNamQHUP46TEScZ1ty3OpnnBRN4pHLb+GF1nxDlUorlQiUS9KaMkz/jnlPlcv4MifChz6zvRW5cT+cWxDpswYzY7xWDvhuGg/mgMTU8rMVTDo5IEa4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744816524; c=relaxed/simple;
+	bh=HpU6VloERQNeMMx8yqX2bXPiTYCq+K5EnDiKMZtvK64=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B+9TdKyqfSZdm1dpxRjGQpD4uPnvER63HzO3AuOTQ6buXljrwzZiGOGuJksJ4I9Y5PhhdkJBZJ6KKkQ3b6wrkNGFu0of0oxdv0ZrZiiL1Zmujdi7QT4MwSGDCWFDn1JyAar4R8sHfbfC9Jwab0zvz3u2rxnES19xLNuW7zYHSy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iShgXaC1; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acb39c45b4eso147624766b.1;
+        Wed, 16 Apr 2025 08:15:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744816521; x=1745421321; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f54xB8jAzZGxPN+eurWEBlbBBztYq662AJjtmWBvOs8=;
+        b=iShgXaC1QDlq5hgI2guInaHvvJ0XgoPt/qWHYly0woKgah0bW0TAd/LXtpt1JTO9Xh
+         08xA/q/r78YE7sn4Qs74r9WLVcizJPptBiwaUnHo2E+WotO/QcUyZR71xQj4fPAtO2nI
+         BIvxfW1WFex+w+ahHSZ44pLJRWASLAbTZ/5ixvIKu2RGTzwCkMvNDKkwg3xwqsGBC/Dk
+         4yQ/9Bl4BjyEeBi7E5TFTGoZW+cvpG1lVc8//Vma93Tr7AVb5Hoo/IOkWWLlgv9BPGTx
+         CbkIqgt2xERGymWkUseXZadwq01fpm4Xjj3cjky5GvKJWNXj+Xe5ds6VNHtYrx0pWPWL
+         8ZFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744816521; x=1745421321;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f54xB8jAzZGxPN+eurWEBlbBBztYq662AJjtmWBvOs8=;
+        b=Zp9LOSas92e5dClXaOoilfuJlvr7V654nI1ZuUjmcRAPQr2ttTj44FETydFF4DqXAG
+         H5xE/MFUesyPDOdi+4EUIYPlcAcYWMZOvb+eNXt5SKIL7amCDD9H6nvulIdTbG7EDMR4
+         /QD/GS/ju7YT4GQuZhGU8it8XUrWFHvA1KcmpsVafAZRomFelrt32sx1QFswlSi0WoSC
+         NqkEc+EVFp0CqgMI/qR6cSJPVhHrocC3Ql2IAJgcU9fJ3h7FUTQU/jRr9Mo6oq3apRmU
+         kg/+9DOy70dIFmSA+qD3yDjmoHIxEZJpwzi9KL1Dd06hvk4cMG/BcRhlVjGoBF3gv0zB
+         4nLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUaMqJIwOZydffQ1ocVedRhl/SID/s3O8UJK0DFKZg901JRu3nhqlBHUSvf7lkafo//wJ5/wTh/G7fAGUTt@vger.kernel.org, AJvYcCVHUmsOd7dC9IXkx9FF71X2C3khdwm0sDXhJ5bd59BVqJhGDVnczBGWcn4l4tilK3P00W2sw6tEWHjJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YznXfl9e0CF9IpKrbBz9dPwn41Teu+nZnAA085r6Ejb2im7e09g
+	XWgcMW27AMTXgfQxmLS3EmZ0tJJyqf4I9g42Egj4Vzn7Yo6tvr0u
+X-Gm-Gg: ASbGnctsr72zQLcnVC8zL4oOtqKjPdbbn8uUXF8IsrwDWcWtNICVQ6haz72bpfAY5dA
+	EwqHbqxtb2ZQgTB3lsI+d+IkMR0jsFhWT06+NB1mWzCZ0yNQ5Xu/lf6aLjyRPdXVZureyrfK+Rs
+	L4RpijEkAQe0fHKo/A0FBoc/8m31GKaOAO2cznrMhlC7wQ1jMPWKchCvsp9kSS5W5wLwQjrgMsz
+	1iXdq5v1eaEQLDVltmSuzoZULTS3NtNOzcrHzXKkunqi8qBgCPePJFXGBqO63vdR2a7gDrHlk8g
+	pxvJpCnFgzjRrD4anBEQpA2ZuJIZ1jjCCj+08ftSWmWSgiFc7SaBhpml07sjzj4/VtnFImQNcOa
+	GPpJVj6D9xNcLAuBuCQ4=
+X-Google-Smtp-Source: AGHT+IEYDMPTAVgdmlNNu9P4Oui1LjNbVBOfvMZvnfG/4JzHe+Ej8lmr2fDQnm8jtO40TBJR4xN3QQ==
+X-Received: by 2002:a17:907:3e03:b0:ac8:16fb:7c85 with SMTP id a640c23a62f3a-acb42bffb7fmr219117566b.41.1744816520410;
+        Wed, 16 Apr 2025 08:15:20 -0700 (PDT)
+Received: from toolbox.int.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3ce5dbaesm143286166b.85.2025.04.16.08.15.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 08:15:20 -0700 (PDT)
+From: max.oss.09@gmail.com
+To: max.krummenacher@toradex.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: imx8-apalis: Add PCIe and SATA support
+Date: Wed, 16 Apr 2025 17:13:41 +0200
+Message-ID: <20250416151353.1692373-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB9193:EE_|SJ2PR12MB8650:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5711897-09a7-4694-ad67-08dd7cf90bd0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RTRkTDZLNzRIT0NqN3hlazZ0d2x4KzRPQTBqL2R6L3JrVjYzVk8zSUN4ZnJp?=
- =?utf-8?B?L0J4VzJ0S1YzSUh3ZzZ3QWZVbnVabG1Yc0tZWE04VUd6L0pNRHpBNEExOG52?=
- =?utf-8?B?emVTTjM3clNVZVRyMnlCTkJDaE5mRmFlWlBEbVIxWnh6TU9SZHQ1QTg2M0tP?=
- =?utf-8?B?WGFoTTV3MTl5dlQ4Y0RmK2tSaVA1L0NnSm9zWHhxbW5vaHpZL2c1djNKcll2?=
- =?utf-8?B?aUNnVlVLQXhNb2thRWhlZXpJMkdqbUc5VW9xU0w2YVMvWUw4cGI5RVBnb3lx?=
- =?utf-8?B?RjdTcGlINW1TMVJPeEZOa0hKOFkySEcrQ0k3Q09pbk9CWjBiaWkzWHNLdUpt?=
- =?utf-8?B?VE1MUElZVXBKaVJJb3pMaHNibm9YWXJEazZzVkNyZ3F3VmVPRlh5ZmkrcjB2?=
- =?utf-8?B?MldISE4wcUZieEJOOVNMdWxVOXVDcHNyQUU0SG5EZmQ2MldnZzZKcldua2l1?=
- =?utf-8?B?N2l6eU1hc2FuUXBOZi9QaVlncGVYbVEvUytVelN4ZmlGcE9RMklFNlV3Yjg3?=
- =?utf-8?B?N0liRm5nMHowK1VwcWZuUm5vdmQyemxNc0pzbHk2ODA1TEVualJtUElkNERQ?=
- =?utf-8?B?MkpRbC9tekVVcTU5bTdxZkFIVG5kaG95UEZYS0VkVFdES1orbHYvdTdPaWVu?=
- =?utf-8?B?Mzk4d1ZNc0NwNmt5WEJFRWdlTTNKck52WWdnZ2R0aHFYMFZQZmI3NUpGdjBo?=
- =?utf-8?B?djc1K3g1aGI3UmpybDJHOGY5VFpPZXh4OS9aeWs0VUlnbkIxZkgzU3ZQMVZm?=
- =?utf-8?B?TjgvcDBqUG5veHpyb2lra0tRS1N3WkEyNmpPY0ZqOE40T2d1N0h2MW9UTHNX?=
- =?utf-8?B?WHVoWlR5UDVaS3lML05LY29TcnRhbkk0Uk5zRDQ5NUcxcFFDckQ5azlMbStn?=
- =?utf-8?B?dmpxQ0R0eENtRTFvc2FCUUozczc1V1d0aTlLQW5FNTBWNVNDOTZEVmZYK3ZU?=
- =?utf-8?B?SFlrYWVDSjJKWkZod1NwODhrNFlkcmZ3bG16RWx3L1NDNkYvbEt1YmVNSjJR?=
- =?utf-8?B?eDFMVnlLL3FyVW1VU05tNUNnUTBPdEdBcWh1VFNTYmxQdVJEQVRudjNhQjVz?=
- =?utf-8?B?RGlRbTJhSnpiNHliUXpheWVOZEFJS2RrSW5nU05GdnJkdVlHSmxGaVRUTFZE?=
- =?utf-8?B?Mm12RWhOWWRhSTg0WVdqeDlHZmcvZWRjcWtnTEl2dVBWdEtDbEVLYlM3N0ov?=
- =?utf-8?B?Yk9tZ2dyWkQ2U213eWNGYzBIbGNmdGl0T1g2TVU3UEhEOTdmQ2hRK21MdUdV?=
- =?utf-8?B?Y29sVWxMU01aRzJPNWlnaFVmSUdEVG90eUJ0ak8rVU9EZEZHQjhYenVzd2do?=
- =?utf-8?B?dXByTDI4QXdqdW9HVE0rUFRQcG1Qd1BwNmcrTi9rcDNhU21uS0RFTjJ2ZWc3?=
- =?utf-8?B?YzhBUnhOTGhOUVMxMWhQdmo4ZlhLcElFdURqdVJRM1loVEJhQW5td1c2Rk42?=
- =?utf-8?B?UHp3Yk5lNWZFVlA5NXNwNGZvS1BlTitQNTZSTGl3QTBpOCsySG02K3kwaXQ1?=
- =?utf-8?B?MnhaY0w4K01wRkdwbjJYZXQ5N0VQSVJQOEtUQTNRZ0pHS2NwOFZzQ1lvM2VU?=
- =?utf-8?B?cTNyaVJrbUo5VUxseXdZOGhZNThBNnVyM1pDcDFweHRtODhWOERqaE1MSDlS?=
- =?utf-8?B?TWFOUFFUS0cvYW5la0czdUkvSVdhVkJ3MVh4SUFMeTFEWXF1VDkrS2RkZzIr?=
- =?utf-8?B?ZlFENXdESVJ1WWlRVW5RRFNCa2g5VTNCcmZqQXcxNERJbmhkSlJEUktMQVR1?=
- =?utf-8?B?cnRudDV0M1BVbFFlbC9qM0x0eng2aHp4VDlPQkUxSCttVnpadUJzOXNtVUFu?=
- =?utf-8?B?MEFJbFVlb1pxR1Vac3ZHdWpqdURjMU1ZRDRUeG41NlM3clZsdlJDNXlpVHZ4?=
- =?utf-8?B?cXVNcU1EWmJiVU9udk1WNDFMMFpMeEhiMnoxTDhsQm1GUDZnM1RYVDhQQTRB?=
- =?utf-8?Q?onMzXLpajlM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB9193.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z0F6SGNmZXNGUEFXK0lCd0pNYWg0U2lhOFNwMTlNNHlYbFcvRUR1NHArYnJZ?=
- =?utf-8?B?R0ljeXgzK1RWNVBVT2lTMG9FYm1xTkloME8vOGtmb3Q2Vlo3SkJ3WkxBMVdW?=
- =?utf-8?B?eTRpZVpsUzNCTlY4UnhBdEhKODVTRnFDTHB4Y1UycW5sanZ2ZCtBeGc1SG5H?=
- =?utf-8?B?T3FnRXlTRHFWWGh6Q3lpY3RKRG16UmlRdFV3RXR4bVpvcEFpbGJUME1jdjls?=
- =?utf-8?B?UDBQb2lROUlqVmJiREZqT2phVEhGR0tacEdFMG5QVHMwYWEybzRCSUFIbWEv?=
- =?utf-8?B?VGJYZkg5TEFZUUJzQ2FXSkY0aUkzWisxQVpxUURzS3NVYlNNZE8xMGRNc2pz?=
- =?utf-8?B?U1Q5N0RwMnVMRzdOclVCeHZnTFVnQ0liZzZUVzdhdTVya3NZaENBZklGVUll?=
- =?utf-8?B?LzlpTFlXdHdDd2F1dWFoWFIxdlp5TnM3SzUxb2VMemJlQ1lIdUo4N1I0ajFE?=
- =?utf-8?B?RDcyazhlNG1KUjFDdUlsNVZNZEowUVlFSnNSaHR6ZHBFR0pnU0dYaTNWbkRp?=
- =?utf-8?B?VUlxWXB4ZXRldVdGTVRSRi9TaC9NMkhaYklzNHpyTmRpM2Y2WktDZExyTWJm?=
- =?utf-8?B?YWVTZm5kSjhNdTJ5elVNWDVpNDRBTW1KOGtpY3VDWDhpSjNZSUx0bjIzcXB3?=
- =?utf-8?B?NTh1TEN2UHFJZ01qMnFibGs3eWMyQ212M2xXcDRRTkt4RzgwaEEwN3FoTjBO?=
- =?utf-8?B?ZnpmQWJ6U0V4QytCaGpGQUhhT0V2WEowK3BoVjZhbm8zTXFDakJITzRQUEhI?=
- =?utf-8?B?OEhvb1hJa3p5MXBBaHRJTzRLaTR4TDh2YlJERzl3UU50eFdhb1Rha2pFVnI0?=
- =?utf-8?B?RmJUUnB6WTJmV3FJYlhpQStRMVhDOHpyK1hUeUhFY2RIcU9DL0xTUFd5S0dv?=
- =?utf-8?B?N2V6SkU3YTh0WDJkbHdRQ3gzclJ6a2srVE9wVW1Na0ZSMlN6TGVTaDZvUTFG?=
- =?utf-8?B?SDlydGNNNkJRa3pIemVqQkNsbzNXZ2txRzZJd0hmemhwa2trekxTWHR4Unda?=
- =?utf-8?B?TnNndzltKzNOWWo2b1hsRnpNMStITkFYMkNHQWxocUI1ZzFlSW9wcVpuWW1U?=
- =?utf-8?B?MTRlK0V6dk5PR2MvWi9lK1duWkdwMmNRUEp1REVmOVpncVIvN1J2WlJIT1VW?=
- =?utf-8?B?NmxjN0VlQjJlVGpPWWl0RUtSc2NqZW5mUms3SG9IeHFmZHdqS2VwNlU2YUlh?=
- =?utf-8?B?Z2RqalZRdmpSSG85aEpEV3V5VTBqUTd6ZkFteUNVZmtWeVdwWTlGVHNqV1ha?=
- =?utf-8?B?MEtzQjg0L0VoYXl2MzBnNHo5V0UxVXdhRnRCMkdnTlZycEI3eDAzTWFMVWFx?=
- =?utf-8?B?RytNVWRVVGszek1qOE9DckpmeXJiVnFPVnNKR0JtQ00yVWw0N0J5RlN5ZW5B?=
- =?utf-8?B?Zm5pQlJ4Uk15QWVBSHZUSUdXMjB5K0dybG5pcUFMWmtxb2JwTGZqMkdGbEly?=
- =?utf-8?B?VzcvRTVMRFRLRG9IZzlFZHZ2R0xkcVdpK0h5d2FBWHhGa1hHbGIvczh4NFRu?=
- =?utf-8?B?NTcyc0l5ajk2YmI4WnVtZmlZUWEvMDBjemdzSW5PUWxuMUxrQnlzbEZ1VGlV?=
- =?utf-8?B?MDd0WWxCMWd1dkhhQnNDeUdHd1c1MG4xWkplVDJpM212TXdDYWUyMXRhdEpq?=
- =?utf-8?B?K1RzQ0doUytFVWxJN2ppVWMxODZOb2thOEpNUHhqQTRQdG9kRVRXbXdSNU1V?=
- =?utf-8?B?NExqQ3dRcVlCSUwza1E0eWhHd0h6VmU3NnB1cVRBa09HTW1nbVgwY2ZzZ0xx?=
- =?utf-8?B?VUtBNUhsd042Yk5Tb25lT0ZYM3dLWUZ0ZDFZa2duUUJiNndLYXF5NzFLblJm?=
- =?utf-8?B?ek9vQ1A3SnVyc3hDeUJPa012aVpqQzM5LzBjSUgyYzFqSFp5aUVaY25aelN3?=
- =?utf-8?B?Zml6eWkwL3pIL2FabFV0b240cTM5ME8vdWZhNW1CRFBubENlblU4VmRTdHBD?=
- =?utf-8?B?V3lQOWJ1VHZqYndwZnhDUk81RnVEdE4rQWlPWkdSRmw5dVhMRHZCeW92ai9U?=
- =?utf-8?B?U2RYL2t5SnZKZzlMY1NsRE42Q0RFMFppclFUUFlFUERNTTZKZEdKOEFsSjVW?=
- =?utf-8?B?YUFzU21pSkVQNElGYmV6NTdsbDFyMHdKSHFSQW4za3hHU1JrL2FhVEQzemcz?=
- =?utf-8?Q?FteR2awOiWm4ZwqWCkc6A5aAa?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5711897-09a7-4694-ad67-08dd7cf90bd0
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9193.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 15:12:04.8491
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eW063GKidzpYiGp56KCER6JxpyB9uaq10P/GRtj/2dhYT3SRVj7KHxogVx9l6JBW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8650
+Content-Transfer-Encoding: 8bit
 
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
+The needed drivers to support PCIe and SATA for i.MX 8QM have been
+added.
+Configure them for the Apalis iMX8 SoM.
 
-On 14-04-2025 00:22, Lukas Wunner wrote:
-> On Fri, Apr 11, 2025 at 10:21:03AM +0530, Gupta, Nipun wrote:
->> On 10-04-2025 13:06, Krzysztof Kozlowski wrote:
->>> On Wed, Apr 09, 2025 at 11:00:32PM GMT, Nipun Gupta wrote:
->>>> The AMD PKI accelerator driver provides a accel interface to interact
->>>> with the device for offloading and accelerating asymmetric crypto
->>>> operations.
->>>>
->>>
->>> For me this is clearly a crypto driver and you are supposed to:
->>> 1. Cc crypto maintaners,
->>> 2. Put it actually into crypto and use crypto API.
->>
->> added crypto maintainers for comments.
->> IMO, as accel framework is designed to support any type of compute
->> accelerators, the PKI crypto accelerator in accel framework is not
->> completely out of place here, as also suggested at:
->> https://lore.kernel.org/all/2025031352-gyration-deceit-5563@gregkh/
-> 
-> To be fair, Greg did suggest drivers/crypto/ as an alternative... :)
-> 
->    "Great, then why isn't this in drivers/accel/ or drivers/crypto/ ?"
->    https://lore.kernel.org/r/2025031236-siamese-graffiti-5b98@gregkh/
-> 
-> There are already six drivers for crypto accelerators in drivers/crypto/,
-> so that would seem to be a natural fit for your driver:
-> 
->    aspeed/aspeed-acry.c
->    caam/caampkc.c
->    ccp/ccp-crypto-rsa.c                 <-- from AMD no less!
->    hisilicon/hpre/hpre_crypto.c
->    intel/qat/qat_common/qat_asym_algs.c
->    starfive/jh7110-rsa.c
-> 
-> You can find these in the tree with:
-> 
->    git grep 'cra_name = "rsa"'
-> 
-> So far there are only drivers to accelerate RSA encryption/decryption.
-> The kernel supports a single padding scheme, PKCS1, which is implemented
-> by crypto/rsa-pkcs1pad.c.  There is no support yet for OAEP.
-> 
-> So the padding of the hash (which is cheap) happens in software and then
-> crypto/rsa-pkcs1pad.c performs an RSA encrypt/decrypt operation which is
-> either performed in software by crypto/rsa.c, or in hardware if a crypto
-> accelerator is present.  Drivers for crypto accelerators register the
-> "rsa" algorithm with a higher cra_priority than the software
-> implementation, hence are generally preferred.
-> 
-> One benefit that you get from implementing a proper akcipher_alg in your
-> driver is that virtual machines may take advantage of the hardware
-> accelerator through the virtio support implemented by:
-> drivers/crypto/virtio/virtio_crypto_akcipher_algs.c
-> 
-> Note that the crypto subsystem currently does not support hardware
-> acceleration of signature generation/verification (crypto_sig),
-> but only encryption/decryption (crypto_akcipher).  One reason is
-> that signature generation/verification is generally a synchronous
-> operation and doesn't benefit as much from hardware acceleration
-> due to the overhead of interacting with the hardware.
+The pciea and pcieb blocks each get a single PCIe lane, pciea is
+available on the carrier boards while pcieb is connected to the
+on module Wi-Fi/BT module.
+The SATA lane is available on the carrier boards.
 
-Thank you for the feedback.
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
-When establishing TLS connections, OpenSSL requires signature 
-generation/verification. In scenarios where multiple connections occur 
-simultaneously, asynchronous operations are beneficial as they lead to 
-much improved CPU utilization. OpenSSL ASYNC support can very well 
-utilizes the asynchronous operations while establishing multiple TLS 
-connections.
+---
 
-> 
-> So there's no support e.g. for generating or verifying ECDSA signatures
-> in hardware.  I think that would only really make sense if private keys
-> are kept in hardware and cannot be retrieved.  So the use case wouldn't
-> be acceleration, but security of private keys.
+ .../boot/dts/freescale/imx8-apalis-eval.dtsi  | 10 ++-
+ .../dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 10 ++-
+ .../dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 10 ++-
+ .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 70 ++++++++++++-------
+ .../boot/dts/freescale/imx8qm-apalis.dtsi     | 10 ++-
+ 5 files changed, 74 insertions(+), 36 deletions(-)
 
-While ECDSA signature generation and verification enhance the security 
-of private keys when stored in hardware, they also play important role 
-in the establishment of TLS connections. Offloading these operations to 
-hardware frees up CPU, enhancing performance during TLS handshakes.
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
+index dc127298715b..311d4950793c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
+@@ -104,7 +104,10 @@ &lsio_pwm3 {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis PCIE1 */
++/* Apalis PCIE1 */
++&pciea {
++	status = "okay";
++};
+ 
+ /* TODO: Apalis BKL1_PWM */
+ 
+@@ -121,7 +124,10 @@ &sai5_lpcg {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis SATA1 */
++/* Apalis SATA1 */
++&sata {
++	status = "okay";
++};
+ 
+ /* Apalis SPDIF1 */
+ &spdif0 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+index d4a1ad528f65..3d8731504ce1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
+@@ -191,7 +191,10 @@ &lsio_pwm3 {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis PCIE1 */
++/* Apalis PCIE1 */
++&pciea {
++	status = "okay";
++};
+ 
+ /* TODO: Apalis BKL1_PWM */
+ 
+@@ -208,7 +211,10 @@ &sai5_lpcg {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis SATA1 */
++/* Apalis SATA1 */
++&sata {
++	status = "okay";
++};
+ 
+ /* Apalis SPDIF1 */
+ &spdif0 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+index 5e132c83e1b2..106e802a68ba 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
+@@ -240,7 +240,10 @@ &lsio_pwm3 {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis PCIE1 */
++/* Apalis PCIE1 */
++&pciea {
++	status = "okay";
++};
+ 
+ /* TODO: Apalis BKL1_PWM */
+ 
+@@ -257,7 +260,10 @@ &sai5_lpcg {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis SATA1 */
++/* Apalis SATA1 */
++&sata {
++	status = "okay";
++};
+ 
+ /* Apalis SPDIF1 */
+ &spdif0 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+index dbea1eefdeec..6f27a9cc2494 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+@@ -339,6 +339,25 @@ &flexcan3 {
+ 	pinctrl-0 = <&pinctrl_flexcan3>;
+ };
+ 
++&hsio_phy {
++	fsl,hsio-cfg = "pciea-pcieb-sata";
++	fsl,refclk-pad-mode = "input";
++	status = "okay";
++};
++
++&hsio_refa_clk {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie_sata_refclk>;
++	enable-gpios = <&lsio_gpio4 11 GPIO_ACTIVE_HIGH>;
++};
++
++&hsio_refb_clk {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie_wifi_refclk>;
++	clocks = <&hsio_refa_clk>;
++	enable-gpios = <&lsio_gpio2 11 GPIO_ACTIVE_HIGH>;
++};
++
+ /* TODO: Apalis HDMI1 */
+ 
+ &gpu_alert0 {
+@@ -514,7 +533,10 @@ &lsio_gpio0 {
+ 			  "MXM3_112",
+ 			  "MXM3_118",
+ 			  "MXM3_114",
+-			  "MXM3_116";
++			  "MXM3_116",
++			  "",
++			  "",
++			  "MXM3_26";
+ };
+ 
+ &lsio_gpio1 {
+@@ -586,15 +608,6 @@ &lsio_gpio2 {
+ 			  "MXM3_183",
+ 			  "MXM3_185",
+ 			  "MXM3_187";
+-
+-	pcie-wifi-hog {
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_pcie_wifi_refclk>;
+-		gpio-hog;
+-		gpios = <11 GPIO_ACTIVE_HIGH>;
+-		line-name = "PCIE_WIFI_CLK";
+-		output-high;
+-	};
+ };
+ 
+ &lsio_gpio3 {
+@@ -660,16 +673,6 @@ &lsio_gpio4 {
+ 			  "MXM3_291",
+ 			  "MXM3_289",
+ 			  "MXM3_287";
+-
+-	/* Enable pcie root / sata ref clock unconditionally */
+-	pcie-sata-hog {
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_pcie_sata_refclk>;
+-		gpio-hog;
+-		gpios = <11 GPIO_ACTIVE_HIGH>;
+-		line-name = "PCIE_SATA_CLK";
+-		output-high;
+-	};
+ };
+ 
+ &lsio_gpio5 {
+@@ -771,9 +774,30 @@ &mu2_m0 {
+ 	status = "okay";
+ };
+ 
+-/* TODO: Apalis PCIE1 */
++/* Apalis PCIE1 */
++&pciea {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_reset_moci>;
++	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
++	phy-names = "pcie-phy";
++	reset-gpio = <&lsio_gpio0 30 GPIO_ACTIVE_LOW>;
++	vpcie-supply = <&reg_pcie_switch>;
++};
++
++/* On-module Wi-Fi */
++&pcieb {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcieb>, <&pinctrl_wifi>;
++	phys = <&hsio_phy 1 PHY_TYPE_PCIE 1>;
++	phy-names = "pcie-phy";
++	reset-gpio = <&lsio_gpio5 0 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
+ 
+-/* TODO: On-module Wi-Fi */
++&phyx2_lpcg {
++	clocks = <&hsio_refa_clk>, <&hsio_refb_clk>,
++		 <&hsio_refa_clk>, <&hsio_per_clk>;
++};
+ 
+ /* TODO: Apalis BKL1_PWM */
+ 
+@@ -806,8 +830,6 @@ &sai5 {
+ 			       <722534400>, <45158400>, <11289600>, <49152000>;
+ };
+ 
+-/* TODO: Apalis SATA1 */
+-
+ /* Apalis SPDIF1 */
+ &spdif0 {
+ 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
+index c18f57039f6e..f97feee52c81 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
+@@ -22,6 +22,10 @@ &fec1 {
+ 	phy-mode = "rgmii-rxid";
+ };
+ 
++&hsio_refa_clk {
++	enable-gpios = <&lsio_gpio4 27 GPIO_ACTIVE_HIGH>;
++};
++
+ /* TODO: Apalis HDMI1 */
+ 
+ /* Apalis I2C2 (DDC) */
+@@ -188,12 +192,6 @@ &lsio_gpio4 {
+ 			  "MXM3_291",
+ 			  "MXM3_289",
+ 			  "MXM3_287";
+-
+-	/* Enable pcie root / sata ref clock unconditionally */
+-	pcie-sata-hog {
+-		gpios = <27 GPIO_ACTIVE_HIGH>;
+-	};
+-
+ };
+ 
+ &lsio_gpio5 {
+-- 
+2.42.0
 
-> 
-> That said, for RSA specifically, signature generation/verification does
-> involve an encrypt/decrypt operation internally.  The padding is once
-> again done in software (by crypto/rsassa-pkcs1.c -- no PSS support yet).
-> But the actual encrypt/decrypt operation will be performed in
-> hardware if a crypto accelerator is present.
-> 
-> The user space interface Herbert referred to is a set of system calls
-> which are usable e.g. via the keyutils library and command line utility:
-> https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
-
-These system calls can support only synchronous operations, which 
-precludes their use for asynchronous operations. This limitation 
-prevents the use of keyutils here.
-
-Thanks,
-Nipun
 
