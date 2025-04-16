@@ -1,122 +1,117 @@
-Return-Path: <devicetree+bounces-167695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F5AA8B611
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:55:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB6FA8B63C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8180B1895578
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:55:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB0567A62AC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AAD238D34;
-	Wed, 16 Apr 2025 09:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="FM+rpkf9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90EF9237186;
+	Wed, 16 Apr 2025 09:57:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9195D23875A;
-	Wed, 16 Apr 2025 09:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61F4236430;
+	Wed, 16 Apr 2025 09:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744797272; cv=none; b=auFNehYkVZ7oV4tsbSt31rtSUQBLJr2o+Abc1r7fqm15wyRNZQtNMgPaHRseEhGXxP+METVZ78BoA3HFBaCzgSp/ZAD5Fi2aVC7bnZ3Bgr1RgPUKa/g6I6BW/nZK9zaMHNN7oh8LPUgfDIc0La4ruiLMd+qCf62Os2EV+KnPK7k=
+	t=1744797466; cv=none; b=DN14isBSHU4xT5SRlVVi0LrDHc3DClmp1vnPYbA+EE7QHu+A+aBwUUV99T9SlqIv3arqJeBmJVLRvTao+7qLKxq9Qv0uWl4HJVyFqaGObQqFQj90j3yt/u/351pXLNyHz5lkkZpjuemrhsOAXWjKlkWwvJd/5Koq3eL+6LAnIf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744797272; c=relaxed/simple;
-	bh=S2Paxtu9OlVHsXYskEHwg81iy5Nm7F5lqjEeVAsy1gU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=edR17nYgWJfEKjSA7aTOf32Yve3FWP4b40K2qyFFgHOKw+C3nPexSOVcYqhBgU/GCH9rlvnAWyQgNxd2Nug2u0LvhVA1/EvszzjM9SVyOftk+MRQG/G97AZkIY4Gii6qnbhMHAQ6YzG3Xls2AR0abbmUOeb/xakjXk7zk/gMeDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=FM+rpkf9; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout2.routing.net (Postfix) with ESMTP id 012306045F;
-	Wed, 16 Apr 2025 09:54:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1744797264;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4DpoyvF8vHF6pvhV8jyXEYvZjATLDZX8GvBDzWRv6FA=;
-	b=FM+rpkf9eoW+lvZoYQzoN1vxV8CnHsRP+vdDcXt0tEh/wI8JQkPLieYDu73s6xE3+OB1Yr
-	Np9xUHAicWx6/od0Ph5/TDrgULa8Ns00rdVhp35BYQ49Q8vsHqp6R+Q2ufInwbDCh+xYF1
-	nuFXlQpjbekCQyllLCjsbu3W4iNNhiM=
-Received: from frank-u24.. (fttx-pool-80.245.72.47.bambit.de [80.245.72.47])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 1D5E33600F2;
-	Wed, 16 Apr 2025 09:54:23 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Subject: [PATCH v3 8/8] arm64: dts: mediatek: mt7988a-bpi-r4: enable xsphy
-Date: Wed, 16 Apr 2025 11:54:00 +0200
-Message-ID: <20250416095402.90543-9-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250416095402.90543-1-linux@fw-web.de>
-References: <20250416095402.90543-1-linux@fw-web.de>
+	s=arc-20240116; t=1744797466; c=relaxed/simple;
+	bh=NKVh9dZG5JCkxtUFXaoujRkuPvplbl0S3KshdhQiTA8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NgD5akve7vrib4wYcxeE3oxeAUDzwaG3ji2D3P34RgIPxCXTbsxlytbU5AGhY8mbjDMLfiLOP4jMZsSW+CAGWIJLjnEfdzXXh32Lg6KG3EprHHM6pK914D560aXYkYasmTBk0vdp1HkHCOal9vOcU5DM+N36b8lKbLaAi2V9Xk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5240764f7c1so2370600e0c.2;
+        Wed, 16 Apr 2025 02:57:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744797461; x=1745402261;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ho208Ls7afq1DaxglhBlsTxce9BflgAJatinG20gBNk=;
+        b=wT/YMq/+00TW3BUuunNfzigloXNZDDi8HMR+ME6G2Fl/wmYPu2ie7nxqmsJMTCo2jO
+         sZ5Bai4GYXOL7Y2SX6bP7hZa28WeqamhBPK0GAY4QWfs8tek/k4m4LrBneQh4gGT0BWK
+         PT8rH9TY4JgG7JzZ3d34XiYR1AKgvBt1W28fLQ6R73bvyQjmWSEEW6XsqJhnCRJ5YR9c
+         /yTiGhFAL+17pd2lkQIG9HgoRxHJ84wKwn5FXOxiTY9K+X66CHQcfZWF3RVsdYRgtE2W
+         TCl+yyhsZkO2cXdxFXmk7gTACc+2nsVnSRuYPuJHejMtERdYF6jx5EW6D6PNsEdJKYLL
+         BdVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVqGzb8omlN97eEuBdBdkHQvEJWhk/ODysau4R1D1Ue+Llzxm+0jR37OTpW4wJSyIkDu3SZ9ci7RCk@vger.kernel.org, AJvYcCWQcISDlFD+JflIUOV97FZQjn5ABz0WOnaBuIrqSGrwy1xgXNGFnGG1Y9hg0YikaenHpt4HQYTJDRtUGKLg@vger.kernel.org, AJvYcCWuzEOM0aQeWKVeuo8dWA9WIdKe9BcRsuo30kR59w2f4sU79N+z8Eca2mI/ZzCDoX/GnDp8PDWckwKSoh6FVuLxspA=@vger.kernel.org, AJvYcCXW8jpjdCZ8PDJHx43wN6MJ9IdH8mYIH0OsWn6nuRxeDiCXaECTiZouFI/lBzpOzdp8KZyUODGSYNad@vger.kernel.org
+X-Gm-Message-State: AOJu0Yye+sXFcMQihwtxCcX8Mr3KObAIUDsQnDax/pnUh2HSFgQSaaAA
+	PERcpjv69evifJJN/K/DFZ/i6xNi1FkA2pFVRi7cNnw82VvyBicqqaJREL6q
+X-Gm-Gg: ASbGncvKuLoL2gTFoh1eN8y+RB9eI0XgCMslAEvZK9Tb+dGTz8+99OHUfHgTjuO7Pgw
+	30REJPI+UydwJ/Zy1vUqB3PTROX9wjJDw9nS71r7SBTq8oH9eTEUBR/NZjYHB3A9podgTc3Mvs4
+	/XQRuuQJWCTMWAbIVsTRhzPDzB+d0z7Cap4Pq/KjAkYeKXVkpNTvoDiBqiYsW9REdT9592xM0FW
+	pHc0s2kgMSr1Yo0KTRPvpddmH0mL6emJTEGF+vXVCD2P2E5jjHLssulJBdscLddn6hedKtbIJQg
+	sGCqPNCzYJzLj8LHjwL/hRtfp3TtvUy8kG9K4+lBFJpWR1EodFwH2MJr43gtHlLebKqlXK7EMP2
+	k8/c=
+X-Google-Smtp-Source: AGHT+IEVeHD42gkpw+XtXGZ70A19wMwdLNuKgd4mvjTJaq3zakOl021vusd1+6GtoUnutfy68ZVTQQ==
+X-Received: by 2002:a05:6122:d96:b0:520:af9c:c058 with SMTP id 71dfb90a1353d-5290deea531mr366083e0c.5.1744797461413;
+        Wed, 16 Apr 2025 02:57:41 -0700 (PDT)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abe8d72esm3026508e0c.34.2025.04.16.02.57.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 02:57:40 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-875b8e006f8so318378241.0;
+        Wed, 16 Apr 2025 02:57:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/dc7P4tOZtA8k1yhMvjaB6objtC4rJzeCkru5NuWGygJgwc9Lo55JK00gD67JCgteuHQT4Wyn1v6V@vger.kernel.org, AJvYcCUg3397I/umZL4B6ZPyUvxtKm36jo9urKxPC1jpRMOc356IdWOeJ9cAPTmm7m8+sjJ1buLxgzz7AwI2RcdA@vger.kernel.org, AJvYcCWYoFK4r0QaLv0pNRExRQH+DuhfuXL0OnvqFiweQJfsX3rE7CL9mEQ4O5MkKi03b8KJhwvFMcc6I4mWqPO/sYbRkNA=@vger.kernel.org, AJvYcCX79cJToAXrgTu6mvDmFemMmIqeoksiaqGPSYZ2lS7SKNVBHXQ9Rolmtsi28edcA+JS5ebCHxYm8R/+@vger.kernel.org
+X-Received: by 2002:a05:6102:5e8f:b0:4bd:3519:44be with SMTP id
+ ada2fe7eead31-4cb5921580emr265747137.15.1744797460341; Wed, 16 Apr 2025
+ 02:57:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 9f979f6b-afa1-4db6-8f8e-fb832d51291b
+References: <20250402131142.1270701-1-tommaso.merciai.xr@bp.renesas.com> <20250402131142.1270701-3-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250402131142.1270701-3-tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 16 Apr 2025 11:57:28 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX3W5N=__6CpyoQ6DAumoS=8p6Zcwbsn2H6e9PYKsn=dw@mail.gmail.com>
+X-Gm-Features: ATxdqUFRQ2wAxnSiubYaAZxSXiLAOnqb_ba0SYhUbUDUQXOzs-nV2UVFXRENq8U
+Message-ID: <CAMuHMdX3W5N=__6CpyoQ6DAumoS=8p6Zcwbsn2H6e9PYKsn=dw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: gpu: mali-bifrost: Add compatible for
+ RZ/G3E SoC
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Wed, 2 Apr 2025 at 15:12, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add a compatible string for the Renesas RZ/G3E SoC variants that
+> include a Mali-G52 GPU. These variants share the same restrictions on
+> interrupts, clocks, and power domains as the RZ/G2L SoC, so extend
+> the existing schema validation accordingly.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Enable XS-Phy on Bananapi R4 for pcie2.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 4 ++++
- arch/arm64/boot/dts/mediatek/mt7988a.dtsi                 | 2 +-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-index 0d332822971d..37e541a98ee1 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-@@ -397,3 +397,7 @@ &tphy {
- &watchdog {
- 	status = "okay";
- };
-+
-+&xsphy {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-index 72792f4ccde3..868d6c0742e7 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-@@ -560,7 +560,7 @@ topmisc: system-controller@11d10000 {
- 			reg = <0 0x11d10084 0 0xff80>;
- 		};
- 
--		xs-phy@11e10000 {
-+		xsphy: xs-phy@11e10000 {
- 			compatible = "mediatek,mt7988-xsphy",
- 				     "mediatek,xsphy";
- 			#address-cells = <2>;
--- 
-2.43.0
+                        Geert
 
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
