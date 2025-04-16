@@ -1,155 +1,239 @@
-Return-Path: <devicetree+bounces-167922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB9AA90B8D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:44:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E57DCA90B95
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDF4019081EA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:44:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 894A57A916B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E7C224243;
-	Wed, 16 Apr 2025 18:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC90221F08;
+	Wed, 16 Apr 2025 18:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AmlyGQzL"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="kptTydNh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC9822422C;
-	Wed, 16 Apr 2025 18:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DD310E9;
+	Wed, 16 Apr 2025 18:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744829052; cv=none; b=MgkBKBQFnou5ZFVG9DANyb329NDmiPH+Xigo3ya8r4pyM+YB/NeAUqqxyM3gxPOLjAzyAJmMRR4pWmWf+X9uJSf3n0mUjQzRIe/E9KxDTXjy4jU5Nt41wbyFNiiNb/CTQ6JLTOe9pRBey97GDXUeV1RUFJ5eYqljj8NVbkUUQVY=
+	t=1744829220; cv=none; b=cqxLtrEJv+DCa3lWj3AMTZUsGgnZw6v7rEj0VYviU8mbxHP1dO/SSMem7dTW1clttQOAacenSGwDU0YiuF/gLY4Yb2/KbreU5KdSlpq/h5zOZqK/ok/wn/aaJFAE24meoa7Kug++HYpMCDE60XLhA0DnzNY0qgW6r8TKmWBLpYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744829052; c=relaxed/simple;
-	bh=H5AP05X1FxLbAixabp+9tPIVEJfNISg6Bzi3JvoMkcI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dch/wBhKsCct4RsfgJaDAIVMsjVfjEoxum7YueuPzJjWaPIPrpRCO/WUcf/UKqjM4h+yOHgGCQf43hJ+yC1NGo7vU9AG7JyP9bGZq4b6x1EQ0CcgZPPVzROXEvJALlW4V9aZmnz33X1DIMi5yPcXWqN7W17zX4UuDCT96UHPbsw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AmlyGQzL; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e643f235a34so8983276.1;
-        Wed, 16 Apr 2025 11:44:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744829049; x=1745433849; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9L7mgnCNt3Zcj27rYN9qHZPaxHK5LZvqb/g7txzNM8o=;
-        b=AmlyGQzLZ4oHKhEndsym7mGIUPtCPhEREjREQCBaCFsMFNoheFZhgO0uiLxs/eaNeI
-         bodPfhBTDtJ4EBjChu44NhknISq/pkQaC2vZK8IDM3C6FjGpXhr0OR0IGrhgRgCVqIVl
-         T/uFY86xWJxDlz4it9C4FyQD8wu/DQS7cUmkzy6+z9uhMX4y4yy1M6CUiPCowBCY5mhf
-         8LmxiuSyRdSUJ5wMNmazmm1hYIpjN8MHJSnc7BzpSC95jQKevBxlxf0U8g2gB6enY4Cu
-         nzKH0byYzymXADN4xmKUBk3Ds4XRXgUdRwjP2feY0It0apL5k4LoG4cRpsm9FkITpwuw
-         IzbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744829049; x=1745433849;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9L7mgnCNt3Zcj27rYN9qHZPaxHK5LZvqb/g7txzNM8o=;
-        b=iNRvVaEOLINpvwIfZlHOl18s6IwDvN671bj+dg4wD/bEOuvrvMjepaxhcLMQUuIDz+
-         +QIT66DFh9mnDSxsXSB+eycpVJBjxAAeE8LmTfOuUHEzFS0uWPxIp9H+sNSNut0qgRYI
-         GhoqQWRvlekpG39KGMxldp2GJeMtybUtiSejBdaF5JqvYw3MW352eXh4IFRc+BrwGJF6
-         8h50Oc8pfYHnM59IO2HzNzARZx8lNM2vE2ULGkXsACLp8dt7EzUP4Mb7DQeIyYw1qXyk
-         75WJxnZX9LU5Dh/XX8Wjfl91N3b7Dk9oSt/gx2bm+TZvJ1e0UZEUvJdocv62ULE+q9Sx
-         IM0g==
-X-Forwarded-Encrypted: i=1; AJvYcCWc2GJlP3ei+SVBIXNRZSolsXCp/olDxzbPceX8nmG0fQmMPWMRYizkT9EFOAyQO0X5EqIDBWKixD1y@vger.kernel.org, AJvYcCXDPGdeV4r0D4W0lBSlm0MTfQwyYZcc0j8rizT+53RBUQagMcC7rmeGDXsArL/by6RLBVRtHlf6bYim4LXd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgEW2PrwPRP1MsbcVCEcc8b7ZiSxMMzqZ8kc0ytasGvk2kyyZE
-	jTZ99yU9fDMxedQA9lYVpqfoQ7q3z7W0DrSO4BbMLmjtsIUesDhbPh0f6/Vzgz1l9+gZjXGcCy0
-	VSMujk52Av/EnD4PeWOUmjZpQiRU=
-X-Gm-Gg: ASbGncutf9Rbl350gE4dcKWbDfIMLUKBoB2yexdqqlJxnlRYUIQcDN5WH32x4PLSywW
-	IJOpnp3FbzBNceQqoWieHjYL8CiQJPU7P82odK2Y5M/t/2F0ifAujGpKSX4XY7DsFt3phBRP2oJ
-	C5QCihp4k1M5iNPWfgpYznc24=
-X-Google-Smtp-Source: AGHT+IEEBGywpXm1UW45uwOGqb7UdYKdiM+qbWRcwxBFHDyQXsY3vRbyD9GoL5p+AQKSEba/9aW56/65sg2UtuDOAQ8=
-X-Received: by 2002:a05:6902:2e0f:b0:e60:b04f:c191 with SMTP id
- 3f1490d57ef6-e72757ec530mr3998015276.16.1744829049649; Wed, 16 Apr 2025
- 11:44:09 -0700 (PDT)
+	s=arc-20240116; t=1744829220; c=relaxed/simple;
+	bh=ezX1Ryk7BsAmVhTizz2nhguPa9S5/hjkA/PhsQhvjzs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rChbkar5xFrTziYQT7q8UDP3WqnMenrIBjBZXBr4SEwbkvj7tMH2tUjyh3Iul7tHZ9ZKeV0VAMRuX2viFpLPCGgIuZ/6w39dEHstPdcpOZBC9yPvGor6XVqY1GdNdzASU/nTd9E7mHnH1KYJg/kG3UmhvWrbnolpIeSUxT2KyWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=kptTydNh; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744829201; x=1745434001; i=wahrenst@gmx.net;
+	bh=qLWj834pnO4HucxhGHrRyn7kR+7xSKKrFw8uSmOQ0WQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=kptTydNh7IsT2g7COMKcTAt59w+UDfbY7CaiRcsKgvY7AbjCSlmX/E1HyRGr7XHF
+	 c+o6sBsbae3PABNeZIgSUFOty9y0ey2Z6Bg+8OWGjnew/dGNsETY3N9NdBmueM38e
+	 IVAuVdqpiEfrg9yQxEAWlTXBcCIAgAS7XoIaQmNcSpwGwAyYEpD6v1MVg2kl52fcm
+	 yH/ilHvly2/j1O/Uqo2Wi7iSr+GVGTi3V7dEkYdbOYDkpMrB5HBGMfKAsLWePsZQ+
+	 pSh8Z2arVNEASN5sNhNwEX05F1Qramh0Cq+FSyZoZFwiNWTKJuYwCaGJCm9VnFRNG
+	 6uQ3fstw81n0KQp+GQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MsYv3-1tB5Ny2QA7-014tYH; Wed, 16
+ Apr 2025 20:46:41 +0200
+Message-ID: <bc818477-509d-4561-905a-743feeea6a74@gmx.net>
+Date: Wed, 16 Apr 2025 20:46:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250415232521.2049906-1-william@wkennington.com> <79400920-22b4-4bce-b204-c58087495c22@kernel.org>
-In-Reply-To: <79400920-22b4-4bce-b204-c58087495c22@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 16 Apr 2025 21:43:58 +0300
-X-Gm-Features: ATxdqUFPu4JepknFDDO-V4GlcrbJC_4d8VB1hYrlUJdQoMVkkJLheWUWjlaMw8A
-Message-ID: <CAP6Zq1hURTrDgScx=eN_GO5FV8vZNsaGVQLOxbZPCXSqc0Kxwg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: Fix nuvoton 8xx clock properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "William A. Kennington III" <william@wkennington.com>, Avi Fishman <avifishman70@gmail.com>, 
-	Tali Perry <tali.perry1@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next v5 1/6] dt-bindings: net: Add MTIP L2 switch
+ description
+To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Simon Horman <horms@kernel.org>
+References: <20250414140128.390400-1-lukma@denx.de>
+ <20250414140128.390400-2-lukma@denx.de>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250414140128.390400-2-lukma@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yIJVMSosfR0X948puKa1FTQoiBsFSBleSPrxxwC7IkCnn453it8
+ tfJJHGInT3jzk3q0d7bz8f8Yck4uQ4j3q8/v+Jm1Ohes7CWpWdL6u6GJGOxFwmBPeqZfWs7
+ ovdjrTVMlgVvb0vqCsLLdGK6WPIycwXrQwPNqntyDhvXCHn5vWD6OOf80YwDU6sXk4alrcv
+ TR78ajNLgYQ1bMnpti0hg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:2tIcx4q1Ii8=;2Tgjd/wNrtGfBT6RdSHM3maCjip
+ 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
 
-William, thanks for the patch.
+Hi Lukasz,
 
-
-On Wed, 16 Apr 2025 at 09:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Am 14.04.25 um 16:01 schrieb Lukasz Majewski:
+> This patch provides description of the MTIP L2 switch available in some
+> NXP's SOCs - e.g. imx287.
 >
-> On 16/04/2025 01:25, William A. Kennington III wrote:
-> > The latest iteration of the clock driver got rid of the separate clock
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+> Changes for v2:
+> - Rename the file to match exactly the compatible
+>    (nxp,imx287-mtip-switch)
 >
-> I don't see the binding deprecated.
+> Changes for v3:
+> - Remove '-' from const:'nxp,imx287-mtip-switch'
+> - Use '^port@[12]+$' for port patternProperties
+> - Drop status =3D "okay";
+> - Provide proper indentation for 'example' binding (replace 8
+>    spaces with 4 spaces)
+> - Remove smsc,disable-energy-detect; property
+> - Remove interrupt-parent and interrupts properties as not required
+> - Remove #address-cells and #size-cells from required properties check
+> - remove description from reg:
+> - Add $ref: ethernet-switch.yaml#
 >
-> > compatible node, merging clock and reset devices.
-> >
-> > Signed-off-by: William A. Kennington III <william@wkennington.com>
-> > ---
-> >  .../boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 16 ++++++----------
-> >  .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts     |  8 ++++++++
-> >  2 files changed, 14 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > index ecd171b2feba..4da62308b274 100644
-> > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > @@ -47,17 +47,13 @@ ahb {
-> >               interrupt-parent = <&gic>;
-> >               ranges;
-> >
-> > -             rstc: reset-controller@f0801000 {
-> > +             clk: rstc: reset-controller@f0801000 {
-> >                       compatible = "nuvoton,npcm845-reset";
-> >                       reg = <0x0 0xf0801000 0x0 0x78>;
-The size of the registers offset is 0xC4 (last register is at offset 0xC0)
-Therefore, the reg property should be modified as well to reg = <0x0
-0xf0801000 0x0 0xC4>;
+> Changes for v4:
+> - Use $ref: ethernet-switch.yaml#/$defs/ethernet-ports and remove alread=
+y
+>    referenced properties
+> - Rename file to nxp,imx28-mtip-switch.yaml
 >
-> So now it lacks quite a bit of address space. This must be explained in
-> commit msg.
+> Changes for v5:
+> - Provide proper description for 'ethernet-port' node
+> ---
+>   .../bindings/net/nxp,imx28-mtip-switch.yaml   | 141 ++++++++++++++++++
+>   1 file changed, 141 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mti=
+p-switch.yaml
 >
-> >                       #reset-cells = <2>;
-> >                       nuvoton,sysgcr = <&gcr>;
-> > -             };
-> > -
-> > -             clk: clock-controller@f0801000 {
-> > -                     compatible = "nuvoton,npcm845-clk";
-> > +                     clocks = <&refclk>;
-> >                       #clock-cells = <1>;
-> > -                     reg = <0x0 0xf0801000 0x0 0x1000>;
-> >               };
-> >
-> >               apb {
-> > @@ -81,7 +77,7 @@ timer0: timer@8000 {
-> >                               compatible = "nuvoton,npcm845-timer";
-> >                               interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> >                               reg = <0x8000 0x1C>;
-> > -                             clocks = <&clk NPCM8XX_CLK_REFCLK>;
-> > +                             clocks = <&refclk>;
->
-> Not explained in commit msg.
->
->
-> Best regards,
-> Krzysztof
-
-Best regards,
-
-Tomer
+> diff --git a/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch=
+.yaml b/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> new file mode 100644
+> index 000000000000..6f2b5a277ac2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,imx28-mtip-switch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
+> +
+> +maintainers:
+> +  - Lukasz Majewski <lukma@denx.de>
+> +
+> +description:
+> +  The 2-port switch ethernet subsystem provides ethernet packet (L2)
+> +  communication and can be configured as an ethernet switch. It provide=
+s the
+> +  reduced media independent interface (RMII), the management data input
+> +  output (MDIO) for physical layer device (PHY) management.
+> +
+> +$ref: ethernet-switch.yaml#/$defs/ethernet-ports
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,imx28-mtip-switch
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  phy-supply:
+> +    description:
+> +      Regulator that powers Ethernet PHYs.
+> +
+> +  clocks:
+> +    items:
+> +      - description: Register accessing clock
+> +      - description: Bus access clock
+> +      - description: Output clock for external device - e.g. PHY source=
+ clock
+> +      - description: IEEE1588 timer clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +      - const: enet_out
+> +      - const: ptp
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Switch interrupt
+> +      - description: ENET0 interrupt
+> +      - description: ENET1 interrupt
+sorry for the late suggestion, but can we have additional=20
+interrupt-names here, please?
 
