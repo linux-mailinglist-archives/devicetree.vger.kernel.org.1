@@ -1,288 +1,1640 @@
-Return-Path: <devicetree+bounces-167673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F49BA8B49D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:00:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E328A8B4AD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:05:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 488DA7AC38C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:59:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EB0C189FF7A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:05:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E0420E6E4;
-	Wed, 16 Apr 2025 09:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECAC235345;
+	Wed, 16 Apr 2025 09:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WqTDs9C5"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="SncvkyKw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2081.outbound.protection.outlook.com [40.107.22.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D328A32;
-	Wed, 16 Apr 2025 09:00:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744794049; cv=fail; b=PqUMxUuptC6zhxvdh2bxv48TJq7HFJXnHElDcTmi8jKcpomN9LEtmdWQ6v3KU6o7nYUBfc4kyOb1vZFkXwcBjJ1DXbQJbcZLXShBRsEqvAZsPV8dAwWc/lB7jCASOWZVD5ICVAgjXdwTSNUVrzNTn8Iws6ha9KSJ8G5sm9+uDuk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744794049; c=relaxed/simple;
-	bh=kLG8EzQd1dd+XXiWZkMYIQXi/d4Se6eOY4BsJDHBzw0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=SUBRTdqKe52nOtAaEPo19Ur4i73yzTlpTLmGIHcz0r3QB0G7iinI06/rNuNKNjLx4cfBfM6d+QpG1KARmO32KV8PSMc8tMUUf6s71zcTk4BBkT3kxdFUCXiiz16EjSze5/DS4Dd/CAP/GlEOsRZS4SUchP7gIurBRrF+uHfrNZU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WqTDs9C5; arc=fail smtp.client-ip=40.107.22.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NsM5APsxNAH/xZNjW3GA0jspWwxv6fQIFqnvLoP46i08MvXuHl83EBiC2Dea9R9IaQpP7njcpwsWs67hNcHOiRwIVJDYtwWioQwWNu6CppPHjCrjPEQcgS+jWYuII/0lE7FOlJgleJ9FIMplAbiliJCkkleO3TW5BbwYDvKkJt97s4equOI9XZwA9TEBfSENywDPZlCnOVl7dNbKMRk5CL7RudbaUEZZq40/bqEh7HH+b08Thng6GwdmonWAd3FGl29vMAgB48f8k0lH5EPKNjboQi3jNWxJt2RXPdfkxnrE4c65DHJFEH8CJx2dBxZzFEiXBaWcmEXHThMi4CnqXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8a6QpAzyB5tQzlTMNPKRKhNoMbkv4nuJtECk3dIP7RM=;
- b=NEk4OYoCxDABvNFpNnkkgtXhaC5pAvZSSOFBT4uJCelo17dKfNag+3GAL/kXi+sSSas++vHKsWWe3dL6HCF5hBeQiUKgyM4jKYniY72aa1M3EC/G+afjOiccT9QD6p8sDF6ngaLHJZrVvQ+ZRsibdsjJzEewK2DYgQvjcBCbaOhkIOlSxppjVKGrm9PO4hHL4gxE4Qvyzmbj0Ccm6IOFpdTwgX0zWRNubZE5SI1ec6DsTTEt+ndiiIaTFhBUG1GqKTfRKvkzdx0vxMvVjPyKiJvbC6bG5tV6xsDbVUr/rLxrZZ2TQqoQW3zSgOBQQyu2u7NRk8On4wuUaL5JIioshA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8a6QpAzyB5tQzlTMNPKRKhNoMbkv4nuJtECk3dIP7RM=;
- b=WqTDs9C52V8/XjCpqKgUzTNGHSnApRCEqX0RarDf4QeWSZygQnN5R1oopUbJlBzuVFQbJ02iGSwrNrlWcWhNX4L5b1JhzZtSzwZoP+mPHspuM7rfOgZcwMiMSMyAMJ4lCMyGSxymp4XmvTvZAjlbnH/VJF7gZgEniETV9ecCG2NW9gF2Gi3QE2vfA/P6hzlTh5RMDL+DCdfydbQn4hdAg5FDT/tPBq7s2/x2Xss51pl5U517lg1EZOoiRKzl0f4fKPs5nIj6cvTFJbvXtj6LRJwitj27weDsKxpfRQJgykBiVjDlHMzrl3PHrZSDsWpnvTXkJBlm86F2sBTLkk/+cw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by PAXPR04MB9220.eurprd04.prod.outlook.com (2603:10a6:102:228::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.22; Wed, 16 Apr
- 2025 09:00:43 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%3]) with mapi id 15.20.8632.030; Wed, 16 Apr 2025
- 09:00:43 +0000
-Message-ID: <3efb68e2-7091-47e1-81a2-39930da5a427@nxp.com>
-Date: Wed, 16 Apr 2025 17:02:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/17] mfd: adp5585: support keymap events and drop
- legacy Input driver
-To: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR01CA0021.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::19) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4113233145
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 09:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744794289; cv=none; b=arcRJkQeXIQgA1GA82SGVY74I2PRhsD/zi/igddMH1ymKguRZQdwGzxXP8MO1EjeUyEMXWbOAr9kFE0WUxTnNe0SGgp/SZAP3vCBlVSwSWyxgT4jL+Jt1M+bDRfjEA3LayohF0MjsB3Al7Nm00MsCNV7AT0JKAOAblwquFeKqZ4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744794289; c=relaxed/simple;
+	bh=6QMXVkDmVP1SiijQvkXotxccX+YsRbc/cGrWEtszuSc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nnm9Ic0PFVA3l9MoSATQAtXul/mAWU8rP3QnLOB754Ut5yAK1rf3M6fWGn38r2GHG7Q+sVXNA8Ha6r9CBQfHUqGLVOsbAfLq4+Jik1gyGmjRQAujNgg7TQ3n4a5oDDoFAD2pOWRmu1DGxU8I7kL7fuWUqMAqkPvrNY16kVMRoqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=SncvkyKw; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-548409cd2a8so8522932e87.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 02:04:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1744794283; x=1745399083; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=idlgZIaKNT3jSbmw5TOhiLFCARdm1yx6lm4xLk89ukE=;
+        b=SncvkyKwXgYPs1zFgD1UZoAW2PYKOtSzsRdYIEbmk9E8CmzRpsMp+zRF0UxyvYxXjs
+         /GeMFct8+jklXxgnJB6BWCHWsQwm0XIOlW5+IOv1bPp7yqpCVIN9A7YtyrQ/b9M/pxQo
+         wn8gzrFUASStP5LiGdjjxy3xw20GZ7nnfgmy0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744794283; x=1745399083;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=idlgZIaKNT3jSbmw5TOhiLFCARdm1yx6lm4xLk89ukE=;
+        b=E3whxlOaxqpi6suJjcvADqJcZwNND4vhM99YYNWV/Uab4f5XvF1xgsATgb4UBZ5TUq
+         hKQDBRrQsgAcVKiOlbiQXd8OeC92FSN73EUabdjgPLww4DomlHNEFXT3CPaywCr9FWtA
+         PQenDxLI9otLjbeCL6FrIsXd9r5bALh3ywKrsm1RJyIEUT0TGh7g5U3zqqMmhFXa2wzc
+         1DWelSYl9G7K43xQuaGpRrOoF9wzFDR3uJ/Y/XvpeLRyVuRYVsZOTad5kwPZlBNOwqkB
+         kmlHnOtyPY8HK+ldkxKyoH7S0VxQcDP2PrN6EGh4Texp2mWclDD5A4bj/MYZNyIaf91W
+         jEgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXG0kyZ3Orjrgi1wihDTFdLr9r84c9VG1b/pYXjNq0kO7I8nvDaj3CC4dDfnc6m+1RYNMkUuSefL5st@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywh6jC5+NiT6Y0b1Ar7LJVd5N5uR2gpQnVT8X5yQgCZ7DsbfkGr
+	um1XOudemx4GRvpmt+JVY9nfj9OoLki6DG2xqHsRSHEFLYH/vERx4YC1o4kL48A+gj6U96vblVd
+	jUi39hHpOOM7jFqx1DG4kzY42qcit8mDsFmBs
+X-Gm-Gg: ASbGncsQHT6gfyFCy4jU5TcKg8N96QhXcvZ2/QKTPP7lhdDHnoG6jFzKeuEnROLJUAF
+	pQeW33fyGm/G3KfwM+3NKAxyf8nzs9oi87MK5ZxPvNECTkCnSWtq/sIw1rSATWndE2QuL0jY7v0
+	22Q7Lh3TFQA3GgoUz0EJysXiZBBDJM41UCF+uuERlTDSP1rmI+RQ==
+X-Google-Smtp-Source: AGHT+IFPY5CQuShvAWvIvnSnGOL5UIhKLN8hDJqWg1n6n9KpvDyH8U+sycR/C48xFeSlf9nz7MrLvZSfz65yPUqPHoM=
+X-Received: by 2002:a05:6512:3b0b:b0:545:76e:31a with SMTP id
+ 2adb3069b0e04-54d64a7b3a6mr330921e87.11.1744794282487; Wed, 16 Apr 2025
+ 02:04:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PAXPR04MB9220:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09b0b147-64e7-4c7b-33a1-08dd7cc52b19
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?NFBJMUUyZ0FUN3ZXSHI2VUhlZ0d2RzBMUzYvbDQzYlpZQVFETWJELzR3Yk5s?=
- =?utf-8?B?b0VEYWt6TWoyWHlCbUhGcGZES3oxSlNPTUQrUzc2bHVZaERLNjFHNHBQR2xj?=
- =?utf-8?B?ZEJXWUNIRTVHSC9IQ1JrSHpaVlhjdFc5NXV0U0RLZzFqcTJ3ZWExQndwL2pS?=
- =?utf-8?B?ek1qSS9LU1k5TkZPSXJrRzI4N2VBUngrNmJGWXdVMHJxcHdkaTcyM3hYNEN5?=
- =?utf-8?B?dEZMU3NIcWV5N09BSFhkK2FqaWJJWm5vUm9WT1JWblZUcnRsczZBQ3J1UUJh?=
- =?utf-8?B?dER0QmtLd3l1UnNPRXRoeDM3V2dJY2RTZHNtQjVSa25DU3pMNS9SOFdJM1BM?=
- =?utf-8?B?RUYzRnc5UXUvS1lXaGRrdThHNGV3N0MzbmI4YlYxcThYVWlMeFZiNUdnODVO?=
- =?utf-8?B?WHcyK1BQeVJ6VndpNlpCVWZhZU5CNG9KcWpDNUxMVXBsbTRSenRSdlRzcTFS?=
- =?utf-8?B?ZGlWSFlnTkdnWFBkR2k3MUZEUTNiS1I0dUFPQVMwQXNNNmM5dFVvQnlUV1RZ?=
- =?utf-8?B?eDQ2RWhWSngveElQTzFkS2h5MnY3SjN2cysxZTFyR3ZLOXpncldOcXFySmFN?=
- =?utf-8?B?Um9wamRwZUVlQXhlR29TVUZ6akZ1WUxQS2cxWWdVdkNBTE04WGxwcTRaVG1T?=
- =?utf-8?B?RXlCMDJuWVRYc1ZqellRbWdZSFhJNTVuTDFDSVdCRmRIRVdVbFJpZk15eUMv?=
- =?utf-8?B?dE1jUzJrSW9CYUpTNFAvVndadVRhM0lpMUJuWENxZjlFek0yZSsvSnNnUDJO?=
- =?utf-8?B?WGRZUEdQd1BIQWFHc3RZL0x1bDFLc3RFZng2WjA5bWgxMlhRUXc5dmwxWlNW?=
- =?utf-8?B?eDRyNGMvMWtPNGRQZlRYSzA2RlFHWjM5VTdMS05oRC9OYXMvS2h1R055SVVa?=
- =?utf-8?B?VUFtbHpnQUw3MFZ1NTJmMEpIbTNENnJacHhmUldZV1p2bEVqWjlZOXdvK3J1?=
- =?utf-8?B?N2MyMGdqeEkraG5nREZJM2Vpb2FxUk5GTURJQnhTL2Q0cEJxaEFmdG8wOHk5?=
- =?utf-8?B?T05zMFJUMG94RE14WGhydEc0cTVITG9Nd0JpN05IU25GdkFSYUlkcW5WSUFi?=
- =?utf-8?B?S0xBMUQxbFdwZzZpcHhQMmp3bjlWY0xuTllwV3REcGx2NTF6S1ZaQ0owNkdj?=
- =?utf-8?B?ZUZqbnRzeFJ5dmswSzNrUXl3aVlZb0NMcU4zelZaSDhpUFliUDl6RXhmWmhk?=
- =?utf-8?B?eVE2bkE2Y2VtNWJ0NHMraTMrUy93cXhkVzFYcWxUZVBOQjA2dnpxMHE4T0lC?=
- =?utf-8?B?bDVuMlp6VElZaTM0Qlh2aVVDdU0zT1pBL3VjNEp4YUV2STJ4a3lUSVNsRDE0?=
- =?utf-8?B?eWs3bEVqakJKRG0yZ0toVTFkZHdsdDZ1NVZzT292Z0cyS205cGRJZDh1Z1dk?=
- =?utf-8?B?V3BKc1dseXJMTVBrUzVOYjFJaldRNEJtb2kva21GSUs1SUlaQUlhVFBuRGN0?=
- =?utf-8?B?NW9TdGg2Tmw0Z2hSVEdCKzd6eE5LNFE0N0J0V0hvRHpsS0hxdEFKOVBHYzNU?=
- =?utf-8?B?M0FkbFpTSE5hbThCUXhFdGNKYUVYVHlENEt4VDhuUFBtWUJtMktGMnJKWUUw?=
- =?utf-8?B?WnhodytJRCtTbU0zS0ZXdjdlOWNDc0FWeVg5b0R6UTZFMmFvN2JOMGxrOWJQ?=
- =?utf-8?B?NDBzR2szMU1PT3lSbnFnT1AxcjJtcmRqYlVybGtYNDJZS081M0FwZ2RGakJX?=
- =?utf-8?B?elU3YkhWQmRYWWozamNPdzVmRTNVb2NhTkNPNVlVTTlVU2JOdXdjSTdxdE5n?=
- =?utf-8?B?VS8wOW82THVRZmFuTnV3WlM0S0FNTTkwR3NJRUhNTTlyMm9oTkZLL1p0NzBO?=
- =?utf-8?B?b0E2RGRoTEVIN1VzYkVoeHI1QjVhMkd3NGRIQVJpWnNrTlJmelVNYWRkYy80?=
- =?utf-8?Q?ChgZ51gvIX9gz?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?MkFDV3lmQ1h5Yko4QUNCcUxJZ2plQmRNN2o2a2tmRit2RWxQR0RXVnNlTE91?=
- =?utf-8?B?NnNNeGtVWTJEUjY2VHFndXBaNU5UVzk1VTR0TTFRRUZwV1RmRU15eWVmUThO?=
- =?utf-8?B?U0I5Z1R6c0Z4d1lJTXhES0RWMHVKSmJlVWNtMllOclBVUkVMR0hLUjV1bGs4?=
- =?utf-8?B?LzlzSlBsaEJIVE1LY1R4emIrVWJBcU1oNUd2YWVkZWV3OGtrREdRZVhlNTRh?=
- =?utf-8?B?RVR2cmdDZ3hxaE1FR01CMmhGTkpZbTNwU25UT2JBdTduWXFJNTNXZ2FrQXBU?=
- =?utf-8?B?WG5Xd29FNWZNLzh3Vm1LU1lpUWdxc0ZTWTdxUTRZQ0FteTBEYVdjeTlhUm9v?=
- =?utf-8?B?UFNZSlpiakRuWC9ER25Dekgrblg2KzM5WFFzTC91ei9PRzMydHl3OUpiRlFY?=
- =?utf-8?B?Y1JmVWNNMjc1VDQ0MlJFUjlPT1UwMFpCN1pVZHlFMGhVUUJoelgyWmZmUVdP?=
- =?utf-8?B?bDJSb2xHdjMrVkcwcDlLVDFxb1BvYTRsbXJxMjBqd0NHY2dlQWl3V2k0YTUv?=
- =?utf-8?B?WVpTTlNLMzRGck0yQ2dCMU40MmVzUFpDMkdhaTFVa1Fmbms3NGlDc05mcERu?=
- =?utf-8?B?UExKckx3Z1dkSzZGa3IrblFLdFgwVTZ1T1ZBMlNRZmpWaWxNWWQ1bmN5TE9o?=
- =?utf-8?B?U3AvajMvRFVxeG01WEdRNkl5UlQ3YVFGODdlVzlPS2VtMnlUWnlMSEZTK212?=
- =?utf-8?B?dW54TFJVdWc3dFNweFZhSm5CTWFzUG40NnRpVjBpYkRGdktSRElFOFdpUjMx?=
- =?utf-8?B?bjZPK3BDZjNKcmVNY3FaN0xHdWFFOXQrd05xb2V0Nkl4cWJYd0d0dzArTUZn?=
- =?utf-8?B?eGtRN0dHS3hIT2FBRldNTnI0OGQra1JkSk1nT3piWmVzb2dMd1dBRi9iNXdp?=
- =?utf-8?B?OUlJa28vMTNqTXY5VGZiUFkrNUN1M25LREZIcW1QWmV5dlUrYXVMQWVkcExn?=
- =?utf-8?B?Zll1c1h2TDVGMGVPdHV3Y0V2NFZ0SlZGL1RHTHl6dzZ1a3JENFlqTVVlb0l0?=
- =?utf-8?B?eHdTbEZwczZsNmpWSTZrV09vRkdkWlZBSGVaMWh3NExBekNoN2RzcmQrNW5Z?=
- =?utf-8?B?T2t4RFA5S0lvUzhpdXFGT3hiRUtpYzFGdWhWZ0dxVkJuQzliblcvVFl6c0N0?=
- =?utf-8?B?eEJ3ajJEOVJwVW9CZk5qSy9Ta20rdnNtS3o3ZWZ5dmtncWpPUVpEQitRekZO?=
- =?utf-8?B?bUttT3BEUXRhNzNraFVxZzR2cTVmTzJONXZrOHVKeW5JbVRySDNMNjhBQUJO?=
- =?utf-8?B?NEg1YnF2V1ZtM2UvZGMvM3U3UG03MUpqM0RzOUxzTFc2RDZpdkk1Nzl2eVR4?=
- =?utf-8?B?VTl1YkxVM3E0MDZsSVZVMGNqYUgyQkMxYkRrVGdxOXBtNndqWWVuTWwwZy9h?=
- =?utf-8?B?Y0lCNXZxRTNGeHdWL0J3WTZmM0RzeHo1NzkxaXFUWEZ6YmJkSHlQQ0ZNMFpD?=
- =?utf-8?B?NlFOMkk0OWNUMVpaZzh2cGtnenVoRkVGblZvQTNCajBVeDdSUjVhK2tQMnMw?=
- =?utf-8?B?Ky80bkNPV2RpT1U1eitKc2F1YitrQnNmL3BUSktQTVRURkN5bUVjYTF3dkFI?=
- =?utf-8?B?aEtyRElOUmsyelpEYzZ5eWQvcXpWam5VVnB3MkxwQlFvemgrUzIvcHBqK2ZY?=
- =?utf-8?B?WUpFWFhuV2hRd0xJblFWbTNMWDFBVWdNeHlGUytqUFpQYVRicDVlQmF0L0N5?=
- =?utf-8?B?Tkx3SkNrR2JCT1o5WEM5aTd3UkdPaTlORWZKam50S2g0M1RLUWQvYjlGMzZN?=
- =?utf-8?B?MXovRHNzTllwcm90U3RwK0VENnR5MU1CSStiRHRQOTNOeW5VQlovcGVkVHFB?=
- =?utf-8?B?V280WVo1RVN2TGZqajlQK2ZEVjM3aTE3VXZKTXVDYW1ySCsyMm9WaHB3S2wy?=
- =?utf-8?B?UDdpZFZsZVJPZlZMMnU3N1RPNTVFZUJ5czZUUkl4MlVkbGk1QVB0M0twUG1H?=
- =?utf-8?B?K3NVVXRzZUZVaVJFbWdudlp2d2F3Y1FDSGkyWk9zYjhieE5jYTVUUEN0cWp4?=
- =?utf-8?B?OE9vL3ArenF3RE0yUk1wVDBVWkdTNE1wdktqRzNsSWt4ZVFmVlVOVVY2b0Nr?=
- =?utf-8?B?emJYT0ZXZDlmTmZwTk80bndKQStSa0VVVDdscVNnWVVOcm1JZ29BcFg5aHNJ?=
- =?utf-8?Q?GgDNSW1yb1YzreZMRz6WdGero?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09b0b147-64e7-4c7b-33a1-08dd7cc52b19
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 09:00:43.3808
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /+sndbDnsG+Hh+DSvgEm/8Da1lgC/NzcIhww+d4c3IrPj0/hB/NU4kg3IY8Vey1uRylr799rqMtbcjzOLUhSAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9220
+References: <20250307032942.10447-1-guangjie.song@mediatek.com> <20250307032942.10447-10-guangjie.song@mediatek.com>
+In-Reply-To: <20250307032942.10447-10-guangjie.song@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 16 Apr 2025 17:04:30 +0800
+X-Gm-Features: ATxdqUGYmZCFjWSTxcCHuAn8U4bLJQ4oHMF0pfVMaY8hT9jS01jc109Iyzlvh9g
+Message-ID: <CAGXv+5GEa5HLxyMSm=BsEEeJ6ZaAei8aemeVJt+cbBNnrqLYQA@mail.gmail.com>
+Subject: Re: [PATCH 09/26] clk: mediatek: Add MT8196 topckgen clock support
+To: Guangjie Song <guangjie.song@mediatek.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Richard Cochran <richardcochran@gmail.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	netdev@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/15/2025, Nuno Sá via B4 Relay wrote:
-> The adp5585 MFD driver was introduced in 6.11 adding support for gpio
-> and PWM. However, the gpio part of it was already supported as part of
-> the keyboard driver:
-> 
-> https://elixir.bootlin.com/linux/v6.14-rc6/source/drivers/input/keyboard/adp5589-keys.c#L532
-> 
-> On top of that it also overlapped with my refactoring of the above driver [1]
-> to drop usage of platform data and use FW properties instead.
-> 
-> Now, it actually makes sense for this device to be supported under MFD
-> and since the "legacy" input device depends on platform data that is not
-> defined anywhere the plan in this series is to add support for the
-> keyboard and adp5589 devices as part of the MFD driver. Once the MFD
-> driver supports all that's supported in the Input one, we drop it...
-> 
-> For DT Maintainers:
-> 
-> The compatible for adp5589 is part of trivial devices. To me, it makes
-> sense to remove it in the patch where we drop the driver but doing so
-> would result in a warning when adding the same compatible for the MFD
-> bindings. Hence, I remove it in that patch. Is that ok?
-> 
-> Uwe:
-> 
-> In my eval board, I could see that reading the GPIO value (when
-> configured as input) does not work when OSC_EN is not set. Therefore,
-> commit ("pwm: adp5585: don't control OSC_EN in the pwm driver") could
-> very well have a Fixes tag. However I'm not 100% sure it's a real issue
-> or something special to my eval board.
-> 
-> It would be nice if Laurent or Liu could test the PWM bits or even
-> check that the above is also an issue for their platform.
+On Fri, Mar 7, 2025 at 11:35=E2=80=AFAM Guangjie Song
+<guangjie.song@mediatek.com> wrote:
+>
+> Add MT8196 topckgen clock controller which provides muxes and dividers
+> to handle variety clock selection in other IP blocks.
+>
+> Signed-off-by: Guangjie Song <guangjie.song@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Makefile              |    3 +-
+>  drivers/clk/mediatek/clk-mt8196-topckgen.c | 1373 ++++++++++++++++++++
+>  2 files changed, 1375 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
+e
+> index 247bad396cfb..cd6f42a6fd10 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -150,7 +150,8 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VDOSYS) +=3D clk-mt819=
+5-vdo0.o clk-mt8195-vdo1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VENCSYS) +=3D clk-mt8195-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS) +=3D clk-mt8195-vpp0.o clk-mt8195=
+-vpp1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) +=3D clk-mt8195-wpe.o
+> -obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
+apmixedsys_gp2.o
+> +obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apmixedsys.o clk-mt8196-=
+apmixedsys_gp2.o \
+> +                                  clk-mt8196-topckgen.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt8365.=
+o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_APU) +=3D clk-mt8365-apu.o
+>  obj-$(CONFIG_COMMON_CLK_MT8365_CAM) +=3D clk-mt8365-cam.o
+> diff --git a/drivers/clk/mediatek/clk-mt8196-topckgen.c b/drivers/clk/med=
+iatek/clk-mt8196-topckgen.c
+> new file mode 100644
+> index 000000000000..41c5431561fe
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8196-topckgen.c
+> @@ -0,0 +1,1373 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2025 MediaTek Inc.
+> + * Author: Guangjie Song <guangjie.song@mediatek.com>
+> + */
+> +#include <dt-bindings/clock/mt8196-clk.h>
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "clk-mtk.h"
+> +#include "clk-mux.h"
+> +
+> +/* MUX SEL REG */
+> +#define CLK_CFG_UPDATE         0x0004
+> +#define CLK_CFG_UPDATE1                0x0008
+> +#define CLK_CFG_UPDATE2                0x000c
+> +#define CLK_CFG_0              0x0010
+> +#define CLK_CFG_0_SET          0x0014
+> +#define CLK_CFG_0_CLR          0x0018
+> +#define CLK_CFG_1              0x0020
+> +#define CLK_CFG_1_SET          0x0024
+> +#define CLK_CFG_1_CLR          0x0028
+> +#define CLK_CFG_2              0x0030
+> +#define CLK_CFG_2_SET          0x0034
+> +#define CLK_CFG_2_CLR          0x0038
+> +#define CLK_CFG_3              0x0040
+> +#define CLK_CFG_3_SET          0x0044
+> +#define CLK_CFG_3_CLR          0x0048
+> +#define CLK_CFG_4              0x0050
+> +#define CLK_CFG_4_SET          0x0054
+> +#define CLK_CFG_4_CLR          0x0058
+> +#define CLK_CFG_5              0x0060
+> +#define CLK_CFG_5_SET          0x0064
+> +#define CLK_CFG_5_CLR          0x0068
+> +#define CLK_CFG_6              0x0070
+> +#define CLK_CFG_6_SET          0x0074
+> +#define CLK_CFG_6_CLR          0x0078
+> +#define CLK_CFG_7              0x0080
+> +#define CLK_CFG_7_SET          0x0084
+> +#define CLK_CFG_7_CLR          0x0088
+> +#define CLK_CFG_8              0x0090
+> +#define CLK_CFG_8_SET          0x0094
+> +#define CLK_CFG_8_CLR          0x0098
+> +#define CLK_CFG_9              0x00a0
+> +#define CLK_CFG_9_SET          0x00a4
+> +#define CLK_CFG_9_CLR          0x00a8
+> +#define CLK_CFG_10             0x00b0
+> +#define CLK_CFG_10_SET         0x00b4
+> +#define CLK_CFG_10_CLR         0x00b8
+> +#define CLK_CFG_11             0x00c0
+> +#define CLK_CFG_11_SET         0x00c4
+> +#define CLK_CFG_11_CLR         0x00c8
+> +#define CLK_CFG_12             0x00d0
+> +#define CLK_CFG_12_SET         0x00d4
+> +#define CLK_CFG_12_CLR         0x00d8
+> +#define CLK_CFG_13             0x00e0
+> +#define CLK_CFG_13_SET         0x00e4
+> +#define CLK_CFG_13_CLR         0x00e8
+> +#define CLK_CFG_14             0x00f0
+> +#define CLK_CFG_14_SET         0x00f4
+> +#define CLK_CFG_14_CLR         0x00f8
+> +#define CLK_CFG_15             0x0100
+> +#define CLK_CFG_15_SET         0x0104
+> +#define CLK_CFG_15_CLR         0x0108
+> +#define CLK_CFG_16             0x0110
+> +#define CLK_CFG_16_SET         0x0114
+> +#define CLK_CFG_16_CLR         0x0118
+> +#define CLK_CFG_17             0x0120
+> +#define CLK_CFG_17_SET         0x0124
+> +#define CLK_CFG_17_CLR         0x0128
+> +#define CLK_CFG_18             0x0130
+> +#define CLK_CFG_18_SET         0x0134
+> +#define CLK_CFG_18_CLR         0x0138
+> +#define CLK_CFG_19             0x0140
+> +#define CLK_CFG_19_SET         0x0144
+> +#define CLK_CFG_19_CLR         0x0148
+> +#define CLK_AUDDIV_0           0x020c
+> +#define CLK_FENC_STATUS_MON_0  0x0270
+> +#define CLK_FENC_STATUS_MON_1  0x0274
+> +#define CLK_FENC_STATUS_MON_2  0x0278
+> +
+> +/* MUX SHIFT */
+> +#define TOP_MUX_AXI_SHIFT                      0
+> +#define TOP_MUX_MEM_SUB_SHIFT                  1
+> +#define TOP_MUX_IO_NOC_SHIFT                   2
+> +#define TOP_MUX_PERI_AXI_SHIFT                 3
+> +#define TOP_MUX_UFS_PEXTP0_AXI_SHIFT           4
+> +#define TOP_MUX_PEXTP1_USB_AXI_SHIFT           5
+> +#define TOP_MUX_PERI_FMEM_SUB_SHIFT            6
+> +#define TOP_MUX_UFS_PEXPT0_MEM_SUB_SHIFT       7
+> +#define TOP_MUX_PEXTP1_USB_MEM_SUB_SHIFT       8
+> +#define TOP_MUX_PERI_NOC_SHIFT                 9
+> +#define TOP_MUX_EMI_N_SHIFT                    10
+> +#define TOP_MUX_EMI_S_SHIFT                    11
+> +#define TOP_MUX_AP2CONN_HOST_SHIFT             14
+> +#define TOP_MUX_ATB_SHIFT                      15
+> +#define TOP_MUX_CIRQ_SHIFT                     16
+> +#define TOP_MUX_PBUS_156M_SHIFT                        17
+> +#define TOP_MUX_EFUSE_SHIFT                    20
+> +#define TOP_MUX_MCU_L3GIC_SHIFT                        21
+> +#define TOP_MUX_MCU_INFRA_SHIFT                        22
+> +#define TOP_MUX_DSP_SHIFT                      23
+> +#define TOP_MUX_MFG_REF_SHIFT                  24
+> +#define TOP_MUX_MFG_EB_SHIFT                   26
+> +#define TOP_MUX_UART_SHIFT                     27
+> +#define TOP_MUX_SPI0_BCLK_SHIFT                        28
+> +#define TOP_MUX_SPI1_BCLK_SHIFT                        29
+> +#define TOP_MUX_SPI2_BCLK_SHIFT                        30
+> +#define TOP_MUX_SPI3_BCLK_SHIFT                        0
+> +#define TOP_MUX_SPI4_BCLK_SHIFT                        1
+> +#define TOP_MUX_SPI5_BCLK_SHIFT                        2
+> +#define TOP_MUX_SPI6_BCLK_SHIFT                        3
+> +#define TOP_MUX_SPI7_BCLK_SHIFT                        4
+> +#define TOP_MUX_MSDC30_1_SHIFT                 7
+> +#define TOP_MUX_MSDC30_2_SHIFT                 8
+> +#define TOP_MUX_DISP_PWM_SHIFT                 9
+> +#define TOP_MUX_USB_TOP_1P_SHIFT               10
+> +#define TOP_MUX_SSUSB_XHCI_1P_SHIFT            11
+> +#define TOP_MUX_SSUSB_FMCNT_P1_SHIFT           12
+> +#define TOP_MUX_I2C_PERI_SHIFT                 13
+> +#define TOP_MUX_I2C_EAST_SHIFT                 14
+> +#define TOP_MUX_I2C_WEST_SHIFT                 15
+> +#define TOP_MUX_I2C_NORTH_SHIFT                        16
+> +#define TOP_MUX_AES_UFSFDE_SHIFT               17
+> +#define TOP_MUX_UFS_SHIFT                      18
+> +#define TOP_MUX_AUD_1_SHIFT                    21
+> +#define TOP_MUX_AUD_2_SHIFT                    22
+> +#define TOP_MUX_ADSP_SHIFT                     23
+> +#define TOP_MUX_ADSP_UARTHUB_BCLK_SHIFT                24
+> +#define TOP_MUX_DPMAIF_MAIN_SHIFT              25
+> +#define TOP_MUX_PWM_SHIFT                      26
+> +#define TOP_MUX_MCUPM_SHIFT                    27
+> +#define TOP_MUX_SFLASH_SHIFT                   28
+> +#define TOP_MUX_IPSEAST_SHIFT                  29
+> +#define TOP_MUX_TL_SHIFT                       0
+> +#define TOP_MUX_TL_P1_SHIFT                    1
+> +#define TOP_MUX_TL_P2_SHIFT                    2
+> +#define TOP_MUX_EMI_INTERFACE_546_SHIFT                3
+> +#define TOP_MUX_SDF_SHIFT                      4
+> +#define TOP_MUX_UARTHUB_BCLK_SHIFT             5
+> +#define TOP_MUX_DPSW_CMP_26M_SHIFT             6
+> +#define TOP_MUX_SMAPCK_SHIFT                   7
+> +#define TOP_MUX_SSR_PKA_SHIFT                  8
+> +#define TOP_MUX_SSR_DMA_SHIFT                  9
+> +#define TOP_MUX_SSR_KDF_SHIFT                  10
+> +#define TOP_MUX_SSR_RNG_SHIFT                  11
+> +#define TOP_MUX_SPU0_SHIFT                     12
+> +#define TOP_MUX_SPU1_SHIFT                     13
+> +#define TOP_MUX_DXCC_SHIFT                     14
+> +
+> +/* CKSTA REG */
+> +#define CKSTA_REG      0x01c8
+> +#define CKSTA_REG1     0x01cc
+> +#define CKSTA_REG2     0x01d0
+> +
+> +/* DIVIDER REG */
+> +#define CLK_AUDDIV_2   0x0214
+> +#define CLK_AUDDIV_3   0x0220
+> +#define CLK_AUDDIV_4   0x0224
+> +#define CLK_AUDDIV_5   0x0228
+> +
+> +/* HW Voter REG */
+> +#define VOTE_CG_0_SET  0x0000
+> +#define VOTE_CG_0_CLR  0x0004
+> +#define VOTE_CG_0_DONE 0x2c00
+> +#define VOTE_CG_1_SET  0x0008
+> +#define VOTE_CG_1_CLR  0x000c
+> +#define VOTE_CG_1_DONE 0x2c04
+> +#define VOTE_CG_2_SET  0x0010
+> +#define VOTE_CG_2_CLR  0x0014
+> +#define VOTE_CG_2_DONE 0x2c08
+> +#define VOTE_CG_3_SET  0x0018
+> +#define VOTE_CG_3_CLR  0x001c
+> +#define VOTE_CG_3_DONE 0x2c0c
+> +#define VOTE_CG_4_SET  0x0020
+> +#define VOTE_CG_4_CLR  0x0024
+> +#define VOTE_CG_4_DONE 0x2c10
+> +#define VOTE_CG_5_SET  0x0028
+> +#define VOTE_CG_5_CLR  0x002c
+> +#define VOTE_CG_5_DONE 0x2c14
+> +#define VOTE_CG_6_SET  0x0030
+> +#define VOTE_CG_6_CLR  0x0034
+> +#define VOTE_CG_6_DONE 0x2c18
+> +#define VOTE_CG_7_SET  0x0038
+> +#define VOTE_CG_7_CLR  0x003c
+> +#define VOTE_CG_7_DONE 0x2c1c
+> +#define VOTE_CG_8_SET  0x0040
+> +#define VOTE_CG_8_CLR  0x0044
+> +#define VOTE_CG_8_DONE 0x2c20
+> +
+> +static DEFINE_SPINLOCK(mt8196_clk_ck_lock);
+> +
+> +static const struct mtk_fixed_factor ck_divs[] =3D {
+> +       FACTOR(CLK_CK_MAINPLL_D3, "ck_mainpll_d3", "mainpll", 1, 3),
 
-With this v2 patch series, PWM backlight(controlled by ADP5585 pin R3) still
-works for my i.MX93 11x11 EVK.  Without this v2 patch series, if I change PWM
-backlight to GPIO backlight(keep using pin R3), the GPIO backlight brightness
-can be set to 0 or 1, meaning I can see the backlight is off or on.  So, it
-appears that GPIO output still works when OSC_EN is zero(I dumped GENERAL_CFG
-register @0x3b as 0x00), though I didn't test GPIO input.
+Please drop the "ck_" prefix from all clock names. Within the clock
+framework and namespace, all names refer to clocks.
 
-> 
-> [1]: https://lore.kernel.org/linux-input/d1395bd61ce58b3734121bca4e09605a3e997af3.camel@gmail.com/
-> 
-> BTW the series is based on linux-next/master
-> 
-> ---
-> Changes in v2:
-> - Patch 5:
->    * Do not nest if:then:else::if:then.
-> - Patch 6:
->    * Make use of the adp5585 info variables and adp5589 volatile regs.
-> - Patch 9:
->    * Use standard "poll-interval" property (and move it before vendor
->      properties).
-> - Patch 10:
->    * Make sure to include bitfield.h.
-> 
-> - Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
-> 
-> ---
-> Nuno Sá (17):
->       dt-bindings: mfd: adp5585: ease on the required properties
->       mfd: adp5585: enable oscilator during probe
->       pwm: adp5585: don't control OSC_EN in the pwm driver
->       mfd: adp5585: make use of MFD_CELL_NAME()
->       dt-bindings: mfd: adp5585: document adp5589 I/O expander
->       mfd: adp5585: add support for adp5589
->       gpio: adp5585: add support for the ad5589 expander
->       pwm: adp5585: add support for adp5589
->       dt-bindings: mfd: adp5585: add properties for input events
->       mfd: adp5585: add support for key events
->       gpio: adp5585: support gpi events
->       Input: adp5585: Add Analog Devices ADP5585/89 support
->       Input: adp5589: remove the driver
->       mfd: adp5585: support getting vdd regulator
->       dt-bindings: mfd: adp5585: document reset gpio
->       mfd: adp5585: add support for a reset pin
->       pwm: adp5585: make sure to include mod_devicetable.h
-> 
->  .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
->  .../devicetree/bindings/trivial-devices.yaml       |    2 -
->  MAINTAINERS                                        |    1 +
->  drivers/gpio/Kconfig                               |    1 +
->  drivers/gpio/gpio-adp5585.c                        |  299 +++++-
->  drivers/input/keyboard/Kconfig                     |   21 +-
->  drivers/input/keyboard/Makefile                    |    2 +-
->  drivers/input/keyboard/adp5585-keys.c              |  221 ++++
->  drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
->  drivers/mfd/adp5585.c                              |  808 ++++++++++++++-
->  drivers/pwm/pwm-adp5585.c                          |   57 +-
->  include/linux/mfd/adp5585.h                        |  153 ++-
->  12 files changed, 1709 insertions(+), 1162 deletions(-)
-> ---
-> base-commit: 5b37f7bfff3b1582c34be8fb23968b226db71ebd
-> change-id: 20250311-dev-adp5589-fw-e04cfd945286
+> +       FACTOR(CLK_CK_MAINPLL_D4, "ck_mainpll_d4", "mainpll", 1, 4),
+> +       FACTOR(CLK_CK_MAINPLL_D4_D2, "ck_mainpll_d4_d2", "mainpll", 1, 8)=
+,
+> +       FACTOR(CLK_CK_MAINPLL_D4_D4, "ck_mainpll_d4_d4", "mainpll", 1, 16=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D4_D8, "ck_mainpll_d4_d8", "mainpll", 1, 32=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D5, "ck_mainpll_d5", "mainpll", 1, 5),
+> +       FACTOR(CLK_CK_MAINPLL_D5_D2, "ck_mainpll_d5_d2", "mainpll", 1, 10=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D5_D4, "ck_mainpll_d5_d4", "mainpll", 1, 20=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D5_D8, "ck_mainpll_d5_d8", "mainpll", 1, 40=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D6, "ck_mainpll_d6", "mainpll", 1, 6),
+> +       FACTOR(CLK_CK_MAINPLL_D6_D2, "ck_mainpll_d6_d2", "mainpll", 1, 12=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D7, "ck_mainpll_d7", "mainpll", 1, 7),
+> +       FACTOR(CLK_CK_MAINPLL_D7_D2, "ck_mainpll_d7_d2", "mainpll", 1, 14=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D7_D4, "ck_mainpll_d7_d4", "mainpll", 1, 28=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D7_D8, "ck_mainpll_d7_d8", "mainpll", 1, 56=
+),
+> +       FACTOR(CLK_CK_MAINPLL_D9, "ck_mainpll_d9", "mainpll", 1, 9),
+> +       FACTOR(CLK_CK_UNIVPLL_D4, "ck_univpll_d4", "univpll", 1, 4),
+> +       FACTOR(CLK_CK_UNIVPLL_D4_D2, "ck_univpll_d4_d2", "univpll", 1, 8)=
+,
+> +       FACTOR(CLK_CK_UNIVPLL_D4_D4, "ck_univpll_d4_d4", "univpll", 1, 16=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D4_D8, "ck_univpll_d4_d8", "univpll", 1, 32=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D5, "ck_univpll_d5", "univpll", 1, 5),
+> +       FACTOR(CLK_CK_UNIVPLL_D5_D2, "ck_univpll_d5_d2", "univpll", 1, 10=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D5_D4, "ck_univpll_d5_d4", "univpll", 1, 20=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D6, "ck_univpll_d6", "univpll", 1, 6),
+> +       FACTOR(CLK_CK_UNIVPLL_D6_D2, "ck_univpll_d6_d2", "univpll", 1, 12=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D6_D4, "ck_univpll_d6_d4", "univpll", 1, 24=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D6_D8, "ck_univpll_d6_d8", "univpll", 1, 48=
+),
+> +       FACTOR(CLK_CK_UNIVPLL_D6_D16, "ck_univpll_d6_d16", "univpll", 1, =
+96),
+> +       FACTOR(CLK_CK_UNIVPLL_192M, "ck_univpll_192m", "univpll", 1, 13),
+> +       FACTOR(CLK_CK_UNIVPLL_192M_D4, "ck_univpll_192m_d4", "univpll", 1=
+, 52),
+> +       FACTOR(CLK_CK_UNIVPLL_192M_D8, "ck_univpll_192m_d8", "univpll", 1=
+, 104),
+> +       FACTOR(CLK_CK_UNIVPLL_192M_D16, "ck_univpll_192m_d16", "univpll",=
+ 1, 208),
+> +       FACTOR(CLK_CK_UNIVPLL_192M_D32, "ck_univpll_192m_d32", "univpll",=
+ 1, 416),
+> +       FACTOR(CLK_CK_UNIVPLL_192M_D10, "ck_univpll_192m_d10", "univpll",=
+ 1, 130),
+> +       FACTOR(CLK_CK_APLL1, "ck_apll1_ck", "vlp_apll1", 1, 1),
+
+Drop this, unless this actually depends on the topckgen block in some
+way, such as power.
+
+> +       FACTOR(CLK_CK_APLL1_D4, "ck_apll1_d4", "vlp_apll1", 1, 4),
+> +       FACTOR(CLK_CK_APLL1_D8, "ck_apll1_d8", "vlp_apll1", 1, 8),
+> +       FACTOR(CLK_CK_APLL2, "ck_apll2_ck", "vlp_apll2", 1, 1),
+
+Same.
+
+> +       FACTOR(CLK_CK_APLL2_D4, "ck_apll2_d4", "vlp_apll2", 1, 4),
+> +       FACTOR(CLK_CK_APLL2_D8, "ck_apll2_d8", "vlp_apll2", 1, 8),
+
+> +       FACTOR(CLK_CK_ADSPPLL, "ck_adsppll_ck", "adsppll", 1, 1),
+> +       FACTOR(CLK_CK_EMIPLL1, "ck_emipll1_ck", "emipll", 1, 1),
+
+Same for these two.
+
+> +       FACTOR(CLK_CK_TVDPLL1_D2, "ck_tvdpll1_d2", "tvdpll1", 1, 2),
+> +       FACTOR(CLK_CK_MSDCPLL_D2, "ck_msdcpll_d2", "msdcpll", 1, 2),
+
+> +       FACTOR(CLK_CK_CLKRTC, "ck_clkrtc", "clk32k", 1, 1),
+> +       FACTOR(CLK_CK_TCK_26M_MX9, "ck_tck_26m_mx9_ck", "clk26m", 1, 1),
+> +       FACTOR(CLK_CK_F26M, "ck_f26m_ck", "clk26m", 1, 1),
+> +       FACTOR(CLK_CK_F26M_CK_D2, "ck_f26m_d2", "clk13m", 1, 1),
+> +       FACTOR(CLK_CK_OSC, "ck_osc", "ulposc", 1, 1),
+
+Same for these five.
+
+> +       FACTOR(CLK_CK_OSC_D2, "ck_osc_d2", "ulposc", 1, 2),
+> +       FACTOR(CLK_CK_OSC_D3, "ck_osc_d3", "ulposc", 1, 3),
+> +       FACTOR(CLK_CK_OSC_D4, "ck_osc_d4", "ulposc", 1, 4),
+> +       FACTOR(CLK_CK_OSC_D5, "ck_osc_d5", "ulposc", 1, 5),
+> +       FACTOR(CLK_CK_OSC_D7, "ck_osc_d7", "ulposc", 1, 7),
+> +       FACTOR(CLK_CK_OSC_D8, "ck_osc_d8", "ulposc", 1, 8),
+> +       FACTOR(CLK_CK_OSC_D10, "ck_osc_d10", "ulposc", 1, 10),
+> +       FACTOR(CLK_CK_OSC_D14, "ck_osc_d14", "ulposc", 1, 14),
+> +       FACTOR(CLK_CK_OSC_D20, "ck_osc_d20", "ulposc", 1, 20),
+> +       FACTOR(CLK_CK_OSC_D32, "ck_osc_d32", "ulposc", 1, 32),
+> +       FACTOR(CLK_CK_OSC_D40, "ck_osc_d40", "ulposc", 1, 40),
+
+Starting from here:
+
+> +       FACTOR(CLK_CK_OSC3, "ck_osc3", "ulposc3", 1, 1),
+> +       FACTOR(CLK_CK_P_AXI, "ck_p_axi_ck", "ck_p_axi_sel", 1, 1),
+> +       FACTOR(CLK_CK_PEXTP0_AXI, "ck_pextp0_axi_ck", "ck_pextp0_axi_sel"=
+, 1, 1),
+> +       FACTOR(CLK_CK_PEXTP1_USB_AXI, "ck_pextp1_usb_axi_ck", "ck_pextp1_=
+usb_axi_sel", 1, 1),
+> +       FACTOR(CLK_CK_PEXPT0_MEM_SUB, "ck_pexpt0_mem_sub_ck", "ck_pexpt0_=
+mem_sub_sel", 1, 1),
+> +       FACTOR(CLK_CK_PEXTP1_USB_MEM_SUB, "ck_pextp1_usb_mem_sub_ck", "ck=
+_pextp1_usb_mem_sub_sel", 1, 1),
+> +       FACTOR(CLK_CK_UART, "ck_uart_ck", "ck_uart_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI0_BCLK, "ck_spi0_b_ck", "ck_spi0_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI1_BCLK, "ck_spi1_b_ck", "ck_spi1_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI2_BCLK, "ck_spi2_b_ck", "ck_spi2_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI3_BCLK, "ck_spi3_b_ck", "ck_spi3_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI4_BCLK, "ck_spi4_b_ck", "ck_spi4_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI5_BCLK, "ck_spi5_b_ck", "ck_spi5_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI6_BCLK, "ck_spi6_b_ck", "ck_spi6_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_SPI7_BCLK, "ck_spi7_b_ck", "ck_spi7_b_sel", 1, 1),
+> +       FACTOR(CLK_CK_MSDC30_1, "ck_msdc30_1_ck", "ck_msdc30_1_sel", 1, 1=
+),
+> +       FACTOR(CLK_CK_MSDC30_2, "ck_msdc30_2_ck", "ck_msdc30_2_sel", 1, 1=
+),
+> +       FACTOR(CLK_CK_I2C_PERI, "ck_i2c_p_ck", "ck_i2c_p_sel", 1, 1),
+> +       FACTOR(CLK_CK_I2C_EAST, "ck_i2c_east_ck", "ck_i2c_east_sel", 1, 1=
+),
+> +       FACTOR(CLK_CK_I2C_WEST, "ck_i2c_west_ck", "ck_i2c_west_sel", 1, 1=
+),
+> +       FACTOR(CLK_CK_I2C_NORTH, "ck_i2c_north_ck", "ck_i2c_north_sel", 1=
+, 1),
+> +       FACTOR(CLK_CK_AES_UFSFDE, "ck_aes_ufsfde_ck", "ck_aes_ufsfde_sel"=
+, 1, 1),
+> +       FACTOR(CLK_CK_UFS, "ck_ck", "ck_sel", 1, 1),
+> +       FACTOR(CLK_CK_AUD_1, "ck_aud_1_ck", "ck_aud_1_sel", 1, 1),
+> +       FACTOR(CLK_CK_AUD_2, "ck_aud_2_ck", "ck_aud_2_sel", 1, 1),
+> +       FACTOR(CLK_CK_DPMAIF_MAIN, "ck_dpmaif_main_ck", "ck_dpmaif_main_s=
+el", 1, 1),
+> +       FACTOR(CLK_CK_PWM, "ck_pwm_ck", "ck_pwm_sel", 1, 1),
+> +       FACTOR(CLK_CK_TL, "ck_tl_ck", "ck_tl_sel", 1, 1),
+> +       FACTOR(CLK_CK_TL_P1, "ck_tl_p1_ck", "ck_tl_p1_sel", 1, 1),
+> +       FACTOR(CLK_CK_TL_P2, "ck_tl_p2_ck", "ck_tl_p2_sel", 1, 1),
+> +       FACTOR(CLK_CK_SSR_RNG, "ck_ssr_rng_ck", "ck_ssr_rng_sel", 1, 1),
+> +       FACTOR(CLK_CK_SFLASH, "ck_sflash_ck", "ck_sflash_sel", 1, 1),
+
+Please remove all the 1:1 placeholder clocks. These serve no purpose other
+than bloating the binding and driver.
+
+> +};
+> +
+> +static const char * const ck_axi_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20",
+> +       "ck_osc_d8",
+> +       "ck_osc_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_mem_sub_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20",
+> +       "ck_osc_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_osc_d3",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5",
+> +       "ck_mainpll_d4",
+> +       "ck_mainpll_d3"
+> +};
+> +
+> +static const char * const ck_io_noc_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20",
+> +       "ck_osc_d8",
+> +       "ck_osc_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_mainpll_d9"
+> +};
+> +
+> +static const char * const ck_p_axi_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d8",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_osc_d8",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_pextp0_axi_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d8",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_osc_d8",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_pextp1_usb_axi_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d8",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_osc_d8",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_p_fmem_sub_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_osc_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5",
+> +       "ck_mainpll_d4"
+> +};
+> +
+> +static const char * const ck_pexpt0_mem_sub_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_osc_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5",
+> +       "ck_mainpll_d4"
+> +};
+> +
+> +static const char * const ck_pextp1_usb_mem_sub_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_osc_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5",
+> +       "ck_mainpll_d4"
+> +};
+> +
+> +static const char * const ck_p_noc_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_osc_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5",
+> +       "ck_mainpll_d4",
+> +       "ck_mainpll_d3"
+> +};
+> +
+> +static const char * const ck_emi_n_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d4",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_emipll1_ck"
+> +};
+> +
+> +static const char * const ck_emi_s_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d4",
+> +       "ck_mainpll_d5_d8",
+> +       "ck_mainpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_emipll1_ck"
+> +};
+> +
+> +static const char * const ck_ap2conn_host_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d4"
+> +};
+> +
+> +static const char * const ck_atb_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6"
+> +};
+> +
+> +static const char * const ck_cirq_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20",
+> +       "ck_mainpll_d7_d4"
+> +};
+> +
+> +static const char * const ck_pbus_156m_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d2",
+> +       "ck_osc_d2",
+> +       "ck_mainpll_d7"
+> +};
+> +
+> +static const char * const ck_efuse_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20"
+> +};
+> +
+> +static const char * const ck_mcl3gic_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d8",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_mcinfra_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20",
+> +       "ck_mainpll_d7_d2",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d9",
+> +       "ck_mainpll_d6"
+> +};
+> +
+> +static const char * const ck_dsp_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d5",
+> +       "ck_osc_d4",
+> +       "ck_osc_d3",
+> +       "ck_univpll_d6_d2",
+> +       "ck_osc_d2",
+> +       "ck_univpll_d5",
+> +       "ck_osc"
+> +};
+> +
+> +static const char * const ck_mfg_ref_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d2"
+> +};
+> +
+> +static const char * const ck_mfg_eb_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d2",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_mainpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_uart_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d8",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi0_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi1_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi2_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi3_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi4_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi5_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi6_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_spi7_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d4_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_192m",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_msdc30_1_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_d6_d2",
+> +       "ck_msdcpll_d2"
+> +};
+> +
+> +static const char * const ck_msdc30_2_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_d6_d2",
+> +       "ck_msdcpll_d2"
+> +};
+> +
+> +static const char * const ck_disp_pwm_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d32",
+> +       "ck_osc_d8",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d5_d4",
+> +       "ck_osc_d4",
+> +       "ck_mainpll_d4_d4"
+> +};
+> +
+> +static const char * const ck_usb_1p_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d5_d4"
+> +};
+> +
+> +static const char * const ck_usb_xhci_1p_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d5_d4"
+> +};
+> +
+> +static const char * const ck_usb_fmcnt_p1_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_192m_d4"
+> +};
+> +
+> +static const char * const ck_i2c_p_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_i2c_east_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_i2c_west_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_i2c_north_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8",
+> +       "ck_univpll_d5_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_aes_ufsfde_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d6_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_univpll_d6",
+> +       "ck_mainpll_d4"
+> +};
+> +
+> +static const char * const ck_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_univpll_d6_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_univpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5"
+> +};
+> +
+> +static const char * const ck_aud_1_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_apll1_ck"
+> +};
+> +
+> +static const char * const ck_aud_2_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_apll2_ck"
+> +};
+> +
+> +static const char * const ck_adsp_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_adsppll_ck"
+> +};
+> +
+> +static const char * const ck_adsp_uarthub_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_dpmaif_main_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d4_d4",
+> +       "ck_univpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_univpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_univpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_univpll_d5"
+> +};
+> +
+> +static const char * const ck_pwm_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_univpll_d4_d8"
+> +};
+> +
+> +static const char * const ck_mcupm_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d2",
+> +       "ck_mainpll_d6_d2",
+> +       "ck_univpll_d6_d2",
+> +       "ck_mainpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_ipseast_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5",
+> +       "ck_mainpll_d4",
+> +       "ck_mainpll_d3"
+> +};
+> +
+> +static const char * const ck_tl_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_tl_p1_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_tl_p2_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d4",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d5_d2"
+> +};
+> +
+> +static const char * const ck_md_emi_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4"
+> +};
+> +
+> +static const char * const ck_sdf_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d4",
+> +       "ck_univpll_d4"
+> +};
+> +
+> +static const char * const ck_uarthub_b_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_univpll_d6_d4",
+> +       "ck_univpll_d6_d2"
+> +};
+> +
+> +static const char * const ck_dpsw_cmp_26m_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_osc_d20"
+> +};
+> +
+> +static const char * const ck_smapck_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8"
+> +};
+> +
+> +static const char * const ck_ssr_pka_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d7",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5"
+> +};
+> +
+> +static const char * const ck_ssr_dma_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d7",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5"
+> +};
+> +
+> +static const char * const ck_ssr_kdf_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d7"
+> +};
+> +
+> +static const char * const ck_ssr_rng_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d5_d2",
+> +       "ck_mainpll_d4_d2"
+> +};
+> +
+> +static const char * const ck_spu0_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d7",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5"
+> +};
+> +
+> +static const char * const ck_spu1_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2",
+> +       "ck_mainpll_d7",
+> +       "ck_mainpll_d6",
+> +       "ck_mainpll_d5"
+> +};
+> +
+> +static const char * const ck_dxcc_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d4_d8",
+> +       "ck_mainpll_d4_d4",
+> +       "ck_mainpll_d4_d2"
+> +};
+> +
+> +static const char * const ck_apll_i2sin0_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sin1_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sin2_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sin3_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sin4_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sin6_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout0_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout1_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout2_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout3_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout4_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_i2sout6_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_fmi2s_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_apll_tdmout_m_parents[] =3D {
+> +       "ck_aud_1_sel",
+> +       "ck_aud_2_sel"
+> +};
+> +
+> +static const char * const ck_sflash_parents[] =3D {
+> +       "ck_tck_26m_mx9_ck",
+> +       "ck_mainpll_d7_d8",
+> +       "ck_univpll_d6_d8"
+> +};
+> +
+> +static const struct mtk_mux ck_muxes[] =3D {
+> +       /* CLK_CFG_0 */
+> +       MUX_CLR_SET_UPD(CLK_CK_AXI_SEL, "ck_axi_sel",
+> +               ck_axi_parents, CLK_CFG_0, CLK_CFG_0_SET,
+> +               CLK_CFG_0_CLR, 0, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_AXI_SHIFT),
+
+Please drop the "_sel" suffix from clock names. That is derived from the
+register field, not the clock name.
+
+For example, for this "ck_axi_sel" clock, the name given in the datasheet
+is "hf_faxi_ck". I already mentioned that the "_ck" suffix adds no value
+and should be removed. The "hf_f" prefix seems to be related to
+classification, as I see "f_f" and "f_" prefixes as well. These could
+be dropped as well.
+
+So I think this clock should simply be named "axi".
+
+Please apply this logic to _all_ clocks in this series.
+
+> +       MUX_CLR_SET_UPD(CLK_CK_MEM_SUB_SEL, "ck_mem_sub_sel",
+> +               ck_mem_sub_parents, CLK_CFG_0, CLK_CFG_0_SET,
+> +               CLK_CFG_0_CLR, 8, 4,
+> +               CLK_CFG_UPDATE, TOP_MUX_MEM_SUB_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_IO_NOC_SEL, "ck_io_noc_sel",
+> +               ck_io_noc_parents, CLK_CFG_0, CLK_CFG_0_SET,
+> +               CLK_CFG_0_CLR, 16, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_IO_NOC_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_P_AXI_SEL, "ck_p_axi_sel",
+> +               ck_p_axi_parents, CLK_CFG_0, CLK_CFG_0_SET,
+> +               CLK_CFG_0_CLR, 24, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_PERI_AXI_SHIFT),
+> +       /* CLK_CFG_1 */
+> +       MUX_CLR_SET_UPD(CLK_CK_PEXTP0_AXI_SEL, "ck_pextp0_axi_sel",
+> +               ck_pextp0_axi_parents, CLK_CFG_1, CLK_CFG_1_SET,
+> +               CLK_CFG_1_CLR, 0, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_UFS_PEXTP0_AXI_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_PEXTP1_USB_AXI_SEL, "ck_pextp1_usb_axi_sel=
+",
+> +               ck_pextp1_usb_axi_parents, CLK_CFG_1, CLK_CFG_1_SET,
+> +               CLK_CFG_1_CLR, 8, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_PEXTP1_USB_AXI_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_P_FMEM_SUB_SEL, "ck_p_fmem_sub_sel",
+> +               ck_p_fmem_sub_parents, CLK_CFG_1, CLK_CFG_1_SET,
+> +               CLK_CFG_1_CLR, 16, 4,
+> +               CLK_CFG_UPDATE, TOP_MUX_PERI_FMEM_SUB_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_PEXPT0_MEM_SUB_SEL, "ck_pexpt0_mem_sub_sel=
+",
+> +               ck_pexpt0_mem_sub_parents, CLK_CFG_1, CLK_CFG_1_SET,
+> +               CLK_CFG_1_CLR, 24, 4,
+> +               CLK_CFG_UPDATE, TOP_MUX_UFS_PEXPT0_MEM_SUB_SHIFT),
+> +       /* CLK_CFG_2 */
+> +       MUX_CLR_SET_UPD(CLK_CK_PEXTP1_USB_MEM_SUB_SEL, "ck_pextp1_usb_mem=
+_sub_sel",
+> +               ck_pextp1_usb_mem_sub_parents, CLK_CFG_2, CLK_CFG_2_SET,
+> +               CLK_CFG_2_CLR, 0, 4,
+> +               CLK_CFG_UPDATE, TOP_MUX_PEXTP1_USB_MEM_SUB_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_P_NOC_SEL, "ck_p_noc_sel",
+> +               ck_p_noc_parents, CLK_CFG_2, CLK_CFG_2_SET,
+> +               CLK_CFG_2_CLR, 8, 4,
+> +               CLK_CFG_UPDATE, TOP_MUX_PERI_NOC_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_EMI_N_SEL, "ck_emi_n_sel",
+> +               ck_emi_n_parents, CLK_CFG_2, CLK_CFG_2_SET,
+> +               CLK_CFG_2_CLR, 16, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_EMI_N_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_EMI_S_SEL, "ck_emi_s_sel",
+> +               ck_emi_s_parents, CLK_CFG_2, CLK_CFG_2_SET,
+> +               CLK_CFG_2_CLR, 24, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_EMI_S_SHIFT),
+> +       /* CLK_CFG_3 */
+> +       MUX_CLR_SET_UPD(CLK_CK_AP2CONN_HOST_SEL, "ck_ap2conn_host_sel",
+> +               ck_ap2conn_host_parents, CLK_CFG_3, CLK_CFG_3_SET,
+> +               CLK_CFG_3_CLR, 16, 1,
+> +               CLK_CFG_UPDATE, TOP_MUX_AP2CONN_HOST_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_ATB_SEL, "ck_atb_sel",
+> +               ck_atb_parents, CLK_CFG_3, CLK_CFG_3_SET,
+> +               CLK_CFG_3_CLR, 24, 2,
+> +               CLK_CFG_UPDATE, TOP_MUX_ATB_SHIFT),
+> +       /* CLK_CFG_4 */
+> +       MUX_CLR_SET_UPD(CLK_CK_CIRQ_SEL, "ck_cirq_sel",
+> +               ck_cirq_parents, CLK_CFG_4, CLK_CFG_4_SET,
+> +               CLK_CFG_4_CLR, 0, 2,
+> +               CLK_CFG_UPDATE, TOP_MUX_CIRQ_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_PBUS_156M_SEL, "ck_pbus_156m_sel",
+> +               ck_pbus_156m_parents, CLK_CFG_4, CLK_CFG_4_SET,
+> +               CLK_CFG_4_CLR, 8, 2,
+> +               CLK_CFG_UPDATE, TOP_MUX_PBUS_156M_SHIFT),
+> +       /* CLK_CFG_5 */
+> +       MUX_CLR_SET_UPD(CLK_CK_EFUSE_SEL, "ck_efuse_sel",
+> +               ck_efuse_parents, CLK_CFG_5, CLK_CFG_5_SET,
+> +               CLK_CFG_5_CLR, 0, 1,
+> +               CLK_CFG_UPDATE, TOP_MUX_EFUSE_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_MCL3GIC_SEL, "ck_mcl3gic_sel",
+> +               ck_mcl3gic_parents, CLK_CFG_5, CLK_CFG_5_SET,
+> +               CLK_CFG_5_CLR, 8, 2,
+> +               CLK_CFG_UPDATE, TOP_MUX_MCU_L3GIC_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_MCINFRA_SEL, "ck_mcinfra_sel",
+> +               ck_mcinfra_parents, CLK_CFG_5, CLK_CFG_5_SET,
+> +               CLK_CFG_5_CLR, 16, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_MCU_INFRA_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_DSP_SEL, "ck_dsp_sel",
+> +               ck_dsp_parents, CLK_CFG_5, CLK_CFG_5_SET,
+> +               CLK_CFG_5_CLR, 24, 3,
+> +               CLK_CFG_UPDATE, TOP_MUX_DSP_SHIFT),
+> +       /* CLK_CFG_6 */
+> +       MUX_GATE_FENC_CLR_SET_UPD_FLAGS(CLK_CK_MFG_REF_SEL, "ck_mfg_ref_s=
+el", ck_mfg_ref_parents,
+> +               CLK_CFG_6, CLK_CFG_6_SET, CLK_CFG_6_CLR,
+> +               0, 1, 7, CLK_CFG_UPDATE, TOP_MUX_MFG_REF_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 7, CLK_IGNORE_UNUSED),
+> +       MUX_CLR_SET_UPD(CLK_CK_MFG_EB_SEL, "ck_mfg_eb_sel",
+> +               ck_mfg_eb_parents, CLK_CFG_6, CLK_CFG_6_SET,
+> +               CLK_CFG_6_CLR, 16, 2,
+> +               CLK_CFG_UPDATE, TOP_MUX_MFG_EB_SHIFT),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_UART_SEL, "ck_uart_sel", ck_uart_parent=
+s,
+> +               CLK_CFG_6, CLK_CFG_6_SET, CLK_CFG_6_CLR, "vote-regmap",
+> +               VOTE_CG_3_DONE, VOTE_CG_3_SET, VOTE_CG_3_CLR,
+> +               24, 2, 31, CLK_CFG_UPDATE, TOP_MUX_UART_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 4),
+> +       /* CLK_CFG_7 */
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI0_BCLK_SEL, "ck_spi0_b_sel", ck_spi0=
+_b_parents,
+> +               CLK_CFG_7, CLK_CFG_7_SET, CLK_CFG_7_CLR, "vote-regmap",
+> +               VOTE_CG_4_DONE, VOTE_CG_4_SET, VOTE_CG_4_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE, TOP_MUX_SPI0_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 3),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI1_BCLK_SEL, "ck_spi1_b_sel", ck_spi1=
+_b_parents,
+> +               CLK_CFG_7, CLK_CFG_7_SET, CLK_CFG_7_CLR, "vote-regmap",
+> +               VOTE_CG_4_DONE, VOTE_CG_4_SET, VOTE_CG_4_CLR,
+> +               8, 3, 15, CLK_CFG_UPDATE, TOP_MUX_SPI1_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 2),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI2_BCLK_SEL, "ck_spi2_b_sel", ck_spi2=
+_b_parents,
+> +               CLK_CFG_7, CLK_CFG_7_SET, CLK_CFG_7_CLR, "vote-regmap",
+> +               VOTE_CG_4_DONE, VOTE_CG_4_SET, VOTE_CG_4_CLR,
+> +               16, 3, 23, CLK_CFG_UPDATE, TOP_MUX_SPI2_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 1),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI3_BCLK_SEL, "ck_spi3_b_sel", ck_spi3=
+_b_parents,
+> +               CLK_CFG_7, CLK_CFG_7_SET, CLK_CFG_7_CLR, "vote-regmap",
+> +               VOTE_CG_4_DONE, VOTE_CG_4_SET, VOTE_CG_4_CLR,
+> +               24, 3, 31, CLK_CFG_UPDATE1, TOP_MUX_SPI3_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_0, 0),
+> +       /* CLK_CFG_8 */
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI4_BCLK_SEL, "ck_spi4_b_sel", ck_spi4=
+_b_parents,
+> +               CLK_CFG_8, CLK_CFG_8_SET, CLK_CFG_8_CLR, "vote-regmap",
+> +               VOTE_CG_5_DONE, VOTE_CG_5_SET, VOTE_CG_5_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE1, TOP_MUX_SPI4_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 31),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI5_BCLK_SEL, "ck_spi5_b_sel", ck_spi5=
+_b_parents,
+> +               CLK_CFG_8, CLK_CFG_8_SET, CLK_CFG_8_CLR, "vote-regmap",
+> +               VOTE_CG_5_DONE, VOTE_CG_5_SET, VOTE_CG_5_CLR,
+> +               8, 3, 15, CLK_CFG_UPDATE1, TOP_MUX_SPI5_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 30),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI6_BCLK_SEL, "ck_spi6_b_sel", ck_spi6=
+_b_parents,
+> +               CLK_CFG_8, CLK_CFG_8_SET, CLK_CFG_8_CLR, "vote-regmap",
+> +               VOTE_CG_5_DONE, VOTE_CG_5_SET, VOTE_CG_5_CLR,
+> +               16, 3, 23, CLK_CFG_UPDATE1, TOP_MUX_SPI6_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 29),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_SPI7_BCLK_SEL, "ck_spi7_b_sel", ck_spi7=
+_b_parents,
+> +               CLK_CFG_8, CLK_CFG_8_SET, CLK_CFG_8_CLR, "vote-regmap",
+> +               VOTE_CG_5_DONE, VOTE_CG_5_SET, VOTE_CG_5_CLR,
+> +               24, 3, 31, CLK_CFG_UPDATE1, TOP_MUX_SPI7_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 28),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_MSDC30_1_SEL, "ck_msdc30_1_sel",=
+ ck_msdc30_1_parents,
+> +               CLK_CFG_9, CLK_CFG_9_SET, CLK_CFG_9_CLR,
+> +               16, 3, 23, CLK_CFG_UPDATE1, TOP_MUX_MSDC30_1_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 25),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_MSDC30_2_SEL, "ck_msdc30_2_sel",=
+ ck_msdc30_2_parents,
+> +               CLK_CFG_9, CLK_CFG_9_SET, CLK_CFG_9_CLR,
+> +               24, 3, 31, CLK_CFG_UPDATE1, TOP_MUX_MSDC30_2_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 24),
+> +       /* CLK_CFG_10 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_DISP_PWM_SEL, "ck_disp_pwm_sel",=
+ ck_disp_pwm_parents,
+> +               CLK_CFG_10, CLK_CFG_10_SET, CLK_CFG_10_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE1, TOP_MUX_DISP_PWM_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 23),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_USB_TOP_1P_SEL, "ck_usb_1p_sel",=
+ ck_usb_1p_parents,
+> +               CLK_CFG_10, CLK_CFG_10_SET, CLK_CFG_10_CLR,
+> +               8, 1, 15, CLK_CFG_UPDATE1, TOP_MUX_USB_TOP_1P_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 22),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_USB_XHCI_1P_SEL, "ck_usb_xhci_1p=
+_sel", ck_usb_xhci_1p_parents,
+> +               CLK_CFG_10, CLK_CFG_10_SET, CLK_CFG_10_CLR,
+> +               16, 1, 23, CLK_CFG_UPDATE1, TOP_MUX_SSUSB_XHCI_1P_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 21),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_USB_FMCNT_P1_SEL, "ck_usb_fmcnt_=
+p1_sel", ck_usb_fmcnt_p1_parents,
+> +               CLK_CFG_10, CLK_CFG_10_SET, CLK_CFG_10_CLR,
+> +               24, 1, 31, CLK_CFG_UPDATE1, TOP_MUX_SSUSB_FMCNT_P1_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 20),
+> +       /* CLK_CFG_11 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_I2C_P_SEL, "ck_i2c_p_sel", ck_i2=
+c_p_parents,
+> +               CLK_CFG_11, CLK_CFG_11_SET, CLK_CFG_11_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE1, TOP_MUX_I2C_PERI_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 19),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_I2C_EAST_SEL, "ck_i2c_east_sel",=
+ ck_i2c_east_parents,
+> +               CLK_CFG_11, CLK_CFG_11_SET, CLK_CFG_11_CLR,
+> +               8, 3, 15, CLK_CFG_UPDATE1, TOP_MUX_I2C_EAST_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 18),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_I2C_WEST_SEL, "ck_i2c_west_sel",=
+ ck_i2c_west_parents,
+> +               CLK_CFG_11, CLK_CFG_11_SET, CLK_CFG_11_CLR,
+> +               16, 3, 23, CLK_CFG_UPDATE1, TOP_MUX_I2C_WEST_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 17),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_I2C_NORTH_SEL, "ck_i2c_north_sel", ck_i=
+2c_north_parents,
+> +               CLK_CFG_11, CLK_CFG_11_SET, CLK_CFG_11_CLR, "vote-regmap"=
+,
+> +               VOTE_CG_6_DONE, VOTE_CG_6_SET, VOTE_CG_6_CLR,
+> +               24, 3, 31, CLK_CFG_UPDATE1, TOP_MUX_I2C_NORTH_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 16),
+> +       /* CLK_CFG_12 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_AES_UFSFDE_SEL, "ck_aes_ufsfde_s=
+el", ck_aes_ufsfde_parents,
+> +               CLK_CFG_12, CLK_CFG_12_SET, CLK_CFG_12_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE1, TOP_MUX_AES_UFSFDE_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 15),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_SEL, "ck_sel", ck_parents,
+> +               CLK_CFG_12, CLK_CFG_12_SET, CLK_CFG_12_CLR,
+> +               8, 3, 15, CLK_CFG_UPDATE1, TOP_MUX_UFS_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 14),
+> +       /* CLK_CFG_13 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_AUD_1_SEL, "ck_aud_1_sel", ck_au=
+d_1_parents,
+> +               CLK_CFG_13, CLK_CFG_13_SET, CLK_CFG_13_CLR,
+> +               0, 1, 7, CLK_CFG_UPDATE1, TOP_MUX_AUD_1_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 11),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_AUD_2_SEL, "ck_aud_2_sel", ck_au=
+d_2_parents,
+> +               CLK_CFG_13, CLK_CFG_13_SET, CLK_CFG_13_CLR,
+> +               8, 1, 15, CLK_CFG_UPDATE1, TOP_MUX_AUD_2_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 10),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_ADSP_SEL, "ck_adsp_sel", ck_adsp=
+_parents,
+> +               CLK_CFG_13, CLK_CFG_13_SET, CLK_CFG_13_CLR,
+> +               16, 1, 23, CLK_CFG_UPDATE1, TOP_MUX_ADSP_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 9),
+> +       MUX_GATE_CLR_SET_UPD(CLK_CK_ADSP_UARTHUB_BCLK_SEL, "ck_adsp_uarth=
+ub_b_sel",
+> +               ck_adsp_uarthub_b_parents, CLK_CFG_13, CLK_CFG_13_SET,
+> +               CLK_CFG_13_CLR, 24, 2, 31,
+> +               CLK_CFG_UPDATE1, TOP_MUX_ADSP_UARTHUB_BCLK_SHIFT),
+> +       /* CLK_CFG_14 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_DPMAIF_MAIN_SEL, "ck_dpmaif_main=
+_sel", ck_dpmaif_main_parents,
+> +               CLK_CFG_14, CLK_CFG_14_SET, CLK_CFG_14_CLR,
+> +               0, 4, 7, CLK_CFG_UPDATE1, TOP_MUX_DPMAIF_MAIN_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 7),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_PWM_SEL, "ck_pwm_sel", ck_pwm_pa=
+rents,
+> +               CLK_CFG_14, CLK_CFG_14_SET, CLK_CFG_14_CLR,
+> +               8, 2, 15, CLK_CFG_UPDATE1, TOP_MUX_PWM_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 6),
+> +       MUX_CLR_SET_UPD(CLK_CK_MCUPM_SEL, "ck_mcupm_sel",
+> +               ck_mcupm_parents, CLK_CFG_14, CLK_CFG_14_SET,
+> +               CLK_CFG_14_CLR, 16, 3,
+> +               CLK_CFG_UPDATE1, TOP_MUX_MCUPM_SHIFT),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_SFLASH_SEL, "ck_sflash_sel", ck_=
+sflash_parents,
+> +               CLK_CFG_14, CLK_CFG_14_SET, CLK_CFG_14_CLR,
+> +               24, 2, 31, CLK_CFG_UPDATE1, TOP_MUX_SFLASH_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 4),
+> +       /* CLK_CFG_15 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_IPSEAST_SEL, "ck_ipseast_sel", c=
+k_ipseast_parents,
+> +               CLK_CFG_15, CLK_CFG_15_SET, CLK_CFG_15_CLR,
+> +               0, 3, 7, CLK_CFG_UPDATE1, TOP_MUX_IPSEAST_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 3),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_TL_SEL, "ck_tl_sel", ck_tl_paren=
+ts,
+> +               CLK_CFG_15, CLK_CFG_15_SET, CLK_CFG_15_CLR,
+> +               16, 2, 23, CLK_CFG_UPDATE2, TOP_MUX_TL_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 1),
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_TL_P1_SEL, "ck_tl_p1_sel", ck_tl=
+_p1_parents,
+> +               CLK_CFG_15, CLK_CFG_15_SET, CLK_CFG_15_CLR,
+> +               24, 2, 31, CLK_CFG_UPDATE2, TOP_MUX_TL_P1_SHIFT,
+> +               CLK_FENC_STATUS_MON_1, 0),
+> +       /* CLK_CFG_16 */
+> +       MUX_GATE_FENC_CLR_SET_UPD(CLK_CK_TL_P2_SEL, "ck_tl_p2_sel", ck_tl=
+_p2_parents,
+> +               CLK_CFG_16, CLK_CFG_16_SET, CLK_CFG_16_CLR,
+> +               0, 2, 7, CLK_CFG_UPDATE2, TOP_MUX_TL_P2_SHIFT,
+> +               CLK_FENC_STATUS_MON_2, 31),
+> +       MUX_CLR_SET_UPD(CLK_CK_EMI_INTERFACE_546_SEL, "ck_md_emi_sel",
+> +               ck_md_emi_parents, CLK_CFG_16, CLK_CFG_16_SET,
+> +               CLK_CFG_16_CLR, 8, 1,
+> +               CLK_CFG_UPDATE2, TOP_MUX_EMI_INTERFACE_546_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SDF_SEL, "ck_sdf_sel",
+> +               ck_sdf_parents, CLK_CFG_16, CLK_CFG_16_SET,
+> +               CLK_CFG_16_CLR, 16, 3,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SDF_SHIFT),
+> +       MUX_MULT_VOTE_FENC(CLK_CK_UARTHUB_BCLK_SEL, "ck_uarthub_b_sel", c=
+k_uarthub_b_parents,
+> +               CLK_CFG_16, CLK_CFG_16_SET, CLK_CFG_16_CLR, "vote-regmap"=
+,
+> +               VOTE_CG_7_DONE, VOTE_CG_7_SET, VOTE_CG_7_CLR,
+> +               24, 2, 31, CLK_CFG_UPDATE2, TOP_MUX_UARTHUB_BCLK_SHIFT,
+> +               CLK_FENC_STATUS_MON_2, 28),
+> +       /* CLK_CFG_17 */
+> +       MUX_CLR_SET_UPD(CLK_CK_DPSW_CMP_26M_SEL, "ck_dpsw_cmp_26m_sel",
+> +               ck_dpsw_cmp_26m_parents, CLK_CFG_17, CLK_CFG_17_SET,
+> +               CLK_CFG_17_CLR, 0, 1,
+> +               CLK_CFG_UPDATE2, TOP_MUX_DPSW_CMP_26M_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SMAPCK_SEL, "ck_smapck_sel",
+> +               ck_smapck_parents, CLK_CFG_17, CLK_CFG_17_SET,
+> +               CLK_CFG_17_CLR, 8, 1,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SMAPCK_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SSR_PKA_SEL, "ck_ssr_pka_sel",
+> +               ck_ssr_pka_parents, CLK_CFG_17, CLK_CFG_17_SET,
+> +               CLK_CFG_17_CLR, 16, 3,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SSR_PKA_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SSR_DMA_SEL, "ck_ssr_dma_sel",
+> +               ck_ssr_dma_parents, CLK_CFG_17, CLK_CFG_17_SET,
+> +               CLK_CFG_17_CLR, 24, 3,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SSR_DMA_SHIFT),
+> +       /* CLK_CFG_18 */
+> +       MUX_CLR_SET_UPD(CLK_CK_SSR_KDF_SEL, "ck_ssr_kdf_sel",
+> +               ck_ssr_kdf_parents, CLK_CFG_18, CLK_CFG_18_SET,
+> +               CLK_CFG_18_CLR, 0, 2,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SSR_KDF_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SSR_RNG_SEL, "ck_ssr_rng_sel",
+> +               ck_ssr_rng_parents, CLK_CFG_18, CLK_CFG_18_SET,
+> +               CLK_CFG_18_CLR, 8, 2,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SSR_RNG_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SPU0_SEL, "ck_spu0_sel",
+> +               ck_spu0_parents, CLK_CFG_18, CLK_CFG_18_SET,
+> +               CLK_CFG_18_CLR, 16, 3,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SPU0_SHIFT),
+> +       MUX_CLR_SET_UPD(CLK_CK_SPU1_SEL, "ck_spu1_sel",
+> +               ck_spu1_parents, CLK_CFG_18, CLK_CFG_18_SET,
+> +               CLK_CFG_18_CLR, 24, 3,
+> +               CLK_CFG_UPDATE2, TOP_MUX_SPU1_SHIFT),
+> +       /* CLK_CFG_19 */
+> +       MUX_CLR_SET_UPD(CLK_CK_DXCC_SEL, "ck_dxcc_sel",
+> +               ck_dxcc_parents, CLK_CFG_19, CLK_CFG_19_SET,
+> +               CLK_CFG_19_CLR, 0, 2,
+> +               CLK_CFG_UPDATE2, TOP_MUX_DXCC_SHIFT),
+> +};
+> +
+> +static const struct mtk_composite ck_composites[] =3D {
+> +       /* CLK_AUDDIV_0 */
+> +       MUX(CLK_CK_APLL_I2SIN0_MCK_SEL, "ck_apll_i2sin0_m_sel",
+> +           ck_apll_i2sin0_m_parents, 0x020c, 16, 1),
+> +       MUX(CLK_CK_APLL_I2SIN1_MCK_SEL, "ck_apll_i2sin1_m_sel",
+> +           ck_apll_i2sin1_m_parents, 0x020c, 17, 1),
+> +       MUX(CLK_CK_APLL_I2SIN2_MCK_SEL, "ck_apll_i2sin2_m_sel",
+> +           ck_apll_i2sin2_m_parents, 0x020c, 18, 1),
+> +       MUX(CLK_CK_APLL_I2SIN3_MCK_SEL, "ck_apll_i2sin3_m_sel",
+> +           ck_apll_i2sin3_m_parents, 0x020c, 19, 1),
+> +       MUX(CLK_CK_APLL_I2SIN4_MCK_SEL, "ck_apll_i2sin4_m_sel",
+> +           ck_apll_i2sin4_m_parents, 0x020c, 20, 1),
+> +       MUX(CLK_CK_APLL_I2SIN6_MCK_SEL, "ck_apll_i2sin6_m_sel",
+> +           ck_apll_i2sin6_m_parents, 0x020c, 21, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT0_MCK_SEL, "ck_apll_i2sout0_m_sel",
+> +           ck_apll_i2sout0_m_parents, 0x020c, 22, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT1_MCK_SEL, "ck_apll_i2sout1_m_sel",
+> +           ck_apll_i2sout1_m_parents, 0x020c, 23, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT2_MCK_SEL, "ck_apll_i2sout2_m_sel",
+> +           ck_apll_i2sout2_m_parents, 0x020c, 24, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT3_MCK_SEL, "ck_apll_i2sout3_m_sel",
+> +           ck_apll_i2sout3_m_parents, 0x020c, 25, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT4_MCK_SEL, "ck_apll_i2sout4_m_sel",
+> +           ck_apll_i2sout4_m_parents, 0x020c, 26, 1),
+> +       MUX(CLK_CK_APLL_I2SOUT6_MCK_SEL, "ck_apll_i2sout6_m_sel",
+> +           ck_apll_i2sout6_m_parents, 0x020c, 27, 1),
+> +       MUX(CLK_CK_APLL_FMI2S_MCK_SEL, "ck_apll_fmi2s_m_sel",
+> +           ck_apll_fmi2s_m_parents, 0x020c, 28, 1),
+> +       MUX(CLK_CK_APLL_TDMOUT_MCK_SEL, "ck_apll_tdmout_m_sel",
+> +           ck_apll_tdmout_m_parents, 0x020c, 29, 1),
+> +       /* CLK_AUDDIV_2 */
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN0, "ck_apll12_div_i2sin0",
+> +               "ck_apll_i2sin0_m_sel", 0x020c,
+> +               0, CLK_AUDDIV_2, 8, 0),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN1, "ck_apll12_div_i2sin1",
+> +               "ck_apll_i2sin1_m_sel", 0x020c,
+> +               1, CLK_AUDDIV_2, 8, 8),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN2, "ck_apll12_div_i2sin2",
+> +               "ck_apll_i2sin2_m_sel", 0x020c,
+> +               2, CLK_AUDDIV_2, 8, 16),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN3, "ck_apll12_div_i2sin3",
+> +               "ck_apll_i2sin3_m_sel", 0x020c,
+> +               3, CLK_AUDDIV_2, 8, 24),
+> +       /* CLK_AUDDIV_3 */
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN4, "ck_apll12_div_i2sin4",
+> +               "ck_apll_i2sin4_m_sel", 0x020c,
+> +               4, CLK_AUDDIV_3, 8, 0),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SIN6, "ck_apll12_div_i2sin6",
+> +               "ck_apll_i2sin6_m_sel", 0x020c,
+> +               5, CLK_AUDDIV_3, 8, 8),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT0, "ck_apll12_div_i2sout0",
+> +               "ck_apll_i2sout0_m_sel", 0x020c,
+> +               6, CLK_AUDDIV_3, 8, 16),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT1, "ck_apll12_div_i2sout1",
+> +               "ck_apll_i2sout1_m_sel", 0x020c,
+> +               7, CLK_AUDDIV_3, 8, 24),
+> +       /* CLK_AUDDIV_4 */
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT2, "ck_apll12_div_i2sout2",
+> +               "ck_apll_i2sout2_m_sel", 0x020c,
+> +               8, CLK_AUDDIV_4, 8, 0),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT3, "ck_apll12_div_i2sout3",
+> +               "ck_apll_i2sout3_m_sel", 0x020c,
+> +               9, CLK_AUDDIV_4, 8, 8),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT4, "ck_apll12_div_i2sout4",
+> +               "ck_apll_i2sout4_m_sel", 0x020c,
+> +               10, CLK_AUDDIV_4, 8, 16),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_I2SOUT6, "ck_apll12_div_i2sout6",
+> +               "ck_apll_i2sout6_m_sel", 0x020c,
+> +               11, CLK_AUDDIV_4, 8, 24),
+> +       /* CLK_AUDDIV_5 */
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_FMI2S, "ck_apll12_div_fmi2s",
+> +               "ck_apll_fmi2s_m_sel", 0x020c,
+> +               12, CLK_AUDDIV_5, 8, 0),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_TDMOUT_M, "ck_apll12_div_tdmout_m",
+> +               "ck_apll_tdmout_m_sel", 0x020c,
+> +               13, CLK_AUDDIV_5, 8, 8),
+> +       DIV_GATE(CLK_CK_APLL12_CK_DIV_TDMOUT_B, "ck_apll12_div_tdmout_b",
+> +               "ck_apll_tdmout_m_sel", 0x020c,
+> +               14, CLK_AUDDIV_5, 8, 16),
+
+Composite clocks support all three types (mux, divider, gate) combined.
+Please merge them so that there is just one clock for each interface
+instead of two.
+
+Thanks
+ChenYu
+
+> +};
+> +
+> +static int clk_mt8196_ck_probe(struct platform_device *pdev)
+> +{
+> +       struct clk_hw_onecell_data *clk_data;
+> +       int r;
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +
+> +       void __iomem *base;
+> +       struct resource *res =3D platform_get_resource(pdev, IORESOURCE_M=
+EM, 0);
+> +
+> +       base =3D devm_ioremap_resource(&pdev->dev, res);
+> +       if (IS_ERR(base)) {
+> +               dev_err(&pdev->dev, "%s(): ioremap failed\n", __func__);
+> +               return PTR_ERR(base);
+> +       }
+> +
+> +       clk_data =3D mtk_alloc_clk_data(CLK_CK_NR_CLK);
+> +
+> +       mtk_clk_register_factors(ck_divs, ARRAY_SIZE(ck_divs),
+> +                       clk_data);
+> +
+> +       mtk_clk_register_muxes(&pdev->dev, ck_muxes, ARRAY_SIZE(ck_muxes)=
+, node,
+> +                       &mt8196_clk_ck_lock, clk_data);
+> +
+> +       mtk_clk_register_composites(&pdev->dev, ck_composites, ARRAY_SIZE=
+(ck_composites),
+> +                       base, &mt8196_clk_ck_lock, clk_data);
+> +
+> +       r =3D of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_dat=
+a);
+> +       if (r)
+> +               dev_err(&pdev->dev, "%s(): could not register clock provi=
+der: %d\n",
+> +                       __func__, r);
+> +
+> +       return r;
+> +}
+> +
+> +static void clk_mt8196_ck_remove(struct platform_device *pdev)
+> +{
+> +       struct clk_hw_onecell_data *clk_data =3D platform_get_drvdata(pde=
+v);
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +
+> +       of_clk_del_provider(node);
+> +       mtk_clk_unregister_composites(ck_composites, ARRAY_SIZE(ck_compos=
+ites), clk_data);
+> +       mtk_clk_unregister_muxes(ck_muxes, ARRAY_SIZE(ck_muxes), clk_data=
+);
+> +       mtk_clk_unregister_factors(ck_divs, ARRAY_SIZE(ck_divs), clk_data=
+);
+> +       mtk_free_clk_data(clk_data);
+> +}
+> +
+> +static const struct of_device_id of_match_clk_mt8196_ck[] =3D {
+> +       { .compatible =3D "mediatek,mt8196-cksys", },
+> +       { /* sentinel */ }
+> +};
+> +
+> +static struct platform_driver clk_mt8196_ck_drv =3D {
+> +       .probe =3D clk_mt8196_ck_probe,
+> +       .remove =3D clk_mt8196_ck_remove,
+> +       .driver =3D {
+> +               .name =3D "clk-mt8196-ck",
+> +               .owner =3D THIS_MODULE,
+> +               .of_match_table =3D of_match_clk_mt8196_ck,
+> +       },
+> +};
+> +
+> +module_platform_driver(clk_mt8196_ck_drv);
+> +MODULE_LICENSE("GPL");
 > --
-> 
-> Thanks!
-> - Nuno Sá
-> 
-> 
-
--- 
-Regards,
-Liu Ying
+> 2.45.2
+>
+>
 
