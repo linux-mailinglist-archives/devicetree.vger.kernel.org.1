@@ -1,121 +1,183 @@
-Return-Path: <devicetree+bounces-167585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEC7A8ADCA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 04:02:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F93A8ADB9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 03:59:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A5E318943A3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 02:02:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87A43B0786
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DEC1624F7;
-	Wed, 16 Apr 2025 02:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E183C227E86;
+	Wed, 16 Apr 2025 01:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Ej2oNmKq"
+	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="bMYlXTot"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-221.mail.qq.com (out203-205-221-221.mail.qq.com [203.205.221.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43F215E96;
-	Wed, 16 Apr 2025 02:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D42F1DE2CA
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 01:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744768957; cv=none; b=u5+VQYjeT06WwLiAeMzJdk1cyKQrEEZdITDIY4WIISMEC9msTubmelRZ7fjNn44fGrknztrTxDncXBH2JFHw7ke6dDauhc5XphgUAiG1GT4f2nUEXTGH9Ky933umKWKWxkW58QRmt86KtLnxZy+JOEnxS0Y3epoHxddtF49/QaM=
+	t=1744768750; cv=none; b=o7ms2umdyApYJkryGXtKsm1JIe3XlT9W0PBFMkPQSTxNbFvlJkDFOkCOXuacwlgQUKp9VjORpuXMJj7TYWR/bjmmGcXGs9/JSf5hyZR8sbY11KSM3gJza9H2Nu2kEtMaIJhc9Tz0qmCqU6oPBQ0S7QI61cCkOBjcJTxGmnb4hso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744768957; c=relaxed/simple;
-	bh=v4/phJQUAPeOK41LzcUnYsiA3yKOssm+W9ZqAkAigfk=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IcCtjsOEa9GTFU/3bmiLplb0uVEgkMqBRXCbMleI5+fmf/I1vO5RQbDAorZKhxHWW5kHEBcD7dTJSkXmYIj4xJXT7QeCvWweDvNYyCmMq3ARDQfXltwfIao5w5vz2iwWJYbfO3V2WRs4QjR9yrG5nWkAgGwMv5ZiF596nfUsCNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com; spf=pass smtp.mailfrom=qq.com; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Ej2oNmKq; arc=none smtp.client-ip=203.205.221.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=qq.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qq.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1744768642; bh=KvSaTgFS8WeHQJzlGw/Ub9odmid7Z1N7H4quqWzN/KM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Ej2oNmKqHZ67Gedex9lBRdzlaMtU6fbb/ZGtWGXavGc4M1zV5/0rp0WnkniLrn4Dd
-	 9MrWUAZ0wiaEseQIKi6nMwEbDWav5A5W+qYmeSFG9UchjSgXfSPdBUBMSj0isUYura
-	 IeGYWFsSfMG5NPKef7Jp4PTzu6fShHsqre+1LMTQ=
-Received: from ubuntu.localdomain ([218.104.140.83])
-	by newxmesmtplogicsvrszc11-0.qq.com (NewEsmtp) with SMTP
-	id E53888DF; Wed, 16 Apr 2025 09:57:19 +0800
-X-QQ-mid: xmsmtpt1744768639t22hacpvg
-Message-ID: <tencent_607C227A96060DD8EC83C78184305D264109@qq.com>
-X-QQ-XMAILINFO: N7h1OCCDntuj9RM+yAw0CZYpw+uCKkqPhP58CShgWJ3pZMIQUoXQdBNpE0P0Y5
-	 I/40uwm6/Uggqid2uq66wyBQT3D/ZP43ANKRcULFnBEBFUq23dD5eE5GBWSrglZBANiNDWQ402u/
-	 altPJVOP8Luscihfv40JmXKB24hE6pJkKeaZqukpMauThdb429rnZpoJb2MsaQwwx8YBGPSwTyn+
-	 H6P1rR0Y1wBZdUW6oBw/h1Pn/7DerkgH/Qc3scNlnM6SEVY0zhwhrJ/86vr+JFyD/hNlR+8QAKxh
-	 Txvba5BAFLqjRijf+4cejOV7jE4cZ7yq6U4sQKXmc12fkmOFsIsxBUO6eOWPrUh4dWNwqd7OEPao
-	 cD0XJCGTuo9iUtqbW+aUfESiMkot9+COyxPezhQMhl7nMrXfv2pD/vYwwYVXi7GowLJJXBfLXtog
-	 hFi2ZzMqE8QWSkcxs04IbYCTIfS0aItfDk++HMkE1kKNu06l267A6IzJ68Q4PR0Rg0DOJ1/G4j9D
-	 NW9TpraqOxuTgNRbJn9ypOvBK8WdOwYHNDh738Kj7my2ON5YeJpvUW/CLg3o91JI2N9QnuuD19Fa
-	 40BBxM7nziWBNjPJ37c4iB2d8hzi0qt6gdt4aRq/dEsC5Tx1ksdu4fgMVfmBhdZmTGkOeFZnhHR8
-	 NsdDDf/6qU383/htCJPGsehvQ5P94YCcFc9KidTObcI8VIzPBG/Jkuktc74Mg4hXRHKsSxEXtZoF
-	 DtKWcU5bArEtVzsi+544NirU7bmj/J4BjpzY73VN+yKCGjUd+qlX4fxzWmAAacb/o2NL3x6IY5Uq
-	 ccJTOYQskwQd6PJnMNMLxm88xcF1IIUqJDXlVRQCgvbNMoha/0nCGIgJlOyFk5UNkl++0IusKfwB
-	 WCyAZIfEeuoi0y4pXfY32wOpEwIsyrQ+86x4I7N36CdoSLsGGZKprW48Bh9JtiWjATHqejL1QRr6
-	 J6LZSu4WM=
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-From: 1425075683@qq.com
-To: robh@kernel.org
-Cc: 1425075683@qq.com,
+	s=arc-20240116; t=1744768750; c=relaxed/simple;
+	bh=cCgFpxiwJ0gCPdeUMaKHrmAET+N2uNHpi4SiNW037bI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZscuDptMOEt3Igm4AhbODa1Nf+Oh0bUmGZ4ngXwivK3ReX7XjD4+MVq45sHaD0g76fOwET+AaDkT9nmY2Qc09SR5MKBvVGQGVPxJHgQfkdLCDg0zkvIMcUjIfPt93TBIXWEFx6wjc7kcZTkoLhGA/EQz4s4r/MVuAxBVOHc+kQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=bMYlXTot; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-22409077c06so82248325ad.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 18:59:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1744768748; x=1745373548; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e82Zj2e4FwI3zvSpsxcQPHmRy7+tI4Kl1Q4Ap45I6sg=;
+        b=bMYlXTotE6hDi6j3SdG3PUqI8e3rTKsB+hGofqJl63fdBK4aLbA1C8ewXyQHHF4hlc
+         Ulmy/4qk35QXB7Geg7wIX2D5AxzbSFaFIwRkETba58nCeFVl98ScuAD+uWHWtS5f2fmA
+         I+yZbVnxP7TqP0fek/40fb1pC35lGrpb2FbL7sKjeC+xeoGiHacls4XXCI7MiBUiYXK2
+         QwWHuAalt7D5zBcQrobtlG7Eh07W3epVm9VTlgw0A3tlOL3CYRmjo22VKeKHOp2C4w89
+         1/Cj7UrzaCIXs/Idyws/334eVHxSossn5z2ZwsKdMfVMmE7l2BcVHcSNHp+/Q5FJkrDF
+         eG/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744768748; x=1745373548;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e82Zj2e4FwI3zvSpsxcQPHmRy7+tI4Kl1Q4Ap45I6sg=;
+        b=TW+uPKJ13vlJo7Ofu8alR5l1WxW67Bmtbb3e8bQI7hcth5gFY1yo5Uu4HGZan9dqpn
+         DuHN4vjc3hiz6cLP597MrKsqZZXsqjx/tDxcCrZ30XtlUR0vAbobXYqVyYfYW/k5xH0i
+         Noqr2iq4Bbtoz9JO1HC0AsXivIZvI9tnBooisOz5ooxG5Kh81wD9o/NpwH212/jX3BPM
+         EStgTRwHGQoJbPiaSD90z3t6mKJom8DJeldfBGXNLa8chnPiRXSxu9wNg/r64aSP3ad/
+         LJov5QjFEcT520JblvqBbTlO7zJXhsIwsoF98rpLSCUB2zTLyT1TE4Ajhn3ABuurfzxp
+         qzeg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBPqHvTFg5LbgusXWu4liBimRXhauc3kl/dXCJOf2mh8bbnkLlN74Bmk07jioO1YJ3t+R//xI/ZABD@vger.kernel.org
+X-Gm-Message-State: AOJu0YztO4qwEl9rAOZE85h01BYXBQMKVHsv/JwjehGAJpwbiDWR96PG
+	utxyk/ocjsdayhcaPPerWk0us349ieFGZW1ZayLrFB1ZUrunjdV2nBgmcZ4il79yyeSD2bFrpus
+	TPXM=
+X-Gm-Gg: ASbGncvKeTWRDer9NB7dz6JRFECDuKrMVse8csn/XYsniTPlyWJxoZQrmXEyfTxBlcd
+	VuYJ0+lYY78nFKkOemZKfd2+aVD9f8kW6cnYzUdohBUZksnDBuHi4RC4EUQT3xDYBj84qPW/t2Z
+	r5gpue38bPSwmuna1m9pnt7IdtrtWuvJsNenq1AXvwtjdWbOAazQ6MAwMLcvvxuI6PewmfVmLl1
+	5CIGrUm+w+5yLjExwkkrxD1MKTQBRCReVq6yzwr8xfJ84oes1dThs2MUQhawdVHvYV8ZgsXGnwe
+	DxUOQ+mDeMxBkgLjonpY6MJ4BH2qX4KoUwoS7tBB/mJEx9/eqRpgka/WPjugkf5eLGT8bBSIZKp
+	389gxGpgqPf5kxhlNxK6/xDq4j/w=
+X-Google-Smtp-Source: AGHT+IEbUxLXqkmN9eB9Y2TwjT0iKR4gtJC2qNjvOo3KGkymZjh0chvXTjMdxbdfvQ9cGDKgkpZyGA==
+X-Received: by 2002:a17:903:2c9:b0:224:194c:6942 with SMTP id d9443c01a7336-22c35973f06mr387275ad.34.1744768748194;
+        Tue, 15 Apr 2025 18:59:08 -0700 (PDT)
+Received: from wak-linux.svl.corp.google.com ([2a00:79e0:2e5b:9:ef0:9d76:c8a5:f522])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c33feb116sm2279845ad.253.2025.04.15.18.59.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Apr 2025 18:59:07 -0700 (PDT)
+From: "William A. Kennington III" <william@wkennington.com>
+To: Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: openbmc@lists.ozlabs.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	m.szyprowski@samsung.com,
-	saravanak@google.com
-Subject: Re: [PATCH] of: reserved-mem: Warn for missing initfn in __reservedmem_of_table
-Date: Wed, 16 Apr 2025 09:57:08 +0800
-X-OQ-MSGID: <20250416015707.11088-1-1425075683@qq.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
-References: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
+	"William A. Kennington III" <william@wkennington.com>
+Subject: [PATCH] arm64: dts: nuvoton: Add pinctrl
+Date: Tue, 15 Apr 2025 18:59:02 -0700
+Message-ID: <20250416015902.2091251-1-william@wkennington.com>
+X-Mailer: git-send-email 2.49.0.604.gff1f9ca942-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-> On Tue, Apr 15, 2025 at 9:16 AM Liya Huang <1425075683@qq.com> wrote:
-> >
-> > For the data in __reservedmem_of_table, its function pointer initfn might
-> > be NULL. However, __reserved_mem_init_node() only considers non-NULL cases
-> > and ignores NULL function pointers.
->
-> If initfn is NULL, there's no point to the entry and that's a bug.
-> Unless you have a build time check, there's no point to add this.
-> 
-> Rob
+This is critical to support multifunction pins shared between devices as
+well as generic GPIOs.
 
-Thank you for your response. Based on your suggestion, I have made the 
-modifications and used static_assert() to perform the check at compile 
-time. The specific code is as follows. Could you please review whether 
-this modification is reasonable? If it is acceptable, I will proceed with 
-submitting the patch.
-
-I did not find any usage of static_assert() for null pointer checks in the
-kernel code. Additionally, BUILD_BUG_ON() cannot be used globally.
-
+Signed-off-by: William A. Kennington III <william@wkennington.com>
 ---
-diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
-index e338282da652..87446ad2deb2 100644
---- a/include/linux/of_reserved_mem.h
-+++ b/include/linux/of_reserved_mem.h
-@@ -29,6 +29,7 @@ typedef int (*reservedmem_of_init_fn)(struct reserved_mem *rmem);
- #ifdef CONFIG_OF_RESERVED_MEM
- 
- #define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
-+	static_assert((init) != NULL);	\
- 	_OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_fn)
- 
- int of_reserved_mem_device_init_by_idx(struct device *dev,
----
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
-Thanks,
+diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+index b2595f5c146b..dd1351698e77 100644
+--- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+@@ -207,4 +207,69 @@ watchdog2: watchdog@a01c {
+ 			};
+ 		};
+ 	};
++
++	pinctrl: pinctrl@f0010000 {
++		compatible = "nuvoton,npcm845-pinctrl";
++		ranges = <0x0 0x0 0xf0010000 0x8000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		nuvoton,sysgcr = <&gcr>;
++		status = "okay";
++		gpio0: gpio@f0010000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x0 0xB0>;
++			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 0 32>;
++		};
++		gpio1: gpio@f0011000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x1000 0xB0>;
++			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 32 32>;
++		};
++		gpio2: gpio@f0012000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x2000 0xB0>;
++			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 64 32>;
++		};
++		gpio3: gpio@f0013000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x3000 0xB0>;
++			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 96 32>;
++		};
++		gpio4: gpio@f0014000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x4000 0xB0>;
++			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 128 32>;
++		};
++		gpio5: gpio@f0015000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x5000 0xB0>;
++			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 160 32>;
++		};
++		gpio6: gpio@f0016000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x6000 0xB0>;
++			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 192 32>;
++		};
++		gpio7: gpio@f0017000 {
++			gpio-controller;
++			#gpio-cells = <2>;
++			reg = <0x7000 0xB0>;
++			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-ranges = <&pinctrl 0 224 32>;
++		};
++	};
+ };
 -- 
-Liya Huang <1425075683@qq.com>
+2.49.0.604.gff1f9ca942-goog
 
 
