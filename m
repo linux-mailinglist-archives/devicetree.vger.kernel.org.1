@@ -1,108 +1,126 @@
-Return-Path: <devicetree+bounces-167562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55FDA8AC78
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 02:05:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADEBFA8AC82
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 02:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5248F1902DC7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 00:05:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED0007AB6D7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 00:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666A7139E;
-	Wed, 16 Apr 2025 00:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890BF4A0F;
+	Wed, 16 Apr 2025 00:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="g2VbcKjV"
+	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="1qyf0xgF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B774819;
-	Wed, 16 Apr 2025 00:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9717E1C36
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 00:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744761917; cv=none; b=FDyBtJoC01Dkf/2BO+8G6wAffo7q8o2SD+Dm4jl4FrW2WcggkXyeGjP2H/IATU0u8Rr9bIFAr26mAyrh3j9RT4BIrtlnfpn2KxgMeMe1BKq/U6tPVLxrYjEd8bDZCIqkABz3o5NSlalSraTD9284ECSDdH1Sgrz2oNfovlCGjHI=
+	t=1744762439; cv=none; b=tR8a+vM36Ekg+52uv4a+XW9uTP3nt8eKQxliaaCreERIrci2aacAOzxO40rX65vCwYLqPkNcnSWDknmba8xGQiA1taSgO5+dmdA9xOK/F0dmyRuAT/b816J6G8nMP18vzlBT3f+5SimI8e+WSZ9Z6j4nF980XtdTaJMndtTkYwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744761917; c=relaxed/simple;
-	bh=hZobG+FGhYW5bOUkfWEbXc5XYdYruXFuQNPQIJea+cA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rhhFlIH8Zr4kDsiOgJn9I9gUdXaHDluu/5eHdlf0M5ClGOnaM2H1d+vmU6c0sEZb94+7UQgNq4q0S+m1GsUaWqcQOqKhJjlHL+0wYNxiX5tfhRt5JH/vEQYOEqZhI+ko/+e/r8/aPmHiW+oGD5F8hrRZS4BeBe0BUaJXeBtECkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=g2VbcKjV; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [100.75.0.36] (unknown [40.78.12.133])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 26B4C210C44F;
-	Tue, 15 Apr 2025 17:05:14 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 26B4C210C44F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1744761914;
-	bh=Itt7QUONbx3ndLE+bRo+FLPm8asA/RVXkU2JleFvdCU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g2VbcKjVinA0Iz5Xrkjq1PsZXRPSoW22m6WTIj3qsxNxxqQAfip2r/G6O2EX4VVEU
-	 YRiRnZVydgQJmCUegZKAW5+XaC2jDkAjs1jt9x6VW/y8Wf5LRixdQ2s2/q6nOc4mc/
-	 DdRTz0IFk86uW3qmyo/mUqvOGG23DzfgoE6RLy8I=
-Message-ID: <3de64545-6247-4aaf-b1af-c9d5fe038eaa@linux.microsoft.com>
-Date: Tue, 15 Apr 2025 17:05:11 -0700
+	s=arc-20240116; t=1744762439; c=relaxed/simple;
+	bh=0fuGOmb+qatmclqZbJkK38ISLNsb9lHUwwxPGIhTLTI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z6eKlesxrdSk8+FqcynavUVQRQY7tDX8i7RZiDEgUpvTdy+ZC9noPY03OZimU5+8NH0Yn0GpjKue6INVEe4MnIEd0qwLG9c2n8RzcFMamrr0StTi+JF/Ml52CE/3RKtZ5ZKOS9nxC6Gcj6Oruw2Uom4SjL3r/rAx6Vu414optgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=1qyf0xgF; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-736a72220edso6324820b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 17:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1744762436; x=1745367236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Hrq/5jnsaS2UvAtZ8/+V6NwQKUrA7NpnKCyv2FlWdc=;
+        b=1qyf0xgFsR3c8PciAmF9TrQTaVaQkDWr5AX4m11lqVi9imh+t9SmwNrSNH3DlmuuVq
+         ODDHBQuKHjsQo7qBvpRqA9M7Zq0zslYg+XMmykgnchPUjJqqYHfTxnxaMIOqIps5k64D
+         ogX3YwXXQ8LgpGbH6i/0wJ2jjONeR8RnzGoKxGEwv7s0ITu3tlhe0+YBchfI6ZsAEkuL
+         Zq2G6P4oJPt5rE56DxQcSdtiFPAYy/VglTniPGw3MUHl7t8s1J7d0Vk2E0fJ8L9/CIb1
+         sYr2yjAKGaHFP7OiLvR/hdYQNhQOvcDexlAfejjLr5U4Wann5LSM3IAbGLbQCqVWUQE2
+         /rGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744762436; x=1745367236;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4Hrq/5jnsaS2UvAtZ8/+V6NwQKUrA7NpnKCyv2FlWdc=;
+        b=HFpbd/pguX70SB2JyCor0jJWmGm3QUTDUfX1TgXALDxccHschoVE+y4rll3Z1Zp7ZT
+         quf/gW90k77mpz54QePYRHEQYmhPV9paiOP2HKoh9iUR06cpdXpFrnGknJpcNQlyTRau
+         ZPSiHLnP8brrg4HgjMDDUnUOADwnuYrX/E+CshNglXx9+x70RfjQ29ENAttPRk8UdHat
+         pc989LlHMwlvHpEfCYPtP04c11fgfSYTAebWwUnLHPSt3FdVnA4JFew80tII8RUanpqH
+         aaHwguL+SEG+D4MVwDFncIgVAOPpmvgoQ85zcc/4Ux2iM1yf5xNteehiUIXca47lyGHW
+         LBHw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYxtyTOjisYsEZq05+2r4yCD8XCOPKHxybr96OtjaXMy8ZsPzkMeAjzfySQuPtqZCsRYWu9nRi6e8c@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhzsY/qXo7kPXWXPi6feNBj5Rzy23tk2xEqGff9MURoOf7L4Fj
+	PpS01T00/t2dvm+YwH0+IaYE39dW5GJGHI2HY+o1Je8+Pa2PUUjK01jScrlPeUI=
+X-Gm-Gg: ASbGncsXBQpq3TlNwxZg23tanm/sEeGNqXeln4Nqd4tQ3pRHUIUuBsCFvh6xlLTyFHQ
+	u4Gl5Trf5VCQV2Vse+q6pARVgkaEnwiittzuCbzTXvT9jTMJGcvEXn/cej4OXctFbGKlXhSraQw
+	BxrXbQ/F8vYV54zGmPXym/Qy3x75D582G/DlNQKj2499JXV1qhbQqfr+O9ne1DXpT5m679sOq2X
+	OKEgvEwd9MrRpwq0zcxnp3NyKKtc8hPuYtkfxE47i94WLrr4yhVTXhg6Jw/Awmc6D1ND1Px6+hI
+	iCD6+3yCCCSctA024UXSaDZHv7k23TTN6wV5IYlwVLp/NAE1dYS49CK5gozNL7itF6MRHWmnpWd
+	yPdGRDa8M4C6vGl0l8fxsRrOXHT3Piv+YJFfw5A==
+X-Google-Smtp-Source: AGHT+IFuikzPoPqd7B8f1cnRj42JNiLHhSl7BeBI58QZ7SkDEfmP4xHkdJrszDfHnU7WZaegvbF/OA==
+X-Received: by 2002:a05:6a00:ad0:b0:730:99cb:7c2f with SMTP id d2e1a72fcca58-73c1f922615mr1633304b3a.6.1744762435765;
+        Tue, 15 Apr 2025 17:13:55 -0700 (PDT)
+Received: from wak-linux.svl.corp.google.com ([2a00:79e0:2e5b:9:ef0:9d76:c8a5:f522])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73bd22f1040sm9413386b3a.98.2025.04.15.17.13.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Apr 2025 17:13:55 -0700 (PDT)
+From: "William A. Kennington III" <william@wkennington.com>
+To: Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	"William A. Kennington III" <william@wkennington.com>
+Subject: [PATCH] arm64: dts: nuvoton: Add EDAC controller
+Date: Tue, 15 Apr 2025 17:13:49 -0700
+Message-ID: <20250416001350.2066008-1-william@wkennington.com>
+X-Mailer: git-send-email 2.49.0.604.gff1f9ca942-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v7 PATCH 0/2] Add L1 and L2 error detection for A53, A57 and A72
-To: Borislav Petkov <bp@alien8.de>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, James Morse <james.morse@arm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter
- <rric@kernel.org>, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
- Tyler Hicks <code@tyhicks.com>, Marc Zyngier <maz@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
-References: <1744409319-24912-1-git-send-email-vijayb@linux.microsoft.com>
- <20250413203923.GAZ_wg-_lYFt5hkfbh@fat_crate.local>
-Content-Language: en-US
-From: Vijay Balakrishna <vijayb@linux.microsoft.com>
-In-Reply-To: <20250413203923.GAZ_wg-_lYFt5hkfbh@fat_crate.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 4/13/25 13:39, Borislav Petkov wrote:
-> On Fri, Apr 11, 2025 at 03:08:37PM -0700, Vijay Balakrishna wrote:
->> Hello,
->>
->> This is an attempt to revive [v5] series. I have attempted to address comments
->> and suggestions from Marc Zyngier since [v5]. Additionally, I have extended
->> support for A72 processors. Testing on a problematic A72 SoC has led to the
->> detection of Correctable Errors (CEs). I am eager to hear your suggestions and
->> feedback on this series.
-> 
-> Did you not read Marc's note:
-> 
-> https://lore.kernel.org/all/86a58kl51r.wl-maz@kernel.org/
-> 
-> or
-> 
-> https://lore.kernel.org/all/86frigkmtd.wl-maz@kernel.org/
-> 
-> ?
-> 
+We have the driver support but need a common node for all the 8xx
+platforms that contain this device.
 
-Hi Borislav,
+Signed-off-by: William A. Kennington III <william@wkennington.com>
+---
+ arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I did see the second reply above, but not the first before posting v7. I 
-opted to submit v7 after addressing the comments and issues identified 
-in v6 for the benefit of those interested. Sascha's v5 series has helped 
-us in confirming a problematic A72 indeed suffering from CEs.
-
-Our primary focus is on A72. I can re-submit with modifications solely 
-related to A72 and exclude A53 and A57. As Tyler mentioned, we have a 
-significant number of A72-based systems in our fleet, and timely 
-replacements via monitoring CEs will be instrumental in managing them 
-effectively. Please share your thoughts.
-
-Thanks,
-Vijay
-
+diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+index 4da62308b274..ccebcb11c05e 100644
+--- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+@@ -56,6 +56,13 @@ clk: rstc: reset-controller@f0801000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		mc: memory-controller@f0824000 {
++			compatible = "nuvoton,npcm845-memory-controller";
++			reg = <0x0 0xf0824000 0x0 0x2000>;
++			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
++			status = "disabled";
++		};
++
+ 		apb {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-- 
+2.49.0.604.gff1f9ca942-goog
 
 
