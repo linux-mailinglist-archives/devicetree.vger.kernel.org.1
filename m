@@ -1,189 +1,130 @@
-Return-Path: <devicetree+bounces-167879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2114FA909BD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:15:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00042A90A06
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E62077AA650
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:14:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 845303B0F37
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6F321883F;
-	Wed, 16 Apr 2025 17:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277D32153C4;
+	Wed, 16 Apr 2025 17:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jqwVnAu1"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WVUzN54G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D809217739;
-	Wed, 16 Apr 2025 17:15:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9C533991;
+	Wed, 16 Apr 2025 17:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744823700; cv=none; b=szrMidPzs0L3gO59dcuRzBUktgEZIz8EA+hxzOWKqJbt9zQ/Ji3cXD9FZ7J8+J9OdqzK/Ae46TGHHk8/QmxXGFZeFwmKsR355uiF36NUdMuXnJIz+vCCR3b+Thzq1K4a7XPYsB4do26jiSQmJXBi6DhhNoEJd1eBGWYl3pSeiOk=
+	t=1744824747; cv=none; b=YaytRBBanerMaiqfnC6thbl7seUrrhVeCMZl4zfyVnGgRrhRlgVuWbxo7RmbOFnG125UUY9peXlmqUW7CpPvzFcyu3mhXbkEM9nUXc+jpATfOlf3+LQqrRQWuTED547+oOK6xZp9eidvkOVrLMmleEswSuud1TJ6GvxDGNJ5UIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744823700; c=relaxed/simple;
-	bh=goePd7zMNr7BemvNLAfHe6YmAcUBAYJT6AWRUnM94sw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Dfh6jY9P0Fb/dle2igld2COAhtjjaMSWayS1bnCq8qI0WOLe1oaCWU1+rqruTsOrAFmLTuc+EBmJ6BegpBw8ci0DnpKQEWOF4DOL4xOoDdQ9rOkGUXHnkDr66I7tKxKvj4PWrAM0RAeFOZlpPU9PVZCum5YoWS79g/6W487J80A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jqwVnAu1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BCBA9C4CEEE;
-	Wed, 16 Apr 2025 17:14:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744823699;
-	bh=goePd7zMNr7BemvNLAfHe6YmAcUBAYJT6AWRUnM94sw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jqwVnAu1fvuILmnr+yAQrOXnAAIowEa5lzhvoReGoJ0NNDiFtDVhYjFH4sM4CJFSD
-	 jnYrxPy4BAgxcpG/I6etC2/JT4CV2z7oYPPXpYr82ioZKDmpTHBgQosdJOSndC+kej
-	 Qvm7pxfJ1nVXyObyn4N7FF1HM6KSvmM4fPx56848NjiaAkpR+uNE66ln/h2vW0Oid1
-	 M/g7Epe9ypBDVEwpMeWvVI4Hzlk1qHQJOYnuSosVe7khxGubJvLB76WsooIy6C8Fs4
-	 q3tVStl28HW86IRhznC7NAXZ3XviHk/+aMZWLNwyohGVmZFHXCvW3f+HVWej15KDVj
-	 /8t8QTKkL+osw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DBE3C369BA;
-	Wed, 16 Apr 2025 17:14:59 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Wed, 16 Apr 2025 19:14:50 +0200
-Subject: [PATCH net-next v3 4/4] net: phy: dp83822: Add support for
- changing the MAC termination
+	s=arc-20240116; t=1744824747; c=relaxed/simple;
+	bh=HK/ACkCSXH9iBavYefiL3UQ3gNZHnIc01A/zo5ZfKmQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=li0tPulUuVoajLzweXoG15BzS+1SwUk+Y9uRx9gdHP7ZI6yvT+WHR7qVz6Wq+4JaPrkrxWAEMGtLtUNIIH5vu2OQM73X5Jhq/7DUSSC5GJsldLIRni1gkUw/oSS0+/OMO/eqcIVRFnFWtj7PmvioD0MWrWQIzOZdjyWWo6OSS+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WVUzN54G; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=5+DmEreLd4tGBrT4AUVKbL/9BUAR7PVq/ro9PvBSOX0=; b=WVUzN54GFucJKC3jngxZF9vCFH
+	PNcDcPqQ7vHirWGZqnYLr6t2ovXiKtRt+J9rSoOm/uCi0TifPVNos7K0ue9oYrjuQEjgTrCcXlQdB
+	8J40V7YNUe7qBnEb7pJ6KSGvtQaqdUnBj+7LhJnfcf+CY3d6W925GtRciteLKgDxl1OI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1u56cO-009gHX-JP; Wed, 16 Apr 2025 19:32:12 +0200
+Date: Wed, 16 Apr 2025 19:32:12 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 5/8] mfd: zl3073x: Add functions to work with
+ register mailboxes
+Message-ID: <d286dec9-a544-409d-bf62-d2b84ef6ecd4@lunn.ch>
+References: <20250416162144.670760-1-ivecera@redhat.com>
+ <20250416162144.670760-6-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250416-dp83822-mac-impedance-v3-4-028ac426cddb@liebherr.com>
-References: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
-In-Reply-To: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, Andrew Davis <afd@ti.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>, 
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1744823698; l=3207;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=aUB5dQ6e7my0jObP7hS6jVNZ0SSji5tioyizzZyZ9Wo=;
- b=HVfJ/PMe7SX0eZJKufHILN7AgzuaTJja2DNEup344W4GrcWoMxNqv3A7aYOtREJCSY97U8Tdb
- ZkSIfbvU2/tAgWtVHw+Dgdj1LZxOt2tcD9uouwo12ww3xX2Vm/7m9b4
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250416162144.670760-6-ivecera@redhat.com>
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> +/**
+> + * zl3073x_mb_dpll_read - read given DPLL configuration to mailbox
+> + * @zldev: pointer to device structure
+> + * @index: DPLL index
+> + *
+> + * Reads configuration of given DPLL into DPLL mailbox.
+> + *
+> + * Context: Process context. Expects zldev->regmap_lock to be held by caller.
+> + * Return: 0 on success, <0 on error
+> + */
+> +int zl3073x_mb_dpll_read(struct zl3073x_dev *zldev, u8 index)
+> +{
+> +	int rc;
 
-The dp83822 provides the possibility to set the resistance value of the
-the MAC termination. Modifying the resistance to an appropriate value can
-reduce signal reflections and therefore improve signal quality.
+lockdep_assert_held(zldev->regmap_lock) is stronger than having a
+comment. When talking about i2c and spi devices, it costs nothing, and
+catches bugs early.
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/net/phy/dp83822.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> +/*
+> + * Mailbox operations
+> + */
+> +int zl3073x_mb_dpll_read(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_dpll_write(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_output_read(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_output_write(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_ref_read(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_ref_write(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_synth_read(struct zl3073x_dev *zldev, u8 index);
+> +int zl3073x_mb_synth_write(struct zl3073x_dev *zldev, u8 index);
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 14f36154963841dff98be5af4dfbd2760325c13d..490c9f4e5d4e4dc866ef99f426f7497b5e1b49b4 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -33,6 +33,7 @@
- #define MII_DP83822_MLEDCR	0x25
- #define MII_DP83822_LDCTRL	0x403
- #define MII_DP83822_LEDCFG1	0x460
-+#define MII_DP83822_IOCTRL	0x461
- #define MII_DP83822_IOCTRL1	0x462
- #define MII_DP83822_IOCTRL2	0x463
- #define MII_DP83822_GENCFG	0x465
-@@ -118,6 +119,9 @@
- #define DP83822_LEDCFG1_LED1_CTRL	GENMASK(11, 8)
- #define DP83822_LEDCFG1_LED3_CTRL	GENMASK(7, 4)
- 
-+/* IOCTRL bits */
-+#define DP83822_IOCTRL_MAC_IMPEDANCE_CTRL	GENMASK(4, 1)
-+
- /* IOCTRL1 bits */
- #define DP83822_IOCTRL1_GPIO3_CTRL		GENMASK(10, 8)
- #define DP83822_IOCTRL1_GPIO3_CTRL_LED3		BIT(0)
-@@ -202,6 +206,7 @@ struct dp83822_private {
- 	u32 gpio2_clk_out;
- 	bool led_pin_enable[DP83822_MAX_LED_PINS];
- 	int tx_amplitude_100base_tx_index;
-+	int mac_termination_index;
- };
- 
- static int dp83822_config_wol(struct phy_device *phydev,
-@@ -533,6 +538,12 @@ static int dp83822_config_init(struct phy_device *phydev)
- 			       FIELD_PREP(DP83822_100BASE_TX_LINE_DRIVER_SWING,
- 					  dp83822->tx_amplitude_100base_tx_index));
- 
-+	if (dp83822->mac_termination_index >= 0)
-+		phy_modify_mmd(phydev, MDIO_MMD_VEND2, MII_DP83822_IOCTRL,
-+			       DP83822_IOCTRL_MAC_IMPEDANCE_CTRL,
-+			       FIELD_PREP(DP83822_IOCTRL_MAC_IMPEDANCE_CTRL,
-+					  dp83822->mac_termination_index));
-+
- 	err = dp83822_config_init_leds(phydev);
- 	if (err)
- 		return err;
-@@ -736,6 +747,10 @@ static const u32 tx_amplitude_100base_tx_gain[] = {
- 	93, 95, 97, 98, 100, 102, 103, 105,
- };
- 
-+static const u32 mac_termination[] = {
-+	99, 91, 84, 78, 73, 69, 65, 61, 58, 55, 53, 50, 48, 46, 44, 43,
-+};
-+
- static int dp83822_of_init_leds(struct phy_device *phydev)
- {
- 	struct device_node *node = phydev->mdio.dev.of_node;
-@@ -852,6 +867,23 @@ static int dp83822_of_init(struct phy_device *phydev)
- 		}
- 	}
- 
-+	ret = phy_get_mac_termination(phydev, dev, &val);
-+	if (!ret) {
-+		for (i = 0; i < ARRAY_SIZE(mac_termination); i++) {
-+			if (mac_termination[i] == val) {
-+				dp83822->mac_termination_index = i;
-+				break;
-+			}
-+		}
-+
-+		if (dp83822->mac_termination_index < 0) {
-+			phydev_err(phydev,
-+				   "Invalid value for mac-termination-ohms property (%u)\n",
-+				   val);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	return dp83822_of_init_leds(phydev);
- }
- 
-@@ -931,6 +963,7 @@ static int dp8382x_probe(struct phy_device *phydev)
- 		return -ENOMEM;
- 
- 	dp83822->tx_amplitude_100base_tx_index = -1;
-+	dp83822->mac_termination_index = -1;
- 	phydev->priv = dp83822;
- 
- 	return 0;
+I assume these are the only valid ways to access a mailbox?
 
--- 
-2.39.5
+If so:
 
+> +static inline __maybe_unused int
+> +zl3073x_mb_read_ref_mb_mask(struct zl3073x_dev *zldev, u16 *value)
+> +{
+> +	__be16 temp;
+> +	int rc;
+> +
+> +	lockdep_assert_held(&zldev->mailbox_lock);
+> +	rc = regmap_bulk_read(zldev->regmap, ZL_REG_REF_MB_MASK, &temp,
+> +			      sizeof(temp));
+> +	if (rc)
+> +		return rc;
+> +
+> +	*value = be16_to_cpu(temp);
+> +	return rc;
+> +}
 
+These helpers can be made local to the core. You can then drop the
+lockdep_assert_held() from here, since the only way to access them is
+via the API you defined above, and add the checks in those API
+functions.
+
+	Andrew
 
