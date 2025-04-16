@@ -1,45 +1,47 @@
-Return-Path: <devicetree+bounces-167819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A23BA9069B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:37:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5547DA9065A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:28:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E64DF3AD46C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:37:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F5177A10B6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED471C5D44;
-	Wed, 16 Apr 2025 14:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9E4B1C3306;
+	Wed, 16 Apr 2025 14:28:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="crrQzbY9"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="HHdz4cUV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7531AB50D;
-	Wed, 16 Apr 2025 14:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298021ADC67;
+	Wed, 16 Apr 2025 14:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744814239; cv=none; b=kTbPdubxWkybrBDV+gZ8xiZE2a0BlNlX9BhFfKwqKMmAOXkgptjNaNTLUPmIpzHcpZCQZGvU+zbIuy07cmk1RImZNXt1Jz3U6G5yfKS/Dj2PVouQEfeGHWI79TXcG74uSQJSfJQ/qwVyGoMGkwuJ8OhtmlNmik8ZRkHVTbk8bgg=
+	t=1744813690; cv=none; b=Imd0ETns+IXP3M7S4F+gAqdnnkN0w0XTmfSHkUlbzwQZKi44cPHNMLLfiStpzqtYOJxZ+a6tj/mma//BpHIfE1GmzFXWQyllrGQwMbu5kUK/1+W5kKwY+kRSn2dvdLMt06zihf+QzHCTef8+3c+JoEG+KEl27tSfKgYB21z1h3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744814239; c=relaxed/simple;
-	bh=KUEHY7ZRwTuC/5HTGE/zXecsPRtJxHha9LUkQvT/XN4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PRl4AWOpWAs8kStxkuA3fpQ6x+Rz9ct7fvI2Zi4jvel5rqaStmE2f1isns1cMWg3dLBlSpuRh2L/NwIJFNwtRBIDwMOgx0HaBbVR5yun2zG0aEwhxfVYEjgjEhJPpH5xeevO5h23nZxqlF+4tqLc8JUHXOpAVFJJIsJqEu3elak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=crrQzbY9; arc=none smtp.client-ip=116.203.77.234
+	s=arc-20240116; t=1744813690; c=relaxed/simple;
+	bh=l9TDtXY7OU7uL8aV7cw32/Pd7TSJScjkzY1TxJoUmj8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=qgGUGYLdyJ4w2D2vEGF1xoeXMExAKvMmNSToqltRBGq848ChSvELJGZmwCVncMfIDM8ZqaEb2hy7t9uwr83/itwF671ei9n5YvzgJ8fitRDb60o1RpBO+gxkBQOgt1RCuvT+L4uCsfWcnwaEw2EJoz0BtGcQz+ktT6vCJTsjrow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=HHdz4cUV; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B7ADFC9699;
-	Wed, 16 Apr 2025 16:27:43 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C421DBFC16;
+	Wed, 16 Apr 2025 16:28:05 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1744813669; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=HBqHrUhw97eHPrj9acjB4nBmmHDFArDGTlBCisgNOvc=;
-	b=crrQzbY9TVfvcvN+4H3r8iiMKkgfILDsW19WI8gtf8+p+QieW4e/QkEEisQi3jA8/Kc/Pk
-	3WVznrzGJodRTM0zi8xFxXN7I5rVMKjb2JgWD0/ApfsaeFmas82LjMAEiJvpEsVQWGkdS8
-	+vTtuNd1x9Zqq3xAabobt5+P6KPgwK12wnyXBvk1ljy/85u44Std/GULiRY4UTUaBinKA9
-	DW/7buLKYQhSgKnUrfzorCALiSyAhQ3sH0uKKOeWY3Pg8PU5enAt3NVWz3DrUNM/6LDHin
-	mYHTny6pz+6rDFFAiojeUrfKMEFIKXgjNFPk1e/XtwWJhkoRTZv5Mpd8D/V72g==
+	t=1744813686; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FScWshifJvIijnD4Sqm8C1fnkngATgObzxPdFsDLYYg=;
+	b=HHdz4cUV7+QsbsguIExtP7/+cPEszjbCZcBLkQepe1fJJGz8DZuC3jSn9x5WfCWCGNbab1
+	AaBkVZ7sDyjXXn8HKjZ+YOHa/nORFP0DPkvHqKF7/3Imycl/4jHdUo9Zh+sk5w0i51fiFD
+	d1YgU1sPMDuITFRA2q6IGdy66mgIueKV/GGcRKgF6rEsbOVjhgosgQucv+H4Rjz046o2vt
+	zgxgJlG+uywRUfYwGnBljn2Y66DPq9SLYDQC6xVWUN9cC9sk5Ow+8mdUEYMQlZDqA4BS+y
+	zJ6T/nLcz/QoIS6N3w1XfGpuDkfdKIO6mICO0Kz09k+/GK7Zk5UBUQ0WxwtKLw==
 From: Frieder Schrempf <frieder@fris.de>
 To: Peng Fan <peng.fan@nxp.com>,
 	Pankaj Gupta <pankaj.gupta@nxp.com>,
@@ -51,23 +53,20 @@ To: Peng Fan <peng.fan@nxp.com>,
 	linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+	Shawn Guo <shawnguo@kernel.org>
 Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Arnd Bergmann <arnd@arndb.de>,
 	Fabio Estevam <festevam@gmail.com>,
 	Frank Li <Frank.Li@nxp.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Haibo Chen <haibo.chen@nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
 	Shengjiu Wang <shengjiu.wang@nxp.com>,
 	Shenwei Wang <shenwei.wang@nxp.com>,
-	Xu Yang <xu.yang_2@nxp.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [RFC PATCH 0/5] Add NVMEM driver for i.MX93 OTP access through ELE
-Date: Wed, 16 Apr 2025 16:26:19 +0200
-Message-ID: <20250416142715.1042363-1-frieder@fris.de>
+	Xu Yang <xu.yang_2@nxp.com>
+Subject: [RFC PATCH 3/5] arm64: dts: imx93: Add node for EdgeLock Enclave (ELE) firmware driver
+Date: Wed, 16 Apr 2025 16:26:22 +0200
+Message-ID: <20250416142715.1042363-4-frieder@fris.de>
+In-Reply-To: <20250416142715.1042363-1-frieder@fris.de>
+References: <20250416142715.1042363-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,63 +78,32 @@ X-Last-TLS-Session-Version: TLSv1.3
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-This depends on [1] for the support of the Edgelock Secure Enclave firmware
-driver.
+This adds the node for the ELE firmware driver that provides the
+S400 API.
 
-There are at least two ways to access the OTP fuses on i.MX93:
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+---
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-(1) through the FSB (fuseblock) registers
-(2) through the ELE S400 API
-
-There currently is a NVMEM driver imx-ocotp-ele.c that (despite its name)
-implements (1). As the FSB only provides limited access to the OTP registers
-(read only) it's not sufficient for all use-cases.
-
-It seems like imx-ocotp-ele.c was intended to be extended later to implement
-(1) and (2) deciding on a per-fuse-register basis which of both access methods
-should be used.
-
-This has some downsides:
-
-* the driver gets convoluted and complex
-* the driver decides which OTP registers are accessed in which way and therefore
-  mixes read-only and read/write access
-
-Therefore I implemented a simple driver that uses the ELE S400 API only, as the
-FSB access (1) doesn't provide any benefits except for that it doesn't depend
-on the ELE firmware being available. This is used by us downstream.
-
-For the upstream solution I would like to have some feedback on how to move
-on:
-
-1. switch imx-ocotp-ele.c to use ELE API exclusively
-   -> this will create a hard dependency on the ELE firmware/driver being available
-2. extend imx-ocotp-ele.c to use FSB and ELE API
-   -> make the driver use ELE API for all registers if ELE firmware/driver is available
-3. create separate drivers as done in this RFC
-
-Thanks!
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250409-imx-se-if-v16-0-5394e5f3417e@nxp.com/
-
-Frieder Schrempf (5):
-  firmware: imx: ele: Add API functions for OCOTP fuse access
-  nvmem: Add i.MX OCOTP fuse driver using ELE S400 API
-  arm64: dts: imx93: Add node for EdgeLock Enclave (ELE) firmware driver
-  arm64: dts: imx93: Add node for OCOTP S400 NVMEM driver
-  arm64: dts: imx93-kontron: Add DMA memory region for ELE firmware
-
- .../dts/freescale/imx93-kontron-osm-s.dtsi    |  16 ++
- arch/arm64/boot/dts/freescale/imx93.dtsi      |  11 +
- drivers/firmware/imx/ele_base_msg.c           | 122 +++++++++++
- drivers/firmware/imx/ele_base_msg.h           |   8 +
- drivers/nvmem/Kconfig                         |  11 +
- drivers/nvmem/Makefile                        |   2 +
- drivers/nvmem/imx-ocotp-s400.c                | 195 ++++++++++++++++++
- include/linux/firmware/imx/se_api.h           |   3 +
- 8 files changed, 368 insertions(+)
- create mode 100644 drivers/nvmem/imx-ocotp-s400.c
-
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 64cd0776b43d..122519648d1b 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -222,6 +222,12 @@ cm33: remoteproc-cm33 {
+ 		status = "disabled";
+ 	};
+ 
++	hsm0: secure-enclave {
++		compatible = "fsl,imx93-se-ele-hsm";
++		mbox-names = "tx", "rx";
++		mboxes = <&s4muap 0 0>, <&s4muap 1 0>;
++	};
++
+ 	mqs1: mqs1 {
+ 		compatible = "fsl,imx93-mqs";
+ 		gpr = <&aonmix_ns_gpr>;
 -- 
 2.49.0
+
 
