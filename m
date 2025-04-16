@@ -1,353 +1,160 @@
-Return-Path: <devicetree+bounces-167847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FB4A90774
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:15:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5324CA90778
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:16:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB47F4462AB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:15:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D9B04462D8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E747207DF9;
-	Wed, 16 Apr 2025 15:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D84206F19;
+	Wed, 16 Apr 2025 15:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iShgXaC1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kyeiFnLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989EF206F0C;
-	Wed, 16 Apr 2025 15:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A691013B7A3
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744816524; cv=none; b=T1neVYN6LRetKdQ5kFuN5Uuqpm9e4pOMAIM8mgufs+xl7kb1E3QY9Od6OjNamQHUP46TEScZ1ty3OpnnBRN4pHLb+GF1nxDlUorlQiUS9KaMkz/jnlPlcv4MifChz6zvRW5cT+cWxDpswYzY7xWDvhuGg/mgMTU8rMVTDo5IEa4=
+	t=1744816599; cv=none; b=ULoHZXQjh8qV8gNjYv18qp42100vWyaGAn9/3mfG97rC8floqBFEsW9EmIZehZEXZSrTvz1UZyVYjdSk6TnYbS6AYaPR86qcpLJ2lYCoh8x9dcBVgd9m/+nXAfLdacFNOgzGyGWnYH9XE9eWjfyh3MXyThxQuZFJVJf/YX6Nw/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744816524; c=relaxed/simple;
-	bh=HpU6VloERQNeMMx8yqX2bXPiTYCq+K5EnDiKMZtvK64=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B+9TdKyqfSZdm1dpxRjGQpD4uPnvER63HzO3AuOTQ6buXljrwzZiGOGuJksJ4I9Y5PhhdkJBZJ6KKkQ3b6wrkNGFu0of0oxdv0ZrZiiL1Zmujdi7QT4MwSGDCWFDn1JyAar4R8sHfbfC9Jwab0zvz3u2rxnES19xLNuW7zYHSy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iShgXaC1; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acb39c45b4eso147624766b.1;
-        Wed, 16 Apr 2025 08:15:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744816521; x=1745421321; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=f54xB8jAzZGxPN+eurWEBlbBBztYq662AJjtmWBvOs8=;
-        b=iShgXaC1QDlq5hgI2guInaHvvJ0XgoPt/qWHYly0woKgah0bW0TAd/LXtpt1JTO9Xh
-         08xA/q/r78YE7sn4Qs74r9WLVcizJPptBiwaUnHo2E+WotO/QcUyZR71xQj4fPAtO2nI
-         BIvxfW1WFex+w+ahHSZ44pLJRWASLAbTZ/5ixvIKu2RGTzwCkMvNDKkwg3xwqsGBC/Dk
-         4yQ/9Bl4BjyEeBi7E5TFTGoZW+cvpG1lVc8//Vma93Tr7AVb5Hoo/IOkWWLlgv9BPGTx
-         CbkIqgt2xERGymWkUseXZadwq01fpm4Xjj3cjky5GvKJWNXj+Xe5ds6VNHtYrx0pWPWL
-         8ZFw==
+	s=arc-20240116; t=1744816599; c=relaxed/simple;
+	bh=i33BTY4c5w832/9tCBpynmnyN4TzRbYUFJi/aJHDcdg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Axjucb/z9T7s8wP/jxE3AOyC9zk1kvtZdzPGUiAsCKUl9DOWRlxyLNXVOlgRHnoxCi1RLKvElGz4cMtrxiCBlGEJooORCyKi69+8KFtlvFenPh2hcFd58PyQQGFVL9V6x3GoZej1aIwi6TVIYKy6XlRMJYhxDWMbi9zTd6tzgkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kyeiFnLq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mFnd003450
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:16:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NJUIUc+VYHH2fy8e+6Mln7Q0nf+79VtcQUiDij9Fk48=; b=kyeiFnLq93bXltmG
+	7i5WTenqMr88BNIylFcu/snbT2qXRJGL46x0aFsVhDA35hPodFJZGvMCxA7BXGop
+	cOtTEG2P2GpY3s/YARLLnK4NGoxy06tavXxP5AFbt1fSbM0SeoqoVob0uzoRV2oR
+	IZwtW0wFrEuzP5GJW7ILeA2nYxmh1uER5bJzIYE4w11WzYwYyZ8PPeITathcBsoA
+	+CaNR3u9tN8E1569DLHDp/c0zrGhju0jJBCtYCsU4tyOcfX846SUuAbF+YuBQKxL
+	2z/k79WjIG2+UJYh1elaWaHCRji1ji0GLIa15xplpsJGQenkAB1dzt9rf0i/fOHw
+	snHp6Q==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4628rv95vq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 15:16:36 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e8f184b916so155424696d6.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 08:16:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744816521; x=1745421321;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f54xB8jAzZGxPN+eurWEBlbBBztYq662AJjtmWBvOs8=;
-        b=Zp9LOSas92e5dClXaOoilfuJlvr7V654nI1ZuUjmcRAPQr2ttTj44FETydFF4DqXAG
-         H5xE/MFUesyPDOdi+4EUIYPlcAcYWMZOvb+eNXt5SKIL7amCDD9H6nvulIdTbG7EDMR4
-         /QD/GS/ju7YT4GQuZhGU8it8XUrWFHvA1KcmpsVafAZRomFelrt32sx1QFswlSi0WoSC
-         NqkEc+EVFp0CqgMI/qR6cSJPVhHrocC3Ql2IAJgcU9fJ3h7FUTQU/jRr9Mo6oq3apRmU
-         kg/+9DOy70dIFmSA+qD3yDjmoHIxEZJpwzi9KL1Dd06hvk4cMG/BcRhlVjGoBF3gv0zB
-         4nLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUaMqJIwOZydffQ1ocVedRhl/SID/s3O8UJK0DFKZg901JRu3nhqlBHUSvf7lkafo//wJ5/wTh/G7fAGUTt@vger.kernel.org, AJvYcCVHUmsOd7dC9IXkx9FF71X2C3khdwm0sDXhJ5bd59BVqJhGDVnczBGWcn4l4tilK3P00W2sw6tEWHjJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YznXfl9e0CF9IpKrbBz9dPwn41Teu+nZnAA085r6Ejb2im7e09g
-	XWgcMW27AMTXgfQxmLS3EmZ0tJJyqf4I9g42Egj4Vzn7Yo6tvr0u
-X-Gm-Gg: ASbGnctsr72zQLcnVC8zL4oOtqKjPdbbn8uUXF8IsrwDWcWtNICVQ6haz72bpfAY5dA
-	EwqHbqxtb2ZQgTB3lsI+d+IkMR0jsFhWT06+NB1mWzCZ0yNQ5Xu/lf6aLjyRPdXVZureyrfK+Rs
-	L4RpijEkAQe0fHKo/A0FBoc/8m31GKaOAO2cznrMhlC7wQ1jMPWKchCvsp9kSS5W5wLwQjrgMsz
-	1iXdq5v1eaEQLDVltmSuzoZULTS3NtNOzcrHzXKkunqi8qBgCPePJFXGBqO63vdR2a7gDrHlk8g
-	pxvJpCnFgzjRrD4anBEQpA2ZuJIZ1jjCCj+08ftSWmWSgiFc7SaBhpml07sjzj4/VtnFImQNcOa
-	GPpJVj6D9xNcLAuBuCQ4=
-X-Google-Smtp-Source: AGHT+IEYDMPTAVgdmlNNu9P4Oui1LjNbVBOfvMZvnfG/4JzHe+Ej8lmr2fDQnm8jtO40TBJR4xN3QQ==
-X-Received: by 2002:a17:907:3e03:b0:ac8:16fb:7c85 with SMTP id a640c23a62f3a-acb42bffb7fmr219117566b.41.1744816520410;
-        Wed, 16 Apr 2025 08:15:20 -0700 (PDT)
-Received: from toolbox.int.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3ce5dbaesm143286166b.85.2025.04.16.08.15.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Apr 2025 08:15:20 -0700 (PDT)
-From: max.oss.09@gmail.com
-To: max.krummenacher@toradex.com
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: imx8-apalis: Add PCIe and SATA support
-Date: Wed, 16 Apr 2025 17:13:41 +0200
-Message-ID: <20250416151353.1692373-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.42.0
+        d=1e100.net; s=20230601; t=1744816595; x=1745421395;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NJUIUc+VYHH2fy8e+6Mln7Q0nf+79VtcQUiDij9Fk48=;
+        b=u/EE/2z/XlRtfyQMniyjFFZr9UF+c0L/L9WNQPttheFIm24ZAFwUDrAT8pAZJIGxMj
+         kiLeKE3W25bqna0X1BdtTrgslGq6H8P/eQZwvN36DTMw7IAh+InOR4RY54fT61qS1pPi
+         C34+5tlJflT8VYczPuFkS3P0xdRn/HEDjoAMWSkj+TrpYNcE9Nqus9kHD/gFEPfDX/IW
+         yv2ZUewcymT3e1e1+hmupVvtsO1V+iuFf8AFD2mdapOUZmADOvA26V9faNzUlD8zIZYy
+         s/HWdyVB5qJD+oBjcWmKhzmhTcXcR7n6Cz40kWYUcKBl3vrvaXqSu3jYDh6J1sZJ/DFd
+         BQWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAbly/zI9usg5sMRnXUMBjZegc/0Nh9wmbEO9EE9DSSRzyhUO5jd+lruyichqAt8juuFjGSAd3+uBY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyg1AsKZwgfuTUee6RCuZ9f4pVwLH4aUrj05IzVnPbvVZqHZJpT
+	tetdOf5N3O/T4p02eD/Ly0viyGPrKtXVfURhW+DC2DArHNBkvKrOJyvVMoU/6S7XxY8doxXz+Wr
+	sS7UNp29/5q8NKkcLqNt7zjJAtSSEc3mvJTVVAOWf+BWvRXu/H5Yv/Z7XJvCty9tUK4O1EyLjem
+	V/g1GGZw4lID77J98o9oJL1i0Nb8dwMypqOao=
+X-Gm-Gg: ASbGncuEo/680k5KOclFJLWh6/Mncw6K7HrdYhVFtha1ldeN5y7krsnL8SrKkp3KhY7
+	D5zse4nVHKUX+SVxp0AkD8A5GcKMzcmjmQbJCiWCR//sHfWWIX9CCjZImDkeszaCKJdm9cVw=
+X-Received: by 2002:a05:6214:5292:b0:6e4:3eb1:2bdb with SMTP id 6a1803df08f44-6f2b305af5emr32590186d6.43.1744816595297;
+        Wed, 16 Apr 2025 08:16:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHFS2D2RzT33SDbeqzFkoDov17qPZrZjXwTZGj0nCYs+GaNNpX7EMTVpJzYVpkCYyCp43VnxkS6zg9elAzZSHY=
+X-Received: by 2002:a05:6214:5292:b0:6e4:3eb1:2bdb with SMTP id
+ 6a1803df08f44-6f2b305af5emr32589656d6.43.1744816594755; Wed, 16 Apr 2025
+ 08:16:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
+ <20250416120908.206873-4-loic.poulain@oss.qualcomm.com> <391e7a1a-ea7f-4299-86df-cb1600428d90@linaro.org>
+In-Reply-To: <391e7a1a-ea7f-4299-86df-cb1600428d90@linaro.org>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Wed, 16 Apr 2025 17:16:24 +0200
+X-Gm-Features: ATxdqUHElH-y0Qdjtr5v7dVielMm7TODKS3uuHY9Lg43SNNwKRK-B1Ns-3IZU70
+Message-ID: <CAFEp6-3bdazujwWLh6RqWhP3ZufAGtX8PtvtM7JN0k-VWc-C4w@mail.gmail.com>
+Subject: Re: [PATCH 4/6] media: qcom: camss: add support for QCM2290 camss
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
+        krzk+dt@kernel.org, robh@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: 64IT7AF0rNFyoRItNg-ntqsgO75ODVOZ
+X-Authority-Analysis: v=2.4 cv=RbSQC0tv c=1 sm=1 tr=0 ts=67ffc9d4 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=XvfFUYa5IQhs_SHw49QA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: 64IT7AF0rNFyoRItNg-ntqsgO75ODVOZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ suspectscore=0 adultscore=0 impostorscore=0 clxscore=1015 bulkscore=0
+ phishscore=0 priorityscore=1501 spamscore=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160125
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
-
-The needed drivers to support PCIe and SATA for i.MX 8QM have been
-added.
-Configure them for the Apalis iMX8 SoM.
-
-The pciea and pcieb blocks each get a single PCIe lane, pciea is
-available on the carrier boards while pcieb is connected to the
-on module Wi-Fi/BT module.
-The SATA lane is available on the carrier boards.
-
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-
----
-
- .../boot/dts/freescale/imx8-apalis-eval.dtsi  | 10 ++-
- .../dts/freescale/imx8-apalis-ixora-v1.1.dtsi | 10 ++-
- .../dts/freescale/imx8-apalis-ixora-v1.2.dtsi | 10 ++-
- .../boot/dts/freescale/imx8-apalis-v1.1.dtsi  | 70 ++++++++++++-------
- .../boot/dts/freescale/imx8qm-apalis.dtsi     | 10 ++-
- 5 files changed, 74 insertions(+), 36 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-index dc127298715b..311d4950793c 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-eval.dtsi
-@@ -104,7 +104,10 @@ &lsio_pwm3 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis PCIE1 */
-+/* Apalis PCIE1 */
-+&pciea {
-+	status = "okay";
-+};
- 
- /* TODO: Apalis BKL1_PWM */
- 
-@@ -121,7 +124,10 @@ &sai5_lpcg {
- 	status = "okay";
- };
- 
--/* TODO: Apalis SATA1 */
-+/* Apalis SATA1 */
-+&sata {
-+	status = "okay";
-+};
- 
- /* Apalis SPDIF1 */
- &spdif0 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-index d4a1ad528f65..3d8731504ce1 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.1.dtsi
-@@ -191,7 +191,10 @@ &lsio_pwm3 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis PCIE1 */
-+/* Apalis PCIE1 */
-+&pciea {
-+	status = "okay";
-+};
- 
- /* TODO: Apalis BKL1_PWM */
- 
-@@ -208,7 +211,10 @@ &sai5_lpcg {
- 	status = "okay";
- };
- 
--/* TODO: Apalis SATA1 */
-+/* Apalis SATA1 */
-+&sata {
-+	status = "okay";
-+};
- 
- /* Apalis SPDIF1 */
- &spdif0 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-index 5e132c83e1b2..106e802a68ba 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-ixora-v1.2.dtsi
-@@ -240,7 +240,10 @@ &lsio_pwm3 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis PCIE1 */
-+/* Apalis PCIE1 */
-+&pciea {
-+	status = "okay";
-+};
- 
- /* TODO: Apalis BKL1_PWM */
- 
-@@ -257,7 +260,10 @@ &sai5_lpcg {
- 	status = "okay";
- };
- 
--/* TODO: Apalis SATA1 */
-+/* Apalis SATA1 */
-+&sata {
-+	status = "okay";
-+};
- 
- /* Apalis SPDIF1 */
- &spdif0 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index dbea1eefdeec..6f27a9cc2494 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -339,6 +339,25 @@ &flexcan3 {
- 	pinctrl-0 = <&pinctrl_flexcan3>;
- };
- 
-+&hsio_phy {
-+	fsl,hsio-cfg = "pciea-pcieb-sata";
-+	fsl,refclk-pad-mode = "input";
-+	status = "okay";
-+};
+On Wed, Apr 16, 2025 at 2:17=E2=80=AFPM Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> On 16/04/2025 13:09, Loic Poulain wrote:
+> > The camera subsystem for QCM2290 which is based on Spectra 340.
+> >
+> > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > ---
+> >   drivers/media/platform/qcom/camss/camss-vfe.c |   2 +
+> >   drivers/media/platform/qcom/camss/camss.c     | 146 +++++++++++++++++=
 +
-+&hsio_refa_clk {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie_sata_refclk>;
-+	enable-gpios = <&lsio_gpio4 11 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&hsio_refb_clk {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie_wifi_refclk>;
-+	clocks = <&hsio_refa_clk>;
-+	enable-gpios = <&lsio_gpio2 11 GPIO_ACTIVE_HIGH>;
-+};
-+
- /* TODO: Apalis HDMI1 */
- 
- &gpu_alert0 {
-@@ -514,7 +533,10 @@ &lsio_gpio0 {
- 			  "MXM3_112",
- 			  "MXM3_118",
- 			  "MXM3_114",
--			  "MXM3_116";
-+			  "MXM3_116",
-+			  "",
-+			  "",
-+			  "MXM3_26";
- };
- 
- &lsio_gpio1 {
-@@ -586,15 +608,6 @@ &lsio_gpio2 {
- 			  "MXM3_183",
- 			  "MXM3_185",
- 			  "MXM3_187";
--
--	pcie-wifi-hog {
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pcie_wifi_refclk>;
--		gpio-hog;
--		gpios = <11 GPIO_ACTIVE_HIGH>;
--		line-name = "PCIE_WIFI_CLK";
--		output-high;
--	};
- };
- 
- &lsio_gpio3 {
-@@ -660,16 +673,6 @@ &lsio_gpio4 {
- 			  "MXM3_291",
- 			  "MXM3_289",
- 			  "MXM3_287";
--
--	/* Enable pcie root / sata ref clock unconditionally */
--	pcie-sata-hog {
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pcie_sata_refclk>;
--		gpio-hog;
--		gpios = <11 GPIO_ACTIVE_HIGH>;
--		line-name = "PCIE_SATA_CLK";
--		output-high;
--	};
- };
- 
- &lsio_gpio5 {
-@@ -771,9 +774,30 @@ &mu2_m0 {
- 	status = "okay";
- };
- 
--/* TODO: Apalis PCIE1 */
-+/* Apalis PCIE1 */
-+&pciea {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_reset_moci>;
-+	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
-+	phy-names = "pcie-phy";
-+	reset-gpio = <&lsio_gpio0 30 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_pcie_switch>;
-+};
-+
-+/* On-module Wi-Fi */
-+&pcieb {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcieb>, <&pinctrl_wifi>;
-+	phys = <&hsio_phy 1 PHY_TYPE_PCIE 1>;
-+	phy-names = "pcie-phy";
-+	reset-gpio = <&lsio_gpio5 0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
- 
--/* TODO: On-module Wi-Fi */
-+&phyx2_lpcg {
-+	clocks = <&hsio_refa_clk>, <&hsio_refb_clk>,
-+		 <&hsio_refa_clk>, <&hsio_per_clk>;
-+};
- 
- /* TODO: Apalis BKL1_PWM */
- 
-@@ -806,8 +830,6 @@ &sai5 {
- 			       <722534400>, <45158400>, <11289600>, <49152000>;
- };
- 
--/* TODO: Apalis SATA1 */
--
- /* Apalis SPDIF1 */
- &spdif0 {
- 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-index c18f57039f6e..f97feee52c81 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi
-@@ -22,6 +22,10 @@ &fec1 {
- 	phy-mode = "rgmii-rxid";
- };
- 
-+&hsio_refa_clk {
-+	enable-gpios = <&lsio_gpio4 27 GPIO_ACTIVE_HIGH>;
-+};
-+
- /* TODO: Apalis HDMI1 */
- 
- /* Apalis I2C2 (DDC) */
-@@ -188,12 +192,6 @@ &lsio_gpio4 {
- 			  "MXM3_291",
- 			  "MXM3_289",
- 			  "MXM3_287";
--
--	/* Enable pcie root / sata ref clock unconditionally */
--	pcie-sata-hog {
--		gpios = <27 GPIO_ACTIVE_HIGH>;
--	};
--
- };
- 
- &lsio_gpio5 {
--- 
-2.42.0
+> >   2 files changed, 148 insertions(+)
+> >
+> > diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/me=
+dia/platform/qcom/camss/camss-vfe.c
+> > index 4bca6c3abaff..c575c9767492 100644
+> > --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> > +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+[...]
+> > +
+> > +static const struct resources_icc icc_res_2290[] =3D {
+> > +     {
+> > +             .name =3D "ahb",
+> > +             .icc_bw_tbl.avg =3D 150000,
+> > +             .icc_bw_tbl.peak =3D 300000,
+> > +     },
+> > +     {
+> > +             .name =3D "hf_mnoc",
+> > +             .icc_bw_tbl.avg =3D 2097152,
+> > +             .icc_bw_tbl.peak =3D 2097152,
+> > +     },
+> > +     {
+> > +             .name =3D "sf_mnoc",
+> > +             .icc_bw_tbl.avg =3D 2097152,
+> > +             .icc_bw_tbl.peak =3D 2097152,
+> > +     },
+> > +};
+>
+> I think you can get better numbers from downstream for the above.
 
+So I'm not sure how to get the 'correct' values? I've not executed the
+downstream driver to get the output of aggregated votes. The only
+clear references I see is: `CAM_CPAS_AXI_MIN_CAMNOC_IB_BW
+(3000000000UL)` as well as `camnoc-axi-min-ib-bw =3D <3000000000>;`
+in the devicetree, which would give us 3000000kBps.
+
+Regards,
+Loic
 
