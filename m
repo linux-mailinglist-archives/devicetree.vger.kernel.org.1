@@ -1,116 +1,151 @@
-Return-Path: <devicetree+bounces-167900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0562AA90AC4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:04:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABDAA90ADC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:06:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83DB8188B574
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:04:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57E533AA82F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B15219303;
-	Wed, 16 Apr 2025 18:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E526219A75;
+	Wed, 16 Apr 2025 18:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="F7lkSLyX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Im2xwCnb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E82217712
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7555C217F35;
+	Wed, 16 Apr 2025 18:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744826671; cv=none; b=dcivax1lsYGmnYzfs7ULMmgcVGWOmQbRG0dRhYJs3yOAiQ2Ddv9ADl9Rad1JwyJZ+/YUW5qrHeosCp8+rfaWGa1WKtTXfTdNU78KA0k7UtkOLV2sjABDMHzkWH6TtWWtY3iNg9LzNm/XpYnfXTiNSF8JUiK0iBxiDvGc0fKZjzo=
+	t=1744826783; cv=none; b=UWGLc+ZbOdOz6UWKntaMW4NgMyDGcuBP0rVukV00Jcu7TFr2uPPHmHuLDMEAQPGMuBTIDsYrmvLUtstPobb3AQ1e79d9Kj1gASVdu/E9DwaOnOgkpSQXGwvTfGAlfDUn0si0TLFhZ3bgYJkfQMz73J5D5XvQG9JBrJ9fO99ckk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744826671; c=relaxed/simple;
-	bh=3tJ/br8DjU8waWGCy/RCXHnta0+4Yr9H9+0lpNJh3Ic=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CMKwJV6uvvziZNl7J5BUG2YhKj6nfc/Vmxxp4osCBpSVOROtN6my3IptMAHuq9fSKxcLBFzXiR8KSDTJZj74EQCs4aMm3HQvoybGh5YyHW/yKaU+dAQR8NTw5I2ZgPE3xKiyfYyKihX2djHx14676/TwCTzsGjCrGpbNgjBQMMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=F7lkSLyX; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from DESKTOP-0403QTC. (unknown [20.236.11.102])
-	by linux.microsoft.com (Postfix) with ESMTPSA id E4B462052502;
-	Wed, 16 Apr 2025 11:04:28 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E4B462052502
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1744826669;
-	bh=cNocqr+f4jd0PXhGNGZtTNkwX0S/kPbjIgYZzMTwGRk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Reply-To:From;
-	b=F7lkSLyXPqicBGROFWe5YEm0hwGlmASQb80YXKtwsZdKz9r/3/gN1PQGdAqShudnu
-	 +v0mrjCkpzH953U+sjY/DUzzoont8/OvrTQJoOkYgSiJkUrU4HPTb3sQevwEjmpgcQ
-	 GSXZJl3606uFWjUOiB0PQ4koc8SYaXFQ26Yebg0M=
-Date: Wed, 16 Apr 2025 11:04:27 -0700
-From: Jacob Pan <jacob.pan@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- virtualization@lists.linux.dev, will@kernel.org, eric.auger@redhat.com,
- code@tyhicks.com, eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
- jacob.pan@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250416110427.21bdd561@DESKTOP-0403QTC.>
-In-Reply-To: <20250410230008.GA6905@ziepe.ca>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
-	<20250410230008.GA6905@ziepe.ca>
-Reply-To: jacob.pan@linux.microsoft.com
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1744826783; c=relaxed/simple;
+	bh=PVkhubuFxAaW2HEyB3Yl5c1VtK6NW7DIrcdAG8enNZc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jg5TJXFyEoEf0RmmeAOOstcmaf/WAtOyMXRNx20PdpXvfDMipYuJ0kXg4vi+LcnlP9yWY1K5jaG/P1cmM3YXZDDOgRFixrUnz9V/UQ/uFunKkF7/AXoXnzOcptVXiHUC980aD6Za3zks8HUPppj8N87DksDKiyv2NNhsufH9Vhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Im2xwCnb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF97AC4CEE2;
+	Wed, 16 Apr 2025 18:06:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744826782;
+	bh=PVkhubuFxAaW2HEyB3Yl5c1VtK6NW7DIrcdAG8enNZc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=Im2xwCnbuWvXprxRMFN95uCNBl4XFTCLZC5G3/pNuuqiITId0KO4AYAhS49Bfljri
+	 U3+tG0xNx4jDl4XH/iM6UUCVlV/QE378Y4zhkcHMv0raFO6cVuOg1CAw8ZyaGYCYiU
+	 glfjWAcaNQt0/RdqWGH6PC22Y6LKk3c3uCUlUvVUzLQefupDJt8/5s0pb/Q0OFnLt9
+	 AhdNdrvB5fmJqlAQRGLgYuOqCk0uLsPrTxtKChK+MQd7cNN8W6gTCMejvWIDmsdzte
+	 NoLOAMUZE4jqdJlnyJNc0uQF2HAvaP4Wwao26xK1iBQbJkRThTR9CaRo/l8jmJYnCZ
+	 IrTQrCVfVhUTw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B75D7C369BA;
+	Wed, 16 Apr 2025 18:06:22 +0000 (UTC)
+From: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
+Date: Wed, 16 Apr 2025 20:06:18 +0200
+Subject: [PATCH] arm64: dts: apple: touchbar: Mark ps_dispdfr_be as
+ always-on
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250416-arm64_dts_apple_touchbar-v1-1-e1c0b53b9125@jannau.net>
+X-B4-Tracking: v=1; b=H4sIAJnx/2cC/x3MywqAIBBA0V+JWSdUmD1+JUJMpxroIWNFEP170
+ vIs7n0gIBMGaJMHGC8KtG8ReZqAnc02oSAXDUVWlJnMlTC8KqndEbTxfkF97KedB8NClbV1TSU
+ dNhXE3DOOdP/rrn/fD/MfiopqAAAA
+X-Change-ID: 20250416-arm64_dts_apple_touchbar-658cd974de97
+To: Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nick Chan <towinchenmi@gmail.com>, 
+ Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2090; i=j@jannau.net;
+ s=yk2024; h=from:subject:message-id;
+ bh=vW+HnwVsI6HKFCWS8Ni6G5ezcLgPyLTobLTnqE3VCiY=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhvT/H+dWvp50jXemd5qQ38RFF3hTijMsYu7mde2Ydziu+
+ KpFdK5BRykLgxgXg6yYIkuS9ssOhtU1ijG1D8Jg5rAygQxh4OIUgIkY+zH8z965537Wq0sasRts
+ wlRYNmew7NDQK/Cxvlme92LpL6YWXoY/PILfNx+xaZGRT/UpC81uWrzrNUvCNpd5TLmLLgRUvLj
+ MAQA=
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Endpoint-Received: by B4 Relay for j@jannau.net/yk2024 with auth_id=264
+X-Original-From: Janne Grunau <j@jannau.net>
+Reply-To: j@jannau.net
 
-Hi Jason,
+From: Janne Grunau <j@jannau.net>
 
-On Thu, 10 Apr 2025 20:00:08 -0300
-Jason Gunthorpe <jgg@ziepe.ca> wrote:
+The driver depends on boot loader initialized state which resets when the
+ps_dispdfr_be power-domain is powered off. This happens on suspend or
+when the driver is missing during boot.
+Mark the domain as always on until the driver can handle this.
 
-> On Thu, Apr 10, 2025 at 03:50:27PM -0700, Shyam Saini wrote:
-> > 
-> > Hi,
-> > 
-> > Currently, the MSI_IOVA_BASE address is hard-coded to 0x80000000,
-> > assuming that all platforms have this address available for MSI IOVA
-> > reservation. However, this is not always the case, as some platforms
-> > reserve this address for other purposes. Consequently, these
-> > platforms cannot reserve the MSI_IOVA_BASE address for MSI.
-> > 
-The fundamental question remains: why is using IOVA 0x80000000, an
-arbitrarily chosen virtual address, a hardware issue?
+Fixes: 7275e795e520 ("arm64: dts: apple: Add touchbar screen nodes")
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+ arch/arm64/boot/dts/apple/t8103-j293.dts | 10 ++++++++++
+ arch/arm64/boot/dts/apple/t8112-j493.dts | 10 ++++++++++
+ 2 files changed, 20 insertions(+)
 
-> > There was an [1] attempt to fix this problem by passing the MSI IOVA
-> > base as a kernel command line parameter.
-> > 
-> > This patch series aims to address the issue by introducing a new DTS
-> > property, "arm,smmu-faulty-msi-iova" which can be used to hold
-> > faulty MSI IOVA address. This property can be passed to ARM SMMU
-> > drivers via device tree so that the drivers can select appropriate
-> > MSI IOVA base address which doesn't intersect with the faulty MSI
-> > IOVA address.  
-> 
-> I thought we already talked about this and you were not going to be
-> doing a DT proposal for a software knob?
-> 
-> And then you didn't even link to the recent discussion :(
-> 
-> https://lore.kernel.org/linux-iommu/20250403232619.GA681099@ziepe.ca/
-> 
-> It is easily solved in the smmuv3 driver without out any DT. Please
-> do that.
-Given the above fundamental question answered, then we do have a
-platform specific IOVA range to avoid, IMHO it must be enumerated via
-DT or some other means to avoid conflict.
+diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
+index 2dfe7b895b2bc0a913e73141e558fa5124a13b2e..e2d9439397f71a93c28b75a7eea589f4bcb3e374 100644
+--- a/arch/arm64/boot/dts/apple/t8103-j293.dts
++++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
+@@ -77,6 +77,16 @@ touchbar0: touchbar@0 {
+ 	};
+ };
+ 
++/*
++ * The driver depends on boot loader initialized state which resets when this
++ * power-domain is powered off. This happens on suspend or when the driver is
++ * missing during boot. Mark the domain as always on until the driver can
++ * handle this.
++ */
++&ps_dispdfr_be {
++	apple,always-on;
++};
++
+ &display_dfr {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
+index 3d73f9ee2f46a35a3b23da5b233ef316c7372ef7..be86d34c6696cb47d31696541266e504cee8ce10 100644
+--- a/arch/arm64/boot/dts/apple/t8112-j493.dts
++++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
+@@ -40,6 +40,16 @@ led-0 {
+ 	};
+ };
+ 
++/*
++ * The driver depends on boot loader initialized state which resets when this
++ * power-domain is powered off. This happens on suspend or when the driver is
++ * missing during boot. Mark the domain as always on until the driver can
++ * handle this.
++ */
++&ps_dispdfr_be {
++	apple,always-on;
++};
++
+ &display_dfr {
+ 	status = "okay";
+ };
 
-Per last discussion "SMMU driver have a list of potential addresses and
-select the first one that does not intersect with the non-working IOVA
-ranges.". If we don't know what the "non-working IOVA" is, how do we
-know it does not intersect the "potential addresses"?
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250416-arm64_dts_apple_touchbar-658cd974de97
 
-Thanks,
+Best regards,
+-- 
+Janne Grunau <j@jannau.net>
 
-Jacob
+
 
