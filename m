@@ -1,140 +1,145 @@
-Return-Path: <devicetree+bounces-167867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9F11A9091C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:35:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C554A90922
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:40:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F2A35A4441
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:34:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D10797A95E9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBA620F066;
-	Wed, 16 Apr 2025 16:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F90211A1D;
+	Wed, 16 Apr 2025 16:40:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBO62cTz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="efsHX+Re"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D43178395
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 16:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585A31552E3;
+	Wed, 16 Apr 2025 16:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744821083; cv=none; b=TurxlI1r6FkuhJm4XumAyFfvVayQpd0WDgr1z8hQcuYfjl6XzOJCfJhvmsyR1TZC+e+UrHPClHF6xOqHRWQ+0x83f+RTf45+bD3H54svd8MA04S6hwPDuzZn9P+WZOtI6zwgbGbV7YYgdp4V3B7HRODU6l++LPuQKcJ4qxzbWhY=
+	t=1744821629; cv=none; b=N6JK3ASF3k4Xi1Tf28KEuMmSR5PqpC+jDgapsBlAGfAVjb1BNvQbXnJXTFKTEkJbBNspuzeXapVPvbo4glcILQLTRiz2nykOAXLlfz2Syos7QYsIo3GEpj3SACWPROlkP5rIn5eXKJ2zB/d1VbuLIwkrqsuQYjjd6Kzr3q2A+aA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744821083; c=relaxed/simple;
-	bh=gd4WJ1bKoNwsdKrjrxPXgePTdjDUnGH4t90UElI2Ng0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LKG3KqjpKWz7CVCq6AeE/QreR3CGWMKyWs2RonBEd1UD/5ec5oDSLlCM4kzvkOS+5oEpjy7LbaFGDwhyvZGgEPOyuP33BYmlBzeXe+sdBtQhZimbiHWVX0clFqRCexkRzaVF4YD5aSJxA05GHo5LAsymz1B1AB76KsajKLZSQPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBO62cTz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B4FC4CEE2;
-	Wed, 16 Apr 2025 16:31:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744821082;
-	bh=gd4WJ1bKoNwsdKrjrxPXgePTdjDUnGH4t90UElI2Ng0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oBO62cTzmHGTYfMcNfBkhSRUl+ysy7VRh0akpS1HqVX8NftlJKagpLADUPEOJy57Q
-	 r+YEvPJfvGGjK+T7q2klddkSFTYXRAmmBWi/7ekn2H3CvjoWrxukrV/SEMPVbZHgcz
-	 BiMabEqAhxo61m8fF2aGJfNUSuBVwQak91EmpVk2PU37LBgDZAliZdY6bDHynSwLT/
-	 nRQdLttpKUYTKdj1S1u97In5c+7iLK8OnUfH3U9MzK43ujiHgK9OLd8Jld4nFybRpI
-	 TQaXH1mh+VZT+J1QgJZ31cIgqap+JZew9TjlrFvX6/+mg47O/wz08xUvSpWBX9SF8r
-	 yLDt/mgU0fN9Q==
-Date: Wed, 16 Apr 2025 17:31:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dominik Haller <D.Haller@phytec.de>
-Cc: "robh@kernel.org" <robh@kernel.org>,
-	"kristo@kernel.org" <kristo@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"vigneshr@ti.com" <vigneshr@ti.com>, "nm@ti.com" <nm@ti.com>,
-	"m-chawdhry@ti.com" <m-chawdhry@ti.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"upstream@lists.phytec.de" <upstream@lists.phytec.de>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC
- AM68x based hardware
-Message-ID: <20250416-repost-crock-e86b694bd268@spud>
-References: <20250415130458.33714-1-d.haller@phytec.de>
- <20250415-lark-deskwork-7850a95aa955@spud>
- <e93ea6f4c401089298dcf36ac35dbc4365deb9b6.camel@phytec.de>
+	s=arc-20240116; t=1744821629; c=relaxed/simple;
+	bh=kdWGzMC4e8Q/F55njWJtcJOc5uDVvyTSX+OFhhLoMs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kCY9WrfRx1c7rvnIHYbWJhK1+GR4pSo2ocnQWXIJ0CdLPiDT2XQnz0PviTeu+4UHCI7pQxwPclv5oBDBES08ufKfbbdECaHQbrdxdz29V76fJybObF8S5CCfXU8dg1ibRm3wsXkK92ma46YAtlOXfMXsIOEsfNPTG57oAZuRqLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=efsHX+Re; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mFPI007029;
+	Wed, 16 Apr 2025 16:40:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YnCM84KjxzfyDSxb3gt85GemZL1H2aNhnuW7pS5CQkw=; b=efsHX+ReLvKFxozR
+	N4FGKnp3F0eeNoPpxrqt4fc9ZzpVozHxy8mAYMk45aOKaKp8bceBNsK3Ej81F36s
+	9ddC4lG3al5FsvWW19MyqSh1COcyzibaE1wLe1j1qi1pf3wzx48atJTG5IN75iTW
+	4HVh4OU/M++RNCbyXXOi82ru0deY34IRCB0nNsQ+o8IkbKT5hdgiJpMpaxaTXXDy
+	3JZHQddFUSht8hNvbn6UXZbsJ+2oF841hma5u+7v95nZgn6Pa5TcpnRfOl4MYHSK
+	DibFQq3Q8ighMArntczOJm+V1wBAW/VgOkRvnC4qln0o5OC1rLDdDlIbHU57F/tJ
+	u5Od1Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfgjm46e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Apr 2025 16:40:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53GGeLh7023006
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Apr 2025 16:40:21 GMT
+Received: from [10.50.19.174] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 16 Apr
+ 2025 09:40:15 -0700
+Message-ID: <30ebc1b7-5746-59a3-0155-7a7870544622@quicinc.com>
+Date: Wed, 16 Apr 2025 22:10:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VGUmC/Ceia8R78/F"
-Content-Disposition: inline
-In-Reply-To: <e93ea6f4c401089298dcf36ac35dbc4365deb9b6.camel@phytec.de>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 01/20] media: iris: Skip destroying internal buffer if not
+ dequeued
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Stefan Schmidt
+	<stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <stable@vger.kernel.org>
+References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
+ <20250408-iris-dec-hevc-vp9-v1-1-acd258778bd6@quicinc.com>
+ <811cd70e-dc27-4ce0-b7da-296fa5926f90@linaro.org>
+ <137c68d5-36c5-4977-921b-e4b07b22113c@linaro.org>
+ <96bd9ffa-94f6-0d1f-d050-5bec13b3328f@quicinc.com>
+ <70a630cb-06ad-403c-b2e2-ae6d26e0877e@linaro.org>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <70a630cb-06ad-403c-b2e2-ae6d26e0877e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3hVtaosg3CGbQh3bTYuTewtgMNNFml9Z
+X-Proofpoint-ORIG-GUID: 3hVtaosg3CGbQh3bTYuTewtgMNNFml9Z
+X-Authority-Analysis: v=2.4 cv=Cve/cm4D c=1 sm=1 tr=0 ts=67ffdd76 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=UQm-4NqDxuu6OjQSYYYA:9 a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_06,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=917 mlxscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160135
 
 
---VGUmC/Ceia8R78/F
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 16, 2025 at 12:25:36PM +0000, Dominik Haller wrote:
-> On Tue, 2025-04-15 at 17:09 +0100, Conor Dooley wrote:
-> > On Tue, Apr 15, 2025 at 03:04:56PM +0200, Dominik Haller wrote:
-> > > Add devicetree bindings for the AM68x based phyCORE-AM68x/TDA4x SoM
-> > > and the phyBOARD-Izar carrier board.
-> > >=20
-> > > Signed-off-by: Dominik Haller <d.haller@phytec.de>
-> > > ---
-> > >=20
-> > > Notes:
-> > > =A0=A0=A0 Changes in v2:
-> > > =A0=A0=A0 - no changes
-> > >=20
-> > > =A0Documentation/devicetree/bindings/arm/ti/k3.yaml | 2 ++
-> > > =A01 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > > b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > > index 18f155cd06c8..a03fdb9c0482 100644
-> > > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > > @@ -135,6 +135,8 @@ properties:
-> > > =A0=A0=A0=A0=A0=A0 - description: K3 J721s2 SoC
-> > > =A0=A0=A0=A0=A0=A0=A0=A0 items:
-> > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - enum:
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - phytec,am68-phyboard-izar
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - phytec,am68-phycore-som
-> >=20
-> > This looks wrong, if I am not misunderstanding. Your izar dts
-> > includes
-> > the som dtsi, so this should be configured with a fallback, so you're
-> > going "phytec,am68-phyboard-izar", "phytec,am68-phycore-som",
-> > "ti,j721s2",
-> > no?
-> The compatibles are "phytec,am68-phyboard-izar", "ti,j721s2"; in the
-> dts and=A0"phytec,am68-phycore-som", "ti,j721s2"; in the dtsi now.
->=20
-> So when I add the phytec,am68-phycore-som comaptible to the dts I'll
-> move my bindings into an own entry and use a second const for the som:
->=20
->       - description: K3 J721S2 SoC Phytec SoM based boards
->         items:
->           - enum:
->               - phytec,am68-phyboard-izar
->           - const: phytec,am68-phycore-som
->           - const: ti,j721s2
+On 4/16/2025 5:40 PM, Bryan O'Donoghue wrote:
+> On 15/04/2025 05:58, Dikshita Agarwal wrote:
+>> Although firmware makes sure that during session close, all buffers are
+>> returned to driver and driver will release them but still we shouldn't rely
+>> for this on firmware and should handle in driver.
+>> Will fix this in next patch set.
+> 
+> Shouldn't we reset iris in this case ?
+> 
+Not required.
+> i.e. its a breaking of the software contract to have failed to have
+> returned a buffer by - close.
+> 
+> Its not enough to free the memory on the APSS side as the remote end could
+> still assume ownership of a buffer... right ?
+> 
+Before close, Stop will be called to firmware and firmware will return all
+the buffers to driver, which will transfer the ownership to driver, so no
+issue with freeing these buffers in close.
 
-This looks more like what I'd expect, ye.
-
---VGUmC/Ceia8R78/F
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ//bVgAKCRB4tDGHoIJi
-0gEOAQC41W0X7lIQLzvWx+GjIyTqwWL/Ak2Hilski22leIhZ9gD/Y9/3EHL8AwMr
-mB65pu9rFGljtn2AssgjV1vVv+5DHws=
-=RVvU
------END PGP SIGNATURE-----
-
---VGUmC/Ceia8R78/F--
+Thanks,
+Dikshita
+> ---
+> bod
 
