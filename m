@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-167604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4629A8B113
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:50:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D637A8B138
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:55:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4840C5A1224
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:49:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8218F7AF9D9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479F6205ADB;
-	Wed, 16 Apr 2025 06:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366C72459E5;
+	Wed, 16 Apr 2025 06:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzu1MXsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBAmxhYU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC721A8F9E;
-	Wed, 16 Apr 2025 06:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015CF2451F1;
+	Wed, 16 Apr 2025 06:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744786198; cv=none; b=qVYoxd6lRR7kTgJudvdNUBMFMBiXKdicaoiAMyyM7fyOjjhGwrzy1MkCzFoDffFSjRoXlHl/U4q9LLC02OCfQk1V3bY4/R/uKKYCY4WzB7Nx9dgpLtitJuC9UDjHt5Ia0jsWhp9PZwEcHbCMSIbsKfdkCKFEYoz/alHDMmg+yY4=
+	t=1744786328; cv=none; b=f0COurrWdNdiIweq9Qc7YhH/tYNFCnJBI8Nq37svtv4mlAY6fphICmj0EFg0kchCaMLh6+JB7bYYsFJdpw1fe3sGJtZ+FfMVB20bQn7anxgz72t22eXZLCvGK91jWeF+7oxgoyXWRaLjGsmCgrSu/KhIMGXEv6Gg7WPSAmSlqrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744786198; c=relaxed/simple;
-	bh=ZgghYAXuPRzB6na0PEJh4NWaeMpWixxoB+4GK0zm6/w=;
+	s=arc-20240116; t=1744786328; c=relaxed/simple;
+	bh=8D9c+befnHt33zm3mTibHfIF8FewIfXRrEv4gm5R/8Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PwDfucr/fibQ79I3XYBFdPdqdBhCkjyWBSVHSwyjtjVZWjJ7lmBVmetTJH4y0mPb2rwyYdmwoFpER+xilR4/aTO42bw9v+rXWDznPDkuj1+IwWOanIVE/ovmlwO5GG7noDRIUfViGN5jlXSSspZWvtEPYd+XdVLDlhMscK4z1jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzu1MXsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80731C4CEE2;
-	Wed, 16 Apr 2025 06:49:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rqXxCC9RkV3e33T9Izsqejdw1ilRysGQdGyBg/f35yVUsnQ6M/aIn3NOF/7AG3S+vi8As+xKx554ReUMxFLf0I/i1GtJOpwfxk0JaMMP67II6OTEcjjJ9Ey7M3mIO3gpwC5y5T5Tw87vzZpJGO+FMJD6NupbVGPMWmAiQT2Mddc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBAmxhYU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482A9C4CEE2;
+	Wed, 16 Apr 2025 06:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744786197;
-	bh=ZgghYAXuPRzB6na0PEJh4NWaeMpWixxoB+4GK0zm6/w=;
+	s=k20201202; t=1744786327;
+	bh=8D9c+befnHt33zm3mTibHfIF8FewIfXRrEv4gm5R/8Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nzu1MXsQYi/9cbhXPuU0Ghvsv8j6eJiY/35vOmAKXjxvbUSR4hPDUxf/JvCXFEiZe
-	 TlfkHglIccPp1O+6zJ/Z1c3PgL8oQgfS0IPp+E4twzYj2ptE+RiaBkDeK6Xy0ifO4b
-	 QFHvol6LbP8CGN1oDkf+v5wHhITCA4zSt06qY18tXEM7J+VPLqTfUtql3C8Rc5hADU
-	 m97atJ92oYDqK1cFpVN1SeAW/vzgSgBzxIMy+Q4dX/EThmDAn/QsSosPERS0tvr4Ss
-	 pYS34PZJO9TJkZIt7r5Hhp1mpKQJTl2B3vh5gKhhxKxgxSTQnVC5G33Rg1NI6ujR6U
-	 8JcMZe35iHmDQ==
-Message-ID: <8b471f1b-abff-4773-a059-ca8c8d89a2ba@kernel.org>
-Date: Wed, 16 Apr 2025 08:49:50 +0200
+	b=bBAmxhYUlraviI3yi0IxzVz01ee11wH6ZyQ14I806Z4xGXYV2xFhYMoCW54mr9BsD
+	 Ir9SA8O6dqryZLZwVl4j2KDLOd8ePCnmU3UU55P+VXg7LYeBnKL54K2cjMz85ynz53
+	 AJTp8CumZNCtqkYGoJkiz8L8nBSkU7a8mRMH4ZyYvbNd/5AZTF//OxQvxOjUgjJLZl
+	 o44YQQ7Zp1jedXP+gM+/MDy+4dWSWdOfTFrU6n2YtwLSrZFNW0+p24g4fOj5OdOpwY
+	 x94hJAEe/IUbtLC7MBAjSMLRUNkZflSLFy5kX/OIvIIiix3UF7TVUp6Kt8/gzUeRPN
+	 MxrgEsVvrGdUw==
+Message-ID: <2d3d4240-65ab-4fd1-a86a-503bb40f34a6@kernel.org>
+Date: Wed, 16 Apr 2025 08:52:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: Add device Trace Network On Chip
- definition
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: kernel@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250415-trace-noc-v4-0-979938fedfd8@quicinc.com>
- <20250415-trace-noc-v4-1-979938fedfd8@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: nuvoton: Add USB Hosts
+To: "William A. Kennington III" <william@wkennington.com>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250416001818.2067486-1-william@wkennington.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,20 +103,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250415-trace-noc-v4-1-979938fedfd8@quicinc.com>
+In-Reply-To: <20250416001818.2067486-1-william@wkennington.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/04/2025 11:25, Yuanfang Zhang wrote:
-> Add a new coresight-tnoc.yaml file to describe the bindings required to
-> define Trace Network On Chip (TNOC) in device trees. TNOC is an
-> integration hierarchy which is a hardware component that integrates the
-> functionalities of TPDA and funnels. It collects trace form subsystems
-> and transfers to coresight sink.
+On 16/04/2025 02:18, William A. Kennington III wrote:
+> The npcm 8xx chip has 2 EHCI and 2 OHCI hosts with driver support
+> already existing in the kernel.
 > 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> Signed-off-by: William A. Kennington III <william@wkennington.com>
+> ---
+>  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 28 +++++++++++++++++++
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please do not send 10 separate patches, but one patchset for given
+subsystem.
+
+>  1 file changed, 28 insertions(+)
+
+
 
 Best regards,
 Krzysztof
