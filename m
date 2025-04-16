@@ -1,112 +1,150 @@
-Return-Path: <devicetree+bounces-167617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EF8A8B1F9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:23:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1E6A8B219
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:28:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B98F83AAEF8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:23:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1FA31904FBA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEC322D79F;
-	Wed, 16 Apr 2025 07:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB4E4227B94;
+	Wed, 16 Apr 2025 07:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EdPOO+ei"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jSm0hHpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD2822D4E9
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7F72DFA4E;
+	Wed, 16 Apr 2025 07:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744788170; cv=none; b=KWgchTpH5SpN2LnR1YDhsdBt6I1UXMavaA3TJJd/UznkCO2ZCxWVHhoYukb9dccGA0PUzE7/onpX+SiBje3xOEi05+haEnmYumFsjxy107xlAFIvargxu/I54N3wW4/WabdqdQkW9+kx5D3sEQScLEGn7/MjD27Ow7g7OUrv2Qo=
+	t=1744788501; cv=none; b=twvmjNHwl76rWXYhYjsko7dA2kT6MSTWIpr2U34/9rFBTORpRhuyO8NeE1gRKdKBswdWnJm735SaySJeksJ45yWMzZmkJoMuU49INPOr8MQnQ1IqVFkWxft9ST+PS1FdoAVi+N5QHSOuGlwHbMJAq+zGbONg2eB8dx2PGeOmgW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744788170; c=relaxed/simple;
-	bh=6tPzTMhBIP4Ztm/pamoA9E7AfPXNf+05fR7f70iwjcg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UXh5DTrrMDjQAEFXZ90zHxDC+6guGYDot9QITEXDYRsMPXTZUXSydado1+yX/+ufQaCO+kb6heahvDi29SNnhvslYAoh5nbKp0aS3klqJKwjSWaoqWmtWyglhI+HfAX40s8vUUiDVEYNfH6PKUoP2r4XrCahhSyruBauV+p8j+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EdPOO+ei; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-31062172698so35770071fa.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 00:22:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744788166; x=1745392966; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xWD5DtO8Zmjj8hm/jgNeXXYBfzD9O0HKgWcyYm/pe+g=;
-        b=EdPOO+ei2bPpqPvFGSAN5GkWEPL5g+w7K0Xg3ZtOd0xDm7VqxWZgXKJC2or7VdY8tY
-         S3PSICLGT8C3k7syA6GtNAtVh+xacMzsXIN9Kjl6YKmKTqk020PDS/b+idXA61pmGDT/
-         gUfMPPIn/Ohg18u1+R3fJdy3KlKH/SNiXjmBlfT4K4/zpDnBhdsCR8xqsgpI8VcUbZvH
-         62Z+pgv4uFDP0ZYnR/FBvxbl1rgPAE6pCxfySCvSWCKpLWAoKDD6Xvo1DMfKzP4L9WN0
-         mRnkvpdTfNylZUQU32QFyP3PZl/CzKfcjhQ7yNpTSdv43CWgkkZUUWBccTza4/S7+R/V
-         5UKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744788166; x=1745392966;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xWD5DtO8Zmjj8hm/jgNeXXYBfzD9O0HKgWcyYm/pe+g=;
-        b=nspOAxp8kx3nOwQLNbFNOG43NwYL9UJy6q7iluPYKFfEWpRUcMVANJd/Oov12tmHl3
-         ptJ1vDiVjdbT1HbJr/pr7ppcrDCkzFynI/h/vrNimItDO8Jx7BfmUiVkWhJTWt0ZhxQj
-         d334oGWl2cZOjuDZnKbMWEKYHUaurYlN/iXsfZS/+chQ5b7WL8QAEZzRxQy0mYNCk+c5
-         qTytUHE7d8lGF73Ery7BlxHRVUwjUkilxwqUQ+9ZH1SBSXR8r0XNReq1eInhl8KkQFAz
-         2D5sqJopnvoCWdWLSURW3VbXUpeGJSQdwdBxFKloWPn0X20DGgq2FnxScYtEI1Q2xGdm
-         r6ew==
-X-Forwarded-Encrypted: i=1; AJvYcCX9FNOGqCx2163Z+QyMNc4n4w8mDpPCx6xTE6Fjm0563wTUTTVX8vzuEclD/uN6DlAzjdK05Pw02+C8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXKU4AV+Do9GClHjUm8WCZxI+Rgnee/KSErY9xWIt42G8P/a2O
-	uaf4MGHvLtAnn+4nJAq98x+Ce2LIT4slbJZ+d9jrDesW9GTjyvEynW/9tMiMcIBYxcFTAPjSKdh
-	HG6VlHT1HTYHOGzk4RnsBWVT1kY+Mo20ztxXZ9/5sE15PRYI71N4=
-X-Gm-Gg: ASbGncvYo2c/QqSIfwcGyM8fXYnQtP/4ooNeysd+cxC0li8Aek95cHiI+i+kFdYsrZG
-	KGyyU1eGcJahWOoBZ7oz1G4Dz2t9uCQyy/180xOW3+1yCRAI/fh6ESRWQpdfZearR/T46IUW6KX
-	Y04zu8rENBhVsqaTF6MoiTpQ==
-X-Google-Smtp-Source: AGHT+IFJzy+zttruUfUSE7DAKwZxb0lvHyIXLpWKETv/eqQTmvTOtmlAPv2KPiXrE9yHLzHL0bc/wktEHBwODzsfibQ=
-X-Received: by 2002:a05:651c:243:b0:309:2ed:72df with SMTP id
- 38308e7fff4ca-3107f6ceca2mr1915221fa.24.1744788166445; Wed, 16 Apr 2025
- 00:22:46 -0700 (PDT)
+	s=arc-20240116; t=1744788501; c=relaxed/simple;
+	bh=HIk3I9wzakt85jAXOpCYym+UKIgHZ9FhR06F2xOAwBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D0HWAxd819LAq6vM85h0IpR+NtVM+81sxgiCdRsDU8qn1+mAqVFE9HCXxQCpDHC6rHwXPsdOkr2bWsvA4V8Z/hiyrxk9Ec1RxeYwt+I3dl3doCMiBDOW6SV/1BpdEkmzQ29G9Sy1Y7bcvlsJg2eoIxstCborA4GlEmy1lwqL/WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jSm0hHpj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02CC2C4CEE2;
+	Wed, 16 Apr 2025 07:28:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744788499;
+	bh=HIk3I9wzakt85jAXOpCYym+UKIgHZ9FhR06F2xOAwBs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jSm0hHpjOsvl1cJZdOTBmGEIHkc6ZGCh60vrjEweW/RCtdX44k7jHXbwo4ZQuITMG
+	 cXG92T59+JxPUYlZuoyVYY+drNbVxN+pogsubPy17BFhkodiYpB/gvf/JPAH1evqky
+	 t0OG4Zok3wKW3QVGzgXVv2oixrB2RTkcKOgKE0l2M+lPtgGryzcpiN/Qx2x32ISkUF
+	 R7UCQofA1aM9H9BX5fhvp7SvRbnDki9SV7C7mYIjxUKuLQlZyGBr3+vPNH0oLINKaL
+	 1+eRUcyx8KqmovuDPOLVDepvTp49HqLqnC4ozmRgOaZdPFwiLKyVY+ReCci3mimKk8
+	 b8nVz71nBgvaA==
+Message-ID: <1f813896-0be6-42bd-9e99-2e0a4895fbd9@kernel.org>
+Date: Wed, 16 Apr 2025 09:28:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414090215.16091-1-ot_cathy.xu@mediatek.com>
-In-Reply-To: <20250414090215.16091-1-ot_cathy.xu@mediatek.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 16 Apr 2025 09:22:35 +0200
-X-Gm-Features: ATxdqUGunV3YCOGXGIOJ9QSL-oTOhWVqzDgVFDf8RsYkNrat6ruPMmmT7W9km-0
-Message-ID: <CACRpkdYUqHzid4Rnuv4arC9wu9fmpcGR22Jc5JzJhyr7fABMCw@mail.gmail.com>
-Subject: Re: [PATCH v7 0/3] pinctrl: mediatek: Add pinctrl driver on mt8196
-To: Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, 
-	Lei Xue <lei.xue@mediatek.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	yong.mao@mediatek.com, Axe.Yang@mediatek.com, Andy-ld.Lu@mediatek.com, 
-	Wenbin.Mei@mediatek.com, Jimin.Wang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: exynos: add initial support for
+ Samsung Galaxy S22+
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250321145556.1436201-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250321145556.1436201-4-ivo.ivanov.ivanov1@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250321145556.1436201-4-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Thanks Cathy, this version looks finished!
+On 21/03/2025 15:55, Ivaylo Ivanov wrote:
+> +
+> +	/*
+> +	 * RTC clock (XrtcXTI); external, must be 32.768 kHz.
+> +	 *
+> +	 * TODO: Remove this once RTC clock is implemented properly as part of
+> +	 *       PMIC driver.
+> +	 */
+> +	rtcclk: clock-rtcclk {
+> +		compatible = "fixed-clock";
+> +		clock-output-names = "rtcclk";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +	};
+> +
+> +	/*
+> +	 * cpu2 and cpu3 fail to come up consistently, which leads
+> +	 * to a hang later in the boot process.
+> +	 *
+> +	 * Disable them until the issue is figured out.
+> +	 */
+> +	cpus {
+> +		/delete-node/ cpu@200;
+> +		/delete-node/ cpu@300;
 
-On Mon, Apr 14, 2025 at 11:03=E2=80=AFAM Cathy Xu <ot_cathy.xu@mediatek.com=
-> wrote:
+status = "fail"
+does not work?
 
->   dt-bindings: pinctrl: mediatek: Add support for mt8196
->   pinctrl: mediatek: Add pinctrl driver on mt8196
-
-I applied thes two patches to the pinctrl tree.
-
->   arm64: dts: mediatek: mt8196: Add pinmux macro header file
-
-Please apply this patch to the SoC tree.
-
-Yours,
-Linus Walleij
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				/delete-node/ core2;
+> +				/delete-node/ core3;
+> +			};
+> +		};
+> +	};
+> +
+Best regards,
+Krzysztof
 
