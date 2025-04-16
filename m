@@ -1,150 +1,122 @@
-Return-Path: <devicetree+bounces-167618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1E6A8B219
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:28:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75043A8B245
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:36:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1FA31904FBA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:28:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE734174E20
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB4E4227B94;
-	Wed, 16 Apr 2025 07:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D678D22B8C2;
+	Wed, 16 Apr 2025 07:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jSm0hHpj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lu3GcZPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7F72DFA4E;
-	Wed, 16 Apr 2025 07:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A7F227E95
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744788501; cv=none; b=twvmjNHwl76rWXYhYjsko7dA2kT6MSTWIpr2U34/9rFBTORpRhuyO8NeE1gRKdKBswdWnJm735SaySJeksJ45yWMzZmkJoMuU49INPOr8MQnQ1IqVFkWxft9ST+PS1FdoAVi+N5QHSOuGlwHbMJAq+zGbONg2eB8dx2PGeOmgW8=
+	t=1744788963; cv=none; b=rQU6fbsblvMcjHUr3v1HVYTU81219TRem7FRGfxLLTX1kLifgd6FXeg1LuDnTguH3F6YryQzX+xDn67HJHhIg10bybPuT7Q5SOUwAOhYMb6XXpWq9BrHOBdEejYqdh0HX2+qxzmk2NSePXVZ+DuEo1U5lOaGsuAPsGVihcE/fY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744788501; c=relaxed/simple;
-	bh=HIk3I9wzakt85jAXOpCYym+UKIgHZ9FhR06F2xOAwBs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D0HWAxd819LAq6vM85h0IpR+NtVM+81sxgiCdRsDU8qn1+mAqVFE9HCXxQCpDHC6rHwXPsdOkr2bWsvA4V8Z/hiyrxk9Ec1RxeYwt+I3dl3doCMiBDOW6SV/1BpdEkmzQ29G9Sy1Y7bcvlsJg2eoIxstCborA4GlEmy1lwqL/WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jSm0hHpj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02CC2C4CEE2;
-	Wed, 16 Apr 2025 07:28:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744788499;
-	bh=HIk3I9wzakt85jAXOpCYym+UKIgHZ9FhR06F2xOAwBs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jSm0hHpjOsvl1cJZdOTBmGEIHkc6ZGCh60vrjEweW/RCtdX44k7jHXbwo4ZQuITMG
-	 cXG92T59+JxPUYlZuoyVYY+drNbVxN+pogsubPy17BFhkodiYpB/gvf/JPAH1evqky
-	 t0OG4Zok3wKW3QVGzgXVv2oixrB2RTkcKOgKE0l2M+lPtgGryzcpiN/Qx2x32ISkUF
-	 R7UCQofA1aM9H9BX5fhvp7SvRbnDki9SV7C7mYIjxUKuLQlZyGBr3+vPNH0oLINKaL
-	 1+eRUcyx8KqmovuDPOLVDepvTp49HqLqnC4ozmRgOaZdPFwiLKyVY+ReCci3mimKk8
-	 b8nVz71nBgvaA==
-Message-ID: <1f813896-0be6-42bd-9e99-2e0a4895fbd9@kernel.org>
-Date: Wed, 16 Apr 2025 09:28:14 +0200
+	s=arc-20240116; t=1744788963; c=relaxed/simple;
+	bh=utHL6CUHYCqScb8aWOZTdLTjaHpP5+HYoKwpnSAv4bU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kc+hOgi/U9bAOi3la/UGDExWm13Jd4ivaXBFrk/AvgrCgmUgrZ7esvZumXslS99TG5iUHXIMKWctTYPtkRg3GA9+NvEmKL6CnL5C33cqD0goMvk21HhuLSWK+2EKKcx6xtM99+2UNDEOWymY8PD2H+mFdKagUno/lRl1qHnqxEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lu3GcZPN; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5499c5d9691so6883409e87.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 00:36:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744788960; x=1745393760; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tahJOR44ovG/8oTG2DD87WyQ8FqTumd0rmUHp9pfS34=;
+        b=lu3GcZPN+XygfeaT2uHJayCF6M+/wfAPQ/bNsYGXAxeR+WRfQ/tkWJHaSS+SZoHgbf
+         RsduXzY2ze1fG4ztcLqfU9FZ0h27ogNF0IL/K9015x58ey4l+myjAmT3yz8Mb3p7tgT8
+         ca4KthVRjNVU5/0V9jTOvWEe9PSfRA4jxO3/xnnmVCeQVgJuNztTHZhRBcdgonT2sydU
+         lx9bel5VhZoMQswpK6A0jfFjCCxb9KRlm0EkwwDAx723eGBa0cuauyLXzP4IBR73IL++
+         hAQ4eNfoQkEjAnIGAQ6DBfJNrJuLcCW6nEPe1rRgpc4P3mdob3HPQH47Vadg93KLTrS8
+         T0Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744788960; x=1745393760;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tahJOR44ovG/8oTG2DD87WyQ8FqTumd0rmUHp9pfS34=;
+        b=Gxy52JdQUMd9GUT6w8yFSWdbjBxhTinGVo39Mc++tNrGZvrVArLfmKZh2mpKs7nxNf
+         pmoytgSit8onwowqHjbuUkd8O3NOmRUIMN8dgfa9QhvL9taqoxiIxdzdhaqR9PIUd3Dj
+         8OagjVpUsl4G5PzA5SxCNKZgVCS5ub+LeTyK405hu+CcwjGXUYJQgRkELmHrctFjlLAa
+         PBM8EnW5fcx6hax7xRS80BlLfx6zKjz9uwDH4KVc5X07+81tSwXG7YMr0Zyyo2WKf7a8
+         FQXnu8M2114ibn1Q/320kbLzHu9iM4ePv8rWhYOswoPzGjvZbjDf2dlfV+baKt6DJPI2
+         inxg==
+X-Forwarded-Encrypted: i=1; AJvYcCVv5taMftQKP/Ru2CYBa9HwMw3NzSQyyuahRv5EbJfYFM10LaQuDr95TH/S7hb1RLhLxW9LgYh8+XTS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/JhDRE960Wx+PzAI1ltE41aui0HnC7dz4/BJiAzx7YBtZjV8q
+	bcS34nVx8csYy5B6olZ0UbMF7C03Eud2r+DdRkoZLfCYCmj9dib3j4nYnKSQn+BO9gUXVF+zmo7
+	scunBWcieFz6m1RFRUOdXVpvFOO6dltDQMmwQQQ==
+X-Gm-Gg: ASbGncsWHOsHx0lSRiaLWluaK9zPZ2Crz/9j8I7vYba4zDH2yI77IgvfHuA5+F/MLk8
+	t9UfNuF9wLW+0dLeVwFSu38EZFVvo2AHDeZdVUs0rGejfagsm51S/Ve2lY+47Y6orJ7unO4fCgA
+	nPYLBrVwW35Tg2pavG7Wl/Nw==
+X-Google-Smtp-Source: AGHT+IH24Ze7Uj+sez6vaxU18ssHrwQYzi2qOUAKOEfNuhruNeH0Yi5FTQWh526Drs8Kqf/boypXWbGB6xmSwB0JtV4=
+X-Received: by 2002:a05:651c:b0f:b0:30b:d44d:e76d with SMTP id
+ 38308e7fff4ca-3107f717f28mr2363111fa.26.1744788959942; Wed, 16 Apr 2025
+ 00:35:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] arm64: dts: exynos: add initial support for
- Samsung Galaxy S22+
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250321145556.1436201-1-ivo.ivanov.ivanov1@gmail.com>
- <20250321145556.1436201-4-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250321145556.1436201-4-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1744325346.git.Jonathan.Santos@analog.com> <2a789531fda5031c135fc207a547f2c3f00a13ea.1744325346.git.Jonathan.Santos@analog.com>
+In-Reply-To: <2a789531fda5031c135fc207a547f2c3f00a13ea.1744325346.git.Jonathan.Santos@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 16 Apr 2025 09:35:49 +0200
+X-Gm-Features: ATxdqUERw-HLaVcEGEBRc9LkrCdUDVa5ewjlkgrTDVV5Xmky5Ym5mhn0wiOk-Q4
+Message-ID: <CACRpkdY0VAkW3v5mBzxz5u5RfLv4zpj5sy-zpx8Ma9+0=8qQfQ@mail.gmail.com>
+Subject: Re: [PATCH v5 09/14] iio: adc: ad7768-1: Add GPIO controller support
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com, 
+	brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org, jonath4nns@gmail.com, 
+	dlechner@baylibre.com, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 21/03/2025 15:55, Ivaylo Ivanov wrote:
-> +
-> +	/*
-> +	 * RTC clock (XrtcXTI); external, must be 32.768 kHz.
-> +	 *
-> +	 * TODO: Remove this once RTC clock is implemented properly as part of
-> +	 *       PMIC driver.
-> +	 */
-> +	rtcclk: clock-rtcclk {
-> +		compatible = "fixed-clock";
-> +		clock-output-names = "rtcclk";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +	};
-> +
-> +	/*
-> +	 * cpu2 and cpu3 fail to come up consistently, which leads
-> +	 * to a hang later in the boot process.
-> +	 *
-> +	 * Disable them until the issue is figured out.
-> +	 */
-> +	cpus {
-> +		/delete-node/ cpu@200;
-> +		/delete-node/ cpu@300;
+Hi Jonathan,
 
-status = "fail"
-does not work?
+thanks for your patch!
 
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				/delete-node/ core2;
-> +				/delete-node/ core3;
-> +			};
-> +		};
-> +	};
-> +
-Best regards,
-Krzysztof
+On Fri, Apr 11, 2025 at 5:58=E2=80=AFPM Jonathan Santos
+<Jonathan.Santos@analog.com> wrote:
+
+> +static void ad7768_gpio_set(struct gpio_chip *chip, unsigned int offset,=
+ int value)
+> +{
+(...)
+> +       st->gpiochip =3D (struct gpio_chip) {
+> +               .label =3D "ad7768_1_gpios",
+> +               .base =3D -1,
+> +               .ngpio =3D 4,
+> +               .parent =3D &st->spi->dev,
+> +               .can_sleep =3D true,
+> +               .direction_input =3D ad7768_gpio_direction_input,
+> +               .direction_output =3D ad7768_gpio_direction_output,
+> +               .get =3D ad7768_gpio_get,
+> +               .set =3D ad7768_gpio_set,
+
+Due to refactorings going on in the .set calls please switch this to use
+the new .set_rv() callback that return an integer (errorcode) on failure.
+
+Yours,
+Linus Walleij
 
