@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-167926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8808CA90C13
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 21:16:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAA5A90C33
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 21:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFFA05A2EAC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:16:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37E33189FA15
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A79022422B;
-	Wed, 16 Apr 2025 19:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C080E2248BB;
+	Wed, 16 Apr 2025 19:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="eP4xPZhw"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y4DORVsb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0EC18DB05;
-	Wed, 16 Apr 2025 19:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAEF28373
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 19:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744830972; cv=none; b=k5oLwMxUWjGod/FlU2cKWL7ZsG/lra+uA7oAjUmuj2D7IdaM9YPz+BAgqC2oZC3yTNurYyv9MyINu1BKeB2mhoLn7W01zmeMucUXgnRGw2211yWIEw4xyHsupK5/qK0ap4O+a08DoivLZdNzMTfJHHqoRBLAGEsVTHt0fKETNPs=
+	t=1744831396; cv=none; b=fNQa/GLwgKKvJt5TGOFR6VSeycUqXrZ5jdwXtbhHsDBaCDco4DMTtcpvZT5jANJkaf8cCz5a+xiKO/z6TAZTZ2UyKtJ5bdk7f/SXU9qrUbjC4EwDSEdLY26VJOJ/D/zDbSM1u4uYrJ/w8zgVG7mcKvbbCxsPpO4enCRyAtImO64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744830972; c=relaxed/simple;
-	bh=eZDCeJusl4YvbrBel3CeklONB/zaP1h9uSVKYJI0z14=;
+	s=arc-20240116; t=1744831396; c=relaxed/simple;
+	bh=n6HiIgF4wrJtBV7F514mTUclegysW2D8sxy0uun1FX8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hy/Qf9VocfX3eTXWpjCs+kl8XALmgPiMy1FLt3ItOoqr2owrO/Hc7Na9MPH9tD7HOQZUUgEVB2OnfCrHZxIPZJWm2gOOSKkNCZ9boQZ+6MQVnf3s1gh74KKaaWIoqIveTXNZ4dbOpPQ4f/g9MObnVaRjg/Z/tzKyPOgg768j4jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=eP4xPZhw; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1744830959; x=1745435759; i=wahrenst@gmx.net;
-	bh=0Fyt/wURX/mltb2vqUsAYfg/uzruTniev2Ppmgs5KiI=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=eP4xPZhwayV0qRsC4b25Q49LyEmZGMIlxbn9IzUHLF43ECpS5F3GNPWeuVaBalLY
-	 Pkum6P20lJTMECwXPfP+T5h7/Jxml7vLwhSRkYN2S7uLZ6LUg+U/doWhJJpjUJ4Iz
-	 lT6+DhibvxkeaBtgLoiNyRZcsWut24xOaqVgFsKSV4QfQKJcN/zPPjsr7EOCYT+C0
-	 PsJv0RPrzPWB02AQPugJfT/bXXFLXc3deonlEfAqDFXE4OkZUTPRJeHiC2tJFuoQ4
-	 mvwOgPZjyMpXuYLqBk3Kj6gI1zDbaI7EgXVtWXRWhFSlIfiLi6Xcr1BZbTaN+gXux
-	 ugH1G0Ag3bUFajgGIQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MOREi-1uV54z2DPi-00SFjX; Wed, 16
- Apr 2025 21:15:59 +0200
-Message-ID: <06c21281-565a-4a2e-a209-9f811409fbaf@gmx.net>
-Date: Wed, 16 Apr 2025 21:15:58 +0200
+	 In-Reply-To:Content-Type; b=PGgDBp5krVP/QG8ESTcq4nu6Mxj3R8myenobEAdmUeAEO+gDzYJbHQgrXryNX129/mBc3kS0qkjW7srh9GFKJlE9tJYczLgoKtXaH6Ni5rW3ne7kpwfSulRvz3keKM1HliXqYPNcQkyKkRxLZ3BltJ0h72r8q9RLqdbsX0vqXhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y4DORVsb; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-72c7336ed99so2265347a34.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 12:23:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744831393; x=1745436193; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vS5xUACcNCCrBpVNgHTyKpBRi3GuyJnUtbCmTpMSgjo=;
+        b=y4DORVsbGxzB+9HYKmO4nebLhOFxxK735baofKE6wiCSXo4UAnftk5pZ1pDQIswYje
+         Qq8Ux0ybMM7wjVP7ZT0QuKpcrvJXmcACYdi5Fr2W/z2zkCPHXxOivdX7Tar1Es9SlqwS
+         xetxJvupLzVRUY0De+lY8MKHwBqhW0UOmwtzUN97OEmx9QOkQG+Ewre0SbbMuIB+xKMF
+         0TlAOXv8Iqbz2dOyfhmzAVFjOxR2H7E8Jok+tAli7ZjAG8E5c2Sdd/wB5fnxzBC2z6Me
+         T0OCVXo2ep4w3e72G+ra+oqxWKUsdbsYcimbkQpNgTsQHOPaZIUNgczIU0FCLVoa2Jbk
+         pPSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744831393; x=1745436193;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vS5xUACcNCCrBpVNgHTyKpBRi3GuyJnUtbCmTpMSgjo=;
+        b=XndwVMai4aBO3+Er9oPw/YQ1yDKGI6woKiHnb5DUhz9i3IHL6HJHWnC8fncGXnAGGG
+         3oTdqdWim8cldU6q5eEicQmpxwuRoMLxMqYEybcI1bGwE5MlwqmYCf74Lm9FRkUIkTeQ
+         peKC/9TDKHSWno5xfqG46nzrUvHZJ0RMEortw30ReHcLnzE2l2eQe5LA/G3C1Syi7lja
+         kc+tFSFvPcF0NTWPmCCKdHWg/LALM6DdYoYzpryHye5ees/bPCdVaSLVWO6Md1udItAh
+         3iF91Fw6bUHxWHCr9fy9EdPxz8mjUPipifp4ytsrSlsK2QHUx5Q8J09u8fmMEqh07kT4
+         BsBg==
+X-Forwarded-Encrypted: i=1; AJvYcCW7DClSnfQOzsYwitQnn42lz2tSllbQYOT63AhdFIeTHh3GqaJwYEfGK7anmOR5cUNTYxB7+V8dO8eI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYInkVXwwh+kIZJsh4WB9doFNGEsxOJw0LJD8YcsOdFQSryID4
+	silHBRY+ZYSW7ugym01c52AhUzMH9qf0tI4p3gy2GBZUYmtzKRfbbQG5JSnAwys=
+X-Gm-Gg: ASbGnctG0oUYHSciGMyexPjx85kQv+pMg/gFE5sHTJwT8sfsfSdEHu0lobRozYFMi3K
+	brbkiiHbp3a2cAgXr+fPs3gy98D7zx+ZZAOXzyePEdr/V4yiZhaWsQDNqPOfjL0DdKDYCxkZjiT
+	QBdn9RDN9TM0kJZcTsZMweq+PO/V8w50lEUSz2BUE1Tno+4LuXqzIAGq4dggJ0qpEEJmMAu+kTv
+	VxhBKFEsYnvHuq9TCnXMRUnRyU0m+6WW+UJ5AGYCfwFHLU+SOlTYb3UCod6CtP07y5eA+cBr6Az
+	AbnDgMLCPzA9qYdCSNg8yNw0m61wHZmykDLkmeQNgicHO0yvW7k4AgYiVMh/hz91lbi9GhLJR42
+	gGrBYiJeINnh6sdd25w==
+X-Google-Smtp-Source: AGHT+IEshEuTpaRy2hRNUwgWJpOdGegeC8MYC6hqw3ipqrtukkPUoJAPGJ2kj6WGEl4JAoEPRqdOFA==
+X-Received: by 2002:a05:6830:b94:b0:72b:9724:6a82 with SMTP id 46e09a7af769-72ec6cdfe8cmr1972036a34.17.1744831393135;
+        Wed, 16 Apr 2025 12:23:13 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3? ([2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-604a5bce487sm482389eaf.24.2025.04.16.12.23.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 12:23:12 -0700 (PDT)
+Message-ID: <ef90f91a-c5eb-46ce-934f-93ff1a18af14@baylibre.com>
+Date: Wed, 16 Apr 2025 14:23:11 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,155 +82,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v5 2/6] ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2
- switch description
-To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v4 3/3] iio: dac: ad3530r: Add driver for AD3530R and
+ AD3531R
+To: Kim Seer Paller <kimseer.paller@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Simon Horman <horms@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-References: <20250414140128.390400-1-lukma@denx.de>
- <20250414140128.390400-3-lukma@denx.de>
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250412-togreg-v4-0-cb9e5309b99d@analog.com>
+ <20250412-togreg-v4-3-cb9e5309b99d@analog.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <20250414140128.390400-3-lukma@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:BhR9yFAQqeXq7tpo+BVlY5V6At1F7eSbQwtC+8DLgGgYcEvaPHB
- YvRBP+brt1418Jxot0UdwrAqCK2iHeWbVVeu/W+QF1JjsSKAUQdASGGg2F7wPIJ2gjJ6bpV
- 1Tw1MMpTcSqqOIRQXRMEUSfAXjDDhHOl0Wx6y1gtomCstmu2i1ezvWAJie7VDPvLPZALLUf
- UygcwzAsl6PjV/KG51dUQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:XlsGXYRQO+Q=;Kai+BO1wU8iAl1JoOXLDwr47/iz
- qYEH9bhk9NmVutsEEIM2kIVgYFiznxFhwbMUR2wO/5gLwXVghM29SnhXYA68wfi2qp+zmOSUo
- SbwS/TLNJLj1g6Ze16S5sbEHezau9xzSfF6+xFUjzL9KtFX6hGPUXqWD15ljNGI1oKQD180K1
- UnAU01txicYSKE5ioQmlst9hmPmA0oPY0l/wSCpW1z3EkoJHoaU37lpiDelMGZ6A+HyqS2y28
- sDdxGLhl3i++kK+sczVGfwvDQFdS59xX0lTZ4JrOvqli9AlxIDqZwAkAICJAxHbpFdDJI+KuR
- lRKCOLzCD2iESw26ABpvOyZhm7ijWpyOakzMN2jGwU/5N/SMT0M1S0EM008Kh/NjYj3BMfig5
- 8T8z8y6Q3+nAWcJ6ZUsKoFh7tVG5De3XnVPOwCKISQR5hj52Se3jQCufbVJfpbZuhidYUrVBM
- 3rycH7qMmDQywLxpL4l/fawuZoDZLeksUdBC0tuHFu6IJyUShvecpybgw1ETwBg2JtOVQQ3Va
- M3fw58wFIfTWCwhf41S3WwPNKc4PZeWBNjSCHZnMSgXD970TBaFLY48raa73yiIqaf9tfDYix
- VrHYGvL1p90KcyE6usXyO/KsPAo81hMLCr/b06oBSDICn2YrK8Wzy810qDch9j9GhSlJoYbZP
- gl3UTuYy3i67pcopp+1PymFZVLIT6LUBXNDNNwDQWzI0jrk+O3tv4VfzyR5eB6Gc2TlDiI575
- XDcJSO9gKJhjXNjkby4nRHfunkoXSGwBveqg3sBC1zPDMNH6jhjus99JzopQmRn6d3B1BIB0h
- UvdfUjUKib3aVmE6yzwcZvOY5J3bKj85eZns+q+vZMOBLGeXODY1mSvqoXNmL0I+eLAJBFs97
- SWctet28MvgsM7vDoO5W+VgnAA9omq3veeWWFW7lLFMk/QDHDABpcnEVQEINRJ+R1A0gVWctO
- qwbMXds6t2ckaoHv1mAo73pzZeWTUWHXfArK/Px9v4o80fpiEHKUHjVqVTf2613072/Xub4Sl
- WLIvFQbXZd4OO5eei3q6s21rIoKhoWzJQ6noUXWYjYWIEFl5ZxuMV/Ra4gYFvhQaXbMbwtmtU
- BhKJz1EH7A/Q/o4UfOgbPmomZUL3ZsbD4ZRR0QUlQIyhBQJX9YFEByCYMLgel5SrcYMjTOixo
- uhzALsDd3T6BhbU//ZciQiAz7Z5oLAkIkf44Hcl/3R0hT/StfhjpALDWL3hEfBVLmQ2MzyhNu
- Ixk9YwS/sxQUAbuFCbcNNBwRcXT6wTCzE2Fl00IgfaOaRHkyPEt4rZnchb3hfyS9pt0+M/sRl
- 3KoLQTf+7pUsid+X+PK1yfiaIEbmT5yQiARmljhFsvEqPPQHHwanZjwa/V5jfHNHo1oY4++DY
- ROleEJIOBEKBfrUFG7feMLxjhXXS5r9LoxJKVL2xKhG4rQ16cbMe0c9kJt+jgnb2+RuZB0fN1
- zBjHp7UEXXYBgX8UjjlMt4wekq9jkJWOWT3K4mrOTHVx9mZKvFxvM+er3qnjHsMxOc2FiLX+M
- Fl21509BYhmT5fxcoibXkrmSa6vJzlnLuuAwBfRJQiB7LhCVL1UR3V+mSOSYjTTubnsCjTNEw
- 5B/8PSBKjVOhViBFQMOVWPh8pKvur95IFPrBolw+mvrAE+Y3IpTo2DMtOMQLPlyUMFB1kQ/Vl
- TzfkKgggkuTGlnIP1+HWc9JNHWZmfV2eHtI78hDvAaypg0PRvRbHfhD2nN8kVoD9ktJcHUoj0
- W/cXvO2RNNrjvC7zZPmXBu/sePNgFTaqy+/JAD/syB/zqnUwdvzqGMpfKIp11k/nDnMbKvwVC
- fND7km9Tgd3UkZDHbCrqRDfGY0Mj/x9t9ZZGNvqXXIkScEZxwsOuu/M0OgxCxsFBPSov6KxCQ
- x3uQ/5npyEqnouakSGDeE9SOMIG/6RM/A/xn6Y9JIT9cJOVNIPm/At4PfEl+oUdzcYpkSJrAC
- Pi9BP6uP/0h6qFxXdlBkriYI/5Y6SXM9tp+/Vu0gZSxefSOkhldkpCjStw6RXSAkTJ/2LLMqL
- R5/scwj1Xl4PtEUAy0jIR1tQ6IOJCk2mElhoonjQDYxbYv/QGoVZabxYqs0W9nnnb8eEblrs3
- 54CNBod3CPZAclJixTFw0ND2V6J3pKLhj1fM9vzuSsxzkwonuG/rrzVutm9hpRer8yehCFXK6
- TpDtFIfP9/mv5O95LEvU6BnZEFonGLORZNVh2hvjU3JqXWpceE7KQ7koy+nGL0PNdS0O3BDYQ
- i1pFZ2wkR1BqYXMjEvDI5X4zQHYzVSpLKNaIDg7+bIMBGPwm9/1Yhzy/MuKn6DZ2CGmNaXbYy
- wJyHxXvYUikf2qt14aKYNI7YFpCEnO02z8DdH8Y/z5RMP8t7fQHu1+y7hYxcJgRni5eV2pdfY
- GVVXYcjJYRzz3LWZiIUlhDEvRSqDm3hltk8OfZDtSH2gbBM9HrPzOJIWS9lxIaMdoOlt94PkV
- B2NNmqBDsYCDso8EwgtLkHmxvhGH2DozCaIB8SQ3B+KOyS7iFHJQBKTZmYcN6s8pm17m4jbu+
- +ln6fXNtgofpTZHjrEkf1QTkz0MubnzdyXIbYtnsXIyBzpAbzyktyKQNG07V15tvLdWcrgp/a
- CXVo6XitCPqx9pRDPhaoWGLQl7fLpJ6tAeB5CSQnyibV3yquYSSAW9WnE+OGSTBT/YLhlawGV
- A/jjeSlbNijj4PgSSCdsDDbxDVgbk3HCQWPOdddDsMXu5G3OrNQclfKbBmDSyCB+wMXPGPhLG
- UnyfGs2FeGnJP5VUFNnXewB9ZBvXawi70kT6Z60tXg6/Tk684xZ77eB+WnXKWQuulBHIpJHlT
- jhsjNXaoX0x7+mAdHaAQxJUncmtr44UM7aMbh0VS0INjdWlYI5MRvnog6QjFow6s+VkJzPzw9
- qXez3L8a4bAxUP3LP+PEjq117Z2VuZ1IUx9WXxYBsUrrNNHu6MHgnPrxCFIKT3IXroB8vFym+
- 0TcV7FY2ZJ4IGyIKYmHdjkTrdxQkhHreiqD2K707VqMAI3QBubK8PTsCM2FsFRIhIHP9yq/yO
- OcM2r6lCA3vwu1JUzKSTFAO0T5oN76iWGL4Zi0Dhvv0
+In-Reply-To: <20250412-togreg-v4-3-cb9e5309b99d@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Lukasz,
-
-Am 14.04.25 um 16:01 schrieb Lukasz Majewski:
-> The current range of 'reg' property is too small to allow full control
-> of the L2 switch on imx287.
->
-> As this IP block also uses ENET-MAC blocks for its operation, the addres=
-s
-> range for it must be included as well.
->
-> Moreover, some SoC common properties (like compatible, clocks, interrupt=
-s
-> numbers) have been moved to this node.
->
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->
+On 4/12/25 12:57 AM, Kim Seer Paller wrote:
+> The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are
+> low-power, 16-bit, buffered voltage output DACs with software-
+> programmable gain controls, providing full-scale output spans of 2.5V or
+> 5V for reference voltages of 2.5V. These devices operate from a single
+> 2.7V to 5.5V supply and are guaranteed monotonic by design. The "R"
+> variants include a 2.5V, 5ppm/°C internal reference, which is disabled
+> by default.
+> 
+> Support for monitoring internal die temperature, output voltages, and
+> current of a selected channel via the MUXOUT pin using an external ADC
+> is currently not implemented.
+> 
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 > ---
-> Changes for v2:
-> - adding extra properties (like compatible, clocks, interupts)
->
-> Changes for v3:
-> - None
->
-> Changes for v4:
-> - Rename imx287 with imx28 (as the former is not used in kernel anymore)
->
-> Changes for v5:
-> - None
-> ---
->   arch/arm/boot/dts/nxp/mxs/imx28.dtsi | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi b/arch/arm/boot/dts/nx=
-p/mxs/imx28.dtsi
-> index bbea8b77386f..a0b565ffc83d 100644
-> --- a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
-> +++ b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
-> @@ -1321,8 +1321,12 @@ mac1: ethernet@800f4000 {
->   			status =3D "disabled";
->   		};
->  =20
-> -		eth_switch: switch@800f8000 {
-> -			reg =3D <0x800f8000 0x8000>;
-> +		eth_switch: switch@800f0000 {
-> +			compatible =3D "nxp,imx28-mtip-switch";
-> +			reg =3D <0x800f0000 0x20000>;
-> +			interrupts =3D <100>, <101>, <102>;
-> +			clocks =3D <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
-> +			clock-names =3D "ipg", "ahb", "enet_out", "ptp";
->   			status =3D "disabled";
-from my understanding of device tree this file should describe the=20
-hardware, not the software implementation. After this change the switch=20
-memory region overlaps the existing mac0 and mac1 nodes.
 
-Definition in the i.MX28 reference manual:
-ENET MAC0 ENET 0x800F0000 - 0x800F3FFF 16KB
-ENET MAC1 ENET 0x800F4000 - 0x800F7FFF 16KB
-ENT Switch SWITCH 0x800F8000 - 0x800FFFFF 32KB
+Looks very good now. :-)
 
-I'm not the expert how to solve this properly. Maybe two node references=
-=20
-to mac0 and mac1 under eth_switch in order to allocate the memory=20
-regions separately.
+A made a few comments but maybe nothing serious enough to require a v5.
 
-Sorry, if i missed a possible discussion about this before.
+> diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ffa04f678b86d8da6f5e47c35c265b6648121843
+> --- /dev/null
+> +++ b/drivers/iio/dac/ad3530r.c
+> @@ -0,0 +1,506 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * AD3530R/AD3530 8-channel, 16-bit Voltage Output DAC Driver
+> + * AD3531R/AD3531 4-channel, 16-bit Voltage Output DAC Driver
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/kernel.h>
 
-Regards
->   		};
->   	};
+Usually, we try to avoid including kernel.h - it includes too much.
 
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +
+...
+
+> +
+> +static int ad3530r_setup(struct ad3530r_state *st, int vref,
+> +			 bool has_external_vref)
+> +{
+> +	struct device *dev = regmap_get_device(st->regmap);
+> +	struct gpio_desc *reset_gpio;
+> +	int i, ret;
+> +	bool has_range_multiplier;
+> +
+> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(reset_gpio),
+> +				     "Failed to get reset GPIO\n");
+> +
+> +	if (reset_gpio) {
+> +		/* Perform hardware reset */
+> +		fsleep(1000);
+> +		gpiod_set_value_cansleep(reset_gpio, 0);
+> +	} else {
+> +		/* Perform software reset */
+> +		ret = regmap_update_bits(st->regmap, AD3530R_INTERFACE_CONFIG_A,
+> +					 AD3530R_SW_RESET, AD3530R_SW_RESET);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	fsleep(10000);
+> +
+> +	has_range_multiplier = false;
+> +	if (device_property_present(dev, "adi,range-double")) {
+
+Since this is a flag, I think device_property_read_bool() is preferred.
+
+> +		ret = regmap_set_bits(st->regmap, AD3530R_OUTPUT_CONTROL_0,
+> +				      AD3530R_OUTPUT_CONTROL_RANGE);
+> +		if (ret)
+> +			return ret;
+> +
+> +		has_range_multiplier = true;
+> +	}
+> +
+> +	if (!has_external_vref && st->chip_info->internal_ref_support) {
+> +		ret = regmap_set_bits(st->regmap, AD3530R_REFERENCE_CONTROL_0,
+> +				      AD3530R_REFERENCE_CONTROL_SEL);
+> +		if (ret)
+> +			return ret;
+> +
+> +		st->vref_mv = has_range_multiplier ?
+> +			      2 * AD3530R_INTERNAL_VREF_MV :
+> +			      AD3530R_INTERNAL_VREF_MV;
+> +	}
+> +
+> +	if (has_external_vref)
+> +		st->vref_mv = has_range_multiplier ? 2 * vref / 1000 : vref / 1000;
+> +
+
+I think this would be simpler as:
+
+	st->vref_mv = range_multiplier * vref / 1000;
+
+where range_multiplier is 1 or 2.
+
+> +	/* Set operating mode to normal operation. */
+> +	ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_0,
+> +			   AD3530R_NORMAL_OPERATION);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (st->chip_info->num_channels > AD3531R_MAX_CHANNELS) {
+> +		ret = regmap_write(st->regmap, AD3530R_OUTPUT_OPERATING_MODE_1,
+> +				   AD3530R_NORMAL_OPERATION);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	for (i = 0; i < st->chip_info->num_channels; i++)
+> +		st->chan[i].powerdown_mode = AD3530R_POWERDOWN_32K;
+> +
+> +	st->ldac_gpio = devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_HIGH);
+
+I guess it doesn't matter which state this starts in but GPIOD_OUT_LOW seems
+more natural since we toggle it high the low later.
+
+> +	if (IS_ERR(st->ldac_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(st->ldac_gpio),
+> +				     "Failed to get ldac GPIO\n");
+> +
+> +	return 0;
+> +}
+> +
 
