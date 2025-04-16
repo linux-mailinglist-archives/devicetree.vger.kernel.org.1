@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-167605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D637A8B138
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:55:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B36A8B144
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8218F7AF9D9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:53:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A825B3BB52F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366C72459E5;
-	Wed, 16 Apr 2025 06:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CD7229B1E;
+	Wed, 16 Apr 2025 06:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBAmxhYU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u5rwQqXm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015CF2451F1;
-	Wed, 16 Apr 2025 06:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9361DC9A8;
+	Wed, 16 Apr 2025 06:53:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744786328; cv=none; b=f0COurrWdNdiIweq9Qc7YhH/tYNFCnJBI8Nq37svtv4mlAY6fphICmj0EFg0kchCaMLh6+JB7bYYsFJdpw1fe3sGJtZ+FfMVB20bQn7anxgz72t22eXZLCvGK91jWeF+7oxgoyXWRaLjGsmCgrSu/KhIMGXEv6Gg7WPSAmSlqrw=
+	t=1744786384; cv=none; b=MP/Z2omImbhtfmVphF/B7d+Fe+kSCLc8ZxDo+ZxVFHYdS9sze18qFJet++xmWJX0MTl5xejzGvn/NTty4wVpXSvXRSWTaTfWjBp/SVAOMnd7+OFwhAtm+9sGNOVF782f3vFZlK+GFZqcf1go7KuTGOvUStD/JqUiLvXs2jE2juo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744786328; c=relaxed/simple;
-	bh=8D9c+befnHt33zm3mTibHfIF8FewIfXRrEv4gm5R/8Q=;
+	s=arc-20240116; t=1744786384; c=relaxed/simple;
+	bh=iVYHRxj1f8y7enOtECpv94Pgs7ZKuFXOWWBhsKmjyoI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqXxCC9RkV3e33T9Izsqejdw1ilRysGQdGyBg/f35yVUsnQ6M/aIn3NOF/7AG3S+vi8As+xKx554ReUMxFLf0I/i1GtJOpwfxk0JaMMP67II6OTEcjjJ9Ey7M3mIO3gpwC5y5T5Tw87vzZpJGO+FMJD6NupbVGPMWmAiQT2Mddc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBAmxhYU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482A9C4CEE2;
-	Wed, 16 Apr 2025 06:52:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MVgreKrvG0Pb0fZrMEKasC1L1ZQfHMtUnZwgRL91Ijx+AJ+av7TMJ3gNhG+3bU3qfQIc9XZ1CstKQ7661ili12INtjEk+1PvKNaj1aoY3Br0mCZiiwoiGSahfF5BCWg/2j4p67Y9zYJCEGUXPvKqZqL80apYCjgVsaFfTjkb7yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u5rwQqXm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D62CC4CEE2;
+	Wed, 16 Apr 2025 06:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744786327;
-	bh=8D9c+befnHt33zm3mTibHfIF8FewIfXRrEv4gm5R/8Q=;
+	s=k20201202; t=1744786383;
+	bh=iVYHRxj1f8y7enOtECpv94Pgs7ZKuFXOWWBhsKmjyoI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bBAmxhYUlraviI3yi0IxzVz01ee11wH6ZyQ14I806Z4xGXYV2xFhYMoCW54mr9BsD
-	 Ir9SA8O6dqryZLZwVl4j2KDLOd8ePCnmU3UU55P+VXg7LYeBnKL54K2cjMz85ynz53
-	 AJTp8CumZNCtqkYGoJkiz8L8nBSkU7a8mRMH4ZyYvbNd/5AZTF//OxQvxOjUgjJLZl
-	 o44YQQ7Zp1jedXP+gM+/MDy+4dWSWdOfTFrU6n2YtwLSrZFNW0+p24g4fOj5OdOpwY
-	 x94hJAEe/IUbtLC7MBAjSMLRUNkZflSLFy5kX/OIvIIiix3UF7TVUp6Kt8/gzUeRPN
-	 MxrgEsVvrGdUw==
-Message-ID: <2d3d4240-65ab-4fd1-a86a-503bb40f34a6@kernel.org>
-Date: Wed, 16 Apr 2025 08:52:01 +0200
+	b=u5rwQqXmh6X4aX6LttpfDVNeuuBMmNm4OkuQySLdmXmDMhVhjJMPa3Lidm5La3yES
+	 GJND4DuNbUklZpvMI2tb4ZOaAPXsBmM9I79oVKhdB0VedzSySE5/P0aRyJgyPGuSC2
+	 kbJBmIshoqlnQScF62UnTYrk0jJMRx5aDq7UbwJ0hGUwlWWiUAeWA0uwnNOvTlc3az
+	 jgikWz2cB1TUlsonKFs4HEHWiJILaNdBhbY3RWjFEvFBtnWPQYPd1bciRONkGhIYr8
+	 a8fxc5Ba90O+C8Mk470WvpKPzVi1ZmaxmLrYnx6TTR12r0piyckyBAb1z18/UYacP6
+	 nx7cwk9WMef5w==
+Message-ID: <9dc96af3-239f-4cb6-b095-875b862be493@kernel.org>
+Date: Wed, 16 Apr 2025 08:52:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: nuvoton: Add USB Hosts
+Subject: Re: [PATCH] arm64: dts: nuvoton: Add EDAC controller
 To: "William A. Kennington III" <william@wkennington.com>,
  Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
  Tali Perry <tali.perry1@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250416001818.2067486-1-william@wkennington.com>
+References: <20250416001350.2066008-1-william@wkennington.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,23 +103,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250416001818.2067486-1-william@wkennington.com>
+In-Reply-To: <20250416001350.2066008-1-william@wkennington.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/04/2025 02:18, William A. Kennington III wrote:
-> The npcm 8xx chip has 2 EHCI and 2 OHCI hosts with driver support
-> already existing in the kernel.
+On 16/04/2025 02:13, William A. Kennington III wrote:
+> We have the driver support but need a common node for all the 8xx
+> platforms that contain this device.
 > 
 > Signed-off-by: William A. Kennington III <william@wkennington.com>
 > ---
->  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 28 +++++++++++++++++++
 
-Please do not send 10 separate patches, but one patchset for given
-subsystem.
+You just sent it, so this is v2? If so, then use v2 in subject (see
+other patches) and provide changelog under ---.
 
->  1 file changed, 28 insertions(+)
+>  arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> index 4da62308b274..ccebcb11c05e 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> @@ -56,6 +56,13 @@ clk: rstc: reset-controller@f0801000 {
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		mc: memory-controller@f0824000 {
+> +			compatible = "nuvoton,npcm845-memory-controller";
+> +			reg = <0x0 0xf0824000 0x0 0x2000>;
+> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +			status = "disabled";
 
+Why is this disabled? What resources are missing?
 
 
 Best regards,
