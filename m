@@ -1,142 +1,142 @@
-Return-Path: <devicetree+bounces-167919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA90A90B4B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:29:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59DDDA90B67
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F08071906FE7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:30:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72A2C17DB2E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19346221DB5;
-	Wed, 16 Apr 2025 18:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173EA22425B;
+	Wed, 16 Apr 2025 18:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="GLIuSvsp"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KG8NPEKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7788B21D3E6
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:29:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C27322423D
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744828191; cv=none; b=MiCdcFlU0fVSy1v+Xpu9EYr6DHJgFKmfeyQB6OfH0alsf/zHbzqKMJsxou2iRqQ1SFi85dALVYi6BSxY0fd15IySAkoLLP75xGerjUb0OVKNvM5tfm1U9WUmNyJ9Lc43soe/C2S3dTEGMSCYwyPawevtzYyBPOYNK1PZzWPpXm8=
+	t=1744828703; cv=none; b=gBZM7C2IK884Vj7Je3PnGql7umTJs+1J4whtelFkh0nS22QTe87vqNBtS1kGx2EdKFLfuqw8p4UAZcY+CXebG/GRZuTtzWBhXR2pnGSOByewQvNj3JBTtHOFqlm15r8uInxE6wMnVAqAs8ed4Rf4p5SNFDLtOCa2YCcXkJwlVU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744828191; c=relaxed/simple;
-	bh=7izFUHwou8CGTKQBC+Pj5lbCiJDPpF4vHPruu69zHJQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hKvNsxup2DTOrChMKEUPuAekkISEQBvcKkOMd+u8ETitJ1ZCVml7lJ4uuVSm+O2TWfJihGX9sMGLrOWqmosbPv3momVq7S2UkkUzg99X+BsAts0tbLc1HHvFfxgqNJC4oX8rC/R8V/EkgN94TQUTWPaLor4Ia+ukHNANDimfz38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=GLIuSvsp; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1744828188;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bwx5WjZbeRXciIDl7fHepP+WhVSAom/fNWecyvJ7Kms=;
-	b=GLIuSvsp1trp0B5lWVIZaq1OlTEI8CP4LrtmRp2DCn07bejcbm9Hf3SbqJgj15tw3Vka0O
-	h9zXkGd84wdIV190rn+SopqxxB8MnGu8ELGrfN698FaWsGR7/4NRAGD8/nwznGUEI0DMxZ
-	x9vxyCoGfT0TyeWSw1cvG4F7ymeFdR0=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-602-AXokHgSSNzOmiIkAQF3prQ-1; Wed, 16 Apr 2025 14:29:46 -0400
-X-MC-Unique: AXokHgSSNzOmiIkAQF3prQ-1
-X-Mimecast-MFC-AGG-ID: AXokHgSSNzOmiIkAQF3prQ_1744828186
-Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-5f4c30f881fso704104a12.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:29:46 -0700 (PDT)
+	s=arc-20240116; t=1744828703; c=relaxed/simple;
+	bh=h2gb2aaLNETxBykAcxNCX0wPL5kV5DokaxdYgDODkII=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sNubqsq76zbBQ6YIXx+ua5FeHOqGZlDiFG6DnRUt8yb/UYwJL/6BhOTdr5fH9xAT+KuTBT25OWF2mJGRMGjy21Kh6Vn756Ibg92YPY3prnSxqy/0t5y6WzNh0vvH+Frdc+N2Ac9cx5NDobWoQ+cXSLpY5r3RVOiOnRuQ1ODgsl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KG8NPEKT; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3fa6c54cdb2so5232321b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1744828696; x=1745433496; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b9sY/HN/LGdgvtFdsZcaEiPxjht+cFZcMXATw7Z4WEk=;
+        b=KG8NPEKT75Ib1TSyhnQhvNUfg3caH1X3Lh05MNjAacI8PH4sjAnWy2ANhKxagQdDyV
+         8N/XbTOncRMSe0FPcx5A7XAP4Y51NTg0uJ0GR6u2MHLAnRIM5ZgXr464Mxm37gA+wrM+
+         wZ0AP0QzSlo53bbSbPhsxbaaAwUSym8GJJnxMTep3YK1EZXA1Mp1Tt96EWoBfvxuV2HJ
+         N4CDQ12suFHm32pKkndO31P+6t/7f9NyH7o0avZjCJwxux49AdV39Nj3cXfj9+3B7seV
+         MzrkU1KxyZ0nVb9zhBuc2SyVF80j4G7dw9Xjz96H6x050h7ITCTEeNy6UUnOPn3/oeB3
+         abIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744828185; x=1745432985;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bwx5WjZbeRXciIDl7fHepP+WhVSAom/fNWecyvJ7Kms=;
-        b=RcuQXRnA2fdm/8xWblCGPBRhWW5p5crKHeiCBstjEDG1yshLxOQMjUVLKz3xHx8ZTi
-         ptS4a0ubDZJwE5lV7N0wD8ezxuOjKcQPWyIWiVPgP9ZVTrCYhDNVkDog819BEbhvQsKz
-         tx+KrI4kDXQAPGvk6hwKtHooGcacsqgcMQQJXdejJZlYvt0x0tEWzp87TvW9NEko+Gcn
-         N55ghHIdfbBLxlfkPZjdc4+uclb6ji1WfP64iy/rEnsjg2MorQHVqRRS4NAI9UckxIjD
-         jI5UoG3SJ66vMkuFlOr9+C3IvRE2yzEwdJYkeuCYmgL3KR7CwOPubJ5VTLrunialg/Uc
-         GSrA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRrD0e6bRLipd+YSB8CLrcBmPTAm9O34g2Yf7ehkIiyvqrMgAXMj2JxEa6EtypJufaIIRwcQrfZr+g@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6wfMBBitVAeMVrrVXgMza2ocO80QC7bymRWY6C1v0WbUANh/b
-	1D9Aquoqn0BG7QenrCqjUII0rskSmM1hGn9cnKAqeS5N60+IFaTvLq26dKagUHxc7Zly4Y1kvo/
-	S/8yv48HqLo83I14kr5zLmowPovuie8k62mZqec4DjonTZDn8AxYZfsVTVgxnKlF2dUUWoHFc6X
-	GHTFH6IrAThhd0sG3VhvoEB/5WUP3RQDdjcg==
-X-Gm-Gg: ASbGnctnGSmKl2E4ZNyNonNubtVWV3HlzX550zGECOkTBKbEx4/GM2e5BX26MiFRYZE
-	WurbVEiVlTknGKz9S1A8LQGEYA3GE8QADJImjyligB+aOvpBR/tTjKQKZSgTUWNsZBn23LI3EVh
-	WVKJXh+7+TtL9CYrOyQk+PV0I=
-X-Received: by 2002:a05:6402:3512:b0:5ec:96a6:e1cd with SMTP id 4fb4d7f45d1cf-5f4b71ea271mr2425972a12.2.1744828185633;
-        Wed, 16 Apr 2025 11:29:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGF/O1rE4UuagKpLxQYRmJg58OWmw/yYHcF3mGNfOJqHYqMB1tcEn3p6wwEn2otzHPid/a/IRWXPHhHp9kWxYU=
-X-Received: by 2002:a05:6402:3512:b0:5ec:96a6:e1cd with SMTP id
- 4fb4d7f45d1cf-5f4b71ea271mr2425953a12.2.1744828185248; Wed, 16 Apr 2025
- 11:29:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1744828696; x=1745433496;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b9sY/HN/LGdgvtFdsZcaEiPxjht+cFZcMXATw7Z4WEk=;
+        b=QPhknIkod05IAUCGjhKPKSjauw25xcvPIFPbN1CHZR/PJwMX1ADI+Pke4CfQE13F53
+         wQ7KZD/0QJurz+NohmSlFD5WjEEfzWOjFic4S5yaKyIRlmQpiK9PMXxBCz1yuFdsIZIr
+         SMMgSbLCz3IHPW7eEbY85rCZVxN4PPRpEv3f3wXkpyoLOptZe0rt9fPvJAH2etL8Quhv
+         Qzr2g6hU+g5cfUI+JSo3lZ/ztUf9ewBRxPmi1O8BvoNvfm5oJXebshW1bbl2C7t8WvCV
+         ocp9KgXML7QstMa4mHFx7h/bAw5cwea0PK1xOzYQeUFSqsrFE5bp3NrOKFbRQxMaJFGu
+         XeUg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5ZZNx9QpD8WFOpGNJSP9JyoKWspbjNIf78vZNhxutbQJe4+1wZC7JwxyBBq2iCes/Gt9HPSEIa7Zi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoNZSmoYKsYbhYKqsMal5Ulv/8kEIekEBX0guL2SAnNq+1A+Pk
+	EFrxRDbF0UCVPU4nfkPq+y/9qzw0Di3tM1nB1X9JTzuBc8roLlCe05qt6eBtmJo=
+X-Gm-Gg: ASbGncs/e4GOmZ6bWMFax14l1RkOfcyMh2bnUvRbe19UgXdIx9Hf37NTKtJsKWhl4l0
+	B3kQTBowGWzd9Q9HRIiVQvEjdVnU55xDzu3A5/rCg7e3wGiYQ/b60o2t38/DPrcCkkTLMP8dTUD
+	xfSS1q1Ot9s0+zhvtMTGjPFwHjjJHtAOUJ75D02dPuO7VPaQYrEVAusFB1/ZfMHx1+VJWBkXR8k
+	BYqrMr9enfcx52KLwdkQQr3o1E8PPpc9GVJEKor/g1C/p16if8sHCN8LT4sPM3Vc7CQlffr1NMI
+	haiUSItqSU4sL+mlhTxRSgP0RnlC3aAIgojJPVxjBvd3tmpIMpoGadhs9cACZohKA+kTVb7rb1n
+	zcTZLWPmj8rPkzMuAEg==
+X-Google-Smtp-Source: AGHT+IEHpixfYLQ8d8XW9pFSR0q33vUhJbw2GwxLqv8IPvVSJvgfVlFlUazzgGh993Sed/nw/j0RfA==
+X-Received: by 2002:a05:6808:1b06:b0:3f9:28b9:702a with SMTP id 5614622812f47-400b01c393dmr1926683b6e.8.1744828696461;
+        Wed, 16 Apr 2025 11:38:16 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3? ([2600:8803:e7e4:1d00:58f0:670c:6b15:7fd3])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4007639c638sm2866501b6e.35.2025.04.16.11.38.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 11:38:15 -0700 (PDT)
+Message-ID: <96765a57-9e02-4f9e-837c-c0513e74ade4@baylibre.com>
+Date: Wed, 16 Apr 2025 13:38:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250416162144.670760-1-ivecera@redhat.com> <20250416162144.670760-3-ivecera@redhat.com>
- <174482532098.3485034.14305412993449574460.robh@kernel.org>
-In-Reply-To: <174482532098.3485034.14305412993449574460.robh@kernel.org>
-From: Ivan Vecera <ivecera@redhat.com>
-Date: Wed, 16 Apr 2025 20:29:33 +0200
-X-Gm-Features: ATxdqUFxjsZ_qFD__UPQiAZpI42mRoG1aY9Q_T20uCxi5IG-wqWWDZ5JjJEfrNM
-Message-ID: <CAAVpwAurYhW1Eyw7C_gPY0cTrQJrw7o_FL3-npLdWsxE=FGXkg@mail.gmail.com>
-Subject: Re: [PATCH v3 net-next 2/8] dt-bindings: dpll: Add support for
- Microchip Azurite chip family
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Kees Cook <kees@kernel.org>, Michal Schmidt <mschmidt@redhat.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, 
-	linux-hardening@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>, 
-	linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Jiri Pirko <jiri@resnulli.us>, Andy Shevchenko <andy@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/14] dt-bindings: trigger-source: add generic GPIO
+ trigger source
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ marcelo.schmitt1@gmail.com, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, jonath4nns@gmail.com
+References: <cover.1744325346.git.Jonathan.Santos@analog.com>
+ <414f5b60b81f87f99b4e18b9a55eb51f29d2225a.1744325346.git.Jonathan.Santos@analog.com>
+ <CACRpkdauyPb3bhgK4MTYN4Xq0cM80vwT8i_jcKoQcicpvMo7yg@mail.gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <CACRpkdauyPb3bhgK4MTYN4Xq0cM80vwT8i_jcKoQcicpvMo7yg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 16, 2025 at 7:42=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
->
-> On Wed, 16 Apr 2025 18:21:38 +0200, Ivan Vecera wrote:
-> > Add DT bindings for Microchip Azurite DPLL chip family. These chips
-> > provides up to 5 independent DPLL channels, 10 differential or
-> > single-ended inputs and 10 differential or 20 single-ended outputs.
-> > It can be connected via I2C or SPI busses.
-> >
-> > Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> > ---
-> > v1->v3:
-> > * single file for both i2c & spi
-> > * 5 compatibles for all supported chips from the family
-> > ---
-> >  .../bindings/dpll/microchip,zl30731.yaml      | 115 ++++++++++++++++++
-> >  1 file changed, 115 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl=
-30731.yaml
-> >
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/d=
-pll/microchip,zl30731.yaml: $id: Cannot determine base path from $id, relat=
-ive path/filename doesn't match actual path or filename
->          $id: http://devicetree.org/schemas/dpll/microchip,zl3073x.yaml
+On 4/16/25 2:43 AM, Linus Walleij wrote:
+> Hi Jonathan,
+> 
+> thanks for your patch!
+> 
+> On Fri, Apr 11, 2025 at 5:56 PM Jonathan Santos
+> <Jonathan.Santos@analog.com> wrote:
+> 
+>> Inspired by pwn-trigger, create a new binding for using a GPIO
+>> pin as a trigger source.
+>>
+>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> 
+> Is this actually documenting the trigger sources I implemented for LED
+> here?
+> https://lore.kernel.org/all/20230926-gpio-led-trigger-dt-v2-0-e06e458b788e@linaro.org/
 
-Oops, my bad... I forgot to update $id after rename of the file...
-Will fix.
+No. This is something more like "pwm-clock" where it is converting a gpios
+phandle to a trigger-sources phandle. Doing it this way comes from some
+discussion on using trigger-sources for the SPI offload stuff I was working
+on recently. [1]
 
-Thanks,
-Ivan
+As a result of that work, there are generic bindings for trigger-sources and
+#trigger-source cells in dtschma now that can be used by any node. [2]
+
+The way the leds subsystem does it where you can have trigger-sources = <&gpio 0>
+or <&ohci_port1> directly has the issue where it isn't easy for the consumer
+to know what type of node the provider is. Effectively, we have to have the
+linux,default-trigger property to tell us what the provider node type is. By
+adding this extra node in between we can get that type info more naturally than
+the linux-specific property. And each subsystem won't have to have extra code
+added for trigger-sources like you had to add for gpios.
+
+[1]: https://lore.kernel.org/all/20241031-croon-boss-3b30ff9e9333@spud/
+[2]: https://github.com/devicetree-org/dt-schema/commit/93ee8008959e362548168eaa7bdc20c115f3d586
+
+
 
 
