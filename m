@@ -1,310 +1,116 @@
-Return-Path: <devicetree+bounces-167768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7FDAA8B8BB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD6AA8B8C3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBF073ADDA6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:18:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03D43BF8CE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D84624169C;
-	Wed, 16 Apr 2025 12:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEBA524A052;
+	Wed, 16 Apr 2025 12:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZWJtg5I"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pNHGyjYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A5D124A053
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 12:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFA0209F5D;
+	Wed, 16 Apr 2025 12:20:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744805880; cv=none; b=VTxbgIMLXnFJa6atH3db6pFm6g/xkbinLMUwagJ7Q5NetGPDeG/pwOqdCWTm65yF102o+/kzYyUCnCXcKNqIJFjQ9Wq/mQ7JwlB/nqGkM8OKxSW4q4Sv8TSKY46X4DvTIbx/d5nSpu+1PDhEhJg7IFGtLBrIncM9KPf3EnrI6Jk=
+	t=1744806009; cv=none; b=frYp2PRq5ZH4KTcDlCRDOFSbr7dy1L9NI3RHpwNj/HiY8Ajbrxr7MUd4ha71+sAsdv8NmeU6LxTMJTby5mHKdQpGLa0sEM02qFiS9XsMo7qcomLL7tTdR21t4dAFik06CbkvtDXw33fueve9y1zXdS5GyNRw6H8M56WpvwEoNlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744805880; c=relaxed/simple;
-	bh=blUM8MCr3uTpaKRPBWacJbXVRXgWGnt3OS/+m54imjw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PHHYspV1GvaYmZsDXOIgDcARiy3kynHMLs8eAUxEdD0aceXKxWcn5Ev+gg3Xi822mdaTqENNJAVe4nMU2AJ0h00/QvOd+nVAolo1QdRoWQUByMj/Y2ts11bknX8E7XCnfppdZYMHPxtblZLDvQ4iQaral++BsHGJAClpZokYuPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tZWJtg5I; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3913958ebf2so5806758f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 05:17:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1744805876; x=1745410676; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7qzmPfGUQphjSn8JU9/K3urNRuVP8doXci+CHrxSN0c=;
-        b=tZWJtg5IVCkTYkvWNywL5w0fMeWZmAo63GAkdPaa6k86wyUkLVjP7tTm6v9PckFVlr
-         epXL1z7vXbB79v9uDkG0uie+BWTMKuGXgUDebUhQxnfFFIof81Tcsb35WZXXZGXKT15S
-         otLJ7HQcI8jKmFN/n48rLYFAflkSl20zF6wCJbOR+xv4Qh8nBYjbbmhMFnShTgNihPqN
-         rrxuuDj7a1racBuPHlMhJen1wtx8OmYzDR7tce2mJPHItL47No4yhbglec1oAD6A5Mo5
-         iYUZPAN1uRu6C0ESaCh4wrMMxFl/yOMucDt1NE3w5d0FKSutqWcbBTfxxYgVaDVhUhHW
-         kjVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744805876; x=1745410676;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7qzmPfGUQphjSn8JU9/K3urNRuVP8doXci+CHrxSN0c=;
-        b=Ir6ScLB4CHg0P2zHy4c4PGoqWvneJFeTqs7RlDUcfxUMOCjKVtERY2lkqr+ucyf6CU
-         TPe2vG6DCN5upUyzpHwpun/H98iEwSbh0bopflL3RzqqVBrmOBhdjMpfl8IyevTNntDT
-         X5bp/gzStwiCAtjJ4RmkKETs8wkqyiSY8lBtmPB6Vm40Oc0RB3YvazcePUMIQc8TU9IE
-         BtXHYwIOhz8QigZJ4F09WqbIAOJOzhYP4RR3xisZ8F0UkdPCNa3NZ51/WZTfZ/1l28XW
-         252d0mYFNeDJCHJtX3XZWKVA8rL809Jtk95kb8qf0DOotghVOYQ2jLbWQVoEPfpUicbR
-         IyVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUZx2p9bohRrknWAnDKfgTXvK5wc8rLL6myAnv0hn1veu05ELxIYlwJoz9vAefXEBjRnyawffLMJVXE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2W/X3HJyczPKw70GIxGSI9IXhVW6r1tPwIhroBBOe/swzOJkL
-	boou2LvwkvgImugf+MzKTRMm4kow3+uCd5fyoiSpAdcPKDJgjrL9j2OtWcSNYDo=
-X-Gm-Gg: ASbGncsZQJS+X3aFRI+0qeoB5Pd1e/N1//9toZUSZZzOVRWrVRLJCyP9ENvTLHE6gZS
-	OUw7praMZowTJl2MU1Lc3xRoHF83AfWJZvn02x1+PTeZpVNpdgRUrqzcq+5ULoPlJSKLs0+FJvn
-	BSMyyThySawgrTuEVP+guJLY982FZASQl7u/RhQRzjno0pO5aUnftb2DB39FsUNE/Ca7v3w9IR1
-	cvrXdsWTSWelbtHoxwao4mxzfYg0BlHmHjrq6PKLNVV1WgvWlsurCuV8RgnwgnWqA6j/loLPBgu
-	4kdQS8wRZzL7UJAeqpyKLh7Cj5c9qF6z9+qRJl6RnBgxVzjJI2+zaCW+pAJEnMoiJ5J57XGvSbd
-	VKd/Y1W+YXWOAFlRt
-X-Google-Smtp-Source: AGHT+IFBKvD/CJgbhatKr7c1PxeSo6YlFCiQLOW9fGCuyRIsJKGMp9wtGO0z/i9mZ4FKq4/l22V4Ig==
-X-Received: by 2002:a05:6000:43c6:10b0:39c:1424:1cb3 with SMTP id ffacd0b85a97d-39ee5b0ff12mr1124465f8f.5.1744805875692;
-        Wed, 16 Apr 2025 05:17:55 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae978018sm16754251f8f.49.2025.04.16.05.17.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Apr 2025 05:17:55 -0700 (PDT)
-Message-ID: <391e7a1a-ea7f-4299-86df-cb1600428d90@linaro.org>
-Date: Wed, 16 Apr 2025 13:17:54 +0100
+	s=arc-20240116; t=1744806009; c=relaxed/simple;
+	bh=9kOXqnLn12fR+e7mI3igDZzbywXMms7JQFjAgUCaKXQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tICpxiJqbF3fKSuAlmMOGpQ4pdW5g+Oii85jIUm1WBBqdScqUXcPEeUEiJobNn7zepdpOFKjBFvOH8ybxk15ONgY5mMDSMmrICm5nwxOE2CrsCbd8mH8qjbadlxVFq+kT5pWp1Kix1wcZeI7ZOYThYfp++tyzNl2GtKycOqBnOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pNHGyjYj; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53GCJnIU333471
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 16 Apr 2025 07:19:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744805989;
+	bh=UQv4+93vl9xff0SMC+JPqe3BKlcjq2OfzB8qyDmKXo0=;
+	h=From:To:CC:Subject:Date;
+	b=pNHGyjYjZcSvACAY+F/V/yQWN4xE5UXWuhq+AHfJ22thGGbYTrcu4cEEkmHUGxnlY
+	 rpWeR3MaaGykecuwBHUPq/AFz6D+iTX+CBl40CJWldllt0LSZP+CDSs9vTx6yqQlv8
+	 Am4abtN4dbMipnDI+Y4DexrC7cPsDFOqib/RpUa0=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53GCJnw8017592
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 16 Apr 2025 07:19:49 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 16
+ Apr 2025 07:19:48 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 16 Apr 2025 07:19:48 -0500
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53GCJiEs016254;
+	Wed, 16 Apr 2025 07:19:45 -0500
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <mripard@kernel.org>, <mchehab@kernel.org>, <jai.luthra@linux.dev>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devarsht@ti.com>, <vaishnav.a@ti.com>, <r-donadkar@ti.com>,
+        <u-kumar1@ti.com>, <y-abhilashchandra@ti.com>
+Subject: [PATCH v6 0/2] Enable support for error detection in CSI2RX
+Date: Wed, 16 Apr 2025 17:49:36 +0530
+Message-ID: <20250416121938.346435-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] media: qcom: camss: add support for QCM2290 camss
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, rfoss@kernel.org,
- konradybcio@kernel.org, andersson@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
- <20250416120908.206873-4-loic.poulain@oss.qualcomm.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250416120908.206873-4-loic.poulain@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 16/04/2025 13:09, Loic Poulain wrote:
-> The camera subsystem for QCM2290 which is based on Spectra 340.
-> 
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
->   drivers/media/platform/qcom/camss/camss-vfe.c |   2 +
->   drivers/media/platform/qcom/camss/camss.c     | 146 ++++++++++++++++++
->   2 files changed, 148 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
-> index 4bca6c3abaff..c575c9767492 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
-> @@ -340,6 +340,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
->   		}
->   		break;
->   	case CAMSS_660:
-> +	case CAMSS_2290:
->   	case CAMSS_7280:
->   	case CAMSS_8x96:
->   	case CAMSS_8250:
-> @@ -1969,6 +1970,7 @@ static int vfe_bpl_align(struct vfe_device *vfe)
->   	int ret = 8;
->   
->   	switch (vfe->camss->res->version) {
-> +	case CAMSS_2290:
->   	case CAMSS_7280:
->   	case CAMSS_8250:
->   	case CAMSS_8280XP:
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 06f42875702f..1e0eb2a650a3 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -515,6 +515,138 @@ static const struct camss_subdev_resources vfe_res_8x96[] = {
->   	}
->   };
->   
-> +static const struct camss_subdev_resources csiphy_res_2290[] = {
-> +	/* CSIPHY0 */
-> +	{
-> +		.regulators = { "vdda-phy", "vdda-pll" },
-> +		.clock = { "top_ahb", "ahb", "csiphy0", "csiphy0_timer" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 240000000, 341330000, 384000000 },
-> +				{ 100000000, 200000000, 268800000 }  },
-> +		.reg = { "csiphy0" },
-> +		.interrupt = { "csiphy0" },
-> +		.csiphy = {
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
+This patch series enables the csi2rx_err_irq interrupt to record any errors
+that occur during streaming. It also adds support for the VIDIOC_LOG_STATUS
+ioctl, which outputs the current device status to the kernel log.
 
-You'll need to specify and .id property
+The IRQ handler records any errors encountered during streaming.
+Additionally, VIDIOC_LOG_STATUS can be invoked from user space to retrieve
+the latest status.
 
-https://gitlab.freedesktop.org/linux-media/media-committers/-/commit/74cae7794341fa4f96fef0966f44471f7e2d322f
+Changelog:
+Changes in v6:
+- Although the interrupt mask is configured only for cdns-csi2rx source pads
+  with active remote connections, the IRQ handler currently records all events
+  regardless of whether they are enabled in the mask. Since the events are not
+  mutually exclusive, a stream overflow event for a pad without an active remote
+  can be recorded if it occurs in parallel with any event enabled in the mask.
+  To avoid this, update the handler to record only those events that are explicitly
+  enabled in the mask, preventing unnecessary logging for pads without an active
+  remote connection.
+- Drop the Reviewed-by and Tested-by tags from Jai and Changhuang, as this
+  version introduces a minor change in the IRQ handling logic.
 
-> +		}
-> +	},
-> +
-> +	/* CSIPHY1 */
-> +	{
-> +		.regulators = { "vdda-phy", "vdda-pll" },
-> +		.clock = { "top_ahb", "ahb", "csiphy1", "csiphy1_timer" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 240000000, 341330000, 384000000 },
-> +				{ 100000000, 200000000, 268800000 }  },
-> +		.reg = { "csiphy1" },
-> +		.interrupt = { "csiphy1" },
-> +		.csiphy = {
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	}
-> +};
-> +
-> +static const struct camss_subdev_resources csid_res_2290[] = {
-> +	/* CSID0 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "top_ahb", "ahb", "csi0", "vfe0_cphy_rx", "vfe0" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 192000000, 240000000, 384000000, 426400000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csid0" },
-> +		.interrupt = { "csid0" },
-> +		.csid = {
-> +			.hw_ops = &csid_ops_340,
-> +			.parent_dev_ops = &vfe_parent_dev_ops,
-> +			.formats = &csid_formats_gen2
-> +		}
-> +	},
-> +
-> +	/* CSID1 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "top_ahb", "ahb", "csi1", "vfe1_cphy_rx", "vfe1" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 192000000, 240000000, 384000000, 426400000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csid1" },
-> +		.interrupt = { "csid1" },
-> +		.csid = {
-> +			.hw_ops = &csid_ops_340,
-> +			.parent_dev_ops = &vfe_parent_dev_ops,
-> +			.formats = &csid_formats_gen2
-> +		}
-> +	}
-> +};
-> +
-> +static const struct camss_subdev_resources vfe_res_2290[] = {
-> +	/* VFE0 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "top_ahb", "ahb", "axi", "vfe0", "camnoc_rt_axi", "camnoc_nrt_axi" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 0 },
-> +				{ 19200000, 153600000, 192000000, 256000000, 384000000, 460800000 },
-> +				{ 0 },
-> +				{ 0 }, },
-> +		.reg = { "vfe0" },
-> +		.interrupt = { "vfe0" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.hw_ops = &vfe_ops_340,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +
-> +	/* VFE1 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "top_ahb", "ahb", "axi", "vfe1", "camnoc_rt_axi", "camnoc_nrt_axi" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 0 },
-> +				{ 19200000, 153600000, 192000000, 256000000, 384000000, 460800000 },
-> +				{ 0 },
-> +				{ 0 }, },
-> +		.reg = { "vfe1" },
-> +		.interrupt = { "vfe1" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.hw_ops = &vfe_ops_340,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +};
-> +
-> +static const struct resources_icc icc_res_2290[] = {
-> +	{
-> +		.name = "ahb",
-> +		.icc_bw_tbl.avg = 150000,
-> +		.icc_bw_tbl.peak = 300000,
-> +	},
-> +	{
-> +		.name = "hf_mnoc",
-> +		.icc_bw_tbl.avg = 2097152,
-> +		.icc_bw_tbl.peak = 2097152,
-> +	},
-> +	{
-> +		.name = "sf_mnoc",
-> +		.icc_bw_tbl.avg = 2097152,
-> +		.icc_bw_tbl.peak = 2097152,
-> +	},
-> +};
+v5: https://lore.kernel.org/all/20250228114030.1028443-1-y-abhilashchandra@ti.com/
 
-I think you can get better numbers from downstream for the above.
+Yemike Abhilash Chandra (2):
+  dt-bindings: media: cdns,csi2rx.yaml: Add optional interrupts for
+    cdns-csi2rx
+  media: cadence: csi2rx: Enable csi2rx_err_irq interrupt and add
+    support for VIDIOC_LOG_STATUS
 
-> +
->   static const struct camss_subdev_resources csiphy_res_660[] = {
->   	/* CSIPHY0 */
->   	{
-> @@ -3753,6 +3885,19 @@ static const struct camss_resources msm8996_resources = {
->   	.link_entities = camss_link_entities
->   };
->   
-> +static const struct camss_resources qcm2290_resources = {
-> +	.version = CAMSS_2290,
-> +	.csiphy_res = csiphy_res_2290,
-> +	.csid_res = csid_res_2290,
-> +	.vfe_res = vfe_res_2290,
-> +	.icc_res = icc_res_2290,
-> +	.icc_path_num = ARRAY_SIZE(icc_res_2290),
-> +	.csiphy_num = ARRAY_SIZE(csiphy_res_2290),
-> +	.csid_num = ARRAY_SIZE(csid_res_2290),
-> +	.vfe_num = ARRAY_SIZE(vfe_res_2290),
-> +	.link_entities = camss_link_entities
-> +};
-> +
->   static const struct camss_resources sdm660_resources = {
->   	.version = CAMSS_660,
->   	.csiphy_res = csiphy_res_660,
-> @@ -3865,6 +4010,7 @@ static const struct of_device_id camss_dt_match[] = {
->   	{ .compatible = "qcom,msm8916-camss", .data = &msm8916_resources },
->   	{ .compatible = "qcom,msm8953-camss", .data = &msm8953_resources },
->   	{ .compatible = "qcom,msm8996-camss", .data = &msm8996_resources },
-> +	{ .compatible = "qcom,qcm2290-camss", .data = &qcm2290_resources },
->   	{ .compatible = "qcom,sc7280-camss", .data = &sc7280_resources },
->   	{ .compatible = "qcom,sc8280xp-camss", .data = &sc8280xp_resources },
->   	{ .compatible = "qcom,sdm660-camss", .data = &sdm660_resources },
-Other than that LGTM.
----
-bod
+ .../bindings/media/cdns,csi2rx.yaml           |   8 ++
+ drivers/media/platform/cadence/cdns-csi2rx.c  | 131 ++++++++++++++++++
+ 2 files changed, 139 insertions(+)
+
+-- 
+2.34.1
+
 
