@@ -1,150 +1,134 @@
-Return-Path: <devicetree+bounces-167712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FABA8B6FD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:41:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5062AA8B708
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:43:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC50619044C9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:41:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A073A3A53
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2054247294;
-	Wed, 16 Apr 2025 10:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0D0238C28;
+	Wed, 16 Apr 2025 10:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6pK9AzI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W5dkR8Ok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F158323FC42;
-	Wed, 16 Apr 2025 10:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527C9236A99;
+	Wed, 16 Apr 2025 10:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744800032; cv=none; b=SOrek2BKubQSVxZGZB8+grSCxN9mTXAl+iUh3imWWsEyAf4trnGoi63vbALtcTB7nHZH/UMi7UPSgmp8AqSD9WU9u4t2p/XvV/0w8jKJyGPJqL+NnQE6tobAybmpkTNF9TnNuX1EuTslJKGXyoewGqEgDEw0dOyG4NezOfDc8GA=
+	t=1744800169; cv=none; b=bNIjgX+1WugHfuFwTORGdzYSr0zDShx46Rs+c90spaHoGIA6UcldVfJE61AtB1OAh9R51ttrmNdiStT9s7wd0P6v9qr/YAfBbIwP0bcZ+AmISWQfXv8+76Q410PzBnRhrtCHxTh0oP0+NvrA0EhSeVwFK1EvonblWzCMMG8TEN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744800032; c=relaxed/simple;
-	bh=W0j6iaGLICzY08UwsMabAQsvmG4ifO69JE8mK7U9m5k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g/Tszm5Y+n4yJ+jLAryW04ddoRb3cVUkIgn4/TdzKB+6Hyaa1h3ilqdTszqgRQ7CJYx8EHM4kjAQtWhfrn+oQZUdJTtuPdWaSA2xFy5sGgmVtC3Pp7elpTxvNi3Nc8IxoDiNcrugoxCNtbWSwllwhAgSFt4tec6ZeqWb1ords8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6pK9AzI; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf05f0c3eso47193125e9.0;
-        Wed, 16 Apr 2025 03:40:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744800029; x=1745404829; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TBtNXmS8qjturrEwGtpAmFAuM6DgmNGXr8LZo+XU2no=;
-        b=Q6pK9AzIuaCP2ZAXPf7RVPDxFNo3Tawh3enJeP1U2+uZ0T6hzcmTTwf+NRl00sfnY5
-         8jItbEWLTNXsowzYS3poJZF+JAdfwpiPH078dhXJ5SbTSrA/zx1F2LfQix5eTlmhOQRM
-         WExGuYh1eTZUZIKKzZLz+3Rnc08FqdxlSQYkd+7dW3FowJ7Hd6NNnU3bR2RiskYrYggm
-         clOoWnQ9Jzg4+yWR/cjGvNs9h1b95YfukRRHxXSOoOkbSYSJ3MG0TIeCyiChb8AcGRbU
-         5Rb9sBHIurqHhLkIkPY7e9kPKV8AHztsZR51+aB42q+KKyWFjIhpmN1qM2RlTeglZct/
-         co+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744800029; x=1745404829;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TBtNXmS8qjturrEwGtpAmFAuM6DgmNGXr8LZo+XU2no=;
-        b=OLat5tNQCpDhR75iEhBj9NOaigC0pWtjaUTBBj/0MNLqgcZRpsjm2PCiHCehpg3CNf
-         yu3HjdSK4qb9agMMU+LPx06BaXcAAQAGutXM0DM/RLtbUq8J+vyFH2YfFXneimufFYhs
-         Z28KjV/p0NXLCEx30fm+x9c1lab9XcU040jME/qxzb92X5u2M3KqoMs9FFvO807pBvHk
-         rigTLVoMSzwBiXz1PqmipcL6EjHuUJdP2NGnbsc+LLHeCUEojbyDq7u8hrO/ysRIauwr
-         efxhT0BON6zlYD1xaRfud6vR5qsbViKUyQFT4Oq1/vjppSJRjpSwBKF8Y4musvIfQMbz
-         /K8g==
-X-Forwarded-Encrypted: i=1; AJvYcCWW9JPbET676vaKHEdeimkFJ844NiuJ3CMiMdPG3BuWByck8YPcXZP9tFaPy3z2SfZD9JWZjwLCaMofFKgd@vger.kernel.org, AJvYcCWYJxnvsax6mG2cWm3VCbYcHWBA4VMuf0eKZedv/s5bULZCmoucFvnRN4KOvOzqmBAArekdtsBlippw@vger.kernel.org, AJvYcCXpXrhvqKoL32SAA9UHDPkisNShiHgOcwLkpCXRZi6af0A6ctFDsPUtvzx8ASoc4nfNp7IAVV8AEyLVfGtwkr33ddc=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6vlW0DFf3qtLEhST10NOLq2u/Tdp8OlVxh+S650FtT4AgJxMY
-	Uctiog+kHQc7LzrmSYrzl6XCnG9Qtn9/laImi2WM4alAVez/9l/a
-X-Gm-Gg: ASbGncuVuOqxheUqY6DBfWqArydeQKj0OGQ4aRQ8SBvLAa/lav/eiXmiHsZIYnhzzk4
-	KCgsaC7viN9X3jCrRHIO5S/Uptzp7Oz2zUA8fvfSRuKEbeUx+ekEqWzlNgnAmSFCqpqDV69k502
-	OJcWnDo6mR6nx/ltZdBNORXjKf39FQy3RkNSLRDlnRaINWPYxKdd1XXhauzJfhORhh6zvSDg4AB
-	nM2xA2TqR0PVYFfCEFzXN7UtuIjP/Dor6eFDB+w4kDmtkiTgpqqV6r6RxBwNp7H1n6jhq5LzJnE
-	H7VD1unsSq462aLupRebScs2rXYmcTYUuT23TZ8LopElgzz5Qex01L6d/T/hnpkV+w==
-X-Google-Smtp-Source: AGHT+IFXW+hiPEBM9LjJCwMXPmS22EARA29oJ/ZIpi9JZFtxhf4t17LTXmG2ii+PAuY6ozJtD3xfEg==
-X-Received: by 2002:a05:600c:1d2a:b0:43d:36c:f24 with SMTP id 5b1f17b1804b1-4405d61ca24mr13567445e9.13.1744800028716;
-        Wed, 16 Apr 2025 03:40:28 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:b4a2:e121:10d6:ac54])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39eae964089sm16824975f8f.15.2025.04.16.03.40.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Apr 2025 03:40:28 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next v7 4/4] MAINTAINERS: Add entry for Renesas RZ/V2H(P) DWMAC GBETH glue layer driver
-Date: Wed, 16 Apr 2025 11:40:15 +0100
-Message-ID: <20250416104015.47788-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250416104015.47788-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250416104015.47788-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1744800169; c=relaxed/simple;
+	bh=x1lH8oqBgVGQYWa5D2CjIrYJC5tQeyL3FgkI0tDXeuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mDVM3ZaMz1VvDNVzblq2+MHP+FAK3dTzYo1Tbyp7caBxDsMr74njCveHFvJPyTgQ8VQ2Anuv3j7NVRGWSjDoXBLdapzGVc9tWbrVl4drfpQOWafJ7N2QCJKPHxhC1EnBNgPCoke2jq0gnw5AIXKjz7mtixuuV871liG8cUc7Z9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W5dkR8Ok; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1744800167; x=1776336167;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x1lH8oqBgVGQYWa5D2CjIrYJC5tQeyL3FgkI0tDXeuQ=;
+  b=W5dkR8OkBc4OlnT2uMlBMysiS1Qq+bQ1uWr1BLfMU1rmNIJ4aI2cLp3X
+   hRrHSg9O6V9V8g9WyUznWUBNOrbegJjCW5S2yJN+bWknK5RXMYXsPGZoi
+   kmiUtspPmBZqo/so52Dsp6HO4ecsvOo4wsq7SMTp8eM8mpWV4A2GJRg/3
+   Ugx7pG0k8vd9WAgLeByOhT5eTBdjfU8uYILq2PRdtwFlIDoLaLe6wZI1E
+   FzaJinPbUrzp82Qp3CC7OJFwJGPe7VvaRzPOZtqs2MF66zdPlywokboEK
+   6ImC/AwaMjYcjSGEWnUNyH70kOCNsmBPMFCRgCLjoJHXgvJsEGl+syS+J
+   w==;
+X-CSE-ConnectionGUID: PmT0dfygSIaGMWn7MPpA/Q==
+X-CSE-MsgGUID: kT/m3zq8S8qJL+N+i89WYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="56976587"
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; 
+   d="scan'208";a="56976587"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Apr 2025 03:42:45 -0700
+X-CSE-ConnectionGUID: z9dLZdJJST2jc1KhAcS7uA==
+X-CSE-MsgGUID: s295PVukTPyNQXGcU5Y76w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; 
+   d="scan'208";a="130949202"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 16 Apr 2025 03:42:39 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1u50E1-000JXy-15;
+	Wed, 16 Apr 2025 10:42:37 +0000
+Date: Wed, 16 Apr 2025 18:41:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nipun Gupta <nipun.gupta@amd.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
+	conor+dt@kernel.org, ogabbay@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de
+Cc: oe-kbuild-all@lists.linux.dev, praveen.jain@amd.com,
+	harpreet.anand@amd.com, nikhil.agarwal@amd.com,
+	srivatsa@csail.mit.edu, code@tyhicks.com, ptsm@linux.microsoft.com,
+	Nipun Gupta <nipun.gupta@amd.com>
+Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
+Message-ID: <202504161842.xI2wcOdf-lkp@intel.com>
+References: <20250409173033.2261755-2-nipun.gupta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250409173033.2261755-2-nipun.gupta@amd.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Nipun,
 
-Add a new MAINTAINERS entry for the Renesas RZ/V2H(P) DWMAC GBETH
-glue layer driver.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on staging/staging-testing staging/staging-next staging/staging-linus linus/master drm-misc/drm-misc-next drm-tip/drm-tip v6.15-rc2 next-20250416]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1248443035f4..f5141da4d509 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20606,6 +20606,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.yaml
- F:	drivers/usb/gadget/udc/renesas_usbf.c
- 
-+RENESAS RZ/V2H(P) DWMAC GBETH GLUE LAYER DRIVER
-+M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+L:	netdev@vger.kernel.org
-+L:	linux-renesas-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
-+
- RENESAS RZ/V2M I2C DRIVER
- M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- L:	linux-i2c@vger.kernel.org
+url:    https://github.com/intel-lab-lkp/linux/commits/Nipun-Gupta/accel-amdpk-add-driver-for-AMD-PKI-accelerator/20250410-013224
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250409173033.2261755-2-nipun.gupta%40amd.com
+patch subject: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
+config: x86_64-randconfig-003-20250416 (https://download.01.org/0day-ci/archive/20250416/202504161842.xI2wcOdf-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250416/202504161842.xI2wcOdf-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504161842.xI2wcOdf-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> error: include/uapi/drm/amdpk.h: missing "WITH Linux-syscall-note" for SPDX-License-Identifier
+   make[3]: *** [scripts/Makefile.headersinst:63: usr/include/drm/amdpk.h] Error 1 shuffle=3983912090
+   make[3]: Target '__headers' not remade because of errors.
+   make[2]: *** [Makefile:1375: headers] Error 2 shuffle=3983912090
+   scripts/kernel-doc: 1: kernel-doc.py: not found
+   make[3]: *** [scripts/Makefile.build:203: scripts/mod/empty.o] Error 127 shuffle=3983912090
+   make[3]: *** Deleting file 'scripts/mod/empty.o'
+   make[3]: Target 'scripts/mod/' not remade because of errors.
+   make[2]: *** [Makefile:1276: prepare0] Error 2 shuffle=3983912090
+   make[2]: Target 'prepare' not remade because of errors.
+   make[1]: *** [Makefile:248: __sub-make] Error 2 shuffle=3983912090
+   make[1]: Target 'prepare' not remade because of errors.
+   make: *** [Makefile:248: __sub-make] Error 2 shuffle=3983912090
+   make: Target 'prepare' not remade because of errors.
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
