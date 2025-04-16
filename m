@@ -1,337 +1,183 @@
-Return-Path: <devicetree+bounces-167871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045B8A90967
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:54:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5921CA90990
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C12F18951C5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:54:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2D4A3BB3A3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BAE2135B7;
-	Wed, 16 Apr 2025 16:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FCB2153C2;
+	Wed, 16 Apr 2025 17:04:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="ghEDRtDI";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="cVJQGm8z"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JM8UVWCL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D652817AE11;
-	Wed, 16 Apr 2025 16:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.180.163
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744822478; cv=fail; b=KNW3ewQV7mQ3oPH3C14tCn9qstcMplfHDQknVR2XUZtfG8VPBAyD29riKojPMBkCbBfIN3dGpiXlag0LZ3biq+4JimyLY/3kB73JndJ6zmXGD2zyqXo2aNQoaqQcph1IjkhrTcAsqmWzrmGladXCSTKmhB3y+LxBYNdBpY/BOds=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744822478; c=relaxed/simple;
-	bh=nUPTgttk+e6tWkfDcEeeafoBJgyaxvJ+V2LDbcdAJUI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=D4YUBltPappM0525if+Kyeh3kUPhK61yezGOpCpdRFYOVOfjVDs2AJAcO0WV5IH/KMZGuisiCC3NCVpTuHhuhlw0+KHQGQIaaqFsOO85M4govM0+RQxUgITd2mMARTGutxJmkwjKwWXbF8FFqNdnQ0kT5ASQyyPR2QWNEDlTStU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=ghEDRtDI; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=cVJQGm8z; arc=fail smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G5YQBs010904;
-	Wed, 16 Apr 2025 17:53:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=dk201812; bh=49BH7xOs4LVPR15l2kb5S20/s
-	V6Wk5mgmoSRz7WpJ7s=; b=ghEDRtDI2FeVioetzkQpw1XWhMUYdIPda2xuBlTnd
-	ZRecAZya5u7/yHFle5nlrV0tvyICqFtRbu6IPW1hnEI39OuynKWtqVmXg9O/kM26
-	jIy+RVLWFFTBu7sfM9xKqnSkk2FpD+TZlGlUmGjr+k9PkXpUpZaoGzXrWgYkJQuz
-	wRi0EZcEDVvuJz9aqshe8doSrDa4PMJOqvZchnqE9jB+ajXJeZEGWkhwAQMrIZ9J
-	gIJaG8x/0r6kVxNAM3eFiTsjbEFaI+i7Tjyalch52Rol520s16QWUQtqiCcW2JmI
-	9TEZ8IfDtkLoUbXquUxgGc2svWu/UyyIACVcWXydr6z5A==
-Received: from cwxp265cu008.outbound.protection.outlook.com (mail-ukwestazlp17010007.outbound.protection.outlook.com [40.93.68.7])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 461y2mgmtm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 17:53:35 +0100 (BST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xqB9r9aM5kdKAyP/J6M+Xfz5wedbw1yhP7oCrgTnNLuWsVgvR1XXRftyIcdnSKCNhmET2KqtoMZ6lG5V8TQHV93tXr7no+v0u2VDKZgRxRNm+yEnOIKIFL+tSZ6NN5+3IGk3yzOLXsFWYcsw+TRVBB2RiNlVTKfer420VfiQdfwIfh9myHxg8cP6C1FdmWGINkzITIqTTZpVAScnpRd1HnruqKQqAj/3zuEeYV7ElT/IVQkLOQvt0VOuAGMmhrMc037PhyOEyEkhmv207NqJzXe1XGMJ5w8U5W8Br5jAaa4gV0nS9GrxBVUBHeYvHjOkHoZGDHRBrh1nSkf0+ejzXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=49BH7xOs4LVPR15l2kb5S20/sV6Wk5mgmoSRz7WpJ7s=;
- b=c/YUg1ausbvFxgyVPO0sB1JWHa9yjz03pBKO/mW695XwK4ihtgOhZ3jNTUmqE3870duuQ9gXW056lQDT/PFLuO0+yS3OLASnsAXDyW9AyXSnH7UNr1KoXpRzfDVwgCv4CLOkvfcWHVu7NyI+qg4ejZ8bItiyueCgqaDgUCpaA/9+JOEvEU3B2Es4rBlrkyhf7VVm4KltRmxJB2PFmRGbgMo8whfgxl61pxnHlXxa6FubFFIeQS5hiE/q2eRnx7cakJiU+IensXm+DpuSAD/GxVElGJQiiaDRT3L4AUK7XpNioHXbGGsT2bT7s/vu3dnE9Q5A+7CnRJ7llxkmnjLttw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=49BH7xOs4LVPR15l2kb5S20/sV6Wk5mgmoSRz7WpJ7s=;
- b=cVJQGm8zF0lxnOS8LXCudui7gP01t2FnD3wbWWpOcTpSx2qM62YmE/XNGs8nk23mQxsRoj0hm46lIsdFx3VqZLwFSgjrl0U4Nrb0a6rDkvfoBFrmOBrlzQQRL8WgDP1HEI6cGdMiPRn733aSrXJ0oxR5u8DU8clQkId4LGw/iyc=
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:e7::8) by
- CWLP265MB6321.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1e7::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.20; Wed, 16 Apr 2025 16:53:31 +0000
-Received: from CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15]) by CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9d:6b2f:9881:1e15%3]) with mapi id 15.20.8655.018; Wed, 16 Apr 2025
- 16:53:31 +0000
-From: Matt Coster <Matt.Coster@imgtec.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-CC: Frank Binns <Frank.Binns@imgtec.com>,
-        "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>,
-        "m.szyprowski@samsung.com"
-	<m.szyprowski@samsung.com>,
-        "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "simona@ffwll.ch" <simona@ffwll.ch>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-pm@vger.kernel.org"
-	<linux-pm@vger.kernel.org>,
-        "jszhang@kernel.org" <jszhang@kernel.org>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "guoren@kernel.org"
-	<guoren@kernel.org>,
-        "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>,
-        "wefu@redhat.com" <wefu@redhat.com>,
-        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "drew@pdp7.com"
-	<drew@pdp7.com>, "robh@kernel.org" <robh@kernel.org>,
-        "sboyd@kernel.org"
-	<sboyd@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Subject: Re: [PATCH v5 13/21] drm/imagination: Add reset controller support
- for GPU initialization
-Thread-Topic: [PATCH v5 13/21] drm/imagination: Add reset controller support
- for GPU initialization
-Thread-Index: AQHbrvAVnfhhX9uovES9h5ibMx9gpQ==
-Date: Wed, 16 Apr 2025 16:53:31 +0000
-Message-ID: <c74db6a7-146b-4937-974d-2110b587f662@imgtec.com>
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
- <CGME20250219140306eucas1p19ba425ddb1e499ef1014b1665be9de8e@eucas1p1.samsung.com>
- <20250219140239.1378758-14-m.wilczynski@samsung.com>
- <60914de9-f507-4099-be53-ea1fc282c537@samsung.com>
-In-Reply-To: <60914de9-f507-4099-be53-ea1fc282c537@samsung.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CWXP265MB3397:EE_|CWLP265MB6321:EE_
-x-ms-office365-filtering-correlation-id: 5a8bcd83-aef0-4940-8ca8-08dd7d0737fc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018|4053099003;
-x-microsoft-antispam-message-info:
- =?utf-8?B?OVVLeDMxVHVuU3dPVjdpeGxNdnNCd29yZ3pHQXh6OUxNTndjaDhvM1NLWk5z?=
- =?utf-8?B?Rzh3ZU85VUdCNDJ4NWNBQ0toM2xpNi81amJsZkFUNmJPa08rTVlzeFh6cFgw?=
- =?utf-8?B?SHpxSXd0em4xK3ExZ29HbndPUHMvT1RSY1ovZWs1ZCtVdDFPa3B5TzFjOU9F?=
- =?utf-8?B?QTNGR0g3d3UvNjNsc29NV0VtWG9TeUhxMnJJMHd4MmhwMGlwNkJ1MDgrMEt5?=
- =?utf-8?B?YWx4TVRpNFpzaURINGpLSFVqUkxqL3RyQmJMbU9hNlZhUGZwUlMwM0ZPTWw3?=
- =?utf-8?B?WkdxdFNtZXJRNkI2dUxleTB0RHpJMzNQc29lOU9iRWZuTU43Z3FNZ1U3U1Vm?=
- =?utf-8?B?VjZKb2x3a2tMZ1hPbm1pakMvWU45L1BHUEJRbTlIajJzdnlaeVZhMHdaRmFy?=
- =?utf-8?B?YzBJNVNwanl4NFFqQmZnQU5DaHJvd3QvV1p1RDYxSS9SajNjWldUNmNuVmlX?=
- =?utf-8?B?VkhldmxhenEzZ3NwMmRyRU5zYVdQVUMzNytBSnNObFpqQzlVak1tcXFzN0Y3?=
- =?utf-8?B?RmhlQmdDaTA2L3RERFRPS1RWL2NMVHJMbVorRlhBb2FJR3dqaDB3SVpoWkR2?=
- =?utf-8?B?MHJ6cXZMeWp1aEFGaHdkOHFHb1IvZGI0QTV1M2crdWpiVStyU3l3UVZVa0Ur?=
- =?utf-8?B?djdTYnlEVWlPWENUTitBWVhqYlpZMkJCUUNycnhiWEtobWVkRlR0TVI3N3pN?=
- =?utf-8?B?OHRzQTJVQmoyUG95NWdETmFSTW9TeXM4YkpvV1AvQ3RndkQ4bkQzWGpTbzFM?=
- =?utf-8?B?NGU1NUJWV0p0a0E4bmh3VG9ORU5mUUJsNFkwRm40Ky9QVVRCSkx5WkJmVEdm?=
- =?utf-8?B?SWZGZzFUcFFPWmcyRzVMaUVKK1NCZmN3eE5aa2IvbFpScjVITlRvb1kvbFJp?=
- =?utf-8?B?RVQ4MFZOVkc5RXpwbHU4akd5QmRiZ0JtQmFSWE5lRmRQdi9WemtpbTR6UTdY?=
- =?utf-8?B?SjNHL2UzWVlEQmc2WXNEeHdYNFpuTzNjT3RaUi9mYWtKMGhTVDc4SW5INkRM?=
- =?utf-8?B?Q0V2V2dWdnc4UFMwRDNsUVFkQnVsVm1yKzNYUFErc205M0p0U2FHcjlGNEN4?=
- =?utf-8?B?SHNyT005TGFxblI2RC9VNFVqWSs1Ny83ekZGMFNQUXJEcEs4eWhzYnd1V3pY?=
- =?utf-8?B?SEtNT05ub0tNaTQzYUM0TWh2WDFuRDcxWUJINno5d2lzRXlPSDFlNnlBdzJy?=
- =?utf-8?B?NU5EN21Hd25nVDVPelUvWnR1bGJMNFk5Qy9LMDlWS3JqQis5VGZWazlrQWlH?=
- =?utf-8?B?TWYvREM0UGs2bnYyclJHNFhPM1dJbXhLeXdRWXViZkhXNE0zamEyeTVwOUlJ?=
- =?utf-8?B?OGlvU0RzQjdhWFhtOXFzdGJ0UGtrUHhSYWVFaWdNcGlMZEVnRGhsLzZ2Q3pT?=
- =?utf-8?B?N1ZGblovUmJVVjA2WW5oUkZLUEVxcDNZL3dQTVhPNTdCaGh1QkVoS3NYdGVE?=
- =?utf-8?B?RVRiYlZVanpWL0tLR1ZjS1BQNmwvSHlqNHZvNitVMFBVVlFSRWh1bVNRVWEx?=
- =?utf-8?B?bG82eVNTTG1MODA2RkFZSmdObDR4WS9JNGp2T0VsRjVqcW9JOXE4c1laalpr?=
- =?utf-8?B?b1hrWG90ekdIVC9sVU9rNXcyWDNrVVJoUFg0bUFFTnMyVGFzdjV4dlZMQ1RO?=
- =?utf-8?B?YUptbXc2Y09UMUcvL1kzNWpFNS9zTCtwUFo0eHVmNlNLeXJyd3BsaEIyQWlJ?=
- =?utf-8?B?T042SHZWMldRZUlUc1A1a0cvWkp0TytTZWJKZVhwSmpON2Z3anNTL3hLTm15?=
- =?utf-8?B?RmozaWVyKy9CQkYwaHIzSEgxWXRaQnBaSGJTZTFwNnlLemVXY2pBV29TVldz?=
- =?utf-8?B?aXArK0labUE3SmtHaXhtdTNIdFZqUzhFWVZBNGZKejM3UllwM0F3ZGdvdkMx?=
- =?utf-8?B?ZmU2WDl5TFVVL0FzczFGL0V4QjAyZ2pCZTBmNTJYYXIzUytNeGZUVUl2SVhE?=
- =?utf-8?B?VG9FZUpZdExIRm13aTBGS0JFQkV1dlZnNGgwYUZpemdlWk10KzY2SVFPZlFv?=
- =?utf-8?Q?4GnpHom2pKX4+IWTOzlpz9ZRaD/OF4=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018)(4053099003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TWhkTzN0WHdDTTg5YlpSVVNiOVNvMWlWSGVUQmUzaHBURUlUZGFVMVYzOFFq?=
- =?utf-8?B?WFRoVVQyZGRoQ2xEV0REdVh4cmpwUnpPQ2ZxVGhDUytEVnZkRDNMNWI5bFB2?=
- =?utf-8?B?OEZpQ2tpOVBhOFVQZFhMcDBma2R1UzQrYlZjWFlvTGk1Z2RxNTYyTkZMQUxi?=
- =?utf-8?B?U1RUT01CZ0dHMFNVUnFSOVFsVFFXMWcrYmFPaG1qMkMwQ2N1Mm9UdGJTYVlX?=
- =?utf-8?B?R2tITGVYTXZMYVU5bnF0NEZadWFFQzRCZ1RVZ3ZVSHMxMFZwdE05RkN4YzlZ?=
- =?utf-8?B?UVIvQm5aUzB4Q3k3TjZ3R0dNUENXU0laZDVnMzM1dXFuMCtFUmdZZ3NXUEND?=
- =?utf-8?B?czFoM2FBSDhBeUt6MHkvVDJiY1Uya2JuOWZvV2dEYlNUZmkxUm9SVVE5RkJW?=
- =?utf-8?B?bXI4WG56M1pwWlJ2eGg4MTc3aUwvSW00QWZBZHhEcHhQLytCcm54eWpxam9I?=
- =?utf-8?B?bUpFU0UzK1hwL3QveXR3S0Y1djNOejRHVm5ibHFGVlRvQXVESm94clJiZ2R4?=
- =?utf-8?B?L3A3MUJnM01qOENRdmUrbzdYUTVJSlBOZGpqSms0QzRhLzJjekxlYlNqZUJK?=
- =?utf-8?B?a3pWKzlMMnNMeFgzOHpwdlJER2ZtbWhaS2ZueUpJRFZLeTgrbkdXVXBGUnVJ?=
- =?utf-8?B?ZmkxUm9tblhGSjJMMmRadVo2OEUvSnE2QVJYRy93bzRvVkhlSUtoN1c4dTBZ?=
- =?utf-8?B?Zk1Ob3lUeWdxK2NoR1BKQWxxRnhjMGhxbXFNVksrQUxLUmUvQkwxbitqblls?=
- =?utf-8?B?cHFUcGRtVi9OKyswVnF2QnNScmU5eVRpbE1UaHJJbWgrUzdKL2VUdkJnSTVY?=
- =?utf-8?B?SEtWUmsxcEw1bXZXeHRNbHVibi8wdnNWbWw4ZHV2azRYYVdRWWo2MkpzTytq?=
- =?utf-8?B?R2tPLzVPNVlPeS9Cc0VTSTVWUzk4cWpBZXhDUEFnUkEzY3UxeWFrZTZwVHJZ?=
- =?utf-8?B?bnlub2hBQ3pKQ2xzM3RBYU9UWEI1M01KN0tIbVZIdkI5Q0dvdEtRSzZ3Vm5S?=
- =?utf-8?B?QzVDaUVaSEF0UDdqZWpmeUYxN0RMZjIxSklxSVdqM2gvYmFybGgzdEFFTi9r?=
- =?utf-8?B?Rmo0V1VLQlA4MjlURTF1RkNsaXNlZzlKMFVCckhkT2txNlJBejVMM3JQbU5P?=
- =?utf-8?B?NDZDcHloNWtiOXlDWHQ2eTlHQnF1ejdGVUFmaXBoUWR0bUZtUUxQMmlHSHZ1?=
- =?utf-8?B?d1RsMDFuUHdFRFJUMldLQVlPWnpVYWpCWGdtdXVpamoxeXZZNjFDTXgzaWhU?=
- =?utf-8?B?SzMzdWVhRHpqelZHVkRGbHBRUnVvVitNNHZZMWp0bUhFSGZNWmhJQnJMRlg5?=
- =?utf-8?B?Y1pRYVIrY3BhQU1RdlI3TzRRZ0NVMzZsSmhOaXFHcG9URWlPbXdRV3ZIeElX?=
- =?utf-8?B?NmhFUFR5QmRXN2hKTThhT0pRRWJ6MCtXNWpPV05PNVl0RzdiUldwMmJ3VTdn?=
- =?utf-8?B?cmx6ZHNDV0dYUjlVS2pzSnFKZkU2Y3dIUnlpaUtIMzBpZ2hHTGE0c2tKMVNG?=
- =?utf-8?B?VVFGU3ZmMnpISkFBSU5Kb2xkVkRkVmZYRXIvTWtwY3B5NXV3NDBUS2N3TXF5?=
- =?utf-8?B?NXhrVldWUVhnM0JiNzRTMjZFblhOOWdqK0o5MDFNendsN0tWeWlCSk1vRThM?=
- =?utf-8?B?aGJQOWFQNitpMEVwWVZiWDFXVy9USlZoWmhBYVo5ZnFVRnFwUXpvdDZuODNW?=
- =?utf-8?B?WXpDN0dQajBiTGQyajBjK0RuSnRvYmcyMnhrUlVBSENOY0hOWkVSVTRWeHZa?=
- =?utf-8?B?MG8wWDdQbjhPSGpISS9GYnRKQWlSZGxJZXh6WGV3N2JxcEZOWWdDanhyS3lB?=
- =?utf-8?B?ZmxNcUhpcWhsbEZtU2ZObE9waFQ1WVczSjdZSGlMcjk4YnVVZW50Skhrc1di?=
- =?utf-8?B?NGxEb2htdmRWS3NoR0htUmN1RHJ0MmlYakdDQWpSYVZUUFV0VC9KT0E1eDNw?=
- =?utf-8?B?c0JDWk1UM3czUUdxOTArZ0JFYTRtWEJ3Mk9sL2NuSHgzYkNtMUt3Z2cwR2M4?=
- =?utf-8?B?SEpOQ01rYmZSc2dBNW5Eb1dkQ1dOVW1BclluMHZTanEyOUcwZzRHSTFkbzFt?=
- =?utf-8?B?NWpJSFdKRXNJMDJlSWJ2d0Z1UmpFR3dVUmxYTHdpNFB1Z1VqM1oxeGswVnBZ?=
- =?utf-8?B?WnlKQUJ5S2hnOUlWSlAvT0NIck9hR3RtUVJPaWZETDY1RnVKWTdkS0RPVDUz?=
- =?utf-8?B?OXc9PQ==?=
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="------------3bbxVraumoGi2fJRQ3W4IyqC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC9A212F89;
+	Wed, 16 Apr 2025 17:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744823047; cv=none; b=la1vXOpjSNEWU5w4jOnVSsk74NSdzTrRCdjYkg5j1jKke/4S0Ief2tTUSHbDXXnngOD871L+HT/4DXKicfkdDT+SsW8JJy+Z7NH+2gu4ug7PG0jcLZzz2zityUL7uQz86Asw6VAMnRgae7979MUodu70pCb28rY9b+kNdbF5fVU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744823047; c=relaxed/simple;
+	bh=wgCJ0YY6y5mc3MKbBmKW0mnPzzpGjhPUNF1lKUnvhjo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QKAPH1aEWzSkLLqjKnbQviSc1esvf7yEuoax/B//7t/m7PeMgwpqSdoufzNQeLeP+ioDd4Ex8QZrHOwUwaGIheCQ8kODQrWD7fEhxN5sBQGzo+ITSBKdgRFevzBnkTnODrqnJmFse8JuabDIEyspQ5okRuVjhQ6uIcnTtWsUPz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JM8UVWCL; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C28D5965;
+	Wed, 16 Apr 2025 19:01:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1744822919;
+	bh=wgCJ0YY6y5mc3MKbBmKW0mnPzzpGjhPUNF1lKUnvhjo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JM8UVWCLlEpsxKhuY7rly7xb7D3TdDAMaJbLfQjeOOGpSoJZ6mV0Ae5/c9lXz0qRg
+	 jaE0dvXZr+Fha3XA0vUNPWfTUWm9KG0rke7gzhAiTBg9vPm3GY2VFsFgGgYoq4MftH
+	 Pmg24l3gVJDl2mmIFY69NRjMmHcgPQ+MB6z7lQgk=
+Date: Wed, 16 Apr 2025 20:04:00 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+Cc: Jai Luthra <jai.luthra@ideasonboard.com>,
+	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	"stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
+Message-ID: <20250416170400.GK9439@pendragon.ideasonboard.com>
+References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
+ <ZxYiCv6SpLq9uh08@dragon>
+ <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
+ <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
+ <20250415154724.GG9439@pendragon.ideasonboard.com>
+ <20250415155239.GH9439@pendragon.ideasonboard.com>
+ <49a83fe4-863d-4f84-912c-cf58dc22ede6@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: imgtec.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB3397.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a8bcd83-aef0-4940-8ca8-08dd7d0737fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2025 16:53:31.3518
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dCJlh8BsQNgI5xUDAMaCGFEYLS8AVJu+UcbnsnMKw4uIOeTjw/UVr3j2Aicj4HfFxnavqyKGnJh9aYaetBTN7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB6321
-X-Authority-Analysis: v=2.4 cv=LbU86ifi c=1 sm=1 tr=0 ts=67ffe090 cx=c_pps a=NemD1F2luIWN0MFc5Cn7GA==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=XR8D0OoHHMoA:10
- a=NgoYpvdbvlAA:10 a=hD80L64hAAAA:8 a=r_1tXGB3AAAA:8 a=HeIl7KPV_oWCO7BD_oYA:9 a=QEXdDO2ut3YA:10 a=yvwrtV5x0iyCBtp8CqIA:9 a=FfaGCDsud1wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: mKPNdfxSzvEJDvha3RZYXcfW6bZOWSx3
-X-Proofpoint-ORIG-GUID: mKPNdfxSzvEJDvha3RZYXcfW6bZOWSx3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <49a83fe4-863d-4f84-912c-cf58dc22ede6@leica-geosystems.com>
 
---------------3bbxVraumoGi2fJRQ3W4IyqC
-Content-Type: multipart/mixed; boundary="------------LpNi1Hs9Dq38QRgXf0Ws2hpK";
- protected-headers="v1"
-From: Matt Coster <matt.coster@imgtec.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: frank.binns@imgtec.com, p.zabel@pengutronix.de, m.szyprowski@samsung.com,
- linux-clk@vger.kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- mripard@kernel.org, linux-kernel@vger.kernel.org, tzimmermann@suse.de,
- linux-riscv@lists.infradead.org, airlied@gmail.com, simona@ffwll.ch,
- aou@eecs.berkeley.edu, dri-devel@lists.freedesktop.org,
- ulf.hansson@linaro.org, linux-pm@vger.kernel.org, jszhang@kernel.org,
- palmer@dabbelt.com, guoren@kernel.org, maarten.lankhorst@linux.intel.com,
- wefu@redhat.com, paul.walmsley@sifive.com, jassisinghbrar@gmail.com,
- drew@pdp7.com, robh@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
- krzk+dt@kernel.org
-Message-ID: <c74db6a7-146b-4937-974d-2110b587f662@imgtec.com>
-Subject: Re: [PATCH v5 13/21] drm/imagination: Add reset controller support
- for GPU initialization
-References: <20250219140239.1378758-1-m.wilczynski@samsung.com>
- <CGME20250219140306eucas1p19ba425ddb1e499ef1014b1665be9de8e@eucas1p1.samsung.com>
- <20250219140239.1378758-14-m.wilczynski@samsung.com>
- <60914de9-f507-4099-be53-ea1fc282c537@samsung.com>
-In-Reply-To: <60914de9-f507-4099-be53-ea1fc282c537@samsung.com>
+Hi Catalin,
 
---------------LpNi1Hs9Dq38QRgXf0Ws2hpK
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On Wed, Apr 16, 2025 at 06:57:35AM +0000, POPESCU Catalin wrote:
+> On 15/04/2025 17:52, Laurent Pinchart wrote:
+> > On Tue, Apr 15, 2025 at 06:47:26PM +0300, Laurent Pinchart wrote:
+> >> On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
+> >>> Hi Jai,
+> >>>
+> >>> This issue was already reported by Stefan. The problem is that I don't
+> >>> have a Debix board to investigate.
+> >>> The main difference b/w WFI and cpu-pd-wait is that the first doesn't
+> >>> call PSCI/TF-A. So, the issue looks to be related to some settings in
+> >>> the TF-A.
+> >>
+> >> Jai, are you using mainline U-Boot and TF-A, or a downstream version of
+> >> either (or both) ?
+> >
+> > Actually, same question for Calatin :-)
+> 
+> Bonjour Laurent,
+> 
+> I'm running a yocto scarthgap custom build :
+> 
+> - barebox : http://barebox.org/download/barebox-2024.05.0.tar.bz2 _with_
+> custom patches
+> - kernel : 6.12.16 _with_ custom patches
+> - TF-A :
+> git://github.com/hexagon-geo-surv/trusted-firmware-a;protocol=https;branch=leica/v2.12
+> / SRCREV=46c962c654de4ab734f936f472508edf20c6c049 (_no_ custom patches)
 
-On 16/04/2025 15:25, Michal Wilczynski wrote:
-> On 2/19/25 15:02, Michal Wilczynski wrote:
->> All IMG Rogue GPUs include a reset line that participates in the
->> power-up sequence. On some SoCs (e.g., T-Head TH1520 and Banana Pi
->> BPI-F3), this reset line is exposed and must be driven explicitly to
->> ensure proper initialization.  On others, such as the currently
->> supported TI SoC, the reset logic is handled in hardware or firmware
->> without exposing the line directly. In platforms where the reset line =
-is
->> externally accessible, if it is not driven correctly, the GPU may rema=
-in
->> in an undefined state, leading to instability or performance issues.
->>
->> This commit adds a dedicated reset controller to the drm/imagination
->> driver.  By managing the reset line (where applicable) as part of norm=
-al
->> GPU bring-up, the driver ensures reliable initialization across
->> platforms regardless of whether the reset is controlled externally or
->> handled internally.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  drivers/gpu/drm/imagination/pvr_device.c | 21 +++++++++++++++++++++
->>  drivers/gpu/drm/imagination/pvr_device.h |  9 +++++++++
->>  drivers/gpu/drm/imagination/pvr_power.c  | 22 +++++++++++++++++++++-
->>  3 files changed, 51 insertions(+), 1 deletion(-)
->>
->=20
-> Hi Matt,
->=20
-> This commit, along with the corresponding change in the DT bindings,
-> doesn=E2=80=99t appear to conflict with the work you're doing for Rogue=
- series
-> enablement.
+Could you please run tests with the latest mainline kernel ?
 
-Agreed, it still applies cleanly on top of drm-misc-next after we landed
-the BXS series.
+> > I'm running mainline U-Boot 2025.01 and TF-A rel_imx_5.4.70_2.3.6 (from
+> > https://github.com/nxp-imx/imx-atf) and don't seem to experience the
+> > issue:
+> >
+> > # cat /sys/devices/system/cpu/cpu*/cpuidle/state1/disable
+> > 0
+> > 0
+> > 0
+> > 0
+> >
+> > $ ping debix
+> > PING debix.farm.ideasonboard.com (192.168.2.230) 56(84) bytes of data.
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=1 ttl=64 time=1.03 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=2 ttl=64 time=0.800 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3 ttl=64 time=0.935 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=4 ttl=64 time=0.902 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=5 ttl=64 time=0.738 ms
+> > 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=6 ttl=64 time=0.939 ms
+> >
+> >>> What I don't get is why I don't see this issue neither on our IMX8MP
+> >>> specific design nor on the EVK, which uses the same PHY as the Debix board.
+> >>>
+> >>> On 14/04/2025 14:07, Jai Luthra wrote:
+> >>>> On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
+> >>>>> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
+> >>>>>> So far, only WFI is supported on i.MX8mp platform. Add support for
+> >>>>>> deeper cpuidle state "cpu-pd-wait" that would allow for better power
+> >>>>>> usage during runtime. This is a port from NXP downstream kernel.
+> >>>>>>
+> >>>> Since the introduction of this patch in mainline, I am facing sluggish
+> >>>> network performance with my Debix Model-A board with i.MX8mp SoC.
+> >>>>
+> >>>> The network latency jumps to >1s after almost every other packet:
+> >>>>
+> >>>> PING debix (10.0.42.5) 56(84) bytes of data.
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=1008 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=0.488 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=1025 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.810 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=590 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=6 ttl=64 time=0.351 ms
+> >>>> ^C
+> >>>> --- debix ping statistics ---
+> >>>> 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
+> >>>> rtt min/avg/max/mdev = 0.351/437.416/1024.755/459.370 ms, pipe 2
+> >>>> darkapex at freya in ~
+> >>>>
+> >>>> If I revert the patch, or disable the deeper cpuidle state through
+> >>>> sysfs, the issue goes away.
+> >>>>
+> >>>> # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
+> >>>>
+> >>>> PING debix (10.0.42.5) 56(84) bytes of data.
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=1 ttl=64 time=0.482 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=2 ttl=64 time=2.28 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=3 ttl=64 time=2.26 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=4 ttl=64 time=0.848 ms
+> >>>> 64 bytes from debix (10.0.42.5): icmp_seq=5 ttl=64 time=0.406 ms
+> >>>> ^C
+> >>>> --- debix ping statistics ---
+> >>>> 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
+> >>>> rtt min/avg/max/mdev = 0.406/1.255/2.280/0.842 ms
+> >>>>
+> >>>>>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> >>>>> Applied, thanks!
 
->=20
-> Would you prefer if I re-send them as a mini-series so you can consider=
+-- 
+Regards,
 
-> picking them up for the next kernel release?
-
-That would be ideal, thank you!
-
-Cheers,
-Matt
-
->=20
-> Regards,
-> Micha=C5=82
-
-
---=20
-Matt Coster
-E: matt.coster@imgtec.com
-
---------------LpNi1Hs9Dq38QRgXf0Ws2hpK--
-
---------------3bbxVraumoGi2fJRQ3W4IyqC
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCZ//giwUDAAAAAAAKCRB5vBnz2d5qsJQX
-AQCIH3DDZLfQgm47Y2OoZWbKPy9xpV7MMB8qQEzDe0wnrQEAu7V4VWYaezrbJWvCy/FNmr7GJ4ru
-JSNTbJfgJozbtgg=
-=cpD4
------END PGP SIGNATURE-----
-
---------------3bbxVraumoGi2fJRQ3W4IyqC--
+Laurent Pinchart
 
