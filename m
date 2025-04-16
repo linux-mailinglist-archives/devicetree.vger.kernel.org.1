@@ -1,164 +1,251 @@
-Return-Path: <devicetree+bounces-167913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AE91A90B30
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:18:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7138BA90B34
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:18:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C681636B0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:18:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 314E97A49EC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29437217736;
-	Wed, 16 Apr 2025 18:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12F3219A68;
+	Wed, 16 Apr 2025 18:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="m/kpJE2+"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Xa4AueY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAE8215F53
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02878215F53;
+	Wed, 16 Apr 2025 18:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744827485; cv=none; b=Xiq7I0iOJwRKuHQCphRr7LUdspd1MfNd1rNQn5wc4bc6Fl/0siVdHUdtTuekN8/AiwgkBspwI9VjyNBVW89UfGT5rmWBQTSsvoCLO6EaYfhtDTMw2t+Gj4JsWaHZIJcXiWDFad7hu6pCWE8k6VkxSBbKwRrTAIg3CzC3XdWgEwY=
+	t=1744827517; cv=none; b=DTuq8HP7ClouWBwltVXnjkNJoM+iOxIyY8cUl7o2s3dHyGe8pZrsKX9D4+VQgX1BQ1/EAy/0T9ol1VL2UruGJ4hJXdjP0pU1eAkOjDS9opsAkUXxgyr0j+uWqb9dxHILXeGR8qZz8xcwAMCOzcMJca4kDlHyafIrg83HO+cbGmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744827485; c=relaxed/simple;
-	bh=3DKkQU9Mom2lVRMeCwp0ivdrDyuKM3G5b3qIYQX+qDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U6SDnADKzUpUbpKT6qvmmZNV4zf8kEm3w8Em8ZFIWSof4DaJPGrVT+ckIYVKlP4IvidAxSDh7Bx9UO0QeQ90KK9HmWlJk70Q/P2kPhISMhx6MArN7jdzpB5YirhC+XOfdWRpdlORRe5KM8axv6joIiIJNmOp2b018iecqJOM5JU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=m/kpJE2+; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c0e135e953so735209885a.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:18:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1744827481; x=1745432281; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nhIqXs3b02Zr9EkAcj7RO68Dtso22D3FSSNBcsVaNJc=;
-        b=m/kpJE2+ySdCg2OmNE7fVklLvv1ISXrnu7tBTwZC+0WcI3UhRrotb6zEmyjIRI6zX5
-         7mXps0LVosgCqiKC76hu8qCV1X+jrwuAtJ9CkJetNSp5F3+s2rbiX1jK77HN6q4T/43l
-         JoRpTw/CnCEqCv1D179TtF4k9wtrXBAiloLVGpCIK3tAP6KBs0O7Q9zEB4bsvBzJ1xba
-         hn8E6tx6SV1T9lh/1FBYhpstc6pqqQ3nTO0P4dq2NY7sXsZKgLVj0fAGBK5wAm+vtHEo
-         crue52IKn3gl6IMtnbtTf+gu5WqpZCiwfSwYdPLzclfHPxxPCPXnR9seOYgYu8oSo+kC
-         Bg5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744827481; x=1745432281;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nhIqXs3b02Zr9EkAcj7RO68Dtso22D3FSSNBcsVaNJc=;
-        b=q1G7iCyHHQ0SBYcm4t9+LZUG9ogvuTeUToU16F7ftg5Dxx/J0y7A++6MhPTCVhGg/M
-         GbUWEDs9F42F33yPO1E7/yp0Fosi7giTkpHN3T3bN0F38ocjlk1JbUNAZbhKSZGAqbf1
-         OVyTSPW1KYBFlDvD91ZMrXsKgQReAWQx3j8DnD1v+xHJd6dJCV/edkuhDKANEHUUu4hF
-         SxpQEz93p+iGCakdweESH6A9AcEporn+DVZvi5eGwbFaahuBSrcuXs+vF1h0YztNCzYM
-         H17Kd+uI7k6c2u2csS+BLfHvaH1psNTuVS8viEdMqgV51CzeAUVgUsVnep+vme+j57ME
-         rPIA==
-X-Forwarded-Encrypted: i=1; AJvYcCWYnr4940qq+eONhErJMTxE6jeBku+bq0hTdwa0YjX6wYMhNPUiSEHeO34klS7IqVs0GD/BFAvkj+we@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRm+9LzaG4fC/7XuyEHS+0fZ2hPWLhd/0LUr9gdGGgwd1hh3i2
-	pwIEBSZeuoesRGw3Hc/OdAjq5Nb5hRbCLGs3SaNsJZtEQG0sNJocFhqkTG6Cf20=
-X-Gm-Gg: ASbGncuVU/AMRa5t3Kvtl8w95B30YadWlqlAoty44BsL0HqrqsVlQ2bfB8YpKS2ZZSZ
-	hNvjPXX3wOXo7NA7DcWmXmsDLXF/KaRB/PpGUMLa7yZz8JTBUdNwwtK9IT8f1mSSqPuESHamj1p
-	MvSehHwqihKfOhrkb2oLegcX+26VaVTuHbmTqeEiIfAlBzA/MiBNAmlRiR7FFzL9Bv7TeuZxDUk
-	DnAlMwN0ysWT0VFNyKcblK93YoN3v5rtiJ2K0P58Qm978M+QaMpiLZapBMcfdvRD/vnmrBZJT3N
-	TDJDygybNWx5v+xVrnPZg7HuXf5vU1ExcpKlKKWK9E91X1ljQMxoCjOcJBSSY5F/OSShDLvusuR
-	fk1X7sJfWz/adjt0RtjU=
-X-Google-Smtp-Source: AGHT+IHO7Bqf4Fmw+LiZOuVSnpTOMSKYZPCbuJqFFE5vxmLzphTTuPO4Jd1IQCZQaz4uW5OwoW3Ysw==
-X-Received: by 2002:a05:620a:171e:b0:7c5:af73:4f72 with SMTP id af79cd13be357-7c919064377mr376498885a.42.1744827481008;
-        Wed, 16 Apr 2025 11:18:01 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-167-219-86.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.219.86])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c7a8a0de1esm1088777885a.103.2025.04.16.11.17.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Apr 2025 11:17:59 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1u57Kh-00000004wJB-0tjv;
-	Wed, 16 Apr 2025 15:17:59 -0300
-Date: Wed, 16 Apr 2025 15:17:59 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Jacob Pan <jacob.pan@linux.microsoft.com>
-Cc: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev, will@kernel.org,
-	eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250416181759.GF493866@ziepe.ca>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
- <20250410230008.GA6905@ziepe.ca>
- <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
+	s=arc-20240116; t=1744827517; c=relaxed/simple;
+	bh=JVCd1sm27Jpjxfncw1+yCQlbL1TfosoxkuQJ5T+cmWw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ohflRLWt0AFoI8Wid8uvEwA7Jrx/sLLfHlr12/K4cT/8bjVPK0EmOCMJCQOACi4aZFUDNU9a3vki/NVkVgso3EATtmUs+HxYzf0X8OqeRCj7Pt6fLEkUN8hM5c698WDiIVAEx0FHj/sVtayMeoNnM7/cnXjrYamWMiMPM935nvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Xa4AueY1; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1744827489; x=1745432289; i=wahrenst@gmx.net;
+	bh=Yx8aTI4JCFi43D7NV+jvG2vo27tYbIsl7r74CSBJ7Vs=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Xa4AueY1DJNIzZveXMZu9vuTYQ0UDnNeYb+L+KAOmI7+OBto4UjWX8Yneqt3lp3i
+	 QN+7N1Tsh1Hjyhx6b2tn0KXVMjuNochP7u62jWYWzNuujTEFQaDbQe3md6WcegFPB
+	 RExGDEzjNWQv2pbDROunB6ma/zb6aPsV3kYclrbp6AMbPmH/9iG+EOdDzNnzciWXV
+	 wQQSaNJNKo5z/abdb7DMCF3O744XudCPC690rY7nPK5G4UzgIaCElG+Fk3uyYCAcU
+	 sAcG/W1jZ8fn7YVMivr6FGnyQK2rZobZlQjLNlQZHtIiFTwqsc1E87BgGV4toi7Kb
+	 75GDxubeBKhkhqbozw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mv31W-1tE7Av1MA4-016EO1; Wed, 16
+ Apr 2025 20:18:09 +0200
+Message-ID: <8da98fc4-f24e-40ba-b705-9faf31766398@gmx.net>
+Date: Wed, 16 Apr 2025 20:18:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 09/13] arm64: dts: Add board DTS for Rpi5 which
+ includes RP1 node
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <cover.1742418429.git.andrea.porta@suse.com>
+ <c6498d8cf8dfade1980b566e99a9a91551fd8b53.1742418429.git.andrea.porta@suse.com>
+ <526751d2-c7e8-4097-9454-c9049b880225@gmx.net> <Z__sMg-RJ6B-3OL4@apocalypse>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <Z__sMg-RJ6B-3OL4@apocalypse>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yaTnJqXN2hVC2bQS++P5Kut3+/Yey/QLr+fB/knovzlhQKJWqJc
+ AyEgEvkqq3aXU0ZDV6HB3+uKKuHbnKbCfeYyR5pAKk2ZH0R2W+GCG97LS/1tHXuZmmnWh9V
+ 1Ntt4byibq4JJq1bBKQRXiKvVMBZbhUeW2GXTc6lkToqXAKzhYPho97WTpgfORLsaEdWoZi
+ 6/ZfMN0Jy8bl+DxkwuPew==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:q5hkUnNaU5M=;bttCGUAApwen1kuInuvdTyhSYVJ
+ sux0FhhrnfMUo8UfR9GAABXaHH7mtty2C7BqPHURxPW2L4H6y1gxpcEceqWD8oTt8T7RokHYH
+ 28cMWWROQ4zLdUydYjIh9pPzoJGpd3WKl6vghRlPTL4gqje3bST/cmW37PtbtEy/0y4KNjZrg
+ OLtuatxcY1VmZA5d2mVHOUBVAKDo3rL1UHAo9sdB0LQB8ZGm31+TFH9P0yA/02KyRN87kDMaB
+ dFZuZRk1E0ZIA6E1zwUryv1tja4c5sPvkAGJhX9YwDDzKLbEw9sLE7M2vZq3+DYCSo1O0T9HK
+ qUPsTzjTqvVfCAym5v455yDcwkxybdIDXWFa3Nwf3BTthyJ3pbRhM/xQ6mEY3yAiLM8vZ8IzM
+ H9ONcY1sVyCYrkcCAn77L1dLcTFVkkmqW2FQ8vkRDEACLZZ+xrCbZsD75VfLj9tnOzOfOf4zO
+ Ylg02sVbAyNpDkhAANE5+ptR2kw1zkcdSlxcTwsObF5lp1UjCTYkexgJcNi1RyMc+OBlBU5ib
+ 3+gJm1YVTWjybBJ5gD0T84xAOrfG+J3rL900gUbsu0SvBjZvjwBpTm0gQWucd0lJB51fcFZZ2
+ 70cfdWqaP+ybdc+lmNxUnLauLoAjdiYifGQdrv+RzPfEw0FRRd5L1qq3WFSG7f+ElqbCoHOeb
+ O7gEmDLbtrHJ3+x/N/Wi/ubi0og6eJnowlnaD7Yu+OjP1Kxci3zSHKMAxryXw5anDUG6Z5KGc
+ vLlyCc7hvKMjKJyf/9wWJ9B/4ATjtgQ0i9PDLE4QJUw7wZdK4b+382okzF5aujypv8QySlK0z
+ JzaWf1chOcWtl8/MxiJ8CxxMzdXJYtoMBI8G6zECD9lbitv9LbRVN5sh+1gCPABIEfI/hKwxg
+ Adjo0NUtWjHWrgBjIgtE2kbSXMbL6iw+s3VRLQZCeii4pIb9EEwgGQG8hNyS4PRgWBYQ5jgLA
+ IXeQXokC0WmmZ49UngoLzZj9kDsQo2tT8LJSvgiaMZFNyfrwVM5n0DqDlCYCLrDOxT/qgzytJ
+ jVJw3XzodSv7UQuV9PkvQ1ezwvb7rgiZ+I5pfTwqvfY9GKB/ciXxnMpjZ0oxLwkxfIQ32iFTF
+ XFUZWQxrlFIOxNaAKlOPJm9jR7Fgbohdfy+KHuKX78YPOhZ6rEVmymCnyz6rBKkZPmq9v8rV4
+ ARtPGSvCLgFB9G8z8QPaDYvIn3/32knZudyIOfJAOTu1NznIbXIZKnE6kG7bw67Wyig9HYzDX
+ u2oRy+9u1mJMnBNRHwbyhBdcG7ZrhyzeWgITvHjwUCdrImASLDL8SHLd8Yl22/mP1JkCEGHFT
+ lXOfmsFyIoNdb+1eRoR2QsjeBUlLa+NJA8QkdqrX9KaPBN3JSV0/pz9I0tOqKQLxVACOA45SI
+ 5bIVXyCllW0UrzpjByYqs58GCOGl3271iUp99Hl4lh3RA6nLiUWd65ANuQm6GH5pEYwGgggTA
+ DRY3dScWi/pv9cEWlMRrhT7u1s8c7gAlQJ8OKwYf3LZkin+YMis1yT8Jb1YSL9+nN3ReLZ0jh
+ 2MN7A4H4Xd9sYIAECepewcBPr/S7duM4ak1joU7v008+8Ff4/VYJs6LgUHRXyWmPoWSYwK+7s
+ 2o/chfy1ejRKQ0NTWyCF9ikD5jMR45DNnaGTOUT5ptPvXXv30ALPQDMRMQrn7xu1kg2AaE4ky
+ TjWxeZckM1qXxnkYg0pGi3s8SrT0U9AaWJ4+opzbWz+IOm4UNvtvpZB0VLkGXrtDFXIzYFGue
+ uCEmg21XMwtvdLaw8hASFJKqW9Yz4hj3UOUVX88raK/j1r3pG7jekPb7vd8+Gr5JVBdkbKGfG
+ YN2d29qq5rPgftypv+Cjs0TWEgcu1LGw+Ztlfe7Usjr2qcgowvL4Ie2Y0xbEI/Hy9Az32COW1
+ VNGymmj0qCKc0mCJ+qZzlwqG958i6t0JpC9ZrTZSLImN58cN2KTuCJT0NtXC4vrsrGCZJNGbh
+ 8kquhLRtTmAxSb7rltmpjXmTn8OnOhUn9uwl7B7nWXBvezGgli3w5J9YuzXtac5DJdEbhNztt
+ v11HUxYJ14rzeE6CDWGb13I5erSEhQOuscDpArjsLkt2muft2CDcNj3G1d/DXgJbSVPA5Az5w
+ WxBIwVPl2vgMsl/m0qmXxZWFLfOlttaYjlgy+x6ZY9TQacjaqssFrIUFU8PgkI5/waO3bn7+v
+ xS0BMzd3vUr9F8TTZ9olCXvCyVQcIb9Eh+QNqoTKhS7HhoXeX+M5V5qJme+nQmHxh2UsxWwl2
+ +WU1hTFhwFGbO4NHTv1rwHZbARsoJVqyua+Qf4qkJRly0u3ympySEqH0rq07r3+5F0AaahjaJ
+ jzveTXs/7KKdwvAXkHJVjIWOkgfcpyvYTIP7toBfgHT5MZ+0CpSFsEf4+OcH22q0LXp27eDLa
+ JI+cd7kOQjMn0sd4JdpE1Vzl/HzmSF/4G5HtGeqq6s6B5VxgmKdQ6Lc03JORdwGxrdxHaCv0k
+ TWBivmvbJfn/Y/xKfJgVapeWDJWTrdK9ykpcosSbIwErfN8hgDBiYcoBd+scC6i7Pj2H/1stT
+ 9g4jp+b80GGwNllvhl0Uu/a6LkDtFQ6wAOmT6jzKmZ6l+UZ+hsy/Br8UymUySVQZzHSUbNAbK
+ 7qrPqPj2+HMePBzkJPILs9IliNqlzZfy1w2dOEQdkC89pevDBTn+YnXJgnbotqpXPpC9niG5d
+ x4G77/KAQH9l4wv1YfbiUsLZxxXreUuiUb9vgCM1YGgT7m4lC5lK4SqtiFKw+MTY00xJ2z0zc
+ lmMlLjUVDZffrLmSgUstyIISGfwlT3LjEbKNf+t7jcD+m8SwU0ayXlELMnIA5pdiV3GfKl4fV
+ N24Sx3yIGa4Oj4Xd2NveREC2nr8TcWZM1dQ+we8LAkYJhEYIPsX484rjl9ExKEmPgQJvYmENZ
+ OzLwAkeVJjk82xLNCCNG0CoHOzgFXrMsENW/EUI+Oj3IueAjGBnk7f9lGWHUn18hCKln7mVR/
+ 7AvDJH8iRLyS+Z1Ue4oeHzxTiVl8RXNtzXgEu6pJmGdlf/vX8mcZfaPJR9C42oY0v5axvgS7o
+ SmRI1IKy0xfZ9yduogMVuTREXQu1K8KBuDwzs/WFmR+
 
-On Wed, Apr 16, 2025 at 11:04:27AM -0700, Jacob Pan wrote:
+Hi Andrea,
 
-> Per last discussion "SMMU driver have a list of potential addresses and
-> select the first one that does not intersect with the non-working IOVA
-> ranges.". If we don't know what the "non-working IOVA" is, how do we
-> know it does not intersect the "potential addresses"?
+Am 16.04.25 um 19:43 schrieb Andrea della Porta:
+> Hi Stefan,
+>
+> On 13:48 Mon 14 Apr     , Stefan Wahren wrote:
+>> Hi Andrea,
+>>
+>> Am 19.03.25 um 22:52 schrieb Andrea della Porta:
+>>> Add the board 'monolithic' DTS for RaspberryPi 5 which includes
+>>> the RP1 node definition.  The inclusion treeis as follow (the
+>>> arrow points to the includer):
+>>>
+>>> rp1-common.dtsi ----> rp1-nexus.dtsi ----> bcm2712-rpi-5-b-monolithic.=
+dts
+>>>                                                  ^
+>>>                                                  |
+>>>                                              bcm2712-rpi-5-b.dts
+>> sorry for the delay. I'm not happy with the monolithic appendix.
+>>
+>> How about bcm2712-rpi-5-b-rp1.dts or something more self-explaining?Reg=
+ards
+> Sure, good catch. I'd go even further saying that we can rename (or merg=
+e if
+> the destination file already exists) as:
+>
+> bcm2712-rpi-5-b.dts             ->  bcm2712-rpi-5-b-norp1.dts (or some b=
+etter suffix other than -norp1)
+> bcm2712-rpi-5-b-monolithic.dts  ->  bcm2712-rpi-5-b.dts
+>
+> so the monolithic one, which seems to be the 'safest' option as of now,
+> would be the default dtb. Do you think it could be ok?
+i like the idea (include rp1 into default dtb), but not a fan of=20
+negative logic in naming. Unfortunately I don't have better idea.
 
-I had understood from previous discussions that this platform is
-properly creating IOMMU_RESV_RESERVED regions for the IOVA that
-doesn't work. Otherwise everything is broken..
+Regards
+>
+>>> This is designed to maximize the compatibility with downstream DT
+>>> while ensuring that a fully defined DT (one which includes the RP1
+>>> node as opposed to load it from overlay at runtime) is present
+>>> since early boot stage.
+>>>
+>>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+>>> ---
+>>> Right now bcm2712-rpi-5-b.dts is the overlay-ready DT which will make
+>>> the RP1 driver to load the RP1 dtb overlay at runtime, while
+>>> bcm2712-rpi-5-b-monolithic.dts is the fully defined one (i.e. it
+>>> already contains RP1 node, so no overlay is loaded nor needed).
+>>> Depending on which one we want to be considered the default, we can
+>>> swap the file names to align with downstream naming convention that
+>>> has only the fully defined DT called bcm2712-rpi-5-b.dts.
+>> Could you please move some of this good explanation into this dts file =
+as
+>> comment?
+> Sure.
+>
+> Thanks,
+> Andrea
+>
+>>> ---
+>>>    arch/arm64/boot/dts/broadcom/Makefile                     | 1 +
+>>>    .../boot/dts/broadcom/bcm2712-rpi-5-b-monolithic.dts      | 8 +++++=
++++
+>>>    2 files changed, 9 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-mon=
+olithic.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/d=
+ts/broadcom/Makefile
+>>> index 3d0efb93b06d..4836c6da5bee 100644
+>>> --- a/arch/arm64/boot/dts/broadcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/broadcom/Makefile
+>>> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
+>>>    			      bcm2711-rpi-4-b.dtb \
+>>>    			      bcm2711-rpi-cm4-io.dtb \
+>>>    			      bcm2712-rpi-5-b.dtb \
+>>> +			      bcm2712-rpi-5-b-monolithic.dtb \
+>>>    			      bcm2712-d-rpi-5-b.dtb \
+>>>    			      bcm2837-rpi-3-a-plus.dtb \
+>>>    			      bcm2837-rpi-3-b.dtb \
+>>> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-monolithic.d=
+ts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-monolithic.dts
+>>> new file mode 100644
+>>> index 000000000000..3aeee678b0bc
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-monolithic.dts
+>>> @@ -0,0 +1,8 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/dts-v1/;
+>>> +
+>>> +#include "bcm2712-rpi-5-b.dts"
+>>> +
+>>> +&pcie2 {
+>>> +	#include "rp1-nexus.dtsi"
+>>> +};
 
-Presumably that happens through iommu_dma_get_resv_regions() calling
-of_iommu_get_resv_regions() on a DT platform. There is a schema
-describing how to do this, so platform firmware should be able to do it..
-
-So the fix seems trivial enough to me:
-
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index b4c21aaed1266a..ebba18579151bc 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -3562,17 +3562,29 @@ static int arm_smmu_of_xlate(struct device *dev,
- static void arm_smmu_get_resv_regions(struct device *dev,
- 				      struct list_head *head)
- {
--	struct iommu_resv_region *region;
--	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
--
--	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
--					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
--	if (!region)
--		return;
--
--	list_add_tail(&region->list, head);
-+	static const u64 msi_bases[] = { MSI_IOVA_BASE, 0x12340000 };
- 
- 	iommu_dma_get_resv_regions(dev, head);
-+
-+	/*
-+	 * Use the first msi_base that does not intersect with a platform
-+	 * reserved region. The SW MSI base selection is entirely arbitary.
-+	 */
-+	for (i = 0; i != ARRAY_SIZE(msi_bases); i++) {
-+		struct iommu_resv_region *region;
-+
-+		if (resv_intersects(msi_bases[i], MSI_IOVA_LENGTH))
-+			continue;
-+
-+		region = iommu_alloc_resv_region(msi_bases[i], MSI_IOVA_LENGTH,
-+						 IOMMU_WRITE | IOMMU_NOEXEC |
-+							 IOMMU_MMIO,
-+						 IOMMU_RESV_SW_MSI, GFP_KERNEL);
-+		if (!region)
-+			return;
-+		list_add_tail(&region->list, head);
-+		return;
-+	}
- }
- 
- static int arm_smmu_dev_enable_feature(struct device *dev,
-
-Jason
 
