@@ -1,231 +1,117 @@
-Return-Path: <devicetree+bounces-167591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CD2A8AF6E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 06:59:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C1FA8AF99
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177C93B61B4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 04:59:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF815188EBBB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 05:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F878227EB9;
-	Wed, 16 Apr 2025 04:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BFF2288F4;
+	Wed, 16 Apr 2025 05:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="YUMeOFhw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4YsDyhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9FA51DD0F6;
-	Wed, 16 Apr 2025 04:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBAA2DFA2D;
+	Wed, 16 Apr 2025 05:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744779571; cv=none; b=RTgD8EmbimH7mGbpP5/QCiwD+et5Fo6t5njMJ8uubd75BjxiQIGokQrPPYiNCvgIGiset/2D038T8izgsJrSWfkwDcDIOmsz6GDTf0iasj2lcGKKElNGG8Cbtd31RwxuGbChPO8ptDmOSWo8AjsyuMoNRCQzFvVKrSCV35yZ36k=
+	t=1744780711; cv=none; b=QibJql9VlA8attYgvVIsKBZGxMO8+v/A38dnWC2AzS6/vV8dOPbLtmhvSrhbTJbqg2qzyu7gsYqS6T/zN0AiYidPAkiZxEH0hq8fa3I10Rgw9BLmGHfN9QRRG8UwjyqvLxaVO9dw6JVNEmOZZ4g+GSEhvcn4hboB5xd5Iem5kp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744779571; c=relaxed/simple;
-	bh=fFtTR8fQUvOjp3hOLmXlvnaWEHVD5Cm2FoHAZ9ohiIE=;
+	s=arc-20240116; t=1744780711; c=relaxed/simple;
+	bh=CmNtU/Ng9a+Jh4xKHpsC8mx2FxYmD+EiYZC+QuZh9+U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bf+jzmyL8DDRmC5YfeFpfh7TCJ8HSKf+duizGL/tYXDbzyfn0WJciSk/9nXtKoyu0rUhrn7NA1qJFqBIH3VU+T+HpgP6cixKfqc1oukt7LwGX7qB4GcNuipjV9IivRBv+DgRPzXkeEBq96v63Y57yFR2gmah2ELlF+Uy6C50qHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=YUMeOFhw; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:2dc0:c767:bd08:cc70:b57a])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7AC48446;
-	Wed, 16 Apr 2025 06:57:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1744779444;
-	bh=fFtTR8fQUvOjp3hOLmXlvnaWEHVD5Cm2FoHAZ9ohiIE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=lqAZiP/DX+SY5+/LWrZX9I8VKraoDb+pbyuXR/ZPxjq2dpch6NEgokil3q7zv0y2TIerAYWuXAPpnsXsoWa5hsn7G8MQSBKjD/hVperNKAe3vJYu63OkQIHQoWFDo2ObE4RsrhexKViDl5rvcYlHG6AsteZlo24K89xcY9T/D9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T4YsDyhl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A5DC4CEEC;
+	Wed, 16 Apr 2025 05:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744780711;
+	bh=CmNtU/Ng9a+Jh4xKHpsC8mx2FxYmD+EiYZC+QuZh9+U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YUMeOFhwqd+RmkTnCGSvxQ0qG5oVojLNHD6HHGjdOrimaF3rqiDPQeVnNNfBnXbxk
-	 AJQCZA5+8TBiJCOsSfZcGtwUqQgd59/IJDPJCTfc8Qr38yFCt8zn87ijpImRBekoZj
-	 Ptj7DZSfqHjrPfqJbb5EQ9nsWruByp04kkWuWH6g=
-Date: Wed, 16 Apr 2025 10:29:23 +0530
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>, 
-	Shawn Guo <shawnguo2@yeah.net>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>, 
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>, "stefan.klug@ideasonboard.com" <stefan.klug@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
-Message-ID: <c6uhzqizih7m2tdcnavm4cvtae2udk3jfnmr6of6h4qy3xmxon@323rr4apj5cl>
-References: <20241007134424.859467-1-catalin.popescu@leica-geosystems.com>
- <ZxYiCv6SpLq9uh08@dragon>
- <qqi2z7wutuy7e6o5fhpzsgfwkyn4quqmdeftl24meld72sudpg@lo3qpk4x7lbv>
- <d6852cf6-e8a0-49b8-a565-2d94eeef67d9@leica-geosystems.com>
- <20250415154724.GG9439@pendragon.ideasonboard.com>
- <20250415155239.GH9439@pendragon.ideasonboard.com>
+	b=T4YsDyhl2RK//iQoGDJ4oxeuQ2oGCVN46wS8ndM2H1q8BTeAJYZse3I3Hpeb6+MNu
+	 PqY6HWPYLsznjFBt6m8JzrR/fXLChkABbOeyyF9rGB6uco9jqrCgPgnGAGePFdDDfH
+	 2ly5/wQBDFv785hDObgMrmIc59qEosIpIkxaACm3mgk6ZnAo/yI9Y9O2VnT4Z30ZTU
+	 vfQO4X/IPfT+u5J11+3LXI283MB3NthqovTArwv6n/Ohmz6DU2T6BfuQTpv4J8GFW3
+	 rV4VppRCG/NS8cr68X0Kp8MDwEI6Y2ZaNvlqjBQwSFwnGvxC+v7LZsHIScZHcg+T5l
+	 W1z+KsnM770wA==
+Date: Wed, 16 Apr 2025 07:18:27 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Alex Elder <elder@riscstar.com>, Guodong Xu <guodong@riscstar.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor@kernel.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, drew@pdp7.com, 
+	inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
+	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property
+ resets
+Message-ID: <hogqotzzpzcow2xjrwh34qcuiu7ooc2qnvlhuvexzvqkrcsfop@mhz26t5vu35p>
+References: <20250411131423.3802611-1-guodong@riscstar.com>
+ <20250411131423.3802611-2-guodong@riscstar.com>
+ <20250411-confider-spinster-35f23040d188@spud>
+ <89b6142bacecd4a7742341b88dc1e28c4454527a.camel@pengutronix.de>
+ <CAH1PCMZnJDcYKJR35WirQT95hte0NWvGBe4fjDuyZEgagvunAA@mail.gmail.com>
+ <20250415101249-GYA30674@gentoo>
+ <0bbd2842-72bc-47a7-832a-fc8833163e32@riscstar.com>
+ <20250415122807-GYA30943@gentoo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gbylwkaggxhfjf2u"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="drktpjdibffse2jk"
 Content-Disposition: inline
-In-Reply-To: <20250415155239.GH9439@pendragon.ideasonboard.com>
+In-Reply-To: <20250415122807-GYA30943@gentoo>
 
 
---gbylwkaggxhfjf2u
+--drktpjdibffse2jk
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] arm64: dts: imx8mp: add cpuidle state "cpu-pd-wait"
+Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property
+ resets
 MIME-Version: 1.0
 
-Hi Laurent,
+Hello,
 
-On Apr 15, 2025 at 18:52:39 +0300, Laurent Pinchart wrote:
-> On Tue, Apr 15, 2025 at 06:47:26PM +0300, Laurent Pinchart wrote:
-> > Hi Catalin,
-> >=20
-> > On Tue, Apr 15, 2025 at 03:42:22PM +0000, POPESCU Catalin wrote:
-> > > Hi Jai,
-> > >=20
-> > > This issue was already reported by Stefan. The problem is that I don'=
-t=20
-> > > have a Debix board to investigate.
-> > > The main difference b/w WFI and cpu-pd-wait is that the first doesn't=
-=20
-> > > call PSCI/TF-A. So, the issue looks to be related to some settings in=
-=20
-> > > the TF-A.
-> >=20
-> > Jai, are you using mainline U-Boot and TF-A, or a downstream version of
-> > either (or both) ?
+On Tue, Apr 15, 2025 at 12:28:07PM +0000, Yixun Lan wrote:
+> maybe there are cases that users don't want to issue a reset..
+> so, want to make it optional.. I can think one example that,
+> display controller is up and working from bootloader to linux,
+> reset it will got a flicker picture..
 
-I am running mainline U-Boot 2024.01 (with cherry-picked Debix support)=20
-and the same TF-A tag as you rel_imx_5.4.70_2.3.6
+Agreed. You can just deassert the reset at probe time. That shouldn't
+interfere with a PWM that is already producing an output.
 
-I can compile and test with U-Boot 2025.01, will report if it fixes the=20
-issue on my setup.
+> GPG Key ID AABEFD55
 
->=20
-> Actually, same question for Calatin :-)
->=20
-> I'm running mainline U-Boot 2025.01 and TF-A rel_imx_5.4.70_2.3.6 (from
-> https://github.com/nxp-imx/imx-atf) and don't seem to experience the
-> issue:
->=20
-> # cat /sys/devices/system/cpu/cpu*/cpuidle/state1/disable
-> 0
-> 0
-> 0
-> 0
->=20
-> $ ping debix
-> PING debix.farm.ideasonboard.com (192.168.2.230) 56(84) bytes of data.
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D1 t=
-tl=3D64 time=3D1.03 ms
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D2 t=
-tl=3D64 time=3D0.800 ms
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D3 t=
-tl=3D64 time=3D0.935 ms
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D4 t=
-tl=3D64 time=3D0.902 ms
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D5 t=
-tl=3D64 time=3D0.738 ms
-> 64 bytes from debix.farm.ideasonboard.com (192.168.2.230): icmp_seq=3D6 t=
-tl=3D64 time=3D0.939 ms
->=20
-> > > What I don't get is why I don't see this issue neither on our IMX8MP=
-=20
-> > > specific design nor on the EVK, which uses the same PHY as the Debix =
-board.
-> > >
-> > > On 14/04/2025 14:07, Jai Luthra wrote:
-> > > > On Oct 21, 2024 at 17:42:34 +0800, Shawn Guo wrote:
-> > > >> On Mon, Oct 07, 2024 at 03:44:24PM +0200, Catalin Popescu wrote:
-> > > >>> So far, only WFI is supported on i.MX8mp platform. Add support for
-> > > >>> deeper cpuidle state "cpu-pd-wait" that would allow for better po=
-wer
-> > > >>> usage during runtime. This is a port from NXP downstream kernel.
-> > > >>>
-> > > > Since the introduction of this patch in mainline, I am facing slugg=
-ish
-> > > > network performance with my Debix Model-A board with i.MX8mp SoC.
-> > > >
-> > > > The network latency jumps to >1s after almost every other packet:
-> > > >
-> > > > PING debix (10.0.42.5) 56(84) bytes of data.
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D1 ttl=3D64 time=3D1008 =
-ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D2 ttl=3D64 time=3D0.488=
- ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D3 ttl=3D64 time=3D1025 =
-ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D4 ttl=3D64 time=3D0.810=
- ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D5 ttl=3D64 time=3D590 ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D6 ttl=3D64 time=3D0.351=
- ms
-> > > > ^C
-> > > > --- debix ping statistics ---
-> > > > 7 packets transmitted, 6 received, 14.2857% packet loss, time 6126ms
-> > > > rtt min/avg/max/mdev =3D 0.351/437.416/1024.755/459.370 ms, pipe 2
-> > > > darkapex at freya in ~
-> > > >
-> > > > If I revert the patch, or disable the deeper cpuidle state through
-> > > > sysfs, the issue goes away.
-> > > >
-> > > > # echo 1 > /sys/devices/system/cpu/cpu$i/cpuidle/state1/disable
-> > > >
-> > > > PING debix (10.0.42.5) 56(84) bytes of data.
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D1 ttl=3D64 time=3D0.482=
- ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D2 ttl=3D64 time=3D2.28 =
-ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D3 ttl=3D64 time=3D2.26 =
-ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D4 ttl=3D64 time=3D0.848=
- ms
-> > > > 64 bytes from debix (10.0.42.5): icmp_seq=3D5 ttl=3D64 time=3D0.406=
- ms
-> > > > ^C
-> > > > --- debix ping statistics ---
-> > > > 5 packets transmitted, 5 received, 0% packet loss, time 4051ms
-> > > > rtt min/avg/max/mdev =3D 0.406/1.255/2.280/0.842 ms
-> > > >
-> > > >>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.=
-com>
-> > > >>
-> > > >> Applied, thanks!
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
+If you advertise your OpenPGP certificate, I recommend using the long
+id. See for example https://keys.openpgp.org/search?q=AABEFD55.
 
---=20
-Thanks,
-Jai
-
---gbylwkaggxhfjf2u
+--drktpjdibffse2jk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmf/OSsACgkQQ96R+SSa
-cUW6qw/+PvMGbnroClwQ/uzTkOVg4OWzEeTTnOk1jTSzKgOrJ5vQVN72ch29Gtl7
-3R58uOGPJTzUGrB5J3EWgf1TxTIwjwN2sOkGo3ymO3rmBDkc4uEjCn8OsIcWIV1y
-cZF0a/7bhgiFo+eDp7MD/evFmYF3hoUMiTrqWAOObJd5u+gubA5LgaOp0ub2hn8D
-zRbzRo4kEWiu/XdG19ppXOKaC8TNNBtWhSGPzHdvEmIKx+xMkODzoAayFORN6pLd
-SJUxoE+2fs+2DD4hFGaADdg86a7/mmFmbcwDr7TPsA9aT4S6vwcCYJjMJuBV5Ho1
-aRbfRcKiXkUCbLwlUCtfmLb6FDJvOL2BVcMEXft0t9j/aWgU302UGigAbO7+h+E0
-xtNQfH4Ma+YBCMIbA7q6/+GaXesB7y9HOgj0K/btdys6lqdwCNH78NnWDbSrqRLY
-/Qvoga6XKpb0YhkZ0Y5FR6N7HXrcWf9E6n3se4FGgUDku8w2BZjctDYPCqHpFYES
-dud1zae4vPsW8SiegFqxXb7oKgupYcfZAYR33iv5ucxBdAVELN935RRQ4k5Eo0+K
-E8ywas5NEkoSi05glaHU1ZtZLWHgBGXFNNg5I4u5h8y3AOIIkKQxUqPSWbNKttUg
-q2vpUNnS68/aiNjI+bHEqU6Wf7Wjy7sqW4BGwvX7DcL2SFNzrfs=
-=UuwY
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmf/PaEACgkQj4D7WH0S
+/k6ooQf/d4DhhdyM4QPOcTmcUpZ8HOxH7CFCD701mRLpmOlq1dz3/Mtz5tO4wLL2
+nvfA4N7zRagUW8grFQIpENy3IFx5DP3Rdg5PtVELqlqPrOW+NqTTJGslRBeIAoQ3
+0rybTAJEutOM0DPeL7Ay6iGy78VV/Qosh7dhFUWmzxeF1IBHry2tm+euAw5wKOzP
+PNPY/S0CfuOhb2G1ivYYVTBV3fsgYT5G+VfTJyR9/Gkf7F9yKMbX0LRYcG1LM8Ox
+0ilgkvwEu9kt2Au+q6PivMLURHJ28CtG1Fl+Qn50PZm0witW6kFfQqSA3WN4z6rz
+ueBYfIz0tcqYQIjClrgXnesRcLI+KA==
+=8FCS
 -----END PGP SIGNATURE-----
 
---gbylwkaggxhfjf2u--
+--drktpjdibffse2jk--
 
