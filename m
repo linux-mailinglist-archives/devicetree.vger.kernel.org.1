@@ -1,169 +1,174 @@
-Return-Path: <devicetree+bounces-167653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E421A8B3B4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:27:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B367A8B3D5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51B6216ADF3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:27:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ECAD3A5123
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 08:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D9422B8C2;
-	Wed, 16 Apr 2025 08:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FE122DF80;
+	Wed, 16 Apr 2025 08:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oTSbokBN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2096.outbound.protection.outlook.com [40.107.215.96])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116091E0DD8;
-	Wed, 16 Apr 2025 08:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744792043; cv=fail; b=QqyGuWkDStxnKpdxX1LV68z2ab6bMIIgO7BVzpnkuqepeGGPYaB2Crp5mBCJof5Ou9cZbCED4WxeYVC15wEdSFXgsfmwrNFPqBIbsszbAK7r9u2Wkx7vNERk/t0Xfaw6dmqoOOnjQpaHBtVbtMjEsvPJ9dvCyZ1L4bAbejsqwkg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744792043; c=relaxed/simple;
-	bh=ncxOBqQ7eIFawFwWWMbZ/V7Scv4oo965SSSn1hOnBA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y+viIJm1hVewrMcGBsl/t1pOvK82gTG0FxJpqAj+IMLyK6ohFgJAtl5ZfkC2PLfCoj8BR2j+UCCmYVK5csgbrO7Apy7NgZ/u6EUT/jJA4kOQYvyHQ8L9Z2Y3/eAMdS3ryU2jJNZeFTCpUpvMdN2zUxHdP49MnKpcLzhJjY/wYYQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.215.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Eie5VZcSIjykjuNU9EbZb/fMYlvkEBYUCbNdVNXpZoAXO54BUvNRiEy4m7gz3f1vkXssLEBYLH8HdyXa3507yLl78JfDsdsvB09ep9GJlul2EZADyMJawqisyRJzpp0szphnqsdBdbAmSrjrNf7fvfvNVSKHiayMs4fKDcY6IQBP+b7qcwJYgSnTG7KBrJTkS34XqgEvnObuikuOSQs0YxZjNWm0JJGmEH5PhcOdlwHWEATYeIYjGLrq4Z43k+Itnpxak79EsyvucDDfI4BTgVDFIClJIdimn7Sfse/7kPwLDjkFSGOLgvpHobRVSew/S2HWNXXhmq7YLAlFsfmdEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ojNiaePhho4E5RIqjVzNSbbu4HJwo7FomnRdlnU0eoE=;
- b=XOKgdz0mmlba3f5nSzQrgeqn/M6q7tov58sCSY7IBX/YFBWm1jRpu9iBBqRP/c4dYo9lU48/c10BjUAH+lFjg1GrVF4n5FrIUi8IMSQglnoK7Mh0KyqNUqNSd+QCyDiHXsacfRjymjfIKZLJaELX3ovHhbNZGP1OWpa18a18Um3ItsQFnctbpJDhlKqSLHyB9q9zH2D/r59BhOxVMWvh8VOAqRu+UubkePYhm9tj5ugQnIsqBvhH878ioJajTFxjrGvt1P67HUq/1SiMBC66x823RGiLmNRBA5K3VQirzThbYRvCXd+Q/umuA3gzuCH6WmgLiuHAg+9mVDGXY02HQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0034.apcprd02.prod.outlook.com (2603:1096:300:59::22)
- by JH0PR06MB6477.apcprd06.prod.outlook.com (2603:1096:990:33::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.27; Wed, 16 Apr
- 2025 08:27:15 +0000
-Received: from HK3PEPF0000021F.apcprd03.prod.outlook.com
- (2603:1096:300:59:cafe::ad) by PS2PR02CA0034.outlook.office365.com
- (2603:1096:300:59::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.33 via Frontend Transport; Wed,
- 16 Apr 2025 08:27:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- HK3PEPF0000021F.mail.protection.outlook.com (10.167.8.41) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.12 via Frontend Transport; Wed, 16 Apr 2025 08:27:14 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 9DA9F410F606;
-	Wed, 16 Apr 2025 16:26:43 +0800 (CST)
-Date: Wed, 16 Apr 2025 16:26:38 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: soc@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-	arnd@arndb.de, jassisinghbrar@gmail.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	maz@kernel.org, kajetan.puchalski@arm.com,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: Re: [PATCH v6 08/10] dt-bindings: clock: cix: Add CIX sky1 scmi
- clock id
-Message-ID: <Z_9pvs-YKLwFal90@nchen-desktop>
-References: <20250415072724.3565533-1-peter.chen@cixtech.com>
- <20250415072724.3565533-9-peter.chen@cixtech.com>
- <bdfe0108-7ac3-4f2c-b7f2-97943ee85235@kernel.org>
- <2f05420b-0c6f-4336-9854-036edf8d28fa@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D0622D7BC
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 08:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744792171; cv=none; b=eD7iVDpdu+kiCKQlvKW5W3gO2y2OFWkt4rtRGbYEROEkC1PreAVlTsBdCqC+Z/XFPm58ycVJDLOI4L4XN+YY0X4JBlTWW1pjbC0lmdgorVNHXrEzj1p5Fdfi2ORMol9dW75WfH4NAn7CXRsBRMhd2vgrAiDxYZaWYY8oYrzt78E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744792171; c=relaxed/simple;
+	bh=EA8oF/ldbOsSYZg81B4t+sYTz2WKrNkigSOvYkT5d8I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=t6Z+6WeVAxJyHO2lgtomPUA2IqrazULgmv/29TjTpJnufWpbE9uMY3Pz05/x29CzPlWLx9scZCbn12Wyiz/dfvUcUYqlLQ1bFSTZLoVfzcHA3hWuxLNP9OBW9skIxXMIZs5ZTY+f07hWTYg3lK/Iu3cSovHc/VhgFVdp7fwccEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oTSbokBN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G7JNQJ001051
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 08:29:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=slpc2bXbOCKha90h+sjNzl
+	g3kbkNp7YexaKrDiTDN/w=; b=oTSbokBNImZ4hh/AOWmyP0XO29yfDjE7/gYhPa
+	eQg1jI/tBfvXaALTD0+XEoIYLuZ+vMnDzvVSnmDhd7QETQ51JXZYKTILd+bkMkHj
+	Kzeo9gVX3T0jrctn0E6pZHmDLWI7HjYijAq0nrovzvYdMth2AmK7hGyANekUdDgK
+	l3qEOPRA/Uxs4JnqmDK2StclVT503mOh3RMx75zA56yKhANzOvXTHc/wKSIkUdWS
+	twjdDN3zVyHxzrsaQNSkq5O+cpqp71rrDmZeQWztesAi8MsTRbK1U+fZC/QRN7nI
+	2PLxjZC99aSqRJJs3SU3EDUMehUgSUHaUZdXu63IB+szLmyg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf69tv6s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 08:29:28 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2264e5b2b7cso57333145ad.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 01:29:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744792167; x=1745396967;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=slpc2bXbOCKha90h+sjNzlg3kbkNp7YexaKrDiTDN/w=;
+        b=gH+hjw8nyeGN3H90r5HNj/Xmp+7cU9LRrwv9bCHXnfrR4GZYqNkryPPnDVCSI5zCJq
+         EVDR48Sc45D/bhjncU/vYdIYkoCylwAuCHmmtkTXU02ykycA9sqG0FaKmENB/S0xV0OD
+         qPz/XLQkyXLRFSw5Fi+J49nTF0oP7y1n12/j31amJuAYVxJcxD0nBGGTE6VC/eQq2tI0
+         slCODmmywRcj4tg34aRNZ0wWCUH4+2f4b4/YajunM5KFxOTYSbitLh8/+3JKoQuj5ukj
+         g4rP086Bjsjgm4SMkZyiLtSWzQlT674AQeY0rrYSnbwgdXWYdKUYrOwMTZ67DHLYp1WX
+         Yx2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXNgS0XmO8zjE9nr9xyWXdThfg0OydaHx/2D+sQGRrJ2q+sC3ArRsHZ4+mFbdbmjM3xS4LhRm/mKnFm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+fjmYG3V9hoxEIx6lj2O1omO8ZqrSxRcfKJDLt49/xC42J+oV
+	S0opDGwSArlCN6NezfBjuWrsZVWGaKsW5l9Jfw+8wFxR1alCKZJxT4HnleyUiGH8MwlqrQh4L9R
+	z1+L6yw6o9cQw+CmU0b6sH1sa6cmHemQOimnnJuUSF3u8/8uLu8OMHE88ec9W
+X-Gm-Gg: ASbGncs+wOJGybTqABR3hNRQdTY3xfoD42jc7hUPTXEc3Dn2/z5ZUmkseQKQusONAY5
+	Ydi0jhVQPy8ArwGgb/zLY8GeIF9y3Mu8uXQRGGtq64BbIoGhzlRLBPuEjKNLQExS4/u1bD+gLnk
+	5XapyvyaydFRp6dNPNhliCvycSNclPlMTu26HE++kl+5aL/A7uGPBnVGCTdc+RU7fY4lUb9Lgiz
+	msgBzoNq4sWyKsBugpE+5Vo5RLP8DVKPMwxlDuqh68vXzQYEuYRrqHq7oeFyHcWcZKdwcSSQYrX
+	hstPadwNhaAS90Dx1567Xh4pGH/C8OwBJIr8B2Yxoau6SbQdJt8sI/cAJoRn9farWGQO0IhLlJT
+	33JhJUy1Ia3rOaFUtXcs7u5POqaz3O+Y7A2RQQYHPSYpOeno=
+X-Received: by 2002:a17:902:d589:b0:224:e33:8896 with SMTP id d9443c01a7336-22c358bc53bmr17010755ad.11.1744792166991;
+        Wed, 16 Apr 2025 01:29:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFkY0IYvPuynwwUfpOe7++iQmfTfrqoDmd0WU5zErlHpIIvo01R5A1nx55oi4Ov6D0iV7F6lA==
+X-Received: by 2002:a17:902:d589:b0:224:e33:8896 with SMTP id d9443c01a7336-22c358bc53bmr17010445ad.11.1744792166626;
+        Wed, 16 Apr 2025 01:29:26 -0700 (PDT)
+Received: from hu-kathirav-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c33fcee11sm8340125ad.191.2025.04.16.01.29.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 01:29:26 -0700 (PDT)
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Subject: [PATCH v2 0/5] Add support to read the restart reason from IMEM
+Date: Wed, 16 Apr 2025 13:59:17 +0530
+Message-Id: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2f05420b-0c6f-4336-9854-036edf8d28fa@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF0000021F:EE_|JH0PR06MB6477:EE_
-X-MS-Office365-Filtering-Correlation-Id: e61f8f03-5e72-4eb0-3307-08dd7cc07e1d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?RLUBMoUBVsLp3s8bYwVKB944Sa3bh4seukigCIeRISaJiVXjenXtMENFgQ2R?=
- =?us-ascii?Q?WCQxwPSg3EHYVajcPjxE4vRmvWsE5jyNyca7vClm49DoBwQE75xiVJqTaFXy?=
- =?us-ascii?Q?A+1nt8ChMVTxoQHIMQwIl65UUs9ZW1itosd+gMHqEEfUgG/hWsB/UGMvoRzo?=
- =?us-ascii?Q?/zcp+zdK4EeAZxjj9RRDNzySP9DajwsZY4kJUUMTX6xdT9fetSp8QQLeVUR4?=
- =?us-ascii?Q?3H3l08d+dRd5GB62ISSWalZg3ZriGlwDgqhu2c9DdMQC8k0Z3PSthzjq8KJD?=
- =?us-ascii?Q?v858eJJmgNJvrt8eNvaldp81li8L6XTMEs2fQV/MFI4OEw/HoybD+b2Qqbcv?=
- =?us-ascii?Q?mhOBWzwe6mS2JgFSWNFbiSY8CtPxD+/bTy81PRRgrdt3rteo6PwsTOhWRvFQ?=
- =?us-ascii?Q?zRLiwL1VV4nlg4DI2tMdiDoTIXbp2L9kq6cpDMREkV5wYAbn9RTd/MHF8iY5?=
- =?us-ascii?Q?rpKFu2GfEqZ6R6aGREOhOfYTGcyD46hPoOfcdRB+NN3ua59+Y1V8VZrZp2ke?=
- =?us-ascii?Q?i2+PXaO2CiSw/v/JF2Zi6fW9mg7B449wPBFiE3EvZc8Vy/xUWGKxSW5ik3wX?=
- =?us-ascii?Q?ZvVVk/zRzF2STE9z53Fqt18xPZs/c3v4d+AGt3b3iQl6+MdlHODlIppc3PuB?=
- =?us-ascii?Q?GFVe7V0psYJzKzfvf1Xx2fAlPMimNNAHxfxQVQqp3amnGhAJYFp//d1OEa4O?=
- =?us-ascii?Q?gT/SRI23Dx350I8l42ucpc3N2I8pedB3Vn928l2YwEInZV6pvFm7LMV5alSb?=
- =?us-ascii?Q?v6G3XLk72Mk5RSZ5/6UmkDvVfMvyYMf+Nq+NuvaMj/RXY7nfFldKbfmG1Lc1?=
- =?us-ascii?Q?/biFiUCwpc0zYyaR0PjwKJAE9FPUtJU+Hlqzg9ehv52BjQOiPJAKmTOHyUZF?=
- =?us-ascii?Q?A1nxZnZLUEYWBoe+iCqSuwAHgn9rzGcLeXA2mHxRhtsgmAzK2mdSVdVajsf5?=
- =?us-ascii?Q?Rd7+3tsIvKz+qmdqQBWxMewgzgFGdUEcRy1A4AI7nnO9tki+NgusPJT3fHmz?=
- =?us-ascii?Q?Hqz3c+bFk0pxsI2olfWcPvE9A/gcKb8+87g4uwECJHcXtImrBh0ERo8RLl9N?=
- =?us-ascii?Q?XvjCfI0nCh+YMyIV2jZGuyrlO4XtLkdw+rJTalQzSv9/zP/9y2+suPla6DaB?=
- =?us-ascii?Q?7NGinyGQ/8Y4xC7fADyFIkp/cU02nTzLzFR0yxJWqz/FKX7yAqp3p9buUnJq?=
- =?us-ascii?Q?hX0EUWSxZ9sFNmU7V4Xc1WHMzIFftZDrf5TQjN3yTZE8mljvPrBc2mLmgbL6?=
- =?us-ascii?Q?oVt5gZvKhpE38AFhupold8Z0dxNQmCbciywVI4bCEBAr6BQiDowc0ZjbH0zC?=
- =?us-ascii?Q?pj089OZQ0p8yvmR/cCwwu/zJmXgOESlNoJm6/Kwlh+rMKg3z9PIHezq2SG5t?=
- =?us-ascii?Q?cWOK/1BjGav+I0Uy5myMv+qyHEtoFFLxtSMPigMq6p62FIgsNDZkIto9GWHj?=
- =?us-ascii?Q?PZSHHFQI6WSdnOPhdK2a7FdPn1e3DlV1hSNVYJUZR1gyLyGwuantOG+RZbFE?=
- =?us-ascii?Q?pL14EP94QSJZjAwjevv2iph3yPB5lqW0mi4/?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 08:27:14.5386
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e61f8f03-5e72-4eb0-3307-08dd7cc07e1d
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021F.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6477
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF1q/2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwML3fKUkvii1OJUEJlYnJ+nm2poZGlkaGlmnJZopgTUVlCUmpZZATY
+ yOra2FgBTMDTtYgAAAA==
+X-Change-ID: 20250408-wdt_reset_reason-e12921963fa6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744792162; l=1923;
+ i=kathiravan.thirumoorthy@oss.qualcomm.com; s=20230906;
+ h=from:subject:message-id; bh=EA8oF/ldbOsSYZg81B4t+sYTz2WKrNkigSOvYkT5d8I=;
+ b=azUibPrixdPFYTjGH1Dn65iNy5F9mluVpJcXL0XLa7TgNcdNm8r2Fz80gyro9nclD/Fk6SPkK
+ lbS6C3/1M7AD8gd87h65x+IS0GhZkIDpc02RFHsCAhnCFRTvrK+QNoW
+X-Developer-Key: i=kathiravan.thirumoorthy@oss.qualcomm.com; a=ed25519;
+ pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
+X-Proofpoint-GUID: KgRmWAeVwugIt8WRiNTRJPEcWrTVsmod
+X-Authority-Analysis: v=2.4 cv=JNc7s9Kb c=1 sm=1 tr=0 ts=67ff6a68 cx=c_pps a=cmESyDAEBpBGqyK7t0alAg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=6yf5bMAz9jDV2NJdPn0A:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: KgRmWAeVwugIt8WRiNTRJPEcWrTVsmod
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_03,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ suspectscore=0 mlxlogscore=965 lowpriorityscore=0 bulkscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160068
 
-On 25-04-16 08:38:55, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On 16/04/2025 08:35, Krzysztof Kozlowski wrote:
-> > On 15/04/2025 09:27, Peter Chen wrote:
-> >> From: Gary Yang <gary.yang@cixtech.com>
-> >>
-> >> Add device tree bindings for the scmi clock id on
-> >> Cix sky1 platform.
-> >>
-> >> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
-> >> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-> >
-> > Incomplete SoB chain.
+In Qualcomm IPQ SoC, if the system is rebooted due to the watchdog
+timeout, there is no way to identify it. Current approach of checking
+the EXPIRED_STATUS in WDT_STS is not working.
 
-Sorry? What do you mean?
+To achieve this, if the system is rebooted due to watchdog timeout, the
+information is captured in the IMEM by the bootloader (along with other
+reason codes as well).
 
-> >
-> >> ---
-> >>  include/dt-bindings/clock/sky1-clk.h | 279 +++++++++++++++++++++++++++
-> >
-> > Filename matching compatible.
+This series attempts to address this by adding the support to read the
+IMEM and populate the information via bootstatus sysfs file. As of now,
+we are handling only the non secure watchdog timeout reason.
 
-Will change to cix,sky1.h
+Konrad, I sticked with syscon API to access the IMEM instead of exposing
+it as mmio-sram to align with what is available in the mainline. Do let
+me know if the current approach is still not correct / feasible.
 
--- 
+Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+---
+Changes in v2:
+- Dropped the RFC tag
+- Reworked the driver changes to use the syscon API
+- Link to v1: 20250408-wdt_reset_reason-v1-0-e6ec30c2c926@oss.qualcomm.com
+
+---
+Kathiravan Thirumoorthy (5):
+      dt-bindings: sram: qcom,imem: Document IPQ5424 compatible
+      arm64: dts: qcom: ipq5424: Add the IMEM node
+      dt-bindings: watchdog: separate out the IPQ5424 compatilble
+      arm64: dts: qcom: ipq5424: drop the fallback WDT compatible
+      watchdog: qcom: add support to read the restart reason from IMEM
+
+ .../devicetree/bindings/sram/qcom,imem.yaml        |  1 +
+ .../devicetree/bindings/watchdog/qcom-wdt.yaml     |  7 +++-
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi              | 11 ++++-
+ drivers/watchdog/qcom-wdt.c                        | 47 +++++++++++++++++++++-
+ 4 files changed, 61 insertions(+), 5 deletions(-)
+---
+base-commit: 7702d0130dc002bab2c3571ddb6ff68f82d99aea
+change-id: 20250408-wdt_reset_reason-e12921963fa6
 
 Best regards,
-Peter
+-- 
+Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+
 
