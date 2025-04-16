@@ -1,220 +1,145 @@
-Return-Path: <devicetree+bounces-167772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D684A8B8E5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:25:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0E1A8B8E6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED9B63B4105
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:25:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95E81895566
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B182472B0;
-	Wed, 16 Apr 2025 12:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D4D2472AC;
+	Wed, 16 Apr 2025 12:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="gUUU+60G"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K+xD5s1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2137.outbound.protection.outlook.com [40.107.22.137])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E924238D21
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 12:25:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.137
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744806345; cv=fail; b=L6lH6ZFxLwqNRibLoY2xIVVtAF+7vt8AmexfzLzojrahMZgkJHKGREMIsuAhZRxrYpEPMfpcYOghLYRAodsQAfBInHBmaOKi2B8hjlbNCv1RZ02SVa5F/YgX/5BS6Skc56GX8HVKFDfmDb7fG/CRlwMPN8BWWsqsCeo7pb3qm1s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744806345; c=relaxed/simple;
-	bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ZqlFOJoFnU1Vj8PA6019Xqu1KGdPgyl1vkPtqy/CLhPDHqkhE0EtcQSWLknOQ1hahx02GY7bnTw/GOvG8vxp6jTaC5AyVtvftqyLHzSmcbYylbcg/j1ljbbig7skyFCDSTzzl9QdotZQujv3Bs5njcOylvKFSXLjHUBcESSxCwc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=gUUU+60G; arc=fail smtp.client-ip=40.107.22.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ORQ3L5ENebfH9Q0OFkKcenXxdXzdFR7kde0zmDdAK/+aLSzdMPfxN21ZxyInEcqw61JjMmbGYF9gbwGdLmDx5k6Y+HNzcCxDX7pLfRNju8QtoawBz8CeiSEGtG/kVd4z1zyVWENhx9w9Ig/5bHu9SBiAJ/jtr/K0NplAsXxf6WWc1V/R3cdmmxmxc/00/nvYXBadNeYaq0h+1BGaCNBRhREyKaA+H7GMYR+WTBHweZHXDu1m1PoVWtDv3UqmvKYUABScU18n60Hd+HlhKXXuQ+mGMzNu+zaEBL+F7/O86FTVgbHIdGF546EPapOUVHCrjiJAP4fy6lm51VrRJUrkXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
- b=p3tUqIt8u/O7rP1g+rScxTb+CgVmFv6HvSXMjzXIUIWkQRKuaEjmENAGd0AgSjh1lBE6sVlviEe6HLlnX4ZYTBCNq/8TxSA+3MewLaJ1ida6/VPoGpmItWAt0De1S8fbTVGkXUl7GaL3FgNgHqJinVFx/mTYsej5gj5LZDTHNuxAbNuU2odWfyhTNGiOQAM1AalW16uCCDak/AbVs20K4V84yRANq7ayhoLihJEnoPQKavdaDuKg5dHjZr/w4up3PV2w3GiuaX4s61c0RT5IHgOQqHqX8ZJXem2itHyljMeGHjiAYXEhgPUdvIYU31enLz+VXEQoj+ZKzBzvkQxwLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
- dkim=pass header.d=phytec.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/TOBsywHHrz4At5vNrGQtgkvowSTWGDjVvyYx7zjLZM=;
- b=gUUU+60GcGbvq6R1oTn+PZrfpIOeI9gi9+0Yto3UA5sIauqg9aSYX36Y6RIzW7zl51PejEtEH7yC9Kx5IF2xxAOtR+Y1bokGOfYzR9D5WpCzt5jnuBIU4fOmQO5Lk2aouvamn+HutQ62ssyQwg9fqkgMpYtcmri8e5jJIlG84nBwEiSStHZRuX9FEFNf9e5T5CfsdEryew5jgeNiiquwPDUR78f9VKja1Q4eoEe6TPdDhEc5JRSITCq699FSxjBhy244fFLAyqYLEOQtApjIAZ2FfLVH+2MSZGUsLXt3DWMimvRR++qxFFP3lEpdBTu/fAOwj7kzyG6Ftdih+wFp6Q==
-Received: from GV2P195MB2328.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:dc::8) by
- PR3P195MB0521.EURP195.PROD.OUTLOOK.COM (2603:10a6:102:35::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8632.36; Wed, 16 Apr 2025 12:25:36 +0000
-Received: from GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
- ([fe80::c6fe:e602:7166:f258]) by GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
- ([fe80::c6fe:e602:7166:f258%6]) with mapi id 15.20.8632.030; Wed, 16 Apr 2025
- 12:25:36 +0000
-From: Dominik Haller <D.Haller@phytec.de>
-To: Conor Dooley <conor@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "kristo@kernel.org"
-	<kristo@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "vigneshr@ti.com"
-	<vigneshr@ti.com>, "nm@ti.com" <nm@ti.com>, "m-chawdhry@ti.com"
-	<m-chawdhry@ti.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "upstream@lists.phytec.de"
-	<upstream@lists.phytec.de>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC
- AM68x based hardware
-Thread-Topic: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for PHYTEC
- AM68x based hardware
-Thread-Index: AQHbriDaSp1ugqq07UmZXB/BRxTmzrOmOQsA
-Date: Wed, 16 Apr 2025 12:25:36 +0000
-Message-ID: <e93ea6f4c401089298dcf36ac35dbc4365deb9b6.camel@phytec.de>
-References: <20250415130458.33714-1-d.haller@phytec.de>
-	 <20250415-lark-deskwork-7850a95aa955@spud>
-In-Reply-To: <20250415-lark-deskwork-7850a95aa955@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GV2P195MB2328:EE_|PR3P195MB0521:EE_
-x-ms-office365-filtering-correlation-id: 579fa47a-51e6-4d29-85e8-08dd7ce1ca79
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?MXBDL0R6L1paUlAxSHFRcUhvUVN1b1hNUnVCWUtwaWtFbDJYWjNVT3FsWG1B?=
- =?utf-8?B?ZXRaeFFma1pSeHRHbGd3ZjhhYU02YXplRGZOMXVNZkc3WDNvWkFMUE5TVm41?=
- =?utf-8?B?T0MzU3pRVlhYZ29scGdFR2NIRUdHd3Y4WWFsekJtUi85Zm03eFpnUWZkbFVx?=
- =?utf-8?B?SjBFaGhUbjZzWG45T3JVcjA2Z3lSOE93aXc2cnovNlkwVkVwSU1oZ2VtQWht?=
- =?utf-8?B?YlhYUUFSVk5kUTM2cFkwWmtUSTBlKy9KaHdYVm5QWVJDRjZTQ3hyczlqdmJ6?=
- =?utf-8?B?VTZ5c0Q0Y0NneHQ4V01lcmkxN1BVSm0yN0pLaGxPaUFITzlIckhIWDN4aGNj?=
- =?utf-8?B?VlB1eTdxV0ZEcGQ2aXZRa0ZlcnI5cUhKcTZCd3A0S1ZGZytudG1JWno0WEhm?=
- =?utf-8?B?aEJFdWpKSVZFWmZJcEJkc3hzZmRheU16K0hENzViaFdOanZCQ3BPSFNicEhl?=
- =?utf-8?B?T1c0SkxBRkpSZE9qV29pTGlmcm9qU0o5UmtpQzk4YjV6ZDY1WmRocXhWSEZa?=
- =?utf-8?B?YjRocDR1dThEc3pSbnhyR09FcFNrbDZZeGRoMGhETUIzejl4ZjB5NlJwd2VZ?=
- =?utf-8?B?R1lUVXlKQVZSY2gzRWxTUnVxU2RYVnBsalppSmdhQXUxOTh6dEpnYXBTWFUx?=
- =?utf-8?B?SkZhbWs4U1ZvN1pacjVsNUVlVlpLTnkrT1BXS1V0c2kzdHpRTVhNTWdHQnVC?=
- =?utf-8?B?c0lJWG5FTkpMdlpUV0xybVE1TUhmeGRXemhzd2s0d0Y2V1hvbEJXSDJESGJB?=
- =?utf-8?B?SEY4RjJQSUZNVVlPRlcrVnl3bWVXb0lGYUtzYVNEWFNrWHZLN1p5Z1oybEZ0?=
- =?utf-8?B?NXExYVR6TGg5UFlEelhpTDUxL29uODJmaGhOU2VEdGV6RjIvOUd1NmplcGE4?=
- =?utf-8?B?M2VpejBKWGhyU2UveUhRZStqRHo4bHlRL3lWVTArbzNPZmUyM2IrOXp3M3VC?=
- =?utf-8?B?M3NjVHloTlVmdjRiQ2VYTHUwSEpIdW5pVTVUcGdZOXRlSXRSSExtVGIrZlFH?=
- =?utf-8?B?eE4wUnA5OXdlSHh4Zk11VWkwTGZxY0FBN1JXZm50YVdaemJIYVk5K2VIUy92?=
- =?utf-8?B?RmJxMHBNNUlYc0YxY2tVNzlpNmMxN2tNaXZCYU96Y0ZEM0QyazJVblpxbU9z?=
- =?utf-8?B?S3JQbk5hanhjOW1panBPQXV1QnpxOWlUd0J6MkNZQWZLZGQzWmJOR2N5L2Fh?=
- =?utf-8?B?eGl3dXY4ZUhjSEtlcTZmZ1VVY05ZempvelpqUmtEVTlzK0FTdWQ5Q2xTbWJX?=
- =?utf-8?B?YWJUZFdLS1dYazlXYmpnOFBsOVQxaXNQN1VNVzhuZktCN1EyK3FPb3Z6SEpp?=
- =?utf-8?B?ZmlOYnhOZWZ5MFdOeGwvbWsrcFE5YkhERmh6ajFyQTBvazlZZXNhUWVQcU9i?=
- =?utf-8?B?Z0w5dFJMbDhnQ25GRllUK1pyamxCdEc1dVp0TWt2akk5ckI4TDJ5YmJpS3Rz?=
- =?utf-8?B?SXN4MkQ5cDNWOVBWSCtOQzR5bzhHNmZrb3U2dFJLZS9yMmNUYVg2elMwQkxx?=
- =?utf-8?B?R3JEY29Cbkk5WnYrUW9ITTd0QUIvVm5ITkZ1bTcvVmt0b01wU2xwMklOMlVC?=
- =?utf-8?B?UUxJbU1XRTYwdFJxMTVSemJtWWh2R21qZ0VnUWg3LzJMMlhKclhPSm4xaUdO?=
- =?utf-8?B?ckQyY1RiWmN4MkdrS2lVVTFzRGc4c3dpcVFoN1F1TThVQ3AzMm5DK1NCZjRB?=
- =?utf-8?B?MWpDK3lPbmdlVk41WXZjYlpRMlFBMUVlcXhjSk1PeFBBSit0ZTdwZW9Rc2JE?=
- =?utf-8?B?TVVXbnN4bEpEWnBmc09vdEJPS1Z4RE9MdEtFeldNVW5zcDJFcS84VGFVN0Yr?=
- =?utf-8?B?Z1BDazR3TDlKMkpGbkZIVHNsZnAwTFB3OWFNUWhBL0F1dUdXSW1NdHA4dU5D?=
- =?utf-8?B?ZGZtb0N0NVIrcC82Y2pQTHJvUWkyT2I5RjRSWnZDZzF6OTcybnFtWHFYT1pF?=
- =?utf-8?B?OGI5YzFTdnNTaHRIaXJJMDNOKzM5SWVNdFNkRVZuZUNucitmalhoWVZxeFFF?=
- =?utf-8?B?Wm1WM3Q5ZEFRPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2P195MB2328.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?QWZxZDRxUFBQWkFIRHk4MVdTTkQyenRBNnlQTlBpWEZEWVdUbWRaRG5PTW83?=
- =?utf-8?B?WEhZWU5kaVJZTUlacjZXU1lyQ0J0R28xNlBwVEl4SHI3QXptWFh0TGVhdk5r?=
- =?utf-8?B?bEFZdjVlRGhDTmdwN2YwK0p6elNuSUpKZkUzcHNxN0RGRTdyTlRBUzVLVGdY?=
- =?utf-8?B?aDRuaDFEdTdjczEyQ3Blb0RFRXNsa21SY1Z2bWRBTStseENmZEtDSEJPejB4?=
- =?utf-8?B?MUFHNHpjVVFNODVFQlJkaVRjMzFRQmtmVGtSZ1FnUmVzSVRia3NDVkk5Wkh3?=
- =?utf-8?B?ZExPb2ZwVmdZcFpEUkZhS2o3SmdBbGF5d1pXU0grc21YZE80cE0xQ3VDQk9S?=
- =?utf-8?B?MmlrQmhwclovN2hib3ByMmNKd3VEWnNiVXpZT0ZiVzc1UlhwcHNZbWZJRWxy?=
- =?utf-8?B?RitoNnBBOEhremZabWJ0T2pQcGN4aWEvdU1LREUxdGU2VzI2Z1YwbUZnOHd0?=
- =?utf-8?B?YmNrdHJaWkJEOGNCa3V1d01DYXlRdW03cWE1Y3ptdVJaN0k0ZHdHWTFNWkRq?=
- =?utf-8?B?QXQvS0ZUcmJZQ3kyNFVrWUw4WEwxdVEwVERhMEkvM2hqZHFrbnAzb3ZabExq?=
- =?utf-8?B?MWZoVTlPaTdXcHJPaEtCdGV4cUtZU082NDBLYytZTnhaQ2taRE9JZ202dEUr?=
- =?utf-8?B?NG1PY2tjWVU5Y045dU9NaXlocytIWmswY0RseG5WbTBpWVEzM1F4ZVVNZklP?=
- =?utf-8?B?SXdWWk5XRDlVNDl2SWJvS0ozQ2kxaGs1U0FlcGdreHZGNm0rQTByem1YeUtz?=
- =?utf-8?B?UWJqRGZ2NXdtSlFSWjl6bkM3eURHellhVHF6UWs3M2hVOFF3WFhUM3ExNnVH?=
- =?utf-8?B?Q3dRbEVJeWpIT2pibzlHNDgzS0d6RU8wVll5M3ZnZ3AzcUpSNXRrek10dVBZ?=
- =?utf-8?B?eGNTTDllWGdMVnJob3Y4YWxQVC9rQSs2SG5INTIzRTVidUg1cE9WZ0JMcWt4?=
- =?utf-8?B?M2Z3MUdOTmI1RWQ0MFJtNW5Id1NyV3hiVXM1S2Q3bzdvdjBtSXp4R29TaEhW?=
- =?utf-8?B?T2xXRW94OEUzUDg3VkZyb25GdkhWM1p1bjltY09INE9QNEFIWVVJelNuSllU?=
- =?utf-8?B?WWh5aXdpa1RtM013MURsdFdaM0ZCbnJTVjhEd0I5RDkxc3BzWHZqbjdGYXdK?=
- =?utf-8?B?czdmNEV4WlY1M2VxVVdUUmZvVDRVRWJsL1pjTnV6eE9zSktlRDMyaDRtQjJO?=
- =?utf-8?B?ajhmV2hpQjlBYW55NkZ1M3krNU1scmI2ZGlPcGx1K1dFWjFTdk4xQTRsanR0?=
- =?utf-8?B?YVF1N0syaFJqSXkrblNjeWNpdzJXUTF0UmUyeFNNOGlsVjdGdEw1b0MxL0Iv?=
- =?utf-8?B?TVdFK2N6NzdaZGJVU0NQQm9kakF5MEVnS2kzeGgrNyt5Zk5VcWw5L255aHRu?=
- =?utf-8?B?ZW1ETmtUYmlSL2ErWUF5eGtXUSt1ZWNHeXQzbFNGdzR4T3MwRWpjb1lrSW1R?=
- =?utf-8?B?dE9PcEw5SVNZRytzSThJbjFpc1hTTzZUUVM3b0JFVG5mSWVKeHVoQldISm5m?=
- =?utf-8?B?ZW8rdDdoSmRwVVNvMFJRNStONU43d0QwQW84NFd4dW9tTzZ3d0FIQnh6d2dW?=
- =?utf-8?B?Q1J4WmdkYzlGVDM2SVc3Zm83TnQ1T01HOEQ4T0J5MW9WM1NoM1R4VTNrblBD?=
- =?utf-8?B?eW1NdXNYZDl6UEJXMENzcWtCQnlaMHQyVHNuNnZvZzJFbUZ3cktITDMrS3B5?=
- =?utf-8?B?clRCWTVBd0tzS1puRDhkbTdFQmFiRzl4QlVMOGEyYlFMQU9DUVMrcEdtcEhF?=
- =?utf-8?B?K1V6T0Nja3FtRFNMcXVqOHQ2K0NWNXV3NHZjU213WW9MaGMxSnZtRXA5alZo?=
- =?utf-8?B?YjZweU94WjAyS1FSRFlMR2ZrSlpKUFBTa0ZuOWZIakR3bGQrQ09LL2ZzZXJi?=
- =?utf-8?B?S2c3OWN2L24vWW0xREJURzNaS0tmQzQ1dXVwTGdYaHZjcXlib2E1b0RmUUhF?=
- =?utf-8?B?WmgwVVhjeFdhaFpLcHRpRWtKRkZGOFZxaXJKODgzNWJMSmNzNWtSa2U1Z1Vz?=
- =?utf-8?B?WmdNMDBCWmlab0w1M0ZMbkQ0azR2WEM3N082eXVCeUpqUWtNVFhMMExJYWlI?=
- =?utf-8?B?VkxTVGYxVWhUcVQ4ejRxOFVIa3hDOGlITFpRMDI2Z29OSHg4Z3ozQ0ttUXpj?=
- =?utf-8?Q?rRcLUUH8giO6Cq/UAo2OWkNpa?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F5EBB8F34D7DCF4DBD1997987FB30932@EURP195.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFE72459F8;
+	Wed, 16 Apr 2025 12:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744806365; cv=none; b=XqXGqQdzlpXvvZBUZOOYQClcRv75ZCjG/tWQMkVFGg9+093uzfa6X1lY2xiDJN4GSsFQxMXaFiJdRpOTUZuXA/sEhL0rm6bnFDyKaRkNBiSy2rX5WWeLHUCAzwZTPU5ZzchPCE2UKHQYFzIzAsywZVRtoZ45U+ArLQO+Mempxyc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744806365; c=relaxed/simple;
+	bh=AQEEdsM5M0lHUZSu2vTv2NmUJYZpQTkWbrlEvvf8RI0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JKAyRmwkWFy5NPoEr5Wsb/WR6pvkcPQrrMbTNLABAz52tXIlkyIrbK3jaUjyqnIdkT6dV5t9jaTHcHGbvvlb13i40Ho+B3qjgY4P5x3fSEzDDySOJYtbe21rdzBWcsKBovv9+WPRX8vZ/DKC+hUSsQP/V6HPXj4NSGxZxUsvZVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K+xD5s1K; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mJ12025407;
+	Wed, 16 Apr 2025 12:26:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=IThGiOgxeiB3OaCrPVDbPT
+	MAzwu6dqdv6k/q4Q55dm8=; b=K+xD5s1K4r040rmGyFfGdojKGtOTDn2I2+Iz5o
+	7GA4fW+YXQ18NUPon/YDfCNrtuPZ3o40+D/Fi5DbcD5vl/JhiVBjl0auvsUVOdQJ
+	51O/l6hycRBiVTuY54KbNeh+ScZL2/LxxhCzLb7MHXBxjjJJvRNkk/RLOQsJlO/2
+	GeRQDPIPgBGm1akSm8HEurTJEsb5MVA0rKYYLaLB/BZPDkQmpy/5WtCMwAQZN/IV
+	z1zrjJ9c2G2AxyHxpnBBkJijqW+sbB0n1ZseBEw30i11IcolE43Mrex6fQ4sy4K4
+	is6g7uVXfFbVyKz7nN4w+dgutynfeQZC39hb29yJtUvpi1ZA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45ydvjbn1f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Apr 2025 12:26:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53GCQ0gR021377
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 16 Apr 2025 12:26:00 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 16 Apr 2025 05:25:56 -0700
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH v7 0/2] Add PCIe support for IPQ5424
+Date: Wed, 16 Apr 2025 17:55:36 +0530
+Message-ID: <20250416122538.2953658-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV2P195MB2328.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 579fa47a-51e6-4d29-85e8-08dd7ce1ca79
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2025 12:25:36.2591
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dws2dklI8gbb4QOGIoEkoxSnRHHyxBdO0t8GUQSKDRLsSkxxBSRrnzXZAolqgmaAoTj3frSq0WUC/vgLBuEX4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P195MB0521
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ZIrXmW7b c=1 sm=1 tr=0 ts=67ffa1d8 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=R4e822Z64oTJ8j4ndmEA:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: UWYixc8ZiAe_vui1bXvbEopM9NzjvQ_B
+X-Proofpoint-ORIG-GUID: UWYixc8ZiAe_vui1bXvbEopM9NzjvQ_B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 phishscore=0 mlxlogscore=573
+ spamscore=0 impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160102
 
-T24gVHVlLCAyMDI1LTA0LTE1IGF0IDE3OjA5ICswMTAwLCBDb25vciBEb29sZXkgd3JvdGU6Cj4g
-T24gVHVlLCBBcHIgMTUsIDIwMjUgYXQgMDM6MDQ6NTZQTSArMDIwMCwgRG9taW5payBIYWxsZXIg
-d3JvdGU6Cj4gPiBBZGQgZGV2aWNldHJlZSBiaW5kaW5ncyBmb3IgdGhlIEFNNjh4IGJhc2VkIHBo
-eUNPUkUtQU02OHgvVERBNHggU29NCj4gPiBhbmQgdGhlIHBoeUJPQVJELUl6YXIgY2FycmllciBi
-b2FyZC4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogRG9taW5payBIYWxsZXIgPGQuaGFsbGVyQHBo
-eXRlYy5kZT4KPiA+IC0tLQo+ID4gCj4gPiBOb3RlczoKPiA+IMKgwqDCoCBDaGFuZ2VzIGluIHYy
-Ogo+ID4gwqDCoMKgIC0gbm8gY2hhbmdlcwo+ID4gCj4gPiDCoERvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9hcm0vdGkvazMueWFtbCB8IDIgKysKPiA+IMKgMSBmaWxlIGNoYW5nZWQs
-IDIgaW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2FybS90aS9rMy55YW1sCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9hcm0vdGkvazMueWFtbAo+ID4gaW5kZXggMThmMTU1Y2QwNmM4Li5hMDNm
-ZGI5YzA0ODIgMTAwNjQ0Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvYXJtL3RpL2szLnlhbWwKPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9hcm0vdGkvazMueWFtbAo+ID4gQEAgLTEzNSw2ICsxMzUsOCBAQCBwcm9wZXJ0aWVzOgo+
-ID4gwqDCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IEszIEo3MjFzMiBTb0MKPiA+IMKgwqDCoMKg
-wqDCoMKgwqAgaXRlbXM6Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGVudW06Cj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBwaHl0ZWMsYW02OC1waHlib2FyZC1pemFyCj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBwaHl0ZWMsYW02OC1waHljb3JlLXNvbQo+IAo+
-IFRoaXMgbG9va3Mgd3JvbmcsIGlmIEkgYW0gbm90IG1pc3VuZGVyc3RhbmRpbmcuIFlvdXIgaXph
-ciBkdHMKPiBpbmNsdWRlcwo+IHRoZSBzb20gZHRzaSwgc28gdGhpcyBzaG91bGQgYmUgY29uZmln
-dXJlZCB3aXRoIGEgZmFsbGJhY2ssIHNvIHlvdSdyZQo+IGdvaW5nICJwaHl0ZWMsYW02OC1waHli
-b2FyZC1pemFyIiwgInBoeXRlYyxhbTY4LXBoeWNvcmUtc29tIiwKPiAidGksajcyMXMyIiwKPiBu
-bz8KVGhlIGNvbXBhdGlibGVzIGFyZSAicGh5dGVjLGFtNjgtcGh5Ym9hcmQtaXphciIsICJ0aSxq
-NzIxczIiOyBpbiB0aGUKZHRzIGFuZMKgInBoeXRlYyxhbTY4LXBoeWNvcmUtc29tIiwgInRpLGo3
-MjFzMiI7IGluIHRoZSBkdHNpIG5vdy4KClNvIHdoZW4gSSBhZGQgdGhlIHBoeXRlYyxhbTY4LXBo
-eWNvcmUtc29tIGNvbWFwdGlibGUgdG8gdGhlIGR0cyBJJ2xsCm1vdmUgbXkgYmluZGluZ3MgaW50
-byBhbiBvd24gZW50cnkgYW5kIHVzZSBhIHNlY29uZCBjb25zdCBmb3IgdGhlIHNvbToKCiAgICAg
-IC0gZGVzY3JpcHRpb246IEszIEo3MjFTMiBTb0MgUGh5dGVjIFNvTSBiYXNlZCBib2FyZHMKICAg
-ICAgICBpdGVtczoKICAgICAgICAgIC0gZW51bToKICAgICAgICAgICAgICAtIHBoeXRlYyxhbTY4
-LXBoeWJvYXJkLWl6YXIKICAgICAgICAgIC0gY29uc3Q6IHBoeXRlYyxhbTY4LXBoeWNvcmUtc29t
-CiAgICAgICAgICAtIGNvbnN0OiB0aSxqNzIxczIKCj4gCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIC0gdGksYW02OC1zawo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAt
-IHRpLGo3MjFzMi1ldm0KPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHRpLGo3MjFz
-Mgo+ID4gLS0gCj4gPiAyLjQzLjAKPiA+IAoK
+This series adds support for enabling the PCIe host devices (PCIe0,
+PCIe1, PCIe2, PCIe3) found on IPQ5424 platform. The PCIe0 & PCIe1
+are 1-lane Gen3 host and PCIe2 & PCIe3 are 2-lane Gen3 host.
+
+Depends on [1]
+
+[1] https://lore.kernel.org/linux-arm-msm/20250317100029.881286-1-quic_varada@quicinc.com/
+
+Changes in V7:
+	- dtsi
+		- Updated the register size from 0x2000 to 0x1000 in the pcie0_phy and
+		  pcie1_phy nodes.
+	- dts
+		- Incorporated the information about the absence of wake GPIO support
+		  into the commit message.
+	- Fixed the review comments from Dmitry and Konrad.
+
+V6 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250402102723.219960-1-quic_mmanikan@quicinc.com/
+
+V5 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250306111610.3313495-1-quic_mmanikan@quicinc.com/
+
+V4 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250213071912.2930066-1-quic_mmanikan@quicinc.com/
+
+V3 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250125035920.2651972-1-quic_mmanikan@quicinc.com/
+
+V2 can be found at:
+https://lore.kernel.org/linux-arm-msm/20250115064747.3302912-1-quic_mmanikan@quicinc.com/
+
+V1 can be found at:
+https://lore.kernel.org/linux-arm-msm/20241213134950.234946-1-quic_mmanikan@quicinc.com/
+
+Manikanta Mylavarapu (2):
+  arm64: dts: qcom: ipq5424: Add PCIe PHYs and controller nodes
+  arm64: dts: qcom: ipq5424: Enable PCIe PHYs and controllers
+
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts |  41 +-
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 525 +++++++++++++++++++-
+ 2 files changed, 561 insertions(+), 5 deletions(-)
+
+
+base-commit: f660850bc246fef15ba78c81f686860324396628
+prerequisite-patch-id: 210bd857b2a3ce208c6c66389d2845616dafae60
+prerequisite-patch-id: 27a1070861e75cf1dcb03f1e440618bd77b32043
+prerequisite-patch-id: 4dfad74bedd5e7b3b628ead0b23baed7de8b88f7
+prerequisite-patch-id: 79ded164c537cfe947447c920602570626eddb3d
+-- 
+2.34.1
+
 
