@@ -1,290 +1,129 @@
-Return-Path: <devicetree+bounces-167626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BEC5A8B274
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:42:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0AAFA8B27C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C59A17C033
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:42:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 742681891261
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34BEA22D79F;
-	Wed, 16 Apr 2025 07:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A51C22D4ED;
+	Wed, 16 Apr 2025 07:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="R/HD9uNG";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="M/MtMDua"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BbWYSAY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020551A8F9E;
-	Wed, 16 Apr 2025 07:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039F722D4E9
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744789340; cv=none; b=mDTl6FYVh2PHOaxMFm2m/ydiKFr3XxQXeVzwSPI0HU7VR+9g318zcaGgI05xhTZXpUIYaoUmLnePAjHAjSo0HW8BdJlQFm1fAUzpd/6YIhR+1WbDi54iY4F2X91oYFYxY8IFDrxDsTOQk3ZFwIk+Hsiw3Fl6ahbHWsaJDOfxTfQ=
+	t=1744789415; cv=none; b=C37G84kFlk2Ey3eDPba4csvkhjjoHNLwFKmAEue4uqidRiL043FLAZRhAgZEoBEwcEsFV4AnDGgdUQs2miKThuZlESt22Q4fe3ivtYPFZ2BaVjmMK0HDNgMUFDSNA9k/F2LxlEx2/NqsemGIJthhotKhFeAsRK+t9zsi9VSCTIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744789340; c=relaxed/simple;
-	bh=v25A/wzR9AvhuS5vVybL2FLQ/7j++SzyiyIA+8jlU2k=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=l8HIUzewH8pF7+72Tagv6d8hfExYyRxT4IsAt1B91jr99M2zhvUcZeCY2AFBgNRxYpn9fCjTTuSVB0/Lw0TN7pNWenupEwnYcf7qt422iBPNUUQwUJMsFaPM9l3VgFVCNM0owgKZuxgfVc+URCi7XePDwE4skXj4w45gOqpG/Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=R/HD9uNG; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=M/MtMDua reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1744789336; x=1776325336;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=+ic5Mzuh+6gVyT/cjuEACzFs09tFVLNoZJQMRkUzWw0=;
-  b=R/HD9uNG9Ij3qanrkoyfoyhaK6uFcjpFnLb+oxnyODn4zqPbYvWEnaZw
-   gJHjWGw912FcIdS1xYqcL02oxMq3VV3XwLCUxfsO2rbnrf1dh21ZX+cgH
-   VG4e2LQzDDIFyez6qSlV2jgiyHyM/6xxzvfo+/cg4MRS7bgFZjGMMQ6WY
-   T6Wdmb8Co/mCLEZA3CcP4PRfe1bcgyZo4zoquOSMDOTGW8xvHWKK3v1Vf
-   owLrFBejHJk+f8f4U2RYb4DuGciKld3xvYUqX6FsLXuIvSeVpECJQS0Kk
-   msPpX1qZaPr6wdX836aL94TOzaCG9+6KVolZD+bFKhTBy18eQk3PiuByJ
-   A==;
-X-CSE-ConnectionGUID: OjJQBx9WQeiBmnGab79m3A==
-X-CSE-MsgGUID: vRI8Fz7rRtunAMcO6SuQeQ==
-X-IronPort-AV: E=Sophos;i="6.15,215,1739833200"; 
-   d="scan'208";a="43559009"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 16 Apr 2025 09:42:11 +0200
-X-CheckPoint: {67FF5F53-32-B1D34AC3-DEA5B19F}
-X-MAIL-CPID: 25AC1741F08C06D9D92310D82C1FB32A_4
-X-Control-Analysis: str=0001.0A006375.67FF5F50.0006,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 90B6216C05B;
-	Wed, 16 Apr 2025 09:41:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1744789327;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+ic5Mzuh+6gVyT/cjuEACzFs09tFVLNoZJQMRkUzWw0=;
-	b=M/MtMDuaCVsUrYg5k5jSsiYw7QkR3zAqIlGVppUaVxHxGhZSpjRagHzYaOR33GUa8B/+mr
-	V0FP85KaNypEdgNHGjWgg18wvlwCMundEPoMouXH05+EG5WFuimPHIA/3nNpAThr8zngt5
-	hgxfuLtggXzYfTbkZk80kjc3AdMVR9+048TRxIpdYQbjiU/I04wf2jgTfzLF9tA0JON6Xs
-	UKMpKEdOQSQInAg7V41UNqv+dSFfmCplvt49UiPQH9t/ivMVl+bLeNNRh4BP+NRvebEmok
-	5qeOCHH4lDDZYwUKOOA/YOz/Gs5IE/v2U/UOIr/fin+QjLjJPw2pvYkyHKwTsA==
-Message-ID: <b53fba84c8435859a40288f3a12db40685b8863a.camel@ew.tq-group.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: ethernet-controller:
- update descriptions of RGMII modes
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Whitcroft <apw@canonical.com>, Dwaipayan Ray
- <dwaipayanray1@gmail.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>, Joe
- Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>, Nishanth Menon
- <nm@ti.com>,  Vignesh Raghavendra <vigneshr@ti.com>, Roger Quadros
- <rogerq@kernel.org>, Tero Kristo <kristo@kernel.org>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Date: Wed, 16 Apr 2025 09:41:57 +0200
-In-Reply-To: <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
-	 <218a27ae2b2ef2db53fdb3573b58229659db65f9.1744710099.git.matthias.schiffer@ew.tq-group.com>
-	 <6be3bdbe-e87e-4e83-9847-54e52984c645@ti.com>
-	 <cd483b43465d6e50b75f0b11d0fae57251cdc3db.camel@ew.tq-group.com>
-	 <5d74d4b2-f442-4cb8-910e-cb1cc7eb2b3d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1744789415; c=relaxed/simple;
+	bh=coi3EKXsZvOpCpMCEXeQXpb9y/GBI2peS4Eh/ejGft0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hMsAxyt0fm97upezz5R1yVTduSVTPT5De7ZbIt3GNt0OXP9NV0aaUDgykEx6e2iZ+n9FIJ+8xj/eu5HgLAp8PZKRx0QjAS0vI6CfRu+UQzg5rcupcvvt9VBi5xDUKi0hGIObUgMYBhX7L45VPEBsv9KhQMR7YEGT0l15SgaBgCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BbWYSAY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9234C4CEE2;
+	Wed, 16 Apr 2025 07:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744789414;
+	bh=coi3EKXsZvOpCpMCEXeQXpb9y/GBI2peS4Eh/ejGft0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BbWYSAY7bBzu07mrKYHlFEjVQmkx2ltcErHc//CWEigLTyPbnG2uRi+LJ0JEtb6GV
+	 rJV9LKQ1BGMsegtGKxWgC4wYd++DDTAHQGtU4soFmzOmxvvVgcUeR/DDtpWFCz5iCG
+	 55T4ZVDquygHUvZNEixsPsDfTHbQ6m7vHIc2faP4/1SJGI/uq2JxMu4wZaSk4XxXKL
+	 0nQTUHnAI81HfDG2V7lQdAWkctj9kKGfBAAlbmMPnov1qXR3bXiZbphDlQukmtwsnL
+	 Ml0KKfZSpNoTiLZoGzBxmD7Qzm7EiQ5XH/o7IhY4iBAWrUcdOCl28UIKaHVNGbZ6MD
+	 oSe5JwCIuXkwA==
+Message-ID: <bd011058-1d39-4334-8b2c-40f085366cf3@kernel.org>
+Date: Wed, 16 Apr 2025 09:43:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v2 5/5] ARM: dts: vt8500: use correct ohci/ehci
+ node names
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20250330193833.21970-7-wsa+renesas@sang-engineering.com>
+ <20250330193833.21970-12-wsa+renesas@sang-engineering.com>
+ <174478928969.20468.13803674314386256291.b4-ty@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <174478928969.20468.13803674314386256291.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 2025-04-15 at 17:25 +0530, Siddharth Vadapalli wrote:
->=20
-> On Tue, Apr 15, 2025 at 01:28:48PM +0200, Matthias Schiffer wrote:
-> > On Tue, 2025-04-15 at 16:06 +0530, Siddharth Vadapalli wrote:
-> > >=20
-> > > On Tue, Apr 15, 2025 at 12:18:01PM +0200, Matthias Schiffer wrote:
-> > > > As discussed [1], the comments for the different rgmii(-*id) modes =
-do not
-> > > > accurately describe what these values mean.
-> > > >=20
-> > > > As the Device Tree is primarily supposed to describe the hardware a=
-nd not
-> > > > its configuration, the different modes need to distinguish board de=
-signs
-> > >=20
-> > > If the Ethernet-Controller (MAC) is integrated in an SoC (as is the c=
-ase
-> > > with CPSW Ethernet Switch), and, given that "phy-mode" is a property
-> > > added within the device-tree node of the MAC, I fail to understand ho=
-w
-> > > the device-tree can continue "describing" hardware for different boar=
-d
-> > > designs using the same SoC (unchanged MAC HW).
-> >=20
-> > The setting is part of the MAC node, but it is always set in the board =
-DTS,
-> > together with assigning a PHY to the MAC.
->=20
-> The MAC is the same independent of which board it is used in. So are we
-> really describing the "MAC" or configuring the "MAC"? Isn't it the PHY
-> along with the PCB lines on a given board that determine how the "MAC"
-> should be "configured" to make the combination of "MAC" + "PHY"
-> functional together?
->=20
-> >=20
-> > > How do we handle situations where a given MAC supports various
-> > > "phy-modes" in HW? Shouldn't "phy-modes" then be a "list" to technica=
-lly
-> > > descibe the HW? Even if we set aside the "rgmii" variants that this
-> > > series is attempting to address, the CPSW MAC supports "sgmii", "qsgm=
-ii"
-> > > and "usxgmii/xfi" as well.
-> >=20
-> > This is not about PHY mode support of the MAC, but the mode to be used =
-on a
-> > particular board. I would not expect a board to use multiple different
-> > interfaces with a single PHY (and if such cases exist, I consider them =
-out of
->=20
-> For a fixed PHY, the MAC will be "configured" to operate in a set of
-> modes supported by the PHY. The HW description is coming from the PHY
-> that has been "fixed", and not the MAC. But the "phy-mode" property
-> resides within the device-tree node of the MAC and not the PHY. So are
-> we still "describing" the MAC when it is the "PHY" that introduces the
-> limitation or requires the MAC to be configured for a particular
-> "phy-mode"?
+On 16/04/2025 09:41, Krzysztof Kozlowski wrote:
+> 
+> On Sun, 30 Mar 2025 21:38:36 +0200, Wolfram Sang wrote:
+>> They should be named "usb@".
+>>
+>>
+> 
+> Applied, thanks!
+> 
+> [5/5] ARM: dts: vt8500: use correct ohci/ehci node names
+>       https://git.kernel.org/krzk/linux-dt/c/b112d9ffaa65635ec38dfa18661f6d8a358c275c
+I assume the rest will be picked up by their maintainers, but if after
+some time (+2 more weeks?) there is no update, you can ping me so I will
+grab these as well.
 
-The phy-mode property does not describe the MAC, but how MAC and PHY are
-connected. The MAC node just happens to be where this information is placed=
- in
-the Device Tree (Using graph nodes to describe the connection between MAC a=
-nd
-PHY seems like overkill...)
-
-Also note that (as I understand it) I'm not changing anything, I'm updating=
- the
-documentation to reflect what has been the intended behavior already. Pleas=
-e see
-the previous discussion with Andrew that I linked, where he convinced me th=
-at
-this is the correct approach.
-
->=20
-> > scope for this patch series).
-> >=20
-> > >=20
-> > > > (if a delay is built into the PCB using different trace lengths); w=
-hether
-> > > > a delay is added on the MAC or the PHY side when needed should not =
-matter.
-> > > >=20
-> > > > Unfortunately, implementation in MAC drivers is somewhat inconsiste=
-nt
-> > > > where a delay is fixed or configurable on the MAC side. As a first =
-step
-> > > > towards sorting this out, improve the documentation.
->=20
-> While this patch is improving the documentation and making it consistent
-> when it comes to the description of "rgmii" by stating that the "MAC"
-> shouldn't add a delay, for the remaining cases, as to who adds the delay
-> and whether or not the MAC should add a delay has been left open.
-> Existing documentation clarifies what the MAC should do for each case
-> except "rgmii" which is being fixed by your patch.
-
-Andrew specifically asked to leave it open in the DT bindings whether MAC o=
-r PHY
-add the delay, and it might differ between drivers (and different operating
-systems using the same Device Tree).
-
-Whether the MAC should add a required delay in cases where it's configurabl=
-e is
-an interesting question - not one of the Device Tree bindings, but of drive=
-r
-implementation.
-
-On Linux, there currently isn't a way for the MAC driver to query from the =
-PHY
-whether it could include the delays itself. My assumption is that most PHYs
-either don't have internal delays, or the delays are configurable. If this =
-is
-the case, having the MAC add them in internal-delay modes and not adding th=
-em on
-the PHY side would be the best default (also for PHY-less/fixed-link setups=
-,
-which should be handled like a PHY without internal delay capabilities.)
-
-@Andrew, does the above seem correct to you?
-
-Best,
-Matthias
-
-
->=20
-> > > >=20
-> > > > Link: https://lore.kernel.org/lkml/d25b1447-c28b-4998-b238-92672434=
-dc28@lunn.ch/ [1]
-> > > > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com=
->
-> > > > ---
-> > > >  .../bindings/net/ethernet-controller.yaml        | 16 +++++++++---=
-----
-> > > >  1 file changed, 9 insertions(+), 7 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/net/ethernet-control=
-ler.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> > > > index 45819b2358002..2ddc1ce2439a6 100644
-> > > > --- a/Documentation/devicetree/bindings/net/ethernet-controller.yam=
-l
-> > > > +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yam=
-l
-> > > > @@ -74,19 +74,21 @@ properties:
-> > > >        - rev-rmii
-> > > >        - moca
-> > > > =20
-> > > > -      # RX and TX delays are added by the MAC when required
-> > > > +      # RX and TX delays are part of the board design (through PCB=
- traces). MAC
-> > > > +      # and PHY must not add delays.
-> > > >        - rgmii
-> > > > =20
-> > > > -      # RGMII with internal RX and TX delays provided by the PHY,
-> > > > -      # the MAC should not add the RX or TX delays in this case
-> > > > +      # RGMII with internal RX and TX delays provided by the MAC o=
-r PHY. No
-> > > > +      # delays are included in the board design; this is the most =
-common case
-> > > > +      # in modern designs.
-> > > >        - rgmii-id
-> > > > =20
-> > > > -      # RGMII with internal RX delay provided by the PHY, the MAC
-> > > > -      # should not add an RX delay in this case
-> > > > +      # RGMII with internal RX delay provided by the MAC or PHY. T=
-X delay is
-> > > > +      # part of the board design.
-> > > >        - rgmii-rxid
-> > > > =20
-> > > > -      # RGMII with internal TX delay provided by the PHY, the MAC
-> > > > -      # should not add an TX delay in this case
-> > > > +      # RGMII with internal TX delay provided by the MAC or PHY. R=
-X delay is
-> > > > +      # part of the board design.
->=20
-> [...]
->=20
-> Regards,
-> Siddharth.
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
+Best regards,
+Krzysztof
 
