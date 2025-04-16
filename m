@@ -1,240 +1,1614 @@
-Return-Path: <devicetree+bounces-167733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0A3A8B7C8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 13:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8373A8B7E3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 13:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72B6E3B2B13
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:40:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C0953B78DB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A4323F422;
-	Wed, 16 Apr 2025 11:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A24A323FC42;
+	Wed, 16 Apr 2025 11:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="H61Hgze5"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hEOlciUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A53207DF8
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0237623A9BE
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744803623; cv=none; b=ekz3I4IXrEngTKX9A0gqwFJF3qvmg52EhjCl7H/CAHG2j06ZmvCLENeVetgBtA9RQv/s8+5KNxnbQduyK7OrqlUwZK6xEZrn1l17dXYXcjtAs0+sfUJZvp7yPyhpu/ep/ee9IqkMjovnGFk5A3YIOzvYl2GOX4BW4v0FpAs28uo=
+	t=1744804311; cv=none; b=LDVprFliA+m6v5EifFiqTzSS2y+TIMi5Ml6UCepIQCqV4lCWsWH4SQBW2cnLkDAmiU7GqlGmPu0ZkPVXv5ZkdZlRHcasZSGrnjkI0uJnrLpBE1Pxgpqkc2/6jxAt1DC/7bn9CKzt6eFkmHrToOpURtvYgwsjp31edJeYhMpyo0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744803623; c=relaxed/simple;
-	bh=tLLI8KQwyhewIcrMJy4kahG4MsPfsUCupoEf9vxK4b4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=hgni1PcEQG8GuTvNoOJcS9luQGx0JGTx7BtEy7/JvsBpMPBCFgSgMJhm4NYQ7+l06gRA8xIItxkQKeLLPhMhZCNCLT/HO0+eXqEKzHaJ4FU5h9ocO9sgeFQZ9BRilOpZM+SAVhm4xrOI4qY3A6iIkOTwTHyo0TGCw9g3mwMyKvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=H61Hgze5; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250416114017euoutp01cdae76b642a00ffde7fea747801b658c~2yaVoPZJj2504325043euoutp01s
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:40:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250416114017euoutp01cdae76b642a00ffde7fea747801b658c~2yaVoPZJj2504325043euoutp01s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1744803617;
-	bh=iOkOVT8MZOfj07enU9xlf2VRxKNwm4FnBqFYN8+mP38=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=H61Hgze5bsWiXUDEhCP9qk7plZqbYybFrRDuOaki+xRNR4tlXnED4xj6My5jnm6Aa
-	 EN2k0iBvPt3DGBgD3AEw8lwEXLhDdCnMKAO3En4fQIEJwIMPdypkNWO8Bygn+rTkVw
-	 Sin3fLhkR45xM8rrYbFrJQWpS3/7TyFsCET6viqk=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250416114017eucas1p214e415a9c51977ab5661c72e5380aabc~2yaVRTdZH0471104711eucas1p2S;
-	Wed, 16 Apr 2025 11:40:17 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 49.4E.20397.1279FF76; Wed, 16
-	Apr 2025 12:40:17 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250416114016eucas1p1d5d662177196380940a4bbca0a68bb15~2yaUmqB071098910989eucas1p1Q;
-	Wed, 16 Apr 2025 11:40:16 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250416114016eusmtrp21a7c9a3c416a8cc033c5b0ec9bdf518c~2yaUkpMPe1096310963eusmtrp2s;
-	Wed, 16 Apr 2025 11:40:16 +0000 (GMT)
-X-AuditID: cbfec7f5-ed1d670000004fad-a6-67ff97212e29
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 09.16.19654.0279FF76; Wed, 16
-	Apr 2025 12:40:16 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250416114015eusmtip14313da5dadc3c50b0ad139c80a4d9581~2yaTc4QMD0718907189eusmtip1o;
-	Wed, 16 Apr 2025 11:40:15 +0000 (GMT)
-Message-ID: <fe445d04-b488-4f11-a14d-9dfda07e3e88@samsung.com>
-Date: Wed, 16 Apr 2025 13:40:15 +0200
+	s=arc-20240116; t=1744804311; c=relaxed/simple;
+	bh=EVNFSeKW2Qx+N+e8XFyUkerLEmCyh5k8jXWhG1884Wo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t9b1bZS91YTAYZE039kViULT+jNCy2ojf7ux/xCuz3nVc8OVX313fTSlehlKNYp6mdSaJI+abwfFQHVvgLvKGL+L87/Rwv8H5yVxYeZ0EPd2SUdmsEcJUyckfahZIFYLFsjF5flwnnCJEs4zUyWIdjPKi1XaTCG2QW3Q4KONzcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hEOlciUf; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3105ef2a070so39613691fa.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 04:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1744804306; x=1745409106; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IN9oVWw2THGH4XxDg3MRszFkbozgPLFV1uHjTl1OHio=;
+        b=hEOlciUfOyvwFM0NQ/ntch9J89saRu96N6NgKkOnuh7HFrxZjwYmByQ67VrBz53STl
+         9HnI7Iopx7083QkUEpI/a0H0BrvXSYWQ6pkevmLJxRKnnUBhdjKoXdRrw/HkyeI3+LL6
+         sLL4NpWwytnn9/nHRCC+6MAdeFL1+lG6IBQV0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744804306; x=1745409106;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IN9oVWw2THGH4XxDg3MRszFkbozgPLFV1uHjTl1OHio=;
+        b=uK1pyxYPXeVlVOqownV1hybl6cjkcpBZMaWq5Okw0kKIEeTZB8Khy/9UOR0gAo6HnP
+         61yNKNm6aSVotM9/qNRi7vgMkara7JYB8ches2EqE1sNH6UUy9l12IPamf+G4UN3HxEc
+         Rf+m32gEFFMyfmJLtjUJm7rwVx6rLK/s1zWLZBxdWVQgKtiNvyXFkdJGuIgIitrX3C/m
+         Zx2SchchfGBuAsFzlKKXjkRJk2h8TDbpf8ZbTWEEM1gSdKOGW0ClodeQCZz/tYUmXBuT
+         YsiCvHQRypQYQa8U6Wn6zGCkaQx/zSitRjEHAxAebHXGWxAtk05ijtmnukH2EsvDtg4y
+         b1eA==
+X-Forwarded-Encrypted: i=1; AJvYcCWCYadVmIjRGz4VjgCOpaLkvixLgAEzIF/DNPawIXSDk8WKS+MmvRhY5MDPfYcdHc4LD4u3KS0XlYF1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEotHHrtKFAu09Xzi0RQuJFqmIRfZRm//s7CbTPiz6LzHUjdYw
+	I1iOgaOELDcXx6lUj8y8vmdyj3Ky8U52CfSCKffjkEI0RYLdHvTvLsCjPfm2UqUPWeFUWZdpSSw
+	0cwiYKe3ZIGfQD+bhOSZ2MkW15B7hyAyJSzFe
+X-Gm-Gg: ASbGncsCHU4DujNdJNbRo89Pd2TY10XZ4BRamDWSUQQMXWeUR3s0apfsRolmgkL3fzw
+	MObNN2VVCAi/K/gk3140KVfx2Tp6LLPAwVWoaNH6/+zbCcloYpr6hyLmEEo1VQHF7LHeihUlbRo
+	OX0CxKUq5vcgVQM4n24AchLLVE8fbTnyxfNJR5OvVrnsiRcJF73A==
+X-Google-Smtp-Source: AGHT+IFWxEE4cmwXkxDykJf+MZ2M0rvSiqfkBpgar++Udf5FK/Yy++oQZ4MEBTzlLq0tj4/EU8m2bxiHEOUuSwzEM2c=
+X-Received: by 2002:a05:651c:146b:b0:30b:d0d5:1fee with SMTP id
+ 38308e7fff4ca-3107f5a505dmr5597041fa.0.1744804305657; Wed, 16 Apr 2025
+ 04:51:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: firmware: thead,th1520: Add resets
- for GPU clkgen
-To: Conor Dooley <conor@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich
-	<dakr@kernel.org>, Pavel Machek <pavel@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Philipp
-	Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, Matt
-	Coster <matt.coster@imgtec.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, m.szyprowski@samsung.com,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250415-tycoon-naming-20ba5a55c469@spud>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxTVxjGc+69vb1UIZfC5BQWKyxjc8uwoJsn2YbDuO2abJn6D5khcZ3e
-	1EZKWQvINuOYMKUIEywIFqHFKB+dFYZtpQ1tJyKt6dahYxX5FIdOq4AM3dBAmeXqxn/P+5zf
-	ed/nPTkULqwjYyl5Vg6rypJmJpACwtrz+Nc34qsXZBLDmAh5rp3E0BmHD0MtVUYS3Tv2gET6
-	bh8PjVw1Y6jv0RSJzt7q5aM7jm8JdFc3QqLf7CdINFPWDZB1pohEpu5hPmqYthDoVIcdoIOa
-	Rh4aHvEQqHiqAEd1D6twtNDZwUe1ky4+Mt+v4CG3KR0VuSqJ90SM428Dwdh0w3ym1PYzYNqN
-	GpIZ8neSTP3lrczoYTfGnDv1DVNk6sGYI/MSZsr5O8l8bzYC5pz3a2amfeWWiO2Cd3axmfI8
-	VrUm9TPB7tPWQ7zs+3H5+q7MAtCyogSEUZBeBzUltVgJEFBCuhlA/2wPzhUPAXTeLMdDlJCe
-	AVCrZZ7f+OOHcR4HNQEYHLtIcsUEgJq2KiJEhdOpcLT4MQhpgn4Z2m4F+ZwfCS8fH19kXqDF
-	cHSg5qlPUVF0BjQG9obsaPol2GfSgVBPnB4kYWOxdpHH6Rg4MK7HQpqkU+CNJj0vpMPo9XDW
-	dxZwjBgWWmoXV4B0gwB6Dl8ludiboMd8Bed0FAy4zXxOvwgXbFxTSCvhDctfz5h90Fbqfqbf
-	hkO+J2QoKE6vhq32NZydBp0H+hfzQzoC9k9EchEi4FFrNc7Z4bD4oJCjE2FVadl/Q33NVqwc
-	JOiWPIpuyZK6Jcvo/p9rAIQRxLC5aoWMVa/NYvcmqaUKdW6WLGmnUtEOnv5gb9D9qAM0B6aT
-	ugBGgS4AKTwhOty3PigThu+SfvkVq1LuUOVmsuouEEcRCTHhJ13fyYS0TJrD7mHZbFb1/BSj
-	wmILMHmnx3p+U+vtmYLESNd+sFr4T6RRMZAbn3fJK5m+rtbvI4/PX7MpN9xZVkfPLUuRvFoZ
-	e89SvcfZ9sD14xl9ouXTKx8UReT21ASTxd4G+Zwxdl1cIENEbWDEH15Ku96aN3HEsTmd9X9+
-	fiFN0uuqMNTY34xyRDsDfb+k9uK35Yr9a4+aa8vmK5WyYyU7g7Z+w4XZlVK2KcX00Y6MVVu8
-	oo0BZdvWQJh9c/b2A/XJRj95aLDeb9C89f7r6fjdyULjcpP24qqKj4V/DsVv7JzDn5h1KfIV
-	F5ZP/uTc9u4Jd4V8m9b4SSMUCE6/4isn8kWF+TeHW1iqoewL8UCOoW1wLIFQ75Ymv4ar1NJ/
-	ARmwujQwBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAKsWRmVeSWpSXmKPExsVy+t/xu7oK0/+nGzw6pWVx4voiJos1e88x
-	WaycuorN4vW0D2wW84+cY7W4d2kLk8WVr+/ZLNY9vcBu8WJvI4vFy1n32Cwu75rDZvG59wij
-	xbbPLWwWa4/cZbdY+HEri8WSHbsYLdo6l7Fa3L13gsWi430Ds8XcL1OZLf7v2cFuMfvdfnaL
-	LW8mslocXxtu0bJ/CouDpMfebwtYPHbOusvu0bPzDKPHplWdbB53ru1h85h3MtDjfvdxJo/N
-	S+o9WtYeY/Lo/2vg8X7fVTaPvi2rGD02n672+LxJLoAvSs+mKL+0JFUhI7+4xFYp2tDCSM/Q
-	0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS9j6bZ21oI30hXzD+U0MK4U62Lk5JAQMJF4
-	vPoJaxcjF4eQwFJGiRct61khEjIS17pfskDYwhJ/rnWxQRS9ZpTYuPciE0iCV8BO4n7HT0YQ
-	m0VAVWLn03/sEHFBiZMzn4A1iwrIS9y/NQMozsEhLBAjsepVOUhYREBZ4sraWYwgM5kF7rJJ
-	zP75jQliQRuTxPVru8GuYBYQl7j1ZD7YMjYBI4kHy+eDxTkFzCV+nFvHCDKUWUBdYv08IYhy
-	eYnmrbOZJzAKzUJyxiwkk2YhdMxC0rGAkWUVo0hqaXFuem6xkV5xYm5xaV66XnJ+7iZGYNLZ
-	duznlh2MK1991DvEyMTBeIhRgoNZSYT3nPm/dCHelMTKqtSi/Pii0pzU4kOMpsCgmMgsJZqc
-	D0x7eSXxhmYGpoYmZpYGppZmxkrivGxXzqcJCaQnlqRmp6YWpBbB9DFxcEo1MPkvPrVvrm/R
-	Uns380g9VTeJhKiZZk7VV57NOBN3bqvM6zyvjOTA45dvShoU8D58MuVNbpLHzva9V5gfqt+v
-	WiFm0bmTz6bZI+eHmsuVhf8qpmjkGJx4V8V1gbv4ucfe/0nn86w8rdK0P5Vaz2hae3ad7D7b
-	L/9ZvL6b7zQK6RDxE/fvuBoiFlJ84u6NRx+2rchX1OAW0YjaPj/txYp6tSe3FnBNy9P1s/iU
-	qXVcrbI4dcvVqGW7HDmF3uewt62Ps64RT8mdV7v1xk6N/5pNz+Uf8ifxrIh+/8Hza5DYxjcq
-	bjL9x9yyQyet2Oy81fHL5c29c1IrWQ782K7tp6ygabcn1SrljWeG2aGLaVyvlFiKMxINtZiL
-	ihMB7u4zXMMDAAA=
-X-CMS-MailID: 20250416114016eucas1p1d5d662177196380940a4bbca0a68bb15
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250414185315eucas1p1fae2d6250bfd30b12bb084e197c02948
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250414185315eucas1p1fae2d6250bfd30b12bb084e197c02948
-References: <20250414-apr_14_for_sending-v2-0-70c5af2af96c@samsung.com>
-	<CGME20250414185315eucas1p1fae2d6250bfd30b12bb084e197c02948@eucas1p1.samsung.com>
-	<20250414-apr_14_for_sending-v2-2-70c5af2af96c@samsung.com>
-	<20250415-tycoon-naming-20ba5a55c469@spud>
+References: <20250407120708.26495-1-darren.ye@mediatek.com> <20250407120708.26495-9-darren.ye@mediatek.com>
+In-Reply-To: <20250407120708.26495-9-darren.ye@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 16 Apr 2025 19:51:33 +0800
+X-Gm-Features: ATxdqUG02_MjMBJ9plRPOJoNQj-pukcD3shIcHJOuAmwmLyzj1pb9F38mipCPrg
+Message-ID: <CAGXv+5G_8gQKMt4aok3sPyD_zvQ1awcaEqH-kJD=HpA2qAFBMA@mail.gmail.com>
+Subject: Re: [PATCH v2 08/11] ASoC: mediatek: mt8196: add platform driver
+To: "Darren.Ye" <darren.ye@mediatek.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jaroslav Kysela <perex@perex.cz>, 
+	Takashi Iwai <tiwai@suse.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Apr 7, 2025 at 8:37=E2=80=AFPM Darren.Ye <darren.ye@mediatek.com> w=
+rote:
+>
+> From: Darren Ye <darren.ye@mediatek.com>
+>
+> Add mt8196 platform driver.
+>
+> Signed-off-by: Darren Ye <darren.ye@mediatek.com>
+> ---
+>  sound/soc/mediatek/Kconfig                 |   10 +
+>  sound/soc/mediatek/Makefile                |    1 +
+>  sound/soc/mediatek/mt8196/Makefile         |   14 +
+>  sound/soc/mediatek/mt8196/mt8196-afe-pcm.c | 5070 ++++++++++++++++++++
+>  4 files changed, 5095 insertions(+)
+>  create mode 100644 sound/soc/mediatek/mt8196/Makefile
+>  create mode 100644 sound/soc/mediatek/mt8196/mt8196-afe-pcm.c
+>
+> diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
+> index 3033e2d3fe16..606f221e238c 100644
+> --- a/sound/soc/mediatek/Kconfig
+> +++ b/sound/soc/mediatek/Kconfig
+> @@ -204,6 +204,16 @@ config SND_SOC_MT8186_MT6366
+>           Select Y if you have such device.
+>           If unsure select "N".
+>
+> +config SND_SOC_MT8196
+> +       tristate "ASoC support for Mediatek MT8196 chip"
+> +       depends on ARCH_MEDIATEK
+> +       select SND_SOC_MEDIATEK
+> +       help
+> +         This adds ASoC driver for Mediatek MT8196 boards
+> +         that can be used with other codecs.
+> +         Select Y if you have such device.
+> +         If unsure select "N".
+> +
+>  config SND_SOC_MTK_BTCVSD
+>         tristate "ALSA BT SCO CVSD/MSBC Driver"
+>         help
+> diff --git a/sound/soc/mediatek/Makefile b/sound/soc/mediatek/Makefile
+> index 4b55434f2168..11d7c484a5d3 100644
+> --- a/sound/soc/mediatek/Makefile
+> +++ b/sound/soc/mediatek/Makefile
+> @@ -10,3 +10,4 @@ obj-$(CONFIG_SND_SOC_MT8188) +=3D mt8188/
+>  obj-$(CONFIG_SND_SOC_MT8192) +=3D mt8192/
+>  obj-$(CONFIG_SND_SOC_MT8195) +=3D mt8195/
+>  obj-$(CONFIG_SND_SOC_MT8365) +=3D mt8365/
+> +obj-$(CONFIG_SND_SOC_MT8196) +=3D mt8196/
+> diff --git a/sound/soc/mediatek/mt8196/Makefile b/sound/soc/mediatek/mt81=
+96/Makefile
+> new file mode 100644
+> index 000000000000..9bcc09a9a94d
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8196/Makefile
+> @@ -0,0 +1,14 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# common include path
+> +subdir-ccflags-y +=3D -I$(srctree)/sound/soc/mediatek/common
+> +
+> +# platform driver
+> +obj-$(CONFIG_SND_SOC_MT8196) +=3D snd-soc-mt8196-afe.o
+> +snd-soc-mt8196-afe-objs +=3D \
+> +       mt8196-afe-pcm.o \
+> +       mt8196-afe-clk.o \
+> +       mt8196-dai-adda.o \
+> +       mt8196-dai-i2s.o \
+> +       mt8196-dai-tdm.o
+> +
+> diff --git a/sound/soc/mediatek/mt8196/mt8196-afe-pcm.c b/sound/soc/media=
+tek/mt8196/mt8196-afe-pcm.c
+> new file mode 100644
+> index 000000000000..84ccbc7419c7
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8196/mt8196-afe-pcm.c
+> @@ -0,0 +1,5070 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + *  Mediatek ALSA SoC AFE platform driver for 8196
+> + *
+> + *  Copyright (c) 2024 MediaTek Inc.
+> + *  Author: Darren Ye <darren.ye@mediatek.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/of_device.h>
+> +#include <sound/soc.h>
+> +#include <linux/of_reserved_mem.h>
+> +
+> +#include "mt8196-afe-common.h"
+> +#include "mtk-afe-platform-driver.h"
+> +#include "mtk-afe-fe-dai.h"
+> +#include "mt8196-afe-clk.h"
+> +#include "mt8196-interconnection.h"
+> +
+> +static const struct snd_pcm_hardware mt8196_afe_hardware =3D {
+> +       .info =3D (SNDRV_PCM_INFO_MMAP |
+> +                SNDRV_PCM_INFO_NO_PERIOD_WAKEUP |
+> +                SNDRV_PCM_INFO_INTERLEAVED |
+> +                SNDRV_PCM_INFO_MMAP_VALID),
+> +       .formats =3D (SNDRV_PCM_FMTBIT_S16_LE |
+> +                   SNDRV_PCM_FMTBIT_S24_LE |
+> +                   SNDRV_PCM_FMTBIT_S32_LE),
+> +       .period_bytes_min =3D 96,
+> +       .period_bytes_max =3D 4 * 48 * 1024,
+> +       .periods_min =3D 2,
+> +       .periods_max =3D 256,
+> +       .buffer_bytes_max =3D 256 * 1024,
+> +       .fifo_size =3D 0,
+> +};
+> +
+> +static unsigned int mt8196_rate_transform(struct device *dev,
+> +                                         unsigned int rate)
+> +{
+> +       switch (rate) {
+> +       case 8000:
+> +               return MTK_AFE_IPM2P0_RATE_8K;
+> +       case 11025:
+> +               return MTK_AFE_IPM2P0_RATE_11K;
+> +       case 12000:
+> +               return MTK_AFE_IPM2P0_RATE_12K;
+> +       case 16000:
+> +               return MTK_AFE_IPM2P0_RATE_16K;
+> +       case 22050:
+> +               return MTK_AFE_IPM2P0_RATE_22K;
+> +       case 24000:
+> +               return MTK_AFE_IPM2P0_RATE_24K;
+> +       case 32000:
+> +               return MTK_AFE_IPM2P0_RATE_32K;
+> +       case 44100:
+> +               return MTK_AFE_IPM2P0_RATE_44K;
+> +       case 48000:
+> +               return MTK_AFE_IPM2P0_RATE_48K;
+> +       case 88200:
+> +               return MTK_AFE_IPM2P0_RATE_88K;
+> +       case 96000:
+> +               return MTK_AFE_IPM2P0_RATE_96K;
+> +       case 176400:
+> +               return MTK_AFE_IPM2P0_RATE_176K;
+> +       case 192000:
+> +               return MTK_AFE_IPM2P0_RATE_192K;
+> +       /* not support 260K */
+> +       case 352800:
+> +               return MTK_AFE_IPM2P0_RATE_352K;
+> +       case 384000:
+> +               return MTK_AFE_IPM2P0_RATE_384K;
+> +       default:
+> +               dev_info(dev, "rate %u invalid, use %d!!!\n",
+> +                        rate, MTK_AFE_IPM2P0_RATE_48K);
+> +               return MTK_AFE_IPM2P0_RATE_48K;
+> +       }
+> +}
+> +
+> +static void mt8196_set_cm_rate(struct mtk_base_afe *afe, int id, unsigne=
+d int rate)
+> +{
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +
+> +       afe_priv->cm_rate[id] =3D rate;
+> +}
+> +
+> +static int mt8196_convert_cm_ch(unsigned int ch)
+> +{
+> +       return ch - 1;
+> +}
+> +
+> +static unsigned int calculate_cm_update(int rate, int ch)
+> +{
+> +       unsigned int update_val;
+> +
+> +       update_val =3D 26000000 / rate / (ch / 2);
+> +       update_val =3D update_val * 10 / 7;
+> +       if (update_val > 100)
+> +               update_val =3D 100;
+> +       if (update_val < 7)
+> +               update_val =3D 7;
+> +
+> +       return update_val;
+> +}
+> +
+> +static int mt8196_set_cm(struct mtk_base_afe *afe, int id,
+> +                        bool update, bool swap, unsigned int ch)
+> +{
+> +       unsigned int rate =3D 0;
+> +       unsigned int update_val =3D 0;
+> +       int reg;
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +
+> +       dev_dbg(afe->dev, "CM%d, rate %d, update %d, swap %d, ch %d\n",
+> +               id, rate, update, swap, ch);
+> +
+> +       rate =3D afe_priv->cm_rate[id];
+> +       update_val =3D update ? calculate_cm_update(rate, (int)ch) : 0x64=
+;
+> +
+> +       reg =3D AFE_CM0_CON0 + 0x10 * id;
+> +       /* update cnt */
+> +       regmap_update_bits(afe->regmap,
+> +                          reg,
+> +                          AFE_CM_UPDATE_CNT_MASK << AFE_CM_UPDATE_CNT_SF=
+T,
+> +                          update_val << AFE_CM_UPDATE_CNT_SFT);
+> +
+> +       /* rate */
+> +       regmap_update_bits(afe->regmap,
+> +                          reg,
+> +                          AFE_CM_1X_EN_SEL_FS_MASK << AFE_CM_1X_EN_SEL_F=
+S_SFT,
+> +                          rate << AFE_CM_1X_EN_SEL_FS_SFT);
+> +
+> +       /* ch num */
+> +       ch =3D mt8196_convert_cm_ch(ch);
+> +       regmap_update_bits(afe->regmap,
+> +                          reg,
+> +                          AFE_CM_CH_NUM_MASK << AFE_CM_CH_NUM_SFT,
+> +                          ch << AFE_CM_CH_NUM_SFT);
+> +
+> +       /* swap */
+> +       regmap_update_bits(afe->regmap,
+> +                          reg,
+> +                          AFE_CM_BYTE_SWAP_MASK << AFE_CM_BYTE_SWAP_SFT,
+> +                          swap << AFE_CM_BYTE_SWAP_SFT);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mt8196_enable_cm_bypass(struct mtk_base_afe *afe, int id, boo=
+l en)
+> +{
+> +       int reg =3D AFE_CM0_CON0 + 0x10 * id;
+> +
+> +       regmap_update_bits(afe->regmap,
+> +                          reg,
+> +                          AFE_CM_BYPASS_MODE_MASK << AFE_CM_BYPASS_MODE_=
+SFT,
+> +                          en << AFE_CM_BYPASS_MODE_SFT);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mt8196_fe_startup(struct snd_pcm_substream *substream,
+> +                            struct snd_soc_dai *dai)
+> +{
+> +       struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(subs=
+tream);
+> +       struct mtk_base_afe *afe =3D snd_soc_dai_get_drvdata(dai);
+> +       struct snd_pcm_runtime *runtime =3D substream->runtime;
+> +       struct snd_soc_dai *cpu_dai =3D snd_soc_rtd_to_cpu(rtd, 0);
+> +       int memif_num =3D cpu_dai->id;
+> +       struct mtk_base_afe_memif *memif =3D &afe->memif[memif_num];
+> +       const struct snd_pcm_hardware *mtk_afe_hardware =3D afe->mtk_afe_=
+hardware;
+> +       int ret;
+> +
+> +       dev_dbg(afe->dev, "memif_num: %d.\n", memif_num);
+> +
+> +       memif->substream =3D substream;
+> +
+> +       snd_pcm_hw_constraint_step(substream->runtime, 0,
+> +                                  SNDRV_PCM_HW_PARAM_BUFFER_BYTES, 16);
+> +
+> +       snd_soc_set_runtime_hwparams(substream, mtk_afe_hardware);
+> +
+> +       ret =3D snd_pcm_hw_constraint_integer(runtime,
+> +                                           SNDRV_PCM_HW_PARAM_PERIODS);
+> +       if (ret < 0)
+> +               dev_info(afe->dev, "snd_pcm_hw_constraint_integer failed\=
+n");
+> +
+> +       /* dynamic allocate irq to memif */
+> +       if (memif->irq_usage < 0) {
+> +               int irq_id =3D mtk_dynamic_irq_acquire(afe);
+> +
+> +               if (irq_id !=3D afe->irqs_size) {
+> +                       /* link */
+> +                       memif->irq_usage =3D irq_id;
+> +               } else {
+> +                       dev_err(afe->dev, "no more asys irq\n");
+> +                       ret =3D -EBUSY;
+> +               }
+> +       }
+> +       return ret;
+> +}
+> +
+> +static void mt8196_fe_shutdown(struct snd_pcm_substream *substream,
+> +                              struct snd_soc_dai *dai)
+> +{
+> +       struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(subs=
+tream);
+> +       struct mtk_base_afe *afe =3D snd_soc_dai_get_drvdata(dai);
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       struct snd_soc_dai *cpu_dai =3D snd_soc_rtd_to_cpu(rtd, 0);
+> +       int memif_num =3D cpu_dai->id;
+> +       struct mtk_base_afe_memif *memif =3D &afe->memif[memif_num];
+> +       int irq_id =3D memif->irq_usage;
+> +
+> +       dev_dbg(afe->dev, "memif_num: %d.\n", memif_num);
+> +
+> +       memif->substream =3D NULL;
+> +       afe_priv->irq_cnt[memif_num] =3D 0;
+> +       afe_priv->xrun_assert[memif_num] =3D 0;
+> +
+> +       if (!memif->const_irq) {
+> +               mtk_dynamic_irq_release(afe, irq_id);
+> +               memif->irq_usage =3D -1;
+> +               memif->substream =3D NULL;
+> +       }
+> +}
+> +
+> +static int mt8196_fe_hw_params(struct snd_pcm_substream *substream,
+> +                              struct snd_pcm_hw_params *params,
+> +                              struct snd_soc_dai *dai)
+> +{
+> +       struct mtk_base_afe *afe =3D snd_soc_dai_get_drvdata(dai);
+> +       unsigned int channels =3D params_channels(params);
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +
+> +       afe_priv->cm_channels =3D channels;
+> +
+> +       return mtk_afe_fe_hw_params(substream, params, dai);
+> +}
+> +
+> +static int mt8196_fe_trigger(struct snd_pcm_substream *substream, int cm=
+d,
+> +                            struct snd_soc_dai *dai)
+> +{
+> +       struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(subs=
+tream);
+> +       struct snd_pcm_runtime *const runtime =3D substream->runtime;
+> +       struct mtk_base_afe *afe =3D snd_soc_dai_get_drvdata(dai);
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       struct snd_soc_dai *cpu_dai =3D snd_soc_rtd_to_cpu(rtd, 0);
+> +       int id =3D cpu_dai->id;
+> +       struct mtk_base_afe_memif *memif =3D &afe->memif[id];
+> +       int irq_id =3D memif->irq_usage;
+> +       struct mtk_base_afe_irq *irqs =3D &afe->irqs[irq_id];
+> +       const struct mtk_base_irq_data *irq_data =3D irqs->irq_data;
+> +       unsigned int counter =3D runtime->period_size;
+> +       unsigned int rate =3D runtime->rate;
+> +       int fs;
+> +       int ret =3D 0;
+> +       unsigned int tmp_reg =3D 0;
+> +
+> +       dev_info(afe->dev, "%s cmd %d, irq_id %d\n",
+> +                memif->data->name, cmd, irq_id);
+> +
+> +       switch (cmd) {
+> +       case SNDRV_PCM_TRIGGER_START:
+> +       case SNDRV_PCM_TRIGGER_RESUME:
+> +               dev_dbg(afe->dev, "%s cmd %d, id %d\n",
+> +                       memif->data->name, cmd, id);
+> +               ret =3D mtk_memif_set_enable(afe, id);
+> +               if (ret) {
+> +                       dev_err(afe->dev, "id %d, memif enable fail.\n", =
+id);
+> +                       return ret;
+> +               }
+> +
+> +               /*
+> +                * for small latency record
+> +                * ul memif need read some data before irq enable
+> +                */
+> +               if (substream->stream =3D=3D SNDRV_PCM_STREAM_CAPTURE) {
+> +                       if ((runtime->period_size * 1000) / rate <=3D 10)
+> +                               usleep_range(300, 350);
+> +               }
+> +
+> +               /* set irq counter */
+> +               if (afe_priv->irq_cnt[id] > 0)
+> +                       counter =3D afe_priv->irq_cnt[id];
+> +
+> +               regmap_update_bits(afe->regmap,
+> +                                  irq_data->irq_cnt_reg,
+> +                                  irq_data->irq_cnt_maskbit << irq_data-=
+>irq_cnt_shift,
+> +                                  counter << irq_data->irq_cnt_shift);
+> +
+> +               /* set irq fs */
+> +               fs =3D afe->irq_fs(substream, runtime->rate);
+> +               if (fs < 0)
+> +                       return -EINVAL;
+> +
+> +               if (irq_data->irq_fs_reg >=3D 0)
+> +                       regmap_update_bits(afe->regmap,
+> +                                          irq_data->irq_fs_reg,
+> +                                          irq_data->irq_fs_maskbit << ir=
+q_data->irq_fs_shift,
+> +                                          fs << irq_data->irq_fs_shift);
+> +
+> +               /* enable interrupt */
+> +               regmap_update_bits(afe->regmap,
+> +                                  irq_data->irq_en_reg,
+> +                                  1 << irq_data->irq_en_shift,
+> +                                  1 << irq_data->irq_en_shift);
+> +
+> +               return 0;
+> +       case SNDRV_PCM_TRIGGER_STOP:
+> +       case SNDRV_PCM_TRIGGER_SUSPEND:
+> +               ret =3D mtk_memif_set_disable(afe, id);
+> +               if (ret) {
+> +                       dev_warn(afe->dev,
+> +                                "id %d, memif disable fail\n", id);
+> +               }
+> +
+> +               /* disable interrupt */
+> +               regmap_update_bits(afe->regmap,
+> +                                  irq_data->irq_en_reg,
+> +                                  1 << irq_data->irq_en_shift,
+> +                                  0 << irq_data->irq_en_shift);
+> +
+> +               /* clear pending IRQ */
+> +               regmap_read(afe->regmap, irq_data->irq_clr_reg, &tmp_reg)=
+;
+> +               regmap_update_bits(afe->regmap, irq_data->irq_clr_reg,
+> +                                  AFE_IRQ_CLR_CFG_MASK_SFT | AFE_IRQ_MIS=
+S_FLAG_CLR_CFG_MASK_SFT,
+> +                                  tmp_reg ^ (AFE_IRQ_CLR_CFG_MASK_SFT |
+> +                                  AFE_IRQ_MISS_FLAG_CLR_CFG_MASK_SFT));
+> +
+> +               return ret;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+> +
+> +static int mt8196_memif_fs(struct snd_pcm_substream *substream,
+> +                          unsigned int rate)
+> +{
+> +       struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(subs=
+tream);
+> +       struct snd_soc_component *component =3D
+> +               snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
+> +       struct mtk_base_afe *afe =3D NULL;
+> +       struct snd_soc_dai *cpu_dai =3D snd_soc_rtd_to_cpu(rtd, 0);
+> +       int id =3D cpu_dai->id;
+> +       unsigned int rate_reg =3D 0;
+> +       int cm =3D 0;
+> +
+> +       if (!component)
+> +               return -EINVAL;
+> +
+> +       afe =3D snd_soc_component_get_drvdata(component);
+> +
+> +       if (!afe)
+> +               return -EINVAL;
+> +
+> +       rate_reg =3D mt8196_rate_transform(afe->dev, rate);
+> +
+> +       switch (id) {
+> +       case MT8196_MEMIF_VUL8:
+> +       case MT8196_MEMIF_VUL_CM0:
+> +               cm =3D CM0;
+> +               break;
+> +       case MT8196_MEMIF_VUL9:
+> +       case MT8196_MEMIF_VUL_CM1:
+> +               cm =3D CM1;
+> +               break;
+> +       case MT8196_MEMIF_VUL10:
+> +       case MT8196_MEMIF_VUL_CM2:
+> +               cm =3D CM2;
+> +               break;
+> +       default:
+> +               cm =3D CM0;
+> +               break;
+> +       }
+> +
+> +       mt8196_set_cm_rate(afe, cm, rate_reg);
+> +
+> +       return rate_reg;
+> +}
+> +
+> +static int mt8196_get_dai_fs(struct mtk_base_afe *afe,
+> +                            int dai_id, unsigned int rate)
+> +{
+> +       return mt8196_rate_transform(afe->dev, rate);
+> +}
+> +
+> +static int mt8196_irq_fs(struct snd_pcm_substream *substream, unsigned i=
+nt rate)
+> +{
+> +       struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(subs=
+tream);
+> +       struct snd_soc_component *component =3D
+> +               snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
+> +       struct mtk_base_afe *afe =3D NULL;
+> +
+> +       if (!component)
+> +               return -EINVAL;
+> +       afe =3D snd_soc_component_get_drvdata(component);
+> +       return mt8196_rate_transform(afe->dev, rate);
+> +}
+> +
+> +static int mt8196_get_memif_pbuf_size(struct snd_pcm_substream *substrea=
+m)
+> +{
+> +       struct snd_pcm_runtime *runtime =3D substream->runtime;
+> +
+> +       if ((runtime->period_size * 1000) / runtime->rate > 10)
+> +               return MT8196_MEMIF_PBUF_SIZE_256_BYTES;
+> +       else
+> +               return MT8196_MEMIF_PBUF_SIZE_32_BYTES;
+> +}
+> +
+> +/* FE DAIs */
+> +static const struct snd_soc_dai_ops mt8196_memif_dai_ops =3D {
+> +       .startup        =3D mt8196_fe_startup,
+> +       .shutdown       =3D mt8196_fe_shutdown,
+> +       .hw_params      =3D mt8196_fe_hw_params,
+> +       .hw_free        =3D mtk_afe_fe_hw_free,
+> +       .prepare        =3D mtk_afe_fe_prepare,
+> +       .trigger        =3D mt8196_fe_trigger,
+> +};
+> +
+> +#define MTK_PCM_RATES (SNDRV_PCM_RATE_8000_48000 |\
+> +                      SNDRV_PCM_RATE_88200 |\
+> +                      SNDRV_PCM_RATE_96000 |\
+> +                      SNDRV_PCM_RATE_176400 |\
+> +                      SNDRV_PCM_RATE_192000)
+> +
+> +#define MTK_PCM_DAI_RATES (SNDRV_PCM_RATE_8000 |\
+> +                          SNDRV_PCM_RATE_16000 |\
+> +                          SNDRV_PCM_RATE_32000 |\
+> +                          SNDRV_PCM_RATE_48000)
+> +
+> +#define MTK_PCM_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |\
+> +                        SNDRV_PCM_FMTBIT_S24_LE |\
+> +                        SNDRV_PCM_FMTBIT_S32_LE)
+> +
+
+The following section is very repetitive and takes up a lot of space.
+Please wrap things in a macro such as:
+
+#define MT8196_FE_DAI_PLAYBACK(name, id, max_ch) \
+    { \
+        .name =3D name, \
+        .id =3D id, \
+        .playback =3D { \
+            .stream_name =3D name, \
+            .channels_min =3D 1, \
+            .channels_max =3D max_ch, \
+            .rates =3D MTK_PCM_RATES, \
+            .formats =3D MTK_PCM_FORMATS, \
+        }, \
+        .ops =3D &mt8196_memif_dai_ops, \
+    }
+
+#define MT8196_FE_DAI_CAPTURE(name, id, max_ch) \
+    { \
+        .name =3D name, \
+        .id =3D id, \
+        .capture =3D { \
+            .stream_name =3D name, \
+            .channels_min =3D 1, \
+            .channels_max =3D max_ch, \
+            .rates =3D MTK_PCM_RATES, \
+            .formats =3D MTK_PCM_FORMATS, \
+        }, \
+        .ops =3D &mt8196_memif_dai_ops, \
+    }
 
 
 
-On 4/15/25 18:38, Conor Dooley wrote:
-> On Mon, Apr 14, 2025 at 08:52:56PM +0200, Michal Wilczynski wrote:
->> Extend the TH1520 AON firmware bindings to describe the GPU clkgen reset
->> line, required for proper GPU clock and reset sequencing.
->>
->> The T-HEAD TH1520 GPU requires coordinated management of two clocks
->> (core and sys) and two resets (GPU core reset and GPU clkgen
->> reset).  Only the clkgen reset is exposed at the AON level, to support
->> SoC-specific initialization handled through a generic PM domain. The GPU
->> core reset remains described in the GPU device node, as from the GPU
->> driver's perspective, there is only a single reset line [1].
->>
->> This follows upstream maintainers' recommendations [2] to abstract
->> SoC specific details into the PM domain layer rather than exposing them
->> to drivers directly.
->>
->> [1] - https://lore.kernel.org/all/816db99d-7088-4c1a-af03-b9a825ac09dc@imgtec.com/
->> [2] - https://lore.kernel.org/all/38d9650fc11a674c8b689d6bab937acf@kernel.org/
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  .../devicetree/bindings/firmware/thead,th1520-aon.yaml        | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->> index bbc183200400de7aadbb21fea21911f6f4227b09..6ea3029c222df9ba6ea7d423b92ba248cfb02cc0 100644
->> --- a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
->> @@ -32,6 +32,13 @@ properties:
->>      items:
->>        - const: aon
->>  
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    items:
->> +      - const: gpu-clkgen
->> +
->>    "#power-domain-cells":
->>      const: 1
->>  
->> @@ -39,6 +46,8 @@ required:
->>    - compatible
->>    - mboxes
->>    - mbox-names
->> +  - resets
->> +  - reset-names
-> 
-> Given these are new required properties, have you made sure in the
-> driver that their absence will not cause problems with older
-> devicetrees? I took a brief look at the driver, and it _looked_ like you
-> were failing if they were not there? It was a brief look though, tbf.
+And the list can be considerably shortened:
 
-Hi Conor,
+    static struct snd_soc_dai_driver mt8196_memif_dai_driver[] =3D {
+        /* FE DAIs: memory intefaces to CPU */
+        MT8196_FE_DAI_PLAYBACK("DL0", MT8196_MEMIF_DL0, 2),
+        MT8196_FE_DAI_PLAYBACK("DL1", MT8196_MEMIF_DL1, 2),
+        ...
+        MT8196_FE_DAI_CAPTURE("UL0", MT8196_MEMIF_UL0, 2),
+        ...
+    };
 
-Good point — but in this case, the devicetrees compatible with the
-driver haven’t been merged upstream yet. In fact, the TH1520 PM domains
-driver currently doesn’t even compile against mainline, since the
-required commit [1] didn’t make it into 6.15.
+...
+> +
+> +static const struct snd_kcontrol_new mt8196_pcm_kcontrols[] =3D {
+> +};
+> +
+> +enum {
+> +       CM0_MUX_VUL8_2CH,
+> +       CM0_MUX_VUL8_8CH,
+> +       CM0_MUX_MASK,
+> +};
+> +
+> +enum {
+> +       CM1_MUX_VUL9_2CH,
+> +       CM1_MUX_VUL9_16CH,
+> +       CM1_MUX_MASK,
+> +};
+> +
+> +enum {
+> +       CM2_MUX_VUL10_2CH,
+> +       CM2_MUX_VUL10_32CH,
+> +       CM2_MUX_MASK,
+> +};
+> +
+> +static int ul_cm0_event(struct snd_soc_dapm_widget *w,
+> +                       struct snd_kcontrol *kcontrol,
+> +                       int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       unsigned int channels =3D afe_priv->cm_channels;
+> +
+> +       dev_dbg(afe->dev, "event 0x%x, name %s, channels %u\n",
+> +               event, w->name, channels);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               mt8196_enable_cm_bypass(afe, CM0, 0x0);
+> +               mt8196_set_cm(afe, CM0, true, false, channels);
+> +               break;
+> +       case SND_SOC_DAPM_PRE_PMD:
+> +               mt8196_enable_cm_bypass(afe, CM0, 0x1);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +       return 0;
+> +}
+> +
+> +static int ul_cm1_event(struct snd_soc_dapm_widget *w,
+> +                       struct snd_kcontrol *kcontrol,
+> +                       int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       unsigned int channels =3D afe_priv->cm_channels;
+> +
+> +       dev_dbg(afe->dev, "event 0x%x, name %s, channels %u\n",
+> +               event, w->name, channels);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               mt8196_enable_cm_bypass(afe, CM1, 0x0);
+> +               mt8196_set_cm(afe, CM1, true, false, channels);
+> +               break;
+> +       case SND_SOC_DAPM_PRE_PMD:
+> +               mt8196_enable_cm_bypass(afe, CM1, 0x1);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +       return 0;
+> +}
+> +
+> +static int ul_cm2_event(struct snd_soc_dapm_widget *w,
+> +                       struct snd_kcontrol *kcontrol,
+> +                       int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       unsigned int channels =3D afe_priv->cm_channels;
+> +
+> +       dev_dbg(afe->dev, "event 0x%x, name %s, channels %u\n",
+> +               event, w->name, channels);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               mt8196_enable_cm_bypass(afe, CM2, 0x0);
+> +               mt8196_set_cm(afe, CM2, true, false, channels);
+> +               break;
+> +       case SND_SOC_DAPM_PRE_PMD:
+> +               mt8196_enable_cm_bypass(afe, CM2, 0x1);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +       return 0;
+> +}
+> +
+> +/* dma widget & routes*/
+> +static const struct snd_kcontrol_new memif_ul0_ch1_mix[] =3D {
+> +       /* Normal record */
+> +       SOC_DAPM_SINGLE_AUTODISABLE("ADDA_UL_CH1", AFE_CONN018_0,
+> +                                   I_ADDA_UL_CH1, 1, 0),
 
-That said, Drew has queued the DT changes for the next release [2], and
-you’ve queued [1], so assuming this series lands in 6.16, there won’t be
-any older devicetrees to support. As a result, I haven’t added a
-fallback path in the driver for missing properties.
+Kcontrol names for mixer switches should have the suffix "Switch".
 
-If, however this series doesn’t make it in for 6.16, then yes — we’d
-need to revisit the driver and add a failure safe path for cases where
-these properties aren’t present.
+And since this is for capture (recording) only, it should have "Capture"
+in the name as well. Conversely, for playback only controls, it should
+contain the "Playback" keyword. If the kcontrol applies to both paths
+the keyword shall be left out. For example a switch for a microphone
+input could be considered to apply to both paths since in many designs
+the microphone could also be routed to the output mixer.
 
-Thanks,
-Michał
+So this should be named "ADDA_UL_CH1 Capture Switch". And since this
+group of kcontrols feed a capture interface, all of them should be
+named "XXX Capture Switch". This applies to all the memif_ulXXX_mix
+lists.
 
-[1] - https://lore.kernel.org/all/20250407-synergy-staff-b1cec90ffe72@spud/
-[2] - https://lore.kernel.org/all/Z%2F6p6MQDS8ZlQv5r@x1/
+This allows the ALSA userspace libraries to properly parse and
+group controls for the "simple mixer" interface.
 
-> 
->>    - "#power-domain-cells"
->>  
->>  additionalProperties: false
->> @@ -49,5 +58,7 @@ examples:
->>          compatible = "thead,th1520-aon";
->>          mboxes = <&mbox_910t 1>;
->>          mbox-names = "aon";
->> +        resets = <&rst 0>;
->> +        reset-names = "gpu-clkgen";
->>          #power-domain-cells = <1>;
->>      };
->>
->> -- 
->> 2.34.1
->>
+[...]
+
+> +static const char * const cm0_mux_map[] =3D {
+> +       "CM0_8CH_PATH",
+> +       "CM0_2CH_PATH",
+> +};
+
+This is misleading. The register definition says that this selects VUL_2CH_=
+8
+input from "O34, O35" or "CM0". So it should probably say "Mixer" and "CM0"=
+.
+
+> +
+> +static const char * const cm1_mux_map[] =3D {
+> +       "CM1_16CH_PATH",
+> +       "CM1_2CH_PATH",
+> +};
+> +
+> +static const char * const cm2_mux_map[] =3D {
+> +       "CM2_32CH_PATH",
+> +       "CM2_2CH_PATH",
+> +};
+> +
+> +static int cm0_mux_map_value[] =3D {
+> +       CM0_MUX_VUL8_8CH,
+> +       CM0_MUX_VUL8_2CH,
+> +};
+> +
+> +static int cm1_mux_map_value[] =3D {
+> +       CM1_MUX_VUL9_16CH,
+> +       CM1_MUX_VUL9_2CH,
+> +};
+> +
+> +static int cm2_mux_map_value[] =3D {
+> +       CM2_MUX_VUL10_32CH,
+> +       CM2_MUX_VUL10_2CH,
+> +};
+> +
+> +static SOC_VALUE_ENUM_SINGLE_DECL(ul_cm0_mux_map_enum,
+> +                                 AFE_CM0_CON0,
+> +                                 AFE_CM0_OUTPUT_MUX_SFT,
+> +                                 AFE_CM0_OUTPUT_MUX_MASK,
+> +                                 cm0_mux_map,
+> +                                 cm0_mux_map_value);
+> +static SOC_VALUE_ENUM_SINGLE_DECL(ul_cm1_mux_map_enum,
+> +                                 AFE_CM1_CON0,
+> +                                 AFE_CM1_OUTPUT_MUX_SFT,
+> +                                 AFE_CM1_OUTPUT_MUX_MASK,
+> +                                 cm1_mux_map,
+> +                                 cm1_mux_map_value);
+> +static SOC_VALUE_ENUM_SINGLE_DECL(ul_cm2_mux_map_enum,
+> +                                 AFE_CM2_CON0,
+> +                                 AFE_CM2_OUTPUT_MUX_SFT,
+> +                                 AFE_CM2_OUTPUT_MUX_MASK,
+> +                                 cm2_mux_map,
+> +                                 cm2_mux_map_value);
+> +
+> +static const struct snd_kcontrol_new ul_cm0_mux_control =3D
+> +       SOC_DAPM_ENUM("CM0_UL_MUX Select", ul_cm0_mux_map_enum);
+> +static const struct snd_kcontrol_new ul_cm1_mux_control =3D
+> +       SOC_DAPM_ENUM("CM1_UL_MUX Select", ul_cm1_mux_map_enum);
+> +static const struct snd_kcontrol_new ul_cm2_mux_control =3D
+> +       SOC_DAPM_ENUM("CM2_UL_MUX Select", ul_cm2_mux_map_enum);
+
+Again this is misleading. This is selecting the input for VUL_2CH_8~10.
+
+Muxes shall be named "xxx Route", not "xxx Select".
+
+And the same rule applies for capture or playback specific controls.
+
+So this should likely be named "VUL_2CH_x Source Capture Route".
+
+> +static const struct snd_soc_dapm_widget mt8196_memif_widgets[] =3D {
+> +       /* inter-connections */
+> +       SND_SOC_DAPM_MIXER("UL0_CH1", SND_SOC_NOPM, 0, 0,
+> +                          memif_ul0_ch1_mix, ARRAY_SIZE(memif_ul0_ch1_mi=
+x)),
+
+Please consider adding "Mixer" to the name of MIXER widgets. It helps
+differentiate them from other widgets, especially in this case where
+there is also ULn widgets for the actual DAIs.
+
+> +       SND_SOC_DAPM_MIXER("UL0_CH2", SND_SOC_NOPM, 0, 0,
+> +                          memif_ul0_ch2_mix, ARRAY_SIZE(memif_ul0_ch2_mi=
+x)),
+
+FYI the DAPM framework supports "stereo" or 2-channel widgets and kcontrols=
+.
+Please consider using them to reduce the number of widgets and kcontrols.
+You can use this feature at least for the all UL or capture interfaces,
+which AFAICT are all 2 channel only.
+
+[...]
+
+> +       SND_SOC_DAPM_MUX_E("CM0_UL_MUX", SND_SOC_NOPM, 0, 0,
+> +                          &ul_cm0_mux_control,
+> +                          ul_cm0_event,
+> +                          SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_PRE_PMD),
+
+Why does this CM mux have an event, but the other two don't? Plus
+there are already CM supply widgets that have event callbacks tied to
+them, so this one shouldn't need the event callback either?
+
+[...]
+
+> +       SND_SOC_DAPM_MUX("CM1_UL_MUX", SND_SOC_NOPM, 0, 0,
+> +                        &ul_cm1_mux_control),
+
+[...]
+
+> +       SND_SOC_DAPM_MUX("CM2_UL_MUX", SND_SOC_NOPM, 0, 0,
+> +                        &ul_cm2_mux_control),
+> +
+> +       SND_SOC_DAPM_SUPPLY("CM0_Enable",
+> +                           AFE_CM0_CON0, AFE_CM0_ON_SFT, 0,
+> +                           ul_cm0_event,
+> +                           SND_SOC_DAPM_PRE_PMU |
+> +                           SND_SOC_DAPM_PRE_PMD),
+> +
+> +       SND_SOC_DAPM_SUPPLY("CM1_Enable",
+> +                           AFE_CM1_CON0, AFE_CM1_ON_SFT, 0,
+> +                           ul_cm1_event,
+> +                           SND_SOC_DAPM_PRE_PMU |
+> +                           SND_SOC_DAPM_PRE_PMD),
+> +
+> +       SND_SOC_DAPM_SUPPLY("CM2_Enable",
+> +                           AFE_CM2_CON0, AFE_CM2_ON_SFT, 0,
+> +                           ul_cm2_event,
+> +                           SND_SOC_DAPM_PRE_PMU |
+> +                           SND_SOC_DAPM_PRE_PMD),
+
+^^^
+
+[...]
+
+> +       {"UL2", NULL, "UL2_CH1"},
+> +       {"UL2", NULL, "UL2_CH2"},
+> +       {"UL2_CH1", "ADDA_UL_CH1", "ADDA_UL_Mux"},
+> +       {"UL2_CH2", "ADDA_UL_CH2", "ADDA_UL_Mux"},
+> +       {"UL2_CH1", "ADDA_UL_CH3", "ADDA_CH34_UL_Mux"},
+
+Why is one channel missing here?
+
+> +       {"UL2_CH2", "ADDA_UL_CH1", "ADDA_UL_Mux"},
+> +       {"UL2_CH2", "ADDA_UL_CH2", "ADDA_UL_Mux"},
+> +       {"UL2_CH2", "ADDA_UL_CH3", "ADDA_CH34_UL_Mux"},
+> +       {"UL2_CH2", "ADDA_UL_CH4", "ADDA_CH34_UL_Mux"},
+
+While it is present here?
+
+Same applies to UL7, UL9, UL10 and UL24.
+
+[...]
+
+> +static const struct mtk_base_memif_data memif_data[MT8196_MEMIF_NUM] =3D=
+ {
+> +       [MT8196_MEMIF_DL0] =3D {
+> +               .name =3D "DL0",
+> +               .id =3D MT8196_MEMIF_DL0,
+> +               .reg_ofs_base =3D AFE_DL0_BASE,
+> +               .reg_ofs_cur =3D AFE_DL0_CUR,
+> +               .reg_ofs_end =3D AFE_DL0_END,
+> +               .reg_ofs_base_msb =3D AFE_DL0_BASE_MSB,
+> +               .reg_ofs_cur_msb =3D AFE_DL0_CUR_MSB,
+> +               .reg_ofs_end_msb =3D AFE_DL0_END_MSB,
+> +               .fs_reg =3D AFE_DL0_CON0,
+> +               .fs_shift =3D DL0_SEL_FS_SFT,
+> +               .fs_maskbit =3D DL0_SEL_FS_MASK,
+> +               .mono_reg =3D AFE_DL0_CON0,
+> +               .mono_shift =3D DL0_MONO_SFT,
+> +               .enable_reg =3D AFE_DL0_CON0,
+> +               .enable_shift =3D DL0_ON_SFT,
+> +               .hd_reg =3D AFE_DL0_CON0,
+> +               .hd_mask =3D DL0_HD_MODE_MASK,
+> +               .hd_shift =3D DL0_HD_MODE_SFT,
+> +               .hd_align_reg =3D AFE_DL0_CON0,
+> +               .hd_align_mshift =3D DL0_HALIGN_SFT,
+> +               .agent_disable_reg =3D -1,
+> +               .agent_disable_shift =3D -1,
+> +               .msb_reg =3D -1,
+> +               .msb_shift =3D -1,
+> +               .pbuf_reg =3D AFE_DL0_CON0,
+> +               .pbuf_mask =3D DL0_PBUF_SIZE_MASK,
+> +               .pbuf_shift =3D DL0_PBUF_SIZE_SFT,
+> +               .minlen_reg =3D AFE_DL0_CON0,
+> +               .minlen_mask =3D DL0_MINLEN_MASK,
+> +               .minlen_shift =3D DL0_MINLEN_SFT,
+> +               .maxlen_reg =3D AFE_DL0_CON0,
+> +               .maxlen_mask =3D DL0_MAXLEN_MASK,
+> +               .maxlen_shift =3D DL0_MAXLEN_SFT,
+> +       },
+
+This table is very repetitive as well. This can be compacted with some
+macro magic.
+
+For example, the following:
+
+    #define MT8196_MEMIF(id)    \
+        [MT8196_MEMIF_##id] =3D { \
+                .name =3D #id,    \
+                .id =3D MT8196_MEMIF_##id,        \
+                .reg_ofs_base =3D AFE_##id##_base,        \
+    }
+
+    MT8196_MEMIF(DL0)
+
+expands into:
+
+    [MT8196_MEMIF_DL0] =3D { .name =3D "DL0", .DL0 =3D MT8196_MEMIF_DL0,
+.reg_ofs_base =3D AFE_DL0_base, }
+
+I will leave it to you to complete the macro and define different variants
+for the different cases.
+
+[...]
+
+> +static const struct mtk_base_irq_data irq_data[MT8196_IRQ_NUM] =3D {
+> +       [MT8196_IRQ_0] =3D {
+> +               .id =3D MT8196_IRQ_0,
+> +               .irq_cnt_reg =3D AFE_IRQ0_MCU_CFG1,
+> +               .irq_cnt_shift =3D AFE_IRQ_CNT_SHIFT,
+> +               .irq_cnt_maskbit =3D AFE_IRQ_CNT_MASK,
+> +               .irq_fs_reg =3D AFE_IRQ0_MCU_CFG0,
+> +               .irq_fs_shift =3D AFE_IRQ0_MCU_FS_SFT,
+> +               .irq_fs_maskbit =3D AFE_IRQ0_MCU_FS_MASK,
+> +               .irq_en_reg =3D AFE_IRQ0_MCU_CFG0,
+> +               .irq_en_shift =3D AFE_IRQ0_MCU_ON_SFT,
+> +               .irq_clr_reg =3D AFE_IRQ0_MCU_CFG1,
+> +               .irq_clr_shift =3D AFE_IRQ0_CLR_CFG_SFT,
+> +               .irq_ap_en_reg =3D AFE_IRQ_MCU_EN,
+> +               .irq_scp_en_reg =3D AFE_IRQ_MCU_SCP_EN,
+> +               .irq_scp_en_shift =3D IRQ0_MCU_SCP_EN_SFT,
+> +       },
+
+Same here. This can also be compacted with macros.
+
+[...]
+
+> +static const int memif_irq_usage[MT8196_MEMIF_NUM] =3D {
+> +       /* TODO: verify each memif & irq */
+> +       [MT8196_MEMIF_DL0] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_DL1] =3D MT8196_IRQ_1,
+> +       [MT8196_MEMIF_DL2] =3D MT8196_IRQ_2,
+> +       [MT8196_MEMIF_DL3] =3D MT8196_IRQ_3,
+> +       [MT8196_MEMIF_DL4] =3D MT8196_IRQ_4,
+> +       [MT8196_MEMIF_DL5] =3D MT8196_IRQ_5,
+> +       [MT8196_MEMIF_DL6] =3D MT8196_IRQ_6,
+> +       [MT8196_MEMIF_DL7] =3D MT8196_IRQ_7,
+> +       [MT8196_MEMIF_DL8] =3D MT8196_IRQ_8,
+> +       [MT8196_MEMIF_DL23] =3D MT8196_IRQ_9,
+> +       [MT8196_MEMIF_DL24] =3D MT8196_IRQ_10,
+> +       [MT8196_MEMIF_DL25] =3D MT8196_IRQ_11,
+> +       [MT8196_MEMIF_DL26] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_DL_4CH] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_DL_24CH] =3D MT8196_IRQ_12,
+> +       [MT8196_MEMIF_VUL0] =3D MT8196_IRQ_13,
+> +       [MT8196_MEMIF_VUL1] =3D MT8196_IRQ_14,
+> +       [MT8196_MEMIF_VUL2] =3D MT8196_IRQ_15,
+> +       [MT8196_MEMIF_VUL3] =3D MT8196_IRQ_16,
+> +       [MT8196_MEMIF_VUL4] =3D MT8196_IRQ_17,
+> +       [MT8196_MEMIF_VUL5] =3D MT8196_IRQ_18,
+> +       [MT8196_MEMIF_VUL6] =3D MT8196_IRQ_19,
+> +       [MT8196_MEMIF_VUL7] =3D MT8196_IRQ_20,
+> +       [MT8196_MEMIF_VUL8] =3D MT8196_IRQ_21,
+> +       [MT8196_MEMIF_VUL9] =3D MT8196_IRQ_22,
+> +       [MT8196_MEMIF_VUL10] =3D MT8196_IRQ_23,
+> +       [MT8196_MEMIF_VUL24] =3D MT8196_IRQ_24,
+> +       [MT8196_MEMIF_VUL25] =3D MT8196_IRQ_25,
+> +       [MT8196_MEMIF_VUL26] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_VUL_CM0] =3D MT8196_IRQ_26,
+> +       [MT8196_MEMIF_VUL_CM1] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_VUL_CM2] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN0] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN1] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN2] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN3] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN4] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_ETDM_IN6] =3D MT8196_IRQ_0,
+> +       [MT8196_MEMIF_HDMI] =3D MT8196_IRQ_31
+> +};
+> +
+> +static bool mt8196_is_volatile_reg(struct device *dev, unsigned int reg)
+> +{
+> +       /* these auto-gen reg has read-only bit, so put it as volatile */
+> +       /* volatile reg cannot be cached, so cannot be set when power off=
+ */
+> +       switch (reg) {
+> +       case AUDIO_TOP_CON0:    /* reg bit controlled by CCF */
+> +       case AUDIO_TOP_CON1:    /* reg bit controlled by CCF */
+
+Please consider moving the clock bits into the AFE driver. They are
+the same hardware block, and you don't really need a clock driver
+to control simple gates. Just define supply widgets for them.
+
+> +       case AUDIO_TOP_CON2:
+> +       case AUDIO_TOP_CON3:
+> +       case AUDIO_TOP_CON4:
+
+Many of these values are consecutive. Please use the ellipis notation
+to shorten this:
+
+switch (reg) {
+    case AUDIO_TOP_CON0 ... AUDIO_TOP_CON4:
+        return true;
+}
+
+Or you could use the |struct regmap_range| and |struct regmap_access_table|
+if that is shorter.
+
+[...]
+
+> +
+> +static irqreturn_t mt8196_afe_irq_handler(int irq_id, void *dev)
+> +{
+> +       struct mtk_base_afe *afe =3D dev;
+> +       struct mtk_base_afe_irq *irq;
+> +       unsigned int status =3D 0;
+> +       unsigned int status_mcu;
+> +       unsigned int mcu_en =3D 0;
+> +       unsigned int cus_status =3D 0;
+> +       unsigned int cus_status_mcu;
+> +       unsigned int cus_mcu_en =3D 0;
+> +       unsigned int tmp_reg =3D 0;
+> +       int ret, cus_ret;
+> +       int i;
+> +       struct timespec64 ts64;
+> +       unsigned long long t1, t2;
+> +       /* one interrupt period =3D 5ms */
+> +       unsigned long long timeout_limit =3D 5000000;
+> +
+> +       /* get irq that is sent to MCU */
+> +       regmap_read(afe->regmap, AFE_IRQ_MCU_EN, &mcu_en);
+> +       regmap_read(afe->regmap, AFE_CUSTOM_IRQ_MCU_EN, &cus_mcu_en);
+> +
+> +       ret =3D regmap_read(afe->regmap, AFE_IRQ_MCU_STATUS, &status);
+> +       cus_ret =3D regmap_read(afe->regmap, AFE_CUSTOM_IRQ_MCU_STATUS, &=
+cus_status);
+> +       /* only care IRQ which is sent to MCU */
+> +       status_mcu =3D status & mcu_en & AFE_IRQ_STATUS_BITS;
+> +       cus_status_mcu =3D cus_status & cus_mcu_en & AFE_IRQ_STATUS_BITS;
+> +       if ((ret || !status_mcu) &&
+> +           (cus_ret || !cus_status_mcu)) {
+> +               dev_info(afe->dev, "irq status err, ret %d, status 0x%x, =
+mcu_en 0x%x\n",
+> +                        ret, status, mcu_en);
+> +               dev_info(afe->dev, "irq status err, ret %d, cus_status_mc=
+u 0x%x, cus_mcu_en 0x%x\n",
+> +                        ret, cus_status_mcu, cus_mcu_en);
+> +
+> +               goto err_irq;
+> +       }
+> +
+> +       ktime_get_ts64(&ts64);
+> +       t1 =3D timespec64_to_ns(&ts64);
+> +
+> +       for (i =3D 0; i < MT8196_MEMIF_NUM; i++) {
+> +               struct mtk_base_afe_memif *memif =3D &afe->memif[i];
+> +
+> +               if (!memif->substream)
+> +                       continue;
+> +
+> +               if (memif->irq_usage < 0)
+> +                       continue;
+> +               irq =3D &afe->irqs[memif->irq_usage];
+> +
+> +               if (i =3D=3D MT8196_MEMIF_HDMI) {
+> +                       if (cus_status_mcu & (0x1 << irq->irq_data->id))
+> +                               snd_pcm_period_elapsed(memif->substream);
+> +               } else {
+> +                       if (status_mcu & (0x1 << irq->irq_data->id))
+> +                               snd_pcm_period_elapsed(memif->substream);
+> +               }
+> +       }
+> +
+> +       ktime_get_ts64(&ts64);
+> +       t2 =3D timespec64_to_ns(&ts64);
+> +       t2 =3D t2 - t1; /* in ns (10^9) */
+> +
+> +       if (t2 > timeout_limit) {
+> +               dev_warn(afe->dev, "mcu_en 0x%x, cus_mcu_en 0x%x, timeout=
+ %llu, limit %llu, ret %d\n",
+> +                        mcu_en, cus_mcu_en,
+> +                        t2, timeout_limit, ret);
+> +       }
+> +
+> +err_irq:
+> +       /* clear irq */
+> +       for (i =3D 0; i < MT8196_IRQ_NUM; ++i) {
+> +               /* cus_status_mcu only bit0 is used for TDM */
+> +               if ((status_mcu & (0x1 << i)) || (cus_status_mcu & 0x1)) =
+{
+> +                       regmap_read(afe->regmap, irq_data[i].irq_clr_reg,=
+ &tmp_reg);
+> +                       regmap_update_bits(afe->regmap, irq_data[i].irq_c=
+lr_reg,
+> +                                          AFE_IRQ_CLR_CFG_MASK_SFT |
+> +                                          AFE_IRQ_MISS_FLAG_CLR_CFG_MASK=
+_SFT,
+> +                                          tmp_reg ^ (AFE_IRQ_CLR_CFG_MAS=
+K_SFT |
+> +                                          AFE_IRQ_MISS_FLAG_CLR_CFG_MASK=
+_SFT));
+> +               }
+> +       }
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static int mt8196_afe_runtime_suspend(struct device *dev)
+> +{
+> +       struct mtk_base_afe *afe =3D dev_get_drvdata(dev);
+> +       unsigned int value =3D 0;
+> +       unsigned int tmp_reg =3D 0;
+> +       int ret =3D 0, i;
+> +
+> +       if (!afe->regmap) {
+> +               dev_err(afe->dev, "skip regmap\n");
+> +               goto skip_regmap;
+> +       }
+> +
+> +       /* Add to be off for free run*/
+> +       /* disable AFE */
+> +       regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, 0x1, 0x0);
+> +
+> +       ret =3D regmap_read_poll_timeout(afe->regmap,
+> +                                      AUDIO_ENGEN_CON0_MON,
+> +                                      value,
+> +                                      (value & AUDIO_ENGEN_MON_SFT) =3D=
+=3D 0,
+> +                                      20,
+> +                                      1 * 1000 * 1000);
+> +       dev_dbg(afe->dev, "read_poll ret %d\n", ret);
+> +       if (ret)
+> +               dev_info(afe->dev, "ret %d\n", ret);
+> +
+> +       /* make sure all irq status are cleared */
+> +       for (i =3D 0; i < MT8196_IRQ_NUM; ++i) {
+> +               regmap_read(afe->regmap, irq_data[i].irq_clr_reg, &tmp_re=
+g);
+> +               regmap_update_bits(afe->regmap, irq_data[i].irq_clr_reg,
+> +                                  AFE_IRQ_CLR_CFG_MASK_SFT | AFE_IRQ_MIS=
+S_FLAG_CLR_CFG_MASK_SFT,
+> +                                  tmp_reg ^ (AFE_IRQ_CLR_CFG_MASK_SFT |
+> +                                  AFE_IRQ_MISS_FLAG_CLR_CFG_MASK_SFT));
+> +       }
+> +
+> +       /* reset sgen */
+> +       regmap_write(afe->regmap, AFE_SINEGEN_CON0, 0x0);
+> +       regmap_update_bits(afe->regmap, AFE_SINEGEN_CON1,
+> +                          SINE_DOMAIN_MASK_SFT,
+> +                          0x0 << SINE_DOMAIN_SFT);
+> +       regmap_update_bits(afe->regmap, AFE_SINEGEN_CON1,
+> +                          SINE_MODE_MASK_SFT,
+> +                          0x0 << SINE_MODE_SFT);
+> +       regmap_update_bits(afe->regmap, AFE_SINEGEN_CON1,
+> +                          INNER_LOOP_BACKI_SEL_MASK_SFT,
+> +                          0x0 << INNER_LOOP_BACKI_SEL_SFT);
+> +       regmap_update_bits(afe->regmap, AFE_SINEGEN_CON1,
+> +                          INNER_LOOP_BACK_MODE_MASK_SFT,
+> +                          0xff << INNER_LOOP_BACK_MODE_SFT);
+> +
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON4, 0x3fff);
+> +
+> +       /* reset audio 26M request */
+> +       regmap_update_bits(afe->regmap,
+> +                          AFE_SPM_CONTROL_REQ, 0x1, 0x0);
+> +
+> +       /* cache only */
+> +       regcache_cache_only(afe->regmap, true);
+> +       regcache_mark_dirty(afe->regmap);
+> +
+> +skip_regmap:
+> +       mt8196_afe_disable_clock(afe);
+> +       return 0;
+> +}
+> +
+> +static int mt8196_afe_runtime_resume(struct device *dev)
+> +{
+> +       struct mtk_base_afe *afe =3D dev_get_drvdata(dev);
+> +       int ret =3D 0;
+> +
+> +       ret =3D mt8196_afe_enable_clock(afe);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (!afe->regmap) {
+> +               dev_warn(afe->dev, "skip regmap\n");
+> +               goto skip_regmap;
+> +       }
+> +       regcache_cache_only(afe->regmap, false);
+> +       regcache_sync(afe->regmap);
+> +
+> +       /* set audio 26M request */
+> +       regmap_update_bits(afe->regmap, AFE_SPM_CONTROL_REQ, 0x1, 0x1);
+> +
+> +       /* IPM2.0: Clear AUDIO_TOP_CON4 for enabling AP side module clk *=
+/
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON4, 0x0);
+> +
+> +       /* Add to be on for free run */
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON0, 0x0);
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON1, 0x0);
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON2, 0x0);
+> +
+> +       /* Can't set AUDIO_TOP_CON3 to be 0x0, it will hang in FPGA env *=
+/
+> +       regmap_write(afe->regmap, AUDIO_TOP_CON3, 0x0);
+> +
+> +       regmap_update_bits(afe->regmap, AFE_CBIP_CFG0, 0x1, 0x1);
+> +
+> +       /* force cpu use 8_24 format when writing 32bit data */
+> +       regmap_update_bits(afe->regmap, AFE_MEMIF_CON0,
+> +                          CPU_HD_ALIGN_MASK_SFT, 0 << CPU_HD_ALIGN_SFT);
+> +
+> +       /* enable AFE */
+> +       regmap_update_bits(afe->regmap, AUDIO_ENGEN_CON0, 0x1, 0x1);
+> +
+> +skip_regmap:
+> +       return 0;
+> +}
+> +
+> +static int mt8196_afe_component_probe(struct snd_soc_component *componen=
+t)
+> +{
+> +       if (component)
+> +               mtk_afe_add_sub_dai_control(component);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mt8196_afe_pcm_open(struct snd_soc_component *component,
+> +                              struct snd_pcm_substream *substream)
+> +{
+> +       /* set the wait_for_avail to 2 sec*/
+> +       substream->wait_time =3D msecs_to_jiffies(2 * 1000);
+> +
+> +       return 0;
+> +}
+> +
+> +static void mt8196_afe_pcm_free(struct snd_soc_component *component, str=
+uct snd_pcm *pcm)
+> +{
+> +       snd_pcm_lib_preallocate_free_for_all(pcm);
+> +}
+> +
+> +static const struct snd_soc_component_driver mt8196_afe_component =3D {
+> +       .name =3D AFE_PCM_NAME,
+> +       .probe =3D mt8196_afe_component_probe,
+> +       .pcm_construct =3D mtk_afe_pcm_new,
+> +       .pcm_destruct =3D mt8196_afe_pcm_free,
+> +       .open =3D mt8196_afe_pcm_open,
+> +       .pointer =3D mtk_afe_pcm_pointer,
+> +};
+> +
+> +static int mt8196_dai_memif_register(struct mtk_base_afe *afe)
+> +{
+> +       struct mtk_base_afe_dai *dai;
+> +
+> +       dai =3D devm_kzalloc(afe->dev, sizeof(*dai), GFP_KERNEL);
+> +       if (!dai)
+> +               return -ENOMEM;
+> +
+> +       list_add(&dai->list, &afe->sub_dais);
+> +
+> +       dai->dai_drivers =3D mt8196_memif_dai_driver;
+> +       dai->num_dai_drivers =3D ARRAY_SIZE(mt8196_memif_dai_driver);
+> +
+> +       dai->controls =3D mt8196_pcm_kcontrols;
+> +       dai->num_controls =3D ARRAY_SIZE(mt8196_pcm_kcontrols);
+> +       dai->dapm_widgets =3D mt8196_memif_widgets;
+> +       dai->num_dapm_widgets =3D ARRAY_SIZE(mt8196_memif_widgets);
+> +       dai->dapm_routes =3D mt8196_memif_routes;
+> +       dai->num_dapm_routes =3D ARRAY_SIZE(mt8196_memif_routes);
+> +       return 0;
+> +}
+> +
+> +typedef int (*dai_register_cb)(struct mtk_base_afe *);
+> +static const dai_register_cb dai_register_cbs[] =3D {
+> +       mt8196_dai_adda_register,
+> +       mt8196_dai_i2s_register,
+> +       mt8196_dai_tdm_register,
+> +       mt8196_dai_memif_register,
+> +};
+> +
+> +static int mt8196_afe_pcm_dev_probe(struct platform_device *pdev)
+> +{
+> +       int ret, i;
+> +       unsigned int tmp_reg =3D 0;
+> +       int irq_id;
+> +       struct mtk_base_afe *afe;
+> +       struct mt8196_afe_private *afe_priv;
+> +       struct device *dev;
+
+Assign `dev` here and use that instead of doing a dereference every time.
+
+> +       ret =3D of_reserved_mem_device_init(&pdev->dev);
+> +       if (ret)
+> +               dev_dbg(&pdev->dev, "failed to assign memory region: %d\n=
+", ret);
+
+This should be a visible error message.
+
+We might be adding checks against the DMA mask in the reserved memory code.
+So please move this call after dma_set_mask_and_coherent().
+
+> +
+> +       ret =3D dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
+
+The datasheet shows that the DMA address register is 41 bits wide combined.
+
+> +       if (ret)
+> +               return ret;
+> +
+> +       afe =3D devm_kzalloc(&pdev->dev, sizeof(*afe), GFP_KERNEL);
+> +       if (!afe)
+> +               return -ENOMEM;
+> +
+> +       platform_set_drvdata(pdev, afe);
+> +
+> +       afe->platform_priv =3D devm_kzalloc(&pdev->dev, sizeof(*afe_priv)=
+,
+> +                                         GFP_KERNEL);
+> +       if (!afe->platform_priv)
+> +               return -ENOMEM;
+> +
+> +       afe_priv =3D afe->platform_priv;
+> +
+> +       afe->dev =3D &pdev->dev;
+> +       dev =3D afe->dev;
+> +
+> +       /* init audio related clock */
+> +       ret =3D mt8196_init_clock(afe);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "init clock error.\n");
+> +
+> +       pm_runtime_enable(&pdev->dev);
+
+Consider using devm_pm_runtime_enable() if possible.
+
+
+ChenYu
+
+> +       if (!pm_runtime_enabled(&pdev->dev))
+> +               goto err_pm_disable;
+> +
+> +       /* Audio device is part of genpd.
+> +        * Set audio as syscore device to prevent
+> +        * genpd automatically power off audio
+> +        * device when suspend
+> +        */
+> +       dev_pm_syscore_device(&pdev->dev, true);
+> +
+> +       afe->base_addr =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(afe->base_addr))
+> +               return dev_err_probe(dev, PTR_ERR(afe->base_addr),
+> +                                    "AFE base_addr not found\n");
+> +
+> +       /* enable clock for regcache get default value from hw */
+> +       pm_runtime_get_sync(&pdev->dev);
+> +
+> +       afe->regmap =3D devm_regmap_init_mmio(&pdev->dev, afe->base_addr,
+> +                                           &mt8196_afe_regmap_config);
+> +       if (IS_ERR(afe->regmap))
+> +               return PTR_ERR(afe->regmap);
+> +
+> +       /* IPM2.0 clock flow, need debug */
+> +       regmap_read(afe->regmap, AFE_IRQ_MCU_EN, &tmp_reg);
+> +       regmap_write(afe->regmap, AFE_IRQ_MCU_EN, 0xffffffff);
+> +       regmap_read(afe->regmap, AFE_IRQ_MCU_EN, &tmp_reg);
+> +       /* IPM2.0 clock flow, need debug */
+> +
+> +       pm_runtime_put_sync(&pdev->dev);
+> +
+> +       regcache_cache_only(afe->regmap, true);
+> +       regcache_mark_dirty(afe->regmap);
+> +
+> +       /* init memif */
+> +       /* IPM2.0 no need banding */
+> +       afe->memif_32bit_supported =3D 1;
+> +       afe->memif_size =3D MT8196_MEMIF_NUM;
+> +       afe->memif =3D devm_kcalloc(dev, afe->memif_size, sizeof(*afe->me=
+mif),
+> +                                 GFP_KERNEL);
+> +
+> +       if (!afe->memif)
+> +               return -ENOMEM;
+> +
+> +       for (i =3D 0; i < afe->memif_size; i++) {
+> +               afe->memif[i].data =3D &memif_data[i];
+> +               afe->memif[i].irq_usage =3D memif_irq_usage[i];
+> +               afe->memif[i].const_irq =3D 1;
+> +       }
+> +
+> +       mutex_init(&afe->irq_alloc_lock);
+> +
+> +       /* init irq */
+> +       afe->irqs_size =3D MT8196_IRQ_NUM;
+> +       afe->irqs =3D devm_kcalloc(dev, afe->irqs_size, sizeof(*afe->irqs=
+),
+> +                                GFP_KERNEL);
+> +
+> +       if (!afe->irqs)
+> +               return -ENOMEM;
+> +
+> +       for (i =3D 0; i < afe->irqs_size; i++)
+> +               afe->irqs[i].irq_data =3D &irq_data[i];
+> +
+> +       /* request irq */
+> +       irq_id =3D platform_get_irq(pdev, 0);
+> +       if (irq_id < 0)
+> +               return dev_err_probe(dev, irq_id, "no irq found");
+> +
+> +       ret =3D devm_request_irq(dev, irq_id, mt8196_afe_irq_handler,
+> +                              IRQF_TRIGGER_NONE,
+> +                              "Afe_ISR_Handle", (void *)afe);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "could not request_irq for=
+ Afe_ISR_Handle\n");
+> +
+> +       ret =3D enable_irq_wake(irq_id);
+> +       if (ret < 0)
+> +               dev_warn(dev, "enable_irq_wake %d ret: %d\n", irq_id, ret=
+);
+> +
+> +       /* init sub_dais */
+> +       INIT_LIST_HEAD(&afe->sub_dais);
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(dai_register_cbs); i++) {
+> +               ret =3D dai_register_cbs[i](afe);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret, "dai register i %d=
+ fail\n", i);
+> +       }
+> +
+> +       /* init dai_driver and component_driver */
+> +       ret =3D mtk_afe_combine_sub_dai(afe);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "mtk_afe_combine_sub_dai f=
+ail\n");
+> +
+> +       /* others */
+> +       afe->mtk_afe_hardware =3D &mt8196_afe_hardware;
+> +       afe->memif_fs =3D mt8196_memif_fs;
+> +       afe->irq_fs =3D mt8196_irq_fs;
+> +       afe->get_dai_fs =3D mt8196_get_dai_fs;
+> +       afe->get_memif_pbuf_size =3D mt8196_get_memif_pbuf_size;
+> +
+> +       afe->runtime_resume =3D mt8196_afe_runtime_resume;
+> +       afe->runtime_suspend =3D mt8196_afe_runtime_suspend;
+> +
+> +       afe->request_dram_resource =3D mt8196_afe_dram_request;
+> +       afe->release_dram_resource =3D mt8196_afe_dram_release;
+> +
+> +       /* register component */
+> +       ret =3D devm_snd_soc_register_component(&pdev->dev,
+> +                                             &mt8196_afe_component,
+> +                                             afe->dai_drivers,
+> +                                             afe->num_dai_drivers);
+> +       if (ret) {
+> +               dev_warn(dev, "afe component err\n");
+> +               goto err_pm_disable;
+> +       }
+> +       return 0;
+> +
+> +err_pm_disable:
+> +       pm_runtime_disable(&pdev->dev);
+> +       return ret;
+> +}
+> +
+> +static void mt8196_afe_pcm_dev_remove(struct platform_device *pdev)
+> +{
+> +       struct mtk_base_afe *afe =3D platform_get_drvdata(pdev);
+> +
+> +       pm_runtime_disable(&pdev->dev);
+> +       if (!pm_runtime_status_suspended(&pdev->dev))
+> +               mt8196_afe_runtime_suspend(&pdev->dev);
+> +
+> +       /* disable afe clock */
+> +       mt8196_afe_disable_clock(afe);
+> +}
+> +
+> +static const struct of_device_id mt8196_afe_pcm_dt_match[] =3D {
+> +       { .compatible =3D "mediatek,mt8196-afe-pcm", },
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, mt8196_afe_pcm_dt_match);
+> +
+> +static const struct dev_pm_ops mt8196_afe_pm_ops =3D {
+> +       SET_RUNTIME_PM_OPS(mt8196_afe_runtime_suspend,
+> +                          mt8196_afe_runtime_resume, NULL)
+> +};
+> +
+> +static struct platform_driver mt8196_afe_pcm_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "mt8196-afe-pcm",
+> +               .of_match_table =3D mt8196_afe_pcm_dt_match,
+> +#if IS_ENABLED(CONFIG_PM)
+> +               .pm =3D &mt8196_afe_pm_ops,
+> +#endif
+> +       },
+> +       .probe =3D mt8196_afe_pcm_dev_probe,
+> +       .remove =3D mt8196_afe_pcm_dev_remove,
+> +};
+> +
+> +module_platform_driver(mt8196_afe_pcm_driver);
+> +
+> +MODULE_DESCRIPTION("Mediatek ALSA SoC AFE platform driver for 8196");
+> +MODULE_AUTHOR("Darren Ye <darren.ye@mediatek.com>");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.45.2
+>
+>
 
