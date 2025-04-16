@@ -1,84 +1,90 @@
-Return-Path: <devicetree+bounces-167845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CDDFA9075B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:09:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF81A9076A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:12:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F27F03BB81F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:08:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 975BD190504B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 15:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3770201113;
-	Wed, 16 Apr 2025 15:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B542E202C31;
+	Wed, 16 Apr 2025 15:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YTRfTs5t"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="s13wtH4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2055.outbound.protection.outlook.com [40.107.21.55])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7FA7E110;
-	Wed, 16 Apr 2025 15:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3387201113;
+	Wed, 16 Apr 2025 15:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.67
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744816151; cv=fail; b=K1pIwG2jkY3Xk/h0JX2W3WuV33bUpBopRwdaQmjwJGnWCyUVd1UPzH4EUKwNPmLN1EQlfdVmOctzjfdE5rCxsrS/owmUDGOG70uC2yA4H9am0bF2Zw0dDNxvaP0ghYy88GR0EZW0sPy7WzeT7aGTNb/rghkylq9MUGtA/hW1HFg=
+	t=1744816330; cv=fail; b=ZIZ3+/a9+l29kUZSkfX8+49ousQWXwcclxyLCiw6OaKMGmPkO61+3eo531wu+UNyxwc31keVvhKLo53Y5oZjoovj7jlIvd0V5CQmRVatFBKWrfUXEQlKDfpxL7A835Y0X4nRYB23FnFAGCRSkK8Oa9KVwuuCFtrmiTuSqIMUuQ4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744816151; c=relaxed/simple;
-	bh=bEW7asnU3m+stoDXBfzoq+RfkwBz+mikSQ2/zuGJC/4=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=fPHMsN65WliMdGIWGD7VhMQtfG6gcgxFrRhmEo9HOoai2CQqC7FuW+mj6y4uz1TiJayX0dMgcU8SNceR5xqMWMdiWfXeM+ddjDpV89+KHk9DAsNkuD7MXTbGu0ijqFgz5EWbIjhr3AfXnpkao8Q6HnjxP9RPEYoM6CE+ap7BDDI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YTRfTs5t; arc=fail smtp.client-ip=40.107.21.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1744816330; c=relaxed/simple;
+	bh=6MspGUhvhfaqUhAnUQye//YzrAudd8iyBrIOd4gpIRo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=bnLc3O3Yb5Nu8IR0p4V7cQvZIdkumyEeQXNucNND70tJMYRhEIr30fVwxUQQtcwjpSblyWCCs+uuW3gGuCx5TGf5vSFSh+CllpjZXPgtFL5k9ZLSJf/X65prRMHCQXXnb1HOzsn4mzm+qGyaG3WZ0khresFUXvEBA9b3AXeQ9zk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=s13wtH4/; arc=fail smtp.client-ip=40.107.94.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WusB30TiwwQ0aEIsLFPhvZd95pGVRif304P2jr+oXqYEZMy5b/3Yvb+iU9W5P1oprBW7kQlR/lpxLUDrZyc+K+tJw7etAJ9A+VsPQgZ2Y4Zy/80eDMfKgxy/De3fsUrI5QNFJre16YR2K47CzWBf7Q6U/2FzIRPEMwJUKOouHu/GMTaVxBYbmzDg7atAhXZv3ZbWpho1W4odR2R/ClesskT/lMignp1U0oFEW+SmDBkb3TlM5a11iNNrDKQb5GLk5te23aD5H+FnHxqEWNY61yjmY4QjwrYaqDpzvBnGoQUmEZgnY7dNdZUulpn5DRetl193L6ZVG6Tc8sKwdmCLOg==
+ b=GaN0CrTPWSi2d4C2ZGQKUjHMnh6VjKXTEq7Jfgs/TbifFScUwcxnFUwFBPiM5ML8CcqGEbMZqctKEY4LMrZz2lmbAOYcOBbpDdp+rPpSb+VpnZ3VuSKF+uAqAnqLLDkdLGmphp0WHrWFnK9uF4P3hMwXUiYUKNM5zpCYZmW1nDxxJzXOb3qP8h+TJ9P9J4fDTMxA6Gw0c/7qAIJgTH+4UELgk3h+c62JBzOPOV+6Y9ATXpwriUFdY4PPlS18KJ+4/slGH7FWb15LJDrG00Y0LiPTjc8usJKzr+tIxLHG7hxW8kknwRFJ3KuWUfijhHfVr4FebDAYD/C+VNKIxQWMvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zFZUCoc4/+NWa0nYe2wc/QAVxh9ul+CxlezfLqbgD34=;
- b=Dt6nRXM/QnmtVePIaIkF9VYZRoaDGWv//UlfdifrmNMTgf35zTY718z9atMyyqh584Lp+KGJ/96D6Tv77/Q7o+aaNTIdfBp4AD1FJkZz1N9wPiFjjekhWomoQKvAa4dy5qcmLwhoyDUsG+x4RxVrg2D9AIse9yNXtzQcBEzq90zq/cBT1CjULSxnK5uGQQ9PAe2oZs02EN0qO1ogWX794um/zuDMd4rkR0t3kQ27VxrsNuOVVOtWyUvNU9Pe78S/qIiGj84ZMOeTo1PzTtClZ1026KOStrzSEnZBMfO3EOG8rZi3w147TXoqIkS2FeJH3sLTj7/dD3mQQbZCY8C04w==
+ bh=99K4pJelFCdWNnht9cJFR+tbi3R38NsH3m38VJ+mAYs=;
+ b=JcxWvn+JAV6ZjC6RX0ifflwCEZqKpx0vgKKLxUiuR7CNfTmjBld9ENPs1fg5vhDu/VjjroBK7BWtCUm8CzG2zLDvVRjRI9ZHpeXHaHeQwDEmMBfsdqBuaGjtE7dwZJ8bhVlx129G8lo7Q7iZ6UrIq63qogh+8LbV9QEdjxzWQ07LG5rtlNpjIqyAxwnkZgZzFBCGxli804GPpNcoJ7QEJgfcpqc+fD9PBVjm3Poz4bEGbGNmbY81m6R4yldaoU+pgYBHxzsanWm1J1Dv/zMZ7FFZ5fGK0XG4YoaUDXdLdoPkk4Yr14LLCm4rQqSp4N5sKqZNpw7pwBvjZGMiujEbMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zFZUCoc4/+NWa0nYe2wc/QAVxh9ul+CxlezfLqbgD34=;
- b=YTRfTs5tSMHtapBIisDdel+b3z4DsPjUBesbPRkU6JnKl9/UgeR1j9kZ5vvpODHHWAjRtKNw2psxB2GFE35JlREBYdIlIR8EY84XqOOvfz4C8qo/p0dVFJozpOcKj0JnjYgE2tGxY8eYeK8TWqG3Hrb2hoq4PPjwJUguVYSZMLqW3tnb0mRw65WMs1x1CZOHOrkFwfmUJtm0opSdg8VLSjE047ZPYYRQ1sYR3Lun1Y24yEpQ2snBdvyxQbRX0snvPyl05f4WAYw0r/rLYbSGk0olcmzYjDxJXTYKVNHZSq47o9y0m5Ww3wpsNVyblZLvyWibJWzoX5iZtrLa6ZzTNQ==
+ bh=99K4pJelFCdWNnht9cJFR+tbi3R38NsH3m38VJ+mAYs=;
+ b=s13wtH4/1cmHHUPI2Wg5XMjjHt7pZK2YTzbuxb2SiO0hdeHEJqMvKmvqnfFeIq2gjZ81aqZIFbniUzgEBAtJPXbVnpNhm0QbJBWVavvIrLbhhvW/WndPyV7v4JIAsdf7YRt7G+tTHNH+vUqyvDCWz2IM2A8NJANwuI2QVukGS40=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA2PR04MB10514.eurprd04.prod.outlook.com (2603:10a6:102:41e::17) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CH3PR12MB9193.namprd12.prod.outlook.com (2603:10b6:610:195::14)
+ by SJ2PR12MB8650.namprd12.prod.outlook.com (2603:10b6:a03:544::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.35; Wed, 16 Apr
- 2025 15:09:06 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8632.035; Wed, 16 Apr 2025
- 15:09:05 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Jacky Bai <ping.bai@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-gpio@vger.kernel.org (open list:PIN CONTROLLER - FREESCALE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: pinctrl: convert fsl,vf610-pinctrl.txt to yaml format
-Date: Wed, 16 Apr 2025 11:08:46 -0400
-Message-Id: <20250416150847.3422218-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0043.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.36; Wed, 16 Apr
+ 2025 15:12:05 +0000
+Received: from CH3PR12MB9193.namprd12.prod.outlook.com
+ ([fe80::7818:d337:2640:e6c7]) by CH3PR12MB9193.namprd12.prod.outlook.com
+ ([fe80::7818:d337:2640:e6c7%5]) with mapi id 15.20.8632.025; Wed, 16 Apr 2025
+ 15:12:05 +0000
+Message-ID: <deaefc59-f6e4-2d4d-b91d-0ba7db9dfbf4@amd.com>
+Date: Wed, 16 Apr 2025 20:41:50 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 2/3] accel/amdpk: add driver for AMD PKI accelerator
+Content-Language: en-US
+To: Lukas Wunner <lukas@wunner.de>, herbert@gondor.apana.org.au
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, davem@davemloft.net,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+ gregkh@linuxfoundation.org, robh@kernel.org, conor+dt@kernel.org,
+ ogabbay@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de,
+ praveen.jain@amd.com, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
+ srivatsa@csail.mit.edu, code@tyhicks.com, ptsm@linux.microsoft.com,
+ linux-crypto@vger.kernel.org, Ignat Korchagin <ignat@cloudflare.com>,
+ David Howells <dhowells@redhat.com>
+References: <20250409173033.2261755-1-nipun.gupta@amd.com>
+ <20250409173033.2261755-2-nipun.gupta@amd.com>
+ <20250410-sly-inventive-squirrel-ddecbc@shite>
+ <bf851be7-74a5-8f9d-375b-b617691b6765@amd.com> <Z_wH_uCx558T0__c@wunner.de>
+From: "Gupta, Nipun" <nipun.gupta@amd.com>
+In-Reply-To: <Z_wH_uCx558T0__c@wunner.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN4P287CA0111.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:2ad::8) To CH3PR12MB9193.namprd12.prod.outlook.com
+ (2603:10b6:610:195::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,236 +92,195 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA2PR04MB10514:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0893d4e7-bffd-446c-6930-08dd7cf8a0c7
+X-MS-TrafficTypeDiagnostic: CH3PR12MB9193:EE_|SJ2PR12MB8650:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5711897-09a7-4694-ad67-08dd7cf90bd0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|38350700014|921020;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?e01hSxcltAinA8/HyWVip8tBonfnxUhFKITuNa/Ps+ZxyEZF47QZErFEs1Nv?=
- =?us-ascii?Q?5nkic2y8D44Y2ECbxITMNgGaOVJ+KQX2pZ2bR6oLegGAJv6f24ULJkMNt/eg?=
- =?us-ascii?Q?Iq4fJM/NoHJu5/JMgIK+RNOs8uj3JbwRaGUmCprDqLPGsVPYed8qRkYjFUOM?=
- =?us-ascii?Q?vwH8p6ymgEgjLiuCmToq/cVyl43MFfDZIo27XayRHN1d0nPa56DKfTtN3coC?=
- =?us-ascii?Q?WSGZ2AMcU/mx2jhgRHmKUlvhaC/t2ymO3u7N4XNj/Us53zx3lXD6u6iPaTNE?=
- =?us-ascii?Q?81eEfi6NyOh/XnwuS6z6zVsyKIb5JgMqqvWqwYcXar6ClAFy1uiuRuCmo8d4?=
- =?us-ascii?Q?spLsYTaj/lHRowB+8cNC75d4cXcfvQfLhKE6dOeEnGIGN5M3Y87YhVrAussW?=
- =?us-ascii?Q?M7Rvb/UH8rKNHihojPOqFUXJZ89fegBvhQ5akO2n+1LfrNSZxaS+BLBHFm1Q?=
- =?us-ascii?Q?qnTyvtEm0q/im+Fa3sSJLiyluFU4Ra7hCzp0SzWJ1D0HGKwvDdJtuUeoCTmi?=
- =?us-ascii?Q?sqpfSl0i7rccTap7xZTxepx8IGoMCfgoqS/8xH+v8nu77gTy2gmRDaONkzb/?=
- =?us-ascii?Q?DyiqVa6IbHYi2A8wF6IK8TqxH5rdmJpqz2+4QdlDfOihXHbGxAJdcTz9OqXS?=
- =?us-ascii?Q?SDOfthcAUVbWExF0ICGnKYQpAmTmvn918Zx4PTBFrisRbu3VOjjB+o8SVqyq?=
- =?us-ascii?Q?bYRFTRu5xgk3upQwUSoSW2rk73HE7mK2ap2jffVt/9yT7SUDtmWRkHNaCQxO?=
- =?us-ascii?Q?1z8LOiOxFS5HTfK9Gl7P+uXG0VkOn719ofvu1O4ZVwYFFl6o8NI7E3R4MSXi?=
- =?us-ascii?Q?B1vw+4AEMPftOQ313Z8GHpxF2QafZfxOHePXTtTBivoA/phnshX4UaC8u8xh?=
- =?us-ascii?Q?Ws08/gORFtWFEfWI2WKp9H98m3liwn+6rbOzrfHnk9BcXOmAw2rNiT/4Q/3G?=
- =?us-ascii?Q?2vC6Ee2ZslwJPY2gUPy2pUWO8mCbnaeRHoV3WYjbV4RiLyLN5w14Vlewxj60?=
- =?us-ascii?Q?aSePNMSZucEsyhG3RFMpDwKVEKEFboWi5MofiNK6XaRxPH/cde+cuF/AKXK9?=
- =?us-ascii?Q?DpzZ8e+6/AvMBX3bjK55xpy/b0gheUJmxT2bNrHxxzJ1Z6J/QK3fKyUvoJ7t?=
- =?us-ascii?Q?abupAL21z3T40PrwjJpKJ7lsMSfbPkhu/xhEUAFiFL/GsOS/Pe0uplinsHqs?=
- =?us-ascii?Q?LQEMKtAVzogH1w2xRuLWwcGOzAjTDmo4BzKwtGSO//RwZENVCyB8GPDfJ79S?=
- =?us-ascii?Q?00LCrMQPSvWX7LMLhyoksYKIUqG/usu4dAjXLUuU4RU7m2uZU0RPc8vddVof?=
- =?us-ascii?Q?BDLqs6H03yVcvRKk8nFZdi7PM7zIOTVTFHhVOU9xvdV2G5gaCriJutXSTmJP?=
- =?us-ascii?Q?Wg9rsSeEIh3CXGdiukXQU8kkhGCDP4qNfVzSQoP4MObTv2pxH7d0LnrscpeZ?=
- =?us-ascii?Q?egj5Gp3CL9+IcSL8wG96ZBh6sgPUnA0s?=
+	=?utf-8?B?RTRkTDZLNzRIT0NqN3hlazZ0d2x4KzRPQTBqL2R6L3JrVjYzVk8zSUN4ZnJp?=
+ =?utf-8?B?L0J4VzJ0S1YzSUh3ZzZ3QWZVbnVabG1Yc0tZWE04VUd6L0pNRHpBNEExOG52?=
+ =?utf-8?B?emVTTjM3clNVZVRyMnlCTkJDaE5mRmFlWlBEbVIxWnh6TU9SZHQ1QTg2M0tP?=
+ =?utf-8?B?WGFoTTV3MTl5dlQ4Y0RmK2tSaVA1L0NnSm9zWHhxbW5vaHpZL2c1djNKcll2?=
+ =?utf-8?B?aUNnVlVLQXhNb2thRWhlZXpJMkdqbUc5VW9xU0w2YVMvWUw4cGI5RVBnb3lx?=
+ =?utf-8?B?RjdTcGlINW1TMVJPeEZOa0hKOFkySEcrQ0k3Q09pbk9CWjBiaWkzWHNLdUpt?=
+ =?utf-8?B?VE1MUElZVXBKaVJJb3pMaHNibm9YWXJEazZzVkNyZ3F3VmVPRlh5ZmkrcjB2?=
+ =?utf-8?B?MldISE4wcUZieEJOOVNMdWxVOXVDcHNyQUU0SG5EZmQ2MldnZzZKcldua2l1?=
+ =?utf-8?B?N2l6eU1hc2FuUXBOZi9QaVlncGVYbVEvUytVelN4ZmlGcE9RMklFNlV3Yjg3?=
+ =?utf-8?B?N0liRm5nMHowK1VwcWZuUm5vdmQyemxNc0pzbHk2ODA1TEVualJtUElkNERQ?=
+ =?utf-8?B?MkpRbC9tekVVcTU5bTdxZkFIVG5kaG95UEZYS0VkVFdES1orbHYvdTdPaWVu?=
+ =?utf-8?B?Mzk4d1ZNc0NwNmt5WEJFRWdlTTNKck52WWdnZ2R0aHFYMFZQZmI3NUpGdjBo?=
+ =?utf-8?B?djc1K3g1aGI3UmpybDJHOGY5VFpPZXh4OS9aeWs0VUlnbkIxZkgzU3ZQMVZm?=
+ =?utf-8?B?TjgvcDBqUG5veHpyb2lra0tRS1N3WkEyNmpPY0ZqOE40T2d1N0h2MW9UTHNX?=
+ =?utf-8?B?WHVoWlR5UDVaS3lML05LY29TcnRhbkk0Uk5zRDQ5NUcxcFFDckQ5azlMbStn?=
+ =?utf-8?B?dmpxQ0R0eENtRTFvc2FCUUozczc1V1d0aTlLQW5FNTBWNVNDOTZEVmZYK3ZU?=
+ =?utf-8?B?SFlrYWVDSjJKWkZod1NwODhrNFlkcmZ3bG16RWx3L1NDNkYvbEt1YmVNSjJR?=
+ =?utf-8?B?eDFMVnlLL3FyVW1VU05tNUNnUTBPdEdBcWh1VFNTYmxQdVJEQVRudjNhQjVz?=
+ =?utf-8?B?RGlRbTJhSnpiNHliUXpheWVOZEFJS2RrSW5nU05GdnJkdVlHSmxGaVRUTFZE?=
+ =?utf-8?B?Mm12RWhOWWRhSTg0WVdqeDlHZmcvZWRjcWtnTEl2dVBWdEtDbEVLYlM3N0ov?=
+ =?utf-8?B?Yk9tZ2dyWkQ2U213eWNGYzBIbGNmdGl0T1g2TVU3UEhEOTdmQ2hRK21MdUdV?=
+ =?utf-8?B?Y29sVWxMU01aRzJPNWlnaFVmSUdEVG90eUJ0ak8rVU9EZEZHQjhYenVzd2do?=
+ =?utf-8?B?dXByTDI4QXdqdW9HVE0rUFRQcG1Qd1BwNmcrTi9rcDNhU21uS0RFTjJ2ZWc3?=
+ =?utf-8?B?YzhBUnhOTGhOUVMxMWhQdmo4ZlhLcElFdURqdVJRM1loVEJhQW5td1c2Rk42?=
+ =?utf-8?B?UHp3Yk5lNWZFVlA5NXNwNGZvS1BlTitQNTZSTGl3QTBpOCsySG02K3kwaXQ1?=
+ =?utf-8?B?MnhaY0w4K01wRkdwbjJYZXQ5N0VQSVJQOEtUQTNRZ0pHS2NwOFZzQ1lvM2VU?=
+ =?utf-8?B?cTNyaVJrbUo5VUxseXdZOGhZNThBNnVyM1pDcDFweHRtODhWOERqaE1MSDlS?=
+ =?utf-8?B?TWFOUFFUS0cvYW5la0czdUkvSVdhVkJ3MVh4SUFMeTFEWXF1VDkrS2RkZzIr?=
+ =?utf-8?B?ZlFENXdESVJ1WWlRVW5RRFNCa2g5VTNCcmZqQXcxNERJbmhkSlJEUktMQVR1?=
+ =?utf-8?B?cnRudDV0M1BVbFFlbC9qM0x0eng2aHp4VDlPQkUxSCttVnpadUJzOXNtVUFu?=
+ =?utf-8?B?MEFJbFVlb1pxR1Vac3ZHdWpqdURjMU1ZRDRUeG41NlM3clZsdlJDNXlpVHZ4?=
+ =?utf-8?B?cXVNcU1EWmJiVU9udk1WNDFMMFpMeEhiMnoxTDhsQm1GUDZnM1RYVDhQQTRB?=
+ =?utf-8?Q?onMzXLpajlM=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB9193.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ccahjw3hv4s7NV6Q7OQlgCRO9ufGckHmTyIJGlrRbSv2NVT0TW5ccHdGBEZx?=
- =?us-ascii?Q?0xk0RQIoCb9/WwgdP209rPUMD5fdMfHDwfoyzgnMU1L17O3+0dNRK6nXssqD?=
- =?us-ascii?Q?Fi4Y65u96Bx2Ly697ri9wUvaXScm7QeQr3d6lS4gZZ6wHLFAURsjgw8S/gan?=
- =?us-ascii?Q?FtFJZ/uJRGBrXpAJSYUAV2dugjYZxNuvzU6wj092ojQmBBs0LMur6hV4UKF1?=
- =?us-ascii?Q?WXUfSCDZb/lBWzGGNpKKGIyoJS29v+TM7LvVjlihBDqGNmL0MvQchc99SXTl?=
- =?us-ascii?Q?6E2mAZE3Gdb0VSeW8Vs5K2LfVKy8WqLy2USnJJDp796mH+U+Ze5dITJX5ZPk?=
- =?us-ascii?Q?ydC9P4c9B6i6O92I3csaIaqbSmPi3WIdzLW5ApnOy9XrGnmH8g3M8j7TlRpz?=
- =?us-ascii?Q?jzdzFRGffR+Mda9C2+2LaSvJuwEEulNQ3baGFWjwa3wX100kk6fJp/UhxqWU?=
- =?us-ascii?Q?bsfllaXjPB64nyvt8XeTJZA7gDUPoF6l5cOz3Lp00JghA34bxEwZNdLgWJDw?=
- =?us-ascii?Q?xLJs3gb2yUMIVih5Zg+sTdkAREodKsHi8i8oVeeqXekRYh/TLll24PpaJI89?=
- =?us-ascii?Q?a1ukFRv/TOv07vuvkvYLIkhtHqgGUBWe8lfXSmJRoFmcUw+qs7cxtp1NmN8Q?=
- =?us-ascii?Q?TYe+2uLH4WuTUcrGe4VGPkMWVGtb0qSxcKSQai+jd+wHZLxnza/yzQAuC6rU?=
- =?us-ascii?Q?vqX6GJGjOngaa9V4pgh+aIux4UXHvY14vTe+ZlrbQLMxTCpTNeuQNqc2NyIf?=
- =?us-ascii?Q?CCAZeB4EFtclzOSI6HKZZ9vJajqMZHJS/mPlclo9yvl58mqkXrbJqbAas8kw?=
- =?us-ascii?Q?K0pViGgrL10PqPrXngfcZZ59UxRjBCe77/oN+ziER++jxo9ekLI6UhKIFacn?=
- =?us-ascii?Q?CC42RfhIVWapODs4ZIGv0LLwxIurVAcP3f0ceYD+X+C3ZhkCzJnOs/Of4hZr?=
- =?us-ascii?Q?Qyd2d5leeM8wqzgzzWJUlMnx772dThYVmtVLoe8WuY7WzROjNwM24TS6UoIy?=
- =?us-ascii?Q?icvm7Orp1ed7RE2MS4GC8cTisctcllFDqnfYSnw0PvsozkWKzdsUWlOoIuXa?=
- =?us-ascii?Q?+cmCURFb5DGau1yrE96X6HyEAKUqU1ZE0UAELNEYMYsb6DR9B0i98yA/2b7Z?=
- =?us-ascii?Q?CLc8MvE8474BzlXNIyRaUrtENnKPxOTkgc6Obc8bjvf9uhXDEalak8c73oi8?=
- =?us-ascii?Q?LcAtgy6yBGEuKHS6GQtJAoW+rbOMXuNDI+HIekCRJqj6dhBImkAYnHXQwOUQ?=
- =?us-ascii?Q?UxTKxcDkxdlbTReg4VUhiDxsarTqJAXyOPd7bm8A+uhd1L+1Ocx6gcYOtHUS?=
- =?us-ascii?Q?XFrKeHZPgzjbVsu9uqrMYeQUxhO7Uix9epCwbjB+rSETB+ZBVzLjVZUixZT7?=
- =?us-ascii?Q?AOsrT7eTgN9aEi8fBnCbEPVkzL31eWl3Z4BCueYTpiMdGFAFI0lKjh9kN/WZ?=
- =?us-ascii?Q?3wEQMcmwSVGKMbTNr/59ul7azJm70LzyMZ1L/qn+8vGWS7XTUdpx0mZ95LXU?=
- =?us-ascii?Q?BFIfR5zyqZuzxdSldN3aBypw/CGtkz7GYWIPoFDpkX5Wlbm7r10Gow3ZKtiN?=
- =?us-ascii?Q?lGXoYNG2NJby5RdBAQc=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0893d4e7-bffd-446c-6930-08dd7cf8a0c7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+	=?utf-8?B?Z0F6SGNmZXNGUEFXK0lCd0pNYWg0U2lhOFNwMTlNNHlYbFcvRUR1NHArYnJZ?=
+ =?utf-8?B?R0ljeXgzK1RWNVBVT2lTMG9FYm1xTkloME8vOGtmb3Q2Vlo3SkJ3WkxBMVdW?=
+ =?utf-8?B?eTRpZVpsUzNCTlY4UnhBdEhKODVTRnFDTHB4Y1UycW5sanZ2ZCtBeGc1SG5H?=
+ =?utf-8?B?T3FnRXlTRHFWWGh6Q3lpY3RKRG16UmlRdFV3RXR4bVpvcEFpbGJUME1jdjls?=
+ =?utf-8?B?UDBQb2lROUlqVmJiREZqT2phVEhGR0tacEdFMG5QVHMwYWEybzRCSUFIbWEv?=
+ =?utf-8?B?VGJYZkg5TEFZUUJzQ2FXSkY0aUkzWisxQVpxUURzS3NVYlNNZE8xMGRNc2pz?=
+ =?utf-8?B?U1Q5N0RwMnVMRzdOclVCeHZnTFVnQ0liZzZUVzdhdTVya3NZaENBZklGVUll?=
+ =?utf-8?B?LzlpTFlXdHdDd2F1dWFoWFIxdlp5TnM3SzUxb2VMemJlQ1lIdUo4N1I0ajFE?=
+ =?utf-8?B?RDcyazhlNG1KUjFDdUlsNVZNZEowUVlFSnNSaHR6ZHBFR0pnU0dYaTNWbkRp?=
+ =?utf-8?B?VUlxWXB4ZXRldVdGTVRSRi9TaC9NMkhaYklzNHpyTmRpM2Y2WktDZExyTWJm?=
+ =?utf-8?B?YWVTZm5kSjhNdTJ5elVNWDVpNDRBTW1KOGtpY3VDWDhpSjNZSUx0bjIzcXB3?=
+ =?utf-8?B?NTh1TEN2UHFJZ01qMnFibGs3eWMyQ212M2xXcDRRTkt4RzgwaEEwN3FoTjBO?=
+ =?utf-8?B?ZnpmQWJ6U0V4QytCaGpGQUhhT0V2WEowK3BoVjZhbm8zTXFDakJITzRQUEhI?=
+ =?utf-8?B?OEhvb1hJa3p5MXBBaHRJTzRLaTR4TDh2YlJERzl3UU50eFdhb1Rha2pFVnI0?=
+ =?utf-8?B?RmJUUnB6WTJmV3FJYlhpQStRMVhDOHpyK1hUeUhFY2RIcU9DL0xTUFd5S0dv?=
+ =?utf-8?B?N2V6SkU3YTh0WDJkbHdRQ3gzclJ6a2srVE9wVW1Na0ZSMlN6TGVTaDZvUTFG?=
+ =?utf-8?B?SDlydGNNNkJRa3pIemVqQkNsbzNXZ2txRzZJd0hmemhwa2trekxTWHR4Unda?=
+ =?utf-8?B?TnNndzltKzNOWWo2b1hsRnpNMStITkFYMkNHQWxocUI1ZzFlSW9wcVpuWW1U?=
+ =?utf-8?B?MTRlK0V6dk5PR2MvWi9lK1duWkdwMmNRUEp1REVmOVpncVIvN1J2WlJIT1VW?=
+ =?utf-8?B?NmxjN0VlQjJlVGpPWWl0RUtSc2NqZW5mUms3SG9IeHFmZHdqS2VwNlU2YUlh?=
+ =?utf-8?B?Z2RqalZRdmpSSG85aEpEV3V5VTBqUTd6ZkFteUNVZmtWeVdwWTlGVHNqV1ha?=
+ =?utf-8?B?MEtzQjg0L0VoYXl2MzBnNHo5V0UxVXdhRnRCMkdnTlZycEI3eDAzTWFMVWFx?=
+ =?utf-8?B?RytNVWRVVGszek1qOE9DckpmeXJiVnFPVnNKR0JtQ00yVWw0N0J5RlN5ZW5B?=
+ =?utf-8?B?Zm5pQlJ4Uk15QWVBSHZUSUdXMjB5K0dybG5pcUFMWmtxb2JwTGZqMkdGbEly?=
+ =?utf-8?B?VzcvRTVMRFRLRG9IZzlFZHZ2R0xkcVdpK0h5d2FBWHhGa1hHbGIvczh4NFRu?=
+ =?utf-8?B?NTcyc0l5ajk2YmI4WnVtZmlZUWEvMDBjemdzSW5PUWxuMUxrQnlzbEZ1VGlV?=
+ =?utf-8?B?MDd0WWxCMWd1dkhhQnNDeUdHd1c1MG4xWkplVDJpM212TXdDYWUyMXRhdEpq?=
+ =?utf-8?B?K1RzQ0doUytFVWxJN2ppVWMxODZOb2thOEpNUHhqQTRQdG9kRVRXbXdSNU1V?=
+ =?utf-8?B?NExqQ3dRcVlCSUwza1E0eWhHd0h6VmU3NnB1cVRBa09HTW1nbVgwY2ZzZ0xx?=
+ =?utf-8?B?VUtBNUhsd042Yk5Tb25lT0ZYM3dLWUZ0ZDFZa2duUUJiNndLYXF5NzFLblJm?=
+ =?utf-8?B?ek9vQ1A3SnVyc3hDeUJPa012aVpqQzM5LzBjSUgyYzFqSFp5aUVaY25aelN3?=
+ =?utf-8?B?Zml6eWkwL3pIL2FabFV0b240cTM5ME8vdWZhNW1CRFBubENlblU4VmRTdHBD?=
+ =?utf-8?B?V3lQOWJ1VHZqYndwZnhDUk81RnVEdE4rQWlPWkdSRmw5dVhMRHZCeW92ai9U?=
+ =?utf-8?B?U2RYL2t5SnZKZzlMY1NsRE42Q0RFMFppclFUUFlFUERNTTZKZEdKOEFsSjVW?=
+ =?utf-8?B?YUFzU21pSkVQNElGYmV6NTdsbDFyMHdKSHFSQW4za3hHU1JrL2FhVEQzemcz?=
+ =?utf-8?Q?FteR2awOiWm4ZwqWCkc6A5aAa?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5711897-09a7-4694-ad67-08dd7cf90bd0
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9193.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 15:09:04.9962
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 15:12:04.8491
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VaxPTwUphN7zA6exgpw7c9ts7IIQYXuOfRJT1lTVi0rtGRkdG8/HoQz1oTuOQklXkVIjuCDjhZEu1OAAaC4jAQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10514
+X-MS-Exchange-CrossTenant-UserPrincipalName: eW063GKidzpYiGp56KCER6JxpyB9uaq10P/GRtj/2dhYT3SRVj7KHxogVx9l6JBW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8650
 
-Convert fsl,vf610-pinctrl.txt to yaml format.
 
-Additional changes:
-- subnode name force pattern to 'grp$' to align other imx chips.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change from v1 to v2
-- add dual license
-- add Rob's reviewed-by tag
----
- .../bindings/pinctrl/fsl,vf610-iomuxc.yaml    | 83 +++++++++++++++++++
- .../bindings/pinctrl/fsl,vf610-pinctrl.txt    | 41 ---------
- 2 files changed, 83 insertions(+), 41 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,vf610-iomuxc.yaml
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,vf610-pinctrl.txt
+On 14-04-2025 00:22, Lukas Wunner wrote:
+> On Fri, Apr 11, 2025 at 10:21:03AM +0530, Gupta, Nipun wrote:
+>> On 10-04-2025 13:06, Krzysztof Kozlowski wrote:
+>>> On Wed, Apr 09, 2025 at 11:00:32PM GMT, Nipun Gupta wrote:
+>>>> The AMD PKI accelerator driver provides a accel interface to interact
+>>>> with the device for offloading and accelerating asymmetric crypto
+>>>> operations.
+>>>>
+>>>
+>>> For me this is clearly a crypto driver and you are supposed to:
+>>> 1. Cc crypto maintaners,
+>>> 2. Put it actually into crypto and use crypto API.
+>>
+>> added crypto maintainers for comments.
+>> IMO, as accel framework is designed to support any type of compute
+>> accelerators, the PKI crypto accelerator in accel framework is not
+>> completely out of place here, as also suggested at:
+>> https://lore.kernel.org/all/2025031352-gyration-deceit-5563@gregkh/
+> 
+> To be fair, Greg did suggest drivers/crypto/ as an alternative... :)
+> 
+>    "Great, then why isn't this in drivers/accel/ or drivers/crypto/ ?"
+>    https://lore.kernel.org/r/2025031236-siamese-graffiti-5b98@gregkh/
+> 
+> There are already six drivers for crypto accelerators in drivers/crypto/,
+> so that would seem to be a natural fit for your driver:
+> 
+>    aspeed/aspeed-acry.c
+>    caam/caampkc.c
+>    ccp/ccp-crypto-rsa.c                 <-- from AMD no less!
+>    hisilicon/hpre/hpre_crypto.c
+>    intel/qat/qat_common/qat_asym_algs.c
+>    starfive/jh7110-rsa.c
+> 
+> You can find these in the tree with:
+> 
+>    git grep 'cra_name = "rsa"'
+> 
+> So far there are only drivers to accelerate RSA encryption/decryption.
+> The kernel supports a single padding scheme, PKCS1, which is implemented
+> by crypto/rsa-pkcs1pad.c.  There is no support yet for OAEP.
+> 
+> So the padding of the hash (which is cheap) happens in software and then
+> crypto/rsa-pkcs1pad.c performs an RSA encrypt/decrypt operation which is
+> either performed in software by crypto/rsa.c, or in hardware if a crypto
+> accelerator is present.  Drivers for crypto accelerators register the
+> "rsa" algorithm with a higher cra_priority than the software
+> implementation, hence are generally preferred.
+> 
+> One benefit that you get from implementing a proper akcipher_alg in your
+> driver is that virtual machines may take advantage of the hardware
+> accelerator through the virtio support implemented by:
+> drivers/crypto/virtio/virtio_crypto_akcipher_algs.c
+> 
+> Note that the crypto subsystem currently does not support hardware
+> acceleration of signature generation/verification (crypto_sig),
+> but only encryption/decryption (crypto_akcipher).  One reason is
+> that signature generation/verification is generally a synchronous
+> operation and doesn't benefit as much from hardware acceleration
+> due to the overhead of interacting with the hardware.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,vf610-iomuxc.yaml b/Documentation/devicetree/bindings/pinctrl/fsl,vf610-iomuxc.yaml
-new file mode 100644
-index 0000000000000..3e13587df3107
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/fsl,vf610-iomuxc.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/fsl,vf610-iomuxc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Vybrid VF610 IOMUX Controller
-+
-+description:
-+  Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
-+  and usage.
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    const: fsl,vf610-iomuxc
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  'grp$':
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+
-+    properties:
-+      fsl,pins:
-+        description:
-+          two integers array, represents a group of pins mux and config setting.
-+          The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is a pin
-+          working on a specific function, CONFIG is the pad setting value such
-+          as pull-up, speed, ode for this pin. Please refer to Vybrid VF610
-+          datasheet for the valid pad config settings.
-+        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+        items:
-+          items:
-+            - description:
-+                PIN_FUN_ID refer to vf610-pinfunc.h in device tree source folder
-+                for all available PIN_FUNC_ID for Vybrid VF610.
-+            - description: |
-+                CONFIG bits definition is
-+                PAD_CTL_SPEED_LOW               (1 << 12)
-+                PAD_CTL_SPEED_MED               (2 << 12)
-+                PAD_CTL_SPEED_HIGH              (3 << 12)
-+                PAD_CTL_SRE_FAST                (1 << 11)
-+                PAD_CTL_SRE_SLOW                (0 << 11)
-+                PAD_CTL_ODE                     (1 << 10)
-+                PAD_CTL_HYS                     (1 << 9)
-+                PAD_CTL_DSE_DISABLE             (0 << 6)
-+                PAD_CTL_DSE_150ohm              (1 << 6)
-+                PAD_CTL_DSE_75ohm               (2 << 6)
-+                PAD_CTL_DSE_50ohm               (3 << 6)
-+                PAD_CTL_DSE_37ohm               (4 << 6)
-+                PAD_CTL_DSE_30ohm               (5 << 6)
-+                PAD_CTL_DSE_25ohm               (6 << 6)
-+                PAD_CTL_DSE_20ohm               (7 << 6)
-+                PAD_CTL_PUS_100K_DOWN           (0 << 4)
-+                PAD_CTL_PUS_47K_UP              (1 << 4)
-+                PAD_CTL_PUS_100K_UP             (2 << 4)
-+                PAD_CTL_PUS_22K_UP              (3 << 4)
-+                PAD_CTL_PKE                     (1 << 3)
-+                PAD_CTL_PUE                     (1 << 2)
-+                PAD_CTL_OBE_ENABLE              (1 << 1)
-+                PAD_CTL_IBE_ENABLE              (1 << 0)
-+                PAD_CTL_OBE_IBE_ENABLE          (3 << 0)
-+
-+    required:
-+      - fsl,pins
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
-+
-+unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pinctrl/fsl,vf610-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/fsl,vf610-pinctrl.txt
-deleted file mode 100644
-index ddcdeb697c292..0000000000000
---- a/Documentation/devicetree/bindings/pinctrl/fsl,vf610-pinctrl.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Freescale Vybrid VF610 IOMUX Controller
--
--Please refer to fsl,imx-pinctrl.txt in this directory for common binding part
--and usage.
--
--Required properties:
--- compatible: "fsl,vf610-iomuxc"
--- fsl,pins: two integers array, represents a group of pins mux and config
--  setting. The format is fsl,pins = <PIN_FUNC_ID CONFIG>, PIN_FUNC_ID is
--  a pin working on a specific function, CONFIG is the pad setting value
--  such as pull-up, speed, ode for this pin. Please refer to Vybrid VF610
--  datasheet for the valid pad config settings.
--
--CONFIG bits definition:
--PAD_CTL_SPEED_LOW		(1 << 12)
--PAD_CTL_SPEED_MED		(2 << 12)
--PAD_CTL_SPEED_HIGH		(3 << 12)
--PAD_CTL_SRE_FAST		(1 << 11)
--PAD_CTL_SRE_SLOW		(0 << 11)
--PAD_CTL_ODE			(1 << 10)
--PAD_CTL_HYS			(1 << 9)
--PAD_CTL_DSE_DISABLE		(0 << 6)
--PAD_CTL_DSE_150ohm		(1 << 6)
--PAD_CTL_DSE_75ohm		(2 << 6)
--PAD_CTL_DSE_50ohm		(3 << 6)
--PAD_CTL_DSE_37ohm		(4 << 6)
--PAD_CTL_DSE_30ohm		(5 << 6)
--PAD_CTL_DSE_25ohm		(6 << 6)
--PAD_CTL_DSE_20ohm		(7 << 6)
--PAD_CTL_PUS_100K_DOWN		(0 << 4)
--PAD_CTL_PUS_47K_UP		(1 << 4)
--PAD_CTL_PUS_100K_UP		(2 << 4)
--PAD_CTL_PUS_22K_UP		(3 << 4)
--PAD_CTL_PKE			(1 << 3)
--PAD_CTL_PUE			(1 << 2)
--PAD_CTL_OBE_ENABLE		(1 << 1)
--PAD_CTL_IBE_ENABLE		(1 << 0)
--PAD_CTL_OBE_IBE_ENABLE		(3 << 0)
--
--Please refer to vf610-pinfunc.h in device tree source folder
--for all available PIN_FUNC_ID for Vybrid VF610.
--- 
-2.34.1
+Thank you for the feedback.
 
+When establishing TLS connections, OpenSSL requires signature 
+generation/verification. In scenarios where multiple connections occur 
+simultaneously, asynchronous operations are beneficial as they lead to 
+much improved CPU utilization. OpenSSL ASYNC support can very well 
+utilizes the asynchronous operations while establishing multiple TLS 
+connections.
+
+> 
+> So there's no support e.g. for generating or verifying ECDSA signatures
+> in hardware.  I think that would only really make sense if private keys
+> are kept in hardware and cannot be retrieved.  So the use case wouldn't
+> be acceleration, but security of private keys.
+
+While ECDSA signature generation and verification enhance the security 
+of private keys when stored in hardware, they also play important role 
+in the establishment of TLS connections. Offloading these operations to 
+hardware frees up CPU, enhancing performance during TLS handshakes.
+
+> 
+> That said, for RSA specifically, signature generation/verification does
+> involve an encrypt/decrypt operation internally.  The padding is once
+> again done in software (by crypto/rsassa-pkcs1.c -- no PSS support yet).
+> But the actual encrypt/decrypt operation will be performed in
+> hardware if a crypto accelerator is present.
+> 
+> The user space interface Herbert referred to is a set of system calls
+> which are usable e.g. via the keyutils library and command line utility:
+> https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
+
+These system calls can support only synchronous operations, which 
+precludes their use for asynchronous operations. This limitation 
+prevents the use of keyutils here.
+
+Thanks,
+Nipun
 
