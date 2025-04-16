@@ -1,125 +1,98 @@
-Return-Path: <devicetree+bounces-167929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3194EA90C43
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 21:26:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31454A90C54
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 21:29:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05EC53B064E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:25:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2D9A19E016D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9552253EE;
-	Wed, 16 Apr 2025 19:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6974A224AFE;
+	Wed, 16 Apr 2025 19:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sKLbGIU+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jm7ONVrF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3285317A304;
-	Wed, 16 Apr 2025 19:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3543A28373;
+	Wed, 16 Apr 2025 19:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744831551; cv=none; b=goXZN/eNKle8SJF0BhCDfy3kOLUlr1UM6DMk64re0BfwdeLyBvEQnVN7Q/eYuEV+Htz0LbyI1+Z/hmN84L2O74sobdtm16t14XnT3lcD33EFjmuQ6363RO8gxULWEUkb5rVLN50/UF/yqnri3/37NsIqj5oXJIYF5jjqaqCuEvw=
+	t=1744831747; cv=none; b=j5fGOgnDrbpljwAsw9YCcHy1BbXlyiiy1ZOHEXFwxpHTonRnkx/Y2/qBzZj7JY1ddcU6XhSXPOKdm3NfMrLTeEtKcfMJ1+XOwku/KkmaBN94I5KTO8uduaU1IQOsSfHLoNdteEsrqOx72I1VKhDkPGQ5jzjk2wAAX+jQDUAgPXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744831551; c=relaxed/simple;
-	bh=GoKF/LHpNhib2a1akfwq5UC5HXAUAFvsZueILxTSKdw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JWoCOK3jyB/TU9xZgxDyywpBfv6VpbO48Ft2f2J+dkdhmwc6vXwewaCiIRqOg3pifLiwoMd2JS87mK8cxuogA7f2St0+L5myVUSR+rjoDIS1HzN1xYIlyYPN65K2AzSOCYoYG8MONybBNzM5OkLx5zOP1HoeokY3BXOplbbuSKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sKLbGIU+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A12B2C4CEE4;
-	Wed, 16 Apr 2025 19:25:50 +0000 (UTC)
+	s=arc-20240116; t=1744831747; c=relaxed/simple;
+	bh=sLL3Rk04mgf4fJSpP8L0B5HUGnIWGNmLFxz9gyU48tg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=jjrOONHYV2u4AL+LRoUsdxTv+QN4DEO/SjqsHn+LX0YAa3V1b8WDj4Ricr5rnA2M+OZvlbs2utiLNpr1XzOqHkJ4e+ZDdFWW5aJx+Gp9gL1zksfPXHbVzsJEF9voegGurIrF55rB0oylYvM6FzVrmz63SEU123W/DWNJnqLPazY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jm7ONVrF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71C10C4CEE2;
+	Wed, 16 Apr 2025 19:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744831550;
-	bh=GoKF/LHpNhib2a1akfwq5UC5HXAUAFvsZueILxTSKdw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sKLbGIU+HO9oZU+O5p9XTmPx+Nqcai3OsVsKBiUp0z5zjXGCTlcI9vYM8cMDoNYWb
-	 5qMKvsSGucyMcBNpnxubc95XB/wmy4ZiqWkRoc/6fS8HXEmT4fgCfmgF9O/tEBhBo8
-	 at397kBMTIdPbsAVZt3Wqv0q9YU3R6VFhzMQTIYbi5e8dVPAa+l63MCVRH9pFNFHLl
-	 BMQ2r/aPJUacA6zKOfU228AFH+4Fc3MxriRxuy2zvfho7ZqTUgiD513BNmxx/9Wz7f
-	 Kzpw1dhOh/LM8ERdDbiIB91jMvHhPiV7n74jGk+lS3jQ1YIOdh49SGalirewopj5RA
-	 murx2vyirJNGA==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac34257295dso1333767966b.2;
-        Wed, 16 Apr 2025 12:25:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWxGZ6wFUzH1KOT5RM0gXMrvj2ecwuRelug9wODkF2Wsy44c2FvZY5kRbzas5siTm0MS+5dfHIQsNMERTQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfbhrNkG7wZYMUwFHUs7DnaRfzAZAB6xbhTjXN5VjOMGF37kid
-	/7zzB8wW7JSFtbVbBnDq8zeo1Kx/CNhMmeyMYhGWyoLlPsp8rU1F28ZxvfAV5S351qrOmO4bg9/
-	YiLA2S3RscZXx0T3toxpwtO5JqQ==
-X-Google-Smtp-Source: AGHT+IFh1JR5Z0LAxnoYuZevCEEpxkJH9c1vzPj8jxuIXtqnUi8yKHEwDF59bxVh8xYkFd1igpWXehoXB7ESE8EBUos=
-X-Received: by 2002:a17:907:720c:b0:ac7:4d45:f13e with SMTP id
- a640c23a62f3a-acb428d3a04mr335420066b.13.1744831549136; Wed, 16 Apr 2025
- 12:25:49 -0700 (PDT)
+	s=k20201202; t=1744831746;
+	bh=sLL3Rk04mgf4fJSpP8L0B5HUGnIWGNmLFxz9gyU48tg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Jm7ONVrFXm90RmgYMNYqOQxFXK+iVgTyH2ydbIvPHFYjBI0WtvLmNjQNdwnAlRtk6
+	 yuNLpqUtcgxIBMDZWIj595dApop2VZd0Ry5WnkDss1TWn48Xe82tJnBXdBlQHjOqki
+	 s03LJr+6CS/XOpoQLEy6LSm3S4dDF40ayMzomUqhYhHqYMtYw91j951vSMo5WkYWkh
+	 FU+KAUjzczFCj9CXWchFtxjb6PqJuT1PnBVQJciCITE5OPzJWTjZrmn5hMbwTXjhTU
+	 hiNCOQs6s4/JRALCiYNu0ox0k6AoLPuZms6yNfzq42ItXcwBUYU7bZJ66ljqsrx7o3
+	 DDqpk6FI2BWRw==
+Date: Wed, 16 Apr 2025 14:29:05 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	kernel-list@raspberrypi.com
+Subject: Re: [PATCH v8 07/13] arm64: dts: rp1: Add support for RaspberryPi's
+ RP1 device
+Message-ID: <20250416192905.GA78240@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAL_Jsq++MbY=s5t1hmE0AhcmFA14t3fxLM1xPFZAA0ETX_ee-g@mail.gmail.com>
- <tencent_607C227A96060DD8EC83C78184305D264109@qq.com>
-In-Reply-To: <tencent_607C227A96060DD8EC83C78184305D264109@qq.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 16 Apr 2025 14:25:37 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK733Q9bbxC0Wz5uxyZ9m7bs+bci5kUJF9GJMv73-dO4w@mail.gmail.com>
-X-Gm-Features: ATxdqUFF9-IUSq1djrMpuWjuhr9hIZbcSKeFY8qPTBYsU0Aj7DIvMGHJilsZfgc
-Message-ID: <CAL_JsqK733Q9bbxC0Wz5uxyZ9m7bs+bci5kUJF9GJMv73-dO4w@mail.gmail.com>
-Subject: Re: [PATCH] of: reserved-mem: Warn for missing initfn in __reservedmem_of_table
-To: 1425075683@qq.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	m.szyprowski@samsung.com, saravanak@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <99269f7762ec0124315e0e8977d9ca4f469f89ce.1742418429.git.andrea.porta@suse.com>
 
-On Tue, Apr 15, 2025 at 9:02=E2=80=AFPM <1425075683@qq.com> wrote:
->
-> > On Tue, Apr 15, 2025 at 9:16=E2=80=AFAM Liya Huang <1425075683@qq.com> =
-wrote:
-> > >
-> > > For the data in __reservedmem_of_table, its function pointer initfn m=
-ight
-> > > be NULL. However, __reserved_mem_init_node() only considers non-NULL =
-cases
-> > > and ignores NULL function pointers.
-> >
-> > If initfn is NULL, there's no point to the entry and that's a bug.
-> > Unless you have a build time check, there's no point to add this.
-> >
-> > Rob
->
-> Thank you for your response. Based on your suggestion, I have made the
-> modifications and used static_assert() to perform the check at compile
-> time. The specific code is as follows. Could you please review whether
-> this modification is reasonable? If it is acceptable, I will proceed with
-> submitting the patch.
->
-> I did not find any usage of static_assert() for null pointer checks in th=
-e
-> kernel code.
+On Wed, Mar 19, 2025 at 10:52:28PM +0100, Andrea della Porta wrote:
+> RaspberryPi RP1 is a multi function PCI endpoint device that
+> exposes several subperipherals via PCI BAR.
+> Add a dtb overlay that will be compiled into a binary blob
+> and linked in the RP1 driver.
+> This overlay offers just minimal support to represent the
+> RP1 device itself, the sub-peripherals will be added by
+> future patches.
 
-That's a bit strange, but the use of static_assert() is a bit new.
-
-> Additionally, BUILD_BUG_ON() cannot be used globally.
->
-> ---
-> diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_=
-mem.h
-> index e338282da652..87446ad2deb2 100644
-> --- a/include/linux/of_reserved_mem.h
-> +++ b/include/linux/of_reserved_mem.h
-> @@ -29,6 +29,7 @@ typedef int (*reservedmem_of_init_fn)(struct reserved_m=
-em *rmem);
->  #ifdef CONFIG_OF_RESERVED_MEM
->
->  #define RESERVEDMEM_OF_DECLARE(name, compat, init)                     \
-> +       static_assert((init) !=3D NULL);  \
->         _OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_=
-fn)
-
-I'm pretty sure we can apply this globally in _OF_DECLARE() as any
-NULL init function would be useless. The special case is
-CLK_OF_DECLARE which wraps the init function.
-
-Rob
+Would be nice to have a blank line between paragraphs.
 
