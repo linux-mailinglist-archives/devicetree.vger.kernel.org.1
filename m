@@ -1,122 +1,251 @@
-Return-Path: <devicetree+bounces-167816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D87A9066F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D54A90688
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F269918940A9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:29:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 947E01883B35
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6068D1F875C;
-	Wed, 16 Apr 2025 14:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1001CAA97;
+	Wed, 16 Apr 2025 14:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="nVBXtlnK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SrtSEdKP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C581DA634;
-	Wed, 16 Apr 2025 14:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AAB189902
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744813696; cv=none; b=ir0VmBrb5F4bR1zmspLps4EKijZUWJ6B1ryn4BHJIpaPkZD+6K7pab995OhnScYVTdnrpxiFC0yol8j0ukvv7rSJZeCc7padwkPDHl0pK7KysV5++HqYZQP8muorhVguoF4+vH0w0P8WLFJd+TQtTMwY9aZNwVQ+q4xtfF8IUNw=
+	t=1744813901; cv=none; b=d0Tsxb4cKZPGW0vSm4mB00JJO84iulZ6sJWcF6+UNsxW7NFdylHFkUYISzndvk5OtWYBjaSlRM0pzJ/R2IjSV5+/qs8o+S9EAkYk+ca3NGTrVdoDmRHtyG64SAr1zNhiUtluc8FqIj0M+jGIsZF+UpN9Xs45UfTNUGNVZu0OONo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744813696; c=relaxed/simple;
-	bh=la3Rmm9G09d9FtjBHydDxxb5tUNi7/hoVZW8CizR1E4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EBDjzKMxPojsMIkSrrEo5LJxfqdHHO5PYIdVa0uTkOfCHdr2x5rh8FUqY2OEgrhn4fgzq8DPrbIcOvUVXM7pnehMF+Vb98BYrhLFKZ4zzaxANzJ5aDeMn6d0YYky8w+YaCAma6p94PleiLusFHLWD7cCcM60dEb/iJv3k/UE3hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=nVBXtlnK; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5AD33BFC16;
-	Wed, 16 Apr 2025 16:28:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1744813692; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=y3BV7atvuABYEEZWYNR8lZWvJ+WfpKTMmG/5nr5RLwI=;
-	b=nVBXtlnKXK6xffDLyhBxenOKFk6R8+v7xzt1syqAOVzQisPCCrAGZpOczv8GlhEWJXz2G6
-	Rf5lRlEBuZf3F6f2yQQoJBV/qUZ7YtmDzdOPifbQ6cctOkczxf8vpmQs8uNUUVx0UvOYH2
-	8+LRw3Hy+oq1ELpiq/AXmpv1ha5vNM0cMDINSTBvRaU1dkYTUoZ+qXAdHOLTe8yyBTtZAs
-	+mMcLGVZwbVvucLN02Btg5zOh3+ihjx6Z93f8fMPUXYsUIAe8rk2IKIn5vdHq0AtQu7L4c
-	0eTUYMMVLEpz2NWyIPt/LuxsAz17rTZjNwmW/z8rYyibLBPIbCmpUmS0vz+KXw==
-From: Frieder Schrempf <frieder@fris.de>
-To: Peng Fan <peng.fan@nxp.com>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [RFC PATCH 5/5] arm64: dts: imx93-kontron: Add DMA memory region for ELE firmware
-Date: Wed, 16 Apr 2025 16:26:24 +0200
-Message-ID: <20250416142715.1042363-6-frieder@fris.de>
-In-Reply-To: <20250416142715.1042363-1-frieder@fris.de>
-References: <20250416142715.1042363-1-frieder@fris.de>
+	s=arc-20240116; t=1744813901; c=relaxed/simple;
+	bh=TPACpjjfR71KwjatzwKAVTVQ2f+EX9p3TahnvUdcHu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LDAbz8MTSj+ZlXqSzXvzFdg4KtuDF9rG9Nh/6W2EEnmLv0s3J30AtbDA+mRYanDVmFYVO6mnRS7robDdu/qddfpGOoCXp81xYFDD55I3CnY8Ajjkl4Z7bpPOlOLurmXwMPvddmyep4mPYyyXtSvIeyIBQQ3gSrXxRbXTaKod5c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SrtSEdKP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mIoa000421
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	X/qDGy2ycm6kc3mzErBzyrqXxXsu6MYaqlJOZ4io7MM=; b=SrtSEdKP2VLjiKFs
+	HooC6xJXeRjeu37RMRgAD3dUHU7h8H+bghyHux36hRf2ik81OU+75EIR4U9CD4gW
+	z4iCZC1LbV/RBKZ2fwlfqAw93K2BsNiA38A1IFyLxe1T1p+Fh7Idy8K7tc3dAppd
+	XWKuvvr/ThqLD0hIo2enu7sVdnvZ87fc9+L3pqQXZJ4XHqz1Tk/fI5wIZKYSl5EP
+	wUwiJfhbZxJo9wbNvUTdiJ1TrQGyKGcvVbJ5DJw7hOxeNmQGfQgCsSMLxQEg8i+a
+	wsX/aXvYQMJ9WhisdApp0KWBAAN8xB03/3uZHIOodk3R1wK8dCR2NM2rD25Ct5MF
+	xP1QAA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf4vkwy4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:31:38 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6ece59c3108so14592786d6.2
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:31:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744813897; x=1745418697;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X/qDGy2ycm6kc3mzErBzyrqXxXsu6MYaqlJOZ4io7MM=;
+        b=oZ6dFZ9kGqrSut6ReIxgKpmxMAgX/0QL3SXT0IMgoWUEM+Zg3Rhd9yW9jMjn0p0gkg
+         HWh7Xtm0/lUyvPb3t+DXdaUggl4nHxfBl0IEh58RIoXLgr2vvndXrr8QENYsIRkWwkqm
+         8M4cQqgh+54gqWkClXOff7eZDS9XglOrX8wnMTeW7+CQTJmOzoYhgFZ/kGRe8A5u+6FR
+         JPq5ScCGreFOoTp1Cz8Zcdyw7DUcZpPOFkT1+zuq8snoFeiRv5Y5g4eh011EUqobXwm6
+         hujsGEiznvczMFKpmnjuqYE0E4NRpMBP/8Q5kP66/HrREqchsnmeqQ1vWRu+Rg7PCCvp
+         2uQA==
+X-Forwarded-Encrypted: i=1; AJvYcCX1jHYMu9vMcSx1SPsMJcw7mbI0E1YkR33NMjeQQBQdgUPSWASux/UaJv/m8+6uaYV/Eo5wJGuK8rTp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/Z7NIKpUtWy3BBRkFZwXef4kepnBkNj2s9S6zHYcMYgHyTgDC
+	di2BszmxMRyDK/40PcI/v48MaPUf67jXqRRJ+hn7gKSC83whiuiXp4CFJHinrzwmypyhYLLMKGh
+	gvb2U6Sulb5L9Omvvh9XorRi716YcOtgdRNjaDZshB7m4Jc8Ah1Xqa8LH973U
+X-Gm-Gg: ASbGncv3kAZy0ncNIiPnjS/e8M2vkOtmgX3REgY2F21E5gz2NjiyYn9WiuevO2TtMna
+	JPhxrPyQjXuecAYc13h7Nu/xDpPDnSXkxkGAdxcEbycQeDwxn1jj3/u40bClkzH+oL0wM2p7lUA
+	iT9nzJkILEksEwWk5seIziR0+AGsq8sV8h2/hbveXYuM+frCHDqfhuyfR021sSkEW6ZfEJQ4dyl
+	VY0oZaMq6uYYT8gOo5R+cxVB6rRvbrSwWE7A1HfKyvkqbdjax9iMjRTRW/AcXL0McwfDVPj3aQq
+	b2EDbNtZqcHQvUY/jbDh6VDCC3LWuskMiGQwISnxjgh+L56fDx90/0f6N033NVrZ8Dc=
+X-Received: by 2002:a05:6214:29e7:b0:6e6:60f6:56db with SMTP id 6a1803df08f44-6f2b3029573mr9724796d6.6.1744813897355;
+        Wed, 16 Apr 2025 07:31:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFwB6e/uaPkdfMVVa70tVHqNla8oVHRPsq8DlrduYG0CTy8e0RvQw7EDQnPlYw1r218WwFBsg==
+X-Received: by 2002:a05:6214:29e7:b0:6e6:60f6:56db with SMTP id 6a1803df08f44-6f2b3029573mr9724666d6.6.1744813896910;
+        Wed, 16 Apr 2025 07:31:36 -0700 (PDT)
+Received: from [192.168.65.178] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3d349900sm140241766b.179.2025.04.16.07.31.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 07:31:36 -0700 (PDT)
+Message-ID: <823b3448-6c45-4595-8067-8c329203d245@oss.qualcomm.com>
+Date: Wed, 16 Apr 2025 16:31:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] media: qcom: camss: Add support for TFE (Spectra 340)
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>, bryan.odonoghue@linaro.org,
+        rfoss@kernel.org, konradybcio@kernel.org, andersson@kernel.org,
+        krzk+dt@kernel.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250416120908.206873-1-loic.poulain@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: Nvn6dlJ92MK8vKENQmQ9o8bXLsJFJOWQ
+X-Authority-Analysis: v=2.4 cv=IZ6HWXqa c=1 sm=1 tr=0 ts=67ffbf4a cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=b2D0RaZ-bvYcWOOTphEA:9 a=QEXdDO2ut3YA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-GUID: Nvn6dlJ92MK8vKENQmQ9o8bXLsJFJOWQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 mlxscore=0 bulkscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504160119
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 4/16/25 2:09 PM, Loic Poulain wrote:
+> Add support for TFE (Thin Front End) found in QCM2290.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>  drivers/media/platform/qcom/camss/Makefile    |   1 +
+>  .../media/platform/qcom/camss/camss-vfe-340.c | 281 ++++++++++++++++++
+>  drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
+>  3 files changed, 283 insertions(+)
+>  create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-340.c
+> 
+> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
+> index d26a9c24a430..719898f5d32b 100644
+> --- a/drivers/media/platform/qcom/camss/Makefile
+> +++ b/drivers/media/platform/qcom/camss/Makefile
+> @@ -17,6 +17,7 @@ qcom-camss-objs += \
+>  		camss-vfe-4-7.o \
+>  		camss-vfe-4-8.o \
+>  		camss-vfe-17x.o \
+> +		camss-vfe-340.o \
+>  		camss-vfe-480.o \
+>  		camss-vfe-680.o \
+>  		camss-vfe-780.o \
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-340.c b/drivers/media/platform/qcom/camss/camss-vfe-340.c
+> new file mode 100644
+> index 000000000000..fc454d66e1d2
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe-340.c
+> @@ -0,0 +1,281 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Qualcomm MSM Camera Subsystem - VFE (Video Front End) Module 340 (TFE)
+> + *
+> + * Copyright (c) 2025 Qualcomm Technologies, Inc.
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +
+> +#include "camss.h"
+> +#include "camss-vfe.h"
+> +
+> +#define TFE_GLOBAL_RESET_CMD				(0x014)
+> +#define		TFE_GLOBAL_RESET_CMD_CORE	BIT(0)
+> +
+> +#define TFE_REG_UPDATE_CMD				(0x02C)
 
-The Edgelock Enclave firmware requires a small 1 MiB memory pool.
-Reserving this pool makes the ELE firmware driver probe and allows
-us to use the S400 API.
+Please uniformly use lowercase hex
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
- .../boot/dts/freescale/imx93-kontron-osm-s.dtsi  | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> +
+> +#define TFE_IRQ_CMD					(0x030)
+> +#define		TFE_IRQ_CMD_CLEAR		BIT(0)
+> +#define TFE_IRQ_MASK_0					(0x034)
+> +#define		TFE_IRQ_MASK_0_RST_DONE		BIT(0)
+> +#define		TFE_IRQ_MASK_0_BUS_WR		BIT(1)
+> +#define TFE_IRQ_MASK_1					(0x038)
+> +#define TFE_IRQ_MASK_2					(0x03c)
+> +#define TFE_IRQ_CLEAR_0					(0x040)
+> +
+> +#define TFE_IRQ_STATUS_0				(0x04c)
+> +
+> +#define BUS_REG(a)	(0xa00 + (a))
+> +
+> +#define TFE_BUS_IRQ_MASK_0				BUS_REG(0x18)
+> +#define		TFE_BUS_IRQ_MASK_RUP_DONE_ALL	0x000f
+> +#define		TFE_BUS_IRQ_MASK_RUP_DONE(src)	BIT(src)
+> +#define		TFE_BUS_IRQ_MASK_BUF_DONE_ALL	0xff00
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-index 119a16207059..44d98cf812bf 100644
---- a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-@@ -24,6 +24,18 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ele_reserved: memory@90000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x90000000 0 0x100000>;
-+			no-map;
-+		};
-+	};
-+
- 	reg_usdhc2_vcc: regulator-usdhc2-vcc {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -116,6 +128,10 @@ &gpio4 {
- 			  "GPIO_B_0", "CARRIER_PWR_EN";
- };
- 
-+&hsm0 {
-+	memory-region = <&ele_reserved>;
-+};
-+
- &lpi2c1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_lpi2c1>;
--- 
-2.49.0
+You can use GENMASK to define the fields and FIELD_PREP(field, x) to
+fill it out
 
+[...]
+
+> +static inline unsigned int __regupdate_iface(enum vfe_line_id line_id)
+> +{
+> +	switch (line_id) {
+> +	case VFE_LINE_RDI0:
+> +		return 1;
+> +	case VFE_LINE_RDI1:
+> +		return 2;
+> +	case VFE_LINE_RDI2:
+> +		return 3;
+> +	case VFE_LINE_PIX:
+> +	default:
+> +		return 0;
+
+Warning?
+
+> +	}
+> +}
+> +
+> +static inline unsigned int __regupdate_line(unsigned int iface)
+> +{
+> +	if (!iface)
+> +		return VFE_LINE_PIX;
+> +	if (iface < 4)
+> +		return VFE_LINE_RDI0 + (iface - 1);
+> +
+> +	return VFE_LINE_NONE;
+> +}
+> +
+> +static inline unsigned int __subgroup_line(unsigned int subgroup)
+> +{
+> +	switch (subgroup) {
+> +	case 5:
+> +		return VFE_LINE_RDI0;
+> +	case 6:
+> +		return VFE_LINE_RDI1;
+> +	case 7:
+> +		return VFE_LINE_RDI2;
+> +	default:
+> +		return VFE_LINE_PIX;
+> +	}
+> +
+> +	return VFE_LINE_NONE;
+> +}
+
+All these translations looks a little fragile.. Not sure if it's in the
+scope of this series, but adding an op to do this (or a static map)
+sounds reasonable
+
+[...]
+
+> +static void vfe_wm_start(struct vfe_device *vfe, u8 rdi, struct vfe_line *line)
+> +{
+> +	struct v4l2_pix_format_mplane *pix =
+> +		&line->video_out.active_fmt.fmt.pix_mp;
+
+weird linebreak
+
+Konrad
 
