@@ -1,110 +1,191 @@
-Return-Path: <devicetree+bounces-167869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2ACFA90952
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:47:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35484A90962
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:52:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CACCB4460E4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:47:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF36D1886BA9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9055F2080D2;
-	Wed, 16 Apr 2025 16:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD8520B1F5;
+	Wed, 16 Apr 2025 16:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8lzS+S1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWy3iDmi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53B16F53E;
-	Wed, 16 Apr 2025 16:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDF41B415F;
+	Wed, 16 Apr 2025 16:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744822044; cv=none; b=MAbOPJY5IRoww9Iw0Tg9p84jWrE1B4/lavKg2JgjdAbb3PiA8JAccsSD6aJpK+7UJKS0oXDWPbhwaanCceg+yHG46oXHH5DPdQH+pBBVnlGETLDyivhSHNYo6+70aqIySTxoy9YO2xh6ds99MKc0vLPYGFbhq92GH58daQIZBII=
+	t=1744822354; cv=none; b=ig9ugrKxgKDcl+J8ndHbUjt7Z4X91FyA/YALzHQ8z8FSTEUzNxwrpSszqFzjEun8/hSEEXvR9160H76koNGwKS5cAKoAImY6raYv4mgVBrJnOLAY8bVvc5/JWvX9lV+0t2XvIxxN7PAAVODgAmuxK+NQN/tFNa+Av9AkTfmjVQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744822044; c=relaxed/simple;
-	bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZColySRT0/QdCwL+jyKqoN6fG5616L77I+3ySUipJCHTfGHsNFdfMQCNtCjnfGUgBgH2bPKy1oOn2l51GMUGe04oZs6HMBzNJfIFcyQyI1wejWWJep5QCse24g7SfEw67EO4oEg/tUGDTVCO9huChglvBO3HlUma67j19CmBQpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8lzS+S1; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5498d2a8b89so7096487e87.1;
-        Wed, 16 Apr 2025 09:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744822041; x=1745426841; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
-        b=f8lzS+S153v4Ww5MS+50qnQ16wTlWDWA/cph8NT16rmvDzR5pZEuCDVf2CKUh+5sxt
-         rGdm7DHXg9d1fQXDtstcpva+qdszUEPuBNzKy2rC9SzyCj/WBWAZHaa/q1+OLdmfDBJu
-         y0t1fkxNWYcgleKB8+O8QLGHZZzesaEXcn5hW0gXeTNJSavEi8f/G/g4WIvCBRioLSK+
-         0ShZOqvgnq6jVT0bj4X09lpECdMi1rwlnZtrPStrO9TIxpxd4tOl7agks4EMlZQovuip
-         MZbo1/7QPafE7YPbi82QQnA+3EPbMp0e/5H623gfajNTkgBFxLPIf+SOI9vH1nWcd0TG
-         U+1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744822041; x=1745426841;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
-        b=v6grcK+8BxVuYjbT8Wb621U27xmAyCiogQjflgQcOMMT6i4dLrot1OfD35UoXqmCMH
-         gvb35yo4EoJGMpsVG/yQADzhL6sTcrwnBIgfk4p/1skw+vzxaZMVK1M6Jy4G8oAyHctL
-         czW5TMRM005P6smDcQNuuJDmN2uEEC9QZY9udf/IcwiUBMn92svEEeqVxEE8r2ZNGKs7
-         c1MxysVjgjCjNWEMHhYHiy6SeR6ZpDtv0TDk2mcP8FTUHJ5y3YyQY/Nhgkg+JPk1AQz3
-         q/WJsr8iYO2KcN4ubzfUEKGhoJJSyG9gTzRjuRWzhyqyhKm3S5xme4ytv9il23R1SNK5
-         Zlpw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Pj9Y7mbCAYqvL1xv8cz65LrVSSppC+SWq5jYSgPpXI8AMoYCBrcGUjT7nEKAku5/8VQRKSJZ@vger.kernel.org, AJvYcCWgbjDRPiZQOndCM+2flTsirpPfSoxqBPhw90+yXB/AIlCKauaRQPPyqWgoHXQ4yumVe1eBWX2sY25U@vger.kernel.org, AJvYcCXk58tdG0AWbCu0rFpVWWLZHQBq7T+mRhBUNduW/A/jQzsaOYj7jmHjhfwU9eKJYpGaZ7U6vv6Km/FbuQan@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNOMLPzm1g0pHNxq8qJ2/t40wI82KKVF3m8UVpDVjP4U0pQuuF
-	tVBhWJluK0z/rPt5sc5Mxsc20dZsr8VsB9hlQZ1st1QKu1+bApmMuX9SecHfLIcCaRrQ3StwYfI
-	jhJVbYWuZjVqskdXYt7LnAfYxi8c=
-X-Gm-Gg: ASbGncvRgJOIAu+wdQWjEPqwKekULy36hgOm5z5POa6z7bgPM1eOMzhr6oVsDptU3YV
-	/Qb2OAkeq8Jvxjy4stlzQaEZyPbzcZy9ZplZbGySHYGV0l0Jy34EkU9nQf6dYVGxiffMe1d/i2p
-	AQJeZvVYhrwIxAVcbI+5S0kOUEXXdlTykUO6HuKGWZwd/g832iCrg+fopqOUWDWRck
-X-Google-Smtp-Source: AGHT+IG8lZZ6TzRpkafiDqZuJb6IdgkKcm718c9RVf9XNRQH9WAewHR/NAdfrRWL4fICzAbGf7ZhyLgzY9E0+gg7jUk=
-X-Received: by 2002:a05:6512:23a8:b0:545:381:71e with SMTP id
- 2adb3069b0e04-54d64aea47dmr805238e87.40.1744822040616; Wed, 16 Apr 2025
- 09:47:20 -0700 (PDT)
+	s=arc-20240116; t=1744822354; c=relaxed/simple;
+	bh=IdK2+5qGsdGM3SO0IxHfMg481X+Kuem/Une0Z8qbCYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bfTeARWNaJSvRxKDRrgHsSETeQjgg3gqq9EzaIm00ydUqhRXSF9bq+/W96JPU/3N7OMZqdE9nbqXNamL0uZYYxAuDAn6NboUkR/eZvKZV6EWPq0i9HQ0j4EPzEwVvns4d6a4uqhAVxBxG4qYG8qrl2gFNa6+99WHZ2Md4nTqBM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWy3iDmi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 206F0C4CEE2;
+	Wed, 16 Apr 2025 16:52:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744822354;
+	bh=IdK2+5qGsdGM3SO0IxHfMg481X+Kuem/Une0Z8qbCYk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kWy3iDmi5zxRVqVY1CSrvNB+TjWKOGlPqwMfwWak+L2NEqK6fvp9vxuZT4+v0sPER
+	 ZursCOt15TYcH+xEUdbfLFfQo0OG1jt1zEHNIYRDgIJ9wmD3Qns/BaprJphgRj8n/q
+	 qJAfKteYISoQQex2rc/wYOhTZxvKl/vg1wT9xmc1nZMMaeOSIRF5G3jSFOqfOZyg/C
+	 msJ1KlAkEW1+QL+ay1gjs8qFIKdwiD932NN/5mOVYwMtwBlsyi3WZm2WIPlXXMjTe+
+	 gCrq0Q6c1VVe/olfv/jhKJ7/bXAu8Xd2b5gsps5t/R4u6EaePGeThcb3DcFC8G7QF9
+	 8VkCXVsRhKxww==
+Date: Wed, 16 Apr 2025 11:52:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Pin-yen Lin <treapking@chromium.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Stephen Boyd <swboyd@chromium.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: Introduce usb-hub.yaml
+Message-ID: <20250416165232.GA3327258-robh@kernel.org>
+References: <20250415094227.3629916-1-treapking@chromium.org>
+ <20250415094227.3629916-2-treapking@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414140128.390400-1-lukma@denx.de> <20250414140128.390400-6-lukma@denx.de>
- <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
-In-Reply-To: <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 16 Apr 2025 13:47:08 -0300
-X-Gm-Features: ATxdqUGIOgXds9JKSX6cp4bYSDFF-AKiQ6t09fTbUcUeMyDb0_oZvm6DwfBTF4M
-Message-ID: <CAOMZO5D+OZ6C02n4T3tJnmzJd9hTWtZA9o6-LXcFh-UmTdVb+Q@mail.gmail.com>
-Subject: Re: [net-next v5 5/6] ARM: mxs_defconfig: Update mxs_defconfig to 6.15-rc1
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Simon Horman <horms@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250415094227.3629916-2-treapking@chromium.org>
 
-Hi Stefan,
+On Tue, Apr 15, 2025 at 05:41:58PM +0800, Pin-yen Lin wrote:
+> Introduce a general USB hub binding that describes downstream ports
+> and hard wired USB devices for on-board USB hubs.
+> 
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> 
+> ---
+> 
+> Changes in v2:
+> - New in v2
+> 
+>  .../devicetree/bindings/usb/usb-hub.yaml      | 91 +++++++++++++++++++
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/usb-hub.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-hub.yaml b/Documentation/devicetree/bindings/usb/usb-hub.yaml
+> new file mode 100644
+> index 00000000000000..34cd248fa43c2d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/usb-hub.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/usb-hub.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic USB Hub
+> +
+> +maintainers:
+> +  - Pin-yen Lin <treapking@chromium.org>
+> +
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +
+> +properties:
+> +  compatible: true
+> +
+> +  reg: true
 
-On Wed, Apr 16, 2025 at 11:41=E2=80=AFAM Stefan Wahren <wahrenst@gmx.net> w=
-rote:
+Drop these 2, already covered by usb-device.yaml.
 
-> This is unintended, even it's not your fault Lukasz. NETFS_SUPPORT isn't
-> user select-able anymore, so it's dropped. AFAIU this comes from NFS
-> support, so i think we need to enable CONFIG_NFS_FSCACHE here. Otherwise
-> this caching feature get lost. Since this is a bugfix, this should be
-> separate patch before the syncronization.
->
-> @Shawn @Fabio what's your opinion?
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
 
-Agreed, your suggestions are good ones, thanks.
+Drop this, already covered by usb-device.yaml.
+
+> +
+> +  peer-hub:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the peer hub on the controller.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description:
+> +      The downstream facing USB ports
+> +
+> +    patternProperties:
+> +      "^port@[1-9]$":
+
+Only 9 ports possible? Should be '^port@[1-9a-f][0-9a-f]*$'
+
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +patternProperties:
+> +  '^.*@[1-9]$':
+> +    description: The hard wired USB devices
+> +    type: object
+> +    $ref: /schemas/usb/usb-device.yaml
+> +    additionalProperties: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    usb {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* 2.0 hub on port 1 */
+> +        hub_2_0: hub@1 {
+> +            compatible = "usb123,4567";
+> +            reg = <1>;
+> +            peer-hub = <&hub_3_0>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            /* USB 2.0 device on port 5 */
+> +            device@5 {
+> +                reg = <5>;
+> +                compatible = "usb765,4321";
+> +            };
+> +        };
+> +
+> +        /* 3.0 hub on port 2 */
+> +        hub_3_0: hub@2 {
+> +            compatible = "usb123,abcd";
+> +            reg = <2>;
+> +            peer-hub = <&hub_2_0>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                /* Type-A connector on port 3 */
+> +                port@3 {
+> +                    reg = <3>;
+> +                    endpoint {
+> +                        remote-endpoint = <&usb_a0_ss>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.49.0.777.g153de2bbd5-goog
+> 
 
