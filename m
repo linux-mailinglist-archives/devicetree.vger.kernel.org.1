@@ -1,133 +1,112 @@
-Return-Path: <devicetree+bounces-167809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6FAA905AB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB11A905FD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:18:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB2978E432E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:05:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C53268E0849
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 14:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CD223370C;
-	Wed, 16 Apr 2025 13:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="1f2FbHye";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="GA4W0h1c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A211A5BB5;
+	Wed, 16 Apr 2025 14:04:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80054215778;
-	Wed, 16 Apr 2025 13:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA646155300
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 14:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744811694; cv=none; b=ZleDT28hS0NlAKnzG4yeGT1kYVoiZNbyuVUYrCnIRrYUmlq+EPrEbYtk7JcaP+unh0pMsHjhupuOtKg6KTnQiXCNBceQQrzVtWDr6meFdnKxtZ6MhsCESfF2woYKQea9pxsFrj/QYcXWGfPIb5t+F22w/iNQyPPRS60tw+7EP88=
+	t=1744812292; cv=none; b=UWBRpcAkIToWGn4vrfHNO+gdPhqdQK+e+g57GjE0dsq8iZ35D+TUc+2kWuRtQxvo6kkqdEeOcPL1oHYKWMy1fqHOxEdwxDt76zmmPFnMqsq+0MpjyQprOGaQv7Xa7D1XSbZ9hqpT77Gw6t2VgERkfJtXszSVC+Kko0TkyWlO7+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744811694; c=relaxed/simple;
-	bh=cDKUc2qr4xy2aliQgEkwRBtZ1Kb2bgQimbu1j0KwCEU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Gn2CKjfgNYcvpc2vho7N7AwQf95acLvCd4xWmqisiu9qjXbN1eh+MWNfcY4eVSSh1N0nEa6fTc4k7JBbxN19iH/pbxwclb6blqKKUQnbx6LNKXUrij7ud/742aBzSs26wUsg1sHgCXKjWZm08L7HcYB2dv4F2gbG+85N6p+fNjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=1f2FbHye; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=GA4W0h1c; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id E68DB12FB450;
-	Wed, 16 Apr 2025 06:54:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1744811693; bh=cDKUc2qr4xy2aliQgEkwRBtZ1Kb2bgQimbu1j0KwCEU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=1f2FbHyedv1LxNbEscPXYOKxmEUzp+P9fVOn1ar4X3F8Vyf2j30/9K1ucuccF0rzh
-	 blS89fA0tVl+gDb0gAhF3G/C64FD9SkpMabIKpV8vOt/zXgP7Xm+64nAHMXm37l5Ss
-	 qBnGX7LQgyZNMNAUb+KzV5V5Z2vimmGRdiYOYcBhmlNRhY6QT9sCZPi2QUJbBBQbvh
-	 zxmg3eHbU3m79dlF4DPTLZMNklaI6DmAoQhQLqaXnv7qbWOSAOCUp84pNM9jKO93fo
-	 sfaU6hhIFtQIL7P8cEoMHzcSaKcF3tGh8iipXtAsmbgEMJ54jeFj6XpsgWnxFSOf/3
-	 G9c4E6Eqa5W7Q==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
- header.d=4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9Gr--WM_oGMm; Wed, 16 Apr 2025 06:54:51 -0700 (PDT)
-Received: from localhost.localdomain (unknown [183.217.80.190])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 5EB7F12FB435;
-	Wed, 16 Apr 2025 06:54:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1744811691; bh=cDKUc2qr4xy2aliQgEkwRBtZ1Kb2bgQimbu1j0KwCEU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GA4W0h1cMddHFj1ML5LOIBXpOSH4kWwboRpf/NvRm0BTWH77v8OmUSvg30W9tMt0Z
-	 kZbNOPgxCw6VNWCvP4U+Kq/RNuCzu35uvUo256V1iDpspnfupP84t8Bp5VmQ9gXa4v
-	 oplbZPNk5rjzchwDmR3CKZmysdccg5L8qvWd1GtU4qfQq+/H6qpHMT/VFHiu/Lhi93
-	 kAYiStQpizJT1YZuk6vu7yP/ERfFv0Qov7VciIRGZGrMO07bZ96BPwvz3IrqogrM5Q
-	 R7XM8RmW4nPsqeS3TGElT3kXiCWEs2IINu4BSltK8fJXMHhwDu+wGWbRXsowaY+gQS
-	 ITUF2bOI8ajhA==
-From: Haylen Chu <heylenay@4d2.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Haylen Chu <heylenay@4d2.org>,
-	Alex Elder <elder@riscstar.com>
-Subject: [PATCH v8 6/6] riscv: defconfig: spacemit: enable clock controller driver for SpacemiT K1
-Date: Wed, 16 Apr 2025 13:54:06 +0000
-Message-ID: <20250416135406.16284-7-heylenay@4d2.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250416135406.16284-1-heylenay@4d2.org>
-References: <20250416135406.16284-1-heylenay@4d2.org>
+	s=arc-20240116; t=1744812292; c=relaxed/simple;
+	bh=rt4LVlUiTSj0UZdNZvaIcUxulNvJteVLNDUDXR5Mv9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=H4HjFxTKbH1Yu6IyQNPqKrr3rF2Xa0l1vIPc2wz2Bw9hy/5cytN7k3c3hJYX3QQouTeJiPSDgWvNgXWTjSENUPX96VmDW6eE1fnywuoxYh7JgBEFjj1IXtL+xOOSfjtRpjNNkdsRBr1SdRtUcmFK1yvuePi5qAY4M67b8REAvrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1u53NE-0003zg-Oo; Wed, 16 Apr 2025 16:04:20 +0200
+Message-ID: <fcdb9283-07aa-4d50-ac4d-317b0a4e5f7e@pengutronix.de>
+Date: Wed, 16 Apr 2025 16:04:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] ARM: dts: microchip: Remove additional compatible
+ string from PIO3 pinctrl nodes
+To: claudiu beznea <claudiu.beznea@tuxon.dev>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240814061315.112564-1-manikandan.m@microchip.com>
+ <20240814061315.112564-3-manikandan.m@microchip.com>
+ <605ff021-0770-4363-9734-ad8114a429f9@tuxon.dev>
+Content-Language: en-US, de-DE, de-BE
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: lsc@pengutronix.de, "kernel@pengutronix.de" <kernel@pengutronix.de>
+In-Reply-To: <605ff021-0770-4363-9734-ad8114a429f9@tuxon.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Clock controller unit, or CCU, generates various clocks frequency for
-peripherals integrated in SpacemiT K1 SoC and is essential for normal
-operation. Let's enable it as built-in driver in defconfig.
+Hello,
 
-Signed-off-by: Haylen Chu <heylenay@4d2.org>
-Reviewed-by: Alex Elder <elder@riscstar.com>
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+On 8/24/24 16:32, claudiu beznea wrote:
+> 
+> 
+> On 14.08.2024 09:13, Manikandan Muralidharan wrote:
+>> The driver data specific to each pinctrl GPIO bank compatible nodes are not
+>> the sameand declaring additional compatible string as fallback has no
+>> specific purpose
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 3c8e16d71e17..4888529df1d8 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -250,6 +250,8 @@ CONFIG_CLK_SOPHGO_CV1800=y
- CONFIG_CLK_SOPHGO_SG2042_PLL=y
- CONFIG_CLK_SOPHGO_SG2042_CLKGEN=y
- CONFIG_CLK_SOPHGO_SG2042_RPGATE=y
-+CONFIG_SPACEMIT_CCU=y
-+CONFIG_SPACEMIT_K1_CCU=y
- CONFIG_SUN8I_DE2_CCU=m
- CONFIG_SUN50I_IOMMU=y
- CONFIG_RPMSG_CHAR=y
+That's incorrect. A compatible for the old IP core means that the new
+revision is still compatible with it and old drivers should work for either.
+
+> , hence, removing the additional compatible string from the
+>> pinctrl nodes in DT to comply with atmel,at91-pinctrl.txt documentation.
+
+The correct resolution would be to add an extra compatible to the
+binding instead of breaking non-Linux users of the device tree.
+
+>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+>> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Me and Lars stumbled upon your patch, because it broke the barebox
+bootloader console on SAMA5D3 boards after it was imported.
+
+Fortunately, the system still booted, because the first stage bootloader
+sets up SD host controller pinmux without referring to the device tree.
+
+We'll submit a driver patch on the barebox side, but please keep DT
+compatibility in mind with similar changes in the future.
+
+Thanks,
+Ahmad
+
+> 
+> Applied to at91-dt, thanks!
+> 
+
 -- 
-2.49.0
+Pengutronix e.K.                  |                             |
+Steuerwalder Str. 21              | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
 
 
