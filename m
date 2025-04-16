@@ -1,188 +1,202 @@
-Return-Path: <devicetree+bounces-167723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C034A8B73C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:58:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08878A8B77A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 13:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 849F1445BC1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:58:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2A03B2733
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46F823C368;
-	Wed, 16 Apr 2025 10:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="P5LrZzCd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD3523A9A6;
+	Wed, 16 Apr 2025 11:13:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012062.outbound.protection.outlook.com [52.101.66.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF033221FDC
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 10:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744801087; cv=fail; b=tEDzIc1Pm7hAeoA1756SnqisOzBiqEpwdy6q7jBwLuPk/dbcuiCT+8w005S2PlN8VNwQCHbMoiv6suJySGHU/MGrndauj5XuPvA1Ee2SrdWimRUFB4qDtsfDTUuDWY5/ArcoQ20K3LoOqqCxzLHJtnJh9w0ZYWKIPjTdyeDm2eI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744801087; c=relaxed/simple;
-	bh=Ilr5hR0N8h7HoAEEr6XO7OqgvcmZ5fGiHx2TLGY44XY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EgI+OoLdMvKR7M7D8Ip6PRnyUu8cyyJygAdJWEaV+A3GKO0bVSGIuGa5WTllzFG4prBBFMuw8INJfE1PBHE/d7yYZr4qCtfXSr3yLpcnnQgPX9QGT8dZ52itfX2KEiSlZ6ox7x+45ivoCQHfgniROOM/B0p1ecUn6TlgD/w+zOM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=P5LrZzCd; arc=fail smtp.client-ip=52.101.66.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mpY19OuEXZzUyYPZhpjfUGMOyAxNIGuz4eD5l7TMaFr543s0a6w7U/FNZQXFlagHaSF0Ps9tyjeEpw9KliMr9WzaYCvBvDxpMchZGD43oPyg6yP71GzEGAMYhNgxC2G38ILyyzKS48/vt+2K4i598eq0ZXp3282qCOpao5oHsxorS5R6wSUgaM46BWIgp5OlJYzaoJR/2Sfk5VTMbXLNKp6Gl+5WXJAJ24tV747YrYrcQJ3U2gNU4JlSF9yuUmJwETFovZfQJSdgiKEqVjl0vAu2NsCwH4D8NNpKpyJSBw1VF10OfZXNtcjVbIuz/KAps+AOqTyUzPIBf8Mxe+ublA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9B5MMEWWcA/csiKkzT1eYMu+t7H4ydEmBaSIppKAfn4=;
- b=sSAwnFeCGsiBQ9vYoyKl6N1Z04xbEmQdAAObvh6azKadpm13yABFLc4bHOU9eislVXwvfHB3LrUDWTCLIhF5MB+bAcNF/E8atZRK08IYXNrfglPjsqOZEzQ/qwQTMGnuidgtvgMeicWlVGohKRdjut6moxgkSCaBlwCgAhDRSnEYFrMJyAfGanl2ZiqigtUe3baJMLrRcWEVy3lIMTQ/Z9W41WWmToLhwlwNKMd5XOksrV1CS4j/7M2fMFxhAUEDmgFu259787okvsa/E54PpeAt/uyRBjZA67ZF5WDWnK9TP81JMefBKCwIbJUOcmgxBhfLpbmAXdd6XIgU+hJNlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9B5MMEWWcA/csiKkzT1eYMu+t7H4ydEmBaSIppKAfn4=;
- b=P5LrZzCd9e4UhBEwHd/iWEwsSNezXRD1EpswhQPT8nXxBS+BxXbT5/TadAjeHrzseHDoA3xyxe4a4nYEX+5OcbUiKzygWSEQ9dTGuVAHRlyXC3LArdksadFWkM0CyWHkTP2ngrZmIPZChgwT1kcVveC8A2We+pYmz0Ksl471jrCRLokCLKhNiuXTe5WLwYVNZDdpPCAyMJIBQeCI+VGXDfhcDdDdJzsXjDtUlHEw6YhJLjDMcO4RCE1iKiThz+58HDFhMnW6nDB3ULpJVrUz0cRIAtj1vmpD1Q2PogkVjPhEq9Wt20JaQ1qOlUf684ZqI/1pHqjtyR9CA3PI6/8cHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by DBBPR04MB7820.eurprd04.prod.outlook.com (2603:10a6:10:1ec::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.33; Wed, 16 Apr
- 2025 10:58:02 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8632.030; Wed, 16 Apr 2025
- 10:58:02 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: krzk@kernel.org,
-	myungjoo.ham@samsung.com,
-	cw00.choi@samsung.com,
-	robh@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	jun.li@nxp.com
-Subject: [PATCH 3/3] extcon: ptn5150: Try to get usb role switch from connector fwnode
-Date: Wed, 16 Apr 2025 18:59:40 +0800
-Message-Id: <20250416105940.1572672-3-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250416105940.1572672-1-xu.yang_2@nxp.com>
-References: <20250416105940.1572672-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0033.apcprd02.prod.outlook.com
- (2603:1096:3:18::21) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14B1230BD9;
+	Wed, 16 Apr 2025 11:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1744801997; cv=none; b=CLfp1iKWlJC09Iz4JzOFTROp6U+keCa9/MukFBexJHXjCXk3DrF9+Df+3Si1cLBISA85Jnj1tTsQe+RwV81uoP4OdkbJmOcghOsdwfbUJ+LwnDfmRkDtJOkmuG7HGWthrufm5kvk6mymwDSGIL749ifYTs3PseQIsy+QzH28Hs4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1744801997; c=relaxed/simple;
+	bh=sOc+D0tolTcUGJ9KPHoXk+kBoSFT8/GUfkzNFqzDPzE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BYE8H19GZazTdwipOnuRDuktUJYmo8b9TwIoUMgOaelL7hW8kzzggva/A6LzNMb6grnwKSC7Sr6DCXMC6eY6PiayBTP9yPqaaiYw9iGlldm04uEGI6dPnp6susG4oT/A37dzrTCpLYpBkmfMXL+lbmj5/MKOhqJ8+5YZOSITRk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5262475372eso2730321e0c.2;
+        Wed, 16 Apr 2025 04:13:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744801992; x=1745406792;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MocR616+VqlYQgKAO9looh+5bl/oUxpGHWgrj7ut1gY=;
+        b=YvNMRqd/Ri2E6uY5dZjEebDTvHCDbu6Rq+M/KmZ5qkcYrfYfFwG/aExDWVExRBHntA
+         QVDk4oOF+TmRSIzZ+6fIp0aDRf4LWFkNBSQ0LgWv2xcDnnyi9W6T00c7vnlRJF710CTi
+         8wdwHQY0+kCLEpzUBuGlIygk7NkHhxyLVLiiJdAWlzpg7YriFPKA7hg5cOHbLu05yZ/v
+         o33PpKrv9A3jQ5J8D30IJZ/VfkQhwzmo5Evp/CzVc8EpagvWXvDxahvb9vOfmi0B9O2o
+         RDALX9c3q7gVePwldpokH7C7UIjOLXuAkHt3YOlZMM+AgpPBrB61g0BMtjvpAs9bAfo1
+         wLnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxGVyaw2TJMtrRjThVoDGaaCCkXmkdxpSCLRFTzDDIEtrbt82J2PDL6qDRTWmGdVjCuHWQeP6qo6tX@vger.kernel.org, AJvYcCX894TN7okdCUn2QDEqX2uGO3OEJTs0uHUcW49j/3HhPmJJtIAm2ssMGIcFRIgX1zH9Yb7TfW5e1V4LyXWL@vger.kernel.org, AJvYcCXeVfS7kRwT44Ir0vQkk9IVhct4WHwihZQD/j8p0QFb2JyYKHp9LrAJnKhMVrexeHI9mOFUQ7MUHtZs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjeC2RdXlNzHSQRGHKu3wtCk3cWS+dTevdI6zfbawqghqwKvPj
+	x4qd256D6cve77k5yQGKbVygqjjcHY3bLw3z3+YVncN4e60hsEPKUo/hiA5x
+X-Gm-Gg: ASbGncucB9DqEfxQo+9lnt27jtIFkCyQTk/O7wbezF/eZ+V9mpN9alEzB8J3r/nfdWT
+	b9H+YGR/cS064VZ0YYMcNt5vnR+fKfMlnw+1mGpGiewNL9osi2qbF+sczm+hLPV/NLbyWegAWvH
+	xkNLm3/S2l766uBsTr9RQYXtH/MrdR5RP0dBvbDewona2VEc6HNO85ahBVdbWyOAcbC7+7zEKI+
+	3dRBDQeHf4ICD5xYqBigWpRHq9qVkNCW2QviI/l5a3kqrV2CIVDknVjWglUmtpQyEN35/ykDAxM
+	2jQQdlSt738EKAoeW30S1ajE/PBkTBC6GIsrO1xB325iQgff4tKUL28NPUNIrWxe9/EyOaXojds
+	2V/k=
+X-Google-Smtp-Source: AGHT+IEmyT0XqqO/RVFmwLEG/URFxo9rKk0kXubHpUh/sz4yC3NCBWMjvghdHBXqXXgMwseAgRUbqg==
+X-Received: by 2002:a05:6122:3bc2:b0:520:5a87:66eb with SMTP id 71dfb90a1353d-5290debefcfmr557013e0c.3.1744801991987;
+        Wed, 16 Apr 2025 04:13:11 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-527abd9b3desm3044757e0c.23.2025.04.16.04.13.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 04:13:11 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-86f9c719d63so2558267241.1;
+        Wed, 16 Apr 2025 04:13:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUeVEAKkO6nWZlWYQ6SKRb5cJQyGCYvXAyeWQIuwafJSbx5eP/J4io83z5G31xVC1MuRhIVdMEcAP5l77yK@vger.kernel.org, AJvYcCUzujGHKzpb2ouAmmtjjw5b0d2L6F4Ai4QKysZ6ritU7UYSgoS5Xb+gLyMgzCsdKccjZPRecpJubHnl@vger.kernel.org, AJvYcCXGswo+ZQ7Y/KL/H70uFWtJys7zIYzzQP4XvNc87cBLtXFiKka/gNiAmL6AnfhFB7PstvSGSj8E/x40@vger.kernel.org
+X-Received: by 2002:a05:6102:2991:b0:4c3:9b0:9e6b with SMTP id
+ ada2fe7eead31-4cb591e784bmr414553137.10.1744801990755; Wed, 16 Apr 2025
+ 04:13:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|DBBPR04MB7820:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3c7f714-7cb5-464c-e860-08dd7cd58ec0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?pHBTe0guza3q1QDnlbD5F7kR8+BtDghpO2tgOwJPDpG7hd0yCP2oh9OEP/1C?=
- =?us-ascii?Q?DMxyQ8KtYu3gC27XDHc2vHRPzhvKJWB94cS/e+BQs7I6Ez5mqXhBQirhPZG9?=
- =?us-ascii?Q?4MkEibYxyZUZcSUq19Q6jtdzVvRfCv9Zr6+tZcQQxkyFgySZ6iPuy7xTiYwo?=
- =?us-ascii?Q?6P79TS/oQvO3yUBZVnbHk5ykUUOHsKbQCpiPXOloDQrcRYVoJKk1BZXrBb90?=
- =?us-ascii?Q?xQ8PK+SS22kZeiuImUR+lkgGxM1hzDefHL2BKMasjfmyA5ZltA/ByhIxigLy?=
- =?us-ascii?Q?3xWfTMbIha0yMqU7c27gQbbQfhTljA84TUOzz74G+np8B9+rtXOv3zO0jAXz?=
- =?us-ascii?Q?Wr5X+uVUaraCUnhBBqdmsvLseSheNUkBATQQlf80NZhf0gRDVwuweeBlMhs/?=
- =?us-ascii?Q?540rvQyS1m5768fxXAgL5Fq3rWBJY2R6UuTF01Pp258/DKArndts/kn/zCj2?=
- =?us-ascii?Q?MkGkSHgMOq+6Vyg5E5374GOKtho1BUGMycTH8TpnP4kQ4rne2kf3bo7RSaTK?=
- =?us-ascii?Q?6F5AHVcmj2enhNYGTnR2VCOT+cF6dDro0bEgo07+Zur06yophDF89ENmcCpu?=
- =?us-ascii?Q?HUm3fG2oJ8QEM+srUbUD6ChEb5Ve7zO5bslLETdiICJ1NPuIhwz8UhDwE5vM?=
- =?us-ascii?Q?V5BGaq1lBGBabn+155Jp8qx/8st1+ag3n77cRvlMpJZ9TlpN/WAdqfqwyyGS?=
- =?us-ascii?Q?IvS6SIibQX4I8B2fdzVNU2VYA0Oz45QRvhLSf2wbPW6Yw/W+mM0Ms3dkGZld?=
- =?us-ascii?Q?Gc014rnsQyD2LU+6WfrpxENzNoazgVlo6F2+hI6tkuAUC6PC779slyczkQsd?=
- =?us-ascii?Q?XijHLTP91L/nmz+2p1BjH61og+6KCpeWqbxPPvKGn30IuJcTua+XtgHaHFVm?=
- =?us-ascii?Q?We0yWzTKNzAtybImnO7rJ3JKUStDbOeC2ZFs5Esa2vR2jB2axc0NJwhawI2v?=
- =?us-ascii?Q?X771JTn1C4Ly9kORo3UeKskT0g5pn8TX7o6iFCaL8LaeYp/hxG2ghZ6/jffH?=
- =?us-ascii?Q?GxGd+WOwfYcM/9rdB5BgSm8/+P68aBY8WgX1gGSLWtHKcWwgD/CdgtZS/Ki3?=
- =?us-ascii?Q?ORZ+J7R7y24iq3EqMKj1siqlIPQ18tI+mRxSQp/1xmc5t8Oa5E0/d8x8AgDz?=
- =?us-ascii?Q?/5i/NRCpKNbKspXmxzmoN1MFPd4G1zFcxsbGZhAuf0px/0OZfmMZIi+r6h/t?=
- =?us-ascii?Q?1w4oqPMhU3/NALLTGRCiaN7SS1h+tHMC8Qvu1qtpmP+quHgyuU32lbJpiUwa?=
- =?us-ascii?Q?2ZdgcgTlYtiAY/S018sd2WRjnxUW2X6bhA4hr+Y+pc5anBJ1Vs+1DfXwLSL8?=
- =?us-ascii?Q?kpzoaCHQYNbuzEIzlFancpDQ+ViJTJdlt7sJSq9jXWmCEKVaJxwWE6iV3RRw?=
- =?us-ascii?Q?N/CG05milQcB2HOAfnoD7WnJ3fB1bBcET47NBOmNAbY6E109RPeX1cdFA7sK?=
- =?us-ascii?Q?Ck1KtqcKmZH8sCG61I2M0HoBVXoYP0Qjbne0T4toFfov4HgK8Lzm5g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8lIOzcBgKd5xVgyUAgFO9y1lPPvRQU6cnAqOHK7jO4j5GDP1m6U1j7ehPnX7?=
- =?us-ascii?Q?CcaDgd3xaqEhswEV7xXgcU67eGlKfjdrvva48rN1L4XM6eHiwZJAu/4u8Jct?=
- =?us-ascii?Q?5AtuVbnTCLX28E5j9LKbJU9cU3m8szEyOkV1iZUFhDma+4TIeasi7pgH8aLi?=
- =?us-ascii?Q?KENRiANefhjzHA0VZCWvxgBhR3EKrkXGYrwjvfl6fgW4IX7CiXNk+7pInu4v?=
- =?us-ascii?Q?EHpGg6N/8osb9f3AuGD3nMAA3G/rhgr4JP7Zuh8Ee75D8tdvJAQikF/HTZ1x?=
- =?us-ascii?Q?HLlyG/KNKdUL34sBJiQAQYJsEMyZ2bUnM/i+qTrMrzAx+k8XWqhI4CHWASLc?=
- =?us-ascii?Q?v+zIxaFEWXvK4bC93yLBPI01VxLbju78xHHV0xAveOXqvgt5KGOUOOJDB6me?=
- =?us-ascii?Q?vie04jowXfbj8ChAzwKPYWxELjuXz4+Hx0P+5QGh79WoGNjzG78ZEvH71keF?=
- =?us-ascii?Q?hO+6ap61tAVT78M+pLmWMo+4q4Sj9WpF0dTLoTPWxNxarG2Bf9tzfi68SCXZ?=
- =?us-ascii?Q?hu0ce/Udi/0BiZbzMv+H39iY/o8KkBFcQIhz9ujD9yDDCziDIMjcxJNHrATL?=
- =?us-ascii?Q?BQNcctbubgv4pRBU3H8gNvMsoM0ohE0996tyyCLtJFu65sQ5BQcYvYPKd6Ka?=
- =?us-ascii?Q?WkWMn+EjblOaBN8fx3rvNBKzVpyhwIYfq8JdIwdE4291RyW1oPQdjJmCwUDl?=
- =?us-ascii?Q?TY2haAICmt0jJil2O5i/bUO4zA0AKthEiSwQKPGUsnfmSICeaghQvcm+5Uq8?=
- =?us-ascii?Q?boYYtFmD7ZYTSexIy12wnZmQ0sDcFYp5kW4E2hupEnCxNk3fCA8Ogupv0pOR?=
- =?us-ascii?Q?bJADqLNJMkSQdRUwzD+sbQRdSq86JaRqIQEHRnpdxdNoj9FxlpwA2HSSrNOZ?=
- =?us-ascii?Q?y/RqlwkwRgEw+Zw7/sImjwkzWelBfuuKblwmbKCUlx3wSQCglPSk3IhPuOIw?=
- =?us-ascii?Q?10JaTmTKxz7JJDwXJdfUUDEQRWX2ecbLOqMhrpmr2zw4wsOXT9a/5/Bouk19?=
- =?us-ascii?Q?/5g6zo5h+nlXmcfHOBdLZy+hDXw2dHmxkvTWicMfggB63UrSKZ+XC7zBZc0W?=
- =?us-ascii?Q?POsthpwZeEaX/JyoFEp9memoCqQYpdYvqoCH58kzg0XHpp1Cj2TagPOthPsE?=
- =?us-ascii?Q?7VEBq6rqdvi4iESUC9pFEm9nX1PwBJHAlflBlBNyXVGwm7Odxk6awpPtT+kj?=
- =?us-ascii?Q?Dk8rUKnsnLgZ3UeM3TPasrUGfZUGqPpdKofVyR9DqiJrth1ovM6ntRuzUfCo?=
- =?us-ascii?Q?LQI0lgZ4LNbqkTQfxmkeWLHZmshnV8WkRtWd3BVwFEL8pV3vzc5thrjTlgeE?=
- =?us-ascii?Q?WBdzDYRAffOf6DDxnw5nxnxK8H7kNL57vnKmwgSFjm+6Rd/V01f/p+kWtw02?=
- =?us-ascii?Q?ZVaZoIWOIDcAtkY7H/QVh9z3zx2wwVAbHa/R5ZGbuN6N/jKulsSWgdcTZ9xL?=
- =?us-ascii?Q?6BXUMX1nl6eyhipXDyJ+hXr6387e92BcDymJKFwBgdq+RHdtv2sIvBTFkF0b?=
- =?us-ascii?Q?ayf68dkoaGl6VpqfpzuUPbZdIgZ7m6tQa6w/3Cxw6CPmtImAT45TJ4WGj+PZ?=
- =?us-ascii?Q?6CVwD6FIVvo/rZX/p7Rdui39IU7BMX9B8Agfxl+D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3c7f714-7cb5-464c-e860-08dd7cd58ec0
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2025 10:58:02.4665
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eYUiKjfX2yUjSH5126BJOUJ1cZTD2N7wH9L8w5N2aWYbeP/th/8/g9Pdlb2ka/+jjejidu/UKrnprJsBr5mQxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7820
+References: <20250109-enable-rtc-v3-0-f003e8144419@baylibre.com>
+ <20250109-enable-rtc-v3-3-f003e8144419@baylibre.com> <erttkpna2hzg7zuddzlocaou2wqcwmgcxfhldwdt55yleie6dm@nfg374fv66fq>
+In-Reply-To: <erttkpna2hzg7zuddzlocaou2wqcwmgcxfhldwdt55yleie6dm@nfg374fv66fq>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 16 Apr 2025 13:12:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX3u97MtDiPuJgFtO5YTRuLeDHgs4tx7004CScLO11WkQ@mail.gmail.com>
+X-Gm-Features: ATxdqUHjMszLt95drNgnUajxAYkWqRme3b0HzHSYcdCgcByHGIiSYzx7n6CDpNY
+Message-ID: <CAMuHMdX3u97MtDiPuJgFtO5YTRuLeDHgs4tx7004CScLO11WkQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] rtc: Fix the RTC time comparison issues adding cast
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Alexandre Mergnat <amergnat@baylibre.com>, Eddie Huang <eddie.huang@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Since PTN5150 is a Type-C chip, we normally need to describe some
-properties under connector node. Due to this, the port node will
-locate at connector node in the future. To support it, we need to
-get usb role switch via connector fwnode. For compatibility, this
-will not remove usb_role_switch_get() function.
+Hi Uwe,
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
----
- drivers/extcon/extcon-ptn5150.c | 2 ++
- 1 file changed, 2 insertions(+)
+On Tue, 15 Apr 2025 at 00:30, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@baylibre.com> wrote:
+> On Fri, Apr 11, 2025 at 02:35:56PM +0200, Alexandre Mergnat wrote:
+> > The RTC subsystem was experiencing comparison issues between signed and
+> > unsigned time values. When comparing time64_t variables (signed) with
+> > potentially unsigned range values, incorrect results could occur leadin=
+g
+> > to runtime errors.
+> >
+> > Adds explicit type casts to time64_t for critical RTC time comparisons
+> > in both class.c and interface.c files. The changes ensure proper
+> > handling of negative time values during range validation and offset
+> > calculations, particularly when dealing with timestamps before 1970.
+> >
+> > The previous implementation might incorrectly interpret negative values
+> > as extremely large positive values, causing unexpected behavior in the
+> > RTC hardware abstraction logic.
+> >
+> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> > ---
+> >  drivers/rtc/class.c     | 6 +++---
+> >  drivers/rtc/interface.c | 8 ++++----
+> >  2 files changed, 7 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/rtc/class.c b/drivers/rtc/class.c
+> > index e31fa0ad127e9..1ee3f609f92ea 100644
+> > --- a/drivers/rtc/class.c
+> > +++ b/drivers/rtc/class.c
+> > @@ -282,7 +282,7 @@ static void rtc_device_get_offset(struct rtc_device=
+ *rtc)
+> >        * then we can not expand the RTC range by adding or subtracting =
+one
+> >        * offset.
+> >        */
+> > -     if (rtc->range_min =3D=3D rtc->range_max)
+> > +     if (rtc->range_min =3D=3D (time64_t)rtc->range_max)
+> >               return;
+>
+> For which values of range_min and range_max does this change result in a
+> different semantic?
+>
+> Trying to answer that question myself I wrote two functions:
+>
+>         #include <stdint.h>
+>
+>         int compare_unsigned(uint64_t a, int64_t b)
+>         {
+>                 return a =3D=3D b;
+>         }
+>
+>         int compare_signed(uint64_t a, int64_t b)
+>         {
+>                 return (int64_t)a =3D=3D b;
+>         }
+>
+> When I compile this (with gcc -Os) the assembly for both functions is
+> the same (tested for x86_64 and arm32).
+>
+> >       ret =3D device_property_read_u32(rtc->dev.parent, "start-year",
+> > @@ -299,7 +299,7 @@ static void rtc_device_get_offset(struct rtc_device=
+ *rtc)
+> >       if (!rtc->set_start_time)
+> >               return;
+> >
+> > -     range_secs =3D rtc->range_max - rtc->range_min + 1;
+> > +     range_secs =3D (time64_t)rtc->range_max - rtc->range_min + 1;
+>
+> In the case where no overflow (or underflow) happens, the result is the
+> same, isn't it? If there is an overflow, the unsigned variant is
+> probably the better choice because overflow for signed variables is
+> undefined behaviour (UB).
+>
+> Respective demo program looks as follows:
+>
+>         #include <stdint.h>
+>
+>         int test_unsigned(uint64_t a)
+>         {
+>                 return a + 3 > a;
+>         }
+>
+>         int test_signed(int64_t a)
+>         {
+>                 return a + 3 > a;
+>         }
+>
+> Using again `gcc -Os`, the signed variant is compiled to a function that
+> returns true unconditionally while the unsigned one implements the
+> expected semantic.
 
-diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
-index b7e05d921c79..160998e163f0 100644
---- a/drivers/extcon/extcon-ptn5150.c
-+++ b/drivers/extcon/extcon-ptn5150.c
-@@ -352,6 +352,8 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
- 	}
- 
- 	info->role_sw = usb_role_switch_get(info->dev);
-+	if (!info->role_sw && connector)
-+		info->role_sw = fwnode_usb_role_switch_get(connector);
- 	if (IS_ERR(info->role_sw))
- 		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
- 				     "failed to get role switch\n");
--- 
-2.34.1
+Hence that is why the kernel is compiled with -fwrapv...
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
