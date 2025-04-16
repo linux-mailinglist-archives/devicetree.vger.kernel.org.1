@@ -1,1342 +1,1010 @@
-Return-Path: <devicetree+bounces-167704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2329DA8B685
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:14:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5DEA8B6A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 12:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D9D117EC8D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:14:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1860E163BCF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 10:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A66236440;
-	Wed, 16 Apr 2025 10:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416F42417EF;
+	Wed, 16 Apr 2025 10:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TemitWN8"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="lRi2NMrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 477ED13B7A3;
-	Wed, 16 Apr 2025 10:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547FE18DB1D
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 10:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744798471; cv=none; b=Xq2I6+rp6WTRemCNO24usuOTTPUfU2fTVVRIqvaxRpGmYVMaxLCX4KyyHILIZBxl7/ppxUxRv53K++TJVOpmUde2DXKECfYAsJDCQEemmq1cUaxFpDr+VhOvghP7J5uP2rq/4YE17nd3LXbOx95hv3qTwUOflen4IN0Fcu8FtAg=
+	t=1744798811; cv=none; b=hHemWeoy82na06jPBPPDBxzsiWAA0UYnQ928dvBtRmd+JWhUUePSwi7++t/v+wB9d/xmwqeimadhoMRS/aLPwW8Z7VJXSqesDPAb/BOS5R0ZeHsfjOuAzB2Pg1lC+NdswCyJPWJBdgyipgtXyblfdRXnayB6ct3mAOlSuXGZsj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744798471; c=relaxed/simple;
-	bh=fV1Ow5fZMY84sbEB0cS4VJg2EEDWFpEodt5te452+RE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iEhYtfrYfP0ueqIAO7U3nCZ4S1CmSwyqDceSuMCsK2nbf8XITqsFxO+TAk3cV4ZFdYys+6yb1Ta9U3lCV1qc5dvYX2taVJpBBzCod+UwJ06xYxJewjuZWTmPUcbexaFsgoIMazIdRmDq9154bBR+2I0HPqYx/AhP/UAsvb4rmHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TemitWN8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mGXB020895;
-	Wed, 16 Apr 2025 10:14:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=dsgWMxGLKhoPfW+BduA9Ndf3IZFjz/Y2b2L
-	nr56hxTE=; b=TemitWN8KGjGsWJWa7fO9LYOFtSoLTD7bmXEDiSZ4ncYNmOAMBz
-	xGzYkdhF2KAz5zvGuZUPmSkUAkayZsByGg/KaAu1boHnDvlxKzq4tkpj6iupkDrF
-	yxrF27jBrcTZ3rOQtx8LH/f0KagPIwccUalEDLIMt/ZC1v2nHNSrogryBargUtaa
-	NozrKwV5AKB8IDgNZT/vrMYBGXUCczeERbC+sTiC8SDIzFoEFQ2LJhRpBfS1AXBs
-	th2Nakd4QWXjCySInWZOyln0vVS4PfGw9rs2TJQWio3vStO5dXPC3UWOJ7hjAcgt
-	r/Qv10vB9Vhy4V+cSo76UJXFJ9+t+lvckXQ==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yf69u57g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 10:14:18 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 53GAEEE1023745;
-	Wed, 16 Apr 2025 10:14:14 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 461hteyr1h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 10:14:14 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 53GAEERE023739;
-	Wed, 16 Apr 2025 10:14:14 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 53GAEE6f023738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 10:14:14 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
-	id 7230655C; Wed, 16 Apr 2025 15:44:13 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [PATCH v2 RESEND] arm64: dts: qcom: sa8775p: Add default pin configurations for QUP SEs
-Date: Wed, 16 Apr 2025 15:44:11 +0530
-Message-Id: <20250416101411.1444248-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1744798811; c=relaxed/simple;
+	bh=lk8itBF3g2U78bQflow6XOcxBs3ouzmGO79SD8ieLQc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cE8gUwP6R+6nMK80iUMl6kb+1TgiO5+PF8WT3SkKd/YSG+DWm802pVPrCBRzyC73Dzsq23YrMQxW/VdWpRA2JmOco4oB7NQouqGp2OrB2bQ1bvFPXYq4vN3QY5IkQREqfbh2HC8rhAlf01osJpfGkxA/RQEAuNvLrewGAthvsko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=lRi2NMrN; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7043db8491dso66860547b3.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 03:20:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1744798807; x=1745403607; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jBzOFMIJS5GCf+llQv5VzcdIgq5B2O4CspG2YCI195c=;
+        b=lRi2NMrNBb6ACfebxIcMo4DtMBcsXriikbR8peA8lh9Repi+45S+zdN54RfAjxKXOJ
+         vXCCdvpNCG3ihrYZ3zCQhK95gnrMO/pBFo1ti20rixJBBbK6BTDjBuZjKmXtcrUJQARD
+         iJMbD990l8AtM7og8rPzo4BqjCyblnUEuRpVNovcUj3MHoacDG6dvIkUEiEx9j3bGkn9
+         7qJ93aLwgUzCCYC5NhfXCB5PbP62qTAy7cSXWGFkLWNpNOxS+gmgl2M4Oy8hiSf80E5q
+         roXMv177hdKPSjZXAZGRCiHkna7GqDVfmaMdR5R/oQ6n/2K3P92KsLcjeKT5P71aDIZT
+         hq+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744798807; x=1745403607;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jBzOFMIJS5GCf+llQv5VzcdIgq5B2O4CspG2YCI195c=;
+        b=lSm8thzHUeHbiiCFyR45NJQmZ56SO38joiqou+aU04PhMuHjx8i6WWO+G8QDDKSb6K
+         PgpJ11rRAj+DV1j1wiTrlx8gByDquBLx08wAGkIIEuQqi8onWqxNPYEPKhhJaI5SOUVL
+         fiBOfuUb15TAA0iTpg6LmTzv3YcJvMOQnE+IBkNMyDmebq3Y9qLJYYPBLlOb9RS/dKvt
+         BGf5HR+mLYkqK/XZjoYt3wea9dioQmy14HPMoHCiorhk5ZV/36tui7lFx3NfuJpEWRXF
+         lSK5Qqu0EvMwC116HAL9ca1umIyIhbcyyKnoZ4DkOmivgbF2Eoq8e80N9oxvRJ3/qO/3
+         sJJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUhKeK9GvlI1Mrhgo6kZo865eFYbIvsqjF/WFEiI4R6MtgB0V93zGIjmOGuJZQsmgLIKLS6Pr0ZcaQT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ+0khkjQ4eMenEm68Ir9gfhsHJAqLeSz2pk6ZkWb3TmtZmwHL
+	LmQ33Pl3JcN5GDb9bXpnQ4fY6ADrAOt2AZyI7pjGxZctKzo4CwTiBz5SlpEPjH+ZcZsik3MFBVC
+	O6gK544OGV1V+pBPZAyXW8HG+Do8bAQuFQ2Hd3Q==
+X-Gm-Gg: ASbGnctTB+PG10m9h3Nju1R3w+Lv74zi/lR+2VW+gx50RfpExR6OqpfFm2UqrUXfWcO
+	UAil73j3tsXqHcQBC00cgGsTpIu1zA293ZV5w/CaN2NR5nT2gdQr2NyAKBQDvlw7Y9WGsWUF8Co
+	UPo/XdB0ibNPjOhQ93EgyuOdf12F+Y+b0trNFqBMkv/YZMsGR7cVQxGw==
+X-Google-Smtp-Source: AGHT+IFyoQgoToOvoJQppZRhk5xd7zoNxsR2/xNk8A38+q8I47NlECGoOfTILYy1tOs6hRIr6aK39cT0h8rASHoEzaQ=
+X-Received: by 2002:a05:690c:6906:b0:703:b278:db2d with SMTP id
+ 00721157ae682-706b32a9751mr14424967b3.12.1744798807069; Wed, 16 Apr 2025
+ 03:20:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Ynyu_GfaknT8IypjxzJL3CHA3YLZPrls
-X-Authority-Analysis: v=2.4 cv=JNc7s9Kb c=1 sm=1 tr=0 ts=67ff82fb cx=c_pps a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=SZbwUCqhLv4kY6tmZbQA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Ynyu_GfaknT8IypjxzJL3CHA3YLZPrls
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-16_04,2025-04-15_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- suspectscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504160083
+References: <20240630141802.15830-1-laurent.pinchart@ideasonboard.com>
+ <20240630141802.15830-3-laurent.pinchart@ideasonboard.com>
+ <Z_5EAQPG9tlFarWV@kekkonen.localdomain> <20250415131757.GD20685@pendragon.ideasonboard.com>
+ <Z_9NyDsloCjK5j0D@kekkonen.localdomain>
+In-Reply-To: <Z_9NyDsloCjK5j0D@kekkonen.localdomain>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 16 Apr 2025 11:19:49 +0100
+X-Gm-Features: ATxdqUGcJ40Mxkn8G64v5hyzin8s5pqaGFAZGI_rUHheuqh0DD0mC0Z9ITvobhA
+Message-ID: <CAPY8ntDMgeo4kq=S0J96PTY+n9ew8nPztqqt9511o8=zWiZEfA@mail.gmail.com>
+Subject: Re: [PATCH/RFC v1 2/9] media: i2c: Add a driver for the onsemi AR0144
+ camera sensor
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Default pinctrl configurations for all QUP (Qualcomm Universal Peripheral)
-Serial Engines (SEs) are missing in the SoC device tree. These
-configurations are required by client teams when enabling any SEs as I2C,
-SPI, or Serial protocols.
+Hi Laurent and Sakari
 
-Add default pin configurations for Serial Engines (SEs) for all supported
-protocols, including I2C, SPI, and UART, to the sa8775p device tree.  This
-change facilitates slave device driver clients to enable usecase with
-minimal modifications.
+On Wed, 16 Apr 2025 at 07:27, Sakari Ailus <sakari.ailus@linux.intel.com> w=
+rote:
+>
+> Hi Laurent,
+>
+> On Tue, Apr 15, 2025 at 04:17:57PM +0300, Laurent Pinchart wrote:
+> > Hi Sakari,
+> >
+> > On Tue, Apr 15, 2025 at 11:33:21AM +0000, Sakari Ailus wrote:
+> > > Hi Laurent,
+> > >
+> > > Please do ping me if you don't get a review and expect one. :-)
+> >
+> > I'll try to. Please ping me if I don't ;-)
+> >
+> > > On Sun, Jun 30, 2024 at 05:17:52PM +0300, Laurent Pinchart wrote:
+> > > > The AR0144 is a 1/4" 1MP CMOS camera sensor from onsemi. The driver
+> > > > supports both the monochrome and color versions, and both the paral=
+lel
+> > > > and MIPI CSI-2 interfaces. Due to limitations of the test platform,=
+ only
+> > > > the CSI-2 output has been tested.
+> > > >
+> > > > The driver supports 8-, 10- and 12-bit output formats, analog crop =
+and
+> > > > binning/skipping. It exposes controls that cover the usual use case=
+s for
+> > > > camera sensors.
+> > > >
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > ---
+> > > >  MAINTAINERS                |    1 +
+> > > >  drivers/media/i2c/Kconfig  |   11 +
+> > > >  drivers/media/i2c/Makefile |    1 +
+> > > >  drivers/media/i2c/ar0144.c | 1826 ++++++++++++++++++++++++++++++++=
+++++
+> > > >  4 files changed, 1839 insertions(+)
+> > > >  create mode 100644 drivers/media/i2c/ar0144.c
+> > > >
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > index 8e591445bec4..fff7554805dd 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -1642,6 +1642,7 @@ M:  Laurent Pinchart <laurent.pinchart@ideaso=
+nboard.com>
+> > > >  L:       linux-media@vger.kernel.org
+> > > >  S:       Maintained
+> > > >  F:       Documentation/devicetree/bindings/media/i2c/onnn,ar0144.y=
+aml
+> > > > +F:       drivers/media/i2c/ar0144.c
+> > > >
+> > > >  AR0521 ON SEMICONDUCTOR CAMERA SENSOR DRIVER
+> > > >  M:       Krzysztof Ha=C5=82asa <khalasa@piap.pl>
+> > > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> > > > index d37944e667f3..122cfea07853 100644
+> > > > --- a/drivers/media/i2c/Kconfig
+> > > > +++ b/drivers/media/i2c/Kconfig
+> > > > @@ -51,6 +51,17 @@ config VIDEO_ALVIUM_CSI2
+> > > >     To compile this driver as a module, choose M here: the
+> > > >     module will be called alvium-csi2.
+> > > >
+> > > > +config VIDEO_AR0144
+> > > > + tristate "onsemi AR0144 sensor support"
+> > > > + select V4L2_CCI_I2C
+> > > > + select VIDEO_CCS_PLL
+> > > > + help
+> > > > +   This is a Video4Linux2 sensor driver for the onsemi AR0144 came=
+ra
+> > > > +   sensor.
+> > > > +
+> > > > +   To compile this driver as a module, choose M here: the
+> > > > +   module will be called ar0144.
+> > > > +
+> > > >  config VIDEO_AR0521
+> > > >   tristate "ON Semiconductor AR0521 sensor support"
+> > > >   help
+> > > > diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefil=
+e
+> > > > index 3ca63cec3441..c21b8df0d50c 100644
+> > > > --- a/drivers/media/i2c/Makefile
+> > > > +++ b/drivers/media/i2c/Makefile
+> > > > @@ -19,6 +19,7 @@ obj-$(CONFIG_VIDEO_AK7375) +=3D ak7375.o
+> > > >  obj-$(CONFIG_VIDEO_AK881X) +=3D ak881x.o
+> > > >  obj-$(CONFIG_VIDEO_ALVIUM_CSI2) +=3D alvium-csi2.o
+> > > >  obj-$(CONFIG_VIDEO_APTINA_PLL) +=3D aptina-pll.o
+> > > > +obj-$(CONFIG_VIDEO_AR0144) +=3D ar0144.o
+> > > >  obj-$(CONFIG_VIDEO_AR0521) +=3D ar0521.o
+> > > >  obj-$(CONFIG_VIDEO_BT819) +=3D bt819.o
+> > > >  obj-$(CONFIG_VIDEO_BT856) +=3D bt856.o
+> > > > diff --git a/drivers/media/i2c/ar0144.c b/drivers/media/i2c/ar0144.=
+c
+> > > > new file mode 100644
+> > > > index 000000000000..b0e738a28de6
+> > > > --- /dev/null
+> > > > +++ b/drivers/media/i2c/ar0144.c
+> > > > @@ -0,0 +1,1826 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Copyright (C) 2024 Ideas on Board Oy
+> > > > + * Author: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > > + */
+> > > > +
+> > > > +/*
+> > > > + * Possible improvements:
+> > > > + *
+> > > > + * - Use grouped parameter hold to update controls atomically
+> > > > + * - Expose debug information through debugfs (FRAME_COUNT, FRAME_=
+STATUS, ...)
+> > > > + * - Make MIPI D-PHY timings configurable
+> > > > + * - Support the parallel interface
+> > > > + * - Expose additional controls (in particular the temperature sen=
+sor and the
+> > > > + *   on-chip black level correction)
+> > > > + */
+> > > > +
+> > > > +#include <linux/bitops.h>
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/device.h>
+> > > > +#include <linux/errno.h>
+> > > > +#include <linux/gpio/consumer.h>
+> > > > +#include <linux/i2c.h>
+> > > > +#include <linux/ktime.h>
+> > > > +#include <linux/log2.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/pm_runtime.h>
+> > > > +#include <linux/property.h>
+> > > > +#include <linux/regmap.h>
+> > > > +#include <linux/regulator/consumer.h>
+> > > > +#include <linux/types.h>
+> > > > +#include <linux/v4l2-mediabus.h>
+> > > > +
+> > > > +#include <media/mipi-csi2.h>
+> > > > +#include <media/v4l2-async.h>
+> > > > +#include <media/v4l2-cci.h>
+> > > > +#include <media/v4l2-ctrls.h>
+> > > > +#include <media/v4l2-fwnode.h>
+> > > > +#include <media/v4l2-subdev.h>
+> > > > +
+> > > > +#include "ccs-pll.h"
+> > > > +
+> > > > +#define AR0144_CHIP_VERSION_REG                                  C=
+CI_REG16(0x3000)
+> > > > +#define          AR0144_CHIP_VERSION                              =
+       0x0356
+> > >
+> > > Wouldn't one tab be enough?
+> >
+> > Do you mean
+> >
+> > #define AR0144_CHIP_VERSION_REG                                       C=
+CI_REG16(0x3000)
+> > #define AR0144_CHIP_VERSION                                   0x0356
+> >
+> > ? I can do that if you prefer. The additional indentation makes it
+> > clearer which macros define registers and which macros define register
+> > fields, but I'm also OK losing that distinction.
+>
+> Ok, either way works for me.
+>
+> >
+> > If you meant "#define\tAR0144_CHIP_VERSION", that won't work as
+> > "#define" is exactly 7 characters long.
+> >
+> > > > +#define AR0144_Y_ADDR_START                                      C=
+CI_REG16(0x3002)
+> > > > +#define AR0144_X_ADDR_START                                      C=
+CI_REG16(0x3004)
+> > > > +#define AR0144_Y_ADDR_END                                        C=
+CI_REG16(0x3006)
+> > > > +#define AR0144_X_ADDR_END                                        C=
+CI_REG16(0x3008)
+> > > > +#define AR0144_FRAME_LENGTH_LINES                                C=
+CI_REG16(0x300a)
+> > > > +#define          AR0144_MIN_FRAME_LENGTH_LINES                    =
+       29
+> > > > +#define          AR0144_MAX_FRAME_LENGTH_LINES                    =
+       65535
+> > > > +#define AR0144_LINE_LENGTH_PCK                                   C=
+CI_REG16(0x300c)
+> > > > +#define          AR0144_MIN_LINE_LENGTH_PCK                       =
+       1488
+> > > > +#define          AR0144_MAX_LINE_LENGTH_PCK                       =
+       65534
+> > > > +#define AR0144_REVISION_NUMBER                                   C=
+CI_REG16(0x300e)
+> > > > +#define          AR0144_REVISION_NUMBER_CREV(n)                   =
+       (((n) >> 12) & 0xf)
+> > > > +#define          AR0144_REVISION_NUMBER_SILICON(n)                =
+       (((n) >> 4) & 0xf)
+> > > > +#define          AR0144_REVISION_NUMBER_OTPM(n)                   =
+       (((n) >> 0) & 0xf)
+> > > > +#define AR0144_LOCK_CONTROL                                      C=
+CI_REG16(0x3010)
+> > > > +#define          AR0144_LOCK_CONTROL_VALUE                        =
+       0xbeef
+> > > > +#define AR0144_COARSE_INTEGRATION_TIME                           C=
+CI_REG16(0x3012)
+> > > > +#define AR0144_FINE_INTEGRATION_TIME                             C=
+CI_REG16(0x3014)
+> > > > +#define AR0144_COARSE_INTEGRATION_TIME_CB                        C=
+CI_REG16(0x3016)
+> > > > +#define AR0144_FINE_INTEGRATION_TIME_CB                          C=
+CI_REG16(0x3018)
+> > > > +#define AR0144_RESET_REGISTER                                    C=
+CI_REG16(0x301a)
+> > > > +#define          AR0144_GROUPED_PARAMETER_HOLD                    =
+       BIT(15)
+> > > > +#define          AR0144_SMIA_SERIALIZER_DIS                       =
+       BIT(12)
+> > > > +#define          AR0144_FORCED_PLL_ON                             =
+       BIT(11)
+> > > > +#define          AR0144_RESTART_BAD                               =
+       BIT(10)
+> > > > +#define          AR0144_MASK_BAD                                  =
+       BIT(9)
+> > > > +#define          AR0144_GPI_EN                                    =
+       BIT(8)
+> > > > +#define          AR0144_PARALLEL_EN                               =
+       BIT(7)
+> > > > +#define          AR0144_DRIVE_PINS                                =
+       BIT(6)
+> > > > +#define          AR0144_LOCK_REG                                  =
+       BIT(3)
+> > > > +#define          AR0144_STREAM                                    =
+       BIT(2)
+> > > > +#define          AR0144_RESTART                                   =
+       BIT(1)
+> > > > +#define          AR0144_RESET                                     =
+       BIT(0)
+> > > > +#define AR0144_MODE_SELECT                                       C=
+CI_REG8(0x301c)
+> > > > +#define          AR0144_MODE_STREAM                               =
+       BIT(0)
+> > > > +#define AR0144_IMAGE_ORIENTATION                         CCI_REG8(=
+0x301d)
+> > > > +#define          AR0144_ORIENTATION_VERT_FLIP                     =
+       BIT(1)
+> > > > +#define          AR0144_ORIENTATION_HORIZ_MIRROR                  =
+       BIT(0)
+> > > > +#define AR0144_DATA_PEDESTAL                                     C=
+CI_REG16(0x301e)
+> > > > +#define AR0144_SOFTWARE_RESET                                    C=
+CI_REG8(0x3021)
+> > > > +#define AR0144_GROUPED_PARAMETER_HOLD_                           C=
+CI_REG8(0x3022)
+> > > > +#define AR0144_MASK_CORRUPTED_FRAMES                             C=
+CI_REG8(0x3023)
+> > > > +#define AR0144_PIXEL_ORDER                                       C=
+CI_REG8(0x3024)
+> > > > +#define AR0144_GPI_STATUS                                        C=
+CI_REG16(0x3026)
+> > > > +#define          AR0144_TRIGGER                                   =
+       BIT(2)
+> > > > +#define          AR0144_OUTPUT_ENABLE_N                           =
+       BIT(1)
+> > > > +#define          AR0144_SADDR                                     =
+       BIT(0)
+> > > > +#define AR0144_ROW_SPEED                                 CCI_REG16=
+(0x3028)
+> > > > +#define          AR0144_ROW_SPEED_HALF_CLK                        =
+       BIT(4)
+> > > > +#define AR0144_VT_PIX_CLK_DIV                                    C=
+CI_REG16(0x302a)
+> > > > +#define AR0144_VT_SYS_CLK_DIV                                    C=
+CI_REG16(0x302c)
+> > > > +#define AR0144_PRE_PLL_CLK_DIV                                   C=
+CI_REG16(0x302e)
+> > > > +#define AR0144_PLL_MULTIPLIER                                    C=
+CI_REG16(0x3030)
+> > > > +#define AR0144_CTX_CONTROL_REG                                   C=
+CI_REG16(0x3034)
+> > > > +#define AR0144_OP_PIX_CLK_DIV                                    C=
+CI_REG16(0x3036)
+> > > > +#define AR0144_OP_SYS_CLK_DIV                                    C=
+CI_REG16(0x3038)
+> > > > +#define AR0144_FRAME_COUNT                                       C=
+CI_REG16(0x303a)
+> > > > +#define AR0144_FRAME_STATUS                                      C=
+CI_REG16(0x303c)
+> > > > +#define          AR0144_PLL_LOCKED                                =
+       BIT(3)
+> > > > +#define          AR0144_FRAME_START_DURING_GPH                    =
+       BIT(2)
+> > > > +#define          AR0144_STANDBY_STATUS                            =
+       BIT(1)
+> > > > +#define          AR0144_FRAMESYNC                                 =
+       BIT(0)
+> > > > +#define AR0144_LINE_LENGTH_PCK_CB                                C=
+CI_REG16(0x303e)
+> > > > +#define AR0144_READ_MODE                                 CCI_REG16=
+(0x3040)
+> > > > +#define          AR0144_VERT_FLIP                                 =
+       BIT(15)
+> > > > +#define          AR0144_HORIZ_MIRROR                              =
+       BIT(14)
+> > > > +#define          AR0144_READ_MODE_COL_BIN                         =
+       BIT(13)
+> > > > +#define          AR0144_READ_MODE_ROW_BIN                         =
+       BIT(12)
+> > > > +#define          AR0144_READ_MODE_COL_BIN_CB                      =
+       BIT(11)
+> > > > +#define          AR0144_READ_MODE_ROW_BIN_CB                      =
+       BIT(10)
+> > > > +#define          AR0144_READ_MODE_COL_SF_BIN_EN                   =
+       BIT(9)
+> > > > +#define          AR0144_READ_MODE_COL_SF_BIN_EN_CB                =
+       BIT(8)
+> > > > +#define          AR0144_READ_MODE_COL_SF_BIN_MONO_EN              =
+       BIT(7)
+> > > > +#define          AR0144_READ_MODE_COL_SF_BIN_MONO_EN_CB           =
+       BIT(6)
+> > > > +#define          AR0144_READ_MODE_COL_SUM                         =
+       BIT(5)
+> > > > +#define AR0144_EXTRA_DELAY                                       C=
+CI_REG16(0x3042)
+> > > > +#define AR0144_GREEN1_GAIN                                       C=
+CI_REG16(0x3056)
+> > > > +#define AR0144_BLUE_GAIN                                 CCI_REG16=
+(0x3058)
+> > > > +#define AR0144_RED_GAIN                                          C=
+CI_REG16(0x305a)
+> > > > +#define AR0144_GREEN2_GAIN                                       C=
+CI_REG16(0x305c)
+> > > > +#define AR0144_GLOBAL_GAIN                                       C=
+CI_REG16(0x305e)
+> > > > +#define AR0144_ANALOG_GAIN                                       C=
+CI_REG16(0x3060)
+> > > > +#define          AR0144_COARSE_GAIN_CB(n)                         =
+       ((n) << 12)
+> > > > +#define          AR0144_FINE_GAIN_CB(n)                           =
+       ((n) << 8)
+> > > > +#define          AR0144_COARSE_GAIN(n)                            =
+       ((n) << 4)
+> > > > +#define          AR0144_FINE_GAIN(n)                              =
+       ((n) << 0)
+> > > > +#define AR0144_SMIA_TEST                                 CCI_REG16=
+(0x3064)
+> > > > +#define          AR0144_EMBEDDED_DATA                             =
+       BIT(8)
+> > > > +#define          AR0144_STATS_EN                                  =
+       BIT(7)
+> > > > +#define AR0144_CTX_WR_DATA_REG                                   C=
+CI_REG16(0x3066)
+> > > > +#define AR0144_CTX_RD_DATA_REG                                   C=
+CI_REG16(0x3068)
+> > > > +#define AR0144_DATAPATH_SELECT                                   C=
+CI_REG16(0x306e)
+> > > > +#define          AR0144_SLEW_RATE_CTRL_PARALLEL(n)                =
+       (((n) & 7) << 13)
+> > > > +#define          AR0144_SLEW_RATE_CTRL_PARALLEL_MASK              =
+       GENMASK(15, 13)
+> > > > +#define          AR0144_SLEW_RATE_CTRL_PIXCLK(n)                  =
+       (((n) & 7) << 10)
+> > > > +#define          AR0144_SLOW_RATE_CTRL_PIXCLK_MASK                =
+       GENMASK(12, 10)
+> > > > +#define          AR0144_SPECIAL_LINE_VALID_NORMAL                 =
+       (0U << 0)
+> > > > +#define          AR0144_SPECIAL_LINE_VALID_CONTINUOUS             =
+       (1U << 0)
+> > > > +#define          AR0144_SPECIAL_LINE_VALID_CONTINUOUS_XOR         =
+       (2U << 0)
+> > > > +#define AR0144_TEST_PATTERN_MODE                         CCI_REG16=
+(0x3070)
+> > > > +#define          AR0144_TEST_PATTERN_NONE                         =
+       0
+> > > > +#define          AR0144_TEST_PATTERN_SOLID                        =
+       1
+> > > > +#define          AR0144_TEST_PATTERN_BARS                         =
+       2
+> > > > +#define          AR0144_TEST_PATTERN_BARS_FADE                    =
+       3
+> > > > +#define          AR0144_TEST_PATTERN_WALKING_1S                   =
+       256
+> > > > +#define AR0144_TEST_DATA_RED                                     C=
+CI_REG16(0x3072)
+> > > > +#define AR0144_TEST_DATA_GREENR                                  C=
+CI_REG16(0x3074)
+> > > > +#define AR0144_TEST_DATA_BLUE                                    C=
+CI_REG16(0x3076)
+> > > > +#define AR0144_TEST_DATA_GREENB                                  C=
+CI_REG16(0x3078)
+> > > > +#define AR0144_OPERATION_MODE_CTRL                               C=
+CI_REG16(0x3082)
+> > > > +#define AR0144_OPERATION_MODE_CTRL_CB                            C=
+CI_REG16(0x3084)
+> > > > +#define AR0144_SEQ_DATA_PORT                                     C=
+CI_REG16(0x3086)
+> > > > +#define AR0144_SEQ_CTRL_PORT                                     C=
+CI_REG16(0x3088)
+> > > > +#define          AR0144_SEQUENCER_STOPPED                         =
+       BIT(15)
+> > > > +#define          AR0144_AUTO_INC_ON_READ                          =
+       BIT(14)
+> > > > +#define          AR0144_ACCESS_ADDRESS(n)                         =
+       ((n) & 0x3ff)
+> > > > +#define AR0144_X_ADDR_START_CB                                   C=
+CI_REG16(0x308a)
+> > > > +#define AR0144_Y_ADDR_START_CB                                   C=
+CI_REG16(0x308c)
+> > > > +#define AR0144_X_ADDR_END_CB                                     C=
+CI_REG16(0x308e)
+> > > > +#define AR0144_Y_ADDR_END_CB                                     C=
+CI_REG16(0x3090)
+> > > > +#define AR0144_X_EVEN_INC                                        C=
+CI_REG16(0x30a0)
+> > > > +#define AR0144_X_ODD_INC                                 CCI_REG16=
+(0x30a2)
+> > > > +#define          AR0144_X_ODD_INC_SKIP(n)                         =
+       (((n) << 1) - 1)
+> > > > +#define AR0144_Y_EVEN_INC                                        C=
+CI_REG16(0x30a4)
+> > > > +#define AR0144_Y_ODD_INC                                 CCI_REG16=
+(0x30a6)
+> > > > +#define          AR0144_Y_ODD_INC_SKIP(n)                         =
+       (((n) << 1) - 1)
+> > > > +#define AR0144_Y_ODD_INC_CB                                      C=
+CI_REG16(0x30a8)
+> > > > +#define AR0144_FRAME_LINE_LENGTH_CB                              C=
+CI_REG16(0x30aa)
+> > > > +#define AR0144_X_ODD_INC_CB                                      C=
+CI_REG16(0x30ae)
+> > > > +#define AR0144_DIGITAL_TEST                                      C=
+CI_REG16(0x30b0)
+> > > > +#define          AR0144_PLL_COMPLETE_BYPASS                       =
+       BIT(14)
+> > > > +#define          AR0144_PIXCLK_ON                                 =
+       BIT(8)
+> > > > +#define          AR0144_MONO_CHROME_OPERATION                     =
+       BIT(7)
+> > > > +#define AR0144_TEMPSENS_DATA_REG                         CCI_REG16=
+(0x30b2)
+> > > > +#define AR0144_TEMPSENS_CTRL_REG                         CCI_REG16=
+(0x30b4)
+> > > > +#define          AR0144_RETRIGGER_THRESHOLD(n)                    =
+       ((n) << 6)
+> > > > +#define          AR0144_RETRIGGER_THRESHOLD_MASK                  =
+       GENMASK(15, 6)
+> > > > +#define          AR0144_TEMP_CLEAR_VALUE                          =
+       BIT(5)
+> > > > +#define          AR0144_TEMP_START_CONVERSION                     =
+       BIT(4)
+> > > > +#define          AR0144_TEMPSENS_POWER_ON                         =
+       BIT(0)
+> > > > +#define AR0144_GREEN1_GAIN_CB                                    C=
+CI_REG16(0x30bc)
+> > > > +#define AR0144_BLUE_GAIN_CB                                      C=
+CI_REG16(0x30be)
+> > > > +#define AR0144_RED_GAIN_CB                                       C=
+CI_REG16(0x30c0)
+> > > > +#define AR0144_GREEN2_GAIN_CB                                    C=
+CI_REG16(0x30c2)
+> > > > +#define AR0144_GLOBAL_GAIN_CB                                    C=
+CI_REG16(0x30c4)
+> > > > +#define AR0144_TEMPSENS_CALIB1                                   C=
+CI_REG16(0x30c6)
+> > > > +#define AR0144_TEMPSENS_CALIB2                                   C=
+CI_REG16(0x30c8)
+> > > > +#define AR0144_GRR_CONTROL1                                      C=
+CI_REG16(0x30ce)
+> > > > +#define AR0144_NOISE_PEDESTAL                                    C=
+CI_REG16(0x30fe)
+> > > > +#define AR0144_AECTRLREG                                 CCI_REG16=
+(0x3100)
+> > > > +#define          AR0144_MIN_ANA_GAIN(n)                           =
+       ((n) << 5)
+> > > > +#define          AR0144_MIN_ANA_GAIN_MASK                         =
+       GENMASK(6, 5)
+> > > > +#define          AR0144_AUTO_DG_EN                                =
+       BIT(4)
+> > > > +#define          AR0144_AUTO_AG_EN                                =
+       BIT(1)
+> > > > +#define          AR0144_AE_ENABLE                                 =
+       BIT(0)
+> > > > +#define AR0144_AE_LUMA_TARGET_REG                                C=
+CI_REG16(0x3102)
+> > > > +#define AR0144_AE_MIN_EV_STEP_REG                                C=
+CI_REG16(0x3108)
+> > > > +#define AR0144_AE_MAX_EV_STEP_REG                                C=
+CI_REG16(0x310a)
+> > > > +#define AR0144_AE_DAMP_OFFSET_REG                                C=
+CI_REG16(0x310c)
+> > > > +#define AR0144_AE_DAMP_GAIN_REG                                  C=
+CI_REG16(0x310e)
+> > > > +#define AR0144_AE_DAMP_MAX_REG                                   C=
+CI_REG16(0x3110)
+> > > > +#define AR0144_AE_MAX_EXPOSURE_REG                               C=
+CI_REG16(0x311c)
+> > > > +#define AR0144_AE_MIN_EXPOSURE_REG                               C=
+CI_REG16(0x311e)
+> > > > +#define AR0144_AE_COARSE_INTEGRATION_TIME                        C=
+CI_REG16(0x3164)
+> > > > +#define AR0144_DELTA_DK_CONTROL                                  C=
+CI_REG16(0x3180)
+> > > > +#define          AR0144_DELTA_DK_SUB_EN                           =
+       BIT(15)
+> > > > +#define          AR0144_DELTA_DK_EVERY_FRAME                      =
+       BIT(14)
+> > > > +#define          AR0144_DELTA_DK_RECALC                           =
+       BIT(13)
+> > > > +#define          AR0144_DELTA_DK_GRADIENT_REMOVAL                 =
+       BIT(10)
+> > > > +#define AR0144_DATA_FORMAT_BITS                                  C=
+CI_REG16(0x31ac)
+> > > > +#define          AR0144_DATA_FORMAT_IN(n)                         =
+       ((n) << 8)
+> > > > +#define          AR0144_DATA_FORMAT_OUT(n)                        =
+       ((n) << 0)
+> > > > +#define AR0144_SERIAL_FORMAT                                     C=
+CI_REG16(0x31ae)
+> > > > +#define          AR0144_NUM_LANES(n)                              =
+       (n)
+> > > > +#define          AR0144_NUM_LANES_MASK                            =
+       GENMASK(1, 0)
+> > > > +#define AR0144_FRAME_PREAMBLE                                    C=
+CI_REG16(0x31b0)
+> > > > +#define AR0144_LINE_PREAMBLE                                     C=
+CI_REG16(0x31b2)
+> > > > +#define AR0144_MIPI_TIMING_0                                     C=
+CI_REG16(0x31b4)
+> > > > +#define          AR0144_T_HS_PREPARE(n)                           =
+       ((n) << 12)
+> > > > +#define          AR0144_T_HS_ZERO(n)                              =
+       ((n) << 8)
+> > > > +#define          AR0144_T_HS_TRAIL(n)                             =
+       ((n) << 4)
+> > > > +#define          AR0144_T_CLK_TRAIL(n)                            =
+       ((n) << 0)
+> > > > +#define AR0144_MIPI_TIMING_1                                     C=
+CI_REG16(0x31b6)
+> > > > +#define          AR0144_T_CLK_PREPARE(n)                          =
+       ((n) << 12)
+> > > > +#define          AR0144_T_HS_EXIT(n)                              =
+       ((n) << 6)
+> > > > +#define          AR0144_T_CLK_ZERO(n)                             =
+       ((n) << 0)
+> > > > +#define AR0144_MIPI_TIMING_2                                     C=
+CI_REG16(0x31b8)
+> > > > +#define          AR0144_T_BGAP(n)                                 =
+       ((n) << 12)
+> > > > +#define          AR0144_T_CLK_PRE(n)                              =
+       ((n) << 6)
+> > > > +#define          AR0144_T_CLK_POST(n)                             =
+       ((n) << 0)
+> > > > +#define AR0144_MIPI_TIMING_3                                     C=
+CI_REG16(0x31ba)
+> > > > +#define          AR0144_T_LPX(n)                                  =
+       ((n) << 7)
+> > > > +#define          AR0144_T_WAKE_UP(n)                              =
+       ((n) << 0)
+> > > > +#define AR0144_MIPI_TIMING_4                                     C=
+CI_REG16(0x31bc)
+> > > > +#define          AR0144_CONT_TX_CLK                               =
+       BIT(15)
+> > > > +#define          AR0144_HEAVY_LP_LOAD                             =
+       BIT(14)
+> > > > +#define          AR0144_T_INIT(n)                                 =
+       ((n) << 0)
+> > > > +#define AR0144_SERIAL_CONFIG_STATUS                              C=
+CI_REG16(0x31be)
+> > > > +#define AR0144_SERIAL_CONTROL_STATUS                             C=
+CI_REG16(0x31c6)
+> > > > +#define          AR0144_FRAMER_TEST_MODE                          =
+       BIT(7)
+> > > > +#define AR0144_SERIAL_CRC_0                                      C=
+CI_REG16(0x31c8)
+> > > > +#define AR0144_COMPANDING                                        C=
+CI_REG16(0x31d0)
+> > > > +#define          AR0144_COMPAND_EN                                =
+       BIT(0)
+> > > > +#define AR0144_STAT_FRAME_ID                                     C=
+CI_REG16(0x31d2)
+> > > > +#define AR0144_I2C_WRT_CHEKCSUM                                  C=
+CI_REG16(0x31d6)
+> > > > +#define AR0144_SERIAL_TEST                                       C=
+CI_REG16(0x31d8)
+> > > > +#define          AR0144_TEST_LANE_EN(n)                           =
+       ((n) << 8)
+> > > > +#define          AR0144_TEST_LANE_EN_MASK                         =
+       GENMASK(11, 8)
+> > > > +#define          AR0144_TEST_MODE_LP00                            =
+       (0 << 4)
+> > > > +#define          AR0144_TEST_MODE_LP11                            =
+       (1 << 4)
+> > > > +#define          AR0144_TEST_MODE_HS0                             =
+       (2 << 4)
+> > > > +#define          AR0144_TEST_MODE_HS1                             =
+       (3 << 4)
+> > > > +#define          AR0144_TEST_MODE_SQUARE_HALF                     =
+       (4 << 4)
+> > > > +#define          AR0144_TEST_MODE_SQUARE_FULL                     =
+       (5 << 4)
+> > > > +#define          AR0144_TEST_MODE_SQUARE_LP                       =
+       (6 << 4)
+> > > > +#define          AR0144_TEST_MODE_PRBS31                          =
+       (7 << 4)
+> > > > +#define          AR0144_TEST_MODE_PRBS9                           =
+       (8 << 4)
+> > > > +#define          AR0144_TEST_MODE_MASK                            =
+       GENMASK(7, 0)
+> > > > +#define AR0144_PIX_DEF_1D                                        C=
+CI_REG16(0x31e0)
+> > > > +#define          AR0144_PIX_DEF_1D_DDC_EN                         =
+       BIT(3)
+> > > > +#define          AR0144_PIX_DEF_CORRECTION_MODE                   =
+       BIT(1)
+> > > > +#define          AR0144_PIX_DEF_ENABLE                            =
+       BIT(0)
+> > > > +#define AR0144_HORIZONTAL_CURSOR_POSITION                        C=
+CI_REG16(0x31e8)
+> > > > +#define AR0144_VERTICAL_CURSOR_POSITION                          C=
+CI_REG16(0x31ea)
+> > > > +#define AR0144_HORIZONTAL_CURSOR_WIDTH                           C=
+CI_REG16(0x31ec)
+> > > > +#define AR0144_VERTICAL_CURSOR_WIDTH                             C=
+CI_REG16(0x31ee)
+> > > > +#define AR0144_CCI_IDS                                           C=
+CI_REG16(0x31fc)
+> > > > +#define AR0144_CUSTOMER_REV                                      C=
+CI_REG16(0x31fe)
+> > > > +#define          AR0144_CUSTOMER_REV_CRA(n)                       =
+       (((n) & GENMASK(9, 7)) >> 7)
+> > > > +#define          AR0144_CUSTOMER_REV_CFA(n)                       =
+       (((n) & GENMASK(6, 4)) >> 4)
+> > > > +#define          AR0144_CUSTOMER_REV_CFA_COLOR                    =
+       1
+> > > > +#define          AR0144_CUSTOMER_REV_CFA_MONO                     =
+       2
+> > > > +#define AR0144_LED_FLASH_CONTROL                         CCI_REG16=
+(0x3270)
+> > > > +#define          AR0144_LED_FLASH_EN                              =
+       BIT(8)
+> > > > +#define          AR0144_LED_DELAY(n)                              =
+       ((n) << 0)
+> > > > +#define          AR0144_LED_DELAY_MASK                            =
+       GENMASK(7, 0)
+> > > > +#define AR0144_MIPI_TEST_CNTRL                                   C=
+CI_REG16(0x3338)
+> > > > +#define AR0144_MIPI_COMPRESS_8_DATA_TYPE                 CCI_REG16=
+(0x333a)
+> > > > +#define AR0144_MIPI_COMPRESS_7_DATA_TYPE                 CCI_REG16=
+(0x333c)
+> > > > +#define AR0144_MIPI_COMPRESS_6_DATA_TYPE                 CCI_REG16=
+(0x333e)
+> > > > +#define AR0144_MIPI_JPEG_PN9_DATA_TYPE                           C=
+CI_REG16(0x3340)
+> > > > +#define AR0144_MIPI_CNTRL                                        C=
+CI_REG16(0x3354)
+> > > > +#define          AR0144_CHAN_NUM(n)                               =
+       ((n) << 6)
+> > > > +#define          AR0144_DATA_TYPE_XMIT(n)                         =
+       ((n) << 0)
+> > > > +#define AR0144_MIPI_TEST_PATTERN_CNTRL                           C=
+CI_REG16(0x3356)
+> > > > +#define AR0144_MIPI_TEST_PATTERN_STATUS                          C=
+CI_REG16(0x3358)
+> > > > +#define AR0144_DIGITAL_CTRL_1                                    C=
+CI_REG16(0x3786)
+> > > > +#define          AR0144_LSB_ALIGN_PARA_OUT                        =
+       BIT(5)
+> > > > +#define          AR0144_USE_1FRAME_SYNCED                         =
+       BIT(4)
+> > > > +#define          AR0144_PLL_TEST_MODE                             =
+       BIT(3)
+> > > > +#define          AR0144_DRIVE_PIX_CLK                             =
+       BIT(0)
+> > > > +
+> > > > +#define AR0144_MIN_CSI2_LINK_FREQ                150000000U
+> > > > +#define AR0144_MAX_CSI2_LINK_FREQ                384000000U
+> > > > +
+> > > > +/*
+> > > > + * The pixel array contains 1300x820 optically transparent pixels,=
+ with 6 dummy
+> > > > + * pixels on each side that can't be read out. The active size is =
+1288x808.
+> > > > + */
+> > > > +#define AR0144_PIXEL_ARRAY_WIDTH         1300U
+> > > > +#define AR0144_PIXEL_ARRAY_HEIGHT                820U
+> > > > +#define AR0144_PIXEL_ARRAY_ACTIVE_LEFT           6U
+> > > > +#define AR0144_PIXEL_ARRAY_ACTIVE_TOP            6U
+> > > > +#define AR0144_PIXEL_ARRAY_ACTIVE_WIDTH          1288U
+> > > > +#define AR0144_PIXEL_ARRAY_ACTIVE_HEIGHT 808U
+> > > > +
+> > > > +/*
+> > > > + * Documentation indicates minimum horizontal and vertical blankin=
+g of 208
+> > > > + * pixels and 27 lines respectively, which matches the default val=
+ues for the
+> > > > + * LINE_LENGTH_PCK and FRAME_LENGTH_LINES registers. Out-of-tree d=
+rivers are
+> > > > + * known to successfully use 22 or 25 lines of vertical blanking. =
+This is
+> > > > + * likely related to the fact that the total number of rows per fr=
+ame is equal
+> > > > + * to FRAME_LENGTH_LINES plus a 5 lines overhead, as indicated in =
+at least one
+> > > > + * place in the documentation.
+> > > > + */
+> > > > +#define AR0144_MIN_HBLANK                        208U
+> > > > +#define AR0144_MIN_VBLANK                        27U
+> > > > +
+> > > > +#define AR0144_FRAME_LENGTH_OVERHEAD             5U
+> > > > +
+> > > > +/* The minimum values are not documented, pick reasonable minimums=
+. */
+> > > > +#define AR0144_MIN_WIDTH                 32U
+> > > > +#define AR0144_MIN_HEIGHT                        32U
+> > > > +#define AR0144_DEF_WIDTH                 1280U
+> > > > +#define AR0144_DEF_HEIGHT                        800U
+> > > > +
+> > > > +#define AR0144_NUM_SUPPLIES                      3
+> > >
+> > > Please use ARRAY_SIZE() macro where you need it.
+> >
+> > I can move
+> >
+> > static const char * const ar0144_supply_name[] =3D {
+> >       "vaa",
+> >       "vdd_io",
+> >       "vdd",
+> > };
+> >
+> > here, and use
+> >
+> > struct ar0144 {
+> >       ...
+> >       struct regulator_bulk_data supplies[ARRAY_SIZE(ar0144_supply_name=
+)];
+> >       ...
+> > };
+> >
+> > below. Is that what you would prefer ? The macro isn't used anywhere
+> > else, all other locations use ARRAY_SIZE already.
+>
+> Please.
+>
+> >
+> > > > +
+> > > > +struct ar0144_model {
+> > > > + bool mono;
+> > > > +};
+> > > > +
+> > > > +struct ar0144_format_info {
+> > > > + u32 colour;
+> > > > + u32 mono;
+> > > > + u16 bpp;
+> > > > + u16 dt;
+> > > > +};
+> > > > +
+> > > > +static const struct ar0144_model ar0144_model_color =3D {
+> > > > + .mono =3D false,
+> > > > +};
+> > > > +
+> > > > +static const struct ar0144_model ar0144_model_mono =3D {
+> > > > + .mono =3D true,
+> > > > +};
+> > > > +
+> > > > +static const struct ar0144_format_info ar0144_formats[] =3D {
+> > > > + {
+> > > > +         .colour =3D MEDIA_BUS_FMT_SGRBG12_1X12,
+> > > > +         .mono =3D MEDIA_BUS_FMT_Y12_1X12,
+> > > > +         .bpp =3D 12,
+> > > > +         .dt =3D MIPI_CSI2_DT_RAW12,
+> > > > + }, {
+> > > > +         .colour =3D MEDIA_BUS_FMT_SGRBG10_1X10,
+> > > > +         .mono =3D MEDIA_BUS_FMT_Y10_1X10,
+> > > > +         .bpp =3D 10,
+> > > > +         .dt =3D MIPI_CSI2_DT_RAW10,
+> > > > + }, {
+> > > > +         .colour =3D MEDIA_BUS_FMT_SGRBG8_1X8,
+> > > > +         .mono =3D MEDIA_BUS_FMT_Y8_1X8,
+> > > > +         .bpp =3D 8,
+> > > > +         .dt =3D MIPI_CSI2_DT_RAW8,
+> > > > + },
+> > > > +};
+> > > > +
+> > > > +struct ar0144 {
+> > > > + struct device *dev;
+> > > > +
+> > > > + struct regmap *regmap;
+> > > > + struct clk *clk;
+> > > > + struct gpio_desc *reset;
+> > > > + struct regulator_bulk_data supplies[AR0144_NUM_SUPPLIES];
+> > > > +
+> > > > + ktime_t off_time;
+> > > > +
+> > > > + struct ccs_pll pll;
+> > > > +
+> > > > + struct v4l2_fwnode_endpoint bus_cfg;
+> > > > + u64 valid_link_freqs[ARRAY_SIZE(ar0144_formats)];
+> > > > + u32 valid_formats;
+> > > > +
+> > > > + struct v4l2_subdev sd;
+> > > > + struct media_pad pad;
+> > > > +
+> > > > + const struct ar0144_model *model;
+> > > > +
+> > > > + struct v4l2_ctrl_handler ctrls;
+> > > > + struct v4l2_ctrl *pixel_rate;
+> > > > + struct v4l2_ctrl *link_freq;
+> > > > + struct v4l2_ctrl *hblank;
+> > > > + struct v4l2_ctrl *vblank;
+> > > > + struct v4l2_ctrl *exposure;
+> > > > + struct v4l2_ctrl *test_data[4];
+> > > > + struct {
+> > > > +         struct v4l2_ctrl *hflip;
+> > > > +         struct v4l2_ctrl *vflip;
+> > > > + };
+> > > > +};
+> > > > +
+> > > > +static inline struct ar0144 *to_ar0144(struct v4l2_subdev *sd)
+> > > > +{
+> > > > + return container_of(sd, struct ar0144, sd);
+> > > > +}
+> > > > +
+> > > > +static u32 ar0144_format_code(struct ar0144 *sensor,
+> > > > +                       const struct ar0144_format_info *info)
+> > > > +{
+> > > > + return sensor->model->mono ? info->mono : info->colour;
+> > > > +}
+> > > > +
+> > > > +static const struct ar0144_format_info *
+> > > > +ar0144_format_info(struct ar0144 *sensor, u32 code, bool use_def)
+> > > > +{
+> > > > + const struct ar0144_format_info *def =3D NULL;
+> > > > + unsigned int i;
+> > > > +
+> > > > + for (i =3D 0; i < ARRAY_SIZE(ar0144_formats); ++i) {
+> > > > +         const struct ar0144_format_info *info =3D &ar0144_formats=
+[i];
+> > > > +         u32 info_code =3D ar0144_format_code(sensor, info);
+> > > > +
+> > > > +         if (!(sensor->valid_formats & BIT(i)))
+> > > > +                 continue;
+> > > > +
+> > > > +         if (info_code =3D=3D code)
+> > > > +                 return info;
+> > > > +
+> > > > +         if (!def)
+> > > > +                 def =3D info;
+> > > > + }
+> > > > +
+> > > > + return use_def ? def : NULL;
+> > > > +}
+> > > > +
+> > > > +/* ---------------------------------------------------------------=
+--------------
+> > > > + * Hardware configuration
+> > > > + */
+> > > > +
+> > > > +static int ar0144_configure_pll(struct ar0144 *sensor)
+> > > > +{
+> > > > + int ret =3D 0;
+> > > > +
+> > > > + cci_write(sensor->regmap, AR0144_PRE_PLL_CLK_DIV,
+> > > > +           sensor->pll.vt_fr.pre_pll_clk_div, &ret);
+> > > > + cci_write(sensor->regmap, AR0144_PLL_MULTIPLIER,
+> > > > +           sensor->pll.vt_fr.pll_multiplier, &ret);
+> > > > + cci_write(sensor->regmap, AR0144_VT_PIX_CLK_DIV,
+> > > > +           sensor->pll.vt_bk.pix_clk_div, &ret);
+> > > > + cci_write(sensor->regmap, AR0144_VT_SYS_CLK_DIV,
+> > > > +           sensor->pll.vt_bk.sys_clk_div, &ret);
+> > > > + cci_write(sensor->regmap, AR0144_OP_PIX_CLK_DIV,
+> > > > +           sensor->pll.op_bk.pix_clk_div, &ret);
+> > > > + cci_write(sensor->regmap, AR0144_OP_SYS_CLK_DIV,
+> > > > +           sensor->pll.op_bk.sys_clk_div, &ret);
+> > > > +
+> > > > + /* Wait 1ms for the PLL to lock. */
+> > > > + fsleep(1000);
+> > > > +
+> > > > + return ret;
+> > > > +}
+> > > > +
+> > > > +static int ar0144_configure_mipi(struct ar0144 *sensor,
+> > > > +                          const struct ar0144_format_info *info)
+> > > > +{
+> > > > + unsigned int num_lanes =3D sensor->bus_cfg.bus.mipi_csi2.num_data=
+_lanes;
+> > > > + bool cont_clk =3D !(sensor->bus_cfg.bus.mipi_csi2.flags &
+> > > > +                   V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK);
+> > > > + int ret =3D 0;
+> > > > +
+> > > > + cci_write(sensor->regmap, AR0144_SERIAL_FORMAT, num_lanes | 0x020=
+0,
+> > >
+> > > What's 0x0200 for? It'd be nice to get a human-readable name for it.
+> >
+> > I don't know. This comes from register lists, and I don't have any
+> > documentation for this bit. Same for the two other locations below. I
+> > decided to keep them as magic constants because that's what they are,
+> > defining
+> >
+> > #define AR0144_SERIAL_FORMAT_MAGIC_CONSTANT   0x0200
+> >
+> > doesn't really help much in my opinion. Keeping the magic constant in
+> > the code is actually a reminder that we should try to investigate it an=
+d
+> > understand what the bit does.
+> >
+> > Can I keep it as-is ?
+>
+> Ack. A comment explaining this in a single location would be nice.
 
-Remove duplicate pin configurations from target-specific file as same pin
-configuration is included in the SoC device tree.
+Docs I have (AND9322-D) for register 0x31ae say
+"The upper byte of this register (interface type) is read-only"
+It doesn't say whether it mirrors the lower byte or does something
+else though, and I've not tried poking.
 
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
-v1 -> v2:
+I can't help on the other instances - my docs just list those bits as reser=
+ved.
 
-- Drop drive-strength and bias property from soc dtsi.
-- Update commit log.
-
-v1 Link: https://lore.kernel.org/lkml/20250225154136.3052757-1-quic_vdadhani@quicinc.com/
----
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |   7 -
- arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 750 +++++++++++++++++++++
- 2 files changed, 750 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 967913169539..17c3f662d14b 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -712,11 +712,6 @@ ethernet0_mdio: ethernet0-mdio-pins {
- 		};
- 	};
- 
--	qup_uart10_default: qup-uart10-state {
--		pins = "gpio46", "gpio47";
--		function = "qup1_se3";
--	};
--
- 	qup_spi16_default: qup-spi16-state {
- 		pins = "gpio86", "gpio87", "gpio88", "gpio89";
- 		function = "qup2_se2";
-@@ -917,8 +912,6 @@ &remoteproc_gpdsp1 {
- 
- &uart10 {
- 	compatible = "qcom,geni-debug-uart";
--	pinctrl-0 = <&qup_uart10_default>;
--	pinctrl-names = "default";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index a904960359d7..3945a2c6b7f2 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -913,6 +913,8 @@ i2c14: i2c@880000 {
- 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c14_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -938,6 +940,8 @@ spi14: spi@880000 {
- 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi14_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -961,6 +965,8 @@ uart14: serial@880000 {
- 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart14_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -978,6 +984,8 @@ i2c15: i2c@884000 {
- 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c15_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1003,6 +1011,8 @@ spi15: spi@884000 {
- 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi15_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1026,6 +1036,8 @@ uart15: serial@884000 {
- 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart15_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1043,6 +1055,8 @@ i2c16: i2c@888000 {
- 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c16_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1066,6 +1080,8 @@ spi16: spi@888000 {
- 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi16_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1091,6 +1107,8 @@ uart16: serial@888000 {
- 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart16_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1108,6 +1126,8 @@ i2c17: i2c@88c000 {
- 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c17_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1133,6 +1153,8 @@ spi17: spi@88c000 {
- 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi17_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1156,6 +1178,8 @@ uart17: serial@88c000 {
- 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart17_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1171,6 +1195,8 @@ i2c18: i2c@890000 {
- 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c18_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1198,6 +1224,8 @@ spi18: spi@890000 {
- 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi18_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1221,6 +1249,8 @@ uart18: serial@890000 {
- 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart18_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1238,6 +1268,8 @@ i2c19: i2c@894000 {
- 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c19_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1263,6 +1295,8 @@ spi19: spi@894000 {
- 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi19_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1286,6 +1320,8 @@ uart19: serial@894000 {
- 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart19_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1303,6 +1339,8 @@ i2c20: i2c@898000 {
- 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c20_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1328,6 +1366,8 @@ spi20: spi@898000 {
- 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi20_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1351,6 +1391,8 @@ uart20: serial@898000 {
- 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart20_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1404,6 +1446,8 @@ i2c0: i2c@980000 {
- 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c0_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1429,6 +1473,8 @@ spi0: spi@980000 {
- 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi0_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1452,6 +1498,8 @@ uart0: serial@980000 {
- 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart0_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1469,6 +1517,8 @@ i2c1: i2c@984000 {
- 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c1_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1494,6 +1544,8 @@ spi1: spi@984000 {
- 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi1_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1517,6 +1569,8 @@ uart1: serial@984000 {
- 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart1_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1534,6 +1588,8 @@ i2c2: i2c@988000 {
- 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c2_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1559,6 +1615,8 @@ spi2: spi@988000 {
- 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi2_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1582,6 +1640,8 @@ uart2: serial@988000 {
- 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart2_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1599,6 +1659,8 @@ i2c3: i2c@98c000 {
- 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c3_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1624,6 +1686,8 @@ spi3: spi@98c000 {
- 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi3_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1647,6 +1711,8 @@ uart3: serial@98c000 {
- 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart3_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1664,6 +1730,8 @@ i2c4: i2c@990000 {
- 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c4_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1689,6 +1757,8 @@ spi4: spi@990000 {
- 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi4_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1712,6 +1782,8 @@ uart4: serial@990000 {
- 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart4_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1729,6 +1801,8 @@ i2c5: i2c@994000 {
- 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c5_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1754,6 +1828,8 @@ spi5: spi@994000 {
- 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi5_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1777,6 +1853,8 @@ uart5: serial@994000 {
- 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart5_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1829,6 +1907,8 @@ i2c7: i2c@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c7_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1854,6 +1934,8 @@ spi7: spi@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi7_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1877,6 +1959,8 @@ uart7: serial@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				clock-names = "se";
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				pinctrl-0 = <&qup_uart7_default>;
-+				pinctrl-names = "default";
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-@@ -1895,6 +1979,8 @@ i2c8: i2c@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c8_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1920,6 +2006,8 @@ spi8: spi@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi8_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1943,6 +2031,8 @@ uart8: serial@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				clock-names = "se";
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-+				pinctrl-0 = <&qup_uart8_default>;
-+				pinctrl-names = "default";
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-@@ -1961,6 +2051,8 @@ i2c9: i2c@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c9_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -1986,6 +2078,8 @@ spi9: spi@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi9_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2009,6 +2103,8 @@ uart9: serial@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart9_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2026,6 +2122,8 @@ i2c10: i2c@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c10_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2051,6 +2149,8 @@ spi10: spi@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi10_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2074,6 +2174,8 @@ uart10: serial@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				clock-names = "se";
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
-+				pinctrl-0 = <&qup_uart10_default>;
-+				pinctrl-names = "default";
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 0
- 						 &clk_virt SLAVE_QUP_CORE_1 0>,
-@@ -2092,6 +2194,8 @@ i2c11: i2c@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c11_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2117,6 +2221,8 @@ spi11: spi@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi11_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2140,6 +2246,8 @@ uart11: serial@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				clock-names = "se";
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-+				pinctrl-0 = <&qup_uart11_default>;
-+				pinctrl-names = "default";
- 				interconnect-names = "qup-core", "qup-config";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
-@@ -2158,6 +2266,8 @@ i2c12: i2c@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c12_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2183,6 +2293,8 @@ spi12: spi@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi12_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2206,6 +2318,8 @@ uart12: serial@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_uart12_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2223,6 +2337,8 @@ i2c13: i2c@a98000 {
- 				interrupts = <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c13_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2276,6 +2392,8 @@ i2c21: i2c@b80000 {
- 				interrupts = <GIC_SPI 831 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_i2c21_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
- 						&clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
- 					   <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2301,6 +2419,8 @@ spi21: spi@b80000 {
- 				interrupts = <GIC_SPI 831 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
- 				clock-names = "se";
-+				pinctrl-0 = <&qup_spi21_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
- 						&clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
- 					   <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2325,6 +2445,8 @@ uart21: serial@b80000 {
- 				clock-names = "se";
- 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
- 				interconnect-names = "qup-core", "qup-config";
-+				pinctrl-0 = <&qup_uart21_default>;
-+				pinctrl-names = "default";
- 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
- 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -4412,6 +4534,634 @@ tlmm: pinctrl@f000000 {
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&tlmm 0 0 149>;
- 			wakeup-parent = <&pdc>;
-+
-+			qup_i2c0_default: qup-i2c0-state {
-+				pins = "gpio20", "gpio21";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_i2c1_default: qup-i2c1-state {
-+				pins = "gpio24", "gpio25";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_i2c2_default: qup-i2c2-state {
-+				pins = "gpio36", "gpio37";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_i2c3_default: qup-i2c3-state {
-+				pins = "gpio28", "gpio29";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_i2c4_default: qup-i2c4-state {
-+				pins = "gpio32", "gpio33";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_i2c5_default: qup-i2c5-state {
-+				pins = "gpio36", "gpio37";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_i2c7_default: qup-i2c7-state {
-+				pins = "gpio40", "gpio41";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_i2c8_default: qup-i2c8-state {
-+				pins = "gpio42", "gpio43";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_i2c9_default: qup-i2c9-state {
-+				pins = "gpio46", "gpio47";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_i2c10_default: qup-i2c10-state {
-+				pins = "gpio44", "gpio45";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_i2c11_default: qup-i2c11-state {
-+				pins = "gpio48", "gpio49";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_i2c12_default: qup-i2c12-state {
-+				pins = "gpio52", "gpio53";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_i2c13_default: qup-i2c13-state {
-+				pins = "gpio56", "gpio57";
-+				function = "qup1_se6";
-+			};
-+
-+			qup_i2c14_default: qup-i2c14-state {
-+				pins = "gpio80", "gpio81";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_i2c15_default: qup-i2c15-state {
-+				pins = "gpio84", "gpio85";
-+				function = "qup2_se1";
-+			};
-+
-+			qup_i2c16_default: qup-i2c16-state {
-+				pins = "gpio86", "gpio87";
-+				function = "qup2_se2";
-+			};
-+
-+			qup_i2c17_default: qup-i2c17-state {
-+				pins = "gpio91", "gpio92";
-+				function = "qup2_se3";
-+			};
-+
-+			qup_i2c18_default: qup-i2c18-state {
-+				pins = "gpio95", "gpio96";
-+				function = "qup2_se4";
-+			};
-+
-+			qup_i2c19_default: qup-i2c19-state {
-+				pins = "gpio99", "gpio100";
-+				function = "qup2_se5";
-+			};
-+
-+			qup_i2c20_default: qup-i2c20-state {
-+				pins = "gpio97", "gpio98";
-+				function = "qup2_se6";
-+			};
-+
-+			qup_i2c21_default: qup-i2c21-state {
-+				pins = "gpio13", "gpio14";
-+				function = "qup3_se0";
-+			};
-+
-+			qup_spi0_default: qup-spi0-state {
-+				pins = "gpio20", "gpio21", "gpio22", "gpio23";
-+				function = "qup0_se0";
-+			};
-+
-+			qup_spi1_default: qup-spi1-state {
-+				pins = "gpio24", "gpio25", "gpio26", "gpio27";
-+				function = "qup0_se1";
-+			};
-+
-+			qup_spi2_default: qup-spi2-state {
-+				pins = "gpio36", "gpio37", "gpio38", "gpio39";
-+				function = "qup0_se2";
-+			};
-+
-+			qup_spi3_default: qup-spi3-state {
-+				pins = "gpio28", "gpio29", "gpio30", "gpio31";
-+				function = "qup0_se3";
-+			};
-+
-+			qup_spi4_default: qup-spi4-state {
-+				pins = "gpio32", "gpio33", "gpio34", "gpio35";
-+				function = "qup0_se4";
-+			};
-+
-+			qup_spi5_default: qup-spi5-state {
-+				pins = "gpio36", "gpio37", "gpio38", "gpio39";
-+				function = "qup0_se5";
-+			};
-+
-+			qup_spi7_default: qup-spi7-state {
-+				pins = "gpio40", "gpio41", "gpio42", "gpio43";
-+				function = "qup1_se0";
-+			};
-+
-+			qup_spi8_default: qup-spi8-state {
-+				pins = "gpio42", "gpio43", "gpio40", "gpio41";
-+				function = "qup1_se1";
-+			};
-+
-+			qup_spi9_default: qup-spi9-state {
-+				pins = "gpio46", "gpio47", "gpio44", "gpio45";
-+				function = "qup1_se2";
-+			};
-+
-+			qup_spi10_default: qup-spi10-state {
-+				pins = "gpio44", "gpio45", "gpio46", "gpio47";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_spi11_default: qup-spi11-state {
-+				pins = "gpio48", "gpio49", "gpio50", "gpio51";
-+				function = "qup1_se4";
-+			};
-+
-+			qup_spi12_default: qup-spi12-state {
-+				pins = "gpio52", "gpio53", "gpio54", "gpio55";
-+				function = "qup1_se5";
-+			};
-+
-+			qup_spi14_default: qup-spi14-state {
-+				pins = "gpio80", "gpio81", "gpio82", "gpio83";
-+				function = "qup2_se0";
-+			};
-+
-+			qup_spi15_default: qup-spi15-state {
-+				pins = "gpio84", "gpio85", "gpio99", "gpio100";
-+				function = "qup2_se1";
-+			};
-+
-+			qup_spi16_default: qup-spi16-state {
-+				pins = "gpio86", "gpio87", "gpio88", "gpio89";
-+				function = "qup2_se2";
-+			};
-+
-+			qup_spi17_default: qup-spi17-state {
-+				pins = "gpio91", "gpio92", "gpio93", "gpio94";
-+				function = "qup2_se3";
-+			};
-+
-+			qup_spi18_default: qup-spi18-state {
-+				pins = "gpio95", "gpio96", "gpio97", "gpio98";
-+				function = "qup2_se4";
-+			};
-+
-+			qup_spi19_default: qup-spi19-state {
-+				pins = "gpio99", "gpio100", "gpio84", "gpio85";
-+				function = "qup2_se5";
-+			};
-+
-+			qup_spi20_default: qup-spi20-state {
-+				pins = "gpio97", "gpio98", "gpio95", "gpio96";
-+				function = "qup2_se6";
-+			};
-+
-+			qup_spi21_default: qup-spi21-state {
-+				pins = "gpio13", "gpio14", "gpio15", "gpio16";
-+				function = "qup3_se0";
-+			};
-+
-+			qup_uart0_default: qup-uart0-state {
-+				qup_uart0_cts: qup-uart0-cts-pins {
-+					pins = "gpio20";
-+					function = "qup0_se0";
-+				};
-+
-+				qup_uart0_rts: qup-uart0-rts-pins {
-+					pins = "gpio21";
-+					function = "qup0_se0";
-+				};
-+
-+				qup_uart0_tx: qup-uart0-tx-pins {
-+					pins = "gpio22";
-+					function = "qup0_se0";
-+				};
-+
-+				qup_uart0_rx: qup-uart0-rx-pins {
-+					pins = "gpio23";
-+					function = "qup0_se0";
-+				};
-+			};
-+
-+			qup_uart1_default: qup-uart1-state {
-+				qup_uart1_cts: qup-uart1-cts-pins {
-+					pins = "gpio24";
-+					function = "qup0_se1";
-+				};
-+
-+				qup_uart1_rts: qup-uart1-rts-pins {
-+					pins = "gpio25";
-+					function = "qup0_se1";
-+				};
-+
-+				qup_uart1_tx: qup-uart1-tx-pins {
-+					pins = "gpio26";
-+					function = "qup0_se1";
-+				};
-+
-+				qup_uart1_rx: qup-uart1-rx-pins {
-+					pins = "gpio27";
-+					function = "qup0_se1";
-+				};
-+			};
-+
-+			qup_uart2_default: qup-uart2-state {
-+				qup_uart2_cts: qup-uart2-cts-pins {
-+					pins = "gpio36";
-+					function = "qup0_se2";
-+				};
-+
-+				qup_uart2_rts: qup-uart2-rts-pins {
-+					pins = "gpio37";
-+					function = "qup0_se2";
-+				};
-+
-+				qup_uart2_tx: qup-uart2-tx-pins {
-+					pins = "gpio38";
-+					function = "qup0_se2";
-+				};
-+
-+				qup_uart2_rx: qup-uart2-rx-pins {
-+					pins = "gpio39";
-+					function = "qup0_se2";
-+				};
-+			};
-+
-+			qup_uart3_default: qup-uart3-state {
-+				qup_uart3_cts: qup-uart3-cts-pins {
-+					pins = "gpio28";
-+					function = "qup0_se3";
-+				};
-+
-+				qup_uart3_rts: qup-uart3-rts-pins {
-+					pins = "gpio29";
-+					function = "qup0_se3";
-+				};
-+
-+				qup_uart3_tx: qup-uart3-tx-pins {
-+					pins = "gpio30";
-+					function = "qup0_se3";
-+				};
-+
-+				qup_uart3_rx: qup-uart3-rx-pins {
-+					pins = "gpio31";
-+					function = "qup0_se3";
-+				};
-+			};
-+
-+			qup_uart4_default: qup-uart4-state {
-+				qup_uart4_cts: qup-uart4-cts-pins {
-+					pins = "gpio32";
-+					function = "qup0_se4";
-+				};
-+
-+				qup_uart4_rts: qup-uart4-rts-pins {
-+					pins = "gpio33";
-+					function = "qup0_se4";
-+				};
-+
-+				qup_uart4_tx: qup-uart4-tx-pins {
-+					pins = "gpio34";
-+					function = "qup0_se4";
-+				};
-+
-+				qup_uart4_rx: qup-uart4-rx-pins {
-+					pins = "gpio35";
-+					function = "qup0_se4";
-+				};
-+			};
-+
-+			qup_uart5_default: qup-uart5-state {
-+				qup_uart5_cts: qup-uart5-cts-pins {
-+					pins = "gpio36";
-+					function = "qup0_se5";
-+				};
-+
-+				qup_uart5_rts: qup-uart5-rts-pins {
-+					pins = "gpio37";
-+					function = "qup0_se5";
-+				};
-+
-+				qup_uart5_tx: qup-uart5-tx-pins {
-+					pins = "gpio38";
-+					function = "qup0_se5";
-+				};
-+
-+				qup_uart5_rx: qup-uart5-rx-pins {
-+					pins = "gpio39";
-+					function = "qup0_se5";
-+				};
-+			};
-+
-+			qup_uart7_default: qup-uart7-state {
-+				qup_uart7_cts: qup-uart7-cts-pins {
-+					pins = "gpio40";
-+					function = "qup1_se0";
-+				};
-+
-+				qup_uart7_rts: qup-uart7-rts-pins {
-+					pins = "gpio41";
-+					function = "qup1_se0";
-+				};
-+
-+				qup_uart7_tx: qup-uart7-tx-pins {
-+					pins = "gpio42";
-+					function = "qup1_se0";
-+				};
-+
-+				qup_uart7_rx: qup-uart7-rx-pins {
-+					pins = "gpio43";
-+					function = "qup1_se0";
-+				};
-+			};
-+
-+			qup_uart8_default: qup-uart8-state {
-+				qup_uart8_cts: qup-uart8-cts-pins {
-+					pins = "gpio42";
-+					function = "qup1_se1";
-+				};
-+
-+				qup_uart8_rts: qup-uart8-rts-pins {
-+					pins = "gpio43";
-+					function = "qup1_se1";
-+				};
-+
-+				qup_uart8_tx: qup-uart8-tx-pins {
-+					pins = "gpio40";
-+					function = "qup1_se1";
-+				};
-+
-+				qup_uart8_rx: qup-uart8-rx-pins {
-+					pins = "gpio41";
-+					function = "qup1_se1";
-+				};
-+			};
-+
-+			qup_uart9_default: qup-uart9-state {
-+				qup_uart9_cts: qup-uart9-cts-pins {
-+					pins = "gpio46";
-+					function = "qup1_se2";
-+				};
-+
-+				qup_uart9_rts: qup-uart9-rts-pins {
-+					pins = "gpio47";
-+					function = "qup1_se2";
-+				};
-+
-+				qup_uart9_tx: qup-uart9-tx-pins {
-+					pins = "gpio44";
-+					function = "qup1_se2";
-+				};
-+
-+				qup_uart9_rx: qup-uart9-rx-pins {
-+					pins = "gpio45";
-+					function = "qup1_se2";
-+				};
-+			};
-+
-+			qup_uart10_default: qup-uart10-state {
-+				pins = "gpio46", "gpio47";
-+				function = "qup1_se3";
-+			};
-+
-+			qup_uart11_default: qup-uart11-state {
-+				qup_uart11_cts: qup-uart11-cts-pins {
-+					pins = "gpio48";
-+					function = "qup1_se4";
-+				};
-+
-+				qup_uart11_rts: qup-uart11-rts-pins {
-+					pins = "gpio49";
-+					function = "qup1_se4";
-+				};
-+
-+				qup_uart11_tx: qup-uart11-tx-pins {
-+					pins = "gpio50";
-+					function = "qup1_se4";
-+				};
-+
-+				qup_uart11_rx: qup-uart11-rx-pins {
-+					pins = "gpio51";
-+					function = "qup1_se4";
-+				};
-+			};
-+
-+			qup_uart12_default: qup-uart12-state {
-+				qup_uart12_cts: qup-uart12-cts-pins {
-+					pins = "gpio52";
-+					function = "qup1_se5";
-+				};
-+
-+				qup_uart12_rts: qup-uart12-rts-pins {
-+					pins = "gpio53";
-+					function = "qup1_se5";
-+				};
-+
-+				qup_uart12_tx: qup-uart12-tx-pins {
-+					pins = "gpio54";
-+					function = "qup1_se5";
-+				};
-+
-+				qup_uart12_rx: qup-uart12-rx-pins {
-+					pins = "gpio55";
-+					function = "qup1_se5";
-+				};
-+			};
-+
-+			qup_uart14_default: qup-uart14-state {
-+				qup_uart14_cts: qup-uart14-cts-pins {
-+					pins = "gpio80";
-+					function = "qup2_se0";
-+				};
-+
-+				qup_uart14_rts: qup-uart14-rts-pins {
-+					pins = "gpio81";
-+					function = "qup2_se0";
-+				};
-+
-+				qup_uart14_tx: qup-uart14-tx-pins {
-+					pins = "gpio82";
-+					function = "qup2_se0";
-+				};
-+
-+				qup_uart14_rx: qup-uart14-rx-pins {
-+					pins = "gpio83";
-+					function = "qup2_se0";
-+				};
-+			};
-+
-+			qup_uart15_default: qup-uart15-state {
-+				qup_uart15_cts: qup-uart15-cts-pins {
-+					pins = "gpio84";
-+					function = "qup2_se1";
-+				};
-+
-+				qup_uart15_rts: qup-uart15-rts-pins {
-+					pins = "gpio85";
-+					function = "qup2_se1";
-+				};
-+
-+				qup_uart15_tx: qup-uart15-tx-pins {
-+					pins = "gpio99";
-+					function = "qup2_se1";
-+				};
-+
-+				qup_uart15_rx: qup-uart15-rx-pins {
-+					pins = "gpio100";
-+					function = "qup2_se1";
-+				};
-+			};
-+
-+			qup_uart16_default: qup-uart16-state {
-+				qup_uart16_cts: qup-uart16-cts-pins {
-+					pins = "gpio86";
-+					function = "qup2_se2";
-+				};
-+
-+				qup_uart16_rts: qup-uart16-rts-pins {
-+					pins = "gpio87";
-+					function = "qup2_se2";
-+				};
-+
-+				qup_uart16_tx: qup-uart16-tx-pins {
-+					pins = "gpio88";
-+					function = "qup2_se2";
-+				};
-+
-+				qup_uart16_rx: qup-uart16-rx-pins {
-+					pins = "gpio89";
-+					function = "qup2_se2";
-+				};
-+			};
-+
-+			qup_uart17_default: qup-uart17-state {
-+				qup_uart17_cts: qup-uart17-cts-pins {
-+					pins = "gpio91";
-+					function = "qup2_se3";
-+				};
-+
-+				qup_uart17_rts: qup0-uart17-rts-pins {
-+					pins = "gpio92";
-+					function = "qup2_se3";
-+				};
-+
-+				qup_uart17_tx: qup0-uart17-tx-pins {
-+					pins = "gpio93";
-+					function = "qup2_se3";
-+				};
-+
-+				qup_uart17_rx: qup0-uart17-rx-pins {
-+					pins = "gpio94";
-+					function = "qup2_se3";
-+				};
-+			};
-+
-+			qup_uart18_default: qup-uart18-state {
-+				qup_uart18_cts: qup-uart18-cts-pins {
-+					pins = "gpio95";
-+					function = "qup2_se4";
-+				};
-+
-+				qup_uart18_rts: qup-uart18-rts-pins {
-+					pins = "gpio96";
-+					function = "qup2_se4";
-+				};
-+
-+				qup_uart18_tx: qup-uart18-tx-pins {
-+					pins = "gpio97";
-+					function = "qup2_se4";
-+				};
-+
-+				qup_uart18_rx: qup-uart18-rx-pins {
-+					pins = "gpio98";
-+					function = "qup2_se4";
-+				};
-+			};
-+
-+			qup_uart19_default: qup-uart19-state {
-+				qup_uart19_cts: qup-uart19-cts-pins {
-+					pins = "gpio99";
-+					function = "qup2_se5";
-+				};
-+
-+				qup_uart19_rts: qup-uart19-rts-pins {
-+					pins = "gpio100";
-+					function = "qup2_se5";
-+				};
-+
-+				qup_uart19_tx: qup-uart19-tx-pins {
-+					pins = "gpio84";
-+					function = "qup2_se5";
-+				};
-+
-+				qup_uart19_rx: qup-uart19-rx-pins {
-+					pins = "gpio85";
-+					function = "qup2_se5";
-+				};
-+			};
-+
-+			qup_uart20_default: qup-uart20-state {
-+				qup_uart20_cts: qup-uart20-cts-pins {
-+					pins = "gpio97";
-+					function = "qup2_se6";
-+				};
-+
-+				qup_uart20_rts: qup-uart20-rts-pins {
-+					pins = "gpio98";
-+					function = "qup2_se6";
-+				};
-+
-+				qup_uart20_tx: qup-uart20-tx-pins {
-+					pins = "gpio95";
-+					function = "qup2_se6";
-+				};
-+
-+				qup_uart20_rx: qup-uart20-rx-pins {
-+					pins = "gpio96";
-+					function = "qup2_se6";
-+				};
-+			};
-+
-+			qup_uart21_default: qup-uart21-state {
-+				qup_uart21_cts: qup-uart21-cts-pins {
-+					pins = "gpio13";
-+					function = "qup3_se0";
-+				};
-+
-+				qup_uart21_rts: qup-uart21-rts-pins {
-+					pins = "gpio14";
-+					function = "qup3_se0";
-+				};
-+
-+				qup_uart21_tx: qup-uart21-tx-pins {
-+					pins = "gpio15";
-+					function = "qup3_se0";
-+				};
-+
-+				qup_uart21_rx: qup-uart21-rx-pins {
-+					pins = "gpio16";
-+					function = "qup3_se0";
-+				};
-+			};
- 		};
- 
- 		sram: sram@146d8000 {
--- 
-2.34.1
-
+  Dave
 
