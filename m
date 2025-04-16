@@ -1,92 +1,70 @@
-Return-Path: <devicetree+bounces-167584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F93A8ADB9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 03:59:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F4150A8AEA0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 05:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87A43B0786
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 01:58:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A0CA3B8984
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 03:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E183C227E86;
-	Wed, 16 Apr 2025 01:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED53D1F4722;
+	Wed, 16 Apr 2025 03:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b="bMYlXTot"
+	dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b="DlzlSveh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D42F1DE2CA
-	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 01:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C4E2DFA49;
+	Wed, 16 Apr 2025 03:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744768750; cv=none; b=o7ms2umdyApYJkryGXtKsm1JIe3XlT9W0PBFMkPQSTxNbFvlJkDFOkCOXuacwlgQUKp9VjORpuXMJj7TYWR/bjmmGcXGs9/JSf5hyZR8sbY11KSM3gJza9H2Nu2kEtMaIJhc9Tz0qmCqU6oPBQ0S7QI61cCkOBjcJTxGmnb4hso=
+	t=1744775357; cv=none; b=pEe3JtT48nve5qpDn17X5K0pP5IF/l6Yohwl/owG9MwoFvqvGNSSkDVKKXhCHzrMf5MS5ciilzjcBIf0KWZPhNf6Iv6s1eIaEtV4dOD8wEqEIWhK8t7s0Z4GSTEwUPtI8Mh0xdBSbJKs6mCtVcTYFq6w1mTVF3Hnp5qlBQOX8Ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744768750; c=relaxed/simple;
-	bh=cCgFpxiwJ0gCPdeUMaKHrmAET+N2uNHpi4SiNW037bI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZscuDptMOEt3Igm4AhbODa1Nf+Oh0bUmGZ4ngXwivK3ReX7XjD4+MVq45sHaD0g76fOwET+AaDkT9nmY2Qc09SR5MKBvVGQGVPxJHgQfkdLCDg0zkvIMcUjIfPt93TBIXWEFx6wjc7kcZTkoLhGA/EQz4s4r/MVuAxBVOHc+kQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com; spf=none smtp.mailfrom=wkennington.com; dkim=pass (2048-bit key) header.d=wkennington-com.20230601.gappssmtp.com header.i=@wkennington-com.20230601.gappssmtp.com header.b=bMYlXTot; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wkennington.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=wkennington.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-22409077c06so82248325ad.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Apr 2025 18:59:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wkennington-com.20230601.gappssmtp.com; s=20230601; t=1744768748; x=1745373548; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e82Zj2e4FwI3zvSpsxcQPHmRy7+tI4Kl1Q4Ap45I6sg=;
-        b=bMYlXTotE6hDi6j3SdG3PUqI8e3rTKsB+hGofqJl63fdBK4aLbA1C8ewXyQHHF4hlc
-         Ulmy/4qk35QXB7Geg7wIX2D5AxzbSFaFIwRkETba58nCeFVl98ScuAD+uWHWtS5f2fmA
-         I+yZbVnxP7TqP0fek/40fb1pC35lGrpb2FbL7sKjeC+xeoGiHacls4XXCI7MiBUiYXK2
-         QwWHuAalt7D5zBcQrobtlG7Eh07W3epVm9VTlgw0A3tlOL3CYRmjo22VKeKHOp2C4w89
-         1/Cj7UrzaCIXs/Idyws/334eVHxSossn5z2ZwsKdMfVMmE7l2BcVHcSNHp+/Q5FJkrDF
-         eG/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744768748; x=1745373548;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e82Zj2e4FwI3zvSpsxcQPHmRy7+tI4Kl1Q4Ap45I6sg=;
-        b=TW+uPKJ13vlJo7Ofu8alR5l1WxW67Bmtbb3e8bQI7hcth5gFY1yo5Uu4HGZan9dqpn
-         DuHN4vjc3hiz6cLP597MrKsqZZXsqjx/tDxcCrZ30XtlUR0vAbobXYqVyYfYW/k5xH0i
-         Noqr2iq4Bbtoz9JO1HC0AsXivIZvI9tnBooisOz5ooxG5Kh81wD9o/NpwH212/jX3BPM
-         EStgTRwHGQoJbPiaSD90z3t6mKJom8DJeldfBGXNLa8chnPiRXSxu9wNg/r64aSP3ad/
-         LJov5QjFEcT520JblvqBbTlO7zJXhsIwsoF98rpLSCUB2zTLyT1TE4Ajhn3ABuurfzxp
-         qzeg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBPqHvTFg5LbgusXWu4liBimRXhauc3kl/dXCJOf2mh8bbnkLlN74Bmk07jioO1YJ3t+R//xI/ZABD@vger.kernel.org
-X-Gm-Message-State: AOJu0YztO4qwEl9rAOZE85h01BYXBQMKVHsv/JwjehGAJpwbiDWR96PG
-	utxyk/ocjsdayhcaPPerWk0us349ieFGZW1ZayLrFB1ZUrunjdV2nBgmcZ4il79yyeSD2bFrpus
-	TPXM=
-X-Gm-Gg: ASbGncvKeTWRDer9NB7dz6JRFECDuKrMVse8csn/XYsniTPlyWJxoZQrmXEyfTxBlcd
-	VuYJ0+lYY78nFKkOemZKfd2+aVD9f8kW6cnYzUdohBUZksnDBuHi4RC4EUQT3xDYBj84qPW/t2Z
-	r5gpue38bPSwmuna1m9pnt7IdtrtWuvJsNenq1AXvwtjdWbOAazQ6MAwMLcvvxuI6PewmfVmLl1
-	5CIGrUm+w+5yLjExwkkrxD1MKTQBRCReVq6yzwr8xfJ84oes1dThs2MUQhawdVHvYV8ZgsXGnwe
-	DxUOQ+mDeMxBkgLjonpY6MJ4BH2qX4KoUwoS7tBB/mJEx9/eqRpgka/WPjugkf5eLGT8bBSIZKp
-	389gxGpgqPf5kxhlNxK6/xDq4j/w=
-X-Google-Smtp-Source: AGHT+IEbUxLXqkmN9eB9Y2TwjT0iKR4gtJC2qNjvOo3KGkymZjh0chvXTjMdxbdfvQ9cGDKgkpZyGA==
-X-Received: by 2002:a17:903:2c9:b0:224:194c:6942 with SMTP id d9443c01a7336-22c35973f06mr387275ad.34.1744768748194;
-        Tue, 15 Apr 2025 18:59:08 -0700 (PDT)
-Received: from wak-linux.svl.corp.google.com ([2a00:79e0:2e5b:9:ef0:9d76:c8a5:f522])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22c33feb116sm2279845ad.253.2025.04.15.18.59.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Apr 2025 18:59:07 -0700 (PDT)
-From: "William A. Kennington III" <william@wkennington.com>
-To: Avi Fishman <avifishman70@gmail.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Tali Perry <tali.perry1@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: openbmc@lists.ozlabs.org,
+	s=arc-20240116; t=1744775357; c=relaxed/simple;
+	bh=72kNaEoJFUZL5dZZw8pv+GFtk1SKD6lHC7619kVBsdU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=elh0YWDMfoMAmZKUiK3H7+Tn2lDNBB+cDTsffz1vYf2i57y3F2vstVzEoseUz1JunmxaH0bPzmsUqgZbrJ6F98K3G9lsq/XbhCwq2eWYo0Nt9gK+RU5r3lu9NqsvGc19NSRTpfO6u4SxKA7JyEt60zoTEFB/pNM0nf59e5tmEyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com; spf=pass smtp.mailfrom=uniontech.com; dkim=pass (1024-bit key) header.d=uniontech.com header.i=@uniontech.com header.b=DlzlSveh; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uniontech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=uniontech.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+	s=onoh2408; t=1744775318;
+	bh=sRE/NmB6AY8qA+aqCchSM3QNZ8JoxLXRhVx3KHBUcgo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=DlzlSvehYUNbwiwQeLrHJ2Mf5eAy6onbzXGtvWnf33lLxzyI4LQ0e1VSI/ir1YC6U
+	 4Y0ZPYPhg2dhVXYuXaPMg5MixuxQY2hMiETESHsK+vFDuGdJCxzzROsx8ghDZcE3oB
+	 OcjgpBfihbT8oxYddITxsC+GSRMkEg3YqtymMxk8=
+X-QQ-mid: zesmtpip3t1744775274t39dec912
+X-QQ-Originating-IP: 6Z6gzrNj5IQ3lDirIA9LsJZ9LdzKXqg2VesTeEtsCIA=
+Received: from localhost.localdomain ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 16 Apr 2025 11:47:52 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 13549914313903707969
+EX-QQ-RecipientCnt: 14
+From: WangYuli <wangyuli@uniontech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tsbogend@alpha.franken.de
+Cc: wangyuli@uniontech.com,
 	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	"William A. Kennington III" <william@wkennington.com>
-Subject: [PATCH] arm64: dts: nuvoton: Add pinctrl
-Date: Tue, 15 Apr 2025 18:59:02 -0700
-Message-ID: <20250416015902.2091251-1-william@wkennington.com>
-X-Mailer: git-send-email 2.49.0.604.gff1f9ca942-goog
+	jiaxun.yang@flygoat.com,
+	chenhuacai@kernel.org,
+	yangtiezhu@loongson.cn,
+	zhanjun@uniontech.com,
+	niecheng1@uniontech.com,
+	guanwentao@uniontech.com
+Subject: [PATCH] MIPS: Loongson64: Add missing '#interrupt-cells' for loongson64c_ls7a
+Date: Wed, 16 Apr 2025 11:45:48 +0800
+Message-ID: <6E749D043BC7BD99+20250416034548.805069-1-wangyuli@uniontech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,90 +72,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:uniontech.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: Nn1UX5BQtzc8h+RdnigxYQgaQjagILkmS3a5XRrsUz4Q0DsowSDGbkwC
+	BymttjFN4AokWecu5dzAfKejb2zfaq/SuQ49zhy79sE1HiId42+MUtOe219xFJoXu58PtfC
+	HOesbVJ9xh9qo2l+VbWZsfqXITfhoVHHb9J9bgUDP1J2UdptHJfSxlPO3qwjz8Lx42uxRsp
+	Pzt/3yaVU6raS9B3UKQszwd0PMbG95NSKsw+bvN6qef55QUVYC+KmwBZm//Wtlrc6z9zzYW
+	Lje575k0/x7Kdplm5TiKd0MtabgK+E3xyEuFtbEWYANoe/3fgMnMOt7JZwSx2un59ScBCM9
+	QGEPIZan6Ky0Ze9izgEZpj6WPCnidJZEETkFPthpE0vNr4FgAeFm2usEgBQAnPVIlh9rqEp
+	FTc+1Miixh5btecQ541woQhOEAAJjci4P6Vgvf4kFUf/7Wh1uvhJszMc52PddBbZpEWwska
+	vle/o105n6SkXIGt/0RceVoZu4yTYdA6FmkBsGJeUldzlOnhQmuawTVqxcJJTOaM+cvGLJf
+	McV3P49NVWVZhTFt2LeMsw7e5erTg3gkDa/kNcq5yjmyFBRVGNTmWkWBWSbbwHMNgpv0WBS
+	7gBlgaA3UlfOnpcw43RQH5jBGaBS/x2NOxo+rDIgVr9f2pjo71LolkAo2FlcEWdk44n5Fou
+	7povt/JYPTz8rlC/KFDOyj4uCw1jy+QMv7dwC2xA1oyzSM/BHtLfQEY+uet9z5LwEdaaUlh
+	y6CH+h2eH+6B21UCjqM8BAWfv7usyvtDUE5Ma/7vRLjtXUJHLnOxns7tfVHp9VPcVJgsOCe
+	FmpV7G3GIKPLlulo6XoZ1S4dJ9rkm9PMxE61jRNf8ci0wOcdg7HD2MPUP+0EW7E2T/Z0K1u
+	eQM7X+N/MvLOg217BJlW7Ugd/U5HS+a/R/FSocc7OSvys1TDCi9xgrgxJOO7eNOqAQ7DVw3
+	Ka0b0uvppHxyCEMmtR+ku5uifTNt7ClVJDyJTeZSyaZ5thO0+o0jf62L9q2aTdbod8qfIfh
+	fMGUHJFQLiG0ug/skj
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 
-This is critical to support multifunction pins shared between devices as
-well as generic GPIOs.
+Similar to commit 98a9e2ac3755 ("MIPS: Loongson64: DTS: Fix msi node for ls7a").
 
-Signed-off-by: William A. Kennington III <william@wkennington.com>
+Fix follow warnings:
+  arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts:28.31-36.4: Warning (interrupt_provider): /bus@10000000/msi-controller@2ff00000: Missing '#interrupt-cells' in interrupt provider
+  arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+
+Fixes: 24af105962c8 ("MIPS: Loongson64: DeviceTree for LS7A PCH")
+Tested-by: WangYuli <wangyuli@uniontech.com>
+Signed-off-by: WangYuli <wangyuli@uniontech.com>
 ---
- .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
+ arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index b2595f5c146b..dd1351698e77 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -207,4 +207,69 @@ watchdog2: watchdog@a01c {
- 			};
- 		};
- 	};
-+
-+	pinctrl: pinctrl@f0010000 {
-+		compatible = "nuvoton,npcm845-pinctrl";
-+		ranges = <0x0 0x0 0xf0010000 0x8000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		nuvoton,sysgcr = <&gcr>;
-+		status = "okay";
-+		gpio0: gpio@f0010000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x0 0xB0>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 0 32>;
-+		};
-+		gpio1: gpio@f0011000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x1000 0xB0>;
-+			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 32 32>;
-+		};
-+		gpio2: gpio@f0012000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x2000 0xB0>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 64 32>;
-+		};
-+		gpio3: gpio@f0013000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x3000 0xB0>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 96 32>;
-+		};
-+		gpio4: gpio@f0014000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x4000 0xB0>;
-+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 128 32>;
-+		};
-+		gpio5: gpio@f0015000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x5000 0xB0>;
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 160 32>;
-+		};
-+		gpio6: gpio@f0016000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x6000 0xB0>;
-+			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 192 32>;
-+		};
-+		gpio7: gpio@f0017000 {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			reg = <0x7000 0xB0>;
-+			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			gpio-ranges = <&pinctrl 0 224 32>;
-+		};
-+	};
- };
+diff --git a/arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts b/arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts
+index c7ea4f1c0bb2..6c277ab83d4b 100644
+--- a/arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts
++++ b/arch/mips/boot/dts/loongson/loongson64c_4core_ls7a.dts
+@@ -29,6 +29,7 @@ msi: msi-controller@2ff00000 {
+ 		compatible = "loongson,pch-msi-1.0";
+ 		reg = <0 0x2ff00000 0 0x8>;
+ 		interrupt-controller;
++		#interrupt-cells = <1>;
+ 		msi-controller;
+ 		loongson,msi-base-vec = <64>;
+ 		loongson,msi-num-vecs = <64>;
 -- 
-2.49.0.604.gff1f9ca942-goog
+2.49.0
 
 
