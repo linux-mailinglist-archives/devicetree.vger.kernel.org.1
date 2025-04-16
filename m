@@ -1,168 +1,131 @@
-Return-Path: <devicetree+bounces-167874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C54AA909A8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:11:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC094A909B6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 19:15:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22C0E3A8755
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:11:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB1867AC0FD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 17:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A8B217642;
-	Wed, 16 Apr 2025 17:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32745217671;
+	Wed, 16 Apr 2025 17:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FKV154VC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j9uj64fa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8422215F58;
-	Wed, 16 Apr 2025 17:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07536216E01;
+	Wed, 16 Apr 2025 17:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744823486; cv=none; b=e2sNykYsv+ukjkdAbzHyZaTCaVodg8J51cuoNr8bNE856HE2eQTW18fz07gY+3ovIn6in3Ly6OMfN7eC1saQwbbleTd0tu6NEJfc91ACz3YETe2dueMiDDqrDWLJbmXMc0mpUpIBU0nNRkmbd9MdWDGhm/2SEnnln3PUKn3gDJA=
+	t=1744823700; cv=none; b=QDni6hhLwholwsMQHoxZ8GzLM76jgyLx111sbIniU2tIiIVY+Lqe2KWdu5xXE30NuhwvJzAy23OysFHydAbs/PF3GsltVXxESNrY2XdS4socGJkGKNopzkYlBtlgpdMDOWlV6qtl0fZr4ScG2I67f1zAZ2DcCErahPIww0Bu7qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744823486; c=relaxed/simple;
-	bh=skWqHxqYGGmOuvoixGIuo+FphnkgtdJftOmi9b4Z+4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f+kkIaWqucbCUNzB9s6DWx1MUC7eFg+jXfm10kQooJ1S1Tdi/yZVNV51loDzuEatH07kZZcy6I/nd6mF6rllaFgYnd7LwA65NqM6c8pqQqVz7vL+5CNKJzh8YPJZ6hilw89g5yhSiuM/Zc3yMng607o177KQnLjDXMWFqIjbGdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FKV154VC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PwH0xQ4TGHfYspbMLh4NhtU8AvejjRlDTyqMnMx+8PA=; b=FKV154VCzY5M6jCgFvLpavuq5M
-	ptyRaHLtLQ6QPAP3fVgzkmxeuejMrccAq+aNcewvAK73Xr/jarzm3G/L6gTC8VO/iV0XseXlJfMe9
-	VJt58BSvwSMKuWWw55ps1PZmH2tcyNXld0OwxMJw4DhyQs1xy7vqFSsW0crGYeP4Shh4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1u56I1-009g7N-O3; Wed, 16 Apr 2025 19:11:09 +0200
-Date: Wed, 16 Apr 2025 19:11:09 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 3/8] mfd: Add Microchip ZL3073x support
-Message-ID: <8fc9856a-f2be-4e14-ac15-d2d42efa9d5d@lunn.ch>
-References: <20250416162144.670760-1-ivecera@redhat.com>
- <20250416162144.670760-4-ivecera@redhat.com>
+	s=arc-20240116; t=1744823700; c=relaxed/simple;
+	bh=rrCB5OTUZE7hdVNRyzzj/bm/DBwSH2wkplB+PM4ecfU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SpkFea2dBc1hwesYsQbBjdc+CAxGWIZZyGGrRWgFWUbBq0FrD+btUxQQV+Tr9mmleGAL7tNT1nFgZ1IZk2fY1jZ46d+dRqJUD83zMXDpFs4A8O1qk7vLob1rOe9MWBMf/nYOT/gLZdGrSBXk2hss2u1occnYjNeI6JBGw8B2IZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j9uj64fa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 67A76C4CEF3;
+	Wed, 16 Apr 2025 17:14:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1744823699;
+	bh=rrCB5OTUZE7hdVNRyzzj/bm/DBwSH2wkplB+PM4ecfU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=j9uj64fam4Y9wd2ARffegNxVzhdJxzzDwlDjNoMneB7H5y8PlcdfiGyddsOdbd0gx
+	 AKuvPcfkWC6ds26oPTuP6WB5jxuhCYVmrnrKRKm1ed9GfpaHbCEun7G4DxziR+c60X
+	 Jq93H7yTrlShxpjbXwHVJOFO6zY9phWiB1Htr3zSqPfpI6Lu/SaY6v6sgMHaXyu1xI
+	 RLa9YTGh+18ZeAxtErQE0KUH1wtY6l+7q6aXMZN+cEE538/Nj1SA8FQwNLUasV7e20
+	 vEi7IimOjGcGaR+E+txkEUOxwZnjUn4KgEVyR6bsMcg0KwKoUOvnvdcx3S3V1q0ooq
+	 02Unu44jBqIjg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D00EC369BA;
+	Wed, 16 Apr 2025 17:14:59 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH net-next v3 0/4] net: phy: dp83822: Add support for
+ changing the MAC series termination
+Date: Wed, 16 Apr 2025 19:14:46 +0200
+Message-Id: <20250416-dp83822-mac-impedance-v3-0-028ac426cddb@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250416162144.670760-4-ivecera@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIbl/2cC/3XNywqDMBQE0F+RrHtLzKPGrvofpYs8rjVQoyQSL
+ OK/N0ihUHA5DHNmJQmjx0Su1UoiZp/8GErgp4rYXocngnclE0aZpJxKcJPiijEYtAU/TOh0sAh
+ KUMGlobbFCynbKWLnl929k4AzBFxm8ihN79M8xvd+mOu9/9rNgZ1roGCcU1I3sjVC3l4eTY8xn
+ u047GhmP0hQdQSxAnXYodFCt4qKP2jbtg89BHbNEAEAAA==
+X-Change-ID: 20250305-dp83822-mac-impedance-840435b0c9e6
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, Andrew Davis <afd@ti.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>, 
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1744823698; l=1944;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=rrCB5OTUZE7hdVNRyzzj/bm/DBwSH2wkplB+PM4ecfU=;
+ b=PiRAcgqLqN2FBIxZgGgm9aXyDZvYEBE0SzKfRcaEYVP68Q+KngzXZApdwAClkyrzpOiRr+6tI
+ ecsWZSK1OK5CNzUvHt1c1C2ZaDajaCH7/Wcz7ezalLnHSxmJmJCQyDQ
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
 
-> +++ b/include/linux/mfd/zl3073x_regs.h
-> @@ -0,0 +1,105 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef __LINUX_MFD_ZL3073X_REGS_H
-> +#define __LINUX_MFD_ZL3073X_REGS_H
-> +
-> +#include <asm/byteorder.h>
-> +#include <linux/lockdep.h>
+The dp83822 provides the possibility to set the resistance value of the
+the MAC series termination. Modifying the resistance to an appropriate
+value can reduce signal reflections and therefore improve signal quality.
 
-lockdep?
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v3:
+- Add maximum to mac-termination-ohms in ethernet-phy.yaml
+- Add allowed values for mac-termination-ohms in ti,dp83822.yaml
+- Added mac-termination-ohms in sample in ti,dp83822.yaml
+- Link to v2: https://lore.kernel.org/r/20250408-dp83822-mac-impedance-v2-0-fefeba4a9804@liebherr.com
 
-> +#include <linux/mfd/zl3073x.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +#include <linux/unaligned.h>
-> +
-> +/* Registers are mapped at offset 0x100 */
-> +#define ZL_RANGE_OFF	       0x100
-> +#define ZL_PAGE_SIZE	       0x80
-> +#define ZL_REG_ADDR(_pg, _off) (ZL_RANGE_OFF + (_pg) * ZL_PAGE_SIZE + (_off))
-> +
-> +/**************************
-> + * Register Page 0, General
-> + **************************/
-> +
-> +/*
-> + * Register 'id'
-> + * Page: 0, Offset: 0x01, Size: 16 bits
-> + */
-> +#define ZL_REG_ID ZL_REG_ADDR(0, 0x01)
-> +
-> +static inline __maybe_unused int
-> +zl3073x_read_id(struct zl3073x_dev *zldev, u16 *value)
-> +{
-> +	__be16 temp;
-> +	int rc;
-> +
-> +	rc = regmap_bulk_read(zldev->regmap, ZL_REG_ID, &temp, sizeof(temp));
-> +	if (rc)
-> +		return rc;
-> +
-> +	*value = be16_to_cpu(temp);
-> +	return rc;
-> +}
+Changes in v2:
+- Renamed "mac-series-termination-ohms" to "mac-termination-ohms"
+- Added description for "mac-termination-ohms"
+- Renamed "phy_get_mac_series_termination" to "phy_get_mac_termination"
+- Dropped "mac_series_termination_modify" from dp83822_private
+- Init mac_termination_index in dp8382x_probe
+- Renamed "mac_series_termination" to "mac_termination"
+- Link to v1: https://lore.kernel.org/r/20250307-dp83822-mac-impedance-v1-0-bdd85a759b45@liebherr.com
 
-It seems odd these are inline functions in a header file.
+---
+Dimitri Fedrau (4):
+      dt-bindings: net: ethernet-phy: add property mac-termination-ohms
+      dt-bindings: net: dp83822: add constraints for mac-termination-ohms
+      net: phy: Add helper for getting MAC termination resistance
+      net: phy: dp83822: Add support for changing the MAC termination
 
-> +
-> +/*
-> + * Register 'revision'
-> + * Page: 0, Offset: 0x03, Size: 16 bits
-> + */
-> +#define ZL_REG_REVISION ZL_REG_ADDR(0, 0x03)
-> +
-> +static inline __maybe_unused int
-> +zl3073x_read_revision(struct zl3073x_dev *zldev, u16 *value)
-> +{
-> +	__be16 temp;
-> +	int rc;
-> +
-> +	rc = regmap_bulk_read(zldev->regmap, ZL_REG_REVISION, &temp,
-> +			      sizeof(temp));
-> +	if (rc)
-> +		return rc;
-> +
-> +	*value = be16_to_cpu(temp);
-> +	return rc;
-> +}
-> +
-> +/*
-> + * Register 'fw_ver'
-> + * Page: 0, Offset: 0x05, Size: 16 bits
-> + */
-> +#define ZL_REG_FW_VER ZL_REG_ADDR(0, 0x05)
-> +
-> +static inline __maybe_unused int
-> +zl3073x_read_fw_ver(struct zl3073x_dev *zldev, u16 *value)
-> +{
-> +	__be16 temp;
-> +	int rc;
-> +
-> +	rc = regmap_bulk_read(zldev->regmap, ZL_REG_FW_VER, &temp,
-> +			      sizeof(temp));
-> +	if (rc)
-> +		return rc;
-> +
-> +	*value = be16_to_cpu(temp);
-> +	return rc;
-> +}
+ .../devicetree/bindings/net/ethernet-phy.yaml      | 10 +++++++
+ .../devicetree/bindings/net/ti,dp83822.yaml        |  4 +++
+ drivers/net/phy/dp83822.c                          | 33 ++++++++++++++++++++++
+ drivers/net/phy/phy_device.c                       | 15 ++++++++++
+ include/linux/phy.h                                |  3 ++
+ 5 files changed, 65 insertions(+)
+---
+base-commit: ac1df712442c64b50cfdbe01da0e5aca8319b559
+change-id: 20250305-dp83822-mac-impedance-840435b0c9e6
 
-Seems like it would make sense to add a zl3073x_read_b16() helper.
-Then all these functions become one liners.
+Best regards,
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 
-	Andrew
+
 
