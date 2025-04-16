@@ -1,155 +1,140 @@
-Return-Path: <devicetree+bounces-167731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A301A8B7AD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 13:27:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 523EEA8B7BA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 13:33:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27E2D17F4DF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:27:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D350C5A11BA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 11:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B6D623C8AE;
-	Wed, 16 Apr 2025 11:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC962356B3;
+	Wed, 16 Apr 2025 11:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lAVlsfKm"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="bs9F0h32"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56A8238D21;
-	Wed, 16 Apr 2025 11:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61B722156C
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 11:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744802838; cv=none; b=RnatGaev7u3IgsELWTKHCuA2jtyKAbn+SsseXSLqx6Os7BLf+iJ1wgVfew96tweiBgWoUJOXw8/sLbsO2i6GU/EPd5t3eZtuAzuSBsQGnzWx+uDZrlzhhdFt6C2qNugS7IWKfnLez3pHgH0bSbPbs67vRffBg5ksEyg2EOEoG3Q=
+	t=1744803227; cv=none; b=UhgFR8O3EUMFPgOHxNFO9bmga1nVZNZPs+72FMdU/Eg6oDOR5ZEf9ghUB/Pn31HlM09xjgzthUbypCiCwCodg40X0JXgEh8I/xCCGz8oo2Sv5tVkBic6RGpwflK9943nDtpYAar0qUOgp9uC0GeoMTtjXZmhG/ArDK5CQ0et0LA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744802838; c=relaxed/simple;
-	bh=fP9KkjGia1IUh+mvVubksKWH4EgyftWq4ARssiLuiQY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kLFP3jV1TwHnDzhft5XoQ1fqa3BQGObAzAVYNSfc/vLz+UjULbAAPIK7PjsCGld3Nu1Ncm9zXZElxG+jejhXovh3DRRtaxfiFBAcBp+/zxCZgd+WthSMiKbbN5m5rHtsf9FPV+ihWf+nolrGogtkVxGpWqYBXVG0NL5Fpvlq6Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lAVlsfKm; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 53GBR1IO301190
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 16 Apr 2025 06:27:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1744802821;
-	bh=1bumGY4Rkup09Edkp7lgPPesdSqcgIYPU6gyKBvwdmM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=lAVlsfKmco68CVbzMk4LZGE9qz7P5UCp5VQaopkjKKgwJaxaQEg59QR69+z7MFve1
-	 lOOgRO306dmbPFPvy+JqlQPEckREYrwpSrejsg1fhw5lQsRDFN+d8HKKTbtvo85Fgd
-	 1RPpfN4XQW5hwX+ze3AoprxJ7ZnpAWpVcxqaasPU=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 53GBR1YW018214
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Apr 2025 06:27:01 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 16
- Apr 2025 06:27:00 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 16 Apr 2025 06:27:00 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 53GBR0gD078534;
-	Wed, 16 Apr 2025 06:27:00 -0500
-Date: Wed, 16 Apr 2025 06:27:00 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Randolph Sapp <rs@ti.com>
-CC: Matt Coster <matt.coster@imgtec.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Frank Binns
-	<frank.binns@imgtec.com>,
-        Alessio Belle <alessio.belle@imgtec.com>,
-        Alexandru
- Dadu <alexandru.dadu@imgtec.com>,
-        Luigi Santivetti
-	<luigi.santivetti@imgtec.com>,
-        Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j721s2: Add GPU node
-Message-ID: <20250416112700.t3zqihsmn24jaiub@purse>
-References: <20250415-bxs-4-64-dts-v1-0-f7d3fa06625d@imgtec.com>
- <20250415-bxs-4-64-dts-v1-2-f7d3fa06625d@imgtec.com>
- <D97HVW413ESX.1EEP5D4O6HMOG@ti.com>
+	s=arc-20240116; t=1744803227; c=relaxed/simple;
+	bh=9c/9l7Gx6pO3uJ6uw/xSQ8RpmhZ+3ORIT5sR3A/UcG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jVzdXH6bZ4NXjcazY/TpZb5+GwnCz9HuRdwY9LRwpgrK8q+AyPabOQyMPh3KBXUzmjONcn7wZXZK0dps50mS6DWkCNCozddp6DbGNlWTe+ivMVYRIjn/V0NkaKDdQ3G5C8U6QLr43l6z0dmzUWq9r21w8AuFouzysX5zphKmAZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=bs9F0h32; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-85dac9728cdso136423439f.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 04:33:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1744803225; x=1745408025; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WUKLRPozuEL+beG7gwcwBgRjJD70PGCGuYuOaYbRFSU=;
+        b=bs9F0h32CMSmh3SFyyBUr/5h2uuGG76tIN3nQbNemp8RAI0B3IcaSedzMp+/PVLAvB
+         qwNmbd1mQnvG1eKB+ywt/2mNtZrZQMh4wgYy+B8fn13qE6DunD+d8C0fKQdj+uHsDjBc
+         zfXfl6T85ELyAD044CBesSv7HH1fDetX12eIrVdwWVCvqXuYS/DdzQ/mAiybPww9LYS+
+         nN2dybVYuEa4Zz0FFrQmtcMO201tw6gKvm1MBk3S2LWYxLXbGpF4GAI7G7uIQMeaP+GV
+         XFVpz7TdpsQ71LWdZGzxinIg5NE8D3oZ6vPbMlgMWFX0S4bHqA+Crdvtd74PJuZ6Mg9U
+         aGGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744803225; x=1745408025;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WUKLRPozuEL+beG7gwcwBgRjJD70PGCGuYuOaYbRFSU=;
+        b=FNGJqVnkxC7p+rJ6F7bW3h45X8FkWtqzS2h4CfptYcNxU/qz24o2Tbi5xSGkmrNfGY
+         FimOo+Ans1dn7F+f3XXQ1AD7asGbOjIu2brbtljZSJL0D+yQqTpYCRtM5l4ytNv9GlUl
+         fC64z8lzZUmcFMraI902NHyAIuabmyTGb20EgdAOVCbY+ks7zqflZo+J62+YR2NgdsOo
+         k3omnLPxa+nmJam2dzdy+7LmlFq6pZ5YuXWxLBMOzAzpSLrveltBtNnnmbct+5+Emlr6
+         kk4oxzIZdGn/wceX5WCW6Hin7A9ktYXTjLKYQLlFD9mjzKeSB/wJWZYd04JUhjWkmpI0
+         cIoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXseKA/gK273Ivomy4DWSkwPRBKzBA/xaCa07Afwe67U1xFmMoqODMDPLN37Ju/BLQGo80m5P5HoCzc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLhMO9MmoS0xqvkLLRjeJuOilqGirXyQA36IhG+vwqVPDcQw2f
+	wTr+YDM7R/e3ZRdEZ1yye9i59pvctJrkNfB6oPctVPjgIK2Yug0t3IOYyBBCfr0=
+X-Gm-Gg: ASbGnctLlIv+7I4sozunPjsZgwUNTnKcVu9dG0H2gm/jpv7k8vyaiHrIQe4leOnNMDX
+	yxkxUbrF0Io4O7HKvCaFpjpWgRQ57dMCHl2TgtIqub8bQ3HZhn/u/0mJWSA2j1mI3mdW+lmuxvK
+	AsVwJhg0s+m793RTovwjPLatC0kFB8kzFPAJR0rtJLExvx0ZztHx6hDUGFJAmc2tgLpcQ7BPX7P
+	QMkUQwDJTwwfSr6AQwNGiSjdnHAAHDbDt3e1h71nwi6vdEToaEt8Tuh6a0niCS/68Y2LeCUriOh
+	lxhSlUB7e31fjHuvFlc71NMHkjtF+03mqZyUjbFmP6t8SW88Kf1/rJFoUuYvfrmME6p5Wv0VeA1
+	iw7jl
+X-Google-Smtp-Source: AGHT+IGUlzNooKv6H53Lv+4jj0Zw67S54d15RSAIPzhmPstWQkhOlgh0PpMBph3Z+r1w+yJha2JiPw==
+X-Received: by 2002:a05:6e02:1fe4:b0:3d6:ca61:5f67 with SMTP id e9e14a558f8ab-3d815b5e5bcmr11964315ab.14.1744803224840;
+        Wed, 16 Apr 2025 04:33:44 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f505e02105sm3566624173.90.2025.04.16.04.33.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Apr 2025 04:33:44 -0700 (PDT)
+Message-ID: <3dfc300f-081c-4824-97c3-842f72d2a7d3@riscstar.com>
+Date: Wed, 16 Apr 2025 06:33:42 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <D97HVW413ESX.1EEP5D4O6HMOG@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property
+ resets
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Yixun Lan <dlan@gentoo.org>
+Cc: Guodong Xu <guodong@riscstar.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Conor Dooley <conor@kernel.org>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, drew@pdp7.com,
+ inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org,
+ tglx@linutronix.de, hal.feng@starfivetech.com, unicorn_wang@outlook.com,
+ duje.mihanovic@skole.hr, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+References: <20250411131423.3802611-1-guodong@riscstar.com>
+ <20250411131423.3802611-2-guodong@riscstar.com>
+ <20250411-confider-spinster-35f23040d188@spud>
+ <89b6142bacecd4a7742341b88dc1e28c4454527a.camel@pengutronix.de>
+ <CAH1PCMZnJDcYKJR35WirQT95hte0NWvGBe4fjDuyZEgagvunAA@mail.gmail.com>
+ <20250415101249-GYA30674@gentoo>
+ <0bbd2842-72bc-47a7-832a-fc8833163e32@riscstar.com>
+ <20250415122807-GYA30943@gentoo>
+ <hogqotzzpzcow2xjrwh34qcuiu7ooc2qnvlhuvexzvqkrcsfop@mhz26t5vu35p>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <hogqotzzpzcow2xjrwh34qcuiu7ooc2qnvlhuvexzvqkrcsfop@mhz26t5vu35p>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 15:29-20250415, Randolph Sapp wrote:
-> On Tue Apr 15, 2025 at 11:20 AM CDT, Matt Coster wrote:
-> > The J721S2 binding is based on the TI downstream binding in commit
-> > 54b0f2a00d92 ("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1]
-> > but with updated compatible strings.
-> >
-> > The clock[2] and power[3] indices were verified from docs, but the
-> > source of the interrupt index remains elusive.
-> >
+On 4/16/25 12:18 AM, Uwe Kleine-König wrote:
+> Hello,
 > 
-> For future reference, interrupt maps are present in the TRM. "Table 6-89. GPU0
-> Hardware Requests" explicitly calls it out "GPU0 | GPU0_MISC_0_IRQ_0 |
-> GIC500_SPI_IN_56 | COMPUTE_CLUSTER0 | GPU0 interrupt request". Subtract 32 from
-> that pin number to get the DT number.
+> On Tue, Apr 15, 2025 at 12:28:07PM +0000, Yixun Lan wrote:
+>> maybe there are cases that users don't want to issue a reset..
+>> so, want to make it optional.. I can think one example that,
+>> display controller is up and working from bootloader to linux,
+>> reset it will got a flicker picture..
+> 
+> Agreed. You can just deassert the reset at probe time. That shouldn't
+> interfere with a PWM that is already producing an output.
 
-Now that the mystery is resolved, could we update the commit message?
-> 
-> That comment aside, this series seems fine to me.
-> Reviewed-by: Randolph Sapp <rs@ti.com>
-> 
-> > [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-> > [2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-> > [3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-> >
-> > Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> > ---
-> > This patch was previously sent as [DO NOT MERGE]:
-> > https://lore.kernel.org/r/20250410-sets-bxs-4-64-patch-v1-v6-18-eda620c5865f@imgtec.com
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> > index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> > @@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
-> >  		/* reserved for MAIN_R5F1_1 */
-> >  		status = "reserved";
-> >  	};
-> > +
-> > +	gpu: gpu@4e20000000 {
-> > +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-> > +		reg = <0x4e 0x20000000 0x00 0x80000>;
-> > +		clocks = <&k3_clks 130 1>;
-> > +		clock-names = "core";
-> > +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> > +		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-> > +				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-> > +		power-domain-names = "a", "b";
-> > +		dma-coherent;
-> > +	};
-> >  };
-> 
+I think you're saying reset can be a required property, to be
+harmlessly deasserted at probe time?  Yixun was suggesting it
+should not be required, because it might already be deasserted.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Anyway, I don't feel strongly either way.  Maybe the DTS
+maintainers can recommend what to do.
+
+					-Alex
+
+> 
+>> GPG Key ID AABEFD55
+> 
+> If you advertise your OpenPGP certificate, I recommend using the long
+> id. See for example https://keys.openpgp.org/search?q=AABEFD55.
+
 
