@@ -1,117 +1,120 @@
-Return-Path: <devicetree+bounces-167592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C1FA8AF99
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:18:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CAADA8AFE8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF815188EBBB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 05:18:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C995B3B8DC6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 05:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BFF2288F4;
-	Wed, 16 Apr 2025 05:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9F122B5AA;
+	Wed, 16 Apr 2025 05:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4YsDyhl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFdWzR/d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBAA2DFA2D;
-	Wed, 16 Apr 2025 05:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02322DFA2D;
+	Wed, 16 Apr 2025 05:58:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744780711; cv=none; b=QibJql9VlA8attYgvVIsKBZGxMO8+v/A38dnWC2AzS6/vV8dOPbLtmhvSrhbTJbqg2qzyu7gsYqS6T/zN0AiYidPAkiZxEH0hq8fa3I10Rgw9BLmGHfN9QRRG8UwjyqvLxaVO9dw6JVNEmOZZ4g+GSEhvcn4hboB5xd5Iem5kp8=
+	t=1744783100; cv=none; b=QOrWLz1of5w7jcAa2zzeAnjmV35j436wumTBhbBAmiXBMm+Ca8U4HxeiDoRObh0NLRSjZSsveHGTj8xAv0kT1Ac4k+xsNpT1PsZmZG92I9rwN9L+AEns9MeSJSVOKG/08MWPOUecqZjHsi80O61Lr3VZ1I8wVadNiZVeAGEMzhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744780711; c=relaxed/simple;
-	bh=CmNtU/Ng9a+Jh4xKHpsC8mx2FxYmD+EiYZC+QuZh9+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lqAZiP/DX+SY5+/LWrZX9I8VKraoDb+pbyuXR/ZPxjq2dpch6NEgokil3q7zv0y2TIerAYWuXAPpnsXsoWa5hsn7G8MQSBKjD/hVperNKAe3vJYu63OkQIHQoWFDo2ObE4RsrhexKViDl5rvcYlHG6AsteZlo24K89xcY9T/D9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T4YsDyhl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A5DC4CEEC;
-	Wed, 16 Apr 2025 05:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1744780711;
-	bh=CmNtU/Ng9a+Jh4xKHpsC8mx2FxYmD+EiYZC+QuZh9+U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T4YsDyhl2RK//iQoGDJ4oxeuQ2oGCVN46wS8ndM2H1q8BTeAJYZse3I3Hpeb6+MNu
-	 PqY6HWPYLsznjFBt6m8JzrR/fXLChkABbOeyyF9rGB6uco9jqrCgPgnGAGePFdDDfH
-	 2ly5/wQBDFv785hDObgMrmIc59qEosIpIkxaACm3mgk6ZnAo/yI9Y9O2VnT4Z30ZTU
-	 vfQO4X/IPfT+u5J11+3LXI283MB3NthqovTArwv6n/Ohmz6DU2T6BfuQTpv4J8GFW3
-	 rV4VppRCG/NS8cr68X0Kp8MDwEI6Y2ZaNvlqjBQwSFwnGvxC+v7LZsHIScZHcg+T5l
-	 W1z+KsnM770wA==
-Date: Wed, 16 Apr 2025 07:18:27 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Alex Elder <elder@riscstar.com>, Guodong Xu <guodong@riscstar.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor@kernel.org>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, drew@pdp7.com, 
-	inochiama@gmail.com, geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
-	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property
- resets
-Message-ID: <hogqotzzpzcow2xjrwh34qcuiu7ooc2qnvlhuvexzvqkrcsfop@mhz26t5vu35p>
-References: <20250411131423.3802611-1-guodong@riscstar.com>
- <20250411131423.3802611-2-guodong@riscstar.com>
- <20250411-confider-spinster-35f23040d188@spud>
- <89b6142bacecd4a7742341b88dc1e28c4454527a.camel@pengutronix.de>
- <CAH1PCMZnJDcYKJR35WirQT95hte0NWvGBe4fjDuyZEgagvunAA@mail.gmail.com>
- <20250415101249-GYA30674@gentoo>
- <0bbd2842-72bc-47a7-832a-fc8833163e32@riscstar.com>
- <20250415122807-GYA30943@gentoo>
+	s=arc-20240116; t=1744783100; c=relaxed/simple;
+	bh=HxdTTSYdcKTmZuva99KFhsmVW9uUnPfSDOH6UrLMP2U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X2Dl1MjzDK0dwCcc12Oa/Wio0xXSBPpt9nmyXjnljzPF50Y2lp5BD7QbrOG5mhGxGudogWi8k0HlQXJsiiiHwe/rJPMZLfAqRAmXrkIbdvSL+mgDxXPIBWfFcOLfss67xaAwTspv/hA5NltFFr0EHOh8TdLtVRAPLSF1FFSnw3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFdWzR/d; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54b09cb06b0so6614767e87.1;
+        Tue, 15 Apr 2025 22:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744783096; x=1745387896; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U0K6PKDXF90sHSVqTWnaPvjEgYs/LRDDmGtwLelc3Gg=;
+        b=BFdWzR/dxW9YAv8jcA5wPadJCmbnkmeJZtXkLQpbg5A2gEXQ18AgARPzUVtR6wo++C
+         o9E6HXPlY0/xNzcRvvtj36ts/IpF6TsqXcQw9juRtmLjCm6cVVpblVZ8vW86myeV7znG
+         34j97pFVMZFXi+OQGJfhxizeltuF2+Pp6oVRb7PpgYyEMWyt5MmofPEEUkthJOlROwHC
+         ZDkdm95CvvDSCXKhRONnVsMDKT/6G8pleQtWD0Ys1dcT5ENTp6/yLLKpTJQFmkbdEmh9
+         ONWs738cV1kBtl8GGUVJ6dPn0pZWq107CDcvdhntbXSrNjHlIOAzeFww9iyqjZlFIxTg
+         XY3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744783096; x=1745387896;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U0K6PKDXF90sHSVqTWnaPvjEgYs/LRDDmGtwLelc3Gg=;
+        b=ofo3LmDQqjWo5GxbRxUk4ftB4DqELWpWmtuUlbSnpjM1cEkL09qJEVQG66wMtCiRbD
+         +qF0jG26CohNBXNDIRLefhY0ugt8ZZLk6XrOSmdlGU8XG0ZDqasb14OYSTUnw3SBuRY3
+         htUCYJPBhfgpC/x7mC0uL54X4n3M+U6VOq+4hRcBBzIjHX182PgPtR10d3yGmK272RWS
+         xnB3gJPPIjsjP4w5azPqFjm4uS9egoDA6VbJTM0E4ynyqH8ep/8Ubj4dv1dcO4UgCHs4
+         ZyEtvtWYiUO52fJ0woGV0IDsXL6QYwKc7XDoZ6+P14KhczTDXX/OI0zO/kLVUhnb04Q0
+         dr1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVF02njqAv8W41vf5aSvjMPu72rxzdPlWwEzEQ0WlJghapsxwbJ6ckIbNcr+rR6Tcevc0/BNjaAXNfq@vger.kernel.org, AJvYcCWAYMlBvY3Ll+Ar0ofc+PPi+uer22CCppb+8BjCeUX6rew0UiCanGSrZHBOlYKv+qO/w/SFtRgJWPUI@vger.kernel.org, AJvYcCXLhLxtom7pB8hae6aLWJbFA1JWRjqHHs1p3S9WBrqllbNjKzmd20I5t20YiiNMC7E4YuuoiHUACgZa0bRk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsAwemnlHT558GVqiyRbM/EPVrwSAyalaCC5SzlqTC4Rt4qduI
+	XVG23v/Zsh6+iCPgO3c4H8S+FthuU7RMwCMc+fYL8VHp0IZHJHJl2Kz9iQ==
+X-Gm-Gg: ASbGncvaUSKeGbAhbbchI7RBlYZGCfx1uh5W6MgZoSSX0BOM2jgi8TuVM3FP58qqNft
+	U5sYioc/v4ub38b3e4g/hjZ9Gygak8dam9vkyLKmOFKzl5sMibvxJcNmJpb/lLGnITttRewevLL
+	MSdGuoo7qkN+IeEzkDUfBawM6uipi5N8QUR/sTt/mIS9GjeyBeRTCd2yC3/U60gnCflYXnPztdf
+	4Odd7zBsQvhx3MXkq5esLjcfHoqIBeEgU71ECjZZmrHvcI1tNgkzB2CRMVPjpMesNMv1LKZ8aw9
+	+ThetNTDXMmlih6vR6jrzlYsupTdFnHFA/640oiXhXoo1nEVvfRkUtDOyhcrzJQYTC4PtERPeM6
+	BBDMS94KTJl670MYORYsblw==
+X-Google-Smtp-Source: AGHT+IGVpodMsei7D8Ugi3wyH26NExd1z9hFpsh50IjGEY/jDppoCTMZF3oy+VqUXdplF6hwReupsA==
+X-Received: by 2002:a05:6512:1088:b0:545:fad:a747 with SMTP id 2adb3069b0e04-54d64a7b7camr148915e87.5.1744783095591;
+        Tue, 15 Apr 2025 22:58:15 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54d3d50f647sm1595634e87.163.2025.04.15.22.58.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Apr 2025 22:58:13 -0700 (PDT)
+Message-ID: <76cae799-0612-41e1-aee9-66358b9f5046@gmail.com>
+Date: Wed, 16 Apr 2025 08:58:11 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="drktpjdibffse2jk"
-Content-Disposition: inline
-In-Reply-To: <20250415122807-GYA30943@gentoo>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: adc: ti-adc128s052: Add lower resolution devices
+ support
+To: Sukrut Bellary <sbellary@baylibre.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Nishanth Menon <nm@ti.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250408132120.836461-1-sbellary@baylibre.com>
+ <20250408132120.836461-3-sbellary@baylibre.com>
+ <20250412141253.6d57032e@jic23-huawei> <Z/7btoHi03NftNQJ@dev-linux>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Z/7btoHi03NftNQJ@dev-linux>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 16/04/2025 01:20, Sukrut Bellary wrote:
+> On Sat, Apr 12, 2025 at 02:12:53PM +0100, Jonathan Cameron wrote:
+>> On Tue,  8 Apr 2025 06:21:20 -0700
+>> Sukrut Bellary <sbellary@baylibre.com> wrote:
+>>
+>> Matti took on maintaining that driver because he wanted to see any changes
+>> that might affect the Rohm part it now supports.  If anyone wants to volunteer
+>> from the TI side of things that would be ideal - just send a patch adding to
+>> the new MAINTAINERS entry.
+> 
+> Thanks for the review.
+> Sure, I can work on the TI side of things.
 
---drktpjdibffse2jk
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH 1/9] dt-bindings: pwm: marvell,pxa: add optional property
- resets
-MIME-Version: 1.0
+Thanks Sukrut! That's great as I have no TI devices to run tests with. :)
 
-Hello,
-
-On Tue, Apr 15, 2025 at 12:28:07PM +0000, Yixun Lan wrote:
-> maybe there are cases that users don't want to issue a reset..
-> so, want to make it optional.. I can think one example that,
-> display controller is up and working from bootloader to linux,
-> reset it will got a flicker picture..
-
-Agreed. You can just deassert the reset at probe time. That shouldn't
-interfere with a PWM that is already producing an output.
-
-> GPG Key ID AABEFD55
-
-If you advertise your OpenPGP certificate, I recommend using the long
-id. See for example https://keys.openpgp.org/search?q=AABEFD55.
-
---drktpjdibffse2jk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmf/PaEACgkQj4D7WH0S
-/k6ooQf/d4DhhdyM4QPOcTmcUpZ8HOxH7CFCD701mRLpmOlq1dz3/Mtz5tO4wLL2
-nvfA4N7zRagUW8grFQIpENy3IFx5DP3Rdg5PtVELqlqPrOW+NqTTJGslRBeIAoQ3
-0rybTAJEutOM0DPeL7Ay6iGy78VV/Qosh7dhFUWmzxeF1IBHry2tm+euAw5wKOzP
-PNPY/S0CfuOhb2G1ivYYVTBV3fsgYT5G+VfTJyR9/Gkf7F9yKMbX0LRYcG1LM8Ox
-0ilgkvwEu9kt2Au+q6PivMLURHJ28CtG1Fl+Qn50PZm0witW6kFfQqSA3WN4z6rz
-ueBYfIz0tcqYQIjClrgXnesRcLI+KA==
-=8FCS
------END PGP SIGNATURE-----
-
---drktpjdibffse2jk--
+Yours,
+	-- Matti
 
