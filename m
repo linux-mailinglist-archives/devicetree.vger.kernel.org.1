@@ -1,145 +1,110 @@
-Return-Path: <devicetree+bounces-167868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C554A90922
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:40:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2ACFA90952
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:47:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D10797A95E9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:39:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CACCB4460E4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 16:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F90211A1D;
-	Wed, 16 Apr 2025 16:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9055F2080D2;
+	Wed, 16 Apr 2025 16:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="efsHX+Re"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f8lzS+S1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585A31552E3;
-	Wed, 16 Apr 2025 16:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53B16F53E;
+	Wed, 16 Apr 2025 16:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744821629; cv=none; b=N6JK3ASF3k4Xi1Tf28KEuMmSR5PqpC+jDgapsBlAGfAVjb1BNvQbXnJXTFKTEkJbBNspuzeXapVPvbo4glcILQLTRiz2nykOAXLlfz2Syos7QYsIo3GEpj3SACWPROlkP5rIn5eXKJ2zB/d1VbuLIwkrqsuQYjjd6Kzr3q2A+aA=
+	t=1744822044; cv=none; b=MAbOPJY5IRoww9Iw0Tg9p84jWrE1B4/lavKg2JgjdAbb3PiA8JAccsSD6aJpK+7UJKS0oXDWPbhwaanCceg+yHG46oXHH5DPdQH+pBBVnlGETLDyivhSHNYo6+70aqIySTxoy9YO2xh6ds99MKc0vLPYGFbhq92GH58daQIZBII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744821629; c=relaxed/simple;
-	bh=kdWGzMC4e8Q/F55njWJtcJOc5uDVvyTSX+OFhhLoMs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kCY9WrfRx1c7rvnIHYbWJhK1+GR4pSo2ocnQWXIJ0CdLPiDT2XQnz0PviTeu+4UHCI7pQxwPclv5oBDBES08ufKfbbdECaHQbrdxdz29V76fJybObF8S5CCfXU8dg1ibRm3wsXkK92ma46YAtlOXfMXsIOEsfNPTG57oAZuRqLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=efsHX+Re; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53G9mFPI007029;
-	Wed, 16 Apr 2025 16:40:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YnCM84KjxzfyDSxb3gt85GemZL1H2aNhnuW7pS5CQkw=; b=efsHX+ReLvKFxozR
-	N4FGKnp3F0eeNoPpxrqt4fc9ZzpVozHxy8mAYMk45aOKaKp8bceBNsK3Ej81F36s
-	9ddC4lG3al5FsvWW19MyqSh1COcyzibaE1wLe1j1qi1pf3wzx48atJTG5IN75iTW
-	4HVh4OU/M++RNCbyXXOi82ru0deY34IRCB0nNsQ+o8IkbKT5hdgiJpMpaxaTXXDy
-	3JZHQddFUSht8hNvbn6UXZbsJ+2oF841hma5u+7v95nZgn6Pa5TcpnRfOl4MYHSK
-	DibFQq3Q8ighMArntczOJm+V1wBAW/VgOkRvnC4qln0o5OC1rLDdDlIbHU57F/tJ
-	u5Od1Q==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45yfgjm46e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 16:40:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53GGeLh7023006
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 16 Apr 2025 16:40:21 GMT
-Received: from [10.50.19.174] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 16 Apr
- 2025 09:40:15 -0700
-Message-ID: <30ebc1b7-5746-59a3-0155-7a7870544622@quicinc.com>
-Date: Wed, 16 Apr 2025 22:10:12 +0530
+	s=arc-20240116; t=1744822044; c=relaxed/simple;
+	bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZColySRT0/QdCwL+jyKqoN6fG5616L77I+3ySUipJCHTfGHsNFdfMQCNtCjnfGUgBgH2bPKy1oOn2l51GMUGe04oZs6HMBzNJfIFcyQyI1wejWWJep5QCse24g7SfEw67EO4oEg/tUGDTVCO9huChglvBO3HlUma67j19CmBQpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f8lzS+S1; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5498d2a8b89so7096487e87.1;
+        Wed, 16 Apr 2025 09:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744822041; x=1745426841; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
+        b=f8lzS+S153v4Ww5MS+50qnQ16wTlWDWA/cph8NT16rmvDzR5pZEuCDVf2CKUh+5sxt
+         rGdm7DHXg9d1fQXDtstcpva+qdszUEPuBNzKy2rC9SzyCj/WBWAZHaa/q1+OLdmfDBJu
+         y0t1fkxNWYcgleKB8+O8QLGHZZzesaEXcn5hW0gXeTNJSavEi8f/G/g4WIvCBRioLSK+
+         0ShZOqvgnq6jVT0bj4X09lpECdMi1rwlnZtrPStrO9TIxpxd4tOl7agks4EMlZQovuip
+         MZbo1/7QPafE7YPbi82QQnA+3EPbMp0e/5H623gfajNTkgBFxLPIf+SOI9vH1nWcd0TG
+         U+1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744822041; x=1745426841;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=39BxbZJxzOc2j51sx2qrVfV5Kq0/9tpMcS2gikzPL8c=;
+        b=v6grcK+8BxVuYjbT8Wb621U27xmAyCiogQjflgQcOMMT6i4dLrot1OfD35UoXqmCMH
+         gvb35yo4EoJGMpsVG/yQADzhL6sTcrwnBIgfk4p/1skw+vzxaZMVK1M6Jy4G8oAyHctL
+         czW5TMRM005P6smDcQNuuJDmN2uEEC9QZY9udf/IcwiUBMn92svEEeqVxEE8r2ZNGKs7
+         c1MxysVjgjCjNWEMHhYHiy6SeR6ZpDtv0TDk2mcP8FTUHJ5y3YyQY/Nhgkg+JPk1AQz3
+         q/WJsr8iYO2KcN4ubzfUEKGhoJJSyG9gTzRjuRWzhyqyhKm3S5xme4ytv9il23R1SNK5
+         Zlpw==
+X-Forwarded-Encrypted: i=1; AJvYcCU5Pj9Y7mbCAYqvL1xv8cz65LrVSSppC+SWq5jYSgPpXI8AMoYCBrcGUjT7nEKAku5/8VQRKSJZ@vger.kernel.org, AJvYcCWgbjDRPiZQOndCM+2flTsirpPfSoxqBPhw90+yXB/AIlCKauaRQPPyqWgoHXQ4yumVe1eBWX2sY25U@vger.kernel.org, AJvYcCXk58tdG0AWbCu0rFpVWWLZHQBq7T+mRhBUNduW/A/jQzsaOYj7jmHjhfwU9eKJYpGaZ7U6vv6Km/FbuQan@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNOMLPzm1g0pHNxq8qJ2/t40wI82KKVF3m8UVpDVjP4U0pQuuF
+	tVBhWJluK0z/rPt5sc5Mxsc20dZsr8VsB9hlQZ1st1QKu1+bApmMuX9SecHfLIcCaRrQ3StwYfI
+	jhJVbYWuZjVqskdXYt7LnAfYxi8c=
+X-Gm-Gg: ASbGncvRgJOIAu+wdQWjEPqwKekULy36hgOm5z5POa6z7bgPM1eOMzhr6oVsDptU3YV
+	/Qb2OAkeq8Jvxjy4stlzQaEZyPbzcZy9ZplZbGySHYGV0l0Jy34EkU9nQf6dYVGxiffMe1d/i2p
+	AQJeZvVYhrwIxAVcbI+5S0kOUEXXdlTykUO6HuKGWZwd/g832iCrg+fopqOUWDWRck
+X-Google-Smtp-Source: AGHT+IG8lZZ6TzRpkafiDqZuJb6IdgkKcm718c9RVf9XNRQH9WAewHR/NAdfrRWL4fICzAbGf7ZhyLgzY9E0+gg7jUk=
+X-Received: by 2002:a05:6512:23a8:b0:545:381:71e with SMTP id
+ 2adb3069b0e04-54d64aea47dmr805238e87.40.1744822040616; Wed, 16 Apr 2025
+ 09:47:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 01/20] media: iris: Skip destroying internal buffer if not
- dequeued
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Stefan Schmidt
-	<stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Rob Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor Dooley" <conor+dt@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <stable@vger.kernel.org>
-References: <20250408-iris-dec-hevc-vp9-v1-0-acd258778bd6@quicinc.com>
- <20250408-iris-dec-hevc-vp9-v1-1-acd258778bd6@quicinc.com>
- <811cd70e-dc27-4ce0-b7da-296fa5926f90@linaro.org>
- <137c68d5-36c5-4977-921b-e4b07b22113c@linaro.org>
- <96bd9ffa-94f6-0d1f-d050-5bec13b3328f@quicinc.com>
- <70a630cb-06ad-403c-b2e2-ae6d26e0877e@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <70a630cb-06ad-403c-b2e2-ae6d26e0877e@linaro.org>
+References: <20250414140128.390400-1-lukma@denx.de> <20250414140128.390400-6-lukma@denx.de>
+ <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
+In-Reply-To: <41ea023e-d19d-40f1-b268-37292c9e15de@gmx.net>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 16 Apr 2025 13:47:08 -0300
+X-Gm-Features: ATxdqUGIOgXds9JKSX6cp4bYSDFF-AKiQ6t09fTbUcUeMyDb0_oZvm6DwfBTF4M
+Message-ID: <CAOMZO5D+OZ6C02n4T3tJnmzJd9hTWtZA9o6-LXcFh-UmTdVb+Q@mail.gmail.com>
+Subject: Re: [net-next v5 5/6] ARM: mxs_defconfig: Update mxs_defconfig to 6.15-rc1
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Simon Horman <horms@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3hVtaosg3CGbQh3bTYuTewtgMNNFml9Z
-X-Proofpoint-ORIG-GUID: 3hVtaosg3CGbQh3bTYuTewtgMNNFml9Z
-X-Authority-Analysis: v=2.4 cv=Cve/cm4D c=1 sm=1 tr=0 ts=67ffdd76 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=UQm-4NqDxuu6OjQSYYYA:9 a=QEXdDO2ut3YA:10 a=ZXulRonScM0A:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-16_06,2025-04-15_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0
- suspectscore=0 impostorscore=0 mlxlogscore=917 mlxscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504160135
+Content-Transfer-Encoding: quoted-printable
 
+Hi Stefan,
 
+On Wed, Apr 16, 2025 at 11:41=E2=80=AFAM Stefan Wahren <wahrenst@gmx.net> w=
+rote:
 
-On 4/16/2025 5:40 PM, Bryan O'Donoghue wrote:
-> On 15/04/2025 05:58, Dikshita Agarwal wrote:
->> Although firmware makes sure that during session close, all buffers are
->> returned to driver and driver will release them but still we shouldn't rely
->> for this on firmware and should handle in driver.
->> Will fix this in next patch set.
-> 
-> Shouldn't we reset iris in this case ?
-> 
-Not required.
-> i.e. its a breaking of the software contract to have failed to have
-> returned a buffer by - close.
-> 
-> Its not enough to free the memory on the APSS side as the remote end could
-> still assume ownership of a buffer... right ?
-> 
-Before close, Stop will be called to firmware and firmware will return all
-the buffers to driver, which will transfer the ownership to driver, so no
-issue with freeing these buffers in close.
+> This is unintended, even it's not your fault Lukasz. NETFS_SUPPORT isn't
+> user select-able anymore, so it's dropped. AFAIU this comes from NFS
+> support, so i think we need to enable CONFIG_NFS_FSCACHE here. Otherwise
+> this caching feature get lost. Since this is a bugfix, this should be
+> separate patch before the syncronization.
+>
+> @Shawn @Fabio what's your opinion?
 
-Thanks,
-Dikshita
-> ---
-> bod
+Agreed, your suggestions are good ones, thanks.
 
