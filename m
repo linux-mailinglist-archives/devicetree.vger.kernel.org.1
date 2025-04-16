@@ -1,186 +1,118 @@
-Return-Path: <devicetree+bounces-167621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6E7CA8B251
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:37:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EADD1A8B261
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 09:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF5C7171030
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:37:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23B1019013B1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 07:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD9F22D4C3;
-	Wed, 16 Apr 2025 07:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B1B22F3B1;
+	Wed, 16 Apr 2025 07:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VKqSGHPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ACE322B8AF;
-	Wed, 16 Apr 2025 07:37:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB9322D4DC
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 07:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744789045; cv=none; b=TqYWLRrWKF6piPf/nEygWvp5orAhnMYALBYWmcK+K5yh4uew/XTVxQTqL+HcJx33GY+50S92Q7uwfS4bTd8vaXPzmGrWUifxyS3azGOMzksKBuUz09+OCFUacKex7lczFrpXM/a2TmVqVNaZIoX70bUyd4EL5eleIQmdZGbxB/E=
+	t=1744789088; cv=none; b=Dw9nxdNZ5mZ29ZXLPpL6D789+REQqlQAg06r8OMhK4p5VvhPzVAI5gEG1h1lWntXQBN1O8AF849XvbL3HJw1kU5WqgAtkiQRrNOaDpFoK3b3oTx3fmAdmLTQ9aN7/IasnVKUnoHHnPdtK6bOMdH4ZCg1UzKgNGV3hRtjegjgoqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744789045; c=relaxed/simple;
-	bh=oGodWPuUb5+MnGToBbtDq5Xpwb8zsCN7+byc82DrjYk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C1SwP41M787cW9o7+/BdBGwuCkxIrGyuoWDiAEwLYfLPVMj/LxO7oJ1BmNmhHwiV7pCE81bKpnmzevit8m68TGJam7j/eNZB/LR/YGZy1owmVGrcRVHdNu81/zSm0giEPla5Q7Y5xaeIPhSclTdEs/+URo0Qs8Yui9LhLkSSnyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-86715793b1fso2508378241.0;
-        Wed, 16 Apr 2025 00:37:22 -0700 (PDT)
+	s=arc-20240116; t=1744789088; c=relaxed/simple;
+	bh=bT+cQpwTABxthE21Og42/Nfhu15qsdTLYAV48srb3+4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ufI5x/19f5asOabb1TTENixte3VYf1IXFx/FFx0l8/PLq7nVAUd4/4slo7VZOX7x98a2/zF+4h1a3Hy71vd2VzhldWf97MWSgH1yHeKuX0pTAcAeZFfrQlUwrqX65kuhHceHfIdCRCwchBJOqvVMukrNOfBD+YEXH8qGD4ioBVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VKqSGHPf; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac30d4ee128so93777466b.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 00:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1744789083; x=1745393883; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MESsicyyhatyINufDMJoZ4SnaUsTOFcTcz3ZiENjCc4=;
+        b=VKqSGHPfXxjt4B+uZnv4OO54qAeihZZpBYJ0vqfrVFpszdI/L67L1H9AUejBLOF/K8
+         WVYsZuw2jZiGzSu/xFvHVF79O3wOz9KpoImiobyelyBoVmw0nZfYUihHlAdn5sCJ1K5Y
+         bfGc30S2MYYPVIwwmiolZHNFwaoMg0/EclofvKQWjxQxzbbyMx+8d6Ko79QJVLoLYGNE
+         QdP7yDgRio25keJX6QIqUAr/i0yhThS8v9/njS3Uv+pofHDZUvStlIt26/eG6V6BxxZj
+         wxE6Qu7agSjdcFJWMS3QL8qDBfdd7Xc9BGSbOsxS2LBClQYdq4VA0w9q98k52C9HCfLJ
+         vDSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744789041; x=1745393841;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1744789083; x=1745393883;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2AaYCWwqfJc5zQMIS4PXsP90RkF2Rh7XV6isLc25jDU=;
-        b=vMiRHJ0bwATQIF4B8aGOI9xmeoWCNhR3uQ1M5EIDU1z+cQpxAp/sm+JRR+mvJ2i4og
-         eyWd+e1L5sKGyH7fYzbdokLl0TnZMwvMrtkK3zoqrL2Rr16elZQYXOPIoPQ4QH/ZX9h1
-         NZFfKfhnIwjp/DKf8qvz3iHOozVVYI2aqy0gtsBDcGudJ3ffdzsToSA4pObERP2y5rgl
-         oVVjPnXBAhBnovN1jWa3u4+WozxOeKbL5eTOaHk2xMlsyjm1WwBFRcQaI/fhFm5h+I5U
-         cKtC7ApTaEYlA5uQHWp6W4tQMXYJKjPbr9w5U2Ht8WHmcirKXv3GUQ/is+bajPQvnxSv
-         sfOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEOrQj8v9bxEEOsWZ6LepHn4xRoYHMjtjs+fnfcoGX19CbLk4gmJjYshJHVjTrH4Nu235EaGmik9sVJKg7GWK0Reo=@vger.kernel.org, AJvYcCWBOmqw+w0OuceayvyjEEvrcX1qZOXLMAPFKD5YB/9aF9YJA5OcKX/QlSo4S4cm4lvVl2dNT9FxJw643yEx@vger.kernel.org, AJvYcCWXqCuC9fheDDxVYPGNa+Mf2BWpzqt5pbpxBRFVYsS55jagafvprR63wB+4etYx0yr7vOurRtKgytq1@vger.kernel.org, AJvYcCXaP5JrlA1s4QmhSpjmKYqsthh+8yzbK1VnAN77n5xPYeVdPy0ftUN4iYD7a2V+YsuiMTaRdCp7ngtU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUIVEnp+W++sqtDhN3ICov81oQKWFubmthPL2ET8FX6QAgNQ4u
-	giyDjx4Tw//DACBq3qa6eKpkSG5bMIVZv0Jhdq5k3zbU0zlizkLfQ9LuArzS
-X-Gm-Gg: ASbGncu3obKWVmalrC8iLC5m0c/gWJRYTgMuzg6TX3AqrP/5t7qlqOMPcvVziJQuI7t
-	JScz7aophvenOsAoE2SePiEFZtD0uZfGJ7Opg/3/IqxzXXQT4Eq0jC46PTbEVC4E91KN5cyYKmF
-	dPtCMg5XARfqG4XJa8YfawEGaePDkkmKHCCdN9mVV2wYXM7VizuoA3Z0MLUr88tF8bEKBt2KaVb
-	k9nbpiYQNVCl0+9VXOMDkmSiAk4OBxwYT1la3KfsT5mimQJXoe7/zfsWacPoqw7kNIqQMS2pooh
-	BX3yn9CGfBo75dNLCI/O+WL47A9k26XS2V4LYU5lB0ohCzjR2+5SHq0JvEh0NjxH1yIhjy0hr5f
-	nd27blYw=
-X-Google-Smtp-Source: AGHT+IFMBo+Qq0LRXY49Rmg73p9OJkNoE1G2IsGCJUfZmD2i2ZxEv5+kFfMpZ/b4+bXtdYjraWORRQ==
-X-Received: by 2002:a67:f094:0:b0:4c4:dead:59a3 with SMTP id ada2fe7eead31-4cb591aeccdmr188559137.2.1744789041360;
-        Wed, 16 Apr 2025 00:37:21 -0700 (PDT)
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87555547509sm3176098241.0.2025.04.16.00.37.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Apr 2025 00:37:21 -0700 (PDT)
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-523d8c024dfso2491998e0c.3;
-        Wed, 16 Apr 2025 00:37:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUM+6s4vFnRjdKdefjd4H9AaMRP3R7OTcnxt8q9gpY8RWl5NsAoEcMmTkZ11aro33x2frMGlh24ApHc@vger.kernel.org, AJvYcCV5Vw6DolqhYSFwEKFynHMaRGAXJRCC66Gb3HoIThetHDu3McFfGH/PfltEyAzhBJeUjLuiAyHlQQE7rSVQAkmvpzo=@vger.kernel.org, AJvYcCWObDTWL8hlnAHNtOdJ7ddEGNPgXy9pciNfqknPY6u8/OMoH+UK5oy43LfLxIuWnKUBR1segFofiaQr@vger.kernel.org, AJvYcCXfLmFMeMTltE3S2BMDdu2c3y4T7GWKDWyoIyXoDpjHFLQxXcLkm8h3ESRu6z5dEfJ2eyeBJnFAvu90RWMW@vger.kernel.org
-X-Received: by 2002:a05:6122:20a3:b0:520:61ee:c815 with SMTP id
- 71dfb90a1353d-5290e20a1a6mr224554e0c.10.1744789040901; Wed, 16 Apr 2025
- 00:37:20 -0700 (PDT)
+        bh=MESsicyyhatyINufDMJoZ4SnaUsTOFcTcz3ZiENjCc4=;
+        b=bXrZGsCKoJHRi9YkPZpSD7QemIPOZyU5WEgfcZjOoAbdj44KDFwgNlZ82Eux5zPQpu
+         uUaZgvPVOPoNhyuNJUmnZGEmpj7TgMO0I3fBWfTWbTDzTlX8bI2Wrf3QW1UhJi+QSZg/
+         kLDYnffAXagfHwj9WK3F3spFuidIWgeaxQHwGUQaWE/Qa/QM+4INyafMhLsAJc7eSjZE
+         clpCSggKjIbXoibXzMCjpIORBdvv0ygVTUbreHZcswYoNnJrU9mWlnxYQAYWGuYTk8ur
+         XzVyBcMYm9s+ibGh8py4Fb0Z2ar//e0UPRTY+zgwGKzIog0AUkuVwHxw/Ale7DgX+sFt
+         i7wA==
+X-Forwarded-Encrypted: i=1; AJvYcCXEBjdtVdcTkm5gywWQqTyFq9q/VAH0CqWIPJvswTOfxrDepkUxJAlwBu4bxoLbB7ZxQHfE3ANSdTZV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkKbcQrHZDQGarJMIwkK3/E8lyAQKALDvyk8xQvJ44rZ4j8Qcy
+	TY6eAfgGE8axt4nGf3IJjt+oeVbbNPmLsnBN6jh/GZY1Bg0TM5g5QXAlgJHjQ6M=
+X-Gm-Gg: ASbGncvfYPDJ1ZZb3r2kJmDtHN12jBVSi5WBcb4ogZ9mfqujiAd9rBezpAnTlIZnPZU
+	PqsqjaCkNocodKu4zWFuzwYgLCgHo631VlEXoTi9sFJJbZPcCBriBG4eYKHNyMSvgvp95jEmRq7
+	gWpQyeNmKEu8OYmVWlWFStMNLklgylV6gH9xAnpkk22UaEIZ/isnBOHNj4q7MVqbmVfVhf1IKfK
+	sRh36+bs5kDdGhR+smqTLZUnBwyuqQa8xY/WClG7YGb5uWVX56wVUrPq6F4mBxqiM1j330W2xhE
+	EMDzKrcd2KXYI3wlHbgY9Px0N2T7W6JnhDTRBSJhsRhpB0yncJJ5A+JEbglNtiGjudl/xG8El/9
+	dBbbY/LLRJXVewZQ=
+X-Google-Smtp-Source: AGHT+IGfmvUt/FSzOcqD2du/hnhTnAGiq086+HJ2TFi6ewXNvWJS6ClhkVHTH7jbIEYkihEMx3raLg==
+X-Received: by 2002:a17:907:1c18:b0:ac1:e2eb:8877 with SMTP id a640c23a62f3a-acb42b52478mr17700466b.11.1744789083533;
+        Wed, 16 Apr 2025 00:38:03 -0700 (PDT)
+Received: from [192.168.1.26] (46.150.74.144.lvv.nat.volia.net. [46.150.74.144])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acb3cd63f12sm75397066b.32.2025.04.16.00.38.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Apr 2025 00:38:02 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sam Protsenko <semen.protsenko@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250209132043.3906127-1-ivo.ivanov.ivanov1@gmail.com>
+References: <20250209132043.3906127-1-ivo.ivanov.ivanov1@gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: exynos: update all samsung,mode
+ constants
+Message-Id: <174478908177.19245.11349422916489425295.b4-ty@linaro.org>
+Date: Wed, 16 Apr 2025 09:38:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250407165202.197570-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250407165202.197570-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdXDDBS1POX3AmvTLWBbYcpXjnZm6sNqRpKfghF4uPGsUA@mail.gmail.com> <CA+V-a8uSB62TSxgcGTaWbfkPsNOmxZmO31jH3TREE6g2HHtcXA@mail.gmail.com>
-In-Reply-To: <CA+V-a8uSB62TSxgcGTaWbfkPsNOmxZmO31jH3TREE6g2HHtcXA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 16 Apr 2025 09:37:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVXjs75gVEfS3WMtvtywP_m7wWaf2HQKCwkJZqX4T5M8w@mail.gmail.com>
-X-Gm-Features: ATxdqUHfLWZozTEbKvWHo6ddKkD-_L7IeLSAvaYLwHnDrViN4zVvtP7UkamFSY8
-Message-ID: <CAMuHMdVXjs75gVEfS3WMtvtywP_m7wWaf2HQKCwkJZqX4T5M8w@mail.gmail.com>
-Subject: Re: [PATCH v2 9/9] clk: renesas: r9a09g057: Add clock and reset
- entries for GBETH0/1
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Hi Prabhakar,
 
-On Tue, 15 Apr 2025 at 21:25, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> On Tue, Apr 15, 2025 at 3:37=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Mon, 7 Apr 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wro=
-te:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add clock and reset entries for GBETH instances. Include core clocks =
-for
-> > > PTP, sourced from PLLETH, and add PLLs, dividers, and static mux cloc=
-ks
-> > > used as clock sources for the GBETH IP.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/drivers/clk/renesas/r9a09g057-cpg.c
-> > > +++ b/drivers/clk/renesas/r9a09g057-cpg.c
-> >
-> > > @@ -78,6 +87,19 @@ static const struct clk_div_table dtable_2_64[] =
-=3D {
-> > >         {0, 0},
-> > >  };
-> > >
-> > > +static const struct clk_div_table dtable_2_100[] =3D {
-> > > +       {0, 2},
-> > > +       {1, 10},
-> > > +       {2, 100},
-> > > +       {0, 0},
-> > > +};
-> > > +
-> > > +/* Mux clock tables */
-> > > +static const char * const smux2_gbe0_rxclk[] =3D { ".plleth_gbe0", "=
-et0-rxc-rxclk" };
-> > > +static const char * const smux2_gbe0_txclk[] =3D { ".plleth_gbe0", "=
-et0-txc-txclk" };
-> > > +static const char * const smux2_gbe1_rxclk[] =3D { ".plleth_gbe1", "=
-et1-rxc-rxclk" };
-> > > +static const char * const smux2_gbe1_txclk[] =3D { ".plleth_gbe1", "=
-et1-txc-txclk" };
-> >
-> > The "et[01]-[rt]xc-[rt]xclk" clocks are not created by this driver.
-> > IIUIC, they are actually Ethernet PHY signals.
-> > How is this supposed to work?
-> >
-> My intention was to add support for PHY drivers to provide the clocks
-> and hook them up accordingly. Currently, for the RX clocks, we get a
-> rate of 0 since they are external.
+On Sun, 09 Feb 2025 15:20:43 +0200, Ivaylo Ivanov wrote:
+> Update all samsung,mode property values to account for renaming USI_V2
+> constants to USI_MODE in the bindings.
+> 
+> 
 
-So the link would not be provided by DT?
-If these clocks are inputs to the clock controller, they should be
-listed in the clock controller's clock{,-name}s' properties...
+Applied, thanks!
 
-> I haven=E2=80=99t written a prototype yet for the PHY driver to provide t=
-he
-> clocks, but the plan is to get the initial pieces in place and then
-> extend support for that.
->
-> Is my understanding correct that the PHY should provide the clocks? Or
-> would you suggest a different approach?
+[1/1] arm64: dts: exynos: update all samsung,mode constants
+      https://git.kernel.org/krzk/linux/c/4855244996578ac25495a708b426c3f27632a068
 
-The Static Mux Control Registers (CPG_SSEL[01]) registers treat them as
-clock inputs.  However, Figure 6.3-1 ("Block Diagram of the Ethernet
-Interface") shows the TX clocks are bidirectional, so they can be used
-as either inputs or outputs?  On RGMII[1], RXC is an input (PHY-to-MAC),
-while TXC is an output (MAC-to-PHY).
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'm a bit lost on how this works, and how to model and handle this...
-
-[1] https://en.wikipedia.org/wiki/Media-independent_interface#Reduced_gigab=
-it_media-independent_interface
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
