@@ -1,106 +1,116 @@
-Return-Path: <devicetree+bounces-167898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-167900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8599CA90ABC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:03:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0562AA90AC4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 20:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89109447A17
-	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:03:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83DB8188B574
+	for <lists+devicetree@lfdr.de>; Wed, 16 Apr 2025 18:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB2A217F55;
-	Wed, 16 Apr 2025 18:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B15219303;
+	Wed, 16 Apr 2025 18:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aBSpj43s"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="F7lkSLyX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C5A217712;
-	Wed, 16 Apr 2025 18:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E82217712
+	for <devicetree@vger.kernel.org>; Wed, 16 Apr 2025 18:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1744826593; cv=none; b=PLKkO+pEerpJzrnHtnoLvY6sN8A34f8AXbhmNKZgqVSlw/zf1vhhGcPhw1RH3KDY0e8a0UJCYM2r4xxrhG4Dnze2TLumF/6cwe0ac+boaFAquov2xX7Nw4cpcPEcWQUiEIjs4mJ6KnbIl+JJC4kf8z2hx3ezsXYjN6efQB1dcbw=
+	t=1744826671; cv=none; b=dcivax1lsYGmnYzfs7ULMmgcVGWOmQbRG0dRhYJs3yOAiQ2Ddv9ADl9Rad1JwyJZ+/YUW5qrHeosCp8+rfaWGa1WKtTXfTdNU78KA0k7UtkOLV2sjABDMHzkWH6TtWWtY3iNg9LzNm/XpYnfXTiNSF8JUiK0iBxiDvGc0fKZjzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1744826593; c=relaxed/simple;
-	bh=OuleikaC8BGcJrE4pFFfmyLpEGdaMyvqvwoOlVQB0yo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dgt0hURu4pMn0QkhV/3Ot9fuvQpXYKre4cpWXLj7otWLQriuLvYm98cqwm92/GY30dA0DW7m7cQBRs61S6g4rFIt51u+E330PeDu39KuILVwCwQsi9Ru4aa6lt20CT4x95gcCQMg/48NR5CdHr5STwO+gtwQbKmu5uVomLzne+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aBSpj43s; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e6e1cd3f1c5so5799823276.0;
-        Wed, 16 Apr 2025 11:03:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744826589; x=1745431389; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OuleikaC8BGcJrE4pFFfmyLpEGdaMyvqvwoOlVQB0yo=;
-        b=aBSpj43sqJo3NnQF+lPR2pJKLO8ilC8Sgv+JdncyFuAEWX96YMQc7yzyos76IQ3PZE
-         DqJHx7P6jOivmDueOBPuEpjllXUpM9REqk6PlZR4zCGVm/mX4NqRe9UXqiOWuvgYRO66
-         +V9ETMXh3dPbyymEZouacOUShbUrUwxl9vmC4ABaOTS1WQk6Zybtla+rMSdIyMUaV8ZO
-         LkvwlxN0u15+ss/GEvA4ULhdF1YbJglb/6zGIkJKmQf1/lDqG07WzdgxwAkyrbmNWml9
-         +sQLSh3QAgysbGXvj1Ep7BWibLS7na398Z0EaLXFdl1CaAkHTkm44ua4ZG4aCXn0gPXq
-         C+jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744826589; x=1745431389;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OuleikaC8BGcJrE4pFFfmyLpEGdaMyvqvwoOlVQB0yo=;
-        b=KC6AIXpXipetXL1Q94w0F5qj3Iaq6u3AhTnVHoU98rjf8++UboKX9e04Ipm37rnWbJ
-         zKzp9VNEMlRhXJOgIxf0c8xUOP2UEgLRnAIGRE6XyK8U+uqai2l9fr9JETrULmnpGzRM
-         I1jz3aL1wYQk40COz8pHimCaWADeqgPKTniYQKIyWDLc9zRmyNz0uImDzm8zcJ04IgJg
-         /h5PVIXoK9I24u7X59gNC50qHyEZYoZn1Uw0oJ+cRCUGgjff9ga/wP8t/ff8YeSizwCx
-         enfnKdr+RsHOWiv7vn1MZBy9v2GU0FJmAAIfiB0lcKC9XCTLQqx6IyXVLEkjM7OC6SKN
-         GC4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWfkPxd4xqNHGI8qVZkTpzV4mqsd8Kqq4EXXr0MlmM9vyT1Ggrzrllrk7izxc62L4oqFKInhLTzIh85reU6@vger.kernel.org, AJvYcCXAYuuY4MYG1LDhlZH8l3Guy1F9Gej0Rpk/n1TBZCe3t/KsOLmlW9sRgH0pcgUP4myWA0g/mWuFAWv1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyD9p9loy3yUQZRozqRrE41OMx6kK381SyynCYg3Wh/Be+8Bv2
-	BnRuboJ/ZqePKciXxH6dVCCUrSxEd7X0WfzC/wYbP3gSI6OY6CLZvON7IdXJ5PX58sbTVGhWP83
-	j6i6GoBNswHrYkDBeEj/xdhH995s=
-X-Gm-Gg: ASbGncvB+rsu4QlnxVd1K1DVeQJmBMPeJHiXino7l/M4kw5k7U6dDiDbW1axF9eK63j
-	YXv6h+I8kGrtmmlzuGmOVbgMtynbqo0vcg6qudS0VGQ4t/1SmZJkWXWngf8sAwH3BlbCuH4qdL/
-	Jo92fqD2l1vURlr8xkP7tmftM=
-X-Google-Smtp-Source: AGHT+IH6d5sLoHITBH6SHxSf1RGZPD/HNoPd8+EbPoaGxQjpd/lJOJNYxTJPUBArOhh+2j6JjAatI/5tcLnsRf6twDA=
-X-Received: by 2002:a05:6902:2681:b0:e63:5946:940d with SMTP id
- 3f1490d57ef6-e727593ed18mr4101928276.20.1744826588741; Wed, 16 Apr 2025
- 11:03:08 -0700 (PDT)
+	s=arc-20240116; t=1744826671; c=relaxed/simple;
+	bh=3tJ/br8DjU8waWGCy/RCXHnta0+4Yr9H9+0lpNJh3Ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CMKwJV6uvvziZNl7J5BUG2YhKj6nfc/Vmxxp4osCBpSVOROtN6my3IptMAHuq9fSKxcLBFzXiR8KSDTJZj74EQCs4aMm3HQvoybGh5YyHW/yKaU+dAQR8NTw5I2ZgPE3xKiyfYyKihX2djHx14676/TwCTzsGjCrGpbNgjBQMMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=F7lkSLyX; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from DESKTOP-0403QTC. (unknown [20.236.11.102])
+	by linux.microsoft.com (Postfix) with ESMTPSA id E4B462052502;
+	Wed, 16 Apr 2025 11:04:28 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E4B462052502
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1744826669;
+	bh=cNocqr+f4jd0PXhGNGZtTNkwX0S/kPbjIgYZzMTwGRk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Reply-To:From;
+	b=F7lkSLyXPqicBGROFWe5YEm0hwGlmASQb80YXKtwsZdKz9r/3/gN1PQGdAqShudnu
+	 +v0mrjCkpzH953U+sjY/DUzzoont8/OvrTQJoOkYgSiJkUrU4HPTb3sQevwEjmpgcQ
+	 GSXZJl3606uFWjUOiB0PQ4koc8SYaXFQ26Yebg0M=
+Date: Wed, 16 Apr 2025 11:04:27 -0700
+From: Jacob Pan <jacob.pan@linux.microsoft.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ virtualization@lists.linux.dev, will@kernel.org, eric.auger@redhat.com,
+ code@tyhicks.com, eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+ jacob.pan@linux.microsoft.com
+Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
+Message-ID: <20250416110427.21bdd561@DESKTOP-0403QTC.>
+In-Reply-To: <20250410230008.GA6905@ziepe.ca>
+References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
+	<20250410230008.GA6905@ziepe.ca>
+Reply-To: jacob.pan@linux.microsoft.com
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250401233409.3215091-1-william@wkennington.com> <174369144385.3206748.4237732855581471096.b4-ty@codeconstruct.com.au>
-In-Reply-To: <174369144385.3206748.4237732855581471096.b4-ty@codeconstruct.com.au>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 16 Apr 2025 21:02:57 +0300
-X-Gm-Features: ATxdqUF6Nm_u6VtEIg2hxnlKLINoNWGGUs82xnRZ2T0RroYrEysMTsGQiBKmBXo
-Message-ID: <CAP6Zq1htTYeMojSATXEiAuwQgVzD-hyrEFx5ia2iuURZ9ZnZCA@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: nuvoton: Add OHCI node
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Rob Herring <robh@kernel.org>, "William A. Kennington III" <william@wkennington.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-William, thanks for the patch.
+Hi Jason,
 
-Reviewed-by: Tomer Maimon <tmaimon77@gmail.com>
+On Thu, 10 Apr 2025 20:00:08 -0300
+Jason Gunthorpe <jgg@ziepe.ca> wrote:
 
-On Thu, 3 Apr 2025 at 17:44, Andrew Jeffery <andrew@codeconstruct.com.au> wrote:
->
-> On Tue, 01 Apr 2025 16:34:09 -0700, William A. Kennington III wrote:
-> > The EHCI peripheral already exists in the devicetree, but the hardware
-> > also supports a discrete OHCI unit on the same USB PHY. Generic OHCI
-> > works fine for this device already and has been tested on real hardware.
-> >
-> >
->
-> Thanks, I've applied this to be picked up through the BMC tree.
->
-> --
-> Andrew Jeffery <andrew@codeconstruct.com.au>
->
+> On Thu, Apr 10, 2025 at 03:50:27PM -0700, Shyam Saini wrote:
+> > 
+> > Hi,
+> > 
+> > Currently, the MSI_IOVA_BASE address is hard-coded to 0x80000000,
+> > assuming that all platforms have this address available for MSI IOVA
+> > reservation. However, this is not always the case, as some platforms
+> > reserve this address for other purposes. Consequently, these
+> > platforms cannot reserve the MSI_IOVA_BASE address for MSI.
+> > 
+The fundamental question remains: why is using IOVA 0x80000000, an
+arbitrarily chosen virtual address, a hardware issue?
+
+> > There was an [1] attempt to fix this problem by passing the MSI IOVA
+> > base as a kernel command line parameter.
+> > 
+> > This patch series aims to address the issue by introducing a new DTS
+> > property, "arm,smmu-faulty-msi-iova" which can be used to hold
+> > faulty MSI IOVA address. This property can be passed to ARM SMMU
+> > drivers via device tree so that the drivers can select appropriate
+> > MSI IOVA base address which doesn't intersect with the faulty MSI
+> > IOVA address.  
+> 
+> I thought we already talked about this and you were not going to be
+> doing a DT proposal for a software knob?
+> 
+> And then you didn't even link to the recent discussion :(
+> 
+> https://lore.kernel.org/linux-iommu/20250403232619.GA681099@ziepe.ca/
+> 
+> It is easily solved in the smmuv3 driver without out any DT. Please
+> do that.
+Given the above fundamental question answered, then we do have a
+platform specific IOVA range to avoid, IMHO it must be enumerated via
+DT or some other means to avoid conflict.
+
+Per last discussion "SMMU driver have a list of potential addresses and
+select the first one that does not intersect with the non-working IOVA
+ranges.". If we don't know what the "non-working IOVA" is, how do we
+know it does not intersect the "potential addresses"?
+
+Thanks,
+
+Jacob
 
